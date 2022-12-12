@@ -2,164 +2,270 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A84F649E1E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 12:46:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D30ED649E26
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 12:49:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231503AbiLLLp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 06:45:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53586 "EHLO
+        id S231705AbiLLLtg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 06:49:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231314AbiLLLp4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 06:45:56 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF9EF20A;
-        Mon, 12 Dec 2022 03:45:55 -0800 (PST)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BC7gLEm022097;
-        Mon, 12 Dec 2022 11:45:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=qcppdkim1;
- bh=9Dx7Im/qaVVIn1kDzXWEbUeo27z30INpqHCiA9IegNQ=;
- b=ENnIGJ5u4F9B2q0H1JBoY1/fE9l7yWXpEsKesOYfmPgaAiYSdD4YFg+XQRfa7n2e7GIt
- kmBN85KvkZ7nVqnCJkqgDZ+BYWubJR2CLVx6n/eND7yWfguPlEK1r4Vc83t64faXb30W
- AKkDaodP4m8rJCmDgCj0EGVIjOz6QbAb3B9Bcjg4b8xm0tYqw/fnbV631A4MjjCbZdC1
- n6SydAFg5E7+FDBLLpdEaySc5C6vDRc3PIWJ+uyHz7M0eNzwh7BReAGO0t0Dd2nKefyu
- +sINyvm4n7xSWxNlLvoikEARXJXmo6x2NwxuTLp3H/Pcti+WNl1JQjUFL1pBVNY0vEkb EQ== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3mcj723xrt-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 12 Dec 2022 11:45:45 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2BCBjigR016419
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 12 Dec 2022 11:45:44 GMT
-Received: from shazhuss-linux.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Mon, 12 Dec 2022 03:45:40 -0800
-From:   Shazad Hussain <quic_shazhuss@quicinc.com>
-To:     <andersson@kernel.org>, <johan@kernel.org>
-CC:     <bmasney@redhat.com>, Shazad Hussain <quic_shazhuss@quicinc.com>,
-        "Andy Gross" <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
+        with ESMTP id S229452AbiLLLte (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 06:49:34 -0500
+Received: from EUR03-VI1-obe.outbound.protection.outlook.com (mail-vi1eur03on2131.outbound.protection.outlook.com [40.107.103.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62B35638A
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 03:49:31 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=J2IM0XjXvZA5VOudHPOUYwbmJrbalUNglKOqoqqw89+6N8ORS9EV7N3Vs3dYOJsxTwWmsTRd/3XjUV1b536gTS87XZFJxBqSFqot8fCWFAcp2p+dIFaqQFy+WNQmrOughvB6pNOgFoZtxu5Mb/kqPqxTs4nKrVnOdoWjV9nSmgEODU+6KyFycQ4vRXuln3MhzrOqwB1DYgc10v3Wi2s6R5eUn4h9rfXjhnS9J8xrLQi7nGY0R8r6hivIsOYpi0TwbKF9VUXCNLBAZR3Y5ouH9w1ceNr9i9T4IryqccKp7WNdVsw/PbFZlQERQLwHHm8K5EQrRedbhJWgauYAybDLzg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KpbQF5UxGS8cKkhkLZQim6OQDZ/g7pHzA4FbwNOLBmU=;
+ b=WmE1wSH581njSpkECHuMev+WTya6v/F3JigbmswWhqGP9pQy9ZFxA4bq6MkTuHwUlqNPR2PmlZOiZFd0v9GJjm4a2BIzC/a6YEMhbD4cx3u5nS6u/BhE1neZlGuEkr4RDMbI1dBWoqbriGdmENFuyGIUyKaJqGeEvUL+Xj6BEBszBEal8fXRxPUCaOQP4WUOaMMn82rm+JQG9S9LmpORSeIYXnFVIYpE2c5/M10S88D+Fvrdsr5DDe64GjQzKFv6sVmMBHEulN/qf8N3JR+nZbfLShzk4DtzjCbLCTa0IhOYwE1B2nevEIB3QVZz+qWbQEZMF1wO38NXHRc8ouOHqw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
+ dkim=pass header.d=kontron.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
+ s=selector2-mysnt-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KpbQF5UxGS8cKkhkLZQim6OQDZ/g7pHzA4FbwNOLBmU=;
+ b=T08k52mAge+alLIMjvQsbaqBK8k8Mk4YtmyVD2VYAeFiIqvb6nI6b6cWkqIVUB2fA6bleGBNjs+K5MiJ0oXbSdG2aeNWMjS6hQLdpTGKrma9VFvaBzutoAshdGd9YykAF8+50t3Tk8Yd3Ht/HrqTHYNefoMJ8Rufg1lWDocp55k=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=kontron.de;
+Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:263::10)
+ by AM0PR10MB3156.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:17e::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.19; Mon, 12 Dec
+ 2022 11:49:28 +0000
+Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::f209:bc86:3574:2ae6]) by PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::f209:bc86:3574:2ae6%5]) with mapi id 15.20.5880.019; Mon, 12 Dec 2022
+ 11:49:28 +0000
+Message-ID: <604d3d94-1aa2-d4bf-e934-9844e25f60a4@kontron.de>
+Date:   Mon, 12 Dec 2022 12:49:26 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: ti-sn65dsi83: Add enable
+ delay property
+Content-Language: en-US
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Marek Vasut <marex@denx.de>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v1] arm64: dts: qcom: sa8540p-ride: enable pcie2a node
-Date:   Mon, 12 Dec 2022 17:15:01 +0530
-Message-ID: <20221212114502.1616-1-quic_shazhuss@quicinc.com>
-X-Mailer: git-send-email 2.38.0
-MIME-Version: 1.0
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+References: <20221209083339.3780776-1-alexander.stein@ew.tq-group.com>
+ <45157029.fMDQidcC6G@steina-w> <6da2330d-516e-7dc4-a000-1e68c7f7887e@denx.de>
+ <2735716.BEx9A2HvPv@steina-w> <c6f2cc52-41c6-028f-4d3f-e8a4d5d73dcd@denx.de>
+ <9f8b1c17-0bc5-ae99-b7b1-cb2f52f9310d@kontron.de>
+ <Y5b1PRRFeSm2P/LB@pendragon.ideasonboard.com>
+From:   Frieder Schrempf <frieder.schrempf@kontron.de>
+In-Reply-To: <Y5b1PRRFeSm2P/LB@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: GFf6ibYlAR1lDAvAy5L0nYw7nbVJ_jK5
-X-Proofpoint-ORIG-GUID: GFf6ibYlAR1lDAvAy5L0nYw7nbVJ_jK5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-12-12_02,2022-12-12_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
- mlxscore=0 adultscore=0 priorityscore=1501 suspectscore=0 malwarescore=0
- impostorscore=0 mlxlogscore=938 phishscore=0 lowpriorityscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2212120108
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-ClientProxiedBy: FR3P281CA0206.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:a5::10) To PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:102:263::10)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR10MB5681:EE_|AM0PR10MB3156:EE_
+X-MS-Office365-Filtering-Correlation-Id: 211fa5b8-7316-42d6-28d8-08dadc36ecce
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: bwZSMZWc5a5qM/RHCWweNQErToPQlRQ8ZSCVczY5VJXQ/q9kubc8i5GA/O+YaKOHYrScG92RaDS1O7QpnbXFdGXaUC2vCM+EpHWA7zze46zF6FS0cJPXM6KiHTkI5Srp2SkvfjeH4zTHFTrisjrnVTOsGQ0XWHp0DJIqg8o9ly9xA1ipnffHPzoh7X+9SWvI8cnypbunbGiHGEBK7SlirlXoy7vTtjOkq5dywehASDrpeAUKiAnOruR+dadmDLWzHJp5HsrZd5XqVV+oozunUYVEhIfKJZVLWlSikmf+G3o+3f0ix4J2LSUOrqcFtsgETraBkcOlIXqMzYDfIPQK4MptqqMswCfsdZMKJRaDFPjOKD9VvEQKkKJM8wmATzwX+3MqsmFeoTqkP84DxlbeJWjwPqcgzDHOn/STo0aa+QxoBOjtYPdJQ7ClGW8Wwqj2HMoFjXpCCvQjqM0MhHkwi++ZUF97czYjyX63NXz8cGxwtX1ebVYEDjKiA5Ir3mXLduKuZXGOqW7/DpYvnsyDwEmaPR8CDSXTzBOshrrWYMnpZx6GStvUWP0pSCDNCVZ2aoXNKHhrk6CqZAi67ZLGfMlzA+bakuUIo7Pm2TtsBcB9ImxDeJ3HOuIndNiphXK9ynUCZ8LOIuzNnVIgM92ydsrIA2tIJkAm41FG2xSDNZpJcnARYhGqF7zxS2nCfkF0P+fDnNyInDwkaV9vGKD7jFodk6GH3KhvO2pOrPMTLLM=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(136003)(346002)(366004)(396003)(376002)(451199015)(31686004)(6486002)(478600001)(53546011)(2906002)(6506007)(31696002)(86362001)(36756003)(44832011)(8936002)(186003)(2616005)(38100700002)(6512007)(7416002)(4326008)(83380400001)(41300700001)(5660300002)(54906003)(66946007)(66476007)(8676002)(66556008)(6916009)(316002)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MFU2aDhpamNwbjF1enZONUR1ckZDdll1NUZjMHVlaTB5WVNzK3BMa2ZMK2Rm?=
+ =?utf-8?B?NW1LSnBQdnpRUFNYaDcvdmF4Y0dWUDZLaDRNbG1WcW1jOGN6TEtoWm5ucldM?=
+ =?utf-8?B?Q2wyWVAraXovYUFRdE1vbG9YRG9IRThEV3JNUThFRGVOYW9mQWZFdVYvUTJ2?=
+ =?utf-8?B?ZlRXYnNEZlNoRm1Gd1oxRkJ2NW9wS1dJMnBvdy9XR3RWc05xVnFlS3VkQko3?=
+ =?utf-8?B?TDVzN1Z5NmpydldNa2lBY2E5dnkxZ3U4eHNENi9SZ3ZheCtNR3Z1WFJWd0VD?=
+ =?utf-8?B?THJFMG9neGFBQnZmWDhqbTFhMzlSZnZqRzBUVHpGa3duZm5qZHZlRzNiTGps?=
+ =?utf-8?B?R21XUUZURCtkQ1o4TnZQQVVnOURmdjRCQ0l4OGpJVE1KV2M4RXdzTGtmb2sr?=
+ =?utf-8?B?V0VWWEhoUzU4dGdSTDZRWWdjZlJKY0NaODB5dnNkL1FqeWc1UjJOK01hS1dz?=
+ =?utf-8?B?bmNOOTJuOEluR3lRRUxKV0d1MVdWUERwMG10UE41MXJGNmpCa0QxYTlxSnFG?=
+ =?utf-8?B?WFl1Z1lxeE5EbWtIMUNCTGxqdld1TTJNMDZub3FMcHo3aEUwc2psYnhMTzUv?=
+ =?utf-8?B?UHVQUmxPbW50YUNXVVlHblhEVEh2cnFhWmREL1Y5NFdPTXQxbE1SbzVjdXNI?=
+ =?utf-8?B?TCtpblZuaU1YK091MUp5b2VuQXpYRzJPbjV0ZkR2bWplcUhpL0sreVErM280?=
+ =?utf-8?B?Q0Mxa2IrMDZQQVduUzA5VGJJWWY2aDBjOGk3TDZNRVBGUTR3c0g4Yzd1RU1n?=
+ =?utf-8?B?Q0xOM1hmUEVzRVY1Mi9XS09RaDJwb0I5UVQ4bjhmRVRlWHk1SndLcTV0NnVY?=
+ =?utf-8?B?ekpuUGhsMHZFSmhyKzRhaU4wQmg2UlJsRlIyQXpxcGJGZEtBMUZlamJaQWhp?=
+ =?utf-8?B?MHJiOEk0VFdyRVozWWJCaXFTbGxVUXpCNGFuY0s1YnVZQkpwOE91ZXZyOUZH?=
+ =?utf-8?B?eWlLYWFBVW0yNzE4ZjNGSjFiTDJWVkVmcmFhODZ1TVJVU2tDK1RyZ0UvaDdh?=
+ =?utf-8?B?QjVYTkh5cVpDVkh5ZW92VTJzMmZlUzg3QmVGdXZKZkFQTnE4TXphRlRkcitR?=
+ =?utf-8?B?LzRaNCt6NXdnRkNwWTBLdGhBVXB4eFUrYkd2QTBGOEJxaktGWDBSaTFta2U5?=
+ =?utf-8?B?UHNuak50SFNXTjA0UGdtamFVOFVHVU04aUwxeXlRRWhlTWU3TVBrTTArYW1v?=
+ =?utf-8?B?L21XTW5qaWczNldqNHUwUG1aZk13Z0tCRlV3amw1MGNBWmpJMGFpeTEvU3px?=
+ =?utf-8?B?dXJhUUx2VzlUSUxncnoyQXlITGswYk8vbWVpSFNwZ3RaOVZmdStOdmpUd3VZ?=
+ =?utf-8?B?TGhwdzRFR3dLbWZsSjRwdmk3RUl5ZTI0eEdibTBSMFNvMnQ4VGQyUVJaM0VB?=
+ =?utf-8?B?L1JLcjdNZFR2a2RicXg0SVY0TGRPODNCeHp2VlFjS3ZNZXYwaWZ4QXdNa2d3?=
+ =?utf-8?B?RkYyWERvZHRhRkNFUkZSVWd3andGamlMOWN6bTBnaWFvK2wzQXk3cU5vdmh1?=
+ =?utf-8?B?WDhTTkFIVTN1UW5JTTZQSVNkSXdmWDF5ZHFDK2dHWE1BUm5tdjJyTHBwM3BX?=
+ =?utf-8?B?UExrRmo4cUZGVXZtVE52R09TVFp2QlBnZHFHcHFMeGIwUFRlNTI2RkoySmN1?=
+ =?utf-8?B?MnJrcDI0a3JpWG4xRlpFNjNzVDFjVEdEeWxlc3hGdExNSTZnOCt3Kzd3cHNq?=
+ =?utf-8?B?V2lGd243bTh5UStZU3J3dS9uSzVyZnJ1T0ZBNDJIckNtOWRwMFJDc3NmWUE0?=
+ =?utf-8?B?UksxSkFSOWdzQ0Roc1poWlY1TUVlOVNzRVhWQThoemRtZ1Nqc1FQeTFxYktH?=
+ =?utf-8?B?NFJNQjFPRW0rVjY4S0h1c002b1F3Wld0czBNeGpZZTR0c3RxQkp2TFI3U0Jk?=
+ =?utf-8?B?ZndlUmpvbm8xdmRkd2orOWROeTVYbW9MYzFIZFlGbkZyQnZuNWNhSWFvQjRC?=
+ =?utf-8?B?S0ZWdlZWUFkrckdhZUJIN1U4MXZpRWxOdW5FT3JHTklrSHQwOHBIeE40dUdV?=
+ =?utf-8?B?bGN3WlpxSkp0bmtCRW1GMjY3UkxTVDZSSVVjWFJCeVpOZXFrOWo4Tmwva0s2?=
+ =?utf-8?B?Y1ExRXlGUk85WElyMmRsa2IwenlrWEN1bTBXN3czQjUzRm5qeTIwdHFpS0ZE?=
+ =?utf-8?B?QnAvV1FGYkJYSVN0OEdnUkU3QlFaZDNwOWxZNFdyQkdLaEZObzIrQTJUMzZ3?=
+ =?utf-8?Q?/fHR29gWYtc/Hj1/k+J6XeHfbCZFcn0oSmb2TAXmr9p7?=
+X-OriginatorOrg: kontron.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 211fa5b8-7316-42d6-28d8-08dadc36ecce
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Dec 2022 11:49:28.6887
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: T5ZHm7snKpoeEP7UHuVkHemWCCLKKSjNDLcdnGZkWIEYvKBB42XQyak07ZgCEcCAsgdmf8romK8bbEY8tmhej4Y1vz9TUD8hh9aBiG8euNI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB3156
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the pcie2a, pcie2a_phy, and respective tlmm
-nodes that are needed to get pcie 2a controller
-enabled on Qdrive3.
+On 12.12.22 10:32, Laurent Pinchart wrote:
+> On Mon, Dec 12, 2022 at 10:09:45AM +0100, Frieder Schrempf wrote:
+>> On 09.12.22 15:49, Marek Vasut wrote:
+>>> On 12/9/22 14:38, Alexander Stein wrote:
+>>>> Am Freitag, 9. Dezember 2022, 13:43:02 CET schrieb Marek Vasut:
+>>>>> On 12/9/22 13:21, Alexander Stein wrote:
+>>>>>> Am Freitag, 9. Dezember 2022, 13:02:10 CET schrieb Marek Vasut:
+>>>>>>> On 12/9/22 10:36, Alexander Stein wrote:
+>>>>>>>> Am Freitag, 9. Dezember 2022, 10:07:45 CET schrieb Krzysztof Kozlowski:
+>>>>>>>>> On 09/12/2022 09:54, Alexander Stein wrote:
+>>>>>>>>>> Am Freitag, 9. Dezember 2022, 09:39:49 CET schrieb Krzysztof Kozlowski:
+>>>>>>>>>>> On 09/12/2022 09:33, Alexander Stein wrote:
+>>>>>>>>>>>> It takes some time until the enable GPIO has settled when turning on.
+>>>>>>>>>>>> This delay is platform specific and may be caused by e.g. voltage
+>>>>>>>>>>>> shifts, capacitors etc.
+>>>>>>>>>>>>
+>>>>>>>>>>>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+>>>>>>>>>>>> ---
+>>>>>>>>>>>>
+>>>>>>>>>>>>    
+>>>>>>>>>>>> .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml      | 4
+>>>>>>>>>>>>     ++++
+>>>>>>>>>>>>     1 file changed, 4 insertions(+)
+>>>>>>>>>>>>
+>>>>>>>>>>>> diff --git
+>>>>>>>>>>>> a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+>>>>>>>>>>>> b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+>>>>>>>>>>>> index 48a97bb3e2e0d..3f50d497cf8ac 100644
+>>>>>>>>>>>> --- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+>>>>>>>>>>>> +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+>>>>>>>>>>>>
+>>>>>>>>>>>> @@ -32,6 +32,10 @@ properties:
+>>>>>>>>>>>>         maxItems: 1
+>>>>>>>>>>>>         description: GPIO specifier for bridge_en pin (active high).
+>>>>>>>>>>>>
+>>>>>>>>>>>> +  ti,enable-delay-us:
+>>>>>>>>>>>> +    default: 10000
+>>>>>>>>>>>> +    description: Enable time delay for enable-gpios
+>>>>>>>>>>>
+>>>>>>>>>>> Aren't you now mixing two separate delays? One for entire block (I
+>>>>>>>>>>> would assume mostly fixed delay) and one depending on regulators
+>>>>>>>>>>> (regulator-ramp-delay, regulator-enable-ramp-delay). Maybe you miss the
+>>>>>>>>>>> second delays in your power supply? If so, the first one might be fixed
+>>>>>>>>>>> and hard-coded in the driver?
+>>>>>>>>>>
+>>>>>>>>>> Apparently there are two different delays: reset time (t_reset) of 10ms as
+>>>>>>>>>> specified by datasheet. This is already ensured by a following delay after
+>>>>>>>>>> requesting enable_gpio as low and switching the GPIO to low in disable
+>>>>>>>>>> path.
+>>>>>>>>>>
+>>>>>>>>>> When enabling this GPIO it takes some time until it is valid on the chip,
+>>>>>>>>>> this is what this series is about. It's highly platform specific.
+>>>>>>>>>>
+>>>>>>>>>> Unfortunately this is completely unrelated to the vcc-supply regulator.
+>>>>>>>>>> This one has to be enabled before the enable GPIO can be enabled. So
+>>>>>>>>>> there is no regulator-ramp-delay.
+>>>>>>>>>
+>>>>>>>>> Your driver does one after another - regulator followed immediately by
+>>>>>>>>> gpio - so this as well can be a delay from regulator (maybe not ramp but
+>>>>>>>>> enable delay).
+>>>>>>>
+>>>>>>> The chip has two separate input pins:
+>>>>>>>
+>>>>>>> VCC -- power supply that's regulator
+>>>>>>> EN -- reset line, that's GPIO
+>>>>>>>
+>>>>>>> Alexander is talking about EN line here.
+>>>>>>>
+>>>>>>>> But this will introduce a section which must not be interrupted or delayed.
+>>>>>>>> This is impossible as the enable gpio is attached to an i2c expander in my
+>>>>>>>> case.
+>>>>>>>>
+>>>>>>>> Given the following time chart:
+>>>>>>>>     vcc                  set             EN
+>>>>>>>>
+>>>>>>>> enable               GPIO             PAD
+>>>>>>>>
+>>>>>>>>      |                    |<-- t_raise -->|
+>>>>>>>>      |
+>>>>>>>>      | <-- t_vcc_gpio --> |               |
+>>>>>>>>      | <--        t_enable_delay      --> |
+>>>>>>>>
+>>>>>>>> t_raise is the time from changing the GPIO output at the expander until
+>>>>>>>> voltage on the EN (input) pad from the bridge has reached high voltage
+>>>>>>>> level. This is an electrical characteristic I can not change and have to
+>>>>>>>> take into account.
+>>>>>>>> t_vcc_gpio is the time from enabling supply voltage to enabling the bridge
+>>>>>>>> (removing from reset). Minimum t_vcc_gpio is something which can be
+>>>>>>>> addressed by the regulator and is no problem so far. But there is no
+>>>>>>>> upper bound to it.
+>>>>>>>
+>>>>>>> What exactly is your EN signal rise time (should be ns or so)? Can you
+>>>>>>> look at that with a scope , maybe even with relation to the VCC
+>>>>>>> regulator
+>>>>>>> ?
+>>>>>>
+>>>>>> I checked EN rise time using a scope, it's ~110ms. I not an expert in
+>>>>>> hardware but on the mainboard there is some capacitor attached to this
+>>>>>> line, which increased the time, independent from the internal pull-up.
+>>>>>
+>>>>> This does seem like a hardware bug right there, can you double-check
+>>>>> this with the hardware engineer ?
+>>>>
+>>>> Yep, checked with hardware engineer. An 470nF is attached, together with an
+>>>> open drain output and only the internal pull-up. So yes ~113ms rising time
+>>>> until 0.7 x VCC.
+>>>
+>>> I don't suppose you can have that capacitor reduced or better yet, some
+>>> external pull up added, can you ?
+>>
+>> Actually our HW engineers have implemented a similar RC circuit to
+>> provide a hardware delay for the EN signal. I think this is due to a
+>> design note in the datasheet (see chapter 7.4.1) and therefore it's
+>> probably widely spread.
+> 
+> RC delay circuits are very common when tying a control signal to a power
+> rail. I'm surprise to see it recommended (with such a large time
+> constant) when the EN signal is actively controlled. It makes sense if
+> the SN65DSI83 supply comes up before the GPIO can be actively driven low
+> (for instance if the supply isn't manually controllable but tied to an
+> always-on power rail), in other cases it's quite counter-productive (I
+> really hope the EN input has a Schmitt trigger).
 
-This patch enables 4GB 64bit memory space for
-PCIE_2A to have BAR allocations of 64bit pref mem
-needed on this Qdrive3 platform with dual SoCs
-for root port and switch NT-EP. Hence this ranges
-property is overridden in sa8540p-ride.dts only.
+On our hardware there's also a pulldown resistor parallel to the
+capacitor which makes sure EN is low from the beginning even if the GPIO
+is not driven yet.
 
-Signed-off-by: Shazad Hussain <quic_shazhuss@quicinc.com>
----
-This patch depends on below patch series for vreg_l11a.
-
-[v4] arm64: dts: qcom: sa8540p-ride: enable PCIe support
-https://lore.kernel.org/all/20221206161916.315640-1-bmasney@redhat.com/
-
- arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 44 +++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-index bb4afd3a9632..ed20423ec8ac 100644
---- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-@@ -146,6 +146,27 @@ vreg_l8g: ldo8 {
- 	};
- };
- 
-+&pcie2a {
-+	ranges = <0x01000000 0x0 0x3c200000 0x0 0x3c200000 0x0 0x100000>,
-+			 <0x02000000 0x0 0x3c300000 0x0 0x3c300000 0x0 0x1d00000>,
-+			 <0x03000000 0x5 0x00000000 0x5 0x00000000 0x1 0x00000000>;
-+
-+	perst-gpios = <&tlmm 143 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 145 GPIO_ACTIVE_HIGH>;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie2a_default>;
-+
-+	status = "okay";
-+};
-+
-+&pcie2a_phy {
-+	vdda-phy-supply = <&vreg_l11a>;
-+	vdda-pll-supply = <&vreg_l3a>;
-+
-+	status = "okay";
-+};
-+
- &pcie3a {
- 	ranges = <0x01000000 0x0 0x40200000 0x0 0x40200000 0x0 0x100000>,
- 	         <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x20000000>,
-@@ -247,6 +268,29 @@ &xo_board_clk {
- /* PINCTRL */
- 
- &tlmm {
-+	pcie2a_default: pcie2a-default-state {
-+		perst-pins {
-+			pins = "gpio143";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-down;
-+		};
-+
-+		clkreq-pins {
-+			pins = "gpio142";
-+			function = "pcie2a_clkreq";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+
-+		wake-pins {
-+			pins = "gpio145";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+	};
-+
- 	pcie3a_default: pcie3a-default-state {
- 		perst-pins {
- 			pins = "gpio151";
--- 
-2.38.0
-
+I don't really understand what the capacitor should be good for, or why
+TI recommends it. It looks counter-productive to me, too.
