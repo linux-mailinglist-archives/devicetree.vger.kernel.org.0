@@ -2,104 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39F0664A069
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 14:24:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E4F9649F6F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 14:08:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232695AbiLLNYo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 08:24:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53332 "EHLO
+        id S231854AbiLLNIm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 08:08:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232650AbiLLNYm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 08:24:42 -0500
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3E0638B6;
-        Mon, 12 Dec 2022 05:24:41 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id B388D84D70;
-        Mon, 12 Dec 2022 14:24:39 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1670851480;
-        bh=ByugvTB2TdD9rhs8DFOD2UNRwsHQ+Fwc4kOKwPPfwr4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=VQWdRaTfiV38yMRIHxVMtDuuJWSFn+RlcDFwqCkKkB0bXpHT/qcBbnYCYQShghKA6
-         FNRa3XAg/ZJ4jwLqaUuRGxlhu4p9FxEJ5WWQei5o1VgvQLfPEgm93jR9wpGxpzYftQ
-         vM24hYkUpcM8C1Yf1PZW438WYHmw9Z2PcJ2fxoXE7OElL4ZVHkpwehWc6F2JPej1YA
-         8B480VZ7yM1ykqR+bUJgVnXa7LqHM2b1f3Jd2VnpCFWYeNlxVsRjnjUlAM0tDYHk9o
-         qxYgjWbY5bXu920z8lcHZlQi8/tDfjzRk/bx93zucyYsoezW4kMq4bXWL0ZewId2/C
-         JXrVw7RV+cZug==
-Message-ID: <7e9301a5-a246-9779-39c7-9f2125218c30@denx.de>
-Date:   Mon, 12 Dec 2022 14:01:27 +0100
+        with ESMTP id S232119AbiLLNIe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 08:08:34 -0500
+Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A071095AE
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 05:08:32 -0800 (PST)
+Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-3e45d25de97so144546267b3.6
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 05:08:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VYeWDmjLYcTiLYEYpGdYdeFk+Wlp6dc41MHgDxnHonk=;
+        b=TMVnu4oDVAjwQo2ueybgeBTQaW39HyuM4S/0xkCBZNA9zk/cHROmDWJst9hspswZag
+         QIwXlM0Yb78xudSshA318tgegOZCJLSc27ebupa2J5AFwpmot+icGHKgtGxovMn/ud4M
+         AfLEhbOFco/5T0b6RgquRBFzr3wy5ixwKbGvJk8bC7DojUBbqXgkGPDrU2tasLXQcOLR
+         ntdJkvDsOu1ji7+DFQJoxM4AGllFHdU2jvFmjsV81QkmecaUJaF5sD6KMK+2sOtX+U4L
+         jPueMFT39+2NxCIqboB1xTBwWKHALQlHFwPp3LgZ+L6aTOth7pXuPyKOxQuTXrSk5dpB
+         DoBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VYeWDmjLYcTiLYEYpGdYdeFk+Wlp6dc41MHgDxnHonk=;
+        b=Qb1EIOO/JfrM1BnhUwaUUaypn6DJhFoKM8eQmS8pcbs9fXtmgqXqXfyb7WzFxDiDRk
+         cg3RoHOuqHRcsmmYoei5Ili+sukQYgJlrVWDLoSuwHzxOwZogMKQwb50TXDZm4cpO0zQ
+         TFk5S1WFqxadUZ8rwPhqHVatvLAiKkbrWl3VjMNhuR5WQC+ctyf/GPkyuuWRSMltjUj2
+         UCu4yRcxU0+rU9RAs6rn1XeNK2KTepFdUoRsrQ9FM8OV48Nf5OBz6t1+s+/LgNsqLsW/
+         mpIHRSl+IzIEHR7aNVJggAc9R5k45gYAayk9228cFjtj4nAK/Wf0nbkn2pmgXNGAfkme
+         2Xog==
+X-Gm-Message-State: ANoB5pm8AHIIG3a79b1bMGof1mKvoviG1GtcKdEZan/FU7DT5huuMo/c
+        YA0oj358NGO2nxo6zF+Uy9DExUJ68OsAJEjBrhO8Fg==
+X-Google-Smtp-Source: AA0mqf4El+CPKJ9CeoLZ+zzTZHIdrpCgYQdXK9NNf5joMEkI0DVQUMGXqvULtsXeAUtOOc4xLFizwJUzwRHGh3pnOLg=
+X-Received: by 2002:a0d:ebc3:0:b0:3d7:b4:9879 with SMTP id u186-20020a0debc3000000b003d700b49879mr38387562ywe.370.1670850511805;
+ Mon, 12 Dec 2022 05:08:31 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH 1/4] ARM: dts: stm32: Fix qspi pinctrl phandle for
- stm32mp15xx-dhcor-som
-Content-Language: en-US
-To:     patrice.chotard@foss.st.com, robh+dt@kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        alexandre.torgue@foss.st.com
-Cc:     mcoquelin.stm32@gmail.com,
-        linux-stm32@st-md-mailman.stormreply.com, linux@armlinux.org.uk,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Alexandre Torgue <alexandre.torgue@st.com>
-References: <20221212085142.3944367-1-patrice.chotard@foss.st.com>
- <20221212085142.3944367-2-patrice.chotard@foss.st.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20221212085142.3944367-2-patrice.chotard@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221028064141.2171405-1-clabbe@baylibre.com> <Y5clqogvKUjk+KN9@Red>
+In-Reply-To: <Y5clqogvKUjk+KN9@Red>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 12 Dec 2022 14:08:20 +0100
+Message-ID: <CACRpkdYF5Y-qVTzojHNiZtT4PndeUzPOT26NY-WWc49+vBbyyw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: leds: common: add disk write/read and usb-host/usb-gadget
+To:     Corentin LABBE <clabbe@baylibre.com>
+Cc:     pavel@ucw.cz, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-leds@vger.kernel.org, Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/12/22 09:51, patrice.chotard@foss.st.com wrote:
-> From: Patrice Chotard <patrice.chotard@foss.st.com>
-> 
-> Chip select pinctrl phandle was missing in several stm32mp15x based boards.
-> 
-> Fixes: ea99a5a02ebc ("ARM: dts: stm32: Create separate pinmux for qspi cs pin in stm32mp15-pinctrl.dtsi)
-> 
-> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
-> Cc: Marek Vasut <marex@denx.de>
-> Cc: Alexandre Torgue <alexandre.torgue@st.com>
-> Cc: linux-stm32@st-md-mailman.stormreply.com
-> To: linux-arm-kernel@lists.infradead.org
-> ---
->   arch/arm/boot/dts/stm32mp15xx-dhcor-som.dtsi | 8 ++++++--
->   1 file changed, 6 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcor-som.dtsi b/arch/arm/boot/dts/stm32mp15xx-dhcor-som.dtsi
-> index 134a798ad3f2..bb40fb46da81 100644
-> --- a/arch/arm/boot/dts/stm32mp15xx-dhcor-som.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp15xx-dhcor-som.dtsi
-> @@ -247,8 +247,12 @@ &pwr_regulators {
->   
->   &qspi {
->   	pinctrl-names = "default", "sleep";
-> -	pinctrl-0 = <&qspi_clk_pins_a &qspi_bk1_pins_a>;
-> -	pinctrl-1 = <&qspi_clk_sleep_pins_a &qspi_bk1_sleep_pins_a>;
-> +	pinctrl-0 = <&qspi_clk_pins_a
-> +		     &qspi_bk1_pins_a
-> +		     &qspi_cs1_pins_a>;
-> +	pinctrl-1 = <&qspi_clk_sleep_pins_a
-> +		     &qspi_bk1_sleep_pins_a
-> +		     &qspi_cs1_sleep_pins_a>;
->   	reg = <0x58003000 0x1000>, <0x70000000 0x200000>;
->   	#address-cells = <1>;
->   	#size-cells = <0>;
+On Mon, Dec 12, 2022 at 1:59 PM Corentin LABBE <clabbe@baylibre.com> wrote:
+> Le Fri, Oct 28, 2022 at 06:41:40AM +0000, Corentin Labbe a =C3=A9crit :
+> > The triggers enum misses 3 cases used by gemini DT.
+> > usb-host was added via commit 0cfbd328d60f ("usb: Add LED triggers for =
+USB activity")
+> > so we add also as valid trigger usb-gadget which was added along in thi=
+s
+> > commit.
+> >
+> > disk-read/disk-write were added by commit d1ed7c558612 ("leds: Extends =
+disk trigger for reads and writes")
+> > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> > Acked-by: Rob Herring <robh@kernel.org>
+> >
+>
+> Hello Pavel Machek and Lee Jones
+>
+> The two patch are reviewed, could you take them to your tree ?
 
+If the subsystem maintainers are too busy to respond, maybe you can propose
+it for merging through the SoC tree? It's a common last way out.
 
-Splitting the pins makes sense indeed.
-
-Reviewed-by: Marek Vasut <marex@denx.de>
+Yours,
+Linus Walleij
