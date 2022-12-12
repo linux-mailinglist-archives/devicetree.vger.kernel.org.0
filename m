@@ -2,74 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30B01649A91
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 10:02:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DFAAB649AA5
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 10:07:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231690AbiLLJCL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 04:02:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37202 "EHLO
+        id S231254AbiLLJHM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 04:07:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229681AbiLLJCK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 04:02:10 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8982DAE54
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 01:02:09 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id b13so17453643lfo.3
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 01:02:09 -0800 (PST)
+        with ESMTP id S231736AbiLLJHB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 04:07:01 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 771EAA443
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 01:07:00 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id y25so17440047lfa.9
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 01:07:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=nT+fTSiNEy076PIbhJFRV1A6o5d0WiMbc6l3dVRr41A=;
-        b=RFgwm/cYJ/MKwzKJjrGeAeYW6nBdDBwKPfVj2nYzySQT+u2RLvP33lrd0LLKvSaCr1
-         OfG04MbzuROrjABxBmITOLJmt/5qcIxWbh5Gmj3PYXme9PU6wynxv945JTJPpwwa+NYx
-         icKlCsgMLmbEZ7tUVzgyvD8yWqm8QJ4e+2a7A2l4KZFDHfVvDWHQdIaJ6C2yfNw7Rdsr
-         XTFn+R0O3hb/zDb2NwYgfRP78FnAp9YsM9UWGxO1/fKXg6QTGXhjVSIIokMAbY9yHVIp
-         p8fJ1qnQo0gY4W76Hd0QGzmudVBq2iBc77CNUmNfJwJ8HbXHCCCzs6vQXFIiSX3HQ+9V
-         IGow==
+        bh=sTVaySmzPKYHeit0z3XOO6b0j/OVHVNITW2ljPEYuJg=;
+        b=rKHpQg7qY7PA1P7H/4qyRs10t72UcTp/d38Mda8LHJxeG8FPkFOpUhDaSA3uVO6j7E
+         iKf6z1zvWI+uUKXAFVkOk1SiySaGoIDeNmw+eEbLXN/8HM1An+GhtNkgKTVlouB4EhWA
+         +PyofCFP/zluDIg3Zz2flzytYFwywTclHvw7wTwb1AKu0bbhqGiDTDKOQditRQ5Pts5a
+         MEyyCdmsCRMz/yzrB4W3+bJWjXTSWwPp6n5DI5QtPVk634u4VseNADvhCI3/DnwtK2MP
+         C0b4kAX/3aRHVJLVa4NzzEs9zYo4d48xI/5snAkD1ZowUQ7NujvoGxWaX7QwazunMgez
+         JmnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nT+fTSiNEy076PIbhJFRV1A6o5d0WiMbc6l3dVRr41A=;
-        b=A2O1wmZOpZ2w8jNI0J4XmdrEgXAn05cUg+EB96AXUCAHzy0hPJAb39bZRORgQQvPqq
-         hwqmbWnXvQUA5Mh2RrTu151nI3mGTQvnfX0kz60zqnQJnxNS6c4jB6sQy0A34LF4+g3L
-         8UR1gTXlQIlZCEpvKvV5q9SIMjaMMq/YAN8U9y3AIvD0dVJ83UG6LSCiszJydJFcT6ok
-         Hbvfr894ZOfWR0dyUlzvu3L/bwdwqqOtgaRYF5vHkdx41ddqpih8Ry4K/GNo626/id/1
-         8/uiX88DcbWzdsMCRLcNGWidRq/Py3MeUTHko6/5rWmraAOqkSgkxnCkIf7+MMczVEyA
-         K2/w==
-X-Gm-Message-State: ANoB5pmc22WM4AuT9o2uamIqurfnY0p4LX69nkch99jEWFIE5/W/P/DF
-        ykzhoqvImUbzGivrKG+XVOBQog==
-X-Google-Smtp-Source: AA0mqf59PGli4yWjF/5ayPHQfllE7wwGnHgUum7RR7Zmi5+4bP2uLFeM0X6wlf2o+QeuqQgQ2+6JvQ==
-X-Received: by 2002:a05:6512:12cd:b0:4a4:68b8:f4df with SMTP id p13-20020a05651212cd00b004a468b8f4dfmr5722963lfg.37.1670835727816;
-        Mon, 12 Dec 2022 01:02:07 -0800 (PST)
+        bh=sTVaySmzPKYHeit0z3XOO6b0j/OVHVNITW2ljPEYuJg=;
+        b=Lw5cKEJJf7O8Zr4wx0jgRkjD7JTZtMI7d/q2XTA6JJh1Gp98DXVU3fo8635wlpN9mA
+         ihPXCbj+bX2spc+Fg8OiD4t6fdBLsRtNnLtC2GjwMaArvQ/1igkvwfJPnk8YSgqOM//c
+         kKNpMxzzZWEROjPwwEGzR3h2Nuyl4MvHUEbah35LexQrXb8c+K6kz0XSo0FzoORLCulM
+         0RrZOF7s9w2AbASsViLUr9u1Cx/lZowmhcm4o82PyyX3NEoWJiHPUhwJGCeGU4AH1DUi
+         /GzYPb4cfhEiu8tLzaf2fOZHS58K9QRTh11Yo2CBeRzm+yBtEApntTUkcSFJkcCaWjwx
+         3iiQ==
+X-Gm-Message-State: ANoB5plU3xIMSiKOdKP8dcgYVnDzZI5XUDXMc2HS2ULs/7+gGoh0bdv5
+        KShTQrZwhuDNIN9lZtqFYhii2A==
+X-Google-Smtp-Source: AA0mqf7Q/Yj0CNJXu/1Q+sRvAVGSq6rOUCAKTbqvslIcFL0Hd0eqipGLowU+mtoxIZKETMXKLU0tag==
+X-Received: by 2002:a19:a41a:0:b0:4b5:8fee:1d71 with SMTP id q26-20020a19a41a000000b004b58fee1d71mr3269047lfc.64.1670836018898;
+        Mon, 12 Dec 2022 01:06:58 -0800 (PST)
 Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id a19-20020ac25053000000b004b5789ecdd7sm1534979lfm.274.2022.12.12.01.02.06
+        by smtp.gmail.com with ESMTPSA id y20-20020a05651c021400b002797d6bb516sm1151042ljn.20.2022.12.12.01.06.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Dec 2022 01:02:07 -0800 (PST)
-Message-ID: <788b1b55-ef4b-955d-d091-d4edb98c4775@linaro.org>
-Date:   Mon, 12 Dec 2022 10:02:05 +0100
+        Mon, 12 Dec 2022 01:06:58 -0800 (PST)
+Message-ID: <3234174d-e778-7c66-d7bd-8860e4eb6361@linaro.org>
+Date:   Mon, 12 Dec 2022 10:06:56 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH v2 1/1] arm64: dts: msm8992-bullhead: add memory hole
- region
-To:     Dominik Kobinski <dominikkobinski314@gmail.com>,
-        linux-arm-msm@vger.kernel.org
-Cc:     pevik@seznam.cz, agross@kernel.org, alexeymin@postmarketos.org,
-        quic_bjorande@quicinc.com, bribbers@disroot.org,
-        devicetree@vger.kernel.org, petr.vorel@gmail.com
-References: <20221211100501.82323-1-dominikkobinski314@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: qcom,adsp: Add SM6375 MPSS
 Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     patches@linaro.org, Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221210135807.10688-1-konrad.dybcio@linaro.org>
+ <34e5b0c4-3ca8-5008-46cc-38c60f69cd95@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221211100501.82323-1-dominikkobinski314@gmail.com>
+In-Reply-To: <34e5b0c4-3ca8-5008-46cc-38c60f69cd95@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -78,45 +83,41 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 11.12.2022 11:05, Dominik Kobinski wrote:
-> Add region for memory hole present on bullhead in order to
-> fix a reboot issue on recent kernels
+On 11.12.2022 21:25, Krzysztof Kozlowski wrote:
+> On 10/12/2022 14:58, Konrad Dybcio wrote:
+>> Add entries for SM6375 MPSS. Unlike most other modems, this one only
+>> expects a single (cx) power domain.
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> ---
+>>  Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml | 4 ++++
+>>  1 file changed, 4 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
+>> index a9219c7c8349..434d34578fc5 100644
+>> --- a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
+>> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
+>> @@ -42,6 +42,7 @@ properties:
+>>        - qcom,sm6350-mpss-pas
+>>        - qcom,sm6375-adsp-pas
+>>        - qcom,sm6375-cdsp-pas
 > 
-> Reported-by: Petr Vorel <petr.vorel@gmail.com>
-> Signed-off-by: Dominik Kobinski <dominikkobinski314@gmail.com>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> There is no such entry... Do you base on some other patchset?
+Yep, this one [1].. I thought it was merged, as Bjorn pulled in the
+DT part (which stated dependency on [1])..
 
 Konrad
-> Changes since v1: 
->  * msm8992-bullhead instead of bullhead in the commit message
->  * memory node named "reserved" instead of just "memory"
-> Both suggested by Konrad Dybcio 
+
+[1] https://lore.kernel.org/linux-arm-msm/20221109170822.58281-1-konrad.dybcio@linaro.org/
 > 
->  arch/arm64/boot/dts/qcom/msm8992-lg-bullhead.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
+>> +      - qcom,sm6375-mpss-pas
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8992-lg-bullhead.dtsi b/arch/arm64/boot/dts/qcom/msm8992-lg-bullhead.dtsi
-> index 71e373b11de9..37bcbbc67be5 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8992-lg-bullhead.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8992-lg-bullhead.dtsi
-> @@ -2,6 +2,7 @@
->  /* Copyright (c) 2015, LGE Inc. All rights reserved.
->   * Copyright (c) 2016, The Linux Foundation. All rights reserved.
->   * Copyright (c) 2021, Petr Vorel <petr.vorel@gmail.com>
-> + * Copyright (c) 2022, Dominik Kobinski <dominikkobinski314@gmail.com>
->   */
->  
->  /dts-v1/;
-> @@ -50,6 +51,11 @@ cont_splash_mem: memory@3400000 {
->  			reg = <0 0x03400000 0 0x1200000>;
->  			no-map;
->  		};
-> +
-> +		removed_region: reserved@5000000 {
-> +			reg = <0 0x05000000 0 0x2200000>;
-> +			no-map;
-> +		};
->  	};
->  };
->  
+> I propose to rebase it on my series:
+> https://lore.kernel.org/all/20221124184333.133911-1-krzysztof.kozlowski@linaro.org/
+> 
+> and then either add it as new file or maybe it will fit to one of the
+> device schemas.
+> 
+> Best regards,
+> Krzysztof
+> 
