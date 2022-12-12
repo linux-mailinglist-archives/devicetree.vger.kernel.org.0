@@ -2,176 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 624FD649EB2
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 13:33:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B10E6649EFB
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 13:40:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231871AbiLLMdR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 07:33:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43382 "EHLO
+        id S231395AbiLLMk5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 07:40:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232169AbiLLMdB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 07:33:01 -0500
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BF8910FCB;
-        Mon, 12 Dec 2022 04:32:51 -0800 (PST)
-Received: from p57b7793f.dip0.t-ipconnect.de ([87.183.121.63] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1p4hyl-00033o-D8; Mon, 12 Dec 2022 13:32:19 +0100
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Guo Ren <guoren@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229527AbiLLMk4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 07:40:56 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD63C2C6;
+        Mon, 12 Dec 2022 04:40:54 -0800 (PST)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 054416CF;
+        Mon, 12 Dec 2022 13:40:52 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1670848853;
+        bh=9RKOLkgQNbJtHqKawJ6wOsZq6akcu9gDWHqS3sR1D1A=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=HuHZen4rwQH8gN4eWbpOohWlwB/mM1fNBJPkI2Yie72Yv70FZ0CllUJDuV2XrFp/P
+         /AM8eR5VC7zp/zxx3xNzN2KbBJhc3p0L3HPdCoCDQhLvK5leyqkAXRKzFoKBnw34hh
+         Et6C7J4kjVxFcLTSrx+a9iirx4qs984k15OEbH7M=
+Date:   Mon, 12 Dec 2022 14:40:50 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Jisheng Zhang <jszhang@kernel.org>,
-        Atish Patra <atishp@rivosinc.com>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v5 1/6] riscv: asm: alternative-macros: Introduce ALTERNATIVE_3() macro
-Date:   Mon, 12 Dec 2022 13:32:17 +0100
-Message-ID: <8194084.DvuYhMxLoT@phil>
-In-Reply-To: <20221212115505.36770-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20221212115505.36770-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20221212115505.36770-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Marek Vasut <marex@denx.de>
+Subject: Re: [RFC PATCH 0/3] gpiolib: ramp-up delay support
+Message-ID: <Y5chUvK+SLMpm9XY@pendragon.ideasonboard.com>
+References: <20221212103525.231298-1-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20221212103525.231298-1-alexander.stein@ew.tq-group.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, 12. Dezember 2022, 12:55:00 CET schrieb Prabhakar:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> Introduce ALTERNATIVE_3() macro.
-> 
-> A vendor wants to replace an old_content, but another vendor has used
-> ALTERNATIVE_2() to patch its customized content at the same location.
-> In this case, this vendor can use macro ALTERNATIVE_3() and then replace
-> ALTERNATIVE_2() with ALTERNATIVE_3() to append its customized content.
-> 
-> While at it update comment above ALTERNATIVE_2() macro and make it generic
-> so that the comment holds good for any new addition of ALTERNATIVE_X()
-> macros.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Hi Alexander,
 
-Reviewed-by: Heiko Stuebner <heiko.stuebner@vrull.eu>
-
-> ---
-> v4->v5
-> * Rebased the patch on top of Andrew's series (now in Palmers for next-branch)
-> * Updated comment for ALTERNATIVE_x() as suggested by Heiko
+On Mon, Dec 12, 2022 at 11:35:22AM +0100, Alexander Stein wrote:
+> Hi all,
 > 
-> RFC v3 -> v4
-> * New patch
-> ---
->  arch/riscv/include/asm/alternative-macros.h | 46 ++++++++++++++++++---
->  1 file changed, 41 insertions(+), 5 deletions(-)
+> this series is an RFC for a general approach to solve the issue at [1]. While
+
+I'm impressed by how fast you came up with a solution :-)
+
+> a device specific property works as well, a more generic approach is preferred.
+> In short: When enabling a GPIO the actual ramp-up time might be (much) bigger
+> than what software usually assume, in my case >100ms. Adding a delay to each
+> driver is cumbersome.
+> Instead the (optional) ramp-up delay is added to each gpio_desc. The delays can
+> be specified per gpio-controller, similar to 'gpio-line-names'. Actually the
+> parsing code is almost a 1:1 copy of devprop_gpiochip_set_names().
+
+While I like consistency, I wonder if it wouldn't be better in this case
+to use a list of <gpio-number delay> cells in gpio-ramp-up-delays-us. In
+typical use cases, very few GPIOs will need a delay, and a GPIO
+controller could support a very large number of GPIOs, which would make
+your current proposal cumbersome.
+
+> Due to
+> (temporary) memory allocation, I opted for a separate function, there is code
+> duplication, but handling both properties in a single function seemed too
+> tedious, let alone the to be added ramp-down delays.
 > 
-> diff --git a/arch/riscv/include/asm/alternative-macros.h b/arch/riscv/include/asm/alternative-macros.h
-> index 7226e2462584..a5b4691520da 100644
-> --- a/arch/riscv/include/asm/alternative-macros.h
-> +++ b/arch/riscv/include/asm/alternative-macros.h
-> @@ -50,8 +50,17 @@
->  	ALT_NEW_CONTENT \vendor_id_2, \errata_id_2, \enable_2, \new_c_2
->  .endm
->  
-> +.macro ALTERNATIVE_CFG_3 old_c, new_c_1, vendor_id_1, errata_id_1, enable_1,	\
-> +				new_c_2, vendor_id_2, errata_id_2, enable_2,	\
-> +				new_c_3, vendor_id_3, errata_id_3, enable_3
-> +       ALTERNATIVE_CFG_2 \old_c, \new_c_1, \vendor_id_1, \errata_id_1, \enable_1,	\
-> +                                 \new_c_2, \vendor_id_2, \errata_id_2, \enable_2
-> +       ALT_NEW_CONTENT \vendor_id_3, \errata_id_3, \enable_3, \new_c_3
-> +.endm
-> +
->  #define __ALTERNATIVE_CFG(...)		ALTERNATIVE_CFG __VA_ARGS__
->  #define __ALTERNATIVE_CFG_2(...)	ALTERNATIVE_CFG_2 __VA_ARGS__
-> +#define __ALTERNATIVE_CFG_3(...)	ALTERNATIVE_CFG_3 __VA_ARGS__
->  
->  #else /* !__ASSEMBLY__ */
->  
-> @@ -98,6 +107,13 @@
->  	__ALTERNATIVE_CFG(old_c, new_c_1, vendor_id_1, errata_id_1, enable_1)	\
->  	ALT_NEW_CONTENT(vendor_id_2, errata_id_2, enable_2, new_c_2)
->  
-> +#define __ALTERNATIVE_CFG_3(old_c, new_c_1, vendor_id_1, errata_id_1, enable_1,	\
-> +				   new_c_2, vendor_id_2, errata_id_2, enable_2,	\
-> +				   new_c_3, vendor_id_3, errata_id_3, enable_3)	\
-> +	__ALTERNATIVE_CFG_2(old_c, new_c_1, vendor_id_1, errata_id_1, enable_1,	\
-> +                                   new_c_2, vendor_id_2, errata_id_2, enable_2)	\
-> +	ALT_NEW_CONTENT(vendor_id_3, errata_id_3, enable_3, new_c_3)
-> +
->  #endif /* __ASSEMBLY__ */
->  
->  #define _ALTERNATIVE_CFG(old_c, new_c, vendor_id, errata_id, CONFIG_k)	\
-> @@ -108,6 +124,13 @@
->  	__ALTERNATIVE_CFG_2(old_c, new_c_1, vendor_id_1, errata_id_1, IS_ENABLED(CONFIG_k_1),	\
->  				   new_c_2, vendor_id_2, errata_id_2, IS_ENABLED(CONFIG_k_2))
->  
-> +#define _ALTERNATIVE_CFG_3(old_c, new_c_1, vendor_id_1, errata_id_1, CONFIG_k_1,		\
-> +				  new_c_2, vendor_id_2, errata_id_2, CONFIG_k_2,		\
-> +				  new_c_3, vendor_id_3, errata_id_3, CONFIG_k_3)		\
-> +	__ALTERNATIVE_CFG_3(old_c, new_c_1, vendor_id_1, errata_id_1, IS_ENABLED(CONFIG_k_1),	\
-> +				   new_c_2, vendor_id_2, errata_id_2, IS_ENABLED(CONFIG_k_2),	\
-> +				   new_c_3, vendor_id_3, errata_id_3, IS_ENABLED(CONFIG_k_3))
-> +
->  #else /* CONFIG_RISCV_ALTERNATIVE */
->  #ifdef __ASSEMBLY__
->  
-> @@ -152,15 +175,28 @@
->  	_ALTERNATIVE_CFG(old_content, new_content, vendor_id, errata_id, CONFIG_k)
->  
->  /*
-> - * A vendor wants to replace an old_content, but another vendor has used
-> - * ALTERNATIVE() to patch its customized content at the same location. In
-> - * this case, this vendor can create a new macro ALTERNATIVE_2() based
-> - * on the following sample code and then replace ALTERNATIVE() with
-> - * ALTERNATIVE_2() to append its customized content.
-> + * ALTERNATIVE_x macros allow providing multiple replacement options
-> + * for an ALTERNATIVE code section. This is helpful if multiple
-> + * implementation variants for the same functionality exist for
-> + * different cpu cores.
-> + *
-> + * Usage:
-> + *   ALTERNATIVE_x(old_content,
-> + *      new_content1, vendor_id1, errata_id1, CONFIG_k1,
-> + *      new_content2, vendor_id2, errata_id2, CONFIG_k2,
-> + *      ...
-> + *      new_contentx, vendor_idx, errata_idx, CONFIG_kx)
->   */
->  #define ALTERNATIVE_2(old_content, new_content_1, vendor_id_1, errata_id_1, CONFIG_k_1,		\
->  				   new_content_2, vendor_id_2, errata_id_2, CONFIG_k_2)		\
->  	_ALTERNATIVE_CFG_2(old_content, new_content_1, vendor_id_1, errata_id_1, CONFIG_k_1,	\
->  					new_content_2, vendor_id_2, errata_id_2, CONFIG_k_2)
->  
-> +#define ALTERNATIVE_3(old_content, new_content_1, vendor_id_1, errata_id_1, CONFIG_k_1,		\
-> +				   new_content_2, vendor_id_2, errata_id_2, CONFIG_k_2,		\
-> +				   new_content_3, vendor_id_3, errata_id_3, CONFIG_k_3)		\
-> +       _ALTERNATIVE_CFG_3(old_content, new_content_1, vendor_id_1, errata_id_1, CONFIG_k_1,	\
-> +                                       new_content_2, vendor_id_2, errata_id_2, CONFIG_k_2,	\
-> +                                       new_content_3, vendor_id_3, errata_id_3, CONFIG_k_3)
-> +
->  #endif
+> This feature could also be added as a callback in gpio_chip, but the callbacks
+> have to be added to each driver then. I would prefer a single one-fits-all
+> implementation and another indirection in the GPIO call chain.
+
+Agreed.
+
+> Laurent suggest to add a GPIO delay node in DT. IMHO this increased the DT
+> complexity unnecessarily. But comments are welcome.
+
+It's an alternative approach that could be considered if this one is
+rejected, but I have a preference for your solution.
+
+> The following 3 patches are a proof-of-concept on my platform, consisting of:
+> Patch 1 is the proposed bindings and straight forward.
+> Patch 2 is the current implementation
+> Patch 3 is an actual usage example for specifying the delays
 > 
+> TODO:
+> 1. Adding ramp-down delays (Just the inverse copy of ramp-up delay)
+> 2. Should these delays take active low flags into account?
 
+How so ?
 
+> 3. How to deal with setting multiple GPIOs at once?
+> 
+> I skipped 1. for now, because this is just a copy with ramp-up being replaced
+> with ramp-down.
+> 
+> I'm not that well versed in gpiolib code, so I'm not sure if I got all placed
+> where GPIOs are set. So patch 2 might be incomplete.
+> 
+> For now I skipped setting multiple GPIOs at once completely, so to get some
+> feedback on this approach. A possible solution is to check for the bigest delay
+> in the set and use that for all afterwards. But I'm not sure about the overhead
+> in this case.
 
+I assume you're talking about the gpiod_set_array_value() API. That
+sounds OK as an initial implementation, a caller of that function needs
+to be prepared for the GPIOs being set in a random order due to hardware
+delays, so it shouldn't break the API contract. I would however state
+this explicitly in the function documentation.
 
+> I hope there is some feedback. While thinking about this issue appears to be
+> more widespread than I expected.
+> 
+> Best regards,
+> Alexander
+> 
+> [1] https://lore.kernel.org/all/20221209083339.3780776-1-alexander.stein@ew.tq-group.com/
+> 
+> Alexander Stein (3):
+>   dt-bindings: gpio: Add optional ramp-up delay property
+>   gpiolib: Add support for optional ramp-up delays
+>   arm64: dts: mba8mx: Add GPIO ramp-up delays
+> 
+>  .../devicetree/bindings/gpio/gpio.txt         | 22 +++++
+>  arch/arm64/boot/dts/freescale/mba8mx.dtsi     |  5 ++
+>  drivers/gpio/gpiolib.c                        | 80 +++++++++++++++++++
+>  drivers/gpio/gpiolib.h                        |  3 +
+>  4 files changed, 110 insertions(+)
+
+-- 
+Regards,
+
+Laurent Pinchart
