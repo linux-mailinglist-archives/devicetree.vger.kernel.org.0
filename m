@@ -2,103 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1B6C649F04
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 13:44:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD7C7649F29
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 13:54:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231629AbiLLMoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 07:44:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52906 "EHLO
+        id S232398AbiLLMyY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 07:54:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232148AbiLLMoe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 07:44:34 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64A1311C32
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 04:44:32 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id v7so5207983wmn.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 04:44:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=BcuYqJP5+fj5SQoxNBlxka40ix71bnNCS/22EOHif6c=;
-        b=5jCsOLmT84Gpexbwd3LYlscYFmSC0rEy8GV3tJSFjAtHmjIjt4VjGnK46fL+c/SWko
-         ATD7rA1A4qLWJXBZhFM6fOAe7uWwF8YRYl0tvgHp+/H4QQjigrwhEOSxW3teF8zlrKMT
-         RtORGOYYIn2Z4uwWENQo4rfBXfz1qwkYa/HyOgxvcOoamH9j05Wnd+O4JrSGar2V2K00
-         WRP5QrBDIZOss0XvJEadjQmENw0w1xG+LO03xVCGmlPikLB8ZaE87ziVNFyRuG5mb16q
-         /fGTehl8qbk/Gjg4xkys9qmI2MZBOw+xRTs5KrhzoPxi0PeiL+J5pdtzP8gt1i/Ekv6R
-         VmAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BcuYqJP5+fj5SQoxNBlxka40ix71bnNCS/22EOHif6c=;
-        b=zXiKMGUUHTz+ufcFO9twsdpvXH5hEhBkmV8kyNOR+N5ri3ZLy0lsXmcIrn8cgB8Wt6
-         DC3tTVadE2PTD6975aeHyID+7fEl529T58jKCPlCFpw39ZJvaF0BwbQKWaIi4el9cRYz
-         azOv9YRdFYLFVcZPfvSs6yuVBXCJ6T6DQBcRFs7scHPbbyru3N9Ux9EtOCd+ZrPqbsSg
-         kFt7ildvCtddCUKqFbbDg/gbfaih4UM2S7K4gKfRjt21D74exVNWZuc3AzdemgDK4izl
-         E8sNygBuCf5j/NGMPv2BrYyGyB4ylFW5RJb+m7nXBC/ZcGI7nUMX81bFEJ7wgS5eFJJW
-         qPHQ==
-X-Gm-Message-State: ANoB5pkgHqt27V19glRsauZ9l7GSj8IjxSi6Q+kSn36FQs7I2rNv5Lrx
-        9CGGpCSAOVneF9aO311fRpm4dg==
-X-Google-Smtp-Source: AA0mqf7ZofsvsUMIpaiiaqGaUYm44ZHz7+YLjvSzQ6WLOrlmfcHRI4m9G7pmNFdYrqN3h2+Ly+yLYQ==
-X-Received: by 2002:a05:600c:3ac3:b0:3d2:148b:4a26 with SMTP id d3-20020a05600c3ac300b003d2148b4a26mr7598329wms.32.1670849070998;
-        Mon, 12 Dec 2022 04:44:30 -0800 (PST)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id j17-20020a05600c1c1100b003cfd42821dasm10198660wms.3.2022.12.12.04.44.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Dec 2022 04:44:30 -0800 (PST)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH] arm64: dts: rockchip: rk3399: use correct reset names
-Date:   Mon, 12 Dec 2022 12:44:23 +0000
-Message-Id: <20221212124423.1239748-1-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S232032AbiLLMyX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 07:54:23 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48F8A270B
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 04:54:22 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DEEB961017
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 12:54:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40771C433F2
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 12:54:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1670849661;
+        bh=GCBaVQu2Nzo62Ur1JfJg7JyN9hXz/sGTodwEpRdPGeM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=vNdrIp4C36ITWQMBW+IwpJb/DeVWsbuFXiQk52LBQWtz0lViIG02NLOFFOSYplu+C
+         sx/KUAFoXoj4NJRiNWiBgqttgEMfkI7SEb/e0U+svDaYA38uRmMyMHIwr+3C0PB+J8
+         6FF6YWXU44qcQDaj1g30cbryvbrpw6M1tY139n0iJvDmHHOyQnpNPA7KouHAwcxPWJ
+         0T071Ft4ZVRy9bCp2UN0bmR+bp/3x9HwtemZkAWBg/IMTeI2r3P5ruxCULZgL8Pxj8
+         1eBsUhkIYPAhGeXmgyDfs4my5OfBHDTSB2QhpOxB4pw+BvJz5zLL3+I2bM83+DIo14
+         FLb3xOnMbpVrQ==
+Received: by mail-yb1-f179.google.com with SMTP id c140so13457235ybf.11
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 04:54:21 -0800 (PST)
+X-Gm-Message-State: ANoB5plZnKDwV4i2xIJysXw5F5HPv0CkcNflQEh6uvDI4ri6QriJmD2P
+        yKn710mSLytjh1m+FgeIlG2FIVNzH91u9XHzEA==
+X-Google-Smtp-Source: AA0mqf5gXcRjwPVID2BQeZNc7VBPDxIuQjU50sUi97B+QIlPgCJRJT77l/r1rSbSE4bL6jYcoEpF/xwh91HDrMME8is=
+X-Received: by 2002:a5b:2c6:0:b0:6be:99e7:c5f0 with SMTP id
+ h6-20020a5b02c6000000b006be99e7c5f0mr91773161ybp.248.1670849660239; Mon, 12
+ Dec 2022 04:54:20 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20221212055137.270638-1-marex@denx.de>
+In-Reply-To: <20221212055137.270638-1-marex@denx.de>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 12 Dec 2022 06:54:08 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+Cz7Ea7k1cTYEoXcEyg+1JQCyQnZqhJG5kL-BE4Wj-rQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+Cz7Ea7k1cTYEoXcEyg+1JQCyQnZqhJG5kL-BE4Wj-rQ@mail.gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: mxsfb: Document i.MX8M/i.MX6SX/i.MX6SL
+ power-domains property
+To:     Marek Vasut <marex@denx.de>
+Cc:     devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liu Ying <victor.liu@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The reset names does not follow the binding, use the correct ones.
+On Sun, Dec 11, 2022 at 11:51 PM Marek Vasut <marex@denx.de> wrote:
+>
+> The power-domains property is mandatory on i.MX8M Mini, Nano, Plus
+> and i.MX6SX, i.MX6SL. Document the property and mark it as required
+> on the aforementioned variants of the IP, present in those SoCs.
+>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Liu Ying <victor.liu@nxp.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: linux-arm-kernel@lists.infradead.org
+> To: devicetree@vger.kernel.org
+> ---
+> V2: - Add AB from Krzysztof
+>     - Add mx6sx power domain into the list
+> V3: - Update commit message
+>     - Add i.MX6SL
+>     - Update example
+> ---
+>  .../devicetree/bindings/display/fsl,lcdif.yaml  | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+> index 876015a44a1e6..1f17be501749b 100644
+> --- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+> +++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+> @@ -52,6 +52,9 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>
+> +  power-domains:
+> +    maxItems: 1
+> +
 
-Fixes: 8c701fa6e38c ("arm64: dts: rockchip: rk3399: add crypto node")
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
----
- arch/arm64/boot/dts/rockchip/rk3399.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+This conflicts with adding 'power-domains' for i.MX8MP in my tree.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-index 4391aea25984..834d16acb546 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -589,7 +589,7 @@ crypto0: crypto@ff8b0000 {
- 		clocks = <&cru HCLK_M_CRYPTO0>, <&cru HCLK_S_CRYPTO0>, <&cru SCLK_CRYPTO0>;
- 		clock-names = "hclk_master", "hclk_slave", "sclk";
- 		resets = <&cru SRST_CRYPTO0>, <&cru SRST_CRYPTO0_S>, <&cru SRST_CRYPTO0_M>;
--		reset-names = "master", "lave", "crypto";
-+		reset-names = "master", "slave", "crypto-rst";
- 	};
- 
- 	crypto1: crypto@ff8b8000 {
-@@ -599,7 +599,7 @@ crypto1: crypto@ff8b8000 {
- 		clocks = <&cru HCLK_M_CRYPTO1>, <&cru HCLK_S_CRYPTO1>, <&cru SCLK_CRYPTO1>;
- 		clock-names = "hclk_master", "hclk_slave", "sclk";
- 		resets = <&cru SRST_CRYPTO1>, <&cru SRST_CRYPTO1_S>, <&cru SRST_CRYPTO1_M>;
--		reset-names = "master", "slave", "crypto";
-+		reset-names = "master", "slave", "crypto-rst";
- 	};
- 
- 	i2c1: i2c@ff110000 {
--- 
-2.37.4
-
+>    port:
+>      $ref: /schemas/graph.yaml#/properties/port
+>      description: The LCDIF output port
+> @@ -87,6 +90,19 @@ allOf:
+>            maxItems: 1
+>          clock-names:
+>            maxItems: 1
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx6sl-lcdif
+> +              - fsl,imx6sx-lcdif
+> +              - fsl,imx8mm-lcdif
+> +              - fsl,imx8mn-lcdif
+> +              - fsl,imx8mp-lcdif
+> +    then:
+> +      required:
+> +        - power-domains
+>
+>  examples:
+>    - |
+> @@ -101,6 +117,7 @@ examples:
+>                   <&clks IMX6SX_CLK_LCDIF_APB>,
+>                   <&clks IMX6SX_CLK_DISPLAY_AXI>;
+>          clock-names = "pix", "axi", "disp_axi";
+> +        power-domains = <&pd_disp>;
+>
+>          port {
+>              endpoint {
+> --
+> 2.35.1
+>
