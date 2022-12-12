@@ -2,73 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 119C6649C0D
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 11:26:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F070F649C59
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 11:40:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231958AbiLLK0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 05:26:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52386 "EHLO
+        id S232125AbiLLKkK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 05:40:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232024AbiLLKZt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 05:25:49 -0500
-Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [IPv6:2001:4b7a:2000:18::165])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE99FF019
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 02:25:48 -0800 (PST)
-Received: from SoMainline.org (D57D4C6E.static.ziggozakelijk.nl [213.125.76.110])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 90E0F200CB;
-        Mon, 12 Dec 2022 11:25:46 +0100 (CET)
-Date:   Mon, 12 Dec 2022 11:25:45 +0100
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S232033AbiLLKjX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 05:39:23 -0500
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E838BE15;
+        Mon, 12 Dec 2022 02:32:53 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id m18so26741803eji.5;
+        Mon, 12 Dec 2022 02:32:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=oiwl2c63AO+NrruKJbKlZpKuGSFSXf3Tju4e8sWaifI=;
+        b=UGKQiptlBN3qqIdRrlqUM6laB083sdblO1l6gx94GWrEqN/pEIaC/ADAVvElvUadzd
+         wCWAdKdXKfLU15N6YKymzEgwkJZoE612akG8YIg10FTpK8d2d4ZT6OvGelCxqO0GMDSa
+         6wPD5NwyodeR0w37eIbDYTht81SCF0jQf5bvK9RjBqFDPITl7X3XtCPACH2TrjbvnUBx
+         AQ/gQgui1kcFsTOUKIy8Zcyl60J2hP00zk8wPeu11xhD+Hk58+LcsdKwn6+feh9atTdE
+         juq98rHeOmvEJle8TqzTmQPCBZzFXlsoiutiQIc1ZepuYUafyyp9vkJO24akljZAfvMg
+         Lh6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oiwl2c63AO+NrruKJbKlZpKuGSFSXf3Tju4e8sWaifI=;
+        b=kaM/zhg75na6dLagh7I0LaPXLIDguWrG0Dd1DY/+Mtoo0eZiKbmdd+NQkNC7qDEXVr
+         Fyori9+fvipvfNzIBdgTQwtyjPbw/rtDXMIi0o82fm38U0sweS8ZwpMsnenhV17Gc8T2
+         ZWEA5UTTaGWz1qbpwrCUrzu/CmSO3Qjy9gF9Pbrsz0YglqQaEQO6zvnGXfl/i54devm3
+         OdhjfQvmSx1IL37kh3YAx+EQXGxuK3+vwcoDhqBZ88qZdhIcjZy2/htOEzXJD1IVskQw
+         GffC3PLb0nhbeJeP6V6L7PIHmb7A3rDqM47ug52xeZe/uiIwfoj8sFeSJ8nmrKJyquqg
+         J7rQ==
+X-Gm-Message-State: ANoB5pmP0y5xbKdlbtvujrR/2i/HnDIklRPaIpH8y2fcVIczVfKIU+HC
+        Hc+6eChmrxrnJAKnuR1N3Ns=
+X-Google-Smtp-Source: AA0mqf4N/bZH1XE/66G5F4ToAvEhzkEo8dhz4w+UxeFjIotk0gQmJG6ESuNp93avICDiDvKlV5b6mw==
+X-Received: by 2002:a17:906:f741:b0:7b4:edca:739 with SMTP id jp1-20020a170906f74100b007b4edca0739mr13312088ejb.5.1670841171906;
+        Mon, 12 Dec 2022 02:32:51 -0800 (PST)
+Received: from skbuf ([188.27.185.63])
+        by smtp.gmail.com with ESMTPSA id hw18-20020a170907a0d200b0073022b796a7sm3152613ejc.93.2022.12.12.02.32.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Dec 2022 02:32:51 -0800 (PST)
+Date:   Mon, 12 Dec 2022 12:32:49 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Kurt Kanzenbach <kurt@linutronix.de>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm8150: Wire up MDSS
-Message-ID: <20221212102545.l2awdtenmzjlano6@SoMainline.org>
-References: <20221212093315.11390-1-konrad.dybcio@linaro.org>
- <20221212093315.11390-3-konrad.dybcio@linaro.org>
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Colin Foster <colin.foster@in-advantage.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next] dt-bindings: net: dsa: hellcreek: Sync DSA
+ maintainers
+Message-ID: <20221212103249.2l5tm65khg26bdb3@skbuf>
+References: <20221212081546.6916-1-kurt@linutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221212093315.11390-3-konrad.dybcio@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221212081546.6916-1-kurt@linutronix.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-12-12 10:33:14, Konrad Dybcio wrote:
-> Add required nodes for MDSS and hook up provided clocks in DISPCC.
-> This setup is almost identical to 8[23]50.
+On Mon, Dec 12, 2022 at 09:15:46AM +0100, Kurt Kanzenbach wrote:
+> The current DSA maintainers are Florian Fainelli, Andrew Lunn and Vladimir
+> Oltean. Update the hellcreek binding accordingly.
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Kurt Kanzenbach <kurt@linutronix.de>
+> ---
 
-Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
-
-On Sony Xperia 5:
-
-Tested-by: Marijn Suijten <marijn.suijten@somainline.org>
-
-Note that this device uses a command-mode panel which requires (since
-DPU 5.0.0) the TE functionality to be moved from the PP into the INTF
-block.  I will send patches for this shortly, to enable proper vsyncing
-and presentation _without_ tearing.
-
-Note^2: We are also working to correct Display Stream Compression to
-work on the Sony Xperia 1 (bigger brother of Xperia 5 with a 4k display)
-and newer Sony devices on newer (sm8[234]50) SoCs!
-
-- Marijn
+Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
