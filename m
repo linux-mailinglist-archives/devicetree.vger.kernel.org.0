@@ -2,73 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBC6A64A135
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 14:37:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 612F164A163
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 14:39:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232571AbiLLNhD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 08:37:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35884 "EHLO
+        id S232851AbiLLNjy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 08:39:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232741AbiLLNge (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 08:36:34 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB7E513F57
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 05:36:13 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id b3so18607855lfv.2
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 05:36:13 -0800 (PST)
+        with ESMTP id S232840AbiLLNje (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 08:39:34 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 319BD14D3D
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 05:38:27 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id y25so18599492lfa.9
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 05:38:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=AhOhVWNnPyT63E3DtamMnAYp9h13i/6nUA89R8VpbXo=;
-        b=kqA13dMxhqoBmHqUPtz9pkZmf/mhG7Tv7jdlFKv0rwIUAMbDIuSCcaV+RDL9h40m18
-         4FJJThBECkyrTd+2zJeobMKyzP4emI2+3S5UUWyigGomzb00Kkg70C5AV+uDS8GIjD9j
-         E1x0xOXgXMrxuawtuUspbxS9eLVDbXLpyW3eDNqUvvq+NnDfkIl+g+GkWNYhr3n8gVbp
-         hlCVw4D1BoXk9GemLeal5aN7ZwQj2ctVNcX8hDbkScHowBi5Wc9oxiaJNgg6I+pQJySa
-         Vo4UZKJ/FHkMaznKYwPUUvQIqKmU2+k3vJTBfeskxIHr5eu9q5hnqKqOniGdY9drEdxI
-         h2kg==
+        bh=5XaoqYPcstX2vkS44Es/ogTcUNI1GuvolK6Dv6wUJUc=;
+        b=XUqT3au53d6d9bBUS18grnSa04NrSeqJ4CBP9J4zSz/1Vx16d96vKWk7qC1sVh3joL
+         MRPrfwWh/rglFXrc03Q+iPTN1LF8Lio+LDYO5VFbLXIbzwEu6ustI0HEj7absedxAOsA
+         N81YDd/29+Ms2kleUnVxPiNoPdmxdVm/ODh0i+rfyni8UVnzo0nX//2c94vLCs36qlTm
+         qKkFYiEch8OOKxGijjWeLwtGoM3SylCvN4oPS0QBFl9XnagVwhiGYKXRHvbylVGuk6qF
+         d6ZmjYiPu6t+CXpDfsEQNvWrtxEv1PxY9LQRfBPb29nxQjmSl9OU9vl7D8iatdgjwr6+
+         M7Xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AhOhVWNnPyT63E3DtamMnAYp9h13i/6nUA89R8VpbXo=;
-        b=HyRnWVZNhKyPEruAEwsWvclcw8gXAsLFki7P8SBUQMZZmASi/GnKjg0oWAEreSMu5A
-         qK1Nw/zRr5uQrwZ2jaILSCtop4dG9QT6H7oi3hmIr+uCqygyCTSFEqVHyMfRYZyxmuOq
-         X3yoIqenanwHYY76Mifm3d4lqE++s+Ybnn1RlhHZVzlicQQEDd7WYjG5F3/5m23OmMpO
-         0VYmkW5SCd7PaCEb3Pw5I6us40r10P3yh5nPzYXk0hk09jbcyVIT9IEmh6SadrR7efKV
-         Y/G7p3o98fLphpRK7YNswNHjsjpvlbaF7VFygG9OCOcZwzXoprOL7MrFRPY6S0T43rB4
-         bhIw==
-X-Gm-Message-State: ANoB5pkcdyz5lUgpXQA+AO//EanxfnpzbzEF8eOyO0X+9/nUHyK05Qt/
-        RlRuIZUv/SxENZmVqVjiUM28CA==
-X-Google-Smtp-Source: AA0mqf41bKKsPxTR6vHTJo77zDLCpd7DAmd9IVhr8u1la7Z+nfLY7s80XcBRTQ9+zmuaI/JZT8zWDQ==
-X-Received: by 2002:ac2:4f0c:0:b0:4b4:9994:2990 with SMTP id k12-20020ac24f0c000000b004b499942990mr5289332lfr.55.1670852172164;
-        Mon, 12 Dec 2022 05:36:12 -0800 (PST)
+        bh=5XaoqYPcstX2vkS44Es/ogTcUNI1GuvolK6Dv6wUJUc=;
+        b=AqSXZZ3UMjeKA9xlXOKgNM5S0qsysZl5LNtfh+jYBN+JE/4GlJRreFHwObsDK45+fM
+         XlBFlm9hIhEeNVi/eQyDKKKkr9X7JaPJdY02Kho8EEZZHyYi1seB5JlNywsAmyGUZeym
+         0YVaj1CP+l7Rg3BqdrCHYV6VRKTvZ5uYOhpza2JszyZ1xWW2Igpm9yYzAFYlGcj5r8g5
+         yB82lT65RhMjmt12qkEqk/sOpmTqACNgBUeNaSxpsAq4dzMhIbruwa5bd+bP+9ewnBJZ
+         Muc8/W8Rnh6b8nq3WSDoEsXcAj6BcSBUOOIHyKqID56Eh5b38080ixOeaf5H6uQx+N5A
+         0tAg==
+X-Gm-Message-State: ANoB5pk2rEoYHmJpqAypq3MOpqkSG2nUDSz54NLVyZ5E9oTg2G8YrtW6
+        +eF7+3iZ0z2p15oCtbZQarxRXQ==
+X-Google-Smtp-Source: AA0mqf6/hxsy5FnJXs6wytAFIbgsQrbKOzve15vDPnggvJsgQcFq2I3Nap9smAPQG7jiiyHD5+mV0A==
+X-Received: by 2002:a05:6512:21b:b0:4b5:5098:e6f7 with SMTP id a27-20020a056512021b00b004b55098e6f7mr3451086lfo.68.1670852305496;
+        Mon, 12 Dec 2022 05:38:25 -0800 (PST)
 Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id d24-20020a194f18000000b00492ce573726sm1635266lfb.47.2022.12.12.05.36.11
+        by smtp.gmail.com with ESMTPSA id m6-20020a056512358600b00499b27a329esm1632967lfr.300.2022.12.12.05.38.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Dec 2022 05:36:11 -0800 (PST)
-Message-ID: <43d54ef0-c95c-c53b-9298-4b55b9e3f2fb@linaro.org>
-Date:   Mon, 12 Dec 2022 14:36:10 +0100
+        Mon, 12 Dec 2022 05:38:25 -0800 (PST)
+Message-ID: <20fcf298-7d91-0458-489d-4fb65cdff380@linaro.org>
+Date:   Mon, 12 Dec 2022 14:38:23 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: sc8280xp: correct SPMI bus address
- cells
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: rename AOSS QMP node to pmu
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Johan Hovold <johan+linaro@kernel.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20221212133303.39610-1-krzysztof.kozlowski@linaro.org>
- <20221212133303.39610-3-krzysztof.kozlowski@linaro.org>
+ <20221212133303.39610-4-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221212133303.39610-3-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221212133303.39610-4-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,34 +82,151 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 12.12.2022 14:33, Krzysztof Kozlowski wrote:
-> The SPMI bus uses two address cells and zero size cells (secoond reg
-secoond
-
-> entry - SPMI_USID - is not the size):
+> The Always On Subsystem (AOSS) QMP is not a power domain controller
+> since commit 135780456218 ("arm64: dts: qcom: sc7180: Use QMP property
+> to control load state") and few others.  In fact, it was never a power
+> domain controller but rather control of power state of remote
+> processors.  This power state control is know handled differently, thus
+> the AOSS QMP nodes do not have power-domain-cells:
 > 
->   spmi@c440000: #address-cells:0:0: 2 was expected
+>   sc7280-idp.dtb: power-controller@c300000: '#power-domain-cells' is a required property
+>   From schema: Documentation/devicetree/bindings/power/power-domain.yaml
 > 
-> Fixes: 152d1faf1e2f ("arm64: dts: qcom: add SC8280XP platform")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> AOSS QMP is an interface to the actuall AOSS subsystem responsible for
+> some of power management functions, thus let's call the nodes as "pmu" -
+> Power Management Unit.
+power-management@ is used on apple and rockchip and pmu is very
+ambiguous (power management or performance measurement unit).
 
 Konrad
->  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi   | 2 +-
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi   | 2 +-
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 2 +-
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi   | 2 +-
+>  arch/arm64/boot/dts/qcom/sm6350.dtsi   | 2 +-
+>  arch/arm64/boot/dts/qcom/sm8150.dtsi   | 2 +-
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi   | 2 +-
+>  arch/arm64/boot/dts/qcom/sm8350.dtsi   | 2 +-
+>  arch/arm64/boot/dts/qcom/sm8450.dtsi   | 2 +-
+>  9 files changed, 9 insertions(+), 9 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> index 906fb9343bcc..7e781570b2c6 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -3248,7 +3248,7 @@ aoss_reset: reset-controller@c2a0000 {
+>  			#reset-cells = <1>;
+>  		};
+>  
+> -		aoss_qmp: power-controller@c300000 {
+> +		aoss_qmp: pmu@c300000 {
+>  			compatible = "qcom,sc7180-aoss-qmp", "qcom,aoss-qmp";
+>  			reg = <0 0x0c300000 0 0x400>;
+>  			interrupts = <GIC_SPI 389 IRQ_TYPE_EDGE_RISING>;
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 7c24c2129800..b08ddeb7bcec 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -4257,7 +4257,7 @@ aoss_reset: reset-controller@c2a0000 {
+>  			#reset-cells = <1>;
+>  		};
+>  
+> -		aoss_qmp: power-controller@c300000 {
+> +		aoss_qmp: pmu@c300000 {
+>  			compatible = "qcom,sc7280-aoss-qmp", "qcom,aoss-qmp";
+>  			reg = <0 0x0c300000 0 0x400>;
+>  			interrupts-extended = <&ipcc IPCC_CLIENT_AOP
 > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> index 27f5c2f82338..3cb4ca6c53eb 100644
+> index 3cb4ca6c53eb..e04f1f751881 100644
 > --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
 > +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> @@ -1947,8 +1947,8 @@ spmi_bus: spmi@c440000 {
->  			interrupts-extended = <&pdc 1 IRQ_TYPE_LEVEL_HIGH>;
->  			qcom,ee = <0>;
->  			qcom,channel = <0>;
-> -			#address-cells = <1>;
-> -			#size-cells = <1>;
-> +			#address-cells = <2>;
-> +			#size-cells = <0>;
->  			interrupt-controller;
->  			#interrupt-cells = <4>;
+> @@ -1921,7 +1921,7 @@ tsens1: thermal-sensor@c265000 {
+>  			#thermal-sensor-cells = <1>;
 >  		};
+>  
+> -		aoss_qmp: power-controller@c300000 {
+> +		aoss_qmp: pmu@c300000 {
+>  			compatible = "qcom,sc8280xp-aoss-qmp", "qcom,aoss-qmp";
+>  			reg = <0 0x0c300000 0 0x400>;
+>  			interrupts-extended = <&ipcc IPCC_CLIENT_AOP IPCC_MPROC_SIGNAL_GLINK_QMP IRQ_TYPE_EDGE_RISING>;
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> index 5f1f7cb52c90..2e15a003825e 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -4965,7 +4965,7 @@ aoss_reset: reset-controller@c2a0000 {
+>  			#reset-cells = <1>;
+>  		};
+>  
+> -		aoss_qmp: power-controller@c300000 {
+> +		aoss_qmp: pmu@c300000 {
+>  			compatible = "qcom,sdm845-aoss-qmp", "qcom,aoss-qmp";
+>  			reg = <0 0x0c300000 0 0x400>;
+>  			interrupts = <GIC_SPI 389 IRQ_TYPE_EDGE_RISING>;
+> diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+> index 0f01ff4feb55..bb20fed0f4f0 100644
+> --- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+> @@ -1273,7 +1273,7 @@ tsens1: thermal-sensor@c265000 {
+>  			#thermal-sensor-cells = <1>;
+>  		};
+>  
+> -		aoss_qmp: power-controller@c300000 {
+> +		aoss_qmp: pmu@c300000 {
+>  			compatible = "qcom,sm6350-aoss-qmp", "qcom,aoss-qmp";
+>  			reg = <0 0x0c300000 0 0x1000>;
+>  			interrupts-extended = <&ipcc IPCC_CLIENT_AOP IPCC_MPROC_SIGNAL_GLINK_QMP
+> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> index d1b64280ab0b..ad6902b13a71 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> @@ -3589,7 +3589,7 @@ pdc: interrupt-controller@b220000 {
+>  			interrupt-controller;
+>  		};
+>  
+> -		aoss_qmp: power-controller@c300000 {
+> +		aoss_qmp: pmu@c300000 {
+>  			compatible = "qcom,sm8150-aoss-qmp", "qcom,aoss-qmp";
+>  			reg = <0x0 0x0c300000 0x0 0x400>;
+>  			interrupts = <GIC_SPI 389 IRQ_TYPE_EDGE_RISING>;
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> index fbbbae29e0c2..6faf13ed90c1 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> @@ -3741,7 +3741,7 @@ tsens1: thermal-sensor@c265000 {
+>  			#thermal-sensor-cells = <1>;
+>  		};
+>  
+> -		aoss_qmp: power-controller@c300000 {
+> +		aoss_qmp: pmu@c300000 {
+>  			compatible = "qcom,sm8250-aoss-qmp", "qcom,aoss-qmp";
+>  			reg = <0 0x0c300000 0 0x400>;
+>  			interrupts-extended = <&ipcc IPCC_CLIENT_AOP
+> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> index 49db223a0777..519e436aeab9 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> @@ -1717,7 +1717,7 @@ tsens1: thermal-sensor@c265000 {
+>  			#thermal-sensor-cells = <1>;
+>  		};
+>  
+> -		aoss_qmp: power-controller@c300000 {
+> +		aoss_qmp: pmu@c300000 {
+>  			compatible = "qcom,sm8350-aoss-qmp", "qcom,aoss-qmp";
+>  			reg = <0 0x0c300000 0 0x400>;
+>  			interrupts-extended = <&ipcc IPCC_CLIENT_AOP IPCC_MPROC_SIGNAL_GLINK_QMP
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> index e0d30dadbf8b..234fe6549fe0 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -2453,7 +2453,7 @@ tsens1: thermal-sensor@c265000 {
+>  			#thermal-sensor-cells = <1>;
+>  		};
+>  
+> -		aoss_qmp: power-controller@c300000 {
+> +		aoss_qmp: pmu@c300000 {
+>  			compatible = "qcom,sm8450-aoss-qmp", "qcom,aoss-qmp";
+>  			reg = <0 0x0c300000 0 0x400>;
+>  			interrupts-extended = <&ipcc IPCC_CLIENT_AOP IPCC_MPROC_SIGNAL_GLINK_QMP
