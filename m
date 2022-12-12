@@ -2,58 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C08F864982E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 04:19:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6667464986A
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 05:38:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229986AbiLLDTp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Dec 2022 22:19:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56106 "EHLO
+        id S231237AbiLLEim (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Dec 2022 23:38:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229766AbiLLDTo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Dec 2022 22:19:44 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B253BBCB7;
-        Sun, 11 Dec 2022 19:19:42 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id C95EF24E115;
-        Mon, 12 Dec 2022 11:19:40 +0800 (CST)
-Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 12 Dec
- 2022 11:19:40 +0800
-Received: from [192.168.125.96] (113.72.147.126) by EXMBX068.cuchost.com
- (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 12 Dec
- 2022 11:19:40 +0800
-Message-ID: <c45b1c4c-1e7d-ff08-a07e-0752630339bc@starfivetech.com>
-Date:   Mon, 12 Dec 2022 11:19:39 +0800
+        with ESMTP id S231230AbiLLEi1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Dec 2022 23:38:27 -0500
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B727D65CD;
+        Sun, 11 Dec 2022 20:38:26 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2BC4cDNu020658;
+        Sun, 11 Dec 2022 22:38:13 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1670819893;
+        bh=iDu+h6IgJO+eUAlJ1QIlreHvnmj+PrIQ7ZXav/B5jlI=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=LMwAt9v+O9RAY5EHA6TReJSGEhhWnaMMlbm9IMZkNyY9af6v6SBFWcmh/QEso4C6b
+         J5d9+jeL7Q0+YCn8V0qnZi7QIf7kMQXHkBlAE2EerJ56jhAVz7T3MJlXNzECgCPpX/
+         6MqDtUU5Ib8Pl1KgsrHvE1KcoOaDTqUjiBxzMi2s=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2BC4cDBS026139
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sun, 11 Dec 2022 22:38:13 -0600
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Sun, 11
+ Dec 2022 22:38:12 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Sun, 11 Dec 2022 22:38:12 -0600
+Received: from [172.24.145.182] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2BC4cAwO022872;
+        Sun, 11 Dec 2022 22:38:10 -0600
+Message-ID: <b2a1a6df-0a8a-20af-7fea-33504735d328@ti.com>
+Date:   Mon, 12 Dec 2022 10:08:09 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [RESEND PATCH v2 1/3] dt-bindings: power: Add starfive,jh71xx-pmu
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH 2/5] dmaengine: ti: k3-udma: Fix BCDMA for case w/o BCHAN
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-riscv@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
+To:     =?UTF-8?Q?P=c3=a9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>
-References: <20221208084523.9733-1-walker.chen@starfivetech.com>
- <20221208084523.9733-2-walker.chen@starfivetech.com>
- <ac374e10-fb5b-c56c-7c76-b131446533fe@linaro.org>
-From:   Walker Chen <walker.chen@starfivetech.com>
-In-Reply-To: <ac374e10-fb5b-c56c-7c76-b131446533fe@linaro.org>
+References: <20221206043554.1521522-1-vigneshr@ti.com>
+ <20221206043554.1521522-3-vigneshr@ti.com>
+ <c56e89a3-3a35-8a5a-8f39-a4e82b19a092@gmail.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+In-Reply-To: <c56e89a3-3a35-8a5a-8f39-a4e82b19a092@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.147.126]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX068.cuchost.com
- (172.16.6.68)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,48 +70,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022/12/8 17:03, Krzysztof Kozlowski wrote:
-> On 08/12/2022 09:45, Walker Chen wrote:
->> Add bindings for Power Management Unit (PMU) on the StarFive JH71XX SoC.
->> 
->> Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
-> 
-> 
-> 
->> +    };
->> diff --git a/include/dt-bindings/power/starfive,jh7110-pmu.h b/include/dt-bindings/power/starfive,jh7110-pmu.h
->> new file mode 100644
->> index 000000000000..73c6a79a2181
->> --- /dev/null
->> +++ b/include/dt-bindings/power/starfive,jh7110-pmu.h
->> @@ -0,0 +1,17 @@
->> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-> 
-> Why different license than the bindings? MIT is pretty compatible, but
-> if it does not matter for you, keep same licenses as bindings.
+Hi Peter,
 
-MIT should be the least restrictive license. But it seems that BSD is more used and more safe.
-So both of them will be used same licenses in next version. Thanks.
-
+On 10/12/22 13:54, Péter Ujfalusi wrote:
 > 
->> +/*
->> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
->> + * Author: Walker Chen <walker.chen@starfivetech.com>
->> + */
->> +#ifndef __DT_BINDINGS_POWER_JH7110_POWER_H__
->> +#define __DT_BINDINGS_POWER_JH7110_POWER_H__
->> +
->> +#define JH7110_PD_SYSTOP	0
->> +#define JH7110_PD_CPU		1
->> +#define JH7110_PD_GPUA		2
->> +#define JH7110_PD_VDEC		3
->> +#define JH7110_PD_VOUT		4
->> +#define JH7110_PD_ISP		5
->> +#define JH7110_PD_VENC		6
->> +
->> +#endif
 > 
-> Best regards,
-> Krzysztof
+> On 12/6/22 06:35, Vignesh Raghavendra wrote:
+>> Reusing loop iterator fails if BCHAN is not present as iterator is
+>> uninitialized
+>>
+>> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+>> ---
+>>  drivers/dma/ti/k3-udma.c | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/drivers/dma/ti/k3-udma.c b/drivers/dma/ti/k3-udma.c
+>> index ce8b80bb34d7..791cf6354946 100644
+>> --- a/drivers/dma/ti/k3-udma.c
+>> +++ b/drivers/dma/ti/k3-udma.c
+>> @@ -4758,6 +4758,7 @@ static int bcdma_setup_resources(struct udma_dev *ud)
+>>  		}
+>>  	}
+>>  
+>> +	i = 0;
+> 
+> I think this would be more appropriate:
+> diff --git a/drivers/dma/ti/k3-udma.c b/drivers/dma/ti/k3-udma.c
+> index ce8b80bb34d7..7f8737da3613 100644
+> --- a/drivers/dma/ti/k3-udma.c
+> +++ b/drivers/dma/ti/k3-udma.c
+> @@ -4774,6 +4774,8 @@ static int bcdma_setup_resources(struct udma_dev *ud)
+>  				irq_res.desc[i].num = rm_res->desc[i].num;
+>  			}
+>  		}
+> +	} else {
+> +		i = 0;
+>  	}
+>  	if (ud->tchan_cnt) {
+>  		rm_res = tisci_rm->rm_ranges[RM_RANGE_TCHAN];
+> 
 > 
 
+Agreed, will update in v2.
+
+>>  	irq_res.desc = kcalloc(irq_res.sets, sizeof(*irq_res.desc), GFP_KERNEL);
+>>  	if (!irq_res.desc)
+>>  		return -ENOMEM;
+> 
+> 
+
+-- 
+Regards
+Vignesh
