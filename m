@@ -2,89 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2214564A642
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 18:52:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C928A64A64E
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 18:54:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232412AbiLLRwD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 12:52:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52736 "EHLO
+        id S231768AbiLLRyP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 12:54:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232706AbiLLRvv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 12:51:51 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC3BDF582;
-        Mon, 12 Dec 2022 09:51:49 -0800 (PST)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BCEnoLe022710;
-        Mon, 12 Dec 2022 17:51:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=vX19RixNXtE5JzIcwAaYuGfkWjixcyt3CqvWW6bxrsg=;
- b=eDZi9K7Bu0C3QoQaPrEuA5UVNbz9NgupTaAuY20YsC+Q6kAzhnUr/GQvzQ1Gt8orX7/6
- wBMDPhYGlEREx+T6yijnOM38SqRKy2fwDQN/hxHFGTAmfL4mCScCS/nP682lKIQmGGLp
- 1LSGl/o5aIJiuUEikRI2tpHyQnRT7aSVCgscQ9A/07UTzT1mf+ebRkt6LXhKD0hruW05
- ZPAz718H4tdlIPVvYrvbH1F9O0/A3bZIiFbpFTWR6ajPNBFhfzb4hOynM82Sbrl8XzhV
- AFOpW+4GFtZ02xN+mlQXULYqYcJPQ0QnPpUO4mmSNyMu/WPSBWrhJEFHvJfEWWsVcQXR Zw== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3me09g9fh6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 12 Dec 2022 17:51:40 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2BCHpdrZ016805
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 12 Dec 2022 17:51:39 GMT
-Received: from [10.110.7.185] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 12 Dec
- 2022 09:51:37 -0800
-Message-ID: <8b306c8f-3089-4aaf-7fc1-038a8330c89a@quicinc.com>
-Date:   Mon, 12 Dec 2022 09:51:37 -0800
+        with ESMTP id S229958AbiLLRyO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 12:54:14 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA22BBB1;
+        Mon, 12 Dec 2022 09:54:13 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 5E14EB80DE3;
+        Mon, 12 Dec 2022 17:54:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03284C433D2;
+        Mon, 12 Dec 2022 17:54:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1670867651;
+        bh=bY7EznKOlvKF57kav1/EOPRkTTovAkvgGO10ZJYhYcQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=NEporkZyXqNlMag6C+Ps4PX6ja8kKKVrOxDL6x7PvrW29OHC5W7xSZmu9SXEhpBDY
+         r1u0NtAsgcxkxPcQGQjTp4P081cKY5afiq3hBpyqb8ksluhHUS5it/MZoiatczV6JH
+         ErPOt/bfTUkHCttuiZxR8DlXZ1p2iBR1iFmUONW/rnl3CRTN/Xym7Q/ukReNxEOkBz
+         agZsF0SFjFWHfrcnfKp4uW7qiDrRYv7ZSPw/I/MO5A+rLqbj5QVp2tGHlePHBBrWHd
+         2jow0BX/dlgEayePuD8xDV4UPierEokD1T+CIpif0qvZJIIHKb7v8eCOnKD+rhSP6j
+         +rOk2OjxV9xEg==
+Received: by mail-ua1-f47.google.com with SMTP id n9so3390356uao.13;
+        Mon, 12 Dec 2022 09:54:10 -0800 (PST)
+X-Gm-Message-State: ANoB5pmr8+DrwN2OmCxKyMaTxt4A5sXh/Npx/EsNSZz9QB5m0aDV9Ob5
+        OaR3+GRiUwjWjREdMQv/ceBOoECXAZz0MSaWRw==
+X-Google-Smtp-Source: AA0mqf573L42dMXtmZJVUUuskEYLV16yalBiJSgkJa1EEtoeIRtYyXQ3qTxa95wj6G+9q09neTNW9b+h3tdGkRXlLMY=
+X-Received: by 2002:ab0:3a96:0:b0:419:678:cf31 with SMTP id
+ r22-20020ab03a96000000b004190678cf31mr35543884uaw.63.1670867649788; Mon, 12
+ Dec 2022 09:54:09 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v11 2/5] dt-bindings: msm/dp: add data-lanes and
- link-frequencies property
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        <dri-devel@lists.freedesktop.org>, <robdclark@gmail.com>,
-        <sean@poorly.run>, <swboyd@chromium.org>, <dianders@chromium.org>,
-        <vkoul@kernel.org>, <daniel@ffwll.ch>, <airlied@linux.ie>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@somainline.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
-        <airlied@gmail.com>
-CC:     <quic_abhinavk@quicinc.com>, <quic_sbillaka@quicinc.com>,
-        <freedreno@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <1670539015-11808-1-git-send-email-quic_khsieh@quicinc.com>
- <1670539015-11808-3-git-send-email-quic_khsieh@quicinc.com>
- <5a3865ed-8847-db04-3d60-f35438250bef@linaro.org>
- <5aa16223-dbf6-996c-1985-794302dcce91@quicinc.com>
- <be1411e8-1d07-7643-977c-a306016fd660@linaro.org>
- <b6d90c1f-5365-7197-be63-96c3d8cf0746@quicinc.com>
- <e53844b7-601b-f355-302b-cc871962a446@linaro.org>
-From:   Kuogee Hsieh <quic_khsieh@quicinc.com>
-In-Reply-To: <e53844b7-601b-f355-302b-cc871962a446@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: QrhoEHetR2ye-nVKglRGVqESAFaIt6LU
-X-Proofpoint-GUID: QrhoEHetR2ye-nVKglRGVqESAFaIt6LU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-12-12_02,2022-12-12_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxlogscore=999
- bulkscore=0 phishscore=0 adultscore=0 impostorscore=0 spamscore=0
- lowpriorityscore=0 mlxscore=0 malwarescore=0 priorityscore=1501
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2212120161
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+References: <20221212143102.175065-1-alexghiti@rivosinc.com>
+In-Reply-To: <20221212143102.175065-1-alexghiti@rivosinc.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 12 Dec 2022 11:53:58 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJz4uf+956oC4BfZGdjb+rfAZqduexLw3=D5HHjtyBC+g@mail.gmail.com>
+Message-ID: <CAL_JsqJz4uf+956oC4BfZGdjb+rfAZqduexLw3=D5HHjtyBC+g@mail.gmail.com>
+Subject: Re: [PATCH v2] riscv: Use PUD/P4D/PGD pages for the linear mapping
+To:     Alexandre Ghiti <alexghiti@rivosinc.com>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arch@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,213 +64,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 12/8/2022 4:35 PM, Dmitry Baryshkov wrote:
-> On 09/12/2022 02:22, Kuogee Hsieh wrote:
->>
->> On 12/8/2022 4:11 PM, Dmitry Baryshkov wrote:
->>> On 09/12/2022 01:38, Kuogee Hsieh wrote:
->>>>
->>>> On 12/8/2022 3:33 PM, Dmitry Baryshkov wrote:
->>>>> On 09/12/2022 00:36, Kuogee Hsieh wrote:
->>>>>> Add both data-lanes and link-frequencies property into endpoint
->>>>>>
->>>>>> Changes in v7:
->>>>>> -- split yaml out of dtsi patch
->>>>>> -- link-frequencies from link rate to symbol rate
->>>>>> -- deprecation of old data-lanes property
->>>>>>
->>>>>> Changes in v8:
->>>>>> -- correct Bjorn mail address to kernel.org
->>>>>>
->>>>>> Changes in v10:
->>>>>> -- add menu item to data-lanes and link-frequecnis
->>>>>>
->>>>>> Changes in v11:
->>>>>> -- add endpoint property at port@1
->>>>>>
->>>>>> Signed-off-by: Kuogee Hsieh <quic_khsieh@quicinc.com>`
->>>>>
->>>>> Applying: dt-bindings: msm/dp: add data-lanes and link-frequencies 
->>>>> property
->>>>> .git/rebase-apply/patch:47: trailing whitespace.
->>>>>
->>>>> .git/rebase-apply/patch:51: trailing whitespace.
->>>>>
->>>>>
->>>>> Also the dt_binding_check fails with an error for this schema. And 
->>>>> after fixing the error in the schema I faced an example validation 
->>>>> error. Did you check that the schema is correct and that the 
->>>>> example validates against the schema?
->>>>
->>>> yes, but i run "make dt_binding_check 
->>>> DT_SCHEMA_FILES=Documentation/devicetree/bindings/display/msm/dp-controller.yaml" 
->>>> at mu v5.15 branch since
->>>
->>> I wouldn't ask you to post the log here. But I don't think that 
->>> either of the errors that I see here is related to 5.15 vs 6.1-rc.
->>>
->>> In fact after applying this patch against 5.15 I saw the expected 
->>> failure:
->>>
->>> Documentation/devicetree/bindings/display/msm/dp-controller.yaml: 
->>> properties:required: ['port@0', 'port@1'] is not of type 'object', 
->>> 'boolean'
->>> Documentation/devicetree/bindings/display/msm/dp-controller.yaml: 
->>> properties: 'required' should not be valid under {'$ref': 
->>> '#/definitions/json-schema-prop-names'}
->>> Documentation/devicetree/bindings/display/msm/dp-controller.yaml: 
->>> ignoring, error in schema: properties: required
->>>
->>>>
->>>> "make dt_binding_check" does not work at msm-next branch.
->>>
->>> I went ahead and just checked.
->>>
->>> `make dt_binding_check DT_SCHEMA_FILES=display/msm`  works cleanly 
->>> in msm-next and reports a single example-related warning in 
->>> msm-next-lumag. I pushed a patch to fix that warning (wich can 
->>> hopefully be picked up by Abhinav into msm-fixes). So you can assume 
->>> that both these branches have consistent error-free display/msm 
->>> schemas.
->>>
->> I have clean msm-next branch (without my data-lines yaml patch 
->> applied) and run "make dt_binding_check 
->> DT_SCHEMA_FILES=Documentation/devicetree/bindings/display/msm/dp-controller.yaml", 
->> then I saw below error messages.
->>
->> Have you run into this problem?
+On Mon, Dec 12, 2022 at 8:31 AM Alexandre Ghiti <alexghiti@rivosinc.com> wrote:
 >
-> No.
-
-Did you do anything to fix "older dtschema instance"?
-
-I had run "pip3 install dtschema --upgrade" according Rob Herring response.
-but it still shows same problem.
-Please let know how can I fix this problem.
-
+> During the early page table creation, we used to set the mapping for
+> PAGE_OFFSET to the kernel load address: but the kernel load address is
+> always offseted by PMD_SIZE which makes it impossible to use PUD/P4D/PGD
+> pages as this physical address is not aligned on PUD/P4D/PGD size (whereas
+> PAGE_OFFSET is).
 >
->>
->>    HOSTCC  scripts/basic/fixdep
->>    HOSTCC  scripts/dtc/dtc.o
->>    HOSTCC  scripts/dtc/flattree.o
->>    HOSTCC  scripts/dtc/fstree.o
->>    HOSTCC  scripts/dtc/data.o
->>    HOSTCC  scripts/dtc/livetree.o
->>    HOSTCC  scripts/dtc/treesource.o
->>    HOSTCC  scripts/dtc/srcpos.o
->>    HOSTCC  scripts/dtc/checks.o
->>    HOSTCC  scripts/dtc/util.o
->>    LEX     scripts/dtc/dtc-lexer.lex.c
->>    HOSTCC  scripts/dtc/dtc-lexer.lex.o
->>    HOSTCC  scripts/dtc/dtc-parser.tab.o
->>    HOSTLD  scripts/dtc/dtc
->> sort: -:2: disorder: 2022.1
->> ERROR: dtschema minimum version is v2022.3
->> make[2]: *** [check_dtschema_version] Error 1
->> make[1]: *** [dt_binding_check] Error 2
->> make: *** [__sub-make] Error 2
+> But actually we don't have to establish this mapping (ie set va_pa_offset)
+> that early in the boot process because:
 >
-> This means that somewhere in your path you have an older dtschema 
-> instance.
+> - first, setup_vm installs a temporary kernel mapping and among other
+>   things, discovers the system memory,
+> - then, setup_vm_final creates the final kernel mapping and takes
+>   advantage of the discovered system memory to create the linear
+>   mapping.
 >
-> When you sent me a question regarding this error, I asked for the 
-> additional info. You provided none. Instead you went on sending the 
-> untested patch that doesn't work.
-
-since i can not test it on msm-next so that I did test it at my v5-15 
-branch.
-
-besides, i think i have to sent the whole series patches include this 
-one to address your new comments on other patch.
-
-is this correct?
-
-
+> During the first phase, we don't know the start of the system memory and
+> then until the second phase is finished, we can't use the linear mapping at
+> all and phys_to_virt/virt_to_phys translations must not be used because it
+> would result in a different translation from the 'real' one once the final
+> mapping is installed.
 >
->>
->>>>
->>>> But I did not check trainiling whitespace this time.
->>>>
->>>>>
->>>>>> ---
->>>>>>   .../bindings/display/msm/dp-controller.yaml        | 27 
->>>>>> ++++++++++++++++++++++
->>>>>>   1 file changed, 27 insertions(+)
->>>>>>
->>>>>> diff --git 
->>>>>> a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml 
->>>>>> b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->>>>>> index f2515af..2a7fdef8 100644
->>>>>> --- 
->>>>>> a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->>>>>> +++ 
->>>>>> b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->>>>>> @@ -81,6 +81,7 @@ properties:
->>>>>>       data-lanes:
->>>>>>       $ref: /schemas/types.yaml#/definitions/uint32-array
->>>>>> +    deprecated: true
->>>>>>       minItems: 1
->>>>>>       maxItems: 4
->>>>>>       items:
->>>>>> @@ -96,6 +97,7 @@ properties:
->>>>>>       ports:
->>>>>>       $ref: /schemas/graph.yaml#/properties/ports
->>>>>> +
->>>>>>       properties:
->>>>>>         port@0:
->>>>>>           $ref: /schemas/graph.yaml#/properties/port
->>>>>> @@ -105,6 +107,29 @@ properties:
->>>>>>           $ref: /schemas/graph.yaml#/properties/port
->>>>>>           description: Output endpoint of the controller
->>>>>>   +        properties:
->>>>>> +          endpoint:
->>>>>> +            $ref: /schemas/media/video-interfaces.yaml#
->>>>>> +
->>>>>> +            properties:
->>>>>> +              remote-endpoint: true
->>>>>
->>>>> PLease add empty lines between the property definitions
->>>>>
->>>>>> +              data-lanes:
->>>>>> +                $ref: /schemas/types.yaml#/definitions/uint32-array
->>>>>
->>>>> This is already a part of video-interfaces, so you don't need $ref
->>>>>
->>>>>> +                minItems: 1
->>>>>> +                maxItems: 4
->>>>>> +                items:
->>>>>> +                  maximum: 3
->>>>>
->>>>> enum: [0, 1, 2, 3]
->>>>>
->>>>>> +              link-frequencies:
->>>>>> +                $ref: /schemas/types.yaml#/definitions/uint64-array
->>>>>> +                minItems: 1
->>>>>> +                maxItems: 4
->>>>>> +                items:
->>>>>> +                  maximum: 8100000000
->>>>>
->>>>> I think we can have enum here too.
->>>>>
->>>>>> +
->>>>>> +  required:
->>>>>> +    - port@0
->>>>>> +    - port@1
->>>>>> +
->>>>>>   required:
->>>>>>     - compatible
->>>>>>     - reg
->>>>>> @@ -193,6 +218,8 @@ examples:
->>>>>>                   reg = <1>;
->>>>>>                   endpoint {
->>>>>>                       remote-endpoint = <&typec>;
->>>>>> +                    data-lanes = <0 1>;
->>>>>> +                    link-frequencies = /bits/ 64 <1620000000 
->>>>>> 2700000000 5400000000 8100000000>;
->>>>>>                   };
->>>>>>               };
->>>>>>           };
->>>>>
->>>
+> So here we simply delay the initialization of va_pa_offset to after the
+> system memory discovery. But to make sure noone uses the linear mapping
+> before, we add some guard in the DEBUG_VIRTUAL config.
 >
+> Finally we can use PUD/P4D/PGD hugepages when possible, which will result
+> in a better TLB utilization.
+>
+> Note that we rely on the firmware to protect itself using PMP.
+>
+> Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
+> ---
+>
+> v2:
+> - Add a comment on why RISCV64 does not need to set initrd_start/end that
+>   early in the boot process, as asked by Rob
+>
+> Note that this patch is rebased on top of:
+> [PATCH v1 1/1] riscv: mm: call best_map_size many times during linear-mapping
+>
+>  arch/riscv/include/asm/page.h | 16 ++++++++++++++++
+>  arch/riscv/mm/init.c          | 25 +++++++++++++++++++------
+>  arch/riscv/mm/physaddr.c      | 16 ++++++++++++++++
+>  drivers/of/fdt.c              |  7 ++++++-
+>  4 files changed, 57 insertions(+), 7 deletions(-)
+
+[...]
+
+> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> index 7b571a631639..012554445054 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -895,8 +895,13 @@ static void __early_init_dt_declare_initrd(unsigned long start,
+>          * enabled since __va() is called too early. ARM64 does make use
+>          * of phys_initrd_start/phys_initrd_size so we can skip this
+>          * conversion.
+> +        * On RISCV64, the usage of __va() before the linear mapping exists
+> +        * is wrong and RISCV64 rightly calls reserve_initrd_mem after it is
+> +        * available where it actually resets the translation that is done
+> +        * here and re-computes it.
+
+No, I want a single comment that covers both cases (and the next arch
+we add here). Something like this:
+
+__va() is not yet available this early on some platforms. In that
+case, the platform uses phys_initrd_start/phys_initrd_size instead and
+does the VA conversion itself.
+
+Rob
