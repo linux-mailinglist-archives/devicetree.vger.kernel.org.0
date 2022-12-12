@@ -2,159 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9EFB649F2C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 13:57:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 19A58649F3F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 14:00:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232412AbiLLM5I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 07:57:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57868 "EHLO
+        id S232571AbiLLNAE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 08:00:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232399AbiLLM5H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 07:57:07 -0500
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51E86FAE7
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 04:57:06 -0800 (PST)
-Received: by mail-pl1-x635.google.com with SMTP id jl24so11973086plb.8
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 04:57:06 -0800 (PST)
+        with ESMTP id S232517AbiLLM7o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 07:59:44 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 315C81275D
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 04:59:28 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id ay40so5219497wmb.2
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 04:59:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=CELbTlwFp87wl7bxggIsIf62V1a0MEPUVNJySL6sh4g=;
-        b=vvF+j1oNR+EuMz/CdeTCYmJ0xO7ITp2aWZ/59uFCy3EQl/Y6lA7mrdri94n0vv8bmU
-         eu8ms3Dt1861vOO4ETpCLVRyf4HLpvPNAF1wBkZtgd3EG6KipX+dvqzOmEdOtPxCzCcq
-         SQfJRTwB44b6md0belT+W/1jSGkpO+lxpkTmAB0PbHBnuwwB4/XagzQ7uwWy8UnShxXQ
-         Z8D0h+GYxleYc9vT04jdnoMbm9ZLXzIUAqKoeLdF/1UcVkyPL/LSpqkVqfzcUqbFw/Px
-         +rC2OJsB3Ox815U6v4RG/iis0w5QVyyADgjBwj2iPGGYCvatZo2Bld5VB75eX54I3qeA
-         NCOg==
+        bh=7xyR/mcyrfbwWMfCN8mMVjndqTEj5Gg3aDc/VYz02rA=;
+        b=sEIXn7FreHKusmUFLCp92hr10tPgCCrQ9aN+oBMdplS2msnQh3Oc/gCkfJmiUH0rg7
+         aVwfcf8ZrDujQQJmPxzKymlwPVncWb73MMRxzrUN5xwGVk0AcKLLH6kfA7Uk+yAWZ2xt
+         1Pkz4EYO3lTKrT/bhULCYzhUaeav/m23n6pjkz/V2rS9diJ5Z3eaXj6NyuEDvZ3fQXS8
+         P/44KREcTZNfaHi1daXFQvuQtOyI7sPGcme6niGqbH+YJZfJ//cBJqeE+FQihICCRk3u
+         AEZ/x+gIkATpQtqeBGYk0ddzBtPtklbAxyanzoam1Ks2mKJfQt5IQibaa6SwKvf2PHok
+         tYvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CELbTlwFp87wl7bxggIsIf62V1a0MEPUVNJySL6sh4g=;
-        b=edfpzWtobDZ58ReVH+gBZW5UFVPjQHDYzzS/I5sIoBjF9dkC1U1llXcBUE2J3iDOAw
-         y/GwZxyzJ7/6U9/ilFelMHfITCd1eqwb7zOH+NMMAhF/f/x98XCXjzqXvZvQn6HaL0iV
-         ftMCCEdQMY/+bPQbWBC/XSCA87bC+MsZd1O3k8WlQMXfYDSgMcDwxRE3lSIO4BQV2Hso
-         Zk/Vx6FDdtZLlYEBawb7mtR1qiVF7zJ+LqKY4AF8SaqfRyCQdP0FOxUmsbCuUi62Ej5/
-         trUOwnT/frHLviV/kxu1CLgymKBpxQGi8CHxcJsmCx/S3J/uHefhjGHdu0rXyYsjibXB
-         kW2w==
-X-Gm-Message-State: ANoB5plrBKltGf4as/G964iR0YNfrSMU2k7cc/zR1twgN0C8O9bObCnB
-        Co+1M8gzlsiNCAYfBKxVJ9CY5QJjpYQUKv0=
-X-Google-Smtp-Source: AA0mqf5sFNxTahjCUzcoxuTmNba9WUk1OqF5FDvHjL3I9YROradJGvubUSpoWlAJzBAmQ5cSBL9u8g==
-X-Received: by 2002:a17:90a:1b0b:b0:219:396c:9e32 with SMTP id q11-20020a17090a1b0b00b00219396c9e32mr16732121pjq.16.1670849825786;
-        Mon, 12 Dec 2022 04:57:05 -0800 (PST)
-Received: from thinkpad ([220.158.159.33])
-        by smtp.gmail.com with ESMTPSA id mv10-20020a17090b198a00b002135e8074b1sm5384030pjb.55.2022.12.12.04.57.00
+        bh=7xyR/mcyrfbwWMfCN8mMVjndqTEj5Gg3aDc/VYz02rA=;
+        b=hHmA6QPOJg7pt6ppmoTGnyani3jjkTsHjuZX9cTRxKVDfs/M49iI3+8Bccwi0SYV9O
+         ejzv6IWoUvGqZ2AAzoXNmWlnLgvvYeyFgF04B3Zf4Po7fO0+QGhSegaMu7xwAfJXukBh
+         rsD+2ugu33zke55cg5t/J/xG9vi+/TOZC3gegbhVqWqvV6RsArnGInEhj7eq+xwSOA3B
+         1OHEvzD2ACjGUPsFsLmweDvORLJ2d+fMbEZyDYj+8Pzi9AZpGuLzSbLYWEVzwk8ZwsH6
+         ieYqsdaHMSrQHOngvCDrEj+d2FAvob53CSoxbP8KtX19MjSwCJSttmtlnd2bOm5Qs3Xx
+         yNgg==
+X-Gm-Message-State: ANoB5pn+Y/pN1Cw6r49g5qDeX6KS7tlhE6Gq6oYtvJ4Xcd9LMkdxyHxl
+        Hk287I5SQ4QUjnJLGDEZgTbRrA==
+X-Google-Smtp-Source: AA0mqf6OBL/3eVC4N6kdNRRI4Fu9Fm5P9Iq9s/FuZRIzp8zeTxLjdgqMe6xsDO804bbneQLJiAoixw==
+X-Received: by 2002:a1c:4c06:0:b0:3cf:88c3:d008 with SMTP id z6-20020a1c4c06000000b003cf88c3d008mr12148059wmf.28.1670849967528;
+        Mon, 12 Dec 2022 04:59:27 -0800 (PST)
+Received: from Red ([2a01:cb1d:3d5:a100:4a02:2aff:fe07:1efc])
+        by smtp.googlemail.com with ESMTPSA id f9-20020a05600c154900b003d2157627a8sm10004768wmg.47.2022.12.12.04.59.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Dec 2022 04:57:04 -0800 (PST)
-Date:   Mon, 12 Dec 2022 18:26:58 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Frank Li <frank.li@nxp.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "kw@linux.com" <kw@linux.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "Sergey.Semin@baikalelectronics.ru" 
-        <Sergey.Semin@baikalelectronics.ru>
-Subject: Re: [EXT] RE: [PATCH v7 5/9] PCI: dwc: Avoid reading a register to
- detect whether eDMA exists
-Message-ID: <20221212125658.GD20655@thinkpad>
-References: <TYBPR01MB5341932B42719E026AA16D40D8139@TYBPR01MB5341.jpnprd01.prod.outlook.com>
- <20221128115908.awhznkkrelk7h3nm@mobilestation>
- <TYBPR01MB534107A3C2B521BA0D67B4A7D8139@TYBPR01MB5341.jpnprd01.prod.outlook.com>
- <20221128161114.deacldwbckfnn6ft@mobilestation>
- <TYBPR01MB5341FA664D5F1FCA07294F96D8129@TYBPR01MB5341.jpnprd01.prod.outlook.com>
- <TYBPR01MB53413E1BE13CCA65307770FDD81D9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
- <20221208140111.7phlnsxktxzsc55f@mobilestation>
- <TYBPR01MB5341B4EB94F1B829F0E0431CD81C9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
- <HE1PR0401MB23319A9F4AF7630A82249D65881C9@HE1PR0401MB2331.eurprd04.prod.outlook.com>
- <20221211152849.y2dcxpc2teervlcl@mobilestation>
+        Mon, 12 Dec 2022 04:59:27 -0800 (PST)
+Date:   Mon, 12 Dec 2022 13:59:22 +0100
+From:   Corentin LABBE <clabbe@baylibre.com>
+To:     pavel@ucw.cz, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org,
+        lee@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-leds@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: leds: common: add disk write/read
+ and usb-host/usb-gadget
+Message-ID: <Y5clqogvKUjk+KN9@Red>
+References: <20221028064141.2171405-1-clabbe@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221211152849.y2dcxpc2teervlcl@mobilestation>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20221028064141.2171405-1-clabbe@baylibre.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Serge,
-
-On Sun, Dec 11, 2022 at 06:28:49PM +0300, Serge Semin wrote:
-> Hi Frank
+Le Fri, Oct 28, 2022 at 06:41:40AM +0000, Corentin Labbe a �crit :
+> The triggers enum misses 3 cases used by gemini DT.
+> usb-host was added via commit 0cfbd328d60f ("usb: Add LED triggers for USB activity")
+> so we add also as valid trigger usb-gadget which was added along in this
+> commit.
 > 
-> On Fri, Dec 09, 2022 at 03:52:42PM +0000, Frank Li wrote:
-> > Hi Serge,
-> > 
-> > > From: Serge Semin, Sent: Thursday, December 8, 2022 11:01 PM
-> > >
-> > > Cc += Frank Li
-> > >
-> > > @Frank could you have a look at the thread and check the content of
-> > > the CSRs dbi+0x8f8 and dbi+0x978 on available to you DW PCIe +EDMA
-> > > devices?
-> > 
-> 
-> > [    2.598038] imx6q-pcie 5f010000.pcie_ep: imx_add_pcie_ep: +0x8f8 = 3438302a, +0x978 = 00010001
-> 
-> Thanks for the reply. So it's 4.80a with the legacy viewport-based
-> access. Alas it isn't what we need in this thread. We'll need
-> @Mani's respond in order to decide how to fix the auto-detection
-> procedure.
+> disk-read/disk-write were added by commit d1ed7c558612 ("leds: Extends disk trigger for reads and writes")
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Acked-by: Rob Herring <robh@kernel.org>
 > 
 
-Sorry for the late reply!
+Hello Pavel Machek and Lee Jones
 
-With below diff on the EP:
+The two patch are reviewed, could you take them to your tree ?
 
-diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-index 6f3805228a18..0eb4d3218738 100644
---- a/drivers/pci/controller/dwc/pcie-designware.c
-+++ b/drivers/pci/controller/dwc/pcie-designware.c
-@@ -665,6 +665,10 @@ static int dw_pcie_edma_find_chip(struct dw_pcie *pci)
-        if (val == 0xFFFFFFFF && pci->edma.reg_base) {
-                pci->edma.mf = EDMA_MF_EDMA_UNROLL;
- 
-+               dev_info(pci->dev, "%s: +0x8f8 = %08x, +0x978 = %08x\n", __func__,
-+                       dw_pcie_readl_dbi(pci, 0x8f8),
-+                       dw_pcie_readl_dbi(pci, 0x978));
-+
-                val = dw_pcie_readl_dma(pci, PCIE_DMA_CTRL);
-        } else if (val != 0xFFFFFFFF) {
-                pci->edma.mf = EDMA_MF_EDMA_LEGACY;
-
-
-The output was:
-
-qcom-pcie-ep 1c08000.pcie-ep: dw_pcie_edma_find_chip: +0x8f8 = 3533302a, +0x978 = ffffffff
-
-Hope this helps!
-
-Thanks,
-Mani
-
-> -Serge(y)
-> 
-> > 
-> > Frank Li
-> > 
-> > 
-
--- 
-மணிவண்ணன் சதாசிவம்
+thanks
+Regards
