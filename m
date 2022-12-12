@@ -2,122 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D3696496DD
-	for <lists+devicetree@lfdr.de>; Sun, 11 Dec 2022 23:58:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D01364978B
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 02:00:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230313AbiLKW6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Dec 2022 17:58:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32816 "EHLO
+        id S230105AbiLLBAF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Dec 2022 20:00:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229475AbiLKW6a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Dec 2022 17:58:30 -0500
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64B499FF7;
-        Sun, 11 Dec 2022 14:58:28 -0800 (PST)
-Received: by mail-ej1-x634.google.com with SMTP id fc4so23735771ejc.12;
-        Sun, 11 Dec 2022 14:58:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=M33qCD7Tm8dDEgZk34tGAUKV2pp9BjLWodh2i56ini8=;
-        b=YM/EYtHkM9CzZbVfnNVz3ugqNlk3HA3Qywye8HmZNtAVcbE8mI+jSfGVkYqFn/uidC
-         GmaGFF3VGDlrfL7HwRPrWg2gx8OfTYa7KZJUQq0fNQzLNVIs3k7nkPn79sp8pYm5u5gN
-         uJnxyNLtDSmRjf7Kp6IngeT2ofr0NQPEy3JC76VutmwpVNpmowA5+12MeB6WYVxMWD4n
-         AdO/pAa1/8xPsrWuuzD+Os91s3wQpBwmiEDec3mfzWaNdFQaxgZ7KTUsVyMpIxo4snfp
-         HM7ez7UKZKgsBcF+H5s+8TCro4smINVZnBLSR44U/xI5lmqrEyhvy2FlFmn3XJqCVDtp
-         KY9g==
+        with ESMTP id S229475AbiLLBAE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Dec 2022 20:00:04 -0500
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FF70BC33;
+        Sun, 11 Dec 2022 17:00:03 -0800 (PST)
+Received: by mail-oi1-f181.google.com with SMTP id t62so9869132oib.12;
+        Sun, 11 Dec 2022 17:00:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=M33qCD7Tm8dDEgZk34tGAUKV2pp9BjLWodh2i56ini8=;
-        b=s2VQKXUhzZx8VCDFWWzWXvQqPtdI7F5LZaj+APawwx0unXOIKmJJP3K2duGlr29kxd
-         NMVLVXkNDsEdiyJcbMMRMjg3FpwdNboyCgV8m+eaE7fy0geEBMX61G7LLZcHPuOCBUiF
-         wJrtDVZS0/bq3KQ8flUJNJnpwxxqO/babYLNBCgZdKOrGCtDdN7A74ZnWvpIiJk8my7U
-         hH91no/5yhotNOggO5vlzUUr3J3UmSsVe1gWfbyJQr8YC0djZ0aGwB19LDwvFSTRzvfc
-         lqE7mEi7cgY65AEcoKNvfu5jopPsR10yEXtTv+WDk/rb4lqL/Z5T+oSDq9FZqtKrbOnU
-         CV2A==
-X-Gm-Message-State: ANoB5pmjSK5f6Ff/NiUDzTXWy0dEdqLCtO3rsjL2aiohEhz/P5Pu+Gvc
-        XlrHBenBQ2BS+oAkmIlxcCs=
-X-Google-Smtp-Source: AA0mqf7p50+L95OeIEuBxlGylcnhYmtBdgeQFosfuZf9XnCV73/tM0sQHCcFFJhDfhxd79fyjh6MQw==
-X-Received: by 2002:a17:906:150d:b0:7c1:65f5:7b92 with SMTP id b13-20020a170906150d00b007c165f57b92mr4674347ejd.48.1670799506624;
-        Sun, 11 Dec 2022 14:58:26 -0800 (PST)
-Received: from skbuf ([188.27.185.175])
-        by smtp.gmail.com with ESMTPSA id f12-20020a170906390c00b007c0aa8eaf47sm2504998eje.116.2022.12.11.14.58.24
+        bh=W35EUGtKuZIlx3Jt/4hZsEC7qcAbcwTqSE5lgDE03js=;
+        b=N1C/4ETb8wKxU2mjmJlGFTD5YbGti5sV3RmhSQlXYnY7vgMjpMeDtY2AcLEQ4X7Zpg
+         XPF8Szwe7OMdYcOBmNGWPddvaxC/b/ZfrDFwKXFulKcr3D+Ne342JoErjQqb67FN80u5
+         kCT+7MMSbXr7PlfAVub5R8C0j+tn1vh/7PsxsNgNDPZS3FIW6L+IYPNFTs5dDfG7qgDD
+         wfvcalhDPafx/eG63J0yCayhDiMGYzHXZvToM+OCJ1/AiNJxYReCErqwbqBW9ELwwVDR
+         akV8V7D+lCWdIa6NvUJ/nZBdoXoRpuwEk0apd4/JIBWq+J/kebIU1I/6qG+Z2FjYJ27x
+         2Fbg==
+X-Gm-Message-State: ANoB5plemCK6lwTMNEgccWSVWaAy+iiFlMTQRgzyQBq0R4hyficwYrc3
+        aKs1E2IFyCH0r3slhaa+JE6cq0EZmw==
+X-Google-Smtp-Source: AA0mqf7iDzQBRpglkQy74NrkOv3Uki9vRPKEmJrScUsrQ2R8bGpDJcZdof0fC6mpXaDn8G07nB298w==
+X-Received: by 2002:a05:6808:16a8:b0:35a:56f5:860d with SMTP id bb40-20020a05680816a800b0035a56f5860dmr7679587oib.38.1670806802751;
+        Sun, 11 Dec 2022 17:00:02 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id l8-20020aca1908000000b003546fada8f6sm3002004oii.12.2022.12.11.17.00.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Dec 2022 14:58:26 -0800 (PST)
-Date:   Mon, 12 Dec 2022 00:58:23 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Kurt Kanzenbach <kurt@linutronix.de>
-Cc:     Colin Foster <colin.foster@in-advantage.com>,
-        linux-renesas-soc@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        John Crispin <john@phrozen.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Marek Vasut <marex@denx.de>,
-        Sean Wang <sean.wang@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        =?utf-8?B?bsOnIMOcTkFM?= <arinc.unal@arinc9.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        UNGLinuxDriver@microchip.com,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        George McCollister <george.mccollister@gmail.com>
-Subject: Re: [PATCH v5 net-next 01/10] dt-bindings: dsa: sync with maintainers
-Message-ID: <20221211225823.nde77nlfriok4q6x@skbuf>
-References: <20221210033033.662553-1-colin.foster@in-advantage.com>
- <20221210033033.662553-2-colin.foster@in-advantage.com>
- <87o7sbh896.fsf@kurt>
+        Sun, 11 Dec 2022 17:00:02 -0800 (PST)
+Received: (nullmailer pid 4109402 invoked by uid 1000);
+        Mon, 12 Dec 2022 01:00:01 -0000
+Date:   Sun, 11 Dec 2022 19:00:01 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     ruanjinjie <ruanjinjie@huawei.com>
+Cc:     frowand.list@gmail.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v2] of: overlay: fix null pointer dereferencing in
+ find_dup_cset_node_entry() and find_dup_cset_prop()
+Message-ID: <167080679960.4109328.1276719128104210210.robh@kernel.org>
+References: <20221211023337.592266-1-ruanjinjie@huawei.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <87o7sbh896.fsf@kurt>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20221211023337.592266-1-ruanjinjie@huawei.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Dec 10, 2022 at 11:18:29AM +0100, Kurt Kanzenbach wrote:
-> You can update the hellcreek binding as well. Thanks.
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml b/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml
-> index 73b774eadd0b..1d7dab31457d 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml
-> @@ -12,7 +12,7 @@ allOf:
->  maintainers:
->    - Andrew Lunn <andrew@lunn.ch>
->    - Florian Fainelli <f.fainelli@gmail.com>
-> -  - Vivien Didelot <vivien.didelot@gmail.com>
-> +  - Vladimir Oltean <olteanv@gmail.com>
->    - Kurt Kanzenbach <kurt@linutronix.de>
->  
->  description:
 
-Good observation. If there are no other comments on this patch series
-(which otherwise looks reasonable to me), I suppose that could be
-accomplished via a parallel patch as well? The diff you're proposing
-does not seem to conflict with something else that Colin is touching in
-this patch set.
+On Sun, 11 Dec 2022 10:33:37 +0800, ruanjinjie wrote:
+> when kmalloc() fail to allocate memory in kasprintf(), fn_1 or fn_2 will
+> be NULL, strcmp() will cause null pointer dereference.
+> 
+> Fixes: 2fe0e8769df9 ("of: overlay: check prevents multiple fragments touching same property")
+> Signed-off-by: ruanjinjie <ruanjinjie@huawei.com>
+> ---
+> v2:
+> - not care return code, so check whether fn_1 or fn_2 is NULL in assigning node_path_match
+> ---
+>  drivers/of/overlay.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+
+Applied, thanks!
