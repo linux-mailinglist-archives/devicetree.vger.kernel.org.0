@@ -2,206 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38AEF649E69
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 13:05:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75090649E94
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 13:22:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231932AbiLLMFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 07:05:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34546 "EHLO
+        id S229452AbiLLMWG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 07:22:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231827AbiLLMFi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 07:05:38 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 220AF263E
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 04:05:37 -0800 (PST)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 94CA16CF;
-        Mon, 12 Dec 2022 13:05:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1670846734;
-        bh=mI8PCmj/cnOJcB2oNJ1Dc5d6b0A6ZL0gRGJWujB/9Uo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=vENgFypc+3HoroWNmP94Wa7VNOB8cgH5ZLLxBDQ5tV+dUcQ1+bCcHXw+8o47ktWW0
-         zbhEWexCEmNcbFynQlZL8alEnQKADvdNdCKiw7GZGtaVG/offKJlTtUcsWNCFEJDtO
-         bYuNmQIYfLKa0816zzWwUzyfDJDrwCWjvV06WXF8=
-Date:   Mon, 12 Dec 2022 14:05:32 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Frieder Schrempf <frieder.schrempf@kontron.de>
-Cc:     Marek Vasut <marex@denx.de>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        with ESMTP id S232023AbiLLMWE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 07:22:04 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C0B210FF8;
+        Mon, 12 Dec 2022 04:22:03 -0800 (PST)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BC6mGOd001381;
+        Mon, 12 Dec 2022 12:21:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=3XkvgNx5sTLY+I2azRwSZJ5pkzu7ohIy979ecHKzVSk=;
+ b=fbak5wwS7xQ3auEB1el4uRct9K9nJ33BMoLBOgmRyioPjjVD51tig8VytJC25craPwCQ
+ Uyhay+19+mIDz8Uw1R5yqjRg6QSNNTYUmR3+LbD8/pOb7ar0Ch9NmK4JUGdgi+i49KQt
+ OfQ1If49h1bEPrBASKnGkPSg89yLWW4cuSFAPTq84zIM4W0vlZ19fhxm+9FThB7grdWe
+ IMhMAupRk3K69ing+/yWKfaKroGOKOhXt8Vk9SuIR6f8CKujAlmkh9o/FY7ad0w8QZy5
+ cT/v19fx8Q/l8Kv4sm0OO8LV8g0xy5khJUsn/5yKWDeQqtd0gaNcm0y76EG4eijW0VBk UQ== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3mch30m565-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 12 Dec 2022 12:21:58 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2BCCLvEd017647
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 12 Dec 2022 12:21:57 GMT
+Received: from shazhuss-linux.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Mon, 12 Dec 2022 04:21:53 -0800
+From:   Shazad Hussain <quic_shazhuss@quicinc.com>
+To:     <andersson@kernel.org>, <johan@kernel.org>
+CC:     <bmasney@redhat.com>, Shazad Hussain <quic_shazhuss@quicinc.com>,
+        "Andy Gross" <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: ti-sn65dsi83: Add enable
- delay property
-Message-ID: <Y5cZDOxTHYu5SOFj@pendragon.ideasonboard.com>
-References: <20221209083339.3780776-1-alexander.stein@ew.tq-group.com>
- <45157029.fMDQidcC6G@steina-w>
- <6da2330d-516e-7dc4-a000-1e68c7f7887e@denx.de>
- <2735716.BEx9A2HvPv@steina-w>
- <c6f2cc52-41c6-028f-4d3f-e8a4d5d73dcd@denx.de>
- <9f8b1c17-0bc5-ae99-b7b1-cb2f52f9310d@kontron.de>
- <Y5b1PRRFeSm2P/LB@pendragon.ideasonboard.com>
- <604d3d94-1aa2-d4bf-e934-9844e25f60a4@kontron.de>
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2] arm64: dts: qcom: sa8540p-ride: enable pcie2a node
+Date:   Mon, 12 Dec 2022 17:50:59 +0530
+Message-ID: <20221212122058.597-1-quic_shazhuss@quicinc.com>
+X-Mailer: git-send-email 2.38.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <604d3d94-1aa2-d4bf-e934-9844e25f60a4@kontron.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: td3KUA4tTdibcTH039d7S_m1ZXgYf2If
+X-Proofpoint-GUID: td3KUA4tTdibcTH039d7S_m1ZXgYf2If
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-12-12_02,2022-12-12_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
+ adultscore=0 phishscore=0 spamscore=0 clxscore=1015 mlxlogscore=999
+ priorityscore=1501 mlxscore=0 lowpriorityscore=0 impostorscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2212120114
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 12, 2022 at 12:49:26PM +0100, Frieder Schrempf wrote:
-> On 12.12.22 10:32, Laurent Pinchart wrote:
-> > On Mon, Dec 12, 2022 at 10:09:45AM +0100, Frieder Schrempf wrote:
-> >> On 09.12.22 15:49, Marek Vasut wrote:
-> >>> On 12/9/22 14:38, Alexander Stein wrote:
-> >>>> Am Freitag, 9. Dezember 2022, 13:43:02 CET schrieb Marek Vasut:
-> >>>>> On 12/9/22 13:21, Alexander Stein wrote:
-> >>>>>> Am Freitag, 9. Dezember 2022, 13:02:10 CET schrieb Marek Vasut:
-> >>>>>>> On 12/9/22 10:36, Alexander Stein wrote:
-> >>>>>>>> Am Freitag, 9. Dezember 2022, 10:07:45 CET schrieb Krzysztof Kozlowski:
-> >>>>>>>>> On 09/12/2022 09:54, Alexander Stein wrote:
-> >>>>>>>>>> Am Freitag, 9. Dezember 2022, 09:39:49 CET schrieb Krzysztof Kozlowski:
-> >>>>>>>>>>> On 09/12/2022 09:33, Alexander Stein wrote:
-> >>>>>>>>>>>> It takes some time until the enable GPIO has settled when turning on.
-> >>>>>>>>>>>> This delay is platform specific and may be caused by e.g. voltage
-> >>>>>>>>>>>> shifts, capacitors etc.
-> >>>>>>>>>>>>
-> >>>>>>>>>>>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> >>>>>>>>>>>> ---
-> >>>>>>>>>>>>
-> >>>>>>>>>>>>    
-> >>>>>>>>>>>> .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml      | 4
-> >>>>>>>>>>>>     ++++
-> >>>>>>>>>>>>     1 file changed, 4 insertions(+)
-> >>>>>>>>>>>>
-> >>>>>>>>>>>> diff --git
-> >>>>>>>>>>>> a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> >>>>>>>>>>>> b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> >>>>>>>>>>>> index 48a97bb3e2e0d..3f50d497cf8ac 100644
-> >>>>>>>>>>>> --- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> >>>>>>>>>>>> +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> >>>>>>>>>>>>
-> >>>>>>>>>>>> @@ -32,6 +32,10 @@ properties:
-> >>>>>>>>>>>>         maxItems: 1
-> >>>>>>>>>>>>         description: GPIO specifier for bridge_en pin (active high).
-> >>>>>>>>>>>>
-> >>>>>>>>>>>> +  ti,enable-delay-us:
-> >>>>>>>>>>>> +    default: 10000
-> >>>>>>>>>>>> +    description: Enable time delay for enable-gpios
-> >>>>>>>>>>>
-> >>>>>>>>>>> Aren't you now mixing two separate delays? One for entire block (I
-> >>>>>>>>>>> would assume mostly fixed delay) and one depending on regulators
-> >>>>>>>>>>> (regulator-ramp-delay, regulator-enable-ramp-delay). Maybe you miss the
-> >>>>>>>>>>> second delays in your power supply? If so, the first one might be fixed
-> >>>>>>>>>>> and hard-coded in the driver?
-> >>>>>>>>>>
-> >>>>>>>>>> Apparently there are two different delays: reset time (t_reset) of 10ms as
-> >>>>>>>>>> specified by datasheet. This is already ensured by a following delay after
-> >>>>>>>>>> requesting enable_gpio as low and switching the GPIO to low in disable
-> >>>>>>>>>> path.
-> >>>>>>>>>>
-> >>>>>>>>>> When enabling this GPIO it takes some time until it is valid on the chip,
-> >>>>>>>>>> this is what this series is about. It's highly platform specific.
-> >>>>>>>>>>
-> >>>>>>>>>> Unfortunately this is completely unrelated to the vcc-supply regulator.
-> >>>>>>>>>> This one has to be enabled before the enable GPIO can be enabled. So
-> >>>>>>>>>> there is no regulator-ramp-delay.
-> >>>>>>>>>
-> >>>>>>>>> Your driver does one after another - regulator followed immediately by
-> >>>>>>>>> gpio - so this as well can be a delay from regulator (maybe not ramp but
-> >>>>>>>>> enable delay).
-> >>>>>>>
-> >>>>>>> The chip has two separate input pins:
-> >>>>>>>
-> >>>>>>> VCC -- power supply that's regulator
-> >>>>>>> EN -- reset line, that's GPIO
-> >>>>>>>
-> >>>>>>> Alexander is talking about EN line here.
-> >>>>>>>
-> >>>>>>>> But this will introduce a section which must not be interrupted or delayed.
-> >>>>>>>> This is impossible as the enable gpio is attached to an i2c expander in my
-> >>>>>>>> case.
-> >>>>>>>>
-> >>>>>>>> Given the following time chart:
-> >>>>>>>>     vcc                  set             EN
-> >>>>>>>>
-> >>>>>>>> enable               GPIO             PAD
-> >>>>>>>>
-> >>>>>>>>      |                    |<-- t_raise -->|
-> >>>>>>>>      |
-> >>>>>>>>      | <-- t_vcc_gpio --> |               |
-> >>>>>>>>      | <--        t_enable_delay      --> |
-> >>>>>>>>
-> >>>>>>>> t_raise is the time from changing the GPIO output at the expander until
-> >>>>>>>> voltage on the EN (input) pad from the bridge has reached high voltage
-> >>>>>>>> level. This is an electrical characteristic I can not change and have to
-> >>>>>>>> take into account.
-> >>>>>>>> t_vcc_gpio is the time from enabling supply voltage to enabling the bridge
-> >>>>>>>> (removing from reset). Minimum t_vcc_gpio is something which can be
-> >>>>>>>> addressed by the regulator and is no problem so far. But there is no
-> >>>>>>>> upper bound to it.
-> >>>>>>>
-> >>>>>>> What exactly is your EN signal rise time (should be ns or so)? Can you
-> >>>>>>> look at that with a scope , maybe even with relation to the VCC
-> >>>>>>> regulator
-> >>>>>>> ?
-> >>>>>>
-> >>>>>> I checked EN rise time using a scope, it's ~110ms. I not an expert in
-> >>>>>> hardware but on the mainboard there is some capacitor attached to this
-> >>>>>> line, which increased the time, independent from the internal pull-up.
-> >>>>>
-> >>>>> This does seem like a hardware bug right there, can you double-check
-> >>>>> this with the hardware engineer ?
-> >>>>
-> >>>> Yep, checked with hardware engineer. An 470nF is attached, together with an
-> >>>> open drain output and only the internal pull-up. So yes ~113ms rising time
-> >>>> until 0.7 x VCC.
-> >>>
-> >>> I don't suppose you can have that capacitor reduced or better yet, some
-> >>> external pull up added, can you ?
-> >>
-> >> Actually our HW engineers have implemented a similar RC circuit to
-> >> provide a hardware delay for the EN signal. I think this is due to a
-> >> design note in the datasheet (see chapter 7.4.1) and therefore it's
-> >> probably widely spread.
-> > 
-> > RC delay circuits are very common when tying a control signal to a power
-> > rail. I'm surprise to see it recommended (with such a large time
-> > constant) when the EN signal is actively controlled. It makes sense if
-> > the SN65DSI83 supply comes up before the GPIO can be actively driven low
-> > (for instance if the supply isn't manually controllable but tied to an
-> > always-on power rail), in other cases it's quite counter-productive (I
-> > really hope the EN input has a Schmitt trigger).
-> 
-> On our hardware there's also a pulldown resistor parallel to the
-> capacitor which makes sure EN is low from the beginning even if the GPIO
-> is not driven yet.
-> 
-> I don't really understand what the capacitor should be good for, or why
-> TI recommends it. It looks counter-productive to me, too.
+Add the pcie2a, pcie2a_phy, and respective tlmm
+nodes that are needed to get pcie 2a controller
+enabled on Qdrive3.
 
-There's an internal pull-up to VCC, so in case the GPIO is not driven,
-the capacitor ensures that the EN voltage rises slowly enough to match
-the required timings. If you ensure it gets driven, there should be no
-concern.
+This patch enables 4GB 64bit memory space for
+PCIE_2A to have BAR allocations of 64bit pref mem
+needed on this Qdrive3 platform with dual SoCs
+for root port and switch NT-EP. Hence this ranges
+property is overridden in sa8540p-ride.dts only.
 
+Signed-off-by: Shazad Hussain <quic_shazhuss@quicinc.com>
+---
+Changes since v1:
+- Fix ranges property indentation (Konrad)
+
+This patch depends on below patch series for vreg_l11a.
+
+[v4] arm64: dts: qcom: sa8540p-ride: enable PCIe support
+https://lore.kernel.org/all/20221206161916.315640-1-bmasney@redhat.com/
+
+ arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 44 +++++++++++++++++++++++
+ 1 file changed, 44 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+index bb4afd3a9632..7ce104fea4f8 100644
+--- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
++++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+@@ -146,6 +146,27 @@ vreg_l8g: ldo8 {
+ 	};
+ };
+ 
++&pcie2a {
++	ranges = <0x01000000 0x0 0x3c200000 0x0 0x3c200000 0x0 0x100000>,
++		 <0x02000000 0x0 0x3c300000 0x0 0x3c300000 0x0 0x1d00000>,
++		 <0x03000000 0x5 0x00000000 0x5 0x00000000 0x1 0x00000000>;
++
++	perst-gpios = <&tlmm 143 GPIO_ACTIVE_LOW>;
++	wake-gpios = <&tlmm 145 GPIO_ACTIVE_HIGH>;
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&pcie2a_default>;
++
++	status = "okay";
++};
++
++&pcie2a_phy {
++	vdda-phy-supply = <&vreg_l11a>;
++	vdda-pll-supply = <&vreg_l3a>;
++
++	status = "okay";
++};
++
+ &pcie3a {
+ 	ranges = <0x01000000 0x0 0x40200000 0x0 0x40200000 0x0 0x100000>,
+ 	         <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x20000000>,
+@@ -247,6 +268,29 @@ &xo_board_clk {
+ /* PINCTRL */
+ 
+ &tlmm {
++	pcie2a_default: pcie2a-default-state {
++		perst-pins {
++			pins = "gpio143";
++			function = "gpio";
++			drive-strength = <2>;
++			bias-pull-down;
++		};
++
++		clkreq-pins {
++			pins = "gpio142";
++			function = "pcie2a_clkreq";
++			drive-strength = <2>;
++			bias-pull-up;
++		};
++
++		wake-pins {
++			pins = "gpio145";
++			function = "gpio";
++			drive-strength = <2>;
++			bias-pull-up;
++		};
++	};
++
+ 	pcie3a_default: pcie3a-default-state {
+ 		perst-pins {
+ 			pins = "gpio151";
 -- 
-Regards,
+2.38.0
 
-Laurent Pinchart
