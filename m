@@ -2,110 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8B21649D25
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 12:08:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 341A2649D41
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 12:16:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231779AbiLLLIE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 06:08:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52654 "EHLO
+        id S232135AbiLLLQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 06:16:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231821AbiLLLHV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 06:07:21 -0500
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E99E511C06;
-        Mon, 12 Dec 2022 02:55:43 -0800 (PST)
-Received: by mail-ej1-x632.google.com with SMTP id fc4so26855613ejc.12;
-        Mon, 12 Dec 2022 02:55:43 -0800 (PST)
+        with ESMTP id S231715AbiLLLQR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 06:16:17 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECB16DF94
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 03:10:47 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id z26so65716lfu.8
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 03:10:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=0ueHMi2mIOmzpz327lFnzb2ZBYr+ALhB5gftG35Fae8=;
-        b=a0j4vd2PYcbV5vGVf5kujUaxiBQ0GBPWAizLVh3tEou21Qq8DVGG1dvLL6RoMI4io8
-         N5GS1jAeVsS6EXOVKRRMUT6eIyehLYnH77sN9PDfB6dPjswcIM2k0eai/zlvXFyztve3
-         wJ0yAfUe0DhSkBSTlCPba8CCLgaw0M8e4NhBXC9OxHWCWi4GE4Yi6vwkB9jBu+Lh+Uwk
-         dRVhtIBp/1N8UdfX7L8w5XgLdJjX65MWejcnf0YXuo803ATTuhibwgcjEpNtjWOLfqDA
-         FfE4aX21QmTqW8awDBY60YryZa6/kyI3RphpZSV6CcRCkfTM3df8YjnH/CA0RAR9FM/H
-         bQ5Q==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GaqnzgEez5o+aheB4jouM3JSYEeh5J5pWhvvk2MpmEg=;
+        b=b/l7p+kWOAQddo37xNV68tq1G5PdOYsZVSayXQc/n2hR7gWXdf+Jm8RNm40skIcET5
+         6uAuyUJmtLTTMo+TmyCWEbqYF37GaaGx7qD+DS7UdTSQ9cx4sBSche86jUfqWmpTRAV7
+         AbwfBwPy+6FQAwXCrOttv2DdzDMaS+uKF97o8/hEEu7Ab5kaSBq3FhRLRMAkgKRplCi0
+         bNUJrvLCXC5m1/wVPOFYljmeHuXyjRr9gxzt55yAbVaeibnVgFa+Fj/rY72Jckm9EMfW
+         Bc++Mh8VF3LESe6pKMnocoDpsZ90DnJVOHYo++vSVHQWJIBHWn3O2AYl8NyOebmXl1TH
+         o60A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0ueHMi2mIOmzpz327lFnzb2ZBYr+ALhB5gftG35Fae8=;
-        b=UzXuw2dmYw73AbXVFBKrXjky5MKGhpp2izNEgUmvOa5/6l1obyIzipIAACg+v3u2pd
-         Pu5kyxlbvOUc4GdiNurWfJA0lOVkWsSpmr1Gy3ZGnwb5spHPHrm6tEPaPhOH0iR8LvNe
-         GNC92fRO3lp4o14I/zcqvk+ajt725TwwFe2hLRNtp+arlZ5NmgSijQVa7sw/FofmZX4B
-         A2mDkdf+iSKSlLuzdwkx4Z8agl9KNt3SMH3xxeAfpsmRYAahle80qEAxh4SYAzJX/rsl
-         tbO8uJgyp1m/YFbQ2djFgh3R+9QtFOa6cMvNyfJ59jeIUGYruH+iGrsVzqICH5JQUsED
-         vbrA==
-X-Gm-Message-State: ANoB5pm6qVEKYXcHoC8IGtUtc1H2tLfNBE5LMImEIPnTM9xopbvY3rKI
-        fcCpvHHgL7rKr6pSiwk1IFY=
-X-Google-Smtp-Source: AA0mqf4xwN0tcH6tlYgdq8vREyR2Z4T8Do7BCzqe/UwSecrAbQSclnTtoDopcOUTqjX6offYOSW+Xg==
-X-Received: by 2002:a17:906:2a85:b0:7b2:7181:2489 with SMTP id l5-20020a1709062a8500b007b271812489mr16709516eje.13.1670842542364;
-        Mon, 12 Dec 2022 02:55:42 -0800 (PST)
-Received: from skbuf ([188.27.185.63])
-        by smtp.gmail.com with ESMTPSA id u17-20020a170906409100b007c0b6e1c7fdsm3114024ejj.104.2022.12.12.02.55.40
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GaqnzgEez5o+aheB4jouM3JSYEeh5J5pWhvvk2MpmEg=;
+        b=IEFwFyY3Wwlv1okKE8+fIjdDyznfInTis31CforeOkydOE8ToYavei6h28kcJusRSV
+         gtL7czVxIZj2/ZJRYx9YlnEUuDOj+BdG6asBypaxykcgkFHxQKgYn3KHypWJe3IrJXUb
+         5xWbLb/A7kwVSTbQVCUC5UnpTJzTG2OwFWacqS3RVO/WFjnwJ5jekUbdPHTQYF26FcMi
+         l4BUxcf4x/ZKBnv69Dfy565/+pYI1xrHUvqmgkl+EBhwgCZoWZy2i7I4dtO+YRAer9Zg
+         FmG0zlbCLI8YVwV2OYiH7DWysdZwSRkuTz+DpalCHGjNroT01lATc17zIIvRe1LWhRgZ
+         mwcw==
+X-Gm-Message-State: ANoB5png/lPi8XsfwxxzGwoJOQat4bZWw7CP9bGOUc8zMcVGYJttF6Rg
+        F2tumhZQ8ewGyp8nDJdxxSI38Q==
+X-Google-Smtp-Source: AA0mqf7WNG69Av72RF+/EYRAlR8ZdhfMneuro3qaDzrmQ35ioUFKffzDpTaroJNhGXIOVSmHoFh2VQ==
+X-Received: by 2002:a05:6512:1082:b0:4a4:68b7:f884 with SMTP id j2-20020a056512108200b004a468b7f884mr7307008lfg.40.1670843446355;
+        Mon, 12 Dec 2022 03:10:46 -0800 (PST)
+Received: from localhost.localdomain (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
+        by smtp.gmail.com with ESMTPSA id b4-20020a056512060400b004b57a810e09sm1599110lfe.288.2022.12.12.03.10.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Dec 2022 02:55:41 -0800 (PST)
-Date:   Mon, 12 Dec 2022 12:55:38 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Colin Foster <colin.foster@in-advantage.com>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        John Crispin <john@phrozen.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Marek Vasut <marex@denx.de>,
-        Sean Wang <sean.wang@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        =?utf-8?B?bsOnIMOcTkFM?= <arinc.unal@arinc9.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        UNGLinuxDriver@microchip.com,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mon, 12 Dec 2022 03:10:46 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        George McCollister <george.mccollister@gmail.com>
-Subject: Re: [PATCH v5 net-next 01/10] dt-bindings: dsa: sync with maintainers
-Message-ID: <20221212105538.ijybw4v26tozjspr@skbuf>
-References: <20221210033033.662553-1-colin.foster@in-advantage.com>
- <20221210033033.662553-2-colin.foster@in-advantage.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/9] arm64: dts: qcom: ipq6018: Use lowercase hex
+Date:   Mon, 12 Dec 2022 12:10:29 +0100
+Message-Id: <20221212111037.98160-2-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.38.1
+In-Reply-To: <20221212111037.98160-1-konrad.dybcio@linaro.org>
+References: <20221212111037.98160-1-konrad.dybcio@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221210033033.662553-2-colin.foster@in-advantage.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 09, 2022 at 07:30:24PM -0800, Colin Foster wrote:
-> The MAINTAINERS file has Andrew Lunn, Florian Fainelli, and Vladimir Oltean
-> listed as the maintainers for generic dsa bindings. Update dsa.yaml and
-> dsa-port.yaml accordingly.
-> 
-> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
-> Suggested-by: Vladimir Oltean <olteanv@gmail.com>
-> 
-> ---
+Use lowercase hex, as that's the preferred and overwhermingly present
+style.
 
-Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+index 5d453f11acd9..2ceae73a6069 100644
+--- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+@@ -679,7 +679,7 @@ dwc_1: usb@7000000 {
+ 
+ 		ssphy_0: ssphy@78000 {
+ 			compatible = "qcom,ipq6018-qmp-usb3-phy";
+-			reg = <0x0 0x78000 0x0 0x1C4>;
++			reg = <0x0 0x78000 0x0 0x1c4>;
+ 			#address-cells = <2>;
+ 			#size-cells = <2>;
+ 			ranges;
+@@ -696,7 +696,7 @@ ssphy_0: ssphy@78000 {
+ 			usb0_ssphy: phy@78200 {
+ 				reg = <0x0 0x00078200 0x0 0x130>, /* Tx */
+ 				      <0x0 0x00078400 0x0 0x200>, /* Rx */
+-				      <0x0 0x00078800 0x0 0x1F8>, /* PCS */
++				      <0x0 0x00078800 0x0 0x1f8>, /* PCS */
+ 				      <0x0 0x00078600 0x0 0x044>; /* PCS misc */
+ 				#phy-cells = <0>;
+ 				#clock-cells = <0>;
+@@ -721,7 +721,7 @@ qusb_phy_0: qusb@79000 {
+ 
+ 		usb3: usb@8af8800 {
+ 			compatible = "qcom,ipq6018-dwc3", "qcom,dwc3";
+-			reg = <0x0 0x8AF8800 0x0 0x400>;
++			reg = <0x0 0x8af8800 0x0 0x400>;
+ 			#address-cells = <2>;
+ 			#size-cells = <2>;
+ 			ranges;
+@@ -747,7 +747,7 @@ usb3: usb@8af8800 {
+ 
+ 			dwc_0: usb@8a00000 {
+ 				compatible = "snps,dwc3";
+-				reg = <0x0 0x8A00000 0x0 0xcd00>;
++				reg = <0x0 0x8a00000 0x0 0xcd00>;
+ 				interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
+ 				phys = <&qusb_phy_0>, <&usb0_ssphy>;
+ 				phy-names = "usb2-phy", "usb3-phy";
+-- 
+2.38.1
+
