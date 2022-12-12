@@ -2,128 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6833E64A514
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 17:39:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 994E664A4FD
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 17:38:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232727AbiLLQjM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 11:39:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40928 "EHLO
+        id S232816AbiLLQi1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 11:38:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232688AbiLLQik (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 11:38:40 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15AB2164BD
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 08:37:05 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id e13so13671758edj.7
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 08:37:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lvYON1Uq6UT3Qph7OPPr0NH47G6rUYR8O1BO9MFwJow=;
-        b=lIFXcScE+1mmzH1SBNLfPzmU2yyZ22FDa7zo6/O0Bw9aIOxDeXxYkEVfus52JWuhda
-         4ouELocZnEhmnwFppolEYq4c3c7RHYAqD4pax4M3unQDLONiM/9+ejXSM9E2FE+Z0v02
-         plxbNMhSLCExfq6g58BwEJLatQLzpt/xLWOhKWfMwSgaHbhPuPfGnoShEU2Q/8V0GhBe
-         I8mO/6POKEHTvHhiQrSmT3i/DlcfyH1o4pAMtSuNXvNoHj+mOy3GKKCsRTSQGVPFd3Z7
-         AQYI0FN6wamo3RnZf0VXDCwVvMRjPWjYDkKYXDeP5o/vQIFIn9FanCQzU/XNFNQHrfWF
-         2geA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lvYON1Uq6UT3Qph7OPPr0NH47G6rUYR8O1BO9MFwJow=;
-        b=ns4znZoqJKdDB7efU1o7eq39BHSiGxxGrKaI5riG1adA1ZgCJ0XTyCJyE2/DDbRmav
-         Kf6mvL8QokdmeTCE5l2k4NIsF2s+ezfAUqcMr/3CdORoHd3Rlpsxxw4cqF+DCcshKhsv
-         1GwvkWKGxeBxo1h5JKGUHdZ5T5Npg7HAdfWozmnDZW0vWFSZUt6Ytjse32VGIW9kb5x2
-         U05R69wOi31jR3DXsluwm7N+tkcT4YxoPuigWliifu6R9VL3SHHMu5oWwPd+ox1Ng8Ng
-         yIuGMA+VEuohAk+ogbAwaWL1LXv5qNiOWVB9aOJuIEnGzYJIsnf0zXgbcUo9C02olkCS
-         fI1g==
-X-Gm-Message-State: ANoB5pl6GGK8TtUjF+xAB5eqMVqAAbvbayHLKcPhGbYAf3ILPAkzIHrV
-        xYU5h/bfIXtFj2mAXe9vldD/vg==
-X-Google-Smtp-Source: AA0mqf5ppTTyM6N0bPOAfBX//eKXVRPakyRimeYdkY/8NocUbAvjnOSiYLmQOcD2W7tmhBu2XO410g==
-X-Received: by 2002:a05:6402:702:b0:46f:68d0:76 with SMTP id w2-20020a056402070200b0046f68d00076mr10093614edx.34.1670863020790;
-        Mon, 12 Dec 2022 08:37:00 -0800 (PST)
-Received: from prec5560.. ([2001:bf7:830:a7a8:ff97:7d8d:1f2e:ffaa])
-        by smtp.gmail.com with ESMTPSA id m15-20020a50930f000000b00463597d2c25sm4051979eda.74.2022.12.12.08.36.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Dec 2022 08:37:00 -0800 (PST)
-From:   Robert Foss <robert.foss@linaro.org>
-To:     Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
-        Angel Iglesias <ang.iglesiasg@gmail.com>,
-        Wolfram Sang <wsa@kernel.org>,
-        Grant Likely <grant.likely@linaro.org>
-Cc:     Robert Foss <robert.foss@linaro.org>,
-        linuxppc-dev@lists.ozlabs.org, linux-actions@lists.infradead.org,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-crypto@vger.kernel.org, chrome-platform@lists.linux.dev,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        linux-input@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        linux-integrity@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-serial@vger.kernel.org, Purism Kernel Team <kernel@puri.sm>,
-        linux-staging@lists.linux.dev, alsa-devel@alsa-project.org,
-        linux-watchdog@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-pm@vger.kernel.org,
-        platform-driver-x86@vger.kernel.org, patches@opensource.cirrus.com,
-        linux-mtd@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-        kernel@pengutronix.de, netdev@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        openipmi-developer@lists.sourceforge.net,
-        linux-fbdev@vger.kernel.org
-Subject: Re: (subset) [PATCH 000/606] i2c: Complete conversion to i2c_probe_new
-Date:   Mon, 12 Dec 2022 17:36:51 +0100
-Message-Id: <167086288411.3041259.17824406556561546642.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221118224540.619276-1-uwe@kleine-koenig.org>
-References: <20221118224540.619276-1-uwe@kleine-koenig.org>
+        with ESMTP id S232821AbiLLQiC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 11:38:02 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2799415FEA;
+        Mon, 12 Dec 2022 08:36:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1670863005; x=1702399005;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=iy5q+w5KsVwT75Q4h3iNbvjdzEM5LASpylZyLWvqsmU=;
+  b=AP2Fe9VRdER6aqB10bGrlWQIFp7lg2FbLWgM8HF7ZM/V4UzSTxU7Kkin
+   jc5ALt+FsIZjVNVoIN7bP/pDNIwgtjot08okKv4XjsE4tdUBahkUeyOPs
+   AHAnmplcgsMEVOpgc9nusVxi7QhvdMYsHXjrNcG3FOjJRfkKwKuQY+Ags
+   DUZEcoWmmRUEpv21cl0GJfy36pnYJfue71tE//H9IoJg7xhMPjjkOtRwF
+   F9JJMcCMF8OcsITEA+6gCtHJLMJkVrYgk0KyDsAwJ3Dn7aqLr43la+I/2
+   5hQlSURCziQTCKCaA+LyqhEuuPRhV5opnmNqs3dBJ6X0mE9aOvDcQoKjY
+   A==;
+X-IronPort-AV: E=Sophos;i="5.96,238,1665471600"; 
+   d="scan'208";a="127727088"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 12 Dec 2022 09:36:33 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Mon, 12 Dec 2022 09:36:33 -0700
+Received: from localhost.localdomain (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2507.16 via Frontend Transport; Mon, 12 Dec 2022 09:36:30 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <perex@perex.cz>,
+        <tiwai@suse.com>, <nicolas.ferre@microchip.com>,
+        <alexandre.belloni@bootlin.com>
+CC:     <alsa-devel@alsa-project.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH v2 0/4] ASoC: microchip: power saving features and cleanups
+Date:   Mon, 12 Dec 2022 18:41:49 +0200
+Message-ID: <20221212164153.78677-1-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 18 Nov 2022 23:35:34 +0100, Uwe Kleine-König wrote:
-> since commit b8a1a4cd5a98 ("i2c: Provide a temporary .probe_new()
-> call-back type") from 2016 there is a "temporary" alternative probe
-> callback for i2c drivers.
-> 
-> This series completes all drivers to this new callback (unless I missed
-> something). It's based on current next/master.
-> A part of the patches depend on commit 662233731d66 ("i2c: core:
-> Introduce i2c_client_get_device_id helper function"), there is a branch that
-> you can pull into your tree to get it:
-> 
-> [...]
+Hi,
 
-Applied, thanks!
+The following series adds runtime PM and suspend to RAM features for
+mchp-pdmc driver.
 
-Repo: https://cgit.freedesktop.org/drm/drm-misc/
+Along with it 2 cleanup patches were added:
+- patch 1/4: use vendor,device.yaml file format for Microchip AT91 ASoC
+  bindings
+- patch 4/4: use FIELD_PREP() in mchp-spdiftx.c
 
+Thank you,
+Claudiu Beznea
 
-[014/606] drm/bridge: adv7511: Convert to i2c's .probe_new()
-          commit: 1c546894ff82f8b7c070998c03f9b15a3499f326
-[028/606] drm/bridge: parade-ps8622: Convert to i2c's .probe_new()
-          commit: d6b522e9bbb0cca1aeae4ef6188800534794836f
-[035/606] drm/bridge: ti-sn65dsi83: Convert to i2c's .probe_new()
-          commit: 0f6548807fa77e87bbc37964c6b1ed9ba6e1155d
+Changes in v2:
+- s/microchip,sama7g5-i2s-mcc/microchip,sama7g5-i2smcc as
+  this is the 1st available compatible
 
+Claudiu Beznea (4):
+  ASoC: dt-bindings: microchip: use proper naming syntax
+  ASoC: mchp-pdmc: use runtime pm for clock power saving
+  ASoC: mchp-pdmc: add support for suspend to RAM
+  ASoC: mchp-spdiftx: use FIELD_PREP() where possible
 
+ .../bindings/sound/mchp,i2s-mcc.yaml          | 108 -------------
+ ...,pdmc.yaml => microchip,sama7g5-pdmc.yaml} |   0
+ ...rx.yaml => microchip,sama7g5-spdifrx.yaml} |   0
+ ...tx.yaml => microchip,sama7g5-spdiftx.yaml} |   0
+ sound/soc/atmel/mchp-pdmc.c                   | 145 ++++++++++++------
+ sound/soc/atmel/mchp-spdiftx.c                |   8 +-
+ 6 files changed, 101 insertions(+), 160 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/mchp,i2s-mcc.yaml
+ rename Documentation/devicetree/bindings/sound/{microchip,pdmc.yaml => microchip,sama7g5-pdmc.yaml} (100%)
+ rename Documentation/devicetree/bindings/sound/{mchp,spdifrx.yaml => microchip,sama7g5-spdifrx.yaml} (100%)
+ rename Documentation/devicetree/bindings/sound/{mchp,spdiftx.yaml => microchip,sama7g5-spdiftx.yaml} (100%)
 
-rob
+-- 
+2.34.1
 
