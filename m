@@ -2,122 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CE4664A96B
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 22:18:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7898564A9CF
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 22:53:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232611AbiLLVSr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 16:18:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56872 "EHLO
+        id S233728AbiLLVxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 16:53:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233574AbiLLVSV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 16:18:21 -0500
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4807E9596;
-        Mon, 12 Dec 2022 13:17:43 -0800 (PST)
-Received: by mail-oi1-f172.google.com with SMTP id v82so12471874oib.4;
-        Mon, 12 Dec 2022 13:17:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=5i3OUjIfqgpyWppxSNZ/0sQhPXWrsfvFFv33+eGTUl4=;
-        b=xkdIkh01XL3IPla8T1y5AODCOrMR0+Dpcl7jQceuBqsaMXjkfuckMiVz3dqY8V1zbf
-         yVXKWLJkmXVsitAz818K4m5p9XtuNt25dU97mjr0P7cSM2HJqdnbqP5YqvKJ04/3Lel3
-         oSbyoV/K44XF/63RLSh3H6HmMfOzuYCQnnv/Wn7cyFAQQ37gfxG8dB8H6IQYhTLCGaXq
-         o6x1nEb0BFkYscmY97kaFXLsYZlhzKzZNlPF2XUOfMbp+wQby4OVD/BFNkYdXDrp8fN2
-         2GZrZuFuGM2cYkhJt1+tyYh8ujOAmZqya3OuQ1LmWzykLmaTabpoO4Y/sbiJ22EDiACA
-         Hm1g==
-X-Gm-Message-State: ANoB5plMNEiqTi1YnUduD4pN+fMWPSOr11AsJ3iajMFoEM74FMP0zY6t
-        S52NyOn1fgv8xn1Y8aIeXg==
-X-Google-Smtp-Source: AA0mqf4+AKSiMJMkNJ6/wMjadMR4/AaXI94WHnBBeADPelFXDpvkXG1yHfFrwDbRA398jUaokJufjw==
-X-Received: by 2002:a05:6808:a9c:b0:35c:1301:3ec6 with SMTP id q28-20020a0568080a9c00b0035c13013ec6mr6822938oij.28.1670879862511;
-        Mon, 12 Dec 2022 13:17:42 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id j11-20020a056808034b00b00354d8589a15sm3875940oie.45.2022.12.12.13.17.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Dec 2022 13:17:42 -0800 (PST)
-Received: (nullmailer pid 1545272 invoked by uid 1000);
-        Mon, 12 Dec 2022 21:17:41 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S233814AbiLLVwr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 16:52:47 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE5E919C00;
+        Mon, 12 Dec 2022 13:52:22 -0800 (PST)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BCLp0tH030712;
+        Mon, 12 Dec 2022 21:52:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=TQYGbDEFhLCbjWxlOohuzGRdNuGbfqLVksnUdKOgCh8=;
+ b=inA/Mgc5Y1cIq8/5bg2b6RxijE9i3RkCU+3UD2/UVOnLFlPBXIyNPfYewgMUMF8dF9L9
+ yM8oNeKD8p2r0ECADgDA91vNlx1J94hJUwl+BP3nbOzHrxGZ+aHw1LBspFhPq3whkcLs
+ 2IBXuAIj7xJRhT+ndRLPLP/VT70NiSKBd0cYpohuQH/eNSoyk0maSnpF7nfDRR07ZhY6
+ ybeeaFS2h4fTLUbAxJksRI7M4LaP1Ihffo9gUXAoCn4EH7rDJFUoLvexC4t1OO5gSuaZ
+ IwHJp5uOWS8wq08WlhXpqMtoxi7Bma236OIm8XXzsqZCP57/XRCDY9z5FJswhMxtrzEJ iw== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3mchesdb8m-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 12 Dec 2022 21:52:04 +0000
+Received: from nasanex01a.na.qualcomm.com (corens_vlan604_snip.qualcomm.com [10.53.140.1])
+        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2BCLq36P029425
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 12 Dec 2022 21:52:03 GMT
+Received: from hu-c-gdjako-lv.qualcomm.com (10.49.16.6) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Mon, 12 Dec 2022 13:52:03 -0800
+From:   Georgi Djakov <quic_c_gdjako@quicinc.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <devicetree@vger.kernel.org>
+CC:     <joro@8bytes.org>, <will@kernel.org>, <robin.murphy@arm.com>,
+        <iommu@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
+        <djakov@kernel.org>
+Subject: [RFC v2 1/2] dt-bindings: iommu: Document iova-best-fit property for IOMMU masters
+Date:   Mon, 12 Dec 2022 13:51:37 -0800
+Message-ID: <20221212215138.17897-1-quic_c_gdjako@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-renesas-soc@vger.kernel.org, linux-usb@vger.kernel.org
-In-Reply-To: <20221212172804.1277751-3-biju.das.jz@bp.renesas.com>
-References: <20221212172804.1277751-1-biju.das.jz@bp.renesas.com>
- <20221212172804.1277751-3-biju.das.jz@bp.renesas.com>
-Message-Id: <167087981089.1543932.15032317950577945818.robh@kernel.org>
-Subject: Re: [PATCH 02/16] dt-bindings: usb: Add RZ/V2M USB3DRD binding
-Date:   Mon, 12 Dec 2022 15:17:41 -0600
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: CbRTyClcUuZobNapToqzg9XupM8ShjAi
+X-Proofpoint-GUID: CbRTyClcUuZobNapToqzg9XupM8ShjAi
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-12-12_02,2022-12-12_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
+ bulkscore=0 spamscore=0 adultscore=0 priorityscore=1501 lowpriorityscore=0
+ impostorscore=0 mlxscore=0 mlxlogscore=995 suspectscore=0 clxscore=1011
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2210170000
+ definitions=main-2212120188
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Document the "iova-best-fit" device-tree property, which is used to
+describe that the iommu master is constrained on memory and the system
+must put more effort when allocating IOVAs to avoid holes/gaps in
+memory. This improves the memory utilization and helps with memory
+fragmentation issues in some cases, but it could take longer to allocate
+an IOVA compared with the default "first-fit" algorithm.
 
-On Mon, 12 Dec 2022 17:27:50 +0000, Biju Das wrote:
-> Add device tree bindings for the RZ/V2{M, MA} USB3DRD module.
-> 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
->  .../bindings/usb/renesas,rzv2m-usb3drd.yaml   | 123 ++++++++++++++++++
->  1 file changed, 123 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.yaml
-> 
+Signed-off-by: Georgi Djakov <quic_c_gdjako@quicinc.com>
+---
+ Documentation/devicetree/bindings/iommu/iommu.txt | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.example.dtb: usb@85070000: usb3peri:resets: [[4294967295, 29]] is too short
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.example.dtb: usb@85070000: usb3peri: 'reset-names' is a required property
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.example.dtb: usb@85070000: usb@85060000:compatible: 'oneOf' conditional failed, one must be fixed:
-	'renesas,r9a09g011-xhci' is not one of ['renesas,xhci-r8a7742', 'renesas,xhci-r8a7743', 'renesas,xhci-r8a7744', 'renesas,xhci-r8a7790', 'renesas,xhci-r8a7791', 'renesas,xhci-r8a7793']
-	'renesas,r9a09g011-xhci' is not one of ['renesas,xhci-r8a774a1', 'renesas,xhci-r8a774b1', 'renesas,xhci-r8a774c0', 'renesas,xhci-r8a774e1', 'renesas,xhci-r8a7795', 'renesas,xhci-r8a7796', 'renesas,xhci-r8a77961', 'renesas,xhci-r8a77965', 'renesas,xhci-r8a77990']
-	'renesas,rcar-gen2-xhci' was expected
-	'renesas,rcar-gen3-xhci' was expected
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.example.dtb: usb@85070000: usb@85060000:clocks: [[4294967295, 1, 34], [4294967295, 1, 36]] is too long
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.example.dtb: usb@85070000: usb@85060000: Unevaluated properties are not allowed ('clock-names', 'clocks', 'compatible' were unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.yaml
-Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.example.dtb:0:0: /example-0/usb@85070000/usb@85060000: failed to match any schema with compatible: ['renesas,r9a09g011-xhci', 'renesas,rzv2m-xhci']
-Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.example.dtb:0:0: /example-0/usb@85070000/usb@85060000: failed to match any schema with compatible: ['renesas,r9a09g011-xhci', 'renesas,rzv2m-xhci']
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.example.dtb: usb3peri: resets: [[4294967295, 29]] is too short
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,usb3-peri.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.example.dtb: usb3peri: 'reset-names' is a required property
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,usb3-peri.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221212172804.1277751-3-biju.das.jz@bp.renesas.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+diff --git a/Documentation/devicetree/bindings/iommu/iommu.txt b/Documentation/devicetree/bindings/iommu/iommu.txt
+index 26ba9e530f13..ca1b4813c5bf 100644
+--- a/Documentation/devicetree/bindings/iommu/iommu.txt
++++ b/Documentation/devicetree/bindings/iommu/iommu.txt
+@@ -88,6 +88,10 @@ prevent any driver from properly setting up the translations.
+ 
+ Optional properties:
+ --------------------
++- iova-best-fit: When present, the best-fit algorithm will be used, instead
++  of first-fit. This reduces memory fragmentation when allocating IOVAs in
++  some cases, but may also increase the time it takes to allocate an IOVA.
++
+ - pasid-num-bits: Some masters support multiple address spaces for DMA, by
+   tagging DMA transactions with an address space identifier. By default,
+   this is 0, which means that the device only has one address space.
