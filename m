@@ -2,169 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B935564A43A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 16:35:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1129D64A450
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 16:39:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230336AbiLLPfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 10:35:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43998 "EHLO
+        id S232519AbiLLPjz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 10:39:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229607AbiLLPfC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 10:35:02 -0500
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07E44764F;
-        Mon, 12 Dec 2022 07:34:56 -0800 (PST)
-X-UUID: fdf63a8b674145e7b79f8fa8d30a0151-20221212
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=G86F2MMuhDJuV0dd3OQk7rMZqIajNxDwg6CSfmnA4i0=;
-        b=jIEtCYPtdyjd1ZeHURL6nbjjCCUQUpdgCOxDwLpqneDSEtbuvUwAmfUioy6M4xIB5Qul8mlHkX4f/JQ9jC/Dn3nxS6Se5JbnAEzRwm3cb9fpd1iT91uy98QQ2OqFHfJ4KXKri1FEuLq+/lcirLveqJfyqMeq/QwmbZ4KYgbj72c=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.14,REQID:9ef52fb4-8e7d-4ae7-8301-2596216b7dd7,IP:0,U
-        RL:0,TC:0,Content:2,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:2
-X-CID-META: VersionHash:dcaaed0,CLOUDID:d1fb60d2-652d-43fd-a13a-a5dd3c69a43d,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:4,EDM:-3,IP:nil,U
-        RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: fdf63a8b674145e7b79f8fa8d30a0151-20221212
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
-        (envelope-from <trevor.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1298250604; Mon, 12 Dec 2022 23:34:49 +0800
-Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Mon, 12 Dec 2022 23:34:48 +0800
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (172.21.101.239)
- by mtkmbs10n1.mediatek.com (172.21.101.34) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Mon, 12 Dec 2022 23:34:48 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mCoTZ/ED1vSZz+omqziAOjT1jBuHoPSIFS4V8PLx4BWPv5zE5KNvcqVJoGKawqWBDQq1rj7TpO8e4wph8feA327hhoY3yyJ+oXrt98uls90chdhBl3q7IdEeNmlAkRvAl3hacFIZdPwS/eRutQw2vRlc1kbak+R6CQV32990I+kCIzL9JAkfeYZMnqUGJHYmH46rIS+lDcSnUQxk7xmTFpMb+hts8mLQEWDPFc7tc0//E46S/Wk11dXVH2/mZ7xNnqF18/QgWO4Gj/gV4w2/LTZitJhrw93RsL2w4tk6gHZtyd5ghzK5Ftv5yRy9Dlje+ExNyP2cmLPYOVrq1lJsZQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=G86F2MMuhDJuV0dd3OQk7rMZqIajNxDwg6CSfmnA4i0=;
- b=dBzCxa1XDNHM7ddjqIac1DIOsrlAJJIHhqgmBtSz6AXVzz9+t4TsPsXX+P946YkKXlp6FnBo4xZHCvlvZv55rGHb8jKnSx3FSeIV8OEFWGNhs7oxKyKLwHqGl2O9TBYhv8S5Kpvn5rw0Mv6YG7HTCsg0Mz238Ps0yJuyjowHd1pnzFE0rjozaC6v8WTAKNDOvadKbtQt2BH6FYqEw6DhFogfDaxLE1hkMNoonlVeg36lJeTuPkt3PVKsTI6xCxN9LpzmxbpVTILrHTeJ03DTxJPr4m8Ctafdi8MXAedISD4FDdjl/2q320A9r8xgZVs/YNOVvVMG4QK2IPo9O8trfQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
+        with ESMTP id S232576AbiLLPjt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 10:39:49 -0500
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1339413E32
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 07:39:47 -0800 (PST)
+Received: by mail-pg1-x52e.google.com with SMTP id w37so8454259pga.5
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 07:39:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=G86F2MMuhDJuV0dd3OQk7rMZqIajNxDwg6CSfmnA4i0=;
- b=mz9QOm5vFedq7YNU4ixhjWvLhaEToJetCj1DMnTpOC4D8u82Vd+7Al7iqn0bYkaa01RKoO1v3Ac5PgIbiAnW9NxhjvBivqj6qj/9pLXkEQfY4NRGJkOkOoVLBvwFN4a8mUbcNb938OfTWVhcXyiHWE11kUIAxrxZqY9ov9uHvW8=
-Received: from SI2PR03MB6686.apcprd03.prod.outlook.com (2603:1096:4:1e9::14)
- by SEYPR03MB7023.apcprd03.prod.outlook.com (2603:1096:101:d0::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.19; Mon, 12 Dec
- 2022 15:34:45 +0000
-Received: from SI2PR03MB6686.apcprd03.prod.outlook.com
- ([fe80::789f:a595:931d:b4dc]) by SI2PR03MB6686.apcprd03.prod.outlook.com
- ([fe80::789f:a595:931d:b4dc%7]) with mapi id 15.20.5880.019; Mon, 12 Dec 2022
- 15:34:45 +0000
-From:   =?utf-8?B?VHJldm9yIFd1ICjlkLPmlofoia8p?= <Trevor.Wu@mediatek.com>
-To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "tiwai@suse.com" <tiwai@suse.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "perex@perex.cz" <perex@perex.cz>
-CC:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v3 12/12] dt-bindings: mediatek: mt8188: add mt8188-mt6359
- document
-Thread-Topic: [PATCH v3 12/12] dt-bindings: mediatek: mt8188: add
- mt8188-mt6359 document
-Thread-Index: AQHZCrW7BVlvtev2eU+SJbgHaiWs365lWdGAgAUPRIA=
-Date:   Mon, 12 Dec 2022 15:34:45 +0000
-Message-ID: <aeb2bbac8ad5ede2396408a20ff8c8942029451a.camel@mediatek.com>
-References: <20221208033148.21866-1-trevor.wu@mediatek.com>
-         <20221208033148.21866-13-trevor.wu@mediatek.com>
-         <6350def8-bb1f-8aeb-4c98-4d02a4c59aed@linaro.org>
-In-Reply-To: <6350def8-bb1f-8aeb-4c98-4d02a4c59aed@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SI2PR03MB6686:EE_|SEYPR03MB7023:EE_
-x-ms-office365-filtering-correlation-id: d1d9ec86-f909-4c47-c1e3-08dadc566588
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 6Ei8cJKKGpfCpKG1ZwIMfF9tah6qrgjf/BVhHsFW5tW51ga4x51YsqgmSKm+Nez9/3QQJoXfAf9Q7gvnBetFvZ0VyUYGNwpYUEMqv2CODZnuZMvb+5b6Fz/ThynogyW6fyxRCIs+ltLK3QP508TvjJaMz8Ppde8AadLGc/wRGeqM4SGxvYdjP8JzcxPAQUbirmtlKFxvDl9MVbl/CEu1wtAufKG2ZrhWLBJ8CTyynSnq3GqYJxlbH/5q3IIdTd6MUlqFnIX52k1G77vNHTs17yqxXTMwtI2wDUPbMdpl8gLEsldH14GmHZy3Uyvetp+AdeZQP+/6xnqEroHJy6H5y/QysRt1DFFl7l/6mF3CsT4tVkTWY7gZCe8boOnce4n+aWYdm1VR7xSmzr+B4RJ6ECoyDX3xsGypetMJyiipo1HcCMsuWtQgzBlWyKzlctvJykY472mBVlOMRg4s+ZlttTY8wLOA8YgCMi0Z9saS8tTJAavDL+kY7vhfGvjaRct40gwAO4KUHK5xHmVF+DGANRW3MmewQWV+ftaKVEztjwadiAFy/ZO8NGrX006/n00nBfa6pGInz0KWBWNmIjXGjcj/sVtyrW+ddr6pC0S+GSxnTbEbtGUn2R//qDcV6MinZCq1vS+THcg8vYA4dtHnV4mSDW7QYaH12BwDy+Vn6L4cB9ve1ozC0+ND8F4raYiB2DmzvNGc2YSOU/8RQ1CCKh88gkgdG1IKy2nLzgEqPVObXRWXaaYQ9hwzOCQGwoFdH/piV8JRCbraiLE9/qq2S48ivvRow+UTGba3qhwUsCM=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SI2PR03MB6686.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(396003)(136003)(376002)(346002)(366004)(451199015)(36756003)(66476007)(85182001)(4326008)(38070700005)(66946007)(122000001)(76116006)(2906002)(66446008)(110136005)(66556008)(38100700002)(54906003)(316002)(8676002)(64756008)(86362001)(26005)(53546011)(6506007)(186003)(7416002)(8936002)(5660300002)(41300700001)(478600001)(71200400001)(966005)(6486002)(2616005)(6512007)(99106002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?OE54ODVLUy9jREJhY2cwZ2F6eFlGd2xjMlk3SCtQUlVKMGFMT2U1bmorQkdw?=
- =?utf-8?B?RWp1TXNwQzRjR2kveXFGWXhibUtoN282dHY2OHlvTXp5QVhJUDhqZ292SDZW?=
- =?utf-8?B?Q0xmQndDQ2dTMk1leWNreE95bmxIRDFSN2R1b3YzYUEvR1lXcWdPUVUraEFt?=
- =?utf-8?B?cUNKb2c3aFE4bURpcWI2RmxFeSs2OWU0bzlsYTZQcVFyNXBRNEZCOU1zbGU3?=
- =?utf-8?B?SVB4Z3pyYm5Ec2lhL0dFZEZ4aUtoNEIwUitGSjZXQk5rTnBBa05UUzU5bk1L?=
- =?utf-8?B?VlQwSCsvNGQrdldObTdPcjdiTldxSnJ2Lzk0QXJBMjIzd1BOQnF0bGc2dFBU?=
- =?utf-8?B?R0JDUGRzNUdER3RBYW9qM080eHd1UDJSdC80M0gxNjk1eUE5RUtScmE0MUta?=
- =?utf-8?B?N1JRMGZDdE4yY05KMVdBWWMxNWFXMyt0alMxQjhoUXlQWW9LcWRyYzRHRTVW?=
- =?utf-8?B?WWxlN01VaGtSbmR2MW5vVEtnOGxIbnhjU2hZTys2a2l4OGNhd0xNYThFYmx2?=
- =?utf-8?B?SUsvL0hxcEVXOXdFSC94Y2FaSG9qTngrS1pLd2pqcm1aQlRaVnI1clpVUUNB?=
- =?utf-8?B?bUFoeU9tb3c5UkZ5L3FJZXovUGhWMjhrMlY4S3dEa3E1bE5sb2ZxcVI4VWp1?=
- =?utf-8?B?VWVHQnpkOFJpK3NWSi9WVzYxdXZZOEtpNlk2Y1M4ZGxxMXpISkN6V01UN055?=
- =?utf-8?B?SUs3R2lMR2JYWnZOMmUvaU9OZGRFL3hDdkM2MFJZazlYdlZleWgzaS9WbDRs?=
- =?utf-8?B?LzlPR1E1eW5uQklhejJxeGFzelVLSHRyUTRVY0dxRXVtNEhIeVJOd096TklT?=
- =?utf-8?B?K05JUVNvT3NNdWE3VGFKTXRJSC9hT0l0dk9kakxzcjZlODRwaFg5by9palRj?=
- =?utf-8?B?d0dyb0NmTE41ZUpuVWp0TlNuVHpKbTdhdzE0TkhvYWF1LzZXQk00TGFBM2Y3?=
- =?utf-8?B?SkRQeTl1SkpjTEg0bCthTCt0L3JPWGJIZElSNXZ0cmVwaTlnM3ZMT3lQT3FM?=
- =?utf-8?B?MmVpKzZRVXNmZU5IeWZUWm51d1JaYzFoSjFsVk1nQmprK21taXl1b0J5RnRG?=
- =?utf-8?B?dWVkZkFBN280YncvTndJOGphdEprcjQ0QWxSYVlXRjY0TXhuMnIzSzRGeW1h?=
- =?utf-8?B?SDZvRnU2cDVtc2t3d3FyanRzakp5RDZtM0ZDb2RnR3JPYmI3VmI5TWM1N3lN?=
- =?utf-8?B?MGlQcGVUUDBDdVlGOU9VOGNoWXNNdFlTL0MwMHBDT244V1ZrcTREdTVJUlZH?=
- =?utf-8?B?M0pVbjJiU1pzTDltUGZxNnhtMjgxY3N2dXhra25aeUppSGIyUkpNTm43RUFK?=
- =?utf-8?B?eVdDd3VVUHpTZVFlZmVvSGVBTWJ2TlJKbDR6SFRwdzJwY0NKUUZQMmEwNWJ1?=
- =?utf-8?B?eXFjUTIvTWt2TTJtMlVGb25RcnFGR2N1T1dnc2lVWEZ0Q0pXZEVlS09vQ2xM?=
- =?utf-8?B?a1oybm5wcFB3Q1FuNnVtQkhIb216WExxeXFGM0JHaVdpR2FiZGZUTmdsSmQ1?=
- =?utf-8?B?Yi9SRTczcWM2cEcyVXVMRGxSaTJBUk96K0lBeWJ6bTc0VWxvK204eTM5VWJk?=
- =?utf-8?B?K2N0c1VRZStDSEFZVDB0YUFVZ0Y5aUVQa2YzWmc5d3Mrc0lZbzZqb2pJbUpU?=
- =?utf-8?B?VVJibURseXdqVWFQWXFrZVNBWFBPVkErOXgvUDIvQnRwYXJSaVIvNHE0WFkz?=
- =?utf-8?B?OXhKOHZRUi9TZnYxeHVSOE9oc3RBSEpPTFA2bS8zaVdrcllXMEREUWo4Nk9u?=
- =?utf-8?B?dlJneDJjL0RxZW9hbWNQWGw4d1B3QWdZRkdaaW5HelVmeVVPc1cybzZzaVVC?=
- =?utf-8?B?d1h5TXVENHJHUmtCTTNFL2JzSG9QMTZZZWJzcm9IRG1nQlh0OTZ5aEdJanZn?=
- =?utf-8?B?L2hrVGZ5WlE0dFJsYlhjVG9oUjVBY0N6TEtkUFhsZndSRStvN08xQVdHZzRW?=
- =?utf-8?B?TGNZbnJFaFUvM2ZmRDJzV1lXbTNvOUNBZXByditVOGFVV3pwN3MzYWN3ZVVp?=
- =?utf-8?B?WU13T0FRT0xUeVMyZk1NWG5LVER1Y01BQzhNb1MxM3V5V25zZWxVNU50SVNw?=
- =?utf-8?B?WGI0VkxnUFVGN2N5UkJRYVU2L2EwSGVoVExBNDByaFZuTDBqL2pLYlM3ZU5k?=
- =?utf-8?B?Q2RXTWpmTWU4UHRVOFllbG9Na05paHQvSHhsYlVyZ2o0WTJ4aXpoR3IyVjlX?=
- =?utf-8?B?Mmc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <45DF87A4376A164B9025E99E0EDC1819@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=EJWrQfchThP1LaKGg1UlafmM0Ac0Bh9FhjzWGZsItiE=;
+        b=hXm3SRPmg5IxfBnmyCy1vCjDQXQPEhhJ5+wgqp3IjHYxrUuumSgHWEr+vwbb4wPIgB
+         G8Qqa1KF8dgch/WK9HwrC5yoqd8O6uLMfqt6wNM+KYPqrMdmTFCsCwqOJMaVDFSsLgpZ
+         Qy2H/2UF2w2K9eEGVNoCBDp8OzxIQhJwYhWv6zeA0DVP9jp8tHB7DklkXlFHXjTkkX8G
+         ZdmtjRxVsS5KSWjW3Rnzxcw9p4HYI4TpA7aWaRavqt/L1NLB+SmsgZRXMXoD9twsjF01
+         RHmm+77taT4NZQWgYTUiLH+OCQJwWnP9SVzzBOubqnyCiuSHr9B8GsfsF0UmcZ9piBsf
+         +lJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EJWrQfchThP1LaKGg1UlafmM0Ac0Bh9FhjzWGZsItiE=;
+        b=Vf3TObtBaCIMQsisucRVkt8Q+k4QCdpQgq79vqdFcY8/LxDIK32ue9OiHEwmnTau7z
+         vlWLifSMf+91SmBjCnB2elcMbtdKTVBLd/dUcYWIBefRoK/pnYEwLw8p6XeiHmP3grZJ
+         cxOhRalMrUSC04ugi1qgnRkTDAxFV0CXhWIRIB3k51u1a55j/or9Oxc/iuMDqRTQo1CA
+         RSWx4j5maYB96cf8RCclM/remJ7BOso7BVQIiBiC7MtlX/8Nuek8kU3+DCcnnz+VxE3l
+         0adTQ16hhPHylQmYVMaScnZNy/yDYwrQBn7z/fNX3fNoLLCHk5Y1Wj9PB48Uy2hzBji4
+         FWeg==
+X-Gm-Message-State: ANoB5plxbo2d7AaaTTq/kUkLYPjOZmtW9URnOuhEy9Z/m9aZD31X8+ou
+        i8O/BdFNc4wPMrqvqjvQtv0EVuqUQouwS4M0LOL+gw==
+X-Google-Smtp-Source: AA0mqf7BsdQCnUO8dM1h4/7bESRqWg7kackud8y9JmWtcS5n50B8gnvgLApVitrBea/4LNWpywhwfLkRUsFd+lZtOb8=
+X-Received: by 2002:a05:6a00:1409:b0:56b:e1d8:e7a1 with SMTP id
+ l9-20020a056a00140900b0056be1d8e7a1mr77943516pfu.28.1670859586280; Mon, 12
+ Dec 2022 07:39:46 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SI2PR03MB6686.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d1d9ec86-f909-4c47-c1e3-08dadc566588
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Dec 2022 15:34:45.4481
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: mDLv2Y5yoUq2oNYbuZpSY7mktXKCcDRKC1RWxnBrw4mat6dZsd8DhpYbYWy0s4d7mbsqfesciZKt9dghSoBPLw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB7023
-X-MTK:  N
+References: <1664960824-20951-1-git-send-email-quic_akhilpo@quicinc.com>
+ <20221201225705.46r2m35ketvzipox@builder.lan> <CAPDyKFofsqcoFbYt-9BcisbPdreLGqAAMWorqHi0_D1kwCdYhg@mail.gmail.com>
+ <20221207165457.kwdwwiycbwjpogxl@builder.lan> <CAPDyKFpYgYkDdJ79xxkwr-Mqnj5CoBrV+ZZe6Xz4hGLNR4zUVw@mail.gmail.com>
+ <20221208210622.x656vbf7rum5hrl7@builder.lan> <CAPDyKFpSXjcJZ=H491s74BChAV89pQ1Wm8PSdU0nVRfroK1=4A@mail.gmail.com>
+In-Reply-To: <CAPDyKFpSXjcJZ=H491s74BChAV89pQ1Wm8PSdU0nVRfroK1=4A@mail.gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 12 Dec 2022 16:39:09 +0100
+Message-ID: <CAPDyKFrTY8exxFCxXG_ptnRvECYggBBrC2q=MewuEkSj+mxwug@mail.gmail.com>
+Subject: Re: [PATCH v7 0/6] clk/qcom: Support gdsc collapse polling using
+ 'reset' interface
+To:     Akhil P Oommen <quic_akhilpo@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     freedreno <freedreno@lists.freedesktop.org>,
+        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        Rob Clark <robdclark@gmail.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Douglas Anderson <dianders@chromium.org>,
+        krzysztof.kozlowski@linaro.org,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, Sean Paul <sean@poorly.run>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -172,78 +87,247 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gRnJpLCAyMDIyLTEyLTA5IGF0IDExOjE4ICswMTAwLCBLcnp5c3p0b2YgS296bG93c2tpIHdy
-b3RlOg0KPiBPbiAwOC8xMi8yMDIyIDA0OjMxLCBUcmV2b3IgV3Ugd3JvdGU6DQo+ID4gQWRkIGRv
-Y3VtZW50IGZvciBtdDgxODggYm9hcmQgd2l0aCBtdDYzNTkuDQo+ID4gDQo+ID4gU2lnbmVkLW9m
-Zi1ieTogVHJldm9yIFd1IDx0cmV2b3Iud3VAbWVkaWF0ZWsuY29tPg0KPiA+IC0tLQ0KPiA+ICAu
-Li4vYmluZGluZ3Mvc291bmQvbXQ4MTg4LW10NjM1OS55YW1sICAgICAgICAgfCA2MA0KPiA+ICsr
-KysrKysrKysrKysrKysrKysNCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDYwIGluc2VydGlvbnMoKykN
-Cj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
-cy9zb3VuZC9tdDgxODgtDQo+ID4gbXQ2MzU5LnlhbWwNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEv
-RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NvdW5kL210ODE4OC0NCj4gPiBtdDYz
-NTkueWFtbCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zb3VuZC9tdDgxODgt
-DQo+ID4gbXQ2MzU5LnlhbWwNCj4gPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiA+IGluZGV4IDAw
-MDAwMDAwMDAwMC4uZWFjMWM4N2I2OTNhDQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBiL0Rv
-Y3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zb3VuZC9tdDgxODgtbXQ2MzU5LnlhbWwN
-Cj4gDQo+IE1pc3NpbmcgdmVuZG9yIHByZWZpeC4gWW91IGdvdCBjb21tZW50cyBmb3IgaXQgYWxy
-ZWFkeS4NCkhpIEtyenlzenRvZiwNCg0KSSB3aWxsIGNvcnJlY3QgaXQgaW4gVjQuDQoNCj4gDQo+
-ID4gQEAgLTAsMCArMSw2MCBAQA0KPiA+ICsjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiAoR1BM
-LTIuMC1vbmx5IE9SIEJTRC0yLUNsYXVzZSkNCj4gPiArJVlBTUwgMS4yDQo+ID4gKy0tLQ0KPiA+
-ICskaWQ6IA0KPiA+IGh0dHBzOi8vdXJsZGVmZW5zZS5jb20vdjMvX19odHRwOi8vZGV2aWNldHJl
-ZS5vcmcvc2NoZW1hcy9zb3VuZC9tdDgxODgtbXQ2MzU5LnlhbWwqX187SXchIUNUUk5LQTl3TWcw
-QVJidyFud19PekJJUmxYckVQNktfRXR4RVdBSVp6dXZuRDNEbV9LRHV2OGdwTFJxbG5uU2ZWTGtz
-TmZLcU1tZVlpRmxFVlZ5NkYyQlh3bVhCOG9Ra0RQZUJ1RVhNdGZMWDJ3JMKgDQo+ID4gIA0KPiA+
-ICskc2NoZW1hOiANCj4gPiBodHRwczovL3VybGRlZmVuc2UuY29tL3YzL19faHR0cDovL2Rldmlj
-ZXRyZWUub3JnL21ldGEtc2NoZW1hcy9jb3JlLnlhbWwqX187SXchIUNUUk5LQTl3TWcwQVJidyFu
-d19PekJJUmxYckVQNktfRXR4RVdBSVp6dXZuRDNEbV9LRHV2OGdwTFJxbG5uU2ZWTGtzTmZLcU1t
-ZVlpRmxFVlZ5NkYyQlh3bVhCOG9Ra0RQZUJ1RVhvZEZvQ0pBJMKgDQo+ID4gIA0KPiA+ICsNCj4g
-PiArdGl0bGU6IE1lZGlhVGVrIE1UODE4OCBBU29DIHNvdW5kIGNhcmQNCj4gPiArDQo+ID4gK21h
-aW50YWluZXJzOg0KPiA+ICsgIC0gVHJldm9yIFd1IDx0cmV2b3Iud3VAbWVkaWF0ZWsuY29tPg0K
-PiA+ICsNCj4gPiArcHJvcGVydGllczoNCj4gPiArICBjb21wYXRpYmxlOg0KPiA+ICsgICAgY29u
-c3Q6IG1lZGlhdGVrLG10ODE4OC1tdDYzNTktZXZiDQo+ID4gKw0KPiA+ICsgIG1vZGVsOg0KPiA+
-ICsgICAgJHJlZjogL3NjaGVtYXMvdHlwZXMueWFtbCMvZGVmaW5pdGlvbnMvc3RyaW5nDQo+ID4g
-KyAgICBkZXNjcmlwdGlvbjogVXNlciBzcGVjaWZpZWQgYXVkaW8gc291bmQgY2FyZCBuYW1lDQo+
-ID4gKw0KPiA+ICsgIGF1ZGlvLXJvdXRpbmc6DQo+ID4gKyAgICAkcmVmOiAvc2NoZW1hcy90eXBl
-cy55YW1sIy9kZWZpbml0aW9ucy9ub24tdW5pcXVlLXN0cmluZy1hcnJheQ0KPiA+ICsgICAgZGVz
-Y3JpcHRpb246DQo+ID4gKyAgICAgIEEgbGlzdCBvZiB0aGUgY29ubmVjdGlvbnMgYmV0d2VlbiBh
-dWRpbyBjb21wb25lbnRzLiBFYWNoDQo+ID4gZW50cnkgaXMgYQ0KPiA+ICsgICAgICBzaW5rL3Nv
-dXJjZSBwYWlyIG9mIHN0cmluZ3MuIFZhbGlkIG5hbWVzIGNvdWxkIGJlIHRoZSBpbnB1dA0KPiA+
-IG9yIG91dHB1dA0KPiA+ICsgICAgICB3aWRnZXRzIG9mIGF1ZGlvIGNvbXBvbmVudHMsIHBvd2Vy
-IHN1cHBsaWVzLCBNaWNCaWFzIG9mDQo+ID4gY29kZWMgYW5kIHRoZQ0KPiA+ICsgICAgICBzb2Z0
-d2FyZSBzd2l0Y2guDQo+ID4gKw0KPiA+ICsgIG1lZGlhdGVrLHBsYXRmb3JtOg0KPiA+ICsgICAg
-JHJlZjogL3NjaGVtYXMvdHlwZXMueWFtbCMvZGVmaW5pdGlvbnMvcGhhbmRsZQ0KPiA+ICsgICAg
-ZGVzY3JpcHRpb246IFRoZSBwaGFuZGxlIG9mIE1UODE4OCBBU29DIHBsYXRmb3JtLg0KPiA+ICsN
-Cj4gPiArICBtZWRpYXRlayxkcHR4LWNvZGVjOg0KPiA+ICsgICAgJHJlZjogL3NjaGVtYXMvdHlw
-ZXMueWFtbCMvZGVmaW5pdGlvbnMvcGhhbmRsZQ0KPiA+ICsgICAgZGVzY3JpcHRpb246IFRoZSBw
-aGFuZGxlIG9mIE1UODE4OCBEaXNwbGF5IFBvcnQgVHggY29kZWMgbm9kZS4NCj4gPiArDQo+ID4g
-KyAgbWVkaWF0ZWssaGRtaS1jb2RlYzoNCj4gPiArICAgICRyZWY6IC9zY2hlbWFzL3R5cGVzLnlh
-bWwjL2RlZmluaXRpb25zL3BoYW5kbGUNCj4gPiArICAgIGRlc2NyaXB0aW9uOiBUaGUgcGhhbmRs
-ZSBvZiBNVDgxODggSERNSSBjb2RlYyBub2RlLg0KPiANCj4gV2h5IHlvdSBkbyBub3QgdXNlIERB
-SSBsaW5rcyBmb3IgYWxsIHRoZXNlPw0KDQpBcmUgdGhlIGZvbGxvd2luZyBleGFtcGxlcyAiREFJ
-IGxpbmtzIiB5b3UgbWVhbj8NCg0KaGRtaS1kYWktbGluayB7DQogICAgICAgICAgICBsaW5rLW5h
-bWUgPSAiSERNSSBQbGF5YmFjayI7DQogICAgICAgICAgICBjcHUgew0KICAgICAgICAgICAgICAg
-IHNvdW5kLWRhaSA9IDwmcTZhZmVkYWkgVEVSVElBUllfTUkyU19SWD47DQogICAgICAgICAgICB9
-Ow0KDQogICAgICAgICAgICBwbGF0Zm9ybSB7DQogICAgICAgICAgICAgICAgc291bmQtZGFpID0g
-PCZxNnJvdXRpbmc+Ow0KICAgICAgICAgICAgfTsNCg0KICAgICAgICAgICAgY29kZWMgew0KICAg
-ICAgICAgICAgICAgIHNvdW5kLWRhaSA9IDwmbHQ5NjExX2NvZGVjIDA+Ow0KICAgICAgICAgICAg
-fTsNCiAgICAgICAgfTsNCg0Kb3INCg0KaGVhZHNldC1jb2RlYyB7DQoJCXNvdW5kLWRhaSA9IDwm
-cnQ1Njgycz47DQp9Ow0KDQoNCkFzIGZhciBhcyBJIGtub3csIG9ubHkgIm1lZGlhdGVrLHBsYXRm
-b3JtIiB3YXMgdXNlZCBhdCB0aGUgYmVnaW5uaW5nLg0KTmV4dCwgaGRtaS1jb2RlYyB3YXMgaW50
-cm9kdWNlZCwgYW5kIGl0IGZvbGxvd2VkIHRoZSBzYW1lIHN0eWxlIHRvIGdldA0KcGhhbmRsZS4g
-RmluYWxseSwgaXQgYmVjYW1lIHRocmVlIHByb3BlcnRpZXMgaW4gbXQ4MTk1LCBhbmQgdGhlDQpp
-bXBsZW1lbnRhdGlvbiBvZiBtdDgxODggd2FzIGluaGVyaXRlZCBmcm9tIG10ODE5NS4NCg0KSSBq
-dXN0IGdsYW5jZWQgb3ZlciB0aGUgdXNhZ2Ugb2YgZGFpIGxpbmtzLg0KQXMgSSBzZWUgaXQsIEkg
-d2lsbCByZXBsYWNlIHRoZSBjb2RlYyBwYXJ0cyB3aXRoIGRhaSBsaW5rIHN0cnVjdHVyZQ0KbGlr
-ZSB0aGUgZXhhbXBsZSBhYm92ZSBmaXJzdC4gSXQgc2VlbXMgdG8gYmUgZWFzaWVyIHRvIGV4dGVu
-ZCBtb3JlDQpjb2RlY3Mgd2l0aCB0aGUgc2FtZSB0eWxlLg0KDQpGb3IgcGxhdGZvcm0gcGFydCwg
-SSBuZWVkIG1vcmUgdGltZSB0byBjaGVjayBpZiBpdCBpcyBiZXR0ZXIgdG8ga2VlcA0KdGhlIG9y
-aWdpbmFsIGltcGxlbWVudGF0aW9uLCBiZWNhdXNlIHdlIHN0aWxsIGhhdmUgdG8gdGFrZSBTT0Yg
-cmVsYXRlZCANCmltcGxlbWVudGF0aW9uIGludG8gY29uc2lkZXJhdGlvbi4NCg0KDQo+IA0KPiA+
-ICsNCj4gPiArYWRkaXRpb25hbFByb3BlcnRpZXM6IGZhbHNlDQo+ID4gKw0KPiA+ICtyZXF1aXJl
-ZDoNCj4gPiArICAtIGNvbXBhdGlibGUNCj4gPiArICAtIG1lZGlhdGVrLHBsYXRmb3JtDQo+ID4g
-Kw0KPiA+ICtleGFtcGxlczoNCj4gPiArICAtIHwNCj4gPiArDQo+IA0KPiBEcm9wIGJsYW5rIGxp
-bmUuDQo+IA0KT0ssIEkgd2lsbCBmaXggaXQgaW4gVjQuDQoNCj4gPiArICAgIHNvdW5kOiBtdDgx
-ODgtc291bmQgew0KPiANCj4gRHJvcCBsYWJlbCwgbm90IHVzZWQuIFVzZSBnZW5lcmljIG5vZGUg
-bmFtZXMsIHNvIGp1c3QgInNvdW5kIi4NCj4gDQpPSywgSSB3aWxsIGZpeCBpdCBpbiBWNC4NCg0K
-VGhhbmtzLA0KVHJldm9yDQoNCj4gPiArICAgICAgICBjb21wYXRpYmxlID0gIm1lZGlhdGVrLG10
-ODE4OC1tdDYzNTktZXZiIjsNCj4gDQo+IEJlc3QgcmVnYXJkcywNCj4gS3J6eXN6dG9mDQo+IA0K
+On Fri, 9 Dec 2022 at 18:36, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+>
+> On Thu, 8 Dec 2022 at 22:06, Bjorn Andersson <andersson@kernel.org> wrote:
+> >
+> > On Thu, Dec 08, 2022 at 02:40:55PM +0100, Ulf Hansson wrote:
+> > > On Wed, 7 Dec 2022 at 17:55, Bjorn Andersson <andersson@kernel.org> wrote:
+> > > >
+> > > > On Wed, Dec 07, 2022 at 05:00:51PM +0100, Ulf Hansson wrote:
+> > > > > On Thu, 1 Dec 2022 at 23:57, Bjorn Andersson <andersson@kernel.org> wrote:
+> > > > > >
+> > > > > > On Wed, Oct 05, 2022 at 02:36:58PM +0530, Akhil P Oommen wrote:
+> > > > > > >
+> > > > > >
+> > > > > > @Ulf, Akhil has a power-domain for a piece of hardware which may be
+> > > > > > voted active by multiple different subsystems (co-processors/execution
+> > > > > > contexts) in the system.
+> > > > > >
+> > > > > > As such, during the powering down sequence we don't wait for the
+> > > > > > power-domain to turn off. But in the event of an error, the recovery
+> > > > > > mechanism relies on waiting for the hardware to settle in a powered off
+> > > > > > state.
+> > > > > >
+> > > > > > The proposal here is to use the reset framework to wait for this state
+> > > > > > to be reached, before continuing with the recovery mechanism in the
+> > > > > > client driver.
+> > > > >
+> > > > > I tried to review the series (see my other replies), but I am not sure
+> > > > > I fully understand the consumer part.
+> > > > >
+> > > > > More exactly, when and who is going to pull the reset and at what point?
+> > > > >
+> > > > > >
+> > > > > > Given our other discussions on quirky behavior, do you have any
+> > > > > > input/suggestions on this?
+> > > > > >
+> > > > > > > Some clients like adreno gpu driver would like to ensure that its gdsc
+> > > > > > > is collapsed at hardware during a gpu reset sequence. This is because it
+> > > > > > > has a votable gdsc which could be ON due to a vote from another subsystem
+> > > > > > > like tz, hyp etc or due to an internal hardware signal. To allow
+> > > > > > > this, gpucc driver can expose an interface to the client driver using
+> > > > > > > reset framework. Using this the client driver can trigger a polling within
+> > > > > > > the gdsc driver.
+> > > > > >
+> > > > > > @Akhil, this description is fairly generic. As we've reached the state
+> > > > > > where the hardware has settled and we return to the client, what
+> > > > > > prevents it from being powered up again?
+> > > > > >
+> > > > > > Or is it simply a question of it hitting the powered-off state, not
+> > > > > > necessarily staying there?
+> > > > >
+> > > > > Okay, so it's indeed the GPU driver that is going to assert/de-assert
+> > > > > the reset at some point. Right?
+> > > > >
+> > > > > That seems like a reasonable approach to me, even if it's a bit
+> > > > > unclear under what conditions that could happen.
+> > > > >
+> > > >
+> > > > Generally the disable-path of the power-domain does not check that the
+> > > > power-domain is actually turned off, because the status might indicate
+> > > > that the hardware is voting for the power-domain to be on.
+> > >
+> > > Is there a good reason why the HW needs to vote too, when the GPU
+> > > driver is already in control?
+> > >
+> > > Or perhaps that depends on the running use case?
+> > >
+> > > >
+> > > > As part of the recovery of the GPU after some fatal fault, the GPU
+> > > > driver does something which will cause the hardware votes for the
+> > > > power-domain to be let go, and then the driver does pm_runtime_put().
+> > >
+> > > Okay. That "something", sounds like a device specific setting for the
+> > > corresponding gdsc, right?
+> > >
+> > > So somehow the GPU driver needs to manage that setting, right?
+> > >
+> > > >
+> > > > But in this case the GPU driver wants to ensure that the power-domain is
+> > > > actually powered down, before it does pm_runtime_get() again. To ensure
+> > > > that the hardware lost its state...
+> > >
+> > > I see.
+> > >
+> > > >
+> > > > The proposal here is to use a reset to reach into the power-domain
+> > > > provider and wait for the hardware to be turned off, before the GPU
+> > > > driver attempts turning the power-domain on again.
+> > > >
+> > > >
+> > > > In other words, there is no reset. This is a hack to make a normally
+> > > > asynchronous pd.power_off() to be synchronous in this particular case.
+> > >
+> > > Alright, assuming I understood your clarifications above correctly
+> > > (thanks!), I think I have got a much better picture now.
+> > >
+> > > Rather than abusing the reset interface, I think we should manage this
+> > > through the genpd's power on/off notifiers (GENPD_NOTIFY_OFF). The GPU
+> > > driver should register its corresponding device for them
+> > > (dev_pm_genpd_add_notifier()).
+> > >
+> > > The trick however, is to make the behaviour of the power-domain for
+> > > the gdsc (the genpd->power_off() callback) conditional on whether the
+> > > HW is configured to vote or not. If the HW can vote, it should not
+> > > poll for the state - and vice versa when the HW can't vote.
+> > >
+> >
+> > Per Akhil's description I misunderstood who the other voters are; but
+> > either way it's not the same "HW configured" mechanism as the one we're
+> > already discussing.
+>
+> Okay, so this is another thing then.
+>
+> >
+> >
+> > But if we based on similar means could control if the power_off() ops
+> > should be blocking, waiting for the status indication to show that the
+> > hardware is indeed powered down, I think this would meet the needs.
+>
+> Right.
+>
+> >
+> > And GENPD_NOTIFY_OFF seems to provide the notification that it was
+> > successful (i.e. happened within the timeout etc).
+> >
+> > > Would this work?
+> > >
+> >
+> > If we can control the behavior of the genpd, I think it would.
+>
+> Okay, it seems like we need a new dev_pm_genpd_* interface that
+> consumers can call to instruct the genpd provider, that its
+> ->power_off() callback needs to temporarily switch to become
+> synchronous.
+>
+> I guess this could be useful for other similar cases too, where the
+> corresponding PM domain isn't actually being powered off, but rather
+> just voted for to become powered off, thus relying on the HW to do the
+> aggregation.
+>
+> In any case, I am still a bit skeptical of the reset approach, as is
+> being suggested in the $subject series. Even if it's rather nice and
+> clean (but somewhat abusing the interface), it looks like there will
+> be synchronization problems between the calls to the
+> pm_runtime_put_sync() and reset_control_reset() in the GPU driver. The
+> "reset" may actually already have happened when the call to
+> reset_control_reset() is done, so we may fail to detect the power
+> collapse, right!?
+>
+> Let me cook a patch for the new genpd interface that I have in mind,
+> then we can see how that plays out together with the other parts. I
+> will post it on Monday!
+
+Below is the genpd patch that I had in mind.
+
+As I stated above, the GPU driver would need to register for genpd's
+power on/off notificers (GENPD_NOTIFY_OFF). Then it should call the
+new dev_pm_genpd_synced_poweroff() and finally pm_runtime_put().
+Moreover, when the GPU driver receives the GENPD_NOTIFY_OFF
+notification, it should probably just kick a completion variable,
+allowing the path that calls pm_runtime_put() to wait for the
+notification to arrive.
+
+On the genpd provider side, the ->power_off() callback should be
+updated to check the new genpd->synced_poweroff variable, to indicate
+whether it should poll for power collapse or not.
+
+I think this should work, but if you still prefer to use the "reset"
+approach, that's entirely up to you to decide.
+
+Kind regards
+Uffe
+
+-----
+
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Mon, 12 Dec 2022 16:08:05 +0100
+Subject: [PATCH] PM: domains: Allow a genpd consumer to require a synced power
+ off
+
+TODO: Write commit message
+
+Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
+---
+ drivers/base/power/domain.c | 22 ++++++++++++++++++++++
+ include/linux/pm_domain.h   |  1 +
+ 2 files changed, 23 insertions(+)
+
+diff --git a/drivers/base/power/domain.c b/drivers/base/power/domain.c
+index b46aa490b4cd..3402b2ea7f61 100644
+--- a/drivers/base/power/domain.c
++++ b/drivers/base/power/domain.c
+@@ -494,6 +494,27 @@ void dev_pm_genpd_set_next_wakeup(struct device
+*dev, ktime_t next)
+ }
+ EXPORT_SYMBOL_GPL(dev_pm_genpd_set_next_wakeup);
+
++/**
++ * dev_pm_genpd_synced_poweroff - Next power off should be synchronous
++ *
++ * @dev: Device to handle
++ *
++ * TODO: Add description
++ */
++void dev_pm_genpd_synced_poweroff(struct device *dev)
++{
++       struct generic_pm_domain *genpd;
++
++       genpd = dev_to_genpd_safe(dev);
++       if (!genpd)
++               return;
++
++       genpd_lock(genpd);
++               genpd->synced_poweroff = true;
++       genpd_unlock(genpd);
++}
++EXPORT_SYMBOL_GPL(dev_pm_genpd_synced_poweroff);
++
+ static int _genpd_power_on(struct generic_pm_domain *genpd, bool timed)
+ {
+        unsigned int state_idx = genpd->state_idx;
+@@ -588,6 +609,7 @@ static int _genpd_power_off(struct
+generic_pm_domain *genpd, bool timed)
+ out:
+        raw_notifier_call_chain(&genpd->power_notifiers, GENPD_NOTIFY_OFF,
+                                NULL);
++       genpd->synced_poweroff = false;
+        return 0;
+ busy:
+        raw_notifier_call_chain(&genpd->power_notifiers, GENPD_NOTIFY_ON, NULL);
+diff --git a/include/linux/pm_domain.h b/include/linux/pm_domain.h
+index ebc351698090..09c6c67a4896 100644
+--- a/include/linux/pm_domain.h
++++ b/include/linux/pm_domain.h
+@@ -134,6 +134,7 @@ struct generic_pm_domain {
+        unsigned int prepared_count;    /* Suspend counter of prepared
+devices */
+        unsigned int performance_state; /* Aggregated max performance state */
+        cpumask_var_t cpus;             /* A cpumask of the attached CPUs */
++       bool synced_poweroff;           /* A consumer needs a synced poweroff */
+        int (*power_off)(struct generic_pm_domain *domain);
+        int (*power_on)(struct generic_pm_domain *domain);
+        struct raw_notifier_head power_notifiers; /* Power on/off notifiers */
+-- 
+2.34.1
