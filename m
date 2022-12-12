@@ -2,72 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B86E649E4F
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 12:59:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 92107649E5A
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 13:02:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230079AbiLLL7N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 06:59:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59714 "EHLO
+        id S231362AbiLLMCy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 07:02:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231260AbiLLL7M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 06:59:12 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63EDE109C
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 03:59:10 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id z26so261725lfu.8
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 03:59:10 -0800 (PST)
+        with ESMTP id S231911AbiLLMCw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 07:02:52 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AD9D10B75
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 04:02:50 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id p36so18135817lfa.12
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 04:02:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=OocQB+h2q+22nRgnDeUo9frDZ1zMkR0ipc4/j+5KB2A=;
-        b=ulry1sXZp3UYv6fUDKNKVXilEqOFiM8HnkzKoAeQM4C7DsAAtgqSrJ5qvYT3B5/5rr
-         5MziqwzvA2tqHvlMgLUoWxCHWiVuGTkxqmF5ZdbaP9uaNuzlITQlTQej/RJMPIWN9cuM
-         9Wn0A0MX/DzHhkw3PQw1WLhrbac4LVS1Z8MNlAygT7GsY9TLJYnMpNb5ZOv1EmiJUGZ3
-         8tOl4VRXQntDCO7cK9u3HK5I52p80whKvU5Va58A8GIFz4wd26zoWJ5QcUfQCBKlQl6f
-         N9XPIgrLk63Szpl7vMlXbMTOF/KyuNOPJ9P/ANM9h44yilWdCuEgtha6Ehy4WGI1NwBI
-         nv7w==
+        bh=v26oKHbeiySA4kWi2fJuL0+d0H1ofT34dxbF61fRM5c=;
+        b=BHwF9+AYwVUAVHN+h3qZkRQjQ4ZPsDq+R2UF7ZHxEXGZ9/El3/AkUnWwG045tXnWaf
+         3AtLc8P7T7gNzLAIA6UTzbFh1dPKjj7hDFKqmw9DXu//pVnsY/UcYqN1EFrPKj/7xolc
+         TZEwKyKvProisUkXx56iGXqxqlXmpL/VxWluACpYWciSSUApCImd2NEmXTfiuIENfWUy
+         P65BILCgpdvG54wgmc7yH16osnPdCAdgV49azoSjpchVRtw7XH9yOg19CmB3B5lOR7FU
+         qRIF+v+BIXOUfZoM/g/XxbCRAVcErLuhILB6AvzaZjRq4c/bBui8RwNkolOgQbaG8hyD
+         bvlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OocQB+h2q+22nRgnDeUo9frDZ1zMkR0ipc4/j+5KB2A=;
-        b=zGvfD19ofi5zIdF7/NcfjlQ9ZuMXQ6RbzmUFd+RSCgj+k4jmJh1i5RVJ8esDXlPkZX
-         ZgrO3mPhctHftMuI5tNWx0O0rffk7Unk8v+JCqa8vMaQiRW4xUiKLHrPAaQhBs5qnVpx
-         RnMmut0h+F6W1dZVHqmcpDnQ/Ej6nhUTtI7iwfhxdizczwdLM6WUal0mW2a7ORh14nYK
-         E4hSQW2HoE9ibp50cwzk7IoawIVYfya+zBHnfKr3BH6QFBxwcwT/sgPpUZzPOPUYVB6t
-         w+c2y8gPXqujhe8ATHNqYox2wEM61PjcqcVqaETixerMLM2shru95v2/+UmWfyXcsX27
-         WNGg==
-X-Gm-Message-State: ANoB5pkgosSUxl0DMWbVWzN/scXGEWJVIvWbqH6cXpaqHAYwNZU2Zkrp
-        yOXvkfFfZ48X3RPGDLFM5CAjXw==
-X-Google-Smtp-Source: AA0mqf5L7ma7d20AlI9QeaId/PqEI63KNChtzwSNwaGI/E7gv0HX0tZHbWZ8TmukWu9LsvOYi2f4JQ==
-X-Received: by 2002:a05:6512:31cc:b0:4a4:68b7:d652 with SMTP id j12-20020a05651231cc00b004a468b7d652mr5753836lfe.57.1670846348771;
-        Mon, 12 Dec 2022 03:59:08 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id bd23-20020a05651c169700b0027b477e5bdesm702189ljb.19.2022.12.12.03.59.07
+        bh=v26oKHbeiySA4kWi2fJuL0+d0H1ofT34dxbF61fRM5c=;
+        b=t9RrAiGaqZwD6JF0P90yo3u9R4dthxsWiXvizxTta6KQ+anKh7HwqOycwYlI5JY0xy
+         rX+Qpa6SB0lPnr3OgwwxxwhTbHa2NLhsfaVR4/DtGsVF1Sv9MmZlwRZtONJi6EjpeGXX
+         TLx7KFsMCHxCv/BZjGUBwluZyRnHmkF4l+Od+QeMug44kIDABn3RqYGW31TbK3GsMMKX
+         rpPQmpHbm1dOgZ5MNKJzqa7KB9off4j+0eDqVuqp1rEY20J/kiwYwfi/nk0fL1tG9NeR
+         uIOXOEnJHGPmS33WF6rtlLpfmQmYgNOBBalP5eFXkeM6Lsv51oWFMYnA+HyM9dSk0lVy
+         BfPg==
+X-Gm-Message-State: ANoB5pmqlUCMhL4/BYE9qo0iyRC8MDwsjvslGPe5l26YxHWAZU34K0ri
+        SFzUq6Xm7PxDgCrxh6Lbrn5lmA==
+X-Google-Smtp-Source: AA0mqf4ebqMEVJKCcpr9mQriAOW1MpcbgVEb5AX8eqiH98nKBjZNes7Uz9OSSSS/gGIuh6lzcoTDGg==
+X-Received: by 2002:a05:6512:3f1d:b0:4a4:68b7:d621 with SMTP id y29-20020a0565123f1d00b004a468b7d621mr5279903lfa.8.1670846568705;
+        Mon, 12 Dec 2022 04:02:48 -0800 (PST)
+Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
+        by smtp.gmail.com with ESMTPSA id w6-20020a05651234c600b004b5480edf67sm1626203lfr.36.2022.12.12.04.02.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Dec 2022 03:59:08 -0800 (PST)
-Message-ID: <636b6f17-c1b7-6868-306c-7f160e324ee2@linaro.org>
-Date:   Mon, 12 Dec 2022 12:59:07 +0100
+        Mon, 12 Dec 2022 04:02:48 -0800 (PST)
+Message-ID: <8bf713d5-85ea-06a0-d4aa-5aa75bf8d498@linaro.org>
+Date:   Mon, 12 Dec 2022 13:02:46 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH v2 1/5] dt-bindings: dma: ti: k3-bcdma: Add bindings for
- BCDMA CSI RX
-To:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Peter Ujfalusi <peter.ujfalusi@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20221212105416.3628442-1-vigneshr@ti.com>
- <20221212105416.3628442-2-vigneshr@ti.com>
+Subject: Re: [PATCH v1] arm64: dts: qcom: sa8540p-ride: enable pcie2a node
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221212105416.3628442-2-vigneshr@ti.com>
+To:     Shazad Hussain <quic_shazhuss@quicinc.com>, andersson@kernel.org,
+        johan@kernel.org
+Cc:     bmasney@redhat.com, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221212114502.1616-1-quic_shazhuss@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221212114502.1616-1-quic_shazhuss@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,133 +78,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/12/2022 11:54, Vignesh Raghavendra wrote:
-> AM62A SoC has a dedicated BCDMA that serves Camera Serial Interface
-> (CSI) IP. Add new compatible for the same. Unlike system
-> BCDMA, this instance only has RX DMA channels and lack TX or block copy
-> channel. Thus make those properties optional. Additionally CSI RX has
-> independent power domain, add the binding for the same.
+
+
+On 12.12.2022 12:45, Shazad Hussain wrote:
+> Add the pcie2a, pcie2a_phy, and respective tlmm
+> nodes that are needed to get pcie 2a controller
+> enabled on Qdrive3.
 > 
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> This patch enables 4GB 64bit memory space for
+> PCIE_2A to have BAR allocations of 64bit pref mem
+> needed on this Qdrive3 platform with dual SoCs
+> for root port and switch NT-EP. Hence this ranges
+> property is overridden in sa8540p-ride.dts only.
+> 
+> Signed-off-by: Shazad Hussain <quic_shazhuss@quicinc.com>
 > ---
+> This patch depends on below patch series for vreg_l11a.
 > 
-> v2:
-> reorder compatibles alphabetically
-> Fix reg defintion to min 3 and max 5
-> Keep top level constraints as is  and further restrict
-> variants within "if-else" blocks
+> [v4] arm64: dts: qcom: sa8540p-ride: enable PCIe support
+> https://lore.kernel.org/all/20221206161916.315640-1-bmasney@redhat.com/
 > 
->  .../devicetree/bindings/dma/ti/k3-bcdma.yaml  | 67 ++++++++++++++-----
->  1 file changed, 49 insertions(+), 18 deletions(-)
+>  arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 44 +++++++++++++++++++++++
+>  1 file changed, 44 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
-> index 08627d91e607..86e8bebce3f2 100644
-> --- a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
-> +++ b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
-> @@ -28,13 +28,15 @@ description: |
->    PDMAs can be configured via BCDMA split channel's peer registers to match with
->    the configuration of the legacy peripheral.
+> diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> index bb4afd3a9632..ed20423ec8ac 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> +++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> @@ -146,6 +146,27 @@ vreg_l8g: ldo8 {
+>  	};
+>  };
 >  
-> -allOf:
-> -  - $ref: /schemas/dma/dma-controller.yaml#
-> -  - $ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
-> -
->  properties:
->    compatible:
-> -    const: ti,am64-dmss-bcdma
-> +    enum:
-> +      - ti,am62a-dmss-bcdma-csirx
-> +      - ti,am64-dmss-bcdma
+> +&pcie2a {
+> +	ranges = <0x01000000 0x0 0x3c200000 0x0 0x3c200000 0x0 0x100000>,
+> +			 <0x02000000 0x0 0x3c300000 0x0 0x3c300000 0x0 0x1d00000>,
+> +			 <0x03000000 0x5 0x00000000 0x5 0x00000000 0x1 0x00000000>;
+Hi, please fix this indentation.
+
+Konrad
 > +
-> +  reg:
-> +    minItems: 3
-> +    maxItems: 5
+> +	perst-gpios = <&tlmm 143 GPIO_ACTIVE_LOW>;
+> +	wake-gpios = <&tlmm 145 GPIO_ACTIVE_HIGH>;
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pcie2a_default>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&pcie2a_phy {
+> +	vdda-phy-supply = <&vreg_l11a>;
+> +	vdda-pll-supply = <&vreg_l3a>;
+> +
+> +	status = "okay";
+> +};
+> +
+>  &pcie3a {
+>  	ranges = <0x01000000 0x0 0x40200000 0x0 0x40200000 0x0 0x100000>,
+>  	         <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x20000000>,
+> @@ -247,6 +268,29 @@ &xo_board_clk {
+>  /* PINCTRL */
 >  
->    "#dma-cells":
->      const: 3
-> @@ -65,19 +67,13 @@ properties:
->  
->        cell 3: ASEL value for the channel
->  
-> -  reg:
-> -    maxItems: 5
-> -
-> -  reg-names:
-> -    items:
-
-reg-names with min/max items should also stay.
-
-> -      - const: gcfg
-> -      - const: bchanrt
-> -      - const: rchanrt
-> -      - const: tchanrt
-> -      - const: ringrt
-> -
->    msi-parent: true
->  
-> +  power-domains:
-> +    description:
-> +      Power domain if available
-> +    maxItems: 1
+>  &tlmm {
+> +	pcie2a_default: pcie2a-default-state {
+> +		perst-pins {
+> +			pins = "gpio143";
+> +			function = "gpio";
+> +			drive-strength = <2>;
+> +			bias-pull-down;
+> +		};
 > +
->    ti,asel:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      description: ASEL value for non slave channels
-> @@ -123,10 +119,45 @@ required:
->    - msi-parent
->    - ti,sci
->    - ti,sci-dev-id
-> -  - ti,sci-rm-range-bchan
-> -  - ti,sci-rm-range-tchan
->    - ti,sci-rm-range-rchan
->  
-> +allOf:
-> +  - $ref: /schemas/dma/dma-controller.yaml#
-> +  - $ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
+> +		clkreq-pins {
+> +			pins = "gpio142";
+> +			function = "pcie2a_clkreq";
+> +			drive-strength = <2>;
+> +			bias-pull-up;
+> +		};
 > +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: ti,am62a-dmss-bcdma-csirx
-> +    then:
-> +      properties:
-> +        ti,sci-rm-range-bchan: false
-> +        ti,sci-rm-range-tchan: false
+> +		wake-pins {
+> +			pins = "gpio145";
+> +			function = "gpio";
+> +			drive-strength = <2>;
+> +			bias-pull-up;
+> +		};
+> +	};
 > +
-
-missing constraints for reg
-
-> +        reg-names:
-> +          items:
-> +            - const: gcfg
-> +            - const: rchanrt
-> +            - const: ringrt
-> +
-> +      required:
-> +        - power-domains
-> +
-> +    else:
-> +      properties:
-
-missing constraints for reg
-
-> +        reg-names:
-> +          items:
-> +            - const: gcfg
-> +            - const: bchanrt
-> +            - const: rchanrt
-> +            - const: tchanrt
-> +            - const: ringrt
-> +
-> +      required:
-> +        - ti,sci-rm-range-bchan
-> +        - ti,sci-rm-range-tchan
-> +
->  unevaluatedProperties: false
->  
->  examples:
-
-Best regards,
-Krzysztof
-
+>  	pcie3a_default: pcie3a-default-state {
+>  		perst-pins {
+>  			pins = "gpio151";
