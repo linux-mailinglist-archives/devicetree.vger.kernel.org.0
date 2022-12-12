@@ -2,181 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F48B649B9E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 11:03:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1D5C649BEB
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 11:19:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231974AbiLLKDF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 05:03:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37058 "EHLO
+        id S231756AbiLLKTG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 05:19:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231996AbiLLKCz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 05:02:55 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8084ADF3C
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 02:02:54 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id b9so11950856ljr.5
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 02:02:54 -0800 (PST)
+        with ESMTP id S231745AbiLLKTE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 05:19:04 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26994A470
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 02:19:03 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id g7so17752362lfv.5
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 02:19:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cyA5j8UPbljPS/0gpmRfAGvM80LSRW/CSN7T+wq0jpI=;
-        b=wlwCJPGMJX/3fqDm2EwFukIHjoYLL77T+IyWq7UAWWeFG5IvdP+khMjXPwb42kaWDa
-         eX7QGFkcSfwQw/ZF0hJeExffBvAFolfmrbAJ+GI4XS/cpkRdm+K/Cua+SW4Md2D2EHmM
-         FFTR2UjqS8HPkrWVJWfKovIz3nWJlfzPDxzeEssei+lFOnOTd1hBNCYwIbLmDoGdQTLI
-         VX46uHsuEexAlR+pCIxiWSVbJdALILZt04TtnMV6EcWAi12NGg+FDw0P0qbMNVGLSKZf
-         ejTMjXe4R65hkkfd07pnasRH4raV9n6C1YkySnhAK1Nx48T/JLElCc/gSsyYkoEs5rCn
-         y96Q==
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=LJWd6AQztEmSWT/U5Xb23y3w/Zwmz1JFHRldH5LnDP0=;
+        b=zwvGvG8xi+vxQNRzfLMBIZHsUNUMx7b+j3H3D+U6IkMjn0SP4C2qkEyZ9te6dt4HHA
+         sCdAgV8NBSYmGRHJzSZh6pLofhXhWm0EYJJuxiFg02afRnnV/U94Lc+yBZR4e4j3KJIj
+         dZG9fOYQOW3OrF2fBEDOik9/WHYWLG3Pt15b9+vcWuPeQQnB+g34y7f6nGmK5it+O+CF
+         Fe58l7mnXL9kGamdInKND9W2A0ARpfWq1QZyr7+zCsll5NJQ7Fllqiy+occ6pqrKEUOj
+         9e6xR9rYWGxRv5cFlD/2c9ASF1UHaPuq6mbJziG/+dmvknEW1pbF+QCoyJzR56o/BAvC
+         28fw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cyA5j8UPbljPS/0gpmRfAGvM80LSRW/CSN7T+wq0jpI=;
-        b=kdL/VZd5oOyKUhLDmgRufZ1fn+kP0yo5po2B+7mMW9cPCKCh8SYx22SobYFWlgqzsp
-         Q1QqXjGbcarHeU8yYVpuVf6GMg0X1+EPbhpqKixzSL7Y6T/gBGksg2nKtbtL/8hJc5Tw
-         4vGC3psryzNsnFaJd71OstXIEjEWZCOHv4Dtmd0Vp2JuaI15/7qqKnPf7I1YDuvMEwts
-         cz7jmor4NgvJVYqCnEbmfB2BbragRaW32o8H9TKnFemXjOTxrI/b8Mk8QCGLkIvJC4+P
-         e6JO6RDpux6jUQ1B4tYPrk/cpNtVVxy4dRI2djPTqJy0nWczapAG5lh2mGh6ZIp6DxJg
-         KXvg==
-X-Gm-Message-State: ANoB5pnf1HDRYci9AhS2wrnfNVU2UpwGk4q6UFC1d94MCoDKPaWYRDOY
-        gZBBUrk1ydOt157MDxup3x9rKg==
-X-Google-Smtp-Source: AA0mqf4e0QcaG8GVFC1QW92UI0JfVtgNYFwioD9n4jzQqURktxD+vBYMWzo8hWzWkwK5aAEbMqhPgA==
-X-Received: by 2002:a2e:9a95:0:b0:27a:43d0:1d4c with SMTP id p21-20020a2e9a95000000b0027a43d01d4cmr1948422lji.35.1670839372747;
-        Mon, 12 Dec 2022 02:02:52 -0800 (PST)
-Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id i124-20020a2e2282000000b0027712379ec8sm1145101lji.28.2022.12.12.02.02.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Dec 2022 02:02:52 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LJWd6AQztEmSWT/U5Xb23y3w/Zwmz1JFHRldH5LnDP0=;
+        b=43gpM5ObfufGSHq142WSJTzjCf3fSAvK602j/4WfWXNAj41eHZBcTEZeA1RqbnNY9I
+         9jcm7+M6Po7bLfFaNmhHbFPvQpccepFY2K49CapVh81/Fjh/wDRMZGdx3OTovJ4H+7Oy
+         QSkadlWCwZbsryqOmWurNITCO/ckd+yMquciH988/d1bLiRWmslKapv/YahxM/nC9a2q
+         wJ88OUnR4jdMHyXCj3XrxPcqpGyF/jw1eTBsYp0VyZvynGR1xkDdAkKQ7yUq2wsxX86O
+         ICvcw6v8HTWA350vPIma+wdX1kQ30IVJ4WInTz493hBAohyzbtq9IR7oJtk1hqN03cQ3
+         aP2Q==
+X-Gm-Message-State: ANoB5pmPSyRSrl6sFPYCvqahOmNiIRLkJ5gTNICvBA9hX5r3Oae0qBqS
+        MjSTnPsNwbRzAYHvc51K8BPWog==
+X-Google-Smtp-Source: AA0mqf6YBUpss09uzAVY1l7XE3IX3EtN6+7g2xVY9ikGcR4jNDTXTGvpknnrJD5vQVuagvsPiHjvTg==
+X-Received: by 2002:a05:6512:329c:b0:4b1:2447:697f with SMTP id p28-20020a056512329c00b004b12447697fmr4067081lfe.24.1670840341542;
+        Mon, 12 Dec 2022 02:19:01 -0800 (PST)
+Received: from [127.0.0.1] ([94.25.228.118])
+        by smtp.gmail.com with ESMTPSA id y17-20020a056512045100b004b52aed44besm1592841lfk.25.2022.12.12.02.19.00
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 12 Dec 2022 02:19:01 -0800 (PST)
+Date:   Mon, 12 Dec 2022 13:18:53 +0300
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+CC:     marijn.suijten@somainline.org, Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 6/6] arm64: dts: qcom: sm8250: move sound and codec nodes out of soc
-Date:   Mon, 12 Dec 2022 11:02:32 +0100
-Message-Id: <20221212100232.138519-6-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221212100232.138519-1-krzysztof.kozlowski@linaro.org>
-References: <20221212100232.138519-1-krzysztof.kozlowski@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm8150: Add DISPCC node
+User-Agent: K-9 Mail for Android
+In-Reply-To: <20221212093315.11390-2-konrad.dybcio@linaro.org>
+References: <20221212093315.11390-1-konrad.dybcio@linaro.org> <20221212093315.11390-2-konrad.dybcio@linaro.org>
+Message-ID: <FF242AC6-01EC-4C8E-BE49-BB54FC9D2FEE@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The sound and on-board WCD9380 codec nodes are not properties of the
-soc, but rather board as it describes the sound configuration.  They also
-does not have unit addresses:
 
-  sm8250-hdk.dtb: soc@0: sound: {} should not be valid under {'type': 'object'}
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+On 12 December 2022 12:33:13 GMT+03:00, Konrad Dybcio <konrad=2Edybcio@lin=
+aro=2Eorg> wrote:
+>Years after the SoC support has been added, it's high time for it to
+>get dispcc going=2E Add the node to ensure that=2E
+>
+>Signed-off-by: Konrad Dybcio <konrad=2Edybcio@linaro=2Eorg>
+>---
+> arch/arm64/boot/dts/qcom/sm8150=2Edtsi | 26 ++++++++++++++++++++++++++
+> 1 file changed, 26 insertions(+)
+>
+>diff --git a/arch/arm64/boot/dts/qcom/sm8150=2Edtsi b/arch/arm64/boot/dts=
+/qcom/sm8150=2Edtsi
+>index a0c57fb798d3=2E=2Eff04397777f4 100644
+>--- a/arch/arm64/boot/dts/qcom/sm8150=2Edtsi
+>+++ b/arch/arm64/boot/dts/qcom/sm8150=2Edtsi
+>@@ -3579,6 +3579,32 @@ camnoc_virt: interconnect@ac00000 {
+> 			qcom,bcm-voters =3D <&apps_bcm_voter>;
+> 		};
+>=20
+>+		dispcc: clock-controller@af00000 {
+>+			compatible =3D "qcom,sm8150-dispcc";
+>+			reg =3D <0 0x0af00000 0 0x10000>;
+>+			clocks =3D <&rpmhcc RPMH_CXO_CLK>,
+>+				 <0>,
+>+				 <0>,
+>+				 <0>,
+>+				 <0>,
+>+				 <0>,
+>+				 <0>;
+>+			clock-names =3D "bi_tcxo",
+>+				      "dsi0_phy_pll_out_byteclk",
+>+				      "dsi0_phy_pll_out_dsiclk",
+>+				      "dsi1_phy_pll_out_byteclk",
+>+				      "dsi1_phy_pll_out_dsiclk",
+>+				      "dp_phy_pll_link_clk",
+>+				      "dp_phy_pll_vco_div_clk";
+>+			#clock-cells =3D <1>;
+>+			#reset-cells =3D <1>;
+>+			#power-domain-cells =3D <1>;
+>+
+>+			power-domains =3D <&rpmhpd SM8150_MMCX>;
+>+			/* TODO: Maybe rpmhpd_opp_min_svs could work as well? */
+>+			required-opps =3D <&rpmhpd_opp_low_svs>;
 
----
+Is it required for the dispcc, for the DSI or for the dpu? We have stumble=
+d upon the similar issue when working on the 8350, see the latest Robert's =
+patchset=2E
 
-Changes since v1:
-1. Add Rb tag.
-2. Rephrase commit msg.
----
- arch/arm64/boot/dts/qcom/sm8250-mtp.dts | 40 ++++++++++++-------------
- arch/arm64/boot/dts/qcom/sm8250.dtsi    |  6 ++--
- 2 files changed, 22 insertions(+), 24 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-index 3ed8c84e25b8..b741b7da1afc 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-@@ -27,6 +27,25 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	wcd938x: codec {
-+		compatible = "qcom,wcd9380-codec";
-+		#sound-dai-cells = <1>;
-+		reset-gpios = <&tlmm 32 GPIO_ACTIVE_LOW>;
-+		vdd-buck-supply = <&vreg_s4a_1p8>;
-+		vdd-rxtx-supply = <&vreg_s4a_1p8>;
-+		vdd-io-supply = <&vreg_s4a_1p8>;
-+		vdd-mic-bias-supply = <&vreg_bob>;
-+		qcom,micbias1-microvolt = <1800000>;
-+		qcom,micbias2-microvolt = <1800000>;
-+		qcom,micbias3-microvolt = <1800000>;
-+		qcom,micbias4-microvolt = <1800000>;
-+		qcom,mbhc-buttons-vthreshold-microvolt = <75000 150000 237000 500000 500000 500000 500000 500000>;
-+		qcom,mbhc-headset-vthreshold-microvolt = <1700000>;
-+		qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
-+		qcom,rx-device = <&wcd_rx>;
-+		qcom,tx-device = <&wcd_tx>;
-+	};
-+
- 	thermal-zones {
- 		camera-thermal {
- 			polling-delay-passive = <0>;
-@@ -631,27 +650,6 @@ &slpi {
- 	firmware-name = "qcom/sm8250/slpi.mbn";
- };
- 
--&soc {
--	wcd938x: codec {
--		compatible = "qcom,wcd9380-codec";
--		#sound-dai-cells = <1>;
--		reset-gpios = <&tlmm 32 GPIO_ACTIVE_LOW>;
--		vdd-buck-supply = <&vreg_s4a_1p8>;
--		vdd-rxtx-supply = <&vreg_s4a_1p8>;
--		vdd-io-supply = <&vreg_s4a_1p8>;
--		vdd-mic-bias-supply = <&vreg_bob>;
--		qcom,micbias1-microvolt = <1800000>;
--		qcom,micbias2-microvolt = <1800000>;
--		qcom,micbias3-microvolt = <1800000>;
--		qcom,micbias4-microvolt = <1800000>;
--		qcom,mbhc-buttons-vthreshold-microvolt = <75000 150000 237000 500000 500000 500000 500000 500000>;
--		qcom,mbhc-headset-vthreshold-microvolt = <1700000>;
--		qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
--		qcom,rx-device = <&wcd_rx>;
--		qcom,tx-device = <&wcd_tx>;
--	};
--};
--
- &sound {
- 	compatible = "qcom,sm8250-sndcard";
- 	model = "SM8250-MTP-WCD9380-WSA8810-VA-DMIC";
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index d517d6a80bdc..fbbbae29e0c2 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -2826,9 +2826,6 @@ compute-cb@8 {
- 			};
- 		};
- 
--		sound: sound {
--		};
--
- 		usb_1_hsphy: phy@88e3000 {
- 			compatible = "qcom,sm8250-usb-hs-phy",
- 				     "qcom,usb-snps-hs-7nm-phy";
-@@ -4910,6 +4907,9 @@ cpufreq_hw: cpufreq@18591000 {
- 		};
- 	};
- 
-+	sound: sound {
-+	};
-+
- 	timer {
- 		compatible = "arm,armv8-timer";
- 		interrupts = <GIC_PPI 13
--- 
-2.34.1
+>+		};
+>+
+> 		pdc: interrupt-controller@b220000 {
+> 			compatible =3D "qcom,sm8150-pdc", "qcom,pdc";
+> 			reg =3D <0 0x0b220000 0 0x400>;
 
+--=20
+With best wishes
+Dmitry
