@@ -2,157 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D51936498CC
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 07:02:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 459D764989A
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 06:15:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231213AbiLLGB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 01:01:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59502 "EHLO
+        id S229906AbiLLFPO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 00:15:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230427AbiLLGBz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 01:01:55 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 092EA2DE6;
-        Sun, 11 Dec 2022 22:01:54 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id m19so11358719edj.8;
-        Sun, 11 Dec 2022 22:01:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=user-agent:mime-version:message-id:to:cc:subject:date:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=2zkeYUz7U/xhI7hB3XZxYQs9NMpqoObeUlI6eDOGe6U=;
-        b=oHDLpIsNH/jWL9Ns3j/4mrJo+PkiFyP9H1iJ2V/InQ6cbopI+kguqhNBHOXjkrx1F0
-         60wILoOfad7NiiUy++U7/CUynnfgMHULNVOsKKVJjQhorqiHKBtNzoO+669117MRNq0q
-         7Nd+jOKLZwPGj6ZvJ31jwOdQyfebWgcTK54UycUiMw8QxS1zH7KDSJ6FM0sCTgQJmNwg
-         hSP71O9V1zlOkuuCibfc5FArkcOKu6nZsaWFuTZFZZDtCRZD37icRhKqiI/swc0AGmHG
-         w39u6UjcjoJCYORaWvZRL1cPXTRgT224NnyLSzxKFxB9DbGzIvljWlG6vyuELcak2yDS
-         erhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=user-agent:mime-version:message-id:to:cc:subject:date:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2zkeYUz7U/xhI7hB3XZxYQs9NMpqoObeUlI6eDOGe6U=;
-        b=Q9/SEOhzmPBzz9BQ5IK4h59IJaYKgX3zHqdHYJTijme36kC0KskSjUOBSu2s7FLLrC
-         Cp4pc0JDtWOcByEs1I2PhEgKWhWNWDbD4rkVmqh493yxWAJgKudGk+5hVxsyhBMP7foR
-         I4k223/1VOd5v6vW/FKBZdPgB54/b0kl3sNCqBax6bvxoDO6wT/Ua3TyZlkJutRi9bma
-         WAzUJTd5aBkU4K19XLPbKIc68ppu82/MAYd6BtDKolikNseDQyeaTRSS1j4t/lmpA5Qs
-         3VlZr1jo285PXKv8Kv8GuuZFP8qGVomXbUEIrBaqTKSLBcY/nT8Bgvpj4elcLLxlDjBQ
-         VjXA==
-X-Gm-Message-State: ANoB5pmnEedgkwoqTkKIGl3YRf3KSnXp0CDWQNjmQD7cb/ro+QF8WISs
-        cADLgSmqa6uFa5LFdy53FnCL8TqpyxSGPQ==
-X-Google-Smtp-Source: AA0mqf6sOIbwqdmzmTGHt1YW2HT4nuZpobdVrWOwQH0OPxjniz4MSzB08im/Lb/SEEfeJ8pv5fcC2w==
-X-Received: by 2002:a50:ec89:0:b0:46f:a73d:367c with SMTP id e9-20020a50ec89000000b0046fa73d367cmr4976062edr.34.1670824912574;
-        Sun, 11 Dec 2022 22:01:52 -0800 (PST)
-Received: from giga-mm.home ([2a02:1210:8629:800:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id ee48-20020a056402293000b004615f7495e0sm3385134edb.8.2022.12.11.22.01.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Dec 2022 22:01:52 -0800 (PST)
-From:   Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Date:   Mon, 12 Dec 2022 00:58:17 +0100
-Subject: [PATCH] of: fdt: Honor CONFIG_CMDLINE* even without /chosen node
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@kernel.org>,
-        Nikita Shubin <nikita.shubin@maquefel.me>,
-        Hartley Sweeten <hsweeten@visionengravers.com>,
-        Lukasz Majewski <lukma@denx.de>,
-        Linus Walleij <linusw@kernel.org>
+        with ESMTP id S229799AbiLLFPN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 00:15:13 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDCA2EB5
+        for <devicetree@vger.kernel.org>; Sun, 11 Dec 2022 21:15:10 -0800 (PST)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 8A83984D85;
+        Mon, 12 Dec 2022 06:15:07 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1670822107;
+        bh=J3YFjwvmWZPHJl5vYU9jW1hEDD2HxUkg16S2JcAtVsM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=iPHV0ISs8QWYXQb7Ns/b9j2kghsTknd9Cz6vzfKFo5rCatrlxI5nfDcFwjhdnjTJv
+         qYzmGMqJnmj8dCfAQHFZk35wVwHphaZ+uWnFUfgCZy0rtGcpp3Sfd0mQy9DbwraYwa
+         xrObPvDScqVU8zJDZ/yPdmbB+MsGQ4uekzJkXoYVWJ3GTt2pIMvtBxSlOZPwKmzhqx
+         rDrkcn8rxty/Iv+6wJqzmw1KCzK21C5uilXoofFNj0wx57I2yqsi+rVQjnBuWNieYa
+         DHXRqIEtbZTNZf1fxL028W6x8VUd+BdMGs3VDCMJnsTIynNtp2CkfNuMe+35PztHuJ
+         GYn6e4NsiWNOw==
+From:   Marek Vasut <marex@denx.de>
 To:     devicetree@vger.kernel.org
-Message-ID: <11af73e05bad75e4ef49067515e3214f6d944b3d.camel@gmail.com>
+Cc:     Marek Vasut <marex@denx.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liu Ying <victor.liu@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2] dt-bindings: mxsfb: Document i.MX8M power-domains property
+Date:   Mon, 12 Dec 2022 06:14:51 +0100
+Message-Id: <20221212051451.260336-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Evolution 3.44.4 
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DATE_IN_PAST_06_12,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I do not read a strict requirement on /chosen node in either ePAPR or in
-Documentation/devicetree. Help text for CONFIG_CMDLINE and
-CONFIG_CMDLINE_EXTEND doesn't make their behavior explicitly dependent on
-the presence of /chosen or the presense of /chosen/bootargs.
+The power-domains property is mandatory on i.MX8M Mini, Nano, Plus.
+Document the property and mark it as required on the aforementioned
+variants of the IP, present in those SoCs.
 
-However the early check for /chosen and bailing out in
-early_init_dt_scan_chosen() skips CONFIG_CMDLINE handling which is not
-really related to /chosen node or the particular method of passing cmdline
-from bootloader.
-
-This leads to counterintuitive combinations (assuming
-CONFIG_CMDLINE_EXTEND=y):
-
-a) bootargs="foo", CONFIG_CMDLINE="bar" => cmdline=="foo bar"
-b) /chosen missing, CONFIG_CMDLINE="bar" => cmdline==""
-c) bootargs="", CONFIG_CMDLINE="bar" => cmdline==" bar"
-
-Move CONFIG_CMDLINE handling outside of early_init_dt_scan_chosen() so that
-cases b and c above result in the same cmdline.
-
-Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Marek Vasut <marex@denx.de>
 ---
- drivers/of/fdt.c | 40 ++++++++++++++++++++--------------------
- 1 file changed, 20 insertions(+), 20 deletions(-)
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Liu Ying <victor.liu@nxp.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org
+To: devicetree@vger.kernel.org
+---
+V2: - Add AB from Krzysztof
+    - Add mx6sx power domain into the list
+---
+ .../devicetree/bindings/display/fsl,lcdif.yaml    | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index 7b571a631639..b2272bccf85c 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -1173,26 +1173,6 @@ int __init early_init_dt_scan_chosen(char *cmdline)
- 	if (p != NULL && l > 0)
- 		strscpy(cmdline, p, min(l, COMMAND_LINE_SIZE));
+diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+index 876015a44a1e6..d51b4e7957f25 100644
+--- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
++++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+@@ -52,6 +52,9 @@ properties:
+   interrupts:
+     maxItems: 1
  
--	/*
--	 * CONFIG_CMDLINE is meant to be a default in case nothing else
--	 * managed to set the command line, unless CONFIG_CMDLINE_FORCE
--	 * is set in which case we override whatever was found earlier.
--	 */
--#ifdef CONFIG_CMDLINE
--#if defined(CONFIG_CMDLINE_EXTEND)
--	strlcat(cmdline, " ", COMMAND_LINE_SIZE);
--	strlcat(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
--#elif defined(CONFIG_CMDLINE_FORCE)
--	strscpy(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
--#else
--	/* No arguments from boot loader, use kernel's  cmdl*/
--	if (!((char *)cmdline)[0])
--		strscpy(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
--#endif
--#endif /* CONFIG_CMDLINE */
--
--	pr_debug("Command line is: %s\n", (char *)cmdline);
--
- 	rng_seed = of_get_flat_dt_prop(node, "rng-seed", &l);
- 	if (rng_seed && l > 0) {
- 		add_bootloader_randomness(rng_seed, l);
-@@ -1297,6 +1277,26 @@ void __init early_init_dt_scan_nodes(void)
- 	if (rc)
- 		pr_warn("No chosen node found, continuing without\n");
- 
-+	/*
-+	 * CONFIG_CMDLINE is meant to be a default in case nothing else
-+	 * managed to set the command line, unless CONFIG_CMDLINE_FORCE
-+	 * is set in which case we override whatever was found earlier.
-+	 */
-+#ifdef CONFIG_CMDLINE
-+#if defined(CONFIG_CMDLINE_EXTEND)
-+	strlcat(boot_command_line, " ", COMMAND_LINE_SIZE);
-+	strlcat(boot_command_line, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
-+#elif defined(CONFIG_CMDLINE_FORCE)
-+	strscpy(boot_command_line, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
-+#else
-+	/* No arguments from boot loader, use kernel's cmdl */
-+	if (!boot_command_line[0])
-+		strscpy(boot_command_line, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
-+#endif
-+#endif /* CONFIG_CMDLINE */
++  power-domains:
++    maxItems: 1
 +
-+	pr_debug("Command line is: %s\n", boot_command_line);
-+
- 	/* Setup memory, calling early_init_dt_add_memory_arch */
- 	early_init_dt_scan_memory();
+   port:
+     $ref: /schemas/graph.yaml#/properties/port
+     description: The LCDIF output port
+@@ -87,6 +90,18 @@ allOf:
+           maxItems: 1
+         clock-names:
+           maxItems: 1
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - fsl,imx6sx-lcdif
++              - fsl,imx8mm-lcdif
++              - fsl,imx8mn-lcdif
++              - fsl,imx8mp-lcdif
++    then:
++      required:
++        - power-domains
  
+ examples:
+   - |
 -- 
-2.37.3
+2.35.1
+
