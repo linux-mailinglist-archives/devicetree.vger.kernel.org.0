@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 341A2649D41
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 12:16:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E298F649D46
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 12:17:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232135AbiLLLQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 06:16:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59680 "EHLO
+        id S232101AbiLLLQr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 06:16:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231715AbiLLLQR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 06:16:17 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECB16DF94
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 03:10:47 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id z26so65716lfu.8
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 03:10:47 -0800 (PST)
+        with ESMTP id S231912AbiLLLQS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 06:16:18 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 861B52FB
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 03:10:49 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id q6so7877579lfm.10
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 03:10:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=GaqnzgEez5o+aheB4jouM3JSYEeh5J5pWhvvk2MpmEg=;
-        b=b/l7p+kWOAQddo37xNV68tq1G5PdOYsZVSayXQc/n2hR7gWXdf+Jm8RNm40skIcET5
-         6uAuyUJmtLTTMo+TmyCWEbqYF37GaaGx7qD+DS7UdTSQ9cx4sBSche86jUfqWmpTRAV7
-         AbwfBwPy+6FQAwXCrOttv2DdzDMaS+uKF97o8/hEEu7Ab5kaSBq3FhRLRMAkgKRplCi0
-         bNUJrvLCXC5m1/wVPOFYljmeHuXyjRr9gxzt55yAbVaeibnVgFa+Fj/rY72Jckm9EMfW
-         Bc++Mh8VF3LESe6pKMnocoDpsZ90DnJVOHYo++vSVHQWJIBHWn3O2AYl8NyOebmXl1TH
-         o60A==
+        bh=qQIYVXEjJEJ0OT39Qk1zAHhbsycQaa2GSSPi8Gc4rAA=;
+        b=ZpVP3WTKicT0uaaQ9/7achRS1ZAapQV0S1DPWe7tPuL0e4+XnknJuDg/ZiiPMrGpCf
+         HzRVMUCGOUBkqQAX6gJ2z1h+qrkasxrXMHNXLAsBsnWblRIHyI+3r1RGlLVQ74FL16wE
+         3xuBTEEoLYwr+67XZz6xBkBz+NSnoSEmzqCjD0tJT1YMLs11O3HBLMolPG8o8Cazh1OW
+         tHqCNbBOnomkwESSyIfe+W8QFjBynzv9I6SV9YCi+SJuLAeMcCMW2MnlF0kUV+LOU46K
+         nG/idFYhdMUka+0X8BFBQhjNrcu/Ddol8Op6ziX5y5NAONHniku/fS8oRLZetWuAeM4q
+         4oQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=GaqnzgEez5o+aheB4jouM3JSYEeh5J5pWhvvk2MpmEg=;
-        b=IEFwFyY3Wwlv1okKE8+fIjdDyznfInTis31CforeOkydOE8ToYavei6h28kcJusRSV
-         gtL7czVxIZj2/ZJRYx9YlnEUuDOj+BdG6asBypaxykcgkFHxQKgYn3KHypWJe3IrJXUb
-         5xWbLb/A7kwVSTbQVCUC5UnpTJzTG2OwFWacqS3RVO/WFjnwJ5jekUbdPHTQYF26FcMi
-         l4BUxcf4x/ZKBnv69Dfy565/+pYI1xrHUvqmgkl+EBhwgCZoWZy2i7I4dtO+YRAer9Zg
-         FmG0zlbCLI8YVwV2OYiH7DWysdZwSRkuTz+DpalCHGjNroT01lATc17zIIvRe1LWhRgZ
-         mwcw==
-X-Gm-Message-State: ANoB5png/lPi8XsfwxxzGwoJOQat4bZWw7CP9bGOUc8zMcVGYJttF6Rg
-        F2tumhZQ8ewGyp8nDJdxxSI38Q==
-X-Google-Smtp-Source: AA0mqf7WNG69Av72RF+/EYRAlR8ZdhfMneuro3qaDzrmQ35ioUFKffzDpTaroJNhGXIOVSmHoFh2VQ==
-X-Received: by 2002:a05:6512:1082:b0:4a4:68b7:f884 with SMTP id j2-20020a056512108200b004a468b7f884mr7307008lfg.40.1670843446355;
-        Mon, 12 Dec 2022 03:10:46 -0800 (PST)
+        bh=qQIYVXEjJEJ0OT39Qk1zAHhbsycQaa2GSSPi8Gc4rAA=;
+        b=MN4hajvwsuZCzRFihTCtJZdqNGvJK0VSnZtEolJw1p5dN0sXB6TPWNtxfWblQtyYUl
+         fyf02GIp1vZECg3lQh8YXCVycsmhqL0XvEmy0CfNyD28TEXPFikVuwt68rag6Gg6jUVI
+         mRm9PlfmoSWLEgYHB0JPxfJet7+jAjH5TeytgJ8kfnQLGZZcyHxMlBeILXvinTbWSK/N
+         x/hYGzVNovqMSAuERhYXjGwEvtraD0SfngFmvrrbopTWAn4tFK6IOihxqIZCDIs1gPsU
+         yKKBtbk+e9CqaIiEs1BV2w0L01EL4kSnQhj0KRr+AYsBSUq1mN9Kr34vOPjay6mI3j+E
+         PVIg==
+X-Gm-Message-State: ANoB5pmZErHw5Ei1ACHx+AChMUF2e3TmVflWeYVgrv2uLFPzVD8kKpY3
+        7+sPo2omvU2ly8x4JE1NPCn4YQ==
+X-Google-Smtp-Source: AA0mqf6aPcb7R8C5IszTOPEnsK8wMaGFb7TkZnf0uR1fNjOGPHEdqgWtRBKtmdhf5xeehU3dUzwlKQ==
+X-Received: by 2002:ac2:414c:0:b0:4a4:68b8:c2dd with SMTP id c12-20020ac2414c000000b004a468b8c2ddmr4010406lfi.52.1670843447919;
+        Mon, 12 Dec 2022 03:10:47 -0800 (PST)
 Received: from localhost.localdomain (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id b4-20020a056512060400b004b57a810e09sm1599110lfe.288.2022.12.12.03.10.45
+        by smtp.gmail.com with ESMTPSA id b4-20020a056512060400b004b57a810e09sm1599110lfe.288.2022.12.12.03.10.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Dec 2022 03:10:46 -0800 (PST)
+        Mon, 12 Dec 2022 03:10:47 -0800 (PST)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
         agross@kernel.org, krzysztof.kozlowski@linaro.org
@@ -57,9 +57,9 @@ Cc:     marijn.suijten@somainline.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/9] arm64: dts: qcom: ipq6018: Use lowercase hex
-Date:   Mon, 12 Dec 2022 12:10:29 +0100
-Message-Id: <20221212111037.98160-2-konrad.dybcio@linaro.org>
+Subject: [PATCH 2/9] arm64: dts: qcom: msm8996: Use lowercase hex
+Date:   Mon, 12 Dec 2022 12:10:30 +0100
+Message-Id: <20221212111037.98160-3-konrad.dybcio@linaro.org>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20221212111037.98160-1-konrad.dybcio@linaro.org>
 References: <20221212111037.98160-1-konrad.dybcio@linaro.org>
@@ -67,7 +67,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -79,49 +80,73 @@ style.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/ipq6018.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts |  4 ++--
+ arch/arm64/boot/dts/qcom/msm8996.dtsi              | 12 ++++++------
+ 2 files changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-index 5d453f11acd9..2ceae73a6069 100644
---- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-@@ -679,7 +679,7 @@ dwc_1: usb@7000000 {
+diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts
+index d8734913482f..94310530f7ea 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts
++++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts
+@@ -62,14 +62,14 @@ led@0 {
+ 			reg = <0>;
+ 			chan-name = "button-backlight";
+ 			led-cur = /bits/ 8 <0x32>;
+-			max-cur = /bits/ 8 <0xC8>;
++			max-cur = /bits/ 8 <0xc8>;
+ 		};
  
- 		ssphy_0: ssphy@78000 {
- 			compatible = "qcom,ipq6018-qmp-usb3-phy";
--			reg = <0x0 0x78000 0x0 0x1C4>;
-+			reg = <0x0 0x78000 0x0 0x1c4>;
- 			#address-cells = <2>;
- 			#size-cells = <2>;
- 			ranges;
-@@ -696,7 +696,7 @@ ssphy_0: ssphy@78000 {
- 			usb0_ssphy: phy@78200 {
- 				reg = <0x0 0x00078200 0x0 0x130>, /* Tx */
- 				      <0x0 0x00078400 0x0 0x200>, /* Rx */
--				      <0x0 0x00078800 0x0 0x1F8>, /* PCS */
-+				      <0x0 0x00078800 0x0 0x1f8>, /* PCS */
- 				      <0x0 0x00078600 0x0 0x044>; /* PCS misc */
- 				#phy-cells = <0>;
- 				#clock-cells = <0>;
-@@ -721,7 +721,7 @@ qusb_phy_0: qusb@79000 {
+ 		led@1 {
+ 			reg = <0>;
+ 			chan-name = "button-backlight1";
+ 			led-cur = /bits/ 8 <0x32>;
+-			max-cur = /bits/ 8 <0xC8>;
++			max-cur = /bits/ 8 <0xc8>;
+ 		};
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+index 616b5b1b1fb0..f429a7b4a568 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+@@ -1265,23 +1265,23 @@ opp-560000000 {
+ 				};
+ 				opp-510000000 {
+ 					opp-hz = /bits/ 64 <510000000>;
+-					opp-supported-hw = <0xFF>;
++					opp-supported-hw = <0xff>;
+ 				};
+ 				opp-401800000 {
+ 					opp-hz = /bits/ 64 <401800000>;
+-					opp-supported-hw = <0xFF>;
++					opp-supported-hw = <0xff>;
+ 				};
+ 				opp-315000000 {
+ 					opp-hz = /bits/ 64 <315000000>;
+-					opp-supported-hw = <0xFF>;
++					opp-supported-hw = <0xff>;
+ 				};
+ 				opp-214000000 {
+ 					opp-hz = /bits/ 64 <214000000>;
+-					opp-supported-hw = <0xFF>;
++					opp-supported-hw = <0xff>;
+ 				};
+ 				opp-133000000 {
+ 					opp-hz = /bits/ 64 <133000000>;
+-					opp-supported-hw = <0xFF>;
++					opp-supported-hw = <0xff>;
+ 				};
+ 			};
  
- 		usb3: usb@8af8800 {
- 			compatible = "qcom,ipq6018-dwc3", "qcom,dwc3";
--			reg = <0x0 0x8AF8800 0x0 0x400>;
-+			reg = <0x0 0x8af8800 0x0 0x400>;
- 			#address-cells = <2>;
- 			#size-cells = <2>;
- 			ranges;
-@@ -747,7 +747,7 @@ usb3: usb@8af8800 {
+@@ -3386,7 +3386,7 @@ slimbam: dma-controller@9184000 {
  
- 			dwc_0: usb@8a00000 {
- 				compatible = "snps,dwc3";
--				reg = <0x0 0x8A00000 0x0 0xcd00>;
-+				reg = <0x0 0x8a00000 0x0 0xcd00>;
- 				interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
- 				phys = <&qusb_phy_0>, <&usb0_ssphy>;
- 				phy-names = "usb2-phy", "usb3-phy";
+ 		slim_msm: slim-ngd@91c0000 {
+ 			compatible = "qcom,slim-ngd-v1.5.0";
+-			reg = <0x091c0000 0x2C000>;
++			reg = <0x091c0000 0x2c000>;
+ 			interrupts = <0 163 IRQ_TYPE_LEVEL_HIGH>;
+ 			dmas = <&slimbam 3>, <&slimbam 4>;
+ 			dma-names = "rx", "tx";
 -- 
 2.38.1
 
