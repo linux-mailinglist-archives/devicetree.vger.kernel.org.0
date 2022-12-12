@@ -2,110 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE66E649D5B
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 12:17:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 642D0649DF4
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 12:34:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231929AbiLLLRn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 06:17:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60006 "EHLO
+        id S232191AbiLLLey (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 06:34:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231580AbiLLLQg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 06:16:36 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DAF213F85
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 03:10:58 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id z26so66448lfu.8
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 03:10:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9Aj+330nl1Dw+8TyIk+FiR4ts8UoIAAS1yegVuti/jI=;
-        b=iZ25BCiaOAItYIrLjA6FpvOHD6+/k8NH3HtpszFWipd9w4dTRFcxQv9JyZxdHxAW/5
-         hZozKXZKPgrlJoWQyUTeVcgHNfTYEK58HAxTuk3TLeHDm1QCe3ess6tiTrLVePa/GIAL
-         l4EjUEWZKD4U/yZZu4MUXXKwaB+Xvz8bDuOFlRprojbJ42w6kNgGeggwHADtkKaVSZMf
-         nGRWFYf9akkMtv/ImhLNm0NhQvFZP3+X8343tEjlyYQYJXK5x+u0a4vHwpahjO38bo0q
-         YXeVJ6gudOGal7TjWHVSNh5oG8g/FHjSFbs4Y6EY6uZRXEEDl33h8otUqDIPjzpcGRub
-         Dr+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9Aj+330nl1Dw+8TyIk+FiR4ts8UoIAAS1yegVuti/jI=;
-        b=41mCnJwR/YiECqBYz1hCFaXLISc39vw9tOCBmrRRcrw8d6GYDpAvvg6uwGoCD0aqP7
-         Wd/BNi5Pzsr8WJuBG7DPE2NgVGCV1rnOz3hGFuTlEtHUYsah5Z9tJB2W7GQF+7zGZhXA
-         QrdpZBG2txwlr2Y110zKaVvnm0XzvmUYkeEsQRZgMgkwPU2/tz+HKZbKlNBZjX6uX9VR
-         5e2ZLHGR1+NbXxuYeBBgpfiSyIEhS53EdMTG3V4EMWWvE/7xn5LyKbyQzA4K1El2ku18
-         6gMTjy7mEav1XgvP93kwJotArOqau1+KdcGfq6zdwlmgf9TSGjGRxk0F4ht9O5h1twoM
-         vh5g==
-X-Gm-Message-State: ANoB5plLg5OuVlySZmgUDGc5gKGkqlXhIcs1K6qj7FYFv7aG3qai6TbO
-        OD8BRkcbVz0Z9Q2c2LnDz/mt3w==
-X-Google-Smtp-Source: AA0mqf4n4t5XIlLiiQPFojiQZ+lx18lt9+3KQD2ddUGEyrkStiQP/eIB+6SOiB+A+76hn+amgCH83g==
-X-Received: by 2002:a05:6512:39c2:b0:4b4:f303:9b3f with SMTP id k2-20020a05651239c200b004b4f3039b3fmr4733845lfu.66.1670843457695;
-        Mon, 12 Dec 2022 03:10:57 -0800 (PST)
-Received: from localhost.localdomain (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id b4-20020a056512060400b004b57a810e09sm1599110lfe.288.2022.12.12.03.10.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Dec 2022 03:10:57 -0800 (PST)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org
-Cc:     marijn.suijten@somainline.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232037AbiLLLc4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 06:32:56 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E83296465;
+        Mon, 12 Dec 2022 03:32:05 -0800 (PST)
+Received: from localhost (89-26-75-29.goll.dyn.salzburg-online.at [89.26.75.29])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sebastianfricke)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 57A09660159C;
+        Mon, 12 Dec 2022 11:32:04 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1670844724;
+        bh=aWtV/a5hztwYfZNOagzoZHV/7aXlFJiz7TQAx67yg6c=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=WxWvTwU5Bjp8OxfxVPnSlPtQpUL9vTnj7PD+8/wEFANQ+vVFr+G2nzIkWQCOmMy3r
+         lxsLBtXZfT+VhDj8xCSQn6BR0JTrCDj1TIC0qTJJZ8sVGxI05N8PX02AaiP24FV8wh
+         c0wG4XGF6BafjpXkMwy7fCvf1Arfd0yuJhshfQwy4WsMwRUjxTDChqAMV6Tv6omt3F
+         OfTpnKcfZ277rOVr4WYz4UjIgGfK5meCqnmOPwcUEKvT84sDMAg5PjQxhE9zC7sgYC
+         qVr1pay6JvsXhEOAkaezkncoRuD/CdTSpWvKgfR+gRz25/uvJlB85Et7ZZGtR12Qro
+         wgvvqm1PSp0SQ==
+Date:   Mon, 12 Dec 2022 12:32:01 +0100
+From:   Sebastian Fricke <sebastian.fricke@collabora.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 9/9] arm64: dts: qcom: sdm845: Fix some whitespace/newlines
-Date:   Mon, 12 Dec 2022 12:10:37 +0100
-Message-Id: <20221212111037.98160-10-konrad.dybcio@linaro.org>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221212111037.98160-1-konrad.dybcio@linaro.org>
-References: <20221212111037.98160-1-konrad.dybcio@linaro.org>
+        kernel@collabora.com, bob.beckett@collabora.com,
+        hverkuil-cisco@xs4all.nl, nicolas.dufresne@collabora.com,
+        nas.chung@chipsnmedia.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v11 5/6] dt-bindings: media: wave5: add yaml devicetree
+ bindings
+Message-ID: <20221212113201.lyn33mzg5ausnh46@basti-XPS-13-9310>
+References: <20221207121350.66217-1-sebastian.fricke@collabora.com>
+ <20221207121350.66217-6-sebastian.fricke@collabora.com>
+ <48d60bd0-4de1-4a5e-eca1-1f8a9303cce0@linaro.org>
+ <20221207150925.frotwpm3ukwwlnig@basti-XPS-13-9310>
+ <30166f9d-ebfa-ed8b-c08b-ff8e2599161f@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+In-Reply-To: <30166f9d-ebfa-ed8b-c08b-ff8e2599161f@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove unnecessary newlines and fix up whitespace near the soundwire
-controller node.
+Hey Krzysztof,
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+On 07.12.2022 16:27, Krzysztof Kozlowski wrote:
+>On 07/12/2022 16:09, Sebastian Fricke wrote:
+>> Hello Krzysztof,
+>>
+>> On 07.12.2022 13:31, Krzysztof Kozlowski wrote:
+>>> On 07/12/2022 13:13, Sebastian Fricke wrote:
+>>>> From: Robert Beckett <bob.beckett@collabora.com>
+>>>>
+>>>> Add bindings for the wave5 chips&media codec driver
+>>>>
+>>>> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
+>>>> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+>>>> Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
+>>>
+>>> What's happening with this patch? Where is the changelog?
+>>
+>> The changelog is located in the cover letter.
+>> https://lore.kernel.org/linux-media/20221207121350.66217-1-sebastian.fricke@collabora.com/
+>
+>
+>Which you did not sent to us... so? How does it help us?
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 376fcbdc08ed..9eecf1b4ebf9 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -3903,8 +3903,8 @@ swm: swm@c85 {
- 
- 						qcom,dout-ports = <6>;
- 						qcom,din-ports = <2>;
--						qcom,ports-sinterval-low =/bits/ 8  <0x07 0x1f 0x3f 0x7 0x1f 0x3f 0x0f 0x0f>;
--						qcom,ports-offset1 = /bits/ 8 <0x01 0x02 0x0c 0x6 0x12 0x0d 0x07 0x0a >;
-+						qcom,ports-sinterval-low = /bits/ 8  <0x07 0x1f 0x3f 0x7 0x1f 0x3f 0x0f 0x0f>;
-+						qcom,ports-offset1 = /bits/ 8 <0x01 0x02 0x0c 0x6 0x12 0x0d 0x07 0x0a>;
- 						qcom,ports-offset2 = /bits/ 8 <0x00 0x00 0x1f 0x00 0x00 0x1f 0x00 0x00>;
- 
- 						#sound-dai-cells = <1>;
-@@ -3912,8 +3912,6 @@ swm: swm@c85 {
- 						clock-names = "iface";
- 						#address-cells = <2>;
- 						#size-cells = <0>;
--
--
- 					};
- 				};
- 			};
--- 
-2.38.1
+I completely agree, I simply forgot to add the devicetree@vger.kernel.org mail to the list of receivers.
 
+>
+>>
+>>> Why it is v11 and first time I see it?
+>>
+>> You actually replied to V10:
+>> https://lore.kernel.org/linux-media/20221023085341.s23qinjuw4qls3dn@basti-XPS-13-9310/
+>>
+>>> And why it is v11 with basic mistakes and lack of testing?!?
+>>> I would assume that v11 was already seen and tested...
+>>
+>> Sorry I don't have a lot of experience with dt-bindings, thank you for
+>> highlighting the issues, I will correct them. And I forgot to build the
+>> documentation during my testing runs.
+>> I took over the patch set from another contributor and as no one
+>> complained about the dt-bindings for the last 10 versions, I concentrated
+>> my energy on other problems.
+>
+>Because they were never sent to maintainers...
+>
+>>
+>>>
+>>>
+>>>> ---
+>>>>  .../devicetree/bindings/cnm,wave5.yml         | 72 +++++++++++++++++++
+>>>>  1 file changed, 72 insertions(+)
+>>>>  create mode 100644 Documentation/devicetree/bindings/cnm,wave5.yml
+>>>
+>>> Wrong directory. It wasn't here at all before, so I am really confused
+>>> how this could happen.
+>>
+>> Thanks for the highlight.
+>>
+>> I will move it to:
+>> Documentation/devicetree/bindings/media/cnm,wave5.yml
+>>
+>>>
+>>> Subject: drop redundant pieces: yaml, devicetree and bindings.
+>>
+>> I call it:
+>>
+>> dt-bindings: media: chips-media: add wave5 bindings
+>>
+>> in V12
+>>
+>And the rest questions? Lack of response means agreement, which is fine,
+>so in v12 questionable parts will be removed?
+
+Yes, I will completely rework this part, thus I try to take all of your
+highlights into consideration.
+
+>
+>Best regards,
+>Krzysztof
+
+Sincerely,
+Sebastian Fricke
