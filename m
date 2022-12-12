@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1374649E5C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 13:03:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35336649E65
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 13:04:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231974AbiLLMDc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 07:03:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33516 "EHLO
+        id S232087AbiLLMEY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 07:04:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231964AbiLLMDb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 07:03:31 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F0E910FD5
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 04:03:29 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id b3so18171773lfv.2
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 04:03:29 -0800 (PST)
+        with ESMTP id S232064AbiLLMEW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 07:04:22 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52E0710FD4
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 04:04:21 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id y25so18153122lfa.9
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 04:04:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xf14pM0b5U57IWVbVbV1HRSrmNIXUqQ8Nr7URb7N2U0=;
-        b=XZUyuF4uZPnmYtJUEZYSdFQJrcxoavWViar9FRWlHV17tX/JrUloH2NEQ98pR1hOAB
-         OHtAdbR/Apx3MMHZ2l+wTo33O7j7GJWK4IxUDfxVr4Dpwbm84NKO5XDo/ZGRMlWMMsIP
-         nnE2v5gbFlPwv0h6Jb5HWp1Qmv22rluj/5QU6GdznUWOmlGr5humaE+zCfyYQ2wU8s7h
-         wD2pBJUPFqQ7VHBNB9f6ouFTPvGkDtdPIYoXaJkL172CceT/BV53d0inMQwpSBR4/Y5E
-         9JPXVIB2jUkq5hDsFQoXiwst7sG3iTpYR7jpHLrSHAeLuUvDbQcGuJ9RrZPwT1+yWRVz
-         A3fg==
+        bh=GoNWm7eWviu1XQleAWkGJOCSAZGAKYrroAB/LiGPlxI=;
+        b=rI88Nnx9hsh22doOcrE9gKM29uDZxvYg4h96oG5sl6sCDzpNAhi6nBn6T1WyojzEZ4
+         l4DPdyL8cICi64ONqFtEIWx1RgLtwcfairk1z2xX77uNKVgRdsmzWuZPQ/ziLxzFkcol
+         9E/7Wt8V9fUD4ltCWNXuQvbTT4WdVhynv7gVMfF1S8KR3uN0FyV5HJ0EMdeX8X+KN/Tc
+         yMLEnTGWvJ/f2lpBOE3GFJfVsPa4Nqk+qAuOPDSdiTjzd1NkBluMF5+s8ZE4E2y4sRlH
+         2ZvvItn+kAeyNRTIY3vZ3+segX7K55V1151yMvu8zVrQMlMi8IqoRmcTgh6ZrAT2Dra+
+         SkXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xf14pM0b5U57IWVbVbV1HRSrmNIXUqQ8Nr7URb7N2U0=;
-        b=KEALC7ONljSQE4rssYR0CXdQ3fu0MkgfZLpJEqisStLdkQ0Y/rrVLy2R7IcKt6IOHF
-         +KO1mzfX5eIRyfEtSkKKrFVvPSrS/pK8ZLceHOpU2wuLQY0u3as+fvtt4bgMoJbwZOxd
-         L3KXDYCjCS9bboaf4tKyI1By+UTTxCLboYq7MD6kHq0fYY8scI3JWzFHIkBBE1S52fVB
-         XDzqhQl/ncQNPyG6rkVeU8N2JINWz3RAWJTaXh4fmeNiFyUQXJy4cAM217fdu6JCSstu
-         XlKoYkED7tBpxHEiLtUa3LsXIz8pGtHOtZvoMeMbcX6cUL7JFl8sDxNfyDlhPwVwgM0t
-         BhBQ==
-X-Gm-Message-State: ANoB5plMw2LyGiFrqJ/TMUmQfHDm1ozvQTF2IeXVdUbXaILxZhqqSd41
-        uUFxloq+NdyraJLkGwp8mPa+WQ==
-X-Google-Smtp-Source: AA0mqf5su+tUBMYlcTTPEg7VG4wD1RqOYjUi4cuCtf9iu37n6KKsLx8loeOdjLrk1I3QVpDSnf/5JA==
-X-Received: by 2002:a05:6512:1593:b0:4af:eabc:ad01 with SMTP id bp19-20020a056512159300b004afeabcad01mr4910288lfb.56.1670846607911;
-        Mon, 12 Dec 2022 04:03:27 -0800 (PST)
+        bh=GoNWm7eWviu1XQleAWkGJOCSAZGAKYrroAB/LiGPlxI=;
+        b=77nE6Cp0gEAkd3M+AEZUd+MCbNF6uVEKwTSHR8375XbIwSmPwNOqI7XWtOu6kScxDi
+         gA9Ap44uQUCURBD7FgEtA9oD4Xyqoc4bYJQwYXbjH2T3oadCiS7JSCMPwUvHmw7eHv3g
+         txfNMa/fzuK0cBndh6Ay4ZWfCw2Aga/rh4z3WJ0ay5GGiHdT/rUWoTxJhrb07RmhN4Ym
+         qQX/Lr2ILFcAYa3ukw36Z2HZfZvnOqO2Ss9LfFNceJu99hJ/rp+rWlakRDl1viYv7V8L
+         YYen0/nxFoSA4E94Hy6e1BL5LmhfI06X2YJMADdiVYvd2M5R0Z7hbuXUpwcPdtDwx/sD
+         t/lQ==
+X-Gm-Message-State: ANoB5pn4rztGkCj2I2VoHBsXwwdqBmWQ0bpibMu8K2Qzy37QpoB459XJ
+        HtmsTJCC2VkyE7eexaPSBA2Ezw==
+X-Google-Smtp-Source: AA0mqf6rRHK7su2hexYQyj7OOjXRm79AFeSnv5/vqClQGzwMDOuz5vMHVVqgmEuylyv3ZQOsoqcOcw==
+X-Received: by 2002:a05:6512:3f0f:b0:4b5:39fa:6de with SMTP id y15-20020a0565123f0f00b004b539fa06demr5109519lfa.41.1670846659423;
+        Mon, 12 Dec 2022 04:04:19 -0800 (PST)
 Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id e12-20020a056512090c00b004947984b385sm1605855lft.87.2022.12.12.04.03.26
+        by smtp.gmail.com with ESMTPSA id m19-20020a056512359300b00492e3c8a986sm1600064lfr.264.2022.12.12.04.04.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Dec 2022 04:03:27 -0800 (PST)
-Message-ID: <6d3ad4d9-bbb5-4533-9c8c-7263c5fab073@linaro.org>
-Date:   Mon, 12 Dec 2022 13:03:25 +0100
+        Mon, 12 Dec 2022 04:04:19 -0800 (PST)
+Message-ID: <ecb97537-ad31-4acc-4e5a-7f464c2912ab@linaro.org>
+Date:   Mon, 12 Dec 2022 13:04:17 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH v2 1/6] arm64: dts: qcom: sc7180: order top-level nodes
+Subject: Re: [PATCH v2 2/6] arm64: dts: qcom: sdm845: order top-level nodes
  alphabetically
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
@@ -65,14 +65,14 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20221212100232.138519-1-krzysztof.kozlowski@linaro.org>
+ <20221212100232.138519-2-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221212100232.138519-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221212100232.138519-2-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -84,7 +84,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 12.12.2022 11:02, Krzysztof Kozlowski wrote:
 > Order top-level nodes like memory, reserved-memory, opp-table-cpu
 > alphabetically for easier code maintenance.  No functional change (same
-> dtx_diff).
+> dtx_diff, except phandle changes).
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
@@ -96,101 +96,153 @@ Konrad
 > Changes since v1:
 > 1. New patch
 > ---
->  arch/arm64/boot/dts/qcom/sc7180.dtsi | 144 +++++++++++++--------------
->  1 file changed, 72 insertions(+), 72 deletions(-)
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi | 384 +++++++++++++--------------
+>  1 file changed, 192 insertions(+), 192 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> index ea886cf08b4d..6d3e86ce2936 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> @@ -27,8 +27,6 @@ / {
->  	#address-cells = <2>;
->  	#size-cells = <2>;
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> index a63dbd12230f..88e7d4061aae 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -69,122 +69,18 @@ aliases {
 >  
-> -	chosen { };
+>  	chosen { };
+>  
+> -	memory@80000000 {
+> -		device_type = "memory";
+> -		/* We expect the bootloader to fill in the size */
+> -		reg = <0 0x80000000 0 0>;
+> -	};
 > -
->  	aliases {
->  		mmc1 = &sdhc_1;
->  		mmc2 = &sdhc_2;
-> @@ -54,6 +52,8 @@ aliases {
->  		spi11 = &spi11;
->  	};
->  
-> +	chosen { };
-> +
->  	clocks {
->  		xo_board: xo-board {
->  			compatible = "fixed-clock";
-> @@ -68,62 +68,6 @@ sleep_clk: sleep-clk {
->  		};
->  	};
->  
-> -	reserved_memory: reserved-memory {
+> -	reserved-memory {
 > -		#address-cells = <2>;
 > -		#size-cells = <2>;
 > -		ranges;
 > -
-> -		hyp_mem: memory@80000000 {
-> -			reg = <0x0 0x80000000 0x0 0x600000>;
+> -		hyp_mem: hyp-mem@85700000 {
+> -			reg = <0 0x85700000 0 0x600000>;
 > -			no-map;
 > -		};
 > -
-> -		xbl_mem: memory@80600000 {
-> -			reg = <0x0 0x80600000 0x0 0x200000>;
+> -		xbl_mem: xbl-mem@85e00000 {
+> -			reg = <0 0x85e00000 0 0x100000>;
 > -			no-map;
 > -		};
 > -
-> -		aop_mem: memory@80800000 {
-> -			reg = <0x0 0x80800000 0x0 0x20000>;
+> -		aop_mem: aop-mem@85fc0000 {
+> -			reg = <0 0x85fc0000 0 0x20000>;
 > -			no-map;
 > -		};
 > -
-> -		aop_cmd_db_mem: memory@80820000 {
-> -			reg = <0x0 0x80820000 0x0 0x20000>;
+> -		aop_cmd_db_mem: aop-cmd-db-mem@85fe0000 {
 > -			compatible = "qcom,cmd-db";
+> -			reg = <0x0 0x85fe0000 0 0x20000>;
 > -			no-map;
 > -		};
 > -
-> -		sec_apps_mem: memory@808ff000 {
-> -			reg = <0x0 0x808ff000 0x0 0x1000>;
+> -		smem@86000000 {
+> -			compatible = "qcom,smem";
+> -			reg = <0x0 0x86000000 0 0x200000>;
+> -			no-map;
+> -			hwlocks = <&tcsr_mutex 3>;
+> -		};
+> -
+> -		tz_mem: tz@86200000 {
+> -			reg = <0 0x86200000 0 0x2d00000>;
 > -			no-map;
 > -		};
 > -
-> -		smem_mem: memory@80900000 {
-> -			reg = <0x0 0x80900000 0x0 0x200000>;
-> -			no-map;
-> -		};
-> -
-> -		tz_mem: memory@80b00000 {
-> -			reg = <0x0 0x80b00000 0x0 0x3900000>;
-> -			no-map;
-> -		};
-> -
-> -		ipa_fw_mem: memory@8b700000 {
-> -			reg = <0 0x8b700000 0 0x10000>;
-> -			no-map;
-> -		};
-> -
-> -		rmtfs_mem: memory@94600000 {
+> -		rmtfs_mem: rmtfs@88f00000 {
 > -			compatible = "qcom,rmtfs-mem";
-> -			reg = <0x0 0x94600000 0x0 0x200000>;
+> -			reg = <0 0x88f00000 0 0x200000>;
 > -			no-map;
 > -
 > -			qcom,client-id = <1>;
 > -			qcom,vmid = <15>;
 > -		};
-> -	};
 > -
->  	cpus {
->  		#address-cells = <2>;
->  		#size-cells = <0>;
-> @@ -398,6 +342,18 @@ CLUSTER_SLEEP_0: cluster-sleep-0 {
+> -		qseecom_mem: qseecom@8ab00000 {
+> -			reg = <0 0x8ab00000 0 0x1400000>;
+> -			no-map;
+> -		};
+> -
+> -		camera_mem: camera-mem@8bf00000 {
+> -			reg = <0 0x8bf00000 0 0x500000>;
+> -			no-map;
+> -		};
+> -
+> -		ipa_fw_mem: ipa-fw@8c400000 {
+> -			reg = <0 0x8c400000 0 0x10000>;
+> -			no-map;
+> -		};
+> -
+> -		ipa_gsi_mem: ipa-gsi@8c410000 {
+> -			reg = <0 0x8c410000 0 0x5000>;
+> -			no-map;
+> -		};
+> -
+> -		gpu_mem: gpu@8c415000 {
+> -			reg = <0 0x8c415000 0 0x2000>;
+> -			no-map;
+> -		};
+> -
+> -		adsp_mem: adsp@8c500000 {
+> -			reg = <0 0x8c500000 0 0x1a00000>;
+> -			no-map;
+> -		};
+> -
+> -		wlan_msa_mem: wlan-msa@8df00000 {
+> -			reg = <0 0x8df00000 0 0x100000>;
+> -			no-map;
+> -		};
+> -
+> -		mpss_region: mpss@8e000000 {
+> -			reg = <0 0x8e000000 0 0x7800000>;
+> -			no-map;
+> -		};
+> -
+> -		venus_mem: venus@95800000 {
+> -			reg = <0 0x95800000 0 0x500000>;
+> -			no-map;
+> -		};
+> -
+> -		cdsp_mem: cdsp@95d00000 {
+> -			reg = <0 0x95d00000 0 0x800000>;
+> -			no-map;
+> -		};
+> -
+> -		mba_region: mba@96500000 {
+> -			reg = <0 0x96500000 0 0x200000>;
+> -			no-map;
+> -		};
+> -
+> -		slpi_mem: slpi@96700000 {
+> -			reg = <0 0x96700000 0 0x1400000>;
+> -			no-map;
+> +	clocks {
+> +		xo_board: xo-board {
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <38400000>;
+> +			clock-output-names = "xo_board";
+>  		};
+>  
+> -		spss_mem: spss@97b00000 {
+> -			reg = <0 0x97b00000 0 0x100000>;
+> -			no-map;
+> +		sleep_clk: sleep-clk {
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <32764>;
+>  		};
+>  	};
+>  
+> @@ -436,6 +332,18 @@ CLUSTER_SLEEP_0: cluster-sleep-0 {
 >  		};
 >  	};
 >  
 > +	firmware {
 > +		scm {
-> +			compatible = "qcom,scm-sc7180", "qcom,scm";
+> +			compatible = "qcom,scm-sdm845", "qcom,scm";
 > +		};
 > +	};
 > +
@@ -203,94 +255,276 @@ Konrad
 >  	cpu0_opp_table: opp-table-cpu0 {
 >  		compatible = "operating-points-v2";
 >  		opp-shared;
-> @@ -538,20 +494,69 @@ cpu6_opp16: opp-2553600000 {
->  		};
+> @@ -701,32 +609,174 @@ pmu {
+>  		interrupts = <GIC_PPI 5 IRQ_TYPE_LEVEL_HIGH>;
 >  	};
 >  
-> -	memory@80000000 {
-> -		device_type = "memory";
-> -		/* We expect the bootloader to fill in the size */
-> -		reg = <0 0x80000000 0 0>;
+> -	timer {
+> -		compatible = "arm,armv8-timer";
+> -		interrupts = <GIC_PPI 1 IRQ_TYPE_LEVEL_LOW>,
+> -			     <GIC_PPI 2 IRQ_TYPE_LEVEL_LOW>,
+> -			     <GIC_PPI 3 IRQ_TYPE_LEVEL_LOW>,
+> -			     <GIC_PPI 0 IRQ_TYPE_LEVEL_LOW>;
 > -	};
-> -
->  	pmu {
->  		compatible = "arm,armv8-pmuv3";
->  		interrupts = <GIC_PPI 5 IRQ_TYPE_LEVEL_HIGH>;
+> +	psci: psci {
+> +		compatible = "arm,psci-1.0";
+> +		method = "smc";
+>  
+> -	clocks {
+> -		xo_board: xo-board {
+> -			compatible = "fixed-clock";
+> -			#clock-cells = <0>;
+> -			clock-frequency = <38400000>;
+> -			clock-output-names = "xo_board";
+> +		CPU_PD0: power-domain-cpu0 {
+> +			#power-domain-cells = <0>;
+> +			power-domains = <&CLUSTER_PD>;
+> +			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+>  		};
+>  
+> -		sleep_clk: sleep-clk {
+> -			compatible = "fixed-clock";
+> -			#clock-cells = <0>;
+> -			clock-frequency = <32764>;
+> +		CPU_PD1: power-domain-cpu1 {
+> +			#power-domain-cells = <0>;
+> +			power-domains = <&CLUSTER_PD>;
+> +			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+> +		};
+> +
+> +		CPU_PD2: power-domain-cpu2 {
+> +			#power-domain-cells = <0>;
+> +			power-domains = <&CLUSTER_PD>;
+> +			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+> +		};
+> +
+> +		CPU_PD3: power-domain-cpu3 {
+> +			#power-domain-cells = <0>;
+> +			power-domains = <&CLUSTER_PD>;
+> +			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+> +		};
+> +
+> +		CPU_PD4: power-domain-cpu4 {
+> +			#power-domain-cells = <0>;
+> +			power-domains = <&CLUSTER_PD>;
+> +			domain-idle-states = <&BIG_CPU_SLEEP_0>;
+> +		};
+> +
+> +		CPU_PD5: power-domain-cpu5 {
+> +			#power-domain-cells = <0>;
+> +			power-domains = <&CLUSTER_PD>;
+> +			domain-idle-states = <&BIG_CPU_SLEEP_0>;
+> +		};
+> +
+> +		CPU_PD6: power-domain-cpu6 {
+> +			#power-domain-cells = <0>;
+> +			power-domains = <&CLUSTER_PD>;
+> +			domain-idle-states = <&BIG_CPU_SLEEP_0>;
+> +		};
+> +
+> +		CPU_PD7: power-domain-cpu7 {
+> +			#power-domain-cells = <0>;
+> +			power-domains = <&CLUSTER_PD>;
+> +			domain-idle-states = <&BIG_CPU_SLEEP_0>;
+> +		};
+> +
+> +		CLUSTER_PD: power-domain-cluster {
+> +			#power-domain-cells = <0>;
+> +			domain-idle-states = <&CLUSTER_SLEEP_0>;
+>  		};
 >  	};
 >  
 > -	firmware {
 > -		scm {
-> -			compatible = "qcom,scm-sc7180", "qcom,scm";
-> +	psci {
-> +		compatible = "arm,psci-1.0";
-> +		method = "smc";
-> +	};
-> +
-> +	reserved_memory: reserved-memory {
+> -			compatible = "qcom,scm-sdm845", "qcom,scm";
+> +	reserved-memory {
 > +		#address-cells = <2>;
 > +		#size-cells = <2>;
 > +		ranges;
 > +
-> +		hyp_mem: memory@80000000 {
-> +			reg = <0x0 0x80000000 0x0 0x600000>;
+> +		hyp_mem: hyp-mem@85700000 {
+> +			reg = <0 0x85700000 0 0x600000>;
 > +			no-map;
 > +		};
 > +
-> +		xbl_mem: memory@80600000 {
-> +			reg = <0x0 0x80600000 0x0 0x200000>;
+> +		xbl_mem: xbl-mem@85e00000 {
+> +			reg = <0 0x85e00000 0 0x100000>;
 > +			no-map;
 > +		};
 > +
-> +		aop_mem: memory@80800000 {
-> +			reg = <0x0 0x80800000 0x0 0x20000>;
+> +		aop_mem: aop-mem@85fc0000 {
+> +			reg = <0 0x85fc0000 0 0x20000>;
 > +			no-map;
 > +		};
 > +
-> +		aop_cmd_db_mem: memory@80820000 {
-> +			reg = <0x0 0x80820000 0x0 0x20000>;
+> +		aop_cmd_db_mem: aop-cmd-db-mem@85fe0000 {
 > +			compatible = "qcom,cmd-db";
+> +			reg = <0x0 0x85fe0000 0 0x20000>;
 > +			no-map;
 > +		};
 > +
-> +		sec_apps_mem: memory@808ff000 {
-> +			reg = <0x0 0x808ff000 0x0 0x1000>;
+> +		smem@86000000 {
+> +			compatible = "qcom,smem";
+> +			reg = <0x0 0x86000000 0 0x200000>;
+> +			no-map;
+> +			hwlocks = <&tcsr_mutex 3>;
+> +		};
+> +
+> +		tz_mem: tz@86200000 {
+> +			reg = <0 0x86200000 0 0x2d00000>;
 > +			no-map;
 > +		};
 > +
-> +		smem_mem: memory@80900000 {
-> +			reg = <0x0 0x80900000 0x0 0x200000>;
-> +			no-map;
-> +		};
-> +
-> +		tz_mem: memory@80b00000 {
-> +			reg = <0x0 0x80b00000 0x0 0x3900000>;
-> +			no-map;
-> +		};
-> +
-> +		ipa_fw_mem: memory@8b700000 {
-> +			reg = <0 0x8b700000 0 0x10000>;
-> +			no-map;
-> +		};
-> +
-> +		rmtfs_mem: memory@94600000 {
+> +		rmtfs_mem: rmtfs@88f00000 {
 > +			compatible = "qcom,rmtfs-mem";
-> +			reg = <0x0 0x94600000 0x0 0x200000>;
+> +			reg = <0 0x88f00000 0 0x200000>;
 > +			no-map;
 > +
 > +			qcom,client-id = <1>;
 > +			qcom,vmid = <15>;
+> +		};
+> +
+> +		qseecom_mem: qseecom@8ab00000 {
+> +			reg = <0 0x8ab00000 0 0x1400000>;
+> +			no-map;
+> +		};
+> +
+> +		camera_mem: camera-mem@8bf00000 {
+> +			reg = <0 0x8bf00000 0 0x500000>;
+> +			no-map;
+> +		};
+> +
+> +		ipa_fw_mem: ipa-fw@8c400000 {
+> +			reg = <0 0x8c400000 0 0x10000>;
+> +			no-map;
+> +		};
+> +
+> +		ipa_gsi_mem: ipa-gsi@8c410000 {
+> +			reg = <0 0x8c410000 0 0x5000>;
+> +			no-map;
+> +		};
+> +
+> +		gpu_mem: gpu@8c415000 {
+> +			reg = <0 0x8c415000 0 0x2000>;
+> +			no-map;
+> +		};
+> +
+> +		adsp_mem: adsp@8c500000 {
+> +			reg = <0 0x8c500000 0 0x1a00000>;
+> +			no-map;
+> +		};
+> +
+> +		wlan_msa_mem: wlan-msa@8df00000 {
+> +			reg = <0 0x8df00000 0 0x100000>;
+> +			no-map;
+> +		};
+> +
+> +		mpss_region: mpss@8e000000 {
+> +			reg = <0 0x8e000000 0 0x7800000>;
+> +			no-map;
+> +		};
+> +
+> +		venus_mem: venus@95800000 {
+> +			reg = <0 0x95800000 0 0x500000>;
+> +			no-map;
+> +		};
+> +
+> +		cdsp_mem: cdsp@95d00000 {
+> +			reg = <0 0x95d00000 0 0x800000>;
+> +			no-map;
+> +		};
+> +
+> +		mba_region: mba@96500000 {
+> +			reg = <0 0x96500000 0 0x200000>;
+> +			no-map;
+> +		};
+> +
+> +		slpi_mem: slpi@96700000 {
+> +			reg = <0 0x96700000 0 0x1400000>;
+> +			no-map;
+> +		};
+> +
+> +		spss_mem: spss@97b00000 {
+> +			reg = <0 0x97b00000 0 0x100000>;
+> +			no-map;
 >  		};
 >  	};
 >  
-> @@ -640,11 +645,6 @@ ipa_smp2p_in: ipa-modem-to-ap {
+> @@ -1018,64 +1068,6 @@ slpi_smp2p_in: slave-kernel {
 >  		};
 >  	};
 >  
-> -	psci {
+> -	psci: psci {
 > -		compatible = "arm,psci-1.0";
 > -		method = "smc";
+> -
+> -		CPU_PD0: power-domain-cpu0 {
+> -			#power-domain-cells = <0>;
+> -			power-domains = <&CLUSTER_PD>;
+> -			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+> -		};
+> -
+> -		CPU_PD1: power-domain-cpu1 {
+> -			#power-domain-cells = <0>;
+> -			power-domains = <&CLUSTER_PD>;
+> -			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+> -		};
+> -
+> -		CPU_PD2: power-domain-cpu2 {
+> -			#power-domain-cells = <0>;
+> -			power-domains = <&CLUSTER_PD>;
+> -			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+> -		};
+> -
+> -		CPU_PD3: power-domain-cpu3 {
+> -			#power-domain-cells = <0>;
+> -			power-domains = <&CLUSTER_PD>;
+> -			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+> -		};
+> -
+> -		CPU_PD4: power-domain-cpu4 {
+> -			#power-domain-cells = <0>;
+> -			power-domains = <&CLUSTER_PD>;
+> -			domain-idle-states = <&BIG_CPU_SLEEP_0>;
+> -		};
+> -
+> -		CPU_PD5: power-domain-cpu5 {
+> -			#power-domain-cells = <0>;
+> -			power-domains = <&CLUSTER_PD>;
+> -			domain-idle-states = <&BIG_CPU_SLEEP_0>;
+> -		};
+> -
+> -		CPU_PD6: power-domain-cpu6 {
+> -			#power-domain-cells = <0>;
+> -			power-domains = <&CLUSTER_PD>;
+> -			domain-idle-states = <&BIG_CPU_SLEEP_0>;
+> -		};
+> -
+> -		CPU_PD7: power-domain-cpu7 {
+> -			#power-domain-cells = <0>;
+> -			power-domains = <&CLUSTER_PD>;
+> -			domain-idle-states = <&BIG_CPU_SLEEP_0>;
+> -		};
+> -
+> -		CLUSTER_PD: power-domain-cluster {
+> -			#power-domain-cells = <0>;
+> -			domain-idle-states = <&CLUSTER_SLEEP_0>;
+> -		};
 > -	};
 > -
 >  	soc: soc@0 {
 >  		#address-cells = <2>;
 >  		#size-cells = <2>;
+> @@ -5771,4 +5763,12 @@ modem_alert0: trip-point0 {
+>  			};
+>  		};
+>  	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 1 IRQ_TYPE_LEVEL_LOW>,
+> +			     <GIC_PPI 2 IRQ_TYPE_LEVEL_LOW>,
+> +			     <GIC_PPI 3 IRQ_TYPE_LEVEL_LOW>,
+> +			     <GIC_PPI 0 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+>  };
