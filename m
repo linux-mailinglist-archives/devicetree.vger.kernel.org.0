@@ -2,70 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD129649A84
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 09:57:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30B01649A91
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 10:02:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231254AbiLLI5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 03:57:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34794 "EHLO
+        id S231690AbiLLJCL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 04:02:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231492AbiLLI5c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 03:57:32 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4042EE8A
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 00:57:31 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id q6so7345571lfm.10
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 00:57:31 -0800 (PST)
+        with ESMTP id S229681AbiLLJCK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 04:02:10 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8982DAE54
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 01:02:09 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id b13so17453643lfo.3
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 01:02:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=LXScs9rztSpSkNJbictXJleoicIE9mkkluz/f8rPEuI=;
-        b=evszpntVaflCXd4CGXUCTJsFAKUtGM2d5iQZ4WhP2TVqSsqVrwxUgSpH5z8Oq82SI2
-         xGonyC70r1Np3X7PJ6SBTCc8enF08988DsryyvFqpYnFYN1KPUprx03KAD4Zc1SZVppV
-         TRr1Pnr9ZPFVjpBlo/eBv8ncOO3kElArAJxg6FbzNvykWuVStd3aF+VgG3JzXMm+n9Bb
-         nizrGaO8PIFp4SFM/CXWk3yjUI7GGOveNUWgV+K2FzVBMBwDj+tfHyCGjKALYI9qe2+W
-         ZyjyUEjc6MkZdCm5dliqevS0B5TBQfEDvkM0idcY/gFDu48pGLDBySQsHAbzhrROcxKn
-         Sakw==
+        bh=nT+fTSiNEy076PIbhJFRV1A6o5d0WiMbc6l3dVRr41A=;
+        b=RFgwm/cYJ/MKwzKJjrGeAeYW6nBdDBwKPfVj2nYzySQT+u2RLvP33lrd0LLKvSaCr1
+         OfG04MbzuROrjABxBmITOLJmt/5qcIxWbh5Gmj3PYXme9PU6wynxv945JTJPpwwa+NYx
+         icKlCsgMLmbEZ7tUVzgyvD8yWqm8QJ4e+2a7A2l4KZFDHfVvDWHQdIaJ6C2yfNw7Rdsr
+         XTFn+R0O3hb/zDb2NwYgfRP78FnAp9YsM9UWGxO1/fKXg6QTGXhjVSIIokMAbY9yHVIp
+         p8fJ1qnQo0gY4W76Hd0QGzmudVBq2iBc77CNUmNfJwJ8HbXHCCCzs6vQXFIiSX3HQ+9V
+         IGow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LXScs9rztSpSkNJbictXJleoicIE9mkkluz/f8rPEuI=;
-        b=V+CjD3fez5PVSn0jZeA3FRdbJN4YsDA3MQ3qVaCRgy0VWXWgQR3Ms7Mh/3A9kWRvGR
-         VckIlzvQnv7sK8SoAKb8Ta4QVH9VT2Fcs/RBPAiWkbJmBre0R5MihiQa5dwhCdoRrS5k
-         r1lYe7g+CCx2aYuyqhTDA9J/kfpZRsTlP/QJpvIqx6e/tvXjEUF3gwJ0K2FVCK6JbS1P
-         7749l1fuNruFvZd7joQ2Hf/0fHNJH/lRwICHvDiXfYGlDlZ2zHYLNpM/rvS/kMJ1W8gS
-         PWOrsVGcO6uf4EVxoRp4ahd07SXvD9giJ6Ao9riAaLDwqK3PKQb7JKpin5BTMrsNrtMr
-         TTNg==
-X-Gm-Message-State: ANoB5plFEdUxeCgz3eRg40MCcBxrW46smX7TwhKey+GXEIhfGU7E6Gcy
-        nVGbGxyg8OedSBQxwaXOsxRhgxgShACBenY7YoM=
-X-Google-Smtp-Source: AA0mqf5jImk0G0RSAS+KhYzDbVKkOT9DpX38l0bz8lRsruXfyA5vqggWpIv9IiMGwQ00klhm6n+XTg==
-X-Received: by 2002:a05:6512:298f:b0:4b6:ee97:36d2 with SMTP id du15-20020a056512298f00b004b6ee9736d2mr440283lfb.40.1670835449630;
-        Mon, 12 Dec 2022 00:57:29 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id z10-20020a19504a000000b0048b0696d0b1sm1569757lfj.90.2022.12.12.00.57.28
+        bh=nT+fTSiNEy076PIbhJFRV1A6o5d0WiMbc6l3dVRr41A=;
+        b=A2O1wmZOpZ2w8jNI0J4XmdrEgXAn05cUg+EB96AXUCAHzy0hPJAb39bZRORgQQvPqq
+         hwqmbWnXvQUA5Mh2RrTu151nI3mGTQvnfX0kz60zqnQJnxNS6c4jB6sQy0A34LF4+g3L
+         8UR1gTXlQIlZCEpvKvV5q9SIMjaMMq/YAN8U9y3AIvD0dVJ83UG6LSCiszJydJFcT6ok
+         Hbvfr894ZOfWR0dyUlzvu3L/bwdwqqOtgaRYF5vHkdx41ddqpih8Ry4K/GNo626/id/1
+         8/uiX88DcbWzdsMCRLcNGWidRq/Py3MeUTHko6/5rWmraAOqkSgkxnCkIf7+MMczVEyA
+         K2/w==
+X-Gm-Message-State: ANoB5pmc22WM4AuT9o2uamIqurfnY0p4LX69nkch99jEWFIE5/W/P/DF
+        ykzhoqvImUbzGivrKG+XVOBQog==
+X-Google-Smtp-Source: AA0mqf59PGli4yWjF/5ayPHQfllE7wwGnHgUum7RR7Zmi5+4bP2uLFeM0X6wlf2o+QeuqQgQ2+6JvQ==
+X-Received: by 2002:a05:6512:12cd:b0:4a4:68b8:f4df with SMTP id p13-20020a05651212cd00b004a468b8f4dfmr5722963lfg.37.1670835727816;
+        Mon, 12 Dec 2022 01:02:07 -0800 (PST)
+Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
+        by smtp.gmail.com with ESMTPSA id a19-20020ac25053000000b004b5789ecdd7sm1534979lfm.274.2022.12.12.01.02.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Dec 2022 00:57:29 -0800 (PST)
-Message-ID: <3ebdec68-be1e-fd93-e909-2acd0b400e92@linaro.org>
-Date:   Mon, 12 Dec 2022 09:57:28 +0100
+        Mon, 12 Dec 2022 01:02:07 -0800 (PST)
+Message-ID: <788b1b55-ef4b-955d-d091-d4edb98c4775@linaro.org>
+Date:   Mon, 12 Dec 2022 10:02:05 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH v3 1/2] dt-bindings: rtc: m41t80: Convert text schema to
- YAML one
+Subject: Re: [PATCH v2 1/1] arm64: dts: msm8992-bullhead: add memory hole
+ region
+To:     Dominik Kobinski <dominikkobinski314@gmail.com>,
+        linux-arm-msm@vger.kernel.org
+Cc:     pevik@seznam.cz, agross@kernel.org, alexeymin@postmarketos.org,
+        quic_bjorande@quicinc.com, bribbers@disroot.org,
+        devicetree@vger.kernel.org, petr.vorel@gmail.com
+References: <20221211100501.82323-1-dominikkobinski314@gmail.com>
 Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-rtc@vger.kernel.org
-References: <20221211205124.23823-1-marex@denx.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221211205124.23823-1-marex@denx.de>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221211100501.82323-1-dominikkobinski314@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,16 +76,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/12/2022 21:51, Marek Vasut wrote:
-> Convert the m41t80 text schema to YAML schema.
+
+
+On 11.12.2022 11:05, Dominik Kobinski wrote:
+> Add region for memory hole present on bullhead in order to
+> fix a reboot issue on recent kernels
 > 
-> Add "#clock-cells" requirement, which is required by clock-output-names.
+> Reported-by: Petr Vorel <petr.vorel@gmail.com>
+> Signed-off-by: Dominik Kobinski <dominikkobinski314@gmail.com>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+> Changes since v1: 
+>  * msm8992-bullhead instead of bullhead in the commit message
+>  * memory node named "reserved" instead of just "memory"
+> Both suggested by Konrad Dybcio 
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+>  arch/arm64/boot/dts/qcom/msm8992-lg-bullhead.dtsi | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8992-lg-bullhead.dtsi b/arch/arm64/boot/dts/qcom/msm8992-lg-bullhead.dtsi
+> index 71e373b11de9..37bcbbc67be5 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8992-lg-bullhead.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8992-lg-bullhead.dtsi
+> @@ -2,6 +2,7 @@
+>  /* Copyright (c) 2015, LGE Inc. All rights reserved.
+>   * Copyright (c) 2016, The Linux Foundation. All rights reserved.
+>   * Copyright (c) 2021, Petr Vorel <petr.vorel@gmail.com>
+> + * Copyright (c) 2022, Dominik Kobinski <dominikkobinski314@gmail.com>
+>   */
+>  
+>  /dts-v1/;
+> @@ -50,6 +51,11 @@ cont_splash_mem: memory@3400000 {
+>  			reg = <0 0x03400000 0 0x1200000>;
+>  			no-map;
+>  		};
+> +
+> +		removed_region: reserved@5000000 {
+> +			reg = <0 0x05000000 0 0x2200000>;
+> +			no-map;
+> +		};
+>  	};
+>  };
+>  
