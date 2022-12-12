@@ -2,270 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D30ED649E26
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 12:49:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDE78649E2F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 12:55:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231705AbiLLLtg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 06:49:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54980 "EHLO
+        id S231821AbiLLLzf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 06:55:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229452AbiLLLte (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 06:49:34 -0500
-Received: from EUR03-VI1-obe.outbound.protection.outlook.com (mail-vi1eur03on2131.outbound.protection.outlook.com [40.107.103.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62B35638A
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 03:49:31 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=J2IM0XjXvZA5VOudHPOUYwbmJrbalUNglKOqoqqw89+6N8ORS9EV7N3Vs3dYOJsxTwWmsTRd/3XjUV1b536gTS87XZFJxBqSFqot8fCWFAcp2p+dIFaqQFy+WNQmrOughvB6pNOgFoZtxu5Mb/kqPqxTs4nKrVnOdoWjV9nSmgEODU+6KyFycQ4vRXuln3MhzrOqwB1DYgc10v3Wi2s6R5eUn4h9rfXjhnS9J8xrLQi7nGY0R8r6hivIsOYpi0TwbKF9VUXCNLBAZR3Y5ouH9w1ceNr9i9T4IryqccKp7WNdVsw/PbFZlQERQLwHHm8K5EQrRedbhJWgauYAybDLzg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KpbQF5UxGS8cKkhkLZQim6OQDZ/g7pHzA4FbwNOLBmU=;
- b=WmE1wSH581njSpkECHuMev+WTya6v/F3JigbmswWhqGP9pQy9ZFxA4bq6MkTuHwUlqNPR2PmlZOiZFd0v9GJjm4a2BIzC/a6YEMhbD4cx3u5nS6u/BhE1neZlGuEkr4RDMbI1dBWoqbriGdmENFuyGIUyKaJqGeEvUL+Xj6BEBszBEal8fXRxPUCaOQP4WUOaMMn82rm+JQG9S9LmpORSeIYXnFVIYpE2c5/M10S88D+Fvrdsr5DDe64GjQzKFv6sVmMBHEulN/qf8N3JR+nZbfLShzk4DtzjCbLCTa0IhOYwE1B2nevEIB3QVZz+qWbQEZMF1wO38NXHRc8ouOHqw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
- dkim=pass header.d=kontron.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
- s=selector2-mysnt-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KpbQF5UxGS8cKkhkLZQim6OQDZ/g7pHzA4FbwNOLBmU=;
- b=T08k52mAge+alLIMjvQsbaqBK8k8Mk4YtmyVD2VYAeFiIqvb6nI6b6cWkqIVUB2fA6bleGBNjs+K5MiJ0oXbSdG2aeNWMjS6hQLdpTGKrma9VFvaBzutoAshdGd9YykAF8+50t3Tk8Yd3Ht/HrqTHYNefoMJ8Rufg1lWDocp55k=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=kontron.de;
-Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:263::10)
- by AM0PR10MB3156.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:17e::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.19; Mon, 12 Dec
- 2022 11:49:28 +0000
-Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::f209:bc86:3574:2ae6]) by PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::f209:bc86:3574:2ae6%5]) with mapi id 15.20.5880.019; Mon, 12 Dec 2022
- 11:49:28 +0000
-Message-ID: <604d3d94-1aa2-d4bf-e934-9844e25f60a4@kontron.de>
-Date:   Mon, 12 Dec 2022 12:49:26 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: ti-sn65dsi83: Add enable
- delay property
-Content-Language: en-US
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Marek Vasut <marex@denx.de>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-References: <20221209083339.3780776-1-alexander.stein@ew.tq-group.com>
- <45157029.fMDQidcC6G@steina-w> <6da2330d-516e-7dc4-a000-1e68c7f7887e@denx.de>
- <2735716.BEx9A2HvPv@steina-w> <c6f2cc52-41c6-028f-4d3f-e8a4d5d73dcd@denx.de>
- <9f8b1c17-0bc5-ae99-b7b1-cb2f52f9310d@kontron.de>
- <Y5b1PRRFeSm2P/LB@pendragon.ideasonboard.com>
-From:   Frieder Schrempf <frieder.schrempf@kontron.de>
-In-Reply-To: <Y5b1PRRFeSm2P/LB@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR3P281CA0206.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:a5::10) To PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:102:263::10)
+        with ESMTP id S229452AbiLLLze (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 06:55:34 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 292C4F596;
+        Mon, 12 Dec 2022 03:55:31 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id ay14-20020a05600c1e0e00b003cf6ab34b61so4916580wmb.2;
+        Mon, 12 Dec 2022 03:55:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5Y2ETDY9kzpY5Fe4txiNeWBSSB7VK4LZqJFu+sI6h0Y=;
+        b=gH70gzNKB033u3DNcf3ld6m0ZiprKou8HSdTDvCU/JiGyxFca4JszxlB/f8f4lLRBW
+         RQIwl/76kQd/rmS31fLm8s1xOeuidDqBtVdvC0/UgqoI5fTaWHZg1LsCQHXCOHhtGMR1
+         RoXTMgEr8ynKXwjr7XZUTrbZTCqAaVw+jfcJ2jul2Awriu4oB+IAUYi9shqju8tKfTPF
+         spCmAsT4EbelV0aajBfWNRQQ+V1Qh0q1r+VYLK93JA/mRKgUgBOUI6Q9QQIb5/TGQ2oK
+         7+R4RC/Gav/Xhk37MJirl6pQf08yZEbnYf3XICat7eQxHdGOlmAs8H0FaNSkETbuDMZo
+         7CBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5Y2ETDY9kzpY5Fe4txiNeWBSSB7VK4LZqJFu+sI6h0Y=;
+        b=Lec3HJHC7E3nZvxvQRaz0jCqOh+DiYJOPQKJZu3VDuOVMavLfBCjYrs6W4Yp0c5DDb
+         Yzy9/wTCCk7MLhgneugptQVQ+3nz9yxf7W9uH1E/TIB/aiJjHBWgDKvSh0OR9OighuzZ
+         +RFGeR+LKuBMYgxZqG1DSAWFYzuZyckMrKao1vclnwBFSS1rwWCdVbDRXHkDD4Qrq3jH
+         2r7TxG+RUdM+bsViQnnL/X+FyeBwzaLEuyZ1uBBMel8Y3siIjNfpjuJ/7euYbLYC/yBu
+         /4iqWnSUal0DVywG0cx/bgJvgnGKeKg2SpTAve0y9bJbP5E5ofmVuyFvXWXGRL1Rr9oj
+         rWLA==
+X-Gm-Message-State: ANoB5plLxVFo/NxXypxqTgMfcH6l4zUG1yQMV2M/sX9MfpljTWZlkl+G
+        fsLHNhhh66uA6+YEthejyKM=
+X-Google-Smtp-Source: AA0mqf4z6LGIMgMOwSo+HXWPSSjbbH379O4giBDXbmd430wDE24OXOwqIQtSUbCkKitytybI+04Fcw==
+X-Received: by 2002:a05:600c:601c:b0:3cf:fc0b:3359 with SMTP id az28-20020a05600c601c00b003cffc0b3359mr12361319wmb.0.1670846129561;
+        Mon, 12 Dec 2022 03:55:29 -0800 (PST)
+Received: from prasmi.home ([2a00:23c8:2501:c701:1484:ef11:b25c:4612])
+        by smtp.gmail.com with ESMTPSA id j7-20020a05600c190700b003b4cba4ef71sm9793820wmq.41.2022.12.12.03.55.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Dec 2022 03:55:28 -0800 (PST)
+From:   Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Guo Ren <guoren@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Jisheng Zhang <jszhang@kernel.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v5 0/6] AX45MP: Add support to non-coherent DMA
+Date:   Mon, 12 Dec 2022 11:54:59 +0000
+Message-Id: <20221212115505.36770-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR10MB5681:EE_|AM0PR10MB3156:EE_
-X-MS-Office365-Filtering-Correlation-Id: 211fa5b8-7316-42d6-28d8-08dadc36ecce
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: bwZSMZWc5a5qM/RHCWweNQErToPQlRQ8ZSCVczY5VJXQ/q9kubc8i5GA/O+YaKOHYrScG92RaDS1O7QpnbXFdGXaUC2vCM+EpHWA7zze46zF6FS0cJPXM6KiHTkI5Srp2SkvfjeH4zTHFTrisjrnVTOsGQ0XWHp0DJIqg8o9ly9xA1ipnffHPzoh7X+9SWvI8cnypbunbGiHGEBK7SlirlXoy7vTtjOkq5dywehASDrpeAUKiAnOruR+dadmDLWzHJp5HsrZd5XqVV+oozunUYVEhIfKJZVLWlSikmf+G3o+3f0ix4J2LSUOrqcFtsgETraBkcOlIXqMzYDfIPQK4MptqqMswCfsdZMKJRaDFPjOKD9VvEQKkKJM8wmATzwX+3MqsmFeoTqkP84DxlbeJWjwPqcgzDHOn/STo0aa+QxoBOjtYPdJQ7ClGW8Wwqj2HMoFjXpCCvQjqM0MhHkwi++ZUF97czYjyX63NXz8cGxwtX1ebVYEDjKiA5Ir3mXLduKuZXGOqW7/DpYvnsyDwEmaPR8CDSXTzBOshrrWYMnpZx6GStvUWP0pSCDNCVZ2aoXNKHhrk6CqZAi67ZLGfMlzA+bakuUIo7Pm2TtsBcB9ImxDeJ3HOuIndNiphXK9ynUCZ8LOIuzNnVIgM92ydsrIA2tIJkAm41FG2xSDNZpJcnARYhGqF7zxS2nCfkF0P+fDnNyInDwkaV9vGKD7jFodk6GH3KhvO2pOrPMTLLM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(136003)(346002)(366004)(396003)(376002)(451199015)(31686004)(6486002)(478600001)(53546011)(2906002)(6506007)(31696002)(86362001)(36756003)(44832011)(8936002)(186003)(2616005)(38100700002)(6512007)(7416002)(4326008)(83380400001)(41300700001)(5660300002)(54906003)(66946007)(66476007)(8676002)(66556008)(6916009)(316002)(43740500002)(45980500001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MFU2aDhpamNwbjF1enZONUR1ckZDdll1NUZjMHVlaTB5WVNzK3BMa2ZMK2Rm?=
- =?utf-8?B?NW1LSnBQdnpRUFNYaDcvdmF4Y0dWUDZLaDRNbG1WcW1jOGN6TEtoWm5ucldM?=
- =?utf-8?B?Q2wyWVAraXovYUFRdE1vbG9YRG9IRThEV3JNUThFRGVOYW9mQWZFdVYvUTJ2?=
- =?utf-8?B?ZlRXYnNEZlNoRm1Gd1oxRkJ2NW9wS1dJMnBvdy9XR3RWc05xVnFlS3VkQko3?=
- =?utf-8?B?TDVzN1Z5NmpydldNa2lBY2E5dnkxZ3U4eHNENi9SZ3ZheCtNR3Z1WFJWd0VD?=
- =?utf-8?B?THJFMG9neGFBQnZmWDhqbTFhMzlSZnZqRzBUVHpGa3duZm5qZHZlRzNiTGps?=
- =?utf-8?B?R21XUUZURCtkQ1o4TnZQQVVnOURmdjRCQ0l4OGpJVE1KV2M4RXdzTGtmb2sr?=
- =?utf-8?B?V0VWWEhoUzU4dGdSTDZRWWdjZlJKY0NaODB5dnNkL1FqeWc1UjJOK01hS1dz?=
- =?utf-8?B?bmNOOTJuOEluR3lRRUxKV0d1MVdWUERwMG10UE41MXJGNmpCa0QxYTlxSnFG?=
- =?utf-8?B?WFl1Z1lxeE5EbWtIMUNCTGxqdld1TTJNMDZub3FMcHo3aEUwc2psYnhMTzUv?=
- =?utf-8?B?UHVQUmxPbW50YUNXVVlHblhEVEh2cnFhWmREL1Y5NFdPTXQxbE1SbzVjdXNI?=
- =?utf-8?B?TCtpblZuaU1YK091MUp5b2VuQXpYRzJPbjV0ZkR2bWplcUhpL0sreVErM280?=
- =?utf-8?B?Q0Mxa2IrMDZQQVduUzA5VGJJWWY2aDBjOGk3TDZNRVBGUTR3c0g4Yzd1RU1n?=
- =?utf-8?B?Q0xOM1hmUEVzRVY1Mi9XS09RaDJwb0I5UVQ4bjhmRVRlWHk1SndLcTV0NnVY?=
- =?utf-8?B?ekpuUGhsMHZFSmhyKzRhaU4wQmg2UlJsRlIyQXpxcGJGZEtBMUZlamJaQWhp?=
- =?utf-8?B?MHJiOEk0VFdyRVozWWJCaXFTbGxVUXpCNGFuY0s1YnVZQkpwOE91ZXZyOUZH?=
- =?utf-8?B?eWlLYWFBVW0yNzE4ZjNGSjFiTDJWVkVmcmFhODZ1TVJVU2tDK1RyZ0UvaDdh?=
- =?utf-8?B?QjVYTkh5cVpDVkh5ZW92VTJzMmZlUzg3QmVGdXZKZkFQTnE4TXphRlRkcitR?=
- =?utf-8?B?LzRaNCt6NXdnRkNwWTBLdGhBVXB4eFUrYkd2QTBGOEJxaktGWDBSaTFta2U5?=
- =?utf-8?B?UHNuak50SFNXTjA0UGdtamFVOFVHVU04aUwxeXlRRWhlTWU3TVBrTTArYW1v?=
- =?utf-8?B?L21XTW5qaWczNldqNHUwUG1aZk13Z0tCRlV3amw1MGNBWmpJMGFpeTEvU3px?=
- =?utf-8?B?dXJhUUx2VzlUSUxncnoyQXlITGswYk8vbWVpSFNwZ3RaOVZmdStOdmpUd3VZ?=
- =?utf-8?B?TGhwdzRFR3dLbWZsSjRwdmk3RUl5ZTI0eEdibTBSMFNvMnQ4VGQyUVJaM0VB?=
- =?utf-8?B?L1JLcjdNZFR2a2RicXg0SVY0TGRPODNCeHp2VlFjS3ZNZXYwaWZ4QXdNa2d3?=
- =?utf-8?B?RkYyWERvZHRhRkNFUkZSVWd3andGamlMOWN6bTBnaWFvK2wzQXk3cU5vdmh1?=
- =?utf-8?B?WDhTTkFIVTN1UW5JTTZQSVNkSXdmWDF5ZHFDK2dHWE1BUm5tdjJyTHBwM3BX?=
- =?utf-8?B?UExrRmo4cUZGVXZtVE52R09TVFp2QlBnZHFHcHFMeGIwUFRlNTI2RkoySmN1?=
- =?utf-8?B?MnJrcDI0a3JpWG4xRlpFNjNzVDFjVEdEeWxlc3hGdExNSTZnOCt3Kzd3cHNq?=
- =?utf-8?B?V2lGd243bTh5UStZU3J3dS9uSzVyZnJ1T0ZBNDJIckNtOWRwMFJDc3NmWUE0?=
- =?utf-8?B?UksxSkFSOWdzQ0Roc1poWlY1TUVlOVNzRVhWQThoemRtZ1Nqc1FQeTFxYktH?=
- =?utf-8?B?NFJNQjFPRW0rVjY4S0h1c002b1F3Wld0czBNeGpZZTR0c3RxQkp2TFI3U0Jk?=
- =?utf-8?B?ZndlUmpvbm8xdmRkd2orOWROeTVYbW9MYzFIZFlGbkZyQnZuNWNhSWFvQjRC?=
- =?utf-8?B?S0ZWdlZWUFkrckdhZUJIN1U4MXZpRWxOdW5FT3JHTklrSHQwOHBIeE40dUdV?=
- =?utf-8?B?bGN3WlpxSkp0bmtCRW1GMjY3UkxTVDZSSVVjWFJCeVpOZXFrOWo4Tmwva0s2?=
- =?utf-8?B?Y1ExRXlGUk85WElyMmRsa2IwenlrWEN1bTBXN3czQjUzRm5qeTIwdHFpS0ZE?=
- =?utf-8?B?QnAvV1FGYkJYSVN0OEdnUkU3QlFaZDNwOWxZNFdyQkdLaEZObzIrQTJUMzZ3?=
- =?utf-8?Q?/fHR29gWYtc/Hj1/k+J6XeHfbCZFcn0oSmb2TAXmr9p7?=
-X-OriginatorOrg: kontron.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 211fa5b8-7316-42d6-28d8-08dadc36ecce
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Dec 2022 11:49:28.6887
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: T5ZHm7snKpoeEP7UHuVkHemWCCLKKSjNDLcdnGZkWIEYvKBB42XQyak07ZgCEcCAsgdmf8romK8bbEY8tmhej4Y1vz9TUD8hh9aBiG8euNI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB3156
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12.12.22 10:32, Laurent Pinchart wrote:
-> On Mon, Dec 12, 2022 at 10:09:45AM +0100, Frieder Schrempf wrote:
->> On 09.12.22 15:49, Marek Vasut wrote:
->>> On 12/9/22 14:38, Alexander Stein wrote:
->>>> Am Freitag, 9. Dezember 2022, 13:43:02 CET schrieb Marek Vasut:
->>>>> On 12/9/22 13:21, Alexander Stein wrote:
->>>>>> Am Freitag, 9. Dezember 2022, 13:02:10 CET schrieb Marek Vasut:
->>>>>>> On 12/9/22 10:36, Alexander Stein wrote:
->>>>>>>> Am Freitag, 9. Dezember 2022, 10:07:45 CET schrieb Krzysztof Kozlowski:
->>>>>>>>> On 09/12/2022 09:54, Alexander Stein wrote:
->>>>>>>>>> Am Freitag, 9. Dezember 2022, 09:39:49 CET schrieb Krzysztof Kozlowski:
->>>>>>>>>>> On 09/12/2022 09:33, Alexander Stein wrote:
->>>>>>>>>>>> It takes some time until the enable GPIO has settled when turning on.
->>>>>>>>>>>> This delay is platform specific and may be caused by e.g. voltage
->>>>>>>>>>>> shifts, capacitors etc.
->>>>>>>>>>>>
->>>>>>>>>>>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
->>>>>>>>>>>> ---
->>>>>>>>>>>>
->>>>>>>>>>>>    
->>>>>>>>>>>> .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml      | 4
->>>>>>>>>>>>     ++++
->>>>>>>>>>>>     1 file changed, 4 insertions(+)
->>>>>>>>>>>>
->>>>>>>>>>>> diff --git
->>>>>>>>>>>> a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
->>>>>>>>>>>> b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
->>>>>>>>>>>> index 48a97bb3e2e0d..3f50d497cf8ac 100644
->>>>>>>>>>>> --- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
->>>>>>>>>>>> +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
->>>>>>>>>>>>
->>>>>>>>>>>> @@ -32,6 +32,10 @@ properties:
->>>>>>>>>>>>         maxItems: 1
->>>>>>>>>>>>         description: GPIO specifier for bridge_en pin (active high).
->>>>>>>>>>>>
->>>>>>>>>>>> +  ti,enable-delay-us:
->>>>>>>>>>>> +    default: 10000
->>>>>>>>>>>> +    description: Enable time delay for enable-gpios
->>>>>>>>>>>
->>>>>>>>>>> Aren't you now mixing two separate delays? One for entire block (I
->>>>>>>>>>> would assume mostly fixed delay) and one depending on regulators
->>>>>>>>>>> (regulator-ramp-delay, regulator-enable-ramp-delay). Maybe you miss the
->>>>>>>>>>> second delays in your power supply? If so, the first one might be fixed
->>>>>>>>>>> and hard-coded in the driver?
->>>>>>>>>>
->>>>>>>>>> Apparently there are two different delays: reset time (t_reset) of 10ms as
->>>>>>>>>> specified by datasheet. This is already ensured by a following delay after
->>>>>>>>>> requesting enable_gpio as low and switching the GPIO to low in disable
->>>>>>>>>> path.
->>>>>>>>>>
->>>>>>>>>> When enabling this GPIO it takes some time until it is valid on the chip,
->>>>>>>>>> this is what this series is about. It's highly platform specific.
->>>>>>>>>>
->>>>>>>>>> Unfortunately this is completely unrelated to the vcc-supply regulator.
->>>>>>>>>> This one has to be enabled before the enable GPIO can be enabled. So
->>>>>>>>>> there is no regulator-ramp-delay.
->>>>>>>>>
->>>>>>>>> Your driver does one after another - regulator followed immediately by
->>>>>>>>> gpio - so this as well can be a delay from regulator (maybe not ramp but
->>>>>>>>> enable delay).
->>>>>>>
->>>>>>> The chip has two separate input pins:
->>>>>>>
->>>>>>> VCC -- power supply that's regulator
->>>>>>> EN -- reset line, that's GPIO
->>>>>>>
->>>>>>> Alexander is talking about EN line here.
->>>>>>>
->>>>>>>> But this will introduce a section which must not be interrupted or delayed.
->>>>>>>> This is impossible as the enable gpio is attached to an i2c expander in my
->>>>>>>> case.
->>>>>>>>
->>>>>>>> Given the following time chart:
->>>>>>>>     vcc                  set             EN
->>>>>>>>
->>>>>>>> enable               GPIO             PAD
->>>>>>>>
->>>>>>>>      |                    |<-- t_raise -->|
->>>>>>>>      |
->>>>>>>>      | <-- t_vcc_gpio --> |               |
->>>>>>>>      | <--        t_enable_delay      --> |
->>>>>>>>
->>>>>>>> t_raise is the time from changing the GPIO output at the expander until
->>>>>>>> voltage on the EN (input) pad from the bridge has reached high voltage
->>>>>>>> level. This is an electrical characteristic I can not change and have to
->>>>>>>> take into account.
->>>>>>>> t_vcc_gpio is the time from enabling supply voltage to enabling the bridge
->>>>>>>> (removing from reset). Minimum t_vcc_gpio is something which can be
->>>>>>>> addressed by the regulator and is no problem so far. But there is no
->>>>>>>> upper bound to it.
->>>>>>>
->>>>>>> What exactly is your EN signal rise time (should be ns or so)? Can you
->>>>>>> look at that with a scope , maybe even with relation to the VCC
->>>>>>> regulator
->>>>>>> ?
->>>>>>
->>>>>> I checked EN rise time using a scope, it's ~110ms. I not an expert in
->>>>>> hardware but on the mainboard there is some capacitor attached to this
->>>>>> line, which increased the time, independent from the internal pull-up.
->>>>>
->>>>> This does seem like a hardware bug right there, can you double-check
->>>>> this with the hardware engineer ?
->>>>
->>>> Yep, checked with hardware engineer. An 470nF is attached, together with an
->>>> open drain output and only the internal pull-up. So yes ~113ms rising time
->>>> until 0.7 x VCC.
->>>
->>> I don't suppose you can have that capacitor reduced or better yet, some
->>> external pull up added, can you ?
->>
->> Actually our HW engineers have implemented a similar RC circuit to
->> provide a hardware delay for the EN signal. I think this is due to a
->> design note in the datasheet (see chapter 7.4.1) and therefore it's
->> probably widely spread.
-> 
-> RC delay circuits are very common when tying a control signal to a power
-> rail. I'm surprise to see it recommended (with such a large time
-> constant) when the EN signal is actively controlled. It makes sense if
-> the SN65DSI83 supply comes up before the GPIO can be actively driven low
-> (for instance if the supply isn't manually controllable but tied to an
-> always-on power rail), in other cases it's quite counter-productive (I
-> really hope the EN input has a Schmitt trigger).
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On our hardware there's also a pulldown resistor parallel to the
-capacitor which makes sure EN is low from the beginning even if the GPIO
-is not driven yet.
+Hi All,
 
-I don't really understand what the capacitor should be good for, or why
-TI recommends it. It looks counter-productive to me, too.
+On the Andes AX45MP core, cache coherency is a specification option so it
+may not be supported. In this case DMA will fail. To get around with this
+issue this patch series does the below:
+
+1] Andes alternative ports is implemented as errata which checks if the IOCP
+is missing and only then applies to CMO errata. One vendor specific SBI EXT
+(RZFIVE_SBI_EXT_IOCP_SW_WORKAROUND) is implemented as part of errata. If we could
+access the DTB in errata I can get rid of this EXT ID from OpenSBI. Is there any
+approach we can access the DTB in patch callback?
+
+Below are the configs which Andes port provides (and are selected by RZ/Five):
+      - ERRATA_ANDES
+      - ERRATA_ANDES_CMO
+
+2] Andes AX45MP core has a Programmable Physical Memory Attributes (PMA)
+block that allows dynamic adjustment of memory attributes in the runtime.
+It contains a configurable amount of PMA entries implemented as CSR
+registers to control the attributes of memory locations in interest.
+OpenSBI configures the PMA regions as required and creates a reserve memory
+node and propagates it to the higher boot stack.
+
+An RFC patch for OpenSBI is posted here:
+https://patchwork.ozlabs.org/project/opensbi/patch/20221212094421.14556-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+    reserved-memory {
+        #address-cells = <2>;
+        #size-cells = <2>;
+        ranges;
+
+        pma_resv0@58000000 {
+            compatible = "shared-dma-pool";
+            reg = <0x0 0x58000000 0x0 0x08000000>;
+            no-map;
+            linux,dma-default;
+        };
+    };
+
+The above shared DMA pool gets appended to Linux DTB so the DMA memory
+requests go through this region.
+
+3] We provide callbacks to synchronize specific content between memory and
+cache.
+
+        - arch_sync_dma_for_device()
+        - arch_sync_dma_for_cpu()
+
+4] RZ/Five SoC selects the below configs
+        - AX45MP_L2_CACHE
+        - DMA_GLOBAL_POOL
+        - ERRATA_ANDES
+        - ERRATA_ANDES_CMO
+
+OpenSBI implementation patches can be found here:
+1] https://patchwork.ozlabs.org/project/opensbi/cover/20221210103011.7814-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+2]https://patchwork.ozlabs.org/project/opensbi/patch/20221212094421.14556-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+Note,
+- This series requires testing on Cores with zibcom and T-Head SoCs
+- Ive used GCC 12.2.0 for compilation (tested with allmodconfig)
+- Tested all the IP blocks on RZ/Five which use DMA
+- Series is dependant on https://patchwork.kernel.org/project/linux-riscv/cover/20221207180821.2479987-1-heiko@sntech.de/
+
+v4 -> v5
+* Rebased ALTERNATIVE_3() macro on top of Andrew's patches
+* Rebased the changes on top of Heiko's alternative call patches
+* Dropped configuring the PMA from Linux
+* Dropped configuring the L2 cache from Linux and dropped the binding for same
+* Now using runtime patching mechanism instead of compile time config
+
+RFC v3 -> v4
+* Implemented ALTERNATIVE_3() macro 
+* Now using runtime patching mechanism instead of compile time config
+* Added Andes CMO as and errata
+* Fixed comments pointed by Geert
+
+RFC v2-> RFC v3
+* Fixed review comments pointed by Conor
+* Move DT binding into cache folder
+* Fixed DT binding check issue
+* Added andestech,ax45mp-cache.h header file
+* Now passing the flags for the PMA setup as part of andestech,pma-regions
+  property.
+* Added andestech,inst/data-prefetch and andestech,tag/data-ram-ctl
+  properties to configure the L2 cache.
+* Registered the cache driver as platform driver
+
+RFC v1-> RFC v2
+* Moved out the code from arc/riscv to drivers/soc/renesas
+* Now handling the PMA setup as part of the L2 cache
+* Now making use of dma-noncoherent.c instead SoC specific implementation.
+* Dropped arch_dma_alloc() and arch_dma_free()
+* Switched to RISCV_DMA_NONCOHERENT
+* Included DT binding doc
+
+RFC v2: https://patchwork.kernel.org/project/linux-renesas-soc/cover/20221003223222.448551-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+RFC v1: https://patchwork.kernel.org/project/linux-renesas-soc/cover/20220906102154.32526-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (6):
+  riscv: asm: alternative-macros: Introduce ALTERNATIVE_3() macro
+  riscv: asm: vendorid_list: Add Andes Technology to the vendors list
+  riscv: errata: Add Andes alternative ports
+  riscv: mm: dma-noncoherent: Pass direction and operation to
+    ALT_CMO_OP()
+  dt-bindings: cache: r9a07g043f-l2-cache: Add DT binding documentation
+    for L2 cache controller
+  soc: renesas: Add L2 cache management for RZ/Five SoC
+
+ .../cache/andestech,ax45mp-cache.yaml         |  81 ++++++
+ arch/riscv/Kconfig.erratas                    |  22 ++
+ arch/riscv/errata/Makefile                    |   1 +
+ arch/riscv/errata/andes/Makefile              |   1 +
+ arch/riscv/errata/andes/errata.c              |  93 +++++++
+ arch/riscv/include/asm/alternative-macros.h   |  46 +++-
+ arch/riscv/include/asm/alternative.h          |   3 +
+ arch/riscv/include/asm/cacheflush.h           |  12 +
+ arch/riscv/include/asm/errata_list.h          |  41 ++-
+ arch/riscv/include/asm/vendorid_list.h        |   1 +
+ arch/riscv/kernel/alternative.c               |   5 +
+ arch/riscv/mm/dma-noncoherent.c               |  15 +-
+ drivers/soc/renesas/Kconfig                   |   6 +
+ drivers/soc/renesas/Makefile                  |   2 +
+ drivers/soc/renesas/rzfive/Kconfig            |   6 +
+ drivers/soc/renesas/rzfive/Makefile           |   3 +
+ drivers/soc/renesas/rzfive/ax45mp_cache.c     | 256 ++++++++++++++++++
+ 17 files changed, 576 insertions(+), 18 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/cache/andestech,ax45mp-cache.yaml
+ create mode 100644 arch/riscv/errata/andes/Makefile
+ create mode 100644 arch/riscv/errata/andes/errata.c
+ create mode 100644 drivers/soc/renesas/rzfive/Kconfig
+ create mode 100644 drivers/soc/renesas/rzfive/Makefile
+ create mode 100644 drivers/soc/renesas/rzfive/ax45mp_cache.c
+
+-- 
+2.25.1
+
