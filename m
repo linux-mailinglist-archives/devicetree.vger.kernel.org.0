@@ -2,115 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9EF764A2BF
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 15:00:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8F4064A347
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 15:29:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232570AbiLLOAj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 09:00:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33468 "EHLO
+        id S232203AbiLLO3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 09:29:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232187AbiLLOAi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 09:00:38 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D203C71
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 06:00:37 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id 1so18735845lfz.4
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 06:00:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uXNjasCAMqOsg4AwZXK5gy3WyUBRJtec+Tu/Jp4jrQw=;
-        b=NxzUJG6T+Im1jq8ga35JuknXDOmmVrmSyRQwnXdaYXpZ5j6jy5eS9o42QegY442r6Y
-         SnnKVYmQyXW/0lA2ozQO15CIaHl90jrpDrcRDxaE/BC+5GpLpUVyISUYZ2Lqzj5aUhla
-         XOC5f1e61kovwwIlZ2Np2Vw10Uox8NWHw3yc7WyELnbXs+t5G+ZKD4lp9CA1VBbpZeii
-         sF+d01ghPWsqCNYOpJWTE0t8NQsRN6mg0y8ub2Yo6CKI61Y9fvA24hZFp/gY8qoc5HDP
-         BYo6IOFZPoLfv+oYAgHbWZrRYjWvi1BZz/v6ikJHClpZSIP1FBZf3f2lWE9re/joRPUJ
-         0Xtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uXNjasCAMqOsg4AwZXK5gy3WyUBRJtec+Tu/Jp4jrQw=;
-        b=nWejtQX4onqU7Ct9vB6s5sIEeFy9GQSEh5bQMdL7ALAXGrDJEY1RSJgpPLTLvpd8rB
-         zzVP05yu3EVT5cRjgfppAfaqi76eKsdq5sK1b7Dh9aJvUw9S0Nt1RdZN9SoE1bwk0Yp7
-         G468sWlJ3jt7HS9ZIQ9IezpZ8DGJzBBf74DCiI+vScVyMtxoK7/0jFwT30yfyw/UtrtB
-         Wk1DQabkFvVO/sUyWVpE2wPnvNhXcJKi1Biq2TTNXpxoCSrUvoNH9sO7W9ZshXjp48Mv
-         qLT+rhjz2uyOk7ne4603n1CclpzL3Xbd/VqRIsy97W2oC07XpHd7dNdFQtI9a9c+8Gxc
-         9csw==
-X-Gm-Message-State: ANoB5plv+fpmYq8nNMRMQa/8ZAJD4Ger4QK15s3nu1ekq60x8f6GzXQu
-        k1ZpqX106poIctLieweIwYdGcg==
-X-Google-Smtp-Source: AA0mqf76Z5LgwMdRcetNB2+IXivy9ORSfv9m/zYIe2DUINSY3rYdKIhoflCpAzaW6kN/AOO8Bhuucw==
-X-Received: by 2002:a05:6512:250f:b0:4a4:68b9:66d4 with SMTP id be15-20020a056512250f00b004a468b966d4mr4349072lfb.31.1670853635653;
-        Mon, 12 Dec 2022 06:00:35 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id k38-20020a0565123da600b004b5a2a33972sm1638305lfv.40.2022.12.12.06.00.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Dec 2022 06:00:35 -0800 (PST)
-Message-ID: <894b930a-797d-3197-0c1a-5253ebb0a3f8@linaro.org>
-Date:   Mon, 12 Dec 2022 15:00:34 +0100
+        with ESMTP id S231880AbiLLO3E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 09:29:04 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 399A312ABB;
+        Mon, 12 Dec 2022 06:28:59 -0800 (PST)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BCBUgBH022168;
+        Mon, 12 Dec 2022 14:28:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=X6tkhFxmvU4NUYJxmev1CkaxZ/8skwIMbfGZNf44NrU=;
+ b=L4auqA4bceTr4glQ68eq8W2DwyqaItWeZD2/8C8nT1stfye7pHxCTNWmJTZI0Uwg5QBo
+ P8g+Ewh+Q3DQtnsh2LTtrmEu4D2ZgCi8bgdyeg5hnF4MSR+13vHRjMASeYvFN7iM+0Ob
+ xcNhPdU81Pm6H6OJF3n7wk/dgeR7Bg4eHmC9T2EaHzvK6CTiH7xWbEUec5GFXLVjVPcZ
+ M6wVRPn/1wtTK+ui49jRv0YWT87Vm7/HSPfZxsDBdaDbMGEWhjqmojRC57SLGKjGyhxL
+ WvnJ4OVOaMDJWeLGspCO4mjjIPHyw3vs59kPMu1CqsvyROx3xff3loeUi2iWz4XwuQta 1g== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3me09g8wut-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 12 Dec 2022 14:28:12 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2BCESB5k002354
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 12 Dec 2022 14:28:12 GMT
+Received: from [10.216.26.32] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 12 Dec
+ 2022 06:28:04 -0800
+Message-ID: <bbd462ec-33ed-1302-6532-8efb1af91017@quicinc.com>
+Date:   Mon, 12 Dec 2022 19:57:59 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v2 4/6] arm64: dts: qcom: sdm845: move DSI/QUP/QSPI opp
- tables out of SoC node
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH] remoteproc: elf_loader: Update resource table name check
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221212100232.138519-1-krzysztof.kozlowski@linaro.org>
- <20221212100232.138519-4-krzysztof.kozlowski@linaro.org>
- <C262B514-6AB2-41C8-BBBA-CAE3186BBB3D@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <C262B514-6AB2-41C8-BBBA-CAE3186BBB3D@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+To:     Peng Fan <peng.fan@oss.nxp.com>,
+        <linux-remoteproc@vger.kernel.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
+        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>, <devicetree@vger.kernel.org>,
+        <krzysztof.kozlowski@linaro.org>, <mathieu.poirier@linaro.org>
+References: <1669897248-23052-1-git-send-email-quic_srivasam@quicinc.com>
+ <24361a63-ee96-4291-175e-f25c1380cd49@oss.nxp.com>
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Organization: Qualcomm
+In-Reply-To: <24361a63-ee96-4291-175e-f25c1380cd49@oss.nxp.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: gvYhcOw7hzKeY9Q9gsNuXA8-xtSod5Ch
+X-Proofpoint-GUID: gvYhcOw7hzKeY9Q9gsNuXA8-xtSod5Ch
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-12-12_02,2022-12-12_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 mlxlogscore=999
+ bulkscore=0 phishscore=0 adultscore=0 impostorscore=0 spamscore=0
+ lowpriorityscore=0 mlxscore=0 malwarescore=0 priorityscore=1501
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2212120132
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/12/2022 14:46, Dmitry Baryshkov wrote:
-> 
-> 
-> On 12 December 2022 13:02:30 GMT+03:00, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->> The SoC node is a simple-bus and its schema expect to have nodes only
->> with unit addresses:
+
+On 12/10/2022 8:36 AM, Peng Fan wrote:
+Thanks for your time and valuable suggestion Pang!!!
+>
+> On 12/1/2022 8:20 PM, Srinivasa Rao Mandadapu wrote:
+>> Update resource table name check with sub string search instead of
+>> complete string search.
+>> In general Qualcomm binary contains, section header name
+>> (e.g. .resource_table), amended with extra string to differentiate
+>> with other sections.
+>> So far Android adsp binaries are being authenticated using TZ,
+>> hence this mismatch hasn't created any problem.
+>> In recent developments, ADSP binary is being used in Chrome based
+>> platforms, which doesn't have TZ path, hence resource table is
+>> required for memory sandboxing.
 >>
->>  sdm850-lenovo-yoga-c630.dtb: soc@0: opp-table-qup: {'compatible': ['operating-points-v2'], 'phandle': [[60]], 'opp-50000000':
->>  ... 'required-opps': [[55]]}} should not be valid under {'type': 'object'}
+>> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+>> ---
+>>   drivers/remoteproc/remoteproc_elf_loader.c | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
 >>
->> Move to top-level OPP tables:
->> - DSI and QUP which are shared between multiple nodes,
-> 
-> This makes me rise a question: on other platforms we have been placing the shared dsi opp table into one of DSI nodes (usually into the second one). Should we also move such tables up to the top level?
+>> diff --git a/drivers/remoteproc/remoteproc_elf_loader.c 
+>> b/drivers/remoteproc/remoteproc_elf_loader.c
+>> index 5a412d7..0feb120 100644
+>> --- a/drivers/remoteproc/remoteproc_elf_loader.c
+>> +++ b/drivers/remoteproc/remoteproc_elf_loader.c
+>> @@ -272,7 +272,7 @@ find_table(struct device *dev, const struct 
+>> firmware *fw)
+>>           u64 offset = elf_shdr_get_sh_offset(class, shdr);
+>>           u32 name = elf_shdr_get_sh_name(class, shdr);
+>>   -        if (strcmp(name_table + name, ".resource_table"))
+>> +        if (!strstr(name_table + name, ".resource_table"))
+>>               continue;
+>
+> How about ?
+>     if (strcmp(name_table + name, ".resource_table")) {
+>         if (strstr(name_table + name, ".resource_table"))
+>               break;
+>         continue;
+>     }
 
-Hmm, indeed I see SM8250. The location of the table from
-shared/non-shared point of view is one, but second problem is that DSI
-has address/size cells. DTC has additional checks for certain buses thus
-the QSPI table cannot be inside such node with address/size cells:
+It looks valid approach to me. But other reviewers may object on double 
+check. Let's see Stephen Boyd comments also,
 
-Warning (spi_bus_reg): /soc@0/spi@88dc000/opp-table: missing or empty
-reg property
+and handle it accordingly.
 
-This check is not triggered for DSI, but the concept is the same here -
-nodes with address/size cells are expected to have only properties, not
-other objects. See simple-bus:
-https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/simple-bus.yaml#L59
-
-
-Best regards,
-Krzysztof
-
+>
+> Regards,
+> Peng.
+>>             table = (struct resource_table *)(elf_data + offset);
