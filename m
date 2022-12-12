@@ -2,113 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C83E5649A6C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 09:52:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8D36649A81
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 09:57:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231661AbiLLIwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 03:52:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59640 "EHLO
+        id S231462AbiLLI5C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 03:57:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231664AbiLLIwb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 03:52:31 -0500
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1DAEE082;
-        Mon, 12 Dec 2022 00:52:30 -0800 (PST)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BC6t8Qc010626;
-        Mon, 12 Dec 2022 09:51:55 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=selector1;
- bh=0lIC51J8od1nykTstEKN4gxeywVJqj5+Zu/UUfT53mE=;
- b=USe/0t5y8LxwSdvd44p8tRXRwNbwpbJPLeGa4edNcFTDnQE6KtC2yu5EqTXpLGiEdZ3R
- lz5Tiu0Cj2ogau0gD87f/poFcQQYke9H1UvqjasLVg6kHIOIo/+FwO7sOa7d7RHWmep5
- X4wPV+gS88HIzXSQFCicp7x6O7y3jYgbKAfp49OMyF+rALSSfOOs4w+O45rsgJI4e9NR
- Z+4u5xafbfFcH2e+ltc1Zbbg30e8YKHo2wPDRCHDzVE5kT2e3e3eNH7e/8d6kQ+YttP7
- TxODKkV6TDTvm3k6Wkf6nFGV8lSMKiEIrvcG4tY8q4ic92MFs1zgc4OjOOhxWB8uTZSH iA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3mcgdp9nk7-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 12 Dec 2022 09:51:55 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id E442510003B;
-        Mon, 12 Dec 2022 09:51:49 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7EF00217B72;
-        Mon, 12 Dec 2022 09:51:49 +0100 (CET)
-Received: from localhost (10.201.20.130) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Mon, 12 Dec
- 2022 09:51:49 +0100
-From:   <patrice.chotard@foss.st.com>
-To:     <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <alexandre.torgue@foss.st.com>
-CC:     <mcoquelin.stm32@gmail.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux@armlinux.org.uk>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        Oleksij Rempel <o.rempel@pengutronix.de>,
-        Alexandre Torgue <alexandre.torgue@st.com>
-Subject: [PATCH 4/4] ARM: dts: stm32: Fix qspi pinctrl phandle for stm32mp151a-prtt1l
-Date:   Mon, 12 Dec 2022 09:51:42 +0100
-Message-ID: <20221212085142.3944367-5-patrice.chotard@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221212085142.3944367-1-patrice.chotard@foss.st.com>
-References: <20221212085142.3944367-1-patrice.chotard@foss.st.com>
+        with ESMTP id S231365AbiLLI4w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 03:56:52 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC050DEA
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 00:56:49 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id p36so17390928lfa.12
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 00:56:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3QdvuUyS+6CWEm93IiNhP+hlhAXaHYJrxB4vuciAs1s=;
+        b=GR01tUm7ffyceoIwnCnYkv1qFr/OOJetI0ZTc8QVmvp+qLB8Dhm2cfnO0Uv63Bm+J2
+         KI9SBFqezS4Uo9/JLqoBtHLiadnZIiutz0S+0zQNqsqLxUJqOjlLUSETkN//C0FtnMVJ
+         lF+P8himJ6dWzQLHIHXizTqEfcGF4lQH4LW0TkdN/splysgemCJPrlWpzWwUwGsj4GTq
+         /SoGiBkOu5SStPXI73/vi9/eUbPTFdN7em0/BiVZbqbQmrYPpMQ5iwHD4Ot5odEYzxcP
+         ldz1a0W64oh9cioYJ/X1BxbOe8zqyiOvUEw5jWrNKuvYdjxsetl1I5RE3PSheZCK9diI
+         YV1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3QdvuUyS+6CWEm93IiNhP+hlhAXaHYJrxB4vuciAs1s=;
+        b=12UVPmft+jtoW0WVLoRdyZ5W3OVoD87IszyS8fWD53fRHCYwRvjtL7WALvhcJr1r+4
+         mZcKScHMvBM1Wg1NkvQ6fAJ4rsFSr2a/DrmeNeC1Hk3yQ6sb6p2pZwM47Axh29vBOMxG
+         YO56+MRkQxma/pLuh1OaqcYfenC29BxqkwPRxSZGnNuhGuo6lsNrEq5LoVmYmGgg2zt9
+         GIrRYSuXiwZ1y5DiSeySxW8DAsK02U/zoNw5oxMwwksE0m6zvcD/MrBVHLrIRE0i6RBy
+         g/MCtSFriF2MQP2TnNS2VDSljTkEnsUoWsEiGFbfIccDF+OIRynbnKFRsI1BTvWS9mgL
+         fqbA==
+X-Gm-Message-State: ANoB5pnLYnZaEqpSk6W19sZ4q0ylG2tSH8qYNHVWJDauA59JF5LBB+CH
+        gx85PJrJvtYMfJDlItKA9z9NiA==
+X-Google-Smtp-Source: AA0mqf4KMzDBXw3GpK3cmEv0n839Lx+uhrj/I437niP4N28oe3+cSmv2GHnbgFFIprLLCYmPQ4IRyQ==
+X-Received: by 2002:a05:6512:15a6:b0:4b4:b5bf:3ce6 with SMTP id bp38-20020a05651215a600b004b4b5bf3ce6mr7288585lfb.38.1670835408063;
+        Mon, 12 Dec 2022 00:56:48 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id cf31-20020a056512281f00b0049465afdd38sm1563922lfb.108.2022.12.12.00.56.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Dec 2022 00:56:47 -0800 (PST)
+Message-ID: <c592dd31-5e9a-c2a2-1c70-46b7cffa9c5d@linaro.org>
+Date:   Mon, 12 Dec 2022 09:56:46 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.201.20.130]
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-12-12_01,2022-12-08_01,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v4 2/3] dt-bindings: leds: add worldsemi,ws2812b
+Content-Language: en-US
+To:     Chuanhong Guo <gch981213@gmail.com>, linux-leds@vger.kernel.org,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20221212045558.69602-1-gch981213@gmail.com>
+ <20221212045558.69602-3-gch981213@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221212045558.69602-3-gch981213@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Patrice Chotard <patrice.chotard@foss.st.com>
+On 12/12/2022 05:55, Chuanhong Guo wrote:
+> Add dt binding schema for WorldSemi WS2812B driven using SPI
+> bus.
+> 
+> Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
+> ---
+> Changes since v1:
+> remove linux driver reference from description
+> remove some obvious descriptions
+> fix unit address regex in multi-led property
+> drop various minItems
+> add maxItems = 1 to reg
+> fix node names and property orders in binding example
+> drop -spi from compatible string
+> add default-brightness
+> 
+> Change since v2:
+> drop "this patch" from commit message
+> rename leds to led-controller
+> drop default-brightness and default-intensity
+> 
+> Change since v3:
+> reword commit title
+> 
+>  .../bindings/leds/worldsemi,ws2812b.yaml      | 116 ++++++++++++++++++
+>  1 file changed, 116 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/worldsemi,ws2812b.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/worldsemi,ws2812b.yaml b/Documentation/devicetree/bindings/leds/worldsemi,ws2812b.yaml
+> new file mode 100644
+> index 000000000000..548c05ac3d31
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/worldsemi,ws2812b.yaml
+> @@ -0,0 +1,116 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/worldsemi,ws2812b.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: WS2812B LEDs driven using SPI
+> +
+> +maintainers:
+> +  - Chuanhong Guo <gch981213@gmail.com>
+> +
+> +description: |
+> +  WorldSemi WS2812B is a individually addressable LED chip that can be chained
+> +  together and controlled individually using a single wire.
+> +  This binding describes a chain of WS2812B LEDs connected to the SPI MOSI pin.
+> +  Typical setups includes connecting the data pin of the LED chain to MOSI as
+> +  the only device or using CS and MOSI with a tri-state voltage-level shifter
+> +  for the data pin.
+> +  The SPI frequency needs to be 2.105MHz~2.85MHz for the timing to be correct
+> +  and the controller needs to send all the bytes continuously.
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: worldsemi,ws2812b
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    minimum: 2105000
+> +    maximum: 2850000
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^multi-led@[0-9a-f]+$":
+> +    type: object
+> +    $ref: leds-class-multicolor.yaml#
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      color-index:
+> +        description: |
+> +          A 3-item array specifying color of each components in this LED. It
+> +          should be one of the LED_COLOR_ID_* prefixed definitions from the
+> +          header include/dt-bindings/leds/common.h. Defaults to
+> +          <LED_COLOR_ID_GREEN LED_COLOR_ID_RED LED_COLOR_ID_BLUE>
+> +          if unspecified.
+> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> +        maxItems: 3
 
-Chip select pinctrl phandle was missing in several stm32mp15x based boards.
+In general I am fine with it, although there is still question for
+adding more multi-color defines in binding headers to replace this
+property - GRB/RBG/GBR and even more for RGBW.
 
-Fixes: ea99a5a02ebc ("ARM: dts: stm32: Create separate pinmux for qspi cs pin in stm32mp15-pinctrl.dtsi)
+Pavel, Lee, any thoughts from your side?
 
-Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Alexandre Torgue <alexandre.torgue@st.com>
-Cc: linux-stm32@st-md-mailman.stormreply.com
-To: linux-arm-kernel@lists.infradead.org
----
- arch/arm/boot/dts/stm32mp151a-prtt1l.dtsi | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm/boot/dts/stm32mp151a-prtt1l.dtsi b/arch/arm/boot/dts/stm32mp151a-prtt1l.dtsi
-index d865ab5d866b..dd23de85100c 100644
---- a/arch/arm/boot/dts/stm32mp151a-prtt1l.dtsi
-+++ b/arch/arm/boot/dts/stm32mp151a-prtt1l.dtsi
-@@ -101,8 +101,12 @@ &iwdg2 {
- 
- &qspi {
- 	pinctrl-names = "default", "sleep";
--	pinctrl-0 = <&qspi_clk_pins_a &qspi_bk1_pins_a>;
--	pinctrl-1 = <&qspi_clk_sleep_pins_a &qspi_bk1_sleep_pins_a>;
-+	pinctrl-0 = <&qspi_clk_pins_a
-+		     &qspi_bk1_pins_a
-+		     &qspi_cs1_pins_a>;
-+	pinctrl-1 = <&qspi_clk_sleep_pins_a
-+		     &qspi_bk1_sleep_pins_a
-+		     &qspi_cs1_sleep_pins_a>;
- 	reg = <0x58003000 0x1000>, <0x70000000 0x4000000>;
- 	#address-cells = <1>;
- 	#size-cells = <0>;
--- 
-2.25.1
+Best regards,
+Krzysztof
 
