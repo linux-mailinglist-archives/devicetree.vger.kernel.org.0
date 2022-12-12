@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30F7A64A4DE
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 17:36:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B30664A4E7
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 17:36:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232771AbiLLQg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 11:36:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39824 "EHLO
+        id S232808AbiLLQgj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 11:36:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232552AbiLLQgG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 11:36:06 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CA6013F75
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 08:35:50 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id p36so271431lfa.12
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 08:35:50 -0800 (PST)
+        with ESMTP id S232620AbiLLQgN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 11:36:13 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 979C913F93
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 08:35:52 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id g7so318735lfv.5
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 08:35:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=JJv0ofBLKoLJVN69JWEtIQxQMwvVM2xRN5xcaxTrEIU=;
-        b=WcEBvpkXwt1t9UaiOYqNJ6vJb9iamTE+AQelOAHKvqCyOYMdbvfrazvjRP7imi1AAt
-         xqwB1NZEtyQumf68k89kuMbV5a40y9lCCH62ahA1HyC3/qd9gbUoD40EXvbFEoM7/fdR
-         kZphHrWVPyxTI582GhrdNjxdMXRTdO758uPF7zbF3wY3kRVH8M0Vuhm28+A9/7BbZ5zt
-         JeldgYhEYsDMKTrniuQK/P3zsC13leUuxsMJ7E/xUpbt1oYa0Q8thp44Ux6OJVfIMlSN
-         UtSO/ilrVlfu2bMlkqC8LgkFMKUgl9kK/gff+obwfWV3sjR2uxxQ6J5EbAPyCE0FQWDr
-         TdFQ==
+        bh=WMYpvtSfwDxCzfIHZhIbSDEbFJT+TaF8mIcLpnMfQgc=;
+        b=fkSp9mEjEyRJN3vrbKnBDL5ZekTLuhkdrkTe1tfnE521dXSUN+gmnrYNgPKczX8cua
+         UlJ2FwOj/jAG/t1Bf5mma7Mpp2Uh2ThRyGocdkTRkIJx1jbH1dvx/S+9h6zto4MskboM
+         p5/ejxfzP9jd4jiN996y36irO17Zre6wctFuGRj2QK1T5L7866u/rDZLu+sxsNTGMubY
+         oa7aA76KLfF5waevK2XFeQyxkaBpKbTHLcmvzOx50o040Ya+NyJRVEoahqIyxz1//eee
+         qDF/KxZKOjHk2m108Loyl1I2WMBMPLlWN+MF/9pxhpVZHDOpQBJLZrFghUJbPEjn6XiN
+         6oiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=JJv0ofBLKoLJVN69JWEtIQxQMwvVM2xRN5xcaxTrEIU=;
-        b=dKUI3JO2uumJQE8iMZAeHy9Oy5xWXJd5GpRnmwpjGUeHiiSv8YGKUxhvToO9vhsMpC
-         vAAHfiqn82IRCtHINNY2hDyyYCaErxQmxPS+tdDyEXqJCANE6h3sLDSj1+jVdKuw0wQL
-         JdO37A6qij/DxovI/oWEer7lfJti+JAmGN6o7Jl1JVMEBSPROowM/eSdNixSPmhoHbrO
-         EoWgNujGnFHlAbgFf4rFXrdDwET+jkvGJdWJCXAyPQKQn2Jyg4mC4c4kmoWPOTsVqLxh
-         m4J9YmN2HY2Wxpr5HXl9Tkl7xqdIlhTv4FyEO0J3iz0tWu/lATCF8sTs7zLFpyO+eT/e
-         1BZQ==
-X-Gm-Message-State: ANoB5pkBJsDMqI5U6TSJmfAsuOpfIuQRxN2n2kgUjfFy1l6VmDWQGJte
-        IpeydsmveDx3Clju9m5wvY0bVg==
-X-Google-Smtp-Source: AA0mqf4Q3dqqRpXFWgXQ9QG0XFecfleK0UEam7R5WficLSUWtKRmOfr1HbXsPng5RbpUEGg/fZDPYw==
-X-Received: by 2002:a05:6512:4012:b0:4b6:e4e7:624c with SMTP id br18-20020a056512401200b004b6e4e7624cmr2447777lfb.0.1670862949936;
-        Mon, 12 Dec 2022 08:35:49 -0800 (PST)
+        bh=WMYpvtSfwDxCzfIHZhIbSDEbFJT+TaF8mIcLpnMfQgc=;
+        b=uK1q0aLhA82t/FlkscBtjugDp/pYid6D0FRMQRkAFxKxWPIPkxBZ4Q5+b9rb4VpsTh
+         3RZqfCC7bck2TXlHLe6StesNJfgIU18EzTgJVBCf5UFkjZDtxPsoj456HBbEt+UVTGW/
+         m+IoQWdECdbRkGbK0CkWOHvU2y8oS3Eh2gjxPVFw5ToH1ys/40gL9YhWqml4MtlW+cI5
+         PWyb+09MUqtCLFIKAvIX0p0dVV2Wrsjh6SiJdn0Dne3IT9dbu8ovura0Iq9FqP3mtYiU
+         +umRrGxYKw0tXpFdqgCbUV8fJrQcyeSIcBj5d8aM33EX2MOq54Ulpx1h2Vg4nPTJobZf
+         N1SQ==
+X-Gm-Message-State: ANoB5pnHDoGnQgNVtlfV0TO4udJ63hPyUoFu64aQdpfaQCaTXJran6Qj
+        jhGx1wvHwtxaEm4FBxSX6iG6cg==
+X-Google-Smtp-Source: AA0mqf4jCUK8D/Vr3CV5Nu+ZW3eZtFyKsscqyKq8yK3XYfClYd3U2dbOYJETJ90iL2S/I0F4itWELA==
+X-Received: by 2002:a05:6512:ea5:b0:4b5:a207:8d73 with SMTP id bi37-20020a0565120ea500b004b5a2078d73mr5418067lfb.52.1670862951011;
+        Mon, 12 Dec 2022 08:35:51 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id v16-20020ac25b10000000b004acff58a951sm29209lfn.133.2022.12.12.08.35.49
+        by smtp.gmail.com with ESMTPSA id v16-20020ac25b10000000b004acff58a951sm29209lfn.133.2022.12.12.08.35.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Dec 2022 08:35:49 -0800 (PST)
+        Mon, 12 Dec 2022 08:35:50 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -58,9 +58,9 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 11/12] ARM: dts: qcom: msm8960: drop second clock frequency from timer
-Date:   Mon, 12 Dec 2022 17:35:31 +0100
-Message-Id: <20221212163532.142533-11-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 12/12] ARM: dts: qcom: msm8960: add qcom,kpss-wdt-mdm9615
+Date:   Mon, 12 Dec 2022 17:35:32 +0100
+Message-Id: <20221212163532.142533-12-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221212163532.142533-1-krzysztof.kozlowski@linaro.org>
 References: <20221212163532.142533-1-krzysztof.kozlowski@linaro.org>
@@ -68,37 +68,34 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Keep only one clock frequency for timer, because:
-1. DT schema does not allow multiple frequencies in such property,
-2. The Linux timer driver reads only first frequency.
+Add specific compatible to timer/watchdog device node.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/qcom-msm8960.dtsi | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ arch/arm/boot/dts/qcom-mdm9615.dtsi | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/qcom-msm8960.dtsi b/arch/arm/boot/dts/qcom-msm8960.dtsi
-index 63c3c40fe9a2..a0369b38fe07 100644
---- a/arch/arm/boot/dts/qcom-msm8960.dtsi
-+++ b/arch/arm/boot/dts/qcom-msm8960.dtsi
-@@ -109,8 +109,7 @@ timer@200a000 {
- 				     <GIC_PPI 2 0x301>,
- 				     <GIC_PPI 3 0x301>;
- 			reg = <0x0200a000 0x100>;
--			clock-frequency = <27000000>,
--					  <32768>;
-+			clock-frequency = <27000000>;
- 			cpu-offset = <0x80000>;
+diff --git a/arch/arm/boot/dts/qcom-mdm9615.dtsi b/arch/arm/boot/dts/qcom-mdm9615.dtsi
+index a6331e5ebe09..536bd7b50762 100644
+--- a/arch/arm/boot/dts/qcom-mdm9615.dtsi
++++ b/arch/arm/boot/dts/qcom-mdm9615.dtsi
+@@ -79,7 +79,8 @@ intc: interrupt-controller@2000000 {
  		};
  
+ 		timer@200a000 {
+-			compatible = "qcom,kpss-timer", "qcom,msm-timer";
++			compatible = "qcom,kpss-wdt-mdm9615", "qcom,kpss-timer",
++				     "qcom,msm-timer";
+ 			interrupts = <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_EDGE_RISING)>,
+ 				     <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_EDGE_RISING)>,
+ 				     <GIC_PPI 3 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_EDGE_RISING)>;
 -- 
 2.34.1
 
