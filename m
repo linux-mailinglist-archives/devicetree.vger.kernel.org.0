@@ -2,136 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C928A64A64E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 18:54:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4B5064A683
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 19:08:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231768AbiLLRyP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 12:54:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54950 "EHLO
+        id S233361AbiLLSIl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 13:08:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229958AbiLLRyO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 12:54:14 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA22BBB1;
-        Mon, 12 Dec 2022 09:54:13 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 5E14EB80DE3;
-        Mon, 12 Dec 2022 17:54:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03284C433D2;
-        Mon, 12 Dec 2022 17:54:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1670867651;
-        bh=bY7EznKOlvKF57kav1/EOPRkTTovAkvgGO10ZJYhYcQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=NEporkZyXqNlMag6C+Ps4PX6ja8kKKVrOxDL6x7PvrW29OHC5W7xSZmu9SXEhpBDY
-         r1u0NtAsgcxkxPcQGQjTp4P081cKY5afiq3hBpyqb8ksluhHUS5it/MZoiatczV6JH
-         ErPOt/bfTUkHCttuiZxR8DlXZ1p2iBR1iFmUONW/rnl3CRTN/Xym7Q/ukReNxEOkBz
-         agZsF0SFjFWHfrcnfKp4uW7qiDrRYv7ZSPw/I/MO5A+rLqbj5QVp2tGHlePHBBrWHd
-         2jow0BX/dlgEayePuD8xDV4UPierEokD1T+CIpif0qvZJIIHKb7v8eCOnKD+rhSP6j
-         +rOk2OjxV9xEg==
-Received: by mail-ua1-f47.google.com with SMTP id n9so3390356uao.13;
-        Mon, 12 Dec 2022 09:54:10 -0800 (PST)
-X-Gm-Message-State: ANoB5pmr8+DrwN2OmCxKyMaTxt4A5sXh/Npx/EsNSZz9QB5m0aDV9Ob5
-        OaR3+GRiUwjWjREdMQv/ceBOoECXAZz0MSaWRw==
-X-Google-Smtp-Source: AA0mqf573L42dMXtmZJVUUuskEYLV16yalBiJSgkJa1EEtoeIRtYyXQ3qTxa95wj6G+9q09neTNW9b+h3tdGkRXlLMY=
-X-Received: by 2002:ab0:3a96:0:b0:419:678:cf31 with SMTP id
- r22-20020ab03a96000000b004190678cf31mr35543884uaw.63.1670867649788; Mon, 12
- Dec 2022 09:54:09 -0800 (PST)
+        with ESMTP id S233272AbiLLSIN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 13:08:13 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBC672652
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 10:07:42 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id ay14-20020a05600c1e0e00b003cf6ab34b61so5918683wmb.2
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 10:07:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MsnaVNQZa+bH87IGKD3eNLndnfCgVPoadhiR+NchvNE=;
+        b=MT58fo+ATFwyk3UB1TFDLScBKvBdngb9oD90Zf8vqqvtOuqyd99P5DB/6HSLC/k1FK
+         s8e5ZSr2YOf2rZpDKdRtmujoDYCTHOQmKo3x4IUb+RGcv1OKXogUN0uosW1tbZ77FIvM
+         A3rL97Yu2DvehEAOBsg6ajZcxFsAIl/vJf7ax9MBPYkl6Wb9FVLSBHZeFTXJJfjjRIge
+         dJgSkpAAiD0F+k4D5eNxeMKWlsYbeHcHyOZDjCGuyG+98ahJ6AApDER7xde9xo1jVGbG
+         HHlDmO9vnVgR882LgOKyeYzuqrVBJNXudtHhYAqyp39K10HQRCrg9l3X1qMdFYXG7gA/
+         kHUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MsnaVNQZa+bH87IGKD3eNLndnfCgVPoadhiR+NchvNE=;
+        b=46wUrv0IEnIdiJSK3yteiyyX8eIORvXkMzeuGtollC4pObj5kg2OyjfZ7+Qbs9XnBc
+         q9ASraBjJ/6xZeSm1oJcrjynCcD5N+GArDroP5iTi79Z5SWjt/nL3Mi9PACOYRgaEtZC
+         tjbN81fOb5u22KiqGuxm8YQ/461MF+qQwYNq14Rc6ZmECDk5CQQGGPpmzy03t47x+rMY
+         dr3KyMMbisI0msqQfcxSGiopHH1KrZMcdBwBW5UWR1P6mAn5hdppfFdw9BXwKpxYMZwH
+         LGQm+XUwTqHbGyxVQVuoSJVi7bhG5c/KxgK2lQvg18NhtxQFPnXOu6Kf7raHDwpBDoDh
+         Aa4g==
+X-Gm-Message-State: ANoB5pnBNcWEgWBirS3n1GkjAhRIQ5oDYDm2XDnLN6zCG9Z6yn4QNvn7
+        XCU2dtBhEjlM5nv9dth5acLfKg==
+X-Google-Smtp-Source: AA0mqf5PnTDqvX0IOnkaB4yW9YsKVl/w+0U3ILEYH/VWAetLNkr+dG+H1b5iE3e9mPj0f87dcdIZhg==
+X-Received: by 2002:a05:600c:1c21:b0:3d0:6ef9:9f2c with SMTP id j33-20020a05600c1c2100b003d06ef99f2cmr13333276wms.16.1670868461400;
+        Mon, 12 Dec 2022 10:07:41 -0800 (PST)
+Received: from localhost.localdomain (host-78-150-37-98.as13285.net. [78.150.37.98])
+        by smtp.gmail.com with ESMTPSA id t123-20020a1c4681000000b003a3170a7af9sm10156808wma.4.2022.12.12.10.07.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Dec 2022 10:07:40 -0800 (PST)
+From:   Sudip Mukherjee <sudip.mukherjee@sifive.com>
+To:     Serge Semin <fancer.lancer@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     jude.onyenegecha@sifive.com, ben.dooks@sifive.com,
+        jeegar.lakhani@sifive.com, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Sudip Mukherjee <sudip.mukherjee@sifive.com>
+Subject: [PATCH v2 00/15] Add support for enhanced SPI for Designware SPI controllers
+Date:   Mon, 12 Dec 2022 18:07:17 +0000
+Message-Id: <20221212180732.79167-1-sudip.mukherjee@sifive.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20221212143102.175065-1-alexghiti@rivosinc.com>
-In-Reply-To: <20221212143102.175065-1-alexghiti@rivosinc.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 12 Dec 2022 11:53:58 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJz4uf+956oC4BfZGdjb+rfAZqduexLw3=D5HHjtyBC+g@mail.gmail.com>
-Message-ID: <CAL_JsqJz4uf+956oC4BfZGdjb+rfAZqduexLw3=D5HHjtyBC+g@mail.gmail.com>
-Subject: Re: [PATCH v2] riscv: Use PUD/P4D/PGD pages for the linear mapping
-To:     Alexandre Ghiti <alexghiti@rivosinc.com>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arch@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 12, 2022 at 8:31 AM Alexandre Ghiti <alexghiti@rivosinc.com> wrote:
->
-> During the early page table creation, we used to set the mapping for
-> PAGE_OFFSET to the kernel load address: but the kernel load address is
-> always offseted by PMD_SIZE which makes it impossible to use PUD/P4D/PGD
-> pages as this physical address is not aligned on PUD/P4D/PGD size (whereas
-> PAGE_OFFSET is).
->
-> But actually we don't have to establish this mapping (ie set va_pa_offset)
-> that early in the boot process because:
->
-> - first, setup_vm installs a temporary kernel mapping and among other
->   things, discovers the system memory,
-> - then, setup_vm_final creates the final kernel mapping and takes
->   advantage of the discovered system memory to create the linear
->   mapping.
->
-> During the first phase, we don't know the start of the system memory and
-> then until the second phase is finished, we can't use the linear mapping at
-> all and phys_to_virt/virt_to_phys translations must not be used because it
-> would result in a different translation from the 'real' one once the final
-> mapping is installed.
->
-> So here we simply delay the initialization of va_pa_offset to after the
-> system memory discovery. But to make sure noone uses the linear mapping
-> before, we add some guard in the DEBUG_VIRTUAL config.
->
-> Finally we can use PUD/P4D/PGD hugepages when possible, which will result
-> in a better TLB utilization.
->
-> Note that we rely on the firmware to protect itself using PMP.
->
-> Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
-> ---
->
-> v2:
-> - Add a comment on why RISCV64 does not need to set initrd_start/end that
->   early in the boot process, as asked by Rob
->
-> Note that this patch is rebased on top of:
-> [PATCH v1 1/1] riscv: mm: call best_map_size many times during linear-mapping
->
->  arch/riscv/include/asm/page.h | 16 ++++++++++++++++
->  arch/riscv/mm/init.c          | 25 +++++++++++++++++++------
->  arch/riscv/mm/physaddr.c      | 16 ++++++++++++++++
->  drivers/of/fdt.c              |  7 ++++++-
->  4 files changed, 57 insertions(+), 7 deletions(-)
+The is v2 of the patch series adding enhanced SPI support. Some Synopsys SSI
+controllers support enhanced SPI which includes Dual mode, Quad mode and
+Octal mode. DWC_ssi includes clock stretching feature in enhanced SPI modes
+which can be used to prevent FIFO underflow and overflow conditions while
+transmitting or receiving the data respectively.
 
-[...]
+This is almost a complete rework based on the review from Serge.
 
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index 7b571a631639..012554445054 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -895,8 +895,13 @@ static void __early_init_dt_declare_initrd(unsigned long start,
->          * enabled since __va() is called too early. ARM64 does make use
->          * of phys_initrd_start/phys_initrd_size so we can skip this
->          * conversion.
-> +        * On RISCV64, the usage of __va() before the linear mapping exists
-> +        * is wrong and RISCV64 rightly calls reserve_initrd_mem after it is
-> +        * available where it actually resets the translation that is done
-> +        * here and re-computes it.
 
-No, I want a single comment that covers both cases (and the next arch
-we add here). Something like this:
+-- 
+Regards
+Sudip
 
-__va() is not yet available this early on some platforms. In that
-case, the platform uses phys_initrd_start/phys_initrd_size instead and
-does the VA conversion itself.
+Sudip Mukherjee (15):
+  spi: dw: Introduce spi_frf and STD_SPI
+  spi: dw: update NDF while using enhanced spi mode
+  spi: dw: update SPI_CTRLR0 register
+  spi: dw: add check for support of enhanced spi
+  spi: dw: Introduce enhanced mem_op
+  spi: dw: Introduce dual/quad/octal spi
+  spi: dw: send cmd and addr to start the spi transfer
+  spi: dw: update irq setup to use multiple handler
+  spi: dw: use irq handler for enhanced spi
+  spi: dw: Calculate Receive FIFO Threshold Level
+  spi: dw: adjust size of mem_op
+  spi: dw: Add retry for enhanced spi mode
+  spi: dw: detect enhanced spi mode
+  spi: dt-bindings: snps,dw-ahb-ssi: Add generic dw-ahb-ssi version
+  spi: dw: initialize dwc-ssi controller
 
-Rob
+ .../bindings/spi/snps,dw-apb-ssi.yaml         |   1 +
+ drivers/spi/spi-dw-core.c                     | 347 +++++++++++++++++-
+ drivers/spi/spi-dw-mmio.c                     |   1 +
+ drivers/spi/spi-dw.h                          |  27 ++
+ 4 files changed, 364 insertions(+), 12 deletions(-)
+
+-- 
+2.30.2
+
