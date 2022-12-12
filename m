@@ -2,155 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64088649A14
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 09:35:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C922E649A30
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 09:40:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231576AbiLLIfJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 03:35:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48096 "EHLO
+        id S231363AbiLLIkw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 03:40:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231555AbiLLIe5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 03:34:57 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2E0F06151;
-        Mon, 12 Dec 2022 00:34:54 -0800 (PST)
-Received: from loongson.cn (unknown [10.180.13.64])
-        by gateway (Coremail) with SMTP id _____8AxB_Gu55Zj4fkEAA--.11267S3;
-        Mon, 12 Dec 2022 16:34:54 +0800 (CST)
-Received: from [10.180.13.64] (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxXuCs55ZjGUEsAA--.41531S2;
-        Mon, 12 Dec 2022 16:34:53 +0800 (CST)
-Subject: Re: [PATCH v5 2/3] gpio: loongson: add gpio driver support
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Juxin Gao <gaojuxin@loongson.cn>,
-        Bibo Mao <maobibo@loongson.cn>,
-        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
-        Arnaud Patard <apatard@mandriva.com>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Hongchen Zhang <zhanghongchen@loongson.cn>,
-        Liu Peibao <liupeibao@loongson.cn>, zhuyinbo@loongson.cn
-References: <20221121123803.3786-1-zhuyinbo@loongson.cn>
- <20221121123803.3786-2-zhuyinbo@loongson.cn>
- <CACRpkda1adiNwbTZHdAyHKny3r5FFMP_XXVGbo1vnCdw9U1gNg@mail.gmail.com>
- <8a7abd77-9540-efa8-6f67-908530e85399@loongson.cn>
- <CACRpkdb=wdydOYCcrpjLSyvfVO--_ezXsFQ46qwfVCiiTd5fNw@mail.gmail.com>
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-Message-ID: <b78f02f4-4329-602e-ca8d-adbe911c2a54@loongson.cn>
-Date:   Mon, 12 Dec 2022 16:34:52 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        with ESMTP id S231266AbiLLIkv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 03:40:51 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDA88BEF
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 00:40:49 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id s25so4484746lji.2
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 00:40:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=K+6fEYSz7m/CPUV4/+SEcQDFawyZfISqhe/v9Owp5pU=;
+        b=H1Jk1RLOPg9VYMLvqyNaJw3wTLfyV51sNzM1xYb7d+lzkrEB6mVox9o567x5glUjH6
+         fJ/lRVNJHtjhU2peVl8ruNNeZv94g+K5g4gMw5qQAXps/5ykovYIfR7SLwO/jU5ISYyR
+         w6mIEpSlc3AK8WJR0/AVHxDt4WXy6vxLIBvvDuPaCLlT0CT4IzU+yn0Zi+idc1uSsfjQ
+         sm2eMXJ9KSyEKlUpbbi0s7jZK8pNORQjbU3jP5MnoxY4rgpwUy9GMDzymnne27k02M4k
+         qwGCTdIPoInshL+nQplRmu5UIdJ5Ijz54cXFCwG0Z+D1XFpFFeYZ84APYHHFfKRWLGqV
+         XP7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=K+6fEYSz7m/CPUV4/+SEcQDFawyZfISqhe/v9Owp5pU=;
+        b=rKi6rDvPUbbfgMGrDc3ZmRPGzC1L9zT6gHoKexJ9xy+nzYfgMtuV5WHTIKGZJzHR+3
+         ETBnEUWF/ExzKuvnM4scrcpR40m+P5dlC2uOxSnEwfY+eVXx1ML659vFGyiCpg06X8Pd
+         rGu0QO0zHSSx51P4AwCqE31LtmW/Cpb1+VTS15PTsrcO04arYMs/lsw6rdyiwLCpMA6T
+         sUjj5KkK/8Yhl0Ji98v/glJs1aTTylX3yUa4R73DaGaYxt47QW+y+rJ60o+ugPG7IfNs
+         inZl/37akJfuGIq5Ju/mYlBtQC7DHPpSgP8i526W26J3yzQVJMwbGbJj4qPy0vtSrByt
+         k+bw==
+X-Gm-Message-State: ANoB5pmdfwj8F/O3WeWUP8i90jAxRH687F/Z5oxN3YVYHdPtUsyebTXn
+        wROQBUEmQhl0PHY7FD724+yCAQ==
+X-Google-Smtp-Source: AA0mqf5SXiv1Zkg7HMMVCWRXZmcBBmj3rggFfCSnSxwz4n0RrQilNwopPTQTwh39iLbyyURas6wTZQ==
+X-Received: by 2002:a05:651c:905:b0:277:155c:f4a3 with SMTP id e5-20020a05651c090500b00277155cf4a3mr3625178ljq.38.1670834448153;
+        Mon, 12 Dec 2022 00:40:48 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id p9-20020a2eb989000000b0027a197d8247sm1153836ljp.16.2022.12.12.00.40.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Dec 2022 00:40:47 -0800 (PST)
+Message-ID: <e20884d2-5d30-9519-d070-8e2ac07f2171@linaro.org>
+Date:   Mon, 12 Dec 2022 09:40:46 +0100
 MIME-Version: 1.0
-In-Reply-To: <CACRpkdb=wdydOYCcrpjLSyvfVO--_ezXsFQ46qwfVCiiTd5fNw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v3 10/12] dt-bindings: mediatek: mt8188: add audio afe
+ document
+To:     =?UTF-8?B?VHJldm9yIFd1ICjlkLPmlofoia8p?= <Trevor.Wu@mediatek.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "tiwai@suse.com" <tiwai@suse.com>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "perex@perex.cz" <perex@perex.cz>
+Cc:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20221208033148.21866-1-trevor.wu@mediatek.com>
+ <20221208033148.21866-11-trevor.wu@mediatek.com>
+ <d7d9f3c7-b3e3-1e13-a80f-c7bf7b38a5b1@linaro.org>
+ <45b4b287dfd57b99e0ba5675bf99194f6d84d9da.camel@mediatek.com>
+ <fb34e446-2904-a357-e54b-3e82a2b0745c@linaro.org>
+ <e08fab2a694313abc12e0f8303de3e2e704b388c.camel@mediatek.com>
 Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <e08fab2a694313abc12e0f8303de3e2e704b388c.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8CxXuCs55ZjGUEsAA--.41531S2
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoWxurWkGw4DCF1kCrWDGF4UArb_yoW5Xw4xpF
-        W5Gayqkr4DJryIyw4vqw18ZF1fKa93uFy3Jr1Fk3s8Aryqqr93ZrWaqrWavF9ru3yUJr42
-        vF1Yk3yxu3WDAFJanT9S1TB71UUUUjDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bDkFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
-        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Cr1j6rxdM2kKe7AKxVWUAVWUtwAS0I0E0xvYzxvE
-        52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I
-        80ewAv7VC0I7IYx2IY67AKxVWUAVWUtwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCj
-        c4AY6r1j6r4UM4x0Y48IcVAKI48JMxk0xIA0c2IEe2xFo4CEbIxvr21lc7CjxVAaw2AFwI
-        0_JF0_Jw1l42xK82IYc2Ij64vIr41l42xK82IY6x8ErcxFaVAv8VWrMxC20s026xCaFVCj
-        c4AY6r1j6r4UMxCIbckI1I0E14v26r1q6r43MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxV
-        Cjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY
-        6xIIjxv20xvE14v26r1I6r4UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6x
-        AIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY
-        1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU8k-BtUUUUU==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-在 2022/11/24 上午6:05, Linus Walleij 写道:
-> On Wed, Nov 23, 2022 at 9:02 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
->> 在 2022/11/21 下午9:24, Linus Walleij 写道:
-> 
->>>> +static int loongson_gpio_request(
->>>> +                       struct gpio_chip *chip, unsigned int pin)
->>>> +{
->>>> +       if (pin >= chip->ngpio)
->>>> +               return -EINVAL;
+On 12/12/2022 03:43, Trevor Wu (吳文良) wrote:
 >>>
->>> This is not needed, the gpiolib core already checks this. Drop it.
->> I check gpio_request in gpilib, I notice gpio_is_valid is not equal to
->> this condition, so I still kept it for byte mode.
-> 
-> This is because descriptors can only be obtained from gpiod_get() and
-> similar and gpiod_get() falls to gpiod_get_index() which will not
-> return a valid descriptor from either HW backend. gpiod_get()
-> will call gpiod_request() for if and only if the descriptor is valid.
-> 
-> The only reason to implement something like this is because of
-> using the legacy GPIO numberspace which we are getting rid
-> of so it is irrelevant, the consumers of your driver will only be
-> using gpio descriptors, will only come in through gpiod_get_index()
-> and will have desc validity check done before calling gpiod_request().
-> 
-> So drop this.
-> 
->>> I am bit suspicious that your IRQchip implementation expects consumers
->>> to call gpiod_to_irq() first and this is not legal.
+>>>>> +    uniqueItems: true
+>>>>> +    items:
+>>>>> +      minimum: 0
+>>>>> +      maximum: 15
+>>>>> +
+>>>>> +  "^mediatek,etdm-in[1-2]-mclk-always-on-rate-hz$":
+>>>>> +    description: Specify etdm in mclk output rate for always
+>>>>> on
+>>>>> case.
+>>>>
+>>>> How is it different than assigned-clock-rates?
+>>>>
+>>>
+>>> This includes clock enabling at init stage.
 >>
->> okay, I got it, and other driver use gpio interrupt doesn't rely on
->> gpiod_to_irq, but can use gpiod_to_irq.
+>> assigned-clock-rates are also at init stage. I asked what is
+>> different.
+>>
 > 
-> Yes it can be used to look up the irq corresponding to a GPIO
-> but it is not mandatory to do that.
+> If the property is used, there are three parts included in dai driver
+> probe function.
 > 
->> The reason is that gpio interrupt wasn't an independent module,  The
->> loongson interrupt controller liointc include lots of interrupt was
->> route to perpherial, such as i2c/spi .. gpio, so gpio interrupt as
->> normal perpherial interrupt, It is unnecessary and redundant to
->> implement a gpio irq chip. The liointc controller driver had cover all
->> interrupt.
+> 1. set clock parent (which APLL)
+> 2. set clock rate (MCLK rate)
+> 3. enable clock (MCLK On)
 > 
-> This is fine, and it is common for GPIO drivers to implement
-> their own IRQchips.
-> 
-> But these drivers can not rely on the .gpio_to_irq() callback
-> to be called before an IRQ is requested and used.
-> 
->> in addition,  I don't like to use the dynamically allocated gpio base,
->> so I set the gpio base after call bgpio_init.
-> 
-> Don't do that because the GPIO maintainers love the
-> dynamic base and hate hardcoded bases. Set the base to -1
-> If you wonder why, read drivers/gpio/TODO.
-Hi Linus,
+> The first two parts can be done by existing dts clock properties, but
+> the last one can't.
+> When MCLK should be enabled at boot time and kept on, this property is used. That's why I say the property is designed for always-on case.
 
-I recenly verfied other peripheral on upstream, some peripheral driver
-need use gpio number, but if use dynamic base that gpio number will be
-meaningless.  in additon I notice that many gpio driver don't use
-dynamic base, although bgpio_int was called.
+Heh, so the "always on case" means this property enables clock? How is
+this even DT property? That's not how clocks should be kept enabled. You
+need proper clock provider and consumer.
 
-so I think the gpio number should be keep consistent with datasheet for
-some platform that need use gpio number.
 
-Yinbo.
-
-> 
-> Yours,
-> Linus Walleij
-> 
+Best regards,
+Krzysztof
 
