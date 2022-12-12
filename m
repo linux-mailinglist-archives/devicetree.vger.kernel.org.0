@@ -2,68 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C319464A0F3
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 14:33:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23CE864A0F2
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 14:33:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232528AbiLLNdO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 08:33:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33532 "EHLO
+        id S232322AbiLLNdN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 08:33:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232406AbiLLNdN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 08:33:13 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB4771276F
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 05:33:08 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id b13so18597642lfo.3
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 05:33:08 -0800 (PST)
+        with ESMTP id S232349AbiLLNdM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 08:33:12 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1E4F13E12
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 05:33:09 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id bp15so18535230lfb.13
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 05:33:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=nQaNe1YlwQpI932W71SvBf5OrdAprQKocQe4vybQdGk=;
-        b=gSGlJpBogJp7YC/e7sOnzf3ZmZSAWSHDJZltZFbNvXy/zkz6SpDI+7ukaYLhfHhLdj
-         mfg7FuGBMyJWMm4KjfGJfJjfyTKiavfzXg1NXewLymjJIBPcyI19FkVF9gvsLfog1B7f
-         JNJSzjUYs9syUsPE8qae4sR9WZLKZY9w8pMWU6oosE5VhQ+pDXEtvoQNHPVmo6efwHW9
-         xJl0PvPBXN1hipby5GloirZ53fuvaaigmbgGX02S6ljj4lZU+1Zpx6WknEOOUfi9mJ/E
-         mqezUo9h1spsFZ78TszkDzWZpY2t2QgTNdL3T/DgPXA7RTu0JHRC6ZOztANolPevqVpx
-         sq6Q==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hyGn1DzomgI5Qa0YLeZd0l0VrjDz/wGrgsCv02M2m/0=;
+        b=KNptsQKiTTUk1mjZAHJjNeIxZQCeUuWUbucs9gQItJcdV3N9enEiocO0rNn4Usu2mz
+         0aJR/cS5idITBFj1MB4jMYVuFjV/K3878mcRirnVJeQQhKE9fjY95Rjdr//RmXgR47yr
+         OA18f59QFhcgOxDTSazABL9x73rXezn4f2+4ykyMd+BtTW+1qmk7MH1aolq3yQ7AvEm6
+         EAnoVdrz/IOsREc84ml+p2eHMnilusYxt22reLdribGERNbNVB69H/GMoLI4PFIhrf2h
+         FCtzGLM4fhwTme6chod+8amR4Opi8te0JcwvXALgyGakUMB5+DZWsmWIdP3951orDxYA
+         svtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nQaNe1YlwQpI932W71SvBf5OrdAprQKocQe4vybQdGk=;
-        b=FcMGLnPkx9mDbOEu7dAIwCLW3KZVEfj62qXXh5uo8f4rxOe9NYKdm750AQt7dcJvvv
-         +GMCDEvfaodaAZYv48w2mL/evEjk41X3bQnGZMSEYl/vaL7KbqYRq4p1K3K/871Bm1cQ
-         hyGniTsZZej0CdZSS879AhAeeur5WIFIDrXlTRZXxo4B73dv7dGqgijLT7tPaZb8XHeN
-         DKMRn4yCmPftlv+YgFWSentZiyLAnjpbazaBNTiytPzs/mD55WyLvHkga9aaUleb/fVS
-         COnVsRX8ghHpl4mVWYQIonC0E4ikE7RRnvVzdLTh0kIdMmjmH/GZgnHZtZiIf/gj4zYx
-         fKZw==
-X-Gm-Message-State: ANoB5plrcad0eHIssky3OvcbC62tIGYFGcLCh2Gkzr/E5gt0Ymhv5Nd0
-        nakPM7W72gxIylxPVPfhMqbl0A==
-X-Google-Smtp-Source: AA0mqf4aMs/lvVUJWTvlZrlh5LlBj39FTnM/zXaO+YiWmgvmxnLcNtbFnwfHSPHmAxOqQ7ENyaVOKA==
-X-Received: by 2002:a05:6512:963:b0:4a4:68b9:1a0a with SMTP id v3-20020a056512096300b004a468b91a0amr3947925lft.50.1670851987076;
-        Mon, 12 Dec 2022 05:33:07 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=hyGn1DzomgI5Qa0YLeZd0l0VrjDz/wGrgsCv02M2m/0=;
+        b=zt4OBZ6uWbyX1s9N/5wx6garIYitOWT5PCWcelR6W/sw6SmZD0Vt+Qc9mqOnXQJUuK
+         CDUnKtrA2GYWg+77EHE9G92Gb1dh+YfgfjTSids2CqYbwrUqnBOuzDh5Tu0VI7QHe+uJ
+         cNpHYxxo78M6eUG1iSq1N1LCSL2l4Ozn3PDf52vd518oCuW+4n+ApNFnJFbYYpRX8+oj
+         hxpj/rhQitoiR1wxO80xoToNf2x+7YzuZFzoS2nIceEO/ZHBhBoIpb0W44A1Zu8gidM2
+         4LG1nCVhgiFfQFr5OhcUEeKc846oy79XGOquTlKoZsgpAVATh67zkLilpw9Hqhp7js2P
+         6VXg==
+X-Gm-Message-State: ANoB5pmfFLhNdKAuuOvG9gPEoxgNCDzvET3fLru9IscvbtU3iXZx6ElA
+        3akLADTh/wWUkDK4fZDwYBKSMw==
+X-Google-Smtp-Source: AA0mqf7nadPTddEwlQiqnOUzYpE1/ZfAgUC5Apodg0MFD1otIMRJrb+q9pXarRdD8BMjPTBtfb8ikQ==
+X-Received: by 2002:ac2:5dc5:0:b0:4b5:a5c7:3282 with SMTP id x5-20020ac25dc5000000b004b5a5c73282mr4295787lfq.61.1670851988257;
+        Mon, 12 Dec 2022 05:33:08 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id a18-20020a194f52000000b0049478cc4eb9sm1624435lfk.230.2022.12.12.05.33.05
+        by smtp.gmail.com with ESMTPSA id a18-20020a194f52000000b0049478cc4eb9sm1624435lfk.230.2022.12.12.05.33.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Dec 2022 05:33:06 -0800 (PST)
+        Mon, 12 Dec 2022 05:33:07 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kiran Gunda <kgunda@codeaurora.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Stephen Boyd <swboyd@chromium.org>
+        Satya Priya <quic_c_skakit@quicinc.com>,
+        Rajendra Nayak <rnayak@codeaurora.org>
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 1/4] arm64: dts: qcom: sc7180: correct SPMI bus address cells
-Date:   Mon, 12 Dec 2022 14:32:59 +0100
-Message-Id: <20221212133303.39610-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/4] arm64: dts: qcom: sc7280: correct SPMI bus address cells
+Date:   Mon, 12 Dec 2022 14:33:00 +0100
+Message-Id: <20221212133303.39610-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221212133303.39610-1-krzysztof.kozlowski@linaro.org>
+References: <20221212133303.39610-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,17 +83,17 @@ entry - SPMI_USID - is not the size):
 
   spmi@c440000: #address-cells:0:0: 2 was expected
 
-Fixes: 0f9dc5f09fbd ("arm64: dts: qcom: sc7180: Add SPMI PMIC arbiter device")
+Fixes: 14abf8dfe364 ("arm64: dts: qcom: sc7280: Add SPMI PMIC arbiter device for SC7280")
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 4 ++--
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index eb1e1ea12ff6..906fb9343bcc 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -3274,8 +3274,8 @@ spmi_bus: spmi@c440000 {
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 448879d3d5cd..7c24c2129800 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -4286,8 +4286,8 @@ spmi_bus: spmi@c440000 {
  			interrupts-extended = <&pdc 1 IRQ_TYPE_LEVEL_HIGH>;
  			qcom,ee = <0>;
  			qcom,channel = <0>;
@@ -101,7 +103,7 @@ index eb1e1ea12ff6..906fb9343bcc 100644
 +			#size-cells = <0>;
  			interrupt-controller;
  			#interrupt-cells = <4>;
- 			cell-index = <0>;
+ 		};
 -- 
 2.34.1
 
