@@ -2,138 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AFB664BBFB
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 19:30:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BF7764BC03
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 19:33:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236271AbiLMSaF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 13:30:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58424 "EHLO
+        id S236296AbiLMSdP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 13:33:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236178AbiLMSaC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 13:30:02 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE84224BE9;
-        Tue, 13 Dec 2022 10:29:58 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id p36so6315197lfa.12;
-        Tue, 13 Dec 2022 10:29:58 -0800 (PST)
+        with ESMTP id S236386AbiLMSdN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 13:33:13 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEDFA22B06
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 10:33:11 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id j4so6441836lfk.0
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 10:33:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=7OgbDqAXzpdR8zItLz3MaWKSx6SVGunJ2KagECaiz7Q=;
-        b=VmAc+jbXnjIcuckHLTkGwNKr+sgfLerodVPW1VllN+iZ71cUAVyLqC1xq7meJAJiQH
-         kKe/DIqbbV6IbSrsyA+yKP6JJoF5RXVEgoU9RXbljPdm+ie2QjVmcRp2RmEklNVNwr0+
-         IQtpAvpA/5Kp90YEsdNN2MXhOkVM3x4ez68kVi04ALrmIiX2/1nmDtguDnWt1wwTTTdW
-         is3MX0lsk8P3TtZicYXExtiyyEAtbHXwLX6sPR0+elMkkeYDKWaxz6RgAgvBPWF+HT/L
-         OPRMELXV707FHyfX4bCGqzjMrZIXT0dcwLxQ/Od/ye19LVK+YuOtu5WrBmYH6FynjYGA
-         Kv8Q==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=GJ5jI0G4hX1A08XO49d5+/bf9foafrkt0On/sCJEiuI=;
+        b=NfSwsj6XvoFxdC/s4diqxFkK2YNi3BX95XD5jRwysWJvH3h/5IIZ84QEa4LZH6Mqbr
+         6JIw81N3A94mZD4zT2VhIjKbm1ieNnS+klB525lr7jc5yT4BpboI+nUCAkbaUdS2OpeK
+         1igp3rHVAzAbwCcL8bZTu3Q07hvB5odntYLjjMZF4Zx0S1b3IjDxqaQake8666uyoDdP
+         TXwoUrZklmyxluTZ9z4gOcWGLDhQgvOFenPo4A3GaT2hwM1keV4mDZM80FoHYG28Ebj6
+         GU71MghU2XMUGgjGg4qQ+SZkcs6iPwlfuiKUVdLCdHzJ97Mfkd0bWhPCLsvZbaQIylAb
+         qxGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7OgbDqAXzpdR8zItLz3MaWKSx6SVGunJ2KagECaiz7Q=;
-        b=KrgJ0s20UE8drZmrztMI8cXghtREk91jfELLKLOe781lHgXN4zMEg8iGSHuNTnSUTm
-         QfiXJCCaUEJUfFAAHwNm0cPq8EAjZ3F7IIZuYUlv1eLn83klMxvibPR1EtIoN7Mqqza3
-         ovExSH6OLTfPWahYlAdN6e5YedWiFNuprHkoxoiAgG7UBbLWRWo6T/jAxSnj8jHNUk7a
-         N6ZsGosalmxTjbIuNKRhgFlrLkzfRW1qkHhiknFMO4EsvWaPo/O1UiBLQdnhAeiH4613
-         lx72vKkCkcTjKBm4WFO+KEwRmxlczLUjAowkg8eysrSFMkLJr9XVYvzZY0EC+9RNxSGq
-         FHxA==
-X-Gm-Message-State: ANoB5pmCyX6jz9nOAG8bl44lxjwgfkbNRo/PrQ08aEeRujze9RFJzi78
-        NjeeqiyhcIYD63ZpMWQP5Ig=
-X-Google-Smtp-Source: AA0mqf6pP4S+k6bY9FqhlexOH4zcn1kI/arGiHA+s7t9yRdql1QW3W5ZhJf2TZE31iGxa0EfCc4UOQ==
-X-Received: by 2002:a05:6512:2a8f:b0:4aa:8811:4c59 with SMTP id dt15-20020a0565122a8f00b004aa88114c59mr6466889lfb.28.1670956196942;
-        Tue, 13 Dec 2022 10:29:56 -0800 (PST)
-Received: from mobilestation ([95.79.133.202])
-        by smtp.gmail.com with ESMTPSA id j13-20020ac2550d000000b004b56de48f05sm470593lfk.27.2022.12.13.10.29.55
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GJ5jI0G4hX1A08XO49d5+/bf9foafrkt0On/sCJEiuI=;
+        b=lZBPzCpUmDS3JU1L7E/fmhjE2x2wmiHQ7pH0lNB31MWWR9V4uH83vMswnj3cQh9BlC
+         MJ8cW6FdyqF+OqAm2+ZxiyxRZ7YMXcmeIaQXIAnqKy5a12l1uxjnjOPsztJby62hjmC/
+         9I+4813gYY4DYQ80YQ42z10jrc/Bbveq43zSEGIuKCxnAy35GK9Y5Qxfy77w1qR5iD9Q
+         q/cZabInlNekYOIhQeTHrD0PYCe060MjjRyFl0TWsWuibAUqlriOtY8u8+ahLLqUc9sq
+         Y07gKiHTtAgyxKIOr/mUwJv/9DoI8AP7lFOpVESLWcIX68NJ9QyAEDoCerwunIbP9fuq
+         /46g==
+X-Gm-Message-State: ANoB5pmTSY1wq6lBwaMiE9Tfs+y/rQir1OTttzVSQ8/gSVKsUHFg3drQ
+        /uxKg3R3cBE0wQzVAKzu7OCkm+5+Q6wrHC8x
+X-Google-Smtp-Source: AA0mqf5PosCgjZuIMDn413vUNIRDY6kkEVRGUNZYkcg0aJE90noLrihl+JuV0j8tLeB9BwK18weaWw==
+X-Received: by 2002:ac2:52b9:0:b0:4b5:83ba:8c55 with SMTP id r25-20020ac252b9000000b004b583ba8c55mr5363905lfm.8.1670956390178;
+        Tue, 13 Dec 2022 10:33:10 -0800 (PST)
+Received: from localhost.localdomain (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
+        by smtp.gmail.com with ESMTPSA id t10-20020a056512208a00b004b501497b6fsm465963lfr.148.2022.12.13.10.33.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Dec 2022 10:29:56 -0800 (PST)
-Date:   Tue, 13 Dec 2022 21:29:54 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Sudip Mukherjee <sudip.mukherjee@sifive.com>,
-        Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        jude.onyenegecha@sifive.com, ben.dooks@sifive.com,
-        jeegar.lakhani@sifive.com, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 14/15] spi: dt-bindings: snps,dw-ahb-ssi: Add generic
- dw-ahb-ssi version
-Message-ID: <20221213182954.sfe7sud7bhxgnpou@mobilestation>
-References: <20221212180732.79167-1-sudip.mukherjee@sifive.com>
- <20221212180732.79167-15-sudip.mukherjee@sifive.com>
- <20221213163209.GA1684072-robh@kernel.org>
- <Y5ivfCku1P4CTFn8@sirena.org.uk>
- <CAHyZL-c--gtWUHjBwnKcy6fSUu7yCUaiEYqK7kKMtwnakwR6jw@mail.gmail.com>
+        Tue, 13 Dec 2022 10:33:08 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/6] dt-bindings: i2c: qcom,i2c-cci: Fall back to common compatibles
+Date:   Tue, 13 Dec 2022 19:33:00 +0100
+Message-Id: <20221213183305.544644-1-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAHyZL-c--gtWUHjBwnKcy6fSUu7yCUaiEYqK7kKMtwnakwR6jw@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 13, 2022 at 05:47:53PM +0000, Sudip Mukherjee wrote:
-> On Tue, Dec 13, 2022 at 4:59 PM Mark Brown <broonie@kernel.org> wrote:
-> >
-> > On Tue, Dec 13, 2022 at 10:32:09AM -0600, Rob Herring wrote:
-> > > On Mon, Dec 12, 2022 at 06:07:31PM +0000, Sudip Mukherjee wrote:
-> >
-> > > > Add new snps,dw-ahb-ssi version to the bindings.
-> >
-> > > Really, this should probably only be a fallback with an SoC specific
-> > > compatible. Future quirk properties which are not board specific only
-> > > will be rejected. You've been warned.
-> >
-> > Given how widely used DesignWare stuff is and usage in FPGAs it does
-> > seem reasonable to have compatibles for just the IP rather than SoC
-> > specific ones - we do have quirked versions that have been modified but
-> > these are things that people manage to deploy without needing that and
-> > SoC specific compatibles for FPGA instantiations would get painful.
-> 
+Almost every compatible string in the CCI driver is a duplicate. Adjust
+the bindings to include a common (first-soc-implementing-vX) compatible
+to remove the need to keep adding superfluous compatible strings.
 
-> Also, this patchset adds the autodetect procedure as discussed in the review
-> of the previous series at
-> https://lore.kernel.org/lkml/20220826233116.uulisbo663cxiadt@mobilestation/
-> 
-> So, we should be able to replace "snps,dw-apb-ssi" and
-> "snps,dwc-ssi-1.01a" with "snps,dw-ahb-ssi" after this.
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Changes in v2:
+- make sure the actual patch contests are tested..
+- resolve errors
 
-Just "snps,dwc-ssi-1.01a". That is the IP-core
-https://www.synopsys.com/dw/ipdir.php?c=dwc_ssi
-which support was added in
-https://lore.kernel.org/linux-spi/20200505130618.554-4-wan.ahmad.zainie.wan.mohamad@intel.com/
-Since the IP-core version is auto-detectable there is no need in
-having the version attached to the compatible string. That's why I
-asked @Sudip to introduce a new generic device name free of the
-version suffix. It should be used instead of "snps,dwc-ssi-1.01a"
-from now.
+ .../devicetree/bindings/i2c/qcom,i2c-cci.yaml | 47 ++++++++++++-------
+ 1 file changed, 30 insertions(+), 17 deletions(-)
 
-The "snps,dw-apb-ssi" compatible string will stay since it corresponds
-to another IP-core:
-https://www.synopsys.com/dw/ipdir.php?c=DW_apb_ssi
+diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+index cf9f8fda595f..87e414f0c39c 100644
+--- a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
++++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+@@ -12,14 +12,23 @@ maintainers:
+ 
+ properties:
+   compatible:
+-    enum:
+-      - qcom,msm8226-cci
+-      - qcom,msm8916-cci
+-      - qcom,msm8974-cci
+-      - qcom,msm8996-cci
+-      - qcom,sdm845-cci
+-      - qcom,sm8250-cci
+-      - qcom,sm8450-cci
++    oneOf:
++      - enum:
++          - qcom,msm8226-cci
++          - qcom,msm8974-cci
++          - qcom,msm8996-cci
++
++      - items:
++          - enum:
++              - qcom,msm8916-cci
++          - const: qcom,msm8226-cci # CCI v1
++
++      - items:
++          - enum:
++              - qcom,sdm845-cci
++              - qcom,sm8250-cci
++              - qcom,sm8450-cci
++          - const: qcom,msm8996-cci # CCI v2
+ 
+   "#address-cells":
+     const: 1
+@@ -88,10 +97,12 @@ allOf:
+   - if:
+       properties:
+         compatible:
+-          contains:
+-            enum:
+-              - qcom,msm8226-cci
+-              - qcom,msm8974-cci
++          oneOf:
++            - contains:
++                enum:
++                  - qcom,msm8974-cci
++
++            - const: qcom,msm8226-cci
+     then:
+       properties:
+         clocks:
+@@ -105,10 +116,12 @@ allOf:
+   - if:
+       properties:
+         compatible:
+-          contains:
+-            enum:
+-              - qcom,msm8916-cci
+-              - qcom,msm8996-cci
++          oneOf:
++            - contains:
++                enum:
++                  - qcom,msm8916-cci
++
++            - const: qcom,msm8996-cci
+     then:
+       properties:
+         clocks:
+@@ -169,7 +182,7 @@ examples:
+ 
+     cci@ac4a000 {
+         reg = <0x0ac4a000 0x4000>;
+-        compatible = "qcom,sdm845-cci";
++        compatible = "qcom,sdm845-cci", "qcom,msm8996-cci";
+         #address-cells = <1>;
+         #size-cells = <0>;
+ 
+-- 
+2.39.0
 
-Answering to the @Rob note regarding the quirk properties. All the
-features added by Sudip here were supposed to be auto-detectable.
-So the generic IP-core name will be still useful as before with no
-need in adding any quirks.
-
-@Rob AFAIR you used to be against the generic fallback compatible
-names, but had nothing against just generic compatibles. Has something
-changed?
-
--Serge(y)
-
-> And, also this generic compatible has been tested with the new 1.03a
-> version we are working with, which was
-> mentioned in my v1 at
-> https://lore.kernel.org/lkml/20220826233305.5ugpukokzldum7y5@mobilestation/
-> 
-> -- 
-> Regards
-> Sudip
