@@ -2,79 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 928B364B592
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 14:02:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50D5964B59F
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 14:05:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234673AbiLMNCP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 08:02:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57546 "EHLO
+        id S235014AbiLMNFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 08:05:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234568AbiLMNCO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 08:02:14 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7B4DE0F9
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 05:02:13 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id p8so4736964lfu.11
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 05:02:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yJFdztr0qedU/6yc4umoLlymnyA12ouaQhrBPqCHMjk=;
-        b=v3fQlf2kgSS+AJzKkGbQbQVxCdOzB79tHBy13LmzAC6tYjbvJD2/3NLM3k3N7C1s1C
-         fbi8XkxaQfqTRPtEEAWsCNSkbLZT0Lr16P/d85zsDuUCOfJo8NWwY2Sogcds8MRuDAVW
-         ikR8fOeVjci1sJjgcql5bKdLLhRUl2NRUmCYDkdjqWimEH2I7MVLAwHV9yHC6YaIid6T
-         lEA3KVr9Z8TL6FK2o0Qv+FpL+I1zqlcVC2VqdC6fRV6+K4eBfWCnij2ecsMIW+4o8jwH
-         S8Z7PVUeKsSMsSAsFM0FAgDdBajAbRjANH4oNaaf6uC0uiHpQxnWF7I2dEFPR3yLwa41
-         Pssw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yJFdztr0qedU/6yc4umoLlymnyA12ouaQhrBPqCHMjk=;
-        b=mMxxakrvSWqTmacoDoPXPLPKQiCku5E3TfYiYzuwfM5DuREirSNijS9SYqHLi3W5Vs
-         4j2nF9q5o+VdEMzWkWfEPfQPRwgu/pFB9+IO9kPGTXeWN1hkogkBnWYmiaLbVmlIk4I4
-         h4FphfduiwcqH1/mXvk/g1pd+USIIphcZ/ibugogAFxK5TGOfuVYrTZNjbX4L8Q0DR9Y
-         ABNQ7xnyVA+LIrb9TiIldI4eYCLM0Qg3qxDPP/Q7E250p6I0T0SAgj2KZ8CivxkD5M7y
-         rGtjskm3CGbu5JIa4mRjZmMFFfd2UCRBc/nFjzyELL2FNkeqbbalQTClfr5ksQ3RKeOa
-         PCzw==
-X-Gm-Message-State: ANoB5pmvezyR4fTE9oYuC+8VkKaAAJypY8QaNufWXHjRHl6ocxPY3xx7
-        ypbtANYRN+C7aMJgWOcFglgx1w==
-X-Google-Smtp-Source: AA0mqf6NbjEsBWAPSxu32rWUqrPPN0YATuL85yOo7kXNM8FUMipRROZsB4b08JOvaexQsUYWdpUQSQ==
-X-Received: by 2002:a05:6512:b8c:b0:4b5:7d49:4a05 with SMTP id b12-20020a0565120b8c00b004b57d494a05mr7830468lfv.0.1670936532229;
-        Tue, 13 Dec 2022 05:02:12 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id y12-20020a19914c000000b004b55a1c4649sm363680lfj.38.2022.12.13.05.02.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Dec 2022 05:02:11 -0800 (PST)
-Message-ID: <77c29d8c-34b3-f508-26bf-22520ccc1f2a@linaro.org>
-Date:   Tue, 13 Dec 2022 14:02:10 +0100
+        with ESMTP id S234296AbiLMNFH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 08:05:07 -0500
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6825D1D333;
+        Tue, 13 Dec 2022 05:05:06 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1670936693; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=NJyWtGUqF9JoKZqBoobQ45oKdr1MImtZ5bqTP16He/oe6n/w4IXVSLMAGk/7K+edz1KdoZBUnSJM39bCP8NbRa03dcKVqAZEJdhLZIQucuGMzSm9XNxPvqSO7eR545qWHAh5acYl5A3Qij1xblYgVMdXfI15EDvt/qMqy3nrkpA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1670936693; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
+        bh=HBt2SS58XZzUibGPuuuRWTkBBCLZP/33uVke48GYcq8=; 
+        b=BBp/PvcTELArqBLbNLEyTZrQNzJuHRXR1j/76UpmDWf+oWQB6kqrsrIIbNf4oxTc5oCaEqEPc/yjTB+TMhqpNmSK319seMdiagFnkCtlYCzEkjKAU+WOe5vravoeXtSM+NFTrUwvkojS0eNakDN4xqtiJ/9OP0eMQOJwWF0LuTo=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1670936693;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:Reply-To;
+        bh=HBt2SS58XZzUibGPuuuRWTkBBCLZP/33uVke48GYcq8=;
+        b=MwFCLHL6CARmRv4PykO1TpwxEXK3NSqSf8G4CwIfEJRvO253WHyH674UPFGLCiTY
+        jz4yiJTXdjWOOW5HdgaTOS3hoEMCIngzBmFDo9++ehqctwY14aSwbCs5Uf0BbBhPth/
+        KYsQAqQdk6hQT6ily0LrvYuyaajkgWZXQ2aXzjqs=
+Received: from arinc9-PC.lan (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
+        with SMTPS id 1670936688339228.90466503221523; Tue, 13 Dec 2022 05:04:48 -0800 (PST)
+From:   =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org
+Subject: [PATCH 0/6] Enhance Ralink pinctrl documentation
+Date:   Tue, 13 Dec 2022 16:04:24 +0300
+Message-Id: <20221213130430.172876-1-arinc.unal@arinc9.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: sc8280xp: add missing spi nodes
-Content-Language: en-US
-To:     Brian Masney <bmasney@redhat.com>,
-        Shazad Hussain <quic_shazhuss@quicinc.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        johan+linaro@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ahalaney@redhat.com, echanude@redhat.com,
-        linux-spi@vger.kernel.org,
-        Javier Martinez Canillas <fmartine@redhat.com>
-References: <20221212182314.1902632-1-bmasney@redhat.com>
- <20221212182314.1902632-5-bmasney@redhat.com>
- <c1c7b1eb-08e7-2ba5-d89a-e0be8f76fd69@quicinc.com> <Y5hvlX35nr8xQKEd@x1>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y5hvlX35nr8xQKEd@x1>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,74 +62,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/12/2022 13:27, Brian Masney wrote:
-> + Mark Brown and linux-spi list
-> 
-> On Tue, Dec 13, 2022 at 12:46:18PM +0530, Shazad Hussain wrote:
->> On 12/12/2022 11:53 PM, Brian Masney wrote:
->>> Add the missing nodes for the spi buses that's present on this SoC.
->>>
->>> This work was derived from various patches that Qualcomm delivered
->>> to Red Hat in a downstream kernel.
->>>
->>> Signed-off-by: Brian Masney <bmasney@redhat.com>
->>> ---
->>>   arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 384 +++++++++++++++++++++++++
->>>   1 file changed, 384 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
->>> index 392a1509f0be..b50db09feae2 100644
->>> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
->>> @@ -829,6 +829,22 @@ qup2_i2c16: i2c@880000 {
->>>   				status = "disabled";
->>>   			};
->>> +			qup2_spi16: spi@880000 {
->>> +				compatible = "qcom,geni-spi";
->>> +				reg = <0 0x00880000 0 0x4000>;
->>> +				clocks = <&gcc GCC_QUPV3_WRAP2_S0_CLK>;
->>> +				clock-names = "se";
->>> +				interrupts = <GIC_SPI 373 IRQ_TYPE_LEVEL_HIGH>;
->>> +				#address-cells = <1>;
->>> +				#size-cells = <0>;
->>> +				interconnects = <&clk_virt MASTER_QUP_CORE_2 0 &clk_virt SLAVE_QUP_CORE_2 0>,
->>> +				                <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_2 0>,
->>> +				                <&aggre1_noc MASTER_QUP_2 0 &mc_virt SLAVE_EBI1 0>;
->>> +				interconnect-names = "qup-core", "qup-config", "qup-memory";
->>> +				spi-max-frequency = <50000000>;
->>
->> This is device property not host and same applicable for all below spi
->> nodes.
->> Also FYI let's enable below SPI for Qdrive usecases once spidev compatible
->> name is confirmed.
->> SE9  0x00A84000
->> SE22 0x00898000
-> 
-> I talked to Javier Martinez Canillas yesterday about the spidev driver
-> and I think I now have a better understanding of what we need to do.
-> Quick background for Mark. For this automotive program, Qualcomm will be
-> delivering to Red Hat and our customers parts of the media stack in
-> userspace. This will be closed source, proprietary code that parts of it
-> will need to interface with SPI.
-> 
-> We can't add a generic qcom,spidev compatible to the spidev driver since
-> this is just a software abstraction. Instead, each type of device will
-> need to have it's own compatible that uniquely describes the type of
-> device. So you might have a compatible like qcom,spi-video-codec. There
-> will need to be a DT binding added that describes the hardware. I suspect
-> that a SPI device can simply be added to trivial-devices.yaml. Once the
-> DT binding is accepted, the compatible can be added to the spidev.c
-> driver. If an in-kernel driver is written in the future, then the 
-> compatible can be moved from spidev to the new driver.
-> 
-> Mark: Is my understanding above correct? If so, will it be a problem to
-> get a compatible added to spidev.c if the corresponding userspace code is
-> closed source and proprietary?
+Heyo,
 
-qcom,spi-video-codec is still not specific enough. You need to describe
-real device behind spidev. To be clear - you do not describe userspace,
-but the device.
+This series mainly enhances the Ralink pinctrl documentation, and make a
+small variable name change on the subdrivers.
 
-Best regards,
-Krzysztof
+I've compile-tested all the subdrivers.
+I've tested the dt-binding changes with:
+make dt_binding_check DT_SCHEMA_FILES=pinctrl/ralink
+
+Arınç ÜNAL (6):
+  pinctrl: ralink: rename variables which point out the pin group
+  dt-bindings: pinctrl: mt7620: add proper function muxing binding
+  dt-bindings: pinctrl: mt7621: add proper function muxing binding
+  dt-bindings: pinctrl: rt2880: add proper function muxing binding
+  dt-bindings: pinctrl: rt305x: add proper function muxing binding
+  dt-bindings: pinctrl: rt3883: add proper function muxing binding
+
+ .../bindings/pinctrl/ralink,mt7620-pinctrl.yaml | 632 +++++++++++++++++--
+ .../bindings/pinctrl/ralink,mt7621-pinctrl.yaml | 204 +++++-
+ .../bindings/pinctrl/ralink,rt2880-pinctrl.yaml |  85 ++-
+ .../bindings/pinctrl/ralink,rt305x-pinctrl.yaml | 235 ++++++-
+ .../bindings/pinctrl/ralink,rt3883-pinctrl.yaml | 204 +++++-
+ drivers/pinctrl/ralink/pinctrl-mt7620.c         | 164 ++---
+ drivers/pinctrl/ralink/pinctrl-mt7621.c         |  48 +-
+ drivers/pinctrl/ralink/pinctrl-rt2880.c         |  28 +-
+ drivers/pinctrl/ralink/pinctrl-rt305x.c         |  82 +--
+ drivers/pinctrl/ralink/pinctrl-rt3883.c         |  44 +-
+ 10 files changed, 1462 insertions(+), 264 deletions(-)
+
 
