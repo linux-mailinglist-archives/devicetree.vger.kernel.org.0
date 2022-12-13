@@ -2,120 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29CC664ACE8
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 02:18:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2D4364ADA2
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 03:34:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233674AbiLMBSJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 20:18:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44690 "EHLO
+        id S230052AbiLMCe1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 21:34:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233965AbiLMBSI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 20:18:08 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14A3512613
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 17:18:07 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id z26so2463328lfu.8
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 17:18:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=RfH8kkxJvYDkHZoR/+BVEo4zBkqyra3aG6rgjb414Ng=;
-        b=L8/+nHhrB5o0UVC+DKEp6OeXAyYCcbQ1Gx+fHf44e2LTIul/4cVxGKqcx3N+vzNBuM
-         D86JhEjjQbXnaeOn8Has1S8iUh5QKw8Z/GeDuUlA8yZzqFP4A/ojkv0L/gna0H99D6gb
-         KQ+Gsm5idOZ4nS79g350yi8jbzLAF3h+yhkelLeM+Xfp1TuQzZycHizPtYE47i9ka8O+
-         9BRgB8JyULLNxJHlReyXVL/98W3jnVOj8TQWwdDeBJNMbIOKlzCis0v5n8PmI1B4YDAm
-         haVrOtxFuhKoh1wZ+7Vi0Ryy/9A4UgVDyfaIhkMXJKh7zigztGY7XQyC2OmzVTFIvXJE
-         hmMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RfH8kkxJvYDkHZoR/+BVEo4zBkqyra3aG6rgjb414Ng=;
-        b=L3yHHASTEkiZJY4ne1xqT5PnxLpMezLby2IL+J/uwX86betMI9X/zYVo75xF3Q2Hwe
-         9Xj/kRUsiM82nWxIOoDpp3X+DWvG5FvVpK46MuTxve9CKzoEFZHKy7SzhuvDXMB+OBRa
-         6EQw8eiiwzD+wdg0rKYCkNV/E3CrYVitLVHOd9ZgU3h6utL9XdlXZo3QOzg6jHGHS5P0
-         cc22JWRoRoCZ5WqboQ7Rz5Np47O+QbEfIGQMwyOR6WcRKjLpQbyxJY0h81Q0bQHlJc89
-         vuHAV8dWgpJXdufZCaxzcstKNsk5pp65xgMuh/7sAavmRfRX/FIC9iiUbRws3iPuz/G9
-         9loA==
-X-Gm-Message-State: ANoB5pnVMWmO4TOkouR1+rwgPLA0dAxNtNM5S7vSeMUS0/Gf6HDQYT17
-        QaWwfJxKNeW9cMeN8TltZ6sGVg==
-X-Google-Smtp-Source: AA0mqf4NCJGtrfXxBc+iPdhZjn5t+SS+bxDYJ+lmD2OeQt33SGuvuPsJ+J8h19c5b0KrraKt06Jjog==
-X-Received: by 2002:ac2:4e4e:0:b0:4a4:68b9:608a with SMTP id f14-20020ac24e4e000000b004a468b9608amr3963518lfr.21.1670894285445;
-        Mon, 12 Dec 2022 17:18:05 -0800 (PST)
-Received: from [127.0.0.1] ([94.25.229.107])
-        by smtp.gmail.com with ESMTPSA id t17-20020a195f11000000b004ac980a1ba1sm158445lfb.24.2022.12.12.17.18.04
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 12 Dec 2022 17:18:05 -0800 (PST)
-Date:   Tue, 13 Dec 2022 04:18:00 +0300
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Eric Chanudet <echanude@redhat.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-CC:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Andrew Halaney <ahalaney@redhat.com>,
-        Brian Masney <bmasney@redhat.com>
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: pm8450a: add rtc node
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20221213005539.1133443-1-echanude@redhat.com>
-References: <20221213005539.1133443-1-echanude@redhat.com>
-Message-ID: <219F5CF2-BA91-4749-A32C-84BCF541ECE0@linaro.org>
+        with ESMTP id S229842AbiLMCe0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 21:34:26 -0500
+X-Greylist: delayed 573 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 12 Dec 2022 18:34:25 PST
+Received: from mail-m11880.qiye.163.com (mail-m11880.qiye.163.com [115.236.118.80])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54099BF40;
+        Mon, 12 Dec 2022 18:34:25 -0800 (PST)
+Received: from [172.16.12.69] (unknown [58.22.7.114])
+        by mail-m11880.qiye.163.com (Hmail) with ESMTPA id 9E6AA2020F;
+        Tue, 13 Dec 2022 10:24:43 +0800 (CST)
+Message-ID: <faea4932-add6-fc51-836d-b113e8c9a194@rock-chips.com>
+Date:   Tue, 13 Dec 2022 10:24:44 +0800
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Cc:     shawn.lin@rock-chips.com, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v1 2/3] mmc: starfive: Add sdio/emmc driver support
+Content-Language: en-GB
+To:     William Qiu <william.qiu@starfivetech.com>
+References: <20221207131731.1291517-1-william.qiu@starfivetech.com>
+ <20221207131731.1291517-3-william.qiu@starfivetech.com>
+From:   Shawn Lin <shawn.lin@rock-chips.com>
+In-Reply-To: <20221207131731.1291517-3-william.qiu@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+        tZV1koWUFJSktLSjdXWS1ZQUlXWQ8JGhUIEh9ZQVkaTENCVh5DHUgdTRlCHUMdQ1UTARMWGhIXJB
+        QOD1lXWRgSC1lBWU5DVUlJVUxVSkpPWVdZFhoPEhUdFFlBWU9LSFVKSktISkxVSktLVUtZBg++
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Oj46Shw*Vj0vAk4OGTgeIiw5
+        LUsaCzRVSlVKTUxLQ0JDSUNPSElIVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
+        C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUlCQ0g3Bg++
+X-HM-Tid: 0a85094c758b2eb6kusn9e6aa2020f
+X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi
 
+On 2022/12/7 21:17, William Qiu wrote:
+> Add sdio/emmc driver support for StarFive JH7110 soc.
+> 
+> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+> ---
+>   MAINTAINERS                        |   6 +
+>   drivers/mmc/host/Kconfig           |  10 ++
+>   drivers/mmc/host/Makefile          |   1 +
+>   drivers/mmc/host/dw_mmc-starfive.c | 197 +++++++++++++++++++++++++++++
+>   4 files changed, 214 insertions(+)
+>   create mode 100644 drivers/mmc/host/dw_mmc-starfive.c
+> 
 
-On 13 December 2022 03:55:38 GMT+03:00, Eric Chanudet <echanude@redhat=2Ec=
-om> wrote:
->Add the rtc block on pm8450a first pmic to enable the rtc for
->sa8540p-ride=2E
->
->Signed-off-by: Eric Chanudet <echanude@redhat=2Ecom>
->---
-> arch/arm64/boot/dts/qcom/pm8450a=2Edtsi | 8 ++++++++
-> 1 file changed, 8 insertions(+)
->
->diff --git a/arch/arm64/boot/dts/qcom/pm8450a=2Edtsi b/arch/arm64/boot/dt=
-s/qcom/pm8450a=2Edtsi
->index 34fc72896761=2E=2Eaf761dbfbc66 100644
->--- a/arch/arm64/boot/dts/qcom/pm8450a=2Edtsi
->+++ b/arch/arm64/boot/dts/qcom/pm8450a=2Edtsi
->@@ -13,6 +13,14 @@ pm8450a: pmic@0 {
-> 		#address-cells =3D <1>;
-> 		#size-cells =3D <0>;
->=20
->+		rtc@6000 {
->+			compatible =3D "qcom,pm8941-rtc";
->+			reg =3D <0x6000>;
->+			reg-names =3D "rtc", "alarm";
->+			interrupts =3D <0x0 0x61 0x1 IRQ_TYPE_NONE>;
+...
 
+> +
+> +static unsigned long dw_mci_starfive_caps[] = {
+> +	MMC_CAP_CMD23,
+> +	MMC_CAP_CMD23,
+> +	MMC_CAP_CMD23
+> +};
+> +
 
-0x60?
+....
 
->+			wakeup-source;
->+		};
->+
-> 		pm8450a_gpios: gpio@c000 {
-> 			compatible =3D "qcom,pm8150-gpio", "qcom,spmi-gpio";
-> 			reg =3D <0xc000>;
+> +	host->priv = priv;
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct dw_mci_drv_data starfive_data = {
+> +	.caps = dw_mci_starfive_caps,
+> +	.num_caps = ARRAY_SIZE(dw_mci_starfive_caps),
 
---=20
-With best wishes
-Dmitry
+use ".common_caps = MMC_CAP_CMD23" instead.
+
+> +	.set_ios = dw_mci_starfive_set_ios,
+> +	.parse_dt = dw_mci_starfive_parse_dt,
+> +	.execute_tuning = dw_mci_starfive_execute_tuning,
+> +};
+> +
+> +static const struct of_device_id dw_mci_starfive_match[] = {
+
