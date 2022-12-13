@@ -2,50 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC90564B466
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 12:45:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 91E5464B490
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 12:57:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235018AbiLMLpd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 06:45:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43374 "EHLO
+        id S235388AbiLML5P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 06:57:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231939AbiLMLpc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 06:45:32 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4F93B59;
-        Tue, 13 Dec 2022 03:45:30 -0800 (PST)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 760134A7;
-        Tue, 13 Dec 2022 12:45:28 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1670931928;
-        bh=w9dLZnMEZZ//q+8/CynjxWUeAS8/qVNnlXid94PyXUE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Vlqutjs29i7EJ9plVVq/ewmjpTKwyAOUjMzXSWal2YcImSn+XumM0rnDh76kIbVvq
-         PIWxXcICmUfo6rjYNAeNtsV+x8UGxwyJYzz50e0QsiVHMn8ywwmvZkTY27+SH0v21r
-         B8MSEgMm5sV4Hg8PQUnJljwr1SE1qEvZ4MtUWAwc=
-Date:   Tue, 13 Dec 2022 13:45:25 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        Marek Vasut <marex@denx.de>, Mark Brown <broonie@kernel.org>
-Subject: Re: [RFC PATCH 1/3] dt-bindings: gpio: Add optional ramp-up delay
- property
-Message-ID: <Y5hl1Sb8csSkbrDh@pendragon.ideasonboard.com>
-References: <20221212103525.231298-1-alexander.stein@ew.tq-group.com>
- <20221212103525.231298-2-alexander.stein@ew.tq-group.com>
- <CACRpkdYioW1GROHFxA1vuAEiXqHh6fAu5CXNLcTvW_w3mWjSPw@mail.gmail.com>
+        with ESMTP id S235507AbiLML4w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 06:56:52 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6DED1DF0D;
+        Tue, 13 Dec 2022 03:56:37 -0800 (PST)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BD7iPmC027980;
+        Tue, 13 Dec 2022 11:56:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=TwzU1aVJf1r5ToNcJf2LumGC0kISUfWKBLvdMRAg81U=;
+ b=Tc+6Yl5ZOGwo2uMgYqQMYZ0eFLGFgiVQCuNn3XP7g0HTSSjNUJ4NQgK3OiQ9b76LgUDs
+ OanNAkglGUkbtTqyW9LSi9dzQUBBHcGanRCzQ/KfxxbRMjfEd8pHrgcxm5Cb9wds7me6
+ TClz2Q6WiHIPtLW3VHuCiSy+WjXhkNTl5mIkbbmXjg5Ym5DC8nuCgSvj5ehfwvaACLcx
+ Qe3peUQxNnyOuhoNdjTBSHiu1PpWfDZARfmbmjuShg9+E7CicHoRbCDhkTbMkPG1WCLE
+ 4R6es1hWw04qWnAuXRQYPzXjBoQ0MgRoM+BVExeejdPBfQLoSaTaRwg2KoIbZPgDBxdh vg== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3mehj8h67m-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 13 Dec 2022 11:56:28 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2BDBuRtQ018338
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 13 Dec 2022 11:56:27 GMT
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Tue, 13 Dec 2022 03:56:23 -0800
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_rohkumar@quicinc.com>,
+        <srinivas.kandagatla@linaro.org>, <dianders@chromium.org>,
+        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
+        <quic_rjendra@quicinc.com>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH] arm64: dts: qcom: sc7180: Set performance state for audio
+Date:   Tue, 13 Dec 2022 17:26:06 +0530
+Message-ID: <1670932566-22923-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CACRpkdYioW1GROHFxA1vuAEiXqHh6fAu5CXNLcTvW_w3mWjSPw@mail.gmail.com>
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: RDr4lqsyjGmFqwIcjf9Qj4O6GEC42B7W
+X-Proofpoint-ORIG-GUID: RDr4lqsyjGmFqwIcjf9Qj4O6GEC42B7W
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-12-13_03,2022-12-13_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ impostorscore=0 mlxscore=0 priorityscore=1501 mlxlogscore=999 bulkscore=0
+ lowpriorityscore=0 suspectscore=0 clxscore=1011 adultscore=0 spamscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2212130106
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -53,133 +76,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+Set a performance state for audio clks so that the minimally
+correct corner voltage is picked when audio is active.
 
-On Tue, Dec 13, 2022 at 10:08:19AM +0100, Linus Walleij wrote:
-> On Mon, Dec 12, 2022 at 11:35 AM Alexander Stein wrote:
-> 
-> > This adds a ramp-up delay (in us) for adding a delay after enabling
-> > GPIO. This is necessary if the ramp-up time is increased by some external
-> > components. Usually this is quite fast, but certain combinations can
-> > increase this to grater than 100ms.
-> >
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> (...)
-> > +gpio-controller@00000000 {
-> > +       compatible = "foo";
-> > +       reg = <0x00000000 0x1000>;
-> > +       gpio-controller;
-> > +       #gpio-cells = <2>;
-> > +       gpio-ramp-up-delays-us = <0>, <0>, <0>, <0>,
-> > +                                <0>, <0>, <120000>, <0>,
-> > +                                <0>, <0>, <0>, <0>,
-> > +                                <0>, <0>, <0>, <0>;
-> 
-> Why would this be different per-gpio-line?
-> 
-> If this should be on the GPIO controller, this should be the ramp-up for the
-> GPIO controller output itself, not for the random electronics that may or may
-> not be attached to the line.
+Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/sc7180.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-The goal of this series is to cover the delay of the RC filter on the
-signal between the GPIO controller and the GPIO consumer.
-
-> Otherwise the ramp-up should certainly be on the consumer side. And that
-> seems very much like what is going on here.
-
-The circuit we're looking at is
-
-  +----------+           +-----------+
-  | SoC      |           |    VCC    |
-  |          |           |     |     |
-  |          |           |     _     |
-  |          |           |    | | R  |
-  |          |           |    |_|    |
-  |          |           |     |     |
-  |      [IOx|-----+-----|EN]--+     |
-  |          |     |     |           |
-  |          |     |     | SN65DSI83 |
-  +----------+    --- C  +-----------+
-                  ---
-		   |
-		   -
-		  GND
-
-The IOx pin is an open-drain output, the board has a 470nF capacitor to
-ground, and the SN65DSI83 has an internal pull-up off 200kΩ. This gives
-an RC time constant of 94ms, far from being negligible.
-
-The delay is caused by the combination of the open-drain nature of the
-output (an intrinsic property of the GPIO controller), the pull-up
-resistor (an intrinsic property of the SN65DSI83) and the capacitor on
-the line (a property of the board). DT is notoriously bad at modelling
-this kind of setup.
-
-Note that we would have a similar issue with a GPIO controller that
-would drive the signal actively and a consumer without an internal
-pull-up if the board had an RC filter on the line.
-
-Alexander started with a patch that added a ti,enable-delay-us property
-to the SN65DSI83 DT binding. I don't think that's a good idea, as the
-issue is far from being specific to the SN65DSI83, patching all GPIO
-consumers as needed to support signal propagation delays doesn't scale.
-Patching every GPIO controller driver would be equally bad. I've thus
-proposed modelling this with a standard property on the GPIO provider
-side, handled by gpiolib, to have a centralized solution.
-
-The alternative I proposed, adding a "GPIO delay" DT node to model this,
-would also offer a centralized solution to the problem, but with
-additional complexity both at probe time and runtime.
-
-> Consider a gpio-regulator:
-> 
-> 
-> Documentation/devicetree/bindings/regulator/fixed-regulator.yamlproperties:
->   compatible:
->     enum:
->       - regulator-fixed
->       - regulator-fixed-clock
->       - regulator-fixed-domain
-> 
->   regulator-name: true
-> 
->   gpio:
->     description: gpio to use for enable control
->     maxItems: 1
-> (...)
->   startup-delay-us:
->     description: startup time in microseconds
-> 
->   off-on-delay-us:
->     description: off delay time in microseconds
-> 
-> 
-> There is one consumer, and if you add ramp-up and ramp-down delays to the
-> GPIO lines like this you have just created two ways of doing the same thing.
-> When there is a ramp-up for a regulator now the used can choose to put it
-> on the regulator or on the gpio.
-
-The regulator delays model the intrinsic delays when enabling or
-disabling a regulator, and they should stay. They address a different
-problem.
-
-> This is clearly ambiguous so NAK to this approach. IMO the property goes
-> on the consumer due to precedence.
-> 
-> [Other context]
-> > Laurent suggest to add a GPIO delay node in DT. IMHO this increased the DT
-> > complexity unnecessarily. But comments are welcome.
-> 
-> If the consumer subsystem don't want it, I guess this is where you would
-> have to go in and add more DT descriptions for the electronics on the
-> board, which I understand is a bit frustrating, and it is hard to find the
-> right trade-off. It makes me think about the classical problem "how long is
-> the coast of Britain?" by Benoit Mandelbrot:
-> https://en.wikipedia.org/wiki/How_Long_Is_the_Coast_of_Britain%3F_Statistical_Self-Similarity_and_Fractional_Dimension
-> 
-> The DT maintainers will have the final word on it I guess.
-
+diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+index f71cf21..3367e52 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+@@ -3625,6 +3625,7 @@
+ 				<&apps_smmu 0x1032 0>;
+ 
+ 			power-domains = <&lpass_hm LPASS_CORE_HM_GDSCR>;
++			required-opps = <&rpmhpd_opp_nom>;
+ 
+ 			status = "disabled";
+ 
+@@ -3655,6 +3656,8 @@
+ 			clocks = <&gcc GCC_LPASS_CFG_NOC_SWAY_CLK>,
+ 				 <&rpmhcc RPMH_CXO_CLK>;
+ 			clock-names = "iface", "bi_tcxo";
++			power-domains = <&rpmhpd SC7180_CX>;
++
+ 			#clock-cells = <1>;
+ 			#power-domain-cells = <1>;
+ 		};
 -- 
-Regards,
+2.7.4
 
-Laurent Pinchart
