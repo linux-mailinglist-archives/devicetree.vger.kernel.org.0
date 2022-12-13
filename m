@@ -2,97 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E979464B99A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 17:26:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DCA9C64B9CA
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 17:32:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235810AbiLMQ0O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 11:26:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37290 "EHLO
+        id S235921AbiLMQcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 11:32:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235303AbiLMQ0N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 11:26:13 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0818B236;
-        Tue, 13 Dec 2022 08:26:13 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A81BAB81260;
-        Tue, 13 Dec 2022 16:26:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61393C433EF;
-        Tue, 13 Dec 2022 16:26:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1670948770;
-        bh=NkxDPuLY7Zyb3KNbQ2lo6DdobBvEk1ck2GXb4Yzjh1E=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bXuoP9G941WQ5H778c1k+WBpRS0EI10F6D4Uvuf0wcMz0tXCHBB/WAK8HCq5NG0jh
-         ZOtOAd6LyWTZPFdX03soWBTweC7dFblKrBbBcuLpds634TEMyF5GrJnQw4L4pqJKSD
-         3Arihx7ASAzJLghNk6VlEa2Zs981Ddv58J7TzjoZ3zD2Oo/SP9nCFbsbfSDAsZSJzQ
-         j502/OsTxh7P4rtt0Q1DbJ6pqeT5bguLMcC/FvTelgxdyjr6lxeviNEXhIFudTnqId
-         AyEWY8B7gqOg8xDpZCe/H84DHm4N8vWdRLkodOPZCasaje3f3JyXvKtrRv19lkculb
-         mxL5sVVRFczOg==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1p5872-0005vC-Dy; Tue, 13 Dec 2022 17:26:36 +0100
-Date:   Tue, 13 Dec 2022 17:26:36 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234825AbiLMQcL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 11:32:11 -0500
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B1B1E0CC;
+        Tue, 13 Dec 2022 08:32:11 -0800 (PST)
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-1443a16b71cso13160187fac.13;
+        Tue, 13 Dec 2022 08:32:11 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KDwF6SAQDM6fjUwYm0h9OujqGNr6BVsL3CNkq7crNpQ=;
+        b=PYn+JHcYO67U6bbHyPCR90MJSlBXCe+WdKESZq2JWnyv09kocBBhXizNh5SwHAxWW1
+         V/+l3cTztQ1F/hEhgLnEDFL40qRmcT4il44jc9QD1Qz4zHPHUuYaeAt0/PrAbm5cZmoB
+         seum2OXsWQmA6dR/pFMje2X3jfJCxw2w5OCkwkWHuy3AI62VNwWf4SdSXdLEnFof7fbw
+         qbVxVEUj2gLgG/HL8y1vSZz9KGiq/ybWPV3b/vvqPoDtzpBgxwLDOdfRtxisgMeNJ4W/
+         HZ6odr4D4aj5WlEYj7iA55UmTd79YGsX5vYIalVdseWVCt2aM5HyK5XbZaWrjx36MpzV
+         LX6w==
+X-Gm-Message-State: ANoB5pnRYxnyiNMN73OFeZ1OhIQldeicnZlCfBIJn4L1WsQp8H/5vGiI
+        ObcSS66T5HvQXNNFswgPWvHMyvdn3A==
+X-Google-Smtp-Source: AA0mqf5XQGRkKkepgjknMVf6SyMWLo7pqvvDq3ZLDIZ41+F9JgfxY50LFm+xmkKYlSiHWgs3OcDezw==
+X-Received: by 2002:a05:6870:4c8b:b0:14b:7e4f:f0ca with SMTP id pi11-20020a0568704c8b00b0014b7e4ff0camr545587oab.31.1670949130248;
+        Tue, 13 Dec 2022 08:32:10 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id f43-20020a056871072b00b00144bb1013e6sm1596271oap.4.2022.12.13.08.32.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Dec 2022 08:32:09 -0800 (PST)
+Received: (nullmailer pid 2010757 invoked by uid 1000);
+        Tue, 13 Dec 2022 16:32:09 -0000
+Date:   Tue, 13 Dec 2022 10:32:09 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Sudip Mukherjee <sudip.mukherjee@sifive.com>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Kalyan Thota <quic_kalyant@quicinc.com>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 11/12] arm64: dts: qcom: sc8280xp-crd: Enable EDP
-Message-ID: <Y5invNFKLBKy30v1@hovoldconsulting.com>
-References: <20221207220012.16529-1-quic_bjorande@quicinc.com>
- <20221207220012.16529-12-quic_bjorande@quicinc.com>
- <Y5MPa9l4btcDG9GP@hovoldconsulting.com>
- <20221213151012.GB16520@core-thresher1.qualcomm.com>
+        jude.onyenegecha@sifive.com, ben.dooks@sifive.com,
+        jeegar.lakhani@sifive.com, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 14/15] spi: dt-bindings: snps,dw-ahb-ssi: Add generic
+ dw-ahb-ssi version
+Message-ID: <20221213163209.GA1684072-robh@kernel.org>
+References: <20221212180732.79167-1-sudip.mukherjee@sifive.com>
+ <20221212180732.79167-15-sudip.mukherjee@sifive.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221213151012.GB16520@core-thresher1.qualcomm.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221212180732.79167-15-sudip.mukherjee@sifive.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 13, 2022 at 07:10:14AM -0800, Bjorn Andersson wrote:
-> On Fri, Dec 09, 2022 at 11:35:23AM +0100, Johan Hovold wrote:
- 
-> > > +	edp_reg_en: edp-reg-en-state {
-> > > +		pins = "gpio25";
-> > > +		function = "gpio";
-> > > +		output-enable;
-> > 
-> > 'output-enable' is not valid for tlmm and causes the settings to be
-> > rejected:
-> > 
-> > 	sc8280xp-tlmm f100000.pinctrl: pin_config_group_set op failed for group 25
-> > 	reg-fixed-voltage regulator-edp-3p3: Error applying setting, reverse things back
-> > 
+On Mon, Dec 12, 2022 at 06:07:31PM +0000, Sudip Mukherjee wrote:
+> Add new snps,dw-ahb-ssi version to the bindings.
+
+Yes, I can see that in the diff. Tell me something useful here. Why 
+do we need a new compatible? What does this compatible imply in the 
+h/w that the existing ones don't. How do I know which compatible to 
+use?
+
+Really, this should probably only be a fallback with an SoC specific 
+compatible. Future quirk properties which are not board specific only 
+will be rejected. You've been warned.
+
 > 
-> Thanks for spotting that, it doesn't seem to be needed for the gpio-regulator
-> driver anyways...
-
-I noticed that the firmware on both CRD and X13s sets the drive strength
-to 16 here. Should we specify that too (and disable the pull up)
-instead of relying on the firmware configuration?
-
-Johan
+> Signed-off-by: Sudip Mukherjee <sudip.mukherjee@sifive.com>
+> ---
+>  Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> index d33b72fabc5d8..af36df67a4c0e 100644
+> --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> @@ -45,6 +45,7 @@ properties:
+>          enum:
+>            - snps,dw-apb-ssi
+>            - snps,dwc-ssi-1.01a
+> +          - snps,dw-ahb-ssi
+>        - description: Microsemi Ocelot/Jaguar2 SoC SPI Controller
+>          items:
+>            - enum:
+> -- 
+> 2.30.2
+> 
+> 
