@@ -2,162 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B731864C0B1
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 00:32:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3090B64C0C5
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 00:43:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237278AbiLMXci (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 18:32:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45746 "EHLO
+        id S229699AbiLMXnx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 18:43:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237105AbiLMXce (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 18:32:34 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D55A2DC0
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 15:32:29 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id cf42so7665265lfb.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 15:32:29 -0800 (PST)
+        with ESMTP id S236790AbiLMXnw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 18:43:52 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23F0838B7
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 15:43:50 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id a16so20183013edb.9
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 15:43:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=0mSBEF/cK9qO+wKe5gbeL/o/RiTSxMYAo8a4NjEeZbE=;
-        b=Ar7QLMoSvVNZoWRu44T7jq7Fw7D3rHhc0N5qmhf3IN610AGTp3jq4KMDFJxcVwCoqT
-         K1lpZD3IjowOpMJwRuKBHOLEssZl5ohZxii8IV8Y7Yflpr16+0ge7YKfqg91EJKcHvKU
-         8Ml69fHqtlP2cBYJ/gjY796OwzwL7T8r4llIpBqiZ4P3SMcjFP6VhFcwERL7TldckK7e
-         +DxIvjWDbY3TOdDNBonGAY1LZguxb/jdboCB7wGJnRIOU9X81aOn/ofkKDmjwq4l2twQ
-         VOKa0lpmDL1DNBQoK2ycvQ0tNS+pShHPf2KKnudflOhS9bsowiy6HBL4dRkka2cjNIvz
-         zAew==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=18mlTDNeiNFp6aWfotvUw04NGasXq2KV7GNkrVMvEq8=;
+        b=T9MdtWhx9DYyvvjsEzjQl6MfBrC9tm62K6mcS9HZ7BmF3ZvVjbZifSDI2vuAgf5gk/
+         NbJXPdFr8No+2EhbIPw6rPFe4FpbAytdJYCm6oTqAz0jtF0qmdousDKNpRjV34K3VwpN
+         tqh87lFvh7HsTFOnfY7PxJXDwDyMEwJiewiBVCEpNhdJ4k4cQLYumGWQKmZA1P2itFfm
+         rvHsnQg5HfCz5Fkq1AP2tYfz/1KeAnMgzYbqhJSkz7aRPrKRd3hl+htZfV0twEsCnm5M
+         sDF9Np5pD4aBoiReX/VupgFJ02+bs5SeUGiKW46cR2h5RTWbfDgG7+wffQBY8hRVYnAW
+         A17g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0mSBEF/cK9qO+wKe5gbeL/o/RiTSxMYAo8a4NjEeZbE=;
-        b=vA+HBd0gkgZR3GlhCmSfFdF2iWv8peeT10QPbVBqCMH1y8sKed8UClwZmbPBvLHkgd
-         NLlWteFwmDt8sE33E0FA1aGOCNzOa3tDnVB1UJV92k41qKTKsPmxw523M5z86a+zAt1k
-         HNnUwQ4OXX3MBZa69DCE+6WPqhBkV7GxSPyjyaqUwmI5Zk19plrSeakTZfaeFsN8Br6K
-         rIAOCeuVL6Z2BZJCWH3dEcj81Ngp9O/LtxI8HZR95E288FWnjSmYyGp4YSIXU3XykgEp
-         EyOM+HIRO28OhX2D3pVTeu9aZ+oPSGWLOdZ55MTzXfuMWiyECHhpvJGSZLTnhNHcDvc4
-         E/JA==
-X-Gm-Message-State: ANoB5pnH1KuHImsYoT8ivs146n41Z6JcxlBQPDh3FdDqh6AUkjqAsQdu
-        tvKzHDQdeExHbSKu7TCgRX5TCg==
-X-Google-Smtp-Source: AA0mqf70+WjC0RCpIae/lDzkigCOMrvR2zfYcJpnyv3W7RRP7VAILtGVl0v5T1LuqZMt3RisIkWfpg==
-X-Received: by 2002:a05:6512:ad6:b0:4b5:b7a7:ebfa with SMTP id n22-20020a0565120ad600b004b5b7a7ebfamr5344476lfu.64.1670974347455;
-        Tue, 13 Dec 2022 15:32:27 -0800 (PST)
-Received: from ?IPv6:::1? (dzccz6yfpdgdc5vwjcs5y-3.rev.dnainternet.fi. [2001:14ba:a085:4d00:8c19:462c:c647:13f2])
-        by smtp.gmail.com with ESMTPSA id s23-20020a056512315700b004b5812207dbsm550670lfi.201.2022.12.13.15.32.21
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 13 Dec 2022 15:32:27 -0800 (PST)
-Date:   Wed, 14 Dec 2022 01:31:30 +0200
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        dri-devel@lists.freedesktop.org, robdclark@gmail.com,
-        sean@poorly.run, swboyd@chromium.org, dianders@chromium.org,
-        vkoul@kernel.org, daniel@ffwll.ch, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@somainline.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, airlied@gmail.com
-CC:     quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com,
-        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v12_1/5=5D_arm64=3A_dts=3A_qcom=3A_add_data?= =?US-ASCII?Q?-lanes_and_link-freuencies_into_dp=5Fout_endpoint?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <1670967848-31475-2-git-send-email-quic_khsieh@quicinc.com>
-References: <1670967848-31475-1-git-send-email-quic_khsieh@quicinc.com> <1670967848-31475-2-git-send-email-quic_khsieh@quicinc.com>
-Message-ID: <2086A443-8311-49BA-B700-9951076F7623@linaro.org>
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=18mlTDNeiNFp6aWfotvUw04NGasXq2KV7GNkrVMvEq8=;
+        b=3NyFTkYL3XRO5FgD9dGnbHTbwaMAxs8IMEEni9TQjpu9kvbO1ESljObh+ORpZthcO2
+         3Ujf7OfhbhZSMCiQCFmFTgZnpViponG3DZPS8mDOX9sf0Bcwe6ceN4iFfHA2odXwX3yL
+         c/9OG3CYFB6p1lrQo71hAT5zyqdbZwMxwYJmZ7alpRcWkijFU4mha1N1oapwmdgqUtUn
+         k2aNJ5fhufibZQmKmpodQGCYGJXXjugzFVVNZwnD3LHfgT+1fA14i4pWjCYK3y92TuYA
+         4Dq9vhMMk27xZwiUdJF/AjZEsaW4PFF/w0pMXmgt/O8atodEVbpebiF0eWHxLDG/vzqA
+         ykkQ==
+X-Gm-Message-State: ANoB5pmbnic7wrUo1UB6Yyn8mnimKnb9/Kj+uwnjcX5Nv4cfjCSqqbwC
+        9VK6wkofQ+tJKkXvvAeMEnlAOQ==
+X-Google-Smtp-Source: AA0mqf4/fdjI2Xl5pRIkZamgtW8MHGY4kmaFW+1fTlA7+HIsSasi3rauh4dTiFFNRQjdNZw9JvP9gQ==
+X-Received: by 2002:a05:6402:205c:b0:46d:c48c:50eb with SMTP id bc28-20020a056402205c00b0046dc48c50ebmr24569458edb.13.1670975028638;
+        Tue, 13 Dec 2022 15:43:48 -0800 (PST)
+Received: from predatorhelios.fritz.box (dynamic-093-129-109-038.93.129.pool.telefonica.de. [93.129.109.38])
+        by smtp.gmail.com with ESMTPSA id f5-20020a05640214c500b00458b41d9460sm5407498edx.92.2022.12.13.15.43.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Dec 2022 15:43:48 -0800 (PST)
+From:   =?UTF-8?q?Bernhard=20Rosenkr=C3=A4nzer?= <bero@baylibre.com>
+To:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        angelogioacchino.delregno@collabora.com, khilman@baylibre.com
+Subject: [PATCH v5 0/7] Add minimal MT8365 and MT8365-EVK support
+Date:   Wed, 14 Dec 2022 00:43:39 +0100
+Message-Id: <20221213234346.2868828-1-bero@baylibre.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This adds minimal support for the MediaTek 8365 SOC and the EVK reference
+board, allowing the board to boot to initramfs with serial port I/O.
 
+v5:
+  - Reorder top-level entries in mediatek,mt8365-pinctrl.yaml to match
+    example-schema
+  - Use consistent quotes
 
-On 13 December 2022 23:44:04 EET, Kuogee Hsieh <quic_khsieh@quicinc=2Ecom>=
- wrote:
->Move data-lanes property from mdss_dp node to dp_out endpoint=2E Also
->add link-frequencies property into dp_out endpoint as well=2E The last
->frequency specified at link-frequencies will be the max link rate
->supported by DP=2E
->
->Changes in v5:
->-- revert changes at sc7180=2Edtsi and sc7280=2Edtsi
->-- add &dp_out to sc7180-trogdor=2Edtsi and sc7280-herobrine=2Edtsi
->
->Changes in v6:
->-- add data-lanes and link-frequencies to yaml
->
->Changes in v7:
->-- change 160000000 to 1620000000
->-- separate yaml to different patch
->
->Changes in v8:
->-- correct Bjorn mail address to kernel=2Eorg
->
->Changes in v9:
->-- use symbol rate (hz) for link-frequencies at dp_out at sc7180_trogdor=
-=2Edtsi
->
->Signed-off-by: Kuogee Hsieh <quic_khsieh@quicinc=2Ecom>
->---
-> arch/arm64/boot/dts/qcom/sc7180-trogdor=2Edtsi   | 6 +++++-
-> arch/arm64/boot/dts/qcom/sc7280-herobrine=2Edtsi | 6 +++++-
-> 2 files changed, 10 insertions(+), 2 deletions(-)
->
->diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor=2Edtsi b/arch/arm64/=
-boot/dts/qcom/sc7180-trogdor=2Edtsi
->index eae22e6=2E=2E93b0cde 100644
->--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor=2Edtsi
->+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor=2Edtsi
->@@ -814,7 +814,11 @@ hp_i2c: &i2c9 {
-> 	status =3D "okay";
-> 	pinctrl-names =3D "default";
-> 	pinctrl-0 =3D <&dp_hot_plug_det>;
->-	data-lanes =3D <0 1>;
->+};
->+
->+&dp_out {
->+    data-lanes =3D <0  1>;
+v4:
+  - Remove pins-are-numbered references that have been holding things up
+    now that the patches removing it from dt-bindings have landed in linux-next
 
-Quoting Krzysztof from v12:
+v3:
+  - Remove a number of components that are not yet supported (they will
+    come back alongside the corresponding drivers)
+  - Address issues found by dt_binding_check (mostly fixing pinctrl
+    bindings)
+  - Address issues pointed out in comments
+  - Reorder patches
 
+v2:
+  - Add missing dt-bindings documentation
+  - Small cleanups addressing issues in v1 pointed out by Krzysztof Kozlowski
 
-Why adding two spaces? Just cut previous line and paste it, don't change i=
-t=2E
+Bernhard Rosenkränzer (4):
+  dt-bindings: arm64: dts: mediatek: Add mt8365-evk board
+  dt-bindings: irq: mtk, sysirq: add support for mt8365
+  dt-bindings: mfd: syscon: Add mt8365-syscfg
+  dt-bindings: pinctrl: add bindings for Mediatek MT8365 SoC
 
->+    link-frequencies =3D /bits/ 64 <1620000000 2700000000 5400000000>;
-> };
->=20
-> &pm6150_adc {
->diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine=2Edtsi b/arch/arm6=
-4/boot/dts/qcom/sc7280-herobrine=2Edtsi
->index c11e371=2E=2E3c7a9d8 100644
->--- a/arch/arm64/boot/dts/qcom/sc7280-herobrine=2Edtsi
->+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine=2Edtsi
->@@ -442,7 +442,11 @@ ap_i2c_tpm: &i2c14 {
-> 	status =3D "okay";
-> 	pinctrl-names =3D "default";
-> 	pinctrl-0 =3D <&dp_hot_plug_det>;
->-	data-lanes =3D <0 1>;
->+};
->+
->+&dp_out {
->+	data-lanes =3D <0  1>;
->+	link-frequencies =3D /bits/ 64 <1620000000 2700000000 5400000000 810000=
-0000>;
-> };
->=20
-> &mdss_mdp {
+Fabien Parent (3):
+  dt-bindings: usb: mediatek,mtu3: add MT8365 SoC bindings
+  dt-bindings: usb: mediatek,mtk-xhci: add MT8365 SoC bindings
+  arm64: dts: mediatek: Initial mt8365-evk support
 
---=20
-With best wishes
-Dmitry
+ .../devicetree/bindings/arm/mediatek.yaml     |   4 +
+ .../interrupt-controller/mediatek,sysirq.txt  |   1 +
+ .../devicetree/bindings/mfd/syscon.yaml       |   1 +
+ .../pinctrl/mediatek,mt8365-pinctrl.yaml      | 197 ++++++++++
+ .../bindings/usb/mediatek,mtk-xhci.yaml       |   1 +
+ .../bindings/usb/mediatek,mtu3.yaml           |   1 +
+ arch/arm64/boot/dts/mediatek/Makefile         |   1 +
+ arch/arm64/boot/dts/mediatek/mt8365-evk.dts   | 163 +++++++++
+ arch/arm64/boot/dts/mediatek/mt8365.dtsi      | 343 ++++++++++++++++++
+ 9 files changed, 712 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt8365-pinctrl.yaml
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8365-evk.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8365.dtsi
+
+-- 
+2.39.0
+
