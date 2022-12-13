@@ -2,95 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DFCF64B5EC
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 14:17:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 778F764B5F7
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 14:20:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230032AbiLMNQv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 08:16:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37722 "EHLO
+        id S235168AbiLMNUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 08:20:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235458AbiLMNQs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 08:16:48 -0500
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EC6E201A2
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 05:16:47 -0800 (PST)
-Received: by mail-lj1-x229.google.com with SMTP id b9so3251133ljr.5
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 05:16:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vpGS/sLfJxOssPdaaO0i3vLsbjRZ/QFKT+W7Ixf+RBA=;
-        b=JMhitTV6dbHSNBi5lG8kfpe0v4v4PjALRyni8Tgoy5X1fILLoiestrd2zMSm+8ed7E
-         jP+HSNbSB6NZQoZCdfD8KUZRbTT5oCGQ4LG+Wsl7K6JFurtUpRz0cRzVzmvueh/oo3DB
-         lwHBUoKoolhS3i4YWJLzv6U1DUpd8I6Rb120N6tBefDLyEd+wiY0po51Zq+L57vtKgO6
-         ogCycbgCvMZIjexasVJke6cpxeOMCwBwV8Y8TqCubqG9V6EaTAkeJAjXhnscln9lDzlY
-         dAp7FOyomZ7sRUvV1i638x2Pw0q3DgHXHHleS8sgCeRKIIgcu8shWeZ/+Xfzm9pFn0Wi
-         Zd/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vpGS/sLfJxOssPdaaO0i3vLsbjRZ/QFKT+W7Ixf+RBA=;
-        b=TsTVxsqk2RIY8plVSU65vNoQwsdi2WqpFjClOm3+e25VhvkP949zQAx3zPBwkPXQ6s
-         D1dagqLDmKMokXVWCK6z43wtByiY4lLOfsoIisHRS927y4YJsiOq3fRYc2bzfqcjqXJ3
-         FqnRuQ6QpSfX3Y09mk8Cxpy/5BLMQGBcq8q1F2u3i4c8Z98gab79nIlXNqKO7koHsag9
-         ECuBg0PYMwypLyldvKIXyMlZLiTCpl0FUG4DjWJ6Y0uUZDIdsMO2TDFNXcPyJIrg03zr
-         30NQ0oQQZKrYWCeei/kI5pViPdgYoGqed1oPHbKA7VWQW9UndWsSEh0DvDgT7At+XAnS
-         Ij6g==
-X-Gm-Message-State: ANoB5pme40sGE0fTtMYtTLP3VmzaTWmfdC4JIPnXR1xhhaMLJVxSbl/f
-        HMtLW9QtxrgNiV9nYKyoTRWEBg==
-X-Google-Smtp-Source: AA0mqf7h9JdmO1o4fZ5CvwWZSLzxNP4uB3CqDgju8Mga2Rm0IHZvbY8kfyTBYoVwBBTX1+MYSw75Nw==
-X-Received: by 2002:a05:651c:198b:b0:26f:e24e:a41f with SMTP id bx11-20020a05651c198b00b0026fe24ea41fmr6573438ljb.49.1670937405820;
-        Tue, 13 Dec 2022 05:16:45 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id i6-20020a2ea226000000b0027730261350sm258386ljm.131.2022.12.13.05.16.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Dec 2022 05:16:45 -0800 (PST)
-Message-ID: <336ad377-8273-0eb5-d4a7-006e84707b7f@linaro.org>
-Date:   Tue, 13 Dec 2022 14:16:44 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH 2/7] dt-bindings: nvmem: Add compatible for SM8250
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     marijn.suijten@somainline.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229786AbiLMNUR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 08:20:17 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17FDCFCE5
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 05:20:17 -0800 (PST)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 77E84830FA;
+        Tue, 13 Dec 2022 14:20:15 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1670937615;
+        bh=Na3UR+OCkTF7xCKnVTZCtpUk8C7PMPrwfu/gPFvMoN4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=O2MkF7JGwmOnuG1kvposuhwQEsBSqM9LZRaRU+Y3zGDYgVpyBWOP9jWDZip9aC7B2
+         xlC8UeX8sGnoeMvEYoO7Iv04FK/wQG4CJK4FXEKEXH6kujI4RaTar3LRcMoWpnaRBg
+         sJrt2RLL0mNUE2aTEtdg+pr+CUB1rnnlOKKR8Pm5gwIIignXOFpi68HvTOBSWCiuB6
+         IbIRGLV+2w3zTXZ7wj0HNX0lwzGNOUdvGcv5j81e58qm6+siqHaWegpgtZQrj2/fFY
+         PQUuYpmtaufRjgZndXsKumPHMmq4jn5y7gGTVQdNxpuanAToIO8OoLYC03ty1lFFWv
+         dTobmRHPxrFPQ==
+From:   Marek Vasut <marex@denx.de>
+To:     devicetree@vger.kernel.org
+Cc:     Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221213002423.259039-1-konrad.dybcio@linaro.org>
- <20221213002423.259039-3-konrad.dybcio@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221213002423.259039-3-konrad.dybcio@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Liu Ying <victor.liu@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v5] dt-bindings: mxsfb: Document i.MX8M/i.MX6SX/i.MX6SL power-domains property
+Date:   Tue, 13 Dec 2022 14:20:06 +0100
+Message-Id: <20221213132006.6446-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/12/2022 01:24, Konrad Dybcio wrote:
-> Docuemnt the QFPROM on SM8250.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml | 1 +
->  1 file changed, 1 insertion(+)
+The power-domains property is mandatory on i.MX8M Mini, Nano, Plus
+and i.MX6SX, i.MX6SL. Document the property and mark it as required
+on the aforementioned variants of the IP, present in those SoCs.
 
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Liu Ying <victor.liu@nxp.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org
+To: devicetree@vger.kernel.org
+---
+V2: - Add AB from Krzysztof
+    - Add mx6sx power domain into the list
+V3: - Update commit message
+    - Add i.MX6SL
+    - Update example
+V4: - Drop ack from Krzysztof
+    - Rebase on next 20221213 instead of previous 20221208, which now
+      contains power-domains: part of this patch
+V5: - Drop power-domains from MX8MP/MX6SX entry
+---
+ .../devicetree/bindings/display/fsl,lcdif.yaml    | 15 ++++++++++++++-
+ 1 file changed, 14 insertions(+), 1 deletion(-)
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+index f449cfc767899..75b4efd70ba85 100644
+--- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
++++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+@@ -99,7 +99,6 @@ allOf:
+           maxItems: 3
+       required:
+         - clock-names
+-        - power-domains
+   - if:
+       not:
+         properties:
+@@ -114,6 +113,19 @@ allOf:
+           maxItems: 1
+         clock-names:
+           maxItems: 1
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - fsl,imx6sl-lcdif
++              - fsl,imx6sx-lcdif
++              - fsl,imx8mm-lcdif
++              - fsl,imx8mn-lcdif
++              - fsl,imx8mp-lcdif
++    then:
++      required:
++        - power-domains
+ 
+ examples:
+   - |
+@@ -128,6 +140,7 @@ examples:
+                  <&clks IMX6SX_CLK_LCDIF_APB>,
+                  <&clks IMX6SX_CLK_DISPLAY_AXI>;
+         clock-names = "pix", "axi", "disp_axi";
++        power-domains = <&pd_disp>;
+ 
+         port {
+             endpoint {
+-- 
+2.35.1
 
