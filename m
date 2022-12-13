@@ -2,81 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6A3D64ACD6
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 02:11:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 29CC664ACE8
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 02:18:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233944AbiLMBLW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 20:11:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41278 "EHLO
+        id S233674AbiLMBSJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 20:18:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233288AbiLMBLV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 20:11:21 -0500
-Received: from mail-io1-xd35.google.com (mail-io1-xd35.google.com [IPv6:2607:f8b0:4864:20::d35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63F821CB2C
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 17:11:20 -0800 (PST)
-Received: by mail-io1-xd35.google.com with SMTP id g20so987787iob.2
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 17:11:20 -0800 (PST)
+        with ESMTP id S233965AbiLMBSI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 20:18:08 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14A3512613
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 17:18:07 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id z26so2463328lfu.8
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 17:18:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pAR7trYZxyJz6dDjjGtnhQhvH4CV37H8ORJAnU50YAI=;
-        b=OynFoN1pxipzXa/LRGcM80xD2vmYyGNwHBjBEuCjqZYJEqN9DZLh8crm+GMKI/72Fz
-         7HlpLIQy1Fpv7C+E1DZNIFKRvoT3XlW6fyxsdx3xupxod/KmnXyVMZ8ubid6KNxGnmoy
-         Qxxi4v+SuPsrHDtow570icb8+YuEWnNBfoizdLkwuKcg6pBcNGDanvcXDwknKuFX4dMS
-         VBJOFwk9CFUnXei7eiIcdlCoPVfj4DS2UVkQcxbwWFF8CS5rHJ7Egq79zImRfpYzqkqN
-         vDacxqXKTmpDqYbpVex7xMOsys3gZANZw5nYRnQ6czRCHKsbf6I36DaYapwrQ4bViBYw
-         JWKQ==
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=RfH8kkxJvYDkHZoR/+BVEo4zBkqyra3aG6rgjb414Ng=;
+        b=L8/+nHhrB5o0UVC+DKEp6OeXAyYCcbQ1Gx+fHf44e2LTIul/4cVxGKqcx3N+vzNBuM
+         D86JhEjjQbXnaeOn8Has1S8iUh5QKw8Z/GeDuUlA8yZzqFP4A/ojkv0L/gna0H99D6gb
+         KQ+Gsm5idOZ4nS79g350yi8jbzLAF3h+yhkelLeM+Xfp1TuQzZycHizPtYE47i9ka8O+
+         9BRgB8JyULLNxJHlReyXVL/98W3jnVOj8TQWwdDeBJNMbIOKlzCis0v5n8PmI1B4YDAm
+         haVrOtxFuhKoh1wZ+7Vi0Ryy/9A4UgVDyfaIhkMXJKh7zigztGY7XQyC2OmzVTFIvXJE
+         hmMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pAR7trYZxyJz6dDjjGtnhQhvH4CV37H8ORJAnU50YAI=;
-        b=FbT2nGEgvzRa/mwGYO+5B09gGtu7/HlbzJO7X9CeN9jDxYE01HlX/CbTEoLfhQeBts
-         zjeOHHOU+tHoSv2Gtyoii4y/IT/crOaeoVzKZNfXKTz1jUFD25hH3/klXZkd7xCHICxL
-         lvRlVTOv+jpscWYOFQxvOT4gD3A0yub8SZqLvLDfaKTOR4370kxF4tIUlIU+s0mNUuxf
-         956jY+PaLpNU406PJ4QV2Dwk1fD14VXu3DIMWbCJjkfgnFkWslActCK8hWGhHQQXeEZF
-         qTseGuqxg9/hz978J8C7yiB2JjwUrgwF9KPlXefDJ/mK50anb/7Y3i7+Ca+ymxhzyGG7
-         zmEQ==
-X-Gm-Message-State: ANoB5plMJpTAgCQ1iEnSVUNPCLuaANN8IsDa5uSLJioTfjMCABZN2pps
-        qkkw+BbNWjqXRMnGBQYquFjaPQ==
-X-Google-Smtp-Source: AA0mqf5iT+UyD0qvn7NpOSGyfj+cr/V7nAI47f6cpKUqG428uF+45DFYJC396XBHW9j/HJIVVKMX7Q==
-X-Received: by 2002:a6b:fb0a:0:b0:6df:5a37:ed5 with SMTP id h10-20020a6bfb0a000000b006df5a370ed5mr9593060iog.17.1670893879743;
-        Mon, 12 Dec 2022 17:11:19 -0800 (PST)
-Received: from [10.211.55.3] ([98.61.227.136])
-        by smtp.gmail.com with ESMTPSA id m13-20020a02a14d000000b0038a382d84c5sm414160jah.64.2022.12.12.17.11.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Dec 2022 17:11:19 -0800 (PST)
-Message-ID: <008d3e20-2c6b-c3f1-3fd3-ef4ef4dd061e@linaro.org>
-Date:   Mon, 12 Dec 2022 19:11:17 -0600
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH net-next 2/2] net: ipa: add IPA v4.7 support
-Content-Language: en-US
-To:     Jakub Kicinski <kuba@kernel.org>,
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RfH8kkxJvYDkHZoR/+BVEo4zBkqyra3aG6rgjb414Ng=;
+        b=L3yHHASTEkiZJY4ne1xqT5PnxLpMezLby2IL+J/uwX86betMI9X/zYVo75xF3Q2Hwe
+         9Xj/kRUsiM82nWxIOoDpp3X+DWvG5FvVpK46MuTxve9CKzoEFZHKy7SzhuvDXMB+OBRa
+         6EQw8eiiwzD+wdg0rKYCkNV/E3CrYVitLVHOd9ZgU3h6utL9XdlXZo3QOzg6jHGHS5P0
+         cc22JWRoRoCZ5WqboQ7Rz5Np47O+QbEfIGQMwyOR6WcRKjLpQbyxJY0h81Q0bQHlJc89
+         vuHAV8dWgpJXdufZCaxzcstKNsk5pp65xgMuh/7sAavmRfRX/FIC9iiUbRws3iPuz/G9
+         9loA==
+X-Gm-Message-State: ANoB5pnVMWmO4TOkouR1+rwgPLA0dAxNtNM5S7vSeMUS0/Gf6HDQYT17
+        QaWwfJxKNeW9cMeN8TltZ6sGVg==
+X-Google-Smtp-Source: AA0mqf4NCJGtrfXxBc+iPdhZjn5t+SS+bxDYJ+lmD2OeQt33SGuvuPsJ+J8h19c5b0KrraKt06Jjog==
+X-Received: by 2002:ac2:4e4e:0:b0:4a4:68b9:608a with SMTP id f14-20020ac24e4e000000b004a468b9608amr3963518lfr.21.1670894285445;
+        Mon, 12 Dec 2022 17:18:05 -0800 (PST)
+Received: from [127.0.0.1] ([94.25.229.107])
+        by smtp.gmail.com with ESMTPSA id t17-20020a195f11000000b004ac980a1ba1sm158445lfb.24.2022.12.12.17.18.04
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 12 Dec 2022 17:18:05 -0800 (PST)
+Date:   Tue, 13 Dec 2022 04:18:00 +0300
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Eric Chanudet <echanude@redhat.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Alex Elder <elder@linaro.org>, davem@davemloft.net,
-        edumazet@google.com, pabeni@redhat.com, andersson@kernel.org,
-        agross@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, elder@kernel.org,
-        linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Luca Weiss <luca.weiss@fairphone.com>
-References: <20221208211529.757669-1-elder@linaro.org>
- <20221208211529.757669-3-elder@linaro.org>
- <47b2fb29-1c2e-db6e-b14f-6dfe90341825@linaro.org>
- <fa6d342e-0cfe-b870-b044-b0af476e3905@linaro.org>
- <48bef9dd-b71c-b6aa-e853-1cf821e88b50@linaro.org>
- <20221212155450.34fdae6b@kernel.org>
-From:   Alex Elder <alex.elder@linaro.org>
-In-Reply-To: <20221212155450.34fdae6b@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+CC:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andrew Halaney <ahalaney@redhat.com>,
+        Brian Masney <bmasney@redhat.com>
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: pm8450a: add rtc node
+User-Agent: K-9 Mail for Android
+In-Reply-To: <20221213005539.1133443-1-echanude@redhat.com>
+References: <20221213005539.1133443-1-echanude@redhat.com>
+Message-ID: <219F5CF2-BA91-4749-A32C-84BCF541ECE0@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -85,36 +79,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/12/22 5:54 PM, Jakub Kicinski wrote:
->>> which in total gives us 0x146a8000-0x146aafff
->> Can you tell me where you found this information?
-> [1], [2]
-> 
->>    
->>> That would also mean all of your writes are kind of skewed, unless
->>> you already applied some offsets to them.
->> This region is used by the modem, but must be set up
->> by the AP.
->>    
->>> (IMEM on 6350 starts at 0x14680000 and is 0x2e000 long, as per
->>> the bootloader memory map)
->> On SM7250 (sorry, I don't know about 7225, or 6350 for that matter),
->> the IMEM starts at 0x14680000 and has length 0x2c000.  However that
->> memory is used by multiple entities.  The portion set aside for IPA
->> starts at 0x146a9000 and has size 0x2000.
 
-This is awesome, thank you!
 
-Yes I think there are a couple of minor corrections to make
-but I haven't had the time to go do the research yet, so
-hadn't yet responded.
+On 13 December 2022 03:55:38 GMT+03:00, Eric Chanudet <echanude@redhat=2Ec=
+om> wrote:
+>Add the rtc block on pm8450a first pmic to enable the rtc for
+>sa8540p-ride=2E
+>
+>Signed-off-by: Eric Chanudet <echanude@redhat=2Ecom>
+>---
+> arch/arm64/boot/dts/qcom/pm8450a=2Edtsi | 8 ++++++++
+> 1 file changed, 8 insertions(+)
+>
+>diff --git a/arch/arm64/boot/dts/qcom/pm8450a=2Edtsi b/arch/arm64/boot/dt=
+s/qcom/pm8450a=2Edtsi
+>index 34fc72896761=2E=2Eaf761dbfbc66 100644
+>--- a/arch/arm64/boot/dts/qcom/pm8450a=2Edtsi
+>+++ b/arch/arm64/boot/dts/qcom/pm8450a=2Edtsi
+>@@ -13,6 +13,14 @@ pm8450a: pmic@0 {
+> 		#address-cells =3D <1>;
+> 		#size-cells =3D <0>;
+>=20
+>+		rtc@6000 {
+>+			compatible =3D "qcom,pm8941-rtc";
+>+			reg =3D <0x6000>;
+>+			reg-names =3D "rtc", "alarm";
+>+			interrupts =3D <0x0 0x61 0x1 IRQ_TYPE_NONE>;
 
-Nothing is "supported" upstream anyway until there's a
-system with a DTS that uses it, and that won't happen
-until after the end of the merge window.
 
-Again, thank you very much, it's a safe thing to take
-for now.
+0x60?
 
-					-Alex
+>+			wakeup-source;
+>+		};
+>+
+> 		pm8450a_gpios: gpio@c000 {
+> 			compatible =3D "qcom,pm8150-gpio", "qcom,spmi-gpio";
+> 			reg =3D <0xc000>;
 
+--=20
+With best wishes
+Dmitry
