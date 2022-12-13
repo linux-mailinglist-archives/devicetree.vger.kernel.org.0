@@ -2,94 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CB3864B12D
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 09:29:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 550B264B138
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 09:32:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234877AbiLMI3z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 03:29:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46026 "EHLO
+        id S234914AbiLMIcJ convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 13 Dec 2022 03:32:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234878AbiLMI3e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 03:29:34 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B50481F2EB;
-        Tue, 13 Dec 2022 00:27:24 -0800 (PST)
-Received: from loongson.cn (unknown [112.20.108.31])
-        by gateway (Coremail) with SMTP id _____8CxrutJN5hj7jQFAA--.12182S3;
-        Tue, 13 Dec 2022 16:26:49 +0800 (CST)
-Received: from localhost.localdomain (unknown [112.20.108.31])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxiFdHN5hjxtEtAA--.28300S2;
-        Tue, 13 Dec 2022 16:26:48 +0800 (CST)
-From:   Binbin Zhou <zhoubinbin@loongson.cn>
-To:     Wolfram Sang <wsa@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Andy Shevchenko <andy@kernel.org>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org
-Cc:     loongarch@lists.linux.dev, devicetree@vger.kernel.org,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Arnd Bergmann <arnd@arndb.de>,
+        with ESMTP id S234860AbiLMIb0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 03:31:26 -0500
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D8CD62FC;
+        Tue, 13 Dec 2022 00:31:25 -0800 (PST)
+Received: by mail-qt1-f176.google.com with SMTP id h16so11253961qtu.2;
+        Tue, 13 Dec 2022 00:31:25 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Cj2pogcz6ykS5YOcEmS32K1/by57SG2Oy1svNLCAASY=;
+        b=tlvgRbMV5BoKbpTXv6V254Ys3ypNn2z04TPbss8tQCjSSatfSLWbWBN4VzYTK/tDC6
+         L4Bm/h/DMvkdB9yE1R35HSambVZzzxxPpyRJ18YrzhOjb27yCROdUHGegv9LjaqRDVsK
+         At0NCoQhcESdCm80NyyULe4azWpUkQUi4V6IX9ZTQ707iw4LdWBjNCqJhiHExk2NIFoW
+         Th7xOJu/HJgKuab+4HnIPeLdS5Fujl/B/4739E8hqJ8aBFS16joGmK270mikwVRO8hiA
+         AUBgoEEa7PUj3NyIGgNOhaCBJQ/j5aGHGbYH4UCxxK4w5U/QyTDIzUvpvw+TUV49lo79
+         2kbQ==
+X-Gm-Message-State: ANoB5pleZRcb0Zcc4GKFm1Oh2kOpN3pTbrSg+gfOr/8n0lrjhR2h8R3A
+        F5CCuc6hnHkb6oOXHU2mOL6hgThkLW+DFg==
+X-Google-Smtp-Source: AA0mqf6WAVY3T6WLCi0zlWVCvJSHSAXImjAact9+E9kq9txmMBn3RIceWIN1djRJMTUNr+hIMCZ3Zg==
+X-Received: by 2002:a05:622a:4a0c:b0:3a6:2170:b089 with SMTP id fv12-20020a05622a4a0c00b003a62170b089mr4573191qtb.12.1670920283988;
+        Tue, 13 Dec 2022 00:31:23 -0800 (PST)
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com. [209.85.128.173])
+        by smtp.gmail.com with ESMTPSA id u2-20020a37ab02000000b006b615cd8c13sm7228286qke.106.2022.12.13.00.31.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Dec 2022 00:31:23 -0800 (PST)
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-3e45d25de97so182183777b3.6;
+        Tue, 13 Dec 2022 00:31:23 -0800 (PST)
+X-Received: by 2002:a05:690c:f8a:b0:3b4:8af5:48e with SMTP id
+ df10-20020a05690c0f8a00b003b48af5048emr1614196ywb.383.1670920283214; Tue, 13
+ Dec 2022 00:31:23 -0800 (PST)
+MIME-Version: 1.0
+References: <cover.1669980383.git.geert+renesas@glider.be> <3c0f5b935da4468fe04e2d85becafda0040e4d31.1669980383.git.geert+renesas@glider.be>
+ <871qpcm4mu.wl-kuninori.morimoto.gx@renesas.com> <87mt7skwsk.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87mt7skwsk.wl-kuninori.morimoto.gx@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 13 Dec 2022 09:31:12 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVgDF=wF3Q0_QMecpmmWe1NxyK4BGTNhEvcdS5698cNmg@mail.gmail.com>
+Message-ID: <CAMuHMdVgDF=wF3Q0_QMecpmmWe1NxyK4BGTNhEvcdS5698cNmg@mail.gmail.com>
+Subject: Re: [PATCH/RFC 2/2] arm64: dts: renesas: ulcb-kf: Fix pcm3168a audio
+ codec node
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH V6 4/4] LoongArch: Enable LS2X I2C in loongson3_defconfig
-Date:   Tue, 13 Dec 2022 16:27:22 +0800
-Message-Id: <480d1d5a32a452271a8dd761550e0a1c58d31302.1670897253.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1670897253.git.zhoubinbin@loongson.cn>
-References: <cover.1670897253.git.zhoubinbin@loongson.cn>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8AxiFdHN5hjxtEtAA--.28300S2
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBjvdXoW7Jry5XrWkuF48uF15Ww1fXrb_yoWxKFX_JF
-        y7Kw1kWr48JFZ7W3WIqw4rGw4DA3W7X3WFkr17Zw1xX3Waqr13JrWDAw17C3Z0ga4DWr43
-        ZaykJF9F9r18tjkaLaAFLSUrUUUUnb8apTn2vfkv8UJUUUU8wcxFpf9Il3svdxBIdaVrn0
-        xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUY
-        u7kC6x804xWl14x267AKxVWUJVW8JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3w
-        AFIxvE14AKwVWUXVWUAwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK
-        6xIIjxv20xvE14v26F1j6w1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwA2z4
-        x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4UJVWxJr1l
-        n4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6x
-        ACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26rWY6Fy7McIj6I8E
-        87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lc7CjxV
-        Aaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxY
-        O2xFxVAFwI0_JF0_Jw1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGV
-        WUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_
-        Xr0_Ar1lIxAIcVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwCI42IY6xAIw20EY4v20xvaj4
-        0_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8
-        JrUvcSsGvfC2KfnxnUUI43ZEXa7IU0XdjtUUUUU==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Damien Horsley <Damien.Horsley@imgtec.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is now supported, enable for Loongson-3 systems.
-Other systems are unaffected.
+Hi Morimoto-san,
 
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
----
- arch/loongarch/configs/loongson3_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+On Tue, Dec 13, 2022 at 12:49 AM Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> >    arch/arm64/boot/dts/renesas/r8a77951-ulcb-kf.dtb: audio-codec@44: ports: 'mclk-fs' does not match any of the regexes: '^port@[0-9a-f]+$', 'pinctrl-[0-9]+'
+> >           From schema: Documentation/devicetree/bindings/sound/ti,pcm3168a.yaml
+> >    arch/arm64/boot/dts/renesas/r8a77951-ulcb-kf.dtb: audio-codec@44: ports:port@0:endpoint: Unevaluated properties are not allowed ('clocks' was unexpected)
+> >           From schema: Documentation/devicetree/bindings/sound/ti,pcm3168a.yaml
+> >    arch/arm64/boot/dts/renesas/r8a77951-ulcb-kf.dtb: audio-codec@44: ports:port@1:endpoint: Unevaluated properties are not allowed ('clocks' was unexpected)
+> >           From schema: Documentation/devicetree/bindings/sound/ti,pcm3168a.yaml
+> (snip)
+> > I'm not tested, but in my quick check,
+> > we can use "mclk-fs" under "ports", and we need "clocks" under "endpoint".
+> > So the issue is not dtsi side, but yaml side.
+> >
+> > I will check and fix it, but it will be next week or later.
+>
+> I have investigated about this patch, and it needs extra patch
+> which I will post if -rc1 was released.
+> I can merge this patch (with small fixup) into my patch-set.
+> Of course I will keep your name. But is it OK for you ?
 
-diff --git a/arch/loongarch/configs/loongson3_defconfig b/arch/loongarch/configs/loongson3_defconfig
-index cb52774c80e8..5677c4f8576e 100644
---- a/arch/loongarch/configs/loongson3_defconfig
-+++ b/arch/loongarch/configs/loongson3_defconfig
-@@ -602,6 +602,7 @@ CONFIG_HW_RANDOM_VIRTIO=m
- CONFIG_I2C_CHARDEV=y
- CONFIG_I2C_PIIX4=y
- CONFIG_I2C_GPIO=y
-+CONFIG_I2C_LS2X=y
- CONFIG_SPI=y
- CONFIG_GPIO_SYSFS=y
- CONFIG_GPIO_LOONGSON=y
--- 
-2.31.1
+Thanks, fine for me!
 
+♫ All I want for Christmas is ♫... an error-free "make dtbs_check" ;-)
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
