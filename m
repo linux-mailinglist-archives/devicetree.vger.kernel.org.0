@@ -2,152 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18FFB64B156
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 09:42:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7426C64B17C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 09:49:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234615AbiLMImR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 03:42:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52960 "EHLO
+        id S234882AbiLMItB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 03:49:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234257AbiLMImP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 03:42:15 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4691D15816;
-        Tue, 13 Dec 2022 00:42:14 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id bx10so14859371wrb.0;
-        Tue, 13 Dec 2022 00:42:14 -0800 (PST)
+        with ESMTP id S234858AbiLMIsG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 03:48:06 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA0C71A390
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 00:48:04 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id co23so14855170wrb.4
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 00:48:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LKgK29do0XjvBFIa5Qu+YNQa8TUkw4hM3C6J+0E/JwI=;
-        b=YgYedch20A1eKHsRF60pPQ4MyHukR1G5HNoNrwZwqGqrRpOK5JFwy8Q/ow5LAtZxhU
-         kpnPtppTrK8MKNQaHoXpWUXXd7/tO+ZKUBEc8o3FZ+SMaDeUBJcwxdfRjXBfhJbKSmW2
-         ioVqQY66mg0LgukTKb5/olYPmiR4CB+Nj43+9vVXUWnXuva0PPSmLb6F7JEvyCx2WeZm
-         78GoyyXMVedDKxKXFmZofiPXu9XdTAg5xA+L9J4yg0nXddMN8I/QHdHBZ4gqZC4OcxzE
-         /0agH/OdWQAe7F3OK1A16pAmFyZ3ZkKSPTJ199ccYZKEcQdfOzFY6+Dfr4lqjOsldLN4
-         g/TA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=V8Zjj3N/Rus1SUj60QIPVCtKEcMrA/Mh+KnOE6zWGQQ=;
+        b=DzbTaCKlcSRjCYFGuV+AZ+zl/Uk7/q5BX8CDbZivcZks1YBMRajl9TsAkGpQ8v9ecE
+         I3MtFlh7um6HblRxWKty5U9MxWUbjN9TJ3Ov7+ASBwvX7+HiGZWQYY0iQPLD9W+RE3Kl
+         RD1qyyLXzyPS0qjGZWyKg5bjR5f5mTylrem2U7o369tYA0iCFjmMunGkqL9K1O4mT0QO
+         LHgwQ1xn5j0llsiso4O/tkKLQ7BKwlYN2CD40/94h0vCwvmmngCUdrnEaQJHSw+DNA+6
+         W/Epk2p9U4txXabivW0zNOc3exw0YMvEeCnvWgPHxpHKwghTNPomqJ5BsxbLP/Um6AIS
+         nl3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LKgK29do0XjvBFIa5Qu+YNQa8TUkw4hM3C6J+0E/JwI=;
-        b=nAcSOb887sAe9W0z1CMPvisCWMLcKC0THKajqQ+AzYdsJ7eXJnl/GV1nf03ffG4sWR
-         aZ4gtnnXhHPXr0mLQ4tESf/WuwFW8Pg8OmgaVRzH6V9zLHoykhuU+xC7nLFDae4TUyT6
-         ExKjhy36Y82Q/b5rO0FV7eODt6FyaBntzTBGfT8XDbnmMVwiT9weq3hSY4iHKf7mz4Ne
-         fh3mllpRv9N014EZq3HKdtUmRrQ6z5Cgo6FZF9x3cvRbAxYjDf9YaWmGNJrEZYC7BLAh
-         LyU/Wzy+IISyPZXQe6Bwi1zFu/IllCGWYUA+l1TaD16q/M55K99fMG6y6Ml8wx8Mf4BB
-         jkAg==
-X-Gm-Message-State: ANoB5pm5LyE08JsvgVfZk+71VRV0iJvABjRnEna/SuzXCCEt3unwgJzR
-        o4eZbyQdz/tQQaaBoxBaHs8=
-X-Google-Smtp-Source: AA0mqf4lLIS+hn1OCdyn4v2Vt2KHSHteehIfQrIdoMMl5BA6GlgC6wzwyNx63t/DSryNWQHaI9SFyA==
-X-Received: by 2002:adf:e710:0:b0:24c:f3b8:816d with SMTP id c16-20020adfe710000000b0024cf3b8816dmr7590165wrm.60.1670920932660;
-        Tue, 13 Dec 2022 00:42:12 -0800 (PST)
-Received: from localhost.localdomain (2a02-8428-46a0-7c01-bc7c-15f1-6c3b-ad74.rev.sfr.net. [2a02:8428:46a0:7c01:bc7c:15f1:6c3b:ad74])
-        by smtp.gmail.com with ESMTPSA id ay2-20020a5d6f02000000b002366e3f1497sm11474037wrb.6.2022.12.13.00.42.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Dec 2022 00:42:12 -0800 (PST)
-From:   Christophe Branchereau <cbranchereau@gmail.com>
-To:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        paul@crapouillou.net
-Cc:     Christophe Branchereau <cbranchereau@gmail.com>
-Subject: [PATCH 2/2] dt-bindings: display/panel: Add the focaltech gpt3
-Date:   Tue, 13 Dec 2022 09:42:03 +0100
-Message-Id: <20221213084203.17729-2-cbranchereau@gmail.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221213084203.17729-1-cbranchereau@gmail.com>
-References: <20221213084203.17729-1-cbranchereau@gmail.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=V8Zjj3N/Rus1SUj60QIPVCtKEcMrA/Mh+KnOE6zWGQQ=;
+        b=2rAZ5wvd+KZYGytO+3ffGcsJBxYirAmC9AOJV97fmkkFCu67Wwus3mM36D3lzoBGjE
+         r9RSmmkBgDisgvyf6wjyad/iAFONvnD2jJDtj4wzBB81diio0m6oLAKEhUFv0LTszfSX
+         zEvuQ7gR8LonFTDsCYGO7Mb/G/3qCPzpm42ndxsfk5mFKMrUSPMWIOLCWoULL5IG98xW
+         VUuLASF8FIOqPuVyCcxwIuyzfOPeCoO+LI2P6cg+fkvQI7+Fwe3l7FAsX3Cx8EOVFeTK
+         9fAPw3SYKT8q5e7A4lm0ivppzp28yEHRF39l+hgt1zfkYWpLeNUD6MIhXzQGa8seTjuh
+         Br6w==
+X-Gm-Message-State: ANoB5pnjYFKf7eupKThfH7KkJjjwIHznzrucu9x1Uejw9xWBPxDFBcHq
+        /yBmKlYR9+22icPir+GHIpfY+w==
+X-Google-Smtp-Source: AA0mqf5rUlKo1swuyzbiW4JK9YiojP4ez25mYVh7JGfYdULVwWzXg+jgiRlAHFdeXqfNSS59HxvDfQ==
+X-Received: by 2002:a05:6000:1c2:b0:242:63e5:fdaa with SMTP id t2-20020a05600001c200b0024263e5fdaamr10915979wrx.62.1670921283123;
+        Tue, 13 Dec 2022 00:48:03 -0800 (PST)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id x1-20020a5d60c1000000b00241c712916fsm12953578wrt.0.2022.12.13.00.48.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Dec 2022 00:48:02 -0800 (PST)
+Message-ID: <11c88b9c-00f0-d1b0-8a98-059a58e456f7@linaro.org>
+Date:   Tue, 13 Dec 2022 09:48:01 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v8 2/8] dt-bindings: timer: rk-timer: Add rktimer for
+ rv1126
+Content-Language: en-US
+To:     Jagan Teki <jagan@edgeble.ai>, Heiko Stuebner <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Johan Jonker <jbx6244@gmail.com>
+References: <20221123183124.6911-1-jagan@edgeble.ai>
+ <20221123183124.6911-3-jagan@edgeble.ai>
+ <CA+VMnFwVt=t6kmYrvGgSJdkZDnHMuxKPHtyFCU7vBaGHa4hc6Q@mail.gmail.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <CA+VMnFwVt=t6kmYrvGgSJdkZDnHMuxKPHtyFCU7vBaGHa4hc6Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for the focaltech gpt3, which is a 640x480 3.0" 4:3
-IPS LCD Panel found in the YLM/Anbernic RG300X handheld.
+On 13/12/2022 08:50, Jagan Teki wrote:
+> On Thu, 24 Nov 2022 at 00:02, Jagan Teki <jagan@edgeble.ai> wrote:
+>>
+>> Add rockchip timer compatible string for rockchip rv1126.
+>>
+>> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+>> ---
+> 
+> Daniel or Can someone please pick this? Heiko is holding this series
+> due to this patch.
 
-Signed-off-by: Christophe Branchereau <cbranchereau@gmail.com>
----
- .../display/panel/focaltech,gpt3.yaml         | 59 +++++++++++++++++++
- 1 file changed, 59 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/panel/focaltech,gpt3.yaml
+Applied, with a trivial conflict fix
 
-diff --git a/Documentation/devicetree/bindings/display/panel/focaltech,gpt3.yaml b/Documentation/devicetree/bindings/display/panel/focaltech,gpt3.yaml
-new file mode 100644
-index 000000000000..969f117c51ec
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/focaltech,gpt3.yaml
-@@ -0,0 +1,59 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/focaltech,gpt3.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Focaltech GPT3 3.0" (640x480 pixels) IPS LCD panel
-+
-+maintainers:
-+  - Christophe Branchereau <cbranchereau>
-+
-+allOf:
-+  - $ref: panel-common.yaml#
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+properties:
-+  compatible:
-+    const: focaltech,gpt3
-+
-+  backlight: true
-+  port: true
-+  power-supply: true
-+  reg: true
-+  reset-gpios: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - power-supply
-+  - reset-gpios
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        panel@0 {
-+            compatible = "focaltech,gpt3";
-+            reg = <0>;
-+
-+            spi-max-frequency = <3125000>;
-+
-+            reset-gpios = <&gpe 2 GPIO_ACTIVE_LOW>;
-+
-+            backlight = <&backlight>;
-+            power-supply = <&vcc>;
-+
-+            port {
-+                panel_input: endpoint {
-+                    remote-endpoint = <&panel_output>;
-+                };
-+            };
-+        };
-+    };
+Thanks
+
 -- 
-2.35.1
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
