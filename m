@@ -2,92 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D025664B66D
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 14:37:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A23C064B67D
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 14:42:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235266AbiLMNhb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 08:37:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50378 "EHLO
+        id S235735AbiLMNmn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 08:42:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235519AbiLMNh2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 08:37:28 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70FC620362
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 05:37:26 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id bp15so4881981lfb.13
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 05:37:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pgDRSp/f16xzmWzxjmFxCL6xZadwIS7cOwIn0PxoaZk=;
-        b=fCRVoT/qejeKPXkjsA03s0w3u8M3gNLb5e6NMC9zTJZh8WllhV/TonZ0p+3rj3UJwl
-         4N3uARm5ptBQhQGA9mxpDUKejEfnp4HKyMm2szoY7sA+fc79jiG5GgAWdkpPwuApVgzV
-         /araw8sN0023f+0ZsNhTVzIyeEKSpzcXVzCBGawQP6wY7kLUolzLMLHKjRY50jqHgtLC
-         OCJKvognIPibkDtuO11IdTh9WMgg26DHle3iYXpxWf24OndKLPQzPAHPWVfpwCjgbds/
-         6uQkn6rC5HWN3W8qiR7c+7gvWlv2xShB02Pv6bO70dPKz3VGN3fpSfZ0FZka+PmORwWh
-         snAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pgDRSp/f16xzmWzxjmFxCL6xZadwIS7cOwIn0PxoaZk=;
-        b=lC5H5kfdUn9CN6G/yns7NyTxUGfwhmuQJe+Wzp1WQBxXqkqYB6Q5oUSvedRhYV3utz
-         0fgwgfjt+//BrH+RY3VLw+m7Z8QmmaCb1zhIqNcriMyihvpqOGG73Ah/s/9SL86yfZYU
-         PMeNoTY6/A4J5G0F5GSl83+9KvIe2+PAOsoL5CNi9nYm/cXsu5v6f8aRL6Q5FChzruwP
-         Th+V69UtfMWBBmy8bC5pMrjaHHWLx3d5BkICWKkWdTpR0i60WE3UW2LPfVGNdC5yoULe
-         hjFw+vbtdfaO/ji8krkmMf1PXpqBKsb28nHo+siyGeV/AX5Q4Tw+JRBtJ1NpSin2Diae
-         Ax6Q==
-X-Gm-Message-State: ANoB5pmLZ8v75nwnhnnvf0zk/M0cSDs8WyE0FSU8d0QqXjVItAm5mV4K
-        FzzO3m43PfRhKrpar5fQTf8HHg==
-X-Google-Smtp-Source: AA0mqf6TyCH12rWSC74gVlzA99xf93VjcY1KeD9BJiNKIo2LXA9ZiCDDJIhBIEGVDjJd/nSfcI89dQ==
-X-Received: by 2002:a05:6512:3e06:b0:4b5:9bfa:801a with SMTP id i6-20020a0565123e0600b004b59bfa801amr6392757lfv.46.1670938644846;
-        Tue, 13 Dec 2022 05:37:24 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id 3-20020ac25f03000000b004b700ba3cf3sm127631lfq.203.2022.12.13.05.37.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Dec 2022 05:37:24 -0800 (PST)
-Message-ID: <769dbb36-2223-91a3-0d6b-e23304827c43@linaro.org>
-Date:   Tue, 13 Dec 2022 14:37:22 +0100
+        with ESMTP id S235729AbiLMNmm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 08:42:42 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69820319;
+        Tue, 13 Dec 2022 05:42:41 -0800 (PST)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BD9wGqY029177;
+        Tue, 13 Dec 2022 13:42:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=XrZbGC6xqJZQMHq1bEwiY8nPFiDOlrB2h9CcFtTYOII=;
+ b=HcapBWXGRcRfMx9l8rqhgvf2tEqCizXpYUygFV4ISpKlE/DgkY+L8ygKJDHEXZB4srii
+ XdN8yavL8065nysa9M0M20Qg3jmtg9VMbO3+j3aIOerWedyHCGCL8IhC8MHLeEntD3la
+ IO0q/2l8li9jC0BQBf+0+FjlTK1HE6S0DS+a7zIbxExnixtwF4kQY8nF/f3UygO7Ef1u
+ ++4/4T2vYqoaZoswivzDnFMj6tf2HARx8u5QHLXnSzMpx48tpfRmWHJze5Daqe+4A2Mw
+ lFMUit/kufyt4rPN2CvggF3R+yYzdqaHwukBpIGwwhhRV0Gohwfq6PO6jawJOes+J3hN bA== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3meq7qgqbg-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 13 Dec 2022 13:42:37 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2BDDgb41022791
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 13 Dec 2022 13:42:37 GMT
+Received: from [10.216.62.137] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 13 Dec
+ 2022 05:42:31 -0800
+Message-ID: <367fdcef-7360-055a-897b-71a66063b4ba@quicinc.com>
+Date:   Tue, 13 Dec 2022 19:12:10 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v3 12/12] dt-bindings: mediatek: mt8188: add mt8188-mt6359
- document
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] spmi: Add check for remove callback in spmi_drv_remove
+ API
 Content-Language: en-US
-To:     =?UTF-8?B?VHJldm9yIFd1ICjlkLPmlofoia8p?= <Trevor.Wu@mediatek.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "tiwai@suse.com" <tiwai@suse.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "perex@perex.cz" <perex@perex.cz>
-Cc:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20221208033148.21866-1-trevor.wu@mediatek.com>
- <20221208033148.21866-13-trevor.wu@mediatek.com>
- <6350def8-bb1f-8aeb-4c98-4d02a4c59aed@linaro.org>
- <aeb2bbac8ad5ede2396408a20ff8c8942029451a.camel@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <aeb2bbac8ad5ede2396408a20ff8c8942029451a.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+To:     Greg KH <gregkh@linuxfoundation.org>
+CC:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>,
+        <linus.walleij@linaro.org>, <quic_kamalw@quicinc.com>,
+        <quic_jestar@quicinc.com>, <sboyd@kernel.org>,
+        <quic_subbaram@quicinc.com>, <quic_collinsd@quicinc.com>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-arm-msm-owner@vger.kernel.org>
+References: <1670145780-13111-1-git-send-email-quic_jprakash@quicinc.com>
+ <1670145780-13111-2-git-send-email-quic_jprakash@quicinc.com>
+ <Y5hqMFw0xl6lmJYL@kroah.com>
+From:   Jishnu Prakash <quic_jprakash@quicinc.com>
+In-Reply-To: <Y5hqMFw0xl6lmJYL@kroah.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: R7W2dDGa3t7pIn16aSIt_MUAB9o0Zs_L
+X-Proofpoint-ORIG-GUID: R7W2dDGa3t7pIn16aSIt_MUAB9o0Zs_L
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-12-13_03,2022-12-13_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
+ phishscore=0 lowpriorityscore=0 spamscore=0 mlxlogscore=677 suspectscore=0
+ adultscore=0 priorityscore=1501 clxscore=1015 bulkscore=0 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2210170000
+ definitions=main-2212130122
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -95,132 +85,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/12/2022 16:34, Trevor Wu (吳文良) wrote:
-> On Fri, 2022-12-09 at 11:18 +0100, Krzysztof Kozlowski wrote:
->> On 08/12/2022 04:31, Trevor Wu wrote:
->>> Add document for mt8188 board with mt6359.
->>>
->>> Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
->>> ---
->>>  .../bindings/sound/mt8188-mt6359.yaml         | 60
->>> +++++++++++++++++++
->>>  1 file changed, 60 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/sound/mt8188-
->>> mt6359.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/sound/mt8188-
->>> mt6359.yaml b/Documentation/devicetree/bindings/sound/mt8188-
->>> mt6359.yaml
->>> new file mode 100644
->>> index 000000000000..eac1c87b693a
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/sound/mt8188-mt6359.yaml
+Hi Greg
+
+These are two SPMI drivers without remove callbacks defined:
+
+drivers/mfd/qcom-spmi-pmic.c
+drivers/mfd/hi6421-spmi-pmic.c
+
+We made this change after noticing an issue internally with the first 
+one above, there was a crash when trying to remove it with rmmod, which 
+is fixed by this change. In addition, since the probe of the QCOM SPMI 
+PMIC driver uses devm_ functions throughout, we could see that with this 
+change, when we remove the device with rmmod, the cleanup does happen 
+correctly even though there is no remove function defined in the driver. 
+The last function called in the probe of our SPMI PMIC driver is 
+devm_of_platform_populate(), to probe all the PMIC peripheral drivers 
+under this one, and when this driver module was  removed with rmmod, we 
+could see that the individual PMIC drivers under it also got depopulated 
+with their remove APIs getting called.
+
+If it is possible for a SPMI driver to be removed correctly by rmmod 
+without having a remove API defined, this change should be right, what 
+do you think?
+
+Thanks,
+
+Jishnu
+
+On 12/13/2022 5:34 PM, Greg KH wrote:
+> On Sun, Dec 04, 2022 at 02:53:00PM +0530, Jishnu Prakash wrote:
+>> Add a check for remove callback presence before calling it for a
+>> spmi driver, to avoid NULL pointer dereference error if remove callback
+>> has not been specified for that SPMI driver.
 >>
->> Missing vendor prefix. You got comments for it already.
-> Hi Krzysztof,
-> 
-> I will correct it in V4.
-> 
+>> Signed-off-by: Jishnu Prakash <quic_jprakash@quicinc.com>
+>> ---
+>>   drivers/spmi/spmi.c | 3 ++-
+>>   1 file changed, 2 insertions(+), 1 deletion(-)
 >>
->>> @@ -0,0 +1,60 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: 
->>> https://urldefense.com/v3/__http://devicetree.org/schemas/sound/mt8188-mt6359.yaml*__;Iw!!CTRNKA9wMg0ARbw!nw_OzBIRlXrEP6K_EtxEWAIZzuvnD3Dm_KDuv8gpLRqlnnSfVLksNfKqMmeYiFlEVVy6F2BXwmXB8oQkDPeBuEXMtfLX2w$ 
->>>  
->>> +$schema: 
->>> https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!nw_OzBIRlXrEP6K_EtxEWAIZzuvnD3Dm_KDuv8gpLRqlnnSfVLksNfKqMmeYiFlEVVy6F2BXwmXB8oQkDPeBuEXodFoCJA$ 
->>>  
->>> +
->>> +title: MediaTek MT8188 ASoC sound card
->>> +
->>> +maintainers:
->>> +  - Trevor Wu <trevor.wu@mediatek.com>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: mediatek,mt8188-mt6359-evb
->>> +
->>> +  model:
->>> +    $ref: /schemas/types.yaml#/definitions/string
->>> +    description: User specified audio sound card name
->>> +
->>> +  audio-routing:
->>> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
->>> +    description:
->>> +      A list of the connections between audio components. Each
->>> entry is a
->>> +      sink/source pair of strings. Valid names could be the input
->>> or output
->>> +      widgets of audio components, power supplies, MicBias of
->>> codec and the
->>> +      software switch.
->>> +
->>> +  mediatek,platform:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>> +    description: The phandle of MT8188 ASoC platform.
->>> +
->>> +  mediatek,dptx-codec:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>> +    description: The phandle of MT8188 Display Port Tx codec node.
->>> +
->>> +  mediatek,hdmi-codec:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>> +    description: The phandle of MT8188 HDMI codec node.
->>
->> Why you do not use DAI links for all these?
+>> diff --git a/drivers/spmi/spmi.c b/drivers/spmi/spmi.c
+>> index a456ce5..6b34356 100644
+>> --- a/drivers/spmi/spmi.c
+>> +++ b/drivers/spmi/spmi.c
+>> @@ -350,7 +350,8 @@ static void spmi_drv_remove(struct device *dev)
+>>   	const struct spmi_driver *sdrv = to_spmi_driver(dev->driver);
+>>   
+>>   	pm_runtime_get_sync(dev);
+>> -	sdrv->remove(to_spmi_device(dev));
+>> +	if (sdrv->remove)
+>> +		sdrv->remove(to_spmi_device(dev));
+>>   	pm_runtime_put_noidle(dev);
+>>   
+>>   	pm_runtime_disable(dev);
 > 
-> Are the following examples "DAI links" you mean?
+> What in-kernel spmi driver does not have a remove function set that
+> requires this change?
 > 
-> hdmi-dai-link {
->             link-name = "HDMI Playback";
->             cpu {
->                 sound-dai = <&q6afedai TERTIARY_MI2S_RX>;
->             };
+> thanks,
 > 
->             platform {
->                 sound-dai = <&q6routing>;
->             };
-> 
->             codec {
->                 sound-dai = <&lt9611_codec 0>;
->             };
->         };
-
-Yes, this one. I think this is preferred. But anyway the point is to use
-sound-dai-cells, not pure (non-DAI) phandles).
-
-> 
-> or
-> 
-> headset-codec {
-> 		sound-dai = <&rt5682s>;
-> };
-> 
-> 
-> As far as I know, only "mediatek,platform" was used at the beginning.
-> Next, hdmi-codec was introduced, and it followed the same style to get
-> phandle. Finally, it became three properties in mt8195, and the
-> implementation of mt8188 was inherited from mt8195.
-
-OK, if you share common code it is fine.
-> 
-> I just glanced over the usage of dai links.
-> As I see it, I will replace the codec parts with dai link structure
-> like the example above first. It seems to be easier to extend more
-> codecs with the same tyle.
-
-Would be good.
-
-> 
-> For platform part, I need more time to check if it is better to keep
-> the original implementation, because we still have to take SOF related 
-> implementation into consideration.
-
-OK
-
-
-Best regards,
-Krzysztof
-
+> greg k-h
