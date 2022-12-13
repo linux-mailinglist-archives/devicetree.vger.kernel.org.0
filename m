@@ -2,151 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57D9F64BF19
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 23:07:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA37164BF28
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 23:12:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235771AbiLMWHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 17:07:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58004 "EHLO
+        id S236934AbiLMWMg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 17:12:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236827AbiLMWHt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 17:07:49 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBC8D12ADB;
-        Tue, 13 Dec 2022 14:07:47 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id ay8-20020a05600c1e0800b003d0808d2826so1638599wmb.1;
-        Tue, 13 Dec 2022 14:07:47 -0800 (PST)
+        with ESMTP id S236935AbiLMWMe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 17:12:34 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 187C019C0A
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 14:12:32 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id 1so7361332lfz.4
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 14:12:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=6cV2hqKLSWarZJIq6Mj0CxmhjtF4ppjv7Uck61tyaog=;
-        b=fGOUZnlCnBB1WheeZsjkR7M24Trny3cJ8RbulvsEWFHzdKiXhNEJpF9ENuPjtp0e5S
-         D8zf8a4hBMiyQkSNnJaUwprRsf3D0ojX4l91CDxhGpNcKTpovrAmKz/yyIobOxOMIGlS
-         J7ep9NlXxHyqWuvRj8o+AASFMti3+EG8XbuzYr6+Z20tj1HdS6BvsiWRflgPhnGBPuGK
-         3cyeI/CygSnK98Lj1Xdf82chaI7q2Hi97f7q+oGIBMhh+R54SqyDBySDrgcupxTh9To5
-         fuOqjwVrZbUXaRsMyZJb6hWjS2lfKrBapu84xgIx8AHqqjGKfKyuA/r7r9zMJPMrQJCj
-         uehg==
+        bh=T57htGX7w3pkH4iZZTnHtoAqVjQqavKl1hAXdV9m3Xw=;
+        b=aWL7c0bP6EiVYuu/P0uqLB73C7ZV/p4lnopcLYdPlg5vBlfdWSSS5J5K+68KyrWS2o
+         jEqKn65kKUCDERq3/4Kc27EWfEu3nisJcQ86SU4Ef3i5kuJJtmtDThP9/tESLNCMsqWI
+         /JtF/+sislqE8NIhkmm8tO6vgCALEVSHey2x8igeGSmA3ItCGa+cvhybGm6/BJz4pqwh
+         V/hBcq6fzfg+1XhARv7E4x2ql/AvFifeRkUWuTnE4JXQxY0wE6R9NuCXY8Nt1F0xafiS
+         2KfaRgv2mwmEOmZZ3umY5AmcRvK/TPa89EpnVXId5xqsTEj+/29aDnVj2X6BaSIIOPCu
+         aYZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6cV2hqKLSWarZJIq6Mj0CxmhjtF4ppjv7Uck61tyaog=;
-        b=njPewDvCPZOEBB+yBKYyyy136AQrmpWxod3wBZvQ8ZHJihwp7ZKHPf5NNmSFsS5Z3y
-         c134bB2aqSV+wClku7fErcPOpZoWxFWx1WBXvqgNkHRI35rKd34rlhHc+hBQeDSpASQK
-         +xUlPeRFqizzBXRpcjS5kJ+zkJ1TEoIurx1dK8vVIg8M4gnMaZZw9ZDylyL7v6JJaMD7
-         MpGunOsrkvu5nzqoyFIR0xxijKkNWgVOQsToqb80A4983DZNzrFiWBMaAMXH23soMeJt
-         j1eyXmSDEFfWR94yu71DI/TIKP8L1VK/s3+8kwtdh7B4kVkITrHr7pG1QsFnxe3ccB6o
-         zR3g==
-X-Gm-Message-State: ANoB5pkahNCfeZKWUvEelGltCMvnkJZ09VF3MKvHDFhaYggDn+jBypL5
-        UW1aM8lj/rnB1uqJiqlpcWE=
-X-Google-Smtp-Source: AA0mqf5VSkNBy0K9e9QCoOk+XM8BF2QQcdfL4aecWKcMqZmhYCMQv6KG3ZosaXujedvoJHBrhAJbow==
-X-Received: by 2002:a1c:cc1a:0:b0:3cf:5e42:de64 with SMTP id h26-20020a1ccc1a000000b003cf5e42de64mr17072221wmb.39.1670969266277;
-        Tue, 13 Dec 2022 14:07:46 -0800 (PST)
-Received: from giga-mm.home ([2a02:1210:8629:800:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id z11-20020a1c4c0b000000b003c21ba7d7d6sm37243wmf.44.2022.12.13.14.07.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Dec 2022 14:07:45 -0800 (PST)
-Message-ID: <6a288c4f54aa501e265a4f4847f2d2e53c597c34.camel@gmail.com>
-Subject: Re: [PATCH] of: fdt: Honor CONFIG_CMDLINE* even without /chosen node
-From:   Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To:     Rob Herring <robh@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@kernel.org>,
-        Nikita Shubin <nikita.shubin@maquefel.me>,
-        Hartley Sweeten <hsweeten@visionengravers.com>,
-        Lukasz Majewski <lukma@denx.de>,
-        Linus Walleij <linusw@kernel.org>
-Date:   Tue, 13 Dec 2022 23:07:44 +0100
-In-Reply-To: <20221213152920.GA1025576-robh@kernel.org>
-References: <11af73e05bad75e4ef49067515e3214f6d944b3d.camel@gmail.com>
-         <CACRpkdaXxPE3XhPnprhJ7GGjn9X_GMsCJ3mn26P90GcHzhsQDg@mail.gmail.com>
-         <20221213152920.GA1025576-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 
+        bh=T57htGX7w3pkH4iZZTnHtoAqVjQqavKl1hAXdV9m3Xw=;
+        b=QNYuz1LtdbXrBf1PRZfpP/yJ3GqfetJFY9XquAKO67yFVr2f/XzWlclSxnScU/D5Va
+         qh7UGj/IUJpyIESDg2WrzfJ8e78B7JalBw61Bly2RZNRR/Osb7xNqpEJCqqUY0wab8nz
+         okAQwN94hYvKoQsQ2twzMNGJAze4BNaCL7aIBKmCkg34cRA1Lh84G+eX5kOlpeMDEtSP
+         JzMzM6HnhezroXSXtKYihJ6+K21+xPhatOz3fjMViZySTFbzI6Dvz01etdJedY9Popoe
+         EQcC/CHDeshB4GWv1CT796wFHQ3UX7o3nGD9ItaujT23pf2N2zWjti1y+mvoOnxfr9v5
+         JthA==
+X-Gm-Message-State: ANoB5pkamWCr7I723gcLVeqYx2bRjD04f1WsF8si394T+9sYRoaRJjGG
+        9o8BmkLakiPgkBhxg9Dqvs1NkA==
+X-Google-Smtp-Source: AA0mqf4EGeYBCVnq7ugiUMSP85O1VdGYrTp1W6FPDn9r/8+q1Or+VRc9vCV7Jr28hpe4ERzuNLodXQ==
+X-Received: by 2002:a05:6512:3e19:b0:4b0:6023:6f6f with SMTP id i25-20020a0565123e1900b004b060236f6fmr8448931lfv.57.1670969550443;
+        Tue, 13 Dec 2022 14:12:30 -0800 (PST)
+Received: from ?IPv6:::1? (dzccz6yfpdgdc5vwjcs5y-3.rev.dnainternet.fi. [2001:14ba:a085:4d00:8c19:462c:c647:13f2])
+        by smtp.gmail.com with ESMTPSA id z2-20020a195042000000b004b4b90a6992sm534511lfj.95.2022.12.13.14.12.29
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 13 Dec 2022 14:12:30 -0800 (PST)
+Date:   Wed, 14 Dec 2022 00:11:58 +0200
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Adam Skladowski <a39.skl@gmail.com>
+CC:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v2_01/12=5D_dt-bindings=3A_displa?= =?US-ASCII?Q?y=3A_msm=3A_Rename_mdss_node_name_in_example?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <ad7ecffc-3fc9-7859-82b7-9d161fc28cae@quicinc.com>
+References: <20221130200950.144618-1-a39.skl@gmail.com> <20221130200950.144618-2-a39.skl@gmail.com> <19e78a06-2f3d-92af-1988-b22dc3ffc84e@linaro.org> <ad7ecffc-3fc9-7859-82b7-9d161fc28cae@quicinc.com>
+Message-ID: <86FA3AF9-5B35-4E27-80DA-8B5BF9E6B3AC@linaro.org>
 MIME-Version: 1.0
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Rob,
 
-On Tue, 2022-12-13 at 09:29 -0600, Rob Herring wrote:
-> On Tue, Dec 13, 2022 at 09:51:33AM +0100, Linus Walleij wrote:
-> > On Mon, Dec 12, 2022 at 7:01 AM Alexander Sverdlin
-> > <alexander.sverdlin@gmail.com> wrote:
-> >=20
-> > > I do not read a strict requirement on /chosen node in either ePAPR or=
- in
-> > > Documentation/devicetree. Help text for CONFIG_CMDLINE and
-> > > CONFIG_CMDLINE_EXTEND doesn't make their behavior explicitly dependen=
-t on
-> > > the presence of /chosen or the presense of /chosen/bootargs.
-> > >=20
-> > > However the early check for /chosen and bailing out in
-> > > early_init_dt_scan_chosen() skips CONFIG_CMDLINE handling which is no=
-t
-> > > really related to /chosen node or the particular method of passing cm=
-dline
-> > > from bootloader.
-> > >=20
-> > > This leads to counterintuitive combinations (assuming
-> > > CONFIG_CMDLINE_EXTEND=3Dy):
-> > >=20
-> > > a) bootargs=3D"foo", CONFIG_CMDLINE=3D"bar" =3D> cmdline=3D=3D"foo ba=
-r"
-> > > b) /chosen missing, CONFIG_CMDLINE=3D"bar" =3D> cmdline=3D=3D""
-> > > c) bootargs=3D"", CONFIG_CMDLINE=3D"bar" =3D> cmdline=3D=3D" bar"
-> > >=20
-> > > Move CONFIG_CMDLINE handling outside of early_init_dt_scan_chosen() s=
-o that
-> > > cases b and c above result in the same cmdline.
-> > >=20
-> > > Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-> >=20
-> > Excellent debugging Alexander!
-> > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> >=20
-> > I also think this should go to stable.
->=20
-> We have to be careful there. This could change behavior on a working=20
-> system. A system taking the cmdline entirely from a built kernel and=20
-> no initrd is going to be pretty customized already, I think they can=20
-> carry a patch. What platform is this anyways?
 
-I've stumbled upon this testing first DT conversion patches for EP93xx (ARM=
-).
+On 13 December 2022 23:53:48 EET, Abhinav Kumar <quic_abhinavk@quicinc=2Ec=
+om> wrote:
+>
+>
+>On 12/1/2022 11:54 AM, Dmitry Baryshkov wrote:
+>> On 30/11/2022 22:09, Adam Skladowski wrote:
+>>> Follow other YAMLs and replace mdss name into display-subystem=2E
+>>>=20
+>>> Signed-off-by: Adam Skladowski <a39=2Eskl@gmail=2Ecom>
+>>=20
+>> Reviewed-by: Dmitry Baryshkov <dmitry=2Ebaryshkov@linaro=2Eorg>
+>
+>Going to add two fixes tags here as we are touching two chipsets:
+>
+>Fixes: b93bdff44a85 ("dt-bindings: display/msm: add support for SM6115")
+>Fixes: 06097b13ef97 ("dt-bindings: display/msm: split dpu-qcm2290 into DP=
+U and MDSS parts")
 
-> This has actually been known for some time[1][2]. My concern in the past=
-=20
-> (besides wanting all the cmdline manipulation being common) was MIPS.=20
+Note, your tag gif wrapped, so patchwork will pick it up incorrectly=2E
 
-This "change of behavior" actually changes one exact corner case:
-no /chosen node + CONFIG_CMDLINE!=3D"" + CONFIG_CMDLINE_EXTEND=3Dy
+>
+>Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc=2Ecom>
+>
+>>=20
+>> We will pick this into msm-fixes during the next cycle=2E
+>
+>Yes, we can with the above fixes tags but first, can you please send a MR=
+ from msm-next-lumag to msm-next? So that I can send a MR for fixes to msm-=
+next=2E
 
-If someone was intentionally hiding something in the config file
-under CONFIG_CMDLINE but didn't want it to appear on the kernel command
-line in the past, he could just reconfigure new kernel version after
-the change and remove the above configs.
+This would create an additional merge commit in msm-next for no particular=
+ reason=2E You can branch -fixes from rc1, or from the msm-next-lumag and t=
+hen send MR to msm-next=2E
 
-> MIPS in particular has lots of sources for cmdline and ways to combine=
-=20
-> it. However, MIPS has since stopped using this code and does their own=
-=20
-> parsing (not great either IMO).
-
-I agree, this code screams to be common.
+>
+>ATM, they are out of sync=2E
+>
+>
+>>=20
+>>> ---
+>>> =C2=A0 =2E=2E=2E/devicetree/bindings/display/msm/qcom,qcm2290-mdss=2Ey=
+aml=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 2 +-
+>>> =C2=A0 =2E=2E=2E/devicetree/bindings/display/msm/qcom,sm6115-mdss=2Eya=
+ml=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 2 +-
+>>> =C2=A0 2 files changed, 2 insertions(+), 2 deletions(-)
+>>>=20
+>>> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,qcm229=
+0-mdss=2Eyaml b/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-=
+mdss=2Eyaml
+>>> index d6f043a4b08d=2E=2E4795e13c7b59 100644
+>>> --- a/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss=
+=2Eyaml
+>>> +++ b/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss=
+=2Eyaml
+>>> @@ -72,7 +72,7 @@ examples:
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #include <dt-bindings/interconnect/qcom=
+,qcm2290=2Eh>
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #include <dt-bindings/power/qcom-rpmpd=
+=2Eh>
+>>> -=C2=A0=C2=A0=C2=A0 mdss@5e00000 {
+>>> +=C2=A0=C2=A0=C2=A0 display-subsystem@5e00000 {
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #address-cells =
+=3D <1>;
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #size-cells =3D=
+ <1>;
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D =
+"qcom,qcm2290-mdss";
+>>> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6115=
+-mdss=2Eyaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6115-md=
+ss=2Eyaml
+>>> index a86d7f53fa84=2E=2E886858ef6700 100644
+>>> --- a/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss=
+=2Eyaml
+>>> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss=
+=2Eyaml
+>>> @@ -62,7 +62,7 @@ examples:
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #include <dt-bindings/interrupt-control=
+ler/arm-gic=2Eh>
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #include <dt-bindings/power/qcom-rpmpd=
+=2Eh>
+>>> -=C2=A0=C2=A0=C2=A0 mdss@5e00000 {
+>>> +=C2=A0=C2=A0=C2=A0 display-subsystem@5e00000 {
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #address-cells =
+=3D <1>;
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #size-cells =3D=
+ <1>;
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D =
+"qcom,sm6115-mdss";
+>>=20
 
 --=20
-Alexander Sverdlin.
-
+With best wishes
+Dmitry
