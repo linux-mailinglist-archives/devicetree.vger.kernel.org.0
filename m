@@ -2,121 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D784A64B5BD
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 14:07:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CFFBA64B5BE
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 14:07:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230061AbiLMNHt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 08:07:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59846 "EHLO
+        id S235067AbiLMNHx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 08:07:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234490AbiLMNHa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 08:07:30 -0500
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B2921EADF
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 05:07:28 -0800 (PST)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id C073285479;
-        Tue, 13 Dec 2022 14:07:26 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1670936847;
-        bh=Lrn98CS36XrdYK3Uoa35LZcdvG9k9IkQRhoOWFlDDW8=;
-        h=From:To:Cc:Subject:Date:From;
-        b=YGhtVgRhyj7nVhbdWUmwbdp6JBL2dobBCi/iD98zvHvj+i9qNNinBWR7kA3MJNmdR
-         kdSsovVfjJYmLGauM6ZNoKHlYchEoTMbSewjdJh6lZq13hHCGYl4vCCpzVSSyzu5Aj
-         W6C8Y17Zn+p+vQqLN/e4qUWUkQeiDvNiFfO/1OwelD8HIkh+VsmSQk7qc1Gcp1dqqA
-         AQMxB2BHeYumghGQXSpDctdx48NIoxq6doNlNyFxWVnSv9wzDqPRBqMpZJrHUR+dFe
-         UTXMj3ArYUwVInbygbaC9ssjsEfIROXSL00PAlaKGyJcHOW2Cdu7rFHMknFSHoBAp3
-         0jBbk9/xrUlSg==
-From:   Marek Vasut <marex@denx.de>
-To:     devicetree@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liu Ying <victor.liu@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v4] dt-bindings: mxsfb: Document i.MX8M/i.MX6SX/i.MX6SL power-domains property
-Date:   Tue, 13 Dec 2022 14:07:18 +0100
-Message-Id: <20221213130718.5899-1-marex@denx.de>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S235190AbiLMNHg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 08:07:36 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10B731FCD2
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 05:07:35 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id x28so4795506lfn.6
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 05:07:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4i4GY2IoIa8cufEomfPpTLe28kwoi3FtbheLaKzoazs=;
+        b=qe2veQwCIbDY+czEKy7nGSyF/KY8MjEIlfpc7vAQ/w7VUSLslcw1SIw7yFRTyDew8T
+         VyTDReF9kGAtR3Ko38NVCdc+es35BeulABkASd588+Tw2kyWg2O7sSV2m3uqsiR4ypFD
+         2OequDc64PKD8avmJ5sZd6WBSXiQ4lc0yNF2MHKfdx0YcYAwHimuP6O1bjQwIs7HUJ55
+         PNPDJVfYBJCsBAaCYZo/6bAgMvuCSjQNyPlaKTpKueD09gbI6sSCIFMnfccxKb4SPXKf
+         1333uDZFYz4kR72ZB9x0Oj4DoyI6vz0/F7+m88KOCXQE7Hk9123LSbf8Yj2smMYpYciS
+         Azzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4i4GY2IoIa8cufEomfPpTLe28kwoi3FtbheLaKzoazs=;
+        b=P1+MKmCjEnP4jZp3BeiwQS8k/ueWODsC/Xw4JoKiU2/8dsGd7K9dTOux75+Zbv1HU6
+         7NoYEpgDibkfIPJWT3Eo6vX+Q6F7cu0+SfkudbQ7MRBjt0xGzN+T5dlsDL+Zl7v3f6j0
+         YsgnjXxp92YoT4CLDGi9TPLvXUBvYvPv7Cy4Y10fnuyGIn8XxTxlUjyliqF4j5J/u7Yj
+         msEaMohKhmNOZfAnGDrvvpys3WSIQ2mwSigUH+tLsBBq5kbUBsUiAgKoNZJjUUvGOzTX
+         4d1bKudlsl2EYLe+1K0A7yd9zsutOslhaheJ3lITGd3lOyuf7YHlMeMgjp1alc0LKpah
+         zQLw==
+X-Gm-Message-State: ANoB5pkdyKwKAdMogKUrenFAE8824cf2wVAkNR9fQ5RXJk3kLAsNi+/p
+        hsZPY6FCJnyKUlUC+0mxDX4W0Q==
+X-Google-Smtp-Source: AA0mqf4UuGrf1jIShKf0znJ1XQnUsROhhKPlJB55ucG+VnXJmRKGpOoFluo8hPqeQVXEoMPv61zyfA==
+X-Received: by 2002:a05:6512:1145:b0:4b5:39fa:6dc with SMTP id m5-20020a056512114500b004b539fa06dcmr4924494lfg.18.1670936853370;
+        Tue, 13 Dec 2022 05:07:33 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id 11-20020ac25f0b000000b004a03d5c2140sm360384lfq.136.2022.12.13.05.07.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Dec 2022 05:07:32 -0800 (PST)
+Message-ID: <d750c6e8-365c-7443-0847-78b9a6478803@linaro.org>
+Date:   Tue, 13 Dec 2022 14:07:31 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH 2/2] dt-bindings: display/panel: Add the focaltech gpt3
+Content-Language: en-US
+To:     Christophe Branchereau <cbranchereau@gmail.com>,
+        thierry.reding@gmail.com, sam@ravnborg.org, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        paul@crapouillou.net
+References: <20221213084203.17729-1-cbranchereau@gmail.com>
+ <20221213084203.17729-2-cbranchereau@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221213084203.17729-2-cbranchereau@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The power-domains property is mandatory on i.MX8M Mini, Nano, Plus
-and i.MX6SX, i.MX6SL. Document the property and mark it as required
-on the aforementioned variants of the IP, present in those SoCs.
+On 13/12/2022 09:42, Christophe Branchereau wrote:
+> Add bindings for the focaltech gpt3, which is a 640x480 3.0" 4:3
+> IPS LCD Panel found in the YLM/Anbernic RG300X handheld.
+> 
+> Signed-off-by: Christophe Branchereau <cbranchereau@gmail.com>
+> ---
+>  .../display/panel/focaltech,gpt3.yaml         | 59 +++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/focaltech,gpt3.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/focaltech,gpt3.yaml b/Documentation/devicetree/bindings/display/panel/focaltech,gpt3.yaml
+> new file mode 100644
+> index 000000000000..969f117c51ec
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/focaltech,gpt3.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/focaltech,gpt3.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Focaltech GPT3 3.0" (640x480 pixels) IPS LCD panel
+> +
+> +maintainers:
+> +  - Christophe Branchereau <cbranchereau>
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Liu Ying <victor.liu@nxp.com>
-Cc: Lucas Stach <l.stach@pengutronix.de>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org
-To: devicetree@vger.kernel.org
----
-V2: - Add AB from Krzysztof
-    - Add mx6sx power domain into the list
-V3: - Update commit message
-    - Add i.MX6SL
-    - Update example
-V4: - Drop ack from Krzysztof
-    - Rebase on next 20221213 instead of previous 20221208, which now
-      contains power-domains: part of this patch
----
- .../devicetree/bindings/display/fsl,lcdif.yaml     | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+That's not a correct email address.
 
-diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-index f449cfc767899..fd5aab93dd103 100644
---- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-+++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-@@ -114,6 +114,19 @@ allOf:
-           maxItems: 1
-         clock-names:
-           maxItems: 1
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - fsl,imx6sl-lcdif
-+              - fsl,imx6sx-lcdif
-+              - fsl,imx8mm-lcdif
-+              - fsl,imx8mn-lcdif
-+              - fsl,imx8mp-lcdif
-+    then:
-+      required:
-+        - power-domains
- 
- examples:
-   - |
-@@ -128,6 +141,7 @@ examples:
-                  <&clks IMX6SX_CLK_LCDIF_APB>,
-                  <&clks IMX6SX_CLK_DISPLAY_AXI>;
-         clock-names = "pix", "axi", "disp_axi";
-+        power-domains = <&pd_disp>;
- 
-         port {
-             endpoint {
--- 
-2.35.1
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: focaltech,gpt3
+> +
+> +  backlight: true
+> +  port: true
+> +  power-supply: true
+
+Drop all three - provided by panel-common.yaml
+
+> +  reg: true
+
+maxItems: 1
+
+(or from which other schema does it come?)
+
+> +  reset-gpios: true
+
+
+Drop - provided by panel-common.yaml
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - power-supply
+> +  - reset-gpios
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        panel@0 {
+> +            compatible = "focaltech,gpt3";
+> +            reg = <0>;
+> +
+> +            spi-max-frequency = <3125000>;
+> +
+> +            reset-gpios = <&gpe 2 GPIO_ACTIVE_LOW>;
+> +
+> +            backlight = <&backlight>;
+> +            power-supply = <&vcc>;
+> +
+> +            port {
+> +                panel_input: endpoint {
+> +                    remote-endpoint = <&panel_output>;
+> +                };
+> +            };
+> +        };
+> +    };
+
+Best regards,
+Krzysztof
 
