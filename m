@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83C2B64B26B
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 10:34:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7753864B26F
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 10:34:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234856AbiLMJec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 04:34:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60054 "EHLO
+        id S234916AbiLMJeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 04:34:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234491AbiLMJeb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 04:34:31 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51956958A
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 01:34:30 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id g7so3960360lfv.5
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 01:34:30 -0800 (PST)
+        with ESMTP id S234962AbiLMJem (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 04:34:42 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55C1B10B45
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 01:34:39 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id b3so3984554lfv.2
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 01:34:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1znzfLM2fpZoyXEAxi0AvEM2dIkGyoBW60l3XjJaSEA=;
-        b=n9Cl9+JmQIkVm+iAzNrWOe3bgqua8o0vIQB6hk45kfSkMBf9C6Jcx8KD9wpeIDV//3
-         aIC95rDxMZuR4m4ZEl9tRD0vaOh/85jlqLP0VdhgMJXiBLCPukS8I13DPhCDOn0jBQ4b
-         5EvUC21QQaJSsIRvI2BiUuFMJxYczxQx7K09XXERqT9NtB8K1EaTxFBuAzVGdfxNv7u6
-         mUKfJOZ+pyAsQr7k+M0HQvR4NrIeJVo498h/WMVUaw1ENf8fiq1wpp5olQP/qNN6Mszn
-         coCQ2OOofCWmdjVvP+wmYN3/fCH7PClRJhSs2Adg84xRLVjGsPkwn1orYqmc/geuXm2v
-         E9/w==
+        bh=t7P5vBZVqDTpTHPohSutqwjBezarGBknMBBPdddGlLE=;
+        b=TyQ+NzxoZVz+1B8d1sqOFHHBNZGBkgxagwusiD5RDmpoM5rDEST5txNk9DARD0zPKy
+         TTrvUQB2r4l0G5a/8YlOqjjcgBMkggBb5G0zBtscrYcuwNf8GOmRsZUVrIcR71aFNkeG
+         /JheUFrN5t1pq174L2GdKf9Mj+sSGhijxJD7Dae1cbBj8znrG9bpechHNVDWwiaLVP9z
+         Wr/WwM+E/563jIA3ws3SOZyHbEhsTfxi/Gt/u+ItEY2vGywlicq9e3FUi0fJ4659WuMa
+         pGPBMm+TwYmQzXrOhOuK4RlagbeAkLiD2fAKAobe04AYglOg/VYyMcS9940uN1XjnRdw
+         jk6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1znzfLM2fpZoyXEAxi0AvEM2dIkGyoBW60l3XjJaSEA=;
-        b=Wk5pJr1nziivhu1De+707ZbL23CFUOn2Sf063ctBxTF+xrD4xLvFO09ECLi1dkvsJ8
-         LhX5C8gMD22DNjNJtZSWVPA3//T4jBENQV25YJWNU98QSP6OaRQdZgFsCsEQcH5QAgKk
-         /HrzgZ57/CVOsdDu93t+3JTaT7Yd0xgKnUHvcmHYE42xmc7or/gjvKV6bASj0AraWDHl
-         a4blLQt96X0gM/f2kak54u0OJJBsperL2qX00qr/37T2cbCEPT1vYVrMJtfHMnYM+fmc
-         evJDY23xMw5uLTxEKzq7d3jvC9UQasFyofSYg5Uo06fo1XpyHzn3tGyNAmDbR9LCLAP9
-         ZqOA==
-X-Gm-Message-State: ANoB5pmI/ODs+m5TPiJO3TE9WXmbzCHuvMBpT54pUdgllNGHcHcrTu9S
-        DOmLg5ZDB3ztI7Ten+CkmZDTOA==
-X-Google-Smtp-Source: AA0mqf7ak8qR2rqconS9W/OXJB3uvpQ0+sM8ZGEcE6eznSHGq3yTTJIEhPNyBoU2b7R5M/9ZY/X5/A==
-X-Received: by 2002:a05:6512:340c:b0:4b6:e22f:51a6 with SMTP id i12-20020a056512340c00b004b6e22f51a6mr2992726lfr.53.1670924068615;
-        Tue, 13 Dec 2022 01:34:28 -0800 (PST)
+        bh=t7P5vBZVqDTpTHPohSutqwjBezarGBknMBBPdddGlLE=;
+        b=cHuZtXlK1pDTUtKn5jMSxwrWxLANyaN4uTfyT93xhKLmfb5lfrt5/zaKhY0eeOVNn0
+         lEASXXcN/6uKOHRC6ipP55dwGe2urlpD/veevUexCWsnlaG1ecwTgxpBVNlLY6HuZo2/
+         3vnXX1OmEXT8tbMxe8Nz+PvI8ZNUxwsmXhRA+v1DY1enYac5x+5coFfD11iRNzTB+BBY
+         hHLYWctaqXmfddAr/HC3chyNQixICStXly94b93PxZB8qbqWxyrNN8l+tnS4Vdg6UXHH
+         zuVQZNT7LnueVGkiZDhRg06X0TJP/iwO+Z5oXhCzpv9BRprWI7XPZndCWmrSaO8eoGnB
+         u7yA==
+X-Gm-Message-State: ANoB5pmv1VI095aCIhnjwybzMIAQMAf/kfrOK8KmZTFsycqDAuK29k/+
+        gI9TTyA25AvkRM9iZ4rWLrVsMw==
+X-Google-Smtp-Source: AA0mqf41ho1m2qeBH/FRCNwye22r6xK+zyFu4pKVBmBSpOUA/niIzfGNeNmRAN1rJ8EnEFPU7W/CnA==
+X-Received: by 2002:a05:6512:1082:b0:4a4:68b7:f884 with SMTP id j2-20020a056512108200b004a468b7f884mr8729652lfg.40.1670924077650;
+        Tue, 13 Dec 2022 01:34:37 -0800 (PST)
 Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id s7-20020a197707000000b0049fbf5facf4sm289782lfc.75.2022.12.13.01.34.27
+        by smtp.gmail.com with ESMTPSA id h10-20020ac24d2a000000b004949a8df775sm292446lfk.33.2022.12.13.01.34.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Dec 2022 01:34:28 -0800 (PST)
-Message-ID: <804c3ece-7744-4184-9a64-c93d3c35d5b1@linaro.org>
-Date:   Tue, 13 Dec 2022 10:34:27 +0100
+        Tue, 13 Dec 2022 01:34:37 -0800 (PST)
+Message-ID: <4a2d5411-77ae-d415-2ab5-5c6b8630a65c@linaro.org>
+Date:   Tue, 13 Dec 2022 10:34:36 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH 10/12] ARM: dts: qcom: mdm9615: drop second clock
+Subject: Re: [PATCH 11/12] ARM: dts: qcom: msm8960: drop second clock
  frequency from timer
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
@@ -65,9 +65,9 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20221212163532.142533-1-krzysztof.kozlowski@linaro.org>
- <20221212163532.142533-10-krzysztof.kozlowski@linaro.org>
+ <20221212163532.142533-11-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221212163532.142533-10-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221212163532.142533-11-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -92,16 +92,16 @@ On 12.12.2022 17:35, Krzysztof Kozlowski wrote:
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm/boot/dts/qcom-mdm9615.dtsi | 3 +--
+>  arch/arm/boot/dts/qcom-msm8960.dtsi | 3 +--
 >  1 file changed, 1 insertion(+), 2 deletions(-)
 > 
-> diff --git a/arch/arm/boot/dts/qcom-mdm9615.dtsi b/arch/arm/boot/dts/qcom-mdm9615.dtsi
-> index b0fe1d95d88f..a6331e5ebe09 100644
-> --- a/arch/arm/boot/dts/qcom-mdm9615.dtsi
-> +++ b/arch/arm/boot/dts/qcom-mdm9615.dtsi
-> @@ -84,8 +84,7 @@ timer@200a000 {
->  				     <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_EDGE_RISING)>,
->  				     <GIC_PPI 3 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_EDGE_RISING)>;
+> diff --git a/arch/arm/boot/dts/qcom-msm8960.dtsi b/arch/arm/boot/dts/qcom-msm8960.dtsi
+> index 63c3c40fe9a2..a0369b38fe07 100644
+> --- a/arch/arm/boot/dts/qcom-msm8960.dtsi
+> +++ b/arch/arm/boot/dts/qcom-msm8960.dtsi
+> @@ -109,8 +109,7 @@ timer@200a000 {
+>  				     <GIC_PPI 2 0x301>,
+>  				     <GIC_PPI 3 0x301>;
 >  			reg = <0x0200a000 0x100>;
 > -			clock-frequency = <27000000>,
 > -					  <32768>;
