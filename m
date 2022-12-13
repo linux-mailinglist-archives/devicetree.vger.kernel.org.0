@@ -2,59 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D501264B83B
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 16:19:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7867A64B856
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 16:26:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236123AbiLMPTO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 10:19:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53964 "EHLO
+        id S236132AbiLMP00 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 10:26:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236099AbiLMPTK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 10:19:10 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A1A52183C;
-        Tue, 13 Dec 2022 07:19:04 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AE4B66159F;
-        Tue, 13 Dec 2022 15:19:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA3C8C433EF;
-        Tue, 13 Dec 2022 15:19:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1670944742;
-        bh=jZsLp8bpAs8v+aLzKXeFWiL5E5Xn6zfVmUtVQ0BqEkA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qs4HAK4Emz9hzOJYaySZadvmLsY1XogOTrknWHgknYcJ1tzdk5NmCtS33VakU2y4P
-         oaq56P6CVD0ex1VhWDRWaIHKwKGWCiivBU3q/vSFEaNBmwJEIHr6BysRgQwmCtUidb
-         y+9IX0EACcJ/A+Bz+d6VhUJfCK7hhydabm6xZaFsD+pI8fBJpNS2Z2VGROrLHKEd3O
-         K09ZrBpEc05bFzcW+CzCzeOdBo1bt58oK+rpTihS1m0KMs5Cr9g3+QkVKxvOT8Z0UL
-         x6/DrToWHbVwWoj9JLpXWTO3GcG2XBRIi0B9n0hXaZ2cx4WcI9BZm8T1WkzN9lwCcD
-         lns7X3M6GQB7A==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1p5744-00054f-Qt; Tue, 13 Dec 2022 16:19:28 +0100
-Date:   Tue, 13 Dec 2022 16:19:28 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Shazad Hussain <quic_shazhuss@quicinc.com>
-Cc:     Brian Masney <bmasney@redhat.com>, andersson@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, johan+linaro@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ahalaney@redhat.com,
-        echanude@redhat.com
-Subject: Re: [PATCH 1/4] arm64: dts: qcom: sc8280xp: rename i2c5 to i2c21
-Message-ID: <Y5iYAAdkJVfLrITf@hovoldconsulting.com>
-References: <20221212182314.1902632-1-bmasney@redhat.com>
- <20221212182314.1902632-2-bmasney@redhat.com>
- <Y5iSDehp72mQPc+h@hovoldconsulting.com>
- <5ac2a022-59e5-1189-bcba-e67b4974cbad@quicinc.com>
+        with ESMTP id S235382AbiLMP0Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 10:26:24 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC62A2BC9
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 07:26:22 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id c1so5472922lfi.7
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 07:26:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qq0uorQWqSHSuV/ULmLyUOqP1G8s/X2+rF5AzuYEUHo=;
+        b=jNvxbd3tbb+fGqML28PP6ZizN7oMt7Jtey4WigScljn/RGGV+JueC471+RAabQG++h
+         m7cc1xBZYWvejrIJqiwNuqSGXtQNfvKeCFQBSmH9P33PrvDRGENIAK7Hsyqgfk7SEVaB
+         1RZqMXGmCAe5ygkZL9VPtDH6nDRRZh94YMJoMFWGCEiOSZCq2+oIhBpHH54g3GkOiCeQ
+         ZgKLsMKS2Hul1++qj5jWT2x6qCXAKxYJRN7U10ez23fAag+kA7zTHchhk0Hxhv6LrPdY
+         3xbH8wB4XTmAvR/E6mMxVtRxuymEpsUJD+EsoeGYtmiaJtVrqTlrEj4InAhPqwS+4Yi7
+         kmLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qq0uorQWqSHSuV/ULmLyUOqP1G8s/X2+rF5AzuYEUHo=;
+        b=YLgW+K5nzgJIAZXLk7Dt8dIXG3mcDMgxXw8Dif+kURzyHa5JsGfqovZ7/nBZdRGofG
+         nMy1a1H2s8U18i0r90tVNuIshnXkl9VbDHWOP6TYiQptD+PcqxV5sT9F9/xIunA+BcKt
+         Kb6FvytHawdqijAg8D4VMJ86jQ2lRdcMuRRCm0uatAJ2JyRJKUzaNj6MWVRiQoCobsEn
+         2cFJYKBW9F3q9SlrMnCnGrNbogux+A45bXsTqgOI6O1jLMx8MaMY54zC6Xfl69wX3c+P
+         5j8yThclvOKKhmrvlweanuZ/pbKVIvfIOAvlDWKPCai8oVK5Xfj6TxRXk0+TJSIxvASO
+         OcHg==
+X-Gm-Message-State: ANoB5plFrcqfL/aIO5S0X3+zOY14MNiltVwTgiIMkhtgvYz9OqrOMUVp
+        16L+Y56bLTSHiabuFZzbq0Uwkg==
+X-Google-Smtp-Source: AA0mqf52YnbaC+FzJZHzFO6RQPBRF/Z4ae26J3kUE1fmBn6xbjLdVtRw8kBboimpxnMmRC/t0AIHhQ==
+X-Received: by 2002:a19:e051:0:b0:4b5:b7be:136b with SMTP id g17-20020a19e051000000b004b5b7be136bmr4165398lfj.69.1670945181142;
+        Tue, 13 Dec 2022 07:26:21 -0800 (PST)
+Received: from localhost.localdomain (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
+        by smtp.gmail.com with ESMTPSA id s15-20020a056512214f00b004b58f51c7dcsm404149lfr.226.2022.12.13.07.26.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Dec 2022 07:26:20 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: clock: add QCOM SM6350 camera clock bindings
+Date:   Tue, 13 Dec 2022 16:26:15 +0100
+Message-Id: <20221213152617.296426-1-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5ac2a022-59e5-1189-bcba-e67b4974cbad@quicinc.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,50 +75,188 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 13, 2022 at 08:34:56PM +0530, Shazad Hussain wrote:
-> 
-> 
-> On 12/13/2022 8:24 PM, Johan Hovold wrote:
-> > On Mon, Dec 12, 2022 at 01:23:11PM -0500, Brian Masney wrote:
-> >> According to the downstream 5.4 kernel sources for the sa8540p,
-> >> i2c@894000 is labeled i2c bus 21, not 5. The interrupts and clocks
-> >> also match. Let's go ahead and correct the name that's used in the
-> >> three files where this is listed.
-> >>
-> >> Signed-off-by: Brian Masney <bmasney@redhat.com>
-> >> Fixes: 152d1faf1e2f3 ("arm64: dts: qcom: add SC8280XP platform")
-> >> Fixes: ccd3517faf183 ("arm64: dts: qcom: sc8280xp: Add reference device")
-> >> Fixes: 32c231385ed43 ("arm64: dts: qcom: sc8280xp: add Lenovo Thinkpad X13s devicetree")
-> > 
-> >> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> >> index 109c9d2b684d..875cc91324ce 100644
-> >> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> >> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> >> @@ -827,7 +827,7 @@ qup2_uart17: serial@884000 {
-> >>   				status = "disabled";
-> >>   			};
-> >>   
-> >> -			qup2_i2c5: i2c@894000 {
-> >> +			qup2_i2c21: i2c@894000 {
-> > 
-> > Note that the node is labelled qup2_i2c5 and not qup_i2c5.
-> > 
-> > That is, the QUP nodes are labelled using two indices, and specifically
-> > 
-> > 	qup2_i2c5
-> > 
-> > would be another name for
-> > 
-> > 	qup_i2c21
-> > 
-> > if we'd been using such a flat naming scheme (there are 8 engines per
-> > QUP).
-> > 
-> > So there's nothing wrong with how these nodes are currently named, but
-> > mixing the two scheme as you are suggesting would not be correct.
-> 
-> Wondering we might need to change qup2_uart17 to qup2_uart1 then ?
+Add device tree bindings for camera clock controller for
+Qualcomm Technology Inc's SM6350 SoC.
 
-Right, I just noticed that too.
+Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ .../bindings/clock/qcom,sm6350-camcc.yaml     |  49 ++++++++
+ include/dt-bindings/clock/qcom,sm6350-camcc.h | 109 ++++++++++++++++++
+ 2 files changed, 158 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm6350-camcc.yaml
+ create mode 100644 include/dt-bindings/clock/qcom,sm6350-camcc.h
 
-Johan
+diff --git a/Documentation/devicetree/bindings/clock/qcom,sm6350-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm6350-camcc.yaml
+new file mode 100644
+index 000000000000..fd6658cb793d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/qcom,sm6350-camcc.yaml
+@@ -0,0 +1,49 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/qcom,sm6350-camcc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Camera Clock & Reset Controller on SM6350
++
++maintainers:
++  - Konrad Dybcio <konrad.dybcio@linaro.org>
++
++description: |
++  Qualcomm camera clock control module provides the clocks, resets and  power
++  domains on SM6350.
++
++  See also:: include/dt-bindings/clock/qcom,sm6350-camcc.h
++
++properties:
++  compatible:
++    const: qcom,sm6350-camcc
++
++  clocks:
++    items:
++      - description: Board XO source
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - clocks
++
++allOf:
++  - $ref: qcom,gcc.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,rpmh.h>
++    clock-controller@ad00000 {
++      compatible = "qcom,sm6350-camcc";
++      reg = <0x0ad00000 0x16000>;
++      clocks = <&rpmhcc RPMH_CXO_CLK>;
++      #clock-cells = <1>;
++      #reset-cells = <1>;
++      #power-domain-cells = <1>;
++    };
++...
+diff --git a/include/dt-bindings/clock/qcom,sm6350-camcc.h b/include/dt-bindings/clock/qcom,sm6350-camcc.h
+new file mode 100644
+index 000000000000..c6bcdc8fd485
+--- /dev/null
++++ b/include/dt-bindings/clock/qcom,sm6350-camcc.h
+@@ -0,0 +1,109 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++/*
++ * Copyright (c) 2022, The Linux Foundation. All rights reserved.
++ * Copyright (c) 2022, Linaro Limited
++ */
++
++#ifndef _DT_BINDINGS_CLK_QCOM_CAMCC_SM6350_H
++#define _DT_BINDINGS_CLK_QCOM_CAMCC_SM6350_H
++
++/* CAMCC clocks */
++#define CAMCC_PLL2_OUT_EARLY		0
++#define CAMCC_PLL0			1
++#define CAMCC_PLL0_OUT_EVEN		2
++#define CAMCC_PLL1			3
++#define CAMCC_PLL1_OUT_EVEN		4
++#define CAMCC_PLL2			5
++#define CAMCC_PLL2_OUT_MAIN		6
++#define CAMCC_PLL3			7
++#define CAMCC_BPS_AHB_CLK		8
++#define CAMCC_BPS_AREG_CLK		9
++#define CAMCC_BPS_AXI_CLK		10
++#define CAMCC_BPS_CLK			11
++#define CAMCC_BPS_CLK_SRC		12
++#define CAMCC_CAMNOC_ATB_CLK		13
++#define CAMCC_CAMNOC_AXI_CLK		14
++#define CAMCC_CCI_0_CLK		15
++#define CAMCC_CCI_0_CLK_SRC		16
++#define CAMCC_CCI_1_CLK		17
++#define CAMCC_CCI_1_CLK_SRC		18
++#define CAMCC_CORE_AHB_CLK		19
++#define CAMCC_CPAS_AHB_CLK		20
++#define CAMCC_CPHY_RX_CLK_SRC		21
++#define CAMCC_CSI0PHYTIMER_CLK		22
++#define CAMCC_CSI0PHYTIMER_CLK_SRC	23
++#define CAMCC_CSI1PHYTIMER_CLK		24
++#define CAMCC_CSI1PHYTIMER_CLK_SRC	25
++#define CAMCC_CSI2PHYTIMER_CLK		26
++#define CAMCC_CSI2PHYTIMER_CLK_SRC	27
++#define CAMCC_CSI3PHYTIMER_CLK		28
++#define CAMCC_CSI3PHYTIMER_CLK_SRC	29
++#define CAMCC_CSIPHY0_CLK		30
++#define CAMCC_CSIPHY1_CLK		31
++#define CAMCC_CSIPHY2_CLK		32
++#define CAMCC_CSIPHY3_CLK		33
++#define CAMCC_FAST_AHB_CLK_SRC		34
++#define CAMCC_ICP_APB_CLK		35
++#define CAMCC_ICP_ATB_CLK		36
++#define CAMCC_ICP_CLK			37
++#define CAMCC_ICP_CLK_SRC		38
++#define CAMCC_ICP_CTI_CLK		39
++#define CAMCC_ICP_TS_CLK		40
++#define CAMCC_IFE_0_AXI_CLK		41
++#define CAMCC_IFE_0_CLK		42
++#define CAMCC_IFE_0_CLK_SRC		43
++#define CAMCC_IFE_0_CPHY_RX_CLK	44
++#define CAMCC_IFE_0_CSID_CLK		45
++#define CAMCC_IFE_0_CSID_CLK_SRC	46
++#define CAMCC_IFE_0_DSP_CLK		47
++#define CAMCC_IFE_1_AXI_CLK		48
++#define CAMCC_IFE_1_CLK		49
++#define CAMCC_IFE_1_CLK_SRC		50
++#define CAMCC_IFE_1_CPHY_RX_CLK	51
++#define CAMCC_IFE_1_CSID_CLK		52
++#define CAMCC_IFE_1_CSID_CLK_SRC	53
++#define CAMCC_IFE_1_DSP_CLK		54
++#define CAMCC_IFE_2_AXI_CLK		55
++#define CAMCC_IFE_2_CLK		56
++#define CAMCC_IFE_2_CLK_SRC		57
++#define CAMCC_IFE_2_CPHY_RX_CLK	58
++#define CAMCC_IFE_2_CSID_CLK		59
++#define CAMCC_IFE_2_CSID_CLK_SRC	60
++#define CAMCC_IFE_2_DSP_CLK		61
++#define CAMCC_IFE_LITE_CLK		62
++#define CAMCC_IFE_LITE_CLK_SRC		63
++#define CAMCC_IFE_LITE_CPHY_RX_CLK	64
++#define CAMCC_IFE_LITE_CSID_CLK	65
++#define CAMCC_IFE_LITE_CSID_CLK_SRC	66
++#define CAMCC_IPE_0_AHB_CLK		67
++#define CAMCC_IPE_0_AREG_CLK		68
++#define CAMCC_IPE_0_AXI_CLK		69
++#define CAMCC_IPE_0_CLK		70
++#define CAMCC_IPE_0_CLK_SRC		71
++#define CAMCC_JPEG_CLK			72
++#define CAMCC_JPEG_CLK_SRC		73
++#define CAMCC_LRME_CLK			74
++#define CAMCC_LRME_CLK_SRC		75
++#define CAMCC_MCLK0_CLK		76
++#define CAMCC_MCLK0_CLK_SRC		77
++#define CAMCC_MCLK1_CLK		78
++#define CAMCC_MCLK1_CLK_SRC		79
++#define CAMCC_MCLK2_CLK		80
++#define CAMCC_MCLK2_CLK_SRC		81
++#define CAMCC_MCLK3_CLK		82
++#define CAMCC_MCLK3_CLK_SRC		83
++#define CAMCC_MCLK4_CLK		84
++#define CAMCC_MCLK4_CLK_SRC		85
++#define CAMCC_SLOW_AHB_CLK_SRC		86
++#define CAMCC_SOC_AHB_CLK		87
++#define CAMCC_SYS_TMR_CLK		88
++
++/* GDSCs */
++#define BPS_GDSC			0
++#define IPE_0_GDSC			1
++#define IFE_0_GDSC			2
++#define IFE_1_GDSC			3
++#define IFE_2_GDSC			4
++#define TITAN_TOP_GDSC			5
++
++#endif
+-- 
+2.39.0
+
