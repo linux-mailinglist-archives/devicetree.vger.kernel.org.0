@@ -2,107 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E02364B272
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 10:35:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2687A64B27C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 10:37:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234784AbiLMJfJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 04:35:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60664 "EHLO
+        id S234734AbiLMJg5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 04:36:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234877AbiLMJez (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 04:34:55 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 559E41145B
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 01:34:54 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id g7so3961683lfv.5
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 01:34:54 -0800 (PST)
+        with ESMTP id S234954AbiLMJgh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 04:36:37 -0500
+Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CFF8DE93
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 01:36:36 -0800 (PST)
+Received: by mail-yb1-xb35.google.com with SMTP id y135so16896927yby.12
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 01:36:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yLw0ijR1P/QD9sJWgEsC47rvSjzALvfc0oOU7u/vybA=;
-        b=NBUP0i5Bo2JkflYl1q3hwzwprllGNpNuqiKPi/amMmRsmY+a+D3OmD1qQ6VMIM1q0w
-         QBVFw9DyLwTZQyu8Ib0UYPlz4LJsw9digHXjlSedrc2LbvphEVDc0HLZsqmmXwSxgjpm
-         ETPqGJsdXmy4fqfcvB1Pa9OsRJwRilv44JEE1vNTyMTJN80WlcVO+dlRjPGQDVCMOM/N
-         LeXVIEBzkxiKb1y7zjGiSkwjmFcQAFPtSEtLNmynoFpfH5c74LXMw8oe56U28bBrbfgq
-         1vV/W0JJRTkht3B3jQpVgc0dOpg9yQP+qlPks6b7xjHzqJmvmwIVoKXVvUmOvPWY1IyB
-         7aIg==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=5Hd26A52tCpr/TZckO2AVYLVhE5lfnmKa/PoDrSKaIA=;
+        b=G3H1wlAZpdpmQYEieqdVuJKIsOzW5NXXiQInR7B8S9KT3ra2veBRSQ/BqZ5EWCjQqs
+         qYKAfPqCdD3slKR8pI+qp+du4ChkVYmD3V8WcqYibXxIjPCiBekfspJkhEAVlP3OczhF
+         HDS6JM968T9/yi1meoD9tZaH2RtYsxwA7eocXUdrhSNLmiNDC4boRIpo1rv3SPqy4+Q+
+         KcgVKC78qG9irgH4Q1aashBRhUUBRhn9pXpf3FgxB3Oru21hgDkIxo8IKywySuk23/xH
+         u0GehlP7GwmfIXOGXG8SISBiNcf6tIA4LMTXganXiVNdWS01R/7rwXbiJwPuaGt7qlSf
+         j6rA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yLw0ijR1P/QD9sJWgEsC47rvSjzALvfc0oOU7u/vybA=;
-        b=OKSvPSDMUVWzN5GhnxEuLxJmmfJ2tIQ3RycAPjWmOz4V0MLTzODQAKOdoX0mLbdJr3
-         LtvCdTuTu+wQL4RHUXGIdsxGs7kp0+3fxnOAIJXYwGgJbP+yqxo7CaLyIHVj5u+lNtSF
-         E+VMLQZ03EEdARpgAk2udwcVcJAk2rERONTm3doYG+L5711TK3mE8ESlcIBsNp2X3Z8D
-         O2hI0jqzizAK2RNN2fPQz3ae8OSUpIfp3oZhj24gVdpxwkglfmx6Pkg2HAUVNHdRCt/h
-         q/taur+7AZiVINzL5pKocFnV45d+H9keruL6IB9KFNr+cGbZWb9AmOMYgIjTT2IIZrBb
-         4z/Q==
-X-Gm-Message-State: ANoB5pknO3Y7BVay9rUUkyaenvI5CCsl7aGsUYFIgewutnNh7rapbkzW
-        YiFrXfKm3KG+ZgTyizEWnZ3oVA==
-X-Google-Smtp-Source: AA0mqf4tDEGssHvi1Y8Iw+rQfW3lTrApyG+FO9irlSBVUQZJQPDEFS6w+1HcbI8GMkJwIlbDn2UAnw==
-X-Received: by 2002:ac2:5e61:0:b0:4b3:9b88:d9ce with SMTP id a1-20020ac25e61000000b004b39b88d9cemr6911432lfr.46.1670924092676;
-        Tue, 13 Dec 2022 01:34:52 -0800 (PST)
-Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id g1-20020a056512118100b004b57a253deasm289014lfr.162.2022.12.13.01.34.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Dec 2022 01:34:52 -0800 (PST)
-Message-ID: <da24e41b-4509-2dd6-1659-be001b447daf@linaro.org>
-Date:   Tue, 13 Dec 2022 10:34:51 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5Hd26A52tCpr/TZckO2AVYLVhE5lfnmKa/PoDrSKaIA=;
+        b=vvtuY4MYV3Uu1ADjpU7AziRSwCkDS9rbvLM6rwD555DjWMPaR0JuZUh+bjv2DvUVoT
+         yOJmxgLfjLUDkRBtE8uQjsEwrlEUAv/Y0+gKAO67lz8u4VoDkM9nK7QvUeosf84Zykax
+         od0Nr+nwkBtLPvioKXY/n4upF0yYL4lWL5f2/+t27/i0kF6lc7EEOch5bnTHhqd0om+t
+         UZtIfFIs5DMDb/3T7656tuecH/bRkJQdigY+lQukCH5g8xCsmgRtrqgF0KgQqsommI6f
+         f8IpuOh8ytYDOAc81gsuzcjo0A+ydh0HMU0FRLBSwgzSh1q7uOyPxRGoUmvTw46IsMse
+         oC9g==
+X-Gm-Message-State: ANoB5pksE6P8i4xJeCx4lMBNG085pYDoJFzNQ2u9cqkrEA3YNLq7GwH4
+        hkn6tVkzOI9vKTbc29yCgoJxRml37bJJJ212NrT/bQ==
+X-Google-Smtp-Source: AA0mqf7nZkHxiu+fKuIysqXHZF7UfBmLi0ZBnxPGnQLtOGWmyCu8e8cxfKokNJEIdxwKsyPc4kMyW8JbkbnRGby4zNA=
+X-Received: by 2002:a25:d2ce:0:b0:710:f2e2:eb92 with SMTP id
+ j197-20020a25d2ce000000b00710f2e2eb92mr2950219ybg.304.1670924195683; Tue, 13
+ Dec 2022 01:36:35 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH 12/12] ARM: dts: qcom: msm8960: add qcom,kpss-wdt-mdm9615
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+References: <20221121123803.3786-1-zhuyinbo@loongson.cn> <20221121123803.3786-2-zhuyinbo@loongson.cn>
+ <CACRpkda1adiNwbTZHdAyHKny3r5FFMP_XXVGbo1vnCdw9U1gNg@mail.gmail.com>
+ <8a7abd77-9540-efa8-6f67-908530e85399@loongson.cn> <CACRpkdb=wdydOYCcrpjLSyvfVO--_ezXsFQ46qwfVCiiTd5fNw@mail.gmail.com>
+ <4c02570e-03d5-85f1-73fb-b66d6170c875@loongson.cn> <CACRpkdbgP9m40t_Ky4H+SQi9TELikomT2M-JpF7+auKmzOxQdg@mail.gmail.com>
+ <ce858832-c052-1797-ffeb-2dbe654cbdd1@loongson.cn>
+In-Reply-To: <ce858832-c052-1797-ffeb-2dbe654cbdd1@loongson.cn>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 13 Dec 2022 10:36:24 +0100
+Message-ID: <CACRpkda0VerZhVGMJJjMYyAWdobvSLj4=eWxBjh+5ubmxvFcjQ@mail.gmail.com>
+Subject: Re: [PATCH v5 2/3] gpio: loongson: add gpio driver support
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221212163532.142533-1-krzysztof.kozlowski@linaro.org>
- <20221212163532.142533-12-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221212163532.142533-12-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Juxin Gao <gaojuxin@loongson.cn>,
+        Bibo Mao <maobibo@loongson.cn>,
+        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
+        Arnaud Patard <apatard@mandriva.com>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Hongchen Zhang <zhanghongchen@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Dec 12, 2022 at 9:13 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
 
+> mask_irq/unmask_irq/irq_ack/ function always be called by
+> handle_level_irq/handle_edge_irq in current irq domain. and the
+> handle_level_irq/handle_edge_irq will be called  by handle_irq_desc that
+> ask know which irq is.
+>
+> when a peripheral need to use a gpio irq that gpio irq driver need know
+> irq status and call irq desc->irq_handler.
+>
+> so I don't got it about which case it is unnecessary to know which irq.
 
-On 12.12.2022 17:35, Krzysztof Kozlowski wrote:
-> Add specific compatible to timer/watchdog device node.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Sorry I don't understand what you are asking, can you elaborate?
 
-Konrad
->  arch/arm/boot/dts/qcom-mdm9615.dtsi | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/qcom-mdm9615.dtsi b/arch/arm/boot/dts/qcom-mdm9615.dtsi
-> index a6331e5ebe09..536bd7b50762 100644
-> --- a/arch/arm/boot/dts/qcom-mdm9615.dtsi
-> +++ b/arch/arm/boot/dts/qcom-mdm9615.dtsi
-> @@ -79,7 +79,8 @@ intc: interrupt-controller@2000000 {
->  		};
->  
->  		timer@200a000 {
-> -			compatible = "qcom,kpss-timer", "qcom,msm-timer";
-> +			compatible = "qcom,kpss-wdt-mdm9615", "qcom,kpss-timer",
-> +				     "qcom,msm-timer";
->  			interrupts = <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_EDGE_RISING)>,
->  				     <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_EDGE_RISING)>,
->  				     <GIC_PPI 3 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_EDGE_RISING)>;
+Do you mean that you don't know which driver will not call ->to_irq()
+on the gpiochip? That would be any driver that takes an IRQ directly in
+the device tree:
+
+gpio: gpio {
+    interrupt-controller;
+    #interrupt-cells = <2>;
+    ....
+};
+
+device {
+    interrupts = <&gpio 14 IRQ_TYPE_LEVEL_HIGH>;
+    ....
+};
+
+This case will only call the irqchip callbacks and will never call
+the .to_irq() on the gpio_chip.
+
+> > You find an example of a hierarchical GPIO irqchip using the
+> > GPIOLIB_IRQCHIP in drivers/gpio/gpio-ixp4xx.c.
+>
+> Loongson-2 gpio irq hardware only a enable register, and when a gpio irq
+> happen, then will has a such flow:  "cpuintc -> liointc -> gpioinc ->
+> generic_handle_domain_irq -> handle_level_irq ->
+> peripheral-action(action->handler)"
+>
+> generic_handle_domain_irq need rely on specific hwirq that ask gpio irq
+> hardware has a status register but Loongson-2 gpio irq hardware doesn't
+> have it.
+>
+> so I still think it wasn't appropriate that for loongson-2 gpio driver
+> add a irq chip.
+
+generic_handle_domain_irq() is of no concern, what matters is if
+your interrupt is hierarchical or not, the callback in the GPIO chip
+can be a simple remapping of the numberspace followed by
+a call to the parent callbacks.
+
+Yours,
+Linus Walleij
