@@ -2,125 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 073CE64BC6F
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 19:54:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 355CD64BC7C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 19:58:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236526AbiLMSya (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 13:54:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46070 "EHLO
+        id S236646AbiLMS6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 13:58:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235679AbiLMSy1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 13:54:27 -0500
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D7042229E
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 10:54:25 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id g14so4279003ljh.10
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 10:54:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HIPMQhD3+psITxKXESoElrmEMixNnFBn4GX76EyPXww=;
-        b=thPT9NHQRmNNvE6uZeB9lnXFyKpwPIjWuyeDZ6fQ6lVHeVkpgPAsu4ejh7ASpjwJgw
-         puxo4E3U3wH+SK1e+0U4xxm1ArJnyAs7Wj2ZkqMgtblj0Vifu2W14qjvgnI93r/jWS9b
-         qXzQpQN1QJHA5nMSXECiQVpGVN/jvBDsPrFCl5jHrLvm08PF1BKU8ZvjTC4MwklHq7tR
-         eqy0u9Yi2GL4HLVly8xClK2LoNPGf1hu3DC7/i5YOoHtTp/drS1cEfjo+e4KkCIgjxVO
-         W8tIoTEoTvOOnV0+of4njCLTBKyZ/hkenluqL1ZViXHMmLQ0wSj4PHNPno14BHPn4FmH
-         kzoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HIPMQhD3+psITxKXESoElrmEMixNnFBn4GX76EyPXww=;
-        b=RotEHgmABEGa82yeZE3K/DwXnJd2VblkbfHlJ6H6Ukj1nTdh6vOJBxHNtPwp84nXE9
-         vrfKjrg1Z3v9ERGcWA9bRq+hlZpOgY25pzUzk2UoAXweIPGSnBHy8atbCXnrJvmDoOS4
-         eotp/p7a9aeh/cUkiHSSfC0K9jY1vX3QNLWz6iVIzbIvrDPCUDZceIBLwsVms3kPr1/M
-         cw4Ttd8ylCLNk8JjU3eBFtZveASwIvhXFcQwSIpN1UN4gvqPPzZ/1WLQdmjU0SEh7+hX
-         2V1PwJ5DPYOp4LSTTvOQ4L284E1MWh8XEGTREnKcJKpch/9vr9/oVSlrLK1D8mFTGTvR
-         fqoA==
-X-Gm-Message-State: ANoB5pmIZBgQrXMnmeUtPUJz4kA1aYVPzA7yX8oKSLyDN+osvMWPRmIu
-        b/1EFtqlDSQ8OR6zaazx6m3fFg==
-X-Google-Smtp-Source: AA0mqf6qBN7nANaIrqMA455WhZcMcAiYFohX6+DXjFTkG/RaYdkRR9JGA3xhKnG9w2ocYukjJ5KNug==
-X-Received: by 2002:a2e:be1f:0:b0:26f:db35:7e42 with SMTP id z31-20020a2ebe1f000000b0026fdb357e42mr6893538ljq.17.1670957663947;
-        Tue, 13 Dec 2022 10:54:23 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id p13-20020a2eb98d000000b0027a02d2d4ecsm368642ljp.24.2022.12.13.10.54.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Dec 2022 10:54:23 -0800 (PST)
-Message-ID: <f47c1135-9c72-d21e-327e-511f7bf71a23@linaro.org>
-Date:   Tue, 13 Dec 2022 19:54:21 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v3 3/4] dt-bindings: iio: accel: fxls8962af: add new
- compatible string
-Content-Language: en-US
-To:     Han Xu <han.xu@nxp.com>, Jonathan Cameron <jic23@kernel.org>,
+        with ESMTP id S236556AbiLMS6h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 13:58:37 -0500
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 61FBC218A5;
+        Tue, 13 Dec 2022 10:58:35 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.96,242,1665414000"; 
+   d="scan'208";a="146047105"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 14 Dec 2022 03:58:34 +0900
+Received: from localhost.localdomain (unknown [10.226.93.72])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 2F61A40B1019;
+        Wed, 14 Dec 2022 03:58:29 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Sean Nyekjaer <sean@geanix.com>,
-        =?UTF-8?Q?Nuno_S=c3=a1?= <nuno.sa@analog.com>,
-        Matti Vaittinen <mazziesaccount@gmail.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Clark Wang <xiaoning.wang@nxp.com>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, imx@lists.linux.dev
-References: <20221213171536.1880089-1-han.xu@nxp.com>
- <20221213171536.1880089-5-han.xu@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221213171536.1880089-5-han.xu@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Subject: [PATCH v3 0/4] Add RZ/V2{M, MA} PWM driver support
+Date:   Tue, 13 Dec 2022 18:58:23 +0000
+Message-Id: <20221213185827.2012004-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/12/2022 18:15, Han Xu wrote:
-> Add new compatible string for the NXP FXLS8967AF accelerometer sensor.
-> 
-> Signed-off-by: Han Xu <han.xu@nxp.com>
-> 
-> ---
-> changes in v3
-> - Start commit message in capital
-> - Describe all these chips are compatible
-> ---
->  .../devicetree/bindings/iio/accel/nxp,fxls8962af.yaml         | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml b/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml
-> index 65ce8ea14b52..8f07ade21abb 100644
-> --- a/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml
-> +++ b/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml
-> @@ -14,12 +14,16 @@ description: |
->    SPI and I2C interface.
->      https://www.nxp.com/docs/en/data-sheet/FXLS8962AF.pdf
->      https://www.nxp.com/docs/en/data-sheet/FXLS8964AF.pdf
-> +    https://www.nxp.com/docs/en/data-sheet/FXLS8967AF.pdf
->  
->  properties:
->    compatible:
-> +    description:
-> +      These chips are compatible with each other, just have different IDs.
+The RZ/V2{M, MA} PWM Timer (PWM) is composed of 16 channels. Linux is only
+allowed access to channels 8 to 14 on RZ/V2M, while there is no restriction
+for RZ/V2MA.
 
-That's not what I meant.
+The RZ/V2{M, MA} PWM Timer (PWM) supports the following functions:
+ * The PWM has 24-bit counters which operate at PWM_CLK (48 MHz).
+ * The frequency division ratio for internal counter operation is selectable
+    as PWM_CLK divided by 1, 16, 256, or 2048.
+ * The period as well as the duty cycle is adjustable.
+ * The low-level and high-level order of the PWM signals can be inverted.
+ * The duty cycle of the PWM signal is selectable in the range from 0 to 100%.
+ * The minimum resolution is 20.83 ns.
+ * Three interrupt sources: Rising and falling edges of the PWM signal and
+   clearing of the counter
+ * Counter operation and the bus interface are asynchronous and both can
+   operate independently of the magnitude relationship of the respective
+   clock periods.
 
-Compatibility is expressed (check DT spec) by following specific
-compatible with a more generic one (fallback), so in DTS:
+v2->v3:
+ * Removed clock patch#1 as it is queued for 6.3 renesas-clk
+ * Added Rb tag from Geert for bindings and dt patches
+ * Added return code for rzv2m_pwm_get_state()
+ * Added comment in rzv2m_pwm_reset_assert_pm_disable()
+v1->v2:
+ * Updated commit description
+ * Replaced pwm8_15_pclk->cperi_grpf
+ * Added reset entry R9A09G011_PWM_GPF_PRESETN
+ * Added Rb tag from Krzysztof for bindings and the keep the Rb tag as 
+   the below changes are trivial
+ * Updated the description for APB clock
+ * Added resets required property
+ * Updated the example with resets property
+ * Replaced devm_reset_control_get_optional_shared->devm_reset_control_get_shared
+ * Added resets property in pwm nodes.
 
-	compatible = "nxp,fxls8967af", "nxp,fxls8964af";
+Note:
+ Hardware manual for this IP can be found here
+ https://www.renesas.com/in/en/document/mah/rzv2m-users-manual-hardware?language=en
 
-Your driver changes partially suggested that (and driver changes should
-be probably skipped in such case), but now I wonder how it is in reality....
+Biju Das (4):
+  dt-bindings: pwm: Add RZ/V2M PWM binding
+  pwm: Add support for RZ/V2M PWM driver
+  arm64: dts: renesas: r9a09g011: Add pwm nodes
+  arm64: dts: renesas: rzv2m evk: Enable pwm
 
-Best regards,
-Krzysztof
+ .../bindings/pwm/renesas,rzv2m-pwm.yaml       |  90 ++++
+ .../boot/dts/renesas/r9a09g011-v2mevk2.dts    |  70 +++
+ arch/arm64/boot/dts/renesas/r9a09g011.dtsi    |  98 +++++
+ drivers/pwm/Kconfig                           |  11 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-rzv2m.c                       | 398 ++++++++++++++++++
+ 6 files changed, 668 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/renesas,rzv2m-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-rzv2m.c
+
+-- 
+2.25.1
 
