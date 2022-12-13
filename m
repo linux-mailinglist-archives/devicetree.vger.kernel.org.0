@@ -2,135 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BB8564B297
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 10:46:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 504BF64B2AC
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 10:50:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234771AbiLMJp7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 04:45:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37398 "EHLO
+        id S229689AbiLMJt5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 04:49:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234700AbiLMJp5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 04:45:57 -0500
-Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 758B8167C1
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 01:45:56 -0800 (PST)
-Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-381662c78a9so184323277b3.7
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 01:45:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=iPtLftr9mLTiDAptPz9mvrZVG8hTqgqEvX9Avo9sl1g=;
-        b=hKzXso9eZlsyOVFQUJDMuaKvlCYfZTlVdb6U8r74Fs35C7eVjSGT3Vkb/R5Mfy1xkU
-         P/CF6pRg0fmWckEmcLfH8V5KvD8T9TojXNwpF63EKIicT5yAu+kYbbjx5rKWDemGf4VF
-         UxSG6NeaM1rHYnlaN+4K9Mea/3hEf3+Uhd++yPx5AJfRwxGDngXAfpyX3lF47CjJuVa3
-         p+VoyxfRz0LALyDmpZruXOj+MD28bDJnDJPPny3greWOjMnMGdMDE36d4ZVrDwEQoBdp
-         Y46WZSZXo4KSrwnBBUFZ80g7pTpy4HSE4SMlSXz2jshf4Ilr2QoUHiX6xwUed84OZuVg
-         BDtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=iPtLftr9mLTiDAptPz9mvrZVG8hTqgqEvX9Avo9sl1g=;
-        b=Sx5Too/ReU/WjcKgHVGjMW40L9jXhq0YowBv4tDW6umP+7z3zZp6JP+io+SAGwXq4P
-         /+NedwRVS9RlrEGDVPO114EopuIkgdBzilqNvUA8ZxZoyiDyWEXQEibjejGtOZ31R9+V
-         Iaw8vL8cZ4EuvybhrEeqX9xvaW+JvqSkDd9GLUbCPKWfjimr90oSyuvj89cmu2oUDrBA
-         MK37cId0picFOef6Y+/SWv0yRFB1BKMcUhNUapnZcEaJo0KPsAF8v/CVyFj/bc/il0EH
-         Tq6Bp+7nNc2o5PEctTFk15vx/oV7yd95z8IRBIM8slWl7ZDrvnJymylDRGqgmDm+mT0S
-         h4bA==
-X-Gm-Message-State: ANoB5pngQdReQqIC/xxlPOUPTYsFLhnarloVePLTP790lhzrA9MX1ssn
-        GEsJqb0shJaV/BRX/NPnQph8saWBZnNxYcFR3eWMBw==
-X-Google-Smtp-Source: AA0mqf5KB4LYFTpAQUpghbjTaGUJ19gRvoZw0sTgHBYe53MAcw9jcGLIhvF3gdN62YzKc6H5k3qDSar0IR2TxwYnNPo=
-X-Received: by 2002:a81:5d8:0:b0:3f5:b69c:387 with SMTP id 207-20020a8105d8000000b003f5b69c0387mr12925219ywf.359.1670924755634;
- Tue, 13 Dec 2022 01:45:55 -0800 (PST)
+        with ESMTP id S232921AbiLMJt4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 04:49:56 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D391DF84;
+        Tue, 13 Dec 2022 01:49:55 -0800 (PST)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BD7gwPt005496;
+        Tue, 13 Dec 2022 09:49:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=jyRFcEYbCAGOwHyG7yTZo9lOauMWyhtaWoRjshBIHmM=;
+ b=f1qTIed/n1AVSaXmpRYPN52n4Y6NFNx/xFRerDbSdo+xfky/D6/47l+8Ub8h5/UnWCMg
+ lKi1KOMUAx1o+Nw+ERaZ9uqZ1z71dQlYkbl6qed8GJVmq6jSGNgZ7wUyBdqQ2o3iqtE9
+ gTz9r8wYdybJd4dPtqOuWNg/Y25oNIRmm44OY/xr1L4Gn0FUtLuegBYep5TQti2KvORr
+ GHFJOSH7HAPn990rfP/bk/y+0wNUL88APREfZSTr3OtnCGMOkcfYeHfQWkahIz9nCMyb
+ C/ACCAhJg39OP1EAMXKNck/L+26BJkrHGQd4Y+wCFE9hz1CcHA4BUZNzu4/L/r/n/9yn Ng== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3meh7u8ud0-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 13 Dec 2022 09:49:10 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2BD9n8Mc026380
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 13 Dec 2022 09:49:09 GMT
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Tue, 13 Dec 2022 01:49:02 -0800
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <linux-remoteproc@vger.kernel.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
+        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>, <devicetree@vger.kernel.org>,
+        <krzysztof.kozlowski@linaro.org>, <mathieu.poirier@linaro.org>,
+        <corbet@lwn.net>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH v2 0/2] Update section header name check
+Date:   Tue, 13 Dec 2022 15:18:47 +0530
+Message-ID: <1670924929-26507-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <20221121123803.3786-1-zhuyinbo@loongson.cn> <20221121123803.3786-2-zhuyinbo@loongson.cn>
- <CACRpkda1adiNwbTZHdAyHKny3r5FFMP_XXVGbo1vnCdw9U1gNg@mail.gmail.com>
- <8a7abd77-9540-efa8-6f67-908530e85399@loongson.cn> <CACRpkdb=wdydOYCcrpjLSyvfVO--_ezXsFQ46qwfVCiiTd5fNw@mail.gmail.com>
- <b78f02f4-4329-602e-ca8d-adbe911c2a54@loongson.cn>
-In-Reply-To: <b78f02f4-4329-602e-ca8d-adbe911c2a54@loongson.cn>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 13 Dec 2022 10:45:43 +0100
-Message-ID: <CACRpkdbrY2hV=JM3NJVdFyJbpXARKEhGMVpwrN9U=cP6LzyPQA@mail.gmail.com>
-Subject: Re: [PATCH v5 2/3] gpio: loongson: add gpio driver support
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Juxin Gao <gaojuxin@loongson.cn>,
-        Bibo Mao <maobibo@loongson.cn>,
-        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
-        Arnaud Patard <apatard@mandriva.com>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Hongchen Zhang <zhanghongchen@loongson.cn>,
-        Liu Peibao <liupeibao@loongson.cn>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 4HxwTjFWrxsg_5gETpFqeDTi4YVE3OmS
+X-Proofpoint-ORIG-GUID: 4HxwTjFWrxsg_5gETpFqeDTi4YVE3OmS
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-12-13_03,2022-12-12_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 suspectscore=0
+ malwarescore=0 mlxlogscore=886 impostorscore=0 clxscore=1011 bulkscore=0
+ spamscore=0 adultscore=0 priorityscore=1501 mlxscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2210170000
+ definitions=main-2212130087
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 12, 2022 at 9:34 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
+Update section header name check and corresponding documentation.
 
-> > Don't do that because the GPIO maintainers love the
-> > dynamic base and hate hardcoded bases. Set the base to -1
-> > If you wonder why, read drivers/gpio/TODO.
->
-> Hi Linus,
->
-> I recenly verfied other peripheral on upstream, some peripheral driver
-> need use gpio number,
+Changes since v1:
+    -- Update the commit message.
+	-- Use strstarts instead of strstr.
+	-- Update documentation file.
+	
+Srinivasa Rao Mandadapu (2):
+  remoteproc: elf_loader: Update resource table name check
+  docs: remoteproc: Update section header name requirement
 
-What do you mean by upstream? If it is your own derivate kernel
-(what we call *downstream) then it should be fixed, not
-accommodated for.
+ Documentation/staging/remoteproc.rst       | 2 ++
+ drivers/remoteproc/remoteproc_elf_loader.c | 2 +-
+ 2 files changed, 3 insertions(+), 1 deletion(-)
 
-If it is the mainline (Torvalds) kernel you are looking at legacy code
-(such as boardfiles) which should be fixed or deleted. Beware that
-the kernel contains much old code and bad examples which should
-not be followed.
+-- 
+2.7.4
 
-> but if use dynamic base that gpio number will be
-> meaningless.  in additon I notice that many gpio driver don't use
-> dynamic base, although bgpio_int was called.
-
-Two wrongs does not make one right.
-It is always possible to find bad examples in the kernel, because we
-maintain lots of legacy code.
-When in doubt, do what the maintainers say.
-This maintainer says this: use a dynamic base.
-
-> so I think the gpio number should be keep consistent with datasheet for
-> some platform that need use gpio number.
-
-So someone wrote a datasheet for a derivative, home-cooked kernel
-that they had not bothered to synchronize with the community and
-now the community should accommodate this mistake?
-
-Sorry that is not how we work.
-
-That datasheet is probably recommending old and bad practices, such
-as using global GPIO numbers in drivers or using GPIO sysfs. The
-GPIO maintainers do not approve of such stuff.
-
-What about fixing the datasheet to say:
-- We use dynamic GPIO number allocation
-- Assign GPIOs to devices in the device tree with only HW GPIO number
-  references = <&gpio HW_NUM GPIO_ACTIVE_HIGH>; etc
-- For userspace access use libgpiod and /dev/gpiochipN, do not
-  enable the legacy GPIO sysfs.
-
-Yours,
-Linus Walleij
