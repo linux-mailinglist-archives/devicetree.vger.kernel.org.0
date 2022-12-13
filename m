@@ -2,156 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 629F764B79E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 15:43:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F3ED64B7A3
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 15:45:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236021AbiLMOnJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 09:43:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59336 "EHLO
+        id S235972AbiLMOpa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 09:45:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236020AbiLMOm4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 09:42:56 -0500
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B90BA10CF;
-        Tue, 13 Dec 2022 06:42:49 -0800 (PST)
-X-IronPort-AV: E=McAfee;i="6500,9779,10559"; a="305785596"
-X-IronPort-AV: E=Sophos;i="5.96,241,1665471600"; 
-   d="scan'208";a="305785596"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Dec 2022 06:42:48 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10559"; a="648578038"
-X-IronPort-AV: E=Sophos;i="5.96,241,1665471600"; 
-   d="scan'208";a="648578038"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga002.jf.intel.com with ESMTP; 13 Dec 2022 06:42:45 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andy@kernel.org>)
-        id 1p56UU-009KBd-2t;
-        Tue, 13 Dec 2022 16:42:42 +0200
-Date:   Tue, 13 Dec 2022 16:42:42 +0200
-From:   Andy Shevchenko <andy@kernel.org>
-To:     Binbin Zhou <zhoubinbin@loongson.cn>
-Cc:     Wolfram Sang <wsa@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
-        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>, Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>
-Subject: Re: [PATCH V6 1/4] i2c: gpio: Add support on ACPI-based system
-Message-ID: <Y5iPYiZJP4A26NMm@smile.fi.intel.com>
-References: <cover.1670897253.git.zhoubinbin@loongson.cn>
- <de51467e355b4bae2f8aa18f833f30f9fe50de12.1670897253.git.zhoubinbin@loongson.cn>
+        with ESMTP id S235837AbiLMOp3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 09:45:29 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FA5CE1C
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 06:45:27 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id b13so5275441lfo.3
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 06:45:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EGhJetEBOfZKpra2/QnxuodvHdwOEKqqdsQPMpGt5u8=;
+        b=xesQoVIj7OH5avrx3Fok5VTaZegZxo5wXs6+lteHbHsZ3bzKh1PLvnLXzMrTW74ZOj
+         4O+fomw5SwodnfnweGIT6u4az6wPqD2shpekuc9O/5KloXHrRODWNPEtlfzFvItzKF+h
+         hQBEFcaL6wO0wU+aH9u490yXsbMxXZwYu318s6kKmAeBiwMpRhjDOQhY7nHv005cckav
+         Kwf37E88amtqer4dVj+5foohtm+yQel4pePhNJ5fB6rB1E819UTU9nGb+RxKgJCFt1TS
+         0HjwaP+LR1pB6YFCxn1jNGe1K3zk9CWJBmdjMY5C2bxUEqAy68E1iTkxntKRY2o/E9yp
+         HFag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EGhJetEBOfZKpra2/QnxuodvHdwOEKqqdsQPMpGt5u8=;
+        b=PWabe6b64xTnWVIH297aHZrhSsmq5ZzH0RylGeLmCGfMTCmZKtiu7Uvjjn13dvbJNU
+         903zVZQskWjI9fuyWH5Q+O+p8kg6iNmd64Jjq3WuQS8M3I94XD+//Lus6G7XfWMOtV8E
+         Ot31hTtlO89b4dZb0Z0n/ykKJ8xwYYcn2jNKrPFexOC7xhckMdvtelnKTWMdRt8BVw7r
+         U9l07f7WhRHrlcSyjuL3/W+RfPT0SXAeRSl/3PKqBc7ZeVGXHV0nr6kQskzfhdxfv8Oa
+         INmMEK25O8dVzE12pxT0EIxyxPlS+SUvfqKwxQICLUC+bDpCLDUYpmP1isx1BGQmMS7o
+         ICyw==
+X-Gm-Message-State: ANoB5pmFjtsxJviY5SkkRx+sM2CzdN9HzF6qnX8cpCvt5KcLkdsTeCaD
+        z/QZpnrCcEr5Hseszy5rIH7YdQ==
+X-Google-Smtp-Source: AA0mqf56DYuy9RnXWvmnGyA0Wan3w2WqtRbUDzK4AH/8JW+5t4RYLbKko/2AGPq11UeCHNsxq3EXCg==
+X-Received: by 2002:a05:6512:2511:b0:4b6:ea42:de0d with SMTP id be17-20020a056512251100b004b6ea42de0dmr2868941lfb.39.1670942725456;
+        Tue, 13 Dec 2022 06:45:25 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id r18-20020ac25c12000000b004b4b69af17dsm390017lfp.214.2022.12.13.06.45.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Dec 2022 06:45:25 -0800 (PST)
+Message-ID: <87fba38f-6b31-72cf-b46d-9c0b2c5a5a49@linaro.org>
+Date:   Tue, 13 Dec 2022 15:45:24 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <de51467e355b4bae2f8aa18f833f30f9fe50de12.1670897253.git.zhoubinbin@loongson.cn>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_SOFTFAIL
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH] dt-bindings: gpio: Convert Fujitsu MB86S7x GPIO to DT
+ schema
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jassi Brar <jaswinder.singh@linaro.org>
+Cc:     Ard Biesheuvel <ardb@kernel.org>,
+        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221209171629.3351420-1-robh@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221209171629.3351420-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 13, 2022 at 04:26:55PM +0800, Binbin Zhou wrote:
-> Add support for the ACPI-based device registration, so that the driver
-> can be also enabled through ACPI table.
-
-LGTM now,
-Reviewed-by: Andy Shevchenko <andy@kernel.org>
-
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> ---
->  drivers/i2c/busses/i2c-gpio.c | 28 ++++++++++++++++++----------
->  1 file changed, 18 insertions(+), 10 deletions(-)
+On 09/12/2022 18:16, Rob Herring wrote:
+> Convert the Fujitsu MB86S7x GPIO binding to DT schema format.
 > 
-> diff --git a/drivers/i2c/busses/i2c-gpio.c b/drivers/i2c/busses/i2c-gpio.c
-> index 0e4385a9bcf7..680936234ef8 100644
-> --- a/drivers/i2c/busses/i2c-gpio.c
-> +++ b/drivers/i2c/busses/i2c-gpio.c
-> @@ -13,9 +13,9 @@
->  #include <linux/init.h>
->  #include <linux/interrupt.h>
->  #include <linux/module.h>
-> -#include <linux/of.h>
->  #include <linux/platform_data/i2c-gpio.h>
->  #include <linux/platform_device.h>
-> +#include <linux/property.h>
->  #include <linux/slab.h>
->  
->  struct i2c_gpio_private_data {
-> @@ -300,22 +300,23 @@ static inline void i2c_gpio_fault_injector_init(struct platform_device *pdev) {}
->  static inline void i2c_gpio_fault_injector_exit(struct platform_device *pdev) {}
->  #endif /* CONFIG_I2C_GPIO_FAULT_INJECTOR*/
->  
-> -static void of_i2c_gpio_get_props(struct device_node *np,
-> -				  struct i2c_gpio_platform_data *pdata)
-> +/* Get i2c-gpio properties from DT or ACPI table */
-> +static void i2c_gpio_get_properties(struct device *dev,
-> +				     struct i2c_gpio_platform_data *pdata)
->  {
->  	u32 reg;
->  
-> -	of_property_read_u32(np, "i2c-gpio,delay-us", &pdata->udelay);
-> +	device_property_read_u32(dev, "i2c-gpio,delay-us", &pdata->udelay);
->  
-> -	if (!of_property_read_u32(np, "i2c-gpio,timeout-ms", &reg))
-> +	if (!device_property_read_u32(dev, "i2c-gpio,timeout-ms", &reg))
->  		pdata->timeout = msecs_to_jiffies(reg);
->  
->  	pdata->sda_is_open_drain =
-> -		of_property_read_bool(np, "i2c-gpio,sda-open-drain");
-> +		device_property_read_bool(dev, "i2c-gpio,sda-open-drain");
->  	pdata->scl_is_open_drain =
-> -		of_property_read_bool(np, "i2c-gpio,scl-open-drain");
-> +		device_property_read_bool(dev, "i2c-gpio,scl-open-drain");
->  	pdata->scl_is_output_only =
-> -		of_property_read_bool(np, "i2c-gpio,scl-output-only");
-> +		device_property_read_bool(dev, "i2c-gpio,scl-output-only");
->  }
->  
->  static struct gpio_desc *i2c_gpio_get_desc(struct device *dev,
-> @@ -373,8 +374,8 @@ static int i2c_gpio_probe(struct platform_device *pdev)
->  	bit_data = &priv->bit_data;
->  	pdata = &priv->pdata;
->  
-> -	if (np) {
-> -		of_i2c_gpio_get_props(np, pdata);
-> +	if (dev_fwnode(dev)) {
-> +		i2c_gpio_get_properties(dev, pdata);
->  	} else {
->  		/*
->  		 * If all platform data settings are zero it is OK
-> @@ -489,10 +490,17 @@ static const struct of_device_id i2c_gpio_dt_ids[] = {
->  
->  MODULE_DEVICE_TABLE(of, i2c_gpio_dt_ids);
->  
-> +static const struct acpi_device_id i2c_gpio_acpi_match[] = {
-> +	{ "LOON0005" }, /* LoongArch */
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(acpi, i2c_gpio_acpi_match);
-> +
->  static struct platform_driver i2c_gpio_driver = {
->  	.driver		= {
->  		.name	= "i2c-gpio",
->  		.of_match_table	= i2c_gpio_dt_ids,
-> +		.acpi_match_table = i2c_gpio_acpi_match,
->  	},
->  	.probe		= i2c_gpio_probe,
->  	.remove		= i2c_gpio_remove,
-> -- 
-> 2.31.1
+> The "socionext,synquacer-gpio" compatible was not documented, but is
+> compatible with "fujitsu,mb86s70-gpio" and is in use (in u-boot
+> Synquacer dts).
 > 
 
--- 
-With Best Regards,
-Andy Shevchenko
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
