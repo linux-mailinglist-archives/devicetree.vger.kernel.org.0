@@ -2,73 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61EB464B5C6
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 14:10:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B599064B5D1
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 14:13:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235065AbiLMNKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 08:10:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34376 "EHLO
+        id S235513AbiLMNNn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 08:13:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233881AbiLMNKy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 08:10:54 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A749B39
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 05:10:53 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id f16so3218928ljc.8
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 05:10:53 -0800 (PST)
+        with ESMTP id S235490AbiLMNNm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 08:13:42 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7B4AB1C9
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 05:13:40 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id bp15so4778309lfb.13
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 05:13:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=4UheDoG63XFDbi1U/N3zeS19wuphEP9wt6FyJdcAfiM=;
-        b=RBCErALnlz8liZ/5YG9LXCfueH7GaywI1N7UaKUzk7ZQL3NLrjrAOO2YpVUW81ONqL
-         +Upj8b8PZQdzw2odgcvOMkzB+41j0T9m04IZqlz0yoytTvnVgqdPGGfosrh78VMx+y5n
-         69qyRIavpdbc2Wq00wKL3+e85ZiGya14V5OUigobDI43ZBFtqUah2F0fzYVaayd1JZ83
-         u8Fc9YD9qaB4aPs1h2ycTUZn8GdXvuaPrGGMkCRj+A8Xf53K6HfvbQiGHC0+IbxdOFsp
-         buDZ1a3amPUHLksB3JGi3gkhNjhcfv5NhSOuG4jXw1FisV0ve2wo+zKtxeNlKz/fYcnx
-         O/Hw==
+        bh=vd3T8ah0dWWDH2U5v0IMPHsJRf7PThuVXGlxa+Fk7UM=;
+        b=V1fR4x97oaWfy1VMojxg6M8O2dPqeQVawUxtzpzfwbxeCJOzWCJmgQcNe8l22OI1k9
+         UaJ06VWqGFv8hCDEuZth1+8OH+LI5MeQ1oK+ZdqHZ2dDwj3DZoumzNSLSu/m/7O6u5Z0
+         tRDwRsta6XHOMSBHDue+xmitUdWdjlUYvLKE3aBX+gFymGdKjiJ+5xLke/pqW0Ayn/Lo
+         SZ6vDRn4XE5bL1WcmnFRlMyuiAIIv2UHBig4XRzBv4vdDd2JGwA2cZik9/iHF91X/XWy
+         q2OepdSYTD629UA1O7uWAQ0KOa+xHKscbiiTm6fegvMtXfJm/yn06Qs6oFQZ/oPMIWNq
+         6yiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4UheDoG63XFDbi1U/N3zeS19wuphEP9wt6FyJdcAfiM=;
-        b=gvOpAZLyPgv3TE5AzI6UjMnhkBJIBE1jB+FJ/gt5H7OwzbhkMZwIKOrszuBEtRSZfm
-         RqLuhoxziuk0XSvbu7fuEerCUFQ6YtH35VzqotF6dSWNSxa0f8qJFl2hy2Xp8dBciubm
-         S55/wHGhzBn5aNclO4TXUnd4tgMAXhL/zzNLztC2L4e8/aBtw0LhKPXoVx9XPwBPMdbi
-         03KyxtHI7rwen4YgwouDJ6anueMaDqGwNwu1Qm2sHrCWK7/3d7rT6AzwEvD9/NGHKpwu
-         fqfTeDFRI57YBnggR5AK0QDUV7sJNE6BabtbxCEL/6LHARt5boKYUU1hsoS/aetyVvg0
-         8AMw==
-X-Gm-Message-State: ANoB5pnK6+7tUJavUHtzIsPgO2ZWSnzSvYzu7CAnaJXQ9RvWjUESXXw+
-        PzZ41AAKH2EZX84UixRZ/jz1GOyjpAxSI2i/
-X-Google-Smtp-Source: AA0mqf4pu4/eB3GYEUrZb9uMUIrUTGRdifufNOp2EhHnxPiYmd4us/Ij6IZpvDPfP9iT0WjpInSlgA==
-X-Received: by 2002:a05:651c:2105:b0:277:b7b:d415 with SMTP id a5-20020a05651c210500b002770b7bd415mr7235357ljq.39.1670937051467;
-        Tue, 13 Dec 2022 05:10:51 -0800 (PST)
+        bh=vd3T8ah0dWWDH2U5v0IMPHsJRf7PThuVXGlxa+Fk7UM=;
+        b=p1cSvbbX+wV6f487vdJ2Dqp/0CcBpvUgGf3a0gExmHSyDPKlxkOEffDcXk/4oMuzYM
+         66amKmjsQ9ZJ9pVEN9fC5o+XLdOTir0kBRzjuHoe5vFAe37443M7XVWPMRm95PXjb056
+         b4aGgjkCjr22l9NVU4myv1kHCxCR0Rkqzi8yaGXhK7Bt0MaCr8yMe4nfFn9VSXc7rRsI
+         tyTL0U8i9flEgScjtSWlPvTB/GrdhnuOxNnCp7ZQMmP8XbgOy+xD80nP/NDkOrMBhNpB
+         Tg6QkCBXGWzgFQzIyYiQ7CzL50NGfIoPuE8qc/FRPUmz7DadwMlwv2LBHh0jfmyjYn7k
+         ceKA==
+X-Gm-Message-State: ANoB5pmmcE2/JO2OTqRVpzrEOBndC6ezNvGSlAnJbgEzs2oCWYF5pEJm
+        A/FDQ/3s3y5kjQDjmbD8sEFKZQ==
+X-Google-Smtp-Source: AA0mqf5wXBdUAnvmZIvysTHRCIWUkZNsPqVOmaLbYbtInVwUKBFj2syz/R6zVfkeLETTtp1+isewQQ==
+X-Received: by 2002:a05:6512:6d1:b0:4b4:91e2:7864 with SMTP id u17-20020a05651206d100b004b491e27864mr6016763lff.26.1670937219058;
+        Tue, 13 Dec 2022 05:13:39 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id g13-20020a2ea4ad000000b002790e941539sm256334ljm.119.2022.12.13.05.10.50
+        by smtp.gmail.com with ESMTPSA id 25-20020ac24839000000b004b5979f9ba8sm360705lft.210.2022.12.13.05.13.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Dec 2022 05:10:51 -0800 (PST)
-Message-ID: <92b97beb-966a-f9f7-eee1-f46e6a773d06@linaro.org>
-Date:   Tue, 13 Dec 2022 14:10:50 +0100
+        Tue, 13 Dec 2022 05:13:38 -0800 (PST)
+Message-ID: <bca77270-f3ac-f23f-ef96-43f9f7d574c4@linaro.org>
+Date:   Tue, 13 Dec 2022 14:13:37 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH v4] dt-bindings: mxsfb: Document i.MX8M/i.MX6SX/i.MX6SL
- power-domains property
+Subject: Re: [PATCH v11 2/5] dt-bindings: msm/dp: add data-lanes and
+ link-frequencies property
 Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liu Ying <victor.liu@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-References: <20221213130718.5899-1-marex@denx.de>
+To:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>
+Cc:     dri-devel@lists.freedesktop.org, robdclark@gmail.com,
+        sean@poorly.run, swboyd@chromium.org, dianders@chromium.org,
+        vkoul@kernel.org, daniel@ffwll.ch, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@somainline.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, airlied@gmail.com,
+        quic_sbillaka@quicinc.com, freedreno@lists.freedesktop.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <1670539015-11808-1-git-send-email-quic_khsieh@quicinc.com>
+ <1670539015-11808-3-git-send-email-quic_khsieh@quicinc.com>
+ <5a3865ed-8847-db04-3d60-f35438250bef@linaro.org>
+ <5aa16223-dbf6-996c-1985-794302dcce91@quicinc.com>
+ <be1411e8-1d07-7643-977c-a306016fd660@linaro.org>
+ <b6d90c1f-5365-7197-be63-96c3d8cf0746@quicinc.com>
+ <e53844b7-601b-f355-302b-cc871962a446@linaro.org>
+ <8b306c8f-3089-4aaf-7fc1-038a8330c89a@quicinc.com>
+ <CAA8EJpr5RYyQa7xu1_xJ0F-dn-H9aOf0KE-CDgDCwnZu3HPgXg@mail.gmail.com>
+ <a9e2f269-b9df-814f-adcd-f5577f590fa7@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221213130718.5899-1-marex@denx.de>
+In-Reply-To: <a9e2f269-b9df-814f-adcd-f5577f590fa7@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,59 +91,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/12/2022 14:07, Marek Vasut wrote:
-> The power-domains property is mandatory on i.MX8M Mini, Nano, Plus
-> and i.MX6SX, i.MX6SL. Document the property and mark it as required
-> on the aforementioned variants of the IP, present in those SoCs.
+On 13/12/2022 00:41, Abhinav Kumar wrote:
+>>>
+>>> besides, i think i have to sent the whole series patches include this
+>>> one to address your new comments on other patch.
+>>>
+>>> is this correct?
+>>
+>> No. Please fix your system first, validate your patches and send them
+>> afterwards. You can not expect others to do your job.
+>>
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Liu Ying <victor.liu@nxp.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: linux-arm-kernel@lists.infradead.org
-> To: devicetree@vger.kernel.org
-> ---
-> V2: - Add AB from Krzysztof
->     - Add mx6sx power domain into the list
-> V3: - Update commit message
->     - Add i.MX6SL
->     - Update example
-> V4: - Drop ack from Krzysztof
->     - Rebase on next 20221213 instead of previous 20221208, which now
->       contains power-domains: part of this patch
-> ---
->  .../devicetree/bindings/display/fsl,lcdif.yaml     | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-> index f449cfc767899..fd5aab93dd103 100644
-> --- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-> +++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-> @@ -114,6 +114,19 @@ allOf:
->            maxItems: 1
->          clock-names:
->            maxItems: 1
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - fsl,imx6sl-lcdif
-> +              - fsl,imx6sx-lcdif
-> +              - fsl,imx8mm-lcdif
-> +              - fsl,imx8mn-lcdif
-> +              - fsl,imx8mp-lcdif
-> +    then:
-> +      required:
-> +        - power-domains
+> Just finished working with kuogee on this. This issue had been reported 
+> by few others earlier (example 
+> https://lore.kernel.org/lkml/bc9be279-a130-d5e7-4397-bbb389d14403@intel.com/T/).
 
-Looks ok, but in such case please drop reguired:power-domains from the
-existing entry for fsl,imx8mp-lcdif.
+This report says:
+"Sorry for the inconvenience, please ignore this false positive."
 
 Best regards,
 Krzysztof
