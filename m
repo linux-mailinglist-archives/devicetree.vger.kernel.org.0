@@ -2,109 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02B1164BA36
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 17:51:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C183D64BA7C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 18:02:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235403AbiLMQvc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 11:51:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53396 "EHLO
+        id S235584AbiLMRCY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 12:02:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235940AbiLMQvb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 11:51:31 -0500
-Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3EDD1580B;
-        Tue, 13 Dec 2022 08:51:29 -0800 (PST)
-Received: by mail-oo1-f50.google.com with SMTP id v62-20020a4a7c41000000b004a0a214dfbaso2459884ooc.9;
-        Tue, 13 Dec 2022 08:51:29 -0800 (PST)
+        with ESMTP id S236150AbiLMRBv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 12:01:51 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0356222B3E
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 08:58:04 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id x28so5921253lfn.6
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 08:58:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=M4dDB5dN6DMrQu6Vy/E+I6J3WENZ7E9cD8ZDZ3GLB3g=;
+        b=i7pcOplKPKGMmwMVp+ENu2AXaZnU2/VqiaNfXMMxKZlOktC7NtEqwjYZGvGchVxA+H
+         1qGINNTXjhHauma7BnGzNfVTIlh8MHU15PzGCJFsg71HHBh0SvZ8sPCchhL9PUgS9/Sh
+         NCYq0CIXfMe0KDIi065of/FG66bZQPXuVgUO5TpdLMhd7gEjMMak0QmQcpVpLeqOHSIH
+         R/DZtraUq+l7ooLKXIjMO74R8q9oKzDiM5DgAdETN5lE/mG9Dfiz3U8FWE0Gn4RhTCo9
+         /xfIQ4MPUzTqOXmvMg6SrZT/vK9mKUXYIuv4oBplcmi/yjzXDnT7DhPsR0hWl7JEo0yr
+         DOsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=l3ZUJv9Y+27Bs9i0rYBQ2dQ+xTle+B/Uw+LnnqewtAI=;
-        b=ttrtRAfsjfnxcNpjVSvMFGfmf+TmB908iqlSNhomGlkSeIehvXrIeLjM5tPvSN30zx
-         S9zI9+bfSWxCQ7tdc+apeLNdAFZMT83bV9sxgAPRcJvtho3nlqIkXehziffgJQbjInZ2
-         dGrYkKINORpCTzwvSG3LNzCX6euw1eQEML1uB1f79fMfloUkBIfGDf6ICA2GZ1y0tVp8
-         C5u4T+JnG06qWWCYgzbPuDLMCsIBA+SvdVe4tdXy2Whj2S8irkSYJEPOGizYNVSj+BgD
-         IIzIn1pKlqlEEcuESteVxQJgITY0pSQ4rB43K4kx5vO5MLw+ZmRsR6jS9x91zgudRf2x
-         SEJw==
-X-Gm-Message-State: ANoB5plnxPclqT8303SODIQhnKn/3CR5MTcVXDGGjl2Qxt85RMN4vgYs
-        dYkX2lC8/HI/Yqh1sS9K23IqSqDIaQ==
-X-Google-Smtp-Source: AA0mqf4uxiz8zVTcATxrPc5TgQzwdrBo/FmFnmMQ4bp0twsxdG8ie2Zm4wjNl+XN7ym6jo+a7thPDg==
-X-Received: by 2002:a4a:e051:0:b0:4a0:ad7a:b260 with SMTP id v17-20020a4ae051000000b004a0ad7ab260mr10406051oos.3.1670950289042;
-        Tue, 13 Dec 2022 08:51:29 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id h4-20020a4aa284000000b004a3cc18e86asm1288376ool.40.2022.12.13.08.51.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Dec 2022 08:51:28 -0800 (PST)
-Received: (nullmailer pid 2037521 invoked by uid 1000);
-        Tue, 13 Dec 2022 16:51:27 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=M4dDB5dN6DMrQu6Vy/E+I6J3WENZ7E9cD8ZDZ3GLB3g=;
+        b=AvTnspCEZNvMX82rvB4SSJphVGlhRSU5jNEruDVe1Jsby6vX62QJAI4ztydw4xBt55
+         wP7UfByabM8D8qKigbXBugJ9Ir95JdOF83faHyWxYXnEManU2mkHGmVfqtznQDADCCjA
+         erWkLQO9TXj3Mvk59KP8R+hVXydyNmyW5ICiKFne/+aSKkBU7WLGohgNWWXwGtKOMCNO
+         C/tI+WzStujNFIaRMj2o+cfXROwV8MUsipb0gtdQHL83jZwXwumIzpahcmb12XYvhB2X
+         ZrOQORYY1ILJdieKD0J9zV6Yw38SUwIG40hzXwyBgmW+mV8gtDZWfzjHO7HRTQBftBwP
+         fcQQ==
+X-Gm-Message-State: ANoB5pmg0vIdPpL/Z9OUtOpdoKbv5fIS94gq7C6lbRc/YCCEyP5HV+sw
+        MA9YMrsXKPImxi9JBBClMGBbcw==
+X-Google-Smtp-Source: AA0mqf5HpQWulj2W92M8QdF11R5Gok573QQhYv6qEWnSPyebG2p0J2+cMYKEUPW8Nwx/8vJcN65ylg==
+X-Received: by 2002:ac2:4c4a:0:b0:4b6:eb36:e73e with SMTP id o10-20020ac24c4a000000b004b6eb36e73emr2860949lfk.17.1670950682407;
+        Tue, 13 Dec 2022 08:58:02 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id x6-20020a056512046600b00494a603953dsm441669lfd.89.2022.12.13.08.58.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Dec 2022 08:58:02 -0800 (PST)
+Message-ID: <b8be66e0-f987-b3ec-b78e-5be8bf54b05e@linaro.org>
+Date:   Tue, 13 Dec 2022 17:58:00 +0100
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Sibi Sankar <quic_sibis@quicinc.com>
-Cc:     andersson@kernel.org, robin.murphy@arm.com,
-        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, sumit.semwal@linaro.org,
-        konrad.dybcio@somainline.org, amit.pundir@linaro.org,
-        catalin.marinas@arm.com, manivannan.sadhasivam@linaro.org,
-        linux-arm-msm@vger.kernel.org, regressions@leemhuis.info,
-        will@kernel.org
-In-Reply-To: <20221213140409.772-2-quic_sibis@quicinc.com>
-References: <20221213140409.772-1-quic_sibis@quicinc.com>
- <20221213140409.772-2-quic_sibis@quicinc.com>
-Message-Id: <167095022641.2035001.13548295585567513866.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: mailbox: Add dt binding for QTI CPUCP
- mailbox controller
-Date:   Tue, 13 Dec 2022 10:51:27 -0600
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH 1/4] dt-bindings: i2c: qcom,i2c-cci: Fall back to common
+ compatibles
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     marijn.suijten@somainline.org,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221213115628.105149-1-konrad.dybcio@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221213115628.105149-1-konrad.dybcio@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Tue, 13 Dec 2022 19:34:08 +0530, Sibi Sankar wrote:
-> Add devicetree binding for CPUSS Control Processor (CPUCP) mailbox
-> controller.
+On 13/12/2022 12:56, Konrad Dybcio wrote:
+> Almost every compatible string in the CCI driver is a duplicate. Adjust
+> the bindings to include a common (first-soc-implementing-vX) compatible
+> to remove the need to keep adding superfluous compatible strings.
 > 
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->  .../bindings/mailbox/qcom,cpucp-mbox.yaml          | 51 ++++++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
+>  .../devicetree/bindings/i2c/qcom,i2c-cci.yaml | 25 +++++++++++++------
+>  1 file changed, 17 insertions(+), 8 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+> index cf9f8fda595f..65cf7860a9a0 100644
+> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+> @@ -12,14 +12,23 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - qcom,msm8226-cci
+> -      - qcom,msm8916-cci
+> -      - qcom,msm8974-cci
+> -      - qcom,msm8996-cci
+> -      - qcom,sdm845-cci
+> -      - qcom,sm8250-cci
+> -      - qcom,sm8450-cci
+> +    oneOf:
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Except missing test, how about also adding a comment to the driver, that
+list of compatibles should not grow when not needed?
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.example.dtb: mailbox@17400000: reg: [[0, 398458880], [0, 16], [0, 408486656], [0, 1792]] is too long
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221213140409.772-2-quic_sibis@quicinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+Krzysztof
 
