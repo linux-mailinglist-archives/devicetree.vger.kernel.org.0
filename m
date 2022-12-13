@@ -2,73 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A1F164BD85
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 20:47:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 330DF64BD89
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 20:49:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236116AbiLMTro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 14:47:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49234 "EHLO
+        id S234910AbiLMTtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 14:49:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235961AbiLMTrn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 14:47:43 -0500
+        with ESMTP id S236426AbiLMTtD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 14:49:03 -0500
 Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2E03116E
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 11:47:38 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id a19so4531152ljk.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 11:47:38 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37BC1193D2
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 11:49:02 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id f20so4488273lja.4
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 11:49:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Tu4T3K2HKwcynTbjPctmZ3m/QXC5IAhHVs8lwvc0TII=;
-        b=l214eoYPQklA4l1bmpE99Koa3Jap4GclEp6H+yAE971kiSyp9NEUEdmcPCRQIvG2vp
-         /3kzZXt66f0DGnSQZsiUSqq+gwkaaKQrRZY4y8VhGN/QErXa0996y6eUHiFk4SnEb1Cw
-         6go0nqWEVHMwCf7gGzaqurSBvPrZFkxKLV/r1HyqvgN96ZakbRCNxw6BmIR+u1FraqNp
-         x1O+oMfa2nmAb7bLx1Cni2QBtvBhpQHvTxXUP91uXGxnn3HYO0FH4u0kWR4LZ3FKCEcK
-         Pz3hjyYJmCEOiURvu3+kuxlEPVb8b0Jghq28I8wdCJ6DsS71HNir5ZcvqY+r4NgqA/0C
-         TQIw==
+        bh=6VB334Z5ylGFHFbDqZH/w67NqwCvKwIWzx6/5zIn1zg=;
+        b=xWHLQgnQ5QyduBhTr0fPPDJE9kbNggvfgqxrOFX8eBeyTafL8hG+GNfv5g9Z5BB/m/
+         gzyZzL70TSZ6bAe90RrBODWKg0Vj5dJhtBXE4G3x/7I5QvBlJBS48yvomo5oz+kJyzSj
+         R5OEuq7HQFi6pYTFlPhvbUvvaCTdpF8tgX5nqvIouaShqS/zC4DwIC27AcrrG0nZx7XN
+         CBXs/9XZQdnVyFcPjJpH91C4nSKgZBGjMKqpDl9nA36oNh2s1G83/SAjG9h9ih1N6RHX
+         Uv43ReWCaQFfXS6wBe1/1jbxqtBSlLQvFZuH2K2XkcOwiZ5QZif+k9iWtwuz8tNc/5KV
+         rNow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Tu4T3K2HKwcynTbjPctmZ3m/QXC5IAhHVs8lwvc0TII=;
-        b=1bVdC5ToRS6bt1v+bM7dNqjnAlzoah+DqXlrhQE/q7YWK+y+YI9zm0XN4pB1if9SJ2
-         M3uhhf/lG2/O83WHB+3clFBLg+LXL2s+AR4dKznlmXTFHG260DLwg78MoZaVuMRHvZVg
-         Fx1P3UKq4psYwGo4mU9z0zmtdLKRULpzZ6Ob2YkZqKmZ0CbVnnt7nK65c2niWWbxC/ZI
-         ICRRzev40fcQxD5mD/RHZT7MPtjhO5eAJZLYZwJgqZPn1E0zt9RjrhtprhDtqneQXDla
-         p/nNMfyyX+mXIFq6SozacmkPSkAcudJkzB15gFKcIvW/3YHMYjCBss8i5yoV/WODDe2Q
-         dzJw==
-X-Gm-Message-State: ANoB5pnXm7igi1mQQXx9Bvawgmuu7h2ioDHd8+kMEnC8FupZAQ3LXom5
-        uxEn6J9yKKl0EOtfT7xyYa8rqw==
-X-Google-Smtp-Source: AA0mqf4myCPdPeXg3zY++eDaQGhgfFYnJRdwyrjv4AIUvHr6bFcRkg3e3wOeKJrkZrwh/FqtM5jx5A==
-X-Received: by 2002:a2e:a371:0:b0:279:e2cd:9ad7 with SMTP id i17-20020a2ea371000000b00279e2cd9ad7mr5254670ljn.0.1670960857052;
-        Tue, 13 Dec 2022 11:47:37 -0800 (PST)
+        bh=6VB334Z5ylGFHFbDqZH/w67NqwCvKwIWzx6/5zIn1zg=;
+        b=MlBfXQrLW2AJ6Nm49z/IHb6aVMJ0Vo23xEydIR/hBKzeF5G61bxWtvf0G1kf3zY0aN
+         ViFpwFijdkzdTaahRiXCPSYpor4ZPTSlfX86D02ybqecYVHBUngVkMqVaUbn7lm9bBqN
+         UTBuqxVtPKoBGHhMCgL1SVQIn+ozdPxNQf2DJIvyNUI5TqNuSlzPd8mVDnBHwwg9nH3k
+         obqj1b1z4kxJNulWERpIYaUBz0KvwwZGk/HJXUd9PTgxqjaPHQnolp8K6DHcHF9k+gMv
+         GeKp6ZmlHwng6odDLYFoobk4SM6z9t5rN7U24g2PYnT7k73jNuYVEqowE88jdpgjKOLD
+         ByhA==
+X-Gm-Message-State: ANoB5pkSdzsccTF6b54SAj6hIVa1HYlDaihfzf0YmymlFEH7I52c01BO
+        LuVQJGeVIQn607z1R2ARNjHJcw==
+X-Google-Smtp-Source: AA0mqf40atQtjOzvx8pqPudCBx580m5yGd+KEZWkxc8Bvz3e+6GUxtm3Be/2ORduxhVplxgyDF+zvQ==
+X-Received: by 2002:a05:651c:1592:b0:26f:db35:d203 with SMTP id h18-20020a05651c159200b0026fdb35d203mr5159745ljq.15.1670960940642;
+        Tue, 13 Dec 2022 11:49:00 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id u16-20020a2eb810000000b00277041268absm377613ljo.78.2022.12.13.11.47.35
+        by smtp.gmail.com with ESMTPSA id z20-20020a2eb534000000b0027b50ed9df2sm383263ljm.17.2022.12.13.11.48.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Dec 2022 11:47:36 -0800 (PST)
-Message-ID: <8739f59b-c551-2da4-5523-a89f960bd402@linaro.org>
-Date:   Tue, 13 Dec 2022 20:47:35 +0100
+        Tue, 13 Dec 2022 11:49:00 -0800 (PST)
+Message-ID: <e8c5821c-2da5-d1ee-0d74-84e76af76696@linaro.org>
+Date:   Tue, 13 Dec 2022 20:48:59 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH 4/4] remoteproc: qcom_q6v5_mss: Use a carveout to
- authenticate modem headers
+Subject: Re: [PATCH v4 1/1] dt-bindings: mfd: x-powers,axp152: Document the
+ AXP1530 variant
 Content-Language: en-US
-To:     Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        manivannan.sadhasivam@linaro.org
-Cc:     agross@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        konrad.dybcio@somainline.org, amit.pundir@linaro.org,
-        regressions@leemhuis.info, sumit.semwal@linaro.org,
-        will@kernel.org, catalin.marinas@arm.com, robin.murphy@arm.com
-References: <20221213140724.8612-1-quic_sibis@quicinc.com>
- <20221213140724.8612-5-quic_sibis@quicinc.com>
+To:     Martin Botka <martin.botka@somainline.org>, martin.botka1@gmail.com
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Jami Kettunen <jamipkettunen@somainline.org>,
+        Paul Bouchara <paul.bouchara@somainline.org>,
+        Jan Trmal <jtrmal@gmail.com>, Tom <takuya@takuya.tech>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221213182743.3087889-1-martin.botka@somainline.org>
+ <20221213182743.3087889-2-martin.botka@somainline.org>
+ <1e0d86ee-a832-642d-c835-df1f6505940e@linaro.org>
+ <C2E9D93B-96DF-49BB-B75F-27D621BF2501@somainline.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221213140724.8612-5-quic_sibis@quicinc.com>
+In-Reply-To: <C2E9D93B-96DF-49BB-B75F-27D621BF2501@somainline.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,52 +88,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/12/2022 15:07, Sibi Sankar wrote:
-> The memory region allocated using dma_alloc_attr with no kernel mapping
-> attribute set would still be a part of the linear kernel map. Any access
-> to this region by the application processor after assigning it to the
-> remote Q6 will result in a XPU violation. Fix this by replacing the
-> dynamically allocated memory region with a no-map carveout and unmap the
-> modem metadata memory region before passing control to the remote Q6.
+On 13/12/2022 20:43, Martin Botka wrote:
+> That is very much my bad.
 > 
-> Reported-by: Amit Pundir <amit.pundir@linaro.org>
-> Fixes: 6c5a9dc2481b ("remoteproc: qcom: Make secure world call for mem ownership switch")
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> ---
+> I understand the purpose of them :)
+> 
+> I just straight up forgot to add them.
 
-Thank you for your patch. There is something to discuss/improve.
->  
->  	return ret < 0 ? ret : 0;
-> @@ -1882,6 +1899,26 @@ static int q6v5_alloc_memory_region(struct q6v5 *qproc)
->  	qproc->mpss_phys = qproc->mpss_reloc = r.start;
->  	qproc->mpss_size = resource_size(&r);
->  
-> +	if (!child) {
-> +		node = of_parse_phandle(qproc->dev->of_node, "memory-region", 2);
-> +	} else {
-> +		child = of_get_child_by_name(qproc->dev->of_node, "metadata");
+Sure, happens, no worries.
 
-Bindings do not allow to have child "metadata", do they?
-
-> +		node = of_parse_phandle(child, "memory-region", 0);
-> +		of_node_put(child);
-> +	}
-> +
-> +	if (!node)
-> +		return 0;
-> +
-> +	ret = of_address_to_resource(node, 0, &r);
-> +	of_node_put(node);
-> +	if (ret) {
-> +		dev_err(qproc->dev, "unable to resolve metadata region\n");
-> +		return ret;
-> +	}
-> +
-> +	qproc->mdata_phys = r.start;
-> +
->  	return 0;
->  }
->  
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
