@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F55164B5BB
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 14:06:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B80A964B59C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 14:04:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234864AbiLMNFs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 08:05:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59080 "EHLO
+        id S235285AbiLMNEv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 08:04:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235524AbiLMNFZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 08:05:25 -0500
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62EDE1F635;
-        Tue, 13 Dec 2022 05:05:19 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1670936711; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=lDfKs5bqZhUBmIyQhmWyuIepKaXBbQAe1M/Tjo4qm1i69nwcgvvXdfLOPhDX1sMCEOgC7wATMzCvZxJM6wOSRkuKzij8jWrpH2ei3T/MNW7PyDP5KFD5wjR2HlqCSiSc/FjYbMW9r7hrNRhKL2Qbfs2HVKhUpNlw1Woy4Ykqqkk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1670936711; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=v0s/3V39m6q+UFQsK9fKPxehRNP7xs6yKszeFIHOlpQ=; 
-        b=e9s093AM9NzCOEoMkV7OOj7RbiljyMISQXEeXLwbB/YPhAo6V9ljj6FV6VR6TlVVd3HUgxR+/WmcJpJeQICZQo3K+fbuKZg3mG6PrWMIyvtnGiL6k67eT9xR85JYCe3uQ7pi9SDX7LNSxnLGjZzdoX5jATGB+tWmgN9XjXe37wg=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1670936711;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-Id:Message-Id:In-Reply-To:References:MIME-Version:Content-Type:Content-Transfer-Encoding:Reply-To;
-        bh=v0s/3V39m6q+UFQsK9fKPxehRNP7xs6yKszeFIHOlpQ=;
-        b=dHJPhXLKJYuy+5Iv5ytQsT3REJ7q2bHwPyIwB3uCDmQaVgF+6Ymk2Ml0Cej+Jz/4
-        ZRqFXzBFfN4mmBQOnyxqyf9pckhmXlP1Avd2afjoWbeb+QuHrRT8N1D2MGAHoULACLa
-        qLoIcZ9zJvtuP1NqJBo2J43Lg0CuHYbDauxZ/yrk=
-Received: from arinc9-PC.lan (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
-        with SMTPS id 1670936710543434.395317053791; Tue, 13 Dec 2022 05:05:10 -0800 (PST)
-From:   =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>
-Cc:     =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org
-Subject: [PATCH 6/6] dt-bindings: pinctrl: rt3883: add proper function muxing binding
-Date:   Tue, 13 Dec 2022 16:04:30 +0300
-Message-Id: <20221213130430.172876-7-arinc.unal@arinc9.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20221213130430.172876-1-arinc.unal@arinc9.com>
-References: <20221213130430.172876-1-arinc.unal@arinc9.com>
+        with ESMTP id S235436AbiLMNEl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 08:04:41 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2ED1A1DDFE
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 05:04:39 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 04D9A85479;
+        Tue, 13 Dec 2022 14:04:35 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1670936676;
+        bh=C73mKI1zIFjtYnVGABJ6/knKNd7eFoagdFrnS7uMI9c=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=0Al6+7Lt/NaE3SThv8SKUteCaSCBTWB88yMCpLXzVLTy2BZe1Vp09RuO5MKDkKu8+
+         9LYzwmFTL/7TFMALz1+zOGrjT0cr6CJ1x2jgmq1EU4q5QuNcDOMnw5NdEozRDyrVeD
+         fCiqqS0evUfvz+4BMl4YgyE5FBGotjkN8MxxD7gJeMIxJF9PRlFBByjCAaf3cdZ7A6
+         3OuXqTUDdy7iLIlmDjNCX1j6ozRV+Spu1ywhO9XQajN3f0NjsdJUxBfntZ2xiiT71K
+         fiFnWzQqZ4GWpOwXVbEYnaRikyLoh3eWCp3zYJRArqvdomm4iZthVMfqxeZs0TnsAW
+         R0FOhJ1BOvwDQ==
+Message-ID: <4ea1a5c1-bedf-6c6d-3d0e-fad75fcfeff7@denx.de>
+Date:   Tue, 13 Dec 2022 14:04:35 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v3] dt-bindings: mxsfb: Document i.MX8M/i.MX6SX/i.MX6SL
+ power-domains property
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liu Ying <victor.liu@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+References: <20221212055137.270638-1-marex@denx.de>
+ <CAL_Jsq+Cz7Ea7k1cTYEoXcEyg+1JQCyQnZqhJG5kL-BE4Wj-rQ@mail.gmail.com>
+ <94cc48cf-c6eb-b626-88ab-18e9dfcb5fb1@linaro.org>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <94cc48cf-c6eb-b626-88ab-18e9dfcb5fb1@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,245 +65,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Not every function can be muxed to a group. Add proper binding which
-documents which function can be muxed to a group or set of groups.
+On 12/13/22 08:57, Krzysztof Kozlowski wrote:
+> On 12/12/2022 13:54, Rob Herring wrote:
+>> On Sun, Dec 11, 2022 at 11:51 PM Marek Vasut <marex@denx.de> wrote:
+>>>
+>>> The power-domains property is mandatory on i.MX8M Mini, Nano, Plus
+>>> and i.MX6SX, i.MX6SL. Document the property and mark it as required
+>>> on the aforementioned variants of the IP, present in those SoCs.
+>>>
+>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Signed-off-by: Marek Vasut <marex@denx.de>
+>>> ---
+>>> Cc: Fabio Estevam <festevam@gmail.com>
+>>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+>>> Cc: Liu Ying <victor.liu@nxp.com>
+>>> Cc: Lucas Stach <l.stach@pengutronix.de>
+>>> Cc: NXP Linux Team <linux-imx@nxp.com>
+>>> Cc: Rob Herring <robh+dt@kernel.org>
+>>> Cc: Shawn Guo <shawnguo@kernel.org>
+>>> Cc: linux-arm-kernel@lists.infradead.org
+>>> To: devicetree@vger.kernel.org
+>>> ---
+>>> V2: - Add AB from Krzysztof
+>>>      - Add mx6sx power domain into the list
+>>> V3: - Update commit message
+>>>      - Add i.MX6SL
+>>>      - Update example
+>>> ---
+>>>   .../devicetree/bindings/display/fsl,lcdif.yaml  | 17 +++++++++++++++++
+>>>   1 file changed, 17 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+>>> index 876015a44a1e6..1f17be501749b 100644
+>>> --- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+>>> +++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+>>> @@ -52,6 +52,9 @@ properties:
+>>>     interrupts:
+>>>       maxItems: 1
+>>>
+>>> +  power-domains:
+>>> +    maxItems: 1
+>>> +
+>>
+>> This conflicts with adding 'power-domains' for i.MX8MP in my tree.
+> 
+> Yes, this is a duplicated patch.
+> 
+> Please either check for already submitted works in lore (dfn:) or use
+> linux-next as your base...
 
-Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
----
- .../pinctrl/ralink,rt3883-pinctrl.yaml        | 204 +++++++++++++++++-
- 1 file changed, 197 insertions(+), 7 deletions(-)
+Understood, I only used linux-next 20221208 , which was the latest 
+available at that point.
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/ralink,rt3883-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/ralink,rt3883-pinctrl.yaml
-index feb6e66dcb61..9fbd6de13c03 100644
---- a/Documentation/devicetree/bindings/pinctrl/ralink,rt3883-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/ralink,rt3883-pinctrl.yaml
-@@ -29,21 +29,212 @@ patternProperties:
-         $ref: pinmux-node.yaml#
- 
-         properties:
--          groups:
--            description: The pin group to select.
--            enum: [ge1, ge2, i2c, jtag, lna a, lna g, mdio, pci, spi, uartf,
--                   uartlite]
--
-           function:
--            description: The mux function to select.
-+            description:
-+              A string containing the name of the function to mux to the group.
-             enum: [ge1, ge2, gpio, gpio i2s, gpio uartf, i2c, i2s uartf, jtag,
-                    lna a, lna g, mdio, pci-dev, pci-fnc, pci-host1, pci-host2,
-                    pcm gpio, pcm i2s, pcm uartf, spi, uartf, uartlite]
- 
-+          groups:
-+            description:
-+              An array of strings. Each string contains the name of a group.
-+
-         required:
-           - groups
-           - function
- 
-+        allOf:
-+          - if:
-+              properties:
-+                function:
-+                  const: ge1
-+            then:
-+              properties:
-+                groups:
-+                  enum: [ge1]
-+
-+          - if:
-+              properties:
-+                function:
-+                  const: ge2
-+            then:
-+              properties:
-+                groups:
-+                  enum: [ge2]
-+
-+          - if:
-+              properties:
-+                function:
-+                  const: gpio
-+            then:
-+              properties:
-+                groups:
-+                  enum: [ge1, ge2, i2c, jtag, lna a, lna g, mdio, pci, spi,
-+                         uartf, uartlite]
-+
-+          - if:
-+              properties:
-+                function:
-+                  const: gpio i2s
-+            then:
-+              properties:
-+                groups:
-+                  enum: [uartf]
-+
-+          - if:
-+              properties:
-+                function:
-+                  const: gpio uartf
-+            then:
-+              properties:
-+                groups:
-+                  enum: [uartf]
-+
-+          - if:
-+              properties:
-+                function:
-+                  const: i2c
-+            then:
-+              properties:
-+                groups:
-+                  enum: [i2c]
-+
-+          - if:
-+              properties:
-+                function:
-+                  const: i2s uartf
-+            then:
-+              properties:
-+                groups:
-+                  enum: [uartf]
-+
-+          - if:
-+              properties:
-+                function:
-+                  const: jtag
-+            then:
-+              properties:
-+                groups:
-+                  enum: [jtag]
-+
-+          - if:
-+              properties:
-+                function:
-+                  const: lna a
-+            then:
-+              properties:
-+                groups:
-+                  enum: [lna a]
-+
-+          - if:
-+              properties:
-+                function:
-+                  const: lna g
-+            then:
-+              properties:
-+                groups:
-+                  enum: [lna g]
-+
-+          - if:
-+              properties:
-+                function:
-+                  const: mdio
-+            then:
-+              properties:
-+                groups:
-+                  enum: [mdio]
-+
-+          - if:
-+              properties:
-+                function:
-+                  const: pci-dev
-+            then:
-+              properties:
-+                groups:
-+                  enum: [pci]
-+
-+          - if:
-+              properties:
-+                function:
-+                  const: pci-fnc
-+            then:
-+              properties:
-+                groups:
-+                  enum: [pci]
-+
-+          - if:
-+              properties:
-+                function:
-+                  const: pci-host1
-+            then:
-+              properties:
-+                groups:
-+                  enum: [pci]
-+
-+          - if:
-+              properties:
-+                function:
-+                  const: pci-host2
-+            then:
-+              properties:
-+                groups:
-+                  enum: [pci]
-+
-+          - if:
-+              properties:
-+                function:
-+                  const: pcm gpio
-+            then:
-+              properties:
-+                groups:
-+                  enum: [uartf]
-+
-+          - if:
-+              properties:
-+                function:
-+                  const: pcm i2s
-+            then:
-+              properties:
-+                groups:
-+                  enum: [uartf]
-+
-+          - if:
-+              properties:
-+                function:
-+                  const: pcm uartf
-+            then:
-+              properties:
-+                groups:
-+                  enum: [uartf]
-+
-+          - if:
-+              properties:
-+                function:
-+                  const: spi
-+            then:
-+              properties:
-+                groups:
-+                  enum: [spi]
-+
-+          - if:
-+              properties:
-+                function:
-+                  const: uartf
-+            then:
-+              properties:
-+                groups:
-+                  enum: [uartf]
-+
-+          - if:
-+              properties:
-+                function:
-+                  const: uartlite
-+            then:
-+              properties:
-+                groups:
-+                  enum: [uartlite]
-+
-         additionalProperties: false
- 
-     additionalProperties: false
-@@ -57,7 +248,6 @@ required:
- additionalProperties: false
- 
- examples:
--  # Pinmux controller node
-   - |
-     pinctrl {
-       compatible = "ralink,rt3883-pinctrl";
--- 
-2.37.2
+If I rebase on today's next-20221213 , I see the only duplicate part is
 
+"
++  power-domains:
++    maxItems: 1
++
+"
+
+The rest of this patch is still valid.
+
+> Unack.
+
+I see
