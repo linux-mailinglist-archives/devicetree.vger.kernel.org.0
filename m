@@ -2,162 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1939164BA96
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 18:05:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2449364BAA3
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 18:10:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235422AbiLMREd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 12:04:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32882 "EHLO
+        id S235622AbiLMRKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 12:10:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236217AbiLMRD6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 12:03:58 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F22F29B
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 09:03:57 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id 1so5970742lfz.4
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 09:03:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=szYuQKkpwRTzwOk3epQzQRwK6PcLRVEX0v7Brg6XO+E=;
-        b=gR54zbVLpSNZRO/CMCTifP4zMaW+8m+2Ct3vOe68Recyk7nDqclNm34byp7Vpd9vXN
-         nbOXn6Hb5kQ2uW0cXgIdSrlp6vYbFc1JEieGCg9bYhds8ywG3xybVLsTr+QYsGT6UX37
-         bzghylyIBP1EVkjELY4pGkb3MAs5ryRH0+zKRSVgWjWcwiQaiB2ts0NXboQ+jAg2M4Jb
-         j8ZC7McM2A3Na9LBMP7vIwsjMCuc2H/WhP0sgCnQgvGZIW+d//U7HD289jiN1NUBCRdC
-         tSpMyolVctBUnmEGa3DvQNDGuAbzA1v+Oe2067Us65o3fkyTlXSRNUQhikpIzlIsUQC3
-         LvMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=szYuQKkpwRTzwOk3epQzQRwK6PcLRVEX0v7Brg6XO+E=;
-        b=nK8Qub1h65XprsptA1gzJ4JhgSCRzm723DHp9VzNh5hyL0qsosYeF7rleFxuP7eHJ5
-         OXvbfU9FbiIzMk+HKQ5kTb0WeTauES985ppzg9h4LTsYmfrZGqlm1AhBQvnARj7Fum/c
-         hwQ8zXLJhkRkMBXp0uLP0kDjxCvL+f3zoAPFDWfPTUSlvXtoC2VQIUI31uudHP6JdOus
-         98rCtD514EfgcGnO/MS753x1qKv5tevcCbvZp6PFSpGBLBOk7bJmWVb/P1kf4N3tdTJC
-         pX7Be8WfHvilc+BXgPqS4l61Nn9rm96WcvskpHH3AV0Yu3os7qd4UDo3zI3Zog6COGMt
-         kjfQ==
-X-Gm-Message-State: ANoB5pms27ZalSPnk0iTQLGcMo4fuTepfhxn51dfMRrLfRDg0UJChlSF
-        hLC9lT5zTnZuv7CSJew9fnGU+g==
-X-Google-Smtp-Source: AA0mqf4tWn453nW+I33H443hop8FMMDkSd2lzh5fozXf35tb4FIVf0uJXI9rRvGTKW04lL+GwhALxA==
-X-Received: by 2002:a05:6512:1115:b0:4b5:b7ba:cae with SMTP id l21-20020a056512111500b004b5b7ba0caemr4116987lfg.48.1670951035718;
-        Tue, 13 Dec 2022 09:03:55 -0800 (PST)
-Received: from localhost.localdomain (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id e2-20020a05651236c200b004b56bebdc4esm446874lfs.14.2022.12.13.09.03.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Dec 2022 09:03:55 -0800 (PST)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org
-Cc:     marijn.suijten@somainline.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S235216AbiLMRKH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 12:10:07 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9CC66B10;
+        Tue, 13 Dec 2022 09:10:05 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F07392F4;
+        Tue, 13 Dec 2022 09:10:45 -0800 (PST)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5B5B03F5A1;
+        Tue, 13 Dec 2022 09:10:04 -0800 (PST)
+Date:   Tue, 13 Dec 2022 17:10:02 +0000
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     "Sudip Mukherjee (Codethink)" <sudipm.mukherjee@gmail.com>
+Cc:     Jernej Skrabec <jernej.skrabec@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Loic Poulain <loic.poulain@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH 2/2] soc: qcom: rmtfs: Optionally map RMTFS to NAV VM
-Date:   Tue, 13 Dec 2022 18:03:40 +0100
-Message-Id: <20221213170340.456252-2-konrad.dybcio@linaro.org>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20221213170340.456252-1-konrad.dybcio@linaro.org>
-References: <20221213170340.456252-1-konrad.dybcio@linaro.org>
+        Linus Torvalds <torvalds@linux-foundation.org>
+Subject: Re: mainline build failure due to e1d7dc52c3e6 ("ARM: dts: suniv:
+ f1c100s: add CIR DT node")
+Message-ID: <20221213171002.23c8c712@donnerap.cambridge.arm.com>
+In-Reply-To: <Y5hZcmnZHsgpv3Pu@debian>
+References: <Y5hZcmnZHsgpv3Pu@debian>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Loic Poulain <loic.poulain@linaro.org>
+On Tue, 13 Dec 2022 10:52:34 +0000
+"Sudip Mukherjee (Codethink)" <sudipm.mukherjee@gmail.com> wrote:
 
-Some SoCs require that RMTFS is also mapped to the NAV VM. Trying to
-power on the modem without that results in the whole platform crashing
-and forces a hard reboot within about 2 seconds.
+Hi Sudip,
 
-Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
-[Konrad: reword, make conditional, add a define for NAV VMID]
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- drivers/soc/qcom/rmtfs_mem.c | 22 +++++++++++++++-------
- include/linux/qcom_scm.h     |  1 +
- 2 files changed, 16 insertions(+), 7 deletions(-)
+thanks for the heads up.
 
-diff --git a/drivers/soc/qcom/rmtfs_mem.c b/drivers/soc/qcom/rmtfs_mem.c
-index 0feaae357821..999f2c5b49b0 100644
---- a/drivers/soc/qcom/rmtfs_mem.c
-+++ b/drivers/soc/qcom/rmtfs_mem.c
-@@ -171,12 +171,13 @@ static void qcom_rmtfs_mem_release_device(struct device *dev)
- static int qcom_rmtfs_mem_probe(struct platform_device *pdev)
- {
- 	struct device_node *node = pdev->dev.of_node;
--	struct qcom_scm_vmperm perms[2];
-+	struct qcom_scm_vmperm perms[3];
- 	struct reserved_mem *rmem;
- 	struct qcom_rmtfs_mem *rmtfs_mem;
-+	bool assign_to_nav;
- 	u32 client_id;
- 	u32 vmid;
--	int ret;
-+	int ret, cnt = 0;
- 
- 	rmem = of_reserved_mem_lookup(node);
- 	if (!rmem) {
-@@ -191,6 +192,8 @@ static int qcom_rmtfs_mem_probe(struct platform_device *pdev)
- 
- 	}
- 
-+	assign_to_nav = of_property_read_bool(node, "qcom,assign-to-nav");
-+
- 	rmtfs_mem = kzalloc(sizeof(*rmtfs_mem), GFP_KERNEL);
- 	if (!rmtfs_mem)
- 		return -ENOMEM;
-@@ -236,14 +239,19 @@ static int qcom_rmtfs_mem_probe(struct platform_device *pdev)
- 			goto remove_cdev;
- 		}
- 
--		perms[0].vmid = QCOM_SCM_VMID_HLOS;
--		perms[0].perm = QCOM_SCM_PERM_RW;
--		perms[1].vmid = vmid;
--		perms[1].perm = QCOM_SCM_PERM_RW;
-+		perms[cnt].vmid = QCOM_SCM_VMID_HLOS;
-+		perms[cnt++].perm = QCOM_SCM_PERM_RW;
-+		perms[cnt].vmid = vmid;
-+		perms[cnt++].perm = QCOM_SCM_PERM_RW;
-+
-+		if (assign_to_nav) {
-+			perms[cnt].vmid = QCOM_SCM_VMID_NAV;
-+			perms[cnt++].perm = QCOM_SCM_PERM_RW;
-+		}
- 
- 		rmtfs_mem->perms = BIT(QCOM_SCM_VMID_HLOS);
- 		ret = qcom_scm_assign_mem(rmtfs_mem->addr, rmtfs_mem->size,
--					  &rmtfs_mem->perms, perms, 2);
-+					  &rmtfs_mem->perms, perms, cnt);
- 		if (ret < 0) {
- 			dev_err(&pdev->dev, "assign memory failed\n");
- 			goto remove_cdev;
-diff --git a/include/linux/qcom_scm.h b/include/linux/qcom_scm.h
-index f8335644a01a..150b72edb879 100644
---- a/include/linux/qcom_scm.h
-+++ b/include/linux/qcom_scm.h
-@@ -55,6 +55,7 @@ enum qcom_scm_ice_cipher {
- #define QCOM_SCM_VMID_MSS_MSA    0xF
- #define QCOM_SCM_VMID_WLAN       0x18
- #define QCOM_SCM_VMID_WLAN_CE    0x19
-+#define QCOM_SCM_VMID_NAV        0x2B
- #define QCOM_SCM_PERM_READ       0x4
- #define QCOM_SCM_PERM_WRITE      0x2
- #define QCOM_SCM_PERM_EXEC       0x1
--- 
-2.39.0
+> The latest mainline kernel branch fails to build arm allmodconfig and
+> multi_v5_defconfig with the error:
+> 
+> Error: arch/arm/boot/dts/suniv-f1c100s.dtsi:250.30-31 syntax error
+> FATAL ERROR: Unable to parse input tree
+
+This is because the clock patch hasn't reached Linus' tree yet, as it's
+coming from a different branch:
+https://git.kernel.org/pub/scm/linux/kernel/git/sunxi/linux.git/log/?h=sunxi/clk-for-6.2
+
+In the original series I had it in the right order, but I guess the single
+line to add the "CLK_IR" symbol should have been in a separate patch and
+gone along with the DT patches.
+Anyway it should magically solve itself in the next hours/days, I guess.
+
+Cheers,
+Andre
+
+
+> git bisect pointed to e1d7dc52c3e6 ("ARM: dts: suniv: f1c100s: add CIR DT node")
+> 
+> I will be happy to test any patch or provide any extra log if needed.
+> 
+> 
 
