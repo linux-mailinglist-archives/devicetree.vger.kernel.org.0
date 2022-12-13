@@ -2,104 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AC9964B18C
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 09:52:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 07F1864B1E6
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 10:08:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231421AbiLMIwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 03:52:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60742 "EHLO
+        id S234952AbiLMJIE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 04:08:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234839AbiLMIvq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 03:51:46 -0500
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFE79BC06
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 00:51:45 -0800 (PST)
-Received: by mail-yb1-xb2c.google.com with SMTP id s11so16804994ybe.2
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 00:51:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=cJvRbaiPchBmTkfubLEGTz0Ogu9fRyx82WgeZC745Dk=;
-        b=ZpHfmBlgH+6RvPy+iw040Q1a/x2t0YWMLcJwMQD3S8cZdwC/xYa+V6HyUN7KGXpi+2
-         36YMqlrgVPV1zrkc93/2NZakTM4vx/ImER9F352ObvZeibsGV4teZQxkE/fo1tzifH9e
-         Yc2iHtdCSEqVWV1GeUjQ5uYzbstfwfUdnZXjPfJSSPTlkYFKUVLJ0MmJ9wt8P7L4gquG
-         CBDrtjx+mNywlWR3ftbIetLyixDXPymvK9WF3eIHs7dzj5woK+oEmTy20MbcNQEwsJ8X
-         ZgsHwnJ3uWSNL5sHsL2Tn1Xku2LecpnHCqdZA5A43kZa+PgJWfiH4yZvot9cU+yLMVo0
-         j8BA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cJvRbaiPchBmTkfubLEGTz0Ogu9fRyx82WgeZC745Dk=;
-        b=kiArRedP7Y06bA9bDC92d0Sdms9o97qsl6ItGLAvLKolqkAkgTa0rklVGLghsOnw7V
-         MNmpbgdgoZmY6rO3CPIA22rvf9ivauNNrFSWbCMVwhxamz0Gmmo1Q3p4tPVF0ojJvSQr
-         i4TjfLfyX3nCdFeiCR5MeaLePeMgBreRX89l8mbuZlz+iLtoMVWoPLUR1gszNimNwewh
-         vI4l0G3Ay3EOpae6KUHL714FgC9snR6jYp+AV/b+JPK9b6N77Cs0wpv6YHnvn8G6RWuf
-         rXkjsYRgFOW9gKfHkBmRay+zwLad8IZwK2LdDmSs9NO697Qp2kYMGUIxVceRV+imKuNw
-         0+9g==
-X-Gm-Message-State: ANoB5pkKmMB5Thk9gUOSi8hrzbdBM1A+ljb0P5teypbR5D6Ys53Xhlbl
-        9yZTQqQuuGeQ9/Wq6trrnsaydjtEFsdtbg+Jbk2/IQ==
-X-Google-Smtp-Source: AA0mqf4FpckKPAuWRQQ8f1huRLbn/zDOCLdbrA1eKTP4TVYP5K7QRu9Fo8bs6ostcX0AVXjxTtAkgaXDGmofby9tx84=
-X-Received: by 2002:a25:d2ce:0:b0:710:f2e2:eb92 with SMTP id
- j197-20020a25d2ce000000b00710f2e2eb92mr2938674ybg.304.1670921504954; Tue, 13
- Dec 2022 00:51:44 -0800 (PST)
+        with ESMTP id S234955AbiLMJHk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 04:07:40 -0500
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 374511F2C1;
+        Tue, 13 Dec 2022 01:04:28 -0800 (PST)
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id A49001C09F4; Tue, 13 Dec 2022 10:03:48 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
+        t=1670922228;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=PKQ9Pz0Sg+hh8pZuS0zpWK+jUO+h77QCipngpn+W/pk=;
+        b=jXB0ntuWGEGdP/8/rfQBXXP2kl+RBzuEpAUQtUBAxd4NlLV4tfipS9l8Tpi6iQUPuwxoOz
+        oI9xtqBCLTwfM+BZUMYgsgW8NLOekrxQNWZVJVLITJIN6GNCnJxNtVI8IduSaCjB5YXGFw
+        1OzPUycGqPqt1kgIiAEGX3SgcsyyEkQ=
+Date:   Tue, 13 Dec 2022 10:03:48 +0100
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Chuanhong Guo <gch981213@gmail.com>
+Cc:     linux-leds@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 0/3] leds: add driver for SPI driven WorldSemi WS2812B
+ RGB LEDs
+Message-ID: <Y5g/9ETxQEVOqB5d@duo.ucw.cz>
+References: <20221207040904.582585-1-gch981213@gmail.com>
 MIME-Version: 1.0
-References: <11af73e05bad75e4ef49067515e3214f6d944b3d.camel@gmail.com>
-In-Reply-To: <11af73e05bad75e4ef49067515e3214f6d944b3d.camel@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 13 Dec 2022 09:51:33 +0100
-Message-ID: <CACRpkdaXxPE3XhPnprhJ7GGjn9X_GMsCJ3mn26P90GcHzhsQDg@mail.gmail.com>
-Subject: Re: [PATCH] of: fdt: Honor CONFIG_CMDLINE* even without /chosen node
-To:     Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@kernel.org>,
-        Nikita Shubin <nikita.shubin@maquefel.me>,
-        Hartley Sweeten <hsweeten@visionengravers.com>,
-        Lukasz Majewski <lukma@denx.de>,
-        Linus Walleij <linusw@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="wzoAYKgdxjUTBF2S"
+Content-Disposition: inline
+In-Reply-To: <20221207040904.582585-1-gch981213@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 12, 2022 at 7:01 AM Alexander Sverdlin
-<alexander.sverdlin@gmail.com> wrote:
 
-> I do not read a strict requirement on /chosen node in either ePAPR or in
-> Documentation/devicetree. Help text for CONFIG_CMDLINE and
-> CONFIG_CMDLINE_EXTEND doesn't make their behavior explicitly dependent on
-> the presence of /chosen or the presense of /chosen/bootargs.
->
-> However the early check for /chosen and bailing out in
-> early_init_dt_scan_chosen() skips CONFIG_CMDLINE handling which is not
-> really related to /chosen node or the particular method of passing cmdline
-> from bootloader.
->
-> This leads to counterintuitive combinations (assuming
-> CONFIG_CMDLINE_EXTEND=y):
->
-> a) bootargs="foo", CONFIG_CMDLINE="bar" => cmdline=="foo bar"
-> b) /chosen missing, CONFIG_CMDLINE="bar" => cmdline==""
-> c) bootargs="", CONFIG_CMDLINE="bar" => cmdline==" bar"
->
-> Move CONFIG_CMDLINE handling outside of early_init_dt_scan_chosen() so that
-> cases b and c above result in the same cmdline.
->
-> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+--wzoAYKgdxjUTBF2S
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Excellent debugging Alexander!
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Hi!
 
-I also think this should go to stable.
+> This patch adds support for driving a chain of WS2812B LED chips
+> using SPI bus.
+>=20
+> WorldSemi WS2812B is a individually addressable LED chip that
+> can be chained together and controlled individually using a
+> single wire. The chip recognize a long pulse as a bit of 1 and
+> a short pulse as a bit of 0. Host sends a continuous stream
+> of 24-bits color values, each LED chip takes the first 3 byte
+> it receives as its color value and passes the leftover bytes to
+> the next LED on the chain.
+>=20
+> This driver simulates this protocol using SPI bus by sending
+> a long pulse as 3'b110 and a short pulse as 3'b100. The SPI
+> frequency needs to be 2.105MHz~2.85MHz for the timing to be
+> correct and the controller needs to transfer all the bytes
+> continuously.
 
-Yours,
-Linus Walleij
+Is this the same thing as NeoPixel? If so, that may be better-known
+name.
+
+Best regards,
+								Pavel
+
+--=20
+People of Russia, stop Putin before his war on Ukraine escalates.
+
+--wzoAYKgdxjUTBF2S
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCY5g/9AAKCRAw5/Bqldv6
+8tN6AJ93PHkW9Duonvsv/KKmECxKZAL80wCcCpmNDVTpYtzGaSGC/710usYaxRs=
+=sCOx
+-----END PGP SIGNATURE-----
+
+--wzoAYKgdxjUTBF2S--
