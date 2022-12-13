@@ -2,313 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86DDD64ACBB
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 02:03:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6A3D64ACD6
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 02:11:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233772AbiLMBDE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 20:03:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39176 "EHLO
+        id S233944AbiLMBLW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 20:11:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229866AbiLMBDD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 20:03:03 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 213206388
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 17:03:02 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id s25so1840960lji.2
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 17:03:02 -0800 (PST)
+        with ESMTP id S233288AbiLMBLV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 20:11:21 -0500
+Received: from mail-io1-xd35.google.com (mail-io1-xd35.google.com [IPv6:2607:f8b0:4864:20::d35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63F821CB2C
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 17:11:20 -0800 (PST)
+Received: by mail-io1-xd35.google.com with SMTP id g20so987787iob.2
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 17:11:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=c4uydtI+TJBxOHIdUWp7WaxP1AbUhc5qkc9V6EJvCic=;
-        b=EEdB7Du271URciEUZOFlwc+L+uTXvnK00CZKbKg9UqPqnIdokWLS99gx8neaY6Qime
-         mU18qWCUImn9sISphSIkjx68Am3qUuykYENCcvzeQQ3R7Awa9tfyPpSeub/FCZcs0e0M
-         Fn7nubnlMx0U5HmdCvKJjz6jecoh26tWUcJ4CihrMn35UwC5Ozhh8Syq/P+VDu5e9DhH
-         +TFIMHEwBKnp53TtMBbKqZ5o9gGLJ5kI/Gud9EdQqTcMByhFFKrwJfJ42ZhQUwy06Edu
-         DB7Oqt0MdVb0Sn0Bi5pGhQcBrD607m/d0amc5XjWKHjKM6vlyBa/LdaPaCIb8QXAcEbd
-         9ZsQ==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pAR7trYZxyJz6dDjjGtnhQhvH4CV37H8ORJAnU50YAI=;
+        b=OynFoN1pxipzXa/LRGcM80xD2vmYyGNwHBjBEuCjqZYJEqN9DZLh8crm+GMKI/72Fz
+         7HlpLIQy1Fpv7C+E1DZNIFKRvoT3XlW6fyxsdx3xupxod/KmnXyVMZ8ubid6KNxGnmoy
+         Qxxi4v+SuPsrHDtow570icb8+YuEWnNBfoizdLkwuKcg6pBcNGDanvcXDwknKuFX4dMS
+         VBJOFwk9CFUnXei7eiIcdlCoPVfj4DS2UVkQcxbwWFF8CS5rHJ7Egq79zImRfpYzqkqN
+         vDacxqXKTmpDqYbpVex7xMOsys3gZANZw5nYRnQ6czRCHKsbf6I36DaYapwrQ4bViBYw
+         JWKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=c4uydtI+TJBxOHIdUWp7WaxP1AbUhc5qkc9V6EJvCic=;
-        b=Y8mC5JPmNcl5+vLJg/CQRiTgoynuG9a7s2Z+5pAZkfEzKMGhDoTo/WAcLeYIQevljx
-         8vgrmRJsJtOmcH/AOqF4OlOxTYVW4MAAK1cLuUJowhi9DixsrSQ/ILpd3hB1vNl2aGVS
-         0Cpat1uvfsP9C+1JA33bts4uRXou4vnRwF7IDEF20TSiza2YPiMbfvPe8fQOoNwEj7Sw
-         apXhU9beQtxNsiRMmLJT+0dRx28j6NkLGoJhYV3X5sM4HfNMRb5j6UETAcCOWWeKpnrg
-         0XSsRB0Bo6fdzC0q7tFogMxcYTuf7e1NPIfaYL4ow8jO7Y2c0uRuOrXDCTuWdlyEfpuS
-         91iQ==
-X-Gm-Message-State: ANoB5pm4rUj8ih4k9wNux9uu6G20eLe2YXPISV3hagEvfaffBsyoNkCD
-        6yBwCIqZNIZbKqsoBA08+4ovQQ==
-X-Google-Smtp-Source: AA0mqf6/0+m1rsZkaUSHO7NwIJA9CMcebS/GmvIxG6UAb/gfbNFdP87gMoYB+be+y+4Mw4ambQTXOg==
-X-Received: by 2002:a2e:3a15:0:b0:27a:129f:770d with SMTP id h21-20020a2e3a15000000b0027a129f770dmr4414846lja.45.1670893380349;
-        Mon, 12 Dec 2022 17:03:00 -0800 (PST)
-Received: from [127.0.0.1] ([94.25.229.107])
-        by smtp.gmail.com with ESMTPSA id u16-20020a05651c131000b0027760138c53sm137967lja.72.2022.12.12.17.02.59
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 12 Dec 2022 17:02:59 -0800 (PST)
-Date:   Tue, 13 Dec 2022 04:02:54 +0300
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>
-CC:     dri-devel@lists.freedesktop.org, robdclark@gmail.com,
-        sean@poorly.run, swboyd@chromium.org, dianders@chromium.org,
-        vkoul@kernel.org, daniel@ffwll.ch, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@somainline.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, airlied@gmail.com,
-        quic_sbillaka@quicinc.com, freedreno@lists.freedesktop.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v11_2/5=5D_dt-bindings=3A_msm/dp=3A_a?= =?US-ASCII?Q?dd_data-lanes_and_link-frequencies_property?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <a9e2f269-b9df-814f-adcd-f5577f590fa7@quicinc.com>
-References: <1670539015-11808-1-git-send-email-quic_khsieh@quicinc.com> <1670539015-11808-3-git-send-email-quic_khsieh@quicinc.com> <5a3865ed-8847-db04-3d60-f35438250bef@linaro.org> <5aa16223-dbf6-996c-1985-794302dcce91@quicinc.com> <be1411e8-1d07-7643-977c-a306016fd660@linaro.org> <b6d90c1f-5365-7197-be63-96c3d8cf0746@quicinc.com> <e53844b7-601b-f355-302b-cc871962a446@linaro.org> <8b306c8f-3089-4aaf-7fc1-038a8330c89a@quicinc.com> <CAA8EJpr5RYyQa7xu1_xJ0F-dn-H9aOf0KE-CDgDCwnZu3HPgXg@mail.gmail.com> <a9e2f269-b9df-814f-adcd-f5577f590fa7@quicinc.com>
-Message-ID: <46971A33-D9A4-4A84-9058-62F69C5618F4@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pAR7trYZxyJz6dDjjGtnhQhvH4CV37H8ORJAnU50YAI=;
+        b=FbT2nGEgvzRa/mwGYO+5B09gGtu7/HlbzJO7X9CeN9jDxYE01HlX/CbTEoLfhQeBts
+         zjeOHHOU+tHoSv2Gtyoii4y/IT/crOaeoVzKZNfXKTz1jUFD25hH3/klXZkd7xCHICxL
+         lvRlVTOv+jpscWYOFQxvOT4gD3A0yub8SZqLvLDfaKTOR4370kxF4tIUlIU+s0mNUuxf
+         956jY+PaLpNU406PJ4QV2Dwk1fD14VXu3DIMWbCJjkfgnFkWslActCK8hWGhHQQXeEZF
+         qTseGuqxg9/hz978J8C7yiB2JjwUrgwF9KPlXefDJ/mK50anb/7Y3i7+Ca+ymxhzyGG7
+         zmEQ==
+X-Gm-Message-State: ANoB5plMJpTAgCQ1iEnSVUNPCLuaANN8IsDa5uSLJioTfjMCABZN2pps
+        qkkw+BbNWjqXRMnGBQYquFjaPQ==
+X-Google-Smtp-Source: AA0mqf5iT+UyD0qvn7NpOSGyfj+cr/V7nAI47f6cpKUqG428uF+45DFYJC396XBHW9j/HJIVVKMX7Q==
+X-Received: by 2002:a6b:fb0a:0:b0:6df:5a37:ed5 with SMTP id h10-20020a6bfb0a000000b006df5a370ed5mr9593060iog.17.1670893879743;
+        Mon, 12 Dec 2022 17:11:19 -0800 (PST)
+Received: from [10.211.55.3] ([98.61.227.136])
+        by smtp.gmail.com with ESMTPSA id m13-20020a02a14d000000b0038a382d84c5sm414160jah.64.2022.12.12.17.11.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Dec 2022 17:11:19 -0800 (PST)
+Message-ID: <008d3e20-2c6b-c3f1-3fd3-ef4ef4dd061e@linaro.org>
+Date:   Mon, 12 Dec 2022 19:11:17 -0600
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH net-next 2/2] net: ipa: add IPA v4.7 support
+Content-Language: en-US
+To:     Jakub Kicinski <kuba@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Alex Elder <elder@linaro.org>, davem@davemloft.net,
+        edumazet@google.com, pabeni@redhat.com, andersson@kernel.org,
+        agross@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, elder@kernel.org,
+        linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Luca Weiss <luca.weiss@fairphone.com>
+References: <20221208211529.757669-1-elder@linaro.org>
+ <20221208211529.757669-3-elder@linaro.org>
+ <47b2fb29-1c2e-db6e-b14f-6dfe90341825@linaro.org>
+ <fa6d342e-0cfe-b870-b044-b0af476e3905@linaro.org>
+ <48bef9dd-b71c-b6aa-e853-1cf821e88b50@linaro.org>
+ <20221212155450.34fdae6b@kernel.org>
+From:   Alex Elder <alex.elder@linaro.org>
+In-Reply-To: <20221212155450.34fdae6b@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 12/12/22 5:54 PM, Jakub Kicinski wrote:
+>>> which in total gives us 0x146a8000-0x146aafff
+>> Can you tell me where you found this information?
+> [1], [2]
+> 
+>>    
+>>> That would also mean all of your writes are kind of skewed, unless
+>>> you already applied some offsets to them.
+>> This region is used by the modem, but must be set up
+>> by the AP.
+>>    
+>>> (IMEM on 6350 starts at 0x14680000 and is 0x2e000 long, as per
+>>> the bootloader memory map)
+>> On SM7250 (sorry, I don't know about 7225, or 6350 for that matter),
+>> the IMEM starts at 0x14680000 and has length 0x2c000.  However that
+>> memory is used by multiple entities.  The portion set aside for IPA
+>> starts at 0x146a9000 and has size 0x2000.
 
+This is awesome, thank you!
 
-On 13 December 2022 02:41:55 GMT+03:00, Abhinav Kumar <quic_abhinavk@quici=
-nc=2Ecom> wrote:
->Hi Dmitry
->
->On 12/12/2022 2:35 PM, Dmitry Baryshkov wrote:
->> On Mon, 12 Dec 2022 at 19:51, Kuogee Hsieh <quic_khsieh@quicinc=2Ecom> =
-wrote:
->>>=20
->>>=20
->>> On 12/8/2022 4:35 PM, Dmitry Baryshkov wrote:
->>>> On 09/12/2022 02:22, Kuogee Hsieh wrote:
->>>>>=20
->>>>> On 12/8/2022 4:11 PM, Dmitry Baryshkov wrote:
->>>>>> On 09/12/2022 01:38, Kuogee Hsieh wrote:
->>>>>>>=20
->>>>>>> On 12/8/2022 3:33 PM, Dmitry Baryshkov wrote:
->>>>>>>> On 09/12/2022 00:36, Kuogee Hsieh wrote:
->>>>>>>>> Add both data-lanes and link-frequencies property into endpoint
->>>>>>>>>=20
->>>>>>>>> Changes in v7:
->>>>>>>>> -- split yaml out of dtsi patch
->>>>>>>>> -- link-frequencies from link rate to symbol rate
->>>>>>>>> -- deprecation of old data-lanes property
->>>>>>>>>=20
->>>>>>>>> Changes in v8:
->>>>>>>>> -- correct Bjorn mail address to kernel=2Eorg
->>>>>>>>>=20
->>>>>>>>> Changes in v10:
->>>>>>>>> -- add menu item to data-lanes and link-frequecnis
->>>>>>>>>=20
->>>>>>>>> Changes in v11:
->>>>>>>>> -- add endpoint property at port@1
->>>>>>>>>=20
->>>>>>>>> Signed-off-by: Kuogee Hsieh <quic_khsieh@quicinc=2Ecom>`
->>>>>>>>=20
->>>>>>>> Applying: dt-bindings: msm/dp: add data-lanes and link-frequencie=
-s
->>>>>>>> property
->>>>>>>> =2Egit/rebase-apply/patch:47: trailing whitespace=2E
->>>>>>>>=20
->>>>>>>> =2Egit/rebase-apply/patch:51: trailing whitespace=2E
->>>>>>>>=20
->>>>>>>>=20
->>>>>>>> Also the dt_binding_check fails with an error for this schema=2E =
-And
->>>>>>>> after fixing the error in the schema I faced an example validatio=
-n
->>>>>>>> error=2E Did you check that the schema is correct and that the
->>>>>>>> example validates against the schema?
->>>>>>>=20
->>>>>>> yes, but i run "make dt_binding_check
->>>>>>> DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/display/msm/dp=
--controller=2Eyaml"
->>>>>>> at mu v5=2E15 branch since
->>>>>>=20
->>>>>> I wouldn't ask you to post the log here=2E But I don't think that
->>>>>> either of the errors that I see here is related to 5=2E15 vs 6=2E1-=
-rc=2E
->>>>>>=20
->>>>>> In fact after applying this patch against 5=2E15 I saw the expected
->>>>>> failure:
->>>>>>=20
->>>>>> Documentation/devicetree/bindings/display/msm/dp-controller=2Eyaml:
->>>>>> properties:required: ['port@0', 'port@1'] is not of type 'object',
->>>>>> 'boolean'
->>>>>> Documentation/devicetree/bindings/display/msm/dp-controller=2Eyaml:
->>>>>> properties: 'required' should not be valid under {'$ref':
->>>>>> '#/definitions/json-schema-prop-names'}
->>>>>> Documentation/devicetree/bindings/display/msm/dp-controller=2Eyaml:
->>>>>> ignoring, error in schema: properties: required
->>>>>>=20
->>>>>>>=20
->>>>>>> "make dt_binding_check" does not work at msm-next branch=2E
->>>>>>=20
->>>>>> I went ahead and just checked=2E
->>>>>>=20
->>>>>> `make dt_binding_check DT_SCHEMA_FILES=3Ddisplay/msm`  works cleanl=
-y
->>>>>> in msm-next and reports a single example-related warning in
->>>>>> msm-next-lumag=2E I pushed a patch to fix that warning (wich can
->>>>>> hopefully be picked up by Abhinav into msm-fixes)=2E So you can ass=
-ume
->>>>>> that both these branches have consistent error-free display/msm
->>>>>> schemas=2E
->>>>>>=20
->>>>> I have clean msm-next branch (without my data-lines yaml patch
->>>>> applied) and run "make dt_binding_check
->>>>> DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/display/msm/dp-c=
-ontroller=2Eyaml",
->>>>> then I saw below error messages=2E
->>>>>=20
->>>>> Have you run into this problem?
->>>>=20
->>>> No=2E
->>>=20
->>> Did you do anything to fix "older dtschema instance"?
->>=20
->> I did not since I hadn't had such a problem=2E I can refer again to the
->> steps I provided you beforehand=2E The email was sent 6 days ago=2E No
->> answer from your side since that time=2E
->>=20
->>> I had run  "pip3 install dtschema --upgrade" and still not work=2E
->>=20
->> Can you please post a full log of this command?
->>=20
->>>=20
->>> D you know how to fix this problem?
->>>=20
->>> Thanks,
->>>=20
->>> kuogee
->>>=20
->>> sort: -:2: disorder: 2022=2E1
->>> ERROR: dtschema minimum version is v2022=2E3
->>> make[2]: *** [check_dtschema_version] Error 1
->>> make[1]: *** [dt_binding_check] Error 2
->>> make: *** [__sub-make] Error 2
->>=20
->> Please add the output of:
->>=20
->> which dt-validate
->> dt-validate -V
->>=20
->> And also a full log of your failing kernel build=2E
->>=20
->>=20
->>=20
->>> I had run "pip3 install dtschema --upgrade" according Rob Herring resp=
-onse=2E
->>> but it still shows same problem=2E
->>> Please let know how can I fix this problem=2E
->>>=20
->>>>=20
->>>>>=20
->>>>>     HOSTCC  scripts/basic/fixdep
->>>>>     HOSTCC  scripts/dtc/dtc=2Eo
->>>>>     HOSTCC  scripts/dtc/flattree=2Eo
->>>>>     HOSTCC  scripts/dtc/fstree=2Eo
->>>>>     HOSTCC  scripts/dtc/data=2Eo
->>>>>     HOSTCC  scripts/dtc/livetree=2Eo
->>>>>     HOSTCC  scripts/dtc/treesource=2Eo
->>>>>     HOSTCC  scripts/dtc/srcpos=2Eo
->>>>>     HOSTCC  scripts/dtc/checks=2Eo
->>>>>     HOSTCC  scripts/dtc/util=2Eo
->>>>>     LEX     scripts/dtc/dtc-lexer=2Elex=2Ec
->>>>>     HOSTCC  scripts/dtc/dtc-lexer=2Elex=2Eo
->>>>>     HOSTCC  scripts/dtc/dtc-parser=2Etab=2Eo
->>>>>     HOSTLD  scripts/dtc/dtc
->>>>> sort: -:2: disorder: 2022=2E1
->>>>> ERROR: dtschema minimum version is v2022=2E3
->>>>> make[2]: *** [check_dtschema_version] Error 1
->>>>> make[1]: *** [dt_binding_check] Error 2
->>>>> make: *** [__sub-make] Error 2
->>>>=20
->>>> This means that somewhere in your path you have an older dtschema
->>>> instance=2E
->>>>=20
->>>> When you sent me a question regarding this error, I asked for the
->>>> additional info=2E You provided none=2E Instead you went on sending t=
-he
->>>> untested patch that doesn't work=2E
->>>=20
->>> since i can not test it on msm-next so that I did test it at my v5-15
->>> branch=2E
->>=20
->> Wrong=2E
->>=20
->>>=20
->>> besides, i think i have to sent the whole series patches include this
->>> one to address your new comments on other patch=2E
->>>=20
->>> is this correct?
->>=20
->> No=2E Please fix your system first, validate your patches and send them
->> afterwards=2E You can not expect others to do your job=2E
->>=20
->
->Just finished working with kuogee on this=2E This issue had been reported=
- by few others earlier (example https://lore=2Ekernel=2Eorg/lkml/bc9be279-a=
-130-d5e7-4397-bbb389d14403@intel=2Ecom/T/)=2E
+Yes I think there are a couple of minor corrections to make
+but I haven't had the time to go do the research yet, so
+hadn't yet responded.
 
-Thanks a lot for helping Kuogee!
+Nothing is "supported" upstream anyway until there's a
+system with a DTS that uses it, and that won't happen
+until after the end of the merge window.
 
+Again, thank you very much, it's a safe thing to take
+for now.
 
->
->So let me summarize the fix:
->
->1) We do need up upgrade the dtschema first
->
->pip3 install git+https://github=2Ecom/devicetree-org/dt-schema=2Egit@main
+					-Alex
 
-I'd stick to the released version, unless there is any indication that the=
- trunk has any significant features=2E Rob, Krzysztof, please correct me if=
- I'm wrong=2E
-
-
->
->2) Python version issues were hitting some of the developers so even if w=
-e had the right version installed the PATH wasnt pointing to the right one
-
-Yes, that is what I expected, when I asked for the pip command log and for=
- the `which' command output=2E
-
-I usually install dtschema to my user's dir and add ~/=2Elocal/bin to PATH=
-=2E
-
->
->3) We had to install yamllint
->
->We have documented these now for the benefit of others internally=2E
->
->With all these 3 done, we can compile msm-next-lumag using
->make dt_binding_check DT_SCHEMA_FILES=3Ddisplay/msm
->
->Apologies for the setup issues on our end=2E These are resolved now and k=
-uogee will post a v12 for this=2E
-
-Great, I'm looking forward to seeing it and finally merging it!
-
-
->
->Thanks
->
->Abhinav
->> --
->> With best wishes
->> Dmitry
-
---=20
-With best wishes
-Dmitry
