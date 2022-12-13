@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43D2164BC06
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 19:33:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0682564BC0B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 19:33:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236426AbiLMSdR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 13:33:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60050 "EHLO
+        id S236543AbiLMSdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 13:33:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236443AbiLMSdO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 13:33:14 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C510021E3F
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 10:33:13 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id 1so6382129lfz.4
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 10:33:13 -0800 (PST)
+        with ESMTP id S236493AbiLMSdR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 13:33:17 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D76A324BDE
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 10:33:14 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id bp15so6318604lfb.13
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 10:33:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=InRO1/GO0LBQ3WvVgtcrxY3ZeFfs/GA4+OpVrE/p20o=;
-        b=KTcKJL49IKgvvm9rtYHQmyBT5w2u5eEINfLTFRGbc9177nexNqx6+dYUB6Ktb86p31
-         GYD04ljYQzuOcRU4+kBRUG0buiQwHSJ0s3WnjI9mYj4il2C5Mno4jILs1RQVaNUWWH+L
-         Q8eFCzuLzG/8PrGYgPRMJPLlHcGnJth3NeIj6URCt/hCVJ8ik0Zn10bQu/ulO4LP77MK
-         W59MVlABQYhBdo+kzavDru5CwBuu0vgscaT2NHiFtN6pKZJVcdAWB6wy+YSVlcrB+pQT
-         epQTmub+9RKKDdPG7XId9R6vsLaizYsXYV0CfJNEkkWliqcS4DIEF7bh1MmCOQXj7mxL
-         kvKw==
+        bh=GmKS4yAhUGAdkF3tOGXdpLmNGlia3T0F+vc1q7Xr8Xo=;
+        b=m2BHS9twa2b7zID1oJ/iao0iVKlBV6K+Ofp9ZgGyUjFGlJHdeExbrLmy3BAULqbWen
+         BC69+a+FWDzYIsTDVi6rL+F7D5+IoErx+6R8g87Rr6VbLXKLiT6rlcIvHTfqtLZ1zidh
+         vsZIV0ffmzAr5/3d4Kyq46HOx9gdyMoosBzk8ONFin5tKRWHHojNDpuFv8z+46KeFUXY
+         l9t7REoqZFy04dGy5+cKh0L8GlAOQZlWmsKfNRC0KUScBrkeLcbIig2EtgehCf8SvK4W
+         UN6IK7R+lvvx8UsbqLi3hg0h2hR9+nwQuKIpul1/y/I6F5DqLiSmgK8aFA7LiFKEzUrZ
+         jNLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=InRO1/GO0LBQ3WvVgtcrxY3ZeFfs/GA4+OpVrE/p20o=;
-        b=XHVdIHZYMnt55CvVC6RmGIt9rYjTpNY82JbAxdbO0qWky+BIToRAUXSR/5f1K0NlCj
-         obS7IQ5NVh/CGeAdoERicGC/Jpg2i8mVxyiJKR7kzIx+sWlXK+iqHwEDR6qbrPZNJ6iO
-         gZ90TLfZSEwfxXAdYxYsm3Idvz5AU8sJLyerpF6mzcG97IaYifKf+eMx7qgCGnsGWGZY
-         V7Tnf78Q79Jyl4/PKhYA8tiVI0lngnWQwq5QoPqZGSn37VJv4fE3aAOXqcVe7BJdAnXf
-         Dwe9Tf0RHwp4Z1vAL3J3MeMnkOINvaR2iWANDRgRdfqAaGKoXBBRaVNpBvw76TJO4hnj
-         neKg==
-X-Gm-Message-State: ANoB5pmSB8+pt3FqH5W1r+jwXPgx57GNV/IHvQIIdmebVHHoYAZdx6yS
-        i1RrJNXq9fKoYZ/KdLeE4o8ENw==
-X-Google-Smtp-Source: AA0mqf4ipHuTV4LvW/sFkWaOdyO2RF6zS72Eio4sCg4cccdPWkE0P84nDY+/pC8017xPOjQ1bnDDKA==
-X-Received: by 2002:a05:6512:b8d:b0:4b5:a9ca:9725 with SMTP id b13-20020a0565120b8d00b004b5a9ca9725mr7308471lfv.28.1670956392201;
-        Tue, 13 Dec 2022 10:33:12 -0800 (PST)
+        bh=GmKS4yAhUGAdkF3tOGXdpLmNGlia3T0F+vc1q7Xr8Xo=;
+        b=w6XVwSgjyuquh9rUm7E8gdAZgPj1cQJEMS6uB0WNh5IDVfNnjE+KcfQ73XP59R27Tc
+         dUnmbKfCBfBMEGIvhY3aHA67rMCX11la15Pttc/9t5Zvei5yi6ewCT7nVUfTlFVCuk1e
+         ot0HaZOzlQ41WKMNr9biQ81eBbz6NWM8tEPRCeMKFyAQtbxuwJ3uFNnUnpKbdhcGF30y
+         6xpn1y74wSeo57hec8DuOjLvaCUp3azCCQiWXhLdmAwjnpDhveXu4u9Ynj6W5+BDu0uX
+         lqbmEPYaIj5H4/bCXzvhjZdxxq1OtQxdxug4UIGoaoDMOmp4n0g6bT0UWQFruwAyQN3m
+         ZMrA==
+X-Gm-Message-State: ANoB5pmFDMBKjRjMRyQIXYqguWJskL7sq9wamMau+c4JpxSxmNS3e/p0
+        Eqph/vIcUQq8WHQKWG53ji/WCA==
+X-Google-Smtp-Source: AA0mqf5qEhP6JVR1nUz4+hgmxT7n21aOY1ZOIgjsoJZlHCwp8i1wlgj/Qn79G1LiA5H2yhVLohnYtw==
+X-Received: by 2002:a05:6512:39cf:b0:4b5:3505:d7f9 with SMTP id k15-20020a05651239cf00b004b53505d7f9mr5965987lfu.35.1670956394474;
+        Tue, 13 Dec 2022 10:33:14 -0800 (PST)
 Received: from localhost.localdomain (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id t10-20020a056512208a00b004b501497b6fsm465963lfr.148.2022.12.13.10.33.10
+        by smtp.gmail.com with ESMTPSA id t10-20020a056512208a00b004b501497b6fsm465963lfr.148.2022.12.13.10.33.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Dec 2022 10:33:11 -0800 (PST)
+        Tue, 13 Dec 2022 10:33:13 -0800 (PST)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
         agross@kernel.org, krzysztof.kozlowski@linaro.org
@@ -60,9 +60,9 @@ Cc:     marijn.suijten@somainline.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/6] arm64: dts: qcom: msm8916: Add fallback CCI compatible
-Date:   Tue, 13 Dec 2022 19:33:01 +0100
-Message-Id: <20221213183305.544644-2-konrad.dybcio@linaro.org>
+Subject: [PATCH v2 3/6] arm64: dts: qcom: sdm845: Add fallback CCI compatible
+Date:   Tue, 13 Dec 2022 19:33:02 +0100
+Message-Id: <20221213183305.544644-3-konrad.dybcio@linaro.org>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20221213183305.544644-1-konrad.dybcio@linaro.org>
 References: <20221213183305.544644-1-konrad.dybcio@linaro.org>
@@ -70,8 +70,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -84,22 +83,22 @@ Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
 No changes in v2.
 
- arch/arm64/boot/dts/qcom/msm8916.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index 2ca8e977fc2a..4c0a0078adb5 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -1167,7 +1167,7 @@ ports {
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index 9eecf1b4ebf9..154f5054a200 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -4386,7 +4386,7 @@ port@3 {
  		};
  
- 		cci: cci@1b0c000 {
--			compatible = "qcom,msm8916-cci";
-+			compatible = "qcom,msm8916-cci", "qcom,msm8226-cci";
+ 		cci: cci@ac4a000 {
+-			compatible = "qcom,sdm845-cci";
++			compatible = "qcom,sdm845-cci", "qcom,msm8996-cci";
  			#address-cells = <1>;
  			#size-cells = <0>;
- 			reg = <0x01b0c000 0x1000>;
+ 
 -- 
 2.39.0
 
