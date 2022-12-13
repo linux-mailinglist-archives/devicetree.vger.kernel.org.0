@@ -2,105 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7774E64AFE4
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 07:26:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 19E4264AFF1
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 07:32:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234512AbiLMG0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 01:26:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57564 "EHLO
+        id S234143AbiLMGcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 01:32:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234579AbiLMG0f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 01:26:35 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AE1512AE5;
-        Mon, 12 Dec 2022 22:26:35 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 708BE612BE;
-        Tue, 13 Dec 2022 06:26:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32054C433EF;
-        Tue, 13 Dec 2022 06:26:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1670912793;
-        bh=ScIS6FleJhQOBgS5pmaN3XxScy/r9zsYFW//Fv9sO7Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=1YmFeEPYg2d8bSEnHi4tvfWvFBtGi9yxTezJ9VMw+LFT+00h8ewJjAPNU2xabz2Z2
-         Qj+K0dCQ5MFn+F6o4513CxxGWERgGc8oIxdabPsuf0trRh+D889Xd2sTznk9IRo+1b
-         HYlHDug38huJ10h5I6isichYqQX33UAJQQ8hdkwY=
-Date:   Tue, 13 Dec 2022 07:26:30 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Elliot Berman <quic_eberman@quicinc.com>
-Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v7 10/20] gunyah: rsc_mgr: Add resource manager RPC core
-Message-ID: <Y5gbFhVpuDoZ2ZmY@kroah.com>
-References: <20221121140009.2353512-1-quic_eberman@quicinc.com>
- <20221121140009.2353512-11-quic_eberman@quicinc.com>
- <Y3uYRvrCZNnbDiY5@kroah.com>
- <425a8fe9-24b6-26c7-9150-0d3fb76430be@quicinc.com>
+        with ESMTP id S230052AbiLMGcR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 01:32:17 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D22F1F2DF;
+        Mon, 12 Dec 2022 22:32:15 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id A1A0424E023;
+        Tue, 13 Dec 2022 14:32:07 +0800 (CST)
+Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 13 Dec
+ 2022 14:32:07 +0800
+Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX068.cuchost.com
+ (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 13 Dec
+ 2022 14:32:07 +0800
+Received: from EXMBX068.cuchost.com ([fe80::c4da:cbc4:bb39:ca7e]) by
+ EXMBX068.cuchost.com ([fe80::c4da:cbc4:bb39:ca7e%16]) with mapi id
+ 15.00.1497.044; Tue, 13 Dec 2022 14:32:07 +0800
+From:   JiaJie Ho <jiajie.ho@starfivetech.com>
+To:     Palmer Dabbelt <palmer@dabbelt.com>
+CC:     "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
+        "herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
+Subject: RE: [PATCH 0/6] crypto: starfive: Add driver for cryptographic engine
+Thread-Topic: [PATCH 0/6] crypto: starfive: Add driver for cryptographic
+ engine
+Thread-Index: AQHZBH/pPWRKQfsetk2izJkM4PGjPq5jvsYw//+A4ICAAIfRMIAHH2GAgACIHJA=
+Date:   Tue, 13 Dec 2022 06:32:07 +0000
+Message-ID: <8680f0d88b1046d1b554825651ed21c1@EXMBX068.cuchost.com>
+References: <a0bd9060bab348eba1044cd911653bd7@EXMBX068.cuchost.com>
+ <mhng-181c038e-a986-4dac-9745-9405d6814c84@palmer-ri-x1c9>
+In-Reply-To: <mhng-181c038e-a986-4dac-9745-9405d6814c84@palmer-ri-x1c9>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [202.188.176.82]
+x-yovoleruleagent: yovoleflag
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <425a8fe9-24b6-26c7-9150-0d3fb76430be@quicinc.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 12, 2022 at 03:46:53PM -0800, Elliot Berman wrote:
-> 
-> 
-> On 11/21/2022 7:24 AM, Greg Kroah-Hartman wrote:
-> > On Mon, Nov 21, 2022 at 05:59:59AM -0800, Elliot Berman wrote:
-> > > +struct gh_rm_rpc {
-> > > +	struct device *dev;
-> > > +	struct gunyah_resource tx_ghrsc, rx_ghrsc;
-> > > +	struct gh_msgq msgq;
-> > > +	struct mbox_client msgq_client;
-> > > +	struct gh_rm_connection *active_rx_connection;
-> > > +	int last_tx_ret;
-> > > +
-> > > +	struct idr call_idr;
-> > > +	struct mutex call_idr_lock;
-> > > +
-> > > +	struct mutex send_lock;
-> > > +
-> > > +	struct work_struct recv_work;
-> > > +};
-> > 
-> > What handles the reference counting for this object?  Shouldn't this be
-> > a real 'struct device' and just have a pointer to the parent?  Otherwise
-> > how do you know when to free this?
-> > 
-> 
-> Reference counting is not needed on the gh_rm_rpc object because its only
-> client (the VM manager) is torn down before the gh_rm_rpc.
-
-So again, who controls the lifecycle of it?  Where is the reference
-count for the structure as it is pointing to reference counted memory?
-
-thanks,
-
-greg k-h
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogUGFsbWVyIERhYmJlbHQg
+PHBhbG1lckBkYWJiZWx0LmNvbT4NCj4gU2VudDogVHVlc2RheSwgRGVjZW1iZXIgMTMsIDIwMjIg
+MjoyMCBQTQ0KPiBUbzogSmlhSmllIEhvIDxqaWFqaWUuaG9Ac3RhcmZpdmV0ZWNoLmNvbT4NCj4g
+Q2M6IGtyenlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZzsgaGVyYmVydEBnb25kb3IuYXBhbmEu
+b3JnLmF1Ow0KPiBkYXZlbUBkYXZlbWxvZnQubmV0OyByb2JoK2R0QGtlcm5lbC5vcmc7DQo+IGty
+enlzenRvZi5rb3psb3dza2krZHRAbGluYXJvLm9yZzsgbGludXgtY3J5cHRvQHZnZXIua2VybmVs
+Lm9yZzsNCj4gZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWtlcm5lbEB2Z2VyLmtl
+cm5lbC5vcmc7IGxpbnV4LQ0KPiByaXNjdkBsaXN0cy5pbmZyYWRlYWQub3JnDQo+IFN1YmplY3Q6
+IFJFOiBbUEFUQ0ggMC82XSBjcnlwdG86IHN0YXJmaXZlOiBBZGQgZHJpdmVyIGZvciBjcnlwdG9n
+cmFwaGljIGVuZ2luZQ0KPiANCj4gPj4NCj4gPj4gWW91IHJlY2VpdmVkIHNvbWUgY29tbWVudHMg
+c28gdGhlIGV4cGVjdGF0aW9uIGlzIHRvIHNlbmQgYSB2Mi4NCj4gPj4NCj4gPg0KPiA+IFN1cmUs
+IEknbGwgZG8gdGhhdCB0aGVuLg0KPiANCj4gTm90IHN1cmUgaWYgSSBtaXNzZWQgaXQsIGJ1dCBJ
+IGNhbid0IGZpbmQgYSB2Mi4NCg0KSGkgUGFsbWVyLA0KDQpJJ20gc3RpbGwgd29ya2luZyBvbiB0
+aGUgcGF0Y2hlcy4gIEknbGwgc2VuZCB0aGVtIG91dCBzb29uLg0KDQpUaGFua3MsDQpKaWEgSmll
+DQo=
