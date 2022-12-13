@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A498D64BCDA
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 20:11:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CCAD64BCDC
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 20:11:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236722AbiLMTLS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 14:11:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55246 "EHLO
+        id S236833AbiLMTLV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 14:11:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236721AbiLMTKu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 14:10:50 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A95E825C48
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 11:10:49 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id b9so4364454ljr.5
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 11:10:49 -0800 (PST)
+        with ESMTP id S236725AbiLMTKw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 14:10:52 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76CD425C7A
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 11:10:51 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id b13so6568481lfo.3
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 11:10:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Vk8myMSZixEpFm7TSq22NpEC9ZPyK1WEgfZ1nKeoUI0=;
-        b=LBivIO/xpTg0SgheLpW6nkV0gFksPw2fYej+MmIKLvy1qqUqyQxJeJrWIpSMQvex+0
-         Um5DNqhVlKdLwfzxrh8PitybZB4WQzP9/fD+8pIpJaJxV4fK1u3ZDJyVv18FKLYSx064
-         QYbslSZq7/aGYdTh20Xmuc/Rzy+JMNWAx8ZeWGkBfzKT5rrbP0e8tzwJzO+/ScHvNQSc
-         Z4XnHtvkJOBuAIt3GHC1Ukp9wzyM5DR0QtJxFW+R0rNxS7kTcX1/jyCXsSPp5eEgAgd/
-         knV7bux63l3QrXMuzzkS2Gm+FEqGOH2KsCCWwMlfEW+jLbThpu4M65pD2QY+Mg2OBlut
-         aFXQ==
+        bh=EaTjX9kmXgk2NSbnDVcg70Dryb8H2MzA5DwqvOQCmlU=;
+        b=S4Mu0HNJknq8RSnPK3OQ/I62oGoS3brj3sZFSwXZFdqGW0v+0UUYArj3ZHUnZv5FRH
+         KPlxvHqxxQCLTY+nmaSB5lFHuNAtY5utvDvVs5WVE8F3YCGdPD0NBTi68oiUiBiNyO85
+         Zi50RmnwAVYBMZPtaTYU0564qEKYxpMvpRq+DOdW+DxFO9cebjneByIw1PAuwQzgqNgL
+         MEY4Gch/G4JIKjcNDhRSlk+BpuC/EfILwWIBVkcQRdLrqnCEE+a3lpGq9YAUYEm96Plz
+         ffuE/FwzdXRmztwWX2nqcKmLxDE5GbGfsLYFaecZHmWNMHxhP3I1jc74yujL1vwTWNcj
+         5ecA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Vk8myMSZixEpFm7TSq22NpEC9ZPyK1WEgfZ1nKeoUI0=;
-        b=WahduwqUgs6HiqI9K8lSMVx2VX5sonT6Qqzv8wz+s8c89faiOqSBxbSJJERFPRSbpp
-         vh9RdhONsVDsazqKYjYVd2C9pFsXJD/Ad/SSMXfaWr/nv0W2WU01GtayxarktrsQFIj+
-         GdXJ/TfsdtswO0NVNGnl6sQYYVjd/wwpc7OX/Z50JaikHcFfy3a+BzwZsTMWySdbqa/T
-         hquZZSYxegKWiAqN2DNKObk+r5BjWgs5VMGU7gVQN+ClxjIqNp45pL525UmTN2YHR5VB
-         tgP/9dUpRk9Z7EkmPyxNW/sUz+aVT51iKlXF3rEQ6BLuR3xcXIeUl51C5NHMLPL4CX13
-         uH6w==
-X-Gm-Message-State: ANoB5pn8o5kpXQopgXP4jA+WGiIujM/hwQYA9odELdLNz5MyE1SYurzG
-        6CjE0Q3cn6uv1pl+VtBUjKVmzg==
-X-Google-Smtp-Source: AA0mqf7jbQsikqDrllNs/d8q4yTeCugJEkCG+GWHORbxVOyVfU9XhDQuG66FPNRdNOOfv7/g6BvAzw==
-X-Received: by 2002:a2e:6e13:0:b0:279:d056:21cf with SMTP id j19-20020a2e6e13000000b00279d05621cfmr7406288ljc.18.1670958648012;
-        Tue, 13 Dec 2022 11:10:48 -0800 (PST)
+        bh=EaTjX9kmXgk2NSbnDVcg70Dryb8H2MzA5DwqvOQCmlU=;
+        b=eihrzY+tEz9IpJD22uJthjpljka07Kz26f1t4FeYRxeuL5awopUMvvSoodT22vSWj1
+         a3IY/oBd0yuIfHJ5StgbpdTgXSPt1mgnsFAZvUgb7E53ZGIlZPkR2/dg/FZ3WBftjm0P
+         /8f0ykKGeNcihQhYPQZLVpdUQ2PFahakSsigC8LD43TtWAwx6Up7xnV8pps0u4qmp8l3
+         r5hwPbTtwBaQIRafibEi7Ec1tK2WMz0dpnf/CS4a2VB8Bq73DMx8atOfGNCLfx1Xi9Fj
+         DFT4IS+UwrbcK8UCsR2OhNR3fWlLP4khxw6pepvb92MQR/15TaoHxsPUpFnofdabOl3s
+         7Mkw==
+X-Gm-Message-State: ANoB5pn40iHCMvEvPXtysNy87zvAAiWL4iO8wV0PyweqtWLY7gaitBsZ
+        xFldO8oauy9XJY4Dy7C/GaDZxg==
+X-Google-Smtp-Source: AA0mqf46AxqNOAV/NR6NF6Ybwx72TY/maEsa2RINIFqKr7rxN4mKYaYrj0FZyw9HjNElp2LVi1X3hQ==
+X-Received: by 2002:a05:6512:b91:b0:4b6:ed8b:4f16 with SMTP id b17-20020a0565120b9100b004b6ed8b4f16mr3400571lfv.52.1670958649892;
+        Tue, 13 Dec 2022 11:10:49 -0800 (PST)
 Received: from localhost.localdomain (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id w28-20020a05651c119c00b0026dfbdfc1ddsm372023ljo.11.2022.12.13.11.10.46
+        by smtp.gmail.com with ESMTPSA id w28-20020a05651c119c00b0026dfbdfc1ddsm372023ljo.11.2022.12.13.11.10.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Dec 2022 11:10:47 -0800 (PST)
+        Tue, 13 Dec 2022 11:10:49 -0800 (PST)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
         agross@kernel.org, krzysztof.kozlowski@linaro.org
@@ -58,9 +58,9 @@ Cc:     marijn.suijten@somainline.org, Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 6/7] arm64: dts: qcom: sm8450-nagara: Enable PMIC RESIN+PON
-Date:   Tue, 13 Dec 2022 20:10:35 +0100
-Message-Id: <20221213191036.611241-6-konrad.dybcio@linaro.org>
+Subject: [PATCH 7/7] arm64: dts: qcom: sm8450-nagara: Configure SLG51000 PMIC
+Date:   Tue, 13 Dec 2022 20:10:36 +0100
+Message-Id: <20221213191036.611241-7-konrad.dybcio@linaro.org>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20221213191036.611241-1-konrad.dybcio@linaro.org>
 References: <20221213191036.611241-1-konrad.dybcio@linaro.org>
@@ -75,34 +75,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the power and volume up buttons, connected to PON and RESIN
-respectively.
+Nagara devices use the Dialog SLG51000 PMIC for powering some camera
+sensors. Add the required nodes to support it.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ .../dts/qcom/sm8450-sony-xperia-nagara.dtsi   | 62 ++++++++++++++++++-
+ 1 file changed, 61 insertions(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi b/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi
-index e26bd077d3d9..1a0c26d84b4f 100644
+index 1a0c26d84b4f..e7017e6b5435 100644
 --- a/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi
-@@ -643,6 +643,15 @@ &pmk8350_gpios {
- 			  "PMK8350_OPTION";
+@@ -513,7 +513,58 @@ &i2c5 {
+ 	clock-frequency = <400000>;
+ 	status = "okay";
+ 
+-	/* Dialog SLG51000 CMIC @ 75 */
++	pmic@75 {
++		compatible = "dlg,slg51000";
++		reg = <0x75>;
++		dlg,cs-gpios = <&pm8350b_gpios 1 GPIO_ACTIVE_HIGH>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&cam_pwr_a_cs>;
++
++		regulators {
++			slg51000_a_ldo1: ldo1 {
++				regulator-name = "slg51000_a_ldo1";
++				regulator-min-microvolt = <2400000>;
++				regulator-max-microvolt = <3300000>;
++			};
++
++			slg51000_a_ldo2: ldo2 {
++				regulator-name = "slg51000_a_ldo2";
++				regulator-min-microvolt = <2400000>;
++				regulator-max-microvolt = <3300000>;
++			};
++
++			slg51000_a_ldo3: ldo3 {
++				regulator-name = "slg51000_a_ldo3";
++				regulator-min-microvolt = <1200000>;
++				regulator-max-microvolt = <3750000>;
++			};
++
++			slg51000_a_ldo4: ldo4 {
++				regulator-name = "slg51000_a_ldo4";
++				regulator-min-microvolt = <1200000>;
++				regulator-max-microvolt = <3750000>;
++			};
++
++			slg51000_a_ldo5: ldo5 {
++				regulator-name = "slg51000_a_ldo5";
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <1200000>;
++			};
++
++			slg51000_a_ldo6: ldo6 {
++				regulator-name = "slg51000_a_ldo6";
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <1200000>;
++			};
++
++			slg51000_a_ldo7: ldo7 {
++				regulator-name = "slg51000_a_ldo7";
++				regulator-min-microvolt = <1200000>;
++				regulator-max-microvolt = <3750000>;
++			};
++		};
++	};
  };
  
-+&pon_pwrkey {
-+	status = "okay";
-+};
+ &i2c9 {
+@@ -612,6 +663,15 @@ vol_down_n: vol-down-n-state {
+ };
+ 
+ &pm8350b_gpios {
++	cam_pwr_a_cs: cam-pwr-a-cs-state {
++		pins = "gpio1";
++		function = "normal";
++		qcom,drive-strength = <PMIC_GPIO_STRENGTH_LOW>;
++		power-source = <1>;
++		drive-push-pull;
++		output-high;
++	};
 +
-+&pon_resin {
-+	linux,code = <KEY_VOLUMEUP>;
-+	status = "okay";
-+};
-+
- &remoteproc_adsp {
- 	firmware-name = "qcom/sm8350/Sony/nagara/adsp.mbn";
- 	status = "okay";
+ 	snapshot_n: snapshot-n-state {
+ 		pins = "gpio5";
+ 		function = "normal";
 -- 
 2.39.0
 
