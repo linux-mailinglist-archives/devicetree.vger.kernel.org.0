@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 762EC64BCC9
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 20:10:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF1A764BCCD
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 20:10:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236701AbiLMTKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 14:10:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55166 "EHLO
+        id S236735AbiLMTKx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 14:10:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236692AbiLMTKo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 14:10:44 -0500
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1647C25C6C
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 11:10:42 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id y4so4348554ljc.9
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 11:10:42 -0800 (PST)
+        with ESMTP id S236656AbiLMTKq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 14:10:46 -0500
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A077525C70
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 11:10:43 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id f20so4372262lja.4
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 11:10:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=BnF8qsfYu8s9/MwBsflSUh/lykn7aUx7PCtt6alz7i4=;
-        b=oXSEFVPCgKG1MaGfvlray6dSRizFoy6QMqOB6eoMD6MFHvwPDgH44HxgWbS52QexhZ
-         DrA5///74cOLhQKFJ9iBSDE2qwcTzR6tEwN7IEvjHJeqgtjYxNSpcyiGO9kadp1X2xau
-         qA90u0o5vpz9kiqjk6RpGQKZmF2fJCqdHW45zF7TY3XE/hEeuIUzjk4wOhASwPsR6WmC
-         PHdA576+10dfmnbWobtqeg7AbP5VM/pax/kjf95xjEEHm/Akym8gwxrQB82KCSIFrE1C
-         jx5pFmVqaaTDf281CXZH71LXTvHUAfN3Rram9dxFrCY7/85BmVwBOtZBI3sMpX7ICo8C
-         KAWg==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=08W4M5ecrrhDdw881i3P0twnVzROKcZey0x07rUUL38=;
+        b=tHKiLpkK7CqXBNo391zBO1Wqcc37AhhKYcicBLSW3SDI4wuxZbmQd8GlAm7K5MiG2H
+         irSBilrVT5VUk+3NmAZnAK/HpLZ/yk4M3HTOUmmLgwj4lBYg2gGgBvvdEJQx1whFyEVv
+         TpjsFJQ2EWvtZY2uikg+zsf3OvnW7MoM1vcn6w4TxKDM1Pb2f2/SbA/bGdq802UxG1sB
+         dtxzbgrv3ITnxXZYFuvsMj+pMCZt1g3Y8X4ppWgFPRh0P31XURZ39gb2VQrg0n9actaV
+         g8AbheiFDFU//qX32kbk8WA49Bsa3XQA8xF6v3LKkk+vzfP34ndZ9pPbaY1UHpGi2da0
+         /MCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BnF8qsfYu8s9/MwBsflSUh/lykn7aUx7PCtt6alz7i4=;
-        b=gcfNdbrAC+KVOFJ0/vokoD22/s1IZSu6UwOINqnQ2zV/nLWjZVWwNZiaixynmaPXXH
-         txgVGLlExyXpWEN0tXQpl+OvMXerXpebxNC02bSJ2lm3ZAopLQR6bNEQA9LmZNsJ4TNA
-         XetXwJz8ZhvpppenEtm2J4652ZR36XwghfRPhIO4aPl29NmAHBfXBPHx4sFEyYUqwkWA
-         T3xkm/ExjNkQcmWrn3IBucGQrRxbzvL/EryPs+q6Ig9YCrmOEmNXY3tfpWEETrh4TV4r
-         48ScjUoEXXFh0wPzI5JvA+Jc24UkrMHd9QuhkukQy+lkL98Ho/8SSKr2BjHSqrp7GjxS
-         7rBA==
-X-Gm-Message-State: ANoB5plHdETS7jb3+DN6k6KUrkq8liUjaqUqnZswe4/SmGGyVWuWKLK2
-        uIIGzeMFF+/yKQ1wFmZ7SgGTBA==
-X-Google-Smtp-Source: AA0mqf6BliQz4MMlcrOfkXK2e/fGzGDu3+nV2urRz8DG+MRsH7YWEPW2dSLnDapAMj39g8PmVCA9Nw==
-X-Received: by 2002:a2e:a551:0:b0:26f:eb10:1a2b with SMTP id e17-20020a2ea551000000b0026feb101a2bmr6934373ljn.23.1670958640460;
-        Tue, 13 Dec 2022 11:10:40 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=08W4M5ecrrhDdw881i3P0twnVzROKcZey0x07rUUL38=;
+        b=zofJV056tOv6ORF8L+SzFpO+OWyrRgtD96XmvlxUg1Ewx1lMuAWHKTONQUGOGvDUMz
+         42bL2OrUXL9seKGETgnPNlPrlFipmX4Umyu/vFxbw/IT5r2mB4woGla7m10kiZXP4OWR
+         6wk5VA3b7s42sTx6Fy7KTlF7F8XWYeQN0tUMLYQPt2hp5Re8/EkoNd+cnG8zKP0JBfi0
+         yI0PX6zk10w6BpkCDSeaETWNJowilkobzqfUAvHGTqjy6XFj9n3UKMDtaui1bkURTI/C
+         YWdUZO/TyJelct174YI3EnTJeHDGWwKix0pL8UOfnmL9MK/TQ+38yB2ZLzAvSEMbzNPk
+         YLlw==
+X-Gm-Message-State: ANoB5pn0DT6/Dy4HXtjrTrC9yyawX7xc0541D1z+h4zKzwDsWlMG9TAG
+        3iWcIYM+HawyBeVFh4g0LmbumQ==
+X-Google-Smtp-Source: AA0mqf6FgGAGi5hv6VNmifSRh5rdt/V0r+gPARkCVrqAEhaAVL8ZBK8Rte3tEVImDZ5wCxFNikcIQQ==
+X-Received: by 2002:a2e:854b:0:b0:279:eb16:5bb5 with SMTP id u11-20020a2e854b000000b00279eb165bb5mr5388032ljj.40.1670958642014;
+        Tue, 13 Dec 2022 11:10:42 -0800 (PST)
 Received: from localhost.localdomain (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id w28-20020a05651c119c00b0026dfbdfc1ddsm372023ljo.11.2022.12.13.11.10.38
+        by smtp.gmail.com with ESMTPSA id w28-20020a05651c119c00b0026dfbdfc1ddsm372023ljo.11.2022.12.13.11.10.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Dec 2022 11:10:39 -0800 (PST)
+        Tue, 13 Dec 2022 11:10:41 -0800 (PST)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
         agross@kernel.org, krzysztof.kozlowski@linaro.org
@@ -57,68 +58,49 @@ Cc:     marijn.suijten@somainline.org, Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/7] arm64: dts: qcom: sm8450: add spmi node
-Date:   Tue, 13 Dec 2022 20:10:30 +0100
-Message-Id: <20221213191036.611241-1-konrad.dybcio@linaro.org>
+Subject: [PATCH 2/7] arm64: dts: qcom: sm8450-nagara: Include PMIC DTSIs
+Date:   Tue, 13 Dec 2022 20:10:31 +0100
+Message-Id: <20221213191036.611241-2-konrad.dybcio@linaro.org>
 X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20221213191036.611241-1-konrad.dybcio@linaro.org>
+References: <20221213191036.611241-1-konrad.dybcio@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vinod Koul <vkoul@kernel.org>
+Now that SPMI is finally in place, include the DTSIs of PMICs present
+on Nagara.
 
-Add the spmi bus as found in the SM8450 SoC
-
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-[Konrad: 0x0 -> 0, move #cells down, make reg-names a vertical list]
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
-I took over this patch from Vinod, it was submitted long long ago:
-https://lore.kernel.org/lkml/20211209103505.197453-1-vkoul@kernel.org/
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 570475040d95..b9b59c5223eb 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -2715,6 +2715,28 @@ aoss_qmp: power-controller@c300000 {
- 			#clock-cells = <0>;
- 		};
+diff --git a/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi b/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi
+index 45ee922de4e8..e29fb7adc780 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi
+@@ -5,6 +5,12 @@
  
-+		spmi_bus: spmi@c42d000 {
-+			compatible = "qcom,spmi-pmic-arb";
-+			reg = <0 0x0c400000 0 0x00003000>,
-+			      <0 0x0c500000 0 0x00400000>,
-+			      <0 0x0c440000 0 0x00080000>,
-+			      <0 0x0c4c0000 0 0x00010000>,
-+			      <0 0x0c42d000 0 0x00010000>;
-+			reg-names = "core",
-+				    "chnls",
-+				    "obsrvr",
-+				    "intr",
-+				    "cnfg";
-+			interrupt-names = "periph_irq";
-+			interrupts-extended = <&pdc 1 IRQ_TYPE_LEVEL_HIGH>;
-+			qcom,ee = <0>;
-+			qcom,channel = <0>;
-+			interrupt-controller;
-+			#interrupt-cells = <4>;
-+			#address-cells = <2>;
-+			#size-cells = <0>;
-+		};
-+
- 		ipcc: mailbox@ed18000 {
- 			compatible = "qcom,sm8450-ipcc", "qcom,ipcc";
- 			reg = <0 0x0ed18000 0 0x1000>;
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ #include "sm8450.dtsi"
++#include "pm8350.dtsi"
++#include "pm8350b.dtsi"
++#include "pm8350c.dtsi"
++#include "pm8450.dtsi"
++#include "pmk8350.dtsi"
++#include "pmr735a.dtsi"
+ 
+ /delete-node/ &adsp_mem;
+ /delete-node/ &rmtfs_mem;
 -- 
 2.39.0
 
