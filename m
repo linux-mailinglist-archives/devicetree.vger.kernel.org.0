@@ -2,149 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 630E964BA0C
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 17:43:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 02B1164BA36
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 17:51:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236147AbiLMQnh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 11:43:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46752 "EHLO
+        id S235403AbiLMQvc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 11:51:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236204AbiLMQnd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 11:43:33 -0500
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC23D2AC1;
-        Tue, 13 Dec 2022 08:43:31 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2BDGhOrT043041;
-        Tue, 13 Dec 2022 10:43:24 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1670949804;
-        bh=lSeG+4HQ3gyOii17ukc7PlcSnkdUoIsNZqiqck3q650=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=O/goOkBVWekE6VNa2kdMtSSwaEGAq7DG+i/uLi+0ubskeE27wMbAJNtCF0+tr4YY7
-         T0l5cWiURgzytV6Jq0JOXhlQpggdJCzqZv0rrlFPLOELuWaGVUKJU+auvQyV9VwrVl
-         D0Da9MSKanKnD1DXXvbfe462H9ECjZacKKfwHed8=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2BDGhOWq073274
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 13 Dec 2022 10:43:24 -0600
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 13
- Dec 2022 10:43:23 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 13 Dec 2022 10:43:23 -0600
-Received: from uda0132425.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2BDGh6gN034997;
-        Tue, 13 Dec 2022 10:43:21 -0600
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Peter Ujfalusi <peter.ujfalusi@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v3 5/5] dmaengine: ti: k3-udma: Add support for BCDMA CSI RX
-Date:   Tue, 13 Dec 2022 22:13:04 +0530
-Message-ID: <20221213164304.1126945-6-vigneshr@ti.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221213164304.1126945-1-vigneshr@ti.com>
-References: <20221213164304.1126945-1-vigneshr@ti.com>
+        with ESMTP id S235940AbiLMQvb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 11:51:31 -0500
+Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3EDD1580B;
+        Tue, 13 Dec 2022 08:51:29 -0800 (PST)
+Received: by mail-oo1-f50.google.com with SMTP id v62-20020a4a7c41000000b004a0a214dfbaso2459884ooc.9;
+        Tue, 13 Dec 2022 08:51:29 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=l3ZUJv9Y+27Bs9i0rYBQ2dQ+xTle+B/Uw+LnnqewtAI=;
+        b=ttrtRAfsjfnxcNpjVSvMFGfmf+TmB908iqlSNhomGlkSeIehvXrIeLjM5tPvSN30zx
+         S9zI9+bfSWxCQ7tdc+apeLNdAFZMT83bV9sxgAPRcJvtho3nlqIkXehziffgJQbjInZ2
+         dGrYkKINORpCTzwvSG3LNzCX6euw1eQEML1uB1f79fMfloUkBIfGDf6ICA2GZ1y0tVp8
+         C5u4T+JnG06qWWCYgzbPuDLMCsIBA+SvdVe4tdXy2Whj2S8irkSYJEPOGizYNVSj+BgD
+         IIzIn1pKlqlEEcuESteVxQJgITY0pSQ4rB43K4kx5vO5MLw+ZmRsR6jS9x91zgudRf2x
+         SEJw==
+X-Gm-Message-State: ANoB5plnxPclqT8303SODIQhnKn/3CR5MTcVXDGGjl2Qxt85RMN4vgYs
+        dYkX2lC8/HI/Yqh1sS9K23IqSqDIaQ==
+X-Google-Smtp-Source: AA0mqf4uxiz8zVTcATxrPc5TgQzwdrBo/FmFnmMQ4bp0twsxdG8ie2Zm4wjNl+XN7ym6jo+a7thPDg==
+X-Received: by 2002:a4a:e051:0:b0:4a0:ad7a:b260 with SMTP id v17-20020a4ae051000000b004a0ad7ab260mr10406051oos.3.1670950289042;
+        Tue, 13 Dec 2022 08:51:29 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id h4-20020a4aa284000000b004a3cc18e86asm1288376ool.40.2022.12.13.08.51.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Dec 2022 08:51:28 -0800 (PST)
+Received: (nullmailer pid 2037521 invoked by uid 1000);
+        Tue, 13 Dec 2022 16:51:27 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Sibi Sankar <quic_sibis@quicinc.com>
+Cc:     andersson@kernel.org, robin.murphy@arm.com,
+        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, sumit.semwal@linaro.org,
+        konrad.dybcio@somainline.org, amit.pundir@linaro.org,
+        catalin.marinas@arm.com, manivannan.sadhasivam@linaro.org,
+        linux-arm-msm@vger.kernel.org, regressions@leemhuis.info,
+        will@kernel.org
+In-Reply-To: <20221213140409.772-2-quic_sibis@quicinc.com>
+References: <20221213140409.772-1-quic_sibis@quicinc.com>
+ <20221213140409.772-2-quic_sibis@quicinc.com>
+Message-Id: <167095022641.2035001.13548295585567513866.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: mailbox: Add dt binding for QTI CPUCP
+ mailbox controller
+Date:   Tue, 13 Dec 2022 10:51:27 -0600
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-BCDMA CSI RX present on AM62Ax SoC is a dedicated DMA for servicing
-Camera Serial Interface (CSI) IP. Add support for the same.
 
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
----
- drivers/dma/ti/k3-udma.c | 37 ++++++++++++++++++++++++++++++++-----
- 1 file changed, 32 insertions(+), 5 deletions(-)
+On Tue, 13 Dec 2022 19:34:08 +0530, Sibi Sankar wrote:
+> Add devicetree binding for CPUSS Control Processor (CPUCP) mailbox
+> controller.
+> 
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> ---
+>  .../bindings/mailbox/qcom,cpucp-mbox.yaml          | 51 ++++++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
+> 
 
-diff --git a/drivers/dma/ti/k3-udma.c b/drivers/dma/ti/k3-udma.c
-index c1005d17b42e..1d3d1b387b96 100644
---- a/drivers/dma/ti/k3-udma.c
-+++ b/drivers/dma/ti/k3-udma.c
-@@ -135,6 +135,7 @@ struct udma_match_data {
- 	u32 flags;
- 	u32 statictr_z_mask;
- 	u8 burst_size[3];
-+	struct udma_soc_data *soc_data;
- };
- 
- struct udma_soc_data {
-@@ -4295,6 +4296,25 @@ static struct udma_match_data j721e_mcu_data = {
- 	},
- };
- 
-+static struct udma_soc_data am62a_dmss_csi_soc_data = {
-+	.oes = {
-+		.bcdma_rchan_data = 0xe00,
-+		.bcdma_rchan_ring = 0x1000,
-+	},
-+};
-+
-+static struct udma_match_data am62a_bcdma_csirx_data = {
-+	.type = DMA_TYPE_BCDMA,
-+	.psil_base = 0x3100,
-+	.enable_memcpy_support = false,
-+	.burst_size = {
-+		TI_SCI_RM_UDMAP_CHAN_BURST_SIZE_64_BYTES, /* Normal Channels */
-+		0, /* No H Channels */
-+		0, /* No UH Channels */
-+	},
-+	.soc_data = &am62a_dmss_csi_soc_data,
-+};
-+
- static struct udma_match_data am64_bcdma_data = {
- 	.type = DMA_TYPE_BCDMA,
- 	.psil_base = 0x2000, /* for tchan and rchan, not applicable to bchan */
-@@ -4344,6 +4364,10 @@ static const struct of_device_id udma_of_match[] = {
- 		.compatible = "ti,am64-dmss-pktdma",
- 		.data = &am64_pktdma_data,
- 	},
-+	{
-+		.compatible = "ti,am62a-dmss-bcdma-csirx",
-+		.data = &am62a_bcdma_csirx_data,
-+	},
- 	{ /* Sentinel */ },
- };
- 
-@@ -5274,12 +5298,15 @@ static int udma_probe(struct platform_device *pdev)
- 	}
- 	ud->match_data = match->data;
- 
--	soc = soc_device_match(k3_soc_devices);
--	if (!soc) {
--		dev_err(dev, "No compatible SoC found\n");
--		return -ENODEV;
-+	ud->soc_data = ud->match_data->soc_data;
-+	if (!ud->soc_data) {
-+		soc = soc_device_match(k3_soc_devices);
-+		if (!soc) {
-+			dev_err(dev, "No compatible SoC found\n");
-+			return -ENODEV;
-+		}
-+		ud->soc_data = soc->data;
- 	}
--	ud->soc_data = soc->data;
- 
- 	ret = udma_get_mmrs(pdev, ud);
- 	if (ret)
--- 
-2.38.1
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.example.dtb: mailbox@17400000: reg: [[0, 398458880], [0, 16], [0, 408486656], [0, 1792]] is too long
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221213140409.772-2-quic_sibis@quicinc.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
