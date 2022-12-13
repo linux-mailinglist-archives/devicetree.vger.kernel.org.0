@@ -2,101 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A576964BA8F
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 18:04:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D16364BA94
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 18:05:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234710AbiLMREC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 12:04:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32856 "EHLO
+        id S235918AbiLMREg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 12:04:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236323AbiLMRDD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 12:03:03 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 439C52251A;
-        Tue, 13 Dec 2022 09:01:35 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id DEDB3B812A2;
-        Tue, 13 Dec 2022 17:01:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E66EC433EF;
-        Tue, 13 Dec 2022 17:01:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1670950892;
-        bh=uH0LYOSexEh5rmYdYN0yvY9zCHzaNdE5DduFSGRtqbs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KMVuCAzlQrQHOlsgTwtFZ+g2DaAoEPxa0+vuEZjFvdj6e/v79u0Kle9K+EB37sTht
-         bhP1tiiO+FoqeCieMeEcTS0vq1TtyipfxvUflLhdGnwp5xh68oULfypFNoywHnDSCm
-         /iA2G+keMD7peo0uOV1NSk6zf+DhsttgOoUGAvl7WpzIfnwzOJldQxrz5ccnixN+hw
-         CR0vpp9gmUKY7Nb9Rc4GAZ/ywx5wY6mx62VbO0AF2ZTgW/TobmW9yIPZmeN4LJV5F1
-         uTVIghQx24MF7a24ZgmhTDCiseGw1S612dXJFShK/W/3Uz55jO8i98n6tehWX0LjtM
-         25PbCqI2G18Hw==
-Date:   Tue, 13 Dec 2022 17:01:26 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Xiangsheng Hou <xiangsheng.hou@mediatek.com>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        with ESMTP id S236210AbiLMRDy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 12:03:54 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B57A6C2
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 09:03:53 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id bp15so5907782lfb.13
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 09:03:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9whwM05lxda1ZLYL23P+3imYfDYTBHNqamA4JNSFNFI=;
+        b=denNa49m9X7502D9PP+mm3zEdhaFEkwFeb0OqDobKmiEJhPtkRw8O0sKZ2/3c7ocEq
+         WwxlbFZafpNNrugpEnnjtsKX8GYHp6Zs6uBAQi7Qf2jEl5Vm8prDP1mUSUOL/cqfQiHo
+         0pZTN8lZscPgYcsvZvB05nVyUJl3SoY29FeiwMQAA3UE8LNMoyLaZhBNhWFAU/x3loe2
+         FXTK9w5ofKoZ1Mjz1BP/8rk6W4XLRNS5CvE/AfZFv39e/CGddqZBsP6mI3wq4KNwWlDJ
+         D8oQDDldNe53tN2GLwxY+GCjiv+5VMVwhlP0XSMOy5Udrm7avwL+2MMBBeGUNwTlsTu0
+         re9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9whwM05lxda1ZLYL23P+3imYfDYTBHNqamA4JNSFNFI=;
+        b=V1rv55ZfbaOJJW2JolsFID5UXKKUsAJCe5aOK4ADWFKc8J5a796L14SRQDDTGqyE55
+         aB79edsjnHngplg7xEtTlHR7/Wwtpf6Qc7hYtToaaNuVoD7aW+9V+pPTA2sukvO1IXrJ
+         EUJokzUu62mgFiG4B6FGNdVsPlLl2JGgy6kXhXDX3R4h8mzaIrdoMSqYg3bM4Nskb4HO
+         pPbqY6PQ9hcg3hRo7dztgtY+IKED47MiWwSQ1BAbnwN0MsWkV6PNWy9uvKyIb6/dOQmJ
+         zrh63xNd3WkFmMbkBXKg53XrIlXrvHaGiqUDvx5xjTuo4uu71KbZEuAWt2xdcEMysziV
+         wmVw==
+X-Gm-Message-State: ANoB5pkKwD7+zUYqxN5was0yN47e7xyptfIwXBOZKu2lzLm0/DqJRcIm
+        UGMDalrVkxDEhVAiQTgkPHZIjA==
+X-Google-Smtp-Source: AA0mqf4jHH75SmQqWvHYvfNT7mfYPRnT7ZFgWdWH/FIcr6rzs+0QZDhPU790s+T0HexPk9lB/MgOFw==
+X-Received: by 2002:a05:6512:1512:b0:4b6:f647:a98f with SMTP id bq18-20020a056512151200b004b6f647a98fmr1381190lfb.62.1670951032070;
+        Tue, 13 Dec 2022 09:03:52 -0800 (PST)
+Received: from localhost.localdomain (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
+        by smtp.gmail.com with ESMTPSA id e2-20020a05651236c200b004b56bebdc4esm446874lfs.14.2022.12.13.09.03.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Dec 2022 09:03:51 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chuanhong Guo <gch981213@gmail.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org, benliang.zhao@mediatek.com,
-        bin.zhang@mediatek.com
-Subject: Re: [PATCH v4 1/9] spi: mtk-snfi: Change default page format to
- setup default setting
-Message-ID: <Y5iv5kPsOFm0OQni@sirena.org.uk>
-References: <20221209064317.2828-1-xiangsheng.hou@mediatek.com>
- <20221209064317.2828-2-xiangsheng.hou@mediatek.com>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: reserved-memory: rmtfs: Document qcom,assign-to-nav
+Date:   Tue, 13 Dec 2022 18:03:39 +0100
+Message-Id: <20221213170340.456252-1-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="jC3ytWRRxsiHrz4c"
-Content-Disposition: inline
-In-Reply-To: <20221209064317.2828-2-xiangsheng.hou@mediatek.com>
-X-Cookie: Edwin Meese made me wear CORDOVANS!!
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Some SoCs mandate that the RMTFS is also assigned to the NAV VM, while
+others really don't want that. Since it has to be conditional, add a
+bool property to toggle this behavior.
 
---jC3ytWRRxsiHrz4c
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ .../devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml  | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-On Fri, Dec 09, 2022 at 02:43:09PM +0800, Xiangsheng Hou wrote:
-> Change default page format to setup default setting since the sector
-> size 1024 on MT7986 will lead to probe fail.
->=20
-> Signed-off-by: Xiangsheng Hou <xiangsheng.hou@mediatek.com>
-> ---
->  drivers/spi/spi-mtk-snfi.c | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
+diff --git a/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml b/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml
+index 2998f1c8f0db..1d8c4621178a 100644
+--- a/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml
++++ b/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml
+@@ -31,6 +31,11 @@ properties:
+     description: >
+       vmid of the remote processor, to set up memory protection
+ 
++  qcom,assign-to-nav:
++    type: boolean
++    description: >
++      whether to also assign the region to the NAV VM
++
+ required:
+   - qcom,client-id
+ 
+-- 
+2.39.0
 
-Angelo, you've not reviewed this one - is there some problem with it or
-was it just missed?
-
---jC3ytWRRxsiHrz4c
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmOYr+UACgkQJNaLcl1U
-h9BU0gf+IvrSdMswYwsbTgS7DBClWKuOuNQAt7lGGUz71eyMXy9UAzCuEDoScV/w
-pB+m2dTLcH79ILHq3hDSDj5S/DjmXwJi6Li/mHhYHvk02J0r6WDrU2zw3z2SECrc
-fEB8quuER9gh7d9QInhiVNRbNoSL4WAE0B/qIhA4CxJEBximJKR8j0Z/tSSa7GK3
-hQ9hudThr90bPE3ykzjPwygyt0uVMgqLHq3zuVX2azJ9yXmrbfWQn6xHvxGXfyt0
-3eeRvgpqUL+FpIMvShXLit8oIoZ5tw/HEa5K2I9RlwAja/TnX1ph49NSRYE/swwk
-8TCiI+HH1h0TM4w9Q6/TRJMSq91cxg==
-=XCqN
------END PGP SIGNATURE-----
-
---jC3ytWRRxsiHrz4c--
