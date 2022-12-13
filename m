@@ -2,132 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91BF964B87E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 16:34:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 183FB64B889
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 16:36:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235646AbiLMPez (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 10:34:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34512 "EHLO
+        id S236206AbiLMPfu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 10:35:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235621AbiLMPey (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 10:34:54 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5592F227;
-        Tue, 13 Dec 2022 07:34:53 -0800 (PST)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BDEoAJh005962;
-        Tue, 13 Dec 2022 15:34:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=wGJ3CEtJtvXFXae/J2RNfkJ+bswNovTVS8idRBKkdW8=;
- b=RbbX3JZ1aease55X0NYy79Jqv3zc304DWYMHhd6kxbS7CqwJkcL4yt6nZ8Nb5bK4fdyT
- 3lg4IvFF/dFwGMLKS7sWkBB41atHdZj6zWwXaZtHrZTr5f14uZ/JUlOhENaD4uRR2NVd
- aHX1pbgjyuIqDLP35bCM9nfHQk+vu11XgyHRmvOyALOY9yLPL7xb0JpW1hZI2BIkm8hI
- rCzLFZRjCEi5sTZt1XqvaQtIkHP8WLL/+/Al9A3TL/6YRYgNDlb7lG3V3QKaTylBfdzJ
- HNVrkiXVr/k7GsIBiDuTG4k+ZJgspNpV3CS/vF+UZ7C67D1HsXvngrNBqNeK/tfX7Z6v SQ== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3mek41hk0s-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 13 Dec 2022 15:34:47 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2BDFYkll023895
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 13 Dec 2022 15:34:46 GMT
-Received: from [10.216.48.1] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 13 Dec
- 2022 07:34:43 -0800
-Message-ID: <03252ccd-e200-a112-b4dd-ba9fbf25c480@quicinc.com>
-Date:   Tue, 13 Dec 2022 21:04:39 +0530
+        with ESMTP id S236202AbiLMPft (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 10:35:49 -0500
+Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDCBF1F60D;
+        Tue, 13 Dec 2022 07:35:48 -0800 (PST)
+Received: by mail-oo1-f48.google.com with SMTP id q6-20020a4aa886000000b004a083f945a6so2420470oom.6;
+        Tue, 13 Dec 2022 07:35:48 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3OUQXNd8OYvFs7+8iUyrLASdaaAYcUXx/ROKukFE8BU=;
+        b=fR4iD+ZyQoRTozC1N94PSo1ApNOo/XIFrFr56aDm/tfPpD2b7YFe7RPaFT6VJIpnxe
+         IKLvpVNbh9PW1MnYIrvs8mqK39iQc4uG1Uk/hOLT5FEyMZi+6+6q5WoyRTsfmsL7sEgp
+         C2BizP5WK1G+go9bfqQy9C20ozrM88GvqeRFJ69vsC7pQiWTe2kuo+b1nnTEU/dde/JM
+         +or78GNMcISB+UZuJfrDpnDul8EwcCAAl/DLiWb+ukjfp3NarxYnjS0Rw7f2d+CxHZOQ
+         BrrXlcgr1jWyjzUVA2P6mMn0K152x6OPyAeSZyQh5ZdDJQhhGSunSRL+6bbpRGssZXaV
+         2erg==
+X-Gm-Message-State: ANoB5pl4uWmFUzGOWaXr/cpmgGjD+AKKk6XpyjiDHksAVwt+Ox64UiDD
+        FGV90eVfSA5N4b6iLaX92Q==
+X-Google-Smtp-Source: AA0mqf5oAzMg6NWIlDVuwgZZKBVTdUgYITUUMi3HoVwRv5EqTUODYJy3Qq4DelBLPMUbE9q9SFlpeg==
+X-Received: by 2002:a4a:49d5:0:b0:4a3:7135:d6e6 with SMTP id z204-20020a4a49d5000000b004a37135d6e6mr9443291ooa.2.1670945748025;
+        Tue, 13 Dec 2022 07:35:48 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id h18-20020a4a2812000000b00499527def25sm1220105ooa.47.2022.12.13.07.35.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Dec 2022 07:35:47 -0800 (PST)
+Received: (nullmailer pid 1398415 invoked by uid 1000);
+        Tue, 13 Dec 2022 15:35:46 -0000
+Date:   Tue, 13 Dec 2022 09:35:46 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 05/12] dt-bindings: watchdog: qcom-wdt: allow interrupts
+Message-ID: <20221213153546.GA1368120-robh@kernel.org>
+References: <20221212163532.142533-1-krzysztof.kozlowski@linaro.org>
+ <20221212163532.142533-5-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH 1/4] arm64: dts: qcom: sc8280xp: rename i2c5 to i2c21
-Content-Language: en-US
-To:     Johan Hovold <johan@kernel.org>, Brian Masney <bmasney@redhat.com>
-CC:     <andersson@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <johan+linaro@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <ahalaney@redhat.com>, <echanude@redhat.com>
-References: <20221212182314.1902632-1-bmasney@redhat.com>
- <20221212182314.1902632-2-bmasney@redhat.com>
- <Y5iSDehp72mQPc+h@hovoldconsulting.com> <Y5iWeTk2zOp9rInx@x1>
- <Y5iaDP+nV9B59U2b@hovoldconsulting.com>
-From:   Shazad Hussain <quic_shazhuss@quicinc.com>
-In-Reply-To: <Y5iaDP+nV9B59U2b@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Yo0ar-THZeTtr_97XMXdQ8MPOIykRdJa
-X-Proofpoint-ORIG-GUID: Yo0ar-THZeTtr_97XMXdQ8MPOIykRdJa
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-12-13_03,2022-12-13_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- lowpriorityscore=0 clxscore=1015 phishscore=0 spamscore=0 bulkscore=0
- mlxlogscore=797 suspectscore=0 adultscore=0 impostorscore=0 mlxscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2212130137
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221212163532.142533-5-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 12/13/2022 8:58 PM, Johan Hovold wrote:
-> On Tue, Dec 13, 2022 at 10:12:57AM -0500, Brian Masney wrote:
->> On Tue, Dec 13, 2022 at 03:54:05PM +0100, Johan Hovold wrote:
->>> Note that the node is labelled qup2_i2c5 and not qup_i2c5.
->>>
->>> That is, the QUP nodes are labelled using two indices, and specifically
->>>
->>> 	qup2_i2c5
->>>
->>> would be another name for
->>>
->>> 	qup_i2c21
->>>
->>> if we'd been using such a flat naming scheme (there are 8 engines per
->>> QUP).
->>>
->>> So there's nothing wrong with how these nodes are currently named, but
->>> mixing the two scheme as you are suggesting would not be correct.
->>
->> Hi Johan,
->>
->> What would I use for the name in the aliases section? Right now I have:
->>
->>      aliases {
->>          i2c18 = &qup2_i2c18;
->>      }
->>
->> So qup2_i2c18 becomes qup2_i2c2. Would I use the flat naming scheme for
->> the alias like so?
->>
->>      aliases {
->>          i2c18 = &qup2_i2c2;
->>      }
+On Mon, Dec 12, 2022 at 05:35:25PM +0100, Krzysztof Kozlowski wrote:
+> Both of type of watchdogs described in the binding (the KPSS watchdog
+> and APSS WDT timer) have interrupts.  Allow interrupts and describe them
+> for KPSS watchdog to fix warnings like:
 > 
-> Or perhaps the i2c controllers should use a zero-based index instead of
-> being named after the serial engines (e.g. as we do for the console
-> uart).
+>   watchdog@17c10000: Unevaluated properties are not allowed ('interrupts' was unexpected)
 > 
-> How are they named in the schematics?
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../bindings/watchdog/qcom-wdt.yaml           | 24 ++++++++++++++++---
+>  1 file changed, 21 insertions(+), 3 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+> index 1828eaf70b3b..b7fc57f4800e 100644
+> --- a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+> @@ -9,9 +9,6 @@ title: Qualcomm Krait Processor Sub-system (KPSS) Watchdog timer
+>  maintainers:
+>    - Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+>  
+> -allOf:
+> -  - $ref: watchdog.yaml#
+> -
+>  properties:
+>    compatible:
+>      oneOf:
+> @@ -51,11 +48,31 @@ properties:
+>    clocks:
+>      maxItems: 1
+>  
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 5
 
-We should use from 0 to N.
+I only see 2 interrupts described at all.
 
-Shazad
-
-> Johan
+> +
+>  required:
+>    - compatible
+>    - reg
+>    - clocks
+>  
+> +allOf:
+> +  - $ref: watchdog.yaml#
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: qcom,kpss-wdt
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          minItems: 1
+> +          items:
+> +            - description: Bark
+> +            - description: Bite
+> +
+>  unevaluatedProperties: false
+>  
+>  examples:
+> @@ -66,5 +83,6 @@ examples:
+>        compatible = "qcom,apss-wdt-sm8150", "qcom,kpss-wdt";
+>        reg = <0x17c10000 0x1000>;
+>        clocks = <&sleep_clk>;
+> +      interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>;
+>        timeout-sec = <10>;
+>      };
+> -- 
+> 2.34.1
+> 
+> 
