@@ -2,60 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E31464B5F8
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 14:21:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FF2564B5FB
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 14:21:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235234AbiLMNVO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 08:21:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39700 "EHLO
+        id S235463AbiLMNVP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 08:21:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229786AbiLMNVN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 08:21:13 -0500
+        with ESMTP id S235196AbiLMNVO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 08:21:14 -0500
 Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 643E2FCE5;
-        Tue, 13 Dec 2022 05:21:12 -0800 (PST)
-Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 41F018B;
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 645341F9DF
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 05:21:12 -0800 (PST)
+Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id DBC9C7C5;
         Tue, 13 Dec 2022 14:21:08 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1670937669;
-        bh=J8LpYqesZR71o1mfqqbbqBb8mV6mO1WIhuskeZSPO7U=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=nuzelpkFyIYwuQS/FdTOY1tFYIwpCPfk+3A4ijmloq++FLsTAOre3GqXyyqcpaiwE
-         LCpyx5gPujWoZWY8SoK6iQSkGoPlq8xfqWWJc6fJCSK/V7CZta45MeDj5+DN8nBK9F
-         iVvqN5DxTNTw71mzPsVVLHMjO/Tj6uUU056MG2Oc=
-Message-ID: <19cc7331-97e8-7a4c-b032-fee600d0c40f@ideasonboard.com>
-Date:   Tue, 13 Dec 2022 15:21:05 +0200
+        s=mail; t=1670937670;
+        bh=HJLe6TvXUNyT+jWOfCjz4AF6p9Gs4JgfLzIQuJBEBdg=;
+        h=Date:To:Cc:References:From:Subject:In-Reply-To:From;
+        b=DJURwsOehf6pNqqE+0VJ6pYjCr4P4qxfOI8M+enaF7V+Cg6qkY2Fo1/yOG4PazZgW
+         z053uewXYRx2c0IkWRgp5JPfKtMkEtoNFftJuoOn2wos+oflHsVeDObXwr8v42unSD
+         b2d3EK2e500sB5C1rQiq53htkYCwlXc3lDg633UU=
+Message-ID: <0be8490e-d878-99e8-3b8b-6fbb056a66e8@ideasonboard.com>
+Date:   Tue, 13 Dec 2022 13:21:06 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v5 3/8] dt-bindings: media: add bindings for TI DS90UB913
 Content-Language: en-US
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>
-References: <20221208104006.316606-1-tomi.valkeinen@ideasonboard.com>
- <20221208104006.316606-4-tomi.valkeinen@ideasonboard.com>
- <Y5YPpGVJxAhkNJmC@pendragon.ideasonboard.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <Y5YPpGVJxAhkNJmC@pendragon.ideasonboard.com>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     krzysztof.kozlowski@linaro.org, shawnguo@kernel.org,
+        robh@kernel.org, marcel.ziswiler@toradex.com, leoyang.li@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        s.hauer@pengutronix.de, kieran.bingham@ideasonboard.com,
+        debix-tech@polyhex.net, linux-imx@nxp.com, kernel@pengutronix.de,
+        festevam@gmail.com, laurent.pinchart@ideasonboard.com
+References: <20221206154414.1461492-1-dan.scally@ideasonboard.com>
+ <20221206154414.1461492-4-dan.scally@ideasonboard.com>
+ <20221206162448.5hq4l3tifu5mlmhh@pengutronix.de>
+From:   Dan Scally <dan.scally@ideasonboard.com>
+Subject: Re: [PATCH v5 3/3] arm64: dts: Add device tree for the Debix Model A
+ Board
+In-Reply-To: <20221206162448.5hq4l3tifu5mlmhh@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -67,105 +55,335 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/12/2022 19:13, Laurent Pinchart wrote:
-> Hi Tomi,
-> 
-> Thank you for the patch.
-> 
-> On Thu, Dec 08, 2022 at 12:40:01PM +0200, Tomi Valkeinen wrote:
->> Add DT bindings for TI DS90UB913 FPDLink-3 Serializer.
+Hi Marco
+
+On 06/12/2022 16:24, Marco Felsch wrote:
+> Hi Daniel,
+>
+> sorry for jumping in that late, please see my comment(s) inline.
+
+
+No problem - thanks for commenting
+
+>
+> On 22-12-06, Daniel Scally wrote:
+>> Add a device tree file describing the Debix Model A board from
+>> Polyhex Technology Co.
 >>
->> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+>> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>> Tested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>> Tested-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
+>> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
 >> ---
->>   .../bindings/media/i2c/ti,ds90ub913.yaml      | 121 ++++++++++++++++++
->>   1 file changed, 121 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/media/i2c/ti,ds90ub913.yaml
+>> Changes in v5:
 >>
->> diff --git a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub913.yaml b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub913.yaml
->> new file mode 100644
->> index 000000000000..3a5b34c6bb64
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub913.yaml
->> @@ -0,0 +1,121 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/media/i2c/ti,ds90ub913.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Texas Instruments DS90UB913 FPD-Link 3 Serializer
-> 
-> I think TI consistently writes it "FPD-Link III". If you rename it,
-> please do so through the whole series.
+>>          - Fixed some formatting (blank lines, compatible property order) (Shawn)
+>>          - Renamed the led nodes (Shawn)
+>>          - Added the less specific compatible string (Ahmad)
+>>          - Added a comment describing the eth phy (Ahmad)
+>>          - Removed some elements that turn out to be unused (Ahmad)
+> It would be cool to see the whole history.
 
-Indeed, good point.
 
->> +
->> +maintainers:
->> +  - Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
->> +
->> +description:
->> +  The TI DS90UB913 is an FPD-Link 3 video serializer for parallel video.
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - ti,ds90ub913a-q1
-> 
-> Is the -q1 suffix needed, are there other variants ?
+I can include that in the next one :)
 
-I'm not sure, but I couldn't see at a quick glance. I don't know what 
-the -q1 means. Even if many of the FPD-Link devices have -q1, there are 
-models without -q1, like DS90CF366. Oh, all those non-q1s seem to be 
-from Catalog, and -q1 versions from Automotive. But the -q1 seems to be 
-part of the model name, so... Maybe it's better to keep it.
+>
+>>   arch/arm64/boot/dts/freescale/Makefile        |   1 +
+>>   .../dts/freescale/imx8mp-debix-model-a.dts    | 509 ++++++++++++++++++
+>>   2 files changed, 510 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
+> ...
+>
+>> +&iomuxc {
+>> +	pinctrl-names = "default";
+> This is useless if you have no pinctrl-0.
 
-https://www.ti.com/interface/high-speed-serdes/fpd-link-serdes/products.html
+Ack!
+>
+>> +	pinctrl_eqos: eqosgrp {
+>> +		fsl,pins = <
+>> +			MX8MP_IOMUXC_ENET_MDC__ENET_QOS_MDC				0x3
+>> +			MX8MP_IOMUXC_ENET_MDIO__ENET_QOS_MDIO				0x3
+>> +			MX8MP_IOMUXC_ENET_RD0__ENET_QOS_RGMII_RD0			0x91
+>> +			MX8MP_IOMUXC_ENET_RD1__ENET_QOS_RGMII_RD1			0x91
+>> +			MX8MP_IOMUXC_ENET_RD2__ENET_QOS_RGMII_RD2			0x91
+>> +			MX8MP_IOMUXC_ENET_RD3__ENET_QOS_RGMII_RD3			0x91
+>> +			MX8MP_IOMUXC_ENET_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x91
+>> +			MX8MP_IOMUXC_ENET_RX_CTL__ENET_QOS_RGMII_RX_CTL			0x91
+>> +			MX8MP_IOMUXC_ENET_TD0__ENET_QOS_RGMII_TD0			0x1f
+>> +			MX8MP_IOMUXC_ENET_TD1__ENET_QOS_RGMII_TD1			0x1f
+>> +			MX8MP_IOMUXC_ENET_TD2__ENET_QOS_RGMII_TD2			0x1f
+>> +			MX8MP_IOMUXC_ENET_TD3__ENET_QOS_RGMII_TD3			0x1f
+>> +			MX8MP_IOMUXC_ENET_TX_CTL__ENET_QOS_RGMII_TX_CTL			0x1f
+>> +			MX8MP_IOMUXC_ENET_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x1f
+>> +			MX8MP_IOMUXC_SAI1_RXFS__ENET1_1588_EVENT0_IN			0x1f
+>> +			MX8MP_IOMUXC_SAI1_RXC__ENET1_1588_EVENT0_OUT			0x1f
+>> +			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18				0x19
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_fec: fecgrp {
+>> +		fsl,pins = <
+>> +			MX8MP_IOMUXC_SAI1_RXD2__ENET1_MDC				0x3
+>> +			MX8MP_IOMUXC_SAI1_RXD3__ENET1_MDIO				0x3
+>> +			MX8MP_IOMUXC_SAI1_RXD4__ENET1_RGMII_RD0				0x91
+>> +			MX8MP_IOMUXC_SAI1_RXD5__ENET1_RGMII_RD1				0x91
+>> +			MX8MP_IOMUXC_SAI1_RXD6__ENET1_RGMII_RD2				0x91
+>> +			MX8MP_IOMUXC_SAI1_RXD7__ENET1_RGMII_RD3				0x91
+>> +			MX8MP_IOMUXC_SAI1_TXC__ENET1_RGMII_RXC				0x91
+>> +			MX8MP_IOMUXC_SAI1_TXFS__ENET1_RGMII_RX_CTL			0x91
+>> +			MX8MP_IOMUXC_SAI1_TXD0__ENET1_RGMII_TD0				0x1f
+>> +			MX8MP_IOMUXC_SAI1_TXD1__ENET1_RGMII_TD1				0x1f
+>> +			MX8MP_IOMUXC_SAI1_TXD2__ENET1_RGMII_TD2				0x1f
+>> +			MX8MP_IOMUXC_SAI1_TXD3__ENET1_RGMII_TD3				0x1f
+>> +			MX8MP_IOMUXC_SAI1_TXD4__ENET1_RGMII_TX_CTL			0x1f
+>> +			MX8MP_IOMUXC_SAI1_TXD5__ENET1_RGMII_TXC				0x1f
+>> +			MX8MP_IOMUXC_SAI1_RXD1__ENET1_1588_EVENT1_OUT			0x1f
+>> +			MX8MP_IOMUXC_SAI1_RXD0__ENET1_1588_EVENT1_IN			0x1f
+>> +			MX8MP_IOMUXC_SAI1_TXD7__GPIO4_IO19				0x19
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_gpio_led: gpioledgrp {
+>> +		fsl,pins = <
+>> +			MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16				0x19
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_i2c1: i2c1grp {
+>> +		fsl,pins = <
+>> +			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL					0x400001c2
+>> +			MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA					0x400001c2
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_i2c2: i2c2grp {
+>> +		fsl,pins = <
+>> +			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL					0x400001c2
+>> +			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA					0x400001c2
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_i2c3: i2c3grp {
+>> +		fsl,pins = <
+>> +			MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL					0x400001c2
+>> +			MX8MP_IOMUXC_I2C3_SDA__I2C3_SDA					0x400001c2
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_i2c4: i2c4grp {
+>> +		fsl,pins = <
+>> +			MX8MP_IOMUXC_I2C4_SCL__I2C4_SCL					0x400001c3
+>> +			MX8MP_IOMUXC_I2C4_SDA__I2C4_SDA					0x400001c3
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_i2c6: i2c6grp {
+>> +		fsl,pins = <
+>> +			MX8MP_IOMUXC_SAI5_RXFS__I2C6_SCL				0x400001c3
+>> +			MX8MP_IOMUXC_SAI5_RXC__I2C6_SDA					0x400001c3
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_pmic: pmicirqgrp {
+>> +		fsl,pins = <
+>> +			MX8MP_IOMUXC_GPIO1_IO03__GPIO1_IO03				0x41
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
+>> +		fsl,pins = <
+>> +			MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19				0x41
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_rtc_int: rtcintgrp {
+>> +		fsl,pins = <
+>> +			MX8MP_IOMUXC_SD1_STROBE__GPIO2_IO11				0x140
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_uart2: uart2grp {
+>> +		fsl,pins = <
+>> +			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX				0x14f
+>> +			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX				0x14f
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_uart3: uart3grp {
+>> +		fsl,pins = <
+>> +			MX8MP_IOMUXC_UART3_RXD__UART3_DCE_RX				0x49
+>> +			MX8MP_IOMUXC_UART3_TXD__UART3_DCE_TX				0x49
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_uart4: uart4grp {
+>> +		fsl,pins = <
+>> +			MX8MP_IOMUXC_UART4_RXD__UART4_DCE_RX				0x49
+>> +			MX8MP_IOMUXC_UART4_TXD__UART4_DCE_TX				0x49
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_usdhc2: usdhc2grp {
+>> +		fsl,pins = <
+>> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK				0x190
+>> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD				0x1d0
+>> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0				0x1d0
+>> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1				0x1d0
+>> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2				0x1d0
+>> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3				0x1d0
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
+>> +		fsl,pins = <
+>> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK				0x194
+>> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD				0x1d4
+>> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0				0x1d4
+>> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1				0x1d4
+>> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2				0x1d4
+>> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3				0x1d4
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
+>> +		fsl,pins = <
+>> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK				0x196
+>> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD				0x1d6
+>> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0				0x1d6
+>> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1				0x1d6
+>> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2				0x1d6
+>> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3				0x1d6
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
+>> +		fsl,pins = <
+>> +			MX8MP_IOMUXC_SD2_CD_B__GPIO2_IO12				0x1c4
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_usdhc3: usdhc3grp {
+>> +		fsl,pins = <
+>> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK				0x190
+>> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD				0x1d0
+>> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0				0x1d0
+>> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1				0x1d0
+>> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2				0x1d0
+>> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3				0x1d0
+>> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4				0x1d0
+>> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5				0x1d0
+>> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6				0x1d0
+>> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7				0x1d0
+>> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE				0x190
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
+>> +		fsl,pins = <
+>> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK				0x194
+>> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD				0x1d4
+>> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0				0x1d4
+>> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1				0x1d4
+>> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2				0x1d4
+>> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3				0x1d4
+>> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4				0x1d4
+>> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5				0x1d4
+>> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6				0x1d4
+>> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7				0x1d4
+>> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE				0x194
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
+>> +		fsl,pins = <
+>> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK				0x196
+>> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD				0x1d6
+>> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0				0x1d6
+>> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1				0x1d6
+>> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2				0x1d6
+>> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3				0x1d6
+>> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4				0x1d6
+>> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5				0x1d6
+>> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6				0x1d6
+>> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7				0x1d6
+>> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE				0x196
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_wdog: wdoggrp {
+>> +		fsl,pins = <
+>> +			MX8MP_IOMUXC_GPIO1_IO02__WDOG1_WDOG_B				0xc6
+>> +		>;
+>> +	};
+>> +};
+> We order the DTS alphabetical but the iomuxc is the only exception here.
+> Since this is very long it is quite common to put it at the end.
 
->> +
->> +  '#gpio-cells':
->> +    const: 2
->> +
->> +  gpio-controller: true
->> +
->> +  clocks:
->> +    maxItems: 1
->> +    description:
->> +      Reference clock connected to the CLKIN pin.
->> +
->> +  clock-names:
->> +    items:
->> +      - const: clkin
->> +
->> +  '#clock-cells':
->> +    const: 0
->> +
->> +  ports:
->> +    $ref: /schemas/graph.yaml#/properties/ports
->> +
->> +    properties:
->> +      port@0:
->> +        $ref: /schemas/graph.yaml#/$defs/port-base
->> +        unevaluatedProperties: false
->> +        description: CSI-2 input port
->> +
->> +        properties:
->> +          endpoint:
->> +            $ref: /schemas/media/video-interfaces.yaml#
->> +            unevaluatedProperties: false
->> +
->> +      port@1:
->> +        $ref: /schemas/graph.yaml#/properties/port
->> +        unevaluatedProperties: false
->> +        description: FPD-Link 3 output port
-> 
-> I'd add
-> 
->      required:
->        - port@0
->        - port@1
+OK - will do.
 
-Ok.
-
-  Tomi
-
+>
+> Regards,
+>    Marco
+>
+>> +
+>> +&snvs_pwrkey {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&uart2 {
+>> +	/* console */
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_uart2>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&uart3 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_uart3>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&uart4 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_uart4>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +/* SD Card */
+>> +&usdhc2 {
+>> +	assigned-clocks = <&clk IMX8MP_CLK_USDHC2>;
+>> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+>> +	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
+>> +	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
+>> +	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
+>> +	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
+>> +	vmmc-supply = <&reg_usdhc2_vmmc>;
+>> +	bus-width = <4>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +/* eMMC */
+>> +&usdhc3 {
+>> +	assigned-clocks = <&clk IMX8MP_CLK_USDHC3>;
+>> +	assigned-clock-rates = <400000000>;
+>> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+>> +	pinctrl-0 = <&pinctrl_usdhc3>;
+>> +	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
+>> +	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
+>> +	bus-width = <8>;
+>> +	non-removable;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&wdog1 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_wdog>;
+>> +	fsl,ext-reset-output;
+>> +	status = "okay";
+>> +};
+>> -- 
+>> 2.34.1
+>>
+>>
+>>
