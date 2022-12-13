@@ -2,88 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3906164B39C
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 11:52:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D254664B3E4
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 12:12:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234954AbiLMKwk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 05:52:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42698 "EHLO
+        id S230200AbiLMLMW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 06:12:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234491AbiLMKwj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 05:52:39 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1595240;
-        Tue, 13 Dec 2022 02:52:37 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id v7so7988560wmn.0;
-        Tue, 13 Dec 2022 02:52:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DMxFOXBv9LnNZ6YjEoVy07fikCsdOyEW4hQ8sBJcKFs=;
-        b=hqwO3fukcegwkk4cL7rmEd4LF9aJCeSbjA+o7bnjNtqywfmK3n95y1+SMu8itscRAT
-         FM5c+AS28Jt/lyqGL/wgAQuXoiBXbkioo+AzOgO7Phn2PwAEQ/wmBwV2PvmoEQBOrCYY
-         Cw6jR/QL7o/QE6ilYGHVxyw/uMm4TLcN5/J6UJNu5mDWgMs1pQxRpKKHBQgPaiMEjcIq
-         w1nG29Iq3spstgd/QuSl5VP1d1Fw1j5o0A77pp/riZDDD8GBTL8V8faBB/GQtWG5iDHX
-         CJfNGAw13WBXEnvv1VOtq8JvyMS6cf7Xxt9uK0tN1YE0S4F+csyv2lGrMsHMdHtacJC0
-         Fs3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DMxFOXBv9LnNZ6YjEoVy07fikCsdOyEW4hQ8sBJcKFs=;
-        b=Se9frMfMSucVwryPtRTepE78GsjgFDnvDbosWCvjaXBBlLqH2ggTlJlAOpm8Is1PEa
-         /JEhVOruVAthpv6f6quyvMltOorqn/KW0Luvc6XxlXrGoUMhIAUwQtKfUQWKxH3/KoES
-         3H1xz2sHMFrGtv7MT2F6o2gKfz6c4ZHy55ckztoAu4Ot9KnMFjN9sLoFbXDnX/MJQEmh
-         8Si15pHS3JjApPapKETv1aUznRF202htzij0K/da+YGeD/1EgVnmzR0xwKmF64AG6zTz
-         qMjQVeVwqIaFFG4vSyefFNVWG0jJ0ouuebd2sDDLxOVt1fsIqEfph6L78ms5XW1jA733
-         JxEw==
-X-Gm-Message-State: ANoB5pmp3asgzWC9TIzfhbld1d/fSECJSB3Zj2HshUMT/GvqwajDVHL2
-        bmlrfLaOaigUbbeAOTnKR0mies5QRzI=
-X-Google-Smtp-Source: AA0mqf7mWwFpBamChx+Rh5h+Sg5K85tFvzMUwe6grn20jxGOq2H/TRGUaY4C9J3zMP4htc/XjQWx6w==
-X-Received: by 2002:a05:600c:4fc6:b0:3d2:14ec:f6b1 with SMTP id o6-20020a05600c4fc600b003d214ecf6b1mr9968333wmq.14.1670928756034;
-        Tue, 13 Dec 2022 02:52:36 -0800 (PST)
-Received: from debian (host-78-150-37-98.as13285.net. [78.150.37.98])
-        by smtp.gmail.com with ESMTPSA id k18-20020a05600c1c9200b003d22528decesm8709380wms.43.2022.12.13.02.52.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Dec 2022 02:52:35 -0800 (PST)
-Date:   Tue, 13 Dec 2022 10:52:34 +0000
-From:   "Sudip Mukherjee (Codethink)" <sudipm.mukherjee@gmail.com>
-To:     Andre Przywara <andre.przywara@arm.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S235319AbiLMLLg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 06:11:36 -0500
+Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [5.144.164.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 188EFF5D
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 03:11:22 -0800 (PST)
+Received: from SoMainline.org (94-209-172-39.cable.dynamic.v4.ziggo.nl [94.209.172.39])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 5B01F3F664;
+        Tue, 13 Dec 2022 12:11:20 +0100 (CET)
+Date:   Tue, 13 Dec 2022 12:11:19 +0100
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org,
+        patches@linaro.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Linus Torvalds <torvalds@linux-foundation.org>
-Subject: mainline build failure due to e1d7dc52c3e6 ("ARM: dts: suniv:
- f1c100s: add CIR DT node")
-Message-ID: <Y5hZcmnZHsgpv3Pu@debian>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sm8350-sagami: Rectify GPIO keys
+Message-ID: <20221213111119.g3lzt5heevfarvf7@SoMainline.org>
+References: <20221210133850.3664-1-konrad.dybcio@linaro.org>
+ <20221213090349.bvatkmozbf5tjsxc@SoMainline.org>
+ <0c6bad50-500c-00b0-30c3-853b0c0a6d5e@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <0c6bad50-500c-00b0-30c3-853b0c0a6d5e@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi All,
+On 2022-12-13 11:23:12, Konrad Dybcio wrote:
+> 
+> 
+> On 13.12.2022 10:03, Marijn Suijten wrote:
+> > On 2022-12-10 14:38:50, Konrad Dybcio wrote:
+> >> With enough pins set properly, the hardware buttons now also work
+> >> like a charm.
+> >>
+> >> Fixes: c2721b0c23d9 ("arm64: dts: qcom: Add support for Xperia 1 III / 5 III")
+> >> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> > 
+> > Tested-by: Marijn Suijten <marijn.suijten@somainline.org> # On Xperia 5 III
+> > 
+> > However I also tested this on Xperia 1 III, and...
+> > 
+> >> ---
+> >>  .../qcom/sm8350-sony-xperia-sagami-pdx214.dts | 24 ++++++++++
+> >>  .../dts/qcom/sm8350-sony-xperia-sagami.dtsi   | 47 ++++++++++++++++++-
+> >>  2 files changed, 70 insertions(+), 1 deletion(-)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx214.dts b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx214.dts
+> >> index e6824c8c2774..6fa830bdc6bd 100644
+> >> --- a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx214.dts
+> >> +++ b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx214.dts
+> >> @@ -10,6 +10,20 @@
+> >>  / {
+> >>  	model = "Sony Xperia 5 III";
+> >>  	compatible = "sony,pdx214-generic", "qcom,sm8350";
+> >> +
+> >> +	gpio-keys {
+> >> +		pinctrl-names = "default";
+> >> +		pinctrl-0 = <&focus_n &snapshot_n &vol_down_n &g_assist_n>;
+> >> +
+> >> +		key-google-assist {
+> >> +			label = "Google Assistant Key";
+> >> +			gpios = <&pm8350_gpios 9 GPIO_ACTIVE_LOW>;
+> >> +			linux,code = <KEY_LEFTMETA>;
+> >> +			debounce-interval = <15>;
+> >> +			linux,can-disable;
+> >> +			gpio-key,wakeup;
+> >> +		};
+> >> +	};
+> > 
+> > ... please move this to board DTS.  Xperia 1 III would also like to have
+> > it mapped.  Downstream DT indicates, and my local testing confirms, that
+> > it is identical to Xperia 5 III (i.e. common to the Sagami board).
+> > 
+> > The other buttons work great on both devices!
+> While I'd agree that having it like that would be nice for completeness,
+> it's:
+> 
+> - not necessary, as the button is not physically there, so the user will
+> never come into contact with it
 
-The latest mainline kernel branch fails to build arm allmodconfig and
-multi_v5_defconfig with the error:
+I have the device in my hand right now and, unless I take an angle
+grinder to it, it has this button.
 
-Error: arch/arm/boot/dts/suniv-f1c100s.dtsi:250.30-31 syntax error
-FATAL ERROR: Unable to parse input tree
+How else did you expect me to successfully test it?
 
-git bisect pointed to e1d7dc52c3e6 ("ARM: dts: suniv: f1c100s: add CIR DT node")
+Maybe you are confused with Xperia 1 IV, which does _not_ have the
+button.  Nor does Xperia 1 II, for that matter.
 
-I will be happy to test any patch or provide any extra log if needed.
+- Marijn
 
-
--- 
-Regards
-Sudip
+> - it will leak power, the plan is to park all unused pins after we get
+> "good enough" support for our devices (not now, so as not to mess with
+> ourselves in the dev process)
+> 
+> Konrad
