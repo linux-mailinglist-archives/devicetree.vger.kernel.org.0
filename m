@@ -2,79 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2449364BAA3
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 18:10:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3E8364BABB
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 18:15:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235622AbiLMRKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 12:10:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37970 "EHLO
+        id S235954AbiLMRPN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 12:15:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235216AbiLMRKH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 12:10:07 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9CC66B10;
-        Tue, 13 Dec 2022 09:10:05 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F07392F4;
-        Tue, 13 Dec 2022 09:10:45 -0800 (PST)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5B5B03F5A1;
-        Tue, 13 Dec 2022 09:10:04 -0800 (PST)
-Date:   Tue, 13 Dec 2022 17:10:02 +0000
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     "Sudip Mukherjee (Codethink)" <sudipm.mukherjee@gmail.com>
-Cc:     Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Linus Torvalds <torvalds@linux-foundation.org>
-Subject: Re: mainline build failure due to e1d7dc52c3e6 ("ARM: dts: suniv:
- f1c100s: add CIR DT node")
-Message-ID: <20221213171002.23c8c712@donnerap.cambridge.arm.com>
-In-Reply-To: <Y5hZcmnZHsgpv3Pu@debian>
-References: <Y5hZcmnZHsgpv3Pu@debian>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        with ESMTP id S236098AbiLMRPJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 12:15:09 -0500
+Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8FF76279;
+        Tue, 13 Dec 2022 09:15:08 -0800 (PST)
+Received: by mail-vk1-f176.google.com with SMTP id l17so1885279vkk.3;
+        Tue, 13 Dec 2022 09:15:08 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7aP+igB0NaircxiSkGrnkdOtF08vfazQfrJeriBa6Dg=;
+        b=a/yYLXDMvd9VOEXFjQOVmO8O+D1+oUxiKwFaXwinnMGgeBAG/aY/40ZEemwe6Q9Mhg
+         hsLM9iIbhWP/Qxv7W+k0EAWZnNBsxu/b2GEj2OmZkSLoL3aRaDaU8gIKesp9eG8Va89l
+         yP9rJZAc1KiPQK+THcqyDxW3s4xBbHdBXe9/1KK/2+Weo01H/AReGfzdxlBZx73KUF9l
+         f9UrcT/+ap0fX3WYGlxKULn+V6ZnwVoWhStnx2QL7cRJIMWt1ikwY/v+ELzdBe1tZ1p3
+         VEFgmk0x3IqmmkeuCTU9iIpZHhnIhJIhMrRXwtLfmK1Ddk87blHjiqqRVI1oLhUbEUwn
+         lz8w==
+X-Gm-Message-State: ANoB5pm8wahtKRadylwEMYxZhATdi8ZWLGtXQq8MHJ0ISpXaRvoPzYNN
+        hpyOWbHTRIY+cjgJZ5aeG/01w3iTfq2zww==
+X-Google-Smtp-Source: AA0mqf6SgxemQ55PkdkD98xgLHlzxm24HIV5Csb9Y9zAn72OVWrtjFPY5qyUqj964xChfnRueCG2nA==
+X-Received: by 2002:a1f:a10e:0:b0:3be:16a9:6019 with SMTP id k14-20020a1fa10e000000b003be16a96019mr8691301vke.9.1670951707474;
+        Tue, 13 Dec 2022 09:15:07 -0800 (PST)
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com. [209.85.128.170])
+        by smtp.gmail.com with ESMTPSA id v19-20020a05620a0f1300b006e16dcf99c8sm8264306qkl.71.2022.12.13.09.15.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Dec 2022 09:15:07 -0800 (PST)
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-417b63464c6so101451337b3.8;
+        Tue, 13 Dec 2022 09:15:06 -0800 (PST)
+X-Received: by 2002:a0d:dd4b:0:b0:370:61f5:b19e with SMTP id
+ g72-20020a0ddd4b000000b0037061f5b19emr27207087ywe.316.1670951706562; Tue, 13
+ Dec 2022 09:15:06 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+References: <20221212115505.36770-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20221212115505.36770-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20221212115505.36770-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 13 Dec 2022 18:14:55 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXeeCoHNt0tSD51HmexQG7qVBnJO+-_pURix7fr678LNQ@mail.gmail.com>
+Message-ID: <CAMuHMdXeeCoHNt0tSD51HmexQG7qVBnJO+-_pURix7fr678LNQ@mail.gmail.com>
+Subject: Re: [PATCH v5 4/6] riscv: mm: dma-noncoherent: Pass direction and
+ operation to ALT_CMO_OP()
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Guo Ren <guoren@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 13 Dec 2022 10:52:34 +0000
-"Sudip Mukherjee (Codethink)" <sudipm.mukherjee@gmail.com> wrote:
+Hi Prabhakar,
 
-Hi Sudip,
+On Mon, Dec 12, 2022 at 12:55 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Pass direction and operation to ALT_CMO_OP() macro.
+>
+> Vendors might want to perform different operations based on the direction
+> and callbacks (arch_sync_dma_for_device/arch_sync_dma_for_cpu/
+> arch_dma_prep_coherent) so to handle such cases pass the direction and
+> operation to ALT_CMO_OP() macro. This is in preparation for adding errata
+> for the Andes CPU core.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-thanks for the heads up.
+Thanks for your patch!
 
-> The latest mainline kernel branch fails to build arm allmodconfig and
-> multi_v5_defconfig with the error:
-> 
-> Error: arch/arm/boot/dts/suniv-f1c100s.dtsi:250.30-31 syntax error
-> FATAL ERROR: Unable to parse input tree
+> --- a/arch/riscv/include/asm/errata_list.h
+> +++ b/arch/riscv/include/asm/errata_list.h
+> @@ -124,7 +124,7 @@ asm volatile(ALTERNATIVE(                                           \
+>  #define THEAD_flush_A0 ".long 0x0275000b"
+>  #define THEAD_SYNC_S   ".long 0x0190000b"
+>
+> -#define ALT_CMO_OP(_op, _start, _size, _cachesize)                     \
+> +#define ALT_CMO_OP(_op, _start, _size, _cachesize, _dir, _ops)         \
 
-This is because the clock patch hasn't reached Linus' tree yet, as it's
-coming from a different branch:
-https://git.kernel.org/pub/scm/linux/kernel/git/sunxi/linux.git/log/?h=sunxi/clk-for-6.2
+Since commit a49ab905a1fc8630 ("RISC-V: Implement arch specific PMEM
+APIs") in riscv/for-next, there are two new users of this macro,
+which need to be updated to (add two zeroes?).
 
-In the original series I had it in the right order, but I guess the single
-line to add the "CLK_IR" symbol should have been in a separate patch and
-gone along with the DT patches.
-Anyway it should magically solve itself in the next hours/days, I guess.
+Gr{oetje,eeting}s,
 
-Cheers,
-Andre
+                        Geert
 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-> git bisect pointed to e1d7dc52c3e6 ("ARM: dts: suniv: f1c100s: add CIR DT node")
-> 
-> I will be happy to test any patch or provide any extra log if needed.
-> 
-> 
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
