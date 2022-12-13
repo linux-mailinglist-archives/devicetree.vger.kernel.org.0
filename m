@@ -2,52 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FF2564B5FB
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 14:21:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 463BF64B600
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 14:23:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235463AbiLMNVP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 08:21:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39708 "EHLO
+        id S234296AbiLMNXH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 08:23:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235196AbiLMNVO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 08:21:14 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 645341F9DF
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 05:21:12 -0800 (PST)
-Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id DBC9C7C5;
-        Tue, 13 Dec 2022 14:21:08 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1670937670;
-        bh=HJLe6TvXUNyT+jWOfCjz4AF6p9Gs4JgfLzIQuJBEBdg=;
-        h=Date:To:Cc:References:From:Subject:In-Reply-To:From;
-        b=DJURwsOehf6pNqqE+0VJ6pYjCr4P4qxfOI8M+enaF7V+Cg6qkY2Fo1/yOG4PazZgW
-         z053uewXYRx2c0IkWRgp5JPfKtMkEtoNFftJuoOn2wos+oflHsVeDObXwr8v42unSD
-         b2d3EK2e500sB5C1rQiq53htkYCwlXc3lDg633UU=
-Message-ID: <0be8490e-d878-99e8-3b8b-6fbb056a66e8@ideasonboard.com>
-Date:   Tue, 13 Dec 2022 13:21:06 +0000
+        with ESMTP id S230061AbiLMNXG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 08:23:06 -0500
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E53A17E20;
+        Tue, 13 Dec 2022 05:23:04 -0800 (PST)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 1C113240013;
+        Tue, 13 Dec 2022 13:22:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1670937782;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=jL+xcBOYdD78r23PS31gaU3YWiITl+rwOOygEItoozc=;
+        b=R9lbeAi05SXD39ZRp974M2gOcfxUCkydItXUcL25E8l+i3X9Q10gtIXNvsjFoeHZ0mGAof
+        hlmzRAxYl2EBM+jdc/2tMtHqWNJUf3tASXMOhILMNJWwKgpccTEQgz7+c9sKsSpa5utsIN
+        hQ2zETYa1IjOKLpkNHZkh9r/c3B08ex+NbIteQYr2joiySEOj7D0Y4dqNlOrJxR69D7tAm
+        2iW0SMlg8c6mNtQyOI7Kdpp/l+XH3AzZACxHCmq4APQD84EzakheDHpDwpX3giYhWycz5c
+        ny1MOiwborctRk5UbT7cTWtbzIuOok26jp2YPH0P6KsscYO8dAmEhb+or5X0Uw==
+Date:   Tue, 13 Dec 2022 14:22:58 +0100
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: Re: [PATCH v3 3/9] dt-bindings: PCI: renesas,pci-rcar-gen2:
+ 'depends-on' is no more optional
+Message-ID: <20221213142258.77767caf@bootlin.com>
+In-Reply-To: <15cb7a77-4308-15f0-4669-7a2673b4abcb@linaro.org>
+References: <20221207162435.1001782-1-herve.codina@bootlin.com>
+        <20221207162435.1001782-4-herve.codina@bootlin.com>
+        <36895e49-aea5-3676-e7df-78b30277e6a0@linaro.org>
+        <20221208100530.137fa8b7@bootlin.com>
+        <8dfb5b8a-766a-14ec-16d4-74fdd9f7d622@linaro.org>
+        <20221208165101.584e4b92@bootlin.com>
+        <15cb7a77-4308-15f0-4669-7a2673b4abcb@linaro.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Content-Language: en-US
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     krzysztof.kozlowski@linaro.org, shawnguo@kernel.org,
-        robh@kernel.org, marcel.ziswiler@toradex.com, leoyang.li@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        s.hauer@pengutronix.de, kieran.bingham@ideasonboard.com,
-        debix-tech@polyhex.net, linux-imx@nxp.com, kernel@pengutronix.de,
-        festevam@gmail.com, laurent.pinchart@ideasonboard.com
-References: <20221206154414.1461492-1-dan.scally@ideasonboard.com>
- <20221206154414.1461492-4-dan.scally@ideasonboard.com>
- <20221206162448.5hq4l3tifu5mlmhh@pengutronix.de>
-From:   Dan Scally <dan.scally@ideasonboard.com>
-Subject: Re: [PATCH v5 3/3] arm64: dts: Add device tree for the Debix Model A
- Board
-In-Reply-To: <20221206162448.5hq4l3tifu5mlmhh@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,335 +70,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marco
+Hi Krzysztof,
 
-On 06/12/2022 16:24, Marco Felsch wrote:
-> Hi Daniel,
->
-> sorry for jumping in that late, please see my comment(s) inline.
+On Fri, 9 Dec 2022 09:06:55 +0100
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
+> On 08/12/2022 16:51, Herve Codina wrote:
+> > Hi Krzysztof,
+> >=20
+> > On Thu, 8 Dec 2022 10:46:32 +0100
+> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> >  =20
+> >> On 08/12/2022 10:05, Herve Codina wrote: =20
+> >>> Hi Krzysztof,
+> >>>
+> >>> On Thu, 8 Dec 2022 09:26:41 +0100
+> >>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> >>>    =20
+> >>>> On 07/12/2022 17:24, Herve Codina wrote:   =20
+> >>>>> The 'depends-on' property is set in involved DTS.
+> >>>>>
+> >>>>> Move it to a required property.
+> >>>>>
+> >>>>> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> >>>>> ---
+> >>>>>  Documentation/devicetree/bindings/pci/renesas,pci-rcar-gen2.yaml |=
+ 1 +     =20
+> >>>>
+> >>>> This should be squashed with previous patch. There is no point to add
+> >>>> property and immediately in the next patch make it required. Remember
+> >>>> that bindings are separate from DTS.
+> >>>>
+> >>>> Best regards,
+> >>>> Krzysztof
+> >>>>   =20
+> >>>
+> >>> I though about make dtbs_check in case of git bisect.   =20
+> >>
+> >> And what would this commit change? In Git you will have
+> >> 1. dt-bindings: PCI: renesas,pci-rcar-gen2: Add depends-on for RZ/N1 S=
+oC
+> >> family
+> >> 2. dt-bindings: PCI: renesas,pci-rcar-gen2: 'depends-on' is no more op=
+tional
+> >>
+> >> so what is the difference for git bisect? =20
+> >=20
+> > Well, today, I have:
+> > 1. dt-bindings: Add depends-on
+> > 2. dts: Add depends-on
+> > 3. dt-bindings: Move depends-on to mandatory =20
+>=20
+> What does it mean "I have"? Patches on mailing list? But we talk about
+> Git and I wrote you bindings are DTS are not going the same tree.
+>=20
+> >=20
+> > If I squash dt-bindings commits, I am going to have:
+> >   1. dt-bindings: Add mandatory depends-on
+> >   2. dts: Add depends-on
+> > or
+> >   1. dts: Add depends-on
+> >   2. dt-bindings: Add mandatory depends-on =20
+>=20
+> And how does it matter? Anyway it goes separate trees.
 
-No problem - thanks for commenting
+I finally understand what you mean by separate trees.
+And indeed, you're right, my patches split does not make
+any sense.
 
->
-> On 22-12-06, Daniel Scally wrote:
->> Add a device tree file describing the Debix Model A board from
->> Polyhex Technology Co.
->>
->> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->> Tested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->> Tested-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
->> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
->> ---
->> Changes in v5:
->>
->>          - Fixed some formatting (blank lines, compatible property order) (Shawn)
->>          - Renamed the led nodes (Shawn)
->>          - Added the less specific compatible string (Ahmad)
->>          - Added a comment describing the eth phy (Ahmad)
->>          - Removed some elements that turn out to be unused (Ahmad)
-> It would be cool to see the whole history.
+According to feedbacks on this v3 series, these 3 patches
+will be removed in v4.
 
+Thanks for the review,
+Herv=C3=A9
 
-I can include that in the next one :)
-
->
->>   arch/arm64/boot/dts/freescale/Makefile        |   1 +
->>   .../dts/freescale/imx8mp-debix-model-a.dts    | 509 ++++++++++++++++++
->>   2 files changed, 510 insertions(+)
->>   create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-> ...
->
->> +&iomuxc {
->> +	pinctrl-names = "default";
-> This is useless if you have no pinctrl-0.
-
-Ack!
->
->> +	pinctrl_eqos: eqosgrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_ENET_MDC__ENET_QOS_MDC				0x3
->> +			MX8MP_IOMUXC_ENET_MDIO__ENET_QOS_MDIO				0x3
->> +			MX8MP_IOMUXC_ENET_RD0__ENET_QOS_RGMII_RD0			0x91
->> +			MX8MP_IOMUXC_ENET_RD1__ENET_QOS_RGMII_RD1			0x91
->> +			MX8MP_IOMUXC_ENET_RD2__ENET_QOS_RGMII_RD2			0x91
->> +			MX8MP_IOMUXC_ENET_RD3__ENET_QOS_RGMII_RD3			0x91
->> +			MX8MP_IOMUXC_ENET_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x91
->> +			MX8MP_IOMUXC_ENET_RX_CTL__ENET_QOS_RGMII_RX_CTL			0x91
->> +			MX8MP_IOMUXC_ENET_TD0__ENET_QOS_RGMII_TD0			0x1f
->> +			MX8MP_IOMUXC_ENET_TD1__ENET_QOS_RGMII_TD1			0x1f
->> +			MX8MP_IOMUXC_ENET_TD2__ENET_QOS_RGMII_TD2			0x1f
->> +			MX8MP_IOMUXC_ENET_TD3__ENET_QOS_RGMII_TD3			0x1f
->> +			MX8MP_IOMUXC_ENET_TX_CTL__ENET_QOS_RGMII_TX_CTL			0x1f
->> +			MX8MP_IOMUXC_ENET_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x1f
->> +			MX8MP_IOMUXC_SAI1_RXFS__ENET1_1588_EVENT0_IN			0x1f
->> +			MX8MP_IOMUXC_SAI1_RXC__ENET1_1588_EVENT0_OUT			0x1f
->> +			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18				0x19
->> +		>;
->> +	};
->> +
->> +	pinctrl_fec: fecgrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_SAI1_RXD2__ENET1_MDC				0x3
->> +			MX8MP_IOMUXC_SAI1_RXD3__ENET1_MDIO				0x3
->> +			MX8MP_IOMUXC_SAI1_RXD4__ENET1_RGMII_RD0				0x91
->> +			MX8MP_IOMUXC_SAI1_RXD5__ENET1_RGMII_RD1				0x91
->> +			MX8MP_IOMUXC_SAI1_RXD6__ENET1_RGMII_RD2				0x91
->> +			MX8MP_IOMUXC_SAI1_RXD7__ENET1_RGMII_RD3				0x91
->> +			MX8MP_IOMUXC_SAI1_TXC__ENET1_RGMII_RXC				0x91
->> +			MX8MP_IOMUXC_SAI1_TXFS__ENET1_RGMII_RX_CTL			0x91
->> +			MX8MP_IOMUXC_SAI1_TXD0__ENET1_RGMII_TD0				0x1f
->> +			MX8MP_IOMUXC_SAI1_TXD1__ENET1_RGMII_TD1				0x1f
->> +			MX8MP_IOMUXC_SAI1_TXD2__ENET1_RGMII_TD2				0x1f
->> +			MX8MP_IOMUXC_SAI1_TXD3__ENET1_RGMII_TD3				0x1f
->> +			MX8MP_IOMUXC_SAI1_TXD4__ENET1_RGMII_TX_CTL			0x1f
->> +			MX8MP_IOMUXC_SAI1_TXD5__ENET1_RGMII_TXC				0x1f
->> +			MX8MP_IOMUXC_SAI1_RXD1__ENET1_1588_EVENT1_OUT			0x1f
->> +			MX8MP_IOMUXC_SAI1_RXD0__ENET1_1588_EVENT1_IN			0x1f
->> +			MX8MP_IOMUXC_SAI1_TXD7__GPIO4_IO19				0x19
->> +		>;
->> +	};
->> +
->> +	pinctrl_gpio_led: gpioledgrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16				0x19
->> +		>;
->> +	};
->> +
->> +	pinctrl_i2c1: i2c1grp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL					0x400001c2
->> +			MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA					0x400001c2
->> +		>;
->> +	};
->> +
->> +	pinctrl_i2c2: i2c2grp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL					0x400001c2
->> +			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA					0x400001c2
->> +		>;
->> +	};
->> +
->> +	pinctrl_i2c3: i2c3grp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL					0x400001c2
->> +			MX8MP_IOMUXC_I2C3_SDA__I2C3_SDA					0x400001c2
->> +		>;
->> +	};
->> +
->> +	pinctrl_i2c4: i2c4grp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_I2C4_SCL__I2C4_SCL					0x400001c3
->> +			MX8MP_IOMUXC_I2C4_SDA__I2C4_SDA					0x400001c3
->> +		>;
->> +	};
->> +
->> +	pinctrl_i2c6: i2c6grp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_SAI5_RXFS__I2C6_SCL				0x400001c3
->> +			MX8MP_IOMUXC_SAI5_RXC__I2C6_SDA					0x400001c3
->> +		>;
->> +	};
->> +
->> +	pinctrl_pmic: pmicirqgrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_GPIO1_IO03__GPIO1_IO03				0x41
->> +		>;
->> +	};
->> +
->> +	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19				0x41
->> +		>;
->> +	};
->> +
->> +	pinctrl_rtc_int: rtcintgrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_SD1_STROBE__GPIO2_IO11				0x140
->> +		>;
->> +	};
->> +
->> +	pinctrl_uart2: uart2grp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX				0x14f
->> +			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX				0x14f
->> +		>;
->> +	};
->> +
->> +	pinctrl_uart3: uart3grp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_UART3_RXD__UART3_DCE_RX				0x49
->> +			MX8MP_IOMUXC_UART3_TXD__UART3_DCE_TX				0x49
->> +		>;
->> +	};
->> +
->> +	pinctrl_uart4: uart4grp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_UART4_RXD__UART4_DCE_RX				0x49
->> +			MX8MP_IOMUXC_UART4_TXD__UART4_DCE_TX				0x49
->> +		>;
->> +	};
->> +
->> +	pinctrl_usdhc2: usdhc2grp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK				0x190
->> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD				0x1d0
->> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0				0x1d0
->> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1				0x1d0
->> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2				0x1d0
->> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3				0x1d0
->> +		>;
->> +	};
->> +
->> +	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK				0x194
->> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD				0x1d4
->> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0				0x1d4
->> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1				0x1d4
->> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2				0x1d4
->> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3				0x1d4
->> +		>;
->> +	};
->> +
->> +	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK				0x196
->> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD				0x1d6
->> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0				0x1d6
->> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1				0x1d6
->> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2				0x1d6
->> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3				0x1d6
->> +		>;
->> +	};
->> +
->> +	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_SD2_CD_B__GPIO2_IO12				0x1c4
->> +		>;
->> +	};
->> +
->> +	pinctrl_usdhc3: usdhc3grp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK				0x190
->> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD				0x1d0
->> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0				0x1d0
->> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1				0x1d0
->> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2				0x1d0
->> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3				0x1d0
->> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4				0x1d0
->> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5				0x1d0
->> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6				0x1d0
->> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7				0x1d0
->> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE				0x190
->> +		>;
->> +	};
->> +
->> +	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK				0x194
->> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD				0x1d4
->> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0				0x1d4
->> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1				0x1d4
->> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2				0x1d4
->> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3				0x1d4
->> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4				0x1d4
->> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5				0x1d4
->> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6				0x1d4
->> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7				0x1d4
->> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE				0x194
->> +		>;
->> +	};
->> +
->> +	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK				0x196
->> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD				0x1d6
->> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0				0x1d6
->> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1				0x1d6
->> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2				0x1d6
->> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3				0x1d6
->> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4				0x1d6
->> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5				0x1d6
->> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6				0x1d6
->> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7				0x1d6
->> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE				0x196
->> +		>;
->> +	};
->> +
->> +	pinctrl_wdog: wdoggrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_GPIO1_IO02__WDOG1_WDOG_B				0xc6
->> +		>;
->> +	};
->> +};
-> We order the DTS alphabetical but the iomuxc is the only exception here.
-> Since this is very long it is quite common to put it at the end.
-
-OK - will do.
-
->
-> Regards,
->    Marco
->
->> +
->> +&snvs_pwrkey {
->> +	status = "okay";
->> +};
->> +
->> +&uart2 {
->> +	/* console */
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_uart2>;
->> +	status = "okay";
->> +};
->> +
->> +&uart3 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_uart3>;
->> +	status = "okay";
->> +};
->> +
->> +&uart4 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_uart4>;
->> +	status = "okay";
->> +};
->> +
->> +/* SD Card */
->> +&usdhc2 {
->> +	assigned-clocks = <&clk IMX8MP_CLK_USDHC2>;
->> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
->> +	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
->> +	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
->> +	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
->> +	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
->> +	vmmc-supply = <&reg_usdhc2_vmmc>;
->> +	bus-width = <4>;
->> +	status = "okay";
->> +};
->> +
->> +/* eMMC */
->> +&usdhc3 {
->> +	assigned-clocks = <&clk IMX8MP_CLK_USDHC3>;
->> +	assigned-clock-rates = <400000000>;
->> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
->> +	pinctrl-0 = <&pinctrl_usdhc3>;
->> +	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
->> +	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
->> +	bus-width = <8>;
->> +	non-removable;
->> +	status = "okay";
->> +};
->> +
->> +&wdog1 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_wdog>;
->> +	fsl,ext-reset-output;
->> +	status = "okay";
->> +};
->> -- 
->> 2.34.1
->>
->>
->>
+--=20
+Herv=C3=A9 Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
