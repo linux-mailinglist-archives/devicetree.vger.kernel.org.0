@@ -2,104 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7426C64B17C
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 09:49:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AC9964B18C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 09:52:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234882AbiLMItB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 03:49:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57998 "EHLO
+        id S231421AbiLMIwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 03:52:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234858AbiLMIsG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 03:48:06 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA0C71A390
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 00:48:04 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id co23so14855170wrb.4
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 00:48:04 -0800 (PST)
+        with ESMTP id S234839AbiLMIvq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 03:51:46 -0500
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFE79BC06
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 00:51:45 -0800 (PST)
+Received: by mail-yb1-xb2c.google.com with SMTP id s11so16804994ybe.2
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 00:51:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=V8Zjj3N/Rus1SUj60QIPVCtKEcMrA/Mh+KnOE6zWGQQ=;
-        b=DzbTaCKlcSRjCYFGuV+AZ+zl/Uk7/q5BX8CDbZivcZks1YBMRajl9TsAkGpQ8v9ecE
-         I3MtFlh7um6HblRxWKty5U9MxWUbjN9TJ3Ov7+ASBwvX7+HiGZWQYY0iQPLD9W+RE3Kl
-         RD1qyyLXzyPS0qjGZWyKg5bjR5f5mTylrem2U7o369tYA0iCFjmMunGkqL9K1O4mT0QO
-         LHgwQ1xn5j0llsiso4O/tkKLQ7BKwlYN2CD40/94h0vCwvmmngCUdrnEaQJHSw+DNA+6
-         W/Epk2p9U4txXabivW0zNOc3exw0YMvEeCnvWgPHxpHKwghTNPomqJ5BsxbLP/Um6AIS
-         nl3w==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=cJvRbaiPchBmTkfubLEGTz0Ogu9fRyx82WgeZC745Dk=;
+        b=ZpHfmBlgH+6RvPy+iw040Q1a/x2t0YWMLcJwMQD3S8cZdwC/xYa+V6HyUN7KGXpi+2
+         36YMqlrgVPV1zrkc93/2NZakTM4vx/ImER9F352ObvZeibsGV4teZQxkE/fo1tzifH9e
+         Yc2iHtdCSEqVWV1GeUjQ5uYzbstfwfUdnZXjPfJSSPTlkYFKUVLJ0MmJ9wt8P7L4gquG
+         CBDrtjx+mNywlWR3ftbIetLyixDXPymvK9WF3eIHs7dzj5woK+oEmTy20MbcNQEwsJ8X
+         ZgsHwnJ3uWSNL5sHsL2Tn1Xku2LecpnHCqdZA5A43kZa+PgJWfiH4yZvot9cU+yLMVo0
+         j8BA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=V8Zjj3N/Rus1SUj60QIPVCtKEcMrA/Mh+KnOE6zWGQQ=;
-        b=2rAZ5wvd+KZYGytO+3ffGcsJBxYirAmC9AOJV97fmkkFCu67Wwus3mM36D3lzoBGjE
-         r9RSmmkBgDisgvyf6wjyad/iAFONvnD2jJDtj4wzBB81diio0m6oLAKEhUFv0LTszfSX
-         zEvuQ7gR8LonFTDsCYGO7Mb/G/3qCPzpm42ndxsfk5mFKMrUSPMWIOLCWoULL5IG98xW
-         VUuLASF8FIOqPuVyCcxwIuyzfOPeCoO+LI2P6cg+fkvQI7+Fwe3l7FAsX3Cx8EOVFeTK
-         9fAPw3SYKT8q5e7A4lm0ivppzp28yEHRF39l+hgt1zfkYWpLeNUD6MIhXzQGa8seTjuh
-         Br6w==
-X-Gm-Message-State: ANoB5pnjYFKf7eupKThfH7KkJjjwIHznzrucu9x1Uejw9xWBPxDFBcHq
-        /yBmKlYR9+22icPir+GHIpfY+w==
-X-Google-Smtp-Source: AA0mqf5rUlKo1swuyzbiW4JK9YiojP4ez25mYVh7JGfYdULVwWzXg+jgiRlAHFdeXqfNSS59HxvDfQ==
-X-Received: by 2002:a05:6000:1c2:b0:242:63e5:fdaa with SMTP id t2-20020a05600001c200b0024263e5fdaamr10915979wrx.62.1670921283123;
-        Tue, 13 Dec 2022 00:48:03 -0800 (PST)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id x1-20020a5d60c1000000b00241c712916fsm12953578wrt.0.2022.12.13.00.48.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Dec 2022 00:48:02 -0800 (PST)
-Message-ID: <11c88b9c-00f0-d1b0-8a98-059a58e456f7@linaro.org>
-Date:   Tue, 13 Dec 2022 09:48:01 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cJvRbaiPchBmTkfubLEGTz0Ogu9fRyx82WgeZC745Dk=;
+        b=kiArRedP7Y06bA9bDC92d0Sdms9o97qsl6ItGLAvLKolqkAkgTa0rklVGLghsOnw7V
+         MNmpbgdgoZmY6rO3CPIA22rvf9ivauNNrFSWbCMVwhxamz0Gmmo1Q3p4tPVF0ojJvSQr
+         i4TjfLfyX3nCdFeiCR5MeaLePeMgBreRX89l8mbuZlz+iLtoMVWoPLUR1gszNimNwewh
+         vI4l0G3Ay3EOpae6KUHL714FgC9snR6jYp+AV/b+JPK9b6N77Cs0wpv6YHnvn8G6RWuf
+         rXkjsYRgFOW9gKfHkBmRay+zwLad8IZwK2LdDmSs9NO697Qp2kYMGUIxVceRV+imKuNw
+         0+9g==
+X-Gm-Message-State: ANoB5pkKmMB5Thk9gUOSi8hrzbdBM1A+ljb0P5teypbR5D6Ys53Xhlbl
+        9yZTQqQuuGeQ9/Wq6trrnsaydjtEFsdtbg+Jbk2/IQ==
+X-Google-Smtp-Source: AA0mqf4FpckKPAuWRQQ8f1huRLbn/zDOCLdbrA1eKTP4TVYP5K7QRu9Fo8bs6ostcX0AVXjxTtAkgaXDGmofby9tx84=
+X-Received: by 2002:a25:d2ce:0:b0:710:f2e2:eb92 with SMTP id
+ j197-20020a25d2ce000000b00710f2e2eb92mr2938674ybg.304.1670921504954; Tue, 13
+ Dec 2022 00:51:44 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v8 2/8] dt-bindings: timer: rk-timer: Add rktimer for
- rv1126
-Content-Language: en-US
-To:     Jagan Teki <jagan@edgeble.ai>, Heiko Stuebner <heiko@sntech.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Johan Jonker <jbx6244@gmail.com>
-References: <20221123183124.6911-1-jagan@edgeble.ai>
- <20221123183124.6911-3-jagan@edgeble.ai>
- <CA+VMnFwVt=t6kmYrvGgSJdkZDnHMuxKPHtyFCU7vBaGHa4hc6Q@mail.gmail.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <CA+VMnFwVt=t6kmYrvGgSJdkZDnHMuxKPHtyFCU7vBaGHa4hc6Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+References: <11af73e05bad75e4ef49067515e3214f6d944b3d.camel@gmail.com>
+In-Reply-To: <11af73e05bad75e4ef49067515e3214f6d944b3d.camel@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 13 Dec 2022 09:51:33 +0100
+Message-ID: <CACRpkdaXxPE3XhPnprhJ7GGjn9X_GMsCJ3mn26P90GcHzhsQDg@mail.gmail.com>
+Subject: Re: [PATCH] of: fdt: Honor CONFIG_CMDLINE* even without /chosen node
+To:     Alexander Sverdlin <alexander.sverdlin@gmail.com>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@kernel.org>,
+        Nikita Shubin <nikita.shubin@maquefel.me>,
+        Hartley Sweeten <hsweeten@visionengravers.com>,
+        Lukasz Majewski <lukma@denx.de>,
+        Linus Walleij <linusw@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
-X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/12/2022 08:50, Jagan Teki wrote:
-> On Thu, 24 Nov 2022 at 00:02, Jagan Teki <jagan@edgeble.ai> wrote:
->>
->> Add rockchip timer compatible string for rockchip rv1126.
->>
->> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
->> ---
-> 
-> Daniel or Can someone please pick this? Heiko is holding this series
-> due to this patch.
+On Mon, Dec 12, 2022 at 7:01 AM Alexander Sverdlin
+<alexander.sverdlin@gmail.com> wrote:
 
-Applied, with a trivial conflict fix
+> I do not read a strict requirement on /chosen node in either ePAPR or in
+> Documentation/devicetree. Help text for CONFIG_CMDLINE and
+> CONFIG_CMDLINE_EXTEND doesn't make their behavior explicitly dependent on
+> the presence of /chosen or the presense of /chosen/bootargs.
+>
+> However the early check for /chosen and bailing out in
+> early_init_dt_scan_chosen() skips CONFIG_CMDLINE handling which is not
+> really related to /chosen node or the particular method of passing cmdline
+> from bootloader.
+>
+> This leads to counterintuitive combinations (assuming
+> CONFIG_CMDLINE_EXTEND=y):
+>
+> a) bootargs="foo", CONFIG_CMDLINE="bar" => cmdline=="foo bar"
+> b) /chosen missing, CONFIG_CMDLINE="bar" => cmdline==""
+> c) bootargs="", CONFIG_CMDLINE="bar" => cmdline==" bar"
+>
+> Move CONFIG_CMDLINE handling outside of early_init_dt_scan_chosen() so that
+> cases b and c above result in the same cmdline.
+>
+> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
 
-Thanks
+Excellent debugging Alexander!
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+I also think this should go to stable.
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
-
+Yours,
+Linus Walleij
