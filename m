@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6674664B269
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 10:34:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83C2B64B26B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 10:34:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234858AbiLMJeZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 04:34:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59980 "EHLO
+        id S234856AbiLMJec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 04:34:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234871AbiLMJeV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 04:34:21 -0500
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D45FFDFD2
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 01:34:18 -0800 (PST)
-Received: by mail-lj1-x229.google.com with SMTP id z4so2700734ljq.6
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 01:34:18 -0800 (PST)
+        with ESMTP id S234491AbiLMJeb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 04:34:31 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51956958A
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 01:34:30 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id g7so3960360lfv.5
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 01:34:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8+nrOD5xKvpcWbF/6CtQ+UieL4B0mg2+teiLt7T6rsk=;
-        b=h+egXjBxP4hMd9aJAoLuJ2N7wx2CEhIrDmt3QQyXn/PDN1FHH53+vdh/CEuVJ2J43k
-         wr/RaiFiu9MlvLw/IwHf8bwHdj/akmMcF+TzehEB97JPyRPFc2LYKJvg7PDASk3EIfsU
-         zG74RMZoSoGKb6/hXT09jAfWeDIKGLjwtCGsOdKSCbR9gHq1KzPuEbSbBZ6L2qoBwHsC
-         wBgq1xfXczXSZouGtdytiK9m/6k401oh1+A5ZIdC9Fyfy2lRcb+pG/FG3M2ABsfFzm4o
-         NulWfa5M0r7HmcOe2iNlId/s1KE1qimHZAR3AcoX9JWfXVtUK9omW8yFKUt6CFrJohU1
-         dvfA==
+        bh=1znzfLM2fpZoyXEAxi0AvEM2dIkGyoBW60l3XjJaSEA=;
+        b=n9Cl9+JmQIkVm+iAzNrWOe3bgqua8o0vIQB6hk45kfSkMBf9C6Jcx8KD9wpeIDV//3
+         aIC95rDxMZuR4m4ZEl9tRD0vaOh/85jlqLP0VdhgMJXiBLCPukS8I13DPhCDOn0jBQ4b
+         5EvUC21QQaJSsIRvI2BiUuFMJxYczxQx7K09XXERqT9NtB8K1EaTxFBuAzVGdfxNv7u6
+         mUKfJOZ+pyAsQr7k+M0HQvR4NrIeJVo498h/WMVUaw1ENf8fiq1wpp5olQP/qNN6Mszn
+         coCQ2OOofCWmdjVvP+wmYN3/fCH7PClRJhSs2Adg84xRLVjGsPkwn1orYqmc/geuXm2v
+         E9/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8+nrOD5xKvpcWbF/6CtQ+UieL4B0mg2+teiLt7T6rsk=;
-        b=ADiMPiI+TdPn5ZXRti1Ms28VEp8T0ONDlE3GVOYV1lr1j1CqjbJfGrjyuk95nYoC/3
-         EJRgHxtuK7eFUjHdTy6DiOgrRCxhTwyVMpU3074KZJ5MUQ7Ikx4eKRVnewGAl9Jr8U88
-         kQwfpkEJO7i8JBGYUnABOM3wWD2xxr5dK+AGmK2RlOIfK3TGfNAMjqorYu1546TLroPb
-         G2aJc2WxINW31KA6XpRoO8oLpP1JXX17a6pUFvaiqAIfCwMWNtTmnZJOEz0bnC9AIeqy
-         sOCDtE1YgKgpjq+itubu8Y60u3hTrzTVEO2/WfGJ5u+jEOTsLm1ka7k6SsrQKE31RQsL
-         a0EA==
-X-Gm-Message-State: ANoB5pnEhMyXEnVmov/rHzDxMXm0v7LAJFWRP38FDHy5b0planBwne3j
-        b7NehWmNMnTWqBF0SsCEYUclNA==
-X-Google-Smtp-Source: AA0mqf7wnUWstl0PLplOvicPucK7DelOR1xO2j/44KQMMefKL243dJw5bv0crlcV5NYVa0Eb5B7iAw==
-X-Received: by 2002:a2e:730b:0:b0:279:fdf2:65a0 with SMTP id o11-20020a2e730b000000b00279fdf265a0mr4678370ljc.12.1670924057236;
-        Tue, 13 Dec 2022 01:34:17 -0800 (PST)
+        bh=1znzfLM2fpZoyXEAxi0AvEM2dIkGyoBW60l3XjJaSEA=;
+        b=Wk5pJr1nziivhu1De+707ZbL23CFUOn2Sf063ctBxTF+xrD4xLvFO09ECLi1dkvsJ8
+         LhX5C8gMD22DNjNJtZSWVPA3//T4jBENQV25YJWNU98QSP6OaRQdZgFsCsEQcH5QAgKk
+         /HrzgZ57/CVOsdDu93t+3JTaT7Yd0xgKnUHvcmHYE42xmc7or/gjvKV6bASj0AraWDHl
+         a4blLQt96X0gM/f2kak54u0OJJBsperL2qX00qr/37T2cbCEPT1vYVrMJtfHMnYM+fmc
+         evJDY23xMw5uLTxEKzq7d3jvC9UQasFyofSYg5Uo06fo1XpyHzn3tGyNAmDbR9LCLAP9
+         ZqOA==
+X-Gm-Message-State: ANoB5pmI/ODs+m5TPiJO3TE9WXmbzCHuvMBpT54pUdgllNGHcHcrTu9S
+        DOmLg5ZDB3ztI7Ten+CkmZDTOA==
+X-Google-Smtp-Source: AA0mqf7ak8qR2rqconS9W/OXJB3uvpQ0+sM8ZGEcE6eznSHGq3yTTJIEhPNyBoU2b7R5M/9ZY/X5/A==
+X-Received: by 2002:a05:6512:340c:b0:4b6:e22f:51a6 with SMTP id i12-20020a056512340c00b004b6e22f51a6mr2992726lfr.53.1670924068615;
+        Tue, 13 Dec 2022 01:34:28 -0800 (PST)
 Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id bf19-20020a2eaa13000000b0026fb1c3e6ddsm187254ljb.62.2022.12.13.01.34.15
+        by smtp.gmail.com with ESMTPSA id s7-20020a197707000000b0049fbf5facf4sm289782lfc.75.2022.12.13.01.34.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Dec 2022 01:34:16 -0800 (PST)
-Message-ID: <cc9014eb-f7e5-53e4-64d0-f29a57f45589@linaro.org>
-Date:   Tue, 13 Dec 2022 10:34:15 +0100
+        Tue, 13 Dec 2022 01:34:28 -0800 (PST)
+Message-ID: <804c3ece-7744-4184-9a64-c93d3c35d5b1@linaro.org>
+Date:   Tue, 13 Dec 2022 10:34:27 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH 09/12] ARM: dts: qcom: ipq8064: drop second clock
+Subject: Re: [PATCH 10/12] ARM: dts: qcom: mdm9615: drop second clock
  frequency from timer
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
@@ -65,9 +65,9 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20221212163532.142533-1-krzysztof.kozlowski@linaro.org>
- <20221212163532.142533-9-krzysztof.kozlowski@linaro.org>
+ <20221212163532.142533-10-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221212163532.142533-9-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221212163532.142533-10-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -92,20 +92,20 @@ On 12.12.2022 17:35, Krzysztof Kozlowski wrote:
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm/boot/dts/qcom-ipq8064.dtsi | 3 +--
+>  arch/arm/boot/dts/qcom-mdm9615.dtsi | 3 +--
 >  1 file changed, 1 insertion(+), 2 deletions(-)
 > 
-> diff --git a/arch/arm/boot/dts/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-> index 9daafe9de02a..ae018a7dc6fd 100644
-> --- a/arch/arm/boot/dts/qcom-ipq8064.dtsi
-> +++ b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-> @@ -562,8 +562,7 @@ IRQ_TYPE_EDGE_RISING)>,
->  				     <GIC_PPI 5 (GIC_CPU_MASK_SIMPLE(2) |
->  						 IRQ_TYPE_EDGE_RISING)>;
+> diff --git a/arch/arm/boot/dts/qcom-mdm9615.dtsi b/arch/arm/boot/dts/qcom-mdm9615.dtsi
+> index b0fe1d95d88f..a6331e5ebe09 100644
+> --- a/arch/arm/boot/dts/qcom-mdm9615.dtsi
+> +++ b/arch/arm/boot/dts/qcom-mdm9615.dtsi
+> @@ -84,8 +84,7 @@ timer@200a000 {
+>  				     <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_EDGE_RISING)>,
+>  				     <GIC_PPI 3 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_EDGE_RISING)>;
 >  			reg = <0x0200a000 0x100>;
-> -			clock-frequency = <25000000>,
+> -			clock-frequency = <27000000>,
 > -					  <32768>;
-> +			clock-frequency = <25000000>;
->  			clocks = <&sleep_clk>;
->  			clock-names = "sleep";
+> +			clock-frequency = <27000000>;
 >  			cpu-offset = <0x80000>;
+>  		};
+>  
