@@ -2,91 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4792964B7D7
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 15:53:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D273A64B7E2
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 15:55:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229999AbiLMOxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 09:53:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39320 "EHLO
+        id S236055AbiLMOyr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 09:54:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235077AbiLMOxR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 09:53:17 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABACF11A2D
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 06:53:15 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id q6so5267347lfm.10
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 06:53:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JZNYw0cYbv8pEkdRU/rmPHESxuk7T+6SVi5xDvP+lXg=;
-        b=LkNxPVXA5NjXY+RrcA2AvC/pJlxkhLpHnMLqaNm3GnoTz+q7MUVL9oxGVKjOD+AsWb
-         HEYmM234BHnq0CU6JDD47H//9PMu5ddp3BPvFCiCLxFyh/D7zohiuG2cus8ZpTYMPNyz
-         KTwBALPrQGVr90wcCZFjsHkRxtwGOg9K2mryQ0xdesmOlY7VB7gd692s6C5U/HYJ/jQp
-         ircxeB94mOGLsnEU2evwBqpzi0FE01vLDtxvnHULDAQ4qHOKPQhmiTNCc/oObokutEsq
-         DNqztCv9cLP4AKGEuxQO/mPEFXoj3IfT9J/oOIIo88FY+LY1aSbp11kRl2z/8JuPlOD7
-         H5mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JZNYw0cYbv8pEkdRU/rmPHESxuk7T+6SVi5xDvP+lXg=;
-        b=mPvKvijxzCbZWVCMf/XYGbLktsr9vQaWAQEL+V+W52KPpu9BWjqyuGqCL7felO8VJu
-         ghP6ze5vPufLBrG1LM0DcFjObttYrrm8VQPmC0DRnaecMGzjhJVhZzh3fbLnWblJyFEU
-         50O2Z/DQ51N7u6qo7CS8kOU97sJThHpTYpp0wCqRADPlACaW14/bI4mhF4ddZFtXtmtn
-         FGZcuoORtYhcOJOSKW0IJbwBu01XVsyzA0YXl2nogUZBu++2ppJDVZ2BVd51Vae4KXfs
-         V0Gud79k0UFVtIfKuyCS4sSuzi060EnAjrgtuFPa9fHNdadvUcPaNibYpLMkG2OlVe7G
-         rPYA==
-X-Gm-Message-State: ANoB5pnwwz2i040D8N3FiZbMiCpAI0U0eK6TS8y0S7XxoqFc3JiZDPwT
-        ticAbHtMBzTMfOz7PkZqBKvgPTRFzl9X/W6K
-X-Google-Smtp-Source: AA0mqf7YZIMIYnF/AmUtETOj9iiwd9xDCo5UgQllt34v31+ROEtCiOLrSziUzTKt/t324aCAka0ZXA==
-X-Received: by 2002:ac2:57c2:0:b0:4b6:7212:3bfb with SMTP id k2-20020ac257c2000000b004b672123bfbmr3787642lfo.0.1670943194112;
-        Tue, 13 Dec 2022 06:53:14 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id u17-20020ac24c31000000b00497a32e2576sm398112lfq.32.2022.12.13.06.53.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Dec 2022 06:53:13 -0800 (PST)
-Message-ID: <7585e021-a100-0216-c071-551db79c0436@linaro.org>
-Date:   Tue, 13 Dec 2022 15:53:12 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v3 05/17] dt-bindings: watchdog: Fix node descriptions in
- uniphier-wdt example
-Content-Language: en-US
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        with ESMTP id S236053AbiLMOyd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 09:54:33 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C16421822;
+        Tue, 13 Dec 2022 06:54:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net; s=s31663417;
+        t=1670943238; bh=p2V7s/+ws7X71BvYRIZHw7xsRmehJjPbd5XZsH+u/kY=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=EfYG+kjIktEbtgitzOXzPiOmwbfKYZrdBcFfzvLXgM5ccUgKcRm6x57W46TG7PxBB
+         ORQ3ZDeBcniVBw3lYH0D9U6yORuMyftys+LFinsIWieI369Y/ZA9rzE7JFqMbTTizb
+         QbmeSraKJGkxs9N/AkewwQeI5upq0QdhwJEfi2gdKMQp9cN0cuEHiqJrV31NzAEY5D
+         taWNh7m8/ySvMNLj/QVXRUode3imfeaY6FB3rky6iD3CrE+HWIe0udQRr0PU8Mei7Q
+         BvwneEl4BmvQESWI9oqsCkW79E1sSzh/Dn/dqPS1DlGDURcZ+B9VUPM9bmcYiRV+6g
+         lvzJK8mURDP9g==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from probook ([87.166.74.222]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MKbgE-1pLggE305k-00Kvo9; Tue, 13
+ Dec 2022 15:53:58 +0100
+Date:   Tue, 13 Dec 2022 15:53:54 +0100
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        linux-clk@vger.kernel.org, openbmc@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Masami Hiramatsu <mhiramat@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221213082449.2721-1-hayashi.kunihiko@socionext.com>
- <20221213082449.2721-6-hayashi.kunihiko@socionext.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221213082449.2721-6-hayashi.kunihiko@socionext.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v5 5/6] clk: wpcm450: Add Nuvoton WPCM450 clock/reset
+ controller driver
+Message-ID: <Y5iSAmJimekv1vkZ@probook>
+References: <20221104161850.2889894-1-j.neuschaefer@gmx.net>
+ <20221104161850.2889894-6-j.neuschaefer@gmx.net>
+ <CAP6Zq1hjbPpLMWST4cYyMQw_-jewFoSrudOC+FPP5qOxJz4=xw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="BUhB5f8R8Qwj7WNX"
+Content-Disposition: inline
+In-Reply-To: <CAP6Zq1hjbPpLMWST4cYyMQw_-jewFoSrudOC+FPP5qOxJz4=xw@mail.gmail.com>
+X-Provags-ID: V03:K1:qAZlPKx9k174kKCeqsHXUbFKERd19qHGzg2rpCT1Cq/gwIE/rSl
+ FRD4UBzf2HLKJoR7aa60QRyfVkCJGa9VbOQ1jjer8b+RJcBuIPAQhHQ0jL39MfHu+s3D9fJ
+ bopLEv1LIDJV/csOPud+R4TcdnTC6IBl3Z9+aenIAy4/0aMtUHaRO2Na30U0jwK/AiwBf60
+ uzB6JKiSf4O9zNEpE5zRg==
+UI-OutboundReport: notjunk:1;M01:P0:gGW4xdaesKw=;SkdxK5f2/9uUDiqfD41ZIZwzBaU
+ cYDhwjj/Jlo5LplNONkgLkYWeDsGvV4zmUl05FeLi9Z1Aw+9eEUW5d/Z/8mGS3mIVGxQRqsfO
+ jnXj/vjUwUnuighzSRS6OB0Xv+di8nE4pT3SV6bNVkdah57Mub8AehzI9UKff5R8AXpre6Cdq
+ TibfIcKqI1Eq8EjF4zLyYtBzmLbo1Q5WgOFJeClw5s6bKzZHlO40S4i8ecPhKsNNORdsh/cgJ
+ vlj0zIE0pebxFiTRPjvgu68m+fkx1Z0uhzJM5HqvYpgbUTg1HjWI/xYqEywwOjFNv+yVL7K97
+ tKAiMLlz75qVZDugaXs/12CO3KCR+lestoqmmmfdWlsEvk/Yib09e5GbZ+P496ssNcE55EgJ4
+ /oxp1bioFkHob84fR1Swd9oiU6f6eEe6AW9QrW/PemtTx8T+vEl/1etfOaX0DkrLSybXLpOMD
+ 0T4HR1nJJyI7r1QEuT7WBUawXbj7l0Rd4vtK57d7lCY7qNu3nhFT5h1PTZbl+Bda4mhj83b5m
+ w9qYEH9i8TfmqhevkTNz+F+NMEVr6rMCvAcxGqRLG6ljpMErZDmSbfbloRvIvh2YBrRwGHsoL
+ O9tvF8m5QHXNJy403labgjzI1g+C4D1Xg6gNUkTbFaTWMfPDNbf/x6hRpzerHjDTV+wLpJOUO
+ rn5/+BphkMigEtQ/xOu7oW8KLmWflIhcbYs5p2/Px2xE7fHyDYEpf6MoVitcQgoFb2pMmrF0i
+ tbKdpfafkRkCf45kkdIupk1C94XzaqQygbBQX25RWsugFZrcLTgGzWbXX6EodQumGbVb3ArWw
+ OZVfLeDkk0MDEV9y0gYBW2CP0wMs0Yk5C9EhIrSy1vMFldnR/XgpIML/BSJyenzy1+ejnlsSC
+ oNR4o0IP1E7X1dDkFFj+pIoLuxgsRvaxpHhNcbLQWb5I/ti6sQV9XYSRT0Amjq3H9mXpEDuNf
+ iorfu+Sxl1bq1yzK2mrnmRmZcms=
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/12/2022 09:24, Kunihiko Hayashi wrote:
-> Drop a parent node of the watchdog as it is not directly necessary.
-> 
-> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-> ---
->  .../bindings/watchdog/socionext,uniphier-wdt.yaml      | 10 ++--------
+
+--BUhB5f8R8Qwj7WNX
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Dec 12, 2022 at 09:30:46AM +0200, Tomer Maimon wrote:
+> Hi Jonathan,
+>=20
+> Thanks for your patch, and sorry for the late reply.
+>=20
+> On Fri, 4 Nov 2022 at 18:19, Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.=
+net> wrote:
+[...]
+> > diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+> > index de176c2fbad96..de5662830fce8 100644
+> > --- a/drivers/reset/Kconfig
+> > +++ b/drivers/reset/Kconfig
+> > @@ -208,7 +208,7 @@ config RESET_SCMI
+> >
+> >  config RESET_SIMPLE
+> >         bool "Simple Reset Controller Driver" if COMPILE_TEST || EXPERT
+> > -       default ARCH_ASPEED || ARCH_BCMBCA || ARCH_BITMAIN || ARCH_REAL=
+TEK || ARCH_STM32 || (ARCH_INTEL_SOCFPGA && ARM64) || ARCH_SUNXI || ARC
+> > +       default ARCH_ASPEED || ARCH_BCMBCA || ARCH_BITMAIN || ARCH_REAL=
+TEK || ARCH_STM32 || (ARCH_INTEL_SOCFPGA && ARM64) || ARCH_SUNXI || ARC || =
+ARCH_NPCM
+> Please modify the default ARCH_NPCM to the specific Hermon use,
+> ARCH_WPCM450, since NPCM7XX and NPCM8XX use a specific NPCM reset
+> driver.
+> https://elixir.bootlin.com/linux/v6.1-rc8/source/drivers/reset/reset-npcm=
+=2Ec
+> we prefer not to have two reset drivers when compiling ARCH_NPCM.
+
+Good point. I'll fix that.
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thanks,
+J.
 
-Best regards,
-Krzysztof
+--BUhB5f8R8Qwj7WNX
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmOYkdgACgkQCDBEmo7z
+X9sOfw//QKFWxH0SCpUDv5aBRt3V5G0f9oCvOuHlRz1crGkrzdIWLF78mm+rva0m
+y+bUvpCoUuzhLTf8BGSfrnoaORrjzr4PgJXSaCMjjweSBMiG9PETkMtWKSA4rDCS
+X1vaU/OeVHy2eW4qhkgTKAmapy95wnk8lmRgjdeLLRWuuz06bX10wrnJWE8WOox8
+68QJNfQy76Ih5e/yh4lvhaWskzaUxuvLahWoZMMkX7xdUaV+bGfd4ad4tQXHwBy9
+BPHh63CTwUk/aGpPjOJuycdJX0MMZ4h1UNmuHfN/z2f+/rdLF3DtGMS9CYSK+N6z
+rosdZLiuzz3SQ3kB2IoCMbPq/RMtkqGlDTu/qvDh00mZd8DjaXS57u5Si4ElGjPH
+cj9b6YhDhWJO4hQbnHPaHY4hFt6PGqN/odIWYbIxa/ekiEUY8hP9h/LZMAb3d26N
+IUfbqHmb4iQqqLPL/E9NvAsMtrDbZcyHUtMztFThq16yNNEvWv1wqbO+UddcsfK1
+6d45sgggdIbGz2nnvzAf4Ex+SUsp3pVnbqfMmDYmRpGYkwZdOBSXJejqG/OEXzYY
+NVzMQcabti/Kw/u0rxyIYJUPgtdvR/lKWCtEACM7t6zqeVM/4DTsGGfmNXjyP+tJ
+uMivMhp96c6eW9lkZTeMFBMHWyyrA5kGx19FRDbCdURM0qdLr/c=
+=rO9G
+-----END PGP SIGNATURE-----
+
+--BUhB5f8R8Qwj7WNX--
