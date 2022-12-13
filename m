@@ -2,50 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 659D264BF96
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 23:44:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2DF664BFAA
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 23:56:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236833AbiLMWoO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 17:44:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46568 "EHLO
+        id S236256AbiLMW4p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 17:56:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236798AbiLMWoE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 17:44:04 -0500
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D1FFF2314D;
-        Tue, 13 Dec 2022 14:43:47 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="5.96,242,1665414000"; 
-   d="scan'208";a="143229849"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 14 Dec 2022 07:43:47 +0900
-Received: from mulinux.home (unknown [10.226.93.1])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 2149140F4527;
-        Wed, 14 Dec 2022 07:43:41 +0900 (JST)
-From:   Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Lee Jones <lee@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jacopo Mondi <jacopo@jmondi.org>
-Subject: [PATCH 5/5] power: reset: Add new driver for RZ/V2M PWC poweroff
-Date:   Tue, 13 Dec 2022 22:43:10 +0000
-Message-Id: <20221213224310.543243-6-fabrizio.castro.jz@renesas.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221213224310.543243-1-fabrizio.castro.jz@renesas.com>
-References: <20221213224310.543243-1-fabrizio.castro.jz@renesas.com>
+        with ESMTP id S229820AbiLMW4o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 17:56:44 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6C0D2627;
+        Tue, 13 Dec 2022 14:56:43 -0800 (PST)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BDMG1MC003873;
+        Tue, 13 Dec 2022 22:56:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=eGf/kQjP7CRvthcLJP4X8yzvmDFF9Ieg2xIDcosGcRQ=;
+ b=jnTY0zfjpnGGSJKcw7evXUj2+NULr7Pbk7l2WSUriIz/jUKDH89sGtitPfWCI2vK8pDy
+ 5912OIeNVxs4xRaSPy2JbZEpgsmDsiz0PaP54/4XByMrKScuH2yo/eQvJF8tBA43i/WX
+ mFBnrBJjL429OiGqUFQiWdsGkIcyr2tQtSlM56E2KsYIm9UCmX/ojbvQPJ35DLUN4EIP
+ 9zKZSgYfCyAJA0v1U3oC7FnCgKHDtdZEzfkkLRKNzZ9QlM2ePe2e7WzA73WAWwDPDN8J
+ GNNR3zPfvLfhHERgjDu87s/5M0SQGYRCER0qthrOaEnAfNMCg/6jFIFjgMpEn3eMphTw +A== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3meyf7rg20-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 13 Dec 2022 22:56:34 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2BDMuX0k032715
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 13 Dec 2022 22:56:33 GMT
+Received: from khsieh-linux1.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Tue, 13 Dec 2022 14:56:32 -0800
+From:   Kuogee Hsieh <quic_khsieh@quicinc.com>
+To:     <dri-devel@lists.freedesktop.org>, <robdclark@gmail.com>,
+        <sean@poorly.run>, <swboyd@chromium.org>, <dianders@chromium.org>,
+        <vkoul@kernel.org>, <daniel@ffwll.ch>, <agross@kernel.org>,
+        <dmitry.baryshkov@linaro.org>, <andersson@kernel.org>,
+        <konrad.dybcio@somainline.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
+        <airlied@gmail.com>
+CC:     Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        <quic_abhinavk@quicinc.com>, <quic_sbillaka@quicinc.com>,
+        <freedreno@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v13 0/5] Add data-lanes and link-frequencies to dp_out endpoint
+Date:   Tue, 13 Dec 2022 14:56:16 -0800
+Message-ID: <1670972181-4961-1-git-send-email-quic_khsieh@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: BQr_Ir_HiH0b4NzsovmFC7ZO4bo9KirS
+X-Proofpoint-ORIG-GUID: BQr_Ir_HiH0b4NzsovmFC7ZO4bo9KirS
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-12-13_03,2022-12-13_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 phishscore=0 mlxlogscore=853 impostorscore=0 suspectscore=0
+ mlxscore=0 bulkscore=0 spamscore=0 clxscore=1015 adultscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2212130199
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -53,136 +79,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The RZ/V2M PWC IP controls external power supplies and therefore
-can turn the power supplies off when powering down the system.
+Add DP both data-lanes and link-frequencies property to dp_out endpoint and support
+functions to DP driver.
 
-PWC is essentially a Multi-Function Device (MFD), and this driver
-relies on syscon and simple-mfd to integrate within the larger
-scheme of things.
+Kuogee Hsieh (5):
+  arm64: dts: qcom: add data-lanes and link-freuencies into dp_out
+    endpoint
+  dt-bindings: msm/dp: add data-lanes and link-frequencies property
+  drm/msm/dp: parser data-lanes as property of dp_out endpoint
+  drm/msm/dp: parser link-frequencies as property of dp_out endpoint
+  drm/msm/dp: add support of max dp link rate
 
-Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
----
- drivers/power/reset/Kconfig              | 10 +++
- drivers/power/reset/Makefile             |  1 +
- drivers/power/reset/rzv2m-pwc-poweroff.c | 81 ++++++++++++++++++++++++
- 3 files changed, 92 insertions(+)
- create mode 100644 drivers/power/reset/rzv2m-pwc-poweroff.c
+ .../bindings/display/msm/dp-controller.yaml        | 26 ++++++++++-
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi       |  6 ++-
+ arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi     |  6 ++-
+ drivers/gpu/drm/msm/dp/dp_display.c                |  4 ++
+ drivers/gpu/drm/msm/dp/dp_panel.c                  |  7 +--
+ drivers/gpu/drm/msm/dp/dp_panel.h                  |  1 +
+ drivers/gpu/drm/msm/dp/dp_parser.c                 | 52 ++++++++++++++++++----
+ drivers/gpu/drm/msm/dp/dp_parser.h                 |  2 +
+ 8 files changed, 89 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/power/reset/Kconfig b/drivers/power/reset/Kconfig
-index a8c46ba5878f..9f7c9ed1a36e 100644
---- a/drivers/power/reset/Kconfig
-+++ b/drivers/power/reset/Kconfig
-@@ -303,4 +303,14 @@ config POWER_MLXBF
- 	help
- 	  This driver supports reset or low power mode handling for Mellanox BlueField.
- 
-+config POWER_RESET_RZV2M_PWC
-+	tristate "Renesas RZ/V2M PWC Power OFF"
-+	depends on MFD_SYSCON
-+	depends on ARCH_R9A09G011 || COMPILE_TEST
-+	help
-+	  The RZ/V2M PWC IP controls external power supplies and therefore can
-+	  turn the power supplies off when powering down the system.
-+	  Enable this driver when PWC is in control of the system power supplies
-+	  and it's the preferred way to shutdown the system.
-+
- endif
-diff --git a/drivers/power/reset/Makefile b/drivers/power/reset/Makefile
-index 0a39424fc558..f05a8abff2eb 100644
---- a/drivers/power/reset/Makefile
-+++ b/drivers/power/reset/Makefile
-@@ -36,3 +36,4 @@ obj-$(CONFIG_SYSCON_REBOOT_MODE) += syscon-reboot-mode.o
- obj-$(CONFIG_POWER_RESET_SC27XX) += sc27xx-poweroff.o
- obj-$(CONFIG_NVMEM_REBOOT_MODE) += nvmem-reboot-mode.o
- obj-$(CONFIG_POWER_MLXBF) += pwr-mlxbf.o
-+obj-$(CONFIG_POWER_RESET_RZV2M_PWC) += rzv2m-pwc-poweroff.o
-diff --git a/drivers/power/reset/rzv2m-pwc-poweroff.c b/drivers/power/reset/rzv2m-pwc-poweroff.c
-new file mode 100644
-index 000000000000..e9bd16e65b6a
---- /dev/null
-+++ b/drivers/power/reset/rzv2m-pwc-poweroff.c
-@@ -0,0 +1,81 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2022 Renesas Electronics Corporation
-+ *
-+ * Reset driver for Renesas RZ/V2M External Power Sequence Controller (PWC)
-+ */
-+
-+#include <linux/mfd/syscon.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/reboot.h>
-+#include <linux/regmap.h>
-+
-+#define PWC_PWCRST			0x00
-+#define PWC_PWCCKEN			0x04
-+#define PWC_PWCCTL			0x50
-+
-+#define PWC_PWCRST_RSTSOFTAX		0x1
-+#define PWC_PWCCKEN_ENGCKMAIN		0x1
-+#define PWC_PWCCTL_PWOFF		0x1
-+
-+struct rzv2m_pwc_poweroff_priv {
-+	struct regmap *regmap;
-+	struct device *dev;
-+};
-+
-+static int rzv2m_pwc_poweroff(struct sys_off_data *data)
-+{
-+	struct rzv2m_pwc_poweroff_priv *priv =
-+		(struct rzv2m_pwc_poweroff_priv *)data->cb_data;
-+
-+	regmap_write(priv->regmap, PWC_PWCRST, PWC_PWCRST_RSTSOFTAX);
-+	regmap_write(priv->regmap, PWC_PWCCKEN, PWC_PWCCKEN_ENGCKMAIN);
-+	regmap_write(priv->regmap, PWC_PWCCTL, PWC_PWCCTL_PWOFF);
-+
-+	mdelay(150);
-+
-+	dev_err(priv->dev, "Failed to power off the system");
-+
-+	return NOTIFY_DONE;
-+}
-+
-+static int rzv2m_pwc_poweroff_probe(struct platform_device *pdev)
-+{
-+	struct rzv2m_pwc_poweroff_priv *priv;
-+
-+	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->regmap = syscon_regmap_lookup_by_phandle(pdev->dev.of_node,
-+						       "regmap");
-+
-+	if (IS_ERR(priv->regmap))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(priv->regmap),
-+				     "Can't find regmap property");
-+
-+	priv->dev = &pdev->dev;
-+
-+	return devm_register_power_off_handler(&pdev->dev, rzv2m_pwc_poweroff,
-+					       priv);
-+}
-+
-+static const struct of_device_id rzv2m_pwc_poweroff_of_match[] = {
-+	{ .compatible = "renesas,rzv2m-pwc-poweroff" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, rzv2m_pwc_poweroff_of_match);
-+
-+static struct platform_driver rzv2m_pwc_poweroff_driver = {
-+	.probe = rzv2m_pwc_poweroff_probe,
-+	.driver = {
-+		.name = "rzv2m_pwc_poweroff",
-+		.of_match_table = of_match_ptr(rzv2m_pwc_poweroff_of_match),
-+	},
-+};
-+module_platform_driver(rzv2m_pwc_poweroff_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_AUTHOR("Fabrizio Castro <castro.fabrizio.jz@renesas.com>");
-+MODULE_DESCRIPTION("Renesas RZ/V2M PWC power OFF driver");
 -- 
-2.34.1
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
