@@ -2,109 +2,477 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 550B264B138
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 09:32:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DEFDD64B155
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 09:42:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234914AbiLMIcJ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 13 Dec 2022 03:32:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50046 "EHLO
+        id S233761AbiLMImP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 03:42:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234860AbiLMIb0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 03:31:26 -0500
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D8CD62FC;
-        Tue, 13 Dec 2022 00:31:25 -0800 (PST)
-Received: by mail-qt1-f176.google.com with SMTP id h16so11253961qtu.2;
-        Tue, 13 Dec 2022 00:31:25 -0800 (PST)
+        with ESMTP id S231939AbiLMImN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 03:42:13 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2536215816;
+        Tue, 13 Dec 2022 00:42:12 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id i7so203499wrv.8;
+        Tue, 13 Dec 2022 00:42:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8bWuYbccLYmlsDCbZTaH3xdKqDQ0uR+OEo7p2PSCMbQ=;
+        b=fAlaFRtT6MWnwhv9oXNvcW49l6l2AAeXQQD1f8m6j2Uw1XOkadb49LfvoRScAZEIxi
+         Y/zXMr/1XO2BD7VqKBvRoX8r4WDAxxImcDYjcW65HyhXmxrtlg8V6ESTfSqs2nVd5Tvt
+         1uRkIL2PUoqYSEfWHAEng708s4ho9N17owb1a0v/W8e4qh4keiN4QWFjGFp3CBMmCpcV
+         XC1GLySvD8yhkRsml7rPJvG48ng6OqcxrBvUx5c7wIj7LOnAtjWrToSwBCeHfkGWfrOc
+         7ni1wCiy0Ha6fd7UQtbwip0IQ4/2fVyYTYfvJglkrO2FXhy0I5WJXaKtcnjo6y5SNI+K
+         +4HQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Cj2pogcz6ykS5YOcEmS32K1/by57SG2Oy1svNLCAASY=;
-        b=tlvgRbMV5BoKbpTXv6V254Ys3ypNn2z04TPbss8tQCjSSatfSLWbWBN4VzYTK/tDC6
-         L4Bm/h/DMvkdB9yE1R35HSambVZzzxxPpyRJ18YrzhOjb27yCROdUHGegv9LjaqRDVsK
-         At0NCoQhcESdCm80NyyULe4azWpUkQUi4V6IX9ZTQ707iw4LdWBjNCqJhiHExk2NIFoW
-         Th7xOJu/HJgKuab+4HnIPeLdS5Fujl/B/4739E8hqJ8aBFS16joGmK270mikwVRO8hiA
-         AUBgoEEa7PUj3NyIGgNOhaCBJQ/j5aGHGbYH4UCxxK4w5U/QyTDIzUvpvw+TUV49lo79
-         2kbQ==
-X-Gm-Message-State: ANoB5pleZRcb0Zcc4GKFm1Oh2kOpN3pTbrSg+gfOr/8n0lrjhR2h8R3A
-        F5CCuc6hnHkb6oOXHU2mOL6hgThkLW+DFg==
-X-Google-Smtp-Source: AA0mqf6WAVY3T6WLCi0zlWVCvJSHSAXImjAact9+E9kq9txmMBn3RIceWIN1djRJMTUNr+hIMCZ3Zg==
-X-Received: by 2002:a05:622a:4a0c:b0:3a6:2170:b089 with SMTP id fv12-20020a05622a4a0c00b003a62170b089mr4573191qtb.12.1670920283988;
-        Tue, 13 Dec 2022 00:31:23 -0800 (PST)
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com. [209.85.128.173])
-        by smtp.gmail.com with ESMTPSA id u2-20020a37ab02000000b006b615cd8c13sm7228286qke.106.2022.12.13.00.31.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Dec 2022 00:31:23 -0800 (PST)
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-3e45d25de97so182183777b3.6;
-        Tue, 13 Dec 2022 00:31:23 -0800 (PST)
-X-Received: by 2002:a05:690c:f8a:b0:3b4:8af5:48e with SMTP id
- df10-20020a05690c0f8a00b003b48af5048emr1614196ywb.383.1670920283214; Tue, 13
- Dec 2022 00:31:23 -0800 (PST)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8bWuYbccLYmlsDCbZTaH3xdKqDQ0uR+OEo7p2PSCMbQ=;
+        b=EyEhH71xBXnZsdT5iFKChHGd1St990IAnFsC5/XAugQnOb+ep2Av/4qsYPKCkLjTSC
+         5Vdfojvk7i1Q/mL0TKnH6WFfFKKPNNMlDgcnuaMIrnkmEBTvu79pzy0wj4r3tad7mODs
+         8pg6b1FR250FS5gvjYrwhx5ooPeYcSu0a1GGMoOBpXLmL5I8uGi5augr0WuN3CcawYWN
+         0z5Ef88gbRP3LK2v0g89D7UZrDgd0N1+otq+FfZk3/jtGCTAsafpdNm9gql3kOB7r1mq
+         cy7PMgBC6o5fKPT0wmMokzAWmEaOZ4NE2Iepn+r2F4kQ4tRkF/Ab8GzSLEjVFX5rWl0O
+         ASuw==
+X-Gm-Message-State: ANoB5pllq7Akare86/7ErsLsNnobBqS6Mt3DAERGPt65waAcjtXmV+Ee
+        mHnPG476cDN0PzeKsIk+ptA=
+X-Google-Smtp-Source: AA0mqf55eBdCHJzqMUM1TDF83vzjS4Mv/f5aTFQDk/5ZaEUvYM50Vuc/pSEaMWItdaS582K1KIFIfw==
+X-Received: by 2002:adf:e685:0:b0:242:0:83ef with SMTP id r5-20020adfe685000000b00242000083efmr11484743wrm.51.1670920930394;
+        Tue, 13 Dec 2022 00:42:10 -0800 (PST)
+Received: from localhost.localdomain (2a02-8428-46a0-7c01-bc7c-15f1-6c3b-ad74.rev.sfr.net. [2a02:8428:46a0:7c01:bc7c:15f1:6c3b:ad74])
+        by smtp.gmail.com with ESMTPSA id ay2-20020a5d6f02000000b002366e3f1497sm11474037wrb.6.2022.12.13.00.42.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Dec 2022 00:42:09 -0800 (PST)
+From:   Christophe Branchereau <cbranchereau@gmail.com>
+To:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        paul@crapouillou.net
+Cc:     Christophe Branchereau <cbranchereau@gmail.com>
+Subject: [PATCH 1/2] drm/panel: add the orisetech ota5601a
+Date:   Tue, 13 Dec 2022 09:42:02 +0100
+Message-Id: <20221213084203.17729-1-cbranchereau@gmail.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-References: <cover.1669980383.git.geert+renesas@glider.be> <3c0f5b935da4468fe04e2d85becafda0040e4d31.1669980383.git.geert+renesas@glider.be>
- <871qpcm4mu.wl-kuninori.morimoto.gx@renesas.com> <87mt7skwsk.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <87mt7skwsk.wl-kuninori.morimoto.gx@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 13 Dec 2022 09:31:12 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVgDF=wF3Q0_QMecpmmWe1NxyK4BGTNhEvcdS5698cNmg@mail.gmail.com>
-Message-ID: <CAMuHMdVgDF=wF3Q0_QMecpmmWe1NxyK4BGTNhEvcdS5698cNmg@mail.gmail.com>
-Subject: Re: [PATCH/RFC 2/2] arm64: dts: renesas: ulcb-kf: Fix pcm3168a audio
- codec node
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Damien Horsley <Damien.Horsley@imgtec.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Morimoto-san,
+Add the orisetech ota5601a ic driver
 
-On Tue, Dec 13, 2022 at 12:49 AM Kuninori Morimoto
-<kuninori.morimoto.gx@renesas.com> wrote:
-> >    arch/arm64/boot/dts/renesas/r8a77951-ulcb-kf.dtb: audio-codec@44: ports: 'mclk-fs' does not match any of the regexes: '^port@[0-9a-f]+$', 'pinctrl-[0-9]+'
-> >           From schema: Documentation/devicetree/bindings/sound/ti,pcm3168a.yaml
-> >    arch/arm64/boot/dts/renesas/r8a77951-ulcb-kf.dtb: audio-codec@44: ports:port@0:endpoint: Unevaluated properties are not allowed ('clocks' was unexpected)
-> >           From schema: Documentation/devicetree/bindings/sound/ti,pcm3168a.yaml
-> >    arch/arm64/boot/dts/renesas/r8a77951-ulcb-kf.dtb: audio-codec@44: ports:port@1:endpoint: Unevaluated properties are not allowed ('clocks' was unexpected)
-> >           From schema: Documentation/devicetree/bindings/sound/ti,pcm3168a.yaml
-> (snip)
-> > I'm not tested, but in my quick check,
-> > we can use "mclk-fs" under "ports", and we need "clocks" under "endpoint".
-> > So the issue is not dtsi side, but yaml side.
-> >
-> > I will check and fix it, but it will be next week or later.
->
-> I have investigated about this patch, and it needs extra patch
-> which I will post if -rc1 was released.
-> I can merge this patch (with small fixup) into my patch-set.
-> Of course I will keep your name. But is it OK for you ?
+For now it only supports the focaltech gpt3 3" 640x480 ips panel
+found in the ylm rg300x handheld.
 
-Thanks, fine for me!
+Signed-off-by: Christophe Branchereau <cbranchereau@gmail.com>
+---
+ drivers/gpu/drm/panel/Kconfig                 |   9 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ .../gpu/drm/panel/panel-orisetech-ota5601a.c  | 351 ++++++++++++++++++
+ 3 files changed, 361 insertions(+)
+ create mode 100644 drivers/gpu/drm/panel/panel-orisetech-ota5601a.c
 
-♫ All I want for Christmas is ♫... an error-free "make dtbs_check" ;-)
+diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+index a582ddd583c2..2f492e402cd1 100644
+--- a/drivers/gpu/drm/panel/Kconfig
++++ b/drivers/gpu/drm/panel/Kconfig
+@@ -381,6 +381,15 @@ config DRM_PANEL_OLIMEX_LCD_OLINUXINO
+ 	  Say Y here if you want to enable support for Olimex Ltd.
+ 	  LCD-OLinuXino panel.
+ 
++config DRM_PANEL_ORISETECH_OTA5601A
++	tristate "Orise Technology ota5601a RGB/SPI panel"
++	depends on OF && SPI
++	depends on BACKLIGHT_CLASS_DEVICE
++	select REGMAP_SPI
++	help
++	  Say Y here if you want to enable support for the panels built
++	  around the Orise Technology OTA9601A display controller.
++
+ config DRM_PANEL_ORISETECH_OTM8009A
+ 	tristate "Orise Technology otm8009a 480x800 dsi 2dl panel"
+ 	depends on OF
+diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
+index 34e717382dbb..91d1870312af 100644
+--- a/drivers/gpu/drm/panel/Makefile
++++ b/drivers/gpu/drm/panel/Makefile
+@@ -35,6 +35,7 @@ obj-$(CONFIG_DRM_PANEL_NOVATEK_NT36672A) += panel-novatek-nt36672a.o
+ obj-$(CONFIG_DRM_PANEL_NOVATEK_NT39016) += panel-novatek-nt39016.o
+ obj-$(CONFIG_DRM_PANEL_MANTIX_MLAF057WE51) += panel-mantix-mlaf057we51.o
+ obj-$(CONFIG_DRM_PANEL_OLIMEX_LCD_OLINUXINO) += panel-olimex-lcd-olinuxino.o
++obj-$(CONFIG_DRM_PANEL_ORISETECH_OTA5601A) += panel-orisetech-ota5601a.o
+ obj-$(CONFIG_DRM_PANEL_ORISETECH_OTM8009A) += panel-orisetech-otm8009a.o
+ obj-$(CONFIG_DRM_PANEL_OSD_OSD101T2587_53TS) += panel-osd-osd101t2587-53ts.o
+ obj-$(CONFIG_DRM_PANEL_PANASONIC_VVX10F034N00) += panel-panasonic-vvx10f034n00.o
+diff --git a/drivers/gpu/drm/panel/panel-orisetech-ota5601a.c b/drivers/gpu/drm/panel/panel-orisetech-ota5601a.c
+new file mode 100644
+index 000000000000..018fea7c6354
+--- /dev/null
++++ b/drivers/gpu/drm/panel/panel-orisetech-ota5601a.c
+@@ -0,0 +1,351 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Orisetech OTA5601A TFT LCD panel driver
++ *
++ * Copyright (C) 2021, Christophe Branchereau <cbranchereau@gmail.com>
++ */
++
++#include <linux/delay.h>
++#include <linux/device.h>
++#include <linux/gpio/consumer.h>
++#include <linux/media-bus-format.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/of_device.h>
++#include <linux/regmap.h>
++#include <linux/regulator/consumer.h>
++#include <linux/spi/spi.h>
++
++#include <drm/drm_modes.h>
++#include <drm/drm_panel.h>
++
++struct ota5601a_panel_info {
++	const struct drm_display_mode *display_modes;
++	unsigned int num_modes;
++	u16 width_mm, height_mm;
++	u32 bus_format, bus_flags;
++};
++
++struct ota5601a {
++	struct drm_panel drm_panel;
++	struct regmap *map;
++	struct regulator *supply;
++	const struct ota5601a_panel_info *panel_info;
++
++	struct gpio_desc *reset_gpio;
++};
++
++static inline struct ota5601a *to_ota5601a(struct drm_panel *panel)
++{
++	return container_of(panel, struct ota5601a, drm_panel);
++}
++
++static const struct reg_sequence ota5601a_panel_regs[] = {
++	{ 0xfd, 0x00 },
++	{ 0x02, 0x00 },
++
++	{ 0x18, 0x00 },
++	{ 0x34, 0x20 },
++
++	{ 0x0c, 0x01 },
++	{ 0x0d, 0x48 },
++	{ 0x0e, 0x48 },
++	{ 0x0f, 0x48 },
++	{ 0x07, 0x40 },
++	{ 0x08, 0x33 },
++	{ 0x09, 0x3a },
++
++	{ 0x16, 0x01 },
++	{ 0x19, 0x8d },
++	{ 0x1a, 0x28 },
++	{ 0x1c, 0x00 },
++
++	{ 0xfd, 0xc5 },
++	{ 0x82, 0x0c },
++	{ 0xa2, 0xb4 },
++
++	{ 0xfd, 0xc4 },
++	{ 0x82, 0x45 },
++
++	{ 0xfd, 0xc1 },
++	{ 0x91, 0x02 },
++
++	{ 0xfd, 0xc0 },
++	{ 0xa1, 0x01 },
++	{ 0xa2, 0x1f },
++	{ 0xa3, 0x0b },
++	{ 0xa4, 0x38 },
++	{ 0xa5, 0x00 },
++	{ 0xa6, 0x0a },
++	{ 0xa7, 0x38 },
++	{ 0xa8, 0x00 },
++	{ 0xa9, 0x0a },
++	{ 0xaa, 0x37 },
++
++	{ 0xfd, 0xce },
++	{ 0x81, 0x18 },
++	{ 0x82, 0x43 },
++	{ 0x83, 0x43 },
++	{ 0x91, 0x06 },
++	{ 0x93, 0x38 },
++	{ 0x94, 0x02 },
++	{ 0x95, 0x06 },
++	{ 0x97, 0x38 },
++	{ 0x98, 0x02 },
++	{ 0x99, 0x06 },
++	{ 0x9b, 0x38 },
++	{ 0x9c, 0x02 },
++
++	{ 0xfd, 0x00 },
++};
++
++static const struct regmap_config ota5601a_regmap_config = {
++	.reg_bits = 8,
++	.val_bits = 8,
++};
++
++static int ota5601a_prepare(struct drm_panel *drm_panel)
++{
++	struct ota5601a *panel = to_ota5601a(drm_panel);
++	int err;
++
++	err = regulator_enable(panel->supply);
++	if (err) {
++		dev_err(drm_panel->dev, "Failed to enable power supply: %d\n", err);
++		return err;
++	}
++
++	/* Reset to be held low for 10us min according to the doc, 10ms before sending commands */
++	gpiod_set_value_cansleep(panel->reset_gpio, 1);
++	usleep_range(10, 30);
++	gpiod_set_value_cansleep(panel->reset_gpio, 0);
++	usleep_range(10000, 20000);
++
++	/* Init all registers. */
++	err = regmap_multi_reg_write(panel->map, ota5601a_panel_regs,
++				     ARRAY_SIZE(ota5601a_panel_regs));
++	if (err) {
++		dev_err(drm_panel->dev, "Failed to init registers: %d\n", err);
++		goto err_disable_regulator;
++	}
++
++	msleep(120);
++
++	return 0;
++
++err_disable_regulator:
++	regulator_disable(panel->supply);
++	return err;
++}
++
++static int ota5601a_unprepare(struct drm_panel *drm_panel)
++{
++	struct ota5601a *panel = to_ota5601a(drm_panel);
++
++	gpiod_set_value_cansleep(panel->reset_gpio, 1);
++
++	regulator_disable(panel->supply);
++
++	return 0;
++}
++
++static int ota5601a_enable(struct drm_panel *drm_panel)
++{
++	struct ota5601a *panel = to_ota5601a(drm_panel);
++	int err;
++
++	err = regmap_write(panel->map, 0x01, 0x01);
++
++	if (err) {
++		dev_err(drm_panel->dev, "Unable to enable panel: %d\n", err);
++		return err;
++	}
++
++	if (drm_panel->backlight) {
++		/* Wait for the picture to be ready before enabling backlight */
++		msleep(120);
++	}
++
++	return 0;
++}
++
++static int ota5601a_disable(struct drm_panel *drm_panel)
++{
++	struct ota5601a *panel = to_ota5601a(drm_panel);
++	int err;
++
++	err = regmap_write(panel->map, 0x01, 0x00);
++
++	if (err) {
++		dev_err(drm_panel->dev, "Unable to disable panel: %d\n", err);
++		return err;
++	}
++
++	return 0;
++}
++
++static int ota5601a_get_modes(struct drm_panel *drm_panel,
++			     struct drm_connector *connector)
++{
++	struct ota5601a *panel = to_ota5601a(drm_panel);
++	const struct ota5601a_panel_info *panel_info = panel->panel_info;
++	struct drm_display_mode *mode;
++	unsigned int i;
++
++	for (i = 0; i < panel_info->num_modes; i++) {
++		mode = drm_mode_duplicate(connector->dev,
++					  &panel_info->display_modes[i]);
++		if (!mode)
++			return -ENOMEM;
++
++		drm_mode_set_name(mode);
++
++		mode->type = DRM_MODE_TYPE_DRIVER;
++		if (panel_info->num_modes == 1)
++			mode->type |= DRM_MODE_TYPE_PREFERRED;
++
++		drm_mode_probed_add(connector, mode);
++	}
++
++	connector->display_info.bpc = 8;
++	connector->display_info.width_mm = panel_info->width_mm;
++	connector->display_info.height_mm = panel_info->height_mm;
++
++	drm_display_info_set_bus_formats(&connector->display_info,
++					 &panel_info->bus_format, 1);
++	connector->display_info.bus_flags = panel_info->bus_flags;
++
++	return panel_info->num_modes;
++}
++
++static const struct drm_panel_funcs ota5601a_funcs = {
++	.prepare	= ota5601a_prepare,
++	.unprepare	= ota5601a_unprepare,
++	.enable		= ota5601a_enable,
++	.disable	= ota5601a_disable,
++	.get_modes	= ota5601a_get_modes,
++};
++
++static int ota5601a_probe(struct spi_device *spi)
++{
++	struct device *dev = &spi->dev;
++	struct ota5601a *panel;
++	int err;
++
++	panel = devm_kzalloc(dev, sizeof(*panel), GFP_KERNEL);
++	if (!panel)
++		return -ENOMEM;
++
++	spi_set_drvdata(spi, panel);
++
++	panel->panel_info = of_device_get_match_data(dev);
++	if (!panel->panel_info)
++		return -EINVAL;
++
++	panel->supply = devm_regulator_get(dev, "power");
++	if (IS_ERR(panel->supply)) {
++		dev_err(dev, "Failed to get power supply\n");
++		return PTR_ERR(panel->supply);
++	}
++
++	panel->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
++	if (IS_ERR(panel->reset_gpio)) {
++		dev_err(dev, "Failed to get reset GPIO\n");
++		return PTR_ERR(panel->reset_gpio);
++	}
++
++	spi->bits_per_word = 8;
++	spi->mode = SPI_MODE_3 | SPI_3WIRE;
++	err = spi_setup(spi);
++	if (err) {
++		dev_err(dev, "Failed to setup SPI\n");
++		return err;
++	}
++
++	panel->map = devm_regmap_init_spi(spi, &ota5601a_regmap_config);
++	if (IS_ERR(panel->map)) {
++		dev_err(dev, "Failed to init regmap\n");
++		return PTR_ERR(panel->map);
++	}
++
++	drm_panel_init(&panel->drm_panel, dev, &ota5601a_funcs,
++		       DRM_MODE_CONNECTOR_DPI);
++
++	err = drm_panel_of_backlight(&panel->drm_panel);
++	if (err) {
++		if (err != -EPROBE_DEFER)
++			dev_err(dev, "Failed to get backlight handle\n");
++		return err;
++	}
++
++	drm_panel_add(&panel->drm_panel);
++
++	return 0;
++}
++
++static void ota5601a_remove(struct spi_device *spi)
++{
++	struct ota5601a *panel = spi_get_drvdata(spi);
++
++	drm_panel_remove(&panel->drm_panel);
++
++	ota5601a_disable(&panel->drm_panel);
++	ota5601a_unprepare(&panel->drm_panel);
++}
++
++static const struct drm_display_mode gpt3_display_modes[] = {
++	{ /* 60 Hz */
++		.clock = 27000,
++		.hdisplay = 640,
++		.hsync_start = 640 + 220,
++		.hsync_end = 640 + 220 + 20,
++		.htotal = 640 + 220 + 20 + 20,
++		.vdisplay = 480,
++		.vsync_start = 480 + 7,
++		.vsync_end = 480 + 7 + 6,
++		.vtotal = 480 + 7 + 6 + 7,
++		.flags = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
++	},
++
++	{ /* 50 Hz */
++		.clock = 24000,
++		.hdisplay = 640,
++		.hsync_start = 640 + 280,
++		.hsync_end = 640 + 280 + 20,
++		.htotal = 640 + 280 + 20 + 20,
++		.vdisplay = 480,
++		.vsync_start = 480 + 7,
++		.vsync_end = 480 + 7 + 6,
++		.vtotal = 480 + 7 + 6 + 7,
++		.flags = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
++	},
++};
++
++static const struct ota5601a_panel_info gpt3_info = {
++	.display_modes = gpt3_display_modes,
++	.num_modes = ARRAY_SIZE(gpt3_display_modes),
++	.width_mm = 71,
++	.height_mm = 51,
++	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
++	.bus_flags = DRM_BUS_FLAG_PIXDATA_SAMPLE_POSEDGE,
++};
++
++static const struct of_device_id ota5601a_of_match[] = {
++	{ .compatible = "focaltech,gpt3", .data = &gpt3_info },
++	{ /* sentinel */ }
++};
++MODULE_DEVICE_TABLE(of, ota5601a_of_match);
++
++static struct spi_driver ota5601a_driver = {
++	.driver = {
++		.name = "ota5601a",
++		.of_match_table = ota5601a_of_match,
++	},
++	.probe = ota5601a_probe,
++	.remove = ota5601a_remove,
++};
++
++module_spi_driver(ota5601a_driver);
++
++MODULE_AUTHOR("Christophe Branchereau <cbranchereau@gmail.com>");
++MODULE_LICENSE("GPL v2");
+-- 
+2.35.1
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
