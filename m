@@ -2,222 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 319A164B7EE
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 15:58:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 703C664B7F1
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 15:59:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236025AbiLMO6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 09:58:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43060 "EHLO
+        id S235826AbiLMO7n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 09:59:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236021AbiLMO6R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 09:58:17 -0500
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C91F2209BC;
-        Tue, 13 Dec 2022 06:58:15 -0800 (PST)
-X-IronPort-AV: E=McAfee;i="6500,9779,10559"; a="319289491"
-X-IronPort-AV: E=Sophos;i="5.96,241,1665471600"; 
-   d="scan'208";a="319289491"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Dec 2022 06:58:14 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10559"; a="598822601"
-X-IronPort-AV: E=Sophos;i="5.96,241,1665471600"; 
-   d="scan'208";a="598822601"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga003.jf.intel.com with ESMTP; 13 Dec 2022 06:58:10 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andy@kernel.org>)
-        id 1p56jN-009KZE-2N;
-        Tue, 13 Dec 2022 16:58:05 +0200
-Date:   Tue, 13 Dec 2022 16:58:05 +0200
-From:   Andy Shevchenko <andy@kernel.org>
-To:     Binbin Zhou <zhoubinbin@loongson.cn>
-Cc:     Wolfram Sang <wsa@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
-        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>, Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>
-Subject: Re: [PATCH V6 3/4] i2c: ls2x: Add driver for Loongson-2K/LS7A I2C
- controller
-Message-ID: <Y5iS/ReDrO3B4Ksl@smile.fi.intel.com>
-References: <cover.1670897253.git.zhoubinbin@loongson.cn>
- <bf55d05a50dc1e9453d124033ff368e9500ed4ed.1670897253.git.zhoubinbin@loongson.cn>
+        with ESMTP id S229820AbiLMO7m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 09:59:42 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90FF22098F;
+        Tue, 13 Dec 2022 06:59:41 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 438FDB810F8;
+        Tue, 13 Dec 2022 14:59:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8A0AC433EF;
+        Tue, 13 Dec 2022 14:59:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1670943579;
+        bh=CvvcVxzxHT3CSYkCAysMeR2g9STIHLwzqNyMN04Vbac=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=oKhWwKyl7xO38XSlhb0AkJHhTGTlLhUSDcyrgnbMcjv3RACMe4P4qci7ETOFS3/jI
+         diuik2E/c0uosJ3Q9ZfejdX0gdNS9kkH9fm4RjiwR0C6lldJ178P2hpiBpQU8UW6+s
+         0N08S3LP4NZ6WveIlWfiE0tf5M8715hOSdB+/C7Cv8pcI4sdHvgzmyzILnSyojD7YN
+         y0xRop7Dp/gIxroJFRf+a7/rOV0hIvM+79NB1fbeT2qyj2WW4Xnh5h/G6Td2exgkp5
+         49oCXDP3P5iFMseDYHImxDYnVb1nm1LZO9Fb+8aUu6KncmzFBq05vngySwmK/B3JtR
+         LEDofz/1QkiSw==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1p56lC-0004nb-JA; Tue, 13 Dec 2022 15:59:59 +0100
+Date:   Tue, 13 Dec 2022 15:59:58 +0100
+From:   Johan Hovold <johan@kernel.org>
+To:     Brian Masney <bmasney@redhat.com>
+Cc:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        johan+linaro@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ahalaney@redhat.com, echanude@redhat.com, quic_shazhuss@quicinc.com
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: sa8540p-ride: add qup1_i2c15 and
+ qup2_i2c18 nodes
+Message-ID: <Y5iTbu69TfChCtHA@hovoldconsulting.com>
+References: <20221212182314.1902632-1-bmasney@redhat.com>
+ <20221212182314.1902632-4-bmasney@redhat.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <bf55d05a50dc1e9453d124033ff368e9500ed4ed.1670897253.git.zhoubinbin@loongson.cn>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_SOFTFAIL
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221212182314.1902632-4-bmasney@redhat.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 13, 2022 at 04:26:57PM +0800, Binbin Zhou wrote:
-> This I2C module is integrated into the Loongson-2K SoCs and Loongson
-> LS7A bridge chip.
+On Mon, Dec 12, 2022 at 01:23:13PM -0500, Brian Masney wrote:
+> Add the necessary nodes in order to get qup1_i2c15 and qup2_i2c18
+> functioning on the automotive board and exposed to userspace.
+> 
+> This work was derived from various patches that Qualcomm delivered
+> to Red Hat in a downstream kernel. This change was validated by using
+> i2c-tools 4.3.3 on CentOS Stream 9:
+> 
+> [root@localhost ~]# i2cdetect -l
+> i2c-15  i2c             Geni-I2C                                I2C adapter
+> i2c-18  i2c             Geni-I2C                                I2C adapter
+> 
+> [root@localhost ~]# i2cdetect -a -y 15
+> Warning: Can't use SMBus Quick Write command, will skip some addresses
+>      0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+> 00:
+> 10:
+> 20:
+> 30: -- -- -- -- -- -- -- --
+> 40:
+> 50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+> 60:
+> 70:
+> 
+> Bus 18 has the same output. I validated that we get the same output on
+> the downstream kernel.
+> 
+> Signed-off-by: Brian Masney <bmasney@redhat.com>
+> ---
 
-...
-
-> +// SPDX-License-Identifier: GPL-2.0
-
-GPL-2.0-only
-
-> +/*
-> + * Loongson-2K/Loongson LS7A I2C master mode driver
-> + *
-> + * Copyright (C) 2013 Loongson Technology Corporation Limited.
-> + * Copyright (C) 2014-2017 Lemote, Inc.
-> + * Copyright (C) 2018-2022 Loongson Technology Corporation Limited.
-> + *
-> + * Originally written by liushaozong
-
-> + *
-
-No need to have this blank line.
-
-> + * Rewritten for mainline by Binbin Zhou <zhoubinbin@loongson.cn>
-> + */
-
-...
-
-> +#include <linux/bits.h>
-> +#include <linux/completion.h>
-> +#include <linux/device.h>
-> +#include <linux/i2c.h>
-> +#include <linux/init.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/io.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/platform_device.h>
-
-+ property.h at least for dev_fwnode().
-
-> +#include <linux/units.h>
-
-...
-
-> +#define I2C_LS2X_PRER_LO	0x0 /* Freq Division Low Byte Register */
-> +#define I2C_LS2X_PRER_HI	0x1 /* Freq Division High Byte Register */
-
-_HI is not used, can we just drop the suffix?
-
-...
-
-> +struct ls2x_i2c_priv {
-
-> +	struct i2c_adapter	adapter;
-
-> +	struct device		*dev;
-
-In some cases you are using adapter.dev, in some this one.
-Also isn't it the dev is the same as adapter.dev.parent?
-
-Hence, why do you need this one?
-
-> +	void __iomem		*base;
-> +	struct i2c_timings	i2c_t;
-> +	struct completion	cmd_complete;
-> +};
-
-...
-
-> +	return ls2x_i2c_send_byte(adap, (LS2X_CR_START | LS2X_CR_WRITE));
-
-Too many parentheses.
-
-...
-
-> +static int ls2x_i2c_xfer_one(struct i2c_adapter *adap,
-> +			     struct i2c_msg *msg, bool stop)
-> +{
-> +	int ret;
-> +	bool is_read = msg->flags & I2C_M_RD;
+> +	qup1_i2c15_default: qup1-i2c15-state {
+> +		mux-pins {
+> +			pins = "gpio36", "gpio37";
+> +			function = "qup15";
+> +		};
 > +
-> +	/* Contains steps to send start condition and address */
-> +	ret = ls2x_i2c_start(adap, msg);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (is_read)
-> +		ret = ls2x_i2c_rx(adap, msg->buf, msg->len);
-> +	else
-> +		ret = ls2x_i2c_tx(adap, msg->buf, msg->len);
-> +
-> +	/* could not acquire bus. bail out without STOP */
-> +	if (ret == -EAGAIN)
-> +		return ret;
+> +		config-pins {
+> +			pins = "gpio36", "gpio37";
+> +			drive-strength = <0x02>;
 
-So, if ret is *not* 0 and *not* --EAGAIN, why don't we bail out here? It needs
-at least a comment.
+Use decimal notation.
 
-> +	if (stop)
-> +		ret = ls2x_i2c_stop(adap);
-> +
-> +	return ret;
-> +}
+> +			bias-pull-up;
+> +		};
+> +	};
 
-...
-
-> +static int ls2x_i2c_master_xfer(struct i2c_adapter *adap,
-> +				struct i2c_msg *msgs, int num)
-> +{
-> +	int ret;
-> +	struct i2c_msg *msg, *emsg = msgs + num;
-> +
-> +	for (msg = msgs; msg < emsg; msg++) {
-> +		/* Emit STOP if it is the last message or I2C_M_STOP is set */
-
-> +		bool stop = (msg + 1 == emsg) || (msg->flags & I2C_M_STOP);
-
-I'm wondering if we can always set the _STOP bit in the flags of the last
-message before entering this loop. In such case you can reduce to one part
-and supply as a parameter directly.
-
-> +
-> +		ret = ls2x_i2c_xfer_one(adap, msg, stop);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return num;
-> +}
-
-...
-
-> +	/* Calculate and set LS2X I2C frequency */
-> +	writel(LS2X_I2C_PCLK_FREQ / (5 * t->bus_freq_hz) - 1,
-> +	       priv->base + I2C_LS2X_PRER_LO);
-
-writel()?! Shouldn't be writew()?
-
-...
-
-> +	r = devm_request_irq(dev, irq, ls2x_i2c_isr,
-> +			     IRQF_SHARED, "ls2x-i2c", priv);
-
-There is a room on the previous line for at least one more argument.
-
-> +	if (r < 0)
-> +		return dev_err_probe(dev, r, "Unable to request irq %d\n", irq);
-
-...
-
-> +subsys_initcall(ls2x_i2c_init_driver);
-
-Non-standard init calls should be commented.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Johan
