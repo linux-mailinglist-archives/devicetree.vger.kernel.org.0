@@ -2,192 +2,267 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0187064B923
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 17:01:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0C8764B944
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 17:07:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235845AbiLMQBb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 11:01:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54426 "EHLO
+        id S235699AbiLMQHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 11:07:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235923AbiLMQB1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 11:01:27 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 226631122
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 08:01:26 -0800 (PST)
-Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1p57iW-0006gU-Hy; Tue, 13 Dec 2022 17:01:16 +0100
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Richard Zhu <hongxing.zhu@nxp.com>
-Cc:     NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        marcel.ziswiler@toradex.com, marex@denx.de, tharvey@gateworks.com,
-        alexander.stein@ew.tq-group.com, richard.leitner@linux.dev,
-        lukas@mntre.com, patchwork-lst@pengutronix.de,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 4/4] soc: imx: imx8mp-blk-ctrl: expose high performance PLL clock
-Date:   Tue, 13 Dec 2022 17:01:12 +0100
-Message-Id: <20221213160112.1900410-4-l.stach@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20221213160112.1900410-1-l.stach@pengutronix.de>
-References: <20221213160112.1900410-1-l.stach@pengutronix.de>
+        with ESMTP id S235233AbiLMQHd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 11:07:33 -0500
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4FBD20F5C
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 08:07:31 -0800 (PST)
+Received: by mail-pj1-x1030.google.com with SMTP id t11-20020a17090a024b00b0021932afece4so4029577pje.5
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 08:07:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=nYw4Wk/wT807/LgiPPGHkV8/oRES3dPfmE3Ij+E1SAo=;
+        b=Xs/xsqkeq31qsNHywwgOOgSJX1yEBuermKIh1MbCQwT1W4Dl3GEpID73Teg8B6DOFL
+         oLChZdH2BQrzoODEwB0TBC3dcJD1lltMvsOpJbxUgSdznEEjKQRlIbnxE8JJVb4C3wyQ
+         HNRJalJ98EyBxebiasEruKBwih+z++EAW8A7aEw8wikzcuBvK0LZKkWEkNvsH8KcfwUI
+         jDJ7s8igxveDoRvquxWuocHp7Ahi5hGJkHQXLckffjl3HfP6xVs/4uPa/5kbFc7SnFIL
+         /WK4HGkHmbkINqfOD08hzk2pU+J+Iti54r1KGbhAIJm95S1LFiA8sz1ZUn33Q7mv5eKY
+         l4RQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nYw4Wk/wT807/LgiPPGHkV8/oRES3dPfmE3Ij+E1SAo=;
+        b=xiwTs2uubE+NpkdtKKiOCWjgp+FgR8dfNJWZQ9MCBCsSohz5NccFMEVeJRpZARqRfy
+         91ykBbfvPI5hR7M6GuRmd8WyCisbCqJPOQRTDWH8/R1rKXMUqr3EYbX6b7HBdkCdrD1j
+         pOGaAgKLyikXHC+PQ/Dr9FXMiQgIzXCA9ipCW9tXKjrucVVHgyWCy+LS1A5VYfdB+SOv
+         zWYpsCoF4G8/LyPlM4z7dpPS7RYF3Gr6C7kCvj/xIvLF12sQh6ZaDp9ZwD9Tl18Xui/t
+         MGKnczmqYXStzEJrmXbcO3TFZ0TLsWUOJg3uX6MGWIXqNwjSX2Fwx6wUwWj3L08OnCIg
+         dR+Q==
+X-Gm-Message-State: ANoB5plEZwbNq185DA0Tyoggy/AVM/bim5+c6n7HaYFmSa5kHh/nzisI
+        s4bOc4h5OIMB1Xwm0cJ2iWdA
+X-Google-Smtp-Source: AA0mqf5lNgVAYbeR20LH33Pew7cxwbJr3xKNxnrgLTg/m5BvVaQK2XVV8mo5CNRr/eBmtnM38Z1IzA==
+X-Received: by 2002:a17:90a:bb15:b0:20d:bd61:b531 with SMTP id u21-20020a17090abb1500b0020dbd61b531mr20764576pjr.37.1670947651041;
+        Tue, 13 Dec 2022 08:07:31 -0800 (PST)
+Received: from thinkpad ([27.111.75.5])
+        by smtp.gmail.com with ESMTPSA id f4-20020a63dc44000000b004786c63c21esm7056939pgj.42.2022.12.13.08.07.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Dec 2022 08:07:29 -0800 (PST)
+Date:   Tue, 13 Dec 2022 21:37:22 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Sibi Sankar <quic_sibis@quicinc.com>
+Cc:     Robin Murphy <robin.murphy@arm.com>, andersson@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        agross@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        konrad.dybcio@somainline.org, amit.pundir@linaro.org,
+        regressions@leemhuis.info, sumit.semwal@linaro.org,
+        will@kernel.org, catalin.marinas@arm.com
+Subject: Re: [PATCH 4/4] remoteproc: qcom_q6v5_mss: Use a carveout to
+ authenticate modem headers
+Message-ID: <20221213160722.GC4862@thinkpad>
+References: <20221213140724.8612-1-quic_sibis@quicinc.com>
+ <20221213140724.8612-5-quic_sibis@quicinc.com>
+ <741b64c2-0b09-6475-5736-d2cd3e33c34c@arm.com>
+ <ba258979-0c65-4671-dd01-c1916c26e81b@quicinc.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <ba258979-0c65-4671-dd01-c1916c26e81b@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Expose the high performance PLL as a regular Linux clock, so the
-PCIe PHY can use it when there is no external refclock provided.
+On Tue, Dec 13, 2022 at 09:27:04PM +0530, Sibi Sankar wrote:
+> Hey Robin,
+> 
+> Thanks for taking time to review the series.
+> 
+> On 12/13/22 20:37, Robin Murphy wrote:
+> > On 2022-12-13 14:07, Sibi Sankar wrote:
+> > > The memory region allocated using dma_alloc_attr with no kernel mapping
+> > > attribute set would still be a part of the linear kernel map. Any access
+> > > to this region by the application processor after assigning it to the
+> > > remote Q6 will result in a XPU violation. Fix this by replacing the
+> > > dynamically allocated memory region with a no-map carveout and unmap the
+> > > modem metadata memory region before passing control to the remote Q6.
+> > > 
+> > > Reported-by: Amit Pundir <amit.pundir@linaro.org>
+> > > Fixes: 6c5a9dc2481b ("remoteproc: qcom: Make secure world call for
+> > > mem ownership switch")
+> > > Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> > > ---
+> > > 
+> > > The addition of the carveout and memunmap is required only on SoCs that
+> > > mandate memory protection before transferring control to Q6, hence the
+> > > driver falls back to dynamic memory allocation in the absence of the
+> > > modem metadata carveout.
+> > 
+> > The DMA_ATTR_NO_KERNEL_MAPPING stuff is still broken and pointless, so
+> > I'd expect to see this solution replacing it, not being added alongside.
+> > It's just silly to say pass the "I don't need a CPU mapping" flag, then
+> > manually open-code the same CPU mapping you would have got if you
+> > hadn't, in a way that only works at all when a cacheable alias exists
+> > anyway.
+> 
+> only a subset of SoCs supported by the driver are affected by
+> the bug i.e. on the others dma_alloc_attr would still work
+> without problems. I can perhaps drop the NO_KERNEL_MAPPING along
+> with the vmap/vunmap and simplify things for those SoCs.
+> 
 
-Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
----
- drivers/soc/imx/imx8mp-blk-ctrl.c | 99 +++++++++++++++++++++++++++++++
- 1 file changed, 99 insertions(+)
+Or perhaps revert fc156629b23a?
 
-diff --git a/drivers/soc/imx/imx8mp-blk-ctrl.c b/drivers/soc/imx/imx8mp-blk-ctrl.c
-index b3d9f6e083ba..ad5aebd640eb 100644
---- a/drivers/soc/imx/imx8mp-blk-ctrl.c
-+++ b/drivers/soc/imx/imx8mp-blk-ctrl.c
-@@ -5,6 +5,7 @@
-  */
- 
- #include <linux/clk.h>
-+#include <linux/clk-provider.h>
- #include <linux/device.h>
- #include <linux/interconnect.h>
- #include <linux/module.h>
-@@ -21,6 +22,15 @@
- #define  USB_CLOCK_MODULE_EN	BIT(1)
- #define  PCIE_PHY_APB_RST	BIT(4)
- #define  PCIE_PHY_INIT_RST	BIT(5)
-+#define GPR_REG1		0x4
-+#define  PLL_LOCK		BIT(13)
-+#define GPR_REG2		0x8
-+#define  P_PLL_MASK		GENMASK(5, 0)
-+#define  M_PLL_MASK		GENMASK(15, 6)
-+#define  S_PLL_MASK		GENMASK(18, 16)
-+#define GPR_REG3		0xc
-+#define  PLL_CKE		BIT(17)
-+#define  PLL_RST		BIT(31)
- 
- struct imx8mp_blk_ctrl_domain;
- 
-@@ -74,6 +84,94 @@ to_imx8mp_blk_ctrl_domain(struct generic_pm_domain *genpd)
- 	return container_of(genpd, struct imx8mp_blk_ctrl_domain, genpd);
- }
- 
-+struct clk_hsio_pll {
-+	struct clk_hw	hw;
-+	struct regmap *regmap;
-+};
-+
-+static inline struct clk_hsio_pll *to_clk_hsio_pll(struct clk_hw *hw)
-+{
-+	return container_of(hw, struct clk_hsio_pll, hw);
-+}
-+
-+static int clk_hsio_pll_prepare(struct clk_hw *hw)
-+{
-+	struct clk_hsio_pll *clk = to_clk_hsio_pll(hw);
-+	u32 val;
-+
-+	/* set the PLL configuration */
-+	regmap_update_bits(clk->regmap, GPR_REG2,
-+			   P_PLL_MASK | M_PLL_MASK | S_PLL_MASK,
-+			   FIELD_PREP(P_PLL_MASK, 12) |
-+			   FIELD_PREP(M_PLL_MASK, 800) |
-+			   FIELD_PREP(S_PLL_MASK, 4));
-+
-+	/* de-assert PLL reset */
-+	regmap_update_bits(clk->regmap, GPR_REG3, PLL_RST, PLL_RST);
-+
-+	/* enable PLL */
-+	regmap_update_bits(clk->regmap, GPR_REG3, PLL_CKE, PLL_CKE);
-+
-+	return regmap_read_poll_timeout(clk->regmap, GPR_REG1, val,
-+					val & PLL_LOCK, 10, 100);
-+}
-+
-+static void clk_hsio_pll_unprepare(struct clk_hw *hw)
-+{
-+	struct clk_hsio_pll *clk = to_clk_hsio_pll(hw);
-+
-+	regmap_update_bits(clk->regmap, GPR_REG3, PLL_RST | PLL_CKE, 0);
-+}
-+
-+static int clk_hsio_pll_is_prepared(struct clk_hw *hw)
-+{
-+	struct clk_hsio_pll *clk = to_clk_hsio_pll(hw);
-+
-+	return regmap_test_bits(clk->regmap, GPR_REG1, PLL_LOCK);
-+}
-+
-+static unsigned long clk_hsio_pll_recalc_rate(struct clk_hw *hw,
-+					      unsigned long parent_rate)
-+{
-+	return 100000000;
-+}
-+
-+static const struct clk_ops clk_hsio_pll_ops = {
-+	.prepare = clk_hsio_pll_prepare,
-+	.unprepare = clk_hsio_pll_unprepare,
-+	.is_prepared = clk_hsio_pll_is_prepared,
-+	.recalc_rate = clk_hsio_pll_recalc_rate,
-+};
-+
-+int imx8mp_hsio_blk_ctrl_probe(struct imx8mp_blk_ctrl *bc)
-+{
-+	struct clk_hsio_pll *clk_hsio_pll;
-+	struct clk_hw *hw;
-+	struct clk_init_data init = {};
-+	int ret;
-+
-+	printk("%s\n", __func__);
-+
-+	clk_hsio_pll = devm_kzalloc(bc->dev, sizeof(*clk_hsio_pll), GFP_KERNEL);
-+	if (!clk_hsio_pll)
-+		return -ENOMEM;
-+
-+	init.name = "hsio_pll";
-+	init.ops = &clk_hsio_pll_ops;
-+	init.parent_names = (const char *[]){"osc_24m"};
-+	init.num_parents = 1;
-+
-+	clk_hsio_pll->regmap = bc->regmap;
-+	clk_hsio_pll->hw.init = &init;
-+
-+	hw = &clk_hsio_pll->hw;
-+	ret = devm_clk_hw_register(bc->dev, hw);
-+	if (ret)
-+		return ret;
-+
-+	return devm_of_clk_add_hw_provider(bc->dev, of_clk_hw_simple_get, hw);
-+}
-+
- static void imx8mp_hsio_blk_ctrl_power_on(struct imx8mp_blk_ctrl *bc,
- 					  struct imx8mp_blk_ctrl_domain *domain)
- {
-@@ -188,6 +286,7 @@ static const struct imx8mp_blk_ctrl_domain_data imx8mp_hsio_domain_data[] = {
- 
- static const struct imx8mp_blk_ctrl_data imx8mp_hsio_blk_ctl_dev_data = {
- 	.max_reg = 0x24,
-+	.probe = imx8mp_hsio_blk_ctrl_probe,
- 	.power_on = imx8mp_hsio_blk_ctrl_power_on,
- 	.power_off = imx8mp_hsio_blk_ctrl_power_off,
- 	.power_notifier_fn = imx8mp_hsio_power_notifier,
+Thanks,
+Mani
+
+> - Sibi
+> 
+> > 
+> > Thanks,
+> > Robin.
+> > 
+> > >   drivers/remoteproc/qcom_q6v5_mss.c | 85 +++++++++++++++++++++---------
+> > >   1 file changed, 61 insertions(+), 24 deletions(-)
+> > > 
+> > > diff --git a/drivers/remoteproc/qcom_q6v5_mss.c
+> > > b/drivers/remoteproc/qcom_q6v5_mss.c
+> > > index fddb63cffee0..8264275ecbd0 100644
+> > > --- a/drivers/remoteproc/qcom_q6v5_mss.c
+> > > +++ b/drivers/remoteproc/qcom_q6v5_mss.c
+> > > @@ -211,6 +211,7 @@ struct q6v5 {
+> > >       size_t mba_size;
+> > >       size_t dp_size;
+> > > +    phys_addr_t mdata_phys;
+> > >       phys_addr_t mpss_phys;
+> > >       phys_addr_t mpss_reloc;
+> > >       size_t mpss_size;
+> > > @@ -935,6 +936,7 @@ static int q6v5_mpss_init_image(struct q6v5
+> > > *qproc, const struct firmware *fw,
+> > >   {
+> > >       unsigned long dma_attrs = DMA_ATTR_FORCE_CONTIGUOUS |
+> > > DMA_ATTR_NO_KERNEL_MAPPING;
+> > >       unsigned long flags = VM_DMA_COHERENT | VM_FLUSH_RESET_PERMS;
+> > > +    void *mdata_region;
+> > >       struct page **pages;
+> > >       struct page *page;
+> > >       dma_addr_t phys;
+> > > @@ -951,34 +953,48 @@ static int q6v5_mpss_init_image(struct q6v5
+> > > *qproc, const struct firmware *fw,
+> > >       if (IS_ERR(metadata))
+> > >           return PTR_ERR(metadata);
+> > > -    page = dma_alloc_attrs(qproc->dev, size, &phys, GFP_KERNEL,
+> > > dma_attrs);
+> > > -    if (!page) {
+> > > -        kfree(metadata);
+> > > -        dev_err(qproc->dev, "failed to allocate mdt buffer\n");
+> > > -        return -ENOMEM;
+> > > -    }
+> > > +    if (qproc->mdata_phys) {
+> > > +        mdata_region = memremap(qproc->mdata_phys, size, MEMREMAP_WC);
+> > > +        if (!mdata_region) {
+> > > +            dev_err(qproc->dev, "unable to map memory region:
+> > > %pa+%zx\n",
+> > > +                &qproc->mdata_phys, size);
+> > > +            ret = -EBUSY;
+> > > +            goto free_dma_attrs;
+> > > +        }
+> > > -    count = PAGE_ALIGN(size) >> PAGE_SHIFT;
+> > > -    pages = kmalloc_array(count, sizeof(struct page *), GFP_KERNEL);
+> > > -    if (!pages) {
+> > > -        ret = -ENOMEM;
+> > > -        goto free_dma_attrs;
+> > > -    }
+> > > +        memcpy(mdata_region, metadata, size);
+> > > +        memunmap(mdata_region);
+> > > +        phys = qproc->mdata_phys;
+> > > +    } else {
+> > > +        page = dma_alloc_attrs(qproc->dev, size, &phys, GFP_KERNEL,
+> > > dma_attrs);
+> > > +        if (!page) {
+> > > +            kfree(metadata);
+> > > +            dev_err(qproc->dev, "failed to allocate mdt buffer\n");
+> > > +            return -ENOMEM;
+> > > +        }
+> > > -    for (i = 0; i < count; i++)
+> > > -        pages[i] = nth_page(page, i);
+> > > +        count = PAGE_ALIGN(size) >> PAGE_SHIFT;
+> > > +        pages = kmalloc_array(count, sizeof(struct page *), GFP_KERNEL);
+> > > +        if (!pages) {
+> > > +            ret = -ENOMEM;
+> > > +            goto free_dma_attrs;
+> > > +        }
+> > > -    vaddr = vmap(pages, count, flags, pgprot_dmacoherent(PAGE_KERNEL));
+> > > -    kfree(pages);
+> > > -    if (!vaddr) {
+> > > -        dev_err(qproc->dev, "unable to map memory region:
+> > > %pa+%zx\n", &phys, size);
+> > > -        ret = -EBUSY;
+> > > -        goto free_dma_attrs;
+> > > -    }
+> > > +        for (i = 0; i < count; i++)
+> > > +            pages[i] = nth_page(page, i);
+> > > -    memcpy(vaddr, metadata, size);
+> > > +        vaddr = vmap(pages, count, flags,
+> > > pgprot_dmacoherent(PAGE_KERNEL));
+> > > +        kfree(pages);
+> > > +        if (!vaddr) {
+> > > +            dev_err(qproc->dev, "unable to map memory region:
+> > > %pa+%zx\n", &phys, size);
+> > > +            ret = -EBUSY;
+> > > +            goto free_dma_attrs;
+> > > +        }
+> > > -    vunmap(vaddr);
+> > > +        memcpy(vaddr, metadata, size);
+> > > +
+> > > +        vunmap(vaddr);
+> > > +    }
+> > >       /* Hypervisor mapping to access metadata by modem */
+> > >       mdata_perm = BIT(QCOM_SCM_VMID_HLOS);
+> > > @@ -1008,7 +1024,8 @@ static int q6v5_mpss_init_image(struct q6v5
+> > > *qproc, const struct firmware *fw,
+> > >                "mdt buffer not reclaimed system may become unstable\n");
+> > >   free_dma_attrs:
+> > > -    dma_free_attrs(qproc->dev, size, page, phys, dma_attrs);
+> > > +    if (!qproc->mdata_phys)
+> > > +        dma_free_attrs(qproc->dev, size, page, phys, dma_attrs);
+> > >       kfree(metadata);
+> > >       return ret < 0 ? ret : 0;
+> > > @@ -1882,6 +1899,26 @@ static int q6v5_alloc_memory_region(struct
+> > > q6v5 *qproc)
+> > >       qproc->mpss_phys = qproc->mpss_reloc = r.start;
+> > >       qproc->mpss_size = resource_size(&r);
+> > > +    if (!child) {
+> > > +        node = of_parse_phandle(qproc->dev->of_node,
+> > > "memory-region", 2);
+> > > +    } else {
+> > > +        child = of_get_child_by_name(qproc->dev->of_node, "metadata");
+> > > +        node = of_parse_phandle(child, "memory-region", 0);
+> > > +        of_node_put(child);
+> > > +    }
+> > > +
+> > > +    if (!node)
+> > > +        return 0;
+> > > +
+> > > +    ret = of_address_to_resource(node, 0, &r);
+> > > +    of_node_put(node);
+> > > +    if (ret) {
+> > > +        dev_err(qproc->dev, "unable to resolve metadata region\n");
+> > > +        return ret;
+> > > +    }
+> > > +
+> > > +    qproc->mdata_phys = r.start;
+> > > +
+> > >       return 0;
+> > >   }
+
 -- 
-2.30.2
-
+மணிவண்ணன் சதாசிவம்
