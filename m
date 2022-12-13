@@ -2,80 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C5BF64BC5F
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 19:51:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BA0F64BC62
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 19:52:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235993AbiLMSvi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 13:51:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44430 "EHLO
+        id S236108AbiLMSwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 13:52:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235488AbiLMSvh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 13:51:37 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 221C125284
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 10:51:36 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id x28so6452489lfn.6
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 10:51:36 -0800 (PST)
+        with ESMTP id S235836AbiLMSw3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 13:52:29 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D69425282
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 10:52:28 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id q6so6426449lfm.10
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 10:52:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4caiTUPwb5yRD+BikSwZkcJjgHseuGfEKaaNJStw97Q=;
-        b=XLQoG/VIsczeHkAcemrUqyZ5KHS+OICYwdB81xqVKZ7g6TLTVA93aLg1O3oZYS9HaV
-         jFJmPqyriz9pTo80a6U6d38WPKaq6Id03Z8kl7eA3Uev7QAxe0sGCJ5cOEGPSzOqBbcZ
-         onIVqKSRivPaUMZRa6DtcNjzIdjAudhbtEXgBFNmEZGYGKMPG0weDXZZcPJP77dnIre3
-         iHFromBBXkEzLBP+ld+3388d9tKiMHfPsWVSayXgGeLoOucKRdL7gill9MyE19edOrS4
-         Fm4o8Lqu0mQk30qYKiDKrRtSNFWcPKaEYvAxPmcAqdy2nXGA+jq3UFHuFvH7YnUtUI7g
-         Usrw==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=RDCW+iDH8CpQHgbu/eAxZ2pgLpFC+LyCWi/mo0RGfMU=;
+        b=n7vLPZJU8FGT47naIzvCeHtTl8WO5FbnD78FVXWSGGKsqctPECm8O5DFvoa6So0FxY
+         sw5t6q2wSta9fuBXfwwcNv+yAx0kYxtgNjgLdOTsgG2O/zIh6ewfm0WHEr9iUvJTtkpV
+         cejpXxGoLTvkY3y6l9oKkRCxqmuaugLFR2BdMGPeG/QVrv9A+SdCKvL28uLNs7S6R7vA
+         y70WeDLpaHMhpO6w4euQFdqVxqsqQk/PSLv278bZ9ohcofYdiCH3yumzgoqYb9kQvgvy
+         VS0z3hnjCd/tyVo3spopPqCMIMgrYs0u35okIdl2gs6jXgoAScBhMrmh1aJ4XYN17BgI
+         /ZBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4caiTUPwb5yRD+BikSwZkcJjgHseuGfEKaaNJStw97Q=;
-        b=zZflmC1zdvqmT5VXpIda2jBILfOMz1fAjamFOf+7GGCfv+If+3K/cMxSV3LhOm0i6/
-         5wVsiB/z+sHNJKXpzxVUWb88Mbb6MpZkqtPz9l+dJ3be4ghCWhES7OcKRNCN/fAus2n4
-         2lIYTaCrlQOG9BhJ0/j9u46oUoVD3v7qsdQfdQ4UA/GdpBgqXbVIXSs4xk8C2uXVNMmv
-         Hn5iGzw0qoOaNEnHq8apb6qT/Y6SQs+BOnJ4Fs2sTO8VOceCERTazKMLgUk/CkA/HjrY
-         T4qfnSpk4ePlh8TZd/rAWrrceD3HRnHDW2aYIJBqmFfeRLEfWo87MhvcCofdAIulExsm
-         cxpQ==
-X-Gm-Message-State: ANoB5plnzk15DgtkX8Hdt6T/AjMWfBlcqXZ+2//QdHiA5WGhxA0dh+r8
-        3ONFP1WY7jJaSDNMzWBzn7vP6Q==
-X-Google-Smtp-Source: AA0mqf6E4/sjsn22TId8xaneNkrZpb3Jps/q1fT2KrOG3UfeG50TKQCREt68tsCkvMaIyJX4z583NA==
-X-Received: by 2002:a05:6512:b9d:b0:4b5:8237:5c12 with SMTP id b29-20020a0565120b9d00b004b582375c12mr10602415lfv.15.1670957494496;
-        Tue, 13 Dec 2022 10:51:34 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id j25-20020ac25519000000b004a6f66eed7fsm473142lfk.165.2022.12.13.10.51.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Dec 2022 10:51:34 -0800 (PST)
-Message-ID: <acbdf493-eeef-4eb1-508e-c3cc1a31c886@linaro.org>
-Date:   Tue, 13 Dec 2022 19:51:32 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RDCW+iDH8CpQHgbu/eAxZ2pgLpFC+LyCWi/mo0RGfMU=;
+        b=sjNUtOMLY0tuipbkWLCTzctXr5Q87G9N8FHq4INjiodQL2QxKhhcqbiY3NPehlk7D3
+         dMpgfmTjLr1QzqzuRXoux1jWL8m5VSznLaPa2pRuHDZc169/rNY1sWxLubH/ZvBq+iRq
+         jH+ZQ1YkajB67N6R7vYT4Tg1TGVRjv44e0Kj1Nu7qLsg0VAB3sayd7AgcAqy8aopfLTt
+         OXgDmOByjJfgYNnLM2nkuzyGIPrynReSi10VpGfz7szY7Rf5iiZ1CdGDnYtLajdBSwan
+         cAtivbq8DdXBroTJ0BN9MyWMFqhZJVFhxBAgFaCxzk1eJbuMIORmxNWzzv1Qxw4NI2NN
+         qvYA==
+X-Gm-Message-State: ANoB5pmuiN+ChrbhdDEKxUuwxIhYRJ14dU8eIaqftqAYmkquNrN1PmQ7
+        9wkv6VGw+W180Y8QHgFUdAMek9M6yMhzHikJm7Wf3X+xGIrSMoL8
+X-Google-Smtp-Source: AA0mqf7tZqgLVvRD/n/okhsIS3EJvqgZdQMNs/s7Ct8ns5PGnOewTGALBAVeaT8IK43pXoHSOn2CUU0vtvNAsuOSqD8=
+X-Received: by 2002:a19:a405:0:b0:4b5:785b:c65a with SMTP id
+ q5-20020a19a405000000b004b5785bc65amr5577594lfc.464.1670957546753; Tue, 13
+ Dec 2022 10:52:26 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH 2/4] iio: accel: add the new entry in driver for
- FXLS8967AF
-Content-Language: en-US
-To:     Han Xu <han.xu@nxp.com>, Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Sean Nyekjaer <sean@geanix.com>,
-        =?UTF-8?Q?Nuno_S=c3=a1?= <nuno.sa@analog.com>,
-        Matti Vaittinen <mazziesaccount@gmail.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Clark Wang <xiaoning.wang@nxp.com>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, imx@lists.linux.dev
-References: <20221213171536.1880089-1-han.xu@nxp.com>
- <20221213171536.1880089-4-han.xu@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221213171536.1880089-4-han.xu@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20221213123823.455731-1-bhupesh.sharma@linaro.org>
+ <20221213123823.455731-4-bhupesh.sharma@linaro.org> <39ff2174-6d04-ec21-b762-377ed28088cb@linaro.org>
+In-Reply-To: <39ff2174-6d04-ec21-b762-377ed28088cb@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Wed, 14 Dec 2022 00:22:15 +0530
+Message-ID: <CAH=2NtwUODvzLx=JThuZpADv+x+NtLx688Ox-95b_T9PtRf4_w@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm6115: Add USB SS qmp phy node
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        agross@kernel.org, bhupesh.linux@gmail.com,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        konrad.dybcio@linaro.org, andersson@kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -84,19 +69,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/12/2022 18:15, Han Xu wrote:
-> Add this new device entry in the driver id table.
-> 
-> Signed-off-by: Han Xu <han.xu@nxp.com>
-> 
-> ---
-> changes in v2
-> - change chip info orders
+Hi Krzysztof,
 
-?? This is v1 attached here. There is also "iio: accel: add the new
-entry in driver for fxls8967af"? This patchset cannot be applied, when
-sent like this.
+On Tue, 13 Dec 2022 at 18:26, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 13/12/2022 13:38, Bhupesh Sharma wrote:
+> > Add USB superspeed qmp phy node to dtsi.
+> >
+> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sm6115.dtsi | 38 ++++++++++++++++++++++++++--
+> >  1 file changed, 36 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> > index e4ce135264f3d..9c5c024919f92 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> > @@ -579,6 +579,40 @@ usb_hsphy: phy@1613000 {
+> >                       status = "disabled";
+> >               };
+> >
+> > +             usb_qmpphy: phy@1615000 {
+> > +                     compatible = "qcom,sm6115-qmp-usb3-phy";
+> > +                     reg = <0x01615000 0x200>;
+> > +                     #clock-cells = <1>;
+> > +                     #address-cells = <1>;
+> > +                     #size-cells = <1>;
+> > +                     ranges;
+> > +                     clocks = <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
+> > +                              <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
+> > +                              <&gcc GCC_AHB2PHY_USB_CLK>;
+> > +                     clock-names = "com_aux",
+> > +                                   "ref",
+> > +                                   "cfg_ahb";
+> > +                     resets = <&gcc GCC_USB3_PHY_PRIM_SP0_BCR>,
+> > +                              <&gcc GCC_USB3PHY_PHY_PRIM_SP0_BCR>;
+> > +                     reset-names = "phy", "phy_phy";
+> > +                     status = "disabled";
+>
+> Hm, you add a disabled PHY which is used by existing controller. The
+> controller is enabled in board DTS, but new PHY node isn't. Aren't you
+> now breaking it?
 
-Best regards,
-Krzysztof
+The USB controller is connected to two PHYs - one is HS PHY and the other is SS
+QMP Phy. So while the exiting board dts describes and uses only the HS
+PHY, newer
+board dts files (which will soon be sent out as a separate patch),
+will use both the HS and SS
+USB PHYs.
 
+So, this will not break the existing board dts files.
+
+> > +
+> > +                     usb_ssphy: phy@1615200 {
+> > +                             reg = <0x01615200 0x200>,
+> > +                                   <0x01615400 0x200>,
+> > +                                   <0x01615c00 0x400>,
+> > +                                   <0x01615600 0x200>,
+> > +                                   <0x01615800 0x200>,
+> > +                                   <0x01615a00 0x100>;
+> > +                             #phy-cells = <0>;
+> > +                             #clock-cells = <1>;
+> > +                             clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+> > +                             clock-names = "pipe0";
+> > +                             clock-output-names = "usb3_phy_pipe_clk_src";
+> > +                     };
+> > +             };
+> > +
+> > +
+>
+> Just one blank line.
+
+Ok, Will fix it in v2.
+
+> >               qfprom@1b40000 {
+> >                       compatible = "qcom,sm6115-qfprom", "qcom,qfprom";
+> >                       reg = <0x01b40000 0x7000>;
+> > @@ -1023,8 +1057,8 @@ usb_dwc3: usb@4e00000 {
+> >                               compatible = "snps,dwc3";
+> >                               reg = <0x04e00000 0xcd00>;
+> >                               interrupts = <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>;
+> > -                             phys = <&usb_hsphy>;
+> > -                             phy-names = "usb2-phy";
+> > +                             phys = <&usb_hsphy>, <&usb_ssphy>;
+> > +                             phy-names = "usb2-phy", "usb3-phy";
+> >                               iommus = <&apps_smmu 0x120 0x0>;
+> >                               snps,dis_u2_susphy_quirk;
+> >                               snps,dis_enblslpm_quirk;
+>
+
+Thanks,
+Bhupesh
