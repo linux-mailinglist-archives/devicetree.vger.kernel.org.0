@@ -2,125 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C97A64BB71
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 18:58:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CF5B64BB92
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 19:07:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236399AbiLMR6F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 12:58:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37518 "EHLO
+        id S236419AbiLMSHV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 13:07:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236335AbiLMR6B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 12:58:01 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78FC41F62F;
-        Tue, 13 Dec 2022 09:57:58 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id c66so18873583edf.5;
-        Tue, 13 Dec 2022 09:57:58 -0800 (PST)
+        with ESMTP id S236415AbiLMSG7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 13:06:59 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C885248C5
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 10:06:47 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id x28so6231077lfn.6
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 10:06:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=f74flBhltkIF6Kyzm1psBFvXaiR1ZpsFYBiux/pnBP0=;
-        b=h5saAjMhrH0HxaWeXItI+PASmkeSYJ2PQdO9BLbEOFZMfii8fwzQnWRsbK/4SKxc7s
-         rD4KG/Q1ZPION2xh25FfyL8e0ZB2Qd2fzVMGloq3ccKc3fh7BhotnxOssEIU6NXTOmPw
-         Ed0iTBqXWx2VVGJY2IcdbQFnpw0qfxiYeO5x4JEkEvIV37SnFXK3JBVkwiC/r04njS8y
-         DeZAUot9otBwpYzTq8BRqdksVkGzl71NkXIVhCIZ99z1EG+3khhsYIauwGuirflTgh0V
-         TCYybUkkwvY/s4CVK+hSzWpo0fEViGSEK8W+W0wklZBuO2soqu75jQ+l5cX7FKRhBJgT
-         3ohw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ADpodWKXROZu/3D+Zxer6l8IxEoAVXT4LlWfeI8NjbI=;
+        b=QMwjkoir1ul5Xka1V9XDto/QZCV7qWabFkeYDzEs08Sz4QgXBTb4jSc9cV1CPDuyLV
+         vY2O+dpeDflpgh5YtGadK9EZq5ssrGI35o0sEMYYG/0GMWeTaIB9I+IRC6FFsjYeHbBP
+         q+bxHCtxCkgYU8XEjq4KswgR53edjv9dX8uI35aE8H+vfsqepB4WatzI3mMUidU3S45F
+         /fH195BOCSnIN3we/1EfobW1JA5DnqCHAIiTbWSitLaqqy6XJwuUZy9v4/BBFx504nd/
+         8Y2dGs5+idsYlxw5SjuAdIQunN607EQ00Gzk7p0AkawzRInKtShLO6VTe8ohqJxFsDDx
+         ETbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=f74flBhltkIF6Kyzm1psBFvXaiR1ZpsFYBiux/pnBP0=;
-        b=i2BDavDhjQNQdURhqVmzR6+aovWcnNeWUaclauTtIYXpwnB535isAA4CYxs48KQBVF
-         QFW1Gp8FXbxWxY5yxkKLMpoWvr/B0xP1CDNcz9oadwjHCfFeSKe73c7pAdTPx70w4lp6
-         zlQpC8/EmuJ16/Ey3BSNSkQfoYO0Eo9DUW3nAK9KIfBUePmEP2sWT3pY0sFsBWydVvUs
-         MBEbNmRkPE99SI2t4I6X5xcROs4TN55EkVaFLObkygGOurJ3xpj1ZSDTY7inkhHvwMz8
-         TMEtO8nzlah2ziFfXqMnGCC6Ce+SdK6Th2MshOOoMKoHa1XgBix9MEHIbIhn7oxX4upl
-         6qog==
-X-Gm-Message-State: ANoB5plTu5Umg5e+l22/EDfEliMkZng608xJ+8WGgbBTQzmWTnjtZ+YG
-        0mWMLmoHwBGcsOoR8qsd11c71bub01ii/zukuLc=
-X-Google-Smtp-Source: AA0mqf5BkB6tOs9ZGs9+GqphqnUcCfvk0twwLhRnghScakJzu5AIhu6mkb8wvOOc7fcyfPZ5034mmUZ5ehkKT3Pvgc4=
-X-Received: by 2002:a05:6402:1f87:b0:468:7df:c38c with SMTP id
- c7-20020a0564021f8700b0046807dfc38cmr20457565edc.150.1670954276964; Tue, 13
- Dec 2022 09:57:56 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ADpodWKXROZu/3D+Zxer6l8IxEoAVXT4LlWfeI8NjbI=;
+        b=z74KSgRNICQoEilFlVKVJG0xvP9FVrD4PEHhEqcl+9PlbqArJVsDWKuJm9At3UMhNf
+         CfR1wsNtjPaoNjGzmMjmsvK2VN/9yh+p76Jfw02x9SWOrBzJ48YO57CQdhYLihyuMIcn
+         9eNef77QeyYxtwlPTx+bVPCBcA1juCBPEY2oRE1DypQ1TOStZrMS/6y4v3O9jxvWoh5D
+         Ym/Fyg+BI8haSJRFf+/mIxlBYDpV5e5KP/+k4C7UAbJF0sA45a6YxaSAl+GozEEbRp9q
+         TvkOOQYc57JKcP3oXlrJH7COBpT6pcySYF+t+isnAIpujLrJbUd1rZk3QrEB0QsNe3aY
+         H1Ow==
+X-Gm-Message-State: ANoB5pnOL7oMmD1YVDS8mgwCswelmbpsrdlM9mBhRmDTlgyncIBNIQa5
+        SAAbJS73JlxsXSLYS7IS/ueQSQ==
+X-Google-Smtp-Source: AA0mqf7sUGungFI5a/97OKrQx5IbqK4ZIfMYj93YgT+DCO0eJ3Yh2Ot1uIneRrVv+5l1e8oxTpvp+g==
+X-Received: by 2002:a05:6512:15a7:b0:4b6:e494:a98d with SMTP id bp39-20020a05651215a700b004b6e494a98dmr4223840lfb.44.1670954806151;
+        Tue, 13 Dec 2022 10:06:46 -0800 (PST)
+Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
+        by smtp.gmail.com with ESMTPSA id v10-20020ac2560a000000b00497aa190523sm454543lfd.248.2022.12.13.10.06.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Dec 2022 10:06:45 -0800 (PST)
+Message-ID: <1a950cde-6713-a14e-f899-3450dbad5312@linaro.org>
+Date:   Tue, 13 Dec 2022 19:06:44 +0100
 MIME-Version: 1.0
-References: <20221212115505.36770-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221212115505.36770-5-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdXeeCoHNt0tSD51HmexQG7qVBnJO+-_pURix7fr678LNQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdXeeCoHNt0tSD51HmexQG7qVBnJO+-_pURix7fr678LNQ@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Tue, 13 Dec 2022 17:57:30 +0000
-Message-ID: <CA+V-a8tuCV-p-BR3nAKZ+4Z1GnRus8eEKJZ_sBaTaa2mjqBb1w@mail.gmail.com>
-Subject: Re: [PATCH v5 4/6] riscv: mm: dma-noncoherent: Pass direction and
- operation to ALT_CMO_OP()
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Guo Ren <guoren@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH 1/4] dt-bindings: i2c: qcom,i2c-cci: Fall back to common
+ compatibles
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     marijn.suijten@somainline.org,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Atish Patra <atishp@rivosinc.com>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221213115628.105149-1-konrad.dybcio@linaro.org>
+ <b8be66e0-f987-b3ec-b78e-5be8bf54b05e@linaro.org>
+ <b289a9c5-54de-5ca4-b247-90751be05fa9@linaro.org>
+In-Reply-To: <b289a9c5-54de-5ca4-b247-90751be05fa9@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
 
-On Tue, Dec 13, 2022 at 5:15 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Mon, Dec 12, 2022 at 12:55 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Pass direction and operation to ALT_CMO_OP() macro.
-> >
-> > Vendors might want to perform different operations based on the direction
-> > and callbacks (arch_sync_dma_for_device/arch_sync_dma_for_cpu/
-> > arch_dma_prep_coherent) so to handle such cases pass the direction and
-> > operation to ALT_CMO_OP() macro. This is in preparation for adding errata
-> > for the Andes CPU core.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Thanks for your patch!
->
-> > --- a/arch/riscv/include/asm/errata_list.h
-> > +++ b/arch/riscv/include/asm/errata_list.h
-> > @@ -124,7 +124,7 @@ asm volatile(ALTERNATIVE(                                           \
-> >  #define THEAD_flush_A0 ".long 0x0275000b"
-> >  #define THEAD_SYNC_S   ".long 0x0190000b"
-> >
-> > -#define ALT_CMO_OP(_op, _start, _size, _cachesize)                     \
-> > +#define ALT_CMO_OP(_op, _start, _size, _cachesize, _dir, _ops)         \
->
-> Since commit a49ab905a1fc8630 ("RISC-V: Implement arch specific PMEM
-> APIs") in riscv/for-next, there are two new users of this macro,
-> which need to be updated to (add two zeroes?).
->
-Thanks for pointing that out, I'll rebase on for-next. I think -1
-would be a better option than zeros.
 
-Cheers,
-Prabhakar
+On 13.12.2022 18:01, Konrad Dybcio wrote:
+> 
+> 
+> On 13.12.2022 17:58, Krzysztof Kozlowski wrote:
+>> On 13/12/2022 12:56, Konrad Dybcio wrote:
+>>> Almost every compatible string in the CCI driver is a duplicate. Adjust
+>>> the bindings to include a common (first-soc-implementing-vX) compatible
+>>> to remove the need to keep adding superfluous compatible strings.
+>>>
+>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>> ---
+>>>  .../devicetree/bindings/i2c/qcom,i2c-cci.yaml | 25 +++++++++++++------
+>>>  1 file changed, 17 insertions(+), 8 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+>>> index cf9f8fda595f..65cf7860a9a0 100644
+>>> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+>>> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+>>> @@ -12,14 +12,23 @@ maintainers:
+>>>  
+>>>  properties:
+>>>    compatible:
+>>> -    enum:
+>>> -      - qcom,msm8226-cci
+>>> -      - qcom,msm8916-cci
+>>> -      - qcom,msm8974-cci
+>>> -      - qcom,msm8996-cci
+>>> -      - qcom,sdm845-cci
+>>> -      - qcom,sm8250-cci
+>>> -      - qcom,sm8450-cci
+>>> +    oneOf:
+>>
+>> Except missing test,
+> Hm? I tested this locally with dt_binding_check and it passed..
+Eh, looks like I didn't hit save before running it or something,
+I see it now, sorry bout that..
+
+Konrad
+> 
+> how about also adding a comment to the driver, that
+>> list of compatibles should not grow when not needed?
+> Sure.
+> 
+> Konrad
+>>
+>> Best regards,
+>> Krzysztof
+>>
