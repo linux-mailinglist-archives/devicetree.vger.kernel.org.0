@@ -2,155 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7597664BACC
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 18:16:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 343DF64BAEE
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 18:26:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236113AbiLMRQb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 12:16:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43060 "EHLO
+        id S236101AbiLMR0Y convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 13 Dec 2022 12:26:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236092AbiLMRQ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 12:16:29 -0500
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2057.outbound.protection.outlook.com [40.107.8.57])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 446F2B848;
-        Tue, 13 Dec 2022 09:16:28 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NjRvIjI00cEvUTbOuV2KCpoL/vYFbgzRPZ+BPeeip6ErNeZ0wUxOGy5PwJIHydKWOrcO6eupw8Mt8ZWdda00FdY0tDsAhTwBxE/Ev9Jfd18NXj7tpBfksc1YrcOW1Lgyx0Si/CXJ54iLCWBmH9npdLZdnWSLqx6r4dgWJRe7cj5/reCv/Fl9p2DK2cR1AjvgtDydD8F5FTO8ygoo25VOkiIxhU97ZN88FVm6NpgHNY6yMhNNxOgm57oh7yz/c6w1XW1QwAYtPhTHmwqA8cEQgLt6MU2ICRNEWmKoCDI0TKtjmRHQrCraIcd9ldtHMcdeIj858TG+le7hpYVtiTy9GQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tDxw0sDJtAzdyTa9164H4BqbnhLOmOS2D/7bV05ZczQ=;
- b=QxTi0XMt+xgIHafTQI6MTcPJmbypwAommsQwS4kQOZGKRL3+r5lszz9NcAet1j2BVynfA/urIfu9eaJqayFS/Hfwe6MCPWKpfT5lqgBIfBAgRpM2ZqDE6SrLxlV3CgDfXvnC/vjXa8Vyr1iVl+ehpct9HmLRILvEUqffOsq4nhRFPFhUUmHl5j30X58f3toeD7s4gxNySZbQoYBTLqUIcZp07S8uKp8pLfx6kXOZ+WEYHEuG0+rsy7nQfH0kYEmlKwMW/eRQlOIAK3I0utwsGR/6+OyL2mG4NZ3bK1XT6W3pbtAcohJtkL66CXokTJ376/eTFOm2V9EwWKEcRwpI/A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tDxw0sDJtAzdyTa9164H4BqbnhLOmOS2D/7bV05ZczQ=;
- b=D9XEHOIJUp53CYq34/01+WLvyNEF68UOG+UUfL/TDC9jRe6olm62J/JOKaBJvKkN/QMVOC/i/9qtgkkxr/ZLG2AlEBuZP1/lujG48Zj4/X6RVZQ3rqVHcPK3HesJYyE0uKP0kGiqbDlO3Qf7C8Kj0FxOeQPAJiJpaLVrsQ419eQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from GV1PR04MB9071.eurprd04.prod.outlook.com (2603:10a6:150:22::11)
- by AS8PR04MB8931.eurprd04.prod.outlook.com (2603:10a6:20b:42e::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.8; Tue, 13 Dec
- 2022 17:16:24 +0000
-Received: from GV1PR04MB9071.eurprd04.prod.outlook.com
- ([fe80::ef72:e2bf:2ff6:a953]) by GV1PR04MB9071.eurprd04.prod.outlook.com
- ([fe80::ef72:e2bf:2ff6:a953%6]) with mapi id 15.20.5880.019; Tue, 13 Dec 2022
- 17:16:24 +0000
-From:   Han Xu <han.xu@nxp.com>
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>, Han Xu <han.xu@nxp.com>,
-        Sean Nyekjaer <sean@geanix.com>,
-        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
-        Matti Vaittinen <mazziesaccount@gmail.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Clark Wang <xiaoning.wang@nxp.com>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, imx@lists.linux.dev
-Subject: [PATCH v3 4/4] dt-bindings: iio: accel: fxls8974cf: add new compatible string
-Date:   Tue, 13 Dec 2022 11:15:36 -0600
-Message-Id: <20221213171536.1880089-6-han.xu@nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221213171536.1880089-1-han.xu@nxp.com>
-References: <20221213171536.1880089-1-han.xu@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BY5PR17CA0005.namprd17.prod.outlook.com
- (2603:10b6:a03:1b8::18) To GV1PR04MB9071.eurprd04.prod.outlook.com
- (2603:10a6:150:22::11)
+        with ESMTP id S235691AbiLMR0X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 12:26:23 -0500
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B34219014;
+        Tue, 13 Dec 2022 09:26:22 -0800 (PST)
+Received: by mail-qt1-f175.google.com with SMTP id i20so381379qtw.9;
+        Tue, 13 Dec 2022 09:26:22 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1ABLNKqAitVQcKI2X5OFSDZh4I8+RKHdjqd+qpiEoKc=;
+        b=Gv+/Y+tchiN8FKdK3kX/BWN7DFmCnySNW4eBZot/zO8JcWG62ZbzbE/QmmALon9fmh
+         PRZr8hX4q8AT4m1XkdfK85XgcirdmfzxwAgTiUKSacGXse6LA4dpd08Yiv+05zSIZVbp
+         1QE24Y6gNodYfMp49mjC0oD0ZT8uOxq95ZFZrlf6bpg6H7LHTuUSjKBW/bhHQysL27pY
+         2WnDXDj4dVfnGtIpjrqo3HAMhiGIxpG8KHRadJYbU12MfXlcnxc/bJenylY+JpfuKcoi
+         oEdHIell6B8C7xD+8FbQYFlQEBIFmXhJM406dk/roAoNA2A7gYGgdwNuKOJoK9/S+Nqy
+         lhDA==
+X-Gm-Message-State: ANoB5plcsqaVj2HRtgrOi0A8y/Qyz9IZqJWxD5ADbO0WdtNS/HAcaJYF
+        g0vNQ4Kk7QEG6ARzglKia1VwDA5iacEVtQ==
+X-Google-Smtp-Source: AA0mqf6BQkmTU2iY0firZnQfs2ZH90dGlKq5If+wOgVKCEukXfy1WFg1P0CBq0aXJUS68kf1Ni7XZg==
+X-Received: by 2002:a05:622a:59ca:b0:3a4:3137:79b6 with SMTP id gc10-20020a05622a59ca00b003a4313779b6mr28783590qtb.24.1670952380931;
+        Tue, 13 Dec 2022 09:26:20 -0800 (PST)
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
+        by smtp.gmail.com with ESMTPSA id a10-20020ac844aa000000b003434d3b5938sm229241qto.2.2022.12.13.09.26.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Dec 2022 09:26:20 -0800 (PST)
+Received: by mail-yb1-f173.google.com with SMTP id 186so120371ybe.8;
+        Tue, 13 Dec 2022 09:26:20 -0800 (PST)
+X-Received: by 2002:a81:148c:0:b0:3e5:f2ca:7be8 with SMTP id
+ 134-20020a81148c000000b003e5f2ca7be8mr24224685ywu.358.1670952078434; Tue, 13
+ Dec 2022 09:21:18 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV1PR04MB9071:EE_|AS8PR04MB8931:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5757fb00-2b92-4d06-a517-08dadd2dc2ff
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: dvQL2v6wXKMc1J7NDyIvG5EXte3dHxeIW5w/R4XqoYWRxMNZyeg1167EigCSp/Y99dYRISk6Ztp1wZyGl2Ep4VJTf9D4et7cDhEHgS4EITxCrrkBlJtrSFTAUZ7jIFqq71lNwGkwXKe07AO/6XFTBqxa2oe2WcIYH+aAJLU9GMVk0i2WHckPThGxYDbjFNkEQNh/Z+AAfTEcmVIhoVb8V57DfKSSlXWpAzY5u7CMF7+gAN0DkihOd1ob4mTYZcgt3HgnawbnHC93MpDupA2c/956vpxg+B5714PoCQBFw/JO/e8jJX/Wf/jV1JFAGtOehAzr468dd8wOX8IM1ZoibHjYOkgl5Ykb5STHtf4M1GjVVhkX7EylJONV40LKzQ+1u6EK23QYsqzDp2E3o7Z0uqZrUEygBdiD8JL9Iqzn2DuDMRQsXQsp8fMprZ1k6P9+eNAuZ37llKEGKpIRY0bPPSncbA8VzTOZzACp/qviGfKsJeyAo92YFY55rvmX44P+Sf4J52YhWaWfhZRJkXUbbFCkWxBen/b1xLxa4358It8+jBVvz405lRM81KLOdH4mDD57JQn+aWyuXqRr/682Zk52l03oxo1/1HyMTbhTH1Q55FRIO2euAwjNcf9xd3/k9PMyaW2YO2XvsmEDUEjTVpnH1kQTyCZRUK9GICoShIKw0c2dEjxeG2/CAS2VxkY4DUcHaCOiqfgFdIucjRO/JDROkSUQCK+72uKs5lNizzFFAfkjHmLGJaMfFOpeyXFSHBQ0ioaO/NwHgB/ZAmU5Ag==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV1PR04MB9071.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(346002)(39860400002)(366004)(136003)(396003)(451199015)(38350700002)(38100700002)(4744005)(7416002)(6486002)(5660300002)(86362001)(44832011)(478600001)(966005)(66946007)(52116002)(2906002)(6666004)(41300700001)(66556008)(4326008)(110136005)(316002)(8676002)(83380400001)(26005)(186003)(6512007)(8936002)(6506007)(66476007)(1076003)(2616005)(54906003)(36756003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?3dhypPA2k4Y6S0m6R+RQUp1oq1NPeYr7Qn45tIGeBMC9uPLHvA657l7oHEYT?=
- =?us-ascii?Q?rcOpmPKHExE4CmZ21QgRMxo3LWhtII+X00FHweL2RI3MFKYeha+8F+n0XnhG?=
- =?us-ascii?Q?YgabrNV9i6VkR2svIEtS9fbts5P3Mui/MnMpF85B3W+5lGEfwxUVem37tvQV?=
- =?us-ascii?Q?A+HpXM77cavFHrDNHmpSxA34aZPx80iwkOVxlJnXMITaMQMxG7qGFgKZOs0t?=
- =?us-ascii?Q?pfHoTCe1ydLAJAmGqkhQxivyjvfCDBBGwVDj4gHRBn7L/62jDXBaVK03p8cs?=
- =?us-ascii?Q?HYCPeCBm14pqMsr31SF6+IjwtFABA2S1bDj9bCTwuBChVzTasyAoZe5LJMxG?=
- =?us-ascii?Q?pA2Q5QvySx1ruxl9ZVzgTES6oxN2wX6sFiGdY6RigbW3SPg23/PFydNsiOSL?=
- =?us-ascii?Q?CLtM9aDVPOW4Tlw0UYfG+jWFNlsiULbUXmziG8IX7pQ8352ZwILPU6PuYmEM?=
- =?us-ascii?Q?Agp9It5H24nQ6J45bDTjpYKuY/cyMMH0rsEpn8Hxk3ixGzaAXNg8diCB6OhW?=
- =?us-ascii?Q?xWZULq0+CWzsQxA6S6zVq+1MrMiq2yhhCJzbK/dbpLKCOc4DLw6Vr5y274KG?=
- =?us-ascii?Q?3oHpC1ZZFZf9kdgESwt8FRvwDUgR9rDX46IHrlnOx6ilBBn4iOAd8rMeVxw2?=
- =?us-ascii?Q?bReKrFkKsSBgigrezS6b/ME2IvbTgbNRGDEHzw7oPK3ARMrv/cPTBiXRFTSO?=
- =?us-ascii?Q?ZWuUAQXyLTNldxHwtc4+4KSGWWNVRsVfiWCuYcrYZ0EOvSFVl0tVEFIRA5Ws?=
- =?us-ascii?Q?YoPzKw+ymEUoKOh5G/o4CvsWlkpdlS/GvPyfkY9jM6XTY3YsxZh74liIy4SN?=
- =?us-ascii?Q?TFxOmRdQPDQPpvdZoqMp6OUusTTpgJHfxGNsFTZXxd9QR+42+e4+s5GTDAsa?=
- =?us-ascii?Q?8EqI7Y3wAX/ocz/PjEPE/4HA80mdQpK3ybHyanYYQcCc/Qiy6QhYTanVZW54?=
- =?us-ascii?Q?Zm6kSqrrM9qOMS9q3n+SO7gdopdw/ZXt6HuueqpEVBT0iYnJblkd1PHA3S1t?=
- =?us-ascii?Q?D+SW5LAeXhodbv/XvcdcvdM+sb3aT/Rl0TJXsRrCWBwBqCyKwy7PxOYDfM7H?=
- =?us-ascii?Q?FRhTzlch8RbS1hGLbhWYOSy6kwpP3k3wIrAdkhuRHhMVsexKrqKsTGyCIIG/?=
- =?us-ascii?Q?DluouK1p6tUtMdclWbuXvWntLAqEzDvIDVh5a1j+uQNoCZxq1JL8pxDJVW/2?=
- =?us-ascii?Q?OfOnBrLkCrNCWuV6oWObYKJLi29i3c6zbovJbDx7P2sMstw+cdeLQAcbEcML?=
- =?us-ascii?Q?qyym4yIwcDdQv/UddXK2dqqHms2kZI84+uKqAFODEcL1+wOBacuYMMWcZ46x?=
- =?us-ascii?Q?prOvMvOzVF5EO1DzhUhz9Z+np/sAhaUoRonovwmkN28PZ3Fy/OqRW333SXt5?=
- =?us-ascii?Q?ktj1vg4MDYLDhb7K0apVxG81jI6OT1i1oTNm+1awlp3CgjB6wX31c5IbFg4v?=
- =?us-ascii?Q?BwDOG35j8Cmtmdbc68jil0UFoXuaS4GUgsKjwwSgJkSeisaDUR7NpDCQgajq?=
- =?us-ascii?Q?9Nn+9MTjGXy8KJ/2ZpOTMUXANqSMcfKGUV9icSRVKcHrJcZKez25aAFOXEJy?=
- =?us-ascii?Q?mbd7x1OiBXvjzt7SfAg=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5757fb00-2b92-4d06-a517-08dadd2dc2ff
-X-MS-Exchange-CrossTenant-AuthSource: GV1PR04MB9071.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Dec 2022 17:16:24.4896
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AHyke+DZHKihU80sDXYrxgQrlwFlODPhUe12TNweYYahNrpGFszcYl1VstmvNEqQ
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8931
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20221212115505.36770-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20221212115505.36770-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20221212115505.36770-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 13 Dec 2022 18:21:07 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXXXN9g8o1j7k-TC=F-kuyf-KngFSKi7z9z0SY9BLxmHA@mail.gmail.com>
+Message-ID: <CAMuHMdXXXN9g8o1j7k-TC=F-kuyf-KngFSKi7z9z0SY9BLxmHA@mail.gmail.com>
+Subject: Re: [PATCH v5 1/6] riscv: asm: alternative-macros: Introduce
+ ALTERNATIVE_3() macro
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Guo Ren <guoren@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add new compatible string for the NXP FXLS8974CF accelerometer sensor.
+Hi Prabhakar,
 
-Signed-off-by: Han Xu <han.xu@nxp.com>
+On Mon, Dec 12, 2022 at 12:58 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Introduce ALTERNATIVE_3() macro.
+>
+> A vendor wants to replace an old_content, but another vendor has used
+> ALTERNATIVE_2() to patch its customized content at the same location.
+> In this case, this vendor can use macro ALTERNATIVE_3() and then replace
+> ALTERNATIVE_2() with ALTERNATIVE_3() to append its customized content.
+>
+> While at it update comment above ALTERNATIVE_2() macro and make it generic
+> so that the comment holds good for any new addition of ALTERNATIVE_X()
+> macros.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v4->v5
+> * Rebased the patch on top of Andrew's series (now in Palmers for next-branch)
+> * Updated comment for ALTERNATIVE_x() as suggested by Heiko
 
----
-changes in v3:
-- Start commit message in capital
----
- Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Thanks for the update!
 
-diff --git a/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml b/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml
-index 8f07ade21abb..34c452e04fe0 100644
---- a/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml
-+++ b/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml
-@@ -15,6 +15,7 @@ description: |
-     https://www.nxp.com/docs/en/data-sheet/FXLS8962AF.pdf
-     https://www.nxp.com/docs/en/data-sheet/FXLS8964AF.pdf
-     https://www.nxp.com/docs/en/data-sheet/FXLS8967AF.pdf
-+    https://www.nxp.com/docs/en/data-sheet/FXLS8974CF.pdf
- 
- properties:
-   compatible:
-@@ -24,6 +25,7 @@ properties:
-       - nxp,fxls8962af
-       - nxp,fxls8964af
-       - nxp,fxls8967af
-+      - nxp,fxls8974cf
- 
-   reg:
-     maxItems: 1
--- 
-2.25.1
+> --- a/arch/riscv/include/asm/alternative-macros.h
+> +++ b/arch/riscv/include/asm/alternative-macros.h
+> @@ -50,8 +50,17 @@
+>         ALT_NEW_CONTENT \vendor_id_2, \errata_id_2, \enable_2, \new_c_2
+>  .endm
+>
+> +.macro ALTERNATIVE_CFG_3 old_c, new_c_1, vendor_id_1, errata_id_1, enable_1,   \
+> +                               new_c_2, vendor_id_2, errata_id_2, enable_2,    \
+> +                               new_c_3, vendor_id_3, errata_id_3, enable_3
+> +       ALTERNATIVE_CFG_2 \old_c, \new_c_1, \vendor_id_1, \errata_id_1, \enable_1,      \
+> +                                 \new_c_2, \vendor_id_2, \errata_id_2, \enable_2
+> +       ALT_NEW_CONTENT \vendor_id_3, \errata_id_3, \enable_3, \new_c_3
+> +.endm
+> +
+>  #define __ALTERNATIVE_CFG(...)         ALTERNATIVE_CFG __VA_ARGS__
+>  #define __ALTERNATIVE_CFG_2(...)       ALTERNATIVE_CFG_2 __VA_ARGS__
+> +#define __ALTERNATIVE_CFG_3(...)       ALTERNATIVE_CFG_3 __VA_ARGS__
+>
+>  #else /* !__ASSEMBLY__ */
+>
+> @@ -98,6 +107,13 @@
+>         __ALTERNATIVE_CFG(old_c, new_c_1, vendor_id_1, errata_id_1, enable_1)   \
+>         ALT_NEW_CONTENT(vendor_id_2, errata_id_2, enable_2, new_c_2)
+>
+> +#define __ALTERNATIVE_CFG_3(old_c, new_c_1, vendor_id_1, errata_id_1, enable_1,        \
+> +                                  new_c_2, vendor_id_2, errata_id_2, enable_2, \
+> +                                  new_c_3, vendor_id_3, errata_id_3, enable_3) \
+> +       __ALTERNATIVE_CFG_2(old_c, new_c_1, vendor_id_1, errata_id_1, enable_1, \
+> +                                   new_c_2, vendor_id_2, errata_id_2, enable_2)        \
+> +       ALT_NEW_CONTENT(vendor_id_3, errata_id_3, enable_3, new_c_3)
+> +
+>  #endif /* __ASSEMBLY__ */
+>
+>  #define _ALTERNATIVE_CFG(old_c, new_c, vendor_id, errata_id, CONFIG_k) \
+> @@ -108,6 +124,13 @@
+>         __ALTERNATIVE_CFG_2(old_c, new_c_1, vendor_id_1, errata_id_1, IS_ENABLED(CONFIG_k_1),   \
+>                                    new_c_2, vendor_id_2, errata_id_2, IS_ENABLED(CONFIG_k_2))
+>
+> +#define _ALTERNATIVE_CFG_3(old_c, new_c_1, vendor_id_1, errata_id_1, CONFIG_k_1,               \
+> +                                 new_c_2, vendor_id_2, errata_id_2, CONFIG_k_2,                \
+> +                                 new_c_3, vendor_id_3, errata_id_3, CONFIG_k_3)                \
+> +       __ALTERNATIVE_CFG_3(old_c, new_c_1, vendor_id_1, errata_id_1, IS_ENABLED(CONFIG_k_1),   \
+> +                                  new_c_2, vendor_id_2, errata_id_2, IS_ENABLED(CONFIG_k_2),   \
+> +                                  new_c_3, vendor_id_3, errata_id_3, IS_ENABLED(CONFIG_k_3))
+> +
+>  #else /* CONFIG_RISCV_ALTERNATIVE */
 
+To avoid breaking the build for K210 (and VexRiscv), you need to provide
+_ALTERNATIVE_CFG_3() for the !CONFIG_RISCV_ALTERNATIVE case, too:
+
+@@ -144,6 +144,9 @@
+ #define _ALTERNATIVE_CFG_2(old_c, ...) \
+        ALTERNATIVE_CFG old_c
+
++#define _ALTERNATIVE_CFG_3(old_c, ...) \
++       ALTERNATIVE_CFG old_c
++
+ #else /* !__ASSEMBLY__ */
+
+ #define __ALTERNATIVE_CFG(old_c)       \
+@@ -155,6 +158,9 @@
+ #define _ALTERNATIVE_CFG_2(old_c, ...) \
+        __ALTERNATIVE_CFG(old_c)
+
++#define _ALTERNATIVE_CFG_3(old_c, ...) \
++       __ALTERNATIVE_CFG(old_c)
++
+ #endif /* __ASSEMBLY__ */
+ #endif /* CONFIG_RISCV_ALTERNATIVE */
+
+Else it fails (on riscv/for-next) with:
+
+arch/riscv/mm/pmem.c: In function ‘arch_wb_cache_pmem’:
+arch/riscv/include/asm/alternative-macros.h:198:8: error: expected
+string literal before ‘_ALTERNATIVE_CFG_3’
+  198 |        _ALTERNATIVE_CFG_3(old_content, new_content_1,
+vendor_id_1, errata_id_1, CONFIG_k_1, \
+      |        ^~~~~~~~~~~~~~~~~~
+arch/riscv/include/asm/errata_list.h:128:14: note: in expansion of
+macro ‘ALTERNATIVE_3’
+  128 | asm volatile(ALTERNATIVE_3(      \
+      |              ^~~~~~~~~~~~~
+arch/riscv/mm/pmem.c:13:2: note: in expansion of macro ‘ALT_CMO_OP’
+   13 |  ALT_CMO_OP(clean, addr, size, riscv_cbom_block_size, 0, 0);
+      |  ^~~~~~~~~~
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
