@@ -2,115 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D081264B60A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 14:25:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2399B64B60E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 14:26:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235104AbiLMNZN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 08:25:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41342 "EHLO
+        id S235570AbiLMNZb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 08:25:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235540AbiLMNZM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 08:25:12 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E120418388
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 05:25:09 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id bp15so4827923lfb.13
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 05:25:09 -0800 (PST)
+        with ESMTP id S235575AbiLMNZZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 08:25:25 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64B7620373
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 05:25:22 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id cf42so4900829lfb.1
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 05:25:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Kum601MiBIlttJSDRQmfhh9LTWkYIKPaSRUuoMLt5mc=;
-        b=Yq+RaU/XO0NdXv3tTOX30OYKW7pojZzUeJFwM+c6kknJV6vETrM+n/PGK6GLX/Blse
-         USjkE7bBQyFRw9egfBFbbZ52tciOgje3i7DkvG8YnL1zMJNKoZRRLEbT6ZNi39hGlDu5
-         bxJF426xiXNXqFIUnc3L2Zlq0vqosOm/uO6WcRVJ3Nnad8t3+bNu/5egWsysJbOuW15o
-         SdGm/KbJjL6KGAMZEE+Ismzmy+KUQYoJAgDfE7NRIMxaAGTBrRvLGuPywQvaI5fvjuTc
-         AxckxTDUa77GzGs8yuHKQnu4EkC1ByBfB6wREv8+a0j7Tq6un9rWlSwfyLVrxvtdvy/c
-         Xo9w==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zbT0fafmzTHukwKRXE1XU496DYVTEGMa/YXTFnZk2Hs=;
+        b=t+nh+QQwG1a3tUQ/DJyuMDQDHAF+B3fbEABr+cam+Z6IzFe6SqjafVZFGoLhxQqewX
+         yqxSP+M0SCfyGDsGe2JUD1FYgWmgDM1SKaOREFgRlsjcoS4sZ7oDASIdmmawNF0jTaOU
+         FB6S6658trp61k879qJJJQifXMMC3SRaw0iFBI6j4mKKeBMerpC9fwWtXiN2JaJCCxOj
+         XHlZyVs8MukN6G5T0XiQptzkygqgKktSZ7gPWezL61sUgR7QWTwUscsab6bL6qxL9J+D
+         MWe9+wQuK9LW2i50TLq/DlG7gPyEgV+xB0kvWHs0pIc7S+zDcQXnzXChoiDBLbNamv2t
+         8PsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Kum601MiBIlttJSDRQmfhh9LTWkYIKPaSRUuoMLt5mc=;
-        b=644i09BGoEEa5xyIroOcnnkH1Qltnpc+vTeHY5PbTUYvtUdSKzcwUG8ZE2F9jacTHs
-         hjCsV9NYqS96q41WUHQWfPZ2AKGdfHWr+18UdACkBeie325AJ4u0MSHNt/YaIbQwNScS
-         akDOWOqWZBJS/MfNUzbPSDffKoc9sDWmu7xlxSKfuItdDnP+MI8GPa/87dxF8jXWiHv4
-         VtbjtF0dPUKOlnTTdN8apbcn+ZzpX+aKKxRJKu11R9JYzVHCakh9X1Y5OIxyquWe9yj0
-         SBgcfroZitTCR9ImREuZ+InHkLkDvo26vxAtbXEQSelpLjrxwejXbexiNTFKoyH/GOrf
-         sA7A==
-X-Gm-Message-State: ANoB5plQXeqjmCxNo49xJOzX8VaRxzuLeW6KnAa3trM/kYcm2RT9cZNe
-        JH3K5q+N9LPgepOEaI501msfCqmM6/xrawad
-X-Google-Smtp-Source: AA0mqf7s1i6yNk0ChaSAEcHqOvw2xV6LvqBbDdAGkhTlDAG8xjcRcoAtTezuUVLbH2vHrDNdN0+Uag==
-X-Received: by 2002:a05:6512:32ce:b0:4af:b1de:3ae1 with SMTP id f14-20020a05651232ce00b004afb1de3ae1mr6234854lfg.58.1670937908327;
-        Tue, 13 Dec 2022 05:25:08 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id 16-20020ac24850000000b004a46a9cebe2sm364786lfy.289.2022.12.13.05.25.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Dec 2022 05:25:07 -0800 (PST)
-Message-ID: <ec874c50-1a55-5d78-fde9-f54881cd9d53@linaro.org>
-Date:   Tue, 13 Dec 2022 14:25:06 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v5] dt-bindings: mxsfb: Document i.MX8M/i.MX6SX/i.MX6SL
- power-domains property
-Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liu Ying <victor.liu@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zbT0fafmzTHukwKRXE1XU496DYVTEGMa/YXTFnZk2Hs=;
+        b=ZU7u/FeZPPLmzvdEevXcQMFFB7ySEEVsoqsr7bdkDm23Uco+xtHuGjmhRKj/VZNU8z
+         Kwybsn/l4/Ue/d3JoX/Yt5R7quWHaysLaWGh3qctInjmYbl1KZKuCmNYNxY+JESs4udo
+         flW2mAVdorGOkbAcLVkxlMlOH6hdxu+rzag+5pjH1YG1piUksrAoBuEHqE/sY2LE9Wtn
+         Muq9lg0lCtE0R/QvrPznmiW/PNTz+1JxFbXWxAshVN1JYevBSvvjph0cZcP9Exvh/5pf
+         5LGlDucMxAeR7I9nnOFoGMOwhEr86hWJqo7Ws0Y124ZID0mxnMoTY0M1yvZtZIhLsh0+
+         hoFg==
+X-Gm-Message-State: ANoB5pnn+pysflnxrhpb+t5oqC+EDoQ7w1cGNw0D/Q8+QTw9lDvDStbz
+        5PwGTWpd/uN59XH6hoQXTf3HUg==
+X-Google-Smtp-Source: AA0mqf6isKEIc0Od+et/Fjj46eJY5oJB/zV5/1mJn+DMAAO4ifVJV+bIKTTZRX3FWL2h6Wt7bnjXZw==
+X-Received: by 2002:ac2:4e4e:0:b0:4a4:68b9:608a with SMTP id f14-20020ac24e4e000000b004a468b9608amr4437277lfr.21.1670937920436;
+        Tue, 13 Dec 2022 05:25:20 -0800 (PST)
+Received: from localhost.localdomain (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
+        by smtp.gmail.com with ESMTPSA id k8-20020ac257c8000000b004b0a1e77cb2sm366564lfo.137.2022.12.13.05.25.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Dec 2022 05:25:20 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-References: <20221213132006.6446-1-marex@denx.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221213132006.6446-1-marex@denx.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/3] arm64: dts: qcom: sm8250-edo: Remove misleading comments
+Date:   Tue, 13 Dec 2022 14:25:15 +0100
+Message-Id: <20221213132517.203609-1-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.39.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/12/2022 14:20, Marek Vasut wrote:
-> The power-domains property is mandatory on i.MX8M Mini, Nano, Plus
-> and i.MX6SX, i.MX6SL. Document the property and mark it as required
-> on the aforementioned variants of the IP, present in those SoCs.
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Liu Ying <victor.liu@nxp.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: linux-arm-kernel@lists.infradead.org
-> To: devicetree@vger.kernel.org
-> ---
-> V2: - Add AB from Krzysztof
->     - Add mx6sx power domain into the list
-> V3: - Update commit message
->     - Add i.MX6SL
->     - Update example
-> V4: - Drop ack from Krzysztof
->     - Rebase on next 20221213 instead of previous 20221208, which now
->       contains power-domains: part of this patch
-> V5: - Drop power-domains from MX8MP/MX6SX entry
+As much as it hurts me, there is no FM radio chips on these devices.
+It seems to be present on Japanese models, but these are not available
+globally and differ in a few more ways anyway (such as a super high-tech
+NFC chip).
 
-Thanks.
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
+index fdfed4c3201e..bf484ee20b21 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
+@@ -529,10 +529,8 @@ &i2c15 {
+ 	clock-frequency = <400000>;
+ 
+ 	/* Qcom SMB1390 @ 10 */
+-	/* Silicon Labs SI4704 FM Radio Receiver @ 11 */
+ 	/* Qcom SMB1390_slave @ 18 */
+ 	/* HALO HL6111R Qi charger @ 25 */
+-	/* Richwave RTC6226 FM Radio Receiver @ 64 */
+ };
+ 
+ &pcie0 {
+-- 
+2.39.0
 
