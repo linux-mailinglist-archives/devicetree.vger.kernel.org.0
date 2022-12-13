@@ -2,156 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C331464B40C
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 12:20:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7A4164B426
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 12:26:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235153AbiLMLU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 06:20:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57580 "EHLO
+        id S235383AbiLML0O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 06:26:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234974AbiLMLUZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 06:20:25 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBCDA1172
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 03:20:21 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id b13so4377227lfo.3
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 03:20:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TLFxPFNWjIj4ZBxPSnXyiFyU0tfel3refSqsW9jEGvc=;
-        b=f8d7jTuiJHqiz27UEXrHgx2ge0rv4eph4e/P4OuMN9N1dxlAlwxnq1XuTgeZDjO98t
-         gvsdOloXDH82NmlhpQUJMGF3THi4UClS40mT7mXdLfUOAhmzjGWYwvsm6sPHLaCF2FLx
-         p1BZJNYnr78e6p+KNKnXhEDVlyYlOLDHHdX4Kj3aGtwUMp0k/pZmWH8Rf/TUKEVFN8Ar
-         qiKUsbv+U1bsJ6/sSPwZjfVvk4vRcytO6SCh1vlVryw+iCDCtpyqLGbAJB4fLJQ6CkfS
-         pURjUdGFzZeqNUNc4rI8diG01djNbaFmHuySGVg+ph+DpnJUPpYKX4ZOUag6sUa6GjgX
-         MCuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TLFxPFNWjIj4ZBxPSnXyiFyU0tfel3refSqsW9jEGvc=;
-        b=x8WGUYw7o1szhBr2emU7J6B+bJ9zEKmItnZQ7jcHBZ5cNGVUyf0W3IimXMO4QsbP1+
-         OIqsr7jx3nzt59m+wQw8ALW3dSNSFccfzphG5FFYq0ndjeM3sGhld3iq4w0xg1wj0S6O
-         M4GDVo+Owe+BIEBE4XdPNlzCrOQyKCes+VjRhdSBoQnOFFRNvs8bnEkSmQ7YbSQFBGnv
-         5+DLCFFnsBp0ZywV/JClGUtc49zKwZsVOs+iac4cK9oWRBf5EWiFzO373Psx4qpZcqz0
-         TcgUcAoKt2gf5cRGkvl6GExbacDFb4uAC1l6sVF8yVKC7msJYKJjRffu5JJAjGnJGSuE
-         aRAQ==
-X-Gm-Message-State: ANoB5pkDYKMv378dP/H50xGqEWP5rpDfpKAmqqX3iQNpoh9yKigkwxuk
-        Th7hmE8kxrJb2FiC0twHU7UcKQ==
-X-Google-Smtp-Source: AA0mqf7clquZNGkxhrTM3z0CD1eyfqyo0U313kqearEe+5JyXR5Xn2idQjFjifdJecX3syn6zM+n7w==
-X-Received: by 2002:a19:7004:0:b0:4b5:834b:9f82 with SMTP id h4-20020a197004000000b004b5834b9f82mr5507150lfc.58.1670930420084;
-        Tue, 13 Dec 2022 03:20:20 -0800 (PST)
-Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id e29-20020a19691d000000b004b19f766b07sm328942lfc.91.2022.12.13.03.20.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Dec 2022 03:20:19 -0800 (PST)
-Message-ID: <8299b28c-a2ca-2f6a-ee9a-20f19e2236aa@linaro.org>
-Date:   Tue, 13 Dec 2022 12:20:18 +0100
+        with ESMTP id S235433AbiLMLZo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 06:25:44 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1256113F01;
+        Tue, 13 Dec 2022 03:25:02 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id BD801660036A;
+        Tue, 13 Dec 2022 11:24:59 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1670930700;
+        bh=S28HSQxSYCXptuAQKVMiEpXE1fyqtwfRr7BZZg4uLno=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Oc9gXk0hl3JuuTZ3xweThzqAl1A/8eU8gP7vsaciJpgcjDqwoH9h8ptkg4wmHwRx+
+         m/MiO+DE79mUHZfvyro4S5FWGQmx0AP7x9ZYCpvoLHltCdo6AmHrFr0CvYF3VCaNH2
+         YBCabCdpSeAnMlADjUGhsM4lIGtwAhAreHs45rZ87XEfNhZp50sOJv8mQg4UK4yGwS
+         l/uRCM86fDS5hpJBfHcK0qqWL5S06Vbeo+cXWppAlTzbat1dmf4KaRoM20LfKmNBjO
+         bcXl+6oo1vMrzM5DNM6fHr8Wnnn0iKk4AwCCzMsbKIDboPLIt+YytoLlPhyl6pP+fm
+         +neOrivoc51ig==
+Message-ID: <8d2237d3-1a00-569b-fe83-57b889c266a2@collabora.com>
+Date:   Tue, 13 Dec 2022 12:24:57 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH] arm64: dts: qcom: sm8350-sagami: Rectify GPIO keys
+Subject: Re: [PATCH 1/4] arm64: dts: mediatek: mt8183: Fix systimer 13 MHz
+ clock description
 Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org,
-        patches@linaro.org, Rob Herring <robh+dt@kernel.org>,
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221210133850.3664-1-konrad.dybcio@linaro.org>
- <20221213090349.bvatkmozbf5tjsxc@SoMainline.org>
- <0c6bad50-500c-00b0-30c3-853b0c0a6d5e@linaro.org>
- <20221213111119.g3lzt5heevfarvf7@SoMainline.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221213111119.g3lzt5heevfarvf7@SoMainline.org>
-Content-Type: text/plain; charset=UTF-8
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
+        <nfraprado@collabora.com>
+References: <20221201084229.3464449-1-wenst@chromium.org>
+ <20221201084229.3464449-2-wenst@chromium.org>
+ <5250d7d3-ff46-e08d-926c-4efd92390d88@collabora.com>
+ <CAGXv+5E63+dE-=KbD_LW+BV+fBWnfaD+oH0+e9T_aS-XEffN5w@mail.gmail.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <CAGXv+5E63+dE-=KbD_LW+BV+fBWnfaD+oH0+e9T_aS-XEffN5w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Il 01/12/22 11:33, Chen-Yu Tsai ha scritto:
+> On Thu, Dec 1, 2022 at 5:31 PM AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
+>>
+>> Il 01/12/22 09:42, Chen-Yu Tsai ha scritto:
+>>> The systimer block derives its 13 MHz clock by dividing the main 26 MHz
+>>> oscillator clock by 2 internally, not through the TOPCKGEN clock
+>>> controller.
+>>>
+>>> On the MT8183 this divider is set either by power-on-reset or by the
+>>> bootloader. The bootloader may then make the divider unconfigurable to,
+>>> but can be read out by, the operating system.
+>>>
+>>> Making the systimer block take the 26 MHz clock directly requires
+>>> changing the implementations. As an ABI compatible fix, change the
+>>> input clock of the systimer block a fixed factor divide-by-2 clock
+>>> that takes the 26 MHz oscillator as its input.
+>>>
+>>> Fixes: 5bc8e2875ffb ("arm64: dts: mt8183: add systimer0 device node")
+>>> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+>>
+>> I generally not just like - but *love* - this change, I had that in my mind
+>> for a couple of months now and forgot about it because reasons.
+>>
+>> There's just one thing that, since we're doing this now, we can clarify (and
+>> that's important to avoid questions like "why isn't this board-specific"):
+>> the 26MHz clock "clk26m" oscillator that we're using for the system timers
+>> is a SoC-provided clock, and its name is "SYSCLK" as in "System bus clock".
+> 
+> Looking at the schematics it is terribly more complicated. :(
+> 
+> The crystal feeds the DCXO in the PMIC, which also acts as a buffer.
+> The PMIC then feeds the SoC and any other chips, such as a modem.
+> 
+> On other platforms we describe the oscillator at the dtsi level as well.
+> The reason why it isn't board-specific is that the requirements and
+> properties of the crystal are specified in the platform's datasheet,
+> i.e. it is a design requirement that every board use the same crystal.
+> 
+> I don't see the datasheet spelling out SYSCLK though. The TOPCKGEN part
 
+I think I got confused with the MCU Debug System (DEM) part. :\
 
-On 13.12.2022 12:11, Marijn Suijten wrote:
-> On 2022-12-13 11:23:12, Konrad Dybcio wrote:
->>
->>
->> On 13.12.2022 10:03, Marijn Suijten wrote:
->>> On 2022-12-10 14:38:50, Konrad Dybcio wrote:
->>>> With enough pins set properly, the hardware buttons now also work
->>>> like a charm.
->>>>
->>>> Fixes: c2721b0c23d9 ("arm64: dts: qcom: Add support for Xperia 1 III / 5 III")
->>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>>
->>> Tested-by: Marijn Suijten <marijn.suijten@somainline.org> # On Xperia 5 III
->>>
->>> However I also tested this on Xperia 1 III, and...
->>>
->>>> ---
->>>>  .../qcom/sm8350-sony-xperia-sagami-pdx214.dts | 24 ++++++++++
->>>>  .../dts/qcom/sm8350-sony-xperia-sagami.dtsi   | 47 ++++++++++++++++++-
->>>>  2 files changed, 70 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx214.dts b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx214.dts
->>>> index e6824c8c2774..6fa830bdc6bd 100644
->>>> --- a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx214.dts
->>>> +++ b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx214.dts
->>>> @@ -10,6 +10,20 @@
->>>>  / {
->>>>  	model = "Sony Xperia 5 III";
->>>>  	compatible = "sony,pdx214-generic", "qcom,sm8350";
->>>> +
->>>> +	gpio-keys {
->>>> +		pinctrl-names = "default";
->>>> +		pinctrl-0 = <&focus_n &snapshot_n &vol_down_n &g_assist_n>;
->>>> +
->>>> +		key-google-assist {
->>>> +			label = "Google Assistant Key";
->>>> +			gpios = <&pm8350_gpios 9 GPIO_ACTIVE_LOW>;
->>>> +			linux,code = <KEY_LEFTMETA>;
->>>> +			debounce-interval = <15>;
->>>> +			linux,can-disable;
->>>> +			gpio-key,wakeup;
->>>> +		};
->>>> +	};
->>>
->>> ... please move this to board DTS.  Xperia 1 III would also like to have
->>> it mapped.  Downstream DT indicates, and my local testing confirms, that
->>> it is identical to Xperia 5 III (i.e. common to the Sagami board).
->>>
->>> The other buttons work great on both devices!
->> While I'd agree that having it like that would be nice for completeness,
->> it's:
->>
->> - not necessary, as the button is not physically there, so the user will
->> never come into contact with it
+> mostly just refers to it as CLK26M, or some variant of it, which likely
+> denotes some fan-out branch. The system timer part also just says "26M"
+> or "26 MHz clock source".
 > 
-> I have the device in my hand right now and, unless I take an angle
-> grinder to it, it has this button.
+> Also, we can't change the clock name, as "clk26m" is hard-coded into
+> the clk drivers.
 > 
-> How else did you expect me to successfully test it?
-> 
-> Maybe you are confused with Xperia 1 IV, which does _not_ have the
-> button.  Nor does Xperia 1 II, for that matter.
-Lol yes I did, will send a v2..
 
-Konrad
+I wasn't proposing to change the clock-output-names, but nevermind anyway,
+on an afterthought, it's probably a good idea to just go with clk26m,
+regardless of whether I'm wrong or right about sysclk, as the first one is
+the name that we can also find in many (all?) downstream code for other
+SoC models.
+
+>> I know that your target is to describe how we get from 26M to 13M, but at
+>> this point it may be worth it to use the right names to help preventing
+>> confusion about that clock not being an external crystal on the board but
+>> something internal to the SoC.
 > 
-> - Marijn
+> But as I described above, it is an actual crystal on the board. We are
+> simply omitting parts of the signal path. Notably the PMIC needs to be
+> excluded due to circular dependency reasons. And also we most definitely
+> don't want the system to be touching it.
 > 
->> - it will leak power, the plan is to park all unused pins after we get
->> "good enough" support for our devices (not now, so as not to mess with
->> ourselves in the dev process)
->>
->> Konrad
+
+Let's go with this one.
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
