@@ -2,107 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B51664AC79
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 01:29:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CB4464ACAB
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 01:57:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233895AbiLMA3v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 19:29:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46836 "EHLO
+        id S233666AbiLMA5y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 19:57:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233852AbiLMA3N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 19:29:13 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE16E1F2DA
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 16:26:34 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id c1so2312589lfi.7
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 16:26:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=64a16xm03GDRzSrRzGbHGfzDIJpeFaTeX77Wh7ttti4=;
-        b=iuYfFxLfpTQ0Vm7Ok91YF8ZXJ4acYipdS6f7TntzmkZxAwjmS3B6lXk16+ACdini3E
-         Mpo9Fp4hwU/4FxW/kfVEPlW3CVdI3XihyKrdCx4okSOSNMpSkP0z5s7tcVhzI2p/jy1L
-         pIGrPvY6EyoZH1I2Z1qEnnkhKIlme/ueWzMN1RChyxFHhi2ziLKaphFjWM/1meO5wq2I
-         uikUmwFHzKq9ERztMJAh1WhP2ZDPzW6lrDGYJ8baUPHr9rmFk8CQFcP92w035VA6XPbN
-         B2AL2sahczhBh46UPTOSob/xyMDjC9B8yanWNcsjy/B+BJc229qMHS2p7sUPyGsIdhBL
-         awuw==
+        with ESMTP id S233584AbiLMA5x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 19:57:53 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59FA817E37
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 16:56:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1670893018;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=0G5DlIm/58n/d7ddm5UPOg5NB4JeT07TXknicvMHP1k=;
+        b=h3GffPa6LmsxWVurgFMT3r0cTNjmgBfw84LliU+B5NfEnqHUWluBqlm0e7TICgR1xu7zdk
+        7WMJ/zTrj6rW0wURCJtK75U9FpH2zulPLUdknSOZuEjOx1XIRP6g+RukW7N5ob7im+35I2
+        r9PabI4W4iNay+DJAqOFJai8i37g138=
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-470-d6qmrurJOQ-RAmlGaZmmBw-1; Mon, 12 Dec 2022 19:56:57 -0500
+X-MC-Unique: d6qmrurJOQ-RAmlGaZmmBw-1
+Received: by mail-qv1-f71.google.com with SMTP id 71-20020a0c804d000000b004b2fb260447so13238915qva.10
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 16:56:57 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=64a16xm03GDRzSrRzGbHGfzDIJpeFaTeX77Wh7ttti4=;
-        b=enOUS3sTnrLXilBL3AeMjJn4IXimVusFWUIPHwllsw9zOuq85XUg3pGAfN7mWkArVM
-         RcunPBFJ01AU2DlGzj4miNxU14Uq3eIfp3RZQdRCK+JNckuIlE6iVl3+SUBlcOso8Zle
-         kqwS2CZybm3HjWQTHRn1Na3onHLelGAMXUbZUVsj2VVFz3tY7o5uMtDs+Sh/x3C1vYPb
-         KJMYF+gyn5MobmCqU7IxVaKR7sHcRDU4Dbbx5p2hlU1SpODKSq1mno9qSwBuRVRbbwe/
-         oyhNcdIv78zEBZ1BeCZVAAx+Razhr7favtLdMqA4PtK8cXdm+KT5HyqA0t3WxYLgG7TW
-         5KNQ==
-X-Gm-Message-State: ANoB5plC1ABmoswxijFf+zrBSfyn7gAL7QZEaSJ+Wlvdm58xN4Gbca2n
-        DBStJxmJbZQx1U2otMEvBz5u8A==
-X-Google-Smtp-Source: AA0mqf7IM9a/qZExoPzn3FRqUdqlme93mvUre5klopIcd86b/7ZAfQ5P7d5H6I4XRQvzJRo/BoHueQ==
-X-Received: by 2002:a19:ee11:0:b0:4b5:b6e8:bb53 with SMTP id g17-20020a19ee11000000b004b5b6e8bb53mr2934454lfb.24.1670891192101;
-        Mon, 12 Dec 2022 16:26:32 -0800 (PST)
-Received: from localhost.localdomain (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id y28-20020a19915c000000b00492dba3c85asm139371lfj.220.2022.12.12.16.26.30
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0G5DlIm/58n/d7ddm5UPOg5NB4JeT07TXknicvMHP1k=;
+        b=u1kwLriDCoNwPyCAXm51mPWSBqzef2HFova+UdzG7iEqEEIuit6K2Lsc+hfyiwlIDw
+         lgPqKs3wE3GOJJe9QmbkmGDuzqX/kcCGlxs1sQczwHHfTK2xyYDUSLr3IlniuuLMYqak
+         tyJu7ksPHHk55hWBiIBDVy7t/kDMd/xb/YMACPyzn+2fVXiSic2BEZrgwFKFGTA2tMDN
+         xcwA3wiSnlX68XN1vLeBuJCOmrsY9yCOGs02QQoCnKsEkVCfFKiojHP0WOoVFynateYQ
+         97dJSUlnQRGtTz7bJjCHDuuNySlF9tuYL9fJEpkfYfMA1iC7cLwz+k0yt6t6Hqd6+BC8
+         1BGA==
+X-Gm-Message-State: ANoB5pkh/CQS9ziCWzSx94vFkvbksnaceio9u4VSfUpOSnNIxLCL0hHx
+        QInVpQfCjg/ZU+jDGp77bBiTSRtRcKB/pjmDWY5C+oju8isdYzfAV3n7Sr/9obnoGIpZEASbW81
+        AJueD0CJTo/fQ9OR1ZMZQhA==
+X-Received: by 2002:a05:622a:90f:b0:3a6:2170:b0a1 with SMTP id bx15-20020a05622a090f00b003a62170b0a1mr28843445qtb.6.1670893016780;
+        Mon, 12 Dec 2022 16:56:56 -0800 (PST)
+X-Google-Smtp-Source: AA0mqf57KF3YeBbTEy7Dkoa9TaltSLBPrfm7oE/QdldhQVauvPAWddMoAiL9puqBl9a4SBUg1okGew==
+X-Received: by 2002:a05:622a:90f:b0:3a6:2170:b0a1 with SMTP id bx15-20020a05622a090f00b003a62170b0a1mr28843427qtb.6.1670893016567;
+        Mon, 12 Dec 2022 16:56:56 -0800 (PST)
+Received: from localhost (pool-96-230-116-121.bstnma.fios.verizon.net. [96.230.116.121])
+        by smtp.gmail.com with ESMTPSA id 195-20020a370ccc000000b006fb11eee465sm6747657qkm.64.2022.12.12.16.56.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Dec 2022 16:26:31 -0800 (PST)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org
-Cc:     marijn.suijten@somainline.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
+        Mon, 12 Dec 2022 16:56:55 -0800 (PST)
+From:   Eric Chanudet <echanude@redhat.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: qcom: sm8150: Enable split pagetables for Adreno SMMU
-Date:   Tue, 13 Dec 2022 01:26:26 +0100
-Message-Id: <20221213002626.260267-2-konrad.dybcio@linaro.org>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20221213002626.260267-1-konrad.dybcio@linaro.org>
-References: <20221213002626.260267-1-konrad.dybcio@linaro.org>
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andrew Halaney <ahalaney@redhat.com>,
+        Brian Masney <bmasney@redhat.com>,
+        Eric Chanudet <echanude@redhat.com>
+Subject: [PATCH 1/2] arm64: dts: qcom: pm8450a: add rtc node
+Date:   Mon, 12 Dec 2022 19:55:38 -0500
+Message-Id: <20221213005539.1133443-1-echanude@redhat.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
+Content-type: text/plain
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marijn Suijten <marijn.suijten@somainline.org>
+Add the rtc block on pm8450a first pmic to enable the rtc for
+sa8540p-ride.
 
-Allow the Adreno GPU to access split pagetables specifically on the
-dedicated Adreno SMMU via the qcom,adreno-smmu compatible.
-
-Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Signed-off-by: Eric Chanudet <echanude@redhat.com>
 ---
- arch/arm64/boot/dts/qcom/sm8150.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/pm8450a.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index 3f940cc3f32b..83b4450fb3eb 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -2253,7 +2253,7 @@ gpucc: clock-controller@2c90000 {
- 		};
+diff --git a/arch/arm64/boot/dts/qcom/pm8450a.dtsi b/arch/arm64/boot/dts/qcom/pm8450a.dtsi
+index 34fc72896761..af761dbfbc66 100644
+--- a/arch/arm64/boot/dts/qcom/pm8450a.dtsi
++++ b/arch/arm64/boot/dts/qcom/pm8450a.dtsi
+@@ -13,6 +13,14 @@ pm8450a: pmic@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
  
- 		adreno_smmu: iommu@2ca0000 {
--			compatible = "qcom,sm8150-smmu-500", "arm,mmu-500";
-+			compatible = "qcom,sm8150-smmu-500", "qcom,adreno-smmu", "arm,mmu-500";
- 			reg = <0 0x02ca0000 0 0x10000>;
- 			#iommu-cells = <2>;
- 			#global-interrupts = <1>;
++		rtc@6000 {
++			compatible = "qcom,pm8941-rtc";
++			reg = <0x6000>;
++			reg-names = "rtc", "alarm";
++			interrupts = <0x0 0x61 0x1 IRQ_TYPE_NONE>;
++			wakeup-source;
++		};
++
+ 		pm8450a_gpios: gpio@c000 {
+ 			compatible = "qcom,pm8150-gpio", "qcom,spmi-gpio";
+ 			reg = <0xc000>;
 -- 
-2.39.0
+2.38.1
 
