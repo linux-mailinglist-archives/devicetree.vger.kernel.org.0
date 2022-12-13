@@ -2,132 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE4E464B1FD
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 10:13:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A126D64B20E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 10:14:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235135AbiLMJNZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 04:13:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45606 "EHLO
+        id S235168AbiLMJOO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 04:14:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234948AbiLMJMj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 04:12:39 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D07C115E;
-        Tue, 13 Dec 2022 01:09:59 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 72FB36602C2F;
-        Tue, 13 Dec 2022 09:09:56 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1670922597;
-        bh=O7J/BSi0dbHIU33pWdlPZo0iXo43ZFxCG6/Ttxq4/ck=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=i+K4L1Oph/RgbQBE0z/4ckzGYkFAG8RaTNi/LDc8P6hK/etjso8EfpuR/atFD+Rr/
-         BJFy9PZiYYMQiXvGob/kwdmmqEynZ2r5WexpfOKTqWgbvmsgD+fX29O57qh7y+g13n
-         wfF+rXmODa/2YpgE0XnRlEE7k7SkFaTqAIcc4gpkT9IR9AiNBZ7oAyv03dQlJcgbAb
-         sJzelPcYLLqLAezFwq7Bm6qoCdbDdV2Cca5J7599+NpBs/Axk9sWE7XSAtKcaQYqD9
-         YB0fGL0ZvcYp3zayeCGXcKw+UQuAPg+H0qjEsPTw7kUM9+19NRgIZBbsKyghrpVdiA
-         xW/7ORMf4netQ==
-Message-ID: <7e668b90-e3e6-5d25-e894-f754662405af@collabora.com>
-Date:   Tue, 13 Dec 2022 10:09:54 +0100
+        with ESMTP id S234916AbiLMJNR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 04:13:17 -0500
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBDA61A079
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 01:11:36 -0800 (PST)
+Received: by mail-yb1-xb2a.google.com with SMTP id d131so16869950ybh.4
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 01:11:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=hWtXK5Ov2tmRxbRitJUSXKWNn7yLSZpO72wnDP4qzhc=;
+        b=fNTBcwxWnVHLBSHknw5pSUYAmxKPFRhFiRIS0aWUXeE1sIa3NVrBuUcZcR19hMBQg2
+         yiJRC3LxFyjSVhDbNnnhdNN0HGQqIoCZUMjvDFheyEDpVafUFF6z1uwJTcqBD3Dnc1w1
+         xqhN60TlS9XR6S1oJ3IEvwAKmPce8ofwQ9B5TzD7LjY+SH2lAZjWoXnFV4bVQ8nkebls
+         3oN+geDhvYU+dY7b3nGkNiVCnJTbPNxK/Ubuv2DflGlngi7DeDdm9NIjCiQ0AMqzd4Yt
+         SWjb+C1ewkPsay1c/1yO808o04cP/svT6nsW5vT6ypQJYJkQv54k+REt93VudclU+XHa
+         b3oA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hWtXK5Ov2tmRxbRitJUSXKWNn7yLSZpO72wnDP4qzhc=;
+        b=Lp8zVu1CL2RM0ouax9/F1aXoH4+sG7X5zxwVsoY9gPM6YZzm1KRdcT99swhz2nB/OV
+         /rQYPo2wKWcltxQof7A29UwYQRzTWOc3b9TWsR52eWhDMGQ6P8CImd59SSdKX7eb1Uh9
+         rQKrU8tdVeKlACgkz1pRb47fyLdkQ3KoeffiulGq0vjE61W7b5cueiZA938dsnthVamw
+         Oj9tKPQBFsOkPRdap25tHfyfF9nOINNK/z/quBjpGransjA9zxRExX7cA053I/IKVBjD
+         htm/dKZUcu0QJ79JYih+FfsJrnjKfYOLsVZDkr/fQd3WEdhDTVC1ylpiwVCurXYItszU
+         BKhw==
+X-Gm-Message-State: ANoB5pksG3cgzXXl8SVJnlqH7aIqx39sprmbkLYH2qfn6J3sMlbdks6h
+        vrFDksWkrKuT2p1+oPJueMmKnSzRH2PMqZtdLW1yLQ==
+X-Google-Smtp-Source: AA0mqf7ZDyvIFtaBydE3ESKDGr5yQYNJfQy9a1Bbm2iQeKVR679fx9GEkEIWw6ha9Yqu/bYTpmLtsvkqUgBXgiee3Vg=
+X-Received: by 2002:a25:ac2:0:b0:6e9:3d7a:8012 with SMTP id
+ 185-20020a250ac2000000b006e93d7a8012mr70473054ybk.449.1670922695285; Tue, 13
+ Dec 2022 01:11:35 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH 1/5] media: mediatek: vcodec: add params to record lat and
- core lat_buf count
-Content-Language: en-US
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20221210073218.17350-1-yunfei.dong@mediatek.com>
- <20221210073218.17350-2-yunfei.dong@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221210073218.17350-2-yunfei.dong@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20221212103525.231298-1-alexander.stein@ew.tq-group.com> <20221212103525.231298-3-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20221212103525.231298-3-alexander.stein@ew.tq-group.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 13 Dec 2022 10:11:20 +0100
+Message-ID: <CACRpkda_5vzL7oEpXBBmou+YOzvHVqrtYhDPZ4x4kQYhoSV6=w@mail.gmail.com>
+Subject: Re: [RFC PATCH 2/3] gpiolib: Add support for optional ramp-up delays
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Marek Vasut <marex@denx.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 10/12/22 08:32, Yunfei Dong ha scritto:
-> Using lat_buf to share decoder information between lat and core work
-> queue, adding params to record the buf count.
-> 
-> Fixes: 365e4ba01df4 ("media: mtk-vcodec: Add work queue for core hardware decode")
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> ---
->   .../platform/mediatek/vcodec/vdec_msg_queue.c | 32 ++++++++++++++++++-
->   .../platform/mediatek/vcodec/vdec_msg_queue.h |  9 ++++++
->   2 files changed, 40 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/media/platform/mediatek/vcodec/vdec_msg_queue.c b/drivers/media/platform/mediatek/vcodec/vdec_msg_queue.c
-> index dc2004790a47..af7ddba1923a 100644
-> --- a/drivers/media/platform/mediatek/vcodec/vdec_msg_queue.c
-> +++ b/drivers/media/platform/mediatek/vcodec/vdec_msg_queue.c
-> @@ -52,6 +52,30 @@ static struct list_head *vdec_get_buf_list(int hardware_index, struct vdec_lat_b
->   	}
->   }
->   
-> +static void vdec_msg_queue_inc(struct vdec_msg_queue *msg_queue, int hardware_index)
-> +{
-> +	mutex_lock(&msg_queue->list_cnt_mutex);
+On Mon, Dec 12, 2022 at 11:35 AM Alexander Stein
+<alexander.stein@ew.tq-group.com> wrote:
 
-I doubt that you need to use this mutex, as you're using atomics...
+> These delays are added when specified per GPIO line and GPIO is set
+> to high level, including any active low flag.
+>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-> +
-> +	if (hardware_index == MTK_VDEC_CORE)
-> +		atomic_inc(&msg_queue->core_list_cnt);
-> +	else
-> +		atomic_inc(&msg_queue->lat_list_cnt);
-> +
+As stated in the binding patch this can be considered as a global ramp-up
+for the entire chip, certainly there are not different driver stages on the
+different outputs (in that case it would be a pin control driver BTW).
 
-This branch (with the relevant appropriate changes) can be simplified as
+This is created to swipe the details of random board electronics under the
+carpet and this doesn't work because we already have consumers
+such as regulators specifying ramp-up on the consumer side.
 
-	atomic_inc(&msg_queue->list_cnt[hardware_index]);
-
-...where list_cnt is an array, and hardware_index is an enumeration.	
-
-> +	mutex_unlock(&msg_queue->list_cnt_mutex);
-> +}
-> +
-> +static void vdec_msg_queue_dec(struct vdec_msg_queue *msg_queue, int hardware_index)
-> +{
-> +	mutex_lock(&msg_queue->list_cnt_mutex);
-> +
-> +	if (hardware_index == MTK_VDEC_CORE)
-> +		atomic_dec(&msg_queue->core_list_cnt);
-> +	else
-> +		atomic_dec(&msg_queue->lat_list_cnt);
-
-Same here.
-
-> +
-> +	mutex_unlock(&msg_queue->list_cnt_mutex);
-> +}
-> +
-
-Regards,
-Angelo
-
+Yours,
+Linus Walleij
