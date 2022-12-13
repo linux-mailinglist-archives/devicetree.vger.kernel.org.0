@@ -2,93 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36E4A64B7DE
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 15:54:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 319A164B7EE
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 15:58:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235839AbiLMOyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 09:54:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39332 "EHLO
+        id S236025AbiLMO6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 09:58:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235248AbiLMOyO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 09:54:14 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A23842622
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 06:54:12 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id p8so5268095lfu.11
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 06:54:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BVR1970k+osJav+KmX+NdOXUmXRch+KnBKh6B/puQ7g=;
-        b=Vum6l67659PN77J8xJmKBxF+l69Gus+XL+TyOFYBlZjmKVG34H2q4Va77ZCXY3OltB
-         wvTC2VWybymKlQwe6EbYL2eVawz4o5J75hbG/YVr0beeHi5kHtAGVFTshbFRxe53MEjf
-         8bqFzCkdmwk2kEYueWpFgK2KTEP+/8JUvh8nSEchx+Q9cwLdHHI6RZbrjYPfQsXiScPs
-         WstQcy8aBYAZaJcibAa/4xRLRMcf1LeSYnuFGMiNrAyJgN8tbK9NEa3PQsEdWejKTBhr
-         EG+aao9QvTL/Us4AEJXwIIzNCgzNfB2VU+INMqznmnhWmqEoqUEscW9wyHWmnAQfsGTB
-         x8hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BVR1970k+osJav+KmX+NdOXUmXRch+KnBKh6B/puQ7g=;
-        b=ckeiGOiKIu7vkE8aJKbDZIXxy9mNi6n2ExkfABKZ+baaJJDOjHgwlExdzAkZGoVa3k
-         BdCmjW27GFGoqptpqeMiP+b2E4SWOUvozYzTYN1FI/EVpfH5vg5tiThsVmPHi5yUMmHB
-         FH46WaooRZr5RH76qIn6lL6AWQdQjWxqxnOlK2Pdy7faCt4b/2AsG8Ve3tlG/5Z5/pOq
-         sEbOGtnnP+/UeittOjNR0g+NlyNr4J6wXrE3sDsQ1IPFwITVryVa+lmjJVKrJgJu4EQo
-         Va4nXN8nFvEUH7Ia4aObUY02OmrSlWqDZZCro0CxQPByK+rNDKSa5Pefyv7iyoamzjwN
-         Ptxg==
-X-Gm-Message-State: ANoB5pkZqSJUwBejEHStotgJtv8f1kk85W3hRvU3UxF4BLsUY45Av/sv
-        SoVc7jk+qs50Hjl2hNq8p5zYwA==
-X-Google-Smtp-Source: AA0mqf7i5N19z2EwwLP1FiBX7MBo+1NEYZeyq8YUr3q/+CBD0JvTKRQVA6yGfSUSZjnI1AW+s6W8jw==
-X-Received: by 2002:a05:6512:401d:b0:4b6:edac:7168 with SMTP id br29-20020a056512401d00b004b6edac7168mr2541395lfb.39.1670943251058;
-        Tue, 13 Dec 2022 06:54:11 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id v7-20020a056512348700b004a2511b8224sm399383lfr.103.2022.12.13.06.54.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Dec 2022 06:54:10 -0800 (PST)
-Message-ID: <6a434a50-886d-cab1-2f65-7df3e7386472@linaro.org>
-Date:   Tue, 13 Dec 2022 15:54:09 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v3 06/17] dt-bindings: thermal: Fix node descriptions in
- uniphier-thermal example
-Content-Language: en-US
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        with ESMTP id S236021AbiLMO6R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 09:58:17 -0500
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C91F2209BC;
+        Tue, 13 Dec 2022 06:58:15 -0800 (PST)
+X-IronPort-AV: E=McAfee;i="6500,9779,10559"; a="319289491"
+X-IronPort-AV: E=Sophos;i="5.96,241,1665471600"; 
+   d="scan'208";a="319289491"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Dec 2022 06:58:14 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10559"; a="598822601"
+X-IronPort-AV: E=Sophos;i="5.96,241,1665471600"; 
+   d="scan'208";a="598822601"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga003.jf.intel.com with ESMTP; 13 Dec 2022 06:58:10 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andy@kernel.org>)
+        id 1p56jN-009KZE-2N;
+        Tue, 13 Dec 2022 16:58:05 +0200
+Date:   Tue, 13 Dec 2022 16:58:05 +0200
+From:   Andy Shevchenko <andy@kernel.org>
+To:     Binbin Zhou <zhoubinbin@loongson.cn>
+Cc:     Wolfram Sang <wsa@kernel.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
+        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
+        WANG Xuerui <kernel@xen0n.name>, Arnd Bergmann <arnd@arndb.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Masami Hiramatsu <mhiramat@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221213082449.2721-1-hayashi.kunihiko@socionext.com>
- <20221213082449.2721-7-hayashi.kunihiko@socionext.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221213082449.2721-7-hayashi.kunihiko@socionext.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jianmin Lv <lvjianmin@loongson.cn>
+Subject: Re: [PATCH V6 3/4] i2c: ls2x: Add driver for Loongson-2K/LS7A I2C
+ controller
+Message-ID: <Y5iS/ReDrO3B4Ksl@smile.fi.intel.com>
+References: <cover.1670897253.git.zhoubinbin@loongson.cn>
+ <bf55d05a50dc1e9453d124033ff368e9500ed4ed.1670897253.git.zhoubinbin@loongson.cn>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <bf55d05a50dc1e9453d124033ff368e9500ed4ed.1670897253.git.zhoubinbin@loongson.cn>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_SOFTFAIL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/12/2022 09:24, Kunihiko Hayashi wrote:
-> Prior to adding dt-bindings for SoC-dependent controllers, rename the
-> thermal node and its parent node to the generic names in the example.
-> 
-> And drop a parent node of the thermal-sensor  as it is not directly
+On Tue, Dec 13, 2022 at 04:26:57PM +0800, Binbin Zhou wrote:
+> This I2C module is integrated into the Loongson-2K SoCs and Loongson
+> LS7A bridge chip.
 
-Drop double space in "thermal-sensor  as" above
+...
 
-With this:
+> +// SPDX-License-Identifier: GPL-2.0
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+GPL-2.0-only
 
-Best regards,
-Krzysztof
+> +/*
+> + * Loongson-2K/Loongson LS7A I2C master mode driver
+> + *
+> + * Copyright (C) 2013 Loongson Technology Corporation Limited.
+> + * Copyright (C) 2014-2017 Lemote, Inc.
+> + * Copyright (C) 2018-2022 Loongson Technology Corporation Limited.
+> + *
+> + * Originally written by liushaozong
+
+> + *
+
+No need to have this blank line.
+
+> + * Rewritten for mainline by Binbin Zhou <zhoubinbin@loongson.cn>
+> + */
+
+...
+
+> +#include <linux/bits.h>
+> +#include <linux/completion.h>
+> +#include <linux/device.h>
+> +#include <linux/i2c.h>
+> +#include <linux/init.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/platform_device.h>
+
++ property.h at least for dev_fwnode().
+
+> +#include <linux/units.h>
+
+...
+
+> +#define I2C_LS2X_PRER_LO	0x0 /* Freq Division Low Byte Register */
+> +#define I2C_LS2X_PRER_HI	0x1 /* Freq Division High Byte Register */
+
+_HI is not used, can we just drop the suffix?
+
+...
+
+> +struct ls2x_i2c_priv {
+
+> +	struct i2c_adapter	adapter;
+
+> +	struct device		*dev;
+
+In some cases you are using adapter.dev, in some this one.
+Also isn't it the dev is the same as adapter.dev.parent?
+
+Hence, why do you need this one?
+
+> +	void __iomem		*base;
+> +	struct i2c_timings	i2c_t;
+> +	struct completion	cmd_complete;
+> +};
+
+...
+
+> +	return ls2x_i2c_send_byte(adap, (LS2X_CR_START | LS2X_CR_WRITE));
+
+Too many parentheses.
+
+...
+
+> +static int ls2x_i2c_xfer_one(struct i2c_adapter *adap,
+> +			     struct i2c_msg *msg, bool stop)
+> +{
+> +	int ret;
+> +	bool is_read = msg->flags & I2C_M_RD;
+> +
+> +	/* Contains steps to send start condition and address */
+> +	ret = ls2x_i2c_start(adap, msg);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (is_read)
+> +		ret = ls2x_i2c_rx(adap, msg->buf, msg->len);
+> +	else
+> +		ret = ls2x_i2c_tx(adap, msg->buf, msg->len);
+> +
+> +	/* could not acquire bus. bail out without STOP */
+> +	if (ret == -EAGAIN)
+> +		return ret;
+
+So, if ret is *not* 0 and *not* --EAGAIN, why don't we bail out here? It needs
+at least a comment.
+
+> +	if (stop)
+> +		ret = ls2x_i2c_stop(adap);
+> +
+> +	return ret;
+> +}
+
+...
+
+> +static int ls2x_i2c_master_xfer(struct i2c_adapter *adap,
+> +				struct i2c_msg *msgs, int num)
+> +{
+> +	int ret;
+> +	struct i2c_msg *msg, *emsg = msgs + num;
+> +
+> +	for (msg = msgs; msg < emsg; msg++) {
+> +		/* Emit STOP if it is the last message or I2C_M_STOP is set */
+
+> +		bool stop = (msg + 1 == emsg) || (msg->flags & I2C_M_STOP);
+
+I'm wondering if we can always set the _STOP bit in the flags of the last
+message before entering this loop. In such case you can reduce to one part
+and supply as a parameter directly.
+
+> +
+> +		ret = ls2x_i2c_xfer_one(adap, msg, stop);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return num;
+> +}
+
+...
+
+> +	/* Calculate and set LS2X I2C frequency */
+> +	writel(LS2X_I2C_PCLK_FREQ / (5 * t->bus_freq_hz) - 1,
+> +	       priv->base + I2C_LS2X_PRER_LO);
+
+writel()?! Shouldn't be writew()?
+
+...
+
+> +	r = devm_request_irq(dev, irq, ls2x_i2c_isr,
+> +			     IRQF_SHARED, "ls2x-i2c", priv);
+
+There is a room on the previous line for at least one more argument.
+
+> +	if (r < 0)
+> +		return dev_err_probe(dev, r, "Unable to request irq %d\n", irq);
+
+...
+
+> +subsys_initcall(ls2x_i2c_init_driver);
+
+Non-standard init calls should be commented.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
