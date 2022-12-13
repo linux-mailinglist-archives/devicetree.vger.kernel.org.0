@@ -2,125 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5095764C030
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 00:02:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7F9564C03D
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 00:07:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236943AbiLMXC1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 18:02:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56460 "EHLO
+        id S236941AbiLMXGy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 18:06:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236954AbiLMXCK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 18:02:10 -0500
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3E8FF2AED;
-        Tue, 13 Dec 2022 15:02:03 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="5.96,242,1665414000"; 
-   d="scan'208";a="143231157"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 14 Dec 2022 08:02:02 +0900
-Received: from mulinux.home (unknown [10.226.93.1])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 1F508400D4F6;
-        Wed, 14 Dec 2022 08:01:56 +0900 (JST)
-From:   Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jacopo Mondi <jacopo@jmondi.org>
-Subject: [PATCH 4/4] arm64: dts: renesas: r9a09g011: Add eMMC and SDHI support
-Date:   Tue, 13 Dec 2022 23:01:29 +0000
-Message-Id: <20221213230129.549968-5-fabrizio.castro.jz@renesas.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221213230129.549968-1-fabrizio.castro.jz@renesas.com>
-References: <20221213230129.549968-1-fabrizio.castro.jz@renesas.com>
+        with ESMTP id S236938AbiLMXGu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 18:06:50 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AADEB1A3B3
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 15:06:48 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id x28so7546924lfn.6
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 15:06:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kQ9UDEKrGBlUcNO4sH3ZDmuGjEg0UnW+K0pM704i6h4=;
+        b=EGJYsfsdcAfUgmOpZg5H+z1o0EFyoU43QuVvL1htgp3oMzcw4T7CFqEnzUyIV6sEVH
+         iMwFo/ZITg75aSSv9eHw1EMtytTUQZcoo1PpRnIjp2T/mqSWh9InDNRx0fnTCWSj8ELI
+         a/A8MpamBle04ND8JnGfcgbBsnBgpTEck5elM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kQ9UDEKrGBlUcNO4sH3ZDmuGjEg0UnW+K0pM704i6h4=;
+        b=jDz1VzJ7387UmHrEdDDJc6oG/JYCwWNcPPKh8GbNRLj06IcQovjQbbrCLJc/6gN/dL
+         H8BaVCE8r8+tMUrnHvx+WGgdUxw5wLTB7x47GI0dgi6Jk3qO+7uio0lmkNHTIQgRsEBF
+         dG69jRKmbK/seBTPR+10JsHe9Q0pm6JnL8+iNFcEgoPpfLRmoUb1ikpMXnfZQbmCTv8O
+         DvZTJGwOvSkxeGQcCBkVUUufqT6ZIBP5tUjcaj1nlCtoC/m2KcnlaKus9PHYgubfxjoD
+         NL9uxyx2FjkTGvYQAn9xNTeOoKwjNsKX0zUOtr79BVzdA+3JbiSo2fr9qKnBE7UMwVMO
+         Ak6Q==
+X-Gm-Message-State: ANoB5pkU1vA5NDNkoyTdki4G4VlnsWeHpK4e4iLZZqn4uMo9fMqSsE0x
+        WyGaBGgT68NHjbiGuejS4OGf7ETdAlCzbsq2VxieXg==
+X-Google-Smtp-Source: AA0mqf7E+0gYIlsn+eJZUnoQxwAAegzX06aJJjONxcWqY6lnTQGcJuvpNtrGrbvAPrVBHen0DXMLaf3G2kd78m/boGs=
+X-Received: by 2002:ac2:4189:0:b0:4b1:2447:6971 with SMTP id
+ z9-20020ac24189000000b004b124476971mr27184258lfh.83.1670972806927; Tue, 13
+ Dec 2022 15:06:46 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 13 Dec 2022 15:06:46 -0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <1670967848-31475-3-git-send-email-quic_khsieh@quicinc.com>
+References: <1670967848-31475-1-git-send-email-quic_khsieh@quicinc.com> <1670967848-31475-3-git-send-email-quic_khsieh@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Tue, 13 Dec 2022 15:06:46 -0800
+Message-ID: <CAE-0n52eHYCqxUJqQXoaQ8vyqCk-QfouSun+zUp3yo5DufWbwg@mail.gmail.com>
+Subject: Re: [PATCH v12 2/5] dt-bindings: msm/dp: add data-lanes and
+ link-frequencies property
+To:     Kuogee Hsieh <quic_khsieh@quicinc.com>, agross@kernel.org,
+        airlied@gmail.com, andersson@kernel.org, daniel@ffwll.ch,
+        devicetree@vger.kernel.org, dianders@chromium.org,
+        dmitry.baryshkov@linaro.org, dri-devel@lists.freedesktop.org,
+        konrad.dybcio@somainline.org, krzysztof.kozlowski+dt@linaro.org,
+        robdclark@gmail.com, robh+dt@kernel.org, sean@poorly.run,
+        vkoul@kernel.org
+Cc:     quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The RZ/V2M comes with 2 SDHI interfaces and 1 eMMC interface.
-Add the relevant nodes to the SoC specific device tree.
+Quoting Kuogee Hsieh (2022-12-13 13:44:05)
+> Add both data-lanes and link-frequencies property into endpoint
 
-Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
----
- arch/arm64/boot/dts/renesas/r9a09g011.dtsi | 48 ++++++++++++++++++++++
- 1 file changed, 48 insertions(+)
+Why do we care? Please tell us why it's important.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g011.dtsi b/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
-index 0373ec409d54..dd35a8ff72ee 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
-@@ -69,6 +69,54 @@ gic: interrupt-controller@82010000 {
- 			clock-names = "clk";
- 		};
- 
-+		sdhi0: mmc@85000000 {
-+			compatible = "renesas,sdhi-r9a09g011",
-+				     "renesas,rcar-gen3-sdhi";
-+			reg = <0x0 0x85000000 0 0x2000>;
-+			interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A09G011_SDI0_IMCLK>,
-+				 <&cpg CPG_MOD R9A09G011_SDI0_CLK_HS>,
-+				 <&cpg CPG_MOD R9A09G011_SDI0_IMCLK2>,
-+				 <&cpg CPG_MOD R9A09G011_SDI0_ACLK>;
-+			clock-names = "core", "clkh", "cd", "aclk";
-+			resets = <&cpg R9A09G011_SDI0_IXRST>;
-+			power-domains = <&cpg>;
-+			status = "disabled";
-+		};
-+
-+		sdhi1: mmc@85010000  {
-+			compatible = "renesas,sdhi-r9a09g011",
-+				     "renesas,rcar-gen3-sdhi";
-+			reg = <0x0 0x85010000 0 0x2000>;
-+			interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 359 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A09G011_SDI1_IMCLK>,
-+				 <&cpg CPG_MOD R9A09G011_SDI1_CLK_HS>,
-+				 <&cpg CPG_MOD R9A09G011_SDI1_IMCLK2>,
-+				 <&cpg CPG_MOD R9A09G011_SDI1_ACLK>;
-+			clock-names = "core", "clkh", "cd", "aclk";
-+			resets = <&cpg R9A09G011_SDI1_IXRST>;
-+			power-domains = <&cpg>;
-+			status = "disabled";
-+		};
-+
-+		emmc: mmc@85020000  {
-+			compatible = "renesas,sdhi-r9a09g011",
-+				     "renesas,rcar-gen3-sdhi";
-+			reg = <0x0 0x85020000 0 0x2000>;
-+			interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A09G011_EMM_IMCLK>,
-+				 <&cpg CPG_MOD R9A09G011_EMM_CLK_HS>,
-+				 <&cpg CPG_MOD R9A09G011_EMM_IMCLK2>,
-+				 <&cpg CPG_MOD R9A09G011_EMM_ACLK>;
-+			clock-names = "core", "clkh", "cd", "aclk";
-+			resets = <&cpg R9A09G011_EMM_IXRST>;
-+			power-domains = <&cpg>;
-+			status = "disabled";
-+		};
-+
- 		avb: ethernet@a3300000 {
- 			compatible = "renesas,etheravb-r9a09g011","renesas,etheravb-rzv2m";
- 			reg = <0 0xa3300000 0 0x800>;
--- 
-2.34.1
+>
+> Changes in v7:
+> -- split yaml out of dtsi patch
+> -- link-frequencies from link rate to symbol rate
+> -- deprecation of old data-lanes property
+>
+> Changes in v8:
+> -- correct Bjorn mail address to kernel.org
+>
+> Changes in v10:
+> -- add menu item to data-lanes and link-frequecnis
+>
+> Changes in v11:
+> -- add endpoint property at port@1
+>
+> Changes in v12:
+> -- use enum for item at data-lanes and link-frequencies
+>
+> Signed-off-by: Kuogee Hsieh <quic_khsieh@quicinc.com>`
+                                                       ^
+Stray ` here? -----------------------------------------/
 
+> ---
+>  .../bindings/display/msm/dp-controller.yaml        | 30 ++++++++++++++++++++--
+>  1 file changed, 28 insertions(+), 2 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> index f2515af..8fb9fa5 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> @@ -96,14 +97,37 @@ properties:
+>
+>    ports:
+>      $ref: /schemas/graph.yaml#/properties/ports
+> +
+>      properties:
+>        port@0:
+> -        $ref: /schemas/graph.yaml#/properties/port
+> +        $ref: "/schemas/graph.yaml#/$defs/port-base"
+>          description: Input endpoint of the controller
+> +        properties:
+> +          endpoint:
+> +            $ref: /schemas/media/video-interfaces.yaml#
+>
+>        port@1:
+> -        $ref: /schemas/graph.yaml#/properties/port
+> +        $ref: "/schemas/graph.yaml#/$defs/port-base"
+
+I thought the quotes weren't needed?
+
+>          description: Output endpoint of the controller
+> +        properties:
+> +          endpoint:
+> +            $ref: /schemas/media/video-interfaces.yaml#
+
+Does this need 'unevaluatedProperties: false' here?
+
+> +            properties:
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
+> +                items:
+> +                  enum: [ 0, 1, 2, 3 ]
+> +
+> +              link-frequencies:
+> +                minItems: 1
+> +                maxItems: 4
+> +                items:
+> +                  enum: [ 1620000000, 2700000000, 5400000000, 8100000000 ]
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+>
+>  required:
+>    - compatible
+> @@ -193,6 +217,8 @@ examples:
+>                  reg = <1>;
+>                  endpoint {
+>                      remote-endpoint = <&typec>;
+> +                    data-lanes = <0 1>;
+> +                    link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+>                  };
+
+So far we haven't used the output port on the DP controller in DT.
+
+I'm still not clear on what we should do in general for DP because
+there's a PHY that actually controls a lane count and lane mapping. In
+my mental model of the SoC, this DP controller's output port is
+connected to the DP PHY, which then sends the DP lanes out of the SoC to
+the next downstream device (i.e. a DP connector or type-c muxer). Having
+a remote-endpoint property with a phandle to typec doesn't fit my mental
+model. I'd expect it to be the typec PHY.
+
+That brings up the question: when we have 2 lanes vs. 4 lanes will we
+duplicate the data-lanes property in the PHY binding? I suspect we'll
+have to. Hopefully that sort of duplication is OK?
+
+Similarly, we may have a redriver that limits the link-frequencies
+property further (e.g. only support <= 2.7GHz). Having multiple
+link-frequencies along the graph is OK, right? And isn't the
+link-frequencies property known here by fact that the DP controller
+tells us which SoC this controller is for, and thus we already know the
+supported link frequencies?
+
+Finally, I wonder if we should put any of this in the DP controller's
+output endpoint, or if we can put these sorts of properties in the DP
+PHY binding directly? Can't we do that and then when the DP controller
+tries to set 4 lanes, the PHY immediately fails the call and the link
+training algorithm does its thing and tries fewer lanes? And similarly,
+if link-frequencies were in the PHY's binding, the PHY could fail to set
+those frequencies during link training, returning an error to the DP
+controller, letting the training move on to a lower frequency. If we did
+that this patch series would largely be about modifying the PHY binding,
+updating the PHY driver to enforce constraints, and handling errors
+during link training in the DP controller (which may already be done? I
+didn't check).
