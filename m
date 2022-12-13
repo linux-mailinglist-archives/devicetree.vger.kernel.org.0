@@ -2,318 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47AAE64B74E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 15:26:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F0CCA64B759
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 15:29:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234707AbiLMO0E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 09:26:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50432 "EHLO
+        id S235586AbiLMO30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 09:29:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230061AbiLMO0D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 09:26:03 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 852F411C1C;
-        Tue, 13 Dec 2022 06:26:01 -0800 (PST)
-Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id DE8FC7C5;
-        Tue, 13 Dec 2022 15:25:48 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1670941558;
-        bh=y6alB7XsPNlf71CeYriPi+VSoAIpXnaeIDC4C5kwU0c=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=f8kZgNHlkdcseP0gMb7WjCUISWUODSxN9rOa+f8Sp+zwImbzQORMdxPaqIYfW2FTX
-         rlnX+SxHf4McM1zCyq11ifytHmyCDuxhPI7hkTulZGRPyBU6imTf97vNLy1iXn78Qh
-         +YrVzO0/m3+U3rMgJKLDtqFSwwc0BbjBSQE2UADU=
-Message-ID: <99372b9d-2050-2040-6b29-a1939c2e0c95@ideasonboard.com>
-Date:   Tue, 13 Dec 2022 16:25:46 +0200
+        with ESMTP id S235278AbiLMO3Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 09:29:24 -0500
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1215D20BC3;
+        Tue, 13 Dec 2022 06:29:24 -0800 (PST)
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-1441d7d40c6so12715246fac.8;
+        Tue, 13 Dec 2022 06:29:24 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VQKy20lRkZdHqk3gT0sVQxdWUBVKKO65u2g9flbQKyU=;
+        b=XgC873sTMUct4De05UOWlKOZwltC5AZt627nV0bBAblGVQ/vl3wDhKs5Rbt1B1fskM
+         ldmkZ1+1mRa8YNl+P+VHExlSaukkGsLAXj5sZwjBjZvavvtbIbFbimjWE8Fx6HBwpf5A
+         +3AtpieepokXtZqN/4mnNoHWxSx0Y35WGYb4fz+4ns+Y7++wVnI2hnfwG/nBqBoUVhzS
+         yqmLPAaK9ZOifBv3xRcz3PS7kkA2XQNXhDqeb9IXB6OJWVKFePYUaWrs4UhlkQHQi0Ms
+         IBkbYkym41v+g0Qek7NQYEdA+oR8m+WtFDOSh7glxpuMtQSnzHbP+xhYtDG9kWF3OKIr
+         YMhg==
+X-Gm-Message-State: ANoB5plwRIf9LkH1sz5RruIUfqinWYqXqeDQCtsd2I4N5Yb1HI54tB2H
+        ogKbrfKGg/foy3iEDPdAeA==
+X-Google-Smtp-Source: AA0mqf7mesH76t/qTFVXBoPHFI+Q9oByg0u/+nUar5MhCtL9Fbvn0AAqhQrGcu2ftQYW+YFbJljXdA==
+X-Received: by 2002:a05:6870:8914:b0:13d:99fc:8d23 with SMTP id i20-20020a056870891400b0013d99fc8d23mr8742920oao.42.1670941763148;
+        Tue, 13 Dec 2022 06:29:23 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id u39-20020a056870702700b001435fe636f2sm1440832oae.53.2022.12.13.06.29.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Dec 2022 06:29:22 -0800 (PST)
+Received: (nullmailer pid 967453 invoked by uid 1000);
+        Tue, 13 Dec 2022 14:29:21 -0000
+Date:   Tue, 13 Dec 2022 08:29:21 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 02/16] dt-bindings: usb: Add RZ/V2M USB3DRD binding
+Message-ID: <20221213142921.GA958810-robh@kernel.org>
+References: <20221212172804.1277751-1-biju.das.jz@bp.renesas.com>
+ <20221212172804.1277751-3-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v5 5/8] dt-bindings: media: add bindings for TI DS90UB960
-Content-Language: en-US
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>
-References: <20221208104006.316606-1-tomi.valkeinen@ideasonboard.com>
- <20221208104006.316606-6-tomi.valkeinen@ideasonboard.com>
- <Y5YaMpbj1WTTIp3B@pendragon.ideasonboard.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <Y5YaMpbj1WTTIp3B@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221212172804.1277751-3-biju.das.jz@bp.renesas.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/12/2022 19:58, Laurent Pinchart wrote:
-> Hi Tomi,
+On Mon, Dec 12, 2022 at 05:27:50PM +0000, Biju Das wrote:
+> Add device tree bindings for the RZ/V2{M, MA} USB3DRD module.
 > 
-> Thank you for the patch.
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+>  .../bindings/usb/renesas,rzv2m-usb3drd.yaml   | 123 ++++++++++++++++++
+>  1 file changed, 123 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.yaml
 > 
-> On Thu, Dec 08, 2022 at 12:40:03PM +0200, Tomi Valkeinen wrote:
->> Add DT bindings for TI DS90UB960 FPDLink-3 Deserializer.
->>
->> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
->> ---
->>   .../bindings/media/i2c/ti,ds90ub960.yaml      | 358 ++++++++++++++++++
->>   1 file changed, 358 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
->> new file mode 100644
->> index 000000000000..d8b5e219d420
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
->> @@ -0,0 +1,358 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/media/i2c/ti,ds90ub960.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Texas Instruments DS90UB9XX Family FPD-Link Deserializer Hubs
->> +
->> +maintainers:
->> +  - Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
->> +
->> +description:
->> +  The TI DS90UB9XX devices are FPD-Link video deserializers with I2C and GPIO
->> +  forwarding.
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - ti,ds90ub960-q1
->> +      - ti,ds90ub9702-q1
->> +
->> +  reg:
->> +    maxItems: 1
->> +    description:
->> +      i2c addresses for the deserializer and the serializers
-> 
-> s/i2c/I2C/
-> 
-> Same below.
-> 
-> A bit more details would be nice, for instance the order in which
-> addresses should be specified should be documented. The example below
-> has one address only, so it's quite unclear. Or is this a left-over,
-> from before the i2c-alias-pool ?
+> diff --git a/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.yaml b/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.yaml
+> new file mode 100644
+> index 000000000000..0c473c3398b3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.yaml
+> @@ -0,0 +1,123 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/renesas,rzv2m-usb3drd.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas RZ/V2M USB 3.1 DRD controller
+> +
+> +maintainers:
+> +  - Biju Das <biju.das.jz@bp.renesas.com>
+> +
+> +description: |
+> +  The RZ/V2{M, MA} USB3.1 DRD module supports the following functions
+> +  * Role swapping function by the ID pin of the Micro-AB receptacle
+> +  * Battery Charging Specification Revision 1.2
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - renesas,r9a09g011-usb3drd  # RZ/V2M
+> +          - renesas,r9a09g055-usb3drd  # RZ/V2MA
+> +      - const: renesas,rzv2m-usb3drd
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Peripheral AXI clock
+> +      - description: APB clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: peri_axi
+> +      - const: apb
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    items:
+> +      - description: DRD reset
+> +      - description: Peripheral reset
+> +
+> +  reset-names:
+> +    items:
+> +      - const: drd_reset
+> +      - const: aresetn_p
+> +
+> +  ranges: true
+> +
+> +  '#address-cells':
+> +    enum: [ 1, 2 ]
+> +
+> +  '#size-cells':
+> +    enum: [ 1, 2 ]
+> +
+> +  usb3peri:
+> +    $ref: /schemas/usb/renesas,usb3-peri.yaml
+> +
+> +patternProperties:
+> +  "^usb@[0-9a-f]+$":
+> +    type: object
+> +    $ref: renesas,usb-xhci.yaml#
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - power-domains
+> +  - resets
+> +  - reset-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/r9a09g011-cpg.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    usb3drd: usb@85070000 {
+> +        compatible = "renesas,r9a09g011-usb3drd", "renesas,rzv2m-usb3drd";
+> +        reg = <0x85070000 0x1000>;
+> +        clocks = <&cpg CPG_MOD R9A09G011_USB_ACLK_P>,
+> +                 <&cpg CPG_MOD R9A09G011_USB_PCLK>;
+> +        clock-names = "peri_axi", "apb";
+> +        power-domains = <&cpg>;
+> +        resets = <&cpg R9A09G011_USB_DRD_RESET>,
+> +                 <&cpg R9A09G011_USB_ARESETN_P>;
+> +        reset-names = "drd_reset", "aresetn_p";
+> +        ranges;
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +
+> +        usb3host: usb@85060000 {
+> +           compatible = "renesas,r9a09g011-xhci",
+> +                        "renesas,rzv2m-xhci";
+> +           reg = <0x85060000 0x2000>;
+> +           interrupts = <GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH>;
+> +           clocks = <&cpg CPG_MOD R9A09G011_USB_ACLK_H>,
+> +                    <&cpg CPG_MOD R9A09G011_USB_PCLK>;
+> +           clock-names = "host_axi", "reg";
+> +           power-domains = <&cpg>;
+> +           resets = <&cpg R9A09G011_USB_ARESETN_H>;
+> +        };
+> +
+> +        usb3peri: usb3peri {
+> +           compatible = "renesas,r9a09g011-usb3-peri",
+> +                        "renesas,rzv2m-usb3-peri";
+> +           interrupts = <GIC_SPI 246 IRQ_TYPE_LEVEL_HIGH>,
+> +                        <GIC_SPI 242 IRQ_TYPE_LEVEL_HIGH>,
+> +                        <GIC_SPI 243 IRQ_TYPE_LEVEL_HIGH>,
+> +                        <GIC_SPI 244 IRQ_TYPE_LEVEL_HIGH>;
+> +           interrupt-names = "all_p", "drd", "bc", "gpi";
+> +           clocks = <&cpg CPG_MOD R9A09G011_USB_ACLK_P>,
+> +                    <&cpg CPG_MOD R9A09G011_USB_PCLK>;
+> +           clock-names = "aclk", "reg";
+> +           power-domains = <&cpg>;
+> +           resets = <&cpg R9A09G011_USB_ARESETN_P>;
+> +        };
 
-That's a left over, but not related to i2c-alias-pool but the i2c-alias 
-for the serializers. It already says above 'maxItems: 1', so now it only 
-contains the deserializer address. I'll drop the desc.
+The USB device ctrlr doesn't have registers? It looks to me like you've 
+created 3 nodes for instantiating drivers rather that because you have 3 
+separate h/w blocks. Either you should split this to 2 independent nodes 
+or move usb3peri resources to the parent node. That would only be 
+interrupts because everything else is already there.
 
->> +
->> +  clocks:
->> +    maxItems: 1
->> +    description:
->> +      Reference clock connected to the REFCLK pin.
->> +
->> +  clock-names:
->> +    items:
->> +      - const: refclk
->> +
->> +  powerdown-gpios:
->> +    maxItems: 1
->> +    description:
->> +      Specifier for the GPIO connected to the PDB pin.
->> +
->> +  i2c-alias-pool:
->> +    $ref: /schemas/types.yaml#/definitions/uint16-array
->> +    description:
->> +      i2c alias pool is a pool of i2c addresses on the main i2c bus that can be
->> +      used to access the remote peripherals. The addresses must be available,
->> +      not used by any other peripheral. Each remote peripheral is assigned an
->> +      alias from the pool, and transactions to that address will be forwarded
->> +      to the remote peripheral, with the address translated to the remote
->> +      peripheral's real address.
-> 
-> As this property is optional, should you describe what happens when it's
-> not specified ?
-> 
-> I would also indicate that the pool doesn't cover the serializers, only
-> the devices behind them.
-
-Yep, I'll clarify these.
-
->> +
->> +  links:
->> +    type: object
->> +    additionalProperties: false
->> +
->> +    properties:
->> +      '#address-cells':
->> +        const: 1
->> +
->> +      '#size-cells':
->> +        const: 0
->> +
->> +      ti,manual-strobe:
->> +        type: boolean
->> +        description:
->> +          Enable manual strobe position and EQ level
->> +
->> +    patternProperties:
->> +      '^link@[0-9a-f]+$':
-> 
-> There can be up to 4 links only, right ? I would then use
-> 
->        '^link@[0-3]$':
-
-Yes, I'll change that.
-
->> +        type: object
->> +        additionalProperties: false
->> +        properties:
->> +          reg:
->> +            description: The link number
->> +            maxItems: 1
->> +
->> +          i2c-alias:
->> +            description:
->> +              The i2c address used for the serializer. Transactions to this
->> +              address on the i2c bus where the deserializer resides are
->> +              forwarded to the serializer.
->> +
->> +          ti,rx-mode:
->> +            $ref: /schemas/types.yaml#/definitions/uint32
->> +            enum:
->> +              - 0 # RAW10
->> +              - 1 # RAW12 HF
->> +              - 2 # RAW12 LF
->> +              - 3 # CSI2 SYNC
->> +              - 4 # CSI2 NON-SYNC
->> +            description: FPD-Link Input Mode
-> 
-> Are there use cases for controlling this dynamically (in particular the
-> sync/non-sync modes) ? Is there anything that could be queried at
-> runtime from the serializers instead of being specified in DT ?
-
-We need a link to the serializer before we can query anything from the 
-serializer. To have a link, we need the mode... So, as I mentioned in 
-the other reply, we could define these in some way in the serializer's 
-properties instead of here, but I'm not sure if that's a good change.
-
-The driver can change the mode at runtime (say, from sync to non-sync 
-mode, if the HW supports that). But I think this property should reflect 
-the HW strapped configuration of the serializer.
-
-> Same question for the parameters below. Additionally, are there any
-> parameters that need to be identical for all links ?
-
-The same answer to the cdr-mode. No need to be identical.
-
-The strobe-pos and eq-level are unrelated to this topic.
-
->> +
->> +          ti,cdr-mode:
->> +            $ref: /schemas/types.yaml#/definitions/uint32
->> +            enum:
->> +              - 0 # FPD3
->> +              - 1 # FPD4
->> +            description: FPD-Link CDR Mode
->> +
->> +          ti,strobe-pos:
->> +            $ref: /schemas/types.yaml#/definitions/int32
->> +            minimum: -13
->> +            maximum: 13
->> +            description: Manual strobe position
->> +
->> +          ti,eq-level:
->> +            $ref: /schemas/types.yaml#/definitions/uint32
->> +            maximum: 14
->> +            description: Manual EQ level
->> +
->> +          serializer:
->> +            type: object
->> +            description: FPD-Link Serializer node
->> +
->> +        required:
->> +          - reg
->> +          - i2c-alias
->> +          - ti,rx-mode
->> +          - serializer
->> +
->> +  ports:
->> +    $ref: /schemas/graph.yaml#/properties/ports
->> +
->> +    properties:
->> +      port@0:
->> +        $ref: /schemas/graph.yaml#/properties/port
->> +        unevaluatedProperties: false
->> +        description: FPD-Link input 0
->> +
->> +      port@1:
->> +        $ref: /schemas/graph.yaml#/properties/port
->> +        unevaluatedProperties: false
->> +        description: FPD-Link input 1
->> +
->> +      port@2:
->> +        $ref: /schemas/graph.yaml#/properties/port
->> +        unevaluatedProperties: false
->> +        description: FPD-Link input 2
->> +
->> +      port@3:
->> +        $ref: /schemas/graph.yaml#/properties/port
->> +        unevaluatedProperties: false
->> +        description: FPD-Link input 3
->> +
->> +      port@4:
->> +        $ref: /schemas/graph.yaml#/$defs/port-base
->> +        unevaluatedProperties: false
->> +        description: CSI-2 Output 0
->> +
->> +        properties:
->> +          endpoint:
->> +            $ref: /schemas/media/video-interfaces.yaml#
->> +            unevaluatedProperties: false
->> +
->> +            properties:
->> +              data-lanes:
->> +                minItems: 1
->> +                maxItems: 4
->> +
->> +      port@5:
->> +        $ref: /schemas/graph.yaml#/$defs/port-base
->> +        unevaluatedProperties: false
->> +        description: CSI-2 Output 1
->> +
->> +        properties:
->> +          endpoint:
->> +            $ref: /schemas/media/video-interfaces.yaml#
->> +            unevaluatedProperties: false
->> +
->> +            properties:
->> +              data-lanes:
->> +                minItems: 1
->> +                maxItems: 4
-> 
-> The ports should be mandatory, shouldn't they ?
-
-Did you mean data-lanes? Yes, data-lanes should be mandatory.
-
-  Tomi
-
+Rob
