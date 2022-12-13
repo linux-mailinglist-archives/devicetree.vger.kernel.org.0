@@ -2,95 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B743C64BD75
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 20:43:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A1F164BD85
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 20:47:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236101AbiLMTn1 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 13 Dec 2022 14:43:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47338 "EHLO
+        id S236116AbiLMTro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 14:47:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235744AbiLMTn0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 14:43:26 -0500
-Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [5.144.164.164])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBF32C3E;
-        Tue, 13 Dec 2022 11:43:22 -0800 (PST)
-Received: from [127.0.0.1] (adsl-d248.84-47-10.t-com.sk [84.47.10.248])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 8593F202F7;
-        Tue, 13 Dec 2022 20:43:20 +0100 (CET)
-Date:   Tue, 13 Dec 2022 20:43:19 +0100
-From:   Martin Botka <martin.botka@somainline.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        martin.botka1@gmail.com
-CC:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Jami Kettunen <jamipkettunen@somainline.org>,
-        Paul Bouchara <paul.bouchara@somainline.org>,
-        Jan Trmal <jtrmal@gmail.com>, Tom <takuya@takuya.tech>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v4_1/1=5D_dt-bindings=3A_mfd=3A_x-po?= =?US-ASCII?Q?wers=2Caxp152=3A_Document_the_AXP1530_variant?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <1e0d86ee-a832-642d-c835-df1f6505940e@linaro.org>
-References: <20221213182743.3087889-1-martin.botka@somainline.org> <20221213182743.3087889-2-martin.botka@somainline.org> <1e0d86ee-a832-642d-c835-df1f6505940e@linaro.org>
-Message-ID: <C2E9D93B-96DF-49BB-B75F-27D621BF2501@somainline.org>
+        with ESMTP id S235961AbiLMTrn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 14:47:43 -0500
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2E03116E
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 11:47:38 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id a19so4531152ljk.0
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 11:47:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Tu4T3K2HKwcynTbjPctmZ3m/QXC5IAhHVs8lwvc0TII=;
+        b=l214eoYPQklA4l1bmpE99Koa3Jap4GclEp6H+yAE971kiSyp9NEUEdmcPCRQIvG2vp
+         /3kzZXt66f0DGnSQZsiUSqq+gwkaaKQrRZY4y8VhGN/QErXa0996y6eUHiFk4SnEb1Cw
+         6go0nqWEVHMwCf7gGzaqurSBvPrZFkxKLV/r1HyqvgN96ZakbRCNxw6BmIR+u1FraqNp
+         x1O+oMfa2nmAb7bLx1Cni2QBtvBhpQHvTxXUP91uXGxnn3HYO0FH4u0kWR4LZ3FKCEcK
+         Pz3hjyYJmCEOiURvu3+kuxlEPVb8b0Jghq28I8wdCJ6DsS71HNir5ZcvqY+r4NgqA/0C
+         TQIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Tu4T3K2HKwcynTbjPctmZ3m/QXC5IAhHVs8lwvc0TII=;
+        b=1bVdC5ToRS6bt1v+bM7dNqjnAlzoah+DqXlrhQE/q7YWK+y+YI9zm0XN4pB1if9SJ2
+         M3uhhf/lG2/O83WHB+3clFBLg+LXL2s+AR4dKznlmXTFHG260DLwg78MoZaVuMRHvZVg
+         Fx1P3UKq4psYwGo4mU9z0zmtdLKRULpzZ6Ob2YkZqKmZ0CbVnnt7nK65c2niWWbxC/ZI
+         ICRRzev40fcQxD5mD/RHZT7MPtjhO5eAJZLYZwJgqZPn1E0zt9RjrhtprhDtqneQXDla
+         p/nNMfyyX+mXIFq6SozacmkPSkAcudJkzB15gFKcIvW/3YHMYjCBss8i5yoV/WODDe2Q
+         dzJw==
+X-Gm-Message-State: ANoB5pnXm7igi1mQQXx9Bvawgmuu7h2ioDHd8+kMEnC8FupZAQ3LXom5
+        uxEn6J9yKKl0EOtfT7xyYa8rqw==
+X-Google-Smtp-Source: AA0mqf4myCPdPeXg3zY++eDaQGhgfFYnJRdwyrjv4AIUvHr6bFcRkg3e3wOeKJrkZrwh/FqtM5jx5A==
+X-Received: by 2002:a2e:a371:0:b0:279:e2cd:9ad7 with SMTP id i17-20020a2ea371000000b00279e2cd9ad7mr5254670ljn.0.1670960857052;
+        Tue, 13 Dec 2022 11:47:37 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id u16-20020a2eb810000000b00277041268absm377613ljo.78.2022.12.13.11.47.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Dec 2022 11:47:36 -0800 (PST)
+Message-ID: <8739f59b-c551-2da4-5523-a89f960bd402@linaro.org>
+Date:   Tue, 13 Dec 2022 20:47:35 +0100
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=0.0 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH 4/4] remoteproc: qcom_q6v5_mss: Use a carveout to
+ authenticate modem headers
+Content-Language: en-US
+To:     Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        manivannan.sadhasivam@linaro.org
+Cc:     agross@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        konrad.dybcio@somainline.org, amit.pundir@linaro.org,
+        regressions@leemhuis.info, sumit.semwal@linaro.org,
+        will@kernel.org, catalin.marinas@arm.com, robin.murphy@arm.com
+References: <20221213140724.8612-1-quic_sibis@quicinc.com>
+ <20221213140724.8612-5-quic_sibis@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221213140724.8612-5-quic_sibis@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-That is very much my bad.
+On 13/12/2022 15:07, Sibi Sankar wrote:
+> The memory region allocated using dma_alloc_attr with no kernel mapping
+> attribute set would still be a part of the linear kernel map. Any access
+> to this region by the application processor after assigning it to the
+> remote Q6 will result in a XPU violation. Fix this by replacing the
+> dynamically allocated memory region with a no-map carveout and unmap the
+> modem metadata memory region before passing control to the remote Q6.
+> 
+> Reported-by: Amit Pundir <amit.pundir@linaro.org>
+> Fixes: 6c5a9dc2481b ("remoteproc: qcom: Make secure world call for mem ownership switch")
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> ---
 
-I understand the purpose of them :)
+Thank you for your patch. There is something to discuss/improve.
+>  
+>  	return ret < 0 ? ret : 0;
+> @@ -1882,6 +1899,26 @@ static int q6v5_alloc_memory_region(struct q6v5 *qproc)
+>  	qproc->mpss_phys = qproc->mpss_reloc = r.start;
+>  	qproc->mpss_size = resource_size(&r);
+>  
+> +	if (!child) {
+> +		node = of_parse_phandle(qproc->dev->of_node, "memory-region", 2);
+> +	} else {
+> +		child = of_get_child_by_name(qproc->dev->of_node, "metadata");
 
-I just straight up forgot to add them.
-There is also ordering issue in mfd patch which was forgotten as well and was meant to be included in v4.
-This ordering was corrected in regulators patch so i do apologize.
+Bindings do not allow to have child "metadata", do they?
 
-I will be sending v5 in a day or two with your ack included and this corrected and other comments that may show up during this time.
+> +		node = of_parse_phandle(child, "memory-region", 0);
+> +		of_node_put(child);
+> +	}
+> +
+> +	if (!node)
+> +		return 0;
+> +
+> +	ret = of_address_to_resource(node, 0, &r);
+> +	of_node_put(node);
+> +	if (ret) {
+> +		dev_err(qproc->dev, "unable to resolve metadata region\n");
+> +		return ret;
+> +	}
+> +
+> +	qproc->mdata_phys = r.start;
+> +
+>  	return 0;
+>  }
+>  
 
-Thank you.
 Best regards,
-Martin
+Krzysztof
 
-On December 13, 2022 8:37:48 PM GMT+01:00, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->On 13/12/2022 19:27, Martin Botka wrote:
->> AXP1530 is a PMIC used on board BIQU CB1 SoM
->> 
->> Signed-off-by: Martin Botka <martin.botka@somainline.org>
->> ---
->>  Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml | 1 +
->
->This is a friendly reminder during the review process.
->
->It looks like you received a tag and forgot to add it.
->
->If you do not know the process, here is a short explanation:
->Please add Acked-by/Reviewed-by/Tested-by tags when posting new
->versions. However, there's no need to repost patches *only* to add the
->tags. The upstream maintainer will do that for acks received on the
->version they apply.
->
->https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
->
->If a tag was not added on purpose, please state why and what changed.
->
->Best regards,
->Krzysztof
->
