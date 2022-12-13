@@ -2,162 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BA0F64BC62
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 19:52:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35D4A64BC67
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 19:52:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236108AbiLMSwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 13:52:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44658 "EHLO
+        id S235574AbiLMSwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 13:52:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235836AbiLMSw3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 13:52:29 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D69425282
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 10:52:28 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id q6so6426449lfm.10
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 10:52:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=RDCW+iDH8CpQHgbu/eAxZ2pgLpFC+LyCWi/mo0RGfMU=;
-        b=n7vLPZJU8FGT47naIzvCeHtTl8WO5FbnD78FVXWSGGKsqctPECm8O5DFvoa6So0FxY
-         sw5t6q2wSta9fuBXfwwcNv+yAx0kYxtgNjgLdOTsgG2O/zIh6ewfm0WHEr9iUvJTtkpV
-         cejpXxGoLTvkY3y6l9oKkRCxqmuaugLFR2BdMGPeG/QVrv9A+SdCKvL28uLNs7S6R7vA
-         y70WeDLpaHMhpO6w4euQFdqVxqsqQk/PSLv278bZ9ohcofYdiCH3yumzgoqYb9kQvgvy
-         VS0z3hnjCd/tyVo3spopPqCMIMgrYs0u35okIdl2gs6jXgoAScBhMrmh1aJ4XYN17BgI
-         /ZBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RDCW+iDH8CpQHgbu/eAxZ2pgLpFC+LyCWi/mo0RGfMU=;
-        b=sjNUtOMLY0tuipbkWLCTzctXr5Q87G9N8FHq4INjiodQL2QxKhhcqbiY3NPehlk7D3
-         dMpgfmTjLr1QzqzuRXoux1jWL8m5VSznLaPa2pRuHDZc169/rNY1sWxLubH/ZvBq+iRq
-         jH+ZQ1YkajB67N6R7vYT4Tg1TGVRjv44e0Kj1Nu7qLsg0VAB3sayd7AgcAqy8aopfLTt
-         OXgDmOByjJfgYNnLM2nkuzyGIPrynReSi10VpGfz7szY7Rf5iiZ1CdGDnYtLajdBSwan
-         cAtivbq8DdXBroTJ0BN9MyWMFqhZJVFhxBAgFaCxzk1eJbuMIORmxNWzzv1Qxw4NI2NN
-         qvYA==
-X-Gm-Message-State: ANoB5pmuiN+ChrbhdDEKxUuwxIhYRJ14dU8eIaqftqAYmkquNrN1PmQ7
-        9wkv6VGw+W180Y8QHgFUdAMek9M6yMhzHikJm7Wf3X+xGIrSMoL8
-X-Google-Smtp-Source: AA0mqf7tZqgLVvRD/n/okhsIS3EJvqgZdQMNs/s7Ct8ns5PGnOewTGALBAVeaT8IK43pXoHSOn2CUU0vtvNAsuOSqD8=
-X-Received: by 2002:a19:a405:0:b0:4b5:785b:c65a with SMTP id
- q5-20020a19a405000000b004b5785bc65amr5577594lfc.464.1670957546753; Tue, 13
- Dec 2022 10:52:26 -0800 (PST)
+        with ESMTP id S236460AbiLMSwc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 13:52:32 -0500
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 085E123E91;
+        Tue, 13 Dec 2022 10:52:30 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.96,242,1665414000"; 
+   d="scan'208";a="143217876"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 14 Dec 2022 03:52:30 +0900
+Received: from localhost.localdomain (unknown [10.226.93.72])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id A3CAC400B9CB;
+        Wed, 14 Dec 2022 03:52:25 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Subject: [PATCH v3 0/4] Add RZ/V2{M, MA} PWM driver support
+Date:   Tue, 13 Dec 2022 18:52:19 +0000
+Message-Id: <20221213185223.2011600-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20221213123823.455731-1-bhupesh.sharma@linaro.org>
- <20221213123823.455731-4-bhupesh.sharma@linaro.org> <39ff2174-6d04-ec21-b762-377ed28088cb@linaro.org>
-In-Reply-To: <39ff2174-6d04-ec21-b762-377ed28088cb@linaro.org>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Wed, 14 Dec 2022 00:22:15 +0530
-Message-ID: <CAH=2NtwUODvzLx=JThuZpADv+x+NtLx688Ox-95b_T9PtRf4_w@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm6115: Add USB SS qmp phy node
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        agross@kernel.org, bhupesh.linux@gmail.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        konrad.dybcio@linaro.org, andersson@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+The RZ/V2{M, MA} PWM Timer (PWM) is composed of 16 channels. Linux is only
+allowed access to channels 8 to 14 on RZ/V2M, while there is no restriction
+for RZ/V2MA.
 
-On Tue, 13 Dec 2022 at 18:26, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 13/12/2022 13:38, Bhupesh Sharma wrote:
-> > Add USB superspeed qmp phy node to dtsi.
-> >
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sm6115.dtsi | 38 ++++++++++++++++++++++++++--
-> >  1 file changed, 36 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> > index e4ce135264f3d..9c5c024919f92 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> > @@ -579,6 +579,40 @@ usb_hsphy: phy@1613000 {
-> >                       status = "disabled";
-> >               };
-> >
-> > +             usb_qmpphy: phy@1615000 {
-> > +                     compatible = "qcom,sm6115-qmp-usb3-phy";
-> > +                     reg = <0x01615000 0x200>;
-> > +                     #clock-cells = <1>;
-> > +                     #address-cells = <1>;
-> > +                     #size-cells = <1>;
-> > +                     ranges;
-> > +                     clocks = <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
-> > +                              <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
-> > +                              <&gcc GCC_AHB2PHY_USB_CLK>;
-> > +                     clock-names = "com_aux",
-> > +                                   "ref",
-> > +                                   "cfg_ahb";
-> > +                     resets = <&gcc GCC_USB3_PHY_PRIM_SP0_BCR>,
-> > +                              <&gcc GCC_USB3PHY_PHY_PRIM_SP0_BCR>;
-> > +                     reset-names = "phy", "phy_phy";
-> > +                     status = "disabled";
->
-> Hm, you add a disabled PHY which is used by existing controller. The
-> controller is enabled in board DTS, but new PHY node isn't. Aren't you
-> now breaking it?
+The RZ/V2{M, MA} PWM Timer (PWM) supports the following functions:
+ * The PWM has 24-bit counters which operate at PWM_CLK (48 MHz).
+ * The frequency division ratio for internal counter operation is selectable
+    as PWM_CLK divided by 1, 16, 256, or 2048.
+ * The period as well as the duty cycle is adjustable.
+ * The low-level and high-level order of the PWM signals can be inverted.
+ * The duty cycle of the PWM signal is selectable in the range from 0 to 100%.
+ * The minimum resolution is 20.83 ns.
+ * Three interrupt sources: Rising and falling edges of the PWM signal and
+   clearing of the counter
+ * Counter operation and the bus interface are asynchronous and both can
+   operate independently of the magnitude relationship of the respective
+   clock periods.
 
-The USB controller is connected to two PHYs - one is HS PHY and the other is SS
-QMP Phy. So while the exiting board dts describes and uses only the HS
-PHY, newer
-board dts files (which will soon be sent out as a separate patch),
-will use both the HS and SS
-USB PHYs.
+v2->v3:
+ * Removed clock patch#1 as it is queued for 6.3 renesas-clk
+ * Added Rb tag from Geert for bindings and dt patches
+ * Added return code for rzv2m_pwm_get_state()
+ * Added comment in rzv2m_pwm_reset_assert_pm_disable()
+v1->v2:
+ * Updated commit description
+ * Replaced pwm8_15_pclk->cperi_grpf
+ * Added reset entry R9A09G011_PWM_GPF_PRESETN
+ * Added Rb tag from Krzysztof for bindings and the keep the Rb tag as 
+   the below changes are trivial
+ * Updated the description for APB clock
+ * Added resets required property
+ * Updated the example with resets property
+ * Replaced devm_reset_control_get_optional_shared->devm_reset_control_get_shared
+ * Added resets property in pwm nodes.
 
-So, this will not break the existing board dts files.
+Note:
+ Hardware manual for this IP can be found here
+ https://www.renesas.com/in/en/document/mah/rzv2m-users-manual-hardware?language=en
 
-> > +
-> > +                     usb_ssphy: phy@1615200 {
-> > +                             reg = <0x01615200 0x200>,
-> > +                                   <0x01615400 0x200>,
-> > +                                   <0x01615c00 0x400>,
-> > +                                   <0x01615600 0x200>,
-> > +                                   <0x01615800 0x200>,
-> > +                                   <0x01615a00 0x100>;
-> > +                             #phy-cells = <0>;
-> > +                             #clock-cells = <1>;
-> > +                             clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
-> > +                             clock-names = "pipe0";
-> > +                             clock-output-names = "usb3_phy_pipe_clk_src";
-> > +                     };
-> > +             };
-> > +
-> > +
->
-> Just one blank line.
+Biju Das (4):
+  dt-bindings: pwm: Add RZ/V2M PWM binding
+  pwm: Add support for RZ/V2M PWM driver
+  arm64: dts: renesas: r9a09g011: Add pwm nodes
+  arm64: dts: renesas: rzv2m evk: Enable pwm
 
-Ok, Will fix it in v2.
+ .../bindings/pwm/renesas,rzv2m-pwm.yaml       |  90 ++++
+ .../boot/dts/renesas/r9a09g011-v2mevk2.dts    |  70 +++
+ arch/arm64/boot/dts/renesas/r9a09g011.dtsi    |  98 +++++
+ drivers/pwm/Kconfig                           |  11 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-rzv2m.c                       | 398 ++++++++++++++++++
+ 6 files changed, 668 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/renesas,rzv2m-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-rzv2m.c
 
-> >               qfprom@1b40000 {
-> >                       compatible = "qcom,sm6115-qfprom", "qcom,qfprom";
-> >                       reg = <0x01b40000 0x7000>;
-> > @@ -1023,8 +1057,8 @@ usb_dwc3: usb@4e00000 {
-> >                               compatible = "snps,dwc3";
-> >                               reg = <0x04e00000 0xcd00>;
-> >                               interrupts = <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>;
-> > -                             phys = <&usb_hsphy>;
-> > -                             phy-names = "usb2-phy";
-> > +                             phys = <&usb_hsphy>, <&usb_ssphy>;
-> > +                             phy-names = "usb2-phy", "usb3-phy";
-> >                               iommus = <&apps_smmu 0x120 0x0>;
-> >                               snps,dis_u2_susphy_quirk;
-> >                               snps,dis_enblslpm_quirk;
->
+-- 
+2.25.1
 
-Thanks,
-Bhupesh
