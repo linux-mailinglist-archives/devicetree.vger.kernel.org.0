@@ -2,103 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8035E64B7BF
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 15:49:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC3E664B7C8
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 15:50:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235574AbiLMOs6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 09:48:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35400 "EHLO
+        id S235038AbiLMOuR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 09:50:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235679AbiLMOsq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 09:48:46 -0500
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49E629FE4;
-        Tue, 13 Dec 2022 06:48:39 -0800 (PST)
-Received: by mail-oi1-f181.google.com with SMTP id l127so14388667oia.8;
-        Tue, 13 Dec 2022 06:48:39 -0800 (PST)
+        with ESMTP id S234624AbiLMOuL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 09:50:11 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8EE12AC4
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 06:50:10 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id g7so5290037lfv.5
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 06:50:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mB0KyvqD0ZqBlFhaR84Srpxb4q3+wwTogg2S2DXkML4=;
+        b=dl6LT2ovp/B3Y8Aog5ybn1DkZ642QYFV8JNKX1yB40+DiHoijbyZlUIHK0L+iiGECp
+         oLVuAIg1kjBIOeAJJlIlAMb5szh4oey9yAGsHu7yhT33z/mzLNfWvcDHH34j4zhlJ3i5
+         D7dBBiM+najrsgIoQNE0ytCF4qSbsHPCMKGVzzcysociARtsY9ubAvbCOGFjd4xbEfhx
+         v/cDVJdUJ6jFlGqWTpvPhPbsbCDHkZznO6CytKKZ47lqgFa51DbckYI7ZZNS2Rl5KvFA
+         UgXUKedi4I2MLVkNwDz6uoWcW1WHDmYNt6sYgQNoQlxncSz4C4V4pRF7oow+U//Z0O5Q
+         VduA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CzVIBqgCMRj+d25frQPQuCRYoHnOg+Yv+NlxwZk81AY=;
-        b=4KIg5Q7mcbq3JGT0fJW+zO7BcrAtLycrfU6s/A+F8TPr0HI31OSMi7AoOkzVcvKpSz
-         3X8ozjq/t6bPpF7PnMU2zgiu/Cj/hCqhxzs1W5zTvb5yVjn3kFQU2GaPcmaVCNBIajJc
-         Ac9Vru3F4V1sg7OJLiXYlWklChw8lssKC5qfxgsfWbuRz0r4R4tL9PhlIfu/7RLIFLqy
-         bROs3G0As+7p0dAmVIBH0IDMZ5XBUKzY7ALAFP/YUXscV+EwWt7K7P/3SRTgnOqzgiLj
-         tpASw9DjaUm05XRgN9RuSt7iIZzFdK0bx1zqxjHrHFlQMatBDCvx+LKNrTkRqcLmnbIU
-         judg==
-X-Gm-Message-State: ANoB5pm3ixfrfUKCCiZfEk/8ciXvn5Wqrbf7He9vjrY9EEPOqsOQB/GF
-        6jfPoD03OG8X/0Nx6FvPEQ==
-X-Google-Smtp-Source: AA0mqf5U39GQd+Lq+x42Zx2jUiu3ICKx3nCbHogvtDuqaYRYED6hOHplsR4OXSyz5MzrCOZAtpd+yw==
-X-Received: by 2002:a05:6808:286:b0:35c:4d3a:6d00 with SMTP id z6-20020a056808028600b0035c4d3a6d00mr9185787oic.24.1670942918522;
-        Tue, 13 Dec 2022 06:48:38 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id n26-20020a9d741a000000b0066e7fb52ca2sm1248803otk.14.2022.12.13.06.48.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Dec 2022 06:48:38 -0800 (PST)
-Received: (nullmailer pid 992743 invoked by uid 1000);
-        Tue, 13 Dec 2022 14:48:37 -0000
-Date:   Tue, 13 Dec 2022 08:48:37 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Alexandru Tachici <alexandru.tachici@analog.com>,
-        Akshay Gupta <Akshay.Gupta@amd.com>,
-        linux-hwmon@vger.kernel.org,
-        Eric Tremblay <etremblay@distech-controls.com>,
-        Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-        Kun Yi <kunyi@google.com>, Jonathan Cameron <jic23@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jean Delvare <jdelvare@suse.com>, linux-kernel@vger.kernel.org,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Michael Hennerich <michael.hennerich@analog.com>,
-        Krishna Chatradhi <ch.naveen@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Supreeth Venkatesh <supreeth.venkatesh@amd.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: correct indentation and style in
- examples
-Message-ID: <167094291641.992665.14962893906742419729.robh@kernel.org>
-References: <20221213092643.20404-1-krzysztof.kozlowski@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mB0KyvqD0ZqBlFhaR84Srpxb4q3+wwTogg2S2DXkML4=;
+        b=ELCqOhYciZTc5H/n7EobHyqFMcdHojbuY1ZEHdwLlNwhp226o3HPDRwypIDTZgVQ6i
+         S/WvfxmQT1yo6acUV7RG786tHsa73YH30ZP1sHkBZbQrLt9A7MavXlI7kQ7r38sSvnqT
+         AiH19sgQXQ0co0o7ex3U4dkhiaxBAOY43kZ680WbeJYcN3gykgllKDJxh+y9klaxjD0X
+         eNZ1tvvSeCAnlyjAcJfG5vS4P9jKAjcpRIcnn01TsPKESrR93SMve222rhMBO6LjMwJK
+         hJXT9O+p2mZp4/EHCkSlDuXFNxtmUeYhdwx8NG+R/ybMgI1f7/QAQ28mcOM2LXbIM7SX
+         DRzA==
+X-Gm-Message-State: ANoB5pn58bXOguz23JInCr9Yjlni7ZVy3v/75CkeUK8fnsfTAhNxm5X/
+        EeJo8XL0QKk/cO32O5knNROqOA==
+X-Google-Smtp-Source: AA0mqf4KuAGFhbPb0Ty13iG9BNOSTdRpE4YMXaM6bojLbmytGkhMxOskRTyEq2EfStBLNwzjOiqO3A==
+X-Received: by 2002:ac2:430c:0:b0:4a4:68b9:6085 with SMTP id l12-20020ac2430c000000b004a468b96085mr4816436lfh.16.1670943009070;
+        Tue, 13 Dec 2022 06:50:09 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id c2-20020ac25f62000000b004b7033da2d7sm42359lfc.128.2022.12.13.06.50.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Dec 2022 06:50:08 -0800 (PST)
+Message-ID: <371d9af8-5af4-e421-2382-8fc29b35eec6@linaro.org>
+Date:   Tue, 13 Dec 2022 15:50:07 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221213092643.20404-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v3 01/17] dt-bindings: clock: Fix node descriptions in
+ uniphier-clock example
+Content-Language: en-US
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Masami Hiramatsu <mhiramat@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221213082449.2721-1-hayashi.kunihiko@socionext.com>
+ <20221213082449.2721-2-hayashi.kunihiko@socionext.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221213082449.2721-2-hayashi.kunihiko@socionext.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Tue, 13 Dec 2022 10:26:41 +0100, Krzysztof Kozlowski wrote:
-> Fix mixed indentation to 4-spaces, remove unnecessary suffix from
-> i2c node name and use lower-case hex.  No functional impact.
+On 13/12/2022 09:24, Kunihiko Hayashi wrote:
+> Prior to adding dt-bindings for SoC-dependent controllers, rename the
+> clock nodes to the generic names in the example.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> And drop redundant examples and a parent node of the clock as it is not
+> directly necessary.
+> 
+> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 > ---
->  .../bindings/hwmon/adi,adm1177.yaml           | 12 ++---
->  .../bindings/hwmon/adi,adm1266.yaml           |  6 +--
->  .../bindings/hwmon/adi,axi-fan-control.yaml   | 20 ++++-----
->  .../bindings/hwmon/adi,ltc2947.yaml           | 20 ++++-----
->  .../bindings/hwmon/adi,ltc2992.yaml           | 26 +++++------
->  .../devicetree/bindings/hwmon/amd,sbrmi.yaml  |  6 +--
->  .../devicetree/bindings/hwmon/amd,sbtsi.yaml  |  6 +--
->  .../devicetree/bindings/hwmon/iio-hwmon.yaml  |  8 ++--
->  .../bindings/hwmon/national,lm90.yaml         | 44 +++++++++----------
->  .../bindings/hwmon/ntc-thermistor.yaml        |  2 +-
->  .../bindings/hwmon/nuvoton,nct7802.yaml       | 16 +++----
->  .../devicetree/bindings/hwmon/ti,tmp513.yaml  | 22 +++++-----
->  .../bindings/hwmon/ti,tps23861.yaml           | 16 +++----
->  13 files changed, 102 insertions(+), 102 deletions(-)
-> 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
