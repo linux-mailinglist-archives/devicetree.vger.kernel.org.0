@@ -2,203 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E093564B9DB
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 17:35:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78F1F64B9DC
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 17:35:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235810AbiLMQe6 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 13 Dec 2022 11:34:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42156 "EHLO
+        id S235505AbiLMQfL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 11:35:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234735AbiLMQe5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 11:34:57 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CF2D115B
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 08:34:56 -0800 (PST)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1p58Ew-0002Ff-Kb; Tue, 13 Dec 2022 17:34:46 +0100
-Message-ID: <ac3096c8f8c0b5b95d54d2cf93cb0f8d743c3d60.camel@pengutronix.de>
-Subject: Re: [PATCH 4/4] soc: imx: imx8mp-blk-ctrl: expose high performance
- PLL clock
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Richard Zhu <hongxing.zhu@nxp.com>
-Cc:     marex@denx.de, devicetree@vger.kernel.org,
-        richard.leitner@linux.dev, marcel.ziswiler@toradex.com,
-        tharvey@gateworks.com, patchwork-lst@pengutronix.de,
-        alexander.stein@ew.tq-group.com,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        lukas@mntre.com, linux-arm-kernel@lists.infradead.org
-Date:   Tue, 13 Dec 2022 17:34:44 +0100
-In-Reply-To: <20221213160112.1900410-4-l.stach@pengutronix.de>
-References: <20221213160112.1900410-1-l.stach@pengutronix.de>
-         <20221213160112.1900410-4-l.stach@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.46.2 (3.46.2-1.fc37) 
+        with ESMTP id S234735AbiLMQfJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 11:35:09 -0500
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70DE8115B;
+        Tue, 13 Dec 2022 08:35:08 -0800 (PST)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-1445ca00781so13221616fac.1;
+        Tue, 13 Dec 2022 08:35:08 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YJVQxyn8gXiSA1AhPudrUs7ABz5sBN5zDoG4vdYkTS8=;
+        b=5ByTtm4girwObHUaNkTIi6XjpuLWWirygVFZAGoa7HUMCGYl/nYrebd3f/iLFCNT06
+         4YRb0X848wdUZZGOqMbZM4jajNafuLWJYO6qs4rNBES5QgxzZHqO/v+i9FOJ5q4TJdbV
+         sjJ8dRk9uQbq4V3n7UJttZ2HP0Tx/eJ02WIKmJVRLIkwBAN2hO5YnJ93xrPpb35xGGKQ
+         vtaB+y8wvzHlMiBOq1EF8hB7SN3Q4heTs/ys4sVfYXvIphBrhZYkJyK7qpt8Q0Ja1WGN
+         +DLkhgpy7G/h2XxhALx/QYYbZ4x1N/dYFhRnlwnjja1lvp9YrRcY6Irob2+M9yjSX5ja
+         dJ2w==
+X-Gm-Message-State: ANoB5pkpSqVTUyV4u1voDIZzK61/zDVDJZIrX8ZSjDlGuOuQLBS2FhFr
+        BeS2TdgbOwCi/AijcnyiBQ==
+X-Google-Smtp-Source: AA0mqf6gAyXmBROc/uHUvFJFQsXUK5ZsOJyrNY4N5rAb+6eVQ/bZLAv3s7BlqspIZ6lr1OzI3lo9/g==
+X-Received: by 2002:a05:6870:4608:b0:13b:e0a:20e6 with SMTP id z8-20020a056870460800b0013b0e0a20e6mr10759985oao.34.1670949307632;
+        Tue, 13 Dec 2022 08:35:07 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id k16-20020a056870819000b0014866eb34cesm1570367oae.48.2022.12.13.08.35.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Dec 2022 08:35:07 -0800 (PST)
+Received: (nullmailer pid 2014809 invoked by uid 1000);
+        Tue, 13 Dec 2022 16:35:06 -0000
+Date:   Tue, 13 Dec 2022 10:35:06 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Georgi Djakov <quic_c_gdjako@quicinc.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
+        iommu@lists.linux.dev, linux-kernel@vger.kernel.org,
+        djakov@kernel.org
+Subject: Re: [RFC v2 1/2] dt-bindings: iommu: Document iova-best-fit property
+ for IOMMU masters
+Message-ID: <20221213163506.GA2011062-robh@kernel.org>
+References: <20221212215138.17897-1-quic_c_gdjako@quicinc.com>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221212215138.17897-1-quic_c_gdjako@quicinc.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, dem 13.12.2022 um 17:01 +0100 schrieb Lucas Stach:
-> Expose the high performance PLL as a regular Linux clock, so the
-> PCIe PHY can use it when there is no external refclock provided.
+On Mon, Dec 12, 2022 at 01:51:37PM -0800, Georgi Djakov wrote:
+> Document the "iova-best-fit" device-tree property, which is used to
+> describe that the iommu master is constrained on memory and the system
+> must put more effort when allocating IOVAs to avoid holes/gaps in
+> memory. This improves the memory utilization and helps with memory
+> fragmentation issues in some cases, but it could take longer to allocate
+> an IOVA compared with the default "first-fit" algorithm.
 > 
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> Signed-off-by: Georgi Djakov <quic_c_gdjako@quicinc.com>
 > ---
->  drivers/soc/imx/imx8mp-blk-ctrl.c | 99 +++++++++++++++++++++++++++++++
->  1 file changed, 99 insertions(+)
+>  Documentation/devicetree/bindings/iommu/iommu.txt | 4 ++++
+>  1 file changed, 4 insertions(+)
+
+No new properties in common .txt files. Schemas only.
+
+However, this looks like kernel policy which doesn't belong in DT.
+
+> diff --git a/Documentation/devicetree/bindings/iommu/iommu.txt b/Documentation/devicetree/bindings/iommu/iommu.txt
+> index 26ba9e530f13..ca1b4813c5bf 100644
+> --- a/Documentation/devicetree/bindings/iommu/iommu.txt
+> +++ b/Documentation/devicetree/bindings/iommu/iommu.txt
+> @@ -88,6 +88,10 @@ prevent any driver from properly setting up the translations.
+>  
+>  Optional properties:
+>  --------------------
+> +- iova-best-fit: When present, the best-fit algorithm will be used, instead
+> +  of first-fit. This reduces memory fragmentation when allocating IOVAs in
+> +  some cases, but may also increase the time it takes to allocate an IOVA.
+> +
+>  - pasid-num-bits: Some masters support multiple address spaces for DMA, by
+>    tagging DMA transactions with an address space identifier. By default,
+>    this is 0, which means that the device only has one address space.
 > 
-> diff --git a/drivers/soc/imx/imx8mp-blk-ctrl.c b/drivers/soc/imx/imx8mp-blk-ctrl.c
-> index b3d9f6e083ba..ad5aebd640eb 100644
-> --- a/drivers/soc/imx/imx8mp-blk-ctrl.c
-> +++ b/drivers/soc/imx/imx8mp-blk-ctrl.c
-> @@ -5,6 +5,7 @@
->   */
->  
->  #include <linux/clk.h>
-> +#include <linux/clk-provider.h>
->  #include <linux/device.h>
->  #include <linux/interconnect.h>
->  #include <linux/module.h>
-> @@ -21,6 +22,15 @@
->  #define  USB_CLOCK_MODULE_EN	BIT(1)
->  #define  PCIE_PHY_APB_RST	BIT(4)
->  #define  PCIE_PHY_INIT_RST	BIT(5)
-> +#define GPR_REG1		0x4
-> +#define  PLL_LOCK		BIT(13)
-> +#define GPR_REG2		0x8
-> +#define  P_PLL_MASK		GENMASK(5, 0)
-> +#define  M_PLL_MASK		GENMASK(15, 6)
-> +#define  S_PLL_MASK		GENMASK(18, 16)
-> +#define GPR_REG3		0xc
-> +#define  PLL_CKE		BIT(17)
-> +#define  PLL_RST		BIT(31)
->  
->  struct imx8mp_blk_ctrl_domain;
->  
-> @@ -74,6 +84,94 @@ to_imx8mp_blk_ctrl_domain(struct generic_pm_domain *genpd)
->  	return container_of(genpd, struct imx8mp_blk_ctrl_domain, genpd);
->  }
->  
-> +struct clk_hsio_pll {
-> +	struct clk_hw	hw;
-> +	struct regmap *regmap;
-> +};
-> +
-> +static inline struct clk_hsio_pll *to_clk_hsio_pll(struct clk_hw *hw)
-> +{
-> +	return container_of(hw, struct clk_hsio_pll, hw);
-> +}
-> +
-> +static int clk_hsio_pll_prepare(struct clk_hw *hw)
-> +{
-> +	struct clk_hsio_pll *clk = to_clk_hsio_pll(hw);
-> +	u32 val;
-> +
-> +	/* set the PLL configuration */
-> +	regmap_update_bits(clk->regmap, GPR_REG2,
-> +			   P_PLL_MASK | M_PLL_MASK | S_PLL_MASK,
-> +			   FIELD_PREP(P_PLL_MASK, 12) |
-> +			   FIELD_PREP(M_PLL_MASK, 800) |
-> +			   FIELD_PREP(S_PLL_MASK, 4));
-> +
-> +	/* de-assert PLL reset */
-> +	regmap_update_bits(clk->regmap, GPR_REG3, PLL_RST, PLL_RST);
-> +
-> +	/* enable PLL */
-> +	regmap_update_bits(clk->regmap, GPR_REG3, PLL_CKE, PLL_CKE);
-> +
-> +	return regmap_read_poll_timeout(clk->regmap, GPR_REG1, val,
-> +					val & PLL_LOCK, 10, 100);
-> +}
-> +
-> +static void clk_hsio_pll_unprepare(struct clk_hw *hw)
-> +{
-> +	struct clk_hsio_pll *clk = to_clk_hsio_pll(hw);
-> +
-> +	regmap_update_bits(clk->regmap, GPR_REG3, PLL_RST | PLL_CKE, 0);
-> +}
-> +
-> +static int clk_hsio_pll_is_prepared(struct clk_hw *hw)
-> +{
-> +	struct clk_hsio_pll *clk = to_clk_hsio_pll(hw);
-> +
-> +	return regmap_test_bits(clk->regmap, GPR_REG1, PLL_LOCK);
-> +}
-> +
-> +static unsigned long clk_hsio_pll_recalc_rate(struct clk_hw *hw,
-> +					      unsigned long parent_rate)
-> +{
-> +	return 100000000;
-> +}
-> +
-> +static const struct clk_ops clk_hsio_pll_ops = {
-> +	.prepare = clk_hsio_pll_prepare,
-> +	.unprepare = clk_hsio_pll_unprepare,
-> +	.is_prepared = clk_hsio_pll_is_prepared,
-> +	.recalc_rate = clk_hsio_pll_recalc_rate,
-> +};
-> +
-> +int imx8mp_hsio_blk_ctrl_probe(struct imx8mp_blk_ctrl *bc)
-> +{
-> +	struct clk_hsio_pll *clk_hsio_pll;
-> +	struct clk_hw *hw;
-> +	struct clk_init_data init = {};
-> +	int ret;
-> +
-> +	printk("%s\n", __func__);
-
-This printk should obviously not be here. Removed locally. I'll wait
-for some feedback before sending v2.
-
-Regards,
-Lucas
-
-> +
-> +	clk_hsio_pll = devm_kzalloc(bc->dev, sizeof(*clk_hsio_pll), GFP_KERNEL);
-> +	if (!clk_hsio_pll)
-> +		return -ENOMEM;
-> +
-> +	init.name = "hsio_pll";
-> +	init.ops = &clk_hsio_pll_ops;
-> +	init.parent_names = (const char *[]){"osc_24m"};
-> +	init.num_parents = 1;
-> +
-> +	clk_hsio_pll->regmap = bc->regmap;
-> +	clk_hsio_pll->hw.init = &init;
-> +
-> +	hw = &clk_hsio_pll->hw;
-> +	ret = devm_clk_hw_register(bc->dev, hw);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return devm_of_clk_add_hw_provider(bc->dev, of_clk_hw_simple_get, hw);
-> +}
-> +
->  static void imx8mp_hsio_blk_ctrl_power_on(struct imx8mp_blk_ctrl *bc,
->  					  struct imx8mp_blk_ctrl_domain *domain)
->  {
-> @@ -188,6 +286,7 @@ static const struct imx8mp_blk_ctrl_domain_data imx8mp_hsio_domain_data[] = {
->  
->  static const struct imx8mp_blk_ctrl_data imx8mp_hsio_blk_ctl_dev_data = {
->  	.max_reg = 0x24,
-> +	.probe = imx8mp_hsio_blk_ctrl_probe,
->  	.power_on = imx8mp_hsio_blk_ctrl_power_on,
->  	.power_off = imx8mp_hsio_blk_ctrl_power_off,
->  	.power_notifier_fn = imx8mp_hsio_power_notifier,
-
