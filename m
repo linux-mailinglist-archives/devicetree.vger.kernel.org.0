@@ -2,86 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1794A64B72E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 15:20:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AD0664B736
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 15:21:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235770AbiLMOUH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 09:20:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46244 "EHLO
+        id S235003AbiLMOVS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 09:21:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235892AbiLMOT7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 09:19:59 -0500
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4164220BCB
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 06:19:58 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id a19so3483307ljk.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 06:19:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EMyYtrU31qIqDBD9DxhVXcwRAXD72OPOTw3x1Svfa2k=;
-        b=SDEyNxDxgIElp7BRSiViRI9XVucIw2MTgwHgLm/AUJw75Yf7ntxXinMq5YYDzQmrWD
-         dDHl95SVdIEaCSwG/Y+mTUcilt7S47a6SsCDbBWuVlvJ8OrxCBVBer+/74KXonJkNvDN
-         4OXEdCPaBrbCiMvDPWV+uHiSDx4b3PkR91CTIdAgIefluA4pYs8V4L7h4EzmaCkpmERW
-         hzZcquDFHGKMxjCf/Ap65baerwoBkZy4D5eF8S2PZ2RuX06/S/tLlpIQoqLX6w3/urnL
-         fGwwn1Xn5apIeqKLt6TdncMdOuuxpD2MqdiQn51x+wNvg10PdI/Qt/LdNWh3a3IMzygR
-         Jxag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EMyYtrU31qIqDBD9DxhVXcwRAXD72OPOTw3x1Svfa2k=;
-        b=4OX9Kj1fxDNml2C1luLgfL/gU6sj6H2TGAHVgugiDwakYMyvAGJVy8MetHeK0X35cj
-         z7pbXHhqk1V5rY0QK4y7sAkS7F/Ca8p8SwzX6VqztGqva64kLVdYf6VkIcw8sCm7Wotj
-         hnR0vbPu3LuMn8rWg58qJUji3nF7JLT0cSNpo6iI49TtEZWgPM5VxwfCpuA6laU2wCkZ
-         yV6/cinl2B9qChdHPRatPVSQTRdunxCTzw908tCw1BRLYNemuyLvVaZD0vkLD/ff1AhE
-         6X2EkEwK/npbV3KlDVZbmbL827g8jQNh+JH/bUCNFJkhwaQE7kI6FuEd7ewMg3/99j9c
-         s2eQ==
-X-Gm-Message-State: ANoB5pll8vF6Zm3H0fb5jHOxXZDlTqWzoeDXBvcIjh0jEuFsjAq6QgWn
-        LPpW1yfuMZ1JHJ8GAqcxuN5ZSw==
-X-Google-Smtp-Source: AA0mqf62Rjtx/IsL79mhl1BYRYlsELpLE4pnLyB3o6ubxKNCcGj1PBfDe9vSzoz90bd+J9hIKQD9lQ==
-X-Received: by 2002:a05:651c:17a2:b0:277:13a1:1886 with SMTP id bn34-20020a05651c17a200b0027713a11886mr6603214ljb.6.1670941196605;
-        Tue, 13 Dec 2022 06:19:56 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id s26-20020a05651c201a00b002770fb5722fsm275824ljo.123.2022.12.13.06.19.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Dec 2022 06:19:56 -0800 (PST)
-Message-ID: <2172e561-ec0f-5c4e-96d2-ceb2010f2673@linaro.org>
-Date:   Tue, 13 Dec 2022 15:19:54 +0100
+        with ESMTP id S235633AbiLMOVO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 09:21:14 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AFAF201A7;
+        Tue, 13 Dec 2022 06:21:12 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 1FFBCB81189;
+        Tue, 13 Dec 2022 14:21:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE3CCC43392;
+        Tue, 13 Dec 2022 14:21:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1670941269;
+        bh=R9A9J+e3CDPOH/BI7j1nVr0BirXUObPtfsiRW2sTLp8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=hTGbVG7R57si5fBN3eMRGFVZT8KXhmGsLV11ypypLcudjUz7ESe0w/OCmoJnsMFk7
+         q33im5oHoSyxbNJTZihpi0k6vslmiW6+g2gI5tmgUa+UwbG8arGpSuyBkPZHbOI0kT
+         6QPij8/nBQ1g4N102KKjOwHeSWdnpm2wxJrBTRiKg6hcFKVoYm9Q0eMeuXUFogRNLD
+         8581bEZzztR3RxkVbAHxrA9my4M9of6BBDDtRyFBkSVlk5pLRXJSTsHv/IOsAGwY9z
+         55GPknpuHHijPSsuIgwLAt/MJu4JgALZ9Io+5VLS4kMi+WCKyL9u2qzO+LPguJpM5C
+         UCrcwfgWTshLA==
+Received: by mail-vs1-f50.google.com with SMTP id h26so14743606vsr.5;
+        Tue, 13 Dec 2022 06:21:09 -0800 (PST)
+X-Gm-Message-State: ANoB5pllaj7f24LSIoCRjQLAsE/tzVIzhCiJbSg8wiBSLtJGSus2V1Ex
+        YA13hxFd/Iua9kA0dZzJO3Brw60CJpSSQIVSpw==
+X-Google-Smtp-Source: AA0mqf6lndP1jG37h7rTNuIoxKBTupXom7QJ1uaEw9bekymB4G9xkTqMO7ujQRFhmMdFy+oMuwcHHCntjB6lWxSLTa4=
+X-Received: by 2002:a67:af07:0:b0:3b1:1713:ba12 with SMTP id
+ v7-20020a67af07000000b003b11713ba12mr15217550vsl.6.1670941268717; Tue, 13 Dec
+ 2022 06:21:08 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: correct indentation and style in
- examples
-To:     Rob Herring <robh@kernel.org>
-Cc:     Kun Yi <kunyi@google.com>, Jonathan Cameron <jic23@kernel.org>,
-        Krishna Chatradhi <ch.naveen@samsung.com>,
-        =?UTF-8?Q?Nuno_S=c3=a1?= <nuno.sa@analog.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Eric Tremblay <etremblay@distech-controls.com>,
-        linux-hwmon@vger.kernel.org,
-        Supreeth Venkatesh <supreeth.venkatesh@amd.com>,
-        linux-kernel@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-        Alexandru Tachici <alexandru.tachici@analog.com>,
-        devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+References: <20221212103525.231298-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20221212103525.231298-1-alexander.stein@ew.tq-group.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 13 Dec 2022 08:20:57 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLeqpMuRkvpT2-x5q+8e4bHf4oLDML2QqCOgRMAg8=CsA@mail.gmail.com>
+Message-ID: <CAL_JsqLeqpMuRkvpT2-x5q+8e4bHf4oLDML2QqCOgRMAg8=CsA@mail.gmail.com>
+Subject: Re: [RFC PATCH 0/3] gpiolib: ramp-up delay support
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Akshay Gupta <Akshay.Gupta@amd.com>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Hennerich <michael.hennerich@analog.com>,
-        Luka Perkov <luka.perkov@sartura.hr>
-References: <20221213092643.20404-1-krzysztof.kozlowski@linaro.org>
- <167093911583.912886.13512120412056690614.robh@kernel.org>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <167093911583.912886.13512120412056690614.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Marek Vasut <marex@denx.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,36 +64,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/12/2022 14:46, Rob Herring wrote:
-> 
-> On Tue, 13 Dec 2022 10:26:41 +0100, Krzysztof Kozlowski wrote:
->> Fix mixed indentation to 4-spaces, remove unnecessary suffix from
->> i2c node name and use lower-case hex.  No functional impact.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  .../bindings/hwmon/adi,adm1177.yaml           | 12 ++---
->>  .../bindings/hwmon/adi,adm1266.yaml           |  6 +--
->>  .../bindings/hwmon/adi,axi-fan-control.yaml   | 20 ++++-----
->>  .../bindings/hwmon/adi,ltc2947.yaml           | 20 ++++-----
->>  .../bindings/hwmon/adi,ltc2992.yaml           | 26 +++++------
->>  .../devicetree/bindings/hwmon/amd,sbrmi.yaml  |  6 +--
->>  .../devicetree/bindings/hwmon/amd,sbtsi.yaml  |  6 +--
->>  .../devicetree/bindings/hwmon/iio-hwmon.yaml  |  8 ++--
->>  .../bindings/hwmon/national,lm90.yaml         | 44 +++++++++----------
->>  .../bindings/hwmon/ntc-thermistor.yaml        |  2 +-
->>  .../bindings/hwmon/nuvoton,nct7802.yaml       | 16 +++----
->>  .../devicetree/bindings/hwmon/ti,tmp513.yaml  | 22 +++++-----
->>  .../bindings/hwmon/ti,tps23861.yaml           | 16 +++----
->>  13 files changed, 102 insertions(+), 102 deletions(-)
->>
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
+On Mon, Dec 12, 2022 at 4:35 AM Alexander Stein
+<alexander.stein@ew.tq-group.com> wrote:
+>
+> Hi all,
+>
+> this series is an RFC for a general approach to solve the issue at [1]. While
+> a device specific property works as well, a more generic approach is preferred.
+> In short: When enabling a GPIO the actual ramp-up time might be (much) bigger
+> than what software usually assume, in my case >100ms. Adding a delay to each
+> driver is cumbersome.
 
-This is fixed in second patch which points to: I need to change their order.
+At least for DT, I think this belongs (if at all) in the consumers,
+rather than a producer property. The options there are
+'foo-gpios-ramp-us' for 'foo-gpios' or add some delay bits to GPIO
+flags. We already have some of the former for various 'generic' power
+sequencing related delays. Of course, there's no real pattern to them
+as they all get added as we go without much foresight. In this case
+even, there are 4 possible delays: pre and post ramp up and down.
 
-Best regards,
-Krzysztof
+> Instead the (optional) ramp-up delay is added to each gpio_desc. The delays can
+> be specified per gpio-controller, similar to 'gpio-line-names'. Actually the
+> parsing code is almost a 1:1 copy of devprop_gpiochip_set_names(). Due to
+> (temporary) memory allocation, I opted for a separate function, there is code
+> duplication, but handling both properties in a single function seemed too
+> tedious, let alone the to be added ramp-down delays.
+>
+> This feature could also be added as a callback in gpio_chip, but the callbacks
+> have to be added to each driver then. I would prefer a single one-fits-all
+> implementation and another indirection in the GPIO call chain.
+>
+> Laurent suggest to add a GPIO delay node in DT. IMHO this increased the DT
+> complexity unnecessarily. But comments are welcome.
+>
+> The following 3 patches are a proof-of-concept on my platform, consisting of:
+> Patch 1 is the proposed bindings and straight forward.
+> Patch 2 is the current implementation
+> Patch 3 is an actual usage example for specifying the delays
+>
+> TODO:
+> 1. Adding ramp-down delays (Just the inverse copy of ramp-up delay)
+> 2. Should these delays take active low flags into account?
+> 3. How to deal with setting multiple GPIOs at once?
+>
+> I skipped 1. for now, because this is just a copy with ramp-up being replaced
+> with ramp-down.
+>
+> I'm not that well versed in gpiolib code, so I'm not sure if I got all placed
+> where GPIOs are set. So patch 2 might be incomplete.
+>
+> For now I skipped setting multiple GPIOs at once completely, so to get some
+> feedback on this approach. A possible solution is to check for the bigest delay
+> in the set and use that for all afterwards. But I'm not sure about the overhead
+> in this case.
+>
+> I hope there is some feedback. While thinking about this issue appears to be
+> more widespread than I expected.
 
+Many/most GPIO controllers can read the actual state of an output
+(IIRC, i.MX ctrlr can). Perhaps that capability could be used to delay
+until the state of the signal matches the set state. And you'd
+probably want to measure how long that took and then add some more
+time based on it. This of course gets into the electricals of at what
+levels a low or high state will register. If you can't read the state,
+then you would be stuck with some maximum timeout.
+
+Rob
