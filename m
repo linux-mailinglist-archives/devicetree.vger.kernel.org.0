@@ -2,106 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEFEC64B2B5
-	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 10:50:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD44164B2C1
+	for <lists+devicetree@lfdr.de>; Tue, 13 Dec 2022 10:52:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234995AbiLMJuL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Dec 2022 04:50:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40396 "EHLO
+        id S235034AbiLMJwI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Dec 2022 04:52:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234897AbiLMJuF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 04:50:05 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27244F5D;
-        Tue, 13 Dec 2022 01:50:04 -0800 (PST)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BD7U8NS008201;
-        Tue, 13 Dec 2022 09:49:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=WrklWuF+aB1VX6PUMihXwQAJi2MdBml231PZGx5ug5M=;
- b=ULfIClm/P2TLKehI1K965MnlZv4mjyFRpUPBYuVMMhUW8KotScYgwSebI60fsNPurbrm
- kRRlJvKBs6K0x+fvzsBOfgz8EYFP7OfhsDqqicJ88JNSAUBAOkA3e7WdUhlD74/fLeK/
- GSP29ekpBeVgAoPYmKkT5O8gE5X9fnljlclXjHBVc1l32pO+nVpS70GCL47f8XryJFPv
- KmWX6y4dKQ3MwEf6xX2NhQ+OLehIPUsdbpMuGPxR2eufFHhBthqC9ZG6yshZEysOMgk2
- lXF+QV1U5ZOAEXbu+hOm89ktranL33N0azfAf5GC8o/0tr2ATOaNwDLr7mD2Fr8Nsvxg 0A== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3meh1pgutf-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 13 Dec 2022 09:49:22 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2BD9nL9R004454
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 13 Dec 2022 09:49:21 GMT
-Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Tue, 13 Dec 2022 01:49:15 -0800
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-To:     <linux-remoteproc@vger.kernel.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
-        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
-        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
-        <judyhsiao@chromium.org>, <devicetree@vger.kernel.org>,
-        <krzysztof.kozlowski@linaro.org>, <mathieu.poirier@linaro.org>,
-        <corbet@lwn.net>
-CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Subject: [PATCH v2 2/2] docs: remoteproc: Update section header name requirement
-Date:   Tue, 13 Dec 2022 15:18:49 +0530
-Message-ID: <1670924929-26507-3-git-send-email-quic_srivasam@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1670924929-26507-1-git-send-email-quic_srivasam@quicinc.com>
-References: <1670924929-26507-1-git-send-email-quic_srivasam@quicinc.com>
+        with ESMTP id S235014AbiLMJwG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Dec 2022 04:52:06 -0500
+Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com [IPv6:2001:4860:4864:20::2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACB6415FE2;
+        Tue, 13 Dec 2022 01:52:05 -0800 (PST)
+Received: by mail-oa1-x2e.google.com with SMTP id 586e51a60fabf-14455716674so11887549fac.7;
+        Tue, 13 Dec 2022 01:52:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=6JN3Qjucx6D9wkdyo0PHdHqF86xZNo3ZNxYxpXMaii0=;
+        b=Ldx8CoWhrhmaw5RibJySEpFVNKyYC40NFx5s1aLsbMuHqvgE9jVrCXOv0PrqgRU+S2
+         SmDFZZhm8gTbU1dyhZTuHXVtqI2EB4TQ5t7Foo3b69q3yySNLCZgkq7OfrofAyMqrkQz
+         YG7Pubx13jaBCxyfP0fdZebAFFTE06niPBTt6CBYLkL8v3N80+aPZX9qMpwQarQOOjOp
+         mCe7NOcnCkyMWl5ikdG9XJLtlLiacjGmUxcQITiUlOLkZRc2wzDXskHxNM0nrvwHR8AS
+         2WNkmCxAfQ9gkI+vKGJoyFjSMN7gjeRidf+ohXXaxyKTKptEbOkJp7IN1Bpi2ny4pNik
+         Ej4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6JN3Qjucx6D9wkdyo0PHdHqF86xZNo3ZNxYxpXMaii0=;
+        b=wr3qbv8ltlJ+FhmHpBNs/Etz6bD59sQ3lCvY1Qr1BsUmcua6xDLBKOJkCEzNs/dqMt
+         U5bk8u281TVFTdO1xm7anKuWw9PH0g+AZ/bEuoofFf3FdxesmP3WnBvpBOkJrqQgd06u
+         pI7r5onvNgoiW6l1LAJ/vgx67c7k0ledVlYYxqVbWLIYocEnc/2wudzO3vXEaz0uQ34j
+         9r4OkPi7HBvX7Bg4tzREk4/dTNt6jzXh5CQj9j9E9rzvl7akGLozXkZ5VgwbEC3mZQ5e
+         563oDY06rZ+8PAOXiCgCNTukxOHWQg5DPx8BGBcGP4mNj8Gcx7fzUkAfoPJH1/oHll7T
+         4T9w==
+X-Gm-Message-State: ANoB5pmpdGHnE4Qo+ulQ8bwFqSwzwVcJimIdw+v1wetIXSgPm3yCJ0Ce
+        Y9m8/3Es64O0EbNFUko8VlYkZVJKreqw7fUSFYY=
+X-Google-Smtp-Source: AA0mqf4oSHCRC1jqlEhnVTPVF3UADvFkLA8qspX8MebavTsi8Vyf9sBy24b3zLEuO4EjOSS3Vw9KfvXtlHjXuJSPhZ4=
+X-Received: by 2002:a05:6870:d204:b0:148:3e0:cb8b with SMTP id
+ g4-20020a056870d20400b0014803e0cb8bmr191374oac.288.1670925125072; Tue, 13 Dec
+ 2022 01:52:05 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: cnBhuEDuNYBftybO7lliTweOHQI4G4ko
-X-Proofpoint-GUID: cnBhuEDuNYBftybO7lliTweOHQI4G4ko
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-12-13_03,2022-12-12_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
- adultscore=0 impostorscore=0 mlxscore=0 malwarescore=0 spamscore=0
- priorityscore=1501 phishscore=0 bulkscore=0 mlxlogscore=982
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2212130087
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20221207040904.582585-1-gch981213@gmail.com> <Y5g/9ETxQEVOqB5d@duo.ucw.cz>
+In-Reply-To: <Y5g/9ETxQEVOqB5d@duo.ucw.cz>
+From:   Chuanhong Guo <gch981213@gmail.com>
+Date:   Tue, 13 Dec 2022 17:51:53 +0800
+Message-ID: <CAJsYDVK850L3qtPAwcwQ4oZCo+JrSq0=QA33RtiRTk5v6CSj6g@mail.gmail.com>
+Subject: Re: [PATCH v3 0/3] leds: add driver for SPI driven WorldSemi WS2812B
+ RGB LEDs
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     linux-leds@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add section header name requirement specification in elf segments.
+Hi!
 
-Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
----
- Documentation/staging/remoteproc.rst | 2 ++
- 1 file changed, 2 insertions(+)
+On Tue, Dec 13, 2022 at 5:03 PM Pavel Machek <pavel@ucw.cz> wrote:
+>
+> Hi!
+>
+> > This patch adds support for driving a chain of WS2812B LED chips
+> > using SPI bus.
+> >
+> > WorldSemi WS2812B is a individually addressable LED chip that
+> > can be chained together and controlled individually using a
+> > single wire. The chip recognize a long pulse as a bit of 1 and
+> > a short pulse as a bit of 0. Host sends a continuous stream
+> > of 24-bits color values, each LED chip takes the first 3 byte
+> > it receives as its color value and passes the leftover bytes to
+> > the next LED on the chain.
+> >
+> > This driver simulates this protocol using SPI bus by sending
+> > a long pulse as 3'b110 and a short pulse as 3'b100. The SPI
+> > frequency needs to be 2.105MHz~2.85MHz for the timing to be
+> > correct and the controller needs to transfer all the bytes
+> > continuously.
+>
+> Is this the same thing as NeoPixel? If so, that may be better-known
+> name.
 
-diff --git a/Documentation/staging/remoteproc.rst b/Documentation/staging/remoteproc.rst
-index 348ee7e..3125030 100644
---- a/Documentation/staging/remoteproc.rst
-+++ b/Documentation/staging/remoteproc.rst
-@@ -245,6 +245,8 @@ if the remote processor is accessing memory directly).
- 
- In addition to the standard ELF segments, most remote processors would
- also include a special section which we call "the resource table".
-+This resource table section name may have anything appended after it,
-+but it must start with ".resource_table"
- 
- The resource table contains system resources that the remote processor
- requires before it should be powered on, such as allocation of physically
+NeoPixel is the name used by Adafruit for WS2812B based LED
+strips. Even though that name may be better-known, this driver
+is for the WS2812B LED chips, not for the specific Adafruit
+products made using those chips. So I think it's more appropriate
+to go with worldsemi,ws2812b instead of NeoPixel for the driver
+name.
+
 -- 
-2.7.4
-
+Regards,
+Chuanhong Guo
