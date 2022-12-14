@@ -2,168 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E64C64CDCA
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 17:16:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7786864CDD9
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 17:20:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238886AbiLNQQN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 11:16:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40916 "EHLO
+        id S238850AbiLNQUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 11:20:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238869AbiLNQQK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 11:16:10 -0500
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95A4D12A88;
-        Wed, 14 Dec 2022 08:16:09 -0800 (PST)
-Received: by mail-oi1-f173.google.com with SMTP id v82so3008850oib.4;
-        Wed, 14 Dec 2022 08:16:09 -0800 (PST)
+        with ESMTP id S238949AbiLNQUD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 11:20:03 -0500
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1E9E286F3;
+        Wed, 14 Dec 2022 08:19:58 -0800 (PST)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-12c8312131fso17225061fac.4;
+        Wed, 14 Dec 2022 08:19:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=UMrRVIK6BhKiJfQhbllVqLJSjsy9oEVMS+7B/vRR7qs=;
-        b=GECuionf4zIQHLuQu1di/1T7Q/Uh+fJt5vd8thB4OvGZU25v3rruJ8RZ9sAKZKdgqR
-         O7TcN2AsR2uHmVT1MZZJ8tBofaGox1hoAYyQMfp03Uy+GquXEOGRGw9OjhHx8qymquc0
-         Li0rPN3vf49tiS7Gjz5F2XU1BVEBNVodQD2bBPetbpZwARiiF8W/CxrwEHH/6JUJKVUi
-         l4XLUQxpoc2hNt7lwcmTktDhOBD+fg3k9n60ZiUDsrHb2OyG9Z0IS/8ie1Jjn/5Vpze/
-         DpGIO2VykdUjdbf0sUNoffwunkMdqHT5IMOoMo9JUncVM8rLtyoVplhs+GWYBPhlvAJn
-         u8AA==
-X-Gm-Message-State: ANoB5pk0m3o9W0LlKrdqtyyaBaJJ1SX0FsnsAsBlov5FalZAgB+otQ89
-        WYB/oluR3JTJAVh7i1aOyA==
-X-Google-Smtp-Source: AA0mqf4ezbJqeoeegAMBIeidjjLbwziRaehnGq2wvdCStUO874Zg92bIWLzfaJxvNheFzuwNPPPnSg==
-X-Received: by 2002:a05:6808:1b1e:b0:35e:4589:19cf with SMTP id bx30-20020a0568081b1e00b0035e458919cfmr15088983oib.42.1671034568812;
-        Wed, 14 Dec 2022 08:16:08 -0800 (PST)
+        bh=pmxnkBtZ4+9GBAc6tSJuQtB+ybkrmuXMMJ4mdgofo5Q=;
+        b=oPIagKHqwlIJdy8bOyPYe/oPl+fyy1m+ieTJq5HUljujwsYysieVueQeLSieGHcTtN
+         /l8+JIURRtg6ptzfwnA0OqMN14dmdjWU8fTBhEjrE5p2MgnARv+K4Fzv8BOyvh9GwYN7
+         E4HXvId20iJn1n3JVtz/n4LPjfW595eU9JxYxmN3roKUSuHp3yWXFXyO8h1k9xknYXDJ
+         ue4OxTI6pJaiYUQO8NrABvW5LpFx+ftDfGGRWXxRa5jfDffCZxtX9Z6I30ScvnZdCyk8
+         m8reHaVQSEDIjymQ3tXmky1vRsFBJ4m1P2IVKF2ahU8adfYHNNY6JZyVjwuwY+FRrAki
+         0e5A==
+X-Gm-Message-State: ANoB5pktGN3hr5KMeA/wtl2ag0U8tESRQSnVmnpXRRp+TRYbtsw/m4L1
+        QPw8Qz/Qyf+P/sb9KLKxUugHvCvxCA==
+X-Google-Smtp-Source: AA0mqf6e3VGZKdUfXLywAorV3vsZOOgy1lwiko6BtumOLTx0JRi0nVu+raQ/iZcLaTVqcLb++8wnEw==
+X-Received: by 2002:a05:6871:213:b0:142:9258:b78d with SMTP id t19-20020a056871021300b001429258b78dmr12829578oad.12.1671034798148;
+        Wed, 14 Dec 2022 08:19:58 -0800 (PST)
 Received: from robh_at_kernel.org (rrcs-98-6-157-194.sw.biz.rr.com. [98.6.157.194])
-        by smtp.gmail.com with ESMTPSA id h4-20020a056830164400b0066871c3adb3sm2557447otr.28.2022.12.14.08.16.07
+        by smtp.gmail.com with ESMTPSA id h4-20020a056870170400b0011f22e74d5fsm2888651oae.20.2022.12.14.08.19.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Dec 2022 08:16:08 -0800 (PST)
-Received: (nullmailer pid 1163651 invoked by uid 1000);
-        Wed, 14 Dec 2022 16:16:07 -0000
-Date:   Wed, 14 Dec 2022 10:16:07 -0600
+        Wed, 14 Dec 2022 08:19:56 -0800 (PST)
+Received: (nullmailer pid 1168312 invoked by uid 1000);
+        Wed, 14 Dec 2022 16:19:38 -0000
+Date:   Wed, 14 Dec 2022 10:19:38 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Lee Jones <lee@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jacopo Mondi <jacopo@jmondi.org>
-Subject: Re: [PATCH 3/5] dt-bindings: mfd: Add RZ/V2M PWC global registers
- bindings
-Message-ID: <20221214161607.GA1154595-robh@kernel.org>
-References: <20221213224310.543243-1-fabrizio.castro.jz@renesas.com>
- <20221213224310.543243-4-fabrizio.castro.jz@renesas.com>
+To:     Kuogee Hsieh <quic_khsieh@quicinc.com>
+Cc:     dri-devel@lists.freedesktop.org, robdclark@gmail.com,
+        sean@poorly.run, swboyd@chromium.org, dianders@chromium.org,
+        vkoul@kernel.org, daniel@ffwll.ch, agross@kernel.org,
+        dmitry.baryshkov@linaro.org, andersson@kernel.org,
+        konrad.dybcio@somainline.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, airlied@gmail.com,
+        quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v13 2/5] dt-bindings: msm/dp: add data-lanes and
+ link-frequencies property
+Message-ID: <20221214161938.GA1164047-robh@kernel.org>
+References: <1670972181-4961-1-git-send-email-quic_khsieh@quicinc.com>
+ <1670972181-4961-3-git-send-email-quic_khsieh@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221213224310.543243-4-fabrizio.castro.jz@renesas.com>
+In-Reply-To: <1670972181-4961-3-git-send-email-quic_khsieh@quicinc.com>
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 13, 2022 at 10:43:08PM +0000, Fabrizio Castro wrote:
-> The RZ/V2M PWC is a multi-function device, and its software
-> support relies on "syscon" and "simple-mfd".
-> Add the dt-bindings for the top level device tree node.
+On Tue, Dec 13, 2022 at 02:56:18PM -0800, Kuogee Hsieh wrote:
+> Add both data-lanes and link-frequencies property into endpoint
 > 
-> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Changes in v7:
+> -- split yaml out of dtsi patch
+> -- link-frequencies from link rate to symbol rate
+> -- deprecation of old data-lanes property
+> 
+> Changes in v8:
+> -- correct Bjorn mail address to kernel.org
+> 
+> Changes in v10:
+> -- add menu item to data-lanes and link-frequecnis
+> 
+> Changes in v11:
+> -- add endpoint property at port@1
+> 
+> Changes in v12:
+> -- use enum for item at data-lanes and link-frequencies
+> 
+> Changes in v13:
+> -- revised changes at port@0
+> -- use correct ref schemas for both port@0 and port@1
+> -- mark both port@0 and port@1 are required
+> -- add line between data-lanes and link-frequencies properties
+> 
+> Signed-off-by: Kuogee Hsieh <quic_khsieh@quicinc.com>`
 > ---
->  .../bindings/mfd/renesas,rzv2m-pwc.yaml       | 70 +++++++++++++++++++
->  1 file changed, 70 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/renesas,rzv2m-pwc.yaml
+>  .../bindings/display/msm/dp-controller.yaml        | 26 ++++++++++++++++++++--
+>  1 file changed, 24 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/renesas,rzv2m-pwc.yaml b/Documentation/devicetree/bindings/mfd/renesas,rzv2m-pwc.yaml
-> new file mode 100644
-> index 000000000000..a7e180bfbd83
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/renesas,rzv2m-pwc.yaml
-> @@ -0,0 +1,70 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/renesas,rzv2m-pwc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/V2M External Power Sequence Controller (PWC)
-> +
-> +description: |+
-> +  The PWC IP found in the RZ/V2M family of chips comes with the below
-> +  capabilities
-> +    - external power supply on/off sequence generation
-> +    - on/off signal generation for the LPDDR4 core power supply (LPVDD)
-> +    - key input signals processing
-> +    - general-purpose output pins
-> +
-> +maintainers:
-> +  - Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - renesas,r9a09g011-pwc # RZ/V2M
-> +          - renesas,r9a09g055-pwc # RZ/V2MA
-> +      - const: renesas,rzv2m-pwc
-> +      - const: syscon
-> +      - const: simple-mfd
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  gpio:
-> +    type: object
-> +    $ref: /schemas/gpio/renesas,rzv2m-pwc-gpio.yaml#
-> +    description: General-Purpose Output pins controller.
-> +
-> +  poweroff:
-> +    type: object
-> +    $ref: /schemas/power/reset/renesas,rzv2m-pwc-poweroff.yaml#
-> +    description: Power OFF controller.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    pwc: pwc@a3700000 {
-> +            compatible = "renesas,r9a09g011-pwc", "renesas,rzv2m-pwc", "syscon",
-> +                         "simple-mfd";
-> +            reg = <0xa3700000 0x800>;
-> +
-> +            gpio {
-> +                    compatible = "renesas,r9a09g011-pwc-gpio",
-> +                                 "renesas,rzv2m-pwc-gpio";
-> +                    regmap = <&pwc>;
-> +                    offset = <0x80>;
-> +                    gpio-controller;
-> +                    #gpio-cells = <2>;
-> +            };
-> +
-> +            poweroff {
-> +                    compatible = "renesas,r9a09g011-pwc-poweroff",
-> +                                 "renesas,rzv2m-pwc-poweroff";
-> +                    regmap = <&pwc>;
+> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> index f2515af..9d002de 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> @@ -81,6 +81,7 @@ properties:
+>  
+>    data-lanes:
+>      $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    deprecated: true
+>      minItems: 1
+>      maxItems: 4
+>      items:
+> @@ -98,12 +99,31 @@ properties:
+>      $ref: /schemas/graph.yaml#/properties/ports
+>      properties:
+>        port@0:
+> -        $ref: /schemas/graph.yaml#/properties/port
+> +        $ref: "/schemas/graph.yaml#/$defs/port-base"
 
-Why does this need to be a child node? There aren't any resources for 
-it. 'regmap' is just the parent node.
+This means you have extra properties to add in the endpoint, but you 
+didn't define any.
 
-Assuming this binding is complete, I don't think you need any child 
-nodes. A single node can have multiple providers.
+>          description: Input endpoint of the controller
+>  
+>        port@1:
+> -        $ref: /schemas/graph.yaml#/properties/port
+> +        $ref: "/schemas/graph.yaml#/$defs/port-base"
 
-Rob
+Don't need quotes. Why did you add them?
+
+>          description: Output endpoint of the controller
+> +        properties:
+> +          endpoint:
+> +            $ref: /schemas/media/video-interfaces.yaml#
+> +            properties:
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
+> +                items:
+> +                  enum: [ 0, 1, 2, 3 ]
+> +
+> +              link-frequencies:
+> +                minItems: 1
+> +                maxItems: 4
+> +                items:
+> +                  enum: [ 1620000000, 2700000000, 5400000000, 8100000000 ]
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+>  
+>  required:
+>    - compatible
+> @@ -193,6 +213,8 @@ examples:
+>                  reg = <1>;
+>                  endpoint {
+>                      remote-endpoint = <&typec>;
+> +                    data-lanes = <0 1>;
+> +                    link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>; 
+>                  };
+>              };
+>          };
+> -- 
+> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+> a Linux Foundation Collaborative Project
+> 
+> 
