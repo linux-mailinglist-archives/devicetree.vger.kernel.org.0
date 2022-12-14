@@ -2,134 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB71864C52D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 09:40:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACE0464C589
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 10:09:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237521AbiLNIkN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 03:40:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52006 "EHLO
+        id S229739AbiLNJJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 04:09:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237342AbiLNIkM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 03:40:12 -0500
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ED9F1CFE0
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 00:40:12 -0800 (PST)
-Received: by mail-pl1-x62a.google.com with SMTP id x2so1299802plb.13
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 00:40:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AIedX/a+ZyVoKz+m/UL7d9+fegiypi7Lib9P6OHv4HU=;
-        b=TWJZ/jV8kbAA5Jh3iCtarFZ+0x5RqRIuROyJufDM578IYkUfN/I/sUlwS1KCrzRH4w
-         fJMYxb9U4lDzQOMW7BY9NqG8ussOBUgIhgwdgOuPGKwPtQOChbKg8YEm/D7+FByky3VL
-         vLyfvyArtmq3rAjo2QY/okLuHluZ4BlaJfPJIGo29UJ1jgnVDOx4BLDMxD1z94JUd6MA
-         NZ/82k5rZ3JzCq35uUjTDdueAxG1YzxqVJGMrAWGmN4noWZ9VzFTI5aKwFih7BhnWW+x
-         mcJN0kekjysUM5cFJA7DgyAQaWNne6jRfsLdYfgewvZR6cIiP1vnaQsB2rmLTCQHT0P3
-         GUkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AIedX/a+ZyVoKz+m/UL7d9+fegiypi7Lib9P6OHv4HU=;
-        b=lfGDSPzBjx+Sf+2LBbcgJcU6otdE/cdyMQAsbsWglA13ul8Ua9BQh2iO5IQDtYS98W
-         MqU4EVD8V1QS56L0FmkHGHbqzdUDC6QIi5Evfx8yUlni2cAO1RZq888KkORNeMkh3NEe
-         wnfLRl91GzYwfBH4/SnLFS1RN8jSEbrGE0NtwYE5ugQoqoegBlF3M7z0+2uxfIGinIO/
-         DVqFGF/9T7iEP6K92enpEwz/49lAF/5FvJORLxtiXe4lbDBE/qC5hr4KNW7bUVofV9RG
-         RCYKXeM2I9FBYSSuSHXWua5UpOpXjaUCKjGYM03GE/iRLSWKoBmv8fdAiDXiMK9Y1Qfz
-         yq8w==
-X-Gm-Message-State: ANoB5pnHsSNvm6SvKwoAznnbNQaLVYL1ppiDP24AQ2zVLT5abmog5p6k
-        FSLaaEtTIUePAxc/r6YSkgUdFw==
-X-Google-Smtp-Source: AA0mqf6T0mEk5pNZJIPVJtrH8qnl+ff48CYVPMxa1zSuLBNs4KHrSw9yY5Z/Xk8Uoea7qt9D28+CRA==
-X-Received: by 2002:a17:902:8ec1:b0:188:6a62:9d89 with SMTP id x1-20020a1709028ec100b001886a629d89mr22284999plo.54.1671007211573;
-        Wed, 14 Dec 2022 00:40:11 -0800 (PST)
-Received: from ?IPV6:2405:201:d02f:d899:2028:7962:400:43b6? ([2405:201:d02f:d899:2028:7962:400:43b6])
-        by smtp.gmail.com with ESMTPSA id y4-20020a17090322c400b00189b910c6ccsm1282362plg.125.2022.12.14.00.40.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Dec 2022 00:40:11 -0800 (PST)
-Message-ID: <921915e5-6b36-9d2d-ebd7-632403e3086a@9elements.com>
-Date:   Wed, 14 Dec 2022 14:10:08 +0530
+        with ESMTP id S237157AbiLNJJE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 04:09:04 -0500
+Received: from mail.ettrick.pl (mail.ettrick.pl [141.94.21.111])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C30310FF5
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 01:09:02 -0800 (PST)
+Received: by mail.ettrick.pl (Postfix, from userid 1002)
+        id 5D5DEA32B3; Wed, 14 Dec 2022 09:08:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ettrick.pl; s=mail;
+        t=1671008928; bh=ChRcLNpIfKnVgp03/tSyWuRw1tWSTk/OEiEnuZMWs58=;
+        h=Date:From:To:Subject:From;
+        b=PcorNfSWHFURihAI2s7buGKc6upwI0XS+B1WRrTQUFdoAx/HvlTA0ZxdK+O4uhq8e
+         U3a0I4oCjpzSdF9U8W4bgXRIzHoV+3qQ4HGtU7VIXvPAju5Agdd/2Im6aQJJyTMZfy
+         OmwDd2gc9ny4EQza6RSIoMyBxlDfhFZ/8JX3dwv/nYougFfKmkFhG0fwkXSLvkgfB1
+         kYwLcaSJz6fj9adP8Pa0x3ub+uQHtqpa5c3gaT8bnJtmP7LGbcUWRV1NscOY4Pr43O
+         95ZX6r+f6cuxNfHwfigu2g8zLsX9Ev1l9EqtK68klD90XGg44cztRr5L0O4wRpLbid
+         U9MvDo7+H4QEA==
+Received: by mail.ettrick.pl for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 09:07:58 GMT
+Message-ID: <20221214073000-0.1.7k.25uvp.0.4004vtef6m@ettrick.pl>
+Date:   Wed, 14 Dec 2022 09:07:58 GMT
+From:   "Norbert Karecki" <norbert.karecki@ettrick.pl>
+To:     <devicetree@vger.kernel.org>
+Subject: Wycena paneli fotowoltaicznych
+X-Mailer: mail.ettrick.pl
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v11 2/2] mfd: max597x: Add support for MAX5970 and MAX5978
-Content-Language: en-US
-To:     Lee Jones <lee@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Marcello Sylvester Bauer <sylv@sylv.io>
-References: <20221116205822.1128275-1-Naresh.Solanki@9elements.com>
- <20221116205822.1128275-3-Naresh.Solanki@9elements.com>
- <Y3YJ2EkYNW+gA+/R@google.com>
- <5d9e41b8-7b2a-d60b-3e92-641cea5a9f4a@9elements.com>
- <Y5HXWk4d5J9VgFBV@google.com>
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-In-Reply-To: <Y5HXWk4d5J9VgFBV@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: Yes, score=6.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_SBL,RCVD_IN_SBL_CSS,
+        RCVD_IN_VALIDITY_RPBL,SPF_HELO_NONE,SPF_PASS,URIBL_ABUSE_SURBL,
+        URIBL_CSS_A,URIBL_DBL_SPAM,URIBL_SBL_A autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Report: *  2.5 URIBL_DBL_SPAM Contains a spam URL listed in the Spamhaus DBL
+        *      blocklist
+        *      [URIs: ettrick.pl]
+        *  0.1 RCVD_IN_SBL RBL: Received via a relay in Spamhaus SBL
+        *      [141.94.21.111 listed in zen.spamhaus.org]
+        *  3.3 RCVD_IN_SBL_CSS RBL: Received via a relay in Spamhaus SBL-CSS
+        *  0.1 URIBL_CSS_A Contains URL's A record listed in the Spamhaus CSS
+        *      blocklist
+        *      [URIs: ettrick.pl]
+        *  0.1 URIBL_SBL_A Contains URL's A record listed in the Spamhaus SBL
+        *      blocklist
+        *      [URIs: ettrick.pl]
+        * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+        *      [score: 0.0000]
+        *  1.2 URIBL_ABUSE_SURBL Contains an URL listed in the ABUSE SURBL
+        *      blocklist
+        *      [URIs: ettrick.pl]
+        *  1.3 RCVD_IN_VALIDITY_RPBL RBL: Relay in Validity RPBL,
+        *      https://senderscore.org/blocklistlookup/
+        *      [141.94.21.111 listed in bl.score.senderscore.com]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Spam-Level: ******
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lee
+Dzie=C5=84 dobry,
 
-On 08-12-2022 05:53 pm, Lee Jones wrote:
-> On Fri, 18 Nov 2022, Naresh Solanki wrote:
-> 
->>
->>
->> On 17-11-2022 03:45 pm, Lee Jones wrote:
->>> On Wed, 16 Nov 2022, Naresh Solanki wrote:
->>>
->>>> From: Patrick Rudolph <patrick.rudolph@9elements.com>
->>>>
->>>> Implement a regulator driver with IRQ support for fault management.
->>>> Written against documentation [1] and [2] and tested on real hardware.
->>>>
->>>> Every channel has its own regulator supplies nammed 'vss1-supply' and
->>>> 'vss2-supply'. The regulator supply is used to determine the output
->>>> voltage, as the smart switch provides no output regulation.
->>>> The driver requires the 'shunt-resistor-micro-ohms' property to be
->>>> present in Device Tree to properly calculate current related
->>>> values.
->>>>
->>>> Datasheet links:
->>>> 1: https://datasheets.maximintegrated.com/en/ds/MAX5970.pdf
->>>> 2: https://datasheets.maximintegrated.com/en/ds/MAX5978.pdf
->>>>
->>>> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
->>>> Co-developed-by: Marcello Sylvester Bauer <sylv@sylv.io>
->>>> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
->>>> Co-developed-by: Naresh Solanki <Naresh.Solanki@9elements.com>
->>>> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
->>>> ---
->>>>    drivers/mfd/Kconfig         |  12 +++++
->>>>    drivers/mfd/Makefile        |   1 +
->>>>    drivers/mfd/max597x.c       |  93 +++++++++++++++++++++++++++++++++
->>>>    include/linux/mfd/max597x.h | 101 ++++++++++++++++++++++++++++++++++++
->>>>    4 files changed, 207 insertions(+)
->>>>    create mode 100644 drivers/mfd/max597x.c
->>>>    create mode 100644 include/linux/mfd/max597x.h
->>>
->>> Ignoring my comments won't make them go away. :)
->>>
->>> Please tell me why you need a whole new driver, instead of adding
->>> support to simple-mfd-i2c?
->>>
->> I felt current implementation to be simpler, clearer & straight forward.
-> 
-> If you can make it work with simple-mfd-i2c, please do so.
-simple-mfd-i2c doesn't has mechanism to pass device type(max5978 vs 
-max5970).
-> 
-> No need to submit an entirely new driver for these simple use-cases.
-> 
-Regards,
-Naresh
+dostrzegam mo=C5=BCliwo=C5=9B=C4=87 wsp=C3=B3=C5=82pracy z Pa=C5=84stwa f=
+irm=C4=85.
+
+=C5=9Awiadczymy kompleksow=C4=85 obs=C5=82ug=C4=99 inwestycji w fotowolta=
+ik=C4=99, kt=C3=B3ra obni=C5=BCa koszty energii elektrycznej nawet o 90%.
+
+Czy s=C4=85 Pa=C5=84stwo zainteresowani weryfikacj=C4=85 wst=C4=99pnych p=
+ropozycji?
+
+
+Pozdrawiam,
+Norbert Karecki
