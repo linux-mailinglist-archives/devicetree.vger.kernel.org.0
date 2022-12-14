@@ -2,94 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F19464C648
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 10:50:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3426364C656
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 10:52:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237936AbiLNJuI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 04:50:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53640 "EHLO
+        id S238108AbiLNJvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 04:51:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237947AbiLNJuH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 04:50:07 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AA285FDE
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 01:50:06 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id p8so9473818lfu.11
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 01:50:06 -0800 (PST)
+        with ESMTP id S238018AbiLNJvD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 04:51:03 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F1FE21E3A
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 01:50:49 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id p36so9490071lfa.12
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 01:50:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6FFmcD51ezj3o5LArcwRpZL3dKHNUEgb+0z4MfXTfq4=;
-        b=SrsMIWLnZ2e6dc6WjP29rF3goK6Oi7KHTo5Ppr3cYCvz+pvDmiQW2Qzrue1wNWAoXM
-         caJNYe7onWKVS739Q+tE7eyfCy5PFWmY8j0194eoE83MxT5RteG2t03i4rTlzlBikFaD
-         eaxthxz+mZOelmAfyVkjmM3Tqq99hf3zRus2n+t7OcR0A2Bdj/TdgjUCeC9lPRvOQNYI
-         faxibn3JYwdd9CpWJ7ODBKBMk270Xa/23xMLNSRWn8Fy1k7IG76oXNubS2HeGkGXMVBk
-         aIsalme/c9b0Ccy1nrOe+NVO+T5x/4TdJhYXRgvjJDnL/Nm3ErS0EQ9HHRUCZy8DcjQg
-         3tOg==
+        bh=rcWSN//JeQmgBND6AUI/VMRHM2NmUklHc+x2zZ4EJT8=;
+        b=f6Hgr9Kk6otW+ghrw1Q9z5cx3WleBccvOr/+gCWHxz3RNHREWN0ois+5aHmbUWzTaZ
+         NXK/+q2XW4Tp6TssRggurTYw5qm5g8L4a5SI7fXaYxQ6NbNbnN7u0aqNjfB5BmrzLcIE
+         ecQVnrlQcAGpa2ObzYFsnItuBuzJp4As+dnF+57CPuq0tSLeCxpiJpuu4PGlHQzQRx0K
+         AHtguup6mmL+FePuZwXa0ubkfovXTfe1Zb37lxYN/GpkWNj07f1qf6Jk7tX9LTLfwPuG
+         8xnyTZoM+OdgWhVVZuyH6YKroCBgWCxnvqtKD4UDxVrUXlEIbshZApTOwzdzhsIJsdcm
+         ia7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6FFmcD51ezj3o5LArcwRpZL3dKHNUEgb+0z4MfXTfq4=;
-        b=V0xIUvz9GGSFu2U+vwv7NcyW8WCwCk6DfwarQEoEibGTZiCQWhm3Y6fXzRs3g+pGZC
-         gthVVRH/NcxqUfBNepBmc1jseTXXuvAvkaUnpzQlEgLAGXPHYLSTZp1aSJ88BWzzwD4r
-         Fv7q/8XwsaAIOJhr80voFvGU34n1KFJaTBhS8yMu7cW9K51GxKOIKhlIp9VJexfHEqX0
-         Uws7zJUxTfqUyi0yKwFfZ3V7Uwy4TS+OiHBNLiQWQG8HGQATnsgWHWZCLZ3GwGpi66r4
-         p0ZgHB+dV5paRjSMLCnYengcRhriTRuFJzQWn2889QQL8lvvvTcMZu8cITIrs3Zj02u0
-         c3fg==
-X-Gm-Message-State: ANoB5ply1B6SBj1t83UtEzZBXORpHYN6o8zlN/3lEYLQR6/9BrWx/T86
-        /eDzlpcRvg2wY/to9D8xjqCvgjkDaZjJFo5N
-X-Google-Smtp-Source: AA0mqf4SavdtlFRgcw48pbLo6Dl14dBz5Gqm4lHo+/bQ+6ShOHcif1m01CggfXPrdDxkIq1cQzF74g==
-X-Received: by 2002:a05:6512:340f:b0:4b6:f0ea:4f42 with SMTP id i15-20020a056512340f00b004b6f0ea4f42mr2326922lfr.59.1671011405009;
-        Wed, 14 Dec 2022 01:50:05 -0800 (PST)
+        bh=rcWSN//JeQmgBND6AUI/VMRHM2NmUklHc+x2zZ4EJT8=;
+        b=NvgCPxSw3O7LNA9guz0mdqBaKEa0AeDOqrRWTKVJzIcpmQ9D47VsdAF/HACsYfXtIO
+         0b67fiiJ/gX9WZlnKd7m/CbVy0ah4vLk2YwVAayapUBpusU2wbU3dUNKzgAZr+LxWAsR
+         2x1HE+sCk1ECDEcjtX4RHf2MSMZJKfgWYUfQlgtT29s3/S87i3bIokAhS/33sA18awXK
+         97PSHfAom1bD64NHwivgziAwfHAVUO/go7RlS1yzk19tHzZzcx3BfYoUKdfJE/52ihdm
+         PyVin3RBvqBz07UgkM+hFk4PKba5sFSqf95lVMygfoxqAkC8PMgNXnLwyvZWBz3R3czc
+         7j/g==
+X-Gm-Message-State: ANoB5pky8fZlX2Iva7jbKsxtGfXMyzpa9SrhqTNlBWaJ7AV5HKMUWqIV
+        Y9qXvS1rA3WgzK1Qmxy/NmIT9w==
+X-Google-Smtp-Source: AA0mqf5StJ7nFxoBNOXexnamJw08OKfURdTtDU4kjwbpt6W2AVPUIwrbDi2hIBCG90qP6jyRnQ3GQw==
+X-Received: by 2002:ac2:560b:0:b0:4b5:9b8f:cc89 with SMTP id v11-20020ac2560b000000b004b59b8fcc89mr5760847lfd.55.1671011448038;
+        Wed, 14 Dec 2022 01:50:48 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id e12-20020ac25cac000000b004b5480edf67sm746645lfq.36.2022.12.14.01.50.03
+        by smtp.gmail.com with ESMTPSA id y12-20020a19914c000000b004b55a1c4649sm744022lfj.38.2022.12.14.01.50.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Dec 2022 01:50:04 -0800 (PST)
-Message-ID: <1975245f-93e5-358c-4488-692fefe4285d@linaro.org>
-Date:   Wed, 14 Dec 2022 10:50:03 +0100
+        Wed, 14 Dec 2022 01:50:47 -0800 (PST)
+Message-ID: <c4bf26a4-16bb-6ed8-ae70-1947998e32cc@linaro.org>
+Date:   Wed, 14 Dec 2022 10:50:46 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH 1/4] dt-bindings: ufs: qcom: Add SM6125 compatible string
+Subject: Re: [PATCH 3/4] dt-bindings: arm: qcom: Document xiaomi,laurel_sprout
+ board
 Content-Language: en-US
 To:     Lux Aliaga <they@mint.lgbt>
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221214093053.152713-1-they@mint.lgbt>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221214093248.153245-1-they@mint.lgbt>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221214093053.152713-1-they@mint.lgbt>
+In-Reply-To: <20221214093248.153245-1-they@mint.lgbt>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/12/2022 10:30, Lux Aliaga wrote:
-> Document the compatible for UFS found on the SM6125.
+On 14/12/2022 10:32, Lux Aliaga wrote:
+> Document the Xiaomi Mi A3 (xiaomi-laurel_sprout) smartphone which is
+> based on the Snapdragon 665 SoC.
 > 
 > Signed-off-by: Lux Aliaga <they@mint.lgbt>
+> ---
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index 1b5ac6b02bc5..a72fbb6b4b2c 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -693,6 +693,7 @@ properties:
+>        - items:
+>            - enum:
+>                - sony,pdx201
+> +              - xiaomi,laurel_sprout
 
-Please rebase on top of:
-https://lore.kernel.org/all/20221030094258.486428-2-iskren.chernev@gmail.com/
-
-so the change will be much smaller.
+Invalid character - underscore. Use hyphen.
 
 Best regards,
 Krzysztof
