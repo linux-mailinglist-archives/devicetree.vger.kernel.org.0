@@ -2,121 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B78064C9CA
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 14:10:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4072564CA38
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 14:12:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229500AbiLNNKW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 08:10:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39330 "EHLO
+        id S238558AbiLNNMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 08:12:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238521AbiLNNKU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 08:10:20 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7E43DE93
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 05:10:17 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id b13so10343963lfo.3
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 05:10:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=L/OQxm+OmJ40HtGirwGYwb1GzeOKY9S3W4yB7HO1YOI=;
-        b=M8aMUswawauJab+7K7Jn2Gkzte5YHY7Wn6tCg37AUcPW73EjMsr4P7NHJrZDpLN60S
-         r6lDMHd+ySIdKe8NosoT/I9d/X1wBMJ5VC6kdckOmmZgxQzXrxOPvi8DFxBYEQi+ahAK
-         FqY1ER0G2r1sNO9GmOzwMMzYEiNI4NfN+cyiZ4DTA8N9U3ukL6H8OqJQocdJ7K47wSFG
-         n459EAdKKHRlnTeL2CurMSujEzBJPR6WjYKBzybCeTQdMJQbZQpBXhj0od7HIMTxOPI5
-         jcv2Q+pyTPBxCbLjOw2lgj4vW8HdpM2Bhs6TmlL8LMN10oVxlzoHAVd80q/rhMJOPv28
-         wsXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=L/OQxm+OmJ40HtGirwGYwb1GzeOKY9S3W4yB7HO1YOI=;
-        b=zTvv4uPWyhw1LBs9dIvPVgMvyPWM8Et98VQpDdB2uXP83NOnDmJZeQDPVjr5hr5imu
-         wuDXKIaIHYxrtmMFFE7v2V/AIcFVfi7wgJBdxzotYLCDSsDGiKBl9tNEqqiv/Hi8fuiB
-         9uZ1z2VhLcsDCTHGo7GEG18MZrMmx3h7cHwMEPX6UUb17iOExJopX5OdfNYrLXrpOR4c
-         T3nJ+8TkulVhjU95mc39DfrJzRbAwiDL2mQkry23a9NF1Mf1g7W2kDByvB0moBYJ5rlI
-         QRAEvldXkMgQF/U6v3UOd8+SULOB8W1mBFRVUwVWTieuvpAPNxUxk4QXXRE5Slczj/12
-         V5sw==
-X-Gm-Message-State: ANoB5pnn7VTrQfmMfOx5gGrZRzOteA/dLn0r2Hz4TKnPiW9vo0f3zTNe
-        J0jGB09CFH3Rt757VyBu5FnJBA==
-X-Google-Smtp-Source: AA0mqf5XSd1rI4+lxJqzcmku43nUYBc930QOD/2bY74bont7jGKG3lndTw+vMTbzm531t15ZEOYTdw==
-X-Received: by 2002:a05:6512:1386:b0:4b5:4606:7ad9 with SMTP id p6-20020a056512138600b004b546067ad9mr8121567lfa.39.1671023416204;
-        Wed, 14 Dec 2022 05:10:16 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id g6-20020a056512118600b004b48e0f619asm805945lfr.48.2022.12.14.05.10.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Dec 2022 05:10:15 -0800 (PST)
-Message-ID: <286bbd0f-1632-6071-7d08-e56ed16c234c@linaro.org>
-Date:   Wed, 14 Dec 2022 14:10:14 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH 2/6] dt-bindings: pinctrl: mt7620: add proper function
- muxing binding
-Content-Language: en-US
-To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
+        with ESMTP id S238549AbiLNNLr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 08:11:47 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9438E2181F;
+        Wed, 14 Dec 2022 05:11:33 -0800 (PST)
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1D6156602C47;
+        Wed, 14 Dec 2022 13:11:31 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1671023491;
+        bh=43IMkVml1qImsFp1W7CKhzsHSHE25K/j0gQkN5BQMew=;
+        h=From:To:Cc:Subject:Date:From;
+        b=BFkQpN0SqGcGnkvpz31sUKD/KvLZwpXwFibIJ7pudAGxtfMv2894u8cwykZPJtm0S
+         fSum//QYOk3K23y6Eo7gUndJNccZkl+1RRRPBXebSmUHxYspR2x2tzfiZH8Zli23hW
+         8KBPoLu6X2wFWw76hWBliN4Gtt7Cu/nzLWrQmD4fQo+2NrfDjpIqFNlGHkfCe6ysDJ
+         WhVPyk4DO4pztht9KtRciLt9oT/lSQXfkk15zXaPggfZ4W92AUabMf7GBjCAJn/KLr
+         TRIEFimYkWnE09zHZ8g6RIQb1ARWsUI/w4gaGg7EoUho2OqBDX0ccHL82RtvSxVJSB
+         5phAas90/aOcg==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     matthias.bgg@gmail.com
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        tinghan.shen@mediatek.com, weiyi.lu@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org
-References: <20221213130430.172876-1-arinc.unal@arinc9.com>
- <20221213130430.172876-3-arinc.unal@arinc9.com>
- <4ffd94b2-e72c-a081-4326-5bc254603ddf@linaro.org>
- <e4b6b334-44c3-9e73-adaa-9972ff9e6fd5@arinc9.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <e4b6b334-44c3-9e73-adaa-9972ff9e6fd5@arinc9.com>
-Content-Type: text/plain; charset=UTF-8
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: [PATCH 1/2] arm64: dts: mediatek: mt8195: Use P1 clocks for PCIe1 controller
+Date:   Wed, 14 Dec 2022 14:11:16 +0100
+Message-Id: <20221214131117.108008-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.38.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/12/2022 14:03, Arınç ÜNAL wrote:
-> On 14.12.2022 14:55, Krzysztof Kozlowski wrote:
->>>   
->>> +        allOf:
->>> +          - if:
->>> +              properties:
->>> +                function:
->>> +                  const: antenna
->>> +            then:
->>> +              properties:
->>> +                groups:
->>> +                  enum: [i2s]
->>
->> I have doubts such setup is maintainable and readable. I would suggest
->> to leave just few - maybe for gpio, jtag, refclk, utif.
-> 
-> These bindings are not going to change once all properly defined and I'm 
-> here as a maintainer so I don't see an issue with maintaining the binding.
-> 
-> It's the whole pin configuration of an SoC squashed under a single 
-> document. I guess this is the fate of the pinctrl bindings. The bindings 
-> for mt7622 is not so different:
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/pinctrl/mediatek%2Cmt7622-pinctrl.yaml#n63
+Despite there being some flexibility regarding the P0/P1 connections,
+especially for TL and PERI, we must use P1 clocks on pcie1 otherwise
+we'll be dealing with unclocked access.
 
-It's much smaller number of if:then: than yours but if you want to
-manage it then sure:
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+---
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+index 5d31536f4c48..e61944510b8e 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+@@ -1258,9 +1258,9 @@ pcie1: pcie@112f8000 {
+ 
+ 			clocks = <&infracfg_ao CLK_INFRA_AO_PCIE_PL_P_250M_P1>,
+ 				 <&clk26m>,
+-				 <&infracfg_ao CLK_INFRA_AO_PCIE_TL_96M>,
++				 <&infracfg_ao CLK_INFRA_AO_PCIE_P1_TL_96M>,
+ 				 <&clk26m>,
+-				 <&infracfg_ao CLK_INFRA_AO_PCIE_PERI_26M>,
++				 <&infracfg_ao CLK_INFRA_AO_PCIE_P1_PERI_26M>,
+ 				 /* Designer has connect pcie1 with peri_mem_p0 clock */
+ 				 <&pericfg_ao CLK_PERI_AO_PCIE_P0_MEM>;
+ 			clock-names = "pl_250m", "tl_26m", "tl_96m",
+-- 
+2.38.1
 
