@@ -2,84 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50B0964CA37
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 14:12:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2202964CAD5
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 14:13:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238554AbiLNNMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 08:12:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40264 "EHLO
+        id S238556AbiLNNNe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 08:13:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238577AbiLNNLr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 08:11:47 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 946CF21E18;
-        Wed, 14 Dec 2022 05:11:33 -0800 (PST)
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id C72106602C48;
-        Wed, 14 Dec 2022 13:11:31 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1671023492;
-        bh=QTKESx542e6FJD6rGcbgjaPumHHCtgmxbjfUwumu8oc=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=b8nGE4bfc9ypr98vsy9szzGgqpXVzea10EFDG0sAJTxgBqgCNstIuI+X378rFF+d6
-         YDMmawKSys7soiqcRZpDkV+lbIsV80MR15a1X2rYiM2qTprBHZeedZyEOSBLmtcLCv
-         7Uhcc3vo0eT4H8DpN+5ejl/Wkeh9+2U0sbso+NpNBTIiy8/LJrf+bTAKVm0J6fikp2
-         mbeHCuCUp/tHNwWh6F5vwoybswV0YkKyIO865xsWv8xpIS4tWgMG/CjjhqN1miS6AB
-         XNIQDSVIZMHN7GdCGTQ6TKsatkebbqYmAaosZBHGn8skt4HWKvBajJvuZ3j7o4G3OY
-         xvxYmvUixEB4A==
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     matthias.bgg@gmail.com
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        tinghan.shen@mediatek.com, weiyi.lu@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH 2/2] arm64: dts: mediatek: mt8195: Add power domain to U3PHY1 T-PHY
-Date:   Wed, 14 Dec 2022 14:11:17 +0100
-Message-Id: <20221214131117.108008-2-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221214131117.108008-1-angelogioacchino.delregno@collabora.com>
-References: <20221214131117.108008-1-angelogioacchino.delregno@collabora.com>
+        with ESMTP id S238265AbiLNNNP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 08:13:15 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3016020370
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 05:13:14 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id a19so6627907ljk.0
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 05:13:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=a+g8bhbYuaQlXpPh9UOtgjVnfBA2QaGFWh99Dxpg4ZE=;
+        b=pH4lW0UzND66hSwgAr90gmNeJlHhMMjKxH++4eW3mWYQyc+QzxOJXFiGhRsFLzgJq3
+         k3+WVeQmb6prwQwLr5tbLcNSDjevfkbBMeexkjwydyfk5wzC2d01uaqZ9KTKR4ZbmmSj
+         P4BbNAO9HG/VNcHskBIak4fVt3eAS+98lwqxCaBfK7/840N6KSl+juF26s9XyI+9zx72
+         v0SctXCPovZc5s4h19qrHjlfhaBFG7899spkzEHoVKHOe5BCc8b80P8G48Su4s+kR1L/
+         flqXg0HjT5iXo4wesLl9SlcpG8/MXK43CZfSuMIKHUY2pU04i7qiRlmDFXAraT+VJGTV
+         D/TQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=a+g8bhbYuaQlXpPh9UOtgjVnfBA2QaGFWh99Dxpg4ZE=;
+        b=LsInCHybD2fj3lq/jQS1S4Qp1TArrzgVa6XTEdZwJ8FZritxXJnmiQHErY2roFWbXz
+         yZoMwKTvcCpbVbwODDDKcj/fqHmH/gLRhES39wqlwxL8Wz5MEv8jDukWH0IX+v8PnLS+
+         nVhlCCyxq7JpEc3RzVArSB7hDIMDJyro676u6ta0BuTgtsMcaU52XXdL+s2vzpqfC0HK
+         T9yMprBgMMzngv2y/ex/WBHa2kHAMCGNKyBOtEHS3DJAJYcmxv2v6ZKTWtw8HE7N/4/T
+         8gJt4qcpJELLPnLMVKeo9Fnzdn9vFxveA7dqAufJYFLorMqG1YkB2m5shlMT+tprvDDu
+         /s+g==
+X-Gm-Message-State: ANoB5pmE/AyWXx0Fk1kmkAvWUaRwVJ5g8RJcIhqQFNJhSPlwQ9ejRZc2
+        5ZZVEQu/sFyosx9UEeXw41ZCoyW+TbHPQhDs
+X-Google-Smtp-Source: AA0mqf5PHGVRyKqw0AGxvuMvc+S3bUW9QX8UFoENXdCLSqKdTBPI3OD0tyhSW0GEGTa31bX/AAwYJQ==
+X-Received: by 2002:a05:651c:883:b0:26f:db34:a157 with SMTP id d3-20020a05651c088300b0026fdb34a157mr5864463ljq.26.1671023592549;
+        Wed, 14 Dec 2022 05:13:12 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id bd9-20020a05651c168900b00279e93c9c25sm596663ljb.29.2022.12.14.05.13.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Dec 2022 05:13:11 -0800 (PST)
+Message-ID: <9d7bda38-69c9-95c8-e867-8bd5733debe2@linaro.org>
+Date:   Wed, 14 Dec 2022 14:13:10 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH 3/6] dt-bindings: pinctrl: mt7621: add proper function
+ muxing binding
+Content-Language: en-US
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org
+References: <20221213130430.172876-1-arinc.unal@arinc9.com>
+ <20221213130430.172876-4-arinc.unal@arinc9.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221213130430.172876-4-arinc.unal@arinc9.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Assign power domain to the U3PHY1 T-PHY in otder to keep this PHY
-alive after unused PD shutdown and to be able to completely cut
-and restore power to it, for example, to save some power during
-system suspend/sleep.
+On 13/12/2022 14:04, Arınç ÜNAL wrote:
+> Not every function can be muxed to a group. Add proper binding which
+> documents which function can be muxed to a group or set of groups.
+> 
+> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+> ---
+>  .../pinctrl/ralink,mt7621-pinctrl.yaml        | 204 +++++++++++++++++-
+>  1 file changed, 197 insertions(+), 7 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/ralink,mt7621-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/ralink,mt7621-pinctrl.yaml
+> index 61e5c847e8c8..0efb03f1d88e 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/ralink,mt7621-pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/ralink,mt7621-pinctrl.yaml
+> @@ -29,21 +29,212 @@ patternProperties:
+>          $ref: pinmux-node.yaml#
+>  
+>          properties:
+> -          groups:
+> -            description: The pin group to select.
+> -            enum: [i2c, jtag, mdio, pcie, rgmii1, rgmii2, sdhci, spi, uart1,
+> -                   uart2, uart3, wdt]
+> -
+>            function:
+> -            description: The mux function to select.
+> +            description:
+> +              A string containing the name of the function to mux to the group.
+>              enum: [gpio, i2c, i2s, jtag, mdio, nand1, nand2, pcie refclk,
+>                     pcie rst, pcm, rgmii1, rgmii2, sdhci, spdif2, spdif3, spi,
+>                     uart1, uart2, uart3, wdt refclk, wdt rst]
+>  
+> +          groups:
+> +            description:
+> +              An array of strings. Each string contains the name of a group.
 
-Fixes: 2b515194bf0c ("arm64: dts: mt8195: Add power domains controller")
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- arch/arm64/boot/dts/mediatek/mt8195.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+Here and in all patches - please add maxItems:1. The definition of field
+should have some constraints (and your if:then: might miss a case).
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index e61944510b8e..131945c44dcc 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -1549,6 +1549,7 @@ u3phy1: t-phy@11e30000 {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges = <0 0 0x11e30000 0xe00>;
-+			power-domains = <&spm MT8195_POWER_DOMAIN_SSUSB_PCIE_PHY>;
- 			status = "disabled";
- 
- 			u2port1: usb-phy@0 {
--- 
-2.38.1
+Best regards,
+Krzysztof
 
