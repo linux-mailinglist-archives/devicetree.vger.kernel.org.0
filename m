@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CDB8964C66C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 10:55:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0718D64C665
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 10:54:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238001AbiLNJyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 04:54:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57786 "EHLO
+        id S238008AbiLNJyq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 04:54:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237956AbiLNJyg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 04:54:36 -0500
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1681D57
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 01:54:35 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id h10so6095729ljk.11
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 01:54:35 -0800 (PST)
+        with ESMTP id S237956AbiLNJyp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 04:54:45 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F85211B
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 01:54:44 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id y25so9502947lfa.9
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 01:54:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=R8EzNEAgwzYomqvjIPtt320Z4mc8BVXKL5MkEZzJO8U=;
-        b=agXh3Do5P4t1pmIZFiC7C7W3cbw91CKhYp94OmXPlGi7nie145bY0XwZwQ/v3TrkVW
-         g699syysxVtbQx/K7KhLSjveR5xc+0Hxtx8prvQzSLUfs1E2MLsa1yjfieabdDToA25v
-         z5jawduElToaBsb6bRRillZJAlZhO+1YB6E2sem2/JFAIt/fifIJ4v6iWQnMNljn3lYg
-         +UNRwjsQ9Z3mrMzWnDF9wzlBDLj0jK7v3yaH5OiAVqYbet6t9Mud3U+x1dH3rNGvg8bR
-         V6/NSdkzIdjs/WZBOy0M9QHH41M0MkKxs0gF77twEyMTDSJMeRdNG1NwQQE3neXU9Hhw
-         rg9g==
+        bh=DJHzz7Cr6mZdLR560syNh/uSUGyL1AkyOrCtyL2Bvwc=;
+        b=BZ8KWJbhZI9j9mmLKk5E0+GIQCI5UAqUlqbIyZY21NQCbE8ZAWeM/JQrKgwesdRT3P
+         3akYY+u69yNw6ES0KS9n0rRG0nKkyV1fTai1qJYAQAG+wwOwBSlpz2xXYuj6P9O6s1uX
+         MyE8snUQvLBh2d+v2QVBORATzoRtvTQJN0s9BMr3yWdXH5ymDN5TWzNHFQU6UOkVgH3D
+         lxk+HxEEFrZgdnalGqbO4u5xjtWKiJMM0muohPvg0PxDxv3ZZuJIEit+Yt0i330mnH9X
+         77mb0rCgxwcR0OvixPmnt79xXE5faLsBohdBmoX/+WG34TPVUovrlz2DoBYSGImvs6Ub
+         fWlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=R8EzNEAgwzYomqvjIPtt320Z4mc8BVXKL5MkEZzJO8U=;
-        b=p1afzrT358TfLUx1zP2qT+3nxOEmAHx+p9opwbpNnE9bUtnHf8P2fRKR5VzuYdIQuc
-         0OlO8mMrH3cc5jbOmvzb7mfBYLW51isLKed1ISpztoe0fgkRgjUBarkrGWVYb8+8kYuE
-         QXTj/frb+1x12EJJEGRmDiBm+w8yyUD6r8/IVDBWVe+ufYczoJBY+DU7HCD+E25nas7x
-         SCbjDTBdQbdM1OgiA5CsQ00+HFWzMHBe4Z1mAXkHwwIAZ9nl2+f2v+z1JuFiWpvCTCUs
-         lqKxstl07u+IkYNR1uOjJMF92NkmRamY9AYlWgf0dDaUAVUOsOwjgmM9luo1RvMFxbRt
-         +/Wg==
-X-Gm-Message-State: ANoB5pnANgzh4L0I775HEN676muW/gZIy3fZH7L7AOPPCQdQLtC+JW+z
-        lV4t5J+K9xNobGhg7uKWSMZy3A==
-X-Google-Smtp-Source: AA0mqf5MH17rQRCr7E+If9oOsnaUnGQyLICSw3RfYoz4nhcFY16UxqFkZdfeZSZZulL6GPI8ZZmsPQ==
-X-Received: by 2002:a2e:6e17:0:b0:279:7e54:8386 with SMTP id j23-20020a2e6e17000000b002797e548386mr6252259ljc.34.1671011674147;
-        Wed, 14 Dec 2022 01:54:34 -0800 (PST)
+        bh=DJHzz7Cr6mZdLR560syNh/uSUGyL1AkyOrCtyL2Bvwc=;
+        b=iigZkE+oBtnmMKTBjkJYqR2V5Lnt0TtAL0G1wv/DMo7QOTF0oRVQkFC1eLF9c3hQ+r
+         a/fdtwHXZpUu7RMstjvlChLHAkthGT9/1JOWS3YNdgTCLjft2YSA1IOdN1raS9MwM3NI
+         YQ5A1ZdGOTk7cJMCdN9+jaJyrdlSLLm+/+11K9f5hxgI7U26UlxZLhJ2UerznU+JfKq1
+         SyGoRk2ej6JyogQbduePQ1E5bbXswyO2u1hXMCiojb062+BjbfDw+PNu8rCCv60GveOx
+         YQDdDS9Kuc1mOun6n0DSCPA8VN4QuyTs29nSjwb7JIfLR2uh5Qb4izmVvDHYxAjLL7zy
+         JvoQ==
+X-Gm-Message-State: ANoB5pn4EUF7KgtOXtfKALk7GmYIEL9NngrAOlGJ/L9c4ZljhWc+VPNI
+        j9T59JRQvV433CsNC4r98qeJew==
+X-Google-Smtp-Source: AA0mqf5+dPoClAGr/fcvhHv5/BoMUrcqY4rn7Vn3amkoNIZ0rTphTBFbZ5NlYEfynFQHbtVFlqIfOw==
+X-Received: by 2002:a05:6512:2110:b0:4b5:649a:9105 with SMTP id q16-20020a056512211000b004b5649a9105mr5804481lfr.65.1671011682872;
+        Wed, 14 Dec 2022 01:54:42 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id b15-20020a056512070f00b004998d9ccb62sm744242lfs.99.2022.12.14.01.54.33
+        by smtp.gmail.com with ESMTPSA id c36-20020a05651223a400b004b55da14ba8sm734743lfv.291.2022.12.14.01.54.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Dec 2022 01:54:33 -0800 (PST)
-Message-ID: <76c5cdd9-7b90-7ce5-02c4-a2a6e5bb3a30@linaro.org>
-Date:   Wed, 14 Dec 2022 10:54:32 +0100
+        Wed, 14 Dec 2022 01:54:42 -0800 (PST)
+Message-ID: <2e9e84ce-97c6-77de-6fb2-40c91fa81e51@linaro.org>
+Date:   Wed, 14 Dec 2022 10:54:41 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH v3 3/4] dt-bindings: iio: accel: fxls8962af: add new
+Subject: Re: [PATCH v3 4/4] dt-bindings: iio: accel: fxls8974cf: add new
  compatible string
 Content-Language: en-US
 To:     Han Xu <han.xu@nxp.com>, Jonathan Cameron <jic23@kernel.org>,
@@ -69,9 +69,9 @@ Cc:     Lars-Peter Clausen <lars@metafoo.de>,
         Clark Wang <xiaoning.wang@nxp.com>, linux-iio@vger.kernel.org,
         devicetree@vger.kernel.org, imx@lists.linux.dev
 References: <20221213171536.1880089-1-han.xu@nxp.com>
- <20221213171536.1880089-5-han.xu@nxp.com>
+ <20221213171536.1880089-6-han.xu@nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221213171536.1880089-5-han.xu@nxp.com>
+In-Reply-To: <20221213171536.1880089-6-han.xu@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,34 +84,11 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 13/12/2022 18:15, Han Xu wrote:
-> Add new compatible string for the NXP FXLS8967AF accelerometer sensor.
+> Add new compatible string for the NXP FXLS8974CF accelerometer sensor.
 > 
 > Signed-off-by: Han Xu <han.xu@nxp.com>
-> 
-> ---
-> changes in v3
-> - Start commit message in capital
-> - Describe all these chips are compatible
-> ---
->  .../devicetree/bindings/iio/accel/nxp,fxls8962af.yaml         | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml b/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml
-> index 65ce8ea14b52..8f07ade21abb 100644
-> --- a/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml
-> +++ b/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml
-> @@ -14,12 +14,16 @@ description: |
->    SPI and I2C interface.
->      https://www.nxp.com/docs/en/data-sheet/FXLS8962AF.pdf
->      https://www.nxp.com/docs/en/data-sheet/FXLS8964AF.pdf
-> +    https://www.nxp.com/docs/en/data-sheet/FXLS8967AF.pdf
->  
->  properties:
->    compatible:
-> +    description:
-> +      These chips are compatible with each other, just have different IDs.
 
-As pointed in other mail, the chips are not compatible, so drop the comment.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
