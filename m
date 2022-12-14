@@ -2,135 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9229364C669
+	by mail.lfdr.de (Postfix) with ESMTP id 3DD9964C668
 	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 10:55:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237973AbiLNJyY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 04:54:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55744 "EHLO
+        id S237994AbiLNJy1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 04:54:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238056AbiLNJyA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 04:54:00 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C16C021C;
-        Wed, 14 Dec 2022 01:53:53 -0800 (PST)
+        with ESMTP id S237956AbiLNJyF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 04:54:05 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A404CFE
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 01:54:04 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id q6so9492414lfm.10
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 01:54:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1671011634; x=1702547634;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=LzqGGxmF1t3qGuJLCa6X1QP62ut/E2OTUEGN+pkAN+I=;
-  b=Z7PornlXpW7/J2W4xxlcLomCOdtd+HHnHEqaNRLbY4MqiUb7q3Uk0iKM
-   2a7Wa4UTAg+QkjNNC3ib3JNI1fgUdV1h4UyDRKnwSK90swbFHR/ZX6Kby
-   UvoGsVr5i5/L6ZZ7fTCQFA4srt8Ot6lWhkQ+xKFWXKLkNv2nyAKISp0mf
-   0rm09RYsowdjESM2/bsJrMjBFLF7UYQsiuSpJqqZJd3gr0OdgCiMO51AK
-   qOYTGMdZSszBh/YeZnmHIijwl47dIOvWE38pBl2B22uDQzHVn4J7bpRCQ
-   1uF4tLtSOVAKhsqB4xV3tll+3I+1o7CroH4k4DuCA68+b/cuhesxHu7ol
-   w==;
-X-IronPort-AV: E=Sophos;i="5.96,244,1665439200"; 
-   d="scan'208";a="27943179"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 14 Dec 2022 10:53:48 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Wed, 14 Dec 2022 10:53:48 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Wed, 14 Dec 2022 10:53:48 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1671011628; x=1702547628;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=LzqGGxmF1t3qGuJLCa6X1QP62ut/E2OTUEGN+pkAN+I=;
-  b=dlA0EUnXY7/pe8a6VpYC68WVr4InRSwN2qHkBOOL5gWii78uIIkY/S7t
-   zi7cZ/ATnCcuwjQTcICzNsptpES85t+XQeJ/q+irWs/XBTd7aTsIk7zyf
-   B/y3cwdRTW69UQnO7SDXgQEQ5DTn9XmiIhwjve8EePPuZPsIZervJ0HoP
-   Hzk8cYnt0aqPnENxcwAwgBxfRdJM2/4LP8rvKgibe5vym8vmR9t+rmtrN
-   dDDH5Qp9QvDhc43BOczHF6Lq37ol3+2YoeIlq3wbHQnkAexg1Q8xJAHSt
-   Z5jcV0Wq7K6VcPg2Ln3J+imds5F2pNUmvreJZTxvsSwXPPsWF7uW4/eg5
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.96,244,1665439200"; 
-   d="scan'208";a="27943178"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 14 Dec 2022 10:53:48 +0100
-Received: from steina-w.tq-net.de (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 3CD34280072;
-        Wed, 14 Dec 2022 10:53:48 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        Marek Vasut <marex@denx.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: [RFC PATCH v2 3/3] [DNI] arm64: dts: mba8mx: Use gpio-delay for LVDS bridge
-Date:   Wed, 14 Dec 2022 10:53:42 +0100
-Message-Id: <20221214095342.937303-4-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221214095342.937303-1-alexander.stein@ew.tq-group.com>
-References: <20221214095342.937303-1-alexander.stein@ew.tq-group.com>
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Kf/hux+ArtQPQoRedrCFEtwRtgKPZb0GFbZ64k8NluY=;
+        b=OB10TLoJ2BA2m54sWwHQ1j52swhQ9/eF7gJxTghSP1Hv0A/TIOA+YbIdxR2NcS5/cv
+         yQhu+jlzeWA5hA3v5A937yzLCl1ur1x/JL6ne6wqPKZ9NqAdrt1wiNJ3NWJ0kzkWEmv4
+         4cSzOzsrwXklN0MmIrlnnWG39HSVZvsQTIymKOHxD546X0aM6Hd9pdsoYwC3ig5uN6B/
+         7wE9+nyzwtZGtEuURhUmaPoERPr/58CU2cNvYQreFP8A2jaCl0KspMQ2f1Fl408jm0Yu
+         EPhBVkacFlQW0RsrzuyaXIytCPe4THeb8iof9dBfIsKIfaxdvHsLBnXKQ/S3wRwby7J3
+         KBgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Kf/hux+ArtQPQoRedrCFEtwRtgKPZb0GFbZ64k8NluY=;
+        b=v3+80Dk8eLRtdZ9Pgz4zEoNDzW3oe4L82+sYYy1p3IWePLV2X2ZXK7kmYOEWCGXoHM
+         nZfV9NcSpygF27HKtBIwyAAWcDN26cvswmQiiSQe3OuJj18bzodqpNsV+Zn63s2diC/j
+         7vFPTZBMShPv3BxGGpEazfRmKhosj1wH5ypwUJn/ttp+kCLpvT1OBIAGJ5SuPavfQCRp
+         Yt3BqlW8o/kPrdFi0tijnWSL9snd7CtfGbyWq0VVBIGTIcNS2pHHNQhcQMkpTWX8wz+z
+         3ItbOuK3oDdXUn7WrzjCSkfYZU5vB4R4K3OrFw6myvlU/LQ4huxAZNRQknra7nWeqvhr
+         Oyow==
+X-Gm-Message-State: ANoB5plCwp+uiDjCA04OR4Wk1aoOi5OO0sVQU4INgP4wxMdtfU4+SX8s
+        THTQMMTw6D0+1dS6vVouKIkfdQ==
+X-Google-Smtp-Source: AA0mqf6NOqIox3Nt43gjeuE9Ojxr7O32O7+8okMoITereI9k4BJtKKxkF44c+YCv4rwYKI1HtSDA/g==
+X-Received: by 2002:ac2:5f47:0:b0:4b5:9dc4:e785 with SMTP id 7-20020ac25f47000000b004b59dc4e785mr5417327lfz.45.1671011641955;
+        Wed, 14 Dec 2022 01:54:01 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id w13-20020a19c50d000000b004b5284a92f9sm736065lfe.208.2022.12.14.01.54.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Dec 2022 01:54:01 -0800 (PST)
+Message-ID: <88944b64-5e95-389f-5b47-2046c401f1b6@linaro.org>
+Date:   Wed, 14 Dec 2022 10:54:00 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v3 2/4] iio: accel: add the new entry in driver for
+ fxls8967af
+Content-Language: en-US
+To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Han Xu <han.xu@nxp.com>, Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Sean Nyekjaer <sean@geanix.com>,
+        =?UTF-8?Q?Nuno_S=c3=a1?= <nuno.sa@analog.com>,
+        Matti Vaittinen <mazziesaccount@gmail.com>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        Clark Wang <xiaoning.wang@nxp.com>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, imx@lists.linux.dev
+References: <20221213171536.1880089-1-han.xu@nxp.com>
+ <20221213171536.1880089-3-han.xu@nxp.com>
+ <84bd582c-1dde-822c-48b7-025887fd0203@linaro.org>
+ <20221214093214.00000a03@Huawei.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221214093214.00000a03@Huawei.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a gpio-delay for LVDS_BRIDGE_EN_1V8 which ramp-up time is defined
-by the external RC filter.
+On 14/12/2022 10:32, Jonathan Cameron wrote:
+> On Tue, 13 Dec 2022 19:53:30 +0100
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> 
+>> On 13/12/2022 18:15, Han Xu wrote:
+>>> Add this new device entry in the driver id table.
+>>>
+>>> Signed-off-by: Han Xu <han.xu@nxp.com>
+>>>
+>>> ---
+>>> changes in v2
+>>> - change chip info orders
+>>> ---
+>>>  drivers/iio/accel/fxls8962af-core.c | 7 +++++++
+>>>  drivers/iio/accel/fxls8962af-i2c.c  | 2 ++
+>>>  drivers/iio/accel/fxls8962af.h      | 1 +
+>>>  3 files changed, 10 insertions(+)
+>>>
+>>> diff --git a/drivers/iio/accel/fxls8962af-core.c b/drivers/iio/accel/fxls8962af-core.c
+>>> index 98811e4e16bb..c3589c3084ee 100644
+>>> --- a/drivers/iio/accel/fxls8962af-core.c
+>>> +++ b/drivers/iio/accel/fxls8962af-core.c
+>>> @@ -127,6 +127,7 @@
+>>>  #define FXLS8962AF_DEVICE_ID			0x62
+>>>  #define FXLS8964AF_DEVICE_ID			0x84
+>>>  #define FXLS8974CF_DEVICE_ID			0x86
+>>> +#define FXLS8967AF_DEVICE_ID			0x87
+>>>  
+>>>  /* Raw temp channel offset */
+>>>  #define FXLS8962AF_TEMP_CENTER_VAL		25
+>>> @@ -765,6 +766,12 @@ static const struct fxls8962af_chip_info fxls_chip_info_table[] = {
+>>>  		.channels = fxls8962af_channels,
+>>>  		.num_channels = ARRAY_SIZE(fxls8962af_channels),
+>>>  	},
+>>> +	[fxls8967af] = {
+>>> +		.chip_id = FXLS8967AF_DEVICE_ID,
+>>> +		.name = "fxls8967af",
+>>> +		.channels = fxls8962af_channels,
+>>> +		.num_channels = ARRAY_SIZE(fxls8962af_channels),
+>>> +	},
+>>>  	[fxls8974cf] = {
+>>>  		.chip_id = FXLS8974CF_DEVICE_ID,
+>>>  		.name = "fxls8974cf",
+>>> diff --git a/drivers/iio/accel/fxls8962af-i2c.c b/drivers/iio/accel/fxls8962af-i2c.c
+>>> index 17dd56756ff9..a8944b255a28 100644
+>>> --- a/drivers/iio/accel/fxls8962af-i2c.c
+>>> +++ b/drivers/iio/accel/fxls8962af-i2c.c
+>>> @@ -30,6 +30,7 @@ static int fxls8962af_probe(struct i2c_client *client)
+>>>  static const struct i2c_device_id fxls8962af_id[] = {
+>>>  	{ "fxls8962af", fxls8962af },
+>>>  	{ "fxls8964af", fxls8964af },
+>>> +	{ "fxls8967af", fxls8967af },
+>>>  	{ "fxls8974cf", fxls8974cf },
+>>>  	{}
+>>>  };
+>>> @@ -38,6 +39,7 @@ MODULE_DEVICE_TABLE(i2c, fxls8962af_id);
+>>>  static const struct of_device_id fxls8962af_of_match[] = {
+>>>  	{ .compatible = "nxp,fxls8962af" },
+>>>  	{ .compatible = "nxp,fxls8964af" },
+>>> +	{ .compatible = "nxp,fxls8967af" },
+>>>  	{ .compatible = "nxp,fxls8974cf" },  
+>>
+>> This is confusing. The I2C ID table has driver data, but OF ID table
+>> hasn't. So are they compatible or not?
+> 
+> Due to some evilness in i2c that 'works' as long as the two arrays have
+> matching entries.  As a general rule we prefer to have the data in both, check
+> the firmware table first and only then fallback to i2c_device_id data on the
+> basis it is less fragile.
+> 
+> The evilness in i2c is that the search for match data will use the dt compatible
+> stripped of the vendor prefix and string match that against the i2c_device_id table.
+> 
+> Nice to clean this up, but not necessarily in this series (fine if it is though!)
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm64/boot/dts/freescale/mba8mx.dtsi | 14 +++++++++++++-
- 1 file changed, 13 insertions(+), 1 deletion(-)
+OK, so in fact devices are not fully compatible - I got mislead by OF
+table. I'll comment in bindings about it.
 
-diff --git a/arch/arm64/boot/dts/freescale/mba8mx.dtsi b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-index b0662dfa6194..a1ceadfa5b3d 100644
---- a/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-@@ -75,6 +75,14 @@ led2: led2 {
- 		};
- 	};
- 
-+	gpio_delays: gpio-delays {
-+		compatible = "gpio-delay";
-+		#gpio-cells = <3>;
-+		gpio-controller;
-+		input-gpios = <&expander0 6 GPIO_ACTIVE_HIGH>;
-+		gpio-line-names = "LVDS_BRIDGE_EN_1V8";
-+	};
-+
- 	panel0: panel_lvds0 {
- 		/*
- 		 * Display is not fixed, so compatible has to be added from
-@@ -191,6 +199,10 @@ expander0: gpio@23 {
- 		interrupts = <9 IRQ_TYPE_EDGE_FALLING>;
- 		interrupt-controller;
- 		#interrupt-cells = <2>;
-+		gpio-line-names = "", "", "", "",
-+				  "", "", "LVDS_BRIDGE_EN_3V3", "",
-+				  "", "", "", "",
-+				  "", "", "", "";
- 
- 		sd-mux-oe-hog {
- 			gpio-hog;
-@@ -272,7 +284,7 @@ &i2c3 {
- 	dsi_lvds_bridge: bridge@2d {
- 		compatible = "ti,sn65dsi83";
- 		reg = <0x2d>;
--		enable-gpios = <&expander0 6 GPIO_ACTIVE_HIGH>;
-+		enable-gpios = <&gpio_delays 0 130000 0>;
- 		vcc-supply = <&reg_sn65dsi83_1v8>;
- 		status = "disabled";
- 
--- 
-2.34.1
+Best regards,
+Krzysztof
 
