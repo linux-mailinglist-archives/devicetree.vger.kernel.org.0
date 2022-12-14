@@ -2,232 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 488C464CC5F
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 15:34:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2575C64CC9F
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 15:47:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238623AbiLNOej (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 09:34:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49952 "EHLO
+        id S229867AbiLNOrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 09:47:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238625AbiLNOeh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 09:34:37 -0500
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFFA6C3A
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 06:34:35 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id bj12so44892562ejb.13
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 06:34:35 -0800 (PST)
+        with ESMTP id S238525AbiLNOrr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 09:47:47 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F00106261;
+        Wed, 14 Dec 2022 06:47:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1671029265; x=1702565265;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=MWlauJblWbc7Qijo7WybDdMPPpDz3BCJHLmOMcNeuzI=;
+  b=c7ED5tXVcDqIRCBlY0yFApmsUTGv0RsewgXKvNv0LazWSLeWwO74NlaU
+   szJxuFnEmTztkHvgb5OAY3m5oeSMXdy3sBf0cU0/yLWggTR6lwzy0CioX
+   VNRMHl3V/RISMwaSFECs0KHUukCAR/PxR1xf0TD+UsEH7rv9EJYepv2My
+   GzHSX8VEWTtHwvBbw8dgdqT0qvLLmgEaMlMJavOYlVFj79aq/hrBKk0dY
+   q2y+G6BLZW88bF3irGCD73GrmboMaG7GXcOjdfylsUL8wy/Nw+/8jMijU
+   oy1DtOeQbtyEdF2jWan3JazBLKynqiH37iDdHb1W7vKvp7W9VLLxDYutv
+   w==;
+X-IronPort-AV: E=Sophos;i="5.96,244,1665471600"; 
+   d="scan'208";a="203998206"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 14 Dec 2022 07:47:44 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Wed, 14 Dec 2022 07:47:44 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Wed, 14 Dec 2022 07:47:44 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DCtRLhuG6EoBkOG/wds4I2osQordWa3xU/j2mWab5Qx5dZn9b0whceMW6y8KAamKXPdGHYGY9bc2Qptn0M0z2R+QnpWfGsyQ7+hUe0b8aj0G5/iTpBDnjaCis/pFkqWjQgKDAJ4VC0pD7YkYmRlV42J9VK4ItuOhUpogdrKmRlq2Gzysy0Fg7iaKqZIIWBUt8DPudzXECFrzPVLhVNy4dYudICz1jGlZ11NnrMIqo5UmKtpjkUkoxi88EGqoaxIvmoH/cX4gv85awsv9rugAGK6ugGYQKcR3uXmfhCrFn46lM5ND35LacfT6jOGm51gqG0YijxxAxI8oksZ2b1D6zA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MWlauJblWbc7Qijo7WybDdMPPpDz3BCJHLmOMcNeuzI=;
+ b=CSfWexUGLyogovh6ckRghx5ir/RCxLwUsVYDL6aJkclBdZ0rufDOMPU/7V8yllNECidI+fUATA5J23kAU7HI+dQcKHhM1HKxkGBLIIvqE2nd6Wa5A1m87nEieTluz0esjZ6fTD/Ho8XTQ+lraisCdGXjf5EmqF2S1lllnted1+vYiPlZJe4Mw/HRKN4LONNx1WFx7114cgaSoFUTOYxYlE8ox5zvT37qZgc7Jxx3N6jgTVI5opsSYQEeqyJbLl5iD/kI3KrsuH7h3JelfS5R9CaU1b86kfJnGHb0J4jd9ClbRBDfU7HZII6ixP8YOvhWKJHTLJmIa42MG6qpXyDyBQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=NpdIC9yfEfML+JTsasPerHswhdeXgtUUncwQhuMnyqE=;
-        b=XLKf1zw+Pg5X/5RU+NqTJXZbD6289aN9/me5ZGVd8EVaQRYyJ2A1JlBdG/Z3vsSDhk
-         Qmz9aiiZNObRESdS/CH7NwQdJvzHJFIDjkC0casil4G4a0N9QFE5mfSjYWXd8ZJ15YF4
-         rGJgGKsHjpVfDDZj6p5BrCfquqIHmoSjSxlcAftAz1JUO8wSbof7/g91hgr1+XKPPePu
-         kfMlDQb3+qMJ6DUrRCH6VLm3UIt74/cQiWtTtE3ylBHYgQVQ6Aor3fbMntGxp9AmnQtV
-         ejTOcc664SpZgkLUI0eTSEsPKw0r8GbVeA1KvrhoplnpFLRnnWk+D6rtNKmjsnXEgo5H
-         Iehw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NpdIC9yfEfML+JTsasPerHswhdeXgtUUncwQhuMnyqE=;
-        b=MZutXPKXd5jK1lb1DbAmn74dJ+lOkQmzDatIXSWEDmE5uO3hRSKd3jf5IwBu9z9mPA
-         Awdl77Ubyr4OAJVGeOqwENcjscZLdSYMn4f34wSYacQeL1hWVFKOE/CXGUKxGEgohbfp
-         EDillDUT6tnQ9/MBL3ZVgvjDeH3uVQHyr/U6TXtDsAKIiNM64YTxhcxcLeO96WhQZrBs
-         sJlJXnBc1aMcHwGywy/on1LGRrD0iU6kSMeyZQNIYcBs188/WYO6ZTNq7ewARUHY0ulE
-         zlq7MgCqwRQ9X0YdBTH6qmP3bRO9iwcEttOo877t271EAcFjOemsQTKQYKflE9ttGsbb
-         3EnA==
-X-Gm-Message-State: ANoB5pnqQUK+oqUMzyD9+6olehrKWpogTQknoJW/fM+kcjTd5iNNU01n
-        0+Ie+iQkgQzxkFz1qWcC7fmAuA==
-X-Google-Smtp-Source: AA0mqf6CmxqK+9dd28/XPm5VnoWGfEXLHPyKVsjaVNohL2FH1YAqanoPm55ZEQuTbm9gGFjhahizfg==
-X-Received: by 2002:a17:906:1d01:b0:7c1:36:9002 with SMTP id n1-20020a1709061d0100b007c100369002mr20212671ejh.67.1671028474394;
-        Wed, 14 Dec 2022 06:34:34 -0800 (PST)
-Received: from localhost (2001-1ae9-1c2-4c00-748-2a9a-a2a6-1362.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:748:2a9a:a2a6:1362])
-        by smtp.gmail.com with ESMTPSA id ko5-20020a170907986500b007bd1ef2cccasm5896464ejc.48.2022.12.14.06.34.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Dec 2022 06:34:33 -0800 (PST)
-Date:   Wed, 14 Dec 2022 15:34:32 +0100
-From:   Andrew Jones <ajones@ventanamicro.com>
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Guo Ren <guoren@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Atish Patra <atishp@rivosinc.com>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v5 1/6] riscv: asm: alternative-macros: Introduce
- ALTERNATIVE_3() macro
-Message-ID: <20221214143432.4micw2gipvhfqwoa@kamzik>
-References: <20221212115505.36770-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221212115505.36770-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdXXXN9g8o1j7k-TC=F-kuyf-KngFSKi7z9z0SY9BLxmHA@mail.gmail.com>
- <CA+V-a8s9iAtFVzdA4R_tSMuBTkoY3JmZ12MJw__Pgfyetsz34g@mail.gmail.com>
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MWlauJblWbc7Qijo7WybDdMPPpDz3BCJHLmOMcNeuzI=;
+ b=tPADkzv1zFqCmWDEWr1KUUUstN8DIhsgwnFR3sMMSkS6JzP8U/8/QHozZhkifqyrBc+m/9pEt/hp4yoCyu8o9Ydd+Lf/EQgs8xIB/6oEIvcqmvQFfGjAebhkh+Pl690o/Ht2seeSS6n2R2bf9FpJ1oy6RhOL1jIwWhvNxBCZYTQ=
+Received: from BN6PR11MB1953.namprd11.prod.outlook.com (2603:10b6:404:105::14)
+ by SA1PR11MB5898.namprd11.prod.outlook.com (2603:10b6:806:229::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5924.11; Wed, 14 Dec
+ 2022 14:47:42 +0000
+Received: from BN6PR11MB1953.namprd11.prod.outlook.com
+ ([fe80::98f6:c9d1:bb68:1c15]) by BN6PR11MB1953.namprd11.prod.outlook.com
+ ([fe80::98f6:c9d1:bb68:1c15%10]) with mapi id 15.20.5924.011; Wed, 14 Dec
+ 2022 14:47:42 +0000
+From:   <Claudiu.Beznea@microchip.com>
+To:     <Eugen.Hristev@microchip.com>, <Nicolas.Ferre@microchip.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <jacopo@jmondi.org>, <hverkuil@xs4all.nl>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-media@vger.kernel.org>
+Subject: Re: [PATCH v10 3/5] ARM: dts: at91: sama7g5: add nodes for video
+ capture
+Thread-Topic: [PATCH v10 3/5] ARM: dts: at91: sama7g5: add nodes for video
+ capture
+Thread-Index: AQHZD8sFgKOKAjdaEUWNhaEIa0xf7Q==
+Date:   Wed, 14 Dec 2022 14:47:42 +0000
+Message-ID: <146462fb-6afd-1b88-ed7b-fc9b8b76477b@microchip.com>
+References: <20220503095127.48710-1-eugen.hristev@microchip.com>
+ <20220503095127.48710-4-eugen.hristev@microchip.com>
+ <323a98c7-85f1-a21c-d655-7b510481adc0@microchip.com>
+In-Reply-To: <323a98c7-85f1-a21c-d655-7b510481adc0@microchip.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BN6PR11MB1953:EE_|SA1PR11MB5898:EE_
+x-ms-office365-filtering-correlation-id: 3e92f7df-d5b5-4d52-f336-08dadde2279f
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: AbuvU7IN7exShXtEroxnNb1jmXPpfBJfFqiCI6YLA3ARHSLr8M7NlfKCgV5eVevwKTnfhXUJWIE5hYgu2+YxL+X/WQxidQeblxo8lAhsTNWjU3ael1MM6xka9HiaaxZnuI/6BhMG/7wsq7Tp9avlA3fmcKw4/0/wtjZh2ue8z0rQ2PHqlRACb3u3PLhhEkZggZDGLluejmK3Tk3/VQ+mkdu4eOzo4ZaocJbXgTHju0Ja0JKf9fkYUdPAnQ0dAKiD7g/s4O6lBjinumw6A7LPAytdmI99jIfHH+hpzIz6O9E5b1vBqT/kwxZjQpQktiFbYhDseeUGOfSTnVKwf4Qy7a9xr2VHj0rDTNmvTz7rXzh+1tkwSSSYvqpH9SL2jpTkrvHSHyZvswTqamqbNxywEqt9HCvMiDFwmifsZv6Zg25/pZqM4HI41pd7fX7p9BjEdyGctPwop8nL4PkQyVt8qgqOlOPOzzyA2344MOqJi5/evFGsTbpRxR1mqmgPu0M0FMAFC0kADv1saiTCEphukE7HDwpMVPmM0BJObRYnSwYX+PZ+l/K1S5SiabyOnC8Uxp4d32naCJtNOL4ncY8i55LmUNIAMnZQWdBYk2Xsz/T1vdzNl/SGCvlGc8OLLsmOFs/+CGdxuMM75jdjWKE8dA4GxO1rkX/P/EvkKzK5CBkdS63l7S6nQHwUUGievYuZdof7aIa6cQJWdhfo+dazV80YfDyuIWfmU5ypRVmqbN5spVLoM3/I8ZeRg1VNB/mWHWW61QfUk9jEWco/s8ZvuA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN6PR11MB1953.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(346002)(39860400002)(136003)(366004)(396003)(376002)(451199015)(71200400001)(41300700001)(86362001)(76116006)(31696002)(66946007)(66556008)(66476007)(66446008)(6512007)(8676002)(64756008)(91956017)(186003)(26005)(4326008)(2616005)(478600001)(6486002)(53546011)(54906003)(6506007)(6636002)(110136005)(316002)(122000001)(38070700005)(38100700002)(5660300002)(8936002)(83380400001)(2906002)(31686004)(36756003)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?VS8wOUVkUWhpVG54WDREb0gwQjFZN2hiajZuWkNFckEwRk5CWkpUdXM5WWdl?=
+ =?utf-8?B?VWRYdmkzWFJiTm0xN0VRT0I3bnNxWnZNZWhTbFl3WFlPVjRsVFZCK2dZcFNp?=
+ =?utf-8?B?UEZIRU9jTklmZVFuUE5sRzROenpsTTFtOTVvbXF1WlZiZks1aHJCWitnN3Vy?=
+ =?utf-8?B?WDVTWmY4WVZxMkpFamp4K2FSZzM0VTN1ZkdveGpIZkxmckhucm9JeDJya0hC?=
+ =?utf-8?B?dWoyWms1YmQ2SXA4Vng4ajZYOGRXTkRMSXFxdDdKMC9aMnFQZ0daVUpjQ2RC?=
+ =?utf-8?B?VnhEcTN2VXhIWnllb2cybS9PdS9SUHlDbm9VdisrWkQ1Nk05MnFGTzc3Vis0?=
+ =?utf-8?B?bXQzams2L3EzZW8yZCtQSG4wakNCUGp3N1RTY0psMlhCeiszQmJkc2Z6UE9T?=
+ =?utf-8?B?RzJabXZmL2hDUHpSdXZZQnZTK3hzV2lZUlUwT2xuRFB4THk0SUlFRnNkRlVZ?=
+ =?utf-8?B?cUdXcE52N3Z3MEg1Rnk3TThxSGFldzM2cGFwZmZFRGg5RUcyNEI2MGM2NFRo?=
+ =?utf-8?B?MG9wdmtvVFdRdU5iSnNuK1hKRm5vN0NxRy9HSXdUQitYbUdkeUp6R2lCRXZG?=
+ =?utf-8?B?SkRubnowWlA0aUpuRWJDRkE1QVEvemUrSEVOQW5RTXA5SURjL3VPQkMybzVO?=
+ =?utf-8?B?YlVMQjk1R2xDcEVOT2tWSmlDa0Q2OWlNbWpjVW91Um5RVEVBUytYTk5kUkFu?=
+ =?utf-8?B?MUJxa0xsUitkbmwrNyt1VjIwNW1EWDNOdEp0OTJCd3RxbnRJQVJTdTNQZlVk?=
+ =?utf-8?B?RG8zTnVkeDhtNmtYWHBLdnpEZjRaRVdlZ2ZWQ2lHNUt6MjdxQzBnVHZ6aVhu?=
+ =?utf-8?B?bzdYcWZnSE8xNVI2b3B4d0hUNURtLzdyREdJUHo3N0NTUG4vYTF1c01TK01y?=
+ =?utf-8?B?N2t6cW5VNGJDK2RTZFBSblNhMkR5bDQzTnowU2NsR3lRNzYwRGJLTTdGZU1V?=
+ =?utf-8?B?ZFZLdDVEd21SYXlzZkgxQm9pSUMzYUdycFlXczRkV0hlaWgyUFZwVlQ1SCt6?=
+ =?utf-8?B?ZVJqcmxUYnZhNmhWck5CZ3lKNXNWTGVDeDJWMW8zSGhEZTdydU5VVmpWWjZ0?=
+ =?utf-8?B?MnRtTGtIOEc1VHRQclRCNlZXZ2gveXRYQ3dKUlBWcFY3SGlwNC9CdEJXcFRX?=
+ =?utf-8?B?dGJGMUw1TmVhZFl3VmlSaFJQWmZjTytEa25SUGNqNnZwdStjMHJ1L0hpWU5w?=
+ =?utf-8?B?QTFPZDVXU1dialpLc3dMOW9zOUd5VjVBaU1HL294Sk9iczF0Szl1NXA1WkIx?=
+ =?utf-8?B?R09pTFBzWFBGRXlTclliY3loTWdOaWk1cXFSUjNwRTVoY2lsRThXVExhSktx?=
+ =?utf-8?B?YVBab2RWbXNBbWZxVkVEK2VLQzJHV3RCRzZOOTNaRGdhd01yMFY4cFNSMi9a?=
+ =?utf-8?B?ZUV4K3lENGMxVHRqcHFndnJ3Wk5GQ2RiMW1uRTQvUys0Z2tVMmRMRzEyVlQ1?=
+ =?utf-8?B?NGs4ZVZsdWIxOVFJejQxbm90MVUzT1phNVJ1UzdIQUtNWmRkMnN3aFlzcHB1?=
+ =?utf-8?B?Q3dWZXlQSjhCWFN0ck14b3R1dXhlc05RbnlHV2w2bFYxWk96cmhxYU5ybzR1?=
+ =?utf-8?B?VGpHeTNKM0JkaGE2Uk1lMUFzeFpxS3dPM1BZTmpGa2s0WjJha3dXd2QvT0JZ?=
+ =?utf-8?B?YlFrcmZZMXdoL1dUNWJjL3oxNHlJWWFDOFBrbUpJME1rRm9MNzNOdDZ5OS93?=
+ =?utf-8?B?aXZHUlJZVTBPTkprdk0rUzJYL1YyMFlocVNXeXpLcUphL3VzQ3pxS1o4cW1t?=
+ =?utf-8?B?S2FXTGpMMGxEU08rU0JRK2toNGMwRS80WThSZzVOOUtVa09uL3QzWFNpek1n?=
+ =?utf-8?B?ekdvSkhwNWxKR1F2L1o4T2o2R1lWVmdqWDRsbHJiZ2RhOGJRZzBCQm5MZTRs?=
+ =?utf-8?B?ZlV1c1hqY3JTN0lNWmJNMkhQcDBBQU9HVXZYdzcvTm9kU2hmN214aU5XekE3?=
+ =?utf-8?B?N3dhOTk1S1ZXTzMvZE5lNXFhcEo4ekYyK2d6UW1vZ1hxVmhBMlV5eFNFRE8v?=
+ =?utf-8?B?L1h6ZXRnY2dQNXRwNERHMzFMZGNPdFExbTFLcW5nVkkxNSttRHZ5OFlVR1Za?=
+ =?utf-8?B?Sml3QU5Ub21RYnJCWTFIZ2JtT3Vzb29vU01URkFPaEYzaGpmT250OHovNWNs?=
+ =?utf-8?B?cUQwUVRpUDROUlhuWTNaSjd6LzU2SGlQdysxVVplaWhoVUxPL3RlTUxnOGR2?=
+ =?utf-8?B?ZUE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <70945910E0A7F74A90395CD71A9A8FBF@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CA+V-a8s9iAtFVzdA4R_tSMuBTkoY3JmZ12MJw__Pgfyetsz34g@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN6PR11MB1953.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3e92f7df-d5b5-4d52-f336-08dadde2279f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Dec 2022 14:47:42.3331
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: iq/zRsvep9YBcT2zp21K/ONO43R1yScBY8CNEIjY/kAWrb4JD/2x5dJBPaY5BJgZTQ4RU+Y1cYEW203coZcq7nOEJtfu1glwNmJ5Au0BgPM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB5898
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 13, 2022 at 05:49:32PM +0000, Lad, Prabhakar wrote:
-> Hi Geert,
-> 
-> Thank you for the review.
-> 
-> On Tue, Dec 13, 2022 at 5:21 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> >
-> > Hi Prabhakar,
-> >
-> > On Mon, Dec 12, 2022 at 12:58 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > Introduce ALTERNATIVE_3() macro.
-> > >
-> > > A vendor wants to replace an old_content, but another vendor has used
-> > > ALTERNATIVE_2() to patch its customized content at the same location.
-> > > In this case, this vendor can use macro ALTERNATIVE_3() and then replace
-> > > ALTERNATIVE_2() with ALTERNATIVE_3() to append its customized content.
-> > >
-> > > While at it update comment above ALTERNATIVE_2() macro and make it generic
-> > > so that the comment holds good for any new addition of ALTERNATIVE_X()
-> > > macros.
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > ---
-> > > v4->v5
-> > > * Rebased the patch on top of Andrew's series (now in Palmers for next-branch)
-> > > * Updated comment for ALTERNATIVE_x() as suggested by Heiko
-> >
-> > Thanks for the update!
-> >
-> > > --- a/arch/riscv/include/asm/alternative-macros.h
-> > > +++ b/arch/riscv/include/asm/alternative-macros.h
-> > > @@ -50,8 +50,17 @@
-> > >         ALT_NEW_CONTENT \vendor_id_2, \errata_id_2, \enable_2, \new_c_2
-> > >  .endm
-> > >
-> > > +.macro ALTERNATIVE_CFG_3 old_c, new_c_1, vendor_id_1, errata_id_1, enable_1,   \
-> > > +                               new_c_2, vendor_id_2, errata_id_2, enable_2,    \
-> > > +                               new_c_3, vendor_id_3, errata_id_3, enable_3
-> > > +       ALTERNATIVE_CFG_2 \old_c, \new_c_1, \vendor_id_1, \errata_id_1, \enable_1,      \
-> > > +                                 \new_c_2, \vendor_id_2, \errata_id_2, \enable_2
-> > > +       ALT_NEW_CONTENT \vendor_id_3, \errata_id_3, \enable_3, \new_c_3
-> > > +.endm
-> > > +
-> > >  #define __ALTERNATIVE_CFG(...)         ALTERNATIVE_CFG __VA_ARGS__
-> > >  #define __ALTERNATIVE_CFG_2(...)       ALTERNATIVE_CFG_2 __VA_ARGS__
-> > > +#define __ALTERNATIVE_CFG_3(...)       ALTERNATIVE_CFG_3 __VA_ARGS__
-> > >
-> > >  #else /* !__ASSEMBLY__ */
-> > >
-> > > @@ -98,6 +107,13 @@
-> > >         __ALTERNATIVE_CFG(old_c, new_c_1, vendor_id_1, errata_id_1, enable_1)   \
-> > >         ALT_NEW_CONTENT(vendor_id_2, errata_id_2, enable_2, new_c_2)
-> > >
-> > > +#define __ALTERNATIVE_CFG_3(old_c, new_c_1, vendor_id_1, errata_id_1, enable_1,        \
-> > > +                                  new_c_2, vendor_id_2, errata_id_2, enable_2, \
-> > > +                                  new_c_3, vendor_id_3, errata_id_3, enable_3) \
-> > > +       __ALTERNATIVE_CFG_2(old_c, new_c_1, vendor_id_1, errata_id_1, enable_1, \
-> > > +                                   new_c_2, vendor_id_2, errata_id_2, enable_2)        \
-> > > +       ALT_NEW_CONTENT(vendor_id_3, errata_id_3, enable_3, new_c_3)
-> > > +
-> > >  #endif /* __ASSEMBLY__ */
-> > >
-> > >  #define _ALTERNATIVE_CFG(old_c, new_c, vendor_id, errata_id, CONFIG_k) \
-> > > @@ -108,6 +124,13 @@
-> > >         __ALTERNATIVE_CFG_2(old_c, new_c_1, vendor_id_1, errata_id_1, IS_ENABLED(CONFIG_k_1),   \
-> > >                                    new_c_2, vendor_id_2, errata_id_2, IS_ENABLED(CONFIG_k_2))
-> > >
-> > > +#define _ALTERNATIVE_CFG_3(old_c, new_c_1, vendor_id_1, errata_id_1, CONFIG_k_1,               \
-> > > +                                 new_c_2, vendor_id_2, errata_id_2, CONFIG_k_2,                \
-> > > +                                 new_c_3, vendor_id_3, errata_id_3, CONFIG_k_3)                \
-> > > +       __ALTERNATIVE_CFG_3(old_c, new_c_1, vendor_id_1, errata_id_1, IS_ENABLED(CONFIG_k_1),   \
-> > > +                                  new_c_2, vendor_id_2, errata_id_2, IS_ENABLED(CONFIG_k_2),   \
-> > > +                                  new_c_3, vendor_id_3, errata_id_3, IS_ENABLED(CONFIG_k_3))
-> > > +
-> > >  #else /* CONFIG_RISCV_ALTERNATIVE */
-> >
-> > To avoid breaking the build for K210 (and VexRiscv), you need to provide
-> > _ALTERNATIVE_CFG_3() for the !CONFIG_RISCV_ALTERNATIVE case, too:
-> >
-> Thanks for testing this.
-> 
-> > @@ -144,6 +144,9 @@
-> >  #define _ALTERNATIVE_CFG_2(old_c, ...) \
-> >         ALTERNATIVE_CFG old_c
-> >
-> > +#define _ALTERNATIVE_CFG_3(old_c, ...) \
-> > +       ALTERNATIVE_CFG old_c
-> > +
-> >  #else /* !__ASSEMBLY__ */
-> >
-> >  #define __ALTERNATIVE_CFG(old_c)       \
-> > @@ -155,6 +158,9 @@
-> >  #define _ALTERNATIVE_CFG_2(old_c, ...) \
-> >         __ALTERNATIVE_CFG(old_c)
-> >
-> > +#define _ALTERNATIVE_CFG_3(old_c, ...) \
-> > +       __ALTERNATIVE_CFG(old_c)
-> > +
-> >  #endif /* __ASSEMBLY__ */
-> >  #endif /* CONFIG_RISCV_ALTERNATIVE */
-> >
-> > Else it fails (on riscv/for-next) with:
-> >
-> I'll include the above hunk in next version.
-
-Yes, those two hunks are in my example in [1] as well.
-
-[1] https://lore.kernel.org/all/20221129150053.50464-1-ajones@ventanamicro.com/
-
-Thanks,
-drew
-
-> 
-> > arch/riscv/mm/pmem.c: In function ‘arch_wb_cache_pmem’:
-> > arch/riscv/include/asm/alternative-macros.h:198:8: error: expected
-> > string literal before ‘_ALTERNATIVE_CFG_3’
-> >   198 |        _ALTERNATIVE_CFG_3(old_content, new_content_1,
-> > vendor_id_1, errata_id_1, CONFIG_k_1, \
-> >       |        ^~~~~~~~~~~~~~~~~~
-> > arch/riscv/include/asm/errata_list.h:128:14: note: in expansion of
-> > macro ‘ALTERNATIVE_3’
-> >   128 | asm volatile(ALTERNATIVE_3(      \
-> >       |              ^~~~~~~~~~~~~
-> > arch/riscv/mm/pmem.c:13:2: note: in expansion of macro ‘ALT_CMO_OP’
-> >    13 |  ALT_CMO_OP(clean, addr, size, riscv_cbom_block_size, 0, 0);
-> >       |  ^~~~~~~~~~
-> >
-> > Gr{oetje,eeting}s,
-> >
-> >                         Geert
-> >
-> > --
-> > Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-> >
-> > In personal conversations with technical people, I call myself a hacker. But
-> > when I'm talking to journalists I just say "programmer" or something like that.
-> >                                 -- Linus Torvalds
+T24gMTQuMTIuMjAyMiAxNDo1NSwgRXVnZW4gSHJpc3RldiAtIE0xODI4MiB3cm90ZToNCj4gT24g
+NS8zLzIyIDEyOjUxLCBFdWdlbiBIcmlzdGV2IHdyb3RlOg0KPj4gQWRkIG5vZGUgZm9yIHRoZSBY
+SVNDIChlWHRlbmRlZCBJbWFnZSBTZW5zb3IgQ29udHJvbGxlcikgYW5kIENTSTJEQw0KPj4gKGNz
+aTIgZGVtdXggY29udHJvbGxlcikuDQo+PiBUaGVzZSBub2RlcyByZXByZXNlbnQgdGhlIHRvcCBs
+ZXZlbCBvZiB0aGUgdmlkZW8gY2FwdHVyZSBoYXJkd2FyZSBwaXBlbGluZQ0KPj4gYW5kIGFyZSBk
+aXJlY3RseSBjb25uZWN0ZWQgaW4gaGFyZHdhcmUuDQo+Pg0KPj4gU2lnbmVkLW9mZi1ieTogRXVn
+ZW4gSHJpc3RldiA8ZXVnZW4uaHJpc3RldkBtaWNyb2NoaXAuY29tPg0KPj4gLS0tDQo+PiBDaGFu
+Z2VzIGluIHYxMDoNCj4+IC0gbm9kZXMgZGlzYWJsZWQgYnkgZGVmYXVsdA0KPj4NCj4+ICAgYXJj
+aC9hcm0vYm9vdC9kdHMvc2FtYTdnNS5kdHNpIHwgNTEgKysrKysrKysrKysrKysrKysrKysrKysr
+KysrKysrKysrKw0KPj4gICAxIGZpbGUgY2hhbmdlZCwgNTEgaW5zZXJ0aW9ucygrKQ0KPj4NCj4+
+IGRpZmYgLS1naXQgYS9hcmNoL2FybS9ib290L2R0cy9zYW1hN2c1LmR0c2kgYi9hcmNoL2FybS9i
+b290L2R0cy9zYW1hN2c1LmR0c2kNCj4+IGluZGV4IDRkZWNkM2E5MWE3Ni4uZmU5YzZkZjk4MTli
+IDEwMDY0NA0KPj4gLS0tIGEvYXJjaC9hcm0vYm9vdC9kdHMvc2FtYTdnNS5kdHNpDQo+PiArKysg
+Yi9hcmNoL2FybS9ib290L2R0cy9zYW1hN2c1LmR0c2kNCj4+IEBAIC00NTQsNiArNDU0LDU3IEBA
+IHNkbW1jMjogbW1jQGUxMjBjMDAwIHsNCj4+ICAgCQkJc3RhdHVzID0gImRpc2FibGVkIjsNCj4+
+ICAgCQl9Ow0KPj4gICANCj4+ICsJCWNzaTJkYzogY3NpMmRjQGUxNDA0MDAwIHsNCj4+ICsJCQlj
+b21wYXRpYmxlID0gIm1pY3JvY2hpcCxzYW1hN2c1LWNzaTJkYyI7DQo+PiArCQkJcmVnID0gPDB4
+ZTE0MDQwMDAgMHg1MDA+Ow0KPj4gKwkJCWNsb2NrcyA9IDwmcG1jIFBNQ19UWVBFX1BFUklQSEVS
+QUwgMzQ+LCA8Jnhpc2M+Ow0KPj4gKwkJCWNsb2NrLW5hbWVzID0gInBjbGsiLCAic2NjayI7DQo+
+PiArCQkJYXNzaWduZWQtY2xvY2tzID0gPCZ4aXNjPjsNCj4+ICsJCQlhc3NpZ25lZC1jbG9jay1y
+YXRlcyA9IDwyNjYwMDAwMDA+Ow0KPj4gKwkJCXN0YXR1cyA9ICJkaXNhYmxlZCI7DQo+PiArDQo+
+PiArCQkJcG9ydHMgew0KPj4gKwkJCQkjYWRkcmVzcy1jZWxscyA9IDwxPjsNCj4+ICsJCQkJI3Np
+emUtY2VsbHMgPSA8MD47DQo+PiArCQkJCXBvcnRAMCB7DQo+PiArCQkJCQlyZWcgPSA8MD47DQo+
+PiArCQkJCQljc2kyZGNfaW46IGVuZHBvaW50IHsNCj4+ICsJCQkJCX07DQo+PiArCQkJCX07DQo+
+PiArDQo+PiArCQkJCXBvcnRAMSB7DQo+PiArCQkJCQlyZWcgPSA8MT47DQo+PiArCQkJCQljc2ky
+ZGNfb3V0OiBlbmRwb2ludCB7DQo+PiArCQkJCQkJYnVzLXdpZHRoID0gPDE0PjsNCj4+ICsJCQkJ
+CQloc3luYy1hY3RpdmUgPSA8MT47DQo+PiArCQkJCQkJdnN5bmMtYWN0aXZlID0gPDE+Ow0KPj4g
+KwkJCQkJCXJlbW90ZS1lbmRwb2ludCA9IDwmeGlzY19pbj47DQo+PiArCQkJCQl9Ow0KPj4gKwkJ
+CQl9Ow0KPj4gKwkJCX07DQo+PiArCQl9Ow0KPj4gKw0KPj4gKwkJeGlzYzogeGlzY0BlMTQwODAw
+MCB7DQo+PiArCQkJY29tcGF0aWJsZSA9ICJtaWNyb2NoaXAsc2FtYTdnNS1pc2MiOw0KPj4gKwkJ
+CXJlZyA9IDwweGUxNDA4MDAwIDB4MjAwMD47DQo+PiArCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJ
+IDU2IElSUV9UWVBFX0xFVkVMX0hJR0g+Ow0KPj4gKwkJCWNsb2NrcyA9IDwmcG1jIFBNQ19UWVBF
+X1BFUklQSEVSQUwgNTY+Ow0KPj4gKwkJCWNsb2NrLW5hbWVzID0gImhjbG9jayI7DQo+PiArCQkJ
+I2Nsb2NrLWNlbGxzID0gPDA+Ow0KPj4gKwkJCWNsb2NrLW91dHB1dC1uYW1lcyA9ICJpc2MtbWNr
+IjsNCj4+ICsJCQlzdGF0dXMgPSAiZGlzYWJsZWQiOw0KPj4gKw0KPj4gKwkJCXBvcnQgew0KPj4g
+KwkJCQl4aXNjX2luOiBlbmRwb2ludCB7DQo+PiArCQkJCQlidXMtdHlwZSA9IDw1PjsgLyogUGFy
+YWxsZWwgKi8NCj4+ICsJCQkJCWJ1cy13aWR0aCA9IDwxND47DQo+PiArCQkJCQloc3luYy1hY3Rp
+dmUgPSA8MT47DQo+PiArCQkJCQl2c3luYy1hY3RpdmUgPSA8MT47DQo+PiArCQkJCQlyZW1vdGUt
+ZW5kcG9pbnQgPSA8JmNzaTJkY19vdXQ+Ow0KPj4gKwkJCQl9Ow0KPj4gKwkJCX07DQo+PiArCQl9
+Ow0KPj4gKw0KPj4gICAJCXB3bTogcHdtQGUxNjA0MDAwIHsNCj4+ICAgCQkJY29tcGF0aWJsZSA9
+ICJtaWNyb2NoaXAsc2FtYTdnNS1wd20iLCAiYXRtZWwsc2FtYTVkMi1wd20iOw0KPj4gICAJCQly
+ZWcgPSA8MHhlMTYwNDAwMCAweDQwMDA+Ow0KPiANCj4gSGVsbG8gQ2xhdWRpdSwgTmljb2xhcywN
+Cg0KSGksIEV1Z2VuLA0KDQo+IA0KPiBUaGlzIHBhdGNoIGlzIHJlYWR5IHRvIGdvIG5vdyAsIGFz
+IHRoZSBtZWRpYSBjb250cm9sbGVyIHN1cHBvcnQgZm9yIFhJU0MgDQo+IGRyaXZlciBpcyBpbiB0
+cmVlLg0KPiANCj4gTGV0IG1lIGtub3cgaWYgeW91IG5lZWQgdGhpcyB0byBiZSByZXNlbnQuDQoN
+Ck5vIG5lZWQuIEknbGwgdGFrZSB0aGlzIG9uZSBmb3IgdGhlIG5leHQgUFIuDQoNClRoYW5rIHlv
+dSwNCkNsYXVkaXUgQmV6bmVhDQoNCj4gDQo+IFRoYW5rcywNCj4gRXVnZW4NCj4gDQoNCg==
