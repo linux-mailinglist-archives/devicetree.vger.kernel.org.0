@@ -2,110 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12CF964CCBF
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 15:57:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 957C764CCC3
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 15:58:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238123AbiLNO47 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 09:56:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60488 "EHLO
+        id S238207AbiLNO6F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 09:58:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238743AbiLNO45 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 09:56:57 -0500
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B71042497F;
-        Wed, 14 Dec 2022 06:56:55 -0800 (PST)
-Received: by mail-oi1-f176.google.com with SMTP id v82so2794547oib.4;
-        Wed, 14 Dec 2022 06:56:55 -0800 (PST)
+        with ESMTP id S237778AbiLNO6E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 09:58:04 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38EEC27917
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 06:58:03 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id bp15so10846460lfb.13
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 06:58:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WnLnhyH+qeNBgZwxe9z+4G+3yU+hevVG6WnhaGxuJf4=;
+        b=Air4tn236LJXiT/97t9rfo3SZBy5PeH6nshGz3zu+OItD/F+w9xh6fCQpr+oEN9aXp
+         xjEDCSunLuVjjDW5IcSrpSlJkAjsitq/D/0DZlqQHkGdp7PvYUnOrXupLNhFjpHxZNa4
+         BJoNJjEdPiSDh7RLHwMvVvkOaReTkA2QGDLrTiAazKxtwCDZxVbD26gpEFXPQ7Xlb9WV
+         9zV7496979obBkiY3mGz7ZkU8wKkWbTpBfKty4T2BTs3i4NiHn8Hy+Ci3Le87qpmo+7w
+         vtTbTzv5Ex9CST63VBtlLKyhArIxV0I124X9xEyvd/z+S3BO3KrbdMKgYXPdQT7oucJ3
+         rP+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=UQp+Pv+VnNqt0GnEv4In+p3V3Ugon2ooJmx0qU33ZRk=;
-        b=fJwMrR5HJt2RmB1YJH/t7JCAME6UqjF/uiHimK1dbCx4bM6bW1Sh9Fzv56S2K5/bF3
-         Hs/cb0BO+/wMxCoxGDAgfwZV7PjImfLX0SwkCeMkTrRe4KgmGJB31I3zZ+N2UKYy3IIw
-         WznqqRY/EswdbnvtDxlaIzQQVuDGtSjy/MOUtbZCsGa6SYLuHj5HjObDnsmnPjTdL3BI
-         h7XKzSojTZUMgThemJBml2KOa91YHDZMudWAqbMqCKhF/8ExCRD+KMSbXTjC+NthOAwx
-         TxTY2WfewpJKNRtcWE3kcPgEo2tnC4Thv/fs587vgH2b+8a+QgvRcwUDGoVLN/XMRU0V
-         6/vg==
-X-Gm-Message-State: ANoB5pmMh9IaLiFyl6Na0eNbwvCGDhGfj7yfuzjxxeILqOEJffB4z7jG
-        4cR/W/9ISU2Yzmlv+IFKYaUX0nEm4Q==
-X-Google-Smtp-Source: AA0mqf7z8hKcvrlqNaLrxkNuSJUWSssJhZEijZM/veXnP0ZqiDrSolZQlVcEdXmEGO9b1Bj/+HjaBA==
-X-Received: by 2002:a05:6808:b02:b0:35a:4c73:7ad1 with SMTP id s2-20020a0568080b0200b0035a4c737ad1mr10835722oij.5.1671029814930;
-        Wed, 14 Dec 2022 06:56:54 -0800 (PST)
-Received: from robh_at_kernel.org (rrcs-98-6-157-194.sw.biz.rr.com. [98.6.157.194])
-        by smtp.gmail.com with ESMTPSA id e19-20020a4a91d3000000b004a09c4aceb6sm657913ooh.46.2022.12.14.06.56.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Dec 2022 06:56:54 -0800 (PST)
-Received: (nullmailer pid 1045155 invoked by uid 1000);
-        Wed, 14 Dec 2022 14:56:53 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WnLnhyH+qeNBgZwxe9z+4G+3yU+hevVG6WnhaGxuJf4=;
+        b=Mf6KFLTpGND1QcBR2IuafUIMZ2Fa2H55kUL6xpxQA/Y47XrlCEQwgQFcQAPOhmGHj/
+         9C44NAgZwCX0mI2XV689F19uDLf5ltHOkWDyERUX0sI3XBv/TGRwnIkdoT/DDEeOXXUF
+         v2lOeTyJrNSTmmAF9GIhzfhd155Vkvisn09cjm40P1Swjde3jGUunT1EY5kj+nRu+3SJ
+         uBSz7LXpAH6lPAfFoLRYqMYJl0R5UqxgNvH8OAn41yxZAV7Z9p001ePBqPGjKvaseJiy
+         oFjnpFnnRUJ2ZneokT29sWtTKi0fz1FoxBTgTwTgvT+bnh5/A3t9CiV6CIGwh7gnT0mP
+         DyTg==
+X-Gm-Message-State: ANoB5pnJhbutNZ2raicFTXsvqKM2Tsw/M9anOe0eDjoCw3qMrVTCxgv1
+        3bseS9psinC8Q5JdHcPkJ8WW+Q==
+X-Google-Smtp-Source: AA0mqf7Bp/Nce2g7/V9EGE1XxedPEfq71uMCEgxV1nfX2lvUfdF8mH5HhAQFS8oHmJoqqaUMbyXplw==
+X-Received: by 2002:ac2:569e:0:b0:4b5:29fe:86c with SMTP id 30-20020ac2569e000000b004b529fe086cmr1554872lfr.17.1671029881628;
+        Wed, 14 Dec 2022 06:58:01 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id j6-20020ac25506000000b004b53eb60e3csm831164lfk.256.2022.12.14.06.58.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Dec 2022 06:58:01 -0800 (PST)
+Message-ID: <66665839-ebda-7f40-5c94-53683779d5ab@linaro.org>
+Date:   Wed, 14 Dec 2022 15:57:59 +0100
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     haibo.chen@nxp.com
-Cc:     lars@metafoo.de, krzysztof.kozlowski+dt@linaro.org,
-        kernel@pengutronix.de, festevam@gmail.com,
-        linux-iio@vger.kernel.org, s.hauer@pengutronix.de,
-        devicetree@vger.kernel.org, linux-imx@nxp.com,
-        linux-arm-kernel@lists.infradead.org, shawnguo@kernel.org,
-        jic23@kernel.org, robh+dt@kernel.org
-In-Reply-To: <1671024939-29322-2-git-send-email-haibo.chen@nxp.com>
-References: <1671024939-29322-1-git-send-email-haibo.chen@nxp.com>
- <1671024939-29322-2-git-send-email-haibo.chen@nxp.com>
-Message-Id: <167102966432.1040986.12796829521940941811.robh@kernel.org>
-Subject: Re: [PATCH v2 2/3] dt-bindings: iio: adc: Add binding documentation
- for NXP IMX93 ADC
-Date:   Wed, 14 Dec 2022 08:56:53 -0600
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v2 2/2] dt-bindings: Add Arm corstone500 platform
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Emekcan Aras <emekcan.aras@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <20221214132404.439882-1-emekcan.aras@arm.com>
+ <20221214132404.439882-3-emekcan.aras@arm.com>
+ <2c799103-3e5f-f288-3c78-6360c17a8e45@linaro.org>
+In-Reply-To: <2c799103-3e5f-f288-3c78-6360c17a8e45@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 14/12/2022 14:44, Krzysztof Kozlowski wrote:
 
-On Wed, 14 Dec 2022 21:35:38 +0800, haibo.chen@nxp.com wrote:
-> From: Haibo Chen <haibo.chen@nxp.com>
 > 
-> The IMX93 SoC has a new ADC IP, so add binding documentation
-> for NXP IMX93 ADC.
+>> +      - const: arm,corstone500
+>> +
 > 
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
-> ---
->  .../bindings/iio/adc/nxp,imx93-adc.yaml       | 79 +++++++++++++++++++
->  1 file changed, 79 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
-> 
+> required:
+>   - compatible
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+And this is actually not needed. Most of boards skip it as root-node
+schema requires it. This comment can be ignored.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.example.dtb: adc@44530000: '#io-channel-cells' is a required property
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.example.dtb: adc@44530000: 'clock-names' does not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/1671024939-29322-2-git-send-email-haibo.chen@nxp.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+Krzysztof
 
