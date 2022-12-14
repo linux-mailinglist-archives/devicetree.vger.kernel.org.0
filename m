@@ -2,65 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2770D64C9A8
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 14:03:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 817E664C9B1
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 14:06:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238515AbiLNNDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 08:03:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60768 "EHLO
+        id S238427AbiLNNGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 08:06:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238516AbiLNNDd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 08:03:33 -0500
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D82B1017;
-        Wed, 14 Dec 2022 05:03:23 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1671022986; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=UPY7i5SMkaWrKMVho/QYOQp0auQDrPT8dPO2l6K2foMyJvPZ8woJfjTPOwbVcwviT1KJgEjObe++Aj6yHYSHEFx2iDhYymbPdTknj39WyYQOY1O3J2N8CBZYXBh4I8iXaeL/yMl7hvn9o35WLK2xEEhRYl2zwjs4RrMKqD08KOM=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1671022986; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=59iU0P1f3ab6WLKiO0UF7eRA1PQgts1QskhL9VDL5XA=; 
-        b=F7wxJUlZ7S353Io7/FyOqNEEr3c2tmNKmNwts6m9Ixq0KA5u5ZpZURNdOVN2BhW2bGuirz2faM5Bj92xNiD1ARN9188hgC0TGznT7BCuByKvJacRZusOjZlA5aU7/w+qoPPK0F5xuI9hlH1TbapupA3umXd/YjiZyfTP5cmfpUM=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1671022986;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=59iU0P1f3ab6WLKiO0UF7eRA1PQgts1QskhL9VDL5XA=;
-        b=NSuQkHVHGa+Sip6dofYz/aQLvD564zlFEhlUybh4SbnKYGY3TxmRjhMIZYpENZYY
-        5Nr4rMhdpF3SyySfl/sVWkx3u65QD6dr6dnQpusrPrCGPsks8AjQ9euCnUSQ3rJxG0n
-        3RZRtt7/b05X8q0DE4LKvTZ+Y7xL59iI3sM/Y4kY=
-Received: from [10.10.10.3] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
-        with SMTPS id 1671022984989152.47326119284412; Wed, 14 Dec 2022 05:03:04 -0800 (PST)
-Message-ID: <e4b6b334-44c3-9e73-adaa-9972ff9e6fd5@arinc9.com>
-Date:   Wed, 14 Dec 2022 16:03:00 +0300
+        with ESMTP id S238369AbiLNNGj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 08:06:39 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 773C110B65
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 05:06:38 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id z4so6556074ljq.6
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 05:06:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RoQRXkX5X4uwB+IhDZoYKCKReZh3tL0j2RPpSXrZWzo=;
+        b=MBV4DAQE6vtbboqOHiO5SrAbZve9Tbn3G2iCSqkjvVtxHOLXbCiefuKshGQfUoddf8
+         bnMKILxuYVWVgHYutUWEG4kdyofQm3fNRbDPmxRGr323IfTWo8Xy4tibWuJi+mAMXRIs
+         Klglnr4DO4BJcOOY2w0eKVW+tVw8ux12l0bIhVev8SK9a20FK2TZ1Y48E0D/zOX4K4l4
+         MMk0ZD9OV6QQmAo8dTWv0pYImDKYTbNJVT2SRqfDZooggPKKmCeCOFMJZOat9xsdo4LX
+         BTDwOZvUE2VupQcz802Oxkl9nr5eCCs0U0qIC33QfA2Bp9H6RNdFJ8mRzSw+nytepqmb
+         o5Og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RoQRXkX5X4uwB+IhDZoYKCKReZh3tL0j2RPpSXrZWzo=;
+        b=pW1UWUSdD3pB73xyjsJrLBMYRECDHhPTr5MTXmEXP4g/2GEacgpPrj+eVxDYoBdpgI
+         B5iYLXMIQMRwMw+0IFHkE0UfbhXG6WMll2IzB3PlEWobQ/+JilfBMmytZR/Tbiir8Uqw
+         gb2Zg1+QCENQaESAs8Z6ysqLI32aBqm68Hhe4x9jF5EhAdbxYr3aZqBogw0rXxyJtRgI
+         apNOzfg+ZFofYWLF/hTaciHF5rlAkM3F6W04FlKQeOeZ996UAuC/YmQN0mUbCPUbeI3K
+         aZLwQ+QZ7dWAnmAI2xUUU/956JoS90S1gFKUXdlk+V3A2HjHIaWiItT/GFDO3k+r6zdn
+         v0iQ==
+X-Gm-Message-State: AFqh2koky5tiMqzxRz9fB7laJd2f9aNti6qkbw4DhRf/OQpvx2m12HpO
+        +YdhJUz722Ai39Gg7VMKfqCjXQ==
+X-Google-Smtp-Source: AMrXdXuHhlyvyA4y6M1GW9MKvaUDRZneUKFJhXvgIvNnzM2M7zWMF0ExMyDuU2u8/BgL/SC6tRGmDw==
+X-Received: by 2002:a2e:a4a3:0:b0:27d:7e6c:f0d1 with SMTP id g3-20020a2ea4a3000000b0027d7e6cf0d1mr449759ljm.50.1671023196823;
+        Wed, 14 Dec 2022 05:06:36 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id v14-20020a2ea44e000000b0027da3a87ff6sm95246ljn.83.2022.12.14.05.06.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Dec 2022 05:06:36 -0800 (PST)
+Message-ID: <c76c8004-021a-12db-12b8-3bb9a73b7cfe@linaro.org>
+Date:   Wed, 14 Dec 2022 14:06:35 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 2/6] dt-bindings: pinctrl: mt7620: add proper function
- muxing binding
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org
-References: <20221213130430.172876-1-arinc.unal@arinc9.com>
- <20221213130430.172876-3-arinc.unal@arinc9.com>
- <4ffd94b2-e72c-a081-4326-5bc254603ddf@linaro.org>
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v3 13/17] dt-bindings: soc: socionext: Add UniPhier media
+ I/O block
 Content-Language: en-US
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <4ffd94b2-e72c-a081-4326-5bc254603ddf@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Masami Hiramatsu <mhiramat@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221213082449.2721-1-hayashi.kunihiko@socionext.com>
+ <20221213082449.2721-14-hayashi.kunihiko@socionext.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221213082449.2721-14-hayashi.kunihiko@socionext.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -70,108 +77,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14.12.2022 14:55, Krzysztof Kozlowski wrote:
-> On 13/12/2022 14:04, Arınç ÜNAL wrote:
->> Not every function can be muxed to a group. Add proper binding which
->> documents which function can be muxed to a group or set of groups.
->>
->> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
->> ---
->>   .../pinctrl/ralink,mt7620-pinctrl.yaml        | 632 +++++++++++++++++-
->>   1 file changed, 596 insertions(+), 36 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/pinctrl/ralink,mt7620-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/ralink,mt7620-pinctrl.yaml
->> index 6f17f3991640..06880c80ba80 100644
->> --- a/Documentation/devicetree/bindings/pinctrl/ralink,mt7620-pinctrl.yaml
->> +++ b/Documentation/devicetree/bindings/pinctrl/ralink,mt7620-pinctrl.yaml
->> @@ -29,47 +29,608 @@ patternProperties:
->>           $ref: pinmux-node.yaml#
->>   
->>           properties:
->> -          groups:
->> -            description: The pin group to select.
->> -            enum: [
->> -              # common
->> -              i2c, spi, wdt,
->> -
->> -              # For MT7620 SoC
->> -              ephy, mdio, nd_sd, pa, pcie, rgmii1, rgmii2, spi refclk,
->> -              uartf, uartlite, wled,
->> -
->> -              # For MT7628 and MT7688 SoCs
->> -              gpio, i2s, p0led_an, p0led_kn, p1led_an, p1led_kn, p2led_an,
->> -              p2led_kn, p3led_an, p3led_kn, p4led_an, p4led_kn, perst, pwm0,
->> -              pwm1, refclk, sdmode, spi cs1, spis, uart0, uart1, uart2,
->> -              wled_an, wled_kn,
->> -            ]
->> -
->>             function:
->> -            description: The mux function to select.
->> -            enum: [
->> -              # common
->> -              gpio, i2c, refclk, spi,
->> -
->> -              # For MT7620 SoC
->> -              ephy, gpio i2s, gpio uartf, i2s uartf, mdio, nand, pa,
->> -              pcie refclk, pcie rst, pcm gpio, pcm i2s, pcm uartf,
->> -              rgmii1, rgmii2, sd, spi refclk, uartf, uartlite, wdt refclk,
->> -              wdt rst, wled,
->> -
->> -              # For MT7628 and MT7688 SoCs
->> -              antenna, debug, i2s, jtag, p0led_an, p0led_kn,
->> -              p1led_an, p1led_kn, p2led_an, p2led_kn, p3led_an, p3led_kn,
->> -              p4led_an, p4led_kn, pcie, pcm, perst, pwm, pwm0, pwm1, pwm_uart2,
->> -              rsvd, sdxc, sdxc d5 d4, sdxc d6, sdxc d7, spi cs1,
->> -              spis, sw_r, uart0, uart1, uart2, utif, wdt, wled_an, wled_kn, -,
->> -            ]
->> +            description:
->> +              A string containing the name of the function to mux to the group.
->> +            anyOf:
->> +              - description: For MT7620 SoC
->> +                enum: [ephy, gpio, gpio i2s, gpio uartf, i2c, i2s uartf, mdio, nand, pa,
->> +                       pcie refclk, pcie rst, pcm gpio, pcm i2s, pcm uartf, refclk,
->> +                       rgmii1, rgmii2, sd, spi, spi refclk, uartf, uartlite, wdt refclk,
->> +                       wdt rst, wled]
->> +
->> +              - description: For MT7628 and MT7688 SoCs
->> +                enum: [antenna, debug, gpio, i2c, i2s, jtag, p0led_an, p0led_kn,
->> +                       p1led_an, p1led_kn, p2led_an, p2led_kn, p3led_an, p3led_kn,
->> +                       p4led_an, p4led_kn, pcie, pcm, perst, pwm, pwm0, pwm1, pwm_uart2,
->> +                       refclk, rsvd, sdxc, sdxc d5 d4, sdxc d6, sdxc d7, spi, spi cs1,
->> +                       spis, sw_r, uart0, uart1, uart2, utif, wdt, wled_an, wled_kn, -]
->> +
->> +          groups:
->> +            description:
->> +              An array of strings. Each string contains the name of a group.
->>   
->>           required:
->>             - groups
->>             - function
->>   
->> +        allOf:
->> +          - if:
->> +              properties:
->> +                function:
->> +                  const: antenna
->> +            then:
->> +              properties:
->> +                groups:
->> +                  enum: [i2s]
+On 13/12/2022 09:24, Kunihiko Hayashi wrote:
+> Add devicetree binding schema for the media I/O block implemented on
+> Socionext Uniphier SoCs. This block is implemented on LD4, sLD8, Pro4,
+> and LD11 SoCs.
 > 
-> I have doubts such setup is maintainable and readable. I would suggest
-> to leave just few - maybe for gpio, jtag, refclk, utif.
+> Media I/O block implemented on Socionext UniPhier SoCs is an integrated
+> component of the stream type peripherals including SD, USB2.0, eMMC,
+> and MIO-DMAC.
+> 
+> Media I/O block has a common logic to control the component.
+> 
 
-These bindings are not going to change once all properly defined and I'm 
-here as a maintainer so I don't see an issue with maintaining the binding.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-It's the whole pin configuration of an SoC squashed under a single 
-document. I guess this is the fate of the pinctrl bindings. The bindings 
-for mt7622 is not so different:
+Best regards,
+Krzysztof
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/pinctrl/mediatek%2Cmt7622-pinctrl.yaml#n63
-
-It's still much better than reading the code:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/pinctrl/ralink/pinctrl-mt7620.c
-
-Arınç
