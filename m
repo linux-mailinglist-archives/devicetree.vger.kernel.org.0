@@ -2,132 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 058F164CFD6
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 20:03:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A586A64D007
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 20:21:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229550AbiLNTDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 14:03:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35208 "EHLO
+        id S238574AbiLNTVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 14:21:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239002AbiLNTDV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 14:03:21 -0500
-Received: from m-r1.th.seeweb.it (m-r1.th.seeweb.it [IPv6:2001:4b7a:2000:18::170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3596D2A955
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 11:03:19 -0800 (PST)
-Received: from TimeMachine.lan (adsl-d248.84-47-10.t-com.sk [84.47.10.248])
-        by m-r1.th.seeweb.it (Postfix) with ESMTPA id 3EC7D20370;
-        Wed, 14 Dec 2022 20:03:18 +0100 (CET)
-From:   Martin Botka <martin.botka@somainline.org>
-To:     martin.botka1@gmail.com
-Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Jami Kettunen <jamipkettunen@somainline.org>,
-        Paul Bouchara <paul.bouchara@somainline.org>,
-        Jan Trmal <jtrmal@gmail.com>,
-        Martin Botka <martin.botka@somainline.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S237464AbiLNTVe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 14:21:34 -0500
+Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [IPv6:2001:4b7a:2000:18::163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C49A3DE94;
+        Wed, 14 Dec 2022 11:21:33 -0800 (PST)
+Received: from SoMainline.org (94-209-172-39.cable.dynamic.v4.ziggo.nl [94.209.172.39])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 0FF8C20393;
+        Wed, 14 Dec 2022 20:21:32 +0100 (CET)
+Date:   Wed, 14 Dec 2022 20:21:30 +0100
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v5 3/3] regulator: axp20x: Add support for AXP1530 variant
-Date:   Wed, 14 Dec 2022 20:03:05 +0100
-Message-Id: <20221214190305.3354669-4-martin.botka@somainline.org>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221214190305.3354669-1-martin.botka@somainline.org>
-References: <20221214190305.3354669-1-martin.botka@somainline.org>
+Subject: Re: [PATCH] dt-bindings: arm: qcom: add board-id/msm-id for MSM8956,
+ SDM636 and SM4250
+Message-ID: <20221214192130.pv2yf2x5kz7mlggo@SoMainline.org>
+References: <20221214150605.173346-1-krzysztof.kozlowski@linaro.org>
+ <20221214152915.wshz4odyqcupo6xw@SoMainline.org>
+ <65ccd0c9-8bd9-fc3c-ef33-78b905adf294@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.0 required=5.0 tests=BAYES_00,RCVD_IN_SORBS_HTTP,
-        RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <65ccd0c9-8bd9-fc3c-ef33-78b905adf294@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-AXP1530 has a few regulators that are controlled via I2C Bus.
+On 2022-12-14 17:45:49, Krzysztof Kozlowski wrote:
+> On 14/12/2022 16:29, Marijn Suijten wrote:
+> > On 2022-12-14 16:06:05, Krzysztof Kozlowski wrote:
+> >> Allow qcom,board-id and qcom,msm-id leagcy properties on these older
+> >> platforms: MSM8956, SDM636 and SM4250.  Also mention more OnePlus
+> >> devices using modified qcom,board-id field.
+> >>
+> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > 
+> > Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+> > 
+> >> ---
+> >>  Documentation/devicetree/bindings/arm/qcom.yaml | 5 +++++
+> >>  1 file changed, 5 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> >> index d45e2129fce3..cfb7f5caf606 100644
+> >> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> >> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> >> @@ -925,15 +925,18 @@ allOf:
+> >>                - qcom,apq8026
+> >>                - qcom,apq8094
+> >>                - qcom,apq8096
+> >> +              - qcom,msm8956
+> > 
+> > I am certain this (and msm8976) were added in [1] but it somehow got
+> > lost when that was merged as 05c0c38dc752 ("dt-bindings: arm: qcom:
+> > Document msm8956 and msm8976 SoC and devices")?
+> > 
+> > Should we also add qcom,msm8976 or only when a user for that board is
+> > added?
+> 
+> Bjorn,
+> You need to fix your scripts. It's not the first time when applied patch
+> is changed and its pieces are gone.
 
-Add support for them.
+That is quite unfortunate, and it had me puzzled for a second...
 
-Signed-off-by: Martin Botka <martin.botka@somainline.org>
----
- drivers/regulator/axp20x-regulator.c | 44 ++++++++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
+> >>                - qcom,msm8992
+> >>                - qcom,msm8994
+> >>                - qcom,msm8996
+> >>                - qcom,msm8998
+> >>                - qcom,sdm630
+> >>                - qcom,sdm632
+> >> +              - qcom,sdm636
+> >>                - qcom,sdm845
+> >>                - qcom,sdx55
+> >>                - qcom,sdx65
+> >> +              - qcom,sm4250
+> > 
+> > qcom,sm6115 could be added as well unless you rather leave that to the
+> > person(s) adding the board compatible later on.
+> 
+> There is no board, I think, so I did not add compatible.
 
-diff --git a/drivers/regulator/axp20x-regulator.c b/drivers/regulator/axp20x-regulator.c
-index d260c442b788..9420839ff4f9 100644
---- a/drivers/regulator/axp20x-regulator.c
-+++ b/drivers/regulator/axp20x-regulator.c
-@@ -1001,6 +1001,40 @@ static const struct regulator_desc axp813_regulators[] = {
- 		    AXP22X_PWR_OUT_CTRL2, AXP22X_PWR_OUT_DC1SW_MASK),
- };
- 
-+static const struct linear_range axp1530_dcdc1_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(500000, 0x0, 0x46, 10000),
-+	REGULATOR_LINEAR_RANGE(1220000, 0x47, 0x57, 20000),
-+	REGULATOR_LINEAR_RANGE(1600000, 0x58, 0x6A, 100000),
-+};
-+
-+static const struct linear_range axp1530_dcdc2_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(500000, 0x0, 0x46, 10000),
-+	REGULATOR_LINEAR_RANGE(1220000, 0x47, 0x57, 20000),
-+};
-+
-+static const struct linear_range axp1530_dcdc3_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(500000, 0x0, 0x46, 10000),
-+	REGULATOR_LINEAR_RANGE(1220000, 0x47, 0x66, 20000),
-+};
-+
-+static const struct regulator_desc axp1530_regulators[] = {
-+	AXP_DESC_RANGES(AXP1530, DCDC1, "dcdc1", "vin1", axp1530_dcdc1_ranges,
-+					0x6B, AXP1530_DCDC1_CONRTOL, 0x7f, AXP1530_OUTPUT_CONTROL,
-+					BIT(0)),
-+	AXP_DESC_RANGES(AXP1530, DCDC2, "dcdc2", "vin2", axp1530_dcdc2_ranges,
-+					0x58, AXP1530_DCDC2_CONRTOL, 0x7f, AXP1530_OUTPUT_CONTROL,
-+					BIT(1)),
-+	AXP_DESC_RANGES(AXP1530, DCDC3, "dcdc3", "vin3", axp1530_dcdc3_ranges,
-+					0x58, AXP1530_DCDC3_CONRTOL, 0x7f, AXP1530_OUTPUT_CONTROL,
-+					BIT(2)),
-+	AXP_DESC(AXP1530, LDO1, "ldo1", "ldo1in", 500, 3500, 100,
-+					AXP1530_ALDO1_CONRTOL, 0x1f, AXP1530_OUTPUT_CONTROL,
-+					BIT(3)),
-+	AXP_DESC(AXP1530, LDO2, "ldo2", "ldo2in", 500, 3500, 100,
-+					AXP1530_DLDO1_CONRTOL, 0x1f, AXP1530_OUTPUT_CONTROL,
-+					BIT(4)),
-+};
-+
- static int axp20x_set_dcdc_freq(struct platform_device *pdev, u32 dcdcfreq)
- {
- 	struct axp20x_dev *axp20x = dev_get_drvdata(pdev->dev.parent);
-@@ -1040,6 +1074,12 @@ static int axp20x_set_dcdc_freq(struct platform_device *pdev, u32 dcdcfreq)
- 		def = 3000;
- 		step = 150;
- 		break;
-+	case AXP1530_ID:
-+		/*
-+		 * Do not set the DCDC frequency on AXP1530
-+		 */
-+		return 0;
-+		break;
- 	default:
- 		dev_err(&pdev->dev,
- 			"Setting DCDC frequency for unsupported AXP variant\n");
-@@ -1220,6 +1260,10 @@ static int axp20x_regulator_probe(struct platform_device *pdev)
- 	bool drivevbus = false;
- 
- 	switch (axp20x->variant) {
-+	case AXP1530_ID:
-+		regulators = axp1530_regulators;
-+		nregulators = AXP1530_REG_ID_MAX;
-+		break;
- 	case AXP202_ID:
- 	case AXP209_ID:
- 		regulators = axp20x_regulators;
--- 
-2.38.1
+Correct, it's still in progress before being uptreamed.  Given that
+Konrad already has patches to add the names here when he does, it makes
+sense to leave this.
 
+- Marijn
