@@ -2,111 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B22D064CE6A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 17:54:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACA7764CE88
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 18:00:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238844AbiLNQy2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 11:54:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34804 "EHLO
+        id S239193AbiLNRAK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 12:00:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238636AbiLNQyU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 11:54:20 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 736102936B
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 08:54:18 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id q6so11419277lfm.10
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 08:54:18 -0800 (PST)
+        with ESMTP id S238857AbiLNRAI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 12:00:08 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6E8A1A3B3
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 09:00:07 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id b13so11480908lfo.3
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 09:00:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=g4ET78kPouxJtleX0/D8/wwO+/VH2Xj4NPlSa2QjbG8=;
-        b=OmvgWeK7sAu2ooEq8jNreKtk9F8WfhtHysaQaeap4iH6HXijrdKKOljTP1kekfIAbA
-         ivMUf4VB8UWwd0DsoqP7koxDPpDi11yT9YWlSfPGTCmZ4NbkHHSjEBb9yKZ6weEshXGy
-         7l+1ylnLD23leWCXOnmgQf04CASNBXZtlviPkhghJOIqvaZqAVXZKMm5N7hxXgB/MOC/
-         wqjJw6xAkbtCLj63wFoBSUDqXtf3Cs51vCYiC69b7hCemFshprecF2fLtFecBoHsr09i
-         IGAx0tlBeE8omqaee3myITVduyAueDtD6d76yj52JFuFKn3IxJLjTmtEjnrFzLd7Dq4u
-         +4rg==
+        bh=Lvd2yKCxN/cWI7hKHlLa8cJjk+ps/lRVDsToMSf8tOg=;
+        b=BW3IyTwR01kc+dH1hnbs7li3oFVb2chs6RVIFA2xJhgglw1bx/SZ3Mn7T30fspgpRJ
+         rOgWd+zeyEFpXGQKeD+vfZppdNjsPjdM0CgSpNh+Lvp6HrTOoxMLa1g5eDSoNaqcgv0m
+         oqBED1QZ3UskYFcDkkDDvGrN23dIXwNfH9760TsARKdTaxMXIq/D/TRVj51amENCd587
+         sf8a9rLheuux/ZNC8nujss3cWHG9P3PJYLgCAz4hkAJQCPCZvg6OOiQ4qXZH12FJ2/8V
+         9+cR4I5+sxAD/CEcACJfXfRa2UJ4sAHUikHgMxVD6I9WGCDQLSHQ7Rgqg9Fu3CO8GXeD
+         I40g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=g4ET78kPouxJtleX0/D8/wwO+/VH2Xj4NPlSa2QjbG8=;
-        b=MacjmnwOEg8sBd0SZQjM6KKZDFyHN3Rd6JWJ2nrkTCb1j5MobpbjWrpMsH6rhUx7F4
-         9DId9MVWVnuZZ81fEe6jIIcEN1hnpJPREAWuVPmdTII8umiXqmBgRgQhC4DGDEG9c2Tt
-         hYG+Wh7APFbe82c/yFYk4NlfxVKCp2D4xo3s2AwR64MOLTKeyxauIuv5E6ZOHmCYp/CP
-         sMfk/t58R4uocC+Dxv7AZ/78XaUMRnzcby5kBj0om8D5NU2yznJslLaeVj+jlfJI6WB4
-         5W9sB8N9ish9vaMINhbabf1zjuq985bFexCz1g6uT5EvJpfR7dHwLmJaVGlURWtGiWe9
-         nGtw==
-X-Gm-Message-State: AFqh2kot74KIBy0rrZmO84Xdtv2bFBodu1ETiFWmc6xwDqTAC/ifuDn2
-        GbJRzztPlE7JBbIk2zPIXeQT8Q==
-X-Google-Smtp-Source: AMrXdXtqASp6OIX+87hBDF9GGJ1wVQKIY9LBc+tepjb1mQCkajMrc4FFGfElEhHmybWUHfgbniuOow==
-X-Received: by 2002:a05:6512:3d2a:b0:4ba:555f:4795 with SMTP id d42-20020a0565123d2a00b004ba555f4795mr722550lfv.25.1671036856900;
-        Wed, 14 Dec 2022 08:54:16 -0800 (PST)
+        bh=Lvd2yKCxN/cWI7hKHlLa8cJjk+ps/lRVDsToMSf8tOg=;
+        b=ApmZNBAl3eh69HBs5s6oO+YJ0ryCUEaNDoM/x35/qOW4d1iEwlSBCAWAnMSGFk8ROE
+         lUcjnKGKqbpD2/ks3Xy9tQ45oGSh23xWz+TsgFxS5D+tqA5b8GiMDffgbI9L7XELO0Qc
+         kz2NMDx5wPkAvkFecJtSFnIfjp5YmX/LD1qy4EDlFyUWm/CIEUbnF1xImF46jNTY5TZc
+         w92lO98Tna5ZiNK53ApFI+HjArfGIt/Txc3Al+RohxXhTqgRQIh+rYS7rNuZtwK5DQ3s
+         t9X7JN97DKaDajObhrR6QETDUxzHoOLS85tTZaoiiQZHm5RIS6Y6D6W2dA+zKTTPxXeE
+         RhpA==
+X-Gm-Message-State: ANoB5pkP9inwMf0FvylnKe6OUkV4ZMDMfol14B2L226qJ+IHtEwcUPku
+        jUDiJwKKxQ+tDRkgINWIUm6onQ==
+X-Google-Smtp-Source: AA0mqf4mABnqZl7/+BzWI1hOTFIk5UPhZ/K7k+NH9eQxXgxiXKyPbLEF853q1jLsfbrbTV5vlrJM3g==
+X-Received: by 2002:a19:6405:0:b0:4b5:b268:dbc8 with SMTP id y5-20020a196405000000b004b5b268dbc8mr5539381lfb.45.1671037205985;
+        Wed, 14 Dec 2022 09:00:05 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id u30-20020ac25bde000000b004b49025f96dsm871295lfn.187.2022.12.14.08.54.15
+        by smtp.gmail.com with ESMTPSA id l11-20020ac24a8b000000b004b55e16931fsm865442lfp.259.2022.12.14.09.00.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Dec 2022 08:54:16 -0800 (PST)
-Message-ID: <c7cb3be5-150b-a912-8801-670db63bd4ca@linaro.org>
-Date:   Wed, 14 Dec 2022 17:54:15 +0100
+        Wed, 14 Dec 2022 09:00:04 -0800 (PST)
+Message-ID: <386e3717-a063-a2ea-6028-19d11b5838b0@linaro.org>
+Date:   Wed, 14 Dec 2022 18:00:03 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH v2 RESEND 0/5] ARM: dts: nanobone: Fix missing/incorrect
- features
+Subject: Re: [PATCH v2 3/3] dt-bindings: hwmon: Add bindings for max31732
 Content-Language: en-US
-To:     Mark Jackson <mpfj@newflow.co.uk>,
-        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+To:     Sinan Divarci <Sinan.Divarci@analog.com>, jdelvare@suse.com,
+        linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20221130140547.295859-1-mpfj@newflow.co.uk>
- <CAAbcLfgUmiM=6eTQRRdkgLSEQZEcZwnzq0=Ov58S_osru-_V2Q@mail.gmail.com>
+References: <20221214142206.13288-1-Sinan.Divarci@analog.com>
+ <20221214142206.13288-4-Sinan.Divarci@analog.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAAbcLfgUmiM=6eTQRRdkgLSEQZEcZwnzq0=Ov58S_osru-_V2Q@mail.gmail.com>
+In-Reply-To: <20221214142206.13288-4-Sinan.Divarci@analog.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/12/2022 14:35, Mark Jackson wrote:
-> On Wed, 30 Nov 2022 at 14:06, Mark Jackson <mpfj@newflow.co.uk> wrote:
->>
->> This patch series updates the NanoBone DTS file to address various missing or
->> incorrect features.
->>
->> v1 -> v2:
->>   - Move temperature sensor definition under I2C heirarchy
->>
->> Mark Jackson (5):
->>   ARM: dts: am335x-nano: Fix GPIO settings for RTS/CTS pins on UART3 & 4
->>   ARM: dts: am335x-nano: Enable RS485 mode for UART3 & 4
->>   ARM: dts: am335x-nano: Enable I2C temperature sensor
->>   ARM: dts: am335x-nano: Fix GPIO settings for MMC pins
->>   ARM: dts: am335x-nano: Enable USB host
->>
->>  arch/arm/boot/dts/am335x-nano.dts | 32 +++++++++++++++++++++++++------
->>  1 file changed, 26 insertions(+), 6 deletions(-)
->>
->> --
->> 2.34.1
->>
-> 
-> Any update on this patch ?
-> Did it ever get through ?
-> Do I need to re-submit for some reason ?
+On 14/12/2022 15:22, Sinan Divarci wrote:
+> Adding bindings for max31732 quad remote temperature sensor
 
-It's a merge window and you sent it just before it started.
+Full stop.
+
+Subject: drop second, redundant "bindings for".
+
+> 
+> Signed-off-by: Sinan Divarci <Sinan.Divarci@analog.com>
+> ---
+>  .../bindings/hwmon/adi,max31732.yaml          | 83 +++++++++++++++++++
+>  1 file changed, 83 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/adi,max31732.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/adi,max31732.yaml b/Documentation/devicetree/bindings/hwmon/adi,max31732.yaml
+> new file mode 100644
+> index 000000000..c701cda95
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/adi,max31732.yaml
+> @@ -0,0 +1,83 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2022 Analog Devices Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/adi,max31732.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices MAX31732 Temperature Sensor Device Driver
+
+Drop "Device Driver"
+
+> +
+> +maintainers:
+> +  - Sinan Divarci <Sinan.Divarci@analog.com>
+> +
+> +description: Bindings for the Analog Devices MAX31732 Temperature Sensor Device.
+
+Drop "Bindings for". Actually, either drop entire description or write
+something else than title.
+
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,max31732
+> +
+> +  reg:
+> +    description: I2C address of the Temperature Sensor Device.
+
+Drop description.
+
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  interrupt-names:
+> +    description: Name of the interrupt pin of max31732 used for IRQ.
+
+Drop description.
+
+> +    minItems: 1
+> +    items:
+> +      - enum: [ALARM1, ALARM2]
+> +      - enum: [ALARM1, ALARM2]
+
+This should be fixed, not flexible. Why it's flexible?
+
+lowercase letters only
+
+> +
+> +  adi,alarm1-interrupt-mode:
+> +    description: |
+> +      Enables the ALARM1 output to function in interrupt mode.
+> +      Default ALARM1 output function is comparator mode.
+
+Why this is a property of DT/hardware? Don't encode policy in DT.
+
+> +    type: boolean
+> +
+> +  adi,alarm2-interrupt-mode:
+> +    description: |
+> +      Enables the ALARM2 output to function in interrupt mode.
+> +      Default ALARM2 output function is comparator mode.
+
+Same question.
+
+> +    type: boolean
+> +
+> +  adi,alarm1-fault-queue:
+> +    description: The number of consecutive faults required to assert ALARM1.
+
+Same question - why this number differs with hardware?
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [1, 2, 4, 6]
+> +    default: 1
+> +
+> +  adi,alarm2-fault-queue:
+> +    description: The number of consecutive faults required to assert ALARM2.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [1, 2, 4, 6]
+> +    default: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        sensor@1c {
+> +            compatible = "adi,max31732";
+> +            reg = <0x1c>;
+> +            interrupt-parent = <&gpio>;
+> +            interrupts = <17 IRQ_TYPE_EDGE_BOTH>, <27 IRQ_TYPE_EDGE_BOTH>;
+> +            interrupt-names = "ALARM1", "ALARM2";
+> +            adi,alarm1-fault-queue = <4>;
+> +            adi,alarm2-fault-queue = <2>;
+> +            adi,alarm2-interrupt-mode;
+> +      };
+
+Messed indentation.
+
+
+> +    };
 
 Best regards,
 Krzysztof
