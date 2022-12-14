@@ -2,233 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01BD364D2A3
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 23:56:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 200E464D302
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 00:09:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229463AbiLNW4q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 17:56:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41182 "EHLO
+        id S229702AbiLNXJF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 18:09:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbiLNW4o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 17:56:44 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B70EE389DC;
-        Wed, 14 Dec 2022 14:56:43 -0800 (PST)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BEMovT3028406;
-        Wed, 14 Dec 2022 22:56:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=NXwWqQ8KqZlBEtO0zZqASpt3pzZ+eDE/Zpa6hLScZbk=;
- b=MGv2rLe0AJ1lq4FmszX2pMcCFlE6O8orHtaDd5D9zGd+1Spgv6Q+ectQND3uKz95HOnx
- YDUn5w1jC/V/9EYKBToO1qwT7hGiW5wrH8p+OMf4JrVMqUOySgwkzXoFGF/gs5PQM+bj
- bgLPSWtdylpwIOkc5Qn9kQgdtFdi/6cKa2AXl5FHwAjHcsDzqAe+XXsGoWdIyfVIu2Gc
- /cqijbbbjfaSryABJykbhKK8flAFHm+332DYCKrvvqyFnYYMMlpEnulH40b1/Uxyz/NK
- gOPWtd8isC77I+bCZw8M5/mIL4YsuBEr8g9lCTU/qdKg+h/WXzI3Lmc+GJ8gl9Yv97jl kA== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3mf6rcjhve-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 14 Dec 2022 22:56:32 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2BEMuVjV015837
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 14 Dec 2022 22:56:31 GMT
-Received: from [10.110.66.74] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Wed, 14 Dec
- 2022 14:56:30 -0800
-Message-ID: <b38af164-08bc-07e7-dfaf-fb4d6d89d7db@quicinc.com>
-Date:   Wed, 14 Dec 2022 14:56:23 -0800
+        with ESMTP id S229611AbiLNXJD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 18:09:03 -0500
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 093C543874
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 15:09:02 -0800 (PST)
+Received: by mail-pj1-x1031.google.com with SMTP id u15-20020a17090a3fcf00b002191825cf02so856651pjm.2
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 15:09:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=3ehVNxRAk8vtcQmEsS2DeBEXBsGDUIlgGFYWQTXu6Hk=;
+        b=XGNT1V8bB+E+b7ARt7dy88tch1s1aCC7J585miYX8QJAQHTQDryfRyy/yUbZe84R3Z
+         QJ7OhpwNdCrA01EPKWFvknWSPw+t9xl6+DApoaVCcW9P6hnZtW89BYPZAJ42P547x/26
+         meb60w9D91tfFRNBLiL1qGf8wirGUo1fIfqMeHLIpjqP9c1zUtguR4FFW4p6uewrkK86
+         xKAydwss7Ktfjm8lJXjr8VmFLpKBGTgpQ5ZyG54z3vn2vPZMkDHePBP9fauHDYHKsmcP
+         HmzlCquXfd7JZcmZ5jRnUHrATM998CH2pypijXpvXMtUOZSQ9JXbvaIr0ZWopAfdXi6o
+         tkpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3ehVNxRAk8vtcQmEsS2DeBEXBsGDUIlgGFYWQTXu6Hk=;
+        b=lPkaczc870qsmuiI94//sthQtb9pB/zlqwCDPSj8WrWfe3chopuJUmLIA+UtaYpc/x
+         ZjnQC9CRZ4r+V06AZ6q+omJxhzFvG3+EUCoLD+2KEcf+/ouyB2mFh/lHCpUnD69baRF9
+         /NiRGHuDG5w7n+i15pqgZffPFaAf+c0RejjTzAXnnktBx1z/1V7JOYtN9+R7q/iNDdDz
+         yEUjeqFrY6armffBMl08E7n2z1lYHRaN9C6Np9EDDESLYf0tfVer9OadKlnWEqR8DmZt
+         ZIlQZRSZiECD8TG3QgeIoFmzH4BLQs/e9zxxZUFxXPORTmg+NxiGk4aTn6lQM+7BO8Sg
+         Cglw==
+X-Gm-Message-State: ANoB5pmuzNAJsbuGHKlO7doyl22OqTef9bediLcwNb3R+3ltxZahaHNJ
+        J9ZACHwNQrjRRQ3zbKpNmeHuZxM9wFKHV4k8HJEX3g==
+X-Google-Smtp-Source: AA0mqf4F3DDjCXcDZNjOHDv7HOXv55ZrwJY8PAYxDaDIKWp/7EopgFHllqtnyYZqC/Y9dH5TVaBIAEWv4YV5P1wITi4=
+X-Received: by 2002:a17:902:eac5:b0:189:f06e:fd93 with SMTP id
+ p5-20020a170902eac500b00189f06efd93mr11179976pld.37.1671059341322; Wed, 14
+ Dec 2022 15:09:01 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v12 2/5] dt-bindings: msm/dp: add data-lanes and
- link-frequencies property
-To:     Stephen Boyd <swboyd@chromium.org>, <agross@kernel.org>,
-        <airlied@gmail.com>, <andersson@kernel.org>, <daniel@ffwll.ch>,
-        <devicetree@vger.kernel.org>, <dianders@chromium.org>,
-        <dmitry.baryshkov@linaro.org>, <dri-devel@lists.freedesktop.org>,
-        <konrad.dybcio@somainline.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robdclark@gmail.com>,
-        <robh+dt@kernel.org>, <sean@poorly.run>, <vkoul@kernel.org>
-CC:     <quic_abhinavk@quicinc.com>, <quic_sbillaka@quicinc.com>,
-        <freedreno@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <1670967848-31475-1-git-send-email-quic_khsieh@quicinc.com>
- <1670967848-31475-3-git-send-email-quic_khsieh@quicinc.com>
- <CAE-0n52eHYCqxUJqQXoaQ8vyqCk-QfouSun+zUp3yo5DufWbwg@mail.gmail.com>
-Content-Language: en-US
-From:   Kuogee Hsieh <quic_khsieh@quicinc.com>
-In-Reply-To: <CAE-0n52eHYCqxUJqQXoaQ8vyqCk-QfouSun+zUp3yo5DufWbwg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: U29_nJSgdccaCRtFNjrWHW3FJNaCHDJO
-X-Proofpoint-ORIG-GUID: U29_nJSgdccaCRtFNjrWHW3FJNaCHDJO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-12-14_11,2022-12-14_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 suspectscore=0
- phishscore=0 clxscore=1015 impostorscore=0 adultscore=0 priorityscore=1501
- malwarescore=0 spamscore=0 mlxlogscore=999 mlxscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2212140187
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221128054820.1771-1-clin@suse.com> <20221128054820.1771-3-clin@suse.com>
+ <CAOMZO5D0wJcfbFsvUN3K17S5F4zT2Yf8yQB+wMKQPzuMBitrpA@mail.gmail.com>
+ <CACRpkdaKYFbXRcV1WgDEiYPEwzNAZq-AqAHpWd1rJyW-h369dw@mail.gmail.com>
+ <Y5K726npjKAO4sIq@linux-8mug> <CACRpkdbyfp3FwUfS7aDCLmsyM-3Xc1GfyX7_jFcuF1dhf+knQA@mail.gmail.com>
+In-Reply-To: <CACRpkdbyfp3FwUfS7aDCLmsyM-3Xc1GfyX7_jFcuF1dhf+knQA@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Wed, 14 Dec 2022 15:08:25 -0800
+Message-ID: <CAGETcx8V0xop2E11oL3CcaOe4E7w61-suHXU4A-V7AdhRxrUQA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] pinctrl: add NXP S32 SoC family support
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Chester Lin <clin@suse.com>, Fabio Estevam <festevam@gmail.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>, s32@nxp.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Larisa Grigore <larisa.grigore@nxp.com>,
+        Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>,
+        Andrei Stefanescu <andrei.stefanescu@nxp.com>,
+        Radu Pirea <radu-nicolae.pirea@nxp.com>,
+        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+        Matthias Brugger <mbrugger@suse.com>,
+        Matthew Nunez <matthew.nunez@nxp.com>,
+        Phu Luu An <phu.luuan@nxp.com>,
+        Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 12/13/2022 3:06 PM, Stephen Boyd wrote:
-> Quoting Kuogee Hsieh (2022-12-13 13:44:05)
->> Add both data-lanes and link-frequencies property into endpoint
-> Why do we care? Please tell us why it's important.
+On Fri, Dec 9, 2022 at 3:26 AM Linus Walleij <linus.walleij@linaro.org> wrote:
 >
->> Changes in v7:
->> -- split yaml out of dtsi patch
->> -- link-frequencies from link rate to symbol rate
->> -- deprecation of old data-lanes property
->>
->> Changes in v8:
->> -- correct Bjorn mail address to kernel.org
->>
->> Changes in v10:
->> -- add menu item to data-lanes and link-frequecnis
->>
->> Changes in v11:
->> -- add endpoint property at port@1
->>
->> Changes in v12:
->> -- use enum for item at data-lanes and link-frequencies
->>
->> Signed-off-by: Kuogee Hsieh <quic_khsieh@quicinc.com>`
->                                                         ^
-> Stray ` here? -----------------------------------------/
+> On Fri, Dec 9, 2022 at 5:39 AM Chester Lin <clin@suse.com> wrote:
+> >
+> > Hi Linus and Fabio,
+> >
+> > Thanks for your time to review this patch!
+> >
+> > On Thu, Dec 08, 2022 at 10:37:36PM +0100, Linus Walleij wrote:
+> > > On Thu, Dec 8, 2022 at 12:04 AM Fabio Estevam <festevam@gmail.com> wrote:
+> > >
+> > > > In other imx8m pinctrl drivers we pass:
+> > > (...)
+> > > > > +module_platform_driver(s32g_pinctrl_driver);
+> > > >
+> > > > And we also register it in arch_initcall() level.
+> > >
+> > > Do you really need that though? This driver certainly does not.
+> > >
+> > > I was under the impression that recent changes to the probe-order
+> > > logic has made most explicit arch_ etc initcall orderings surplus.
+> > >
+> >
+> > Could bool/tristate options in the Kconfig be the key point?
+> >
+> > Based on current design I prefer to build the s32g2 pinctrl driver as built-in
+> > rather than a loadable module. IIUC, when the driver is not built as module
+> > then the initcall ordering should still matter.
 >
->> ---
->>   .../bindings/display/msm/dp-controller.yaml        | 30 ++++++++++++++++++++--
->>   1 file changed, 28 insertions(+), 2 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->> index f2515af..8fb9fa5 100644
->> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->> @@ -96,14 +97,37 @@ properties:
->>
->>     ports:
->>       $ref: /schemas/graph.yaml#/properties/ports
->> +
->>       properties:
->>         port@0:
->> -        $ref: /schemas/graph.yaml#/properties/port
->> +        $ref: "/schemas/graph.yaml#/$defs/port-base"
->>           description: Input endpoint of the controller
->> +        properties:
->> +          endpoint:
->> +            $ref: /schemas/media/video-interfaces.yaml#
->>
->>         port@1:
->> -        $ref: /schemas/graph.yaml#/properties/port
->> +        $ref: "/schemas/graph.yaml#/$defs/port-base"
-> I thought the quotes weren't needed?
+> It is true that if you compile something into a module then all initicalls
+> are the same: they are called when the module is loaded.
 >
->>           description: Output endpoint of the controller
->> +        properties:
->> +          endpoint:
->> +            $ref: /schemas/media/video-interfaces.yaml#
-> Does this need 'unevaluatedProperties: false' here?
+> But the remaining initcalls used to be assigned to core, arch, subsystem
+> etc in order for resources (such as clocks, regulators or pins) to be
+> available before the drivers that need them get probed.
 >
->> +            properties:
->> +              data-lanes:
->> +                minItems: 1
->> +                maxItems: 4
->> +                items:
->> +                  enum: [ 0, 1, 2, 3 ]
->> +
->> +              link-frequencies:
->> +                minItems: 1
->> +                maxItems: 4
->> +                items:
->> +                  enum: [ 1620000000, 2700000000, 5400000000, 8100000000 ]
->> +
->> +    required:
->> +      - port@0
->> +      - port@1
->>
->>   required:
->>     - compatible
->> @@ -193,6 +217,8 @@ examples:
->>                   reg = <1>;
->>                   endpoint {
->>                       remote-endpoint = <&typec>;
->> +                    data-lanes = <0 1>;
->> +                    link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
->>                   };
-> So far we haven't used the output port on the DP controller in DT.
+> However there was first deferred probe to partially solve the problem
+> and recently a large and refined series that use the dependencies in
+> the device tree to resolve probe order.
 >
-> I'm still not clear on what we should do in general for DP because
-> there's a PHY that actually controls a lane count and lane mapping. In
-> my mental model of the SoC, this DP controller's output port is
-> connected to the DP PHY, which then sends the DP lanes out of the SoC to
-> the next downstream device (i.e. a DP connector or type-c muxer). Having
-> a remote-endpoint property with a phandle to typec doesn't fit my mental
-> model. I'd expect it to be the typec PHY.
-ack
+> Saravana Kannan has been working tirelessly at this, issueing
+> git log --oneline --author="Saravana Kannan"
+> you will see the scope of this work.
 >
-> That brings up the question: when we have 2 lanes vs. 4 lanes will we
-> duplicate the data-lanes property in the PHY binding? I suspect we'll
-> have to. Hopefully that sort of duplication is OK?
-Current we have limitation by reserve 2 data lanes for usb2, i am not 
-sure duplication to 4 lanes will work automatically.
->
-> Similarly, we may have a redriver that limits the link-frequencies
-> property further (e.g. only support <= 2.7GHz). Having multiple
-> link-frequencies along the graph is OK, right? And isn't the
-> link-frequencies property known here by fact that the DP controller
-> tells us which SoC this controller is for, and thus we already know the
-> supported link frequencies?
->
-> Finally, I wonder if we should put any of this in the DP controller's
-> output endpoint, or if we can put these sorts of properties in the DP
-> PHY binding directly? Can't we do that and then when the DP controller
-> tries to set 4 lanes, the PHY immediately fails the call and the link
-> training algorithm does its thing and tries fewer lanes? And similarly,
-> if link-frequencies were in the PHY's binding, the PHY could fail to set
-> those frequencies during link training, returning an error to the DP
-> controller, letting the training move on to a lower frequency. If we did
-> that this patch series would largely be about modifying the PHY binding,
-> updating the PHY driver to enforce constraints, and handling errors
-> during link training in the DP controller (which may already be done? I
-> didn't check).
 
+Thanks Linus.
 
-phy/pll have different configuration base on link lanes and rate.
+For a system using DT, fw_devlink's goal is to make module load
+ordering or driver registration ordering irrelevant to proper
+functioning of the kernel/drivers. It should automatically figure out
+the dependencies and have the devices probe in the right order. It's
+already true for at least 80% of the cases for a system using DT.
+There are some known issues I'm either working on or have on my To do
+list. So, if you see a case where fw_devlink is not handling it
+correctly, please let me know.
 
-it has to be set up before link training can start.
-
-Once link training start, then there are no any interactions between 
-controller and phy during link training session.
-
-Link training only happen between dp controller and sink since link 
-status is reported by sink (read back from sink's dpcd register directly).
-
-T achieve link symbol locked, link training will start from reduce link 
-rate until lowest rate, if it still failed, then it will reduce lanes 
-with highest rate and start training  again.
-
-it will repeat same process until lowest lane (one lane), if it still 
-failed, then it will give up and declare link training failed.
-
-Therefore I think add data-lanes and link-frequencies properties in the 
-DP PHY binding directly will not helps.
-
-
+-Saravana
