@@ -2,261 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 595A264CDF0
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 17:25:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 81D5864CE24
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 17:36:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238973AbiLNQZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 11:25:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45958 "EHLO
+        id S239089AbiLNQgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 11:36:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238547AbiLNQZG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 11:25:06 -0500
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E3122870B
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 08:25:04 -0800 (PST)
-Received: by mail-lj1-x236.google.com with SMTP id v11so7090877ljk.12
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 08:25:04 -0800 (PST)
+        with ESMTP id S239092AbiLNQfl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 11:35:41 -0500
+Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4871B17A91;
+        Wed, 14 Dec 2022 08:35:13 -0800 (PST)
+Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-1442977d77dso17291147fac.6;
+        Wed, 14 Dec 2022 08:35:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=X9dLBk+UvJ4GGITPeSeolCfzI5QUbeeelXxES7ST1nA=;
-        b=T5G2vJ4vOoMXdUA/9S7c2+Yae3QPm+f2bdcTXQF3fD2C4OqCHUNBGVQEY+WhP4I2W4
-         SW9F56rFJO0LVa5NMoT1DpLLftG5sJuyTaKevL6dPhS5Yj4ZziJRJYRLn9qPuhLRP3Bp
-         tbhTjFeaOubm2gvffyOuQBstCaZokYT+w081Gepp9IW53Lk+mcnxVKsIIVmqkHFsDR3w
-         d65jU073a0JqbDuc3awKzQeondMQqTXWOOjVkYFauGjAcagCCuOQrVRCfocDSK2ezYCe
-         OH6vyqQZuc+0YE6KVz7QMtAVo3a94aFJj08CeXVbxyxUDCRBzQQ4tS2mmZfr9bZ/Mc6S
-         KcfQ==
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=P7BkHVo7lr7IoLxj4xozJR7ZfwY1TDrJJZ/qfyWx7lo=;
+        b=ZPJNEtQ9wJ+DV4Dw4CjmW5qiwP8u2MNp2GcqLcoE2CLFKf/pkdihOjjRGcISdALmY/
+         lYj5e/aHTNtAxVddERrRtjz+mT2qfE+2PrBmyIXG8b3nJjlraBGzguHdgZz/clWlRrRu
+         zPA0LuRN7H7mWJESqaoYcdieI4kbaYfyXOKap+UdcGRRbMCkyyl8ojZ5YL8KXH6C72Xc
+         KIKduj6epwd4YyCq5MKepAIFhlkWbBvvDUTiETtqcIwqfzrmOy8V59Zl9l8bKSty3Fyt
+         1cm5t4gC7FQkMXgUc4wzSlKNFDwyUi5sYwxqxpypJZ1sFXPbWDnMFc0yzBWO3xUI/Qjw
+         1FXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=X9dLBk+UvJ4GGITPeSeolCfzI5QUbeeelXxES7ST1nA=;
-        b=uTI7D6Xpln/48gRO6YTfyCTKf+yQygvcBkCHH4ra3aU680HdqGTvuK57PPRhK9nqOt
-         Acw+oAsUsw9QtSgo+7mT1VFWcdAVoTJM5T0qUbEcEi4JcOklEFhnWSviHkcp22lUoDJu
-         mp9XxgwRQZq21DK9oKXwwoahHRhcj/T4z8OWJQXbJQdlW9lQdmdesymzgaxJCQWtj8wH
-         ZgGeIr1s8O46vWVxcrwO8NO8iMGj1kOapg8kh+u1cO6GAb3a/h0s6NbpP4M5ukOJGggJ
-         nAlL6WYAyC2pWwZf1kYyGBOJEmOET3Z/cwFKUkFljOUHJMg5Y5jGLFNQ4uWCRhwKAJMP
-         lo2A==
-X-Gm-Message-State: ANoB5pn1dusAwhSK5YaliJcwOvmC5ZG6j+jy/58YzZhm318z5AfyTP8F
-        j8EcGx5mIiA5Z26C5OmFjKRb1Q==
-X-Google-Smtp-Source: AA0mqf7duV2/358tTC/pnwCBvsLRoFvgwzJqOeoEBv6o3iLr9aNv/23ln7Vx+bKA6lr+wk4/+y97Bg==
-X-Received: by 2002:a05:651c:158d:b0:26f:db35:1d5a with SMTP id h13-20020a05651c158d00b0026fdb351d5amr6588903ljq.4.1671035102622;
-        Wed, 14 Dec 2022 08:25:02 -0800 (PST)
-Received: from [10.10.15.130] ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id b12-20020a05651c032c00b0027b52a73b47sm654314ljp.18.2022.12.14.08.25.01
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=P7BkHVo7lr7IoLxj4xozJR7ZfwY1TDrJJZ/qfyWx7lo=;
+        b=GNZCwZVrvqHEG/iVo0PVd6WP/G5TPCLPfvNyI+EE/KFbZl6Z4Wdk7GbAN3RsNTtE8L
+         QE/wbJIUm7gTQr/LdATWwcMjxzO63p/k8slByvkKj5dAv9CzW9M70426ZvhbRNbI/zIw
+         uwkIjnyKU6mvlL6Ftj33Zrre2Ov2nluJhfpVIvoi1VG8bEzLH/6u/W/HstrxRDbEkqB7
+         cYU1Jy48O3knzrZXxEoiRrMFu4MSmbSYQlOv0VH2XPycJmlySCQ0siVP23zadoAG/Pes
+         KAPvuSK+gogpu+q6jUVIaXnuv5T4IENnDz2qlglN4w8uLvYGQ2+I2eDxc55pEsZio5EO
+         5V8w==
+X-Gm-Message-State: ANoB5png6uoGVlyf1zoupMIRThY9g90TEZLvIaKg5hPTOgieSXsDvGRm
+        WjzC/STACG0yQ4r2sOXdpc+bToUTS3U=
+X-Google-Smtp-Source: AA0mqf5I0qwaz6CoKiv1lNLzxBrKXK9kWDmPd0i+okA26FaqgtNUM4DzbWncbGIWvCTUo+hru9Ls1A==
+X-Received: by 2002:a05:6870:3049:b0:144:fc01:370 with SMTP id u9-20020a056870304900b00144fc010370mr12389841oau.0.1671035712365;
+        Wed, 14 Dec 2022 08:35:12 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id j19-20020a056870021300b001446d5702b5sm2844422oad.56.2022.12.14.08.35.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Dec 2022 08:25:02 -0800 (PST)
-Message-ID: <6fc64fae-e616-2038-0424-34ce0cb7e16d@linaro.org>
-Date:   Wed, 14 Dec 2022 18:25:01 +0200
+        Wed, 14 Dec 2022 08:35:11 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <79a2245d-0a69-836a-fb78-30d2d3ae5185@roeck-us.net>
+Date:   Wed, 14 Dec 2022 08:35:09 -0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v6 4/5] clk: qcom: rpmh: Add support for SM8550 rpmh
- clocks
-Content-Language: en-GB
-To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mike Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: correct indentation and style in
+ examples
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Alexandru Tachici <alexandru.tachici@analog.com>,
+        Akshay Gupta <Akshay.Gupta@amd.com>,
+        linux-hwmon@vger.kernel.org,
+        Eric Tremblay <etremblay@distech-controls.com>,
+        =?UTF-8?Q?Nuno_S=c3=a1?= <nuno.sa@analog.com>,
+        Kun Yi <kunyi@google.com>, Jonathan Cameron <jic23@kernel.org>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jean Delvare <jdelvare@suse.com>, linux-kernel@vger.kernel.org,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Krishna Chatradhi <ch.naveen@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org
-References: <20221206224515.1495457-1-abel.vesa@linaro.org>
- <20221206224515.1495457-5-abel.vesa@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20221206224515.1495457-5-abel.vesa@linaro.org>
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Supreeth Venkatesh <supreeth.venkatesh@amd.com>,
+        devicetree@vger.kernel.org
+References: <20221213092643.20404-1-krzysztof.kozlowski@linaro.org>
+ <167094291641.992665.14962893906742419729.robh@kernel.org>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <167094291641.992665.14962893906742419729.robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/12/2022 00:45, Abel Vesa wrote:
-> Adds the RPMH clocks present in SM8550 SoC.
+On 12/13/22 06:48, Rob Herring wrote:
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->   drivers/clk/qcom/clk-rpmh.c | 110 +++++++++++++++++++++++++++++-------
->   1 file changed, 90 insertions(+), 20 deletions(-)
+> On Tue, 13 Dec 2022 10:26:41 +0100, Krzysztof Kozlowski wrote:
+>> Fix mixed indentation to 4-spaces, remove unnecessary suffix from
+>> i2c node name and use lower-case hex.  No functional impact.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>   .../bindings/hwmon/adi,adm1177.yaml           | 12 ++---
+>>   .../bindings/hwmon/adi,adm1266.yaml           |  6 +--
+>>   .../bindings/hwmon/adi,axi-fan-control.yaml   | 20 ++++-----
+>>   .../bindings/hwmon/adi,ltc2947.yaml           | 20 ++++-----
+>>   .../bindings/hwmon/adi,ltc2992.yaml           | 26 +++++------
+>>   .../devicetree/bindings/hwmon/amd,sbrmi.yaml  |  6 +--
+>>   .../devicetree/bindings/hwmon/amd,sbtsi.yaml  |  6 +--
+>>   .../devicetree/bindings/hwmon/iio-hwmon.yaml  |  8 ++--
+>>   .../bindings/hwmon/national,lm90.yaml         | 44 +++++++++----------
+>>   .../bindings/hwmon/ntc-thermistor.yaml        |  2 +-
+>>   .../bindings/hwmon/nuvoton,nct7802.yaml       | 16 +++----
+>>   .../devicetree/bindings/hwmon/ti,tmp513.yaml  | 22 +++++-----
+>>   .../bindings/hwmon/ti,tps23861.yaml           | 16 +++----
+>>   13 files changed, 102 insertions(+), 102 deletions(-)
+>>
 > 
-> diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
-> index 2c2ef4b6d130..ce81c76ed0fd 100644
-> --- a/drivers/clk/qcom/clk-rpmh.c
-> +++ b/drivers/clk/qcom/clk-rpmh.c
-> @@ -130,6 +130,34 @@ static DEFINE_MUTEX(rpmh_clk_lock);
->   		},							\
->   	}
->   
-> +#define DEFINE_CLK_FIXED_FACTOR(_name, _parent_name, _div)		\
-> +	static struct clk_fixed_factor clk_fixed_factor##_##_name = {	\
-> +		.mult = 1,						\
-> +		.div = _div,						\
-> +		.hw.init = &(struct clk_init_data){			\
-> +			.ops = &clk_fixed_factor_ops,			\
-> +			.name = #_name,					\
-> +			.parent_data =  &(const struct clk_parent_data){ \
-> +				.fw_name = #_parent_name,		\
-> +				.name = #_parent_name,			\
-> +			},						\
-> +			.num_parents = 1,				\
-> +		},							\
-> +	};								\
-> +	static struct clk_fixed_factor clk_fixed_factor##_##_name##_ao = { \
-> +		.mult = 1,						\
-> +		.div = _div,						\
-> +		.hw.init = &(struct clk_init_data){			\
-> +			.ops = &clk_fixed_factor_ops,			\
-> +			.name = #_name "_ao",				\
-> +			.parent_data =  &(const struct clk_parent_data){ \
-> +				.fw_name = #_parent_name "_ao",		\
-> +				.name = #_parent_name "_ao",		\
-> +			},						\
-> +			.num_parents = 1,				\
-> +		},							\
-> +	}
-> +
->   static inline struct clk_rpmh *to_clk_rpmh(struct clk_hw *_hw)
->   {
->   	return container_of(_hw, struct clk_rpmh, hw);
-> @@ -345,6 +373,8 @@ DEFINE_CLK_RPMH_ARC(bi_tcxo, "xo.lvl", 0x3, 2);
->   DEFINE_CLK_RPMH_ARC(bi_tcxo, "xo.lvl", 0x3, 4);
->   DEFINE_CLK_RPMH_ARC(qlink, "qphy.lvl", 0x1, 4);
->   
-> +DEFINE_CLK_FIXED_FACTOR(bi_tcxo_div2, bi_tcxo, 2);
-> +
->   DEFINE_CLK_RPMH_VRM(ln_bb_clk1, _a2, "lnbclka1", 2);
->   DEFINE_CLK_RPMH_VRM(ln_bb_clk2, _a2, "lnbclka2", 2);
->   DEFINE_CLK_RPMH_VRM(ln_bb_clk3, _a2, "lnbclka3", 2);
-> @@ -366,6 +396,16 @@ DEFINE_CLK_RPMH_VRM(rf_clk2, _d, "rfclkd2", 1);
->   DEFINE_CLK_RPMH_VRM(rf_clk3, _d, "rfclkd3", 1);
->   DEFINE_CLK_RPMH_VRM(rf_clk4, _d, "rfclkd4", 1);
->   
-> +DEFINE_CLK_RPMH_VRM(clk1, _a1, "clka1", 1);
-> +DEFINE_CLK_RPMH_VRM(clk2, _a1, "clka2", 1);
-> +DEFINE_CLK_RPMH_VRM(clk3, _a1, "clka3", 1);
-> +DEFINE_CLK_RPMH_VRM(clk4, _a1, "clka4", 1);
-> +DEFINE_CLK_RPMH_VRM(clk5, _a1, "clka5", 1);
-> +
-> +DEFINE_CLK_RPMH_VRM(clk6, _a2, "clka6", 2);
-> +DEFINE_CLK_RPMH_VRM(clk7, _a2, "clka7", 2);
-> +DEFINE_CLK_RPMH_VRM(clk8, _a2, "clka8", 2);
-> +
->   DEFINE_CLK_RPMH_VRM(div_clk1, _div2, "divclka1", 2);
->   
->   DEFINE_CLK_RPMH_BCM(ce, "CE0");
-> @@ -576,6 +616,33 @@ static const struct clk_rpmh_desc clk_rpmh_sm8450 = {
->   	.num_clks = ARRAY_SIZE(sm8450_rpmh_clocks),
->   };
->   
-> +static struct clk_hw *sm8550_rpmh_clocks[] = {
-> +	[RPMH_CXO_PAD_CLK]      = &clk_rpmh_bi_tcxo_div2.hw,
-> +	[RPMH_CXO_PAD_CLK_A]    = &clk_rpmh_bi_tcxo_div2_ao.hw,
-> +	[RPMH_CXO_CLK]		= &clk_fixed_factor_bi_tcxo_div2.hw,
-> +	[RPMH_CXO_CLK_A]	= &clk_fixed_factor_bi_tcxo_div2_ao.hw,
-> +	[RPMH_LN_BB_CLK1]	= &clk_rpmh_clk6_a2.hw,
-> +	[RPMH_LN_BB_CLK1_A]	= &clk_rpmh_clk6_a2_ao.hw,
-> +	[RPMH_LN_BB_CLK2]	= &clk_rpmh_clk7_a2.hw,
-> +	[RPMH_LN_BB_CLK2_A]	= &clk_rpmh_clk7_a2_ao.hw,
-> +	[RPMH_LN_BB_CLK3]	= &clk_rpmh_clk8_a2.hw,
-> +	[RPMH_LN_BB_CLK3_A]	= &clk_rpmh_clk8_a2_ao.hw,
-> +	[RPMH_RF_CLK1]		= &clk_rpmh_clk1_a1.hw,
-> +	[RPMH_RF_CLK1_A]	= &clk_rpmh_clk1_a1_ao.hw,
-> +	[RPMH_RF_CLK2]		= &clk_rpmh_clk2_a1.hw,
-> +	[RPMH_RF_CLK2_A]	= &clk_rpmh_clk2_a1_ao.hw,
-> +	[RPMH_RF_CLK3]		= &clk_rpmh_clk3_a1.hw,
-> +	[RPMH_RF_CLK3_A]	= &clk_rpmh_clk3_a1_ao.hw,
-> +	[RPMH_RF_CLK4]		= &clk_rpmh_clk4_a1.hw,
-> +	[RPMH_RF_CLK4_A]	= &clk_rpmh_clk4_a1_ao.hw,
-> +	[RPMH_IPA_CLK]		= &clk_rpmh_ipa.hw,
-> +};
-> +
-> +static const struct clk_rpmh_desc clk_rpmh_sm8550 = {
-> +	.clks = sm8550_rpmh_clocks,
-> +	.num_clks = ARRAY_SIZE(sm8550_rpmh_clocks),
-> +};
-> +
->   static struct clk_hw *sc7280_rpmh_clocks[] = {
->   	[RPMH_CXO_CLK]      = &clk_rpmh_bi_tcxo_div4.hw,
->   	[RPMH_CXO_CLK_A]    = &clk_rpmh_bi_tcxo_div4_ao.hw,
-> @@ -683,29 +750,31 @@ static int clk_rpmh_probe(struct platform_device *pdev)
->   
->   		name = hw_clks[i]->init->name;
->   
-> -		rpmh_clk = to_clk_rpmh(hw_clks[i]);
-> -		res_addr = cmd_db_read_addr(rpmh_clk->res_name);
-> -		if (!res_addr) {
-> -			dev_err(&pdev->dev, "missing RPMh resource address for %s\n",
-> -				rpmh_clk->res_name);
-> -			return -ENODEV;
-> -		}
-> +		if (hw_clks[i]->init->ops != &clk_fixed_factor_ops) {
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-We discussed this separately, the fixed factor clocks will be moved to 
-the child nodes, leaving rpmhcc with only cmd-db based clocks.
 
-> +			rpmh_clk = to_clk_rpmh(hw_clks[i]);
-> +			res_addr = cmd_db_read_addr(rpmh_clk->res_name);
-> +			if (!res_addr) {
-> +				dev_err(&pdev->dev, "missing RPMh resource address for %s\n",
-> +					rpmh_clk->res_name);
-> +				return -ENODEV;
-> +			}
->   
-> -		data = cmd_db_read_aux_data(rpmh_clk->res_name, &aux_data_len);
-> -		if (IS_ERR(data)) {
-> -			ret = PTR_ERR(data);
-> -			dev_err(&pdev->dev,
-> -				"error reading RPMh aux data for %s (%d)\n",
-> -				rpmh_clk->res_name, ret);
-> -			return ret;
-> -		}
-> +			data = cmd_db_read_aux_data(rpmh_clk->res_name, &aux_data_len);
-> +			if (IS_ERR(data)) {
-> +				ret = PTR_ERR(data);
-> +				dev_err(&pdev->dev,
-> +					"error reading RPMh aux data for %s (%d)\n",
-> +					rpmh_clk->res_name, ret);
-> +				return ret;
-> +			}
->   
-> -		/* Convert unit from Khz to Hz */
-> -		if (aux_data_len == sizeof(*data))
-> -			rpmh_clk->unit = le32_to_cpu(data->unit) * 1000ULL;
-> +			/* Convert unit from Khz to Hz */
-> +			if (aux_data_len == sizeof(*data))
-> +				rpmh_clk->unit = le32_to_cpu(data->unit) * 1000ULL;
->   
-> -		rpmh_clk->res_addr += res_addr;
-> -		rpmh_clk->dev = &pdev->dev;
-> +			rpmh_clk->res_addr += res_addr;
-> +			rpmh_clk->dev = &pdev->dev;
-> +		}
->   
->   		ret = devm_clk_hw_register(&pdev->dev, hw_clks[i]);
->   		if (ret) {
-> @@ -741,6 +810,7 @@ static const struct of_device_id clk_rpmh_match_table[] = {
->   	{ .compatible = "qcom,sm8250-rpmh-clk", .data = &clk_rpmh_sm8250},
->   	{ .compatible = "qcom,sm8350-rpmh-clk", .data = &clk_rpmh_sm8350},
->   	{ .compatible = "qcom,sm8450-rpmh-clk", .data = &clk_rpmh_sm8450},
-> +	{ .compatible = "qcom,sm8550-rpmh-clk", .data = &clk_rpmh_sm8550},
->   	{ .compatible = "qcom,sc7280-rpmh-clk", .data = &clk_rpmh_sc7280},
->   	{ }
->   };
+Are you going to apply the series through your tree, or should I
+apply it through hwmon ? I am asking because you applied the
+ntc-thermistor patch, so it might sense to apply this series
+as well.
 
--- 
-With best wishes
-Dmitry
+Thanks,
+Guenter
 
