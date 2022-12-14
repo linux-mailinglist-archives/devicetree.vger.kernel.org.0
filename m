@@ -2,113 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0601364C425
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 08:02:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 994E364C481
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 08:52:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237495AbiLNHCf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 02:02:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42860 "EHLO
+        id S237342AbiLNHwp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 02:52:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229454AbiLNHCe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 02:02:34 -0500
-Received: from twspam01.aspeedtech.com (twspam01.aspeedtech.com [211.20.114.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 510A61CFD1;
-        Tue, 13 Dec 2022 23:02:32 -0800 (PST)
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 2BE6qVhj081808;
-        Wed, 14 Dec 2022 14:52:32 +0800 (GMT-8)
-        (envelope-from neal_liu@aspeedtech.com)
-Received: from localhost.localdomain (192.168.10.10) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 14 Dec
- 2022 15:01:19 +0800
-From:   Neal Liu <neal_liu@aspeedtech.com>
+        with ESMTP id S237542AbiLNHwo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 02:52:44 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5C90A5F90
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 23:52:43 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B81BDFEC;
+        Tue, 13 Dec 2022 23:53:23 -0800 (PST)
+Received: from e126835.cambridge.arm.com (e126835.cambridge.arm.com [10.1.32.127])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1CBEB3F73B;
+        Tue, 13 Dec 2022 23:52:41 -0800 (PST)
+From:   Emekcan Aras <emekcan.aras@arm.com>
 To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        "Andrew Jeffery" <andrew@aj.id.au>,
-        Neal Liu <neal_liu@aspeedtech.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Chia-Wei Wang <chiawei_wang@aspeedtech.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-        <linux-crypto@vger.kernel.org>, Rob Herring <robh@kernel.org>
-Subject: [PATCH v4 4/4] dt-bindings: bus: add documentation for Aspeed AHBC
-Date:   Wed, 14 Dec 2022 15:01:14 +0800
-Message-ID: <20221214070114.3966155-5-neal_liu@aspeedtech.com>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Emekcan Aras <Emekcan.Aras@arm.com>
+Subject: [PATCH 0/2] Adds Corstone500 DeviceTree
+Date:   Wed, 14 Dec 2022 07:52:30 +0000
+Message-Id: <20221214075232.394559-1-emekcan.aras@arm.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221214070114.3966155-1-neal_liu@aspeedtech.com>
-References: <20221214070114.3966155-1-neal_liu@aspeedtech.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [192.168.10.10]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 2BE6qVhj081808
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree binding documentation for the Aspeed
-Advanced High-Performance Bus (AHB) Controller.
+From: Emekcan Aras <Emekcan.Aras@arm.com>
 
-Signed-off-by: Neal Liu <neal_liu@aspeedtech.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../bindings/bus/aspeed,ast2600-ahbc.yaml     | 37 +++++++++++++++++++
- 1 file changed, 37 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/bus/aspeed,ast2600-ahbc.yaml
+Adding Corstone500 devicetree and its bindings.
 
-diff --git a/Documentation/devicetree/bindings/bus/aspeed,ast2600-ahbc.yaml b/Documentation/devicetree/bindings/bus/aspeed,ast2600-ahbc.yaml
-new file mode 100644
-index 000000000000..2894256c976d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/bus/aspeed,ast2600-ahbc.yaml
-@@ -0,0 +1,37 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/bus/aspeed,ast2600-ahbc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ASPEED Advanced High-Performance Bus Controller (AHBC)
-+
-+maintainers:
-+  - Neal Liu <neal_liu@aspeedtech.com>
-+  - Chia-Wei Wang <chiawei_wang@aspeedtech.com>
-+
-+description: |
-+  Advanced High-performance Bus Controller (AHBC) supports plenty of mechanisms
-+  including a priority arbiter, an address decoder and a data multiplexer
-+  to control the overall operations of Advanced High-performance Bus (AHB).
-+
-+properties:
-+  compatible:
-+    enum:
-+      - aspeed,ast2600-ahbc
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    ahbc@1e600000 {
-+        compatible = "aspeed,ast2600-ahbc";
-+        reg = <0x1e600000 0x100>;
-+    };
+Emekcan Aras (2):
+  arm64: dts: Add Arm corstone500 platform support
+  dt-bindings: Add Arm corstone500 platform
+
+ .../bindings/arm/arm,corstone500.yaml         |  30 +++
+ arch/arm64/boot/dts/arm/corstone500.dts       | 181 ++++++++++++++++++
+ 2 files changed, 211 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/arm,corstone500.yaml
+ create mode 100644 arch/arm64/boot/dts/arm/corstone500.dts
+
 -- 
 2.25.1
 
