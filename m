@@ -2,89 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 187BB64C80A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 12:32:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DCBC364C83B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 12:42:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238109AbiLNLcW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 06:32:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48386 "EHLO
+        id S229592AbiLNLmB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 06:42:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238257AbiLNLcV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 06:32:21 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0332D6555
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 03:32:20 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id j4so9997728lfk.0
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 03:32:19 -0800 (PST)
+        with ESMTP id S237453AbiLNLlv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 06:41:51 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2E7210B5B;
+        Wed, 14 Dec 2022 03:41:47 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id h11so18963007wrw.13;
+        Wed, 14 Dec 2022 03:41:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GZH3XT6lTlLRNGTJ73ZDjLUEvijxVcPXVJpLiElakDk=;
-        b=YGtHyBCnTJ8gs4i/HEWe9cgKVAFFzQdfLygGe0mPGvT0yIAX+RgwFAO78MQS/oa/h3
-         RPXKTKm3ictGbJdL3xllATRJIyVJpUuqH1h1b4DVjgo0Tuxm2ZNpOmma6kwd2inAKaIr
-         FjXMWs5HoSmseuBE6Z5e2WjvXKUEGmRBgLeVCzvRjxU/Y/jlUH4xsR9zq6R0420KAJPw
-         EX8l/1nxKKtvGB1Wi/fsaXTvGsdQZ68AgfbVvJZN1yRTXlxT/VymBxmVkq4LovssUqtB
-         J3YJVDZyXzZRySU3rKHzhuTps89Xuf1fmzEU6qNMZmi0LO/a94EgRdnadDBZE3XVmCrV
-         ntbA==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mnLxEEtkwDMb5Dhb/JDaNIG/lWifqcCuQhOSzipR1SA=;
+        b=isJHvU1ub3SUdofMT6POFlCZBGQXJa/2ddC2lMYjMnh/iQF2KhgRYYlVNRuWh8NhIl
+         bwmLlXU1ijTvdXFPjjsUyYDC0ZY4mGF2oF8uD1oFNZzVZPx7RzUw+4T6XaamOr0zBCjD
+         Zw9jr/oa4vsEG3BOM92wPawkF0dwycFYuLCKoo8BQIxQU0Zog4XSR4s/foTLjPlr/xLb
+         ciEGmD7ticxAPu4Wf6RUpFZBv3rGXo8V/ELVCccNNUqPB5YyL9Nht+lv3HhhoGhM1Q1d
+         zSgw3UYbpGee8w+5OFryehiIHOPjuO8CYY/lKEWr5rQ5v23BKvijpXSONFid6y6Ohu/y
+         /sag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GZH3XT6lTlLRNGTJ73ZDjLUEvijxVcPXVJpLiElakDk=;
-        b=lp4CfqETEF90w38F0zvuxhiEo6yXSfsDCPc2DXK9AsX4oiw0m7VU5DKZCWmtst0H0y
-         3/m991S21Y2LaObl7RdrhtOhb7MBSNIqC2oHVNzhvN6xWwgrlYBIVAblYZ80fhDH3Uwt
-         q7ZXHrPVszgkof0VNPNcaFSBJEjypxoU3+WiMNDr/sYNKpyuD4bfUcz0UpyqDTBYh3mf
-         KjoRDLyx7aX6wAO884r0wGYvl0ZKWAVQdFUMuxd+x4wxPhbhBaa82IorKzRDbIBs9CtI
-         z0eomjC5x7Li3T0r0+bVv67+Pk0WXbewAuggfi/NbL/AQC3OsljjpPDUa5bfQ6NDDbWZ
-         C3Vw==
-X-Gm-Message-State: ANoB5pn0RpUsiLAw886eBTmGFgEdtO3bSihJq4LfwYw97BKwTvxwajoU
-        fVa5iFPvkU6nNTW0aFUXgm5M9Q==
-X-Google-Smtp-Source: AA0mqf5jw5C31aaaMe11ESCzNTaeNGoE8ERX053NGxmAW3INXjCgPRcNip5wnRUM3AQuZPy3DJEZ1A==
-X-Received: by 2002:a05:6512:3a8:b0:4b5:964d:499b with SMTP id v8-20020a05651203a800b004b5964d499bmr6418347lfp.34.1671017538398;
-        Wed, 14 Dec 2022 03:32:18 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id w12-20020a05651234cc00b00485caa0f5dfsm780956lfr.44.2022.12.14.03.32.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Dec 2022 03:32:17 -0800 (PST)
-Message-ID: <aabff507-ad37-1cd3-b1b6-ce8e6dd9269a@linaro.org>
-Date:   Wed, 14 Dec 2022 12:32:16 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v2 2/2] dt-bindings: display/panel: Add the Focaltech gpt3
-Content-Language: en-US
-To:     Christophe Branchereau <cbranchereau@gmail.com>,
-        thierry.reding@gmail.com, sam@ravnborg.org, airlied@gmail.com,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mnLxEEtkwDMb5Dhb/JDaNIG/lWifqcCuQhOSzipR1SA=;
+        b=dTdJHoXiyJ3ZZxEY8bMXHPME23aA3G0y2IbeIXa5T0zZG6J3ji92CVCpT58vwPzfnc
+         XBRXPTcmvINP9IAFri1yW52wG0F693W0LAl6zCH9VdtzDed0RnhXsUTfFwnpIiZrV7Hu
+         6baIuMgZBynAoSmhqMV4OvtpWOwmijZlBKVGpW6xSJrSCn/GUGGhIA80VpH5SSjWj9l4
+         N9GTza6VOf8eM2cVWF0TnPZWjpzq/3vm3Cd5a1usu0LQG5iJopaXljmg63H73fgAiH6e
+         ymqAGEduKPW0LxxDfZ6jlKCHJhz8p8SH5KSRz7sF8yd2rOYvLvhakUxyjqFtFtWZz5rv
+         7U1w==
+X-Gm-Message-State: ANoB5pkaiO3yhv3Z5AHCasL6UjEGzQCqmNl0j99Ltc2cL8CNxenpLT2u
+        ldy3kf75jusbxpP1+Mr3rnY=
+X-Google-Smtp-Source: AA0mqf6LMR9JT6vXFGbcDlR6xl7ICd1sc9wv75CHxh3AxPEJE63o9fesiJccg7qeGveiU+No4CkZmw==
+X-Received: by 2002:a5d:670c:0:b0:242:203c:9ed4 with SMTP id o12-20020a5d670c000000b00242203c9ed4mr16122441wru.55.1671018106380;
+        Wed, 14 Dec 2022 03:41:46 -0800 (PST)
+Received: from localhost.localdomain (2a02-8428-46a0-7c01-bc7c-15f1-6c3b-ad74.rev.sfr.net. [2a02:8428:46a0:7c01:bc7c:15f1:6c3b:ad74])
+        by smtp.gmail.com with ESMTPSA id b8-20020a05600003c800b0024258722a7fsm2697405wrg.37.2022.12.14.03.41.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Dec 2022 03:41:45 -0800 (PST)
+From:   Christophe Branchereau <cbranchereau@gmail.com>
+To:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@gmail.com,
         daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221214110037.149387-1-cbranchereau@gmail.com>
- <20221214110037.149387-3-cbranchereau@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221214110037.149387-3-cbranchereau@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        krzysztof.kozlowski+dt@linaro.org, paul@crapouillou.net,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Christophe Branchereau <cbranchereau@gmail.com>
+Subject: [PATCH v2 0/2] Add support for the AUO A030JTN01 TFT LCD
+Date:   Wed, 14 Dec 2022 12:41:40 +0100
+Message-Id: <20221214114142.204041-1-cbranchereau@gmail.com>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/12/2022 12:00, Christophe Branchereau wrote:
-> Add bindings for the Forcaltech gpt3, which is a 640x480 3.0" 4:3
-> IPS LCD Panel found in the YLM/Anbernic RG300X handheld.
-> 
-> Signed-off-by: Christophe Branchereau <cbranchereau@gmail.com>
+Changes since v1:
+ reworked the dt-bindings to add a spi node, dropped properties already 
+ present in panel-common.yaml
 
+Christophe Branchereau (1):
+  drm/panel: Add driver for the AUO A030JTN01 TFT LCD
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Paul Cercueil (1):
+  dt-bindings: display/panel: Add AUO A030JTN01
 
-Best regards,
-Krzysztof
+ .../bindings/display/panel/auo,a030jtn01.yaml |  61 ++++
+ drivers/gpu/drm/panel/Kconfig                 |   8 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ drivers/gpu/drm/panel/panel-auo-a030jtn01.c   | 295 ++++++++++++++++++
+ 4 files changed, 365 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/auo,a030jtn01.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-auo-a030jtn01.c
+
+-- 
+2.35.1
 
