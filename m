@@ -2,149 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 960F864C734
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 11:34:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E276064C79D
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 12:01:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229829AbiLNKeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 05:34:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48890 "EHLO
+        id S238067AbiLNLBB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 06:01:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229464AbiLNKeX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 05:34:23 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1010E1EAE4;
-        Wed, 14 Dec 2022 02:34:21 -0800 (PST)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BE8nkLT028042;
-        Wed, 14 Dec 2022 10:34:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=b82NDcu0JlRnQvm9PlYbdyd7beQ1Y13MMv9ZYAvjCRs=;
- b=V0ZP6ZWnFcK8CEmSCeDhHGYEC5wCCB6JLm4bpc0Vv03KyiMXStrWXKqZH0dw5N+Fe6OE
- p60oeVpEmLSYFOe05cLSAV6Ry/V0VuGoZXazeGywK36sb4pAePNWgveXo6IlO75yPi9X
- rrpnFr9R9CNurUI1Y8Ru57CLJabpYNMONIHMVcMRZUUiRLiPCMZm4aF+qYllpVpqhHct
- glCf53AC6nyVRRDjGm5dje3RtyAz/Dsn/RDQ58xe3ikOOnQjSjiDcPX12XmyuIE9aYnX
- NJyb6RJR9T2n0YTG2F26kHaRuPcb5gdLis183JLvkMiMjHYlB6FGD5pQxVj6PIl1W9gP gw== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3mf6rcrseq-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 14 Dec 2022 10:34:05 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2BEAXwMh015779
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 14 Dec 2022 10:33:58 GMT
-Received: from [10.79.43.91] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Wed, 14 Dec
- 2022 02:33:53 -0800
-Message-ID: <f4595a18-23bd-d54f-4e50-c0ed63008225@quicinc.com>
-Date:   Wed, 14 Dec 2022 16:03:50 +0530
+        with ESMTP id S238131AbiLNLAv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 06:00:51 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72C791C909;
+        Wed, 14 Dec 2022 03:00:50 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id h12so18847818wrv.10;
+        Wed, 14 Dec 2022 03:00:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IM7/rTUFOP/ct9XAoTb4YaT/tqN70SwMVuKsM+i658Q=;
+        b=kYAxkFOjJ8BzuJeJmxU+yCTPFfcPQ4CGTFE+FGQ5UtFy6M0nKKdnUZ2gIyS8kicJjR
+         5AUagbwxxuWAmtXf7hxZzi5v1dUHwD8mQs1aqViQ5L0AVEQ2ILHJvcBMg2jbZ6T/fy0u
+         IJsIPXvYe6HF4z4q2v2axS1K+gmGMr54L5+sS9J23Fg2vdGhvJpgNeEyJDwaMs0m0CFR
+         iotMZNEgNXYFMyjjboG/omRGCfbjLhtfv1bFPnqrzq7Bma4+uBj8m67zES6/CHfoBETq
+         AiniCMICab2NZUEDrm4OIiFiG9zLOkBdaJz2aeOI1TmQbqCSrrbHsfVmbRSLKDgjE9Ny
+         FxrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IM7/rTUFOP/ct9XAoTb4YaT/tqN70SwMVuKsM+i658Q=;
+        b=tMhp7ymXVqeZfnUZGCdYwruR8TAbnIr2F+gw8AJph7r2R/pftLkoZcpWod5IY/wDy+
+         XwuMHhkRe+vXdv5G1/ML9bS4QUSHRyvVonbexIgV7pB5lpCpE+J1QxymR94gFOcq9p+4
+         gkT7SlyXg90C6s+cGwOkAoidGeYWyAZcDJbzggfoCw2d3kjrar3rW1MGdsA2qagbOdjt
+         t9dJlVVrq0j6+/XwftZhtTmCrUn5uaB4Tesl34R9A5hNII6cRgELuv53M99kafwKSLKN
+         f86DTrDZTgURlPUF29dDmOjT92EckRo4IGXTgrt4VuvjQJPSHRf6APvTF9+lzGITDlXq
+         rcVQ==
+X-Gm-Message-State: ANoB5pmmgEj88WnzCp0+0ZEQMbLHhbp7BLvVnOHmlHTW1tQnlxPvpdlM
+        B2FbS3QH9dFXFmWYmEwaiks=
+X-Google-Smtp-Source: AA0mqf40IOBJjIuybK11ISF0mlVEOSvpvOyzSUCsEaC14iHI3HUh7JjXxqyCzjP6/dgLtkI/h+MqhA==
+X-Received: by 2002:adf:fbc7:0:b0:236:6c33:2130 with SMTP id d7-20020adffbc7000000b002366c332130mr15129620wrs.68.1671015648754;
+        Wed, 14 Dec 2022 03:00:48 -0800 (PST)
+Received: from localhost.localdomain (2a02-8428-46a0-7c01-bc7c-15f1-6c3b-ad74.rev.sfr.net. [2a02:8428:46a0:7c01:bc7c:15f1:6c3b:ad74])
+        by smtp.gmail.com with ESMTPSA id h1-20020adfaa81000000b002366c3eefccsm2462096wrc.109.2022.12.14.03.00.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Dec 2022 03:00:47 -0800 (PST)
+From:   Christophe Branchereau <cbranchereau@gmail.com>
+To:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Christophe Branchereau <cbranchereau@gmail.com>
+Subject: [PATCH v2 0/2] Add support for the AUO A030JTN01 TFT LCD
+Date:   Wed, 14 Dec 2022 12:00:35 +0100
+Message-Id: <20221214110037.149387-1-cbranchereau@gmail.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH 4/4] remoteproc: qcom_q6v5_mss: Use a carveout to
- authenticate modem headers
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <andersson@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <robh+dt@kernel.org>, <manivannan.sadhasivam@linaro.org>
-CC:     <agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <konrad.dybcio@somainline.org>, <amit.pundir@linaro.org>,
-        <regressions@leemhuis.info>, <sumit.semwal@linaro.org>,
-        <will@kernel.org>, <catalin.marinas@arm.com>,
-        <robin.murphy@arm.com>
-References: <20221213140724.8612-1-quic_sibis@quicinc.com>
- <20221213140724.8612-5-quic_sibis@quicinc.com>
- <8739f59b-c551-2da4-5523-a89f960bd402@linaro.org>
-From:   Sibi Sankar <quic_sibis@quicinc.com>
-In-Reply-To: <8739f59b-c551-2da4-5523-a89f960bd402@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: UkU5gjAuNWLQpOHTFWohtq-bRXTSxxh6
-X-Proofpoint-ORIG-GUID: UkU5gjAuNWLQpOHTFWohtq-bRXTSxxh6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-12-14_04,2022-12-14_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=981
- priorityscore=1501 phishscore=0 lowpriorityscore=0 adultscore=0
- bulkscore=0 clxscore=1015 impostorscore=0 malwarescore=0 spamscore=0
- suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2212140084
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Changes since v1:
+ fixed the dt-bindings maintainer email adress
 
+ dropped backlight, port, power-supply and reset-gpios as they're 
+ provided by panel-common.yaml as pointed by Krzysztof Kozlowski
 
-On 12/14/22 01:17, Krzysztof Kozlowski wrote:
-> On 13/12/2022 15:07, Sibi Sankar wrote:
->> The memory region allocated using dma_alloc_attr with no kernel mapping
->> attribute set would still be a part of the linear kernel map. Any access
->> to this region by the application processor after assigning it to the
->> remote Q6 will result in a XPU violation. Fix this by replacing the
->> dynamically allocated memory region with a no-map carveout and unmap the
->> modem metadata memory region before passing control to the remote Q6.
->>
->> Reported-by: Amit Pundir <amit.pundir@linaro.org>
->> Fixes: 6c5a9dc2481b ("remoteproc: qcom: Make secure world call for mem ownership switch")
->> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
->> ---
-> 
-> Thank you for your patch. There is something to discuss/improve.
->>   
->>   	return ret < 0 ? ret : 0;
->> @@ -1882,6 +1899,26 @@ static int q6v5_alloc_memory_region(struct q6v5 *qproc)
->>   	qproc->mpss_phys = qproc->mpss_reloc = r.start;
->>   	qproc->mpss_size = resource_size(&r);
->>   
->> +	if (!child) {
->> +		node = of_parse_phandle(qproc->dev->of_node, "memory-region", 2);
->> +	} else {
->> +		child = of_get_child_by_name(qproc->dev->of_node, "metadata");
-> 
-> Bindings do not allow to have child "metadata", do they?
+ changed reg: true to reg : maxItems: 1
 
-memory-region property was used to specify mba/mpss region in a phandle
-array only from SC7180 SoC. All the older dtbs in the wild/upstream
-still had sub-nodes to achieve the same. Patch 3 allows for a sub-set
-of the SoCs (MSM8996/MSM8998/SDM845) to use metadata as a sub-node so
-as to not break bindings when newer kernel uses a older dtb.
+Christophe Branchereau (2):
+  drm/panel: add the orisetech ota5601a
+  dt-bindings: display/panel: Add the Focaltech gpt3
 
-- Sibi
+ .../display/panel/focaltech,gpt3.yaml         |  56 +++
+ drivers/gpu/drm/panel/Kconfig                 |   9 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ .../gpu/drm/panel/panel-orisetech-ota5601a.c  | 351 ++++++++++++++++++
+ 4 files changed, 417 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/focaltech,gpt3.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-orisetech-ota5601a.c
 
-> 
->> +		node = of_parse_phandle(child, "memory-region", 0);
->> +		of_node_put(child);
->> +	}
->> +
->> +	if (!node)
->> +		return 0;
->> +
->> +	ret = of_address_to_resource(node, 0, &r);
->> +	of_node_put(node);
->> +	if (ret) {
->> +		dev_err(qproc->dev, "unable to resolve metadata region\n");
->> +		return ret;
->> +	}
->> +
->> +	qproc->mdata_phys = r.start;
->> +
->>   	return 0;
->>   }
->>   
-> 
-> Best regards,
-> Krzysztof
-> 
+-- 
+2.35.1
+
