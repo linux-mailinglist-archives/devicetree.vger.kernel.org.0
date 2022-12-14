@@ -2,119 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90AD364D248
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 23:21:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 113B164D26D
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 23:37:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229742AbiLNWUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 17:20:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52460 "EHLO
+        id S229437AbiLNWhw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 17:37:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229674AbiLNWUb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 17:20:31 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D64D45ED2;
-        Wed, 14 Dec 2022 14:20:29 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id k22-20020a05600c1c9600b003d1ee3a6289so514143wms.2;
-        Wed, 14 Dec 2022 14:20:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wPREbJk824mHynEMZOnSi0K0a5V18kJznKBGD4RRywY=;
-        b=l66GEwC5C6VAS63K9J3rZjKXv9Ah6JEmGkuUGTVHgliCPY1cXbu5ewkG01mSuzfOXD
-         tDbxZKkVQiouTZLeMmdg8ADhLgjvkP2wFX/bPfh+phz68l/x5yxvzk2PuceUI81df6Wn
-         cOjmzuKX0dQJMpWSv6CzEZySAEl9bbDI5wBAt9rXkH0czm+jeEvmQg+aLeZ8gYzFAYD6
-         mV29/0ZPxC6sI/8oT/T2Cc3aUQw6lvAFKYpQrlfEFWIQPSTMebp8pO0puAK+W6JX1SPO
-         8Bgo844ywOv1nreOSxlJtW45S4yK6i7govngZIKnx73r0zaR33+EmSbRLTWrl8pAEcue
-         gQTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wPREbJk824mHynEMZOnSi0K0a5V18kJznKBGD4RRywY=;
-        b=2xCP8VQrXdR9Nx0hw1Ef904S7NwyZcD1qXs50d6g1LPq87yc7odgwN2vJhOuTws7cn
-         pxDYb7s5j24J66Itwbixd1FfGzW6H6FjmIqRJZ84tNn43pl/4USEd/sJ4VpXcOZ1edWB
-         Fjrgc11RBPlKBewNPS6s5IxqeTeg8Ca++sRBcMV4cjaMFVNtOpc8KTKEFx7mqj3mM4c1
-         KxOZ/P4A0pRRfVyaoPe3e8RVQOZu6CXwLHJ6MO+B3ompRAn0S7F/3Pk17h6aEJqN9OAn
-         3LUQahpLJlXJx5ivoXJTnKswz6qVKp121ZTkrVxeAGy7Hf8jJsmPE/67vqn4xsNVQRBk
-         CeFg==
-X-Gm-Message-State: ANoB5plggdx7dV0V06ZBzJ5ngPBlrzlM8tfUyj0T5TeJlPScp8iChJ3D
-        91wzM6gjj0WQ1PplXK3hvGeaV/HAH04P7w==
-X-Google-Smtp-Source: AA0mqf5Ji4XUil9erQ2oeZMLnbnZyZcIGBqTvrqtrXfVbfgMHW3zGU9xw1FA1j3kxScoRn5UhzdNJA==
-X-Received: by 2002:a05:600c:1d98:b0:3cf:74b4:c3c8 with SMTP id p24-20020a05600c1d9800b003cf74b4c3c8mr20435849wms.17.1671056428101;
-        Wed, 14 Dec 2022 14:20:28 -0800 (PST)
-Received: from localhost ([2a02:1210:8629:800:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with UTF8SMTPSA id w23-20020a05600c099700b003d1de805de5sm3512107wmp.16.2022.12.14.14.20.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Dec 2022 14:20:27 -0800 (PST)
-From:   Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To:     linux-iio@vger.kernel.org
-Cc:     Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Hartley Sweeten <hsweeten@visionengravers.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S229446AbiLNWhv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 17:37:51 -0500
+Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [5.144.164.164])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71D4036C62;
+        Wed, 14 Dec 2022 14:37:49 -0800 (PST)
+Received: from localhost.localdomain (94-209-172-39.cable.dynamic.v4.ziggo.nl [94.209.172.39])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 5F54620376;
+        Wed, 14 Dec 2022 23:37:47 +0100 (CET)
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     phone-devel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Michael Srba <Michael.Srba@seznam.cz>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] iio: adc: ep93xx: Add OF support
-Date:   Wed, 14 Dec 2022 23:20:24 +0100
-Message-Id: <20221214222024.951984-2-alexander.sverdlin@gmail.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20221214222024.951984-1-alexander.sverdlin@gmail.com>
-References: <20221214222024.951984-1-alexander.sverdlin@gmail.com>
+        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] Revert "phy: qualcomm: usb28nm: Add MDM9607 init sequence"
+Date:   Wed, 14 Dec 2022 23:37:32 +0100
+Message-Id: <20221214223733.648167-1-marijn.suijten@somainline.org>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Prepare for EP93xx conversion to DT.
+This reverts commit 557a28811c7e0286d3816842032db5eb7bb5f156.
 
-Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+This commit introduced an init sequence from downstream DT [1] in the
+driver.  As mentioned by the comment above the HSPHY_INIT_CFG macro for
+this sequence:
+
+    /*
+     * The macro is used to define an initialization sequence.  Each tuple
+     * is meant to program 'value' into phy register at 'offset' with 'delay'
+     * in us followed.
+     */
+
+Instead of corresponding to offsets into the phy register, the sequence
+read by the downstream driver [2] is passed into ulpi_write [3] which
+crafts the address-value pair into a new value and writes it into the
+same register at USB_ULPI_VIEWPORT [4].  In other words, this init
+sequence is programmed into the hardware in a totally different way than
+downstream and is unlikely to achieve the desired result, if the hsphy
+is working at all.
+
+An alternative method needs to be found to write these init values at
+the desired location.  Fortunately mdm9607 did not land upstream yet [5]
+and should have its compatible revised to use the generic one, instead
+of a compatible that writes wrong data to the wrong registers.
+
+[1]: https://android.googlesource.com/kernel/msm/+/android-7.1.0_r0.2/arch/arm/boot/dts/qcom/mdm9607.dtsi#585
+[2]: https://android.googlesource.com/kernel/msm/+/android-7.1.0_r0.2/drivers/usb/phy/phy-msm-usb.c#4183
+[3]: https://android.googlesource.com/kernel/msm/+/android-7.1.0_r0.2/drivers/usb/phy/phy-msm-usb.c#468
+[4]: https://android.googlesource.com/kernel/msm/+/android-7.1.0_r0.2/drivers/usb/phy/phy-msm-usb.c#418
+[5]: https://lore.kernel.org/linux-arm-msm/20210805222812.40731-1-konrad.dybcio@somainline.org/
+
+Reported-by: Michael Srba <Michael.Srba@seznam.cz>
+Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
 ---
- drivers/iio/adc/ep93xx_adc.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ .../devicetree/bindings/phy/qcom,usb-hs-28nm.yaml   |  1 -
+ drivers/phy/qualcomm/phy-qcom-usb-hs-28nm.c         | 13 -------------
+ 2 files changed, 14 deletions(-)
 
-diff --git a/drivers/iio/adc/ep93xx_adc.c b/drivers/iio/adc/ep93xx_adc.c
-index fd5a9404c8dc..e530a37180e1 100644
---- a/drivers/iio/adc/ep93xx_adc.c
-+++ b/drivers/iio/adc/ep93xx_adc.c
-@@ -21,6 +21,7 @@
- #include <linux/module.h>
- #include <linux/mutex.h>
- #include <linux/platform_device.h>
-+#include <linux/of.h>
+diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-hs-28nm.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-hs-28nm.yaml
+index abcc4373f39e..ca6a0836b53c 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,usb-hs-28nm.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,usb-hs-28nm.yaml
+@@ -16,7 +16,6 @@ properties:
+   compatible:
+     enum:
+       - qcom,usb-hs-28nm-femtophy
+-      - qcom,usb-hs-28nm-mdm9607
  
- /*
-  * This code could benefit from real HR Timers, but jiffy granularity would
-@@ -227,9 +228,18 @@ static int ep93xx_adc_remove(struct platform_device *pdev)
- 	return 0;
- }
+   reg:
+     maxItems: 1
+diff --git a/drivers/phy/qualcomm/phy-qcom-usb-hs-28nm.c b/drivers/phy/qualcomm/phy-qcom-usb-hs-28nm.c
+index 8807e59a1162..a52a9bf13b75 100644
+--- a/drivers/phy/qualcomm/phy-qcom-usb-hs-28nm.c
++++ b/drivers/phy/qualcomm/phy-qcom-usb-hs-28nm.c
+@@ -401,26 +401,13 @@ static const struct hsphy_init_seq init_seq_femtophy[] = {
+ 	HSPHY_INIT_CFG(0x90, 0x60, 0),
+ };
  
-+#ifdef CONFIG_OF
-+static const struct of_device_id ep93xx_adc_of_ids[] = {
-+	{ .compatible = "cirrus,ep9301-adc" },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, ep93xx_adc_of_ids);
-+#endif
-+
- static struct platform_driver ep93xx_adc_driver = {
- 	.driver = {
- 		.name = "ep93xx-adc",
-+		.of_match_table = of_match_ptr(ep93xx_adc_of_ids),
- 	},
- 	.probe = ep93xx_adc_probe,
- 	.remove = ep93xx_adc_remove,
+-static const struct hsphy_init_seq init_seq_mdm9607[] = {
+-	HSPHY_INIT_CFG(0x80, 0x44, 0),
+-	HSPHY_INIT_CFG(0x81, 0x38, 0),
+-	HSPHY_INIT_CFG(0x82, 0x24, 0),
+-	HSPHY_INIT_CFG(0x83, 0x13, 0),
+-};
+-
+ static const struct hsphy_data hsphy_data_femtophy = {
+ 	.init_seq = init_seq_femtophy,
+ 	.init_seq_num = ARRAY_SIZE(init_seq_femtophy),
+ };
+ 
+-static const struct hsphy_data hsphy_data_mdm9607 = {
+-	.init_seq = init_seq_mdm9607,
+-	.init_seq_num = ARRAY_SIZE(init_seq_mdm9607),
+-};
+-
+ static const struct of_device_id qcom_snps_hsphy_match[] = {
+ 	{ .compatible = "qcom,usb-hs-28nm-femtophy", .data = &hsphy_data_femtophy, },
+-	{ .compatible = "qcom,usb-hs-28nm-mdm9607", .data = &hsphy_data_mdm9607, },
+ 	{ },
+ };
+ MODULE_DEVICE_TABLE(of, qcom_snps_hsphy_match);
 -- 
-2.37.3
+2.39.0
 
