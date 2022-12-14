@@ -2,177 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2CED64C675
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 10:56:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9111264C676
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 10:59:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238040AbiLNJ41 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 04:56:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58946 "EHLO
+        id S238051AbiLNJ71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 04:59:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237995AbiLNJ4V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 04:56:21 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4C2DCFE
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 01:56:20 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id j4so9608811lfk.0
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 01:56:20 -0800 (PST)
+        with ESMTP id S238029AbiLNJ70 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 04:59:26 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB41715721
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 01:59:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aNJNTOII/kcONJd8CaNcXxHzCuywHLZopRKDpGjPQGY=;
-        b=I2ZYbEUz/VnpqOOO9tLIGFPE++82w7iP+LU8JFd5EAl5dEsxMlntD+vTpOtmeINzKk
-         xLJ7Kt7W2MyRT+ZwBwDGJLY0UbNNBnQx2sqJ2KxsVtlVRrOcSWklj4JbYfZ+IwqjAfl4
-         jzTXG+olvbujK5q4FfGwLItl3Qpi1qJtMNZMVb0kphfCXUENQ16qLzoXuouKTrGfTJNe
-         m9Dhy5D59N1UJSZTdaJggEEAowq3H/3mbcZJzuTbapyCkt1d8+HNArH0zNwx5g7aMuPc
-         T7e9PDffMRHodpazN/LoMIcHZJQazT46dRaFzmAh3w+pk2KVBmlkK9mOzbK1ty7Ql6lT
-         r5Dg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aNJNTOII/kcONJd8CaNcXxHzCuywHLZopRKDpGjPQGY=;
-        b=7le8f2taiFudj+wTLF1yaYCd1lmgh8VW3Rn6zSnI+AS9jNZBEgz5h4+UEeF6L9ko+8
-         hw+v/7LBGUBWDwShcL0QPCTYwu1rysYOiV6yXsTVLc0bV3vt5SU48LQUy3Ie6tVhjYMU
-         BCTkeOibRjWOM3O4nMq3tUlOAcXK+IJrNJ2j+dzFI7ahQNV0XyXlMLMdJPpZpVY7LTWO
-         MSOCL6JqIxEjJ4Qn346ORqDt/y4Y4ymCzaESq4getUPP04dL+2a3W3Xg/5XCbedUbJwm
-         rgrDm6Xt4QgSiXtMnomm0Mbs8eNycuALg+NwyWkNI66oVfYxroXz6hYFBES2eWfPy8Hg
-         qfow==
-X-Gm-Message-State: ANoB5pnrb79mEK1FmrgD+pJMvdtDzlDUUZCIp+rF4uGgHMa0qdhZBDoq
-        XQcxPB8MprxLJYSQdX+lJ8aMEg==
-X-Google-Smtp-Source: AA0mqf4xW64tVM5DPefPl+m+tqJT3zPBAIQOsntrDEuumQIYumNk5ua9B4HLuOQeoT7ewEkVS0u9RQ==
-X-Received: by 2002:a05:6512:39d2:b0:4b6:fdc3:a65f with SMTP id k18-20020a05651239d200b004b6fdc3a65fmr1987539lfu.11.1671011779131;
-        Wed, 14 Dec 2022 01:56:19 -0800 (PST)
-Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id w3-20020a05651234c300b004a9b9ccfbe6sm746744lfr.51.2022.12.14.01.56.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Dec 2022 01:56:18 -0800 (PST)
-Message-ID: <c428b894-6c6c-bd26-6815-ca8c091c6ac5@linaro.org>
-Date:   Wed, 14 Dec 2022 10:56:17 +0100
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1671011965; x=1702547965;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=MK+y0H9ijIi5+S6z2ZIdRRCJwfa1L086SnsBn7LmBKQ=;
+  b=I+l9f5XjDFdADlfZ4P6mOoh0USs71BQPGMfRpKChZvjh86WCwzZRlORs
+   zJbkOtiyofzjjqVqScsRdu7LdiNF7TWIl85tGdmJsmqKNxuaXPXA7DB4P
+   3acnm8M/KbW/gyxdqSRXfmOZAMm89BxVym/s+0O4TipjAPvfP4OLeH4tX
+   QJ9Mka77LZddmWlEJi4ermQ46FR7DF+ogWUmdm+KKT1TajJ7jgkYEQlAF
+   PUtQadRhKluWYf3z4iHUC+M2MRnxCFDG8zTBYguu8fwN/EEuSWmIYuF/t
+   bj5/EqrqXFzkODZhzKjq58iQaZlpadPphlo5oolxjrXAwc/vmNmQXGkwC
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.96,244,1665439200"; 
+   d="scan'208";a="27943339"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 14 Dec 2022 10:59:23 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 14 Dec 2022 10:59:23 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 14 Dec 2022 10:59:23 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1671011963; x=1702547963;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=MK+y0H9ijIi5+S6z2ZIdRRCJwfa1L086SnsBn7LmBKQ=;
+  b=LeewLR2l1a7QAj++eHIVKUSes7wetMPNpD8UvUDFtIvEHR52tjj9d15t
+   JvlIRduPeHHq+qQA3CYwKiqUGbmDEk2ZTQp9axqyqhUu6orOupaci2f7/
+   wL67HNo2556D1V0MG/BcLN4F62zRozdl8i1BwuJUl03W5fxAOvtnB/CR3
+   9OoYSLMn49Lnri4/7XAo6agrFM4yDNYn+SOgsNXhYT5PSZ/pPf9Pwlp/P
+   pOIVlYA0YSnrXcACvVQNAOjnbumsIkWa32F0lyIYuXUHauwsgrCELo0l6
+   QDAWkN0qOnrvMHMSbVlE0e4A9nrXCrQE9hWR/5cDNbro5x5qknNMIpbA/
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.96,244,1665439200"; 
+   d="scan'208";a="27943338"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 14 Dec 2022 10:59:23 +0100
+Received: from steina-w.tq-net.de (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 1BC3D280071;
+        Wed, 14 Dec 2022 10:59:23 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux@ew.tq-group.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/7] arm64: dts: tqma8mpql: Fix temperature sensor compatible
+Date:   Wed, 14 Dec 2022 10:59:11 +0100
+Message-Id: <20221214095917.964695-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm6115: Add USB SS qmp phy node
-Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        agross@kernel.org, bhupesh.linux@gmail.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        andersson@kernel.org
-References: <20221213123823.455731-1-bhupesh.sharma@linaro.org>
- <20221213123823.455731-4-bhupesh.sharma@linaro.org>
- <39ff2174-6d04-ec21-b762-377ed28088cb@linaro.org>
- <CAH=2NtwUODvzLx=JThuZpADv+x+NtLx688Ox-95b_T9PtRf4_w@mail.gmail.com>
- <ecb2c9ff-b092-22fa-c91e-01ead6266457@linaro.org>
- <CAH=2NtynGaNH+wm-wavj=NsGFQrWVHqjYmivN2nuq-YSXFs0tw@mail.gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <CAH=2NtynGaNH+wm-wavj=NsGFQrWVHqjYmivN2nuq-YSXFs0tw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Use the correct compatible 'nxp,se97b' as it is an SE97BTP chip.
+While at it, fix the node name according to device tree spec
+recommendations. The EEPROM is a separate node anyway.
 
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts | 5 ++---
+ arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi         | 5 ++---
+ 2 files changed, 4 insertions(+), 6 deletions(-)
 
-On 14.12.2022 06:20, Bhupesh Sharma wrote:
-> On Wed, 14 Dec 2022 at 00:29, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 13/12/2022 19:52, Bhupesh Sharma wrote:
->>> Hi Krzysztof,
->>>
->>> On Tue, 13 Dec 2022 at 18:26, Krzysztof Kozlowski
->>> <krzysztof.kozlowski@linaro.org> wrote:
->>>>
->>>> On 13/12/2022 13:38, Bhupesh Sharma wrote:
->>>>> Add USB superspeed qmp phy node to dtsi.
->>>>>
->>>>> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
->>>>> ---
->>>>>  arch/arm64/boot/dts/qcom/sm6115.dtsi | 38 ++++++++++++++++++++++++++--
->>>>>  1 file changed, 36 insertions(+), 2 deletions(-)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
->>>>> index e4ce135264f3d..9c5c024919f92 100644
->>>>> --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
->>>>> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
->>>>> @@ -579,6 +579,40 @@ usb_hsphy: phy@1613000 {
->>>>>                       status = "disabled";
->>>>>               };
->>>>>
->>>>> +             usb_qmpphy: phy@1615000 {
->>>>> +                     compatible = "qcom,sm6115-qmp-usb3-phy";
->>>>> +                     reg = <0x01615000 0x200>;
->>>>> +                     #clock-cells = <1>;
->>>>> +                     #address-cells = <1>;
->>>>> +                     #size-cells = <1>;
->>>>> +                     ranges;
->>>>> +                     clocks = <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
->>>>> +                              <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
->>>>> +                              <&gcc GCC_AHB2PHY_USB_CLK>;
->>>>> +                     clock-names = "com_aux",
->>>>> +                                   "ref",
->>>>> +                                   "cfg_ahb";
->>>>> +                     resets = <&gcc GCC_USB3_PHY_PRIM_SP0_BCR>,
->>>>> +                              <&gcc GCC_USB3PHY_PHY_PRIM_SP0_BCR>;
->>>>> +                     reset-names = "phy", "phy_phy";
->>>>> +                     status = "disabled";
->>>>
->>>> Hm, you add a disabled PHY which is used by existing controller. The
->>>> controller is enabled in board DTS, but new PHY node isn't. Aren't you
->>>> now breaking it?
->>>
->>> The USB controller is connected to two PHYs - one is HS PHY and the other is SS
->>> QMP Phy. So while the exiting board dts describes and uses only the HS
->>> PHY, newer
->>> board dts files (which will soon be sent out as a separate patch),
->>
->> Then I miss how do you narrow the existing DTS to use only one PHY. I
->> don't see anything in this patchset.
->>
->>> will use both the HS and SS
->>> USB PHYs.
->>>
->>> So, this will not break the existing board dts files.
->>
->> I still think it will be. The board boots with USB with one phy enabled
->> and one disabled. The driver gets phys unconditionally and one of them
->> is disabled.
->>
->> Even if Linux implementation will work (devm_usb_get_phy_by_phandle will
->> return -ENXIO or -ENODEV for disabled node), it is still a bit confusing
->> and I wonder how other users of such DTS should behave. Although it will
->> affect only one board, so maybe there are no other users?
-> 
-> Ah, now I get your point. So how does the following fix in
-> sm4250-oneplus-billie2.dts look like. It allows the base dtsi to carry
-> the usb nodes as exposed by the SoC and allows other board dts files
-> to use both the USB2 and UBS3 PHYs.
-> 
-> Please let me know.
-> 
-> --- a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
-> @@ -232,6 +232,9 @@ &usb {
->  &usb_dwc3 {
->         maximum-speed = "high-speed";
->         dr_mode = "peripheral";
-> +
-> +       phys = <&usb_hsphy>;
-> +       phy-names = "usb2-phy";
->  };
-Looks good now!
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
+index a3340814099aa..f7f657b007a18 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
+@@ -516,9 +516,8 @@ tlv320aic3x04: audio-codec@18 {
+ 		ldoin-supply = <&reg_vcc_3v3>;
+ 	};
+ 
+-	/* NXP SE97BTP with temperature sensor + eeprom */
+-	se97_1c: temperature-sensor-eeprom@1c {
+-		compatible = "nxp,se97", "jedec,jc-42.4-temp";
++	se97_1c: temperature-sensor@1c {
++		compatible = "nxp,se97b", "jedec,jc-42.4-temp";
+ 		reg = <0x1c>;
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi
+index 7bd680a926ce7..ebc29a950ba9a 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi
+@@ -63,9 +63,8 @@ &i2c1 {
+ 	sda-gpios = <&gpio5 15 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 	status = "okay";
+ 
+-	/* NXP SE97BTP with temperature sensor + eeprom */
+-	se97: temperature-sensor-eeprom@1b {
+-		compatible = "nxp,se97", "jedec,jc-42.4-temp";
++	se97: temperature-sensor@1b {
++		compatible = "nxp,se97b", "jedec,jc-42.4-temp";
+ 		reg = <0x1b>;
+ 	};
+ 
+-- 
+2.34.1
 
-Konrad
-> 
-> Thanks.
