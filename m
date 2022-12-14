@@ -2,345 +2,1232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3695564C7A2
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 12:02:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C31DC64C7A9
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 12:05:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238233AbiLNLBo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 06:01:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59998 "EHLO
+        id S238101AbiLNLE6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 06:04:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238156AbiLNLB0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 06:01:26 -0500
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51E041E3E0;
-        Wed, 14 Dec 2022 03:01:20 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2BEB1441011153;
-        Wed, 14 Dec 2022 05:01:04 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1671015664;
-        bh=oWDrn225LgGaetMJ4YUTBvm8za4MYf4qSv1L0flJXeM=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=gPHUjD6aAm0m9z9DKacPPWYCHWMjWAzsxEo5cRkyPAtjpviShodath2e1KxVYPqyl
-         eg8XN70S9H6WkjlQ4CbDVYcrFkFKNud7XZI1oOJC/WxQ9T7GGoi2lY8hcUkG6dmkA1
-         5SjsjD9QhjhYEyZol2/UJKEitFpVI9XR70sNuFjI=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2BEB14ar103240
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 14 Dec 2022 05:01:04 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 14
- Dec 2022 05:01:03 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 14 Dec 2022 05:01:03 -0600
-Received: from [172.24.145.199] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2BEB0wAh030294;
-        Wed, 14 Dec 2022 05:00:59 -0600
-Message-ID: <2ec29f46-9e0d-7387-6744-a165917fcad4@ti.com>
-Date:   Wed, 14 Dec 2022 16:30:57 +0530
+        with ESMTP id S237689AbiLNLE5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 06:04:57 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50CC2E79
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 03:04:53 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id c1so9804225lfi.7
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 03:04:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ksoP1SHSdumT+7EPzU7XBy01Ehvt72FwCLx6AsO5tU4=;
+        b=LQh0+X0p6hye5N7aYdl1+88GM23Z0QnVnH99D+xz7z3Tovj79NkbaFik1+zAaEEhaj
+         PLFiJ/P1oYp7rpDciqwzO30RbhAR7SqoXSZerovr6ONrIKgX6CVTSMenlp6ftLyNXpsb
+         C916D/3cnYQuDpC9vZaz0DZNJ595i2NLlVlT1FoVqN/7JqlsYoSy6Ti7zvtbepP23Xxf
+         cRs0sNaBXAE7xAVixtEbV0GIUT7YJEH8s28ZhQCZAYaH+ADvOaVlFGpWEmvMUVJ9L+Gm
+         VxKfeKY+TBKxFAnlCbCVsIcKMn+Lwd1aFSGPVEfkIgt6v2auRSbXr5v2+aYeuGeG4cTW
+         uMrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ksoP1SHSdumT+7EPzU7XBy01Ehvt72FwCLx6AsO5tU4=;
+        b=0sAFmJNl9UcMvighYMVPpChBIq/2tLMju2ajIePt6Toh1YRhHxtOYhvETAUGguNpa8
+         5OJKdDsfuKXL4yyaPGEf+09tWI/PJSUaD7FqcHDONLu43M/ZDnIXlWaEd+HqNpmGOaEy
+         QMNKxVtfbopJ+xcJZDnJFd+ZjBkDFeLLgBnO79MT3X6THLd8gscoBryYOje7H/kedYJl
+         p2zXiqs6xx4Oj/LzVccgIhvxoTmewUafy+uas/88W+qXRrEHqNmKHga4uTGUenWtxgW5
+         hQvGkTP5Kj005H06LWmFSWYDUlm7NXl+2V60hdiXwpvDJNR0gVsE6/qIB2yophZDzUw4
+         Tuhg==
+X-Gm-Message-State: ANoB5plXegvu61bC6RqzddPgKtF9gX7b4PPgdNkud6qpJqQHVq764/CR
+        v7tuROyrbGY4P4ZAoZczsBgBRA==
+X-Google-Smtp-Source: AA0mqf6rohNsGnK+P551pYxGK3uzJqfSVv0bHgunzBjPCaA7Eyx/Smf8YeZEoE2zgTYUftho6zR9EA==
+X-Received: by 2002:a05:6512:2215:b0:4b5:4606:7ae3 with SMTP id h21-20020a056512221500b004b546067ae3mr8303223lfu.46.1671015891512;
+        Wed, 14 Dec 2022 03:04:51 -0800 (PST)
+Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id d20-20020a056512369400b004b55c1b5c66sm758249lfs.157.2022.12.14.03.04.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Dec 2022 03:04:51 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: replace underscores in node names
+Date:   Wed, 14 Dec 2022 12:04:48 +0100
+Message-Id: <20221214110448.86268-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 2/2] remoteproc: k3-r5: Use separate compatible string
- for TI AM62 SoC family
-To:     Tanmay Shah <tanmays@amd.com>, <andersson@kernel.org>,
-        <mathieu.poirier@linaro.org>, <p.zabel@pengutronix.de>,
-        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <s-anna@ti.com>
-CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <hnagalla@ti.com>, <praneeth@ti.com>, <nm@ti.com>,
-        <vigneshr@ti.com>, <a-bhatia1@ti.com>, <j-luthra@ti.com>
-References: <20221130134052.7513-1-devarsht@ti.com>
- <20221130134052.7513-3-devarsht@ti.com>
- <d95ee066-424c-1a0b-cffd-45e16bc7f8da@amd.com>
-Content-Language: en-US
-From:   Devarsh Thakkar <devarsht@ti.com>
-In-Reply-To: <d95ee066-424c-1a0b-cffd-45e16bc7f8da@amd.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tanmay,
+Underscores should not be used in node names (dtc with W=2 warns about
+them), so replace them with hyphens.  In few places adjust the name to
+match other nodes (e.g. xxx-regulator).
 
-Thanks for the review and sorry for the delay. Please find my response 
-inline.
-On 30/11/22 23:27, Tanmay Shah wrote:
-> Hi Devarsh,
-> 
-> Please find my comments below.
-> 
-> On 11/30/22 6:40 PM, Devarsh Thakkar wrote:
->>
->>
->> AM62 and AM62A SoCs use single core R5F which is a new scenario
->> different than the one being used with CLUSTER_MODE_SINGLECPU
->> which is for utilizing a single core from a set of cores available
->> in R5F cluster present in the SoC.
->>
->> To support this single core scenario map it with
->> newly defined CLUSTER_MODE_NONE and use it when
->> compatible is set to ti,am62-r5fss.
->>
->> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
->> ---
->> V2: Fix indentation and ordering issues as per review comments
->> ---
->>   drivers/remoteproc/ti_k3_r5_remoteproc.c | 55 ++++++++++++++++++------
->>   1 file changed, 43 insertions(+), 12 deletions(-)
->>
->> diff --git a/drivers/remoteproc/ti_k3_r5_remoteproc.c 
->> b/drivers/remoteproc/ti_k3_r5_remoteproc.c
->> index 0481926c6975..9698b29a0b56 100644
->> --- a/drivers/remoteproc/ti_k3_r5_remoteproc.c
->> +++ b/drivers/remoteproc/ti_k3_r5_remoteproc.c
->> @@ -74,11 +74,13 @@ struct k3_r5_mem {
->>    *   Split mode      : AM65x, J721E, J7200 and AM64x SoCs
->>    *   LockStep mode   : AM65x, J721E and J7200 SoCs
->>    *   Single-CPU mode : AM64x SoCs only
->> + *   None            : AM62x, AM62A SoCs
->>    */
->>   enum cluster_mode {
->>          CLUSTER_MODE_SPLIT = 0,
->>          CLUSTER_MODE_LOCKSTEP,
->>          CLUSTER_MODE_SINGLECPU,
->> +       CLUSTER_MODE_NONE,
->>   };
->>
->>   /**
->> @@ -86,11 +88,13 @@ enum cluster_mode {
->>    * @tcm_is_double: flag to denote the larger unified TCMs in certain 
->> modes
->>    * @tcm_ecc_autoinit: flag to denote the auto-initialization of TCMs 
->> for ECC
->>    * @single_cpu_mode: flag to denote if SoC/IP supports Single-CPU mode
->> + * @is_single_core: flag to denote if SoC/IP has only single core R5
->>    */
->>   struct k3_r5_soc_data {
->>          bool tcm_is_double;
->>          bool tcm_ecc_autoinit;
->>          bool single_cpu_mode;
->> +       bool is_single_core;
-> 
-> 
-> If you are providing this data, then ignore parsing cluster-mode 
-> property. This will make change very simple.
-Yes, I think we are doing the same thing here. AM62x is modeled as a 
-cluster with a single core child but since it is single core there is no 
-cluster mode applicable as such and hence no cluster-mode required to be 
-set in device-tree for AM62x.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/msm8916.dtsi         |  6 +--
+ arch/arm64/boot/dts/qcom/msm8953.dtsi         |  4 +-
+ arch/arm64/boot/dts/qcom/msm8996.dtsi         |  8 +--
+ arch/arm64/boot/dts/qcom/msm8998.dtsi         | 16 +++---
+ arch/arm64/boot/dts/qcom/qcs404.dtsi          | 10 ++--
+ arch/arm64/boot/dts/qcom/sa8155p-adp.dts      |  2 +-
+ arch/arm64/boot/dts/qcom/sc7180.dtsi          | 50 +++++++++----------
+ .../dts/qcom/sdm630-sony-xperia-nile.dtsi     |  6 +--
+ arch/arm64/boot/dts/qcom/sdm630.dtsi          | 10 ++--
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts    |  6 +--
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          | 16 +++---
+ .../qcom/sm6125-sony-xperia-seine-pdx201.dts  |  2 +-
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          | 24 ++++-----
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          | 24 ++++-----
+ arch/arm64/boot/dts/qcom/sm8350.dtsi          | 24 ++++-----
+ arch/arm64/boot/dts/qcom/sm8450.dtsi          | 30 +++++------
+ 16 files changed, 119 insertions(+), 119 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+index 2ca8e977fc2a..dd2c9e2edeb0 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+@@ -1998,7 +1998,7 @@ cpu0_1_alert0: trip-point0 {
+ 					hysteresis = <2000>;
+ 					type = "passive";
+ 				};
+-				cpu0_1_crit: cpu_crit {
++				cpu0_1_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -2028,7 +2028,7 @@ cpu2_3_alert0: trip-point0 {
+ 					hysteresis = <2000>;
+ 					type = "passive";
+ 				};
+-				cpu2_3_crit: cpu_crit {
++				cpu2_3_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -2058,7 +2058,7 @@ gpu_alert0: trip-point0 {
+ 					hysteresis = <2000>;
+ 					type = "passive";
+ 				};
+-				gpu_crit: gpu_crit {
++				gpu_crit: gpu-crit {
+ 					temperature = <95000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi b/arch/arm64/boot/dts/qcom/msm8953.dtsi
+index 32349174c4bd..60ef163c8602 100644
+--- a/arch/arm64/boot/dts/qcom/msm8953.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
+@@ -202,12 +202,12 @@ core3 {
+ 			};
+ 		};
+ 
+-		L2_0: l2-cache_0 {
++		L2_0: l2-cache-0 {
+ 			compatible = "cache";
+ 			cache-level = <2>;
+ 		};
+ 
+-		L2_1: l2-cache_1 {
++		L2_1: l2-cache-1 {
+ 			compatible = "cache";
+ 			cache-level = <2>;
+ 		};
+diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+index d31464204f69..25616a0fe63e 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+@@ -3580,7 +3580,7 @@ cpu0_alert0: trip-point0 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu0_crit: cpu_crit {
++				cpu0_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -3601,7 +3601,7 @@ cpu1_alert0: trip-point0 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu1_crit: cpu_crit {
++				cpu1_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -3622,7 +3622,7 @@ cpu2_alert0: trip-point0 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu2_crit: cpu_crit {
++				cpu2_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -3643,7 +3643,7 @@ cpu3_alert0: trip-point0 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu3_crit: cpu_crit {
++				cpu3_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+index 539382dab0ad..f137cdc55772 100644
+--- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+@@ -465,7 +465,7 @@ cpu0_alert0: trip-point0 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu0_crit: cpu_crit {
++				cpu0_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -486,7 +486,7 @@ cpu1_alert0: trip-point0 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu1_crit: cpu_crit {
++				cpu1_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -507,7 +507,7 @@ cpu2_alert0: trip-point0 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu2_crit: cpu_crit {
++				cpu2_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -528,7 +528,7 @@ cpu3_alert0: trip-point0 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu3_crit: cpu_crit {
++				cpu3_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -549,7 +549,7 @@ cpu4_alert0: trip-point0 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu4_crit: cpu_crit {
++				cpu4_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -570,7 +570,7 @@ cpu5_alert0: trip-point0 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu5_crit: cpu_crit {
++				cpu5_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -591,7 +591,7 @@ cpu6_alert0: trip-point0 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu6_crit: cpu_crit {
++				cpu6_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -612,7 +612,7 @@ cpu7_alert0: trip-point0 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu7_crit: cpu_crit {
++				cpu7_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+index a5324eecb50a..b4d230d8e5cd 100644
+--- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+@@ -1502,7 +1502,7 @@ cluster_alert1: trip-point1 {
+ 					hysteresis = <2000>;
+ 					type = "passive";
+ 				};
+-				cluster_crit: cluster_crit {
++				cluster_crit: cluster-crit {
+ 					temperature = <120000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -1536,7 +1536,7 @@ cpu0_alert1: trip-point1 {
+ 					hysteresis = <2000>;
+ 					type = "passive";
+ 				};
+-				cpu0_crit: cpu_crit {
++				cpu0_crit: cpu-crit {
+ 					temperature = <120000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -1570,7 +1570,7 @@ cpu1_alert1: trip-point1 {
+ 					hysteresis = <2000>;
+ 					type = "passive";
+ 				};
+-				cpu1_crit: cpu_crit {
++				cpu1_crit: cpu-crit {
+ 					temperature = <120000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -1604,7 +1604,7 @@ cpu2_alert1: trip-point1 {
+ 					hysteresis = <2000>;
+ 					type = "passive";
+ 				};
+-				cpu2_crit: cpu_crit {
++				cpu2_crit: cpu-crit {
+ 					temperature = <120000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -1638,7 +1638,7 @@ cpu3_alert1: trip-point1 {
+ 					hysteresis = <2000>;
+ 					type = "passive";
+ 				};
+-				cpu3_crit: cpu_crit {
++				cpu3_crit: cpu-crit {
+ 					temperature = <120000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+diff --git a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+index f41dcc379dce..eafdfbbf40b9 100644
+--- a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
++++ b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+@@ -23,7 +23,7 @@ chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+ 
+-	vreg_3p3: vreg_3p3_regulator {
++	vreg_3p3: vreg-3p3-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vreg_3p3";
+ 		regulator-min-microvolt = <3300000>;
+diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+index f71cf21a8dd8..792e1e5fe70d 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+@@ -3681,7 +3681,7 @@ cpu0_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu0_crit: cpu_crit {
++				cpu0_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -3730,7 +3730,7 @@ cpu1_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu1_crit: cpu_crit {
++				cpu1_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -3779,7 +3779,7 @@ cpu2_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu2_crit: cpu_crit {
++				cpu2_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -3828,7 +3828,7 @@ cpu3_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu3_crit: cpu_crit {
++				cpu3_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -3877,7 +3877,7 @@ cpu4_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu4_crit: cpu_crit {
++				cpu4_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -3926,7 +3926,7 @@ cpu5_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu5_crit: cpu_crit {
++				cpu5_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -3975,7 +3975,7 @@ cpu6_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu6_crit: cpu_crit {
++				cpu6_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -4016,7 +4016,7 @@ cpu7_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu7_crit: cpu_crit {
++				cpu7_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -4057,7 +4057,7 @@ cpu8_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu8_crit: cpu_crit {
++				cpu8_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -4098,7 +4098,7 @@ cpu9_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu9_crit: cpu_crit {
++				cpu9_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -4132,7 +4132,7 @@ aoss0_alert0: trip-point0 {
+ 					type = "hot";
+ 				};
+ 
+-				aoss0_crit: aoss0_crit {
++				aoss0_crit: aoss0-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -4152,7 +4152,7 @@ cpuss0_alert0: trip-point0 {
+ 					hysteresis = <2000>;
+ 					type = "hot";
+ 				};
+-				cpuss0_crit: cluster0_crit {
++				cpuss0_crit: cluster0-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -4172,7 +4172,7 @@ cpuss1_alert0: trip-point0 {
+ 					hysteresis = <2000>;
+ 					type = "hot";
+ 				};
+-				cpuss1_crit: cluster0_crit {
++				cpuss1_crit: cluster0-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -4193,7 +4193,7 @@ gpuss0_alert0: trip-point0 {
+ 					type = "passive";
+ 				};
+ 
+-				gpuss0_crit: gpuss0_crit {
++				gpuss0_crit: gpuss0-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -4221,7 +4221,7 @@ gpuss1_alert0: trip-point0 {
+ 					type = "passive";
+ 				};
+ 
+-				gpuss1_crit: gpuss1_crit {
++				gpuss1_crit: gpuss1-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -4249,7 +4249,7 @@ aoss1_alert0: trip-point0 {
+ 					type = "hot";
+ 				};
+ 
+-				aoss1_crit: aoss1_crit {
++				aoss1_crit: aoss1-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -4270,7 +4270,7 @@ cwlan_alert0: trip-point0 {
+ 					type = "hot";
+ 				};
+ 
+-				cwlan_crit: cwlan_crit {
++				cwlan_crit: cwlan-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -4291,7 +4291,7 @@ audio_alert0: trip-point0 {
+ 					type = "hot";
+ 				};
+ 
+-				audio_crit: audio_crit {
++				audio_crit: audio-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -4312,7 +4312,7 @@ ddr_alert0: trip-point0 {
+ 					type = "hot";
+ 				};
+ 
+-				ddr_crit: ddr_crit {
++				ddr_crit: ddr-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -4333,7 +4333,7 @@ q6_hvx_alert0: trip-point0 {
+ 					type = "hot";
+ 				};
+ 
+-				q6_hvx_crit: q6_hvx_crit {
++				q6_hvx_crit: q6-hvx-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -4354,7 +4354,7 @@ camera_alert0: trip-point0 {
+ 					type = "hot";
+ 				};
+ 
+-				camera_crit: camera_crit {
++				camera_crit: camera-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -4375,7 +4375,7 @@ mdm_alert0: trip-point0 {
+ 					type = "hot";
+ 				};
+ 
+-				mdm_crit: mdm_crit {
++				mdm_crit: mdm-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -4396,7 +4396,7 @@ mdm_dsp_alert0: trip-point0 {
+ 					type = "hot";
+ 				};
+ 
+-				mdm_dsp_crit: mdm_dsp_crit {
++				mdm_dsp_crit: mdm-dsp-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -4417,7 +4417,7 @@ npu_alert0: trip-point0 {
+ 					type = "hot";
+ 				};
+ 
+-				npu_crit: npu_crit {
++				npu_crit: npu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+@@ -4438,7 +4438,7 @@ video_alert0: trip-point0 {
+ 					type = "hot";
+ 				};
+ 
+-				video_crit: video_crit {
++				video_crit: video-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+diff --git a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
+index 3d2b08d551d0..0259e90aad1c 100644
+--- a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
+@@ -57,7 +57,7 @@ vph_pwr: vph-pwr-regulator {
+ 		regulator-boot-on;
+ 	};
+ 
+-	cam_vdig_imx300_219_vreg: cam_vdig_imx300_219_vreg {
++	cam_vdig_imx300_219_vreg: cam-vdig-imx300-219-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "cam_vdig_imx300_219_vreg";
+ 		startup-delay-us = <0>;
+@@ -67,7 +67,7 @@ cam_vdig_imx300_219_vreg: cam_vdig_imx300_219_vreg {
+ 		pinctrl-0 = <&cam_vdig_default>;
+ 	};
+ 
+-	cam_vana_front_vreg: cam_vana_front_vreg {
++	cam_vana_front_vreg: cam-vana-front-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "cam_vana_front_vreg";
+ 		startup-delay-us = <0>;
+@@ -77,7 +77,7 @@ cam_vana_front_vreg: cam_vana_front_vreg {
+ 		pinctrl-0 = <&imx219_vana_default>;
+ 	};
+ 
+-	cam_vana_rear_vreg: cam_vana_rear_vreg {
++	cam_vana_rear_vreg: cam-vana-rear-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "cam_vana_rear_vreg";
+ 		startup-delay-us = <0>;
+diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+index 13e6a4fbba27..810f51b48dce 100644
+--- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+@@ -2409,7 +2409,7 @@ cpu0_alert0: trip-point0 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu0_crit: cpu_crit {
++				cpu0_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -2430,7 +2430,7 @@ cpu1_alert0: trip-point0 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu1_crit: cpu_crit {
++				cpu1_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -2451,7 +2451,7 @@ cpu2_alert0: trip-point0 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu2_crit: cpu_crit {
++				cpu2_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -2472,7 +2472,7 @@ cpu3_alert0: trip-point0 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu3_crit: cpu_crit {
++				cpu3_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -2499,7 +2499,7 @@ pwr_cluster_alert0: trip-point0 {
+ 					type = "passive";
+ 				};
+ 
+-				pwr_cluster_crit: cpu_crit {
++				pwr_cluster_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+index f41c6d600ea8..4f64f4115175 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+@@ -142,7 +142,7 @@ pcie0_1p05v: pcie-0-1p05v-regulator {
+ 		 */
+ 	};
+ 
+-	cam0_dvdd_1v2: reg_cam0_dvdd_1v2 {
++	cam0_dvdd_1v2: cam0-dvdd-1v2-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "CAM0_DVDD_1V2";
+ 		regulator-min-microvolt = <1200000>;
+@@ -154,7 +154,7 @@ cam0_dvdd_1v2: reg_cam0_dvdd_1v2 {
+ 		vin-supply = <&vbat>;
+ 	};
+ 
+-	cam0_avdd_2v8: reg_cam0_avdd_2v8 {
++	cam0_avdd_2v8: cam0-avdd-2v8-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "CAM0_AVDD_2V8";
+ 		regulator-min-microvolt = <2800000>;
+@@ -167,7 +167,7 @@ cam0_avdd_2v8: reg_cam0_avdd_2v8 {
+ 	};
+ 
+ 	/* This regulator is enabled when the VREG_LVS1A_1P8 trace is enabled */
+-	cam3_avdd_2v8: reg_cam3_avdd_2v8 {
++	cam3_avdd_2v8: cam3-avdd-2v8-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "CAM3_AVDD_2V8";
+ 		regulator-min-microvolt = <2800000>;
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index 65032b94b46d..444fe75ede13 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -5385,7 +5385,7 @@ cpu0_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu0_crit: cpu_crit {
++				cpu0_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -5412,7 +5412,7 @@ cpu1_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu1_crit: cpu_crit {
++				cpu1_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -5439,7 +5439,7 @@ cpu2_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu2_crit: cpu_crit {
++				cpu2_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -5466,7 +5466,7 @@ cpu3_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu3_crit: cpu_crit {
++				cpu3_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -5493,7 +5493,7 @@ cpu4_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu4_crit: cpu_crit {
++				cpu4_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -5520,7 +5520,7 @@ cpu5_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu5_crit: cpu_crit {
++				cpu5_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -5547,7 +5547,7 @@ cpu6_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu6_crit: cpu_crit {
++				cpu6_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -5574,7 +5574,7 @@ cpu7_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu7_crit: cpu_crit {
++				cpu7_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+diff --git a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
+index 0de6c5b7f742..476df4f6e58a 100644
+--- a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
++++ b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
+@@ -55,7 +55,7 @@ key-vol-dn {
+ 		};
+ 	};
+ 
+-	reserved_memory {
++	reserved-memory {
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+ 		debug_mem: memory@ffb00000 {
+diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+index a0c57fb798d3..e3997a0e3dff 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+@@ -4057,7 +4057,7 @@ cpu0_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu0_crit: cpu_crit {
++				cpu0_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -4101,7 +4101,7 @@ cpu1_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu1_crit: cpu_crit {
++				cpu1_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -4145,7 +4145,7 @@ cpu2_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu2_crit: cpu_crit {
++				cpu2_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -4189,7 +4189,7 @@ cpu3_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu3_crit: cpu_crit {
++				cpu3_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -4233,7 +4233,7 @@ cpu4_top_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu4_top_crit: cpu_crit {
++				cpu4_top_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -4277,7 +4277,7 @@ cpu5_top_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu5_top_crit: cpu_crit {
++				cpu5_top_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -4321,7 +4321,7 @@ cpu6_top_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu6_top_crit: cpu_crit {
++				cpu6_top_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -4365,7 +4365,7 @@ cpu7_top_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu7_top_crit: cpu_crit {
++				cpu7_top_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -4409,7 +4409,7 @@ cpu4_bottom_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu4_bottom_crit: cpu_crit {
++				cpu4_bottom_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -4453,7 +4453,7 @@ cpu5_bottom_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu5_bottom_crit: cpu_crit {
++				cpu5_bottom_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -4497,7 +4497,7 @@ cpu6_bottom_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu6_bottom_crit: cpu_crit {
++				cpu6_bottom_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -4541,7 +4541,7 @@ cpu7_bottom_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu7_bottom_crit: cpu_crit {
++				cpu7_bottom_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index dab5579946f3..46186e521aba 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -5500,7 +5500,7 @@ cpu0_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu0_crit: cpu_crit {
++				cpu0_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -5544,7 +5544,7 @@ cpu1_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu1_crit: cpu_crit {
++				cpu1_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -5588,7 +5588,7 @@ cpu2_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu2_crit: cpu_crit {
++				cpu2_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -5632,7 +5632,7 @@ cpu3_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu3_crit: cpu_crit {
++				cpu3_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -5676,7 +5676,7 @@ cpu4_top_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu4_top_crit: cpu_crit {
++				cpu4_top_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -5720,7 +5720,7 @@ cpu5_top_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu5_top_crit: cpu_crit {
++				cpu5_top_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -5764,7 +5764,7 @@ cpu6_top_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu6_top_crit: cpu_crit {
++				cpu6_top_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -5808,7 +5808,7 @@ cpu7_top_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu7_top_crit: cpu_crit {
++				cpu7_top_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -5852,7 +5852,7 @@ cpu4_bottom_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu4_bottom_crit: cpu_crit {
++				cpu4_bottom_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -5896,7 +5896,7 @@ cpu5_bottom_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu5_bottom_crit: cpu_crit {
++				cpu5_bottom_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -5940,7 +5940,7 @@ cpu6_bottom_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu6_bottom_crit: cpu_crit {
++				cpu6_bottom_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -5984,7 +5984,7 @@ cpu7_bottom_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu7_bottom_crit: cpu_crit {
++				cpu7_bottom_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+index 245dce24ec59..b41bc3b005fb 100644
+--- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+@@ -2728,7 +2728,7 @@ cpu0_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu0_crit: cpu_crit {
++				cpu0_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -2772,7 +2772,7 @@ cpu1_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu1_crit: cpu_crit {
++				cpu1_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -2816,7 +2816,7 @@ cpu2_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu2_crit: cpu_crit {
++				cpu2_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -2860,7 +2860,7 @@ cpu3_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu3_crit: cpu_crit {
++				cpu3_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -2904,7 +2904,7 @@ cpu4_top_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu4_top_crit: cpu_crit {
++				cpu4_top_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -2948,7 +2948,7 @@ cpu5_top_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu5_top_crit: cpu_crit {
++				cpu5_top_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -2992,7 +2992,7 @@ cpu6_top_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu6_top_crit: cpu_crit {
++				cpu6_top_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -3036,7 +3036,7 @@ cpu7_top_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu7_top_crit: cpu_crit {
++				cpu7_top_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -3080,7 +3080,7 @@ cpu4_bottom_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu4_bottom_crit: cpu_crit {
++				cpu4_bottom_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -3124,7 +3124,7 @@ cpu5_bottom_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu5_bottom_crit: cpu_crit {
++				cpu5_bottom_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -3168,7 +3168,7 @@ cpu6_bottom_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu6_bottom_crit: cpu_crit {
++				cpu6_bottom_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -3212,7 +3212,7 @@ cpu7_bottom_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu7_bottom_crit: cpu_crit {
++				cpu7_bottom_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+index 570475040d95..8b0a0c990392 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+@@ -3953,7 +3953,7 @@ cpu4_top_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu4_top_crit: cpu_crit {
++				cpu4_top_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -3979,7 +3979,7 @@ cpu4_bottom_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu4_bottom_crit: cpu_crit {
++				cpu4_bottom_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -4005,7 +4005,7 @@ cpu5_top_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu5_top_crit: cpu_crit {
++				cpu5_top_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -4031,7 +4031,7 @@ cpu5_bottom_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu5_bottom_crit: cpu_crit {
++				cpu5_bottom_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -4057,7 +4057,7 @@ cpu6_top_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu6_top_crit: cpu_crit {
++				cpu6_top_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -4083,7 +4083,7 @@ cpu6_bottom_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu6_bottom_crit: cpu_crit {
++				cpu6_bottom_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -4109,7 +4109,7 @@ cpu7_top_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu7_top_crit: cpu_crit {
++				cpu7_top_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -4135,7 +4135,7 @@ cpu7_middle_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu7_middle_crit: cpu_crit {
++				cpu7_middle_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -4161,7 +4161,7 @@ cpu7_bottom_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu7_bottom_crit: cpu_crit {
++				cpu7_bottom_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -4193,7 +4193,7 @@ reset-mon-cfg {
+ 					type = "passive";
+ 				};
+ 
+-				gpu0_tj_cfg: tj_cfg {
++				gpu0_tj_cfg: tj-cfg {
+ 					temperature = <95000>;
+ 					hysteresis = <5000>;
+ 					type = "passive";
+@@ -4225,7 +4225,7 @@ reset-mon-cfg {
+ 					type = "passive";
+ 				};
+ 
+-				gpu1_tj_cfg: tj_cfg {
++				gpu1_tj_cfg: tj-cfg {
+ 					temperature = <95000>;
+ 					hysteresis = <5000>;
+ 					type = "passive";
+@@ -4271,7 +4271,7 @@ cpu0_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu0_crit: cpu_crit {
++				cpu0_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -4297,7 +4297,7 @@ cpu1_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu1_crit: cpu_crit {
++				cpu1_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -4323,7 +4323,7 @@ cpu2_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu2_crit: cpu_crit {
++				cpu2_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+@@ -4349,7 +4349,7 @@ cpu3_alert1: trip-point1 {
+ 					type = "passive";
+ 				};
+ 
+-				cpu3_crit: cpu_crit {
++				cpu3_crit: cpu-crit {
+ 					temperature = <110000>;
+ 					hysteresis = <1000>;
+ 					type = "critical";
+-- 
+2.34.1
 
-> I believe this would save you any modification in bindings as well as 
-> cluster-mode property is optional anyway.
-> 
-> Also, "enum cluster_mode" reflects cluster-mode values from bindings 
-> document except proper soc compatible. I don't see new value added in 
-> bindings document i.e. only
-> 
-> [0 -> split, 1 -> lockstep, 2 -> single cpu] are defined. If new enum is 
-> introduced in driver, it is expected to reflect in bindings i.e. [3 -> 
-> cluster-mode none] to avoid any confusion.
-To support backward compatibility we introduced CLUSTER_MODE_NONE at 3, 
-but I think we can use -1 index and maybe another name say 
-CLUSTER_MODE_INVALID to make it less confusing. The cluster-mode 
-property doesn't apply to AM62x since it uses CLUSTER_MODE_INVALID, my 
-understanding is we don't need to describe CLUSTER_MODE_INVALID in 
-dt-binding since it will be only used internally by driver as -1 and need
-not be set at all in device-tree since for AM62x there won't be any 
-cluster-mode property required to be set in the devicetree.
-
-> 
-> I believe it is duplicate logic if you are providing "is_single_core" 
-> information here and introduce CLUSTER_MODE_NONE as well.
-> 
-> May be I am missing something, but I don't see any use of providing 
-> extra value CLUSTER_MODE_NONE if "is_single_core" is set in the driver. 
-> So, simple solutions is just to avoid parsing cluster-mode property if 
-> is_single_core is set in the driver. Hope this helps.
-Fair point, we could have used soc data's is_single_core check instead 
-of adding a new enum and used that check and that would have worked too. 
-But in that case, cluster-mode by default would be set to 0 with  as 
-part of allocation of k3_r5_cluster struct during probe which would 
-imply incorrectly CLUSTER_MODE_SPLIT for AM62x. I think it is better
-to have another enum say CLUSTER_MODE_INVALID and use it for SoC's like 
-AM62x to make it less confusing.
-
-Regards,
-Devarsh
-> 
-> 
-> Thanks,
-> 
-> Tanmay
-> 
-> 
->>   };
->>
->>   /**
->> @@ -838,7 +842,8 @@ static int k3_r5_rproc_configure(struct 
->> k3_r5_rproc *kproc)
->>
->>          core0 = list_first_entry(&cluster->cores, struct k3_r5_core, 
->> elem);
->>          if (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
->> -           cluster->mode == CLUSTER_MODE_SINGLECPU) {
->> +           cluster->mode == CLUSTER_MODE_SINGLECPU ||
->> +           cluster->mode == CLUSTER_MODE_NONE) {
->>                  core = core0;
->>          } else {
->>                  core = kproc->core;
->> @@ -853,7 +858,7 @@ static int k3_r5_rproc_configure(struct 
->> k3_r5_rproc *kproc)
->>                  boot_vec, cfg, ctrl, stat);
->>
->>          /* check if only Single-CPU mode is supported on applicable 
->> SoCs */
->> -       if (cluster->soc_data->single_cpu_mode) {
->> +       if (cluster->soc_data->single_cpu_mode || 
->> cluster->soc_data->is_single_core) {
->>                  single_cpu =
->>                          !!(stat & 
->> PROC_BOOT_STATUS_FLAG_R5_SINGLECORE_ONLY);
->>                  if (single_cpu && cluster->mode == CLUSTER_MODE_SPLIT) {
->> @@ -1074,6 +1079,7 @@ static void k3_r5_adjust_tcm_sizes(struct 
->> k3_r5_rproc *kproc)
->>
->>          if (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
->>              cluster->mode == CLUSTER_MODE_SINGLECPU ||
->> +           cluster->mode == CLUSTER_MODE_NONE ||
->>              !cluster->soc_data->tcm_is_double)
->>                  return;
->>
->> @@ -1147,7 +1153,9 @@ static int k3_r5_rproc_configure_mode(struct 
->> k3_r5_rproc *kproc)
->>          atcm_enable = cfg & PROC_BOOT_CFG_FLAG_R5_ATCM_EN ?  1 : 0;
->>          btcm_enable = cfg & PROC_BOOT_CFG_FLAG_R5_BTCM_EN ?  1 : 0;
->>          loczrama = cfg & PROC_BOOT_CFG_FLAG_R5_TCM_RSTBASE ?  1 : 0;
->> -       if (cluster->soc_data->single_cpu_mode) {
->> +       if (cluster->soc_data->is_single_core) {
->> +               mode = CLUSTER_MODE_NONE;
->> +       } else if (cluster->soc_data->single_cpu_mode) {
->>                  mode = cfg & PROC_BOOT_CFG_FLAG_R5_SINGLE_CORE ?
->>                                  CLUSTER_MODE_SINGLECPU : 
->> CLUSTER_MODE_SPLIT;
->>          } else {
->> @@ -1271,7 +1279,8 @@ static int k3_r5_cluster_rproc_init(struct 
->> platform_device *pdev)
->>
->>                  /* create only one rproc in lockstep mode or 
->> single-cpu mode */
->>                  if (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
->> -                   cluster->mode == CLUSTER_MODE_SINGLECPU)
->> +                   cluster->mode == CLUSTER_MODE_SINGLECPU ||
->> +                   cluster->mode == CLUSTER_MODE_NONE)
->>                          break;
->>          }
->>
->> @@ -1704,21 +1713,32 @@ static int k3_r5_probe(struct platform_device 
->> *pdev)
->>           * default to most common efuse configurations - Split-mode 
->> on AM64x
->>           * and LockStep-mode on all others
->>           */
->> -       cluster->mode = data->single_cpu_mode ?
->> +       if (!data->is_single_core)
->> +               cluster->mode = data->single_cpu_mode ?
->>                                  CLUSTER_MODE_SPLIT : 
->> CLUSTER_MODE_LOCKSTEP;
->> +       else
->> +               cluster->mode = CLUSTER_MODE_NONE;
->> +
->>          cluster->soc_data = data;
->>          INIT_LIST_HEAD(&cluster->cores);
->>
->> -       ret = of_property_read_u32(np, "ti,cluster-mode", 
->> &cluster->mode);
->> -       if (ret < 0 && ret != -EINVAL) {
->> -               dev_err(dev, "invalid format for ti,cluster-mode, ret 
->> = %d\n",
->> -                       ret);
->> -               return ret;
->> +       if (!data->is_single_core) {
->> +               ret = of_property_read_u32(np, "ti,cluster-mode", 
->> &cluster->mode);
->> +               if (ret < 0 && ret != -EINVAL) {
->> +                       dev_err(dev, "invalid format for 
->> ti,cluster-mode, ret = %d\n", ret);
->> +                       return ret;
->> +               }
->>          }
->>
->>          num_cores = of_get_available_child_count(np);
->> -       if (num_cores != 2) {
->> -               dev_err(dev, "MCU cluster requires both R5F cores to 
->> be enabled, num_cores = %d\n",
->> +       if (num_cores != 2 && !data->is_single_core) {
->> +               dev_err(dev, "MCU cluster requires both R5F cores to 
->> be enabled but num_cores is set to = %d\n",
->> +                       num_cores);
->> +               return -ENODEV;
->> +       }
->> +
->> +       if (num_cores != 1 && data->is_single_core) {
->> +               dev_err(dev, "SoC supports only single core R5 but 
->> num_cores is set to %d\n",
->>                          num_cores);
->>                  return -ENODEV;
->>          }
->> @@ -1760,18 +1780,28 @@ static const struct k3_r5_soc_data 
->> am65_j721e_soc_data = {
->>          .tcm_is_double = false,
->>          .tcm_ecc_autoinit = false,
->>          .single_cpu_mode = false,
->> +       .is_single_core = false,
->>   };
->>
->>   static const struct k3_r5_soc_data j7200_j721s2_soc_data = {
->>          .tcm_is_double = true,
->>          .tcm_ecc_autoinit = true,
->>          .single_cpu_mode = false,
->> +       .is_single_core = false,
->>   };
->>
->>   static const struct k3_r5_soc_data am64_soc_data = {
->>          .tcm_is_double = true,
->>          .tcm_ecc_autoinit = true,
->>          .single_cpu_mode = true,
->> +       .is_single_core = false,
->> +};
->> +
->> +static const struct k3_r5_soc_data am62_soc_data = {
->> +       .tcm_is_double = false,
->> +       .tcm_ecc_autoinit = true,
->> +       .single_cpu_mode = false,
->> +       .is_single_core = true,
->>   };
->>
->>   static const struct of_device_id k3_r5_of_match[] = {
->> @@ -1779,6 +1809,7 @@ static const struct of_device_id 
->> k3_r5_of_match[] = {
->>          { .compatible = "ti,j721e-r5fss", .data = 
->> &am65_j721e_soc_data, },
->>          { .compatible = "ti,j7200-r5fss", .data = 
->> &j7200_j721s2_soc_data, },
->>          { .compatible = "ti,am64-r5fss",  .data = &am64_soc_data, },
->> +       { .compatible = "ti,am62-r5fss",  .data = &am62_soc_data, },
->>          { .compatible = "ti,j721s2-r5fss",  .data = 
->> &j7200_j721s2_soc_data, },
->>          { /* sentinel */ },
->>   };
->> -- 
->> 2.17.1
->>
