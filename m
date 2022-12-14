@@ -2,124 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2202964CAD5
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 14:13:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6250664CB21
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 14:22:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238556AbiLNNNe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 08:13:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40342 "EHLO
+        id S237808AbiLNNWm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 08:22:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238265AbiLNNNP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 08:13:15 -0500
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3016020370
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 05:13:14 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id a19so6627907ljk.0
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 05:13:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=a+g8bhbYuaQlXpPh9UOtgjVnfBA2QaGFWh99Dxpg4ZE=;
-        b=pH4lW0UzND66hSwgAr90gmNeJlHhMMjKxH++4eW3mWYQyc+QzxOJXFiGhRsFLzgJq3
-         k3+WVeQmb6prwQwLr5tbLcNSDjevfkbBMeexkjwydyfk5wzC2d01uaqZ9KTKR4ZbmmSj
-         P4BbNAO9HG/VNcHskBIak4fVt3eAS+98lwqxCaBfK7/840N6KSl+juF26s9XyI+9zx72
-         v0SctXCPovZc5s4h19qrHjlfhaBFG7899spkzEHoVKHOe5BCc8b80P8G48Su4s+kR1L/
-         flqXg0HjT5iXo4wesLl9SlcpG8/MXK43CZfSuMIKHUY2pU04i7qiRlmDFXAraT+VJGTV
-         D/TQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=a+g8bhbYuaQlXpPh9UOtgjVnfBA2QaGFWh99Dxpg4ZE=;
-        b=LsInCHybD2fj3lq/jQS1S4Qp1TArrzgVa6XTEdZwJ8FZritxXJnmiQHErY2roFWbXz
-         yZoMwKTvcCpbVbwODDDKcj/fqHmH/gLRhES39wqlwxL8Wz5MEv8jDukWH0IX+v8PnLS+
-         nVhlCCyxq7JpEc3RzVArSB7hDIMDJyro676u6ta0BuTgtsMcaU52XXdL+s2vzpqfC0HK
-         T9yMprBgMMzngv2y/ex/WBHa2kHAMCGNKyBOtEHS3DJAJYcmxv2v6ZKTWtw8HE7N/4/T
-         8gJt4qcpJELLPnLMVKeo9Fnzdn9vFxveA7dqAufJYFLorMqG1YkB2m5shlMT+tprvDDu
-         /s+g==
-X-Gm-Message-State: ANoB5pmE/AyWXx0Fk1kmkAvWUaRwVJ5g8RJcIhqQFNJhSPlwQ9ejRZc2
-        5ZZVEQu/sFyosx9UEeXw41ZCoyW+TbHPQhDs
-X-Google-Smtp-Source: AA0mqf5PHGVRyKqw0AGxvuMvc+S3bUW9QX8UFoENXdCLSqKdTBPI3OD0tyhSW0GEGTa31bX/AAwYJQ==
-X-Received: by 2002:a05:651c:883:b0:26f:db34:a157 with SMTP id d3-20020a05651c088300b0026fdb34a157mr5864463ljq.26.1671023592549;
-        Wed, 14 Dec 2022 05:13:12 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id bd9-20020a05651c168900b00279e93c9c25sm596663ljb.29.2022.12.14.05.13.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Dec 2022 05:13:11 -0800 (PST)
-Message-ID: <9d7bda38-69c9-95c8-e867-8bd5733debe2@linaro.org>
-Date:   Wed, 14 Dec 2022 14:13:10 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH 3/6] dt-bindings: pinctrl: mt7621: add proper function
- muxing binding
-Content-Language: en-US
-To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S237522AbiLNNWl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 08:22:41 -0500
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0FF741F4;
+        Wed, 14 Dec 2022 05:22:39 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.96,244,1665414000"; 
+   d="scan'208";a="146177058"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 14 Dec 2022 22:22:39 +0900
+Received: from localhost.localdomain (unknown [10.226.93.99])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 43DF24004BC9;
+        Wed, 14 Dec 2022 22:22:34 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org
-References: <20221213130430.172876-1-arinc.unal@arinc9.com>
- <20221213130430.172876-4-arinc.unal@arinc9.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221213130430.172876-4-arinc.unal@arinc9.com>
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v12 0/2] Add support for RZ/G2L GPT
+Date:   Wed, 14 Dec 2022 13:22:30 +0000
+Message-Id: <20221214132232.2835828-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/12/2022 14:04, Arınç ÜNAL wrote:
-> Not every function can be muxed to a group. Add proper binding which
-> documents which function can be muxed to a group or set of groups.
-> 
-> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
-> ---
->  .../pinctrl/ralink,mt7621-pinctrl.yaml        | 204 +++++++++++++++++-
->  1 file changed, 197 insertions(+), 7 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/ralink,mt7621-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/ralink,mt7621-pinctrl.yaml
-> index 61e5c847e8c8..0efb03f1d88e 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/ralink,mt7621-pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/ralink,mt7621-pinctrl.yaml
-> @@ -29,21 +29,212 @@ patternProperties:
->          $ref: pinmux-node.yaml#
->  
->          properties:
-> -          groups:
-> -            description: The pin group to select.
-> -            enum: [i2c, jtag, mdio, pcie, rgmii1, rgmii2, sdhci, spi, uart1,
-> -                   uart2, uart3, wdt]
-> -
->            function:
-> -            description: The mux function to select.
-> +            description:
-> +              A string containing the name of the function to mux to the group.
->              enum: [gpio, i2c, i2s, jtag, mdio, nand1, nand2, pcie refclk,
->                     pcie rst, pcm, rgmii1, rgmii2, sdhci, spdif2, spdif3, spi,
->                     uart1, uart2, uart3, wdt refclk, wdt rst]
->  
-> +          groups:
-> +            description:
-> +              An array of strings. Each string contains the name of a group.
+RZ/G2L General PWM Timer (GPT) composed of 8 channels with 32-bit timer
+(GPT32E). It supports the following functions
+ * 32 bits × 8 channels
+ * Up-counting or down-counting (saw waves) or up/down-counting
+   (triangle waves) for each counter.
+ * Clock sources independently selectable for each channel
+ * Two I/O pins per channel
+ * Two output compare/input capture registers per channel
+ * For the two output compare/input capture registers of each channel,
+   four registers are provided as buffer registers and are capable of
+   operating as comparison registers when buffering is not in use.
+ * In output compare operation, buffer switching can be at crests or
+   troughs, enabling the generation of laterally asymmetric PWM waveforms.
+ * Registers for setting up frame cycles in each channel (with capability
+   for generating interrupts at overflow or underflow)
+ * Generation of dead times in PWM operation
+ * Synchronous starting, stopping and clearing counters for arbitrary
+   channels
+ * Starting, stopping, clearing and up/down counters in response to input
+   level comparison
+ * Starting, clearing, stopping and up/down counters in response to a
+   maximum of four external triggers
+ * Output pin disable function by dead time error and detected
+   short-circuits between output pins
+ * A/D converter start triggers can be generated (GPT32E0 to GPT32E3)
+ * Enables the noise filter for input capture and external trigger
+   operation
 
-Here and in all patches - please add maxItems:1. The definition of field
-should have some constraints (and your if:then: might miss a case).
+This patch series aims to add basic pwm support for RZ/G2L GPT driver
+by creating separate logical channels for each IOs.
 
-Best regards,
-Krzysztof
+v11->v12:
+ * Added return code for get_state()
+ * Cache duty cycle/prescale as the driver cannot read the current duty
+   cycle/prescale from the hardware if the hardware is disabled. Cache the
+   last programmed duty cycle/prescale value to return in that case.
+ * Updated rzg2l_gpt_enable to enable the clocks.
+ * Updated rzg2l_gpt_disable to disable the clocks.
+ * Updated rzg2l_gpt_config() to cache duty cucle/prescale value
+ * Updated rzg2l_gpt_get_state to use cached value of duty cycle/prescale,If the PWM
+   is disabled.
+ * Simplified rzg2l_gpt_apply()
+ * Added comments in rzg2l_gpt_reset_assert_pm_disable()
+v10->v11:
+ * Used bitmap_zero for initializing bitmap varable.
+ * Fixed clock imbalance during remove for the case bootloader turning
+   on PWM and module unload is called just after the boot.
+ * Fixed over flow condition in get_state() for a prescale value of 2 & more.
+ * Improved rzg2l_gpt_cntr_need_stop() based on prescale as it is the
+   only runtime variable.
+ * Added array for Cache variables state_period and prescale
+ * Probe caches the prescale value set by the bootloader.
+ * Updated rzg2l_gpt_config() to make use of array variables.
+v9->v10:
+ * Updated the example gpt4: pwm@10048400-> gpt: pwm@10048000
+ * Keep Rb tag from Rob as the above change is trivial one.
+ * Updated the error handling in probe(), clk_disable_unprepare called
+   on the error path.
+ * Removed ch_en array and started using bitmask instead.
+v8->v9:
+ * Added Rb tag from Rob.
+ * deassert after devm_clk_get() to avoid reset stays deasserted,in case
+   clk_get() fails.
+ * Removed ch_offs from struct rzg2l_gpt_chip and use macro instead.
+ * Updated error handling in probe()
+v7->v8:
+ * Removed Rb tags from Rob and Geert as it modelled as single GPT
+   device handling multiple channels.
+ * Updated description
+ * Updated interrupts and interrupt-names properties
+ * Updated binding example
+ * Modelled as single PWM device handling multiple channels
+ * Replaced shared reset->devm_reset_control_get_exclusive()
+ * Added PM runtime callbacks
+ * Updated PM handling and removed "pwm_enabled_by_bootloader" variable
+ * Replaced iowrite32->writel and ioread32->readl
+ * Updated prescale calculation
+ * Introduced rzg2l_gpt_is_ch_enabled for checking enable status on both
+   IO's
+ * Moved enable/disable output pins from config->enable/disable.
+ * Added rzg2l_gpt_cntr_need_stop() for caching prescalar/mode values.
+v6->v7:
+ * Added the comment for cacheing rzg2l_gpt->state_period.
+ * Fixed boundary values for pv and dc.
+ * Added comment for modifying mode, prescaler, timer counter and buffer enable
+   registers.
+ * Fixed buffer overflow in get_state()
+ * Removed unnecessary assignment of state->period value in get_state().
+ * Fixed state->duty_cycle value in get_state().
+ * Added a limitation for disabling the channels, when both channels used
+v5->v6:
+ * Updated macros RZG2L_GTIOR_GTIOB_OUT_HI_END_TOGGLE_CMP_MATCH and
+   RZG2L_GTIOR_GTIOB_OUT_LO_END_TOGGLE_CMP_MATCH with computation
+   involving FIELD_PREP macro.
+ * Removed struct rzg2l_gpt_phase and started using RZG2L_GTCCR macro
+   for duty_offset.
+ * replaced misnomer real_period->state_period.
+ * Added handling for values >= (1024 << 32) for both period
+   and duty cycle.
+ * Added comments for pwm {en,dis}abled by bootloader during probe.
+v4->v5:
+ * Added Hardware manual details
+ * Replaced the comment GTCNT->Counter
+ * Removed the macros RZG2L_GPT_IO_PER_CHANNEL and chip.npwm directly
+   used in probe.
+ * Removed the unsed macro RZG2L_GTPR_MAX_VALUE
+ * Added driver prefix for the type name and the variable.
+ * Initialization of per_channel data moved from request->probe.
+ * Updated clr parameter for rzg2l_gpt_modify for Start count.
+ * Started using mutex and usage_count for handling shared
+   period and prescalar for the 2 channels.
+ * Updated the comment cycle->period.
+ * Removed clk_disable from rzg2l_gpt_reset_assert_pm_disable()
+ * Replaced pc->rzg2l_gpt.
+ * Updated prescale calculation.
+ * Moved pm_runtime_{get_sync,put} from {request,free}->{enable,disable}
+ * Removed platform_set_drvdata as it is unused
+ * Removed the variable pwm_enabled_by_bootloader 
+ * Added dev_err_probe in various probe error path.
+ * Added an error message, if devm_pwmchip_add fails.
+v3->v4:
+ * Changed the local variable type i from u16->u8 and prescaled_period_
+   cycles from u64->u32 in calculate_prescale().
+ * Replaced mul_u64_u64_div_u64()->mul_u64_u32_div()
+ * Dropped the comma after the sentinel.
+ * Add a variable to track pwm enabled by bootloader and added comments
+   in probe().
+ * Removed unnecessary rzg2l_gpt_reset_assert_pm_disable() from probe.
+ * Replaced devm_clk_get()->devm_clk_get_prepared()
+ * Removed devm_clk_get_optional_enabled()
+v2->v3:
+ * Added Rb tag from Rob for the bindings.
+ * Updated limitation section
+ * Added prefix "RZG2L_" for all macros
+ * Modified prescale calculation
+ * Removed pwm_set_chip_data
+ * Updated comment related to modifying Mode and Prescaler
+ * Updated setting of prescale value in rzg2l_gpt_config()
+ * Removed else branch from rzg2l_gpt_get_state()
+ * removed the err label from rzg2l_gpt_apply()
+ * Added devm_clk_get_optional_enabled() to retain clk on status,
+   in case bootloader turns on the clk of pwm.
+ * Replaced devm_reset_control_get_exclusive->devm_reset_control_get_shared
+   as single reset shared between 8 channels.
+V1->v2:
+ * Added '|' after 'description:' to preserve formatting.
+ * Removed description for pwm_cells as it is common property.
+ * Changed the reg size in example from 0xa4->0x100
+ * Added Rb tag from Geert for bindings.
+ * Added Limitations section
+ * dropped "_MASK" from the define names.
+ * used named initializer for struct phase
+ * Added gpt_pwm_device into a flexible array member in rzg2l_gpt_chip
+ * Revised the logic for prescale
+ * Added .get_state callback
+ * Improved error handling in rzg2l_gpt_apply
+ * Removed .remove callback
+ * Tested the driver with PWM_DEBUG enabled.
+
+RFC->v1:
+ * Added Description in binding patch
+ * Removed comments from reg and clock
+ * replaced rzg2l_gpt_write_mask()->rzg2l_gpt_modify()
+ * Added rzg2l_gpt_read() and updated macros
+ * Removed dtsi patches, will send it separately
+
+RFC:
+ * https://lore.kernel.org/linux-renesas-soc/20220430075915.5036-1-biju.das.jz@bp.renesas.com/T/#t
+
+Biju Das (2):
+  dt-bindings: pwm: Add RZ/G2L GPT binding
+  pwm: Add support for RZ/G2L GPT
+
+ .../bindings/pwm/renesas,rzg2l-gpt.yaml       | 378 ++++++++++++
+ drivers/pwm/Kconfig                           |  11 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-rzg2l-gpt.c                   | 570 ++++++++++++++++++
+ 4 files changed, 960 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
+ create mode 100644 drivers/pwm/pwm-rzg2l-gpt.c
+
+-- 
+2.25.1
 
