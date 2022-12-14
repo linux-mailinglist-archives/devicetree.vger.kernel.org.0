@@ -2,177 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13EA664CCCA
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 16:01:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1EFD64CCD1
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 16:05:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238044AbiLNPBE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 10:01:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33818 "EHLO
+        id S238502AbiLNPFa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 10:05:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237778AbiLNPBD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 10:01:03 -0500
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E357A448;
-        Wed, 14 Dec 2022 07:01:02 -0800 (PST)
-Received: by mail-oi1-f172.google.com with SMTP id r11so2763415oie.13;
-        Wed, 14 Dec 2022 07:01:02 -0800 (PST)
+        with ESMTP id S237778AbiLNPF3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 10:05:29 -0500
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60D2D2715E
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 07:05:28 -0800 (PST)
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-1447c7aa004so16897705fac.11
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 07:05:28 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=zoL6i5vxN2VIXQtBU1jlFS6aLxm/by40lLf1WEubCJM=;
-        b=YAn2vt0QCMuGgtdhz8VIWebgpRvAAEsaexZgw6JAZTmwBkFd1aa++vrPjEvVNNamDR
-         HPfaF390V3LwLCP+TeFKIG9E7JUj4pQUHclwWDFWZ7wTty2tnOYt7ipVd3+wveWqFmZr
-         LWJkFK1Fvd4XNaPyRZvCaoda/ycPTRinf1UDDgCnIXCye/tbg0oSEKs+QLP3SUK67M7u
-         mQ7uKR6WDH9L01pb0my6lDjM7AVpSaUVgeGfb627YEUGEIfkvGCnoeoNgAL41jVCG0bP
-         lyfGL5Sk/OuP0DC1VjA3NrBPzE181NrVbxHgJE0stiwL3PfvJqjt30QN2GtIdA72NeQj
-         ZStg==
-X-Gm-Message-State: ANoB5pnHDYnM9RfxPDvUQapEtIQUCp+wqxE3FFD0S0D3ZI7CiTlpRirr
-        zqW9eMibUzJ/iJP6vg9Ffg==
-X-Google-Smtp-Source: AA0mqf4Zq4Y3dyfuRV9T0xjJ2mBVMDxAkFSCmf2WHI3fZ9GiRxZuMNNXsgjrwZwDyjE+hBDymPLfoA==
-X-Received: by 2002:a54:4516:0:b0:355:1de9:392a with SMTP id l22-20020a544516000000b003551de9392amr11491624oil.48.1671030061718;
-        Wed, 14 Dec 2022 07:01:01 -0800 (PST)
+        bh=xPntG3i9d1CkuYh94mewfgIcwECQqTOuWKbwWZWH1so=;
+        b=NiAIHrhqC/HsQyqGbCwZ8CmmcW2zv55BBOkCQdxJzzuFpgbZUmIpBn9RWdsBUhC0R4
+         2WdVGSMyI9iBdHYA4JwT0qamx+oF+/8Bf7IPqK9uKGypUzbjbuY4l1iKRKCce0wwjtC0
+         7wAg4x6n/p+IToRgHwNxnRuyLIV06Pkh0qbu2fiYsOxOr7znxQpBFWnVxhkmBA9eCLZo
+         rb9q6/lFZlxXT4wdtM6GODTe7FCXzc15yGSLMikD6doVfCRYEuwvkYksc6ti5B2Evypy
+         dOiR8ALdCrURGhdFtjTYMK5Mn3JrVdFxP5qP3uMQJl9pfhmaRb7+p0GEri1xvUOOiK3U
+         G5fQ==
+X-Gm-Message-State: ANoB5pnDis+UOqL9Win8BfbpkBhOuRzYCCpWcU+Im/OjTP/ZA21EuU2z
+        uQHacsZJmSl2xy9KyxEQiw==
+X-Google-Smtp-Source: AA0mqf522qn2m9P0LQ3K3SXGUq0gtiRe9EgKgwNI+LpktvkhDTnCtaqKCCsC45p9YM40Nxih+0Zx3A==
+X-Received: by 2002:a05:6870:960f:b0:141:a5c8:3528 with SMTP id d15-20020a056870960f00b00141a5c83528mr11756883oaq.49.1671030327592;
+        Wed, 14 Dec 2022 07:05:27 -0800 (PST)
 Received: from robh_at_kernel.org (rrcs-98-6-157-194.sw.biz.rr.com. [98.6.157.194])
-        by smtp.gmail.com with ESMTPSA id r141-20020acaa893000000b003539686cb7bsm5681085oie.53.2022.12.14.07.01.00
+        by smtp.gmail.com with ESMTPSA id j19-20020a056870021300b001446d5702b5sm2750407oad.56.2022.12.14.07.05.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Dec 2022 07:01:00 -0800 (PST)
-Received: (nullmailer pid 1050655 invoked by uid 1000);
-        Wed, 14 Dec 2022 15:00:59 -0000
-Date:   Wed, 14 Dec 2022 09:00:59 -0600
+        Wed, 14 Dec 2022 07:05:27 -0800 (PST)
+Received: (nullmailer pid 1058109 invoked by uid 1000);
+        Wed, 14 Dec 2022 15:05:26 -0000
+Date:   Wed, 14 Dec 2022 09:05:26 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     haibo.chen@nxp.com
-Cc:     jic23@kernel.org, lars@metafoo.de,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: iio: adc: Add binding documentation
- for NXP IMX93 ADC
-Message-ID: <20221214150059.GA1048042-robh@kernel.org>
-References: <1671024939-29322-1-git-send-email-haibo.chen@nxp.com>
- <1671024939-29322-2-git-send-email-haibo.chen@nxp.com>
+To:     Marek Vasut <marex@denx.de>
+Cc:     devicetree@vger.kernel.org,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        NXP Linux Team <linux-imx@nxp.com>
+Subject: Re: [PATCH v6 1/3] dt-bindings: imx6q-pcie: Handle various clock
+ configurations
+Message-ID: <20221214150526.GA1052624-robh@kernel.org>
+References: <20221211024859.672076-1-marex@denx.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1671024939-29322-2-git-send-email-haibo.chen@nxp.com>
+In-Reply-To: <20221211024859.672076-1-marex@denx.de>
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 14, 2022 at 09:35:38PM +0800, haibo.chen@nxp.com wrote:
-> From: Haibo Chen <haibo.chen@nxp.com>
+On Sun, Dec 11, 2022 at 03:48:57AM +0100, Marek Vasut wrote:
+> The i.MX SoCs have various clock configurations routed into the PCIe IP,
+> the list of clock is below. Document all those configurations in the DT
+> binding document.
 > 
-> The IMX93 SoC has a new ADC IP, so add binding documentation
-> for NXP IMX93 ADC.
+> All SoCs: pcie, pcie_bus
+> 6QDL, 7D: + pcie_phy
+> 6SX:      + pcie_phy          pcie_inbound_axi
+> 8MQ:      + pcie_phy pcie_aux
+> 8MM, 8MP: +          pcie_aux
 > 
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Acked-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Signed-off-by: Marek Vasut <marex@denx.de>
 > ---
->  .../bindings/iio/adc/nxp,imx93-adc.yaml       | 79 +++++++++++++++++++
->  1 file changed, 79 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
-> new file mode 100644
-> index 000000000000..229bb79e255c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
-> @@ -0,0 +1,79 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/nxp,imx93-adc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP iMX93 ADC bindings
-> +
-> +maintainers:
-> +  - Haibo Chen <haibo.chen@nxp.com>
-> +
-> +description:
-> +  The ADC on iMX93 is a 8-channel 12-bit 1MS/s ADC with 4 channels
-> +  connected to pins. it support normal and inject mode, include
-> +  One-Shot and Scan (continuous) conversions. Programmable DMA
-> +  enables for each channel  Also this ADC contain alternate analog
-> +  watchdog thresholds, select threshold through input ports. And
-> +  also has Self-test logic and Software-initiated calibration.
-> +
-> +properties:
-> +  compatible:
-> +    const: nxp,imx93-adc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    description:
-> +      line 0 for WDGnL (watchdog threshold) interrupt requests.
-> +      line 1 for WDGnH (watchdog threshold) interrupt requests.
-> +      line 2 for normal conversion, include EOC (End of Conversion)
-> +      interrupt request, ECH (End of Chain) interrupt request,
-> +      JEOC (End of Injected Conversion mode) interrupt request
-> +      and JECH (End of injected Chain) interrupt request.
-> +      line 3 for Self-testing Interrupts.
-> +    maxItems: 4
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Richard Zhu <hongxing.zhu@nxp.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> To: devicetree@vger.kernel.org
+> ---
+> V2: - Add AB from Alex
+> V3: - Duplicate clock-names maxItems to mx6sx and mx8mq compatibles
+>     - Flatten the if-else structure
+>     - The validation no longer works and introduces errors like these:
+>       arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dahlia.dtb: pcie@33800000: clock-names:2: 'pcie_phy' was expected
+> V4: - Reinstate minItems: for clock-names in main section, turn the
+>       last two clock-names items into enums to cover all IP variants.
+>     - Add another allOf entry for mx6q/mx6qp/mx7d clock-names list.
+>     - Adjust clock maxItems in the allOf section.
+> V5: - No change
+> V6: - Add RB from Rob
 
-Split the descriptions:
+This should have also gone to PCI maintainers and list so they could 
+pick it up. However, I'll apply the series.
 
-items:
-  - description: WDGnL ...
-  - description: ...
+Rob
 
-And then drop maxItems
-
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  vref-supply:
-> +    description:
-> +      The reference voltage which used to establish channel scaling.
-> +
-> +  "#io-channel-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - vref-supply
-> +  - "#io-channel-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/clock/imx93-clock.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    soc {
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        adc@44530000 {
-> +            compatible = "nxp,imx93-adc";
-> +            reg = <0x44530000 0x10000>;
-> +            interrupts = <GIC_SPI 217 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 218 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 219 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH>;
-> +            clocks = <&clk IMX93_CLK_ADC1_GATE>;
-> +            clock-names = "ipg";
-> +            vref-supply = <&reg_vref_1v8>;
-> +        };
-> +    };
-> +...
-> -- 
-> 2.34.1
-> 
-> 
