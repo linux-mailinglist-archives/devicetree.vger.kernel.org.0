@@ -2,225 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 326EA64C7E3
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 12:24:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C94464C7ED
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 12:27:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238243AbiLNLYX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 06:24:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42150 "EHLO
+        id S237959AbiLNL1O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 06:27:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237896AbiLNLYU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 06:24:20 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4B6221E27;
-        Wed, 14 Dec 2022 03:24:19 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 0C1B56602C56;
-        Wed, 14 Dec 2022 11:24:18 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1671017058;
-        bh=NEFZcGNbx1H7VeJP6Mv0ncKb7TmxoWPVOEsWCQJSFbU=;
-        h=Date:Subject:To:References:From:In-Reply-To:From;
-        b=ei0nVUgclMv+T7W4Kx5OHkj2Pc8X1ty/gJXnvcytSHqfFcv3jz+ybKMJkx/A3M+lj
-         f7w+4jEN9J4KNP3poMCL72mWpuD80wVFTzB4ArGOixNO4cE/JY8rJ7QM9Pf3oqMUC7
-         MiqoVAU6D6aO/ompBalgH2dpgLvskaSh/v9wrLoAbnoXekXqyEDvcsAddXlDsF/Dky
-         JXIJn7RU3ye/Lq4iMShJzlH4IHd9nEOhWRIFcfjbZVJjfCikWhEkhrVVe9pKBujyCF
-         Kf+4af0BbUU3Hn2LvjUEHvPWCEnMR3G0efRRl6qvcxmgLxHW1vI/mvTMW5DkI7/xh5
-         CRKoKgL9MxDXA==
-Message-ID: <9917f349-51dd-905f-e272-65315bb5b2cc@collabora.com>
-Date:   Wed, 14 Dec 2022 12:24:15 +0100
+        with ESMTP id S237832AbiLNL1M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 06:27:12 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7425E248D2
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 03:27:11 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id f16so6321466ljc.8
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 03:27:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OUwSQfrmxkXxcSThv/gqQeUGBMH96Xj+hcZQD1ayQ7E=;
+        b=X9PdEGBsX25/wMEwZvSh76s1LBIktzXudvlLiWb9b+sBhL9x1TO50Ju5bXSoi+3KCU
+         hzdzXwM+Vpvh1PNdPWl7KNwT/Dq9YVj/wSojZ5ZZzkAxU1cJq3WDUXE1OwWClvXKAK2v
+         h38b1EX9Z7d8Ok0DUQ85IfIQqoQwAUWAawVtXxpSlKjQ+oTNf/bvpE2c4lIj8ZKh/WW5
+         2OB3f+8fqvmHSv0Lk5i7/caABrWJE+ix37KMCHEysPV3G+Tfxqqz4VVjW/aLx1nSRnll
+         eeFeoqUkh/Vvw0qAYgkMOUi6HFg7EwW+Ux6XAw92x6bmvrmdG/ac4gMmVvMlWFT8fpWn
+         KqvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OUwSQfrmxkXxcSThv/gqQeUGBMH96Xj+hcZQD1ayQ7E=;
+        b=nmD8MWoH/aae1FJagLu2v3R02Fp5n3sT4YWu57sSBsWec8LzWYPe/FsxNmLyg/7lsD
+         1CUtJbtT8qyVUcEbqGuJdm3JH6ZBTmuy3zCoL87ETzjxnBjd+ycdnMuDPdfOQYjvqval
+         3dZMra8mVq4GG7S0ICBP4y9YzBmiD3Wjb4LZpaIFcDv5DAoR9epnrUJoUVcMk8fMJqBV
+         ZZatmnoqCznT1zEFF9F6ThLqsZ2adUU91PTwacfqepIeXdLM4P7rnCX51b1bURNFbkm/
+         xXVQa8/XaRs62TYmAgXtnBABZv0n5iQiUv5E2IHjeDZuSv0/eOYLpflEdfr5fAsGicTv
+         bOCg==
+X-Gm-Message-State: ANoB5pm5+/9x/Hnw0e4cCHKpZs2B6puuNb/S+RDyGAFmCMxmyRi3O9z6
+        V8CB52NqIH+2Qfji5Tq8KhM8OQ==
+X-Google-Smtp-Source: AA0mqf4ZsxFMzN2tnAv+bREH1nhgkBpN0zhJoAJDlvEeMMLWRWSG3rLB65FUlsO0W2/OexNhaEat5A==
+X-Received: by 2002:a05:651c:1ca:b0:279:71ff:5f59 with SMTP id d10-20020a05651c01ca00b0027971ff5f59mr6982679ljn.43.1671017229750;
+        Wed, 14 Dec 2022 03:27:09 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id r6-20020ac25f86000000b004b4cbc942a3sm769241lfe.127.2022.12.14.03.27.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Dec 2022 03:27:09 -0800 (PST)
+Message-ID: <f23f3db8-08a7-78a9-a516-de211c53b6f4@linaro.org>
+Date:   Wed, 14 Dec 2022 12:27:08 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH v5 7/7] arm64: dts: mediatek: Initial mt8365-evk support
-To:     =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        khilman@baylibre.com
-References: <20221213234346.2868828-1-bero@baylibre.com>
- <20221213234346.2868828-8-bero@baylibre.com>
+Subject: Re: [PATCH 1/4] arm64: dts: qcom: Introduce a carveout for modem
+ metadata
 Content-Language: en-US
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221213234346.2868828-8-bero@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To:     Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        manivannan.sadhasivam@linaro.org
+Cc:     agross@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        konrad.dybcio@somainline.org, amit.pundir@linaro.org,
+        regressions@leemhuis.info, sumit.semwal@linaro.org,
+        will@kernel.org, catalin.marinas@arm.com, robin.murphy@arm.com
+References: <20221213140724.8612-1-quic_sibis@quicinc.com>
+ <20221213140724.8612-2-quic_sibis@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221213140724.8612-2-quic_sibis@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 14/12/22 00:43, Bernhard Rosenkränzer ha scritto:
-> From: Fabien Parent <fparent@baylibre.com>
+On 13/12/2022 15:07, Sibi Sankar wrote:
+> Introduce a new carveout for modem metadata. This will serve as a
+> replacement for the memory region used by MSA to authenticate modem
+> ELF headers.
 > 
-> This adds minimal support for the Mediatek 8365 SOC and the EVK reference
-> board, allowing the board to boot to initramfs with serial port I/O.
-> 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> [bero@baylibre.com: Removed parts depending on drivers that aren't upstream yet, cleanups, add L2 cache]
-> Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
-> Tested-by: Kevin Hilman <khilman@baylibre.com>
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
 > ---
->   arch/arm64/boot/dts/mediatek/Makefile       |   1 +
->   arch/arm64/boot/dts/mediatek/mt8365-evk.dts | 163 ++++++++++
->   arch/arm64/boot/dts/mediatek/mt8365.dtsi    | 343 ++++++++++++++++++++
->   3 files changed, 507 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8365-evk.dts
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8365.dtsi
+>  arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi    | 6 ++++++
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi                  | 9 +++++++++
+>  arch/arm64/boot/dts/qcom/msm8998.dtsi                  | 9 +++++++++
+>  arch/arm64/boot/dts/qcom/sc7180-idp.dts                | 7 ++++++-
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi           | 7 ++++++-
+>  arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi | 7 ++++++-
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi                   | 9 +++++++++
+>  7 files changed, 51 insertions(+), 3 deletions(-)
 > 
-
-..snip..
-
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8365.dtsi b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-> new file mode 100644
-> index 0000000000000..2c4ef9b92b68b
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-> @@ -0,0 +1,343 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * (C) 2018 MediaTek Inc.
-> + * Copyright (C) 2022 BayLibre SAS
-> + * Fabien Parent <fparent@baylibre.com>
-> + * Bernhard Rosenkränzer <bero@baylibre.com>
-> + */
-> +#include <dt-bindings/clock/mediatek,mt8365-clk.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/phy/phy.h>
-> +#include <dt-bindings/thermal/thermal.h>
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
+> index 5b47b8de69da..4242f8587c19 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
+> @@ -127,6 +127,12 @@
+>  			reg = <0x0 0xf6f00000 0x0 0x100000>;
+>  			no-map;
+>  		};
 > +
-> +/ {
-> +	compatible = "mediatek,mt8365";
-> +	interrupt-parent = <&sysirq>;
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	cpus: cpus {
-
-You're not referencing `cpus` anywhere, hence this label is useless:
-please remove.
-
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		cpu-map {
-> +			cluster0: cluster0 {
-
-Same for this one.
-
-> +				core0 {
-> +					cpu = <&cpu0>;
-> +				};
-> +				core1 {
-> +					cpu = <&cpu1>;
-> +				};
-> +				core2 {
-> +					cpu = <&cpu2>;
-> +				};
-> +				core3 {
-> +					cpu = <&cpu3>;
-> +				};
-> +			};
-> +		};
-> +
-> +		cpu0: cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			reg = <0x0>;
-> +			#cooling-cells = <2>;
-> +			enable-method = "psci";
-> +			next-level-cache = <&l2>;
-
-It would be nice if you described the I/D caches for all CPUs.
-
-> +		};
-> +
-> +		cpu1: cpu@1 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			reg = <0x1>;
-> +			#cooling-cells = <2>;
-> +			enable-method = "psci";
-> +			next-level-cache = <&l2>;
-> +		};
-> +
-> +		cpu2: cpu@2 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			reg = <0x2>;
-> +			#cooling-cells = <2>;
-> +			enable-method = "psci";
-> +			next-level-cache = <&l2>;
-> +		};
-> +
-> +		cpu3: cpu@3 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			reg = <0x3>;
-> +			#cooling-cells = <2>;
-> +			enable-method = "psci";
-> +			next-level-cache = <&l2>;
-> +		};
-> +
-> +		l2: l2-cache {
-> +			compatible = "cache";
-
-....and what's the size of this L2 cache?
-Is it unified, or does each CPU core have its own private L2?
-
-> +		};
-> +	};
-> +
-> +	clk26m: oscillator {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <26000000>;
-> +		clock-output-names = "clk26m";
-> +	};
-> +
-> +	psci {
-> +		compatible = "arm,psci-1.0";
-> +		method = "smc";
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		/* 128 KiB reserved for ARM Trusted Firmware (BL31) */
-> +		bl31_secmon_reserved: secmon@43000000 {
-
-This depends on the bootloader that's flashed on your board - it's not a
-global SoC property.
-
-Please move it to your board, or explain why BL31 *must* always be
-128KiB starting at 0x43000000.
-
+> +		/delete-node/ memory@91700000;
+> +		mdata_mem: memory@f7100000 {
+> +			reg = <0x0 0xf7100000 0x0 0x4000>;
 > +			no-map;
-> +			reg = <0 0x43000000 0 0x20000>;
 > +		};
-> +	};
+>  	};
+>  
+>  	vph_pwr: vph-pwr-regulator {
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> index cc65f52bb80f..3f5fb08e2341 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> @@ -462,6 +462,11 @@
+>  			reg = <0x0 0x91500000 0x0 0x200000>;
+>  			no-map;
+>  		};
 > +
-> +	soc {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		compatible = "simple-bus";
-> +		ranges;
-> +
+> +		mdata_mem: memory@91700000 {
+> +			reg = <0x0 0x91700000 0x0 0x4000>;
+> +			no-map;
+> +		};
+>  	};
+>  
+>  	rpm-glink {
+> @@ -2458,6 +2463,10 @@
+>  				memory-region = <&mpss_mem>;
+>  			};
+>  
+> +			metadata {
 
-Is there really no systimer in this SoC? Would be pretty odd....
+Does it pass dtbs_check?
 
-Regards,
-Angelo
+Best regards,
+Krzysztof
+
