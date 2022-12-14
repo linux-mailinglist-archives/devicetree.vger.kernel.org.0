@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB87F64CEB5
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 18:14:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F0CB64CEBA
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 18:14:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237881AbiLNROh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 12:14:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43576 "EHLO
+        id S239263AbiLNROy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 12:14:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238564AbiLNROH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 12:14:07 -0500
+        with ESMTP id S239239AbiLNROR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 12:14:17 -0500
 Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C68DA2934A
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 09:12:08 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 221FF29377
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 09:12:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1671037927;
+        s=mimecast20190719; t=1671037930;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=exdEpbp2sw0OgZfqs83IQrs+qTbCCjPaqrx3NldGQYU=;
-        b=EshF1tohBhNlr5+vdEFGtwEvq4tyOvxeBAjqBi5eqHSuCIS2wwQQ1EzLUANyDwWczI+rST
-        aiATPxR4Aomk7wXMLYtZTdVHdgOHW8RFAkq3EcWWduFTMm8jK9YAReXv701n3lTaRNdMdh
-        xz4SV1gjWQNNx19SA/jOk7ECzAEiRtw=
-Received: from mail-yw1-f200.google.com (mail-yw1-f200.google.com
- [209.85.128.200]) by relay.mimecast.com with ESMTP with STARTTLS
+        bh=ogLpJVKKC25ddDetbiFHml5GQ+TG5tUiXJ4wCFo3kZQ=;
+        b=gguYuxH0uFICeNSDWmMZW0/3TC4EwFkqlTxWQYJYC7jAQj12d3fOsX9K8LfLKdoPA2dQPx
+        t33YWIpGT7tpnDWoaFM93dSxuz2kbXdxaHGcxlIxxXnKUpgC7csU6phFva2osTktl7Ms8R
+        3gAJr9wykzwrpb4VcFyC6CMITDCYdgY=
+Received: from mail-yw1-f199.google.com (mail-yw1-f199.google.com
+ [209.85.128.199]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-622-WI_g-kHWM82jglDutv9GJA-1; Wed, 14 Dec 2022 12:12:06 -0500
-X-MC-Unique: WI_g-kHWM82jglDutv9GJA-1
-Received: by mail-yw1-f200.google.com with SMTP id 00721157ae682-3b0af5bcbd3so5575997b3.0
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 09:12:06 -0800 (PST)
+ us-mta-554-l5YiydHbN1yLuhTCakeT1Q-1; Wed, 14 Dec 2022 12:12:08 -0500
+X-MC-Unique: l5YiydHbN1yLuhTCakeT1Q-1
+Received: by mail-yw1-f199.google.com with SMTP id 00721157ae682-3c9960ad866so4965387b3.4
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 09:12:08 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=exdEpbp2sw0OgZfqs83IQrs+qTbCCjPaqrx3NldGQYU=;
-        b=JhYqlaYHc0VDEa41JslN6cirEBkgx2FddulZZ3nmDHux6QelBmI/WY7HKVjKC4kJL7
-         s8ZhjHC9FT6TaAdCo2gBrRfaoxb74jki6VaVfbLTpxjg9cKi2RpNOTLaykV3a85R3Fm6
-         QOGCubL8JzbUw0wg0Hjuhy2/GinSDKNBXRaBHl8l2T9WPkkbbceZd+XsMrC8dxiaBgks
-         TcsTiupJk9TnwHluFgsv6yal7HH+zT+KoOlYQ7r2PZ0rYL+euUhLFj+XxK1D7H9ooMoT
-         a9GRZ6Pzgqr7XQBeQJr3d4hM88G8iHvKNHHhNifmLOqDVfCoXt9yqzC9/dAkg6bhh2DF
-         rfkQ==
-X-Gm-Message-State: ANoB5plvMinrWPsnnLozT13C3cWGPttbixjymPqXerYpXobSDg6zQ8fM
-        1DRqUn/ufa3OjbmfVNggYDgP0vE8RRW9ntp1RA42wCgv5Vb6P++HJFPbkB4kbwlsNUP9HvjfxEk
-        h23JfXvowosskYtnupDqvVQ==
-X-Received: by 2002:a05:7500:1612:b0:ea:6410:dd10 with SMTP id p18-20020a057500161200b000ea6410dd10mr2858260gac.33.1671037926017;
-        Wed, 14 Dec 2022 09:12:06 -0800 (PST)
-X-Google-Smtp-Source: AA0mqf6wJW2fT9ZbKO4fRncd+RDc7xyf+paIRLlNbE+sVJSqJeFBQyfa3m3lHGJaTiorUYBr7kf7FQ==
-X-Received: by 2002:a05:7500:1612:b0:ea:6410:dd10 with SMTP id p18-20020a057500161200b000ea6410dd10mr2858229gac.33.1671037925610;
-        Wed, 14 Dec 2022 09:12:05 -0800 (PST)
+        bh=ogLpJVKKC25ddDetbiFHml5GQ+TG5tUiXJ4wCFo3kZQ=;
+        b=wNdeKfK9fwRsktFYZsdYowRqM1GhUqC1QzdSx5XSmlbMYyz6p01x7jKnIyNfpKkW/e
+         AVun1gha1wvmKl4H3iBQ3DZZefmUW+PwEmjK0EGID0kR5iEOOHmo9RN7mznK6moEZ07N
+         iK7QoUj+1uGgASkSoBjJbG5PQX8Rc538YEsiwldklC1UdnHoXGVcO3iiRMZJ9n4ZmXdy
+         f747veCRiGcp3ZnzJSn+qDNDH3AhPyxDpNbVxwDHdftVWld9jm1JtHjAQyY5KIGPP45F
+         USaoiahW+1ttySgMc4/vpY3cskLtiaPypr+F349+r1fT9bK2j/ci6Jl01DpRy+yDAeyh
+         reag==
+X-Gm-Message-State: ANoB5pk24ogAxxFMkxRdCKBbfSdr1dGPh65zUcH2fchJK8euyEVNjFCY
+        3CHuat0Bg1EkZthqpA2Ic+A83ZX/FQ/mAI6iD7040ovOlVQ6ai4cttYe12+GH31efWuXJwMiQCC
+        EbPfigffNyzd7Xa/lSOjm/w==
+X-Received: by 2002:a05:7500:5e90:b0:eb:2066:74bb with SMTP id fk16-20020a0575005e9000b000eb206674bbmr2050400gab.75.1671037927520;
+        Wed, 14 Dec 2022 09:12:07 -0800 (PST)
+X-Google-Smtp-Source: AA0mqf4f7iwQnkCpYy5hXj4Muvs1rfWFtodSaoA7k2Vmw6rOiEcFyQ9B99dD7TcL3PCjYKLke3cndA==
+X-Received: by 2002:a05:7500:5e90:b0:eb:2066:74bb with SMTP id fk16-20020a0575005e9000b000eb206674bbmr2050371gab.75.1671037927175;
+        Wed, 14 Dec 2022 09:12:07 -0800 (PST)
 Received: from x1.redhat.com (c-73-214-169-22.hsd1.pa.comcast.net. [73.214.169.22])
-        by smtp.gmail.com with ESMTPSA id t30-20020a37ea1e000000b006eef13ef4c8sm10305477qkj.94.2022.12.14.09.12.04
+        by smtp.gmail.com with ESMTPSA id t30-20020a37ea1e000000b006eef13ef4c8sm10305477qkj.94.2022.12.14.09.12.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Dec 2022 09:12:05 -0800 (PST)
+        Wed, 14 Dec 2022 09:12:06 -0800 (PST)
 From:   Brian Masney <bmasney@redhat.com>
 To:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org
 Cc:     quic_shazhuss@quicinc.com, konrad.dybcio@linaro.org,
@@ -62,9 +62,9 @@ Cc:     quic_shazhuss@quicinc.com, konrad.dybcio@linaro.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, ahalaney@redhat.com,
         echanude@redhat.com
-Subject: [PATCH v2 6/7] arm64: dts: qcom: sa8540p-ride: add i2c nodes
-Date:   Wed, 14 Dec 2022 12:11:44 -0500
-Message-Id: <20221214171145.2913557-7-bmasney@redhat.com>
+Subject: [PATCH v2 7/7] arm64: dts: qcom: sc8280xp: add rng device tree node
+Date:   Wed, 14 Dec 2022 12:11:45 -0500
+Message-Id: <20221214171145.2913557-8-bmasney@redhat.com>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20221214171145.2913557-1-bmasney@redhat.com>
 References: <20221214171145.2913557-1-bmasney@redhat.com>
@@ -73,7 +73,7 @@ Content-type: text/plain
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,171 +81,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the necessary nodes in order to get i2c0, i2c1, i2c12, i2c15, and
-i2c18 functioning on the automotive board and exposed to userspace.
-
-This work was derived from various patches that Qualcomm delivered
-to Red Hat in a downstream kernel. This change was validated by using
-i2c-tools 4.3.3 on CentOS Stream 9:
-
-[root@localhost ~]# i2cdetect -l
-i2c-0  i2c             Geni-I2C                                I2C adapter
-i2c-1  i2c             Geni-I2C                                I2C adapter
-i2c-12 i2c             Geni-I2C                                I2C adapter
-i2c-15 i2c             Geni-I2C                                I2C adapter
-i2c-18 i2c             Geni-I2C                                I2C adapter
-
-[root@localhost ~]# i2cdetect -a -y 15
-Warning: Can't use SMBus Quick Write command, will skip some addresses
-     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
-00:
-10:
-20:
-30: -- -- -- -- -- -- -- --
-40:
-50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-60:
-70:
+Add the necessary device tree node for qcom,prng-ee so we can use the
+hardware random number generator. This functionality was tested on a
+SA8540p automotive development board using kcapi-rng from libkcapi.
 
 Signed-off-by: Brian Masney <bmasney@redhat.com>
 ---
-Changes since v1:
-- Dropped qupX_ prefix from labels. (Johan)
-- Reordered nodes based on new name.
-- Added i2c buses 0, 1, and 12 (Shazad)
-- Drop mux/config-pins and have the pin properties live directly
-  under the i2cX-default-state node. (Konrad)
-- Use decimal notation for drive strength (Johan)
+This is a new patch that's introduced in v2.
 
-A few things to note with this series applied on top of linux-next:
-- Reading from i2c-0 using 'i2cdetect -y -a 0' gives the following error
-  when reading from the ranges 0x30-0x37 and 0x50-0x5F.
-      geni_i2c 980000.i2c: Timeout abort_m_cmd
-- i2c-1 and i2c-2 successfully read using i2cdetect, however it takes
-  several seconds.
-- i2cdetect runs fast within a small fraction of a second for i2c-15
-  and i2c18.
-- 'i2cdetect -y -a $BUSNUM' shows the same address ranges 0x30-0x37
-  and 0x50-0x5F in use on all 5 buses.
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
- arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 83 +++++++++++++++++++++++
- 1 file changed, 83 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-index b6e0db5508c7..ccd2ea3c9d04 100644
---- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-@@ -17,6 +17,11 @@ / {
- 	compatible = "qcom,sa8540p-ride", "qcom,sa8540p";
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+index 4591d411f5fb..67765975361b 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+@@ -2811,6 +2811,13 @@ tlmm: pinctrl@f100000 {
+ 			gpio-ranges = <&tlmm 0 0 230>;
+ 		};
  
- 	aliases {
-+		i2c0 = &i2c0;
-+		i2c1 = &i2c1;
-+		i2c12 = &i2c12;
-+		i2c15 = &i2c15;
-+		i2c18 = &i2c18;
- 		serial0 = &uart17;
- 	};
- 
-@@ -146,6 +151,41 @@ vreg_l8g: ldo8 {
- 	};
- };
- 
-+&i2c0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c0_default>;
++		rng: rng@10d3000 {
++			compatible = "qcom,prng-ee";
++			reg = <0 0x010d3000 0 0x1000>;
++			clocks = <&rpmhcc RPMH_HWKM_CLK>;
++			clock-names = "core";
++		};
 +
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c1_default>;
-+
-+	status = "okay";
-+};
-+
-+&i2c12 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c12_default>;
-+
-+	status = "okay";
-+};
-+
-+&i2c15 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c15_default>;
-+
-+	status = "okay";
-+};
-+
-+&i2c18 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c18_default>;
-+
-+	status = "okay";
-+};
-+
- &pcie2a {
- 	ranges = <0x01000000 0x0 0x3c200000 0x0 0x3c200000 0x0 0x100000>,
- 		 <0x02000000 0x0 0x3c300000 0x0 0x3c300000 0x0 0x1d00000>,
-@@ -188,6 +228,14 @@ &pcie3a_phy {
- 	status = "okay";
- };
- 
-+&qup0 {
-+	status = "okay";
-+};
-+
-+&qup1 {
-+	status = "okay";
-+};
-+
- &qup2 {
- 	status = "okay";
- };
-@@ -268,6 +316,41 @@ &xo_board_clk {
- /* PINCTRL */
- 
- &tlmm {
-+	i2c0_default: i2c0-default-state {
-+		pins = "gpio135", "gpio136";
-+		function = "qup15";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
-+	i2c1_default: i2c1-default-state {
-+		pins = "gpio158", "gpio159";
-+		function = "qup15";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
-+	i2c12_default: i2c12-default-state {
-+		pins = "gpio0", "gpio1";
-+		function = "qup15";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
-+	i2c15_default: i2c15-default-state {
-+		pins = "gpio36", "gpio37";
-+		function = "qup15";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
-+	i2c18_default: i2c18-default-state {
-+		pins = "gpio66", "gpio67";
-+		function = "qup18";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
- 	pcie2a_default: pcie2a-default-state {
- 		perst-pins {
- 			pins = "gpio143";
+ 		apps_smmu: iommu@15000000 {
+ 			compatible = "qcom,sc8280xp-smmu-500", "arm,mmu-500";
+ 			reg = <0 0x15000000 0 0x100000>;
 -- 
 2.38.1
 
