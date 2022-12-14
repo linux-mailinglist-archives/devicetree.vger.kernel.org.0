@@ -2,68 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AF6E64CB75
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 14:41:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD70764CB82
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 14:45:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238029AbiLNNlQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 08:41:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53460 "EHLO
+        id S238383AbiLNNpA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 08:45:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229500AbiLNNlO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 08:41:14 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA6C726AB2
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 05:41:12 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id p8so10452793lfu.11
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 05:41:12 -0800 (PST)
+        with ESMTP id S237486AbiLNNoz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 08:44:55 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40E4126AB8
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 05:44:54 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id p8so10469929lfu.11
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 05:44:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=R9OJIlMABbZGSmesEgq9RCQulbBgbGgl8J80IYWeUAU=;
-        b=uGKkFAg3E/XcNGUupSvO9z/hMfMFE+ob2lWF96ZDiOkDSiMOeloxIlI8fPVu5khTcA
-         1H/V4XPy3jZUyON7q428ttBz+sEYY2bN1O86duRxU3Y/VJ+ywBsijeMU+6BkR6v9bPz+
-         H9yAjrFm3wWTApf/sVDpSkBboYPDHO38iabWgG7tWRDisJhbEKJZCEZSssfpuCnVZmrq
-         zZjPjgMCFwbRN7Q4HaTRtTxsveis+MHQUxk29RSXrboCMI1leQqtftcGcGrI2qnD+44A
-         VY2DrWWQXrrvpjPsHxhLB1k86sjmDqlH+ZCRFuYwqJqSHsBk6HJlNJq7Hg4l14EkS4lW
-         dMnQ==
+        bh=SAZXiFlIWcGcZs4iD7f5ZAHiIB39JWwc3dN1lTl5nhA=;
+        b=J8FBnrz0YdQ/sOInJpVYe869bTga+jId6Ik9t7B9hP8xvUDpNRe9GZccodCN8S6d/s
+         JcfpgThOTS1Vw0So2DINYSmBJE7ycMRs3q/VTK2jhNEaCtweuTsRppNxDjbzzkHYsOiK
+         Fq4XsDSfmYpIhf48tFvSsZg4VB4bj/FmlGER3s42wu84z0m12sHS5W3G8EMKsA20YQ60
+         6owoeBDkLTZF3vTUyThO8t9MjFj58O1nz9IZoChtqjIMEGeg2NJ1IWKHKCrFNXnDa7bI
+         ynGl6dkn/bcjliHtUTSD5uGjcbQUKZgH0z3pT0WoS6nh8IoILNIgMBSZM4Tj/MCd/I3h
+         5mOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=R9OJIlMABbZGSmesEgq9RCQulbBgbGgl8J80IYWeUAU=;
-        b=mzgcAiaPYKkHf0oKVUXFwsaR8f07ZFfHLer3Vcfzh5iX0fPQ1M6Oc4N2xsCgGwomRA
-         7MSrkhwuM4ZnviZ9bbCYqx6x+UYvNeQ3EKYsq2Z3n4E7qiEOeb4o5LB29xzbicgsbTZE
-         LoxbTZcufU5e/oSZTxcRnUX4kso4e9SbrIWZOXW21vsFgQ1a/OOR3uT+eLlJ8vPOJ4Y4
-         S0uP7yY0dLTa2OYFhHLkG2okVkpmGN4kaiXTei8OyMyh9DMGLNVhdRNUrXvqgUnRsW3r
-         +uiYXEYLtgaSmBZC5BrtfGiPTMVGd+i6/PCr7REVYPOmlgPaaYGD7aFzrSP0o81z+tdp
-         SihQ==
-X-Gm-Message-State: ANoB5pnbxmJPEaATJHFH1kx6p3PZ+jNh+8O0nVw+UCS8yApTmu/hE+3Z
-        8D55YvbyI0yw7XjFT6lcmC2TVg==
-X-Google-Smtp-Source: AA0mqf40hzU+9GKjBy3u64ZbkEvUC5GX6v2Zfr0Tsu84ewfmAFOmm5WxlShoEhp0kWfeorr2Qz8AIQ==
-X-Received: by 2002:ac2:4d8f:0:b0:4b5:32e6:12e with SMTP id g15-20020ac24d8f000000b004b532e6012emr6775608lfe.65.1671025271023;
-        Wed, 14 Dec 2022 05:41:11 -0800 (PST)
+        bh=SAZXiFlIWcGcZs4iD7f5ZAHiIB39JWwc3dN1lTl5nhA=;
+        b=kGJ3Ze1ArMaO5piqbGmkOPmgYuaz+Pwy8ooC6hirJnw/REwr4NaJ++34VP1RVSsqOc
+         /0adKvN6+VgH3maB2sXaM/uG1rg3Tm0e8aCJ5PUE6t2BCdLp4anCFJXuBHaM5goPqonq
+         6Un2qqBgMnPL5ixe4mvtzo4J1FzSIgV/oIecD35R6uaNSHeyHdUGtQx8e24hMsYBmtfc
+         vY9xMnskv1AhZ/rusx63cJ7aFiEs/W7bXWyme+vOb2dOHrJ40nIBGEOgJyEA69SXknVC
+         3lqo9KtC6lryQSh2V+LiU8At/MQTVuAeS9KQ3utftGYU9Wzi3D4NxCaQFLj9WdssHxcI
+         hiWg==
+X-Gm-Message-State: ANoB5pkSl33LIA3Daip2X+6EqIuUkitLuJR65z8MjQ5nAOjJm4awKV34
+        2VqIID/mXMTdfheIDQt9JQ37lg==
+X-Google-Smtp-Source: AA0mqf6n44EbhHRHFjewC3IwonYtds+Udlb1dmBWFi3tjxXSUTvmeXEJq5WNFo3idtDr5FaAJlNyXg==
+X-Received: by 2002:a05:6512:3992:b0:4a4:68b7:dec3 with SMTP id j18-20020a056512399200b004a468b7dec3mr8667423lfu.31.1671025492655;
+        Wed, 14 Dec 2022 05:44:52 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id f12-20020a19dc4c000000b004b4e6dab30esm813283lfj.222.2022.12.14.05.41.09
+        by smtp.gmail.com with ESMTPSA id g7-20020a19e047000000b004b58fadba35sm810013lfj.296.2022.12.14.05.44.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Dec 2022 05:41:10 -0800 (PST)
-Message-ID: <20336c6d-6ad5-02d2-91e2-f362507040b1@linaro.org>
-Date:   Wed, 14 Dec 2022 14:41:09 +0100
+        Wed, 14 Dec 2022 05:44:52 -0800 (PST)
+Message-ID: <2c799103-3e5f-f288-3c78-6360c17a8e45@linaro.org>
+Date:   Wed, 14 Dec 2022 14:44:51 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH v2 1/2] arm64: dts: Add Arm corstone500 platform support
+Subject: Re: [PATCH v2 2/2] dt-bindings: Add Arm corstone500 platform
 Content-Language: en-US
 To:     Emekcan Aras <emekcan.aras@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>
 Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
 References: <20221214132404.439882-1-emekcan.aras@arm.com>
- <20221214132404.439882-2-emekcan.aras@arm.com>
+ <20221214132404.439882-3-emekcan.aras@arm.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221214132404.439882-2-emekcan.aras@arm.com>
+In-Reply-To: <20221214132404.439882-3-emekcan.aras@arm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,229 +77,79 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On 14/12/2022 14:24, Emekcan Aras wrote:
 > From: Emekcan Aras <Emekcan.Aras@arm.com>
-> 
 
-Use subject prefixes matching the subsystem (git log --oneline -- ...).
-You already got such comment for v1... so do not ignore it but implement
-instead.
+1. Your From does not match SoB exactly. Avoid it and make it consistent.
 
-> Corstone500[0] is a platform from arm, which includes Cortex-A cores and
-> ideal starting point for feature rich System on Chip (SoC) designs
-> based on the Cortex-A5 core.
+2. Use subject prefixes matching the subsystem (git log --oneline -- ...).
+
+3. Please use scripts/get_maintainers.pl to get a list of necessary
+people and lists to CC.  It might happen, that command when run on an
+older kernel, gives you outdated entries.  Therefore please be sure you
+base your patches on recent Linux kernel.
+
+
 > 
-> These device trees contains the necessary bits to support the
-> Corstone 500 FVP (Fixed Virtual Platform) and the
-> FPGA MPS3 board.
-> 
-> 0: https://developer.arm.com/documentation/102262/0000
+> Add bindings to describe implementation of
+> the ARM Corstone500 platform.
+
+Please wrap commit message according to Linux coding style / submission
+process:
+https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
+
 > 
 > Signed-off-by: Emekcan Aras <emekcan.aras@arm.com>
 > ---
->  arch/arm/boot/dts/corstone500.dts | 181 ++++++++++++++++++++++++++++++
->  1 file changed, 181 insertions(+)
->  create mode 100644 arch/arm/boot/dts/corstone500.dts
-
-How do you test it? I do not see a way to compile it...
-
-You need to include it in maintainers entry and CC relevant maintainers.
-
+>  .../bindings/arm/arm,corstone500.yaml         | 30 +++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/arm,corstone500.yaml
 > 
-> diff --git a/arch/arm/boot/dts/corstone500.dts b/arch/arm/boot/dts/corstone500.dts
+> diff --git a/Documentation/devicetree/bindings/arm/arm,corstone500.yaml b/Documentation/devicetree/bindings/arm/arm,corstone500.yaml
 > new file mode 100644
-> index 000000000000..976aa333ffbc
+> index 000000000000..cfe41f7760fd
 > --- /dev/null
-> +++ b/arch/arm/boot/dts/corstone500.dts
-> @@ -0,0 +1,181 @@
-> +// SPDX-License-Identifier: GPL-2.0 or MIT
-> +/*
-> + * Copyright (c) 2022, Arm Limited. All rights reserved.
-> + *
-> + */
+> +++ b/Documentation/devicetree/bindings/arm/arm,corstone500.yaml
+> @@ -0,0 +1,30 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/arm,corstone500.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
+> +title: ARM Corstone500
+> +
+> +maintainers:
+> +  - Emekcan Aras <emekcan.aras@arm.com>
+> +  - Rui Miguel Silva <rui.silva@linaro.org>
+> +
+> +description: |+
+> +  Corstone-500 is an ideal starting point for feature rich System on Chip
+> +  (SoC) designs based on the Cortex-A5 core. These designs can be used in
+> +  Internet of Things (IoT) and embedded products.
+
+Yet you do not allow to re-use your DTS, so how this re-usage of design
+will happen?
+
+> +
+> +  Corstone-500 includes most of the Arm IP in the SSE-500 subsystem and
+> +  example integration layer, an FPGA, and access to modelling options.
+> +
+> +properties:
+> +  $nodename:
+> +    const: '/'
+> +  compatible:
+> +    items:
+
+You have one item, so drop "items"
+
+> +      - const: arm,corstone500
 > +
 
-Just one blank line
+required:
+  - compatible
 
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +additionalProperties: true
 > +
-> +/ {
-> +	model = "ARM Corstone500";
-> +	compatible = "arm,corstone500";
-
-No DTSI? No board or platform compatible? How is it going to be used by
-anyone else?
-
-> +	interrupt-parent = <&gic>;
-> +	#address-cells = <1>;
-> +	#size-cells = <1>;
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +		serial1 = &uart1;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	psci {
-> +		compatible = "arm,psci-1.0", "arm,psci-0.2", "arm,psci";
-> +		method = "smc";
-> +		cpu_on = <0x84000003>;
-> +	};
-> +
-> +	cpus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		enable-method = "psci";
-> +
-> +		cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a5";
-> +			reg = <0>;
-> +			next-level-cache = <&L2>;
-> +		};
-> +
-> +		cpu@1 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a5";
-> +			reg = <1>;
-> +			next-level-cache = <&L2>;
-> +		};
-> +
-> +		cpu@2 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a5";
-> +			reg = <2>;
-> +			next-level-cache = <&L2>;
-> +		};
-> +
-> +		cpu@3 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a5";
-> +			reg = <3>;
-> +			next-level-cache = <&L2>;
-> +		};
-> +	};
-> +
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		reg = <0x80000000 0x7f000000>;
-> +	};
-> +
-> +	L2: cache-controller@1c010000 {
-> +		compatible = "arm,pl310-cache";
-> +		reg = <0x1c010000 0x1000>;
-> +		interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
-> +		cache-level = <2>;
-> +		cache-unified;
-> +		arm,data-latency = <1 1 1>;
-> +		arm,tag-latency = <1 1 1>;
-> +	};
-> +
-> +	refclk7500khz: refclk7500khz {
-
-Node names should be generic, so at least generic prefix or suffix
-(clock-, -clock).
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <7500000>;
-> +		clock-output-names = "apb_pclk";
-> +	};
-> +
-> +	refclk24mhz: refclk24mhz {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <24000000>;
-> +		clock-output-names = "apb_pclk";
-> +	};
-> +
-> +	smbclk: refclk24mhzx2 {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <48000000>;
-> +		clock-output-names = "smclk";
-> +	};
-> +
-> +	rtc@1a220000 {
-> +		compatible = "arm,pl031", "arm,primecell";
-> +		reg = <0x1a220000 0x1000>;
-> +		clocks = <&refclk24mhz>;
-> +		interrupts = <GIC_SPI 6 (GIC_CPU_MASK_SIMPLE(4) |
-> +			IRQ_TYPE_LEVEL_HIGH)>;
-> +		clock-names = "apb_pclk";
-> +	};
-> +
-> +	gic: interrupt-controller@1c001000 {
-> +		compatible = "arm,cortex-a5-gic";
-> +		#interrupt-cells = <3>;
-> +		#address-cells = <0>;
-> +		interrupt-controller;
-> +		reg =	<0x1c001000 0x1000>,
-> +			<0x1c000100 0x100>;
-> +		interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) |
-> +			IRQ_TYPE_LEVEL_HIGH)>;
-> +	};
-> +
-> +	soc{
-> +		compatible = "simple-bus";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		clock_frequency = <50000000>;
-> +		interrupt-parent = <&gic>;
-> +		ranges;
-> +
-> +		uart0: serial@1a200000 {
-> +			compatible = "arm,pl011", "arm,primecell";
-> +			reg = <0x1a200000 0x1000>;
-> +			interrupts = <GIC_SPI 8 (GIC_CPU_MASK_SIMPLE(4) |
-> +				IRQ_TYPE_LEVEL_HIGH)>;
-> +			clocks = <&refclk7500khz>;
-> +			clock-names = "apb_pclk";
-> +		};
-> +
-> +		uart1: serial@1a210000 {
-> +			compatible = "arm,pl011", "arm,primecell";
-> +			reg = <0x1a210000 0x1000>;
-> +			interrupts = <GIC_SPI 9 (GIC_CPU_MASK_SIMPLE(4) |
-> +				IRQ_TYPE_LEVEL_HIGH)>;
-> +			clocks = <&refclk7500khz>;
-> +			clock-names = "apb_pclk";
-> +		};
-> +
-> +		timer0: timer@1a040000 {
-> +			compatible = "arm,armv7-timer-mem";
-> +			reg = <0x1a040000 0x1000>;
-> +			clock-frequency = <7500000>;
-> +
-> +			frame@1a050000 {
-> +				frame-number = <0>;
-> +				interrupts = <GIC_SPI 2 (GIC_CPU_MASK_SIMPLE(4) |
-> +				IRQ_TYPE_LEVEL_HIGH)>;
-> +				reg = <0x1a050000 0x1000>;
-> +			};
-> +		};
-> +
-> +		smsc: ethernet@4020000 {
-> +			compatible = "smsc,lan9220", "smsc,lan9115";
-> +			reg = <0x40200000 0x10000>;
-> +			interrupts = <GIC_SPI 43 (GIC_CPU_MASK_SIMPLE(4) |
-> +				IRQ_TYPE_LEVEL_HIGH)>;
-> +			reg-io-width = <4>;
-> +			phy-mode = "mii";
-> +			smsc,irq-active-high;
-> +			vdd33a-supply = <&v2m_fixed_3v3>;
-> +			vddvario-supply = <&v2m_fixed_3v3>;
-> +		};
-> +	};
-> +
-> +	v2m_fixed_3v3: fixed-regulator-0 {
-
-You have weird ordering of nodes. If it is by name, then this should be
-regulator-0. Anyway drop "fixed" prefix as it is not relevant.
-
+> +...
 
 Best regards,
 Krzysztof
