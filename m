@@ -2,83 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B29564C710
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 11:26:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51B8F64C71B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 11:31:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237521AbiLNK0M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 05:26:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46076 "EHLO
+        id S237818AbiLNKbf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 05:31:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229662AbiLNK0L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 05:26:11 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D33C62F8;
-        Wed, 14 Dec 2022 02:26:11 -0800 (PST)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BE3w769001066;
-        Wed, 14 Dec 2022 10:25:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=Y9OrsWUQOhpGD0F4VnWAF1+/2i9E5gP+zihLAdq4O6I=;
- b=WXusX9MRNDL4TJA2QIzWwZKKRNNpvrKfohhiV3pVdvMM+oYVJAmDOBSvK6sYODOe272v
- wvGyFvbMOra4tcn5AIxmalSKLtSmyAaHz1Pe7R9mKZlNIyKlRIGFsH9yYyvuwyLUAM+3
- wg2CmZMjmpjtV/zKmUAg3/LqK7SCAr/dDUW4rza2CcbORqweA/n94xkK1m3E4tAZG6JL
- 6HdZkZTQAA9fe+hqdPJvigJAKq4kfT1U0QurK7yA/kZyWCfLRKeL34tvR2491u4TPywK
- ICWvZt//MuVJkDhTgR9nYgn+u5ZXqIGmH2MAZ6oEfVeAMkcknVMUIwocREUjd7m75XOA mg== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3mf6rf8r3j-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 14 Dec 2022 10:25:49 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2BEAPmYJ004697
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 14 Dec 2022 10:25:48 GMT
-Received: from [10.79.43.91] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Wed, 14 Dec
- 2022 02:25:44 -0800
-Message-ID: <ea4e9a35-5468-820a-9e28-9cdf129b77e5@quicinc.com>
-Date:   Wed, 14 Dec 2022 15:55:41 +0530
+        with ESMTP id S237780AbiLNKbe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 05:31:34 -0500
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7E0520BE6
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 02:31:32 -0800 (PST)
+Received: by mail-pf1-x42e.google.com with SMTP id n3so4112593pfq.10
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 02:31:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Uit7BxpGmjJBou7yFTUcyh++20aNuomROBIdcZwwj9U=;
+        b=RWASB5/TTBTTq7EtsReUHvyGpB1mD3fHT/vFBJYDZPDkKMKMi6Ro1kazad0h51yDX0
+         BhfjVjQtROr7clV8tcLDGPvm40SmT4VihSG3Q/joVQO+Fhu8KchyugynozugDv6k21RN
+         6JF/oKCtc/GKnjojAlXZ0ltpICQXGX61M6KRi3GiBrX+qcNhVqPoSIQxjwwftUqHaArr
+         47r/YWUTam5Hi6xlveHi9/hd4cMnoJH9p74yFFbriBfLut2cwd0tAsTuBAQYZON/QlN3
+         T0oMJfiKNY4tp+V7LkAdqLrz1sK2EVnUE2ACO79bw1jsRKtwUeH/bL1PoxTDhDa3RYec
+         khaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Uit7BxpGmjJBou7yFTUcyh++20aNuomROBIdcZwwj9U=;
+        b=LY6hvxEzstCuypuDvHFClX8dASxuFEOF/cV8RAVopWGlsaiwcRIGRl11lZ/9Y1u+OX
+         9eAiUeSBW2Xh6s5fAaOfxJB2XrHhXB5o+qPxJCb55alTyu19BaM+b3pi7pNXHvWsg7gI
+         uxr/X7EbHt++TwN4+cvw4jrj7p+U7NK5XtAhcXC9648uHaUG0hZgz1An4LercuUTVF0G
+         WZPCkgB+nOl6FaePq4Qx13mz885PFAbCiAgdhXUl1xiY6opXiV1PoXGLbpdUVDx3aBxS
+         2mMK2pIW1wm1oEPQmaE6JAKc3d2od1cTPLc9CbZTziErIK+gqlSe3IcmTsthFBDqrOmE
+         G3Ww==
+X-Gm-Message-State: ANoB5plCUnvIDJhr7rs/u5Wkt6LNerJXtx60LBkYQTheXFmKXx3MViUD
+        QV6B3P0s9m/VjoWuog1T7UW7Aw==
+X-Google-Smtp-Source: AA0mqf7kbv9Wg1ySmkT35gputD387N48RnrKhtFN1h8x0F3VuJPoy1jU+RHDgpcbCc3dfkKHhn8U/w==
+X-Received: by 2002:a05:6a00:705:b0:566:900e:1023 with SMTP id 5-20020a056a00070500b00566900e1023mr22133648pfl.3.1671013892372;
+        Wed, 14 Dec 2022 02:31:32 -0800 (PST)
+Received: from ?IPV6:2405:201:d02f:d899:2028:7962:400:43b6? ([2405:201:d02f:d899:2028:7962:400:43b6])
+        by smtp.gmail.com with ESMTPSA id r17-20020aa79631000000b00576ee69c130sm9114893pfg.4.2022.12.14.02.31.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Dec 2022 02:31:31 -0800 (PST)
+Message-ID: <50212c7a-6525-4a91-f9a3-c60024b5e91d@9elements.com>
+Date:   Wed, 14 Dec 2022 16:01:28 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH 2/4] dt-bindings: remoteproc: qcom: sc7180: Update
- memory-region requirements
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v11 2/2] mfd: max597x: Add support for MAX5970 and MAX5978
+To:     Lee Jones <lee@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Marcello Sylvester Bauer <sylv@sylv.io>
+References: <20221116205822.1128275-1-Naresh.Solanki@9elements.com>
+ <20221116205822.1128275-3-Naresh.Solanki@9elements.com>
+ <Y3YJ2EkYNW+gA+/R@google.com>
+ <5d9e41b8-7b2a-d60b-3e92-641cea5a9f4a@9elements.com>
+ <Y5HXWk4d5J9VgFBV@google.com>
+ <921915e5-6b36-9d2d-ebd7-632403e3086a@9elements.com>
+ <Y5mbyICg22UVFASw@google.com>
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <andersson@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <robh+dt@kernel.org>, <manivannan.sadhasivam@linaro.org>
-CC:     <agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <konrad.dybcio@somainline.org>, <amit.pundir@linaro.org>,
-        <regressions@leemhuis.info>, <sumit.semwal@linaro.org>,
-        <will@kernel.org>, <catalin.marinas@arm.com>,
-        <robin.murphy@arm.com>
-References: <20221213140724.8612-1-quic_sibis@quicinc.com>
- <20221213140724.8612-3-quic_sibis@quicinc.com>
- <612c1019-11c0-38b6-e1d5-1a52f1456989@linaro.org>
-From:   Sibi Sankar <quic_sibis@quicinc.com>
-In-Reply-To: <612c1019-11c0-38b6-e1d5-1a52f1456989@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+In-Reply-To: <Y5mbyICg22UVFASw@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: gW8JAOFPVlseI5FPxY4dStgWZ9hcBwBd
-X-Proofpoint-ORIG-GUID: gW8JAOFPVlseI5FPxY4dStgWZ9hcBwBd
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-12-14_04,2022-12-14_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- clxscore=1015 mlxscore=0 impostorscore=0 adultscore=0 spamscore=0
- phishscore=0 mlxlogscore=999 malwarescore=0 suspectscore=0 bulkscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2212140082
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,48 +80,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Lee,
 
-
-On 12/14/22 01:11, Krzysztof Kozlowski wrote:
-> On 13/12/2022 15:07, Sibi Sankar wrote:
->> Update the bindings to reflect the addition of the new modem metadata
->> carveout reference to the memory-region property.
->>
->> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
->> ---
->>   .../devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml    | 3 ++-
->>   .../devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml    | 3 ++-
->>   2 files changed, 4 insertions(+), 2 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml
->> index e4a7da8020f4..b1402bef0ebe 100644
->> --- a/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml
->> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml
->> @@ -95,6 +95,7 @@ properties:
->>       items:
->>         - description: MBA reserved region
->>         - description: modem reserved region
->> +      - description: metadata reserved region
+On 14-12-2022 03:17 pm, Lee Jones wrote:
+> On Wed, 14 Dec 2022, Naresh Solanki wrote:
 > 
-> Which makes the third item now required, also for all out of tree DTS
-> and other users of the bindings. Please write a bit more in commit msg
-> why this is necessary (e.g. was it broken before?). I assume the driver
-> does not break the ABI?
-
-I'll pad the commit msg with some of the additional info from patch 4.
-commit c44094eee32f "arm64: dma: Drop cache invalidation from
-arch_dma_prep_coherent()" exposed a bug in the driver affecting SoCs
-from msm8996 on wards. The application processor accessing the
-dynamically allocated region after giving control to the modem results
-in a XPU violation. The recommended fix was to use a no-map carveout
-instead and memunmap before giving control to the modem. The future
-kernels that are paired with an older dtbs would crash during modem
-bootup since we would continue to use dma_alloc_attr. But all the other
-combinations (old kernel/new dtb) will continue to work.
-
-- Sibi
-
+>> Hi Lee
+>>
+>> On 08-12-2022 05:53 pm, Lee Jones wrote:
+>>> On Fri, 18 Nov 2022, Naresh Solanki wrote:
+>>>
+>>>>
+>>>>
+>>>> On 17-11-2022 03:45 pm, Lee Jones wrote:
+>>>>> On Wed, 16 Nov 2022, Naresh Solanki wrote:
+>>>>>
+>>>>>> From: Patrick Rudolph <patrick.rudolph@9elements.com>
+>>>>>>
+>>>>>> Implement a regulator driver with IRQ support for fault management.
+>>>>>> Written against documentation [1] and [2] and tested on real hardware.
+>>>>>>
+>>>>>> Every channel has its own regulator supplies nammed 'vss1-supply' and
+>>>>>> 'vss2-supply'. The regulator supply is used to determine the output
+>>>>>> voltage, as the smart switch provides no output regulation.
+>>>>>> The driver requires the 'shunt-resistor-micro-ohms' property to be
+>>>>>> present in Device Tree to properly calculate current related
+>>>>>> values.
+>>>>>>
+>>>>>> Datasheet links:
+>>>>>> 1: https://datasheets.maximintegrated.com/en/ds/MAX5970.pdf
+>>>>>> 2: https://datasheets.maximintegrated.com/en/ds/MAX5978.pdf
+>>>>>>
+>>>>>> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+>>>>>> Co-developed-by: Marcello Sylvester Bauer <sylv@sylv.io>
+>>>>>> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+>>>>>> Co-developed-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+>>>>>> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+>>>>>> ---
+>>>>>>     drivers/mfd/Kconfig         |  12 +++++
+>>>>>>     drivers/mfd/Makefile        |   1 +
+>>>>>>     drivers/mfd/max597x.c       |  93 +++++++++++++++++++++++++++++++++
+>>>>>>     include/linux/mfd/max597x.h | 101 ++++++++++++++++++++++++++++++++++++
+>>>>>>     4 files changed, 207 insertions(+)
+>>>>>>     create mode 100644 drivers/mfd/max597x.c
+>>>>>>     create mode 100644 include/linux/mfd/max597x.h
+>>>>>
+>>>>> Ignoring my comments won't make them go away. :)
+>>>>>
+>>>>> Please tell me why you need a whole new driver, instead of adding
+>>>>> support to simple-mfd-i2c?
+>>>>>
+>>>> I felt current implementation to be simpler, clearer & straight forward.
+>>>
+>>> If you can make it work with simple-mfd-i2c, please do so.
+>> simple-mfd-i2c doesn't has mechanism to pass device type(max5978 vs
+>> max5970).
 > 
-> Best regards,
-> Krzysztof
+> `git grep silergy,sy7636a -- drivers/mfd`
+I did check the driver but there is no mechanism to distinguish between 
+chip variant i.e., 597x-regulator driver should be able to distinguish 
+between max5978 vs max5970 chip type.
+> 
+>>> No need to submit an entirely new driver for these simple use-cases.
 > 
