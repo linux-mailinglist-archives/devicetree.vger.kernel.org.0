@@ -2,171 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C97B264CB9D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 14:51:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B735664CCC6
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 15:59:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238508AbiLNNvG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 08:51:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56992 "EHLO
+        id S238551AbiLNO70 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 09:59:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238468AbiLNNut (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 08:50:49 -0500
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE7771DF0B;
-        Wed, 14 Dec 2022 05:50:48 -0800 (PST)
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BEBlegI006818;
-        Wed, 14 Dec 2022 08:50:31 -0500
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3mf6rn2kuw-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 14 Dec 2022 08:50:31 -0500
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 2BEDoU9I065438
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 14 Dec 2022 08:50:30 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Wed, 14 Dec
- 2022 08:50:29 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Wed, 14 Dec 2022 08:50:29 -0500
-Received: from IST-LT-40003.ad.analog.com (IST-LT-40003.ad.analog.com [10.25.36.26])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 2BEDnw0M019580;
-        Wed, 14 Dec 2022 08:50:19 -0500
-From:   Sinan Divarci <Sinan.Divarci@analog.com>
-To:     <jdelvare@suse.com>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Sinan Divarci <Sinan.Divarci@analog.com>
-Subject: [PATCH 3/3] dt-bindings: hwmon: Add bindings for max31732
-Date:   Wed, 14 Dec 2022 16:49:39 +0300
-Message-ID: <20221214134939.12491-3-Sinan.Divarci@analog.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221214134939.12491-1-Sinan.Divarci@analog.com>
-References: <20221214134939.12491-1-Sinan.Divarci@analog.com>
+        with ESMTP id S237778AbiLNO70 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 09:59:26 -0500
+X-Greylist: delayed 2015 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 14 Dec 2022 06:59:24 PST
+Received: from smtp.domeneshop.no (smtp.domeneshop.no [IPv6:2a01:5b40:0:3006::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A61224975;
+        Wed, 14 Dec 2022 06:59:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
+        ; s=ds202112; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=085ww/mXnOU4Dn+4T1MtfrF1AQxRz6j9A7dCMcwXzxM=; b=JyIgAssOMqBtTh5TQw0i8XztOl
+        G6lRzdc+sTwaL3XSAUs4diXffQDK4IhzzeYzDGmRGFpPftVXYarK5lw2R5RJx/g23N+Ag2FJ0Y7ay
+        g3WLT4q4dldwO73Xi7iechwgVs3URZqoWYuzDhpIIivGX3S8Nk60o3kjjiqP5/XK3fW7s/pzYFZMk
+        IYF7BvsS7ggDAZWdcyJs4KG9XQQJGh01cE1JF94HOca5D0u0LMzpcErfzngPugxSk5y4o/Gif+0xD
+        Lf86Cx0piPXqtsGAst9vrwU5dJqoboZ+dhfcB0EQdl4BNczBHd+FIeDPjJZDaxcYyxStOKfRWM7h2
+        QklykCdA==;
+Received: from 80.81-166-174.customer.lyse.net ([81.166.174.80]:59094 helo=[192.168.10.61])
+        by smtp.domeneshop.no with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <noralf@tronnes.org>)
+        id 1p5SPg-00AgNt-I4;
+        Wed, 14 Dec 2022 15:07:13 +0100
+Message-ID: <f54ad441-3758-f4fe-befe-9f77b2de364e@tronnes.org>
+Date:   Wed, 14 Dec 2022 15:07:07 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: nXtNyzsKQPBH5TaLBcw69SB_72K2YaYX
-X-Proofpoint-ORIG-GUID: nXtNyzsKQPBH5TaLBcw69SB_72K2YaYX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-12-14_06,2022-12-14_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- bulkscore=0 adultscore=0 suspectscore=0 phishscore=0 malwarescore=0
- mlxlogscore=648 impostorscore=0 spamscore=0 lowpriorityscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2212140109
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v2 0/3] drm/tiny: panel-mipi-dbi: Support separate I/O
+ voltage supply
+To:     =?UTF-8?Q?Otto_Pfl=c3=bcger?= <otto.pflueger@abscue.de>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221201160245.2093816-1-otto.pflueger@abscue.de>
+From:   =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
+In-Reply-To: <20221201160245.2093816-1-otto.pflueger@abscue.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adding bindings for max31732 quad remote temperature sensor
 
-Signed-off-by: Sinan Divarci <Sinan.Divarci@analog.com>
----
- .../bindings/hwmon/adi,max31732.yaml          | 83 +++++++++++++++++++
- 1 file changed, 83 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/hwmon/adi,max31732.yaml
 
-diff --git a/Documentation/devicetree/bindings/hwmon/adi,max31732.yaml b/Documentation/devicetree/bindings/hwmon/adi,max31732.yaml
-new file mode 100644
-index 000000000..c701cda95
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/adi,max31732.yaml
-@@ -0,0 +1,83 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2022 Analog Devices Inc.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwmon/adi,max31732.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices MAX31732 Temperature Sensor Device Driver
-+
-+maintainers:
-+  - Sinan Divarci <Sinan.Divarci@analog.com>
-+
-+description: Bindings for the Analog Devices MAX31732 Temperature Sensor Device.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,max31732
-+
-+  reg:
-+    description: I2C address of the Temperature Sensor Device.
-+    maxItems: 1
-+
-+  interrupts:
-+    minItems: 1
-+    maxItems: 2
-+
-+  interrupt-names:
-+    description: Name of the interrupt pin of max31732 used for IRQ.
-+    minItems: 1
-+    items:
-+      - enum: [ALARM1, ALARM2]
-+      - enum: [ALARM1, ALARM2]
-+
-+  adi,alarm1-interrupt-mode:
-+    description: |
-+      Enables the ALARM1 output to function in interrupt mode.
-+      Default ALARM1 output function is comparator mode.
-+    type: boolean
-+
-+  adi,alarm2-interrupt-mode:
-+    description: |
-+      Enables the ALARM2 output to function in interrupt mode.
-+      Default ALARM2 output function is comparator mode.
-+    type: boolean
-+
-+  adi,alarm1-fault-queue:
-+    description: The number of consecutive faults required to assert ALARM1.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [1, 2, 4, 6]
-+    default: 1
-+
-+  adi,alarm2-fault-queue:
-+    description: The number of consecutive faults required to assert ALARM2.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [1, 2, 4, 6]
-+    default: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        sensor@1c {
-+            compatible = "adi,max31732";
-+            reg = <0x1c>;
-+            interrupt-parent = <&gpio>;
-+            interrupts = <17 IRQ_TYPE_EDGE_BOTH>, <27 IRQ_TYPE_EDGE_BOTH>;
-+            interrupt-names = "ALARM1", "ALARM2";
-+            adi,alarm1-fault-queue = <4>;
-+            adi,alarm2-fault-queue = <2>;
-+            adi,alarm2-interrupt-mode;
-+      };
-+    };
--- 
-2.25.1
+Den 01.12.2022 17.02, skrev Otto Pflüger:
+> As stated in Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yml,
+> the MIPI DBI specification defines two power supplies, one for powering
+> the panel and one for the I/O voltage. The panel-mipi-dbi driver
+> currently only supports specifying a single "power-supply" in the
+> device tree.
+> 
+> Add support for a second power supply defined in a new "io-supply"
+> device tree property to make the driver properly configure the voltage
+> regulators on platforms where separate supplies are used.
+> 
+> Changes in v2:
+>  - Don't list power-supply in the properties section of
+>    panel-mipi-dbi-spi.yaml because it is already in panel-common.yaml
+> 
+> Otto Pflüger (3):
+>   drm/mipi-dbi: Support separate I/O regulator
+>   drm/tiny: panel-mipi-dbi: Read I/O supply from DT
+>   dt-bindings: display: panel: mipi-dbi-spi: Add io-supply
+> 
 
+Series applied to drm-misc-next.
+
+Noralf.
