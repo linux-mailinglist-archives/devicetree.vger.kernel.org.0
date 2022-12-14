@@ -2,53 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3674064D21C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 23:06:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AC8A64D224
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 23:07:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229572AbiLNWGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 17:06:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46336 "EHLO
+        id S229760AbiLNWHi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 17:07:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229496AbiLNWGk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 17:06:40 -0500
-Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E3422CE1F
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 14:06:39 -0800 (PST)
-Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-3f15a6f72d0so17373557b3.1
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 14:06:39 -0800 (PST)
+        with ESMTP id S229461AbiLNWHf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 17:07:35 -0500
+Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 991FD3D39A
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 14:07:32 -0800 (PST)
+Received: by mail-qt1-x82e.google.com with SMTP id cg5so3666969qtb.12
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 14:07:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=criticallink.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
         bh=2JUpU8XbUBeWziRzLd+hSHISaqkRCe9RKeFMCtB/GcM=;
-        b=NDPFzJ9fbND686sGh8mSqpVBsUYGoGThHXm95cc7zr0hT+7Cwt6ZsWADoXQPw6AS6J
-         geVLz3AHZZrEbtCyRW9HZuxhwWapDuczb+425AWcvHDXGm2tm6UHwF8QBDec8fQB6ISO
-         Ztk0gksV8z6xWSrW7jCgl+yU+lgteuRUXLg68TCyW9MPM3Crdhze8sD3k0bmNBKIxOU8
-         TrZHNRE0gFQM3SWrheRnMyGmBI7N2TmWHUDAGqBrL8y/COOp4a80cqivvOYBnUePqdyN
-         AHOXaxMT97lmDhx7mUanlsLtDnJ906tjhKUspjhOAbphYpdAiBbDyX3d8aJ2Bjx51m0J
-         FZGA==
+        b=CNxtocgVdhiouRT/Ri2e/9sxGZ5y98GKUdSFwy5Vmh67zEhK01ktoEHSVMLfecEGAw
+         QlekHUHH7+1q0F/a8RnHa+wgKkX3XB+KDyOZkE2EdZVNbSbjuMK5sqJYztiN05X0asl0
+         gJHcfoVUdTDVXvPrjGDLoqEbHd4+aON1w120lmLW6jEABWrpQgwkHoplFPZP56dstEAz
+         gruoeobxk+rM4SC4mw20G0evu0aVrol+J6YvMuJkWuSXQcAok3YiKCKou95TUm+dZXX2
+         NvrnIUP73Ro9zOk1Gpvs9koNKVRMP6wo6s8eApWSlRr+Kvc37fhAk2JzaeN6JU/fKHcC
+         ohlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
         bh=2JUpU8XbUBeWziRzLd+hSHISaqkRCe9RKeFMCtB/GcM=;
-        b=bmAbZ9fYOGyn3z/yPyaM2UfV9jmvQt97GQSPvHydjjoyNaoGpYLWIN4+mDkGukoNcT
-         WZVxY6uT4HQio0lFt9oUhKVYX9u5qvQbdAjkdlRqq1Bv78nn+Ya5bybVMvp1M8Cm3XAo
-         2wh67nF58v3Y+b8n9pErHmubaWpRuM7YHM8yOIaUiyZf4J7VFA40tS0wrzvC4wLzInDQ
-         oGFBpIlAMzFzxgM9zqoBYfugAW61VUbhCGetMkeVoghFEt3g2bQux5dUlE+0VLZ0EFpw
-         0IosbpcjrTSTzHQaqCOzhTmOPQbmDV2WAkvNbhTnWuFcVEyw2KDAhr2QnDklh0RE4QJB
-         7/2w==
-X-Gm-Message-State: ANoB5pny/r5mf0k4RAvirdQk4Ll4OdNIQKwQf7hbmkwHkdhMh6hewkcq
-        lYHrmjHTVa7bp1AA/D/j52jjtA==
-X-Google-Smtp-Source: AA0mqf4UiHF0MHMqFrLKvrXq3ETo8PhgdlzM1DGiZHfu2Z/DEl8NuHTSQ7vZX9TXXp+nBVT2mBK8FA==
-X-Received: by 2002:a05:7500:3cf:b0:ea:730e:6007 with SMTP id p15-20020a05750003cf00b000ea730e6007mr2874719gab.28.1671055598158;
-        Wed, 14 Dec 2022 14:06:38 -0800 (PST)
+        b=FU9+NL/NjAO8p3s87AUq4pQjs7Ew+QEwO5bSN6BEDmNsW/tE3LOvVjYlzYLcZHrfLN
+         IiOEsoNAlZmIOZY/n9xxB5/x7PUGc9LTpqCkzZQRY96aQBpd5fPSQfj72nvTtZZPkrZX
+         kPdSBwYBP8RbmRQxArJtXkp2G+wIMJFNRh2hC8VdIOrYZ33HTQCAXC2ODLK4h+aMMxFy
+         4zNaz0cQOODQkfjRtM3BH2KvVZHP28xqrYXT4gwVqJmPJEiv2/XHosHQlpHWm6oF0M0q
+         Y74Br9LXa+yftf+dKv8ntraEqhkKgIhvUzw1oSzKV92WoQUNnRIIZzopoNdcNM0HAaz7
+         EjhA==
+X-Gm-Message-State: ANoB5plEssuxK5heGI3PCjSVZYPNEbwtYmK6fV2M4Du4C7GGrDvrg9jN
+        hKWDfpvXWbpfRjIIPb+Drsyuxg==
+X-Google-Smtp-Source: AA0mqf5tyPh08++k7PkNxb1TO06Rfoi5LnlPetPnSNCqg2VUBm4yIRhrBhCeakXApAHZqJZoUOeiWw==
+X-Received: by 2002:ac8:5756:0:b0:3a6:8700:b471 with SMTP id 22-20020ac85756000000b003a68700b471mr47000110qtx.38.1671055651738;
+        Wed, 14 Dec 2022 14:07:31 -0800 (PST)
 Received: from jcormier-MS-7A93.syr.criticallink.com (static-72-90-70-109.syrcny.fios.verizon.net. [72.90.70.109])
-        by smtp.gmail.com with ESMTPSA id bj17-20020a05620a191100b006b95b0a714esm10783173qkb.17.2022.12.14.14.06.37
+        by smtp.gmail.com with ESMTPSA id l24-20020ae9f018000000b006fc2b672950sm10623939qkg.37.2022.12.14.14.07.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Dec 2022 14:06:37 -0800 (PST)
+        Wed, 14 Dec 2022 14:07:31 -0800 (PST)
 From:   "Cormier, Jonathan" <jcormier@criticallink.com>
 To:     linux-hwmon@vger.kernel.org
 Cc:     "Cormier, Jonathan" <jcormier@criticallink.com>,
@@ -60,11 +59,9 @@ Cc:     "Cormier, Jonathan" <jcormier@criticallink.com>,
         Bob Duke <bduke@criticallink.com>,
         John Pruitt <jpruitt@criticallink.com>
 Subject: [PATCH 0/2] hwmon: ltc2945: Add binding and shunt resistor support
-Date:   Wed, 14 Dec 2022 17:06:30 -0500
-Message-Id: <20221214220632.1309739-1-jcormier@criticallink.com>
+Date:   Wed, 14 Dec 2022 17:07:25 -0500
+Message-Id: <20221214220727.1350784-1-jcormier@criticallink.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221214220423.1183748-1-jcormier@criticallink.com>
-References: <20221214220423.1183748-1-jcormier@criticallink.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
