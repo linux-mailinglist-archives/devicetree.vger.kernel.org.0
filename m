@@ -2,117 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E173164C9A1
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 14:02:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83C2B64C99B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 14:02:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238470AbiLNNCu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 08:02:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60986 "EHLO
+        id S238444AbiLNNCr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 08:02:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238450AbiLNNCO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 08:02:14 -0500
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A370210C0
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 05:01:38 -0800 (PST)
-Received: by mail-pj1-x102e.google.com with SMTP id u5so6816056pjy.5
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 05:01:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l8dC2Gsn7/DPw+06SvyPKXiLZl5J5e+MnQLJWr0R5lg=;
-        b=C/CoxKrwgllUTgPoZwwqsWxbBjhZtbqeoP5H6TRO0VLQcRnrnz27cgh1gckODs6c4Y
-         hjo/OgwrORxVMs+lneUR07jTMMyD06UxUsWzui1Dl2cz5AHMf2wezgZHAW9itVOKpJVE
-         UfRhJmsZdywxBj0qj2Utiv0IGovp5fHumb29c=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=l8dC2Gsn7/DPw+06SvyPKXiLZl5J5e+MnQLJWr0R5lg=;
-        b=EgRzp/N2XV7orF4QQKdCua+nC1q7GLb4QS1pRrzRPTQ4SfRxQXJh/20AeHBgfVHQGC
-         rMjQRw/Ti57CUtiIfnC9XCkskgWwttDUaM+hHmlf+d+INDhz4WcKI8WY8QP1sA6m7/OU
-         zzUj/BKl5LUhErQQQIngClPPuEgOkp8jEggrLpgAN80oufIfgrkCsCKs53tBoUoWX5mg
-         rs1tGbSNpO+JuTq9NvLOZoGsjp5yHdPbeUrr8vqCUcLOnELe7drXxWDvJZ0VYeU7bAFe
-         ZoAU8Y1C9uioGsMMvzdhxf+5XxLzui9XMc4qBcEPEGAUtOj5YhdpMwpF3VxpzIc1hxll
-         jpEA==
-X-Gm-Message-State: ANoB5pn6rtuJo+n/gQqqthpuJxxXsJ9UJVsRF8GviOQzN4Bx57ZEIfld
-        wV8hAi7+WnBl/cHLzk4Tyb0cxA==
-X-Google-Smtp-Source: AA0mqf6ckNSerlrEGekXR/9I5wplg+qXi2frZincM6Z8lCDtlsNIlHj2C/nPOVwF6cGNeV60yfii6Q==
-X-Received: by 2002:a17:903:2412:b0:188:82fc:e277 with SMTP id e18-20020a170903241200b0018882fce277mr24851098plo.12.1671022898068;
-        Wed, 14 Dec 2022 05:01:38 -0800 (PST)
-Received: from localhost.localdomain ([2405:201:c00a:a809:5e03:faf:846e:352d])
-        by smtp.gmail.com with ESMTPSA id ix17-20020a170902f81100b001895f7c8a71sm1838651plb.97.2022.12.14.05.01.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Dec 2022 05:01:37 -0800 (PST)
-From:   Jagan Teki <jagan@amarulasolutions.com>
-To:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Joonyoung Shim <jy0922.shim@samsung.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Fancy Fang <chen.fang@nxp.com>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Michael Nazzareno Trimarchi <michael@amarulasolutions.com>,
-        Adam Ford <aford173@gmail.com>,
-        Neil Armstrong <narmstrong@linaro.org>,
+        with ESMTP id S238447AbiLNNCL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 08:02:11 -0500
+Received: from aposti.net (aposti.net [89.234.176.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48795313;
+        Wed, 14 Dec 2022 05:01:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1671022886; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Xz93IPFieV9WZW5Gg4FpvmQyVwuBdgxq4Bwe+uEuf+8=;
+        b=CXGjkewKSL1heZ8BJd/MmWY9TG4IYsU+t6d6zAoCqRIO/38IJF0Vf0XAOaGlMhzmwubZau
+        aUuw1svfwrCu7RL+gHSITIsyKtt/BFIbrSaT6NXuCjLsG+RMfeHNmpkcN+1f/CbST2CRJ9
+        WfFnBedMnAlwEOjVq7eiXeKw81g6O4w=
+From:   Paul Cercueil <paul@crapouillou.net>
+To:     Phong LE <ple@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
         Robert Foss <robert.foss@linaro.org>,
         Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Tommaso Merciai <tommaso.merciai@amarulasolutions.com>,
-        Marek Vasut <marex@denx.de>
-Cc:     Matteo Lisi <matteo.lisi@engicam.com>,
-        dri-devel@lists.freedesktop.org, linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH v10 17/18] dt-bindings: display: exynos: dsim: Add NXP i.MX8M Plus support
-Date:   Wed, 14 Dec 2022 18:29:06 +0530
-Message-Id: <20221214125907.376148-18-jagan@amarulasolutions.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221214125907.376148-1-jagan@amarulasolutions.com>
-References: <20221214125907.376148-1-jagan@amarulasolutions.com>
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     list@opendingux.net, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Paul Cercueil <paul@crapouillou.net>
+Subject: [PATCH 09/10] drm: bridge: it66121: Move VID/PID to new it66121_chip_info structure
+Date:   Wed, 14 Dec 2022 14:01:22 +0100
+Message-Id: <20221214130122.12911-1-paul@crapouillou.net>
+In-Reply-To: <20221214125821.12489-1-paul@crapouillou.net>
+References: <20221214125821.12489-1-paul@crapouillou.net>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Samsung MIPI DSIM bridge can also be found in i.MX8M Plus SoC.
+This will make it easier later to introduce support for new chips in
+this driver.
 
-Add dt-bingings for it.
-
-Cc: devicetree@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+Signed-off-by: Paul Cercueil <paul@crapouillou.net>
 ---
-Changes for v10, v9:
-- none
+ drivers/gpu/drm/bridge/ite-it66121.c | 27 +++++++++++++++------------
+ 1 file changed, 15 insertions(+), 12 deletions(-)
 
- Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt b/Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt
-index 5133d4d39190..2a5f0889ec32 100644
---- a/Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt
-+++ b/Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt
-@@ -8,6 +8,7 @@ Required properties:
- 		"samsung,exynos5422-mipi-dsi" /* for Exynos5422/5800 SoCs */
- 		"samsung,exynos5433-mipi-dsi" /* for Exynos5433 SoCs */
- 		"fsl,imx8mm-mipi-dsim" /* for i.MX8M Mini/Nano SoCs */
-+		"fsl,imx8mp-mipi-dsim" /* for i.MX8M Plus SoCs */
-   - reg: physical base address and length of the registers set for the device
-   - interrupts: should contain DSI interrupt
-   - clocks: list of clock specifiers, must contain an entry for each required
+diff --git a/drivers/gpu/drm/bridge/ite-it66121.c b/drivers/gpu/drm/bridge/ite-it66121.c
+index 7972003d4776..43b027b85b8e 100644
+--- a/drivers/gpu/drm/bridge/ite-it66121.c
++++ b/drivers/gpu/drm/bridge/ite-it66121.c
+@@ -35,10 +35,6 @@
+ #define IT66121_DEVICE_ID0_REG			0x02
+ #define IT66121_DEVICE_ID1_REG			0x03
+ 
+-#define IT66121_VENDOR_ID0			0x54
+-#define IT66121_VENDOR_ID1			0x49
+-#define IT66121_DEVICE_ID0			0x12
+-#define IT66121_DEVICE_ID1			0x06
+ #define IT66121_REVISION_MASK			GENMASK(7, 4)
+ #define IT66121_DEVICE_ID1_MASK			GENMASK(3, 0)
+ 
+@@ -286,13 +282,12 @@
+ #define IT66121_AUD_SWL_16BIT			0x2
+ #define IT66121_AUD_SWL_NOT_INDICATED		0x0
+ 
+-#define IT66121_VENDOR_ID0			0x54
+-#define IT66121_VENDOR_ID1			0x49
+-#define IT66121_DEVICE_ID0			0x12
+-#define IT66121_DEVICE_ID1			0x06
+-#define IT66121_DEVICE_MASK			0x0F
+ #define IT66121_AFE_CLK_HIGH			80000 /* Khz */
+ 
++struct it66121_chip_info {
++	u16 vid, pid;
++};
++
+ struct it66121_ctx {
+ 	struct regmap *regmap;
+ 	struct drm_bridge bridge;
+@@ -311,6 +306,7 @@ struct it66121_ctx {
+ 		u8 swl;
+ 		bool auto_cts;
+ 	} audio;
++	const struct it66121_chip_info *info;
+ };
+ 
+ static const struct regmap_range_cfg it66121_regmap_banks[] = {
+@@ -1451,6 +1447,7 @@ static const char * const it66121_supplies[] = {
+ 
+ static int it66121_probe(struct i2c_client *client)
+ {
++	const struct i2c_device_id *id = i2c_client_get_device_id(client);
+ 	u32 revision_id, vendor_ids[2] = { 0 }, device_ids[2] = { 0 };
+ 	struct device_node *ep;
+ 	int ret;
+@@ -1472,6 +1469,7 @@ static int it66121_probe(struct i2c_client *client)
+ 
+ 	ctx->dev = dev;
+ 	ctx->client = client;
++	ctx->info = (const struct it66121_chip_info *) id->driver_data;
+ 
+ 	of_property_read_u32(ep, "bus-width", &ctx->bus_width);
+ 	of_node_put(ep);
+@@ -1523,8 +1521,8 @@ static int it66121_probe(struct i2c_client *client)
+ 	revision_id = FIELD_GET(IT66121_REVISION_MASK, device_ids[1]);
+ 	device_ids[1] &= IT66121_DEVICE_ID1_MASK;
+ 
+-	if (vendor_ids[0] != IT66121_VENDOR_ID0 || vendor_ids[1] != IT66121_VENDOR_ID1 ||
+-	    device_ids[0] != IT66121_DEVICE_ID0 || device_ids[1] != IT66121_DEVICE_ID1) {
++	if ((vendor_ids[1] << 8 | vendor_ids[0]) != ctx->info->vid ||
++	    (device_ids[1] << 8 | device_ids[0]) != ctx->info->pid) {
+ 		return -ENODEV;
+ 	}
+ 
+@@ -1563,8 +1561,13 @@ static const struct of_device_id it66121_dt_match[] = {
+ };
+ MODULE_DEVICE_TABLE(of, it66121_dt_match);
+ 
++static const struct it66121_chip_info it66121_chip_info = {
++	.vid = 0x4954,
++	.pid = 0x0612,
++};
++
+ static const struct i2c_device_id it66121_id[] = {
+-	{ "it66121", 0 },
++	{ "it66121", (kernel_ulong_t) &it66121_chip_info },
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(i2c, it66121_id);
 -- 
-2.25.1
+2.35.1
 
