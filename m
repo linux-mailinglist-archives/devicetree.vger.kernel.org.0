@@ -2,74 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 330E464CC2A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 15:27:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 488C464CC5F
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 15:34:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238637AbiLNO1J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 09:27:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44674 "EHLO
+        id S238623AbiLNOej (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 09:34:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238635AbiLNO1I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 09:27:08 -0500
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA98420355;
-        Wed, 14 Dec 2022 06:27:05 -0800 (PST)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.lan)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1p5Sis-00050J-MP; Wed, 14 Dec 2022 15:27:02 +0100
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Johan Jonker <jbx6244@gmail.com>, kever.yang@rock-chips.com
-Cc:     Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, hjc@rock-chips.com,
-        zhangqing@rock-chips.com, krzysztof.kozlowski+dt@linaro.org,
-        philipp.tomsich@vrull.eu, soc@kernel.org, tglx@linutronix.de,
-        daniel.lezcano@linaro.org, arnd@arndb.de,
-        linux-rockchip@lists.infradead.org, sjg@chromium.org,
-        olof@lixom.net
-Subject: Re: (subset) [PATCH v2 0/4] Add basic Rockchip rk3128 DT support
-Date:   Wed, 14 Dec 2022 15:26:59 +0100
-Message-Id: <167102796007.2796496.11503501153122031880.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <e83964fe-ad87-0905-4586-e235757c6b2b@gmail.com>
-References: <e83964fe-ad87-0905-4586-e235757c6b2b@gmail.com>
+        with ESMTP id S238625AbiLNOeh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 09:34:37 -0500
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFFA6C3A
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 06:34:35 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id bj12so44892562ejb.13
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 06:34:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=NpdIC9yfEfML+JTsasPerHswhdeXgtUUncwQhuMnyqE=;
+        b=XLKf1zw+Pg5X/5RU+NqTJXZbD6289aN9/me5ZGVd8EVaQRYyJ2A1JlBdG/Z3vsSDhk
+         Qmz9aiiZNObRESdS/CH7NwQdJvzHJFIDjkC0casil4G4a0N9QFE5mfSjYWXd8ZJ15YF4
+         rGJgGKsHjpVfDDZj6p5BrCfquqIHmoSjSxlcAftAz1JUO8wSbof7/g91hgr1+XKPPePu
+         kfMlDQb3+qMJ6DUrRCH6VLm3UIt74/cQiWtTtE3ylBHYgQVQ6Aor3fbMntGxp9AmnQtV
+         ejTOcc664SpZgkLUI0eTSEsPKw0r8GbVeA1KvrhoplnpFLRnnWk+D6rtNKmjsnXEgo5H
+         Iehw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NpdIC9yfEfML+JTsasPerHswhdeXgtUUncwQhuMnyqE=;
+        b=MZutXPKXd5jK1lb1DbAmn74dJ+lOkQmzDatIXSWEDmE5uO3hRSKd3jf5IwBu9z9mPA
+         Awdl77Ubyr4OAJVGeOqwENcjscZLdSYMn4f34wSYacQeL1hWVFKOE/CXGUKxGEgohbfp
+         EDillDUT6tnQ9/MBL3ZVgvjDeH3uVQHyr/U6TXtDsAKIiNM64YTxhcxcLeO96WhQZrBs
+         sJlJXnBc1aMcHwGywy/on1LGRrD0iU6kSMeyZQNIYcBs188/WYO6ZTNq7ewARUHY0ulE
+         zlq7MgCqwRQ9X0YdBTH6qmP3bRO9iwcEttOo877t271EAcFjOemsQTKQYKflE9ttGsbb
+         3EnA==
+X-Gm-Message-State: ANoB5pnqQUK+oqUMzyD9+6olehrKWpogTQknoJW/fM+kcjTd5iNNU01n
+        0+Ie+iQkgQzxkFz1qWcC7fmAuA==
+X-Google-Smtp-Source: AA0mqf6CmxqK+9dd28/XPm5VnoWGfEXLHPyKVsjaVNohL2FH1YAqanoPm55ZEQuTbm9gGFjhahizfg==
+X-Received: by 2002:a17:906:1d01:b0:7c1:36:9002 with SMTP id n1-20020a1709061d0100b007c100369002mr20212671ejh.67.1671028474394;
+        Wed, 14 Dec 2022 06:34:34 -0800 (PST)
+Received: from localhost (2001-1ae9-1c2-4c00-748-2a9a-a2a6-1362.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:748:2a9a:a2a6:1362])
+        by smtp.gmail.com with ESMTPSA id ko5-20020a170907986500b007bd1ef2cccasm5896464ejc.48.2022.12.14.06.34.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Dec 2022 06:34:33 -0800 (PST)
+Date:   Wed, 14 Dec 2022 15:34:32 +0100
+From:   Andrew Jones <ajones@ventanamicro.com>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Guo Ren <guoren@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v5 1/6] riscv: asm: alternative-macros: Introduce
+ ALTERNATIVE_3() macro
+Message-ID: <20221214143432.4micw2gipvhfqwoa@kamzik>
+References: <20221212115505.36770-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221212115505.36770-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdXXXN9g8o1j7k-TC=F-kuyf-KngFSKi7z9z0SY9BLxmHA@mail.gmail.com>
+ <CA+V-a8s9iAtFVzdA4R_tSMuBTkoY3JmZ12MJw__Pgfyetsz34g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CA+V-a8s9iAtFVzdA4R_tSMuBTkoY3JmZ12MJw__Pgfyetsz34g@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 28 Oct 2022 16:39:04 +0200, Johan Jonker wrote:
-> Add basic Rockchip rk3128 DT support.
+On Tue, Dec 13, 2022 at 05:49:32PM +0000, Lad, Prabhakar wrote:
+> Hi Geert,
 > 
-> Features:
->   Quad-core ARM Cortex-A7MP Core processor
->   Clock & reset unit
->   Power management unit
->   Interrupt controller
->   DMAC
->   6x 64 bits Timers
->   4x PWMs
->   1x 32 bits watchdog
+> Thank you for the review.
 > 
-> [...]
+> On Tue, Dec 13, 2022 at 5:21 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> >
+> > Hi Prabhakar,
+> >
+> > On Mon, Dec 12, 2022 at 12:58 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >
+> > > Introduce ALTERNATIVE_3() macro.
+> > >
+> > > A vendor wants to replace an old_content, but another vendor has used
+> > > ALTERNATIVE_2() to patch its customized content at the same location.
+> > > In this case, this vendor can use macro ALTERNATIVE_3() and then replace
+> > > ALTERNATIVE_2() with ALTERNATIVE_3() to append its customized content.
+> > >
+> > > While at it update comment above ALTERNATIVE_2() macro and make it generic
+> > > so that the comment holds good for any new addition of ALTERNATIVE_X()
+> > > macros.
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > ---
+> > > v4->v5
+> > > * Rebased the patch on top of Andrew's series (now in Palmers for next-branch)
+> > > * Updated comment for ALTERNATIVE_x() as suggested by Heiko
+> >
+> > Thanks for the update!
+> >
+> > > --- a/arch/riscv/include/asm/alternative-macros.h
+> > > +++ b/arch/riscv/include/asm/alternative-macros.h
+> > > @@ -50,8 +50,17 @@
+> > >         ALT_NEW_CONTENT \vendor_id_2, \errata_id_2, \enable_2, \new_c_2
+> > >  .endm
+> > >
+> > > +.macro ALTERNATIVE_CFG_3 old_c, new_c_1, vendor_id_1, errata_id_1, enable_1,   \
+> > > +                               new_c_2, vendor_id_2, errata_id_2, enable_2,    \
+> > > +                               new_c_3, vendor_id_3, errata_id_3, enable_3
+> > > +       ALTERNATIVE_CFG_2 \old_c, \new_c_1, \vendor_id_1, \errata_id_1, \enable_1,      \
+> > > +                                 \new_c_2, \vendor_id_2, \errata_id_2, \enable_2
+> > > +       ALT_NEW_CONTENT \vendor_id_3, \errata_id_3, \enable_3, \new_c_3
+> > > +.endm
+> > > +
+> > >  #define __ALTERNATIVE_CFG(...)         ALTERNATIVE_CFG __VA_ARGS__
+> > >  #define __ALTERNATIVE_CFG_2(...)       ALTERNATIVE_CFG_2 __VA_ARGS__
+> > > +#define __ALTERNATIVE_CFG_3(...)       ALTERNATIVE_CFG_3 __VA_ARGS__
+> > >
+> > >  #else /* !__ASSEMBLY__ */
+> > >
+> > > @@ -98,6 +107,13 @@
+> > >         __ALTERNATIVE_CFG(old_c, new_c_1, vendor_id_1, errata_id_1, enable_1)   \
+> > >         ALT_NEW_CONTENT(vendor_id_2, errata_id_2, enable_2, new_c_2)
+> > >
+> > > +#define __ALTERNATIVE_CFG_3(old_c, new_c_1, vendor_id_1, errata_id_1, enable_1,        \
+> > > +                                  new_c_2, vendor_id_2, errata_id_2, enable_2, \
+> > > +                                  new_c_3, vendor_id_3, errata_id_3, enable_3) \
+> > > +       __ALTERNATIVE_CFG_2(old_c, new_c_1, vendor_id_1, errata_id_1, enable_1, \
+> > > +                                   new_c_2, vendor_id_2, errata_id_2, enable_2)        \
+> > > +       ALT_NEW_CONTENT(vendor_id_3, errata_id_3, enable_3, new_c_3)
+> > > +
+> > >  #endif /* __ASSEMBLY__ */
+> > >
+> > >  #define _ALTERNATIVE_CFG(old_c, new_c, vendor_id, errata_id, CONFIG_k) \
+> > > @@ -108,6 +124,13 @@
+> > >         __ALTERNATIVE_CFG_2(old_c, new_c_1, vendor_id_1, errata_id_1, IS_ENABLED(CONFIG_k_1),   \
+> > >                                    new_c_2, vendor_id_2, errata_id_2, IS_ENABLED(CONFIG_k_2))
+> > >
+> > > +#define _ALTERNATIVE_CFG_3(old_c, new_c_1, vendor_id_1, errata_id_1, CONFIG_k_1,               \
+> > > +                                 new_c_2, vendor_id_2, errata_id_2, CONFIG_k_2,                \
+> > > +                                 new_c_3, vendor_id_3, errata_id_3, CONFIG_k_3)                \
+> > > +       __ALTERNATIVE_CFG_3(old_c, new_c_1, vendor_id_1, errata_id_1, IS_ENABLED(CONFIG_k_1),   \
+> > > +                                  new_c_2, vendor_id_2, errata_id_2, IS_ENABLED(CONFIG_k_2),   \
+> > > +                                  new_c_3, vendor_id_3, errata_id_3, IS_ENABLED(CONFIG_k_3))
+> > > +
+> > >  #else /* CONFIG_RISCV_ALTERNATIVE */
+> >
+> > To avoid breaking the build for K210 (and VexRiscv), you need to provide
+> > _ALTERNATIVE_CFG_3() for the !CONFIG_RISCV_ALTERNATIVE case, too:
+> >
+> Thanks for testing this.
+> 
+> > @@ -144,6 +144,9 @@
+> >  #define _ALTERNATIVE_CFG_2(old_c, ...) \
+> >         ALTERNATIVE_CFG old_c
+> >
+> > +#define _ALTERNATIVE_CFG_3(old_c, ...) \
+> > +       ALTERNATIVE_CFG old_c
+> > +
+> >  #else /* !__ASSEMBLY__ */
+> >
+> >  #define __ALTERNATIVE_CFG(old_c)       \
+> > @@ -155,6 +158,9 @@
+> >  #define _ALTERNATIVE_CFG_2(old_c, ...) \
+> >         __ALTERNATIVE_CFG(old_c)
+> >
+> > +#define _ALTERNATIVE_CFG_3(old_c, ...) \
+> > +       __ALTERNATIVE_CFG(old_c)
+> > +
+> >  #endif /* __ASSEMBLY__ */
+> >  #endif /* CONFIG_RISCV_ALTERNATIVE */
+> >
+> > Else it fails (on riscv/for-next) with:
+> >
+> I'll include the above hunk in next version.
 
-Applied for 6.3, thanks!
+Yes, those two hunks are in my example in [1] as well.
 
-[1/4] dt-bindings: arm: rockchip: Add Rockchip RK3128 Evaluation board
-      commit: a1392d5ac60864a3682c447fe62392eb56e9d93b
-[3/4] ARM: dts: rockchip: add rk3128.dtsi
-      commit: 9ef609cbdbf7a45599b0c9c21e9e7d2ae625896f
-[4/4] ARM: dts: rockchip: add rk3128-evb.dts
-      commit: 7232dafab89ac23b570d0adb3402164719fcbe3d
+[1] https://lore.kernel.org/all/20221129150053.50464-1-ajones@ventanamicro.com/
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+Thanks,
+drew
+
+> 
+> > arch/riscv/mm/pmem.c: In function ‘arch_wb_cache_pmem’:
+> > arch/riscv/include/asm/alternative-macros.h:198:8: error: expected
+> > string literal before ‘_ALTERNATIVE_CFG_3’
+> >   198 |        _ALTERNATIVE_CFG_3(old_content, new_content_1,
+> > vendor_id_1, errata_id_1, CONFIG_k_1, \
+> >       |        ^~~~~~~~~~~~~~~~~~
+> > arch/riscv/include/asm/errata_list.h:128:14: note: in expansion of
+> > macro ‘ALTERNATIVE_3’
+> >   128 | asm volatile(ALTERNATIVE_3(      \
+> >       |              ^~~~~~~~~~~~~
+> > arch/riscv/mm/pmem.c:13:2: note: in expansion of macro ‘ALT_CMO_OP’
+> >    13 |  ALT_CMO_OP(clean, addr, size, riscv_cbom_block_size, 0, 0);
+> >       |  ^~~~~~~~~~
+> >
+> > Gr{oetje,eeting}s,
+> >
+> >                         Geert
+> >
+> > --
+> > Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> >
+> > In personal conversations with technical people, I call myself a hacker. But
+> > when I'm talking to journalists I just say "programmer" or something like that.
+> >                                 -- Linus Torvalds
