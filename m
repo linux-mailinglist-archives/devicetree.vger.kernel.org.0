@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11E7964D19A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 22:11:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 84A8E64D19D
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 22:11:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229613AbiLNVLe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 16:11:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52738 "EHLO
+        id S229680AbiLNVLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 16:11:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbiLNVLc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 16:11:32 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2775A2C136
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 13:10:53 -0800 (PST)
+        with ESMTP id S229437AbiLNVLo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 16:11:44 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B8022ED7C
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 13:10:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1671052252;
+        s=mimecast20190719; t=1671052254;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=TSz/PgjD23JYZUEwUZKhlqGEr6/v6TI6lxpkBzb4/nA=;
-        b=QMHHGrPRnBgNboGMHeWBGTKjCBDefgVcpxBFDumiJ2BGunqJP2iJlVLi40RjdpqZ5cr/6A
-        YKEcZrrXPGeYcE6jNJzNFeK9Km+woH72msMV/CFJHYxtWaC52T0PKKAOQmE1MhrWE3Jr5J
-        I8yg05YoRczVEGIdtX6ek0a0qEbYHok=
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
- [209.85.160.198]) by relay.mimecast.com with ESMTP with STARTTLS
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=LmjUSyg67D39D4GXwHdsjU8ybX4fVmhyxG/436wX9C0=;
+        b=ikRO7o2i3uZMNZFsObWVt6UeQuEs88RKUk+g6SZTP6P3PAA+LmsV2S7MJ3N1w3R+YwxYZe
+        n0ZBYhmsTkQvCCXkg77vyFKiN8+7jZCSbLQEJNwDDyDJWXJK8rnOfeXLfiOMAP77LtUyUh
+        tzoylYDa+9f1pGof8immuylA13iaZUY=
+Received: from mail-yb1-f200.google.com (mail-yb1-f200.google.com
+ [209.85.219.200]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-531--PhSqjaZPOS5FID-HpzKLQ-1; Wed, 14 Dec 2022 16:10:51 -0500
-X-MC-Unique: -PhSqjaZPOS5FID-HpzKLQ-1
-Received: by mail-qt1-f198.google.com with SMTP id g3-20020ac84b63000000b003a529c62a92so3160888qts.23
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 13:10:51 -0800 (PST)
+ us-mta-180-NHHINqKCO0mUCAEPg94N1w-1; Wed, 14 Dec 2022 16:10:53 -0500
+X-MC-Unique: NHHINqKCO0mUCAEPg94N1w-1
+Received: by mail-yb1-f200.google.com with SMTP id x188-20020a2531c5000000b00716de19d76bso1173080ybx.19
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 13:10:53 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TSz/PgjD23JYZUEwUZKhlqGEr6/v6TI6lxpkBzb4/nA=;
-        b=L2uHBXsu3xbdqGCZd8pe7UVUgfJSSERf6IDj9xTY61O+Pr/I5kZa0XzcAm0w6l6PIt
-         HJah1KKPtdXEfP2HcCxoj8NgOoKW0WbbpDZOtaNYj2bfoaYwT0qqyDUZw5yUWMlWD+ua
-         SF3FrBNOiETBRsOMm+B2j7hkmzAsYSFs9O/pTdTaEIg2OnG03bbY12EIL1GjYMViwxuq
-         oTT+MV0flMs9lxb4ASGV6DPOmQjOYh708Z+GuoHgDpoyn0pc5Hy2gC70ZzxLNih99P6S
-         RR1iWwAz8W6MvTpLxsF8HExG07bu26D7/m6l6d0svM+XP/f/RPLG0eTCM0ynOoEl20h0
-         xvUA==
-X-Gm-Message-State: ANoB5pkdTTPnQRMz/i+r0bra9/rOjAL4u8ZwSpHHQcagR8p1ReIW/+Qs
-        vlTLX3EE8C+YGH59xWCkyMKExhms4+qf6EsUzCikoC9co/q4q+FxaihXYRSmCvbhAOYOguK0xWO
-        CCGk90i90H/uRgfPd31Oavg==
-X-Received: by 2002:ac8:67d5:0:b0:3a6:46b4:2a6b with SMTP id r21-20020ac867d5000000b003a646b42a6bmr30959250qtp.27.1671052250460;
-        Wed, 14 Dec 2022 13:10:50 -0800 (PST)
-X-Google-Smtp-Source: AA0mqf4S2E0HvCIJs1npjyTP0+FxeBR1jIWod47l+DgBW/7PchMqUrHqEm/2Mth6sLMeDAPoCyfFMQ==
-X-Received: by 2002:ac8:67d5:0:b0:3a6:46b4:2a6b with SMTP id r21-20020ac867d5000000b003a646b42a6bmr30959237qtp.27.1671052250278;
-        Wed, 14 Dec 2022 13:10:50 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LmjUSyg67D39D4GXwHdsjU8ybX4fVmhyxG/436wX9C0=;
+        b=4XgWHjsRNDK9Uvsi5OAPUDvjLndXli5qpHN0tGFnCZjIOtvT1trehpU1+6ePDT5H1+
+         umAXBU90MWtxW7K0cc4XW4LSdzq5mDrJfpO+QUUbLKkRVl6/xp8T1WIYN6eldNAWGAuJ
+         rIxm+bOL2lOZVgJrj5WyOIOMymtWGUBOSCbpEjXy35V+qbLAeSK5T6lI0v3/pWUpBZpw
+         48t0cUZq9cbcRxNnNTRnm6DXc2sfOOfvCqDtPZgoYrsv+X8O6HJMjdLZHADBTHg+WHqh
+         +sn8c8S577o39xFjnrS1N1VR6rmTW8HpJIRk7Fh0rtQHgci2l4NFmh56qMaOc9ocGd9u
+         q6RA==
+X-Gm-Message-State: ANoB5pkOlrj9kTy3RyWYkAfBHld91KrWS2jeIYlaG0ewEiavTgFAmP/R
+        dueysgIK1VzQupy8A1cd69IJyapBhwddmbm9IiyOfwDbIc+veAD4cbQgMweXwQQ8GnnNdXu02+l
+        /Anuj3vqS/gYlh3IjUNeuTw==
+X-Received: by 2002:a25:180b:0:b0:71c:52cd:fad3 with SMTP id 11-20020a25180b000000b0071c52cdfad3mr17470903yby.54.1671052252965;
+        Wed, 14 Dec 2022 13:10:52 -0800 (PST)
+X-Google-Smtp-Source: AA0mqf5XKPZgWply1k688HeenolESiyaXxlmuHoy8v64dWdS7ogBcS7mrLpSIhHlgMvK5FZO27LsFQ==
+X-Received: by 2002:a25:180b:0:b0:71c:52cd:fad3 with SMTP id 11-20020a25180b000000b0071c52cdfad3mr17470885yby.54.1671052252715;
+        Wed, 14 Dec 2022 13:10:52 -0800 (PST)
 Received: from localhost (nat-pool-bos-t.redhat.com. [66.187.233.206])
-        by smtp.gmail.com with ESMTPSA id b22-20020ac87fd6000000b003a6a4744432sm2391060qtk.87.2022.12.14.13.10.49
+        by smtp.gmail.com with ESMTPSA id i15-20020a05620a248f00b006fbae4a5f59sm4542505qkn.41.2022.12.14.13.10.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Dec 2022 13:10:49 -0800 (PST)
+        Wed, 14 Dec 2022 13:10:52 -0800 (PST)
 From:   Eric Chanudet <echanude@redhat.com>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -64,10 +65,12 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, Andrew Halaney <ahalaney@redhat.com>,
         Brian Masney <bmasney@redhat.com>,
         Eric Chanudet <echanude@redhat.com>
-Subject: [PATCH v2 1/3] arm64: dts: qcom: pm8450a: add rtc node
-Date:   Wed, 14 Dec 2022 16:09:06 -0500
-Message-Id: <20221214210908.1788284-1-echanude@redhat.com>
+Subject: [PATCH v2 2/3] arm64: dts: qcom: sa8295p-adp: use pm8450a dtsi
+Date:   Wed, 14 Dec 2022 16:09:07 -0500
+Message-Id: <20221214210908.1788284-2-echanude@redhat.com>
 X-Mailer: git-send-email 2.38.1
+In-Reply-To: <20221214210908.1788284-1-echanude@redhat.com>
+References: <20221214210908.1788284-1-echanude@redhat.com>
 MIME-Version: 1.0
 Content-type: text/plain
 Content-Transfer-Encoding: 8bit
@@ -81,33 +84,111 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the rtc block on pm8450a first pmic to enable the rtc for
-sa8540p-ride.
+Include the dtsi to use a single pmic descriptions.
+Both sa8295p-adp and sa8540p-adp have the same spmi pmic apparently.
 
 Signed-off-by: Eric Chanudet <echanude@redhat.com>
 ---
- arch/arm64/boot/dts/qcom/pm8450a.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ arch/arm64/boot/dts/qcom/sa8295p-adp.dts | 79 +-----------------------
+ 1 file changed, 1 insertion(+), 78 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/pm8450a.dtsi b/arch/arm64/boot/dts/qcom/pm8450a.dtsi
-index 34fc72896761..c9b8da43b237 100644
---- a/arch/arm64/boot/dts/qcom/pm8450a.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm8450a.dtsi
-@@ -13,6 +13,14 @@ pm8450a: pmic@0 {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
+diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+index 84cb6f3eeb56..889259df3287 100644
+--- a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
++++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+@@ -11,6 +11,7 @@
+ #include <dt-bindings/spmi/spmi.h>
  
-+		rtc@6000 {
-+			compatible = "qcom,pm8941-rtc";
-+			reg = <0x6000>, <0x6100>;
-+			reg-names = "rtc", "alarm";
-+			interrupts = <0x0 0x61 0x1 IRQ_TYPE_NONE>;
-+			wakeup-source;
-+		};
-+
- 		pm8450a_gpios: gpio@c000 {
- 			compatible = "qcom,pm8150-gpio", "qcom,spmi-gpio";
- 			reg = <0xc000>;
+ #include "sa8540p.dtsi"
++#include "pm8450a.dtsi"
+ 
+ / {
+ 	model = "Qualcomm SA8295P ADP";
+@@ -260,84 +261,6 @@ &remoteproc_nsp1 {
+ 	status = "okay";
+ };
+ 
+-&spmi_bus {
+-	pm8450a: pmic@0 {
+-		compatible = "qcom,pm8150", "qcom,spmi-pmic";
+-		reg = <0x0 SPMI_USID>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+-		rtc@6000 {
+-			compatible = "qcom,pm8941-rtc";
+-			reg = <0x6000>;
+-			reg-names = "rtc", "alarm";
+-			interrupts = <0x0 0x61 0x1 IRQ_TYPE_NONE>;
+-			wakeup-source;
+-		};
+-
+-		pm8450a_gpios: gpio@c000 {
+-			compatible = "qcom,pm8150-gpio", "qcom,spmi-gpio";
+-			reg = <0xc000>;
+-			gpio-controller;
+-			gpio-ranges = <&pm8450a_gpios 0 0 10>;
+-			#gpio-cells = <2>;
+-			interrupt-controller;
+-			#interrupt-cells = <2>;
+-		};
+-	};
+-
+-	pm8450c: pmic@4 {
+-		compatible = "qcom,pm8150", "qcom,spmi-pmic";
+-		reg = <0x4 SPMI_USID>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+-		pm8450c_gpios: gpio@c000 {
+-			compatible = "qcom,pm8150-gpio", "qcom,spmi-gpio";
+-			reg = <0xc000>;
+-			gpio-controller;
+-			gpio-ranges = <&pm8450c_gpios 0 0 10>;
+-			#gpio-cells = <2>;
+-			interrupt-controller;
+-			#interrupt-cells = <2>;
+-		};
+-	};
+-
+-	pm8450e: pmic@8 {
+-		compatible = "qcom,pm8150", "qcom,spmi-pmic";
+-		reg = <0x8 SPMI_USID>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+-		pm8450e_gpios: gpio@c000 {
+-			compatible = "qcom,pm8150-gpio", "qcom,spmi-gpio";
+-			reg = <0xc000>;
+-			gpio-controller;
+-			gpio-ranges = <&pm8450e_gpios 0 0 10>;
+-			#gpio-cells = <2>;
+-			interrupt-controller;
+-			#interrupt-cells = <2>;
+-		};
+-	};
+-
+-	pm8450g: pmic@c {
+-		compatible = "qcom,pm8150", "qcom,spmi-pmic";
+-		reg = <0xc SPMI_USID>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+-		pm8450g_gpios: gpio@c000 {
+-			compatible = "qcom,pm8150-gpio", "qcom,spmi-gpio";
+-			reg = <0xc000>;
+-			gpio-controller;
+-			gpio-ranges = <&pm8450g_gpios 0 0 10>;
+-			#gpio-cells = <2>;
+-			interrupt-controller;
+-			#interrupt-cells = <2>;
+-		};
+-	};
+-};
+-
+ &ufs_mem_hc {
+ 	reset-gpios = <&tlmm 228 GPIO_ACTIVE_LOW>;
+ 
 -- 
 2.38.1
 
