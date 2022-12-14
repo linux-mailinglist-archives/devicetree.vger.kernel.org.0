@@ -2,1123 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7C3464C3C5
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 07:30:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8E6064C3C8
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 07:30:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229464AbiLNG37 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 01:29:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54836 "EHLO
+        id S236681AbiLNGaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 01:30:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229454AbiLNG36 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 01:29:58 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B8811AA29;
-        Tue, 13 Dec 2022 22:29:55 -0800 (PST)
-Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6DA254A7;
-        Wed, 14 Dec 2022 07:29:51 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1670999392;
-        bh=IyIEvmS8lzXBohWBFi2gUGcs70m9gOhBwykvLsDpfvA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=bnrEoNPM/UB8fElpTx9CroguGRnUhCJM0haCkyjM9DlsJumdT22ONbnqYXUBKxK2T
-         HUtwRXE8vLntSxXs7ZGQ3TcIbB42S0Y8Td9rnZ9Y6EdWsdNbwXVj7L9FHDGAB/1RmG
-         j0ZEtYVmwSRPxCNdo2SZcMOjHDZlVzu/0ySlxeEQ=
-Message-ID: <4d349785-ca37-d930-db3c-2581bba9fde0@ideasonboard.com>
-Date:   Wed, 14 Dec 2022 08:29:48 +0200
+        with ESMTP id S229454AbiLNGao (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 01:30:44 -0500
+X-Greylist: delayed 506 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 13 Dec 2022 22:30:42 PST
+Received: from de-smtp-delivery-113.mimecast.com (de-smtp-delivery-113.mimecast.com [194.104.111.113])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89B4822532
+        for <devicetree@vger.kernel.org>; Tue, 13 Dec 2022 22:30:42 -0800 (PST)
+Received: from CHE01-ZR0-obe.outbound.protection.outlook.com
+ (mail-zr0che01lp2109.outbound.protection.outlook.com [104.47.22.109]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ de-mta-12-ky29hdLoOLORFCPk8XsM5w-2; Wed, 14 Dec 2022 07:30:40 +0100
+X-MC-Unique: ky29hdLoOLORFCPk8XsM5w-2
+Received: from ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:3b::9) by
+ ZRAP278MB0770.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:4a::13) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5880.19; Wed, 14 Dec 2022 06:30:37 +0000
+Received: from ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM
+ ([fe80::ace5:84e5:2754:a1fa]) by ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM
+ ([fe80::ace5:84e5:2754:a1fa%2]) with mapi id 15.20.5924.011; Wed, 14 Dec 2022
+ 06:30:37 +0000
+From:   Marcel Ziswiler <marcel.ziswiler@toradex.com>
+To:     "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "hongxing.zhu@nxp.com" <hongxing.zhu@nxp.com>,
+        "lkp@intel.com" <lkp@intel.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzk@kernel.org" <krzk@kernel.org>
+CC:     "oe-kbuild-all@lists.linux.dev" <oe-kbuild-all@lists.linux.dev>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "linux-imx@nxp.com" <linux-imx@nxp.com>,
+        "richard.leitner@linux.dev" <richard.leitner@linux.dev>,
+        "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
+        "patchwork-lst@pengutronix.de" <patchwork-lst@pengutronix.de>,
+        "tharvey@gateworks.com" <tharvey@gateworks.com>,
+        "marex@denx.de" <marex@denx.de>,
+        "lukas@mntre.com" <lukas@mntre.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 4/4] soc: imx: imx8mp-blk-ctrl: expose high performance
+ PLL clock
+Thread-Topic: [PATCH 4/4] soc: imx: imx8mp-blk-ctrl: expose high performance
+ PLL clock
+Thread-Index: AQHZDwwownO18Vw0QEyqFlBFYeyeZ65sSCcAgACk5oA=
+Date:   Wed, 14 Dec 2022 06:30:37 +0000
+Message-ID: <7718c3085c88d366c102450698cc54b319fe24d2.camel@toradex.com>
+References: <20221213160112.1900410-4-l.stach@pengutronix.de>
+         <202212140421.k5Qj6UGm-lkp@intel.com>
+In-Reply-To: <202212140421.k5Qj6UGm-lkp@intel.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: ZR0P278MB0683:EE_|ZRAP278MB0770:EE_
+x-ms-office365-filtering-correlation-id: 6c0275e3-3284-4066-39a3-08dadd9cb6bf
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0
+x-microsoft-antispam-message-info: +gvVNUPRZHDHK9rbuA7znJevI61crlzIv4eDYBwnqPGp2YVbhooJg5fnVqVAt9RLznLVd+c9o4yA6wSnSft74HtH8+5hmAeyfXjcsBYWgPECfRUQQCRJHC7OKRMBFg1BpxeOAaHbPNHFtyBJhmlFnKg9ddzcndYlOx5nIJ/nxLDij/7+U8+jIM0h+TIL96GVYN2NKmvXGRGiqJmo7ftjQu8zRmyCp2RvR8AhIzIaMw0IqfBGuzalTl1n4Q7zcLwZbEiePu7UaEGyQHj/iRqSkXWR6SbJk5XcSaLH2ym/GsIhFvEpR+VM04mwbJ6cmA2Ir7ym9d/6SbOLgIre0LUbgc46jiRsO90BUMSXJ/SkNlBOQ69IMOM3CMxiI3cZaGgAabh1xBTBMwfHH9VZwea0NJX7DcD+hJoqC6UoaTKMMsVyoNsBsMKhaUKGY1eKhnPsavSPgmmSIUm7FPiqfYgGTCVSNQJqaKPOvz2TGNu3UfHLYTVE8yBvtSefy6DA+mdS/+VAlpUr8C85MPIyuaX8N9w/aq4JKeeuwYzQDMzzhnTvs5glPEUmYkMyTg6lo+79Vz4IH+yeB0T9K1QDD2X9plM0Qn1zAWZmYC4+N5oK3gwhwcmXeP5cQK37xACwmSacBk8WJf5gA7ZC8xjbjfP/EY8TI8xigRrprXeW40qzAtQHXFUuNtc3/lYOaYO8MofSP/j9Gi1BFj//ndGRhYb/R7kp6UOJMKX1+cHfGVrOH3vX0wJLvoHYZUYZhrmjIPlo
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(4636009)(39850400004)(376002)(136003)(346002)(396003)(366004)(451199015)(186003)(38100700002)(478600001)(26005)(8936002)(76116006)(83380400001)(966005)(86362001)(6512007)(36756003)(66556008)(4326008)(6486002)(91956017)(44832011)(2616005)(6506007)(41300700001)(66446008)(64756008)(38070700005)(5660300002)(66476007)(7416002)(71200400001)(66946007)(110136005)(122000001)(54906003)(2906002)(8676002)(316002)(4001150100001)(32563001);DIR:OUT;SFP:1102
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?VWNxOHZ6aDcrenduSnliMWM3TE4yWjlVd1doWWcrY3ZMVjRxY05aRFdxaElZ?=
+ =?utf-8?B?U2JvS3VTdmorQzgydGJEbVRFak9TSjJOUFljVVBSOFdHZzNWODNWSUxCSDds?=
+ =?utf-8?B?aUNjMW9iUXZocGNmTURuUlJjejBZUkVZMnVqVGE5ZHN5WFBBY09Ea2EyT2FR?=
+ =?utf-8?B?Q2hpWkdQcDVXL2JRUXJxSUk0b1RnVkpFa1I4VlhLMXMvalZKVWZaWEtRaDEr?=
+ =?utf-8?B?Sk1uZkgrclBFelNkS3ZLTm8rVGF5WXVJWGY0N3drTzFUQlh5eVQ2KzhmWHdt?=
+ =?utf-8?B?em5XbVJHVzBLV1UzNk4vTDVwUlo0ZnJvOGZsTVhkZVEwRFczT1MyVnNUaWtm?=
+ =?utf-8?B?TFBOVW9oTVZzOVR6NmxWV0pURWtiMTBmdkdCT0Zmd3Jza24xVG80eUtkcHY0?=
+ =?utf-8?B?Z0EwSDNXaUhra0JFN2h5SExXSUxCZGFEbWJvb0JldWhUVExpOXhMSXpqZE9q?=
+ =?utf-8?B?L3o0MFRMajNaYjJDVmYxTWI1N0FlM253NXowUlNYOGkvTkR2RHgzS0x4SkdR?=
+ =?utf-8?B?ZWxKTUx3ejNFeUVtZDJtV0l3WUFqdnBvTmZvVXk0RTFtOHY1MDJMR1J1WXhR?=
+ =?utf-8?B?V09LQVE5SDFTbjVXajFTYnpIcjJIVU9UUWtydjNkYjhLYjZSTUZDVDkzRjI5?=
+ =?utf-8?B?aVR0SGtaaHNyajhnMGhUTWc1cHhmcGgwZCtOb2dQbWJUVWJ4ZDFkQjNPRVZz?=
+ =?utf-8?B?REVCVzdCdGg3TW1vcGpDVDBiUzNXWHVYck9jRjFveXZURitWOGx6dlRwbytZ?=
+ =?utf-8?B?NFA4c3NHRW5PaDB3R1ZyekJUMGQ3ellzT05JRXRhZ3ZsSXFCRitibDAySWpj?=
+ =?utf-8?B?cDRmMW1ING9HdzMwZE56aFdvbjJXdzZNeHNRbmVHUDhnZHhHR2ozMm02TC9h?=
+ =?utf-8?B?TGtXUVpINkVrNDNCaVhzQzlnWm1WWFZzZVgwKy9acGplNE4vUU5FVTdkK2or?=
+ =?utf-8?B?TU9ieG9ueHpkR05Ra1l0WjluUTl0K2JNc1RjbVEzSUpLblh0TS9sK0pwY2Nr?=
+ =?utf-8?B?TFVKeGg4cFdyZkdsZ3MrbENtRElhckw0QnZOM0EwZHhsRVNSQzl0U2gvTXVJ?=
+ =?utf-8?B?em50ZFBvMDE3VENqYmlYSXhoMGp4djJMd1l6QjU0U3B4cEtuRGQ0cEwrVGtC?=
+ =?utf-8?B?QmdheHYwVktma2JRN3ZKdktOeHJ0L2o2NVpaU1JMNGM5T2FScEhtU1N3Y1Ir?=
+ =?utf-8?B?c1QyZmxIdGQwOVJpcFZoelJzWjdWLzZjdDVha2FqYlNHdkFBSVluM2s0alkv?=
+ =?utf-8?B?MHhKanViNWloRGFENS9rKzVJS3pCMlEyeWZ3TGw2ZE12N0NNckRSaVZWdHdB?=
+ =?utf-8?B?MTRWdWp5M1l5OUY1cC9oV0llNmdMY0QvT1NvSkhYQlFRcmJIdmdPR3FQa3Rz?=
+ =?utf-8?B?c1J0NExZVWV3TWtRNmV5ZHljeG95WlhhaWZNS25LUG85ZVo2Q3BWaTVxNGQw?=
+ =?utf-8?B?K0NadmgrNmJESzU4d2tpU3B3Si9xc2p2U2FKUHQ5TUlLUmxDY1pDMmFWV1VE?=
+ =?utf-8?B?ck9KVU1LUUNQbEswNmpPZmxLYXA3MThMVVBhd1B5TVFOMWZDdmdFajhDdmlj?=
+ =?utf-8?B?TDFLQU5hbUVrODg3Y09KWjNUUkVaekxTL1JWdzVjNXlyRElqWDlEWU5PZktI?=
+ =?utf-8?B?OTN2ZGJRVHowa0NLWENwMkQ4bEd2dm1zYVVBUzR4UTZicXRZb2VIbldWK3lx?=
+ =?utf-8?B?QmpvQXpsS2RmVThBbTNuZ3NDc1l6aElSZFpjZERLWGtZODZYZlorQVNybEgz?=
+ =?utf-8?B?ZEtzVUkzU1Z0cWt3RDkwRUVEeXFSTDc5QVpzdmhvY3BlNlp2WDh0SjNNUU1s?=
+ =?utf-8?B?bUl1Y0ZxbVphZy8rdlRxMEs0eTBDbTRUWkppU3UxUVZqckxWQVB1RUtjSGNz?=
+ =?utf-8?B?RVRjY2VPWVdFTXFJNldpMnoreEgyL2RUL1RETjhDM2NCRzQ0S0tFeDZSeDE0?=
+ =?utf-8?B?eDBzS3BxT2huZnBvQ3JsV0xYbXdEWTdTVVI0ckRtNm5ydG40VVdVc3RVS2Zm?=
+ =?utf-8?B?MkcrcElPUjhXNGsvaENrbnlDVm8rK0hDMU9xRDlHbVVjTDBhYVE2ZHhFdnVB?=
+ =?utf-8?B?c3BkQU1WeVMzSFJnNEEySEprZmlrc0JDREtaN0czZlo1VE1CTVFtUXdlalRL?=
+ =?utf-8?B?TTdvcnhqS1pRSkx5SzhhaWZQQU5PUWlhK0RVcFpsbUN2eXAyMmg1U3VscTBX?=
+ =?utf-8?Q?GvMcg6nU1O+exZB3wwksYII=3D?=
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v5 7/8] media: i2c: add DS90UB913 driver
+X-OriginatorOrg: toradex.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6c0275e3-3284-4066-39a3-08dadd9cb6bf
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Dec 2022 06:30:37.6500
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: MiY7a4eofTZjJl986iATn+AFS5UAVgQGHt4TpP3tOO4qC92T8RMLRW2jHaePHLqMHbG/0uFzA3iSupeGvJ8Kn3FNLO7vz2QfQJiMxhTaeTg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZRAP278MB0770
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: toradex.com
 Content-Language: en-US
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>
-References: <20221208104006.316606-1-tomi.valkeinen@ideasonboard.com>
- <20221208104006.316606-8-tomi.valkeinen@ideasonboard.com>
- <Y5YiazDtaxtLJyL0@pendragon.ideasonboard.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <Y5YiazDtaxtLJyL0@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-ID: <D41423596B25B74EBB4BCA6D0DDD9706@CHEP278.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
-
-On 11/12/2022 20:33, Laurent Pinchart wrote:
-> Hi Tomi,
-> 
-> Thank you for the patch.
-> 
-> On Thu, Dec 08, 2022 at 12:40:05PM +0200, Tomi Valkeinen wrote:
->> Add driver for TI DS90UB913 FPDLink-3 Serializer.
->>
->> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
->> ---
->>   drivers/media/i2c/Kconfig     |  13 +
->>   drivers/media/i2c/Makefile    |   2 +-
->>   drivers/media/i2c/ds90ub913.c | 892 ++++++++++++++++++++++++++++++++++
->>   3 files changed, 906 insertions(+), 1 deletion(-)
->>   create mode 100644 drivers/media/i2c/ds90ub913.c
->>
->> diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
->> index a23f723b89b5..ff5847aed5ae 100644
->> --- a/drivers/media/i2c/Kconfig
->> +++ b/drivers/media/i2c/Kconfig
->> @@ -1614,6 +1614,19 @@ config VIDEO_DS90UB960
->>   	  Device driver for the Texas Instruments DS90UB960
->>   	  FPD-Link III Deserializer
->>   
->> +config VIDEO_DS90UB913
->> +	tristate "TI DS90UB913 Serializer"
->> +	depends on OF && I2C && VIDEO_DEV
->> +	select MEDIA_CONTROLLER
->> +	select VIDEO_V4L2_SUBDEV_API
->> +	select V4L2_FWNODE
->> +	select REGMAP_I2C
->> +	select OF_GPIO
->> +	select I2C_ATR
->> +	help
->> +	  Device driver for the Texas Instruments DS90UB913
->> +	  FPD-Link III Serializer.
->> +
->>   endmenu
->>   
->>   endif # VIDEO_DEV
->> diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile
->> index 2735b00437bb..376886f2ded6 100644
->> --- a/drivers/media/i2c/Makefile
->> +++ b/drivers/media/i2c/Makefile
->> @@ -143,4 +143,4 @@ obj-$(CONFIG_VIDEO_VS6624) += vs6624.o
->>   obj-$(CONFIG_VIDEO_WM8739) += wm8739.o
->>   obj-$(CONFIG_VIDEO_WM8775) += wm8775.o
->>   obj-$(CONFIG_VIDEO_DS90UB960)	+= ds90ub960.o
->> -
->> +obj-$(CONFIG_VIDEO_DS90UB913)	+= ds90ub913.o
-> 
-> Alphabetical order please.
-
-Ok.
-
->> diff --git a/drivers/media/i2c/ds90ub913.c b/drivers/media/i2c/ds90ub913.c
->> new file mode 100644
->> index 000000000000..6001a622e622
->> --- /dev/null
->> +++ b/drivers/media/i2c/ds90ub913.c
->> @@ -0,0 +1,892 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Driver for the Texas Instruments DS90UB913 video serializer
->> + *
->> + * Based on a driver from Luca Ceresoli <luca@lucaceresoli.net>
->> + *
->> + * Copyright (c) 2019 Luca Ceresoli <luca@lucaceresoli.net>
->> + * Copyright (c) 2022 Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
->> + */
->> +
->> +#include <linux/clk-provider.h>
->> +#include <linux/clk.h>
->> +#include <linux/delay.h>
->> +#include <linux/gpio/driver.h>
->> +#include <linux/i2c-atr.h>
->> +#include <linux/i2c.h>
->> +#include <linux/kernel.h>
->> +#include <linux/module.h>
->> +#include <linux/of.h>
->> +#include <linux/of_graph.h>
->> +#include <linux/regmap.h>
->> +
->> +#include <media/i2c/ds90ub9xx.h>
->> +#include <media/v4l2-subdev.h>
->> +
->> +#define UB913_PAD_SINK			0
->> +#define UB913_PAD_SOURCE		1
->> +
->> +/*
->> + * UB913 has 4 gpios, but gpios 3 and 4 are reserved for external oscillator
->> + * mode. Thus we only support 2 gpios for now.
->> + */
->> +#define UB913_NUM_GPIOS			2
->> +
->> +#define UB913_REG_RESET_CTL			0x01
->> +#define UB913_REG_RESET_CTL_DIGITAL_RESET_1	BIT(1)
->> +#define UB913_REG_RESET_CTL_DIGITAL_RESET_0	BIT(0)
->> +
->> +#define UB913_REG_GENERAL_CFG			0x03
->> +#define UB913_REG_MODE_SEL			0x05
->> +
->> +#define UB913_REG_CRC_ERRORS_LSB		0x0a
->> +#define UB913_REG_CRC_ERRORS_MSB		0x0b
->> +
->> +#define UB913_REG_GENERAL_STATUS		0x0c
->> +
->> +#define UB913_REG_GPIO_CFG(n)			(0x0d + (n))
->> +#define UB913_REG_GPIO_CFG_ENABLE(n)		BIT(0 + (n) * 4)
->> +#define UB913_REG_GPIO_CFG_DIR_INPUT(n)		BIT(1 + (n) * 4)
->> +#define UB913_REG_GPIO_CFG_REMOTE_EN(n)		BIT(2 + (n) * 4)
->> +#define UB913_REG_GPIO_CFG_OUT_VAL(n)		BIT(3 + (n) * 4)
->> +#define UB913_REG_GPIO_CFG_MASK(n)		(0xf << ((n) * 4))
->> +
->> +#define UB913_REG_SCL_HIGH_TIME			0x11
->> +#define UB913_REG_SCL_LOW_TIME			0x12
->> +
->> +#define UB913_REG_PLL_OVR			0x35
->> +
->> +struct ub913_data {
->> +	struct i2c_client	*client;
->> +	struct regmap		*regmap;
->> +	struct clk		*clkin;
->> +
->> +	u32			gpio_func[UB913_NUM_GPIOS];
->> +
->> +	struct gpio_chip	gpio_chip;
->> +	char			gpio_chip_name[64];
->> +
->> +	struct v4l2_subdev	sd;
->> +	struct media_pad	pads[2];
->> +
->> +	struct v4l2_async_notifier	notifier;
->> +
->> +	struct v4l2_subdev	*source_sd;
->> +
->> +	u64			enabled_source_streams;
->> +
->> +	struct device_node	*tx_ep_np;
->> +
->> +	struct clk_hw		*clkout_clk_hw;
->> +
->> +	struct ds90ub9xx_platform_data *plat_data;
->> +
->> +	/* Have we succefully called i2c_atr_add_adapter() */
->> +	bool			has_i2c_adapter;
->> +};
->> +
->> +static inline struct ub913_data *sd_to_ub913(struct v4l2_subdev *sd)
->> +{
->> +	return container_of(sd, struct ub913_data, sd);
->> +}
->> +
->> +static int ub913_read(const struct ub913_data *priv, u8 reg, u8 *val)
->> +{
->> +	unsigned int v;
->> +	int ret;
->> +
->> +	ret = regmap_read(priv->regmap, reg, &v);
->> +	if (ret < 0) {
->> +		dev_err(&priv->client->dev,
->> +			"Cannot read register 0x%02x: %d!\n", reg, ret);
->> +		return ret;
->> +	}
->> +
->> +	*val = v;
->> +	return 0;
->> +}
->> +
->> +static int ub913_write(const struct ub913_data *priv, u8 reg, u8 val)
->> +{
->> +	int ret;
->> +
->> +	ret = regmap_write(priv->regmap, reg, val);
->> +	if (ret < 0)
->> +		dev_err(&priv->client->dev,
->> +			"Cannot write register 0x%02x: %d!\n", reg, ret);
->> +
->> +	return ret;
->> +}
->> +
->> +/*
->> + * GPIO chip
->> + */
->> +static int ub913_gpio_get_direction(struct gpio_chip *gc, unsigned int offset)
->> +{
->> +	return GPIO_LINE_DIRECTION_OUT;
->> +}
->> +
->> +static int ub913_gpio_direction_out(struct gpio_chip *gc, unsigned int offset,
->> +				    int value)
->> +{
->> +	struct ub913_data *priv = gpiochip_get_data(gc);
->> +	unsigned int reg_idx;
->> +	unsigned int field_idx;
->> +	int ret;
->> +
->> +	reg_idx = offset / 2;
->> +	field_idx = offset % 2;
->> +
->> +	ret = regmap_update_bits(
->> +		priv->regmap, UB913_REG_GPIO_CFG(reg_idx),
->> +		UB913_REG_GPIO_CFG_MASK(field_idx),
->> +		UB913_REG_GPIO_CFG_ENABLE(field_idx) |
->> +			(value ? UB913_REG_GPIO_CFG_OUT_VAL(field_idx) : 0));
->> +
->> +	return ret;
->> +}
->> +
->> +static void ub913_gpio_set(struct gpio_chip *gc, unsigned int offset, int value)
->> +{
->> +	ub913_gpio_direction_out(gc, offset, value);
->> +}
->> +
->> +static int ub913_gpio_of_xlate(struct gpio_chip *gc,
->> +			       const struct of_phandle_args *gpiospec,
->> +			       u32 *flags)
->> +{
->> +	if (flags)
->> +		*flags = gpiospec->args[1];
->> +
->> +	return gpiospec->args[0];
->> +}
->> +
->> +static int ub913_gpiochip_probe(struct ub913_data *priv)
->> +{
->> +	struct device *dev = &priv->client->dev;
->> +	struct gpio_chip *gc = &priv->gpio_chip;
->> +	int ret;
->> +
->> +	/* Initialize GPIOs 0 and 1 to local control, tri-state */
->> +	ub913_write(priv, UB913_REG_GPIO_CFG(0), 0);
->> +
->> +	scnprintf(priv->gpio_chip_name, sizeof(priv->gpio_chip_name), "%s",
->> +		  dev_name(dev));
->> +
->> +	gc->label = priv->gpio_chip_name;
->> +	gc->parent = dev;
->> +	gc->owner = THIS_MODULE;
->> +	gc->base = -1;
->> +	gc->can_sleep = 1;
->> +	gc->ngpio = UB913_NUM_GPIOS;
->> +	gc->get_direction = ub913_gpio_get_direction;
->> +	gc->direction_output = ub913_gpio_direction_out;
->> +	gc->set = ub913_gpio_set;
->> +	gc->of_xlate = ub913_gpio_of_xlate;
->> +	gc->of_node = priv->client->dev.of_node;
->> +	gc->of_gpio_n_cells = 2;
->> +
->> +	ret = gpiochip_add_data(gc, priv);
->> +	if (ret) {
->> +		dev_err(dev, "Failed to add GPIOs: %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static void ub913_gpiochip_remove(struct ub913_data *priv)
->> +{
->> +	gpiochip_remove(&priv->gpio_chip);
->> +}
->> +
->> +static int ub913_parse_dt(struct ub913_data *priv)
-> 
-> I would have moved this just before ub913_probe().
-
-Sure.
-
->> +{
->> +	struct device_node *np = priv->client->dev.of_node;
->> +	struct device *dev = &priv->client->dev;
->> +	int ret;
->> +
->> +	if (!np) {
->> +		dev_err(dev, "OF: no device tree node!\n");
->> +		return -ENOENT;
->> +	}
->> +
->> +	/* optional, if absent all GPIO pins are unused */
->> +	ret = of_property_read_u32_array(np, "gpio-functions", priv->gpio_func,
->> +					 ARRAY_SIZE(priv->gpio_func));
->> +	if (ret && ret != -EINVAL)
->> +		dev_err(dev, "DT: invalid gpio-functions property (%d)", ret);
->> +
->> +	return 0;
->> +}
->> +
->> +static const struct regmap_config ub913_regmap_config = {
->> +	.name = "ds90ub913",
->> +	.reg_bits = 8,
->> +	.val_bits = 8,
->> +	.reg_format_endian = REGMAP_ENDIAN_DEFAULT,
->> +	.val_format_endian = REGMAP_ENDIAN_DEFAULT,
->> +};
->> +
->> +/*
->> + * V4L2
->> + */
->> +
->> +static int ub913_enable_streams(struct v4l2_subdev *sd,
->> +				struct v4l2_subdev_state *state, u32 pad,
->> +				u64 streams_mask)
->> +{
->> +	struct ub913_data *priv = sd_to_ub913(sd);
->> +	struct media_pad *remote_pad;
->> +	u64 sink_streams;
->> +	int ret;
->> +
->> +	if (streams_mask & priv->enabled_source_streams)
->> +		return -EALREADY;
->> +
->> +	sink_streams = v4l2_subdev_state_xlate_streams(
->> +		state, UB913_PAD_SOURCE, UB913_PAD_SINK, &streams_mask);
->> +
->> +	remote_pad = media_pad_remote_pad_first(&priv->pads[UB913_PAD_SINK]);
->> +
->> +	ret = v4l2_subdev_enable_streams(priv->source_sd, remote_pad->index,
->> +					 sink_streams);
->> +	if (ret)
->> +		return ret;
->> +
->> +	priv->enabled_source_streams |= streams_mask;
->> +
->> +	return 0;
->> +}
->> +
->> +static int ub913_disable_streams(struct v4l2_subdev *sd,
->> +				 struct v4l2_subdev_state *state, u32 pad,
->> +				 u64 streams_mask)
->> +{
->> +	struct ub913_data *priv = sd_to_ub913(sd);
->> +	struct media_pad *remote_pad;
->> +	int ret;
->> +	u64 sink_streams;
->> +
->> +	if ((streams_mask & priv->enabled_source_streams) != streams_mask)
->> +		return -EALREADY;
->> +
->> +	sink_streams = v4l2_subdev_state_xlate_streams(
->> +		state, UB913_PAD_SOURCE, UB913_PAD_SINK, &streams_mask);
->> +
->> +	remote_pad = media_pad_remote_pad_first(&priv->pads[UB913_PAD_SINK]);
->> +
->> +	ret = v4l2_subdev_disable_streams(priv->source_sd, remote_pad->index,
->> +					  sink_streams);
->> +	if (ret)
->> +		return ret;
->> +
->> +	priv->enabled_source_streams &= ~streams_mask;
->> +
->> +	return 0;
->> +}
->> +
->> +static int _ub913_set_routing(struct v4l2_subdev *sd,
->> +			      struct v4l2_subdev_state *state,
->> +			      struct v4l2_subdev_krouting *routing)
->> +{
->> +	const struct v4l2_mbus_framefmt format = {
-> 
-> static
-
-Yep.
-
->> +		.width = 640,
->> +		.height = 480,
->> +		.code = MEDIA_BUS_FMT_UYVY8_2X8,
->> +		.field = V4L2_FIELD_NONE,
->> +		.colorspace = V4L2_COLORSPACE_SRGB,
->> +		.ycbcr_enc = V4L2_YCBCR_ENC_601,
->> +		.quantization = V4L2_QUANTIZATION_LIM_RANGE,
->> +		.xfer_func = V4L2_XFER_FUNC_SRGB,
->> +	};
->> +	int ret;
->> +
->> +	/*
->> +	 * Note: we can only support up to V4L2_FRAME_DESC_ENTRY_MAX, until
->> +	 * frame desc is made dynamically allocated.
->> +	 */
->> +
->> +	if (routing->num_routes > V4L2_FRAME_DESC_ENTRY_MAX)
->> +		return -EINVAL;
->> +
->> +	ret = v4l2_subdev_routing_validate(sd, routing,
->> +					   V4L2_SUBDEV_ROUTING_ONLY_1_TO_1);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = v4l2_subdev_set_routing_with_fmt(sd, state, routing, &format);
->> +	if (ret)
->> +		return ret;
->> +
->> +	return 0;
->> +}
->> +
->> +static int ub913_set_routing(struct v4l2_subdev *sd,
->> +			     struct v4l2_subdev_state *state,
->> +			     enum v4l2_subdev_format_whence which,
->> +			     struct v4l2_subdev_krouting *routing)
->> +{
->> +	struct ub913_data *priv = sd_to_ub913(sd);
->> +
->> +	if (which == V4L2_SUBDEV_FORMAT_ACTIVE && priv->enabled_source_streams)
->> +		return -EBUSY;
->> +
->> +	return _ub913_set_routing(sd, state, routing);
->> +}
->> +
->> +static int ub913_get_source_frame_desc(struct ub913_data *priv,
->> +				       struct v4l2_mbus_frame_desc *desc)
->> +{
->> +	struct media_pad *pad;
->> +	int ret;
->> +
->> +	pad = media_pad_remote_pad_first(&priv->pads[UB913_PAD_SINK]);
->> +	if (!pad)
->> +		return -EPIPE;
->> +
->> +	ret = v4l2_subdev_call(priv->source_sd, pad, get_frame_desc, pad->index,
->> +			       desc);
->> +	if (ret)
->> +		return ret;
->> +
->> +	return 0;
-> 
-> I would inline this in the caller.
-
-Well... Having it separate doesn't provide too much benefit, but it does 
-make it a bit cleaner as we don't need to play with the 'unsigned int 
-pad' and the 'struct media_pad *pad' in the same function.
-
->> +}
->> +
->> +static int ub913_get_frame_desc(struct v4l2_subdev *sd, unsigned int pad,
->> +				struct v4l2_mbus_frame_desc *fd)
->> +{
->> +	struct ub913_data *priv = sd_to_ub913(sd);
->> +	const struct v4l2_subdev_krouting *routing;
->> +	struct v4l2_mbus_frame_desc source_fd;
->> +	struct v4l2_subdev_route *route;
->> +	struct v4l2_subdev_state *state;
->> +	int ret = 0;
-> 
-> No need to initialize this to 0.
-
-Yep.
-
->> +
->> +	if (pad != 1) /* first tx pad */
-> 
-> 	if (pad != UB913_PAD_SOURCE)
-> 
-> and drop the comment.
-
-Yep.
-
->> +		return -EINVAL;
->> +
->> +	ret = ub913_get_source_frame_desc(priv, &source_fd);
->> +	if (ret)
->> +		return ret;
->> +
->> +	state = v4l2_subdev_lock_and_get_active_state(sd);
->> +
->> +	routing = &state->routing;
->> +
->> +	memset(fd, 0, sizeof(*fd));
->> +
->> +	fd->type = V4L2_MBUS_FRAME_DESC_TYPE_PARALLEL;
->> +
->> +	for_each_active_route(routing, route) {
->> +		unsigned int j;
-> 
-> Anything wrong with 'i' ?
-
-I'm pretty sure it was reserved for the route iteration, before we had 
-for_each_active_route() =).
-
->> +
->> +		if (route->source_pad != pad)
->> +			continue;
->> +
->> +		for (j = 0; j < source_fd.num_entries; ++j)
->> +			if (source_fd.entry[j].stream == route->sink_stream)
->> +				break;
->> +
->> +		if (j == source_fd.num_entries) {
->> +			dev_err(&priv->client->dev,
->> +				"Failed to find stream from source frame desc\n");
->> +			ret = -EPIPE;
->> +			goto out;
->> +		}
->> +
->> +		fd->entry[fd->num_entries].stream = route->source_stream;
->> +
->> +		fd->entry[fd->num_entries].flags =
->> +			V4L2_MBUS_FRAME_DESC_FL_LEN_MAX;
-> 
-> Shouldn't this be set only if set in the source frame descriptor ?
-
-Yes... I seem to be doing the same in the other ub9xx drivers. I'm not 
-sure where this came originally.
-
->> +		fd->entry[fd->num_entries].length = source_fd.entry[j].length;
->> +		fd->entry[fd->num_entries].pixelcode =
->> +			source_fd.entry[j].pixelcode;
->> +
->> +		fd->num_entries++;
->> +	}
->> +
->> +out:
->> +	v4l2_subdev_unlock_state(state);
->> +
->> +	return ret;
->> +}
->> +
->> +static int ub913_set_fmt(struct v4l2_subdev *sd,
->> +			 struct v4l2_subdev_state *state,
->> +			 struct v4l2_subdev_format *format)
->> +{
->> +	struct ub913_data *priv = sd_to_ub913(sd);
->> +	struct v4l2_mbus_framefmt *fmt;
->> +
->> +	if (format->which == V4L2_SUBDEV_FORMAT_ACTIVE &&
->> +	    priv->enabled_source_streams)
->> +		return -EBUSY;
->> +
->> +	/* No transcoding, source and sink formats must match. */
->> +	if (format->pad == 1)
-> 
-> 	if (format->pad == UB913_PAD_SOURCE)
-
-Yep.
-
->> +		return v4l2_subdev_get_fmt(sd, state, format);
->> +
->> +	/* Set sink format */
->> +	fmt = v4l2_subdev_state_get_stream_format(state, format->pad,
->> +						  format->stream);
->> +	if (!fmt)
->> +		return -EINVAL;
->> +
->> +	*fmt = format->format;
->> +
->> +	/* Propagate to source format */
->> +	fmt = v4l2_subdev_state_get_opposite_stream_format(state, format->pad,
->> +							   format->stream);
->> +	if (!fmt)
->> +		return -EINVAL;
->> +
->> +	*fmt = format->format;
->> +
->> +	return 0;
->> +}
->> +
->> +static int ub913_init_cfg(struct v4l2_subdev *sd,
->> +			  struct v4l2_subdev_state *state)
->> +{
->> +	struct v4l2_subdev_route routes[] = {
->> +		{
->> +			.sink_pad = 0,
-> 
-> 			.sink_pad = UB913_PAD_SINK,
-> 
->> +			.sink_stream = 0,
->> +			.source_pad = 1,
-> 
-> 			.source_pad = UB913_PAD_SOURCE,
-
-Yep.
-
->> +			.source_stream = 0,
->> +			.flags = V4L2_SUBDEV_ROUTE_FL_ACTIVE,
->> +		},
->> +	};
->> +
->> +	struct v4l2_subdev_krouting routing = {
->> +		.num_routes = ARRAY_SIZE(routes),
->> +		.routes = routes,
->> +	};
->> +
->> +	return _ub913_set_routing(sd, state, &routing);
->> +}
->> +
->> +static int ub913_log_status(struct v4l2_subdev *sd)
->> +{
->> +	struct ub913_data *priv = sd_to_ub913(sd);
->> +	struct device *dev = &priv->client->dev;
->> +	u8 v, v1, v2;
->> +
->> +	ub913_read(priv, UB913_REG_MODE_SEL, &v);
->> +	dev_info(dev, "MODE_SEL %#x\n", v);
->> +
->> +	ub913_read(priv, UB913_REG_CRC_ERRORS_LSB, &v1);
->> +	ub913_read(priv, UB913_REG_CRC_ERRORS_MSB, &v2);
->> +	dev_info(dev, "CRC errors %u\n", v1 | (v2 << 8));
->> +
->> +	ub913_read(priv, UB913_REG_GENERAL_STATUS, &v);
->> +	dev_info(dev, "GENERAL_STATUS %#x\n", v);
->> +
->> +	ub913_read(priv, UB913_REG_PLL_OVR, &v);
->> +	dev_info(dev, "PLL_OVR %#x\n", v);
->> +
->> +	/* clear CRC errors */
->> +	ub913_read(priv, UB913_REG_GENERAL_CFG, &v);
->> +	ub913_write(priv, UB913_REG_GENERAL_CFG, v | BIT(5));
->> +	ub913_write(priv, UB913_REG_GENERAL_CFG, v);
->> +
->> +	return 0;
->> +}
->> +
->> +static const struct v4l2_subdev_core_ops ub913_subdev_core_ops = {
->> +	.log_status = ub913_log_status,
->> +};
->> +
->> +static const struct v4l2_subdev_pad_ops ub913_pad_ops = {
->> +	.enable_streams = ub913_enable_streams,
->> +	.disable_streams = ub913_disable_streams,
->> +	.set_routing = ub913_set_routing,
->> +	.get_frame_desc	= ub913_get_frame_desc,
->> +	.get_fmt = v4l2_subdev_get_fmt,
->> +	.set_fmt = ub913_set_fmt,
->> +	.init_cfg = ub913_init_cfg,
->> +};
->> +
->> +static const struct v4l2_subdev_ops ub913_subdev_ops = {
->> +	.core = &ub913_subdev_core_ops,
->> +	.pad = &ub913_pad_ops,
->> +};
->> +
->> +static const struct media_entity_operations ub913_entity_ops = {
->> +	.link_validate = v4l2_subdev_link_validate,
->> +};
->> +
->> +static int ub913_notify_bound(struct v4l2_async_notifier *notifier,
->> +			      struct v4l2_subdev *source_subdev,
->> +			      struct v4l2_async_subdev *asd)
->> +{
->> +	struct ub913_data *priv = sd_to_ub913(notifier->sd);
->> +	struct device *dev = &priv->client->dev;
->> +	unsigned int src_pad;
->> +	int ret;
->> +
->> +	dev_dbg(dev, "Bind %s\n", source_subdev->name);
-> 
-> I'd drop this message.
-
-Why is that? Do we get this easily from the v4l2 core? These debug 
-prints in the bind/unbind process have been valuable for me.
-
->> +
->> +	ret = media_entity_get_fwnode_pad(&source_subdev->entity,
->> +					  source_subdev->fwnode,
->> +					  MEDIA_PAD_FL_SOURCE);
->> +	if (ret < 0) {
->> +		dev_err(dev, "Failed to find pad for %s\n",
->> +			source_subdev->name);
->> +		return ret;
->> +	}
->> +
->> +	priv->source_sd = source_subdev;
->> +	src_pad = ret;
->> +
->> +	ret = media_create_pad_link(&source_subdev->entity, src_pad,
->> +				    &priv->sd.entity, 0,
-> 
-> 				    &priv->sd.entity, UB913_PAD_SINK,
-
-Yep.
-
->> +				    MEDIA_LNK_FL_ENABLED |
->> +				    MEDIA_LNK_FL_IMMUTABLE);
->> +	if (ret) {
->> +		dev_err(dev, "Unable to link %s:%u -> %s:0\n",
->> +			source_subdev->name, src_pad, priv->sd.name);
->> +		return ret;
->> +	}
->> +
->> +	dev_dbg(dev, "Bound %s:%u\n", source_subdev->name, src_pad);
->> +
->> +	dev_dbg(dev, "All subdevs bound\n");
-> 
-> I'd drop this message.
-> 
->> +
->> +	return 0;
->> +}
->> +
->> +static void ub913_notify_unbind(struct v4l2_async_notifier *notifier,
->> +				struct v4l2_subdev *source_subdev,
->> +				struct v4l2_async_subdev *asd)
->> +{
->> +	struct ub913_data *priv = sd_to_ub913(notifier->sd);
->> +	struct device *dev = &priv->client->dev;
->> +
->> +	dev_dbg(dev, "Unbind %s\n", source_subdev->name);
->> +}
-> 
-> This is a no-op so you can drop it.
-
-This has been useful for development, but, yes, perhaps it's time to 
-drop it.
-
->> +
->> +static const struct v4l2_async_notifier_operations ub913_notify_ops = {
->> +	.bound = ub913_notify_bound,
->> +	.unbind = ub913_notify_unbind,
->> +};
->> +
->> +static int ub913_v4l2_notifier_register(struct ub913_data *priv)
->> +{
->> +	struct device *dev = &priv->client->dev;
->> +	struct v4l2_async_subdev *asd;
->> +	struct device_node *ep_node;
->> +	int ret;
->> +
->> +	dev_dbg(dev, "register async notif\n");
->> +
->> +	ep_node = of_graph_get_endpoint_by_regs(dev->of_node, 0, 0);
->> +	if (!ep_node) {
->> +		dev_err(dev, "No graph endpoint\n");
->> +		return -ENODEV;
->> +	}
->> +
->> +	v4l2_async_nf_init(&priv->notifier);
->> +
->> +	asd = v4l2_async_nf_add_fwnode_remote(&priv->notifier,
->> +					      of_fwnode_handle(ep_node),
->> +					      struct v4l2_async_subdev);
->> +
->> +	of_node_put(ep_node);
->> +
->> +	if (IS_ERR(asd)) {
->> +		dev_err(dev, "Failed to add subdev: %ld", PTR_ERR(asd));
->> +		v4l2_async_nf_cleanup(&priv->notifier);
->> +		return PTR_ERR(asd);
->> +	}
->> +
->> +	priv->notifier.ops = &ub913_notify_ops;
->> +
->> +	ret = v4l2_async_subdev_nf_register(&priv->sd, &priv->notifier);
->> +	if (ret) {
->> +		dev_err(dev, "Failed to register subdev_notifier");
->> +		v4l2_async_nf_cleanup(&priv->notifier);
->> +		return ret;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static void ub913_v4l2_nf_unregister(struct ub913_data *priv)
->> +{
->> +	struct device *dev = &priv->client->dev;
->> +
->> +	dev_dbg(dev, "Unregister async notif\n");
->> +
->> +	v4l2_async_nf_unregister(&priv->notifier);
->> +	v4l2_async_nf_cleanup(&priv->notifier);
->> +}
->> +
->> +static int ub913_register_clkout(struct ub913_data *priv)
->> +{
->> +	struct device *dev = &priv->client->dev;
->> +	const char *name;
->> +	int ret;
->> +
->> +	name = kasprintf(GFP_KERNEL, "ds90ub913.%s.clk_out", dev_name(dev));
->> +
->> +	priv->clkout_clk_hw = devm_clk_hw_register_fixed_factor(dev, name,
->> +		__clk_get_name(priv->clkin), 0, 1, 2);
->> +
->> +	kfree(name);
->> +
->> +	if (IS_ERR(priv->clkout_clk_hw))
->> +		return dev_err_probe(dev, PTR_ERR(priv->clkout_clk_hw),
->> +				     "Cannot register clkout hw\n");
->> +
->> +	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get,
->> +					  priv->clkout_clk_hw);
->> +	if (ret)
->> +		return dev_err_probe(dev, ret,
->> +				     "Cannot add OF clock provider\n");
->> +
->> +	return 0;
->> +}
->> +
->> +static int ub913_i2c_master_init(struct ub913_data *priv)
->> +{
->> +	/* i2c fast mode */
->> +	u32 scl_high = 600 + 300; /* high period + rise time, ns */
->> +	u32 scl_low = 1300 + 300; /* low period + fall time, ns */
->> +	unsigned long ref;
->> +	int ret;
->> +
->> +	ref = clk_get_rate(priv->clkin) / 2;
->> +
->> +	scl_high = div64_u64((u64)scl_high * ref, 1000000000);
->> +	scl_low = div64_u64((u64)scl_low * ref, 1000000000);
->> +
->> +	ret = ub913_write(priv, UB913_REG_SCL_HIGH_TIME, scl_high);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = ub913_write(priv, UB913_REG_SCL_LOW_TIME, scl_low);
->> +	if (ret)
->> +		return ret;
->> +
->> +	return 0;
->> +}
->> +
->> +static int ub913_add_i2c_adapter(struct ub913_data *priv)
->> +{
->> +	struct device *dev = &priv->client->dev;
->> +	struct fwnode_handle *i2c_handle;
->> +	int ret;
->> +
->> +	i2c_handle = device_get_named_child_node(dev, "i2c");
->> +	if (!i2c_handle)
->> +		return 0;
->> +
->> +	ret = i2c_atr_add_adapter(priv->plat_data->atr, priv->plat_data->port,
->> +				  i2c_handle);
->> +
->> +	fwnode_handle_put(i2c_handle);
->> +
->> +	if (ret)
->> +		return ret;
->> +
->> +	priv->has_i2c_adapter = true;
->> +
->> +	return 0;
->> +}
->> +
->> +static void ub913_remove_i2c_adapter(struct ub913_data *priv)
->> +{
->> +	if (priv->has_i2c_adapter)
->> +		i2c_atr_del_adapter(priv->plat_data->atr,
->> +				    priv->plat_data->port);
-> 
-> Could i2c_atr_del_adapter() be a no-op if no adapter for the port has
-> been added ? You could then drop the has_i2c_adapter field. I'm also
-
-Yes, I think that'd be fine.
-
-> wondering if the struct device of the DS90UB913 could be passed instead
-> of the port, to avoid passing the port throught
-> ds90ub9xx_platform_data.
-
-Interesting thought. That would limit the number of remote i2c busses to 
-one, though. Not a problem for FPD-Link, but I wonder if that's assuming 
-too much for the future users. Then again, this is an in-kernel API so 
-we could extend it later if needed. So I'll try this out and see if I 
-hit any issues.
-
->> +}
->> +
->> +static int ub913_probe(struct i2c_client *client)
->> +{
->> +	struct device *dev = &client->dev;
->> +	struct ub913_data *priv;
->> +	int ret;
->> +	u8 v;
->> +	bool mode_override;
->> +	u8 mode;
->> +
->> +	dev_dbg(dev, "probing, addr 0x%02x\n", client->addr);
->> +
->> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
->> +	if (!priv)
->> +		return -ENOMEM;
->> +
->> +	priv->client = client;
->> +
->> +	priv->plat_data = dev_get_platdata(&client->dev);
->> +	if (!priv->plat_data) {
->> +		dev_err(dev, "Platform data missing\n");
->> +		return -ENODEV;
->> +	}
->> +
->> +	priv->regmap = devm_regmap_init_i2c(client, &ub913_regmap_config);
->> +	if (IS_ERR(priv->regmap)) {
->> +		dev_err(dev, "Failed to init regmap\n");
->> +		return PTR_ERR(priv->regmap);
->> +	}
->> +
->> +	/* ub913 can also work without ext clock, but that is not supported */
->> +	priv->clkin = devm_clk_get(dev, "clkin");
->> +	if (IS_ERR(priv->clkin)) {
->> +		ret = PTR_ERR(priv->clkin);
->> +		if (ret != -EPROBE_DEFER)
->> +			dev_err(dev, "Cannot get CLKIN (%d)", ret);
->> +		return ret;
->> +	}
->> +
->> +	ret = ub913_parse_dt(priv);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = ub913_read(priv, UB913_REG_MODE_SEL, &v);
->> +	if (ret)
->> +		return ret;
->> +
->> +	if (!(v & BIT(4))) {
-> 
-> Please add a mcro for this. Same for other magic bits in the driver.
-
-Sure.
-
->> +		dev_err(dev, "Mode value not stabilized\n");
->> +		return -ENODEV;
->> +	}
->> +
->> +	mode_override = v & BIT(5);
->> +	mode = v & 0xf;
->> +
->> +	dev_dbg(dev, "mode from %s: %#x\n",
->> +		mode_override ? "reg" : "deserializer", mode);
->> +
->> +	ret = ub913_i2c_master_init(priv);
->> +	if (ret) {
->> +		dev_err(dev, "i2c master init failed: %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	ret = ub913_gpiochip_probe(priv);
->> +	if (ret) {
->> +		dev_err(dev, "Failed to init gpiochip\n");
->> +		return ret;
->> +	}
->> +
->> +	ret = ub913_register_clkout(priv);
->> +	if (ret) {
->> +		dev_err(dev, "Failed to register clkout\n");
->> +		goto err_gpiochip_remove;
->> +	}
->> +
->> +	v4l2_i2c_subdev_init(&priv->sd, priv->client, &ub913_subdev_ops);
->> +	priv->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE | V4L2_SUBDEV_FL_STREAMS;
->> +	priv->sd.entity.function = MEDIA_ENT_F_VID_IF_BRIDGE;
->> +	priv->sd.entity.ops = &ub913_entity_ops;
->> +
->> +	priv->pads[0].flags = MEDIA_PAD_FL_SINK;
->> +	priv->pads[1].flags = MEDIA_PAD_FL_SOURCE;
->> +
->> +	ret = media_entity_pads_init(&priv->sd.entity, 2, priv->pads);
->> +	if (ret) {
->> +		dev_err(dev, "Failed to init pads\n");
->> +		goto err_gpiochip_remove;
->> +	}
->> +
->> +	priv->tx_ep_np = of_graph_get_endpoint_by_regs(dev->of_node, 1, 0);
->> +	if (priv->tx_ep_np)
->> +		priv->sd.fwnode = of_fwnode_handle(priv->tx_ep_np);
->> +
->> +	ret = v4l2_subdev_init_finalize(&priv->sd);
->> +	if (ret)
->> +		goto err_entity_cleanup;
->> +
->> +	ret = ub913_v4l2_notifier_register(priv);
->> +	if (ret) {
->> +		dev_err(dev, "v4l2 subdev notifier register failed: %d\n", ret);
->> +		goto err_free_state;
->> +	}
->> +
->> +	ret = v4l2_async_register_subdev(&priv->sd);
->> +	if (ret) {
->> +		dev_err(dev, "v4l2_async_register_subdev error: %d\n", ret);
->> +		goto err_unreg_notif;
->> +	}
->> +
->> +	ret = ub913_add_i2c_adapter(priv);
->> +	if (ret) {
->> +		dev_err(dev, "failed to add remote i2c adapter\n");
->> +		goto err_unreg_async_subdev;
->> +	}
->> +
->> +	dev_dbg(dev, "Successfully probed\n");
->> +
->> +	return 0;
->> +
->> +err_unreg_async_subdev:
->> +	v4l2_async_unregister_subdev(&priv->sd);
->> +err_unreg_notif:
->> +	ub913_v4l2_nf_unregister(priv);
->> +err_free_state:
->> +	v4l2_subdev_cleanup(&priv->sd);
->> +err_entity_cleanup:
->> +	if (priv->tx_ep_np)
->> +		of_node_put(priv->tx_ep_np);
->> +
->> +	media_entity_cleanup(&priv->sd.entity);
->> +err_gpiochip_remove:
->> +	ub913_gpiochip_remove(priv);
->> +
->> +	return ret;
->> +}
->> +
->> +static void ub913_remove(struct i2c_client *client)
->> +{
->> +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
->> +	struct ub913_data *priv = sd_to_ub913(sd);
->> +
->> +	dev_dbg(&client->dev, "Removing\n");
->> +
->> +	ub913_remove_i2c_adapter(priv);
->> +
->> +	v4l2_async_unregister_subdev(&priv->sd);
->> +
->> +	ub913_v4l2_nf_unregister(priv);
->> +
->> +	v4l2_subdev_cleanup(&priv->sd);
->> +
->> +	if (priv->tx_ep_np)
->> +		of_node_put(priv->tx_ep_np);
->> +
->> +	media_entity_cleanup(&priv->sd.entity);
->> +
->> +	ub913_gpiochip_remove(priv);
->> +}
->> +
->> +static const struct i2c_device_id ub913_id[] = { { "ds90ub913a-q1", 0 }, {} };
->> +MODULE_DEVICE_TABLE(i2c, ub913_id);
->> +
->> +#ifdef CONFIG_OF
->> +static const struct of_device_id ub913_dt_ids[] = {
->> +	{ .compatible = "ti,ds90ub913a-q1", },
->> +	{}
->> +};
->> +MODULE_DEVICE_TABLE(of, ub913_dt_ids);
->> +#endif
->> +
->> +static struct i2c_driver ds90ub913_driver = {
->> +	.probe_new	= ub913_probe,
->> +	.remove		= ub913_remove,
->> +	.id_table	= ub913_id,
->> +	.driver = {
->> +		.name	= "ds90ub913a",
->> +		.owner = THIS_MODULE,
->> +		.of_match_table = of_match_ptr(ub913_dt_ids),
->> +	},
->> +};
->> +
->> +module_i2c_driver(ds90ub913_driver);
->> +
->> +MODULE_LICENSE("GPL");
->> +MODULE_DESCRIPTION("Texas Instruments DS90UB913 serializer driver");
->> +MODULE_AUTHOR("Luca Ceresoli <luca@lucaceresoli.net>");
->> +MODULE_AUTHOR("Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>");
->> -- 
->> 2.34.1
->>
-> 
+T24gV2VkLCAyMDIyLTEyLTE0IGF0IDA0OjQwICswODAwLCBrZXJuZWwgdGVzdCByb2JvdCB3cm90
+ZToKPiBIaSBMdWNhcywKPiAKPiBJIGxvdmUgeW91ciBwYXRjaCEgUGVyaGFwcyBzb21ldGhpbmcg
+dG8gaW1wcm92ZToKPiAKPiBbYXV0byBidWlsZCB0ZXN0IFdBUk5JTkcgb24gcm9iaC9mb3ItbmV4
+dF0KPiBbYWxzbyBidWlsZCB0ZXN0IFdBUk5JTkcgb24gc2hhd25ndW8vZm9yLW5leHQga3J6ay9m
+b3ItbmV4dCBrcnprLWR0L2Zvci1uZXh0IGxpbnVzL21hc3RlciB2Ni4xIG5leHQtMjAyMjEyMTNd
+Cj4gW0lmIHlvdXIgcGF0Y2ggaXMgYXBwbGllZCB0byB0aGUgd3JvbmcgZ2l0IHRyZWUsIGtpbmRs
+eSBkcm9wIHVzIGEgbm90ZS4KPiBBbmQgd2hlbiBzdWJtaXR0aW5nIHBhdGNoLCB3ZSBzdWdnZXN0
+IHRvIHVzZSAnLS1iYXNlJyBhcyBkb2N1bWVudGVkIGluCj4gaHR0cHM6Ly9naXQtc2NtLmNvbS9k
+b2NzL2dpdC1mb3JtYXQtcGF0Y2gjX2Jhc2VfdHJlZV9pbmZvcm1hdGlvbl0KPiAKPiB1cmw6wqDC
+oMKgCj4gaHR0cHM6Ly9naXRodWIuY29tL2ludGVsLWxhYi1sa3AvbGludXgvY29tbWl0cy9MdWNh
+cy1TdGFjaC9kdC1iaW5kaW5ncy1zb2MtaW14OG1wLWhzaW8tYmxrLWN0cmwtYWRkLWNsb2NrLWNl
+bGxzLzIwMjIxMjE0LTAwMDI0NQo+IGJhc2U6wqDCoCBodHRwczovL2dpdC5rZXJuZWwub3JnL3B1
+Yi9zY20vbGludXgva2VybmVsL2dpdC9yb2JoL2xpbnV4LmdpdMKgZm9yLW5leHQKPiBwYXRjaCBs
+aW5rOsKgwqDCoCBodHRwczovL2xvcmUua2VybmVsLm9yZy9yLzIwMjIxMjEzMTYwMTEyLjE5MDA0
+MTAtNC1sLnN0YWNoJTQwcGVuZ3V0cm9uaXguZGUKPiBwYXRjaCBzdWJqZWN0OiBbUEFUQ0ggNC80
+XSBzb2M6IGlteDogaW14OG1wLWJsay1jdHJsOiBleHBvc2UgaGlnaCBwZXJmb3JtYW5jZSBQTEwg
+Y2xvY2sKPiBjb25maWc6IG02OGstYWxseWVzY29uZmlnCgpZZWFoLCBvdXIgR2l0bGFiIENJIGdh
+dmUgbWUgdGhlIHNhbWUgZXZlbiBmb3IgZS5nLiBpbXhfdjZfdjdfZGVmY29uZmlnOgoKZHJpdmVy
+cy9zb2MvaW14L2lteDhtcC1ibGstY3RybC5jOiBJbiBmdW5jdGlvbiAnY2xrX2hzaW9fcGxsX3By
+ZXBhcmUnOgoxNzY1ZHJpdmVycy9zb2MvaW14L2lteDhtcC1ibGstY3RybC5jOjEwNTo3OiBlcnJv
+cjogaW1wbGljaXQgZGVjbGFyYXRpb24gb2YgZnVuY3Rpb24gJ0ZJRUxEX1BSRVAnIFstCldlcnJv
+cj1pbXBsaWNpdC1mdW5jdGlvbi1kZWNsYXJhdGlvbl0KMTc2NiAgMTA1IHwgICAgICAgRklFTERf
+UFJFUChQX1BMTF9NQVNLLCAxMikgfAoxNzY3ICAgICAgfCAgICAgICBefn5+fn5+fn5+Cgo+IGNv
+bXBpbGVyOiBtNjhrLWxpbnV4LWdjYyAoR0NDKSAxMi4xLjAKPiByZXByb2R1Y2UgKHRoaXMgaXMg
+YSBXPTEgYnVpbGQpOgo+IMKgwqDCoMKgwqDCoMKgIHdnZXQgaHR0cHM6Ly9yYXcuZ2l0aHVidXNl
+cmNvbnRlbnQuY29tL2ludGVsL2xrcC10ZXN0cy9tYXN0ZXIvc2Jpbi9tYWtlLmNyb3NzwqAtTyB+
+L2Jpbi9tYWtlLmNyb3NzCj4gwqDCoMKgwqDCoMKgwqAgY2htb2QgK3ggfi9iaW4vbWFrZS5jcm9z
+cwo+IMKgwqDCoMKgwqDCoMKgICMgaHR0cHM6Ly9naXRodWIuY29tL2ludGVsLWxhYi1sa3AvbGlu
+dXgvY29tbWl0LzUwNDY3NzRjMDNhMzQ5NmMxOTA2OWI5MjM3ZmVlODUyNzNjMjE1YWEKPiDCoMKg
+wqDCoMKgwqDCoCBnaXQgcmVtb3RlIGFkZCBsaW51eC1yZXZpZXcgaHR0cHM6Ly9naXRodWIuY29t
+L2ludGVsLWxhYi1sa3AvbGludXgKPiDCoMKgwqDCoMKgwqDCoCBnaXQgZmV0Y2ggLS1uby10YWdz
+IGxpbnV4LXJldmlldyBMdWNhcy1TdGFjaC9kdC1iaW5kaW5ncy1zb2MtaW14OG1wLWhzaW8tYmxr
+LWN0cmwtYWRkLWNsb2NrLQo+IGNlbGxzLzIwMjIxMjE0LTAwMDI0NQo+IMKgwqDCoMKgwqDCoMKg
+IGdpdCBjaGVja291dCA1MDQ2Nzc0YzAzYTM0OTZjMTkwNjliOTIzN2ZlZTg1MjczYzIxNWFhCj4g
+wqDCoMKgwqDCoMKgwqAgIyBzYXZlIHRoZSBjb25maWcgZmlsZQo+IMKgwqDCoMKgwqDCoMKgIG1r
+ZGlyIGJ1aWxkX2RpciAmJiBjcCBjb25maWcgYnVpbGRfZGlyLy5jb25maWcKPiDCoMKgwqDCoMKg
+wqDCoCBDT01QSUxFUl9JTlNUQUxMX1BBVEg9JEhPTUUvMGRheSBDT01QSUxFUj1nY2MtMTIuMS4w
+IG1ha2UuY3Jvc3MgVz0xIE89YnVpbGRfZGlyIEFSQ0g9bTY4awo+IFNIRUxMPS9iaW4vYmFzaCBk
+cml2ZXJzL3NvYy8KPiAKPiBJZiB5b3UgZml4IHRoZSBpc3N1ZSwga2luZGx5IGFkZCBmb2xsb3dp
+bmcgdGFnIHdoZXJlIGFwcGxpY2FibGUKPiA+IFJlcG9ydGVkLWJ5OiBrZXJuZWwgdGVzdCByb2Jv
+dCA8bGtwQGludGVsLmNvbT4KPiAKPiBBbGwgd2FybmluZ3MgKG5ldyBvbmVzIHByZWZpeGVkIGJ5
+ID4+KToKPiAKPiDCoMKgIGRyaXZlcnMvc29jL2lteC9pbXg4bXAtYmxrLWN0cmwuYzogSW4gZnVu
+Y3Rpb24gJ2Nsa19oc2lvX3BsbF9wcmVwYXJlJzoKPiDCoMKgIGRyaXZlcnMvc29jL2lteC9pbXg4
+bXAtYmxrLWN0cmwuYzoxMDU6Mjg6IGVycm9yOiBpbXBsaWNpdCBkZWNsYXJhdGlvbiBvZiBmdW5j
+dGlvbiAnRklFTERfUFJFUCcgWy0KPiBXZXJyb3I9aW1wbGljaXQtZnVuY3Rpb24tZGVjbGFyYXRp
+b25dCj4gwqDCoMKgwqAgMTA1IHzCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgRklFTERfUFJFUChQX1BMTF9NQVNLLCAxMikgfAo+IMKgwqDCoMKg
+wqDCoMKgwqAgfMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoCBefn5+fn5+fn5+Cj4gwqDCoCBkcml2ZXJzL3NvYy9pbXgvaW14OG1wLWJsay1jdHJs
+LmM6IEF0IHRvcCBsZXZlbDoKPiA+ID4gZHJpdmVycy9zb2MvaW14L2lteDhtcC1ibGstY3RybC5j
+OjE0Njo1OiB3YXJuaW5nOiBubyBwcmV2aW91cyBwcm90b3R5cGUgZm9yICdpbXg4bXBfaHNpb19i
+bGtfY3RybF9wcm9iZScKPiA+ID4gWy1XbWlzc2luZy1wcm90b3R5cGVzXQo+IMKgwqDCoMKgIDE0
+NiB8IGludCBpbXg4bXBfaHNpb19ibGtfY3RybF9wcm9iZShzdHJ1Y3QgaW14OG1wX2Jsa19jdHJs
+ICpiYykKPiDCoMKgwqDCoMKgwqDCoMKgIHzCoMKgwqDCoCBefn5+fn5+fn5+fn5+fn5+fn5+fn5+
+fn5+fgo+IMKgwqAgY2MxOiBzb21lIHdhcm5pbmdzIGJlaW5nIHRyZWF0ZWQgYXMgZXJyb3JzCj4g
+Cj4gCj4gdmltICsvaW14OG1wX2hzaW9fYmxrX2N0cmxfcHJvYmUgKzE0NiBkcml2ZXJzL3NvYy9p
+bXgvaW14OG1wLWJsay1jdHJsLmMKPiAKPiDCoMKgIDE0NcKgwqAKPiDCoD4gMTQ2wqDCoGludCBp
+bXg4bXBfaHNpb19ibGtfY3RybF9wcm9iZShzdHJ1Y3QgaW14OG1wX2Jsa19jdHJsICpiYykKPiDC
+oMKgIDE0N8KgwqB7Cj4gwqDCoCAxNDjCoMKgwqDCoMKgwqDCoMKgwqDCoHN0cnVjdCBjbGtfaHNp
+b19wbGwgKmNsa19oc2lvX3BsbDsKPiDCoMKgIDE0OcKgwqDCoMKgwqDCoMKgwqDCoMKgc3RydWN0
+IGNsa19odyAqaHc7Cj4gwqDCoCAxNTDCoMKgwqDCoMKgwqDCoMKgwqDCoHN0cnVjdCBjbGtfaW5p
+dF9kYXRhIGluaXQgPSB7fTsKPiDCoMKgIDE1McKgwqDCoMKgwqDCoMKgwqDCoMKgaW50IHJldDsK
+PiDCoMKgIDE1MsKgwqAKPiDCoMKgIDE1M8KgwqDCoMKgwqDCoMKgwqDCoMKgcHJpbnRrKCIlc1xu
+IiwgX19mdW5jX18pOwo+IMKgwqAgMTU0wqDCoAo+IMKgwqAgMTU1wqDCoMKgwqDCoMKgwqDCoMKg
+wqBjbGtfaHNpb19wbGwgPSBkZXZtX2t6YWxsb2MoYmMtPmRldiwgc2l6ZW9mKCpjbGtfaHNpb19w
+bGwpLCBHRlBfS0VSTkVMKTsKPiDCoMKgIDE1NsKgwqDCoMKgwqDCoMKgwqDCoMKgaWYgKCFjbGtf
+aHNpb19wbGwpCj4gwqDCoCAxNTfCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBy
+ZXR1cm4gLUVOT01FTTsKPiDCoMKgIDE1OMKgwqAKPiDCoMKgIDE1OcKgwqDCoMKgwqDCoMKgwqDC
+oMKgaW5pdC5uYW1lID0gImhzaW9fcGxsIjsKPiDCoMKgIDE2MMKgwqDCoMKgwqDCoMKgwqDCoMKg
+aW5pdC5vcHMgPSAmY2xrX2hzaW9fcGxsX29wczsKPiDCoMKgIDE2McKgwqDCoMKgwqDCoMKgwqDC
+oMKgaW5pdC5wYXJlbnRfbmFtZXMgPSAoY29uc3QgY2hhciAqW10peyJvc2NfMjRtIn07Cj4gwqDC
+oCAxNjLCoMKgwqDCoMKgwqDCoMKgwqDCoGluaXQubnVtX3BhcmVudHMgPSAxOwo+IMKgwqAgMTYz
+wqDCoAo+IMKgwqAgMTY0wqDCoMKgwqDCoMKgwqDCoMKgwqBjbGtfaHNpb19wbGwtPnJlZ21hcCA9
+IGJjLT5yZWdtYXA7Cj4gwqDCoCAxNjXCoMKgwqDCoMKgwqDCoMKgwqDCoGNsa19oc2lvX3BsbC0+
+aHcuaW5pdCA9ICZpbml0Owo+IMKgwqAgMTY2wqDCoAo+IMKgwqAgMTY3wqDCoMKgwqDCoMKgwqDC
+oMKgwqBodyA9ICZjbGtfaHNpb19wbGwtPmh3Owo+IMKgwqAgMTY4wqDCoMKgwqDCoMKgwqDCoMKg
+wqByZXQgPSBkZXZtX2Nsa19od19yZWdpc3RlcihiYy0+ZGV2LCBodyk7Cj4gwqDCoCAxNjnCoMKg
+wqDCoMKgwqDCoMKgwqDCoGlmIChyZXQpCj4gwqDCoCAxNzDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqByZXR1cm4gcmV0Owo+IMKgwqAgMTcxwqDCoAo+IMKgwqAgMTcywqDCoMKg
+wqDCoMKgwqDCoMKgwqByZXR1cm4gZGV2bV9vZl9jbGtfYWRkX2h3X3Byb3ZpZGVyKGJjLT5kZXYs
+IG9mX2Nsa19od19zaW1wbGVfZ2V0LCBodyk7Cj4gwqDCoCAxNzPCoMKgfQo+IMKgwqAgMTc0wqDC
+oAo=
 
