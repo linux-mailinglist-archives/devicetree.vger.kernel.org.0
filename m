@@ -2,103 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D79D64CD82
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 16:56:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35F5B64CD95
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 17:00:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238763AbiLNP4a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 10:56:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55358 "EHLO
+        id S238547AbiLNP76 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 10:59:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238606AbiLNP4C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 10:56:02 -0500
-Received: from mxout1.routing.net (mxout1.routing.net [IPv6:2a03:2900:1:a::a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C10F627B22;
-        Wed, 14 Dec 2022 07:54:41 -0800 (PST)
-Received: from mxbulk.masterlogin.de (unknown [192.168.10.85])
-        by mxout1.routing.net (Postfix) with ESMTP id DAB7F408C9;
-        Wed, 14 Dec 2022 15:54:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-        s=20200217; t=1671033280;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=JHabEsGCzp6neX/91Eo3uw+27IBRIbG6zMdrZJN0FiY=;
-        b=wXm+8GGyrvLBhaGhEDeCW6DxdJ6kTm/b8lyMIfsgtV4T7PCUwuYIz9B4lp1tSz5R1BKjjP
-        tDDEWrZL0i2AoA0YZ27h39JKnOP+itg829Cw7lYgICnkX+tPUv9qgx7MM6FAxMINaMK7Mv
-        3qblT7wEZIQh3xcW5LvUnnMMYaVcFAs=
-Received: from frank-G5.. (fttx-pool-80.245.72.136.bambit.de [80.245.72.136])
-        by mxbulk.masterlogin.de (Postfix) with ESMTPSA id A85471226E7;
-        Wed, 14 Dec 2022 15:54:39 +0000 (UTC)
-From:   Frank Wunderlich <linux@fw-web.de>
-To:     linux-rockchip@lists.infradead.org
-Cc:     Alex Riabchenko <d3adme4t@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S238500AbiLNP7c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 10:59:32 -0500
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7A3B24091;
+        Wed, 14 Dec 2022 07:58:16 -0800 (PST)
+Received: by mail-oi1-f169.google.com with SMTP id s186so2960333oia.5;
+        Wed, 14 Dec 2022 07:58:16 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ohnzc1o66yIs2LOA/u0EnDBRAn8LEk4Wj9WsU7EuZSQ=;
+        b=MBlbyhZz0+evddHsQw1ARWYFOhVghEJCJE894cySRyRiSVKLTbr8v4RWUJ9cZsrBbG
+         ZSqC5IQr2NAkMey9aQlp6ezZSVyGbLC+Nk6CSL+4v4dHeerXm/9OF3qQYC7j9VORsevH
+         0uZbR6TZ1uN/dWzspsTlqf5vU5UvwXDm4iUKeHJ2imrTwJ5x2uzJtztg4DtfGXsGyeAZ
+         ojfn3afYykHs4/gd/F7SRzz62MUTYnferRE7LksugwL9yhCJH3Wks7AIoMjWRtEjoW9Z
+         xYlq/l/M6VNwS62MNse//x3OU4nai1VSipieQWPimtiS0LaCoYdoEdmL5VNx4iMsRobA
+         wxvQ==
+X-Gm-Message-State: ANoB5pnNC8EO3lco8ofD5CY+G1XibLd03MqEpr6DsvQGoaFukAetabJC
+        VVUf8l0Z42j0tGvBT1p40g==
+X-Google-Smtp-Source: AA0mqf5TAyAdXyKadPxASJjHqEwdmxYBxeu/KaNYrnJMRivzzFdvwgNTG0cS41y0oM000qVruUFJ0g==
+X-Received: by 2002:aca:b756:0:b0:35c:29d3:9379 with SMTP id h83-20020acab756000000b0035c29d39379mr10270832oif.35.1671033496077;
+        Wed, 14 Dec 2022 07:58:16 -0800 (PST)
+Received: from robh_at_kernel.org (rrcs-98-6-157-194.sw.biz.rr.com. [98.6.157.194])
+        by smtp.gmail.com with ESMTPSA id z6-20020a056808028600b0035b7002af8csm9291oic.56.2022.12.14.07.58.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Dec 2022 07:58:15 -0800 (PST)
+Received: (nullmailer pid 1135240 invoked by uid 1000);
+        Wed, 14 Dec 2022 15:58:14 -0000
+Date:   Wed, 14 Dec 2022 09:58:14 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: Add IR receiver to BPI-R2Pro
-Date:   Wed, 14 Dec 2022 16:54:33 +0100
-Message-Id: <20221214155433.112257-1-linux@fw-web.de>
-X-Mailer: git-send-email 2.34.1
+        Magnus Damm <magnus.damm@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v4 1/5] dt-bindings: usb: add the Renesas RZ/N1 USBF
+ controller
+Message-ID: <167103349424.1135180.17746497216489018146.robh@kernel.org>
+References: <20221213133302.218955-1-herve.codina@bootlin.com>
+ <20221213133302.218955-2-herve.codina@bootlin.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221213133302.218955-2-herve.codina@bootlin.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alex Riabchenko <d3adme4t@gmail.com>
 
-Add the infrared receiver and its associated pinctrl entry.
+On Tue, 13 Dec 2022 14:32:58 +0100, Herve Codina wrote:
+> The Renesas RZ/N1 USBF controller is an USB2.0 device controller
+> (UDC) available in the Renesas r9a06g032 SoC (RZ/N1 family).
+> 
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> ---
+>  .../bindings/usb/renesas,rzn1-usbf.yaml       | 68 +++++++++++++++++++
+>  1 file changed, 68 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/renesas,rzn1-usbf.yaml
+> 
 
-Based on Aurelien Jarno's patchset:
-https://lore.kernel.org/lkml/20220930051246.391614-14-aurelien@aurel32.net/
-
-Signed-off-by: Alex Riabchenko <d3adme4t@gmail.com>
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
- arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-index 5701c96d31b1..6473756a69bf 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-@@ -66,6 +66,13 @@ hdmi_con_in: endpoint {
- 		};
- 	};
- 
-+	ir-receiver {
-+		compatible = "gpio-ir-receiver";
-+		gpios = <&gpio0 RK_PC2 GPIO_ACTIVE_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ir_receiver_pin>;
-+	};
-+
- 	vcc3v3_sys: vcc3v3-sys-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc3v3_sys";
-@@ -655,6 +662,12 @@ hym8563_int: hym8563-int {
- 		};
- 	};
- 
-+	ir-receiver {
-+		ir_receiver_pin: ir-receiver-pin {
-+			rockchip,pins = <0 RK_PC2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
- 	pcie {
- 		minipcie_enable_h: minipcie-enable-h {
- 			rockchip,pins = <0 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none_drv_level_5>;
--- 
-2.34.1
-
+Reviewed-by: Rob Herring <robh@kernel.org>
