@@ -2,56 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B53B64C63B
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 10:48:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F19464C648
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 10:50:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237679AbiLNJsA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 04:48:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52692 "EHLO
+        id S237936AbiLNJuI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 04:50:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229757AbiLNJsA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 04:48:00 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 497935FDE;
-        Wed, 14 Dec 2022 01:47:58 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D9D04618B8;
-        Wed, 14 Dec 2022 09:47:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB066C433EF;
-        Wed, 14 Dec 2022 09:47:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671011277;
-        bh=UodjR3AssLTk+DhzR2XZAUn0vUG5IFVWg5o01B3CUrM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=F++yXQevhUPn6jfi1j78hVDYpaGOI3WfEUlPRyE+5F++0Gg+02lD65eBoWtz1hMlw
-         /+HqpxXga4zJTDrpN5mtoIk3bKrUYtxOpFRKyHNDyDOsAoSCadRUfRJAMJny7AUvPw
-         4Mp2RXeMnvjSluKYcozDIUtKcxHOxHqHWyzlvecFAeC13cY6TDX0a+GJGDCYXCVUOS
-         hz+OnapB7KD3iLVDelZvCLL1lEVBF/9fv7VRMasQxZXMviT40QXzwI8eQMvvHJepar
-         /IPtDrC0+E/toFGBzDfkWRWWdxt5twdbdFt77bgAQgSwNhWS2AyzXi2ck9oAHX7BgO
-         Zn4NR3getB4Ow==
-Date:   Wed, 14 Dec 2022 09:47:52 +0000
-From:   Lee Jones <lee@kernel.org>
-To:     Naresh Solanki <naresh.solanki@9elements.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Marcello Sylvester Bauer <sylv@sylv.io>
-Subject: Re: [PATCH v11 2/2] mfd: max597x: Add support for MAX5970 and MAX5978
-Message-ID: <Y5mbyICg22UVFASw@google.com>
-References: <20221116205822.1128275-1-Naresh.Solanki@9elements.com>
- <20221116205822.1128275-3-Naresh.Solanki@9elements.com>
- <Y3YJ2EkYNW+gA+/R@google.com>
- <5d9e41b8-7b2a-d60b-3e92-641cea5a9f4a@9elements.com>
- <Y5HXWk4d5J9VgFBV@google.com>
- <921915e5-6b36-9d2d-ebd7-632403e3086a@9elements.com>
+        with ESMTP id S237947AbiLNJuH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 04:50:07 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AA285FDE
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 01:50:06 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id p8so9473818lfu.11
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 01:50:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6FFmcD51ezj3o5LArcwRpZL3dKHNUEgb+0z4MfXTfq4=;
+        b=SrsMIWLnZ2e6dc6WjP29rF3goK6Oi7KHTo5Ppr3cYCvz+pvDmiQW2Qzrue1wNWAoXM
+         caJNYe7onWKVS739Q+tE7eyfCy5PFWmY8j0194eoE83MxT5RteG2t03i4rTlzlBikFaD
+         eaxthxz+mZOelmAfyVkjmM3Tqq99hf3zRus2n+t7OcR0A2Bdj/TdgjUCeC9lPRvOQNYI
+         faxibn3JYwdd9CpWJ7ODBKBMk270Xa/23xMLNSRWn8Fy1k7IG76oXNubS2HeGkGXMVBk
+         aIsalme/c9b0Ccy1nrOe+NVO+T5x/4TdJhYXRgvjJDnL/Nm3ErS0EQ9HHRUCZy8DcjQg
+         3tOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6FFmcD51ezj3o5LArcwRpZL3dKHNUEgb+0z4MfXTfq4=;
+        b=V0xIUvz9GGSFu2U+vwv7NcyW8WCwCk6DfwarQEoEibGTZiCQWhm3Y6fXzRs3g+pGZC
+         gthVVRH/NcxqUfBNepBmc1jseTXXuvAvkaUnpzQlEgLAGXPHYLSTZp1aSJ88BWzzwD4r
+         Fv7q/8XwsaAIOJhr80voFvGU34n1KFJaTBhS8yMu7cW9K51GxKOIKhlIp9VJexfHEqX0
+         Uws7zJUxTfqUyi0yKwFfZ3V7Uwy4TS+OiHBNLiQWQG8HGQATnsgWHWZCLZ3GwGpi66r4
+         p0ZgHB+dV5paRjSMLCnYengcRhriTRuFJzQWn2889QQL8lvvvTcMZu8cITIrs3Zj02u0
+         c3fg==
+X-Gm-Message-State: ANoB5ply1B6SBj1t83UtEzZBXORpHYN6o8zlN/3lEYLQR6/9BrWx/T86
+        /eDzlpcRvg2wY/to9D8xjqCvgjkDaZjJFo5N
+X-Google-Smtp-Source: AA0mqf4SavdtlFRgcw48pbLo6Dl14dBz5Gqm4lHo+/bQ+6ShOHcif1m01CggfXPrdDxkIq1cQzF74g==
+X-Received: by 2002:a05:6512:340f:b0:4b6:f0ea:4f42 with SMTP id i15-20020a056512340f00b004b6f0ea4f42mr2326922lfr.59.1671011405009;
+        Wed, 14 Dec 2022 01:50:05 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id e12-20020ac25cac000000b004b5480edf67sm746645lfq.36.2022.12.14.01.50.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Dec 2022 01:50:04 -0800 (PST)
+Message-ID: <1975245f-93e5-358c-4488-692fefe4285d@linaro.org>
+Date:   Wed, 14 Dec 2022 10:50:03 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <921915e5-6b36-9d2d-ebd7-632403e3086a@9elements.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH 1/4] dt-bindings: ufs: qcom: Add SM6125 compatible string
+Content-Language: en-US
+To:     Lux Aliaga <they@mint.lgbt>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221214093053.152713-1-they@mint.lgbt>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221214093053.152713-1-they@mint.lgbt>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,62 +81,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Dec 2022, Naresh Solanki wrote:
-
-> Hi Lee
+On 14/12/2022 10:30, Lux Aliaga wrote:
+> Document the compatible for UFS found on the SM6125.
 > 
-> On 08-12-2022 05:53 pm, Lee Jones wrote:
-> > On Fri, 18 Nov 2022, Naresh Solanki wrote:
-> > 
-> > > 
-> > > 
-> > > On 17-11-2022 03:45 pm, Lee Jones wrote:
-> > > > On Wed, 16 Nov 2022, Naresh Solanki wrote:
-> > > > 
-> > > > > From: Patrick Rudolph <patrick.rudolph@9elements.com>
-> > > > > 
-> > > > > Implement a regulator driver with IRQ support for fault management.
-> > > > > Written against documentation [1] and [2] and tested on real hardware.
-> > > > > 
-> > > > > Every channel has its own regulator supplies nammed 'vss1-supply' and
-> > > > > 'vss2-supply'. The regulator supply is used to determine the output
-> > > > > voltage, as the smart switch provides no output regulation.
-> > > > > The driver requires the 'shunt-resistor-micro-ohms' property to be
-> > > > > present in Device Tree to properly calculate current related
-> > > > > values.
-> > > > > 
-> > > > > Datasheet links:
-> > > > > 1: https://datasheets.maximintegrated.com/en/ds/MAX5970.pdf
-> > > > > 2: https://datasheets.maximintegrated.com/en/ds/MAX5978.pdf
-> > > > > 
-> > > > > Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> > > > > Co-developed-by: Marcello Sylvester Bauer <sylv@sylv.io>
-> > > > > Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
-> > > > > Co-developed-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> > > > > Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> > > > > ---
-> > > > >    drivers/mfd/Kconfig         |  12 +++++
-> > > > >    drivers/mfd/Makefile        |   1 +
-> > > > >    drivers/mfd/max597x.c       |  93 +++++++++++++++++++++++++++++++++
-> > > > >    include/linux/mfd/max597x.h | 101 ++++++++++++++++++++++++++++++++++++
-> > > > >    4 files changed, 207 insertions(+)
-> > > > >    create mode 100644 drivers/mfd/max597x.c
-> > > > >    create mode 100644 include/linux/mfd/max597x.h
-> > > > 
-> > > > Ignoring my comments won't make them go away. :)
-> > > > 
-> > > > Please tell me why you need a whole new driver, instead of adding
-> > > > support to simple-mfd-i2c?
-> > > > 
-> > > I felt current implementation to be simpler, clearer & straight forward.
-> > 
-> > If you can make it work with simple-mfd-i2c, please do so.
-> simple-mfd-i2c doesn't has mechanism to pass device type(max5978 vs
-> max5970).
+> Signed-off-by: Lux Aliaga <they@mint.lgbt>
 
-`git grep silergy,sy7636a -- drivers/mfd`
+Please rebase on top of:
+https://lore.kernel.org/all/20221030094258.486428-2-iskren.chernev@gmail.com/
 
-> > No need to submit an entirely new driver for these simple use-cases.
+so the change will be much smaller.
 
--- 
-Lee Jones [李琼斯]
+Best regards,
+Krzysztof
+
