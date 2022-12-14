@@ -2,157 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C373C64C601
-	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 10:32:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE5F964C5FF
+	for <lists+devicetree@lfdr.de>; Wed, 14 Dec 2022 10:32:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237415AbiLNJc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 04:32:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44794 "EHLO
+        id S229757AbiLNJcX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 04:32:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237392AbiLNJcY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 04:32:24 -0500
-X-Greylist: delayed 65 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 14 Dec 2022 01:32:20 PST
-Received: from amity.mint.lgbt (vmi888983.contaboserver.net [149.102.157.145])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48444764C
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 01:32:20 -0800 (PST)
-Received: from amity.mint.lgbt (mx.mint.lgbt [127.0.0.1])
-        by amity.mint.lgbt (Postfix) with ESMTP id 4NX9BC0ZRyz1S5Cp
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 04:32:19 -0500 (EST)
-Authentication-Results: amity.mint.lgbt (amavisd-new);
-        dkim=pass (2048-bit key) reason="pass (just generated, assumed good)"
-        header.d=mint.lgbt
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mint.lgbt; h=
-        content-transfer-encoding:mime-version:x-mailer:message-id:date
-        :subject:to:from; s=dkim; t=1671010338; x=1671874339; bh=ExGToJ7
-        5nnlb4ThQE07j68EgUs+RvHQuBzqSRQC+m2k=; b=PcNvze/w387CEfQnLff5lRf
-        4JXsDRpnST4Vf+U9v8EPfDTEr1iugxcXpHECYaWoLAJCjxKrqVB4dijZzSYCkzWA
-        IdlfmwSWo6YIoJ/8f1N1OZQMxRXFZHfXCE7Z/mqbYPCBEMTzRLo2X5kcj1IxQQOI
-        x30TtvX/J1kiK2tEYMyxtUOEp/uGf8CqBWWuCzxpZepWBh8wKfDb8RBoUiRLvGi1
-        5oLSoHjZ2G+L+GXUPDKBRg1Sztg/2II8HuKvSsJyqeEXd7wrQKrzYkpOh2QdJ7iQ
-        RW10PlINh3005X5lyys7FDT2vq5YvQZ/GJNzz07sSLuHJKmZjCalOXwZijOklFw=
-        =
-X-Virus-Scanned: amavisd-new at amity.mint.lgbt
-Received: from amity.mint.lgbt ([127.0.0.1])
-        by amity.mint.lgbt (amity.mint.lgbt [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id fSYw7jHTOi_G for <devicetree@vger.kernel.org>;
-        Wed, 14 Dec 2022 04:32:18 -0500 (EST)
-Received: from dorothy.. (unknown [190.196.92.66])
-        by amity.mint.lgbt (Postfix) with ESMTPSA id 4NX9B73Qqxz1S4yf;
-        Wed, 14 Dec 2022 04:32:15 -0500 (EST)
-From:   Lux Aliaga <they@mint.lgbt>
-Cc:     Lux Aliaga <they@mint.lgbt>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S237392AbiLNJcT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 04:32:19 -0500
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B3C95588;
+        Wed, 14 Dec 2022 01:32:18 -0800 (PST)
+Received: from lhrpeml500005.china.huawei.com (unknown [172.18.147.206])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4NX98r58LPz6J6Bw;
+        Wed, 14 Dec 2022 17:31:08 +0800 (CST)
+Received: from localhost (10.81.204.207) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 14 Dec
+ 2022 09:32:15 +0000
+Date:   Wed, 14 Dec 2022 09:32:14 +0000
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+CC:     Han Xu <han.xu@nxp.com>, Jonathan Cameron <jic23@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/4] arm64: dts: qcom: sm6125: Add UFS nodes
-Date:   Wed, 14 Dec 2022 06:32:09 -0300
-Message-Id: <20221214093209.152991-1-they@mint.lgbt>
-X-Mailer: git-send-email 2.38.1
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Sean Nyekjaer <sean@geanix.com>,
+        Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+        Matti Vaittinen <mazziesaccount@gmail.com>,
+        "Haibo Chen" <haibo.chen@nxp.com>,
+        Clark Wang <xiaoning.wang@nxp.com>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <imx@lists.linux.dev>
+Subject: Re: [PATCH v3 2/4] iio: accel: add the new entry in driver for
+ fxls8967af
+Message-ID: <20221214093214.00000a03@Huawei.com>
+In-Reply-To: <84bd582c-1dde-822c-48b7-025887fd0203@linaro.org>
+References: <20221213171536.1880089-1-han.xu@nxp.com>
+        <20221213171536.1880089-3-han.xu@nxp.com>
+        <84bd582c-1dde-822c-48b7-025887fd0203@linaro.org>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.81.204.207]
+X-ClientProxiedBy: lhrpeml100005.china.huawei.com (7.191.160.25) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit adds a UFS host controller node and its corresponding PHY to
-the sm6125 platform.
+On Tue, 13 Dec 2022 19:53:30 +0100
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-Signed-off-by: Lux Aliaga <they@mint.lgbt>
----
- arch/arm64/boot/dts/qcom/sm6125.dtsi | 70 ++++++++++++++++++++++++++++
- 1 file changed, 70 insertions(+)
+> On 13/12/2022 18:15, Han Xu wrote:
+> > Add this new device entry in the driver id table.
+> > 
+> > Signed-off-by: Han Xu <han.xu@nxp.com>
+> > 
+> > ---
+> > changes in v2
+> > - change chip info orders
+> > ---
+> >  drivers/iio/accel/fxls8962af-core.c | 7 +++++++
+> >  drivers/iio/accel/fxls8962af-i2c.c  | 2 ++
+> >  drivers/iio/accel/fxls8962af.h      | 1 +
+> >  3 files changed, 10 insertions(+)
+> > 
+> > diff --git a/drivers/iio/accel/fxls8962af-core.c b/drivers/iio/accel/fxls8962af-core.c
+> > index 98811e4e16bb..c3589c3084ee 100644
+> > --- a/drivers/iio/accel/fxls8962af-core.c
+> > +++ b/drivers/iio/accel/fxls8962af-core.c
+> > @@ -127,6 +127,7 @@
+> >  #define FXLS8962AF_DEVICE_ID			0x62
+> >  #define FXLS8964AF_DEVICE_ID			0x84
+> >  #define FXLS8974CF_DEVICE_ID			0x86
+> > +#define FXLS8967AF_DEVICE_ID			0x87
+> >  
+> >  /* Raw temp channel offset */
+> >  #define FXLS8962AF_TEMP_CENTER_VAL		25
+> > @@ -765,6 +766,12 @@ static const struct fxls8962af_chip_info fxls_chip_info_table[] = {
+> >  		.channels = fxls8962af_channels,
+> >  		.num_channels = ARRAY_SIZE(fxls8962af_channels),
+> >  	},
+> > +	[fxls8967af] = {
+> > +		.chip_id = FXLS8967AF_DEVICE_ID,
+> > +		.name = "fxls8967af",
+> > +		.channels = fxls8962af_channels,
+> > +		.num_channels = ARRAY_SIZE(fxls8962af_channels),
+> > +	},
+> >  	[fxls8974cf] = {
+> >  		.chip_id = FXLS8974CF_DEVICE_ID,
+> >  		.name = "fxls8974cf",
+> > diff --git a/drivers/iio/accel/fxls8962af-i2c.c b/drivers/iio/accel/fxls8962af-i2c.c
+> > index 17dd56756ff9..a8944b255a28 100644
+> > --- a/drivers/iio/accel/fxls8962af-i2c.c
+> > +++ b/drivers/iio/accel/fxls8962af-i2c.c
+> > @@ -30,6 +30,7 @@ static int fxls8962af_probe(struct i2c_client *client)
+> >  static const struct i2c_device_id fxls8962af_id[] = {
+> >  	{ "fxls8962af", fxls8962af },
+> >  	{ "fxls8964af", fxls8964af },
+> > +	{ "fxls8967af", fxls8967af },
+> >  	{ "fxls8974cf", fxls8974cf },
+> >  	{}
+> >  };
+> > @@ -38,6 +39,7 @@ MODULE_DEVICE_TABLE(i2c, fxls8962af_id);
+> >  static const struct of_device_id fxls8962af_of_match[] = {
+> >  	{ .compatible = "nxp,fxls8962af" },
+> >  	{ .compatible = "nxp,fxls8964af" },
+> > +	{ .compatible = "nxp,fxls8967af" },
+> >  	{ .compatible = "nxp,fxls8974cf" },  
+> 
+> This is confusing. The I2C ID table has driver data, but OF ID table
+> hasn't. So are they compatible or not?
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi b/arch/arm64/boot/dts/q=
-com/sm6125.dtsi
-index 1fe3fa3ad877..f43b005b9454 100644
---- a/arch/arm64/boot/dts/qcom/sm6125.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6125.dtsi
-@@ -506,6 +506,76 @@ sdhc_2: mmc@4784000 {
- 			status =3D "disabled";
- 		};
-=20
-+		ufs_mem_hc: ufshc@4804000 {
-+			compatible =3D "qcom,sm6125-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
-+			reg =3D <0x04804000 0x3000>, <0x04810000 0x8000>;
-+			reg-names =3D "std", "ice";
-+			interrupts =3D <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
-+			phys =3D <&ufs_mem_phy_lanes>;
-+			phy-names =3D "ufsphy";
-+			lanes-per-direction =3D <1>;
-+			#reset-cells =3D <1>;
-+			resets =3D <&gcc GCC_UFS_PHY_BCR>;
-+			reset-names =3D "rst";
-+
-+			clock-names =3D
-+				"core_clk",
-+				"bus_aggr_clk",
-+				"iface_clk",
-+				"core_clk_unipro",
-+				"core_clk_ice",
-+				"ref_clk",
-+				"tx_lane0_sync_clk",
-+				"rx_lane0_sync_clk";
-+			clocks =3D
-+				<&gcc GCC_UFS_PHY_AXI_CLK>, // 200m
-+				<&gcc GCC_SYS_NOC_UFS_PHY_AXI_CLK>, // 200m
-+				<&gcc GCC_UFS_PHY_AHB_CLK>, // 0
-+				<&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>, // 150m
-+				<&gcc GCC_UFS_PHY_ICE_CORE_CLK>, // 300m
-+				<&rpmcc RPM_SMD_XO_CLK_SRC>, // 19.2m
-+				<&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>, // 0
-+				<&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>; // 0
-+
-+			freq-table-hz =3D
-+				<50000000 240000000>,
-+				<0 0>,
-+				<0 0>,
-+				<37500000 150000000>,
-+				<75000000 300000000>,
-+				<0 0>,
-+				<0 0>,
-+				<0 0>;
-+
-+			non-removable;
-+			status =3D "disabled";
-+		};
-+
-+		ufs_mem_phy: phy@4807000 {
-+			compatible =3D "qcom,sm6115-qmp-ufs-phy";
-+			reg =3D <0x04807000 0x1c4>;
-+			#address-cells =3D <1>;
-+			#size-cells =3D <1>;
-+			ranges;
-+
-+			power-domains =3D <&gcc UFS_PHY_GDSC>;
-+
-+			clock-names =3D "ref", "ref_aux";
-+			clocks =3D <&gcc GCC_UFS_MEM_CLKREF_CLK>,
-+					 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>;
-+
-+			resets =3D <&ufs_mem_hc 0>;
-+			reset-names =3D "ufsphy";
-+			status =3D "disabled";
-+
-+			ufs_mem_phy_lanes: lanes@4807400 {
-+				reg =3D <0x4807400 0x098>,
-+				      <0x4807600 0x130>,
-+				      <0x4807c00 0x16c>;
-+				#phy-cells =3D <0>;
-+			};
-+		};
-+
- 		usb3: usb@4ef8800 {
- 			compatible =3D "qcom,sm6125-dwc3", "qcom,dwc3";
- 			reg =3D <0x04ef8800 0x400>;
---=20
-2.38.1
+Due to some evilness in i2c that 'works' as long as the two arrays have
+matching entries.  As a general rule we prefer to have the data in both, check
+the firmware table first and only then fallback to i2c_device_id data on the
+basis it is less fragile.
+
+The evilness in i2c is that the search for match data will use the dt compatible
+stripped of the vendor prefix and string match that against the i2c_device_id table.
+
+Nice to clean this up, but not necessarily in this series (fine if it is though!)
+
+Jonathan
+
+> 
+> Best regards,
+> Krzysztof
+> 
 
