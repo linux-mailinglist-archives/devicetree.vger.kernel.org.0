@@ -2,137 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 225BF64E3D7
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 23:37:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B36F764E3E0
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 23:44:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229737AbiLOWht (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 17:37:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34418 "EHLO
+        id S229545AbiLOWof (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 17:44:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229937AbiLOWhf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 17:37:35 -0500
-Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [IPv6:2001:4b7a:2000:18::164])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C9055C0FD
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 14:37:34 -0800 (PST)
-Received: from SoMainline.org (94-209-172-39.cable.dynamic.v4.ziggo.nl [94.209.172.39])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S229480AbiLOWoe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 17:44:34 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 110CD58BF2;
+        Thu, 15 Dec 2022 14:44:32 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 1D61E1F676;
-        Thu, 15 Dec 2022 23:37:32 +0100 (CET)
-Date:   Thu, 15 Dec 2022 23:37:30 +0100
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 6/7] arm64: dts: qcom: sm8150: Add GPU speedbin support
-Message-ID: <20221215223730.4bijpy3qyplruksi@SoMainline.org>
-References: <20221213002423.259039-1-konrad.dybcio@linaro.org>
- <20221213002423.259039-7-konrad.dybcio@linaro.org>
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 85B3A61F7E;
+        Thu, 15 Dec 2022 22:44:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4482C433F1;
+        Thu, 15 Dec 2022 22:44:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1671144271;
+        bh=IKQVicmZa+NzOsuQkbhrI43xXaW9dkSeiyKFaMHEXGU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=reu6ORIBDjmj+NaI2VPlphQ1C3rw7uE6UQ/3umykfULW4+zOdFR8bn1G6XU5aKn7c
+         LyCEP9epwFzPVmAQYdfwzks20mJwP7dAmpzUnrAWp+rKThPR3JbP9695dnfmRy9UKA
+         aO9Pa/ADt6HFFkO15QWdACXUKKfUttM8ocuvc8CTzHrvQP+igjNDFBMD5tUfyVZpkj
+         IHGVy+mGkDJunHP5bACHs9e+2//Xor9wehDzJ5qxyygOTLrG7gfElURDyjpOtvw1le
+         kjET3Uo9l+Dt0iNsGoETi2xGccaSY4jl4ZouSmS6paYnDBplbt+iyrHdEeRS5kecOb
+         x3xlEQLTrjkmg==
+Received: by mail-vs1-f51.google.com with SMTP id f189so674944vsc.11;
+        Thu, 15 Dec 2022 14:44:31 -0800 (PST)
+X-Gm-Message-State: ANoB5pmzp2z/QMVVUvEkqcf6jlPVd6tg3jh/GcG5ozDCpwTREx1BoF7R
+        Tunn0QQFud6YDOHT8Yd6zWfe3Wg9KsJWf2eC3A==
+X-Google-Smtp-Source: AA0mqf7Xah6bJe8jpBmSQL7qsXrIKt2VijdrpF+vYJKrUW0CAcsDtzGS/id29S+KLpaBByrGk09scmFt9JwIS9GyenI=
+X-Received: by 2002:a67:c40e:0:b0:3b1:4b76:5b44 with SMTP id
+ c14-20020a67c40e000000b003b14b765b44mr11475861vsk.53.1671144270853; Thu, 15
+ Dec 2022 14:44:30 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221213002423.259039-7-konrad.dybcio@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20221214095342.937303-1-alexander.stein@ew.tq-group.com>
+ <CACRpkdbPy0krGYDdR4-Ga7tE=Wd6d2_KQ50b94VUvV=Zv=iBvA@mail.gmail.com>
+ <CAL_JsqJ0xY5e6mZB_smTCNm0HfsPTF64d0YgikmRx8FPzjxKCw@mail.gmail.com> <Y5uRBPsa4YCsAbj2@pendragon.ideasonboard.com>
+In-Reply-To: <Y5uRBPsa4YCsAbj2@pendragon.ideasonboard.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 15 Dec 2022 16:44:19 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLjA5AKJuNCDwBVsAoBmxBdcqf_LBHBwF9ObckUEr=epw@mail.gmail.com>
+Message-ID: <CAL_JsqLjA5AKJuNCDwBVsAoBmxBdcqf_LBHBwF9ObckUEr=epw@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 0/3] gpio: Add gpio-delay support
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Marek Vasut <marex@denx.de>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-12-13 01:24:22, Konrad Dybcio wrote:
-> SM8150 has (at least) two GPU speed bins. With the support added on the
-> driver side, wire up bin detection in the DTS to restrict lower-quality
-> SKUs from running at frequencies they were not validated at.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm8150.dtsi | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> index e160acb47cd9..3f940cc3f32b 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> @@ -936,6 +936,17 @@ ethernet: ethernet@20000 {
->  			status = "disabled";
->  		};
->  
-> +		qfprom: efuse@784000 {
-> +			compatible = "qcom,sm8150-qfprom", "qcom,qfprom";
-> +			reg = <0 0x00784000 0 0x8ff>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +
-> +			gpu_speed_bin: gpu_speed_bin@133 {
-> +				reg = <0x133 0x1>;
-> +				bits = <5 3>;
-> +			};
-> +		};
->  
->  		qupv3_id_0: geniqup@8c0000 {
->  			compatible = "qcom,geni-se-qup";
-> @@ -2137,6 +2148,9 @@ gpu: gpu@2c00000 {
->  
->  			qcom,gmu = <&gmu>;
->  
-> +			nvmem-cells = <&gpu_speed_bin>;
-> +			nvmem-cell-names = "speed_bin";
-> +
->  			status = "disabled";
->  
->  			zap-shader {
-> @@ -2150,31 +2164,37 @@ gpu_opp_table: opp-table {
+On Thu, Dec 15, 2022 at 3:26 PM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> On Thu, Dec 15, 2022 at 12:21:33PM -0600, Rob Herring wrote:
+> > On Thu, Dec 15, 2022 at 7:16 AM Linus Walleij wrote:
+> > > On Wed, Dec 14, 2022 at 10:53 AM Alexander Stein wrote:
+> > >
+> > > > thanks for the feedback I've received. This is the reworked RFC for
+> > > > adressing a platform specific ramp-up/ramp-down delay on GPIO outputs.
+> > > > Now the delays are neither specified as gpio-controller nor
+> > > > consumer-specific properties.
+> > > >
+> > > > v2 is a different approach than v1 in that it adds a new driver which will
+> > > > simply forward setting the GPIO output of specified GPIOs in OF node.
+> > > > The ramp-up/ramp-down delay can now be actually defined on consumer side,
+> > > > see Patch 1 or 3 for examples.
+> > >
+> > > I really like this approach, it looks better than I imagined.
+> >
+> > It seems over-engineered to me. So far no comments on my 3 suggestions either...
+>
+> I like the idea of handling this on the consumer's side, possibly with
+> standard foo-gpios-ramp-{up,down}-delay-us (name to be bikeshedded)
+> properties as you mentioned in the review of v1.
+>
+> > One is to just use some GPIO flag bits. Say 4-bits of GPIO flags
+> > encoded as power of 2 ramp delay. We have to pick the units. For
+> > example, 100us*2^N, which gives you 200us-3.2s of delay.
+>
+> This could probably work too.
+>
+> > Anything less is short enough to just hard code in a driver.
+>
+> In which driver though ? The whole point is that we should avoid
+> handling this in particular drivers.
 
-Just like sm8250, you can probably delete the:
+Okay, make the range 100us-1.63s and the minimum delay is 100us. Or
+50us-819ms? What's a small enough minimum that no one will care about
+the extra delay?
 
-    /* note: downstream checks gpu binning for 675 Mhz */
+One thing we don't want is DT authors putting a device's delay needs
+in here. Then we'll get coupling to the OS implementation or double
+delays. Something like this should be clear:
 
-comment right above this node.
+#define GPIO_THIS_IS_ONLY_THE_SIGNAL_RC_RAMP_TIME_100us
 
-- Marijn
+;)
 
->  				opp-675000000 {
->  					opp-hz = /bits/ 64 <675000000>;
->  					opp-level = <RPMH_REGULATOR_LEVEL_NOM_L1>;
-> +					opp-supported-hw = <0x2>;
->  				};
->  
->  				opp-585000000 {
->  					opp-hz = /bits/ 64 <585000000>;
->  					opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
-> +					opp-supported-hw = <0x3>;
->  				};
->  
->  				opp-499200000 {
->  					opp-hz = /bits/ 64 <499200000>;
->  					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L2>;
-> +					opp-supported-hw = <0x3>;
->  				};
->  
->  				opp-427000000 {
->  					opp-hz = /bits/ 64 <427000000>;
->  					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
-> +					opp-supported-hw = <0x3>;
->  				};
->  
->  				opp-345000000 {
->  					opp-hz = /bits/ 64 <345000000>;
->  					opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
-> +					opp-supported-hw = <0x3>;
->  				};
->  
->  				opp-257000000 {
->  					opp-hz = /bits/ 64 <257000000>;
->  					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
-> +					opp-supported-hw = <0x3>;
->  				};
->  			};
->  		};
-> -- 
-> 2.39.0
-> 
+Rob
