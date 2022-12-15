@@ -2,95 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D56A64D933
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 11:05:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0545F64D941
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 11:08:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229591AbiLOKFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 05:05:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57548 "EHLO
+        id S230196AbiLOKI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 05:08:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229484AbiLOKE7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 05:04:59 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31EE8E01C
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 02:04:58 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id b13so14863693lfo.3
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 02:04:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=PhN2XYtn7J73jwwatawtlTCUvIuMzsdbJcid9hDLoL4=;
-        b=Lm8OTSWWTKOIaHrz9Gx/4tWZyTEcio/UBx0u2JTuyhKfHjTdus4LM9pWuv3t8qqBRS
-         gWRhfP6W3heLyjpC4SuM5rqeojK8Ez/M2Hi2XvYlRLClUBxs/gieJ+t0uij+xK29ivan
-         ngdQdEKYDxMVNAfC7fX8j908QSyjYTGXnaqOJpyv8Rw+eBuNGAIozzwHWoBqsFprs+dV
-         yEsyV7SAcb2rrXwpnrZz/qUE46JqDVf0KFQxI+tEvFErTRjRkzXheu7aSgHroPzugabK
-         9sUH+4ipOHUFxrRMdEsIydEmifwAwZKB6w76dstUxr/Qyfl+FQkAbtED85G9me4Mda5v
-         tCMQ==
+        with ESMTP id S230137AbiLOKIZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 05:08:25 -0500
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 659B45F50;
+        Thu, 15 Dec 2022 02:08:25 -0800 (PST)
+Received: by mail-qt1-f177.google.com with SMTP id h16so4755893qtu.2;
+        Thu, 15 Dec 2022 02:08:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PhN2XYtn7J73jwwatawtlTCUvIuMzsdbJcid9hDLoL4=;
-        b=StexFlVOGqs12MDVladW9qGb1am0+cyNN8hgfoiU+OywDi6hj9d604yfH43pUswqnl
-         gHQBxem4hQcfcvsTnulIcZPm0tpYl3dVTIlbda180ALDUPn8RGMwdQSwx7zf9wq+4IIM
-         t/i6W7cMJuzbzdN0Z7Uwdl7B18zWLPKizz3zNoZAtUJVk9QHhLHoyiHje5dea7easQa8
-         E8v9LApqMOmwddVXasIQvdFzmLoMZkZi/Qfqzc9DMa2SEuXk9y6xbbE/u/5WNrmmeMUh
-         luuc1vwtC9WJmpPyVOo6h14BeY7xJyg8qR+z7BxhZAbgXMKaMbHhcN5AUNvbbArQbRxU
-         j52g==
-X-Gm-Message-State: ANoB5pnUyvwBI3YbdRSAfJuHen3TOFTH2IX22vGjKdy9QXTEv8B54n/X
-        6SiCYw0ZZXPDqvWcvBXQ0xq98A==
-X-Google-Smtp-Source: AA0mqf4ZdrUQKHCtrfWWP18oWgat1XAbxhaSPVuYNg18b4kxcqa43GhH+V5v3jgPX+Pwyr64hiJg+w==
-X-Received: by 2002:a19:f00b:0:b0:4b5:7dd6:4df0 with SMTP id p11-20020a19f00b000000b004b57dd64df0mr6635691lfc.32.1671098696529;
-        Thu, 15 Dec 2022 02:04:56 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id q8-20020ac25fc8000000b004b6efcb7bb5sm1122284lfg.169.2022.12.15.02.04.55
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CyC4bmCrq/k1NOP0H9lgD4zpFecxL+4K9IqBD2Pyo+0=;
+        b=hRPnisUE9eM5n9rycxxP0R3c5orrHtS1eTqp455kl54zhijPPBqcrWTPD2GK5E+vg5
+         hk5oiUazAtnJ0D2qhMT/ZuDG6OxOHSMp1ijlJuUdDhssdK8Pi0EM4JOsrn91dh6e8rh1
+         W6HsAqJOlbgL550oMrNm8d8tTzYuHBEDAtoTP4QxhFs8jd/AXovQispNl0q+cms71JYf
+         ZN4qi204A3v1YYdkJXqTI5hP3uxmfW8jCRlPbZWt5yC1Oh3hP9gDi9P53KswCnjdtT5Z
+         TYy9q9/aL2X8TsbapNmmj5iIe61ATd2/LvcFMM62JaG4JLfnqzTpgGTHbEfj7MTkBF33
+         sPjg==
+X-Gm-Message-State: ANoB5pksQkKNCQrnQoGzW3s/e50Din2KXOH4qXpVeSMepvJumttPiIL4
+        GGDU6+JMVNtbUBaDlIznVsCyc6k8zamYhw==
+X-Google-Smtp-Source: AA0mqf74Zlf2o2I6IUo8O8m8UCSPCV9EiIsoFnzcbnRTb+Vu1oQ2RVykudLDYJu/FlhdOkA4IZRB2g==
+X-Received: by 2002:a05:622a:5907:b0:3a6:7558:e0af with SMTP id ga7-20020a05622a590700b003a67558e0afmr41952267qtb.28.1671098904367;
+        Thu, 15 Dec 2022 02:08:24 -0800 (PST)
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
+        by smtp.gmail.com with ESMTPSA id j4-20020a05620a000400b006fba44843a5sm11290844qki.52.2022.12.15.02.08.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Dec 2022 02:04:56 -0800 (PST)
-Message-ID: <f3942ee4-46df-c36f-7d08-bd4d43389496@linaro.org>
-Date:   Thu, 15 Dec 2022 11:04:55 +0100
+        Thu, 15 Dec 2022 02:08:24 -0800 (PST)
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-3c090251d59so34724797b3.4;
+        Thu, 15 Dec 2022 02:08:23 -0800 (PST)
+X-Received: by 2002:a81:a8a:0:b0:37e:6806:a5f9 with SMTP id
+ 132-20020a810a8a000000b0037e6806a5f9mr12883745ywk.47.1671098903648; Thu, 15
+ Dec 2022 02:08:23 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v4] regulator: dt-bindings: Convert active-semi PMIC docs
- to YAML schemas
-Content-Language: en-US
-To:     Paul Cercueil <paul@crapouillou.net>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     list@opendingux.net, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20221214155152.14349-1-paul@crapouillou.net>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221214155152.14349-1-paul@crapouillou.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221209171836.71610-1-biju.das.jz@bp.renesas.com> <20221209171836.71610-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20221209171836.71610-2-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 15 Dec 2022 11:08:12 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWZRuBLD0pEfip0yPdWE2d=X9Hv2AFQP_xz-r1Ft2RQCA@mail.gmail.com>
+Message-ID: <CAMuHMdWZRuBLD0pEfip0yPdWE2d=X9Hv2AFQP_xz-r1Ft2RQCA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: usb: ti,hd3ss3220: Update interrupt
+ property as optional
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/12/2022 16:51, Paul Cercueil wrote:
-> Create YAML bindings for the Active-semi PMICs and remove the old text
-> files.
-> 
-> The bindings aren't perfect, for instance I couldn't find good
-> descriptions for the vendor properties in the "charger" node of the
-> ACT8945A because I am not familiar with the hardware and these
-> properties were not documented anywhere.
-> 
+On Fri, Dec 9, 2022 at 6:18 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> On some platforms(for eg: RZ/V2M EVK), interrupt is not populated. Update
+> the binding to make interrupt property as optional.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Gr{oetje,eeting}s,
 
-Best regards,
-Krzysztof
+                        Geert
 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
