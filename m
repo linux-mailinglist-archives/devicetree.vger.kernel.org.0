@@ -2,119 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8DA064D75D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 08:40:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A44364D7A2
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 09:19:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229787AbiLOHkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 02:40:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48276 "EHLO
+        id S229498AbiLOITs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 03:19:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229797AbiLOHkP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 02:40:15 -0500
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E5802F02E
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 23:40:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=MXbGZi/uT236kTlDo/a7an6Zgc9j
-        j3vGUMDH7t/LADA=; b=NC7nWVv6RWI3U1eApcT+54ZynNQXYEgXlKVQ/3SNNsLt
-        hig76LkqBM78+BElQycqYB3XWnoZhqPCPs+wG29f5o3yef5ynQ/YEKg0xCgzh80u
-        MhhkJkO6hfcaron+Nhx4La68lWsVZovpG2+msxcQTO9YmzQX7D4PIMkzH5FczSA=
-Received: (qmail 2279799 invoked from network); 15 Dec 2022 08:40:08 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 15 Dec 2022 08:40:08 +0100
-X-UD-Smtp-Session: l3s3148p1@vr1R9tjvOo4ujnt8
-Date:   Thu, 15 Dec 2022 08:40:07 +0100
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jacopo Mondi <jacopo@jmondi.org>
-Subject: Re: [PATCH 3/4] mmc: renesas_sdhi: Add RZ/V2M compatible string
-Message-ID: <Y5rPV0m5+8Dh6Bfe@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jacopo Mondi <jacopo@jmondi.org>
-References: <20221213230129.549968-1-fabrizio.castro.jz@renesas.com>
- <20221213230129.549968-4-fabrizio.castro.jz@renesas.com>
+        with ESMTP id S229653AbiLOITm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 03:19:42 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DD361A39A
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 00:19:41 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id g14so9148302ljh.10
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 00:19:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VSN2/dLk93fIRVrCh8N+0AmorCRCNEabm5sVB7MbO9A=;
+        b=XdVfWnxMN7fe1l0Uox7bvSuAbgsX4/G1RES/z7paJzDhpv428QfCL/0kIogX908QlD
+         aGv/khZLcysVMdTLJCBcB6/ZYVo4oC554CLmDd5jO+2AvHpepXsYktFm4twIxnb3ytOB
+         OKeH1f2/6KKVjFbIorzW3y29nVCxQW8/uQ1zHrzLEZXcIJJrhLR38FaqCcqiO4Zglg8y
+         1Adiu65jQjbdHisY8kdg8TB7nZJR6sgZOZm9tgq4UpNVwW4XJa1nzV3Y5KwmwZbNeISt
+         ztHQ8DZy4Sj4mZFL6Mw1+irWMEnH/QauYMHEErHbM7+JnGuxbpUhAQ2c/Q8M/vLy7f0v
+         wZsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VSN2/dLk93fIRVrCh8N+0AmorCRCNEabm5sVB7MbO9A=;
+        b=RKqriEYA8Jf8Tg9HjlX0h04N1WFo8MUXxsZbs8A5WCW4RwO3HArAXVsNfhgRtooGSV
+         aLIWPiHZe+dapGXpMyups9EdqHZ5J5VLvG6rs04MNZTXBx8i8207VRfBHyv773CO39Ly
+         nIzk7KMvVAWTw/6B1bKE0rOl4mwc32h8/S3qBHauriULmHplf23q3L9b6zM2A5iDf+Ft
+         17NgQkOhX5rLA7O+ls35cf/pZ6rzJnw7kTgt1ZOC5O8e6AlGXG/XtY1B9TA58k8c6/Au
+         FfvBih0qgAzgs3URqyJUrDwe9Gv6LY6StNUpo78Ajn8tzI/Y15c4KytPSkomcOidDy4K
+         ValA==
+X-Gm-Message-State: ANoB5plHiYIyR/3QnGZX4cSxwZinOltTbDucf1oXsm6oPUFKIHgBYA6x
+        +qVgMOsIR2Hl5TbnImjmHk1JiA==
+X-Google-Smtp-Source: AA0mqf7eZY/U6gUBEczTfy7RT19UpsBoMLFLoSgY1p+EcMD9LW0qs3VPqpFnkdT6sSo2Jsp8NA7oog==
+X-Received: by 2002:a05:651c:908:b0:26f:db35:ec37 with SMTP id e8-20020a05651c090800b0026fdb35ec37mr6562339ljq.17.1671092379312;
+        Thu, 15 Dec 2022 00:19:39 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id u16-20020a2eb810000000b00277041268absm781179ljo.78.2022.12.15.00.19.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Dec 2022 00:19:38 -0800 (PST)
+Message-ID: <f77cc097-56ac-845f-9882-e67aab82b02c@linaro.org>
+Date:   Thu, 15 Dec 2022 09:19:37 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="IfgYU8RXIPQ3Ptmi"
-Content-Disposition: inline
-In-Reply-To: <20221213230129.549968-4-fabrizio.castro.jz@renesas.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sm6115: Add USB SS qmp phy node
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     agross@kernel.org, bhupesh.linux@gmail.com,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        konrad.dybcio@linaro.org, andersson@kernel.org
+References: <20221214203124.564537-1-bhupesh.sharma@linaro.org>
+ <20221214203124.564537-4-bhupesh.sharma@linaro.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221214203124.564537-4-bhupesh.sharma@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 14/12/2022 21:31, Bhupesh Sharma wrote:
+> Add USB superspeed qmp phy node to dtsi.
+> Make sure that the oneplus board dts (which includes the
+> sm4250.dtsi) continues to work as intended.
+> 
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> ---
+>  .../boot/dts/qcom/sm4250-oneplus-billie2.dts  |  3 ++
+>  arch/arm64/boot/dts/qcom/sm6115.dtsi          | 38 ++++++++++++++++++-
+>  2 files changed, 39 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
+> index 3f39f25e0721e..4f0d65574448b 100644
+> --- a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
+> @@ -232,6 +232,9 @@ &usb {
+>  &usb_dwc3 {
+>  	maximum-speed = "high-speed";
+>  	dr_mode = "peripheral";
+> +
+> +	phys = <&usb_hsphy>;
+> +	phy-names = "usb2-phy";
+>  };
+>  
+>  &usb_hsphy {
+> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> index e4ce135264f3d..15f311dcd289f 100644
+> --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> @@ -579,6 +579,40 @@ usb_hsphy: phy@1613000 {
+>  			status = "disabled";
+>  		};
+>  
+> +		usb_qmpphy: phy@1615000 {
+> +			compatible = "qcom,sm6115-qmp-usb3-phy";
+> +			reg = <0x01615000 0x200>;
+> +			clocks = <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
+> +				 <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
+> +				 <&gcc GCC_AHB2PHY_USB_CLK>;
+> +			clock-names = "com_aux",
+> +				      "ref",
+> +				      "cfg_ahb";
+> +			resets = <&gcc GCC_USB3_PHY_PRIM_SP0_BCR>,
+> +				 <&gcc GCC_USB3PHY_PHY_PRIM_SP0_BCR>;
+> +			reset-names = "phy", "phy_phy";
+> +			status = "disabled";
+> +			#clock-cells = <1>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges;
+> +
+> +			usb_ssphy: phy@1615200 {
+> +				reg = <0x01615200 0x200>,
+> +				      <0x01615400 0x200>,
+> +				      <0x01615c00 0x400>,
+> +				      <0x01615600 0x200>,
+> +				      <0x01615800 0x200>,
+> +				      <0x01615a00 0x100>;
+> +				#phy-cells = <0>;
+> +				#clock-cells = <1>;
+> +				clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+> +				clock-names = "pipe0";
+> +				clock-output-names = "usb3_phy_pipe_clk_src";
+> +			};
+> +		};
+> +
+> +
 
---IfgYU8RXIPQ3Ptmi
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Still two blank lines.
 
-On Tue, Dec 13, 2022 at 11:01:28PM +0000, Fabrizio Castro wrote:
-> The SDHI/eMMC IPs found with the RZ/V2M (a.k.a. r9a09g011), are
-> very similar to the ones found in R-Car Gen3, but they are not
-> exactly the same, and as a result need an SoC specific compatible
-> string for fine tuning driver support.
->=20
-> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Best regards,
+Krzysztof
 
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-
-> +static const struct renesas_sdhi_quirks sdhi_quirks_r9a09g011 =3D {
-> +	.fixed_addr_mode =3D true,
-> +	.hs400_disabled =3D true,
-> +};
-
-Cool, seems like our quirk abstraction works reasonably well :)
-
-
---IfgYU8RXIPQ3Ptmi
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmOaz1cACgkQFA3kzBSg
-Kbaw2RAAgL3RbR6t3/4u7yW4JYFKMjdthimKC9C2pKEy5N0poM/F/cTzTfFn+FTO
-qTkPwmcPKEUSNa0QUwGQ3wFDpFEEm4MV/86p+uaYzQV7XLp5Xcbx3g7de15FC8mf
-kU9UrLeWZg9ut62WaV9TVxo5lsiml1iGuG1/LsFkNy49OHqHY1ZHr7+NwcQDwAst
-toexiP4n2F47ZpW/JGubvZvbmuac+6Df6VzNaggfRj+q68hqjOmC42uQ3timJe7w
-Ts7/TgETLtSFMSHN5CKBUeNVzdumKIHX3DwHn/vSC8c+0SvW5QAu0/JiUc5ievx/
-jRvEr3t3WoHh7E3S9EUmQFI5MMOwob4atl7aGM887Ic8Fkhd2w9rcyJsqFV9aDlE
-C6TvVi5dwTC5wh5iOM5HroqnrXaf4btXMirULevey6pkM6nh93v20RRdJg1zNAFh
-Mz7d2/gJolSpNlkyhsOj3Ot4JxydIRtHfV9VsujzBYbTgrnW8IGsnjxTneg4J+Xf
-bwHGWjz1yqAjlbAf4P0dOgvjOqbRybWI0/2JW2JLseqOHBVOn2iiS1Oi4RogYNaf
-RwiCa+Bre4li1HVU1/WzD9ZrQdzG6Mj3a2bnj0Dam4HpuW507b+SjevZmeQHN2lz
-3s/8jJbWUgLEZMMo7QReNMB+TbspE3I81CZgeNTUpOT/qBz1EOA=
-=J7AR
------END PGP SIGNATURE-----
-
---IfgYU8RXIPQ3Ptmi--
