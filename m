@@ -2,71 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94CE064D9CF
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 11:55:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9950664D9D9
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 11:57:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229897AbiLOKzp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 05:55:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55764 "EHLO
+        id S230020AbiLOK5S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 05:57:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229798AbiLOKzl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 05:55:41 -0500
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F298F5
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 02:55:36 -0800 (PST)
-Received: by mail-ot1-x332.google.com with SMTP id v19-20020a9d5a13000000b0066e82a3872dso3349937oth.5
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 02:55:36 -0800 (PST)
+        with ESMTP id S229996AbiLOK5M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 05:57:12 -0500
+Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC26D2E68F
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 02:57:09 -0800 (PST)
+Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-3e78d07ab4fso35664027b3.9
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 02:57:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=KCza8Y681Ao9e1rZQSUK5V1OXCO8eMctom4dqQfNHfc=;
-        b=fAB7Z9WfgmVcTkFWFzFuxR5lftYNCATZdu+ycm3oWGD8yZFVfpvyn2b90dZwd4q5Ro
-         BW1pBNqTY9SzYkA5f0b6VeyLzdjPdH6Jblhf4sNHuuv/jmwhNFN0YJnXFZEskaVWkl1J
-         B2LXpmfUf9OVko8KgujbHoKBZ5c5e+KTwwEz9tHHvvdNY/RFsnevCNf9OgCuQF4ZGey7
-         wYn3oFQlUB7vhJPBprKglwdDE+owiBu5VKppU+IT9ix8tFrlQS8pG+5hldjeUzoLkPvL
-         9puEy4LT93lvLyr3H843v84+otu09aBiATP0M17x/5P9l5EMJ8o03PYjUfx6ncFVIoZD
-         unQg==
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=t8xgawo/jT/WZB/xT4ixkGLWrHF5TMWAcVs3g9/8wqM=;
+        b=jlsR4CANeGOPhodCJDcVVzLcZmuoOrfnfctYMh8Ey/rJNSAAAw+PSh+sbPCy00CMUK
+         +EcuJxF3cRH9/eOVyCUHRUyj7IBe9uSb3OB/+No52R/Ugx8fhZWwicEcQzCnuu262q9G
+         KsTr/mfM40zKo98uKSl0eqRXA7ZqRu0iMDTVZVbfEyrelxLZiofP2TkXZ56AhNuPXbyA
+         GHRHkVqXZX7RkLHY8+rvBhfAHfXiwrhjBPD5VKO3P6kifO0dhT8+Dvk5xuGvyYfNAskB
+         h3kX/j0TSSJUd4VL4z2raZbGbRQTUCOaam6tcG2LE425F+r3YceUrdFTUNsPKWFq279x
+         jqpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KCza8Y681Ao9e1rZQSUK5V1OXCO8eMctom4dqQfNHfc=;
-        b=KM6CQFxlSBxE+4BcEaB2q4ov0xngXyzBf7Ygi7+l3Ku0F+CsyPqZpMTIY+q7zSKzSK
-         CkCxTcGPkqpOFriKyds6gcNHcR8PovxlGgiAp7oI7CCxdn3OpxrKp05gx+I8VhrcxcrL
-         V9EE382GSuK2d1+DLs9tb9qtpQboK7LK4HmzJoYXYWRZ0zmB2YwXWmsDoRD6W3lG46F+
-         ONeeKv44Xt1409S2cMxUlO5UP1ban6VIAfY7Ra6qo11a5rsGHtdC6DYQU51TfDt7SnYF
-         LMjnkYl6atCWAygByil/tWmz/pDsTWCFZz8Rh7pgRinS1s0YHj6tMmlQWqpipTvIqYVt
-         +H+A==
-X-Gm-Message-State: ANoB5pmdO4e1BI8ziFa18iYibLXszS1jJIWjItcNnU99IrVLHeen0DCd
-        cPBrqV3b/NO6QH1WYgV9gUTfmd86JWE39LlWox7z3g==
-X-Google-Smtp-Source: AA0mqf6vsiFLO4/fq3hCYI2rVV8TLsFliRqkLUvOPWWBRTNBOF0C+HX+cqTaN7IbwDGYSImtaqxOh0Nf19rdCpKkX+Q=
-X-Received: by 2002:a9d:6a42:0:b0:66d:a838:aa60 with SMTP id
- h2-20020a9d6a42000000b0066da838aa60mr46266563otn.104.1671101735831; Thu, 15
- Dec 2022 02:55:35 -0800 (PST)
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=t8xgawo/jT/WZB/xT4ixkGLWrHF5TMWAcVs3g9/8wqM=;
+        b=piptzrUia1KfG5OrXNVaMGIlm33sxBSzgtbIreVkznPHmMguHPoYImJpl7S9ylnmSB
+         OdTNhXeOBNUDszUjNUX/rEx9Y7kTRoxSWsl7DT12j+MDUbENnwfcHCkA4CczM50t9Enc
+         cE+kX/9ymCaoqFFqpbKe3LAt/BxhybWGK0Gly67ViZe4CFIIv2P0MGFjeKHCLrjuZkek
+         DtVMJHrzKmLjHepAdTRW1wwXj3STf0BPv3HZTc3RPuXGSsJI5VGpzppRb/rCLvJ13OZx
+         LHBgvSwBvhUFmbUTW7n2nnpbrVg4EXwOepeDHdERjHlKcbjUzRMkcz9HNtzf0VJnF2kd
+         Hhcw==
+X-Gm-Message-State: ANoB5plhT8+UtrhpcU/wuQ5N3c3UGxml1kqe30cac+vqMePwDhZgNaxA
+        ouBuIta9BTNwvbKju1OkLxCqALbPfqqAXaqLvW1otg==
+X-Google-Smtp-Source: AA0mqf5WA/yjmATtBLSYZL0zvHYGqaiWB2l82pIOL8Qz2xIElIRNP7vVCdcT5pILwpKUYt0VTR2oXUVbwfaHew1gcFc=
+X-Received: by 2002:a81:b54b:0:b0:391:f64b:e3bb with SMTP id
+ c11-20020a81b54b000000b00391f64be3bbmr26240950ywk.49.1671101829025; Thu, 15
+ Dec 2022 02:57:09 -0800 (PST)
 MIME-Version: 1.0
-References: <20221214125821.12489-1-paul@crapouillou.net> <20221214125821.12489-2-paul@crapouillou.net>
-In-Reply-To: <20221214125821.12489-2-paul@crapouillou.net>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Thu, 15 Dec 2022 11:55:24 +0100
-Message-ID: <CAG3jFytgK0noWteGvXTdSm9as9Q=qfhf_ep3Z8Wv2ofmLzGb=A@mail.gmail.com>
-Subject: Re: [PATCH 01/10] dt-bindings: display: bridge: it66121: Add
- compatible string for IT6610
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Phong LE <ple@baylibre.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+References: <20221212103525.231298-1-alexander.stein@ew.tq-group.com>
+ <20221212103525.231298-2-alexander.stein@ew.tq-group.com> <CACRpkdYioW1GROHFxA1vuAEiXqHh6fAu5CXNLcTvW_w3mWjSPw@mail.gmail.com>
+ <Y5hl1Sb8csSkbrDh@pendragon.ideasonboard.com>
+In-Reply-To: <Y5hl1Sb8csSkbrDh@pendragon.ideasonboard.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 15 Dec 2022 11:56:57 +0100
+Message-ID: <CACRpkdZ2G=HUTBMpXJrXeSh3kYgQQc8p8zaJZPL71HWA9362ZA@mail.gmail.com>
+Subject: Re: [RFC PATCH 1/3] dt-bindings: gpio: Add optional ramp-up delay property
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        list@opendingux.net, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Marek Vasut <marex@denx.de>, Mark Brown <broonie@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -76,33 +73,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Dec 2022 at 13:58, Paul Cercueil <paul@crapouillou.net> wrote:
->
-> Add a new ite,it6610 compatible string to the IT66121 binding
-> documentation, since the two chips are very similar.
->
-> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-> ---
->  .../devicetree/bindings/display/bridge/ite,it66121.yaml       | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
-> index 1b2185be92cd..72957be0ba3c 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
-> @@ -17,7 +17,9 @@ description: |
->
->  properties:
->    compatible:
-> -    const: ite,it66121
-> +    enum:
-> +      - ite,it66121
-> +      - ite,it6610
->
->    reg:
->      maxItems: 1
-> --
-> 2.35.1
->
+Hi Laurent,
 
-Reviewed-by: Robert Foss <robert.foss@linaro.org>
+thanks for the detailed brief!
+
+On Tue, Dec 13, 2022 at 12:45 PM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+
+> The circuit we're looking at is
+>
+>   +----------+           +-----------+
+>   | SoC      |           |    VCC    |
+>   |          |           |     |     |
+>   |          |           |     _     |
+>   |          |           |    | | R  |
+>   |          |           |    |_|    |
+>   |          |           |     |     |
+>   |      [IOx|-----+-----|EN]--+     |
+>   |          |     |     |           |
+>   |          |     |     | SN65DSI83 |
+>   +----------+    --- C  +-----------+
+>                   ---
+>                    |
+>                    -
+>                   GND
+>
+> The IOx pin is an open-drain output, the board has a 470nF capacitor to
+> ground, and the SN65DSI83 has an internal pull-up off 200k=CE=A9. This gi=
+ves
+> an RC time constant of 94ms, far from being negligible.
+>
+> The delay is caused by the combination of the open-drain nature of the
+> output (an intrinsic property of the GPIO controller), the pull-up
+> resistor (an intrinsic property of the SN65DSI83) and the capacitor on
+> the line (a property of the board). DT is notoriously bad at modelling
+> this kind of setup.
+
+Yeah :/
+
+It's not like we don't model discrete electronics, we do that a lot,
+but as you say, it is really hard to know where to draw the line
+in cases like this.
+
+> The alternative I proposed, adding a "GPIO delay" DT node to model this,
+> would also offer a centralized solution to the problem, but with
+> additional complexity both at probe time and runtime.
+
+I have a slight preference for this, as it will be very explicit in the
+device tree and we can just put all the code inside its own file and
+depend on GPIO_OF so other HW description systems do not
+need to include it.
+
+At the same time it feels a bit overengineered, so maybe just adding
+this delay as in the patch with some strings attached like comments
+and docs is yet the best. It feels like we need some more input to
+reach consensus.
+
+> The regulator delays model the intrinsic delays when enabling or
+> disabling a regulator, and they should stay. They address a different
+> problem.
+
+OK right. But someone not knowing exactly what they are doing
+will end up abusing the delay property on the delay line
+also for this delay. The risk of that is lesser with a separate
+delay box.
+
+Yours,
+Linus Walleij
