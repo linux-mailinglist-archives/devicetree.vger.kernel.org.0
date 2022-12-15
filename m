@@ -2,150 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4400864E032
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 19:07:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 783A564E03D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 19:11:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229471AbiLOSHH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 13:07:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40156 "EHLO
+        id S230213AbiLOSLE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 13:11:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229652AbiLOSHG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 13:07:06 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5606B1837C;
-        Thu, 15 Dec 2022 10:07:04 -0800 (PST)
-Received: from mercury (dyndsl-095-033-168-084.ewe-ip-backbone.de [95.33.168.84])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1B46F6602C74;
-        Thu, 15 Dec 2022 18:07:02 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1671127622;
-        bh=dH1RKEdVew6ZLUn/Lg6/y50BwP8UTVQcbVljZOXBe64=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QlKhDzWdwXtRrPLm9i1lmRVAsKnqCDi+bv+nnY9xWDeQl5d2i8ct3pSnnmYts4sOG
-         V4dyVbJuj9LvkdONDn0iz2yvDCYsQO1COb9NyxfCecSKcMXtVYEmtJqr3rThG4nJ9m
-         juOmV5/XoT0BfjqABlKit5Dlnv1PMuvhTvpk18dsiMWPXMaU7zIgzfJS+L/FZ4ZtpT
-         gQW4AFtS1/8jVu+ti3GSNddrz78IiVz13lxAMyahOrWbN8FgMWS7bOB9Xwo94gUjaF
-         1WvGvWB5lzjGrTcsdCWbZ7HIhL8dzIc8q5Amy3dJqKKf/2MwWJSfwylJKBgZWrbqif
-         i19laCbLgxvcQ==
-Received: by mercury (Postfix, from userid 1000)
-        id 3ACFF1060F45; Thu, 15 Dec 2022 19:06:59 +0100 (CET)
-Date:   Thu, 15 Dec 2022 19:06:59 +0100
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Marek Vasut <marex@denx.de>
-Cc:     devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-rtc@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] dt-bindings: rtc: m41t80: Mark the clock: subnode
- as deprecated
-Message-ID: <20221215180659.sa54lkinwxoiz7bb@mercury.elektranox.org>
-References: <20221211205124.23823-1-marex@denx.de>
- <20221211205124.23823-2-marex@denx.de>
+        with ESMTP id S230078AbiLOSK7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 13:10:59 -0500
+Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23BEA37207
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 10:10:57 -0800 (PST)
+Received: by mail-qt1-x832.google.com with SMTP id fz10so217786qtb.3
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 10:10:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ieee.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YG+0Rm2jjJBdDqmN8Ttr20QoiXVl3Uv9oEGlc46bveo=;
+        b=ZB0jhIhSEOHra6B1YQUlgFF+ymijtV1D53w5jNp8hIlXEZ3u0UAMnjYbgnh2hnB+iE
+         3VS0fAoDYKYvlash2fysc5pxkb1NhqbStXUUfzySkOLx7rf0wl0Xl5wtGpmtZ0HU6iTy
+         PF4Vpj8ec/A/AliXDJ5Qbcx/w1d9GYrXkz6Yw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YG+0Rm2jjJBdDqmN8Ttr20QoiXVl3Uv9oEGlc46bveo=;
+        b=IkPp7M+os3qKUcRFpPRfCbKyydohUAociwjtbn9FmBsKfcZZhSwxIN9MdISmvyW1Ez
+         wb5MJ3Wt3eA5CXjNle9SAQ4tT2kxbfdRLkWHmn3tgdC/3sf/QcWTL5rYKl2wpJRXRU1t
+         iSTCXl8dJiMM6If3I/2G/QKmyQa6wJSu3Qy0ALiyjULtgA1gIMsdCS5piGRpAba1safJ
+         BlnJwcbnP3ETcdKldJRJ7HM0nBsesDA6y+I2Y+TfJW1Gdhc/DgOsrs0w6rvTI9JVSLke
+         4JJ2+iCLaw8aJxfSon1FJygNzm3O0FDsNd0bzFp4DxD+qNqSWqfe8tZKff38ZdqxW4Ru
+         mSFw==
+X-Gm-Message-State: ANoB5plsICvjfprE4URIKwNr6UBHvrApPtt/4hYWbM2UkyZdxlODY/OF
+        cSwUgiJnMOqFOvJE/DihehTorw==
+X-Google-Smtp-Source: AA0mqf7RBcIiUGEjs2ruJb5Gpo9nNZ2fWhTarkZrIs3D93QDLsw2nGS8V3n0HJDN/Gyk5WAvvkkFBw==
+X-Received: by 2002:a05:622a:1cce:b0:3a8:28b2:af69 with SMTP id bc14-20020a05622a1cce00b003a828b2af69mr10952843qtb.58.1671127856216;
+        Thu, 15 Dec 2022 10:10:56 -0800 (PST)
+Received: from [172.22.22.4] ([98.61.227.136])
+        by smtp.googlemail.com with ESMTPSA id o25-20020ac86999000000b003a5430ee366sm3894807qtq.60.2022.12.15.10.10.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Dec 2022 10:10:55 -0800 (PST)
+Message-ID: <6ec85678-9029-4725-eadf-39e814ff807d@ieee.org>
+Date:   Thu, 15 Dec 2022 12:10:54 -0600
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ulyyuijbxyhtsviv"
-Content-Disposition: inline
-In-Reply-To: <20221211205124.23823-2-marex@denx.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: enable IPA in
+ sc7280-herobrine-lte-sku.dtsi
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Alex Elder <elder@linaro.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     elder@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221208183837.505454-1-elder@linaro.org>
+ <a5ec259a-9f78-a54d-c15a-291f192ee220@quicinc.com>
+ <78cd38f1-6ebc-097c-07f1-f7a028f07315@linaro.org>
+From:   Alex Elder <elder@ieee.org>
+In-Reply-To: <78cd38f1-6ebc-097c-07f1-f7a028f07315@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 12/15/22 12:01 PM, Konrad Dybcio wrote:
+> 
+> 
+> On 15.12.2022 18:38, Sibi Sankar wrote:
+>> Alex,
+>>
+>> Thanks for the patch.
+>>
+>> On 12/9/22 00:08, Alex Elder wrote:
+>>> IPA is only needed on a platform if it includes a modem, and not all
+>>> SC7280 SoC variants do.  The file "sc7280-herobrine-lte-sku.dtsi" is
+>>> used to encapsulate definitions related to Chrome OS SC7280 devices
+>>> where a modem is present, and that's the proper place for the IPA
+>>> node to be enabled.
+>>>
+>>> Currently IPA is enabled in "sc7280-idp.dtsi", which is included by
+>>> DTS files for Qualcomm reference platforms (all of which include the
+>>> modem).  That also includes "sc7280-herobrine-lte-sku.dtsi", so
+>>> enabling IPA there would make it unnecessary for "sc7280-idp.dtsi"
+>>> to enable it.
+>>>
+>>> The only other place IPA is enabled is "sc7280-qcard.dtsi".
+>>> That file is included only by "sc7280-herobrine.dtsi", which
+>>> is (eventually) included only by these top-level DTS files:
+>>>     sc7280-herobrine-crd.dts
+>>>     sc7280-herobrine-herobrine-r1.dts
+>>>     sc7280-herobrine-evoker.dts
+>>>     sc7280-herobrine-evoker-lte.dts
+>>>     sc7280-herobrine-villager-r0.dts
+>>>     sc7280-herobrine-villager-r1.dts
+>>>     sc7280-herobrine-villager-r1-lte.dts
+>>> All of but two of these include "sc7280-herobrine-lte-sku.dtsi", and
+>>> for those cases, enabling IPA there means there is no need for it to
+>>> be enabled in "sc7280-qcard.dtsi".
+>>>
+>>> The two remaining cases will no longer enable IPA as a result of
+>>> this change:
+>>>     sc7280-herobrine-evoker.dts
+>>>     sc7280-herobrine-villager-r1.dts
+>>> Both of these have "lte" counterparts, and are meant to represent
+>>> board variants that do *not* have a modem.
+>>>
+>>> This is exactly the desired configuration.
+>>>
+>>> Signed-off-by: Alex Elder <elder@linaro.org>
+>>> ---
+>>>    arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi | 5 +++++
+>>>    arch/arm64/boot/dts/qcom/sc7280-idp.dtsi               | 5 -----
+>>>    arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi             | 5 -----
+>>>    3 files changed, 5 insertions(+), 10 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
+>>> index ad66e5e9db4ed..956708397f035 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
+>>> @@ -34,3 +34,8 @@ &remoteproc_mpss {
+>>>    &rmtfs_mem {
+>>>        reg = <0x0 0x9c900000 0x0 0x800000>;
+>>>    };
+>>> +
+>>> +&ipa {
+>>> +    status = "okay";
+>>> +    modem-init;
+>>> +};
+>>
+>> nit; You'll probably want to move the ipa node above remoteproc node to
+>> maintain sorting.
+>>
+>> Reviewed-by: Sibi Sankar <quic_sibis@quicinc.com>
+>> Tested-by: Sibi Sankar <quic_sibis@quicinc.com>
+> That + please flip the property order, as we're trying to
+> keep status last wherever possible.
 
---ulyyuijbxyhtsviv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thank you, I'll post version 2 this afternoon.	-Alex
 
-Hi,
+> 
+> Konrad
+>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>>> index f7efb9966afd1..0ddbe7f732bd9 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>>> @@ -376,11 +376,6 @@ &gpi_dma1 {
+>>>        status = "okay";
+>>>    };
+>>>    -&ipa {
+>>> -    status = "okay";
+>>> -    modem-init;
+>>> -};
+>>> -
+>>>    &lpass_cpu {
+>>>        status = "okay";
+>>>    diff --git a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
+>>> index df49564ae6dc1..cd6ee84b36fd4 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
+>>> @@ -336,11 +336,6 @@ vreg_bob: bob {
+>>>      /* ADDITIONS TO NODES DEFINED IN PARENT DEVICE TREE FILES */
+>>>    -&ipa {
+>>> -    status = "okay";
+>>> -    modem-init;
+>>> -};
+>>> -
+>>>    &lpass_va_macro {
+>>>        vdd-micb-supply = <&vreg_bob>;
+>>>    };
 
-On Sun, Dec 11, 2022 at 09:51:24PM +0100, Marek Vasut wrote:
-> The clock {} subnode seems like it is describing an always-on clock
-> generated by the PMIC. This should rather be modeled by consumer of
-> the clock taking phandle to the RTC node itself, since it already
-> does have clock-cells and all. Since there are no users of the clock
-> subnode in tree anyway, mark it as deprecated to avoid proliferation
-> of this approach.
->=20
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Alessandro Zummo <a.zummo@towertech.it>
-> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: linux-rtc@vger.kernel.org
-> To: devicetree@vger.kernel.org
-> ---
-> V2: - Add AB from Krzysztof
-> V3: - No change
-> ---
-
-I just noticed this by accident. Basically everything in the patch
-description is wrong:
-
-1. There is a in-tree user: arch/arm/boot/dts/imx6dl-qmx6.dtsi
-2. The PMIC has nothing to do with this
-3. Directly referencing the RTC does not work, since that introduces
-   an unsolvable dependency loop on QMX6. This was the solution accepted
-   by Rob and Saravana:
-
-[v1] https://lore.kernel.org/lkml/20210222171247.97609-1-sebastian.reichel@=
-collabora.com/
-[v2] https://lore.kernel.org/all/20210428222953.235280-1-sebastian.reichel@=
-collabora.com/
-
--- Sebastian
-
->  Documentation/devicetree/bindings/rtc/st,m41t80.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/rtc/st,m41t80.yaml b/Docum=
-entation/devicetree/bindings/rtc/st,m41t80.yaml
-> index fc9c6da6483f5..03ff833f5fe9d 100644
-> --- a/Documentation/devicetree/bindings/rtc/st,m41t80.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/st,m41t80.yaml
-> @@ -40,6 +40,7 @@ properties:
->    clock:
->      type: object
->      $ref: /schemas/clock/fixed-clock.yaml#
-> +    deprecated: true
->      properties:
->        clock-frequency:
->          const: 32768
-> --=20
-> 2.35.1
->=20
-
---ulyyuijbxyhtsviv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmObYjoACgkQ2O7X88g7
-+ppEEw//VmYXS7L0/Pcf905n7m3B7uPtRM8YGZRwZsgDP1p/1rOHcjOdffGP7TGr
-qr3xZfAEYlDyAF8qmwVYht8Bos8Nq2loREki7pC7OwIwgC38674VwaTcmeCExv+a
-TpQiJiDlcelEU+sp7VuF9YZ904EQ2BlTPJBUlQGECTdgdhp2jTY+1x81xwn9qQFl
-q4Iuv1V8tn157qs6x77J4Ci6OtDIZkJqXtNfe6F2diflXHOD20n/k2FWDph50e9R
-VW6JtmA3X8EowhEg1htD9QZtkD2uIAWmBlTe0dMBESn4WTKRBY3i0icxfLJcKvB0
-XIwAQE13lwv9keZU2QbVE3Qx4c/TXaKah6i9fQU9HEdk+BHk/V83js81hzgvv+7O
-LDPOHfuSOp13Lze0gQ3JG8p5p9mHDn7LCGqe4eukn4HZFEIBfL0VUF6s/J2otQLx
-QJaQqFmtz3jCCh34WUrJy8HM0VQMiNvbWuYd5YpraEFbmw2onH03bdeieo5fI6IC
-V9nq3exVaU5SMKNhE08jHbPqCbaJ4tNZvHD09Aw54jB7YPGluz/qwk0xH+wqeLzh
-wGBfyyB/cOhC05Pzu3PTY3tleTUde8VBhV8/0LvI2A0MoY1JgYjw06wZ6nZvC/tU
-dx6VrH1cOdVp7+L8LttH+R5a+kyB5bzIQ9FS4Lii9M/raQnkYUg=
-=QDl+
------END PGP SIGNATURE-----
-
---ulyyuijbxyhtsviv--
