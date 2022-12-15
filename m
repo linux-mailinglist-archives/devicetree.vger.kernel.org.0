@@ -2,134 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1507064DE13
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 16:51:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E04464DE2D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 17:06:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230018AbiLOPvr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 10:51:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35122 "EHLO
+        id S229882AbiLOQGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 11:06:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229705AbiLOPvp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 10:51:45 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 086F22EF08
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 07:51:44 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id v7so14133188wmn.0
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 07:51:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=V2cRcfojGiF9qQEX9U8QFOzZLig/2FAjtxG+CBJEBFo=;
-        b=bVgJyDTvQ2d+crPVf0qEjj/SXvuxIZeFKQITUxl2atDfl2hEcbxwgt9LyrHVid2lUS
-         uIF78Zw09fK3Za5eMw03H0Tfgf6xXFVAtee5guOt6PU2dIgML8wI/QVuit8Kpmhi6p+1
-         7bUZH4srlxGuaBfE+k/GGTcv8bnM0yct37Jn0ECFYZBNGKN+iTW6Ywj/ZylY81SWbP2V
-         QpkDpq3+HsdbmHK82gn970aupr7h8L9oJ1NUJJ+/MMGtzIzYOKxxDYdOiBJcCyjpEMpG
-         kHPXwZUDFjkvO7DfXHxYcIdZZRWmVCvGHASdRW2D4gDqAFhfKzhuwUguMqzgVE/38a7Y
-         bqzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=V2cRcfojGiF9qQEX9U8QFOzZLig/2FAjtxG+CBJEBFo=;
-        b=pCLEle2eQatSulf9pGHaO0CCrF8LUGeAyS5isb2niHVf0w7SuhexBQz7XEVgwxOHlO
-         4qfXdyHc+1lFa6Jv97AdVa9DnhXiX284Pi2uaILOLJMkNktQMcVw3AUyeXp67rYpxtbJ
-         nctnyLjwWSsTY4AX5i9cJXbwXd072z5v6m6Acf0JaTXTjsNjndO+NTvJpOLyEvYla2Y3
-         xKDYeM95tUHgycoPqQLTnklj2xbrYp9hS1aMfurBB/tCGlEiHK0tpgsAkud6orDRhVw0
-         XwiPURC/Bm6q34SJUHNe8ule0qyqCnp8Q/18nObPdemOfkDaafx2mbrCxG75eC9d+SJP
-         ZNJw==
-X-Gm-Message-State: ANoB5pn0MkyJ35xECMWjnHxFYk/EEhsGsdxLf1KAi7DXYRPf7mWbzszb
-        bSZj2VuWQpA3v8m0Z4+eOq5ZzA==
-X-Google-Smtp-Source: AA0mqf5T28A1fwwJEdZX35EQu5OSksBT6KKYLBeLzZpR+52DmK8gZxNd3JNVBBNn8gPpdSKSQ71WGQ==
-X-Received: by 2002:a05:600c:2101:b0:3cf:e850:4451 with SMTP id u1-20020a05600c210100b003cfe8504451mr22559864wml.9.1671119502537;
-        Thu, 15 Dec 2022 07:51:42 -0800 (PST)
-Received: from [192.168.1.91] (192.201.68.85.rev.sfr.net. [85.68.201.192])
-        by smtp.gmail.com with ESMTPSA id n7-20020a05600c4f8700b003d1e90717ccsm8522883wmq.30.2022.12.15.07.51.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Dec 2022 07:51:41 -0800 (PST)
-Message-ID: <e2bc53fe-3a0c-cf24-8b29-ca377aba3721@baylibre.com>
-Date:   Thu, 15 Dec 2022 16:51:40 +0100
+        with ESMTP id S229848AbiLOQGd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 11:06:33 -0500
+Received: from amity.mint.lgbt (vmi888983.contaboserver.net [149.102.157.145])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 166E32F64C
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 08:06:31 -0800 (PST)
+Received: from amity.mint.lgbt (mx.mint.lgbt [127.0.0.1])
+        by amity.mint.lgbt (Postfix) with ESMTP id 4NXxtX4hBdz1S4tN
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 11:06:28 -0500 (EST)
+Authentication-Results: amity.mint.lgbt (amavisd-new);
+        dkim=pass (2048-bit key) reason="pass (just generated, assumed good)"
+        header.d=mint.lgbt
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mint.lgbt; h=
+        content-transfer-encoding:content-type:in-reply-to:subject:from
+        :references:to:content-language:user-agent:mime-version:date
+        :message-id; s=dkim; t=1671120386; x=1671984387; bh=7D6doDStC7gK
+        c0KFHyAb+1CP6XE+sVmchO92TAxtxJA=; b=D/uK2v1eabiogcudf5NjAg7m/nos
+        bOvPiq7yrc0eWHIK28Gu0IyQ+KB4MAJbs2aAiJif0z/EWS78T4/gDxr6NXE/OlHS
+        Zdd5RLTtIkcN1QHGcw4UAHCJhj3we1SxVH1MEKe1WZVXN5aEol05pEvwrKOTsVTa
+        BxLsEsMqIXUnKKxUvDowkbx6HPA/aqnJnvTL+LJZHtcMMuf9nRQNi/wPGvMt68Wz
+        nr4exZ/QUNAEPUm6Lx4IL03+toiXB3HmuHNoB2RdgwdawW2bwHhmTYNjBCnL0BGI
+        K6yYxG2dJqnWzimYYuzmfQOmtB1Lbi2TwklxoTBNAHX3KYCeRUB2xgkz6A==
+X-Virus-Scanned: amavisd-new at amity.mint.lgbt
+Received: from amity.mint.lgbt ([127.0.0.1])
+        by amity.mint.lgbt (amity.mint.lgbt [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id LfIUkMr02kFm for <devicetree@vger.kernel.org>;
+        Thu, 15 Dec 2022 11:06:26 -0500 (EST)
+Received: from [192.168.4.25] (unknown [190.196.92.66])
+        by amity.mint.lgbt (Postfix) with ESMTPSA id 4NXxtQ22Qbz1S4t9;
+        Thu, 15 Dec 2022 11:06:21 -0500 (EST)
+Message-ID: <4fb08532-47b5-b5e8-07ad-a5e3f42b93aa@mint.lgbt>
+Date:   Thu, 15 Dec 2022 13:06:19 -0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v7 1/6] DONOTMERGE: arm64: dts: ti: Add TI TPS65219 PMIC
- support for AM642 SK board.
+ Thunderbird/102.5.1
 Content-Language: en-US
-To:     Wadim Egorov <W.Egorov@phytec.de>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>, "nm@ti.com" <nm@ti.com>,
-        "kristo@kernel.org" <kristo@kernel.org>,
-        "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "lee@kernel.org" <lee@kernel.org>,
-        "tony@atomide.com" <tony@atomide.com>,
-        "vigneshr@ti.com" <vigneshr@ti.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "geert+renesas@glider.be" <geert+renesas@glider.be>,
-        "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
-        "marcel.ziswiler@toradex.com" <marcel.ziswiler@toradex.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "biju.das.jz@bp.renesas.com" <biju.das.jz@bp.renesas.com>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "jeff@labundy.com" <jeff@labundy.com>
-Cc:     "afd@ti.com" <afd@ti.com>,
-        "khilman@baylibre.com" <khilman@baylibre.com>,
-        "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
-        "msp@baylibre.com" <msp@baylibre.com>,
-        "j-keerthy@ti.com" <j-keerthy@ti.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>
-References: <20221104152311.1098603-1-jneanne@baylibre.com>
- <20221104152311.1098603-2-jneanne@baylibre.com>
- <d0d7e315-ce86-0420-8ef5-fe2e4aefd5b4@phytec.de>
-From:   jerome Neanne <jneanne@baylibre.com>
-In-Reply-To: <d0d7e315-ce86-0420-8ef5-fe2e4aefd5b4@phytec.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kees Cook <keescook@chromium.org>,
+        Anton Vorontsov <anton@enomsg.org>,
+        Colin Cross <ccross@android.com>,
+        Tony Luck <tony.luck@intel.com>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221214093342.153479-1-they@mint.lgbt>
+ <ea20c58f-3a53-7cdd-8669-228c4acac49a@linaro.org>
+ <5a511002-5cd2-b95b-a45a-faaf78e2f4a7@mint.lgbt>
+ <cd025494-862b-70ec-a008-4be219f7f72f@mint.lgbt>
+ <245b1554-5f61-3f1b-c04e-fd8326e62e8e@linaro.org>
+From:   Lux Aliaga <they@mint.lgbt>
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: sm6125: Initial support for
+ xiaomi-laurel_sprout
+In-Reply-To: <245b1554-5f61-3f1b-c04e-fd8326e62e8e@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 15/12/2022 05:31, Krzysztof Kozlowski wrote:
 
+> On 14/12/2022 18:45, Lux Aliaga wrote:
+>> Ok. I think that comment is incorrect. Changing the node name on
+>> extcon_usb breaks the "extcon" property in &usb3_dwc3, even after
+>> changing the reference.
+> You top-post and I have no clue what do you refer to. Don't top-post.
 
-On 15/12/2022 16:09, Wadim Egorov wrote:
-> Hi Jerome,
-> 
-> is this setup working for you on the AM642 SK board?
-> 
-> I am testing your PMIC patches on a AM62 based board with a similar setup and
-> running into the following error
-> 
->      VDDSHV5_SDIO: bypassed regulator has no supply!
->      VDDSHV5_SDIO: will resolve supply early: ldo1
->      VDDSHV5_SDIO: supplied by regulator-dummy
->      VDDSHV5_SDIO: failed to get the current voltage: -EINVAL
-> 
-> Have you noticed problems with LDO1 and bypass mode?
+My apologies. I replied a bit too quickly and didn't check if the 
+concerns I proposed were redacted correctly. An email you sent already 
+answered my concern, so I'll proceed to send a new version of the patchset.
 
-Wadim,
+Kind regards.
 
-I did not noticed this on am642 board but IIRC this rail was not used. I 
-heard about similar issue reported to me by Nishanth M with a fix 
-proposal here:
-https://gist.github.com/nmenon/e4dd6ef6afe31bc9750fa6cbee8d3e25
+-- 
+Lux Aliaga
+https://nixgoat.me/
 
-I did not have time yet to investigate on this but will do soon.
-
-Regards,
-Jerome
