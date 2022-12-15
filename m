@@ -2,114 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 704DB64DE92
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 17:27:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 855F364DEAD
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 17:31:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229460AbiLOQ1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 11:27:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49962 "EHLO
+        id S229847AbiLOQbe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 11:31:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230103AbiLOQ0Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 11:26:25 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C70C0218A4;
-        Thu, 15 Dec 2022 08:25:07 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id c66so27765411edf.5;
-        Thu, 15 Dec 2022 08:25:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Py/vysFzJts4D379yYBV14GJq8PM0BBmsGxpLWSgnm4=;
-        b=qqe3qUvy408KMlLwG9mEIR4A1pE/oxDioVE8Ttf6XiVsYLEoIpZ+aYEQTgwLgeWn4l
-         XdsdHgGnBatNcu65+L5eDCGv2yNHsfbhdsvdFVb5y2aK+m6wT0rroNV3SOKE1UXP5Jxp
-         gHh2Hs6OWa0RHPIvt/9sVN5AG/Ibsov/NBwRD7De892as8ztpB9h8gh1qCK4DJ6/aVEs
-         4qgSok7j2dMwylblpeuhSZmpYoZ+kqqNW/O2WbTxtp9rT9DbevH0taI+h9xkhGCgS50K
-         vNAL9sklTZSPKf9UzfIdLyM1mbtDv4jqe+0AdWTE6SAd0UkjKMzSMSxqfWn5/Ro2xkWw
-         /UCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Py/vysFzJts4D379yYBV14GJq8PM0BBmsGxpLWSgnm4=;
-        b=G50w0klsvpjLwXSFjuZmExppptfCyFGKn8jeSihOWHZWsOftqf8qS0ezgdx7K4UP0g
-         N7AcF1mach9RMYCGGlTKBgZ7bS08jiJuESAy/logPuWJF1Aoc7mwxch7OZwe69OrAlig
-         4tMYgURxJszYCRdvXFOXVYS/3xCklSp9QhE5IbSnw6q9Sz/TiR4UopBFx6s2M0ClnjdT
-         Mcm4wLgaFxsuqHS6zv+s5ecSc2r6WvyHcYCvywPjxfZ0DKDqtZwsLyMs+V177KNdFD7T
-         ffBkON3g7QKJQETuYTjJhAFTodwNWV59WdssG/TpOya9OMy2dL3Zo9AiAfpBbZL52mjd
-         mLNQ==
-X-Gm-Message-State: ANoB5pm9A4a7j1XXoAavNwtlY62lucPh+ZCykp7ZhFYdV8xVC1ZP9TP+
-        Uk5gA83hlCxyJc1XS5XfSZY=
-X-Google-Smtp-Source: AA0mqf6FL2R1zzO7z+hBp3JngNFWlBB+FWzKinQVAYElo/QWwnvNovxJX5oHoFZFExl5VtI8B3qRgQ==
-X-Received: by 2002:a05:6402:4491:b0:46f:777f:f9ad with SMTP id er17-20020a056402449100b0046f777ff9admr21141828edb.19.1671121506284;
-        Thu, 15 Dec 2022 08:25:06 -0800 (PST)
-Received: from giga-mm.home ([2a02:1210:8629:800:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id b20-20020aa7df94000000b0044dbecdcd29sm7612037edy.12.2022.12.15.08.25.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Dec 2022 08:25:05 -0800 (PST)
-Message-ID: <a279467764c063fccf28c7d8fdfac2ab57570fee.camel@gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: ep93xx: Add
- cirrus,ep9301-adc description
-From:   Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-iio@vger.kernel.org,
-        Hartley Sweeten <hsweeten@visionengravers.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S230231AbiLOQbJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 11:31:09 -0500
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0E6E10061;
+        Thu, 15 Dec 2022 08:31:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=iusyxPYyLd64XV4Av5w1K79Hex9dGUV2ZXLPs+Qj0uM=; b=yBJ0luSsxN0X6uU8A/3vG74cum
+        EhMuEii6ewCM8214Xuhl8HUFGl52HOI06AVhYVaYvmfyj9q3Dpw0zrAOiEvSWyUAWW1EcMwwrAYqz
+        6h9w4JMCx4/6urSgdEjEpYRGz4ZEBZMOqzGMGhuk6JYH01aeERLbuyo1mMQmeVwcgpOydcpcm4N2H
+        BG8dRdsbwRWAZvxOCoG/+I/bo1ysMj7smzrUP/JgCSzHUi8ErnwX4lr3KYkZOIYLcZMpti6qU7i3L
+        REh/UVa0HAEO9iqvVc4Ag5oK1QButHYk6F3cI/vFUfFUjykhMorlENAaGuwqqTgwh4tXtseHscbMP
+        K8jvqlkA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:35724)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1p5r8F-0003L7-58; Thu, 15 Dec 2022 16:30:51 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1p5r8D-0008UX-Dk; Thu, 15 Dec 2022 16:30:49 +0000
+Date:   Thu, 15 Dec 2022 16:30:49 +0000
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Christian Marangi <ansuelsmth@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Date:   Thu, 15 Dec 2022 17:25:04 +0100
-In-Reply-To: <20221215161835.GA138650-robh@kernel.org>
-References: <20221214222024.951984-1-alexander.sverdlin@gmail.com>
-         <20221215161835.GA138650-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.2 
+        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org,
+        Tim Harvey <tharvey@gateworks.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Rasmus Villemoes <rasmus.villemoes@prevas.dk>
+Subject: Re: [PATCH v7 02/11] leds: add function to configure hardware
+ controlled LED
+Message-ID: <Y5tLuaqp9MHcW7rU@shell.armlinux.org.uk>
+References: <20221214235438.30271-1-ansuelsmth@gmail.com>
+ <20221214235438.30271-3-ansuelsmth@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221214235438.30271-3-ansuelsmth@gmail.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Krzysztof, Rob,
+Hi Christian,
 
-I'll incorporate your comments into the next version, but...
+On Thu, Dec 15, 2022 at 12:54:29AM +0100, Christian Marangi wrote:
+> +A trigger once he declared support for hardware controlled blinks, will use the function
+> +hw_control_configure() provided by the driver to check support for a particular blink mode.
 
-On Thu, 2022-12-15 at 10:18 -0600, Rob Herring wrote:
-> > +=C2=A0 clock-names:
-> > +=C2=A0=C2=A0=C2=A0 const: ep93xx-adc
->=20
-> Weird name for a clock. Generally is signal name or what it=20
-> controls (e.g. bus, core, etc.). Perhaps just drop it.
->=20
-> > +
-> > +=C2=A0 interrupts:
-> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> > +
-> > +required:
-> > +=C2=A0 - compatible
-> > +=C2=A0 - reg
-> > +=C2=A0 - clocks
-> > +=C2=A0 - clock-names
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +=C2=A0 - |
-> > +=C2=A0=C2=A0=C2=A0 #include <dt-bindings/clock/cirrus,ep93xx-clock.h>
+Please improve the above. I think what is actually meant is "Where a
+trigger has support for hardware controlled blink modes,
+hw_control_configure() will be used to check whether a particular blink
+mode is supported and configure the blink mode."
 
-your robot was right, this dependency is missing, I thought I can prepare
-the ADC driver in advance, but seems it has to go together with the whole
-DT conversion of the EP93xx series.
+> +This function passes as the first argument (flag) a u32 flag.
 
---=20
-Alexander Sverdlin.
+I don't think "(flag)" is necessary, as I think "a u32 flag"
+sufficiently suggests that it's called "flag". In any case, it doesn't
+appear to be a "u32" but an "unsigned long".
 
+> +The second argument (cmd) of hw_control_configure() method can be used to do various
+> +operations for the specific blink mode. We currently support ENABLE, DISABLE, READ, ZERO
+> +and SUPPORTED to enable, disable, read the state of the blink mode, ask the LED
+> +driver if it does supports the specific blink mode and to reset any blink mode active.
+> +
+> +In ENABLE/DISABLE hw_control_configure() should configure the LED to enable/disable the
+> +requested blink mode (flag).
+> +In READ hw_control_configure() should return 0 or 1 based on the status of the requested
+> +blink mode (flag).
+> +In SUPPORTED hw_control_configure() should return 0 or 1 if the LED driver supports the
+> +requested blink mode (flags) or not.
+> +In ZERO hw_control_configure() should return 0 with success operation or error.
+
+I think some kind of tabular description of this would be better.
+Something like this but on docbook format:
+
+hw_control_configure()'s second argument, cmd, is used to specify
+various operations for the LED blink mode, and will be one of:
+
+ENABLE - to enable the blink mode requested in flag. Returns ?
+DISABLE - to disable the blink mode requested in flag. Returbns ?
+READ - to indicate whether the blink mode requested in flag is enabled.
+       Returns 0 if disabled or 1 if enabled.
+SUPPORTED - to indicate whether the blink mode requested in flag is
+            supported. Returns 0 if unsupported or 1 if supported.
+ZERO - to disable all blink modes. Returns 0 or negative errno.
+
+The problem with the way you've listed it is you've listed the
+operations in a different order to the description in the same sentence,
+so effectiely ZERO means to report whether supported and SUPPORTED means
+to reset all blink modes!
+
+> +
+> +The unsigned long flag is specific to the trigger and change across them. It's in the LED
+> +driver interest know how to elaborate this flag and to declare support for a
+> +particular trigger.
+
+Hmm, as a casual observer, this doesn't really give much information.
+Does this mean that it's up to the hardware LED driver to decide what
+each bit in the "flag" argument means? If not, I think this needs to
+be worded better!
+
+> For this exact reason explicit support for the specific
+> +trigger is mandatory or the driver returns -EOPNOTSUPP if asked to enter offload mode
+> +with a not supported trigger.
+
+Seems to be a change in terminology - weren't we using "HARDWARE" and
+"SOFTWARE" to describe the mode, rather than "offload" ?
+
+> +If the driver returns -EOPNOTSUPP on hw_control_configure(), the trigger activation will
+> +fail as the driver doesn't support that specific offload trigger or doesn't know
+> +how to handle the provided flags.
+
+This gets rather ambiguous. When can -EOPNOTSUPP be returned - for which
+cmds? Surely, if we have already tested for support using the SUPPORTED
+cmd which returns a 0/1 value, we should not be going on to trigger a
+request to enable something that isn't supported?
+
+> +
+>  Known Issues
+>  ============
+>  
+> diff --git a/include/linux/leds.h b/include/linux/leds.h
+> index 09ff1dc6f48d..b5aad67fecfb 100644
+> --- a/include/linux/leds.h
+> +++ b/include/linux/leds.h
+> @@ -73,6 +73,16 @@ enum led_blink_modes {
+>  	SOFTWARE_HARDWARE_CONTROLLED,
+>  };
+>  
+> +#ifdef CONFIG_LEDS_HARDWARE_CONTROL
+> +enum blink_mode_cmd {
+> +	BLINK_MODE_ENABLE, /* Enable the hardware blink mode */
+> +	BLINK_MODE_DISABLE, /* Disable the hardware blink mode */
+> +	BLINK_MODE_READ, /* Read the status of the hardware blink mode */
+> +	BLINK_MODE_SUPPORTED, /* Ask the driver if the hardware blink mode is supported */
+> +	BLINK_MODE_ZERO, /* Disable any hardware blink active */
+> +};
+> +#endif
+
+Generally not a good idea to make definitions in header files
+conditional on configuration symbols - it makes build-testing more
+problematical.
+
+Thanks.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
