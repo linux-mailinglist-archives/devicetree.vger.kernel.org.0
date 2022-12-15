@@ -2,76 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D542864D7CB
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 09:32:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3682464D7E8
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 09:42:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229588AbiLOIct (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 03:32:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35482 "EHLO
+        id S229510AbiLOImE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 03:42:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229636AbiLOIcs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 03:32:48 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3678421882
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 00:32:47 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id p36so14501218lfa.12
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 00:32:47 -0800 (PST)
+        with ESMTP id S229484AbiLOImB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 03:42:01 -0500
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8463F2B19B
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 00:42:00 -0800 (PST)
+Received: by mail-yb1-xb2e.google.com with SMTP id 2so2645162ybl.13
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 00:42:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3yjTota5kYMxjiFZfSzHsAlq+NLE8Ug63+GwThe1jqI=;
-        b=viVzGcgZ/xANaj+X8O/UxQHDHYvBUidvhpvgzO7id0s10OC1ywtQ4kf/hcO7j8Nphp
-         cU61eWNuxZXft6TgpxJcKjqYOCvtaN9Oh3bcqRq1ehCjWwpCJrsmrsZNvQIlpGcvRtQ1
-         TduagCcU88HkJG/rD1qw3VfCSUD6J9fyP25CZwFitU4gL8TbmhvJvcSd78B69WLHjfo4
-         HxzzOJY8b30zK58vBVKhvGuxdlG6BA51IyqNZh2r4Kd2U8w/iQ9Lg3tJx/SKiP3Ozw0W
-         uDXNibTt6HAmuqBWVaHTBxpJp6+HxR4AJaOp12Mr1/v2cVKLOm0PzDR5bUp04oy2x/OX
-         D8pg==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=HXhudpMG5ipoBTmDLzbqLq8C65gsSAGF3azolDiFn1I=;
+        b=oS7MvThUFU/JGOGYBihO3JXdurEUA6AetFLg9F1AnzodZpwdxJ17GYUjSqGNCzoTGp
+         CRuFzoKrac00hc011hygTaS6JwiED8YasNIiSyZOwO7Rr2BVjvDSPNZ2jW+55SXgL37h
+         zS6tDMdtBWFqggnFJiu/bgOLD6DBI6onfSgpbJOitHJdVcPWTCDFAYwazw/7H8ZBL9Ud
+         AFOFTA2S1zpGlxZ8fdoJeDXulzQWRXncyFQDnM4Af34bO2NwHMXQoF1R1nNbw0+pdP5o
+         2yTopVMiLG76IUn8j6mKOuDmJj2ULCmX8EJyryF4gVzwlQtyLCBOMWPY0wZlTC8TJ9p8
+         GxWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3yjTota5kYMxjiFZfSzHsAlq+NLE8Ug63+GwThe1jqI=;
-        b=wYWZB+4MHG0BhXc6eAzi+RhtJgdVjr4RpTJUk3P9RablzZLff0K2/axenqVlT7sua5
-         GajFPBAhNq5qNcVZ8r8vPJ0z6mAxVu99m9h8Sb9uZI9m+EJwYiKa/mZdpG1XYT18Rnyr
-         gh24NOvN3QEuzSBFCJliFZg5ToTFiC1d31k3m7JI/3eJOcawlTtwSRHug9xRi+bk4hdz
-         QIQ4Fz2MyxwoUpET1FfpE9T95qLDD4Fa7pKqhOdJ8HUAwtF1qkO3JxK6iSCQruWlr283
-         XSayg6059s1YN2vTBcKg0GhOVR2sbVQ7ByeBmo5fXy3fuMX57aYJgtELpOOMCDJO9AP0
-         9NeA==
-X-Gm-Message-State: AFqh2komIPhuCaUHZQ+rPaGb8WXNgctPklzcn9+WqwDhHrda8QpAK+mX
-        OOpQ5lBDng0jhSsKquKS0X+6Sg==
-X-Google-Smtp-Source: AMrXdXt8P/j8Y8ozEXTc3wM5dnBi82wVpHQjgcqLvPhqP7HLV0RdF90ddCywSJz5PyObTiFyf4mYzQ==
-X-Received: by 2002:a05:6512:2252:b0:4bc:625d:1c0f with SMTP id i18-20020a056512225200b004bc625d1c0fmr251276lfu.49.1671093165630;
-        Thu, 15 Dec 2022 00:32:45 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id m12-20020a056512358c00b004b4f3c0d9f8sm1101645lfr.283.2022.12.15.00.32.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Dec 2022 00:32:45 -0800 (PST)
-Message-ID: <4dc0dde2-8e7c-c819-1eb0-376c9e3ed567@linaro.org>
-Date:   Thu, 15 Dec 2022 09:32:44 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HXhudpMG5ipoBTmDLzbqLq8C65gsSAGF3azolDiFn1I=;
+        b=ZMhljEjLufE9TunncyLJfRuwlBD5N+6SbUrV+NihrPkSofM12erDuFeCr42Lwlx+RZ
+         c6KRHE9KmsBT0Ho31x1HIac+TNGo/JiuUt0g0HoVQ/+ycoukW4/WZ+nV8L5iRXMSi/8M
+         Q4jz0hrdopjUVQX4vP8XSe7hwApJpUhC/54gP5es9Hz5uy6pMd/cuPdSxC7SEighEmtx
+         DMyuovwIPCWTHDtitL2z9pVe8psDV7BYHyk+eRvDsjAlkBiR9GAsZ1q009wJyffVptoB
+         ulDsIPrGC1bzP6PxVGKXTyrc0r1OQ0vq8TONC4tD25l80aWob1Y/qPbwfIyHtBLjcOLX
+         gNoA==
+X-Gm-Message-State: ANoB5pnJgRWQ4m3VdiNbmww/a811N8DjczpBHTD8Yqv8XdvhcRubxewb
+        UbysttXJFLQFUP5Bh8MC0VNhZ10dntUD2Heuf+lUOg==
+X-Google-Smtp-Source: AA0mqf4x35ybJ0oUwOo6o569NEGQzeowDVqPBuoUY4Xc84d7hRJqGGcAdp6C8e04o0YEL7GfLMl3vaM3+xKvTlpWnG0=
+X-Received: by 2002:a25:7648:0:b0:6fe:54d5:2524 with SMTP id
+ r69-20020a257648000000b006fe54d52524mr24020034ybc.522.1671093719699; Thu, 15
+ Dec 2022 00:41:59 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v2 1/3] drivers: hwmon: Add max31732 quad remote
- temperature sensor driver
-Content-Language: en-US
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Sinan Divarci <Sinan.Divarci@analog.com>, jdelvare@suse.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221214142206.13288-1-Sinan.Divarci@analog.com>
- <20221214142206.13288-2-Sinan.Divarci@analog.com>
- <1697ded6-f04c-183b-4f92-ea4d5eb1c187@linaro.org>
- <246e7330-430f-e569-124d-55afc1b98dce@roeck-us.net>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <246e7330-430f-e569-124d-55afc1b98dce@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20221214110037.149387-1-cbranchereau@gmail.com> <20221214110037.149387-2-cbranchereau@gmail.com>
+In-Reply-To: <20221214110037.149387-2-cbranchereau@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 15 Dec 2022 09:41:48 +0100
+Message-ID: <CACRpkdag1ZDyHRu5FqLWrsiqbmVuX2Wj5z67yhkg_=ooFqsboQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] drm/panel: add the orisetech ota5601a
+To:     Christophe Branchereau <cbranchereau@gmail.com>
+Cc:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,28 +67,146 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/12/2022 18:24, Guenter Roeck wrote:
-> On 12/14/22 09:02, Krzysztof Kozlowski wrote:
->> On 14/12/2022 15:22, Sinan Divarci wrote:
->>> The MAX31732 is a multi-channel temperature sensor that monitors its own
->>> temperature and the temperatures of up to four external diodeconnected
->>> transistors.
->>
->> Use subject prefixes matching the subsystem (git log --oneline -- ...).
->> There is no such prefix as "drivers".
->>
->> I did not review the code, but it is easily visible that it does not
->> conform to Linux coding style wrapping at 80. Wrap at 80.
->>
-> 
-> I accept line lengths up to 100 to avoid excessive and misaligned
-> continuation lines. As long as checkpatch --strict doesn't complain,
-> I won't complain either. checkpatch --strict doesn't complain, and a
-> brief look into the code tells me that - in terms of line length -
-> it is fine. Please do not introduce additional continuation lines.
+Hi Christophe,
 
-Sure.
+thanks for your patch!
 
-Best regards,
-Krzysztof
+On Wed, Dec 14, 2022 at 12:01 PM Christophe Branchereau
+<cbranchereau@gmail.com> wrote:
 
+> Add the orisetech ota5601a ic driver
+>
+> For now it only supports the focaltech gpt3 3" 640x480 ips panel
+> found in the ylm rg300x handheld.
+>
+> Signed-off-by: Christophe Branchereau <cbranchereau@gmail.com>
+(...)
+> +config DRM_PANEL_ORISETECH_OTA5601A
+> +       tristate "Orise Technology ota5601a RGB/SPI panel"
+> +       depends on OF && SPI
+> +       depends on BACKLIGHT_CLASS_DEVICE
+> +       select REGMAP_SPI
+
+Nice use of regmap in this driver.
+
+> +static const struct reg_sequence ota5601a_panel_regs[] = {
+> +       { 0xfd, 0x00 },
+> +       { 0x02, 0x00 },
+> +
+> +       { 0x18, 0x00 },
+> +       { 0x34, 0x20 },
+> +
+> +       { 0x0c, 0x01 },
+> +       { 0x0d, 0x48 },
+> +       { 0x0e, 0x48 },
+> +       { 0x0f, 0x48 },
+> +       { 0x07, 0x40 },
+> +       { 0x08, 0x33 },
+> +       { 0x09, 0x3a },
+> +
+> +       { 0x16, 0x01 },
+> +       { 0x19, 0x8d },
+> +       { 0x1a, 0x28 },
+> +       { 0x1c, 0x00 },
+> +
+> +       { 0xfd, 0xc5 },
+> +       { 0x82, 0x0c },
+> +       { 0xa2, 0xb4 },
+> +
+> +       { 0xfd, 0xc4 },
+> +       { 0x82, 0x45 },
+> +
+> +       { 0xfd, 0xc1 },
+> +       { 0x91, 0x02 },
+> +
+> +       { 0xfd, 0xc0 },
+> +       { 0xa1, 0x01 },
+> +       { 0xa2, 0x1f },
+> +       { 0xa3, 0x0b },
+> +       { 0xa4, 0x38 },
+> +       { 0xa5, 0x00 },
+> +       { 0xa6, 0x0a },
+> +       { 0xa7, 0x38 },
+> +       { 0xa8, 0x00 },
+> +       { 0xa9, 0x0a },
+> +       { 0xaa, 0x37 },
+> +
+> +       { 0xfd, 0xce },
+> +       { 0x81, 0x18 },
+> +       { 0x82, 0x43 },
+> +       { 0x83, 0x43 },
+> +       { 0x91, 0x06 },
+> +       { 0x93, 0x38 },
+> +       { 0x94, 0x02 },
+> +       { 0x95, 0x06 },
+> +       { 0x97, 0x38 },
+> +       { 0x98, 0x02 },
+> +       { 0x99, 0x06 },
+> +       { 0x9b, 0x38 },
+> +       { 0x9c, 0x02 },
+> +
+> +       { 0xfd, 0x00 },
+> +};
+
+If these are registers, why is register 0xfd written 7 times with different
+values?
+
+This is rather a jam table or intializations sequence, so it should be
+names something like that and a comment about undocumented
+registers added probably as well.
+
+> +static int ota5601a_enable(struct drm_panel *drm_panel)
+> +{
+> +       struct ota5601a *panel = to_ota5601a(drm_panel);
+> +       int err;
+> +
+> +       err = regmap_write(panel->map, 0x01, 0x01);
+
+Since you know what this register does, what about:
+
+#include <linux/bits.h>
+
+#define OTA5601A_CTL 0x01
+#define OTA5601A_CTL_OFF 0x00
+#define OTA5601A_CTL_ON BIT(0)
+
+> +static int ota5601a_get_modes(struct drm_panel *drm_panel,
+> +                            struct drm_connector *connector)
+> +{
+> +       struct ota5601a *panel = to_ota5601a(drm_panel);
+> +       const struct ota5601a_panel_info *panel_info = panel->panel_info;
+> +       struct drm_display_mode *mode;
+> +       unsigned int i;
+> +
+> +       for (i = 0; i < panel_info->num_modes; i++) {
+> +               mode = drm_mode_duplicate(connector->dev,
+> +                                         &panel_info->display_modes[i]);
+> +               if (!mode)
+> +                       return -ENOMEM;
+> +
+> +               drm_mode_set_name(mode);
+> +
+> +               mode->type = DRM_MODE_TYPE_DRIVER;
+> +               if (panel_info->num_modes == 1)
+
+But ... you have just added an array that contains 2 elements, you
+KNOW it will not be 1.
+
+> +                       mode->type |= DRM_MODE_TYPE_PREFERRED;
+
+I think you should probably set this on the preferred resolution
+anyways, take the one you actually use.
+
+> +static const struct of_device_id ota5601a_of_match[] = {
+> +       { .compatible = "focaltech,gpt3", .data = &gpt3_info },
+> +       { /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, ota5601a_of_match);
+
+Does this mean the display controller is ota5601a and the display
+manufacturer and product is focaltech gpt3? Then it's fine.
+
+Overall the driver looks very good, just the above little details.
+
+Yours,
+Linus Walleij
