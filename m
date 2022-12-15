@@ -2,63 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66F7D64DB5F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 13:40:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6732E64DB98
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 13:49:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229910AbiLOMka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 07:40:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53476 "EHLO
+        id S229850AbiLOMt2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 07:49:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229899AbiLOMkL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 07:40:11 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5F5C2F673
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 04:39:29 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5B14761D7D
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 12:39:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81630C433EF;
-        Thu, 15 Dec 2022 12:39:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671107968;
-        bh=U9NtNlqryxVKKy+CkPYgv3kx1LVUpLwfsFY1Xqn7gWc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Ds5pykkcphu6gMoVoZj19lvnV5JhS+WGjNxIvWai5vDPam78gWCoQdY+NYJujww64
-         oAPnyboo35qbfhazSA6DhxWfB4ENCjj/wPRkeLfLT9Nl7hkzo7JvaGVNKYUkohMSQN
-         FSsCd0UzCbVb4p+7jhTcZ4SGySj+Yly3U8dejeS0s14DEBhAnL7CR1wpyalJ7Az9q8
-         Fg0AuJpzbzPxi+CPSxqQMLuTd/AD0eT3SiJnlW63bgOgf05cxoYcF7q6o+Qp38bF/i
-         gsZHbg8PCwVgJam4QR5ZjQHfXlLQsL7dP9F4342HSAH6wtNDY8ASKJ03WhttRmiFhN
-         zi9u3gVKnr0uA==
-Date:   Thu, 15 Dec 2022 12:39:23 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Sameer Pujar <spujar@nvidia.com>,
-        Mohan Kumar <mkumard@nvidia.com>
-Subject: Re: [PATCH 06/11] ASoC: dt-bindings: ti,pcm3168a: Convert to
- json-schema
-Message-ID: <Y5sVewc7ItFBZkn4@sirena.org.uk>
-References: <87v8mepyoy.wl-kuninori.morimoto.gx@renesas.com>
- <87mt7qpylw.wl-kuninori.morimoto.gx@renesas.com>
- <CAMuHMdW=_-MyqAjRqaoPyWkoUmdB2VOE1t+wpym7eyOxkzc_7g@mail.gmail.com>
- <Y5sJV2KfX98KoMYZ@sirena.org.uk>
- <CAMuHMdWwP6QDUux62GZtCT7tsFhAhex=Fns5e=n_KTjGXHRy0Q@mail.gmail.com>
+        with ESMTP id S229730AbiLOMtI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 07:49:08 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D473FBCB
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 04:49:04 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id g7so15501197lfv.5
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 04:49:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WfT89eaBmCMQmtonczLRbdlvyXOUyfcZDQHrYJPUDhM=;
+        b=g90Ijv3dZYlnt3LOm41pP9z4hSebp/XoDdDjDZdOf4memohHmJfBcUX1DsjlqNy5vv
+         tFTX2A12tIf8cM9lStAHhX5o8hBt7g8oxNgvv87s+suuf/vGT9ejpryMVoL1gp4fzABM
+         /GypcQqBjasHMV8sNDKsoEUI83UF3P8SoXQdVAykxmPImqvl/zp8t74KkOv0DF81r2Wy
+         Y2i8XOZS7l9Ed3Q5j+dweS9vCrFh0m38NWtj8QlIMrnUKj9HPwqSaySWqMiDRbGWlLsG
+         cD4ujeft9aXGmOHaZk35sq+/3ghqVsJ72seEvl5vTefi7qyxStD42axI98yvjRBCOnJb
+         j8sA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WfT89eaBmCMQmtonczLRbdlvyXOUyfcZDQHrYJPUDhM=;
+        b=w5XBlhmHelBVZ/UEEROTGGA4W9nWK0IIuw4RyvNpTaXWALjfyeqFJuugDA17yoicls
+         JrEOFN/yPzwqj+FnilMkV1VWHIFmnDtdntvnvE1JVL7e0UKXVZJ0718r8t43vgMYLJaC
+         HUFeKXrFFhrofhdsdbzZG5cKssUxwM8IP5WznuZB622CpxQ/Ft/4tndq/QnPTJFCQXmS
+         ZR0jKYTVf0tUBSWL5zZuoja8IOCHiXh9c9IYBzBvhBBFSLyiA3TUICkv2neE5iHLPvPz
+         Vu0H3001EK3RFSNNfyF7lZXXg6gp6yqelcyrxxklqNgEkJsQ6FiCDo+YdZkXMKOBEaRM
+         IAnA==
+X-Gm-Message-State: ANoB5pk7j5g5FbXA1psTKAKNvQRmYGFt0esWFeXzsZ69X/7pF9uutL7L
+        xjn7NIz87SdDHiI+Rc9/6qSdkA==
+X-Google-Smtp-Source: AA0mqf7DD9iJev7KjfRdZ4KseOkEeyzD+eOrjtJuK8oaocNzCIfGOnAARthk22KNRjLcpdoyZk23vA==
+X-Received: by 2002:a05:6512:acd:b0:4b6:f0ac:7af8 with SMTP id n13-20020a0565120acd00b004b6f0ac7af8mr5545156lfu.67.1671108543153;
+        Thu, 15 Dec 2022 04:49:03 -0800 (PST)
+Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
+        by smtp.gmail.com with ESMTPSA id g12-20020ac24d8c000000b004b0b2212315sm1154062lfe.121.2022.12.15.04.49.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Dec 2022 04:49:02 -0800 (PST)
+Message-ID: <af9e5b18-5494-6060-d280-efda8f67693c@linaro.org>
+Date:   Thu, 15 Dec 2022 13:49:00 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="Ii5OG8Rj0a5fA7tv"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdWwP6QDUux62GZtCT7tsFhAhex=Fns5e=n_KTjGXHRy0Q@mail.gmail.com>
-X-Cookie: Today is what happened to yesterday.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v2 1/7] arm64: dts: qcom: sc8280xp: rename qup2_uart17 to
+ uart17
+To:     Brian Masney <bmasney@redhat.com>, andersson@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     quic_shazhuss@quicinc.com, robh+dt@kernel.org,
+        johan+linaro@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ahalaney@redhat.com, echanude@redhat.com
+References: <20221214171145.2913557-1-bmasney@redhat.com>
+ <20221214171145.2913557-2-bmasney@redhat.com>
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221214171145.2913557-2-bmasney@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,37 +79,151 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---Ii5OG8Rj0a5fA7tv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Thu, Dec 15, 2022 at 01:10:44PM +0100, Geert Uytterhoeven wrote:
-> On Thu, Dec 15, 2022 at 12:47 PM Mark Brown <broonie@kernel.org> wrote:
+On 14.12.2022 18:11, Brian Masney wrote:
+> In preparation for adding the missing SPI and I2C nodes to
+> sc8280xp.dtsi, it was decided to rename all of the existing qupX_
+> uart, spi, and i2c nodes to drop the qupX_ prefix. Let's go ahead
+> and rename qup2_uart17 to uart17. Note that some nodes are moved in the
+> file by this patch to preserve the expected sort order in the file.
+> 
+> Signed-off-by: Brian Masney <bmasney@redhat.com>
+> Link: https://lore.kernel.org/lkml/20221212182314.1902632-1-bmasney@redhat.com/
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-> > I wouldn't do that, I gather the maintainers for DT bindings are
-> > supposed to be people who know and care about the specific binding in
-> > particular.
-
-> Sure.  But how can they (still) care, if we cannot reach them?
-> There's no email message from Damien to be found during the past
-> 7 years.
-
-The most sensible thing seems to be to allow bindings with no maintainer
-TBH.
-
---Ii5OG8Rj0a5fA7tv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmObFXoACgkQJNaLcl1U
-h9BTfgf/ebWabKO2Bgc6GL1+Kakz/qNto5vytkLfc52MvuYL5WFYu1dfqYbyQ9jg
-TRZBG7YdcdCMa8ZIlRdygIiWkltdYcJ5K2bCqxMWV5JfGBlA+vGc7o0omua1QG3y
-snOmxdAckqn6KbF5rVERNFpiSN/C6hsh3UoO8uXrzs84Msn4a06/lDiNwEe66Knm
-kRiC7K6T7pIA4vTZsESLoa/NFDpfTRTcchyBz0t57cFnd4+2O3JlPW2fYNe7xsw6
-Md+ew3XApoq1afIPDfDuGjYb61WxbWM2JSDITC4Osk3eQBi8KNmphpIzyllmwqAc
-G02hikQ7He9SFagvBpXcGTQ1Q7BmOw==
-=3PdK
------END PGP SIGNATURE-----
-
---Ii5OG8Rj0a5fA7tv--
+Konrad
+> This is a new patch that's introduced in v2.
+> 
+>  arch/arm64/boot/dts/qcom/sa8295p-adp.dts  | 12 ++++++------
+>  arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 12 ++++++------
+>  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts | 14 +++++++-------
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi    |  2 +-
+>  4 files changed, 20 insertions(+), 20 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> index 84cb6f3eeb56..61f2e44e70c1 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> @@ -17,7 +17,7 @@ / {
+>  	compatible = "qcom,sa8295p-adp", "qcom,sa8540p";
+>  
+>  	aliases {
+> -		serial0 = &qup2_uart17;
+> +		serial0 = &uart17;
+>  	};
+>  
+>  	chosen {
+> @@ -240,11 +240,6 @@ &qup2 {
+>  	status = "okay";
+>  };
+>  
+> -&qup2_uart17 {
+> -	compatible = "qcom,geni-debug-uart";
+> -	status = "okay";
+> -};
+> -
+>  &remoteproc_adsp {
+>  	firmware-name = "qcom/sa8540p/adsp.mbn";
+>  	status = "okay";
+> @@ -338,6 +333,11 @@ pm8450g_gpios: gpio@c000 {
+>  	};
+>  };
+>  
+> +&uart17 {
+> +	compatible = "qcom,geni-debug-uart";
+> +	status = "okay";
+> +};
+> +
+>  &ufs_mem_hc {
+>  	reset-gpios = <&tlmm 228 GPIO_ACTIVE_LOW>;
+>  
+> diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> index 21f3ff024910..b6e0db5508c7 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> +++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> @@ -17,7 +17,7 @@ / {
+>  	compatible = "qcom,sa8540p-ride", "qcom,sa8540p";
+>  
+>  	aliases {
+> -		serial0 = &qup2_uart17;
+> +		serial0 = &uart17;
+>  	};
+>  
+>  	chosen {
+> @@ -192,11 +192,6 @@ &qup2 {
+>  	status = "okay";
+>  };
+>  
+> -&qup2_uart17 {
+> -	compatible = "qcom,geni-debug-uart";
+> -	status = "okay";
+> -};
+> -
+>  &remoteproc_nsp0 {
+>  	firmware-name = "qcom/sa8540p/cdsp.mbn";
+>  	status = "okay";
+> @@ -207,6 +202,11 @@ &remoteproc_nsp1 {
+>  	status = "okay";
+>  };
+>  
+> +&uart17 {
+> +	compatible = "qcom,geni-debug-uart";
+> +	status = "okay";
+> +};
+> +
+>  &ufs_mem_hc {
+>  	reset-gpios = <&tlmm 228 GPIO_ACTIVE_LOW>;
+>  
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+> index 551768f97729..db273face248 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+> @@ -17,7 +17,7 @@ / {
+>  	compatible = "qcom,sc8280xp-crd", "qcom,sc8280xp";
+>  
+>  	aliases {
+> -		serial0 = &qup2_uart17;
+> +		serial0 = &uart17;
+>  	};
+>  
+>  	backlight {
+> @@ -363,12 +363,6 @@ keyboard@68 {
+>  	};
+>  };
+>  
+> -&qup2_uart17 {
+> -	compatible = "qcom,geni-debug-uart";
+> -
+> -	status = "okay";
+> -};
+> -
+>  &remoteproc_adsp {
+>  	firmware-name = "qcom/sc8280xp/qcadsp8280.mbn";
+>  
+> @@ -381,6 +375,12 @@ &remoteproc_nsp0 {
+>  	status = "okay";
+>  };
+>  
+> +&uart17 {
+> +	compatible = "qcom,geni-debug-uart";
+> +
+> +	status = "okay";
+> +};
+> +
+>  &ufs_mem_hc {
+>  	reset-gpios = <&tlmm 228 GPIO_ACTIVE_LOW>;
+>  
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> index 109c9d2b684d..951cb1b6fcc4 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> @@ -813,7 +813,7 @@ qup2: geniqup@8c0000 {
+>  
+>  			status = "disabled";
+>  
+> -			qup2_uart17: serial@884000 {
+> +			uart17: serial@884000 {
+>  				compatible = "qcom,geni-uart";
+>  				reg = <0 0x00884000 0 0x4000>;
+>  				clocks = <&gcc GCC_QUPV3_WRAP2_S1_CLK>;
