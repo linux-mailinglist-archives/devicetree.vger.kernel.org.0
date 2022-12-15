@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E918064DD82
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 16:13:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D37F564DD8A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 16:15:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230177AbiLOPNy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 10:13:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42592 "EHLO
+        id S230205AbiLOPPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 10:15:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230108AbiLOPN0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 10:13:26 -0500
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1300A31EF7
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 07:12:42 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id a19so10267128ljk.0
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 07:12:41 -0800 (PST)
+        with ESMTP id S229974AbiLOPOp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 10:14:45 -0500
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2548E32B8E
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 07:14:20 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id y4so10202565ljc.9
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 07:14:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=rn0RaW15PCbv1iZnOn7lxQD1NhmhYoptHXukfEvlnlc=;
-        b=x0ru9/MG7H41Yo1GvyZQ9Uuy5hFJQZ/0bS/Z6cgyMoizdorRbA/8LxLgiqGbgv6xKe
-         f/Nd8nLPv4AraPILAZqiGBCZycLVXz/3Mn9VeUML/hFHdA8Q28+U6JJuvl295mkjZooP
-         nOEF5+6keQ9w2zmT4gOdWuLHSKYSzfGi1J7+m6R0/zHVT+lTYcqRUVKVVKCDmK7bbzrC
-         CcHaBkp91EYZM7Vug5hmtKtEPfsl2QqCnmd1V5dijy1y3Nf01/qooMucYRh/krCeZFZM
-         2Mlsuwo7/IvJa8DweXvlynyFsyPvnslfkVjsj0YPoJRdN0288r4HQ5c9IXaawcBN1OrU
-         ONrg==
+        bh=HKBX4dCAGxM9FIuN9j+5uOON5e07EkYesLemjwlfmRc=;
+        b=jqn4qm5AQpP3pXvXfNliwLe7ReHlO3yIHYcnTzDqLfHZgOwC6WadMZBme+JdN8Gkv6
+         /vxPZyh2V3v9oYIFj3/3kwY2F9FV0aO87kSiQ6MTjUbP41o2odJf48YT0QN6+hKZJavQ
+         iIZ0Qo3q1fa1Skc5gFObSpyjXV40tVK1zBX1OAUgcRzUU6u7swwq2uPqxpXGRYzOpRHp
+         uSs01A6CQyZAhyrWmYlbjhs2edJRSWNSroK9l2tqX57M7PQKZMn17PX4XBl48dPyQa9B
+         dfRkOdAouTe1CGXiJhlfozBXWe+xweUJvhIcG/xMbXqKi1jiVwE+7D1ZHeeQr3HAc+dw
+         omQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rn0RaW15PCbv1iZnOn7lxQD1NhmhYoptHXukfEvlnlc=;
-        b=DS55Xl3ZBRUaK6oNbUrsIJyCRNF28rNSSCStUKWxpjURPtH1Vl/4NMojkg3txfitdJ
-         10ytHh7fDwpFui3UuWn3pJUmcsuMXOThjPVGcYCG5vma3oXeMeUQQkrOpBDVL2o9Vs26
-         eSV5ktqm5HVEz496pKLWHeLwZIzpjfleULjsu+mNoGbDtkr7rpnF/GQRnjRXaNcv/EXu
-         jQvWHNfdvBFLchfmxss/mQ2xy8Vxh/bJUsqFpGKmu5UeUE3Lj5zKhCNrQxxYUoRua165
-         w9XcukT2pTAUfAdGiNg4ymDshVUEOBofdM/SLCgPdhr7jKYNEaixEDdEgAy5wjw9OSIB
-         rRxQ==
-X-Gm-Message-State: ANoB5pkZJ9+Ez9JXOshuZclU4/6jpQgwIX/ieOhiwFeS1I1nW/YV4Cr+
-        WRGUfkraYwEtHmWNUVhFHquUiw==
-X-Google-Smtp-Source: AA0mqf450ET8qyKL5V67vM4NujcATbDhymaDU8EkzcrVkIqi6ho8k0R6oYRIKx/hFZAOzih3RrEBbQ==
-X-Received: by 2002:a2e:95cc:0:b0:27b:65e3:3e93 with SMTP id y12-20020a2e95cc000000b0027b65e33e93mr2883452ljh.45.1671117160247;
-        Thu, 15 Dec 2022 07:12:40 -0800 (PST)
+        bh=HKBX4dCAGxM9FIuN9j+5uOON5e07EkYesLemjwlfmRc=;
+        b=DyKeQY8S53OL9DCT8l+T0+MaCNEmL4BZaD1PWeTqLebCl9w+p9h1zVra4i8lmfHFJF
+         7Y+7Pxk/EdYB32SBY4hoSEtk9idxI+CPpB/5I+5XjsqeOKjdMRDuvKOIULVdgb6SaELo
+         4jYJA2m/1zOwMJGlnOaTtu/Op1yX2vS7Gh8f5Tjri/tSWgbWyQ6GyRHFK9lRiufYpTME
+         juk0Zbbo7GWf8zc3y8jW1LjV2YbIuEmAN8xvRFC0kszPa3mJZXeuCV0ZoJ5dIlHoKdvZ
+         HXkI2qZqagUU/HTIN9eCWFu9T7RuQH1Cz/HyMhaMGu234L1u6FyzL32WmMvUYUZTmWUB
+         mqNA==
+X-Gm-Message-State: ANoB5pk2yui6GFx9u+/vDATNngxxfnLfMPf+k7VbH0vFPBpteMHYkf+q
+        wO7k+BpTIBfb9YS1tuhCZlhQHQ==
+X-Google-Smtp-Source: AA0mqf638NFbBfGyPPGUbiWU9jAZwDUrabmGYbZxWlmgWMVwFUJj7vPxpXSFyFHzx/HqOpwBT5wIvg==
+X-Received: by 2002:a2e:a809:0:b0:278:ed26:60e3 with SMTP id l9-20020a2ea809000000b00278ed2660e3mr7180275ljq.25.1671117258550;
+        Thu, 15 Dec 2022 07:14:18 -0800 (PST)
 Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id f13-20020a2eb5ad000000b00279cbcfd7dbsm861184ljn.30.2022.12.15.07.12.39
+        by smtp.gmail.com with ESMTPSA id q18-20020a2eb4b2000000b00279f213302bsm859063ljm.57.2022.12.15.07.14.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Dec 2022 07:12:39 -0800 (PST)
-Message-ID: <2e613245-26a1-c51c-cbb3-b34a88f178f9@linaro.org>
-Date:   Thu, 15 Dec 2022 17:12:39 +0200
+        Thu, 15 Dec 2022 07:14:18 -0800 (PST)
+Message-ID: <3134ba66-27bb-7015-8988-6c8dec046b0f@linaro.org>
+Date:   Thu, 15 Dec 2022 17:14:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH v5 4/8] dt-bindings: arm-smmu: Add compatible for Qualcomm
- SM6115
+Subject: Re: [PATCH v5 5/8] iommu/arm-smmu-qcom: Add SM6115 support
 Content-Language: en-GB
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Iskren Chernev <iskren.chernev@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -67,13 +67,16 @@ Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
         Will Deacon <will@kernel.org>,
         Robin Murphy <robin.murphy@arm.com>,
         Joerg Roedel <joro@8bytes.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
+        Emma Anholt <emma@anholt.net>,
+        Rob Clark <robdclark@chromium.org>,
         linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
         linux-kernel@vger.kernel.org
 References: <20221030094258.486428-1-iskren.chernev@gmail.com>
- <20221030094258.486428-5-iskren.chernev@gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20221030094258.486428-5-iskren.chernev@gmail.com>
+ <20221030094258.486428-6-iskren.chernev@gmail.com>
+ <9e94c0b9-f901-5ac9-2abb-40e958cbe5a2@linaro.org>
+In-Reply-To: <9e94c0b9-f901-5ac9-2abb-40e958cbe5a2@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,33 +89,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/10/2022 11:42, Iskren Chernev wrote:
-> From: Adam Skladowski <a39.skl@gmail.com>
+On 15/12/2022 17:10, Dmitry Baryshkov wrote:
+> On 30/10/2022 11:42, Iskren Chernev wrote:
+>> From: Adam Skladowski <a39.skl@gmail.com>
+>>
+>> Add the Qualcomm SM6115 platform to the list of compatible,
+>> this target uses MMU500 for both APSS and GPU.
+>>
+>> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
+>> Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
 > 
-> Add compatible for the Qualcomm SM6115 platform to the ARM SMMU
-> DeviceTree binding.
-> 
-> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
-> Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
-> ---
->   Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> index 9066e6df1ba1..71f8f638a1f8 100644
-> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> @@ -41,6 +41,7 @@ properties:
->                 - qcom,sdm845-smmu-500
->                 - qcom,sdx55-smmu-500
->                 - qcom,sdx65-smmu-500
-> +              - qcom,sm6115-smmu-500
->                 - qcom,sm6350-smmu-500
->                 - qcom,sm6375-smmu-500
->                 - qcom,sm8150-smmu-500
+> This needs to rebased on linux-next (or 6.2-rc1 once it's out).
 
-Please rebase on top of linux-next and use a generic compatible + SoC 
-specific compatible.
+To add on top of that. linux-next has the following comment:
+
+/*
+  * Do not add any more qcom,SOC-smmu-500 entries to this list, unless 
+they need
+  * special handling and can not be covered by the qcom,smmu-500 entry.
+  */
+
+So, hopefully you can skip this patch completely by depending on the 
+generic "qcom,smmu-500" compatible.
 
 -- 
 With best wishes
