@@ -2,59 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1EE264E08F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 19:21:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 096E064E098
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 19:22:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230206AbiLOSVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 13:21:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49246 "EHLO
+        id S229695AbiLOSWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 13:22:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230201AbiLOSVr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 13:21:47 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9312245EEF;
-        Thu, 15 Dec 2022 10:21:46 -0800 (PST)
+        with ESMTP id S229637AbiLOSWg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 13:22:36 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB8284667B;
+        Thu, 15 Dec 2022 10:22:35 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 22C7E61EAD;
-        Thu, 15 Dec 2022 18:21:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A9EDC433F1;
-        Thu, 15 Dec 2022 18:21:45 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 66E76B81C37;
+        Thu, 15 Dec 2022 18:22:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17311C433D2;
+        Thu, 15 Dec 2022 18:22:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671128505;
-        bh=XNp2eew5F2osbBG2xYRCOh4UDwA6Ten/EhA6IgqIuao=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=JG/NhBoCIYGRQpjeIP8hk6jwLjxSFUVH0Wf+8Phj/Fvkur9OOmkUBHgHEX2DAORMB
-         bO3rrGRdeWLGMBAW+qMAYD0+iZsuR9iL+cy46r61tWp4PqDxwD2vuNfZ9g31R4W/rE
-         xx83Vo6FeaHcqPJN6f3fpV5UqAMOTNT/AfIRn9rPZJalzvgzr/UYIdChq4ImGK3L9l
-         ILKZcSvB/W/RmgATRKei5Gbe/xgbmMsOScC5mbl2USi0BjY5eAN9xopRoyTChkCaP6
-         QnYPPnkzHS3D2hrtGqpGCm/Yl6XDbD5mHdPUBCHZIwJY+SWWcPwD9M9bvIK94dWJAw
-         eCSbXDRLDJ08w==
-Received: by mail-vk1-f173.google.com with SMTP id r3so5058666vkq.13;
-        Thu, 15 Dec 2022 10:21:45 -0800 (PST)
-X-Gm-Message-State: ANoB5pmbeQ12yBOP6bx5wAWSjaW/djliNBOjYFeVLRGc2nRxHD47Di1c
-        KV6XnJybD25KLEb3dDda7ZdAbNbHvhbnKcdzig==
-X-Google-Smtp-Source: AA0mqf7PfbXHfEttrFa9GFT4vHSUPgW6XNbo/+meHwDjz77IKJlN5e+Sxu0qpBuHYHEZBATiU0hRskdvaPbzlxDWoTE=
-X-Received: by 2002:a1f:2c01:0:b0:3c1:1c3b:c4d9 with SMTP id
- s1-20020a1f2c01000000b003c11c3bc4d9mr1293947vks.19.1671128504420; Thu, 15 Dec
- 2022 10:21:44 -0800 (PST)
+        s=k20201202; t=1671128553;
+        bh=dAaOdWTPCc7tzr5zLW6fD/haLwLpJykRK4uPP26zcfE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ovOmvcVJK+pbxmzyzMfETbt5Usv3hISJzTZuEcW6r2mdgU2XcS3x12pTd4d0PlVRU
+         9DBk+sUxP3gx5LgyKL2Tr2mzDMr3O816aAGA5Xzi6ZcTcsnh58amiUMPtZ+IBk10hY
+         cbPLO4nb695Dz84nkN9F7A443FHrzxWaqxrZ8/Ve91MpHB1j8kQPpOriaGjZ0YxglU
+         NFZ1BPt5mKyVOkXqDkvARlu2vJEENCGr5fuWuu7alGuBOq6pINzLnBNAP74aX7kwRY
+         ysZqnH0fNwe5fz4G5u5d0GP6MO0+6DQpxNMB6DAc3ymieYUFXHwqSVKgPuFIJEoLlB
+         xn7MuS3Ca33Jw==
+Date:   Thu, 15 Dec 2022 18:22:23 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Nishanth Menon <nm@ti.com>
+Cc:     jerome Neanne <jneanne@baylibre.com>,
+        Wadim Egorov <W.Egorov@phytec.de>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "kristo@kernel.org" <kristo@kernel.org>,
+        "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "lee@kernel.org" <lee@kernel.org>,
+        "tony@atomide.com" <tony@atomide.com>,
+        "vigneshr@ti.com" <vigneshr@ti.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "geert+renesas@glider.be" <geert+renesas@glider.be>,
+        "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
+        "marcel.ziswiler@toradex.com" <marcel.ziswiler@toradex.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "biju.das.jz@bp.renesas.com" <biju.das.jz@bp.renesas.com>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "jeff@labundy.com" <jeff@labundy.com>, "afd@ti.com" <afd@ti.com>,
+        "khilman@baylibre.com" <khilman@baylibre.com>,
+        "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
+        "msp@baylibre.com" <msp@baylibre.com>,
+        "j-keerthy@ti.com" <j-keerthy@ti.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>
+Subject: Re: [PATCH v7 1/6] DONOTMERGE: arm64: dts: ti: Add TI TPS65219 PMIC
+ support for AM642 SK board.
+Message-ID: <Y5tl3+2pJispcXy6@sirena.org.uk>
+References: <20221104152311.1098603-1-jneanne@baylibre.com>
+ <20221104152311.1098603-2-jneanne@baylibre.com>
+ <d0d7e315-ce86-0420-8ef5-fe2e4aefd5b4@phytec.de>
+ <e2bc53fe-3a0c-cf24-8b29-ca377aba3721@baylibre.com>
+ <Y5tGzjgcAWPqdFNE@sirena.org.uk>
+ <20221215175411.znxy3d6ussq2iq5h@grieving>
 MIME-Version: 1.0
-References: <20221214095342.937303-1-alexander.stein@ew.tq-group.com> <CACRpkdbPy0krGYDdR4-Ga7tE=Wd6d2_KQ50b94VUvV=Zv=iBvA@mail.gmail.com>
-In-Reply-To: <CACRpkdbPy0krGYDdR4-Ga7tE=Wd6d2_KQ50b94VUvV=Zv=iBvA@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 15 Dec 2022 12:21:33 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ0xY5e6mZB_smTCNm0HfsPTF64d0YgikmRx8FPzjxKCw@mail.gmail.com>
-Message-ID: <CAL_JsqJ0xY5e6mZB_smTCNm0HfsPTF64d0YgikmRx8FPzjxKCw@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 0/3] gpio: Add gpio-delay support
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        Marek Vasut <marex@denx.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Ou+aT4tEkmn4+pSU"
+Content-Disposition: inline
+In-Reply-To: <20221215175411.znxy3d6ussq2iq5h@grieving>
+X-Cookie: Today is what happened to yesterday.
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -64,28 +89,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 15, 2022 at 7:16 AM Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> On Wed, Dec 14, 2022 at 10:53 AM Alexander Stein
-> <alexander.stein@ew.tq-group.com> wrote:
->
-> > thanks for the feedback I've received. This is the reworked RFC for
-> > adressing a platform specific ramp-up/ramp-down delay on GPIO outputs.
-> > Now the delays are neither specified as gpio-controller nor
-> > consumer-specific properties.
-> >
-> > v2 is a different approach than v1 in that it adds a new driver which will
-> > simply forward setting the GPIO output of specified GPIOs in OF node.
-> > The ramp-up/ramp-down delay can now be actually defined on consumer side,
-> > see Patch 1 or 3 for examples.
->
-> I really like this approach, it looks better than I imagined.
 
-It seems over-engineered to me. So far no comments on my 3 suggestions either...
+--Ou+aT4tEkmn4+pSU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-One is to just use some GPIO flag bits. Say 4-bits of GPIO flags
-encoded as power of 2 ramp delay. We have to pick the units. For
-example, 100us*2^N, which gives you 200us-3.2s of delay. Anything less
-is short enough to just hard code in a driver.
+On Thu, Dec 15, 2022 at 11:54:11AM -0600, Nishanth Menon wrote:
+> On 16:09-20221215, Mark Brown wrote:
 
-Rob
+> > That proposal looks really non-idiomatic and quite unusual, if there's a
+> > fixed voltage supply to the LDO I'd expect to see it modeled as a fixed
+> > voltage regulator.  I'm not sure what the use of bypass here is trying
+> > to accomplish TBH.
+
+> The problem is this - the default NVM in the PMIC is setup such that
+> VSET value =3.3v and bypass bit set (makes sense since the vin=3.3v).
+
+This implies no voltage drop over the LDO?  Sounds a bit suspect.
+
+> Now the constraint is bypass bit cannot be changed without the LDO
+> being switched off.
+
+> regulator-allow-bypass property allows us to control bypass bit, but we
+> should'nt toggle it when LDO is active. Not providing the property
+> implies the bit wont be toggled by regulator core either.
+
+> What we need is a scheme that will disable the bypass bit with the
+> intent of operating the LDO with just the vset field. I did'nt find it
+> possible atm.. unless I am mistaken..
+
+Can the consumer just disable the supply as part of startup?  Though
+that's starting to feel rather board specific.  There's not really a
+good place to put a board specific setup process like that in the kernel
+at the minute, you'd ideally want the firmware to leave the device at
+least disabled if not actually out of bypass on startup so we don't have
+to deal with this.  Ugh...
+
+--Ou+aT4tEkmn4+pSU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmObZd8ACgkQJNaLcl1U
+h9BH+QgAgXSqInlA7GNyvDv3vqe3E5eleoOCrAa5Ti6K31e7Nvrrr1eDU3YoFQHF
+T1gPkwcmB8T5CvtTK7gWQi5Yv8HAXerZRJXZHYw3cm682lyi+FDUUtq6nAU9Py0G
+wKuNxyD0r5s4VU0IEKMq3AmxpfpDAR1O1X+J17M1qpA7hRTWS2gOvtdFp9f5Qv6M
+7DcL8RN3/kL8lbypTL4D2gFAmxcDSStYOtbNYzzf+ScPXb3FJp0lqn5oFuQzjRuv
+GbcR1e9FRnMNGVZAUfmY8vhSICzHLwMzHZMLZhgNqR20tNc5NrVhEGFfb3BWxU8Q
+9SSKv8RBqU1QqLYxzYC6GkpsKtNcVw==
+=rWw5
+-----END PGP SIGNATURE-----
+
+--Ou+aT4tEkmn4+pSU--
