@@ -2,96 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11F7D64DDF9
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 16:44:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A785464DE09
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 16:48:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230160AbiLOPon (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 10:44:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60098 "EHLO
+        id S230222AbiLOPs3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 10:48:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230202AbiLOPok (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 10:44:40 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0CD019C14
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 07:44:37 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id ay40so14097759wmb.2
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 07:44:37 -0800 (PST)
+        with ESMTP id S230168AbiLOPs2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 10:48:28 -0500
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 274E22DAA1
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 07:48:27 -0800 (PST)
+Received: by mail-lj1-x230.google.com with SMTP id n1so10332213ljg.3
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 07:48:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=newflow-co-uk.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=zijsSUVaIUpTN7Np0PCJl6J2whtZWz6/1MPijX4eR38=;
-        b=SPG19721mTbMi7Eqvdu5ZSY6gUCCQ80sW6GTjfKBhf/10/KOS/xyYzWnWXU8WAjYSM
-         RKsVI6KSb48Ybo5NGD52xr8VArHuPVyGFI11HBZOvhCCpDFlKaTTw47Adh5JbLfturIO
-         6gkhZ3aOjHEcEkIU6TBIkbFk/7zX3opP5B7ad4FE6YM+XLhn873N32P0T9lGxnf30Mpv
-         42XsTKZIcP/SCT6Qe1g6cP04LRIF2AMOdMcDjVf7hJ1pFb8SqyM1DNtGsTOIvCd4tfQ7
-         VbtdOLZMDkNCxbznpD5UHKncTS+L5jHZVSt+fbHT0dfPJFhtF6pdgTStDkPEvC2g23sV
-         s3lw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0FBCMfI6MLyMBcUp7QJ4Mt6HQ0Pr+2qKYBVP3YZd0J0=;
+        b=QoCbzNXOwNLZs/3wzoj9wq3aJqgVSPiTZgS0dbRTVipPNYaxwpgaU5knXDDYtEcyjN
+         /FlHgmmZXuDw+twq8BK122AOf2/RN3BxeVab3oO4OFtgUGJXkCMQ4F4ADTwjz3pdf+Gn
+         HonwfcBeUYtCNTRqSqCSw2K1hvBWboULsOY/jWbTdE73RumI/+8k880YuZoR6vhCdpZI
+         +rJMI4YKk9e+ra+0Ed763d5IMAvLNSluRvIKaVZl0NFVS/joiGfIP7QMlBBVd1Q0Kjcm
+         dUbq+kTH2w26pVfAfl42ul5Or6lALR1kKy4LMoglFvmdpDkt+qSMjkA+KY8SBhXDOSVn
+         7erQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=zijsSUVaIUpTN7Np0PCJl6J2whtZWz6/1MPijX4eR38=;
-        b=GpytuWZcbnZGaeeM+oCJY7b9c1nu2fSdf+nvHCdLPwxgqtJJNbEBrbU4XwWoaIE/1v
-         IbjVsqEjJxz9SPpTLmmCCjWNQpgDP7iHkgRAB6CpQwH6Gh1ukHWDIOZJRt+KlsrCHPcJ
-         L7Kb4N6WIAyJcnhOFzHJtfqNRJgJ28srJOyaszlXR4xJ22l/WmH2nljzmOh/lAy7aFH6
-         1kfVjgo/LphuJ5Ic6Mo+5jj3ePuOUSlRi/3f6fBMqH1ZiY4ID1xJU3Db7dCH37/20uPl
-         VI5M4eLRi+Q+hNStKaKwBQecTfjLhQNl+RiuHR2Bhju+59mriA7AyKkwh0vweAcjRodz
-         xxcA==
-X-Gm-Message-State: AFqh2krxzWZ0F/k13EzG0v0vMt9ownazIKYAwP8QD5MOvU25+Y6uYcTO
-        OlqQGGi+wg7x/4aSjFIVoSlZNVGC+RtCepvi+C00vQ==
-X-Google-Smtp-Source: AMrXdXt7SQhwiWv6vRkZCYXtns42GT8BBahf2dxB+IvRUFqX0QrIGIZ5l0Gfwj01LMgROb+UbBYHXugrav0tep/fj/A=
-X-Received: by 2002:a05:600c:3ace:b0:3cf:88c3:d010 with SMTP id
- d14-20020a05600c3ace00b003cf88c3d010mr137029wms.180.1671119076344; Thu, 15
- Dec 2022 07:44:36 -0800 (PST)
-MIME-Version: 1.0
-References: <20221130140547.295859-1-mpfj@newflow.co.uk> <CAAbcLfgUmiM=6eTQRRdkgLSEQZEcZwnzq0=Ov58S_osru-_V2Q@mail.gmail.com>
- <c7cb3be5-150b-a912-8801-670db63bd4ca@linaro.org>
-In-Reply-To: <c7cb3be5-150b-a912-8801-670db63bd4ca@linaro.org>
-From:   Mark Jackson <mpfj@newflow.co.uk>
-Date:   Thu, 15 Dec 2022 15:44:25 +0000
-Message-ID: <CAAbcLfikQtFrVAsQgs9dYrXGx5-tFv4Mv-GZonNkbBQyNmFQ3A@mail.gmail.com>
-Subject: Re: [PATCH v2 RESEND 0/5] ARM: dts: nanobone: Fix missing/incorrect features
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
+        bh=0FBCMfI6MLyMBcUp7QJ4Mt6HQ0Pr+2qKYBVP3YZd0J0=;
+        b=I5vxBj/qE0/fC6AjRevm9pE89Vm65GQyxEFesdQrF9tTrnhcQfqfjEEHXKEctTLLCh
+         8QWkCG/1/1yO4KdCOEaH+IDhUuuK+bJLxPe1dITanbMTvNAAj2K9fjDsq1ZZROwGau+U
+         kOtwMu40UAAWmbDsxyEqUaalnX0pEawR/ZXkY4qC77746E26PQeEWurZXSwO6B9eMAu9
+         kBaFXtMZ/pDpJrFjCnbGcuAbQ/8/CkfYCaGtt3U1IEDmYxh3n51f0bMr3rppppp9b+ah
+         dzmuBdVmApeI8lANJjpoOoku9XNUSyu6q9FgxeYSTqAIZjd5SY0CeF9K1hIiXCtyLkS8
+         hfLg==
+X-Gm-Message-State: ANoB5pmxcZrDo5aFt5pDgnyJuKgKdQKB6cuUFS6bk4cz1pYLTcJepiUH
+        7uUdCRidoaw8cpqVVgLc1ZAyIA==
+X-Google-Smtp-Source: AA0mqf7atQJp9a3VCnhj1pKzMlLJYVft6bxTO+Y/UFyJO59nCmN1ejDyrBIiDTjoEYeUtsZF/n3bkQ==
+X-Received: by 2002:a2e:a9a7:0:b0:277:3e88:4fb4 with SMTP id x39-20020a2ea9a7000000b002773e884fb4mr9781590ljq.30.1671119305553;
+        Thu, 15 Dec 2022 07:48:25 -0800 (PST)
+Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id bi19-20020a05651c231300b0027a2e0b8766sm875656ljb.9.2022.12.15.07.48.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Dec 2022 07:48:25 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: qcs404: use symbol names for PCIe resets
+Date:   Thu, 15 Dec 2022 17:48:24 +0200
+Message-Id: <20221215154824.84198-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Dec 2022 at 16:54, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 14/12/2022 14:35, Mark Jackson wrote:
-> > On Wed, 30 Nov 2022 at 14:06, Mark Jackson <mpfj@newflow.co.uk> wrote:
-> >>
-> >> This patch series updates the NanoBone DTS file to address various missing or
-> >> incorrect features.
-> >>
+The commit e5bbbff5b7d7 ("clk: gcc-qcs404: Add PCIe resets") added names
+for PCIe resets, but it did not change the existing qcs404.dtsi to use
+these names. Do it now and use symbol names to make it easier to check
+and modify the dtsi in future.
 
-<snip>
+Fixes: e5bbbff5b7d7 ("clk: gcc-qcs404: Add PCIe resets")
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/qcs404.dtsi | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-> >
-> > Any update on this patch ?
-> > Did it ever get through ?
-> > Do I need to re-submit for some reason ?
->
-> It's a merge window and you sent it just before it started.
+diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+index a5324eecb50a..502dd6db491e 100644
+--- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+@@ -806,7 +806,7 @@ pcie_phy: phy@7786000 {
+ 
+ 			clocks = <&gcc GCC_PCIE_0_PIPE_CLK>;
+ 			resets = <&gcc GCC_PCIEPHY_0_PHY_BCR>,
+-				 <&gcc 21>;
++				 <&gcc GCC_PCIE_0_PIPE_ARES>;
+ 			reset-names = "phy", "pipe";
+ 
+ 			clock-output-names = "pcie_0_pipe_clk";
+@@ -1336,12 +1336,12 @@ pcie: pci@10000000 {
+ 				 <&gcc GCC_PCIE_0_SLV_AXI_CLK>;
+ 			clock-names = "iface", "aux", "master_bus", "slave_bus";
+ 
+-			resets = <&gcc 18>,
+-				 <&gcc 17>,
+-				 <&gcc 15>,
+-				 <&gcc 19>,
++			resets = <&gcc GCC_PCIE_0_AXI_MASTER_ARES>,
++				 <&gcc GCC_PCIE_0_AXI_SLAVE_ARES>,
++				 <&gcc GCC_PCIE_0_AXI_MASTER_STICKY_ARES>,
++				 <&gcc GCC_PCIE_0_CORE_STICKY_ARES>,
+ 				 <&gcc GCC_PCIE_0_BCR>,
+-				 <&gcc 16>;
++				 <&gcc GCC_PCIE_0_AHB_ARES>;
+ 			reset-names = "axi_m",
+ 				      "axi_s",
+ 				      "axi_m_sticky",
+-- 
+2.35.1
 
-Ah, okay.
-So will it be picked up automatically next time round or do I need to
-re-submit ?
-
-Cheers
-Mark J.
