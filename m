@@ -2,114 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F375364D73D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 08:26:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B01464D754
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 08:38:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229676AbiLOH0G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 02:26:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42892 "EHLO
+        id S229756AbiLOHiC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 02:38:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229496AbiLOH0F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 02:26:05 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7B1A20379
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 23:25:58 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id bx10so2163952wrb.0
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 23:25:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Mm2wMOJBU0KY5CK4G5XuPJWnbMPqw3bzwZnGj//J0bc=;
-        b=IJ027xJjO2+v9bEloG9slnX6gLRHg9t1MMvGfOevcGjukcWsGVH+SAPCaW5j18HGrf
-         mSgKQ8uYEIFewcYpKNLqjLRCJmDZ7Hf08tzaGsZCcYE3ktur3K1fNrOy4+PcNT2SAhRr
-         gxG5rA8umj7lHwqtDJIGp4Moa0b7Re2Z1+NGxDwQJJEn1DD7aj0XbCGfzk0ChWBYoAwE
-         jmpbTzF1TSUCKxVBlI90TX59HuE+t4WHUMgtFRg0V1tWTFMHs5sqE6azh0haI7p2DGCb
-         2uDakyUpVab9ClcmoHWANWAkdm8bHEQ1NARrvXHcu1d6HqcYaaBsYGqWEuKDVz7BEWXd
-         7YGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Mm2wMOJBU0KY5CK4G5XuPJWnbMPqw3bzwZnGj//J0bc=;
-        b=P4MqJEWgRb6HA8xKDFoKvv1ytRaAnmiTHGN/vMAAlv1kNohptdXD73+Iqx5m97TSBi
-         XLWupsJkY++OLkEGEEZAdeJPq9xQ5P+nUCAbnxAwAUn/oyHFG2gFzDjEzCFLA5oy1+4O
-         fA7K+xafbf5/hz7e132RnVelF7MzDYinvQhYLtU/np5PB8j4CwYoIhaw7jIQTrzn44iP
-         j1Q+hn64UyeSkuRJaCL/zs6xUgbjgqYDsBfnWS5wN+y5z+YU3C3UcM5nVz5u7PEFsxPH
-         fyuLitugheAnz+JzjOpjFMj8qaZlmPBMAQ1SzU42DrSbhZCPf32gnVkoOAfUm753Yejc
-         22bw==
-X-Gm-Message-State: ANoB5pluRBIusAxMmf77m/mzEkws0TUpsLnlJ+AmHx7wtgxxPZqQZrhI
-        avEZ8YqaER7GqFXbnr/VU1jb0A==
-X-Google-Smtp-Source: AA0mqf6FUW6cVCTyvzhNaccE170mxSEmlyha2ZZvhJLzGO2eAwd7HoAqxqtaPydtZy7SLmvbY+rnjg==
-X-Received: by 2002:a5d:5187:0:b0:242:9e8:84b6 with SMTP id k7-20020a5d5187000000b0024209e884b6mr16499660wrv.13.1671089157351;
-        Wed, 14 Dec 2022 23:25:57 -0800 (PST)
-Received: from [192.168.30.216] ([81.0.6.76])
-        by smtp.gmail.com with ESMTPSA id n9-20020a5d67c9000000b00228dbf15072sm5082277wrw.62.2022.12.14.23.25.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Dec 2022 23:25:56 -0800 (PST)
-Message-ID: <ac2d90e2-6fc3-98dc-8c73-936132b6c8d5@linaro.org>
-Date:   Thu, 15 Dec 2022 08:25:54 +0100
+        with ESMTP id S229782AbiLOHh6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 02:37:58 -0500
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B61B731DEE
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 23:37:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=k1; bh=KuvcfPvwa+BjCI6vaKqIJfDzVDwX
+        Esjbl5vUFk9h+uc=; b=2Ex5NhqMqXKc1Yt6TKGJWD66qNNUV7VHNel0NTkxcsTp
+        JldW9hnQru2ZVqpGXhE1B/QB0efkSbib4taacAr/1cj4eMToF/eRWnx8CAqTRJ3c
+        5mjdMJlbeBYGauVtfqCOcd1lw6JiWRNbG9kszZ/a9X71kAIxtx8Jc/nsvU2+/EE=
+Received: (qmail 2278995 invoked from network); 15 Dec 2022 08:37:47 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 15 Dec 2022 08:37:47 +0100
+X-UD-Smtp-Session: l3s3148p1@Q2Dy7djveK0ujnt8
+Date:   Thu, 15 Dec 2022 08:37:46 +0100
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jacopo Mondi <jacopo@jmondi.org>
+Subject: Re: [PATCH 2/4] dt-bindings: mmc: renesas,sdhi: Document RZ/V2M
+ support
+Message-ID: <Y5rOypDpz8obHoVN@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jacopo Mondi <jacopo@jmondi.org>
+References: <20221213230129.549968-1-fabrizio.castro.jz@renesas.com>
+ <20221213230129.549968-3-fabrizio.castro.jz@renesas.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.5.1
-Subject: Re: [PATCH v2 2/2] docs: remoteproc: Update section header name
- requirement
-Content-Language: en-US
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        linux-remoteproc@vger.kernel.org, agross@kernel.org,
-        andersson@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, quic_plai@quicinc.com, bgoswami@quicinc.com,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        quic_rohkumar@quicinc.com, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski@linaro.org, mathieu.poirier@linaro.org,
-        corbet@lwn.net
-References: <1670924929-26507-1-git-send-email-quic_srivasam@quicinc.com>
- <1670924929-26507-3-git-send-email-quic_srivasam@quicinc.com>
-From:   =?UTF-8?Q?Philippe_Mathieu-Daud=c3=a9?= <philmd@linaro.org>
-In-Reply-To: <1670924929-26507-3-git-send-email-quic_srivasam@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="nB2VAnfRyMJ63TdW"
+Content-Disposition: inline
+In-Reply-To: <20221213230129.549968-3-fabrizio.castro.jz@renesas.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/12/22 10:48, Srinivasa Rao Mandadapu wrote:
-> Add section header name requirement specification in elf segments.
-> 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> ---
->   Documentation/staging/remoteproc.rst | 2 ++
->   1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/staging/remoteproc.rst b/Documentation/staging/remoteproc.rst
-> index 348ee7e..3125030 100644
-> --- a/Documentation/staging/remoteproc.rst
-> +++ b/Documentation/staging/remoteproc.rst
-> @@ -245,6 +245,8 @@ if the remote processor is accessing memory directly).
->   
->   In addition to the standard ELF segments, most remote processors would
->   also include a special section which we call "the resource table".
-> +This resource table section name may have anything appended after it,
-> +but it must start with ".resource_table"
 
-What do you think of:
+--nB2VAnfRyMJ63TdW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-    In addition to the standard ELF segments, most remote processors would
-    also include a special section which we call the "resource table".
-    A "resource table" section name must start with the ".resource_table"
-    prefix, optionally having a more descriptive string appended. For
-    example, ".resource_table.my_rproc" is a valid section name.
+On Tue, Dec 13, 2022 at 11:01:27PM +0000, Fabrizio Castro wrote:
+> Document support for the SD Card/MMC interface on the Renesas
+> RZ/V2M (a.k.a. r9a09g011) SoC.
+>=20
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
 
-Regards,
+Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-Phil.
+
+--nB2VAnfRyMJ63TdW
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmOazsYACgkQFA3kzBSg
+Kba9bQ/+JGOXI+Dj4hMBDwMh7oY10zpnVssDROBvjW/J+jC9F5gwYx+SuQ2kSQhE
+A+oL7+653MbG6lY5gHdqasfehSDi/S648o7sP731tcyrOf54ZD6UYtGcwMNck6k1
+DGD2LAwQ9mlAu10bqGFkcLgR/ApCruxfOxmAaCdfZk+1OZ4drqNShlxTBVnTBPNV
+WJdyeKNxqhQbamlTSrP9raZb390NuFnqBRODcs0SfYfThVCoBuHsnfzGaR2JBlZy
+fyuY8N2VomEni4/r0Ciegnxz1Guy+NKJ+26eXL536Wsws7s3ydAOI0fYNUOA+RIw
+cx+IZm/tOy+Iy0H9yESWdkcPPsLQO4scTG4f7Mqxg24h+goapU7379tDWw6+jd2Q
+5p28hKpc21C0J8n7Fe3TfxkGnATS1VmpwMrBDQk1VSZxIOOh+qbWK+xanU4QxfSR
+PuVLPe4EGxamFxB0b2F1YOvWUxjyJSUzZlnGB2nZpg0IHvQF0/DcK+Qzjc9YqLuz
+Ef+RJ80JVZz3pmr5mm63Hjlj+YHdCC5MfXujSYSfKhskgfbJ12z7HE3JK3Oh/p1E
+AEQDzpipflLlNTWJ/TYLe16FhUX2nNUjTfzUUZJhxZft7aaUFw7lVpmXPPtypDle
+lzPGtDow1I+DrRIdkR5idqrBkAmjxfDbgQDrsY+LFitHB2ODeXg=
+=3wdx
+-----END PGP SIGNATURE-----
+
+--nB2VAnfRyMJ63TdW--
