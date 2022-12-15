@@ -2,116 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A785464DE09
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 16:48:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1507064DE13
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 16:51:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230222AbiLOPs3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 10:48:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33608 "EHLO
+        id S230018AbiLOPvr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 10:51:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230168AbiLOPs2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 10:48:28 -0500
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 274E22DAA1
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 07:48:27 -0800 (PST)
-Received: by mail-lj1-x230.google.com with SMTP id n1so10332213ljg.3
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 07:48:27 -0800 (PST)
+        with ESMTP id S229705AbiLOPvp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 10:51:45 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 086F22EF08
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 07:51:44 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id v7so14133188wmn.0
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 07:51:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=0FBCMfI6MLyMBcUp7QJ4Mt6HQ0Pr+2qKYBVP3YZd0J0=;
-        b=QoCbzNXOwNLZs/3wzoj9wq3aJqgVSPiTZgS0dbRTVipPNYaxwpgaU5knXDDYtEcyjN
-         /FlHgmmZXuDw+twq8BK122AOf2/RN3BxeVab3oO4OFtgUGJXkCMQ4F4ADTwjz3pdf+Gn
-         HonwfcBeUYtCNTRqSqCSw2K1hvBWboULsOY/jWbTdE73RumI/+8k880YuZoR6vhCdpZI
-         +rJMI4YKk9e+ra+0Ed763d5IMAvLNSluRvIKaVZl0NFVS/joiGfIP7QMlBBVd1Q0Kjcm
-         dUbq+kTH2w26pVfAfl42ul5Or6lALR1kKy4LMoglFvmdpDkt+qSMjkA+KY8SBhXDOSVn
-         7erQ==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=V2cRcfojGiF9qQEX9U8QFOzZLig/2FAjtxG+CBJEBFo=;
+        b=bVgJyDTvQ2d+crPVf0qEjj/SXvuxIZeFKQITUxl2atDfl2hEcbxwgt9LyrHVid2lUS
+         uIF78Zw09fK3Za5eMw03H0Tfgf6xXFVAtee5guOt6PU2dIgML8wI/QVuit8Kpmhi6p+1
+         7bUZH4srlxGuaBfE+k/GGTcv8bnM0yct37Jn0ECFYZBNGKN+iTW6Ywj/ZylY81SWbP2V
+         QpkDpq3+HsdbmHK82gn970aupr7h8L9oJ1NUJJ+/MMGtzIzYOKxxDYdOiBJcCyjpEMpG
+         kHPXwZUDFjkvO7DfXHxYcIdZZRWmVCvGHASdRW2D4gDqAFhfKzhuwUguMqzgVE/38a7Y
+         bqzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0FBCMfI6MLyMBcUp7QJ4Mt6HQ0Pr+2qKYBVP3YZd0J0=;
-        b=I5vxBj/qE0/fC6AjRevm9pE89Vm65GQyxEFesdQrF9tTrnhcQfqfjEEHXKEctTLLCh
-         8QWkCG/1/1yO4KdCOEaH+IDhUuuK+bJLxPe1dITanbMTvNAAj2K9fjDsq1ZZROwGau+U
-         kOtwMu40UAAWmbDsxyEqUaalnX0pEawR/ZXkY4qC77746E26PQeEWurZXSwO6B9eMAu9
-         kBaFXtMZ/pDpJrFjCnbGcuAbQ/8/CkfYCaGtt3U1IEDmYxh3n51f0bMr3rppppp9b+ah
-         dzmuBdVmApeI8lANJjpoOoku9XNUSyu6q9FgxeYSTqAIZjd5SY0CeF9K1hIiXCtyLkS8
-         hfLg==
-X-Gm-Message-State: ANoB5pmxcZrDo5aFt5pDgnyJuKgKdQKB6cuUFS6bk4cz1pYLTcJepiUH
-        7uUdCRidoaw8cpqVVgLc1ZAyIA==
-X-Google-Smtp-Source: AA0mqf7atQJp9a3VCnhj1pKzMlLJYVft6bxTO+Y/UFyJO59nCmN1ejDyrBIiDTjoEYeUtsZF/n3bkQ==
-X-Received: by 2002:a2e:a9a7:0:b0:277:3e88:4fb4 with SMTP id x39-20020a2ea9a7000000b002773e884fb4mr9781590ljq.30.1671119305553;
-        Thu, 15 Dec 2022 07:48:25 -0800 (PST)
-Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id bi19-20020a05651c231300b0027a2e0b8766sm875656ljb.9.2022.12.15.07.48.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Dec 2022 07:48:25 -0800 (PST)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: qcs404: use symbol names for PCIe resets
-Date:   Thu, 15 Dec 2022 17:48:24 +0200
-Message-Id: <20221215154824.84198-1-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=V2cRcfojGiF9qQEX9U8QFOzZLig/2FAjtxG+CBJEBFo=;
+        b=pCLEle2eQatSulf9pGHaO0CCrF8LUGeAyS5isb2niHVf0w7SuhexBQz7XEVgwxOHlO
+         4qfXdyHc+1lFa6Jv97AdVa9DnhXiX284Pi2uaILOLJMkNktQMcVw3AUyeXp67rYpxtbJ
+         nctnyLjwWSsTY4AX5i9cJXbwXd072z5v6m6Acf0JaTXTjsNjndO+NTvJpOLyEvYla2Y3
+         xKDYeM95tUHgycoPqQLTnklj2xbrYp9hS1aMfurBB/tCGlEiHK0tpgsAkud6orDRhVw0
+         XwiPURC/Bm6q34SJUHNe8ule0qyqCnp8Q/18nObPdemOfkDaafx2mbrCxG75eC9d+SJP
+         ZNJw==
+X-Gm-Message-State: ANoB5pn0MkyJ35xECMWjnHxFYk/EEhsGsdxLf1KAi7DXYRPf7mWbzszb
+        bSZj2VuWQpA3v8m0Z4+eOq5ZzA==
+X-Google-Smtp-Source: AA0mqf5T28A1fwwJEdZX35EQu5OSksBT6KKYLBeLzZpR+52DmK8gZxNd3JNVBBNn8gPpdSKSQ71WGQ==
+X-Received: by 2002:a05:600c:2101:b0:3cf:e850:4451 with SMTP id u1-20020a05600c210100b003cfe8504451mr22559864wml.9.1671119502537;
+        Thu, 15 Dec 2022 07:51:42 -0800 (PST)
+Received: from [192.168.1.91] (192.201.68.85.rev.sfr.net. [85.68.201.192])
+        by smtp.gmail.com with ESMTPSA id n7-20020a05600c4f8700b003d1e90717ccsm8522883wmq.30.2022.12.15.07.51.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Dec 2022 07:51:41 -0800 (PST)
+Message-ID: <e2bc53fe-3a0c-cf24-8b29-ca377aba3721@baylibre.com>
+Date:   Thu, 15 Dec 2022 16:51:40 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v7 1/6] DONOTMERGE: arm64: dts: ti: Add TI TPS65219 PMIC
+ support for AM642 SK board.
+Content-Language: en-US
+To:     Wadim Egorov <W.Egorov@phytec.de>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>, "nm@ti.com" <nm@ti.com>,
+        "kristo@kernel.org" <kristo@kernel.org>,
+        "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "lee@kernel.org" <lee@kernel.org>,
+        "tony@atomide.com" <tony@atomide.com>,
+        "vigneshr@ti.com" <vigneshr@ti.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "geert+renesas@glider.be" <geert+renesas@glider.be>,
+        "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
+        "marcel.ziswiler@toradex.com" <marcel.ziswiler@toradex.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "biju.das.jz@bp.renesas.com" <biju.das.jz@bp.renesas.com>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "jeff@labundy.com" <jeff@labundy.com>
+Cc:     "afd@ti.com" <afd@ti.com>,
+        "khilman@baylibre.com" <khilman@baylibre.com>,
+        "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
+        "msp@baylibre.com" <msp@baylibre.com>,
+        "j-keerthy@ti.com" <j-keerthy@ti.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>
+References: <20221104152311.1098603-1-jneanne@baylibre.com>
+ <20221104152311.1098603-2-jneanne@baylibre.com>
+ <d0d7e315-ce86-0420-8ef5-fe2e4aefd5b4@phytec.de>
+From:   jerome Neanne <jneanne@baylibre.com>
+In-Reply-To: <d0d7e315-ce86-0420-8ef5-fe2e4aefd5b4@phytec.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The commit e5bbbff5b7d7 ("clk: gcc-qcs404: Add PCIe resets") added names
-for PCIe resets, but it did not change the existing qcs404.dtsi to use
-these names. Do it now and use symbol names to make it easier to check
-and modify the dtsi in future.
 
-Fixes: e5bbbff5b7d7 ("clk: gcc-qcs404: Add PCIe resets")
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/qcs404.dtsi | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-index a5324eecb50a..502dd6db491e 100644
---- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-@@ -806,7 +806,7 @@ pcie_phy: phy@7786000 {
- 
- 			clocks = <&gcc GCC_PCIE_0_PIPE_CLK>;
- 			resets = <&gcc GCC_PCIEPHY_0_PHY_BCR>,
--				 <&gcc 21>;
-+				 <&gcc GCC_PCIE_0_PIPE_ARES>;
- 			reset-names = "phy", "pipe";
- 
- 			clock-output-names = "pcie_0_pipe_clk";
-@@ -1336,12 +1336,12 @@ pcie: pci@10000000 {
- 				 <&gcc GCC_PCIE_0_SLV_AXI_CLK>;
- 			clock-names = "iface", "aux", "master_bus", "slave_bus";
- 
--			resets = <&gcc 18>,
--				 <&gcc 17>,
--				 <&gcc 15>,
--				 <&gcc 19>,
-+			resets = <&gcc GCC_PCIE_0_AXI_MASTER_ARES>,
-+				 <&gcc GCC_PCIE_0_AXI_SLAVE_ARES>,
-+				 <&gcc GCC_PCIE_0_AXI_MASTER_STICKY_ARES>,
-+				 <&gcc GCC_PCIE_0_CORE_STICKY_ARES>,
- 				 <&gcc GCC_PCIE_0_BCR>,
--				 <&gcc 16>;
-+				 <&gcc GCC_PCIE_0_AHB_ARES>;
- 			reset-names = "axi_m",
- 				      "axi_s",
- 				      "axi_m_sticky",
--- 
-2.35.1
+On 15/12/2022 16:09, Wadim Egorov wrote:
+> Hi Jerome,
+> 
+> is this setup working for you on the AM642 SK board?
+> 
+> I am testing your PMIC patches on a AM62 based board with a similar setup and
+> running into the following error
+> 
+>      VDDSHV5_SDIO: bypassed regulator has no supply!
+>      VDDSHV5_SDIO: will resolve supply early: ldo1
+>      VDDSHV5_SDIO: supplied by regulator-dummy
+>      VDDSHV5_SDIO: failed to get the current voltage: -EINVAL
+> 
+> Have you noticed problems with LDO1 and bypass mode?
 
+Wadim,
+
+I did not noticed this on am642 board but IIRC this rail was not used. I 
+heard about similar issue reported to me by Nishanth M with a fix 
+proposal here:
+https://gist.github.com/nmenon/e4dd6ef6afe31bc9750fa6cbee8d3e25
+
+I did not have time yet to investigate on this but will do soon.
+
+Regards,
+Jerome
