@@ -2,57 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED62C64DA3B
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 12:26:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C33364DA7E
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 12:38:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229976AbiLOL02 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 06:26:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43114 "EHLO
+        id S230141AbiLOLiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 06:38:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229972AbiLOL0U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 06:26:20 -0500
-Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A56F2B620
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 03:26:06 -0800 (PST)
-Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-1433ef3b61fso20505803fac.10
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 03:26:06 -0800 (PST)
+        with ESMTP id S230233AbiLOLh4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 06:37:56 -0500
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3012F2BB03
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 03:37:36 -0800 (PST)
+Received: by mail-oi1-x22a.google.com with SMTP id v82so5042856oib.4
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 03:37:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=vzBu09mDNq5od2QDqdPk1lAEX0XPtU9krf/GwA+RPJY=;
-        b=v2m4kc2iGSRRt6ZRKPEIUlectgou5queRkEGL01awAIbkgCEaqvbvAxEkYhItFmPMp
-         7eUXUQqZ2/L5JqxNrVK6z86qAEprHOgQhs56OT5JKnYK5gQulYFG0lp/Ek0cGB6e+kC6
-         bXklXxjbxepwEnHaaqRFpMae+jxdL5DLKMZFJjvUw9xYZx7ABdoN9tHd3Mpu4GCJ9vSA
-         tkM2aVe36dNnW5kBz97UxFuNz39KRiUqP2z+uAMHoXJSSl1G/hNXaCK2GEsIMgcJAFRY
-         3tNKrknSWLnQRqkVnY9VhxKHnde18lnjyXkg+7abkEe0hGYRoKENtb7C486z78pV3/+7
-         IPmQ==
+        bh=S9gVSgOkROGEwxsJ0w3CmvpiOrz8WMPdeFu7W80kjVY=;
+        b=Da9sUFMuMf7OMzldbcETDbBz47TrsxDAkpSWd4y3Yy+2q4p+RaLVC8lgHE9gBpIAN+
+         E8OvBA7D38dc4n9qFNMYehDyAxKtZ/ct9CbYIcCYGdy8JW3szX5gym3/SQaLqxvjgeJU
+         5B7aiblJdKdISYlkY16Ko0uldJu+JR9iyEG584fCXX68rhB97Kgqmb3z7V8ptESxnp3d
+         ENlbs5SmjmU/SzV8c50iB0bMpVST3MmyIJOsvkXsFs8OIstvFav6lCjk8EVfnrEkoteQ
+         GSo8R9sh/RdMAHJcwcK8kdQxc4zkKTsTvOnXwWQSyClFVseDmf57AziW9mHGo65X6Hk8
+         Yytg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=vzBu09mDNq5od2QDqdPk1lAEX0XPtU9krf/GwA+RPJY=;
-        b=GxboQ3L22sCUHFEinvx/VLKcAMYL7iKzIIOnvN97NfEa5LAxNzVjlb+EODF51Uczqr
-         nDZw+E3Wa7BfHniyT5Q/BcmAjjTZ/kyNhtbun9UJplOScg2luqRobJZ4VaHtAjBc+jtE
-         mCSiwnDGn/ATtvImUvPaylXE7cYIMCyptc6wvJLEYOh6lTEv6/6AubNFhO0G6ApKKCd4
-         JFb95Q7Le7Vt65Pvul/X08jSPJRyUNxWiktvOPB9ItwdxhzsMziIA3ytQXwRAHYnQ35o
-         uCspvBAivpNfQjPd5vzqxJea1aDMP6RfGaoJSkj+oG346ICVn2L4vRt0CJy/iRz3gE0D
-         I3mA==
-X-Gm-Message-State: AFqh2krLPn18Xx2pgBDH83AbvbEw1DSPDQDuMx4Pb4LHMKvo/AoaGRrg
-        wmq7g1rSzUZ50EJ8wf1ww+YVVL9M7BUgT7zu1X+QrQ==
-X-Google-Smtp-Source: AA0mqf45eNjcBDqYyjIy3WCWWUrekvaEjIMVCLmAAlhDuVxeAdYM+pNqRVSpZsJGArT7JNtrZpNNeiQ8znox2+ggghU=
-X-Received: by 2002:a05:6870:9e4c:b0:13c:33d0:22e2 with SMTP id
- pt12-20020a0568709e4c00b0013c33d022e2mr594661oab.14.1671103565499; Thu, 15
- Dec 2022 03:26:05 -0800 (PST)
+        bh=S9gVSgOkROGEwxsJ0w3CmvpiOrz8WMPdeFu7W80kjVY=;
+        b=PpF4rBdkn8ldwKt8mEjuUffwUj8grc/aH2ol6Sj2bz8g6sdLaHnSA3telIhKRZ17GC
+         Cx1XMafEpm1rFRXjTGwi/KSx+3Cgm+bcN3AAmk0WofK4Xu3W6VyhjvFBKYbY5V04MmPs
+         JBYs0SXJgcxu2s99Myh/Sm6cwrszwjlarGM7jMxIplyIEuvXd6zu7gkZEztH+rQPkpcM
+         rsZwM3OxIHHZlohR4txvhtQqxAtnjvqZuamAZcCNL06bYlXa7TqDcCssfLlpvk6eUl2P
+         T40aA7SgyQs6XTNGtbEUdK1PIIejcTstQOWoPhMstTSq1Euva//rMB6FFDOloF10xENM
+         gvAA==
+X-Gm-Message-State: ANoB5pmU5ichen0p9UYw5TlyDb/Ny03aUhXeffJ+uLiT1n8Q94v3J24r
+        cL/esNIgU3rFkbf3wTFC+SVDt26PC+TAWB3xoWYYrQ==
+X-Google-Smtp-Source: AA0mqf7BzmAiWPcb9KIGjHV+SyzIt3IQlQgKUbJieTreiEWKW1K6qj8bQe6/Zjvi9UdvOb8LJi1jm/GW+3I1q7GaAR0=
+X-Received: by 2002:aca:1c07:0:b0:359:ef86:2f4f with SMTP id
+ c7-20020aca1c07000000b00359ef862f4fmr311021oic.14.1671104255444; Thu, 15 Dec
+ 2022 03:37:35 -0800 (PST)
 MIME-Version: 1.0
-References: <20221214125821.12489-1-paul@crapouillou.net> <20221214130122.12911-1-paul@crapouillou.net>
-In-Reply-To: <20221214130122.12911-1-paul@crapouillou.net>
+References: <20221214125821.12489-1-paul@crapouillou.net> <20221214130131.12962-1-paul@crapouillou.net>
+In-Reply-To: <20221214130131.12962-1-paul@crapouillou.net>
 From:   Robert Foss <robert.foss@linaro.org>
-Date:   Thu, 15 Dec 2022 12:25:54 +0100
-Message-ID: <CAG3jFysF_i0ycn8AADJsq6+SOpwwP0-CTp04gXuD6sV=FYzE=w@mail.gmail.com>
-Subject: Re: [PATCH 09/10] drm: bridge: it66121: Move VID/PID to new
- it66121_chip_info structure
+Date:   Thu, 15 Dec 2022 12:37:24 +0100
+Message-ID: <CAG3jFytCuh_20=3r3c=Dtahu-Btjixq4QFeVneDmsFYRUvM+-g@mail.gmail.com>
+Subject: Re: [PATCH 10/10] drm: bridge: it66121: Add support for the IT6610
 To:     Paul Cercueil <paul@crapouillou.net>
 Cc:     Phong LE <ple@baylibre.com>,
         Neil Armstrong <neil.armstrong@linaro.org>,
@@ -78,94 +77,231 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Wed, 14 Dec 2022 at 14:01, Paul Cercueil <paul@crapouillou.net> wrote:
 >
-> This will make it easier later to introduce support for new chips in
-> this driver.
+> Add support for the IT6610 HDMI encoder.
+>
+> The hardware is very similar, and therefore the driver did not require
+> too many changes. Some bits are only available on the IT66121, and
+> vice-versa. Also, the IT6610 requires specific polarities on the DE and
+> pixel lines.
 >
 > Signed-off-by: Paul Cercueil <paul@crapouillou.net>
 > ---
->  drivers/gpu/drm/bridge/ite-it66121.c | 27 +++++++++++++++------------
->  1 file changed, 15 insertions(+), 12 deletions(-)
+>  drivers/gpu/drm/bridge/ite-it66121.c | 108 +++++++++++++++++++++------
+>  1 file changed, 86 insertions(+), 22 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/bridge/ite-it66121.c b/drivers/gpu/drm/bridge/ite-it66121.c
-> index 7972003d4776..43b027b85b8e 100644
+> index 43b027b85b8e..b34860871627 100644
 > --- a/drivers/gpu/drm/bridge/ite-it66121.c
 > +++ b/drivers/gpu/drm/bridge/ite-it66121.c
-> @@ -35,10 +35,6 @@
->  #define IT66121_DEVICE_ID0_REG                 0x02
->  #define IT66121_DEVICE_ID1_REG                 0x03
+> @@ -68,6 +68,7 @@
+>  #define IT66121_AFE_XP_ENO                     BIT(4)
+>  #define IT66121_AFE_XP_RESETB                  BIT(3)
+>  #define IT66121_AFE_XP_PWDI                    BIT(2)
+> +#define IT6610_AFE_XP_BYPASS                   BIT(0)
 >
-> -#define IT66121_VENDOR_ID0                     0x54
-> -#define IT66121_VENDOR_ID1                     0x49
-> -#define IT66121_DEVICE_ID0                     0x12
-> -#define IT66121_DEVICE_ID1                     0x06
->  #define IT66121_REVISION_MASK                  GENMASK(7, 4)
->  #define IT66121_DEVICE_ID1_MASK                        GENMASK(3, 0)
+>  #define IT66121_AFE_IP_REG                     0x64
+>  #define IT66121_AFE_IP_GAINBIT                 BIT(7)
+> @@ -284,7 +285,13 @@
 >
-> @@ -286,13 +282,12 @@
->  #define IT66121_AUD_SWL_16BIT                  0x2
->  #define IT66121_AUD_SWL_NOT_INDICATED          0x0
->
-> -#define IT66121_VENDOR_ID0                     0x54
-> -#define IT66121_VENDOR_ID1                     0x49
-> -#define IT66121_DEVICE_ID0                     0x12
-> -#define IT66121_DEVICE_ID1                     0x06
-> -#define IT66121_DEVICE_MASK                    0x0F
 >  #define IT66121_AFE_CLK_HIGH                   80000 /* Khz */
 >
-> +struct it66121_chip_info {
-> +       u16 vid, pid;
+> +enum chip_id {
+> +       ID_IT6610,
+> +       ID_IT66121,
 > +};
 > +
->  struct it66121_ctx {
->         struct regmap *regmap;
->         struct drm_bridge bridge;
-> @@ -311,6 +306,7 @@ struct it66121_ctx {
->                 u8 swl;
->                 bool auto_cts;
->         } audio;
-> +       const struct it66121_chip_info *info;
+>  struct it66121_chip_info {
+> +       enum chip_id id;
+>         u16 vid, pid;
 >  };
 >
->  static const struct regmap_range_cfg it66121_regmap_banks[] = {
-> @@ -1451,6 +1447,7 @@ static const char * const it66121_supplies[] = {
+> @@ -391,16 +398,22 @@ static int it66121_configure_afe(struct it66121_ctx *ctx,
 >
->  static int it66121_probe(struct i2c_client *client)
->  {
-> +       const struct i2c_device_id *id = i2c_client_get_device_id(client);
->         u32 revision_id, vendor_ids[2] = { 0 }, device_ids[2] = { 0 };
->         struct device_node *ep;
->         int ret;
-> @@ -1472,6 +1469,7 @@ static int it66121_probe(struct i2c_client *client)
+>                 ret = regmap_write_bits(ctx->regmap, IT66121_AFE_IP_REG,
+>                                         IT66121_AFE_IP_GAINBIT |
+> -                                       IT66121_AFE_IP_ER0 |
+> -                                       IT66121_AFE_IP_EC1,
+> +                                       IT66121_AFE_IP_ER0,
+>                                         IT66121_AFE_IP_GAINBIT);
+>                 if (ret)
+>                         return ret;
 >
->         ctx->dev = dev;
->         ctx->client = client;
-> +       ctx->info = (const struct it66121_chip_info *) id->driver_data;
+> -               ret = regmap_write_bits(ctx->regmap, IT66121_AFE_XP_EC1_REG,
+> -                                       IT66121_AFE_XP_EC1_LOWCLK, 0x80);
+> -               if (ret)
+> -                       return ret;
+> +               if (ctx->info->id == ID_IT66121) {
+> +                       ret = regmap_write_bits(ctx->regmap, IT66121_AFE_IP_REG,
+> +                                               IT66121_AFE_IP_EC1, 0);
+> +                       if (ret)
+> +                               return ret;
+> +
+> +                       ret = regmap_write_bits(ctx->regmap, IT66121_AFE_XP_EC1_REG,
+> +                                               IT66121_AFE_XP_EC1_LOWCLK, 0x80);
+> +                       if (ret)
+> +                               return ret;
+> +               }
+>         } else {
+>                 ret = regmap_write_bits(ctx->regmap, IT66121_AFE_XP_REG,
+>                                         IT66121_AFE_XP_GAINBIT |
+> @@ -411,17 +424,24 @@ static int it66121_configure_afe(struct it66121_ctx *ctx,
 >
->         of_property_read_u32(ep, "bus-width", &ctx->bus_width);
->         of_node_put(ep);
-> @@ -1523,8 +1521,8 @@ static int it66121_probe(struct i2c_client *client)
->         revision_id = FIELD_GET(IT66121_REVISION_MASK, device_ids[1]);
->         device_ids[1] &= IT66121_DEVICE_ID1_MASK;
+>                 ret = regmap_write_bits(ctx->regmap, IT66121_AFE_IP_REG,
+>                                         IT66121_AFE_IP_GAINBIT |
+> -                                       IT66121_AFE_IP_ER0 |
+> -                                       IT66121_AFE_IP_EC1, IT66121_AFE_IP_ER0 |
+> -                                       IT66121_AFE_IP_EC1);
+> +                                       IT66121_AFE_IP_ER0,
+> +                                       IT66121_AFE_IP_ER0);
+>                 if (ret)
+>                         return ret;
 >
-> -       if (vendor_ids[0] != IT66121_VENDOR_ID0 || vendor_ids[1] != IT66121_VENDOR_ID1 ||
-> -           device_ids[0] != IT66121_DEVICE_ID0 || device_ids[1] != IT66121_DEVICE_ID1) {
-> +       if ((vendor_ids[1] << 8 | vendor_ids[0]) != ctx->info->vid ||
-> +           (device_ids[1] << 8 | device_ids[0]) != ctx->info->pid) {
->                 return -ENODEV;
+> -               ret = regmap_write_bits(ctx->regmap, IT66121_AFE_XP_EC1_REG,
+> -                                       IT66121_AFE_XP_EC1_LOWCLK,
+> -                                       IT66121_AFE_XP_EC1_LOWCLK);
+> -               if (ret)
+> -                       return ret;
+> +               if (ctx->info->id == ID_IT66121) {
+> +                       ret = regmap_write_bits(ctx->regmap, IT66121_AFE_IP_REG,
+> +                                               IT66121_AFE_IP_EC1,
+> +                                               IT66121_AFE_IP_EC1);
+> +                       if (ret)
+> +                               return ret;
+> +
+> +                       ret = regmap_write_bits(ctx->regmap, IT66121_AFE_XP_EC1_REG,
+> +                                               IT66121_AFE_XP_EC1_LOWCLK,
+> +                                               IT66121_AFE_XP_EC1_LOWCLK);
+> +                       if (ret)
+> +                               return ret;
+> +               }
 >         }
 >
-> @@ -1563,8 +1561,13 @@ static const struct of_device_id it66121_dt_match[] = {
+>         /* Clear reset flags */
+> @@ -430,6 +450,14 @@ static int it66121_configure_afe(struct it66121_ctx *ctx,
+>         if (ret)
+>                 return ret;
+>
+> +       if (ctx->info->id == ID_IT6610) {
+> +               ret = regmap_write_bits(ctx->regmap, IT66121_AFE_XP_REG,
+> +                                       IT6610_AFE_XP_BYPASS,
+> +                                       IT6610_AFE_XP_BYPASS);
+> +               if (ret)
+> +                       return ret;
+> +       }
+> +
+>         return it66121_fire_afe(ctx);
+>  }
+>
+> @@ -491,7 +519,6 @@ static int it66121_get_edid_block(void *context, u8 *buf,
+>                                   unsigned int block, size_t len)
+>  {
+>         struct it66121_ctx *ctx = context;
+> -       unsigned int val;
+>         int remain = len;
+>         int offset = 0;
+>         int ret, cnt;
+> @@ -572,10 +599,12 @@ static int it66121_bridge_attach(struct drm_bridge *bridge,
+>         if (ret)
+>                 return ret;
+>
+> -       ret = regmap_write_bits(ctx->regmap, IT66121_CLK_BANK_REG,
+> -                               IT66121_CLK_BANK_PWROFF_RCLK, 0);
+> -       if (ret)
+> -               return ret;
+> +       if (ctx->info->id == ID_IT66121) {
+> +               ret = regmap_write_bits(ctx->regmap, IT66121_CLK_BANK_REG,
+> +                                       IT66121_CLK_BANK_PWROFF_RCLK, 0);
+> +               if (ret)
+> +                       return ret;
+> +       }
+>
+>         ret = regmap_write_bits(ctx->regmap, IT66121_INT_REG,
+>                                 IT66121_INT_TX_CLK_OFF, 0);
+> @@ -713,6 +742,24 @@ static void it66121_bridge_disable(struct drm_bridge *bridge,
+>         ctx->connector = NULL;
+>  }
+>
+> +static int it66121_bridge_check(struct drm_bridge *bridge,
+> +                               struct drm_bridge_state *bridge_state,
+> +                               struct drm_crtc_state *crtc_state,
+> +                               struct drm_connector_state *conn_state)
+> +{
+> +       struct it66121_ctx *ctx = container_of(bridge, struct it66121_ctx, bridge);
+> +
+> +       if (ctx->info->id == ID_IT6610) {
+> +               /* The IT6610 only supports these settings */
+> +               bridge_state->input_bus_cfg.flags |= DRM_BUS_FLAG_DE_HIGH |
+> +                       DRM_BUS_FLAG_PIXDATA_DRIVE_NEGEDGE;
+> +               bridge_state->input_bus_cfg.flags &=
+> +                       ~DRM_BUS_FLAG_PIXDATA_DRIVE_POSEDGE;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+>  static
+>  void it66121_bridge_mode_set(struct drm_bridge *bridge,
+>                              const struct drm_display_mode *mode,
+> @@ -758,9 +805,12 @@ void it66121_bridge_mode_set(struct drm_bridge *bridge,
+>         if (regmap_write(ctx->regmap, IT66121_HDMI_MODE_REG, IT66121_HDMI_MODE_HDMI))
+>                 goto unlock;
+>
+> -       if (regmap_write_bits(ctx->regmap, IT66121_CLK_BANK_REG,
+> -                             IT66121_CLK_BANK_PWROFF_TXCLK, IT66121_CLK_BANK_PWROFF_TXCLK))
+> +       if (ctx->info->id == ID_IT66121 &&
+> +           regmap_write_bits(ctx->regmap, IT66121_CLK_BANK_REG,
+> +                             IT66121_CLK_BANK_PWROFF_TXCLK,
+> +                             IT66121_CLK_BANK_PWROFF_TXCLK)) {
+>                 goto unlock;
+> +       }
+>
+>         if (it66121_configure_input(ctx))
+>                 goto unlock;
+> @@ -768,7 +818,11 @@ void it66121_bridge_mode_set(struct drm_bridge *bridge,
+>         if (it66121_configure_afe(ctx, adjusted_mode))
+>                 goto unlock;
+>
+> -       regmap_write_bits(ctx->regmap, IT66121_CLK_BANK_REG, IT66121_CLK_BANK_PWROFF_TXCLK, 0);
+> +       if (ctx->info->id == ID_IT66121 &&
+> +           regmap_write_bits(ctx->regmap, IT66121_CLK_BANK_REG,
+> +                             IT66121_CLK_BANK_PWROFF_TXCLK, 0)) {
+> +               goto unlock;
+> +       }
+>
+>  unlock:
+>         mutex_unlock(&ctx->lock);
+> @@ -859,6 +913,7 @@ static const struct drm_bridge_funcs it66121_bridge_funcs = {
+>         .atomic_get_input_bus_fmts = it66121_bridge_atomic_get_input_bus_fmts,
+>         .atomic_enable = it66121_bridge_enable,
+>         .atomic_disable = it66121_bridge_disable,
+> +       .atomic_check = it66121_bridge_check,
+>         .mode_set = it66121_bridge_mode_set,
+>         .mode_valid = it66121_bridge_mode_valid,
+>         .detect = it66121_bridge_detect,
+> @@ -1557,17 +1612,26 @@ static void it66121_remove(struct i2c_client *client)
+>
+>  static const struct of_device_id it66121_dt_match[] = {
+>         { .compatible = "ite,it66121" },
+> +       { .compatible = "ite,it6610" },
+>         { }
 >  };
 >  MODULE_DEVICE_TABLE(of, it66121_dt_match);
 >
-> +static const struct it66121_chip_info it66121_chip_info = {
-> +       .vid = 0x4954,
-> +       .pid = 0x0612,
+>  static const struct it66121_chip_info it66121_chip_info = {
+> +       .id = ID_IT66121,
+>         .vid = 0x4954,
+>         .pid = 0x0612,
+>  };
+>
+> +static const struct it66121_chip_info it6610_chip_info = {
+> +       .id = ID_IT6610,
+> +       .vid = 0xca00,
+> +       .pid = 0x0611,
 > +};
 > +
 >  static const struct i2c_device_id it66121_id[] = {
-> -       { "it66121", 0 },
-> +       { "it66121", (kernel_ulong_t) &it66121_chip_info },
+>         { "it66121", (kernel_ulong_t) &it66121_chip_info },
+> +       { "it6610", (kernel_ulong_t) &it6610_chip_info },
 >         { }
 >  };
 >  MODULE_DEVICE_TABLE(i2c, it66121_id);
