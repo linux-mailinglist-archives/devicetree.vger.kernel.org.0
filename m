@@ -2,63 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B36F764E3E0
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 23:44:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9E3B64E3E2
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 23:45:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229545AbiLOWof (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 17:44:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37324 "EHLO
+        id S229795AbiLOWpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 17:45:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229480AbiLOWoe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 17:44:34 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 110CD58BF2;
-        Thu, 15 Dec 2022 14:44:32 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S229480AbiLOWpP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 17:45:15 -0500
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BA2358BF2;
+        Thu, 15 Dec 2022 14:45:14 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 85B3A61F7E;
-        Thu, 15 Dec 2022 22:44:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4482C433F1;
-        Thu, 15 Dec 2022 22:44:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671144271;
-        bh=IKQVicmZa+NzOsuQkbhrI43xXaW9dkSeiyKFaMHEXGU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=reu6ORIBDjmj+NaI2VPlphQ1C3rw7uE6UQ/3umykfULW4+zOdFR8bn1G6XU5aKn7c
-         LyCEP9epwFzPVmAQYdfwzks20mJwP7dAmpzUnrAWp+rKThPR3JbP9695dnfmRy9UKA
-         aO9Pa/ADt6HFFkO15QWdACXUKKfUttM8ocuvc8CTzHrvQP+igjNDFBMD5tUfyVZpkj
-         IHGVy+mGkDJunHP5bACHs9e+2//Xor9wehDzJ5qxyygOTLrG7gfElURDyjpOtvw1le
-         kjET3Uo9l+Dt0iNsGoETi2xGccaSY4jl4ZouSmS6paYnDBplbt+iyrHdEeRS5kecOb
-         x3xlEQLTrjkmg==
-Received: by mail-vs1-f51.google.com with SMTP id f189so674944vsc.11;
-        Thu, 15 Dec 2022 14:44:31 -0800 (PST)
-X-Gm-Message-State: ANoB5pmzp2z/QMVVUvEkqcf6jlPVd6tg3jh/GcG5ozDCpwTREx1BoF7R
-        Tunn0QQFud6YDOHT8Yd6zWfe3Wg9KsJWf2eC3A==
-X-Google-Smtp-Source: AA0mqf7Xah6bJe8jpBmSQL7qsXrIKt2VijdrpF+vYJKrUW0CAcsDtzGS/id29S+KLpaBByrGk09scmFt9JwIS9GyenI=
-X-Received: by 2002:a67:c40e:0:b0:3b1:4b76:5b44 with SMTP id
- c14-20020a67c40e000000b003b14b765b44mr11475861vsk.53.1671144270853; Thu, 15
- Dec 2022 14:44:30 -0800 (PST)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id AAD4A8091A;
+        Thu, 15 Dec 2022 23:45:11 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1671144312;
+        bh=AyM2fZOLeqjR03E32BYhnp7+8bL3WxcuhpWpKDtrjcQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=FmsmP3ptSdcE9Tc164UztR66ghKvTlmXOcssABHMTS7wW5pfDw9RX1aJ/WeK5D3Ne
+         w2xfb9ev8a2fX8IdhRmfE/MPA82wr6e3BCgsbIAuRUG9oaB8ROtTRxR2xwzXzI1d0s
+         E5gsrH+2ZTzdlNzzrTsfw5ndtmBKLPELVf4mpHWA8sjy2omdhpYMOdIUNwX0J7WRpn
+         79WDb8p9Npy3xyD+lX3Pb80z9JYUpXFs5PWV4NvZXQYQCMaga5wtYJyEvcWxWgIaw8
+         1g3H1oKq6nD5prQH2pJbibaZYBCS4G+Ny5304C1FN3G6IYADGSv0s49SmLDsYcKbI6
+         9i7Eu2Gae3MeQ==
+Message-ID: <aa28894d-86e0-dc50-4d23-f5c469ecd27d@denx.de>
+Date:   Thu, 15 Dec 2022 23:45:11 +0100
 MIME-Version: 1.0
-References: <20221214095342.937303-1-alexander.stein@ew.tq-group.com>
- <CACRpkdbPy0krGYDdR4-Ga7tE=Wd6d2_KQ50b94VUvV=Zv=iBvA@mail.gmail.com>
- <CAL_JsqJ0xY5e6mZB_smTCNm0HfsPTF64d0YgikmRx8FPzjxKCw@mail.gmail.com> <Y5uRBPsa4YCsAbj2@pendragon.ideasonboard.com>
-In-Reply-To: <Y5uRBPsa4YCsAbj2@pendragon.ideasonboard.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 15 Dec 2022 16:44:19 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLjA5AKJuNCDwBVsAoBmxBdcqf_LBHBwF9ObckUEr=epw@mail.gmail.com>
-Message-ID: <CAL_JsqLjA5AKJuNCDwBVsAoBmxBdcqf_LBHBwF9ObckUEr=epw@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 0/3] gpio: Add gpio-delay support
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v3] dt-bindings: watchdog: gpio: Convert bindings to YAML
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        Marek Vasut <marex@denx.de>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        linux-watchdog@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>
+References: <20221107160338.27910-1-marex@denx.de>
+ <167113639595.663197.15426353278060761950.robh@kernel.org>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <167113639595.663197.15426353278060761950.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,52 +60,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 15, 2022 at 3:26 PM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> On Thu, Dec 15, 2022 at 12:21:33PM -0600, Rob Herring wrote:
-> > On Thu, Dec 15, 2022 at 7:16 AM Linus Walleij wrote:
-> > > On Wed, Dec 14, 2022 at 10:53 AM Alexander Stein wrote:
-> > >
-> > > > thanks for the feedback I've received. This is the reworked RFC for
-> > > > adressing a platform specific ramp-up/ramp-down delay on GPIO outputs.
-> > > > Now the delays are neither specified as gpio-controller nor
-> > > > consumer-specific properties.
-> > > >
-> > > > v2 is a different approach than v1 in that it adds a new driver which will
-> > > > simply forward setting the GPIO output of specified GPIOs in OF node.
-> > > > The ramp-up/ramp-down delay can now be actually defined on consumer side,
-> > > > see Patch 1 or 3 for examples.
-> > >
-> > > I really like this approach, it looks better than I imagined.
-> >
-> > It seems over-engineered to me. So far no comments on my 3 suggestions either...
->
-> I like the idea of handling this on the consumer's side, possibly with
-> standard foo-gpios-ramp-{up,down}-delay-us (name to be bikeshedded)
-> properties as you mentioned in the review of v1.
->
-> > One is to just use some GPIO flag bits. Say 4-bits of GPIO flags
-> > encoded as power of 2 ramp delay. We have to pick the units. For
-> > example, 100us*2^N, which gives you 200us-3.2s of delay.
->
-> This could probably work too.
->
-> > Anything less is short enough to just hard code in a driver.
->
-> In which driver though ? The whole point is that we should avoid
-> handling this in particular drivers.
+On 12/15/22 21:37, Rob Herring wrote:
+> 
+> On Mon, 07 Nov 2022 17:03:38 +0100, Marek Vasut wrote:
+>> Convert the gpio-wdt bindings from text to YAML ones, to permit DT validation.
+>>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> Signed-off-by: Marek Vasut <marex@denx.de>
+>> ---
+>> Cc: Guenter Roeck <linux@roeck-us.net>
+>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+>> Cc: Rob Herring <robh+dt@kernel.org>
+>> Cc: Wim Van Sebroeck <wim@linux-watchdog.org>
+>> Cc: linux-watchdog@vger.kernel.org
+>> To: devicetree@vger.kernel.org
+>> ---
+>> V2: - Add missing required: properties
+>>      - Drop quotes around ref: referenced schema file name
+>> V3: - Add Guenter as maintainer of the bindings
+>>      - Add RB from Rob
+>> ---
+>>   .../devicetree/bindings/watchdog/gpio-wdt.txt | 28 -----------
+>>   .../bindings/watchdog/linux,wdt-gpio.yaml     | 47 +++++++++++++++++++
+>>   2 files changed, 47 insertions(+), 28 deletions(-)
+>>   delete mode 100644 Documentation/devicetree/bindings/watchdog/gpio-wdt.txt
+>>   create mode 100644 Documentation/devicetree/bindings/watchdog/linux,wdt-gpio.yaml
+>>
+> 
+> Looks like this was missed. Applied, thanks! You missed
+> 'always-running', so I added it from the other conversion that was
+> done[1].
+> 
+> Rob
+> 
+> [1] https://lore.kernel.org/all/20221125112904.48652-1-robert.marko@sartura.hr/
 
-Okay, make the range 100us-1.63s and the minimum delay is 100us. Or
-50us-819ms? What's a small enough minimum that no one will care about
-the extra delay?
-
-One thing we don't want is DT authors putting a device's delay needs
-in here. Then we'll get coupling to the OS implementation or double
-delays. Something like this should be clear:
-
-#define GPIO_THIS_IS_ONLY_THE_SIGNAL_RC_RAMP_TIME_100us
-
-;)
-
-Rob
+There is no 'always-enabled' DT property used anywhere in the Linux 
+kernel, at least 'git grep' in latest next-20221215 indicates so. Shall 
+we really add it in the bindings ?
