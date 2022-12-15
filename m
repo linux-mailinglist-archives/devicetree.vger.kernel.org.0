@@ -2,125 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CCA164E5F5
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 03:25:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B068764E692
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 05:03:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229694AbiLPCZe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 21:25:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34332 "EHLO
+        id S229548AbiLPEDK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 23:03:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229547AbiLPCZc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 21:25:32 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37A2A3D394;
-        Thu, 15 Dec 2022 18:25:31 -0800 (PST)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BG2KwNM022197;
-        Fri, 16 Dec 2022 02:25:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=h+BBl5E3nTO96dKQjtNwWhXFbNBo6P8F9L3AZagn8aM=;
- b=oEALiZAg//kadKitpJ0kNuv/m4bBFafW49yGlG4uKOJwTLEMwKgt26sEtM9O+4LjzX4O
- qd398aNfa64nTs3TxZlXqTb5LIK2yHjgIvJa6nlhDfaqAT3Y5JWXdhMmzycyKTUdf2HH
- kJeY+ciNo538w0v1eSzdT27KKISfc3cVRk1u4DdAdz8IRxb+K1mscY3AY06o1HhnXm8m
- k8pol6tuxXT0rY1Cfhv3V8w3tN0qDFca6XCIJp/d26To4QYlpp9NijWEk/2gWvUhlWZM
- OZJRon0Ctj28SBmEj0JDRvi919z2va5v6VdyUnE43fnxhkmU+VAiAxEMXz6PcyPEmRqG eQ== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3mg2892uad-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 16 Dec 2022 02:25:15 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2BG2PELv004345
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 16 Dec 2022 02:25:14 GMT
-Received: from [10.134.67.48] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 15 Dec
- 2022 18:25:14 -0800
-Message-ID: <f0f4243f-4cbe-0aa2-19b6-047d791207ab@quicinc.com>
-Date:   Thu, 15 Dec 2022 18:25:13 -0800
+        with ESMTP id S229912AbiLPEDI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 23:03:08 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B8E72647;
+        Thu, 15 Dec 2022 20:03:06 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 1C97285370;
+        Fri, 16 Dec 2022 05:03:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1671163384;
+        bh=Z66WSdoG13b/0o+zn9tABZQi0m18kq28921OI+7DrYA=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=J0K0CR3QIbDYni8VPLkERnEEvJ8pVhk0RkRLuA9xSoT5sqCDc8qRIvaGuIDTD+YzR
+         N7z9AXHUXmVEKqb3Se05QizGCP1qdOPJWhU3y+wORsn3rzOHvdDIEXXlX/ybCJqh7F
+         vwxcosnJk1YDIPEKBQW/zolGoB2X25nMD0dch489VFJIHdGjw79Q9SAeOniaztJiZh
+         CCX1qKtz83Pe7sQNdvVe6oH8zz24x4EIIBrzzx0Pa/yMVGNj/FXbtRnidmWQSzrB0n
+         Y6pVlhI/iWBJyyyjyp+xHjp9TFKxhq64hZdu1eVJREO6p413yuHomRua4VAV9jCXBh
+         4mfmj5iyriirQ==
+Message-ID: <d9910a7a-9997-c157-9a71-8ef7ee34be25@denx.de>
+Date:   Thu, 15 Dec 2022 20:39:47 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v7 10/20] gunyah: rsc_mgr: Add resource manager RPC core
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        "Srivatsa Vaddagiri" <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Arnd Bergmann <arnd@arndb.de>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v3 2/2] dt-bindings: rtc: m41t80: Mark the clock: subnode
+ as deprecated
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-acpi@vger.kernel.org>
-References: <20221121140009.2353512-1-quic_eberman@quicinc.com>
- <20221121140009.2353512-11-quic_eberman@quicinc.com>
- <Y3uYRvrCZNnbDiY5@kroah.com>
- <425a8fe9-24b6-26c7-9150-0d3fb76430be@quicinc.com>
- <Y5gbFhVpuDoZ2ZmY@kroah.com>
+        linux-rtc@vger.kernel.org
+References: <20221211205124.23823-1-marex@denx.de>
+ <20221211205124.23823-2-marex@denx.de>
+ <20221215180659.sa54lkinwxoiz7bb@mercury.elektranox.org>
 Content-Language: en-US
-From:   Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <Y5gbFhVpuDoZ2ZmY@kroah.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <20221215180659.sa54lkinwxoiz7bb@mercury.elektranox.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: zdJLKuQ4S6s_49WrXNiwwti2L0ZCD5zo
-X-Proofpoint-ORIG-GUID: zdJLKuQ4S6s_49WrXNiwwti2L0ZCD5zo
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-12-15_12,2022-12-15_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 mlxscore=0
- lowpriorityscore=0 bulkscore=0 spamscore=0 priorityscore=1501 phishscore=0
- impostorscore=0 suspectscore=0 malwarescore=0 adultscore=0 mlxlogscore=719
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2212160021
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DATE_IN_PAST_06_12,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 12/15/22 19:06, Sebastian Reichel wrote:
+> Hi,
 
+Hi,
 
-On 12/12/2022 10:26 PM, Greg Kroah-Hartman wrote:
-> On Mon, Dec 12, 2022 at 03:46:53PM -0800, Elliot Berman wrote:
+> On Sun, Dec 11, 2022 at 09:51:24PM +0100, Marek Vasut wrote:
+>> The clock {} subnode seems like it is describing an always-on clock
+>> generated by the PMIC. This should rather be modeled by consumer of
+>> the clock taking phandle to the RTC node itself, since it already
+>> does have clock-cells and all. Since there are no users of the clock
+>> subnode in tree anyway, mark it as deprecated to avoid proliferation
+>> of this approach.
 >>
->> Reference counting is not needed on the gh_rm_rpc object because its only
->> client (the VM manager) is torn down before the gh_rm_rpc.
+>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Signed-off-by: Marek Vasut <marex@denx.de>
+>> ---
+>> Cc: Alessandro Zummo <a.zummo@towertech.it>
+>> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
+>> Cc: Rob Herring <robh+dt@kernel.org>
+>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+>> Cc: linux-rtc@vger.kernel.org
+>> To: devicetree@vger.kernel.org
+>> ---
+>> V2: - Add AB from Krzysztof
+>> V3: - No change
+>> ---
 > 
-> So again, who controls the lifecycle of it?  Where is the reference
-> count for the structure as it is pointing to reference counted memory?
+> I just noticed this by accident. Basically everything in the patch
+> description is wrong:
+> 
+> 1. There is a in-tree user: arch/arm/boot/dts/imx6dl-qmx6.dtsi
 
-Had some internal review and I think I'm now taking better care of this 
-(and the device situation in the other mail). I will send out next 
-revision soon.
+Sorry, I missed this one.
 
-In summary:
+> 2. The PMIC has nothing to do with this
 
-  - Incrementing platform device's refcount when creating a new VM since 
-it spawns new file descriptor that could remain open after closing the 
-main miscdevice.
-  - Re-organizing vm_manager so it is much more like a library than a 
-separate device.
+In [3] the commit message claims the PMIC supplies 32kHz clock to i.MX6 
+CKIL , which per IMX6DQRM rev.6 Table 18-3 row SNVS indirectly supplies 
+SNVS RTC . This reminded me of commit:
 
-Thanks,
-Elliot
+9509593f327ac ("arm64: dts: imx8mm: Model PMIC to SNVS RTC clock path on 
+Data Modul i.MX8M Mini eDM SBC")
+
+which solves exactly the same problem, system hangs when 32 kHz clock 
+are stopped, except this time on i.MX8MM, clock are generated by PMIC on 
+I2C (notice how the PMIC is referenced directly) and the clock are 
+supplied to the SVNS RTC XTal terminals.
+
+I wonder if this could be reused on the QMX6 board too ?
+
+> 3. Directly referencing the RTC does not work, since that introduces
+>     an unsolvable dependency loop on QMX6. This was the solution accepted
+>     by Rob and Saravana:
+> 
+> [v1] https://lore.kernel.org/lkml/20210222171247.97609-1-sebastian.reichel@collabora.com/
+> [v2] https://lore.kernel.org/all/20210428222953.235280-1-sebastian.reichel@collabora.com/
+
+[3] 
+https://lore.kernel.org/linux-clk/20191108170135.9053-1-sebastian.reichel@collabora.com/
