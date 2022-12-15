@@ -2,34 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D37464E4E9
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 00:59:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3160864E4E7
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 00:59:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229950AbiLOX7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 18:59:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42482 "EHLO
+        id S229971AbiLOX67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 18:58:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229947AbiLOX64 (ORCPT
+        with ESMTP id S229931AbiLOX64 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 18:58:56 -0500
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A802D5EDFA
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09C7E5EDF8
         for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 15:58:47 -0800 (PST)
 Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 25EF685361;
+        by phobos.denx.de (Postfix) with ESMTPSA id 81E2D85362;
         Fri, 16 Dec 2022 00:58:45 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
         s=phobos-20191101; t=1671148725;
-        bh=eG9Yk7qVPAur6joVZYbJFjcqvbvKoM83Vi18B9k0OQI=;
-        h=From:To:Cc:Subject:Date:From;
-        b=UFvTPQYCB1cX4e2OBe/TxkJNPif8BlEzMGsBIsbg7sfgmMlRIwDVKWO+lbhODcfe1
-         8hSsrtWT7obk6mRaofA1zUgqNaKhEbIAIXDYVddSk04X904eHXykCz8LHNoOihpS2X
-         ShpRNYQQm3iH+MIN5UE6qS6f2zH7AAZT25Eg5d1rjdjCncfIBRn3f8q7/5gEu0HWAV
-         u7BxtL1aK7Pv1os+p6CBBUFy9SPAq+Mm3hiMGkGfgDDX/h7hnKjf1USejSS4ZADqlf
-         5mun2eB67/gjjj8F47FFHA/XahdKtGT2JpSolV2EuqvJMlhViv0TY2qdTIIJggouZ1
-         OmOPCUBcDd7tA==
+        bh=TDOc4ppLLzaGk+mMPWRRZyxZdqyriNmTGWPAXmIqn3Q=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=jtLDbEsnpXNIojp8ztFz8HKPFkEbJaKKayUCiuWdAyyEoNcQca/2CYbxIpwHgzxmo
+         ZxvPa1Hixk/TA//ILdqP8zmeqgPjuAtrhxvJ07LKLN611mC14FOUm6QJQb+0bMERFZ
+         rgIzniow/2kC4a+4cmuZx5C0eRkmRo6f5sPmJbfWVMAIPq7QY2mDivm8mVSb9E/u/M
+         4XTsyhjplcmTC667A/WW/adrCDxZt1Kw+QnS7SCO7YbPzSyYWTMLfH7JRFlK+kaZQs
+         D3T2T5ci2RcTbM3pIhyllqLNFVKn4PYBq/1NNLnL1nBxhTKaBz1PN/9rliCMv1yyp+
+         Q2luBTFxTKPHg==
 From:   Marek Vasut <marex@denx.de>
 To:     linux-arm-kernel@lists.infradead.org
 Cc:     Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@denx.de>,
@@ -39,10 +39,12 @@ Cc:     Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@denx.de>,
         NXP Linux Team <linux-imx@nxp.com>,
         Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
         Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH 1/3] arm64: dts: imx8mm: Drop deprecated regulator-compatible from Variscite VAR-SOM-MX8MM
-Date:   Fri, 16 Dec 2022 00:58:25 +0100
-Message-Id: <20221215235827.228620-1-marex@denx.de>
+Subject: [PATCH 2/3] arm64: dts: imx8mn: Drop deprecated regulator-compatible from Variscite VAR-SOM-MX8MN
+Date:   Fri, 16 Dec 2022 00:58:26 +0100
+Message-Id: <20221215235827.228620-2-marex@denx.de>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20221215235827.228620-1-marex@denx.de>
+References: <20221215235827.228620-1-marex@denx.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
@@ -73,14 +75,14 @@ Cc: Shawn Guo <shawnguo@kernel.org>
 Cc: devicetree@vger.kernel.org
 To: linux-arm-kernel@lists.infradead.org
 ---
- arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi | 1 -
+ arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi | 1 -
  1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
-index ae0721b807e1b..2b83a5258ec6c 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
-@@ -231,7 +231,6 @@ ldo4_reg: LDO4 {
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
+index 87b5e23c766f7..2888de154f780 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
+@@ -207,7 +207,6 @@ ldo4_reg: LDO4 {
  			};
  
  			ldo5_reg: LDO5 {
