@@ -2,156 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A85264E4C9
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 00:48:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 892BB64E4D9
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 00:57:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229783AbiLOXse (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 18:48:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37710 "EHLO
+        id S229676AbiLOX51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 18:57:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229480AbiLOXsd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 18:48:33 -0500
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2129.outbound.protection.outlook.com [40.107.113.129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 301B3DA1
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 15:48:32 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IFVgr9eD0Sh3d1Wb3is/lLJUB18DE9sGLTxg6WEvHAxsNVXKc51IyMpy3OsA59lRO3nH3DxfEAYioheFd8bBDJlPjbGaxMy3gSvOduUnXoNivJs9fNMpUTutNQRKL8JmBCLAo0ZStgWoG94fp6LAunyRhFcDRA+ijPYqhayCLFPWp+vdW0LGd/tUR6Q+R6S/deW+Z7dIynmLgyWk96Abf5A7WTLCBba+SJZH3erJE4hzxTyooELyotf8p4Rw4arA+Qkq0S5oz+XyXnzVZEvBJFhHHtLkr52+K3dGx5SfnmzGUvKy0Eeh/fIipxkZ9DPNo53lCbrxKWJiUdL3IIQEYA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1O6ELjC/4VcJ+/uJaqbd+44uutjN1fAnc4GqsEafQ7w=;
- b=LF3qrNblxG/5cnh1b3+teywyrR19lJGQLoKq5r3+N/SRLcNiAQhkn0ihvi53am522OMmRNrwvuoYZ/h+zm2q4QQkLPH/OuuFZZ3vzL/tQ1loXLbgSTEhgyi/7DCKH0n9Tm6AToShg0Mnq9MU62sBnxhA9xH4qXfDB13WWqmJTyEbKKw2GF5o/IgouiHL62QWRTybWq0WCz5fVdJYW6cAR0nk61ygGg8J/J50ggEuUbrTOcn8/s62djtJykrjzuk+oj08ihZY+s1L5oAy0RH5VTkHkrjVpLolOqMaIp3qE25QglZGwh9j7q7+jjr06O1WuYut+yig1A22iy799fJxMw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1O6ELjC/4VcJ+/uJaqbd+44uutjN1fAnc4GqsEafQ7w=;
- b=aFLXki9fXz9BFM/NGorEjndPIh4KczaOWefJSB3Omkq29hz1dETAYq7W8xwPaT70lHac+YLYQzDAuJOhGtyz5FNkYGS6rpComgPOSUxfaHMgOHhmPhSIG9ynShUZ9/tS4FCMlg1l8LEyIh7s6gmznbc1rEju3OTtkiPVH5rKgtU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TYCPR01MB8440.jpnprd01.prod.outlook.com (2603:1096:400:15d::5)
- by TYCPR01MB7869.jpnprd01.prod.outlook.com (2603:1096:400:182::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5924.12; Thu, 15 Dec
- 2022 23:48:29 +0000
-Received: from TYCPR01MB8440.jpnprd01.prod.outlook.com
- ([fe80::69b3:236b:223:a8f7]) by TYCPR01MB8440.jpnprd01.prod.outlook.com
- ([fe80::69b3:236b:223:a8f7%5]) with mapi id 15.20.5924.012; Thu, 15 Dec 2022
- 23:48:29 +0000
-Message-ID: <87iliccjoz.wl-kuninori.morimoto.gx@renesas.com>
-From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Rob Herring <robh@kernel.org>,
+        with ESMTP id S229537AbiLOX5Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 18:57:25 -0500
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 117815EDC1
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 15:57:24 -0800 (PST)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id E99358531D;
+        Fri, 16 Dec 2022 00:57:21 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1671148642;
+        bh=sa/6LzwyZl4TtZXLtTBpcIaZhUUI/G7uzQbGV+9rNVk=;
+        h=From:To:Cc:Subject:Date:From;
+        b=G/hfE3n0G/xd1rfPUvZEV6uP8piQKzuI2YH/5hgEF7g4yiFdoUrgVd80rCDY6p2nn
+         Dqb/cwWhy5pg+E7rOuKR2jed6WSn5Vq/jwZiOmOwCYIfuSkLR590yUaGzn9isTLZkV
+         rizZRpxt36m3neLoLbRa4c8FTbFZZcfoHLCuHg8Xn6EOk8awC4lxFNd6eJRjW8BKGN
+         Iz9yVIkTpZRdpbUs4meAvxr6ndw7upuXkUPgMv5CwIhmV4mOvlmWWMgnAawQduUIRz
+         26H1rdIrIluejIJrdUAOYbuXVeWYFKa+BKahHQXZnesI2xeCKlsAyDZqRclIrn6JpJ
+         0fnjFYrnh6E5Q==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        Fabio Estevam <festevam@denx.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Sameer Pujar <spujar@nvidia.com>,
-        Mohan Kumar <mkumard@nvidia.com>
-Subject: Re: [PATCH 06/11] ASoC: dt-bindings: ti,pcm3168a: Convert to json-schema
-In-Reply-To: <Y5sVewc7ItFBZkn4@sirena.org.uk>
-References: <87v8mepyoy.wl-kuninori.morimoto.gx@renesas.com>
-        <87mt7qpylw.wl-kuninori.morimoto.gx@renesas.com>
-        <CAMuHMdW=_-MyqAjRqaoPyWkoUmdB2VOE1t+wpym7eyOxkzc_7g@mail.gmail.com>
-        <Y5sJV2KfX98KoMYZ@sirena.org.uk>
-        <CAMuHMdWwP6QDUux62GZtCT7tsFhAhex=Fns5e=n_KTjGXHRy0Q@mail.gmail.com>
-        <Y5sVewc7ItFBZkn4@sirena.org.uk>
-User-Agent: Wanderlust/2.15.9 Emacs/26.3 Mule/6.0
-Content-Type: text/plain; charset=US-ASCII
-Date:   Thu, 15 Dec 2022 23:48:29 +0000
-X-ClientProxiedBy: TYCP286CA0042.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:29d::18) To TYCPR01MB8440.jpnprd01.prod.outlook.com
- (2603:1096:400:15d::5)
+        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        kernel@dh-electronics.com, devicetree@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: imx8mp: Drop deprecated regulator-compatible from i.MX8M Plus DHCOM
+Date:   Fri, 16 Dec 2022 00:57:09 +0100
+Message-Id: <20221215235710.228500-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB8440:EE_|TYCPR01MB7869:EE_
-X-MS-Office365-Filtering-Correlation-Id: c3ce0be2-5a69-467f-1ab7-08dadef6de2e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: IJSq1hTxh9v4Obqrc+X0aHS/tvjDQHQjgxtXWs3C8kA9/4Rs3qyk3KnEZ3DueuJ1Laikf5wllpZv+2bNojcF7w0cO9rlvniERZzdyvXg7gp7p8hejej+8gSMRWZCVOLfB3/bKGIR096fh2LJpo77PcMSB9Fqvjpfy7xF2vKhneDIeBNpPotN6DJJTU1ackyrU91s9ca5JD3T6mG/WTRr3pGgE86+MwCSsljfAv8/lNBfVvfARAZkXBcimCX8xha90KvDzFhi9Ei5WAcGohVmZUzO/IzzgZncQrQfe8CzzyrRgURB/vH/JKgjbWBTYbKNZBqlFpZTdvHwYWKH0JwY1ZI2ciOMs4aLHvlkFqND7dLy8YAIWknN+xZ6nEqEMga9iNm+QHr3UkDSLRq/PBL0Ec2C160MP9SeBKXQT/Phbx6m+dQ8DmVKslyJwReT3BT3/Hi9LCHR8jADGfGkJOS/JFRxH8usGhgSIi50hS6ZvO6VkH1MNN5Y5FJW46wi0gYDvrG+/eHVKc/9ake5GajRK5ANXGM925/35Lq2gb4CxlwHLxBWmzo2IPbweNmk+gtFxy/ybnZWhemRBV87E+oihPa2b0vbrqjdyQ2l7NduTQJ0BJmEyvvM/Pii2YswHaUxJBF13Msd4FvzhVfy3pQFjAnlH5yI1Y8LnWlI+uL+yn0uE9nZzfXI58rX5RY41Jsz2tGRBemRQ7m4bzF65Ne9Lg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB8440.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(366004)(136003)(346002)(396003)(39860400002)(451199015)(83380400001)(316002)(6916009)(4744005)(38350700002)(38100700002)(8936002)(36756003)(5660300002)(41300700001)(7416002)(66556008)(66476007)(2616005)(4326008)(8676002)(66946007)(6486002)(478600001)(6512007)(26005)(86362001)(54906003)(52116002)(186003)(6506007)(2906002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?UUGDZDRNa/9A0RkSCQuEax1np+Bl2AqHjVwzGZdPOR6Ke6tbjG5FYwGbP3PO?=
- =?us-ascii?Q?ilZvEr7XMlaLdsMT8eEEUYT12GqRA4a43vuUysppe/qJwLHLcMwcP2Ed0IO3?=
- =?us-ascii?Q?yVSu5pSVIMAxRJt33bfT+a7IhAWgPAuDrWaDVbdnwSBoCTuNafv8MylwKwqt?=
- =?us-ascii?Q?6ewZ4OvWLvbOzChYf+HCkJNifG4siDlohfh1idDejuI5BPa8G18JvJoJjz/q?=
- =?us-ascii?Q?ODC5L0s3QeSbiCKfO5rBniKK6QAO6YFZ23f/659nGqOTg8bfdgk/7/bE2cOT?=
- =?us-ascii?Q?mnkGJzT1WPjjevtpJthaI7RzbQqDx3pN8GEvNBmPAJMkPt7Y17Gx3qvhBP+7?=
- =?us-ascii?Q?4lD7buqWJFCr4iFAjFh8kGcdtuql4dYAn3oKq9SZ62rrweXaMlyQZJpj2SWR?=
- =?us-ascii?Q?DE9daIqNnSYUNng5S0DtIIuh8j0QgsD04M1nsnrPmd+6+TcVFJ76K7iKZ3up?=
- =?us-ascii?Q?7xDDgUX1XvTx5Ol87HKuBuHLjYXv7H5CShH1E4tOKcEpfM8K1oeZ9ryQRLOJ?=
- =?us-ascii?Q?UfN4JNQxgjZK974IOcRsr7OnbYCdfYiX9G4ZZaL7HnqHwyLaDuNtDw9WCQCD?=
- =?us-ascii?Q?BVCfAN4osTDfENP2LcabIXVuq9XezaifFM7i2MD3TV+EkHTh3j5YTI79m9en?=
- =?us-ascii?Q?rvfzvAYSX5hbYoQLbD3gempDTBY/mhBpW6mILMtvC7NXikMolXE+Qt4q5FhP?=
- =?us-ascii?Q?UvaGWgYHGF7laTDVQQ4ccZTUe4/B/pHMDg/psoJDhidxUEzBvOvn2+4xVwVA?=
- =?us-ascii?Q?CmYFUPBZxlxwXvGdAfAN3OrGqLBul1oLURT+jhhB+wspWHIz4A0WJ6CZ6Qud?=
- =?us-ascii?Q?TvQRCKa+X0vAyoOteleFmY7xS19PWnLwtMN64R9+kR8PhWpA23hgY6H6SweB?=
- =?us-ascii?Q?i9kOfWJQc0JJTtLUD19+VkpPJ+S0lNR1UZOe+NPCzS1k8zt7WJ2O+DXp/hHQ?=
- =?us-ascii?Q?osEAgEzJi4rE2CddB8gqz8LbnLfDy1u7W6bcw9wiFLiIEAZ31DQKxIDrrGqt?=
- =?us-ascii?Q?2na3seq9YXoTh4feGsf1Kf8Lmmz5V385iejD6zUa9/BNYlpp9Mosw6zLlUkl?=
- =?us-ascii?Q?ehxoK9ewv3LYGkrYzp9CcIF+RORot1xoRgREtwr8nawx0R0nWSToLbu6D+Sq?=
- =?us-ascii?Q?Bdt14jUFGEvizoseRa/QXoZkgyCn+6SPEsRvIW3t6MwhFFN8iVN50Y5E4I19?=
- =?us-ascii?Q?fij+ruv0px8k6343WYXyvQtyOEk2YaGOGwwsSgsrCScX4KfjpPxfy9zCvDNj?=
- =?us-ascii?Q?5Yyh19koGLBA8xVIC+NTXPa7sz9WuGWw+WqhKSj/xEaK+2pN/NKcp7S1Z7PT?=
- =?us-ascii?Q?YwPtkXl37hiGi8RufHoJJ2mpLUpAsRyhOPEHP1xdEnZkkPcp0cxNBXfDaReJ?=
- =?us-ascii?Q?Tvunby02WeSj9WIqG1XPjQ4chTprIVH+qKup4dY+EqzFBamY3Db0KlxSK066?=
- =?us-ascii?Q?7zJNpR9DBKk6wA4+tEYWquxQgxmij4/sKWxFKfjfBjdvq2Vt/bVoYS2Kx0sj?=
- =?us-ascii?Q?Kk3DaWMv2HW6wgocxJNXkoaHaxhekNNqQBKhDUFFASnyRQJNF7vzyCzZ0jRY?=
- =?us-ascii?Q?25q375UMUKiGS3NLgSBlwplbNFUGr7CMcWvX8igHZPjahVEMI8/1VCyIvDop?=
- =?us-ascii?Q?IXUzctDBdyhWqrd/dKBouuQ=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c3ce0be2-5a69-467f-1ab7-08dadef6de2e
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB8440.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2022 23:48:29.8480
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rn2zD7JLmLHGHIX6PNYlHZY9k/ITcHEjojNfGRvxpLTMhGQH+8Egmjz2xwHBD2SfPJB3bwbnUGKkb3E+DUurYVeVzZsjVDNWrAWBMWDr2Ybbf+hl/HbrlAFk+Dj/eBLM
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB7869
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The "regulator-compatible" property is deprecated and unused, as the
+match happens on the node name in Linux of_regulator_match() in case
+the property is not present. Drop the deprecated property from DT.
 
-Hi Geert
-
-> You forgot to list the changes you made to my patch:
->  - Refer to audio-graph-port.yaml instead of describing ports and
->   port@[01] subnodes explicitly.
-
-Oops, thank you for pointing it. It was my fault.
-One note is that the port@x which it can use is depends on its connection style.
-Not only [01]. I will fix it.
-
-> > Sure.  But how can they (still) care, if we cannot reach them?
-> > There's no email message from Damien to be found during the past
-> > 7 years.
-> 
-> The most sensible thing seems to be to allow bindings with no maintainer
-> TBH.
-
-Hmm.. so I will keep current maintainer, so far.
-We can update it later if need ?
-
-BTH Mark, this patch is included in this patch-set, but it can be
-stand alone patch if other patch-set were accepted.
-Is is possible to post this v2 patch as [1/1] ? or do I need [PATCH v2 11/11] ?
-
-Thank you for your help !!
-
-Best regards
+Signed-off-by: Marek Vasut <marex@denx.de>
 ---
-Kuninori Morimoto
+Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Cc: Fabio Estevam <festevam@denx.de>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: kernel@dh-electronics.com
+Cc: devicetree@vger.kernel.org
+To: linux-arm-kernel@lists.infradead.org
+---
+ arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi | 9 ---------
+ 1 file changed, 9 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
+index 6e1192e751f81..21b1d75a9a1cf 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
+@@ -248,7 +248,6 @@ pmic: pmic@25 {
+ 		 */
+ 		regulators {
+ 			buck1: BUCK1 {	/* VDD_SOC (dual-phase with BUCK3) */
+-				regulator-compatible = "BUCK1";
+ 				regulator-min-microvolt = <850000>;
+ 				regulator-max-microvolt = <1000000>;
+ 				regulator-ramp-delay = <3125>;
+@@ -257,7 +256,6 @@ buck1: BUCK1 {	/* VDD_SOC (dual-phase with BUCK3) */
+ 			};
+ 
+ 			buck2: BUCK2 {	/* VDD_ARM */
+-				regulator-compatible = "BUCK2";
+ 				regulator-min-microvolt = <850000>;
+ 				regulator-max-microvolt = <1000000>;
+ 				regulator-ramp-delay = <3125>;
+@@ -266,7 +264,6 @@ buck2: BUCK2 {	/* VDD_ARM */
+ 			};
+ 
+ 			buck4: BUCK4 {	/* VDD_3V3 */
+-				regulator-compatible = "BUCK4";
+ 				regulator-min-microvolt = <3300000>;
+ 				regulator-max-microvolt = <3300000>;
+ 				regulator-always-on;
+@@ -274,7 +271,6 @@ buck4: BUCK4 {	/* VDD_3V3 */
+ 			};
+ 
+ 			buck5: BUCK5 {	/* VDD_1V8 */
+-				regulator-compatible = "BUCK5";
+ 				regulator-min-microvolt = <1800000>;
+ 				regulator-max-microvolt = <1800000>;
+ 				regulator-always-on;
+@@ -282,7 +278,6 @@ buck5: BUCK5 {	/* VDD_1V8 */
+ 			};
+ 
+ 			buck6: BUCK6 {	/* NVCC_DRAM_1V1 */
+-				regulator-compatible = "BUCK6";
+ 				regulator-min-microvolt = <1100000>;
+ 				regulator-max-microvolt = <1100000>;
+ 				regulator-always-on;
+@@ -290,7 +285,6 @@ buck6: BUCK6 {	/* NVCC_DRAM_1V1 */
+ 			};
+ 
+ 			ldo1: LDO1 {	/* NVCC_SNVS_1V8 */
+-				regulator-compatible = "LDO1";
+ 				regulator-min-microvolt = <1800000>;
+ 				regulator-max-microvolt = <1800000>;
+ 				regulator-always-on;
+@@ -298,7 +292,6 @@ ldo1: LDO1 {	/* NVCC_SNVS_1V8 */
+ 			};
+ 
+ 			ldo3: LDO3 {	/* VDDA_1V8 */
+-				regulator-compatible = "LDO3";
+ 				regulator-min-microvolt = <1800000>;
+ 				regulator-max-microvolt = <1800000>;
+ 				regulator-always-on;
+@@ -306,13 +299,11 @@ ldo3: LDO3 {	/* VDDA_1V8 */
+ 			};
+ 
+ 			ldo4: LDO4 {	/* PMIC_LDO4 */
+-				regulator-compatible = "LDO4";
+ 				regulator-min-microvolt = <3300000>;
+ 				regulator-max-microvolt = <3300000>;
+ 			};
+ 
+ 			ldo5: LDO5 {	/* NVCC_SD2 */
+-				regulator-compatible = "LDO5";
+ 				regulator-min-microvolt = <1800000>;
+ 				regulator-max-microvolt = <3300000>;
+ 			};
+-- 
+2.35.1
+
