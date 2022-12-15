@@ -2,111 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F40EF64DC2F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 14:24:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49DEC64DC55
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 14:36:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229795AbiLONYn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 08:24:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51574 "EHLO
+        id S230002AbiLONgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 08:36:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229482AbiLONYl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 08:24:41 -0500
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E90E39FD8;
-        Thu, 15 Dec 2022 05:24:40 -0800 (PST)
-Received: by mail-oi1-f172.google.com with SMTP id k189so5252606oif.7;
-        Thu, 15 Dec 2022 05:24:40 -0800 (PST)
+        with ESMTP id S229898AbiLONgm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 08:36:42 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8918BDEAA
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 05:36:40 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id h10so3071562wrx.3
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 05:36:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qbfBcU9A1qcZjZLYbdzPQwKvFqbEDNx+6TcqfmObulM=;
+        b=xSxqvWtrRrWeU7bLIs1demiCzLhGsuTmM+xAgDZ3pQmMHq41LUzKmB9oEpTpMKvyNF
+         J136QvZcaTBf4tEYPqK0/cvCMXPWKFbaN3V6saIHTNCFYgh15L3dK4Obm2YpbYxFGX1D
+         +7e4U9lZrW5fD8idyHCRMwAEPAyE9Uy+J4vVgcNv4RMopsGzcco/3SgWxICwpG30PktZ
+         jvQQny3aFcDyPqAgevQO39AqBaq8C8OUtHAwVjDSrLAuL1IO5mCJBBenQDt0P+TN4G+C
+         Ag7tMtgpKBH0eCyBiTgbTbVxWRi3lXgBMI48DzbiUblrKwGDvxfWSkvrA0IjrX8VXke3
+         TwWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=fLeOe2K/YN9RjRUtZcg/drKhPf5cFdW7mguDPxEIWPA=;
-        b=eI34k+jA+juUN0uyPYSSHXuZqR+E98Mp2zog5KVlJ0tL6W7B98pS1jYFiUXmPqsp1E
-         +qfW/cZ5wsRLu6ETL94W/7WxbJdF8HsRrrqCe8pfiHAGJoYF+RL2WvSGQUUrbjbK5Sl3
-         rndRHXbzIWGHncuXP3w2cIAcdXxolB9Sx31UOHENAy4n+SfAhBOX3W2vMrP+NKpJ8eF2
-         HzAfAQBjoCGmRUfRJsVtQ4XelS0oYxgBshShYB+TDtiufltDio2ZvAVSk12sVven+C14
-         bQLOVVAOD2PaaHA6CNN05mw8AReyI3rqMl+eoorn9ZwsPToaXrQQtPxo3ir3/WD4ITpR
-         5VuQ==
-X-Gm-Message-State: ANoB5pm7McEnFZeenOhQgBJp2zgu6jhCqTzo82bwXdtxQA4DD1Sl+Ffk
-        EHZjrUjSjMtapuChRl6SlA==
-X-Google-Smtp-Source: AA0mqf6kjJ4LETUKvqU3gTYQ9EImomN8A6T5Ha5fVcxnOBne/uUX6Rwfwp4vLhVj2CksQeIRlJqI2A==
-X-Received: by 2002:aca:bfd7:0:b0:355:91e3:52e3 with SMTP id p206-20020acabfd7000000b0035591e352e3mr11955895oif.22.1671110680162;
-        Thu, 15 Dec 2022 05:24:40 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id f13-20020a056870d14d00b00140d421445bsm4060492oac.11.2022.12.15.05.24.39
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qbfBcU9A1qcZjZLYbdzPQwKvFqbEDNx+6TcqfmObulM=;
+        b=7HgjhkwKMqgvOdtM4phLSKeQAzFD9lSceLcQRVjAQ7K1vSCAVJj446wQXFoaFn3mUZ
+         VAHia7q3BO9pDeqPWczHZNN8Ftl5TWbTxy3I7yhApm86MXz6B66pyilEeM2hoKnzbgSx
+         d4OIZpsM/mDXPXAw2hK8qSF4pIIpRPou9PxhSRYo2BMJC3wTzYm7FpmVC8twCSQorcpZ
+         Sd5rzzNDK6/zR/Jg/VKo6vzorO/1+uMBZxIzsXexZAc4GSjBV9WAHat1O1PYofkG4IXh
+         IW1OBfZ0QiEaxB2D1L9RWGAtYuOUdsajsE3KZ0N7dLaeXoBXYAg1b6fKSjcXuTa3m9EV
+         qxkA==
+X-Gm-Message-State: ANoB5pkejcI+Vyw+CMsB+8kyU9QmnJRBVMeR+Yzrw7mD5uOHACMxE99t
+        l/BpOsX3Pyz3TtO5SQPyODok3g==
+X-Google-Smtp-Source: AA0mqf5ZXBLizzx5vPqrVCYrI3ddotv22opYYEybkbq5yxVjFk5rwP1q5r7+TCgCn6Qx0cj8/izb1Q==
+X-Received: by 2002:a5d:470c:0:b0:24d:867f:10e3 with SMTP id y12-20020a5d470c000000b0024d867f10e3mr12593771wrq.0.1671111399103;
+        Thu, 15 Dec 2022 05:36:39 -0800 (PST)
+Received: from prec5560.. ([2001:bf7:830:a7a8:7e6a:e951:1d52:a2ae])
+        by smtp.gmail.com with ESMTPSA id e36-20020a5d5964000000b002425be3c9e2sm6019829wri.60.2022.12.15.05.36.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Dec 2022 05:24:39 -0800 (PST)
-Received: (nullmailer pid 3142465 invoked by uid 1000);
-        Thu, 15 Dec 2022 13:24:38 -0000
+        Thu, 15 Dec 2022 05:36:38 -0800 (PST)
+From:   Robert Foss <robert.foss@linaro.org>
+To:     allen <allen.chen@ite.com.tw>
+Cc:     Robert Foss <robert.foss@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Hermes Wu <Hermes.Wu@ite.com.tw>,
+        open list <linux-kernel@vger.kernel.org>,
+        Pin-yen Lin <treapking@chromium.org>,
+        Kenneth Hung <Kenneth.Hung@ite.com.tw>,
+        Jau-Chih Tseng <Jau-Chih.Tseng@ite.com.tw>,
+        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Subject: Re: [PATCH v7 0/2] *** IT6505 driver read dt properties ***
+Date:   Thu, 15 Dec 2022 14:36:31 +0100
+Message-Id: <167111122676.1425386.1293802929297712782.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221103091243.96036-1-allen.chen@ite.com.tw>
+References: <20221103091243.96036-1-allen.chen@ite.com.tw>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Cc:     Hartley Sweeten <hsweeten@visionengravers.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org
-In-Reply-To: <20221214222024.951984-1-alexander.sverdlin@gmail.com>
-References: <20221214222024.951984-1-alexander.sverdlin@gmail.com>
-Message-Id: <167111060894.3140769.6100399745035758019.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: ep93xx: Add cirrus,ep9301-adc
- description
-Date:   Thu, 15 Dec 2022 07:24:38 -0600
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Wed, 14 Dec 2022 23:20:23 +0100, Alexander Sverdlin wrote:
-> Add device tree bindings for Cirrus Logic EP9301/EP9302 internal SoCs' ADC
-> block.
+On Thu, 3 Nov 2022 17:12:41 +0800, allen wrote:
+> This series let driver can read properties from dt to restrict dp output
+> bandwidth.
 > 
-> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-> ---
->  .../bindings/iio/adc/cirrus,ep9301-adc.yaml   | 58 +++++++++++++++++++
->  MAINTAINERS                                   |  2 +
->  2 files changed, 60 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/cirrus,ep9301-adc.yaml
+> Changes in v3:
+> -Rename property name.
 > 
+> Changes in v4:
+> -Use data-lanes and link-frequencies instead of "ite,dp-output-data-lane-count" and "ite,dp-output-max-pixel-clock-mhz".
+> 
+> [...]
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Allen: The email name you use must exactly match Signed-off-by string,
+or there will be issues like the below when applying the patch.
 
-yamllint warnings/errors:
+-:139: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email name mismatch: 'From: allen chen <allen.chen@ite.com.tw>' != 'Signed-off-by: Allen chen <allen.chen@ite.com.tw>'
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/iio/adc/cirrus,ep9301-adc.example.dts:21:18: fatal error: dt-bindings/clock/cirrus,ep93xx-clock.h: No such file or directory
-   21 |         #include <dt-bindings/clock/cirrus,ep93xx-clock.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:406: Documentation/devicetree/bindings/iio/adc/cirrus,ep9301-adc.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1492: dt_binding_check] Error 2
 
-doc reference errors (make refcheckdocs):
+With that fixed, applied!
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221214222024.951984-1-alexander.sverdlin@gmail.com
+Repo: https://cgit.freedesktop.org/drm/drm-misc/
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+[1/2] dt-bindings: it6505: add properties to restrict output bandwidth
+      commit: 380d920b582d0f83852ac6885af868d93c38095b
+[2/2] drm/bridge: add it6505 driver to read data-lanes and link-frequencies from dt
+      commit: 380d920b582d0f83852ac6885af868d93c38095b
 
-pip3 install dtschema --upgrade
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+
+Rob
 
