@@ -2,87 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D3BBD64DC25
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 14:20:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7762064DC32
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 14:24:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229543AbiLONUj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 08:20:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49732 "EHLO
+        id S229883AbiLONYn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 08:24:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229737AbiLONUh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 08:20:37 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 004692ED69
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 05:20:34 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id p8so15592892lfu.11
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 05:20:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ilerhl9aB5wldZrGi6JAgqg6pC5+HsK4xqZHdd6qSDQ=;
-        b=cwIRbjabiTAM/XKcFoAozZBIgY2TmT4pmJeGjO/WYqhQctpp4UjGeDHE1/u4Hl5q0I
-         6IFMCv6ct0755kRKSvAwmJ7i5Sih27uziVxexSL4OetAC5oDPRA8OfCv7AzA7U9S/Bca
-         d8NHqzvSXNr0jxlCYMxCZPwONJCEQ4gMEHnGKjqOPUxDfo+w12ofxUblc9+Qdg75ijgm
-         jyjf7twPWXwfwak2kC2TIAQJbWqeb1DVw1Wqgv6ys7haZw9DVcv17r4k3qUh4HMJ8/PJ
-         LehfHsTnXINxibMAtsRE9oY3sHcAPC0Fg/yh0Frhj27gQTwM5tXnrf0Qfi6/c0WI1bdt
-         Ms6Q==
+        with ESMTP id S229742AbiLONYn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 08:24:43 -0500
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 332A5A1B3;
+        Thu, 15 Dec 2022 05:24:42 -0800 (PST)
+Received: by mail-ot1-f50.google.com with SMTP id x44-20020a05683040ac00b006707c74330eso3551861ott.10;
+        Thu, 15 Dec 2022 05:24:42 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ilerhl9aB5wldZrGi6JAgqg6pC5+HsK4xqZHdd6qSDQ=;
-        b=Iy9PHpraktkDUGTMFyCss3rdohcHlCfc+r3L9788HFZyPpL0R69lpXoRyq0x2loPoT
-         j8uXm7cJCyATqzkkHE8CUjSme+T+O4AoQIwt6xNP/SJDNIfLSsJKtn2lsCtLRSI+tS6r
-         Uo4ql3n9TsVEZIN0II1PHUqvE7VGlzgsZ11GqbituDRhz5O2jhwAVQtbj0+0+kfY/QmD
-         jhK/Lz1Um3D/UI7iuiM1rFawdTogPhLA8zy/JBmMGDE5HpFrzEdonAutOWT1uhuFhPBR
-         yGV2e8oLM+mduePnbFZVtR1Xf3iPnO6bN+6oz15nbeMIC5VX++3wo0Z3734ga4SY14jX
-         pA0w==
-X-Gm-Message-State: ANoB5pkkSam280Uq0csD5rpwBD0umuTF+LbADW6GsNzUDU/PgzHVYMrk
-        pLVemVaAahiEkznTO6BNubVqHw==
-X-Google-Smtp-Source: AA0mqf7RT8oY59cf+Be3rLYgLtjU2DX4Etj8BCthJJuaJRchwXq8CyN2TyAqyBsJDjQnRL9mUF2CCw==
-X-Received: by 2002:a05:6512:b91:b0:4b6:ed8b:4f16 with SMTP id b17-20020a0565120b9100b004b6ed8b4f16mr6433868lfv.52.1671110433312;
-        Thu, 15 Dec 2022 05:20:33 -0800 (PST)
-Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id p15-20020a056512328f00b004a46f92a15bsm1153210lfe.41.2022.12.15.05.20.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Dec 2022 05:20:32 -0800 (PST)
-Message-ID: <33fe1249-34b4-443b-4258-586ed8c5f0e6@linaro.org>
-Date:   Thu, 15 Dec 2022 14:20:30 +0100
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=LW+ve3cUHfE0Z9o9zNuwsUKMr7x49DLEjQJOo5HhbzE=;
+        b=a1qixfeXME1+MCSsnuBALsxJFy7Bac1eLROhBrwaUH3TrxIU/7i6/QWsV271ot+mw4
+         hIBE5/jeA94b4g0luIIx3eaLLAoN4/61X8aBzFzwIBkv6KvARLz3q7T9JopUJctWPfiJ
+         JaKv0QVVSXXn5lSrgbtgv1garwqSCFikQ7kcjmEHnYdenzYJn6ScGllhl6pfl+nCE6V6
+         qi5hRCPUtKKyisYo+WxFKWMqqtp+62qO7gdHAPplyan7X8hTRO7yaKuFuID7SX+6MUqH
+         FBXUzjAPVz4sqeXYVuNKedz0e5JL44ku2TjqomLlVrvzZlvAXJazi015C7OxIqhWVqjP
+         P4/A==
+X-Gm-Message-State: ANoB5pnzdbEMxO3cXa96ufiLR+zSIyZiIQJOzIoQz5ICct7vTcaT8yCy
+        C196xuq6wfltAndt/k0WFQ==
+X-Google-Smtp-Source: AA0mqf5m3bJ7wlhof02tlHFbt6GI7JXxF/ePUsFVTQQiF46zUNrgqysCCNZHFx4GGOviV3IPb7Eemg==
+X-Received: by 2002:a9d:6406:0:b0:66e:ab29:341b with SMTP id h6-20020a9d6406000000b0066eab29341bmr11881163otl.18.1671110681381;
+        Thu, 15 Dec 2022 05:24:41 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id l23-20020a9d7a97000000b00667ff6b7e9esm3552662otn.40.2022.12.15.05.24.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Dec 2022 05:24:40 -0800 (PST)
+Received: (nullmailer pid 3142468 invoked by uid 1000);
+        Thu, 15 Dec 2022 13:24:38 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH 5/6] arm64: dts: qcom: msm8976: Declare and use SDC2 pins
-Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        phone-devel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+From:   Rob Herring <robh@kernel.org>
+To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc:     Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org,
+        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        Niklas =?utf-8?q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Luca Weiss <luca@z3ntu.xyz>,
-        Adam Skladowski <a39.skl@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221214232049.703484-1-marijn.suijten@somainline.org>
- <20221214232049.703484-6-marijn.suijten@somainline.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221214232049.703484-6-marijn.suijten@somainline.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Thomas Nizan <tnizan@witekio.com>,
+        linux-renesas-soc@vger.kernel.org
+In-Reply-To: <20221214233825.13050-3-laurent.pinchart+renesas@ideasonboard.com>
+References: <20221214233825.13050-1-laurent.pinchart+renesas@ideasonboard.com>
+ <20221214233825.13050-3-laurent.pinchart+renesas@ideasonboard.com>
+Message-Id: <167111060968.3140791.14917058235505688958.robh@kernel.org>
+Subject: Re: [PATCH v3 02/12] dt-bindings: media: i2c: max9286: Add property
+ to select I2C speed
+Date:   Thu, 15 Dec 2022 07:24:38 -0600
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -90,115 +71,49 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-
-On 15.12.2022 00:20, Marijn Suijten wrote:
-> Add the pinctrl states for SDC2 and use them on sdhc_2 to support SD
-> Cards on the currently mainlined Sony Loire platform.
+On Thu, 15 Dec 2022 01:38:15 +0200, Laurent Pinchart wrote:
+> The I2C speed on the remote side (the I2C master bus of the connected
+> serializers) is configurable, and doesn't need to match the speed of the
+> local bus (the slave bus of the MAX9286). All remote buses must use the
+> same speed, and the MAX9286 needs to be programmed accordingly. Add a
+> new DT property to select the speed to make it configurable.
 > 
-> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > ---
->  .../qcom/msm8956-sony-xperia-loire-kugo.dts   |  6 +++
->  .../dts/qcom/msm8956-sony-xperia-loire.dtsi   |  6 +++
->  arch/arm64/boot/dts/qcom/msm8976.dtsi         | 45 +++++++++++++++++++
->  3 files changed, 57 insertions(+)
+> Changes since v2:
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire-kugo.dts b/arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire-kugo.dts
-> index 3fb8e23e4330..9178943e2ee1 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire-kugo.dts
-> +++ b/arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire-kugo.dts
-> @@ -33,3 +33,9 @@ &pm8950_l1 {
->  	regulator-min-microvolt = <1100000>;
->  	regulator-max-microvolt = <1300000>;
->  };
-> +
-> +&sdc2_on_state {
-> +	data-pins {
-> +		drive-strength = <8>;
-> +	};
-> +};
-You can add a label to the data-pins subnode.
+> - Rename property to maxim,i2c-remote-bus-hz
+> - Specify the property type
+> ---
+>  .../devicetree/bindings/media/i2c/maxim,max9286.yaml      | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
 
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire.dtsi b/arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire.dtsi
-> index 700583a56a0e..2253fb05f1c9 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire.dtsi
-> @@ -264,6 +264,12 @@ &sdhc_1 {
->  	status = "okay";
->  };
->  
-> +&sdc2_on_state {
-> +	clk-pins {
-> +		drive-strength = <10>;
-> +	};
-> +};
-> +
->  &sdhc_2 {
->  	bus-width = <4>;
->  	cd-gpios = <&tlmm 100 GPIO_ACTIVE_HIGH>;
-> diff --git a/arch/arm64/boot/dts/qcom/msm8976.dtsi b/arch/arm64/boot/dts/qcom/msm8976.dtsi
-> index 7d4c7548882c..f3371eaa2940 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8976.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8976.dtsi
-> @@ -558,6 +558,46 @@ rclk-pins {
->  				};
->  			};
->  
-> +			sdc2_off_state: sdc2-off-state {
-> +				clk-pins {
-> +					pins = "sdc2_clk";
-> +					drive-strength = <2>;
-> +					bias-disable;
-> +				};
-> +
-> +				cmd-pins {
-> +					pins = "sdc2_cmd";
-> +					drive-strength = <2>;
-> +					bias-pull-up;
-> +				};
-> +
-> +				data-pins {
-> +					pins = "sdc2_data";
-> +					drive-strength = <2>;
-> +					bias-pull-up;
-> +				};
-> +			};
-> +
-> +			sdc2_on_state: sdc2-on-state {
-> +				clk-pins {
-> +					pins = "sdc2_clk";
-> +					drive-strength = <16>;
-> +					bias-disable;
-> +				};
-> +
-> +				cmd-pins {
-> +					pins = "sdc2_cmd";
-> +					drive-strength = <10>;
-> +					bias-pull-up;
-> +				};
-> +
-> +				data-pins {
-> +					pins = "sdc2_data";
-> +					drive-strength = <10>;
-> +					bias-pull-up;
-> +				};
-> +			};
-> +
->  			spi1_default: spi0-default-state {
->  				spi-pins {
->  					pins = "gpio0", "gpio1", "gpio3";
-> @@ -751,6 +791,11 @@ sdhc_2: mmc@7864000 {
->  				 <&gcc GCC_SDCC2_APPS_CLK>,
->  				 <&rpmcc RPM_SMD_XO_CLK_SRC>;
->  			clock-names = "iface", "core", "xo";
-> +
-> +			pinctrl-0 = <&sdc2_on_state>;
-> +			pinctrl-1 = <&sdc2_off_state>;
-> +			pinctrl-names = "default", "sleep";
-Ditto (prev patch)
+yamllint warnings/errors:
 
-Konrad
-> +
->  			status = "disabled";
->  		};
->  
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml: properties:maxim,i2c-remote-bus-hz: '$ref' should not be valid under {'const': '$ref'}
+	hint: Standard unit suffix properties don't need a type $ref
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221214233825.13050-3-laurent.pinchart+renesas@ideasonboard.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
