@@ -2,74 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C701264D4BC
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 01:38:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B63C64D51C
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 02:51:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230019AbiLOAiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 19:38:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50526 "EHLO
+        id S229596AbiLOBvy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 20:51:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229745AbiLOAiI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 19:38:08 -0500
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C58D4A077
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 16:38:06 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id z4so8433933ljq.6
-        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 16:38:06 -0800 (PST)
+        with ESMTP id S229724AbiLOBvu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 20:51:50 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2611054347
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 17:51:49 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id ay14-20020a05600c1e0e00b003cf6ab34b61so739849wmb.2
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 17:51:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:user-agent
-         :from:references:in-reply-to:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SaXTzEJKmgLz+SAFN0DeG64y723tiZblK0P+iFI17hA=;
-        b=nXgdMXMlXc4YZNcKifowoGMKNa+co1HPUWTVq27PRY6w89JZ3Ejc2212MRdAFIYUhy
-         rKkdpqfNS7kdTebj4RVOgs9+ajsaVD1JqxFXnQllO/yuel6HEDH7DdO+g8uVNPJ/2cZj
-         Icos7gQxPO6B9djSw6RJdPjG4OMUWfPs35k/Q=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Gbi9GcVTR8H1eERdxlESG9eGZCWPeMSzsHRp3Ru8N/Y=;
+        b=s2T6rUV1NT5tztd5iDeqbcSF59HI8MBxAlzZjMjDZWRh0qQu1DzSAeLz+MrvOONcli
+         aQRBFfYLT5s2oPTM3BY+lKBQPtT+zAMqvjKKwFyoIz+Dt9X1FV4j0THowlXAkXUDw20i
+         ThaRDX69udI+7ntFGCR0+iMmFxnjcXfbJ03cu2puYTZI7yJxfdsxVI4NE7WxzX6jC/c/
+         ZqnTelH1rgLEtyoHZiuAzHXheYG31w4o+8lIIfbqUyovGPe0Cqi1qK6nQDdSYIjFhmEp
+         KyOtLPRj4Mdi5vJ3OYkJ9SHfYFyEk9P7FB3nUqqKd3EIfxSdqDokGyWqLVZy3bHz/lvH
+         evaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:user-agent
-         :from:references:in-reply-to:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=SaXTzEJKmgLz+SAFN0DeG64y723tiZblK0P+iFI17hA=;
-        b=4pr0Bbgu0pWTpoFgjCxtwm8za79iM42Wdq4fFj6BYLlr+cP03MH5LjpCYKZDQicaIR
-         2ejF2GJwcovKVFESD4EneJrH40rUrQd/qMN+EuLwn9R9FNrBTiFx/weqxJn+lTuhbtBg
-         zvymdWKnyyQGFzBjdTpfD7DyOgj1YxPtM3Pg90BCzDc9AnqI0QhyIoR4c2BAIpisIMlU
-         oTnFrgzbE9XAe6iA9N1sim8EyplCd0PolO/Oeo5dv8bDt6BDyhM3pKOWRo1J3DPy9HzV
-         OUXyl4mIaBNWYsf4QpW1mx7Ugu5ceJtPAcTngcVPjYnf6zuqRZpOxkDtXzJq3atTaxTF
-         RQZQ==
-X-Gm-Message-State: ANoB5plUgGVJXZMTn1CdHPdRvBelKWYBFkhzZrRHVUiEMb8DvtmA/J3K
-        U86L1/ZtH6Eg1Ou7QVd0yv3Nfebi0qDQW4Pqm9ystA==
-X-Google-Smtp-Source: AA0mqf4VcPwauzdtgPycgk8YSzSnpCLwL/tuuSk9YZ6/aN69rAyE9+MaT6XlGF2IV6qyZaGEtZp4gqVNb6T4m84M1vA=
-X-Received: by 2002:a2e:a544:0:b0:278:f5b8:82c8 with SMTP id
- e4-20020a2ea544000000b00278f5b882c8mr26380240ljn.228.1671064684762; Wed, 14
- Dec 2022 16:38:04 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 14 Dec 2022 19:38:04 -0500
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Gbi9GcVTR8H1eERdxlESG9eGZCWPeMSzsHRp3Ru8N/Y=;
+        b=2IkT7wOeU3XuNOcygabfmtU48byStR5dvQqDb/8/LzrZOETq+54k8DTfXt6n+mEeCc
+         TnneS+mMIUUPy0WtylAc+wKPy8DfhBnhQVlOSk7iGJDsUNBXLFiesEEFsEXZA97AArpp
+         b/WXZAGxRVRol2ukkcosxdEYc0UressK8Si31eASRC13An2iBaTRXSd+6zCIEM1+F7Au
+         8zQvTyalNX1HPiPIkt1YvEm8/1P30vO6A2inlsMIuTtE0NoP0ggzQNjZpQOwyOLqCt1+
+         reNL4lszWPEXZkau/P7nQlrNrHDrdeYEp8IX0Btz/VmK9/xZMwSOUTuYcDfdNZcfgBrB
+         Fpkw==
+X-Gm-Message-State: ANoB5pkuRU8NViDuFHLzQCgRhYk45aLByF94JbD1EgCav6Z70GCnKkr3
+        xd0QJ8Yn8XYlfQnjr0yF4+kOWg==
+X-Google-Smtp-Source: AA0mqf6MoXMgp7n/Tp7ypFp6MziLZuNaWno27mQuQRWPuhajhiYlDmCMsEGE3acTymqr5gE7XArthg==
+X-Received: by 2002:a05:600c:3511:b0:3cf:7b8b:6521 with SMTP id h17-20020a05600c351100b003cf7b8b6521mr21107643wmq.32.1671069107594;
+        Wed, 14 Dec 2022 17:51:47 -0800 (PST)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id j41-20020a05600c1c2900b003b4ff30e566sm13776425wms.3.2022.12.14.17.51.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Dec 2022 17:51:47 -0800 (PST)
+Message-ID: <c3934708-8554-7b70-9a1d-68734df35247@linaro.org>
+Date:   Thu, 15 Dec 2022 01:51:45 +0000
 MIME-Version: 1.0
-In-Reply-To: <b38af164-08bc-07e7-dfaf-fb4d6d89d7db@quicinc.com>
-References: <1670967848-31475-1-git-send-email-quic_khsieh@quicinc.com>
- <1670967848-31475-3-git-send-email-quic_khsieh@quicinc.com>
- <CAE-0n52eHYCqxUJqQXoaQ8vyqCk-QfouSun+zUp3yo5DufWbwg@mail.gmail.com> <b38af164-08bc-07e7-dfaf-fb4d6d89d7db@quicinc.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Wed, 14 Dec 2022 19:38:04 -0500
-Message-ID: <CAE-0n53Cb6TFGfM6AYup5aP4=24j0ujVPi463oVqmzfNV2B4RA@mail.gmail.com>
-Subject: Re: [PATCH v12 2/5] dt-bindings: msm/dp: add data-lanes and
- link-frequencies property
-To:     Kuogee Hsieh <quic_khsieh@quicinc.com>, agross@kernel.org,
-        airlied@gmail.com, andersson@kernel.org, daniel@ffwll.ch,
-        devicetree@vger.kernel.org, dianders@chromium.org,
-        dmitry.baryshkov@linaro.org, dri-devel@lists.freedesktop.org,
-        konrad.dybcio@somainline.org, krzysztof.kozlowski+dt@linaro.org,
-        robdclark@gmail.com, robh+dt@kernel.org, sean@poorly.run,
-        vkoul@kernel.org
-Cc:     quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com,
-        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH] Revert "phy: qualcomm: usb28nm: Add MDM9607 init
+ sequence"
+Content-Language: en-US
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
+        phone-devel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Michael Srba <Michael.Srba@seznam.cz>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221214223733.648167-1-marijn.suijten@somainline.org>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20221214223733.648167-1-marijn.suijten@somainline.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,102 +89,100 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Kuogee Hsieh (2022-12-14 14:56:23)
->
-> On 12/13/2022 3:06 PM, Stephen Boyd wrote:
-> > Quoting Kuogee Hsieh (2022-12-13 13:44:05)
-> >> Add both data-lanes and link-frequencies property into endpoint
-> > Why do we care? Please tell us why it's important.
+On 14/12/2022 22:37, Marijn Suijten wrote:
+> This reverts commit 557a28811c7e0286d3816842032db5eb7bb5f156.
+> 
+> This commit introduced an init sequence from downstream DT [1] in the
+> driver.  As mentioned by the comment above the HSPHY_INIT_CFG macro for
+> this sequence:
+> 
+>      /*
+>       * The macro is used to define an initialization sequence.  Each tuple
+>       * is meant to program 'value' into phy register at 'offset' with 'delay'
+>       * in us followed.
+>       */
+> 
+> Instead of corresponding to offsets into the phy register, the sequence
+> read by the downstream driver [2] is passed into ulpi_write [3] which
+> crafts the address-value pair into a new value and writes it into the
+> same register at USB_ULPI_VIEWPORT [4].  In other words, this init
+> sequence is programmed into the hardware in a totally different way than
+> downstream and is unlikely to achieve the desired result, if the hsphy
+> is working at all.
+> 
+> An alternative method needs to be found to write these init values at
+> the desired location.  Fortunately mdm9607 did not land upstream yet [5]
+> and should have its compatible revised to use the generic one, instead
+> of a compatible that writes wrong data to the wrong registers.
+> 
+> [1]: https://android.googlesource.com/kernel/msm/+/android-7.1.0_r0.2/arch/arm/boot/dts/qcom/mdm9607.dtsi#585
+> [2]: https://android.googlesource.com/kernel/msm/+/android-7.1.0_r0.2/drivers/usb/phy/phy-msm-usb.c#4183
+> [3]: https://android.googlesource.com/kernel/msm/+/android-7.1.0_r0.2/drivers/usb/phy/phy-msm-usb.c#468
+> [4]: https://android.googlesource.com/kernel/msm/+/android-7.1.0_r0.2/drivers/usb/phy/phy-msm-usb.c#418
+> [5]: https://lore.kernel.org/linux-arm-msm/20210805222812.40731-1-konrad.dybcio@somainline.org/
+> 
+> Reported-by: Michael Srba <Michael.Srba@seznam.cz>
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
 
-Any response?
+Hmm.
 
-> >> @@ -193,6 +217,8 @@ examples:
-> >>                   reg =3D <1>;
-> >>                   endpoint {
-> >>                       remote-endpoint =3D <&typec>;
-> >> +                    data-lanes =3D <0 1>;
-> >> +                    link-frequencies =3D /bits/ 64 <1620000000 270000=
-0000 5400000000 8100000000>;
-> >>                   };
-> > So far we haven't used the output port on the DP controller in DT.
-> >
-> > I'm still not clear on what we should do in general for DP because
-> > there's a PHY that actually controls a lane count and lane mapping. In
-> > my mental model of the SoC, this DP controller's output port is
-> > connected to the DP PHY, which then sends the DP lanes out of the SoC t=
-o
-> > the next downstream device (i.e. a DP connector or type-c muxer). Havin=
-g
-> > a remote-endpoint property with a phandle to typec doesn't fit my menta=
-l
-> > model. I'd expect it to be the typec PHY.
-> ack
-> >
-> > That brings up the question: when we have 2 lanes vs. 4 lanes will we
-> > duplicate the data-lanes property in the PHY binding? I suspect we'll
-> > have to. Hopefully that sort of duplication is OK?
-> Current we have limitation by reserve 2 data lanes for usb2, i am not
-> sure duplication to 4 lanes will work automatically.
-> >
-> > Similarly, we may have a redriver that limits the link-frequencies
-> > property further (e.g. only support <=3D 2.7GHz). Having multiple
-> > link-frequencies along the graph is OK, right? And isn't the
-> > link-frequencies property known here by fact that the DP controller
-> > tells us which SoC this controller is for, and thus we already know the
-> > supported link frequencies?
-> >
-> > Finally, I wonder if we should put any of this in the DP controller's
-> > output endpoint, or if we can put these sorts of properties in the DP
-> > PHY binding directly? Can't we do that and then when the DP controller
-> > tries to set 4 lanes, the PHY immediately fails the call and the link
-> > training algorithm does its thing and tries fewer lanes? And similarly,
-> > if link-frequencies were in the PHY's binding, the PHY could fail to se=
-t
-> > those frequencies during link training, returning an error to the DP
-> > controller, letting the training move on to a lower frequency. If we di=
-d
-> > that this patch series would largely be about modifying the PHY binding=
-,
-> > updating the PHY driver to enforce constraints, and handling errors
-> > during link training in the DP controller (which may already be done? I
-> > didn't check).
->
->
-> phy/pll have different configuration base on link lanes and rate.
->
-> it has to be set up before link training can start.
->
-> Once link training start, then there are no any interactions between
-> controller and phy during link training session.
+I got a bit concerned qcs405 was broken too, which would be worrying 
+since I remember testing this code, though not specifically turning off 
+the PHY init, then again, there's a near zero chance the USB PHY would 
+work after reset without the specified init seq.
 
-What do you mean? The DP controller calls phy_configure() and changes
-the link rate. The return value from phy_configure() should be checked
-and link training should skip link rates that aren't supported and/or
-number of lanes that aren't supported.
+The original upstreamed code for qcs404/405
 
->
-> Link training only happen between dp controller and sink since link
-> status is reported by sink (read back from sink's dpcd register directly)=
-.
->
-> T achieve link symbol locked, link training will start from reduce link
-> rate until lowest rate, if it still failed, then it will reduce lanes
-> with highest rate and start training=C2=A0 again.
->
-> it will repeat same process until lowest lane (one lane), if it still
-> failed, then it will give up and declare link training failed.
+https://android.googlesource.com/kernel/msm/+/refs/heads/android-msm-coral-4.14-android10/arch/arm64/boot/dts/qcom/qcs405-usb.dtsi
 
-Yes, that describes the link training algorithm. I don't see why
-phy_configure() return value can't be checked and either number of lanes
-or link frequencies be checked. If only two lanes are supported, then
-phy_configure() will fail for the 4 link rates and the algorithm will
-reduce the number of lanes and go back to the highest rate. Then when
-the highest rate isn't supported it will drop link rate until the link
-rate is supported.
+https://android.googlesource.com/kernel/msm/+/refs/heads/android-msm-coral-4.14-android10/drivers/usb/phy/phy-qcom-snps-28nm-hs.c
 
->
-> Therefore I think add data-lanes and link-frequencies properties in the
-> DP PHY binding directly will not helps.
->
+Does a relative write to an offset of the PHY CSR
 
-I didn't follow your logic. Sorry.
+CSR base is 0x7a000
+https://android.googlesource.com/kernel/msm/+/refs/heads/android-msm-coral-4.14-android10/arch/arm64/boot/dts/qcom/qcs405-usb.dtsi#74
+
+https://android.googlesource.com/kernel/msm/+/refs/heads/android-msm-coral-4.14-android10/drivers/usb/phy/phy-qcom-snps-28nm-hs.c#285
+
+which will result in 0x7a000 + 0xc0 = 0x01, etc
+
+which for us upstream then is
+
+https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/qcom/qcs404.dtsi#L336
+
+and
+
+https://github.com/torvalds/linux/blob/master/drivers/phy/qualcomm/phy-qcom-usb-hs-28nm.c#L388
+
+Writing 0x7a000 + 0xc0 = 0x01, etc - a writel() in this case
+
+so that bit is fine.
+
+mdm9607
+
+https://android.googlesource.com/kernel/msm/+/android-7.1.0_r0.2/arch/arm/boot/dts/qcom/mdm9607.dtsi#569 
+- compat string is
+
+CSR is @ 0x6c000
+
+https://android.googlesource.com/kernel/msm/+/android-7.1.0_r0.2/drivers/usb/phy/phy-msm-usb.c#664
+
+downstream PHY init seq
+
+https://android.googlesource.com/kernel/msm/+/android-7.1.0_r0.2/arch/arm/boot/dts/qcom/mdm9607.dtsi#585
+
+and downstream driver PHY init write
+
+https://android.googlesource.com/kernel/msm/+/android-7.1.0_r0.2/drivers/usb/phy/phy-msm-usb.c#664
+
+Which does
+
+writel_relaxed(ULPI_RUN | ULPI_WRITE |
+	       ULPI_ADDR(reg) | ULPI_DATA(val),
+	       USB_ULPI_VIEWPORT);
+
+Yep, you're right, we can't do a simple writeb(csr + reg, val); for 
+mdm9607 but, also the qcs404 => compat = "qcom,usb-hs-28nm-femtophy" is 
+doing the right thing.
+
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
