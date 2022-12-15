@@ -2,77 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E217064DBF9
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 14:10:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6B9F64DC0A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 14:14:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229645AbiLONKV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 08:10:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45258 "EHLO
+        id S229694AbiLONOo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 08:14:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229462AbiLONKT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 08:10:19 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4EF32BB25;
-        Thu, 15 Dec 2022 05:10:18 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4FC6261CF8;
-        Thu, 15 Dec 2022 13:10:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10104C433EF;
-        Thu, 15 Dec 2022 13:10:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671109817;
-        bh=eXqB5wBx6ldyx3WnmnFI9DbCmJ6qg7OnLYn5htvtC+o=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=GlJeLrmBOBHAew9fzsQmTrx1TmEuLtTIP+BbFQjFJWSzHlcrjgx98QVTC+pXu2WS/
-         UMq7CmEQFnnnLrhvT4oSCXmr35Khx8wQVeeS7LgXQTBGSEVM5hC+4HQIAvDjO/dFeb
-         NbwMlCO4T+WBvu78R25apZo47roRd0ES1carQew0q4M5bfSF5SJaMhm9Lwp5NYERyh
-         aEmolh2zEyA9ZQTR94CofDW1vR8flsy9hkPL8VQGaLzBYo9ceqVfzWkt+GX0X2Eyud
-         xUE4Ls8kILiIZTXA4Hnuv07neG1du0AYbCqbLxJGzjV09eqNUmH0A7JKM+N1907/4G
-         MUNF0iC2Y8wPA==
-Message-ID: <5a8c636f-b8b4-69d2-344b-66dbcfd2b710@kernel.org>
-Date:   Thu, 15 Dec 2022 14:10:11 +0100
+        with ESMTP id S229469AbiLONOn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 08:14:43 -0500
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 999722ED78
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 05:14:42 -0800 (PST)
+Received: by mail-yb1-xb33.google.com with SMTP id b16so3483758yba.0
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 05:14:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=x6pBWVNsgjAGpd1VZR5eExNtUZDulyyfEXZFcwo/ZY0=;
+        b=WF4o50+yPVOO/nnc2PZfXnrSc1OnWJMoIQMCSAHiR3Ve08OeUkWD08m5h8J10eBfBf
+         BXWZR3DSYK/6sysM9p7jBdK16k3bbrfEofFpd0MotYLAzCgLIPh8Pg5JZVh42YkNmk2B
+         D0n/BOjzV4NKURVcVIngw6qDAQm3zGNyT3cmJmbHmiI7JB8+TS5LA28YZ080rXLTLp9x
+         s60ixwHmlOPbxyh807wRM9opkMeDeyMlBFMZVwOEiPMSQSpQTqra2XKx96rNT0xayWoV
+         IMzrFlgYVPbsY8FWWeN3XRTwQVxhkTbX50etJdlRahfZ7Y0SdPIKtSm8r/IrPBlp2VZN
+         esZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=x6pBWVNsgjAGpd1VZR5eExNtUZDulyyfEXZFcwo/ZY0=;
+        b=ne3dMq3EH+/nwHrGzwlrS8XWjqPlGk9FrAmuEcsgAI482ExHjbB94F+kWmH+Z0+KJP
+         Iz/SkD2RChnnmS8VU0BslImIe/x6G02jG9ZrKRFSNcAJn7Fv8fUauvPh0/p3CdHIMYxM
+         QH37fkQoxF1gM3Nt7yPPZfa/138cE/+UIMt4Ny5JDv1wTuBIWt0cUaFzhTJuw6LYKj5w
+         57/UpHGq9PKxpkyjXCjBnzX6P93vcYyNZHzCMYzsqJ8AGPH7uRJBQyv/G9Vr9PgQRc9n
+         wnKSvmcAIj8zrOqLZW5dNm2kr7I0eOHRX4Qp6OtP2AFMh+gBoxhZtBwZH3dJsS5lhS7i
+         4XJg==
+X-Gm-Message-State: ANoB5plZM5Jnjv8ibNLxMUJSZBU6OMLLpbz51hEHEKulUC4g9hz6K7gd
+        EzwE5wljEHn3B9eSUUa/diUk2iRvLNb8wAWVtIUgKQ==
+X-Google-Smtp-Source: AA0mqf4VCeS6cDmE/8cI63PEOCskGBZt2whnoZo0ZMYoL1fTX7u2fERUW9ycXmeeLPdzN6L2IfhejUxuNfP+Ggbfv+w=
+X-Received: by 2002:a25:d782:0:b0:6f5:6b11:8110 with SMTP id
+ o124-20020a25d782000000b006f56b118110mr47667581ybg.560.1671110081841; Thu, 15
+ Dec 2022 05:14:41 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v14 2/2] dt-bindings: thermal: Add Sunplus schema
-To:     Li-hao Kuo <lhjeff911@gmail.com>, rafael@kernel.org,
-        rui.zhang@intel.com, daniel.lezcano@linaro.org, amitk@kernel.org,
-        robh+dt@kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     lh.kuo@sunplus.com
-References: <cover.1665990345.git.lhjeff911@gmail.com>
- <038211f33e4d5dd5129712aef2738a83577c7745.1665990345.git.lhjeff911@gmail.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <038211f33e4d5dd5129712aef2738a83577c7745.1665990345.git.lhjeff911@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20221214095342.937303-1-alexander.stein@ew.tq-group.com> <20221214095342.937303-2-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20221214095342.937303-2-alexander.stein@ew.tq-group.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 15 Dec 2022 14:14:30 +0100
+Message-ID: <CACRpkdYbn3XDeswTeAHatbGUnraDT4-4FkX9FBXMGkzpHpEQUw@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 1/3] dt-bindings: gpio: Add gpio-delay binding document
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Marek Vasut <marex@denx.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/12/2022 09:23, Li-hao Kuo wrote:
-> Add bindings for Sunplus thermal driver
-> 
-> Signed-off-by: Li-hao Kuo <lhjeff911@gmail.com>
-> ---
-> Changes in v12:
->  - no change.
-> 
-> Changes in v13:
->  - no change.
+On Wed, Dec 14, 2022 at 10:53 AM Alexander Stein
+<alexander.stein@ew.tq-group.com> wrote:
 
-You got comment which you ignored. Stop sending the same while ignoring
-feedback.
+> This adds bindings for a GPIO enable/disable delay driver.
+>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-Best regards,
-Krzysztof
+> +  input-gpios:
+> +    description: Array of GPIOs which output signal change is delayed
 
+I would just call this "gpios", it's not like we're ever going to add
+any more specified GPIOs to this hardware, ever.
+
+Yours,
+Linus Walleij
