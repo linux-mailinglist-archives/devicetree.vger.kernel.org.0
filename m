@@ -2,69 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 667F464DE89
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 17:24:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 704DB64DE92
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 17:27:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229984AbiLOQYH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 11:24:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48994 "EHLO
+        id S229460AbiLOQ1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 11:27:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230113AbiLOQXf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 11:23:35 -0500
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E85FF396D3;
-        Thu, 15 Dec 2022 08:22:17 -0800 (PST)
-Received: by mail-ot1-f54.google.com with SMTP id m7-20020a9d6447000000b0066da0504b5eso3856000otl.13;
-        Thu, 15 Dec 2022 08:22:17 -0800 (PST)
+        with ESMTP id S230103AbiLOQ0Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 11:26:25 -0500
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C70C0218A4;
+        Thu, 15 Dec 2022 08:25:07 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id c66so27765411edf.5;
+        Thu, 15 Dec 2022 08:25:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Py/vysFzJts4D379yYBV14GJq8PM0BBmsGxpLWSgnm4=;
+        b=qqe3qUvy408KMlLwG9mEIR4A1pE/oxDioVE8Ttf6XiVsYLEoIpZ+aYEQTgwLgeWn4l
+         XdsdHgGnBatNcu65+L5eDCGv2yNHsfbhdsvdFVb5y2aK+m6wT0rroNV3SOKE1UXP5Jxp
+         gHh2Hs6OWa0RHPIvt/9sVN5AG/Ibsov/NBwRD7De892as8ztpB9h8gh1qCK4DJ6/aVEs
+         4qgSok7j2dMwylblpeuhSZmpYoZ+kqqNW/O2WbTxtp9rT9DbevH0taI+h9xkhGCgS50K
+         vNAL9sklTZSPKf9UzfIdLyM1mbtDv4jqe+0AdWTE6SAd0UkjKMzSMSxqfWn5/Ro2xkWw
+         /UCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5lvp+Rra/J+0wVWurvbgG0Bk7qShU+6ZOVAk+JE7aHs=;
-        b=xWml9QbxpMOa2ekPwryWxLXpaSuCWrhupKpu4VuYFpMkhSpBY+egWUFKy/s1BpAd9m
-         +xKyVJin2Y1QoOUQjiVZWFNG34t9twUEcnluDcVscs2neDJliUs20JhD4GOKTPPXX3Cv
-         YUZhonSPUMYk3jD6xvqxHiScsdBJ3n9CMrV7nFUZ1byHSeYEy4Z9DEO+ts056YYkXHB0
-         xFkSPkA7uiX7slhS0+oEjVKexllRBRjGVGXi5nTyz4HTJZQHvmF8UZd5Lou3+OhpfAjO
-         HGQ4dDu2F9Q7G8VC4gIFsUNYCMAB3Ksobm4F5Oq2KszVRjkJGpb0yCDNNVPFZUtFyk7u
-         xALQ==
-X-Gm-Message-State: ANoB5pncLq8ts+YT4trDNHS4JEQ2aqlym8TWY6gjfHSZOZsCMx4B5nbk
-        wwLSur+3sxN/JiMPWcyoGA==
-X-Google-Smtp-Source: AA0mqf7X/PFzmParAODHOyFtTJjq+Nk9hxsJMAGA3If31IqPxkC3c3wsbOlFneYtyPmQ2EVOqVfozw==
-X-Received: by 2002:a05:6830:2098:b0:670:6976:a864 with SMTP id y24-20020a056830209800b006706976a864mr14501417otq.29.1671121337113;
-        Thu, 15 Dec 2022 08:22:17 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id d21-20020a056830139500b0066ec7ace428sm3698309otq.10.2022.12.15.08.22.16
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Py/vysFzJts4D379yYBV14GJq8PM0BBmsGxpLWSgnm4=;
+        b=G50w0klsvpjLwXSFjuZmExppptfCyFGKn8jeSihOWHZWsOftqf8qS0ezgdx7K4UP0g
+         N7AcF1mach9RMYCGGlTKBgZ7bS08jiJuESAy/logPuWJF1Aoc7mwxch7OZwe69OrAlig
+         4tMYgURxJszYCRdvXFOXVYS/3xCklSp9QhE5IbSnw6q9Sz/TiR4UopBFx6s2M0ClnjdT
+         Mcm4wLgaFxsuqHS6zv+s5ecSc2r6WvyHcYCvywPjxfZ0DKDqtZwsLyMs+V177KNdFD7T
+         ffBkON3g7QKJQETuYTjJhAFTodwNWV59WdssG/TpOya9OMy2dL3Zo9AiAfpBbZL52mjd
+         mLNQ==
+X-Gm-Message-State: ANoB5pm9A4a7j1XXoAavNwtlY62lucPh+ZCykp7ZhFYdV8xVC1ZP9TP+
+        Uk5gA83hlCxyJc1XS5XfSZY=
+X-Google-Smtp-Source: AA0mqf6FL2R1zzO7z+hBp3JngNFWlBB+FWzKinQVAYElo/QWwnvNovxJX5oHoFZFExl5VtI8B3qRgQ==
+X-Received: by 2002:a05:6402:4491:b0:46f:777f:f9ad with SMTP id er17-20020a056402449100b0046f777ff9admr21141828edb.19.1671121506284;
+        Thu, 15 Dec 2022 08:25:06 -0800 (PST)
+Received: from giga-mm.home ([2a02:1210:8629:800:82ee:73ff:feb8:99e3])
+        by smtp.gmail.com with ESMTPSA id b20-20020aa7df94000000b0044dbecdcd29sm7612037edy.12.2022.12.15.08.25.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Dec 2022 08:22:16 -0800 (PST)
-Received: (nullmailer pid 145631 invoked by uid 1000);
-        Thu, 15 Dec 2022 16:22:16 -0000
-Date:   Thu, 15 Dec 2022 10:22:16 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-        Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund@ragnatech.se>,
+        Thu, 15 Dec 2022 08:25:05 -0800 (PST)
+Message-ID: <a279467764c063fccf28c7d8fdfac2ab57570fee.camel@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: ep93xx: Add
+ cirrus,ep9301-adc description
+From:   Alexander Sverdlin <alexander.sverdlin@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-iio@vger.kernel.org,
+        Hartley Sweeten <hsweeten@visionengravers.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thomas Nizan <tnizan@witekio.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v3 02/12] dt-bindings: media: i2c: max9286: Add property
- to select I2C speed
-Message-ID: <20221215162216.GA141183-robh@kernel.org>
-References: <20221214233825.13050-1-laurent.pinchart+renesas@ideasonboard.com>
- <20221214233825.13050-3-laurent.pinchart+renesas@ideasonboard.com>
- <167111060968.3140791.14917058235505688958.robh@kernel.org>
- <Y5skgJqitZRKHqyY@pendragon.ideasonboard.com>
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Date:   Thu, 15 Dec 2022 17:25:04 +0100
+In-Reply-To: <20221215161835.GA138650-robh@kernel.org>
+References: <20221214222024.951984-1-alexander.sverdlin@gmail.com>
+         <20221215161835.GA138650-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y5skgJqitZRKHqyY@pendragon.ideasonboard.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,49 +79,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 15, 2022 at 03:43:28PM +0200, Laurent Pinchart wrote:
-> Hi Rob,
-> 
-> On Thu, Dec 15, 2022 at 07:24:38AM -0600, Rob Herring wrote:
-> > On Thu, 15 Dec 2022 01:38:15 +0200, Laurent Pinchart wrote:
-> > > The I2C speed on the remote side (the I2C master bus of the connected
-> > > serializers) is configurable, and doesn't need to match the speed of the
-> > > local bus (the slave bus of the MAX9286). All remote buses must use the
-> > > same speed, and the MAX9286 needs to be programmed accordingly. Add a
-> > > new DT property to select the speed to make it configurable.
-> > > 
-> > > Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > ---
-> > > Changes since v2:
-> > > 
-> > > - Rename property to maxim,i2c-remote-bus-hz
-> > > - Specify the property type
-> > > ---
-> > >  .../devicetree/bindings/media/i2c/maxim,max9286.yaml      | 8 ++++++++
-> > >  1 file changed, 8 insertions(+)
-> > > 
-> > 
-> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> > 
-> > yamllint warnings/errors:
-> > 
-> > dtschema/dtc warnings/errors:
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml: properties:maxim,i2c-remote-bus-hz: '$ref' should not be valid under {'const': '$ref'}
-> > 	hint: Standard unit suffix properties don't need a type $ref
-> > 	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-> 
-> I wonder how I missed that, as I've run dt_binding_check before
-> submitting. I'll fix it.
-> 
-> I'm a bit surprised though, all unit-suffixed properties use 32-bit
-> integers in the DT schema, while I can imagine that some may need a
-> 64-bit integer. What's the recommendation in that case ?
+Thanks Krzysztof, Rob,
 
-Use -mhz.
+I'll incorporate your comments into the next version, but...
 
-Anything outside the norm we have to special case in 
-property-units.yaml.
+On Thu, 2022-12-15 at 10:18 -0600, Rob Herring wrote:
+> > +=C2=A0 clock-names:
+> > +=C2=A0=C2=A0=C2=A0 const: ep93xx-adc
+>=20
+> Weird name for a clock. Generally is signal name or what it=20
+> controls (e.g. bus, core, etc.). Perhaps just drop it.
+>=20
+> > +
+> > +=C2=A0 interrupts:
+> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > +
+> > +required:
+> > +=C2=A0 - compatible
+> > +=C2=A0 - reg
+> > +=C2=A0 - clocks
+> > +=C2=A0 - clock-names
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +=C2=A0 - |
+> > +=C2=A0=C2=A0=C2=A0 #include <dt-bindings/clock/cirrus,ep93xx-clock.h>
 
-Rob
+your robot was right, this dependency is missing, I thought I can prepare
+the ADC driver in advance, but seems it has to go together with the whole
+DT conversion of the EP93xx series.
+
+--=20
+Alexander Sverdlin.
+
