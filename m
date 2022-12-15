@@ -2,110 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3699F64E2A7
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 21:59:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C75B64E2B1
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 22:00:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229895AbiLOU67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 15:58:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46228 "EHLO
+        id S229718AbiLOVA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 16:00:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229889AbiLOU66 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 15:58:58 -0500
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DE784528B1;
-        Thu, 15 Dec 2022 12:58:57 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="5.96,248,1665414000"; 
-   d="scan'208";a="143491534"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 16 Dec 2022 05:58:57 +0900
-Received: from localhost.localdomain (unknown [10.226.92.26])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 3F440400F75A;
-        Fri, 16 Dec 2022 05:58:53 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
+        with ESMTP id S229979AbiLOVAV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 16:00:21 -0500
+Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [IPv6:2001:4b7a:2000:18::166])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1476C5444E
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 13:00:15 -0800 (PST)
+Received: from SoMainline.org (94-209-172-39.cable.dynamic.v4.ziggo.nl [94.209.172.39])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 115EF3F319;
+        Thu, 15 Dec 2022 22:00:12 +0100 (CET)
+Date:   Thu, 15 Dec 2022 22:00:10 +0100
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     phone-devel@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <chris.paterson2@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v3 2/3] dt-bindings: pwm: rzg2l-gpt: Document renesas,poegs property
-Date:   Thu, 15 Dec 2022 20:58:42 +0000
-Message-Id: <20221215205843.4074504-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221215205843.4074504-1-biju.das.jz@bp.renesas.com>
-References: <20221215205843.4074504-1-biju.das.jz@bp.renesas.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Luca Weiss <luca@z3ntu.xyz>,
+        Adam Skladowski <a39.skl@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/6] arm64: dts: qcom: msm8976: Declare and use SDC1 pins
+Message-ID: <20221215210010.on44gmoefbnsokvt@SoMainline.org>
+Mail-Followup-To: Marijn Suijten <marijn.suijten@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        phone-devel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+        Luca Weiss <luca@z3ntu.xyz>, Adam Skladowski <a39.skl@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221214232049.703484-1-marijn.suijten@somainline.org>
+ <20221214232049.703484-5-marijn.suijten@somainline.org>
+ <60a40ace-d4e9-df74-88f9-4354d80efaac@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <60a40ace-d4e9-df74-88f9-4354d80efaac@linaro.org>
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RZ/G2L GPT IP supports output pin disable function by dead time
-error and detecting short-circuits between output pins.
+On 2022-12-15 14:19:41, Konrad Dybcio wrote:
+> 
+> 
+> On 15.12.2022 00:20, Marijn Suijten wrote:
+> > Add the pinctrl states for SDC1 and use them on sdhc_1.
+> > 
+> > Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/msm8976.dtsi | 55 +++++++++++++++++++++++++++
+> >  1 file changed, 55 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/msm8976.dtsi b/arch/arm64/boot/dts/qcom/msm8976.dtsi
+> > index 05dcb30b0779..7d4c7548882c 100644
+> > --- a/arch/arm64/boot/dts/qcom/msm8976.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/msm8976.dtsi
+> > @@ -508,6 +508,56 @@ tlmm: pinctrl@1000000 {
+> >  			interrupt-controller;
+> >  			#interrupt-cells = <2>;
+> >  
+> > +			sdc1_off_state: sdc1-off-state {
+> > +				clk-pins {
+> > +					pins = "sdc1_clk";
+> > +					drive-strength = <2>;
+> > +					bias-disable;
+> > +				};
+> > +
+> > +				cmd-pins {
+> > +					pins = "sdc1_cmd";
+> > +					drive-strength = <2>;
+> > +					bias-pull-up;
+> > +				};
+> > +
+> > +				data-pins {
+> > +					pins = "sdc1_data";
+> > +					drive-strength = <2>;
+> > +					bias-pull-up;
+> > +				};
+> > +
+> > +				rclk-pins {
+> > +					pins = "sdc1_rclk";
+> > +					bias-pull-down;
+> > +				};
+> > +			};
+> > +
+> > +			sdc1_on_state: sdc1-on-state {
+> > +				clk-pins {
+> > +					pins = "sdc1_clk";
+> > +					drive-strength = <16>;
+> > +					bias-disable;
+> > +				};
+> > +
+> > +				cmd-pins {
+> > +					pins = "sdc1_cmd";
+> > +					drive-strength = <10>;
+> > +					bias-pull-up;
+> > +				};
+> > +
+> > +				data-pins {
+> > +					pins = "sdc1_data";
+> > +					drive-strength = <10>;
+> > +					bias-pull-up;
+> > +				};
+> > +
+> > +				rclk-pins {
+> > +					pins = "sdc1_rclk";
+> > +					bias-pull-down;
+> > +				};
+> > +			};
+> > +
+> >  			spi1_default: spi0-default-state {
+> >  				spi-pins {
+> >  					pins = "gpio0", "gpio1", "gpio3";
+> > @@ -680,6 +730,11 @@ sdhc_1: mmc@7824000 {
+> >  				 <&gcc GCC_SDCC1_APPS_CLK>,
+> >  				 <&rpmcc RPM_SMD_XO_CLK_SRC>;
+> >  			clock-names = "iface", "core", "xo";
+> > +
+> > +			pinctrl-0 = <&sdc1_on_state>;
+> > +			pinctrl-1 = <&sdc1_off_state>;
+> > +			pinctrl-names = "default", "sleep";
+> pinctrl-names usually goes before pinctrl-N
 
-Add documentation for the optional property renesas,poegs to
-link a pair of GPT IOs with POEG.
+I thought I had seen them _after_ nowadays, same for reg-names,
+phy-names, interrupt-names and clock-names.  What is it?
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v2->v3:
- * Moved minItems/MaxItems one level up.
-v1->v2:
- * removed quotes from ref
- * Added maxItems and minItems for renesas,poegs property
- * Added enums for gpt index
----
- .../bindings/pwm/renesas,rzg2l-gpt.yaml       | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
+Regardless, I'd rather keep this consistent across this file (sdc2 also
+has it after, same for other *-names) and correct it at once in a
+separate patch, if someone really cares.
 
-diff --git a/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-index 620d5ae4ae30..60170e0de3c6 100644
---- a/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-+++ b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-@@ -245,6 +245,28 @@ properties:
-   resets:
-     maxItems: 1
- 
-+  renesas,poegs:
-+    minItems: 1
-+    maxItems: 8
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    items:
-+      items:
-+        - description: phandle to POEG instance that serves the output disable
-+        - enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
-+          description: |
-+            An index identifying pair of GPT channels.
-+              <0> : GPT channels 0 and 1
-+              <1> : GPT channels 2 and 3
-+              <2> : GPT channels 4 and 5
-+              <3> : GPT channels 6 and 7
-+              <4> : GPT channels 8 and 9
-+              <5> : GPT channels 10 and 11
-+              <6> : GPT channels 12 and 13
-+              <7> : GPT channels 14 and 15
-+    description:
-+      A list of phandle and channel index pair tuples to the POEGs that handle the
-+      output disable for the GPT channels.
-+
- required:
-   - compatible
-   - reg
-@@ -375,4 +397,5 @@ examples:
-         power-domains = <&cpg>;
-         resets = <&cpg R9A07G044_GPT_RST_C>;
-         #pwm-cells = <2>;
-+        renesas,poegs = <&poeggd 4>;
-     };
--- 
-2.25.1
+But really, we should have a checker/autoformatter for these "rules",
+instead of all this manual back-and-forth (is this order already set in
+stone under Documentation/ or something?).
 
+- Marijn
