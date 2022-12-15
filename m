@@ -2,70 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB0FB64DBE9
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 14:07:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6880E64DBF6
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 14:09:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229750AbiLONHZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 08:07:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43832 "EHLO
+        id S229838AbiLONJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 08:09:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229613AbiLONHX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 08:07:23 -0500
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DED342AE2C
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 05:07:21 -0800 (PST)
-Received: by mail-yb1-xb2d.google.com with SMTP id o127so3392779yba.5
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 05:07:21 -0800 (PST)
+        with ESMTP id S229645AbiLONJt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 08:09:49 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE9BC2BB20;
+        Thu, 15 Dec 2022 05:09:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=/ZEQhEp/AEuTAFQupk8n6ZQMLUUFNJMPI1X7g+sUNN8=;
-        b=Bgi/fzBz6YgpewnB0UsUqG/JJ5Xdp6Qm9eQWTxS26F7S9/XWzQiZOlx1jLukFbwafd
-         QIQrbCxBmQaQsknEfK7Jbl6hC6hC7vndDnRXkX/NYHQZr/irKw/1y/w+0ODPZ9ehC9G4
-         MhVC1b/eZlH5FB1EpOdCGYWI/bEQ+y5tcKSj896piHLgw3EnRZNjuea4Pui8PkqCWsC6
-         P7nIKllpX7quI2b52ZOHYZiRqzuEZg4hkUDQ4WfjO2EuGF/ohA7pKV5ItgCKY0+w/rtf
-         JP+xvBR56/wmaw3C5oejdFTdBqIIvRwo0sEcOfVKIQPrlIDii6hAhJoyr75JN8xLTrJz
-         bYxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/ZEQhEp/AEuTAFQupk8n6ZQMLUUFNJMPI1X7g+sUNN8=;
-        b=tmbFn6Dk/TrCm2KQzMjErXmk0rgSua6r15Sta9F65i8x99R9PZcOTVmUGwOczRrRkk
-         R3rcIH3nlVlH/TqAn9sM+cR7AaUotHeJKndozp2F6vYuo/XClmK+821Q8hz3lLKSRikI
-         IY9ALqystLnCX7wBf+GvAOPjnYR/7FwER0icpADfg5mNTtafVj3SPSNnkR9CHyLf6Isz
-         NrMKWZxOAfZd8XAX0yDILLt5V5BFb3nD5wDAHAX9VVVjJpsOcB15QvGipRa5QUdJ4BNZ
-         nDIZaSFGTPkar0UrlX3tXNDnLVosO2AViR0AWkmKseFJzxXRir1Jk6naI8w2T/14F9D8
-         Mp1w==
-X-Gm-Message-State: ANoB5plQOL6bfnGX+kwxnWsfO3FASMfjXT0469su1VDr6VbMbJ331Jix
-        uE4rgc/wxyjQnffGLXR3u7gTgqcdlFljTCRcmtSyaQ==
-X-Google-Smtp-Source: AA0mqf5RTMR/uAoOZK8ttO+7WO6orxQFr8A06Sf2JOydK+GaNZM+quva/yUjmIIulxU998U4yRh6DaFe7SdmomMzfcg=
-X-Received: by 2002:a25:abee:0:b0:70c:4fa3:2cce with SMTP id
- v101-20020a25abee000000b0070c4fa32ccemr7845895ybi.539.1671109640972; Thu, 15
- Dec 2022 05:07:20 -0800 (PST)
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1671109788; x=1702645788;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=HwnP+Muc+eIoUvUmE097y0xQxyfCkQ5Td5OQny8LSB0=;
+  b=RHG8eWWG3nIkcUSc9xR9u8WLxrnF5hhZ1P9iC472rMNkYF2+Cs5hrPZr
+   +ymxBE42nR2CJP95uEL3t6tucAHwSStwLYux2KMhkeZEwziEhBFnuVF0/
+   vmSIXI1/fdkulD67vVFpQ+s8uGeh6co2zwUraLwt4lFTU4+KjbsddNusN
+   9LQNalxDyfhLJzEJxUTt+5Qx2l7gfQkL5zyXHi2Z+nNMUZ7nCt0yV3vb3
+   n33XlSe5r9XVmeW385wWJgOnn2lLiysg4nuprducewFCaSZ39zHzqL0xg
+   J2Xl82IoHl0Vaq3CdZyzgaMBTvTEMvaBiSPCz3u1BEuEVkCT1xdAHyKJN
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.96,247,1665439200"; 
+   d="scan'208";a="27975152"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 15 Dec 2022 14:09:45 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Thu, 15 Dec 2022 14:09:45 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Thu, 15 Dec 2022 14:09:45 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1671109785; x=1702645785;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=HwnP+Muc+eIoUvUmE097y0xQxyfCkQ5Td5OQny8LSB0=;
+  b=ckvrdq8Lj9SW9QDyEM6bTqWSDZ8w4EZpPjRdryGUVq0sYn9A8WpLOv3U
+   TaaQTo28HkZfSIZ74NWn8/0Kb59Pur4vTtrc0aYFlhqIX1PZsJPyg6nNq
+   3itR2IJreQgndljVs8M0VsjzjZWN9z1XR3yQWg1mDWQBGnTcOg9+fDqAm
+   RAQtwoKuGf7qBSbd5UNVCJNYkTwxlP0U2bj/eaIpzM49Hy/qcBdUmNnYr
+   tPGFogEljTKsyGjb5gZqeibccXQQdOm4vWxgAIavlYYor+SiFkHhwQPmx
+   7+eFnxgkunLMTDPJXTT7dx0YBXlZV5dkMV7opMtcfTJQ6zwfPR84h2cjc
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.96,247,1665439200"; 
+   d="scan'208";a="27975151"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 15 Dec 2022 14:09:45 +0100
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 7CE05280071;
+        Thu, 15 Dec 2022 14:09:45 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: Re: [RFC PATCH v2 1/3] dt-bindings: gpio: Add gpio-delay binding document
+Date:   Thu, 15 Dec 2022 14:09:41 +0100
+Message-ID: <2176879.usQuhbGJ8B@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <d38655cb-d387-5bbd-c430-52a0b04ae3cc@linaro.org>
+References: <20221214095342.937303-1-alexander.stein@ew.tq-group.com> <20221214095342.937303-2-alexander.stein@ew.tq-group.com> <d38655cb-d387-5bbd-c430-52a0b04ae3cc@linaro.org>
 MIME-Version: 1.0
-References: <20221214182247.79824-1-sebastian.reichel@collabora.com> <20221214182247.79824-6-sebastian.reichel@collabora.com>
-In-Reply-To: <20221214182247.79824-6-sebastian.reichel@collabora.com>
-From:   Jagan Teki <jagan@edgeble.ai>
-Date:   Thu, 15 Dec 2022 18:37:10 +0530
-Message-ID: <CA+VMnFwT+Gi1nFBG2NDyMYx8wv+FrwzR8tb_8RrFh6QMGK8Q6g@mail.gmail.com>
-Subject: Re: [PATCHv6 5/7] arm64: dts: rockchip: Add rk3588-evb1 board
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Christopher Obbard <chris.obbard@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Kever Yang <kever.yang@rock-chips.com>, kernel@collabora.com,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,109 +84,148 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Dec 2022 at 23:53, Sebastian Reichel
-<sebastian.reichel@collabora.com> wrote:
->
-> From: Kever Yang <kever.yang@rock-chips.com>
->
-> Add board file for the RK3588 evaluation board. While the hardware
-> offers plenty of peripherals and connectivity this basic implementation
-> just handles things required to successfully boot Linux from eMMC,
-> connect via UART or Ethernet.
->
-> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
-> [rebase, update commit message, use EVB1 for SoC bringup]
-> Reviewed-by: Michael Riesch <michael.riesch@wolfvision.net>
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> ---
->  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->  .../boot/dts/rockchip/rk3588-evb1-v10.dts     | 165 ++++++++++++++++++
->  2 files changed, 166 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
->
-> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-> index 8c15593c0ca4..12ed53de11eb 100644
-> --- a/arch/arm64/boot/dts/rockchip/Makefile
-> +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> @@ -72,3 +72,4 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-soquartz-cm4.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-bpi-r2-pro.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-evb1-v10.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-rock-3a.dtb
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-evb1-v10.dtb
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-> new file mode 100644
-> index 000000000000..46ea2daf5d6e
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-> @@ -0,0 +1,165 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2021 Rockchip Electronics Co., Ltd.
-> + *
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/pinctrl/rockchip.h>
-> +#include "rk3588.dtsi"
-> +
-> +/ {
-> +       model = "Rockchip RK3588 EVB1 V10 Board";
-> +       compatible = "rockchip,rk3588-evb1-v10", "rockchip,rk3588";
-> +
-> +       aliases {
-> +               mmc0 = &sdhci;
-> +               serial2 = &uart2;
-> +       };
-> +
-> +       chosen {
-> +               stdout-path = "serial2:1500000n8";
-> +       };
-> +
-> +       backlight: backlight {
-> +               compatible = "pwm-backlight";
-> +               brightness-levels = <
-> +                         0  20  20  21  21  22  22  23
-> +                        23  24  24  25  25  26  26  27
-> +                        27  28  28  29  29  30  30  31
-> +                        31  32  32  33  33  34  34  35
-> +                        35  36  36  37  37  38  38  39
-> +                        40  41  42  43  44  45  46  47
-> +                        48  49  50  51  52  53  54  55
-> +                        56  57  58  59  60  61  62  63
-> +                        64  65  66  67  68  69  70  71
-> +                        72  73  74  75  76  77  78  79
-> +                        80  81  82  83  84  85  86  87
-> +                        88  89  90  91  92  93  94  95
-> +                        96  97  98  99 100 101 102 103
-> +                       104 105 106 107 108 109 110 111
-> +                       112 113 114 115 116 117 118 119
-> +                       120 121 122 123 124 125 126 127
-> +                       128 129 130 131 132 133 134 135
-> +                       136 137 138 139 140 141 142 143
-> +                       144 145 146 147 148 149 150 151
-> +                       152 153 154 155 156 157 158 159
-> +                       160 161 162 163 164 165 166 167
-> +                       168 169 170 171 172 173 174 175
-> +                       176 177 178 179 180 181 182 183
-> +                       184 185 186 187 188 189 190 191
-> +                       192 193 194 195 196 197 198 199
-> +                       200 201 202 203 204 205 206 207
-> +                       208 209 210 211 212 213 214 215
-> +                       216 217 218 219 220 221 222 223
-> +                       224 225 226 227 228 229 230 231
-> +                       232 233 234 235 236 237 238 239
-> +                       240 241 242 243 244 245 246 247
-> +                       248 249 250 251 252 253 254 255
-> +               >;
-> +               default-brightness-level = <200>;
-> +
-> +               pwms = <&pwm2 0 25000 0>;
-> +               power-supply = <&vcc12v_dcin>;
-> +       };
+Hi Krzysztof,
 
-Do we really need this now? and brightness-levels need not be required
-to mention all.
+Am Donnerstag, 15. Dezember 2022, 10:11:47 CET schrieb Krzysztof Kozlowski:
+> On 14/12/2022 10:53, Alexander Stein wrote:
+> > This adds bindings for a GPIO enable/disable delay driver.
+> > 
+> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > ---
+> > 
+> >  .../devicetree/bindings/gpio/gpio-delay.yaml  | 75 +++++++++++++++++++
+> >  1 file changed, 75 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-delay.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/gpio/gpio-delay.yaml
+> > b/Documentation/devicetree/bindings/gpio/gpio-delay.yaml new file mode
+> > 100644
+> > index 000000000000..20871356e9b5
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/gpio/gpio-delay.yaml
+> > @@ -0,0 +1,75 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/gpio/gpio-delay.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: GPIO delay controller
+> > +
+> > +maintainers:
+> > +  - Alexander Stein <linux@ew.tq-group.com>
+> > +
+> > +description: |
+> > +  This binding describes an electrical setup where setting an GPIO output
+> > +  is delayed by some external setup, e.g. RC curcuit.
+> > +
+> > +  +----------+                    +-----------+
+> > +  |          |             VCC_B  |           |
+> > +  |          |              |     |           |
+> > +  |          | VCC_A        _     |           |
+> > +  |  GPIO    |             | | R  |  Consumer |
+> > +  |controller|        ___  |_|    |           |
+> > +  |          |       |   |  |     |           |
+> > +  |      [IOx|-------|   |--+-----|-----+     |
+> > +  |          |       |___|  |     |   input   |
+> > +  |          |              |     |           |
+> > +  +----------+             --- C  +-----------+
+> > +                           ---
+> > +                            |
+> > +                            -
+> > +                           GND
+> > +
+> > +  If the input on the consumer is controlled by an open-drain signal
+> 
+> If IOx is open-drain, what is the VCC_A on the diagram? I think it
+> wasn't present in original Laurent's diagram.
 
-Jagan.
+I have to admit my artistic skills are lacking :( I wanted to highlight that 
+the actual GPIO output IOx is not (necessarily) the open-drain. This is 
+somewhat important, because this can not be solved by just reconfiguring the 
+GPIO to push-pull.
+
+Instead there is a buffer (small box in the middle) which (in this case) 
+converts from VCC_A on the left side connected to SoC to VCC_B on the right 
+connected to consumer using an open-drain.
+So this delay is induced passively by external circuits the SoC can not do 
+anything about.
+
+Best regards,
+Alexander
+
+> > +  attached to an RC curcuit the ramp-up delay is not under control
+> > +  of the GPIO controller.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: gpio-delay
+> > +
+> > +  "#gpio-cells":
+> > +    description: |
+> > +      Specifies the pin, ramp-up and ramp-down delays. The
+> > +      delays are specified in microseconds.
+> > +    const: 3
+> > +
+> > +  input-gpios:
+> > +    description: Array of GPIOs which output signal change is delayed
+> 
+> maxItems: 32 or some other reasonable value
+
+Okay. Apparently there is no limit within gpiolib, so I was not limiting the 
+amount unnecessarily.
+
+> > +
+> > +  gpio-controller: true
+> > +
+> > +  gpio-line-names: true
+> 
+> and then the same maxItems.
+
+Sure, will adjust as well.
+
+> > +
+> > +required:
+> > +  - compatible
+> > +  - "#gpio-cells"
+> > +  - gpio-controller
+> > +  - input-gpios
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +    enable_delay: enable-delay {
+> > +        compatible = "gpio-delay";
+> 
+> I am not sure whether the naming is the most accurate - it represents
+> desired behavior (so the delay in rising signal), not actual hardware
+> (RC filter), but maybe that's a bit more generic.
+> 
+> Anyway look fine for me.
+
+IMHO delay fits pretty well, because it's the behaviour. I'm no hardware 
+developer, but I assume that there are more possibilities than just RC filter 
+which might require this delay.
+
+Best regards,
+Alexander
+
+> > +        #gpio-cells = <3>;
+> > +        gpio-controller;
+> > +        input-gpios = <&gpio0 3 GPIO_ACTIVE_LOW>,
+> > +                      <&gpio3 1 GPIO_ACTIVE_HIGH>;
+> > +    };
+> > +
+> > +    consumer {
+> > +        enable-gpios = <&enable_delay 0 130000 30000>;
+> > +    };
+> 
+> Best regards,
+> Krzysztof
+
+
+
+
