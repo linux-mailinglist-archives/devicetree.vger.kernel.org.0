@@ -2,176 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A744F64E322
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 22:32:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A95EE64E352
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 22:39:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229866AbiLOVc1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 16:32:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36724 "EHLO
+        id S229634AbiLOVjV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 16:39:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230006AbiLOVcS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 16:32:18 -0500
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 22CCF1CB37;
-        Thu, 15 Dec 2022 13:32:17 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="5.96,248,1665414000"; 
-   d="scan'208";a="143493758"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 16 Dec 2022 06:32:16 +0900
-Received: from localhost.localdomain (unknown [10.226.92.26])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id B674040062B3;
-        Fri, 16 Dec 2022 06:32:12 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, linux-pwm@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v5 1/9] dt-bindings: pinctrl: renesas: Add RZ/G2L POEG binding
-Date:   Thu, 15 Dec 2022 21:31:58 +0000
-Message-Id: <20221215213206.56666-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221215213206.56666-1-biju.das.jz@bp.renesas.com>
-References: <20221215213206.56666-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S229696AbiLOVjR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 16:39:17 -0500
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 961A35C745
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 13:39:15 -0800 (PST)
+Received: by mail-pj1-x1035.google.com with SMTP id z8-20020a17090abd8800b00219ed30ce47so4065080pjr.3
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 13:39:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=nTU5fQoqjwEXrOChYxVMfOo8SjuSN+m4eM0Q5QXQ60Y=;
+        b=J9JiEdPeUqhUsC4Nrmpy7egHFxBJu4LlHV0DiEb+/wfg8LQ3ylko6Jg1nKZjbCDYbQ
+         YNb7W7yzzbtW5L4J/hR6rIY5EkeQruBD/OMNNBoITnQPXKF4z9Q8UsTUO95cuUB8V7qu
+         GvTCa3tgcNXy8t1QK14adYD67Rj/iiPmLPgG+8O0bNbw4hfmTQz5adJS7TuJDF8yLPc6
+         kh9l13u3kSMem9W+Y+JRGsfEByXxc+gkhfDwLSYiyYguAArry7sDVd6J+pokvThuSdhu
+         puC7Castd05B9JXHqK2FMHzP8ynJVXdRkceTR30izCxi8qUo1roJQGtYmSZR5MCkj3JD
+         SY2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nTU5fQoqjwEXrOChYxVMfOo8SjuSN+m4eM0Q5QXQ60Y=;
+        b=xu80Zr4B+G0STxIQer13BOFtVBzlx5Y9nplgQEzMPlYZvbUxm55YCyQ2lFAEJSdI83
+         AtFhHK3ez42AeHf0w5KhPHtrJdosvMdibl6bsFoqFnSfMFB/GMEUNAOMiY6wgCKSI/GL
+         Txf1kJpRSop2SqxF+O+Qs6fDoisOon2oeGXQzSXxV5iG9vtnCMUnARcTkM/3+1D4H9tL
+         E6wnXM8X9lsHqZPr17n9E/BedN6pGszVchICkVOBvc5yQPDCVkafmgS9SL/ihUml9DPA
+         U2BaXIGsRUKMNg2IZOmzLWfFbNdXFWNi5byDHCTcR8C4DWiLTkLySyvgffF+/rqyjNt0
+         XhIA==
+X-Gm-Message-State: ANoB5pml7E8PjDP2PebiPgr7CyxznL6xMZ9TvoJZlBz3NWGlG6LJs5xM
+        TBC80yYdxT4OAlgqhy3Ro5SjSPgaU2t8TacwURJAsw==
+X-Google-Smtp-Source: AA0mqf4xS0mNui+iwtI2uABIiecA8axv+muy3th2pg7V3KYEh2UpXjp4O/+hm4slZjBqV110jo7/JiezXYxhAlIY1rM=
+X-Received: by 2002:a17:903:2290:b0:189:93bf:b5d5 with SMTP id
+ b16-20020a170903229000b0018993bfb5d5mr49516613plh.145.1671140355121; Thu, 15
+ Dec 2022 13:39:15 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <CGME20221214044423epcas5p2920e87930665345169745002ec6993c3@epcas5p2.samsung.com>
+ <20221214044342.49766-1-sriranjani.p@samsung.com> <20221214044342.49766-2-sriranjani.p@samsung.com>
+In-Reply-To: <20221214044342.49766-2-sriranjani.p@samsung.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Thu, 15 Dec 2022 15:39:03 -0600
+Message-ID: <CAPLW+4=+31Zaq4=FYyMF26fpU7wAbi-+GMsY8Wctw-S9Vtr8vw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: soc: samsung: exynos-sysreg: add
+ dedicated SYSREG compatibles to Exynos850
+To:     Sriranjani P <sriranjani.p@samsung.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, alim.akhtar@samsung.com,
+        pankaj.dubey@samsung.com, ravi.patel@samsung.com,
+        sathya@samsung.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for the RZ/G2L Port Output Enable for GPT (POEG).
+On Tue, 13 Dec 2022 at 22:47, Sriranjani P <sriranjani.p@samsung.com> wrote:
+>
+> Exynos850 has two different SYSREGs, hence add dedicated compatibles for
+> them and deprecate usage of generic Exynos850 compatible alone.
+>
+> Signed-off-by: Sriranjani P <sriranjani.p@samsung.com>
+> ---
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-v4->v5:
- * Added Rb tag from Rob.
-v3->v4:
- * Replaced companion->renesas,gpt for the phandle to gpt instance
- * Replaced renesas,id->renesas,poeg-id
- * Removed default from renesas,poeg-id as default for a required
-   property doesn't make much sense.
- * Updated the example and required properties with above changes
-v2->v3:
- * Removed Rb tag from Rob as there are some changes introduced.
- * Added companion property, so that poeg can link with gpt device
- * Documented renesas,id, as identifier for POEGG{A,B,C,D}.
- * Updated the example.
-v1->v2:
- * Updated the description.
-REF->v1:
- * Modelled as pincontrol as most of its configuration is intended to be
-   static.
- * Updated reg size in example.
----
- .../bindings/pinctrl/renesas,rzg2l-poeg.yaml  | 86 +++++++++++++++++++
- 1 file changed, 86 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-poeg.yaml
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-poeg.yaml b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-poeg.yaml
-new file mode 100644
-index 000000000000..ab2d456c93e4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-poeg.yaml
-@@ -0,0 +1,86 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/renesas,rzg2l-poeg.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas RZ/G2L Port Output Enable for GPT (POEG)
-+
-+maintainers:
-+  - Biju Das <biju.das.jz@bp.renesas.com>
-+
-+description: |
-+  The output pins(GTIOCxA and GTIOCxB) of the general PWM timer (GPT) can be
-+  disabled by using the port output enabling function for the GPT (POEG).
-+  Specifically, either of the following ways can be used.
-+  * Input level detection of the GTETRGA to GTETRGD pins.
-+  * Output-disable request from the GPT.
-+  * SSF bit setting(ie, by setting POEGGn.SSF to 1)
-+
-+  The state of the GTIOCxA and the GTIOCxB pins when the output is disabled,
-+  are controlled by the GPT module.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - renesas,r9a07g044-poeg  # RZ/G2{L,LC}
-+          - renesas,r9a07g054-poeg  # RZ/V2L
-+      - const: renesas,rzg2l-poeg
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  renesas,gpt:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: phandle to gpt instance that serves the pwm operation.
-+
-+  renesas,poeg-id:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [ 0, 1, 2, 3 ]
-+    description: |
-+      POEG group index. Valid values are:
-+        <0> : POEG group A
-+        <1> : POEG group B
-+        <2> : POEG group C
-+        <3> : POEG group D
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - power-domains
-+  - resets
-+  - renesas,poeg-id
-+  - renesas,gpt
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r9a07g044-cpg.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    poeggd: poeg@10049400 {
-+        compatible = "renesas,r9a07g044-poeg", "renesas,rzg2l-poeg";
-+        reg = <0x10049400 0x400>;
-+        interrupts = <GIC_SPI 325 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&cpg CPG_MOD R9A07G044_POEG_D_CLKP>;
-+        power-domains = <&cpg>;
-+        resets = <&cpg R9A07G044_POEG_D_RST>;
-+        renesas,poeg-id = <3>;
-+        renesas,gpt = <&gpt>;
-+    };
--- 
-2.25.1
+Thanks!
 
+>  .../soc/samsung/samsung,exynos-sysreg.yaml        | 15 ++++++++++++---
+>  1 file changed, 12 insertions(+), 3 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+> index 4954790eda6c..427df05224e5 100644
+> --- a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+> +++ b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+> @@ -17,7 +17,6 @@ properties:
+>                - samsung,exynos3-sysreg
+>                - samsung,exynos4-sysreg
+>                - samsung,exynos5-sysreg
+> -              - samsung,exynos850-sysreg
+>                - samsung,exynosautov9-sysreg
+>                - tesla,fsd-cam-sysreg
+>                - tesla,fsd-fsys0-sysreg
+> @@ -33,9 +32,17 @@ properties:
+>            - const: samsung,exynos5433-sysreg
+>            - const: syscon
+>        - items:
+> -          - const: samsung,exynos5433-sysreg
+> +          - enum:
+> +              - samsung,exynos5433-sysreg
+> +              - samsung,exynos850-sysreg
+> +          - const: syscon
+> +            deprecated: true
+> +      - items:
+> +          - enum:
+> +              - samsung,exynos850-cmgp-sysreg
+> +              - samsung,exynos850-peri-sysreg
+> +          - const: samsung,exynos850-sysreg
+>            - const: syscon
+> -        deprecated: true
+>
+>    reg:
+>      maxItems: 1
+> @@ -53,6 +60,8 @@ allOf:
+>          compatible:
+>            contains:
+>              enum:
+> +              - samsung,exynos850-cmgp-sysreg
+> +              - samsung,exynos850-peri-sysreg
+>                - samsung,exynos850-sysreg
+>      then:
+>        required:
+> --
+> 2.17.1
+>
