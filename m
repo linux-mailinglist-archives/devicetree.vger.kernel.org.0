@@ -2,148 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B79964D44D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 01:02:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C701264D4BC
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 01:38:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230114AbiLOABt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Dec 2022 19:01:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54328 "EHLO
+        id S230019AbiLOAiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Dec 2022 19:38:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230118AbiLOAAj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 19:00:39 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B231C5FB9B;
-        Wed, 14 Dec 2022 15:56:10 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id f18so1459965wrj.5;
-        Wed, 14 Dec 2022 15:56:10 -0800 (PST)
+        with ESMTP id S229745AbiLOAiI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Dec 2022 19:38:08 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C58D4A077
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 16:38:06 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id z4so8433933ljq.6
+        for <devicetree@vger.kernel.org>; Wed, 14 Dec 2022 16:38:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nUaYB4mYM1gCXOfo+68xcCeBFVZGQ3PaFqb+K6GJCtg=;
-        b=HEkM75XnY1gKLBNPSXMywD87ktVghvhjnMNiIPF3v+daRENgBk5tmBqIZfv6NfsAS+
-         crGaojmo67uH4di/kyoTFvSXE9g2U1/YAXwZri37aUh1CfhmjV+W4BqFWrlYBAEprcMY
-         v56VIwXrcycWiUTbg/yeKA20NNsX3vVVRYq8RO43cx5iSymYBM71JxvYWLX88uRIQ0UP
-         nYee0ET/0g58lSVZK8emyXw3sCx/6MgJywAAa495kgT+NWzNs1N4bXHBrMoBubMJkOwR
-         9fXtdMTl4p1eWGiRxu5UvAx/I/hJJIjyCIG8G5r5cOMC1zU0FTv/06ugeJJkYa48RMtj
-         d2RQ==
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:user-agent
+         :from:references:in-reply-to:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SaXTzEJKmgLz+SAFN0DeG64y723tiZblK0P+iFI17hA=;
+        b=nXgdMXMlXc4YZNcKifowoGMKNa+co1HPUWTVq27PRY6w89JZ3Ejc2212MRdAFIYUhy
+         rKkdpqfNS7kdTebj4RVOgs9+ajsaVD1JqxFXnQllO/yuel6HEDH7DdO+g8uVNPJ/2cZj
+         Icos7gQxPO6B9djSw6RJdPjG4OMUWfPs35k/Q=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nUaYB4mYM1gCXOfo+68xcCeBFVZGQ3PaFqb+K6GJCtg=;
-        b=M95cUJHDMUMlPXYNtDbwVWwhZhECUZis8mWUmrQnxHEpH6m82obF+/iMOvcU9vI8G9
-         Jt58BXbA/1jU7ck/kQGCCbjY1khrzJmvCGJkWNrh4JVG18HR1OtbUKGoNbT/RJUGvuB8
-         oJaliSK1KR5glcKh/VwJvmV+aXGtNaeI96NCCH2pZykSHAyPRJgHOBY7D1XtcOLp+WNo
-         XZZwO1FXnQMby0zcy7vqRYjF2Lzbv51Gk2T1FBV+GfFdhFvSKkeXfdIbMd8EqSapjcr1
-         8zlsl3xtJhbWVHYaFu9a3wbpVpufa70Mic2f0Um3wkPVzbFBm8UqoYsw6mOwAbof/1FD
-         68eg==
-X-Gm-Message-State: ANoB5pmpaiqN30cCWwTSKE5zLhEyEtFGqwMvMCMqKD54TWdsV075uDne
-        Am71nDLF41NOupsyYyD4sc4=
-X-Google-Smtp-Source: AA0mqf5aeoHs4hzEeRyaOmqpYUikvH6DDBAW6xVPEu0JqDYRI8a+6BmkteGHz5LGP2KZZpxAcuCsxw==
-X-Received: by 2002:a5d:5b1d:0:b0:24b:b74d:8012 with SMTP id bx29-20020a5d5b1d000000b0024bb74d8012mr6793734wrb.18.1671062125288;
-        Wed, 14 Dec 2022 15:55:25 -0800 (PST)
-Received: from localhost.localdomain (93-42-71-18.ip85.fastwebnet.it. [93.42.71.18])
-        by smtp.googlemail.com with ESMTPSA id u2-20020adff882000000b00241d21d4652sm4163549wrp.21.2022.12.14.15.55.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Dec 2022 15:55:24 -0800 (PST)
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org,
-        Tim Harvey <tharvey@gateworks.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-Subject: [PATCH v7 11/11] dt-bindings: net: dsa: qca8k: add LEDs definition example
-Date:   Thu, 15 Dec 2022 00:54:38 +0100
-Message-Id: <20221214235438.30271-12-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20221214235438.30271-1-ansuelsmth@gmail.com>
-References: <20221214235438.30271-1-ansuelsmth@gmail.com>
+        h=content-transfer-encoding:cc:to:subject:message-id:date:user-agent
+         :from:references:in-reply-to:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=SaXTzEJKmgLz+SAFN0DeG64y723tiZblK0P+iFI17hA=;
+        b=4pr0Bbgu0pWTpoFgjCxtwm8za79iM42Wdq4fFj6BYLlr+cP03MH5LjpCYKZDQicaIR
+         2ejF2GJwcovKVFESD4EneJrH40rUrQd/qMN+EuLwn9R9FNrBTiFx/weqxJn+lTuhbtBg
+         zvymdWKnyyQGFzBjdTpfD7DyOgj1YxPtM3Pg90BCzDc9AnqI0QhyIoR4c2BAIpisIMlU
+         oTnFrgzbE9XAe6iA9N1sim8EyplCd0PolO/Oeo5dv8bDt6BDyhM3pKOWRo1J3DPy9HzV
+         OUXyl4mIaBNWYsf4QpW1mx7Ugu5ceJtPAcTngcVPjYnf6zuqRZpOxkDtXzJq3atTaxTF
+         RQZQ==
+X-Gm-Message-State: ANoB5plUgGVJXZMTn1CdHPdRvBelKWYBFkhzZrRHVUiEMb8DvtmA/J3K
+        U86L1/ZtH6Eg1Ou7QVd0yv3Nfebi0qDQW4Pqm9ystA==
+X-Google-Smtp-Source: AA0mqf4VcPwauzdtgPycgk8YSzSnpCLwL/tuuSk9YZ6/aN69rAyE9+MaT6XlGF2IV6qyZaGEtZp4gqVNb6T4m84M1vA=
+X-Received: by 2002:a2e:a544:0:b0:278:f5b8:82c8 with SMTP id
+ e4-20020a2ea544000000b00278f5b882c8mr26380240ljn.228.1671064684762; Wed, 14
+ Dec 2022 16:38:04 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 14 Dec 2022 19:38:04 -0500
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <b38af164-08bc-07e7-dfaf-fb4d6d89d7db@quicinc.com>
+References: <1670967848-31475-1-git-send-email-quic_khsieh@quicinc.com>
+ <1670967848-31475-3-git-send-email-quic_khsieh@quicinc.com>
+ <CAE-0n52eHYCqxUJqQXoaQ8vyqCk-QfouSun+zUp3yo5DufWbwg@mail.gmail.com> <b38af164-08bc-07e7-dfaf-fb4d6d89d7db@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Wed, 14 Dec 2022 19:38:04 -0500
+Message-ID: <CAE-0n53Cb6TFGfM6AYup5aP4=24j0ujVPi463oVqmzfNV2B4RA@mail.gmail.com>
+Subject: Re: [PATCH v12 2/5] dt-bindings: msm/dp: add data-lanes and
+ link-frequencies property
+To:     Kuogee Hsieh <quic_khsieh@quicinc.com>, agross@kernel.org,
+        airlied@gmail.com, andersson@kernel.org, daniel@ffwll.ch,
+        devicetree@vger.kernel.org, dianders@chromium.org,
+        dmitry.baryshkov@linaro.org, dri-devel@lists.freedesktop.org,
+        konrad.dybcio@somainline.org, krzysztof.kozlowski+dt@linaro.org,
+        robdclark@gmail.com, robh+dt@kernel.org, sean@poorly.run,
+        vkoul@kernel.org
+Cc:     quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add LEDs definition example for qca8k using the offload trigger as the
-default trigger and add all the supported offload triggers by the
-switch.
+Quoting Kuogee Hsieh (2022-12-14 14:56:23)
+>
+> On 12/13/2022 3:06 PM, Stephen Boyd wrote:
+> > Quoting Kuogee Hsieh (2022-12-13 13:44:05)
+> >> Add both data-lanes and link-frequencies property into endpoint
+> > Why do we care? Please tell us why it's important.
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- .../devicetree/bindings/net/dsa/qca8k.yaml    | 24 +++++++++++++++++++
- 1 file changed, 24 insertions(+)
+Any response?
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-index 978162df51f7..4090cf65c41c 100644
---- a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-@@ -65,6 +65,8 @@ properties:
-                  internal mdio access is used.
-                  With the legacy mapping the reg corresponding to the internal
-                  mdio is the switch reg with an offset of -1.
-+                 Each phy have at least 3 LEDs connected and can be declared
-+                 using the standard LEDs structure.
- 
- patternProperties:
-   "^(ethernet-)?ports$":
-@@ -202,6 +204,7 @@ examples:
-     };
-   - |
-     #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/leds/common.h>
- 
-     mdio {
-         #address-cells = <1>;
-@@ -284,6 +287,27 @@ examples:
- 
-                 internal_phy_port1: ethernet-phy@0 {
-                     reg = <0>;
-+
-+                    leds {
-+                        #address-cells = <1>;
-+                        #size-cells = <0>;
-+
-+                        led@0 {
-+                            reg = <0>;
-+                            color = <LED_COLOR_ID_WHITE>;
-+                            function = LED_FUNCTION_LAN;
-+                            function-enumerator = <1>;
-+                            linux,default-trigger = "netdev";
-+                        };
-+
-+                        led@1 {
-+                            reg = <1>;
-+                            color = <LED_COLOR_ID_AMBER>;
-+                            function = LED_FUNCTION_LAN;
-+                            function-enumerator = <1>;
-+                            linux,default-trigger = "netdev";
-+                        };
-+                    };
-                 };
- 
-                 internal_phy_port2: ethernet-phy@1 {
--- 
-2.37.2
+> >> @@ -193,6 +217,8 @@ examples:
+> >>                   reg =3D <1>;
+> >>                   endpoint {
+> >>                       remote-endpoint =3D <&typec>;
+> >> +                    data-lanes =3D <0 1>;
+> >> +                    link-frequencies =3D /bits/ 64 <1620000000 270000=
+0000 5400000000 8100000000>;
+> >>                   };
+> > So far we haven't used the output port on the DP controller in DT.
+> >
+> > I'm still not clear on what we should do in general for DP because
+> > there's a PHY that actually controls a lane count and lane mapping. In
+> > my mental model of the SoC, this DP controller's output port is
+> > connected to the DP PHY, which then sends the DP lanes out of the SoC t=
+o
+> > the next downstream device (i.e. a DP connector or type-c muxer). Havin=
+g
+> > a remote-endpoint property with a phandle to typec doesn't fit my menta=
+l
+> > model. I'd expect it to be the typec PHY.
+> ack
+> >
+> > That brings up the question: when we have 2 lanes vs. 4 lanes will we
+> > duplicate the data-lanes property in the PHY binding? I suspect we'll
+> > have to. Hopefully that sort of duplication is OK?
+> Current we have limitation by reserve 2 data lanes for usb2, i am not
+> sure duplication to 4 lanes will work automatically.
+> >
+> > Similarly, we may have a redriver that limits the link-frequencies
+> > property further (e.g. only support <=3D 2.7GHz). Having multiple
+> > link-frequencies along the graph is OK, right? And isn't the
+> > link-frequencies property known here by fact that the DP controller
+> > tells us which SoC this controller is for, and thus we already know the
+> > supported link frequencies?
+> >
+> > Finally, I wonder if we should put any of this in the DP controller's
+> > output endpoint, or if we can put these sorts of properties in the DP
+> > PHY binding directly? Can't we do that and then when the DP controller
+> > tries to set 4 lanes, the PHY immediately fails the call and the link
+> > training algorithm does its thing and tries fewer lanes? And similarly,
+> > if link-frequencies were in the PHY's binding, the PHY could fail to se=
+t
+> > those frequencies during link training, returning an error to the DP
+> > controller, letting the training move on to a lower frequency. If we di=
+d
+> > that this patch series would largely be about modifying the PHY binding=
+,
+> > updating the PHY driver to enforce constraints, and handling errors
+> > during link training in the DP controller (which may already be done? I
+> > didn't check).
+>
+>
+> phy/pll have different configuration base on link lanes and rate.
+>
+> it has to be set up before link training can start.
+>
+> Once link training start, then there are no any interactions between
+> controller and phy during link training session.
 
+What do you mean? The DP controller calls phy_configure() and changes
+the link rate. The return value from phy_configure() should be checked
+and link training should skip link rates that aren't supported and/or
+number of lanes that aren't supported.
+
+>
+> Link training only happen between dp controller and sink since link
+> status is reported by sink (read back from sink's dpcd register directly)=
+.
+>
+> T achieve link symbol locked, link training will start from reduce link
+> rate until lowest rate, if it still failed, then it will reduce lanes
+> with highest rate and start training=C2=A0 again.
+>
+> it will repeat same process until lowest lane (one lane), if it still
+> failed, then it will give up and declare link training failed.
+
+Yes, that describes the link training algorithm. I don't see why
+phy_configure() return value can't be checked and either number of lanes
+or link frequencies be checked. If only two lanes are supported, then
+phy_configure() will fail for the 4 link rates and the algorithm will
+reduce the number of lanes and go back to the highest rate. Then when
+the highest rate isn't supported it will drop link rate until the link
+rate is supported.
+
+>
+> Therefore I think add data-lanes and link-frequencies properties in the
+> DP PHY binding directly will not helps.
+>
+
+I didn't follow your logic. Sorry.
