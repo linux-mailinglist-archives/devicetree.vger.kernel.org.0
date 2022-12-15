@@ -2,218 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63E2664E46A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 00:03:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0518564E495
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 00:17:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229708AbiLOXDT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 18:03:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46786 "EHLO
+        id S229846AbiLOXR6 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 15 Dec 2022 18:17:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229770AbiLOXDF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 18:03:05 -0500
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21F7F4B98E
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 15:03:03 -0800 (PST)
-Received: by mail-yb1-xb34.google.com with SMTP id g4so559722ybg.7
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 15:03:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=1ZN2VSwKim6AXdLL0UgWzYP0K4OySV1U0BW5NlE2ZU0=;
-        b=VXHwjyOwefRwRrM4he+G7+5dt9fORBUFBPFUx37ZetQKtgVSXgsYqfq8NAZIU7Dav3
-         r+V5qLoJts3cVP1sba4ls5LQJMuVxVeNZzRutx1LR5W25nVWlRhu1lBJlFE7avIAf64N
-         K6EmY6aiVK4ZMq2Cv909jsdCiN1S6wmcBnadHL25+adxQVcnLyH5V75bWQW+y1pagAzG
-         9z55lZP+HSJ3UOhmv1PNsFjUzo7kn2j3WU4rCZWwSMTpJdJwEW3oX4FAo7AbcKqijEuy
-         DCSh4k6gDssNjJpsazJxK5C6uXu3slKwu1NCNsH6BEKZIw9dbuSv5DD+U+HQwc2YCW1v
-         Gg3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1ZN2VSwKim6AXdLL0UgWzYP0K4OySV1U0BW5NlE2ZU0=;
-        b=iaI2cBI5LIeaXHknLF2HDu7mSsIoZQHm+C++E+GBin9OjMADtVKNM7snVzdgeaxJR4
-         ELJNPTw0kA9OCaZIaRIhciaaLSYdRfp2cP7JmpGLdnh5ISndEnseFhfTdqm3Am6XkzDT
-         ORoCjdAKg9aaFtUqUzzhlgWvIRh06TQwdH5jmwaOeLvAYWlgMSx5y3FMIa6cnTSPr1lJ
-         Cqr6F0Jns/C25WwDmWTalarvuPFj3qsu1XdyqlxiC1pyeO1U8BJy3fuTSsk8tJ1S/cGq
-         7KLwa8B0fqVGN8wbuT3vOmlzYz1CUS/QstzA6qv0MxHEhqJVKVfr5JflIRPcH5lzDtNt
-         /Ilw==
-X-Gm-Message-State: ANoB5pnuK9nugUgTItoMZsDuysFmrnfkQ4eIj1TGn4OLFITE/kDl6UhD
-        IVqMr/5R93yb9ITJ0zdMiUaT0jiYrhsUwkszgOg53A==
-X-Google-Smtp-Source: AA0mqf4S/yV3RWm1r04MtfU8IaBrxj1/v8A9liaa8szRhUJTwwskncaJXVuAPGPUGAntw8eoK1Y4kIKI1DRMk+/6brk=
-X-Received: by 2002:a25:8c9:0:b0:6f8:9c91:4503 with SMTP id
- 192-20020a2508c9000000b006f89c914503mr43114443ybi.15.1671145382155; Thu, 15
- Dec 2022 15:03:02 -0800 (PST)
+        with ESMTP id S230070AbiLOXRz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 18:17:55 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0A54660355;
+        Thu, 15 Dec 2022 15:17:53 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 261D01063;
+        Thu, 15 Dec 2022 15:18:34 -0800 (PST)
+Received: from slackpad.lan (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C14B93F73B;
+        Thu, 15 Dec 2022 15:17:50 -0800 (PST)
+Date:   Thu, 15 Dec 2022 23:16:15 +0000
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Martin Botka <martin.botka@somainline.org>
+Cc:     martin.botka1@gmail.com,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Jami Kettunen <jamipkettunen@somainline.org>,
+        Paul Bouchara <paul.bouchara@somainline.org>,
+        Jan Trmal <jtrmal@gmail.com>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Samuel Holland <samuel@sholland.org>,
+        Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>,
+        linux-sunxi <linux-sunxi@lists.linux.dev>
+Subject: Re: [PATCH v5 3/3] regulator: axp20x: Add support for AXP1530
+ variant
+Message-ID: <20221215231615.6a4fa710@slackpad.lan>
+In-Reply-To: <20221214190305.3354669-4-martin.botka@somainline.org>
+References: <20221214190305.3354669-1-martin.botka@somainline.org>
+        <20221214190305.3354669-4-martin.botka@somainline.org>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 MIME-Version: 1.0
-References: <1670967848-31475-1-git-send-email-quic_khsieh@quicinc.com>
- <1670967848-31475-3-git-send-email-quic_khsieh@quicinc.com>
- <CAE-0n52eHYCqxUJqQXoaQ8vyqCk-QfouSun+zUp3yo5DufWbwg@mail.gmail.com>
- <b38af164-08bc-07e7-dfaf-fb4d6d89d7db@quicinc.com> <CAE-0n53Cb6TFGfM6AYup5aP4=24j0ujVPi463oVqmzfNV2B4RA@mail.gmail.com>
- <011c1ce3-605a-1ad5-d7df-b91e8c6808bc@linaro.org> <CAD=FV=VPMKz4uR_Y4SXy6ghmfciiTBBmQM9jVj2hObcPukS5KQ@mail.gmail.com>
-In-Reply-To: <CAD=FV=VPMKz4uR_Y4SXy6ghmfciiTBBmQM9jVj2hObcPukS5KQ@mail.gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Fri, 16 Dec 2022 01:02:51 +0200
-Message-ID: <CAA8EJprT2=5Hhrc98sfQZnbqfyUm=HE=2J-Sdg0kfjG4mnvf6Q@mail.gmail.com>
-Subject: Re: [PATCH v12 2/5] dt-bindings: msm/dp: add data-lanes and
- link-frequencies property
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>, agross@kernel.org,
-        airlied@gmail.com, andersson@kernel.org, daniel@ffwll.ch,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        konrad.dybcio@somainline.org, krzysztof.kozlowski+dt@linaro.org,
-        robdclark@gmail.com, robh+dt@kernel.org, sean@poorly.run,
-        vkoul@kernel.org, quic_abhinavk@quicinc.com,
-        quic_sbillaka@quicinc.com, freedreno@lists.freedesktop.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 16 Dec 2022 at 00:57, Doug Anderson <dianders@chromium.org> wrote:
->
-> Hi,
->
-> On Thu, Dec 15, 2022 at 1:12 PM Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
-> >
-> > On 15/12/2022 02:38, Stephen Boyd wrote:
-> > > Quoting Kuogee Hsieh (2022-12-14 14:56:23)
-> > >>
-> > >> On 12/13/2022 3:06 PM, Stephen Boyd wrote:
-> > >>> Quoting Kuogee Hsieh (2022-12-13 13:44:05)
-> > >>>> Add both data-lanes and link-frequencies property into endpoint
-> > >>> Why do we care? Please tell us why it's important.
-> > >
-> > > Any response?
-> > >
-> > >>>> @@ -193,6 +217,8 @@ examples:
-> > >>>>                    reg = <1>;
-> > >>>>                    endpoint {
-> > >>>>                        remote-endpoint = <&typec>;
-> > >>>> +                    data-lanes = <0 1>;
-> > >>>> +                    link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
-> > >>>>                    };
-> > >>> So far we haven't used the output port on the DP controller in DT.
-> > >>>
-> > >>> I'm still not clear on what we should do in general for DP because
-> > >>> there's a PHY that actually controls a lane count and lane mapping. In
-> > >>> my mental model of the SoC, this DP controller's output port is
-> > >>> connected to the DP PHY, which then sends the DP lanes out of the SoC to
-> > >>> the next downstream device (i.e. a DP connector or type-c muxer). Having
-> > >>> a remote-endpoint property with a phandle to typec doesn't fit my mental
-> > >>> model. I'd expect it to be the typec PHY.
-> > >> ack
-> > >>>
-> > >>> That brings up the question: when we have 2 lanes vs. 4 lanes will we
-> > >>> duplicate the data-lanes property in the PHY binding? I suspect we'll
-> > >>> have to. Hopefully that sort of duplication is OK?
-> > >> Current we have limitation by reserve 2 data lanes for usb2, i am not
-> > >> sure duplication to 4 lanes will work automatically.
-> > >>>
-> > >>> Similarly, we may have a redriver that limits the link-frequencies
-> > >>> property further (e.g. only support <= 2.7GHz). Having multiple
-> > >>> link-frequencies along the graph is OK, right? And isn't the
-> > >>> link-frequencies property known here by fact that the DP controller
-> > >>> tells us which SoC this controller is for, and thus we already know the
-> > >>> supported link frequencies?
-> > >>>
-> > >>> Finally, I wonder if we should put any of this in the DP controller's
-> > >>> output endpoint, or if we can put these sorts of properties in the DP
-> > >>> PHY binding directly? Can't we do that and then when the DP controller
-> > >>> tries to set 4 lanes, the PHY immediately fails the call and the link
-> > >>> training algorithm does its thing and tries fewer lanes? And similarly,
-> > >>> if link-frequencies were in the PHY's binding, the PHY could fail to set
-> > >>> those frequencies during link training, returning an error to the DP
-> > >>> controller, letting the training move on to a lower frequency. If we did
-> > >>> that this patch series would largely be about modifying the PHY binding,
-> > >>> updating the PHY driver to enforce constraints, and handling errors
-> > >>> during link training in the DP controller (which may already be done? I
-> > >>> didn't check).
-> > >>
-> > >>
-> > >> phy/pll have different configuration base on link lanes and rate.
-> > >>
-> > >> it has to be set up before link training can start.
-> > >>
-> > >> Once link training start, then there are no any interactions between
-> > >> controller and phy during link training session.
-> > >
-> > > What do you mean? The DP controller calls phy_configure() and changes
-> > > the link rate. The return value from phy_configure() should be checked
-> > > and link training should skip link rates that aren't supported and/or
-> > > number of lanes that aren't supported.
-> >
-> > I'd toss another coin into the argument. We have previously discussed
-> > using the link-frequencies property in the context of limiting link
-> > speeds for the DSI. There we have both hardware (SoC) limitations and
-> > the board limitations as in some cases the DSI lanes can not sustain
-> > some high rate. I still hope for these patches to materialize at some point.
-> >
-> > For the DP this is more or less the same story. We have the hardware
-> > (SoC, PHY, etc) limitations, but also we have the board/device
-> > limitations. For example some of the board might not be able to support
-> > HBR3 e.g. because of the PCB design. And while it might be logical to
-> > also add the 'max bit rate' support to the eDP & combo PHYs, it
-> > definitely makes sense to be able to limit the rate on the DP <->
-> > `something' link.
-> >
-> > Now, for all the practical purposes this `something' for the DP is the
-> > DP connector, the eDP panel or the USB-C mux (with the possible
-> > redrivers in the middle).
-> >
-> > Thus I'd support Kuogee's proposal to have link-frequencies in the DP's
-> > outbound endpoint. This is the link which will be driven by the data
-> > stream from the Linux point of view. The PHY is linked through the
-> > 'phys' property, but it doesn't participate in the USB-C (or in the
-> > connector/panel) graph.
-> >
-> > Now let's discuss the data lanes. Currently we have them in the DP
-> > property itself. Please correct me if I'm wrong, but I think that we can
-> > drop it for all the practical purposes. Judging by the DP compat string
-> > the driver can determine if it uses 2 lanes (eDP) or 4 lanes
-> > (full-featured DP). In case of USB-C when the altmode dictates whether
-> > to use 2 or 4 lanes, the TCPM (Type-C Port Manager) will negotiate the
-> > mode and pin configuration, then inform the DP controller about the
-> > selected amount of lanes. Then DP informs the PHY about the selection
-> > (note, PHY doesn't have control at all in this scenario).
-> >
-> > The only problematic case is the mixed mode ports, which if I understand
-> > correctly, can be configured either to eDP or DP modes. I'm not sure who
-> > specifies and limits the amount of lanes available to the DP controller.
->
-> For the most part, I'll let others debate the best way to represent
-> this data, but I'll comment that the above statement isn't really
-> correct. Specifically it's wrong to say that eDP is 2 lanes and DP is
-> 2/4 lanes. I will say:
->
-> * An eDP display could support 1, 2, or 4 lanes.
-> * An eDP controller could support 1, 2, or 4 lanes.
-> * A board may wire up 1, 2, or 4 lanes.
->
-> Thus if you have an eDP controller that should be capable of 4 lanes
-> and an eDP panel that says it's capable of 4 lanes, you still might
-> need to use a 2 lane configuration because a board only wired up 2 of
-> the lanes. IMO the number of lanes that are wired up should be in the
-> device tree somewhere because that's where this board limit should be
-> defined.
->
-> Similarly, you could have an eDP controller that supports 4 lanes, you
-> may wire 4 lanes off the board, but an eDP panel may only support 1 or
-> 2 lanes. This is handled by querying the panel and asking how many
-> lanes it supports.
+On Wed, 14 Dec 2022 20:03:05 +0100
+Martin Botka <martin.botka@somainline.org> wrote:
 
-Thank you for the explanations. So the `data-lanes' should definitely
-be a property of the link between the DP controller and the eDP panel.
-This is the path that Kuogee has been using.
+Hi Martin,
 
--- 
-With best wishes
-Dmitry
+> AXP1530 has a few regulators that are controlled via I2C Bus.
+> 
+> Add support for them.
+
+thanks for putting this together!
+After coming up with a very similar patch based on the AXP313A313
+datasheet, I realised that those two must indeed be *somewhat*
+compatible, so I am going to compare my patch with yours ;-)
+
+> 
+> Signed-off-by: Martin Botka <martin.botka@somainline.org>
+> ---
+>  drivers/regulator/axp20x-regulator.c | 44 ++++++++++++++++++++++++++++
+>  1 file changed, 44 insertions(+)
+> 
+> diff --git a/drivers/regulator/axp20x-regulator.c b/drivers/regulator/axp20x-regulator.c
+> index d260c442b788..9420839ff4f9 100644
+> --- a/drivers/regulator/axp20x-regulator.c
+> +++ b/drivers/regulator/axp20x-regulator.c
+> @@ -1001,6 +1001,40 @@ static const struct regulator_desc axp813_regulators[] = {
+>  		    AXP22X_PWR_OUT_CTRL2, AXP22X_PWR_OUT_DC1SW_MASK),
+>  };
+>  
+> +static const struct linear_range axp1530_dcdc1_ranges[] = {
+> +	REGULATOR_LINEAR_RANGE(500000, 0x0, 0x46, 10000),
+
+The AXP313A manual mentions "steps", in decimal
+(0.5~1.2V，10mV/step，71steps), so I wonder if we should follow suit
+here and describe the min_sel and max_sel members in decimal?
+
+> +	REGULATOR_LINEAR_RANGE(1220000, 0x47, 0x57, 20000),
+> +	REGULATOR_LINEAR_RANGE(1600000, 0x58, 0x6A, 100000),
+> +};
+> +
+> +static const struct linear_range axp1530_dcdc2_ranges[] = {
+> +	REGULATOR_LINEAR_RANGE(500000, 0x0, 0x46, 10000),
+> +	REGULATOR_LINEAR_RANGE(1220000, 0x47, 0x57, 20000),
+> +};
+
+The values up till here match exactly what I extracted from the AXP313A
+manual.
+
+> +
+> +static const struct linear_range axp1530_dcdc3_ranges[] = {
+> +	REGULATOR_LINEAR_RANGE(500000, 0x0, 0x46, 10000),
+> +	REGULATOR_LINEAR_RANGE(1220000, 0x47, 0x66, 20000),
+> +};
+
+Can you double check that those are the values for DCDC3?
+The AXP313A manual uses different ranges, essentially:
+    REGULATOR_LINEAR_RANGE(800000, 0, 32, 10000),
+    REGULATOR_LINEAR_RANGE(1140000, 33, 68, 20000),
+So starting from 800mV, and using a slightly different split point.
+
+I would just hope that's this doesn't turn out to be an incompatible register.
+
+> +
+> +static const struct regulator_desc axp1530_regulators[] = {
+> +	AXP_DESC_RANGES(AXP1530, DCDC1, "dcdc1", "vin1", axp1530_dcdc1_ranges,
+> +					0x6B, AXP1530_DCDC1_CONRTOL, 0x7f, AXP1530_OUTPUT_CONTROL,
+
+Again I would code the steps in decimal. The other regulators use a
+preprocessor constant, which helps the reader to get its meaning.
+And please use at least GENMASK(6, 0) instead of 0x7f, or #define this
+(can be shared for all DCDCs and the LDOs).
+
+> +					BIT(0)),
+> +	AXP_DESC_RANGES(AXP1530, DCDC2, "dcdc2", "vin2", axp1530_dcdc2_ranges,
+> +					0x58, AXP1530_DCDC2_CONRTOL, 0x7f, AXP1530_OUTPUT_CONTROL,
+> +					BIT(1)),
+> +	AXP_DESC_RANGES(AXP1530, DCDC3, "dcdc3", "vin3", axp1530_dcdc3_ranges,
+> +					0x58, AXP1530_DCDC3_CONRTOL, 0x7f, AXP1530_OUTPUT_CONTROL,
+> +					BIT(2)),
+> +	AXP_DESC(AXP1530, LDO1, "ldo1", "ldo1in", 500, 3500, 100,
+> +					AXP1530_ALDO1_CONRTOL, 0x1f, AXP1530_OUTPUT_CONTROL,
+> +					BIT(3)),
+> +	AXP_DESC(AXP1530, LDO2, "ldo2", "ldo2in", 500, 3500, 100,
+> +					AXP1530_DLDO1_CONRTOL, 0x1f, AXP1530_OUTPUT_CONTROL,
+> +					BIT(4)),
+
+Does this miss the fixed RTC-LDO? Or does the AXP1530 not have that?
+        AXP_DESC_FIXED(AXP313, RTC_LDO, "rtc-ldo", "ips", 1800),
+The AXP313A manual mentions that the voltage is customisable, either
+1.8V or 3.3V. I don't know how to model that, exactly. Should this be a
+DT property, then? Or do we fix it to one voltage, covering the value
+that's used out there?
+
+> +};
+> +
+>  static int axp20x_set_dcdc_freq(struct platform_device *pdev, u32 dcdcfreq)
+>  {
+>  	struct axp20x_dev *axp20x = dev_get_drvdata(pdev->dev.parent);
+> @@ -1040,6 +1074,12 @@ static int axp20x_set_dcdc_freq(struct platform_device *pdev, u32 dcdcfreq)
+>  		def = 3000;
+>  		step = 150;
+>  		break;
+> +	case AXP1530_ID:
+> +		/*
+> +		 * Do not set the DCDC frequency on AXP1530
+
+This should say that the frequency is fixed and cannot be programmed.
+I also added a warning if the frequency is not 3 MHz.
+Either this, or we make the "x-powers,dcdc-freq" DT property optional.
+
+Cheers,
+Andre
+
+> +		 */
+> +		return 0;
+> +		break;
+>  	default:
+>  		dev_err(&pdev->dev,
+>  			"Setting DCDC frequency for unsupported AXP variant\n");
+> @@ -1220,6 +1260,10 @@ static int axp20x_regulator_probe(struct platform_device *pdev)
+>  	bool drivevbus = false;
+>  
+>  	switch (axp20x->variant) {
+> +	case AXP1530_ID:
+> +		regulators = axp1530_regulators;
+> +		nregulators = AXP1530_REG_ID_MAX;
+> +		break;
+>  	case AXP202_ID:
+>  	case AXP209_ID:
+>  		regulators = axp20x_regulators;
+
