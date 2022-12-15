@@ -2,77 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C785C64D853
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 10:12:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB62E64D87A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 10:22:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229854AbiLOJMM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 04:12:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52886 "EHLO
+        id S229938AbiLOJWm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 04:22:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229889AbiLOJMB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 04:12:01 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74A8C4B9A2
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 01:11:50 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id 1so14693061lfz.4
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 01:11:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bmdAanfz/VP8hVI+pvXvUMPxx98Oy0JHDJIXTuPRBKM=;
-        b=FMb4qhYzCEhjm+w8BD1qR1gQoxNOcTynbj1GoaKthWEJayVLT/xTWQjWo7I34tbyvJ
-         82ZOD7/eFMUeo1NZoIMFYNx6GdNpmuH/KhdX7UU3OiaFzxuqdyfcx2TXtT2hAyjsRBqS
-         pOov4bHFEdcZxgUMmHy8IiqLKf9rS+oZQizq9MpQaJy7rbuv5cvqD1a3Eq3bV2RsFX/w
-         brW5d8kFHfwjkVQLoxSM8G6S6r093vgXpnvUdt9HQIO7T6/9DYE0YflRohsI2nazGSg5
-         YgyJ2jeuG1S8l5bGKV6J0p0kOQ2miwHX7fw7TLFedFsNLLnBG3lMH1maB9hNAMTf27r8
-         82Ow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bmdAanfz/VP8hVI+pvXvUMPxx98Oy0JHDJIXTuPRBKM=;
-        b=NhyQrQclBlASCbf677Iie4LLddvRB+DtfSAeFt7VLUa9S7mZiQGX7VA/Wmk9sX1qQR
-         DTCOphDFMq2o7m24oSF48Oa59mlFUmQJw6JdDg+S0ce04034pgk1QN061oWZyHxv2Vsy
-         /kCBJRXlnwqVmiBjXwrd8qMBJihdBbcBglRreiTAH8pkU/mP2w6MYvSBol5iRQI/kXfy
-         3YXn9u0FeL30txWd2IbT2XJeuSH1v2EFK0pMGA7DIeYTvS0LE2SxFh+yOZoy4WPy7Ep4
-         vc7MQ5NctrcncUHYioxXXFoinJh22u4MOwUpQnSEZgYr/e8Ncjkon40OBpqtcjbPI0+5
-         LkBQ==
-X-Gm-Message-State: ANoB5pn9TYxmvvW24ZwzglNBaeaToqHGinRW09Wcnty44iEDEoYzFWAn
-        IY2cjPR3Umr/xNlTuIAhLt3sMw==
-X-Google-Smtp-Source: AA0mqf7nEkEV4/tCj1TBlPApxAfYX5q1f0BDFX1yY2eEWeGW/++VjsHo366CKQ1bD+xUI4ccIM0nWg==
-X-Received: by 2002:a05:6512:b24:b0:4b6:f027:2af8 with SMTP id w36-20020a0565120b2400b004b6f0272af8mr4688139lfu.66.1671095508751;
-        Thu, 15 Dec 2022 01:11:48 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id 13-20020a05651c128d00b0027e3d929fc8sm156942ljc.118.2022.12.15.01.11.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Dec 2022 01:11:48 -0800 (PST)
-Message-ID: <d38655cb-d387-5bbd-c430-52a0b04ae3cc@linaro.org>
-Date:   Thu, 15 Dec 2022 10:11:47 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [RFC PATCH v2 1/3] dt-bindings: gpio: Add gpio-delay binding
- document
-Content-Language: en-US
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        with ESMTP id S229950AbiLOJWh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 04:22:37 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6FF133C28;
+        Thu, 15 Dec 2022 01:22:33 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 4120CB81698;
+        Thu, 15 Dec 2022 09:22:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04B40C433EF;
+        Thu, 15 Dec 2022 09:22:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1671096151;
+        bh=zEb0ixyjXY3i78Yi3+jsNaVpreCjlmA3VWVSg0drJSE=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=jRmmxySBxYf0VAsyP1TsXAARZHB2dXeW2gHqqLduWtedkH++pcV524GaCkc+Xb1Cr
+         B/6t0G8r89JFLD3MxPx1VMKKqS8eE0WamMtrLjP5ornG+HJi9Y64jVsWqqp3wYeRul
+         2v5RvIShXhF4H6sRlz2JxhXRfUKiIgO8wcLGjtkXeA6pm4Epf+EIqD4l3Gc5gle+jg
+         Cr1DvhswWEAuRAI3xiAsNg71esyfieMT1Lkx4VkdV42NPRuaH/TgaEQseTK8y0KcbP
+         Y857wr5Wd9vITwDCKTMGADPWDbQFMgogJFwSY3zU+ty7I7k9S6gvRMNQH3/jB20e+S
+         t3nthDD+KjaSA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1p5kRg-00CnyB-Lk;
+        Thu, 15 Dec 2022 09:22:28 +0000
+Date:   Thu, 15 Dec 2022 09:22:28 +0000
+Message-ID: <861qp1qawb.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        Marek Vasut <marex@denx.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-References: <20221214095342.937303-1-alexander.stein@ew.tq-group.com>
- <20221214095342.937303-2-alexander.stein@ew.tq-group.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221214095342.937303-2-alexander.stein@ew.tq-group.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Christopher Obbard <chris.obbard@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Kever Yang <kever.yang@rock-chips.com>, kernel@collabora.com,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+        Elaine Zhang <zhangqing@rock-chips.com>,
+        Sugar Zhang <sugar.zhang@rock-chips.com>
+Subject: Re: [PATCHv6 3/7] arm64: dts: rockchip: Add base DT for rk3588 SoC
+In-Reply-To: <20221214182247.79824-4-sebastian.reichel@collabora.com>
+References: <20221214182247.79824-1-sebastian.reichel@collabora.com>
+        <20221214182247.79824-4-sebastian.reichel@collabora.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: sebastian.reichel@collabora.com, heiko@sntech.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org, chris.obbard@collabora.com, benjamin.gaignard@collabora.com, linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kever.yang@rock-chips.com, kernel@collabora.com, yifeng.zhao@rock-chips.com, zhangqing@rock-chips.com, sugar.zhang@rock-chips.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,114 +74,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/12/2022 10:53, Alexander Stein wrote:
-> This adds bindings for a GPIO enable/disable delay driver.
+On Wed, 14 Dec 2022 18:22:43 +0000,
+Sebastian Reichel <sebastian.reichel@collabora.com> wrote:
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> From: Kever Yang <kever.yang@rock-chips.com>
+> 
+> This initial version supports (single core) CPU, dma, interrupts, timers,
+> UART and SDHCI. In short - everything necessary to boot Linux on this
+> system on chip.
+
+Single core? The DT indicates otherwise.
+
+> 
+> The DT is split into rk3588 and rk3588s, which is a reduced version
+> (i.e. with less peripherals) of the former.
+> 
+> Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
+> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
+> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+> [rebase, squash and reword commit message]
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 > ---
->  .../devicetree/bindings/gpio/gpio-delay.yaml  | 75 +++++++++++++++++++
->  1 file changed, 75 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-delay.yaml
+>  arch/arm64/boot/dts/rockchip/rk3588.dtsi  |   58 +
+>  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 1703 +++++++++++++++++++++
+>  2 files changed, 1761 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588.dtsi
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s.dtsi
 > 
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-delay.yaml b/Documentation/devicetree/bindings/gpio/gpio-delay.yaml
-> new file mode 100644
-> index 000000000000..20871356e9b5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/gpio-delay.yaml
-> @@ -0,0 +1,75 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/gpio-delay.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: GPIO delay controller
-> +
-> +maintainers:
-> +  - Alexander Stein <linux@ew.tq-group.com>
-> +
-> +description: |
-> +  This binding describes an electrical setup where setting an GPIO output
-> +  is delayed by some external setup, e.g. RC curcuit.
-> +
-> +  +----------+                    +-----------+
-> +  |          |             VCC_B  |           |
-> +  |          |              |     |           |
-> +  |          | VCC_A        _     |           |
-> +  |  GPIO    |             | | R  |  Consumer |
-> +  |controller|        ___  |_|    |           |
-> +  |          |       |   |  |     |           |
-> +  |      [IOx|-------|   |--+-----|-----+     |
-> +  |          |       |___|  |     |   input   |
-> +  |          |              |     |           |
-> +  +----------+             --- C  +-----------+
-> +                           ---
-> +                            |
-> +                            -
-> +                           GND
-> +
-> +  If the input on the consumer is controlled by an open-drain signal
 
-If IOx is open-drain, what is the VCC_A on the diagram? I think it
-wasn't present in original Laurent's diagram.
+[...]
 
-> +  attached to an RC curcuit the ramp-up delay is not under control
-> +  of the GPIO controller.
+> +	gic: interrupt-controller@fe600000 {
+> +		compatible = "arm,gic-v3";
+> +		reg = <0x0 0xfe600000 0 0x10000>, /* GICD */
+> +		      <0x0 0xfe680000 0 0x100000>; /* GICR */
+> +		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH 0>;
+> +		interrupt-controller;
+> +		mbi-alias = <0x0 0xfe610000>;
+> +		mbi-ranges = <424 56>;
+> +		msi-controller;
+> +		#interrupt-cells = <4>;
 > +
-> +properties:
-> +  compatible:
-> +    const: gpio-delay
+> +		ppi-partitions {
+> +			ppi_cluster0: interrupt-partition-0 {
+> +				affinity = <&cpu_l0 &cpu_l1 &cpu_l2 &cpu_l3>;
+> +			};
 > +
-> +  "#gpio-cells":
-> +    description: |
-> +      Specifies the pin, ramp-up and ramp-down delays. The
-> +      delays are specified in microseconds.
-> +    const: 3
-> +
-> +  input-gpios:
-> +    description: Array of GPIOs which output signal change is delayed
+> +			ppi_cluster1: interrupt-partition-1 {
+> +				affinity = <&cpu_b0 &cpu_b1 &cpu_b2 &cpu_b3>;
 
-maxItems: 32 or some other reasonable value
+The use of the word "cluster" is pretty misleading, specially as the
+actual CPU clusters don't align with this partitioning (you seem to
+have 2 independent A76 clusters). Consider using the word "partition",
+which was chosen exactly to avoid this confusion.
 
-> +
-> +  gpio-controller: true
-> +
-> +  gpio-line-names: true
+Thanks,
 
-and then the same maxItems.
+	M.
 
-> +
-> +required:
-> +  - compatible
-> +  - "#gpio-cells"
-> +  - gpio-controller
-> +  - input-gpios
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    enable_delay: enable-delay {
-> +        compatible = "gpio-delay";
-
-I am not sure whether the naming is the most accurate - it represents
-desired behavior (so the delay in rising signal), not actual hardware
-(RC filter), but maybe that's a bit more generic.
-
-Anyway look fine for me.
-
-> +        #gpio-cells = <3>;
-> +        gpio-controller;
-> +        input-gpios = <&gpio0 3 GPIO_ACTIVE_LOW>,
-> +                      <&gpio3 1 GPIO_ACTIVE_HIGH>;
-> +    };
-> +
-> +    consumer {
-> +        enable-gpios = <&enable_delay 0 130000 30000>;
-> +    };
-
-Best regards,
-Krzysztof
-
+-- 
+Without deviation from the norm, progress is not possible.
