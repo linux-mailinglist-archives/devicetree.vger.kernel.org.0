@@ -2,99 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00D4164E119
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 19:40:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A98864E145
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 19:48:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229797AbiLOSkg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 13:40:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37804 "EHLO
+        id S230253AbiLOSse (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 13:48:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229603AbiLOSkf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 13:40:35 -0500
-Received: from amity.mint.lgbt (vmi888983.contaboserver.net [149.102.157.145])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90D28BB
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 10:40:34 -0800 (PST)
-Received: from amity.mint.lgbt (mx.mint.lgbt [127.0.0.1])
-        by amity.mint.lgbt (Postfix) with ESMTP id 4NY1JJ2tPnz1S5Bt
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 13:40:32 -0500 (EST)
-Authentication-Results: amity.mint.lgbt (amavisd-new);
-        dkim=pass (2048-bit key) reason="pass (just generated, assumed good)"
-        header.d=mint.lgbt
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mint.lgbt; h=
-        content-transfer-encoding:content-type:in-reply-to:from
-        :references:to:content-language:subject:user-agent:mime-version
-        :date:message-id; s=dkim; t=1671129631; x=1671993632; bh=NBGPxf8
-        Uk+YFqUwrijQq4lTC0II0fQREHSPsU0b1IsU=; b=BgqkkVSWs5KiLPUCv1r5GJg
-        bpouceHE8LGh9stq8Sh8rUBNhkNxvtPQN6glD5Qcw6O6bYFlnYVIrV2D0VKkV2lv
-        sr6gtCXgktMncxaA1+qUJwkYLJZGseVxrUvr2EagIw5FRYQ2Bjajp/jDULk5M+C8
-        KhQlnBz7zeqLtS5j7/0R2Lrg0HHUBeuPwDqqnoTylmY6lyDJu/v2pQupl6NFFqCF
-        ZgLR87rLFu0MRSRewM3nSLehc3Jkip4vYqKiGy/oONlxHvsdslw3QJK7gD9UNMGO
-        X5ZmAIIs3u6oZ/TQpa3wU0puppQRZ60cMy5CwMn64ajSN4UzvCs8iF4YG4EsxvQ=
-        =
-X-Virus-Scanned: amavisd-new at amity.mint.lgbt
-Received: from amity.mint.lgbt ([127.0.0.1])
-        by amity.mint.lgbt (amity.mint.lgbt [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id iCil5BAlZ6Sa for <devicetree@vger.kernel.org>;
-        Thu, 15 Dec 2022 13:40:31 -0500 (EST)
-Received: from [192.168.4.25] (unknown [190.196.92.66])
-        by amity.mint.lgbt (Postfix) with ESMTPSA id 4NY1JB5cHkz1S4yj;
-        Thu, 15 Dec 2022 13:40:26 -0500 (EST)
-Message-ID: <c44d30a1-9ca3-e7c3-aeb5-7d058033141d@mint.lgbt>
-Date:   Thu, 15 Dec 2022 15:40:24 -0300
+        with ESMTP id S230464AbiLOSsE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 13:48:04 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14AE349B6D
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 10:47:49 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id p36so17051835lfa.12
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 10:47:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9KkdLICyiUp5qFB2toQ17AfWSNnf2bShuodp0di+vmY=;
+        b=fhtn2iDsTUWzrfZpdRICozqp3nZHdxpDjsRnxMDZaxX6tyXFtU8AVKv5jG7Tjh13Dd
+         trhUNElPTWYrrDPgvyB/QT39UAeqCJnkdCUSNzCfItXUEGrPsdY4BZSnR41Dycaoow0k
+         H4ikoPsmZuTcOqrAAQtf56VIOxGhFHTEDN64eYfN5usylzYxhKjmHr7Tjnqkcebfphpx
+         HUmDn9HHzrIRcL7p2a74dVDygQ+oXvtzfUh/Mf8DYUMTYXzewdzIMvQtSRduqDgRDoyQ
+         xgI9weMM+WLIN8hh7hb7sjcqpr5ZsPY6NdqdcT8YdJ7DmIWQRu8Sa53mNGxWg4cMrc6h
+         dg9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9KkdLICyiUp5qFB2toQ17AfWSNnf2bShuodp0di+vmY=;
+        b=VDgltfjx/evysggQb/QqX69oOJ0BbYRmJ/jPTeHeRSgbEVDppAbJV9k3QkcFR/Hubl
+         QbhLMVmjZ1WjwIxGl0ooV7oVilgzh/v/EcWXlKrPN0/hJOdm9cwYtR1U403sOwLOr7mz
+         qSstx/Ey0aE7hA3PlgPhPEbAxeOM7Fv+xFmqCGPaHYwRLbVQ4+T74cBAyHpVcEJDXKua
+         MHL4isltsCFJxVtbZyjcsX4+d65dbkZpZoKOdBwCXCxrdYYPKFT+Ah7f888ZvjKktXbU
+         DgRJ82B58D2ZrZ7O+nmrwsGdLJyCVwXUQTN2eTEwE1A+4XwDj4/zi00LxqIybCNcbejC
+         C2pQ==
+X-Gm-Message-State: ANoB5pln6128OXkSDYYNexdVbkLNggrSMyJa9eh60889o39/wl+WXjUp
+        lnChm88KJE3l139dqXkhHsv98z8MaDCwKxbqPrM=
+X-Google-Smtp-Source: AA0mqf5NTgyXSzMaNtMn4AyLAzkTbEAU972I/6hxHbKuFHvbJE+uHluh5tvP8NAq4DFR3zX4K5rNEg==
+X-Received: by 2002:a05:6512:acf:b0:4a4:68b9:19f6 with SMTP id n15-20020a0565120acf00b004a468b919f6mr10111133lfu.30.1671130067481;
+        Thu, 15 Dec 2022 10:47:47 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id t7-20020a056512030700b004b583198d83sm1232003lfp.186.2022.12.15.10.47.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Dec 2022 10:47:46 -0800 (PST)
+Message-ID: <fd8b7bbb-088c-59ce-2b2a-c6c9edb3f1af@linaro.org>
+Date:   Thu, 15 Dec 2022 20:47:46 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH v3 4/4] arm64: dts: qcom: sm6125: Initial support for
- xiaomi-laurel-sprout
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+Subject: Re: [PATCH v4 2/2] arm64: dts: qcom: Add base QDU1000/QRU1000 IDP DTs
+Content-Language: en-GB
+To:     Melody Olvera <quic_molvera@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kees Cook <keescook@chromium.org>,
-        Tony Luck <tony.luck@intel.com>,
-        "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-References: <20221215182412.386064-1-they@mint.lgbt>
- <20221215182412.386064-4-they@mint.lgbt>
- <7c30fc89-8801-7801-de5c-c05fde423bf8@linaro.org>
-From:   Lux Aliaga <they@mint.lgbt>
-In-Reply-To: <7c30fc89-8801-7801-de5c-c05fde423bf8@linaro.org>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221118192241.29384-1-quic_molvera@quicinc.com>
+ <20221118192241.29384-3-quic_molvera@quicinc.com>
+ <20221202033721.4slwz2utw5u6rv7b@builder.lan>
+ <9e4e6149-bc24-b727-fff7-3fb7038fc066@quicinc.com>
+ <5cd9e71c-8147-2ce1-b137-0342e271031b@linaro.org>
+ <82620abd-105a-6ebc-ae58-e77fa058852b@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <82620abd-105a-6ebc-ae58-e77fa058852b@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 15/12/2022 19:56, Melody Olvera wrote:
+> 
+> 
+> On 12/15/2022 12:44 AM, Krzysztof Kozlowski wrote:
+>> On 14/12/2022 19:59, Melody Olvera wrote:
+>>>>> +			#clock-cells = <0>;
+>>>>> +		};
+>>>>> +
+>>>>> +		sleep_clk: sleep-clk {
+>>>>> +			compatible = "fixed-clock";
+>>>>> +			clock-frequency = <32000>;
+>>>>> +			#clock-cells = <0>;
+>>>>> +		};
+>>>>> +
+>>>>> +		pcie_0_pipe_clk: pcie-0-pipe-clk {
+>>>> Afaict these clocks are not referenced anywhere, so please skip them.
+>>> Yes, so I included them to be consistent with the bindings. They will be needed later;
+>>> should I still remove?
+>>>
+>> If they are not referenced anywhere, how is it consistent with bindings?
+>> Where do the bindings require defining such nodes?
+> 
+> These bindings here: https://lore.kernel.org/all/20221118181826.28269-2-quic_molvera@quicinc.com/
+> I believe you commented that we either have these clocks or we don't, correct? I added them to
+> the dt since these clocks exist and will be needed later when USB and PCIE nodes are added.
+> As Konrad noted, these technically belong in the PHYs, but I was told to put stub fixed
+> clocks instead here: https://lore.kernel.org/lkml/2c8c4642-8aee-3da3-7698-5e08b4c5894d@linaro.org/
+> 
+> How is this to be handled? Should I remove the clocks from the dt and the bindings and add them
+> later when we need them? Do I leave stub clocks here with frequency 0 until needed? I am
+> very confused right now.
 
-On 15/12/2022 15:34, Konrad Dybcio wrote:
-> On 15.12.2022 19:24, Lux Aliaga wrote:
->> Adds support for the Xiaomi Mi A3 (xiaomi-laurel-sprout). Here's a
->> summary on what's working.
+You were told to use stub clocks in the bindings, not in the dtsi file. 
+You can use <0> in the dtsi instead.
+
+> 
+> Thanks,
+> Melody
+> 
 >>
->> - dmesg output to bootloader preconfigured display
->> - USB
->> - UFS
->> - SMD RPM regulators
+>> Best regards,
+>> Krzysztof
 >>
->> Signed-off-by: Lux Aliaga <they@mint.lgbt>
->> ---
-> You don't seem to have addressed the review comments from
-> v2 on this patch.
->
-> Konrad
-Pardon me, but most of the review comments were addressed. I only missed 
-moving the qcom,msm-id and qcom,board-id properties below chassis-type, 
-but the rest should be addressed as intended.
+> 
 
 -- 
-Lux Aliaga
-https://nixgoat.me/
+With best wishes
+Dmitry
 
