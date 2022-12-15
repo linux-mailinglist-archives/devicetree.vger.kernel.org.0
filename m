@@ -2,149 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B43464E080
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 19:17:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1EE264E08F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 19:21:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229471AbiLOSRe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 13:17:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46418 "EHLO
+        id S230206AbiLOSVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 13:21:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229930AbiLOSRd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 13:17:33 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B61E53FBB2;
-        Thu, 15 Dec 2022 10:17:30 -0800 (PST)
-Received: from mercury (dyndsl-095-033-168-084.ewe-ip-backbone.de [95.33.168.84])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        with ESMTP id S230201AbiLOSVr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 13:21:47 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9312245EEF;
+        Thu, 15 Dec 2022 10:21:46 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 67B746602C74;
-        Thu, 15 Dec 2022 18:17:29 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1671128249;
-        bh=tPqBuypDEG2gjIdV3HpZSKNOgRo5PoSbRevw1WTLn78=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UIm+k7b1NTSw75LADYumnmVxlGYJ3gT0q5sLfS8MTD8/KFE+whE2jQY4H2YK7tbGQ
-         /13a30uFEPFLoWuhueOdTmmHvBajDYaQZZUsJDEqPle/KM+JLONk2bQArF+pXGT0Cz
-         a60RjFhXFDbsZUc0YLNio4Dxm94tCTI/60XQ4IPU4eEidWb61g9KgPhWRSVcijwW/W
-         MRpw6PO9kUlqk6z13Q6RMKmt6MaFYjQlQksF0ntnyiAdWoJd2RWofOavatnwkfLZcI
-         ZPZJeKIpnVqvweL283MvCSmGXcUJanGwFqI1ey5Juou+3ZXfhxQ2bGWJubukNANLHK
-         izie65qAzcXlQ==
-Received: by mercury (Postfix, from userid 1000)
-        id DD0161060F45; Thu, 15 Dec 2022 19:17:26 +0100 (CET)
-Date:   Thu, 15 Dec 2022 19:17:26 +0100
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Christopher Obbard <chris.obbard@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCHv6 0/7] Initial rk3588 DT
-Message-ID: <20221215181726.75qj6euoy3zgfbre@mercury.elektranox.org>
-References: <20221214182247.79824-1-sebastian.reichel@collabora.com>
- <20221215171828.GA153741-robh@kernel.org>
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 22C7E61EAD;
+        Thu, 15 Dec 2022 18:21:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A9EDC433F1;
+        Thu, 15 Dec 2022 18:21:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1671128505;
+        bh=XNp2eew5F2osbBG2xYRCOh4UDwA6Ten/EhA6IgqIuao=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=JG/NhBoCIYGRQpjeIP8hk6jwLjxSFUVH0Wf+8Phj/Fvkur9OOmkUBHgHEX2DAORMB
+         bO3rrGRdeWLGMBAW+qMAYD0+iZsuR9iL+cy46r61tWp4PqDxwD2vuNfZ9g31R4W/rE
+         xx83Vo6FeaHcqPJN6f3fpV5UqAMOTNT/AfIRn9rPZJalzvgzr/UYIdChq4ImGK3L9l
+         ILKZcSvB/W/RmgATRKei5Gbe/xgbmMsOScC5mbl2USi0BjY5eAN9xopRoyTChkCaP6
+         QnYPPnkzHS3D2hrtGqpGCm/Yl6XDbD5mHdPUBCHZIwJY+SWWcPwD9M9bvIK94dWJAw
+         eCSbXDRLDJ08w==
+Received: by mail-vk1-f173.google.com with SMTP id r3so5058666vkq.13;
+        Thu, 15 Dec 2022 10:21:45 -0800 (PST)
+X-Gm-Message-State: ANoB5pmbeQ12yBOP6bx5wAWSjaW/djliNBOjYFeVLRGc2nRxHD47Di1c
+        KV6XnJybD25KLEb3dDda7ZdAbNbHvhbnKcdzig==
+X-Google-Smtp-Source: AA0mqf7PfbXHfEttrFa9GFT4vHSUPgW6XNbo/+meHwDjz77IKJlN5e+Sxu0qpBuHYHEZBATiU0hRskdvaPbzlxDWoTE=
+X-Received: by 2002:a1f:2c01:0:b0:3c1:1c3b:c4d9 with SMTP id
+ s1-20020a1f2c01000000b003c11c3bc4d9mr1293947vks.19.1671128504420; Thu, 15 Dec
+ 2022 10:21:44 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="6nvfnquhkway6343"
-Content-Disposition: inline
-In-Reply-To: <20221215171828.GA153741-robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20221214095342.937303-1-alexander.stein@ew.tq-group.com> <CACRpkdbPy0krGYDdR4-Ga7tE=Wd6d2_KQ50b94VUvV=Zv=iBvA@mail.gmail.com>
+In-Reply-To: <CACRpkdbPy0krGYDdR4-Ga7tE=Wd6d2_KQ50b94VUvV=Zv=iBvA@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 15 Dec 2022 12:21:33 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJ0xY5e6mZB_smTCNm0HfsPTF64d0YgikmRx8FPzjxKCw@mail.gmail.com>
+Message-ID: <CAL_JsqJ0xY5e6mZB_smTCNm0HfsPTF64d0YgikmRx8FPzjxKCw@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 0/3] gpio: Add gpio-delay support
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Marek Vasut <marex@denx.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Dec 15, 2022 at 7:16 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> On Wed, Dec 14, 2022 at 10:53 AM Alexander Stein
+> <alexander.stein@ew.tq-group.com> wrote:
+>
+> > thanks for the feedback I've received. This is the reworked RFC for
+> > adressing a platform specific ramp-up/ramp-down delay on GPIO outputs.
+> > Now the delays are neither specified as gpio-controller nor
+> > consumer-specific properties.
+> >
+> > v2 is a different approach than v1 in that it adds a new driver which will
+> > simply forward setting the GPIO output of specified GPIOs in OF node.
+> > The ramp-up/ramp-down delay can now be actually defined on consumer side,
+> > see Patch 1 or 3 for examples.
+>
+> I really like this approach, it looks better than I imagined.
 
---6nvfnquhkway6343
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+It seems over-engineered to me. So far no comments on my 3 suggestions either...
 
-Hi,
+One is to just use some GPIO flag bits. Say 4-bits of GPIO flags
+encoded as power of 2 ramp delay. We have to pick the units. For
+example, 100us*2^N, which gives you 200us-3.2s of delay. Anything less
+is short enough to just hard code in a driver.
 
-On Thu, Dec 15, 2022 at 11:18:28AM -0600, Rob Herring wrote:
-> On Wed, Dec 14, 2022 at 07:22:40PM +0100, Sebastian Reichel wrote:
-> > Hi,
-> >=20
-> > This adds initial rk3588(s) DT including two different board
-> > devicetrees. All required driver changes have been merged into
-> > the respective maintainer trees. There is one warning from the
-> > DT check:
-> >=20
-> > $ make CHECK_DTBS=3Dy rockchip/rk3588-evb1-v10.dtb rockchip/rk3588s-roc=
-k-5a.dtb
-> >   DTC_CHK arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dtb
-> > /home/sre/src/collabora/rode/linux-rockchip-upstream/arch/arm64/boot/dt=
-s/rockchip/rk3588-evb1-v10.dtb:
-> >     ethernet@fe1c0000: Unevaluated properties are not allowed ('interru=
-pt-names', 'interrupts', 'mdio',
-> >     'power-domains', 'reg', 'reset-names', 'resets', 'rx-queues-config'=
-, 'snps,axi-config', 'snps,mixed-burst',
-> >     'snps,mtl-rx-config', 'snps,mtl-tx-config', 'snps,tso', 'stmmac-axi=
--config', 'tx-queues-config' were unexpected)
-> > 	From schema: /home/sre/src/collabora/rode/linux-rockchip-upstream/Docu=
-mentation/devicetree/bindings/net/rockchip-dwmac.yaml
-> >=20
-> > This is for gmac1. gmac0 has the same properties and there is no warnin=
-g. Also
-> > rk3588s (and thus the Rock 5A) has only gmac1 and there is no warning f=
-or the
-> > Rock 5A. It looks like for some reason the referenced "snps,dwmac.yaml#"
-> > is only checked for the first node. I think it's a bug in dt-validate.
-> > Also the same issue can be seen with rk356x.
->=20
-> I believe the issue is fixed in v2022.12. I didn't reproduce it. The=20
-> problem is with disabled nodes. In some cases 'required' failing in turn=
-=20
-> triggers unevaluated property failures. So we now filter out both=20
-> errors. But that's still not enough in some cases, so the only thing=20
-> that works is just removing disabled nodes before validation. That's not=
-=20
-> great if it is something where the bootloader enables the node and also=
-=20
-> means whomever enables a block for a board gets to fix the issues.
-
-Indeed, I can no longer reproduce this error with 2022.12
-(previously I was on dt-schema 2022.09). Thanks for looking into it.
-
-> BTW, I do also see this warning:
->=20
-> arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dtb:0:0: /i2c@feaa0000/rtc@5=
-1: failed to match any schema with compatible: ['haoyu,hym8563']
-
-I suppose you are missing:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git/commit/?=
-id=3Dc69bffe199270ce001d5764985a8e414c7e05fee
-
--- Sebastian
-
---6nvfnquhkway6343
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmObZKwACgkQ2O7X88g7
-+ppQDA//VDi6HjP0j7Bb1Bx7v4JlMCRvVcD2toqQelyKcat50wUVFt0Ps6stMusT
-VQjGpeacT6XC2NG0eqx9J7HTOpE10SyIQo30Xuq6k5rlihdMMNuiWNEtdWtLHVDq
-Lglz/d6qqeooRBs7YT0rD0Ao+6ssZBkOJ6MaE89FCBp3dFgIZC1gH55W4dz6pade
-+hfnBWAIPEx1PC3Ny8ltMTrgEnBV3zh1lwygFhQgLI7Ka0IvGiDeOAinhoPUQdLQ
-Ffdal/IvZ/fPOFflZRcBKithpJWBouiM88JBN5ygN1bv18PwVdSUnPpgWJUEPmby
-j8rDoTdLZB5vqwP52Tbt63Mh7DcvHhCVQ+elyVniai5uaahSkBhwgM8ksKlxgRlh
-HVoDtnozZzsgX7Ol5Li9YUmVlzFFDaxOdhmRkThUy/djMfT75nsBwvgbYmeYooyY
-+urxNvSfFVj5zosTLUKBUIW1+hKoNkRUkeKGkpdFv2/AWmcPspspJKezaJDd7tXI
-0TFQTuzgGKA4pyktH+8v328l0zAXLB8gkMUAyInlHQ7a6tAxswJ/Loe0OmxxndLO
-0vx9L7w5eQmjAlMPDEbABI87ePYM/zP5zNUQdufQut21LR6fiHMAfmUnGOczp+p0
-STycbf+LbaAEHZEXEnB92vA73mXigKliApB9rvJjJ4n5Vdi5KbQ=
-=AGbZ
------END PGP SIGNATURE-----
-
---6nvfnquhkway6343--
+Rob
