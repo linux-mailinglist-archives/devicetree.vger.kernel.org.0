@@ -2,115 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB03264D9F9
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 12:02:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 854C164D9FC
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 12:04:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230196AbiLOLCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 06:02:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58554 "EHLO
+        id S229554AbiLOLD6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 06:03:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229795AbiLOLBX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 06:01:23 -0500
-Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84C5E2E698
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 03:00:18 -0800 (PST)
-Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-14455716674so20466525fac.7
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 03:00:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=6pQ9de+Vc2wR7bYvymc7ZHtpYqEL/DcrRHJx1Mh2KsQ=;
-        b=bMgSIdc2m2S+3BHH0vvxtn6c3YBRRts62w7RRM8K164kP11hfL33lCFdKMf6QFK1Wi
-         Izww7lPRkRuleqOx6OmG/jlKopV3ENZFh5nUYZlwPapi5VIVSw6NIb0EgEm3m1HKn0nh
-         5OPh6NkPbi+0jOYrnYhEMaKAu8NKIlZU8xiAS8BxUrOFlG40jdfo07cQZ7SbK9qLClUK
-         J6snoDHqoXBRghrlPJ5mrSnMfKTJB8Xrm/8qQc92nlkeTWqTg+RhRVGYmEGhf+PAh3cX
-         iADIL99Fau45ZW5+ADUKPEL++yMAcejX9Wa5e4+6pwJhYkcD/He9RXT2+d9BgvcUg3Qz
-         oSVQ==
+        with ESMTP id S230164AbiLOLDZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 06:03:25 -0500
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAFC1DE9E
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 03:03:15 -0800 (PST)
+Received: by mail-qt1-f176.google.com with SMTP id jr11so4806342qtb.7
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 03:03:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=6pQ9de+Vc2wR7bYvymc7ZHtpYqEL/DcrRHJx1Mh2KsQ=;
-        b=4uxQIAd2iBhjHe4v5YXGGQMugHU8jh21P5mk+lvQM1Nbce+erWEF8eJmTjGH+4YBlC
-         A77FNdYUHmihD8qaXFnor7mXTpfndrsP4exihKPEHq2xhDA3p9o4SfaiPAA6xa0UXnLR
-         DdjWWOX70Ftn8RINjxesyJgmpu112k6N81X2fTiDQ6zswKYOimya0qXGu+ENidFqLQo6
-         vcY8GPW6P7iSHXQQ772IDRJKBQBDNiD+0iTa1qCsdLuxYm7hLyKPsyqVWHEv7Z8dX+cZ
-         1fHv5E8euujH/dsUnb1NVH9lVuxygSlqqZwNh7tMTtUG7nVk2HmBpQDaqRYvYRHYCj27
-         di6g==
-X-Gm-Message-State: AFqh2kpcb1V8/JyZ2OWdXjRejpzqNqwV501ZOczDLkmXx0v55Uwy8Y6H
-        npRUQCFeIg1l2MQ6dWGS7Udw6kEWDWOTzMr6HeIq7A==
-X-Google-Smtp-Source: AA0mqf5F/5kRIJI2tVYm8OqRlAYZXRqyjtT57M3LL5Z46ZREVwwUH72F0qonNnKrqu9vgBKMSg8xRqpoW9tgmWe8yd0=
-X-Received: by 2002:a05:6870:9e4c:b0:13c:33d0:22e2 with SMTP id
- pt12-20020a0568709e4c00b0013c33d022e2mr588342oab.14.1671102017941; Thu, 15
- Dec 2022 03:00:17 -0800 (PST)
+        bh=W1J3eIm7gN+a7l7I5FPtNe9iMuDw4N0S5iQn7zeIcKY=;
+        b=7l0qGul556DHfHDZWyzMi9UpGy7nMiDhmU1YjIZ3nV1LnLAdXTOgCWsxU3LFYOYiBf
+         sIa6vgqw/3U9nFn0cn5Kmvgqwrn1eAweGKkAAnotpwguP1RIlA+4YElQaelskTfjxjrE
+         9A+90vmk/DAx181185vPUlMy0ZApPU3gp2nq2fV1jdQPKbsTgKAxsQCQN0ebdsa08z5R
+         A4UhIVGi61xP51dzv6pAEzi+Oob2Zz6kAprMYtXAJdUx24OtHYRrfTYcQpfy47mivbcp
+         7VPDJUnOBdzN570azSW7Exod77P1WkcX26UYZtcLEDSuvwzO4sPf+Nf0XoXQBkgs4pCB
+         ZyFg==
+X-Gm-Message-State: ANoB5pmF7XinZ9HthLBra6rRapCXLTq6jpfyOzoZrPIoBwAW38LUI463
+        lu1tMWv9h/3RCI/ET9zSPl98Y2juBGTRng==
+X-Google-Smtp-Source: AA0mqf76w4tmY0LIaW0QHLO7JpoynqL0Y9CCWZVYmcbzclC3FWJDzxvPtMQq9z0DgubGT6E7a3LEfQ==
+X-Received: by 2002:a05:622a:249:b0:3a5:7967:e652 with SMTP id c9-20020a05622a024900b003a57967e652mr53389035qtx.68.1671102194301;
+        Thu, 15 Dec 2022 03:03:14 -0800 (PST)
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
+        by smtp.gmail.com with ESMTPSA id i4-20020ac860c4000000b003a7ee9613a6sm3234140qtm.25.2022.12.15.03.03.13
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Dec 2022 03:03:13 -0800 (PST)
+Received: by mail-yb1-f177.google.com with SMTP id y135so2993746yby.12
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 03:03:13 -0800 (PST)
+X-Received: by 2002:a25:9:0:b0:6f9:29ef:a5ee with SMTP id 9-20020a250009000000b006f929efa5eemr39090062yba.380.1671102193696;
+ Thu, 15 Dec 2022 03:03:13 -0800 (PST)
 MIME-Version: 1.0
-References: <20221214125821.12489-1-paul@crapouillou.net> <20221214125821.12489-4-paul@crapouillou.net>
-In-Reply-To: <20221214125821.12489-4-paul@crapouillou.net>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Thu, 15 Dec 2022 12:00:07 +0100
-Message-ID: <CAG3jFysiZMVbrwDuuqN+uKEH7ge7q-z0VRtbLfBLxOEYkaC=ww@mail.gmail.com>
-Subject: Re: [PATCH 03/10] drm: bridge: it66121: Use regmap_noinc_read()
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Phong LE <ple@baylibre.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <87v8mepyoy.wl-kuninori.morimoto.gx@renesas.com> <87mt7qpylw.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87mt7qpylw.wl-kuninori.morimoto.gx@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 15 Dec 2022 12:03:02 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdW=_-MyqAjRqaoPyWkoUmdB2VOE1t+wpym7eyOxkzc_7g@mail.gmail.com>
+Message-ID: <CAMuHMdW=_-MyqAjRqaoPyWkoUmdB2VOE1t+wpym7eyOxkzc_7g@mail.gmail.com>
+Subject: Re: [PATCH 06/11] ASoC: dt-bindings: ti,pcm3168a: Convert to json-schema
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        list@opendingux.net, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Sameer Pujar <spujar@nvidia.com>,
+        Mohan Kumar <mkumard@nvidia.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Dec 2022 at 13:58, Paul Cercueil <paul@crapouillou.net> wrote:
->
-> Use regmap_noinc_read() instead of reading the data from the DDC FIFO one
-> byte at a time.
->
-> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-> ---
->  drivers/gpu/drm/bridge/ite-it66121.c | 13 ++++++-------
->  1 file changed, 6 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/gpu/drm/bridge/ite-it66121.c b/drivers/gpu/drm/bridge/ite-it66121.c
-> index a698eec8f250..12222840df30 100644
-> --- a/drivers/gpu/drm/bridge/ite-it66121.c
-> +++ b/drivers/gpu/drm/bridge/ite-it66121.c
-> @@ -589,13 +589,12 @@ static int it66121_get_edid_block(void *context, u8 *buf,
->                 if (ret)
->                         return ret;
->
-> -               do {
-> -                       ret = regmap_read(ctx->regmap, IT66121_DDC_RD_FIFO_REG, &val);
-> -                       if (ret)
-> -                               return ret;
-> -                       *(buf++) = val;
-> -                       cnt--;
-> -               } while (cnt > 0);
-> +               ret = regmap_noinc_read(ctx->regmap, IT66121_DDC_RD_FIFO_REG,
-> +                                       buf, cnt);
-> +               if (ret)
-> +                       return ret;
-> +
-> +               buf += cnt;
->         }
->
->         return 0;
-> --
-> 2.35.1
->
+Hi Morimoto-san,
 
-Reviewed-by: Robert Foss <robert.foss@linaro.org>
+On Wed, Dec 14, 2022 at 2:23 AM Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> From: Geert Uytterhoeven <geert+renesas@glider.be>
+>
+> Convert the Texas Instruments PCM3168A Audio Codec Device Tree binding
+> documentation to json-schema.
+>
+> Add missing properties.
+> Drop unneeded pinctrl properties from example.
+>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+
+Thanks for your patch!
+
+You forgot to list the changes you made to my patch:
+  - Refer to audio-graph-port.yaml instead of describing ports and
+    port@[01] subnodes explicitly.
+
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/ti,pcm3168a.yaml
+> @@ -0,0 +1,100 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/ti,pcm3168a.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments PCM3168A Audio Codec
+> +
+> +maintainers:
+> +  - Damien Horsley <Damien.Horsley@imgtec.com>
+
+For v2, I had planned
+
+    -+  - Damien Horsley <Damien.Horsley@imgtec.com>
+    ++  - Jaroslav Kysela <perex@perex.cz>
+    ++  - Takashi Iwai <tiwai@suse.com>
+
+as Damien's address bounces.
+
+Or perhaps you want to become the maintainer?
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
