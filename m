@@ -2,78 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDA5E64E029
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 19:02:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4400864E032
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 19:07:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229975AbiLOSCg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 13:02:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38178 "EHLO
+        id S229471AbiLOSHH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 13:07:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230160AbiLOSCf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 13:02:35 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F14C3442F1
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 10:02:33 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id 1so16919759lfz.4
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 10:02:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rpKy2M+1xTceyI06vSLlckoJe7LD35YbU+PTPi0rKDM=;
-        b=YjH5xlGT3cTRpULF/LGszL0dl2Cw4WpBjvowxr58+hoevF3Wvac6hRkNwnbI86v103
-         c5aYwS/yIWSV9i3iYSr4zprpgEcV1mPtAoo649RBsoYK8EvlL6XOBtJ1j19k9F6EWUzB
-         F7fHMuD3qmbtiX2irY445IMjEajhjZ5AS4werdMOJdXtNeT2viE8rlTilJbdImBP3sS+
-         kz6YtbLTRvrqFATRm4KI7K1D3OvLRgtKdayqAEphXTBvxQxwSQW6lNRRMqmEb6KT7xK/
-         /YZVNF1pU2OuIn2COPd94tzC0bKR4x2VUcFvJMc59MR0nB6N2ijDtUKFKPLwzhUKVknE
-         bSpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rpKy2M+1xTceyI06vSLlckoJe7LD35YbU+PTPi0rKDM=;
-        b=cfdYbe0LjqQr9sZSOjDKd0Y84Yevele+vUZNKMDo9+NxF0xuL5qjCxFmi+RLETHwaC
-         NpQ1DyVevcf5U0FXZANSRiHyNv3Ywci0KmD9EtPDVhMKpqzMs66BmoR54iXfnregrefW
-         AVEOQgNt2BcNuBUFTOgIAsQtDscqYYx3xSdUdvTGluqiRJuc9gfx5cDfYVFIgpAHk37w
-         D3wpdAZuERUgk/54pJ177NvvmpJgIs4x++bMA4kOOl9/kj0+JwhMRkIE2Gr4M9lAwiNM
-         blmCV4ZJze1KCor0EkdXj0oicSxDGFxcB+7ZeeBpZK2Nhu/nfZ4ksyZjGIBrVNla7giQ
-         zS1Q==
-X-Gm-Message-State: ANoB5pluFwcRYr6+wTyPS/au3MRCSIbEHa1h8Rkm+S01CUpb7XTDJoe6
-        BB57znobuQGFPFYUnsLssn52jw==
-X-Google-Smtp-Source: AA0mqf7n5rAlsQjQNz3aAcI4rjK0IqOpQADETQT00LwtKjvbTYtLF3Grp2vDJKTL/L4qJajpkFwwpA==
-X-Received: by 2002:ac2:4474:0:b0:4b5:9365:cd4f with SMTP id y20-20020ac24474000000b004b59365cd4fmr7640127lfl.42.1671127352250;
-        Thu, 15 Dec 2022 10:02:32 -0800 (PST)
-Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id g7-20020a19e047000000b004b58fadba35sm1221068lfj.296.2022.12.15.10.02.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Dec 2022 10:02:31 -0800 (PST)
-Message-ID: <ab5d99c0-d5a8-d144-6153-27116e20442c@linaro.org>
-Date:   Thu, 15 Dec 2022 19:02:30 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v2 2/4] arm64: dts: qcom: sm6125: Add UFS nodes
-Content-Language: en-US
-To:     Lux Aliaga <they@mint.lgbt>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S229652AbiLOSHG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 13:07:06 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5606B1837C;
+        Thu, 15 Dec 2022 10:07:04 -0800 (PST)
+Received: from mercury (dyndsl-095-033-168-084.ewe-ip-backbone.de [95.33.168.84])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1B46F6602C74;
+        Thu, 15 Dec 2022 18:07:02 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1671127622;
+        bh=dH1RKEdVew6ZLUn/Lg6/y50BwP8UTVQcbVljZOXBe64=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=QlKhDzWdwXtRrPLm9i1lmRVAsKnqCDi+bv+nnY9xWDeQl5d2i8ct3pSnnmYts4sOG
+         V4dyVbJuj9LvkdONDn0iz2yvDCYsQO1COb9NyxfCecSKcMXtVYEmtJqr3rThG4nJ9m
+         juOmV5/XoT0BfjqABlKit5Dlnv1PMuvhTvpk18dsiMWPXMaU7zIgzfJS+L/FZ4ZtpT
+         gQW4AFtS1/8jVu+ti3GSNddrz78IiVz13lxAMyahOrWbN8FgMWS7bOB9Xwo94gUjaF
+         1WvGvWB5lzjGrTcsdCWbZ7HIhL8dzIc8q5Amy3dJqKKf/2MwWJSfwylJKBgZWrbqif
+         i19laCbLgxvcQ==
+Received: by mercury (Postfix, from userid 1000)
+        id 3ACFF1060F45; Thu, 15 Dec 2022 19:06:59 +0100 (CET)
+Date:   Thu, 15 Dec 2022 19:06:59 +0100
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Marek Vasut <marex@denx.de>
+Cc:     devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221215161258.355962-1-they@mint.lgbt>
- <20221215161258.355962-2-they@mint.lgbt>
- <875bd0a8-fc08-1d19-2c75-65713d9d2317@linaro.org>
- <0c53ff07-8cf4-3e80-97fc-67dd2f2612f9@mint.lgbt>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <0c53ff07-8cf4-3e80-97fc-67dd2f2612f9@mint.lgbt>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-rtc@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] dt-bindings: rtc: m41t80: Mark the clock: subnode
+ as deprecated
+Message-ID: <20221215180659.sa54lkinwxoiz7bb@mercury.elektranox.org>
+References: <20221211205124.23823-1-marex@denx.de>
+ <20221211205124.23823-2-marex@denx.de>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ulyyuijbxyhtsviv"
+Content-Disposition: inline
+In-Reply-To: <20221211205124.23823-2-marex@denx.de>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -81,68 +63,89 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--ulyyuijbxyhtsviv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 15.12.2022 17:56, Lux Aliaga wrote:
-> On 15/12/2022 13:18, Konrad Dybcio wrote:
-> 
->> On 15.12.2022 17:12, Lux Aliaga wrote:
->>> Adds a UFS host controller node and its corresponding PHY to
->>> the sm6125 platform.
->>>
->>> Signed-off-by: Lux Aliaga <they@mint.lgbt>
->>> ---
->>>   arch/arm64/boot/dts/qcom/sm6125.dtsi | 66 ++++++++++++++++++++++++++++
->>>   1 file changed, 66 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi b/arch/arm64/boot/dts/qcom/sm6125.dtsi
->>> index 7e25a4f85594..6d4534c7a2fe 100644
->>> --- a/arch/arm64/boot/dts/qcom/sm6125.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sm6125.dtsi
->>> @@ -508,6 +508,72 @@ sdhc_2: mmc@4784000 {
->>>               status = "disabled";
->>>           };
->>>   +        ufs_mem_hc: ufs@4804000 {
->>> +            compatible = "qcom,sm6125-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
->>> +            reg = <0x04804000 0x3000>, <0x04810000 0x8000>;
->>> +            reg-names = "std", "ice";
->>> +            interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
->>> +            phys = <&ufs_mem_phy_lanes>;
->>> +            phy-names = "ufsphy";
->>> +            lanes-per-direction = <1>;
->>> +            #reset-cells = <1>;
->>> +            resets = <&gcc GCC_UFS_PHY_BCR>;
->>> +            reset-names = "rst";
->>> +
->>> +            clock-names = "core_clk",
->>> +                "bus_aggr_clk",
->>> +                "iface_clk",
->>> +                "core_clk_unipro",
->>> +                "ref_clk",
->>> +                "tx_lane0_sync_clk",
->>> +                "rx_lane0_sync_clk",
->>> +                "ice_core_clk";
->>> +            clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
->>> +                <&gcc GCC_SYS_NOC_UFS_PHY_AXI_CLK>,
->>> +                <&gcc GCC_UFS_PHY_AHB_CLK>,
->>> +                <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
->>> +                <&rpmcc RPM_SMD_XO_CLK_SRC>,
->>> +                <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
->>> +                <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
->>> +                <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
->>> +            freq-table-hz = <50000000 240000000>,
->>> +                <0 0>,
->>> +                <0 0>,
->>> +                <37500000 150000000>,
->>> +                <0 0>,
->>> +                <0 0>,
->>> +                <0 0>,
->>> +                <75000000 300000000>;
->> The indentation is wrong. Make sure your tab size is set to 8
->> and all the <> entries align with the first one.
-> Should I do this with clocks and clock-names too?
-Yes, every "vertical list" (for a lack of a better name)
-should be aligned. Add as many tabs as you can and fill
-the rest with spaces.
+Hi,
 
-Konrad
-> 
+On Sun, Dec 11, 2022 at 09:51:24PM +0100, Marek Vasut wrote:
+> The clock {} subnode seems like it is describing an always-on clock
+> generated by the PMIC. This should rather be modeled by consumer of
+> the clock taking phandle to the RTC node itself, since it already
+> does have clock-cells and all. Since there are no users of the clock
+> subnode in tree anyway, mark it as deprecated to avoid proliferation
+> of this approach.
+>=20
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Alessandro Zummo <a.zummo@towertech.it>
+> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: linux-rtc@vger.kernel.org
+> To: devicetree@vger.kernel.org
+> ---
+> V2: - Add AB from Krzysztof
+> V3: - No change
+> ---
+
+I just noticed this by accident. Basically everything in the patch
+description is wrong:
+
+1. There is a in-tree user: arch/arm/boot/dts/imx6dl-qmx6.dtsi
+2. The PMIC has nothing to do with this
+3. Directly referencing the RTC does not work, since that introduces
+   an unsolvable dependency loop on QMX6. This was the solution accepted
+   by Rob and Saravana:
+
+[v1] https://lore.kernel.org/lkml/20210222171247.97609-1-sebastian.reichel@=
+collabora.com/
+[v2] https://lore.kernel.org/all/20210428222953.235280-1-sebastian.reichel@=
+collabora.com/
+
+-- Sebastian
+
+>  Documentation/devicetree/bindings/rtc/st,m41t80.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/rtc/st,m41t80.yaml b/Docum=
+entation/devicetree/bindings/rtc/st,m41t80.yaml
+> index fc9c6da6483f5..03ff833f5fe9d 100644
+> --- a/Documentation/devicetree/bindings/rtc/st,m41t80.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/st,m41t80.yaml
+> @@ -40,6 +40,7 @@ properties:
+>    clock:
+>      type: object
+>      $ref: /schemas/clock/fixed-clock.yaml#
+> +    deprecated: true
+>      properties:
+>        clock-frequency:
+>          const: 32768
+> --=20
+> 2.35.1
+>=20
+
+--ulyyuijbxyhtsviv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmObYjoACgkQ2O7X88g7
++ppEEw//VmYXS7L0/Pcf905n7m3B7uPtRM8YGZRwZsgDP1p/1rOHcjOdffGP7TGr
+qr3xZfAEYlDyAF8qmwVYht8Bos8Nq2loREki7pC7OwIwgC38674VwaTcmeCExv+a
+TpQiJiDlcelEU+sp7VuF9YZ904EQ2BlTPJBUlQGECTdgdhp2jTY+1x81xwn9qQFl
+q4Iuv1V8tn157qs6x77J4Ci6OtDIZkJqXtNfe6F2diflXHOD20n/k2FWDph50e9R
+VW6JtmA3X8EowhEg1htD9QZtkD2uIAWmBlTe0dMBESn4WTKRBY3i0icxfLJcKvB0
+XIwAQE13lwv9keZU2QbVE3Qx4c/TXaKah6i9fQU9HEdk+BHk/V83js81hzgvv+7O
+LDPOHfuSOp13Lze0gQ3JG8p5p9mHDn7LCGqe4eukn4HZFEIBfL0VUF6s/J2otQLx
+QJaQqFmtz3jCCh34WUrJy8HM0VQMiNvbWuYd5YpraEFbmw2onH03bdeieo5fI6IC
+V9nq3exVaU5SMKNhE08jHbPqCbaJ4tNZvHD09Aw54jB7YPGluz/qwk0xH+wqeLzh
+wGBfyyB/cOhC05Pzu3PTY3tleTUde8VBhV8/0LvI2A0MoY1JgYjw06wZ6nZvC/tU
+dx6VrH1cOdVp7+L8LttH+R5a+kyB5bzIQ9FS4Lii9M/raQnkYUg=
+=QDl+
+-----END PGP SIGNATURE-----
+
+--ulyyuijbxyhtsviv--
