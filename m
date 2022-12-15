@@ -2,362 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E06C64E18F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 20:04:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 016D764E1B1
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 20:22:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231208AbiLOTEu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 14:04:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54248 "EHLO
+        id S229543AbiLOTWR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 14:22:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231178AbiLOTEh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 14:04:37 -0500
-Received: from amity.mint.lgbt (vmi888983.contaboserver.net [149.102.157.145])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91B304AF27
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 11:04:33 -0800 (PST)
-Received: from amity.mint.lgbt (mx.mint.lgbt [127.0.0.1])
-        by amity.mint.lgbt (Postfix) with ESMTP id 4NY1qz2s34z1S5Bt
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 14:04:31 -0500 (EST)
-Authentication-Results: amity.mint.lgbt (amavisd-new);
-        dkim=pass (2048-bit key) reason="pass (just generated, assumed good)"
-        header.d=mint.lgbt
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mint.lgbt; h=
-        content-transfer-encoding:mime-version:references:in-reply-to
-        :x-mailer:message-id:date:subject:to:from; s=dkim; t=1671131070;
-         x=1671995071; bh=x3ZqgQKBTleIwsE4Ti+3FCTvNn6a6RXwoZTMYZIZI6Q=; b=
-        HFgopxyWdN5aW27TCXIAedCPvqxi6m8/RLR18QwA2x/lIMSoaUbKYJBPNYcMm64t
-        czYtyhXfHD6azldWziRrDJVLRN4M4hUANxdfT/zyuewi+2WbIDUv5jfhPCpfLEFZ
-        YEqM651BgxqVUff4f89MCYUI6OoE9eI9T40QxLHF+kqe5zislT4/F7D8ZI4Lhi3m
-        MboBjUJ3cEeqXfDcAnoubAodWj4CGd6lioa9BNMnNoshZIy1vGy1Jy2sD57Kr5Ig
-        GFZfqYHgnAMWq3Iemv7lEEvvbloIelgRZtDL/gUVNz+lPEfpgCGDKscwkmIIynJK
-        iMtHW+xc4pBer9I0qbruuA==
-X-Virus-Scanned: amavisd-new at amity.mint.lgbt
-Received: from amity.mint.lgbt ([127.0.0.1])
-        by amity.mint.lgbt (amity.mint.lgbt [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id NYzXeNuEkfpV for <devicetree@vger.kernel.org>;
-        Thu, 15 Dec 2022 14:04:30 -0500 (EST)
-Received: from dorothy.. (unknown [190.196.92.66])
-        by amity.mint.lgbt (Postfix) with ESMTPSA id 4NY1qt19mRz1S5D0;
-        Thu, 15 Dec 2022 14:04:25 -0500 (EST)
-From:   Lux Aliaga <they@mint.lgbt>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kees Cook <keescook@chromium.org>,
-        Tony Luck <tony.luck@intel.com>,
-        "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-Cc:     Lux Aliaga <they@mint.lgbt>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-hardening@vger.kernel.org
-Subject: [PATCH v4 4/4] arm64: dts: qcom: sm6125: Initial support for xiaomi-laurel-sprout
-Date:   Thu, 15 Dec 2022 16:04:04 -0300
-Message-Id: <20221215190404.398788-4-they@mint.lgbt>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221215190404.398788-1-they@mint.lgbt>
-References: <20221215190404.398788-1-they@mint.lgbt>
+        with ESMTP id S229448AbiLOTWQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 14:22:16 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 819324199A;
+        Thu, 15 Dec 2022 11:22:14 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id ay2-20020a05600c1e0200b003d22e3e796dso152643wmb.0;
+        Thu, 15 Dec 2022 11:22:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=w7QvriN0Yzz4DpWiidJ+JgStbl//Q1uu1xv/fE8FAr0=;
+        b=Oq57Rg3BEfZvf16gRaNH5uzbmwjJ9NKAWo5xcOK5bwbzMhiWUG2ibj1I/13GmpDAIZ
+         ng0U8gRHreO2ypWKyOl6q/db4orE0I38UXmtmzzHQItV8BlcqmRyWcFOxUS2Ho6bgfmw
+         VjWpF7r+eFuAotZyEXcqUkqmIA84cTVCbZ/kxCsCfU0g1u/QaStgdqcBdB2Hcli+NbPd
+         BwOFOvVzHQn68r1yROXuTZ4zjCUYZpJifNT1MhWplxhb6dSVS6/9VO4yDJ6XKsyQkpha
+         Z7qSFHbl28BCjoQWOYME7/DAtLODcnhbhLAyb3sWUYB1Ne1ihDniBzGuOdGzDfXrQOhq
+         JIJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=w7QvriN0Yzz4DpWiidJ+JgStbl//Q1uu1xv/fE8FAr0=;
+        b=cBmD11aPy5EHKFneJmDvmu2yxeuUDKyK4TYmDbbgG+3aOJRYqvhCYtqkjNKpExBrH8
+         3pwWP70jQ8EDdjGfASli4EQObncW46f1DwSgmI7LYZoNHY0j8WlVPnQlpYNvozfkSyw2
+         aKJa9r+++C/9wTOGKWELCemG7NU2d7vpylEmhGaiwqABzyq7L1dbCZL+R3B1tXgwm5cR
+         esIzQnc0mo4bE7BFbXjwunMTrpgtHKMZu6dqU7FJFcQ632OWRgNcxx0qaHd2l4JX8AiL
+         LNKn7ltR5TsVgwofaOFB6WCR2D4iJId72HNwri4pbHWi+j1aeHQtqjQvgbsym1yP//Cd
+         2wDQ==
+X-Gm-Message-State: AFqh2koF7yOx9SAJ5bzUNlFkDIb75whhqXR8G334NB2i3G6XeleBTwsv
+        36p+tZH0VFkWwqYK+4Bycf2Z9qNGEPiwK3vQ8yGwg1KT
+X-Google-Smtp-Source: AMrXdXt5YBVPcaJuONok0izThgg5AbeLGxcDE8DEPjhmTV00Q/PT6PDhFYpoG3yC54VbOGL+Jhio36vToT0Y4BYkAYs=
+X-Received: by 2002:a05:600c:35ca:b0:3d3:4012:8d9d with SMTP id
+ r10-20020a05600c35ca00b003d340128d9dmr60012wmq.205.1671132132714; Thu, 15 Dec
+ 2022 11:22:12 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+References: <20221214110037.149387-1-cbranchereau@gmail.com>
+ <20221214110037.149387-2-cbranchereau@gmail.com> <CACRpkdag1ZDyHRu5FqLWrsiqbmVuX2Wj5z67yhkg_=ooFqsboQ@mail.gmail.com>
+In-Reply-To: <CACRpkdag1ZDyHRu5FqLWrsiqbmVuX2Wj5z67yhkg_=ooFqsboQ@mail.gmail.com>
+From:   Christophe Branchereau <cbranchereau@gmail.com>
+Date:   Thu, 15 Dec 2022 20:22:01 +0100
+Message-ID: <CAFsFa86mQt5hMAftcpqj77nraF82CjfXv=m_Zt5quTv7O8Jf9A@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] drm/panel: add the orisetech ota5601a
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adds support for the Xiaomi Mi A3 (xiaomi-laurel-sprout). Here's a
-summary on what's working.
+Hello Linus
 
-- dmesg output to bootloader preconfigured display
-- USB
-- UFS
-- SMD RPM regulators
+On Thu, Dec 15, 2022 at 9:42 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> Hi Christophe,
+>
+> thanks for your patch!
+>
+> On Wed, Dec 14, 2022 at 12:01 PM Christophe Branchereau
+> <cbranchereau@gmail.com> wrote:
+>
+> > Add the orisetech ota5601a ic driver
+> >
+> > For now it only supports the focaltech gpt3 3" 640x480 ips panel
+> > found in the ylm rg300x handheld.
+> >
+> > Signed-off-by: Christophe Branchereau <cbranchereau@gmail.com>
+> (...)
+> > +config DRM_PANEL_ORISETECH_OTA5601A
+> > +       tristate "Orise Technology ota5601a RGB/SPI panel"
+> > +       depends on OF && SPI
+> > +       depends on BACKLIGHT_CLASS_DEVICE
+> > +       select REGMAP_SPI
+>
+> Nice use of regmap in this driver.
+>
+> > +static const struct reg_sequence ota5601a_panel_regs[] = {
+> > +       { 0xfd, 0x00 },
+> > +       { 0x02, 0x00 },
+> > +
+> > +       { 0x18, 0x00 },
+> > +       { 0x34, 0x20 },
+> > +
+> > +       { 0x0c, 0x01 },
+> > +       { 0x0d, 0x48 },
+> > +       { 0x0e, 0x48 },
+> > +       { 0x0f, 0x48 },
+> > +       { 0x07, 0x40 },
+> > +       { 0x08, 0x33 },
+> > +       { 0x09, 0x3a },
+> > +
+> > +       { 0x16, 0x01 },
+> > +       { 0x19, 0x8d },
+> > +       { 0x1a, 0x28 },
+> > +       { 0x1c, 0x00 },
+> > +
+> > +       { 0xfd, 0xc5 },
+> > +       { 0x82, 0x0c },
+> > +       { 0xa2, 0xb4 },
+> > +
+> > +       { 0xfd, 0xc4 },
+> > +       { 0x82, 0x45 },
+> > +
+> > +       { 0xfd, 0xc1 },
+> > +       { 0x91, 0x02 },
+> > +
+> > +       { 0xfd, 0xc0 },
+> > +       { 0xa1, 0x01 },
+> > +       { 0xa2, 0x1f },
+> > +       { 0xa3, 0x0b },
+> > +       { 0xa4, 0x38 },
+> > +       { 0xa5, 0x00 },
+> > +       { 0xa6, 0x0a },
+> > +       { 0xa7, 0x38 },
+> > +       { 0xa8, 0x00 },
+> > +       { 0xa9, 0x0a },
+> > +       { 0xaa, 0x37 },
+> > +
+> > +       { 0xfd, 0xce },
+> > +       { 0x81, 0x18 },
+> > +       { 0x82, 0x43 },
+> > +       { 0x83, 0x43 },
+> > +       { 0x91, 0x06 },
+> > +       { 0x93, 0x38 },
+> > +       { 0x94, 0x02 },
+> > +       { 0x95, 0x06 },
+> > +       { 0x97, 0x38 },
+> > +       { 0x98, 0x02 },
+> > +       { 0x99, 0x06 },
+> > +       { 0x9b, 0x38 },
+> > +       { 0x9c, 0x02 },
+> > +
+> > +       { 0xfd, 0x00 },
+> > +};
+>
+> If these are registers, why is register 0xfd written 7 times with different
+> values?
 
-Signed-off-by: Lux Aliaga <they@mint.lgbt>
----
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../dts/qcom/sm6125-xiaomi-laurel-sprout.dts  | 254 ++++++++++++++++++
- 2 files changed, 255 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.=
-dts
+It initiates a page shift
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom=
-/Makefile
-index 3e79496292e7..2b2a0170db14 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -157,6 +157,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+=3D sdm850-lenovo-yoga-c630.=
-dtb
- dtb-$(CONFIG_ARCH_QCOM)	+=3D sdm850-samsung-w737.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+=3D sm4250-oneplus-billie2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+=3D sm6125-sony-xperia-seine-pdx201.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+=3D sm6125-xiaomi-laurel-sprout.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+=3D sm6350-sony-xperia-lena-pdx213.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+=3D sm6375-sony-xperia-murray-pdx225.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+=3D sm7225-fairphone-fp4.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts b/a=
-rch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
-new file mode 100644
-index 000000000000..86e1ec47bf5e
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
-@@ -0,0 +1,254 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2022, Lux Aliaga <they@mint.lgbt>
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/input/gpio-keys.h>
-+#include "sm6125.dtsi"
-+
-+/ {
-+	model =3D "Xiaomi Mi A3";
-+	compatible =3D "xiaomi,laurel-sprout", "qcom,sm6125";
-+	chassis-type =3D "handset";
-+
-+	/* required for bootloader to select correct board */
-+	qcom,msm-id =3D <394 0>; /* sm6125 v0 */
-+	qcom,board-id =3D <11 0>;
-+
-+	chosen {
-+		#address-cells =3D <2>;
-+		#size-cells =3D <2>;
-+		ranges;
-+
-+		framebuffer0: framebuffer@5c000000 {
-+			compatible =3D "simple-framebuffer";
-+			reg =3D <0 0x5c000000 0 (1560 * 720 * 4)>;
-+			width =3D <720>;
-+			height =3D <1560>;
-+			stride =3D <(720 * 4)>;
-+			format =3D "a8r8g8b8";
-+		};
-+	};
-+
-+	extcon_usb: usb-id {
-+		compatible =3D "linux,extcon-usb-gpio";
-+		id-gpio =3D <&tlmm 102 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells =3D <2>;
-+		#size-cells =3D <2>;
-+
-+		debug_mem: memory@ffb00000 {
-+			reg =3D <0x0 0xffb00000 0x0 0xc0000>;
-+			no-map;
-+		};
-+
-+		last_log_mem: memory@ffbc0000 {
-+			reg =3D <0x0 0xffbc0000 0x0 0x80000>;
-+			no-map;
-+		};
-+
-+		pstore_mem: ramoops@ffc00000 {
-+			compatible =3D "ramoops";
-+			reg =3D <0x0 0xffc40000 0x0 0xc0000>;
-+			record-size =3D <0x1000>;
-+			console-size =3D <0x40000>;
-+			msg-size =3D <0x20000 0x20000>;
-+		};
-+
-+		cmdline_mem: memory@ffd00000 {
-+			reg =3D <0x0 0xffd40000 0x0 0x1000>;
-+			no-map;
-+		};
-+	};
-+};
-+
-+
-+&hsusb_phy1 {
-+	status =3D "okay";
-+};
-+
-+&rpm_requests {
-+	regulators-0 {
-+		compatible =3D "qcom,rpm-pm6125-regulators";
-+
-+		vreg_s6a: s6 {
-+			regulator-min-microvolt =3D <936000>;
-+			regulator-max-microvolt =3D <1422000>;
-+		};
-+
-+		vreg_l1a: l1 {
-+			regulator-min-microvolt =3D <1200000>;
-+			regulator-max-microvolt =3D <1256000>;
-+		};
-+
-+		vreg_l2a: l2 {
-+			regulator-min-microvolt =3D <1000000>;
-+			regulator-max-microvolt =3D <1056000>;
-+		};
-+
-+		vreg_l3a: l3 {
-+			regulator-min-microvolt =3D <1000000>;
-+			regulator-max-microvolt =3D <1064000>;
-+		};
-+
-+		vreg_l4a: l4 {
-+			regulator-min-microvolt =3D <872000>;
-+			regulator-max-microvolt =3D <976000>;
-+		};
-+
-+		vreg_l5a: l5 {
-+			regulator-min-microvolt =3D <1648000>;
-+			regulator-max-microvolt =3D <3104000>;
-+		};
-+
-+		vreg_l6a: l6 {
-+			regulator-min-microvolt =3D <576000>;
-+			regulator-max-microvolt =3D <656000>;
-+		};
-+
-+		vreg_l7a: l7 {
-+			regulator-min-microvolt =3D <872000>;
-+			regulator-max-microvolt =3D <976000>;
-+		};
-+
-+		vreg_l8a: l8 {
-+			regulator-min-microvolt =3D <400000>;
-+			regulator-max-microvolt =3D <728000>;
-+		};
-+
-+		vreg_l9a: l9 {
-+			regulator-min-microvolt =3D <1800000>;
-+			regulator-max-microvolt =3D <1896000>;
-+		};
-+
-+		vreg_l10a: l10 {
-+			regulator-min-microvolt =3D <1800000>;
-+			regulator-max-microvolt =3D <1896000>;
-+		};
-+
-+		vreg_l11a: l11 {
-+			regulator-min-microvolt =3D <1800000>;
-+			regulator-max-microvolt =3D <1952000>;
-+		};
-+
-+		vreg_l12a: l12 {
-+			regulator-min-microvolt =3D <1800000>;
-+			regulator-max-microvolt =3D <1996000>;
-+		};
-+
-+		vreg_l13a: l13 {
-+			regulator-min-microvolt =3D <1800000>;
-+			regulator-max-microvolt =3D <1832000>;
-+		};
-+
-+		vreg_l14a: l14 {
-+			regulator-min-microvolt =3D <1800000>;
-+			regulator-max-microvolt =3D <1904000>;
-+		};
-+
-+		vreg_l15a: l15 {
-+			regulator-min-microvolt =3D <3104000>;
-+			regulator-max-microvolt =3D <3232000>;
-+		};
-+
-+		vreg_l16a: l16 {
-+			regulator-min-microvolt =3D <1800000>;
-+			regulator-max-microvolt =3D <1904000>;
-+		};
-+
-+		vreg_l17a: l17 {
-+			regulator-min-microvolt =3D <1248000>;
-+			regulator-max-microvolt =3D <1304000>;
-+		};
-+
-+		vreg_l18a: l18 {
-+			regulator-min-microvolt =3D <1200000>;
-+			regulator-max-microvolt =3D <1264000>;
-+		};
-+
-+		vreg_l19a: l19 {
-+			regulator-min-microvolt =3D <1648000>;
-+			regulator-max-microvolt =3D <2952000>;
-+		};
-+
-+		vreg_l20a: l20 {
-+			regulator-min-microvolt =3D <1648000>;
-+			regulator-max-microvolt =3D <2952000>;
-+		};
-+
-+		vreg_l21a: l21 {
-+			regulator-min-microvolt =3D <2600000>;
-+			regulator-max-microvolt =3D <2856000>;
-+		};
-+
-+		vreg_l22a: l22 {
-+			regulator-min-microvolt =3D <2944000>;
-+			regulator-max-microvolt =3D <3304000>;
-+		};
-+
-+		vreg_l23a: l23 {
-+			regulator-min-microvolt =3D <3000000>;
-+			regulator-max-microvolt =3D <3400000>;
-+		};
-+
-+		vreg_l24a: l24 {
-+			regulator-min-microvolt =3D <2944000>;
-+			regulator-max-microvolt =3D <3304000>;
-+		};
-+	};
-+};
-+
-+&sdc2_off_state {
-+	sd-cd-pins {
-+		pins =3D "gpio98";
-+		function =3D "gpio";
-+		drive-strength =3D <2>;
-+		bias-disable;
-+	};
-+};
-+
-+&sdc2_on_state {
-+	sd-cd-pins {
-+		pins =3D "gpio98";
-+		function =3D "gpio";
-+		drive-strength =3D <2>;
-+		bias-pull-up;
-+	};
-+};
-+
-+&tlmm {
-+	gpio-reserved-ranges =3D <22 2>, <28 6>;
-+};
-+
-+&ufs_mem_hc {
-+	vcc-supply =3D <&vreg_l24a>;
-+	vccq2-supply =3D <&vreg_l11a>;
-+	vcc-max-microamp =3D <600000>;
-+	vccq2-max-microamp =3D <600000>;
-+
-+	status =3D "okay";
-+};
-+
-+&ufs_mem_phy {
-+	vdda-phy-supply =3D <&vreg_l4a>;
-+	vdda-pll-supply =3D <&vreg_l10a>;
-+	vdda-phy-max-microamp =3D <51400>;
-+	vdda-pll-max-microamp =3D <14200>;
-+	vddp-ref-clk-supply =3D <&vreg_l18a>;
-+
-+	status =3D "okay";
-+};
-+
-+&usb3 {
-+	status =3D "okay";
-+};
-+
-+&usb3_dwc3 {
-+	extcon =3D <&extcon_usb>;
-+};
---=20
-2.38.1
+> This is rather a jam table or intializations sequence, so it should be
+> names something like that and a comment about undocumented
+> registers added probably as well.
 
+Honestly I don't remember how I got the panel specsheet, thought it
+was widely available but I can't find it anymore online,
+so yes I guess at least documenting what each page does could be good
+for future reference
+
+> > +static int ota5601a_enable(struct drm_panel *drm_panel)
+> > +{
+> > +       struct ota5601a *panel = to_ota5601a(drm_panel);
+> > +       int err;
+> > +
+> > +       err = regmap_write(panel->map, 0x01, 0x01);
+>
+> Since you know what this register does, what about:
+>
+> #include <linux/bits.h>
+>
+> #define OTA5601A_CTL 0x01
+> #define OTA5601A_CTL_OFF 0x00
+> #define OTA5601A_CTL_ON BIT(0)
+
+I can definitely do that if it improves clarity
+
+> > +static int ota5601a_get_modes(struct drm_panel *drm_panel,
+> > +                            struct drm_connector *connector)
+> > +{
+> > +       struct ota5601a *panel = to_ota5601a(drm_panel);
+> > +       const struct ota5601a_panel_info *panel_info = panel->panel_info;
+> > +       struct drm_display_mode *mode;
+> > +       unsigned int i;
+> > +
+> > +       for (i = 0; i < panel_info->num_modes; i++) {
+> > +               mode = drm_mode_duplicate(connector->dev,
+> > +                                         &panel_info->display_modes[i]);
+> > +               if (!mode)
+> > +                       return -ENOMEM;
+> > +
+> > +               drm_mode_set_name(mode);
+> > +
+> > +               mode->type = DRM_MODE_TYPE_DRIVER;
+> > +               if (panel_info->num_modes == 1)
+>
+> But ... you have just added an array that contains 2 elements, you
+> KNOW it will not be 1.
+
+I know that for the specific panel supported by this driver there are 2 modes,
+however in the future someone could want to add a panel using the same IC,
+which could have any number of modes
+
+>
+> > +                       mode->type |= DRM_MODE_TYPE_PREFERRED;
+>
+> I think you should probably set this on the preferred resolution
+> anyways, take the one you actually use.
+>
+> > +static const struct of_device_id ota5601a_of_match[] = {
+> > +       { .compatible = "focaltech,gpt3", .data = &gpt3_info },
+> > +       { /* sentinel */ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, ota5601a_of_match);
+>
+> Does this mean the display controller is ota5601a and the display
+> manufacturer and product is focaltech gpt3? Then it's fine.
+
+Yes
+
+> Overall the driver looks very good, just the above little details.
+
+Ok, will do the v3 next week, holidays etc :)
+
+> Yours,
+> Linus Walleij
