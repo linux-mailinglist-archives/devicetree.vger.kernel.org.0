@@ -2,148 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A177164DE4A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 17:13:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C5C1864DE5A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 17:16:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229955AbiLOQNZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 11:13:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43178 "EHLO
+        id S229927AbiLOQQr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 11:16:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229811AbiLOQNX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 11:13:23 -0500
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ADC131EE4;
-        Thu, 15 Dec 2022 08:13:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=pQq23aBLz2m2Qb/o0dxmFq0n0pj+yPa65DscBOK8wdk=; b=ph8Zhq1SIqIA9pbenDsYgg/e2H
-        KleIJOozdYhH1f/ZplayPuwLMlUiLf6z3/WUgtW1YO4UFanERFzVrGKkU+Zt92bejno3Zpiju+npB
-        a1SGBHcNnhkR/EhXe//Rjf7sqJ15yWhH6EjN/Xypu400PHhv/5iu25gJRjjV+A5dtn+KV+TjFvTYW
-        BFAOVOacBZYSC30bU8TQ7ZLbKjb54dQfOOFu7R7aU2ku8lrlBz9yKXD7hw8JKXXSC73SuPPrLk70O
-        FnmSpWcKYKxFLxVUwF4PFSxjj4dFIcp1jl5QhCxD9sYBS7q7DmehdqtFVE7uYbChwsHivjAvj43Zq
-        Q1oQVTfQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:35720)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1p5qr6-0003Hw-BH; Thu, 15 Dec 2022 16:13:08 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1p5qr1-0008U9-BS; Thu, 15 Dec 2022 16:13:03 +0000
-Date:   Thu, 15 Dec 2022 16:13:03 +0000
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Christian Marangi <ansuelsmth@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org,
-        Tim Harvey <tharvey@gateworks.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
-        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Subject: Re: [PATCH v7 01/11] leds: add support for hardware driven LEDs
-Message-ID: <Y5tHjwx1Boj3xMok@shell.armlinux.org.uk>
-References: <20221214235438.30271-1-ansuelsmth@gmail.com>
- <20221214235438.30271-2-ansuelsmth@gmail.com>
+        with ESMTP id S230094AbiLOQQm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 11:16:42 -0500
+Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60FB32EF1A
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 08:16:41 -0800 (PST)
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-1433ef3b61fso21527829fac.10
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 08:16:40 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WmhcSod630WMmrv8Iz4/Aem44InqHzLhbQpOczKGFtI=;
+        b=5ISnZ6XES5+zZCKbmBrKnOipiAOJ83Fvl4oiurxKbgg92Er5eADuACVIKG8AP/Og1z
+         oaWAupnJPnKJykJ2Iyyh733/S2FIL/ey2DzL3mJ29phkYnVGcwJruvWGK6N4ACeDgI/i
+         Cl8Z1BK2nRcx9dxIiLe3Wb37xdI2VlDWO98DI1/Hu7NELzxvP2mCkDhApIeGbIaq14qt
+         gqY6EX1n3lwe2yxIOEA6HBsJg0wtX82O5xYS22pOXLSmDSrsJ1G9XYOmu3riJakpB1WG
+         qAU+GFTtSk7QVjxcRciv83xTC/+JCqt7wGsgg8AuqxwywoLvHwWRsQWkWOEkbtlapFZA
+         jOxA==
+X-Gm-Message-State: ANoB5pn+qkzfKCh0miyTlhrDQnOgepOY9xmBLbIuQrF696LzHZjBDtur
+        k4lrNhRVJHukFi4Pgx44qw==
+X-Google-Smtp-Source: AA0mqf4ZpeLvaDZnLN6XCqYqsI3uas4LVmmjGi9sULsC0m6a0NGAeb3+kld7P5xa9O7lOS23KVKnfQ==
+X-Received: by 2002:a05:6870:ebc4:b0:144:e283:831f with SMTP id cr4-20020a056870ebc400b00144e283831fmr14321577oab.11.1671121000173;
+        Thu, 15 Dec 2022 08:16:40 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r20-20020a05687080d400b0012d939eb0bfsm4222398oab.34.2022.12.15.08.16.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Dec 2022 08:16:39 -0800 (PST)
+Received: (nullmailer pid 138172 invoked by uid 1000);
+        Thu, 15 Dec 2022 16:16:38 -0000
+Date:   Thu, 15 Dec 2022 10:16:38 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Chris Morgan <macromorgan@hotmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Chris Morgan <macroalpha82@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        tzimmermann@suse.de, mripard@kernel.org,
+        maarten.lankhorst@linux.intel.com, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, daniel@ffwll.ch,
+        airlied@gmail.com, sam@ravnborg.org, thierry.reding@gmail.com,
+        Maya Matuszczyk <maccraft123mc@gmail.com>
+Subject: Re: [PATCH V5 2/4] dt-bindings: display: panel: Add Magnachip
+ D53E6EA8966
+Message-ID: <20221215161638.GA135300-robh@kernel.org>
+References: <20221214180611.109651-1-macroalpha82@gmail.com>
+ <20221214180611.109651-3-macroalpha82@gmail.com>
+ <CACRpkdY7UArNJ5ZH8f5rx+9aoV_ii=0aE9PCj-6XHCL7Om0+=Q@mail.gmail.com>
+ <SN6PR06MB53429788776760E4BDBC55ABA5E19@SN6PR06MB5342.namprd06.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221214235438.30271-2-ansuelsmth@gmail.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <SN6PR06MB53429788776760E4BDBC55ABA5E19@SN6PR06MB5342.namprd06.prod.outlook.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Christian,
+On Thu, Dec 15, 2022 at 08:44:56AM -0600, Chris Morgan wrote:
+> On Thu, Dec 15, 2022 at 09:47:19AM +0100, Linus Walleij wrote:
+> > On Wed, Dec 14, 2022 at 7:06 PM Chris Morgan <macroalpha82@gmail.com> wrote:
+> > 
+> > > From: Chris Morgan <macromorgan@hotmail.com>
+> > >
+> > > Add documentation for Magnachip D53E6EA8966 based panels such as the
+> > > Samsung AMS495QA01 panel.
+> > >
+> > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > > Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+> > (...)
+> > >  .../display/panel/magnachip,d53e6ea8966.yaml  | 62 +++++++++++++++++++
+> > 
+> > It's fine to keep this as samsung,ams495qa01.
+> > 
+> 
+> Would the device tree team be okay with that change? The driver name
+> itself has changed and I fear possible confusion if someone is looking
+> for docs by driver name.
 
-Thanks for the patch.
+Doesn't matter to me either way.
 
-I think Andrew's email is offline at the moment.
-
-On Thu, Dec 15, 2022 at 12:54:28AM +0100, Christian Marangi wrote:
-> +static bool led_trigger_is_supported(struct led_classdev *led_cdev,
-> +				     struct led_trigger *trigger)
-> +{
-> +	switch (led_cdev->blink_mode) {
-> +	case SOFTWARE_CONTROLLED:
-> +		if (trigger->supported_blink_modes == HARDWARE_ONLY)
-> +			return 0;
-> +		break;
-> +	case HARDWARE_CONTROLLED:
-> +		if (trigger->supported_blink_modes == SOFTWARE_ONLY)
-> +			return 0;
-> +		break;
-> +	case SOFTWARE_HARDWARE_CONTROLLED:
-> +		break;
-> +	default:
-> +		return 0;
-> +	}
-> +
-> +	return 1;
-
-Should be returning true/false. I'm not sure I'm a fan of the style of
-this though - wouldn't the following be easier to read?
-
-	switch (led_cdev->blink_mode) {
-	case SOFTWARE_CONTROLLED:
-		return trigger->supported_blink_modes != HARDWARE_ONLY;
-
-	case HARDWARE_CONTROLLED:
-		return trigger->supported_blink_modes != SOFTWARE_ONLY;
-
-	case SOFTWARE_HARDWARE_CONTROLLED:
-		return true;
-	}
-?
-
-Also, does it really need a default case - without it, when the
-led_blink_modes enum is expanded and the switch statement isn't
-updated, we'll get a compiler warning which will prompt this to be
-updated - whereas, with a default case, it won't.
-
-> @@ -188,6 +213,10 @@ int led_trigger_set(struct led_classdev *led_cdev, struct led_trigger *trig)
->  		led_set_brightness(led_cdev, LED_OFF);
->  	}
->  	if (trig) {
-> +		/* Make sure the trigger support the LED blink mode */
-> +		if (!led_trigger_is_supported(led_cdev, trig))
-> +			return -EINVAL;
-
-Shouldn't validation happen before we start taking any actions? In other
-words, before we remove the previous trigger?
-
-> @@ -350,12 +381,26 @@ static inline bool led_sysfs_is_disabled(struct led_classdev *led_cdev)
->  
->  #define TRIG_NAME_MAX 50
->  
-> +enum led_trigger_blink_supported_modes {
-> +	SOFTWARE_ONLY = SOFTWARE_CONTROLLED,
-> +	HARDWARE_ONLY = HARDWARE_CONTROLLED,
-> +	SOFTWARE_HARDWARE = SOFTWARE_HARDWARE_CONTROLLED,
-
-I suspect all these generic names are asking for eventual namespace
-clashes. Maybe prefix them with LED_ ?
-
-Thanks.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+Rob
