@@ -2,71 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB62E64D87A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 10:22:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1381764D88F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 10:28:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229938AbiLOJWm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 04:22:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59952 "EHLO
+        id S229983AbiLOJ2R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 04:28:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229950AbiLOJWh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 04:22:37 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6FF133C28;
-        Thu, 15 Dec 2022 01:22:33 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 4120CB81698;
-        Thu, 15 Dec 2022 09:22:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04B40C433EF;
-        Thu, 15 Dec 2022 09:22:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671096151;
-        bh=zEb0ixyjXY3i78Yi3+jsNaVpreCjlmA3VWVSg0drJSE=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=jRmmxySBxYf0VAsyP1TsXAARZHB2dXeW2gHqqLduWtedkH++pcV524GaCkc+Xb1Cr
-         B/6t0G8r89JFLD3MxPx1VMKKqS8eE0WamMtrLjP5ornG+HJi9Y64jVsWqqp3wYeRul
-         2v5RvIShXhF4H6sRlz2JxhXRfUKiIgO8wcLGjtkXeA6pm4Epf+EIqD4l3Gc5gle+jg
-         Cr1DvhswWEAuRAI3xiAsNg71esyfieMT1Lkx4VkdV42NPRuaH/TgaEQseTK8y0KcbP
-         Y857wr5Wd9vITwDCKTMGADPWDbQFMgogJFwSY3zU+ty7I7k9S6gvRMNQH3/jB20e+S
-         t3nthDD+KjaSA==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.95)
-        (envelope-from <maz@kernel.org>)
-        id 1p5kRg-00CnyB-Lk;
-        Thu, 15 Dec 2022 09:22:28 +0000
-Date:   Thu, 15 Dec 2022 09:22:28 +0000
-Message-ID: <861qp1qawb.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229995AbiLOJ2G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 04:28:06 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FD5637223
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 01:28:05 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1p5kWy-0000il-4t; Thu, 15 Dec 2022 10:27:56 +0100
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1p5kWx-0002Gz-Gv; Thu, 15 Dec 2022 10:27:55 +0100
+Date:   Thu, 15 Dec 2022 10:27:55 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Christopher Obbard <chris.obbard@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Kever Yang <kever.yang@rock-chips.com>, kernel@collabora.com,
-        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        Sugar Zhang <sugar.zhang@rock-chips.com>
-Subject: Re: [PATCHv6 3/7] arm64: dts: rockchip: Add base DT for rk3588 SoC
-In-Reply-To: <20221214182247.79824-4-sebastian.reichel@collabora.com>
-References: <20221214182247.79824-1-sebastian.reichel@collabora.com>
-        <20221214182247.79824-4-sebastian.reichel@collabora.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: sebastian.reichel@collabora.com, heiko@sntech.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org, chris.obbard@collabora.com, benjamin.gaignard@collabora.com, linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kever.yang@rock-chips.com, kernel@collabora.com, yifeng.zhao@rock-chips.com, zhangqing@rock-chips.com, sugar.zhang@rock-chips.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com
+Subject: Re: [PATCH 1/7] arm64: dts: tqma8mpql: Fix temperature sensor
+ compatible
+Message-ID: <20221215092755.jbfo3kaz7353hn73@pengutronix.de>
+References: <20221214095917.964695-1-alexander.stein@ew.tq-group.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221214095917.964695-1-alexander.stein@ew.tq-group.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,64 +53,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Dec 2022 18:22:43 +0000,
-Sebastian Reichel <sebastian.reichel@collabora.com> wrote:
-> 
-> From: Kever Yang <kever.yang@rock-chips.com>
-> 
-> This initial version supports (single core) CPU, dma, interrupts, timers,
-> UART and SDHCI. In short - everything necessary to boot Linux on this
-> system on chip.
+Hi Alexander,
 
-Single core? The DT indicates otherwise.
+On 22-12-14, Alexander Stein wrote:
+> Use the correct compatible 'nxp,se97b' as it is an SE97BTP chip.
+> While at it, fix the node name according to device tree spec
+> recommendations. The EEPROM is a separate node anyway.
+
+Just FTR: sometimes other components like bootloaders use the node names
+as well, therefore changing node names should be done with caution. For
+this series it is okay I think.
 
 > 
-> The DT is split into rk3588 and rk3588s, which is a reduced version
-> (i.e. with less peripherals) of the former.
-> 
-> Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
-> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
-> [rebase, squash and reword commit message]
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+
+The whole series lgtm, feel free to add my.
+
+Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
+
 > ---
->  arch/arm64/boot/dts/rockchip/rk3588.dtsi  |   58 +
->  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 1703 +++++++++++++++++++++
->  2 files changed, 1761 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588.dtsi
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+>  arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts | 5 ++---
+>  arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi         | 5 ++---
+>  2 files changed, 4 insertions(+), 6 deletions(-)
 > 
-
-[...]
-
-> +	gic: interrupt-controller@fe600000 {
-> +		compatible = "arm,gic-v3";
-> +		reg = <0x0 0xfe600000 0 0x10000>, /* GICD */
-> +		      <0x0 0xfe680000 0 0x100000>; /* GICR */
-> +		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		interrupt-controller;
-> +		mbi-alias = <0x0 0xfe610000>;
-> +		mbi-ranges = <424 56>;
-> +		msi-controller;
-> +		#interrupt-cells = <4>;
-> +
-> +		ppi-partitions {
-> +			ppi_cluster0: interrupt-partition-0 {
-> +				affinity = <&cpu_l0 &cpu_l1 &cpu_l2 &cpu_l3>;
-> +			};
-> +
-> +			ppi_cluster1: interrupt-partition-1 {
-> +				affinity = <&cpu_b0 &cpu_b1 &cpu_b2 &cpu_b3>;
-
-The use of the word "cluster" is pretty misleading, specially as the
-actual CPU clusters don't align with this partitioning (you seem to
-have 2 independent A76 clusters). Consider using the word "partition",
-which was chosen exactly to avoid this confusion.
-
-Thanks,
-
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
+> index a3340814099aa..f7f657b007a18 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
+> @@ -516,9 +516,8 @@ tlv320aic3x04: audio-codec@18 {
+>  		ldoin-supply = <&reg_vcc_3v3>;
+>  	};
+>  
+> -	/* NXP SE97BTP with temperature sensor + eeprom */
+> -	se97_1c: temperature-sensor-eeprom@1c {
+> -		compatible = "nxp,se97", "jedec,jc-42.4-temp";
+> +	se97_1c: temperature-sensor@1c {
+> +		compatible = "nxp,se97b", "jedec,jc-42.4-temp";
+>  		reg = <0x1c>;
+>  	};
+>  
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi
+> index 7bd680a926ce7..ebc29a950ba9a 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi
+> @@ -63,9 +63,8 @@ &i2c1 {
+>  	sda-gpios = <&gpio5 15 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+>  	status = "okay";
+>  
+> -	/* NXP SE97BTP with temperature sensor + eeprom */
+> -	se97: temperature-sensor-eeprom@1b {
+> -		compatible = "nxp,se97", "jedec,jc-42.4-temp";
+> +	se97: temperature-sensor@1b {
+> +		compatible = "nxp,se97b", "jedec,jc-42.4-temp";
+>  		reg = <0x1b>;
+>  	};
+>  
+> -- 
+> 2.34.1
+> 
+> 
+> 
