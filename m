@@ -2,147 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05A2864DD0E
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 15:45:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DEE7764DDFD
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 16:48:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229694AbiLOOpN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 09:45:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55550 "EHLO
+        id S229625AbiLOPsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 10:48:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230089AbiLOOpE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 09:45:04 -0500
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12olkn2105.outbound.protection.outlook.com [40.92.22.105])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 715512F653
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 06:45:02 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FSBIl69q55yE7MxBFTNMacM2UlGkb2d6vdB8w9NyUyb+QJa+258i7/C7nnPXwLCVzBMnpUSfdk3NbCzylwQF4Al//ecKbtxcApIfC8U4vgWF+gvhz3vFrCco2XM+AXnpnlMzuCnN87RuAkKkhMtvYnTYORRCM5tTT95mUy8pi6fJGuuOTaOwaZvOPZO/3iq74EyWAvxt/vklgVn+hqbyo0Ch9QpVJilkweCIlauWWdy/BFRH2D76effs3ybo2x01SZkRqL+KkoZQ261sqXG1cM8uwio7A3hb3mKQhzvp0ZC6Z6+x5SSjjR33yKBYv9vij7f/q0TtYrKzo2Q59NEnNw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ua1pI0CppFuZtVmHkHj0+kPHGcyAJV/CQUUkChohtE8=;
- b=Njd0SzG/dLsolksoGVuz5L/U89iNeHm2uarmAgh4z48EoSfG6p2c1SohMQ3417/WiR74Sq/B9M7WMbbvNfkTr1Y7cvH7tUzzoJ3ur3kGIjwndkgoiGZHLnP3PYqFAIXqm9yC9SNBTeyZ56ZLd9iT07aD+8yswGj0DGJObiDfUXc+MsNbsBElDY/+SeEmkQtgq/rFnxrSuLBl4k0Gz/FwKi2kWsbQIr2Wh58nJmrJShHcOMnssiVAQNhoz0A/IEhjI3bCqFWik35TK3X29cb3lMY4X7mc35AgPVQhDp+Svhw4yKbz34wtrOuLr+27LNqMOIDlKdFm+s8rcLUZO6WNSQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ua1pI0CppFuZtVmHkHj0+kPHGcyAJV/CQUUkChohtE8=;
- b=olDudbtAFvF82cBkxOVVpEF12Pk/gt0Z875oF2PjBxFHo7WVL7fKOAbFRV2drEwJnxNEwUnkNN5A7tDGUYWvjgIsf2QKB0DmoGpw0eMutYmjoxJ/abbM9rUAmJk7jAPwDiJp3WrYZxQIeaZLBE0nhtd/Xi21Y1ht7SzBAYhsAcQNg7wvBai7484PNoX/thG4EglH3aAQPL4V6GAHWy5l8lY4QeEsUWRij+ft/Ar2IrmfElgWoZQ2gI/gq6jfFvmpsmSfOJzdFn2PibWHMnioOQ4EyMnNWmTApQlHKEZXH2J290ct5Kn7c6IGYJPb1FmIA2Es636YOAxdh+jSeEKwEw==
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
- by CO3PR06MB8576.namprd06.prod.outlook.com (2603:10b6:303:17d::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5924.12; Thu, 15 Dec
- 2022 14:45:00 +0000
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::ff4f:2e64:cf70:cc68]) by SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::ff4f:2e64:cf70:cc68%5]) with mapi id 15.20.5924.005; Thu, 15 Dec 2022
- 14:44:59 +0000
-Date:   Thu, 15 Dec 2022 08:44:56 -0600
-From:   Chris Morgan <macromorgan@hotmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Chris Morgan <macroalpha82@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        tzimmermann@suse.de, mripard@kernel.org,
-        maarten.lankhorst@linux.intel.com, heiko@sntech.de,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org,
-        thierry.reding@gmail.com, Maya Matuszczyk <maccraft123mc@gmail.com>
-Subject: Re: [PATCH V5 2/4] dt-bindings: display: panel: Add Magnachip
- D53E6EA8966
-Message-ID: <SN6PR06MB53429788776760E4BDBC55ABA5E19@SN6PR06MB5342.namprd06.prod.outlook.com>
-References: <20221214180611.109651-1-macroalpha82@gmail.com>
- <20221214180611.109651-3-macroalpha82@gmail.com>
- <CACRpkdY7UArNJ5ZH8f5rx+9aoV_ii=0aE9PCj-6XHCL7Om0+=Q@mail.gmail.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACRpkdY7UArNJ5ZH8f5rx+9aoV_ii=0aE9PCj-6XHCL7Om0+=Q@mail.gmail.com>
-X-TMN:  [WfsULrF+B9Yc3/ihuyBaN+o1MTDqld4y]
-X-ClientProxiedBy: SA0PR11CA0062.namprd11.prod.outlook.com
- (2603:10b6:806:d2::7) To SN6PR06MB5342.namprd06.prod.outlook.com
- (2603:10b6:805:f9::31)
-X-Microsoft-Original-Message-ID: <Y5sy6PCH547Hv69t@wintermute.localhost.fail>
+        with ESMTP id S229959AbiLOPsE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 10:48:04 -0500
+X-Greylist: delayed 2643 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 15 Dec 2022 07:48:03 PST
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE6582D1F9
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 07:48:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Cc:To
+        :From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date
+        :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+        References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+        List-Owner:List-Archive; bh=USYqznAH4SDqUevncPOHC9VofBQznPJDAAswThOanBE=; b=H
+        LMplgt81ZSsISkJ2Fta+lVkPgewzjrt6F/34vbmwcWgLOk9wRLhytxMBD2tNM4yv15XybMtglwjZx
+        pqI7XYOejDOoYw7yFqLZ7f2OuBK8m8LYXHBqOI/gkTtGKruavQtN+wmICMQhqmDG8xkz5x/ib7+um
+        5gfftwAIZCTiYiB8=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:48102 helo=pettiford.lan)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1p5pm2-0000EC-4n; Thu, 15 Dec 2022 10:03:50 -0500
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, hugo@hugovil.com,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Date:   Thu, 15 Dec 2022 10:02:01 -0500
+Message-Id: <20221215150214.1109074-1-hugo@hugovil.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|CO3PR06MB8576:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7b0d2757-f74b-404b-02d3-08dadeaaf0cc
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: RGfri2XOVbtCv8wZ3U4b96B7jW509rzLLLdpI/puDZnbpcH7HNsa67VZAfBFOIY+MavS+t4ektx0aRSBEB+1rRrBT1uclyNxMToOCHuugXXJymjIj3VOUo8ybJe+n3G7LwEFhN5b/3R+r9Tl4Q1kOU/dIAH5Q2IZoHW932XqDF1kyFzuJeVZbzhvIi7VaLEzY+mBaIPf0Y5hHWiFSMI6jJAfMKT9rEh96AvOGa/tIep0O3PGenI6WTzVpYEsuptt2WDBqEphB7xNci3QElXAP9dQAwv3aT7Kt9Fa6nCVYsAjLyPp66m3Zmk4lGOT4E8uLXzsAn5gLgVTJuhF7tUI0y0dlHQ+l2T3/8ILapWuBhKM+TizyFgWFpN0ghh5eUX31Hxrcs4jdehKMiCuckJSDZElydihTYEYJMbCBNMd5xUflJY8JS9iKWUmb8ds0Ipr87h6XdwILJduWi9OvT2Fxjdtl+jQAlnLeU7R1m6/952c0kzZepEPb+ZIuVl67zXxu3UTR8A5pzgskUCDMGgWztenP1Sn+ZiOS1F8JwDizhhjqJujQRwmAqruRVmAF3DO30b3EEyH0hBRcQgIzyXqU0wFAfaXUaHnjlRofffQ0eYOJ5+IYMsNKws/paAc3sqNqmbghJbkz4YYAwbsvuLKiQ==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?5Hz1PbMPPqsIGKCQDbeizrOx1ogCfol9jQqudaXM8LPVaYCI7gZp37NubRSl?=
- =?us-ascii?Q?jjlAzKSofI9ACm0jNOwhBde+J0U8wnyPYkHBBAUdPydaOucR2NH5OckpAUm6?=
- =?us-ascii?Q?a04Qdyajed080ZZIgkGZthkoXExpdBe1JGhCr1avXGedNPhe6qAq609B85tl?=
- =?us-ascii?Q?k2nANRWXn7H0arfWRYQaA62JXB9MI5PpphVrH2YsFDk5N0mB7kLwbknOIYaF?=
- =?us-ascii?Q?OkKvOfmF8Nm1DwZYE5uwLCAXI1QTmXE+D8Fhr5XfuLG/A/0tiqkHzNayJLMK?=
- =?us-ascii?Q?SHbWqQplLOi2wraCAFsS44bivmIYuMQA2Hik8T5+wIb1nApHAIP6QLe8iyJ8?=
- =?us-ascii?Q?iiWYleVikT7ZGD6kAJg42inmwigpdn4U1htXiyRyqv/Bdl1JZzkVfwlORPTo?=
- =?us-ascii?Q?UZ2fKTPO7Ja2NATVstbaPfp7P3j0F6h11MkdT55+Xq/WelvFmz2z9li+2sp0?=
- =?us-ascii?Q?j+XHwDamtJhFXAtznxL0oRo5iphf41pagVAxC8pCRNWN2MC02emz0P7Y8/+J?=
- =?us-ascii?Q?nQttYOtZUIVEkJ5aipbznp3m87rWWPl6gGNtZY2xGznWsB9No/iVRMLc2c+M?=
- =?us-ascii?Q?vNIEIuT6u/y+iEq/kkmJgd4Sw0cY+uXNkkxPdk38VlpqN+hCFqSswafcSLi5?=
- =?us-ascii?Q?rZSzMQ7bHQVgDaWeJqkUTtrlvj5qOFu15swi9OU13foe7Qp84T+Ohp6jodu5?=
- =?us-ascii?Q?NGUjN6Ojn0PASIuTxLcsOYuDrunO/9baHlo4SxskTEbnn6Wor2Iutrrs2gCv?=
- =?us-ascii?Q?EtRmD+wv64hDuUBaUZ5AkP2plRUPK7GcgshLb3E5j+Ga/es3cEAqab1oEbeC?=
- =?us-ascii?Q?rL/sH+Di9gQUbiZNP43/hpueUwFlg1km9RpzU6Hq3F4n4QqYglYDpCr1COwo?=
- =?us-ascii?Q?5BHuk+VsdtUCoGqXM41mzpG0QT2sfFgDcMdqt8NLYEhCbtJFFEhbMvasCcnV?=
- =?us-ascii?Q?M6sYF7mQ8rehfG4BWkLNMVFK/IAi93XOQTWH7awTTjEbf6cXbFa+o0SzhmV4?=
- =?us-ascii?Q?m0AWaaoipdveTIcYs3ghy6Xhe76W/ww+/Jr0+tuO1CfO94XlY8LIQ4NfOURv?=
- =?us-ascii?Q?mP+Io8LdIZYPHc9bUWhPEDa6JptJpnpjfezwUawN5FfA7putxFxBk2jCUaj5?=
- =?us-ascii?Q?+s1PjQn1dukkvuv4IKy1BhncxZ2jtns4CSWtp9PkSmQbZBoDbC9uilh3cAPf?=
- =?us-ascii?Q?ORj776yfrdSL+BkgNke+F01bSnbVZRjjc+Gzo+MCR+yN9dYGt9edkGKGT/qM?=
- =?us-ascii?Q?ocmK7oTG485Aq5YGNiBCCW4o6utieF8ExVkeUfSGtA=3D=3D?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7b0d2757-f74b-404b-02d3-08dadeaaf0cc
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2022 14:44:59.9085
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO3PR06MB8576
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
+Subject: [PATCH v3 00/14] rtc: pcf2127: add PCF2131 driver
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 15, 2022 at 09:47:19AM +0100, Linus Walleij wrote:
-> On Wed, Dec 14, 2022 at 7:06 PM Chris Morgan <macroalpha82@gmail.com> wrote:
-> 
-> > From: Chris Morgan <macromorgan@hotmail.com>
-> >
-> > Add documentation for Magnachip D53E6EA8966 based panels such as the
-> > Samsung AMS495QA01 panel.
-> >
-> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
-> (...)
-> >  .../display/panel/magnachip,d53e6ea8966.yaml  | 62 +++++++++++++++++++
-> 
-> It's fine to keep this as samsung,ams495qa01.
-> 
+From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-Would the device tree team be okay with that change? The driver name
-itself has changed and I fear possible confusion if someone is looking
-for docs by driver name.
+Hello,
+this patch series adds the driver for the PCF2131 real-time clock.
 
-Otherwise I noticed I had an outdated version of the dt-schema and
-missed an error, so I have to resubmit either way to fix it. The
-horrors of upgrading your build machine...
+This RTC is very similar in functionality to the PCF2127/29 with the
+following differences:
+  -supports two new control registers at offsets 4 and 5
+  -supports a new reset register
+  -supports 4 tamper detection functions instead of 1
+  -has no nvmem (like the PCF2129)
+  -has two output interrupt pins instead of one
+  -has 1/100th seconds capabilities (not supported in this driver)
+  -pcf2127 has watchdog clock sources: 1/60,   1, 64 and 4096Hz
+   pcf2131 has watchdog clock sources: 1/64, 1/4,  4 and   64Hz
+  -watchdog value register cannot be read after being set
 
-Thank you
+Most of the register addresses are very different, although they still
+follow the same layout. For example, the time/date and tamper registers
+have a different base address, but the offsets are all the same.
+Consequently, the source code of the PCF2127 driver can be easily adapted
+to support this new device.
 
-> Just mention that it uses the magnachip controller in the
-> description.
-> 
-> That Linux implements this with a generic driver that handles
-> all (in theory possible) magnachip-based products is a linuxism
-> and does not need to be in the bindings.
-> 
-> Yours,
-> Linus Walleij
+Patches 1 to 6 modify the existing pcf2127 driver to make it more generic
+and able to support multiple variants, like the PCF2131. This is done
+mostly by using offsets instead of absolute hardcoded register addresses.
+
+Patch 7 add actual support for the PCF2131.
+
+Patch 8 configures all interrupt sources to go through the INT A pin.
+
+Patch 9 changes the PWRMNG bits to be the same with the PCF2131 as they
+      are with the PCF2127/29 (different default values).
+
+Patch 10 allow to confirm PCF2131 device presence by reading the reset
+      register fixed pattern.
+
+Patch 11 adapt the time/date registers write sequence for PCF2131 (STOP and
+      CPR bits).
+
+Patch 12 add support for generic watchdog timing configuration.
+
+Patch 13 add a new flag to identify if device has read support for reading
+      watchdog register value.
+      Since the watchdog value register cannot be read on the PCF2131 after
+      being set, it seems that we cannot detect if watchdog timer was
+      started by bootloader. I am not sure what is the best way to handle
+      this situation, suggestions are welcomed.
+
+Patch 14 add the dt-bindings for the PCF2131.
+
+I have tested the driver using a PCF2131-ARD evaluation board connected to
+an NXP imx8mp evaluation board:
+  - Time get/set ok;
+  - Alarms get/set ok
+  - Timestamp 1 to 4 ok
+  - IRQ alarm ok
+  - Watchdog ok
+  - Also tested successfully with "RTC Driver Test Example" from
+    Documentation/rtc.txt
+
+I have also tested the driver on a custom PCF2129 adapter board connected to a
+beaglebone black.
+
+Thank you.
+
+Link: [v1] https://patchwork.ozlabs.org/project/rtc-linux/patch/20220125200009.900660-2-hugo@hugovil.com/
+Link: [v2] https://patchwork.ozlabs.org/project/rtc-linux/list/?series=285734
+
+Changes for V3:
+- Rebased for kernel v6.1
+
+Changes for V2:
+- In general, fix and improvements after I have tested on real hardware
+- Fix alarm interrupt A/B mask setting for PCF2131:
+  PCF2131_BIT_INT_AIE must be cleared, not set, to enable interrupt.
+- Remove low_reg validation: only check if TS interrupt flag is
+  defined, as low_reg is defined at address 0 for PCF2127/29.
+- Change PWRMNG value for PCF2131: default is different than PCF2127/29.
+- Adapt time/date registers write sequence for PCF2131 (STOP and CPR bits).
+- Map all interrupt sources to INT A pin
+- Read and validate PCF2131 device presence from RESET register
+- Adapt watchdog configuration for PCF2131
+
+Hugo Villeneuve (14):
+  rtc: pcf2127: add variant-specific configuration structure
+  rtc: pcf2127: adapt for time/date registers at any offset
+  rtc: pcf2127: adapt for alarm registers at any offset
+  rtc: pcf2127: adapt for WD registers at any offset
+  rtc: pcf2127: adapt for CLKOUT register at any offset
+  rtc: pcf2127: add support for multiple TS functions
+  rtc: pcf2127: add support for PCF2131 RTC
+  rtc: pcf2127: add support for PCF2131 interrupts on output INT_A
+  rtc: pcf2127: set PWRMNG value for PCF2131
+  rtc: pcf2127: read and validate PCF2131 device signature
+  rtc: pcf2127: adapt time/date registers write sequence for PCF2131
+  rtc: pcf2127: support generic watchdog timing configuration
+  rtc: pcf2127: add flag for watchdog register value read support
+  dt-bindings: rtc: pcf2127: add PCF2131
+
+ .../devicetree/bindings/rtc/nxp,pcf2127.yaml  |   4 +-
+ drivers/rtc/Kconfig                           |   4 +-
+ drivers/rtc/rtc-pcf2127.c                     | 939 ++++++++++++++----
+ 3 files changed, 752 insertions(+), 195 deletions(-)
+
+-- 
+2.30.2
+
