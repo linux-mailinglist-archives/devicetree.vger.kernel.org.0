@@ -2,181 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BB5D64DBDD
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 14:02:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C38B864DBFE
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 14:11:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229889AbiLONB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 08:01:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42888 "EHLO
+        id S229537AbiLONL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 08:11:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229668AbiLONBy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 08:01:54 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 201562BB25
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 05:01:53 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id j4so15605400lfk.0
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 05:01:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Azv+l1o5feIvU2IPvHHOfcOOXq+7SwDjmkm9LdHDhRA=;
-        b=Gw2OdyD294YVkOZYYaefKZvE+ZNzfh5PNJrfMu1oXxIgqqQUmV1eAqBJPLHgOR9FaR
-         BX/+l6xev+4/37+oHAU0CuN3G34mFp/zd9gRt7B9jhlmH/N7DbKSB8fBL5uI2piC4HdA
-         3wqpCPGON6kvnwwpyxd7cuwZD/jSafsbkexnmORuDJClIAlfQzyjy6nweGPUavjU8DFY
-         a1UFwzWm0VziXWCTITi6uWNjGAG4UCeJ9c+t0g6x0DxvwtGcudg3yfXwJggCIg7G9nWS
-         aW3MoB+e6rjnACJq5Bo1nEcTpBMDZRsTB1A+K0sV/KLB2JU5z0ByFKCtpHiGwYvSEODa
-         FNyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Azv+l1o5feIvU2IPvHHOfcOOXq+7SwDjmkm9LdHDhRA=;
-        b=ZJreWkJaGrwYMb+WBVWcfKK06LJ8jjmb3jlJnBWXskP8txYrTmuoleanA6SWMJYDF2
-         ic3JmO4JSI0Bx42ZSOUm0bgttfny9dCEaPnuqgK6WY3Bs6VMU6CXQEV+VV5B+dFBFCKJ
-         vbxOi1LNA5sCyje4hU1AO0SWMvgZajTpmCDS3B1QAlxd2RSlzBjD3D5hlX+ogUOPre7q
-         uATFUxLp80gVgXMmbK8Stpjgm34UXAHpGMK/gtkOLCi0BYKUmmqHDK4bYG4Qtk4ESK+K
-         FlRv3FWht2GzcGdi6q9yN2b0VaM3e3DiiEiwXSa8PnX7V4tocvajFQKjX7ELqZJE16tc
-         WiWw==
-X-Gm-Message-State: ANoB5pkrbJU/eE3ji5dwlp9W+iwcZql4SyZBAOf9OFdK+My1I+a72vop
-        OrwGeL5h5isnyyvi4c3kHOq41w==
-X-Google-Smtp-Source: AA0mqf7ZNIPtsT5ah14ZxYpFuZEh9ro1LNuZvfCT2BaZ4frYgwm9oLvmiL8F1BbZSF0hrITqSDS0VA==
-X-Received: by 2002:a05:6512:3fa4:b0:4a4:68b9:19d9 with SMTP id x36-20020a0565123fa400b004a468b919d9mr10752592lfa.1.1671109310240;
-        Thu, 15 Dec 2022 05:01:50 -0800 (PST)
-Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id y12-20020a19914c000000b004b55a1c4649sm1157350lfj.38.2022.12.15.05.01.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Dec 2022 05:01:48 -0800 (PST)
-Message-ID: <28eceb7c-fbd7-896b-8951-f640cd510c4c@linaro.org>
-Date:   Thu, 15 Dec 2022 14:01:45 +0100
+        with ESMTP id S229462AbiLONL1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 08:11:27 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10D1E2DAA7;
+        Thu, 15 Dec 2022 05:11:20 -0800 (PST)
+X-UUID: e4d6c24e21de4336837f385da117e45d-20221215
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=wEtcKJxSE9mxxuhtX/9piOaTQKW2w7JZNGu4dtoOPgQ=;
+        b=crkgtFRPQ4te7/X2zeYhDY7MKNEdoyAWrRZbfZwg6hI2Ns/XvdIEow2ow9du8tTlQ16UJtR4abICdB6aSiqSYQJM9ilyRuJrUY9/5LYP0Fp4+amGRuMrpboZHEhpoYUa7BIJzztQSzS6P7BlisxvlJAwcku5kuiSoQfbMlkECa8=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.14,REQID:7f977f49-d877-4bd4-986b-3f3383c53416,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:95
+X-CID-INFO: VERSION:1.1.14,REQID:7f977f49-d877-4bd4-986b-3f3383c53416,IP:0,URL
+        :0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTION
+        :quarantine,TS:95
+X-CID-META: VersionHash:dcaaed0,CLOUDID:b7edb1b4-d2e2-434d-b6d3-aeae88dfcc78,B
+        ulkID:2212152001006932A3PN,BulkQuantity:6,Recheck:0,SF:38|28|17|19|48,TC:n
+        il,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:40,QS:nil,BEC:nil,COL:0
+X-UUID: e4d6c24e21de4336837f385da117e45d-20221215
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw02.mediatek.com
+        (envelope-from <allen-kh.cheng@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1268461911; Thu, 15 Dec 2022 21:11:15 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with ShadowRedundancy id 15.2.792.3;
+ Thu, 15 Dec 2022 13:11:14 +0000
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Thu, 15 Dec 2022 20:00:19 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Thu, 15 Dec 2022 20:00:18 +0800
+From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Ikjoon Jang <ikjn@chromium.org>
+CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <angelogioacchino.delregno@collabora.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Subject: [PATCH 1/4] dt-bindings: power: Add MT8192 ADSP power domain
+Date:   Thu, 15 Dec 2022 20:00:13 +0800
+Message-ID: <20221215120016.26611-2-allen-kh.cheng@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <20221215120016.26611-1-allen-kh.cheng@mediatek.com>
+References: <20221215120016.26611-1-allen-kh.cheng@mediatek.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: pm8941-rtc add alarm register
-Content-Language: en-US
-To:     Eric Chanudet <echanude@redhat.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Andrew Halaney <ahalaney@redhat.com>,
-        Brian Masney <bmasney@redhat.com>
-References: <20221214210908.1788284-1-echanude@redhat.com>
- <20221214210908.1788284-3-echanude@redhat.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221214210908.1788284-3-echanude@redhat.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-MTK:  N
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add power domain ID for the ADSP power partition found on MT8192 SoC.
 
+Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+---
+ include/dt-bindings/power/mt8192-power.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-On 14.12.2022 22:09, Eric Chanudet wrote:
-> A few descriptions including a qcom,pm8941-rtc describe two reg-names
-> for the "rtc" and "alarm" register banks, but only one offset. For
-> consistency with reg-names, add the "alarm" register offset. No
-> functional change is expected from this.
-> 
-> Signed-off-by: Eric Chanudet <echanude@redhat.com>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+diff --git a/include/dt-bindings/power/mt8192-power.h b/include/dt-bindings/power/mt8192-power.h
+index 4eaa53d7270a..63e81cd0d06d 100644
+--- a/include/dt-bindings/power/mt8192-power.h
++++ b/include/dt-bindings/power/mt8192-power.h
+@@ -28,5 +28,6 @@
+ #define MT8192_POWER_DOMAIN_CAM_RAWA	18
+ #define MT8192_POWER_DOMAIN_CAM_RAWB	19
+ #define MT8192_POWER_DOMAIN_CAM_RAWC	20
++#define MT8192_POWER_DOMAIN_ADSP	21
+ 
+ #endif /* _DT_BINDINGS_POWER_MT8192_POWER_H */
+-- 
+2.18.0
 
-Konrad
->  arch/arm64/boot/dts/qcom/pm8150.dtsi      | 2 +-
->  arch/arm64/boot/dts/qcom/pm8916.dtsi      | 3 ++-
->  arch/arm64/boot/dts/qcom/pm8950.dtsi      | 2 +-
->  arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi | 2 +-
->  arch/arm64/boot/dts/qcom/pmp8074.dtsi     | 2 +-
->  arch/arm64/boot/dts/qcom/pms405.dtsi      | 2 +-
->  6 files changed, 7 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/pm8150.dtsi b/arch/arm64/boot/dts/qcom/pm8150.dtsi
-> index 574fa95a2871..db90c55fa2cf 100644
-> --- a/arch/arm64/boot/dts/qcom/pm8150.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pm8150.dtsi
-> @@ -121,7 +121,7 @@ pm8150_adc_tm: adc-tm@3500 {
->  
->  		rtc@6000 {
->  			compatible = "qcom,pm8941-rtc";
-> -			reg = <0x6000>;
-> +			reg = <0x6000>, <0x6100>;
->  			reg-names = "rtc", "alarm";
->  			interrupts = <0x0 0x61 0x1 IRQ_TYPE_NONE>;
->  		};
-> diff --git a/arch/arm64/boot/dts/qcom/pm8916.dtsi b/arch/arm64/boot/dts/qcom/pm8916.dtsi
-> index 08f9ca006e72..e2a6b66d8847 100644
-> --- a/arch/arm64/boot/dts/qcom/pm8916.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pm8916.dtsi
-> @@ -93,7 +93,8 @@ adc-chan@f {
->  
->  		rtc@6000 {
->  			compatible = "qcom,pm8941-rtc";
-> -			reg = <0x6000>;
-> +			reg = <0x6000>, <0x6100>;
-> +			reg-names = "rtc", "alarm";
->  			interrupts = <0x0 0x61 0x1 IRQ_TYPE_EDGE_RISING>;
->  		};
->  
-> diff --git a/arch/arm64/boot/dts/qcom/pm8950.dtsi b/arch/arm64/boot/dts/qcom/pm8950.dtsi
-> index 07c3896bd36f..d7df4ad60509 100644
-> --- a/arch/arm64/boot/dts/qcom/pm8950.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pm8950.dtsi
-> @@ -126,7 +126,7 @@ xo-therm-buf@3c {
->  
->  		rtc@6000 {
->  			compatible = "qcom,pm8941-rtc";
-> -			reg = <0x6000>;
-> +			reg = <0x6000>, <0x6100>;
->  			reg-names = "rtc", "alarm";
->  			interrupts = <0x0 0x61 0x1 IRQ_TYPE_NONE>;
->  		};
-> diff --git a/arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi b/arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi
-> index 20c5d60c8c2c..ee1e428d3a6e 100644
-> --- a/arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi
-> @@ -108,7 +108,7 @@ pmm8155au_1_adc_tm: adc-tm@3500 {
->  
->  		pmm8155au_1_rtc: rtc@6000 {
->  			compatible = "qcom,pm8941-rtc";
-> -			reg = <0x6000>;
-> +			reg = <0x6000>, <0x6100>;
->  			reg-names = "rtc", "alarm";
->  			interrupts = <0x0 0x61 0x1 IRQ_TYPE_NONE>;
->  
-> diff --git a/arch/arm64/boot/dts/qcom/pmp8074.dtsi b/arch/arm64/boot/dts/qcom/pmp8074.dtsi
-> index ceb2e6358b3d..580684411d74 100644
-> --- a/arch/arm64/boot/dts/qcom/pmp8074.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pmp8074.dtsi
-> @@ -74,7 +74,7 @@ vph-pwr@131 {
->  
->  		pmp8074_rtc: rtc@6000 {
->  			compatible = "qcom,pm8941-rtc";
-> -			reg = <0x6000>;
-> +			reg = <0x6000>, <0x6100>;
->  			reg-names = "rtc", "alarm";
->  			interrupts = <0x0 0x61 0x1 IRQ_TYPE_NONE>;
->  			allow-set-time;
-> diff --git a/arch/arm64/boot/dts/qcom/pms405.dtsi b/arch/arm64/boot/dts/qcom/pms405.dtsi
-> index ffe9e33808d0..22edb47c6a84 100644
-> --- a/arch/arm64/boot/dts/qcom/pms405.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pms405.dtsi
-> @@ -125,7 +125,7 @@ xo_therm: xo_temp@76 {
->  
->  		rtc@6000 {
->  			compatible = "qcom,pm8941-rtc";
-> -			reg = <0x6000>;
-> +			reg = <0x6000>, <0x6100>;
->  			reg-names = "rtc", "alarm";
->  			interrupts = <0x0 0x61 0x1 IRQ_TYPE_NONE>;
->  		};
