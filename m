@@ -2,65 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3980664D8F2
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 10:48:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C280B64D8FC
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 10:50:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229451AbiLOJsS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 04:48:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46212 "EHLO
+        id S230269AbiLOJuG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 04:50:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230098AbiLOJrw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 04:47:52 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAAE7DEFB
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 01:47:07 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id b3so14808406lfv.2
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 01:47:07 -0800 (PST)
+        with ESMTP id S230233AbiLOJtY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 04:49:24 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A710220F4
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 01:49:21 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id j4so14868358lfk.0
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 01:49:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=w0ykWWBKW8/ZBMZU3VIzhqp7T3vPa6pgVpq4cSGMlg0=;
-        b=fgs9z7V83Xphm9Tb2ZsNfDTHKudzIQGMDRXRybBuAd/t+P+YYElj4tBpeNKRq817P7
-         Xf7gv5n4xHLyZfvcHRxTx45qFv2tnVO/9XHgz7R8lWEW48qaOZKfAoMqA7z0h4esYwkI
-         HDmOFPzFQGDkEZHdiy4b0CKpzoqoKjK/b7rNWuKY0DRAeuviQQ0cUT8ANhG2127bVRjz
-         ZmVfTqdpNVYAPaiJOehXLkQRNTGkpruDhsH6tKhn6FuaDMlQ97xN3PT7bzKVzCMFv+zl
-         lxWJvyHsX+1Mg9wn0cl6RfRspA6tUBKiU0HZ0mCmrV4sMUw5+/J5fYpXuanJOa0DpN4F
-         zE0A==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yY96EIpEYo2WvzK5TLn9sy1o8NsGtoNUVSSOvpliiac=;
+        b=NWjRT0VljK2M8aptatHJ8aLxWUf4BSSb7gtfVo4p2OixaPp17M2vyQAVBEqOHOemj3
+         N+AQEz6MpApP9/2/ceTUgN4RLCN+vrmm4+TXtkQEROSrVdQeLaxneWEmj2uy+/1jfTTE
+         gjZ7DblQriWzYDQ3xeB/XCaArVES8ccpi+XpnAWUszGdvlk5IQOc2zLal/XTd4nNbcx+
+         FvScg3QKnn1vADCaOBHKqwIsMueohg++CwoN1eyFwqrOIGkFl16qj0ZrFk8BRpY33ZHX
+         h77sAQY21iUugI02FlpmSXECFYCLsv3mvPUAJhSCZlIMox7uW/2360vTxa31ytPcM06a
+         ANHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=w0ykWWBKW8/ZBMZU3VIzhqp7T3vPa6pgVpq4cSGMlg0=;
-        b=IwT5etEc3n6tezWYJiwuU7ZyrceXaHEe5ScTQVpgFUIUgAz7n/HgaQpIJG6bnTmXND
-         rH/d3ob52Quk1w9Bf00MY3H3rEZGgVcpsEmNgvO7giSP5lJzr2Alp969Gzg/6Ny5Q/Q4
-         pXvA2RZTBgEqvg9TdFRNtVMSAAZIlpbX9xzzVf3UuluxDQPIZdo9EuR1ruINb0/0L8Dy
-         +iesgeCUKK5ODUDQ2mH3xPveykpc6wcMKSyVNa+HQ7pwQkve0C442k2ZGf9qHqRpu3DG
-         lWh5cSGys7rJ0XBOpaMfvpDegOvdMQmU5i0C8p3r2k7vFfycz6usW20rSdLiwPTcYK2n
-         jFoQ==
-X-Gm-Message-State: ANoB5pl4Jcqa+np7YTxgMHSJEo/wR7WveW0VlgyT8pKHI/ebgFPWDI+X
-        QhNfCoIRNLu0sGqaUUgegtdrX+Mv47bb9MN7IkOxTw==
-X-Google-Smtp-Source: AA0mqf505m+SddZABkA7fouzchAPJq45jpr0VwmD2u0n7HZnbMPDQTn6v6VHx1n2Or7OUL9zBeTAozudY0O570Zf6L4=
-X-Received: by 2002:a19:6b19:0:b0:4a2:740b:5b02 with SMTP id
- d25-20020a196b19000000b004a2740b5b02mr30983264lfa.122.1671097623236; Thu, 15
- Dec 2022 01:47:03 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yY96EIpEYo2WvzK5TLn9sy1o8NsGtoNUVSSOvpliiac=;
+        b=fo3BBBAHc0w6jjPhrTaGNlC5uPFPXtqA+B1Y24sDb6yzunbia7f/uHyoWD0brSD8re
+         g+aM8rM5kllYRw4tehXt8fvh/iNH1uVG+IaYlUwZV6pdk7UGdW8Jso/VZcNZum3cZq+x
+         otiy/4AkZOQBBHye0beRfzG5cAowZmE3rblqEq12yrLKBfnmQwVcgxx0MaOEzaKUydJV
+         kOOBLqGYdLtPLsn1CswPWHrOKeqdZilo9k/jhndL8I+1kB7YtGfD3DL0RsuDBYBnbHhg
+         5wh/3Rns+ncXgcem232zP6zECDMMZFbZ9lzPiK8chF2kZj6847QOOatUIyhMvhFJSAOG
+         m1bw==
+X-Gm-Message-State: ANoB5pm4LMZV7z/YMkwuVYjf3kuLJ2mEy15FqRF4lxTngii5rFnKOY16
+        vnGyFYa9zN3xtQCIFXdE3W/j/A==
+X-Google-Smtp-Source: AA0mqf7zAnoMebFACZks9GUm6dwE1ZHAdzdmTbCibv2fl5cvIUrtTdpngz8fSmPdZ5KR7LlEFDr/jQ==
+X-Received: by 2002:ac2:44d8:0:b0:4a4:68b8:9c2e with SMTP id d24-20020ac244d8000000b004a468b89c2emr7468340lfm.22.1671097759677;
+        Thu, 15 Dec 2022 01:49:19 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id s12-20020a056512202c00b00494935ddb88sm1114271lfs.240.2022.12.15.01.49.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Dec 2022 01:49:19 -0800 (PST)
+Message-ID: <8199105f-4c67-1af3-65fe-a5c8ddababca@linaro.org>
+Date:   Thu, 15 Dec 2022 10:49:17 +0100
 MIME-Version: 1.0
-References: <20221214203124.564537-1-bhupesh.sharma@linaro.org>
- <20221214203124.564537-4-bhupesh.sharma@linaro.org> <f77cc097-56ac-845f-9882-e67aab82b02c@linaro.org>
-In-Reply-To: <f77cc097-56ac-845f-9882-e67aab82b02c@linaro.org>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Thu, 15 Dec 2022 15:16:51 +0530
-Message-ID: <CAH=2NtxeovBZq9UGUzS73iY5oXhb24vZgaq44-hcOOztZDsrAQ@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sm6115: Add USB SS qmp phy node
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        agross@kernel.org, bhupesh.linux@gmail.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        konrad.dybcio@linaro.org, andersson@kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH 1/5] dt-bindings: gpio: Add RZ/V2M PWC GPIO driver
+ bindings
+Content-Language: en-US
+To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Lee Jones <lee@kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jacopo Mondi <jacopo@jmondi.org>
+References: <20221213224310.543243-1-fabrizio.castro.jz@renesas.com>
+ <20221213224310.543243-2-fabrizio.castro.jz@renesas.com>
+ <20221214161057.GA1140718-robh@kernel.org>
+ <TYWPR01MB87759AE2651E96276F6CAE94C2E09@TYWPR01MB8775.jpnprd01.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <TYWPR01MB87759AE2651E96276F6CAE94C2E09@TYWPR01MB8775.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -69,80 +93,216 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Dec 2022 at 13:49, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 14/12/2022 21:31, Bhupesh Sharma wrote:
-> > Add USB superspeed qmp phy node to dtsi.
-> > Make sure that the oneplus board dts (which includes the
-> > sm4250.dtsi) continues to work as intended.
-> >
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > ---
-> >  .../boot/dts/qcom/sm4250-oneplus-billie2.dts  |  3 ++
-> >  arch/arm64/boot/dts/qcom/sm6115.dtsi          | 38 ++++++++++++++++++-
-> >  2 files changed, 39 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
-> > index 3f39f25e0721e..4f0d65574448b 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
-> > +++ b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
-> > @@ -232,6 +232,9 @@ &usb {
-> >  &usb_dwc3 {
-> >       maximum-speed = "high-speed";
-> >       dr_mode = "peripheral";
-> > +
-> > +     phys = <&usb_hsphy>;
-> > +     phy-names = "usb2-phy";
-> >  };
-> >
-> >  &usb_hsphy {
-> > diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> > index e4ce135264f3d..15f311dcd289f 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> > @@ -579,6 +579,40 @@ usb_hsphy: phy@1613000 {
-> >                       status = "disabled";
-> >               };
-> >
-> > +             usb_qmpphy: phy@1615000 {
-> > +                     compatible = "qcom,sm6115-qmp-usb3-phy";
-> > +                     reg = <0x01615000 0x200>;
-> > +                     clocks = <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
-> > +                              <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
-> > +                              <&gcc GCC_AHB2PHY_USB_CLK>;
-> > +                     clock-names = "com_aux",
-> > +                                   "ref",
-> > +                                   "cfg_ahb";
-> > +                     resets = <&gcc GCC_USB3_PHY_PRIM_SP0_BCR>,
-> > +                              <&gcc GCC_USB3PHY_PHY_PRIM_SP0_BCR>;
-> > +                     reset-names = "phy", "phy_phy";
-> > +                     status = "disabled";
-> > +                     #clock-cells = <1>;
-> > +                     #address-cells = <1>;
-> > +                     #size-cells = <1>;
-> > +                     ranges;
-> > +
-> > +                     usb_ssphy: phy@1615200 {
-> > +                             reg = <0x01615200 0x200>,
-> > +                                   <0x01615400 0x200>,
-> > +                                   <0x01615c00 0x400>,
-> > +                                   <0x01615600 0x200>,
-> > +                                   <0x01615800 0x200>,
-> > +                                   <0x01615a00 0x100>;
-> > +                             #phy-cells = <0>;
-> > +                             #clock-cells = <1>;
-> > +                             clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
-> > +                             clock-names = "pipe0";
-> > +                             clock-output-names = "usb3_phy_pipe_clk_src";
-> > +                     };
-> > +             };
-> > +
-> > +
->
-> Still two blank lines.
+On 14/12/2022 19:26, Fabrizio Castro wrote:
+> Hi Rob,
+> 
+> Thanks for your feedback!
+> 
+>> From: Rob Herring <robh@kernel.org>
+>> Sent: 14 December 2022 16:11
+>> To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+>> Subject: Re: [PATCH 1/5] dt-bindings: gpio: Add RZ/V2M PWC GPIO driver
+>> bindings
+>>
+>> On Tue, Dec 13, 2022 at 10:43:06PM +0000, Fabrizio Castro wrote:
+>>> Add dt-bindings document for the RZ/V2M PWC GPIO driver.
+>>
+>> Bindings are for h/w blocks/devices, not a specific driver.
+> 
+> Apologies, I will reword the changelog in v2.
+> 
+>>
+>>>
+>>> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+>>> ---
+>>>  .../bindings/gpio/renesas,rzv2m-pwc-gpio.yaml | 62 +++++++++++++++++++
+>>>  1 file changed, 62 insertions(+)
+>>>  create mode 100644
+>> Documentation/devicetree/bindings/gpio/renesas,rzv2m-pwc-gpio.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/gpio/renesas,rzv2m-pwc-
+>> gpio.yaml b/Documentation/devicetree/bindings/gpio/renesas,rzv2m-pwc-
+>> gpio.yaml
+>>> new file mode 100644
+>>> index 000000000000..ecc034d53259
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/gpio/renesas,rzv2m-pwc-gpio.yaml
+>>> @@ -0,0 +1,62 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id:
+>> https://jpn01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetre
+>> e.org%2Fschemas%2Fgpio%2Frenesas%2Crzv2m-pwc-
+>> gpio.yaml%23&amp;data=05%7C01%7Cfabrizio.castro.jz%40renesas.com%7C603623c
+>> 766f4421b85bd08daddedcb8c%7C53d82571da1947e49cb4625a166a4a2a%7C0%7C0%7C638
+>> 066310628408926%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMz
+>> IiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=o46ncDZK8YK5HYJ
+>> ZYDXuq3yfEA34vnaxEsIDBlcroc0%3D&amp;reserved=0
+>>> +$schema:
+>> https://jpn01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetre
+>> e.org%2Fmeta-
+>> schemas%2Fcore.yaml%23&amp;data=05%7C01%7Cfabrizio.castro.jz%40renesas.com
+>> %7C603623c766f4421b85bd08daddedcb8c%7C53d82571da1947e49cb4625a166a4a2a%7C0
+>> %7C0%7C638066310628408926%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQ
+>> IjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=VoWvV
+>> pW782DVH2zdTKIesyzqm6sjiFyacbl833%2BjRis%3D&amp;reserved=0
+>>> +
+>>> +title: Renesas RZ/V2M External Power Sequence Controller (PWC) GPIO
+>>> +
+>>> +description: |+
+>>> +  The PWC IP found in the RZ/V2M family of chips comes with General-
+>> Purpose
+>>> +  Output pins, alongside the below functions
+>>> +    - external power supply on/off sequence generation
+>>> +    - on/off signal generation for the LPDDR4 core power supply (LPVDD)
+>>> +    - key input signals processing
+>>> +  This node uses syscon to map the register used to control the GPIOs
+>>> +  (the register map is retrieved from the parent dt-node), and the node
+>> should
+>>> +  be represented as a sub node of a "syscon", "simple-mfd" node.
+>>> +
+>>> +maintainers:
+>>> +  - Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>> +      - enum:
+>>> +          - renesas,r9a09g011-pwc-gpio # RZ/V2M
+>>> +          - renesas,r9a09g055-pwc-gpio # RZ/V2MA
+>>> +      - const: renesas,rzv2m-pwc-gpio
+>>> +
+>>> +  offset:
+>>
+>> Too generic of a name. We want any given property name (globally) to
+>> have 1 type. With the below comment, this should be replaced with 'reg'
+>> instead if you have child nodes.
+> 
+> My understanding is that syscon subnodes normally use this name for exactly
+> the same purpose, for example:
+> https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/power/reset/syscon-poweroff.yaml#L27
+> https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml#L30
+> 
+> What am I missing?
 
-Ok, I have sent a fixed v3. Please help review.
+These are generic drivers, so they need offset as they do not match any
+specific programming model. You are not making a generic device. Address
+offsets are not suitable in most cases for DTS. There are of course
+exceptions so you can present reasons why this one is exception.
+> 
+>>
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    description: |
+>>> +      Offset in the register map for controlling the GPIOs (in bytes).
+>>> +
+>>> +  regmap:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>> +    description: Phandle to the register map node.
+>>
+>> Looks like GPIO is a sub-function of some other block. Define the
+>> binding for that entire block.
+> 
+> That's defined in patch 3 from this series.
+> I have sent it as patch 3 because that document references:
+> * /schemas/gpio/renesas,rzv2m-pwc-gpio.yaml
+> * /schemas/power/reset/renesas,rzv2m-pwc-poweroff.yaml
+> Which are defined in this patch and in patch 2 in the series.
+> 
+> Do you want me to move patch 3 to patch 1 in v2?
 
-Thanks,
-Bhupesh
+We do not want regmap, but proper definition of entire hardware.
+
+> 
+>> GPIO can be either either a function of
+>> that node (just add GPIO provider properties) or you can have GPIO child
+>> nodes. Depends on what the entire block looks like to decide. Do you
+>> have multiple instances of the GPIO block would be one reason to have
+>> child nodes.
+> 
+> From a pure HW point of view, this GPIO block is contained inside the PWC block
+> (as PWC is basically a MFD device), and it only deals with 2 General-Purpose
+> Output pins, both controlled by 1 (and the same) register, therefore the GPIO
+> block is only 1 child.
+> 
+> If possible, I would like to keep the functionality offered by the sub-blocks of
+> PWC contained in separated drivers and DT nodes (either non-child nodes or child
+> nodes).
+
+Driver do not matter for bindings. We talk about regmap field which - as
+you explained above - is not needed.
+
+
+> 
+> My understanding is that simple-mfd will automatically probe the children of the
+> simple-mfd node, and also hierarchically it makes sense to me to have the DT nodes
+> of the PWC sub-blocks as children of the "syscon", "simple-mfd" node. I have found
+> other instances of this same architecture in the kernel already (plenty from NXP/Freescale),
+> for example:
+
+I don't understand. You do not have here simple-mfd and it still does
+not explain Rob's comment and regmap.
+
+> https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/freescale/imx8mm.dtsi#L585
+> https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/freescale/imx8mn.dtsi#L586
+> https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/freescale/imx8mp.dtsi#L451
+> https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/freescale/imx8mq.dtsi#L616
+> https://github.com/torvalds/linux/blob/master/arch/mips/boot/dts/mti/sead3.dts#L93
+> etc...
+> 
+> Something like the below could also work, but I don't think it would represent the
+> HW accurately:
+> pwc: pwc@a3700000 {
+> 	compatible = "renesas,r9a09g011-pwc", "renesas,rzv2m-pwc",
+> 		     "syscon", "simple-mfd";
+> 	reg = <0 0xa3700000 0 0x800>;
+> };
+> 
+> pwc-gpio {
+> 	compatible = "renesas,r9a09g011-pwc-gpio",
+> 		     "renesas,rzv2m-pwc-gpio";
+> 	regmap = <&pwc>;
+> 	gpio-controller;
+> 	#gpio-cells = <2>;
+> };
+> 
+> pwc-poweroff {
+> 	compatible = "renesas,r9a09g011-pwc-poweroff",
+> 		     "renesas,rzv2m-pwc-poweroff";
+> 	regmap = <&pwc>;
+> };
+> 
+> 
+> I think the below describes things better:
+> pwc: pwc@a3700000 {
+> 	compatible = "renesas,r9a09g011-pwc", "renesas,rzv2m-pwc",
+> 		     "syscon", "simple-mfd";
+> 	reg = <0 0xa3700000 0 0x800>;
+> 
+> 	gpio {
+> 		compatible = "renesas,r9a09g011-pwc-gpio",
+> 			     "renesas,rzv2m-pwc-gpio";
+> 		regmap = <&pwc>;
+
+You speak about two different things. So again - drop regmap. You do not
+need it.
+
+> 		offset = <0x80>;
+> 		gpio-controller;
+> 		#gpio-cells = <2>;
+> 	};
+> 
+> 	poweroff {
+> 		compatible = "renesas,r9a09g011-pwc-poweroff",
+> 			     "renesas,rzv2m-pwc-poweroff";
+> 		regmap = <&pwc>;
+
+Drop regmap.
+
+> 	};
+> };
+> 
+
+Best regards,
+Krzysztof
+
