@@ -2,381 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D34A464DE82
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 17:22:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 667F464DE89
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 17:24:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230230AbiLOQWv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 11:22:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49200 "EHLO
+        id S229984AbiLOQYH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 11:24:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229914AbiLOQWL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 11:22:11 -0500
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89C5B379C8
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 08:21:32 -0800 (PST)
-Received: by mail-lj1-x229.google.com with SMTP id x11so10433806ljh.7
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 08:21:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KGgy1kwmhyvNgNoLeg85LWl+baSaGRRUGrWl5WKGVAI=;
-        b=VcNNrb+gf/AhDUHQmKNhCS0MSMJM33Yiz9olpKQxgEqcDobk8YIwqvGWEzZgNlNcSP
-         Ks0nbrvwEqbMVw3WqxYOLM/LAk75tIXvyd/7BqRg+Cee6YDQgRI4AJz++A6mic68ahwV
-         FnAHBv+QRpyZ7sefhtHC5MXqSXNRf80hkLLxkrtv5RsnYLGhwYqkh6BFdvKV1iw6Oxlt
-         b6RQTZHPn2wi9DgfQ0+vSmtNC4+UqzfijyrgxKuKmvWFXc/NyO8KrW2uIGE3bhCzcGmI
-         wIha94QzItvbL8zRue8WfiunzEk064h0HwSFVHSPiuqYzlHMOzOsqylHJ/X27WEJrxQa
-         s5gw==
+        with ESMTP id S230113AbiLOQXf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 11:23:35 -0500
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E85FF396D3;
+        Thu, 15 Dec 2022 08:22:17 -0800 (PST)
+Received: by mail-ot1-f54.google.com with SMTP id m7-20020a9d6447000000b0066da0504b5eso3856000otl.13;
+        Thu, 15 Dec 2022 08:22:17 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KGgy1kwmhyvNgNoLeg85LWl+baSaGRRUGrWl5WKGVAI=;
-        b=BCrGPL2E952PC4NYKwbci1LxgOGxx/bWYQTKjJur7C4qGJ/U6EUla7QHLvk6l/KkzB
-         kKBEVl1g3ObF3Vv6+rlAZDUly5ewpueHGg2UOFXtwN1bs2JnEEVErb1/NsAsQ9hhVTxZ
-         DSA9qymksHD16VOwsb5Rfgj3FsVvmCW9D9dGHh6Wanjz5klaHflEH1b9dwf/2Hpe9WNh
-         6gPChYFPxvL7FDvBn8lnBcxXor61sC1X9ZcIS+yGQumI1IoCOjZX9zv81zsRhpXlCHbO
-         g+B3pQcErFgefx3MHlOIkejZUOrWI2nJi3eQKKB6Pp1P1Q9eDAvb/x2XZpucnnZZR1lM
-         QO7A==
-X-Gm-Message-State: ANoB5pkmUkNHAMRydunW2vPCnt3SC85PiSLchP7kD78cu+Cs6vVqy076
-        mIe055Arp1xKyVUPTzxT/AM/CA==
-X-Google-Smtp-Source: AA0mqf5cDQyiA2gftqbvbHgCnBf6WzMSseakZVJbFb/RxPTrYYhuBpluF8vqwb4xuValRzB3nVChlg==
-X-Received: by 2002:a05:651c:b26:b0:279:cd84:1f26 with SMTP id b38-20020a05651c0b2600b00279cd841f26mr9938918ljr.13.1671121290926;
-        Thu, 15 Dec 2022 08:21:30 -0800 (PST)
-Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id b15-20020a2eb90f000000b0027ce207d82dsm477180ljb.90.2022.12.15.08.21.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Dec 2022 08:21:30 -0800 (PST)
-Message-ID: <ca35a013-e373-4d3e-07f5-0b3dfa5c3ba2@linaro.org>
-Date:   Thu, 15 Dec 2022 17:21:28 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sm6125: Initial support for
- xiaomi-laurel-sprout
-Content-Language: en-US
-To:     Lux Aliaga <they@mint.lgbt>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5lvp+Rra/J+0wVWurvbgG0Bk7qShU+6ZOVAk+JE7aHs=;
+        b=xWml9QbxpMOa2ekPwryWxLXpaSuCWrhupKpu4VuYFpMkhSpBY+egWUFKy/s1BpAd9m
+         +xKyVJin2Y1QoOUQjiVZWFNG34t9twUEcnluDcVscs2neDJliUs20JhD4GOKTPPXX3Cv
+         YUZhonSPUMYk3jD6xvqxHiScsdBJ3n9CMrV7nFUZ1byHSeYEy4Z9DEO+ts056YYkXHB0
+         xFkSPkA7uiX7slhS0+oEjVKexllRBRjGVGXi5nTyz4HTJZQHvmF8UZd5Lou3+OhpfAjO
+         HGQ4dDu2F9Q7G8VC4gIFsUNYCMAB3Ksobm4F5Oq2KszVRjkJGpb0yCDNNVPFZUtFyk7u
+         xALQ==
+X-Gm-Message-State: ANoB5pncLq8ts+YT4trDNHS4JEQ2aqlym8TWY6gjfHSZOZsCMx4B5nbk
+        wwLSur+3sxN/JiMPWcyoGA==
+X-Google-Smtp-Source: AA0mqf7X/PFzmParAODHOyFtTJjq+Nk9hxsJMAGA3If31IqPxkC3c3wsbOlFneYtyPmQ2EVOqVfozw==
+X-Received: by 2002:a05:6830:2098:b0:670:6976:a864 with SMTP id y24-20020a056830209800b006706976a864mr14501417otq.29.1671121337113;
+        Thu, 15 Dec 2022 08:22:17 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id d21-20020a056830139500b0066ec7ace428sm3698309otq.10.2022.12.15.08.22.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Dec 2022 08:22:16 -0800 (PST)
+Received: (nullmailer pid 145631 invoked by uid 1000);
+        Thu, 15 Dec 2022 16:22:16 -0000
+Date:   Thu, 15 Dec 2022 10:22:16 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund@ragnatech.se>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kees Cook <keescook@chromium.org>,
-        Tony Luck <tony.luck@intel.com>,
-        "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-References: <20221215161258.355962-1-they@mint.lgbt>
- <20221215161258.355962-4-they@mint.lgbt>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221215161258.355962-4-they@mint.lgbt>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Thomas Nizan <tnizan@witekio.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v3 02/12] dt-bindings: media: i2c: max9286: Add property
+ to select I2C speed
+Message-ID: <20221215162216.GA141183-robh@kernel.org>
+References: <20221214233825.13050-1-laurent.pinchart+renesas@ideasonboard.com>
+ <20221214233825.13050-3-laurent.pinchart+renesas@ideasonboard.com>
+ <167111060968.3140791.14917058235505688958.robh@kernel.org>
+ <Y5skgJqitZRKHqyY@pendragon.ideasonboard.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y5skgJqitZRKHqyY@pendragon.ideasonboard.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 15.12.2022 17:12, Lux Aliaga wrote:
-> This commit implements support for the Xiaomi Mi A3
-> (xiaomi-laurel-sprout). Here's a summary on what's working.
+On Thu, Dec 15, 2022 at 03:43:28PM +0200, Laurent Pinchart wrote:
+> Hi Rob,
 > 
-> - dmesg output to bootloader preconfigured display
-> - USB
-> - UFS
-> - SMD RPM regulators
+> On Thu, Dec 15, 2022 at 07:24:38AM -0600, Rob Herring wrote:
+> > On Thu, 15 Dec 2022 01:38:15 +0200, Laurent Pinchart wrote:
+> > > The I2C speed on the remote side (the I2C master bus of the connected
+> > > serializers) is configurable, and doesn't need to match the speed of the
+> > > local bus (the slave bus of the MAX9286). All remote buses must use the
+> > > same speed, and the MAX9286 needs to be programmed accordingly. Add a
+> > > new DT property to select the speed to make it configurable.
+> > > 
+> > > Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > ---
+> > > Changes since v2:
+> > > 
+> > > - Rename property to maxim,i2c-remote-bus-hz
+> > > - Specify the property type
+> > > ---
+> > >  .../devicetree/bindings/media/i2c/maxim,max9286.yaml      | 8 ++++++++
+> > >  1 file changed, 8 insertions(+)
+> > > 
+> > 
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> > 
+> > yamllint warnings/errors:
+> > 
+> > dtschema/dtc warnings/errors:
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml: properties:maxim,i2c-remote-bus-hz: '$ref' should not be valid under {'const': '$ref'}
+> > 	hint: Standard unit suffix properties don't need a type $ref
+> > 	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
 > 
-> Signed-off-by: Lux Aliaga <they@mint.lgbt>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->  .../dts/qcom/sm6125-xiaomi-laurel-sprout.dts  | 252 ++++++++++++++++++
->  2 files changed, 253 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
+> I wonder how I missed that, as I've run dt_binding_check before
+> submitting. I'll fix it.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 3e79496292e7..2b2a0170db14 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -157,6 +157,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-samsung-w737.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm4250-oneplus-billie2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-sony-xperia-seine-pdx201.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-xiaomi-laurel-sprout.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm6350-sony-xperia-lena-pdx213.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm6375-sony-xperia-murray-pdx225.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm7225-fairphone-fp4.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
-> new file mode 100644
-> index 000000000000..5dc06209d9c0
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
-> @@ -0,0 +1,252 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2022, Lux Aliaga <they@mint.lgbt>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "sm6125.dtsi"
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/input/gpio-keys.h>
-Please move the SoC DTSI inclusion under the bindings inclusions.
+> I'm a bit surprised though, all unit-suffixed properties use 32-bit
+> integers in the DT schema, while I can imagine that some may need a
+> 64-bit integer. What's the recommendation in that case ?
 
-> +
-> +/ {
-> +	/* required for bootloader to select correct board */
-> +	qcom,msm-id = <0x18a 0x00>; /* sm6125 v1 */
-> +	qcom,board-id = <0x0b 0x00>;
-Please make these properties decimal and move them under chassis-type.
+Use -mhz.
 
-Also, <0x18a 0x00> would indicate a SM6125 v0.
-> +
-> +	model = "Xiaomi Mi A3";
-> +	compatible = "xiaomi,laurel-sprout", "qcom,sm6125";
-> +	chassis-type = "handset";
-> +
-> +	chosen {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		framebuffer0: framebuffer@5c000000 {
-> +			compatible = "simple-framebuffer";
-> +			reg = <0 0x5c000000 0 (1560 * 720 * 4)>;
-> +			width = <720>;
-> +			height = <1560>;
-> +			stride = <(720 * 4)>;
-> +			format = "a8r8g8b8";
-> +		};
-> +	};
-> +
-> +	extcon_usb: usb-id {
-> +		compatible = "linux,extcon-usb-gpio";
-> +		id-gpio = <&tlmm 102 GPIO_ACTIVE_HIGH>;
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-Add a newline here.
+Anything outside the norm we have to special case in 
+property-units.yaml.
 
-> +		debug_mem: memory@ffb00000 {
-> +			reg = <0x0 0xffb00000 0x0 0xc0000>;
-> +			no-map;
-> +		};
-> +
-> +		last_log_mem: memory@ffbc0000 {
-> +			reg = <0x0 0xffbc0000 0x0 0x80000>;
-> +			no-map;
-> +		};
-> +
-> +		pstore_mem: ramoops@ffc00000 {
-> +			compatible = "ramoops";
-> +			reg = <0x0 0xffc40000 0x0 0xc0000>;
-> +			record-size = <0x1000>;
-> +			console-size = <0x40000>;
-> +			msg-size = <0x20000 0x20000>;
-> +		};
-> +
-> +		cmdline_mem: memory@ffd00000 {
-> +			reg = <0x0 0xffd40000 0x0 0x1000>;
-> +			no-map;
-> +		};
-> +	};
-> +};
-> +
-> +&rpm_requests {
-> +	regulators-0 {
-> +		compatible = "qcom,rpm-pm6125-regulators";
-> +
-> +		vreg_s6a: s6 {
-> +			regulator-min-microvolt = <936000>;
-> +			regulator-max-microvolt = <1422000>;
-> +		};
-> +
-> +		vreg_l1a: l1 {
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1256000>;
-> +		};
-> +
-> +		vreg_l2a: l2 {
-> +			regulator-min-microvolt = <1000000>;
-> +			regulator-max-microvolt = <1056000>;
-> +		};
-> +
-> +		vreg_l3a: l3 {
-> +			regulator-min-microvolt = <1000000>;
-> +			regulator-max-microvolt = <1064000>;
-> +		};
-> +
-> +		vreg_l4a: l4 {
-> +			regulator-min-microvolt = <872000>;
-> +			regulator-max-microvolt = <976000>;
-> +		};
-> +
-> +		vreg_l5a: l5 {
-> +			regulator-min-microvolt = <1648000>;
-> +			regulator-max-microvolt = <3104000>;
-> +		};
-> +
-> +		vreg_l6a: l6 {
-> +			regulator-min-microvolt = <576000>;
-> +			regulator-max-microvolt = <656000>;
-> +		};
-> +
-> +		vreg_l7a: l7 {
-> +			regulator-min-microvolt = <872000>;
-> +			regulator-max-microvolt = <976000>;
-> +		};
-> +
-> +		vreg_l8a: l8 {
-> +			regulator-min-microvolt = <400000>;
-> +			regulator-max-microvolt = <728000>;
-> +		};
-> +
-> +		vreg_l9a: l9 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1896000>;
-> +		};
-> +
-> +		vreg_l10a: l10 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1896000>;
-> +		};
-> +
-> +		vreg_l11a: l11 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1952000>;
-> +		};
-> +
-> +		vreg_l12a: l12 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1996000>;
-> +		};
-> +
-> +		vreg_l13a: l13 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1832000>;
-> +		};
-> +
-> +		vreg_l14a: l14 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1904000>;
-> +		};
-> +
-> +		vreg_l15a: l15 {
-> +			regulator-min-microvolt = <3104000>;
-> +			regulator-max-microvolt = <3232000>;
-> +		};
-> +
-> +		vreg_l16a: l16 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1904000>;
-> +		};
-> +
-> +		vreg_l17a: l17 {
-> +			regulator-min-microvolt = <1248000>;
-> +			regulator-max-microvolt = <1304000>;
-> +		};
-> +
-> +		vreg_l18a: l18 {
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1264000>;
-> +		};
-> +
-> +		vreg_l19a: l19 {
-> +			regulator-min-microvolt = <1648000>;
-> +			regulator-max-microvolt = <2952000>;
-> +		};
-> +
-> +		vreg_l20a: l20 {
-> +			regulator-min-microvolt = <1648000>;
-> +			regulator-max-microvolt = <2952000>;
-> +		};
-> +
-> +		vreg_l21a: l21 {
-> +			regulator-min-microvolt = <2600000>;
-> +			regulator-max-microvolt = <2856000>;
-> +		};
-> +
-> +		vreg_l22a: l22 {
-> +			regulator-min-microvolt = <2944000>;
-> +			regulator-max-microvolt = <3304000>;
-> +		};
-> +
-> +		vreg_l23a: l23 {
-> +			regulator-min-microvolt = <3000000>;
-> +			regulator-max-microvolt = <3400000>;
-> +		};
-> +
-> +		vreg_l24a: l24 {
-> +			regulator-min-microvolt = <2944000>;
-> +			regulator-max-microvolt = <3304000>;
-> +		};
-> +	};
-> +};
-> +
-> +&hsusb_phy1 {
-> +	status = "okay";
-> +};
-Please sort the label references alphabetically.
-
-Konrad
-> +
-> +&sdc2_off_state {
-> +	sd-cd-pins {
-> +		pins = "gpio98";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +	};
-> +};
-> +
-> +&sdc2_on_state {
-> +	sd-cd-pins {
-> +		pins = "gpio98";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-pull-up;
-> +	};
-> +};
-> +
-> +&ufs_mem_hc {
-> +	vcc-supply = <&vreg_l24a>;
-> +	vccq2-supply = <&vreg_l11a>;
-> +	vcc-max-microamp = <600000>;
-> +	vccq2-max-microamp = <600000>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&ufs_mem_phy {
-> +	vdda-phy-supply = <&vreg_l4a>;
-> +	vdda-pll-supply = <&vreg_l10a>;
-> +	vdda-phy-max-microamp = <51400>;
-> +	vdda-pll-max-microamp = <14200>;
-> +	vddp-ref-clk-supply = <&vreg_l18a>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&tlmm {
-> +	gpio-reserved-ranges = <22 2>, <28 6>;
-> +};
-> +
-> +&usb3 {
-> +	status = "okay";
-> +};
-> +
-> +&usb3_dwc3 {
-> +	extcon = <&extcon_usb>;
-> +};
+Rob
