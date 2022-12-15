@@ -2,99 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA96964D94B
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 11:13:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE18264D965
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 11:20:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230037AbiLOKNO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 05:13:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34306 "EHLO
+        id S229742AbiLOKUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 05:20:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229797AbiLOKNM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 05:13:12 -0500
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19E8626AE5
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 02:13:11 -0800 (PST)
-Received: by mail-lj1-x229.google.com with SMTP id x11so9426172ljh.7
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 02:13:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Dq2vrlwDc/pcOx3EDWN16MaZnUyWNNZ9wxctRH/iUDc=;
-        b=pziXf/ZboIPanNuGpPFrAu5JQ0BCZ8SnHV17yorcCLrhXmfacq5tX11/0sgoHfGYlF
-         kpxWnkSOCoeIpVi2MnLGGwMeJVfrKDFDnuXsAnZxMZuQBjpdASMRMCMAcEBlbn4JqLmA
-         14xp2UVTVuTkLEBkrYTpyOPPWP4taThbcEGRnTPfgyh7BS8TrihwFHjCarJ0C8s23iO/
-         5aB2GPzTf8PCZQGo6fYDO3jKsB94fBVPRZwJGnYOUumgt7mJ71VIyEJfBfawWHr0YjWK
-         MDi/X9o1ChqBmXDN1Sjfh2N7IFi23BvXm8aKA7voJ4NKNPXS3LNOApvDj3+jxim2pXdg
-         t8Uw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Dq2vrlwDc/pcOx3EDWN16MaZnUyWNNZ9wxctRH/iUDc=;
-        b=Lw6w6KWvRHx/OMpOSKeWMW54AYzBnzYLAOYQGqvBFih+SnHQRcc4pOQFmkJjIQ/sRJ
-         zNQOb87l0FdJ2TCo06FQsDRvf6Nbxac5Ko2Or0WeC4eAwDE8zYnj8Vn14MyZgJlN3UAY
-         zYXSLgCdWgDoeDfXuG/wF8u+x07dIU5JzV4vB27nrnphlkKxV3Ib4w5o+lyakAdTdsl5
-         phHJ+KvVIw7udRXYM4A951b9gWxdlkv7ySJ2f06AEPk0ntxQ95piXRSQuzcKP/X2Mp+P
-         9xPLofpXElu/pmkfsCmfpcy3pfkg8xgoRWU8BFcADj7q0/qHGIXXuS4wg+AW4Whn1o0C
-         apjA==
-X-Gm-Message-State: ANoB5pmk7GJ1fUvoPb9BBwoPZ1/Y0aPbn6z67pu78Unb4+YIRVakd/7i
-        eQvjujUw0mWdSkTtav3nSNbDnw==
-X-Google-Smtp-Source: AA0mqf6PbJFqvC7fn8BReEsGcPP5B3CQXctlxPM/fe7Aziu8TpWLzMvyBQYrVMoYVwP8mybNQM31Vw==
-X-Received: by 2002:a05:651c:3c1:b0:27a:3eeb:66c4 with SMTP id f1-20020a05651c03c100b0027a3eeb66c4mr5065199ljp.26.1671099189459;
-        Thu, 15 Dec 2022 02:13:09 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id p7-20020a2eb7c7000000b0027c1395ca13sm478167ljo.41.2022.12.15.02.13.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Dec 2022 02:13:09 -0800 (PST)
-Message-ID: <035e9326-d507-2930-d1ab-22b95af035f8@linaro.org>
-Date:   Thu, 15 Dec 2022 11:13:07 +0100
+        with ESMTP id S229448AbiLOKUJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 05:20:09 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50A41273;
+        Thu, 15 Dec 2022 02:20:08 -0800 (PST)
+Received: from xps.home (82-65-172-229.subs.proxad.net [82.65.172.229])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: aferraris)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 17D716602C5F;
+        Thu, 15 Dec 2022 10:20:06 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1671099606;
+        bh=WLY57/vsBcQcsEyV40fycSi6IdmeLYRjKEbqIxSuVAE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=L4Z7LHOP1m/pl9kidybLzd95BeF3YuK9yATRCRR4ZcXNjaSFVYLRe181UFXJXFwFN
+         lPWMylYVLsX3qzBscLwrhwGTB+wtWerzfx6cIiYsX4cE4HT+eIjBrQRPs6tqsUBZac
+         T3PAIPwE1fuJEL1AZ+QWSJar6g4ed5Ynx+KOmYeHgyjVdwnp9KAso2VYTBTdg9m9JC
+         qJfcCjPNj+UXyo2Fh0cRbYBZWsmarMFrYoNzsZuu/TPu19NXve+4WOGGb8DWGbm18G
+         +yAuQMRM1LcwE1cWE0SQjzimBAMpwtE/h+OQ9ag5DyZ/ceWA6DrjVhSzqlemMcgzDx
+         ImC/Ev/aZV72w==
+From:   Arnaud Ferraris <arnaud.ferraris@collabora.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Caleb Connolly <kc@postmarketos.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     kernel@collabora.com,
+        Arnaud Ferraris <arnaud.ferraris@collabora.com>
+Subject: [PATCH] arm64: dts: rockchip: fix input enable pinconf on rk3399
+Date:   Thu, 15 Dec 2022 11:19:47 +0100
+Message-Id: <20221215101947.254896-1-arnaud.ferraris@collabora.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH net] arm64: dts: imx8dxl: Disable hibernation mode of
- AR8031 for EQOS
-Content-Language: en-US
-To:     wei.fang@nxp.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, Frank.Li@nxp.com, shenwei.wang@nxp.com,
-        xiaoning.wang@nxp.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20221215093627.956417-1-wei.fang@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221215093627.956417-1-wei.fang@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/12/2022 10:36, wei.fang@nxp.com wrote:
-> From: Wei Fang <wei.fang@nxp.com>
-> 
-> The hibernation mode of AR8031 PHY defaults to be enabled after hardware
-> reset. When the cable is unplugged, the PHY will enter hibernation mode
-> after about 10 senconds and the PHY clocks will be stopped to save
-> power. However, due to the design of EQOS, the mac needs the RX_CLK of
-> PHY for software reset to complete. Otherwise the software reset of EQOS
-> will be failed and do not work correctly. The only way is to disable
-> hibernation mode of AR8031 PHY for EQOS, the "qca,disable-hibernation-mode"
-> property is used for this purpose and has already been submitted to the
-> upstream, for more details please refer to the below link:
-> https://lore.kernel.org/netdev/20220818030054.1010660-2-wei.fang@nxp.com/
+When the input enable pinconf was introduced, a default drive-strength
+value of 2 was set for the pull up/down configs. However, this parameter
+is unneeded when configuring the pin as input, and having a single
+hardcoded value here is actually harmful: GPIOs on the RK3399 have
+various same drive-strength capabilities depending on the bank and port
+they belong to.
 
-This is not a patch for net-next as you indicate in the subject. DTS
-patches go via SoC platform maintainers.
+As an example, trying to configure the GPIO4_PD3 pin as an input with
+pull-up enabled fails with the following output:
 
-Best regards,
-Krzysztof
+  [   10.706542] rockchip-pinctrl pinctrl: unsupported driver strength 2
+  [   10.713661] rockchip-pinctrl pinctrl: pin_config_set op failed for pin 155
+
+(acceptable drive-strength values for this pin being 3, 6, 9 and 12)
+
+Let's drop the drive-strength property from all input pinconfs in order
+to solve this issue.
+
+Fixes: ec48c3e82ca3 ("arm64: dts: rockchip: add an input enable pinconf to rk3399")
+Signed-off-by: Arnaud Ferraris <arnaud.ferraris@collabora.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+index 92c2207e686c..59858f2dc8b9 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+@@ -2221,13 +2221,11 @@ pcfg_input_enable: pcfg-input-enable {
+ 		pcfg_input_pull_up: pcfg-input-pull-up {
+ 			input-enable;
+ 			bias-pull-up;
+-			drive-strength = <2>;
+ 		};
+ 
+ 		pcfg_input_pull_down: pcfg-input-pull-down {
+ 			input-enable;
+ 			bias-pull-down;
+-			drive-strength = <2>;
+ 		};
+ 
+ 		clock {
+-- 
+2.35.1
 
