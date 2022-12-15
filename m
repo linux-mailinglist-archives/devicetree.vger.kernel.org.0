@@ -2,228 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72E9B64D835
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 10:04:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C785C64D853
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 10:12:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229566AbiLOJEF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 04:04:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48486 "EHLO
+        id S229854AbiLOJMM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 04:12:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229789AbiLOJEA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 04:04:00 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 506D83135B
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 01:03:59 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id c1so14631464lfi.7
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 01:03:59 -0800 (PST)
+        with ESMTP id S229889AbiLOJMB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 04:12:01 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74A8C4B9A2
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 01:11:50 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id 1so14693061lfz.4
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 01:11:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=jqxdj5fkQ9n2cYs252oV4AVXARcQ/xHiN+6tj2DwePk=;
-        b=Qk6ae4zTc3LXGtko9Wztdy21PIr2TF55TvkJJ7Yq2vFKuMnXlzlsHZ4ObXzy2MENUO
-         vEWI7NKfeyMu+uDrlMUqmFEUnBg1vyu76gcXRhEcjwwQzN1rQCSyXRmfYMUq6NZSPgbn
-         Q6FyFhhVcI5RbvVd3dPpamm9fFhexIkFvHBTz1OjswAYYYLcrHca/mCgL3KHWSkT0LDc
-         5gwLhc9IzB2bUA0AC4W+znO5y+fMKjBoY/BSz1x1wjx7LJIXbLqNBdxPk+M8JtAKIuB1
-         k62kTUNR58WPULlvIE2Js+BjVhOoERKnM/qRZITcFJO7/A52IuewBjCBwvwTOwdGLcT0
-         Nwjw==
+        bh=bmdAanfz/VP8hVI+pvXvUMPxx98Oy0JHDJIXTuPRBKM=;
+        b=FMb4qhYzCEhjm+w8BD1qR1gQoxNOcTynbj1GoaKthWEJayVLT/xTWQjWo7I34tbyvJ
+         82ZOD7/eFMUeo1NZoIMFYNx6GdNpmuH/KhdX7UU3OiaFzxuqdyfcx2TXtT2hAyjsRBqS
+         pOov4bHFEdcZxgUMmHy8IiqLKf9rS+oZQizq9MpQaJy7rbuv5cvqD1a3Eq3bV2RsFX/w
+         brW5d8kFHfwjkVQLoxSM8G6S6r093vgXpnvUdt9HQIO7T6/9DYE0YflRohsI2nazGSg5
+         YgyJ2jeuG1S8l5bGKV6J0p0kOQ2miwHX7fw7TLFedFsNLLnBG3lMH1maB9hNAMTf27r8
+         82Ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jqxdj5fkQ9n2cYs252oV4AVXARcQ/xHiN+6tj2DwePk=;
-        b=u+d8C2iBxzsgT84FU4+OV03P3JxJmJOEXaR9d7zT6xnRYkw56nEVD2deLs7ABSnbXA
-         NyQZh2U9wRhgf63mmC8lNSvdGh57SGqSjnIKqQUsc7Sk96EKhUIdh4VWNxMUTAyc50pN
-         mfdcPDiEJWcIybeQvbPSANi9R1iY5YzQkjH/d9FQm97Ye1Bkm2uGG2M1Uv6EzTbHJryv
-         hEfs+nECtxtqXuouUh3kRrg6lavwF+tLGHNULCrg8LFyqFCn5DPZHv2OS6//69BQPSuK
-         K90XdoSv184BSeC/RTRc0aMpj5G+EPB0yzWguHjLZ1v/68oQ1dyCFpwvaKLmqq0hAkj8
-         9Izw==
-X-Gm-Message-State: ANoB5pnNF9+kOwI+UXgv2c7yrs4UKwz3HpaQIk8GRUquaRGPIfre6UxG
-        8MePAJoFBTpiADene+w9RV2OpiGj0lWxWwII
-X-Google-Smtp-Source: AA0mqf6+hgKCqvG8MOaHrXDFYxCb6yCspua/Y4A0lxEvIcU/Em2K/ShTHloB+t+iJXrw3dU95EEFPg==
-X-Received: by 2002:ac2:5148:0:b0:4b5:830d:12ba with SMTP id q8-20020ac25148000000b004b5830d12bamr7119720lfd.14.1671095037655;
-        Thu, 15 Dec 2022 01:03:57 -0800 (PST)
+        bh=bmdAanfz/VP8hVI+pvXvUMPxx98Oy0JHDJIXTuPRBKM=;
+        b=NhyQrQclBlASCbf677Iie4LLddvRB+DtfSAeFt7VLUa9S7mZiQGX7VA/Wmk9sX1qQR
+         DTCOphDFMq2o7m24oSF48Oa59mlFUmQJw6JdDg+S0ce04034pgk1QN061oWZyHxv2Vsy
+         /kCBJRXlnwqVmiBjXwrd8qMBJihdBbcBglRreiTAH8pkU/mP2w6MYvSBol5iRQI/kXfy
+         3YXn9u0FeL30txWd2IbT2XJeuSH1v2EFK0pMGA7DIeYTvS0LE2SxFh+yOZoy4WPy7Ep4
+         vc7MQ5NctrcncUHYioxXXFoinJh22u4MOwUpQnSEZgYr/e8Ncjkon40OBpqtcjbPI0+5
+         LkBQ==
+X-Gm-Message-State: ANoB5pn9TYxmvvW24ZwzglNBaeaToqHGinRW09Wcnty44iEDEoYzFWAn
+        IY2cjPR3Umr/xNlTuIAhLt3sMw==
+X-Google-Smtp-Source: AA0mqf7nEkEV4/tCj1TBlPApxAfYX5q1f0BDFX1yY2eEWeGW/++VjsHo366CKQ1bD+xUI4ccIM0nWg==
+X-Received: by 2002:a05:6512:b24:b0:4b6:f027:2af8 with SMTP id w36-20020a0565120b2400b004b6f0272af8mr4688139lfu.66.1671095508751;
+        Thu, 15 Dec 2022 01:11:48 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id k10-20020ac257ca000000b004b55075f813sm1095847lfo.227.2022.12.15.01.03.56
+        by smtp.gmail.com with ESMTPSA id 13-20020a05651c128d00b0027e3d929fc8sm156942ljc.118.2022.12.15.01.11.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Dec 2022 01:03:57 -0800 (PST)
-Message-ID: <7e67b2d1-394e-2353-df37-5ae3cac64b9c@linaro.org>
-Date:   Thu, 15 Dec 2022 10:03:56 +0100
+        Thu, 15 Dec 2022 01:11:48 -0800 (PST)
+Message-ID: <d38655cb-d387-5bbd-c430-52a0b04ae3cc@linaro.org>
+Date:   Thu, 15 Dec 2022 10:11:47 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH v8 2/7] media: dt-binding: nuvoton: Add bindings for NPCM
- VCD and ECE engine
+Subject: Re: [RFC PATCH v2 1/3] dt-bindings: gpio: Add gpio-delay binding
+ document
 Content-Language: en-US
-To:     Marvin Lin <milkfafa@gmail.com>, mchehab@kernel.org,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     openbmc@lists.ozlabs.org, avifishman70@gmail.com,
-        tmaimon77@gmail.com, tali.perry1@gmail.com, venture@google.com,
-        yuenn@google.com, benjaminfair@google.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, kwliu@nuvoton.com,
-        kflin@nuvoton.com
-References: <20221214092636.810883-1-milkfafa@gmail.com>
- <20221214092636.810883-3-milkfafa@gmail.com>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Marek Vasut <marex@denx.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+References: <20221214095342.937303-1-alexander.stein@ew.tq-group.com>
+ <20221214095342.937303-2-alexander.stein@ew.tq-group.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221214092636.810883-3-milkfafa@gmail.com>
+In-Reply-To: <20221214095342.937303-2-alexander.stein@ew.tq-group.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/12/2022 10:26, Marvin Lin wrote:
-> Add dt-binding document for Video Capture/Differentiation Engine (VCD)
-> and Encoding Compression Engine (ECE) present on Nuvoton NPCM SoCs.
-
-Subject: drop second, redundant "bindings for".
-
+On 14/12/2022 10:53, Alexander Stein wrote:
+> This adds bindings for a GPIO enable/disable delay driver.
 > 
-> Signed-off-by: Marvin Lin <milkfafa@gmail.com>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 > ---
->  .../bindings/media/nuvoton,npcm-ece.yaml      | 44 ++++++++++++
->  .../bindings/media/nuvoton,npcm-vcd.yaml      | 72 +++++++++++++++++++
->  2 files changed, 116 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/nuvoton,npcm-ece.yaml
->  create mode 100644 Documentation/devicetree/bindings/media/nuvoton,npcm-vcd.yaml
+>  .../devicetree/bindings/gpio/gpio-delay.yaml  | 75 +++++++++++++++++++
+>  1 file changed, 75 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-delay.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/media/nuvoton,npcm-ece.yaml b/Documentation/devicetree/bindings/media/nuvoton,npcm-ece.yaml
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-delay.yaml b/Documentation/devicetree/bindings/gpio/gpio-delay.yaml
 > new file mode 100644
-> index 000000000000..d12b76d137d9
+> index 000000000000..20871356e9b5
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/nuvoton,npcm-ece.yaml
-> @@ -0,0 +1,44 @@
+> +++ b/Documentation/devicetree/bindings/gpio/gpio-delay.yaml
+> @@ -0,0 +1,75 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +
-
-Drop blank line.
-
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/media/nuvoton,npcm-ece.yaml#
+> +$id: http://devicetree.org/schemas/gpio/gpio-delay.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Nuvoton NPCM Encoding Compression Engine
+> +title: GPIO delay controller
 > +
 > +maintainers:
-> +  - Joseph Liu <kwliu@nuvoton.com>
-> +  - Marvin Lin <kflin@nuvoton.com>
+> +  - Alexander Stein <linux@ew.tq-group.com>
 > +
 > +description: |
-> +  Video Encoding Compression Engine (ECE) present on Nuvoton NPCM SoCs.
+> +  This binding describes an electrical setup where setting an GPIO output
+> +  is delayed by some external setup, e.g. RC curcuit.
+> +
+> +  +----------+                    +-----------+
+> +  |          |             VCC_B  |           |
+> +  |          |              |     |           |
+> +  |          | VCC_A        _     |           |
+> +  |  GPIO    |             | | R  |  Consumer |
+> +  |controller|        ___  |_|    |           |
+> +  |          |       |   |  |     |           |
+> +  |      [IOx|-------|   |--+-----|-----+     |
+> +  |          |       |___|  |     |   input   |
+> +  |          |              |     |           |
+> +  +----------+             --- C  +-----------+
+> +                           ---
+> +                            |
+> +                            -
+> +                           GND
+> +
+> +  If the input on the consumer is controlled by an open-drain signal
+
+If IOx is open-drain, what is the VCC_A on the diagram? I think it
+wasn't present in original Laurent's diagram.
+
+> +  attached to an RC curcuit the ramp-up delay is not under control
+> +  of the GPIO controller.
 > +
 > +properties:
 > +  compatible:
-> +    enum:
-> +      - nuvoton,npcm750-ece
-> +      - nuvoton,npcm845-ece
+> +    const: gpio-delay
 > +
-> +  reg:
-> +    maxItems: 1
+> +  "#gpio-cells":
+> +    description: |
+> +      Specifies the pin, ramp-up and ramp-down delays. The
+> +      delays are specified in microseconds.
+> +    const: 3
 > +
-> +  resets:
-> +    maxItems: 1
+> +  input-gpios:
+> +    description: Array of GPIOs which output signal change is delayed
+
+maxItems: 32 or some other reasonable value
+
+> +
+> +  gpio-controller: true
+> +
+> +  gpio-line-names: true
+
+and then the same maxItems.
+
 > +
 > +required:
 > +  - compatible
-> +  - reg
-> +  - resets
+> +  - "#gpio-cells"
+> +  - gpio-controller
+> +  - input-gpios
 > +
 > +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/reset/nuvoton,npcm7xx-reset.h>
+> +    #include <dt-bindings/gpio/gpio.h>
 > +
-> +    ece: ece@f0820000 {
+> +    enable_delay: enable-delay {
+> +        compatible = "gpio-delay";
 
-If this is video codec, then generic node name: "video-codec". "ece" is
-specific, not generic.
+I am not sure whether the naming is the most accurate - it represents
+desired behavior (so the delay in rising signal), not actual hardware
+(RC filter), but maybe that's a bit more generic.
 
-> +        compatible = "nuvoton,npcm750-ece";
-> +        reg = <0xf0820000 0x2000>;
-> +        resets = <&rstc NPCM7XX_RESET_IPSRST2 NPCM7XX_RESET_ECE>;
+Anyway look fine for me.
+
+> +        #gpio-cells = <3>;
+> +        gpio-controller;
+> +        input-gpios = <&gpio0 3 GPIO_ACTIVE_LOW>,
+> +                      <&gpio3 1 GPIO_ACTIVE_HIGH>;
 > +    };
-> diff --git a/Documentation/devicetree/bindings/media/nuvoton,npcm-vcd.yaml b/Documentation/devicetree/bindings/media/nuvoton,npcm-vcd.yaml
-> new file mode 100644
-> index 000000000000..2d8da8f36506
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/nuvoton,npcm-vcd.yaml
-> @@ -0,0 +1,72 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +
-
-Drop blank line.
-
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/nuvoton,npcm-vcd.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Nuvoton NPCM Video Capture/Differentiation Engine
-> +
-> +maintainers:
-> +  - Joseph Liu <kwliu@nuvoton.com>
-> +  - Marvin Lin <kflin@nuvoton.com>
-> +
-> +description: |
-> +  Video Capture/Differentiation Engine (VCD) present on Nuvoton NPCM SoCs.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nuvoton,npcm750-vcd
-> +      - nuvoton,npcm845-vcd
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  nuvoton,sysgcr:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: phandle to access GCR (Global Control Register) registers.
-> +
-> +  nuvoton,sysgfxi:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: phandle to access GFXI (Graphics Core Information) registers.
-> +
-> +  nuvoton,ece:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: phandle to access ECE (Encoding Compression Engine) registers.
-> +
-> +  memory-region:
-> +    description:
-> +      CMA pool to use for buffers allocation instead of the default CMA pool.
-
-maxItems: 1
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - resets
-> +  - nuvoton,sysgcr
-> +  - nuvoton,sysgfxi
-> +  - nuvoton,ece
-> +
-> +additionalProperties: false
-> +
-> 
+> +    consumer {
+> +        enable-gpios = <&enable_delay 0 130000 30000>;
+> +    };
 
 Best regards,
 Krzysztof
