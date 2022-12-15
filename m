@@ -2,22 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D02D64DFFC
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 18:50:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C519B64DFF9
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 18:50:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229867AbiLORuB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 12:50:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58516 "EHLO
+        id S229925AbiLORt7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 12:49:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229843AbiLORt7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 12:49:59 -0500
+        with ESMTP id S229652AbiLORt6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 12:49:58 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4946F2B629
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08EF22B24F
         for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 09:49:58 -0800 (PST)
 Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
         by metis.ext.pengutronix.de with esmtp (Exim 4.92)
         (envelope-from <l.stach@pengutronix.de>)
-        id 1p5sMc-0003zV-Tz; Thu, 15 Dec 2022 18:49:46 +0100
+        id 1p5sMd-0003zV-HE; Thu, 15 Dec 2022 18:49:47 +0100
 From:   Lucas Stach <l.stach@pengutronix.de>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -29,10 +29,12 @@ Cc:     NXP Linux Team <linux-imx@nxp.com>,
         alexander.stein@ew.tq-group.com, richard.leitner@linux.dev,
         lukas@mntre.com, patchwork-lst@pengutronix.de,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 1/4] dt-bindings: soc: imx8mp-hsio-blk-ctrl: add clock cells
-Date:   Thu, 15 Dec 2022 18:49:39 +0100
-Message-Id: <20221215174942.2835690-1-l.stach@pengutronix.de>
+Subject: [PATCH v2 2/4] soc: imx: imx8mp-blk-ctrl: add instance specific probe function
+Date:   Thu, 15 Dec 2022 18:49:40 +0100
+Message-Id: <20221215174942.2835690-2-l.stach@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20221215174942.2835690-1-l.stach@pengutronix.de>
+References: <20221215174942.2835690-1-l.stach@pengutronix.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
@@ -47,37 +49,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The HSIO blk-ctrl has a internal PLL, which can be used as a reference
-clock for the PCIe PHY. Add clock-cells to the binding to allow the
-driver to expose this PLL.
+Allow the specific blk-ctrl instance to define a function which will
+be called during probe to provide device specific extensions.
 
 Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+Tested-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Tested-by: Lukas F. Hartmann <lukas@mntre.com>
 ---
-v2: fix clock-cells value
----
- .../devicetree/bindings/soc/imx/fsl,imx8mp-hsio-blk-ctrl.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/soc/imx/imx8mp-blk-ctrl.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-hsio-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-hsio-blk-ctrl.yaml
-index c29181a9745b..1fe68b53b1d8 100644
---- a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-hsio-blk-ctrl.yaml
-+++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-hsio-blk-ctrl.yaml
-@@ -39,6 +39,9 @@ properties:
-       - const: pcie
-       - const: pcie-phy
+diff --git a/drivers/soc/imx/imx8mp-blk-ctrl.c b/drivers/soc/imx/imx8mp-blk-ctrl.c
+index 0e3b6ba22f94..b3d9f6e083ba 100644
+--- a/drivers/soc/imx/imx8mp-blk-ctrl.c
++++ b/drivers/soc/imx/imx8mp-blk-ctrl.c
+@@ -60,6 +60,7 @@ struct imx8mp_blk_ctrl_domain {
  
-+  '#clock-cells':
-+    const: 0
+ struct imx8mp_blk_ctrl_data {
+ 	int max_reg;
++	int (*probe) (struct imx8mp_blk_ctrl *bc);
+ 	notifier_fn_t power_notifier_fn;
+ 	void (*power_off) (struct imx8mp_blk_ctrl *bc, struct imx8mp_blk_ctrl_domain *domain);
+ 	void (*power_on) (struct imx8mp_blk_ctrl *bc, struct imx8mp_blk_ctrl_domain *domain);
+@@ -634,6 +635,12 @@ static int imx8mp_blk_ctrl_probe(struct platform_device *pdev)
+ 		goto cleanup_provider;
+ 	}
+ 
++	if (bc_data->probe) {
++		ret = bc_data->probe(bc);
++		if (ret)
++			goto cleanup_provider;
++	}
 +
-   clocks:
-     minItems: 2
-     maxItems: 2
-@@ -85,4 +88,5 @@ examples:
-         power-domain-names = "bus", "usb", "usb-phy1",
-                              "usb-phy2", "pcie", "pcie-phy";
-         #power-domain-cells = <1>;
-+        #clock-cells = <0>;
-     };
+ 	dev_set_drvdata(dev, bc);
+ 
+ 	return 0;
 -- 
 2.30.2
 
