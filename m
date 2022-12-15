@@ -2,150 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A44364D7A2
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 09:19:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB5F864D7AB
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 09:24:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229498AbiLOITs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 03:19:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57998 "EHLO
+        id S229524AbiLOIYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 03:24:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229653AbiLOITm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 03:19:42 -0500
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DD361A39A
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 00:19:41 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id g14so9148302ljh.10
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 00:19:40 -0800 (PST)
+        with ESMTP id S229453AbiLOIYY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 03:24:24 -0500
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 808E9303DF;
+        Thu, 15 Dec 2022 00:24:21 -0800 (PST)
+Received: by mail-pj1-x102a.google.com with SMTP id o12so9691802pjo.4;
+        Thu, 15 Dec 2022 00:24:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VSN2/dLk93fIRVrCh8N+0AmorCRCNEabm5sVB7MbO9A=;
-        b=XdVfWnxMN7fe1l0Uox7bvSuAbgsX4/G1RES/z7paJzDhpv428QfCL/0kIogX908QlD
-         aGv/khZLcysVMdTLJCBcB6/ZYVo4oC554CLmDd5jO+2AvHpepXsYktFm4twIxnb3ytOB
-         OKeH1f2/6KKVjFbIorzW3y29nVCxQW8/uQ1zHrzLEZXcIJJrhLR38FaqCcqiO4Zglg8y
-         1Adiu65jQjbdHisY8kdg8TB7nZJR6sgZOZm9tgq4UpNVwW4XJa1nzV3Y5KwmwZbNeISt
-         ztHQ8DZy4Sj4mZFL6Mw1+irWMEnH/QauYMHEErHbM7+JnGuxbpUhAQ2c/Q8M/vLy7f0v
-         wZsQ==
+        d=gmail.com; s=20210112;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ztdTBdFFzUgQtkWJUCxW6jiR87PJzZ+mXWctPgKolvM=;
+        b=KShrVmgODIuJtcKknJKb+Pf0pSk+VqLQolsKht9ge8cZaz8itKhomuwlUliumJq4ck
+         /Apz8qaj5shUWlDuslUNunbrjRlRFLZ9fEALxeAMyzigGCKtPOyX/8iykKjxRrHH4NYO
+         j0yL4oeqEF9bK5JCGXgDZjCVeBQDcDqsIfVzwplAx2Is+cqOJYnKwFU6WJ30UrJixkAf
+         UHoGPsOodG683vHjRFKOLq5ZDpFRGmnYl4B5HWEm7ux2YPx18r7pzemdKo7RMbQspoMk
+         w7Td822C9PjCGnVktFeon/nUdgaHRT/MAYG0IqMNJ7H2m+Du6+D0M+drEYVEaqnTmLU2
+         7agA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VSN2/dLk93fIRVrCh8N+0AmorCRCNEabm5sVB7MbO9A=;
-        b=RKqriEYA8Jf8Tg9HjlX0h04N1WFo8MUXxsZbs8A5WCW4RwO3HArAXVsNfhgRtooGSV
-         aLIWPiHZe+dapGXpMyups9EdqHZ5J5VLvG6rs04MNZTXBx8i8207VRfBHyv773CO39Ly
-         nIzk7KMvVAWTw/6B1bKE0rOl4mwc32h8/S3qBHauriULmHplf23q3L9b6zM2A5iDf+Ft
-         17NgQkOhX5rLA7O+ls35cf/pZ6rzJnw7kTgt1ZOC5O8e6AlGXG/XtY1B9TA58k8c6/Au
-         FfvBih0qgAzgs3URqyJUrDwe9Gv6LY6StNUpo78Ajn8tzI/Y15c4KytPSkomcOidDy4K
-         ValA==
-X-Gm-Message-State: ANoB5plHiYIyR/3QnGZX4cSxwZinOltTbDucf1oXsm6oPUFKIHgBYA6x
-        +qVgMOsIR2Hl5TbnImjmHk1JiA==
-X-Google-Smtp-Source: AA0mqf7eZY/U6gUBEczTfy7RT19UpsBoMLFLoSgY1p+EcMD9LW0qs3VPqpFnkdT6sSo2Jsp8NA7oog==
-X-Received: by 2002:a05:651c:908:b0:26f:db35:ec37 with SMTP id e8-20020a05651c090800b0026fdb35ec37mr6562339ljq.17.1671092379312;
-        Thu, 15 Dec 2022 00:19:39 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id u16-20020a2eb810000000b00277041268absm781179ljo.78.2022.12.15.00.19.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Dec 2022 00:19:38 -0800 (PST)
-Message-ID: <f77cc097-56ac-845f-9882-e67aab82b02c@linaro.org>
-Date:   Thu, 15 Dec 2022 09:19:37 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sm6115: Add USB SS qmp phy node
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     agross@kernel.org, bhupesh.linux@gmail.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        konrad.dybcio@linaro.org, andersson@kernel.org
-References: <20221214203124.564537-1-bhupesh.sharma@linaro.org>
- <20221214203124.564537-4-bhupesh.sharma@linaro.org>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221214203124.564537-4-bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ztdTBdFFzUgQtkWJUCxW6jiR87PJzZ+mXWctPgKolvM=;
+        b=VquEs1tYsD4g3qgMU/N/ZvnTloncfDD6Y4dM27W4+9Zil+E4++XwTsYsp7PyJLevgE
+         OoKc75e1IXfktjNLkgxbRQqzdtTIfz8sYTHNET+P3s6+0Iek4JXHekA8GaE4M4JJNDL9
+         FKZ1NYOjMmCoOizCLYnqGO3PT8aD8ndfph+7AUxMuYkQbPiZq62W5M1DVB7aiQj3/8gP
+         F7QDyTog/LFy9ortAXCEJ3ejkBVgB92SclTZus1HGW4dAAGhjnD9zeA8L24VQeZRklAI
+         rAWtM4RCj26S4t4yJ6EwyqHBcY/HcoG6ra0RfU/6Gcqn44GwfHWyCWmpA3S9VXSTWicq
+         +5cA==
+X-Gm-Message-State: AFqh2kpTbven8vUTRq5iVn2nPzGfSs3BmjW1qJaFZGitavwCEPrvlf/b
+        I5XYmDf099hINKbVrzJkRGRHwEstIAgROQ==
+X-Google-Smtp-Source: AMrXdXuUVBt9ZrR1cJfNwk0YD8K0kj98/hE7ImHfbVfnVQrT5isZOcf8OPg0oOc9X4Ny37nYnNJcgQ==
+X-Received: by 2002:a17:90b:2493:b0:223:4958:8dda with SMTP id nt19-20020a17090b249300b0022349588ddamr2384507pjb.7.1671092660883;
+        Thu, 15 Dec 2022 00:24:20 -0800 (PST)
+Received: from localhost.localdomain ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id k14-20020a17090a404e00b0020aacde1964sm2594606pjg.32.2022.12.15.00.24.18
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 15 Dec 2022 00:24:20 -0800 (PST)
+From:   Li-hao Kuo <lhjeff911@gmail.com>
+To:     rafael@kernel.org, krzk@kernel.org, rui.zhang@intel.com,
+        daniel.lezcano@linaro.org, amitk@kernel.org, robh+dt@kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     lh.kuo@sunplus.com, Li-hao Kuo <lhjeff911@gmail.com>
+Subject: [PATCH v14 0/2] Add thermal control driver for Sunplus SoC
+Date:   Thu, 15 Dec 2022 16:23:48 +0800
+Message-Id: <cover.1665990345.git.lhjeff911@gmail.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/12/2022 21:31, Bhupesh Sharma wrote:
-> Add USB superspeed qmp phy node to dtsi.
-> Make sure that the oneplus board dts (which includes the
-> sm4250.dtsi) continues to work as intended.
-> 
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
->  .../boot/dts/qcom/sm4250-oneplus-billie2.dts  |  3 ++
->  arch/arm64/boot/dts/qcom/sm6115.dtsi          | 38 ++++++++++++++++++-
->  2 files changed, 39 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
-> index 3f39f25e0721e..4f0d65574448b 100644
-> --- a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
-> @@ -232,6 +232,9 @@ &usb {
->  &usb_dwc3 {
->  	maximum-speed = "high-speed";
->  	dr_mode = "peripheral";
-> +
-> +	phys = <&usb_hsphy>;
-> +	phy-names = "usb2-phy";
->  };
->  
->  &usb_hsphy {
-> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> index e4ce135264f3d..15f311dcd289f 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> @@ -579,6 +579,40 @@ usb_hsphy: phy@1613000 {
->  			status = "disabled";
->  		};
->  
-> +		usb_qmpphy: phy@1615000 {
-> +			compatible = "qcom,sm6115-qmp-usb3-phy";
-> +			reg = <0x01615000 0x200>;
-> +			clocks = <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
-> +				 <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
-> +				 <&gcc GCC_AHB2PHY_USB_CLK>;
-> +			clock-names = "com_aux",
-> +				      "ref",
-> +				      "cfg_ahb";
-> +			resets = <&gcc GCC_USB3_PHY_PRIM_SP0_BCR>,
-> +				 <&gcc GCC_USB3PHY_PHY_PRIM_SP0_BCR>;
-> +			reset-names = "phy", "phy_phy";
-> +			status = "disabled";
-> +			#clock-cells = <1>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges;
-> +
-> +			usb_ssphy: phy@1615200 {
-> +				reg = <0x01615200 0x200>,
-> +				      <0x01615400 0x200>,
-> +				      <0x01615c00 0x400>,
-> +				      <0x01615600 0x200>,
-> +				      <0x01615800 0x200>,
-> +				      <0x01615a00 0x100>;
-> +				#phy-cells = <0>;
-> +				#clock-cells = <1>;
-> +				clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
-> +				clock-names = "pipe0";
-> +				clock-output-names = "usb3_phy_pipe_clk_src";
-> +			};
-> +		};
-> +
-> +
+This is a patch series for thermal driver for Sunplus SoC.
 
-Still two blank lines.
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control.
 
-Best regards,
-Krzysztof
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
+
+Li-hao Kuo (2):
+  thermal: Add thermal driver for Sunplus
+  dt-bindings: thermal: Add Sunplus schema
+
+ .../bindings/thermal/sunplus,sp7021-thermal.yaml   |  43 +++++++
+ MAINTAINERS                                        |   7 ++
+ drivers/thermal/Kconfig                            |  10 ++
+ drivers/thermal/Makefile                           |   1 +
+ drivers/thermal/sunplus_thermal.c                  | 130 +++++++++++++++++++++
+ 5 files changed, 191 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/sunplus,sp7021-thermal.yaml
+ create mode 100644 drivers/thermal/sunplus_thermal.c
+
+-- 
+2.7.4
 
