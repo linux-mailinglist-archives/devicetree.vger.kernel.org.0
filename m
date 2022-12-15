@@ -2,161 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9239664DC8E
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 14:57:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F49C64DC91
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 14:57:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229900AbiLON5A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 08:57:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34468 "EHLO
+        id S229901AbiLON5P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 08:57:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229869AbiLON4z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 08:56:55 -0500
-Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2043.outbound.protection.outlook.com [40.107.241.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FC732F675;
-        Thu, 15 Dec 2022 05:56:54 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=F5jXl0sGFvHeZWKRvGXL4svvMJHlQLl1HUts/BdlX+XhrvqMptETKvGuGnqLeuJgG5A6CXI0+vd4EohACzR/toIM11o0soDViUKn97OoO+tnrbgqXWnMjMV7gLwU+9rBKh981/gwqVNfzi6szElzKAhRstO1/KQt5QGKmSH00nHf50MqIYR8jlb3bCGM8j6abpAtOW/wqR0ducbz7FTytrdSshhvE4m+M0+ZUKNX0Xc+XUK8vxkQcrGr7EZ0wAIujEXBaQoUBJ8miKBst3QouoUnpSqu+DFhGdVWeizKfdL2KXuaRJHjqP6TyQwApiApVk4VwvPWpQ1JZ9yFo0gZgw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jrT0Ja4gT0OblzbqwCqLKJLffImZD4+knJNuGhNnmB4=;
- b=H+DhgAY5ykZZh61Pmmp3A/56FA/bYLmU+1JAbPxMwJdEAfI6FGYG61WFScBFFWiFAzCr2WXexm3JQR1c5QAH9qk4N6wSeXZWTShZnHNbWbLAmK39klkDuyOG/ltcr5Ag2QrXvM11IifkIAG9kDHpD0N4j1i4tsEDoA33b0DYyCj9EycHQO886g/m2FzYYglTwOz4r9ew1c+NNy9YxyvGW3aTngZ2TUncYqRhEbk0QPzqAtMj2kBvdKDYfXIhzDZQQNPatk20AvvJtbEkntb0RL5gkRDjS39Wkzy2PqSVJZiBeojrzCexU+e+EHT+pIsAnU5XDmCOKRe5QjW7/GdYnA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jrT0Ja4gT0OblzbqwCqLKJLffImZD4+knJNuGhNnmB4=;
- b=g0JOQD0zVQn5hNQsia4pqY6/D2UO6cJPcMTFdSL+DBW/rKQHuEMP25LcvceA7Raw0dvq9b2n9Aw24U2ecrMWY7TMJSYNNIQqXG0eAkXuntQsZsDgiX7WK4Qk2GUYljTU8ezKA1MUg7VF95m4ascN2Jch5ZHic4NaA/jIODw4K9M=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM0PR04MB5121.eurprd04.prod.outlook.com (2603:10a6:208:c1::16)
- by DB9PR04MB8463.eurprd04.prod.outlook.com (2603:10a6:10:2c0::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.11; Thu, 15 Dec
- 2022 13:56:51 +0000
-Received: from AM0PR04MB5121.eurprd04.prod.outlook.com
- ([fe80::2101:60dc:1fd1:425c]) by AM0PR04MB5121.eurprd04.prod.outlook.com
- ([fe80::2101:60dc:1fd1:425c%7]) with mapi id 15.20.5880.019; Thu, 15 Dec 2022
- 13:56:51 +0000
-From:   Vladimir Oltean <vladimir.oltean@nxp.com>
-To:     devicetree@vger.kernel.org, iommu@lists.linux.dev
-Cc:     Laurentiu Tudor <laurentiu.tudor@nxp.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229892AbiLON5D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 08:57:03 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B64B2EF01;
+        Thu, 15 Dec 2022 05:57:00 -0800 (PST)
+Received: from mercury (dyndsl-095-033-168-084.ewe-ip-backbone.de [95.33.168.84])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 91BD56602C62;
+        Thu, 15 Dec 2022 13:56:58 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1671112618;
+        bh=mdJcX9ohpfURm3zLoo8qqwZEUEZs5x+hskpxfmea/yo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SC6f7YjaHlSh4nq+zNhpE9lrPycjodkqZZkHffrXkSSSnQerET9Y2BncCaZPi/gld
+         ED5ks6MnCLB1z1d7/o0W/1l6Jw+UqMz9cKm2bwO13cLebomGUgAAQeIXkJyE/BL3h+
+         IBRODJh1faQBEPRV53IO8pO4lEfB7Mr5T2ov9qjvv1ZAvTQ7KHZPNHVE4WtW8+fQd5
+         VYI3x3KNXZlV3URDo2c5w3iQSVKioGECKR6/ewTOwtyL45BAF7U2XRjbdTC63Zul9+
+         LZ+fjrtjkLHak302/5aLSrGNA4p/MjANAv1OzwbXjl+EayoTCVMlIJ3uWvpDyjFMXL
+         g9IEMKLfeBlDA==
+Received: by mercury (Postfix, from userid 1000)
+        id 17D961060F45; Thu, 15 Dec 2022 14:56:56 +0100 (CET)
+Date:   Thu, 15 Dec 2022 14:56:56 +0100
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Jagan Teki <jagan@edgeble.ai>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, Michael Walle <michael@walle.cc>
-Subject: [PATCH v2 2/2] arm64: dts: ls1088a: declare cache-coherent page table walk feature for IOMMU
-Date:   Thu, 15 Dec 2022 15:56:36 +0200
-Message-Id: <20221215135636.3684026-2-vladimir.oltean@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221215135636.3684026-1-vladimir.oltean@nxp.com>
-References: <20221215135636.3684026-1-vladimir.oltean@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: AM0PR10CA0047.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:20b:150::27) To AM0PR04MB5121.eurprd04.prod.outlook.com
- (2603:10a6:208:c1::16)
+        Marc Zyngier <maz@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Christopher Obbard <chris.obbard@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Kever Yang <kever.yang@rock-chips.com>, kernel@collabora.com,
+        Michael Riesch <michael.riesch@wolfvision.net>
+Subject: Re: [PATCHv6 5/7] arm64: dts: rockchip: Add rk3588-evb1 board
+Message-ID: <20221215135656.nqngwqwaprlzf2f7@mercury.elektranox.org>
+References: <20221214182247.79824-1-sebastian.reichel@collabora.com>
+ <20221214182247.79824-6-sebastian.reichel@collabora.com>
+ <CA+VMnFwT+Gi1nFBG2NDyMYx8wv+FrwzR8tb_8RrFh6QMGK8Q6g@mail.gmail.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0PR04MB5121:EE_|DB9PR04MB8463:EE_
-X-MS-Office365-Filtering-Correlation-Id: f22907bc-d5a4-44c5-c9a8-08dadea43783
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 6cYJNVjJrZrBA6SosCmA1/4seq/T8KbGyBIZ4Dwp40UQxLC1Q0CXThHJhfVJ+JXFmbIapVm7Vt0hAf+drxfUB5dgPpp3Tmxlub/KB95KNioM/WpDnHl2CVhHSGTd+4oDsepfab5drHp76uRqslpbwCQzPhJerBEYE1NT8ZaQZa2cU34L23EqdqK+BqkWDll9mnk3R9ytGmwdVKjOwBbTM0xhKWNyraCgDub6V7b4bV/WjwRXN2Igmi84guF9Ufw8r/qcueqWv15ouft35KcziR7WimfhsRJEeZHDN+jkfxrHyhrnTo9HnDYv0HvvKCvGa2wq+hRBRLN8mCAoLE1gmDeD/5m2Dmc+6zB5QhkO1nkq0Wa0XbpBgFWB/h+Ggyw+l5XxSuo0GbeIG7tJ7F5V65NRW86fKgD/RVwAdKhFjASDsaCe3muFK/ekQB7Oag4Sm2oDakq3Nx4GdEMQRrhzMuknxEHJ1IHEASn9XgL5HOc7liNBsNyzp+OA+TpUGh8XzFMYeCzreyFPoGpHtEaHDlgCfQCYfdxbEtA+OO7IzcynCIDPNVWKDRcNmkqzzxQpwZsdfEE9ALKdiUYNmVyLBb/fpQrQuqitax8ThGQQILB6uu9atUqLINY2t69VVJtLtbY4lXHkECTDOwnyb5kc4NmRAac5QfG2PQej9dynYkdFFtHL9iRw3HvjBsZaa6UeTZFzv9kjYyMwrFOLowMiqoM+NFNLX7Or4wUyJM9u1t4=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB5121.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(376002)(366004)(346002)(136003)(396003)(451199015)(38100700002)(38350700002)(83380400001)(86362001)(54906003)(8676002)(66476007)(66556008)(41300700001)(4326008)(316002)(66946007)(2906002)(5660300002)(7416002)(6486002)(2616005)(6512007)(52116002)(186003)(966005)(478600001)(26005)(1076003)(6506007)(6666004)(8936002)(44832011)(36756003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?GWXNjzQBr6S+UQHQ6xlvmmFWq/uIfY+Nv4lQbICHkgQvwlLLSSWKtpd9oFg+?=
- =?us-ascii?Q?Pb/OvMfSuB/n7OkP6Bec65VTR3iD6co26yD/q0kp5+2WNKaZrhGw/Q9sN/sZ?=
- =?us-ascii?Q?cfBktfPNAhX6BQoeW3Gw7AuupDTlD7ckpH1PgpXV7rG+trSYWwe5E0hCrfTI?=
- =?us-ascii?Q?pZouko7UZsAyFmf0+22QGDgcSJjUZFTqS63hAPZq1J3fIW/rWp3eCQ/MinAr?=
- =?us-ascii?Q?/olY2S+xKIeaQg5Oxml+/GaVb3qsS4vbwzogbd/6jgNcMNX/QHJwMVITNNmf?=
- =?us-ascii?Q?JqWdv81xK2fYeSmFyKQA8DKBY7YsAECzDmMM03nCKOdezwmovlMvTz9e6Jhs?=
- =?us-ascii?Q?2FRwUyPK978iZOIW+mPV439Gu1/c3GLicV4IiK0+Qtb2UEDiw6Vis51w9a8F?=
- =?us-ascii?Q?liquw99RPWQLqm8ThXw8IXB2+2j+c0Rkpwvy7dL0ChfszGnQ+7IcI1w0keyd?=
- =?us-ascii?Q?Sz8+5uPcX7Z5d6B43c18IZ4gxbEPzNznwC+v93JRNWrBtY7fV/uJmZ36Yzg1?=
- =?us-ascii?Q?G5fGUD4UMUQEQnjNr8H0geaeFpHOnzBiYLmBVBmTs/YBaRQ7hHjj0fA1uWLN?=
- =?us-ascii?Q?NYqNpUEiyRQ9HZbRKG5htDHba7/YuBbLPJhnteSWvQx6IOZt5CNhrvbSsctV?=
- =?us-ascii?Q?PeAvwvC7laKgeHh4GCkGaPicfkxmlsUiOyR7peQpfOMXv3igNMKEcccFxOtD?=
- =?us-ascii?Q?9V8XHr2Jse1V3vFdtGdU1OXaZ5KyvkKYkeCEb0fdZazQ14e2bss5RtHc86AX?=
- =?us-ascii?Q?ApbMZHi4KmAgI/6DQbIndiUJtjzJbRKiHKPjPHQ/LKBfC8/NLPY2HLaF9R1J?=
- =?us-ascii?Q?7Uuo79cQyRnpcuvwP5Jnguu7DKv0sGUWJUw4MzW58CqE4o8eK8sWiLjyBEWt?=
- =?us-ascii?Q?x0nK32eLSGJ2NP1E3Q9HTQCgJvu+ceGH8+lt+tJKkNhwu4DRhmRLWbw56s6r?=
- =?us-ascii?Q?23JV+XRKYIEXwxgLkcTlWSPZevwcJiEQJE1jTwBGEH4txJQk9XVQPUbjjH+H?=
- =?us-ascii?Q?pHmQUIP+4LkbNh9MLSrtDuje0r3tVlSm/8C8U96iPLC4suA4bGEnZzSltT6G?=
- =?us-ascii?Q?iczIgDL+u3DnJUsHyYQWrp6aMhnJL8KRQhlCVqkcsYEqoQpOk71TWnkFM96D?=
- =?us-ascii?Q?7GiEY4W9HDHsAHyL83iPzzt6WmWVHPWpEIZz0I80rDgzvgWsvutCG+3jwiSt?=
- =?us-ascii?Q?pXMR1bROcbWMILjW8bz+l1zrp8oFnpd58WyEoZpzkLnuJJqCP+7kaBRCRst/?=
- =?us-ascii?Q?D8FC8mwjIABXCRuRKd7jB2/Tg9EugTKKhB3f2myI4b+kWtar7dXAw/DYo8mM?=
- =?us-ascii?Q?4JIo8BvZUmlIG0XTKlE/WOhicInG1A7ZV6R1kYz+IFM4sSK51FEeawMFBYrS?=
- =?us-ascii?Q?Po05mYiHc9nEPUkyzfpAEzYQa0iSVdP8Uqc/LNMoETO4xYRBTsGWSAgcVJEf?=
- =?us-ascii?Q?PQPFnKoVze+OklwhePcvUfMnEgJlH4N5rB03rpzCCsDG+7NNz6yC5tD/cpRP?=
- =?us-ascii?Q?+yyyQ4f8KoYSuUkrgPXbsJCu7Z9/gnmoy5ia+GKgtAlQIvgiuRHtnoAwQ/D+?=
- =?us-ascii?Q?H+ftKLXi2ZplF5FnIvSIBHjvaC8zpdFpwxInFQWD8P8B2m4NBFdZYBq7Rmk6?=
- =?us-ascii?Q?Gg=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f22907bc-d5a4-44c5-c9a8-08dadea43783
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB5121.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2022 13:56:51.5764
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NW9bSFLSf31QtJhkzwb4kr7b2el8EmM4kbir8I93dbu7RjcdjV/RNQUp0P3oU8do0ffhPTMudfskIMd0IZ9v3A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8463
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="voeg7cbvslfv7tvk"
+Content-Disposition: inline
+In-Reply-To: <CA+VMnFwT+Gi1nFBG2NDyMYx8wv+FrwzR8tb_8RrFh6QMGK8Q6g@mail.gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SMMUv2 driver for MMU-500 reads the ARM_SMMU_GR0_ID0 register at
-probe time and tries to determine based on the CTTW (Coherent
-Translation Table Walk) bit whether this feature is supported.
 
-Unfortunately, it looks like the SMMU integration in the NXP LS1088A has
-wrongly tied the cfg_cttw signal to 0, even though the SoC documentation
-specifies that "The SMMU supports cache coherency for page table walks
-and DVM transactions for page table cache maintenance operations."
+--voeg7cbvslfv7tvk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Device tree provides the option of overriding the ID register via the
-dma-coherent property since commit bae2c2d421cd ("iommu/arm-smmu: Sort
-out coherency"), and that's what we do here.
+Hi Jagan,
 
-Telling struct io_pgtable_cfg that the SMMU page table walks are
-coherent with the CPU caches brings performance benefits, because it
-avoids certain operations such as __arm_lpae_sync_pte() for PTE updates.
+On Thu, Dec 15, 2022 at 06:37:10PM +0530, Jagan Teki wrote:
+> On Wed, 14 Dec 2022 at 23:53, Sebastian Reichel
+> <sebastian.reichel@collabora.com> wrote:
+> > From: Kever Yang <kever.yang@rock-chips.com>
+> >
+> > Add board file for the RK3588 evaluation board. While the hardware
+> > offers plenty of peripherals and connectivity this basic implementation
+> > just handles things required to successfully boot Linux from eMMC,
+> > connect via UART or Ethernet.
+> >
+> > Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+> > [rebase, update commit message, use EVB1 for SoC bringup]
+> > Reviewed-by: Michael Riesch <michael.riesch@wolfvision.net>
+> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > ---
+> >  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+> >  .../boot/dts/rockchip/rk3588-evb1-v10.dts     | 165 ++++++++++++++++++
+> >  2 files changed, 166 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dt=
+s/rockchip/Makefile
+> > index 8c15593c0ca4..12ed53de11eb 100644
+> > --- a/arch/arm64/boot/dts/rockchip/Makefile
+> > +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> > @@ -72,3 +72,4 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3566-soquartz-cm4.=
+dtb
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-bpi-r2-pro.dtb
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-evb1-v10.dtb
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-rock-3a.dtb
+> > +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588-evb1-v10.dtb
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts b/arch/ar=
+m64/boot/dts/rockchip/rk3588-evb1-v10.dts
+> > new file mode 100644
+> > index 000000000000..46ea2daf5d6e
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
+> > @@ -0,0 +1,165 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Copyright (c) 2021 Rockchip Electronics Co., Ltd.
+> > + *
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/pinctrl/rockchip.h>
+> > +#include "rk3588.dtsi"
+> > +
+> > +/ {
+> > +       model =3D "Rockchip RK3588 EVB1 V10 Board";
+> > +       compatible =3D "rockchip,rk3588-evb1-v10", "rockchip,rk3588";
+> > +
+> > +       aliases {
+> > +               mmc0 =3D &sdhci;
+> > +               serial2 =3D &uart2;
+> > +       };
+> > +
+> > +       chosen {
+> > +               stdout-path =3D "serial2:1500000n8";
+> > +       };
+> > +
+> > +       backlight: backlight {
+> > +               compatible =3D "pwm-backlight";
+> > +               brightness-levels =3D <
+> > +                         0  20  20  21  21  22  22  23
+> > +                        23  24  24  25  25  26  26  27
+> > +                        27  28  28  29  29  30  30  31
+> > +                        31  32  32  33  33  34  34  35
+> > +                        35  36  36  37  37  38  38  39
+> > +                        40  41  42  43  44  45  46  47
+> > +                        48  49  50  51  52  53  54  55
+> > +                        56  57  58  59  60  61  62  63
+> > +                        64  65  66  67  68  69  70  71
+> > +                        72  73  74  75  76  77  78  79
+> > +                        80  81  82  83  84  85  86  87
+> > +                        88  89  90  91  92  93  94  95
+> > +                        96  97  98  99 100 101 102 103
+> > +                       104 105 106 107 108 109 110 111
+> > +                       112 113 114 115 116 117 118 119
+> > +                       120 121 122 123 124 125 126 127
+> > +                       128 129 130 131 132 133 134 135
+> > +                       136 137 138 139 140 141 142 143
+> > +                       144 145 146 147 148 149 150 151
+> > +                       152 153 154 155 156 157 158 159
+> > +                       160 161 162 163 164 165 166 167
+> > +                       168 169 170 171 172 173 174 175
+> > +                       176 177 178 179 180 181 182 183
+> > +                       184 185 186 187 188 189 190 191
+> > +                       192 193 194 195 196 197 198 199
+> > +                       200 201 202 203 204 205 206 207
+> > +                       208 209 210 211 212 213 214 215
+> > +                       216 217 218 219 220 221 222 223
+> > +                       224 225 226 227 228 229 230 231
+> > +                       232 233 234 235 236 237 238 239
+> > +                       240 241 242 243 244 245 246 247
+> > +                       248 249 250 251 252 253 254 255
+> > +               >;
+> > +               default-brightness-level =3D <200>;
+> > +
+> > +               pwms =3D <&pwm2 0 25000 0>;
+> > +               power-supply =3D <&vcc12v_dcin>;
+> > +       };
+>=20
+> Do we really need this now? and brightness-levels need not be required
+> to mention all.
 
-Link: https://lore.kernel.org/linux-iommu/3f3112e4-65ff-105d-8cd7-60495ec9054a@arm.com/
-Suggested-by: Robin Murphy <robin.murphy@arm.com>
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
----
-v1->v2: patch is new
+It's my PWM test case, but removing brightness-levels and
+default-brightness-level sounds fine to me. This can be
+added once there is display support.
 
- arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+-- Sebastian
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-index 260d045dbd9a..e5fb137ac02b 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-@@ -674,6 +674,7 @@ smmu: iommu@5000000 {
- 			reg = <0 0x5000000 0 0x800000>;
- 			#iommu-cells = <1>;
- 			stream-match-mask = <0x7C00>;
-+			dma-coherent;
- 			#global-interrupts = <12>;
- 				     // global secure fault
- 			interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
--- 
-2.34.1
+--voeg7cbvslfv7tvk
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmObJ5oACgkQ2O7X88g7
++poFsQ//dxEdirNYDPmZMuVM+0mLL9jxNcUGejSGkS0CM7wZ52MA7QdqOGX3/os1
+j9VLVl8MZRaqThguWYREI7FHfziCFjtBkJFv7NTkEGwhQJZrFRc0vnBXEH5hzzz4
+D4STov6YVKHM/tHDfUMdjoKNk5UkVtbPw9uZocPGjtzLECK7BX+Y56UaIH3J5EYg
+z8Sm0/zszX2Mn939Dqa/k1D6gqme7lwuMxT5TWU7nj80x/JG3NcBNom4ospF3G6q
+JW0PwSNK3bVPRed6ajsTXFQuHUpqTMYndhG6kOtkiXxdo0WcCL+b9W4A/CNRNbjI
+PsziGgYoHZsQ3lkl5mJO9MiyuRJiwARL0Qtv/EaaQrZI8ENF1+ts9vbnhNZ3adKA
+XWXaoYawGHpyULC9wRNZqP/QGbucGULh3kyn23lMe9X92QrNIMkMHwyC+rOQHvxK
+pqlvvChO8xCDdhJqUzsJWHPGbXWPBYJUVmgGaqB4wXlZF+tOO06CfAhr9ATS8/au
+oImlMwl/3xGcgmPtbnRqlrs5iwGuwYpzkVPi+b/4qbT6mNQBLLBE2TQnNYoTc2wF
+gUm6QsXRKhX+VIUgEHo5ILo+uQF+2oimTLGYPXT3ytqJ9ZqgL9/svWBUnkIlzqET
+NIr7ZRJEs7hYxULo/OFHfTHFUl8EoJEZ20Tuc8zd/5vOA8BTXLs=
+=rThP
+-----END PGP SIGNATURE-----
+
+--voeg7cbvslfv7tvk--
