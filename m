@@ -2,167 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1CE064D904
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 10:51:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DE0964D92F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 11:02:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230115AbiLOJve (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 04:51:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46164 "EHLO
+        id S229670AbiLOKCE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 05:02:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230026AbiLOJvL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 04:51:11 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8B745C0E8
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 01:50:21 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id z26so14800968lfu.8
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 01:50:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GHzqsSvslMQj7aaAMRNWFcMOjD6mUD/ZMpwlfykKSKw=;
-        b=S56nXRJWIWIcfqQKWlqA8nNkrOjKgfGHlcgVASmDbpQZVtcDnlMnvG8vKQaBf9JyjM
-         8jtl6WE5nUl0ZtaLbuD4akaR4A/0rX2fobzqo/B6zvBikwXFrf6NfHNJB8AeZrHEOiyg
-         IE1IaMqQOw0FZAm0Vk/ij9U1IotgPWL1711eAdEl9xGzU0ejIyN0kViYtz5u8IYXEJnH
-         Um18b6K2cZowduD3f1s5g4yIUDVXnlHFk/o8HkkuvThEfoqjFXUFMGaPC7OIMw4NEi0O
-         xLyoJapEQfjX5PyUqZrMHu4x+XlqbyUgkFBnUo7P0iUPLWaT5LXa+81uUAZKEO8zidWT
-         IsHg==
+        with ESMTP id S230231AbiLOKBq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 05:01:46 -0500
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4AFD2A961;
+        Thu, 15 Dec 2022 02:01:45 -0800 (PST)
+Received: by mail-qt1-f171.google.com with SMTP id fu10so4801627qtb.0;
+        Thu, 15 Dec 2022 02:01:45 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GHzqsSvslMQj7aaAMRNWFcMOjD6mUD/ZMpwlfykKSKw=;
-        b=1wfRUtgpvuaXyCu3V2m9omnHq9jh1ij3yb/yYrNDtqwIJVeVrjZWw5U7XijvIUgrfL
-         kesIk7ozw5QkXMtwSi1pyxeC3PeHpzcGzKFENdhpCZgQyvbcSmoECTUYRvMtV2Zdxr/w
-         Fi0ZSwUkb1cexu3gh6TXtmeex+3FClmb2oMrKpFfKZAB8BEGZJDVffRhUG9sjlAtQl9h
-         W4Zg3+0OOGS1nS0jQ5qfmW21Ev7S4cVBTcjyIdY/9g/cJv1IX9rQfGeNHjiqzef4D4x9
-         J0oRl9CwH2fjfTOWPaQZurQMnjAZwg1D1fEc8Eydm8BCOsS/DIeJsaLfZwVPTY93Tc9H
-         Y59Q==
-X-Gm-Message-State: ANoB5pmvo2+MIkjRwTahG/bIzHPbDGYzmpyVfcgffMXdNTckzh4Hp1kF
-        BtpL03L1DZvYgoAcWZ/1gmk1OQ==
-X-Google-Smtp-Source: AA0mqf5xGIT7lIRMsBLXsAkmeEH1QBzeR1ZB+qbINWxUEPgNpjUVrG2f0n4VK4CoW4/cA+f3IOsSZA==
-X-Received: by 2002:ac2:4bcb:0:b0:4a4:68b9:66bc with SMTP id o11-20020ac24bcb000000b004a468b966bcmr7260898lfq.7.1671097820112;
-        Thu, 15 Dec 2022 01:50:20 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id v1-20020ac258e1000000b004946b549a19sm1115937lfo.45.2022.12.15.01.50.18
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JhtBCHHNjoXXg4T30Sb3fCu73wDFb0l1hMsSAjF0/fc=;
+        b=I4RFIuWgbHzPtr412BtFDCfKDHQ8ZvNbodm5TTanssloIpgUoCf8VG5EysLabbDXOu
+         PbH+aOxOZxDMinbn98lfCXnZcBc9MgDhURLo12ZsP9+DUjJJj+r5n0K8oVIu1yd1SHev
+         u61TspyPTvhdeSOM7EBC+oQ6jdxlNhcErx9iQM2eMYTDV6S2ZPccBIqcs7JeKpyedXKi
+         7xAGmYnUb3fm/f4D3HKrHqB9lcifEKToVC3I4DG2jplClsnc3sgN5SQWGXTJn5Cl8HGR
+         s1hPQyLfvIihcd+LJi+AaDilOkwt6JtZnEdyHH+Q811FQf/5rMWQgH9Ii+twkqw+O5cS
+         dzhg==
+X-Gm-Message-State: ANoB5pk0u0fzhlcclAA3BmwZb6FJKIX1paNdsJJR/nYqYJKdji+yMU/r
+        WhS3fZag5365g1XMeNh4PkbIUdNte5tEtQ==
+X-Google-Smtp-Source: AA0mqf5IkZdrOBZF4otQcCnpnY6ghJ5HQxT2GUgozP8oMpULmRVMDD/FomiRwYpxQaQbgUY5SvSk6A==
+X-Received: by 2002:a05:622a:488c:b0:3a7:ed31:a618 with SMTP id fc12-20020a05622a488c00b003a7ed31a618mr42865401qtb.7.1671098504492;
+        Thu, 15 Dec 2022 02:01:44 -0800 (PST)
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
+        by smtp.gmail.com with ESMTPSA id l14-20020ac84cce000000b0038b684a1642sm3190217qtv.32.2022.12.15.02.01.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Dec 2022 01:50:19 -0800 (PST)
-Message-ID: <0161902f-1a0c-0be2-2141-3c14d6e6fe54@linaro.org>
-Date:   Thu, 15 Dec 2022 10:50:18 +0100
+        Thu, 15 Dec 2022 02:01:43 -0800 (PST)
+Received: by mail-yb1-f172.google.com with SMTP id d131so2896458ybh.4;
+        Thu, 15 Dec 2022 02:01:43 -0800 (PST)
+X-Received: by 2002:a25:7204:0:b0:6f0:9ff5:1151 with SMTP id
+ n4-20020a257204000000b006f09ff51151mr66067110ybc.543.1671098503649; Thu, 15
+ Dec 2022 02:01:43 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH 2/5] dt-bindings: power: reset: Add RZ/V2M PWC Power OFF
- bindings
-Content-Language: en-US
-To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+References: <20221213133302.218955-1-herve.codina@bootlin.com> <20221213133302.218955-2-herve.codina@bootlin.com>
+In-Reply-To: <20221213133302.218955-2-herve.codina@bootlin.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 15 Dec 2022 11:01:32 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV7x_-PGfOnHxuXhE-cqSKeugscTe4b_9-_tF2MsSJGPg@mail.gmail.com>
+Message-ID: <CAMuHMdV7x_-PGfOnHxuXhE-cqSKeugscTe4b_9-_tF2MsSJGPg@mail.gmail.com>
+Subject: Re: [PATCH v4 1/5] dt-bindings: usb: add the Renesas RZ/N1 USBF controller
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Lee Jones <lee@kernel.org>, linux-gpio@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jacopo Mondi <jacopo@jmondi.org>
-References: <20221213224310.543243-1-fabrizio.castro.jz@renesas.com>
- <20221213224310.543243-3-fabrizio.castro.jz@renesas.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221213224310.543243-3-fabrizio.castro.jz@renesas.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        linux-usb@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/12/2022 23:43, Fabrizio Castro wrote:
-> Add dt-bindings document for the RZ/V2M PWC Power OFF driver.
+On Tue, Dec 13, 2022 at 2:33 PM Herve Codina <herve.codina@bootlin.com> wrote:
+> The Renesas RZ/N1 USBF controller is an USB2.0 device controller
+> (UDC) available in the Renesas r9a06g032 SoC (RZ/N1 family).
+>
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 
-Drop driver.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Subject: drop second, redundant "bindings".
+Gr{oetje,eeting}s,
 
-> 
-> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> ---
->  .../reset/renesas,rzv2m-pwc-poweroff.yaml     | 48 +++++++++++++++++++
->  1 file changed, 48 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/reset/renesas,rzv2m-pwc-poweroff.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/power/reset/renesas,rzv2m-pwc-poweroff.yaml b/Documentation/devicetree/bindings/power/reset/renesas,rzv2m-pwc-poweroff.yaml
-> new file mode 100644
-> index 000000000000..12456e3e93e6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/reset/renesas,rzv2m-pwc-poweroff.yaml
-> @@ -0,0 +1,48 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/reset/renesas,rzv2m-pwc-poweroff.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/V2M External Power Sequence Controller (PWC) Power OFF
-> +
-> +description: |+
-> +  The PWC IP found in the RZ/V2M family of chips comes with the below
-> +  capabilities
-> +    - external power supply on/off sequence generation
-> +    - on/off signal generation for the LPDDR4 core power supply (LPVDD)
-> +    - key input signals processing
-> +    - general-purpose output pins
-> +  This node uses syscon to map the registers relevant to Power OFF (the
-> +  register map is retrieved from the parent dt-node), and the node should be
-> +  represented as a sub node of a "syscon", "simple-mfd" node.
-> +
-> +maintainers:
-> +  - Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - renesas,r9a09g011-pwc-poweroff # RZ/V2M
-> +          - renesas,r9a09g055-pwc-poweroff # RZ/V2MA
-> +      - const: renesas,rzv2m-pwc-poweroff
-> +
-> +  regmap:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: |
-> +      Phandle to the register map node.
+                        Geert
 
-This also has to go.
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-> +
-> +required:
-> +  - compatible
-> +  - regmap
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    poweroff {
-> +            compatible = "renesas,r9a09g011-pwc-poweroff",
-
-Use 4 spaces for example indentation.
-
-> +                         "renesas,rzv2m-pwc-poweroff";
-> +            regmap = <&regmapnode>;
-> +    };
-
-Best regards,
-Krzysztof
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
