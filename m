@@ -2,142 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 096E064E098
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 19:22:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F78564E0A6
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 19:25:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229695AbiLOSWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 13:22:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49740 "EHLO
+        id S229658AbiLOSZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 13:25:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229637AbiLOSWg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 13:22:36 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB8284667B;
-        Thu, 15 Dec 2022 10:22:35 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 66E76B81C37;
-        Thu, 15 Dec 2022 18:22:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17311C433D2;
-        Thu, 15 Dec 2022 18:22:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671128553;
-        bh=dAaOdWTPCc7tzr5zLW6fD/haLwLpJykRK4uPP26zcfE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ovOmvcVJK+pbxmzyzMfETbt5Usv3hISJzTZuEcW6r2mdgU2XcS3x12pTd4d0PlVRU
-         9DBk+sUxP3gx5LgyKL2Tr2mzDMr3O816aAGA5Xzi6ZcTcsnh58amiUMPtZ+IBk10hY
-         cbPLO4nb695Dz84nkN9F7A443FHrzxWaqxrZ8/Ve91MpHB1j8kQPpOriaGjZ0YxglU
-         NFZ1BPt5mKyVOkXqDkvARlu2vJEENCGr5fuWuu7alGuBOq6pINzLnBNAP74aX7kwRY
-         ysZqnH0fNwe5fz4G5u5d0GP6MO0+6DQpxNMB6DAc3ymieYUFXHwqSVKgPuFIJEoLlB
-         xn7MuS3Ca33Jw==
-Date:   Thu, 15 Dec 2022 18:22:23 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Nishanth Menon <nm@ti.com>
-Cc:     jerome Neanne <jneanne@baylibre.com>,
-        Wadim Egorov <W.Egorov@phytec.de>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "kristo@kernel.org" <kristo@kernel.org>,
-        "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "lee@kernel.org" <lee@kernel.org>,
-        "tony@atomide.com" <tony@atomide.com>,
-        "vigneshr@ti.com" <vigneshr@ti.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "geert+renesas@glider.be" <geert+renesas@glider.be>,
-        "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
-        "marcel.ziswiler@toradex.com" <marcel.ziswiler@toradex.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "biju.das.jz@bp.renesas.com" <biju.das.jz@bp.renesas.com>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "jeff@labundy.com" <jeff@labundy.com>, "afd@ti.com" <afd@ti.com>,
-        "khilman@baylibre.com" <khilman@baylibre.com>,
-        "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
-        "msp@baylibre.com" <msp@baylibre.com>,
-        "j-keerthy@ti.com" <j-keerthy@ti.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>
-Subject: Re: [PATCH v7 1/6] DONOTMERGE: arm64: dts: ti: Add TI TPS65219 PMIC
- support for AM642 SK board.
-Message-ID: <Y5tl3+2pJispcXy6@sirena.org.uk>
-References: <20221104152311.1098603-1-jneanne@baylibre.com>
- <20221104152311.1098603-2-jneanne@baylibre.com>
- <d0d7e315-ce86-0420-8ef5-fe2e4aefd5b4@phytec.de>
- <e2bc53fe-3a0c-cf24-8b29-ca377aba3721@baylibre.com>
- <Y5tGzjgcAWPqdFNE@sirena.org.uk>
- <20221215175411.znxy3d6ussq2iq5h@grieving>
+        with ESMTP id S229611AbiLOSYl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 13:24:41 -0500
+Received: from amity.mint.lgbt (vmi888983.contaboserver.net [149.102.157.145])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52F3B4874B
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 10:24:39 -0800 (PST)
+Received: from amity.mint.lgbt (mx.mint.lgbt [127.0.0.1])
+        by amity.mint.lgbt (Postfix) with ESMTP id 4NY0xx51BYz1S5CF
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 13:24:37 -0500 (EST)
+Authentication-Results: amity.mint.lgbt (amavisd-new);
+        dkim=pass (2048-bit key) reason="pass (just generated, assumed good)"
+        header.d=mint.lgbt
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mint.lgbt; h=
+        content-transfer-encoding:mime-version:x-mailer:message-id:date
+        :subject:to:from; s=dkim; t=1671128675; x=1671992676; bh=We5xjhG
+        qrFdJQxR93Npt09VH/7a6fXPhQTRN9HYr93I=; b=Etll/v7Q6Up8luUpmqcHAL5
+        SgRNNpSSv5MREEJAJBiiKgXcAiCELaAVKnTBeI4DK9bmk/BZFo8j+4062IkO9f4N
+        ghn5143wDMHlY9py+vVG1Jnuy8kqganwWVEscUUelFDpczto716/c3HzdZL+0UIb
+        h7PB0xv0nRa9gn68F1vOq8N0lVsAxFjP6EMdID4H5WCd5aDnQj5LWh67fp4D0EHj
+        kqiisvD0zG+z6njiIpKY7gLdwY1/sTYRitjXG92vhhi5G1EB6TPDvBoRQqtPBD/q
+        UPR4JsD5heFP4AhrCdya/LEPoQj5hdlXsWrdwGoIBAErGrqiAhgF0lDDxtylIjA=
+        =
+X-Virus-Scanned: amavisd-new at amity.mint.lgbt
+Received: from amity.mint.lgbt ([127.0.0.1])
+        by amity.mint.lgbt (amity.mint.lgbt [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id VWliRh-CEuwt for <devicetree@vger.kernel.org>;
+        Thu, 15 Dec 2022 13:24:35 -0500 (EST)
+Received: from dorothy.. (unknown [190.196.92.66])
+        by amity.mint.lgbt (Postfix) with ESMTPSA id 4NY0xp2QHWz1S4yj;
+        Thu, 15 Dec 2022 13:24:29 -0500 (EST)
+From:   Lux Aliaga <they@mint.lgbt>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Lux Aliaga <they@mint.lgbt>, linux-arm-msm@vger.kernel.org,
+        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/4] dt-bindings: ufs: qcom: Add SM6125 compatible string
+Date:   Thu, 15 Dec 2022 15:24:09 -0300
+Message-Id: <20221215182412.386064-1-they@mint.lgbt>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="Ou+aT4tEkmn4+pSU"
-Content-Disposition: inline
-In-Reply-To: <20221215175411.znxy3d6ussq2iq5h@grieving>
-X-Cookie: Today is what happened to yesterday.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Document the compatible for UFS found on the SM6125.
 
---Ou+aT4tEkmn4+pSU
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Lux Aliaga <they@mint.lgbt>
+---
+ Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-On Thu, Dec 15, 2022 at 11:54:11AM -0600, Nishanth Menon wrote:
-> On 16:09-20221215, Mark Brown wrote:
+diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Docume=
+ntation/devicetree/bindings/ufs/qcom,ufs.yaml
+index b517d76215e3..42422f3471b3 100644
+--- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
++++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+@@ -29,6 +29,7 @@ properties:
+           - qcom,sc8280xp-ufshc
+           - qcom,sdm845-ufshc
+           - qcom,sm6115-ufshc
++          - qcom,sm6125-ufshc
+           - qcom,sm6350-ufshc
+           - qcom,sm8150-ufshc
+           - qcom,sm8250-ufshc
+@@ -185,6 +186,7 @@ allOf:
+           contains:
+             enum:
+               - qcom,sm6115-ufshc
++              - qcom,sm6125-ufshc
+     then:
+       properties:
+         clocks:
+--=20
+2.38.1
 
-> > That proposal looks really non-idiomatic and quite unusual, if there's a
-> > fixed voltage supply to the LDO I'd expect to see it modeled as a fixed
-> > voltage regulator.  I'm not sure what the use of bypass here is trying
-> > to accomplish TBH.
-
-> The problem is this - the default NVM in the PMIC is setup such that
-> VSET value =3.3v and bypass bit set (makes sense since the vin=3.3v).
-
-This implies no voltage drop over the LDO?  Sounds a bit suspect.
-
-> Now the constraint is bypass bit cannot be changed without the LDO
-> being switched off.
-
-> regulator-allow-bypass property allows us to control bypass bit, but we
-> should'nt toggle it when LDO is active. Not providing the property
-> implies the bit wont be toggled by regulator core either.
-
-> What we need is a scheme that will disable the bypass bit with the
-> intent of operating the LDO with just the vset field. I did'nt find it
-> possible atm.. unless I am mistaken..
-
-Can the consumer just disable the supply as part of startup?  Though
-that's starting to feel rather board specific.  There's not really a
-good place to put a board specific setup process like that in the kernel
-at the minute, you'd ideally want the firmware to leave the device at
-least disabled if not actually out of bypass on startup so we don't have
-to deal with this.  Ugh...
-
---Ou+aT4tEkmn4+pSU
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmObZd8ACgkQJNaLcl1U
-h9BH+QgAgXSqInlA7GNyvDv3vqe3E5eleoOCrAa5Ti6K31e7Nvrrr1eDU3YoFQHF
-T1gPkwcmB8T5CvtTK7gWQi5Yv8HAXerZRJXZHYw3cm682lyi+FDUUtq6nAU9Py0G
-wKuNxyD0r5s4VU0IEKMq3AmxpfpDAR1O1X+J17M1qpA7hRTWS2gOvtdFp9f5Qv6M
-7DcL8RN3/kL8lbypTL4D2gFAmxcDSStYOtbNYzzf+ScPXb3FJp0lqn5oFuQzjRuv
-GbcR1e9FRnMNGVZAUfmY8vhSICzHLwMzHZMLZhgNqR20tNc5NrVhEGFfb3BWxU8Q
-9SSKv8RBqU1QqLYxzYC6GkpsKtNcVw==
-=rWw5
------END PGP SIGNATURE-----
-
---Ou+aT4tEkmn4+pSU--
