@@ -2,94 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A322964D7F9
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 09:47:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2374264D80B
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 09:51:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229517AbiLOIre (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 03:47:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40742 "EHLO
+        id S229670AbiLOIve (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 03:51:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229537AbiLOIrc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 03:47:32 -0500
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43DA22C679
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 00:47:31 -0800 (PST)
-Received: by mail-yb1-xb2c.google.com with SMTP id v126so939337ybv.2
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 00:47:31 -0800 (PST)
+        with ESMTP id S229549AbiLOIvc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 03:51:32 -0500
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AFFF2656B
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 00:51:31 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id s10so9262508ljg.1
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 00:51:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=WnqnAujO5vkgFIZAn2NFYepD7a3hgxx4gJdKQM7EdWw=;
-        b=uj7Wp84Cqgei0v0WvmsVG0yd/ZHMmp/HBco/HcM9rsM3j4iZqpJ6N4jW03fZ2HhlGl
-         xEftHNVESN5oX7xF3m8/ASoHkqBuGyNgfF64WtHzD+1shdBRG6zaQj0RvSb9HUTfrT6v
-         Z9e5JNTf267bWOMw6wj0MDthCFqBKTDN21m9pGaTq3b0/eGBk4jCzMH3oMEN4M4OgNmo
-         9uv7jERNiu9zRhlllpLJ8aDTKQJn6zpB3PdUM39qLfml6RXfSOS0fg28v5V0aDB8tnQA
-         v3ACks6lb9/98c+H10sUoXjuQNJ9V0tVLdahZZNIzMxnm+q0NIa2ru8vqbmOUaxFZAO9
-         Athw==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pecYI2Wxf2sv6LmohLERH3VYYJ/4cVx07ayYX6z9h/s=;
+        b=L7lt4ZkLZifQmwNbt0yl+olfrtq7W/yIU4r3g0cNYk70fS0VGDDSTZ1Y8FYs87fp4T
+         4FnLrkcWp3nbFvYwlRDfJTm9wjqhkZW+TAZsTyHPgAlVmqGfQCfEC/zXZp8gGWZBN7ZM
+         4Mj7CplmPstozha7jDhHDiG57D/MiZwLdT5TBu9d5EjCJIGts8M/9i9CNR19qiZEQBj4
+         Nipcs59d4TJ3IvZM8EBAHOAIHi8LUhZelxErM3u9KR6zu0FrtyAek1anaGyW+g0rI6/8
+         E57PSWjC0/rnAQC/5w04EqrubtkhOlb1bcvDeVjkNo8dVf6SqPRiSu0in3f3/Nf42weW
+         VN3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WnqnAujO5vkgFIZAn2NFYepD7a3hgxx4gJdKQM7EdWw=;
-        b=abND7eQ7h4NT7jAmedzIFe4+lRabic5mBDeo29qEkqJPKa+ngGQg17Qg/QNrYwJgec
-         cByAOwC9SeNIuv85giob6oMLKdpVIqcNO+2XacO6QcwwP0U9cDid5BJNitGGBFO/Qdis
-         uIHzZulKBZ/ihrJXe09eC776A6MSkTFJbR7V59Y1dvFPeLtpLqMnc0QmpzqnjjuidXmp
-         +vl0DeB+7EFni8FYn3KLC8KjhkjBqHDdwGC04Zqr+9kUzhy9pLensZT8wzE1EyLTJ395
-         hdZCXeErtroNz4935/IGKcFuraWcc3FKM0lBKWFhMNox1KCZCLMt5oTR0r2It6fOjzzB
-         0VVA==
-X-Gm-Message-State: ANoB5pmpweiMmzuwAQNkDaOEVDPP8DvO9YmPslD4Z1iBQMduFeMIi46y
-        k5SHVhXDikiwHN7cAdkR/ttcbE4kL5tQj8W4PLyMcw==
-X-Google-Smtp-Source: AA0mqf5bsqySdrdRzZC3LcwYOXrrbKcZw5U684DMiTWRojvR6IWV7k6hdArOgzLWW/xTiTYH6m14Nbyjkf1sEQeqVlQ=
-X-Received: by 2002:a25:7648:0:b0:6fe:54d5:2524 with SMTP id
- r69-20020a257648000000b006fe54d52524mr24021352ybc.522.1671094050499; Thu, 15
- Dec 2022 00:47:30 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pecYI2Wxf2sv6LmohLERH3VYYJ/4cVx07ayYX6z9h/s=;
+        b=f3t/Ls18hJbaOaojbVptfhXx+s9JnJJRJI6sK6sKizdXYScVRVm2VM2JAt41xrDyi6
+         Cw8FBlVUHDJs3NyZGWPGoWSTJ3AwjtP8ty10yME/RcakKbTHS/fdiywa5N0QNS6vnlpT
+         Jh4yspTUGbIKoxVz8VFmVetUEElCamjstDwi2qoSTbHmxRjj7r/1mljHq+Cl2d68EE7f
+         rdiDjV1KA/mbWXMMsPlDXMTl8qRdTeyA/KluspUPJf35wZZAw7wR4jjjNY6eMlUXTjBs
+         0CpVcVFZtjgCKXC2KZN8iit9yYb0wjW8I2kMfv5ZNIDC5O4TuJlXM+jX+cN8xn6/PKp4
+         3IFA==
+X-Gm-Message-State: ANoB5plQTEw9BtizRQCdbUxQ3J/rg2grCFlJzYjbFDRsf+tr88Cnvrjd
+        f9y6oUsnykXTUnoEb/uElxcIQDnLY0txeK6r
+X-Google-Smtp-Source: AA0mqf7RQnZt8Jg4Jb4ob2J4Gkt1xR+Q6+E7uufexHrEt78eEsXBCQJCD4+fbwAu/psxmpKrl0L9NQ==
+X-Received: by 2002:a2e:9582:0:b0:27b:4e29:1073 with SMTP id w2-20020a2e9582000000b0027b4e291073mr4346367ljh.29.1671094289694;
+        Thu, 15 Dec 2022 00:51:29 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id b20-20020a2eb914000000b002797892025csm789133ljb.137.2022.12.15.00.51.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Dec 2022 00:51:29 -0800 (PST)
+Message-ID: <66fa228f-d35d-6e03-0ef3-09c6aa0bb66d@linaro.org>
+Date:   Thu, 15 Dec 2022 09:51:28 +0100
 MIME-Version: 1.0
-References: <20221214180611.109651-1-macroalpha82@gmail.com> <20221214180611.109651-3-macroalpha82@gmail.com>
-In-Reply-To: <20221214180611.109651-3-macroalpha82@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 15 Dec 2022 09:47:19 +0100
-Message-ID: <CACRpkdY7UArNJ5ZH8f5rx+9aoV_ii=0aE9PCj-6XHCL7Om0+=Q@mail.gmail.com>
-Subject: Re: [PATCH V5 2/4] dt-bindings: display: panel: Add Magnachip D53E6EA8966
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        tzimmermann@suse.de, mripard@kernel.org,
-        maarten.lankhorst@linux.intel.com, heiko@sntech.de,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH 4/4] remoteproc: qcom_q6v5_mss: Use a carveout to
+ authenticate modem headers
+Content-Language: en-US
+To:     Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org,
-        thierry.reding@gmail.com, Chris Morgan <macromorgan@hotmail.com>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        manivannan.sadhasivam@linaro.org
+Cc:     agross@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        konrad.dybcio@somainline.org, amit.pundir@linaro.org,
+        regressions@leemhuis.info, sumit.semwal@linaro.org,
+        will@kernel.org, catalin.marinas@arm.com, robin.murphy@arm.com
+References: <20221213140724.8612-1-quic_sibis@quicinc.com>
+ <20221213140724.8612-5-quic_sibis@quicinc.com>
+ <8739f59b-c551-2da4-5523-a89f960bd402@linaro.org>
+ <f4595a18-23bd-d54f-4e50-c0ed63008225@quicinc.com>
+ <1d3c7d01-bfa9-6654-28d9-b9f4964a88a4@linaro.org>
+ <e4bef035-c448-7c75-13a6-d9c61aa8cde7@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <e4bef035-c448-7c75-13a6-d9c61aa8cde7@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 14, 2022 at 7:06 PM Chris Morgan <macroalpha82@gmail.com> wrote:
+On 14/12/2022 12:51, Sibi Sankar wrote:
+> 
+> 
+> On 12/14/22 16:58, Krzysztof Kozlowski wrote:
+>> On 14/12/2022 11:33, Sibi Sankar wrote:
+>>>
+>>>
+>>> On 12/14/22 01:17, Krzysztof Kozlowski wrote:
+>>>> On 13/12/2022 15:07, Sibi Sankar wrote:
+>>>>> The memory region allocated using dma_alloc_attr with no kernel mapping
+>>>>> attribute set would still be a part of the linear kernel map. Any access
+>>>>> to this region by the application processor after assigning it to the
+>>>>> remote Q6 will result in a XPU violation. Fix this by replacing the
+>>>>> dynamically allocated memory region with a no-map carveout and unmap the
+>>>>> modem metadata memory region before passing control to the remote Q6.
+>>>>>
+>>>>> Reported-by: Amit Pundir <amit.pundir@linaro.org>
+>>>>> Fixes: 6c5a9dc2481b ("remoteproc: qcom: Make secure world call for mem ownership switch")
+>>>>> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+>>>>> ---
+>>>>
+>>>> Thank you for your patch. There is something to discuss/improve.
+>>>>>    
+>>>>>    	return ret < 0 ? ret : 0;
+>>>>> @@ -1882,6 +1899,26 @@ static int q6v5_alloc_memory_region(struct q6v5 *qproc)
+>>>>>    	qproc->mpss_phys = qproc->mpss_reloc = r.start;
+>>>>>    	qproc->mpss_size = resource_size(&r);
+>>>>>    
+>>>>> +	if (!child) {
+>>>>> +		node = of_parse_phandle(qproc->dev->of_node, "memory-region", 2);
+>>>>> +	} else {
+>>>>> +		child = of_get_child_by_name(qproc->dev->of_node, "metadata");
+>>>>
+>>>> Bindings do not allow to have child "metadata", do they?
+>>>
+>>> memory-region property was used to specify mba/mpss region in a phandle
+>>> array only from SC7180 SoC. All the older dtbs in the wild/upstream
+>>> still had sub-nodes to achieve the same. Patch 3 allows for a sub-set
+>>> of the SoCs (MSM8996/MSM8998/SDM845) to use metadata as a sub-node so
+>>> as to not break bindings when newer kernel uses a older dtb.
+>>
+>> This does not explain why you extend the driver without extending the
+>> bindings. You do not do it for legacy stuff but for SC7180. But even for
+>> legacy devices you cannot add new properties without having it in some
+>> legacy bindings.
+> 
+> https://patchwork.kernel.org/project/linux-arm-msm/patch/20221213140724.8612-4-quic_sibis@quicinc.com/
+> 
+> The legacy bindings are a part of patch 3 ^^.
 
-> From: Chris Morgan <macromorgan@hotmail.com>
->
-> Add documentation for Magnachip D53E6EA8966 based panels such as the
-> Samsung AMS495QA01 panel.
->
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
-(...)
->  .../display/panel/magnachip,d53e6ea8966.yaml  | 62 +++++++++++++++++++
+Ah, ok.
 
-It's fine to keep this as samsung,ams495qa01.
+Best regards,
+Krzysztof
 
-Just mention that it uses the magnachip controller in the
-description.
-
-That Linux implements this with a generic driver that handles
-all (in theory possible) magnachip-based products is a linuxism
-and does not need to be in the bindings.
-
-Yours,
-Linus Walleij
