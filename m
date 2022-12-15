@@ -2,63 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3482E64E269
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 21:38:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9974164E292
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 21:52:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229782AbiLOUh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 15:37:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38624 "EHLO
+        id S229595AbiLOUwD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 15:52:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229484AbiLOUh5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 15:37:57 -0500
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1ABB2D1C4;
-        Thu, 15 Dec 2022 12:37:56 -0800 (PST)
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-12c8312131fso837008fac.4;
-        Thu, 15 Dec 2022 12:37:56 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0VicmIqQkTqk9tnf41gZXpWqNPl9J5eXILwLP5mFOrI=;
-        b=KKKHBFHEGHXHjax7dWT2qbKFjbb6fasPiVS62UDr64m09x+OKoN7bEupDyVskyQmt8
-         ke4zEHwthG3ULSONIdAaR36zVzJRXIgV2QzHepQ0OyZjqU7XsxSDIPGwM6jTxolJjxt+
-         Weo844hYeCvPN7WxAvz4SXNgVyROjh9SBHNmHMbiglMCkfJuebZDnpKfmC2zLV/m+yo2
-         ZtVsoq7brHxrjhCDwH/yA73sOMCIWkZzde+3FsWmR2hwOvbaQAKubc1XIz+CF1kMA55e
-         T6kmrjN1drwGeA+ti843rbyBBBcPPdwyLWH/jBUWOVBCuzD6J7XlPE+upESVyasR02Py
-         hG3w==
-X-Gm-Message-State: ANoB5pm5TcxwdxodWx7YQJNdajWQGESQiunfWwwopOLXDdMz1g8I/v2v
-        LMfQT8K3vVNAlnnhhYenBw==
-X-Google-Smtp-Source: AA0mqf5IpTWAdKEoHWKqGB9hLSO62/SIL4hHR5w7O5AA3t56M5i0ppUD/4G/yKlU8E4+f1rA0fynFw==
-X-Received: by 2002:a05:6871:a688:b0:144:e56a:1a3a with SMTP id wh8-20020a056871a68800b00144e56a1a3amr13779971oab.4.1671136676077;
-        Thu, 15 Dec 2022 12:37:56 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id cm35-20020a056870b62300b001375188dae9sm159389oab.16.2022.12.15.12.37.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Dec 2022 12:37:55 -0800 (PST)
-Received: (nullmailer pid 669242 invoked by uid 1000);
-        Thu, 15 Dec 2022 20:37:54 -0000
-Date:   Thu, 15 Dec 2022 14:37:54 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        linux-watchdog@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v3] dt-bindings: watchdog: gpio: Convert bindings to YAML
-Message-ID: <167113639595.663197.15426353278060761950.robh@kernel.org>
-References: <20221107160338.27910-1-marex@denx.de>
+        with ESMTP id S229696AbiLOUwC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 15:52:02 -0500
+X-Greylist: delayed 596 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 15 Dec 2022 12:52:00 PST
+Received: from proxmox1.postmarketos.org (proxmox1.postmarketos.org [213.239.216.189])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 895C350D65;
+        Thu, 15 Dec 2022 12:52:00 -0800 (PST)
+Received: from [192.168.0.17] (cpc76482-cwma10-2-0-cust177.7-3.cable.virginm.net [86.14.20.178])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by proxmox1.postmarketos.org (Postfix) with ESMTPSA id 6E33E14022A;
+        Thu, 15 Dec 2022 20:42:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+        s=donut; t=1671136923;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=eNzr3o3XBuM2ARVluiGzk/KlaWpCEtA4u+GM+9nASXg=;
+        b=KHp22PgWnM9kvRlxQ5yyv0xxQzwQfmrnv16OPKxTfn2i6+xgMDM29SWpe9RqwpZZyQJD/+
+        3EBjAp2ts0EHbZHIeBdf0grX/HOYu/9sYQ0ryokm68xhkvf9X7CX4b9a4S9iy9zdHbEhKn
+        TncaFG9uHHoCekbZ1dDvfLY+MRXt8+s=
+Message-ID: <78769cf4-84cc-5195-57b8-823d9fc33794@postmarketos.org>
+Date:   Thu, 15 Dec 2022 20:42:02 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221107160338.27910-1-marex@denx.de>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH] arm64: dts: rockchip: fix input enable pinconf on rk3399
+Content-Language: en-US
+To:     Arnaud Ferraris <arnaud.ferraris@collabora.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     kernel@collabora.com
+References: <20221215101947.254896-1-arnaud.ferraris@collabora.com>
+From:   Caleb Connolly <kc@postmarketos.org>
+In-Reply-To: <20221215101947.254896-1-arnaud.ferraris@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -66,35 +60,54 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Mon, 07 Nov 2022 17:03:38 +0100, Marek Vasut wrote:
-> Convert the gpio-wdt bindings from text to YAML ones, to permit DT validation.
+
+On 15/12/2022 10:19, Arnaud Ferraris wrote:
+> When the input enable pinconf was introduced, a default drive-strength
+> value of 2 was set for the pull up/down configs. However, this parameter
+> is unneeded when configuring the pin as input, and having a single
+> hardcoded value here is actually harmful: GPIOs on the RK3399 have
+> various same drive-strength capabilities depending on the bank and port
+> they belong to.
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Guenter Roeck <linux@roeck-us.net>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Wim Van Sebroeck <wim@linux-watchdog.org>
-> Cc: linux-watchdog@vger.kernel.org
-> To: devicetree@vger.kernel.org
-> ---
-> V2: - Add missing required: properties
->     - Drop quotes around ref: referenced schema file name
-> V3: - Add Guenter as maintainer of the bindings
->     - Add RB from Rob
-> ---
->  .../devicetree/bindings/watchdog/gpio-wdt.txt | 28 -----------
->  .../bindings/watchdog/linux,wdt-gpio.yaml     | 47 +++++++++++++++++++
->  2 files changed, 47 insertions(+), 28 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/watchdog/gpio-wdt.txt
->  create mode 100644 Documentation/devicetree/bindings/watchdog/linux,wdt-gpio.yaml
+> As an example, trying to configure the GPIO4_PD3 pin as an input with
+> pull-up enabled fails with the following output:
 > 
+>    [   10.706542] rockchip-pinctrl pinctrl: unsupported driver strength 2
+>    [   10.713661] rockchip-pinctrl pinctrl: pin_config_set op failed for pin 155
+> 
+> (acceptable drive-strength values for this pin being 3, 6, 9 and 12)
+> 
+> Let's drop the drive-strength property from all input pinconfs in order
+> to solve this issue.
+> 
+> Fixes: ec48c3e82ca3 ("arm64: dts: rockchip: add an input enable pinconf to rk3399")
+> Signed-off-by: Arnaud Ferraris <arnaud.ferraris@collabora.com>
 
-Looks like this was missed. Applied, thanks! You missed 
-'always-running', so I added it from the other conversion that was 
-done[1].
+Reviewed-by: Caleb Connolly <kc@postmarketos.org>
 
-Rob
+> ---
+>   arch/arm64/boot/dts/rockchip/rk3399.dtsi | 2 --
+>   1 file changed, 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+> index 92c2207e686c..59858f2dc8b9 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+> @@ -2221,13 +2221,11 @@ pcfg_input_enable: pcfg-input-enable {
+>   		pcfg_input_pull_up: pcfg-input-pull-up {
+>   			input-enable;
+>   			bias-pull-up;
+> -			drive-strength = <2>;
+>   		};
+>   
+>   		pcfg_input_pull_down: pcfg-input-pull-down {
+>   			input-enable;
+>   			bias-pull-down;
+> -			drive-strength = <2>;
+>   		};
+>   
+>   		clock {
 
-[1] https://lore.kernel.org/all/20221125112904.48652-1-robert.marko@sartura.hr/
+-- 
+Kind Regards,
+Caleb (they/them)
