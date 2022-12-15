@@ -2,70 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4DAE64DBC2
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 13:57:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14F8864DBD1
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 13:59:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229733AbiLOM5W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 07:57:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40458 "EHLO
+        id S229808AbiLOM7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 07:59:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229762AbiLOM5V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 07:57:21 -0500
+        with ESMTP id S229460AbiLOM7T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 07:59:19 -0500
 Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E88752B25A
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 04:57:19 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id s25so9860966lji.2
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 04:57:19 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 680A72B24B
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 04:59:18 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id y4so9817951ljc.9
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 04:59:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=XcQ2de193g9xXdCqrKcwvWzRCXrL5xNmRpxT+5GlZvM=;
-        b=AylID3F/XfIZmSDwVfzELEs+vouj12dfB1Dp5+DTVCrGbY0ToI/rRTtML0QazOk6gG
-         Mg1vlcfqdwBXMn9UQ3lZakcaxUa2a5yVI66V5YHfBiVJAZnFiBFQZc3/iPUrEn0/0rOL
-         cMudKbg+JhdTjSy5ZKu54f3wIlFqztsjwAyOO0Krnd5aB1EZIKFSzUOGoyfxu81zu80x
-         Rx7C6S5+BALTvJ31OR7qFXKd9Qu3ETBL/anPM1x21Zc5ewJ9xKyIps/Bo594vvwj8Glu
-         Pdw0YwXWYSgdPoB6SXbMK1GtDGLB7LJXMj+ehi5LDBa9zXJvM6z2QKLd6cNv5vEShUuz
-         3ctQ==
+        bh=llSMRHSy8fgpG88Qu7rkldd0ovXSCuBQ6quLIMM8cUQ=;
+        b=DmPKEbk+miQLCapY/IsQqkSV/b44yx7ASxmgkXl3CzuhNpg7lcofWNtM1JgK5fMxrP
+         eZKe2+fWED5QvpOG14PK5DpcSrcp+xE4gmJmgwENgQzcPyqssazV7BxwJFCDzx+VGyt6
+         Nx7YXy60QsFbXPS57alA6EXS7MmnQQ9VZeoijvBMYBCpbjrC9wTtmDOy0HVt10gINL2a
+         uNTq91Efa6ovksuGKgEbZrMqrRAaBuCiiO72zGmCHXTQPFPnqF3Cfvr0aIfIap5YMaG1
+         rDE9QMF04RjxL3rPebEYFpJ8thmiKQw1ILXo4xi4OgWgz9+kN+R2oyIHOl/9UduYM7Bx
+         wzzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XcQ2de193g9xXdCqrKcwvWzRCXrL5xNmRpxT+5GlZvM=;
-        b=GlpZWuqUkU88J8cMiuNpI3wbaZHSbBAUe0oDFhRaAVdqCFa2+RNTlRIBgWSsBx+CM3
-         T0yCnNXAPIcqTigr8UOy6fQx/gOvrB8Ku5lQ24Whegmu6vHZb9BwqIs2LDTYzkXOU/Al
-         fpEM1Li4VyMlIfb7UsBbcsQo8DXRXiOIFSHAjqMNFinI0mQPvc+dxQdBJUChLfOpsgYZ
-         s7bx6Yj0lNpET6b0RTyQTOTXZN58KTc677R33f9tZoNtbExHx7N8fxmWf//xUF1xMbt2
-         sxty9hbD4Zb3wtSBRV6NuxPV7UWEmgALlIb4Im6hJISvb3BBGlvj15AJbQBewNGQPCpo
-         6o/g==
-X-Gm-Message-State: ANoB5pkQmOa2Z7f3BYDSfYVCfEJQvk7RP/TP71PI7GGDz2prGDT0qpak
-        N/21HtiGXvy4/oSn7ccEDLVRfA==
-X-Google-Smtp-Source: AA0mqf55aO0/zf3k5ZxxSWTq1mL6XFDkNCbhkzvmh0muLGpY7xFoVix/0UFechV4Yu0+agA8K5rSiA==
-X-Received: by 2002:a2e:a7c3:0:b0:27a:69f:62d3 with SMTP id x3-20020a2ea7c3000000b0027a069f62d3mr9124289ljp.51.1671109038107;
-        Thu, 15 Dec 2022 04:57:18 -0800 (PST)
+        bh=llSMRHSy8fgpG88Qu7rkldd0ovXSCuBQ6quLIMM8cUQ=;
+        b=pFadRtEQ4f/Nsxdy27dnGFLk5bWERTZF15gCKUxD6gZwve6emST3zmHD0S+iyJi9zE
+         QtD+/s2VqhWQ4T3s33xfZvkvWvgZ5TbsJnFtPuKJPt1BVU5wvCk0qjXGuDMR6rH4sqsE
+         t694jKWe3k6W72JVF4nIQ4rEuB0K3gtDwMa7R9jsi2A4jQ9VXuThqpsutsDNfsbsRpga
+         Iz49SG3qHbg1X+S4djfyaCGR0CJ4pVg6mps8kvcImStWP9gJkMDUy6j5brIBnaGZJACP
+         jWU/wRY8JHXre/WUrMrWZE1YAbLHARZky5QanWUQPc16VLcOiz0Ij/+9cbb7/0tyS7l9
+         BtDA==
+X-Gm-Message-State: ANoB5pnKtUFVIOlg2IWZ4EZKXTl0flL6XL9USOjmEfcUtvQZRTCX826W
+        48DIVwAAKsh4IhTz6wBbiWOebQ==
+X-Google-Smtp-Source: AA0mqf4MvuxcJCpBYYDHZflz5phGsIFb9j+cuEr3AVvxBMMcQehX8PmKMor9XsgFdQ6gUAlgdRHLNw==
+X-Received: by 2002:a2e:96c4:0:b0:279:c5ef:c05e with SMTP id d4-20020a2e96c4000000b00279c5efc05emr7593868ljj.6.1671109156795;
+        Thu, 15 Dec 2022 04:59:16 -0800 (PST)
 Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id y15-20020a2e95cf000000b0027741daec09sm805422ljh.107.2022.12.15.04.57.15
+        by smtp.gmail.com with ESMTPSA id r20-20020a2e8e34000000b00279e0b8bae5sm838818ljk.84.2022.12.15.04.59.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Dec 2022 04:57:16 -0800 (PST)
-Message-ID: <fe670133-f9e0-c653-8b13-8abc847b1fc6@linaro.org>
-Date:   Thu, 15 Dec 2022 13:57:14 +0100
+        Thu, 15 Dec 2022 04:59:16 -0800 (PST)
+Message-ID: <54980c40-f49c-c895-591d-c2d9626c3fc0@linaro.org>
+Date:   Thu, 15 Dec 2022 13:59:14 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH v2 6/7] arm64: dts: qcom: sa8540p-ride: add i2c nodes
+Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: pm8450a: add rtc node
 Content-Language: en-US
-To:     Brian Masney <bmasney@redhat.com>, andersson@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     quic_shazhuss@quicinc.com, robh+dt@kernel.org,
-        johan+linaro@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ahalaney@redhat.com, echanude@redhat.com
-References: <20221214171145.2913557-1-bmasney@redhat.com>
- <20221214171145.2913557-7-bmasney@redhat.com>
+To:     Eric Chanudet <echanude@redhat.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andrew Halaney <ahalaney@redhat.com>,
+        Brian Masney <bmasney@redhat.com>
+References: <20221214210908.1788284-1-echanude@redhat.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221214171145.2913557-7-bmasney@redhat.com>
+In-Reply-To: <20221214210908.1788284-1-echanude@redhat.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,172 +81,34 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 14.12.2022 18:11, Brian Masney wrote:
-> Add the necessary nodes in order to get i2c0, i2c1, i2c12, i2c15, and
-> i2c18 functioning on the automotive board and exposed to userspace.
+On 14.12.2022 22:09, Eric Chanudet wrote:
+> Add the rtc block on pm8450a first pmic to enable the rtc for
+> sa8540p-ride.
 > 
-> This work was derived from various patches that Qualcomm delivered
-> to Red Hat in a downstream kernel. This change was validated by using
-> i2c-tools 4.3.3 on CentOS Stream 9:
-> 
-> [root@localhost ~]# i2cdetect -l
-> i2c-0  i2c             Geni-I2C                                I2C adapter
-> i2c-1  i2c             Geni-I2C                                I2C adapter
-> i2c-12 i2c             Geni-I2C                                I2C adapter
-> i2c-15 i2c             Geni-I2C                                I2C adapter
-> i2c-18 i2c             Geni-I2C                                I2C adapter
-> 
-> [root@localhost ~]# i2cdetect -a -y 15
-> Warning: Can't use SMBus Quick Write command, will skip some addresses
->      0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
-> 00:
-> 10:
-> 20:
-> 30: -- -- -- -- -- -- -- --
-> 40:
-> 50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-> 60:
-> 70:
-> 
-> Signed-off-by: Brian Masney <bmasney@redhat.com>
+> Signed-off-by: Eric Chanudet <echanude@redhat.com>
 > ---
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
-> Changes since v1:
-> - Dropped qupX_ prefix from labels. (Johan)
-> - Reordered nodes based on new name.
-> - Added i2c buses 0, 1, and 12 (Shazad)
-> - Drop mux/config-pins and have the pin properties live directly
->   under the i2cX-default-state node. (Konrad)
-> - Use decimal notation for drive strength (Johan)
+>  arch/arm64/boot/dts/qcom/pm8450a.dtsi | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
-> A few things to note with this series applied on top of linux-next:
-> - Reading from i2c-0 using 'i2cdetect -y -a 0' gives the following error
->   when reading from the ranges 0x30-0x37 and 0x50-0x5F.
->       geni_i2c 980000.i2c: Timeout abort_m_cmd
-> - i2c-1 and i2c-2 successfully read using i2cdetect, however it takes
->   several seconds.
-> - i2cdetect runs fast within a small fraction of a second for i2c-15
->   and i2c18.
-> - 'i2cdetect -y -a $BUSNUM' shows the same address ranges 0x30-0x37
->   and 0x50-0x5F in use on all 5 buses.
-> 
->  arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 83 +++++++++++++++++++++++
->  1 file changed, 83 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> index b6e0db5508c7..ccd2ea3c9d04 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> +++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> @@ -17,6 +17,11 @@ / {
->  	compatible = "qcom,sa8540p-ride", "qcom,sa8540p";
+> diff --git a/arch/arm64/boot/dts/qcom/pm8450a.dtsi b/arch/arm64/boot/dts/qcom/pm8450a.dtsi
+> index 34fc72896761..c9b8da43b237 100644
+> --- a/arch/arm64/boot/dts/qcom/pm8450a.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pm8450a.dtsi
+> @@ -13,6 +13,14 @@ pm8450a: pmic@0 {
+>  		#address-cells = <1>;
+>  		#size-cells = <0>;
 >  
->  	aliases {
-> +		i2c0 = &i2c0;
-> +		i2c1 = &i2c1;
-> +		i2c12 = &i2c12;
-> +		i2c15 = &i2c15;
-> +		i2c18 = &i2c18;
->  		serial0 = &uart17;
->  	};
->  
-> @@ -146,6 +151,41 @@ vreg_l8g: ldo8 {
->  	};
->  };
->  
-> +&i2c0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c0_default>;
+> +		rtc@6000 {
+> +			compatible = "qcom,pm8941-rtc";
+> +			reg = <0x6000>, <0x6100>;
+> +			reg-names = "rtc", "alarm";
+> +			interrupts = <0x0 0x61 0x1 IRQ_TYPE_NONE>;
+> +			wakeup-source;
+> +		};
 > +
-> +	status = "okay";
-> +};
-> +
-> +&i2c1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c1_default>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&i2c12 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c12_default>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&i2c15 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c15_default>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&i2c18 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c18_default>;
-> +
-> +	status = "okay";
-> +};
-> +
->  &pcie2a {
->  	ranges = <0x01000000 0x0 0x3c200000 0x0 0x3c200000 0x0 0x100000>,
->  		 <0x02000000 0x0 0x3c300000 0x0 0x3c300000 0x0 0x1d00000>,
-> @@ -188,6 +228,14 @@ &pcie3a_phy {
->  	status = "okay";
->  };
->  
-> +&qup0 {
-> +	status = "okay";
-> +};
-> +
-> +&qup1 {
-> +	status = "okay";
-> +};
-> +
->  &qup2 {
->  	status = "okay";
->  };
-> @@ -268,6 +316,41 @@ &xo_board_clk {
->  /* PINCTRL */
->  
->  &tlmm {
-> +	i2c0_default: i2c0-default-state {
-> +		pins = "gpio135", "gpio136";
-> +		function = "qup15";
-> +		drive-strength = <2>;
-> +		bias-pull-up;
-> +	};
-> +
-> +	i2c1_default: i2c1-default-state {
-> +		pins = "gpio158", "gpio159";
-> +		function = "qup15";
-> +		drive-strength = <2>;
-> +		bias-pull-up;
-> +	};
-> +
-> +	i2c12_default: i2c12-default-state {
-> +		pins = "gpio0", "gpio1";
-> +		function = "qup15";
-> +		drive-strength = <2>;
-> +		bias-pull-up;
-> +	};
-> +
-> +	i2c15_default: i2c15-default-state {
-> +		pins = "gpio36", "gpio37";
-> +		function = "qup15";
-> +		drive-strength = <2>;
-> +		bias-pull-up;
-> +	};
-> +
-> +	i2c18_default: i2c18-default-state {
-> +		pins = "gpio66", "gpio67";
-> +		function = "qup18";
-> +		drive-strength = <2>;
-> +		bias-pull-up;
-> +	};
-> +
->  	pcie2a_default: pcie2a-default-state {
->  		perst-pins {
->  			pins = "gpio143";
+>  		pm8450a_gpios: gpio@c000 {
+>  			compatible = "qcom,pm8150-gpio", "qcom,spmi-gpio";
+>  			reg = <0xc000>;
