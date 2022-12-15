@@ -2,45 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D07AA64D9BE
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 11:50:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A363864D9CC
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 11:55:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229595AbiLOKug (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 05:50:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52748 "EHLO
+        id S229602AbiLOKzc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 05:55:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229562AbiLOKuf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 05:50:35 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3EA22B274;
-        Thu, 15 Dec 2022 02:50:31 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 43C3461CE0;
-        Thu, 15 Dec 2022 10:50:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97E34C433EF;
-        Thu, 15 Dec 2022 10:50:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671101430;
-        bh=0tc8CxRTfC5rdugzN4jzLVxBoOycbgCTK5F8bKMJ9OY=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=gs66ooJqpNjWolvbm7j/gPGp2jEb3N7H2wVX6UJetNFK1WnUOkkN3qd4/eB+oKB+N
-         oxIDFCMbDoiYgr3MBRrD1w9q7mfd8YTCWP7ILz0G9qZYMQQ1gPke3rGO/AJysQfmv9
-         yWmg1sQbS2rquL30Vbo1p01cHJZhp44oNrHj08Bc3VfZvcu1G1SBjEUfP2I0Irj9cI
-         +pwycLOXOAWHiVjzS6KAXcAfftp9FcBD5Nv0AZVWriuHrfH+mXDAeX7P+tLkYmjDpv
-         D8ToXT0NLnIm08NoZz2/keL79quD3qMtxaHCpLpXK0gQeoOoV//hpvXCaJb5iEMpyV
-         Q+DN86iI3Z0gQ==
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.95)
-        (envelope-from <maz@kernel.org>)
-        id 1p5loq-00CpAU-89;
-        Thu, 15 Dec 2022 10:50:28 +0000
+        with ESMTP id S229596AbiLOKzb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 05:55:31 -0500
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A70F75F66
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 02:55:30 -0800 (PST)
+Received: by mail-yb1-xb2a.google.com with SMTP id 2so2978111ybl.13
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 02:55:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=MAzkART/K+H1BtBy2iGf2pMDNR/MlfcpKi3QLVUBijc=;
+        b=3XwC3z+7qmKuu3PPVK1x6/x3iu4IDgw/47F0Lq1kOaCXFWv8uu6uZuN0gLYi7w+3zm
+         kvOWLkPOSsh36KlrBfmKIhkfe/QDvyP3UP7uIXDDmxQdZDEa5EsMOvn6+lDuqPlMc6Fr
+         Ty4+PnXwXPwWp1sDc83bUv7lHZRyie5AddZzNEOK4QgPZwK/WTzIbp6ftggolib+6jsR
+         5JCm/goNnWG0lhyid5lCYJ/kZuOuwQKNSiY61WUFC/ksL09Lbg1JdIhY5rMzqAmXyItM
+         ow4QCkRMSJRujiAmdHAupsiQoE/3rZREJGls9+gGjPrA5XMDMLUjk4bovi7CdB3dvN2s
+         rkZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MAzkART/K+H1BtBy2iGf2pMDNR/MlfcpKi3QLVUBijc=;
+        b=s7hOCxusoDynqLNl/d6qxE85K/SCJDZzesjrD/JAidqJVRHCxp18N65jhBdpR3dIXN
+         XMN8FHycEWg87CgXA0QxlmhGQgQbpl2EpVWEIoZMLlnoP9FUq/5iW+2n/AFW6f/9HC1H
+         0IkLfPBfFCfPEDqWsVschQSRTL9d6a8eujVUFrzOGFXo+Xt5CYFAiGm3OxZLKQRAG4u3
+         olSvDwVyjU17fVE0jBkm7OX9Txf4WDthPOPIMqLoBRCGVW3f0FJ3DZiiyNzuUR7so/Vy
+         hoLnVAk8Azu2qXxA7WugxjG9wsRiEDXRDyDimJHoKRrMWK73/ARH+bfZp6hQZz/OThmb
+         r7TA==
+X-Gm-Message-State: ANoB5pnpSvffgFbeb0RM+4LBt6AloSR/k+5ZFM0DNtSm3moySBHdSY2N
+        rvzOUtMUkv2QWHwalgAcNrXhTop+/Dkkz1nVZDK5kw==
+X-Google-Smtp-Source: AA0mqf5D2ka2OLSU6EKaH/KzAy3R9CDYQoDtyeqHkE52AM+pBVLuEEW2g1AXaXRdS9FL2SHNiUg+soG/TsJ0Rrphz/I=
+X-Received: by 2002:a5b:ac6:0:b0:702:5c2c:c9ee with SMTP id
+ a6-20020a5b0ac6000000b007025c2cc9eemr14594410ybr.44.1671101729873; Thu, 15
+ Dec 2022 02:55:29 -0800 (PST)
 MIME-Version: 1.0
-Date:   Thu, 15 Dec 2022 10:50:28 +0000
-From:   Marc Zyngier <maz@kernel.org>
-To:     Jagan Teki <jagan@edgeble.ai>
+References: <20221214182247.79824-1-sebastian.reichel@collabora.com>
+ <20221214182247.79824-4-sebastian.reichel@collabora.com> <CA+VMnFzMgOC7sgcpQ7nZx2gaJfqqvRu8RxETguaBHN1Lg_nG_w@mail.gmail.com>
+ <9a3cf2f1567f2a5990ed6dea9d6a5669@kernel.org>
+In-Reply-To: <9a3cf2f1567f2a5990ed6dea9d6a5669@kernel.org>
+From:   Jagan Teki <jagan@edgeble.ai>
+Date:   Thu, 15 Dec 2022 16:25:19 +0530
+Message-ID: <CA+VMnFxuzmP_7Rxp9UtUaeyZe=WCLCd2idqk8rorYsQWMSaF9g@mail.gmail.com>
+Subject: Re: [PATCHv6 3/7] arm64: dts: rockchip: Add base DT for rk3588 SoC
+To:     Marc Zyngier <maz@kernel.org>
 Cc:     Sebastian Reichel <sebastian.reichel@collabora.com>,
         Heiko Stuebner <heiko@sntech.de>,
         Rob Herring <robh+dt@kernel.org>,
@@ -54,42 +68,30 @@ Cc:     Sebastian Reichel <sebastian.reichel@collabora.com>,
         Yifeng Zhao <yifeng.zhao@rock-chips.com>,
         Elaine Zhang <zhangqing@rock-chips.com>,
         Sugar Zhang <sugar.zhang@rock-chips.com>
-Subject: Re: [PATCHv6 3/7] arm64: dts: rockchip: Add base DT for rk3588 SoC
-In-Reply-To: <CA+VMnFzMgOC7sgcpQ7nZx2gaJfqqvRu8RxETguaBHN1Lg_nG_w@mail.gmail.com>
-References: <20221214182247.79824-1-sebastian.reichel@collabora.com>
- <20221214182247.79824-4-sebastian.reichel@collabora.com>
- <CA+VMnFzMgOC7sgcpQ7nZx2gaJfqqvRu8RxETguaBHN1Lg_nG_w@mail.gmail.com>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <9a3cf2f1567f2a5990ed6dea9d6a5669@kernel.org>
-X-Sender: maz@kernel.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: jagan@edgeble.ai, sebastian.reichel@collabora.com, heiko@sntech.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org, chris.obbard@collabora.com, benjamin.gaignard@collabora.com, linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kever.yang@rock-chips.com, kernel@collabora.com, yifeng.zhao@rock-chips.com, zhangqing@rock-chips.com, sugar.zhang@rock-chips.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-12-15 10:45, Jagan Teki wrote:
+On Thu, 15 Dec 2022 at 16:20, Marc Zyngier <maz@kernel.org> wrote:
+>
+> On 2022-12-15 10:45, Jagan Teki wrote:
+>
+> > One nick with dtbs_check,
+> > ethernet@fe1c0000: Unevaluated properties are not allowed ('reg',
+> > 'interrupts', 'interrupt-names', 'power-domains', 'resets',
+> > 'reset-names', 'snps,axi-config', 'snps,mixed-burst',
+> > 'snps,mtl-rx-config', 'snps,mtl-tx-config', 'snps,tso', 'mdio',
+> > 'stmmac-axi-config', 'rx-queues-config', 'tx-queues-config' were
+> > unexpected)
+>
+> You did read the cover letter, right?
 
-> One nick with dtbs_check,
-> ethernet@fe1c0000: Unevaluated properties are not allowed ('reg',
-> 'interrupts', 'interrupt-names', 'power-domains', 'resets',
-> 'reset-names', 'snps,axi-config', 'snps,mixed-burst',
-> 'snps,mtl-rx-config', 'snps,mtl-tx-config', 'snps,tso', 'mdio',
-> 'stmmac-axi-config', 'rx-queues-config', 'tx-queues-config' were
-> unexpected)
+Now I checked, thanks. Seems a known issue to go.
 
-You did read the cover letter, right?
-
-         M.
--- 
-Jazz is not dead. It just smells funny...
+Jagan.
