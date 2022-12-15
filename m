@@ -2,103 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A60B64E4A3
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 00:22:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B7B164E4BA
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 00:37:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230057AbiLOXWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 18:22:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56998 "EHLO
+        id S229460AbiLOXhl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 18:37:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230094AbiLOXVz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 18:21:55 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 149E062E89
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 15:21:53 -0800 (PST)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 126A585338;
-        Fri, 16 Dec 2022 00:21:50 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1671146511;
-        bh=8x7iVlRiZpan8NLnKso8+jL1Aj6x8VqLW3957q7IrsE=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=YCVV34wH8KmrfRoNBdVrLhpyN7Dxh8Cr/+EfDcXYrU+VrU9osH788Ba1bhkCfB3oj
-         wwZBPnsJD2AZFp7/4evYvpT2Rc/CuRpookPAYZv9wOOPomzB2PDwdFJSmfxnB2wdDf
-         S9PiCOO303rnybshIKbJ8Qa6stwF9BAz/Nw/cDiMKMCf5Fc74cG7Xqssiz5Ly0KVLi
-         mK+qGKqKwkrE1T1sRc0ZOJUQd7/nAsJ3bApBlkhK9J3ZbxSIrVd6DlfBcdK/X1IyUj
-         O7NR9jdudR6vEGoCXNqVmyIyzVShBwLYQXOaCN7YWQtcvwYz7i+NPd7EnECKtSk2Xv
-         HHT1nw+5g7/4g==
-From:   Marek Vasut <marex@denx.de>
+        with ESMTP id S229554AbiLOXhk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 18:37:40 -0500
+Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A55433C38;
+        Thu, 15 Dec 2022 15:37:38 -0800 (PST)
+Received: by mail-io1-xd34.google.com with SMTP id i83so463864ioa.11;
+        Thu, 15 Dec 2022 15:37:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=n0S+BNnJ7vpChKd2bKXycrLk2TXgTyRGa3Rtky2JtFo=;
+        b=aVSmhgIwuTvtwVtlewKgVXS++UyLWmJ4znxSFIxtsLUOlM6cAim0UFcTuUiYNa6+3N
+         LIobIrYPFiiiIX9HQlwme2zjYMcprOwRI1jVjKlpLjukDZPGNpl/e4t0txJngGHnAZDX
+         hhBvxNhhguO8HYNSiPcEhUzUhLGXX+a8b7CSNMAGoZTt4ep7xukYqItVdoymiAeF6dyP
+         TdK9PK94A0bkeGCQ8pkFZrf6KYQL7UhD2j5zjjVAsfWUkvnSbSjAtP34hvdyG/8g4q++
+         riZ26r8bBQZqtBiVgC9xTGdMaWb3jr//78IILCiHH9F5G0PsLBUiUwHpsncEeQnvNOwP
+         B6IQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=n0S+BNnJ7vpChKd2bKXycrLk2TXgTyRGa3Rtky2JtFo=;
+        b=cMverpxYv1l6SgnMIl207oGMeLPeywwh4M1bdnTIEa+tregTxuVReudpCbNPzl+wrl
+         gq+Irt3nLQA/mHDW4odcfcHe4q72piix7upibqZlom5IlmeyDj2TQe58rVXtOsA0XdUb
+         3gONOCPiyHV1A6khYPNZx7vDwuY+pEC0BoEmPQKnJkNMDIWFaL+tQTaqjkcGl/JMgDhg
+         NKv9q2d8hnEAreMNMX0/2FJLWIE3+0axkCR7QPk6vOYhIs4jn6vH32RPpyq42ixCMs+X
+         2/su1nirvNfgu9z6tQGUO+Itf2pPNPlHIFWeGADbs7HY8eYtnYbT05xAliUwoyWRx3Yu
+         siZQ==
+X-Gm-Message-State: ANoB5pngOpVx9xX9DJZciPBNfUv49JZCeNQzccHWK8QNoNHnTQ9hSIfY
+        e6UlRJz8HJBJqyormxDS70fNHAhb+ZM=
+X-Google-Smtp-Source: AA0mqf4sLdhT8b3nqtusSxBPSpoLvXt5jZzMNbq6n9cnnSpOoxfvhOYgqPU29a33BDpYcqlFytze1g==
+X-Received: by 2002:a6b:b48b:0:b0:6e0:380b:b900 with SMTP id d133-20020a6bb48b000000b006e0380bb900mr17158172iof.12.1671147457832;
+        Thu, 15 Dec 2022 15:37:37 -0800 (PST)
+Received: from aford-IdeaCentre-A730.lan ([2601:447:d001:9aea:a51c:e6d:ec30:864d])
+        by smtp.gmail.com with ESMTPSA id o187-20020a6bbec4000000b006cab79c4214sm100747iof.46.2022.12.15.15.37.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Dec 2022 15:37:35 -0800 (PST)
+From:   Adam Ford <aford173@gmail.com>
 To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Fabio Estevam <festevam@denx.de>,
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
         Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 4/4] dt-bindings: arm: Move i.MX8MM Cloos PHG Board to TQM entry
-Date:   Fri, 16 Dec 2022 00:21:37 +0100
-Message-Id: <20221215232137.144256-4-marex@denx.de>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221215232137.144256-1-marex@denx.de>
-References: <20221215232137.144256-1-marex@denx.de>
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: arm: Add Beacon EmbeddedWorks i.MX8M Plus kit
+Date:   Thu, 15 Dec 2022 17:37:17 -0600
+Message-Id: <20221215233719.404581-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The i.MX8MM Cloos PHG Board is based on TQ-Systems GmbH i.MX8MM TQMa8MQML SOM,
-which results in compatible string in the form:
-"vendor,custom-board", "tqm,som", "fsl,soc"
-Move the binding entry so this triplet can be matched on.
+Add DT compatible string for a Beacon EmbeddedWorks development
+kit based on the i.MX8M Plus from NXP.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Fabio Estevam <festevam@denx.de>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Peng Fan <peng.fan@nxp.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: devicetree@vger.kernel.org
-To: linux-arm-kernel@lists.infradead.org
----
- Documentation/devicetree/bindings/arm/fsl.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Signed-off-by: Adam Ford <aford173@gmail.com>
 
 diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 04f4179a52ab7..16609aa41f462 100644
+index fbfc4f99c01e..387b038f10c8 100644
 --- a/Documentation/devicetree/bindings/arm/fsl.yaml
 +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -815,7 +815,6 @@ properties:
-           - enum:
-               - beacon,imx8mm-beacon-kit  # i.MX8MM Beacon Development Kit
-               - boundary,imx8mm-nitrogen8mm  # i.MX8MM Nitrogen Board
--              - cloos,imx8mm-phg          # i.MX8MM Cloos PHG Board
-               - dmo,imx8mm-data-modul-edm-sbc # i.MX8MM eDM SBC
-               - emtrion,emcon-mx8mm-avari # emCON-MX8MM SoM on Avari Base
-               - fsl,imx8mm-ddr4-evk       # i.MX8MM DDR4 EVK Board
-@@ -900,6 +899,7 @@ properties:
-           one compatible is needed.
+@@ -928,6 +928,7 @@ properties:
+       - description: i.MX8MP based Boards
          items:
            - enum:
-+              - cloos,imx8mm-phg           # i.MX8MM Cloos PHG Board
-               - tq,imx8mm-tqma8mqml-mba8mx # TQ-Systems GmbH i.MX8MM TQMa8MQML SOM on MBa8Mx
-           - const: tq,imx8mm-tqma8mqml     # TQ-Systems GmbH i.MX8MM TQMa8MQML SOM
-           - const: fsl,imx8mm
++              - beacon,imx8mp-beacon-kit  # i.MX8MP Beacon Development Kit
+               - dh,imx8mp-dhcom-som       # i.MX8MP DHCOM SoM
+               - dh,imx8mp-dhcom-pdk2      # i.MX8MP DHCOM SoM on PDK2 board
+               - fsl,imx8mp-evk            # i.MX8MP EVK Board
 -- 
-2.35.1
+2.34.1
 
