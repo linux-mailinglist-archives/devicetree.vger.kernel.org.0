@@ -2,141 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 000E764D9A4
-	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 11:39:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6748864D9AB
+	for <lists+devicetree@lfdr.de>; Thu, 15 Dec 2022 11:46:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229670AbiLOKjS convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 15 Dec 2022 05:39:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47970 "EHLO
+        id S230115AbiLOKqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 05:46:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229628AbiLOKjR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 05:39:17 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7B382C10A
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 02:39:15 -0800 (PST)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1p5ldl-0002Ha-Ud; Thu, 15 Dec 2022 11:39:02 +0100
-Message-ID: <19bd825fa0df76e7b1223e34f934acadd32d6cdf.camel@pengutronix.de>
-Subject: Re: [PATCH v1] arm64: dts: verdin-imx8mp: add pcie support
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Marcel Ziswiler <marcel@ziswiler.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Date:   Thu, 15 Dec 2022 11:38:58 +0100
-In-Reply-To: <20221214061354.174072-1-marcel@ziswiler.com>
-References: <20221214061354.174072-1-marcel@ziswiler.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.46.2 (3.46.2-1.fc37) 
+        with ESMTP id S229846AbiLOKqB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 05:46:01 -0500
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 957E49FCF
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 02:45:59 -0800 (PST)
+Received: by mail-yb1-xb32.google.com with SMTP id i186so2968320ybc.9
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 02:45:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=g4OANl98v7AsQNyM9MzFGjzQDPVC11SlfN97nYRM26M=;
+        b=HATD9ebn1O4Qe9c48sjUXAUACDR2u0tYEcJ04UcaOb0gqbvdOEQy2WjU0t1s3K2D+d
+         hTGexmJ2/+rL6tOQkJQ/3tejDSjhAmBG8VRo4cm155V0nitfr4/bQmeoNi077uwsxJry
+         Oj18WXHOfkY2k34B49RLNqdRYMEAXcdsm7S9ovabE7u89CgLSVoIfpPVrg4GKeHMdxv8
+         uU44PZhK8mLJGaxZYdUaW+31l66+FxLUC2QYr2xBEzGB1JRWXSNPhoqSXNyG+xjwEsM+
+         FFkfBnC5jXmnkDy9HxV6UXMDhr0atuXFz4P1NmkeU4G2NVrRMhOq6k7HLMF2ix5C2L4e
+         mY1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=g4OANl98v7AsQNyM9MzFGjzQDPVC11SlfN97nYRM26M=;
+        b=JU6iGBH7eXyNLPL2MgPGZF0DHLexFk+adECPfiQMQciURmFU04QG79Nwpieovwz1yu
+         P9Pt/qOT4j7ohAjWf4kfspAJw6apN2vdPJwHFYKOKySEp8xt5DMSEzcjTsn7TeVuCspt
+         bQPAf3sgbHdkfBKfy/ox8elg7rhcVddAelCB217tikIzi4KRWVIFbV8DbCoM8I084vQi
+         zJTs8bqHmUQDKQujFW6P/3L08DgKANbymuKNov3IIJbxcPGg1GLaNSQQA+vPbO2R7eD0
+         6VKhM7wra8TFUHodJOcxDdRsV8bB2B1vDvGjMLTjZZhMF7eIu48V/NzAFsWu5BhAxcAp
+         4r4w==
+X-Gm-Message-State: ANoB5pnhG/Dg32Wz2lnyLfMM+FlLDx5sLadpJQK22rJ+cPNoZLdFDEmE
+        5GoOx6DSiHzzSfKJEZ5BgeclQ6i41Ti8g2VeAJyqlQ==
+X-Google-Smtp-Source: AA0mqf7Z4XI6vc3xWXyspQ0xcWrrGQnaStwZknIY6SMWJ6WCjrysAtVnuDCBX1G9UHn5YWlcNtdhi44B/vwv4QrYGIY=
+X-Received: by 2002:a25:8084:0:b0:700:331d:69b4 with SMTP id
+ n4-20020a258084000000b00700331d69b4mr19031068ybk.101.1671101159112; Thu, 15
+ Dec 2022 02:45:59 -0800 (PST)
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221214182247.79824-1-sebastian.reichel@collabora.com> <20221214182247.79824-4-sebastian.reichel@collabora.com>
+In-Reply-To: <20221214182247.79824-4-sebastian.reichel@collabora.com>
+From:   Jagan Teki <jagan@edgeble.ai>
+Date:   Thu, 15 Dec 2022 16:15:47 +0530
+Message-ID: <CA+VMnFzMgOC7sgcpQ7nZx2gaJfqqvRu8RxETguaBHN1Lg_nG_w@mail.gmail.com>
+Subject: Re: [PATCHv6 3/7] arm64: dts: rockchip: Add base DT for rk3588 SoC
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Christopher Obbard <chris.obbard@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Kever Yang <kever.yang@rock-chips.com>, kernel@collabora.com,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+        Elaine Zhang <zhangqing@rock-chips.com>,
+        Sugar Zhang <sugar.zhang@rock-chips.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marcel,
-
-Am Mittwoch, dem 14.12.2022 um 07:13 +0100 schrieb Marcel Ziswiler:
-> From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> 
-> Add PCIe support on the Verdin iMX8M Plus.
-> 
-> Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> 
+On Wed, 14 Dec 2022 at 23:53, Sebastian Reichel
+<sebastian.reichel@collabora.com> wrote:
+>
+> From: Kever Yang <kever.yang@rock-chips.com>
+>
+> This initial version supports (single core) CPU, dma, interrupts, timers,
+> UART and SDHCI. In short - everything necessary to boot Linux on this
+> system on chip.
+>
+> The DT is split into rk3588 and rk3588s, which is a reduced version
+> (i.e. with less peripherals) of the former.
+>
+> Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
+> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
+> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+> [rebase, squash and reword commit message]
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 > ---
-> This has successfully been tested with Lucas' imx8mp-hsio-blk-ctrl high
-> performance PLL clock exposure patch set [1] a later version thereof
-> hopefully may land together with my humble patch. Thanks!
-> 
-> [1] https://lore.kernel.org/all/20221213160112.1900410-1-l.stach@pengutronix.de/
-> 
->  .../dts/freescale/imx8mp-verdin-dahlia.dtsi   |  9 +++++++-
->  .../boot/dts/freescale/imx8mp-verdin.dtsi     | 22 ++++++++++++++++++-
->  2 files changed, 29 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin-dahlia.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-verdin-dahlia.dtsi
-> index 80db1ad7c230..56b0e4b865c9 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-verdin-dahlia.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin-dahlia.dtsi
-> @@ -67,7 +67,14 @@ &i2c4 {
->  	/* TODO: Audio Codec */
->  };
->  
-> -/* TODO: Verdin PCIE_1 */
-> +/* Verdin PCIE_1 */
-> +&pcie {
-> +	status = "okay";
-> +};
+>  arch/arm64/boot/dts/rockchip/rk3588.dtsi  |   58 +
+>  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 1703 +++++++++++++++++++++
+>  2 files changed, 1761 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588.dtsi
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588.dtsi b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
+> new file mode 100644
+> index 000000000000..d085e57fbc4c
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
+> @@ -0,0 +1,58 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2021 Rockchip Electronics Co., Ltd.
+
+< snip>
+
+> +       qos_vop_m0: qos@fdf82000 {
+> +               compatible = "rockchip,rk3588-qos", "syscon";
+> +               reg = <0x0 0xfdf82000 0x0 0x20>;
+> +       };
 > +
-> +&pcie_phy {
-> +	status = "okay";
-> +};
->  
->  /* Verdin PWM_1 */
->  &pwm1 {
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-> index 6a1890a4b5d8..f3a46f4caf49 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-> @@ -749,7 +749,27 @@ eeprom_carrier_board: eeprom@57 {
->  	};
->  };
->  
-> -/* TODO: Verdin PCIE_1 */
-> +/* Verdin PCIE_1 */
-> +&pcie {
-> +	assigned-clocks = <&clk IMX8MP_CLK_PCIE_AUX>;
-> +	assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_50M>;
-> +	assigned-clock-rates = <10000000>;
-> +	clocks = <&clk IMX8MP_CLK_HSIO_ROOT>,
-> +		 <&clk IMX8MP_CLK_PCIE_ROOT>,
-> +		 <&clk IMX8MP_CLK_HSIO_AXI>;
-> +	clock-names = "pcie", "pcie_aux", "pcie_bus";
-
-Now that I see this, I realize that those clocks and assignments could
-move into imx8mp.dtsi. I doubt that anyone would want to configure
-those clocks in a different way. The real difference between boards is
-the PCIe PHY reference clock and those differences are fully contained
-in the PHY node.
-
-Regards,
-Lucas
-
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_pcie>;
-> +	/* PCIE_1_RESET# (SODIMM 244) */
-> +	reset-gpio = <&gpio4 19 GPIO_ACTIVE_LOW>;
-> +};
+> +       qos_vop_m1: qos@fdf82200 {
+> +               compatible = "rockchip,rk3588-qos", "syscon";
+> +               reg = <0x0 0xfdf82200 0x0 0x20>;
+> +       };
 > +
-> +&pcie_phy {
-> +	clocks = <&hsio_blk_ctrl>;
-> +	clock-names = "ref";
-> +	fsl,clkreq-unsupported;
-> +	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_OUTPUT>;
-> +};
->  
->  /* Verdin PWM_1 */
->  &pwm1 {
+> +       gmac1: ethernet@fe1c0000 {
+> +               compatible = "rockchip,rk3588-gmac", "snps,dwmac-4.20a";
+> +               reg = <0x0 0xfe1c0000 0x0 0x10000>;
+> +               interrupts = <GIC_SPI 234 IRQ_TYPE_LEVEL_HIGH 0>,
+> +                            <GIC_SPI 233 IRQ_TYPE_LEVEL_HIGH 0>;
+> +               interrupt-names = "macirq", "eth_wake_irq";
+> +               clocks = <&cru CLK_GMAC_125M>, <&cru CLK_GMAC_50M>,
+> +                        <&cru PCLK_GMAC1>, <&cru ACLK_GMAC1>,
+> +                        <&cru CLK_GMAC1_PTP_REF>;
+> +               clock-names = "stmmaceth", "clk_mac_ref",
+> +                             "pclk_mac", "aclk_mac",
+> +                             "ptp_ref";
+> +               power-domains = <&power RK3588_PD_GMAC>;
+> +               resets = <&cru SRST_A_GMAC1>;
+> +               reset-names = "stmmaceth";
+> +               rockchip,grf = <&sys_grf>;
+> +               rockchip,php-grf = <&php_grf>;
+> +               snps,axi-config = <&gmac1_stmmac_axi_setup>;
+> +               snps,mixed-burst;
+> +               snps,mtl-rx-config = <&gmac1_mtl_rx_setup>;
+> +               snps,mtl-tx-config = <&gmac1_mtl_tx_setup>;
+> +               snps,tso;
+> +               status = "disabled";
+> +
+> +               mdio1: mdio {
+> +                       compatible = "snps,dwmac-mdio";
+> +                       #address-cells = <0x1>;
+> +                       #size-cells = <0x0>;
+> +               };
 
+One nick with dtbs_check,
+ethernet@fe1c0000: Unevaluated properties are not allowed ('reg',
+'interrupts', 'interrupt-names', 'power-domains', 'resets',
+'reset-names', 'snps,axi-config', 'snps,mixed-burst',
+'snps,mtl-rx-config', 'snps,mtl-tx-config', 'snps,tso', 'mdio',
+'stmmac-axi-config', 'rx-queues-config', 'tx-queues-config' were
+unexpected)
+
+Jagan.
