@@ -2,54 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE4EE64E887
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 10:15:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF11D64E88E
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 10:22:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229655AbiLPJPx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Dec 2022 04:15:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55302 "EHLO
+        id S230092AbiLPJWl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Dec 2022 04:22:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbiLPJPw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 04:15:52 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0FF11A076
-        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 01:15:50 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1p66oh-0005UO-Pa; Fri, 16 Dec 2022 10:15:43 +0100
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1p66og-0005BT-66; Fri, 16 Dec 2022 10:15:42 +0100
-Date:   Fri, 16 Dec 2022 10:15:42 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Sandor Yu <Sandor.yu@nxp.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        patchwork-lst@pengutronix.de, Inki Dae <inki.dae@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-phy@lists.infradead.org
-Subject: Re: [PATCH v2 2/2] phy: freescale: add Samsung HDMI PHY
-Message-ID: <20221216091542.ulctjdxbz552ar2w@pengutronix.de>
-References: <20221215201100.2897501-1-l.stach@pengutronix.de>
- <20221215201100.2897501-2-l.stach@pengutronix.de>
+        with ESMTP id S229453AbiLPJWi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 04:22:38 -0500
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 407D23F064
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 01:22:37 -0800 (PST)
+Received: by mail-pf1-x42d.google.com with SMTP id x66so1385574pfx.3
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 01:22:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=v1fP5fRdrMizfsWMQ3E1/1TNzCxj+enzPNdKZzOn0UA=;
+        b=omOeDYDPhBf+aN+VcZkjPgRWPHaeGx5XhwkZP6TBzejDSQ0jZtXfL+hHtoOXehm8Ul
+         efAVknjUoJwvYOI0zvs6b8R7IPmTwjlLdOVUJLlv9HjtqYoGZtFEiO38GlV0NECbHIrS
+         OIKxNJIGuCJLg4BsyqExaY8YvC5qJXqdBEmOzoFoQuMEI0pzpwAM4XgSLTTIm3qzccm3
+         PCaNktneamtJh0ypbFSlRpzEzN9U/je1b5U/+l5UcovZrjeP/9yJJxjHK5UQ091cZhrq
+         NcmaIjhgqyvfnLMtghWVf8uFe7l+M78yd6vI0shcrpn1GmTxTCfUJHIVJZVGQebvqDs9
+         8ljA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=v1fP5fRdrMizfsWMQ3E1/1TNzCxj+enzPNdKZzOn0UA=;
+        b=mSH28BFt4gNLiHpjO0OFQvRGen2qPdTSo2ypLlY5Bm94eBUM1GJ1MIWXnG30XRFOyP
+         qOiDjny7MdviNctzrGLAK1ckmWA3TKYu7NsomNpT+EAO6OhkjHtvarQy7UGvhVwCTV1o
+         pl/elmhMiEw8WD0nwFz1KmMgPenvJf0xK4wbtvHZRvfp1zPy7qGaO2dC1FxItVoilMvB
+         2oyt/POZ13ujgiJMJiFNc2N8MExNug0UFXNbD85KzJw80p2NEJKg7MFujRuz+QOorRFd
+         FgQ3RcXYU0yABAvhQniElkDEEuh3E6QCGZ0b43u9ZYEXbXcznmMWQ8HRIMqLUvDFCJjG
+         NRvg==
+X-Gm-Message-State: ANoB5plM7R2Ucp4bDi1JZVrOosBIOfPyESaGbZcK07V/H+ntLWmy5T3y
+        9lQww2IzCakQgxiNwgW6qdsvrDAdsSoWD7usuznqdQ==
+X-Google-Smtp-Source: AA0mqf7N87TIr/u2Xinh0I/i4Gx5SNh8dUb223ncD5i94MGrdKiCEfWYNI+lkK6pN7qAcudY2sEvz7g7NhlT96MUsJU=
+X-Received: by 2002:a63:334e:0:b0:479:2227:3aa1 with SMTP id
+ z75-20020a63334e000000b0047922273aa1mr1364607pgz.595.1671182556675; Fri, 16
+ Dec 2022 01:22:36 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221215201100.2897501-2-l.stach@pengutronix.de>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+References: <20221207131731.1291517-1-william.qiu@starfivetech.com> <420d067c-665b-b247-b0cd-8ac242c19924@starfivetech.com>
+In-Reply-To: <420d067c-665b-b247-b0cd-8ac242c19924@starfivetech.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Fri, 16 Dec 2022 10:22:00 +0100
+Message-ID: <CAPDyKFoosrm9CSi4s=YSxdg4xqv118wOFUAc5QRcOgtMCiX=DA@mail.gmail.com>
+Subject: Re: [PATCH v1 0/3] StarFive's SDIO/eMMC driver support
+To:     William Qiu <william.qiu@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-mmc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,62 +68,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lucas,
+On Fri, 16 Dec 2022 at 03:02, William Qiu <william.qiu@starfivetech.com> wrote:
+>
+>
+>
+> On 2022/12/7 21:17, William Qiu wrote:
+> > Hi,
+> >
+> > This patchset adds initial rudimentary support for the StarFive
+> > designware mobile storage host controller driver. And this driver will
+> > be used in StarFive's visionfive-v2 board. The main purpose of adding
+> > this driver is to accommodate the ultra-high speed mode of eMMC.
+> >
+> > The patch series is based on v6.1-rc5.
+> >
+> > -- William
+> >
+> > William Qiu (3):
+> >   dt-bindings: mmc: Add bindings for StarFive
+> >   mmc: starfive: Add sdio/emmc driver support
+> >   riscv: dts: starfive: Add mmc node
+> >
+> >  .../bindings/mmc/starfive,jh7110-sdio.yaml    |  71 +++++++
+> >  MAINTAINERS                                   |   6 +
+> >  .../jh7110-starfive-visionfive-v2.dts         |  25 +++
+> >  arch/riscv/boot/dts/starfive/jh7110.dtsi      |  38 ++++
+> >  drivers/mmc/host/Kconfig                      |  10 +
+> >  drivers/mmc/host/Makefile                     |   1 +
+> >  drivers/mmc/host/dw_mmc-starfive.c            | 197 ++++++++++++++++++
+> >  7 files changed, 348 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mmc/starfive,jh7110-sdio.yaml
+> >  create mode 100644 drivers/mmc/host/dw_mmc-starfive.c
+> >
+> > --
+> > 2.34.1
+> >
+>
+> Hi Jaehoon/Ulf,
+>
+> Could you please help to review and provide comments on this patch series?
+> Thank you in advance.
 
-thanks for this series, one comment please see below.
+Hi William,
 
-On 22-12-15, Lucas Stach wrote:
-> This adds the driver for the Samsung HDMI PHY found on the
-> i.MX8MP SoC. Based on downstream implementation from
-> Sandor Yu <Sandor.yu@nxp.com>.
-> 
-> Co-developed-by: Marco Felsch <m.felsch@pengutronix.de>
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> ---
-> v2: use DEFINE_RUNTIME_DEV_PM_OPS
-> ---
->  drivers/phy/freescale/Kconfig                |   6 +
->  drivers/phy/freescale/Makefile               |   1 +
->  drivers/phy/freescale/phy-fsl-samsung-hdmi.c | 694 +++++++++++++++++++
->  3 files changed, 701 insertions(+)
->  create mode 100644 drivers/phy/freescale/phy-fsl-samsung-hdmi.c
+Looks like you have received plenty of good comments already and there
+are a lot of things for you to update. That said, I think it makes
+better sense for me to look at the next version instead.
 
-...
+>
+> Best regards,
+> William Qiu
 
-> +static int fsl_samsung_hdmi_phy_suspend(struct device *dev)
-> +{
-> +	struct fsl_samsung_hdmi_phy *phy = dev_get_drvdata(dev);
-> +
-> +	clk_disable_unprepare(phy->apbclk);
-> +
-> +	return 0;
-> +}
-> +
-> +static int fsl_samsung_hdmi_phy_resume(struct device *dev)
-> +{
-> +	struct fsl_samsung_hdmi_phy *phy = dev_get_drvdata(dev);
-> +	int ret = 0;
-> +
-> +	ret = clk_prepare_enable(phy->apbclk);
-> +	if (ret) {
-> +		dev_err(phy->dev, "failed to enable apbclk\n");
-> +		return ret;
-> +	}
-> +
-> +	if (phy->cur_cfg)
-> +		ret = fsl_samsung_hdmi_phy_configure(phy, phy->cur_cfg);
-> +
-> +	return ret;
-> +
-> +}
-> +
-> +DEFINE_RUNTIME_DEV_PM_OPS(fsl_samsung_hdmi_phy_pm_ops,
-> +			  fsl_samsung_hdmi_phy_suspend,
-> +			  fsl_samsung_hdmi_phy_resume, NULL);
-
-This must be 'static DEFINE_RUNTIME_DEV_PM_OPS()' since the define don't
-add this for you.
-
-Regards,
-  Marco
+Kind regards
+Uffe
