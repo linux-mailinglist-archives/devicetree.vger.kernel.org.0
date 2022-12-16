@@ -2,22 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B0DA64F223
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 21:08:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD72E64F224
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 21:08:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231298AbiLPUI2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Dec 2022 15:08:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55384 "EHLO
+        id S231902AbiLPUI3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Dec 2022 15:08:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231405AbiLPUI1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 15:08:27 -0500
+        with ESMTP id S231836AbiLPUI2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 15:08:28 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ACF82EF22
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC55B2DAA1
         for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 12:08:27 -0800 (PST)
 Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
         by metis.ext.pengutronix.de with esmtp (Exim 4.92)
         (envelope-from <l.stach@pengutronix.de>)
-        id 1p6H0I-0000kf-QT; Fri, 16 Dec 2022 21:08:22 +0100
+        id 1p6H0J-0000kf-Ez; Fri, 16 Dec 2022 21:08:23 +0100
 From:   Lucas Stach <l.stach@pengutronix.de>
 To:     Shawn Guo <shawnguo@kernel.org>
 Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
@@ -26,9 +26,9 @@ Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
         linux-arm-kernel@lists.infradead.org, patchwork-lst@pengutronix.de,
         "Lukas F . Hartmann" <lukas@mntre.com>,
         Marcel Ziswiler <marcel.ziswiler@toradex.com>
-Subject: [PATCH v3 2/5] soc: imx: add Kconfig symbols for blk-ctrl drivers
-Date:   Fri, 16 Dec 2022 21:08:18 +0100
-Message-Id: <20221216200821.3230165-2-l.stach@pengutronix.de>
+Subject: [PATCH v3 3/5] soc: imx: imx8mp-blk-ctrl: add instance specific probe function
+Date:   Fri, 16 Dec 2022 21:08:19 +0100
+Message-Id: <20221216200821.3230165-3-l.stach@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20221216200821.3230165-1-l.stach@pengutronix.de>
 References: <20221216200821.3230165-1-l.stach@pengutronix.de>
@@ -46,53 +46,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently the dependencies of the blk-ctrl drivers are not fully
-described in Kconfig, which can trip over the compile tests on
-platforms where those drivers are not usually enabled. Add a
-non user-selectable symbol to be describe those dependencies.
+Allow the specific blk-ctrl instance to define a function, which will
+be called during probe to provide device specific extensions.
 
 Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+Tested-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Tested-by: Lukas F. Hartmann <lukas@mntre.com>
 ---
-v3: new patch
----
- drivers/soc/imx/Kconfig  | 10 ++++++++++
- drivers/soc/imx/Makefile |  6 +++---
- 2 files changed, 13 insertions(+), 3 deletions(-)
+ drivers/soc/imx/imx8mp-blk-ctrl.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/soc/imx/Kconfig b/drivers/soc/imx/Kconfig
-index 4b906791d6c7..179bcc896ea2 100644
---- a/drivers/soc/imx/Kconfig
-+++ b/drivers/soc/imx/Kconfig
-@@ -28,4 +28,14 @@ config SOC_IMX9
- 	help
- 	  If you say yes here, you get support for the NXP i.MX9 family
+diff --git a/drivers/soc/imx/imx8mp-blk-ctrl.c b/drivers/soc/imx/imx8mp-blk-ctrl.c
+index 0e3b6ba22f94..b3d9f6e083ba 100644
+--- a/drivers/soc/imx/imx8mp-blk-ctrl.c
++++ b/drivers/soc/imx/imx8mp-blk-ctrl.c
+@@ -60,6 +60,7 @@ struct imx8mp_blk_ctrl_domain {
  
-+config IMX8M_BLK_CTRL
-+	bool
-+	default SOC_IMX8M && IMX_GPCV2_PM_DOMAINS
-+	depends on PM_GENERIC_DOMAINS
+ struct imx8mp_blk_ctrl_data {
+ 	int max_reg;
++	int (*probe) (struct imx8mp_blk_ctrl *bc);
+ 	notifier_fn_t power_notifier_fn;
+ 	void (*power_off) (struct imx8mp_blk_ctrl *bc, struct imx8mp_blk_ctrl_domain *domain);
+ 	void (*power_on) (struct imx8mp_blk_ctrl *bc, struct imx8mp_blk_ctrl_domain *domain);
+@@ -634,6 +635,12 @@ static int imx8mp_blk_ctrl_probe(struct platform_device *pdev)
+ 		goto cleanup_provider;
+ 	}
+ 
++	if (bc_data->probe) {
++		ret = bc_data->probe(bc);
++		if (ret)
++			goto cleanup_provider;
++	}
 +
-+config IMX9_BLK_CTRL
-+	bool
-+	default SOC_IMX9 && IMX_GPCV2_PM_DOMAINS
-+	depends on PM_GENERIC_DOMAINS
-+
- endmenu
-diff --git a/drivers/soc/imx/Makefile b/drivers/soc/imx/Makefile
-index 7b4099ceafd6..a28c44a1f16a 100644
---- a/drivers/soc/imx/Makefile
-+++ b/drivers/soc/imx/Makefile
-@@ -5,7 +5,7 @@ endif
- obj-$(CONFIG_HAVE_IMX_GPC) += gpc.o
- obj-$(CONFIG_IMX_GPCV2_PM_DOMAINS) += gpcv2.o
- obj-$(CONFIG_SOC_IMX8M) += soc-imx8m.o
--obj-$(CONFIG_SOC_IMX8M) += imx8m-blk-ctrl.o
--obj-$(CONFIG_SOC_IMX8M) += imx8mp-blk-ctrl.o
-+obj-$(CONFIG_IMX8M_BLK_CTRL) += imx8m-blk-ctrl.o
-+obj-$(CONFIG_IMX8M_BLK_CTRL) += imx8mp-blk-ctrl.o
- obj-$(CONFIG_SOC_IMX9) += imx93-src.o imx93-pd.o
--obj-$(CONFIG_SOC_IMX9) += imx93-blk-ctrl.o
-+obj-$(CONFIG_IMX9_BLK_CTRL) += imx93-blk-ctrl.o
+ 	dev_set_drvdata(dev, bc);
+ 
+ 	return 0;
 -- 
 2.30.2
 
