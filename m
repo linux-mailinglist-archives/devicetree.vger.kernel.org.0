@@ -2,58 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B23264F547
-	for <lists+devicetree@lfdr.de>; Sat, 17 Dec 2022 00:42:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97EB164F569
+	for <lists+devicetree@lfdr.de>; Sat, 17 Dec 2022 00:58:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230199AbiLPXm1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Dec 2022 18:42:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33528 "EHLO
+        id S229851AbiLPX6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Dec 2022 18:58:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230215AbiLPXmZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 18:42:25 -0500
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AC2F4F640;
-        Fri, 16 Dec 2022 15:42:22 -0800 (PST)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-1322d768ba7so5151542fac.5;
-        Fri, 16 Dec 2022 15:42:22 -0800 (PST)
+        with ESMTP id S230264AbiLPX6K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 18:58:10 -0500
+Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7666A73B30
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 15:58:00 -0800 (PST)
+Received: by mail-oo1-f53.google.com with SMTP id e12-20020a4ab98c000000b004a081e811beso621969oop.2
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 15:58:00 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QfSl+FX9JTy+jdpFFR1D1kGG2K/ycBgrvJ9W+hYCCRs=;
-        b=Ed7TSS0tw0pezzPYyuTdCGmFpGBH0+dXNTJabcUsyhwPTUK8E2ltLASU+SHCkT5fEn
-         v4wA4SK6YsnWvsyciiB1aQ0UiBt9NYF/XLFZh1hzYbcIy5hIuv1EAK67cqgJB3nypkFZ
-         WnZWSC8EFA5y8qafZniPDUPsZrFRNp6q0h1xixg8TndYp+qTj7X8RmPipp8mhdW+I4E6
-         T6R69tDOQX1SzbO6sv06XkiOgTLzq/Z396qe2cK5Gy9C/YrMPOxGxJZpzd3i3wqSPghR
-         4XO3UaMg4K5dMjW3ePR5O6/nFwsH+kdulbhs43FeI0XDRfnUcUyxP90elThSSBTXY4rg
-         NNuA==
-X-Gm-Message-State: ANoB5pkKSJm9VCGsf/ybl+eZ5B4vS4oC6Rtt23wq02xQLHyZ6V4f54/8
-        zsJXHV/eUsI0DYbIBYQe8g==
-X-Google-Smtp-Source: AA0mqf5MYBGCni7xQDRAsLZ2V/eXQh5hzxi51tza1LPWdei/oEGQT80Vdt1JMaxgf+O6639iY/fivg==
-X-Received: by 2002:a05:6870:9d83:b0:144:7061:112 with SMTP id pv3-20020a0568709d8300b0014470610112mr18616683oab.15.1671234141537;
-        Fri, 16 Dec 2022 15:42:21 -0800 (PST)
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Tcdg0k7Cdg8VA/ZRDqBYYjvgYwpOlv75s0RkGKt+5o0=;
+        b=o4oHKUcynzL+BKkLY73H5WmqlJ3nA9P+dtJ5wytHSXHC2awAL3l2n4bREbfEYDQ0m6
+         Qk+XyDWq/1g3KkZsIxdWvW2jZWMksBQkvEI6iyucoPJ3juN1cBXZo9D3RC4LdZUvZyXW
+         F4NQBzySiXuBx4ACdabiq1N7pA//Q4hLEjv9tv93VVyshOREzZ3bTfFGoBJPW9nmXT3y
+         XCwrPZIoqyKerya+Rmg4L2eperjPYFmDkg7eaqWFwmKJKJO/Djs05IGGfIyk6UhqWtYm
+         TjFwjAjNgJjMeDLnr1p8bsQA3ydCgd090maVobNIDJye3TIOuB5c1xuB0Q8lSOj31bpj
+         p04w==
+X-Gm-Message-State: AFqh2koqp0knJPZ9p6ztNe9IXwVg5qOs+8FMWPSM42+fIWOIr2jWT/NY
+        wHkIfVkRmBZvjC9Wbg3tzw==
+X-Google-Smtp-Source: AMrXdXuUo5wmkw7Vf1pNBI7XZd73zpyRDnv75rfYLCy7fG+J7xPYe7FpvV+HszIxkXo8ZdUyYPhOAA==
+X-Received: by 2002:a4a:e79a:0:b0:4a0:72aa:4ca8 with SMTP id x26-20020a4ae79a000000b004a072aa4ca8mr214132oov.7.1671235079655;
+        Fri, 16 Dec 2022 15:57:59 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r43-20020a05687108ab00b001428eb454e9sm1603705oaq.13.2022.12.16.15.42.20
+        by smtp.gmail.com with ESMTPSA id j23-20020a4adf57000000b004a3543fbfbbsm1442686oou.14.2022.12.16.15.57.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Dec 2022 15:42:21 -0800 (PST)
-Received: (nullmailer pid 88182 invoked by uid 1000);
-        Fri, 16 Dec 2022 23:42:20 -0000
-Date:   Fri, 16 Dec 2022 17:42:20 -0600
+        Fri, 16 Dec 2022 15:57:59 -0800 (PST)
+Received: (nullmailer pid 108564 invoked by uid 1000);
+        Fri, 16 Dec 2022 23:57:58 -0000
+Date:   Fri, 16 Dec 2022 17:57:58 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Eugen Hristev <eugen.hristev@microchip.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        luis.oliveira@synopsys.com
-Subject: Re: [PATCH v5 2/4] dt-bindings: phy: Document the Synopsys MIPI DPHY
- Rx bindings
-Message-ID: <20221216234220.GB80712-robh@kernel.org>
-References: <20221216143717.1002015-1-eugen.hristev@microchip.com>
- <20221216143717.1002015-3-eugen.hristev@microchip.com>
+To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 0/2] drm/imx/lcdc: Implement DRM driver for imx21
+Message-ID: <20221216235758.GA88372-robh@kernel.org>
+References: <20221216175006.456831-1-u.kleine-koenig@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20221216143717.1002015-3-eugen.hristev@microchip.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221216175006.456831-1-u.kleine-koenig@pengutronix.de>
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -65,69 +73,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 16, 2022 at 04:37:15PM +0200, Eugen Hristev wrote:
-> From: Luis Oliveira <Luis.Oliveira@synopsys.com>
+On Fri, Dec 16, 2022 at 06:50:04PM +0100, Uwe Kleine-König wrote:
+> Hello,
 > 
-> Add device-tree bindings documentation for SNPS DesignWare MIPI D-PHY in
-> RX mode.
+> Changes since v2:
 > 
-> Signed-off-by: Luis Oliveira <luis.oliveira@synopsys.com>
-> ---
->  .../bindings/phy/snps,dw-dphy-rx.txt          | 29 +++++++++++++++++++
->  1 file changed, 29 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/snps,dw-dphy-rx.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/snps,dw-dphy-rx.txt b/Documentation/devicetree/bindings/phy/snps,dw-dphy-rx.txt
-> new file mode 100644
-> index 000000000000..ffb64fe5cbd1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/snps,dw-dphy-rx.txt
-> @@ -0,0 +1,29 @@
-> +Synopsys DesignWare MIPI Rx D-PHY block details
-> +
-> +Description
-> +-----------
-> +
-> +The Synopsys MIPI D-PHY controller supports MIPI-DPHY in receiver mode.
-> +Please refer to phy-bindings.txt for more information.
-> +
-> +Required properties:
-> +- compatible		: Shall be "snps,dw-dphy-rx".
-> +- #phy-cells		: Must be 1.
+>  - added allOf as Krzysztof requested
+>  - reworked driver based on Philipp's comments
+>    (improved error handling, different selects, moved driver to a subdirectory,
+>    header sorting, drm_err instead of DRM_ERROR, inlined
+>    imx_lcdc_check_mode_change, make use of dev_err_probe())
+>  
+> Krzysztof also pointed out that we're now having two compatibles for a
+> single hardware. Admittedly this is unusual, but this is the chance that
+> the (bad) compatible identifier imx21-fb gets deprecated. The hardware
+> is called LCDC and only the linux (framebuffer) driver is called imxfb.
 
-There is more than 1 lane/phy for a single instance?
+The problem is you can't have firmware (with the DTB) that supports 
+both. Well, you can if you want to have some firmware setting that 
+selects which one. Otherwise, it's really an OS problem to decide what 
+to use. 
 
-> +- bus-width		: Size of the test interface data bus (8 bits->8 or
-> +			  12bits->12).
-
-Do we need a test interface upstream?
-
-If so, needs a vendor prefix.
-
-> +- snps,dphy-frequency	: Frequency at which D-PHY should start, configurable.
-> +			  Check Synopsys databook. (-kHz)
-
-Is this frequency of the link? We have properties for that. Or this 
-should somehow be using the clock binding.
-
-And anything with units should have a unit suffix as defined in 
-property-units.yaml.
-
-> +- reg			: Test interface register. This correspondes to the
-> +			  physical base address of the controller and size of
-> +			  the device memory mapped registers; Check Synopsys
-> +			  databook.
-> +
-> +Example:
-> +
-> +	mipi_dphy_rx1: dphy@d00003040 {
-> +		compatible = "snps,dw-dphy-rx";
-> +		#phy-cells = <1>;
-> +		bus-width = <12>;
-> +		snps,dphy-frequency = <300000>;
-> +		reg = <0xd0003040 0x20>;
-> +	};
-> -- 
-> 2.25.1
-> 
-> 
+Rob
