@@ -2,83 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59D8164EB89
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 13:39:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F341164EB9B
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 13:53:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229636AbiLPMjp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Dec 2022 07:39:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36120 "EHLO
+        id S230248AbiLPMxH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Dec 2022 07:53:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230203AbiLPMjW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 07:39:22 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FDFF4B982;
-        Fri, 16 Dec 2022 04:39:20 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id w15so2339834wrl.9;
-        Fri, 16 Dec 2022 04:39:20 -0800 (PST)
+        with ESMTP id S230064AbiLPMxG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 07:53:06 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E2622496C;
+        Fri, 16 Dec 2022 04:53:05 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id i187-20020a1c3bc4000000b003d1e906ca23so1127802wma.3;
+        Fri, 16 Dec 2022 04:53:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1C1t7Qhw/4Y/cukYlXL7QXYS7VSdfs0nLzx2PMLsJKc=;
-        b=FWlOPhXmYQIcPI01pZmsrS90gM78wa1c7zAhnU7K4ckWoyxWCz/PG2DUXkon6ww3Dk
-         Njwe/v/XAIX18vJuwZxeJT0OOXe4gVS5e8ZcL1HHSBktsBO+AloCjabNe1RE3liQnx9S
-         FTOmIGO5MV8tlwtU9ZnP/u5teQbNvAs9Jk0Q7wvworT+0vLCs6NeG93Uj8UBuZGO+Vg4
-         F6NawSUF2FTrO8DGv7xyjRnMZqnE33rCTzdcX3KCc7Mv7gP1ljwMuHQCC6OyDzJy5WnK
-         RrBs1AI2D9B5uLMdeCEzRvVJ54q9CR53BWEmERsonL4C2kqB/IpSmK1prrWDD0MrGH7D
-         FNCg==
+        bh=BheHA0Tcwm6n8ymyQljk2z1vC+8TH8hh+YD/X0C4MfE=;
+        b=AKseIkBZZBrqaCfkNwNc+eOqwfrvP1xB5qgAOduMfqvnWa/fl4el+6xifzPzoHdoMu
+         dThO83kul7JlQEUalQSJI9PwHrXOloc9BXy1SaNNYS+GTaohbapvDJ2iA7c17ImUR/pL
+         Uk2j6bXGXuATvNUy2eCZTxPY2QaZYRDXNaKGCW3EXp8C7VYgmqmHT3UDXn5ON4P5VoWj
+         tODxHPhQ6dk0TlV8sn3u7JzozL5n+Gxdh7d+nJQj8+lj0M+EKpOCdv5zjTNYG56tqWzs
+         T9KTGXJaolmbqw9gWZlSp+8ctPAfsp7jDTmRNpJnAxZQmafMXgXusal93noxxC/XvI/j
+         nmKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1C1t7Qhw/4Y/cukYlXL7QXYS7VSdfs0nLzx2PMLsJKc=;
-        b=uh/cHel4srJIU1/rZZok+djJ87nT8dgxO1aCAEv3E7353/M/HTSONaux+mNUAhM3SJ
-         KT2A55jRX36I2Ni806FIETnW/lZMrk/sVj5QMBDgG6ziAVFLR0kG6wHxsF15lH4YTT2M
-         ZznmJe+yx1BWEhOvr0NC8d5bYhnjtRFWyi4zCT9UpubXbJbQj95YekWf9bc5aO13SQn5
-         Z8R01blz3PU9FXFzU4zxVml3QiuPvLfN7Xz+Xi/cOqS+PXkS4M6gz/kQwZxO1A4//GgF
-         C9yecRhb2AU3wr0F1WBiWWg7WU0iVZDVTI5js1AILIIzCF4gs8PjILLAlB6hPStUAXXI
-         rfYg==
-X-Gm-Message-State: ANoB5pk+i22eOKlJlSOKOwfPTXeoULKsONBahCslyZ4kELFOX7Utaumj
-        aFhMm+TDKHjq7bapdzWWFBA=
-X-Google-Smtp-Source: AA0mqf4pMaLKkzaoevxB+rOSsPa++2dY506eWmzPr35JFyeRLluIAvbS+LVqLNgYdPE8mCAYon0LPg==
-X-Received: by 2002:adf:de06:0:b0:242:1277:925b with SMTP id b6-20020adfde06000000b002421277925bmr20332500wrm.59.1671194358648;
-        Fri, 16 Dec 2022 04:39:18 -0800 (PST)
+        bh=BheHA0Tcwm6n8ymyQljk2z1vC+8TH8hh+YD/X0C4MfE=;
+        b=C8iwDwwUVz0aFhDn0LKPLvaTRdXNdHqxulbUiiA7LUQ+XC3IcfNpN4QceKNYoHTuCG
+         rLZ16HAGhkHkwSZQhUdotjr6eIySIuOb6Za4Y75d/N5W0c8ZtDX8Bebsl4dnyR+dggXK
+         frt62kcXb9N5HrHntl+0TC+7z45tZXozy8SCxHJs1fq3LDN7BFIxL7hEobgQBEQCet45
+         QgrThJ86Z1UBthh/9/1Tte4rgscwi0hPkXvcoK1zxj+4Ud6qOoLb3s3VwHgwTrWeBVEd
+         j1VPLgTfAxerb2hJIsvDx2wH/cwMobgD4BZmak9bNcEwKrc4X7FnhangiRtebW2atTDN
+         VVpQ==
+X-Gm-Message-State: ANoB5pmfWuZxqcqEKlXPpfvhK26w6X/4ESvQsE7s2abb0wTUt41/V9f1
+        EPk6xT3xzcn7xzVKTQBEeb0=
+X-Google-Smtp-Source: AA0mqf479L304eL8/K8VJH98TvI/FZlxuU1K4BcjUM7FJGorT7BHd3K5GAGOp5+Y4o4yWCg6c9hDig==
+X-Received: by 2002:a7b:cd17:0:b0:3d2:2d2a:d58f with SMTP id f23-20020a7bcd17000000b003d22d2ad58fmr13121323wmj.2.1671195183537;
+        Fri, 16 Dec 2022 04:53:03 -0800 (PST)
 Received: from [192.168.1.132] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id m2-20020a5d4a02000000b0022ae0965a8asm2193502wrq.24.2022.12.16.04.39.16
+        by smtp.gmail.com with ESMTPSA id k11-20020a05600c0b4b00b003c5571c27a1sm2870571wmr.32.2022.12.16.04.53.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Dec 2022 04:39:17 -0800 (PST)
-Message-ID: <83aee145-17dc-45fe-dde5-324602dde0f9@gmail.com>
-Date:   Fri, 16 Dec 2022 13:39:15 +0100
+        Fri, 16 Dec 2022 04:53:02 -0800 (PST)
+Message-ID: <0fc0217e-f1dd-d64c-d43c-cd47a8acbfd4@gmail.com>
+Date:   Fri, 16 Dec 2022 13:53:00 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH v4 0/6] Add first version mt8188 vdosys0 driver
+Subject: Re: [PATCH v7 0/8] Add MediaTek MT6357 PMIC support
 Content-Language: en-US
-To:     "nathan.lu" <nathan.lu@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Kevin Hilman <khilman@kernel.org>,
+        Alexandre Mergnat <amergnat@baylibre.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc:     "jason-jh . lin" <jason-jh.lin@mediatek.com>,
-        CK Hu <ck.hu@mediatek.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Rob Herring <robh+dt@kernel.org>,
+        Fabien Parent <fabien.parent@linaro.org>,
+        Tianping Fang <tianping.fang@mediatek.com>,
+        Flora Fu <flora.fu@mediatek.com>,
+        Chen Zhong <chen.zhong@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>, Lee Jones <lee@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     linux-mediatek@lists.infradead.org,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>,
-        Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        Moudy Ho <moudy.ho@mediatek.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, lancelot.wu@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20221206020046.11333-1-nathan.lu@mediatek.com>
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+        linux-rtc@vger.kernel.org, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Fabien Parent <fparent@baylibre.com>,
+        linux-leds@vger.kernel.org
+References: <20221005-mt6357-support-v7-0-477e60126749@baylibre.com>
+ <7hr0xe56uf.fsf@baylibre.com>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20221206020046.11333-1-nathan.lu@mediatek.com>
+In-Reply-To: <7hr0xe56uf.fsf@baylibre.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -91,74 +97,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Applied patches 2,3,4,5
-The rest will go through the DRM driver tree.
+Hi Kevin,
+Hi Alexandre,
 
-Thanks!
+On 05/12/2022 14:16, Kevin Hilman wrote:
+> Matthias,
+> 
+> Alexandre Mergnat <amergnat@baylibre.com> writes:
+> 
+>> This patch series adds MFD, PMIC keys, and regulator support for MT6357.
+>> MT6357 is a MediaTek PMIC very similar to MT6358.
+> 
+> The regulator driver (and bindings) were merged by Mark.  Could you take
+> the rest of this series via your mediatek tree?  The input driver (and
+> bindings) are ack'd by Dmitry.
+> 
 
-On 06/12/2022 03:00, nathan.lu wrote:
-> From: Nathan Lu <nathan.lu@mediatek.com>
-> 
-> This patch is to add first version mt8188 vdosys0 driver
-> Modify and add new files include:
-> 1. bindings documents
-> 2. mtk mmsys
-> 3. mtk mutex
-> 4. mtk drm driver
-> 
-> Change in V4:
-> - based on [1]
-> [1] Change mmsys compatible for mt8195 mediatek-drm
->      - https://patchwork.kernel.org/project/linux-mediatek/list/?series=699386
-> - Modify mediatek,mmsys.yaml, move mt8188-vdosys0 to ****mmsys
-> - Modify mt8188_mmsysy.h DSI mux setting
-> 
-> Change in V3:
-> - based on [1]
-> [1] Change mmsys compatible for mt8195 mediatek-drm
->      - https://patchwork.kernel.org/project/linux-mediatek/list/?series=699386
-> - Modify mediatek,mmsys.yaml mt8188-mmsys name to mt8188-vdosys0
-> - Modify mtk-mmsys.c compatible name to mt8188-vdosys0
-> - Add DSI mutex in mtk-mutex.c
-> - Modify mtk_drm_drv.c mt8188-mmsysy name to mt8188-vdosys0
-> 
-> 
-> Change in V2:
-> - based on [2] and [3]
-> [2] Add MediaTek SoC(vdosys1) support for mt8195
->      - https://patchwork.kernel.org/project/linux-mediatek/list/?series=658416
-> [3] Add MediaTek SoC DRM (vdosys1) support for mt8195
->      - https://patchwork.kernel.org/project/linux-mediatek/list/?series=665269
-> - Seperate bindings doucment into mmsys/mutex/display 3 parts
-> - Remove redundent char in mediatek,gamma.yaml
-> - Add another mediatek,mt8188-disp-rdma in mediatek,rdma.yaml
-> - Remove io_start variable setting in mtk_drm_drv.c and mtk_mmsys.c
-> 
-> Nathan Lu (6):
->    dt-bindings: mediatek: modify VDOSYS0 display device tree
->      Documentations for MT8188
->    dt-bindings: mediatek: modify VDOSYS0 mmsys device tree Documentations
->      for MT8188
->    dt-bindings: mediatek: modify VDOSYS0 mutex device tree Documentations
->      for MT8188
->    soc: mediatek: add mtk-mmsys support for mt8188 vdosys0
->    soc: mediatek: add mtk-mutex support for mt8188 vdosys0
->    drm/mediatek: add mediatek-drm of vdosys0 support for mt8188
-> 
->   .../bindings/arm/mediatek/mediatek,mmsys.yaml |   1 +
->   .../display/mediatek/mediatek,aal.yaml        |   1 +
->   .../display/mediatek/mediatek,ccorr.yaml      |   1 +
->   .../display/mediatek/mediatek,color.yaml      |   1 +
->   .../display/mediatek/mediatek,dither.yaml     |   1 +
->   .../display/mediatek/mediatek,gamma.yaml      |   1 +
->   .../display/mediatek/mediatek,ovl.yaml        |   1 +
->   .../display/mediatek/mediatek,postmask.yaml   |   1 +
->   .../display/mediatek/mediatek,rdma.yaml       |   4 +
->   .../bindings/soc/mediatek/mediatek,mutex.yaml |   1 +
->   drivers/gpu/drm/mediatek/mtk_drm_drv.c        |  21 +++
->   drivers/soc/mediatek/mt8188-mmsys.h           | 149 ++++++++++++++++++
->   drivers/soc/mediatek/mtk-mmsys.c              |  11 ++
->   drivers/soc/mediatek/mtk-mutex.c              |  53 +++++++
->   14 files changed, 247 insertions(+)
->   create mode 100644 drivers/soc/mediatek/mt8188-mmsys.h
-> 
+Yes I can do that but 3/8 does not apply cleanly. Could you please rebase on top 
+of v6.2-tmp/soc?
+
+Thanks
+Matthias
