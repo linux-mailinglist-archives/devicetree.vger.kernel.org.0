@@ -2,391 +2,464 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1194E64EB09
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 12:58:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 970EB64EB0F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 12:59:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230089AbiLPL6T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Dec 2022 06:58:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50736 "EHLO
+        id S229923AbiLPL7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Dec 2022 06:59:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231189AbiLPL6N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 06:58:13 -0500
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 319D2419A2;
-        Fri, 16 Dec 2022 03:58:12 -0800 (PST)
-Received: by mail-ej1-x632.google.com with SMTP id gh17so5604610ejb.6;
-        Fri, 16 Dec 2022 03:58:12 -0800 (PST)
+        with ESMTP id S231260AbiLPL7J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 06:59:09 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E3C64D5FD
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 03:59:00 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id y25so3117263lfa.9
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 03:59:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:content-language
-         :references:cc:to:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nD3t5Xg86pWfgvKQ0karJrpnH0Km5Gvy1OvnVne8e6c=;
-        b=OIVypMCStpFJDwnQPZwBz6MibYg0LnS+3dXXD3ddefadsnlVCLott852qgJymHALFH
-         xdnWaSLD/AvG/EIL/z0QNnj6IodbiGTlWJkCRLAVRB4TT0ISWhEWeKbq5tbxTCWe9ZIF
-         k/S5GyNdjWlADDApTVRT0KWVNEVB1KUagD9LiXUo3SpD6ImRQmukSfE2rcdgIgVNt2Ej
-         JFWZGD47YWyDDnvZ8JDreWQnLqUPXo7sa3f3vr5i9M1qwbSUe52rptx9qdb1sEJabYVg
-         uxHgE04vX7EZzlkZvJLJAVipv8BzPnP5ks0Qo7UfCerxBLqIptgqUjf6hgLi2S3HXwMH
-         TtoQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6zwysc8U2s2e9h58SdsiWcuV1+0Rnn2H+B+IXbU4/hI=;
+        b=ogK6gTtdShhE8/asKk6lhxKVuiOlB5qY7ksUv1et9VqURowPlazRu22GXz9SoM5U+s
+         sbBuq82EmXECllzzz1VhM9FPwWBUbhvosZBEvdf6j2qFOG1cYBws5dXwvzaU3lXrLo3X
+         bw2e9akyNaLZ0+V1E2iUpHpTWH7TS5iXLavHkTnefNTlME42NHo/RfG2d6eyFng17NN7
+         C4PcB7GCSPFYrfukortkoQw/SFOfNSuux6hup32wh/7pbh+7qGD3Cx90nIHvVQOaWrDH
+         gZdv8le3tpfr3JgodIZa5hXnDf70+UtPtziGbh6sxecKNJ9nm8PokyZBiAArbBlEkZKS
+         EQtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:content-language
-         :references:cc:to:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nD3t5Xg86pWfgvKQ0karJrpnH0Km5Gvy1OvnVne8e6c=;
-        b=p46+nMqRB0Xkl57JMEvImrqB2YGCYp/jI8uW4fXDlFatmJw3pRvliTOrQpLOSYLB7x
-         L+kVhDFv2/erpd/i1CF5g3dYobJWzKOkyi8mxW4e85VTPH8v27sNy7NelvAh4cg+lP7Q
-         gpa80RY6frPkkcWvJZbjM+xmLnkWtMuXLmsF3xhMKpgZPEvVMEV9BrByz1+PrwtxCUX/
-         kHKXIbujRTiJ5dU89aPe+gLfhb/tbeeplU3ZM9i5Y6nNepIWP7hFbNSQHxD0rV2DJXjL
-         3T1n6vJJ9nNeYOm35KJrNNPlK7xfSB8aD2Y+zAyFtGsDZawFx1GFnC5IrqExpwiEy+5m
-         TJ5w==
-X-Gm-Message-State: ANoB5pljgmTqrV9kTgWM5JnZ4WWVN2LOI+wFRwG6m6DdbzUuypeee22y
-        uqyMa9XqdaIpqn5arihTQF8=
-X-Google-Smtp-Source: AA0mqf6Qr6JCbTvn30yE3CWo6miOLsTIe2eS/4Lgs7jO1XL7U1Bc6dyg5yUiyoqbXTLh7G6TdWFRuA==
-X-Received: by 2002:a17:906:6a84:b0:78d:f454:37a6 with SMTP id p4-20020a1709066a8400b0078df45437a6mr22540809ejr.73.1671191890513;
-        Fri, 16 Dec 2022 03:58:10 -0800 (PST)
-Received: from ?IPV6:2a01:c23:c47e:dc00:5d:c867:d92c:e0f3? (dynamic-2a01-0c23-c47e-dc00-005d-c867-d92c-e0f3.c23.pool.telefonica.de. [2a01:c23:c47e:dc00:5d:c867:d92c:e0f3])
-        by smtp.googlemail.com with ESMTPSA id 9-20020a170906318900b0077a8fa8ba55sm750629ejy.210.2022.12.16.03.58.09
+        bh=6zwysc8U2s2e9h58SdsiWcuV1+0Rnn2H+B+IXbU4/hI=;
+        b=Vw+J75YNrPkChQ2I6IAZujgua9OS68S2zxmDm6dJaK4BDr5ACDtjkHnUzRm6w42Anv
+         GqGkTCctlWBPOf4FEh1hp9rkkgQaGktBh/Nc5f/MR+Q4frtFStujJYiYnc9qSlBz0mZy
+         Q6T88LDNCUQrdrE4jKPh9DFXGDM4WwgCfGMaPwOFEMUsEjZRPzdRk2yYVpXQ1RAMN1SW
+         IOfbLgB27P0VXGEWX9mJXI1VNytUCKKLSyu4AGFgpslErl0gSw8o4lRwKs87/FVKarut
+         ga6Y2XpXtTEHHTIIAvSjyV6709IG4nF/X9J50fOx6gYlTQzGMCI4SCDkpRLqWyjljkpJ
+         15kw==
+X-Gm-Message-State: ANoB5pnAAhQ0+M6intYzM5JZh9WhJ3sDZbL09xsG3gaa56+jReuR0wAN
+        m3MmvaLNwovXnInoZmaPzQsh1w==
+X-Google-Smtp-Source: AA0mqf7g7q82RT/pQiTd9eg/VgfDs1p3VQk5vkY5g7+YPs38FlF4mex01Ma4Lx9Qp65YvFm6rpzDCg==
+X-Received: by 2002:ac2:4422:0:b0:4b5:8421:587a with SMTP id w2-20020ac24422000000b004b58421587amr8848432lfl.44.1671191938489;
+        Fri, 16 Dec 2022 03:58:58 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id t21-20020ac243b5000000b0049313f77755sm199966lfl.213.2022.12.16.03.58.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Dec 2022 03:58:10 -0800 (PST)
-Message-ID: <2542ec57-9de7-880c-c0d4-35f0aef738bc@gmail.com>
-Date:   Fri, 16 Dec 2022 12:58:05 +0100
+        Fri, 16 Dec 2022 03:58:58 -0800 (PST)
+Message-ID: <018a8db2-166b-ccbf-5ca5-c75c07fec3b7@linaro.org>
+Date:   Fri, 16 Dec 2022 12:58:57 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-To:     Yanhong Wang <yanhong.wang@starfivetech.com>,
-        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>, Peter Geis <pgwipeout@gmail.com>
-References: <20221216070632.11444-1-yanhong.wang@starfivetech.com>
- <20221216070632.11444-7-yanhong.wang@starfivetech.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: dt binding check error with hash and comma
 Content-Language: en-US
-From:   Heiner Kallweit <hkallweit1@gmail.com>
-Subject: Re: [PATCH v2 6/9] net: phy: motorcomm: Add YT8531 phy support
-In-Reply-To: <20221216070632.11444-7-yanhong.wang@starfivetech.com>
+To:     Tony Lindgren <tony@atomide.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org
+References: <Y5xcE5Qoyf5Zg6fV@atomide.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y5xcE5Qoyf5Zg6fV@atomide.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16.12.2022 08:06, Yanhong Wang wrote:
-> This adds basic support for the Motorcomm YT8531
-> Gigabit Ethernet PHY.
+On 16/12/2022 12:52, Tony Lindgren wrote:
+> Hi Krzysztof & Rob,
 > 
-> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
-> ---
->  drivers/net/phy/Kconfig     |   3 +-
->  drivers/net/phy/motorcomm.c | 202 ++++++++++++++++++++++++++++++++++++
->  2 files changed, 204 insertions(+), 1 deletion(-)
+> I'm getting a dt binding check error with a pinctrl-single yaml patch for
+> property '#pinctrl-single,gpio-range-cells'. It seems to be caused by having
+> both a hash and comma in the property:
 > 
-> diff --git a/drivers/net/phy/Kconfig b/drivers/net/phy/Kconfig
-> index c57a0262fb64..86399254d9ff 100644
-> --- a/drivers/net/phy/Kconfig
-> +++ b/drivers/net/phy/Kconfig
-> @@ -258,9 +258,10 @@ config MICROSEMI_PHY
->  
->  config MOTORCOMM_PHY
->  	tristate "Motorcomm PHYs"
-> +	default SOC_STARFIVE
+>   DTEX    Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dts
+>   LINT    Documentation/devicetree/bindings
+>   CHKDT   Documentation/devicetree/bindings/processed-schema.json
+> Traceback (most recent call last):
+>   File "/usr/bin/dt-doc-validate", line 63, in <module>
+>     ret |= check_doc(f)
+>            ^^^^^^^^^^^^
+>   File "/usr/bin/dt-doc-validate", line 32, in check_doc
+>     print(dtschema.format_error(filename, error, verbose=args.verbose), file=sys.stderr)
+>           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>   File "/usr/lib/python3.11/site-packages/dtschema/lib.py", line 1350, in format_error
+>     msg += '\n' + format_error(filename, suberror, prefix=prefix+"\t", nodename=nodename, verbose=verbose)
+>                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>   File "/usr/lib/python3.11/site-packages/dtschema/lib.py", line 1326, in format_error
+>     if error.linecol[0] >= 0:
+>        ^^^^^^^^^^^^^
+> AttributeError: 'ValidationError' object has no attribute 'linecol'
+>   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>   DTC_CHK Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb
+> 
+> Any ideas why this is happening?
+> 
+> This is with dt-doc-validate 2022.11 and:
 
-Both are completely independent. This default should be removed.
+You have old dtschema, update. This error was fixed.
 
->  	help
->  	  Enables support for Motorcomm network PHYs.
-> -	  Currently supports the YT8511 gigabit PHY.
-> +	  Currently supports the YT8511 and YT8531 gigabit PHYs.
->  
 
-This doesn't apply. Parts of your patch exist already in net-next.
-Support for YT8531S has been added in the meantime. Please rebase
-your patch on net-next and annotate your patch as net-next.
+> 
+> $ make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+> 
+> With the WIP patch below.
+> 
+> Regards,
+> 
+> Tony
+> 
+> 8< -------------------------
+> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
+> deleted file mode 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
+> +++ /dev/null
+> @@ -1,262 +0,0 @@
+> -One-register-per-pin type device tree based pinctrl driver
+> -
+> -Required properties:
+> -- compatible : "pinctrl-single" or "pinconf-single".
+> -  "pinctrl-single" means that pinconf isn't supported.
+> -  "pinconf-single" means that generic pinconf is supported.
+> -
+> -- reg : offset and length of the register set for the mux registers
+> -
+> -- #pinctrl-cells : number of cells in addition to the index, set to 1
+> -  or 2 for pinctrl-single,pins and set to 2 for pinctrl-single,bits
+> -
+> -- pinctrl-single,register-width : pinmux register access width in bits
+> -
+> -- pinctrl-single,function-mask : mask of allowed pinmux function bits
+> -  in the pinmux register
+> -
+> -Optional properties:
+> -- pinctrl-single,function-off : function off mode for disabled state if
+> -  available and same for all registers; if not specified, disabling of
+> -  pin functions is ignored
+> -
+> -- pinctrl-single,bit-per-mux : boolean to indicate that one register controls
+> -  more than one pin, for which "pinctrl-single,function-mask" property specifies
+> - position mask of pin.
+> -
+> -- pinctrl-single,drive-strength : array of value that are used to configure
+> -  drive strength in the pinmux register. They're value of drive strength
+> -  current and drive strength mask.
+> -
+> -		/* drive strength current, mask */
+> -		pinctrl-single,power-source = <0x30 0xf0>;
+> -
+> -- pinctrl-single,bias-pullup : array of value that are used to configure the
+> -  input bias pullup in the pinmux register.
+> -
+> -		/* input, enabled pullup bits, disabled pullup bits, mask */
+> -		pinctrl-single,bias-pullup = <0 1 0 1>;
+> -
+> -- pinctrl-single,bias-pulldown : array of value that are used to configure the
+> -  input bias pulldown in the pinmux register.
+> -
+> -		/* input, enabled pulldown bits, disabled pulldown bits, mask */
+> -		pinctrl-single,bias-pulldown = <2 2 0 2>;
+> -
+> -  * Two bits to control input bias pullup and pulldown: User should use
+> -    pinctrl-single,bias-pullup & pinctrl-single,bias-pulldown. One bit means
+> -    pullup, and the other one bit means pulldown.
+> -  * Three bits to control input bias enable, pullup and pulldown. User should
+> -    use pinctrl-single,bias-pullup & pinctrl-single,bias-pulldown. Input bias
+> -    enable bit should be included in pullup or pulldown bits.
+> -  * Although driver could set PIN_CONFIG_BIAS_DISABLE, there's no property as
+> -    pinctrl-single,bias-disable. Because pinctrl single driver could implement
+> -    it by calling pulldown, pullup disabled.
+> -
+> -- pinctrl-single,input-schmitt : array of value that are used to configure
+> -  input schmitt in the pinmux register. In some silicons, there're two input
+> -  schmitt value (rising-edge & falling-edge) in the pinmux register.
+> -
+> -		/* input schmitt value, mask */
+> -		pinctrl-single,input-schmitt = <0x30 0x70>;
+> -
+> -- pinctrl-single,input-schmitt-enable : array of value that are used to
+> -  configure input schmitt enable or disable in the pinmux register.
+> -
+> -		/* input, enable bits, disable bits, mask */
+> -		pinctrl-single,input-schmitt-enable = <0x30 0x40 0 0x70>;
+> -
+> -- pinctrl-single,low-power-mode : array of value that are used to configure
+> -  low power mode of this pin. For some silicons, the low power mode will
+> -  control the output of the pin when the pad including the pin enter low
+> -  power mode.
+> -		/* low power mode value, mask */
+> -		pinctrl-single,low-power-mode = <0x288 0x388>;
+> -
+> -- pinctrl-single,gpio-range : list of value that are used to configure a GPIO
+> -  range. They're value of subnode phandle, pin base in pinctrl device, pin
+> -  number in this range, GPIO function value of this GPIO range.
+> -  The number of parameters is depend on #pinctrl-single,gpio-range-cells
+> -  property.
+> -
+> -		/* pin base, nr pins & gpio function */
+> -		pinctrl-single,gpio-range = <&range 0 3 0>, <&range 3 9 1>;
+> -
+> -- interrupt-controller : standard interrupt controller binding if using
+> -  interrupts for wake-up events for example. In this case pinctrl-single
+> -  is set up as a chained interrupt controller and the wake-up interrupts
+> -  can be requested by the drivers using request_irq().
+> -
+> -- #interrupt-cells : standard interrupt binding if using interrupts
+> -
+> -This driver assumes that there is only one register for each pin (unless the
+> -pinctrl-single,bit-per-mux is set), and uses the common pinctrl bindings as
+> -specified in the pinctrl-bindings.txt document in this directory.
+> -
+> -The pin configuration nodes for pinctrl-single are specified as pinctrl
+> -register offset and values using pinctrl-single,pins. Only the bits specified
+> -in pinctrl-single,function-mask are updated.
+> -
+> -When #pinctrl-cells = 1, then setting a pin for a device could be done with:
+> -
+> -	pinctrl-single,pins = <0xdc 0x118>;
+> -
+> -Where 0xdc is the offset from the pinctrl register base address for the device
+> -pinctrl register, and 0x118 contains the desired value of the pinctrl register.
+> -
+> -When #pinctrl-cells = 2, then setting a pin for a device could be done with:
+> -
+> -	pinctrl-single,pins = <0xdc 0x30 0x07>;
+> -
+> -Where 0x30 is the pin configuration value and 0x07 is the pin mux mode value.
+> -These two values are OR'd together to produce the value stored at offset 0xdc.
+> -See the device example and static board pins example below for more information.
+> -
+> -In case when one register changes more than one pin's mux the
+> -pinctrl-single,bits need to be used which takes three parameters:
+> -
+> -	pinctrl-single,bits = <0xdc 0x18 0xff>;
+> -
+> -Where 0xdc is the offset from the pinctrl register base address for the
+> -device pinctrl register, 0x18 is the desired value, and 0xff is the sub mask to
+> -be used when applying this change to the register.
+> -
+> -
+> -Optional sub-node: In case some pins could be configured as GPIO in the pinmux
+> -register, those pins could be defined as a GPIO range. This sub-node is required
+> -by pinctrl-single,gpio-range property.
+> -
+> -Required properties in sub-node:
+> -- #pinctrl-single,gpio-range-cells : the number of parameters after phandle in
+> -  pinctrl-single,gpio-range property.
+> -
+> -	range: gpio-range {
+> -		#pinctrl-single,gpio-range-cells = <3>;
+> -	};
+> -
+> -
+> -Example:
+> -
+> -/* SoC common file */
+> -
+> -/* first controller instance for pins in core domain */
+> -pmx_core: pinmux@4a100040 {
+> -	compatible = "pinctrl-single";
+> -	reg = <0x4a100040 0x0196>;
+> -	#address-cells = <1>;
+> -	#size-cells = <0>;
+> -	#interrupt-cells = <1>;
+> -	interrupt-controller;
+> -	pinctrl-single,register-width = <16>;
+> -	pinctrl-single,function-mask = <0xffff>;
+> -};
+> -
+> -/* second controller instance for pins in wkup domain */
+> -pmx_wkup: pinmux@4a31e040 {
+> -	compatible = "pinctrl-single";
+> -	reg = <0x4a31e040 0x0038>;
+> -	#address-cells = <1>;
+> -	#size-cells = <0>;
+> -	#interrupt-cells = <1>;
+> -	interrupt-controller;
+> -	pinctrl-single,register-width = <16>;
+> -	pinctrl-single,function-mask = <0xffff>;
+> -};
+> -
+> -control_devconf0: pinmux@48002274 {
+> -	compatible = "pinctrl-single";
+> -	reg = <0x48002274 4>;	/* Single register */
+> -	#address-cells = <1>;
+> -	#size-cells = <0>;
+> -	pinctrl-single,bit-per-mux;
+> -	pinctrl-single,register-width = <32>;
+> -	pinctrl-single,function-mask = <0x5F>;
+> -};
+> -
+> -/* third controller instance for pins in gpio domain */
+> -pmx_gpio: pinmux@d401e000 {
+> -	compatible = "pinconf-single";
+> -	reg = <0xd401e000 0x0330>;
+> -	#address-cells = <1>;
+> -	#size-cells = <1>;
+> -	ranges;
+> -
+> -	pinctrl-single,register-width = <32>;
+> -	pinctrl-single,function-mask = <7>;
+> -
+> -	/* sparse GPIO range could be supported */
+> -	pinctrl-single,gpio-range = <&range 0 3 0>, <&range 3 9 1>,
+> -				    <&range 12 1 0>, <&range 13 29 1>,
+> -				    <&range 43 1 0>, <&range 44 49 1>,
+> -				    <&range 94 1 1>, <&range 96 2 1>;
+> -
+> -	range: gpio-range {
+> -		#pinctrl-single,gpio-range-cells = <3>;
+> -	};
+> -};
+> -
+> -
+> -/* board specific .dts file */
+> -
+> -&pmx_core {
+> -
+> -	/*
+> -	 * map all board specific static pins enabled by the pinctrl driver
+> -	 * itself during the boot (or just set them up in the bootloader)
+> -	 */
+> -	pinctrl-names = "default";
+> -	pinctrl-0 = <&board_pins>;
+> -
+> -	board_pins: pinmux_board_pins {
+> -		pinctrl-single,pins = <
+> -			0x6c 0xf
+> -			0x6e 0xf
+> -			0x70 0xf
+> -			0x72 0xf
+> -		>;
+> -	};
+> -
+> -	uart0_pins: pinmux_uart0_pins {
+> -		pinctrl-single,pins = <
+> -			0x208 0		/* UART0_RXD (IOCFG138) */
+> -			0x20c 0		/* UART0_TXD (IOCFG139) */
+> -		>;
+> -		pinctrl-single,bias-pulldown = <0 2 2>;
+> -		pinctrl-single,bias-pullup = <0 1 1>;
+> -	};
+> -
+> -	/* map uart2 pins */
+> -	uart2_pins: pinmux_uart2_pins {
+> -		pinctrl-single,pins = <
+> -			0xd8 0x118
+> -			0xda 0
+> -			0xdc 0x118
+> -			0xde 0
+> -		>;
+> -	};
+> -};
+> -
+> -&control_devconf0 {
+> -	mcbsp1_pins: pinmux_mcbsp1_pins {
+> -		pinctrl-single,bits = <
+> -			0x00 0x18 0x18 /* FSR/CLKR signal from FSX/CLKX pin */
+> -		>;
+> -	};
+> -
+> -	mcbsp2_clks_pins: pinmux_mcbsp2_clks_pins {
+> -		pinctrl-single,bits = <
+> -			0x00 0x40 0x40 /* McBSP2 CLKS from McBSP_CLKS pin */
+> -		>;
+> -	};
+> -
+> -};
+> -
+> -&uart1 {
+> -       pinctrl-names = "default";
+> -       pinctrl-0 = <&uart0_pins>;
+> -};
+> -
+> -&uart2 {
+> -       pinctrl-names = "default";
+> -       pinctrl-0 = <&uart2_pins>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+> new file mode 100644
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+> @@ -0,0 +1,141 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: One-register-per-pin type device tree based pinctrl driver
+> +
+> +maintainers:
+> +  - Tony Lindgren <tony@atomide.com>
+> +
+> +description: |
+> +  This binding describes pinctrl devices that use one hardware register to
+> +  configure each pin.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
 
->  config NATIONAL_PHY
->  	tristate "National Semiconductor PHYs"
-> diff --git a/drivers/net/phy/motorcomm.c b/drivers/net/phy/motorcomm.c
-> index 7e6ac2c5e27e..bca03185b338 100644
-> --- a/drivers/net/phy/motorcomm.c
-> +++ b/drivers/net/phy/motorcomm.c
-> @@ -3,13 +3,17 @@
->   * Driver for Motorcomm PHYs
->   *
->   * Author: Peter Geis <pgwipeout@gmail.com>
-> + *
->   */
->  
-> +#include <linux/bitops.h>
->  #include <linux/kernel.h>
->  #include <linux/module.h>
-> +#include <linux/of.h>
->  #include <linux/phy.h>
->  
->  #define PHY_ID_YT8511		0x0000010a
-> +#define PHY_ID_YT8531		0x4f51e91b
->  
->  #define YT8511_PAGE_SELECT	0x1e
->  #define YT8511_PAGE		0x1f
-> @@ -17,6 +21,10 @@
->  #define YT8511_EXT_DELAY_DRIVE	0x0d
->  #define YT8511_EXT_SLEEP_CTRL	0x27
->  
-> +#define YTPHY_EXT_SMI_SDS_PHY		0xa000
-> +#define YTPHY_EXT_CHIP_CONFIG		0xa001
-> +#define YTPHY_EXT_RGMII_CONFIG1	0xa003
-> +
->  /* 2b00 25m from pll
->   * 2b01 25m from xtl *default*
->   * 2b10 62.m from pll
-> @@ -38,6 +46,51 @@
->  #define YT8511_DELAY_FE_TX_EN	(0xf << 12)
->  #define YT8511_DELAY_FE_TX_DIS	(0x2 << 12)
->  
-> +struct ytphy_reg_field {
-> +	char *name;
-> +	u32 mask;
-> +	u8	dflt;	/* Default value */
-> +};
-> +
-> +struct ytphy_priv_t {
-> +	u32 tx_inverted_1000;
-> +	u32 tx_inverted_100;
-> +	u32 tx_inverted_10;
-> +};
-> +
-> +/* rx_delay_sel: RGMII rx clock delay train configuration, about 150ps per
-> + *               step. Delay = 150ps * N
-> + *
-> + * tx_delay_sel_fe: RGMII tx clock delay train configuration when speed is
-> + *                  100Mbps or 10Mbps, it's 150ps per step. Delay = 150ps * N
-> + *
-> + * tx_delay_sel: RGMII tx clock delay train configuration when speed is
-> + *               1000Mbps, it's 150ps per step. Delay = 150ps * N
-> + */
-> +static const struct ytphy_reg_field ytphy_rxtxd_grp[] = {
-> +	{ "rx_delay_sel", GENMASK(13, 10), 0x0 },
-> +	{ "tx_delay_sel_fe", GENMASK(7, 4), 0xf },
-> +	{ "tx_delay_sel", GENMASK(3, 0), 0x1 }
-> +};
-> +
-> +/* tx_inverted_x: Use original or inverted RGMII TX_CLK to drive the RGMII
-> + *                TX_CLK delay train configuration when speed is
-> + *                xMbps(10/100/1000Mbps).
-> + *                0: original,  1: inverted
-> + */
-> +static const struct ytphy_reg_field ytphy_txinver_grp[] = {
-> +	{ "tx_inverted_1000", BIT(14), 0x0 },
-> +	{ "tx_inverted_100", BIT(14), 0x0 },
-> +	{ "tx_inverted_10", BIT(14), 0x0 }
+Drop oneOf
 
-Copy & Paste error that mask is the same for all entries?
-
-> +};
+> +      - enum:
+> +          - pinctrl-single
+> +          - pinconf-single
 > +
-> +/* rxc_dly_en: RGMII clk 2ns delay control bit.
-> + *             0: disable   1: enable
-> + */
-> +static const struct ytphy_reg_field ytphy_rxden_grp[] = {
-> +	{ "rxc_dly_en", BIT(8), 0x1 }
-> +};
+> +  reg:
+> +    maxItems: 1
 > +
->  static int yt8511_read_page(struct phy_device *phydev)
->  {
->  	return __phy_read(phydev, YT8511_PAGE_SELECT);
-> @@ -48,6 +101,33 @@ static int yt8511_write_page(struct phy_device *phydev, int page)
->  	return __phy_write(phydev, YT8511_PAGE_SELECT, page);
->  };
->  
-> +static int ytphy_read_ext(struct phy_device *phydev, u32 regnum)
-> +{
-> +	int ret;
-> +	int val;
+> +  interrupt-controller: true
 > +
-> +	ret = __phy_write(phydev, YT8511_PAGE_SELECT, regnum);
-> +	if (ret < 0)
-> +		return ret;
+> +  '#interrupt-cells':
+> +    const: 1
 > +
-> +	val = __phy_read(phydev, YT8511_PAGE);
+> +  '#address-cells':
+> +    const: 1
 > +
-> +	return val;
-> +}
+> +  '#size-cells':
+> +    const: 0
 > +
-> +static int ytphy_write_ext(struct phy_device *phydev, u32 regnum, u16 val)
-> +{
-> +	int ret;
+> +  '#pinctrl-cells':
+> +    enum: [ 1, 2 ]
 > +
-> +	ret = __phy_write(phydev, YT8511_PAGE_SELECT, regnum);
-> +	if (ret < 0)
-> +		return ret;
+> +  '#gpio-range-cells':
+> +    const: 3
+> +    description: No longer needed, may exist in older files for gpio-ranges
+> +    deprecated: true
 > +
-> +	ret = __phy_write(phydev, YT8511_PAGE, val);
+> +  pinctrl-single,bit-per-mux:
+> +    description: Optional flag to indicate register controls more than one pin
+> +    type: boolean
 > +
-> +	return ret;
-> +}
+> +  pinctrl-single,function-mask:
+> +    description: Mask of the allowed register bits
+> +    $ref: /schemas/types.yaml#/definitions/uint32
 > +
->  static int yt8511_config_init(struct phy_device *phydev)
->  {
->  	int oldpage, ret = 0;
-> @@ -111,6 +191,116 @@ static int yt8511_config_init(struct phy_device *phydev)
->  	return phy_restore_page(phydev, oldpage, ret);
->  }
->  
-> +static int ytphy_config_init(struct phy_device *phydev)
-> +{
-> +	struct device_node *of_node;
-> +	u32 val;
-> +	u32 mask;
-> +	u32 cfg;
-> +	int ret;
-> +	int i = 0;
+> +  pinctrl-single,function-off:
+> +    description: Optional function off mode for disabled state
+> +    $ref: /schemas/types.yaml#/definitions/uint32
 > +
-> +	of_node = phydev->mdio.dev.of_node;
-> +	if (of_node) {
-> +		ret = of_property_read_u32(of_node, ytphy_rxden_grp[0].name, &cfg);
-> +		if (!ret) {
-> +			mask = ytphy_rxden_grp[0].mask;
-> +			val = ytphy_read_ext(phydev, YTPHY_EXT_CHIP_CONFIG);
+> +  pinctrl-single,gpio-range:
+> +    description: Optional list of pin base, nr pins & gpio function
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
 > +
-> +			/* check the cfg overflow or not */
-> +			cfg = cfg > mask >> (ffs(mask) - 1) ? mask : cfg;
-> +
-> +			val &= ~mask;
-> +			val |= FIELD_PREP(mask, cfg);
-> +			ytphy_write_ext(phydev, YTPHY_EXT_CHIP_CONFIG, val);
-
-This is the unlocked version. MDIO bus locking is missing.
-
-> +		}
-> +
-> +		val = ytphy_read_ext(phydev, YTPHY_EXT_RGMII_CONFIG1);
-> +		for (i = 0; i < ARRAY_SIZE(ytphy_rxtxd_grp); i++) {
-> +			ret = of_property_read_u32(of_node, ytphy_rxtxd_grp[i].name, &cfg);
-> +			if (!ret) {
-> +				mask = ytphy_rxtxd_grp[i].mask;
-> +
-> +				/* check the cfg overflow or not */
-> +				cfg = cfg > mask >> (ffs(mask) - 1) ? mask : cfg;
-> +
-> +				val &= ~mask;
-> +				val |= cfg << (ffs(mask) - 1);
-> +			}
-> +		}
-> +		return ytphy_write_ext(phydev, YTPHY_EXT_RGMII_CONFIG1, val);
-> +	}
-> +
-> +	phydev_err(phydev, "Get of node fail\n");
+> +  '#pinctrl-single,gpio-range-cells':
+> +    const: 3
+> +    description: Number of gpio range cells
 > +
 
-Please consider that the PHY may be used on non-DT systems.
+If this is const:3 then why even having this property?
 
-> +	return -EINVAL;
-> +}
-> +
-> +static void ytphy_link_change_notify(struct phy_device *phydev)
-> +{
-> +	u32 val;
-> +	struct ytphy_priv_t *ytphy_priv = phydev->priv;
-> +
-> +	if (phydev->speed < 0)
-> +		return;
-> +
-> +	val = ytphy_read_ext(phydev, YTPHY_EXT_RGMII_CONFIG1);
-> +	switch (phydev->speed) {
-> +	case SPEED_1000:
-> +		val  &= ~ytphy_txinver_grp[0].mask;
-> +		val |= FIELD_PREP(ytphy_txinver_grp[0].mask,
-> +				ytphy_priv->tx_inverted_1000);
-> +		break;
-> +
-> +	case SPEED_100:
-> +		val  &= ~ytphy_txinver_grp[1].mask;
-> +		val |= FIELD_PREP(ytphy_txinver_grp[1].mask,
-> +				ytphy_priv->tx_inverted_100);
-> +		break;
-> +
-> +	case SPEED_10:
-> +		val  &= ~ytphy_txinver_grp[2].mask;
-> +		val |= FIELD_PREP(ytphy_txinver_grp[2].mask,
-> +				ytphy_priv->tx_inverted_10);
-> +		break;
-> +
-> +	default:
-> +		break;
-> +	}
-> +
-> +	ytphy_write_ext(phydev, YTPHY_EXT_RGMII_CONFIG1, val);
-> +}
-> +
-> +static int yt8531_probe(struct phy_device *phydev)
-> +{
-> +	struct ytphy_priv_t *priv;
-> +	const struct device_node *of_node;
-> +	u32 val;
-> +	int ret;
-> +
-> +	priv = devm_kzalloc(&phydev->mdio.dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	of_node = phydev->mdio.dev.of_node;
-> +	if (of_node) {
-> +		ret = of_property_read_u32(of_node, ytphy_txinver_grp[0].name, &val);
-> +		if (!ret)
-> +			priv->tx_inverted_1000 = val;
-> +
-> +		ret = of_property_read_u32(of_node, ytphy_txinver_grp[1].name, &val);
-> +		if (!ret)
-> +			priv->tx_inverted_100 = val;
-> +
-> +		ret = of_property_read_u32(of_node, ytphy_txinver_grp[2].name, &val);
-> +		if (!ret)
-> +			priv->tx_inverted_10 = val;
-> +	}
-> +	phydev->priv = priv;
-> +
-> +	return 0;
-> +}
-> +
->  static struct phy_driver motorcomm_phy_drvs[] = {
->  	{
->  		PHY_ID_MATCH_EXACT(PHY_ID_YT8511),
-> @@ -120,6 +310,17 @@ static struct phy_driver motorcomm_phy_drvs[] = {
->  		.resume		= genphy_resume,
->  		.read_page	= yt8511_read_page,
->  		.write_page	= yt8511_write_page,
-> +	}, {
-> +		PHY_ID_MATCH_EXACT(PHY_ID_YT8531),
-> +		.name		= "YT8531 Gigabit Ethernet",
-> +		.probe		= yt8531_probe,
-> +		.config_init	= ytphy_config_init,
-> +		.read_status	= genphy_read_status,
-> +		.suspend	= genphy_suspend,
-> +		.resume		= genphy_resume,
-> +		.read_page	= yt8511_read_page,
-> +		.write_page	= yt8511_write_page,
-> +		.link_change_notify = ytphy_link_change_notify,
->  	},
->  };
->  
-> @@ -131,6 +332,7 @@ MODULE_LICENSE("GPL");
->  
->  static const struct mdio_device_id __maybe_unused motorcomm_tbl[] = {
->  	{ PHY_ID_MATCH_EXACT(PHY_ID_YT8511) },
-> +	{ PHY_ID_MATCH_EXACT(PHY_ID_YT8531) },
->  	{ /* sentinal */ }
->  };
->  
+Best regards,
+Krzysztof
 
