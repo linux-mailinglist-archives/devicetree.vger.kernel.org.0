@@ -2,136 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A78C64ECF3
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 15:36:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EE2E64ECF5
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 15:36:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230001AbiLPOgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Dec 2022 09:36:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53634 "EHLO
+        id S230432AbiLPOgb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Dec 2022 09:36:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229620AbiLPOgV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 09:36:21 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84B2F26571;
-        Fri, 16 Dec 2022 06:36:20 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        with ESMTP id S230176AbiLPOg3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 09:36:29 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A24DA554F7;
+        Fri, 16 Dec 2022 06:36:28 -0800 (PST)
+Received: from beast.luon.net (unknown [IPv6:2a10:3781:2531::8])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 2547F85098;
-        Fri, 16 Dec 2022 15:36:18 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1671201378;
-        bh=2+1IGwNUrGJM6aop5OG6c33myDUKHVjv1Glh0tsxN1w=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=sGPbFPmbf/V1gocq+4kpJP0PKoiTg3mOTDIO4Rbm8wUK/RIuRtstCeVOEAKcW9Gf7
-         UdQkLTyk8HOsIb+N3dI4YxHLMxcsphPBu+AMGQnEojmOvkhJ+XdhYyXVdanSIo6iVz
-         mRTz6JPsKOu+PY3J+6BblhuTu31pfvf7kHXDpBBBZ20s1jfAkKHpD10skz5GOm10sg
-         CCyBh3D1ytwVtsgu9U2hrrUwuJN5L6I7Tem/k1DQDXD2ZcxI3YArEfd+BxupWv195U
-         gTsixIgZfHaUK9NkgLZk3VJhmQFt5iIfgvGoC9tQGwuWeZ/2CP3AE/6BOFRyGUuN8G
-         sFmGj8Tp6e5QQ==
-Message-ID: <f65773a2-71a7-6d54-1ac2-9987ed035b16@denx.de>
-Date:   Fri, 16 Dec 2022 15:36:17 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v3 2/2] dt-bindings: rtc: m41t80: Mark the clock: subnode
- as deprecated
-Content-Language: en-US
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        (Authenticated sender: sjoerd)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 5ED516602C94;
+        Fri, 16 Dec 2022 14:36:27 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1671201387;
+        bh=C+3fmRVNonjirJ0IPyk/rDeiIFZ7HbWPCZDE7f3wJTU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=RHbR6Wqk1rP9DWsc3019FKPPQjFuhfRqbE/7A4jxaLEnbTYdZIEOWop4ae8j3VXZP
+         pTH2FEl4V8Qo2W0Pew+GpiBOtaEzyNmM8bPHd5OlMPXiW02YbZEzZncVKRFywnZIAY
+         JziLt7dZU1IsZYrAyDrF/CSfma2BW1o5i65e8Wb8Ws5UMSqu1WIZt+E3mSRAZWcnvy
+         wVcL2SyruW3x0Xv3GVhc4xGtPGqS9E8oCxc6k7SDojvqUVGA40DM5PTvByrXC9lYx5
+         snGeDy0Xqv+QTGdxZ5zuwZwvSW9pxA6i5PoS1qhEtJoAWL6a/+gc6fkW9CDsrwhv7Y
+         3XSErSYN7ROPg==
+Received: by beast.luon.net (Postfix, from userid 1000)
+        id 7AEB35E33154; Fri, 16 Dec 2022 15:36:24 +0100 (CET)
+From:   Sjoerd Simons <sjoerd@collabora.com>
+To:     Nishanth Menon <nm@ti.com>
+Cc:     martyn.welch@collabora.com, Nitin Yadav <n-yadav@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-rtc@vger.kernel.org
-References: <20221211205124.23823-1-marex@denx.de>
- <20221211205124.23823-2-marex@denx.de>
- <20221215180659.sa54lkinwxoiz7bb@mercury.elektranox.org>
- <d9910a7a-9997-c157-9a71-8ef7ee34be25@denx.de>
- <20221216142408.6x3e5dhtdvgiewtb@mercury.elektranox.org>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20221216142408.6x3e5dhtdvgiewtb@mercury.elektranox.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] Improve K3-am625-sk support (USB, MMC)
+Date:   Fri, 16 Dec 2022 15:36:20 +0100
+Message-Id: <20221216143624.23708-1-sjoerd@collabora.com>
+X-Mailer: git-send-email 2.39.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/16/22 15:24, Sebastian Reichel wrote:
-> Hi,
 
-Hi,
+This series picks up a few patches from the TI BSP tree that
+unfortunately didn't make it upstream thusfar.
 
-> On Thu, Dec 15, 2022 at 08:39:47PM +0100, Marek Vasut wrote:
->> On 12/15/22 19:06, Sebastian Reichel wrote:
->>> On Sun, Dec 11, 2022 at 09:51:24PM +0100, Marek Vasut wrote:
->>>> The clock {} subnode seems like it is describing an always-on clock
->>>> generated by the PMIC. This should rather be modeled by consumer of
->>>> the clock taking phandle to the RTC node itself, since it already
->>>> does have clock-cells and all. Since there are no users of the clock
->>>> subnode in tree anyway, mark it as deprecated to avoid proliferation
->>>> of this approach.
->>>>
->>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>> Signed-off-by: Marek Vasut <marex@denx.de>
->>>> ---
->>>> Cc: Alessandro Zummo <a.zummo@towertech.it>
->>>> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
->>>> Cc: Rob Herring <robh+dt@kernel.org>
->>>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
->>>> Cc: linux-rtc@vger.kernel.org
->>>> To: devicetree@vger.kernel.org
->>>> ---
->>>> V2: - Add AB from Krzysztof
->>>> V3: - No change
->>>> ---
->>>
->>> I just noticed this by accident. Basically everything in the patch
->>> description is wrong:
->>>
->>> 1. There is a in-tree user: arch/arm/boot/dts/imx6dl-qmx6.dtsi
->>
->> Sorry, I missed this one.
->>
->>> 2. The PMIC has nothing to do with this
->>
->> In [3] the commit message claims the PMIC supplies 32kHz clock to i.MX6 CKIL,
->> which per IMX6DQRM rev.6 Table 18-3 row SNVS indirectly supplies SNVS RTC.
->> This reminded me of commit:
-> 
-> The word PMIC is not mentioned once in [3].
+The first patch improve SD card compatibility (allowing U1 class cards
+to be used), the remaining ones add USB support.
 
-s@PMIC@m41t62 RTC@, sorry.
+The type-c connector isn't entirely modelled with these changes as
+it goes through a TPS6598 PD controller. Unfortunately the dtb bindings
+for that currently require an irq line, which is not connected on E1 and
+E2 version boards. The patchese to support this setup unfortunately didn't land
+yet[0].. As such the last patch ignored the PD controller and simply
+configures usb0 as periphal only rather then mode switch capable, which
+at least gives some basic usability of that USB port.
 
-> PMIC is not involved.
-> The QMX6 32khz chain is like this:
-> 
-> 32kHz crystal -> m41t62 crystal input
-> m41t62 clock output -> i.MX6 CKIL
-> 
->> 9509593f327ac ("arm64: dts: imx8mm: Model PMIC to SNVS RTC clock path on
->> Data Modul i.MX8M Mini eDM SBC")
->>
->> which solves exactly the same problem, system hangs when 32 kHz clock are
->> stopped, except this time on i.MX8MM, clock are generated by PMIC on I2C
->> (notice how the PMIC is referenced directly) and the clock are supplied to
->> the SVNS RTC XTal terminals.
->>
->> I wonder if this could be reused on the QMX6 board too?
-> 
-> IIRC On i.MX6 referencing the I2C connected RTC results in boot
-> hanging forever when trying to get the ckil clock in
-> imx6q_clocks_init. At least it used to be the case when I was
-> working on this - I no longer have access to the boards. Of course
-> properly referencing the RTC clock was the first route I tried.
+0: https://lore.kernel.org/lkml/f714ee55-ef47-317d-81b9-57020dda064b@ti.com/T/
 
-Hmmmmm, what shall we do, un-deprecate the clock sub-node ?
+
+Aswath Govindraju (2):
+  arm64: dts: ti: k3-am62-main: Add support for USB
+  arm64: dts: ti: k3-am625-sk: Add support for USB
+
+Nitin Yadav (1):
+  arm64: dts: ti: k3-am62-main: Update OTAP and ITAP delay select
+
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 90 ++++++++++++++++++------
+ arch/arm64/boot/dts/ti/k3-am625-sk.dts   | 22 ++++++
+ 2 files changed, 90 insertions(+), 22 deletions(-)
+
+-- 
+2.39.0
+
