@@ -2,303 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71FFB64F2FC
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 22:08:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 02FE664F317
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 22:22:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229896AbiLPVH6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Dec 2022 16:07:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49308 "EHLO
+        id S231298AbiLPVWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Dec 2022 16:22:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231377AbiLPVH4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 16:07:56 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57ACE6B21C
-        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 13:07:55 -0800 (PST)
-Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1p6Hvl-0007OB-Md; Fri, 16 Dec 2022 22:07:45 +0100
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Liu Ying <victor.liu@nxp.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Marek Vasut <marex@denx.de>, patchwork-lst@pengutronix.de,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Subject: [PATCH v2 4/4] drm/bridge: imx: add driver for HDMI TX Parallel Video Interface
-Date:   Fri, 16 Dec 2022 22:07:42 +0100
-Message-Id: <20221216210742.3233382-4-l.stach@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20221216210742.3233382-1-l.stach@pengutronix.de>
-References: <20221216210742.3233382-1-l.stach@pengutronix.de>
+        with ESMTP id S229453AbiLPVWH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 16:22:07 -0500
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A54CE61D50;
+        Fri, 16 Dec 2022 13:22:06 -0800 (PST)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 3E7D98526E;
+        Fri, 16 Dec 2022 22:22:05 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1671225725;
+        bh=hIqrafag9JLlA12UXTKg+IZjKM2tAfnf2LQ8+PhvRnU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=XcrOximCo7rIyiuepBW5h3M96h1jdo/kA/n/AJwX6BtqlcADuOyDAJmLIkp6YJF74
+         kT0aPZ0/NaY1fXqvD+HS27n9iQmQ3KsNBuHF3JsHrtCdPy8MwB2kqt6ugdDQnI/EWP
+         xaep1HCL7JkBa1qIe4fnhVzh7e4PHT7IcpO3BN+JLnXIiYuu3dasoOwXupVNmK5bD/
+         9DJrS2f/Gc9b/6QXzr9uN57YW4NWmQ5cis6j024PCOsfWG/u9UHoFHrIs2w6vC06Uj
+         85Psg3fecF2nZ66Xcvch3yohW7c1ZZ5eD3kdzTUqh7ZuJO7t1IQBr4MegIBRVbkAvs
+         TNah2GUxccV8A==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-clk@vger.kernel.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: clk: si521xx: Add Skyworks Si521xx I2C PCIe clock generators
+Date:   Fri, 16 Dec 2022 22:21:57 +0100
+Message-Id: <20221216212158.600220-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This IP block is found in the HDMI subsystem of the i.MX8MP SoC. It has a
-full timing generator and can switch between different video sources. On
-the i.MX8MP however the only supported source is the LCDIF. The block
-just needs to be powered up and told about the polarity of the video
-sync signals to act in bypass mode.
+Add binding for Skyworks Si521xx PCIe clock generators. This binding
+is designed to support Si52144/Si52146/Si52147 series I2C PCIe clock
+generators, tested model is Si52144. It should be possible to add
+Si5213x series as well.
 
-Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-Tested-by: Marek Vasut <marex@denx.de>
+Signed-off-by: Marek Vasut <marex@denx.de>
 ---
- drivers/gpu/drm/bridge/imx/Kconfig           |   7 +
- drivers/gpu/drm/bridge/imx/Makefile          |   1 +
- drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c | 202 +++++++++++++++++++
- 3 files changed, 210 insertions(+)
- create mode 100644 drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c
+Cc: Michael Turquette <mturquette@baylibre.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Stephen Boyd <sboyd@kernel.org>
+Cc: devicetree@vger.kernel.org
+---
+ .../bindings/clock/skyworks,si521xx.yaml      | 69 +++++++++++++++++++
+ 1 file changed, 69 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/skyworks,si521xx.yaml
 
-diff --git a/drivers/gpu/drm/bridge/imx/Kconfig b/drivers/gpu/drm/bridge/imx/Kconfig
-index d828d8bfd893..e6cc4000bccd 100644
---- a/drivers/gpu/drm/bridge/imx/Kconfig
-+++ b/drivers/gpu/drm/bridge/imx/Kconfig
-@@ -53,4 +53,11 @@ config DRM_IMX8MP_DW_HDMI_BRIDGE
- 	  Choose this to enable support for the internal HDMI encoder found
- 	  on the i.MX8MP SoC.
- 
-+config DRM_IMX8MP_HDMI_PVI
-+	tristate "i.MX8MP HDMI PVI bridge support"
-+	depends on OF
-+	help
-+	  Choose this to enable support for the internal HDMI TX Parallel
-+	  Video Interface found on the i.MX8MP SoC.
-+
- endif # ARCH_MXC || COMPILE_TEST
-diff --git a/drivers/gpu/drm/bridge/imx/Makefile b/drivers/gpu/drm/bridge/imx/Makefile
-index 03b0074ae538..b0fd56550dad 100644
---- a/drivers/gpu/drm/bridge/imx/Makefile
-+++ b/drivers/gpu/drm/bridge/imx/Makefile
-@@ -9,3 +9,4 @@ obj-$(CONFIG_DRM_IMX8QXP_PIXEL_LINK) += imx8qxp-pixel-link.o
- obj-$(CONFIG_DRM_IMX8QXP_PIXEL_LINK_TO_DPI) += imx8qxp-pxl2dpi.o
- 
- obj-$(CONFIG_DRM_IMX8MP_DW_HDMI_BRIDGE) += imx8mp-hdmi.o
-+obj-$(CONFIG_DRM_IMX8MP_HDMI_PVI) += imx8mp-hdmi-pvi.o
-diff --git a/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c
+diff --git a/Documentation/devicetree/bindings/clock/skyworks,si521xx.yaml b/Documentation/devicetree/bindings/clock/skyworks,si521xx.yaml
 new file mode 100644
-index 000000000000..30d40c21dabb
+index 0000000000000..c30114e3a7631
 --- /dev/null
-+++ b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c
-@@ -0,0 +1,202 @@
-+// SPDX-License-Identifier: GPL-2.0+
++++ b/Documentation/devicetree/bindings/clock/skyworks,si521xx.yaml
+@@ -0,0 +1,69 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/skyworks,si521xx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+/*
-+ * Copyright (C) 2022 Pengutronix, Lucas Stach <kernel@pengutronix.de>
-+ */
++title: Binding for Skyworks Si521xx I2C PCIe clock generators
 +
-+#include <drm/drm_atomic_helper.h>
-+#include <drm/drm_bridge.h>
-+#include <drm/drm_crtc.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/of_graph.h>
-+#include <linux/pm_runtime.h>
++description: |
++  The Skyworks Si521xx are I2C PCIe clock generators providing
++  from 4 to 9 output clocks.
 +
-+#define HTX_PVI_CTL	0x0
-+#define  PVI_CTL_OP_VSYNC_POL	BIT(18)
-+#define  PVI_CTL_OP_HSYNC_POL	BIT(17)
-+#define  PVI_CTL_OP_DE_POL	BIT(16)
-+#define  PVI_CTL_INP_VSYNC_POL	BIT(14)
-+#define  PVI_CTL_INP_HSYNC_POL	BIT(13)
-+#define  PVI_CTL_INP_DE_POL	BIT(12)
-+#define  PVI_CTL_INPUT_LCDIF	BIT(2)
-+#define  PVI_CTL_EN		BIT(0)
++maintainers:
++  - Marek Vasut <marex@denx.de>
 +
-+struct imx8mp_hdmi_pvi {
-+	struct drm_bridge	bridge;
-+	struct device		*dev;
-+	struct drm_bridge	*next_bridge;
-+	void __iomem		*regs;
-+};
++properties:
++  compatible:
++    enum:
++      - skyworks,si52144
++      - skyworks,si52146
++      - skyworks,si52147
 +
-+static inline struct imx8mp_hdmi_pvi *
-+to_imx8mp_hdmi_pvi(struct drm_bridge *bridge)
-+{
-+	return container_of(bridge, struct imx8mp_hdmi_pvi, bridge);
-+}
++  reg:
++    description: I2C device address
++    const: 0x6b
 +
-+static int imx8mp_hdmi_pvi_bridge_attach(struct drm_bridge *bridge,
-+					 enum drm_bridge_attach_flags flags)
-+{
-+	struct imx8mp_hdmi_pvi *pvi = to_imx8mp_hdmi_pvi(bridge);
++  '#clock-cells':
++    const: 1
 +
-+	return drm_bridge_attach(bridge->encoder, pvi->next_bridge,
-+				 bridge, flags);
-+}
++  clocks:
++    items:
++      - description: XTal input clock
 +
-+static void imx8mp_hdmi_pvi_bridge_enable(struct drm_bridge *bridge,
-+					  struct drm_bridge_state *bridge_state)
-+{
-+	struct drm_atomic_state *state = bridge_state->base.state;
-+	struct imx8mp_hdmi_pvi *pvi = to_imx8mp_hdmi_pvi(bridge);
-+	struct drm_connector_state *conn_state;
-+	const struct drm_display_mode *mode;
-+	struct drm_crtc_state *crtc_state;
-+	struct drm_connector *connector;
-+	u32 bus_flags, val;
++  skyworks,out-amplitude-microvolt:
++    enum: [ 300000, 400000, 500000, 600000, 700000, 800000, 900000, 1000000 ]
++    description: Output clock signal amplitude
 +
-+	connector = drm_atomic_get_new_connector_for_encoder(state, bridge->encoder);
-+	conn_state = drm_atomic_get_new_connector_state(state, connector);
-+	crtc_state = drm_atomic_get_new_crtc_state(state, conn_state->crtc);
++required:
++  - compatible
++  - reg
++  - clocks
++  - '#clock-cells'
 +
-+	if (WARN_ON(pm_runtime_resume_and_get(pvi->dev)))
-+		return;
++additionalProperties: false
 +
-+	mode = &crtc_state->adjusted_mode;
++examples:
++  - |
++    /* 25MHz reference crystal */
++    ref25: ref25m {
++        compatible = "fixed-clock";
++        #clock-cells = <0>;
++        clock-frequency = <25000000>;
++    };
 +
-+	val = PVI_CTL_INPUT_LCDIF;
++    i2c@0 {
++        reg = <0x0 0x100>;
++        #address-cells = <1>;
++        #size-cells = <0>;
 +
-+	if (mode->flags & DRM_MODE_FLAG_PVSYNC)
-+		val |= PVI_CTL_OP_VSYNC_POL | PVI_CTL_INP_VSYNC_POL;
++        clock-generator@6b {
++            compatible = "skyworks,si52144";
++            reg = <0x6b>;
++            #clock-cells = <1>;
 +
-+	if (mode->flags & DRM_MODE_FLAG_PHSYNC)
-+		val |= PVI_CTL_OP_HSYNC_POL | PVI_CTL_INP_HSYNC_POL;
++            clocks = <&ref25m>;
++        };
++    };
 +
-+	if (pvi->next_bridge->timings)
-+		bus_flags = pvi->next_bridge->timings->input_bus_flags;
-+	else if (bridge_state)
-+		bus_flags = bridge_state->input_bus_cfg.flags;
-+
-+	if (bus_flags & DRM_BUS_FLAG_DE_HIGH)
-+		val |= PVI_CTL_OP_DE_POL | PVI_CTL_INP_DE_POL;
-+
-+	writel(val, pvi->regs + HTX_PVI_CTL);
-+	val |= PVI_CTL_EN;
-+	writel(val, pvi->regs + HTX_PVI_CTL);
-+}
-+
-+static void imx8mp_hdmi_pvi_bridge_disable(struct drm_bridge *bridge,
-+					   struct drm_bridge_state *bridge_state)
-+{
-+	struct imx8mp_hdmi_pvi *pvi = to_imx8mp_hdmi_pvi(bridge);
-+
-+	writel(0x0, pvi->regs + HTX_PVI_CTL);
-+
-+	pm_runtime_put(pvi->dev);
-+}
-+
-+static u32 *imx8mp_hdmi_pvi_bridge_get_input_bus_fmts(struct drm_bridge *bridge,
-+					struct drm_bridge_state *bridge_state,
-+					struct drm_crtc_state *crtc_state,
-+					struct drm_connector_state *conn_state,
-+					u32 output_fmt,
-+					unsigned int *num_input_fmts)
-+{
-+	struct imx8mp_hdmi_pvi *pvi = to_imx8mp_hdmi_pvi(bridge);
-+	struct drm_bridge *next_bridge = pvi->next_bridge;
-+	struct drm_bridge_state *next_state;
-+
-+	if (!next_bridge->funcs->atomic_get_input_bus_fmts)
-+		return 0;
-+
-+	next_state = drm_atomic_get_new_bridge_state(crtc_state->state,
-+						     next_bridge);
-+
-+	return next_bridge->funcs->atomic_get_input_bus_fmts(next_bridge,
-+							     next_state,
-+							     crtc_state,
-+							     conn_state,
-+							     output_fmt,
-+							     num_input_fmts);
-+}
-+
-+static const struct drm_bridge_funcs imx_hdmi_pvi_bridge_funcs = {
-+	.attach		= imx8mp_hdmi_pvi_bridge_attach,
-+	.atomic_enable	= imx8mp_hdmi_pvi_bridge_enable,
-+	.atomic_disable	= imx8mp_hdmi_pvi_bridge_disable,
-+	.atomic_get_input_bus_fmts = imx8mp_hdmi_pvi_bridge_get_input_bus_fmts,
-+	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
-+	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
-+	.atomic_reset = drm_atomic_helper_bridge_reset,
-+};
-+
-+static int imx8mp_hdmi_pvi_probe(struct platform_device *pdev)
-+{
-+	struct device_node *remote;
-+	struct imx8mp_hdmi_pvi *pvi;
-+
-+	pvi = devm_kzalloc(&pdev->dev, sizeof(*pvi), GFP_KERNEL);
-+	if (!pvi)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, pvi);
-+	pvi->dev = &pdev->dev;
-+
-+	pvi->regs = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(pvi->regs))
-+		return PTR_ERR(pvi->regs);
-+
-+	/* Get the next bridge in the pipeline. */
-+	remote = of_graph_get_remote_node(pdev->dev.of_node, 1, -1);
-+	if (!remote)
-+		return -EINVAL;
-+
-+	pvi->next_bridge = of_drm_find_bridge(remote);
-+	of_node_put(remote);
-+
-+	if (!pvi->next_bridge)
-+		return dev_err_probe(&pdev->dev, -EPROBE_DEFER,
-+				     "could not find next bridge\n");
-+
-+	/* Register the bridge. */
-+	pvi->bridge.funcs = &imx_hdmi_pvi_bridge_funcs;
-+	pvi->bridge.of_node = pdev->dev.of_node;
-+	pvi->bridge.timings = pvi->next_bridge->timings;
-+
-+	drm_bridge_add(&pvi->bridge);
-+
-+	pm_runtime_enable(&pdev->dev);
-+
-+	return 0;
-+}
-+
-+static int imx8mp_hdmi_pvi_remove(struct platform_device *pdev)
-+{
-+	struct imx8mp_hdmi_pvi *pvi = platform_get_drvdata(pdev);
-+
-+	drm_bridge_remove(&pvi->bridge);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id imx8mp_hdmi_pvi_match[] = {
-+	{
-+		.compatible = "fsl,imx8mp-hdmi-pvi",
-+	}, {
-+		/* sentinel */
-+	},
-+};
-+MODULE_DEVICE_TABLE(of, imx8mp_hdmi_pvi_match);
-+
-+static struct platform_driver imx8mp_hdmi_pvi_driver = {
-+	.probe	= imx8mp_hdmi_pvi_probe,
-+	.remove	= imx8mp_hdmi_pvi_remove,
-+	.driver		= {
-+		.name = "imx-hdmi-pvi",
-+		.of_match_table	= imx8mp_hdmi_pvi_match,
-+	},
-+};
-+module_platform_driver(imx8mp_hdmi_pvi_driver);
-+
-+MODULE_DESCRIPTION("i.MX8MP HDMI TX Parallel Video Interface bridge driver");
-+MODULE_LICENSE("GPL");
++...
 -- 
-2.30.2
+2.35.1
 
