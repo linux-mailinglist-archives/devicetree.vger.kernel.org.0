@@ -2,24 +2,24 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30FEF64F398
+	by mail.lfdr.de (Postfix) with ESMTP id 7D2F564F399
 	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 23:00:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229627AbiLPWAF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Dec 2022 17:00:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41734 "EHLO
+        id S229736AbiLPWAG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Dec 2022 17:00:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbiLPWAE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 17:00:04 -0500
+        with ESMTP id S229510AbiLPWAF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 17:00:05 -0500
 Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [5.144.164.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78F4012AC4
-        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 14:00:03 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95CFD15A3E
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 14:00:04 -0800 (PST)
 Received: from localhost.localdomain (94-209-172-39.cable.dynamic.v4.ziggo.nl [94.209.172.39])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 2ACD2200B8;
-        Fri, 16 Dec 2022 23:00:01 +0100 (CET)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 6A9892010A;
+        Fri, 16 Dec 2022 23:00:02 +0100 (CET)
 From:   Marijn Suijten <marijn.suijten@somainline.org>
 To:     phone-devel@vger.kernel.org, Will Deacon <will@kernel.org>,
         Joerg Roedel <joro@8bytes.org>,
@@ -46,10 +46,12 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht,
         linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-msm@vger.kernel.org
-Subject: [PATCH v4 0/4] arm64: dts: qcom: sm6125: Enable APPS SMMU
-Date:   Fri, 16 Dec 2022 22:58:15 +0100
-Message-Id: <20221216215819.1164973-1-marijn.suijten@somainline.org>
+Subject: [PATCH v4 1/4] dt-bindings: arm-smmu: Document smmu-500 binding for SM6125
+Date:   Fri, 16 Dec 2022 22:58:16 +0100
+Message-Id: <20221216215819.1164973-2-marijn.suijten@somainline.org>
 X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20221216215819.1164973-1-marijn.suijten@somainline.org>
+References: <20221216215819.1164973-1-marijn.suijten@somainline.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
@@ -60,33 +62,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add APPS SMMU to SM6125 dtsi and use it in SDHCI/USB nodes.
+From: Martin Botka <martin.botka@somainline.org>
 
-Changes since v3:
+Document smmu-500 compatibility with the SM6125 SoC.
 
-- Drop driver patch in favour of using generic qcom,smmu-500 compatible;
-- Add patches that use apps_smmu in USB and SDHCI nodes, reconfiguring
-  their streamID which otherwise gets lost (from the bootloader) as soon
-  as SMMU probes, breaking their functionality;
-- Rebased on next-20221216 to solve dt-bindings conflict.
+Signed-off-by: Martin Botka <martin.botka@somainline.org>
+[Marijn: Move compatible to the new, generic, qcom,smmu-500 list]
+Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+---
+ Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-v3: https://lore.kernel.org/linux-iommu/20210612094606.89576-2-martin.botka@somainline.org/T/#u
-
-AngeloGioacchino Del Regno (1):
-  arm64: dts: qcom: sm6125: Add IOMMU context to DWC3
-
-Marijn Suijten (1):
-  arm64: dts: qcom: sm6125: Add apps_smmu with streamID to SDHCI 1/2
-    nodes
-
-Martin Botka (2):
-  dt-bindings: arm-smmu: Document smmu-500 binding for SM6125
-  arm64: dts: qcom: sm6125: Configure APPS SMMU
-
- .../devicetree/bindings/iommu/arm,smmu.yaml   |  1 +
- arch/arm64/boot/dts/qcom/sm6125.dtsi          | 76 +++++++++++++++++++
- 2 files changed, 77 insertions(+)
-
---
+diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+index b28c5c2b0ff2..95b03fd86e18 100644
+--- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
++++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+@@ -43,6 +43,7 @@ properties:
+               - qcom,sdm670-smmu-500
+               - qcom,sdm845-smmu-500
+               - qcom,sm6115-smmu-500
++              - qcom,sm6125-smmu-500
+               - qcom,sm6350-smmu-500
+               - qcom,sm6375-smmu-500
+               - qcom,sm8150-smmu-500
+-- 
 2.39.0
 
