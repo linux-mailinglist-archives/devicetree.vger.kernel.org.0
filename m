@@ -2,125 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D9E564ECAE
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 15:11:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E518A64ECCA
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 15:19:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230365AbiLPOLT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Dec 2022 09:11:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45348 "EHLO
+        id S231145AbiLPOTI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Dec 2022 09:19:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231157AbiLPOLB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 09:11:01 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 975DF27B22
-        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 06:10:58 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id p36so3591053lfa.12
-        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 06:10:58 -0800 (PST)
+        with ESMTP id S229680AbiLPOTH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 09:19:07 -0500
+Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C798D55A82
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 06:19:06 -0800 (PST)
+Received: by mail-io1-xd2f.google.com with SMTP id b192so1281489iof.8
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 06:19:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kS8ZeKiUCR8+MYFNYax7Uf8MjHUAoKMQjTLTMCr4w04=;
-        b=ODA2yDQpIwIz8f+EJj9tBTx0VnpbAaWWVL6Ah3mxoXk8euyygwoeB3A2qjaLcJZzHL
-         pGzK3Q59cAjbvHbbv0uctr7DUC7Wfk1lOwoaxT5UlocpgLgAH+kKwu6slXeG1rLEG7Q1
-         DXtsyd8cu+XmtQ7vTxCLCC1Xr0JBQlibPUsHQAEjPDe+J98pAXmD2UOndlcfvkrF9Zge
-         aLWzN0sU8TeG7v3F75uCIfxkSf5TTqAxX5JWS5B0/BKPbYVriU7sOQ8464RU+zHymIRd
-         eruP9VYx9GWyNbtIkS2E4sU1ErIJTLmQo4AYa4Y+we0kJ/2ot+QVcRU1bGnVK2qCQ0qX
-         WfgQ==
+        d=chromium.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Wl0ZP4xK4Upd+cEBPXBThb9AV02PUTeFRKB2U0gXeKA=;
+        b=h7Hp8co82FOYwMgBFNyRwl5UEW0DjFrlU1OxyWcWEStRdx8/2uo50bPmCKju4kCHMs
+         ZLz0tmw4M2Yk8/4wuarPbGE4UJkQPxJI7BV6/EjCS819Ul440ukpe82XWfl1q1fjqlKL
+         h0gEHODrQTaOrjFSEptVqYyf4PxscG/XUjrdg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kS8ZeKiUCR8+MYFNYax7Uf8MjHUAoKMQjTLTMCr4w04=;
-        b=ainVvzW9J//JM+eZunjVc9uzrPJctfoe0FkXlNivkiw16kS9x85naDyCMVlZXJAEfh
-         NgdvJ4i9tVGJMNxVgdeebC+TtsNCq6FIQufsjcGEICA8HWzpnY993OvAyi7wQN9Bjd8S
-         sp9TaTZg14u9fhGgIRcL7tp7vQt7URO4av2XLYF+TOImydxgVuhNewYhDUdQnXb7CC8b
-         lzIYqbnymDYoPsWXHh18i5inUYiZOFvFuNBKwJylpU3JKuc9vSSk+8TsP8MLjaZx+6sS
-         aGe5qnkHzaHANWDOR1upMPyWqr0zHLiqgxXiNzVxM2kd2sQHmSiLBxPUiRezxRfG1yOL
-         jL2w==
-X-Gm-Message-State: ANoB5pmtI+TyUVh96/evMapiz8YPUSYzKXxvO/2iSzWydO/kHePYFxPU
-        CAXJyEPTSQEqKR5oTT0QrwKiUA==
-X-Google-Smtp-Source: AA0mqf4Gbm4Fkka896QZfxdkrUWTv41o5l+be1bk/8yhvhmQbCZswzjIsP4TlZ0UEH9zI76S3f2CVg==
-X-Received: by 2002:a05:6512:32cd:b0:4a4:7cab:3b99 with SMTP id f13-20020a05651232cd00b004a47cab3b99mr10010897lfg.8.1671199856780;
-        Fri, 16 Dec 2022 06:10:56 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id v20-20020a05651203b400b00494a2a0f6cfsm228619lfp.183.2022.12.16.06.10.55
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Wl0ZP4xK4Upd+cEBPXBThb9AV02PUTeFRKB2U0gXeKA=;
+        b=a1Z6L3+naRcX+mzpGNJlzQDMplQIJqJcJe5KI5o30wXWv6n81Y4q1KMgZByBsd/jTZ
+         R+iiYLVzCF8oAZGksNnUetae+Kh8TMnrIZ5pepiFfZ0PTQQpuPua/0EFgTmfhoTlVFv2
+         vzNlnaIw9vA7tcquGQ556HkJtzV7LQRWs/26lizaBUPRAQkZ0Ra9rXy5kx1Hc/3ot3eA
+         4N2RHmv7rNyZF6gmzjm7dZeyIun6YIkO+fqAUl1RS+9h+H28Sf8xgWPt/0p7at2YtQ2R
+         zB/EPrIJYNi3uunUSiy9Q3HYp0nQq4ejmWSiVROll6gjIUINLd1gMIDpVBHudR7NxowK
+         0cAw==
+X-Gm-Message-State: AFqh2kqttZGxCB/xp3ZPQZ0aajm4RNSxwlBguwswEdZl51alZhF/5GEP
+        jCxplSXOhL7Y6moZhKfLn1U32g==
+X-Google-Smtp-Source: AMrXdXtPUW6Tpkax3Pl3MBRzQgK86qKjK/c8IXSjLRucLdvYx7JCaPonWbRFdZsrbBWNFHggfAQ8SQ==
+X-Received: by 2002:a6b:c8d2:0:b0:6e5:d1b2:d921 with SMTP id y201-20020a6bc8d2000000b006e5d1b2d921mr1195863iof.18.1671200346177;
+        Fri, 16 Dec 2022 06:19:06 -0800 (PST)
+Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
+        by smtp.gmail.com with UTF8SMTPSA id z8-20020a02cea8000000b0037477c3d04asm728517jaq.130.2022.12.16.06.19.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Dec 2022 06:10:56 -0800 (PST)
-Message-ID: <51ef1ff4-db3d-64aa-aa9d-82f604a314c1@linaro.org>
-Date:   Fri, 16 Dec 2022 15:10:55 +0100
+        Fri, 16 Dec 2022 06:19:05 -0800 (PST)
+Date:   Fri, 16 Dec 2022 14:19:04 +0000
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Rajendra Nayak <quic_rjendra@quicinc.com>
+Cc:     agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dianders@chromium.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: arm: qcom: Document the sc7280 CRD
+ Pro boards
+Message-ID: <Y5x+WEwTtpoV0gaR@google.com>
+References: <20221216112918.1243-1-quic_rjendra@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH 1/3] media: ov5640: Handle delays when no reset_gpio set
-Content-Language: en-US
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Jai Luthra <j-luthra@ti.com>
-Cc:     Steve Longerbeam <slongerbeam@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org
-References: <20221216134409.6868-1-j-luthra@ti.com>
- <20221216134409.6868-2-j-luthra@ti.com>
- <Y5x5UbtLFDpFIoEp@paasikivi.fi.intel.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y5x5UbtLFDpFIoEp@paasikivi.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20221216112918.1243-1-quic_rjendra@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/12/2022 14:57, Sakari Ailus wrote:
-> Hi Jai,
+On Fri, Dec 16, 2022 at 04:59:17PM +0530, Rajendra Nayak wrote:
+> Add compatibles for the Pro SKU of the sc7280 CRD boards
+> which come with a Pro variant of the qcard.
+> The Pro qcard variant has smps9 from pm8350c ganged up with
+> smps7 and smps8.
 > 
-> Thanks for the set.
+> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+> ---
+> v4 changes:
+> Added the zoglin-sku1536 compatible along with hoglin-sku1536.
+> Zoglin is same as the Hoglin variant, with the SPI Flash reduced
+> from 64MB to 8MB
 > 
-> On Fri, Dec 16, 2022 at 07:14:07PM +0530, Jai Luthra wrote:
->> Some module manufacturers [1][2] don't expose the RESETB gpio of the
->> sensor directly through the 15-pin FFC connector. Instead wiring ~PWDN
->> as a proxy reset with appropriate delays.
->>
->> In such cases, reset_gpio will not be available to the driver, but it
->> will still be toggled when the sensor is powered on, and thus we should
->> still honor the wait time of >= 5ms + 1ms + 20ms (see figure 2-3 in [3])
->> before attempting any i/o operations over SCCB.
->>
->> [1] https://digilent.com/reference/_media/reference/add-ons/pcam-5c/pcam_5c_sch.pdf
->> [2] https://www.alinx.com/public/upload/file/AN5641_User_Manual.pdf
->> [3] https://cdn.sparkfun.com/datasheets/Sensors/LightImaging/OV5640_datasheet.pdf
->>
->> Fixes: 19a81c1426c1 ("[media] add Omnivision OV5640 sensor driver")
->> Signed-off-by: Jai Luthra <j-luthra@ti.com>
->> ---
->>  drivers/media/i2c/ov5640.c | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/drivers/media/i2c/ov5640.c b/drivers/media/i2c/ov5640.c
->> index e0f908af581b..4bb7bf557cfa 100644
->> --- a/drivers/media/i2c/ov5640.c
->> +++ b/drivers/media/i2c/ov5640.c
->> @@ -2466,6 +2466,7 @@ static int ov5640_set_power_on(struct ov5640_dev *sensor)
->>  
->>  	ov5640_reset(sensor);
->>  	ov5640_power(sensor, true);
->> +	usleep_range(26000, 30000);
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> I think you should only do this if you don't have RESETB pin.
-> 
-> I'm not sure how to best describe this in DT. It's not the same as if you
-> didn't have RESETB GPIO.
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index 1b5ac6b02bc5..07771d4c91bd 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -558,6 +558,12 @@ properties:
+>            - const: google,hoglin
+>            - const: qcom,sc7280
+>  
+> +      - description: Qualcomm Technologies, Inc. sc7280 CRD Pro platform (newest rev)
+> +        items:
+> +          - const: google,zoglin-sku1536
+> +          - const: google,hoglin-sku1536
 
-Why it's not the same? I understand the RESETB pin is always there just
-sometimes going to GPIO and sometimes to some other line.
-
-Best regards,
-Krzysztof
-
+Is there actually such a thing as a 'hoglin-sku1536', i.e. the Pro qcard
+with 64MB of SPI flash, or do they all have 8MB of flash?
