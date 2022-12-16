@@ -2,91 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F341164EB9B
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 13:53:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C543864EBF1
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 14:13:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230248AbiLPMxH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Dec 2022 07:53:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41632 "EHLO
+        id S230171AbiLPNNK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Dec 2022 08:13:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230064AbiLPMxG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 07:53:06 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E2622496C;
-        Fri, 16 Dec 2022 04:53:05 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id i187-20020a1c3bc4000000b003d1e906ca23so1127802wma.3;
-        Fri, 16 Dec 2022 04:53:05 -0800 (PST)
+        with ESMTP id S229547AbiLPNNI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 08:13:08 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07C802DA91;
+        Fri, 16 Dec 2022 05:13:08 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id b24-20020a05600c4a9800b003d21efdd61dso1722402wmp.3;
+        Fri, 16 Dec 2022 05:13:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=BheHA0Tcwm6n8ymyQljk2z1vC+8TH8hh+YD/X0C4MfE=;
-        b=AKseIkBZZBrqaCfkNwNc+eOqwfrvP1xB5qgAOduMfqvnWa/fl4el+6xifzPzoHdoMu
-         dThO83kul7JlQEUalQSJI9PwHrXOloc9BXy1SaNNYS+GTaohbapvDJ2iA7c17ImUR/pL
-         Uk2j6bXGXuATvNUy2eCZTxPY2QaZYRDXNaKGCW3EXp8C7VYgmqmHT3UDXn5ON4P5VoWj
-         tODxHPhQ6dk0TlV8sn3u7JzozL5n+Gxdh7d+nJQj8+lj0M+EKpOCdv5zjTNYG56tqWzs
-         T9KTGXJaolmbqw9gWZlSp+8ctPAfsp7jDTmRNpJnAxZQmafMXgXusal93noxxC/XvI/j
-         nmKg==
+        bh=srPGSkjRgSgmuXTtwPpYk9AtNMtiqHmM6C2t7J2QNjs=;
+        b=hsmZvLSHOY4Gmce5AuAjDP3CdbZyUN4ZcCWXfe6Hu2zgyTtoHXBJ1/4Rp3W7Fb/WhW
+         R9QXsemVceSXujcfo3j5g8hAnuVStoYy2POpEeT3+h+kHPbQ7VP/4EUbz2fTEt4tUSl/
+         YPA+15MEQp3XTD70m0uR595fUFu3RZtNlJWzvSsRTENBb4EdSMJcpUQiuGGBMv+4GdeI
+         c+NaRIKyDu5xmZbLEC/JEFNyAoW66JQYKKNjyGtMg/l1GylqLmBHdYuim/0IzPoG2CuP
+         t2+khJ1TukQ0dPHTUUGkxp1G8hV+KKoLttkOxnKe93y8lFk70e7O9NFYKrXVa3wKgQXg
+         9LVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BheHA0Tcwm6n8ymyQljk2z1vC+8TH8hh+YD/X0C4MfE=;
-        b=C8iwDwwUVz0aFhDn0LKPLvaTRdXNdHqxulbUiiA7LUQ+XC3IcfNpN4QceKNYoHTuCG
-         rLZ16HAGhkHkwSZQhUdotjr6eIySIuOb6Za4Y75d/N5W0c8ZtDX8Bebsl4dnyR+dggXK
-         frt62kcXb9N5HrHntl+0TC+7z45tZXozy8SCxHJs1fq3LDN7BFIxL7hEobgQBEQCet45
-         QgrThJ86Z1UBthh/9/1Tte4rgscwi0hPkXvcoK1zxj+4Ud6qOoLb3s3VwHgwTrWeBVEd
-         j1VPLgTfAxerb2hJIsvDx2wH/cwMobgD4BZmak9bNcEwKrc4X7FnhangiRtebW2atTDN
-         VVpQ==
-X-Gm-Message-State: ANoB5pmfWuZxqcqEKlXPpfvhK26w6X/4ESvQsE7s2abb0wTUt41/V9f1
-        EPk6xT3xzcn7xzVKTQBEeb0=
-X-Google-Smtp-Source: AA0mqf479L304eL8/K8VJH98TvI/FZlxuU1K4BcjUM7FJGorT7BHd3K5GAGOp5+Y4o4yWCg6c9hDig==
-X-Received: by 2002:a7b:cd17:0:b0:3d2:2d2a:d58f with SMTP id f23-20020a7bcd17000000b003d22d2ad58fmr13121323wmj.2.1671195183537;
-        Fri, 16 Dec 2022 04:53:03 -0800 (PST)
+        bh=srPGSkjRgSgmuXTtwPpYk9AtNMtiqHmM6C2t7J2QNjs=;
+        b=w0UCJIZFidBWwWX+N9ijKkQPSIn//m/q2RuZD1BQpWPk4tYIEoIINwPwY3TtGtPZsq
+         i0tkIqPSTTIv1yXuDnvWpT7JAxlTjIOOsCZ5Q7aVYCE27JCD49xV30W+KEK0bOjOclfJ
+         v6lwWMjzfRz+IkXYS93w30H1EqqM9vIvGt7udAwtxlnzRdjEHoxlR2m3920mqx4nLREy
+         KIvPbnsaH770G9nc4xR0daPesF44UTOuV8WyJNneKUnSYWnQAwg7yFG79wPS7ja5Nx28
+         fQvmDRrF+2nSchyo3rtOmJxPfHc2UdZlPLKnHo/5AyJxgP/ZouFhxrFydFXTCBWqoKm1
+         bEQA==
+X-Gm-Message-State: ANoB5pkYpMG88J8Zrt5+LrOFEDEciIBqzf+tqWfBWzLprTQai75Iq7EA
+        5raxX33HD4+p0lGfn5tLL80=
+X-Google-Smtp-Source: AA0mqf4VYPUaZ8JmceOcI/t0ITzDEnO81loaT+P0eo4prEQVB/kIi7P+5EVL3AGS9kVVZ4ZjwXVKwA==
+X-Received: by 2002:a05:600c:2286:b0:3cf:68f8:790b with SMTP id 6-20020a05600c228600b003cf68f8790bmr25238681wmf.11.1671196386532;
+        Fri, 16 Dec 2022 05:13:06 -0800 (PST)
 Received: from [192.168.1.132] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id k11-20020a05600c0b4b00b003c5571c27a1sm2870571wmr.32.2022.12.16.04.53.01
+        by smtp.gmail.com with ESMTPSA id p16-20020a1c5450000000b003d07de1698asm9567660wmi.46.2022.12.16.05.13.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Dec 2022 04:53:02 -0800 (PST)
-Message-ID: <0fc0217e-f1dd-d64c-d43c-cd47a8acbfd4@gmail.com>
-Date:   Fri, 16 Dec 2022 13:53:00 +0100
+        Fri, 16 Dec 2022 05:13:05 -0800 (PST)
+Message-ID: <5412b27a-b5a1-351a-495d-3ba7e022302a@gmail.com>
+Date:   Fri, 16 Dec 2022 14:13:04 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH v7 0/8] Add MediaTek MT6357 PMIC support
+Subject: Re: [PATCH v3 0/5] MT8192 Asurada devicetree - Part 2
 Content-Language: en-US
-To:     Kevin Hilman <khilman@kernel.org>,
-        Alexandre Mergnat <amergnat@baylibre.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Rob Herring <robh+dt@kernel.org>,
-        Fabien Parent <fabien.parent@linaro.org>,
-        Tianping Fang <tianping.fang@mediatek.com>,
-        Flora Fu <flora.fu@mediatek.com>,
-        Chen Zhong <chen.zhong@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>, Lee Jones <lee@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     linux-mediatek@lists.infradead.org,
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     kernel@collabora.com,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        linux-rtc@vger.kernel.org, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Fabien Parent <fparent@baylibre.com>,
-        linux-leds@vger.kernel.org
-References: <20221005-mt6357-support-v7-0-477e60126749@baylibre.com>
- <7hr0xe56uf.fsf@baylibre.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
+References: <20221102190611.283546-1-nfraprado@collabora.com>
+ <CAGXv+5GY5f4UWR982cY0vzUuk7aB4BSa_FcKtku1ELatMr4Dwg@mail.gmail.com>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <7hr0xe56uf.fsf@baylibre.com>
+In-Reply-To: <CAGXv+5GY5f4UWR982cY0vzUuk7aB4BSa_FcKtku1ELatMr4Dwg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -97,24 +82,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kevin,
-Hi Alexandre,
 
-On 05/12/2022 14:16, Kevin Hilman wrote:
-> Matthias,
+
+On 30/11/2022 04:11, Chen-Yu Tsai wrote:
+> On Thu, Nov 3, 2022 at 3:06 AM Nícolas F. R. A. Prado
+> <nfraprado@collabora.com> wrote:
+>>
+>>
+>> This series improves some more the support for MT8192 Asurada-based
+>> Chromebooks, by enabling some missing functionality, namely the internal
+>> display and audio.
+>>
+>> In addition to that, aliases are also added for the i2c and mmc nodes,
+>> which should've been done while adding the devices in the previous
+>> series.
+>>
+>> Some notable components that are still missing support are:
+>> - external display/HDMI audio (waiting for [1])
+>> - GPU (waiting for [2])
+>>
+>> As part of testing the audio, an UCM file was used, which has already
+>> been submitted upstream [3].
+>>
+>> This series depends on some missing dt-binding properties on rt5682,
+>> which are added by another series [4].
 > 
-> Alexandre Mergnat <amergnat@baylibre.com> writes:
+> Hi Matthias,
 > 
->> This patch series adds MFD, PMIC keys, and regulator support for MT6357.
->> MT6357 is a MediaTek PMIC very similar to MT6358.
+> This series has been floating around for some time now, and has been fully
+> tested by multiple parties. The rt5682 dt-binding changes have also been
+> merged.
 > 
-> The regulator driver (and bindings) were merged by Mark.  Could you take
-> the rest of this series via your mediatek tree?  The input driver (and
-> bindings) are ack'd by Dmitry.
+> Could you queue it up?
 > 
 
-Yes I can do that but 3/8 does not apply cleanly. Could you please rebase on top 
-of v6.2-tmp/soc?
+Applied now. Sorry for the delay!
 
-Thanks
 Matthias
