@@ -2,148 +2,415 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D714264F037
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 18:17:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A8BE064F044
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 18:21:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231754AbiLPRRT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Dec 2022 12:17:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37292 "EHLO
+        id S231588AbiLPRV0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Dec 2022 12:21:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230490AbiLPRRS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 12:17:18 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B42CF2A275;
-        Fri, 16 Dec 2022 09:17:15 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id p13-20020a05600c468d00b003cf8859ed1bso2289305wmo.1;
-        Fri, 16 Dec 2022 09:17:15 -0800 (PST)
+        with ESMTP id S230024AbiLPRVZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 12:21:25 -0500
+Received: from mail-vs1-xe2d.google.com (mail-vs1-xe2d.google.com [IPv6:2607:f8b0:4864:20::e2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04A3046678
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 09:21:23 -0800 (PST)
+Received: by mail-vs1-xe2d.google.com with SMTP id t5so2905093vsh.8
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 09:21:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Grq/lCv6X9zvhjrxtn3hukSNIqujUj2abduruIelS+M=;
-        b=csfswnzvXRES6JVhxCweprsXbmn7xjoYqs+ltKvQBCzBf43+AVWxASz8MZ0TMedSNy
-         cmfryseQBvFRK6oLPazykJ1COPo+z5MfAXRlIeTX899arFClrQg/GICGhiJWFH7lOM2N
-         NBBZZJjGEorNNGtQ/mA1CXjz2ny/A8+YRYHUN51/0CsEOJQEgoXW+lV3ux8uOVlStkfn
-         1tT8Jxu/7BIy22iFF4rgpl8EnGqfCrzS8KE1vmzc3btZDx2ESqzMmHToc1y0bngCI/pZ
-         dXDLBTLsvBb4cO+MXd792JoTr5Oul1f4tSqixNXsfCtuwLsUMwIDKaKB4jEUTzo95OxA
-         HvhA==
+        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=2FBdM4o1a+ti6VZvKdo29XWcFolLLNxcu/qJZdBQUc8=;
+        b=KGRQ6N0/BQYIgsGICHE/WL8GuBYtTEBuGVmpZUiNWuAYTHt9PuLyuCVWL+MEOj1KCt
+         MLGwq+YYuFBm6XXKPh07Ej3MTs/yiET/FoNmzWB8mXIqOUQKC51aocD/Dub0wK/RvCGw
+         wEphBRLBJLsriGS4z6tqS/0MU5T+AAZJx21m+sQFUQwdQGQTuxWPHa8X5M6xGp/DJLW/
+         hBj8lcIuFZ938UzVgNq/tHgHPW7ghHsxOMCWGdDneWtBOhA5lDt5yqvfVPmt0f73jKDu
+         xxGV6FoPMGRKf/84NdavZJcVD/cynwhL/lOnYZ3O8HRPddLdkqUZjZtm+c0joDJO0lIj
+         FaZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Grq/lCv6X9zvhjrxtn3hukSNIqujUj2abduruIelS+M=;
-        b=vHta+VEdefDtumz9rC6M8E5/2GfbmH9VTtY924hftWqr9vDLbKJLjGxT9zfgqb6jzc
-         JuHAWsHYpDLJkMHGC1AM6f7vuirwAlv/Ml3azKHWLCOupo/UH3J1WV39T6f9Rc5F47y6
-         9vzzhdtSYtUVdh/MVLx/FBKwND9a2/xWUBmMUAR2RB53HSI+gZjT97i9YYlFSjw5zWgj
-         IuK8aq5Q3NsPS+EGqCDA48sxIWMev1I0JQV5iKuqkLEzzHstLNbuVXxzh/pztEUtzVZk
-         nY8ylCuGqNlzEW+enWc6VJahvO4hoYcICwX3kaWHML1ux1gyH3TjETGTUzfBJH208qtM
-         LArg==
-X-Gm-Message-State: ANoB5plripN2b/REigdD4f2j6HVAZqBp7sVybhbrBlF8r3kHfOE2V87z
-        bO78HPMWSGT0EvL+3IwXdNA=
-X-Google-Smtp-Source: AA0mqf4bczFAXhp8frgYXfTWDcx+1h47VoETJuXmG2+FOJRxH34v0Qw+cRKpdK1xm80neDn3BvMY6Q==
-X-Received: by 2002:a05:600c:4fc8:b0:3cf:614e:b587 with SMTP id o8-20020a05600c4fc800b003cf614eb587mr26240906wmq.26.1671211034146;
-        Fri, 16 Dec 2022 09:17:14 -0800 (PST)
-Received: from Ansuel-xps. (93-42-71-18.ip85.fastwebnet.it. [93.42.71.18])
-        by smtp.gmail.com with ESMTPSA id q9-20020a7bce89000000b003d1e34bcbb2sm3083664wmj.13.2022.12.16.09.17.12
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2FBdM4o1a+ti6VZvKdo29XWcFolLLNxcu/qJZdBQUc8=;
+        b=Hf9rFct/24035t24egZ8tXFEHwWKUcMssIRSJl3Y5tBPONb2zuDJ34rQrBuAFBveao
+         PhDji/ezTJk+ISJkDJdV8Bqy3qPWVYiag0nScFMuoTurNgxp9i6n/Z5XgfXhBQCSDRlo
+         qEJ5KN6AUZSzstWjZJEUeBp6CBFXm6tZZ/ophg5MSUhBG4nbzyJoebuX6PlP3U37MjfC
+         Vd2LKOiGscw0FMzGNLY/4j7N0pFquRndgEMpZ7BEoJLhMb8F9nmKbXS5FnbjDKScMKn+
+         wakdPYw1mHTLhDQ/BHWv/mKfCMhQWXbZZNN8eI2cQ7sYjX5nT1wWeF6IWfFoFMYAUea9
+         sg/A==
+X-Gm-Message-State: ANoB5pkMsIo06FJwITT2s9kB5gDZuUVJ7Z6WsV7bDC4ORaKJeb+n5TRU
+        yMoJHftUlO9n2fY6x6ELjL2grw==
+X-Google-Smtp-Source: AA0mqf48u5sX8/OYx/qesecfTP54psXqEUJ6N7JWv9oQObEy9DjAxCb1RFoaPmkrZDm7OehIqNnW6A==
+X-Received: by 2002:a67:6d01:0:b0:3aa:8a33:ce9f with SMTP id i1-20020a676d01000000b003aa8a33ce9fmr19391926vsc.3.1671211282051;
+        Fri, 16 Dec 2022 09:21:22 -0800 (PST)
+Received: from nicolas-tpx395.localdomain (192-222-136-102.qc.cable.ebox.net. [192.222.136.102])
+        by smtp.gmail.com with ESMTPSA id d16-20020a05620a241000b006ec62032d3dsm1926735qkn.30.2022.12.16.09.21.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Dec 2022 09:17:13 -0800 (PST)
-Message-ID: <639ca819.7b0a0220.6b61a.9f2e@mx.google.com>
-X-Google-Original-Message-ID: <Y5yoGnwCHRK5qtJY@Ansuel-xps.>
-Date:   Fri, 16 Dec 2022 18:17:14 +0100
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org,
-        Tim Harvey <tharvey@gateworks.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-Subject: Re: [PATCH v7 09/11] leds: trigger: netdev: add additional hardware
- only triggers
-References: <20221214235438.30271-1-ansuelsmth@gmail.com>
- <20221214235438.30271-10-ansuelsmth@gmail.com>
- <Y5ta87eCAQ8XsY8L@shell.armlinux.org.uk>
+        Fri, 16 Dec 2022 09:21:21 -0800 (PST)
+Message-ID: <238edc4adf7e795b48cb9de98ba6f1efc67f3bfd.camel@ndufresne.ca>
+Subject: Re: [Patch v3 05/15] Documention: v4l: Documentation for VP9 CIDs.
+From:   Nicolas Dufresne <nicolas@ndufresne.ca>
+To:     Aakarsh Jain <aakarsh.jain@samsung.com>,
+        'Hans Verkuil' <hverkuil-cisco@xs4all.nl>,
+        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
+        mchehab@kernel.org, ezequiel@vanguardiasur.com.ar,
+        jernej.skrabec@gmail.com, benjamin.gaignard@collabora.com,
+        stanimir.varbanov@linaro.org, dillon.minfei@gmail.com,
+        david.plowman@raspberrypi.com, mark.rutland@arm.com,
+        robh+dt@kernel.org, krzk+dt@kernel.org, andi@etezian.org,
+        alim.akhtar@samsung.com, aswani.reddy@samsung.com,
+        pankaj.dubey@samsung.com, linux-fsd@tesla.com, smitha.t@samsung.com
+Date:   Fri, 16 Dec 2022 12:21:19 -0500
+In-Reply-To: <000001d90fa6$0ff91470$2feb3d50$@samsung.com>
+References: <20221011122516.32135-1-aakarsh.jain@samsung.com>
+         <CGME20221011125155epcas5p1e47309b4dd767e81817c316aa0e8b7ca@epcas5p1.samsung.com>
+         <20221011122516.32135-6-aakarsh.jain@samsung.com>
+         <3b85e6ad-e734-8b36-37bf-06b9c560ca92@xs4all.nl>
+         <000001d90fa6$0ff91470$2feb3d50$@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.2 (3.46.2-1.fc37) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y5ta87eCAQ8XsY8L@shell.armlinux.org.uk>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 15, 2022 at 05:35:47PM +0000, Russell King (Oracle) wrote:
-> On Thu, Dec 15, 2022 at 12:54:36AM +0100, Christian Marangi wrote:
-> > Add additional hardware only triggers commonly supported by switch LEDs.
-> > 
-> > Additional modes:
-> > link_10: LED on with link up AND speed 10mbps
-> > link_100: LED on with link up AND speed 100mbps
-> > link_1000: LED on with link up AND speed 1000mbps
-> > half_duplex: LED on with link up AND half_duplex mode
-> > full_duplex: LED on with link up AND full duplex mode
-> 
-> Looking at Marvell 88e151x, I don't think this is usable there.
-> We have the option of supporting link_1000 on one of the LEDs,
-> link_100 on another, and link_10 on the other. It's rather rare
-> for all three leds to be wired though.
+Le mercredi 14 d=C3=A9cembre 2022 =C3=A0 15:52 +0530, Aakarsh Jain a =C3=A9=
+crit=C2=A0:
+>=20
+> > -----Original Message-----
+> > From: Hans Verkuil [mailto:hverkuil-cisco@xs4all.nl]
+> > Sent: 24 November 2022 16:54
+> > To: aakarsh jain <aakarsh.jain@samsung.com>; linux-arm-
+> > kernel@lists.infradead.org; linux-media@vger.kernel.org; linux-
+> > kernel@vger.kernel.org; devicetree@vger.kernel.org
+> > Cc: m.szyprowski@samsung.com; andrzej.hajda@intel.com;
+> > mchehab@kernel.org; ezequiel@vanguardiasur.com.ar;
+> > jernej.skrabec@gmail.com; benjamin.gaignard@collabora.com;
+> > stanimir.varbanov@linaro.org; dillon.minfei@gmail.com;
+> > david.plowman@raspberrypi.com; mark.rutland@arm.com;
+> > robh+dt@kernel.org; krzk+dt@kernel.org; andi@etezian.org;
+> > alim.akhtar@samsung.com; aswani.reddy@samsung.com;
+> > pankaj.dubey@samsung.com; linux-fsd@tesla.com; smitha.t@samsung.com
+> > Subject: Re: [Patch v3 05/15] Documention: v4l: Documentation for VP9 C=
+IDs.
+> >=20
+> > On 11/10/2022 14:25, aakarsh jain wrote:
+> > > From: Smitha T Murthy <smitha.t@samsung.com>
+> > >=20
+> > > Adds V4l2 controls for VP9 encoder documention.
+> > >=20
+> > > Cc: linux-fsd@tesla.com
+> > > Signed-off-by: Smitha T Murthy <smitha.t@samsung.com>
+> > > Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
+> > > ---
+> > >  .../media/v4l/ext-ctrls-codec.rst             | 167 ++++++++++++++++=
+++
+> > >  1 file changed, 167 insertions(+)
+> > >=20
+> > > diff --git a/Documentation/userspace-api/media/v4l/ext-ctrls-codec.rs=
+t
+> > > b/Documentation/userspace-api/media/v4l/ext-ctrls-codec.rst
+> > > index 2a165ae063fb..2277d83a7cf0 100644
+> > > --- a/Documentation/userspace-api/media/v4l/ext-ctrls-codec.rst
+> > > +++ b/Documentation/userspace-api/media/v4l/ext-ctrls-codec.rst
+> > > @@ -2187,6 +2187,16 @@ enum v4l2_mpeg_video_vp8_profile -
+> > >      * - ``V4L2_MPEG_VIDEO_VP8_PROFILE_3``
+> > >        - Profile 3
+> > >=20
+> > > +VP9 Control Reference
+> >=20
+> > This is wrong. There is a VPX Control Reference section for both VP8 an=
+d VP9
+> > controls. That's where this should be added. I suspect several of the c=
+ontrols
+> > you are adding here already exist, e.g.
+> > V4L2_CID_MPEG_VIDEO_VPX_MIN_QP. The documentation may have to be
+> > updated to specify that it is for both VP8 and VP9.
+> >=20
+> Since MFC has different profiles, different quantization parameter ranges=
+ for both VP8 and VP9. So we can't use same control ID's for both.
+> So for example in VP8 with control ID (V4L2_CID_MPEG_VIDEO_VPX_MIN_QP), Q=
+P ranges from 0-11 and in VP9 with control ID  (V4L2_CID_CODEC_VP9_MIN_QP) =
+QP ranges from 1-24. So we can't club together into single control.
+>=20
 
-On qca8k it's just anarchy. You can apply the same rule table to
-whatever led you want. They are all the same... OEM decide what to do
-(add white led, amber, green...)
+V4L2_CID_MPEG_VIDEO_VPX_PROFILE has been deprecated, and replace with menu
+controls. So we now have a V4L2_CID_MPEG_VIDEO_VP8_PROFILE and a
+V4L2_CID_MPEG_VIDEO_VP9_PROFILE as menues. Newly written drivers should use
+these. I see that GStreamer notably has never been ported, I'll fix it.
 
-Most common configuration is 2 leds, one react with port 1000 and the
-other with port 100. But each led can be set to be powered on to any
-speed by enabling 10 100 and 1000 rule.
+When you implement a driver, the generic uAPI will cover all possible items=
+, as
+menus (a integer was an API mistake made in 2011, hence the deprecation). Y=
+ou
+driver can then select which menu items it support, and its server at telli=
+ng
+userspace what this HW supports. Though, this should be no problem if you w=
+ant
+to keep the old CID for backward compat, since the range is just totally
+undefined there.
 
-Rejecting a configuration falls in the driver returning error on
-configure.
+For V4L2_CID_MPEG_VIDEO_VPX_MIN_QP (and friends), the doc says "Minimum
+quantization parameter for VP8.". A bit strange for a supposedly VPX parame=
+ter.
+But its defines in the code as "VPX Minimum QP Value". Clearly something to=
+ be
+fixed. There is no VP9 encoder drivers yet in mainline.
 
-> 
-> This is also a PHY where "activity" mode is supported (illuminated
-> or blinking if any traffic is transmitted or received) but may not
-> support individual directional traffic in hardware. However, it
-> does support forcing the LED on or off, so software mode can handle
-> those until the user selects a combination of modes that are
-> supported in the hardware.
-> 
-> > Additional blink interval modes:
-> > blink_2hz: LED blink on any even at 2Hz (250ms)
-> > blink_4hz: LED blink on any even at 4Hz (125ms)
-> > blink_8hz: LED blink on any even at 8Hz (62ms)
-> 
-> This seems too restrictive. For example, Marvell 88e151x supports
-> none of these, but does support 42, 84, 170, 340, 670ms.
-> 
+Though, the range for these controls is driver defined. In Venus, for VP8:
 
-Eh this is really bad, it was an idea to support blink internal for each
-event but I expected other switch had something different... But the
-generic function is still there...
 
-Wonder if we should consider adding generic naming like SLOW, NORMAL(?),
-FAST. And just assign them from the driver side?
+        v4l2_ctrl_new_std(&inst->ctrl_handler, &venc_ctrl_ops,
+                V4L2_CID_MPEG_VIDEO_VPX_MIN_QP, 1, 128, 1, 1);
 
-Permit to have some kind of configuration while also keeping it generic
-enough? 
+It seems to be 1 to 128. While in MFC, it oddly 1 to 11:
 
-Just as reference... The blink mode already had a compromise since qca8k
-can support a way to blink differently based on the link speed.
 
--- 
-	Ansuel
+        {
+                .id =3D V4L2_CID_MPEG_VIDEO_VPX_MIN_QP,
+                .type =3D V4L2_CTRL_TYPE_INTEGER,
+                .minimum =3D 0,
+                .maximum =3D 11,
+                .step =3D 1,
+                .default_value =3D 0,
+        },
+
+While I'm not a huge fan of this, since we all know QP does not scale linea=
+rly,
+this is how it is, and this is kind of part of the kernel API now. So users=
+pace
+must ask the driver what is the QP range, and adapt. And in your case, you
+should have no issue adding VP9 encoder with a 1 to 24 range (even if this =
+is a
+bit odd and hw specific).
+
+Nicolas
+
+
+> > > +---------------------
+> > > +
+> > > +The VP9 controls include controls for encoding parameters of VP9
+> > > +video codec.
+> > > +
+> > > +.. _vp9-control-id:
+> > > +
+> > > +VP9 Control IDs
+> > > +
+> > >  .. _v4l2-mpeg-video-vp9-profile:
+> > >=20
+> > >  ``V4L2_CID_MPEG_VIDEO_VP9_PROFILE``
+> > > @@ -2253,6 +2263,163 @@ enum v4l2_mpeg_video_vp9_level -
+> > >      * - ``V4L2_MPEG_VIDEO_VP9_LEVEL_6_2``
+> > >        - Level 6.2
+> > >=20
+> > > +``V4L2_CID_CODEC_VP9_I_FRAME_QP``
+> >=20
+> > If you do need to add new controls, then please use the same
+> > MPEG_VIDEO_ prefix.
+> > It's a bit ugly and historical, but let's keep it consistent with the o=
+thers.
+> >=20
+> > Regards,
+> >=20
+> > 	Hans
+> >=20
+> > > +    Quantization parameter for an I frame for VP9. Valid range: from=
+ 1 to
+> > 255.
+> > > +
+> > > +``V4L2_CID_CODEC_VP9_P_FRAME_QP``
+> > > +    Quantization parameter for an P frame for VP9. Valid range: from=
+ 1 to
+> > 255.
+> > > +
+> > > +``V4L2_CID_CODEC_VP9_MAX_QP``
+> > > +    Maximum quantization parameter for VP9. Valid range: from 1 to 2=
+55.
+> > > +    Recommended range for MFC is from 230 to 255.
+> > > +
+> > > +``V4L2_CID_CODEC_VP9_MIN_QP``
+> > > +    Minimum quantization parameter for VP9. Valid range: from 1 to 2=
+55.
+> > > +    Recommended range for MFC is from 1 to 24.
+> > > +
+> > > +``V4L2_CID_CODEC_VP9_RC_FRAME_RATE``
+> > > +    Indicates the number of evenly spaced subintervals, called ticks=
+, within
+> > > +    one second. This is a 16 bit unsigned integer and has a maximum =
+value
+> > up to
+> > > +    0xffff and a minimum value of 1.
+> > > +
+> > > +``V4L2_CID_CODEC_VP9_GF_REFRESH_PERIOD``
+> > > +    Indicates the refresh period of the golden frame for VP9 encoder=
+.
+> > > +
+> > > +.. _v4l2-vp9-golden-frame-sel:
+> > > +
+> > > +``V4L2_CID_CODEC_VP9_GOLDEN_FRAMESEL``
+> > > +    (enum)
+> > > +
+> > > +enum v4l2_mpeg_vp9_golden_framesel -
+> > > +    Selects the golden frame for encoding. Valid when NUM_OF_REF is =
+2.
+> > > +    Possible values are:
+> > > +
+> > > +.. raw:: latex
+> > > +
+> > > +    \footnotesize
+> > > +
+> > > +.. tabularcolumns:: |p{9.0cm}|p{8.0cm}|
+> > > +
+> > > +.. flat-table::
+> > > +    :header-rows:  0
+> > > +    :stub-columns: 0
+> > > +
+> > > +    * - ``V4L2_CID_CODEC_VP9_GOLDEN_FRAME_USE_PREV``
+> > > +      - Use the (n-2)th frame as a golden frame, current frame index=
+ being
+> > > +        'n'.
+> > > +    * - ``V4L2_CID_CODEC_VP9_GOLDEN_FRAME_USE_REF_PERIOD``
+> > > +      - Use the previous specific frame indicated by
+> > > +        ``V4L2_CID_CODEC_VP9_GF_REFRESH_PERIOD`` as a
+> > > +        golden frame.
+> > > +
+> > > +.. raw:: latex
+> > > +
+> > > +    \normalsize
+> > > +
+> > > +
+> > > +``V4L2_CID_CODEC_VP9_HIERARCHY_QP_ENABLE``
+> > > +    Allows host to specify the quantization parameter values for eac=
+h
+> > > +    temporal layer through HIERARCHICAL_QP_LAYER. This is valid only
+> > > +    if HIERARCHICAL_CODING_LAYER is greater than 1. Setting the cont=
+rol
+> > > +    value to 1 enables setting of the QP values for the layers.
+> > > +
+> > > +.. _v4l2-vp9-ref-number-of-pframes:
+> > > +
+> > > +``V4L2_CID_CODEC_VP9_REF_NUMBER_FOR_PFRAMES``
+> > > +    (enum)
+> > > +
+> > > +enum v4l2_mpeg_vp9_ref_num_for_pframes -
+> > > +    Number of reference pictures for encoding P frames.
+> > > +
+> > > +.. raw:: latex
+> > > +
+> > > +    \footnotesize
+> > > +
+> > > +.. tabularcolumns:: |p{9.0cm}|p{8.0cm}|
+> > > +
+> > > +.. flat-table::
+> > > +    :header-rows:  0
+> > > +    :stub-columns: 0
+> > > +
+> > > +    * - ``V4L2_CID_CODEC_VP9_1_REF_PFRAME``
+> > > +      - Indicates one reference frame, last encoded frame will be se=
+arched.
+> > > +    * - ``V4L2_CID_CODEC_VP9_GOLDEN_FRAME_USE_REF_PERIOD``
+> > > +      - Indicates 2 reference frames, last encoded frame and golden =
+frame
+> > > +        will be searched.
+> > > +
+> > > +.. raw:: latex
+> > > +
+> > > +    \normalsize
+> > > +
+> > > +
+> > > +``V4L2_CID_CODEC_VP9_HIERARCHICAL_CODING_LAYER``
+> > > +    Indicates the number of hierarchial coding layer.
+> > > +    In normal encoding (non-hierarchial coding), it should be zero.
+> > > +    VP9 has upto 3 layer of encoder.
+> > > +
+> > > +``V4L2_CID_CODEC_VP9_HIERARCHY_RC_ENABLE``
+> > > +    Indicates enabling of bit rate for hierarchical coding layers VP=
+9 encoder.
+> > > +
+> > > +``V4L2_CID_CODEC_VP9_HIER_CODING_L0_BR``
+> > > +    Indicates bit rate for hierarchical coding layer 0 for VP9 encod=
+er.
+> > > +
+> > > +``V4L2_CID_CODEC_VP9_HIER_CODING_L1_BR``
+> > > +    Indicates bit rate for hierarchical coding layer 1 for VP9 encod=
+er.
+> > > +
+> > > +``V4L2_CID_CODEC_VP9_HIER_CODING_L2_BR``
+> > > +    Indicates bit rate for hierarchical coding layer 2 for VP9 encod=
+er.
+> > > +
+> > > +``V4L2_CID_CODEC_VP9_HIER_CODING_L0_QP``
+> > > +    Indicates quantization parameter for hierarchical coding layer 0=
+.
+> > > +    Valid range: [V4L2_CID_CODEC_VP9_MIN_QP,
+> > > +    V4L2_CID_CODEC_VP9_MAX_QP].
+> > > +
+> > > +``V4L2_CID_CODEC_VP9_HIER_CODING_L1_QP``
+> > > +    Indicates quantization parameter for hierarchical coding layer 1=
+.
+> > > +    Valid range: [V4L2_CID_CODEC_VP9_MIN_QP,
+> > > +    V4L2_CID_CODEC_VP9_MAX_QP].
+> > > +
+> > > +``V4L2_CID_CODEC_VP9_HIER_CODING_L2_QP``
+> > > +    Indicates quantization parameter for hierarchical coding layer 2=
+.
+> > > +    Valid range: [V4L2_CID_CODEC_VP9_MIN_QP,
+> > > +    V4L2_CID_CODEC_VP9_MAX_QP].
+> > > +
+> > > +.. _v4l2-vp9-max-partition-depth:
+> > > +
+> > > +``V4L2_CID_CODEC_VP9_MAX_PARTITION_DEPTH``
+> > > +    (enum)
+> > > +
+> > > +enum v4l2_mpeg_vp9_num_partitions -
+> > > +    Indicate maximum coding unit depth.
+> > > +
+> > > +.. raw:: latex
+> > > +
+> > > +    \footnotesize
+> > > +
+> > > +.. tabularcolumns:: |p{9.0cm}|p{8.0cm}|
+> > > +
+> > > +.. flat-table::
+> > > +    :header-rows:  0
+> > > +    :stub-columns: 0
+> > > +
+> > > +    * - ``V4L2_CID_CODEC_VP9_0_PARTITION``
+> > > +      - No coding unit partition depth.
+> > > +    * - ``V4L2_CID_CODEC_VP9_1_PARTITION``
+> > > +      - Allows one coding unit partition depth.
+> > > +
+> > > +.. raw:: latex
+> > > +
+> > > +    \normalsize
+> > > +
+> > > +
+> > > +``V4L2_CID_CODEC_VP9_DISABLE_INTRA_PU_SPLIT``
+> > > +    Zero indicates enable intra NxN PU split.
+> > > +    One indicates disable intra NxN PU split.
+> > > +
+> > > +``V4L2_CID_CODEC_VP9_DISABLE_IVF_HEADER``
+> > > +    Indicates IVF header generation. Zero indicates enable IVF forma=
+t.
+> > > +    One indicates disable IVF format.
+> > > +
+> > >=20
+> > >  High Efficiency Video Coding (HEVC/H.265) Control Reference
+> > >=20
+> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > =3D
+>=20
+>=20
+
