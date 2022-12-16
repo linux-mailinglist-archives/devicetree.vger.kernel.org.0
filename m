@@ -2,101 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B3C764EC47
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 14:50:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7019064EC94
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 15:05:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229475AbiLPNuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Dec 2022 08:50:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35240 "EHLO
+        id S229547AbiLPOFd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Dec 2022 09:05:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbiLPNuA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 08:50:00 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09EB31B1C9
-        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 05:50:00 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A1A326210D
-        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 13:49:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D45DEC433D2;
-        Fri, 16 Dec 2022 13:49:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671198599;
-        bh=QFMisP15sjuymDRGXQT7IkSyMcDUWNcSig/PMP/Pqe0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OWIO9sX8SOZuiEzTnQgL8kfFK8V1LmakqnbFhx/wqDIZnAmXB+ydnW5QBTiIcEwPS
-         9ZcIi3Ar5pAC3KiJYvawuiIo4m5J0hK6C22A2M4Bk/uMiOF6D09nMqLLfV1Kv3t5tC
-         2tCOaS5O1GyVzy/jiFKR613Cst4JQhk3jfAmi1POjB7qLY5QnNZzJCpZJQW656dUNo
-         EVS7Zmdur9wMjSyHVtPEKWVhI5Dta1H0g21xZzkoO+ERFtmB/4net2U6NhlZAaJkDj
-         O0Rhj347V1ZpBcxZ0I58P4vrA8HHQulSv6f059vGPd+xLfdSaFfERNwBUN+B0qfKnw
-         noLqEB5jJI0og==
-Date:   Fri, 16 Dec 2022 13:49:53 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Sameer Pujar <spujar@nvidia.com>,
-        Mohan Kumar <mkumard@nvidia.com>
-Subject: Re: [PATCH 06/11] ASoC: dt-bindings: ti,pcm3168a: Convert to
- json-schema
-Message-ID: <Y5x3gQ4yQFTal5WV@sirena.org.uk>
-References: <87v8mepyoy.wl-kuninori.morimoto.gx@renesas.com>
- <87mt7qpylw.wl-kuninori.morimoto.gx@renesas.com>
- <CAMuHMdW=_-MyqAjRqaoPyWkoUmdB2VOE1t+wpym7eyOxkzc_7g@mail.gmail.com>
- <Y5sJV2KfX98KoMYZ@sirena.org.uk>
- <CAMuHMdWwP6QDUux62GZtCT7tsFhAhex=Fns5e=n_KTjGXHRy0Q@mail.gmail.com>
- <Y5sVewc7ItFBZkn4@sirena.org.uk>
- <87iliccjoz.wl-kuninori.morimoto.gx@renesas.com>
+        with ESMTP id S229453AbiLPOFb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 09:05:31 -0500
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FD7DA19D;
+        Fri, 16 Dec 2022 06:05:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1671199530; x=1702735530;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=rf6oqwgxdkbekgXRXJUeWpiQCH4OaXW2AGT9Sm8kUlc=;
+  b=JkSMiJ5c3fDw8AxjxfqmRZRtMfj1C1uyAwu2wFGmPVeRLkEzrB0KCioF
+   ovSa+Gyd9Ck7xnW6cIWfOf1x4gpog3fr9AL3LljCWEdo4wf1/6gu3Euyw
+   uSmAhfLFeTmISaMVo+DOo6+YsLT6r4MFZycG1Px7Y50KOpNgOdG5IVhbz
+   hP5HtBJ2Fewks/mnWTxJ34CwoH1gDxw2JHrP8Ua00vCpHH5bog5f7fXej
+   /GiCU5K4J3w0O/sx/vOVyc3Yf+VX/69NXIyVVA+pfyP0IaAO6RjLUBMas
+   QhoYXZo0dVQgDkyj4ywzrl+zPSTy1xtZU13oYT/w/NQghTqn74G7hhbF2
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10563"; a="306648315"
+X-IronPort-AV: E=Sophos;i="5.96,249,1665471600"; 
+   d="scan'208";a="306648315"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Dec 2022 06:05:23 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10563"; a="792086022"
+X-IronPort-AV: E=Sophos;i="5.96,249,1665471600"; 
+   d="scan'208";a="792086022"
+Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
+  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Dec 2022 06:05:21 -0800
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id 2B9DC20310;
+        Fri, 16 Dec 2022 15:57:37 +0200 (EET)
+Date:   Fri, 16 Dec 2022 13:57:37 +0000
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Jai Luthra <j-luthra@ti.com>
+Cc:     Steve Longerbeam <slongerbeam@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 1/3] media: ov5640: Handle delays when no reset_gpio set
+Message-ID: <Y5x5UbtLFDpFIoEp@paasikivi.fi.intel.com>
+References: <20221216134409.6868-1-j-luthra@ti.com>
+ <20221216134409.6868-2-j-luthra@ti.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="B4Ig2C85qvcn2BWz"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <87iliccjoz.wl-kuninori.morimoto.gx@renesas.com>
-X-Cookie: No passing.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221216134409.6868-2-j-luthra@ti.com>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Jai,
 
---B4Ig2C85qvcn2BWz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Thanks for the set.
 
-On Thu, Dec 15, 2022 at 11:48:29PM +0000, Kuninori Morimoto wrote:
+On Fri, Dec 16, 2022 at 07:14:07PM +0530, Jai Luthra wrote:
+> Some module manufacturers [1][2] don't expose the RESETB gpio of the
+> sensor directly through the 15-pin FFC connector. Instead wiring ~PWDN
+> as a proxy reset with appropriate delays.
+> 
+> In such cases, reset_gpio will not be available to the driver, but it
+> will still be toggled when the sensor is powered on, and thus we should
+> still honor the wait time of >= 5ms + 1ms + 20ms (see figure 2-3 in [3])
+> before attempting any i/o operations over SCCB.
+> 
+> [1] https://digilent.com/reference/_media/reference/add-ons/pcam-5c/pcam_5c_sch.pdf
+> [2] https://www.alinx.com/public/upload/file/AN5641_User_Manual.pdf
+> [3] https://cdn.sparkfun.com/datasheets/Sensors/LightImaging/OV5640_datasheet.pdf
+> 
+> Fixes: 19a81c1426c1 ("[media] add Omnivision OV5640 sensor driver")
+> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> ---
+>  drivers/media/i2c/ov5640.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/media/i2c/ov5640.c b/drivers/media/i2c/ov5640.c
+> index e0f908af581b..4bb7bf557cfa 100644
+> --- a/drivers/media/i2c/ov5640.c
+> +++ b/drivers/media/i2c/ov5640.c
+> @@ -2466,6 +2466,7 @@ static int ov5640_set_power_on(struct ov5640_dev *sensor)
+>  
+>  	ov5640_reset(sensor);
+>  	ov5640_power(sensor, true);
+> +	usleep_range(26000, 30000);
 
-> BTH Mark, this patch is included in this patch-set, but it can be
-> stand alone patch if other patch-set were accepted.
-> Is is possible to post this v2 patch as [1/1] ? or do I need [PATCH v2 11/11] ?
+I think you should only do this if you don't have RESETB pin.
 
-Just posting it as 1/1 is best - for both patch number and series
-version the numbering only makes sense within a single series, you can
-just drop this patch from v2 of the main series and send it separately
-as just a standalone patch.
+I'm not sure how to best describe this in DT. It's not the same as if you
+didn't have RESETB GPIO.
 
---B4Ig2C85qvcn2BWz
-Content-Type: application/pgp-signature; name="signature.asc"
+Cc the devicetree list and Krzysztof.
 
------BEGIN PGP SIGNATURE-----
+>  
+>  	ret = ov5640_init_slave_id(sensor);
+>  	if (ret)
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmOcd4AACgkQJNaLcl1U
-h9CRfQf/U/FMNAdDXx65RJpVN9Ys/ENAN4EFqRJkYlf6Zcq2SP9iAC4K0wIXTArP
-Y0tHd54bT2HU6unXgYi3iKZGVvrc+eM1kfVkuo4PoaYacDtDTq/U387vuXEE1XZ+
-p/Wc5oTf/ZbQw49vbFo3iOQdcVPCEr6CrFCtlyppN7p0bD6kO6VFKm7+/qRB0EdA
-qAh9nOrVRHrCBV+nBbT3apynlKRrIFRVIkFmS2EeHbDMZPTuILs/Ucd95VB2xjBn
-05LiZ1fA6xCRlHD/KHwFIWRthJCE/3oL2v8cAdWHFhEyeyUxKI//GKiOnnBzEtaj
-+To7bYmVaJGmfDVSw+uUoiw0SApLbw==
-=lJj3
------END PGP SIGNATURE-----
+-- 
+Kind regards,
 
---B4Ig2C85qvcn2BWz--
+Sakari Ailus
