@@ -2,81 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97A7864EA3D
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 12:23:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D460F64EA4E
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 12:24:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230467AbiLPLXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Dec 2022 06:23:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60240 "EHLO
+        id S231150AbiLPLYl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Dec 2022 06:24:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230525AbiLPLXp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 06:23:45 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB35163E8;
-        Fri, 16 Dec 2022 03:23:43 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id w15so2150345wrl.9;
-        Fri, 16 Dec 2022 03:23:43 -0800 (PST)
+        with ESMTP id S230525AbiLPLYk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 06:24:40 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2649B1E3
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 03:24:39 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id g7so3015948lfv.5
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 03:24:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=VAWXZ5dwyU4nYzKu6dG0EcB7QJGqDFnb5rKrT6m3dlQ=;
-        b=YIIoVlfk6+N9Dbv6UCADP+/Bd66InxDSiBgDL/pp4oE2qCfDcfYSu69isft+voaHrE
-         Ywpy6B2xaM3+ri25Rvxc6rNCqM/je85KxvHRRDR73dNAlcS9UyFF9AQekXDYCn33UpMA
-         G0RHJkKnoZjmsBoUn0h0n/UZNvW8+rXW9kxCknJiLigfPguCoRPvv2inPOGJuSp8EeqH
-         kirpg1188XOrFMgC1+dg9pEY1RkQ3YeCQleVpuJuwZsqyut5k4aKqO0bv789stxc+IHP
-         89CUQ46QffrANtTdFgQ6nbWJ1lKAFiSZjinsKgDF3jjVx54Z/l5o8V/y5ExMl+GN+rSt
-         9wzQ==
+        bh=oadVGd57HGb0baAnuWVTlFJ21yCLcJ3hvQQLSSBFlZY=;
+        b=qFOIeVgvZhAug6UXK4OCScMRG19Sv03IHtsTXlrkH9oya91BU8zFEimG+l+ALLg5Tr
+         h/yui/y4AxOmwQ+MQty3BLwmTRbVdnNR/Af1EE6wuIUZr9iFF7iah3cG3B80ORIUWSaZ
+         vsiKu9e/PjgPrvCSn5dxUDZ5UH4lSs5JsM3zn1D7sQXQvVw9lDSjZW6KeJl9Yhw7S+nO
+         SePttbzbsZGxL4QLvq+enj28Qtt1EVrm2jX+CYYPyvNT97fn5qdzh7xHc6F4d8mzhgul
+         0YVweBTt2tT+XANvS0FU0rI2/KA0ySmDKkg2NErjMM+BiKQVirpA1hwzRFd2sX38pnD7
+         UdSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VAWXZ5dwyU4nYzKu6dG0EcB7QJGqDFnb5rKrT6m3dlQ=;
-        b=Noi0yefqOsPZIE1vrvQPi3oPjOjKApqyRN2k1aMK4ufGZ6rnG02jc/BCUjDr5YSvRP
-         5z7N7CscLLZWYF/XCuAS3To2ZiXz2/9NdXyK9Z7gwRL++EtK8EmZrC9vbtF92Kbkfveo
-         vBCOn8/SEalGR9npuGfhWDyEAReA88ctUhXBKLoyqR6JHTHxvaaM2s3zA58i04MEtFvU
-         OTs3326v8kj6JCdj6pBuN7kBZ1SsVeYEh50vVGoC+v/cyGWNtDzNo9aH3gs02sWUnvdy
-         8I6uWT60TPdiVCwZ2nma9fcfOgsscnBnWXDRiNVlQ2Ms8UtImiznnMk7aUeWY48fU1LM
-         ccTw==
-X-Gm-Message-State: ANoB5pnmp+bvpBgXPhNCmwZRbidKm7yi0beHpXce6/Et/aWbYeygbN/b
-        Wv1Hd8+Uy3xoIB2ztdgNWJ8=
-X-Google-Smtp-Source: AA0mqf48S1sZqP77x7fQ3pVk52VBeYECSdS87vyjHpCEQNGm5ug0+c7NB5eA1qSwlxtF3t3FplvarQ==
-X-Received: by 2002:a5d:4242:0:b0:242:5ed6:a09f with SMTP id s2-20020a5d4242000000b002425ed6a09fmr19661776wrr.44.1671189822253;
-        Fri, 16 Dec 2022 03:23:42 -0800 (PST)
-Received: from [192.168.1.132] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id f4-20020a5d58e4000000b002425be3c9e2sm1985229wrd.60.2022.12.16.03.23.40
+        bh=oadVGd57HGb0baAnuWVTlFJ21yCLcJ3hvQQLSSBFlZY=;
+        b=06VjQikuSZKDav9B1js6mBGrXDvOk2CmogARWu63i6jYeWkb6ZDLFXdvrX07C7Yq7H
+         lst0k5sVfZ6fJHnHCycU0UPyX2w0VDbRcRFHps2vqt736saahBKKfyM5kc+XPKRpjpJm
+         qChjklkc4QT9z4Eck3zGEPflr4eFNtoLUr251Ylw0noEhbcCzMAfMxhkuV0U0I29kBZt
+         ae4GUWV0O0QZVqa2lsAq73ER4Yw+WvhpTVmXRgUfwYMgMgQ+6aLXs3oNI4oPwir4Ifl6
+         qn4j71AUR0OusI52lRz51hNIAzLn46Qt7MeKMm7PDgZGmlkubosuYJkXS60YEybqO21B
+         u2yA==
+X-Gm-Message-State: ANoB5plCmuASyw67+aVk3YilzwHn4dWGVBgbLyfBZJEVvWl1rUdepyIc
+        qN9lU8ST1EuTYW0xHurkrDYEBQ==
+X-Google-Smtp-Source: AA0mqf7mP4Hf8z9YCDFV5CozdEkrHHPmhzrkwVqhfJ8cAVEQ0Zlv7Qbv+/z9hKDXL46ARbPNxmg1Bw==
+X-Received: by 2002:ac2:4a9d:0:b0:4b5:7338:e2c7 with SMTP id l29-20020ac24a9d000000b004b57338e2c7mr4630070lfp.53.1671189877995;
+        Fri, 16 Dec 2022 03:24:37 -0800 (PST)
+Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
+        by smtp.gmail.com with ESMTPSA id c14-20020a05651200ce00b004a4754c5db5sm193654lfp.244.2022.12.16.03.24.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Dec 2022 03:23:41 -0800 (PST)
-Message-ID: <bfdb30b7-8540-15e9-678c-3bf0541425b4@gmail.com>
-Date:   Fri, 16 Dec 2022 12:23:39 +0100
+        Fri, 16 Dec 2022 03:24:37 -0800 (PST)
+Message-ID: <e474f99d-2375-c8db-203c-632c918d8e4d@linaro.org>
+Date:   Fri, 16 Dec 2022 12:24:35 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v3 01/10] arm64: dts: mt8183: Fix Mali GPU clock
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v4 2/4] arm64: dts: qcom: sm6125: Add UFS nodes
+To:     Lux Aliaga <they@mint.lgbt>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221215190404.398788-1-they@mint.lgbt>
+ <20221215190404.398788-2-they@mint.lgbt>
 Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, wenst@chromium.org,
-        miles.chen@mediatek.com, rex-bc.chen@mediatek.com,
-        nfraprado@collabora.com, chun-jie.chen@mediatek.com,
-        jose.exposito89@gmail.com, drinkcat@chromium.org,
-        weiyi.lu@mediatek.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-References: <20220927101128.44758-1-angelogioacchino.delregno@collabora.com>
- <20220927101128.44758-2-angelogioacchino.delregno@collabora.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220927101128.44758-2-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221215190404.398788-2-they@mint.lgbt>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -85,37 +79,105 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 27/09/2022 12:11, AngeloGioacchino Del Regno wrote:
-> From: Chen-Yu Tsai <wenst@chromium.org>
+On 15.12.2022 20:04, Lux Aliaga wrote:
+> Adds a UFS host controller node and its corresponding PHY to
+> the sm6125 platform.
 > 
-> The actual clock feeding into the Mali GPU on the MT8183 is from the
-> clock gate in the MFGCFG block, not CLK_TOP_MFGPLL_CK from the TOPCKGEN
-> block, which itself is simply a pass-through placeholder for the MFGPLL
-> in the APMIXEDSYS block.
-> 
-> Fix the hardware description with the correct clock reference.
-> 
-> Fixes: a8168cebf1bc ("arm64: dts: mt8183: Add node for the Mali GPU")
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-Both patches applied, thanks!
-
+> Signed-off-by: Lux Aliaga <they@mint.lgbt>
 > ---
->   arch/arm64/boot/dts/mediatek/mt8183.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+Please include a changelog, I don't know what you changed and
+what you didn't. Also, you sent 4 revisions in one day, not
+letting others review it.
+
+
+>  arch/arm64/boot/dts/qcom/sm6125.dtsi | 67 ++++++++++++++++++++++++++++
+>  1 file changed, 67 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> index a70b669c49ba..402136bfd535 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> @@ -1678,7 +1678,7 @@ gpu: gpu@13040000 {
->   				<GIC_SPI 278 IRQ_TYPE_LEVEL_LOW>;
->   			interrupt-names = "job", "mmu", "gpu";
->   
-> -			clocks = <&topckgen CLK_TOP_MFGPLL_CK>;
-> +			clocks = <&mfgcfg CLK_MFG_BG3D>;
->   
->   			power-domains =
->   				<&spm MT8183_POWER_DOMAIN_MFG_CORE0>,
+> diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi b/arch/arm64/boot/dts/qcom/sm6125.dtsi
+> index 7e25a4f85594..b64c5bc1452f 100644
+> --- a/arch/arm64/boot/dts/qcom/sm6125.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm6125.dtsi
+> @@ -508,6 +508,73 @@ sdhc_2: mmc@4784000 {
+>  			status = "disabled";
+>  		};
+>  
+> +		ufs_mem_hc: ufs@4804000 {
+> +			compatible = "qcom,sm6125-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
+> +			reg = <0x04804000 0x3000>, <0x04810000 0x8000>;
+> +			reg-names = "std", "ice";
+> +			interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
+> +			phys = <&ufs_mem_phy_lanes>;
+> +			phy-names = "ufsphy";
+> +			lanes-per-direction = <1>;
+> +			#reset-cells = <1>;
+> +			resets = <&gcc GCC_UFS_PHY_BCR>;
+> +			reset-names = "rst";
+> +
+> +			clock-names = "core_clk",
+> +				      "bus_aggr_clk",
+> +				      "iface_clk",
+> +				      "core_clk_unipro",
+> +				      "ref_clk",
+> +				      "tx_lane0_sync_clk",
+> +				      "rx_lane0_sync_clk",
+> +				      "ice_core_clk";
+> +			clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
+> +				 <&gcc GCC_SYS_NOC_UFS_PHY_AXI_CLK>,
+> +				 <&gcc GCC_UFS_PHY_AHB_CLK>,
+> +				 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
+> +				 <&rpmcc RPM_SMD_XO_CLK_SRC>,
+> +				 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
+> +				 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
+> +				 <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
+> +			freq-table-hz = <50000000 240000000>,
+> +					<0 0>,
+> +					<0 0>,
+> +					<37500000 150000000>,
+> +					<0 0>,
+> +					<0 0>,
+> +					<0 0>,
+> +					<75000000 300000000>;
+> +
+> +			non-removable;
+> +			status = "disabled";
+> +		};
+> +
+> +		ufs_mem_phy: phy@4807000 {
+> +			compatible = "qcom,sm6115-qmp-ufs-phy";
+Krzysztof asked you to add a SoC-specific compatible in v1.
+
+
+> +			reg = <0x04807000 0x1c4>;
+> +
+> +			power-domains = <&gcc UFS_PHY_GDSC>;
+> +
+> +			clock-names = "ref", "ref_aux";
+> +			clocks = <&gcc GCC_UFS_MEM_CLKREF_CLK>, <&gcc GCC_UFS_PHY_PHY_AUX_CLK>;
+> +
+> +			resets = <&ufs_mem_hc 0>;
+> +			reset-names = "ufsphy";
+> +
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges;
+> +
+> +			status = "disabled";
+> +
+> +			ufs_mem_phy_lanes: lanes@4807400 {
+> +				reg = <0x4807400 0x098>,
+> +				      <0x4807600 0x130>,
+> +				      <0x4807c00 0x16c>;
+> +				#phy-cells = <0>;
+> +			};
+I believe this is deprecated. See [1].
+
+
+Konrad
+
+[1] https://lore.kernel.org/linux-arm-msm/20221104092045.17410-1-johan+linaro@kernel.org/T/#m988f3fe3d83b76bac247aea2d9dac34f37728d65
+
+> +		};
+> +
+>  		usb3: usb@4ef8800 {
+>  			compatible = "qcom,sm6125-dwc3", "qcom,dwc3";
+>  			reg = <0x04ef8800 0x400>;
