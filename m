@@ -2,171 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33A7064EE20
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 16:48:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CBDF64EE87
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 17:07:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231437AbiLPPsD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Dec 2022 10:48:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55534 "EHLO
+        id S232050AbiLPQHm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Dec 2022 11:07:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231440AbiLPPr7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 10:47:59 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72EFE60377;
-        Fri, 16 Dec 2022 07:47:58 -0800 (PST)
-Received: from nicolas-tpx395.localdomain (192-222-136-102.qc.cable.ebox.net [192.222.136.102])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nicolas)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id E88A16602C94;
-        Fri, 16 Dec 2022 15:47:54 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1671205676;
-        bh=OpeibgDASJdMkvfrIt2wc5RhxgM/1AD0m55P+Z6hsDI=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=DheIvro7Qj7OkGFB8YtfY1/OyrDKi9FDrq8eceDFfmnR+6THk1cazJa01O0U4pRom
-         6SmN02ZLRF2HNWSD48DjRkH/gbn9DTPvQ2NpAUTXshn6lxYOvzHZ1aMxJJpsGF2t5g
-         eHEvq6KE2HF57mNz5I90o6cYramUWKjjFibKLrHx6rn6kqpCcM5ck8HZ79bsTMgmVg
-         Rp4l2JD8InGiCqjwOJ79V0JDda+a4u2C0pGpUCJONb3HwmIYmhLECwRMICTiax7quM
-         1yL8q6LL+7R9uciTVjAy8bNtwLrIUICr9rbZ5ageiF8+lSRs2FqnU4M7jhhWxUW1JV
-         Xq9vzEw61wtJg==
-Message-ID: <e3c73d1c20e12ab351a74ef1abc949810fc1ba77.camel@collabora.com>
-Subject: Re: [PATCHv7 7/7] arm64: dts: rockchip: Add rock-5b board
-From:   Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marc Zyngier <maz@kernel.org>, Jagan Teki <jagan@edgeble.ai>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Christopher Obbard <chris.obbard@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Date:   Fri, 16 Dec 2022 10:47:44 -0500
-In-Reply-To: <20221215183002.211081-8-sebastian.reichel@collabora.com>
-References: <20221215183002.211081-1-sebastian.reichel@collabora.com>
-         <20221215183002.211081-8-sebastian.reichel@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.2 (3.46.2-1.fc37) 
+        with ESMTP id S232675AbiLPQHB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 11:07:01 -0500
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EA1E1ADAB
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 08:05:33 -0800 (PST)
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-1441d7d40c6so3779271fac.8
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 08:05:33 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eOSCsqaoeoIju0eLDf3WqxL6Do53Bv9D82WTM/iySek=;
+        b=ZQQlTkL6tFKajimY+rOJAg5dVxwqi38bu8Fu7tFYPNcPvJ2Dd7fcKCztBXvQDdDCYk
+         fRMZqUeHDrR/Pb1nin30hxHFPp7/AbpSFuArMJEuxAVuX1UqwBi27UlSA9GR4djEPk3V
+         Jirp5VdFk5Ahvz0fHxY4PRJ1yfqccoHQTxvF7usD5aTFDb5pAsHQP1bFHj4wB48Ua3L6
+         ci4SgIaZthTa8ad82zePKnGet1ZiGD7DOfrae+1JZIaVDgFoG53GwA1KOo0K+zfCwj0x
+         OiYzy+klYxYH9AXuHaKpshdWsxGUd/q+N99GHmrMDn+J5tfXlqnXKsA0NB9fWYAegFLi
+         gmag==
+X-Gm-Message-State: ANoB5plVF52C1FBUY8BYfOITmmNvvT36RlAAtvH3RcXdOCqF1RO/a+VN
+        rOOLYMaSfRlCOp3ctJyNgg==
+X-Google-Smtp-Source: AA0mqf6fQAQQ0eOGxAWHGt+fS4XPjjQEzyVhHbTXOdayWO2k0T+9QkpLSd0OFY+e0tZDdpj0DZznqg==
+X-Received: by 2002:a05:6870:f29b:b0:143:d9f7:8127 with SMTP id u27-20020a056870f29b00b00143d9f78127mr16644708oap.42.1671206732605;
+        Fri, 16 Dec 2022 08:05:32 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id z21-20020a056870e31500b00148316f78fesm1124816oad.2.2022.12.16.08.05.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Dec 2022 08:05:31 -0800 (PST)
+Received: (nullmailer pid 2826511 invoked by uid 1000);
+        Fri, 16 Dec 2022 16:05:30 -0000
+Date:   Fri, 16 Dec 2022 10:05:30 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     Chris Morgan <macromorgan@hotmail.com>, maccraft123mc@gmail.com,
+        heiko@sntech.de, daniel@ffwll.ch, sam@ravnborg.org,
+        maarten.lankhorst@linux.intel.com, dri-devel@lists.freedesktop.org,
+        airlied@gmail.com, robh+dt@kernel.org, linus.walleij@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, mripard@kernel.org,
+        thierry.reding@gmail.com, tzimmermann@suse.de,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH V6 2/4] dt-bindings: display: panel: Add Samsung
+ AMS495QA01
+Message-ID: <167120672298.2826350.15042409228492859514.robh@kernel.org>
+References: <20221215185211.1560736-1-macroalpha82@gmail.com>
+ <20221215185211.1560736-3-macroalpha82@gmail.com>
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221215185211.1560736-3-macroalpha82@gmail.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sebastian and Christopher,
 
-Le jeudi 15 d=C3=A9cembre 2022 =C3=A0 19:30 +0100, Sebastian Reichel a =C3=
-=A9crit=C2=A0:
-> From: Christopher Obbard <chris.obbard@collabora.com>
->=20
-> Add board file for the RK3588 Rock 5B board. This is a basic
-> implementation which just brings up the eMMC and UART which is
-> enough to successfully boot Linux.
->=20
-> The ethernet controller is connected via PCIe so support will
-> come in a follow-up patch.
->=20
-> Signed-off-by: Christopher Obbard <chris.obbard@collabora.com>
-> Reviewed-by: Michael Riesch <michael.riesch@wolfvision.net>
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+On Thu, 15 Dec 2022 12:52:09 -0600, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
+> 
+> Add documentation for Samsung AMS495QA01 panel (with Magnachip
+> D53E6EA8966 controller IC).
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
 > ---
->  arch/arm64/boot/dts/rockchip/Makefile         |  1 +
->  .../boot/dts/rockchip/rk3588-rock-5b.dts      | 44 +++++++++++++++++++
->  2 files changed, 45 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/=
-rockchip/Makefile
-> index 87a853435142..c5bdd0176ce0 100644
-> --- a/arch/arm64/boot/dts/rockchip/Makefile
-> +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> @@ -83,4 +83,5 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-evb1-v10.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-odroid-m1.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-rock-3a.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588-evb1-v10.dtb
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588-rock-5b.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-rock-5a.dtb
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64=
-/boot/dts/rockchip/rk3588-rock-5b.dts
-> new file mode 100644
-> index 000000000000..baf46bd30b38
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> @@ -0,0 +1,44 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +
-> +/dts-v1/;
-> +
-> +#include "rk3588.dtsi"
-> +
-> +/ {
-> +	model =3D "Radxa Rock 5B Board";
-> +	compatible =3D "radxa,rock-5b", "rockchip,rk3588";
-> +
-> +	aliases {
-> +		mmc1 =3D &sdhci;
+>  .../display/panel/samsung,ams495qa01.yaml     | 57 +++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,ams495qa01.yaml
+> 
 
-I have no useful knowledge, but it seems the mmc alias don't match the vend=
-or.
-When I run your branch on Rock5B, the EMMC endup on /dev/mmcblk1 (aka mmc1 =
-alias
-I think) while when I boot the vendor kernel, it is always mmcblk0 (aka mmc=
-0
-alias?). Perhaps the vendor didn't add aliases ?
-
-There could also be mainline rules to number based on the boot order. In th=
-is
-case, the difference would be acceptable, since SPL boot order is (usb?) > =
-SD
-Card > EMMC > SPI NOR. Though, the SPL is picked from the opposite order (s=
-pi,
-emmc, sd card). Anyway, I'm just trying to express that I noticed a differe=
-nce,
-and its not guarantied to be a bug.
-
-> +		serial2 =3D &uart2;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path =3D "serial2:1500000n8";
-> +	};
-> +
-> +	vcc5v0_sys: vcc5v0-sys-regulator {
-> +		compatible =3D "regulator-fixed";
-> +		regulator-name =3D "vcc5v0_sys";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt =3D <5000000>;
-> +		regulator-max-microvolt =3D <5000000>;
-> +	};
-> +};
-> +
-> +&sdhci {
-> +	bus-width =3D <8>;
-> +	no-sdio;
-> +	no-sd;
-> +	non-removable;
-> +	max-frequency =3D <200000000>;
-> +	mmc-hs400-1_8v;
-> +	mmc-hs400-enhanced-strobe;
-> +	status =3D "okay";
-> +};
-> +
-> +&uart2 {
-> +	pinctrl-0 =3D <&uart2m0_xfer>;
-> +	status =3D "okay";
-> +};
-> --=20
-> 2.39.0
->=20
->=20
-
+Reviewed-by: Rob Herring <robh@kernel.org>
