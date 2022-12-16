@@ -2,205 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71ADD64E516
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 01:16:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1692E64E535
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 01:33:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229728AbiLPAQs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 19:16:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48784 "EHLO
+        id S229658AbiLPAdc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 19:33:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229952AbiLPAQr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 19:16:47 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B0205FBAC
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 16:16:42 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id q6so983444lfm.10
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 16:16:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=kRw9NosyKCoLQzJxnba7zzcyE0l9B5s5iM+v2n7vWEI=;
-        b=wpjEBWCy0R6NjVJ+C8PgFTksxRS9zH9OhoKXGLCwK18mr/7o3/tNuMyt7TWbBpADRy
-         +bQ/NzBmXUeR8ftCqJcn6ikvHoCXUw1n161TrUEVwgaRZBACpRXDIwMgrDdQ7YLIaNvp
-         cMJqPgBzMDohxB8HfHoLhLvd52lMtc396eBRmF08/ofkzD96Y6swb9OR+qXfqDe0JHsv
-         0iJoBVQ3+BCHtvdh1KSRXzR4JYxTptC7M50REBAcWT5VZ6dQUH+7iAXfXFKf1RhNJe35
-         0k7GGcdeGJgT+ZBhGFrnX4I+Zt5K1NNqWmL6//NM+2E4KyG+iZPgQCR7/OXQ5wwV1lrS
-         YEfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kRw9NosyKCoLQzJxnba7zzcyE0l9B5s5iM+v2n7vWEI=;
-        b=g2TN+d/Ek14B6UEi/+z01EeZlHqkSgeLFBnj1rQDS5ylmfhSU7mKFpNiyMhyLn0/9l
-         CQ/A18MtHMVLtOISSzX2O1w2S5r8OVShr9L+kQlfAAYfi8YEJbCzap4x46MlQWktldrV
-         DAZG5dh+L8kRV4dQbjIbk5UuoNh7i3kwJ1bcDHDk2XPXRWL6x7f+k07fiieSZz9XOzRZ
-         vLpqg6ZLJjYhY4Lg3wz0cdT8aO72sK9fH/lZKNQD3H1rVzQTm8tMLB9oh/6EdxteXUS5
-         ZulEc8nm00RYHaTdLtrVuGV7qfjbApZLZpO1wRv8oTrZNXAKw11VOdDvRsIMBC86rEln
-         yDgA==
-X-Gm-Message-State: ANoB5pnCs6V+noitfauOBE6ceerM6kHYgbRl8ozwSZBr4N1+glbm512E
-        AdYxa9qCF2elQ2kW8Yp7Z1HTfg==
-X-Google-Smtp-Source: AA0mqf6yQuvPJwr6lilxSPk5K679p5RQghfxCvY9VemYiZmO40/mgLzuvrybWqODEa0kVXYNGmmYoQ==
-X-Received: by 2002:a05:6512:3990:b0:4b6:d28a:2558 with SMTP id j16-20020a056512399000b004b6d28a2558mr13048452lfu.49.1671149800890;
-        Thu, 15 Dec 2022 16:16:40 -0800 (PST)
-Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id c2-20020a197602000000b004a764f9d653sm50821lff.242.2022.12.15.16.16.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Dec 2022 16:16:40 -0800 (PST)
-Message-ID: <d3d28673-934b-08aa-6301-ec56e6509010@linaro.org>
-Date:   Fri, 16 Dec 2022 01:16:37 +0100
+        with ESMTP id S229460AbiLPAda (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 19:33:30 -0500
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBBED5D6B9
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 16:33:28 -0800 (PST)
+Received: from mail.denx.de (unknown [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: festevam@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 13025852CE;
+        Fri, 16 Dec 2022 01:33:27 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1671150807;
+        bh=vHa7LhzEaxKbx/vLHNHXLFdftBBha16666SruqyWAUU=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=ORc/2bqYz8XDVVlkv21ZP/ni8ut0XnAUX73ItzbfSx8alq8qVfWrsqPN7dxt1rhVK
+         4ZkBVVp06y+9Q5bpx3e7E+qWMPXXGoiB6wMept8iT7AvK72Ux3tTnWiAF0/F6RHLGs
+         fRmbEZZaJP9qoJO00jI/971QetRJBS9u0IitGU7Cq+ueeFvs0u1/+dPo1GzOWe+sbP
+         ISRrTBAIfH9JFX2lb0PyO3Ni4bYeRWYC7Tq/NIMNAztrTg/5YO2qLRCH1tfyXEtUzo
+         sqYvBQU2a6NAZjGkamjm3Nr/Uto1kBGmPO9cz/DY4fK79od9aXUYwHXr5l3+NUZ88x
+         3Dm/woux/tOAg==
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH 4/6] arm64: dts: qcom: msm8976: Declare and use SDC1 pins
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        phone-devel@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Luca Weiss <luca@z3ntu.xyz>,
-        Adam Skladowski <a39.skl@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221214232049.703484-1-marijn.suijten@somainline.org>
- <20221214232049.703484-5-marijn.suijten@somainline.org>
- <60a40ace-d4e9-df74-88f9-4354d80efaac@linaro.org>
- <20221215210010.on44gmoefbnsokvt@SoMainline.org>
- <20221215210246.rcx7f6unbhj52dkb@SoMainline.org>
-Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221215210246.rcx7f6unbhj52dkb@SoMainline.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Date:   Thu, 15 Dec 2022 21:33:26 -0300
+From:   Fabio Estevam <festevam@denx.de>
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Jonas Kuenstler <j.kuenstler@phytec.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Teresa Remmet <t.remmet@phytec.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: imx8mp: Drop deprecated
+ regulator-compatible from i.MX8M Plus PhyCore SoM
+In-Reply-To: <20221215235710.228500-2-marex@denx.de>
+References: <20221215235710.228500-1-marex@denx.de>
+ <20221215235710.228500-2-marex@denx.de>
+Message-ID: <76040ae69860f88440dd9a558a6d2579@denx.de>
+X-Sender: festevam@denx.de
+User-Agent: Roundcube Webmail/1.3.6
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Marek,
 
+On 15/12/2022 20:57, Marek Vasut wrote:
+> The "regulator-compatible" property is deprecated and unused, as the
+> match happens on the node name in Linux of_regulator_match() in case
+> the property is not present. Drop the deprecated property from DT.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
-On 15.12.2022 22:02, Marijn Suijten wrote:
-> On 2022-12-15 22:00:12, Marijn Suijten wrote:
->> On 2022-12-15 14:19:41, Konrad Dybcio wrote:
->>>
->>>
->>> On 15.12.2022 00:20, Marijn Suijten wrote:
->>>> Add the pinctrl states for SDC1 and use them on sdhc_1.
->>>>
->>>> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
->>>> ---
->>>>  arch/arm64/boot/dts/qcom/msm8976.dtsi | 55 +++++++++++++++++++++++++++
->>>>  1 file changed, 55 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/msm8976.dtsi b/arch/arm64/boot/dts/qcom/msm8976.dtsi
->>>> index 05dcb30b0779..7d4c7548882c 100644
->>>> --- a/arch/arm64/boot/dts/qcom/msm8976.dtsi
->>>> +++ b/arch/arm64/boot/dts/qcom/msm8976.dtsi
->>>> @@ -508,6 +508,56 @@ tlmm: pinctrl@1000000 {
->>>>  			interrupt-controller;
->>>>  			#interrupt-cells = <2>;
->>>>  
->>>> +			sdc1_off_state: sdc1-off-state {
->>>> +				clk-pins {
->>>> +					pins = "sdc1_clk";
->>>> +					drive-strength = <2>;
->>>> +					bias-disable;
->>>> +				};
->>>> +
->>>> +				cmd-pins {
->>>> +					pins = "sdc1_cmd";
->>>> +					drive-strength = <2>;
->>>> +					bias-pull-up;
->>>> +				};
->>>> +
->>>> +				data-pins {
->>>> +					pins = "sdc1_data";
->>>> +					drive-strength = <2>;
->>>> +					bias-pull-up;
->>>> +				};
->>>> +
->>>> +				rclk-pins {
->>>> +					pins = "sdc1_rclk";
->>>> +					bias-pull-down;
->>>> +				};
->>>> +			};
->>>> +
->>>> +			sdc1_on_state: sdc1-on-state {
->>>> +				clk-pins {
->>>> +					pins = "sdc1_clk";
->>>> +					drive-strength = <16>;
->>>> +					bias-disable;
->>>> +				};
->>>> +
->>>> +				cmd-pins {
->>>> +					pins = "sdc1_cmd";
->>>> +					drive-strength = <10>;
->>>> +					bias-pull-up;
->>>> +				};
->>>> +
->>>> +				data-pins {
->>>> +					pins = "sdc1_data";
->>>> +					drive-strength = <10>;
->>>> +					bias-pull-up;
->>>> +				};
->>>> +
->>>> +				rclk-pins {
->>>> +					pins = "sdc1_rclk";
->>>> +					bias-pull-down;
->>>> +				};
->>>> +			};
->>>> +
->>>>  			spi1_default: spi0-default-state {
->>>>  				spi-pins {
->>>>  					pins = "gpio0", "gpio1", "gpio3";
->>>> @@ -680,6 +730,11 @@ sdhc_1: mmc@7824000 {
->>>>  				 <&gcc GCC_SDCC1_APPS_CLK>,
->>>>  				 <&rpmcc RPM_SMD_XO_CLK_SRC>;
->>>>  			clock-names = "iface", "core", "xo";
->>>> +
->>>> +			pinctrl-0 = <&sdc1_on_state>;
->>>> +			pinctrl-1 = <&sdc1_off_state>;
->>>> +			pinctrl-names = "default", "sleep";
->>> pinctrl-names usually goes before pinctrl-N
->>
->> I thought I had seen them _after_ nowadays, same for reg-names,
->> phy-names, interrupt-names and clock-names.  What is it?
->>
->> Regardless, I'd rather keep this consistent across this file (sdc2 also
->> has it after, same for other *-names)
-> 
-> Excuse me, I was looking at sm6125 DT while writing this, sdc2 for
-> msm8976 is introduced _and used by sdhc_2 in a followup patch.
-> 
-> The other points still stand though, everything has -names last.
-Hm, that's a good point, perhaps we should apply it to pinctrl-
-too then. I like this.
+Thanks for the patch.
 
-Konrad
-> 
-> - Marijn
-> 
->> and correct it at once in a
->> separate patch, if someone really cares.
->>
->> But really, we should have a checker/autoformatter for these "rules",
->> instead of all this manual back-and-forth (is this order already set in
->> stone under Documentation/ or something?).
->>
->> - Marijn
+I have already sent the same fix:
+
+https://lore.kernel.org/linux-arm-kernel/20221121162911.2377556-1-festevam@gmail.com/T/
+
+Regards,
+
+Fabio Estevam
