@@ -2,105 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CE3B64EC01
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 14:19:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A71564EC06
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 14:22:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229787AbiLPNTf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Dec 2022 08:19:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52898 "EHLO
+        id S229928AbiLPNWK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Dec 2022 08:22:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229613AbiLPNTd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 08:19:33 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BEFB2637;
-        Fri, 16 Dec 2022 05:19:32 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id bx10so2529440wrb.0;
-        Fri, 16 Dec 2022 05:19:32 -0800 (PST)
+        with ESMTP id S230221AbiLPNWG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 08:22:06 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFEF62E6BD
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 05:22:05 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id g7so3443750lfv.5
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 05:22:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=od90tXEQYsjLrQqPYAWlVmlPm4cbiuRT6WyvN1iDenk=;
-        b=AmhgfXlT7Zr6IxKscdrarNyqKPDbNmj2k9dpNeesPsji5wD+Db0h3vPAztXh9wFVer
-         Tod6TKuBut7PCtzq1GKMYRFU+aHKZoNxEgsg621Ad2qwPF20sn3kVCtvM+rgt0E+DsdW
-         mtuTx4/b36nfmKXVMFPkkSVe25uoesKImVf6UKKhAAOMqteor1jZdYyQcUK3eHYjwq4j
-         sEvdrcjed3J4KtM+EUtiU++VdZgMngClY5kyW5w2aCVTeQMkiC2sPjjx5H9NaFgvXj3G
-         AF6FnxDZE5IrYMb0oVkpjOGuTc4/TnlglNgsmWFxsQlCb9amLtpkJ2kAkf+cTIyUFB/F
-         qOhA==
+        bh=RNCf2UgJngQuJz1n80wEvS0loAh/KFuMJfH8wEByOew=;
+        b=K4OK+Gd6LS+KWQr2cK2MKGlRrZ8f7Zs2mBOxBnd9uWxWHAaopXPyYOsTo+BRtKT5WZ
+         wJjyGRflyKietQEiqF66osK2N7XTrn5ZlG97ZrzCEDYqFSBTmgOdzsKa1rrZtNyorm/g
+         bOFFY7X/Ddu9hKXsqIbNtGpRwuycqhh1QtwlB2asA4xW982Tr5EmTuxG3P+9z/4Cjrfg
+         +qwYY36aVQl7f/eeFWBGuh0sA7ZVYFjNc1SOQBAo0vdb5ouxC7NsAYNVRPSWQJAOBAL8
+         SaIECp8Vv3T6abrPqd37FIQuOxVr9ziMnpa0+mBuJVNaMLgQu12l5Fz4tCH+VtHslaHf
+         My2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=od90tXEQYsjLrQqPYAWlVmlPm4cbiuRT6WyvN1iDenk=;
-        b=m7RKE5iI9BnBGGlg0uA0V1MicC4b//2GtJdLmHqnGz2W8RtjohlA73SCD5+qy/sJX1
-         nJbEntoqkwA0mp4SoRXl6oR/W4mKHOgzwFFauxIP8YTq+3FRAUuymbyNyO3+innq4im0
-         Vn9egvm2T5anzQTHH41HZd7FvroB/N1WAF03QZYSlvnGtrLcV4+O/HlWMgGRFfzW9nH3
-         IofEgghZ/gZ9L0mq0NLxzHOnwZqZK4o2ZVRvQGPThVOL8eaB+/Y7UV6fxB0pkdRuouE2
-         bfvMiKgixvao+7fDEi6gml9svgCqGiETevKV+YB4x/9AMSoPxoxi99mo6d+vOgq1zYd2
-         VCvQ==
-X-Gm-Message-State: ANoB5pkGbmOuy3SNNSxMbhH5CL4/7N+8kot6hI+1sAMIII/zNL2j1SOT
-        imhF/t2HBZNn+Hjqu9krjRY7uFtfDuQ86g==
-X-Google-Smtp-Source: AA0mqf4ydAM5HaZnbwmxIzH1A8yNfHgcWat0P0NjHYg57pGecMzD5e4Ju3k/zehUXw+pUJCL5UM2Xw==
-X-Received: by 2002:adf:e44a:0:b0:242:763:34a5 with SMTP id t10-20020adfe44a000000b00242076334a5mr20371199wrm.2.1671196771125;
-        Fri, 16 Dec 2022 05:19:31 -0800 (PST)
-Received: from [192.168.1.132] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id x18-20020adfec12000000b00236488f62d6sm2250832wrn.79.2022.12.16.05.19.29
+        bh=RNCf2UgJngQuJz1n80wEvS0loAh/KFuMJfH8wEByOew=;
+        b=4QmEZktZt1ZDBwnZyYS8+QamlihEj5DnQDCaFql22CmUpbFTuAVs+CygWU9F1eKcUp
+         Cd/WfMgTiy/bAve4mjK3wWbmgWp9C4TPvkTfk8dM9pEC/FcYsYxynNJmzRYUFOwrnsDP
+         G6TC2vsjAITAxuDKKQcpR4AXqDGBOKDTCRPCxU48sEAgZrYhBxwNlV5jB8020I/zCDf9
+         dQSKbmithI8HsxxchjJwYY7HrCOXHeJWDemEPbP1Sh+AAHs+tB68sRE8HsYeMcmxjPSc
+         /VXg+RiANU2TrKxwLvVW2pSWAxYtLosEJGVqpnOE2nApswlnI0dPc2NCXq2BSvP3nyBq
+         gB3g==
+X-Gm-Message-State: ANoB5pkzfR/kcU+ODqsZYA/X25o0D19tj7A4FiVK5p5Btk9pmvJv4mwx
+        bY532w6u5jUHrYqgt4JJhQfoKQ==
+X-Google-Smtp-Source: AA0mqf62tids3S49qFwaQg9e0oPPfVRcEta0fP5KwomNnTkFlqzKJqRTfCF40M6m/4kJF3FHW7kcSg==
+X-Received: by 2002:ac2:5a43:0:b0:4b5:90c5:281c with SMTP id r3-20020ac25a43000000b004b590c5281cmr8818446lfn.19.1671196924021;
+        Fri, 16 Dec 2022 05:22:04 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id o9-20020ac25e29000000b004b6f00832cesm219363lfg.166.2022.12.16.05.22.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Dec 2022 05:19:30 -0800 (PST)
-Message-ID: <f1e85a62-0f48-c4d8-f674-9a51b348e615@gmail.com>
-Date:   Fri, 16 Dec 2022 14:19:29 +0100
+        Fri, 16 Dec 2022 05:22:03 -0800 (PST)
+Message-ID: <1114488b-7e73-6086-2f76-cb71ef6056f6@linaro.org>
+Date:   Fri, 16 Dec 2022 14:22:02 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH] arm64: dts: mediatek: align LED node names with dtschema
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Thunderbird/102.6.0
+Subject: Re: [PATCH 01/10] dt-bindings: display: bridge: it66121: Add
+ compatible string for IT6610
+To:     Paul Cercueil <paul@crapouillou.net>,
+        Robert Foss <robert.foss@linaro.org>
+Cc:     Phong LE <ple@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221125144138.477198-1-krzysztof.kozlowski@linaro.org>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20221125144138.477198-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        list@opendingux.net, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221214125821.12489-1-paul@crapouillou.net>
+ <20221214125821.12489-2-paul@crapouillou.net>
+ <CAG3jFytgK0noWteGvXTdSm9as9Q=qfhf_ep3Z8Wv2ofmLzGb=A@mail.gmail.com>
+ <c78e92ae3cbea037abdd31ecd64e997c8dd1def2.camel@crapouillou.net>
+ <bb2b5b72-42b3-3a6c-d865-9e338e34aba0@linaro.org>
+ <d1f6d19d3218d9f1acc9b38e44af413f72f8a824.camel@crapouillou.net>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <d1f6d19d3218d9f1acc9b38e44af413f72f8a824.camel@crapouillou.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 25/11/2022 15:41, Krzysztof Kozlowski wrote:
-> The node names should be generic and DT schema expects certain pattern:
+On 16/12/2022 13:21, Paul Cercueil wrote:
+> Hi Krzysztof,
 > 
->    mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dtb: pwmleds: 'keyboard-backlight' does not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
+> Le vendredi 16 décembre 2022 à 12:21 +0100, Krzysztof Kozlowski a
+> écrit :
+>> On 16/12/2022 11:46, Paul Cercueil wrote:
+>>
+>>>>>  properties:
+>>>>>    compatible:
+>>>>> -    const: ite,it66121
+>>>>> +    enum:
+>>>>> +      - ite,it66121
+>>>>> +      - ite,it6610
+>>
+>> These should be ordered alphabetically. What's with the tendency of
+>> adding always to the end?
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> I'm too used to the "inverse christmas tree" sort :)
 
-Applied, thanks!
+Since these are not variables and they will not get shorter, any
+christmas tree sorting here is the same conflict-prone as adding to the end.
 
-> ---
->   .../boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts      | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts
-> index dec11a4eb59e..77b96ddf648e 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts
-> @@ -13,7 +13,7 @@ / {
->   
->   	pwmleds {
->   		compatible = "pwm-leds";
-> -		keyboard_backlight: keyboard-backlight {
-> +		keyboard_backlight: led-0 {
->   			label = "cros_ec::kbd_backlight";
->   			pwms = <&cros_ec_pwm 0>;
->   			max-brightness = <1023>;
+> I can send a quickfix patch if you really want alphabetical order.
+
+No, no need.
+
+
+Best regards,
+Krzysztof
+
