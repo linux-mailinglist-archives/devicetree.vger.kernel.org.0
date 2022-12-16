@@ -2,143 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1072264F25C
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 21:27:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C3A5564F264
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 21:31:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231967AbiLPU1n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Dec 2022 15:27:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36596 "EHLO
+        id S232027AbiLPUbW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Dec 2022 15:31:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231382AbiLPU1m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 15:27:42 -0500
-Received: from amity.mint.lgbt (vmi888983.contaboserver.net [149.102.157.145])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82DB93EAC7
-        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 12:27:39 -0800 (PST)
-Received: from amity.mint.lgbt (mx.mint.lgbt [127.0.0.1])
-        by amity.mint.lgbt (Postfix) with ESMTP id 4NYgdN2BGCz1S5D1
-        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 15:27:35 -0500 (EST)
-Authentication-Results: amity.mint.lgbt (amavisd-new);
-        dkim=pass (2048-bit key) reason="pass (just generated, assumed good)"
-        header.d=mint.lgbt
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mint.lgbt; h=
-        content-transfer-encoding:content-type:in-reply-to:from
-        :content-language:references:to:subject:user-agent:mime-version
-        :date:message-id; s=dkim; t=1671222445; x=1672086446; bh=IpJmud+
-        XEx9PKkU79dSSMg1CiFu7r9OxFpEYtS1E59w=; b=e3Bj2oW4ZMDvvpqiYhF1+qw
-        UgiOkYaUqbhu608hDeCTLpoCaNI/gqx+4wfzDTsNCyZRa9FhUFzIqVgcWQdvZeSm
-        qcuXIkDq523ogX1xZEPczwjOnIZcuNhyaX0D4ejkp8knUppZK70i8gJThDbxotkQ
-        T6Bg/41FmhNxIVxUHQ4FDz7IaTGn3u9vawJ48Aj3Uk9UJOGVr085uRCuK1aB3sVN
-        3VIgHXFENd6tArDkLBaYEykqISubKSd2SaH9hjprjQEYBpNU7SkyZej7wV6juk1k
-        LnBLOCluYqOf2tk2+bLrjw9RkPzwfZqILEgK5JanRq1LfFsjyVFRI9NpQJ35GXg=
-        =
-X-Virus-Scanned: amavisd-new at amity.mint.lgbt
-Received: from amity.mint.lgbt ([127.0.0.1])
-        by amity.mint.lgbt (amity.mint.lgbt [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id VzlfXkgjgghb for <devicetree@vger.kernel.org>;
-        Fri, 16 Dec 2022 15:27:25 -0500 (EST)
-Received: from [192.168.1.96] (unknown [186.105.44.155])
-        by amity.mint.lgbt (Postfix) with ESMTPSA id 4NYgd50Bw7z1S52q;
-        Fri, 16 Dec 2022 15:27:20 -0500 (EST)
-Message-ID: <d0157452-307b-37a5-890a-b479a880ab95@mint.lgbt>
-Date:   Fri, 16 Dec 2022 17:27:17 -0300
+        with ESMTP id S232043AbiLPUbP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 15:31:15 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 233F64D5F9;
+        Fri, 16 Dec 2022 12:31:13 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 2441084FF0;
+        Fri, 16 Dec 2022 21:31:10 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1671222670;
+        bh=qjUGVjST7RgTBHAYkVuGV4SN7cxpCPjkD1CWKB4WS9s=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=LJhFtKVMDg8AUuUcxlrQwjPd3tROaqruC5cUSSsaAFQdRsRVdEMlD7pxxmOHcNZ5+
+         OQEABdP28OlXIvYAEgx7u3eShD863mwRN8mlctSt8ucvGXhQV7Yx9c18X3bIYrWxH1
+         MOba+EDfV48TFu6ofzljWkNBJNPRk/q0CmlIlZ/OYWpysMSBBO29nc/sjb39Z2Lhbc
+         j+UjLw+zODxJYgB9Uo4tZzp97RKkda332+CeWlzq/3Z0rAk5pbHK63RXi9018/D8Mv
+         8tmGJIDXpCuCqO9ToSgm99bgUwe7Pu/W4Bx/3hc4/xfpfei6KGW0cg2RSZpYZzt47J
+         gjzI0YsANPUVg==
+Message-ID: <781e3e0f-bcfd-4165-d65a-08d4eb6ddeb7@denx.de>
+Date:   Fri, 16 Dec 2022 21:31:09 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: sm6125: Initial support for
- xiaomi-laurel-sprout
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+Subject: Re: [PATCH v3 2/2] dt-bindings: rtc: m41t80: Mark the clock: subnode
+ as deprecated
+Content-Language: en-US
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kees Cook <keescook@chromium.org>,
-        Tony Luck <tony.luck@intel.com>,
-        "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-References: <20221215190404.398788-1-they@mint.lgbt>
- <20221215190404.398788-4-they@mint.lgbt>
- <afcb9378-f331-df8c-ced5-1c10999f5fb8@linaro.org>
-Content-Language: en-US
-From:   Lux Aliaga <they@mint.lgbt>
-In-Reply-To: <afcb9378-f331-df8c-ced5-1c10999f5fb8@linaro.org>
+        linux-rtc@vger.kernel.org
+References: <20221211205124.23823-1-marex@denx.de>
+ <20221211205124.23823-2-marex@denx.de>
+ <20221215180659.sa54lkinwxoiz7bb@mercury.elektranox.org>
+ <d9910a7a-9997-c157-9a71-8ef7ee34be25@denx.de>
+ <20221216142408.6x3e5dhtdvgiewtb@mercury.elektranox.org>
+ <f65773a2-71a7-6d54-1ac2-9987ed035b16@denx.de>
+ <20221216150548.dttzfmdbqzk6r42z@mercury.elektranox.org>
+ <Y5ybrlxIH4zYpaWZ@mail.local>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <Y5ybrlxIH4zYpaWZ@mail.local>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 16/12/2022 08:32, Konrad Dybcio wrote:
->
-> On 15.12.2022 20:04, Lux Aliaga wrote:
->> Adds support for the Xiaomi Mi A3 (xiaomi-laurel-sprout). Here's a
->> summary on what's working.
+On 12/16/22 17:24, Alexandre Belloni wrote:
+> On 16/12/2022 16:05:48+0100, Sebastian Reichel wrote:
+>>>> IIRC On i.MX6 referencing the I2C connected RTC results in boot
+>>>> hanging forever when trying to get the ckil clock in
+>>>> imx6q_clocks_init. At least it used to be the case when I was
+>>>> working on this - I no longer have access to the boards. Of course
+>>>> properly referencing the RTC clock was the first route I tried.
+>>>
+>>> Hmmmmm, what shall we do, un-deprecate the clock sub-node?
 >>
->> - dmesg output to bootloader preconfigured display
->> - USB
->> - UFS
->> - SMD RPM regulators
+>> Depends on the exact meaning of "deprecate: true". I think we all
+>> agree, that it's better to avoid the sub-node and only use it when
+>> it's really required. But having a deprecation warning for an
+>> in-tree user without a clear path forward also seems to be annoying.
+>> I think it makes sense for the DT binding maintainers (Rob/Krzysztof)
+>> to comment on this.
 >>
->> Signed-off-by: Lux Aliaga <they@mint.lgbt>
->> ---
->>   arch/arm64/boot/dts/qcom/Makefile             |   1 +
->>   .../dts/qcom/sm6125-xiaomi-laurel-sprout.dts  | 254 ++++++++++++++++++
->>   2 files changed, 255 insertions(+)
->>   create mode 100644 arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
->>
->> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
->> index 3e79496292e7..2b2a0170db14 100644
->> --- a/arch/arm64/boot/dts/qcom/Makefile
->> +++ b/arch/arm64/boot/dts/qcom/Makefile
->> @@ -157,6 +157,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-samsung-w737.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= sm4250-oneplus-billie2.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-sony-xperia-seine-pdx201.dtb
->> +dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-xiaomi-laurel-sprout.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= sm6350-sony-xperia-lena-pdx213.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= sm6375-sony-xperia-murray-pdx225.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= sm7225-fairphone-fp4.dtb
->> diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
->> new file mode 100644
->> index 000000000000..86e1ec47bf5e
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
->> @@ -0,0 +1,254 @@
->> +// SPDX-License-Identifier: BSD-3-Clause
->> +/*
->> + * Copyright (c) 2022, Lux Aliaga <they@mint.lgbt>
->> + */
->> +
->> +/dts-v1/;
->> +
->> +#include <dt-bindings/gpio/gpio.h>
->> +#include <dt-bindings/input/input.h>
->> +#include <dt-bindings/input/gpio-keys.h>
->> +#include "sm6125.dtsi"
->> +
->> +/ {
->> +	model = "Xiaomi Mi A3";
->> +	compatible = "xiaomi,laurel-sprout", "qcom,sm6125";
->> +	chassis-type = "handset";
->> +
->> +	/* required for bootloader to select correct board */
->> +	qcom,msm-id = <394 0>; /* sm6125 v0 */
-> Unless you have a prototype device, this is not correct.
->
-> Please run `cat /sys/bus/soc/devices/soc0/revision` and confirm
-> which revision is used on your phone.
-This segment has already been cross-referenced from downstream, and the 
-device boots up successfully when using this ID, unless you're referring 
-to the comment next to it, in which case I can recheck later, since 
-currently I'm away from my device.
+> 
+> I dropped the commit from the PR I'm going to send Linus later today
 
--- 
-Lux Aliaga
-https://nixgoat.me/
-
+That works, thank you !
