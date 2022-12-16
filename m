@@ -2,85 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B10DD64EC2E
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 14:42:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B3C764EC47
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 14:50:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229825AbiLPNmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Dec 2022 08:42:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60664 "EHLO
+        id S229475AbiLPNuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Dec 2022 08:50:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229627AbiLPNmG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 08:42:06 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADE32167E7;
-        Fri, 16 Dec 2022 05:42:05 -0800 (PST)
+        with ESMTP id S229469AbiLPNuA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 08:50:00 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09EB31B1C9
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 05:50:00 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 08554CE1E58;
-        Fri, 16 Dec 2022 13:42:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AB36C433EF;
-        Fri, 16 Dec 2022 13:41:56 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A1A326210D
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 13:49:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D45DEC433D2;
+        Fri, 16 Dec 2022 13:49:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671198122;
-        bh=2ta2ZSy/1DnFNJh/pelUUCAUc6BGdkCTfxCfkwD0h90=;
+        s=k20201202; t=1671198599;
+        bh=QFMisP15sjuymDRGXQT7IkSyMcDUWNcSig/PMP/Pqe0=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kQN0C0k8g3tw/U2Df1O4kusm7rjJC90FfErN6s9R7utn3dzkZ/ZaadgST7NvTr2aD
-         W4jcRD/OR/rAKVunSkwqDzBOT7+hck23uKNJTnJN2KD3UcolrP1VlUTeEzmGn34qZL
-         AyJcfP9pEHN84Zw59XPGo0AzQzXUqPQkaBYDcrliM061gIqqbHWxnqlsXqatLpx4Yp
-         rmxQFjI6/LG0/YsIfjo8EdQHnf6i8v8TFUWXehnDK3YeCm0FS7FF4U4/sNQ7QdxLqL
-         TtDu8w+VeQBeOPBsHxftA/ZdUFgebSbJX72vpRPAzNBu4xp9LhRt6jJ95mCh/3+DkJ
-         L+m/1JjE2pABQ==
-Date:   Fri, 16 Dec 2022 13:41:52 +0000
+        b=OWIO9sX8SOZuiEzTnQgL8kfFK8V1LmakqnbFhx/wqDIZnAmXB+ydnW5QBTiIcEwPS
+         9ZcIi3Ar5pAC3KiJYvawuiIo4m5J0hK6C22A2M4Bk/uMiOF6D09nMqLLfV1Kv3t5tC
+         2tCOaS5O1GyVzy/jiFKR613Cst4JQhk3jfAmi1POjB7qLY5QnNZzJCpZJQW656dUNo
+         EVS7Zmdur9wMjSyHVtPEKWVhI5Dta1H0g21xZzkoO+ERFtmB/4net2U6NhlZAaJkDj
+         O0Rhj347V1ZpBcxZ0I58P4vrA8HHQulSv6f059vGPd+xLfdSaFfERNwBUN+B0qfKnw
+         noLqEB5jJI0og==
+Date:   Fri, 16 Dec 2022 13:49:53 +0000
 From:   Mark Brown <broonie@kernel.org>
-To:     Nishanth Menon <nm@ti.com>
-Cc:     jerome Neanne <jneanne@baylibre.com>,
-        Wadim Egorov <W.Egorov@phytec.de>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "kristo@kernel.org" <kristo@kernel.org>,
-        "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "lee@kernel.org" <lee@kernel.org>,
-        "tony@atomide.com" <tony@atomide.com>,
-        "vigneshr@ti.com" <vigneshr@ti.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "geert+renesas@glider.be" <geert+renesas@glider.be>,
-        "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
-        "marcel.ziswiler@toradex.com" <marcel.ziswiler@toradex.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "biju.das.jz@bp.renesas.com" <biju.das.jz@bp.renesas.com>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "jeff@labundy.com" <jeff@labundy.com>, "afd@ti.com" <afd@ti.com>,
-        "khilman@baylibre.com" <khilman@baylibre.com>,
-        "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
-        "msp@baylibre.com" <msp@baylibre.com>,
-        "j-keerthy@ti.com" <j-keerthy@ti.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>
-Subject: Re: [PATCH v7 1/6] DONOTMERGE: arm64: dts: ti: Add TI TPS65219 PMIC
- support for AM642 SK board.
-Message-ID: <Y5x1oAzezZGqyZSx@sirena.org.uk>
-References: <20221104152311.1098603-1-jneanne@baylibre.com>
- <20221104152311.1098603-2-jneanne@baylibre.com>
- <d0d7e315-ce86-0420-8ef5-fe2e4aefd5b4@phytec.de>
- <e2bc53fe-3a0c-cf24-8b29-ca377aba3721@baylibre.com>
- <Y5tGzjgcAWPqdFNE@sirena.org.uk>
- <20221215175411.znxy3d6ussq2iq5h@grieving>
- <Y5tl3+2pJispcXy6@sirena.org.uk>
- <20221215214149.whcjdphxxvvedrih@affront>
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Sameer Pujar <spujar@nvidia.com>,
+        Mohan Kumar <mkumard@nvidia.com>
+Subject: Re: [PATCH 06/11] ASoC: dt-bindings: ti,pcm3168a: Convert to
+ json-schema
+Message-ID: <Y5x3gQ4yQFTal5WV@sirena.org.uk>
+References: <87v8mepyoy.wl-kuninori.morimoto.gx@renesas.com>
+ <87mt7qpylw.wl-kuninori.morimoto.gx@renesas.com>
+ <CAMuHMdW=_-MyqAjRqaoPyWkoUmdB2VOE1t+wpym7eyOxkzc_7g@mail.gmail.com>
+ <Y5sJV2KfX98KoMYZ@sirena.org.uk>
+ <CAMuHMdWwP6QDUux62GZtCT7tsFhAhex=Fns5e=n_KTjGXHRy0Q@mail.gmail.com>
+ <Y5sVewc7ItFBZkn4@sirena.org.uk>
+ <87iliccjoz.wl-kuninori.morimoto.gx@renesas.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="VapHQVuQho8X7pjH"
+        protocol="application/pgp-signature"; boundary="B4Ig2C85qvcn2BWz"
 Content-Disposition: inline
-In-Reply-To: <20221215214149.whcjdphxxvvedrih@affront>
+In-Reply-To: <87iliccjoz.wl-kuninori.morimoto.gx@renesas.com>
 X-Cookie: No passing.
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
@@ -92,46 +69,34 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---VapHQVuQho8X7pjH
+--B4Ig2C85qvcn2BWz
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Thu, Dec 15, 2022 at 03:41:49PM -0600, Nishanth Menon wrote:
+On Thu, Dec 15, 2022 at 11:48:29PM +0000, Kuninori Morimoto wrote:
 
-> Yeah - this happens to be SDcard supply (at least in my case).. I'd
-> rather not change the mmc host or core layer to handle a case where
-> LDO happened to be in bypass. it is a regulator driver's problem, IMHO
-> how to provide the stated voltage OR fail to transition the voltage.
+> BTH Mark, this patch is included in this patch-set, but it can be
+> stand alone patch if other patch-set were accepted.
+> Is is possible to post this v2 patch as [1/1] ? or do I need [PATCH v2 11/11] ?
 
-Well, if the regulator is in bypass mode then it is by definition not
-regulating and so it's like programming the voltage while switched off,
-setting the target for when it starts regulating again.  It's a weirder
-use case but it does feel like the consistent thing to do at least.
-The driver shouldn't enter/leave bypass without being explicitly told to
-so since there'll be a performance impact.
+Just posting it as 1/1 is best - for both patch number and series
+version the numbering only makes sense within a single series, you can
+just drop this patch from v2 of the main series and send it separately
+as just a standalone patch.
 
-> b) If I wanted the LDO to poweroff the bypass bit at start (define the
->    startup hardware condition), I dont seem to have a description for
->    that either.
-
-That's something we could add in constraints, though the actual process
-of implementing it might get messy if there's restrictions like having
-to power off (though from further down the thread I see that might not
-apply to this device).
-
---VapHQVuQho8X7pjH
+--B4Ig2C85qvcn2BWz
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmOcdaAACgkQJNaLcl1U
-h9Dq1Af/ddHVFwSXOlqEfFOhIBYoXPlYIzskhgSQ37/fzbM3GgG8OYyBV3+uzWg7
-UDcaFwuPoRpQs2FLQ69ODsy1PueJJoZw2O3yJ2684T+TYQzS9CKGkRx2VcbAWJVp
-719ILyvgo0ZAHQD8Hl/jJgl1+at59wyTBaSNdtGC1HP68SpvPwrg2Iwh2yElD/IR
-bO6qHZmL1MqJi5YMfjpHtwpH7Wg5NSfBkIm0B7jAcltYMG9e1DYfF6NxtZe5HFx9
-LPo/V+Y6UkgqI5/yTdxF6VtHfMiLxBUfwnQM4YynGmfLb1hId9JU7UBLVB7JScxW
-wkKBppC21IAR9aRDl9C8lsnbXE2FIg==
-=h3Av
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmOcd4AACgkQJNaLcl1U
+h9CRfQf/U/FMNAdDXx65RJpVN9Ys/ENAN4EFqRJkYlf6Zcq2SP9iAC4K0wIXTArP
+Y0tHd54bT2HU6unXgYi3iKZGVvrc+eM1kfVkuo4PoaYacDtDTq/U387vuXEE1XZ+
+p/Wc5oTf/ZbQw49vbFo3iOQdcVPCEr6CrFCtlyppN7p0bD6kO6VFKm7+/qRB0EdA
+qAh9nOrVRHrCBV+nBbT3apynlKRrIFRVIkFmS2EeHbDMZPTuILs/Ucd95VB2xjBn
+05LiZ1fA6xCRlHD/KHwFIWRthJCE/3oL2v8cAdWHFhEyeyUxKI//GKiOnnBzEtaj
++To7bYmVaJGmfDVSw+uUoiw0SApLbw==
+=lJj3
 -----END PGP SIGNATURE-----
 
---VapHQVuQho8X7pjH--
+--B4Ig2C85qvcn2BWz--
