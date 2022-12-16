@@ -2,490 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52B1B64EAEB
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 12:52:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEFEB64EAF0
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 12:53:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230145AbiLPLw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Dec 2022 06:52:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48514 "EHLO
+        id S230245AbiLPLxY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Dec 2022 06:53:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229495AbiLPLwz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 06:52:55 -0500
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BCB212F01A
-        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 03:52:53 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 8267480A7;
-        Fri, 16 Dec 2022 11:52:52 +0000 (UTC)
-Date:   Fri, 16 Dec 2022 13:52:51 +0200
-From:   Tony Lindgren <tony@atomide.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org
-Subject: dt binding check error with hash and comma
-Message-ID: <Y5xcE5Qoyf5Zg6fV@atomide.com>
+        with ESMTP id S230287AbiLPLxS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 06:53:18 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4228C3054C;
+        Fri, 16 Dec 2022 03:53:17 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id m5-20020a7bca45000000b003d2fbab35c6so1555915wml.4;
+        Fri, 16 Dec 2022 03:53:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=13Vm0Lo332lPPEsaCgPFzelDF94GXJZ/U5/noq/R55w=;
+        b=m+6cs8UgDkgrBh11MngOAu6i4Zg6gyR10RxWXvHqf9GwlYCVctTfJHXDFmc2AKCLNX
+         wWoU6Xixz7e/eZTf5rKFD8YlcDnjwg9BPwUPfV5g57+6MGXL+91OhowWpKSYMXHetrTy
+         AVu6hA0h4jIwWetkwP1bCGUup6ZIwBeq93USUDy9jz2S/yM+lrAcEpEOmHMCBCuCfxFi
+         npWQbhxSvU/MVCPYbpuUoFAeMLeYjIr7y7nIl7T/hfZTGTPNguok1+BX2EWlexJoXhnh
+         154FLq2azM0avyQ5HBQ+Qylkx1yybgYNgjMsf0KTCt+oJR0WQtSg+bj9pr4u7/UyLVKB
+         jjfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=13Vm0Lo332lPPEsaCgPFzelDF94GXJZ/U5/noq/R55w=;
+        b=Cl8gTjOz84foRecWZDE7T4/0Qm4GSxUoKAOwJqbfxzLjiS+tGOqh3YWDwVmrEA2yM9
+         2KM3NDuPOxmmpClNwZp9TnQOgOym1m9GsvJaWHBTEfuSVDQDfm0Ps9ua2fWQWbsEuW/S
+         kHmNxGjd7ANqIF0o0KOadOk+pci9pjWDYF5aWPiRrlOoPEdAXHa/lFrOqW1hIbiwF2Ci
+         A0q509NK1b8esqCIuYXFN43m5fevBfWyy3GMPdKy3dvddhcU374rbFrYQUU82d1s2a4j
+         o6SoCz48SLmRAo/ReFAqqXmpC7KBWLuRkZiFoho3H93H08I+s8uhZ7Tf8cm+51DZOd9x
+         Sw9A==
+X-Gm-Message-State: ANoB5pkLoKbYEp5VVLUHVoFhecvgLSAqcrmmPWo6cOcjrmQ9VT4YDHUh
+        klL1OHJk9qvgOWlRgN0AwCA=
+X-Google-Smtp-Source: AA0mqf5bZXdv96QOcJhiW7IsKGleAkHdIQijkx4qy+QU0fcKKDKeNqxRLGjMQy21S+2Q0rZzIzjBfw==
+X-Received: by 2002:a05:600c:3d8f:b0:3cf:d70d:d5a8 with SMTP id bi15-20020a05600c3d8f00b003cfd70dd5a8mr24051092wmb.6.1671191595799;
+        Fri, 16 Dec 2022 03:53:15 -0800 (PST)
+Received: from [192.168.1.132] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id ay9-20020a5d6f09000000b002425504ae7dsm2071582wrb.80.2022.12.16.03.53.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Dec 2022 03:53:14 -0800 (PST)
+Message-ID: <06e969b5-3be2-4b23-de5a-93aa9ae6d95c@gmail.com>
+Date:   Fri, 16 Dec 2022 12:53:13 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH 0/5] Add CPU caches information for some MediaTek SoCs
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        nfraprado@collabora.com, kernel@collabora.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221206112330.78431-1-angelogioacchino.delregno@collabora.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20221206112330.78431-1-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof & Rob,
 
-I'm getting a dt binding check error with a pinctrl-single yaml patch for
-property '#pinctrl-single,gpio-range-cells'. It seems to be caused by having
-both a hash and comma in the property:
 
-  DTEX    Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dts
-  LINT    Documentation/devicetree/bindings
-  CHKDT   Documentation/devicetree/bindings/processed-schema.json
-Traceback (most recent call last):
-  File "/usr/bin/dt-doc-validate", line 63, in <module>
-    ret |= check_doc(f)
-           ^^^^^^^^^^^^
-  File "/usr/bin/dt-doc-validate", line 32, in check_doc
-    print(dtschema.format_error(filename, error, verbose=args.verbose), file=sys.stderr)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/dtschema/lib.py", line 1350, in format_error
-    msg += '\n' + format_error(filename, suberror, prefix=prefix+"\t", nodename=nodename, verbose=verbose)
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/dtschema/lib.py", line 1326, in format_error
-    if error.linecol[0] >= 0:
-       ^^^^^^^^^^^^^
-AttributeError: 'ValidationError' object has no attribute 'linecol'
-  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-  DTC_CHK Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb
+On 06/12/2022 12:23, AngeloGioacchino Del Regno wrote:
+> In devicetrees for MediaTek SoCs the CPU caches information, if
+> present, is incomplete as it misses cache size, cache line size
+> and number of cache sets which, in turn, will also prevent any
+> cache associativity calculation.
+> 
+> For all of the SoCs that I know and/or I have information for,
+> I've added the right information for I/D, L2 and L3 where present.
+> This will also make the cacheinfo driver to correctly export the
+> CPU cache information to sysfs.
+> 
 
-Any ideas why this is happening?
+Whole series applied, thanks!
 
-This is with dt-doc-validate 2022.11 and:
-
-$ make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
-
-With the WIP patch below.
-
-Regards,
-
-Tony
-
-8< -------------------------
-diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
-deleted file mode 100644
---- a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
-+++ /dev/null
-@@ -1,262 +0,0 @@
--One-register-per-pin type device tree based pinctrl driver
--
--Required properties:
--- compatible : "pinctrl-single" or "pinconf-single".
--  "pinctrl-single" means that pinconf isn't supported.
--  "pinconf-single" means that generic pinconf is supported.
--
--- reg : offset and length of the register set for the mux registers
--
--- #pinctrl-cells : number of cells in addition to the index, set to 1
--  or 2 for pinctrl-single,pins and set to 2 for pinctrl-single,bits
--
--- pinctrl-single,register-width : pinmux register access width in bits
--
--- pinctrl-single,function-mask : mask of allowed pinmux function bits
--  in the pinmux register
--
--Optional properties:
--- pinctrl-single,function-off : function off mode for disabled state if
--  available and same for all registers; if not specified, disabling of
--  pin functions is ignored
--
--- pinctrl-single,bit-per-mux : boolean to indicate that one register controls
--  more than one pin, for which "pinctrl-single,function-mask" property specifies
-- position mask of pin.
--
--- pinctrl-single,drive-strength : array of value that are used to configure
--  drive strength in the pinmux register. They're value of drive strength
--  current and drive strength mask.
--
--		/* drive strength current, mask */
--		pinctrl-single,power-source = <0x30 0xf0>;
--
--- pinctrl-single,bias-pullup : array of value that are used to configure the
--  input bias pullup in the pinmux register.
--
--		/* input, enabled pullup bits, disabled pullup bits, mask */
--		pinctrl-single,bias-pullup = <0 1 0 1>;
--
--- pinctrl-single,bias-pulldown : array of value that are used to configure the
--  input bias pulldown in the pinmux register.
--
--		/* input, enabled pulldown bits, disabled pulldown bits, mask */
--		pinctrl-single,bias-pulldown = <2 2 0 2>;
--
--  * Two bits to control input bias pullup and pulldown: User should use
--    pinctrl-single,bias-pullup & pinctrl-single,bias-pulldown. One bit means
--    pullup, and the other one bit means pulldown.
--  * Three bits to control input bias enable, pullup and pulldown. User should
--    use pinctrl-single,bias-pullup & pinctrl-single,bias-pulldown. Input bias
--    enable bit should be included in pullup or pulldown bits.
--  * Although driver could set PIN_CONFIG_BIAS_DISABLE, there's no property as
--    pinctrl-single,bias-disable. Because pinctrl single driver could implement
--    it by calling pulldown, pullup disabled.
--
--- pinctrl-single,input-schmitt : array of value that are used to configure
--  input schmitt in the pinmux register. In some silicons, there're two input
--  schmitt value (rising-edge & falling-edge) in the pinmux register.
--
--		/* input schmitt value, mask */
--		pinctrl-single,input-schmitt = <0x30 0x70>;
--
--- pinctrl-single,input-schmitt-enable : array of value that are used to
--  configure input schmitt enable or disable in the pinmux register.
--
--		/* input, enable bits, disable bits, mask */
--		pinctrl-single,input-schmitt-enable = <0x30 0x40 0 0x70>;
--
--- pinctrl-single,low-power-mode : array of value that are used to configure
--  low power mode of this pin. For some silicons, the low power mode will
--  control the output of the pin when the pad including the pin enter low
--  power mode.
--		/* low power mode value, mask */
--		pinctrl-single,low-power-mode = <0x288 0x388>;
--
--- pinctrl-single,gpio-range : list of value that are used to configure a GPIO
--  range. They're value of subnode phandle, pin base in pinctrl device, pin
--  number in this range, GPIO function value of this GPIO range.
--  The number of parameters is depend on #pinctrl-single,gpio-range-cells
--  property.
--
--		/* pin base, nr pins & gpio function */
--		pinctrl-single,gpio-range = <&range 0 3 0>, <&range 3 9 1>;
--
--- interrupt-controller : standard interrupt controller binding if using
--  interrupts for wake-up events for example. In this case pinctrl-single
--  is set up as a chained interrupt controller and the wake-up interrupts
--  can be requested by the drivers using request_irq().
--
--- #interrupt-cells : standard interrupt binding if using interrupts
--
--This driver assumes that there is only one register for each pin (unless the
--pinctrl-single,bit-per-mux is set), and uses the common pinctrl bindings as
--specified in the pinctrl-bindings.txt document in this directory.
--
--The pin configuration nodes for pinctrl-single are specified as pinctrl
--register offset and values using pinctrl-single,pins. Only the bits specified
--in pinctrl-single,function-mask are updated.
--
--When #pinctrl-cells = 1, then setting a pin for a device could be done with:
--
--	pinctrl-single,pins = <0xdc 0x118>;
--
--Where 0xdc is the offset from the pinctrl register base address for the device
--pinctrl register, and 0x118 contains the desired value of the pinctrl register.
--
--When #pinctrl-cells = 2, then setting a pin for a device could be done with:
--
--	pinctrl-single,pins = <0xdc 0x30 0x07>;
--
--Where 0x30 is the pin configuration value and 0x07 is the pin mux mode value.
--These two values are OR'd together to produce the value stored at offset 0xdc.
--See the device example and static board pins example below for more information.
--
--In case when one register changes more than one pin's mux the
--pinctrl-single,bits need to be used which takes three parameters:
--
--	pinctrl-single,bits = <0xdc 0x18 0xff>;
--
--Where 0xdc is the offset from the pinctrl register base address for the
--device pinctrl register, 0x18 is the desired value, and 0xff is the sub mask to
--be used when applying this change to the register.
--
--
--Optional sub-node: In case some pins could be configured as GPIO in the pinmux
--register, those pins could be defined as a GPIO range. This sub-node is required
--by pinctrl-single,gpio-range property.
--
--Required properties in sub-node:
--- #pinctrl-single,gpio-range-cells : the number of parameters after phandle in
--  pinctrl-single,gpio-range property.
--
--	range: gpio-range {
--		#pinctrl-single,gpio-range-cells = <3>;
--	};
--
--
--Example:
--
--/* SoC common file */
--
--/* first controller instance for pins in core domain */
--pmx_core: pinmux@4a100040 {
--	compatible = "pinctrl-single";
--	reg = <0x4a100040 0x0196>;
--	#address-cells = <1>;
--	#size-cells = <0>;
--	#interrupt-cells = <1>;
--	interrupt-controller;
--	pinctrl-single,register-width = <16>;
--	pinctrl-single,function-mask = <0xffff>;
--};
--
--/* second controller instance for pins in wkup domain */
--pmx_wkup: pinmux@4a31e040 {
--	compatible = "pinctrl-single";
--	reg = <0x4a31e040 0x0038>;
--	#address-cells = <1>;
--	#size-cells = <0>;
--	#interrupt-cells = <1>;
--	interrupt-controller;
--	pinctrl-single,register-width = <16>;
--	pinctrl-single,function-mask = <0xffff>;
--};
--
--control_devconf0: pinmux@48002274 {
--	compatible = "pinctrl-single";
--	reg = <0x48002274 4>;	/* Single register */
--	#address-cells = <1>;
--	#size-cells = <0>;
--	pinctrl-single,bit-per-mux;
--	pinctrl-single,register-width = <32>;
--	pinctrl-single,function-mask = <0x5F>;
--};
--
--/* third controller instance for pins in gpio domain */
--pmx_gpio: pinmux@d401e000 {
--	compatible = "pinconf-single";
--	reg = <0xd401e000 0x0330>;
--	#address-cells = <1>;
--	#size-cells = <1>;
--	ranges;
--
--	pinctrl-single,register-width = <32>;
--	pinctrl-single,function-mask = <7>;
--
--	/* sparse GPIO range could be supported */
--	pinctrl-single,gpio-range = <&range 0 3 0>, <&range 3 9 1>,
--				    <&range 12 1 0>, <&range 13 29 1>,
--				    <&range 43 1 0>, <&range 44 49 1>,
--				    <&range 94 1 1>, <&range 96 2 1>;
--
--	range: gpio-range {
--		#pinctrl-single,gpio-range-cells = <3>;
--	};
--};
--
--
--/* board specific .dts file */
--
--&pmx_core {
--
--	/*
--	 * map all board specific static pins enabled by the pinctrl driver
--	 * itself during the boot (or just set them up in the bootloader)
--	 */
--	pinctrl-names = "default";
--	pinctrl-0 = <&board_pins>;
--
--	board_pins: pinmux_board_pins {
--		pinctrl-single,pins = <
--			0x6c 0xf
--			0x6e 0xf
--			0x70 0xf
--			0x72 0xf
--		>;
--	};
--
--	uart0_pins: pinmux_uart0_pins {
--		pinctrl-single,pins = <
--			0x208 0		/* UART0_RXD (IOCFG138) */
--			0x20c 0		/* UART0_TXD (IOCFG139) */
--		>;
--		pinctrl-single,bias-pulldown = <0 2 2>;
--		pinctrl-single,bias-pullup = <0 1 1>;
--	};
--
--	/* map uart2 pins */
--	uart2_pins: pinmux_uart2_pins {
--		pinctrl-single,pins = <
--			0xd8 0x118
--			0xda 0
--			0xdc 0x118
--			0xde 0
--		>;
--	};
--};
--
--&control_devconf0 {
--	mcbsp1_pins: pinmux_mcbsp1_pins {
--		pinctrl-single,bits = <
--			0x00 0x18 0x18 /* FSR/CLKR signal from FSX/CLKX pin */
--		>;
--	};
--
--	mcbsp2_clks_pins: pinmux_mcbsp2_clks_pins {
--		pinctrl-single,bits = <
--			0x00 0x40 0x40 /* McBSP2 CLKS from McBSP_CLKS pin */
--		>;
--	};
--
--};
--
--&uart1 {
--       pinctrl-names = "default";
--       pinctrl-0 = <&uart0_pins>;
--};
--
--&uart2 {
--       pinctrl-names = "default";
--       pinctrl-0 = <&uart2_pins>;
--};
-diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
-new file mode 100644
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
-@@ -0,0 +1,141 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: One-register-per-pin type device tree based pinctrl driver
-+
-+maintainers:
-+  - Tony Lindgren <tony@atomide.com>
-+
-+description: |
-+  This binding describes pinctrl devices that use one hardware register to
-+  configure each pin.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - pinctrl-single
-+          - pinconf-single
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  '#interrupt-cells':
-+    const: 1
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
-+  '#pinctrl-cells':
-+    enum: [ 1, 2 ]
-+
-+  '#gpio-range-cells':
-+    const: 3
-+    description: No longer needed, may exist in older files for gpio-ranges
-+    deprecated: true
-+
-+  pinctrl-single,bit-per-mux:
-+    description: Optional flag to indicate register controls more than one pin
-+    type: boolean
-+
-+  pinctrl-single,function-mask:
-+    description: Mask of the allowed register bits
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  pinctrl-single,function-off:
-+    description: Optional function off mode for disabled state
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  pinctrl-single,gpio-range:
-+    description: Optional list of pin base, nr pins & gpio function
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+
-+  '#pinctrl-single,gpio-range-cells':
-+    const: 3
-+    description: Number of gpio range cells
-+
-+  pinctrl-single,register-width:
-+    description: Width of the pin register in bits
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+patternProperties:
-+  '-pins((.*)?)$':
-+    type: object
-+    patternProperties:
-+      pinctrl-single,pins:
-+        description:
-+          Array of pins as described in pinmux-node.yaml for pinctrl-pin-array.
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+
-+      pinctrl-single,bias-pullup:
-+        description: Optional array of input, enabled pullup bits, disabled pullup bits, mask
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+
-+      pinctrl-single,bias-pulldown:
-+        description: Optional array of input, enabled pulldown bits, disabled pulldown bits, mask
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+
-+      pinctrl-single,drive-strength:
-+        description: Optional array of drive strength current and mask
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+
-+      pinctrl-single,input-schmitt:
-+        description: Optional array of input, enable bits, disable bits, mask
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+
-+      pinctrl-single,low-power-mode:
-+        description: Optional array of low power mode value, mask
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+
-+      pinctrl-single,slew-rate:
-+        description: Optional array of slew rate and mask values
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+
-+    additionalProperties: false
-+
-+allOf:
-+  - $ref: 'pinctrl.yaml#'
-+
-+required:
-+  - compatible
-+  - reg
-+  - pinctrl-single,register-width
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/pinctrl/omap.h>
-+
-+    soc {
-+      #address-cells = <1>;
-+      #size-cells = <1>;
-+
-+        pinmux@4a100040 {
-+          compatible = "pinctrl-single";
-+          reg = <0x4a100040 0x0196>;
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+          #pinctrl-cells = <2>;
-+          #interrupt-cells = <1>;
-+          interrupt-controller;
-+          pinctrl-single,register-width = <16>;
-+          pinctrl-single,function-mask = <0xffff>;
-+
-+          uart2-pins {
-+            pinctrl-single,pins =
-+              <0xd8 0x118>,
-+              <0xda 0>,
-+              <0xdc 0x118>,
-+              <0xde 0>;
-+          };
-+        };
-+      };
--- 
-2.38.1
+> AngeloGioacchino Del Regno (5):
+>    arm64: dts: mt8195: Add complete CPU caches information
+>    arm64: dts: mt8192: Add complete CPU caches information
+>    arm64: dts: mt8186: Add complete CPU caches information
+>    arm64: dts: mt8183: Add complete CPU caches information
+>    arm64: dts: mt6795: Add complete CPU caches information
+> 
+>   arch/arm64/boot/dts/mediatek/mt6795.dtsi | 50 ++++++++++++++++
+>   arch/arm64/boot/dts/mediatek/mt8183.dtsi | 74 ++++++++++++++++++++++++
+>   arch/arm64/boot/dts/mediatek/mt8186.dtsi | 58 +++++++++++++++++++
+>   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 58 +++++++++++++++++++
+>   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 58 +++++++++++++++++++
+>   5 files changed, 298 insertions(+)
+> 
