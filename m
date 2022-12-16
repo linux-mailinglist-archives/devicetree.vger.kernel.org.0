@@ -2,245 +2,490 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEAB864EAE7
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 12:52:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52B1B64EAEB
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 12:52:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229632AbiLPLwX convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 16 Dec 2022 06:52:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48192 "EHLO
+        id S230145AbiLPLw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Dec 2022 06:52:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229495AbiLPLwW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 06:52:22 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0C1D22B604;
-        Fri, 16 Dec 2022 03:52:21 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 786E01042;
-        Fri, 16 Dec 2022 03:53:01 -0800 (PST)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 741E13F73B;
-        Fri, 16 Dec 2022 03:52:18 -0800 (PST)
-Date:   Fri, 16 Dec 2022 11:52:14 +0000
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Martin Botka <martin.botka@somainline.org>
-Cc:     martin.botka1@gmail.com,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Jami Kettunen <jamipkettunen@somainline.org>,
-        Paul Bouchara <paul.bouchara@somainline.org>,
-        Jan Trmal <jtrmal@gmail.com>, Lee Jones <lee@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Samuel Holland <samuel@sholland.org>,
-        Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>,
-        linux-sunxi <linux-sunxi@lists.linux.dev>
-Subject: Re: [PATCH v5 3/3] regulator: axp20x: Add support for AXP1530
- variant
-Message-ID: <20221216115214.1be53742@donnerap.cambridge.arm.com>
-In-Reply-To: <F47BD077-BB4B-4866-B5E7-445D6CCE4FCE@somainline.org>
-References: <20221214190305.3354669-1-martin.botka@somainline.org>
-        <20221214190305.3354669-4-martin.botka@somainline.org>
-        <20221215231615.6a4fa710@slackpad.lan>
-        <F47BD077-BB4B-4866-B5E7-445D6CCE4FCE@somainline.org>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        with ESMTP id S229495AbiLPLwz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 06:52:55 -0500
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BCB212F01A
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 03:52:53 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 8267480A7;
+        Fri, 16 Dec 2022 11:52:52 +0000 (UTC)
+Date:   Fri, 16 Dec 2022 13:52:51 +0200
+From:   Tony Lindgren <tony@atomide.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org
+Subject: dt binding check error with hash and comma
+Message-ID: <Y5xcE5Qoyf5Zg6fV@atomide.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 16 Dec 2022 06:26:38 +0100
-Martin Botka <martin.botka@somainline.org> wrote:
+Hi Krzysztof & Rob,
 
-Hi Martin,
+I'm getting a dt binding check error with a pinctrl-single yaml patch for
+property '#pinctrl-single,gpio-range-cells'. It seems to be caused by having
+both a hash and comma in the property:
 
-> On December 16, 2022 12:16:15 AM GMT+01:00, Andre Przywara <andre.przywara@arm.com> wrote:
-> >On Wed, 14 Dec 2022 20:03:05 +0100
-> >Martin Botka <martin.botka@somainline.org> wrote:
-> >
-> >Hi Martin,
-> >  
-> >> AXP1530 has a few regulators that are controlled via I2C Bus.
-> >> 
-> >> Add support for them.  
-> >
-> >thanks for putting this together!
-> >After coming up with a very similar patch based on the AXP313A313
-> >datasheet, I realised that those two must indeed be *somewhat*
-> >compatible, so I am going to compare my patch with yours ;-)
-> >  
-> Hello Andre,
-> Thanks so much for looking at this.
-> >> 
-> >> Signed-off-by: Martin Botka <martin.botka@somainline.org>
-> >> ---
-> >>  drivers/regulator/axp20x-regulator.c | 44 ++++++++++++++++++++++++++++
-> >>  1 file changed, 44 insertions(+)
-> >> 
-> >> diff --git a/drivers/regulator/axp20x-regulator.c b/drivers/regulator/axp20x-regulator.c
-> >> index d260c442b788..9420839ff4f9 100644
-> >> --- a/drivers/regulator/axp20x-regulator.c
-> >> +++ b/drivers/regulator/axp20x-regulator.c
-> >> @@ -1001,6 +1001,40 @@ static const struct regulator_desc axp813_regulators[] = {
-> >>  		    AXP22X_PWR_OUT_CTRL2, AXP22X_PWR_OUT_DC1SW_MASK),
-> >>  };
-> >>  
-> >> +static const struct linear_range axp1530_dcdc1_ranges[] = {
-> >> +	REGULATOR_LINEAR_RANGE(500000, 0x0, 0x46, 10000),  
-> >
-> >The AXP313A manual mentions "steps", in decimal
-> >(0.5~1.2V，10mV/step，71steps), so I wonder if we should follow suit
-> >here and describe the min_sel and max_sel members in decimal?
-> >  
-> Ack. We definitely can :)
-> >> +	REGULATOR_LINEAR_RANGE(1220000, 0x47, 0x57, 20000),
-> >> +	REGULATOR_LINEAR_RANGE(1600000, 0x58, 0x6A, 100000),
-> >> +};
-> >> +
-> >> +static const struct linear_range axp1530_dcdc2_ranges[] = {
-> >> +	REGULATOR_LINEAR_RANGE(500000, 0x0, 0x46, 10000),
-> >> +	REGULATOR_LINEAR_RANGE(1220000, 0x47, 0x57, 20000),
-> >> +};  
-> >
-> >The values up till here match exactly what I extracted from the AXP313A
-> >manual.
-> >  
-> >> +
-> >> +static const struct linear_range axp1530_dcdc3_ranges[] = {
-> >> +	REGULATOR_LINEAR_RANGE(500000, 0x0, 0x46, 10000),
-> >> +	REGULATOR_LINEAR_RANGE(1220000, 0x47, 0x66, 20000),
-> >> +};  
-> >
-> >Can you double check that those are the values for DCDC3?
-> >The AXP313A manual uses different ranges, essentially:
-> >    REGULATOR_LINEAR_RANGE(800000, 0, 32, 10000),
-> >    REGULATOR_LINEAR_RANGE(1140000, 33, 68, 20000),
-> >So starting from 800mV, and using a slightly different split point.
-> >
-> >I would just hope that's this doesn't turn out to be an incompatible register.
-> >  
-> Interesting. The unfortunate thing with 1530 is that i could not find any datasheet referencing it. The actual PMIC that is on the device i have here is 313A. Do i think it would be best if i rename this driver to 313A and follow the 313A datasheet which is public.
+  DTEX    Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dts
+  LINT    Documentation/devicetree/bindings
+  CHKDT   Documentation/devicetree/bindings/processed-schema.json
+Traceback (most recent call last):
+  File "/usr/bin/dt-doc-validate", line 63, in <module>
+    ret |= check_doc(f)
+           ^^^^^^^^^^^^
+  File "/usr/bin/dt-doc-validate", line 32, in check_doc
+    print(dtschema.format_error(filename, error, verbose=args.verbose), file=sys.stderr)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/dtschema/lib.py", line 1350, in format_error
+    msg += '\n' + format_error(filename, suberror, prefix=prefix+"\t", nodename=nodename, verbose=verbose)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/dtschema/lib.py", line 1326, in format_error
+    if error.linecol[0] >= 0:
+       ^^^^^^^^^^^^^
+AttributeError: 'ValidationError' object has no attribute 'linecol'
+  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+  DTC_CHK Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb
 
-So where does the 1530 name and the other bits come from? Was there some
-statement somewhere that AXP1530 is the canonical chip, and the 313A is
-just a variant? Or are there devices using this chip, and you just happen
-to not have them, but a "compatible enough" 313A instead?
+Any ideas why this is happening?
 
-> This was already proposed in one of my device tree series.
-> What do you think of this idea Andre ?
+This is with dt-doc-validate 2022.11 and:
 
-In general, I think it's too dangerous to develop against something you
-cannot test against. So I would always call this driver after the chip I
-have access to, especially if there is also a datasheet for it.
-If someone later finds the AXP1530 to be compatible, they can always use:
-	compatible = "x-powers,axp1530", "x-powers,axp313a";
-Or later on add explicit support for that chip if it turns out to be not
-fully compatible.
+$ make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
 
-The only reason to not do it this way around would be if one was a strict
-subset of the other. So if the 313A is the 1530 plus RTCLDO, for instance,
-it would make sense to reflect that in the compatible strings (by swapping
-them in the above example).
-But then again there is really no legacy here, so we could just upstream
-support for both variants in one go, using separate compatible strings,
-and let them just share some data structures internally. That is probably
-cleaner, and if both are going it at the same time, there is no downside,
-really.
+With the WIP patch below.
 
-> >> +static const struct regulator_desc axp1530_regulators[] = {
-> >> +	AXP_DESC_RANGES(AXP1530, DCDC1, "dcdc1", "vin1", axp1530_dcdc1_ranges,
-> >> +					0x6B, AXP1530_DCDC1_CONRTOL, 0x7f, AXP1530_OUTPUT_CONTROL,  
-> >
-> >Again I would code the steps in decimal. The other regulators use a
-> >preprocessor constant, which helps the reader to get its meaning.
-> >And please use at least GENMASK(6, 0) instead of 0x7f, or #define this
-> >(can be shared for all DCDCs and the LDOs).
-> >  
-> Ack. Will use GENMASK.
-> >> +					BIT(0)),
-> >> +	AXP_DESC_RANGES(AXP1530, DCDC2, "dcdc2", "vin2", axp1530_dcdc2_ranges,
-> >> +					0x58, AXP1530_DCDC2_CONRTOL, 0x7f, AXP1530_OUTPUT_CONTROL,
-> >> +					BIT(1)),
-> >> +	AXP_DESC_RANGES(AXP1530, DCDC3, "dcdc3", "vin3", axp1530_dcdc3_ranges,
-> >> +					0x58, AXP1530_DCDC3_CONRTOL, 0x7f, AXP1530_OUTPUT_CONTROL,
-> >> +					BIT(2)),
-> >> +	AXP_DESC(AXP1530, LDO1, "ldo1", "ldo1in", 500, 3500, 100,
-> >> +					AXP1530_ALDO1_CONRTOL, 0x1f, AXP1530_OUTPUT_CONTROL,
-> >> +					BIT(3)),
-> >> +	AXP_DESC(AXP1530, LDO2, "ldo2", "ldo2in", 500, 3500, 100,
-> >> +					AXP1530_DLDO1_CONRTOL, 0x1f, AXP1530_OUTPUT_CONTROL,
-> >> +					BIT(4)),  
-> >
-> >Does this miss the fixed RTC-LDO? Or does the AXP1530 not have that?
-> >        AXP_DESC_FIXED(AXP313, RTC_LDO, "rtc-ldo", "ips", 1800),
-> >The AXP313A manual mentions that the voltage is customisable, either
-> >1.8V or 3.3V. I don't know how to model that, exactly. Should this be a
-> >DT property, then? Or do we fix it to one voltage, covering the value
-> >that's used out there?
-> >  
-> This is what always struck me as weird. This driver is based upon downstream version it indeed does miss the rtc-ldo.
+Regards,
 
-Well, in my experience downstream (BSP) drivers cannot be really trusted
-in this regard.
-So they could just papered over it by modelling this as a separate
-"regulator-fixed"? Or maybe this was their solution for the "customise"
-problem? So instead of having this as part of the AXP, they just put a
-per-board fixed regulator in and set the voltage there?
+Tony
 
-Cheers,
-Andre
-
-> Afaik this may be the only difference between 1530 and 313 (other then what you pointed out the dcdc3 registers)
-> >> +};
-> >> +
-> >>  static int axp20x_set_dcdc_freq(struct platform_device *pdev, u32 dcdcfreq)
-> >>  {
-> >>  	struct axp20x_dev *axp20x = dev_get_drvdata(pdev->dev.parent);
-> >> @@ -1040,6 +1074,12 @@ static int axp20x_set_dcdc_freq(struct platform_device *pdev, u32 dcdcfreq)
-> >>  		def = 3000;
-> >>  		step = 150;
-> >>  		break;
-> >> +	case AXP1530_ID:
-> >> +		/*
-> >> +		 * Do not set the DCDC frequency on AXP1530  
-> >
-> >This should say that the frequency is fixed and cannot be programmed.
-> >I also added a warning if the frequency is not 3 MHz.
-> >Either this, or we make the "x-powers,dcdc-freq" DT property optional.
-> >  
-> Ack. Will reword and add warning.
-> >Cheers,
-> >Andre
-> >  
-> Cheers,
-> Martin
-> >> +		 */
-> >> +		return 0;
-> >> +		break;
-> >>  	default:
-> >>  		dev_err(&pdev->dev,
-> >>  			"Setting DCDC frequency for unsupported AXP variant\n");
-> >> @@ -1220,6 +1260,10 @@ static int axp20x_regulator_probe(struct platform_device *pdev)
-> >>  	bool drivevbus = false;
-> >>  
-> >>  	switch (axp20x->variant) {
-> >> +	case AXP1530_ID:
-> >> +		regulators = axp1530_regulators;
-> >> +		nregulators = AXP1530_REG_ID_MAX;
-> >> +		break;
-> >>  	case AXP202_ID:
-> >>  	case AXP209_ID:
-> >>  		regulators = axp20x_regulators;  
-> >  
-
+8< -------------------------
+diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
+deleted file mode 100644
+--- a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
++++ /dev/null
+@@ -1,262 +0,0 @@
+-One-register-per-pin type device tree based pinctrl driver
+-
+-Required properties:
+-- compatible : "pinctrl-single" or "pinconf-single".
+-  "pinctrl-single" means that pinconf isn't supported.
+-  "pinconf-single" means that generic pinconf is supported.
+-
+-- reg : offset and length of the register set for the mux registers
+-
+-- #pinctrl-cells : number of cells in addition to the index, set to 1
+-  or 2 for pinctrl-single,pins and set to 2 for pinctrl-single,bits
+-
+-- pinctrl-single,register-width : pinmux register access width in bits
+-
+-- pinctrl-single,function-mask : mask of allowed pinmux function bits
+-  in the pinmux register
+-
+-Optional properties:
+-- pinctrl-single,function-off : function off mode for disabled state if
+-  available and same for all registers; if not specified, disabling of
+-  pin functions is ignored
+-
+-- pinctrl-single,bit-per-mux : boolean to indicate that one register controls
+-  more than one pin, for which "pinctrl-single,function-mask" property specifies
+- position mask of pin.
+-
+-- pinctrl-single,drive-strength : array of value that are used to configure
+-  drive strength in the pinmux register. They're value of drive strength
+-  current and drive strength mask.
+-
+-		/* drive strength current, mask */
+-		pinctrl-single,power-source = <0x30 0xf0>;
+-
+-- pinctrl-single,bias-pullup : array of value that are used to configure the
+-  input bias pullup in the pinmux register.
+-
+-		/* input, enabled pullup bits, disabled pullup bits, mask */
+-		pinctrl-single,bias-pullup = <0 1 0 1>;
+-
+-- pinctrl-single,bias-pulldown : array of value that are used to configure the
+-  input bias pulldown in the pinmux register.
+-
+-		/* input, enabled pulldown bits, disabled pulldown bits, mask */
+-		pinctrl-single,bias-pulldown = <2 2 0 2>;
+-
+-  * Two bits to control input bias pullup and pulldown: User should use
+-    pinctrl-single,bias-pullup & pinctrl-single,bias-pulldown. One bit means
+-    pullup, and the other one bit means pulldown.
+-  * Three bits to control input bias enable, pullup and pulldown. User should
+-    use pinctrl-single,bias-pullup & pinctrl-single,bias-pulldown. Input bias
+-    enable bit should be included in pullup or pulldown bits.
+-  * Although driver could set PIN_CONFIG_BIAS_DISABLE, there's no property as
+-    pinctrl-single,bias-disable. Because pinctrl single driver could implement
+-    it by calling pulldown, pullup disabled.
+-
+-- pinctrl-single,input-schmitt : array of value that are used to configure
+-  input schmitt in the pinmux register. In some silicons, there're two input
+-  schmitt value (rising-edge & falling-edge) in the pinmux register.
+-
+-		/* input schmitt value, mask */
+-		pinctrl-single,input-schmitt = <0x30 0x70>;
+-
+-- pinctrl-single,input-schmitt-enable : array of value that are used to
+-  configure input schmitt enable or disable in the pinmux register.
+-
+-		/* input, enable bits, disable bits, mask */
+-		pinctrl-single,input-schmitt-enable = <0x30 0x40 0 0x70>;
+-
+-- pinctrl-single,low-power-mode : array of value that are used to configure
+-  low power mode of this pin. For some silicons, the low power mode will
+-  control the output of the pin when the pad including the pin enter low
+-  power mode.
+-		/* low power mode value, mask */
+-		pinctrl-single,low-power-mode = <0x288 0x388>;
+-
+-- pinctrl-single,gpio-range : list of value that are used to configure a GPIO
+-  range. They're value of subnode phandle, pin base in pinctrl device, pin
+-  number in this range, GPIO function value of this GPIO range.
+-  The number of parameters is depend on #pinctrl-single,gpio-range-cells
+-  property.
+-
+-		/* pin base, nr pins & gpio function */
+-		pinctrl-single,gpio-range = <&range 0 3 0>, <&range 3 9 1>;
+-
+-- interrupt-controller : standard interrupt controller binding if using
+-  interrupts for wake-up events for example. In this case pinctrl-single
+-  is set up as a chained interrupt controller and the wake-up interrupts
+-  can be requested by the drivers using request_irq().
+-
+-- #interrupt-cells : standard interrupt binding if using interrupts
+-
+-This driver assumes that there is only one register for each pin (unless the
+-pinctrl-single,bit-per-mux is set), and uses the common pinctrl bindings as
+-specified in the pinctrl-bindings.txt document in this directory.
+-
+-The pin configuration nodes for pinctrl-single are specified as pinctrl
+-register offset and values using pinctrl-single,pins. Only the bits specified
+-in pinctrl-single,function-mask are updated.
+-
+-When #pinctrl-cells = 1, then setting a pin for a device could be done with:
+-
+-	pinctrl-single,pins = <0xdc 0x118>;
+-
+-Where 0xdc is the offset from the pinctrl register base address for the device
+-pinctrl register, and 0x118 contains the desired value of the pinctrl register.
+-
+-When #pinctrl-cells = 2, then setting a pin for a device could be done with:
+-
+-	pinctrl-single,pins = <0xdc 0x30 0x07>;
+-
+-Where 0x30 is the pin configuration value and 0x07 is the pin mux mode value.
+-These two values are OR'd together to produce the value stored at offset 0xdc.
+-See the device example and static board pins example below for more information.
+-
+-In case when one register changes more than one pin's mux the
+-pinctrl-single,bits need to be used which takes three parameters:
+-
+-	pinctrl-single,bits = <0xdc 0x18 0xff>;
+-
+-Where 0xdc is the offset from the pinctrl register base address for the
+-device pinctrl register, 0x18 is the desired value, and 0xff is the sub mask to
+-be used when applying this change to the register.
+-
+-
+-Optional sub-node: In case some pins could be configured as GPIO in the pinmux
+-register, those pins could be defined as a GPIO range. This sub-node is required
+-by pinctrl-single,gpio-range property.
+-
+-Required properties in sub-node:
+-- #pinctrl-single,gpio-range-cells : the number of parameters after phandle in
+-  pinctrl-single,gpio-range property.
+-
+-	range: gpio-range {
+-		#pinctrl-single,gpio-range-cells = <3>;
+-	};
+-
+-
+-Example:
+-
+-/* SoC common file */
+-
+-/* first controller instance for pins in core domain */
+-pmx_core: pinmux@4a100040 {
+-	compatible = "pinctrl-single";
+-	reg = <0x4a100040 0x0196>;
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	#interrupt-cells = <1>;
+-	interrupt-controller;
+-	pinctrl-single,register-width = <16>;
+-	pinctrl-single,function-mask = <0xffff>;
+-};
+-
+-/* second controller instance for pins in wkup domain */
+-pmx_wkup: pinmux@4a31e040 {
+-	compatible = "pinctrl-single";
+-	reg = <0x4a31e040 0x0038>;
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	#interrupt-cells = <1>;
+-	interrupt-controller;
+-	pinctrl-single,register-width = <16>;
+-	pinctrl-single,function-mask = <0xffff>;
+-};
+-
+-control_devconf0: pinmux@48002274 {
+-	compatible = "pinctrl-single";
+-	reg = <0x48002274 4>;	/* Single register */
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	pinctrl-single,bit-per-mux;
+-	pinctrl-single,register-width = <32>;
+-	pinctrl-single,function-mask = <0x5F>;
+-};
+-
+-/* third controller instance for pins in gpio domain */
+-pmx_gpio: pinmux@d401e000 {
+-	compatible = "pinconf-single";
+-	reg = <0xd401e000 0x0330>;
+-	#address-cells = <1>;
+-	#size-cells = <1>;
+-	ranges;
+-
+-	pinctrl-single,register-width = <32>;
+-	pinctrl-single,function-mask = <7>;
+-
+-	/* sparse GPIO range could be supported */
+-	pinctrl-single,gpio-range = <&range 0 3 0>, <&range 3 9 1>,
+-				    <&range 12 1 0>, <&range 13 29 1>,
+-				    <&range 43 1 0>, <&range 44 49 1>,
+-				    <&range 94 1 1>, <&range 96 2 1>;
+-
+-	range: gpio-range {
+-		#pinctrl-single,gpio-range-cells = <3>;
+-	};
+-};
+-
+-
+-/* board specific .dts file */
+-
+-&pmx_core {
+-
+-	/*
+-	 * map all board specific static pins enabled by the pinctrl driver
+-	 * itself during the boot (or just set them up in the bootloader)
+-	 */
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&board_pins>;
+-
+-	board_pins: pinmux_board_pins {
+-		pinctrl-single,pins = <
+-			0x6c 0xf
+-			0x6e 0xf
+-			0x70 0xf
+-			0x72 0xf
+-		>;
+-	};
+-
+-	uart0_pins: pinmux_uart0_pins {
+-		pinctrl-single,pins = <
+-			0x208 0		/* UART0_RXD (IOCFG138) */
+-			0x20c 0		/* UART0_TXD (IOCFG139) */
+-		>;
+-		pinctrl-single,bias-pulldown = <0 2 2>;
+-		pinctrl-single,bias-pullup = <0 1 1>;
+-	};
+-
+-	/* map uart2 pins */
+-	uart2_pins: pinmux_uart2_pins {
+-		pinctrl-single,pins = <
+-			0xd8 0x118
+-			0xda 0
+-			0xdc 0x118
+-			0xde 0
+-		>;
+-	};
+-};
+-
+-&control_devconf0 {
+-	mcbsp1_pins: pinmux_mcbsp1_pins {
+-		pinctrl-single,bits = <
+-			0x00 0x18 0x18 /* FSR/CLKR signal from FSX/CLKX pin */
+-		>;
+-	};
+-
+-	mcbsp2_clks_pins: pinmux_mcbsp2_clks_pins {
+-		pinctrl-single,bits = <
+-			0x00 0x40 0x40 /* McBSP2 CLKS from McBSP_CLKS pin */
+-		>;
+-	};
+-
+-};
+-
+-&uart1 {
+-       pinctrl-names = "default";
+-       pinctrl-0 = <&uart0_pins>;
+-};
+-
+-&uart2 {
+-       pinctrl-names = "default";
+-       pinctrl-0 = <&uart2_pins>;
+-};
+diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+new file mode 100644
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+@@ -0,0 +1,141 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: One-register-per-pin type device tree based pinctrl driver
++
++maintainers:
++  - Tony Lindgren <tony@atomide.com>
++
++description: |
++  This binding describes pinctrl devices that use one hardware register to
++  configure each pin.
++
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - pinctrl-single
++          - pinconf-single
++
++  reg:
++    maxItems: 1
++
++  interrupt-controller: true
++
++  '#interrupt-cells':
++    const: 1
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++  '#pinctrl-cells':
++    enum: [ 1, 2 ]
++
++  '#gpio-range-cells':
++    const: 3
++    description: No longer needed, may exist in older files for gpio-ranges
++    deprecated: true
++
++  pinctrl-single,bit-per-mux:
++    description: Optional flag to indicate register controls more than one pin
++    type: boolean
++
++  pinctrl-single,function-mask:
++    description: Mask of the allowed register bits
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++  pinctrl-single,function-off:
++    description: Optional function off mode for disabled state
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++  pinctrl-single,gpio-range:
++    description: Optional list of pin base, nr pins & gpio function
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++
++  '#pinctrl-single,gpio-range-cells':
++    const: 3
++    description: Number of gpio range cells
++
++  pinctrl-single,register-width:
++    description: Width of the pin register in bits
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++patternProperties:
++  '-pins((.*)?)$':
++    type: object
++    patternProperties:
++      pinctrl-single,pins:
++        description:
++          Array of pins as described in pinmux-node.yaml for pinctrl-pin-array.
++        $ref: /schemas/types.yaml#/definitions/uint32-array
++
++      pinctrl-single,bias-pullup:
++        description: Optional array of input, enabled pullup bits, disabled pullup bits, mask
++        $ref: /schemas/types.yaml#/definitions/uint32-array
++
++      pinctrl-single,bias-pulldown:
++        description: Optional array of input, enabled pulldown bits, disabled pulldown bits, mask
++        $ref: /schemas/types.yaml#/definitions/uint32-array
++
++      pinctrl-single,drive-strength:
++        description: Optional array of drive strength current and mask
++        $ref: /schemas/types.yaml#/definitions/uint32-array
++
++      pinctrl-single,input-schmitt:
++        description: Optional array of input, enable bits, disable bits, mask
++        $ref: /schemas/types.yaml#/definitions/uint32-array
++
++      pinctrl-single,low-power-mode:
++        description: Optional array of low power mode value, mask
++        $ref: /schemas/types.yaml#/definitions/uint32-array
++
++      pinctrl-single,slew-rate:
++        description: Optional array of slew rate and mask values
++        $ref: /schemas/types.yaml#/definitions/uint32-array
++
++    additionalProperties: false
++
++allOf:
++  - $ref: 'pinctrl.yaml#'
++
++required:
++  - compatible
++  - reg
++  - pinctrl-single,register-width
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/pinctrl/omap.h>
++
++    soc {
++      #address-cells = <1>;
++      #size-cells = <1>;
++
++        pinmux@4a100040 {
++          compatible = "pinctrl-single";
++          reg = <0x4a100040 0x0196>;
++          #address-cells = <1>;
++          #size-cells = <0>;
++          #pinctrl-cells = <2>;
++          #interrupt-cells = <1>;
++          interrupt-controller;
++          pinctrl-single,register-width = <16>;
++          pinctrl-single,function-mask = <0xffff>;
++
++          uart2-pins {
++            pinctrl-single,pins =
++              <0xd8 0x118>,
++              <0xda 0>,
++              <0xdc 0x118>,
++              <0xde 0>;
++          };
++        };
++      };
+-- 
+2.38.1
