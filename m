@@ -2,62 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D72964EAB6
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 12:38:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3285C64EABA
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 12:39:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230070AbiLPLip (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Dec 2022 06:38:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42542 "EHLO
+        id S230214AbiLPLjT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Dec 2022 06:39:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229680AbiLPLin (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 06:38:43 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 178F611C02
-        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 03:38:42 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1p692x-0007kU-FG; Fri, 16 Dec 2022 12:38:35 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1p692u-004uXs-HA; Fri, 16 Dec 2022 12:38:33 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1p692u-005WRG-EK; Fri, 16 Dec 2022 12:38:32 +0100
-Date:   Fri, 16 Dec 2022 12:38:32 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S230315AbiLPLjQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 06:39:16 -0500
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5DAD11C02
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 03:39:15 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id n1so1863167ljg.3
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 03:39:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IlWaxMgkhxPdtZb+WB/Mty8qDItjeqZ5y9IGxEmKtJI=;
+        b=OwDzHve5kZqVQScPaPObG+n1MnQ0aA/UrvVw8EZclk2nSmQcVsUwr2It5niiF7j0EA
+         /GdRGBuq/jtaWQdJLSufDAoR2gIhjcftMxGO21siQPShuHQFfKlU4zBgIy53DH5mv/t/
+         NieaR2gyILgOL8X80HJ7l8aup9PuJa+fjmwZVG3B2y1urifh6CyLEYkmilx99pMhVFL3
+         bXnEmJpSncb+89Ai32sIWZaM4fBWXmq022w56l09mjOlIJlAKGIMVhQtXZ9nwWeVgJgw
+         Y9DneK99SljPR7Y2eNyjn+KCL4ZiwAci1LbJA79qdlhxfUkUBub0aWs6o34uJHeFbt2d
+         KSHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IlWaxMgkhxPdtZb+WB/Mty8qDItjeqZ5y9IGxEmKtJI=;
+        b=zEq9UZP/Kx3M4wAWaQpGAgtgrR3OzWQO6+7SsayvYugEpdZugwh0KK+bPOs1ZJTRzu
+         EDwvfBq9gNTX3Bd2Y7BJBC/k65LbFKvkAUImdTH/NwwLY5ioKbaEBjeF/vmLPDy/dt7E
+         5llOZosjfzSjDF6Pls0JNo3WXBSxTM6yKXUJC/GxpdQQV2DVoj3Ksv/U/LnMt3vwbRL6
+         2p3q0wmTgc8bWbwYmPhoTokh5Rzre8h7bVBiHD3NMehoakOo+FNdkEK5+du1BMqQ3hH1
+         eCZt69JcMm81bmkqZjubRq8q43ILC12RT9tUls8CKD7RMh/P3OzQQIrCJ03Q3bj7xfpS
+         Eh3g==
+X-Gm-Message-State: ANoB5pkP+KoI4/iL0tZ3+TbfXSIPguXMitobKEIEsqEdc+y+LGEO9/Mi
+        XHmkdetN4/LlBm3WLvgKVsNUEA==
+X-Google-Smtp-Source: AA0mqf5SuaaDRHyIN103jdsBxWIv3ZfZ6/mHAqGt6QCgLBuJqEUqn/wOJbw7zkvCve8EEdijihSdJg==
+X-Received: by 2002:a2e:bc2a:0:b0:279:703c:8911 with SMTP id b42-20020a2ebc2a000000b00279703c8911mr10577730ljf.42.1671190754048;
+        Fri, 16 Dec 2022 03:39:14 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id f10-20020a2eb5aa000000b0027a0ec1f01asm129377ljn.56.2022.12.16.03.39.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Dec 2022 03:39:13 -0800 (PST)
+Message-ID: <0a76ceb5-1ff2-002e-a861-6ad2d6578fea@linaro.org>
+Date:   Fri, 16 Dec 2022 12:39:12 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v2 1/4] dt-bindings: soc: imx8mp-hsio-blk-ctrl: add clock
+ cells
+Content-Language: en-US
+To:     Lucas Stach <l.stach@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        NXP Linux Team <linux-imx@nxp.com>,
+        Richard Zhu <hongxing.zhu@nxp.com>
+Cc:     NXP Linux Team <linux-imx@nxp.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: imx: Describe drm binding
- for fsl,imx-lcdc
-Message-ID: <20221216113832.6qvyzlrwfzrlhker@pengutronix.de>
-References: <20221214115921.1845994-1-u.kleine-koenig@pengutronix.de>
- <20221214115921.1845994-2-u.kleine-koenig@pengutronix.de>
- <0f3e755f-954a-9722-6898-181170deb2c3@linaro.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="vomqdkuv5b6duabq"
-Content-Disposition: inline
-In-Reply-To: <0f3e755f-954a-9722-6898-181170deb2c3@linaro.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        marcel.ziswiler@toradex.com, marex@denx.de, tharvey@gateworks.com,
+        alexander.stein@ew.tq-group.com, richard.leitner@linux.dev,
+        lukas@mntre.com, patchwork-lst@pengutronix.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20221215174942.2835690-1-l.stach@pengutronix.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221215174942.2835690-1-l.stach@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,54 +82,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 15/12/2022 18:49, Lucas Stach wrote:
+> The HSIO blk-ctrl has a internal PLL, which can be used as a reference
+> clock for the PCIe PHY. Add clock-cells to the binding to allow the
+> driver to expose this PLL.
+> 
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
 
---vomqdkuv5b6duabq
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 16, 2022 at 11:41:30AM +0100, Krzysztof Kozlowski wrote:
-> On 14/12/2022 12:59, Uwe Kleine-K=F6nig wrote:
-> > Modify the existing (fb-like) binding to support the drm-like binding in
-> > parallel.
->=20
-> Aren't you now adding two compatibles to the same hardware, just for two
-> Linux drivers? One hardware should have one compatible, regardless of
-> Linux display implementation.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-The (up to now unopposed) idea was to use the opportunity to pick a
-better name for the compatible. The hardware component is called LCDC
-and I guess fsl,imx21-fb was only picked because the linux driver is
-called imxfb. Unless I understood Rob wrong, he insisted to describe
-both variants in a single binding document only.
+Best regards,
+Krzysztof
 
-> > +if:
->=20
-> Put it under allOf. It grows pretty often so this would avoid future
-> re-indents.
-
-ok.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---vomqdkuv5b6duabq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmOcWLUACgkQwfwUeK3K
-7Al9/wf/ZOo18OuIXv1lM+hxI9+4bUYsHMvey+G65EOqkXqkRZfOFZjeVsypRYEX
-rk9Ws23MqhB6lYN7sUVwxiwtFJxtgJJ4rzwSisF83nCfnEnTiA1nkj1N5aJLAoEy
-nzBN4aWkSmUisjB1dUgz702jYUAdEwaPqf7Mbe+jqTKFhm99A4pPCCfYWqJSGDKI
-c8IupblZq2X59wlWnRKRbfIJQXujGomVE/lTzBdLvQDuiyYpXTqDVjM/bx7DTwtF
-k2U8AEDM/DSl5ByO5esfQcCDV1Z/jjZh1F+OI1IFn60cI7j194c34m6cK5uIENPu
-D6XB0+QlReZYOa72RW/ejUDOTgpyQA==
-=tu0Y
------END PGP SIGNATURE-----
-
---vomqdkuv5b6duabq--
