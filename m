@@ -2,107 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0B0A64EF29
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 17:32:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 029EF64EF32
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 17:34:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231392AbiLPQcW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Dec 2022 11:32:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33452 "EHLO
+        id S231552AbiLPQeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Dec 2022 11:34:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231770AbiLPQcI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 11:32:08 -0500
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F0C9F09
-        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 08:32:06 -0800 (PST)
-Received: by mail-pg1-x52a.google.com with SMTP id s196so2125218pgs.3
-        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 08:32:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lHeZEl4urkRUVM2RdVBA/kn/ywb3AI+XBKELaiBu0qc=;
-        b=NCsfCJsxNnxBuuq0Z9i2gnSCgatr455aBSI9i8tkoK19Ms86AoCXDQoalTrDt3hwXY
-         edQKOS0BX+FQhPJ+mBklzXsWQm1/jb3cxaXxKxFB6OZ3kMbizjfTY7t08YialN7iWaZB
-         spDcvXPqt6N8s9z8yj/qzCnNOVS/y+JMBWYA2+XoGWAFxacEcJFazUZloDyR9yq5/GoA
-         49f2IkGjvpwJogwF3lkFyaCCryEl1W+3MMdc1LYeEJS9UySIVc/n8YwgmI1BzXIndBGw
-         d4OFHxtUKjNa8kE1pqBsMBc2jfWbPCaNyt9dCrrIbRnRps5hGgrGhn1GA64w1NuYL/vY
-         ZS7A==
+        with ESMTP id S231496AbiLPQdk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 11:33:40 -0500
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 980E4E89
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 08:33:36 -0800 (PST)
+Received: by mail-oi1-f172.google.com with SMTP id e205so2352309oif.11
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 08:33:36 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=lHeZEl4urkRUVM2RdVBA/kn/ywb3AI+XBKELaiBu0qc=;
-        b=0adPmAjn+thCPh6jvuT8iV6n8qksOopqQxpXRLXU15jctUJFl83KzAZp//8Z8YKzH4
-         7QxLjIkkd1mGa9VIYdHd8yOeQJQ7bWcjk6zllrY6UfQfIz/8CmfNVk36OB335zVzBueO
-         lNhIsA6P6yE30CVoCaMytXwPS+svvWxu3dKiRstIemW+fM+MjkwdjygqTldoGeyKV5xv
-         BieggZxEolxbnxvi4D3DL9QcUIx7sD11ghxSBCtu1OZSY/JXxqr1cfZ1wuKbXMIpXGPo
-         5nnG5tbMQ5695YMA8aQUo+JKbct6l5TCCOY2nLASccHQ0erIpKcs66ombOPsEsGaCQYi
-         0sUA==
-X-Gm-Message-State: ANoB5pkO+nN3sO08BCoXwhxqVv7VQZAK8/cASvR5ZkhjGsFx9C8w0qaq
-        0SUU5Rtsp35xUZll2FFKXua1xQ==
-X-Google-Smtp-Source: AA0mqf4izKqYro6PFUpm34vh03n5EOn7EYe4G+r+5xdAGgx0ZYapdWHCjn9GLpaZ5ybuKQdkcdMwuQ==
-X-Received: by 2002:a05:6a00:1409:b0:56c:cea7:88ef with SMTP id l9-20020a056a00140900b0056ccea788efmr39605813pfu.18.1671208325653;
-        Fri, 16 Dec 2022 08:32:05 -0800 (PST)
-Received: from localhost ([50.221.140.188])
-        by smtp.gmail.com with ESMTPSA id l187-20020a6225c4000000b0057621a437d7sm1699327pfl.116.2022.12.16.08.32.05
+        bh=WdpQJXPwUnb7fStkLNmeiXBz/MV3q7NoGJn3vpIa2Uk=;
+        b=v+x5e7AHdFEiVl4yhk9ATCMCNmO4agJVAHzTmclgkRaoDkGPNhMyyARxXH/gj6iPzo
+         6wwvCdXJoHuklsanq2JGzbZaJcSPi83poiW9qOQ0lFlJMoqugtlEMg2CEkjKj3Z3fE+p
+         eFBOO+dYYEirPzoOOnxeKkNM9ZFZXup0zP/WlorDJEEC8Dqw9YXR5lkWVX4hYiIqcFuq
+         UDbLZTlUS12zSXoCwY1acttIdSjN53WpNnFK1ialoJJ/yJO4xrLAystFhEcQ67gP/6eE
+         HLKcvDyywsyhagzMMKYL36UY/jFriEgY0DnyW1WIoJh/ZhZJsJKcXuUHwX99Tqs2e6CK
+         Tgcg==
+X-Gm-Message-State: ANoB5pn6HUify/R6qVns9rM24Zs2pvcxotJrIdye9KsKH4FmOw5H7Vq7
+        w8upCGw4jBYlCjT5cMUYYg==
+X-Google-Smtp-Source: AA0mqf4tDeiIyYogKgvG5t14pw04hopCs2LWM+XFiXAzuvkeZRnDzAD8mzS7NAAAMyY6h/jtcy/Eaw==
+X-Received: by 2002:a54:4e99:0:b0:35a:1e78:dbe5 with SMTP id c25-20020a544e99000000b0035a1e78dbe5mr14379242oiy.55.1671208415753;
+        Fri, 16 Dec 2022 08:33:35 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id n206-20020aca59d7000000b00354932bae03sm895871oib.10.2022.12.16.08.33.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Dec 2022 08:32:05 -0800 (PST)
-Date:   Fri, 16 Dec 2022 08:32:05 -0800 (PST)
-X-Google-Original-Date: Fri, 16 Dec 2022 08:31:46 PST (-0800)
-Subject:     Re: [PATCH v5 6/6] soc: renesas: Add L2 cache management for RZ/Five SoC
-In-Reply-To: <Y5wYIrMZIqu5f+WM@infradead.org>
-CC:     geert@linux-m68k.org, Christoph Hellwig <hch@infradead.org>,
-        soc@kernel.org, Conor Dooley <conor@kernel.org>,
-        prabhakar.csengg@gmail.com, Arnd Bergmann <arnd@arndb.de>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        aou@eecs.berkeley.edu, magnus.damm@gmail.com, heiko@sntech.de,
-        Conor Dooley <conor.dooley@microchip.com>, samuel@sholland.org,
-        guoren@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jszhang@kernel.org,
-        Atish Patra <atishp@rivosinc.com>, apatel@ventanamicro.com,
-        ajones@ventanamicro.com, nathan@kernel.org,
-        philipp.tomsich@vrull.eu, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, biju.das.jz@bp.renesas.com,
-        prabhakar.mahadev-lad.rj@bp.renesas.com
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     Christoph Hellwig <hch@infradead.org>
-Message-ID: <mhng-8b05b6cd-d8a1-4302-af24-2f64a4bf7c32@palmer-ri-x1c9a>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Fri, 16 Dec 2022 08:33:35 -0800 (PST)
+Received: (nullmailer pid 2862892 invoked by uid 1000);
+        Fri, 16 Dec 2022 16:33:34 -0000
+Date:   Fri, 16 Dec 2022 10:33:34 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Sameer Pujar <spujar@nvidia.com>,
+        Mohan Kumar <mkumard@nvidia.com>
+Subject: Re: [PATCH 02/11] ASoC: dt-bindings: audio-graph-port: add
+ definitions/ports
+Message-ID: <20221216163334.GB2839409-robh@kernel.org>
+References: <87v8mepyoy.wl-kuninori.morimoto.gx@renesas.com>
+ <87sfhipynv.wl-kuninori.morimoto.gx@renesas.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87sfhipynv.wl-kuninori.morimoto.gx@renesas.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Dec 2022 23:02:58 PST (-0800), Christoph Hellwig wrote:
-> On Thu, Dec 15, 2022 at 01:40:30PM -0800, Palmer Dabbelt wrote:
->> Given that we already moved the SiFive one out it seems sane to just start
->> with the rest in drivers/soc/$VENDOR.  Looks like it was Christoph's idea to
->> do the move, so I'm adding him in case he's got an opinion (and also the SOC
->> alias, as that seems generally relevant).
->
-> Well, it isn't an integral architecture feature, so it doesn't really
-> beloing into arch.  Even the irqchip and timer drivers that are more
-> less architectural are in drivers/ as they aren't really core
-> architecture code.
+On Wed, Dec 14, 2022 at 01:22:13AM +0000, Kuninori Morimoto wrote:
+> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> 
+> Audio Graph user needs "ports" not only "port".
+> This patch adds new "ports" on audio-graph-port to use it easily.
+> 
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>  .../devicetree/bindings/sound/audio-graph-port.yaml  | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+> index 56d47dcab490..273da5a76b8a 100644
+> --- a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+> +++ b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+> @@ -97,6 +97,18 @@ definitions:
+>                minimum: 1
+>                maximum: 64
+>  
+> +  ports:
+> +    $ref: "#/definitions/port-base"
+> +    unevaluatedProperties: false
+> +    patternProperties:
+> +      "^port(@[0-9a-f]+)?$":
+> +        $ref: "#/definitions/port-base"
+> +        unevaluatedProperties: false
+> +        patternProperties:
+> +          "^endpoint(@[0-9a-f]+)?":
+> +            $ref: "#/definitions/endpoint-base"
+> +            unevaluatedProperties: false
+> +
 
-That makes sense to me, it just looks like the SiFive ccache is the only 
-one that's in drivers/soc/$VENDOR, the rest are in arch.  It looks like 
-mostly older ports that have vendor-specific cache files in arch (ie, 
-arm has it but arm64 doesn't).  Maybe that's just because the newer 
-architectures sorted out standard ISA interfaces for these and thus 
-don't need the vendor-specific bits?  I think we're likely to end up 
-with quite a few of these vendor-specific cache management schemes on 
-RISC-V.
+This won't work because any user that uses 'ports' here cannot add any 
+properties to port or endpoint nodes which I thought was the point of 
+this series.
 
-I'm always happy to keep stuff out of arch/riscv, though.  So maybe we 
-just buck the trend here and stick to drivers/soc/$VENDOR like we did 
-for the first one?
+Rob
