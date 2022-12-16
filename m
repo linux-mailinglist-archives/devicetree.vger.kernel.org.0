@@ -2,106 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6449164EA20
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 12:19:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF78A64EA22
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 12:19:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229849AbiLPLTc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Dec 2022 06:19:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56084 "EHLO
+        id S230477AbiLPLTl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Dec 2022 06:19:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230159AbiLPLT1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 06:19:27 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F27711829;
-        Fri, 16 Dec 2022 03:19:26 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id h7so2159930wrs.6;
-        Fri, 16 Dec 2022 03:19:26 -0800 (PST)
+        with ESMTP id S230159AbiLPLTj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 06:19:39 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B76025FEA
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 03:19:38 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id bp15so2947808lfb.13
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 03:19:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=My8aHx62G4PVWoCSRnX4jTy0TXnCzM6wwrdyv/Uk+ro=;
-        b=CoGWAaBk3rrs7FoMpj4BRthumWNKxG7U8nWWbtuPsg3sfMIRlCqQJTAUoIKmT9slxs
-         ameuFgnccTJBYodXKtMeBKw4s+YpeCw09yTcgJcDW+8Z/OXBJApr84gNZPrLnJGWawEc
-         sclV1oAAUh7m5u0X6WTVsCMxKFvKW1Yivlgkn77yCqanvrQDn0NH+D9Sl9nj3vwFCMVR
-         SN2bbWBJBdM9OV+h0foPWfEtqx1FRddVnC/qwgTDfLbaowMBOJ0eO8djQyAqzzblCncO
-         +NiU+pHpsdhfThAIuse7xTN4kWfSISoDaQIdMC6wMjLz8C8+k8JoDc1l+jbD46iKhos6
-         0PZg==
+        bh=LMQ7FpzOBZak5beUJf6CKIqGy2hYvzKsc2zFOmDZfvI=;
+        b=VajkuKQ58L51MwGIWzeMZwYkKycZ9q0wbkB1HOl/hNWLovr27Lwx/zr4ybvlMmx8TJ
+         r3AGkzqvSPRKpIAjeq0l8ashsfg49oXwhgiIMyKL5JZnxct2+2R4Lx5iJK7g7oHvbR+g
+         8stREbOkWE/EmW7/8p/rLR8h9fXX9lCcWF6w1/altSMURpQvN5fedvRZ9fAiC7D6SZzN
+         wxghaIQkrOtU7qVoIHBZi0TBjnPGOFARn+BOMkZUSPrOTTHPZo1ijgpUKTZXwuVPBc0k
+         pDbaiCKRDxWMKNRdUjKVdQegrIQGE+Trcij+1COkAukUJxXs0yPUbU2Ovt1Ro53kdDb3
+         Bl3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=My8aHx62G4PVWoCSRnX4jTy0TXnCzM6wwrdyv/Uk+ro=;
-        b=y/aWdkF//c9L2oWdL3VTiyPQlPKR1vRCGvK1xliz98AoRAYlPaOGQQuHBHkhHzJbLp
-         sFl9toDSyB3nKbUjwUsHnRSFBJ8kV02GOVWbQEXft1ueepKD9/c6jsdbUAJ7goPp8oB4
-         OjaiKG3DLbpMmH12O/aqp2EClFh1xGlACN8kiy61AhLFBSvDMTqKtAQdDjw9y/uheuBd
-         jJTkjpWPWwEbnbuaDQkn8Poa60kEUyb0QMLM+mxxmRJA4nyuL85lOLuHO5+OT52QIDz+
-         etl3pi5Oe13TUZJt8rQ2O7JOR0y/pva0Hf2clzUYvwnUX4tBDrnS9GO60dOJFdk3GH9d
-         e+Ag==
-X-Gm-Message-State: ANoB5pntsWWUM1+RSvroMuDZ1p3G+biw3QzZKNSjg5rSZJvMhqJohTI5
-        +HRqEEAemLwNpZPMRwrb54A=
-X-Google-Smtp-Source: AA0mqf6FKkSeIrjm/bY5RymEDP7r7g2Cp/xUOFjN0g7joFhg3HnQcgDfVnSp98htIaDAF9Gt9VZ/jw==
-X-Received: by 2002:adf:ea8f:0:b0:242:70f1:2134 with SMTP id s15-20020adfea8f000000b0024270f12134mr28573974wrm.60.1671189566058;
-        Fri, 16 Dec 2022 03:19:26 -0800 (PST)
-Received: from [192.168.1.132] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id d7-20020a5d5387000000b00241e4bff85asm1965790wrv.100.2022.12.16.03.19.24
+        bh=LMQ7FpzOBZak5beUJf6CKIqGy2hYvzKsc2zFOmDZfvI=;
+        b=36lAVnUeDImGwcPphAQpOzpDF8XJ3+WXFCVtSZyB3nEW2zfgn2FaX/6fKXuZHJJxEA
+         dnmAq6wKkq+evnzWAT/Th5Q1i9IBfJpMRtGwF6MiOnHxOyZZ71s+o+HMAyBGNpfRpihV
+         RxC+BPjtzfl/AZu+lpgLXjoqbAQhc25LubZIu5hS0bvQ17eK1I/sFVYMtvnU7/Gw2Up4
+         4hJgzRFY3lY1U3S3MmZHzojRSRlT+XwZXt9UcvLmnQMZAYMI5V1qztBaOOvzUsghyOSU
+         8NXNCI1TYKlRmzzollvKq3UWRdhJy7KijFqVgB4m4XRV/jc0pzKXYfNOBLJoyi26RItZ
+         xC6Q==
+X-Gm-Message-State: ANoB5pn9ZSrH/vVvHSzNeKpkIdy4g50ksAW/ZFfPRe16WyeuvACiR/Ej
+        2Kk3HS893R4xXR8q8klI9tWoAA==
+X-Google-Smtp-Source: AA0mqf6E6R7NQ3gUyV3W6qibunKn/6TjbRWAoTtVX70oaOyFl1rGOA7DpTMXfyBr3vwnp2Szdebr7A==
+X-Received: by 2002:ac2:4f0a:0:b0:4ac:ec52:e063 with SMTP id k10-20020ac24f0a000000b004acec52e063mr8769192lfr.29.1671189577159;
+        Fri, 16 Dec 2022 03:19:37 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id k11-20020ac257cb000000b004b55da01d3csm190489lfo.191.2022.12.16.03.19.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Dec 2022 03:19:25 -0800 (PST)
-Message-ID: <3c2eacc7-79d3-b961-a472-34938f1d88db@gmail.com>
-Date:   Fri, 16 Dec 2022 12:19:24 +0100
+        Fri, 16 Dec 2022 03:19:36 -0800 (PST)
+Message-ID: <332ccb85-fb71-cf4e-0516-50b30420c49a@linaro.org>
+Date:   Fri, 16 Dec 2022 12:19:35 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH v5 2/7] dt-bindings: irq: mtk, sysirq: add support for
- mt8365
+Subject: Re: [PATCH v2 7/9] net: stmmac: Add glue layer for StarFive JH71x0
+ SoCs
 Content-Language: en-US
-To:     =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        angelogioacchino.delregno@collabora.com, khilman@baylibre.com
-References: <20221213234346.2868828-1-bero@baylibre.com>
- <20221213234346.2868828-3-bero@baylibre.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20221213234346.2868828-3-bero@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To:     Yanhong Wang <yanhong.wang@starfivetech.com>,
+        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>
+References: <20221216070632.11444-1-yanhong.wang@starfivetech.com>
+ <20221216070632.11444-8-yanhong.wang@starfivetech.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221216070632.11444-8-yanhong.wang@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 14/12/2022 00:43, Bernhard Rosenkränzer wrote:
-> Add binding documentation of mediatek,sysirq for mt8365 SoC.
+On 16/12/2022 08:06, Yanhong Wang wrote:
+> This adds StarFive dwmac driver support on the StarFive JH71x0 SoCs.
 > 
-> Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
+> Co-developed-by: Emil Renner Berthing <kernel@esmil.dk>
+> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
 
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
 
-> ---
->   .../devicetree/bindings/interrupt-controller/mediatek,sysirq.txt | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/mediatek,sysirq.txt b/Documentation/devicetree/bindings/interrupt-controller/mediatek,sysirq.txt
-> index 84ced3f4179b9..3ffc60184e445 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/mediatek,sysirq.txt
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/mediatek,sysirq.txt
-> @@ -25,6 +25,7 @@ Required properties:
->   	"mediatek,mt6577-sysirq": for MT6577
->   	"mediatek,mt2712-sysirq", "mediatek,mt6577-sysirq": for MT2712
->   	"mediatek,mt2701-sysirq", "mediatek,mt6577-sysirq": for MT2701
-> +	"mediatek,mt8365-sysirq", "mediatek,mt6577-sysirq": for MT8365
->   - interrupt-controller : Identifies the node as an interrupt controller
->   - #interrupt-cells : Use the same format as specified by GIC in arm,gic.txt.
->   - reg: Physical base address of the intpol registers and length of memory
+> +
+> +static const struct of_device_id starfive_eth_plat_match[] = {
+> +	{
+> +		.compatible = "starfive,jh7110-dwmac"
+> +	},
+> +	{
+> +		.compatible = "starfive,jh7100-dwmac",
+
+NAK.
+
+This wasn't even checked with checkpatch.
+
+Best regards,
+Krzysztof
+
