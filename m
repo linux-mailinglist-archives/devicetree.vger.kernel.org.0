@@ -2,169 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C229864ECD3
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 15:24:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5209C64ECD7
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 15:25:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230471AbiLPOYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Dec 2022 09:24:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49960 "EHLO
+        id S230251AbiLPOZb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Dec 2022 09:25:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229981AbiLPOYN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 09:24:13 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE3842791C;
-        Fri, 16 Dec 2022 06:24:12 -0800 (PST)
-Received: from mercury (dyndsl-095-033-168-084.ewe-ip-backbone.de [95.33.168.84])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 103CB6602C94;
-        Fri, 16 Dec 2022 14:24:11 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1671200651;
-        bh=LtJZ4czImxmXP/h4E3UX97GAfHCyiEEMsAw12q2feGU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PsVLpLzDkm0EnUor/IiRGr1Xo4AiJzn2gc0llL+ondxkccWA3BcVIwhIrvdZER2FH
-         IUwq+kHGlviR7VVULhyzQ2qM9JAYk7TAt7Me7oRBhMhNVe3MBdvQsoUf62jNvgZmpa
-         3whtJGD8kpaJ5WC5uqdqaeZfTcHua6sPJXHUQUNMdpF4Yg7Q3Yv76JzFm81s9cfqkg
-         SNQNK4cMWUKzIMYbeqZa2AOBjuYTsocRqfeIo0LUlrzxNmeGXqDZOYA6QUoVTHlE5B
-         yOz9rJiq090XHMpRok68bu+8gGa9PWXh96E9m8zDgNuogYfksSXyvqWvVL78aRHfN0
-         AdGtXvJg3ezMg==
-Received: by mercury (Postfix, from userid 1000)
-        id A133A1060F45; Fri, 16 Dec 2022 15:24:08 +0100 (CET)
-Date:   Fri, 16 Dec 2022 15:24:08 +0100
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Marek Vasut <marex@denx.de>
-Cc:     devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-rtc@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] dt-bindings: rtc: m41t80: Mark the clock: subnode
- as deprecated
-Message-ID: <20221216142408.6x3e5dhtdvgiewtb@mercury.elektranox.org>
-References: <20221211205124.23823-1-marex@denx.de>
- <20221211205124.23823-2-marex@denx.de>
- <20221215180659.sa54lkinwxoiz7bb@mercury.elektranox.org>
- <d9910a7a-9997-c157-9a71-8ef7ee34be25@denx.de>
+        with ESMTP id S229981AbiLPOZa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 09:25:30 -0500
+Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96DE01402D;
+        Fri, 16 Dec 2022 06:25:29 -0800 (PST)
+Received: by mail-io1-xd33.google.com with SMTP id y4so1331058iof.0;
+        Fri, 16 Dec 2022 06:25:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ur+Q94W+tlLvcOe4ht4yOK0w75RNLrh3v8/58jGnyVs=;
+        b=l8XJEbOyRSCwIEQM31P6iLpIZxA6v71R/BMtlVq6CRFC+LTBG23nspEIf72pcMxiol
+         OhSGPHkJqTw1d+8uLRvv0vmXyvh32qRKegtsKctjbAXqtoNAJnrKakCf3lo0epaet1xz
+         dRTsuKoEEAhhAcWS4uJq59f+g8s5V9BoZnq3WH13jUTafN8Ubk+vPNpnXPVh6Wh/ONPa
+         IEp6cQNjNhJ2lhGlh9GQ6xkx3+7gQ9juT5SgqlNW4zijcfV5TlWWJgssSYYQatHXgFhZ
+         R546UPf7Pf7Eejx6P113C/tneRVjpgVHcj9JQ/bndxBWgnEc7LU9jXmUZQ4+4SGQkUii
+         E+qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ur+Q94W+tlLvcOe4ht4yOK0w75RNLrh3v8/58jGnyVs=;
+        b=bwUm2YYys55NPUWUxZm9hsBPnwNYa7Q9Fml3rSTFD8FYHO6oGm6arY6rHrMowaqi1P
+         0Xj0nG02O+rysCWyupepLPvxLgHkAGaqK8pzmgkyePuULUhL8kMtuAeUMsGsLHg5jCAc
+         p5cz5UZH13ZFTXVAi2+fzvO6sTUUTizHaDvVTVBvBa90GzJs5vS0fa5NsMqLVtz32KDX
+         cX0TB1zxAUL+kx64iCnDVuOX8wtMeUKVUismieRVSSzdlg+lU6kI/aODr1MdJY6Onk8Y
+         uroQtPi1Ket6g5OMlD7rHzI0YUc2ocVjjE0n9grWkEETaWAk0QIx9KFVS1GlrSN2XG1y
+         3swg==
+X-Gm-Message-State: ANoB5pmUyEktfm6uMuDFqkHB4XKpaOU3L8McXv9Hmi48K4Ov9Xk1L5UT
+        jrVW197f3kAmBF1c/xd17YPcbarxHpyZoufO/S8=
+X-Google-Smtp-Source: AA0mqf7aNeS1+ly25P/SG8wXsV+a2d7JwnPtwKx+uPm+IxqCX8Nh0RJG+ZY2r/HqsmKpHHYpclyDOWku4O+eekL8G2s=
+X-Received: by 2002:a05:6602:42c2:b0:6e0:117f:f0a7 with SMTP id
+ ce2-20020a05660242c200b006e0117ff0a7mr8609833iob.127.1671200728384; Fri, 16
+ Dec 2022 06:25:28 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="uzdt6lhrhdu6hrgi"
-Content-Disposition: inline
-In-Reply-To: <d9910a7a-9997-c157-9a71-8ef7ee34be25@denx.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20221216134409.6868-1-j-luthra@ti.com> <20221216134409.6868-2-j-luthra@ti.com>
+ <Y5x5UbtLFDpFIoEp@paasikivi.fi.intel.com>
+In-Reply-To: <Y5x5UbtLFDpFIoEp@paasikivi.fi.intel.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Fri, 16 Dec 2022 08:25:17 -0600
+Message-ID: <CAHCN7xK370ddjYjd1nMnb2rSOVvKOr7HTq+D-pAea4bVj_RqBw@mail.gmail.com>
+Subject: Re: [PATCH 1/3] media: ov5640: Handle delays when no reset_gpio set
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Jai Luthra <j-luthra@ti.com>,
+        Steve Longerbeam <slongerbeam@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Dec 16, 2022 at 8:09 AM Sakari Ailus
+<sakari.ailus@linux.intel.com> wrote:
+>
+> Hi Jai,
+>
+> Thanks for the set.
+>
+> On Fri, Dec 16, 2022 at 07:14:07PM +0530, Jai Luthra wrote:
+> > Some module manufacturers [1][2] don't expose the RESETB gpio of the
+> > sensor directly through the 15-pin FFC connector. Instead wiring ~PWDN
+> > as a proxy reset with appropriate delays.
+> >
+> > In such cases, reset_gpio will not be available to the driver, but it
+> > will still be toggled when the sensor is powered on, and thus we should
+> > still honor the wait time of >= 5ms + 1ms + 20ms (see figure 2-3 in [3])
+> > before attempting any i/o operations over SCCB.
+> >
+> > [1] https://digilent.com/reference/_media/reference/add-ons/pcam-5c/pcam_5c_sch.pdf
+> > [2] https://www.alinx.com/public/upload/file/AN5641_User_Manual.pdf
+> > [3] https://cdn.sparkfun.com/datasheets/Sensors/LightImaging/OV5640_datasheet.pdf
+> >
+> > Fixes: 19a81c1426c1 ("[media] add Omnivision OV5640 sensor driver")
+> > Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> > ---
+> >  drivers/media/i2c/ov5640.c | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/drivers/media/i2c/ov5640.c b/drivers/media/i2c/ov5640.c
+> > index e0f908af581b..4bb7bf557cfa 100644
+> > --- a/drivers/media/i2c/ov5640.c
+> > +++ b/drivers/media/i2c/ov5640.c
+> > @@ -2466,6 +2466,7 @@ static int ov5640_set_power_on(struct ov5640_dev *sensor)
+> >
+> >       ov5640_reset(sensor);
+> >       ov5640_power(sensor, true);
+> > +     usleep_range(26000, 30000);
+>
+> I think you should only do this if you don't have RESETB pin.
+>
+> I'm not sure how to best describe this in DT. It's not the same as if you
+> didn't have RESETB GPIO.
 
---uzdt6lhrhdu6hrgi
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
+ Can that function check if (!sensor->reset_gpio) and do the delay
+only if reset_gpio is not present?
 
-On Thu, Dec 15, 2022 at 08:39:47PM +0100, Marek Vasut wrote:
-> On 12/15/22 19:06, Sebastian Reichel wrote:
-> > On Sun, Dec 11, 2022 at 09:51:24PM +0100, Marek Vasut wrote:
-> > > The clock {} subnode seems like it is describing an always-on clock
-> > > generated by the PMIC. This should rather be modeled by consumer of
-> > > the clock taking phandle to the RTC node itself, since it already
-> > > does have clock-cells and all. Since there are no users of the clock
-> > > subnode in tree anyway, mark it as deprecated to avoid proliferation
-> > > of this approach.
-> > >=20
-> > > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > Signed-off-by: Marek Vasut <marex@denx.de>
-> > > ---
-> > > Cc: Alessandro Zummo <a.zummo@towertech.it>
-> > > Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> > > Cc: linux-rtc@vger.kernel.org
-> > > To: devicetree@vger.kernel.org
-> > > ---
-> > > V2: - Add AB from Krzysztof
-> > > V3: - No change
-> > > ---
-> >=20
-> > I just noticed this by accident. Basically everything in the patch
-> > description is wrong:
-> >=20
-> > 1. There is a in-tree user: arch/arm/boot/dts/imx6dl-qmx6.dtsi
->=20
-> Sorry, I missed this one.
->=20
-> > 2. The PMIC has nothing to do with this
->=20
-> In [3] the commit message claims the PMIC supplies 32kHz clock to i.MX6 C=
-KIL,
-> which per IMX6DQRM rev.6 Table 18-3 row SNVS indirectly supplies SNVS RTC.
-> This reminded me of commit:
+adam
 
-The word PMIC is not mentioned once in [3]. PMIC is not involved.
-The QMX6 32khz chain is like this:
 
-32kHz crystal -> m41t62 crystal input
-m41t62 clock output -> i.MX6 CKIL
-
-> 9509593f327ac ("arm64: dts: imx8mm: Model PMIC to SNVS RTC clock path on
-> Data Modul i.MX8M Mini eDM SBC")
->=20
-> which solves exactly the same problem, system hangs when 32 kHz clock are
-> stopped, except this time on i.MX8MM, clock are generated by PMIC on I2C
-> (notice how the PMIC is referenced directly) and the clock are supplied to
-> the SVNS RTC XTal terminals.
->=20
-> I wonder if this could be reused on the QMX6 board too?
-
-IIRC On i.MX6 referencing the I2C connected RTC results in boot
-hanging forever when trying to get the ckil clock in
-imx6q_clocks_init. At least it used to be the case when I was
-working on this - I no longer have access to the boards. Of course
-properly referencing the RTC clock was the first route I tried.
-
--- Sebastian
-
-> > 3. Directly referencing the RTC does not work, since that introduces
-> >     an unsolvable dependency loop on QMX6. This was the solution accept=
-ed
-> >     by Rob and Saravana:
-> >=20
-> > [v1] https://lore.kernel.org/lkml/20210222171247.97609-1-sebastian.reic=
-hel@collabora.com/
-> > [v2] https://lore.kernel.org/all/20210428222953.235280-1-sebastian.reic=
-hel@collabora.com/
->=20
-> [3] https://lore.kernel.org/linux-clk/20191108170135.9053-1-sebastian.rei=
-chel@collabora.com/
-
---uzdt6lhrhdu6hrgi
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmOcf4AACgkQ2O7X88g7
-+pqhbA/+NOluT+IynI3BsvULI8qqwJEiv41CxX6GmixgoiMo0fYimdb7Nyft1m9/
-LM0xhy3mvqLNy19hwLMybOgY9RVZAS7wPKZcFAvynvI6RiHIUrhFREf5DFWuGr5y
-iQTeKcdqQl+nDECZ62UB2qGaUr6m0/DBVTH2oxzXRMd+rFYqnC4mtJhlY0LZai4L
-FSEAKSJHuYNMOIlNBLXrbuov7v4KKVsMpEuGzmMWR2BiowBbScLTCE/KyJgF1ixY
-l30r0kn/fY4btu1PTdR2cSS4uI8xjK5em5QmGoCVd/FIkboj/dSQ2hC0Ds7WTVlp
-ysppCHqGc4cdCfaPOuJG/ShxKusVa9audSMM9+k3lOXejsq/vUFJwEBB9Qa+cctp
-EwGMlv3eyujTHXM3eFlV9WtbMeqYYZGIPXuLrtq5mc4D3SUTQbRSaE25bzSZlaM8
-DIkumotCpMqBXjzCdbT8pf/xY2L92eHQzImVTdW8SNlsEUliy9ZFanoxP7sqs2KX
-Zj23qPfETNr2tE+514cBsUR4ODmWCpjrqzw37aTCaQ9FZ+cuCDI2UTclRb6V3dK4
-apu3MwIaLi63ovKwzNb6JB0P+Q110MgTNzJ4qXifJNgAi8DnYQzAqoYX74jIT+5n
-qCqZhdKA8ZHszKZDc96tCj3CqJx1BE3QCyCM1GZYpyLzWNJiL90=
-=DPm4
------END PGP SIGNATURE-----
-
---uzdt6lhrhdu6hrgi--
+>
+> Cc the devicetree list and Krzysztof.
+>
+> >
+> >       ret = ov5640_init_slave_id(sensor);
+> >       if (ret)
+>
+> --
+> Kind regards,
+>
+> Sakari Ailus
