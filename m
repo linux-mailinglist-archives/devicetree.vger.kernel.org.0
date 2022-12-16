@@ -2,383 +2,792 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F5DD64EAA7
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 12:32:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1F7564EAB4
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 12:37:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230288AbiLPLcZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Dec 2022 06:32:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39658 "EHLO
+        id S229798AbiLPLh0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Dec 2022 06:37:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231387AbiLPLcW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 06:32:22 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FF94C61
-        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 03:32:21 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id m29so2815719lfo.11
-        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 03:32:21 -0800 (PST)
+        with ESMTP id S229614AbiLPLhZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 06:37:25 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89023205F8
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 03:37:23 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id 1so3067172lfz.4
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 03:37:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=dAx/1r3Bgtwb5gejIiLMQD2z5RpFJAB22ApCDcu9cys=;
-        b=W1KEfyCP1EPfqe+EFNlDgY5uuLVCqJqF03dWExRdMCHQMkE620y1TrUDuyeEdg7zUn
-         he3UdSCXrYIQEAWmuOhh49saZvkmtFB1Xqt6PhZVezQ+vtdxBgWZ/kXCUeYULPklY0L7
-         DPOjHIrcWJMpNb3Hwv8Yh03PYGIV9yPmbf2dRUc+Wh75AFVgF4vURfQOl3XjGvArm9nJ
-         lXoTdoXgvIom2IPMjZ7f2lO8AtGsLPwvn1iAW/H0ExJSiEswKHUILoUFFKVfJNvEWDfH
-         uznUELjCuBDB4D4viwgTqsEc5yVKqyr2xk+hDkNHGAp7ZRHTMxpKjR+coH2yH/r2BD08
-         I7/A==
+        bh=ZXszA4OFpcwAhlyt2xV5YSpA6aZR2UWRYy/vdeg5B7c=;
+        b=Qek63te88ylO+WktUPr0BXNjY3yrHtyDOGndoXssqKnuJJNRvG1wgnXqtgX8gYIaHx
+         osggyeCw5Gkm/lJbJBvZbwZnCiN4HGhdDahkApDxdSm5SOgjqmK127dJFfhrSNacX9Wh
+         DGviTdf8ljG7YnBUBrOo8f0xBi5cClvFJ8KJd2prdKHaxp73WqScwBQyFhWziElYA04h
+         Bf8Gn/V8krkOye2my3Ufg6FXPZ8y/j/pJFAGfBqJnRyPJrKIUaTbJgYIJh0/7oZ0NBMp
+         qjmTTRISmdF2Ljtv645SXUS1nRr3wXTf2U1c2xJqwECYIgdBD7/MFm5q9c20EN3n6LYg
+         wZgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dAx/1r3Bgtwb5gejIiLMQD2z5RpFJAB22ApCDcu9cys=;
-        b=5ioSOAlyJM44h0AB9xAalC36E0+GNNvMLLXdnr/z/s+wD8tgSiOkeQ/c2GuF9WQVCA
-         IF9tmz/uTRJo+VKMoPlE9B0gz6Yrd0ITvh5vhYtEtla6jKLBozI+75q2UjT3afLaNDes
-         p1q5KfFgvf6rjFAa/E24eb7677DHFlMNjW2dHI/xAKfztE3ilHKAShE6rr6mgO1D1GYH
-         09238ulZ16bq+6NqVzb2HWPYQb+CdA8ERaGwlIh/2Gaq45Bj2Mk3UdkvEvTC/hMsSk46
-         eLrvrClhZwS5odXwKk4A5DDB/fKtgBRxpALx76e8RpCsbriQJZbXSQpxCDrGJx9gtHis
-         hplQ==
-X-Gm-Message-State: ANoB5plyMdRjH9Ay7VUjLyjpi6lmgW1e97nauzRUlPl4tCEtWempaPfo
-        wyPdj1OE0rgIvR7zG1erXEiPqA==
-X-Google-Smtp-Source: AA0mqf4ZhjmOvV5922vukAGUOlFpL4ayukZvFPADDzt+0ywiaB2yUSwWv14YnGU6D0lvb15/zE87vg==
-X-Received: by 2002:ac2:4f8d:0:b0:4a4:68b9:19f1 with SMTP id z13-20020ac24f8d000000b004a468b919f1mr8730959lfs.25.1671190339565;
-        Fri, 16 Dec 2022 03:32:19 -0800 (PST)
-Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id w1-20020a05651234c100b004b5b4126237sm198535lfr.67.2022.12.16.03.32.18
+        bh=ZXszA4OFpcwAhlyt2xV5YSpA6aZR2UWRYy/vdeg5B7c=;
+        b=2B35cbfXGW6BupU7lONc48O5347UcX2kb1D70EGnW6tP82S/u7TyTslaYa6hTG/Mke
+         RwSNyN4poWbhiltDZxl1NTinsithgQCXX5CA+ZbCuWDDc9yMmrQUH5RwlRAdd0DtUwHw
+         ZXAxwZVjwW4gcJpW4aLXV5MATMR6LDzNuD/uiJ17YpmnuVH8mzT5tnIwmMMqEB+gWAXg
+         MikZQT8EkOZWwGARVBJtM2zn+px+YvwdoHaqZgENuSW093+kHl5Hik1rbKpLjohx7iER
+         6mVu/VvFZVsxLzhPbQfb7ng4oohGN+gmjstBeUgFVwz7KKCPdzFA40I9J0OB1C4qlb0c
+         nrWA==
+X-Gm-Message-State: AFqh2kr2c+lzOlFj0NZrAVybFwI8rWyw5DrHj95okZ/V6uwcp6mJD/f8
+        Zyf/Qk1eYJPKJziMvF5/UesWqw==
+X-Google-Smtp-Source: AMrXdXtxmAFIWuAuulb/4gdzIiyMc7lp5kJbLChFF0si/q1wCQmJqYqPsJdjBkrkuW9zKw9OvYay3g==
+X-Received: by 2002:ac2:43b3:0:b0:4bb:a49c:2f0c with SMTP id t19-20020ac243b3000000b004bba49c2f0cmr1940747lfl.25.1671190641872;
+        Fri, 16 Dec 2022 03:37:21 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id h6-20020a19ca46000000b00496d3e6b131sm195907lfj.234.2022.12.16.03.37.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Dec 2022 03:32:19 -0800 (PST)
-Message-ID: <afcb9378-f331-df8c-ced5-1c10999f5fb8@linaro.org>
-Date:   Fri, 16 Dec 2022 12:32:17 +0100
+        Fri, 16 Dec 2022 03:37:21 -0800 (PST)
+Message-ID: <df74eac8-1f9c-d0b8-f4fc-29f54d72c947@linaro.org>
+Date:   Fri, 16 Dec 2022 12:37:20 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: sm6125: Initial support for
- xiaomi-laurel-sprout
+ Thunderbird/102.5.1
+Subject: Re: [PATCH 2/2] arm64: dts: imx: Introduce imx8mp-beacon-kit
 Content-Language: en-US
-To:     Lux Aliaga <they@mint.lgbt>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Adam Ford <aford173@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kees Cook <keescook@chromium.org>,
-        Tony Luck <tony.luck@intel.com>,
-        "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-References: <20221215190404.398788-1-they@mint.lgbt>
- <20221215190404.398788-4-they@mint.lgbt>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221215190404.398788-4-they@mint.lgbt>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221215233719.404581-1-aford173@gmail.com>
+ <20221215233719.404581-2-aford173@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221215233719.404581-2-aford173@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 15.12.2022 20:04, Lux Aliaga wrote:
-> Adds support for the Xiaomi Mi A3 (xiaomi-laurel-sprout). Here's a
-> summary on what's working.
+On 16/12/2022 00:37, Adam Ford wrote:
+> Beacon Embedded has an i.MX8M Plus development kit which consists
+> of a SOM + baseboard.  The SOM includes Bluetooth, WiFi, QSPI, eMMC,
+> and one Ethernet PHY. The baseboard includes audio, HDMI, USB-C Dual
+> Role port, USB Hub with five ports, a PCIe slot, and a second Ethernet
+> PHY.
 > 
-> - dmesg output to bootloader preconfigured display
-> - USB
-> - UFS
-> - SMD RPM regulators
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 > 
-> Signed-off-by: Lux Aliaga <they@mint.lgbt>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->  .../dts/qcom/sm6125-xiaomi-laurel-sprout.dts  | 254 ++++++++++++++++++
->  2 files changed, 255 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 3e79496292e7..2b2a0170db14 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -157,6 +157,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-samsung-w737.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm4250-oneplus-billie2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-sony-xperia-seine-pdx201.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-xiaomi-laurel-sprout.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm6350-sony-xperia-lena-pdx213.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm6375-sony-xperia-murray-pdx225.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm7225-fairphone-fp4.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
 > new file mode 100644
-> index 000000000000..86e1ec47bf5e
+> index 000000000000..80131cf318ea
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
-> @@ -0,0 +1,254 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
+> @@ -0,0 +1,576 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 > +/*
-> + * Copyright (c) 2022, Lux Aliaga <they@mint.lgbt>
+> + * Copyright 2022 Logic PD, Inc dba Beacon EmbeddedWorks
 > + */
 > +
 > +/dts-v1/;
 > +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/input/gpio-keys.h>
-> +#include "sm6125.dtsi"
+> +#include <dt-bindings/usb/pd.h>
+> +#include <dt-bindings/phy/phy-imx8-pcie.h>
+> +#include "imx8mp.dtsi"
+> +#include "imx8mp-beacon-som.dtsi"
 > +
 > +/ {
-> +	model = "Xiaomi Mi A3";
-> +	compatible = "xiaomi,laurel-sprout", "qcom,sm6125";
-> +	chassis-type = "handset";
+> +	model = "Beacon EmbeddedWorks i.MX8MPlus Development kit";
+> +	compatible = "beacon,imx8mp-beacon-kit", "fsl,imx8mp";
 > +
-> +	/* required for bootloader to select correct board */
-> +	qcom,msm-id = <394 0>; /* sm6125 v0 */
-Unless you have a prototype device, this is not correct.
-
-Please run `cat /sys/bus/soc/devices/soc0/revision` and confirm
-which revision is used on your phone.
-> +	qcom,board-id = <11 0>;
+> +	aliases {
+> +		ethernet0 = &eqos;
+> +		ethernet1 = &fec;
+> +	};
 > +
 > +	chosen {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
+> +		stdout-path = &uart2;
+> +	};
 > +
-> +		framebuffer0: framebuffer@5c000000 {
-> +			compatible = "simple-framebuffer";
-> +			reg = <0 0x5c000000 0 (1560 * 720 * 4)>;
-> +			width = <720>;
-> +			height = <1560>;
-> +			stride = <(720 * 4)>;
-> +			format = "a8r8g8b8";
+> +	connector {
+> +		compatible = "usb-c-connector";
+> +		label = "USB-C";
+> +		data-role = "dual";
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			port@0 {
+> +				reg = <0>;
+> +				hs_ep: endpoint {
+> +					remote-endpoint = <&usb3_hs_ep>;
+> +				};
+> +			};
+> +			port@1 {
+> +				reg = <1>;
+> +				ss_ep: endpoint {
+> +					remote-endpoint = <&hd3ss3220_in_ep>;
+> +				};
+> +			};
 > +		};
 > +	};
 > +
-> +	extcon_usb: usb-id {
-'r' < 'u', usb-id should go after reserved-memory.
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +		autorepeat;
+> +
+> +		btn0 {
 
-> +		compatible = "linux,extcon-usb-gpio";
-> +		id-gpio = <&tlmm 102 GPIO_ACTIVE_HIGH>;
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +
-> +		debug_mem: memory@ffb00000 {
-Memory node names should be more specific, for example
-debug@ instead of memory@.
+Does not look like you tested the bindings. Please run `make
+dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
 
-Konrad
-> +			reg = <0x0 0xffb00000 0x0 0xc0000>;
-> +			no-map;
+> +			label = "btn0";
+> +			linux,code = <BTN_0>;
+> +			gpios = <&pca6416_1 12 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> +			wakeup-source;
 > +		};
 > +
-> +		last_log_mem: memory@ffbc0000 {
-> +			reg = <0x0 0xffbc0000 0x0 0x80000>;
-> +			no-map;
+> +		btn1 {
+> +			label = "btn1";
+> +			linux,code = <BTN_1>;
+> +			gpios = <&pca6416_1 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> +			wakeup-source;
 > +		};
 > +
-> +		pstore_mem: ramoops@ffc00000 {
-> +			compatible = "ramoops";
-> +			reg = <0x0 0xffc40000 0x0 0xc0000>;
-> +			record-size = <0x1000>;
-> +			console-size = <0x40000>;
-> +			msg-size = <0x20000 0x20000>;
+> +		btn2 {
+> +			label = "btn2";
+> +			linux,code = <BTN_2>;
+> +			gpios = <&pca6416_1 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> +			wakeup-source;
 > +		};
 > +
-> +		cmdline_mem: memory@ffd00000 {
-> +			reg = <0x0 0xffd40000 0x0 0x1000>;
-> +			no-map;
+> +		btn3 {
+> +			label = "btn3";
+> +			linux,code = <BTN_3>;
+> +			gpios = <&pca6416_1 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> +			wakeup-source;
+> +		};
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		led0 {
+
+I think preferred is led-0
+
+> +			label = "gen_led0";
+> +			gpios = <&pca6416_1 4 GPIO_ACTIVE_HIGH>;
+> +			default-state = "off";
+> +		};
+> +
+> +		led1 {
+
+led-1
+
+> +			label = "gen_led1";
+> +			gpios = <&pca6416_1 5 GPIO_ACTIVE_HIGH>;
+> +			default-state = "off";
+> +		};
+> +
+> +		led2 {
+> +			label = "gen_led2";
+> +			gpios = <&pca6416_1 6 GPIO_ACTIVE_HIGH>;
+> +			default-state = "off";
+> +		};
+> +
+> +		led3 {
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&pinctrl_led3>;
+> +			label = "heartbeat";
+> +			gpios = <&gpio4 28 GPIO_ACTIVE_HIGH>;
+> +			linux,default-trigger = "heartbeat";
+> +		};
+> +	};
+> +
+> +	pcie0_refclk: pcie0-refclk {
+> +		compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <100000000>;
+> +	};
+> +
+> +	reg_usdhc2_vmmc: regulator-usdhc2 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VSD_3V3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +		startup-delay-us = <100>;
+> +		off-on-delay-us = <20000>;
+> +	};
+> +
+> +	reg_usb1_host_vbus: regulator-usb1-vbus {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "usb1_host_vbus";
+> +		regulator-max-microvolt = <5000000>;
+> +		regulator-min-microvolt = <5000000>;
+> +		gpio = <&pca6416_1 0 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +	};
+> +};
+> +
+> +&ecspi2 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	fsl,spi-num-chipselects = <1>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_ecspi2>;
+> +	cs-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
+> +	status = "okay";
+> +
+> +	tpm: tpm_tis@0 {
+
+Node names should be generic. No underscores in node name.
+
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_tpm>;
+> +		compatible = "infineon,slb9670";
+> +		reg = <0>;
+
+compatible is the first propert, reg is second.
+
+> +		reset-gpios = <&gpio4 0 GPIO_ACTIVE_LOW>;
+> +		spi-max-frequency = <18500000>;
+> +	};
+> +};
+> +
+> +&fec {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_fec>;
+> +	phy-mode = "rgmii-id";
+> +	phy-handle = <&ethphy1>;
+> +	phy-reset-gpios = <&gpio4 18 GPIO_ACTIVE_LOW>;
+> +	phy-reset-post-delay = <150>;
+> +	phy-reset-duration = <10>;
+> +	fsl,magic-packet;
+> +	status = "okay";
+> +
+> +	mdio {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		ethphy1: ethernet1-phy@3 {
+> +			compatible = "ethernet-phy-ieee802.3-c22";
+> +			reg = <3>;
 > +		};
 > +	};
 > +};
 > +
-> +
-> +&hsusb_phy1 {
+> +&flexcan1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_flexcan1>;
 > +	status = "okay";
 > +};
 > +
-> +&rpm_requests {
-> +	regulators-0 {
-> +		compatible = "qcom,rpm-pm6125-regulators";
 > +
-> +		vreg_s6a: s6 {
-> +			regulator-min-microvolt = <936000>;
-> +			regulator-max-microvolt = <1422000>;
-> +		};
+> +&i2c2 {
+> +	clock-frequency = <384000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2c2>;
+> +	status = "okay";
 > +
-> +		vreg_l1a: l1 {
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1256000>;
-> +		};
+> +	pca6416_3: gpio-i2c2@20 {
+
+Node names should be generic, so i2c
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +		compatible = "nxp,pcal6416";
+> +		reg = <0x20>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		interrupt-parent = <&gpio4>;
+> +		interrupts = <27 IRQ_TYPE_EDGE_FALLING>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <2>;
+> +	};
+> +};
 > +
-> +		vreg_l2a: l2 {
-> +			regulator-min-microvolt = <1000000>;
-> +			regulator-max-microvolt = <1056000>;
-> +		};
+> +&i2c3 {
+> +	/* Connected to USB Hub */
+> +	ptn5110: tcpc@52 {
+
+What is a tcpc?
+
+> +		compatible = "nxp,ptn5110";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_typec>;
+> +		reg = <0x52>;
+
+Order of your properties is quite random...
+
+> +		interrupt-parent = <&gpio4>;
+> +		interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
 > +
-> +		vreg_l3a: l3 {
-> +			regulator-min-microvolt = <1000000>;
-> +			regulator-max-microvolt = <1064000>;
-> +		};
-> +
-> +		vreg_l4a: l4 {
-> +			regulator-min-microvolt = <872000>;
-> +			regulator-max-microvolt = <976000>;
-> +		};
-> +
-> +		vreg_l5a: l5 {
-> +			regulator-min-microvolt = <1648000>;
-> +			regulator-max-microvolt = <3104000>;
-> +		};
-> +
-> +		vreg_l6a: l6 {
-> +			regulator-min-microvolt = <576000>;
-> +			regulator-max-microvolt = <656000>;
-> +		};
-> +
-> +		vreg_l7a: l7 {
-> +			regulator-min-microvolt = <872000>;
-> +			regulator-max-microvolt = <976000>;
-> +		};
-> +
-> +		vreg_l8a: l8 {
-> +			regulator-min-microvolt = <400000>;
-> +			regulator-max-microvolt = <728000>;
-> +		};
-> +
-> +		vreg_l9a: l9 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1896000>;
-> +		};
-> +
-> +		vreg_l10a: l10 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1896000>;
-> +		};
-> +
-> +		vreg_l11a: l11 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1952000>;
-> +		};
-> +
-> +		vreg_l12a: l12 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1996000>;
-> +		};
-> +
-> +		vreg_l13a: l13 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1832000>;
-> +		};
-> +
-> +		vreg_l14a: l14 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1904000>;
-> +		};
-> +
-> +		vreg_l15a: l15 {
-> +			regulator-min-microvolt = <3104000>;
-> +			regulator-max-microvolt = <3232000>;
-> +		};
-> +
-> +		vreg_l16a: l16 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1904000>;
-> +		};
-> +
-> +		vreg_l17a: l17 {
-> +			regulator-min-microvolt = <1248000>;
-> +			regulator-max-microvolt = <1304000>;
-> +		};
-> +
-> +		vreg_l18a: l18 {
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1264000>;
-> +		};
-> +
-> +		vreg_l19a: l19 {
-> +			regulator-min-microvolt = <1648000>;
-> +			regulator-max-microvolt = <2952000>;
-> +		};
-> +
-> +		vreg_l20a: l20 {
-> +			regulator-min-microvolt = <1648000>;
-> +			regulator-max-microvolt = <2952000>;
-> +		};
-> +
-> +		vreg_l21a: l21 {
-> +			regulator-min-microvolt = <2600000>;
-> +			regulator-max-microvolt = <2856000>;
-> +		};
-> +
-> +		vreg_l22a: l22 {
-> +			regulator-min-microvolt = <2944000>;
-> +			regulator-max-microvolt = <3304000>;
-> +		};
-> +
-> +		vreg_l23a: l23 {
-> +			regulator-min-microvolt = <3000000>;
-> +			regulator-max-microvolt = <3400000>;
-> +		};
-> +
-> +		vreg_l24a: l24 {
-> +			regulator-min-microvolt = <2944000>;
-> +			regulator-max-microvolt = <3304000>;
+> +		usb_con: connector {
+> +			compatible = "usb-c-connector";
+> +			label = "USB-C";
+> +			power-role = "source";
+> +			data-role = "host";
+> +			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
 > +		};
 > +	};
 > +};
 > +
-> +&sdc2_off_state {
-> +	sd-cd-pins {
-> +		pins = "gpio98";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-disable;
+> +&i2c4 {
+> +	clock-frequency = <384000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2c4>;
+> +	status = "okay";
+> +
+> +	pca6416: gpio@20 {
+> +		compatible = "nxp,pcal6416";
+> +		reg = <0x20>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_pcal6414>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		interrupt-parent = <&gpio4>;
+> +		interrupts = <27 IRQ_TYPE_EDGE_FALLING>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <2>;
+> +	};
+> +
+> +	pca6416_1: gpio@21 {
+> +		compatible = "nxp,pcal6416";
+> +		reg = <0x21>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		interrupt-parent = <&gpio4>;
+> +		interrupts = <27 IRQ_TYPE_EDGE_FALLING>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <2>;
+> +
+> +		usb-reset {
+> +			gpio-hog;
+> +			gpios = <7 0>;
+> +			output-low;
+> +			line-name = "USB Hub Reset";
+> +		};
+> +	};
+> +
+> +	hd3ss3220@47 {
+
+Node names should be generic.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_hd3ss3220>;
+> +		compatible = "ti,hd3ss3220";
+> +		reg = <0x47>;
+
+pinctrl is not the first property.
+
+> +		interrupt-parent = <&gpio4>;
+> +		interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			port@0 {
+> +				reg = <0>;
+> +				hd3ss3220_in_ep: endpoint {
+> +					remote-endpoint = <&ss_ep>;
+> +				};
+> +			};
+> +				port@1 {
+> +				reg = <1>;
+
+Wrong indentation.
+
+> +				hd3ss3220_out_ep: endpoint {
+> +					remote-endpoint = <&usb3_role_switch>;
+> +				};
+> +			};
+> +		};
 > +	};
 > +};
 > +
-> +&sdc2_on_state {
-> +	sd-cd-pins {
-> +		pins = "gpio98";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-pull-up;
+> +&gpio2 {
+> +	usb-reset {
+
+Does it pass dtbs_check?
+
+> +		gpio-hog;
+> +		gpios = <20 0>;
+> +		output-low;
+> +		line-name = "USB-C Mux En";
 > +	};
 > +};
 > +
-> +&tlmm {
-> +	gpio-reserved-ranges = <22 2>, <28 6>;
+> +&pcie {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_pcie>;
+> +	disable-gpio = <&gpio1 5 GPIO_ACTIVE_LOW>;
+> +	reset-gpio = <&gpio4 21 GPIO_ACTIVE_LOW>;
+> +	clocks = <&clk IMX8MP_CLK_HSIO_ROOT>,
+> +		 <&clk IMX8MP_CLK_PCIE_ROOT>,
+> +		 <&clk IMX8MP_CLK_HSIO_AXI>;
+> +	clock-names = "pcie", "pcie_aux", "pcie_bus";
+> +	assigned-clocks = <&clk IMX8MP_CLK_PCIE_AUX>;
+> +	assigned-clock-rates = <10000000>;
+> +	assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_50M>;
+> +	status = "okay";
+> +};
+
+(...)
+
+
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-beacon-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-beacon-som.dtsi
+> new file mode 100644
+> index 000000000000..c915116cfc4b
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-beacon-som.dtsi
+> @@ -0,0 +1,500 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright LogicPD, Inc. dba Beacon EmbeddedWorks
+> + */
+> +
+> +/ {
+> +	aliases {
+> +		rtc0 = &rtc;
+> +		rtc1 = &snvs_rtc;
+> +	};
+> +
+> +	memory@40000000 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x40000000 0 0xc0000000>,
+> +		      <0x1 0x00000000 0 0xc0000000>;
+> +	};
+> +
+> +	reg_wl_bt: regulator-wl-bt-pow-dwn {
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_reg_wl_bt>;
+> +		interrupt-parent = <&gpio1>;
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "wl-bt-pow-dwn";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpio = <&gpio2 6 GPIO_ACTIVE_LOW>;
+> +		startup-delay-us = <70000>;
+> +		regulator-always-on;
+> +	};
 > +};
 > +
-> +&ufs_mem_hc {
-> +	vcc-supply = <&vreg_l24a>;
-> +	vccq2-supply = <&vreg_l11a>;
-> +	vcc-max-microamp = <600000>;
-> +	vccq2-max-microamp = <600000>;
+> +&A53_0 {
+> +	cpu-supply = <&buck2>;
+> +};
 > +
+> +&A53_1 {
+> +	cpu-supply = <&buck2>;
+> +};
+> +
+> +&A53_2 {
+> +	cpu-supply = <&buck2>;
+> +};
+> +
+> +&A53_3 {
+> +	cpu-supply = <&buck2>;
+> +};
+> +
+> +&dsp {
 > +	status = "okay";
 > +};
 > +
-> +&ufs_mem_phy {
-> +	vdda-phy-supply = <&vreg_l4a>;
-> +	vdda-pll-supply = <&vreg_l10a>;
-> +	vdda-phy-max-microamp = <51400>;
-> +	vdda-pll-max-microamp = <14200>;
-> +	vddp-ref-clk-supply = <&vreg_l18a>;
+> +&eqos {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_eqos>;
+> +	phy-mode = "rgmii-id";
+> +	phy-handle = <&ethphy0>;
+> +	snps,force_thresh_dma_mode;
+> +	snps,mtl-tx-config = <&mtl_tx_setup>;
+> +	snps,mtl-rx-config = <&mtl_rx_setup>;
+> +	status = "okay";
 > +
+> +	mdio {
+> +		compatible = "snps,dwmac-mdio";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		ethphy0: ethernet-phy@3 {
+> +			compatible = "ethernet-phy-ieee802.3-c22";
+> +			interrupt-parent = <&gpio1>;
+> +			interrupts = <10 IRQ_TYPE_LEVEL_LOW>;
+> +			reg = <3>;
+> +		};
+> +	};
+> +
+> +	mtl_tx_setup: tx-queues-config {
+> +		snps,tx-queues-to-use = <5>;
+> +		snps,tx-sched-sp;
+> +
+> +		queue0 {
+> +			snps,dcb-algorithm;
+> +			snps,priority = <0x1>;
+> +		};
+> +
+> +		queue1 {
+> +			snps,dcb-algorithm;
+> +			snps,priority = <0x2>;
+> +		};
+> +
+> +		queue2 {
+> +			snps,dcb-algorithm;
+> +			snps,priority = <0x4>;
+> +		};
+> +
+> +		queue3 {
+> +			snps,dcb-algorithm;
+> +			snps,priority = <0x8>;
+> +		};
+> +
+> +		queue4 {
+> +			snps,dcb-algorithm;
+> +			snps,priority = <0xf0>;
+> +		};
+> +	};
+> +
+> +	mtl_rx_setup: rx-queues-config {
+> +		snps,rx-queues-to-use = <5>;
+> +		snps,rx-sched-sp;
+> +
+> +		queue0 {
+> +			snps,dcb-algorithm;
+> +			snps,priority = <0x1>;
+> +			snps,map-to-dma-channel = <0>;
+> +		};
+> +
+> +		queue1 {
+> +			snps,dcb-algorithm;
+> +			snps,priority = <0x2>;
+> +			snps,map-to-dma-channel = <1>;
+> +		};
+> +
+> +		queue2 {
+> +			snps,dcb-algorithm;
+> +			snps,priority = <0x4>;
+> +			snps,map-to-dma-channel = <2>;
+> +		};
+> +
+> +		queue3 {
+> +			snps,dcb-algorithm;
+> +			snps,priority = <0x8>;
+> +			snps,map-to-dma-channel = <3>;
+> +		};
+> +
+> +		queue4 {
+> +			snps,dcb-algorithm;
+> +			snps,priority = <0xf0>;
+> +			snps,map-to-dma-channel = <4>;
+> +		};
+> +	};
+> +};
+> +
+> +&flexspi {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_flexspi0>;
+> +	status = "okay";
+> +
+> +	flash0: mt25qu256aba@0 {
+
+Node names should be generic.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +		reg = <0>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		compatible = "jedec,spi-nor";
+> +		spi-max-frequency = <80000000>;
+> +		spi-tx-bus-width = <1>;
+> +		spi-rx-bus-width = <4>;
+> +	};
+> +};
+> +
+> +&i2c1 {
+> +	clock-frequency = <384000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2c1>;
+> +	status = "okay";
+> +
+> +	pmic@25 {
+> +		compatible = "nxp,pca9450c";
+> +		reg = <0x25>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_pmic>;
+> +		interrupt-parent = <&gpio1>;
+> +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +		regulators {
+> +			buck1: BUCK1 {
+> +				regulator-name = "BUCK1";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <2187500>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay = <3125>;
+> +			};
+> +
+> +			buck2: BUCK2 {
+> +				regulator-name = "BUCK2";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <2187500>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay = <3125>;
+> +				nxp,dvs-run-voltage = <950000>;
+> +				nxp,dvs-standby-voltage = <850000>;
+> +			};
+> +
+> +			buck4: BUCK4 {
+> +				regulator-name = "BUCK4";
+> +				regulator-min-microvolt = <3300000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck5: BUCK5 {
+> +				regulator-name = "BUCK5";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck6: BUCK6 {
+> +				regulator-name = "BUCK6";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <3400000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo1: LDO1 {
+> +				regulator-name = "LDO1";
+> +				regulator-min-microvolt = <1600000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo3: LDO3 {
+> +				regulator-name = "LDO3";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo4: LDO4 {
+> +				regulator-name = "LDO4";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo5: LDO5 {
+> +				regulator-name = "LDO5";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&i2c3 {
+> +	clock-frequency = <384000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2c3>;
+> +	status = "okay";
+> +
+> +	eeprom@50 {
+> +		compatible = "atmel,24c64";
+> +		pagesize = <32>;
+> +		read-only;	/* Manufacturing EEPROM programmed at factory */
+> +		reg = <0x50>;
+
+reg is second property
+
+> +	};
+> +
+> +	rtc: rtc@51 {
+> +		compatible = "nxp,pcf85263";
+> +		reg = <0x51>;
+> +		quartz-load-femtofarads = <12500>;
+> +	};
+> +};
+> +
+> +&snvs_pwrkey {
 > +	status = "okay";
 > +};
 > +
-> +&usb3 {
+> +&uart1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_uart1>;
+> +	assigned-clocks = <&clk IMX8MP_CLK_UART1>;
+> +	assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_80M>;
+> +	uart-has-rtscts;
 > +	status = "okay";
 > +};
 > +
-> +&usb3_dwc3 {
-> +	extcon = <&extcon_usb>;
+> +&usdhc1 {
+> +	vmmc-supply = <&reg_wl_bt>;
+> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+> +	pinctrl-0 = <&pinctrl_usdhc1>;
+> +	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
+> +	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
+> +	bus-width = <4>;
+> +	max-frequency = <200000000>;
+> +	cap-sd-highspeed;
+> +	sd-uhs-sdr50;
+> +	sd-uhs-sdr104;
+> +	keep-power-in-suspend;
+> +	enable-sdio-wakeup;
+> +	cap-sdio-irq;
+> +	non-removable;
+> +	cap-power-off-card;
+> +	status = "okay";
+
+status is usually last
+
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+
+Do you need these?
+> +
+> +	mwifiex: wifi@1 {
+> +		reg = <1>;
+> +		compatible = "marvell,sd8997";
+
+compatible, then reg
+
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_wlan>;
+> +		interrupt-parent = <&gpio2>;
+> +		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
+> +	};
 > +};
+
+Best regards,
+Krzysztof
+
