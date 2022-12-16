@@ -2,78 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FD0164EA12
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 12:16:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA3DD64EA1D
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 12:19:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230472AbiLPLQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Dec 2022 06:16:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53816 "EHLO
+        id S230096AbiLPLS7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Dec 2022 06:18:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230447AbiLPLQC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 06:16:02 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E94B12BD3;
-        Fri, 16 Dec 2022 03:15:49 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id v124-20020a1cac82000000b003cf7a4ea2caso3850053wme.5;
-        Fri, 16 Dec 2022 03:15:48 -0800 (PST)
+        with ESMTP id S229636AbiLPLS5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 06:18:57 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F4A15FEA;
+        Fri, 16 Dec 2022 03:18:56 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id h7so2158636wrs.6;
+        Fri, 16 Dec 2022 03:18:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=TduGez5okMoaMoWtG+a/gDZ6K+tMIFN63iCFQSQsXnc=;
-        b=poGvMOI+DZhFnvewifa7xuMgoYfEN6GfdHixircewhmNWI1wf7jJRpF6FLe2k+gBh+
-         BfaBVFfBiZmo8WvNNTkM1KA2ip8M8Inf32AtLoX875ooAjtN+w5lJ+waGJsab2ThhKAj
-         m1+vBp3R5kwpep77ei/Pid7DFabFUTtpheALbrtR8L9+2DQHbgiS7k+HVUshCj0mZy4A
-         z2B7TSCqZHlCM0+sgeWTfBf34NWB+670zIUaIMF4rVYWbIq0lFLpY0P06BQmT6rfRItw
-         lDrc2JcsKGgGiVgw516DWiUEqgVltFg1DfjtTCYkzoThvNDSJv8VIghV9G0SoUfnSVE6
-         Qkrg==
+        bh=xUbUQYdA9uIL1gANrRpWzNy+A6oN/aPQMxaVdqIc/Ec=;
+        b=mZEodglBC9sPGG0EG0nvzNC65qvpe4Uk2UG2Jrp5/L6DgghUYDo5VOddfYhHemaO62
+         T0PygbRqTcQr+iS1lwL9RXwyoAb+1T4ziqmXXMOKQPVcSPiZ2hbrEnkrITmhSKHKqDsI
+         JResed6REfZi9iXIwgd31FkqZ7JArZ1cSAlstKPFiq8RB8n5fCrc29T2o9ev2Pn0Wm+b
+         SXsc/ApwEBkm4N3J4Fg9mdxrVch4Rw9Ax5OYmYXQrw1Rr0FW2YjAg8PwrFWLfWyWyvRL
+         k2e17WqfYDqjTuPG1dqPYjyo6NPbzIEOYrMX8mBgTxYTk84yUexGSWXZISu2wo2cAZhE
+         CmZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TduGez5okMoaMoWtG+a/gDZ6K+tMIFN63iCFQSQsXnc=;
-        b=NmXB377L1I+hEzbK8OqIH2u4D6WH5YyAh5V3Wq8BISMAbS/ugYzyqU2/bt2WZbOzaP
-         CNJA+SSj06wCXuYVQI6gnmDyL31RQnDohZHWjPiQ6mWSJksru4n+nwdiX9aCPvh/2EKM
-         yc/YTlTugxaINu4G+1uZOSXCinZVtj5uyPNCpK9+GXEz4hWjt2gmJRDDnvCvKcXzJHg0
-         lDqwav2hn4xbblG0WTrulNyIX/LMRyRZiRYEpF2hOjXtKfyKtoLuQ0zv/cyLQHFOR7qK
-         uc9KxDdzFcSFWbw78eYIJzblUce1/X+SZX3+VOQT6UXmKvwwbIubkV7odP8wQiGh39Xb
-         Hz5w==
-X-Gm-Message-State: ANoB5pmY0YDKX/CCv/sjFhCvUJam0lbNo25rbuxodOdBl1wAtV4by2zj
-        RsB4cqgZK154/6f8UQcnHcDm7O0iXgQ=
-X-Google-Smtp-Source: AA0mqf7JMvc5A1nsCgHMY4tDpIPErZEnQUIERlUiYi0wkELvSsM/N+Zzruki8wtc4cD0x7K7L0Oilg==
-X-Received: by 2002:a05:600c:3555:b0:3d0:8643:caf1 with SMTP id i21-20020a05600c355500b003d08643caf1mr17299280wmq.16.1671189347575;
-        Fri, 16 Dec 2022 03:15:47 -0800 (PST)
+        bh=xUbUQYdA9uIL1gANrRpWzNy+A6oN/aPQMxaVdqIc/Ec=;
+        b=AUJY7LlE8QmsbpzXB+x/QkqY9ZznPy9Sg5P/wqi1CHRexN/WfkaWaUK+ekqCYVOpbe
+         c0jmjUCd1UIpd8hgI5n48ZPFv0xydU3PxYffAYClkz6fXK+ophoU7RH9coaHQw5Tw4Ag
+         U6K3CRzt3M0ZzLycDlYBzElnd5Z/GB+ZI6YLsohEe5WilLHlRrneNyjQ3xVFC2e2hLN/
+         Kq/K85hECb791wT8LVUj72YXH18TvSYkazetXE7YAW8DwM+lb4hGSQvnj67l/bM4kxzP
+         rG3g9CW6KTqCrA2cMgB0GRbo1LBG/KFR8jJk5jFth1TuadluXg3gSA9Z/OYUhVaYkW/u
+         13HQ==
+X-Gm-Message-State: ANoB5pmmGzBApKvaN1+eDkH7HLzImTUMTpAzVi+KvN8+teK/7HOU8EXD
+        PLg2q62VnXmQmdr/eNiDekXWlh3Wc3M=
+X-Google-Smtp-Source: AA0mqf4il1eAeR7CBxxr2GgBBR+dVprN/eW6AJZaB3Fn0BlHgV+EVyRhEstZQzUij6LVFR3n5nYLEg==
+X-Received: by 2002:adf:f5cd:0:b0:242:3eff:6855 with SMTP id k13-20020adff5cd000000b002423eff6855mr17365159wrp.54.1671189534544;
+        Fri, 16 Dec 2022 03:18:54 -0800 (PST)
 Received: from [192.168.1.132] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id i26-20020a1c541a000000b003c6c182bef9sm11257713wmb.36.2022.12.16.03.15.45
+        by smtp.gmail.com with ESMTPSA id v5-20020a5d59c5000000b00241fea203b6sm1965853wry.87.2022.12.16.03.18.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Dec 2022 03:15:46 -0800 (PST)
-Message-ID: <9511c5b1-203b-a7e3-b96b-614e1c52639a@gmail.com>
-Date:   Fri, 16 Dec 2022 12:15:44 +0100
+        Fri, 16 Dec 2022 03:18:53 -0800 (PST)
+Message-ID: <3270e0fe-2f45-62d4-e1bd-0f55546cda6c@gmail.com>
+Date:   Fri, 16 Dec 2022 12:18:52 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH 2/4] soc: mediatek: pm-domains: Add ADSP power domain data
- for MT8192
+Subject: Re: [PATCH v5 1/7] dt-bindings: arm64: dts: mediatek: Add mt8365-evk
+ board
 Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Ikjoon Jang <ikjn@chromium.org>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        angelogioacchino.delregno@collabora.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>
-References: <20221215120016.26611-1-allen-kh.cheng@mediatek.com>
- <20221215120016.26611-3-allen-kh.cheng@mediatek.com>
+To:     =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        angelogioacchino.delregno@collabora.com, khilman@baylibre.com
+References: <20221213234346.2868828-1-bero@baylibre.com>
+ <20221213234346.2868828-2-bero@baylibre.com>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20221215120016.26611-3-allen-kh.cheng@mediatek.com>
+In-Reply-To: <20221213234346.2868828-2-bero@baylibre.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -86,44 +81,30 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 15/12/2022 13:00, Allen-KH Cheng wrote:
-> Add ADSP pm-domains (mtcmos) data for MT8192 SoC.
+On 14/12/2022 00:43, Bernhard Rosenkränzer wrote:
+> Add bindings for the Mediatek mt8365-evk board.
 > 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Applied, thanks!
+
 > ---
->   drivers/soc/mediatek/mt8192-pm-domains.h | 16 ++++++++++++++++
->   1 file changed, 16 insertions(+)
+>   Documentation/devicetree/bindings/arm/mediatek.yaml | 4 ++++
+>   1 file changed, 4 insertions(+)
 > 
-> diff --git a/drivers/soc/mediatek/mt8192-pm-domains.h b/drivers/soc/mediatek/mt8192-pm-domains.h
-> index b97b2051920f..19e58f0ca1df 100644
-> --- a/drivers/soc/mediatek/mt8192-pm-domains.h
-> +++ b/drivers/soc/mediatek/mt8192-pm-domains.h
-> @@ -287,6 +287,22 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8192[] = {
->   		.sram_pdn_bits = GENMASK(8, 8),
->   		.sram_pdn_ack_bits = GENMASK(12, 12),
->   	},
-> +	[MT8192_POWER_DOMAIN_ADSP] = {
-> +		.name = "adsp",
-> +		.sta_mask = BIT(22),
-> +		.ctl_offs = 0x0358,
-> +		.sram_pdn_bits = GENMASK(8, 8),
-> +		.sram_pdn_ack_bits = GENMASK(12, 12),
-> +		.ext_buck_iso_offs = 0x039C,
-> +		.ext_buck_iso_mask = BIT(2),
-
-Not defined in upstream. It seems we are missing something here.
-
-Regards,
-Matthias
-
-> +		.bp_infracfg = {
-> +			BUS_PROT_WR(MT8192_TOP_AXI_PROT_EN_2_ADSP,
-> +				    MT8192_TOP_AXI_PROT_EN_2_SET,
-> +				    MT8192_TOP_AXI_PROT_EN_2_CLR,
-> +				    MT8192_TOP_AXI_PROT_EN_2_STA1),
-> +		},
-> +		.caps = MTK_SCPD_SRAM_ISO | MTK_SCPD_EXT_BUCK_ISO,
-> +	},
->   	[MT8192_POWER_DOMAIN_CAM] = {
->   		.name = "cam",
->   		.sta_mask = BIT(23),
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> index 2275e5d93721b..ae12b1cab9fbd 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> @@ -244,6 +244,10 @@ properties:
+>             - enum:
+>                 - mediatek,mt8183-pumpkin
+>             - const: mediatek,mt8183
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt8365-evk
+> +          - const: mediatek,mt8365
+>         - items:
+>             - enum:
+>                 - mediatek,mt8516-pumpkin
