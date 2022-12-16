@@ -2,94 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EE1C64E4E8
-	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 00:59:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F283964E4ED
+	for <lists+devicetree@lfdr.de>; Fri, 16 Dec 2022 01:01:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229988AbiLOX7C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Dec 2022 18:59:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42484 "EHLO
+        id S229583AbiLPABl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Dec 2022 19:01:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229939AbiLOX64 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 18:58:56 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 001FE5FB8B
-        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 15:58:47 -0800 (PST)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id D542F85365;
-        Fri, 16 Dec 2022 00:58:45 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1671148726;
-        bh=J/C42NoN4slKcO3Zi/05yHXZibK3xdALZYtLZCjwcAw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=kbL3wP/vC/S0Pk38KJFYTOGVVsnON9mIyjqu7r8gCuqP/83ToTDBXZ8+JNjPIfusS
-         7mDdOEQmesTq4VO5lbf4fcdr5+STSsucqgkF3cRrkcgtdKVaHRm3ohLDp6dsgJijOk
-         ejlzhxAo+0ftKuIAgwEA6GYFUWLdPTjWq02tCcENadiQucwOboA9dOA/qfb0dv08Je
-         uA3La6nR82wcNHFmN50UdvHSk9TFAgH2eXya4xhNqz6KQi11Gl3Z5JkliG5/50knLi
-         mSvJW+rpLT7+NWsx5w0xLCKPxGUHdAH8SUCjsj1PpFuwvRb2Ddt8yHRfnrfaya1qr7
-         dzdxuFz2+zOcA==
-From:   Marek Vasut <marex@denx.de>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@denx.de>,
-        Felix Radensky <felix.r@variscite.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
+        with ESMTP id S229469AbiLPABk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Dec 2022 19:01:40 -0500
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2091.outbound.protection.outlook.com [40.107.114.91])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62BA82E684
+        for <devicetree@vger.kernel.org>; Thu, 15 Dec 2022 16:01:39 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iof093/tTEqoBDFphyO41/WXWyWP9zoNcNshkngdoxo8I9TDEM1bwoE610OfVPD6mocDgROKISmclqBSXaBU2BC1Fr5tS65AjQ6UUD3mVXS8pOo98Dyt//tcPRba7cLYJUg4uf03jdbJnnDsLo4SGk7eeLa0ZQtKl/Tg7W+KxVdW9yQo7hDKC2wEZdbK7kniH7/N3A42JLCb4nP/vv3duvJT8yj3RyhvQVf5yTueAzsLkrYRrgIHvYgEzlJg9CELvt0Vs8atiDzS9NheU9Yzpk6zT4b1AmKSbZMz1XhktsDeA2BylnEfaaU19pb37j7IQdrMFT4ufBZhnDFofWAJiQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dx/uU2VKx5Ol7nmtsmQC7rE7SBarZUbG1iL3o31qwV0=;
+ b=PVa8Jxw9NqtIItKZLMrLNGHdpyb8l55NvHmXGLC48P98o46/aBs45fP5FdXcE2SXLY60x5j2I4xOqYzoX4svDx3mbI2g3ErGHM+QH4Y/LBmJos33S+MOxTLR4eCaSM69zaSi0JnKT1+HLFNNkUNKaMjWmqZzk3qT15EMFqIO1buKdcj67ZBzeQK+rPBSvdN3e64KGT+AStErI+v05PAICnBl51MQ5NZWR21DRscz4WM7FPhzBdMb41v2/Iwl3EGpAtPVMh4DI6jm7XAdJe8a128ZrjiQKQxCjPzGY8wQmjUekYyxbVGTu4MN1yxAhFFPsKMiL8v1ud4x8maTg9fWOA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dx/uU2VKx5Ol7nmtsmQC7rE7SBarZUbG1iL3o31qwV0=;
+ b=d2oWxHUfItxMbgl3OAJagJTVE29zrNfEse7Q6VzsF5eVYWlL5s+MLu1RxMrHQeD4gKRVCUp1cCX1DaHGwesFq2MJ253Db+8XBSasZrO0raohfsjWasAVpNpeba5QzOl2o+qhuBQkQin46X1dFVdzpzysRoPrLkc2Siiq4llrfqs=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB8440.jpnprd01.prod.outlook.com (2603:1096:400:15d::5)
+ by TYAPR01MB5355.jpnprd01.prod.outlook.com (2603:1096:404:803f::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.14; Fri, 16 Dec
+ 2022 00:01:37 +0000
+Received: from TYCPR01MB8440.jpnprd01.prod.outlook.com
+ ([fe80::69b3:236b:223:a8f7]) by TYCPR01MB8440.jpnprd01.prod.outlook.com
+ ([fe80::69b3:236b:223:a8f7%5]) with mapi id 15.20.5924.012; Fri, 16 Dec 2022
+ 00:01:36 +0000
+Message-ID: <87h6xwcj33.wl-kuninori.morimoto.gx@renesas.com>
+From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: imx8mn: Add LDO5 regulator-name to Variscite VAR-SOM-MX8MN
-Date:   Fri, 16 Dec 2022 00:58:27 +0100
-Message-Id: <20221215235827.228620-3-marex@denx.de>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221215235827.228620-1-marex@denx.de>
-References: <20221215235827.228620-1-marex@denx.de>
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Sameer Pujar <spujar@nvidia.com>,
+        Mohan Kumar <mkumard@nvidia.com>
+Subject: Re: [PATCH 06/11] ASoC: dt-bindings: ti,pcm3168a: Convert to json-schema
+In-Reply-To: <87iliccjoz.wl-kuninori.morimoto.gx@renesas.com>
+References: <87v8mepyoy.wl-kuninori.morimoto.gx@renesas.com>
+        <87mt7qpylw.wl-kuninori.morimoto.gx@renesas.com>
+        <CAMuHMdW=_-MyqAjRqaoPyWkoUmdB2VOE1t+wpym7eyOxkzc_7g@mail.gmail.com>
+        <Y5sJV2KfX98KoMYZ@sirena.org.uk>
+        <CAMuHMdWwP6QDUux62GZtCT7tsFhAhex=Fns5e=n_KTjGXHRy0Q@mail.gmail.com>
+        <Y5sVewc7ItFBZkn4@sirena.org.uk>
+        <87iliccjoz.wl-kuninori.morimoto.gx@renesas.com>
+User-Agent: Wanderlust/2.15.9 Emacs/26.3 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date:   Fri, 16 Dec 2022 00:01:36 +0000
+X-ClientProxiedBy: TYBP286CA0048.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:404:10a::36) To TYCPR01MB8440.jpnprd01.prod.outlook.com
+ (2603:1096:400:15d::5)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB8440:EE_|TYAPR01MB5355:EE_
+X-MS-Office365-Filtering-Correlation-Id: 77298cfe-8319-4b54-f472-08dadef8b34d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Kooifkli2Or6h5QZUCbaqNCaBIQWlkJygo9Zn6utwvD4zCCYWw4PYbEOWdVfZx0gbBkCyEV/ty3WlsmtK549ojkapLEoRsCoblxwOriOt2Rq9BpTtkTGh6DwmjHXCh1KY66oH4y8D7YN+k/0JAZZlp7tYlL98YwipyAQrHyeDvJwEQ3WykoB08HkDeizI10KR397rJvLqg3/zOX1iaoT62Ymu/OGLiYq8HD3dw3rxX4PbXiygoleEuGygOPGwxgPtJTY10m83DWYY1ZVZpGdpTvvG+W6ZgSkCl8Xt5SUCVNrQhTrfCFKQxUiXeQF0l5jaIlBur1oSyrmHkKuN6rRrmfXPKp40yjXBW73ztcuCseFZ12R/6zpGuUkmAUlmghI9wICSsPtahIkWWGRDbck07a295tAmomgj7yxKUaPsUk/ute9lqYqBDs5y7RubqI4NVSd23BvaloTlIOkaQc9EiMpcCJKNuGd+doHnHV1vVJHTmmCkK+K4r78q7aOXbtitpH4aUgNkoPF+jEDH3p44WcBbxwRI242H5IAWMd9INXHTD9HjcNRiAGqyfabwmSrKTdJj1F5bugVP77CVVM5WPXRz3svLrNDJfXmGp2eHm60JD2bDYmq4u6VTYLJ8X4K8eAWcDlLGt7fesrzXOmQ3Fll5tDZ2OpTiq3e9WEW4WEc17/q8/kTGwj1TRDLNQtju7Nc38jLFAB6D0vpKDmuow==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB8440.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(366004)(376002)(346002)(396003)(136003)(451199015)(38350700002)(86362001)(4326008)(5660300002)(4744005)(6506007)(26005)(2616005)(8676002)(6486002)(66476007)(66556008)(54906003)(6512007)(2906002)(38100700002)(41300700001)(66946007)(478600001)(186003)(52116002)(316002)(8936002)(36756003)(7416002)(6916009);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?GHSJaI0KC7UeBHgB4GYJHVa42e6PvOpb+2G6J/YOMMyFfZoyZVwJHAMRVUeE?=
+ =?us-ascii?Q?1wxDc8Runy84nOll/qA3HGHJX6RO94GS8UzBkBpRZnFcsDTTjE6r4FiF4Epd?=
+ =?us-ascii?Q?8BhvbDrI7dtHckSYwrgq7BYdsEwkETXN7o+vS0mzT3qxfYKh2W+OQuwR5r8+?=
+ =?us-ascii?Q?zq5MRTgafwZoNLzoAjKagSUblGvZbXRiBtFNY73gRej4eyWcCUTxRzNFQFWh?=
+ =?us-ascii?Q?E2H8eOpahM5HljApP3PTB0FYvG1EtdW074828ecP3SxTc1TFFA/f13LkMK2/?=
+ =?us-ascii?Q?cmWD7NeVF03/nNOvEpy1Zd27nmPKwy3Z7zHHesCErBFsU3K4oYdhaCkFsQpR?=
+ =?us-ascii?Q?4Cs3IDaqEte1vSx6CevTiIB3RX67gp6ulh3m2clBoTMMlNFRajg1qWmZTjId?=
+ =?us-ascii?Q?H+28Nlnw97cEElEZXJV7U2FPpeslnULtrnVDrxgzZKup+/dyQfzolZd7NiHK?=
+ =?us-ascii?Q?qXb0y2wClTrEFcME6RTV7cwihfFxY44r6N39yTeHJbYJq+iMS8ARHsoozzVu?=
+ =?us-ascii?Q?vFcE/0Xsb5eHwb/VkmOe9oL4/FvdVd3Qt6G0GnmozNfwQbOJyPIgyUjXv35x?=
+ =?us-ascii?Q?3TvpkrGYCCUWwS0SiF/ZXluytKt9SOLEvfvkXLGmFwB0tdxmgklH0nF5Oy6g?=
+ =?us-ascii?Q?TWc2QuKXfr360CrowA0zzh8dbrPTqJxt26HF1dDerRluvPSo0mGHthyNw5XK?=
+ =?us-ascii?Q?9VUeXhO91yjvC7JiSdnH39gCGZbVbTAq1KM2WodKppQ/kblHns/5ODxD7fW+?=
+ =?us-ascii?Q?dwRn9/TNUzGCW/IlIg/UgGCqiNXNKcB2I8fCslQwZ1JRqa/kC3Y1BFy2a0FT?=
+ =?us-ascii?Q?kjJRlDa0CM36PY/bVvY5zpww2ysQJ4XtD1Xn1Ms3UAGa5c2TNhSc3XVzyy6Z?=
+ =?us-ascii?Q?1FGSfBcRUsplCOWw1h9BTPxf38rOJyDrBYZvo3z1A1OpuUkVyQ0in9F2JDb8?=
+ =?us-ascii?Q?Pm5ig/EArvwYAe14WbWpfXox7puRNqChaUN4fcZAeLja417XvfbSQZFrLuKV?=
+ =?us-ascii?Q?vp4TEG9Wn03xRv7S4vhPdJaH3dFxH7CXooPeoHQnLgHJEdLsO4VKO2lMDs4r?=
+ =?us-ascii?Q?/7BLVx79pmo83dSwufGwuQL0iYywAB9yxZGmcvPQdqtp8gXwo+LG2tsloKS8?=
+ =?us-ascii?Q?TrNkX0+l5CdgJ7bWeZkzoGUG3JKEQ4mSYbjVAOlfGQH9R5qT4FHqZlBMcuuc?=
+ =?us-ascii?Q?l3azWpWTNEZk0zrR9G5hJJlgCQjf69S5HDOsZmOMXUk8ETYL7uUJmgtF/6IM?=
+ =?us-ascii?Q?T9w86ZJBqLvxXTsNZtZS+KM1VakP3mhv6ZsoHxbOtobsSmwbBJRw0WgtXZtk?=
+ =?us-ascii?Q?gMolWEU5zrWhThnMjBGRGem99KbmmRssPtIM9k01qGb9KNMgRIzIQ4sK/NDc?=
+ =?us-ascii?Q?OAH5omQbSPz/aDXrzv2VcbCBnmpXZKp7gEYW1WiAtgU/KNbFNAQ1Ryg/3szd?=
+ =?us-ascii?Q?nCAGesR1EI2KEG/pBC92mmD1qZl3dkAm0+Y63pyeg8BDfQGGGQrKPIXibD9S?=
+ =?us-ascii?Q?aEpl4iWyY51DXV9pHMNWmi/dRrAoCSFpex/mY51felo7swASamXLiyly9njg?=
+ =?us-ascii?Q?q31oUfpH8KMkNtMoOPpPZszJt7qXmbv+vSzldQMmRjjx4pmCO6zgBKwqV5m8?=
+ =?us-ascii?Q?u3/6/aVdrOsUVsleNYNU0is=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 77298cfe-8319-4b54-f472-08dadef8b34d
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB8440.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2022 00:01:36.8926
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: p1jmA8Vl7vDNs396VN0UZPths0ViGka+P4Fcb6OMB9hoVtghJbdW0mq4wvfhXF3/TMsT/yLAvFgCpx1W57AgFlukn9rmys3eDH8Qq7SNQdKIWpCkg6GOvmWtU/YaZ4ip
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYAPR01MB5355
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PMIC on this Variscite SOM and its MX8MM variant lists regulator-name
-for all LDOs except this LDO5, add the regulator-name property to avoid
-this omission.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
+Hi Geert
+
+> > You forgot to list the changes you made to my patch:
+> >  - Refer to audio-graph-port.yaml instead of describing ports and
+> >   port@[01] subnodes explicitly.
+> 
+> Oops, thank you for pointing it. It was my fault.
+> One note is that the port@x which it can use is depends on its connection style.
+> Not only [01]. I will fix it.
+
+Grr, my fault again.
+pcm3168a port are indeed fixed.
+
+Thank you for your help !!
+
+Best regards
 ---
-Cc: Fabio Estevam <festevam@denx.de>
-Cc: Felix Radensky <felix.r@variscite.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: Peng Fan <peng.fan@nxp.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: devicetree@vger.kernel.org
-To: linux-arm-kernel@lists.infradead.org
----
- arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
-index 2888de154f780..67072e6c77d5f 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
-@@ -207,6 +207,7 @@ ldo4_reg: LDO4 {
- 			};
- 
- 			ldo5_reg: LDO5 {
-+				regulator-name = "ldo5";
- 				regulator-min-microvolt = <1800000>;
- 				regulator-max-microvolt = <1800000>;
- 				regulator-always-on;
--- 
-2.35.1
-
+Kuninori Morimoto
