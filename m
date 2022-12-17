@@ -2,198 +2,344 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6717D64FC5D
-	for <lists+devicetree@lfdr.de>; Sat, 17 Dec 2022 22:04:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E81764FC66
+	for <lists+devicetree@lfdr.de>; Sat, 17 Dec 2022 22:20:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229988AbiLQVEe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Dec 2022 16:04:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45380 "EHLO
+        id S230015AbiLQVTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Dec 2022 16:19:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229892AbiLQVEd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Dec 2022 16:04:33 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B9EBDF47
-        for <devicetree@vger.kernel.org>; Sat, 17 Dec 2022 13:04:30 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id co23so5505251wrb.4
-        for <devicetree@vger.kernel.org>; Sat, 17 Dec 2022 13:04:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZoubCa7EcB3zMfAg72L+XuWRWZxRRGMO6kZ+wOPzJyw=;
-        b=WOvgy/Xmj1a3V+LCw++iLlzAGkvxob77ceCef0rfs7C5VZr+BDwx5P+K7VnBKU7tPN
-         X7bU6UXEmGLQ0G9HoRslibRanbEpbK0yy5Ba5J1fjnYm+2Ar+59vJy42V/4a3Q/YNsH6
-         L/VcjEPIIZqgt2f+HY5G5aMdJqW7ckhfOaOPsYAuSxg6H6fot87iUIN9dzHf7PPxxWTZ
-         SYNlsVAK4BFZYusYiJk7ezsUMC8oSKs+Oh7CDd2q4XYieraMoY7r5RUjMCdKoHv+vPMX
-         2cMLDxnLPuwZAyp5JVgRuMWTuSjmEo0PvcKCl3yT2ohWktg7myZmx1BvGmsXKvNCDvmd
-         S7cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZoubCa7EcB3zMfAg72L+XuWRWZxRRGMO6kZ+wOPzJyw=;
-        b=f5JJdTKZO141BpP6RpgbJp3XK4jaVCvZNKnF78FnJB1ScYS98JGvLpCxGvcGi0wASJ
-         iScdJ/SQY4jzz/6rPH6+tacqemoLP4DlbT0/e1c2vHppjxVn9fvhfGphVx53bGwafKqm
-         0c/iag0QjADdF88+PFUbj6nYQzEzvgk7jSfIYo9pWfsMlcIOx2d7kt495wK5OlT/Nh1I
-         Xi8mRH3Pvj+8CHYAuTFlJMBhZAZiLUYZlqas8VefGoAIq347+24J4wtoJrMZTEqOIG8u
-         F3I4GhsH5te1zhKzirlOGpPbsOt/oVPmVPJ9QZ1SHkx3J//tDJOT77VEXA4auAEV6vGs
-         puWw==
-X-Gm-Message-State: ANoB5pkMuGuVFsMh0v3/rv1debqHPivYMm3kaCDc2ghNfB5UCP26JhD+
-        oL7+dPrk8zuWz47Lr0D+1EjjRA==
-X-Google-Smtp-Source: AA0mqf4np/2MtzqJ6UAduJKLaFf1X+2/VphBahZhU89MbEB61xTtDiUIEHW5uAYTzEbwzPRPGDv7rg==
-X-Received: by 2002:adf:bd93:0:b0:242:62df:9214 with SMTP id l19-20020adfbd93000000b0024262df9214mr27372619wrh.3.1671311068664;
-        Sat, 17 Dec 2022 13:04:28 -0800 (PST)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id z1-20020a5d6541000000b00241f029e672sm5726942wrv.107.2022.12.17.13.04.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Dec 2022 13:04:28 -0800 (PST)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     jdelvare@suse.com, krzysztof.kozlowski+dt@linaro.org,
-        linux@roeck-us.net, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        linux-kernel@vger.kernel.org, conor@kernel.org,
-        Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH v2] dt-bindings: hwmon: gpio-fan: convert to YAML
-Date:   Sat, 17 Dec 2022 21:04:23 +0000
-Message-Id: <20221217210423.836948-1-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229675AbiLQVTy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Dec 2022 16:19:54 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 607D911152;
+        Sat, 17 Dec 2022 13:19:53 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EEBD160C38;
+        Sat, 17 Dec 2022 21:19:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BED7CC433D2;
+        Sat, 17 Dec 2022 21:19:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1671311992;
+        bh=p/0nO9i7GWqBqP87EvUQ61fph64TmmdkKS0Iw0gBMf4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Bz5PZ2l/VGVQ4Qw9cdvifYU0i4S+hG/Vx7q7Sgk73dE4fG7YrMYew4xxcme68A5dV
+         rTkxZL1Fk+trrwZO7pFgikOmFCDz75hJyt88mVINoNXlnGZSUl5PCYz7IhMDnp19f8
+         WQZ/nd7Z9LTOjfDuiJ0ShXacfZkg4er+YmnBdiERmkoGBBRxNQ3lrbR/0hboveUZ63
+         XSWjNhN3hs7eMtrDfVF9ZdkKjSkgU7tr6BXpqbpbwR4k1hrcV0NCoxut+CxWYWiDfD
+         nKXinX8JVsKSpFe35gNiNkOaU6QX6AjdAbDW+5bwAfBg/ei/mgPpESr/VaE/kgkid2
+         SAb+/IE6MbB5Q==
+Date:   Sat, 17 Dec 2022 21:19:45 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Guo Ren <guoren@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v5 3/6] riscv: errata: Add Andes alternative ports
+Message-ID: <Y54ycZdMLjU5QVn5@spud>
+References: <20221212115505.36770-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221212115505.36770-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="2szLuNpf/dOaMo1j"
+Content-Disposition: inline
+In-Reply-To: <20221212115505.36770-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Converts hwmon/gpio-fan.txt to YAML
 
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
----
-Changes since v1:
-- Keeped only one example and simplified it
+--2szLuNpf/dOaMo1j
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
- .../devicetree/bindings/hwmon/gpio-fan.txt    | 41 -------------
- .../devicetree/bindings/hwmon/gpio-fan.yaml   | 59 +++++++++++++++++++
- 2 files changed, 59 insertions(+), 41 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/hwmon/gpio-fan.txt
- create mode 100644 Documentation/devicetree/bindings/hwmon/gpio-fan.yaml
+On Mon, Dec 12, 2022 at 11:55:02AM +0000, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>=20
+> Add required ports of the Alternative scheme for Andes CPU cores.
+>=20
+> I/O Coherence Port (IOCP) provides an AXI interface for connecting extern=
+al
+> non-caching masters, such as DMA controllers. IOCP is a specification
+> option and is disabled on the Renesas RZ/Five SoC due to this reason cache
+> management needs a software workaround.
+>=20
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v4 -> v5
+> * Sorted the Kconfig/Makefile/Switch based on Core name
+> * Added a comments
+> * Introduced RZFIVE_SBI_EXT_IOCP_SW_WORKAROUND SBI EXT ID to check if
+>   CMO needs to be applied. Is there a way we can access the DTB while pat=
+ching
+>   as we can drop this SBI EXT ID and add a DT property instead for cmo?
+>=20
+> RFC v3 -> v4
+> * New patch
+> ---
+>  arch/riscv/Kconfig.erratas           | 22 +++++++
+>  arch/riscv/errata/Makefile           |  1 +
+>  arch/riscv/errata/andes/Makefile     |  1 +
+>  arch/riscv/errata/andes/errata.c     | 93 ++++++++++++++++++++++++++++
+>  arch/riscv/include/asm/alternative.h |  3 +
+>  arch/riscv/include/asm/errata_list.h |  5 ++
+>  arch/riscv/kernel/alternative.c      |  5 ++
+>  7 files changed, 130 insertions(+)
+>  create mode 100644 arch/riscv/errata/andes/Makefile
+>  create mode 100644 arch/riscv/errata/andes/errata.c
+>=20
+> diff --git a/arch/riscv/Kconfig.erratas b/arch/riscv/Kconfig.erratas
+> index 69621ae6d647..f0f0c1abd52b 100644
+> --- a/arch/riscv/Kconfig.erratas
+> +++ b/arch/riscv/Kconfig.erratas
+> @@ -1,5 +1,27 @@
+>  menu "CPU errata selection"
+> =20
+> +config ERRATA_ANDES
+> +	bool "Andes AX45MP errata"
+> +	depends on !XIP_KERNEL
+> +	select RISCV_ALTERNATIVE
+> +	help
+> +	  All Andes errata Kconfig depend on this Kconfig. Disabling
+> +	  this Kconfig will disable all Andes errata. Please say "Y"
+> +	  here if your platform uses Andes CPU cores.
+> +
+> +	  Otherwise, please say "N" here to avoid unnecessary overhead.
+> +
+> +config ERRATA_ANDES_CMO
+> +	bool "Apply Andes cache management errata"
+> +	depends on ERRATA_ANDES && MMU && ARCH_R9A07G043
+> +	select RISCV_DMA_NONCOHERENT
+> +	default y
+> +	help
+> +	  This will apply the cache management errata to handle the
+> +	  non-standard handling on non-coherent operations on Andes cores.
+> +
+> +	  If you don't know what to do here, say "Y".
+> +
+>  config ERRATA_SIFIVE
+>  	bool "SiFive errata"
+>  	depends on !XIP_KERNEL
+> diff --git a/arch/riscv/errata/Makefile b/arch/riscv/errata/Makefile
+> index a1055965fbee..6f1c693af92d 100644
+> --- a/arch/riscv/errata/Makefile
+> +++ b/arch/riscv/errata/Makefile
+> @@ -1,2 +1,3 @@
+> +obj-$(CONFIG_ERRATA_ANDES) +=3D andes/
+>  obj-$(CONFIG_ERRATA_SIFIVE) +=3D sifive/
+>  obj-$(CONFIG_ERRATA_THEAD) +=3D thead/
+> diff --git a/arch/riscv/errata/andes/Makefile b/arch/riscv/errata/andes/M=
+akefile
+> new file mode 100644
+> index 000000000000..2d644e19caef
+> --- /dev/null
+> +++ b/arch/riscv/errata/andes/Makefile
+> @@ -0,0 +1 @@
+> +obj-y +=3D errata.o
+> diff --git a/arch/riscv/errata/andes/errata.c b/arch/riscv/errata/andes/e=
+rrata.c
+> new file mode 100644
+> index 000000000000..3d04f15df8d5
+> --- /dev/null
+> +++ b/arch/riscv/errata/andes/errata.c
+> @@ -0,0 +1,93 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Erratas to be applied for Andes CPU cores
+> + *
+> + *  Copyright (C) 2022 Renesas Electronics Corporation.
+> + *
+> + * Author: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> + */
+> +
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +
+> +#include <asm/alternative.h>
+> +#include <asm/cacheflush.h>
+> +#include <asm/errata_list.h>
+> +#include <asm/patch.h>
+> +#include <asm/sbi.h>
+> +#include <asm/vendorid_list.h>
+> +
+> +#define ANDESTECH_AX45MP_MARCHID	0x8000000000008a45UL
+> +#define ANDESTECH_AX45MP_MIMPID		0x500UL
+> +#define ANDESTECH_SBI_EXT_ANDES		0x0900031E
+> +
+> +#define RZFIVE_SBI_EXT_IOCP_SW_WORKAROUND	0
+> +
+> +static long ax45mp_iocp_sw_workaround(void)
+> +{
+> +	struct sbiret ret;
+> +
+> +	ret =3D sbi_ecall(ANDESTECH_SBI_EXT_ANDES, RZFIVE_SBI_EXT_IOCP_SW_WORKA=
+ROUND,
+> +			0, 0, 0, 0, 0, 0);
 
-diff --git a/Documentation/devicetree/bindings/hwmon/gpio-fan.txt b/Documentation/devicetree/bindings/hwmon/gpio-fan.txt
-deleted file mode 100644
-index f4cfa350f6a1..000000000000
---- a/Documentation/devicetree/bindings/hwmon/gpio-fan.txt
-+++ /dev/null
-@@ -1,41 +0,0 @@
--Bindings for fan connected to GPIO lines
--
--Required properties:
--- compatible : "gpio-fan"
--
--Optional properties:
--- gpios: Specifies the pins that map to bits in the control value,
--  ordered MSB-->LSB.
--- gpio-fan,speed-map: A mapping of possible fan RPM speeds and the
--  control value that should be set to achieve them. This array
--  must have the RPM values in ascending order.
--- alarm-gpios: This pin going active indicates something is wrong with
--  the fan, and a udev event will be fired.
--- #cooling-cells: If used as a cooling device, must be <2>
--  Also see:
--  Documentation/devicetree/bindings/thermal/thermal-cooling-devices.yaml
--  min and max states are derived from the speed-map of the fan.
--
--Note: At least one the "gpios" or "alarm-gpios" properties must be set.
--
--Examples:
--
--	gpio_fan {
--		compatible = "gpio-fan";
--		gpios = <&gpio1 14 1
--			 &gpio1 13 1>;
--		gpio-fan,speed-map = <0    0
--				      3000 1
--				      6000 2>;
--		alarm-gpios = <&gpio1 15 1>;
--	};
--	gpio_fan_cool: gpio_fan {
--		compatible = "gpio-fan";
--		gpios = <&gpio2 14 1
--			 &gpio2 13 1>;
--		gpio-fan,speed-map =	<0    0>,
--					<3000 1>,
--					<6000 2>;
--		alarm-gpios = <&gpio2 15 1>;
--		#cooling-cells = <2>; /* min followed by max */
--	};
-diff --git a/Documentation/devicetree/bindings/hwmon/gpio-fan.yaml b/Documentation/devicetree/bindings/hwmon/gpio-fan.yaml
-new file mode 100644
-index 000000000000..c522072c0d07
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/gpio-fan.yaml
-@@ -0,0 +1,59 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwmon/gpio-fan.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Bindings for fan connected to GPIO lines
-+
-+maintainers:
-+  - OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS <devicetree@vger.kernel.org>
-+
-+properties:
-+  compatible:
-+    const: gpio-fan
-+
-+  gpios:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description: Specifies the pins that map to bits in the control value,
-+      ordered MSB-->LSB.
-+
-+  gpio-fan,speed-map:
-+    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-+    description: A mapping of possible fan RPM speeds and the
-+      control value that should be set to achieve them. This array
-+      must have the RPM values in ascending order.
-+
-+  alarm-gpios:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description: This pin going active indicates something is wrong with
-+      the fan, and a udev event will be fired.
-+
-+  "#cooling-cells":
-+    const: 2
-+    description: If used as a cooling device, must be <2>
-+      Also see Documentation/devicetree/bindings/thermal/thermal-cooling-devices.yaml
-+      min and max states are derived from the speed-map of the fan.
-+
-+anyOf:
-+  - required:
-+      - gpios
-+  - required:
-+      - alarm-gpios
-+
-+additionalProperties: False
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/clock/cortina,gemini-clock.h>
-+    #include <dt-bindings/reset/cortina,gemini-reset.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    gpio_fan {
-+      compatible = "gpio-fan";
-+        gpios = <&gpio1 8 GPIO_ACTIVE_HIGH>;
-+        gpio-fan,speed-map = <0    0>,
-+                             <3000 1>,
-+                             <6000 2>;
-+        alarm-gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
-+    };
--- 
-2.37.4
+Seeing as you need a new version for some of the other bits, I think it
+would be good to add a minor comment here somewhere (be it here or the
+commit message) that links to the SBI specs for this.
+I think this looks pretty good though.
+Thanks,
+Conor.
 
+> +
+> +	return ret.error ? 0 : ret.value;
+> +}
+> +
+> +static bool errata_probe_iocp(unsigned int stage, unsigned long arch_id,=
+ unsigned long impid)
+> +{
+> +	if (!IS_ENABLED(CONFIG_ERRATA_ANDES_CMO))
+> +		return false;
+> +
+> +	if (arch_id !=3D ANDESTECH_AX45MP_MARCHID || impid !=3D ANDESTECH_AX45M=
+P_MIMPID)
+> +		return false;
+> +
+> +	if (!ax45mp_iocp_sw_workaround())
+> +		return false;
+> +
+> +	/* Set this just to make core cbo code happy */
+> +	riscv_cbom_block_size =3D 1;
+> +	riscv_noncoherent_supported();
+> +
+> +	return true;
+> +}
+> +
+> +static u32 andes_errata_probe(unsigned int stage, unsigned long archid, =
+unsigned long impid)
+> +{
+> +	u32 cpu_req_errata =3D 0;
+> +
+> +	/*
+> +	 * In the absence of the I/O Coherency Port, access to certain peripher=
+als
+> +	 * requires vendor specific DMA handling.
+> +	 */
+> +	if (errata_probe_iocp(stage, archid, impid))
+> +		cpu_req_errata |=3D BIT(ERRATA_ANDESTECH_NO_IOCP);
+> +
+> +	return cpu_req_errata;
+> +}
+> +
+> +void __init_or_module andes_errata_patch_func(struct alt_entry *begin, s=
+truct alt_entry *end,
+> +					      unsigned long archid, unsigned long impid,
+> +					      unsigned int stage)
+> +{
+> +	u32 cpu_req_errata =3D andes_errata_probe(stage, archid, impid);
+> +	struct alt_entry *alt;
+> +	u32 tmp;
+> +
+> +	if (stage =3D=3D RISCV_ALTERNATIVES_EARLY_BOOT)
+> +		return;
+> +
+> +	for (alt =3D begin; alt < end; alt++) {
+> +		if (alt->vendor_id !=3D ANDESTECH_VENDOR_ID)
+> +			continue;
+> +		if (alt->errata_id >=3D ERRATA_ANDESTECH_NUMBER)
+> +			continue;
+> +
+> +		tmp =3D BIT(alt->errata_id);
+> +		if (cpu_req_errata & tmp) {
+> +			patch_text_nosync(alt->old_ptr, alt->alt_ptr, alt->alt_len);
+> +
+> +			riscv_alternative_fix_offsets(alt->old_ptr, alt->alt_len,
+> +						      alt->old_ptr - alt->alt_ptr);
+> +		}
+> +	}
+> +}
+> diff --git a/arch/riscv/include/asm/alternative.h b/arch/riscv/include/as=
+m/alternative.h
+> index 1bd4027d34ca..e3a8e603eb5a 100644
+> --- a/arch/riscv/include/asm/alternative.h
+> +++ b/arch/riscv/include/asm/alternative.h
+> @@ -43,6 +43,9 @@ struct errata_checkfunc_id {
+>  	bool (*func)(struct alt_entry *alt);
+>  };
+> =20
+> +void andes_errata_patch_func(struct alt_entry *begin, struct alt_entry *=
+end,
+> +			     unsigned long archid, unsigned long impid,
+> +			     unsigned int stage);
+>  void sifive_errata_patch_func(struct alt_entry *begin, struct alt_entry =
+*end,
+>  			      unsigned long archid, unsigned long impid,
+>  			      unsigned int stage);
+> diff --git a/arch/riscv/include/asm/errata_list.h b/arch/riscv/include/as=
+m/errata_list.h
+> index 4180312d2a70..2ba7e6e74540 100644
+> --- a/arch/riscv/include/asm/errata_list.h
+> +++ b/arch/riscv/include/asm/errata_list.h
+> @@ -9,6 +9,11 @@
+>  #include <asm/csr.h>
+>  #include <asm/vendorid_list.h>
+> =20
+> +#ifdef CONFIG_ERRATA_ANDES
+> +#define ERRATA_ANDESTECH_NO_IOCP	0
+> +#define ERRATA_ANDESTECH_NUMBER		1
+> +#endif
+> +
+>  #ifdef CONFIG_ERRATA_SIFIVE
+>  #define	ERRATA_SIFIVE_CIP_453 0
+>  #define	ERRATA_SIFIVE_CIP_1200 1
+> diff --git a/arch/riscv/kernel/alternative.c b/arch/riscv/kernel/alternat=
+ive.c
+> index e12b06940154..0a09cbbc2593 100644
+> --- a/arch/riscv/kernel/alternative.c
+> +++ b/arch/riscv/kernel/alternative.c
+> @@ -40,6 +40,11 @@ static void __init_or_module riscv_fill_cpu_mfr_info(s=
+truct cpu_manufacturer_inf
+>  #endif
+> =20
+>  	switch (cpu_mfr_info->vendor_id) {
+> +#ifdef CONFIG_ERRATA_ANDES
+> +	case ANDESTECH_VENDOR_ID:
+> +		cpu_mfr_info->patch_func =3D andes_errata_patch_func;
+> +		break;
+> +#endif
+>  #ifdef CONFIG_ERRATA_SIFIVE
+>  	case SIFIVE_VENDOR_ID:
+>  		cpu_mfr_info->patch_func =3D sifive_errata_patch_func;
+> --=20
+> 2.25.1
+>=20
+
+--2szLuNpf/dOaMo1j
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY54ycQAKCRB4tDGHoIJi
+0iv5AP99jz5cQnHGHH6DPtSjUP6Rzlll+McB7Ac8uT/xyqPVeAEAt3UThuSjPMng
+LtVjLJqskflbKy53J/P02f96qTWBpgo=
+=XQz9
+-----END PGP SIGNATURE-----
+
+--2szLuNpf/dOaMo1j--
