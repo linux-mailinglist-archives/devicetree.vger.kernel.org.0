@@ -2,194 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A389164F8D3
-	for <lists+devicetree@lfdr.de>; Sat, 17 Dec 2022 12:05:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A3F464F8E5
+	for <lists+devicetree@lfdr.de>; Sat, 17 Dec 2022 13:05:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229841AbiLQLF0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Dec 2022 06:05:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40858 "EHLO
+        id S229496AbiLQMFh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Dec 2022 07:05:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229658AbiLQLFZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Dec 2022 06:05:25 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB11CDFCF
-        for <devicetree@vger.kernel.org>; Sat, 17 Dec 2022 03:05:23 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id cf42so7232861lfb.1
-        for <devicetree@vger.kernel.org>; Sat, 17 Dec 2022 03:05:23 -0800 (PST)
+        with ESMTP id S229469AbiLQMFh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Dec 2022 07:05:37 -0500
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4B496542;
+        Sat, 17 Dec 2022 04:05:35 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id tz12so11807824ejc.9;
+        Sat, 17 Dec 2022 04:05:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xj4DQ1GOM3k/W43IzdJyX/2s4vba2cXo55x8d2hFPXs=;
-        b=bg8AX68WuagpjWXrSZydWWNhLySXCMZ6EtlQ6m8Zf5GURQ+xWE5+5f4lXRLAmj6TJk
-         +sRzTrKMWBEYPGMqHhSRsfZdDFdzM5BA7htNAWngbh5OVNSUC9oqreKfMg6cFw4GZyW+
-         tgxoeLPFYV5HrOj6pxsfLMCvNcS+Q8OcXvFGx/OH/Cg5a0DQgh55+sf0cR+7Cu07tXvP
-         seeeC7DSw7ZlvygoX4MEJagDvIZsO22cCZNbsg4CssmDjfkp0MBUudk8b/Q6jXm2mFnz
-         MtzgggC8ltnMisEboXoY8hWqxvpWqSewri+J9wdihYDfnZSoYdzatPnBEnvopaemf/F8
-         cGIQ==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MKhTX89WL/mXEZGpHtSl2I9i5/jLZsHst59ffE4s6Dw=;
+        b=FdgHMlHhYMxeoL6VIqy3u3sr39KP3FDbAXf/AUxUfK/COxVCb3PG7ebsXpu1MrnFzx
+         DXJZNSo1adODSbShtB2ICu4gfQhJimoqn2cVZQMgxyEKoC6A2nIuYNXRz+HpQamcxoan
+         rvOaBtaT5oCGVKOCTBoM6raRBC5op3eWxyNCgtTiuRGTJIzE5tT3329qpMpVPN95Xi2s
+         OrVbZBgc//AoUUGSGLUygV2gNNyJilGZUVBekXslb32EoNHeK4LFhYM9pGilzdkBcMPZ
+         yKLmVPAFL5hmIkpfifYthDFwlq/nwVc5QSszSeFcB4RFG7nV0wRsAp42herBrVK+Bu0k
+         bV8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xj4DQ1GOM3k/W43IzdJyX/2s4vba2cXo55x8d2hFPXs=;
-        b=jENlAarQ75VmQNNop8R0S6HnMJvOcoTzqhMDJwn+LVGRK8zmTWgPqcX5X4OQq1fHcr
-         nbNxoz4jqR4La7XWYN6V9/2MhPjuUA8TBV0hDpM4MdIjN5c6F09DnOp6Uuxdig9rdSke
-         mV7j9nTWu1RG1Xa8PD4dw1uE6X3JL/VV6otNRL9Cy009xE2lGsU/kFhCpBMCzTZph9qi
-         wfRvZWkeMgw4p5Sr53iO/610Oz10JUV6S7jRqxStaW5rMTwSUnq0HNyr0rPmm4Lj96MU
-         efhf0NELpmYfF7i2P6L3+pZV7WMNvY/5CqKl+dfwCZ23YJ8u+26dWCsIPrPBl8KKYI97
-         wxww==
-X-Gm-Message-State: ANoB5pmOfCwVQ5zmT15y+ygc8FNrDxMgS4hFfqUG57vpxfvdcc09v371
-        PKM0sg2YLSZQlOWiyLojCX5Vxg==
-X-Google-Smtp-Source: AA0mqf6yw/xcd1p3DUq/S8ff/vfITEbDcAvZWiYamNuuHB2/TBeOI0/kQQk7ULGVsafimoDlXw6bFA==
-X-Received: by 2002:ac2:4950:0:b0:4b5:7925:870d with SMTP id o16-20020ac24950000000b004b57925870dmr9582948lfi.12.1671275122051;
-        Sat, 17 Dec 2022 03:05:22 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id f19-20020a056512361300b004a03fd4476esm481673lfs.287.2022.12.17.03.05.20
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=MKhTX89WL/mXEZGpHtSl2I9i5/jLZsHst59ffE4s6Dw=;
+        b=2wYyEhghIt/6KyrZ0TIeNKt/TwY/ndmHBFkh8eW4zXgK/ZI4KNP/md7DHC8uK+rJ+U
+         WqPyuFTp/E1pLoeykUoojsskh0frovPTNxNDEC/pa1RBlpxBU3GLsNq9TI8b6+yKdxEn
+         A01eiIQ76ZyMGGjfRbk15yYmS1K/tfsYe+2NnGatPSH2K+3LRlBr64F9lfjD87JttUPX
+         p8KRUi95kGfjeULTSaWszaK/EmUHcBPhk31GeaiLEKP43aLyDzAGTlMY+qkqnb2STPtm
+         b0saHfHgLTcnLNrszN0eRYzdLk7XewOTSLnc2L1HuQvuKuagMroOP08OAoaypStOCzhh
+         0Rag==
+X-Gm-Message-State: ANoB5pl0+fyP2kVOEEuYjV8qVf28Lmx5ff5Ys4MY5uk3HhB/5R942bgV
+        JoE3zOibUpyhKsQBskJoh3A=
+X-Google-Smtp-Source: AA0mqf4AJwwmy3iN1fgs0JeUZXimC2yzWZ2WjNbRBiwjp7TTKaXbB4edm7IG1cZ6LpePKKsyxOtasQ==
+X-Received: by 2002:a17:906:5a66:b0:7c0:d833:5ea8 with SMTP id my38-20020a1709065a6600b007c0d8335ea8mr29585382ejc.5.1671278734232;
+        Sat, 17 Dec 2022 04:05:34 -0800 (PST)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id 9-20020a170906318900b0077a8fa8ba55sm1895977ejy.210.2022.12.17.04.05.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 17 Dec 2022 03:05:21 -0800 (PST)
-Message-ID: <b74776b4-0885-f519-8ef7-e01048a8be15@linaro.org>
-Date:   Sat, 17 Dec 2022 12:05:20 +0100
+        Sat, 17 Dec 2022 04:05:33 -0800 (PST)
+Message-ID: <67675d28-87c5-0df1-4b93-2f1233918a1e@gmail.com>
+Date:   Sat, 17 Dec 2022 13:05:32 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH] dt-bindings: dma: fsl-mxs-dma: Convert MXS DMA to DT
- schema
+ Thunderbird/102.3.0
+From:   Johan Jonker <jbx6244@gmail.com>
+Subject: [PATCH v1] ARM: dts: rockchip: rk3128: add space between label and
+ nodename nfc pinctrl node
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20221217010724.632088-1-marex@denx.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221217010724.632088-1-marex@denx.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/12/2022 02:07, Marek Vasut wrote:
-> Convert the MXS DMA binding to DT schema format using json-schema.
-> 
-> Drop "interrupt-names" property, since it is broken. The drivers/dma/mxs-dma.c
-> in Linux kernel does not use it, the property contains duplicate array entries
-> in existing DTs, and even malformed entries (gmpi, should have been gpmi). Get
-> rid of that optional property altogether.
-> 
-> Update example node names to be standard dma-controller@ ,
-> add global interrupt-parent property into example.
+Add space between label and nodename nfc pinctrl node.
 
-Thank you for your patch. There is something to discuss/improve.
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ arch/arm/boot/dts/rk3128.dtsi | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-> +
-> +title: Freescale Direct Memory Access (DMA) Controller from i.MX23/i.MX28
-> +
-> +maintainers:
-> +  - Marek Vasut <marex@denx.de>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - fsl,imx6q-dma-apbh
-> +              - fsl,imx6sx-dma-apbh
-> +              - fsl,imx7d-dma-apbh
-> +          - const: fsl,imx28-dma-apbh
-> +      - items:
+diff --git a/arch/arm/boot/dts/rk3128.dtsi b/arch/arm/boot/dts/rk3128.dtsi
+index 0480144c1..b63bd4ad3 100644
+--- a/arch/arm/boot/dts/rk3128.dtsi
++++ b/arch/arm/boot/dts/rk3128.dtsi
+@@ -694,31 +694,31 @@
+ 		};
 
-No need for items here, make it just an enum.
+ 		nfc {
+-			flash_ale:flash-ale {
++			flash_ale: flash-ale {
+ 				rockchip,pins = <2 RK_PA0 1 &pcfg_pull_none>;
+ 			};
 
-> +          - enum:
-> +              - fsl,imx23-dma-apbh
-> +              - fsl,imx23-dma-apbx
-> +              - fsl,imx28-dma-apbh
-> +              - fsl,imx28-dma-apbx
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    minItems: 4
-> +    maxItems: 16
-> +
-> +  "#dma-cells":
-> +    const: 1
-> +
-> +  dma-channels:
-> +    enum: [4, 8, 16]
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#dma-cells"
-> +  - dma-channels
-> +  - interrupts
-> +
-> +allOf:
-> +  - $ref: dma-controller.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          not:
+-			flash_cle:flash-cle {
++			flash_cle: flash-cle {
+ 				rockchip,pins = <2 RK_PA1 1 &pcfg_pull_none>;
+ 			};
 
-I think "not:" goes just after "if:". Please double check that it's correct.
+-			flash_wrn:flash-wrn {
++			flash_wrn: flash-wrn {
+ 				rockchip,pins = <2 RK_PA2 1 &pcfg_pull_none>;
+ 			};
 
-Anyway it is easier to have this without negation and you already
-enumerate all variants (here and below).
+-			flash_rdn:flash-rdn {
++			flash_rdn: flash-rdn {
+ 				rockchip,pins = <2 RK_PA3 1 &pcfg_pull_none>;
+ 			};
 
+-			flash_rdy:flash-rdy {
++			flash_rdy: flash-rdy {
+ 				rockchip,pins = <2 RK_PA4 1 &pcfg_pull_none>;
+ 			};
 
-> +            contains:
-> +              enum:
-> +                - fsl,imx6q-dma-apbh
-> +                - fsl,imx6sx-dma-apbh
-> +                - fsl,imx7d-dma-apbh
-> +                - fsl,imx23-dma-apbx
-> +                - fsl,imx28-dma-apbh
-> +                - fsl,imx28-dma-apbx
-> +    then:
-> +      properties:
-> +        dma-channels:
-> +          const: 8
-> +        interrupts:
-> +          maxItems: 8
+-			flash_cs0:flash-cs0 {
++			flash_cs0: flash-cs0 {
+ 				rockchip,pins = <2 RK_PA6 1 &pcfg_pull_none>;
+ 			};
 
-Blank line here, please.
+-			flash_dqs:flash-dqs {
++			flash_dqs: flash-dqs {
+ 				rockchip,pins = <2 RK_PA7 1 &pcfg_pull_none>;
+ 			};
 
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          not:
-> +            contains:
-> +              enum:
-> +                - fsl,imx6q-dma-apbh
-> +                - fsl,imx6sx-dma-apbh
-> +                - fsl,imx7d-dma-apbh
-> +                - fsl,imx23-dma-apbh
-> +    then:
-> +      properties:
-> +        dma-channels:
-> +          const: 16
-> +        interrupts:
-> +          maxItems: 16
-> +
-> +additionalProperties: false
-> +
-
-Best regards,
-Krzysztof
+--
+2.20.1
 
