@@ -2,84 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6314A64FCFB
-	for <lists+devicetree@lfdr.de>; Sun, 18 Dec 2022 00:06:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A762164FD00
+	for <lists+devicetree@lfdr.de>; Sun, 18 Dec 2022 00:12:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229991AbiLQXG3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Dec 2022 18:06:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32872 "EHLO
+        id S229635AbiLQXMx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Dec 2022 18:12:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbiLQXG2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Dec 2022 18:06:28 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D2495FE5;
-        Sat, 17 Dec 2022 15:06:26 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S229469AbiLQXMw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Dec 2022 18:12:52 -0500
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3217DF1D;
+        Sat, 17 Dec 2022 15:12:50 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C3177B8098E;
-        Sat, 17 Dec 2022 23:06:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 073E9C433D2;
-        Sat, 17 Dec 2022 23:06:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671318383;
-        bh=bqFARoqphpHbyhbrxZUsG+sj09U5aINP1y9RjnZgMzE=;
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id D384D84C4B;
+        Sun, 18 Dec 2022 00:12:47 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1671318768;
+        bh=RdS0IoIcqmKegLgBe7nFh0pqEQAdaIVZPqb0t7xm2DE=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=CkinHnDSV71qouT/0CdbN0kx6wvIptd79x3UNAA+Tr3+azRa+jFeOtLI5d4QHqMsQ
-         0DQodXMzY1SR7VAygEYCVjEEmZumgbYUTzqmuvuZSh/IYUAmYGRvAXFTix5Khbgb1D
-         L5wObwO1wPACZCIIbSARcvRtlcPc8/u2TslWiAneZN7/i25fnMzZrnCG3BbzcOBwUf
-         c2Ka8zn4X5bxLxc6DRsu08l/0SNO5olIK9t8YZo7E9FukTAWJMvwMNvR70PTWhOl5s
-         1NkQp7v1abKsgedWhve643x74TK3QgNb9b0EHMxM6GpY8MLmxPDHai6a1M5WOLxQ3a
-         M6581qpoqbTYQ==
-Message-ID: <4f42ebf8-a5bd-6d98-0515-f4872c7c33a8@kernel.org>
-Date:   Sat, 17 Dec 2022 23:06:20 +0000
+        b=U22M4JAVKEgKGOtmE1tzjmlrAwAgzO6Fk2KgpLEsbBAJbG0e8FpJIgl8Y1sYqQnfT
+         EX1rZIpCSpqdASqK/sEee9nZGFGdnZqJcZW/oYmN9UmY7qmigxfmoDlRRSL5r9d5X2
+         d5VWxzCmDNdCjwRR4kaRLny9t85E77PdLB6l0q5KccLu8R2osNjRbcAlUDu2cta6F/
+         s9ZshBpaJNNQuNXZqF6kx5B6yOV42UbQ2Ib1dIqMJCGrDtp+JvJmEGCZCVy0HarJ+4
+         EtcNfh5JWFPPnAPRKevWtmuknntM0WS2auJB996M9WVvavnThGHfM0OAeyCCoUC7RJ
+         bKYEnYkXAdlGw==
+Message-ID: <ba05612d-fd3b-3e49-4ada-21f3b3c74e23@denx.de>
+Date:   Sun, 18 Dec 2022 00:12:47 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH] dt-bindings: hwmon: gpio-fan: convert to YAML
-To:     Corentin LABBE <clabbe@baylibre.com>
-Cc:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220126200350.3633576-1-clabbe@baylibre.com>
- <Y54BbjoRm5z2Tlp8@spud> <Y54uAuwrwU5Nl8kp@Red>
+ Thunderbird/102.5.1
+Subject: Re: [PATCH] dt-bindings: dma: fsl-mxs-dma: Convert MXS DMA to DT
+ schema
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20221217010724.632088-1-marex@denx.de>
+ <b74776b4-0885-f519-8ef7-e01048a8be15@linaro.org>
 Content-Language: en-US
-From:   Conor Dooley <conor@kernel.org>
-In-Reply-To: <Y54uAuwrwU5Nl8kp@Red>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <b74776b4-0885-f519-8ef7-e01048a8be15@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/12/2022 21:00, Corentin LABBE wrote:
-> Le Sat, Dec 17, 2022 at 05:50:38PM +0000, Conor Dooley a écrit :
->> On Wed, Jan 26, 2022 at 08:03:50PM +0000, Corentin Labbe wrote:
->>> Converts hwmon/gpio-fan.txt to YAML
->>>
->>> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
->>> ---
->>>
->>> I didnt found any clear maintainer and since DT yaml mandates a
->>> maintainer section, I set devicetree@vger.kernel.org.
->>
->> Hey Corentin,
->> Looks like there were only some minor comments from Rob on this patch,
->> but I do not see a v2 on lore. Just never get around to sending a v2, or
->> did it fall through the cracks?
->> Thanks,
->> Conor.
->>
-> 
-> I just forgot it.
-> 
-> I will send v2 soon.
+On 12/17/22 12:05, Krzysztof Kozlowski wrote:
 
-I didn't expect soon to mean 4 minutes later!
-Thanks!
+[...]
+
+>> +allOf:
+>> +  - $ref: dma-controller.yaml#
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          not:
+> 
+> I think "not:" goes just after "if:". Please double check that it's correct.
+> 
+> Anyway it is easier to have this without negation and you already
+> enumerate all variants (here and below).
+
+About this part, I don't think that works. See this:
+
+$ git grep -A 15 'imx2[38]-dma-apb[hx]' arch/ | grep 
+'\(imx2[38]-dma-apb[hx]\|dma-channels\)'
+arch/arm/boot/dts/imx23.dtsi: compatible = "fsl,imx23-dma-apbh";
+arch/arm/boot/dts/imx23.dtsi- dma-channels = <8>;
+arch/arm/boot/dts/imx23.dtsi: compatible = "fsl,imx23-dma-apbx";
+arch/arm/boot/dts/imx23.dtsi- dma-channels = <16>;
+arch/arm/boot/dts/imx28.dtsi: compatible = "fsl,imx28-dma-apbh";
+arch/arm/boot/dts/imx28.dtsi- dma-channels = <16>;
+arch/arm/boot/dts/imx28.dtsi: compatible = "fsl,imx28-dma-apbx";
+arch/arm/boot/dts/imx28.dtsi- dma-channels = <16>;
+arch/arm/boot/dts/imx6qdl.dtsi: compatible = "fsl,imx6q-dma-apbh", 
+"fsl,imx28-dma-apbh";
+arch/arm/boot/dts/imx6qdl.dtsi- dma-channels = <4>;
+arch/arm/boot/dts/imx6sx.dtsi: compatible = "fsl,imx6sx-dma-apbh", 
+"fsl,imx28-dma-apbh";
+arch/arm/boot/dts/imx6sx.dtsi- dma-channels = <4>;
+arch/arm/boot/dts/imx6ul.dtsi: compatible = "fsl,imx6q-dma-apbh", 
+"fsl,imx28-dma-apbh";
+arch/arm/boot/dts/imx6ul.dtsi- dma-channels = <4>;
+arch/arm/boot/dts/imx7s.dtsi: compatible = "fsl,imx7d-dma-apbh", 
+"fsl,imx28-dma-apbh";
+arch/arm/boot/dts/imx7s.dtsi- dma-channels = <4>;
+arch/arm64/boot/dts/freescale/imx8mm.dtsi: compatible = 
+"fsl,imx7d-dma-apbh", "fsl,imx28-dma-apbh";
+arch/arm64/boot/dts/freescale/imx8mm.dtsi- dma-channels = <4>;
+arch/arm64/boot/dts/freescale/imx8mn.dtsi: compatible = 
+"fsl,imx7d-dma-apbh", "fsl,imx28-dma-apbh";
+arch/arm64/boot/dts/freescale/imx8mn.dtsi- dma-channels = <4>;
+
+So I think what we have to do to validate that, is, say
+
+default: 4
+
+if does not match on 6q/6sx/7d/23-apbx/28-abbh/28-apbx then 8
+
+if does not match on 6q/6sx/7d/23-apbh then 16
+
+But if there is a better way to validate the above, please do tell.
