@@ -2,122 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A762164FD00
-	for <lists+devicetree@lfdr.de>; Sun, 18 Dec 2022 00:12:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7E0064FD12
+	for <lists+devicetree@lfdr.de>; Sun, 18 Dec 2022 00:43:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229635AbiLQXMx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Dec 2022 18:12:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33726 "EHLO
+        id S229656AbiLQXnv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Dec 2022 18:43:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbiLQXMw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Dec 2022 18:12:52 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3217DF1D;
-        Sat, 17 Dec 2022 15:12:50 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id D384D84C4B;
-        Sun, 18 Dec 2022 00:12:47 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1671318768;
-        bh=RdS0IoIcqmKegLgBe7nFh0pqEQAdaIVZPqb0t7xm2DE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=U22M4JAVKEgKGOtmE1tzjmlrAwAgzO6Fk2KgpLEsbBAJbG0e8FpJIgl8Y1sYqQnfT
-         EX1rZIpCSpqdASqK/sEee9nZGFGdnZqJcZW/oYmN9UmY7qmigxfmoDlRRSL5r9d5X2
-         d5VWxzCmDNdCjwRR4kaRLny9t85E77PdLB6l0q5KccLu8R2osNjRbcAlUDu2cta6F/
-         s9ZshBpaJNNQuNXZqF6kx5B6yOV42UbQ2Ib1dIqMJCGrDtp+JvJmEGCZCVy0HarJ+4
-         EtcNfh5JWFPPnAPRKevWtmuknntM0WS2auJB996M9WVvavnThGHfM0OAeyCCoUC7RJ
-         bKYEnYkXAdlGw==
-Message-ID: <ba05612d-fd3b-3e49-4ada-21f3b3c74e23@denx.de>
-Date:   Sun, 18 Dec 2022 00:12:47 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH] dt-bindings: dma: fsl-mxs-dma: Convert MXS DMA to DT
- schema
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        with ESMTP id S229506AbiLQXnu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Dec 2022 18:43:50 -0500
+Received: from mail-io1-xd29.google.com (mail-io1-xd29.google.com [IPv6:2607:f8b0:4864:20::d29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBA60101FB;
+        Sat, 17 Dec 2022 15:43:48 -0800 (PST)
+Received: by mail-io1-xd29.google.com with SMTP id 3so3025782iou.12;
+        Sat, 17 Dec 2022 15:43:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zRUbMxPV27Hg55rivM3e9ddx3+tYw8UCHWAc55pJZeQ=;
+        b=caUMYr3B3nDJbrqsqHE6foAd3zKTIE8dHOmZL1H/ntnPjfYsH2xbj/PLVZ6T969axP
+         /gtNEvTqeLJgR2+AdUDNiImN2PR4f7fs6lZ9xVHHW8IMD9ocvOUGesdYJOccA63idLKT
+         j1fTTBxBwRjUFzyl0P4dFwdNM+fOG+4vcrcxbhfRdxF5abpd2g+TdTcjZsoJ1yzBdMB/
+         1YJtUMK2Rql2QItdnkwUhB4Hrse0gzOwXm5km9p+9VbU1f25vMsAkbrtOM8uzCkm4RlN
+         axA/lrL82saGVu7raKL/RWk2Bxc724EBevJE/re2zohJ3V3BQ6l2OEfu2dSAJf4bnZxv
+         6UIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zRUbMxPV27Hg55rivM3e9ddx3+tYw8UCHWAc55pJZeQ=;
+        b=slOz7RyywQB17DGW+845e+5cCm+YX2F1IdwgeFrMwO3Y2M+blUTOXs1Go1FwenJoPh
+         TrqI8TlgPqwRYfbYF/QFIs2x22pHM+LmLK7sn+6hlO20tx1hz5DBlPJhygJOjXB1E16Q
+         lUtP0nVk/E5rxe9uNJuHbxqpHrUvPSD0w6rLKchKYDkjI2H9M3e/shWsZRRJW5e1hBee
+         N3dxJNxChTA3zQ1Qcchm59/+SXo13EwJ3Pg7Gfo2L6WyKa1NvNPWUstJn5TAYYwey6Mh
+         Pyznknb6JQCGt0BOCpPJFRrJKRkbzt1WPORD+JjPYV4hi8/NQnqO8sn9njmihw/UpFJr
+         ozvw==
+X-Gm-Message-State: ANoB5plpZiN8rnwhypiUJHLRn5kRc/Kth/8iwx4JdzBbiA7YWLDyQNcl
+        twNZ1kKspm3YSwpk/4kioEQ=
+X-Google-Smtp-Source: AA0mqf7xhRixGpITB3SToJo8/XZlbo5wmQ2hydI8q1a6hPyr8tP9xJgdKzBa2aAnSGU4FsYtkIpmBA==
+X-Received: by 2002:a5d:93cd:0:b0:6e0:58c:fb32 with SMTP id j13-20020a5d93cd000000b006e0058cfb32mr21890041ioo.2.1671320628164;
+        Sat, 17 Dec 2022 15:43:48 -0800 (PST)
+Received: from aford-IdeaCentre-A730.lan ([2601:447:d001:9aea:e023:db8c:bed5:4fd3])
+        by smtp.gmail.com with ESMTPSA id z29-20020a056602081d00b006bcd45fe42bsm2205945iow.29.2022.12.17.15.43.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 17 Dec 2022 15:43:47 -0800 (PST)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20221217010724.632088-1-marex@denx.de>
- <b74776b4-0885-f519-8ef7-e01048a8be15@linaro.org>
-Content-Language: en-US
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <b74776b4-0885-f519-8ef7-e01048a8be15@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH V2 1/2] dt-bindings: arm: Add Beacon EmbeddedWorks i.MX8M Plus kit
+Date:   Sat, 17 Dec 2022 17:43:38 -0600
+Message-Id: <20221217234340.819752-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/17/22 12:05, Krzysztof Kozlowski wrote:
+Add DT compatible string for a Beacon EmbeddedWorks development
+kit based on the i.MX8M Plus from NXP.
 
-[...]
+Signed-off-by: Adam Ford <aford173@gmail.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+V2:  Added Acked-by
 
->> +allOf:
->> +  - $ref: dma-controller.yaml#
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          not:
-> 
-> I think "not:" goes just after "if:". Please double check that it's correct.
-> 
-> Anyway it is easier to have this without negation and you already
-> enumerate all variants (here and below).
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 05b5276a0e14..4a92e0b2b890 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -931,6 +931,7 @@ properties:
+       - description: i.MX8MP based Boards
+         items:
+           - enum:
++              - beacon,imx8mp-beacon-kit  # i.MX8MP Beacon Development Kit
+               - dh,imx8mp-dhcom-som       # i.MX8MP DHCOM SoM
+               - dh,imx8mp-dhcom-pdk2      # i.MX8MP DHCOM SoM on PDK2 board
+               - fsl,imx8mp-evk            # i.MX8MP EVK Board
+-- 
+2.34.1
 
-About this part, I don't think that works. See this:
-
-$ git grep -A 15 'imx2[38]-dma-apb[hx]' arch/ | grep 
-'\(imx2[38]-dma-apb[hx]\|dma-channels\)'
-arch/arm/boot/dts/imx23.dtsi: compatible = "fsl,imx23-dma-apbh";
-arch/arm/boot/dts/imx23.dtsi- dma-channels = <8>;
-arch/arm/boot/dts/imx23.dtsi: compatible = "fsl,imx23-dma-apbx";
-arch/arm/boot/dts/imx23.dtsi- dma-channels = <16>;
-arch/arm/boot/dts/imx28.dtsi: compatible = "fsl,imx28-dma-apbh";
-arch/arm/boot/dts/imx28.dtsi- dma-channels = <16>;
-arch/arm/boot/dts/imx28.dtsi: compatible = "fsl,imx28-dma-apbx";
-arch/arm/boot/dts/imx28.dtsi- dma-channels = <16>;
-arch/arm/boot/dts/imx6qdl.dtsi: compatible = "fsl,imx6q-dma-apbh", 
-"fsl,imx28-dma-apbh";
-arch/arm/boot/dts/imx6qdl.dtsi- dma-channels = <4>;
-arch/arm/boot/dts/imx6sx.dtsi: compatible = "fsl,imx6sx-dma-apbh", 
-"fsl,imx28-dma-apbh";
-arch/arm/boot/dts/imx6sx.dtsi- dma-channels = <4>;
-arch/arm/boot/dts/imx6ul.dtsi: compatible = "fsl,imx6q-dma-apbh", 
-"fsl,imx28-dma-apbh";
-arch/arm/boot/dts/imx6ul.dtsi- dma-channels = <4>;
-arch/arm/boot/dts/imx7s.dtsi: compatible = "fsl,imx7d-dma-apbh", 
-"fsl,imx28-dma-apbh";
-arch/arm/boot/dts/imx7s.dtsi- dma-channels = <4>;
-arch/arm64/boot/dts/freescale/imx8mm.dtsi: compatible = 
-"fsl,imx7d-dma-apbh", "fsl,imx28-dma-apbh";
-arch/arm64/boot/dts/freescale/imx8mm.dtsi- dma-channels = <4>;
-arch/arm64/boot/dts/freescale/imx8mn.dtsi: compatible = 
-"fsl,imx7d-dma-apbh", "fsl,imx28-dma-apbh";
-arch/arm64/boot/dts/freescale/imx8mn.dtsi- dma-channels = <4>;
-
-So I think what we have to do to validate that, is, say
-
-default: 4
-
-if does not match on 6q/6sx/7d/23-apbx/28-abbh/28-apbx then 8
-
-if does not match on 6q/6sx/7d/23-apbh then 16
-
-But if there is a better way to validate the above, please do tell.
