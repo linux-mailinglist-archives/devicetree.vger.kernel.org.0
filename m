@@ -2,255 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1947164FB68
-	for <lists+devicetree@lfdr.de>; Sat, 17 Dec 2022 18:50:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89B9E64FB6C
+	for <lists+devicetree@lfdr.de>; Sat, 17 Dec 2022 18:54:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229743AbiLQRuu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Dec 2022 12:50:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58096 "EHLO
+        id S229735AbiLQRyK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Dec 2022 12:54:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229675AbiLQRuq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Dec 2022 12:50:46 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2A512DCE;
-        Sat, 17 Dec 2022 09:50:44 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 74F1AB803F3;
-        Sat, 17 Dec 2022 17:50:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83D07C433EF;
-        Sat, 17 Dec 2022 17:50:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671299442;
-        bh=V5/tPOA23XGLvHxP7Wp2/GHmPh9tPgDd/LiGvXHHJOk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QMp+CVa1qh3/ltOTFGssk2SFTaBO5+XqoeJfLnltEJzc4Y3lnuxIuzDfMjBbO0WPo
-         nNncCVEE+vll5OUAADrhUOYf78L+/jE800U5ipsMjRjh5X+kUeuaBHeYBDxLacdPIH
-         5K1fv8vLFGiSJXgBv6unixc4SZJGGfDUCVP6+s71nN+r9AXRVACgfY196ogbbjCEtX
-         mMERdU62sp/TT88tuG51AyJKpOdm62+ht2Gr4csd6Uiar7ZF9ZBBbFGS8EPljZuDey
-         C75mRvuZm2uY0kUmjW9GpxObYmqwCA++4kIXCylts+M/Csq9I03An6M5gh5s1ttWbO
-         lecWk1rHgrIgg==
-Date:   Sat, 17 Dec 2022 17:50:38 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Corentin Labbe <clabbe@baylibre.com>
-Cc:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: hwmon: gpio-fan: convert to YAML
-Message-ID: <Y54BbjoRm5z2Tlp8@spud>
-References: <20220126200350.3633576-1-clabbe@baylibre.com>
+        with ESMTP id S229675AbiLQRyJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Dec 2022 12:54:09 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CA4A12D0F
+        for <devicetree@vger.kernel.org>; Sat, 17 Dec 2022 09:54:08 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id c1so8069278lfi.7
+        for <devicetree@vger.kernel.org>; Sat, 17 Dec 2022 09:54:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=k0q2QQnxpm0TXHw29OgJug+FEx+jfuhjsMjmeqCML58=;
+        b=vG/kbDbx97Rr4/F+1VS/162sCuOv2r1Gd40apQN6ZhyYH/yd2V+PVtl+tvj7UwbQBF
+         iT1OXJSmwDX68VRMsx38PFCOTnOwCDzgOCX0ZYpxOOqx8aaq/7gFkusis5CGbgq3A6BV
+         rz/baOPLxS6tXKNpf2lF38CwxGIHn1iZcvaS2bxsRwn5Rkoz3OY0klXu1HVfE4yh1oHl
+         Fms9doOXI5BXm9qgepaPnhfd3yMK2t9djzS2h6qqYNNwzXqOOtdJsWzyCaIdY6byXVu+
+         udiC2OO1eVIY154oIJZFTJfAHLVZtl4kgPtLcNyHJOZ9HIUz/ReDcay3PpFp1qR98ipN
+         rRqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=k0q2QQnxpm0TXHw29OgJug+FEx+jfuhjsMjmeqCML58=;
+        b=gfx0jbT8a7edVO346YHVStpZQ9AkbYnoQZdbZFKF1MrKv40ypUPflcBP/SKrL5PEC1
+         iybZVk0bzBq9gMRdBK/M9y28OGcIyYzqbKoTNXzlYyG/71wZk5cbgC/m5hCb9muevW5a
+         JNVNEqHR9eXJ0c0hETG3PtIdAvaxDOaHKzbNrqsNJinN5XFOGlhbmLgkczMBT7sOsC8Z
+         zIEmXoDzAbWanqRUGUQ8ZoCdO9ZCeRRmH+NFAFs9nRKh8osufqSO8+jCQBn1+BgTH6Ww
+         O1oaT83YtBNejmabkwpaRSrZXsFTIDBA4FdbEk+mP6SaFZ1+rRNhgNsGajEWns7j0ZdC
+         xsRA==
+X-Gm-Message-State: ANoB5plqTctZ4EVEkYwRlYdeLLXAIPqVvq+CJLfed/piZclcPJJUPgcn
+        Dn8mrwBieVtYdpHHTBG8k+Uokg==
+X-Google-Smtp-Source: AA0mqf6RVcv4KurZarM2rWUm4zkWv2t5a6Se+1gohlSaBG50fR0ukdGgBmHkqkOSOa9s28GBhpcqoA==
+X-Received: by 2002:a05:6512:25a4:b0:4b5:87da:8b35 with SMTP id bf36-20020a05651225a400b004b587da8b35mr11729690lfb.61.1671299646233;
+        Sat, 17 Dec 2022 09:54:06 -0800 (PST)
+Received: from [127.0.0.1] (85-76-70-163-nat.elisa-mobile.fi. [85.76.70.163])
+        by smtp.gmail.com with ESMTPSA id a5-20020a056512200500b00492b494c4e8sm571744lfb.298.2022.12.17.09.54.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 17 Dec 2022 09:54:05 -0800 (PST)
+Date:   Sat, 17 Dec 2022 19:54:04 +0200
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+CC:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_05/15=5D_clk=3A_qcom=3A_gcc-qcs?= =?US-ASCII?Q?404=3A_disable_gpll=5B04=5D=5Fout=5Faux_parents?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <744cdde3-f43f-6545-fb83-a4474a84b84c@linaro.org>
+References: <20221217001730.540502-1-dmitry.baryshkov@linaro.org> <20221217001730.540502-6-dmitry.baryshkov@linaro.org> <744cdde3-f43f-6545-fb83-a4474a84b84c@linaro.org>
+Message-ID: <65B5F4E4-5026-476A-B62F-1432497BDAF4@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="J9cZgbLLDluj0yxy"
-Content-Disposition: inline
-In-Reply-To: <20220126200350.3633576-1-clabbe@baylibre.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+17 =D0=B4=D0=B5=D0=BA=D0=B0=D0=B1=D1=80=D1=8F 2022 =D0=B3=2E 17:08:24 GMT+0=
+2:00, Konrad Dybcio <konrad=2Edybcio@linaro=2Eorg> =D0=BF=D0=B8=D1=88=D0=B5=
+=D1=82:
+>
+>
+>On 17=2E12=2E2022 01:17, Dmitry Baryshkov wrote:
+>> On the QCS404 platform the driver for the Global Clock Controller
+>> doens't define gpll0_out_aux and gpll4_out_aux clocks, so it's not
+>> possible to use them as parents=2E Comment out entries for these clocks=
+=2E
+>>=20
+>> Note: backporting this patch to earlier kernels would also require a
+>> previous patch which switches the gcc driver to use ARRAY_SIZE for
+>> parent data arrays=2E
+>>=20
+>> Fixes: 652f1813c113 ("clk: qcom: gcc: Add global clock controller drive=
+r for QCS404")
+>> Signed-off-by: Dmitry Baryshkov <dmitry=2Ebaryshkov@linaro=2Eorg>
+>> ---
+>Perhaps one could just remove them then?
 
---J9cZgbLLDluj0yxy
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I was not sure, so I preferred to keep them in place in case someone has t=
+o use them again (after defining corresponding clock, of course)=2E
 
-On Wed, Jan 26, 2022 at 08:03:50PM +0000, Corentin Labbe wrote:
-> Converts hwmon/gpio-fan.txt to YAML
->=20
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> ---
->=20
-> I didnt found any clear maintainer and since DT yaml mandates a
-> maintainer section, I set devicetree@vger.kernel.org.
 
-Hey Corentin,
-Looks like there were only some minor comments from Rob on this patch,
-but I do not see a v2 on lore. Just never get around to sending a v2, or
-did it fall through the cracks?
-Thanks,
-Conor.
+>
+>Konrad
+>>  drivers/clk/qcom/gcc-qcs404=2Ec | 32 ++++++++++++++++----------------
+>>  1 file changed, 16 insertions(+), 16 deletions(-)
+>>=20
+>> diff --git a/drivers/clk/qcom/gcc-qcs404=2Ec b/drivers/clk/qcom/gcc-qcs=
+404=2Ec
+>> index f60a0ab42da1=2E=2Ec48326da1bb3 100644
+>> --- a/drivers/clk/qcom/gcc-qcs404=2Ec
+>> +++ b/drivers/clk/qcom/gcc-qcs404=2Ec
+>> @@ -25,11 +25,11 @@ enum {
+>>  	P_CORE_BI_PLL_TEST_SE,
+>>  	P_DSI0_PHY_PLL_OUT_BYTECLK,
+>>  	P_DSI0_PHY_PLL_OUT_DSICLK,
+>> -	P_GPLL0_OUT_AUX,
+>> +	/* P_GPLL0_OUT_AUX, */
+>>  	P_GPLL0_OUT_MAIN,
+>>  	P_GPLL1_OUT_MAIN,
+>>  	P_GPLL3_OUT_MAIN,
+>> -	P_GPLL4_OUT_AUX,
+>> +	/* P_GPLL4_OUT_AUX, */
+>>  	P_GPLL4_OUT_MAIN,
+>>  	P_GPLL6_OUT_AUX,
+>>  	P_HDMI_PHY_PLL_CLK,
+>> @@ -109,28 +109,28 @@ static const char * const gcc_parent_names_4[] =
+=3D {
+>>  static const struct parent_map gcc_parent_map_5[] =3D {
+>>  	{ P_XO, 0 },
+>>  	{ P_DSI0_PHY_PLL_OUT_BYTECLK, 1 },
+>> -	{ P_GPLL0_OUT_AUX, 2 },
+>> +	/* { P_GPLL0_OUT_AUX, 2 }, */
+>>  	{ P_CORE_BI_PLL_TEST_SE, 7 },
+>>  };
+>> =20
+>>  static const char * const gcc_parent_names_5[] =3D {
+>>  	"cxo",
+>>  	"dsi0pll_byteclk_src",
+>> -	"gpll0_out_aux",
+>> +	/* "gpll0_out_aux", */
+>>  	"core_bi_pll_test_se",
+>>  };
+>> =20
+>>  static const struct parent_map gcc_parent_map_6[] =3D {
+>>  	{ P_XO, 0 },
+>>  	{ P_DSI0_PHY_PLL_OUT_BYTECLK, 2 },
+>> -	{ P_GPLL0_OUT_AUX, 3 },
+>> +	/* { P_GPLL0_OUT_AUX, 3 }, */
+>>  	{ P_CORE_BI_PLL_TEST_SE, 7 },
+>>  };
+>> =20
+>>  static const char * const gcc_parent_names_6[] =3D {
+>>  	"cxo",
+>>  	"dsi0_phy_pll_out_byteclk",
+>> -	"gpll0_out_aux",
+>> +	/* "gpll0_out_aux", */
+>>  	"core_bi_pll_test_se",
+>>  };
+>> =20
+>> @@ -139,7 +139,7 @@ static const struct parent_map gcc_parent_map_7[] =
+=3D {
+>>  	{ P_GPLL0_OUT_MAIN, 1 },
+>>  	{ P_GPLL3_OUT_MAIN, 2 },
+>>  	{ P_GPLL6_OUT_AUX, 3 },
+>> -	{ P_GPLL4_OUT_AUX, 4 },
+>> +	/* { P_GPLL4_OUT_AUX, 4 }, */
+>>  	{ P_CORE_BI_PLL_TEST_SE, 7 },
+>>  };
+>> =20
+>> @@ -148,7 +148,7 @@ static const char * const gcc_parent_names_7[] =3D =
+{
+>>  	"gpll0_out_main",
+>>  	"gpll3_out_main",
+>>  	"gpll6_out_aux",
+>> -	"gpll4_out_aux",
+>> +	/* "gpll4_out_aux", */
+>>  	"core_bi_pll_test_se",
+>>  };
+>> =20
+>> @@ -207,14 +207,14 @@ static const char * const gcc_parent_names_11[] =
+=3D {
+>>  static const struct parent_map gcc_parent_map_12[] =3D {
+>>  	{ P_XO, 0 },
+>>  	{ P_DSI0_PHY_PLL_OUT_DSICLK, 1 },
+>> -	{ P_GPLL0_OUT_AUX, 2 },
+>> +	/* { P_GPLL0_OUT_AUX, 2 }, */
+>>  	{ P_CORE_BI_PLL_TEST_SE, 7 },
+>>  };
+>> =20
+>>  static const char * const gcc_parent_names_12[] =3D {
+>>  	"cxo",
+>>  	"dsi0pll_pclk_src",
+>> -	"gpll0_out_aux",
+>> +	/* "gpll0_out_aux", */
+>>  	"core_bi_pll_test_se",
+>>  };
+>> =20
+>> @@ -237,40 +237,40 @@ static const char * const gcc_parent_names_13[] =
+=3D {
+>>  static const struct parent_map gcc_parent_map_14[] =3D {
+>>  	{ P_XO, 0 },
+>>  	{ P_GPLL0_OUT_MAIN, 1 },
+>> -	{ P_GPLL4_OUT_AUX, 2 },
+>> +	/* { P_GPLL4_OUT_AUX, 2 }, */
+>>  	{ P_CORE_BI_PLL_TEST_SE, 7 },
+>>  };
+>> =20
+>>  static const char * const gcc_parent_names_14[] =3D {
+>>  	"cxo",
+>>  	"gpll0_out_main",
+>> -	"gpll4_out_aux",
+>> +	/* "gpll4_out_aux", */
+>>  	"core_bi_pll_test_se",
+>>  };
+>> =20
+>>  static const struct parent_map gcc_parent_map_15[] =3D {
+>>  	{ P_XO, 0 },
+>> -	{ P_GPLL0_OUT_AUX, 2 },
+>> +	/* { P_GPLL0_OUT_AUX, 2 }, */
+>>  	{ P_CORE_BI_PLL_TEST_SE, 7 },
+>>  };
+>> =20
+>>  static const char * const gcc_parent_names_15[] =3D {
+>>  	"cxo",
+>> -	"gpll0_out_aux",
+>> +	/* "gpll0_out_aux", */
+>>  	"core_bi_pll_test_se",
+>>  };
+>> =20
+>>  static const struct parent_map gcc_parent_map_16[] =3D {
+>>  	{ P_XO, 0 },
+>>  	{ P_GPLL0_OUT_MAIN, 1 },
+>> -	{ P_GPLL0_OUT_AUX, 2 },
+>> +	/* { P_GPLL0_OUT_AUX, 2 }, */
+>>  	{ P_CORE_BI_PLL_TEST_SE, 7 },
+>>  };
+>> =20
+>>  static const char * const gcc_parent_names_16[] =3D {
+>>  	"cxo",
+>>  	"gpll0_out_main",
+>> -	"gpll0_out_aux",
+>> +	/* "gpll0_out_aux", */
+>>  	"core_bi_pll_test_se",
+>>  };
+>> =20
 
->=20
->  .../devicetree/bindings/hwmon/gpio-fan.txt    | 41 --------
->  .../devicetree/bindings/hwmon/gpio-fan.yaml   | 96 +++++++++++++++++++
->  2 files changed, 96 insertions(+), 41 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/hwmon/gpio-fan.txt
->  create mode 100644 Documentation/devicetree/bindings/hwmon/gpio-fan.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/hwmon/gpio-fan.txt b/Docum=
-entation/devicetree/bindings/hwmon/gpio-fan.txt
-> deleted file mode 100644
-> index f4cfa350f6a1..000000000000
-> --- a/Documentation/devicetree/bindings/hwmon/gpio-fan.txt
-> +++ /dev/null
-> @@ -1,41 +0,0 @@
-> -Bindings for fan connected to GPIO lines
-> -
-> -Required properties:
-> -- compatible : "gpio-fan"
-> -
-> -Optional properties:
-> -- gpios: Specifies the pins that map to bits in the control value,
-> -  ordered MSB-->LSB.
-> -- gpio-fan,speed-map: A mapping of possible fan RPM speeds and the
-> -  control value that should be set to achieve them. This array
-> -  must have the RPM values in ascending order.
-> -- alarm-gpios: This pin going active indicates something is wrong with
-> -  the fan, and a udev event will be fired.
-> -- #cooling-cells: If used as a cooling device, must be <2>
-> -  Also see:
-> -  Documentation/devicetree/bindings/thermal/thermal-cooling-devices.yaml
-> -  min and max states are derived from the speed-map of the fan.
-> -
-> -Note: At least one the "gpios" or "alarm-gpios" properties must be set.
-> -
-> -Examples:
-> -
-> -	gpio_fan {
-> -		compatible =3D "gpio-fan";
-> -		gpios =3D <&gpio1 14 1
-> -			 &gpio1 13 1>;
-> -		gpio-fan,speed-map =3D <0    0
-> -				      3000 1
-> -				      6000 2>;
-> -		alarm-gpios =3D <&gpio1 15 1>;
-> -	};
-> -	gpio_fan_cool: gpio_fan {
-> -		compatible =3D "gpio-fan";
-> -		gpios =3D <&gpio2 14 1
-> -			 &gpio2 13 1>;
-> -		gpio-fan,speed-map =3D	<0    0>,
-> -					<3000 1>,
-> -					<6000 2>;
-> -		alarm-gpios =3D <&gpio2 15 1>;
-> -		#cooling-cells =3D <2>; /* min followed by max */
-> -	};
-> diff --git a/Documentation/devicetree/bindings/hwmon/gpio-fan.yaml b/Docu=
-mentation/devicetree/bindings/hwmon/gpio-fan.yaml
-> new file mode 100644
-> index 000000000000..15bb5efd3cb4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/gpio-fan.yaml
-> @@ -0,0 +1,96 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/gpio-fan.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Bindings for fan connected to GPIO lines
-> +
-> +maintainers:
-> +  - OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS <devicetree@vger.ke=
-rnel.org>
-> +
-> +properties:
-> +  compatible:
-> +    const: gpio-fan
-> +
-> +  gpios:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: Specifies the pins that map to bits in the control valu=
-e,
-> +      ordered MSB-->LSB.
-> +
-> +  gpio-fan,speed-map:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> +    description: A mapping of possible fan RPM speeds and the
-> +      control value that should be set to achieve them. This array
-> +      must have the RPM values in ascending order.
-> +
-> +  alarm-gpios:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: This pin going active indicates something is wrong with
-> +      the fan, and a udev event will be fired.
-> +
-> +  "#cooling-cells":
-> +    const: 2
-> +    description: If used as a cooling device, must be <2>
-> +      Also see Documentation/devicetree/bindings/thermal/thermal-cooling=
--devices.yaml
-> +      min and max states are derived from the speed-map of the fan.
-> +
-> +anyOf:
-> +  - required:
-> +      - gpios
-> +  - required:
-> +      - alarm-gpios
-> +
-> +additionalProperties: False
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/clock/cortina,gemini-clock.h>
-> +    #include <dt-bindings/reset/cortina,gemini-reset.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    gpio1: gpio@4d000000 {
-> +      compatible =3D "cortina,gemini-gpio", "faraday,ftgpio010";
-> +      reg =3D <0x4d000000 0x100>;
-> +      interrupts =3D <22 IRQ_TYPE_LEVEL_HIGH>;
-> +      resets =3D <&syscon GEMINI_RESET_GPIO0>;
-> +      clocks =3D <&syscon GEMINI_CLK_APB>;
-> +      gpio-controller;
-> +      #gpio-cells =3D <2>;
-> +      interrupt-controller;
-> +      #interrupt-cells =3D <2>;
-> +    };
-> +    gpio_fan {
-> +      compatible =3D "gpio-fan";
-> +        gpios =3D <&gpio1 8 GPIO_ACTIVE_HIGH>;
-> +        gpio-fan,speed-map =3D <0    0>,
-> +                             <3000 1>,
-> +                             <6000 2>;
-> +        alarm-gpios =3D <&gpio1 15 GPIO_ACTIVE_HIGH>;
-> +    };
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/clock/cortina,gemini-clock.h>
-> +    #include <dt-bindings/reset/cortina,gemini-reset.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    gpio2: gpio@4d000000 {
-> +      compatible =3D "cortina,gemini-gpio", "faraday,ftgpio010";
-> +      reg =3D <0x4d000000 0x100>;
-> +      interrupts =3D <22 IRQ_TYPE_LEVEL_HIGH>;
-> +      resets =3D <&syscon GEMINI_RESET_GPIO0>;
-> +      clocks =3D <&syscon GEMINI_CLK_APB>;
-> +      gpio-controller;
-> +      #gpio-cells =3D <2>;
-> +      interrupt-controller;
-> +      #interrupt-cells =3D <2>;
-> +    };
-> +    gpio_fan_cool: gpio_fan {
-> +      compatible =3D "gpio-fan";
-> +      gpios =3D <&gpio2 8 GPIO_ACTIVE_HIGH
-> +               &gpio2 1 GPIO_ACTIVE_HIGH>;
-> +      gpio-fan,speed-map =3D <0    0
-> +                           3000 1
-> +                           6000 2>;
-> +      alarm-gpios =3D <&gpio2 15 GPIO_ACTIVE_HIGH>;
-> +      #cooling-cells =3D <2>; /* min followed by max */
-> +    };
-> --=20
-> 2.34.1
->=20
->=20
-
---J9cZgbLLDluj0yxy
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY54BbQAKCRB4tDGHoIJi
-0o9tAP4uLHXmJOt9syq4cRw8WtmC3czmyza6bquTAwVjIyXCnwEApwfTn9+n6yzG
-ZvvNOC+6QJbNKiyMjcs3kV9Q++41gwk=
-=eGzC
------END PGP SIGNATURE-----
-
---J9cZgbLLDluj0yxy--
