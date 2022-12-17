@@ -2,112 +2,257 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3D6164F6AB
-	for <lists+devicetree@lfdr.de>; Sat, 17 Dec 2022 02:09:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA87664F81C
+	for <lists+devicetree@lfdr.de>; Sat, 17 Dec 2022 08:41:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229995AbiLQBJP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Dec 2022 20:09:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49614 "EHLO
+        id S229469AbiLQHlO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Dec 2022 02:41:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229966AbiLQBJN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Dec 2022 20:09:13 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F80F2528C
-        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 17:09:13 -0800 (PST)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 719A68536E;
-        Sat, 17 Dec 2022 02:09:11 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1671239351;
-        bh=HuYCOVyKwFOER3tRSnLb2xJwrIUNGj7spr9oc+Jww7w=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=XK1PopiYZ8NLTkdKoU+KVheOtHtJwoyb5QVa4yzUE0s8vUQhizGbYSlgYtgzvBh7o
-         k3vJpYavTROXYU8z89qZhFtWDkCPCsLS+reS3nFZidn1DOeAImoRKsuXKLJLG7km1I
-         yA0VTRuv7m3nEWXH0aZ5sF+vDJr3u21gM+aTcFBg69vI4BQXj8+w5+GwnBjCDHHkkc
-         A0wHHvUozQstbo5dFUlTPY1PlNeMStmCth0GtNow3nx0fmePmimkWCx77mYD1ioth4
-         eLO3Ycoukcm6a+sLeMHLFsMXjsTTCkwez6tcHEyVRL4WjsTaPW8fpwSk/zbyjArW5w
-         YsyuxJ6APGOHA==
-From:   Marek Vasut <marex@denx.de>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marek Vasut <marex@denx.de>, Adam Ford <aford173@gmail.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Li Jun <jun.li@nxp.com>, Lucas Stach <l.stach@pengutronix.de>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
+        with ESMTP id S229453AbiLQHlN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Dec 2022 02:41:13 -0500
+Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-he1eur01on2078.outbound.protection.outlook.com [40.107.13.78])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15CF710573
+        for <devicetree@vger.kernel.org>; Fri, 16 Dec 2022 23:41:06 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XE6X3UHwF9THpy9ogJx0CikDUaTdKEIr3nP1ux3N6onPXiOg4wwjZ5HUplA3lFSuLM/cuRBLGZuv56YIeTDqs1T+FYUzFA3quXEzTLpwTAmGhaaGfdyOIv//Tsa0BDYUCOJaFL21m0c6C+pe6RaFxMeDoLvHjkQCRpQvfm4YioZ64RVVYOaL/DAU4Bsh7+sD7pl1lHx0UfHz86ED8BpHq/cuw0PtUTxo/XQ//+trAuA1E23iIK2yaiLaEwheRCnHUAnjAZsu0ensPdFeouEwnwHNAvw92uG+nhIlOTaFzdE6WTQtZ8KXZGA0jR8rkijzgk3FZKypws1avqfbGBbUcA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yNYDX9Q6lJ4RIe3aNtWzXPeEUgi6i8WJsdQLYkB8yfM=;
+ b=jjEEsps6hdENhjRDQb17eDwvUZieFfmYDBrrN3kJagZROP+/6tfLTf3yKCYrfuzfaqY83EowWauT3uUXCGyh7vVN6f1LHnEo5B1YI4cBOAMMm1CRi+U86ucYUhwRc3eFJTb6ZcreSl44rfXFDX8RkuP8E9s7haa1yi/vFT7DALzypRUK04Ag/j91fG3qCPJgSote9OIPLjOnQ3PgTz2L9niNwfmUTMm3iF5xyP7W92RaCL4Nkjygcea5Cb3D73/ydt4HW7IEj4bFYThigonN/wDPBBHYVciHps2P5I1dxJ1K1dDB0YMl0+gQTlsHZPq2elmDbeQ//IUtDjLFCYmsOw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yNYDX9Q6lJ4RIe3aNtWzXPeEUgi6i8WJsdQLYkB8yfM=;
+ b=gsnZrcJmvxzRx3p+6X8mqclGvUzEf0cLjt5y5GrqqIps12Ajys9M9Adb2N1Vf0ALdJNEWHxZ+kKzmzJVz4uZHiQw751ca2HFVg9BB8rNbifGiexsxsH/j1Fk54f5Cw6IgSJaZVzR1Ovtm1ba3Z+G9HD9wQB1ZWx39CvEhDSYoCs=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by PA4PR04MB9485.eurprd04.prod.outlook.com (2603:10a6:102:27d::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5924.11; Sat, 17 Dec
+ 2022 07:41:03 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::ce5b:991d:5f5e:388]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::ce5b:991d:5f5e:388%7]) with mapi id 15.20.5924.016; Sat, 17 Dec 2022
+ 07:41:02 +0000
+Message-ID: <d0c9ecebc466f8e08a697cb041064199ff09fb44.camel@nxp.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: display: imx: add binding for
+ i.MX8MP HDMI TX
+From:   Liu Ying <victor.liu@nxp.com>
+To:     Lucas Stach <l.stach@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH 7/7] arm64: dts: imx8mn: Drop dma-apb interrupt-names
-Date:   Sat, 17 Dec 2022 02:08:55 +0100
-Message-Id: <20221217010855.632301-7-marex@denx.de>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221217010855.632301-1-marex@denx.de>
-References: <20221217010855.632301-1-marex@denx.de>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Marek Vasut <marex@denx.de>, patchwork-lst@pengutronix.de,
+        Philipp Zabel <p.zabel@pengutronix.de>, Sandor.yu@nxp.com
+Date:   Sat, 17 Dec 2022 15:40:24 +0800
+In-Reply-To: <20221216210742.3233382-1-l.stach@pengutronix.de>
+References: <20221216210742.3233382-1-l.stach@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SG2PR03CA0088.apcprd03.prod.outlook.com
+ (2603:1096:4:7c::16) To AM7PR04MB7046.eurprd04.prod.outlook.com
+ (2603:10a6:20b:113::22)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|PA4PR04MB9485:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8358093e-6016-4d8c-6410-08dae0020c06
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: LPy2VcqcPmSgyi5bFDl4NjR2R83gjksexsmyiw1nBMYkGIIT7KAVohKJbjB0mWtP6WFmnW258bXNH8msVL0B2lBeZsn2qhpTSCXXnMdVJY/iU3Z7v5NwPfEzGtwjZJT358GksBuJ/f2Y7yVhn3CQAqpuR3rcBzrQzhQR7N/DAIJjjKSu2q5Fjb1VHVIy1qZVXoDDs/gVRyw86GOau8bmRcG7Biw866OodKdZzilgsYXJPbPykzOxIA7npwAvG82H314NuK1S46Q0wFBIMiymZ3JrD71pclygQdr9gP+Jv5w9Jf1ts+VGk9UQkcmlGRR05w8L+if2zjfpYzDeGf0+mEke2tPanY96pdk2wzW8JGDfeDqzqIaH0OHbDxM0R1o9k/A1EFbXyoOh77QMkEsUbxLcwt+TbZ8p4Q9bVVx+ve+a5W5QBk8Ds4tfJ++rdy43EPoEmu3uGfexZ/R8BQTh24CekTmET14Y7JpTWfmsyzH6POFCGdemvPhph5pdC6AGtBBKMH2NMPn+t7RrTFU4c9DueOrdqFeh0fr/h/zzp4TfSTSpx4rsiK1tdHXDuJt7bFuWMSoFwaP5+jd/Gi3uhwwnCNR6FhWxy59zNaQlckUSQ4ylcZ8sT2UWUUv1dyk8zhIlU+XZpIcZnP9o0LCw7flJGOtZq1u710SqOCkSgXbEktibJ7znp8Z+iU5eP7mcjU+EZha42OWIJi2lUwc9I82J8l5LzLuSWxVT832mXMVWfxLg1/5M1NcQXecnbibUOxoBep4sYkINfpiyatbkC1wtPDsGeCjn9oJhr28ahTE=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(136003)(396003)(366004)(39860400002)(346002)(451199015)(36756003)(316002)(86362001)(54906003)(478600001)(38100700002)(52116002)(966005)(6486002)(7416002)(6666004)(4326008)(2906002)(66556008)(5660300002)(66476007)(66946007)(8936002)(41300700001)(8676002)(4001150100001)(38350700002)(6512007)(26005)(110136005)(186003)(6506007)(2616005)(83380400001)(99106002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VXZDd0p6OXJrK09teE4wRHV1cWthTjVrR21KcTJKamFDWm03MjZibjJRNFRQ?=
+ =?utf-8?B?aVZuSjY0RmtsZXdLN0RIOUFMdk50QkdnQ1BxODZOMUgxKzBVV3hUR1ErRk9K?=
+ =?utf-8?B?MFUwTW1aS1pyenFUWG56VDIvb1BkeHVIUWo5UUYrOUIwa0RGNXA5N05yS3Y1?=
+ =?utf-8?B?enF4T2t2TkhheTNSNENsM3VGenRZdytHckdBNXc1YTU2M3I1eUl6a2RWUFRp?=
+ =?utf-8?B?alRjb2k1aUNzK2NqVUhJck5tQUdpMHRvZ0cyNENqcDhNNVNTR1psSThuWHRa?=
+ =?utf-8?B?R3EyVldYb0tKZFJBWUZ2TXBOcmUzeHVTZEtaQ05ZM2x4TEFvdzZOS08rbTZy?=
+ =?utf-8?B?NDE4ZlJRb0w3Q1kxdm9LSFJLcVk5UWlWeDhnRys0ekV6SVBSWjZqTlpWYTZM?=
+ =?utf-8?B?RE5XVUs5V1Axa0V3Qk1vb1g4Vm9YQkJjdnRmWTN0OEJVRXU1cTFnM1NERjNT?=
+ =?utf-8?B?eGtHeWFpL2dZK0tzVFJDMzdTMndrZjA2L0gwRitTeUIvWW5WU2hoZzZKQ3Nq?=
+ =?utf-8?B?dzE2aGdjaDE0R0dsWHgyRDhhKzJFNGVHaUFXdnlaT3dxd01qdFJpaFdQaytJ?=
+ =?utf-8?B?WkZSZHIyS3h5Y01TL3Q3bnJEOXhzME43SGhib3VOQWIwcmh0ZzRWVzBHRExi?=
+ =?utf-8?B?M2xENUtGbnFVSkZnd0FtUDkxOWQ3VldyWjdXanozWnpwUEYvak9wYlA2NTBG?=
+ =?utf-8?B?RmlmeG5GNlY3c0hEVGF2ZkYyVm9lbUdsQ1hVby9CelllSWpXV2wxK0lkZkIr?=
+ =?utf-8?B?ZVlwVmRDZ2dTVjBGOVhKYjM0alZvYnhVZXV1QWtHSGp1T0xtR1RZMWhmdjcv?=
+ =?utf-8?B?REV0WG5LM3RIZDZkMXpzODRuYVd4bm90Tmh2TEJUU3NoMFpWTy91MVhyQ0J5?=
+ =?utf-8?B?U1JNVXRONEFiTjhSNkttUDdic2lqQ2VHdElYY2VJcS9LeENhSzNucXU3eHMx?=
+ =?utf-8?B?MFpvdHloK2NwaXU2a3FuUlBpVUpiMWFrTllCTHY4UkNqc2lOZjRMMjNQN0ZN?=
+ =?utf-8?B?Vi9xZStMeXNtY3pOTEFoMElpa1VjL2gxRk92L0hjZmNVa2U4bXY3K1hxZTRr?=
+ =?utf-8?B?N3hBTHRweHptNDB2a3gyQmJ2bjVwZTRCQm5hL1pMMEdhK1k5Q1dML2ZrSEV1?=
+ =?utf-8?B?b2R5QlV4TTBRYmxNWW5LVm9aVlVFRUUwK1ZPd2JPbG94RE5oemo0cFViZTQ3?=
+ =?utf-8?B?Sm1IdG9icWY3TENtSmxyN0hKRGhZUkZHbE9wZHEzSFFlWnZVanI5ckZTYlJO?=
+ =?utf-8?B?bXBEelZIWDFyd3BuUXprcVJIZG9iTlRqQVI1cUhEcjM0RFVXUUtvY0hlY2Y1?=
+ =?utf-8?B?SmhJdm1yREU5VDRZczhWdzBTSHNnZFpPVVl1Zy9aalBsL1FkcitISVVvbDNH?=
+ =?utf-8?B?ek1uOTFTSy9HQzVzTWZxUlRqSlpLVHpySnluSmVVL01QaWV5NUo1Nm1jeFZy?=
+ =?utf-8?B?S2NYeE8rM1VqVkJPcGViN1UwNGQzeElFY3oxNjd1YkZhVnFpMys1N1JEdnFN?=
+ =?utf-8?B?VU9pNTFSN0ltMU9JUlV1eFFrM282T3AxY0wzVEtoZnlMTldOYUNCdUtCMUdw?=
+ =?utf-8?B?bWowMFRGalQvSVltS2VVZjNoQTFwZ3NucXpQckEwdHZPQkZLMWdML1p3cXVp?=
+ =?utf-8?B?elpWRTgrWHh1N256bWEvdkZ2Q25tdStkWU1PbUg1SlB4bHhjSTZPU3k3M0R4?=
+ =?utf-8?B?VEpEL3JMeVI5cXExOVVleFA3MzN0eGRrdlZwTUxHQ1FFQ09Qby9JUjhZNVdu?=
+ =?utf-8?B?SC9rMFcyZ0Y4QlFDWWgraSs4ckdKZWFwa3NwMlIrbTh1ZW9GMWYzVERKd2hi?=
+ =?utf-8?B?TkxRQUgvcVNicEVFNTkwT2xDc2J3RTBDblpENjZQUEV5dTNENkVHVmkrd1NO?=
+ =?utf-8?B?UE8wTklpaW9hdTRSR1J3WmRoemVtMzFpWlRvT3kvMlBNVVZaVE9McXBvOSts?=
+ =?utf-8?B?U3BtY1JZOGdrUUJiaEowMWJJTEU4dGFsRDFIOHdpcklhWmZwbDFnU2RYKzkw?=
+ =?utf-8?B?Q2dNSkwvemt6azVBajdPTXRZOUdUb1VhaWxVVE4vM3pJSDFTQlc4aGRzOFZz?=
+ =?utf-8?B?OGZrOG81ZDVLRXlJdllJNmNWeitEWVEzamZ1QU9XYlNBd0o5RkNpblZ0ZXZJ?=
+ =?utf-8?Q?hSrbZpoNrUO9Tg68SxCYSTI5f?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8358093e-6016-4d8c-6410-08dae0020c06
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Dec 2022 07:41:02.7034
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: M9cCUXVPock0ctqxikUa3qYfVufCzwRH/TX85F6RSlJOG4cQza8Md8wFrFKegOmgRVAJPbmYdSKyjSQrTJ7DgA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB9485
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Drop "interrupt-names" property, since it is broken. The drivers/dma/mxs-dma.c
-in Linux kernel does not use it, the property contains duplicate array entries
-in existing DTs, and even malformed entries (gmpi, should have been gpmi). Get
-rid of that optional property altogether.
+Hi Lucas,
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Adam Ford <aford173@gmail.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Li Jun <jun.li@nxp.com>
-Cc: Lucas Stach <l.stach@pengutronix.de>
-Cc: Marco Felsch <m.felsch@pengutronix.de>
-Cc: Marek Vasut <marex@denx.de>
-Cc: Markus Niebel <Markus.Niebel@ew.tq-group.com>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: Peng Fan <peng.fan@nxp.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Richard Cochran <richardcochran@gmail.com>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: devicetree@vger.kernel.org
-To: linux-arm-kernel@lists.infradead.org
----
- arch/arm64/boot/dts/freescale/imx8mn.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+On Fri, 2022-12-16 at 22:07 +0100, Lucas Stach wrote:
+> The HDMI TX controller on the i.MX8MP SoC is a Synopsys designware IP
+> core with a little bit of SoC integration around it.
+> 
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> ---
+>  .../bindings/display/imx/fsl,imx8mp-hdmi.yaml | 69
+> +++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+>  create mode 100644
+> Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.yaml
+> 
+> diff --git
+> a/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.yaml
+> b/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.yaml
+> new file mode 100644
+> index 000000000000..75ebeaa8c9d5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-
+> hdmi.yaml
+> @@ -0,0 +1,69 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/imx/fsl,imx8mp-hdmi.yaml#
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-index b7d91df71cc26..5bd5d726a5674 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-@@ -1094,7 +1094,6 @@ dma_apbh: dma-controller@33000000 {
- 				     <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
--			interrupt-names = "gpmi0", "gpmi1", "gpmi2", "gpmi3";
- 			#dma-cells = <1>;
- 			dma-channels = <4>;
- 			clocks = <&clk IMX8MN_CLK_NAND_USDHC_BUS_RAWNAND_CLK>;
--- 
-2.35.1
+Better to put the binding documentation under the display/bridge
+umbrella as the corresponding linux driver is a DRM bridge driver, not
+a DRM encoder driver.
+
+Regarding the file name, I would use 'fsl,imx8mp-hdmi-tx.yaml' to
+explicitly tell it's a TX controller(not a RX controller), which
+matches the chapter name 'HDMI TX controller' in i.MX8mp RM.
+
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale i.MX8MP DWC HDMI TX Encoder
+> +
+> +maintainers:
+> +  - Lucas Stach <l.stach@pengutronix.de>
+> +
+> +description: |
+> +  The i.MX8MP HDMI transmitter is a Synopsys DesignWare
+> +  HDMI 2.0 TX controller IP.
+
+i.MX8mp RM says it is compatible with the HDMI v2.0a spec, so better to
+mention 2.0a instead of 2.0.
+
+> +
+> +allOf:
+> +  - $ref: ../bridge/synopsys,dw-hdmi.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,imx8mp-hdmi
+
+Like the file name, I would use 'fsl,imx8mp-hdmi-tx'.
+
+It seems that the i.MX6q DW HDMI TX controller will not easily use this
+binding since it's corresponding driver is a DRM encoder driver, and no
+other i.MX SoCs embed the controller, so use const instead of enum(It
+can be changed to enum when necessary later.)?
+ 
+> +
+> +  reg-io-width:
+> +    const: 1
+> +
+> +  clocks:
+> +    maxItems: 5
+> +
+> +  clock-names:
+> +    items:
+> +      - const: iahb
+> +      - const: isfr
+> +      - const: fdcc
+> +      - const: cec
+> +      - const: pix
+> +
+> +  power-domains:
+> +    maxItems: 1
+
+Missing 'ports' property?
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +  - power-domains
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+
+Sort the header files alphabetically.
+
+I'm cc'ing Sandor to be aware of the patch set.
+
+Regards,
+Liu Ying
+
+> +    #include <dt-bindings/clock/imx8mp-clock.h>
+> +    #include <dt-bindings/power/imx8mp-power.h>
+> +
+> +    hdmi@32fd8000 {
+> +        compatible = "fsl,imx8mp-hdmi";
+> +        reg = <0x32fd8000 0x7eff>;
+> +        interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&clk IMX8MP_CLK_HDMI_APB>,
+> +                 <&clk IMX8MP_CLK_HDMI_REF_266M>,
+> +                 <&clk IMX8MP_CLK_HDMI_FDCC_TST>,
+> +                 <&clk IMX8MP_CLK_32K>,
+> +                 <&hdmi_tx_phy>;
+> +        clock-names = "iahb", "isfr", "fdcc", "cec", "pix";
+> +        power-domains = <&hdmi_blk_ctrl IMX8MP_HDMIBLK_PD_HDMI_TX>;
+> +        reg-io-width = <1>;
+> +    };
 
