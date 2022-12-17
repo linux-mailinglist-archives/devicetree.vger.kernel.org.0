@@ -2,106 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B30D64FB81
-	for <lists+devicetree@lfdr.de>; Sat, 17 Dec 2022 19:09:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E826064FB95
+	for <lists+devicetree@lfdr.de>; Sat, 17 Dec 2022 19:38:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229910AbiLQSJE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Dec 2022 13:09:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33636 "EHLO
+        id S229624AbiLQSiT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Dec 2022 13:38:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229874AbiLQSJD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Dec 2022 13:09:03 -0500
-Received: from mail-il1-x135.google.com (mail-il1-x135.google.com [IPv6:2607:f8b0:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B49AE13F1B;
-        Sat, 17 Dec 2022 10:09:02 -0800 (PST)
-Received: by mail-il1-x135.google.com with SMTP id i25so2857921ila.8;
-        Sat, 17 Dec 2022 10:09:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TaOXfyrRK1GvvMxSl/L9IDQJHqE1dyqe1DAr6Oxagug=;
-        b=hEajjzC1KfeCTFM9jwZ/wkxgEEsTo56Cmb0HjJq2tAbyL4UrwaaI8OXYEzAmFSXM/m
-         Eu00Vyn4U5KHPjF8zfwE4wz+XSFaEl5te2WtTkRxSbtkGeJ8L9ITtGcZdbth0r8fA95X
-         BjBnR36kedNXXW1suwWOClMosFLtRpRj0Tvv6OsglfN1zDiiPiAoPMWZNxQVzxzPMIe6
-         7zs3frnuUOoEP0Pef3ejhzFOvR0onWVQIk+2cSDWqNYLC4IEDcPHSKAF4hZfNK1DMQKi
-         RmeFkysP1ZpSuObN6xy5AITif8bN6f7ppZMC1tnKhapqf2tJBPyJa0XFxcYuG1Xnm37P
-         HjNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TaOXfyrRK1GvvMxSl/L9IDQJHqE1dyqe1DAr6Oxagug=;
-        b=c8v8a3WpYp79aG6AoiPO+L6tx1kCuK9bdMMLkfutO+stMSr2pFP9du4wP3vRhI+ViO
-         MuOBr0K9HH/WZmnpjiojGXOA0LKGSEXHiJs+JcRgvLQe4fAgRCcYAdoL5gl+vA2pjYKC
-         6BUe0pM0BSF0BNAQkSQssQZsmZJbpHPFfv5Ywyfv0L51p4JnrkxbNuZM0JuKYnTXQ403
-         /BAB/Iv+obmdce4ArLhLXPxJ9h/czyqRlHRXkpttiTOaDBecOxmC/7e0SC9PROllCtHo
-         GCCaqmd47duLL10Je/1kUnUVxI/lpL2xYAhcVL34Yl6RVuCXR8Xys64Qc0Kca0Hpd5x3
-         z4Dg==
-X-Gm-Message-State: ANoB5pk9T6ggpgjCrdu7JY/5RzCJeE5LyR0Tgahr4Ps+4CZSQip29I2C
-        drEIPMPJ/MclfBK22r2tbLw=
-X-Google-Smtp-Source: AA0mqf41cNtnsG1L5o0PIOt8qpeGcJNybnnp1MbzQn/F3WKP5fT85C+inXMg1ySV2wTgYSSUxmu+Zw==
-X-Received: by 2002:a92:cc4f:0:b0:304:c91b:4a5d with SMTP id t15-20020a92cc4f000000b00304c91b4a5dmr11949100ilq.9.1671300541957;
-        Sat, 17 Dec 2022 10:09:01 -0800 (PST)
-Received: from aford-IdeaCentre-A730.lan ([2601:447:d001:9aea:d320:bc96:560d:6b27])
-        by smtp.gmail.com with ESMTPSA id u26-20020a02cbda000000b003728cd8bc7csm1763398jaq.38.2022.12.17.10.09.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Dec 2022 10:09:01 -0800 (PST)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
+        with ESMTP id S229471AbiLQSiT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Dec 2022 13:38:19 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92845281
+        for <devicetree@vger.kernel.org>; Sat, 17 Dec 2022 10:38:17 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1p6c4c-0002Zx-A4; Sat, 17 Dec 2022 19:38:14 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1p6c4Z-005FEd-4z; Sat, 17 Dec 2022 19:38:11 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1p6c4Z-005tG6-3s; Sat, 17 Dec 2022 19:38:11 +0100
+Date:   Sat, 17 Dec 2022 19:38:06 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
+        dri-devel@lists.freedesktop.org,
         NXP Linux Team <linux-imx@nxp.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: imx8mp: Fix power-domain typo
-Date:   Sat, 17 Dec 2022 12:08:49 -0600
-Message-Id: <20221217180849.775718-2-aford173@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221217180849.775718-1-aford173@gmail.com>
-References: <20221217180849.775718-1-aford173@gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 0/2] drm/imx/lcdc: Implement DRM driver for imx21
+Message-ID: <20221217183806.bvo5vypm6axycdte@pengutronix.de>
+References: <20221216175006.456831-1-u.kleine-koenig@pengutronix.de>
+ <20221216235758.GA88372-robh@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="q2u25vyd556sobl5"
+Content-Disposition: inline
+In-Reply-To: <20221216235758.GA88372-robh@kernel.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-dt_binding_check detects an issue with the pgc_hsiomix power
-domain:
-  pgc: 'power-domains@17' does not match any of the regexes
 
-This is because 'power-domains' should be 'power-domain'
+--q2u25vyd556sobl5
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Fixes: 2ae42e0c0b67 ("arm64: dts: imx8mp: add HSIO power-domains")
-Signed-off-by: Adam Ford <aford173@gmail.com>
+On Fri, Dec 16, 2022 at 05:57:58PM -0600, Rob Herring wrote:
+> On Fri, Dec 16, 2022 at 06:50:04PM +0100, Uwe Kleine-K=F6nig wrote:
+> > Hello,
+> >=20
+> > Changes since v2:
+> >=20
+> >  - added allOf as Krzysztof requested
+> >  - reworked driver based on Philipp's comments
+> >    (improved error handling, different selects, moved driver to a subdi=
+rectory,
+> >    header sorting, drm_err instead of DRM_ERROR, inlined
+> >    imx_lcdc_check_mode_change, make use of dev_err_probe())
+> > =20
+> > Krzysztof also pointed out that we're now having two compatibles for a
+> > single hardware. Admittedly this is unusual, but this is the chance that
+> > the (bad) compatible identifier imx21-fb gets deprecated. The hardware
+> > is called LCDC and only the linux (framebuffer) driver is called imxfb.
+>=20
+> The problem is you can't have firmware (with the DTB) that supports=20
+> both. Well, you can if you want to have some firmware setting that=20
+> selects which one. Otherwise, it's really an OS problem to decide what=20
+> to use.=20
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 7a8ca56e48b6..19609ef0560a 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -591,7 +591,7 @@ pgc_mipi_phy2: power-domain@16 {
- 						reg = <IMX8MP_POWER_DOMAIN_MIPI_PHY2>;
- 					};
- 
--					pgc_hsiomix: power-domains@17 {
-+					pgc_hsiomix: power-domain@17 {
- 						#power-domain-cells = <0>;
- 						reg = <IMX8MP_POWER_DOMAIN_HSIOMIX>;
- 						clocks = <&clk IMX8MP_CLK_HSIO_AXI>,
--- 
-2.34.1
+I don't understand what you intend to say here. The same applies if the
+compatible is the same for both binding alternatives, isn't it? Do you
+consider a firmware problem better or an OS problem?
 
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--q2u25vyd556sobl5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmOeDIwACgkQwfwUeK3K
+7AlIUQgAg24Wp5qaDVZinPOUhU3yor5qWrUl7VQeNiY1eUq8fVJGbkSjM7rOA3lc
+pldAThh4DuYhR4vmnoK8NJYvc+IFc36BoohLO6qCGAVIMR8vsPbslzDk+U6JuubP
+Xpn7P92Yrtn9BjrFLDgk0okGiic3Z5fEqGaBTC0QAQjfOqo1CRJ4Ac/sI1Wp8OpM
+fey+UMiFXal6hragjzFHq64cV0Qws9vwPVWRMZ2/8SXBaGtHuWUvv0N/LTnmBnJm
+PRoeqWQSuTggOEpZV9TQVjBMOfxFyPkYANQ1PpsnBTOi8TVqIeyL7qI3oeZzrtbG
+vEjsLpR5kCPsaoQxKHmDin/BfA1YOQ==
+=BqGT
+-----END PGP SIGNATURE-----
+
+--q2u25vyd556sobl5--
