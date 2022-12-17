@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E02964F9A6
-	for <lists+devicetree@lfdr.de>; Sat, 17 Dec 2022 16:08:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C15C64F9AA
+	for <lists+devicetree@lfdr.de>; Sat, 17 Dec 2022 16:09:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229704AbiLQPIv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Dec 2022 10:08:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57042 "EHLO
+        id S229785AbiLQPJQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Dec 2022 10:09:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229480AbiLQPIu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Dec 2022 10:08:50 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DF8D11810
-        for <devicetree@vger.kernel.org>; Sat, 17 Dec 2022 07:08:49 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id c1so7716948lfi.7
-        for <devicetree@vger.kernel.org>; Sat, 17 Dec 2022 07:08:49 -0800 (PST)
+        with ESMTP id S229743AbiLQPJO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Dec 2022 10:09:14 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD0EF14098
+        for <devicetree@vger.kernel.org>; Sat, 17 Dec 2022 07:09:13 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id y25so7710194lfa.9
+        for <devicetree@vger.kernel.org>; Sat, 17 Dec 2022 07:09:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7+AAXNyn7D4ZBGrHZRVwibl7ejUX7z4qDKo/f6e91EE=;
-        b=Sa0b8rbQmQVYQ/13uSKElmHawbEyW9ulmnd895VZB1yrJwLuyoWAp7+KyEbEbensFu
-         ZggpHWQ0UUKQSJkNBGpIrCmbWttGcEJ255BzfQpUPiAabL5VsQe1GQwbZlMAeKA1RzDR
-         /3iU07Wa2/Y7Fx/6E7JGvX7cUcBg57r39jH9N7YBx5QAiNWKZPX+wB9vbr53BDHxv04G
-         ukkRDWMIWuk5fGvZTr3sB9jV7/TQUhj6cZuQE0l02l+XzkTxMYjYpKlvM8ti07uJOr1w
-         IIDnqQkhecNWtx17gtCNa3HIy1b936wohLF0kBJJIo+xwAFJb+VTl3w7BkBUK0cNXdZN
-         qr4Q==
+        bh=biT63TB8v0K+mP/ORq96IzRfC1ozk+iKl1BUj8cuy94=;
+        b=BQfwHvf/pd00L1oWfinnX3YZLH+cS+VoB2lgTRqumN6xSSg16Vsy82Ezdj7cDlJCIN
+         wPqJpk8svmaXmOERMjJWNEi3SbgITvCIq8qDf4riuxeDn77z9Cxa4GqnhI93ln6I73+a
+         udiZd1k4eIZaserfQ5HSb0NIwrS+7Mr87Y0iJDZA9c3KpJisLCgBGCBTBmQL+JbxKQ2l
+         czGIeuxyPmu035daVMN+okpwH4FEGzLOEHnv1/cpJlUTrahrTwasbwBqrUQFTxZSl/qw
+         CNuVcyw+BPblxIsHsq874/4nkg0HoI0iaxQJXeYu3sueGBcUfFNpwJcRC0SM7JG5w0D8
+         oe5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7+AAXNyn7D4ZBGrHZRVwibl7ejUX7z4qDKo/f6e91EE=;
-        b=WpHGfgUMgzPoCTYlh3faORtMb9/b124P340SlHiNSlPmE/MrD3VG9/ohMeR73UkuWq
-         GFAovnXRu7en9eFl4U6DwngpjbOlSjwFMx5HNVC6fPDBPQ/WMbT6oU3IyxDka1LM9bIr
-         +bNZNsHONCjWyW18yAR1Wz42nbzUIWlF+9rYck6BM8fwk6nuES5g+CDzmWr4hqSCWhll
-         CbWcfNWiMJRHdQC+5WVPh5gvFonNCm5wDWT8ThDtx/jtkDpQxkK5mvhjupNcKryCFQGq
-         JkyamkoNlcirGJcVVBnjUrZIU8ApWDCqZpvfhC2gFzDV5Q43SsKUwwmU9w960AVnWJ+b
-         SYew==
-X-Gm-Message-State: AFqh2koReC4Tw9n0yCNld60RyuMKkZFh4vY6hgBdmxz+QyYAZ5FmDlKX
-        CmO8Ip5o5dgti1vsnw7BnJCmfA==
-X-Google-Smtp-Source: AMrXdXvUNttNkcx62RJR0XZ210Ami7+3OHcy8kcQI3gecJtPOddnwFLM29pf1svCB6q2tfPrPFrh1A==
-X-Received: by 2002:a05:6512:e96:b0:4c0:91d0:e7ae with SMTP id bi22-20020a0565120e9600b004c091d0e7aemr2404609lfb.28.1671289729083;
-        Sat, 17 Dec 2022 07:08:49 -0800 (PST)
+        bh=biT63TB8v0K+mP/ORq96IzRfC1ozk+iKl1BUj8cuy94=;
+        b=vzSZWXCHfpvktbeiSzg/bxej3dYMOwgWFc5Shw0RfR/vawoLL4K/0xdck85Oeh1YV9
+         qYmxerYoz43+iRQin85bkche/lvnT5PROUKnr9jc1PBozndUgrZer7/Ldxko+/bKwSNm
+         WweiwQtMrNErayQg868DLGNs7DIYSfBOkHNC1kLfBMsj2ILgewW1GbuvzJl9PgipTqD5
+         UYrRaK2dFGUwL3QGww4FOs23BXQTpLPLTQ8ftamPfZGdaplIfpGi+UodPWfqjmNW9OKZ
+         n5TVlrAAssBG2Zs/pST7lUlBaMto6IHkp+SEL7MuM6zSGHtmSqUHxA9Kbc7pDJ9sA35R
+         1b5Q==
+X-Gm-Message-State: ANoB5pn7T5Jk/sr+zDBqj7xNtvsAn+E+3QPbKVmB40U7jvj5YUJFDaqR
+        Hq0TnxEuXIgoWklWoNUx2y3EiQ==
+X-Google-Smtp-Source: AA0mqf7WuI8tGEnjrMKhaDPaMG16Ka/27YUNze3g+KbtwB+FuLjGJx805ayDka495KbNlPTLcb6GTw==
+X-Received: by 2002:a05:6512:298c:b0:4b5:b22e:9653 with SMTP id du12-20020a056512298c00b004b5b22e9653mr9677620lfb.18.1671289752231;
+        Sat, 17 Dec 2022 07:09:12 -0800 (PST)
 Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id c14-20020ac25f6e000000b00497ab34bf5asm534973lfc.20.2022.12.17.07.08.47
+        by smtp.gmail.com with ESMTPSA id o27-20020ac25e3b000000b004a27d2ea029sm531821lfg.172.2022.12.17.07.09.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 17 Dec 2022 07:08:48 -0800 (PST)
-Message-ID: <0e4e1d76-cd47-f8e4-4ba1-e28578036b1b@linaro.org>
-Date:   Sat, 17 Dec 2022 16:08:47 +0100
+        Sat, 17 Dec 2022 07:09:11 -0800 (PST)
+Message-ID: <45ccb4a9-138e-7d58-71b5-24af28675994@linaro.org>
+Date:   Sat, 17 Dec 2022 16:09:10 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH 06/15] clk: qcom: gcc-qcs404: fix names of the DSI clocks
- used as parents
+Subject: Re: [PATCH 07/15] clk: qcom: gcc-qcs404: fix the name of the HDMI PLL
+ clock
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -68,14 +68,15 @@ To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org
 References: <20221217001730.540502-1-dmitry.baryshkov@linaro.org>
- <20221217001730.540502-7-dmitry.baryshkov@linaro.org>
+ <20221217001730.540502-8-dmitry.baryshkov@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221217001730.540502-7-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221217001730.540502-8-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -85,56 +86,30 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 17.12.2022 01:17, Dmitry Baryshkov wrote:
-> The QCS404 uses 28nm LPM DSI PHY, which registers dsi0pll and
-> dsi0pllbyte clocks. Fix all DSI PHY clock names used as parents inside
-> the GCC driver.
+> The QCS404 uses 28nm HDMI PHY. The in-kernel driver doesn't provide the
+> PLL (yet), but the out of tree patches used the name "hdmi_pll" for it.
+> Other Qualcomm HDMI PHYs use either the name "hdmi_pll" (8960) or
+> "hdmipll" (8996). Thus change the expected HDMI PLL clock name to
+> "hdmi_pll".
 > 
-> Fixes: 652f1813c113 ("clk: qcom: gcc: Add global clock controller driver for QCS404")
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  drivers/clk/qcom/gcc-qcs404.c | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
+>  drivers/clk/qcom/gcc-qcs404.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 > diff --git a/drivers/clk/qcom/gcc-qcs404.c b/drivers/clk/qcom/gcc-qcs404.c
-> index c48326da1bb3..23562096298d 100644
+> index 23562096298d..5636c6524d0f 100644
 > --- a/drivers/clk/qcom/gcc-qcs404.c
 > +++ b/drivers/clk/qcom/gcc-qcs404.c
-> @@ -115,7 +115,7 @@ static const struct parent_map gcc_parent_map_5[] = {
+> @@ -160,7 +160,7 @@ static const struct parent_map gcc_parent_map_8[] = {
 >  
->  static const char * const gcc_parent_names_5[] = {
+>  static const char * const gcc_parent_names_8[] = {
 >  	"cxo",
-> -	"dsi0pll_byteclk_src",
-> +	"dsi0pllbyte",
->  	/* "gpll0_out_aux", */
+> -	"hdmi_phy_pll_clk",
+> +	"hdmi_pll",
 >  	"core_bi_pll_test_se",
 >  };
-> @@ -129,7 +129,7 @@ static const struct parent_map gcc_parent_map_6[] = {
 >  
->  static const char * const gcc_parent_names_6[] = {
->  	"cxo",
-> -	"dsi0_phy_pll_out_byteclk",
-> +	"dsi0pllbyte",
->  	/* "gpll0_out_aux", */
->  	"core_bi_pll_test_se",
->  };
-> @@ -175,7 +175,7 @@ static const struct parent_map gcc_parent_map_9[] = {
->  static const char * const gcc_parent_names_9[] = {
->  	"cxo",
->  	"gpll0_out_main",
-> -	"dsi0_phy_pll_out_dsiclk",
-> +	"dsi0pll",
->  	"gpll6_out_aux",
->  	"core_bi_pll_test_se",
->  };
-> @@ -213,7 +213,7 @@ static const struct parent_map gcc_parent_map_12[] = {
->  
->  static const char * const gcc_parent_names_12[] = {
->  	"cxo",
-> -	"dsi0pll_pclk_src",
-> +	"dsi0pll",
->  	/* "gpll0_out_aux", */
->  	"core_bi_pll_test_se",
->  };
