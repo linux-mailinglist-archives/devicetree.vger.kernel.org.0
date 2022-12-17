@@ -2,248 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F32D464FC4E
-	for <lists+devicetree@lfdr.de>; Sat, 17 Dec 2022 21:52:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4622464FC5A
+	for <lists+devicetree@lfdr.de>; Sat, 17 Dec 2022 22:01:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229675AbiLQUwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Dec 2022 15:52:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42342 "EHLO
+        id S229675AbiLQVBB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Dec 2022 16:01:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbiLQUwV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Dec 2022 15:52:21 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36DE5BE39;
-        Sat, 17 Dec 2022 12:52:20 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A401760C49;
-        Sat, 17 Dec 2022 20:52:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 510E7C433EF;
-        Sat, 17 Dec 2022 20:52:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671310339;
-        bh=9VVTBzXnV6KBWlFAwdUE+9TcYF61FDpIXiV69L6AWhE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qJ6DFyt1J9sIoVrokFvRQ0j0HxF75kWqacdFE0Y7N4TLyk3tklsOk2NyKY+DZhvRj
-         +NjndODjOpYBTZKhkCDOwgHcrlTSmfV5Ojd/yev/9NXRCHMUqMMN8FKsGCawBboj+R
-         6D9ASfHdpz024mPaRZJvYV0ceGpcH7ssRfyws5JFSUfQwpNjAWnIv6OJMW984QHglz
-         v37GdIra5YgPuUEqhhVfCvXeHhYvg6xHYY35AHfem++xf6liTvdvkuDtlZ+zn+MVl6
-         w8KjY0hz9VJFp5ILS5SG5/fU2KqIeYJjvPDvM+J0S8obeGuArENTP3ZOTt7uVB+Qm+
-         1caRWivvAnFag==
-Date:   Sat, 17 Dec 2022 20:52:11 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Guo Ren <guoren@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Atish Patra <atishp@rivosinc.com>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v5 4/6] riscv: mm: dma-noncoherent: Pass direction and
- operation to ALT_CMO_OP()
-Message-ID: <Y54r+5lkSvgA9IxR@spud>
-References: <20221212115505.36770-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221212115505.36770-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        with ESMTP id S229625AbiLQVA5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Dec 2022 16:00:57 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD9D2E01D
+        for <devicetree@vger.kernel.org>; Sat, 17 Dec 2022 13:00:55 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id h8-20020a1c2108000000b003d1efd60b65so6395689wmh.0
+        for <devicetree@vger.kernel.org>; Sat, 17 Dec 2022 13:00:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=xBAuq5jrs/F0QNXmgSnKGyr8XPJNiWKZyq9E0iSuiwE=;
+        b=w7E5X5CV2Xdn0phpyu7k9zI7JQxxrT+Zsv8L0QRqJS6jUwqVNyMN6mvXnTstS053vB
+         09GUzA0JIYGncJGIt9FjCmvoSDiaWJjbjfW2i/9QmyivKVU8FFfCZstMwpODutoHZI/S
+         miZ4bnemzCDSEiDIsZ5ffM58rJ+9MhUCbAT0PQ1of8p00tDnkw7un6ko/nL0oryrhz7Q
+         WyXwNTBJL7YKJnncnHpp9YlkDVvgdJ6+ugBxcRskAZzFcU2pNQcbR9pCn+yhaKJOvlLN
+         t0c2Fj1mjVfmqOpXTkwq/9raazHECIw14KeoEC40Jhx7YBS2LO0tDckgpF8k9Jh9BJKt
+         Bk2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xBAuq5jrs/F0QNXmgSnKGyr8XPJNiWKZyq9E0iSuiwE=;
+        b=iVf52kul6jO6LCsbKmcWRdOjLAZ7t7Ux9VQNWY9Bjwn069jTqBKpPd5BdabdE71dIT
+         2EXoxiHma9D0qCgufwwU1Q2HY9IZ6MprgY+8IXCW3nYbV7EsgKnRH8S834kwrEVXPp1z
+         9WEkyYvENjrPEfG3Twq/NiGTv37kiUGs0T093+czSZztz+QSXlGe93AdMc7xPUMyN3Aq
+         LmQt2ycDXVMlUgy161vEoMBU0wB//LNMvf/f1z1AVN1xiVL2IT1HTeBx3puq1nik6Utw
+         XCReTYbM7xgE1AsoaVQD1yXiqxnDrj1gkQypioXw9NL81yez+9osILMblj35UMyUSZ88
+         RWug==
+X-Gm-Message-State: ANoB5pmvwAMGn6XFVnJdc556jRQ84U3WYqPgL+bZtA/gQR1vYhvYA26Q
+        nVd128jhwWE9PSDCLo+3st3l2A==
+X-Google-Smtp-Source: AA0mqf50Ip+1PsW79F2vF0geQ0dfNWFjlqKaTX4jZOpZap09W2NdEM74Sdvgm/MqkxEMF3nfddQb+w==
+X-Received: by 2002:a1c:4b14:0:b0:3d2:39dc:4ab9 with SMTP id y20-20020a1c4b14000000b003d239dc4ab9mr11781779wma.13.1671310854181;
+        Sat, 17 Dec 2022 13:00:54 -0800 (PST)
+Received: from Red ([2a01:cb1d:3d5:a100:4a02:2aff:fe07:1efc])
+        by smtp.googlemail.com with ESMTPSA id o3-20020a05600c510300b003cfa3a12660sm25187618wms.1.2022.12.17.13.00.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 17 Dec 2022 13:00:53 -0800 (PST)
+Date:   Sat, 17 Dec 2022 22:00:50 +0100
+From:   Corentin LABBE <clabbe@baylibre.com>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: hwmon: gpio-fan: convert to YAML
+Message-ID: <Y54uAuwrwU5Nl8kp@Red>
+References: <20220126200350.3633576-1-clabbe@baylibre.com>
+ <Y54BbjoRm5z2Tlp8@spud>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="xwBsLtrovXDxZRvK"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20221212115505.36770-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Y54BbjoRm5z2Tlp8@spud>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Le Sat, Dec 17, 2022 at 05:50:38PM +0000, Conor Dooley a écrit :
+> On Wed, Jan 26, 2022 at 08:03:50PM +0000, Corentin Labbe wrote:
+> > Converts hwmon/gpio-fan.txt to YAML
+> > 
+> > Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> > ---
+> > 
+> > I didnt found any clear maintainer and since DT yaml mandates a
+> > maintainer section, I set devicetree@vger.kernel.org.
+> 
+> Hey Corentin,
+> Looks like there were only some minor comments from Rob on this patch,
+> but I do not see a v2 on lore. Just never get around to sending a v2, or
+> did it fall through the cracks?
+> Thanks,
+> Conor.
+> 
 
---xwBsLtrovXDxZRvK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I just forgot it.
 
-Hey Prabhakar,
+I will send v2 soon.
 
-On Mon, Dec 12, 2022 at 11:55:03AM +0000, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->=20
-> Pass direction and operation to ALT_CMO_OP() macro.
->=20
-> Vendors might want to perform different operations based on the direction
-> and callbacks (arch_sync_dma_for_device/arch_sync_dma_for_cpu/
-> arch_dma_prep_coherent) so to handle such cases pass the direction and
-> operation to ALT_CMO_OP() macro. This is in preparation for adding errata
-> for the Andes CPU core.
-
-This patch seems to break the build on top of the most recent
-linux-next:
-=2E....../stuff/linux/arch/riscv/mm/pmem.c:13:53: error: too few arguments =
-provided to function-like macro invocation
-        ALT_CMO_OP(clean, addr, size, riscv_cbom_block_size);
-                                                           ^
-/stuff/linux/arch/riscv/include/asm/errata_list.h:127:9: note: macro 'ALT_C=
-MO_OP' defined here
-#define ALT_CMO_OP(_op, _start, _size, _cachesize, _dir, _ops)          \
-        ^
-=2E.  CC      block/partitions/sgi.o
-=2E+...+/stuff/linux/arch/riscv/mm/pmem.c:13:2: error: use of undeclared id=
-entifier 'ALT_CMO_OP'
-        ALT_CMO_OP(clean, addr, size, riscv_cbom_block_size);
-        ^
-/stuff/linux/arch/riscv/mm/pmem.c:19:53: error: too few arguments provided =
-to function-like macro invocation
-        ALT_CMO_OP(inval, addr, size, riscv_cbom_block_size);
-                                                           ^
-/stuff/linux/arch/riscv/include/asm/errata_list.h:127:9: note: macro 'ALT_C=
-MO_OP' defined here
-#define ALT_CMO_OP(_op, _start, _size, _cachesize, _dir, _ops)          \
-        ^
-=2E..........  AR      lib/math/built-in.a
-=2E/stuff/linux/arch/riscv/mm/pmem.c:19:2: .error: use of undeclared identi=
-fier 'ALT_CMO_OP'
-        ALT_CMO_OP(inval, addr, size, riscv_cbom_block_size);
-        ^
-=2E.4 errors generated.
-
-The pmem stuff is new so that'd be why it has not come up before.
-
-(FWIW, clang allmodconfig)
-
->=20
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v4 -> v5
-> * Updated commit message.
->=20
-> RFC v3 -> v4
-> * New patch
-> ---
->  arch/riscv/include/asm/cacheflush.h  |  4 ++++
->  arch/riscv/include/asm/errata_list.h |  8 ++++++--
->  arch/riscv/mm/dma-noncoherent.c      | 15 ++++++++++-----
->  3 files changed, 20 insertions(+), 7 deletions(-)
->=20
-> diff --git a/arch/riscv/include/asm/cacheflush.h b/arch/riscv/include/asm=
-/cacheflush.h
-> index 03e3b95ae6da..e22019668b9e 100644
-> --- a/arch/riscv/include/asm/cacheflush.h
-> +++ b/arch/riscv/include/asm/cacheflush.h
-> @@ -8,6 +8,10 @@
-> =20
->  #include <linux/mm.h>
-> =20
-> +#define NON_COHERENT_SYNC_DMA_FOR_DEVICE	0
-> +#define NON_COHERENT_SYNC_DMA_FOR_CPU		1
-> +#define NON_COHERENT_DMA_PREP			2
-> +
->  static inline void local_flush_icache_all(void)
->  {
->  	asm volatile ("fence.i" ::: "memory");
-> diff --git a/arch/riscv/include/asm/errata_list.h b/arch/riscv/include/as=
-m/errata_list.h
-> index 2ba7e6e74540..48e899a8e7a9 100644
-> --- a/arch/riscv/include/asm/errata_list.h
-> +++ b/arch/riscv/include/asm/errata_list.h
-> @@ -124,7 +124,7 @@ asm volatile(ALTERNATIVE(						\
->  #define THEAD_flush_A0	".long 0x0275000b"
->  #define THEAD_SYNC_S	".long 0x0190000b"
-> =20
-> -#define ALT_CMO_OP(_op, _start, _size, _cachesize)			\
-> +#define ALT_CMO_OP(_op, _start, _size, _cachesize, _dir, _ops)		\
->  asm volatile(ALTERNATIVE_2(						\
->  	__nops(6),							\
->  	"mv a0, %1\n\t"							\
-> @@ -146,7 +146,11 @@ asm volatile(ALTERNATIVE_2(						\
->  			ERRATA_THEAD_CMO, CONFIG_ERRATA_THEAD_CMO)	\
->  	: : "r"(_cachesize),						\
->  	    "r"((unsigned long)(_start) & ~((_cachesize) - 1UL)),	\
-> -	    "r"((unsigned long)(_start) + (_size))			\
-> +	    "r"((unsigned long)(_start) + (_size)),			\
-> +	    "r"((unsigned long)(_start)),				\
-> +	    "r"((unsigned long)(_size)),				\
-> +	    "r"((unsigned long)(_dir)),					\
-> +	    "r"((unsigned long)(_ops))					\
->  	: "a0")
-> =20
->  #define THEAD_C9XX_RV_IRQ_PMU			17
-> diff --git a/arch/riscv/mm/dma-noncoherent.c b/arch/riscv/mm/dma-noncoher=
-ent.c
-> index d919efab6eba..e2b82034f504 100644
-> --- a/arch/riscv/mm/dma-noncoherent.c
-> +++ b/arch/riscv/mm/dma-noncoherent.c
-> @@ -19,13 +19,16 @@ void arch_sync_dma_for_device(phys_addr_t paddr, size=
-_t size,
-> =20
->  	switch (dir) {
->  	case DMA_TO_DEVICE:
-> -		ALT_CMO_OP(clean, vaddr, size, riscv_cbom_block_size);
-> +		ALT_CMO_OP(clean, vaddr, size, riscv_cbom_block_size,
-> +			   dir, NON_COHERENT_SYNC_DMA_FOR_DEVICE);
->  		break;
->  	case DMA_FROM_DEVICE:
-> -		ALT_CMO_OP(clean, vaddr, size, riscv_cbom_block_size);
-> +		ALT_CMO_OP(clean, vaddr, size, riscv_cbom_block_size,
-> +			   dir, NON_COHERENT_SYNC_DMA_FOR_DEVICE);
->  		break;
->  	case DMA_BIDIRECTIONAL:
-> -		ALT_CMO_OP(flush, vaddr, size, riscv_cbom_block_size);
-> +		ALT_CMO_OP(flush, vaddr, size, riscv_cbom_block_size,
-> +			   dir, NON_COHERENT_SYNC_DMA_FOR_DEVICE);
->  		break;
->  	default:
->  		break;
-> @@ -42,7 +45,8 @@ void arch_sync_dma_for_cpu(phys_addr_t paddr, size_t si=
-ze,
->  		break;
->  	case DMA_FROM_DEVICE:
->  	case DMA_BIDIRECTIONAL:
-> -		ALT_CMO_OP(flush, vaddr, size, riscv_cbom_block_size);
-> +		ALT_CMO_OP(flush, vaddr, size, riscv_cbom_block_size,
-> +			   dir, NON_COHERENT_SYNC_DMA_FOR_CPU);
->  		break;
->  	default:
->  		break;
-> @@ -53,7 +57,8 @@ void arch_dma_prep_coherent(struct page *page, size_t s=
-ize)
->  {
->  	void *flush_addr =3D page_address(page);
-> =20
-> -	ALT_CMO_OP(flush, flush_addr, size, riscv_cbom_block_size);
-> +	ALT_CMO_OP(flush, flush_addr, size, riscv_cbom_block_size,
-> +		   0, NON_COHERENT_DMA_PREP);
->  }
-> =20
->  void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
-> --=20
-> 2.25.1
->=20
-
---xwBsLtrovXDxZRvK
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY54r+wAKCRB4tDGHoIJi
-0h2gAP0erGWo9T3Karis7yeYncpvuKo03HROZmPadrJUGiSFWwD/YfCL5tWNgToO
-cSJbl11wYttzxvo472uETFhyjvdMSQo=
-=dpsF
------END PGP SIGNATURE-----
-
---xwBsLtrovXDxZRvK--
+Thanks for the reminder
+Regards
