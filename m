@@ -2,58 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 467FD64FF5E
-	for <lists+devicetree@lfdr.de>; Sun, 18 Dec 2022 16:58:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60ED5650442
+	for <lists+devicetree@lfdr.de>; Sun, 18 Dec 2022 19:10:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230211AbiLRP6U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Dec 2022 10:58:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60428 "EHLO
+        id S230488AbiLRSK0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Dec 2022 13:10:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230078AbiLRP6R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Dec 2022 10:58:17 -0500
-Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCA75B1E8;
-        Sun, 18 Dec 2022 07:58:16 -0800 (PST)
-Received: by mail-io1-xd2b.google.com with SMTP id h6so3585615iof.9;
-        Sun, 18 Dec 2022 07:58:16 -0800 (PST)
+        with ESMTP id S230499AbiLRSKC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Dec 2022 13:10:02 -0500
+Received: from mail-il1-x134.google.com (mail-il1-x134.google.com [IPv6:2607:f8b0:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFCB6D6526;
+        Sun, 18 Dec 2022 09:05:55 -0800 (PST)
+Received: by mail-il1-x134.google.com with SMTP id y2so3741429ily.5;
+        Sun, 18 Dec 2022 09:05:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=kuATr87CzTV1qlHuhve5U4eQzL5g/KrogSBqfE4e6bY=;
-        b=ZXThl7icRZA1j0FnxM1OKJa74blMj1G+6zvxBPyT3KDtsmaORX56LDU97fmJxRNL3/
-         w99GA+xiW+xwEHiQQ/H1d/Ss3hg+RASNxAQhmSCz76Xod+cwvFIEfbswuSJAsPOPYoX6
-         NkT6q0OEYlMqcowm53AE2AN5i8yarISkVgCG5/K5j5TO/kEWBMf6V+H60eyAO1wEW6PZ
-         CFRU1IwERb/zeEnjQbIUO9ZKj8Patjeo1YQ71Yxeb5LK49t9GpxJ7v8GeBHguPn5JsyM
-         WMPOvTX8b9Sxx0tDdvdqRgYrGxQZgFDKXovdzHuBddldTi7hciGK0RD2QDooYn1kuWne
-         kiGg==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OgOSUqKhKmN0gkj/ZYhYVdSQNMe/JfU2z8Ox21C/PKc=;
+        b=oSovyA7APlyKf7MOPiKXb/QkUKMc2CL02XPXvn1xFgfpOyBDfJu5uRGwxU68f2qKlh
+         kpSr+9aK2zk3LA+1Avy9stR80djC2M3MmhOCus4tvJPra20BKooLT3SBSiaQnAdDy6N+
+         XF8nhpWr3877mVxm2SGhZTlQkyGzyo8r3FddCvw4oyXLFQnoRCiEEggPuCId1g9TpJUa
+         /LlTFy9ZeZsEvuuNXP8aeDf+P1JnWopBbL8ColIi0F2bEpro62m6fjCMPeqE7HnsV4J2
+         mXAWSsSWqHnw2Z1kN0bO6ZPRHkDJ0kn8S3hGqJLNiBs3S6AnC9V3LaEcy+KrgWXODfKV
+         0nPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=kuATr87CzTV1qlHuhve5U4eQzL5g/KrogSBqfE4e6bY=;
-        b=vrhktCHP/LBWkQXZunMzRwhTYg1y9Pev/LsbrLMkLzKGluuNAx6n5SL4l6sXbfVqbT
-         MbGAxRztKHX2h4IBdVZs5LuzXS52uBYOHEZzs8Nnbnr+ofIcll4oLoAOkolLZJX0PIRt
-         gWhWx8e9K+aTIwEQYiuQdTOkK0t9e2CDMwhe3GaAB8XvYwr9vQQ7dmfJqOTgHVx95+u4
-         6Z8I3cYHsz5hGfs4esFxWkuA3Z/9uyvasBC18FvRodVhzE5RVSDxoprEEoaAYqj3hJ7g
-         eIQKb2XmcOIzR0TQk4rVAtFOwRX/T2skcP9ciEF+5+C6jb0sU+pfr1NcRszhSL2BaRx4
-         noSA==
-X-Gm-Message-State: ANoB5pk7SGNTZd18EyuHMe8Xo8gdkceNE5vtAas6WtXaMB4gUisx8u0E
-        +jedrtvTFjsVtw7g6XlDBD0iLXKvfxlitFLYuLw=
-X-Google-Smtp-Source: AA0mqf5+oecIz9tdAMmlHWeDLUh6Wy1MYszFbhbgmgfRcMCT4v6fGEjvqwbbzXSMBPvApo5rfnp5YnsxywtiiCSSGKs=
-X-Received: by 2002:a05:6602:2498:b0:6de:3990:de0e with SMTP id
- g24-20020a056602249800b006de3990de0emr37096741ioe.203.1671379095856; Sun, 18
- Dec 2022 07:58:15 -0800 (PST)
-MIME-Version: 1.0
-References: <20221217180849.775718-1-aford173@gmail.com> <Y58rDppqQEI+vZ5U@pendragon.ideasonboard.com>
-In-Reply-To: <Y58rDppqQEI+vZ5U@pendragon.ideasonboard.com>
+        bh=OgOSUqKhKmN0gkj/ZYhYVdSQNMe/JfU2z8Ox21C/PKc=;
+        b=5PQbrAdSoyJOcZJZ7ZLyRxAX3S0UpXV8XSQTZDl7vSzeqWg2HfiQ2eMJKY3FMssMzj
+         XYB3NKn//9jm2qIBB4Wwm/n+CIqRbFsCbAxNUE3X0PvMvO26luKgUIdbkGfiJ1+YwolU
+         I7tbiFB2h96ptHnU1bBQ4gQ2oIuKCN8iZlqNTerpTjhe/qHAxuamEIwd/h9R8p4znimH
+         EL02gGD79sCo6zpfRmaxr1CC3vJwxdOHYBI/hDbGg1aWT9je12jzUiAFuwhXpDv66VC7
+         JoguAD+Ca1DeZ5T0bAxsTGe6o9EIR169HcLsxwvCQW1zKc5AxydapAgzJL93vE6oiybr
+         1GHQ==
+X-Gm-Message-State: AFqh2kqzqARaIcFMAREQsCD810Kg/2XA1pj6Ph0tpqVS7D4EURSXV1kk
+        wUsoid3TdG+xRWO+xTzPCOI=
+X-Google-Smtp-Source: AMrXdXs6L4V8GTvalb5dTD0ZHa08kBUqeHPwuHOh2OVborwiR2Mlj8A7tn12vGnNWCdM/odmnpVjlg==
+X-Received: by 2002:a92:c805:0:b0:303:452b:27e1 with SMTP id v5-20020a92c805000000b00303452b27e1mr3749960iln.28.1671383154119;
+        Sun, 18 Dec 2022 09:05:54 -0800 (PST)
+Received: from aford-IdeaCentre-A730.lan ([2601:447:d001:9aea:c8ad:17b9:7862:6614])
+        by smtp.gmail.com with ESMTPSA id n15-20020a92dd0f000000b003032a97913asm2525296ilm.17.2022.12.18.09.05.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 18 Dec 2022 09:05:53 -0800 (PST)
 From:   Adam Ford <aford173@gmail.com>
-Date:   Sun, 18 Dec 2022 09:58:04 -0600
-Message-ID: <CAHCN7x+Zh28xwz6PDVAnepy4qE97TTCAwcTuUS+L3G7dkT7WRQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: imx8mp: Fix missing GPC Interrupt
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, marex@denx.de,
+        Adam Ford <aford173@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Shawn Guo <shawnguo@kernel.org>,
@@ -61,9 +59,13 @@ Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Subject: [PATCH] arm64: dts: imx8mp: Enable spba-bus on AIPS3
+Date:   Sun, 18 Dec 2022 11:05:44 -0600
+Message-Id: <20221218170545.1472746-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
         FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -74,45 +76,252 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Dec 18, 2022 at 9:00 AM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hi Adam,
->
-> Thank you for the patch.
->
-> On Sat, Dec 17, 2022 at 12:08:48PM -0600, Adam Ford wrote:
-> > The GPC node references an interrupt parent, but it doesn't
-> > state the interrupt itself.  According to the TRM, this IRQ
-> > is 87. This also eliminate an error detected from dt_binding_check
->
-> The interrupt isn't used by the driver as far as I can see, so I can't
-> test this, but the patch matches the reference manual, so
+There is an SPBA bus on AIPS3 which includes ecspi1-3,
+UART1-3, and Flexcan1-2 according to the TRM.
 
-I don't think it changes functionality, but the other imx8m boards
-have it, and 'make dtbs_check' showed it as missing.
-Thanks for the review.
+Signed-off-by: Adam Ford <aford173@gmail.com>
 
->
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->
-> > Fixes: fc0f05124621 ("arm64: dts: imx8mp: add GPC node with GPU power domains")
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > index 7a6e6221f421..7a8ca56e48b6 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > @@ -524,6 +524,7 @@ gpc: gpc@303a0000 {
-> >                               compatible = "fsl,imx8mp-gpc";
-> >                               reg = <0x303a0000 0x1000>;
-> >                               interrupt-parent = <&gic>;
-> > +                             interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
-> >                               interrupt-controller;
-> >                               #interrupt-cells = <3>;
-> >
->
-> --
-> Regards,
->
-> Laurent Pinchart
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+index 2ce45e7cbbdf..9b0a47e7b8fd 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+@@ -719,121 +719,129 @@ aips3: bus@30800000 {
+ 			#size-cells = <1>;
+ 			ranges;
+ 
+-			ecspi1: spi@30820000 {
++			spba-bus@30800000 {
++				compatible = "fsl,spba-bus", "simple-bus";
++				reg = <0x30800000 0x100000>;
+ 				#address-cells = <1>;
+-				#size-cells = <0>;
+-				compatible = "fsl,imx8mp-ecspi", "fsl,imx6ul-ecspi";
+-				reg = <0x30820000 0x10000>;
+-				interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
+-				clocks = <&clk IMX8MP_CLK_ECSPI1_ROOT>,
+-					 <&clk IMX8MP_CLK_ECSPI1_ROOT>;
+-				clock-names = "ipg", "per";
+-				assigned-clock-rates = <80000000>;
+-				assigned-clocks = <&clk IMX8MP_CLK_ECSPI1>;
+-				assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_800M>;
+-				dmas = <&sdma1 0 7 1>, <&sdma1 1 7 2>;
+-				dma-names = "rx", "tx";
+-				status = "disabled";
+-			};
++				#size-cells = <1>;
++				ranges;
+ 
+-			ecspi2: spi@30830000 {
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+-				compatible = "fsl,imx8mp-ecspi", "fsl,imx6ul-ecspi";
+-				reg = <0x30830000 0x10000>;
+-				interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+-				clocks = <&clk IMX8MP_CLK_ECSPI2_ROOT>,
+-					 <&clk IMX8MP_CLK_ECSPI2_ROOT>;
+-				clock-names = "ipg", "per";
+-				assigned-clock-rates = <80000000>;
+-				assigned-clocks = <&clk IMX8MP_CLK_ECSPI2>;
+-				assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_800M>;
+-				dmas = <&sdma1 2 7 1>, <&sdma1 3 7 2>;
+-				dma-names = "rx", "tx";
+-				status = "disabled";
+-			};
++				ecspi1: spi@30820000 {
++					#address-cells = <1>;
++					#size-cells = <0>;
++					compatible = "fsl,imx8mp-ecspi", "fsl,imx6ul-ecspi";
++					reg = <0x30820000 0x10000>;
++					interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
++					clocks = <&clk IMX8MP_CLK_ECSPI1_ROOT>,
++						 <&clk IMX8MP_CLK_ECSPI1_ROOT>;
++					clock-names = "ipg", "per";
++					assigned-clock-rates = <80000000>;
++					assigned-clocks = <&clk IMX8MP_CLK_ECSPI1>;
++					assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_800M>;
++					dmas = <&sdma1 0 7 1>, <&sdma1 1 7 2>;
++					dma-names = "rx", "tx";
++					status = "disabled";
++				};
+ 
+-			ecspi3: spi@30840000 {
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+-				compatible = "fsl,imx8mp-ecspi", "fsl,imx6ul-ecspi";
+-				reg = <0x30840000 0x10000>;
+-				interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
+-				clocks = <&clk IMX8MP_CLK_ECSPI3_ROOT>,
+-					 <&clk IMX8MP_CLK_ECSPI3_ROOT>;
+-				clock-names = "ipg", "per";
+-				assigned-clock-rates = <80000000>;
+-				assigned-clocks = <&clk IMX8MP_CLK_ECSPI3>;
+-				assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_800M>;
+-				dmas = <&sdma1 4 7 1>, <&sdma1 5 7 2>;
+-				dma-names = "rx", "tx";
+-				status = "disabled";
+-			};
++				ecspi2: spi@30830000 {
++					#address-cells = <1>;
++					#size-cells = <0>;
++					compatible = "fsl,imx8mp-ecspi", "fsl,imx6ul-ecspi";
++					reg = <0x30830000 0x10000>;
++					interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
++					clocks = <&clk IMX8MP_CLK_ECSPI2_ROOT>,
++						 <&clk IMX8MP_CLK_ECSPI2_ROOT>;
++					clock-names = "ipg", "per";
++					assigned-clock-rates = <80000000>;
++					assigned-clocks = <&clk IMX8MP_CLK_ECSPI2>;
++					assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_800M>;
++					dmas = <&sdma1 2 7 1>, <&sdma1 3 7 2>;
++					dma-names = "rx", "tx";
++					status = "disabled";
++				};
+ 
+-			uart1: serial@30860000 {
+-				compatible = "fsl,imx8mp-uart", "fsl,imx6q-uart";
+-				reg = <0x30860000 0x10000>;
+-				interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
+-				clocks = <&clk IMX8MP_CLK_UART1_ROOT>,
+-					 <&clk IMX8MP_CLK_UART1_ROOT>;
+-				clock-names = "ipg", "per";
+-				dmas = <&sdma1 22 4 0>, <&sdma1 23 4 0>;
+-				dma-names = "rx", "tx";
+-				status = "disabled";
+-			};
++				ecspi3: spi@30840000 {
++					#address-cells = <1>;
++					#size-cells = <0>;
++					compatible = "fsl,imx8mp-ecspi", "fsl,imx6ul-ecspi";
++					reg = <0x30840000 0x10000>;
++					interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
++					clocks = <&clk IMX8MP_CLK_ECSPI3_ROOT>,
++						 <&clk IMX8MP_CLK_ECSPI3_ROOT>;
++					clock-names = "ipg", "per";
++					assigned-clock-rates = <80000000>;
++					assigned-clocks = <&clk IMX8MP_CLK_ECSPI3>;
++					assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_800M>;
++					dmas = <&sdma1 4 7 1>, <&sdma1 5 7 2>;
++					dma-names = "rx", "tx";
++					status = "disabled";
++				};
+ 
+-			uart3: serial@30880000 {
+-				compatible = "fsl,imx8mp-uart", "fsl,imx6q-uart";
+-				reg = <0x30880000 0x10000>;
+-				interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>;
+-				clocks = <&clk IMX8MP_CLK_UART3_ROOT>,
+-					 <&clk IMX8MP_CLK_UART3_ROOT>;
+-				clock-names = "ipg", "per";
+-				dmas = <&sdma1 26 4 0>, <&sdma1 27 4 0>;
+-				dma-names = "rx", "tx";
+-				status = "disabled";
+-			};
++				uart1: serial@30860000 {
++					compatible = "fsl,imx8mp-uart", "fsl,imx6q-uart";
++					reg = <0x30860000 0x10000>;
++					interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
++					clocks = <&clk IMX8MP_CLK_UART1_ROOT>,
++						 <&clk IMX8MP_CLK_UART1_ROOT>;
++					clock-names = "ipg", "per";
++					dmas = <&sdma1 22 4 0>, <&sdma1 23 4 0>;
++					dma-names = "rx", "tx";
++					status = "disabled";
++				};
+ 
+-			uart2: serial@30890000 {
+-				compatible = "fsl,imx8mp-uart", "fsl,imx6q-uart";
+-				reg = <0x30890000 0x10000>;
+-				interrupts = <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
+-				clocks = <&clk IMX8MP_CLK_UART2_ROOT>,
+-					 <&clk IMX8MP_CLK_UART2_ROOT>;
+-				clock-names = "ipg", "per";
+-				dmas = <&sdma1 24 4 0>, <&sdma1 25 4 0>;
+-				dma-names = "rx", "tx";
+-				status = "disabled";
+-			};
++				uart3: serial@30880000 {
++					compatible = "fsl,imx8mp-uart", "fsl,imx6q-uart";
++					reg = <0x30880000 0x10000>;
++					interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>;
++					clocks = <&clk IMX8MP_CLK_UART3_ROOT>,
++						 <&clk IMX8MP_CLK_UART3_ROOT>;
++					clock-names = "ipg", "per";
++					dmas = <&sdma1 26 4 0>, <&sdma1 27 4 0>;
++					dma-names = "rx", "tx";
++					status = "disabled";
++				};
+ 
+-			flexcan1: can@308c0000 {
+-				compatible = "fsl,imx8mp-flexcan";
+-				reg = <0x308c0000 0x10000>;
+-				interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>;
+-				clocks = <&clk IMX8MP_CLK_IPG_ROOT>,
+-					 <&clk IMX8MP_CLK_CAN1_ROOT>;
+-				clock-names = "ipg", "per";
+-				assigned-clocks = <&clk IMX8MP_CLK_CAN1>;
+-				assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_40M>;
+-				assigned-clock-rates = <40000000>;
+-				fsl,clk-source = /bits/ 8 <0>;
+-				fsl,stop-mode = <&gpr 0x10 4>;
+-				status = "disabled";
+-			};
++				uart2: serial@30890000 {
++					compatible = "fsl,imx8mp-uart", "fsl,imx6q-uart";
++					reg = <0x30890000 0x10000>;
++					interrupts = <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
++					clocks = <&clk IMX8MP_CLK_UART2_ROOT>,
++						 <&clk IMX8MP_CLK_UART2_ROOT>;
++					clock-names = "ipg", "per";
++					dmas = <&sdma1 24 4 0>, <&sdma1 25 4 0>;
++					dma-names = "rx", "tx";
++					status = "disabled";
++				};
+ 
+-			flexcan2: can@308d0000 {
+-				compatible = "fsl,imx8mp-flexcan";
+-				reg = <0x308d0000 0x10000>;
+-				interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>;
+-				clocks = <&clk IMX8MP_CLK_IPG_ROOT>,
+-					 <&clk IMX8MP_CLK_CAN2_ROOT>;
+-				clock-names = "ipg", "per";
+-				assigned-clocks = <&clk IMX8MP_CLK_CAN2>;
+-				assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_40M>;
+-				assigned-clock-rates = <40000000>;
+-				fsl,clk-source = /bits/ 8 <0>;
+-				fsl,stop-mode = <&gpr 0x10 5>;
+-				status = "disabled";
++				flexcan1: can@308c0000 {
++					compatible = "fsl,imx8mp-flexcan";
++					reg = <0x308c0000 0x10000>;
++					interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>;
++					clocks = <&clk IMX8MP_CLK_IPG_ROOT>,
++						 <&clk IMX8MP_CLK_CAN1_ROOT>;
++					clock-names = "ipg", "per";
++					assigned-clocks = <&clk IMX8MP_CLK_CAN1>;
++					assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_40M>;
++					assigned-clock-rates = <40000000>;
++					fsl,clk-source = /bits/ 8 <0>;
++					fsl,stop-mode = <&gpr 0x10 4>;
++					status = "disabled";
++				};
++
++				flexcan2: can@308d0000 {
++					compatible = "fsl,imx8mp-flexcan";
++					reg = <0x308d0000 0x10000>;
++					interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>;
++					clocks = <&clk IMX8MP_CLK_IPG_ROOT>,
++						 <&clk IMX8MP_CLK_CAN2_ROOT>;
++					clock-names = "ipg", "per";
++					assigned-clocks = <&clk IMX8MP_CLK_CAN2>;
++					assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_40M>;
++					assigned-clock-rates = <40000000>;
++					fsl,clk-source = /bits/ 8 <0>;
++					fsl,stop-mode = <&gpr 0x10 5>;
++					status = "disabled";
++				};
+ 			};
+ 
+ 			crypto: crypto@30900000 {
+-- 
+2.34.1
+
