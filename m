@@ -2,50 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C1EA64FE97
-	for <lists+devicetree@lfdr.de>; Sun, 18 Dec 2022 12:12:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2127464FF1A
+	for <lists+devicetree@lfdr.de>; Sun, 18 Dec 2022 15:26:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230152AbiLRLMn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Dec 2022 06:12:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45758 "EHLO
+        id S230425AbiLRO0l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Dec 2022 09:26:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230376AbiLRLMk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Dec 2022 06:12:40 -0500
-Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [IPv6:2001:4b7a:2000:18::171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4D722BE0
-        for <devicetree@vger.kernel.org>; Sun, 18 Dec 2022 03:12:39 -0800 (PST)
-Received: from [192.168.2.144] (adsl-d248.84-47-10.t-com.sk [84.47.10.248])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id D4D1E3EF0E;
-        Sun, 18 Dec 2022 12:12:36 +0100 (CET)
-Date:   Sun, 18 Dec 2022 12:12:30 +0100
-From:   Martin Botka <martin.botka@somainline.org>
-Subject: Re: [PATCH] arm64: dts: qcom: sm6125: Reorder HSUSB PHY clocks to
- match bindings
-To:     Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Lux Aliaga <they@mint.lgbt>, Andy Gross <agross@kernel.org>,
+        with ESMTP id S230152AbiLRO0k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Dec 2022 09:26:40 -0500
+Received: from amity.mint.lgbt (vmi888983.contaboserver.net [149.102.157.145])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48903764B
+        for <devicetree@vger.kernel.org>; Sun, 18 Dec 2022 06:26:38 -0800 (PST)
+Received: from amity.mint.lgbt (mx.mint.lgbt [127.0.0.1])
+        by amity.mint.lgbt (Postfix) with ESMTP id 4NZlWw5SJrz1S5D5
+        for <devicetree@vger.kernel.org>; Sun, 18 Dec 2022 09:26:36 -0500 (EST)
+Authentication-Results: amity.mint.lgbt (amavisd-new);
+        dkim=pass (2048-bit key) reason="pass (just generated, assumed good)"
+        header.d=mint.lgbt
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mint.lgbt; h=
+        content-transfer-encoding:content-type:in-reply-to:from
+        :content-language:references:to:subject:user-agent:mime-version
+        :date:message-id; s=dkim; t=1671373592; x=1672237593; bh=NtwwfTJ
+        35XqFurSMfDIwOCOk77rKIDyhJoth9Mky+S8=; b=NrRaKYaiZKrzCaiNDiOV+kW
+        kw/hvGBLBFeVFsADj0F1oTH4rKBuizQiiarvF9mDgKvyAJLDhz9tl+P0zaNKKqs2
+        eyMwc3+lVxLYrTpe/bhUh8BPc91hmIsyWurKqiCyXCwQqmTqrpl23xloE2kIZCRn
+        bID7Ec6JZy0hIi6cD7aphI4epf1Nbfhzm/6sADRbKW6nPt+fN6nlMPtEPmvaICei
+        HUpkQ1Fudaxa40jde4cJunPil43Azf/DGLA0Mz3+ZHDLipaEyyXDf5z8J5meJpJw
+        IjC92scieuiLCusAK+FRRHSq90HlkTykVn7DAKcdaXs4prubfQ3tDON5/W98zoA=
+        =
+X-Virus-Scanned: amavisd-new at amity.mint.lgbt
+Received: from amity.mint.lgbt ([127.0.0.1])
+        by amity.mint.lgbt (amity.mint.lgbt [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id 9ed6WZmEzi-P for <devicetree@vger.kernel.org>;
+        Sun, 18 Dec 2022 09:26:32 -0500 (EST)
+Received: from [192.168.0.15] (pc-16-114-239-201.cm.vtr.net [201.239.114.16])
+        by amity.mint.lgbt (Postfix) with ESMTPSA id 4NZlWk4kNpz1S4t5;
+        Sun, 18 Dec 2022 09:26:25 -0500 (EST)
+Message-ID: <672d61c2-33a6-4b3b-fbb5-a12556d673a5@mint.lgbt>
+Date:   Sun, 18 Dec 2022 11:26:22 -0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: sm6125: Initial support for
+ xiaomi-laurel-sprout
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Message-Id: <U433NR.I7MNQ8Y3FNHT@somainline.org>
-In-Reply-To: <20221216213343.1140143-1-marijn.suijten@somainline.org>
-References: <20221216213343.1140143-1-marijn.suijten@somainline.org>
-X-Mailer: geary/40.0
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-X-Spam-Status: No, score=0.0 required=5.0 tests=BAYES_00,RCVD_IN_SORBS_HTTP,
-        RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        Kees Cook <keescook@chromium.org>,
+        Tony Luck <tony.luck@intel.com>,
+        "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+References: <20221215190404.398788-1-they@mint.lgbt>
+ <20221215190404.398788-4-they@mint.lgbt>
+ <afcb9378-f331-df8c-ced5-1c10999f5fb8@linaro.org>
+ <d0157452-307b-37a5-890a-b479a880ab95@mint.lgbt>
+ <07f2a180-8a93-6c54-6d97-208ac8426fa6@linaro.org>
+Content-Language: en-US
+From:   Lux Aliaga <they@mint.lgbt>
+In-Reply-To: <07f2a180-8a93-6c54-6d97-208ac8426fa6@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -53,50 +76,95 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+On 17/12/2022 11:23, Konrad Dybcio wrote:
+> On 16.12.2022 21:27, Lux Aliaga wrote:
+>> On 16/12/2022 08:32, Konrad Dybcio wrote:
+>>> On 15.12.2022 20:04, Lux Aliaga wrote:
+>>>> Adds support for the Xiaomi Mi A3 (xiaomi-laurel-sprout). Here's a
+>>>> summary on what's working.
+>>>>
+>>>> - dmesg output to bootloader preconfigured display
+>>>> - USB
+>>>> - UFS
+>>>> - SMD RPM regulators
+>>>>
+>>>> Signed-off-by: Lux Aliaga <they@mint.lgbt>
+>>>> ---
+>>>>  =C2=A0 arch/arm64/boot/dts/qcom/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
+>>>>  =C2=A0 .../dts/qcom/sm6125-xiaomi-laurel-sprout.dts=C2=A0 | 254 +++=
++++++++++++++++
+>>>>  =C2=A0 2 files changed, 255 insertions(+)
+>>>>  =C2=A0 create mode 100644 arch/arm64/boot/dts/qcom/sm6125-xiaomi-la=
+urel-sprout.dts
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts=
+/qcom/Makefile
+>>>> index 3e79496292e7..2b2a0170db14 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>>>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>>>> @@ -157,6 +157,7 @@ dtb-$(CONFIG_ARCH_QCOM)=C2=A0=C2=A0=C2=A0 +=3D s=
+dm850-lenovo-yoga-c630.dtb
+>>>>  =C2=A0 dtb-$(CONFIG_ARCH_QCOM)=C2=A0=C2=A0=C2=A0 +=3D sdm850-samsun=
+g-w737.dtb
+>>>>  =C2=A0 dtb-$(CONFIG_ARCH_QCOM)=C2=A0=C2=A0=C2=A0 +=3D sm4250-oneplu=
+s-billie2.dtb
+>>>>  =C2=A0 dtb-$(CONFIG_ARCH_QCOM)=C2=A0=C2=A0=C2=A0 +=3D sm6125-sony-x=
+peria-seine-pdx201.dtb
+>>>> +dtb-$(CONFIG_ARCH_QCOM)=C2=A0=C2=A0=C2=A0 +=3D sm6125-xiaomi-laurel=
+-sprout.dtb
+>>>>  =C2=A0 dtb-$(CONFIG_ARCH_QCOM)=C2=A0=C2=A0=C2=A0 +=3D sm6350-sony-x=
+peria-lena-pdx213.dtb
+>>>>  =C2=A0 dtb-$(CONFIG_ARCH_QCOM)=C2=A0=C2=A0=C2=A0 +=3D sm6375-sony-x=
+peria-murray-pdx225.dtb
+>>>>  =C2=A0 dtb-$(CONFIG_ARCH_QCOM)=C2=A0=C2=A0=C2=A0 +=3D sm7225-fairph=
+one-fp4.dtb
+>>>> diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dt=
+s b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
+>>>> new file mode 100644
+>>>> index 000000000000..86e1ec47bf5e
+>>>> --- /dev/null
+>>>> +++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
+>>>> @@ -0,0 +1,254 @@
+>>>> +// SPDX-License-Identifier: BSD-3-Clause
+>>>> +/*
+>>>> + * Copyright (c) 2022, Lux Aliaga <they@mint.lgbt>
+>>>> + */
+>>>> +
+>>>> +/dts-v1/;
+>>>> +
+>>>> +#include <dt-bindings/gpio/gpio.h>
+>>>> +#include <dt-bindings/input/input.h>
+>>>> +#include <dt-bindings/input/gpio-keys.h>
+>>>> +#include "sm6125.dtsi"
+>>>> +
+>>>> +/ {
+>>>> +=C2=A0=C2=A0=C2=A0 model =3D "Xiaomi Mi A3";
+>>>> +=C2=A0=C2=A0=C2=A0 compatible =3D "xiaomi,laurel-sprout", "qcom,sm6=
+125";
+>>>> +=C2=A0=C2=A0=C2=A0 chassis-type =3D "handset";
+>>>> +
+>>>> +=C2=A0=C2=A0=C2=A0 /* required for bootloader to select correct boa=
+rd */
+>>>> +=C2=A0=C2=A0=C2=A0 qcom,msm-id =3D <394 0>; /* sm6125 v0 */
+>>> Unless you have a prototype device, this is not correct.
+>>>
+>>> Please run `cat /sys/bus/soc/devices/soc0/revision` and confirm
+>>> which revision is used on your phone.
+>> This segment has already been cross-referenced from downstream, and th=
+e device boots up successfully when using this ID, unless you're referrin=
+g to the comment next to it, in which case I can recheck later, since cur=
+rently I'm away from my device.
+> The device boots fine, because the DTB selection works on a "best match=
+"
+> basis. If it can't find one for the exact version of the SoC, it may
+> try to boot the closest one.
+>
+> Konrad
 
-On Fri, Dec 16 2022 at 10:33:43 PM +01:00:00, Marijn Suijten 
-<marijn.suijten@somainline.org> wrote:
-> Reorder the clocks and corresponding names to match the QUSB2 phy
-> schema, fixing the following CHECK_DTBS errors:
-> 
->     arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dtb: 
-> phy@1613000: clock-names:0: 'cfg_ahb' was expected
->             From schema: 
-> /newdata/aosp-r/kernel/mainline/kernel/Documentation/devicetree/bindings/phy/qcom,qusb2-phy.yaml
->     arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dtb: 
-> phy@1613000: clock-names:1: 'ref' was expected
->             From schema: 
-> /newdata/aosp-r/kernel/mainline/kernel/Documentation/devicetree/bindings/phy/qcom,qusb2-phy.yaml
-> 
-> Fixes: cff4bbaf2a2d ("arm64: dts: qcom: Add support for SM6125")
-> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm6125.dtsi | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi 
-> b/arch/arm64/boot/dts/qcom/sm6125.dtsi
-> index 7e25a4f85594..bf9e8d45ee44 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6125.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm6125.dtsi
-> @@ -442,9 +442,9 @@ hsusb_phy1: phy@1613000 {
->  			reg = <0x01613000 0x180>;
->  			#phy-cells = <0>;
-> 
-> -			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
-> -				 <&gcc GCC_AHB2PHY_USB_CLK>;
-> -			clock-names = "ref", "cfg_ahb";
-> +			clocks = <&gcc GCC_AHB2PHY_USB_CLK>,
-> +				 <&rpmcc RPM_SMD_XO_CLK_SRC>;
-> +			clock-names = "cfg_ahb", "ref";
-> 
-Reviewed-by: Martin Botka <martin.botka@somainline.org>
+Confirmed it. It's an sm6125 v1. Will fix.
 
--Martin
->  			resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
->  			status = "disabled";
-> --
-> 2.39.0
-> 
-
+--=20
+Lux Aliaga
+https://nixgoat.me/
 
