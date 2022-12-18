@@ -2,148 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 780A7650468
-	for <lists+devicetree@lfdr.de>; Sun, 18 Dec 2022 19:46:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1A2765046A
+	for <lists+devicetree@lfdr.de>; Sun, 18 Dec 2022 19:57:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229537AbiLRSqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Dec 2022 13:46:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40794 "EHLO
+        id S230167AbiLRS5s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Dec 2022 13:57:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230008AbiLRSqb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Dec 2022 13:46:31 -0500
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C319A273D
-        for <devicetree@vger.kernel.org>; Sun, 18 Dec 2022 10:46:29 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id f20so7125583lja.4
-        for <devicetree@vger.kernel.org>; Sun, 18 Dec 2022 10:46:29 -0800 (PST)
+        with ESMTP id S230008AbiLRS5q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Dec 2022 13:57:46 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 285FE7676
+        for <devicetree@vger.kernel.org>; Sun, 18 Dec 2022 10:57:44 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id c1so10800633lfi.7
+        for <devicetree@vger.kernel.org>; Sun, 18 Dec 2022 10:57:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zvafVT7bzqLSaMJQVa90FsYGeGOXWDvs6W/HEGR+fbQ=;
-        b=zcaHQsR5ve7lGd/uLYjvoDAsCf10WyMagJ8CCphvy76T9DCcxPwGVVvHlNaZUTT5/A
-         5S3fIp9rNWagGQEm2fhosyQHO9xSFyc5CoqEhSyE8DGSd7QdC59jiS1a/+G5bSdxGsDZ
-         iYHcGKABuuVnk9ZUPERihhgYrYGXAypF8z+am19HJsCryehb2gZcfH2n8G9txQIk3vF7
-         bnSD+JWHN8oT6VN/jv+KOXt+HytVvK46NYIJ4gRIA2msM/MjchNhZ4lx6nZNmmpsvlf3
-         Zfc2CMIQpdbA0kpHJoTLUwtMd3v50CkQ1goHs0zFmS9wH1VDUOJACEGg9S/IkrhfGReM
-         F1qw==
+        bh=+wJaB6Ex81QFBi9bFVy4oOTpzpMwPB5fD6rd3Cemj3A=;
+        b=dDKc6zP5EpXqq5JKYIjuOt6gAPvOxuwXqxuAydNjBOYtyKTTp1QkN8RI6PHA6en+0C
+         0oXipdbyXTNOqZaSFk/8WSXEIEAYsXpZ59cjx43JlrZSEeKY/SJrGXuTv18nXrz/gK7P
+         cNM6e48tsZqYCHUStin1M1jb5qFyLXOjdj9u008D/w3RAZYULCE/8YAtc8T3eI5XRJjE
+         4W1KWvL80oXtXoqpWE9oF50ZVqLiSvHNvMs9oU5SvfgZC5VOA2Tj2lAZD7by8PM5bMyV
+         SFGJTVc/rS7q3uYWR66Iz0GQcxxcM8lmYQuWsU2kBpEhXWQjPEw2KPKsIqi4bNUj0Cm8
+         2zjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zvafVT7bzqLSaMJQVa90FsYGeGOXWDvs6W/HEGR+fbQ=;
-        b=bDkcOPgyJABT0vG5sSm2XSYyHmSAGofid4+6b7/8R/477Tq7UtOWJaTwO5dRkWsvOw
-         xvzo9zdNnqY5xMBd7r046r5q+q5vBgLQT+nqb8gn8N11Fq7rOtZ57VNACQ7j9SukyRAd
-         cD/Hlpu+dW8kTdMKifMrfnhNxiUtxut/uUfbEzvsgCd6V7qmxoDzBEwwpOx+gRgRBg87
-         I0takUV5xyDFgngqUs16HlTW/uTYPygpbr6OB8ZFTyXAIrgFs8XdgTJh9aLGFMfpPoQx
-         86Kl9imgKjE9bHyJZbfVwSqTeW/YZiCszk9jwI0lZsKoK+RPZZN+/JgwqkYTLNLSjuNh
-         rksQ==
-X-Gm-Message-State: AFqh2kqeCTD9k0EuYIzGfojW5S9EW4JD9/wH6wR2lvaT1Zl9F3eI1zv/
-        HOtbLxcpiDBL8JWHPTuYlinVxg==
-X-Google-Smtp-Source: AMrXdXvahmz0XgV17v+KLVhrIdi95MLfM36IPB6RL/Rqst5Az4SXyFjQkMMapAmvV5Y0nWFi14K1XA==
-X-Received: by 2002:a05:651c:1c4:b0:27f:2aac:c4 with SMTP id d4-20020a05651c01c400b0027f2aac00c4mr4767233ljn.34.1671389187823;
-        Sun, 18 Dec 2022 10:46:27 -0800 (PST)
+        bh=+wJaB6Ex81QFBi9bFVy4oOTpzpMwPB5fD6rd3Cemj3A=;
+        b=aR9vtsQnuK38WJvmE6FCIOEyBx2oN534Fx8yiKrGOIjyh40nGv7e5c4i27p2LIJYmL
+         qrjHZ4DyZ+cC7FqLMuiLYAu9t7Y2/b7H3VvpeCmqsU3rkXn9lMdcp8Mm4kBbqpPrMEpy
+         hXLhrFUMwl5lxYFyWKawSU6glvui0rRhG7fqYZLtvY2dSU5UvWF1hAyadmVxfOcEgnFA
+         wDVwXZ0JwaxuqnAyFabA6dBl6glDFiX3C2dhk9nEyovhKnkWzy5aAh08ZIfF0ocICUlq
+         UtfObSt2QcZy9kzV7h86yXLeLz4ER+x0aFNAahBqZ4YT/88YTrqRzioallng8xfKc96s
+         g3bA==
+X-Gm-Message-State: ANoB5pnAS9AjgE787A8SUcYHo+RbBB7Rh+0Jl8D7a3E5DP9rujGK8MDP
+        T71wVV6j325rl1NLT/S/wsi67Q==
+X-Google-Smtp-Source: AA0mqf7MFhWfbsVgo0WuZoGvDN+xSMA+fz2YO0RP/VMcD9ChTcKCvQ1Bh2BqeCMDY5W4v8gttTkgRg==
+X-Received: by 2002:a19:6405:0:b0:4b5:b268:dbc8 with SMTP id y5-20020a196405000000b004b5b268dbc8mr9446079lfb.45.1671389862539;
+        Sun, 18 Dec 2022 10:57:42 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id bi26-20020a05651c231a00b0027a2a26a655sm606764ljb.8.2022.12.18.10.46.26
+        by smtp.gmail.com with ESMTPSA id a10-20020a056512200a00b004b515f9d117sm878787lfb.271.2022.12.18.10.57.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Dec 2022 10:46:27 -0800 (PST)
-Message-ID: <a5bb28a7-c7d3-be98-9621-996d38656d98@linaro.org>
-Date:   Sun, 18 Dec 2022 19:46:26 +0100
+        Sun, 18 Dec 2022 10:57:42 -0800 (PST)
+Message-ID: <4e35dc75-10d8-3412-6570-a9927aed6ab6@linaro.org>
+Date:   Sun, 18 Dec 2022 19:57:40 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH] dt-bindings: dma: fsl-mxs-dma: Convert MXS DMA to DT
- schema
+Subject: Re: [PATCH v5 1/2] dt-bindings: pinctrl: qcom: Add QDU1000 and
+ QRU1000 pinctrl
 Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+To:     Melody Olvera <quic_molvera@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20221217010724.632088-1-marex@denx.de>
- <b74776b4-0885-f519-8ef7-e01048a8be15@linaro.org>
- <ba05612d-fd3b-3e49-4ada-21f3b3c74e23@denx.de>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221216230852.21691-1-quic_molvera@quicinc.com>
+ <20221216230852.21691-2-quic_molvera@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ba05612d-fd3b-3e49-4ada-21f3b3c74e23@denx.de>
+In-Reply-To: <20221216230852.21691-2-quic_molvera@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/12/2022 00:12, Marek Vasut wrote:
-> On 12/17/22 12:05, Krzysztof Kozlowski wrote:
+On 17/12/2022 00:08, Melody Olvera wrote:
+> Add device tree bindings for QDU1000 and QRU1000 TLMM devices.
 > 
-> [...]
-> 
->>> +allOf:
->>> +  - $ref: dma-controller.yaml#
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          not:
->>
->> I think "not:" goes just after "if:". Please double check that it's correct.
->>
->> Anyway it is easier to have this without negation and you already
->> enumerate all variants (here and below).
-> 
-> About this part, I don't think that works. See this:
-> 
-> $ git grep -A 15 'imx2[38]-dma-apb[hx]' arch/ | grep 
-> '\(imx2[38]-dma-apb[hx]\|dma-channels\)'
-> arch/arm/boot/dts/imx23.dtsi: compatible = "fsl,imx23-dma-apbh";
-> arch/arm/boot/dts/imx23.dtsi- dma-channels = <8>;
-> arch/arm/boot/dts/imx23.dtsi: compatible = "fsl,imx23-dma-apbx";
-> arch/arm/boot/dts/imx23.dtsi- dma-channels = <16>;
-> arch/arm/boot/dts/imx28.dtsi: compatible = "fsl,imx28-dma-apbh";
-> arch/arm/boot/dts/imx28.dtsi- dma-channels = <16>;
-> arch/arm/boot/dts/imx28.dtsi: compatible = "fsl,imx28-dma-apbx";
-> arch/arm/boot/dts/imx28.dtsi- dma-channels = <16>;
-> arch/arm/boot/dts/imx6qdl.dtsi: compatible = "fsl,imx6q-dma-apbh", 
-> "fsl,imx28-dma-apbh";
-> arch/arm/boot/dts/imx6qdl.dtsi- dma-channels = <4>;
-> arch/arm/boot/dts/imx6sx.dtsi: compatible = "fsl,imx6sx-dma-apbh", 
-> "fsl,imx28-dma-apbh";
-> arch/arm/boot/dts/imx6sx.dtsi- dma-channels = <4>;
-> arch/arm/boot/dts/imx6ul.dtsi: compatible = "fsl,imx6q-dma-apbh", 
-> "fsl,imx28-dma-apbh";
-> arch/arm/boot/dts/imx6ul.dtsi- dma-channels = <4>;
-> arch/arm/boot/dts/imx7s.dtsi: compatible = "fsl,imx7d-dma-apbh", 
-> "fsl,imx28-dma-apbh";
-> arch/arm/boot/dts/imx7s.dtsi- dma-channels = <4>;
-> arch/arm64/boot/dts/freescale/imx8mm.dtsi: compatible = 
-> "fsl,imx7d-dma-apbh", "fsl,imx28-dma-apbh";
-> arch/arm64/boot/dts/freescale/imx8mm.dtsi- dma-channels = <4>;
-> arch/arm64/boot/dts/freescale/imx8mn.dtsi: compatible = 
-> "fsl,imx7d-dma-apbh", "fsl,imx28-dma-apbh";
-> arch/arm64/boot/dts/freescale/imx8mn.dtsi- dma-channels = <4>;
-> 
-> So I think what we have to do to validate that, is, say
-> 
-> default: 4
-> 
-> if does not match on 6q/6sx/7d/23-apbx/28-abbh/28-apbx then 8
-> 
-> if does not match on 6q/6sx/7d/23-apbh then 16
-> 
-> But if there is a better way to validate the above, please do tell.
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> ---
+>  .../bindings/pinctrl/qcom,qdu1000-tlmm.yaml   | 134 ++++++++++++++++++
 
-Then your existing if:then: is also not correct because you require for
-fsl,imx28-dma-apbh (as it is not in second if:then:) const:16. Just
-don't require it.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
