@@ -2,169 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2127464FF1A
-	for <lists+devicetree@lfdr.de>; Sun, 18 Dec 2022 15:26:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB07564FF32
+	for <lists+devicetree@lfdr.de>; Sun, 18 Dec 2022 16:00:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230425AbiLRO0l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Dec 2022 09:26:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46266 "EHLO
+        id S229871AbiLRPAk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Dec 2022 10:00:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230152AbiLRO0k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Dec 2022 09:26:40 -0500
-Received: from amity.mint.lgbt (vmi888983.contaboserver.net [149.102.157.145])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48903764B
-        for <devicetree@vger.kernel.org>; Sun, 18 Dec 2022 06:26:38 -0800 (PST)
-Received: from amity.mint.lgbt (mx.mint.lgbt [127.0.0.1])
-        by amity.mint.lgbt (Postfix) with ESMTP id 4NZlWw5SJrz1S5D5
-        for <devicetree@vger.kernel.org>; Sun, 18 Dec 2022 09:26:36 -0500 (EST)
-Authentication-Results: amity.mint.lgbt (amavisd-new);
-        dkim=pass (2048-bit key) reason="pass (just generated, assumed good)"
-        header.d=mint.lgbt
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mint.lgbt; h=
-        content-transfer-encoding:content-type:in-reply-to:from
-        :content-language:references:to:subject:user-agent:mime-version
-        :date:message-id; s=dkim; t=1671373592; x=1672237593; bh=NtwwfTJ
-        35XqFurSMfDIwOCOk77rKIDyhJoth9Mky+S8=; b=NrRaKYaiZKrzCaiNDiOV+kW
-        kw/hvGBLBFeVFsADj0F1oTH4rKBuizQiiarvF9mDgKvyAJLDhz9tl+P0zaNKKqs2
-        eyMwc3+lVxLYrTpe/bhUh8BPc91hmIsyWurKqiCyXCwQqmTqrpl23xloE2kIZCRn
-        bID7Ec6JZy0hIi6cD7aphI4epf1Nbfhzm/6sADRbKW6nPt+fN6nlMPtEPmvaICei
-        HUpkQ1Fudaxa40jde4cJunPil43Azf/DGLA0Mz3+ZHDLipaEyyXDf5z8J5meJpJw
-        IjC92scieuiLCusAK+FRRHSq90HlkTykVn7DAKcdaXs4prubfQ3tDON5/W98zoA=
-        =
-X-Virus-Scanned: amavisd-new at amity.mint.lgbt
-Received: from amity.mint.lgbt ([127.0.0.1])
-        by amity.mint.lgbt (amity.mint.lgbt [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id 9ed6WZmEzi-P for <devicetree@vger.kernel.org>;
-        Sun, 18 Dec 2022 09:26:32 -0500 (EST)
-Received: from [192.168.0.15] (pc-16-114-239-201.cm.vtr.net [201.239.114.16])
-        by amity.mint.lgbt (Postfix) with ESMTPSA id 4NZlWk4kNpz1S4t5;
-        Sun, 18 Dec 2022 09:26:25 -0500 (EST)
-Message-ID: <672d61c2-33a6-4b3b-fbb5-a12556d673a5@mint.lgbt>
-Date:   Sun, 18 Dec 2022 11:26:22 -0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: sm6125: Initial support for
- xiaomi-laurel-sprout
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S229730AbiLRPAi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Dec 2022 10:00:38 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D9A1D71;
+        Sun, 18 Dec 2022 07:00:36 -0800 (PST)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B3A0A825;
+        Sun, 18 Dec 2022 16:00:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1671375634;
+        bh=kKRrKB/nJyp0eDTeiuSFhpxZVfNJx1NwPZwHj85dT18=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=AllE6tS/wunTMQ4N29E0QV/VcJcZqGZy1A2ZGb+XOLYaSdYbXNuxqIhBNuOqeVnDo
+         3Y/rVf1JbQKJKIHmws4Z39JMkD/B6GcNK0XsvSfRfePQIZBi0O9bFTzycrUyjl7vHd
+         gU9B0xCZ43Wyyuov0i5arXqq3wU9Om/Kiiq2dL5g=
+Date:   Sun, 18 Dec 2022 17:00:30 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kees Cook <keescook@chromium.org>,
-        Tony Luck <tony.luck@intel.com>,
-        "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-References: <20221215190404.398788-1-they@mint.lgbt>
- <20221215190404.398788-4-they@mint.lgbt>
- <afcb9378-f331-df8c-ced5-1c10999f5fb8@linaro.org>
- <d0157452-307b-37a5-890a-b479a880ab95@mint.lgbt>
- <07f2a180-8a93-6c54-6d97-208ac8426fa6@linaro.org>
-Content-Language: en-US
-From:   Lux Aliaga <they@mint.lgbt>
-In-Reply-To: <07f2a180-8a93-6c54-6d97-208ac8426fa6@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: imx8mp: Fix missing GPC Interrupt
+Message-ID: <Y58rDppqQEI+vZ5U@pendragon.ideasonboard.com>
+References: <20221217180849.775718-1-aford173@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20221217180849.775718-1-aford173@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Adam,
 
-On 17/12/2022 11:23, Konrad Dybcio wrote:
-> On 16.12.2022 21:27, Lux Aliaga wrote:
->> On 16/12/2022 08:32, Konrad Dybcio wrote:
->>> On 15.12.2022 20:04, Lux Aliaga wrote:
->>>> Adds support for the Xiaomi Mi A3 (xiaomi-laurel-sprout). Here's a
->>>> summary on what's working.
->>>>
->>>> - dmesg output to bootloader preconfigured display
->>>> - USB
->>>> - UFS
->>>> - SMD RPM regulators
->>>>
->>>> Signed-off-by: Lux Aliaga <they@mint.lgbt>
->>>> ---
->>>>  =C2=A0 arch/arm64/boot/dts/qcom/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
->>>>  =C2=A0 .../dts/qcom/sm6125-xiaomi-laurel-sprout.dts=C2=A0 | 254 +++=
-+++++++++++++++
->>>>  =C2=A0 2 files changed, 255 insertions(+)
->>>>  =C2=A0 create mode 100644 arch/arm64/boot/dts/qcom/sm6125-xiaomi-la=
-urel-sprout.dts
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts=
-/qcom/Makefile
->>>> index 3e79496292e7..2b2a0170db14 100644
->>>> --- a/arch/arm64/boot/dts/qcom/Makefile
->>>> +++ b/arch/arm64/boot/dts/qcom/Makefile
->>>> @@ -157,6 +157,7 @@ dtb-$(CONFIG_ARCH_QCOM)=C2=A0=C2=A0=C2=A0 +=3D s=
-dm850-lenovo-yoga-c630.dtb
->>>>  =C2=A0 dtb-$(CONFIG_ARCH_QCOM)=C2=A0=C2=A0=C2=A0 +=3D sdm850-samsun=
-g-w737.dtb
->>>>  =C2=A0 dtb-$(CONFIG_ARCH_QCOM)=C2=A0=C2=A0=C2=A0 +=3D sm4250-oneplu=
-s-billie2.dtb
->>>>  =C2=A0 dtb-$(CONFIG_ARCH_QCOM)=C2=A0=C2=A0=C2=A0 +=3D sm6125-sony-x=
-peria-seine-pdx201.dtb
->>>> +dtb-$(CONFIG_ARCH_QCOM)=C2=A0=C2=A0=C2=A0 +=3D sm6125-xiaomi-laurel=
--sprout.dtb
->>>>  =C2=A0 dtb-$(CONFIG_ARCH_QCOM)=C2=A0=C2=A0=C2=A0 +=3D sm6350-sony-x=
-peria-lena-pdx213.dtb
->>>>  =C2=A0 dtb-$(CONFIG_ARCH_QCOM)=C2=A0=C2=A0=C2=A0 +=3D sm6375-sony-x=
-peria-murray-pdx225.dtb
->>>>  =C2=A0 dtb-$(CONFIG_ARCH_QCOM)=C2=A0=C2=A0=C2=A0 +=3D sm7225-fairph=
-one-fp4.dtb
->>>> diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dt=
-s b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
->>>> new file mode 100644
->>>> index 000000000000..86e1ec47bf5e
->>>> --- /dev/null
->>>> +++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
->>>> @@ -0,0 +1,254 @@
->>>> +// SPDX-License-Identifier: BSD-3-Clause
->>>> +/*
->>>> + * Copyright (c) 2022, Lux Aliaga <they@mint.lgbt>
->>>> + */
->>>> +
->>>> +/dts-v1/;
->>>> +
->>>> +#include <dt-bindings/gpio/gpio.h>
->>>> +#include <dt-bindings/input/input.h>
->>>> +#include <dt-bindings/input/gpio-keys.h>
->>>> +#include "sm6125.dtsi"
->>>> +
->>>> +/ {
->>>> +=C2=A0=C2=A0=C2=A0 model =3D "Xiaomi Mi A3";
->>>> +=C2=A0=C2=A0=C2=A0 compatible =3D "xiaomi,laurel-sprout", "qcom,sm6=
-125";
->>>> +=C2=A0=C2=A0=C2=A0 chassis-type =3D "handset";
->>>> +
->>>> +=C2=A0=C2=A0=C2=A0 /* required for bootloader to select correct boa=
-rd */
->>>> +=C2=A0=C2=A0=C2=A0 qcom,msm-id =3D <394 0>; /* sm6125 v0 */
->>> Unless you have a prototype device, this is not correct.
->>>
->>> Please run `cat /sys/bus/soc/devices/soc0/revision` and confirm
->>> which revision is used on your phone.
->> This segment has already been cross-referenced from downstream, and th=
-e device boots up successfully when using this ID, unless you're referrin=
-g to the comment next to it, in which case I can recheck later, since cur=
-rently I'm away from my device.
-> The device boots fine, because the DTB selection works on a "best match=
-"
-> basis. If it can't find one for the exact version of the SoC, it may
-> try to boot the closest one.
->
-> Konrad
+Thank you for the patch.
 
-Confirmed it. It's an sm6125 v1. Will fix.
+On Sat, Dec 17, 2022 at 12:08:48PM -0600, Adam Ford wrote:
+> The GPC node references an interrupt parent, but it doesn't
+> state the interrupt itself.  According to the TRM, this IRQ
+> is 87. This also eliminate an error detected from dt_binding_check
 
---=20
-Lux Aliaga
-https://nixgoat.me/
+The interrupt isn't used by the driver as far as I can see, so I can't
+test this, but the patch matches the reference manual, so
 
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> Fixes: fc0f05124621 ("arm64: dts: imx8mp: add GPC node with GPU power domains")
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> index 7a6e6221f421..7a8ca56e48b6 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> @@ -524,6 +524,7 @@ gpc: gpc@303a0000 {
+>  				compatible = "fsl,imx8mp-gpc";
+>  				reg = <0x303a0000 0x1000>;
+>  				interrupt-parent = <&gic>;
+> +				interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
+>  				interrupt-controller;
+>  				#interrupt-cells = <3>;
+>  
+
+-- 
+Regards,
+
+Laurent Pinchart
