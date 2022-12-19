@@ -2,223 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03A7F650C6B
-	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 14:06:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 877B5650C75
+	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 14:09:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231869AbiLSNGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Dec 2022 08:06:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33164 "EHLO
+        id S231739AbiLSNJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Dec 2022 08:09:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229794AbiLSNGk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 08:06:40 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86376DFAF
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 05:06:39 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1p7FqU-0006uP-H0; Mon, 19 Dec 2022 14:06:18 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1p7FqR-000Kxh-SW; Mon, 19 Dec 2022 14:06:15 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1p7FqQ-006JrB-MX; Mon, 19 Dec 2022 14:06:14 +0100
-Date:   Mon, 19 Dec 2022 14:06:10 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Sasha Finkelstein <fnkl.kernel@gmail.com>
-Cc:     thierry.reding@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, marcan@marcan.st,
-        sven@svenpeter.dev, alyssa@rosenzweig.io, asahi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/4] pwm: Add Apple PWM controller
-Message-ID: <20221219130610.yxggztlqnssm4k7c@pengutronix.de>
-References: <20221209111313.2701-1-fnkl.kernel@gmail.com>
- <20221209111313.2701-3-fnkl.kernel@gmail.com>
+        with ESMTP id S231237AbiLSNJw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 08:09:52 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44356DEE5;
+        Mon, 19 Dec 2022 05:09:50 -0800 (PST)
+Received: from [IPv6:2a00:23c6:c311:3401:6183:47ed:9cb1:4403] (unknown [IPv6:2a00:23c6:c311:3401:6183:47ed:9cb1:4403])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: martyn)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8498C660037C;
+        Mon, 19 Dec 2022 13:09:48 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1671455388;
+        bh=HRoe6kfKVGOsoljsZxVcbwkCMDPY4SvEeAIPwkfdc2Q=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=jhgOjrmM7H4p2CvfvdNxzXzTljxKQhRoatMJB/VisD2tyJheBg/JJKNtNvaArD2p9
+         pQen7+qBvdDrGQI6tiUE/fK45pdAUkl3jkE6x7zmquWp4nUDRMGc63s9zCnNMPXTfg
+         A0uxQaFwCXnEcfS1T3z4vNtKbLQEFLwrRJ8t3J4R5wOA3l68CT1efqeCQrA3kkrJMC
+         jPDoEIW94OrhAc1EFlRPyaHQAqKwQRcsiKA3qmgsk8QO0VD+9DtB7mErCQMnYPCQTm
+         djRkJ7BsspwG8229F2IiGUfpeDzfgBnIgED4Bnwh6XMvXAGbSQvfwZ7yVMrDS/Xlfj
+         2JE9+Y6ULWi2w==
+Message-ID: <ea5e2fbf58b118ef37876aa168448c6d3010ab96.camel@collabora.com>
+Subject: Re: [PATCH 0/3] Improve K3-am625-sk support (USB, MMC)
+From:   Martyn Welch <martyn.welch@collabora.com>
+To:     Sjoerd Simons <sjoerd@collabora.com>, Nishanth Menon <nm@ti.com>
+Cc:     Nitin Yadav <n-yadav@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Date:   Mon, 19 Dec 2022 13:09:46 +0000
+In-Reply-To: <20221216143624.23708-1-sjoerd@collabora.com>
+References: <20221216143624.23708-1-sjoerd@collabora.com>
+Organization: Collabora Ltd.
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.2-1 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="cybldnmdxrk2dtsd"
-Content-Disposition: inline
-In-Reply-To: <20221209111313.2701-3-fnkl.kernel@gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 2022-12-16 at 15:36 +0100, Sjoerd Simons wrote:
+>=20
+> This series picks up a few patches from the TI BSP tree that
+> unfortunately didn't make it upstream thusfar.
+>=20
+> The first patch improve SD card compatibility (allowing U1 class
+> cards
+> to be used), the remaining ones add USB support.
+>=20
+> The type-c connector isn't entirely modelled with these changes as
+> it goes through a TPS6598 PD controller. Unfortunately the dtb
+> bindings
+> for that currently require an irq line, which is not connected on E1
+> and
+> E2 version boards. The patchese to support this setup unfortunately
+> didn't land
+> yet[0].. As such the last patch ignored the PD controller and simply
+> configures usb0 as periphal only rather then mode switch capable,
+> which
+> at least gives some basic usability of that USB port.
+>=20
+> 0:
+> https://lore.kernel.org/lkml/f714ee55-ef47-317d-81b9-57020dda064b@ti.com/=
+T/
+>=20
+>=20
 
---cybldnmdxrk2dtsd
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Series tested with known problematic SD Card and checking for detection
+of inserted USB device.
 
-Hello,
+Tested-by: Martyn Welch <martyn.welch@collabora.com>
 
-over all the driver looks good. Just a few smaller issues below.
 
-I wonder if it's a good idea to call this driver "apple". SoC vendors
-seem to reinvent their peripherals (or buy them somewhere else) for
-their different generations of processors. Maybe call it "apple-s5l"
-already today and not only when the next generation SoC appears?
-(I don't feel strong here, if you want to delay that renaming until
-there is an incompatible SoC that's fine for me.)
+> Aswath Govindraju (2):
+> =C2=A0 arm64: dts: ti: k3-am62-main: Add support for USB
+> =C2=A0 arm64: dts: ti: k3-am625-sk: Add support for USB
+>=20
+> Nitin Yadav (1):
+> =C2=A0 arm64: dts: ti: k3-am62-main: Update OTAP and ITAP delay select
+>=20
+> =C2=A0arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 90 ++++++++++++++++++---=
+-
+> --
+> =C2=A0arch/arm64/boot/dts/ti/k3-am625-sk.dts=C2=A0=C2=A0 | 22 ++++++
+> =C2=A02 files changed, 90 insertions(+), 22 deletions(-)
+>=20
 
-On Fri, Dec 09, 2022 at 02:13:11PM +0300, Sasha Finkelstein wrote:
-> diff --git a/drivers/pwm/pwm-apple.c b/drivers/pwm/pwm-apple.c
-> new file mode 100644
-> index 000000000000..a85fecb20105
-> --- /dev/null
-> +++ b/drivers/pwm/pwm-apple.c
-> @@ -0,0 +1,150 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> +/*
-> + * Driver for the Apple SoC PWM controller
-> + *
-> + * Copyright The Asahi Linux Contributors
-> + *
-> + * Limitations:
-> + * - The writes to cycle registers are shadowed until a write to
-> + *   the control register.
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pwm.h>
-> +#include <linux/io.h>
-> +#include <linux/clk.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/math64.h>
-
-I didn't test, but I think you don't need pm_runtime.h here. Also maybe
-the of headers are not needed?
-
-> +#define APPLE_PWM_CONTROL     0x00
-> +#define APPLE_PWM_ON_CYCLES   0x1c
-> +#define APPLE_PWM_OFF_CYCLES  0x18
-> +
-> +#define APPLE_CTRL_ENABLE        BIT(0)
-> +#define APPLE_CTRL_MODE          BIT(2)
-> +#define APPLE_CTRL_UPDATE        BIT(5)
-> +#define APPLE_CTRL_TRIGGER       BIT(9)
-> +#define APPLE_CTRL_INVERT        BIT(10)
-> +#define APPLE_CTRL_OUTPUT_ENABLE BIT(14)
-
-Would be nice if the register prefix would match the register name. That
-is please either rename APPLE_PWM_CONTROL to APPLE_PWM_CTRL or use
-APPLE_PWM_CONTROL as prefix for the bit fields in that register.
-
-> +
-> +struct apple_pwm {
-> +	struct pwm_chip chip;
-> +	void __iomem *base;
-> +	u64 clkrate;
-> +};
-> +
-> +static inline struct apple_pwm *to_apple_pwm(struct pwm_chip *chip)
-> +{
-> +	return container_of(chip, struct apple_pwm, chip);
-> +}
-> +
-> +static int apple_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> +			   const struct pwm_state *state)
-> +{
-> +	struct apple_pwm *fpwm;
-> +	u64 on_cycles, off_cycles;
-
-The declaration can move into the if block below.
-
-> +
-> +	fpwm =3D to_apple_pwm(chip);
-> +	if (state->enabled) {
-> +		on_cycles =3D mul_u64_u64_div_u64(fpwm->clkrate,
-> +						state->duty_cycle, NSEC_PER_SEC);
-> +		if (on_cycles > 0xFFFFFFFF)
-> +			return -ERANGE;
-> +
-> +		off_cycles =3D mul_u64_u64_div_u64(fpwm->clkrate,
-> +						 state->period, NSEC_PER_SEC) - on_cycles;
-> +		if (off_cycles > 0xFFFFFFFF)
-> +			return -ERANGE;
-> +
-> +		writel(on_cycles, fpwm->base + APPLE_PWM_ON_CYCLES);
-> +		writel(off_cycles, fpwm->base + APPLE_PWM_OFF_CYCLES);
-> +		writel(APPLE_CTRL_ENABLE | APPLE_CTRL_OUTPUT_ENABLE | APPLE_CTRL_UPDAT=
-E,
-> +		       fpwm->base + APPLE_PWM_CONTROL);
-> +	} else {
-> +		writel(0, fpwm->base + APPLE_PWM_CONTROL);
-> +	}
-> +	return 0;
-
-Assuming clkrate =3D 24000000, I wonder what happens if (duty_cycle and)
-period are so small that on_cycles and off_cycles are both zero. How
-does the hardware behave in this case?
-
-> +}
-> +
-> +static void apple_pwm_get_state(struct pwm_chip *chip, struct pwm_device=
- *pwm,
-> +			   struct pwm_state *state)
-> +{
-> +	struct apple_pwm *fpwm;
-> +	u32 on_cycles, off_cycles, ctrl;
-> +
-> +	fpwm =3D to_apple_pwm(chip);
-> +
-> +	ctrl =3D readl(fpwm->base + APPLE_PWM_CONTROL);
-> +	on_cycles =3D readl(fpwm->base + APPLE_PWM_ON_CYCLES);
-> +	off_cycles =3D readl(fpwm->base + APPLE_PWM_OFF_CYCLES);
-> +
-> +	state->enabled =3D (ctrl & APPLE_CTRL_ENABLE) && (ctrl & APPLE_CTRL_OUT=
-PUT_ENABLE);
-> +	state->polarity =3D PWM_POLARITY_NORMAL;
-> +	state->duty_cycle =3D mul_u64_u64_div_u64(on_cycles, NSEC_PER_SEC, fpwm=
-->clkrate);
-> +	state->period =3D mul_u64_u64_div_u64(off_cycles + on_cycles,
-> +					    NSEC_PER_SEC, fpwm->clkrate);
-
-Wrong rounding direction, you need to round up. Did you test with
-PWM_DEBUG on? This should point out the more obvious cases. Assuming
-clkrate =3D 24000000 for example setting .duty_cycle =3D 3 should trigger a
-warning.
-
-Unfortunately there is no variant of mul_u64_u64_div_u64 that rounds up,
-maybe we need to introduce one.
-
-> +}
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---cybldnmdxrk2dtsd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmOgYb8ACgkQwfwUeK3K
-7AmyGgf/ZLtQ8j885QI9iI+qjelPALAIjeT2vq38/e9XPENLAGqMsl2+Fi9hgqEC
-fVv6/DhQyKJpvtcjjZIAnr7yBNXFSSAOoCgcNQ5RekuJ4PLW0Bh3yvOA4rf34Ilv
-N/pH5R1CVD1+nRP9VnfctX8cSG1a/fNhuXiSz47Fr2vhvHUGj8x2eLpD+NYZQhzN
-Nn0IQK6T5TQ5m45269jzJgfnoNFDaNQsUkW9BkveIBiIfuwzccdyGu1W0U6dwX6e
-MWaVcHSOtOl55ijXCtDBg4H6AdYiAgAdD7vyYS4sOZsix+cKoAVvl5bAjhDhTmro
-guHL50ggTuXTF6uizUOVGEGUUB1/xw==
-=+xU3
------END PGP SIGNATURE-----
-
---cybldnmdxrk2dtsd--
