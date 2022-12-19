@@ -2,143 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AADA6650CD6
-	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 14:50:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DCB6650D28
+	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 15:23:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231803AbiLSNux (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Dec 2022 08:50:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48766 "EHLO
+        id S231179AbiLSOXh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Dec 2022 09:23:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231197AbiLSNuw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 08:50:52 -0500
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36F07BE25;
-        Mon, 19 Dec 2022 05:50:51 -0800 (PST)
-Received: by mail-qt1-f176.google.com with SMTP id h26so4359117qtu.2;
-        Mon, 19 Dec 2022 05:50:51 -0800 (PST)
+        with ESMTP id S230373AbiLSOXg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 09:23:36 -0500
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 205D8F006;
+        Mon, 19 Dec 2022 06:23:35 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id ud5so21871783ejc.4;
+        Mon, 19 Dec 2022 06:23:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Gkz73r1Eb7Lcu2UFxAAgyawdXAVgK+nUDNDZI6NypmI=;
+        b=lrK6/UvA0iB5QyZKs21O4DDtfVksA/wJmDdFI3vbYuBtAGlQGsgPT2fh0Cf4N2QS6x
+         oamZ0dNV7Qyl2NQRqZAx42e2t8jodmut605Os1ZviwfCuRiKPFa7UIqCkRYYjq5iIE55
+         hEIjMexAke+0iT2SP4qc2qmrW/R0KoWPj8ALc7WK51KklI+NqE8Wf762Qu2/w/3XbJtp
+         O6P7AsGQKBIiPvXrnV2bsYc6rb9mJmfvnzQYgHZX1LzfzTbSzXUhzk+m1P114Q4srqx9
+         v9QAGqLXUIfVAcjksSORECeS8nRpfNkYx52r1KboWugeZ6Cx1qlSg2h8+vhuLgBQ6/vu
+         ws+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TMpAZw6S6JvATf2B1ykxy7jXVkmfHoXtkV8PdpVE9/I=;
-        b=YcQmAiImD94tGo2tQE+svnYRZMdvoG/6WQ2Fjp6xTrF6G2nRvBg400ciDvuf/P79P0
-         rs6dDkboFCw7+eLd/f4RbiX5VPAihh77YByMqwDEW7/El34oterd6uegg3HCL24ACqct
-         A5AyW111gadcSmFLUejq1V/8B+lSipoLe98Bm/ZIWm8e3CnlCnE7ahcFOkDQ9Ojo+Q8C
-         yC41LmLFn4PRmdQUgI28sc0CRkX3YuoK5FMdoSu1akj/sdWtOUJ9ouM8dZ23U9jKvHw5
-         TFV4WCWUdxJDa8BA/SAyRhFvZORlECjJD3NyK+YEUvp0mcRMt6ZE0OTnRY21Er10BB1W
-         noMA==
-X-Gm-Message-State: ANoB5pntU5QuM95j99hxro7mo7OupxCmI0lsfMexRGKfHBLoja7z+UG8
-        RXgtpVXJS9/8nkeDxRxlPD3FRRioaTV6Wg==
-X-Google-Smtp-Source: AA0mqf6p4vwTP+3AkeYlGoBK1w16eYvuUY+YBns06d1D4IDpc3Fzrn1klY0kHzdlDc9s35kEQ+Hz5Q==
-X-Received: by 2002:ac8:1004:0:b0:39c:da20:d48d with SMTP id z4-20020ac81004000000b0039cda20d48dmr49738354qti.34.1671457849991;
-        Mon, 19 Dec 2022 05:50:49 -0800 (PST)
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
-        by smtp.gmail.com with ESMTPSA id y21-20020ac85255000000b00398313f286dsm6018434qtn.40.2022.12.19.05.50.48
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Gkz73r1Eb7Lcu2UFxAAgyawdXAVgK+nUDNDZI6NypmI=;
+        b=KDIsXlxqqhZTzi2msBA0V/dZ5CtI6a5jYX5PWtXYwmTrjJepzcZcayx+Mt+hbhtym0
+         Ot7r2AGDEJOvddtLvWSue9yELryE4OVfNpnBs4/fio8jhVr/wru3cnO51lj7ugb2L2R/
+         ixM+QDmjWwFVz+4yWgc58BDKWmxZnC7AaA/Q5uGeiZ9gNDa5s118KY4Qnk6mpmNPFpfS
+         2vg7daHYoIxYu0YyM1QRi9ZN9WzH53hOsKj7Wq0OkxGAKKkBzy0InCAhrCMf8KhGFBUI
+         r8QfoUupPhX5FkOZInwB2xbxK0ZMyOpqZ3MU9Jq9YVCt3KaE+tLFh/SS+zPeJE5Pd3gR
+         2G3g==
+X-Gm-Message-State: ANoB5pkt57EsSlQDteIRaLCszbEnsqJRuPSD8qii27F2EuJPa0AmPN2A
+        e1uhMYh1+lPC9ST8rF/CzmQ=
+X-Google-Smtp-Source: AA0mqf4Glrj80Pn6SO+5YOa1CODh03vabAMBUtymLKCKDN//Cz/MMQ0Pk5yKzavBrdNqIg2OJ2YxFA==
+X-Received: by 2002:a17:906:1711:b0:7c1:3fbd:d569 with SMTP id c17-20020a170906171100b007c13fbdd569mr33253033eje.8.1671459813432;
+        Mon, 19 Dec 2022 06:23:33 -0800 (PST)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id w5-20020a17090652c500b007c4fbb79535sm4399120ejn.82.2022.12.19.06.23.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Dec 2022 05:50:49 -0800 (PST)
-Received: by mail-yb1-f172.google.com with SMTP id b16so9550924yba.0;
-        Mon, 19 Dec 2022 05:50:48 -0800 (PST)
-X-Received: by 2002:a25:9e84:0:b0:6de:6183:c5c3 with SMTP id
- p4-20020a259e84000000b006de6183c5c3mr79384857ybq.89.1671457848676; Mon, 19
- Dec 2022 05:50:48 -0800 (PST)
+        Mon, 19 Dec 2022 06:23:32 -0800 (PST)
+Message-ID: <5e05a6d5-bc89-fb66-fcae-2e1194e23c12@gmail.com>
+Date:   Mon, 19 Dec 2022 15:23:31 +0100
 MIME-Version: 1.0
-References: <20221107175305.63975-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221107175305.63975-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdV46aMfqu+kMW9E-RURugK-giOx0k-NPe5XX4nxKZJzkg@mail.gmail.com>
- <CA+V-a8uqQ2fK1UjRT864jyHdt6Z47V=iARSJC6B2M6Gikms=Eg@mail.gmail.com> <CA+V-a8sGLrsRWFi3-hNmB=Uj-aCQLD5VQesmUFb8N1NAqhyLuQ@mail.gmail.com>
-In-Reply-To: <CA+V-a8sGLrsRWFi3-hNmB=Uj-aCQLD5VQesmUFb8N1NAqhyLuQ@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 19 Dec 2022 14:50:36 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdW_QuBUUypyrAbLqWPdZ81bWeYDyPbBf=2KmDht1X44bA@mail.gmail.com>
-Message-ID: <CAMuHMdW_QuBUUypyrAbLqWPdZ81bWeYDyPbBf=2KmDht1X44bA@mail.gmail.com>
-Subject: Re: [PATCH RFC 1/5] dt-bindings: interrupt-controller:
- renesas,rzg2l-irqc: Document RZ/G2UL SoC
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH v3] dt-bindings: display: rockchip: convert
+ rockchip-lvds.txt to YAML
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        heiko@sntech.de
+Cc:     hjc@rock-chips.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, airlied@gmail.com,
+        daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <fd51df66-147d-d40f-913e-385625a71984@gmail.com>
+ <8db62d1a-365c-d41d-90aa-4c78c5d5e9ce@linaro.org>
+Content-Language: en-US
+From:   Johan Jonker <jbx6244@gmail.com>
+In-Reply-To: <8db62d1a-365c-d41d-90aa-4c78c5d5e9ce@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
 
-On Mon, Dec 19, 2022 at 1:57 PM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
-> On Fri, Nov 18, 2022 at 12:29 PM Lad, Prabhakar
-> <prabhakar.csengg@gmail.com> wrote:
-> > On Thu, Nov 17, 2022 at 10:54 AM Geert Uytterhoeven
-> > <geert@linux-m68k.org> wrote:
-> > > On Mon, Nov 7, 2022 at 6:53 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > >
-> > > > Document RZ/G2UL (R9A07G043) IRQC bindings. The RZ/G2UL IRQC block is
-> > > > identical to one found on the RZ/G2L SoC. No driver changes are
-> > > > required as generic compatible string "renesas,rzg2l-irqc" will be
-> > > > used as a fallback.
-> > > >
-> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-> > > > Note, renesas,r9a07g043u-irqc is added we have slight difference's compared to RZ/Five
-> > > > - G2UL IRQCHIP (hierarchical IRQ domain) -> GIC where as on RZ/Five we have PLIC (chained interrupt
-> > > > domain) -> RISCV INTC
-> > >
-> > > I think this difference is purely a software difference, and abstracted
-> > > in DTS through the interrupt hierarchy.
-> > > Does it have any impact on the bindings?
-> > >
-> > > > - On the RZ/Five we have additional registers for IRQC block
-> > >
-> > > Indeed, the NMI/IRQ/TINT "Interruput" Mask Control Registers, thus
-> > > warranting separate compatible values.
-> > >
-> > > > - On the RZ/Five we have BUS_ERR_INT which needs to be handled by IRQC
-> > >
-> > > Can you please elaborate? I may have missed something, but to me it
-> > > looks like that is exactly the same on RZ/G2UL and on RZ/Five.
-> > >
-> > Now that we have to update the binding doc with the BUS_ERR_INT too,
-> > do you think it would make sense to add interrupt-names too?
+On 12/19/22 14:04, Krzysztof Kozlowski wrote:
+> On 19/12/2022 13:32, Johan Jonker wrote:
+>> Convert rockchip-lvds.txt to YAML.
+>>
+>> Changed:
+>>   Add power-domains property.
+>>   Requirements between PX30 and RK3288
+>>
+>> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+>> ---
+>>
+>> Changed V3:
+>>   Filename matching compatible style
+>>   Drop "Regulator phandle for "
+>>   Specify properties and requirements per SoC
+>>   Sort order and restyle
+>>
+>> Changed V2:
+>>   Fix title
+>> ---
+>>  .../display/rockchip/rockchip,lvds.yaml       | 170 ++++++++++++++++++
+>>  .../display/rockchip/rockchip-lvds.txt        |  92 ----------
+>>  2 files changed, 170 insertions(+), 92 deletions(-)
+>>  create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip,lvds.yaml
+>>  delete mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip-lvds.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,lvds.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,lvds.yaml
+>> new file mode 100644
+>> index 000000000..03b002a05
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,lvds.yaml
+>> @@ -0,0 +1,170 @@
+>> +# SPDX-License-Identifier: GPL-2.0
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/display/rockchip/rockchip,lvds.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Rockchip low-voltage differential signal (LVDS) transmitter
+>> +
+>> +maintainers:
+>> +  - Sandy Huang <hjc@rock-chips.com>
+>> +  - Heiko Stuebner <heiko@sntech.de>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - rockchip,px30-lvds
+>> +      - rockchip,rk3288-lvds
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  clock-names:
+>> +    const: pclk_lvds
+>> +
+>> +  avdd1v0-supply:
+>> +    description: 1.0V analog power.
+>> +
+>> +  avdd1v8-supply:
+>> +    description: 1.8V analog power.
+>> +
+>> +  avdd3v3-supply:
+>> +    description: 3.3V analog power.
+>> +
+>> +  rockchip,grf:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description: Phandle to the general register files syscon.
+>> +
+>> +  rockchip,output:
+>> +    $ref: /schemas/types.yaml#/definitions/string
+>> +    enum: [rgb, lvds, duallvds]
+>> +    description: This describes the output interface.
+>> +
+>> +  phys:
+>> +    maxItems: 1
+>> +
+>> +  phy-names:
+>> +    const: dphy
+>> +
+>> +  pinctrl-names:
+>> +    const: lcdc
+>> +
+>> +  pinctrl-0: true
+>> +
+>> +  power-domains:
+>> +    maxItems: 1
+>> +
+>> +  ports:
+>> +    $ref: /schemas/graph.yaml#/properties/ports
+>> +
+>> +    properties:
+>> +      port@0:
+>> +        $ref: /schemas/graph.yaml#/properties/port
+>> +        description:
+>> +          Video port 0 for the VOP input.
+>> +          The remote endpoint maybe vopb or vopl.
+>> +
+>> +      port@1:
+>> +        $ref: /schemas/graph.yaml#/properties/port
+>> +        description:
+>> +          Video port 1 for either a panel or subsequent encoder.
+>> +
+>> +    required:
+>> +      - port@0
+>> +      - port@1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - rockchip,grf
+>> +  - rockchip,output
+>> +  - ports
+>> +
+>> +allOf:
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const: rockchip,px30-lvds
+>> +
+>> +    then:
+>> +      properties:
+>> +        reg: false
+>> +        clocks: false
+>> +        clock-names: false
+>> +        avdd1v0-supply: false
+>> +        avdd1v8-supply: false
+>> +        avdd3v3-supply: false
+>> +
+> 
 
-> Gentle ping.
+> I see one compatible expects regmap from parent (grf is the parent here)
+> and other is directly on MMIO bus. Not the best combination... Maybe
+> this  should be just split to two separate bindings? Looking at driver,
+> their code is also very different between these two variants.
 
-Thanks for the ping, I had missed you were waiting on input from me.
-Sorry for that...
+Looking at the manufacturer tree we can expect the rest with grf parent, but also in the same driver combined with different registers and common probe.
+Due to common probe I prefer one common document.
 
-As there are three different groups of parent interrupts, adding
-interrupt-names makes sense.  However, as this binding is already
-in active use since v6.1, you probably need to keep on supporting the
-ack of interrupt-names.  Or do you think there are no real users yet,
-and we can drop support for that?
+Johan
 
-> > BUS_ERR_INT will have to be handled IRQC itself (i.e. IRQC will
-> > register a handler for it).
+===
 
-Do you mean you will need a fourth parent type for that?
+https://github.com/rockchip-linux/kernel/blob/develop-5.10/drivers/gpu/drm/rockchip/rockchip_lvds.c#L671
 
-Gr{oetje,eeting}s,
 
-                        Geert
+rockchip,rk3126-lvds
+https://github.com/rockchip-linux/kernel/blob/develop-5.10/arch/arm/boot/dts/rk312x.dtsi#L914
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+rockchip,rk3368-lvds
+https://github.com/rockchip-linux/kernel/blob/develop-4.4/arch/arm64/boot/dts/rockchip/rk3368.dtsi#L1196
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+rockchip,rk3568-lvds
+https://github.com/rockchip-linux/kernel/blob/develop-5.10/arch/arm64/boot/dts/rockchip/rk3568.dtsi#L734
+
+> 
+> Best regards,
+> Krzysztof
+> 
