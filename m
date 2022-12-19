@@ -2,139 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61333651511
-	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 22:46:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C8198651521
+	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 22:54:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232117AbiLSVqN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Dec 2022 16:46:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57014 "EHLO
+        id S232584AbiLSVyv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Dec 2022 16:54:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232470AbiLSVqL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 16:46:11 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEE1E26D3
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 13:46:06 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id b3so15781954lfv.2
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 13:46:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XB6cREulQAxqSm/nFa6k4wjD6bFB02amrV76mX+yCIs=;
-        b=XxoN9bRVvG18VXJeePFuxyk1L13yeJxtTlVRlH+RXOWKsZxCpJ2AAHvgl8VQ+UnsoC
-         1qhE0iFe0yCXrI++jKmPTPNLuJ+tjfnW0iIi4+rjTMjgEOEtm4IXF4zB7wSoFxAQd4Wc
-         Hp/IlT0TrSVrfecF4KnZZrzzQYI37AUQf9wQbS2Tr6CeIM9XxXt1agMGXbnY0i7YpK9T
-         grYk0E+YNwT9L043+5ME2Oo8Q6rJWz4tpFZ8I6cRp4PF0dX8alA5WqX/0fqqw8RqcuVP
-         uR0eDUunFyal/u53Y2zju3Swu2EDFsi69XnH/zhUK5zqZk9TvRgVWpZK1cRcu/onlyNN
-         GlOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XB6cREulQAxqSm/nFa6k4wjD6bFB02amrV76mX+yCIs=;
-        b=E8AJhc2gbhPN9dRiNX4rajIT1OcFToFAqCjf/GHKN0XFiS4/K2v5aFRFYqdAG1HMjk
-         vpzb9cEK0TZMxBPiBZcyyPBElQvIOyLzM2xVOMhkgzXiiO8XygyB5RbpdUIZoZNGK88p
-         G/jnVMib/zDRvzQKxx+w7mFfVCS79IoHIbMYv5rcGXIm5G4KMxxlyzXojTaGV7P5EBhh
-         GT5NME646Y7DaP3AWZdZ5KVINjTJrDP2v66FJ2O7kDQRU8oR/ra4zYXBDNm2GZ/lbXdI
-         YPXxGb5rXCezrvSL3EEBqVDq7dy0Ws51aq0ad2YTMp4wF2y6YG7akyJFpGLRNj+K7cYV
-         zw2g==
-X-Gm-Message-State: ANoB5pmw5XjS7J6Itwl4d1JM88Mqtv4Bxja3TOaTBYg3UHiP5RikyR3n
-        GKk/dxOrlxIDUXUZ3etnVA0Igw==
-X-Google-Smtp-Source: AA0mqf598/MCF/JjEFs4sytej/bZyytsruYpkdumZTQtJfjYvaqHK4GOJ3jxcNm12jWpnEvG729kiQ==
-X-Received: by 2002:a05:6512:304b:b0:4b5:892:3987 with SMTP id b11-20020a056512304b00b004b508923987mr24595255lfb.9.1671486365267;
-        Mon, 19 Dec 2022 13:46:05 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id a12-20020a056512200c00b004b700ba3cf3sm1205396lfb.203.2022.12.19.13.46.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Dec 2022 13:46:04 -0800 (PST)
-Message-ID: <6a59addb-b1a0-8536-c909-25c4c4447e09@linaro.org>
-Date:   Mon, 19 Dec 2022 23:46:03 +0200
+        with ESMTP id S232167AbiLSVyu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 16:54:50 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CEB59FEA
+        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 13:54:49 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mgr@pengutronix.de>)
+        id 1p7O5h-0003Y4-3a; Mon, 19 Dec 2022 22:54:33 +0100
+Received: from mgr by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mgr@pengutronix.de>)
+        id 1p7O5f-0000hb-HD; Mon, 19 Dec 2022 22:54:31 +0100
+Date:   Mon, 19 Dec 2022 22:54:31 +0100
+From:   Michael Grzeschik <mgr@pengutronix.de>
+To:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Cc:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
+        daniel.almeida@collabora.com, nicolas.dufresne@collabora.co.uk,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH v1 0/9] AV1 stateless decoder for RK3588
+Message-ID: <20221219215431.GB26315@pengutronix.de>
+References: <20221219155616.848690-1-benjamin.gaignard@collabora.com>
+ <CAAEAJfBP_D65kjHbwYP+LWfWKfzFtHtWo+3bDcbdO8tPtBurUA@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm8450: Use GIC-ITS for PCIe0 and
- PCIe1
-Content-Language: en-GB
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     bhelgaas@google.com, konrad.dybcio@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221219191427.480085-1-manivannan.sadhasivam@linaro.org>
- <20221219191427.480085-4-manivannan.sadhasivam@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20221219191427.480085-4-manivannan.sadhasivam@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="8P1HSweYDcXXzwPJ"
+Content-Disposition: inline
+In-Reply-To: <CAAEAJfBP_D65kjHbwYP+LWfWKfzFtHtWo+3bDcbdO8tPtBurUA@mail.gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mgr@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/12/2022 21:14, Manivannan Sadhasivam wrote:
-> Both PCIe0 and PCIe1 controllers are capable of receiving MSIs from
-> endpoint devices using GIC-ITS MSI controller. Add support for it.
-> 
-> Currently, BDF (0:0.0) and BDF (1:0.0) are enabled and with the
-> msi-map-mask of 0xff00, all the 32 devices under these two busses can
-> share the same Device ID.
-> 
-> The GIC-ITS MSI implementation provides an advantage over internal MSI
-> implementation using Locality-specific Peripheral Interrupts (LPI) that
-> would allow MSIs to be targeted for each CPU core.
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/sm8450.dtsi | 12 ++++++------
->   1 file changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> index 570475040d95..276ceba4c247 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> @@ -1733,9 +1733,9 @@ pcie0: pci@1c00000 {
->   			ranges = <0x01000000 0x0 0x60200000 0 0x60200000 0x0 0x100000>,
->   				 <0x02000000 0x0 0x60300000 0 0x60300000 0x0 0x3d00000>;
->   
-> -			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
-> -			interrupt-names = "msi";
-> -			#interrupt-cells = <1>;
-> +			msi-map = <0x0 &gic_its 0x5980 0x1>,
-> +				  <0x100 &gic_its 0x5981 0x1>;
 
-Does ITS support handling more than one MSI interrupt per device? 
-Otherwise it might be better to switch to multi-MSI scheme using SPI 
-interrupts.
+--8P1HSweYDcXXzwPJ
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +			msi-map-mask = <0xff00>;
->   			interrupt-map-mask = <0 0 0 0x7>;
->   			interrupt-map = <0 0 0 1 &intc 0 0 0 149 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
->   					<0 0 0 2 &intc 0 0 0 150 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
-> @@ -1842,9 +1842,9 @@ pcie1: pci@1c08000 {
->   			ranges = <0x01000000 0x0 0x40200000 0 0x40200000 0x0 0x100000>,
->   				 <0x02000000 0x0 0x40300000 0 0x40300000 0x0 0x1fd00000>;
->   
-> -			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>;
-> -			interrupt-names = "msi";
-> -			#interrupt-cells = <1>;
-> +			msi-map = <0x0 &gic_its 0x5a01 0x1>,
-> +				  <0x100 &gic_its 0x5a00 0x1>;
 
-Are you sure that the order is correct here?
+Hi Benjamin,
+Hi Ezequiel,
 
-> +			msi-map-mask = <0xff00>;
->   			interrupt-map-mask = <0 0 0 0x7>;
->   			interrupt-map = <0 0 0 1 &intc 0 0 0 434 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
->   					<0 0 0 2 &intc 0 0 0 435 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
+On Mon, Dec 19, 2022 at 06:07:38PM -0300, Ezequiel Garcia wrote:
+>On Mon, Dec 19, 2022 at 12:56 PM Benjamin Gaignard
+><benjamin.gaignard@collabora.com> wrote:
+>>
+>> This series implement AV1 stateless decoder for RK3588 SoC.
+>> The harware support 8 and 10 bits bitstreams up to 7680x4320.
+>> AV1 feature like film grain or scaling are done by the postprocessor.
+>> The driver can produce NV12_4L4 and NV12 pixel formats.
+>> A native 10bits NV12_4L4 format is possible but need more investigation
+>> to be completly documented and enabled.
+>>
+>> It is based on Daniel's "[RFC,v3] media: Add AV1 uAPI" [1] patches and
+>> Sebastian's device-tree patches for RK3588.
+>>
+>
+>I thought the AV1 decoder in RK3588 was really a separate hardware
+>from the Hantro G1/G2.
+>
+>Shouldn't this need a new driver for this new hardware?
 
--- 
-With best wishes
-Dmitry
+Just jumping into this discussion as I am currently working on the rkvenc d=
+river.
 
+In my case I am extending the rkvdec driver to become more generic for
+other rockchip specific enc/decoders.
+
+My first change looks like this:
+---
+ drivers/staging/media/rkvdec/Makefile              |   4 +-
+ drivers/staging/media/rkvdec/rkvdec-h264.c         | 100 ++++-----
+ drivers/staging/media/rkvdec/rkvdec-vp9.c          | 142 ++++++-------
+ drivers/staging/media/rkvdec/{rkvdec.c =3D> rkvpu.c} | 510 +++++++++++++++=
+++++++++-----------------------
+ drivers/staging/media/rkvdec/{rkvdec.h =3D> rkvpu.h} |  66 +++---
+---
+
+While working on other parts of the encoder I found many places in the
+rkvdec driver (e.g. v4l2 and vb2 callbacks) that looked familiar to the han=
+tro
+functions but where limited to the decoder case.
+
+I think there are two options for the av1 codec.
+
+1) If the vpu981 is a driver that has nothing to do with verisilicon but
+works with this driver framework, then we should integrate vepu981 into it
+but consider rename the verisilicon unrelated parts to something generic.
+
+2) Move the vepu981 av1 driver into the rkvdec instead.
+
+If 1) is the way to go, we can even think of moving the staging code parts =
+=66rom
+rkvdec to the verisilicon code. Likewise to the vepu981-av1.
+
+I could also keep on integrating the rkvenc on that base instead.
+
+Regards,
+Michael
+
+>> The full branch can be found here:
+>> https://gitlab.collabora.com/linux/for-upstream/-/commits/rk3588_av1_dec=
+oder_v1
+>>
+>> Fluster score is: 151/239 while testing AV1-TEST-VECTORS with GStreamer-=
+AV1-V4L2SL-Gst1.0.
+>> The failing tests are:
+>> - 10bits bitstream because 10bits output formats aren't yet implemented.
+>> - the 2 tests with 2 spatial layers: few errors in luma/chroma values
+>> - tests with resolution < hardware limit (64x64)
+>>
+>> Benjamin
+>>
+>> Benjamin Gaignard (9):
+>>   dt-bindings: media: rockchip-vpu: Add rk3588 vpu compatible
+>>   media: verisilicon: Add AV1 decoder mode and controls
+>>   media: verisilicon: Save bit depth for AV1 decoder
+>>   media: verisilicon: Check AV1 bitstreams bit depth
+>>   media: verisilicon: Compute motion vectors size for AV1 frames
+>>   media: verisilicon: Add AV1 entropy helpers
+>>   media: verisilicon: Add Rockchip AV1 decoder
+>>   media: verisilicon: Add film grain feature to AV1 driver
+>>   media: verisilicon: Enable AV1 decoder on rk3588
+>>
+>>  .../bindings/media/rockchip-vpu.yaml          |    1 +
+>>  drivers/media/platform/verisilicon/Makefile   |    3 +
+>>  drivers/media/platform/verisilicon/hantro.h   |    5 +
+>>  .../media/platform/verisilicon/hantro_drv.c   |   54 +
+>>  .../media/platform/verisilicon/hantro_hw.h    |  102 +
+>>  .../platform/verisilicon/hantro_postproc.c    |    3 +
+>>  .../media/platform/verisilicon/hantro_v4l2.c  |    5 +
+>>  .../verisilicon/rockchip_av1_entropymode.c    | 4536 +++++++++++++++++
+>>  .../verisilicon/rockchip_av1_entropymode.h    |  272 +
+>>  .../verisilicon/rockchip_av1_filmgrain.c      |  401 ++
+>>  .../verisilicon/rockchip_av1_filmgrain.h      |   36 +
+>>  .../verisilicon/rockchip_vpu981_hw_av1_dec.c  | 2280 +++++++++
+>>  .../verisilicon/rockchip_vpu981_regs.h        |  477 ++
+>>  .../platform/verisilicon/rockchip_vpu_hw.c    |  116 +
+>>  14 files changed, 8291 insertions(+)
+>>  create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_entr=
+opymode.c
+>>  create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_entr=
+opymode.h
+>>  create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_film=
+grain.c
+>>  create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_film=
+grain.h
+>>  create mode 100644 drivers/media/platform/verisilicon/rockchip_vpu981_h=
+w_av1_dec.c
+>>  create mode 100644 drivers/media/platform/verisilicon/rockchip_vpu981_r=
+egs.h
+>>
+>> --
+>> 2.34.1
+>>
+>
+>_______________________________________________
+>linux-arm-kernel mailing list
+>linux-arm-kernel@lists.infradead.org
+>http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+>
+
+--=20
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+
+--8P1HSweYDcXXzwPJ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEElXvEUs6VPX6mDPT8C+njFXoeLGQFAmOg3ZEACgkQC+njFXoe
+LGT59Q//WpCrWWhjh59Vr+3RoFPGowh5BVF0cgBLcnHwvtlPN+S7WUf9Ej1YYJCg
+UrnSFt9zlcJ/djSORCzAe/R7p2S0jwgkJNMUmM1hixXniWsQOhMLzjq4OHinDI3w
+LFHjtfjNbswiC/fL6rYCjQWglNpVIiR0S6I0J05KaWIQT6Us9FwmKoyLfJDClJae
+gemUkQbngHgtfoMRO+/Bui/JYx4SSbODQkg3PVtokq0aLLt1GXiCyvctckER8UyJ
+yAfPmV3BiL2jrEjp4DLTGC00YmdtmDz5y2/Ent6IuIVsIpVTDKvze64OxMc2G/yz
+2rDJgILeeHhm0ogOiwB7eSKb/M+ABSVtzlC7TPHvQcZyHCn3TaaqVkrQ/9MLwphq
+r52x0GuqQF9rZhsg7ojcU8ARL7ve/2PE9C9qZfVkCOaOcLEWR4V7QcxID8lkcD/t
+IRVtxwJL4duLcLx37PLZFGA3tDURHScQW/W2AILVLYJd+C2HsWRqTcC9cY8jQIf4
+lQ8NEk+BCswj4aYC1h6317i0BMb979HF3jNH/LDXj0C3hD2T58MN3W5ufzYy9f/C
+AA/U4XZXne8B/3tc2kUDSkG8RzcxMUOtB5hqpepBWGswcuQh2YLqWVGB+mTMW/k+
+oW/DK7yjI6Aw9JtypRPBpsnxOwInZdbEPDEiJV/vhNK3Rg67X4g=
+=+3xk
+-----END PGP SIGNATURE-----
+
+--8P1HSweYDcXXzwPJ--
