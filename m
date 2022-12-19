@@ -2,187 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32147650B19
-	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 13:03:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C99AB650B1E
+	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 13:07:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232054AbiLSMDJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Dec 2022 07:03:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49978 "EHLO
+        id S229618AbiLSMHR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Dec 2022 07:07:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231949AbiLSMBd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 07:01:33 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C98135FF8
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 04:01:00 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id h11so8338487wrw.13
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 04:01:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=YWrPKJaqhb4C4Y9coWANZ/kvIWtF1su1z6L/KJZvOC0=;
-        b=Vt9DSsez0tyYNcL+RcRpFix5haE3r9O41oVFbtbi6K/6ndEFsw9xCdr8oXFImy64Sv
-         0itjmI6ssV3q+H/SgDc/baKLtuy5hwTNnKiiJNka++/R0L5slA8HHgtO+QN5cdi8e+Qq
-         pRFDIKmdGkyKrtpaMpbDw4pzCI1vqwayewhJM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YWrPKJaqhb4C4Y9coWANZ/kvIWtF1su1z6L/KJZvOC0=;
-        b=6KkZtSj0INcbPA7tmMV0bYATjt/GBojQTdx18oTa2fx7GAkZmjRvtuuDsmsk15oSHz
-         AKtdxMIY6oxqJh+uTfikNGmTlvJyvYvbf+UV8A6Spl8Nd4qAZfJtykJobKgr0jXgsWNA
-         sKE1vynjeS2T5lFiM+gUdDMWEB4puBFLnRN65qe0xKuBlbfietMeP7K30XWuIeYq3zlc
-         XNT8shsDMTyFtYdr5vBYC+TVhSrG03Dh630KtSB5+wUetjo6xZWB/ottnUqLTqZnmzPm
-         LBn1aHpA87twVqewKmgFOTKslUiSsMjpwvGkUcnc+XMhb5xM4Vgk5O/5K4RRJRzxhOHP
-         SyRw==
-X-Gm-Message-State: ANoB5pmgqk6kNlkSsLgWZTJR7WgT3Ezq8z75jFPAk+LKBN4C1sXlMSF0
-        Vts/H1CTc726f7reBJ+WpTAfag==
-X-Google-Smtp-Source: AA0mqf7QRIS5U4CpgZCgErkLDmu8raOZAE/Mqn3DShgIzU8/o8nAtBZr//raOaa7p6R/TvTU90JUmA==
-X-Received: by 2002:a5d:4c82:0:b0:242:806d:b763 with SMTP id z2-20020a5d4c82000000b00242806db763mr26533804wrs.38.1671451259310;
-        Mon, 19 Dec 2022 04:00:59 -0800 (PST)
-Received: from [10.176.68.61] ([192.19.148.250])
-        by smtp.gmail.com with ESMTPSA id bq1-20020a5d5a01000000b00236545edc91sm9812524wrb.76.2022.12.19.04.00.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Dec 2022 04:00:58 -0800 (PST)
-Message-ID: <8485b70f-4120-192c-3f7e-6b4c8ac2ec33@broadcom.com>
-Date:   Mon, 19 Dec 2022 13:00:57 +0100
+        with ESMTP id S231520AbiLSMGT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 07:06:19 -0500
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BCCB27F;
+        Mon, 19 Dec 2022 04:05:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1671451540; x=1702987540;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=NjOj/eD7MgtCr6kPlTqG1Vhb9exMYDrDhWCwdEBwL6I=;
+  b=lYqtkm80xYLAqzSFJNKr6MIbak2VXPJcgGt71ci/NdwVb688hoRWUdRK
+   MiuZnrh3gbr+JRs9qJryw7vw0KnyWKjNWHBHwz9n86roHo8MnUgCg1gxC
+   pbmpqB9D+kweVQh7JwG4A6vum6iodDCqvRLQVBC8adrq5F34fopGaHLj5
+   npEwpNcKqFjvYk6G8oshHbW+0d7GYBIHSuvHWUYpFr0mW2S8jDIqfHZAO
+   VBnC9weaIAxK8Ytdmue4deIr7/35L3zrDhAgGtAt3SiF/pD4ySWG1Zc3A
+   F6Q0WGFEUzT/bhhhDKzES2HEjbEkS6BSx9IVoLvJ3o82TEFeC3zKxLFr4
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10565"; a="302758317"
+X-IronPort-AV: E=Sophos;i="5.96,255,1665471600"; 
+   d="scan'208";a="302758317"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Dec 2022 04:05:17 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10565"; a="824829004"
+X-IronPort-AV: E=Sophos;i="5.96,255,1665471600"; 
+   d="scan'208";a="824829004"
+Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
+  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Dec 2022 04:05:12 -0800
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id 5CBD62015F;
+        Mon, 19 Dec 2022 14:05:10 +0200 (EET)
+Date:   Mon, 19 Dec 2022 12:05:10 +0000
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Jai Luthra <j-luthra@ti.com>,
+        Steve Longerbeam <slongerbeam@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] media: ov5640: Handle delays when no reset_gpio set
+Message-ID: <Y6BTdlAg4IClm1jJ@paasikivi.fi.intel.com>
+References: <20221216134409.6868-1-j-luthra@ti.com>
+ <20221216134409.6868-2-j-luthra@ti.com>
+ <Y5x5UbtLFDpFIoEp@paasikivi.fi.intel.com>
+ <51ef1ff4-db3d-64aa-aa9d-82f604a314c1@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH] dt-bindings: bcm4329-fmac: Add ingenic,iw8103-fmac
- compatible string
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Kalle Valo <kvalo@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arend van Spriel <arend@broadcom.com>
-Cc:     list@opendingux.net, linux-wireless@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221214155943.15418-1-paul@crapouillou.net>
- <036c3985-0dcc-c860-4db2-22f0dd4550dc@linaro.org>
-From:   Arend van Spriel <arend.vanspriel@broadcom.com>
-In-Reply-To: <036c3985-0dcc-c860-4db2-22f0dd4550dc@linaro.org>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="00000000000096092c05f02d1240"
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <51ef1ff4-db3d-64aa-aa9d-82f604a314c1@linaro.org>
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---00000000000096092c05f02d1240
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Hi Krzysztof,
 
-On 12/14/2022 5:53 PM, Krzysztof Kozlowski wrote:
-> On 14/12/2022 16:59, Paul Cercueil wrote:
->> The MIPS CI20 board has a Ingenic IW8103 chip, which is supposedly just
->> a rebranded Broadcom BCM4330.
->>
->> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+On Fri, Dec 16, 2022 at 03:10:55PM +0100, Krzysztof Kozlowski wrote:
+> On 16/12/2022 14:57, Sakari Ailus wrote:
+> > Hi Jai,
+> > 
+> > Thanks for the set.
+> > 
+> > On Fri, Dec 16, 2022 at 07:14:07PM +0530, Jai Luthra wrote:
+> >> Some module manufacturers [1][2] don't expose the RESETB gpio of the
+> >> sensor directly through the 15-pin FFC connector. Instead wiring ~PWDN
+> >> as a proxy reset with appropriate delays.
+> >>
+> >> In such cases, reset_gpio will not be available to the driver, but it
+> >> will still be toggled when the sensor is powered on, and thus we should
+> >> still honor the wait time of >= 5ms + 1ms + 20ms (see figure 2-3 in [3])
+> >> before attempting any i/o operations over SCCB.
+> >>
+> >> [1] https://digilent.com/reference/_media/reference/add-ons/pcam-5c/pcam_5c_sch.pdf
+> >> [2] https://www.alinx.com/public/upload/file/AN5641_User_Manual.pdf
+> >> [3] https://cdn.sparkfun.com/datasheets/Sensors/LightImaging/OV5640_datasheet.pdf
+> >>
+> >> Fixes: 19a81c1426c1 ("[media] add Omnivision OV5640 sensor driver")
+> >> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> >> ---
+> >>  drivers/media/i2c/ov5640.c | 1 +
+> >>  1 file changed, 1 insertion(+)
+> >>
+> >> diff --git a/drivers/media/i2c/ov5640.c b/drivers/media/i2c/ov5640.c
+> >> index e0f908af581b..4bb7bf557cfa 100644
+> >> --- a/drivers/media/i2c/ov5640.c
+> >> +++ b/drivers/media/i2c/ov5640.c
+> >> @@ -2466,6 +2466,7 @@ static int ov5640_set_power_on(struct ov5640_dev *sensor)
+> >>  
+> >>  	ov5640_reset(sensor);
+> >>  	ov5640_power(sensor, true);
+> >> +	usleep_range(26000, 30000);
+> > 
+> > I think you should only do this if you don't have RESETB pin.
+> > 
+> > I'm not sure how to best describe this in DT. It's not the same as if you
+> > didn't have RESETB GPIO.
 > 
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Why it's not the same? I understand the RESETB pin is always there just
+> sometimes going to GPIO and sometimes to some other line.
 
-My guess is that Ingenic is not really a chip manufacturer, but this is 
-actually a wifi module using BCM4330 as wifi chip. Personally, I would 
-not add a compatible string for that and the commit message does not 
-offer any arguments for having this.
+The end result is the same but it's only the PWDN GPIO that the driver
+controls, and through some logic, that also controls the RESETB GPIO. The
+end result may be the same but the driver isn't in control of this, so at
+the very least a comment in the driver needs to be added to document this.
 
-Regards,
-Arend
+I'd just drop the check in the beginning of ov5640_reset().
 
---00000000000096092c05f02d1240
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+Speaking of which --- it's unlikely the device needs to be power cycled to
+reset it as it has a reset pin. Also ov5640_set_power_on() has an extra
+call to ov5640_power(). These are not problems in this patch though.
 
-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
-2Gzj3QNJRLsZu1TLyOyBBIr/BE7UiY3RabgRzknBGAPmzhS+fmyM8OtM5BYBsFBrSUFtZZO2p/tf
-Nbc24J2zf2peoZ8MK+7WQqummYlOnz+FyDkA9EybeNMcS5C+xi/PAgMBAAGjggHdMIIB2TAOBgNV
-HQ8BAf8EBAMCBaAwgaMGCCsGAQUFBwEBBIGWMIGTME4GCCsGAQUFBzAChkJodHRwOi8vc2VjdXJl
-Lmdsb2JhbHNpZ24uY29tL2NhY2VydC9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcnQwQQYI
-KwYBBQUHMAGGNWh0dHA6Ly9vY3NwLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24y
-Y2EyMDIwME0GA1UdIARGMEQwQgYKKwYBBAGgMgEoCjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3
-dy5nbG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzAJBgNVHRMEAjAAMEkGA1UdHwRCMEAwPqA8oDqG
-OGh0dHA6Ly9jcmwuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3Js
-MCcGA1UdEQQgMB6BHGFyZW5kLnZhbnNwcmllbEBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYIKwYB
-BQUHAwQwHwYDVR0jBBgwFoAUljPR5lgXWzR1ioFWZNW+SN6hj88wHQYDVR0OBBYEFIikAXd8CEtv
-ZbDflDRnf3tuStPuMA0GCSqGSIb3DQEBCwUAA4IBAQCdS5XCYx6k2GGZui9DlFsFm75khkqAU7rT
-zBX04sJU1+B1wtgmWTVIzW7ugdtDZ4gzaV0S9xRhpDErjJaltxPbCylb1DEsLj+AIvBR34caW6ZG
-sQk444t0HPb29HnWYj+OllIGMbdJWr0/P95ZrKk2bP24ub3ZP/8SyzrohfIba9WZKMq6g2nTLZE3
-BtkeSGJx/8dy0h8YmRn+adOrxKXHxhSL8BNn8wsmIZyYWe6fRcBtO3Ks2DOLyHCdkoFlN8x9VUQF
-N2ulEgqCbRKkx+qNirW86eF138lr1gRxzclu/38ko//MmkAYR/+hP3WnBll7zbpIt0jc9wyFkSqH
-p8a1MYICbTCCAmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1z
-YTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMTv1t
-bpIzNUky46LXMA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCAOfUysUXcJfYRWqfCK
-eoDRkpHAqooyPjoDq4oxct+cmjAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJ
-BTEPFw0yMjEyMTkxMjAwNTlaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFl
-AwQBFjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzAL
-BglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEAm7KNtjDm/VrppMMe+U7phWT/3Z3ValcwtkQt
-VJWt0veyWNYoqrI+gnzFXcNukEu0F3/eEScmzJIpTY2IwaCwEas1ElaBct2fLbcWwW7QTVTzfcZj
-db1K1vBmuxqtgerPH7N+AH7cEGupKb4XwZ+rwLxGURSB/5acKaSW0ku64/tZZ3/Y3lKwr7PM6m6+
-wRb5PoXWPgJeosyP4bNGWrhmiVeccucEaRP4K6YNzldMLVztoAO6OmhTawEP2nUTV6mjSm38PI4o
-YfwxDe6V2HJ00oyL5UC4AzTol8um0eEwbg7sfSG38NBi7le7ddjuiOIOLX0f+pAfVzyI41s9jN5Z
-tw==
---00000000000096092c05f02d1240--
+-- 
+Kind regards,
+
+Sakari Ailus
