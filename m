@@ -2,44 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D7F66507D7
-	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 07:45:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C28136507EE
+	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 08:00:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231378AbiLSGpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Dec 2022 01:45:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47704 "EHLO
+        id S231430AbiLSHAy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Dec 2022 02:00:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231549AbiLSGo6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 01:44:58 -0500
+        with ESMTP id S231307AbiLSHAx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 02:00:53 -0500
 Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C8D9DF4C;
-        Sun, 18 Dec 2022 22:43:52 -0800 (PST)
-X-UUID: e139a3b208a8494c8c60b1d3bb613c4f-20221219
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ACE1C6E;
+        Sun, 18 Dec 2022 23:00:50 -0800 (PST)
+X-UUID: c5f9fcf1178c4b258e2e7ef65893e511-20221219
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=T2of0ZtsSdQnP/6PVqQ39dVzQ6Net2p0RRdMofvxzzM=;
-        b=mxeX9XuVb3+8y8gtIRzJtPHsFhVYKzvw16oyi8dMuwii5DIi15zNR0uaQdybjmavbEfd7XKanZOPwqqIc0UdriprS11Orix0Nn9j+O8OOHioNk/W4CmfRP/iwj37zoOlMcUjWzLtO1eVWKaCfWvH+Azgen8lS/7veO98yCFSEW0=;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=BROO9oR3Wy6uXyXdf6VAMOjT4WTHQrLO8YJEyXD5pf0=;
+        b=s8omwKzTGbwrTQIrRO8nvuguexXc2HqgFnpsHWE438TXr0fmU1QFjLcixggC3zWlLQqAgUawG+UwruAmRWj499j64gpDrRkgTZmwsgNMgzpbzaG/t904LoHG7Pamp103Tu4ADYC3T9XWj6VYP8OzuFJmTw49UgnzTVSriij59Bg=;
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.14,REQID:134e9667-6e65-4240-abb2-dd3cba8014dd,IP:0,U
-        RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTI
-        ON:release,TS:70
-X-CID-INFO: VERSION:1.1.14,REQID:134e9667-6e65-4240-abb2-dd3cba8014dd,IP:0,URL
-        :0,TC:0,Content:-25,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTI
-        ON:quarantine,TS:70
-X-CID-META: VersionHash:dcaaed0,CLOUDID:0d972152-dd49-462e-a4be-2143a3ddc739,B
-        ulkID:221219144348GX6T4CSG,BulkQuantity:0,Recheck:0,SF:38|28|17|19|48,TC:n
-        il,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: e139a3b208a8494c8c60b1d3bb613c4f-20221219
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+X-CID-O-INFO: VERSION:1.1.14,REQID:7eef0291-34b7-477d-8601-0d00fe1fd3b4,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:dcaaed0,CLOUDID:f27a2252-dd49-462e-a4be-2143a3ddc739,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: c5f9fcf1178c4b258e2e7ef65893e511-20221219
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
         (envelope-from <yunfei.dong@mediatek.com>)
         (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1841356489; Mon, 19 Dec 2022 14:43:47 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+        with ESMTP id 1754787933; Mon, 19 Dec 2022 15:00:44 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Mon, 19 Dec 2022 14:43:45 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n2.mediatek.inc
+ 15.2.792.15; Mon, 19 Dec 2022 15:00:42 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n1.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Mon, 19 Dec 2022 14:43:44 +0800
+ Transport; Mon, 19 Dec 2022 15:00:41 +0800
 From:   Yunfei Dong <yunfei.dong@mediatek.com>
 To:     Yunfei Dong <yunfei.dong@mediatek.com>,
         Chen-Yu Tsai <wenst@chromium.org>,
@@ -60,12 +57,10 @@ CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <linux-mediatek@lists.infradead.org>,
         <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v2,7/7] media: mediatek: vcodec: change lat thread decode error condition
-Date:   Mon, 19 Dec 2022 14:43:32 +0800
-Message-ID: <20221219064332.2124-8-yunfei.dong@mediatek.com>
+Subject: [PATCH] media: mediatek: vcodec: Using pm_runtime_put instead of pm_runtime_put_sync
+Date:   Mon, 19 Dec 2022 15:00:40 +0800
+Message-ID: <20221219070040.2434-1-yunfei.dong@mediatek.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221219064332.2124-1-yunfei.dong@mediatek.com>
-References: <20221219064332.2124-1-yunfei.dong@mediatek.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -80,60 +75,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If lat thread can't get lat buffer, it should be that current instance
-don't be schedulded, the driver can't free the src buffer directly.
+pm_runtime_put will set RPM_ASYNC flag then queue an idle-notification
+request again, won't return error immediately until current request is
+scheduled. But pm_runtime_put_sync run the ->runtime_idle() callback
+directly, will return error immediately.
 
-Fixes: 7b182b8d9c85 ("media: mediatek: vcodec: Refactor get and put capture buffer flow")
 Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
 ---
- .../platform/mediatek/vcodec/mtk_vcodec_dec_stateless.c     | 6 ++++--
- .../platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c  | 2 +-
- .../platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c     | 2 +-
- 3 files changed, 6 insertions(+), 4 deletions(-)
+ drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_pm.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_stateless.c b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_stateless.c
-index ffbcee04dc26..04beb3f08eea 100644
---- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_stateless.c
-+++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_stateless.c
-@@ -258,8 +258,10 @@ static void mtk_vdec_worker(struct work_struct *work)
- 		if (src_buf_req)
- 			v4l2_ctrl_request_complete(src_buf_req, &ctx->ctrl_hdl);
- 	} else {
--		v4l2_m2m_src_buf_remove(ctx->m2m_ctx);
--		v4l2_m2m_buf_done(vb2_v4l2_src, state);
-+		if (ret != -EAGAIN) {
-+			v4l2_m2m_src_buf_remove(ctx->m2m_ctx);
-+			v4l2_m2m_buf_done(vb2_v4l2_src, state);
-+		}
- 		v4l2_m2m_job_finish(dev->m2m_dev_dec, ctx->m2m_ctx);
- 	}
+diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_pm.c b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_pm.c
+index 4305e4eb9900..341b406f5272 100644
+--- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_pm.c
++++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_pm.c
+@@ -72,9 +72,9 @@ static void mtk_vcodec_dec_pw_off(struct mtk_vcodec_pm *pm)
+ {
+ 	int ret;
+ 
+-	ret = pm_runtime_put_sync(pm->dev);
++	ret = pm_runtime_put(pm->dev);
+ 	if (ret)
+-		mtk_v4l2_err("pm_runtime_put_sync fail %d", ret);
++		mtk_v4l2_err("pm_runtime_put fail %d", ret);
  }
-diff --git a/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c b/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
-index 8f262e86bb05..07774b6a3dbd 100644
---- a/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
-+++ b/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.c
-@@ -574,7 +574,7 @@ static int vdec_h264_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
- 	lat_buf = vdec_msg_queue_dqbuf(&inst->ctx->msg_queue.lat_ctx);
- 	if (!lat_buf) {
- 		mtk_vcodec_err(inst, "failed to get lat buffer");
--		return -EINVAL;
-+		return -EAGAIN;
- 	}
- 	share_info = lat_buf->private_data;
- 	src_buf_info = container_of(bs, struct mtk_video_dec_buf, bs_buffer);
-diff --git a/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c b/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
-index cbb6728b8a40..cf16cf2807f0 100644
---- a/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
-+++ b/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
-@@ -2070,7 +2070,7 @@ static int vdec_vp9_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
- 	lat_buf = vdec_msg_queue_dqbuf(&instance->ctx->msg_queue.lat_ctx);
- 	if (!lat_buf) {
- 		mtk_vcodec_err(instance, "Failed to get VP9 lat buf\n");
--		return -EBUSY;
-+		return -EAGAIN;
- 	}
- 	pfc = (struct vdec_vp9_slice_pfc *)lat_buf->private_data;
- 	if (!pfc) {
+ 
+ static void mtk_vcodec_dec_clock_on(struct mtk_vcodec_pm *pm)
 -- 
 2.25.1
 
