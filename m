@@ -2,102 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A75FA650EBB
-	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 16:38:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89CE0650EC5
+	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 16:40:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232064AbiLSPil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Dec 2022 10:38:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56002 "EHLO
+        id S231545AbiLSPkk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Dec 2022 10:40:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229781AbiLSPik (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 10:38:40 -0500
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 959268FD4;
-        Mon, 19 Dec 2022 07:38:39 -0800 (PST)
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-1322d768ba7so11952440fac.5;
-        Mon, 19 Dec 2022 07:38:39 -0800 (PST)
+        with ESMTP id S230403AbiLSPkj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 10:40:39 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CCDE11178
+        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 07:40:38 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id 1so14243081lfz.4
+        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 07:40:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dr8GvJaUU0STZax+c0mj5MPZF8of0PjiTPxlj3vYQSU=;
+        b=yAISmKjU+Ld+moI+LTCelr86cpzWi6b5hOAlcNuilkw320KewZAL6lKvOC0cGRSTqf
+         ZisFJ7JkPT3RwpoasAvB870jeN9uL4j6UTZbEvL5dyisTzSlWZ/LOZDKjgQRjWEQG/nc
+         Mz30NVYZuRdn9dJctLj5P8UsHSdeCLlUiMfPei8UVBvjYOQUwDmsBCZy6yuU7S2SRf7N
+         bvpuxfFDlhn9qtPCU4RTszw/2GWSdAaW58EiotDIyfGqPeIABujmxPQpT1+Kfn+JnXhv
+         eOefo3tLU/i7BZqPL7KnLYxpdKRUqRVUx2m7moEKDr0661IgwOZO0zch8cyAFpuT80e4
+         HGmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vOiCy0WjVxH8DVieLn08mRiczm9EV7y8BSE0KN+iAsY=;
-        b=DjxjbgqDIIrpkIVMc+4BESYvR89pi6HZNba9DDVg5hiBWLHxND+tlbjwJ+ogCLRtLO
-         duhMwYnWVfP/m2ChjmGM/6bPk62Y4Tp5Yi1mOwowE0dv9nSJapsJoLbAP/5tH4oq1Qhs
-         +jFzBA+UzprfVjp0W75l2MYm5GyndBeQebJOgcL9X97YYFJRxRsGteECRTtxHn1fe/DK
-         iUnxYsaEPBqfuakrnwJ07rnkwTSmEi7ssjSQW3Wq0f2FAOpyNwG1ayPHtGvM2EL1lJGb
-         MpDyS8F04WBmHqASNlWQatr7CCEbjbxj+bF1dELlz0+as+oaodnX7hxr7pbZiQS8HN4Z
-         p7PQ==
-X-Gm-Message-State: ANoB5pnpS6SrxBGWQNlGfmUeYLwNP1aL2gnW5EsBjWLPB3+kiNEIiOfB
-        MiUIdYx8i2YLyHPuFVJFsQ==
-X-Google-Smtp-Source: AA0mqf4x/VJvpocUXMYkW+FznjpJCn7AIX+ML2f8QWtAFUzzyWkj/yArsDdRcpF8jQ89ySsWI3scNA==
-X-Received: by 2002:a05:6871:784:b0:137:3adb:9149 with SMTP id o4-20020a056871078400b001373adb9149mr20697434oap.16.1671464318860;
-        Mon, 19 Dec 2022 07:38:38 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z21-20020a056870e31500b00148316f78fesm4870553oad.2.2022.12.19.07.38.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Dec 2022 07:38:38 -0800 (PST)
-Received: (nullmailer pid 1431223 invoked by uid 1000);
-        Mon, 19 Dec 2022 15:38:37 -0000
-Date:   Mon, 19 Dec 2022 09:38:37 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Xiangsheng Hou <xiangsheng.hou@mediatek.com>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Chuanhong Guo <gch981213@gmail.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org, benliang.zhao@mediatek.com,
-        bin.zhang@mediatek.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH v5 06/10] dt-bindings: spi: mtk-snfi: Add read latch
- latency property
-Message-ID: <20221219153837.GA1426412-robh@kernel.org>
-References: <20221219024019.31974-1-xiangsheng.hou@mediatek.com>
- <20221219024019.31974-7-xiangsheng.hou@mediatek.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dr8GvJaUU0STZax+c0mj5MPZF8of0PjiTPxlj3vYQSU=;
+        b=T7gKDWyxoRPzom8wYMPFK1/FIpN9cdCNZq+IM5A++OCLbywaXQp78Nqv7ET1tctI2T
+         2ANwYIA9c+MKB8K6ARDrsiekzR2uig8KQU/AUhhKlwvFs4YNRXboYDXdoUzWrXVXtlLJ
+         i4byqfI5EfZKrUXLZmQK0lC84kOR8QwA3Di4ae1H6JJ2EEbiZPAnMwRdRQQ0Bkt3RTvt
+         oH0NOj5hsEQz4NDaWXj+B42ZYyBY57XCjeqvXtaMbFSA2o0PIIwSQ/gd2tRt+tc8CWkf
+         7zH0vc99MqHpvOK4N3o7Aa2heKOtY+ASsPx24+RuFs3lD1i/6rTPjNsiu6cGZJqFgZdv
+         I3Mg==
+X-Gm-Message-State: ANoB5pk50AJln2L/ue/VZADChwfN7DyY1VmyLJONHtVCaPDFReZgMNCz
+        a0ugfNOtoYy8JZ0U4NEXZCSfPg==
+X-Google-Smtp-Source: AA0mqf7j7A82NmhWgQhPoWndLVceW4a+6WTS99f8B2Pbp14hoUEvShZP6IARYSv+akQCeEH9QvKytA==
+X-Received: by 2002:a05:6512:4029:b0:4b5:5da1:44c1 with SMTP id br41-20020a056512402900b004b55da144c1mr13683726lfb.11.1671464436943;
+        Mon, 19 Dec 2022 07:40:36 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id q15-20020ac25a0f000000b004b53eb60e3dsm1126339lfn.109.2022.12.19.07.40.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Dec 2022 07:40:36 -0800 (PST)
+Message-ID: <5fc29d3c-e3da-3dc4-bce5-2158b81daa43@linaro.org>
+Date:   Mon, 19 Dec 2022 16:40:35 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221219024019.31974-7-xiangsheng.hou@mediatek.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH 3/5] dt-bindings: mmc: sdhci-cadence: SD6 support
+Content-Language: en-US
+To:     Piyush Malgujar <pmalgujar@marvell.com>, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, adrian.hunter@intel.com,
+        ulf.hansson@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, yamada.masahiro@socionext.com,
+        devicetree@vger.kernel.org
+Cc:     jannadurai@marvell.com, cchavva@marvell.com
+References: <20221219142418.27949-1-pmalgujar@marvell.com>
+ <20221219142418.27949-4-pmalgujar@marvell.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221219142418.27949-4-pmalgujar@marvell.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 19, 2022 at 10:40:15AM +0800, Xiangsheng Hou wrote:
-> Add mediatek,rx-latch-latency-ns property which adjust data read
-> latch latency in the unit of nanoseconds.
+On 19/12/2022 15:24, Piyush Malgujar wrote:
+> From: Jayanthi Annadurai <jannadurai@marvell.com>
 > 
-> Signed-off-by: Xiangsheng Hou <xiangsheng.hou@mediatek.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+Subject: use final prefix matching the file, so "cdns,sdhci:"
+
+> Add support for SD6 controller support
+
+Full stop.
+
+> 
+> Signed-off-by: Jayanthi Annadurai <jannadurai@marvell.com>
+> Signed-off-by: Piyush Malgujar <pmalgujar@marvell.com>
 > ---
->  .../devicetree/bindings/spi/mediatek,spi-mtk-snfi.yaml         | 3 +++
->  1 file changed, 3 insertions(+)
+>  .../devicetree/bindings/mmc/cdns,sdhci.yaml   | 33 +++++++++++++++++--
+>  1 file changed, 31 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-snfi.yaml b/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-snfi.yaml
-> index bab23f1b11fd..1e5e89a693c3 100644
-> --- a/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-snfi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-snfi.yaml
-> @@ -45,6 +45,9 @@ properties:
->      description: device-tree node of the accompanying ECC engine.
->      $ref: /schemas/types.yaml#/definitions/phandle
+> diff --git a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> index 8b1a0fdcb5e3e2e8b87d8d7678e37f3dad447fc1..2043e78ccd5f708a01e87fd96ec410418fcd539f 100644
+> --- a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> @@ -4,7 +4,7 @@
+>  $id: http://devicetree.org/schemas/mmc/cdns,sdhci.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
 >  
-> +  mediatek,rx-latch-latency-ns:
-> +    description: Data read latch latency, unit is nanoseconds.
+> -title: Cadence SD/SDIO/eMMC Host Controller (SD4HC)
+> +title: Cadence SD/SDIO/eMMC Host Controller (SD4HC, SD6HC)
+>  
+>  maintainers:
+>    - Masahiro Yamada <yamada.masahiro@socionext.com>
+> @@ -19,6 +19,7 @@ properties:
+>            - microchip,mpfs-sd4hc
+>            - socionext,uniphier-sd4hc
+>        - const: cdns,sd4hc
+> +      - const: cdns,sd6hc
 
-Doesn't the common 'rx-sample-delay-ns' work for you?
+Does not look like you tested the DTS against bindings. Please run `make
+dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
+for instructions).
 
-Rob
+... because it does not really make sense. Why do you require SD6HC as
+fallback? I think you meant enum.
+
+>  
+>    reg:
+>      maxItems: 1
+> @@ -111,6 +112,34 @@ properties:
+>      minimum: 0
+>      maximum: 0x7f
+>  
+> +  cdns,iocell_input_delay:
+
+No underscores. Use proper units in name suffix:
+https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
+
+
+> +    description: Delay in ps across the input IO cells
+> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+
+Ditto... and so on - all of the fields.
+
+> +
+> +  cdns,iocell_output_delay:
+> +    description: Delay in ps across the output IO cells
+> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> +
+> +  cdns,delay_element:
+> +    description: Delay element in ps used for calculating phy timings
+> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> +
+> +  cdns,read_dqs_cmd_delay:
+> +    description: Command delay used in HS200 tuning
+> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> +
+> +  cdns,tune_val_start:
+> +    description: Staring value of data delay used in HS200 tuning
+> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> +
+> +  cdns,tune_val_step:
+> +    description: Incremental value of data delay used in HS200 tuning
+> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> +
+> +  cdns,max_tune_iter:
+> +    description: Maximum number of iterations to complete the HS200 tuning process
+> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+
+Why these three are properties of DT?
+
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -122,7 +151,7 @@ unevaluatedProperties: false
+>  examples:
+>    - |
+>      emmc: mmc@5a000000 {
+> -        compatible = "socionext,uniphier-sd4hc", "cdns,sd4hc";
+> +        compatible = "socionext,uniphier-sd4hc", "cdns,sd4hc", "cdns,sd6hc";
+
+This is confusing. I don't understand it. It requires much more
+explanation in your commit msg.
+
+>          reg = <0x5a000000 0x400>;
+>          interrupts = <0 78 4>;
+>          clocks = <&clk 4>;
+
+Best regards,
+Krzysztof
+
