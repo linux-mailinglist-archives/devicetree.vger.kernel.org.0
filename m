@@ -2,203 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CD3D650C8D
-	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 14:19:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 29412650C9D
+	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 14:26:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232093AbiLSNTa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Dec 2022 08:19:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37608 "EHLO
+        id S231803AbiLSN0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Dec 2022 08:26:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232078AbiLSNT3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 08:19:29 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A40AFFD23
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 05:19:25 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id 1so13606813lfz.4
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 05:19:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PuTm8winyF6vQ9ZUYWHIldSVWTLw8cyqmI/px190J20=;
-        b=dyUWL/VRrHv39/YQyes7wxUz7DJGIuejeh7WTRpPTtcolJc5xaDKqFzMorIAv3y+Vj
-         U0EEO+B4rX8CSLCgAf+4z7rBHp9u95Hochvs3wUy8QS0tpqBbwUJ7UwqBSeXi7CmLk7N
-         MDiVdDSc0+HnskRKbXBBQUD6ekAlS7s6NLF3f5sELfYYL1DW3v28pHdLCf3wACKoYeWH
-         IF+kkHhDqFtJiApvXo9OnM6EQUnqwqL0QBH8xyBMCl4ewfu7jJKhf0T9rfB87yxEd2Uy
-         krAfXcAABsUivSXvAxCBkkilvoN65JNabt2K6o/4n3fKTS/ljES0rrD+Ty3gniN3drIZ
-         CFWw==
+        with ESMTP id S229618AbiLSN0e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 08:26:34 -0500
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9EA4FF;
+        Mon, 19 Dec 2022 05:26:33 -0800 (PST)
+Received: by mail-oi1-f173.google.com with SMTP id v70so7801220oie.3;
+        Mon, 19 Dec 2022 05:26:33 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PuTm8winyF6vQ9ZUYWHIldSVWTLw8cyqmI/px190J20=;
-        b=xKCV7IrxZxVRQwgWtTdOp42flqHNg3QUd/RHiV2lfKqarXwv/FAuBuM6DowC4Pp4z9
-         QVTjKmvXcuu3lPzS+062730pcWC3VRe8bXayM67bBV3WfCZbEXupOWWvElarxw90vHTv
-         POs69fxlgDCghmqRAsWuibUPAfrXBOGhI8NJr8fW5TkjLOwVgbcvN5heOfypulIye7rN
-         Bf6+bijGOve94nXTc2LJlLeoxJgb66220cuYMB3TEZ0OcNMG0vLnIs//FucUCj6o4bAQ
-         HqBo61jTeIDB3wo8PspAWIPm5mXIqPX1t6Kd997OwkOwmsZ4MH97qxhWylNqivBU5nul
-         bR1g==
-X-Gm-Message-State: ANoB5pnHvZlfsFYNECrA/UMMflrM7TnKKx38lfwGRdbOfJvioo+LYgNb
-        kOgP/bQ1CoGwaFQJkxKh1Qr/oGaQTpPBXb9e
-X-Google-Smtp-Source: AA0mqf7o8ZFA4nXhz2FfebZRlhT7eYPDcMN43kI9LXbZdTusfoCm+jEO8ImJ2S5EHRHZ7ECcM9Lxdw==
-X-Received: by 2002:a05:6512:3772:b0:4b5:7762:5df2 with SMTP id z18-20020a056512377200b004b577625df2mr11434689lft.36.1671455963943;
-        Mon, 19 Dec 2022 05:19:23 -0800 (PST)
-Received: from localhost.localdomain (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id z15-20020a056512370f00b004b581ab4c77sm1099501lfr.78.2022.12.19.05.19.22
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=IDSJGuoBUlMGgiS087wDSGGlbj9bvZ8Uqb80GAsEvJQ=;
+        b=s/G6LoAtfwbphjswEJqwNMQJH0FV2MI7JmSfTaRLhvCPD/ISczvEPzvJGwbwtGKOWi
+         j+u3VZoIlhMKd8wz3yuHo+tFpD+3CEqnB+pxcf1G7m2iP6cG8S5t3MIvcNnVDx/8bO7t
+         HUDeAE2UAlbWayw9hZz3kOYPNj4bNfyJBkrya20iE8nvtlwTSdq7MZUXg2Al9/vbUg/Q
+         Evh01/DihYNK+vjbEsQNptw47YDarQLayBGqcNb/hWYNnfG2N3zdnZ2yclIBwNFCPu2E
+         LPDJBUoIBhDNJj8xhI86ehQEzYrIZWs/FHvXyUWXwD7LiK0VtwsANu6HDmp2qSazTui2
+         lovA==
+X-Gm-Message-State: ANoB5pl057rgtTzs6bZju11ACur7Utu6vUZOwLKA4C3F9tbvRzJk7YPC
+        fdNrahzhlXFvXMmqQxHOEA==
+X-Google-Smtp-Source: AA0mqf45gJMy4jKgeBK6aXjInaHFDzhi2dL+gMB6cIn2NwjrEShN/UVjRZul9vLQgzZITxk5lO7e1A==
+X-Received: by 2002:a05:6808:118c:b0:355:1df0:9b84 with SMTP id j12-20020a056808118c00b003551df09b84mr20960099oil.2.1671456392955;
+        Mon, 19 Dec 2022 05:26:32 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id c17-20020a9d6851000000b0066bb73cce68sm4344900oto.69.2022.12.19.05.26.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Dec 2022 05:19:23 -0800 (PST)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org
-Cc:     marijn.suijten@somainline.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Eugene Lepshy <fekz115@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jeremy McNicoll <jmcnicol@redhat.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Kees Cook <keescook@chromium.org>,
-        Tony Luck <tony.luck@intel.com>,
-        "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
-        linux-hardening@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: qcom: msm8992-libra: Fix the memory map
-Date:   Mon, 19 Dec 2022 14:19:18 +0100
-Message-Id: <20221219131918.446587-2-konrad.dybcio@linaro.org>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20221219131918.446587-1-konrad.dybcio@linaro.org>
-References: <20221219131918.446587-1-konrad.dybcio@linaro.org>
-MIME-Version: 1.0
+        Mon, 19 Dec 2022 05:26:32 -0800 (PST)
+Received: (nullmailer pid 1185311 invoked by uid 1000);
+        Mon, 19 Dec 2022 13:26:31 -0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-rockchip@lists.infradead.org, heiko@sntech.de,
+        airlied@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org, daniel@ffwll.ch,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, hjc@rock-chips.com
+In-Reply-To: <dea33013-ae1b-a8b2-5287-68a52f5ce028@gmail.com>
+References: <dea33013-ae1b-a8b2-5287-68a52f5ce028@gmail.com>
+Message-Id: <167145632480.1180502.8911882694570490800.robh@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: display: rockchip: convert
+ rockchip-lvds.txt to YAML
+Date:   Mon, 19 Dec 2022 07:26:31 -0600
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The memory map was wrong. Fix it to prevent the device from randomly
-rebooting.
 
-Fixes: 0f5cdb31e850 ("arm64: dts: qcom: Add Xiaomi Libra (Mi 4C) device tree")
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- .../boot/dts/qcom/msm8992-xiaomi-libra.dts    | 77 +++++++++++++++----
- 1 file changed, 60 insertions(+), 17 deletions(-)
+On Sat, 17 Dec 2022 16:23:53 +0100, Johan Jonker wrote:
+> Convert rockchip-lvds.txt to YAML.
+> 
+> Changed:
+>   Add power-domains property.
+>   Requirements between PX30 and RK3288
+> 
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> ---
+> 
+> Changed V2:
+>   Fix title
+> ---
+>  .../display/rockchip/rockchip-lvds.txt        |  92 ----------
+>  .../display/rockchip/rockchip-lvds.yaml       | 157 ++++++++++++++++++
+>  2 files changed, 157 insertions(+), 92 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip-lvds.txt
+>  create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip-lvds.yaml
+> 
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts b/arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts
-index b242c272d2af..fcca1ba94da6 100644
---- a/arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts
-@@ -11,6 +11,12 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/gpio-keys.h>
- 
-+/delete-node/ &adsp_mem;
-+/delete-node/ &audio_mem;
-+/delete-node/ &mpss_mem;
-+/delete-node/ &peripheral_region;
-+/delete-node/ &rmtfs_mem;
-+
- / {
- 	model = "Xiaomi Mi 4C";
- 	compatible = "xiaomi,libra", "qcom,msm8992";
-@@ -70,25 +76,67 @@ reserved-memory {
- 		#size-cells = <2>;
- 		ranges;
- 
--		/* This is for getting crash logs using Android downstream kernels */
--		ramoops@dfc00000 {
--			compatible = "ramoops";
--			reg = <0x0 0xdfc00000 0x0 0x40000>;
--			console-size = <0x10000>;
--			record-size = <0x10000>;
--			ftrace-size = <0x10000>;
--			pmsg-size = <0x20000>;
-+		memory_hole: hole@6400000 {
-+			reg = <0 0x06400000 0 0x600000>;
-+			no-map;
-+		};
-+
-+		memory_hole2: hole2@6c00000 {
-+			reg = <0 0x06c00000 0 0x2400000>;
-+			no-map;
-+		};
-+
-+		mpss_mem: mpss@9000000 {
-+			reg = <0 0x09000000 0 0x5a00000>;
-+			no-map;
-+		};
-+
-+		tzapp: tzapp@ea00000 {
-+			reg = <0 0x0ea00000 0 0x1900000>;
-+			no-map;
-+		};
-+
-+		mdm_rfsa_mem: mdm-rfsa@ca0b0000 {
-+			reg = <0 0xca0b0000 0 0x10000>;
-+			no-map;
-+		};
-+
-+		rmtfs_mem: rmtfs@ca100000 {
-+			compatible = "qcom,rmtfs-mem";
-+			reg = <0 0xca100000 0 0x180000>;
-+			no-map;
-+
-+			qcom,client-id = <1>;
- 		};
- 
--		modem_region: modem_region@9000000 {
--			reg = <0x0 0x9000000 0x0 0x5a00000>;
-+		audio_mem: audio@cb400000 {
-+			reg = <0 0xcb000000 0 0x400000>;
-+			no-mem;
-+		};
-+
-+		qseecom_mem: qseecom@cb400000 {
-+			reg = <0 0xcb400000 0 0x1c00000>;
-+			no-mem;
-+		};
-+
-+		adsp_rfsa_mem: adsp-rfsa@cd000000 {
-+			reg = <0 0xcd000000 0 0x10000>;
- 			no-map;
- 		};
- 
--		tzapp: modem_region@ea00000 {
--			reg = <0x0 0xea00000 0x0 0x1900000>;
-+		sensor_rfsa_mem: sensor-rfsa@cd010000 {
-+			reg = <0 0xcd010000 0 0x10000>;
- 			no-map;
- 		};
-+
-+		ramoops@dfc00000 {
-+			compatible = "ramoops";
-+			reg = <0 0xdfc00000 0 0x40000>;
-+			console-size = <0x10000>;
-+			record-size = <0x10000>;
-+			ftrace-size = <0x10000>;
-+			pmsg-size = <0x20000>;
-+		};
- 	};
- };
- 
-@@ -130,11 +178,6 @@ &blsp2_uart2 {
- 	status = "okay";
- };
- 
--&peripheral_region {
--	reg = <0x0 0x7400000 0x0 0x1c00000>;
--	no-map;
--};
--
- &pm8994_spmi_regulators {
- 	VDD_APC0: s8 {
- 		regulator-min-microvolt = <680000>;
--- 
-2.39.0
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+
+
+doc reference errors (make refcheckdocs):
+Documentation/devicetree/bindings/soc/rockchip/grf.yaml: Documentation/devicetree/bindings/display/rockchip/rockchip-lvds.txt
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/dea33013-ae1b-a8b2-5287-68a52f5ce028@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
