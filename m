@@ -2,124 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BFDE6508B4
-	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 09:46:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EA866508B6
+	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 09:46:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231459AbiLSIqL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Dec 2022 03:46:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56996 "EHLO
+        id S231583AbiLSIqx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Dec 2022 03:46:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229618AbiLSIqJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 03:46:09 -0500
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7BD610B3
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 00:46:08 -0800 (PST)
-Received: by mail-qt1-f174.google.com with SMTP id jr11so7678205qtb.7
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 00:46:08 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5gnBI7ljTsZHEcloGn7mSwXJgNh0f4lK7wKmyds4z/o=;
-        b=OmOyrHG7WdHIBJyB01QnZVrFZtpolo6gKFvK/lIUKpP5e8cTLLIiVOei31Blq8qiWR
-         fSOFIAn9xCZRw64S4/jA9PNB2dKKZ3i0FBkVnv71PU7gQztVtsysgIr8rk4033mZFjxT
-         LQx/7KWV7ciciQBxjvd35MU5yDkN9KRTDTSjzZXO9QwGqo3264rM3Rp4/VGjLAYb3vKd
-         /dTWOjcX8nQtve7rAT7dQbPsiX/6f0Ufl2gvjWHKUWRGb8isjrppA+Qf161NDHYE9pPi
-         Us+Z3/QD0Wf3AnONeLQPyT1pq6dn66/2mlmVO29O5DqV4E+VoYY/tp7xDJQltYzDSdPH
-         ZrKg==
-X-Gm-Message-State: AFqh2kqrbSxKzwhWiuyTQV/bbP85+1WTBY6sYt8wfzwekGnGyMlmCmXK
-        boJjgs0S3jfv8YW/XJrR94q3xMNbiexp9Q==
-X-Google-Smtp-Source: AMrXdXs5vjDHDR2P9JPGwQw0sGCH9vLy4CakhjU8W/xyGKnxyk5yF5yO4eCI1+lQcHQ25nMXhyZvPA==
-X-Received: by 2002:a05:622a:608e:b0:3a6:8ece:9eef with SMTP id hf14-20020a05622a608e00b003a68ece9eefmr10906164qtb.27.1671439567733;
-        Mon, 19 Dec 2022 00:46:07 -0800 (PST)
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
-        by smtp.gmail.com with ESMTPSA id u7-20020a05620a430700b006fa31bf2f3dsm6737491qko.47.2022.12.19.00.46.06
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Dec 2022 00:46:06 -0800 (PST)
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-43ea87d0797so90118287b3.5
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 00:46:06 -0800 (PST)
-X-Received: by 2002:a05:690c:f8a:b0:3b4:8af5:48e with SMTP id
- df10-20020a05690c0f8a00b003b48af5048emr3708065ywb.383.1671439566266; Mon, 19
- Dec 2022 00:46:06 -0800 (PST)
+        with ESMTP id S231297AbiLSIqv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 03:46:51 -0500
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E86A9630C;
+        Mon, 19 Dec 2022 00:46:49 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 4FC2A84D85;
+        Mon, 19 Dec 2022 09:46:47 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1671439608;
+        bh=vMYrDL4dE2Tp/J1nv81+QRYLMaZ1Hfmlmj0LzuSRVeo=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=hN5i+c/0plzbwB5Jk3qtJW+gsdrhlizLzAQoWFfJvjVMzEqtQIIxEMsQj7LJtpQVW
+         qNMcjOCs0utCEQa+kuBlMDzrV6fyM3dwpucRHyu28INczOTq1rgCXN2VW2lOVCtCEG
+         Cbvsm/9sNOHUymIGnVy9PiN1dybtp15DEkchn99wNE82fHFKI6afkatWA6avakYwqW
+         4Zd/Ov/jtRS3aDbEdJ93oYe+H36YMvzHeRx7daSeGwdT1iSz32qsjx7PiN8+xCJD3m
+         ZX+oZf8OOAu7QTgwCXFoB12bhxOFv9v3Iq7rGWCmasPT+bd5DkmhUkTakupdMq+958
+         JfA8RaTsPr/Ww==
+Message-ID: <9f2a068b-9275-659f-b1ae-0b6046fea18b@denx.de>
+Date:   Mon, 19 Dec 2022 09:46:46 +0100
 MIME-Version: 1.0
-References: <87v8mepyoy.wl-kuninori.morimoto.gx@renesas.com>
- <87mt7qpylw.wl-kuninori.morimoto.gx@renesas.com> <CAMuHMdW=_-MyqAjRqaoPyWkoUmdB2VOE1t+wpym7eyOxkzc_7g@mail.gmail.com>
- <Y5sJV2KfX98KoMYZ@sirena.org.uk> <CAMuHMdWwP6QDUux62GZtCT7tsFhAhex=Fns5e=n_KTjGXHRy0Q@mail.gmail.com>
- <20221216163919.GA2863056-robh@kernel.org> <CAMuHMdWEbVqD3z69-nJe9ST35_S4AZSJLrYqC3f=F+VONSPn0Q@mail.gmail.com>
-In-Reply-To: <CAMuHMdWEbVqD3z69-nJe9ST35_S4AZSJLrYqC3f=F+VONSPn0Q@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 19 Dec 2022 09:45:54 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXNeJxzWoR6b+GOst9X49yK=vB574Lk1hmAS0WXDZrwPg@mail.gmail.com>
-Message-ID: <CAMuHMdXNeJxzWoR6b+GOst9X49yK=vB574Lk1hmAS0WXDZrwPg@mail.gmail.com>
-Subject: Re: [PATCH 06/11] ASoC: dt-bindings: ti,pcm3168a: Convert to json-schema
-To:     Rob Herring <robh@kernel.org>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH] dt-bindings: dma: fsl-mxs-dma: Convert MXS DMA to DT
+ schema
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org
+Cc:     Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Sameer Pujar <spujar@nvidia.com>,
-        Mohan Kumar <mkumard@nvidia.com>,
-        Peter Ujfalusi <peter.ujfalusi@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20221217010724.632088-1-marex@denx.de>
+ <b74776b4-0885-f519-8ef7-e01048a8be15@linaro.org>
+ <ba05612d-fd3b-3e49-4ada-21f3b3c74e23@denx.de>
+ <a5bb28a7-c7d3-be98-9621-996d38656d98@linaro.org>
+ <58b96f52-30ae-c868-8434-a0ca9e996bcd@denx.de>
+ <40956c61-ed9e-2ca3-868b-445510ea1c05@linaro.org>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <40956c61-ed9e-2ca3-868b-445510ea1c05@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Oops, Peter is no longer at TI...
+On 12/19/22 09:36, Krzysztof Kozlowski wrote:
+> On 18/12/2022 20:06, Marek Vasut wrote:
+>> On 12/18/22 19:46, Krzysztof Kozlowski wrote:
+>>> On 18/12/2022 00:12, Marek Vasut wrote:
+>>>> On 12/17/22 12:05, Krzysztof Kozlowski wrote:
+>>>>
+>>>> [...]
+>>>>
+>>>>>> +allOf:
+>>>>>> +  - $ref: dma-controller.yaml#
+>>>>>> +  - if:
+>>>>>> +      properties:
+>>>>>> +        compatible:
+>>>>>> +          not:
+>>>>>
+>>>>> I think "not:" goes just after "if:". Please double check that it's correct.
+>>>>>
+>>>>> Anyway it is easier to have this without negation and you already
+>>>>> enumerate all variants (here and below).
+>>>>
+>>>> About this part, I don't think that works. See this:
+>>>>
+>>>> $ git grep -A 15 'imx2[38]-dma-apb[hx]' arch/ | grep
+>>>> '\(imx2[38]-dma-apb[hx]\|dma-channels\)'
+>>>> arch/arm/boot/dts/imx23.dtsi: compatible = "fsl,imx23-dma-apbh";
+>>>> arch/arm/boot/dts/imx23.dtsi- dma-channels = <8>;
+>>>> arch/arm/boot/dts/imx23.dtsi: compatible = "fsl,imx23-dma-apbx";
+>>>> arch/arm/boot/dts/imx23.dtsi- dma-channels = <16>;
+>>>> arch/arm/boot/dts/imx28.dtsi: compatible = "fsl,imx28-dma-apbh";
+>>>> arch/arm/boot/dts/imx28.dtsi- dma-channels = <16>;
+>>>> arch/arm/boot/dts/imx28.dtsi: compatible = "fsl,imx28-dma-apbx";
+>>>> arch/arm/boot/dts/imx28.dtsi- dma-channels = <16>;
+>>>> arch/arm/boot/dts/imx6qdl.dtsi: compatible = "fsl,imx6q-dma-apbh",
+>>>> "fsl,imx28-dma-apbh";
+>>>> arch/arm/boot/dts/imx6qdl.dtsi- dma-channels = <4>;
+>>>> arch/arm/boot/dts/imx6sx.dtsi: compatible = "fsl,imx6sx-dma-apbh",
+>>>> "fsl,imx28-dma-apbh";
+>>>> arch/arm/boot/dts/imx6sx.dtsi- dma-channels = <4>;
+>>>> arch/arm/boot/dts/imx6ul.dtsi: compatible = "fsl,imx6q-dma-apbh",
+>>>> "fsl,imx28-dma-apbh";
+>>>> arch/arm/boot/dts/imx6ul.dtsi- dma-channels = <4>;
+>>>> arch/arm/boot/dts/imx7s.dtsi: compatible = "fsl,imx7d-dma-apbh",
+>>>> "fsl,imx28-dma-apbh";
+>>>> arch/arm/boot/dts/imx7s.dtsi- dma-channels = <4>;
+>>>> arch/arm64/boot/dts/freescale/imx8mm.dtsi: compatible =
+>>>> "fsl,imx7d-dma-apbh", "fsl,imx28-dma-apbh";
+>>>> arch/arm64/boot/dts/freescale/imx8mm.dtsi- dma-channels = <4>;
+>>>> arch/arm64/boot/dts/freescale/imx8mn.dtsi: compatible =
+>>>> "fsl,imx7d-dma-apbh", "fsl,imx28-dma-apbh";
+>>>> arch/arm64/boot/dts/freescale/imx8mn.dtsi- dma-channels = <4>;
+>>>>
+>>>> So I think what we have to do to validate that, is, say
+>>>>
+>>>> default: 4
+>>>>
+>>>> if does not match on 6q/6sx/7d/23-apbx/28-abbh/28-apbx then 8
+>>>>
+>>>> if does not match on 6q/6sx/7d/23-apbh then 16
+>>>>
+>>>> But if there is a better way to validate the above, please do tell.
+>>>
+>>> Then your existing if:then: is also not correct because you require for
+>>> fsl,imx28-dma-apbh (as it is not in second if:then:) const:16. Just
+>>> don't require it.
+>>
+>> So, shall I just drop the entire allOf: section ?
+> 
+> No, what about the interrupts?
 
-On Mon, Dec 19, 2022 at 9:43 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> CC Peter
->
-> On Fri, Dec 16, 2022 at 5:39 PM Rob Herring <robh@kernel.org> wrote:
-> > On Thu, Dec 15, 2022 at 01:10:44PM +0100, Geert Uytterhoeven wrote:
-> > > On Thu, Dec 15, 2022 at 12:47 PM Mark Brown <broonie@kernel.org> wrote:
-> > > > On Thu, Dec 15, 2022 at 12:03:02PM +0100, Geert Uytterhoeven wrote:
-> > > > > On Wed, Dec 14, 2022 at 2:23 AM Kuninori Morimoto
-> > > > > > +maintainers:
-> > > > > > +  - Damien Horsley <Damien.Horsley@imgtec.com>
-> > > >
-> > > > > For v2, I had planned
-> > > >
-> > > > >     -+  - Damien Horsley <Damien.Horsley@imgtec.com>
-> > > > >     ++  - Jaroslav Kysela <perex@perex.cz>
-> > > > >     ++  - Takashi Iwai <tiwai@suse.com>
-> > > >
-> > > > > as Damien's address bounces.
-> > > >
-> > > > I wouldn't do that, I gather the maintainers for DT bindings are
-> > > > supposed to be people who know and care about the specific binding in
-> > > > particular.
-> > >
-> > > Sure.  But how can they (still) care, if we cannot reach them?
-> > > There's no email message from Damien to be found during the past
-> > > 7 years.
-> >
-> > Then put someone that would care if the binding is deleted. As this is
-> > used on Renesas board(s), I can think of a few candidates.
->
-> Or perhaps someone from TI? ;-)
-> This is a TI component, and also used on a TI K3 board...
->
-> /me weaseling out...
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+The interrupts and dma-channels are matched 1:1 for this controller, 1 
+DMA channel, 1 interrupt. 16 dma channels means 16 interrupts .
