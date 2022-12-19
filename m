@@ -2,122 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03F1D6514BB
-	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 22:22:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B9EB6514E7
+	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 22:29:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229672AbiLSVWM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Dec 2022 16:22:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45164 "EHLO
+        id S232763AbiLSV3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Dec 2022 16:29:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229895AbiLSVWL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 16:22:11 -0500
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFD6A64D1;
-        Mon, 19 Dec 2022 13:22:10 -0800 (PST)
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-143ffc8c2b2so13202545fac.2;
-        Mon, 19 Dec 2022 13:22:10 -0800 (PST)
+        with ESMTP id S232717AbiLSV3g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 16:29:36 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8CF713F4D
+        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 13:29:33 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id b13so15703191lfo.3
+        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 13:29:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bUcJbVxMOaJY/dHHh8xvsq+/igbf7VEloWZtT9T4IzU=;
+        b=rzxTEULuNPC0Sk1BptH9+AxtBNYpQ4FvyVS+RZXbKY2D7sBHJ+hvBHwrVH0tDi7Rvz
+         h4OqVfIgl0PXf8Ovl/2qSyZ/KoyDOz9b003uMNhVpm1J9JtBDCAKWeuWE15pPZW2gIIv
+         h2chuLEfXiovnqiNG9l6ZAuMR5mFNmzXxnQB4SVLDVxbGW409nYMSJQ8Jmpb0JuRijyo
+         okvz2kocRJ8wM8Iz2aai0aQ9EMHjWfEAQzNAt/EigCOd9aZW5+sIKW1ofP+jf5VWzLqc
+         ANlZC/28G3mnTqMXI1dTNeDbeSi+5h4yy7kRA41V1CQcQkqDfSx4HNK+10KuUXPbxWgi
+         7jYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=f/Rdvbu+qSgHoC8VgQQG2atswz7W9zrDtpuYONrJn/Q=;
-        b=yJWD2nBRnVDgdbsQpV1zFrkqgSb4wzf/qkiswwrWgYlb64841ikksj6b/pz2BdG0RD
-         HemSt6CjNTOTfLDgwSfPv4M0AAuBoXEfLm1zHMF3DnocrDcy33OJ5raBubQBbs2T0/ap
-         4l9rMs+BqykMIRMYPPCyeKkE+v8lDbLkrIOE6p4Pjg9CqAsymX7Q757NlKSrfGVLDmxp
-         aVMMyq+EQntbMgg/m9WvH9aDTlrINMCVX/LQtV6QWL+w0B3Mn+t9CPsvoRqp9H1J0QyM
-         Oo4+bKp9ZITKBu7yE6JbAZqcclDuqoNQ0kiHtzemadPAj9USU5EH5QS9UYim5iy67BKr
-         ByEg==
-X-Gm-Message-State: ANoB5pm0rq+DWHB4dbrie/vkc1/mqUMD9Y33WV+AvzdqvDih5kjYLFUw
-        59l9i9NpVeq1TgvvQnjsxA==
-X-Google-Smtp-Source: AA0mqf7Swu8ufPQphtB2Ovx5HkJFBwFP2DUcnrN3rLC0xKRvsEiI5m29SLKPHE/BL0mwmq/kG0H5pw==
-X-Received: by 2002:a05:6870:7d02:b0:144:b4d6:4e02 with SMTP id os2-20020a0568707d0200b00144b4d64e02mr20991772oab.40.1671484929997;
-        Mon, 19 Dec 2022 13:22:09 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id h18-20020a4ad012000000b004908a9542f8sm4345687oor.31.2022.12.19.13.22.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Dec 2022 13:22:09 -0800 (PST)
-Received: (nullmailer pid 2350832 invoked by uid 1000);
-        Mon, 19 Dec 2022 21:22:08 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bUcJbVxMOaJY/dHHh8xvsq+/igbf7VEloWZtT9T4IzU=;
+        b=e3mKTF0cTaz1KmN0Mr7L2JqUEnUVqoZdHW+X0imNRY1YuA5dvFnqy3JTZrjZ/gyn1P
+         d4KjkxTPQH54f/2Y2u9Lin09/hApUtOZDA9HPjCkS2rj56QLc77Bmvk/soKKPAHiqIqh
+         2Cy4kFHwegnmkfDTQVIhZGNO50/7L5C7u0gx1mF+zgJDx1dMjz4km41DInZJ93ucBGUP
+         J5ptK9Rvct3rmJa9g/OT7t6wB2+Ursk8q+Rz/1sz76/62oMAzBjtj79OHPuDFh5nolJ0
+         G8FpUGO0sIl5fLB6aL3uCZt+MUn+1F4SBbA73z9YhQGi2AaZzGaSVeVlUmJUb2BWPkXv
+         ePFg==
+X-Gm-Message-State: AFqh2kpFxPXiEsJyFs0uG0hyHYmcsMuaCNeRUX/k5ZiswU85DBhhdHZi
+        wVUJFz2ofPgGDO9O7MHK8jCnEkpxZG6+hPSvt8wRsA==
+X-Google-Smtp-Source: AMrXdXuizsuNjhFyKkOnbtLJwUqaBbpBBlxoGkLKHoZC+MtkShGjXM8bjGIdWmzqC9sIRApRvAJrUe+gsXpQ2zhJRfc=
+X-Received: by 2002:a05:6512:3f1e:b0:4c8:a047:8833 with SMTP id
+ y30-20020a0565123f1e00b004c8a0478833mr206178lfa.653.1671485371730; Mon, 19
+ Dec 2022 13:29:31 -0800 (PST)
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Witold Sadowski <wsadowski@marvell.com>
-Cc:     wbartczak@marvell.com, jpawar@cadence.com,
-        linux-spi@vger.kernel.org, pthombar@cadence.com,
-        devicetree@vger.kernel.org, konrad@cadence.com,
-        linux-kernel@vger.kernel.org, wzmuda@marvell.com,
-        broonie@kernel.org
-In-Reply-To: <20221219144254.20883-5-wsadowski@marvell.com>
-References: <20221219144254.20883-1-wsadowski@marvell.com>
- <20221219144254.20883-5-wsadowski@marvell.com>
-Message-Id: <167148425112.2334433.10418308951514723890.robh@kernel.org>
-Subject: Re: [PATCH 4/7] spi: cadence: Change dt-bindings documentation for
- Cadence XSPI controller
-Date:   Mon, 19 Dec 2022 15:22:08 -0600
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+References: <20221219155616.848690-1-benjamin.gaignard@collabora.com>
+ <20221219155616.848690-4-benjamin.gaignard@collabora.com> <07747babe7f83a496f9cd82849c6c2386550ac28.camel@ndufresne.ca>
+In-Reply-To: <07747babe7f83a496f9cd82849c6c2386550ac28.camel@ndufresne.ca>
+From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Date:   Mon, 19 Dec 2022 18:29:20 -0300
+Message-ID: <CAAEAJfDoX_aSTg1TO8F21iSriYeTXtRbHPo8wxx5br2v6eCt7Q@mail.gmail.com>
+Subject: Re: [PATCH v1 3/9] media: verisilicon: Save bit depth for AV1 decoder
+To:     Nicolas Dufresne <nicolas@ndufresne.ca>
+Cc:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
+        daniel.almeida@collabora.com, nicolas.dufresne@collabora.co.uk,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Bonjour Nicolas,
 
-On Mon, 19 Dec 2022 06:42:51 -0800, Witold Sadowski wrote:
-> Add parameter cdns,read-size.
-> Parameter is controlling SDMA read size length.
-> 
-> Signed-off-by: Witold Sadowski <wsadowski@marvell.com>
-> ---
->  Documentation/devicetree/bindings/spi/cdns,xspi.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
+On Mon, Dec 19, 2022 at 5:37 PM Nicolas Dufresne <nicolas@ndufresne.ca> wro=
+te:
+>
+> Le lundi 19 d=C3=A9cembre 2022 =C3=A0 16:56 +0100, Benjamin Gaignard a =
+=C3=A9crit :
+> > Store bit depth information from AV1 sequence control.
+> >
+> > Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+> > ---
+> >  .../media/platform/verisilicon/hantro_drv.c   | 26 +++++++++++++++++++
+> >  1 file changed, 26 insertions(+)
+> >
+> > diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/drivers/=
+media/platform/verisilicon/hantro_drv.c
+> > index 4500e1fc0f2c..8e93710dcfed 100644
+> > --- a/drivers/media/platform/verisilicon/hantro_drv.c
+> > +++ b/drivers/media/platform/verisilicon/hantro_drv.c
+> > @@ -324,6 +324,25 @@ static int hantro_vp9_s_ctrl(struct v4l2_ctrl *ctr=
+l)
+> >       return 0;
+> >  }
+> >
+> > +static int hantro_av1_s_ctrl(struct v4l2_ctrl *ctrl)
+> > +{
+> > +     struct hantro_ctx *ctx;
+> > +
+> > +     ctx =3D container_of(ctrl->handler,
+> > +                        struct hantro_ctx, ctrl_handler);
+> > +
+> > +     switch (ctrl->id) {
+> > +     case V4L2_CID_STATELESS_AV1_SEQUENCE:
+> > +             ctx->bit_depth =3D ctrl->p_new.p_av1_sequence->bit_depth;
+>
+> That seems a little be weak, what happens if you change the bit_depth wit=
+h a
+> non-request s_ctrl while its decoding ? To be this deserve a little bit o=
+f
+> protection, a something that validate and copy it at the start of the dec=
+oding.
+>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Oh, nice catch. We need to return EBUSY, see
+https://www.kernel.org/doc/html/v5.0/media/uapi/v4l/buffer.html#interaction=
+s-between-formats-controls-and-buffers.
 
-yamllint warnings/errors:
+There's already an API in the V4L2 control framework for drivers to use,
+see v4l2_ctrl_grab in
+https://www.kernel.org/doc/html/v5.0/media/kapi/v4l2-controls.html#active-a=
+nd-grabbed-controls.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/spi/cdns,xspi.yaml: properties:cdns,read-size: 'oneOf' conditional failed, one must be fixed:
-	'type' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	'description' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	Additional properties are not allowed ('items' was unexpected)
-		hint: A vendor boolean property can use "type: boolean"
-	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/spi/cdns,xspi.yaml: properties:cdns,read-size: 'oneOf' conditional failed, one must be fixed:
-		'enum' is a required property
-		'const' is a required property
-		hint: A vendor string property with exact values has an implicit type
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/spi/cdns,xspi.yaml: properties:cdns,read-size: 'oneOf' conditional failed, one must be fixed:
-		'$ref' is a required property
-		'allOf' is a required property
-		hint: A vendor property needs a $ref to types.yaml
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+> p.s. I know, VP9 seems similar, though arguably that was copied from jpeg=
+, for
+> which it seems totally save to change the quality at run-time.
+>
 
-doc reference errors (make refcheckdocs):
+No, wasn't copied from JPEG :-) I just didn't realize this was an
+issue, but it is
+given the bit_depth affects the buffers so you are correct, it needs
+to be fixed for VP9 too.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221219144254.20883-5-wsadowski@marvell.com
+Thanks!
+Ezequiel
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+> > +             break;
+> > +     default:
+> > +             return -EINVAL;
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +
+> >  static const struct v4l2_ctrl_ops hantro_ctrl_ops =3D {
+> >       .try_ctrl =3D hantro_try_ctrl,
+> >  };
+> > @@ -336,6 +355,12 @@ static const struct v4l2_ctrl_ops hantro_vp9_ctrl_=
+ops =3D {
+> >       .s_ctrl =3D hantro_vp9_s_ctrl,
+> >  };
+> >
+> > +static const struct v4l2_ctrl_ops hantro_av1_ctrl_ops =3D {
+> > +     .try_ctrl =3D hantro_try_ctrl,
+> > +     .s_ctrl =3D hantro_av1_s_ctrl,
+> > +};
+> > +
+> > +
+> >  #define HANTRO_JPEG_ACTIVE_MARKERS   (V4L2_JPEG_ACTIVE_MARKER_APP0 | \
+> >                                        V4L2_JPEG_ACTIVE_MARKER_COM | \
+> >                                        V4L2_JPEG_ACTIVE_MARKER_DQT | \
+> > @@ -513,6 +538,7 @@ static const struct hantro_ctrl controls[] =3D {
+> >               .codec =3D HANTRO_AV1_DECODER,
+> >               .cfg =3D {
+> >                       .id =3D V4L2_CID_STATELESS_AV1_SEQUENCE,
+> > +                     .ops =3D &hantro_av1_ctrl_ops,
+> >               },
+> >       }, {
+> >               .codec =3D HANTRO_AV1_DECODER,
+>
