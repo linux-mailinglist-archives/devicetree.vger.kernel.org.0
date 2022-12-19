@@ -2,119 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1C84650ECB
-	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 16:41:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6255650F4A
+	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 16:53:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231958AbiLSPlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Dec 2022 10:41:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57838 "EHLO
+        id S232564AbiLSPxA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Dec 2022 10:53:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231766AbiLSPlt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 10:41:49 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA7A99FCD
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 07:41:48 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id o6so9355129lfi.5
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 07:41:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OPySi+jcQcviSPVv+LV6bNjIASezBPf2TkmclDtC97I=;
-        b=y/v4lZjONmbQR/D/77RrBWQP3QA4QH4hATJnZAyKgb3O+MOSBZUTS9GEUT6JaHJCUU
-         p4AoIGGJ+xqjqvyWNacJYYEhMqycevbfuiceGnvalU0N7MNF+r3CWFuNPhbFOQNjuhrX
-         cLNybl7T1XX036UOKtcIE/T67lztkxqjJYb6qvsSTlRIi85ervroihKKoODBCFFlMsg5
-         2xZYX1kaLXc9YCNvwqYE4CHN2QzEOfEDXHehl5w6fYwQfBbEGUci5wj7ZO82qFqbp/Eu
-         vxg2c5hfPjOlbHMvahqmTkOQbP8neUntViK/2uz34hynkOthiYPnsx/3iPTCwv8AXapq
-         /pgA==
+        with ESMTP id S232577AbiLSPwj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 10:52:39 -0500
+Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43798E00A;
+        Mon, 19 Dec 2022 07:49:50 -0800 (PST)
+Received: by mail-oo1-f51.google.com with SMTP id e12-20020a4ab98c000000b004a081e811beso1464856oop.2;
+        Mon, 19 Dec 2022 07:49:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OPySi+jcQcviSPVv+LV6bNjIASezBPf2TkmclDtC97I=;
-        b=pj9l0SMY/3FG6NAgetX8cHLzpYH6h0iTdj6f/hFqx7oPrRzqKvdNSt7nKweBWGAt1n
-         rbxeO2Ps9Hv/4NUqnMQUYoLC3HF/Ug14cxXK0Gcr10vUaYWdT4k0fOOc/mouHyrSnzPS
-         pjFzNmT3jzkMGtvwvoOFu2ftZMu1JSiKRdD1vsaSFMZs0mVDzVcEXRDGws5+GaKsBc/Q
-         qs97F4I1BxDqIW+QBYb0hSJ2XnIQ7pTp2r8pZt/qUfc05gVJKLzuRwyzUU+30ws2t3zV
-         LaJ+3agrMFTeIseC5rUmj9II9ANol84xvYrWgmxHmIE4rynAU9/jMWwH7MZp+BUK9Prt
-         VbSQ==
-X-Gm-Message-State: ANoB5pk+wBf97SXlWQMlUAXKTKv51HoC033bDOS7f+m7go9AgvLC7RZa
-        XvUlLXkCEgiFEkgb+dmFQqGHHQ==
-X-Google-Smtp-Source: AA0mqf6a7A4r0Kj20/hU8dHWnzLl6CeRPebS6PaL/n/nEVJgIoVR1cN4kaJKuM9FLe3zbzGz0tm+cg==
-X-Received: by 2002:a05:6512:b91:b0:4b6:ed8b:4f16 with SMTP id b17-20020a0565120b9100b004b6ed8b4f16mr12729404lfv.52.1671464507096;
-        Mon, 19 Dec 2022 07:41:47 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id f3-20020a056512360300b00492ca820e15sm1129467lfs.270.2022.12.19.07.41.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Dec 2022 07:41:46 -0800 (PST)
-Message-ID: <c008733c-b47b-606e-f8e6-d5ea14e5befb@linaro.org>
-Date:   Mon, 19 Dec 2022 16:41:45 +0100
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GtpKKtIDT0wu0L0RuUxg/9TFW0XNw8+9Gg9cF/VjLLE=;
+        b=eioMztVVnXywNfq8RIm2K7wff6dbZRnSZhVCo9JgHjZVtoDjC0m2yJXz+kh7eMtss8
+         1UYEMVXX+60Sam/GUfj5YNV5mA1b/TqbCmt5380QYyi1N+yDzpsQVT0cRY7VjqpXnC1K
+         BXmFheTmEkgVAvSJ2CGfEwAo8JvoPZtbbXAUqTg0ZiRu+QkVvgqhLqNoHrzlkKd9QtbM
+         J27CYq7Ccx1V1j/1VJjODFDsWNiIA6nKzRJ3tEGOQkjjIba01Z6A8PDEU+o3H8xf5oJF
+         dxl+lJAVkgJitung2e5zhFOlgR+fIYQ7mX4cKdxDiO2Wcj+Ef8zugn1UeBTyUqH1YDA4
+         Zm6A==
+X-Gm-Message-State: ANoB5pme1mHf8AaZBaaZYzGdIo1VEK27cu53Wa0VEJXXrszY3j9a0jKs
+        Azm6rbDXrKyGAkcDWuEI23qC5siO0Q==
+X-Google-Smtp-Source: AA0mqf7IjPg4muxSCN2Qt3qxFnZ19qiEyp4eFf6ZehhyfdSNFY+GlSxtPeeW6TGXhuc3LQaSp077LQ==
+X-Received: by 2002:a4a:e205:0:b0:49f:b2be:1865 with SMTP id b5-20020a4ae205000000b0049fb2be1865mr18158083oot.7.1671464989515;
+        Mon, 19 Dec 2022 07:49:49 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id k13-20020a056820016d00b00499527def25sm4034953ood.47.2022.12.19.07.49.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Dec 2022 07:49:49 -0800 (PST)
+Received: (nullmailer pid 1447283 invoked by uid 1000);
+        Mon, 19 Dec 2022 15:49:48 -0000
+Date:   Mon, 19 Dec 2022 09:49:48 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 00/17] dt-bindings: soc: Introduce UniPhier
+ miscellaneous register blocks and fix examples
+Message-ID: <20221219154948.GA1439405-robh@kernel.org>
+References: <20221213082449.2721-1-hayashi.kunihiko@socionext.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH 1/5] drivers: mmc: sdhci-cadence: SD6 controller support
-Content-Language: en-US
-To:     Piyush Malgujar <pmalgujar@marvell.com>, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, adrian.hunter@intel.com,
-        ulf.hansson@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, yamada.masahiro@socionext.com,
-        devicetree@vger.kernel.org
-Cc:     jannadurai@marvell.com, cchavva@marvell.com,
-        Dhananjay Kangude <dkangude@cadence.com>
-References: <20221219142418.27949-1-pmalgujar@marvell.com>
- <20221219142418.27949-2-pmalgujar@marvell.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221219142418.27949-2-pmalgujar@marvell.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221213082449.2721-1-hayashi.kunihiko@socionext.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/12/2022 15:24, Piyush Malgujar wrote:
-> From: Dhananjay Kangude <dkangude@cadence.com>
+On Tue, Dec 13, 2022 at 05:24:32PM +0900, Kunihiko Hayashi wrote:
+> This series introduces dt-bindings documents for miscellaneous register
+> blocks implemented in Socionext UniPhier SoCs.
 > 
-> This patch includes changes done to support SD6 controller:
-
-Do not use "This commit/patch".
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-
-> - Added SD6 related ops which are isolated from SD4
-> - changes to support HS400, HS400ES emmc mode
-> - Updated HS200 tuning values and support to read tune configuration
->   from FDT.
-> - Support to configure host side drive strength and slew
->   and read it from device tree
+> These are previously defined in the devicetree and used in the examples
+> of subnodes' dt-bindings, however, not documented.
 > 
+> These include two types of the blocks
+> 
+> * independent block including miscellaneous registers and functions for
+>   the whole SoC (system controller and SoC-glue logic)
+> 
+> * sideband logic including control registers in the component (others)
+> 
+> And prior to adding these dt-bindings, fix examples in the existing
+> dt-bindings.
+> 
+> This series is part of the previous series shown below:
+> https://lore.kernel.org/linux-arm-kernel/20221107103410.3443-2-hayashi.kunihiko@socionext.com
+> 
+> Changes since v2:
+> - Drop redundant nodes in examples (clock, reset, soc-glue-debug)
+> - Drop parent node in examples
+> - Add more properties to examples for pinctrl
+> - Add a patch for regulator change
+> - Use consistent quotes
+> - Drop unit address patterns of patternProperties
+> - Mandatory unit address pattern for efuse (soc-glue-debug)
+> - Fix additionalProperties (ahci-glue)
+> 
+> Changes since v1:
+> - Fix examples in the existing dt-bindings (Add PATCH 1-7)
+> - Add dt-bindings for SoC-glue logic debug part (Add PATCH 10)
+> - Drop generic and ld6b compatible strings
+> - Change "usb-controller" node in soc-glue to "usb-hub"
+> - Change "usb-controller" node in USB glue layer example to "usb"
+> - Add negation of child properties by compatible string
+> 
+> Kunihiko Hayashi (17):
+>   dt-bindings: clock: Fix node descriptions in uniphier-clock example
+>   dt-bindings: reset: Fix node descriptions in uniphier-reset example
+>   dt-bindings: pinctrl: Fix node descriptions in uniphier-pinctrl
+>     example
+>   dt-bindings: regulator: Fix node descriptions in uniphier-regulator
+>     example
+>   dt-bindings: watchdog: Fix node descriptions in uniphier-wdt example
+>   dt-bindings: thermal: Fix node descriptions in uniphier-thermal
+>     example
+>   dt-bindings: phy: Fix node descriptions in uniphier-phy example
+>   dt-bindings: nvmem: Fix node descriptions in uniphier-efuse example
+>   dt-bindings: soc: socionext: Add UniPhier system controller
+>   dt-bindings: soc: socionext: Add UniPhier SoC-glue logic
+>   dt-bindings: soc: socionext: Add UniPhier SoC-glue logic debug part
+>   dt-bindings: soc: socionext: Add UniPhier peripheral block
+>   dt-bindings: soc: socionext: Add UniPhier media I/O block
+>   dt-bindings: soc: socionext: Add UniPhier SD interface block
+>   dt-bindings: soc: socionext: Add UniPhier ADAMV block
+>   dt-bindings: soc: socionext: Add UniPhier DWC3 USB glue layer
+>   dt-bindings: soc: socionext: Add UniPhier AHCI glue layer
 
+You sent this To me, so I'm assuming you want me to apply it?
+Otherwise, it can go via the Socionext tree. Let me know and I can fix 
+up Krzysztof's comments and apply the series.
 
-(...)
-
->  
-> @@ -455,7 +1752,14 @@ static const struct of_device_id sdhci_cdns_match[] = {
->  		.compatible = "socionext,uniphier-sd4hc",
->  		.data = &sdhci_cdns_uniphier_pltfm_data,
->  	},
-> -	{ .compatible = "cdns,sd4hc" },
-> +	{
-> +		.compatible = "cdns,sd4hc",
-> +		.data = &sdhci_cdns_sd4_of_data,
-> +	},
-> +	{
-> +		.compatible = "cdns,sd6hc",
-> +		.data = &sdhci_cdns_sd6_of_data,
-> +	},
-
-Your bindings said something different - every sd4hc is compatible with
-sd6hc.
-
-Best regards,
-Krzysztof
-
+Rob
