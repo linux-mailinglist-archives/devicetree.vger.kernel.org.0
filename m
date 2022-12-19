@@ -2,141 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EA866508B6
-	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 09:46:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0ECDB6508E4
+	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 09:52:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231583AbiLSIqx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Dec 2022 03:46:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57066 "EHLO
+        id S231665AbiLSIwk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Dec 2022 03:52:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231297AbiLSIqv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 03:46:51 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E86A9630C;
-        Mon, 19 Dec 2022 00:46:49 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 4FC2A84D85;
-        Mon, 19 Dec 2022 09:46:47 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1671439608;
-        bh=vMYrDL4dE2Tp/J1nv81+QRYLMaZ1Hfmlmj0LzuSRVeo=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=hN5i+c/0plzbwB5Jk3qtJW+gsdrhlizLzAQoWFfJvjVMzEqtQIIxEMsQj7LJtpQVW
-         qNMcjOCs0utCEQa+kuBlMDzrV6fyM3dwpucRHyu28INczOTq1rgCXN2VW2lOVCtCEG
-         Cbvsm/9sNOHUymIGnVy9PiN1dybtp15DEkchn99wNE82fHFKI6afkatWA6avakYwqW
-         4Zd/Ov/jtRS3aDbEdJ93oYe+H36YMvzHeRx7daSeGwdT1iSz32qsjx7PiN8+xCJD3m
-         ZX+oZf8OOAu7QTgwCXFoB12bhxOFv9v3Iq7rGWCmasPT+bd5DkmhUkTakupdMq+958
-         JfA8RaTsPr/Ww==
-Message-ID: <9f2a068b-9275-659f-b1ae-0b6046fea18b@denx.de>
-Date:   Mon, 19 Dec 2022 09:46:46 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH] dt-bindings: dma: fsl-mxs-dma: Convert MXS DMA to DT
- schema
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        with ESMTP id S231720AbiLSIwJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 03:52:09 -0500
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F5A45F84;
+        Mon, 19 Dec 2022 00:51:50 -0800 (PST)
+Received: from booty (unknown [77.244.183.192])
+        (Authenticated sender: luca.ceresoli@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 41C87E0006;
+        Mon, 19 Dec 2022 08:51:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1671439909;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=HbRyta7URVFiHZkQ/3wT16z3vuZ6whKW9FlU4BbMDDs=;
+        b=Garjuv8YQgSzRLR+nl4hAfxM3mUnwUz65bqUZmZQteWlNsp/AJcLSpLtlEuYXgXRGpuuOO
+        pjG8EFlnBx2ePJ5AImzmHVRpOwbzy9Ipveh0tAr3iAvxfi3Sq2rnNZxioDOJTp/hUeRWNq
+        sCekKS2kNX3+Ue0yyz4OI1jmUA/4QJ2Z/ekqVImD+97YI2yzLMND3eK32IiqWttX0bZzd1
+        x1NV2xJm43wA3wmTCx3CATWVC6PdBW5cWNZW+qwLRdUyE8O8JLBs7nxb0LFCdpD2bpela7
+        ARhl/+2hXlqNfbWPiVT4FjDuipOBNOCVpPBOjCDac257kkerVlcZmp1tleYZ7w==
+Date:   Mon, 19 Dec 2022 09:51:43 +0100
+From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20221217010724.632088-1-marex@denx.de>
- <b74776b4-0885-f519-8ef7-e01048a8be15@linaro.org>
- <ba05612d-fd3b-3e49-4ada-21f3b3c74e23@denx.de>
- <a5bb28a7-c7d3-be98-9621-996d38656d98@linaro.org>
- <58b96f52-30ae-c868-8434-a0ca9e996bcd@denx.de>
- <40956c61-ed9e-2ca3-868b-445510ea1c05@linaro.org>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <40956c61-ed9e-2ca3-868b-445510ea1c05@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        Krzysztof =?UTF-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>,
+        Luca Ceresoli <luca@lucaceresoli.net>
+Subject: Re: [PATCH v5 1/8] i2c: core: let adapters be notified of client
+ attach/detach
+Message-ID: <20221219095143.4b49b447@booty>
+In-Reply-To: <Y5YLi2md2571NQrY@pendragon.ideasonboard.com>
+References: <20221208104006.316606-1-tomi.valkeinen@ideasonboard.com>
+        <20221208104006.316606-2-tomi.valkeinen@ideasonboard.com>
+        <Y5YLi2md2571NQrY@pendragon.ideasonboard.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/19/22 09:36, Krzysztof Kozlowski wrote:
-> On 18/12/2022 20:06, Marek Vasut wrote:
->> On 12/18/22 19:46, Krzysztof Kozlowski wrote:
->>> On 18/12/2022 00:12, Marek Vasut wrote:
->>>> On 12/17/22 12:05, Krzysztof Kozlowski wrote:
->>>>
->>>> [...]
->>>>
->>>>>> +allOf:
->>>>>> +  - $ref: dma-controller.yaml#
->>>>>> +  - if:
->>>>>> +      properties:
->>>>>> +        compatible:
->>>>>> +          not:
->>>>>
->>>>> I think "not:" goes just after "if:". Please double check that it's correct.
->>>>>
->>>>> Anyway it is easier to have this without negation and you already
->>>>> enumerate all variants (here and below).
->>>>
->>>> About this part, I don't think that works. See this:
->>>>
->>>> $ git grep -A 15 'imx2[38]-dma-apb[hx]' arch/ | grep
->>>> '\(imx2[38]-dma-apb[hx]\|dma-channels\)'
->>>> arch/arm/boot/dts/imx23.dtsi: compatible = "fsl,imx23-dma-apbh";
->>>> arch/arm/boot/dts/imx23.dtsi- dma-channels = <8>;
->>>> arch/arm/boot/dts/imx23.dtsi: compatible = "fsl,imx23-dma-apbx";
->>>> arch/arm/boot/dts/imx23.dtsi- dma-channels = <16>;
->>>> arch/arm/boot/dts/imx28.dtsi: compatible = "fsl,imx28-dma-apbh";
->>>> arch/arm/boot/dts/imx28.dtsi- dma-channels = <16>;
->>>> arch/arm/boot/dts/imx28.dtsi: compatible = "fsl,imx28-dma-apbx";
->>>> arch/arm/boot/dts/imx28.dtsi- dma-channels = <16>;
->>>> arch/arm/boot/dts/imx6qdl.dtsi: compatible = "fsl,imx6q-dma-apbh",
->>>> "fsl,imx28-dma-apbh";
->>>> arch/arm/boot/dts/imx6qdl.dtsi- dma-channels = <4>;
->>>> arch/arm/boot/dts/imx6sx.dtsi: compatible = "fsl,imx6sx-dma-apbh",
->>>> "fsl,imx28-dma-apbh";
->>>> arch/arm/boot/dts/imx6sx.dtsi- dma-channels = <4>;
->>>> arch/arm/boot/dts/imx6ul.dtsi: compatible = "fsl,imx6q-dma-apbh",
->>>> "fsl,imx28-dma-apbh";
->>>> arch/arm/boot/dts/imx6ul.dtsi- dma-channels = <4>;
->>>> arch/arm/boot/dts/imx7s.dtsi: compatible = "fsl,imx7d-dma-apbh",
->>>> "fsl,imx28-dma-apbh";
->>>> arch/arm/boot/dts/imx7s.dtsi- dma-channels = <4>;
->>>> arch/arm64/boot/dts/freescale/imx8mm.dtsi: compatible =
->>>> "fsl,imx7d-dma-apbh", "fsl,imx28-dma-apbh";
->>>> arch/arm64/boot/dts/freescale/imx8mm.dtsi- dma-channels = <4>;
->>>> arch/arm64/boot/dts/freescale/imx8mn.dtsi: compatible =
->>>> "fsl,imx7d-dma-apbh", "fsl,imx28-dma-apbh";
->>>> arch/arm64/boot/dts/freescale/imx8mn.dtsi- dma-channels = <4>;
->>>>
->>>> So I think what we have to do to validate that, is, say
->>>>
->>>> default: 4
->>>>
->>>> if does not match on 6q/6sx/7d/23-apbx/28-abbh/28-apbx then 8
->>>>
->>>> if does not match on 6q/6sx/7d/23-apbh then 16
->>>>
->>>> But if there is a better way to validate the above, please do tell.
->>>
->>> Then your existing if:then: is also not correct because you require for
->>> fsl,imx28-dma-apbh (as it is not in second if:then:) const:16. Just
->>> don't require it.
->>
->> So, shall I just drop the entire allOf: section ?
-> 
-> No, what about the interrupts?
+Hello Laurent,
 
-The interrupts and dma-channels are matched 1:1 for this controller, 1 
-DMA channel, 1 interrupt. 16 dma channels means 16 interrupts .
+thanks for the feedback and apologies for the delayed reply.
+
+On Sun, 11 Dec 2022 18:55:39 +0200
+Laurent Pinchart <laurent.pinchart@ideasonboard.com> wrote:
+
+> Hi Tomi and Luca,
+> 
+> Thank you for the patch.
+> 
+> On Thu, Dec 08, 2022 at 12:39:59PM +0200, Tomi Valkeinen wrote:
+> > From: Luca Ceresoli <luca@lucaceresoli.net>
+> > 
+> > An adapter might need to know when a new device is about to be
+> > added. This will soon bee needed to implement an "I2C address
+> > translator" (ATR for short), a device that propagates I2C transactions
+> > with a different slave address (an "alias" address). An ATR driver
+> > needs to know when a slave is being added to find a suitable alias and
+> > program the device translation map.
+> > 
+> > Add an attach/detach callback pair to allow adapter drivers to be
+> > notified of clients being added and removed.  
+> 
+> This may be a stupid question, but couldn't you instead use the
+> BUS_NOTIFY_ADD_DEVICE and BUS_NOTIFY_DEL_DEVICE bus notifiers ?
+
+I'm not sure they would be the correct tool for this task. Bus
+notifiers inform about new events on the 'struct bus_type, i.e. any
+event on the global i2c bus type. In the i2c world this means being
+notified about new _adapters_, which is exactly what
+drivers/i2c/i2c-dev.c does.
+
+Here, however, we need to be informed about new _clients_ being added
+under a specific adapter. I'm not sure whether the bus notifiers can
+inform about new clients in addition of new adapters, but they at least
+seem unable to provide per-adapter notification.
+
+Does that seem correct?
+
+Best regards,
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
