@@ -2,122 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89B9B650A4D
-	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 11:44:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9EDA650A56
+	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 11:47:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231370AbiLSKos (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Dec 2022 05:44:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50198 "EHLO
+        id S231686AbiLSKry (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Dec 2022 05:47:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231292AbiLSKor (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 05:44:47 -0500
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ED6565E3
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 02:44:45 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id x11so8642976ljh.7
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 02:44:45 -0800 (PST)
+        with ESMTP id S231862AbiLSKrs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 05:47:48 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4990E0E0
+        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 02:47:47 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id y25so13007881lfa.9
+        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 02:47:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=DmjevszxUCHQTpFoG42/dWmGvxvU2NY1rLLfgP/zAYQ=;
-        b=xk6bLMxZNZBEzQrCU6p5cVw1ASvxpJqWRDfaGf+X56qYU19GLYXZBYPM0lH4Yxf8JL
-         WdKiOqSDQVbRhc7Va39RDQC21wP+cBx2VqOQOWswUn3jMpH6qFZuBnYUjXn38HKk8Mfo
-         z+eTjr0UhVr28cJsXjBrQ62bysYvDCjyLqa0RrvJJN/zJkODjvVD0xm1g3dfibJAYGKq
-         dGBCrqZ4mKEfCZh9riBPZ2kg4JIFMnR6NbyB/A6FMessjnuiwmFM8wYC6ISbiJZIBH6D
-         98OYIoIHmcVxTkC4W6BjbTjrZUzt3X8yQwHimgmy0O0wzYXSBEZXGttM03jGeMJ1TOTG
-         ww0g==
+        bh=D2CoDDdJPV+F+RkeEfjAJH81FjwM8sOza7IocmxaprM=;
+        b=qU5NWvCQQbrNIMqmikpeNTaJe6vN4Uzeg0CvVk4rpMqg3N5VE4C2Carv+JJSzJWHkn
+         MoWfDR59bHEBtTWb55PeV7Q78eMn/xdOYEQfzP+JNVCVXYs7Hw8V67y9QJxfCd3nhvZy
+         my1Np3IoxrnsOSXKdYsXa/u1a5MfTQDcvo7WQtOVMdmwA/TXhiibBlkzJzztBRjAeGc8
+         wtMKhhLok3TF3VnR1TGhKeaSYfPhkVgEnWHuMqiKydlUJSMEoDe+NkdRS+4wP4Kcvu38
+         gjcPBVdXumZsfQsYYEzxuU006uZtqJfK+uLTsa96ZkdqYVrHayFWnIl4Y4wNQpy8scXA
+         UdYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DmjevszxUCHQTpFoG42/dWmGvxvU2NY1rLLfgP/zAYQ=;
-        b=hfs001Vic0PHpmIH3dwLbgkh4yutU2y34i2JtN0S4RDRP8mCwoGYxa3XQ24ckqp9Bb
-         86vrv7Z7UXSOFh9LPoCm5xuRP3BeHZojgRh2LGS04N3E6AZFGGsNLmWOy42wOB1Ls0jd
-         Z/6KP1l6NnTo6qzn2HQmGpeYYwmuB8laQ5ViLBj3YTQdSUVxC6jxCPwED3a+2YY9y1nJ
-         13Mvwwd7VHjCBZW3CaK5BMURgdOZ7zq9PBCTFOHW9vbnpzTK8klCqlcaPVwVDbQp/3ol
-         BWEz+ZX6+WDawIlC77Djx/cafo+HM8hrti81qovA8jzTqoenROnGjZbBbEr4AyOfxVkc
-         6CJA==
-X-Gm-Message-State: AFqh2kqeKS/BJ87IS29UJ+PINYXjSHx4DmqpnEGPNwLFqhqqg59t8r7G
-        X/KFef9c3eUJwGdtmAOXDyqjpg==
-X-Google-Smtp-Source: AMrXdXs2ly9js0eSHV7X+rrGPhAfnPRWaalB/tSrvhSQbapLry3medMrQ2c5Xs+1XwcJCBV8NNeaIg==
-X-Received: by 2002:a05:651c:54f:b0:27f:66ec:b5d with SMTP id q15-20020a05651c054f00b0027f66ec0b5dmr3509135ljp.33.1671446683970;
-        Mon, 19 Dec 2022 02:44:43 -0800 (PST)
+        bh=D2CoDDdJPV+F+RkeEfjAJH81FjwM8sOza7IocmxaprM=;
+        b=I97NAN6fDWVf2Iuv7Kq57qYU58H+6LVqH09JBbbVlqB2JACoCk4mXDBP50TzckB1o2
+         hsINRMY0Coe2ZOIfYCrnkJPo3IDjoKrr4V4C5kdcP8A47SOSHRHbCUZI9CbKavJRh2v8
+         mKUSrq3nsxOGveQOgK40WSDjGwY2mLLIVTpEnzM6EIZ8CWfC0P1O5j0YmamxMuE2Toze
+         1sSIDipmkUoVFVBPXsFLFsLLiFzbTn/+E9ahOKWopXXLpk0wS2lpg+wUBRU7ZkcbnHjI
+         kvUhSHlBjGdStpcbVNBp6VM7gGC/UM6btoMMKhUGYKBiLa8yfUi8PEVSXFXLL9cyV31i
+         thXA==
+X-Gm-Message-State: ANoB5pkPKjI9v/e8i4NbHDaXTGrPLHVaEL/5LzXx4CYZVkH765J7yWPS
+        iOPihrkTrgUdTxVWp6Fnk0YxIujV+cDoqFLq
+X-Google-Smtp-Source: AA0mqf6zwvEdGK2fNK6Ur54nIDh33i8BjY3gi5/EVb4DLTo9bLZoblQkYCX85TGqVkpagvhxGVqyKA==
+X-Received: by 2002:ac2:4e12:0:b0:4a4:68b8:f4f6 with SMTP id e18-20020ac24e12000000b004a468b8f4f6mr16010921lfr.60.1671446866158;
+        Mon, 19 Dec 2022 02:47:46 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id f2-20020a2e3802000000b0027a099ad7efsm714252lja.35.2022.12.19.02.44.42
+        by smtp.gmail.com with ESMTPSA id b6-20020a056512070600b004b51ab265f8sm1072924lfs.193.2022.12.19.02.47.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Dec 2022 02:44:43 -0800 (PST)
-Message-ID: <c906603f-bf84-06d4-3e9c-bd4ab748591d@linaro.org>
-Date:   Mon, 19 Dec 2022 11:44:42 +0100
+        Mon, 19 Dec 2022 02:47:45 -0800 (PST)
+Message-ID: <6d2e2df1-0e22-a7dd-1b6e-c66f22597e4e@linaro.org>
+Date:   Mon, 19 Dec 2022 11:47:44 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: watchdog: Add watchdog for StarFive
- JH7110
+Subject: Re: [PATCH v2] dt-bindings: dma: fsl-mxs-dma: Convert MXS DMA to DT
+ schema
 Content-Language: en-US
-To:     Xingyu Wu <xingyu.wu@starfivetech.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-watchdog@vger.kernel.org,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        linux-kernel@vger.kernel.org
-References: <20221219094233.179153-1-xingyu.wu@starfivetech.com>
- <20221219094233.179153-2-xingyu.wu@starfivetech.com>
+To:     Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20221219093713.328776-1-marex@denx.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221219094233.179153-2-xingyu.wu@starfivetech.com>
+In-Reply-To: <20221219093713.328776-1-marex@denx.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/12/2022 10:42, Xingyu Wu wrote:
-> Add bindings to describe the watchdog for the StarFive JH7110 SoC.
+On 19/12/2022 10:37, Marek Vasut wrote:
+> Convert the MXS DMA binding to DT schema format using json-schema.
 > 
-> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
-> ---
->  .../watchdog/starfive,jh7110-wdt.yaml         | 64 +++++++++++++++++++
->  1 file changed, 64 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/watchdog/starfive,jh7110-wdt.yaml
+> Drop "interrupt-names" property, since it is broken. The drivers/dma/mxs-dma.c
+> in Linux kernel does not use it, the property contains duplicate array entries
+> in existing DTs, and even malformed entries (gmpi, should have been gpmi). Get
+> rid of that optional property altogether.
 > 
-> diff --git a/Documentation/devicetree/bindings/watchdog/starfive,jh7110-wdt.yaml b/Documentation/devicetree/bindings/watchdog/starfive,jh7110-wdt.yaml
-> new file mode 100644
-> index 000000000000..a7bfe0751928
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/starfive,jh7110-wdt.yaml
-> @@ -0,0 +1,64 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/watchdog/starfive,jh7110-wdt.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: StarFive Watchdog
-> +
-> +maintainers:
-> +  - Samin Guo <samin.guo@starfivetech.com>
-> +  - Xingyu Wu <xingyu.wu@starfivetech.com>
-> +
+> Update example node names to be standard dma-controller@ ,
+> add global interrupt-parent property into example.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
-You miss watchdog.yaml. I asked to drop the quotes (so the " character),
-not the $ref. Please keep the $ref: watchdog.yaml and use
-unevaluatedProperties at the end (instead of additionalProperties).
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
