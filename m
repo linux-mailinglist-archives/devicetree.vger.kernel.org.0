@@ -2,128 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B171D650EA6
-	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 16:31:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D3587650EAB
+	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 16:33:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232408AbiLSPbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Dec 2022 10:31:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52542 "EHLO
+        id S232058AbiLSPdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Dec 2022 10:33:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232371AbiLSPbf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 10:31:35 -0500
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A8F86342
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 07:31:32 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id g14so9456210ljh.10
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 07:31:32 -0800 (PST)
+        with ESMTP id S232070AbiLSPdI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 10:33:08 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E137BE31
+        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 07:33:07 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id j4so14276460lfk.0
+        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 07:33:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=S0DqKnIuSvbhL/BeaLxzkheTI1hi556Lt0X0PfWna4w=;
-        b=gNAHP4f8oU+uSmknP1M4YQ+rOhfHavFCiNsIKK4QBSyFBStmpUhhvFHAaE3M/KGf9F
-         3+T6yq/BY82gvlN6fPCqMfxNHcC2MlclJl2FYHbxT2baqfQaQgJirm+xMYWdROvamdgt
-         z2w0lbFLLTQKPcpF4cG7gj288vACuKFP1ICfTEAKZjELgLLh1ciFwQgYGhpGCzn8cvpp
-         iGKLjn2OQaxBtg20cn39EW+Lm8xYmcUzJpaorPYVWbLz8+IofEFi06JmJoEkIh3SfhgI
-         ZEdkpol0s7PUdwHWkpNB3yeN6Xt4IrbUkmMWQiaKZdM+vzblx7QxmAiaKwsui3CmB/ap
-         BYKQ==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:subject:from:content-language
+         :references:cc:to:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=PTYRVtrBCWvTbbm1id6yk46NA4foNt4C1COiVzWNk/A=;
+        b=Insg6f7y+IPpAFrxlboZlF32xM0/+r2Po6VW390uUA1COFsO2mugcOpBlV/s75jj8o
+         l6mPtuI1PCEIHNA8VXkKGXvz5cko8S0pCLkPBP+1BJXA1S/gPGVyhs8A9sG+FNwKQVO6
+         XlWFgz45VbTNr42F2k9uenYBzGTqSAJ4IKWton21NA/ky7VQlK3M1e6ot516TQ0dc43R
+         zZu1Q3JwJ64AIswKQ6iXcSB9XBnl46eKA8OTNC0cjhHRTkS1RyzvsRXPW4wUBN1gMxFv
+         F0ezSwjqWG8hy6ARvxU1eT1+OrRs80riA6VmuN/aNekeBkKkHCkaL2GxnlMCHOl/pt0i
+         c0ZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:subject:from:content-language
+         :references:cc:to:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=S0DqKnIuSvbhL/BeaLxzkheTI1hi556Lt0X0PfWna4w=;
-        b=LfKiDy04sqfQIc020BsRkzNa+so40ILpj2X4WGE/RGprSb9Ji7QwMZW2qhRgoE69ue
-         R3iMibTdE0xLfooTVCX0tXrRByYmJ4GkMVGnXS5frra8QS/g5NJ/XkWDUw3SBljeo0GF
-         CV5CT2i08UAg8HxSRXm/EkZfloBreP4B7j8Ydzw6D+frmdo8LszjYN/tHiKPSuzNY94R
-         7onxARQjPwsuptq+n3JFjCpdmD72hosDsp91jFSZ+efBLJLlrz8y96OFXVMk8eLxo1Sb
-         DDS+xK9ZuIq3XwAfoCR56DNQXr/+iRkECTpMfYuB2QkZJjpLjNSxZxlsdAuVYTnuAXQG
-         t0ww==
-X-Gm-Message-State: ANoB5plzwSY0QzIpmSZuTY9wE+0d116k/olh1c+9zfgqOXy6luoWHBiw
-        OqHnIADx2Q3ibjwzh4UxCtDnag==
-X-Google-Smtp-Source: AA0mqf62K7RiXYrDz+81q5ivGgJyq7Z3xcHpva+5wqa9zeOtJavBk8Qd1E204B2w/riWMJO5tFNuzw==
-X-Received: by 2002:a05:651c:2203:b0:277:81a3:f6e0 with SMTP id y3-20020a05651c220300b0027781a3f6e0mr13923805ljq.19.1671463889352;
-        Mon, 19 Dec 2022 07:31:29 -0800 (PST)
-Received: from [192.168.0.20] (088156141227.dynamic-2-waw-k-3-1-0.vectranet.pl. [88.156.141.227])
-        by smtp.gmail.com with ESMTPSA id bf33-20020a2eaa21000000b002770e6c620bsm764964ljb.106.2022.12.19.07.31.28
+        bh=PTYRVtrBCWvTbbm1id6yk46NA4foNt4C1COiVzWNk/A=;
+        b=Ljiq9isi5NYowdCvgWG/+/h6gG8af2k37C8/NYrhSICKrjaC0ZZoAHB8G/jHlksxTr
+         dGf1Tkz2WgHTR9laA6+kDQ/HSjmaYxOU00gvHAT9Z1rqi6hLWwrr2gt8WUp5+1rg0YU6
+         hSn1Mv/6y72G+iEG4Regzt3IjvAOOZwDNdBoMDAqnevgM+1tRt5hand3zCsQgd6uf/kT
+         gAuvwmM5mi4sAAgJwnJjGXYAsXk0OkUuKeUYRJJY6AaIlbtste2zIJNY6CRo+cX8Dlcv
+         RSh8NUaxECISyTMVGtHWzc3qmFe04heaT+5SrGgWRMIYXtRr5bfHtD3+Umkur9z5h0T4
+         Vemw==
+X-Gm-Message-State: ANoB5pnRR9Fih86Cu+AFXFQP/SSp3bBLEjJ+p64vxFjiKWN2vUnNZtlz
+        6XHN/KU8sginpxvw1q0Pdy0=
+X-Google-Smtp-Source: AA0mqf6j9J2ITGvHGbil5qMW1XANOnr4H7x2vAlRqkx27/nWngyc+1D60iClP2o9yXk2Q+4fCyVOhg==
+X-Received: by 2002:a05:6512:260c:b0:4b5:9183:5ad0 with SMTP id bt12-20020a056512260c00b004b591835ad0mr15799354lfb.63.1671463986139;
+        Mon, 19 Dec 2022 07:33:06 -0800 (PST)
+Received: from [10.0.0.100] (host-185-69-38-8.kaisa-laajakaista.fi. [185.69.38.8])
+        by smtp.gmail.com with ESMTPSA id s12-20020ac25c4c000000b004b591829352sm1127788lfp.64.2022.12.19.07.33.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Dec 2022 07:31:28 -0800 (PST)
-Message-ID: <270ba2bf-6141-724c-7406-0e27503b21bd@linaro.org>
-Date:   Mon, 19 Dec 2022 16:31:27 +0100
+        Mon, 19 Dec 2022 07:33:05 -0800 (PST)
+Message-ID: <bcf910a6-34cf-f668-6b5f-3f9fcde3fcf3@gmail.com>
+Date:   Mon, 19 Dec 2022 17:34:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH v4 1/8] dt-bindings: arm: mediatek: mmsys: Add support for
- MT8195 VPPSYS
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Sameer Pujar <spujar@nvidia.com>,
+        Mohan Kumar <mkumard@nvidia.com>,
+        nikita.yoush@cogentembedded.com
+References: <87v8mepyoy.wl-kuninori.morimoto.gx@renesas.com>
+ <87mt7qpylw.wl-kuninori.morimoto.gx@renesas.com>
+ <CAMuHMdW=_-MyqAjRqaoPyWkoUmdB2VOE1t+wpym7eyOxkzc_7g@mail.gmail.com>
+ <Y5sJV2KfX98KoMYZ@sirena.org.uk>
+ <CAMuHMdWwP6QDUux62GZtCT7tsFhAhex=Fns5e=n_KTjGXHRy0Q@mail.gmail.com>
+ <20221216163919.GA2863056-robh@kernel.org>
+ <CAMuHMdWEbVqD3z69-nJe9ST35_S4AZSJLrYqC3f=F+VONSPn0Q@mail.gmail.com>
+ <CAMuHMdXNeJxzWoR6b+GOst9X49yK=vB574Lk1hmAS0WXDZrwPg@mail.gmail.com>
 Content-Language: en-US
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Moudy Ho <moudy.ho@mediatek.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20221207094921.15450-1-moudy.ho@mediatek.com>
- <20221207094921.15450-2-moudy.ho@mediatek.com>
- <CAL_JsqKdaVmGKSwR0yiYGKc6Kp6jki632GA6CBOOjGzUmvSRWA@mail.gmail.com>
- <ba8ce731-2d9c-901f-e208-deafe589b723@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ba8ce731-2d9c-901f-e208-deafe589b723@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From:   =?UTF-8?Q?P=c3=a9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
+Subject: Re: [PATCH 06/11] ASoC: dt-bindings: ti,pcm3168a: Convert to
+ json-schema
+In-Reply-To: <CAMuHMdXNeJxzWoR6b+GOst9X49yK=vB574Lk1hmAS0WXDZrwPg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/12/2022 16:17, Matthias Brugger wrote:
+Hi Geert,
+
+On 19/12/2022 10:45, Geert Uytterhoeven wrote:
+> Oops, Peter is no longer at TI...
+
+Yup.
+
 > 
-> 
-> On 19/12/2022 14:44, Rob Herring wrote:
->> On Wed, Dec 7, 2022 at 3:49 AM Moudy Ho <moudy.ho@mediatek.com> wrote:
->>>
->>> For MT8195, VPPSYS0 and VPPSYS1 are 2 display pipes with
->>> hardware differences in power domains, clocks and subsystem counts,
->>> which should be determined by compatible names.
->>>
->>> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
->>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> ---
->>>   .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml     | 5 ++++-
->>>   1 file changed, 4 insertions(+), 1 deletion(-)
+> On Mon, Dec 19, 2022 at 9:43 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>> CC Peter
 >>
->> This landed in today's linux-next causing the following binding
->> warnings. Is this a fix? Only fixes for 6.2 should be added during the
->> merge window.
+>> On Fri, Dec 16, 2022 at 5:39 PM Rob Herring <robh@kernel.org> wrote:
+>>> On Thu, Dec 15, 2022 at 01:10:44PM +0100, Geert Uytterhoeven wrote:
+>>>> On Thu, Dec 15, 2022 at 12:47 PM Mark Brown <broonie@kernel.org> wrote:
+>>>>> On Thu, Dec 15, 2022 at 12:03:02PM +0100, Geert Uytterhoeven wrote:
+>>>>>> On Wed, Dec 14, 2022 at 2:23 AM Kuninori Morimoto
+>>>>>>> +maintainers:
+>>>>>>> +  - Damien Horsley <Damien.Horsley@imgtec.com>
+>>>>>
+>>>>>> For v2, I had planned
+>>>>>
+>>>>>>      -+  - Damien Horsley <Damien.Horsley@imgtec.com>
+>>>>>>      ++  - Jaroslav Kysela <perex@perex.cz>
+>>>>>>      ++  - Takashi Iwai <tiwai@suse.com>
+>>>>>
+>>>>>> as Damien's address bounces.
+>>>>>
+>>>>> I wouldn't do that, I gather the maintainers for DT bindings are
+>>>>> supposed to be people who know and care about the specific binding in
+>>>>> particular.
+>>>>
+>>>> Sure.  But how can they (still) care, if we cannot reach them?
+>>>> There's no email message from Damien to be found during the past
+>>>> 7 years.
+>>>
+>>> Then put someone that would care if the binding is deleted. As this is
+>>> used on Renesas board(s), I can think of a few candidates.
 >>
-> 
-> No it's not a fix, it's queued for the next -rc phase. I didn't know of the 
-> limitation of linux-next only allowing fixes in the merge window.
+>> Or perhaps someone from TI? ;-)
+>> This is a TI component, and also used on a TI K3 board...
 
-Stephen asks for it every time. Now it is in separate email:
+Can it go w/o a Maintainer? ;)
+The driver is (close to) feature complete and only needs framework 
+change updates.
+I don't particularly care about this driver as such. Yes, the j721e EVM 
+uses it (which I still maintain along with the TI audio stack).
 
-https://lore.kernel.org/linux-next/20221213120359.47fc3cad@canb.auug.org.au/
+Unfortunately I don't know anyone at TI who could be assigned...
 
-Previously it was in each linux-next announcement:
-https://lore.kernel.org/linux-next/20220527164940.6ef5b25e@canb.auug.org.au/
+Nikita did a fix quite recently to the driver.
+Nikita, are you interested?
 
-> 
-> Actually the patch is wrong. It shouldn't include "mediatek,mt8195-mmsys" as 
-> fallback for mediatek,mt8195-vppsys[0,1].
-> 
-> I'll revert the whole series from v6.2-tmp/dts64 and v6.2-tmp/soc
-
-Thanks. Please, drop all material for next cycle from linux-next.
-
-Best regards,
-Krzysztof
-
+-- 
+Péter
