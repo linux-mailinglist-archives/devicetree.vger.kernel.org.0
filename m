@@ -2,111 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EC6C651345
-	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 20:29:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A8FB9651367
+	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 20:43:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232716AbiLST3R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Dec 2022 14:29:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54062 "EHLO
+        id S231344AbiLSTnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Dec 2022 14:43:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232852AbiLST2o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 14:28:44 -0500
-Received: from m-r1.th.seeweb.it (m-r1.th.seeweb.it [5.144.164.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A96C1261D
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 11:28:43 -0800 (PST)
-Received: from SoMainline.org (94-209-172-39.cable.dynamic.v4.ziggo.nl [94.209.172.39])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id D6DC020090;
-        Mon, 19 Dec 2022 20:28:40 +0100 (CET)
-Date:   Mon, 19 Dec 2022 20:28:39 +0100
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     phone-devel@vger.kernel.org, Will Deacon <will@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Lux Aliaga <they@mint.lgbt>,
-        Robin Murphy <robin.murphy@arm.com>,
+        with ESMTP id S229712AbiLSTnB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 14:43:01 -0500
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C603113E8D;
+        Mon, 19 Dec 2022 11:42:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Cc:To
+        :From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date
+        :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+        References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+        List-Owner:List-Archive; bh=dXTe+uDPBMx9nlPLhWwbmvq6EC47ovYlZ6ePwcNeyig=; b=g
+        pt2WMmfT3TP0f3iHOnyQoLhoKfqHCU/izCQrasa3JTOcER+JDLoqiaVwPctPVfPqjVIipGHO4gaT+
+        4+dvsaxCHPt7eNQlWiUSqHU7Iy/ecSgRsXFMfR5Q3RPIyHWjbtB6XD8vBUrK7dd0CwFkIIt0J5mzC
+        wGX+YmzfZ0jbF6+0=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:48616 helo=pettiford.lan)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1p7M2H-0004Bt-Jd; Mon, 19 Dec 2022 14:42:54 -0500
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Thierry Reding <treding@nvidia.com>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v4 1/4] dt-bindings: arm-smmu: Document smmu-500 binding
- for SM6125
-Message-ID: <20221219192839.6oqialqqw5xw5fxa@SoMainline.org>
-Mail-Followup-To: Marijn Suijten <marijn.suijten@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        phone-devel@vger.kernel.org, Will Deacon <will@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Lux Aliaga <they@mint.lgbt>, Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Thierry Reding <treding@nvidia.com>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20221216215819.1164973-1-marijn.suijten@somainline.org>
- <20221216215819.1164973-2-marijn.suijten@somainline.org>
- <306709f8-7d45-9b76-f95b-1b3088d37a78@linaro.org>
- <6d263321-782d-9d9c-4fdf-8bcf5b280779@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     hugo@hugovil.com, bruno.thomsen@gmail.com,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Date:   Mon, 19 Dec 2022 14:42:40 -0500
+Message-Id: <20221219194241.3817250-1-hugo@hugovil.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6d263321-782d-9d9c-4fdf-8bcf5b280779@linaro.org>
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
+Subject: [PATCH] dt-bindings: rtc: pcf2127: add missing pcf/pca2129 entries
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-12-19 10:09:03, Krzysztof Kozlowski wrote:
-> On 19/12/2022 10:07, Krzysztof Kozlowski wrote:
-> > On 16/12/2022 22:58, Marijn Suijten wrote:
-> >> From: Martin Botka <martin.botka@somainline.org>
-> >>
-> >> Document smmu-500 compatibility with the SM6125 SoC.
-> >>
-> > 
-> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Wait, not entirely... no constraints for clocks and regs?
+From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-Quite odd that there is no warning for my DT patch as it clearly
-requires at least one clock...
+The pcf2127_of_match structure in drivers/rtc/rtc-pcf2127.c also
+contains:
+    nxp,pcf2129
+    ncp,pca2129
 
-Irrespective of that downstream doesn't define any (nor power domains).
-How should we proceed?
+Add these missing entries.
 
-- Marijn
+Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+---
+ Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+index cde7b1675ead..00dbae7e23c2 100644
+--- a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
++++ b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+@@ -14,7 +14,10 @@ maintainers:
+ 
+ properties:
+   compatible:
+-    const: nxp,pcf2127
++    enum:
++      - nxp,pcf2127
++      - nxp,pcf2129
++      - ncp,pca2129
+ 
+   reg:
+     maxItems: 1
+
+base-commit: e88f319a2546fd7772c726bf3a82a23b0859ddeb
+-- 
+2.30.2
+
