@@ -2,95 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4DE9650914
-	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 10:09:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66C5B650919
+	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 10:10:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231571AbiLSJJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Dec 2022 04:09:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40264 "EHLO
+        id S231766AbiLSJKL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Dec 2022 04:10:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231128AbiLSJJI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 04:09:08 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D15C1B4B8
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 01:09:06 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id y25so12670475lfa.9
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 01:09:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JZyR5gSmKyguAcX5pHH35Ht5JLpx7+cAaPVpmD/qMPE=;
-        b=TdN7ALFw6/NFrG+fG2GiKk5ZlonpRX6iE/1DSwfQwwykBTZo7SI/QFd4Y34CqHQyoV
-         TC+uee+pPB4LMC2egRTx0qz8OtcXbCUvkjIt37NQt5Pd2a1cMze93funFnotHLbflkIC
-         qUtA7WVresBz1tKDYdluUypqgVGxx83Tayr3rqNHODhKPwYVpljVQ6KVmaPLU36G4dgs
-         vykXOMCJ7/s7O+/+BIyclgtBFwEko9hf/7mwWl6Fm/GxHFtnhfP+JaHadxcmlV1pUOuJ
-         mWVJvXt5Uu9YSGK1dkp1ZyWZc/3Gt0BQGEdRXTq7bbbaYfc/L0mFYPoajjxndcScTn4w
-         q9VA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JZyR5gSmKyguAcX5pHH35Ht5JLpx7+cAaPVpmD/qMPE=;
-        b=ij0YU49zlSfJGOSm8fsOXWaI28xUUlYEPi3KL0iXgBWRB11L4FTKpDpLNlwMgTcjxO
-         ypm8JlHLaPiv2e3BfSATVL7qlXExTgzH2quFYF6oBpwS8l0p781mZl5hOzLh4QWYDcbv
-         DdjoBDkovqjbtFrCHFH5TlfRQzvzRgSWVV4a4niwsOjEHbj5hobM6/aL3cLNs+u+hgi/
-         6q0Bitt46B10Ba1yC3gz7Wva8eMAKFXQJRTdKTjrSxXms/fj8+n35GshT4tASDqzd9cC
-         J0qNai6tL3uGQ3c6d4zhgynx7mmOXV4E6Ak6DJSnyCakzlWR087+RwJMRq2KxrirFncv
-         Iikg==
-X-Gm-Message-State: ANoB5pke8ZATbLxxxo0foSg9w+0jbLGXA5BGm8uaDtMUnQ0cUOzBcPg+
-        zl6gF912z4uvEZC6PSdsV0g3pg==
-X-Google-Smtp-Source: AA0mqf5X0yqQn8C9U/nSEy2RW1j67TKUJw0sbleYyIOJ2Iiqe4iuR9Vs33wEupgZWbCbz7rYk83HuA==
-X-Received: by 2002:a19:e059:0:b0:4b5:8987:1db8 with SMTP id g25-20020a19e059000000b004b589871db8mr11186995lfj.59.1671440945251;
-        Mon, 19 Dec 2022 01:09:05 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id b8-20020a056512070800b004acbfa4a18bsm1057604lfs.173.2022.12.19.01.09.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Dec 2022 01:09:04 -0800 (PST)
-Message-ID: <6d263321-782d-9d9c-4fdf-8bcf5b280779@linaro.org>
-Date:   Mon, 19 Dec 2022 10:09:03 +0100
+        with ESMTP id S231655AbiLSJJq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 04:09:46 -0500
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6CABB1E5;
+        Mon, 19 Dec 2022 01:09:43 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id B101684A16;
+        Mon, 19 Dec 2022 10:09:41 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1671440982;
+        bh=8JKmjp9hX6HGLJXVyNffROHSCvDh9ExIvvXnp6l9sAo=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=nixxN/9AGVflVQaedIMf9BWavwHdZebP2xMUa2TWm7epXx03g1azrYYwATvV2eHhA
+         Y+fJJyxWTEvX+X/Z8qC+iUC03D4uoup+t0ngHkhcQyfQ1b4NWXpKQORZNPsG6GsQHC
+         uQH6gWrV9y7hawOFad1Z/YglU/JBH7NdAv8FdmiDgBfpq10GFT7xkVqhqgwh1eeAcd
+         kEO7spmlemo2yViLbLNFhOxm/4UTpzbxLdTF/a+4vOvZr4zAWTEPFusQpEXb42x1wq
+         0e9mUJMb5F7eHX2kOAqTfXomArEHMSIt2zLk4iHhu9IqTXz8kN082DzZEutsNdNaGG
+         N6VJe2T+AI7DQ==
+Message-ID: <2e56cbcf-cf10-93a1-bfbd-f3a39cc5717c@denx.de>
+Date:   Mon, 19 Dec 2022 10:09:41 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH v4 1/4] dt-bindings: arm-smmu: Document smmu-500 binding
- for SM6125
+Subject: Re: [PATCH] dt-bindings: dma: fsl-mxs-dma: Convert MXS DMA to DT
+ schema
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        phone-devel@vger.kernel.org, Will Deacon <will@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Lux Aliaga <they@mint.lgbt>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org
+Cc:     Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Thierry Reding <treding@nvidia.com>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20221216215819.1164973-1-marijn.suijten@somainline.org>
- <20221216215819.1164973-2-marijn.suijten@somainline.org>
- <306709f8-7d45-9b76-f95b-1b3088d37a78@linaro.org>
-In-Reply-To: <306709f8-7d45-9b76-f95b-1b3088d37a78@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20221217010724.632088-1-marex@denx.de>
+ <b74776b4-0885-f519-8ef7-e01048a8be15@linaro.org>
+ <ba05612d-fd3b-3e49-4ada-21f3b3c74e23@denx.de>
+ <a5bb28a7-c7d3-be98-9621-996d38656d98@linaro.org>
+ <58b96f52-30ae-c868-8434-a0ca9e996bcd@denx.de>
+ <40956c61-ed9e-2ca3-868b-445510ea1c05@linaro.org>
+ <9f2a068b-9275-659f-b1ae-0b6046fea18b@denx.de>
+ <04914294-0d1b-d6ab-a3da-c8fd8e35b3b9@linaro.org>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <04914294-0d1b-d6ab-a3da-c8fd8e35b3b9@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -98,17 +71,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/12/2022 10:07, Krzysztof Kozlowski wrote:
-> On 16/12/2022 22:58, Marijn Suijten wrote:
->> From: Martin Botka <martin.botka@somainline.org>
->>
->> Document smmu-500 compatibility with the SM6125 SoC.
->>
+On 12/19/22 09:57, Krzysztof Kozlowski wrote:
+> On 19/12/2022 09:46, Marek Vasut wrote:
 > 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>>> if does not match on 6q/6sx/7d/23-apbx/28-abbh/28-apbx then 8
+>>>>>>
+>>>>>> if does not match on 6q/6sx/7d/23-apbh then 16
+>>>>>>
+>>>>>> But if there is a better way to validate the above, please do tell.
+>>>>>
+>>>>> Then your existing if:then: is also not correct because you require for
+>>>>> fsl,imx28-dma-apbh (as it is not in second if:then:) const:16. Just
+>>>>> don't require it.
+>>>>
+>>>> So, shall I just drop the entire allOf: section ?
+>>>
+>>> No, what about the interrupts?
+>>
+>> The interrupts and dma-channels are matched 1:1 for this controller, 1
+>> DMA channel, 1 interrupt. 16 dma channels means 16 interrupts .
+> 
+> Ah, then probably you need to drop entire allOf,.
 
-Wait, not entirely... no constraints for clocks and regs?
-
-Best regards,
-Krzysztof
-
+Oh well ... too bad.
