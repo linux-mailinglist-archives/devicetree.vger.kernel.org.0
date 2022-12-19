@@ -2,165 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C937650C60
-	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 14:04:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 03C32650C63
+	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 14:05:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231689AbiLSNEZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Dec 2022 08:04:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60596 "EHLO
+        id S231720AbiLSNFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Dec 2022 08:05:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231158AbiLSNEY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 08:04:24 -0500
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84E911151;
-        Mon, 19 Dec 2022 05:04:23 -0800 (PST)
-X-IronPort-AV: E=McAfee;i="6500,9779,10565"; a="299019040"
-X-IronPort-AV: E=Sophos;i="5.96,255,1665471600"; 
-   d="scan'208";a="299019040"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Dec 2022 05:04:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10565"; a="774922088"
-X-IronPort-AV: E=Sophos;i="5.96,255,1665471600"; 
-   d="scan'208";a="774922088"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga004.jf.intel.com with ESMTP; 19 Dec 2022 05:04:09 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andy@kernel.org>)
-        id 1p7FoM-00CISa-1q;
-        Mon, 19 Dec 2022 15:04:06 +0200
-Date:   Mon, 19 Dec 2022 15:04:06 +0200
-From:   Andy Shevchenko <andy@kernel.org>
-To:     Binbin Zhou <zhoubinbin@loongson.cn>
-Cc:     Wolfram Sang <wsa@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
-        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>, Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>
-Subject: Re: [PATCH V7 3/4] i2c: ls2x: Add driver for Loongson-2K/LS7A I2C
- controller
-Message-ID: <Y6BhRsPAU30Dqbdv@smile.fi.intel.com>
-References: <cover.1671451604.git.zhoubinbin@loongson.cn>
- <d44eb07245020431f98fd08e0c05b6926fb31b24.1671451604.git.zhoubinbin@loongson.cn>
+        with ESMTP id S231158AbiLSNFF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 08:05:05 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 745C11151
+        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 05:05:03 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id bf43so13537487lfb.6
+        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 05:05:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=uEl6FOWuKZ6UAvDbu88RJHguk6sS9ZMQHT6dYgluwo8=;
+        b=R/5PgBXYN7w1BEUCUag9ctmn2yHfIYDc+7U39SyBATEkLrp1YnFu2oN66OukgektU/
+         mbno7A9xcaWtKv9gWhNdsBdyYtoapM6RAYvSUtNC8ptvyQC7HngaSIT5/bUD8TFhnsva
+         SpPT27ILprpmZUHuijYB1j5Lng7rDSDxlR/VIm3s7yNcMIR2OpzEDgdlVPd9Hg/tC84Z
+         bipcn9Cr4tA+hZsFOoaIFW6PCI1VMpaGbJvj/GDEG522BbqhyTecbt9rDohQgQuldaCg
+         AibJcJlF23LXi5pvb/QVwNQjhK6avWxKxXUVw46FIbFZ1ApZ+DgW6y6RE7Kq04zs2Gcf
+         QPaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=uEl6FOWuKZ6UAvDbu88RJHguk6sS9ZMQHT6dYgluwo8=;
+        b=QEgUJDmmNa0NH0v2ciLZoNQGGhh0kpP26ax8GL9d5muGlktNXhFW/YKEu9nn+HAozA
+         e/hzHKnvucxGdtFC9+4imO9ivawTvP7GjetJTwJ+F+XMyFWYZDHPEaflPtRUfIfcdkBW
+         yGiBu0r1lU+LkybrnAcrfO+ywA8Mhx7Ho+Mmlxf4mbgK1EGTAkpqWYDwTfdpZ3P5Ctfa
+         bNwVsxYSb9HJeu5ZOL4YXvnFGtIfRXy97ldUpHMwptWm0LyrA8jeQuK/Nbr2aG2nKf7c
+         4qr+/+sbyZ4c0i1022mOCFeM3o0AzRvg/UxIAsmwFQrTKt1su1VuTJb9/1h9ZLLVE/39
+         iglw==
+X-Gm-Message-State: ANoB5pmcwAyIfOPb0EQn4uTN2zN6lauz5Oa12N12yS8UzxfmdTlnKk8m
+        dYl1xVfFax6HGX3iOL/+a5jmvA==
+X-Google-Smtp-Source: AA0mqf4f6yLjzCLg63fIkw03LtleqxYyfk7pE3QJAm9UmsEgN4eh100In7UsKiQD/PwDJArNOWxX6g==
+X-Received: by 2002:a19:e051:0:b0:4b5:b7be:136b with SMTP id g17-20020a19e051000000b004b5b7be136bmr10806206lfj.69.1671455101743;
+        Mon, 19 Dec 2022 05:05:01 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id z11-20020a056512370b00b004b4f1ea713csm1097577lfr.73.2022.12.19.05.04.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Dec 2022 05:05:00 -0800 (PST)
+Message-ID: <8db62d1a-365c-d41d-90aa-4c78c5d5e9ce@linaro.org>
+Date:   Mon, 19 Dec 2022 14:04:59 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d44eb07245020431f98fd08e0c05b6926fb31b24.1671451604.git.zhoubinbin@loongson.cn>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_SOFTFAIL autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v3] dt-bindings: display: rockchip: convert
+ rockchip-lvds.txt to YAML
+To:     Johan Jonker <jbx6244@gmail.com>, heiko@sntech.de
+Cc:     hjc@rock-chips.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, airlied@gmail.com,
+        daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <fd51df66-147d-d40f-913e-385625a71984@gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <fd51df66-147d-d40f-913e-385625a71984@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 19, 2022 at 08:28:33PM +0800, Binbin Zhou wrote:
-> This I2C module is integrated into the Loongson-2K SoCs and Loongson
-> LS7A bridge chip.
-
-Almost there, see my comments below (note, you have ~1w of time before this
-can be applied anyway, so take you time for carefully addressing comments,
-(re-)testing, etc.).
-
-...
-
-> @@ -888,6 +888,17 @@ config I2C_OWL
->  	  Say Y here if you want to use the I2C bus controller on
->  	  the Actions Semiconductor Owl SoC's.
->  
-> +config I2C_LS2X
-
-I believe in Latin alphabet L goes before O...
-
-> +	tristate "Loongson LS2X I2C adapter"
-> +	depends on MACH_LOONGSON64 || COMPILE_TEST
-> +	help
-> +	  If you say yes to this option, support will be included for the
-> +	  I2C interface on the Loongson-2K SoCs and Loongson LS7A bridge
-> +	  chip.
+On 19/12/2022 13:32, Johan Jonker wrote:
+> Convert rockchip-lvds.txt to YAML.
+> 
+> Changed:
+>   Add power-domains property.
+>   Requirements between PX30 and RK3288
+> 
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> ---
+> 
+> Changed V3:
+>   Filename matching compatible style
+>   Drop "Regulator phandle for "
+>   Specify properties and requirements per SoC
+>   Sort order and restyle
+> 
+> Changed V2:
+>   Fix title
+> ---
+>  .../display/rockchip/rockchip,lvds.yaml       | 170 ++++++++++++++++++
+>  .../display/rockchip/rockchip-lvds.txt        |  92 ----------
+>  2 files changed, 170 insertions(+), 92 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip,lvds.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip-lvds.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,lvds.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,lvds.yaml
+> new file mode 100644
+> index 000000000..03b002a05
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,lvds.yaml
+> @@ -0,0 +1,170 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/rockchip/rockchip,lvds.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	  This driver can also be built as a module. If so, the module
-> +	  will be called i2c-ls2x.
+> +title: Rockchip low-voltage differential signal (LVDS) transmitter
 > +
->  config I2C_PASEMI
->  	tristate "PA Semi SMBus interface"
->  	depends on PPC_PASEMI && PCI
-
-...
-
->  obj-$(CONFIG_I2C_MXS)		+= i2c-mxs.o
->  obj-$(CONFIG_I2C_NOMADIK)	+= i2c-nomadik.o
->  obj-$(CONFIG_I2C_NPCM)		+= i2c-npcm7xx.o
-> +obj-$(CONFIG_I2C_LS2X)		+= i2c-ls2x.o
-
-...and even before n and m.
-
->  obj-$(CONFIG_I2C_OCORES)	+= i2c-ocores.o
->  obj-$(CONFIG_I2C_OMAP)		+= i2c-omap.o
->  obj-$(CONFIG_I2C_OWL)		+= i2c-owl.o
-
-...
-
-> +static int ls2x_i2c_xfer_one(struct i2c_adapter *adap,
-> +			     struct i2c_msg *msg, bool stop)
-> +{
-> +	int ret;
-> +	bool is_read = msg->flags & I2C_M_RD;
-> +	struct ls2x_i2c_priv *priv = i2c_get_adapdata(adap);
+> +maintainers:
+> +  - Sandy Huang <hjc@rock-chips.com>
+> +  - Heiko Stuebner <heiko@sntech.de>
 > +
-> +	/* Contains steps to send start condition and address */
-> +	ret = ls2x_i2c_start(adap, msg);
-> +	if (!ret) {
-> +		if (is_read)
-> +			ret = ls2x_i2c_rx(adap, msg->buf, msg->len);
-> +		else
-> +			ret = ls2x_i2c_tx(adap, msg->buf, msg->len);
-
-> +		if (!ret && stop)
-> +			ret = ls2x_i2c_stop(adap);
-
-So, we will send stop here...
-
-> +	}
-
-> +	if (ret == -ENXIO)
-> +		ls2x_i2c_stop(adap);
-
-...and if it fails, we send it again here. Is it okay?
-
-> +	else if (ret < 0)
-> +		ls2x_i2c_init(priv);
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,px30-lvds
+> +      - rockchip,rk3288-lvds
 > +
-> +	return ret;
-> +}
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: pclk_lvds
+> +
+> +  avdd1v0-supply:
+> +    description: 1.0V analog power.
+> +
+> +  avdd1v8-supply:
+> +    description: 1.8V analog power.
+> +
+> +  avdd3v3-supply:
+> +    description: 3.3V analog power.
+> +
+> +  rockchip,grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: Phandle to the general register files syscon.
+> +
+> +  rockchip,output:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    enum: [rgb, lvds, duallvds]
+> +    description: This describes the output interface.
+> +
+> +  phys:
+> +    maxItems: 1
+> +
+> +  phy-names:
+> +    const: dphy
+> +
+> +  pinctrl-names:
+> +    const: lcdc
+> +
+> +  pinctrl-0: true
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Video port 0 for the VOP input.
+> +          The remote endpoint maybe vopb or vopl.
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Video port 1 for either a panel or subsequent encoder.
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +
+> +required:
+> +  - compatible
+> +  - rockchip,grf
+> +  - rockchip,output
+> +  - ports
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: rockchip,px30-lvds
+> +
+> +    then:
+> +      properties:
+> +        reg: false
+> +        clocks: false
+> +        clock-names: false
+> +        avdd1v0-supply: false
+> +        avdd1v8-supply: false
+> +        avdd3v3-supply: false
+> +
 
-...
+I see one compatible expects regmap from parent (grf is the parent here)
+and other is directly on MMIO bus. Not the best combination... Maybe
+this  should be just split to two separate bindings? Looking at driver,
+their code is also very different between these two variants.
 
-> +		ret = ls2x_i2c_xfer_one(adap, msg, msg == (emsg - 1));
-
-Too many parentheses, isn't it?
-
-> +		if (ret)
-> +			return ret;
-
-...
-
-> +	r = devm_request_irq(dev, irq, ls2x_i2c_isr, IRQF_SHARED, "ls2x-i2c",
-> +			     priv);
-
-Everywhere else you use 'ret', why is 'r' here?
-
-> +	if (r < 0)
-> +		return dev_err_probe(dev, r, "Unable to request irq %d\n", irq);
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+Best regards,
+Krzysztof
 
