@@ -2,141 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70BE46514A0
-	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 22:08:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A3F86514BC
+	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 22:22:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232700AbiLSVH6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Dec 2022 16:07:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41534 "EHLO
+        id S232700AbiLSVWN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Dec 2022 16:22:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232593AbiLSVHy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 16:07:54 -0500
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E325CE25
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 13:07:51 -0800 (PST)
-Received: by mail-lj1-x236.google.com with SMTP id n1so10486563ljg.3
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 13:07:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=DvDFRM+cIsRIk+HqgujcIiOfyICxAxZ5sfBT0wH/F0w=;
-        b=hpybuwdtfx5Ig/p4JwDOF5ggHdKpWlXU5aP/RV04mEmmy3DqzGUiI3+9gHNzeTDm9L
-         GqypwiESMeD44/3G78iWvyJQPpDlCg08IMLmFAMyPuLs6FgDoDilntwlc4AEeI37Cszm
-         bYKmGKEKFLlLBR7FTCbCI4Wch61JbEbrGgmXyGbK9MGObrhJLy6PR1kfHe2CrP5A6g1Q
-         Rf1uCtE4q7Mfzwjnn2kqE6H2ny2GFTWenxke03HJ6pdHaCYEMRM5BI4l0m/b8hJ4rgup
-         54awbrrDz8GYEYZoEH+ZX905D5jHFWzE6Nq3uz3zWINYUZYf5ZhoeNL81OO2mpav/37L
-         83Mw==
+        with ESMTP id S232372AbiLSVWM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 16:22:12 -0500
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9D1613E22;
+        Mon, 19 Dec 2022 13:22:11 -0800 (PST)
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-1447c7aa004so13150685fac.11;
+        Mon, 19 Dec 2022 13:22:11 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DvDFRM+cIsRIk+HqgujcIiOfyICxAxZ5sfBT0wH/F0w=;
-        b=4HPAUH634RN4Oasb+eo09hLNqJfGFor04aewy6Zt4TRyK9RbQ4Q3yb6nq6Gpup2zma
-         GGZao1TEzGsEFaopJYcVH3kcSgqZ+PXUc57oQTAKQF1irC6XIjrQF3yCoOEWD1mkMTtR
-         seYOgwiX5z7vcimtvGI5wev4Ryf1m/JJHOiz+DhdDn2+2GdYkFLcCI2dY/loaF09VNAA
-         SC0u5M/RSbWO/5KwWoK5vNX1M43QCLOKHK6cMh6TOTiXGFRMfFsNblrdubJ9CdvW6e1G
-         G/4zfWy2XUt6MdS2qX5T6KOYzvQ9GpXfBiPGxF6QeiuSGCqW2rcrhj4GthIxXjTa2jZ2
-         wFOA==
-X-Gm-Message-State: ANoB5pl0vJQZ1GPQ5I5Nl9TxR9NXsuuGzWkPMcl4FgqcbdxU11RAoPOT
-        aAcpNVnEDQgL7xGAEOdj2sQDVjV8ZxxaVdBhSo006Q==
-X-Google-Smtp-Source: AA0mqf7yh+36itgm76QOQNXUPNSIh1XAiQ1h3fas3L7sHK0kevEvJn+HhC5t4DANokXbaBLR76Kk/IEFhKA2q7XG/jE=
-X-Received: by 2002:a05:651c:c87:b0:27b:afc1:da9 with SMTP id
- bz7-20020a05651c0c8700b0027bafc10da9mr1862896ljb.218.1671484069613; Mon, 19
- Dec 2022 13:07:49 -0800 (PST)
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=mWZmLhv4tQqRJ/5IIdUzdyuJRsJ9N97/ffK3QG3ROhE=;
+        b=YkUYfcSMKPhdAb1I45Mg9DCAF5jJvER5IyRt9rcpN2P0js3lv9WyLSoShxngHLtJ6S
+         07Tx3pc3tdynvW2NSLRBLYfQAxp3g7PvEc1EyWKij+ykQuL5RXM+IsHkcESZMcn42dFe
+         iKJGcrjv7PCbmvzNuucsmh4KAdYTtIh61PnJzTcisR/CFm8vPb7FajwiPM0mDyu8dKoh
+         EpIn+So5+a5fTy+kC3gxwjsWhwL9YusiiN1butWzuor5pO0nKUK4h3D3wvJ7XY1XcOUI
+         17GAP6t+JTMYoGP16XjD233WkXhPwQR7ycRfzLt78SV4uSgdKW17kTDjckj4FjPPFnBG
+         4RvA==
+X-Gm-Message-State: AFqh2kqxg5GW6R56g8Ka6ZFag7hqb9/ftNffqKBw8LN+YzqxT2cJ9UoI
+        k2B3Es2QsY3xJ9N2Z5gULg==
+X-Google-Smtp-Source: AMrXdXvblcyvfksVkdMDmGQbTDb0F0OxjJ0/LA2SmlJcfOIDgs8zGzq2O65SptMl7iqmYzbMH6kgLQ==
+X-Received: by 2002:a05:6870:da09:b0:14b:f696:3ee9 with SMTP id go9-20020a056870da0900b0014bf6963ee9mr4554263oab.13.1671484931150;
+        Mon, 19 Dec 2022 13:22:11 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id k48-20020a4a94b3000000b004a0918698f9sm4364886ooi.17.2022.12.19.13.22.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Dec 2022 13:22:10 -0800 (PST)
+Received: (nullmailer pid 2350835 invoked by uid 1000);
+        Mon, 19 Dec 2022 21:22:08 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-References: <20221219155616.848690-1-benjamin.gaignard@collabora.com>
-In-Reply-To: <20221219155616.848690-1-benjamin.gaignard@collabora.com>
-From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Date:   Mon, 19 Dec 2022 18:07:38 -0300
-Message-ID: <CAAEAJfBP_D65kjHbwYP+LWfWKfzFtHtWo+3bDcbdO8tPtBurUA@mail.gmail.com>
-Subject: Re: [PATCH v1 0/9] AV1 stateless decoder for RK3588
-To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Cc:     p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
-        daniel.almeida@collabora.com, nicolas.dufresne@collabora.co.uk,
-        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+In-Reply-To: <20221219191125.1974879-1-robh@kernel.org>
+References: <20221219191125.1974879-1-robh@kernel.org>
+Message-Id: <167148427205.2336021.7936012930229650977.robh@kernel.org>
+Subject: Re: [PATCH] regulator: dt-bindings: Convert Fairchild FAN53555 to DT schema
+Date:   Mon, 19 Dec 2022 15:22:08 -0600
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Benjamin,
 
-On Mon, Dec 19, 2022 at 12:56 PM Benjamin Gaignard
-<benjamin.gaignard@collabora.com> wrote:
->
-> This series implement AV1 stateless decoder for RK3588 SoC.
-> The harware support 8 and 10 bits bitstreams up to 7680x4320.
-> AV1 feature like film grain or scaling are done by the postprocessor.
-> The driver can produce NV12_4L4 and NV12 pixel formats.
-> A native 10bits NV12_4L4 format is possible but need more investigation
-> to be completly documented and enabled.
->
-> It is based on Daniel's "[RFC,v3] media: Add AV1 uAPI" [1] patches and
-> Sebastian's device-tree patches for RK3588.
->
+On Mon, 19 Dec 2022 13:11:25 -0600, Rob Herring wrote:
+> Convert the Fairchild FAN53555 and compatible variants binding to DT
+> schema format.
+> 
+> The example was missing 'reg', so add it.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../bindings/regulator/fan53555.txt           | 24 --------
+>  .../bindings/regulator/fcs,fan53555.yaml      | 59 +++++++++++++++++++
+>  2 files changed, 59 insertions(+), 24 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/regulator/fan53555.txt
+>  create mode 100644 Documentation/devicetree/bindings/regulator/fcs,fan53555.yaml
+> 
 
-I thought the AV1 decoder in RK3588 was really a separate hardware
-from the Hantro G1/G2.
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-Shouldn't this need a new driver for this new hardware?
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
-Thanks!
-Ezequiel
+Full log is available here: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221219191125.1974879-1-robh@kernel.org
 
-> The full branch can be found here:
-> https://gitlab.collabora.com/linux/for-upstream/-/commits/rk3588_av1_decoder_v1
->
-> Fluster score is: 151/239 while testing AV1-TEST-VECTORS with GStreamer-AV1-V4L2SL-Gst1.0.
-> The failing tests are:
-> - 10bits bitstream because 10bits output formats aren't yet implemented.
-> - the 2 tests with 2 spatial layers: few errors in luma/chroma values
-> - tests with resolution < hardware limit (64x64)
->
-> Benjamin
->
-> Benjamin Gaignard (9):
->   dt-bindings: media: rockchip-vpu: Add rk3588 vpu compatible
->   media: verisilicon: Add AV1 decoder mode and controls
->   media: verisilicon: Save bit depth for AV1 decoder
->   media: verisilicon: Check AV1 bitstreams bit depth
->   media: verisilicon: Compute motion vectors size for AV1 frames
->   media: verisilicon: Add AV1 entropy helpers
->   media: verisilicon: Add Rockchip AV1 decoder
->   media: verisilicon: Add film grain feature to AV1 driver
->   media: verisilicon: Enable AV1 decoder on rk3588
->
->  .../bindings/media/rockchip-vpu.yaml          |    1 +
->  drivers/media/platform/verisilicon/Makefile   |    3 +
->  drivers/media/platform/verisilicon/hantro.h   |    5 +
->  .../media/platform/verisilicon/hantro_drv.c   |   54 +
->  .../media/platform/verisilicon/hantro_hw.h    |  102 +
->  .../platform/verisilicon/hantro_postproc.c    |    3 +
->  .../media/platform/verisilicon/hantro_v4l2.c  |    5 +
->  .../verisilicon/rockchip_av1_entropymode.c    | 4536 +++++++++++++++++
->  .../verisilicon/rockchip_av1_entropymode.h    |  272 +
->  .../verisilicon/rockchip_av1_filmgrain.c      |  401 ++
->  .../verisilicon/rockchip_av1_filmgrain.h      |   36 +
->  .../verisilicon/rockchip_vpu981_hw_av1_dec.c  | 2280 +++++++++
->  .../verisilicon/rockchip_vpu981_regs.h        |  477 ++
->  .../platform/verisilicon/rockchip_vpu_hw.c    |  116 +
->  14 files changed, 8291 insertions(+)
->  create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_entropymode.c
->  create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_entropymode.h
->  create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_filmgrain.c
->  create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_filmgrain.h
->  create mode 100644 drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
->  create mode 100644 drivers/media/platform/verisilicon/rockchip_vpu981_regs.h
->
-> --
-> 2.34.1
->
+
+regulator@40: Unevaluated properties are not allowed ('regulator-compatible', 'vsel-gpios' were unexpected)
+	arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dtb
+
+regulator@40: Unevaluated properties are not allowed ('regulator-init-microvolt' was unexpected)
+	arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353p.dtb
+	arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg503.dtb
+
+regulator@41: Unevaluated properties are not allowed ('regulator-compatible', 'vsel-gpios' were unexpected)
+	arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dtb
+
+regulator@60: Unevaluated properties are not allowed ('vsel-gpios' was unexpected)
+	arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dtb
+	arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dtb
+
+syr827@40: Unevaluated properties are not allowed ('regulator-compatible' was unexpected)
+	arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dtb
+
+syr828@41: Unevaluated properties are not allowed ('regulator-compatible' was unexpected)
+	arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dtb
+
