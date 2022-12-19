@@ -2,141 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C859B65146F
-	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 21:52:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70BE46514A0
+	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 22:08:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232658AbiLSUwW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Dec 2022 15:52:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34564 "EHLO
+        id S232700AbiLSVH6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Dec 2022 16:07:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232760AbiLSUvt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 15:51:49 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 303A214032
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 12:51:44 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id 1so15546382lfz.4
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 12:51:44 -0800 (PST)
+        with ESMTP id S232593AbiLSVHy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 16:07:54 -0500
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E325CE25
+        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 13:07:51 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id n1so10486563ljg.3
+        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 13:07:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Vz0gc2fIsvgndZrJ67LKywnyviecBh18rwcvp2t84Fw=;
-        b=nf6XxcHkdQC2FMDbYR9XAhPdkk2xaGquNl3GuERuC4t50ok1sYXsase9CbyZDkwnIl
-         uawAJR/j2g2EwktEiKGOs6yunQFYLYGjTivUZM7ymkb+9U/qryXGYIbnQS0UeygfXFcb
-         2j7sxTReJrJSrKQW8vXZyDEpqyIThKRL/cpK30PZVqphi2R5J8z4vl0tYYIL8+VVhBKH
-         wWj9Ed6rJo+W8/hvtt2AXOyZqKxMcjWwoxb93eAv5LdWFTl1cnRCcaPocduf/efJRtcF
-         SYMA1ZcUX4qV265HO38TjKDi7ZIhEp+5FSydlJoPcfM5qGC/kTSpibou+Q2lgZU0HWiZ
-         AAZw==
+        d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=DvDFRM+cIsRIk+HqgujcIiOfyICxAxZ5sfBT0wH/F0w=;
+        b=hpybuwdtfx5Ig/p4JwDOF5ggHdKpWlXU5aP/RV04mEmmy3DqzGUiI3+9gHNzeTDm9L
+         GqypwiESMeD44/3G78iWvyJQPpDlCg08IMLmFAMyPuLs6FgDoDilntwlc4AEeI37Cszm
+         bYKmGKEKFLlLBR7FTCbCI4Wch61JbEbrGgmXyGbK9MGObrhJLy6PR1kfHe2CrP5A6g1Q
+         Rf1uCtE4q7Mfzwjnn2kqE6H2ny2GFTWenxke03HJ6pdHaCYEMRM5BI4l0m/b8hJ4rgup
+         54awbrrDz8GYEYZoEH+ZX905D5jHFWzE6Nq3uz3zWINYUZYf5ZhoeNL81OO2mpav/37L
+         83Mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vz0gc2fIsvgndZrJ67LKywnyviecBh18rwcvp2t84Fw=;
-        b=er8qO6XH8YAbVx6w0C21G7dDRfb9zLPKVgX5d4QZkZqaZHsIGaD/BBS/xl/M5cfRMA
-         MC9/D3/1qrpXpXqP/tGSXhITnon0aXSY7U9adxbu5pwcTn15YWSeJpXzqGgfM6r6d7+V
-         R4J58XnZEdCiwpC8xhTn0MAZe0iV8MKvNIB4CnzYv1AO7IMc8BiIT3mGKQdKf17NMUtx
-         dBVnwWwtsOf9AmGpcjv4glFPIVsqZxk62HFwY79pv/yX40/N5P+JHvNaEh1PcC7XBGGa
-         mxDLgAtY9HgmxhM//usNdn0BwGq+R4VZMW1CYw2BrkU8jRFkelHGxj9c308CGn9DjwAS
-         QaiA==
-X-Gm-Message-State: ANoB5plSzntu3CS9OBS0qpraqv2XYXn0xM/rr0LV6cOEoBcs2N2ej3e4
-        q9Qyl5ZV41DS5BClzM+XrTJRPQ==
-X-Google-Smtp-Source: AA0mqf6CB4pooKYg9NjiLjkT2SYb0YciwIVIJ0CFILLTIYRz/BmCumCuClKBt4taEUaN5PoMzv74wQ==
-X-Received: by 2002:ac2:5e29:0:b0:4b5:b10b:6824 with SMTP id o9-20020ac25e29000000b004b5b10b6824mr11054994lfg.55.1671483102454;
-        Mon, 19 Dec 2022 12:51:42 -0800 (PST)
-Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id z19-20020ac25df3000000b00498fbec3f8asm1192956lfq.129.2022.12.19.12.51.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Dec 2022 12:51:42 -0800 (PST)
-Message-ID: <741887b5-8f83-4db5-bb17-755afc18716d@linaro.org>
-Date:   Mon, 19 Dec 2022 21:51:40 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DvDFRM+cIsRIk+HqgujcIiOfyICxAxZ5sfBT0wH/F0w=;
+        b=4HPAUH634RN4Oasb+eo09hLNqJfGFor04aewy6Zt4TRyK9RbQ4Q3yb6nq6Gpup2zma
+         GGZao1TEzGsEFaopJYcVH3kcSgqZ+PXUc57oQTAKQF1irC6XIjrQF3yCoOEWD1mkMTtR
+         seYOgwiX5z7vcimtvGI5wev4Ryf1m/JJHOiz+DhdDn2+2GdYkFLcCI2dY/loaF09VNAA
+         SC0u5M/RSbWO/5KwWoK5vNX1M43QCLOKHK6cMh6TOTiXGFRMfFsNblrdubJ9CdvW6e1G
+         G/4zfWy2XUt6MdS2qX5T6KOYzvQ9GpXfBiPGxF6QeiuSGCqW2rcrhj4GthIxXjTa2jZ2
+         wFOA==
+X-Gm-Message-State: ANoB5pl0vJQZ1GPQ5I5Nl9TxR9NXsuuGzWkPMcl4FgqcbdxU11RAoPOT
+        aAcpNVnEDQgL7xGAEOdj2sQDVjV8ZxxaVdBhSo006Q==
+X-Google-Smtp-Source: AA0mqf7yh+36itgm76QOQNXUPNSIh1XAiQ1h3fas3L7sHK0kevEvJn+HhC5t4DANokXbaBLR76Kk/IEFhKA2q7XG/jE=
+X-Received: by 2002:a05:651c:c87:b0:27b:afc1:da9 with SMTP id
+ bz7-20020a05651c0c8700b0027bafc10da9mr1862896ljb.218.1671484069613; Mon, 19
+ Dec 2022 13:07:49 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm8450: Use GIC-ITS for PCIe0 and
- PCIe1
-Content-Language: en-US
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     bhelgaas@google.com, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221219191427.480085-1-manivannan.sadhasivam@linaro.org>
- <20221219191427.480085-4-manivannan.sadhasivam@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221219191427.480085-4-manivannan.sadhasivam@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20221219155616.848690-1-benjamin.gaignard@collabora.com>
+In-Reply-To: <20221219155616.848690-1-benjamin.gaignard@collabora.com>
+From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Date:   Mon, 19 Dec 2022 18:07:38 -0300
+Message-ID: <CAAEAJfBP_D65kjHbwYP+LWfWKfzFtHtWo+3bDcbdO8tPtBurUA@mail.gmail.com>
+Subject: Re: [PATCH v1 0/9] AV1 stateless decoder for RK3588
+To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Cc:     p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
+        daniel.almeida@collabora.com, nicolas.dufresne@collabora.co.uk,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Benjamin,
 
+On Mon, Dec 19, 2022 at 12:56 PM Benjamin Gaignard
+<benjamin.gaignard@collabora.com> wrote:
+>
+> This series implement AV1 stateless decoder for RK3588 SoC.
+> The harware support 8 and 10 bits bitstreams up to 7680x4320.
+> AV1 feature like film grain or scaling are done by the postprocessor.
+> The driver can produce NV12_4L4 and NV12 pixel formats.
+> A native 10bits NV12_4L4 format is possible but need more investigation
+> to be completly documented and enabled.
+>
+> It is based on Daniel's "[RFC,v3] media: Add AV1 uAPI" [1] patches and
+> Sebastian's device-tree patches for RK3588.
+>
 
-On 19.12.2022 20:14, Manivannan Sadhasivam wrote:
-> Both PCIe0 and PCIe1 controllers are capable of receiving MSIs from
-> endpoint devices using GIC-ITS MSI controller. Add support for it.
-> 
-> Currently, BDF (0:0.0) and BDF (1:0.0) are enabled and with the
-> msi-map-mask of 0xff00, all the 32 devices under these two busses can
-> share the same Device ID.
-> 
-> The GIC-ITS MSI implementation provides an advantage over internal MSI
-> implementation using Locality-specific Peripheral Interrupts (LPI) that
-> would allow MSIs to be targeted for each CPU core.
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
-This breaks PCIe Wi-Fi on Xperia 1 IV:
+I thought the AV1 decoder in RK3588 was really a separate hardware
+from the Hantro G1/G2.
 
-[   32.711199] ath11k_pci 0000:01:00.0: Adding to iommu group 5
-[   32.713738] ath11k_pci 0000:01:00.0: BAR 0: assigned [mem 0x60400000-0x605fffff 64bit]
-[   32.715447] ath11k_pci 0000:01:00.0: MSI vectors: 32
-[   32.715485] ath11k_pci 0000:01:00.0: wcn6855 hw2.1
-[   32.873873] mhi mhi0: Requested to power ON
-[   32.873896] mhi mhi0: Power on setup success
-[   65.161798] arm-smmu 15000000.iommu: Unhandled context fault: fsr=0x402, iova=0x91517088, fsynr=0x640001, cbfrsynra=0x1c00, cb=5
+Shouldn't this need a new driver for this new hardware?
 
+Thanks!
+Ezequiel
 
-Konrad
->  arch/arm64/boot/dts/qcom/sm8450.dtsi | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> index 570475040d95..276ceba4c247 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> @@ -1733,9 +1733,9 @@ pcie0: pci@1c00000 {
->  			ranges = <0x01000000 0x0 0x60200000 0 0x60200000 0x0 0x100000>,
->  				 <0x02000000 0x0 0x60300000 0 0x60300000 0x0 0x3d00000>;
->  
-> -			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
-> -			interrupt-names = "msi";
-> -			#interrupt-cells = <1>;
-> +			msi-map = <0x0 &gic_its 0x5980 0x1>,
-> +				  <0x100 &gic_its 0x5981 0x1>;
-> +			msi-map-mask = <0xff00>;
->  			interrupt-map-mask = <0 0 0 0x7>;
->  			interrupt-map = <0 0 0 1 &intc 0 0 0 149 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
->  					<0 0 0 2 &intc 0 0 0 150 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
-> @@ -1842,9 +1842,9 @@ pcie1: pci@1c08000 {
->  			ranges = <0x01000000 0x0 0x40200000 0 0x40200000 0x0 0x100000>,
->  				 <0x02000000 0x0 0x40300000 0 0x40300000 0x0 0x1fd00000>;
->  
-> -			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>;
-> -			interrupt-names = "msi";
-> -			#interrupt-cells = <1>;
-> +			msi-map = <0x0 &gic_its 0x5a01 0x1>,
-> +				  <0x100 &gic_its 0x5a00 0x1>;
-> +			msi-map-mask = <0xff00>;
->  			interrupt-map-mask = <0 0 0 0x7>;
->  			interrupt-map = <0 0 0 1 &intc 0 0 0 434 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
->  					<0 0 0 2 &intc 0 0 0 435 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
+> The full branch can be found here:
+> https://gitlab.collabora.com/linux/for-upstream/-/commits/rk3588_av1_decoder_v1
+>
+> Fluster score is: 151/239 while testing AV1-TEST-VECTORS with GStreamer-AV1-V4L2SL-Gst1.0.
+> The failing tests are:
+> - 10bits bitstream because 10bits output formats aren't yet implemented.
+> - the 2 tests with 2 spatial layers: few errors in luma/chroma values
+> - tests with resolution < hardware limit (64x64)
+>
+> Benjamin
+>
+> Benjamin Gaignard (9):
+>   dt-bindings: media: rockchip-vpu: Add rk3588 vpu compatible
+>   media: verisilicon: Add AV1 decoder mode and controls
+>   media: verisilicon: Save bit depth for AV1 decoder
+>   media: verisilicon: Check AV1 bitstreams bit depth
+>   media: verisilicon: Compute motion vectors size for AV1 frames
+>   media: verisilicon: Add AV1 entropy helpers
+>   media: verisilicon: Add Rockchip AV1 decoder
+>   media: verisilicon: Add film grain feature to AV1 driver
+>   media: verisilicon: Enable AV1 decoder on rk3588
+>
+>  .../bindings/media/rockchip-vpu.yaml          |    1 +
+>  drivers/media/platform/verisilicon/Makefile   |    3 +
+>  drivers/media/platform/verisilicon/hantro.h   |    5 +
+>  .../media/platform/verisilicon/hantro_drv.c   |   54 +
+>  .../media/platform/verisilicon/hantro_hw.h    |  102 +
+>  .../platform/verisilicon/hantro_postproc.c    |    3 +
+>  .../media/platform/verisilicon/hantro_v4l2.c  |    5 +
+>  .../verisilicon/rockchip_av1_entropymode.c    | 4536 +++++++++++++++++
+>  .../verisilicon/rockchip_av1_entropymode.h    |  272 +
+>  .../verisilicon/rockchip_av1_filmgrain.c      |  401 ++
+>  .../verisilicon/rockchip_av1_filmgrain.h      |   36 +
+>  .../verisilicon/rockchip_vpu981_hw_av1_dec.c  | 2280 +++++++++
+>  .../verisilicon/rockchip_vpu981_regs.h        |  477 ++
+>  .../platform/verisilicon/rockchip_vpu_hw.c    |  116 +
+>  14 files changed, 8291 insertions(+)
+>  create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_entropymode.c
+>  create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_entropymode.h
+>  create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_filmgrain.c
+>  create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_filmgrain.h
+>  create mode 100644 drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
+>  create mode 100644 drivers/media/platform/verisilicon/rockchip_vpu981_regs.h
+>
+> --
+> 2.34.1
+>
