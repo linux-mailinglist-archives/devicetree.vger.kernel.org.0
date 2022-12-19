@@ -2,174 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B9EB6514E7
-	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 22:29:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61333651511
+	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 22:46:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232763AbiLSV3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Dec 2022 16:29:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50586 "EHLO
+        id S232117AbiLSVqN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Dec 2022 16:46:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232717AbiLSV3g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 16:29:36 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8CF713F4D
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 13:29:33 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id b13so15703191lfo.3
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 13:29:33 -0800 (PST)
+        with ESMTP id S232470AbiLSVqL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 16:46:11 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEE1E26D3
+        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 13:46:06 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id b3so15781954lfv.2
+        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 13:46:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bUcJbVxMOaJY/dHHh8xvsq+/igbf7VEloWZtT9T4IzU=;
-        b=rzxTEULuNPC0Sk1BptH9+AxtBNYpQ4FvyVS+RZXbKY2D7sBHJ+hvBHwrVH0tDi7Rvz
-         h4OqVfIgl0PXf8Ovl/2qSyZ/KoyDOz9b003uMNhVpm1J9JtBDCAKWeuWE15pPZW2gIIv
-         h2chuLEfXiovnqiNG9l6ZAuMR5mFNmzXxnQB4SVLDVxbGW409nYMSJQ8Jmpb0JuRijyo
-         okvz2kocRJ8wM8Iz2aai0aQ9EMHjWfEAQzNAt/EigCOd9aZW5+sIKW1ofP+jf5VWzLqc
-         ANlZC/28G3mnTqMXI1dTNeDbeSi+5h4yy7kRA41V1CQcQkqDfSx4HNK+10KuUXPbxWgi
-         7jYA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XB6cREulQAxqSm/nFa6k4wjD6bFB02amrV76mX+yCIs=;
+        b=XxoN9bRVvG18VXJeePFuxyk1L13yeJxtTlVRlH+RXOWKsZxCpJ2AAHvgl8VQ+UnsoC
+         1qhE0iFe0yCXrI++jKmPTPNLuJ+tjfnW0iIi4+rjTMjgEOEtm4IXF4zB7wSoFxAQd4Wc
+         Hp/IlT0TrSVrfecF4KnZZrzzQYI37AUQf9wQbS2Tr6CeIM9XxXt1agMGXbnY0i7YpK9T
+         grYk0E+YNwT9L043+5ME2Oo8Q6rJWz4tpFZ8I6cRp4PF0dX8alA5WqX/0fqqw8RqcuVP
+         uR0eDUunFyal/u53Y2zju3Swu2EDFsi69XnH/zhUK5zqZk9TvRgVWpZK1cRcu/onlyNN
+         GlOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bUcJbVxMOaJY/dHHh8xvsq+/igbf7VEloWZtT9T4IzU=;
-        b=e3mKTF0cTaz1KmN0Mr7L2JqUEnUVqoZdHW+X0imNRY1YuA5dvFnqy3JTZrjZ/gyn1P
-         d4KjkxTPQH54f/2Y2u9Lin09/hApUtOZDA9HPjCkS2rj56QLc77Bmvk/soKKPAHiqIqh
-         2Cy4kFHwegnmkfDTQVIhZGNO50/7L5C7u0gx1mF+zgJDx1dMjz4km41DInZJ93ucBGUP
-         J5ptK9Rvct3rmJa9g/OT7t6wB2+Ursk8q+Rz/1sz76/62oMAzBjtj79OHPuDFh5nolJ0
-         G8FpUGO0sIl5fLB6aL3uCZt+MUn+1F4SBbA73z9YhQGi2AaZzGaSVeVlUmJUb2BWPkXv
-         ePFg==
-X-Gm-Message-State: AFqh2kpFxPXiEsJyFs0uG0hyHYmcsMuaCNeRUX/k5ZiswU85DBhhdHZi
-        wVUJFz2ofPgGDO9O7MHK8jCnEkpxZG6+hPSvt8wRsA==
-X-Google-Smtp-Source: AMrXdXuizsuNjhFyKkOnbtLJwUqaBbpBBlxoGkLKHoZC+MtkShGjXM8bjGIdWmzqC9sIRApRvAJrUe+gsXpQ2zhJRfc=
-X-Received: by 2002:a05:6512:3f1e:b0:4c8:a047:8833 with SMTP id
- y30-20020a0565123f1e00b004c8a0478833mr206178lfa.653.1671485371730; Mon, 19
- Dec 2022 13:29:31 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XB6cREulQAxqSm/nFa6k4wjD6bFB02amrV76mX+yCIs=;
+        b=E8AJhc2gbhPN9dRiNX4rajIT1OcFToFAqCjf/GHKN0XFiS4/K2v5aFRFYqdAG1HMjk
+         vpzb9cEK0TZMxBPiBZcyyPBElQvIOyLzM2xVOMhkgzXiiO8XygyB5RbpdUIZoZNGK88p
+         G/jnVMib/zDRvzQKxx+w7mFfVCS79IoHIbMYv5rcGXIm5G4KMxxlyzXojTaGV7P5EBhh
+         GT5NME646Y7DaP3AWZdZ5KVINjTJrDP2v66FJ2O7kDQRU8oR/ra4zYXBDNm2GZ/lbXdI
+         YPXxGb5rXCezrvSL3EEBqVDq7dy0Ws51aq0ad2YTMp4wF2y6YG7akyJFpGLRNj+K7cYV
+         zw2g==
+X-Gm-Message-State: ANoB5pmw5XjS7J6Itwl4d1JM88Mqtv4Bxja3TOaTBYg3UHiP5RikyR3n
+        GKk/dxOrlxIDUXUZ3etnVA0Igw==
+X-Google-Smtp-Source: AA0mqf598/MCF/JjEFs4sytej/bZyytsruYpkdumZTQtJfjYvaqHK4GOJ3jxcNm12jWpnEvG729kiQ==
+X-Received: by 2002:a05:6512:304b:b0:4b5:892:3987 with SMTP id b11-20020a056512304b00b004b508923987mr24595255lfb.9.1671486365267;
+        Mon, 19 Dec 2022 13:46:05 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id a12-20020a056512200c00b004b700ba3cf3sm1205396lfb.203.2022.12.19.13.46.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Dec 2022 13:46:04 -0800 (PST)
+Message-ID: <6a59addb-b1a0-8536-c909-25c4c4447e09@linaro.org>
+Date:   Mon, 19 Dec 2022 23:46:03 +0200
 MIME-Version: 1.0
-References: <20221219155616.848690-1-benjamin.gaignard@collabora.com>
- <20221219155616.848690-4-benjamin.gaignard@collabora.com> <07747babe7f83a496f9cd82849c6c2386550ac28.camel@ndufresne.ca>
-In-Reply-To: <07747babe7f83a496f9cd82849c6c2386550ac28.camel@ndufresne.ca>
-From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Date:   Mon, 19 Dec 2022 18:29:20 -0300
-Message-ID: <CAAEAJfDoX_aSTg1TO8F21iSriYeTXtRbHPo8wxx5br2v6eCt7Q@mail.gmail.com>
-Subject: Re: [PATCH v1 3/9] media: verisilicon: Save bit depth for AV1 decoder
-To:     Nicolas Dufresne <nicolas@ndufresne.ca>
-Cc:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
-        daniel.almeida@collabora.com, nicolas.dufresne@collabora.co.uk,
-        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm8450: Use GIC-ITS for PCIe0 and
+ PCIe1
+Content-Language: en-GB
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     bhelgaas@google.com, konrad.dybcio@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221219191427.480085-1-manivannan.sadhasivam@linaro.org>
+ <20221219191427.480085-4-manivannan.sadhasivam@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221219191427.480085-4-manivannan.sadhasivam@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bonjour Nicolas,
+On 19/12/2022 21:14, Manivannan Sadhasivam wrote:
+> Both PCIe0 and PCIe1 controllers are capable of receiving MSIs from
+> endpoint devices using GIC-ITS MSI controller. Add support for it.
+> 
+> Currently, BDF (0:0.0) and BDF (1:0.0) are enabled and with the
+> msi-map-mask of 0xff00, all the 32 devices under these two busses can
+> share the same Device ID.
+> 
+> The GIC-ITS MSI implementation provides an advantage over internal MSI
+> implementation using Locality-specific Peripheral Interrupts (LPI) that
+> would allow MSIs to be targeted for each CPU core.
+> 
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 12 ++++++------
+>   1 file changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> index 570475040d95..276ceba4c247 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -1733,9 +1733,9 @@ pcie0: pci@1c00000 {
+>   			ranges = <0x01000000 0x0 0x60200000 0 0x60200000 0x0 0x100000>,
+>   				 <0x02000000 0x0 0x60300000 0 0x60300000 0x0 0x3d00000>;
+>   
+> -			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
+> -			interrupt-names = "msi";
+> -			#interrupt-cells = <1>;
+> +			msi-map = <0x0 &gic_its 0x5980 0x1>,
+> +				  <0x100 &gic_its 0x5981 0x1>;
 
-On Mon, Dec 19, 2022 at 5:37 PM Nicolas Dufresne <nicolas@ndufresne.ca> wro=
-te:
->
-> Le lundi 19 d=C3=A9cembre 2022 =C3=A0 16:56 +0100, Benjamin Gaignard a =
-=C3=A9crit :
-> > Store bit depth information from AV1 sequence control.
-> >
-> > Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> > ---
-> >  .../media/platform/verisilicon/hantro_drv.c   | 26 +++++++++++++++++++
-> >  1 file changed, 26 insertions(+)
-> >
-> > diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/drivers/=
-media/platform/verisilicon/hantro_drv.c
-> > index 4500e1fc0f2c..8e93710dcfed 100644
-> > --- a/drivers/media/platform/verisilicon/hantro_drv.c
-> > +++ b/drivers/media/platform/verisilicon/hantro_drv.c
-> > @@ -324,6 +324,25 @@ static int hantro_vp9_s_ctrl(struct v4l2_ctrl *ctr=
-l)
-> >       return 0;
-> >  }
-> >
-> > +static int hantro_av1_s_ctrl(struct v4l2_ctrl *ctrl)
-> > +{
-> > +     struct hantro_ctx *ctx;
-> > +
-> > +     ctx =3D container_of(ctrl->handler,
-> > +                        struct hantro_ctx, ctrl_handler);
-> > +
-> > +     switch (ctrl->id) {
-> > +     case V4L2_CID_STATELESS_AV1_SEQUENCE:
-> > +             ctx->bit_depth =3D ctrl->p_new.p_av1_sequence->bit_depth;
->
-> That seems a little be weak, what happens if you change the bit_depth wit=
-h a
-> non-request s_ctrl while its decoding ? To be this deserve a little bit o=
-f
-> protection, a something that validate and copy it at the start of the dec=
-oding.
->
+Does ITS support handling more than one MSI interrupt per device? 
+Otherwise it might be better to switch to multi-MSI scheme using SPI 
+interrupts.
 
-Oh, nice catch. We need to return EBUSY, see
-https://www.kernel.org/doc/html/v5.0/media/uapi/v4l/buffer.html#interaction=
-s-between-formats-controls-and-buffers.
+> +			msi-map-mask = <0xff00>;
+>   			interrupt-map-mask = <0 0 0 0x7>;
+>   			interrupt-map = <0 0 0 1 &intc 0 0 0 149 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
+>   					<0 0 0 2 &intc 0 0 0 150 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
+> @@ -1842,9 +1842,9 @@ pcie1: pci@1c08000 {
+>   			ranges = <0x01000000 0x0 0x40200000 0 0x40200000 0x0 0x100000>,
+>   				 <0x02000000 0x0 0x40300000 0 0x40300000 0x0 0x1fd00000>;
+>   
+> -			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>;
+> -			interrupt-names = "msi";
+> -			#interrupt-cells = <1>;
+> +			msi-map = <0x0 &gic_its 0x5a01 0x1>,
+> +				  <0x100 &gic_its 0x5a00 0x1>;
 
-There's already an API in the V4L2 control framework for drivers to use,
-see v4l2_ctrl_grab in
-https://www.kernel.org/doc/html/v5.0/media/kapi/v4l2-controls.html#active-a=
-nd-grabbed-controls.
+Are you sure that the order is correct here?
 
-> p.s. I know, VP9 seems similar, though arguably that was copied from jpeg=
-, for
-> which it seems totally save to change the quality at run-time.
->
+> +			msi-map-mask = <0xff00>;
+>   			interrupt-map-mask = <0 0 0 0x7>;
+>   			interrupt-map = <0 0 0 1 &intc 0 0 0 434 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
+>   					<0 0 0 2 &intc 0 0 0 435 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
 
-No, wasn't copied from JPEG :-) I just didn't realize this was an
-issue, but it is
-given the bit_depth affects the buffers so you are correct, it needs
-to be fixed for VP9 too.
+-- 
+With best wishes
+Dmitry
 
-Thanks!
-Ezequiel
-
-> > +             break;
-> > +     default:
-> > +             return -EINVAL;
-> > +     }
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +
-> >  static const struct v4l2_ctrl_ops hantro_ctrl_ops =3D {
-> >       .try_ctrl =3D hantro_try_ctrl,
-> >  };
-> > @@ -336,6 +355,12 @@ static const struct v4l2_ctrl_ops hantro_vp9_ctrl_=
-ops =3D {
-> >       .s_ctrl =3D hantro_vp9_s_ctrl,
-> >  };
-> >
-> > +static const struct v4l2_ctrl_ops hantro_av1_ctrl_ops =3D {
-> > +     .try_ctrl =3D hantro_try_ctrl,
-> > +     .s_ctrl =3D hantro_av1_s_ctrl,
-> > +};
-> > +
-> > +
-> >  #define HANTRO_JPEG_ACTIVE_MARKERS   (V4L2_JPEG_ACTIVE_MARKER_APP0 | \
-> >                                        V4L2_JPEG_ACTIVE_MARKER_COM | \
-> >                                        V4L2_JPEG_ACTIVE_MARKER_DQT | \
-> > @@ -513,6 +538,7 @@ static const struct hantro_ctrl controls[] =3D {
-> >               .codec =3D HANTRO_AV1_DECODER,
-> >               .cfg =3D {
-> >                       .id =3D V4L2_CID_STATELESS_AV1_SEQUENCE,
-> > +                     .ops =3D &hantro_av1_ctrl_ops,
-> >               },
-> >       }, {
-> >               .codec =3D HANTRO_AV1_DECODER,
->
