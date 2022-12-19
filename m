@@ -2,76 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C1E3650936
-	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 10:14:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E7BA65093A
+	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 10:16:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231735AbiLSJO5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Dec 2022 04:14:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43630 "EHLO
+        id S231522AbiLSJQs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Dec 2022 04:16:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231637AbiLSJOr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 04:14:47 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB9D5BC86
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 01:14:43 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id y25so12690311lfa.9
-        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 01:14:43 -0800 (PST)
+        with ESMTP id S229773AbiLSJQp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 04:16:45 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 223A42DF2
+        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 01:16:44 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id n6so2756218ljj.11
+        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 01:16:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=P5wH9eG9rO1TDcm0Jhm27dvot1WZaz9XZs3TRsVSirI=;
-        b=FlYykcQMSg70ePR8VX7PHwZ/2xsRYrXaDig2o5LcXKWdHbT01KfFQ8Xrmn0/C2Hg2s
-         LZh4A+EFP7zn4921OKRVkUnSeE+onUkXGB4GoN6UQrNw1Eo71i4X51/faANAAbBH+5b0
-         OfwV2T27AWcOftrnmrPoFuO+wXcsFXKd/fSNIaLduaewf8sY+ixgleDnd35WvWRAMdwV
-         JaoJSINGwRsXQ1NaHBMnb6HLlo8NXFl9fsxLIPXkH4IeOYI9GwPdZczaXayWCDfgScqT
-         RhhF34FGdhy3EiarnwC+z5Nc+S//zJoxboiMfWunUnHgYTmQS0MCfodOzHIAL/fR7yRk
-         Iahw==
+        bh=/FjB5JXmDES2VPNlWMj2mHFDZX6qCMhDUQfH/EbbPPA=;
+        b=pnzPivHrib8qRe9pF4RYmYlVy/o9HYSUt3Qs4A02PrAFl6LUdtxKWSEpr1T/x4H8ex
+         mQ8VqYnEy7gDzPiTL57Zp7JRrDi1WpIeS8p3P8cXcEBF/vLYo66tN5r4zAOBl8JzkfnJ
+         /IIaBXCjRJmFmRuCHUVB303+VBEQ3MdPNyWzMNCudsp3uqXAreEqvv7iDbC55oY47mmG
+         2ZAF4BRggfGDKhpU499EcyGf3P5/xpKxSECZVUr2xAksoYpQ4xAEe2C77fzleO5sDkdm
+         F/R7jVQkvvj4r6XSXX7VLDof3wz58L2Oz9JoGh06cFnpKw1TBhnDSS3zmB79Tk4ba16d
+         YvuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=P5wH9eG9rO1TDcm0Jhm27dvot1WZaz9XZs3TRsVSirI=;
-        b=JQs1NIftlGTf2o3B1CRtfvHphrEhKnMeivRUGAUvwnz69PFs0h4qEesYFLaGdQP1QD
-         /iV3QQHUnh30ihOuLhE6j5A1dHOO5WShWxPpl+n0TTxVvKEFrYNlhhyLIAi0MDHKtl/L
-         1ab5bJ1gZSA+1Qvt9sKbz9V23mkoUyXNc+wFeZrhzqZMwztZKeM952gIZCbW9w0csCRw
-         WdxOvWquzCUWBkWaQhOQnvv2SoT3x9nInnKKXQGf8023XlRps5MuIpyOpHvTh9aATjIp
-         fHols8AhwXDX4nA9M6Bh+vqKipTpwUpyPRr48EyBVGuEQqsNw6QIGm2Tz+/Bm6dnvrPm
-         hAmQ==
-X-Gm-Message-State: ANoB5pmjTL9HhbnUZ7F27FZ/QGvRrwpJ0r1VkWRbEvHUQ8y4uXOzuLgV
-        OT9aA1RjGIwrwHJjO6uAZ+dzkG4QXEBzZumz
-X-Google-Smtp-Source: AA0mqf5NhRHJ05tUTEn0/n4WNIQ3B73/BMcIu7iqAbVk34VQoUvVAluKIUQuE3TYFSGOBHVoHsVN+Q==
-X-Received: by 2002:a05:6512:32cd:b0:4b1:862b:5e71 with SMTP id f13-20020a05651232cd00b004b1862b5e71mr13273752lfg.33.1671441282368;
-        Mon, 19 Dec 2022 01:14:42 -0800 (PST)
+        bh=/FjB5JXmDES2VPNlWMj2mHFDZX6qCMhDUQfH/EbbPPA=;
+        b=4kYyXmvB6YJ+JjEQk+Xd+y2IjrpVMzpFa6hLC5SHO8GH5d54PIYaGUkUwAjdPIdCrc
+         MjsAFOSIyy5riBlkItVxN0Fix6dWevPFWUO2KxZM5xY9lKeKixRfZwZFGOTuZX2TDBNv
+         mxRG11By5A9FeXMwpt40O3SLoPc9w8NbmJuot8e3vYH0gNli2lpX7DQ7F5er3UZFkm80
+         gmvXKUVs+pB5Zg/OQUfAtAkveNjnvEGo1kUgoRibzb+2x9Q0s0/81t5FoY6q4eKanSuJ
+         ZIRob0kcgHb5n2HFqnLNydrSxRHruLvz85njEC3mOTz0/1iIkNS73UiE+7Go7dPBj0+5
+         xG/A==
+X-Gm-Message-State: ANoB5pljf2+v+4oY+SyyBb+Y5Yrz1HX54pVduUi9G7R6IuUGpwmH8kKH
+        sJg8yNbPVsNrDX+MvcWpbKMU/A==
+X-Google-Smtp-Source: AA0mqf6h/VU+p+DL8VHfXCZIjRHPaxM8oXFoXjCDtucWvcsCeGsGI3Gl1lT7SWhaDTSn2zOhVsb8fQ==
+X-Received: by 2002:a2e:7d11:0:b0:279:cdff:4a2c with SMTP id y17-20020a2e7d11000000b00279cdff4a2cmr10854297ljc.19.1671441402506;
+        Mon, 19 Dec 2022 01:16:42 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id 8-20020ac25f48000000b004b590c768edsm1057012lfz.1.2022.12.19.01.14.41
+        by smtp.gmail.com with ESMTPSA id b3-20020a2eb903000000b0027c8bc7d6fcsm657434ljb.136.2022.12.19.01.16.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Dec 2022 01:14:41 -0800 (PST)
-Message-ID: <411d85a3-86d1-b7fb-9cd0-00c79026d8d5@linaro.org>
-Date:   Mon, 19 Dec 2022 10:14:40 +0100
+        Mon, 19 Dec 2022 01:16:42 -0800 (PST)
+Message-ID: <da81c0f0-8ad5-cf2d-a62b-0bbb1d98795f@linaro.org>
+Date:   Mon, 19 Dec 2022 10:16:40 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH 03/15] dt-bindings: clock: qcom: gcc-qcs404: define
- clocks/clock-names for QCS404
+Subject: Re: [PATCH 1/3] dt-bindings: phy: qcom,pcie2-phy: convert to YAML
+ format
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
         devicetree@vger.kernel.org
-References: <20221217001730.540502-1-dmitry.baryshkov@linaro.org>
- <20221217001730.540502-4-dmitry.baryshkov@linaro.org>
+References: <20221216234027.539917-1-dmitry.baryshkov@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221217001730.540502-4-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221216234027.539917-1-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,15 +82,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/12/2022 01:17, Dmitry Baryshkov wrote:
-> Define clock/clock-names properties of the GCC device node to be used
-> on QCS404 platform.
+On 17/12/2022 00:40, Dmitry Baryshkov wrote:
+> Convert the bindings for the Qualcomm PCIe2 PHY into the YAML format
+> from the text description.
 > 
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
+>  .../bindings/phy/qcom,pcie2-phy.yaml          | 87 +++++++++++++++++++
+>  .../bindings/phy/qcom-pcie2-phy.txt           | 42 ---------
+>  2 files changed, 87 insertions(+), 42 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/phy/qcom,pcie2-phy.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/phy/qcom-pcie2-phy.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,pcie2-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,pcie2-phy.yaml
+> new file mode 100644
+> index 000000000000..497850a5b428
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/qcom,pcie2-phy.yaml
+> @@ -0,0 +1,87 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/qcom,pcie2-phy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm PCIe2 PHY controller
+> +
+> +maintainers:
+> +  - Vinod Koul <vkoul@kernel.org>
+> +
+> +description:
+> +  The Qualcomm PCIe2 PHY is a Synopsys based phy found in a number of Qualcomm
+> +  platforms.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: qcom,qcs404-pcie2-phy
+> +      - const: qcom,pcie2-phy
+> +
+> +  reg:
+> +    items:
+> +      - description: PHY register set
+> +
+> +  clocks:
+> +    items:
+> +      - description: a clock-specifier pair for the "pipe" clock
+> +
+> +  "#phy-cells":
+> +    const: 0
+> +
+> +  vdda-vp-supply:
+> +    description: phandle to low voltage regulator
+
+Drop "phandle to"
+
+> +
+> +  vdda-vph-supply:
+> +    description: phandle to high voltage regulator
+
+Drop "phandle to"
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +
+> +  resets:
+> +    maxItems: 2
+> +
+> +  reset-names:
+> +    items:
+> +      - const: phy
+> +      - const: pipe
+
+Blank line
+
+> +  "#clock-cells":
+> +    const: 0
+> +
+> +  clock-output-names:
+> +    maxItems: 1
+
+Maybe keep both next to "clocks"? And same order in "required:".
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#phy-cells"
+> +  - clocks
+> +  - vdda-vp-supply
+> +  - vdda-vph-supply
+> +  - resets
+> +  - reset-names
+> +  - clock-output-names
+> +  - "#clock-cells"
+> +
+
 
 Best regards,
 Krzysztof
