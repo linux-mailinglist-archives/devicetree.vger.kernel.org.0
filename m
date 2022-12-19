@@ -2,131 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6255650F4A
-	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 16:53:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF881650F6F
+	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 16:56:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232564AbiLSPxA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Dec 2022 10:53:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37514 "EHLO
+        id S231881AbiLSP43 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Dec 2022 10:56:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232577AbiLSPwj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 10:52:39 -0500
-Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43798E00A;
-        Mon, 19 Dec 2022 07:49:50 -0800 (PST)
-Received: by mail-oo1-f51.google.com with SMTP id e12-20020a4ab98c000000b004a081e811beso1464856oop.2;
-        Mon, 19 Dec 2022 07:49:50 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GtpKKtIDT0wu0L0RuUxg/9TFW0XNw8+9Gg9cF/VjLLE=;
-        b=eioMztVVnXywNfq8RIm2K7wff6dbZRnSZhVCo9JgHjZVtoDjC0m2yJXz+kh7eMtss8
-         1UYEMVXX+60Sam/GUfj5YNV5mA1b/TqbCmt5380QYyi1N+yDzpsQVT0cRY7VjqpXnC1K
-         BXmFheTmEkgVAvSJ2CGfEwAo8JvoPZtbbXAUqTg0ZiRu+QkVvgqhLqNoHrzlkKd9QtbM
-         J27CYq7Ccx1V1j/1VJjODFDsWNiIA6nKzRJ3tEGOQkjjIba01Z6A8PDEU+o3H8xf5oJF
-         dxl+lJAVkgJitung2e5zhFOlgR+fIYQ7mX4cKdxDiO2Wcj+Ef8zugn1UeBTyUqH1YDA4
-         Zm6A==
-X-Gm-Message-State: ANoB5pme1mHf8AaZBaaZYzGdIo1VEK27cu53Wa0VEJXXrszY3j9a0jKs
-        Azm6rbDXrKyGAkcDWuEI23qC5siO0Q==
-X-Google-Smtp-Source: AA0mqf7IjPg4muxSCN2Qt3qxFnZ19qiEyp4eFf6ZehhyfdSNFY+GlSxtPeeW6TGXhuc3LQaSp077LQ==
-X-Received: by 2002:a4a:e205:0:b0:49f:b2be:1865 with SMTP id b5-20020a4ae205000000b0049fb2be1865mr18158083oot.7.1671464989515;
-        Mon, 19 Dec 2022 07:49:49 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id k13-20020a056820016d00b00499527def25sm4034953ood.47.2022.12.19.07.49.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Dec 2022 07:49:49 -0800 (PST)
-Received: (nullmailer pid 1447283 invoked by uid 1000);
-        Mon, 19 Dec 2022 15:49:48 -0000
-Date:   Mon, 19 Dec 2022 09:49:48 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
+        with ESMTP id S232043AbiLSP41 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 10:56:27 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E6EB6272;
+        Mon, 19 Dec 2022 07:56:25 -0800 (PST)
+Received: from benjamin-XPS-13-9310.. (unknown [IPv6:2a01:e0a:120:3210:f69c:5603:d4ce:7aa2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: benjamin.gaignard)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 91FE36602C25;
+        Mon, 19 Dec 2022 15:56:23 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1671465383;
+        bh=UyVulrVn+7bAVKLq/DGXCKRzuRojbWRGKmItzsniUQ0=;
+        h=From:To:Cc:Subject:Date:From;
+        b=KhN5FkuStBnUYbcL5zO5utJ1twZs259RkiQ0rKTDWaQya+3fTR3t4H3pp2ndipwOA
+         aey+i8pzNYFD6bYYiK2nSWMzgMISxOKWGj+oh6sVpfgC/69zqQnrtumXX5PqK64H0z
+         uhzN+iFAfYKGXjbDSatqMCYi2jJgbz2eT2aC6prJnuyio8KDJNBQBYJPrTGs6x9EQ3
+         06TiqQHu0pWkQxFkIbvZFQdv00x3vuTT0vNWV5GFn/s5FS6zVm4xZ/gY1rIpxxeo2q
+         TJWk+nhf3cocvtDTRfQQJyRgglb2kLz16xYwG+Brxl6dcpdBQuJ1e07zrMmh6Uzc8G
+         ZhXwW5Sa+Zm4A==
+From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
+To:     ezequiel@vanguardiasur.com.ar, p.zabel@pengutronix.de,
+        mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
+        daniel.almeida@collabora.com, nicolas.dufresne@collabora.co.uk
+Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 00/17] dt-bindings: soc: Introduce UniPhier
- miscellaneous register blocks and fix examples
-Message-ID: <20221219154948.GA1439405-robh@kernel.org>
-References: <20221213082449.2721-1-hayashi.kunihiko@socionext.com>
+        linux-kernel@vger.kernel.org, kernel@collabora.com,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Subject: [PATCH v1 0/9] AV1 stateless decoder for RK3588
+Date:   Mon, 19 Dec 2022 16:56:07 +0100
+Message-Id: <20221219155616.848690-1-benjamin.gaignard@collabora.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221213082449.2721-1-hayashi.kunihiko@socionext.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 13, 2022 at 05:24:32PM +0900, Kunihiko Hayashi wrote:
-> This series introduces dt-bindings documents for miscellaneous register
-> blocks implemented in Socionext UniPhier SoCs.
-> 
-> These are previously defined in the devicetree and used in the examples
-> of subnodes' dt-bindings, however, not documented.
-> 
-> These include two types of the blocks
-> 
-> * independent block including miscellaneous registers and functions for
->   the whole SoC (system controller and SoC-glue logic)
-> 
-> * sideband logic including control registers in the component (others)
-> 
-> And prior to adding these dt-bindings, fix examples in the existing
-> dt-bindings.
-> 
-> This series is part of the previous series shown below:
-> https://lore.kernel.org/linux-arm-kernel/20221107103410.3443-2-hayashi.kunihiko@socionext.com
-> 
-> Changes since v2:
-> - Drop redundant nodes in examples (clock, reset, soc-glue-debug)
-> - Drop parent node in examples
-> - Add more properties to examples for pinctrl
-> - Add a patch for regulator change
-> - Use consistent quotes
-> - Drop unit address patterns of patternProperties
-> - Mandatory unit address pattern for efuse (soc-glue-debug)
-> - Fix additionalProperties (ahci-glue)
-> 
-> Changes since v1:
-> - Fix examples in the existing dt-bindings (Add PATCH 1-7)
-> - Add dt-bindings for SoC-glue logic debug part (Add PATCH 10)
-> - Drop generic and ld6b compatible strings
-> - Change "usb-controller" node in soc-glue to "usb-hub"
-> - Change "usb-controller" node in USB glue layer example to "usb"
-> - Add negation of child properties by compatible string
-> 
-> Kunihiko Hayashi (17):
->   dt-bindings: clock: Fix node descriptions in uniphier-clock example
->   dt-bindings: reset: Fix node descriptions in uniphier-reset example
->   dt-bindings: pinctrl: Fix node descriptions in uniphier-pinctrl
->     example
->   dt-bindings: regulator: Fix node descriptions in uniphier-regulator
->     example
->   dt-bindings: watchdog: Fix node descriptions in uniphier-wdt example
->   dt-bindings: thermal: Fix node descriptions in uniphier-thermal
->     example
->   dt-bindings: phy: Fix node descriptions in uniphier-phy example
->   dt-bindings: nvmem: Fix node descriptions in uniphier-efuse example
->   dt-bindings: soc: socionext: Add UniPhier system controller
->   dt-bindings: soc: socionext: Add UniPhier SoC-glue logic
->   dt-bindings: soc: socionext: Add UniPhier SoC-glue logic debug part
->   dt-bindings: soc: socionext: Add UniPhier peripheral block
->   dt-bindings: soc: socionext: Add UniPhier media I/O block
->   dt-bindings: soc: socionext: Add UniPhier SD interface block
->   dt-bindings: soc: socionext: Add UniPhier ADAMV block
->   dt-bindings: soc: socionext: Add UniPhier DWC3 USB glue layer
->   dt-bindings: soc: socionext: Add UniPhier AHCI glue layer
+This series implement AV1 stateless decoder for RK3588 SoC.
+The harware support 8 and 10 bits bitstreams up to 7680x4320.
+AV1 feature like film grain or scaling are done by the postprocessor.
+The driver can produce NV12_4L4 and NV12 pixel formats.
+A native 10bits NV12_4L4 format is possible but need more investigation
+to be completly documented and enabled.
 
-You sent this To me, so I'm assuming you want me to apply it?
-Otherwise, it can go via the Socionext tree. Let me know and I can fix 
-up Krzysztof's comments and apply the series.
+It is based on Daniel's "[RFC,v3] media: Add AV1 uAPI" [1] patches and
+Sebastian's device-tree patches for RK3588.
 
-Rob
+The full branch can be found here:
+https://gitlab.collabora.com/linux/for-upstream/-/commits/rk3588_av1_decoder_v1
+
+Fluster score is: 151/239 while testing AV1-TEST-VECTORS with GStreamer-AV1-V4L2SL-Gst1.0.
+The failing tests are:
+- 10bits bitstream because 10bits output formats aren't yet implemented.
+- the 2 tests with 2 spatial layers: few errors in luma/chroma values
+- tests with resolution < hardware limit (64x64)
+
+Benjamin
+
+Benjamin Gaignard (9):
+  dt-bindings: media: rockchip-vpu: Add rk3588 vpu compatible
+  media: verisilicon: Add AV1 decoder mode and controls
+  media: verisilicon: Save bit depth for AV1 decoder
+  media: verisilicon: Check AV1 bitstreams bit depth
+  media: verisilicon: Compute motion vectors size for AV1 frames
+  media: verisilicon: Add AV1 entropy helpers
+  media: verisilicon: Add Rockchip AV1 decoder
+  media: verisilicon: Add film grain feature to AV1 driver
+  media: verisilicon: Enable AV1 decoder on rk3588
+
+ .../bindings/media/rockchip-vpu.yaml          |    1 +
+ drivers/media/platform/verisilicon/Makefile   |    3 +
+ drivers/media/platform/verisilicon/hantro.h   |    5 +
+ .../media/platform/verisilicon/hantro_drv.c   |   54 +
+ .../media/platform/verisilicon/hantro_hw.h    |  102 +
+ .../platform/verisilicon/hantro_postproc.c    |    3 +
+ .../media/platform/verisilicon/hantro_v4l2.c  |    5 +
+ .../verisilicon/rockchip_av1_entropymode.c    | 4536 +++++++++++++++++
+ .../verisilicon/rockchip_av1_entropymode.h    |  272 +
+ .../verisilicon/rockchip_av1_filmgrain.c      |  401 ++
+ .../verisilicon/rockchip_av1_filmgrain.h      |   36 +
+ .../verisilicon/rockchip_vpu981_hw_av1_dec.c  | 2280 +++++++++
+ .../verisilicon/rockchip_vpu981_regs.h        |  477 ++
+ .../platform/verisilicon/rockchip_vpu_hw.c    |  116 +
+ 14 files changed, 8291 insertions(+)
+ create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_entropymode.c
+ create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_entropymode.h
+ create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_filmgrain.c
+ create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_filmgrain.h
+ create mode 100644 drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
+ create mode 100644 drivers/media/platform/verisilicon/rockchip_vpu981_regs.h
+
+-- 
+2.34.1
+
