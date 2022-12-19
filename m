@@ -2,202 +2,322 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22A59650E50
-	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 16:09:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 714B2650E78
+	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 16:16:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231556AbiLSPJd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Dec 2022 10:09:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40788 "EHLO
+        id S232896AbiLSPQk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Dec 2022 10:16:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231764AbiLSPJc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 10:09:32 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB24CDD3;
-        Mon, 19 Dec 2022 07:09:31 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id jo4so13280997ejb.7;
-        Mon, 19 Dec 2022 07:09:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=CPP1UN7Ar0sMqvps1krvizfT4fcZtHufSOYInrdLQ9s=;
-        b=Vch5vX+53bFRoh4LYWYFeVvWjl23HwdshNcYIrYt9KdEtjBi94O8rE2bduXvoWcFSh
-         PDo72u2twvqRUL83mU6WAvXvKVluiiTtFe3o8ZHLws8mV/U700JP5wx5c9OUw25QwMNO
-         eSecGCeiLm22PJAIg/yqIAPm55FfjzJiw/jKPC5lq/3/pEZCvd92JTu2sun7ZxEjgDds
-         k4Kq2VTqpAzhSL2vdOQ8DsNGQvUgBcqX+VyX2mAzLoPh8w7z5hax4arzh5iHmAe9tA9K
-         Eb33UGe/EWhUnR6qo1yFRChWGRsn/STziD8yGy+gxX7W7GGmSh3hSjoNPQfwS4ndVSE6
-         cJjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CPP1UN7Ar0sMqvps1krvizfT4fcZtHufSOYInrdLQ9s=;
-        b=0M1AYA4Mv0UhF/ytQoT75r7+xU6KAfwx48LOdlmP1DwOuXDs388MVxvHizX+VnRUaD
-         mXMxNTEsqAVTZk5RBPOjKemkOnbMEpUn54ibM2Rr1nnPtiR8FKXCUZDWlnp2EihknkFz
-         2MzUq2Is8zDs3+uHnO+JA11PfoRfiJUeTyNij7iXMhmvTCD0mHZkt4N6SZPk6Ggo0cw4
-         YLVajXIO4aTXpDFbvCmD6sa7m5ms0Ms+k8klybKkqmRZi9QZbcrXeO8I9hOJnc46MIKz
-         tLaqNdrua4t22Y6hDB4tWMtQl+xR2hZxVKtoGn0vug09n2/ZeIX5fpisEAKkSTE51EA5
-         PatQ==
-X-Gm-Message-State: ANoB5pnG5eXilvWZtSRIW9At37Bt962qi3bS8Cy8dfxByyKDCdnDHjWR
-        128MXeEFmEnV+DdJPadSo0XFSRxbe9oAkNekK/Q=
-X-Google-Smtp-Source: AA0mqf6m2mXu2pGxcOvvXRiO8sAwap1VisriEngJKVk0d5ABRsJFZ0uH+Dh9SlqcpfpgqQgDsuHPBji710regeC9qzs=
-X-Received: by 2002:a17:906:3e41:b0:78d:bc9f:33da with SMTP id
- t1-20020a1709063e4100b0078dbc9f33damr80730962eji.80.1671462570384; Mon, 19
- Dec 2022 07:09:30 -0800 (PST)
-MIME-Version: 1.0
-References: <20221107175305.63975-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221107175305.63975-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdV46aMfqu+kMW9E-RURugK-giOx0k-NPe5XX4nxKZJzkg@mail.gmail.com>
- <CA+V-a8uqQ2fK1UjRT864jyHdt6Z47V=iARSJC6B2M6Gikms=Eg@mail.gmail.com>
- <CA+V-a8sGLrsRWFi3-hNmB=Uj-aCQLD5VQesmUFb8N1NAqhyLuQ@mail.gmail.com>
- <CAMuHMdW_QuBUUypyrAbLqWPdZ81bWeYDyPbBf=2KmDht1X44bA@mail.gmail.com>
- <CA+V-a8uQFiU2KRcsoC5--tjfuWRj3VRJAUaZtv0+U0DziZQOwg@mail.gmail.com> <CAMuHMdWROUWd0eQXrjx2pUVs2AtvRvu7spbpGWf5EDumemetcw@mail.gmail.com>
-In-Reply-To: <CAMuHMdWROUWd0eQXrjx2pUVs2AtvRvu7spbpGWf5EDumemetcw@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Mon, 19 Dec 2022 15:09:04 +0000
-Message-ID: <CA+V-a8sGe83hWRb228YPLy7_9Ap7N4abP36hj_y+Ms7zuj+wfw@mail.gmail.com>
-Subject: Re: [PATCH RFC 1/5] dt-bindings: interrupt-controller:
- renesas,rzg2l-irqc: Document RZ/G2UL SoC
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S232849AbiLSPQQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 10:16:16 -0500
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EBBB38C;
+        Mon, 19 Dec 2022 07:15:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
+        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=w4sSFhh83uAji8+0eAowtyfKSzm6lsgYgeM/KPj3SJw=; b=SQh7IKfej+/jWDV02bPW0rvUTL
+        +/T5pdlopHUCfUuGQMtAWwyYVIrwVk3abapQ+Nd2DmCUaf8MeKFSa7vikK01xS+0wIl+3zTzW/P3g
+        fwEvcz+u1+avs9g5H9A37wuSZiM8BeRgcXmYcotSxGzT1bc5b0SscN7l0evXhV/GKdOk=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:48604 helo=pettiford)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1p7HrT-0000v1-07; Mon, 19 Dec 2022 10:15:29 -0500
+Date:   Mon, 19 Dec 2022 10:15:26 -0500
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     Bruno Thomsen <bruno.thomsen@gmail.com>
+Cc:     a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>, hugo@hugovil.com
+Message-Id: <20221219101526.ab27daa0971e827128d51a15@hugovil.com>
+In-Reply-To: <CAH+2xPDW04NKD34RjcLO=HP1_KDxe9dvbLC9B4Rv+i3O8S58qQ@mail.gmail.com>
+References: <20221215150214.1109074-1-hugo@hugovil.com>
+        <20221215150214.1109074-2-hugo@hugovil.com>
+        <CAH+2xPDW04NKD34RjcLO=HP1_KDxe9dvbLC9B4Rv+i3O8S58qQ@mail.gmail.com>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v3 01/14] rtc: pcf2127: add variant-specific
+ configuration structure
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+On Mon, 19 Dec 2022 10:05:53 +0100
+Bruno Thomsen <bruno.thomsen@gmail.com> wrote:
 
-On Mon, Dec 19, 2022 at 2:47 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Mon, Dec 19, 2022 at 3:26 PM Lad, Prabhakar
-> <prabhakar.csengg@gmail.com> wrote:
-> > On Mon, Dec 19, 2022 at 1:50 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > On Mon, Dec 19, 2022 at 1:57 PM Lad, Prabhakar
-> > > <prabhakar.csengg@gmail.com> wrote:
-> > > > On Fri, Nov 18, 2022 at 12:29 PM Lad, Prabhakar
-> > > > <prabhakar.csengg@gmail.com> wrote:
-> > > > > On Thu, Nov 17, 2022 at 10:54 AM Geert Uytterhoeven
-> > > > > <geert@linux-m68k.org> wrote:
-> > > > > > On Mon, Nov 7, 2022 at 6:53 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> > > > > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > > > >
-> > > > > > > Document RZ/G2UL (R9A07G043) IRQC bindings. The RZ/G2UL IRQC block is
-> > > > > > > identical to one found on the RZ/G2L SoC. No driver changes are
-> > > > > > > required as generic compatible string "renesas,rzg2l-irqc" will be
-> > > > > > > used as a fallback.
-> > > > > > >
-> > > > > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > > > > > Note, renesas,r9a07g043u-irqc is added we have slight difference's compared to RZ/Five
-> > > > > > > - G2UL IRQCHIP (hierarchical IRQ domain) -> GIC where as on RZ/Five we have PLIC (chained interrupt
-> > > > > > > domain) -> RISCV INTC
-> > > > > >
-> > > > > > I think this difference is purely a software difference, and abstracted
-> > > > > > in DTS through the interrupt hierarchy.
-> > > > > > Does it have any impact on the bindings?
-> > > > > >
-> > > > > > > - On the RZ/Five we have additional registers for IRQC block
-> > > > > >
-> > > > > > Indeed, the NMI/IRQ/TINT "Interruput" Mask Control Registers, thus
-> > > > > > warranting separate compatible values.
-> > > > > >
-> > > > > > > - On the RZ/Five we have BUS_ERR_INT which needs to be handled by IRQC
-> > > > > >
-> > > > > > Can you please elaborate? I may have missed something, but to me it
-> > > > > > looks like that is exactly the same on RZ/G2UL and on RZ/Five.
-> > > > > >
-> > > > > Now that we have to update the binding doc with the BUS_ERR_INT too,
-> > > > > do you think it would make sense to add interrupt-names too?
-> > >
-> > > > Gentle ping.
-> > >
-> > > Thanks for the ping, I had missed you were waiting on input from me.
-> > > Sorry for that...
-> > >
-> > No worries.
+> Den tor. 15. dec. 2022 kl. 16.19 skrev Hugo Villeneuve <hugo@hugovil.com>:
 > >
-> > > As there are three different groups of parent interrupts, adding
-> > > interrupt-names makes sense.
-> > Ok.
+> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > >
-> > > However, as this binding is already in active use since v6.1, you
-> > > probably need to keep on supporting the
-> > > ack of interrupt-names.  Or do you think there are no real users yet,
-> > > and we can drop support for that?
-> > >
-> > Sorry can you please elaborate on "ack of interrupt-names".
->
-> Oops, s/ack/lack/. I.e. what you described below.
->
-Got that.
-
-> > So moving forward the driver will first check for interrupt-names
-> > property and if that exists it will map the IRQ0-7 and GPIO-TINIT
-> > interrupts (based on the names it will create a hierarchy domain) and
-> > for the NMI and BUS_ERR_INT we request the IRQ numbers and register
-> > the IRQ handler in IRQC driver itself.
+> > Create variant-specific configuration structures to simplify the
+> > implementation of new variants into this driver. It will also avoid
+> > to have too many tests for a specific variant, or a list of variants
+> > for new devices, inside the code itself.
 > >
-> > And for backward compatibility we parse the IRQ numbers based on
-> > indexes i.e. 0 = NMI, 1-8  = IRQ 0-7  and 9-41 GPIO TINT interrupts.
->
-> Exactly.
->
-> > > > > BUS_ERR_INT will have to be handled IRQC itself (i.e. IRQC will
-> > > > > register a handler for it).
-> > >
-> > > Do you mean you will need a fourth parent type for that?
-> > >
-> > No something like what we have for NMI we can add something similar
-> > below for bus error interrupts:
-> > interrupts = ....
-> >               <GIC_SPI 57 IRQ_TYPE_EDGE_RISING>;
-> > interrupt-names = ....,
-> >              "bus-error-int";
->
-> Hence a fourth name?
->
-Agreed.
+> > Add configuration options for the support of the NVMEM, bit CD0 in
+> > register WD_CTL as well as the maximum number of registers for each
+> > variant, instead of hardcoding the variant (PCF2127) inside the
+> > i2c_device_id and spi_device_id structures.
+> >
+> > Also specify a different maximum number of registers (max_register)
+> > for the PCF2129.
+> >
+> > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > ---
+> >  drivers/rtc/rtc-pcf2127.c | 95 +++++++++++++++++++++++++++++++--------
+> >  1 file changed, 76 insertions(+), 19 deletions(-)
+> >
+> > diff --git a/drivers/rtc/rtc-pcf2127.c b/drivers/rtc/rtc-pcf2127.c
+> > index 87f4fc9df68b..b9a5d47a439f 100644
+> > --- a/drivers/rtc/rtc-pcf2127.c
+> > +++ b/drivers/rtc/rtc-pcf2127.c
+> > @@ -21,6 +21,7 @@
+> >  #include <linux/module.h>
+> >  #include <linux/of.h>
+> >  #include <linux/of_irq.h>
+> > +#include <linux/of_device.h>
+> >  #include <linux/regmap.h>
+> >  #include <linux/watchdog.h>
+> >
+> > @@ -101,10 +102,17 @@
+> >                 PCF2127_BIT_CTRL2_WDTF | \
+> >                 PCF2127_BIT_CTRL2_TSF2)
+> >
+> > +struct pcf21xx_config {
+> > +       int max_register;
+> > +       unsigned int has_nvmem:1;
+> > +       unsigned int has_bit_wd_ctl_cd0:1;
+> > +};
+> > +
+> >  struct pcf2127 {
+> >         struct rtc_device *rtc;
+> >         struct watchdog_device wdd;
+> >         struct regmap *regmap;
+> > +       const struct pcf21xx_config *cfg;
+> >         time64_t ts;
+> >         bool ts_valid;
+> >         bool irq_enabled;
+> > @@ -631,8 +639,27 @@ static const struct attribute_group pcf2127_attr_group = {
+> >         .attrs  = pcf2127_attrs,
+> >  };
+> >
+> > +enum pcf21xx_type {
+> > +       PCF2127,
+> > +       PCF2129,
+> > +       PCF21XX_LAST_ID
+> > +};
+> > +
+> > +static struct pcf21xx_config pcf21xx_cfg[] = {
+> > +       [PCF2127] = {
+> > +               .max_register = 0x1d,
+> > +               .has_nvmem = 1,
+> > +               .has_bit_wd_ctl_cd0 = 1,
+> > +       },
+> > +       [PCF2129] = {
+> > +               .max_register = 0x19,
+> > +               .has_nvmem = 0,
+> > +               .has_bit_wd_ctl_cd0 = 0,
+> > +       },
+> > +};
+> > +
+> >  static int pcf2127_probe(struct device *dev, struct regmap *regmap,
+> > -                        int alarm_irq, const char *name, bool is_pcf2127)
+> > +                        int alarm_irq, const char *name, const struct pcf21xx_config *config)
+> >  {
+> >         struct pcf2127 *pcf2127;
+> >         int ret = 0;
+> > @@ -645,6 +672,7 @@ static int pcf2127_probe(struct device *dev, struct regmap *regmap,
+> >                 return -ENOMEM;
+> >
+> >         pcf2127->regmap = regmap;
+> > +       pcf2127->cfg = config;
+> >
+> >         dev_set_drvdata(dev, pcf2127);
+> >
+> > @@ -688,7 +716,7 @@ static int pcf2127_probe(struct device *dev, struct regmap *regmap,
+> >                 set_bit(RTC_FEATURE_ALARM, pcf2127->rtc->features);
+> >         }
+> >
+> > -       if (is_pcf2127) {
+> > +       if (pcf2127->cfg->has_nvmem) {
+> >                 struct nvmem_config nvmem_cfg = {
+> >                         .priv = pcf2127,
+> >                         .reg_read = pcf2127_nvmem_read,
+> > @@ -734,7 +762,7 @@ static int pcf2127_probe(struct device *dev, struct regmap *regmap,
+> >                                  PCF2127_BIT_WD_CTL_TF1 |
+> >                                  PCF2127_BIT_WD_CTL_TF0,
+> >                                  PCF2127_BIT_WD_CTL_CD1 |
+> > -                                (is_pcf2127 ? PCF2127_BIT_WD_CTL_CD0 : 0) |
+> > +                                (pcf2127->cfg->has_bit_wd_ctl_cd0 ? PCF2127_BIT_WD_CTL_CD0 : 0) |
+> >                                  PCF2127_BIT_WD_CTL_TF1);
+> >         if (ret) {
+> >                 dev_err(dev, "%s: watchdog config (wd_ctl) failed\n", __func__);
+> > @@ -799,9 +827,9 @@ static int pcf2127_probe(struct device *dev, struct regmap *regmap,
+> >
+> >  #ifdef CONFIG_OF
+> >  static const struct of_device_id pcf2127_of_match[] = {
+> > -       { .compatible = "nxp,pcf2127" },
+> > -       { .compatible = "nxp,pcf2129" },
+> > -       { .compatible = "nxp,pca2129" },
+> > +       { .compatible = "nxp,pcf2127", .data = &pcf21xx_cfg[PCF2127] },
+> > +       { .compatible = "nxp,pcf2129", .data = &pcf21xx_cfg[PCF2129] },
+> > +       { .compatible = "nxp,pca2129", .data = &pcf21xx_cfg[PCF2129] },
+> >         {}
+> >  };
+> >  MODULE_DEVICE_TABLE(of, pcf2127_of_match);
+> > @@ -886,26 +914,40 @@ static const struct regmap_bus pcf2127_i2c_regmap = {
+> >  static struct i2c_driver pcf2127_i2c_driver;
+> >
+> >  static const struct i2c_device_id pcf2127_i2c_id[] = {
+> > -       { "pcf2127", 1 },
+> > -       { "pcf2129", 0 },
+> > -       { "pca2129", 0 },
+> > +       { "pcf2127", PCF2127 },
+> > +       { "pcf2129", PCF2129 },
+> > +       { "pca2129", PCF2129 },
+> >         { }
+> >  };
+> >  MODULE_DEVICE_TABLE(i2c, pcf2127_i2c_id);
+> >
+> >  static int pcf2127_i2c_probe(struct i2c_client *client)
+> >  {
+> > -       const struct i2c_device_id *id = i2c_match_id(pcf2127_i2c_id, client);
+> >         struct regmap *regmap;
+> > -       static const struct regmap_config config = {
+> > +       static struct regmap_config config = {
+> >                 .reg_bits = 8,
+> >                 .val_bits = 8,
+> > -               .max_register = 0x1d,
+> >         };
+> > +       const struct pcf21xx_config *variant;
+> 
+> Hi Hugo,
+> 
+> Patch series does not apply on 6.1 tree as pcf2127_i2c_probe() call
+> signature does not match[1].
+> 
+> static int pcf2127_i2c_probe(struct i2c_client *client,
+>       const struct i2c_device_id *id)
+> 
+> 
+> [1] https://elixir.bootlin.com/linux/v6.1/source/drivers/rtc/rtc-pcf2127.c#L888
+> 
+> /Bruno
 
-> 1. legacy index  0 -> "nmi"
-> 2. legacy indices 1-8 -> "irq%u" (0-7)
-> 3. legacy indices 9-41 -> "tint%u" (0-31)
-> 4. (not supported) -> "bus-error-int" (or "bus-err"?)
->
-"bus-err" I think based on previous experience ;)
+Hi Bruno,
+I based my driver on the git://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git repo, as indicated in the MAINTAINERS file for the RTC subsystem (T: entry). I used the rtc-next branch on this repo.
 
-While I am at it I'll expand the interrupts property with descriptions.
+Can you tell me exactly which repo and branch I need to use to resubmit the driver?
 
-> > As the registers to handle the NMI and BUS_ERR_INT are present on the
-> > IRQC block, the interrupt handler will have to be registered by the
-> > IRQC block itself by requesting the IRQ. So we will have to skip
-> > mapping of BUS_ERR_INT as we do for the NMI case. Does that make
-> > sense?
->
-> OK.
->
-> BTW, that means RZG2L_NMI from <dt-bindings/interrupt-controller/irqc-rzg2l.h>
-> will never be used?
->
-Agreed, that needs to be dropped.
+Thank you, Hugo.
 
-Cheers,
-Prabhakar
+
+> >         if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C))
+> >                 return -ENODEV;
+> >
+> > +       if (client->dev.of_node) {
+> > +               variant = of_device_get_match_data(&client->dev);
+> > +               if (!variant)
+> > +                       return -ENODEV;
+> > +       } else {
+> > +               enum pcf21xx_type type =
+> > +                       i2c_match_id(pcf2127_i2c_id, client)->driver_data;
+> > +
+> > +               if (type >= PCF21XX_LAST_ID)
+> > +                       return -ENODEV;
+> > +               variant = &pcf21xx_cfg[type];
+> > +       }
+> > +
+> > +       config.max_register = variant->max_register,
+> > +
+> >         regmap = devm_regmap_init(&client->dev, &pcf2127_i2c_regmap,
+> >                                         &client->dev, &config);
+> >         if (IS_ERR(regmap)) {
+> > @@ -915,7 +957,7 @@ static int pcf2127_i2c_probe(struct i2c_client *client)
+> >         }
+> >
+> >         return pcf2127_probe(&client->dev, regmap, client->irq,
+> > -                            pcf2127_i2c_driver.driver.name, id->driver_data);
+> > +                            pcf2127_i2c_driver.driver.name, variant);
+> >  }
+> >
+> >  static struct i2c_driver pcf2127_i2c_driver = {
+> > @@ -953,17 +995,32 @@ static void pcf2127_i2c_unregister_driver(void)
+> >  #if IS_ENABLED(CONFIG_SPI_MASTER)
+> >
+> >  static struct spi_driver pcf2127_spi_driver;
+> > +static const struct spi_device_id pcf2127_spi_id[];
+> >
+> >  static int pcf2127_spi_probe(struct spi_device *spi)
+> >  {
+> > -       static const struct regmap_config config = {
+> > +       static struct regmap_config config = {
+> >                 .reg_bits = 8,
+> >                 .val_bits = 8,
+> >                 .read_flag_mask = 0xa0,
+> >                 .write_flag_mask = 0x20,
+> > -               .max_register = 0x1d,
+> >         };
+> >         struct regmap *regmap;
+> > +       const struct pcf21xx_config *variant;
+> > +
+> > +       if (spi->dev.of_node) {
+> > +               variant = of_device_get_match_data(&spi->dev);
+> > +               if (!variant)
+> > +                       return -ENODEV;
+> > +       } else {
+> > +               enum pcf21xx_type type = spi_get_device_id(spi)->driver_data;
+> > +
+> > +               if (type >= PCF21XX_LAST_ID)
+> > +                       return -ENODEV;
+> > +               variant = &pcf21xx_cfg[type];
+> > +       }
+> > +
+> > +       config.max_register = variant->max_register,
+> >
+> >         regmap = devm_regmap_init_spi(spi, &config);
+> >         if (IS_ERR(regmap)) {
+> > @@ -974,13 +1031,13 @@ static int pcf2127_spi_probe(struct spi_device *spi)
+> >
+> >         return pcf2127_probe(&spi->dev, regmap, spi->irq,
+> >                              pcf2127_spi_driver.driver.name,
+> > -                            spi_get_device_id(spi)->driver_data);
+> > +                            variant);
+> >  }
+> >
+> >  static const struct spi_device_id pcf2127_spi_id[] = {
+> > -       { "pcf2127", 1 },
+> > -       { "pcf2129", 0 },
+> > -       { "pca2129", 0 },
+> > +       { "pcf2127", PCF2127 },
+> > +       { "pcf2129", PCF2129 },
+> > +       { "pca2129", PCF2129 },
+> >         { }
+> >  };
+> >  MODULE_DEVICE_TABLE(spi, pcf2127_spi_id);
+> > --
+> > 2.30.2
+> >
+> 
+
+
+-- 
+Hugo Villeneuve <hugo@hugovil.com>
