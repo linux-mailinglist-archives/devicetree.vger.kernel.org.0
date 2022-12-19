@@ -2,106 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E0B0650933
-	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 10:14:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C1E3650936
+	for <lists+devicetree@lfdr.de>; Mon, 19 Dec 2022 10:14:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231360AbiLSJOc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Dec 2022 04:14:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43504 "EHLO
+        id S231735AbiLSJO5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Dec 2022 04:14:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231370AbiLSJOb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 04:14:31 -0500
-Received: from mail-vs1-xe2c.google.com (mail-vs1-xe2c.google.com [IPv6:2607:f8b0:4864:20::e2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45917DF4;
-        Mon, 19 Dec 2022 01:14:27 -0800 (PST)
-Received: by mail-vs1-xe2c.google.com with SMTP id c184so8078941vsc.3;
-        Mon, 19 Dec 2022 01:14:27 -0800 (PST)
+        with ESMTP id S231637AbiLSJOr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 04:14:47 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB9D5BC86
+        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 01:14:43 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id y25so12690311lfa.9
+        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 01:14:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=R498GalAx5g2v+OpJ0kZs8i4YXUH9AVwRADu/ussHBU=;
-        b=BXxScbMnTN1Xt/GFEMWJuIbosQfmu1FKTPjTwFmBKMyiRUZFKLENErPvwGjHmxP52k
-         EgQbX8R5nf4SFitljRS8USe3ugJWMdA+7LR7K+JSrCTZIs17o1RAxBYRbiyNeMkoXt+Z
-         crDWtp2zECCZyPPV20FmLGEjHTRqxHrIWXLPSvr3Kl1umOfJR+v3rLVEWftMEo6eb0dy
-         tWu39Gk1QKYUgDSmIQ4m6Wdg3mEICgsI+0WCYs/etpmSFZI8nsCeOF/I/5+CJRwqk9Ls
-         b1uLaGhkVYsWNAUtA0DEUOpgkISS5Dwapxa2jaGq6PHofhYiuzW8j6GEtVswcz/q5+io
-         E/Sg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=P5wH9eG9rO1TDcm0Jhm27dvot1WZaz9XZs3TRsVSirI=;
+        b=FlYykcQMSg70ePR8VX7PHwZ/2xsRYrXaDig2o5LcXKWdHbT01KfFQ8Xrmn0/C2Hg2s
+         LZh4A+EFP7zn4921OKRVkUnSeE+onUkXGB4GoN6UQrNw1Eo71i4X51/faANAAbBH+5b0
+         OfwV2T27AWcOftrnmrPoFuO+wXcsFXKd/fSNIaLduaewf8sY+ixgleDnd35WvWRAMdwV
+         JaoJSINGwRsXQ1NaHBMnb6HLlo8NXFl9fsxLIPXkH4IeOYI9GwPdZczaXayWCDfgScqT
+         RhhF34FGdhy3EiarnwC+z5Nc+S//zJoxboiMfWunUnHgYTmQS0MCfodOzHIAL/fR7yRk
+         Iahw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=R498GalAx5g2v+OpJ0kZs8i4YXUH9AVwRADu/ussHBU=;
-        b=KaSfiZOn7z/mrl2DCtS4SqAI5futvNwVSdf7bGoeCPCECy86fXBs3hRu5FQe7RcUxb
-         JTod4NwSBc7Vr/RDladfhMF2sRWejWY1d2oPs0GgYUUCyHFS2MoSu7/BPmsyobXMI+GI
-         uEus1mfXs81GG+l926SAJM1MFvNLT8w6B+NitkZsph8rqBbVuAhPhz0b48WkoJcRPkT7
-         H9ZOby1yPQqZJEG3xnDwkzzUkshM6fk7gXjUVhyTmocHGArI9HyWM7oekGvRo1X0YTDA
-         CNHoCUQdQEvj6RSwBBnQsabTsPnLHoCbQasH7OjIH8293Bo8ZBP69ls2hVcwT/UAVEY6
-         GePA==
-X-Gm-Message-State: ANoB5plduOyvrcO0A696c7SJva1vXPo+Mp4WAJUnZAT4LeZ0AN5ZyyAn
-        uQCnQlV3SjDXH7wnalzl7po/BZxhSxT6fk1Xcqs=
-X-Google-Smtp-Source: AA0mqf4pHgdRDNBlqlXzOi8tOkDbR8WYG3O43LofQCy3K4Dlheg0F0ydyONHOCBC4gv/z8571Mz5x6punNdN5h4C9eQ=
-X-Received: by 2002:a05:6102:11e3:b0:3b5:1fe4:f1c2 with SMTP id
- e3-20020a05610211e300b003b51fe4f1c2mr2761076vsg.0.1671441266429; Mon, 19 Dec
- 2022 01:14:26 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=P5wH9eG9rO1TDcm0Jhm27dvot1WZaz9XZs3TRsVSirI=;
+        b=JQs1NIftlGTf2o3B1CRtfvHphrEhKnMeivRUGAUvwnz69PFs0h4qEesYFLaGdQP1QD
+         /iV3QQHUnh30ihOuLhE6j5A1dHOO5WShWxPpl+n0TTxVvKEFrYNlhhyLIAi0MDHKtl/L
+         1ab5bJ1gZSA+1Qvt9sKbz9V23mkoUyXNc+wFeZrhzqZMwztZKeM952gIZCbW9w0csCRw
+         WdxOvWquzCUWBkWaQhOQnvv2SoT3x9nInnKKXQGf8023XlRps5MuIpyOpHvTh9aATjIp
+         fHols8AhwXDX4nA9M6Bh+vqKipTpwUpyPRr48EyBVGuEQqsNw6QIGm2Tz+/Bm6dnvrPm
+         hAmQ==
+X-Gm-Message-State: ANoB5pmjTL9HhbnUZ7F27FZ/QGvRrwpJ0r1VkWRbEvHUQ8y4uXOzuLgV
+        OT9aA1RjGIwrwHJjO6uAZ+dzkG4QXEBzZumz
+X-Google-Smtp-Source: AA0mqf5NhRHJ05tUTEn0/n4WNIQ3B73/BMcIu7iqAbVk34VQoUvVAluKIUQuE3TYFSGOBHVoHsVN+Q==
+X-Received: by 2002:a05:6512:32cd:b0:4b1:862b:5e71 with SMTP id f13-20020a05651232cd00b004b1862b5e71mr13273752lfg.33.1671441282368;
+        Mon, 19 Dec 2022 01:14:42 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id 8-20020ac25f48000000b004b590c768edsm1057012lfz.1.2022.12.19.01.14.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Dec 2022 01:14:41 -0800 (PST)
+Message-ID: <411d85a3-86d1-b7fb-9cd0-00c79026d8d5@linaro.org>
+Date:   Mon, 19 Dec 2022 10:14:40 +0100
 MIME-Version: 1.0
-References: <20221215150214.1109074-1-hugo@hugovil.com> <20221215150214.1109074-15-hugo@hugovil.com>
-In-Reply-To: <20221215150214.1109074-15-hugo@hugovil.com>
-From:   Bruno Thomsen <bruno.thomsen@gmail.com>
-Date:   Mon, 19 Dec 2022 10:14:10 +0100
-Message-ID: <CAH+2xPAWo=nycQMLrjye8i3a3textJdyYJcWRG3Jq-tbN0a9RA@mail.gmail.com>
-Subject: Re: [PATCH v3 14/14] dt-bindings: rtc: pcf2127: add PCF2131
-To:     Hugo Villeneuve <hugo@hugovil.com>
-Cc:     a.zummo@towertech.it, alexandre.belloni@bootlin.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH 03/15] dt-bindings: clock: qcom: gcc-qcs404: define
+ clocks/clock-names for QCS404
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20221217001730.540502-1-dmitry.baryshkov@linaro.org>
+ <20221217001730.540502-4-dmitry.baryshkov@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221217001730.540502-4-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Den tor. 15. dec. 2022 kl. 16.19 skrev Hugo Villeneuve <hugo@hugovil.com>:
->
-> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
->
-> Add support for new NXP RTC PCF2131.
->
-> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+On 17/12/2022 01:17, Dmitry Baryshkov wrote:
+> Define clock/clock-names properties of the GCC device node to be used
+> on QCS404 platform.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
-> index cde7b1675ead..a8f8c23da4d8 100644
-> --- a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
-> @@ -14,7 +14,9 @@ maintainers:
->
->  properties:
->    compatible:
-> -    const: nxp,pcf2127
-> +    enum:
-> +      - nxp,pcf2127
-> +      - nxp,pcf2131
 
-The enum is incomplete as pcf2127_of_match struct also contains:
-nxp,pcf2129
-ncp,pca2129
 
-/Bruno
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
->
->    reg:
->      maxItems: 1
-> --
-> 2.30.2
->
+Best regards,
+Krzysztof
+
