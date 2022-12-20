@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B823C652153
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 14:17:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C2E465215C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 14:20:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229758AbiLTNRu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 08:17:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43758 "EHLO
+        id S230074AbiLTNUp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 08:20:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233793AbiLTNRg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 08:17:36 -0500
+        with ESMTP id S231470AbiLTNUn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 08:20:43 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33FAC19C3E
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 05:17:29 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCFBE261D
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 05:20:42 -0800 (PST)
 Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1p7cUg-0003tS-Mi; Tue, 20 Dec 2022 14:17:18 +0100
+        id 1p7cXq-0004mg-2Q; Tue, 20 Dec 2022 14:20:34 +0100
 Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1p7cUd-0004wG-Ba; Tue, 20 Dec 2022 14:17:15 +0100
-Date:   Tue, 20 Dec 2022 14:17:15 +0100
+        id 1p7cXp-000574-G1; Tue, 20 Dec 2022 14:20:33 +0100
+Date:   Tue, 20 Dec 2022 14:20:33 +0100
 From:   Marco Felsch <m.felsch@pengutronix.de>
 To:     Alistair Francis <alistair@alistair23.me>
 Cc:     linux-kernel@vger.kernel.org, shawnguo@kernel.org,
@@ -31,15 +31,14 @@ Cc:     linux-kernel@vger.kernel.org, shawnguo@kernel.org,
         devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
         arnd@arndb.de, linux@armlinux.org.uk, jernej.skrabec@gmail.com,
         kernel@pengutronix.de, alistair23@gmail.com, festevam@gmail.com
-Subject: Re: [PATCH v2 3/3] ARM: dts: imx7d-remarkable2: Enable the
- rohm,bd71815
-Message-ID: <20221220131715.femjybikqcnm4lyg@pengutronix.de>
+Subject: Re: [PATCH v2 1/3] ARM: dts: imx7d-remarkable2: Enable the cyttsp5
+Message-ID: <20221220132033.s5idqrol5kqxjasy@pengutronix.de>
 References: <20221220112927.440506-1-alistair@alistair23.me>
- <20221220112927.440506-4-alistair@alistair23.me>
+ <20221220112927.440506-2-alistair@alistair23.me>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221220112927.440506-4-alistair@alistair23.me>
+In-Reply-To: <20221220112927.440506-2-alistair@alistair23.me>
 User-Agent: NeoMutt/20180716
 X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
 X-SA-Exim-Mail-From: mfe@pengutronix.de
@@ -54,225 +53,171 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alistair,
+Hi Alistair,                                                                                                                            
 
 thanks for your patch, please see below.
 
 On 22-12-20, Alistair Francis wrote:
-> Add support for the rohm,bd71815 power controller controller for the
-> reMarkable 2.
+> Add support for the cyttsp5 touchscreen controller for the reMarkable 2.
 > 
 > Signed-off-by: Alistair Francis <alistair@alistair23.me>
 > ---
->  arch/arm/boot/dts/imx7d-remarkable2.dts | 159 ++++++++++++++++++++++++
->  1 file changed, 159 insertions(+)
+>  arch/arm/boot/dts/imx7d-remarkable2.dts | 98 +++++++++++++++++++++++++
+>  1 file changed, 98 insertions(+)
 > 
 > diff --git a/arch/arm/boot/dts/imx7d-remarkable2.dts b/arch/arm/boot/dts/imx7d-remarkable2.dts
-> index a138b292ec6a..4387d30d6180 100644
+> index 8b2f11e85e05..a138b292ec6a 100644
 > --- a/arch/arm/boot/dts/imx7d-remarkable2.dts
 > +++ b/arch/arm/boot/dts/imx7d-remarkable2.dts
-> @@ -92,6 +92,10 @@ wifi_pwrseq: wifi_pwrseq {
->  	};
->  };
+> @@ -8,6 +8,7 @@
+>  /dts-v1/;
 >  
-> +&cpu0 {
-> +	cpu-supply = <&buck1_reg>;
-> +};
+>  #include "imx7d.dtsi"
+> +#include <dt-bindings/input/linux-event-codes.h>
+>  
+>  / {
+>  	model = "reMarkable 2.0";
+> @@ -69,6 +70,18 @@ reg_digitizer: regulator-digitizer {
+>  		startup-delay-us = <100000>; /* 100 ms */
+>  	};
+>  
+> +	reg_touch: regulator-touch {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VDD_3V3_TOUCH";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		pinctrl-names = "default", "sleep";
+> +		pinctrl-0 = <&pinctrl_touch_reg>;
+> +		pinctrl-1 = <&pinctrl_touch_reg>;
+
+Why do we need a "sleep" state here?
+
+> +		gpio = <&gpio1 11 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +	};
 > +
->  &clks {
->  	assigned-clocks = <&clks IMX7D_CLKO2_ROOT_SRC>,
->  			  <&clks IMX7D_CLKO2_ROOT_DIV>;
-> @@ -119,6 +123,148 @@ wacom_digitizer: digitizer@9 {
+>  	wifi_pwrseq: wifi_pwrseq {
+>  		compatible = "mmc-pwrseq-simple";
+>  		pinctrl-names = "default";
+> @@ -106,6 +119,68 @@ wacom_digitizer: digitizer@9 {
 >  	};
 >  };
 >  
-> +&i2c2 {
+> +&i2c3 {
 > +	clock-frequency = <100000>;
 
-We can set this now to 400kHz since the driver can handle quirks now
-internal.
-
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&pinctrl_i2c2>;
-> +	pinctrl-1 = <&pinctrl_i2c2>;
-
-Do we need a "sleep" config here since this will be the same
-configuration as the "default" one.
-
-> +	status = "okay";
-> +
-> +	bd71815: pmic@4b {
-> +		compatible = "rohm,bd71815";
-> +		reg = <0x4b>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_bd71815>;
-> +		interrupt-parent = <&gpio6>; /* PMIC_INT_B GPIO6_IO16 */
-> +		interrupts = <16 IRQ_TYPE_LEVEL_LOW>;
-> +		gpio-controller;
-> +		clocks = <&clks IMX7D_CLKO2_ROOT_SRC>;
-> +		clock-output-names = "bd71815-32k-out";
-> +		#clock-cells = <0>;
-> +		#gpio-cells = <1>;
-> +
-> +		regulators {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			buck1_reg: regulator@0 {
-> +				reg = <0>;
-> +				regulator-compatible = "buck1";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <2000000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +				regulator-ramp-delay = <1250>;
-> +			};
-> +
-> +			buck2_reg: regulator@1 {
-> +				reg = <1>;
-> +				regulator-compatible = "buck2";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <2000000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +				regulator-ramp-delay = <1250>;
-> +			};
-> +
-> +			buck3_reg: regulator@2 {
-> +				reg = <2>;
-> +				regulator-compatible = "buck3";
-> +				regulator-min-microvolt = <1200000>;
-> +				regulator-max-microvolt = <2700000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buck4_reg: regulator@3 {
-> +				reg = <3>;
-> +				regulator-compatible = "buck4";
-> +				regulator-min-microvolt = <1100000>;
-> +				regulator-max-microvolt = <1850000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buck5_reg: regulator@4 {
-> +				reg = <4>;
-> +				regulator-compatible = "buck5";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo1_reg: regulator@5 {
-> +				reg = <5>;
-> +				regulator-compatible = "ldo1";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo2_reg: regulator@6 {
-> +				reg = <6>;
-> +				regulator-compatible = "ldo2";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo3_reg: regulator@7 {
-> +				reg = <7>;
-> +				regulator-compatible = "ldo3";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo4_reg: regulator@8 {
-> +				reg = <8>;
-> +				regulator-compatible = "ldo4";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo5_reg: regulator@9 {
-> +				reg = <9>;
-> +				regulator-compatible = "ldo5";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			dvref_reg: regulator@a {
-> +				reg = <0xa>;
-> +				regulator-compatible = "dvref";
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			lpsr_reg: regulator@b {
-> +				reg = <0xb>;
-> +				regulator-compatible = "lpsr";
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			wled_reg: regulator@c {
-> +				reg = <0xc>;
-> +				regulator-compatible = "wled";
-> +				regulator-min-microamp = <10>;
-> +				regulator-max-microamp = <25000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-
-Note: You have marked all regulators as always on, this is rather
-suboptimal due to power consumption.
+This can be set to 400kHz, the driver handle the quirks internal.
 
 Regards,
   Marco
 
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2c3>;
+> +	status = "okay";
+> +
+> +	touchscreen@24 {
+> +		compatible = "cypress,tt21000";
+> +		reg = <0x24>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_touch>;
+> +		interrupt-parent = <&gpio1>;
+> +		interrupts = <14 IRQ_TYPE_EDGE_FALLING>;
+> +		reset-gpios = <&gpio1 13 GPIO_ACTIVE_LOW>;
+> +		vdd-supply = <&reg_touch>;
+> +		touchscreen-size-x = <880>;
+> +		touchscreen-size-y = <1280>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		button@0 {
+> +			reg = <0>;
+> +			linux,keycodes = <KEY_HOMEPAGE>;
+> +		};
+> +
+> +		button@1 {
+> +			reg = <1>;
+> +			linux,keycodes = <KEY_MENU>;
+> +		};
+> +
+> +		button@2 {
+> +			reg = <2>;
+> +			linux,keycodes = <KEY_BACK>;
+> +		};
+> +
+> +		button@3 {
+> +			reg = <3>;
+> +			linux,keycodes = <KEY_SEARCH>;
+> +		};
+> +
+> +		button@4 {
+> +			reg = <4>;
+> +			linux,keycodes = <KEY_VOLUMEDOWN>;
+> +		};
+> +
+> +		button@5 {
+> +			reg = <5>;
+> +			linux,keycodes = <KEY_VOLUMEUP>;
+> +		};
+> +
+> +		button@6 {
+> +			reg = <6>;
+> +			linux,keycodes = <KEY_CAMERA>;
+> +		};
+> +
+> +		button@7 {
+> +			reg = <7>;
+> +			linux,keycodes = <KEY_POWER>;
 > +		};
 > +	};
 > +};
 > +
->  &i2c3 {
+>  &i2c4 {
 >  	clock-frequency = <100000>;
->  	pinctrl-names = "default";
-> @@ -293,6 +439,12 @@ MX7D_PAD_LPSR_GPIO1_IO01__GPIO1_IO1	0x00000034 /* WACOM INT */
->  };
->  
->  &iomuxc {
-> +	pinctrl_bd71815: bd71815grp {
-> +		fsl,pins = <
-> +			MX7D_PAD_SAI1_RX_SYNC__GPIO6_IO16	0x59
-> +		>;
-> +	};
-> +
->  	pinctrl_brcm_reg: brcmreggrp {
->  		fsl,pins = <
->  			/* WIFI_PWR_EN */
-> @@ -323,6 +475,13 @@ MX7D_PAD_I2C1_SCL__I2C1_SCL		0x4000007f
+>  	pinctrl-names = "default", "sleep";
+> @@ -232,6 +307,15 @@ MX7D_PAD_ENET1_RGMII_TXC__GPIO7_IO11	0x00000014
 >  		>;
 >  	};
 >  
-> +	pinctrl_i2c2: i2c2grp {
+> +	pinctrl_touch: touchgrp {
 > +		fsl,pins = <
-> +			MX7D_PAD_I2C2_SDA__I2C2_SDA		0x4000007f
-> +			MX7D_PAD_I2C2_SCL__I2C2_SCL		0x4000007f
+> +			/* CYTTSP interrupt */
+> +			MX7D_PAD_GPIO1_IO14__GPIO1_IO14		0x54
+> +			/* CYTTSP reset */
+> +			MX7D_PAD_GPIO1_IO13__GPIO1_IO13		0x04
 > +		>;
 > +	};
 > +
->  	pinctrl_i2c3: i2c3grp {
+>  	pinctrl_i2c1: i2c1grp {
 >  		fsl,pins = <
->  			MX7D_PAD_I2C3_SDA__I2C3_SDA		0x4000007f
+>  			MX7D_PAD_I2C1_SDA__I2C1_SDA		0x4000007f
+> @@ -239,6 +323,13 @@ MX7D_PAD_I2C1_SCL__I2C1_SCL		0x4000007f
+>  		>;
+>  	};
+>  
+> +	pinctrl_i2c3: i2c3grp {
+> +		fsl,pins = <
+> +			MX7D_PAD_I2C3_SDA__I2C3_SDA		0x4000007f
+> +			MX7D_PAD_I2C3_SCL__I2C3_SCL		0x4000007f
+> +		>;
+> +	};
+> +
+>  	pinctrl_i2c4: i2c4grp {
+>  		fsl,pins = <
+>  			MX7D_PAD_I2C4_SDA__I2C4_SDA		0x4000007f
+> @@ -246,6 +337,13 @@ MX7D_PAD_I2C4_SCL__I2C4_SCL		0x4000007f
+>  		>;
+>  	};
+>  
+> +	pinctrl_touch_reg: touchreggrp {
+> +		fsl,pins = <
+> +			/* TOUCH_PWR_EN */
+> +			MX7D_PAD_GPIO1_IO11__GPIO1_IO11		0x14
+> +		>;
+> +	};
+> +
+>  	pinctrl_uart1: uart1grp {
+>  		fsl,pins = <
+>  			MX7D_PAD_UART1_TX_DATA__UART1_DCE_TX	0x79
 > -- 
 > 2.38.1
 > 
