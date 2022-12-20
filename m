@@ -2,95 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 21A3E651E2A
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 10:58:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 59DC5651E35
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 10:58:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233624AbiLTJ5v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 04:57:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56802 "EHLO
+        id S233256AbiLTJ6a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 04:58:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233781AbiLTJ5E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 04:57:04 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C461DD9A
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 01:55:33 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id y25so17759703lfa.9
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 01:55:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5F3EDqHaAaBkwK8dgS+P6ptpGavemal+xXF9dHVZ1Mo=;
-        b=hZUVLL7EDHfJZhxzTxFapYTZHxS7c0VQUioNmCOCJw7i9iV1AIx2pQuTp5diNyxIY/
-         cvpKNTQglgXR9AuUqg7UQC2CQB2gKZ4z/WgcdYJXs9gyljd/DdNLC5w7VJWenCgoz5sh
-         J9WSzDc/0h01Tkvn4MGFBCVEACSKHlM1+WdWwSTbRWwRs70Vk1Y6kwRRgJcSOXsadTWn
-         6BP0Iu36PwhvgI3v8wHi3rNPkcYNEgDw/w5IWhayxkTVL2srHBSfl7a42J1aSowqmhUh
-         KOw7lIuu6bDEyK06iQHrjDwEkbBI8doceNv7c2DMEoxpPMngi5YrmqgGPwgmPOSTrSMl
-         KkFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5F3EDqHaAaBkwK8dgS+P6ptpGavemal+xXF9dHVZ1Mo=;
-        b=UQHjZVdH+HpRvoycMyf2ERHgx6cAfy9VMzvMqHXk66zQ6iZNgVE6RZwBnnS43uTN3e
-         pbSwmv8jQTc44FzOY7eUlf8EmVqiuzy0hYJ8AoA7iHiKcbKelEybOyGM3AEelnDQsSe/
-         zdurlEOptptefqFS4qxnU1vx/xaZTuCkwE0U1qR9bWNUD9aOqTV90q2RbaxwmOd1TxXF
-         D3X0HNnxFf8vbPK7y1ZvbB/APv8Z7Ubxfa6clDDaW2saXAvgqK5I6Q8Rw4uvsM7IBia0
-         zxDS1ErqMDKqW/93OQWNoTvictHJgsTP8UQ3ejKRRwKvU41J+eTLsAfk+XbR1PKWVNcQ
-         5UcA==
-X-Gm-Message-State: AFqh2krMUBrJImdCfrVmGIIq0G5IrLpCUQuTIirzLU9YlmRlWEmYGRbd
-        W3YRA7wAzAxhr0H924NYDIgCrg==
-X-Google-Smtp-Source: AMrXdXstQOU+EuywhBXn05xJVw1VNj9pca0CefR0lvpIHyr15hfGmdJwDvONL/yTCuejQPkFV4buww==
-X-Received: by 2002:a05:6512:34c2:b0:4b6:fae9:c9b7 with SMTP id w2-20020a05651234c200b004b6fae9c9b7mr477078lfr.7.1671530132182;
-        Tue, 20 Dec 2022 01:55:32 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id t5-20020a056512208500b004acd6e441cesm1387856lfr.205.2022.12.20.01.55.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Dec 2022 01:55:31 -0800 (PST)
-Message-ID: <26d4662b-1742-2963-a7d9-08a39bcfba7b@linaro.org>
-Date:   Tue, 20 Dec 2022 10:55:30 +0100
+        with ESMTP id S233845AbiLTJ5W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 04:57:22 -0500
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 772CB63D7;
+        Tue, 20 Dec 2022 01:56:44 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2BK9uRkI033305;
+        Tue, 20 Dec 2022 03:56:27 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1671530187;
+        bh=OnsEHsFL7EEgrc+lnGoktys9OkbTsxNg5h+5DqqylI8=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=tp17laKP9yOh7rI81/aew0U+KqBzfvCRhBvIj1OsDW1KinwdBNRbUi+BbOlnRnlz+
+         lmBsgFxWaePzgwPuPcgISN/bKYf9BOM+kE1W+/b8Zj3XST6wUALLHfn9EJAr4wfWOO
+         yq0Q49QQjcu5jtOWDXHcNZ6TA1yd+I1AofMF4uGo=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2BK9uQm0071961
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 20 Dec 2022 03:56:27 -0600
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 20
+ Dec 2022 03:56:26 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 20 Dec 2022 03:56:26 -0600
+Received: from [10.250.234.60] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2BK9uKXj026828;
+        Tue, 20 Dec 2022 03:56:21 -0600
+Message-ID: <c61fb922-e4aa-8068-242b-f495e4fc4369@ti.com>
+Date:   Tue, 20 Dec 2022 15:26:20 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v1 1/9] dt-bindings: media: rockchip-vpu: Add rk3588 vpu
- compatible
+ Thunderbird/102.4.2
+Subject: Re: [EXTERNAL] Re: [PATCH] arm64: dts: ti: k3-j721s2: Add support for
+ ADC nodes
 Content-Language: en-US
-To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        ezequiel@vanguardiasur.com.ar, p.zabel@pengutronix.de,
-        mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
-        daniel.almeida@collabora.com, nicolas.dufresne@collabora.co.uk
-Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-References: <20221219155616.848690-1-benjamin.gaignard@collabora.com>
- <20221219155616.848690-2-benjamin.gaignard@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221219155616.848690-2-benjamin.gaignard@collabora.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>, <vigneshr@ti.com>,
+        <nm@ti.com>, <piyali_g@ti.com>
+References: <20221108073231.35008-1-b-kapoor@ti.com>
+ <f70346da-228e-79d2-7284-6c64cda7eda0@linaro.org>
+From:   Bhavya Kapoor <b-kapoor@ti.com>
+In-Reply-To: <f70346da-228e-79d2-7284-6c64cda7eda0@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/12/2022 16:56, Benjamin Gaignard wrote:
-> Add compatible for rk3588 AV1 vpu decoder.
-> 
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> ---
->  Documentation/devicetree/bindings/media/rockchip-vpu.yaml | 1 +
->  1 file changed, 1 insertion(+)
+Hi, please drop this patch since the interrupt values supplied for 
+tscadc are incorrect.
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+On 08/11/22 23:48, Krzysztof Kozlowski wrote:
+> On 08/11/2022 08:32, Bhavya Kapoor wrote:
+>> J721S2 has two instances of 8 channel ADCs in MCU domain. Add DT nodes
+>> for 8 channel ADCs for J721S2.
+>>
+>> Enable ADCs present on J721S2 soc.
+>>
+>> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+>> ---
+>>   .../dts/ti/k3-j721s2-common-proc-board.dts    | 14 +++++++
+>>   .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     | 40 +++++++++++++++++++
+>>   2 files changed, 54 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+>> index b210cc07c539..de9cb40273be 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+>> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+>> @@ -429,3 +429,17 @@
+>>   &main_mcan17 {
+>>   	status = "disabled";
+>>   };
+>> +
+>> +&tscadc0 {
+>> +	status = "okay";
+>> +	adc {
+>> +		ti,adc-channels = <0 1 2 3 4 5 6 7>;
+>> +	};
+>> +};
+>> +
+>> +&tscadc1 {
+>> +	status = "okay";
+>> +	adc {
+>> +		ti,adc-channels = <0 1 2 3 4 5 6 7>;
+>> +	};
+>> +};
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+>> index 4d1bfabd1313..47a7a6b500c2 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+>> @@ -299,4 +299,44 @@
+>>   			ti,cpts-periodic-outputs = <2>;
+>>   		};
+>>   	};
+>> +
+>> +	tscadc0: tscadc@40200000 {
+> Node names should be generic, so "adc"
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+>
+> Best regards,
+> Krzysztof
+>
