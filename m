@@ -2,80 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F850652573
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 18:18:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A09665257E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 18:23:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233255AbiLTRSG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 12:18:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57692 "EHLO
+        id S233482AbiLTRXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 12:23:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230506AbiLTRSD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 12:18:03 -0500
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 940A6BDB;
-        Tue, 20 Dec 2022 09:18:02 -0800 (PST)
-Received: by mail-ot1-f53.google.com with SMTP id v15-20020a9d69cf000000b006709b5a534aso7527331oto.11;
-        Tue, 20 Dec 2022 09:18:02 -0800 (PST)
+        with ESMTP id S229616AbiLTRXD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 12:23:03 -0500
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 470551869E;
+        Tue, 20 Dec 2022 09:23:02 -0800 (PST)
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-1445ca00781so16198893fac.1;
+        Tue, 20 Dec 2022 09:23:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RhPmfmriI4gnYtUc8MK4KlmDwOUzaaV0pXd8CWxInDU=;
-        b=t9ZWoL/ntC9mLjWeLMOtxzLIL5DJSgB6tpMtW964zM8wCBWoFnp+VickaTDVwthV22
-         IQHBoSDqKv9Acbv3MptXnFvcZAqzluVGm0OLXxEPhp5wHRc+BcDvY01TBr10kZiwekK/
-         O6M3U5Qd6tFs/+rzv+tRKL8Q/NrLrxz89K7FC90sW3qwUbjEMooSU8Q0XN/HdNcIiBDH
-         Cs516DkDZFqD2Xeg2tvzHjItB8KNuHHFZ+EOFY5vbINAo6kJbLGQLr4pU61HoT1XdNte
-         VKI6dJHU+n3tvHldFNqJlfQeEgkq4IKYRZ490ibJek+/p5bni82owe4JTbXLBeUWei3N
-         m4Uw==
-X-Gm-Message-State: ANoB5pkMgGtRzZSB9lKsMmkp2bEitzwUWtHgK7VCOE5Aj94b0NTcc+ZW
-        Ca9clwSN3zBHh4y6HTnLk8ifBnUXyA==
-X-Google-Smtp-Source: AA0mqf5fJ7demUXGoedVzT/puZMis0xg7jSeNYFusNqcbX9zIlREnxiaj/kD3jRMUO8trPY7K1OkXg==
-X-Received: by 2002:a9d:6a96:0:b0:670:6fee:c847 with SMTP id l22-20020a9d6a96000000b006706feec847mr22942919otq.34.1671556681793;
-        Tue, 20 Dec 2022 09:18:01 -0800 (PST)
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9m759R3NNJtMIrV9Yundq41ukEnmCHJ740TTiiogoDM=;
+        b=RrayoGatYQwyU7x2ZYod3NbCY+8W0zVMIIVtqpqtqCFDYHdZvvCLVwG6YPYCs6l6Lu
+         S6d35DInK19D/uAfiBYHrJqyIq3jIM7OSb8aulUoLuCOfJ6ScFteDbr9enmU+9dOgsCS
+         lNQIILp3pJnocS8A9iDLTeUVhOpUrJ7n9OIPaIWS9lVo/PbVA6oVsp2JotF0VVlru/jw
+         gcoxDf+E+MimfyW+1vp+OHuAxXLRbwdLtTEYG9mkHCSSwbyuMlw/1IN0CDkIId0iVDvi
+         8qElgAK+qgd14ni+SrsMULplOygQJ4SFfshWXRU9aXkISSFsBAZMfTzDN9slnneMw6bS
+         RNYw==
+X-Gm-Message-State: AFqh2kqfG+ms/ichTjAwkyNlUGNndDA9deQsgDwRx/r9NoeUbOuQPKnb
+        ua7wzwqwzLMA0/yyjuOZcA==
+X-Google-Smtp-Source: AMrXdXsO8yqVRg7avcaopThhKulTDE9MWTEUA6xsuEbVm364CmV8ytfwd7JYTHsN4QCxJtQ+X6Zyrg==
+X-Received: by 2002:a05:6870:e08:b0:14c:6a72:dd31 with SMTP id mp8-20020a0568700e0800b0014c6a72dd31mr639642oab.18.1671556981556;
+        Tue, 20 Dec 2022 09:23:01 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v19-20020a056830141300b0067083710028sm5819110otp.36.2022.12.20.09.18.00
+        by smtp.gmail.com with ESMTPSA id l44-20020a05687106ac00b0013bc95650c8sm6216885oao.54.2022.12.20.09.22.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Dec 2022 09:18:01 -0800 (PST)
-Received: (nullmailer pid 767395 invoked by uid 1000);
-        Tue, 20 Dec 2022 17:18:00 -0000
-Date:   Tue, 20 Dec 2022 11:18:00 -0600
+        Tue, 20 Dec 2022 09:23:00 -0800 (PST)
+Received: (nullmailer pid 774015 invoked by uid 1000);
+        Tue, 20 Dec 2022 17:22:59 -0000
+Date:   Tue, 20 Dec 2022 11:22:59 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Sriranjani P <sriranjani.p@samsung.com>
-Cc:     linux-arm-kernel@lists.infradead.org, sathya@samsung.com,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, ravi.patel@samsung.com,
-        pankaj.dubey@samsung.com, linux-kernel@vger.kernel.org,
-        alim.akhtar@samsung.com, krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH v3 3/4] dt-bindings: soc: samsung: exynos-sysreg: add
- dedicated SYSREG compatibles to Exynosautov9
-Message-ID: <167155667989.767333.9822843529402787729.robh@kernel.org>
-References: <20221214044342.49766-1-sriranjani.p@samsung.com>
- <20221214044342.49766-4-sriranjani.p@samsung.com>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Phong LE <ple@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        list@opendingux.net, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 01/10] dt-bindings: display: bridge: it66121: Add
+ compatible string for IT6610
+Message-ID: <20221220172259.GA768859-robh@kernel.org>
+References: <20221214125821.12489-1-paul@crapouillou.net>
+ <20221214125821.12489-2-paul@crapouillou.net>
+ <CAG3jFytgK0noWteGvXTdSm9as9Q=qfhf_ep3Z8Wv2ofmLzGb=A@mail.gmail.com>
+ <c78e92ae3cbea037abdd31ecd64e997c8dd1def2.camel@crapouillou.net>
+ <bb2b5b72-42b3-3a6c-d865-9e338e34aba0@linaro.org>
+ <d1f6d19d3218d9f1acc9b38e44af413f72f8a824.camel@crapouillou.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20221214044342.49766-4-sriranjani.p@samsung.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <d1f6d19d3218d9f1acc9b38e44af413f72f8a824.camel@crapouillou.net>
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Wed, 14 Dec 2022 10:13:41 +0530, Sriranjani P wrote:
-> Exynosautov9 has several different SYSREGs, so use dedicated compatibles
-> for them and deprecate usage of generic Exynosautov9 compatible alone.
+On Fri, Dec 16, 2022 at 01:21:54PM +0100, Paul Cercueil wrote:
+> Hi Krzysztof,
 > 
-> Signed-off-by: Sriranjani P <sriranjani.p@samsung.com>
-> ---
->  .../bindings/soc/samsung/samsung,exynos-sysreg.yaml      | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
+> Le vendredi 16 décembre 2022 à 12:21 +0100, Krzysztof Kozlowski a
+> écrit :
+> > On 16/12/2022 11:46, Paul Cercueil wrote:
+> > 
+> > > > >  properties:
+> > > > >    compatible:
+> > > > > -    const: ite,it66121
+> > > > > +    enum:
+> > > > > +      - ite,it66121
+> > > > > +      - ite,it6610
+> > 
+> > These should be ordered alphabetically. What's with the tendency of
+> > adding always to the end?
 > 
+> I'm too used to the "inverse christmas tree" sort :)
 
-Acked-by: Rob Herring <robh@kernel.org>
+Come on, the DT standard is sideways christmas tree. ;)
+
+Rob
