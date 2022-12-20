@@ -2,102 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A09665257E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 18:23:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 020C1652589
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 18:26:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233482AbiLTRXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 12:23:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60220 "EHLO
+        id S230026AbiLTR0g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 12:26:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229616AbiLTRXD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 12:23:03 -0500
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 470551869E;
-        Tue, 20 Dec 2022 09:23:02 -0800 (PST)
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-1445ca00781so16198893fac.1;
-        Tue, 20 Dec 2022 09:23:02 -0800 (PST)
+        with ESMTP id S229536AbiLTR0f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 12:26:35 -0500
+Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C458E109F;
+        Tue, 20 Dec 2022 09:26:34 -0800 (PST)
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-144bd860fdbso16255953fac.0;
+        Tue, 20 Dec 2022 09:26:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9m759R3NNJtMIrV9Yundq41ukEnmCHJ740TTiiogoDM=;
-        b=RrayoGatYQwyU7x2ZYod3NbCY+8W0zVMIIVtqpqtqCFDYHdZvvCLVwG6YPYCs6l6Lu
-         S6d35DInK19D/uAfiBYHrJqyIq3jIM7OSb8aulUoLuCOfJ6ScFteDbr9enmU+9dOgsCS
-         lNQIILp3pJnocS8A9iDLTeUVhOpUrJ7n9OIPaIWS9lVo/PbVA6oVsp2JotF0VVlru/jw
-         gcoxDf+E+MimfyW+1vp+OHuAxXLRbwdLtTEYG9mkHCSSwbyuMlw/1IN0CDkIId0iVDvi
-         8qElgAK+qgd14ni+SrsMULplOygQJ4SFfshWXRU9aXkISSFsBAZMfTzDN9slnneMw6bS
-         RNYw==
-X-Gm-Message-State: AFqh2kqfG+ms/ichTjAwkyNlUGNndDA9deQsgDwRx/r9NoeUbOuQPKnb
-        ua7wzwqwzLMA0/yyjuOZcA==
-X-Google-Smtp-Source: AMrXdXsO8yqVRg7avcaopThhKulTDE9MWTEUA6xsuEbVm364CmV8ytfwd7JYTHsN4QCxJtQ+X6Zyrg==
-X-Received: by 2002:a05:6870:e08:b0:14c:6a72:dd31 with SMTP id mp8-20020a0568700e0800b0014c6a72dd31mr639642oab.18.1671556981556;
-        Tue, 20 Dec 2022 09:23:01 -0800 (PST)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4M2G5tAP96aHEIkyll33q5MFWXKDDZiGpZ9U6HjjopI=;
+        b=fHtGsY3iOATQ7ARPLKIKUWk2YzOPT5oI63t9Li+6ZK+DO5b1mQjOcQ48RiivlYvIdc
+         e3bJZRJg3UZH2Ho4Akk8lubtdIlbtldQnn9k3mN9NfHwOQKLkKsYIxqWWw5CNdMS2ycX
+         dZArGPv0e7eQR2n//k1aloPR7nW2OeOQXOelK9HE69tq8RVtwOtJ6KcT/gz1SRumMEVZ
+         yvI4t7JUcFRdRJPbVEM6vN7t3rrzEkVLYB1VWMsaS0xJdDP8meHdIaOCcE0p/EhMGFu5
+         ffF3ddMgcUr45bqWjxh0D0PqpyXxWPb9XdLtqBezFzyAdq6Hu0WYkFbq7ztpX05wZsWk
+         BJmQ==
+X-Gm-Message-State: ANoB5pkYB+n1KVpYkxkqhUYvvRuCZfoxWA/SRyQNLLxiICxZgkkzFyGV
+        oAIyKmLyErz77Vni2sEVOA==
+X-Google-Smtp-Source: AA0mqf6PMqjVBcS2KbfPfigLZKoFqm3zbK1aNyc6aBW3vGD43BaZGHI5hNI7IiHtjf4xgVp56uF32A==
+X-Received: by 2002:a05:6870:44d1:b0:144:d3f9:ff14 with SMTP id t17-20020a05687044d100b00144d3f9ff14mr21897111oai.14.1671557194070;
+        Tue, 20 Dec 2022 09:26:34 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l44-20020a05687106ac00b0013bc95650c8sm6216885oao.54.2022.12.20.09.22.59
+        by smtp.gmail.com with ESMTPSA id be13-20020a056870588d00b00142fa439ee5sm6222204oab.39.2022.12.20.09.26.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Dec 2022 09:23:00 -0800 (PST)
-Received: (nullmailer pid 774015 invoked by uid 1000);
-        Tue, 20 Dec 2022 17:22:59 -0000
-Date:   Tue, 20 Dec 2022 11:22:59 -0600
+        Tue, 20 Dec 2022 09:26:32 -0800 (PST)
+Received: (nullmailer pid 778943 invoked by uid 1000);
+        Tue, 20 Dec 2022 17:26:31 -0000
+Date:   Tue, 20 Dec 2022 11:26:31 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Phong LE <ple@baylibre.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Robert Foss <robert.foss@linaro.org>,
         Andrzej Hajda <andrzej.hajda@intel.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Fancy Fang <chen.fang@nxp.com>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        Matteo Lisi <matteo.lisi@engicam.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Inki Dae <inki.dae@samsung.com>,
+        Joonyoung Shim <jy0922.shim@samsung.com>,
+        linux-samsung-soc@vger.kernel.org,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Michael Nazzareno Trimarchi <michael@amarulasolutions.com>,
+        Adam Ford <aford173@gmail.com>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Tommaso Merciai <tommaso.merciai@amarulasolutions.com>,
+        dri-devel@lists.freedesktop.org,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        devicetree@vger.kernel.org,
         Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        list@opendingux.net, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 01/10] dt-bindings: display: bridge: it66121: Add
- compatible string for IT6610
-Message-ID: <20221220172259.GA768859-robh@kernel.org>
-References: <20221214125821.12489-1-paul@crapouillou.net>
- <20221214125821.12489-2-paul@crapouillou.net>
- <CAG3jFytgK0noWteGvXTdSm9as9Q=qfhf_ep3Z8Wv2ofmLzGb=A@mail.gmail.com>
- <c78e92ae3cbea037abdd31ecd64e997c8dd1def2.camel@crapouillou.net>
- <bb2b5b72-42b3-3a6c-d865-9e338e34aba0@linaro.org>
- <d1f6d19d3218d9f1acc9b38e44af413f72f8a824.camel@crapouillou.net>
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Neil Armstrong <narmstrong@linaro.org>,
+        Marek Vasut <marex@denx.de>
+Subject: Re: [PATCH v10 17/18] dt-bindings: display: exynos: dsim: Add NXP
+ i.MX8M Plus support
+Message-ID: <167155719100.778885.10539247780206262698.robh@kernel.org>
+References: <20221214125907.376148-1-jagan@amarulasolutions.com>
+ <20221214125907.376148-18-jagan@amarulasolutions.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d1f6d19d3218d9f1acc9b38e44af413f72f8a824.camel@crapouillou.net>
+In-Reply-To: <20221214125907.376148-18-jagan@amarulasolutions.com>
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 16, 2022 at 01:21:54PM +0100, Paul Cercueil wrote:
-> Hi Krzysztof,
-> 
-> Le vendredi 16 décembre 2022 à 12:21 +0100, Krzysztof Kozlowski a
-> écrit :
-> > On 16/12/2022 11:46, Paul Cercueil wrote:
-> > 
-> > > > >  properties:
-> > > > >    compatible:
-> > > > > -    const: ite,it66121
-> > > > > +    enum:
-> > > > > +      - ite,it66121
-> > > > > +      - ite,it6610
-> > 
-> > These should be ordered alphabetically. What's with the tendency of
-> > adding always to the end?
-> 
-> I'm too used to the "inverse christmas tree" sort :)
 
-Come on, the DT standard is sideways christmas tree. ;)
+On Wed, 14 Dec 2022 18:29:06 +0530, Jagan Teki wrote:
+> Samsung MIPI DSIM bridge can also be found in i.MX8M Plus SoC.
+> 
+> Add dt-bingings for it.
+> 
+> Cc: devicetree@vger.kernel.org
+> Cc: Rob Herring <robh@kernel.org>
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> ---
+> Changes for v10, v9:
+> - none
+> 
+>  Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
