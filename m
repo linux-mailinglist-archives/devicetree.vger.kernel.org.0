@@ -2,169 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D728B652715
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 20:34:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6737965275C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 20:53:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229958AbiLTTdc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 14:33:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55334 "EHLO
+        id S233938AbiLTTwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 14:52:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234225AbiLTTdK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 14:33:10 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEA131E3FB
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 11:32:44 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id cf42so20171746lfb.1
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 11:32:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mdum3ASsDZJVSBVTfiI3cFyg/lFTrN1LUC9FLkDQJq8=;
-        b=gysPflQ3Dudbc0ydciRVmEjBZ3UAY70FpTbtRgh8VmOOC+rWcu6nz0zw973I46Y/j0
-         +1rkdHjrqAXDyZuypgPs4Ouw1QYHbW0AOWYVyi3J8xRQlhNlLiR2dgoSl0kFZFSqq2jf
-         za6505KPlo54bMFncMq37I26dFpgR1uWfF6d6OTo++XCZFVTbBAVczanuTQm4mQ4CK0m
-         0D6eQBcrLU+MlKxpSvb70bht8tunEr/0+rs68Q4cGnMjdwG3/QJIuqNGHQcfvg+yJ08M
-         y5tI1rMU9wRyBBIvf/QQbMVCvlxn7EWhdXx9JYyFm9yEZ2k8FgMeJE5ChHRynT9kzZ05
-         yRHg==
+        with ESMTP id S233993AbiLTTwO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 14:52:14 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC95118693
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 11:51:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1671565890;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=gtHJ9MviuoYeXsjx6KkSy+TRGm5AU7U7JjwMVdni4JA=;
+        b=awy+nsvjz14SHAVlnWE6npe8fyrpWOHPvTDbqbmbqYXAUTbyMJK7NcKtc/I+xGq/DjUfK5
+        uGNYQld3W9lJ3kr85vQcZH0bD3mX43WUq1yrE4T86JBt3kXRT5nawFtRfEeIg9wnpD2Bcr
+        Xj+HxwDcYtb9ziR8NyTvnUzSrIpGKZA=
+Received: from mail-oa1-f72.google.com (mail-oa1-f72.google.com
+ [209.85.160.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-271-bhBDevSHNL2FLhVV7oLnjA-1; Tue, 20 Dec 2022 14:51:21 -0500
+X-MC-Unique: bhBDevSHNL2FLhVV7oLnjA-1
+Received: by mail-oa1-f72.google.com with SMTP id 586e51a60fabf-1441866fa6cso6028760fac.22
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 11:51:21 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mdum3ASsDZJVSBVTfiI3cFyg/lFTrN1LUC9FLkDQJq8=;
-        b=IBxAHyoxopRhvXsBTZLFVvNFFlU1dGAPCrJaAt9vCp0kzmeRRbtQTX8sl3b+U+31pQ
-         bhy0hZMHER7QFRvJTWQQUbRvNeZC1TYGRlgaLIsCL47KQcglqSdAanBd48I7IXHGA4kL
-         MpNhCYW2t2QmeJQ8lbMBZJx/3j7gtkcH2d37a6gqIXdQYTfFuKpBixVr9fp/w3v71sON
-         9CgDzCg4Uo3617DTAJcvLb57WKiaofevjeNIQmAo6Jab/TyWdR0Y7N6gR9w7SYXRs0es
-         i/HC/1swNSYC2W/dmS1/vOQJxnB2bgi8LjfhufW1clgErHOCWbTsN2ml744sadG0IC4b
-         v+fA==
-X-Gm-Message-State: ANoB5plmjb4dOM2wxPLjO3oZGSjyt5jHMsdiG0XXddPY56quDNM4MWfx
-        Lv54u8G/56X91BCIPzpn+JWdBpXWpGs46eah
-X-Google-Smtp-Source: AA0mqf58yoyhTkjIdRF2KWzIBQLlNZ1jpgVI1TAyr+07fJE0lcHEM7+R1GTWivzPGEiU0gYi1dIj4w==
-X-Received: by 2002:a05:6512:21ce:b0:4aa:f1f2:ad7a with SMTP id d14-20020a05651221ce00b004aaf1f2ad7amr12640886lft.49.1671564763280;
-        Tue, 20 Dec 2022 11:32:43 -0800 (PST)
-Received: from [192.168.1.101] (abyl184.neoplus.adsl.tpnet.pl. [83.9.31.184])
-        by smtp.gmail.com with ESMTPSA id u2-20020ac24c22000000b004979db5aa5bsm1568212lfq.223.2022.12.20.11.32.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Dec 2022 11:32:42 -0800 (PST)
-Message-ID: <66140726-0771-a28b-4916-cc3aef569cab@linaro.org>
-Date:   Tue, 20 Dec 2022 20:32:41 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v4 2/4] arm64: dts: qcom: sm6125: Add UFS nodes
-Content-Language: en-US
-To:     Lux Aliaga <they@mint.lgbt>, Andy Gross <agross@kernel.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gtHJ9MviuoYeXsjx6KkSy+TRGm5AU7U7JjwMVdni4JA=;
+        b=Rkx35iuORl7mGbooMZbomOcd7fe1e9cbea3d9jo/gNIc97e9NCvemXIROrI8evdJci
+         HviwU27T5/lyULgeP9omBJzRsAHnL26apWRV0KP5u/Kj4mOz84Tym1rAdtYQ8LJKnkdM
+         whEYlMwRnEKOl7kl1BX4CWL5o761s2Ix6m/QSMcQs3+wHZU4FBmQOlblMVoCC8Tu4Cyb
+         lk/6EVNNCgztSGzwYp8UXQhg2FHsKAV2F77O97EDlbaLtJuHKEmbM5vsTpiLstfr9395
+         TSvBnJjkDcQ4C07L510Yde70fSnPpTSZaQMZS6H5kr8eLzamwZAdatOWj9DnHGFYl9J1
+         lX5w==
+X-Gm-Message-State: ANoB5pliZSW8WYhTKWdf+JHLqmfSRp+OWYBLlbazDugGesHMREMPchC2
+        vizPwLLmENWbnHOSBe4QtBMgMdKOSE3grlxxalaROcvlO0YLnd68utW3H7ZpJQeN6rsuFwHoUga
+        JOGOvouBAHRlV0+baVPpf8Q==
+X-Received: by 2002:a05:6870:517:b0:141:d6f8:f83d with SMTP id j23-20020a056870051700b00141d6f8f83dmr23526812oao.1.1671565880556;
+        Tue, 20 Dec 2022 11:51:20 -0800 (PST)
+X-Google-Smtp-Source: AA0mqf7yJ6MGDycAtuwlTjAtrLORR67RpUKz/dZw9P30th+KL9S89yvHFmjk91A5JmpFjwZ3SXeU/w==
+X-Received: by 2002:a05:6870:517:b0:141:d6f8:f83d with SMTP id j23-20020a056870051700b00141d6f8f83dmr23526797oao.1.1671565880325;
+        Tue, 20 Dec 2022 11:51:20 -0800 (PST)
+Received: from halaney-x13s ([2600:1700:1ff0:d0e0::21])
+        by smtp.gmail.com with ESMTPSA id be13-20020a056870588d00b00142fa439ee5sm6400567oab.39.2022.12.20.11.51.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Dec 2022 11:51:19 -0800 (PST)
+Date:   Tue, 20 Dec 2022 13:51:17 -0600
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     Eric Chanudet <echanude@redhat.com>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221215190404.398788-1-they@mint.lgbt>
- <20221215190404.398788-2-they@mint.lgbt>
- <e474f99d-2375-c8db-203c-632c918d8e4d@linaro.org>
- <9c185e36-4342-0f8e-1816-494303ebd072@mint.lgbt>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <9c185e36-4342-0f8e-1816-494303ebd072@mint.lgbt>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Brian Masney <bmasney@redhat.com>
+Subject: Re: [PATCH v4 0/4] arm64: dts: qcom: enable sa8540p-ride rtc
+Message-ID: <20221220195117.zrbnzx3glzmijlvo@halaney-x13s>
+References: <20221219191000.2570545-1-echanude@redhat.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221219191000.2570545-1-echanude@redhat.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 20.12.2022 19:57, Lux Aliaga wrote:
-> On 16/12/2022 08:24, Konrad Dybcio wrote:
+On Mon, Dec 19, 2022 at 02:09:57PM -0500, Eric Chanudet wrote:
+> Enable sa8540p-ride rtc on pmic@0.
 > 
->>
->> On 15.12.2022 20:04, Lux Aliaga wrote:
->>> Adds a UFS host controller node and its corresponding PHY to
->>> the sm6125 platform.
->>>
->>> Signed-off-by: Lux Aliaga <they@mint.lgbt>
->>> ---
->> Please include a changelog, I don't know what you changed and
->> what you didn't. Also, you sent 4 revisions in one day, not
->> letting others review it.
->>
->>
->>>   arch/arm64/boot/dts/qcom/sm6125.dtsi | 67 ++++++++++++++++++++++++++++
->>>   1 file changed, 67 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi b/arch/arm64/boot/dts/qcom/sm6125.dtsi
->>> index 7e25a4f85594..b64c5bc1452f 100644
->>> --- a/arch/arm64/boot/dts/qcom/sm6125.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sm6125.dtsi
->>> @@ -508,6 +508,73 @@ sdhc_2: mmc@4784000 {
->>>               status = "disabled";
->>>           };
->>>   +        ufs_mem_hc: ufs@4804000 {
->>> +            compatible = "qcom,sm6125-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
->>> +            reg = <0x04804000 0x3000>, <0x04810000 0x8000>;
->>> +            reg-names = "std", "ice";
->>> +            interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
->>> +            phys = <&ufs_mem_phy_lanes>;
->>> +            phy-names = "ufsphy";
->>> +            lanes-per-direction = <1>;
->>> +            #reset-cells = <1>;
->>> +            resets = <&gcc GCC_UFS_PHY_BCR>;
->>> +            reset-names = "rst";
->>> +
->>> +            clock-names = "core_clk",
->>> +                      "bus_aggr_clk",
->>> +                      "iface_clk",
->>> +                      "core_clk_unipro",
->>> +                      "ref_clk",
->>> +                      "tx_lane0_sync_clk",
->>> +                      "rx_lane0_sync_clk",
->>> +                      "ice_core_clk";
->>> +            clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
->>> +                 <&gcc GCC_SYS_NOC_UFS_PHY_AXI_CLK>,
->>> +                 <&gcc GCC_UFS_PHY_AHB_CLK>,
->>> +                 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
->>> +                 <&rpmcc RPM_SMD_XO_CLK_SRC>,
->>> +                 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
->>> +                 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
->>> +                 <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
->>> +            freq-table-hz = <50000000 240000000>,
->>> +                    <0 0>,
->>> +                    <0 0>,
->>> +                    <37500000 150000000>,
->>> +                    <0 0>,
->>> +                    <0 0>,
->>> +                    <0 0>,
->>> +                    <75000000 300000000>;
->>> +
->>> +            non-removable;
->>> +            status = "disabled";
->>> +        };
->>> +
->>> +        ufs_mem_phy: phy@4807000 {
->>> +            compatible = "qcom,sm6115-qmp-ufs-phy";
->> Krzysztof asked you to add a SoC-specific compatible in v1.
-> I'm working on adding a new compatible for sm6125's UFS PHY. Should I copy sm6115's tables or just reference them in the sm6125's config in drivers/phy/qualcomm/phy-qcom-qmp-ufs.c?
-If they're identical, you can just do something like this:
-
-compatible = "qcom,sm6125-qmp-ufs-phy", "qcom,sm6115-qmp-ufs-phy";
-
-And ensure your newly added compatible is documented in bindings.
-This way, the driver will fall back to the 6115 compatible that's
-defined in .c, but if we ever need to adjust something specific
-for 6125, we will just use the define that we added here. That's
-important, as we're supposed to stay backwards-compatible with
-old device trees.
-
-Also, wrap your emails at around 80 chars or so, some people
-are grumpy about that :P
-
-Konrad
+> sa8540p base boards share the same pmics description, currently in
+> pm8450a.dtsi. Rename the file to make this explicit and use it in both
+> sa8540p-ride.dts and sa8295p-adp.dts.
+> Add the missing offset where appropriate for the alarm register bank in
+> other qcom,pm8941-rtc description.
 > 
+> Changes since v3:
+> - Amend patch #1 incorrect description.
+> 
+> Changes since v2:
+> - rename pm8450a.dtsi to sa8540p-pmics.dtsi.
+> 
+> Changes since v1:
+> - Add "alarm" register bank offset at 0x6100 in qcom,pm8941-rtc
+>   descriptions.
+> 
+> Eric Chanudet (4):
+>   arm64: dts: qcom: rename pm8450a dtsi to sa8540p-pmics
+>   arm64: dts: qcom: sa8450p-pmics: add rtc node
+>   arm64: dts: qcom: sa8295p-adp: use sa8540p-pmics
+>   arm64: dts: qcom: pm8941-rtc add alarm register
+> 
+>  arch/arm64/boot/dts/qcom/pm8150.dtsi          |  2 +-
+>  arch/arm64/boot/dts/qcom/pm8916.dtsi          |  3 +-
+>  arch/arm64/boot/dts/qcom/pm8950.dtsi          |  2 +-
+>  arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi     |  2 +-
+>  arch/arm64/boot/dts/qcom/pmp8074.dtsi         |  2 +-
+>  arch/arm64/boot/dts/qcom/pms405.dtsi          |  2 +-
+>  arch/arm64/boot/dts/qcom/sa8295p-adp.dts      | 79 +------------------
+>  .../qcom/{pm8450a.dtsi => sa8540p-pmics.dtsi} |  8 ++
+>  arch/arm64/boot/dts/qcom/sa8540p-ride.dts     |  2 +-
+>  9 files changed, 17 insertions(+), 85 deletions(-)
+>  rename arch/arm64/boot/dts/qcom/{pm8450a.dtsi => sa8540p-pmics.dtsi} (90%)
+> 
+> -- 
+> 2.38.1
+> 
+
+Tested-by: Andrew Halaney <ahalaney@redhat.com> # sa8540p-ride
+
+Here's some naive tests I did for the record:
+
+    [root@localhost ~]# cat /proc/interrupts | grep alarm
+    180:          2          0          0          0          0          0          0          0  pmic_arb 101777441 Edge      pm8xxx_rtc_alarm
+    [root@localhost ~]# echocat /proc/interrupts | grep alarm> /sys/class/rtc/rtc0/wakealarm && sleep 10 && cat /proc/interrupts | grep alarm
+    180:          3     cat /proc/interrupts | grep alarm0          0  pmic_arb 101777441 Edge      pm8xxx_rtc_alarm
+    180:          3          0          0          0          0          0          0          0  pmic_arb 101777441 Edge      pm8xxx_rtc_alarm
+    [root@localhost ~]# 
+    [root@localhost ~]# 
+    [root@localhost ~]# cat /proc/interrupts | grep alarm
+    180:          3          0          0          0          0          0          0          0  pmic_arb 101777441 Edge      pm8xxx_rtc_alarm
+    [root@localhost ~]# echo $(date '+%s' -d '+ 10 seconds') > /sys/class/rtc/rtc0/wakealarm && sleep 10 && cat /proc/interrupts | grep alarm
+    180:          3          0          0          0          0          0          0          0  pmic_arb 101777441 Edge      pm8xxx_rtc_alarm
+    [root@localhost ~]# timedatectl && sleep 5 && timedatectl
+                   Local time: Wed 1970-01-14 05:20:32 UTC
+               Universal time: Wed 1970-01-14 05:20:32 UTC
+                     RTC time: Wed 1970-01-14 05:20:32
+                    Time zone: UTC (UTC, +0000)
+    System clock synchronized: no
+                  NTP service: active
+              RTC in local TZ: no
+                   Local time: Wed 1970-01-14 05:20:37 UTC
+               Universal time: Wed 1970-01-14 05:20:37 UTC
+                     RTC time: Wed 1970-01-14 05:20:37
+                    Time zone: UTC (UTC, +0000)
+    System clock synchronized: no
+                  NTP service: active
+              RTC in local TZ: no
+    [root@localhost ~]#
+
