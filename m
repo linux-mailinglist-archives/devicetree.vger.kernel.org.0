@@ -2,152 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6E616525AD
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 18:40:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B1F16525BE
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 18:47:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232400AbiLTRkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 12:40:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38742 "EHLO
+        id S229741AbiLTRrp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 12:47:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229536AbiLTRkC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 12:40:02 -0500
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8711EFF1;
-        Tue, 20 Dec 2022 09:40:01 -0800 (PST)
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-144b21f5e5fso16178680fac.12;
-        Tue, 20 Dec 2022 09:40:01 -0800 (PST)
+        with ESMTP id S232400AbiLTRrm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 12:47:42 -0500
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ED721AA23;
+        Tue, 20 Dec 2022 09:47:41 -0800 (PST)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-14455716674so16253039fac.7;
+        Tue, 20 Dec 2022 09:47:41 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=T+uqKNupLom5HOX393/X5dcMBDb877yjyv1k5TVvfHA=;
-        b=dYy9G5znw3qUvh2+VZkZceDeq9Lw8DSJHuPCnucxj3I2yFDJGt3+U4uuckwosxmSci
-         871zqwT91uuGI6q4UVfUGnloPMvMAessZtb4HxRUGtijSN1lfnOMl3uSqt6f9yBqan0J
-         bStGHJZa4jcHF9CHKQwFbvb9aIVyUblAezMfipzFV1bXMorx7lV8kYzKDY9rSCrwFes0
-         0vvr4xWIujVKyMzS/tgD2inoTrAXFmgluLSn9FleU3HkyVTRZZww0Ba9dahJks71n1dX
-         FgRJ7DxlIt1TnhwRhPh8RK1VnauNMxm27IwTK4QFSIwtZmPCbaUFhlqJGQr6r32L3Pvv
-         rcVw==
-X-Gm-Message-State: ANoB5pkryApv9g3LiySo4iYTHevuXf2iSg7z/jXxD4YkqGGUGMFf+PNE
-        0KJHXz7bOZt8QAFXUDSSkw==
-X-Google-Smtp-Source: AA0mqf76SVmlQ2s3MNPaz5jKJiFUnELkYDbfYdBJK/nJs4YnkQox5rSMMXsrtk/xEbpO8oFir2KjVQ==
-X-Received: by 2002:a05:6870:2dc8:b0:13b:9ee:aa19 with SMTP id op8-20020a0568702dc800b0013b09eeaa19mr20163092oab.55.1671558000766;
-        Tue, 20 Dec 2022 09:40:00 -0800 (PST)
+        bh=yfCS79n0Ope3GY0870xoipOwOe/J2aLH9i5SYl522FE=;
+        b=x1aJKV6gUj7AZm8tQGRUpdoGZ1D80hWfb1+JKGljnMsHZMXXhtMOUL153umY+0gpBW
+         R4Zh+d0L19qItRO9hcIKRBzH5oy0ykB+sfgq8XyiSHgJBIPlpSmE8zNV4qPlttIMioXv
+         Skbxmz2Gj0jX+aY61PjoEqdM2vGEJNL90NDuqu2CylOJ+Q/YwFIydfHmWJf8ZuNLCReY
+         JwYd6GqLuQ+pW51RySwwVq1AeerGca5AUJAB8qcQcLiwikfiqu9EsA92VEA5teYtKO0C
+         HPo61YjWwmfg4UhKqDh7muXWKavo1jjdCSaVwQoF7clS5BDnFXy55E2+g8OSp5ZoejOG
+         U5Lg==
+X-Gm-Message-State: ANoB5pmbgFDhZdUCrIfHMHnmcFD37zu55F3H9RhfoeQCS+m23oWjSotx
+        2M4O1WYrWZanoxirGWVgnA==
+X-Google-Smtp-Source: AA0mqf64iDx1lopFZUDUmBrEBzAOsqDX1+vFNzrdWaZXU2GWUsH+0rYb+zpK/Vec64zkeov6pn6vvQ==
+X-Received: by 2002:a05:6870:9a06:b0:144:840e:76be with SMTP id fo6-20020a0568709a0600b00144840e76bemr25465804oab.24.1671558460231;
+        Tue, 20 Dec 2022 09:47:40 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id er34-20020a056870c8a200b0014866eb34cesm6216065oab.48.2022.12.20.09.39.59
+        by smtp.gmail.com with ESMTPSA id g4-20020a056870d20400b0013b911d5960sm6264244oac.49.2022.12.20.09.47.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Dec 2022 09:39:59 -0800 (PST)
-Received: (nullmailer pid 796697 invoked by uid 1000);
-        Tue, 20 Dec 2022 17:39:58 -0000
-Date:   Tue, 20 Dec 2022 11:39:58 -0600
+        Tue, 20 Dec 2022 09:47:39 -0800 (PST)
+Received: (nullmailer pid 807006 invoked by uid 1000);
+        Tue, 20 Dec 2022 17:47:38 -0000
+Date:   Tue, 20 Dec 2022 11:47:38 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Christian Marangi <ansuelsmth@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
-        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org,
-        Tim Harvey <tharvey@gateworks.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-Subject: Re: [PATCH v7 11/11] dt-bindings: net: dsa: qca8k: add LEDs
- definition example
-Message-ID: <20221220173958.GA784285-robh@kernel.org>
-References: <20221214235438.30271-1-ansuelsmth@gmail.com>
- <20221214235438.30271-12-ansuelsmth@gmail.com>
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <chris.paterson2@renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [DO NOT APPLY PATCH v3 1/3] dt-bindings: pwm: Add RZ/G2L GPT
+ binding
+Message-ID: <20221220174738.GA800802-robh@kernel.org>
+References: <20221215205843.4074504-1-biju.das.jz@bp.renesas.com>
+ <20221215205843.4074504-2-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221214235438.30271-12-ansuelsmth@gmail.com>
+In-Reply-To: <20221215205843.4074504-2-biju.das.jz@bp.renesas.com>
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 15, 2022 at 12:54:38AM +0100, Christian Marangi wrote:
-> Add LEDs definition example for qca8k using the offload trigger as the
-> default trigger and add all the supported offload triggers by the
-> switch.
+On Thu, Dec 15, 2022 at 08:58:41PM +0000, Biju Das wrote:
+> Add device tree bindings for the General PWM Timer (GPT).
 > 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > ---
->  .../devicetree/bindings/net/dsa/qca8k.yaml    | 24 +++++++++++++++++++
->  1 file changed, 24 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-> index 978162df51f7..4090cf65c41c 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-> @@ -65,6 +65,8 @@ properties:
->                   internal mdio access is used.
->                   With the legacy mapping the reg corresponding to the internal
->                   mdio is the switch reg with an offset of -1.
-> +                 Each phy have at least 3 LEDs connected and can be declared
-> +                 using the standard LEDs structure.
->  
->  patternProperties:
->    "^(ethernet-)?ports$":
-> @@ -202,6 +204,7 @@ examples:
->      };
->    - |
->      #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/leds/common.h>
->  
->      mdio {
->          #address-cells = <1>;
-> @@ -284,6 +287,27 @@ examples:
->  
->                  internal_phy_port1: ethernet-phy@0 {
->                      reg = <0>;
-> +
-> +                    leds {
-> +                        #address-cells = <1>;
-> +                        #size-cells = <0>;
-> +
-> +                        led@0 {
-> +                            reg = <0>;
-> +                            color = <LED_COLOR_ID_WHITE>;
-> +                            function = LED_FUNCTION_LAN;
-> +                            function-enumerator = <1>;
-> +                            linux,default-trigger = "netdev";
+>  sending[1] to avoid bot error for the next patch.
 
-'function' should replace this. Don't encourage more users. 
+Don't do that. The correct thing to do is note the dependency in the 
+patch with the dependency (after '---'). The bot will read that and 
+decide to not send a failure email to you. The bot doesn't read cover 
+letters.
 
-Also, 'netdev' is not documented which leaves me wondering why there's 
-no warning? Either this patch didn't apply or there's a problem in the 
-schema that's not checking this node.
-
-> +                        };
-> +
-> +                        led@1 {
-> +                            reg = <1>;
-> +                            color = <LED_COLOR_ID_AMBER>;
-> +                            function = LED_FUNCTION_LAN;
-> +                            function-enumerator = <1>;
-
-Typo? These are supposed to be unique. Can't you use 'reg' in your case?
-
-
-> +                            linux,default-trigger = "netdev";
-> +                        };
-> +                    };
->                  };
->  
->                  internal_phy_port2: ethernet-phy@1 {
-> -- 
-> 2.37.2
-> 
-> 
+Rob
