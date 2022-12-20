@@ -2,50 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E29E6524F4
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 17:51:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 22C44652512
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 18:00:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233846AbiLTQvG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 11:51:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45292 "EHLO
+        id S234018AbiLTRAL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 12:00:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229536AbiLTQvF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 11:51:05 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10644B1CE
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 08:51:03 -0800 (PST)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1p7fpW-00078v-4y; Tue, 20 Dec 2022 17:51:02 +0100
-Message-ID: <7a2dfaab-5340-236a-064d-15db3e00f409@pengutronix.de>
-Date:   Tue, 20 Dec 2022 17:50:59 +0100
+        with ESMTP id S233938AbiLTRAI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 12:00:08 -0500
+Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41AE41AA0E
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 09:00:05 -0800 (PST)
+Received: by mail-qv1-xf2a.google.com with SMTP id pp21so8593361qvb.5
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 09:00:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=+eNtJleCoyZ+rnpiQgOt/w5NmObbO6G26kWA+/nOGUg=;
+        b=PXRNJruI4QH3avlJjKJcGvsE+EsMPLIJraLY7fTB+owDI5ZxGS55eJ3jz+eBCn97gb
+         5mjKHNs+2CrTU8JLSJsOGISFT/dcqGvSLGQCYmMh62Q6ufRzwfKbkclHZtTSnDlC8ZMO
+         pBCC6dQRQa55Ud/SLbYoWDRDD6g58+UPoNzI8kstddrU3feBsD1GmopdsR89m0FSqhtn
+         6NynIUJ5q+MFJE+AfrNvHNwdPe0PLcx8H/gxG9LZquvBJOHGLp+idtI7sTiDswYgG9ex
+         N1mOlEnK7ChJe/Y2z/iFvinl8FjoJ3C0Asp5hUyk/AOdcqcD+63hLDtTvD4r0fUNXMx1
+         CMxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+eNtJleCoyZ+rnpiQgOt/w5NmObbO6G26kWA+/nOGUg=;
+        b=K6c1GO+O0pIUi+vKA8xrEy6YuCP2ht+zGuSVjbrRyyoFxE1Hlp/wbUuuHEcmQI9Fps
+         4eJ/Ro6R7ftUmt26p8c5/uG0boXK0FUaFwlmkUglp45860YUhmXulBKn/DtiB37SkN6s
+         luGp9XqJ1unAK3ylIZm56pBHWj08i+gXDTuk5b2AgyjcBd6nVYkAeV4+4/WhXZbiOnB4
+         V0otoi8Pb1tRj8MNBlIjU12+6VU4RHRGVK3Cau1DyaIEFxfBN5U7ab3xTzSdCW4RDNSV
+         eIPZ+825fRGt7sc/zgEDZcvj49GcoY0fInycwv9JvMbJEKftvpIIvqGI8LmVL4MPW3np
+         iuhQ==
+X-Gm-Message-State: ANoB5plROYc+ofT4RsiilPco0o2PzF9SbryXnOPeCy4vsNs4RRihKeS3
+        MGK+WF8qmPcEWeN5qzNUDReSqg==
+X-Google-Smtp-Source: AA0mqf7AJbYijJupMP4GW/Qkb0ZvvXqfYmCTrUF/82gvjy1X451bMmQPVjtNikol69Xn7HaIxHu91g==
+X-Received: by 2002:ad4:4811:0:b0:4d1:e110:1621 with SMTP id qd17-20020ad44811000000b004d1e1101621mr66524292qvb.0.1671555604153;
+        Tue, 20 Dec 2022 09:00:04 -0800 (PST)
+Received: from nicolas-tpx395.localdomain (192-222-136-102.qc.cable.ebox.net. [192.222.136.102])
+        by smtp.gmail.com with ESMTPSA id c7-20020a05620a268700b006f87d28ea3asm9214224qkp.54.2022.12.20.09.00.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Dec 2022 09:00:03 -0800 (PST)
+Message-ID: <939ce9a0f7f73c0b9f0cf5590f2d8b02e0825fa5.camel@ndufresne.ca>
+Subject: Re: [PATCH v1 0/9] AV1 stateless decoder for RK3588
+From:   Nicolas Dufresne <nicolas@ndufresne.ca>
+To:     Michael Grzeschik <mgr@pengutronix.de>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Cc:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
+        daniel.almeida@collabora.com, nicolas.dufresne@collabora.co.uk,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+Date:   Tue, 20 Dec 2022 12:00:01 -0500
+In-Reply-To: <20221219215431.GB26315@pengutronix.de>
+References: <20221219155616.848690-1-benjamin.gaignard@collabora.com>
+         <CAAEAJfBP_D65kjHbwYP+LWfWKfzFtHtWo+3bDcbdO8tPtBurUA@mail.gmail.com>
+         <20221219215431.GB26315@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.2 (3.46.2-1.fc37) 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v2 1/3] ARM: dts: imx7d-remarkable2: Enable the cyttsp5
-Content-Language: en-US
-To:     Marco Felsch <m.felsch@pengutronix.de>,
-        Alistair Francis <alistair@alistair23.me>
-Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de, arnd@arndb.de,
-        festevam@gmail.com, s.hauer@pengutronix.de,
-        linux-kernel@vger.kernel.org, jernej.skrabec@gmail.com,
-        linux@armlinux.org.uk, robh+dt@kernel.org, linux-imx@nxp.com,
-        krzysztof.kozlowski+dt@linaro.org, alistair23@gmail.com,
-        shawnguo@kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20221220112927.440506-1-alistair@alistair23.me>
- <20221220112927.440506-2-alistair@alistair23.me>
- <20221220132033.s5idqrol5kqxjasy@pengutronix.de>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <20221220132033.s5idqrol5kqxjasy@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -53,195 +79,180 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Alistair,
-Hello Marco,
+Le lundi 19 d=C3=A9cembre 2022 =C3=A0 22:54 +0100, Michael Grzeschik a =C3=
+=A9crit=C2=A0:
+> Hi Benjamin,
+> Hi Ezequiel,
+>=20
+> On Mon, Dec 19, 2022 at 06:07:38PM -0300, Ezequiel Garcia wrote:
+> > On Mon, Dec 19, 2022 at 12:56 PM Benjamin Gaignard
+> > <benjamin.gaignard@collabora.com> wrote:
+> > >=20
+> > > This series implement AV1 stateless decoder for RK3588 SoC.
+> > > The harware support 8 and 10 bits bitstreams up to 7680x4320.
+> > > AV1 feature like film grain or scaling are done by the postprocessor.
+> > > The driver can produce NV12_4L4 and NV12 pixel formats.
+> > > A native 10bits NV12_4L4 format is possible but need more investigati=
+on
+> > > to be completly documented and enabled.
+> > >=20
+> > > It is based on Daniel's "[RFC,v3] media: Add AV1 uAPI" [1] patches an=
+d
+> > > Sebastian's device-tree patches for RK3588.
+> > >=20
+> >=20
+> > I thought the AV1 decoder in RK3588 was really a separate hardware
+> > from the Hantro G1/G2.
+> >=20
+> > Shouldn't this need a new driver for this new hardware?
+>=20
+> Just jumping into this discussion as I am currently working on the rkvenc=
+ driver.
+>=20
+> In my case I am extending the rkvdec driver to become more generic for
+> other rockchip specific enc/decoders.
+>=20
+> My first change looks like this:
+> ---
+>  drivers/staging/media/rkvdec/Makefile              |   4 +-
+>  drivers/staging/media/rkvdec/rkvdec-h264.c         | 100 ++++-----
+>  drivers/staging/media/rkvdec/rkvdec-vp9.c          | 142 ++++++-------
+>  drivers/staging/media/rkvdec/{rkvdec.c =3D> rkvpu.c} | 510 +++++++++++++=
+++++++++++-----------------------
+>  drivers/staging/media/rkvdec/{rkvdec.h =3D> rkvpu.h} |  66 +++---
+> ---
+>=20
+> While working on other parts of the encoder I found many places in the
+> rkvdec driver (e.g. v4l2 and vb2 callbacks) that looked familiar to the h=
+antro
+> functions but where limited to the decoder case.
+>=20
+> I think there are two options for the av1 codec.
+>=20
+> 1) If the vpu981 is a driver that has nothing to do with verisilicon but
+> works with this driver framework, then we should integrate vepu981 into i=
+t
+> but consider rename the verisilicon unrelated parts to something generic.
 
-On 20.12.22 14:20, Marco Felsch wrote:
-> Hi Alistair,                                                                                                                            
-> 
-> thanks for your patch, please see below.
-> 
-> On 22-12-20, Alistair Francis wrote:
->> Add support for the cyttsp5 touchscreen controller for the reMarkable 2.
->>
->> Signed-off-by: Alistair Francis <alistair@alistair23.me>
->> ---
->>  arch/arm/boot/dts/imx7d-remarkable2.dts | 98 +++++++++++++++++++++++++
->>  1 file changed, 98 insertions(+)
->>
->> diff --git a/arch/arm/boot/dts/imx7d-remarkable2.dts b/arch/arm/boot/dts/imx7d-remarkable2.dts
->> index 8b2f11e85e05..a138b292ec6a 100644
->> --- a/arch/arm/boot/dts/imx7d-remarkable2.dts
->> +++ b/arch/arm/boot/dts/imx7d-remarkable2.dts
->> @@ -8,6 +8,7 @@
->>  /dts-v1/;
->>  
->>  #include "imx7d.dtsi"
->> +#include <dt-bindings/input/linux-event-codes.h>
->>  
->>  / {
->>  	model = "reMarkable 2.0";
->> @@ -69,6 +70,18 @@ reg_digitizer: regulator-digitizer {
->>  		startup-delay-us = <100000>; /* 100 ms */
->>  	};
->>  
->> +	reg_touch: regulator-touch {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "VDD_3V3_TOUCH";
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		pinctrl-names = "default", "sleep";
->> +		pinctrl-0 = <&pinctrl_touch_reg>;
->> +		pinctrl-1 = <&pinctrl_touch_reg>;
-> 
-> Why do we need a "sleep" state here?
-> 
->> +		gpio = <&gpio1 11 GPIO_ACTIVE_HIGH>;
->> +		enable-active-high;
->> +	};
->> +
->>  	wifi_pwrseq: wifi_pwrseq {
->>  		compatible = "mmc-pwrseq-simple";
->>  		pinctrl-names = "default";
->> @@ -106,6 +119,68 @@ wacom_digitizer: digitizer@9 {
->>  	};
->>  };
->>  
->> +&i2c3 {
->> +	clock-frequency = <100000>;
-> 
-> This can be set to 400kHz, the driver handle the quirks internal.
+I've raised in my review the the naming is sub-optimal. This is an unmodifi=
+ed
+VC9000D AV1 decoder. No other codecs have been included in the package, eve=
+n
+though VC9000D cores can support more.
 
-I would either leave this at 100kHz or increase to the maximum of
-384 kHz. DT is supposed to describe the hardware and if 400 kHz
-isn't a safe frequency, it should be avoided, even if the Linux
-driver handles it gracefully.
+Stating this driver have no place here seems a bit strange to me, but with
+proper arguments, maybe we can make a case and start a VC9000D dedicated dr=
+iver
+(that will be a lot of copy paste, VC9000D post processor notably is identi=
+cal
+to VC8000 post processor, but one could argue we should make a VCX000 drive=
+r ?
 
-Cheers,
-Ahmad
+>=20
+> 2) Move the vepu981 av1 driver into the rkvdec instead.
 
-> 
+That make no sense, its not a Rockchip HW design, and will likely start
+appearing on non-RK SoC in the future.
+
+>=20
+> If 1) is the way to go, we can even think of moving the staging code part=
+s from
+> rkvdec to the verisilicon code. Likewise to the vepu981-av1.
+
+Again, I think using RK naming is unfortunate choice. This AV1 decoder is j=
+ust
+like the G1/H1 combo you will find on RK3288. And that same combo is found =
+on
+many older SoC (actually even newer SoC un the VC8000Nano brand).
+
+Like all generation of Hantro chips, there is an optional dependency that c=
+an
+exist between encoder and decoders. The question is if this requires a sing=
+le
+driver to maintain a valid state or not. So far, it seems devs have assume =
+that
+is it needed.
+
+p.s. fun fact, on most HW, the decoder rate is cut in half with running
+concurrently with the encoder
+
+>=20
+> I could also keep on integrating the rkvenc on that base instead.
+
+Do you know if there is any interaction between the encoder and decoder ? S=
+hared
+registers, shared internal cache ? That's basically what differentiate Hant=
+ro
+here. Also, be aware that some folks are considering starting on RKVDEC2 dr=
+iver,
+are you looking at RK32/33 series ? or more RK35 ?
+
+>=20
 > Regards,
->   Marco
-> 
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_i2c3>;
->> +	status = "okay";
->> +
->> +	touchscreen@24 {
->> +		compatible = "cypress,tt21000";
->> +		reg = <0x24>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_touch>;
->> +		interrupt-parent = <&gpio1>;
->> +		interrupts = <14 IRQ_TYPE_EDGE_FALLING>;
->> +		reset-gpios = <&gpio1 13 GPIO_ACTIVE_LOW>;
->> +		vdd-supply = <&reg_touch>;
->> +		touchscreen-size-x = <880>;
->> +		touchscreen-size-y = <1280>;
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +
->> +		button@0 {
->> +			reg = <0>;
->> +			linux,keycodes = <KEY_HOMEPAGE>;
->> +		};
->> +
->> +		button@1 {
->> +			reg = <1>;
->> +			linux,keycodes = <KEY_MENU>;
->> +		};
->> +
->> +		button@2 {
->> +			reg = <2>;
->> +			linux,keycodes = <KEY_BACK>;
->> +		};
->> +
->> +		button@3 {
->> +			reg = <3>;
->> +			linux,keycodes = <KEY_SEARCH>;
->> +		};
->> +
->> +		button@4 {
->> +			reg = <4>;
->> +			linux,keycodes = <KEY_VOLUMEDOWN>;
->> +		};
->> +
->> +		button@5 {
->> +			reg = <5>;
->> +			linux,keycodes = <KEY_VOLUMEUP>;
->> +		};
->> +
->> +		button@6 {
->> +			reg = <6>;
->> +			linux,keycodes = <KEY_CAMERA>;
->> +		};
->> +
->> +		button@7 {
->> +			reg = <7>;
->> +			linux,keycodes = <KEY_POWER>;
->> +		};
->> +	};
->> +};
->> +
->>  &i2c4 {
->>  	clock-frequency = <100000>;
->>  	pinctrl-names = "default", "sleep";
->> @@ -232,6 +307,15 @@ MX7D_PAD_ENET1_RGMII_TXC__GPIO7_IO11	0x00000014
->>  		>;
->>  	};
->>  
->> +	pinctrl_touch: touchgrp {
->> +		fsl,pins = <
->> +			/* CYTTSP interrupt */
->> +			MX7D_PAD_GPIO1_IO14__GPIO1_IO14		0x54
->> +			/* CYTTSP reset */
->> +			MX7D_PAD_GPIO1_IO13__GPIO1_IO13		0x04
->> +		>;
->> +	};
->> +
->>  	pinctrl_i2c1: i2c1grp {
->>  		fsl,pins = <
->>  			MX7D_PAD_I2C1_SDA__I2C1_SDA		0x4000007f
->> @@ -239,6 +323,13 @@ MX7D_PAD_I2C1_SCL__I2C1_SCL		0x4000007f
->>  		>;
->>  	};
->>  
->> +	pinctrl_i2c3: i2c3grp {
->> +		fsl,pins = <
->> +			MX7D_PAD_I2C3_SDA__I2C3_SDA		0x4000007f
->> +			MX7D_PAD_I2C3_SCL__I2C3_SCL		0x4000007f
->> +		>;
->> +	};
->> +
->>  	pinctrl_i2c4: i2c4grp {
->>  		fsl,pins = <
->>  			MX7D_PAD_I2C4_SDA__I2C4_SDA		0x4000007f
->> @@ -246,6 +337,13 @@ MX7D_PAD_I2C4_SCL__I2C4_SCL		0x4000007f
->>  		>;
->>  	};
->>  
->> +	pinctrl_touch_reg: touchreggrp {
->> +		fsl,pins = <
->> +			/* TOUCH_PWR_EN */
->> +			MX7D_PAD_GPIO1_IO11__GPIO1_IO11		0x14
->> +		>;
->> +	};
->> +
->>  	pinctrl_uart1: uart1grp {
->>  		fsl,pins = <
->>  			MX7D_PAD_UART1_TX_DATA__UART1_DCE_TX	0x79
->> -- 
->> 2.38.1
->>
->>
->>
-> 
-> 
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> Michael
+>=20
+> > > The full branch can be found here:
+> > > https://gitlab.collabora.com/linux/for-upstream/-/commits/rk3588_av1_=
+decoder_v1
+> > >=20
+> > > Fluster score is: 151/239 while testing AV1-TEST-VECTORS with GStream=
+er-AV1-V4L2SL-Gst1.0.
+> > > The failing tests are:
+> > > - 10bits bitstream because 10bits output formats aren't yet implement=
+ed.
+> > > - the 2 tests with 2 spatial layers: few errors in luma/chroma values
+> > > - tests with resolution < hardware limit (64x64)
+> > >=20
+> > > Benjamin
+> > >=20
+> > > Benjamin Gaignard (9):
+> > >   dt-bindings: media: rockchip-vpu: Add rk3588 vpu compatible
+> > >   media: verisilicon: Add AV1 decoder mode and controls
+> > >   media: verisilicon: Save bit depth for AV1 decoder
+> > >   media: verisilicon: Check AV1 bitstreams bit depth
+> > >   media: verisilicon: Compute motion vectors size for AV1 frames
+> > >   media: verisilicon: Add AV1 entropy helpers
+> > >   media: verisilicon: Add Rockchip AV1 decoder
+> > >   media: verisilicon: Add film grain feature to AV1 driver
+> > >   media: verisilicon: Enable AV1 decoder on rk3588
+> > >=20
+> > >  .../bindings/media/rockchip-vpu.yaml          |    1 +
+> > >  drivers/media/platform/verisilicon/Makefile   |    3 +
+> > >  drivers/media/platform/verisilicon/hantro.h   |    5 +
+> > >  .../media/platform/verisilicon/hantro_drv.c   |   54 +
+> > >  .../media/platform/verisilicon/hantro_hw.h    |  102 +
+> > >  .../platform/verisilicon/hantro_postproc.c    |    3 +
+> > >  .../media/platform/verisilicon/hantro_v4l2.c  |    5 +
+> > >  .../verisilicon/rockchip_av1_entropymode.c    | 4536 +++++++++++++++=
+++
+> > >  .../verisilicon/rockchip_av1_entropymode.h    |  272 +
+> > >  .../verisilicon/rockchip_av1_filmgrain.c      |  401 ++
+> > >  .../verisilicon/rockchip_av1_filmgrain.h      |   36 +
+> > >  .../verisilicon/rockchip_vpu981_hw_av1_dec.c  | 2280 +++++++++
+> > >  .../verisilicon/rockchip_vpu981_regs.h        |  477 ++
+> > >  .../platform/verisilicon/rockchip_vpu_hw.c    |  116 +
+> > >  14 files changed, 8291 insertions(+)
+> > >  create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_e=
+ntropymode.c
+> > >  create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_e=
+ntropymode.h
+> > >  create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_f=
+ilmgrain.c
+> > >  create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_f=
+ilmgrain.h
+> > >  create mode 100644 drivers/media/platform/verisilicon/rockchip_vpu98=
+1_hw_av1_dec.c
+> > >  create mode 100644 drivers/media/platform/verisilicon/rockchip_vpu98=
+1_regs.h
+> > >=20
+> > > --
+> > > 2.34.1
+> > >=20
+> >=20
+> > _______________________________________________
+> > linux-arm-kernel mailing list
+> > linux-arm-kernel@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> >=20
+>=20
 
