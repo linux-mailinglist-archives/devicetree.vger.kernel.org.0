@@ -2,113 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BBA4651E5E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 11:06:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 569E9651E65
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 11:07:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232836AbiLTKGH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 05:06:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33616 "EHLO
+        id S230198AbiLTKHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 05:07:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233640AbiLTKF4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 05:05:56 -0500
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E53D06257
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 02:05:54 -0800 (PST)
-Received: by mail-lj1-x230.google.com with SMTP id a19so11968841ljk.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 02:05:54 -0800 (PST)
+        with ESMTP id S229714AbiLTKHp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 05:07:45 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B050332D
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 02:07:44 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id p36so17791116lfa.12
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 02:07:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=PBMyTgqn80aag6e4czcq9I1jxLK0LYrMKeS+03hzF/Y=;
-        b=y40Wht56aSwxUxYGrzsaqpwCwXSJBVxvzIaOEjkaueFL7y+kex4bJ3QNj+J7nlii6h
-         CrKWdfMAEzNpZ+rEmnVXxuroCklK2+TWlkxSAWnqnHxLlYR2UOhGVxkIvvqy4LTLo1ax
-         Y2/MONjTBIdQv54CHQeeLJuqTlqX0yVCnXgdIusH1frxzKwur2bc7HhMEeRvRgKsdX5E
-         3Ckr8IZFBA3IPGkb0YTwE3lpMx8IBnrc5jhRPmL1tUPD8l0SIy0xBEsvBU2mwGJM6KTc
-         hh30eBWzpUgNVS+0OqLpaXxJ0sOyDUziI8JLn8hPgQ2qVpl5HlH8BK/oXhEwqge+Wl2u
-         MnzA==
+        bh=EqFRU8P7zqmZfaYVXOcDfL9WuQYKC06tycOM2BCpeho=;
+        b=Q5ZMnjaem8ibVMO/h2fyvyqnR12hGQjkbE4WcOcFnneyo3AWbg0wqBUzH3xfz7Tzk/
+         aoDEAGG7P71V6nRA0gqVhqh1GmTil89peE9ntDAU10I1dhUzAXt2+HTnlu7EGd5IZAm+
+         lwLQtS/AFemlsvvE4bC85Ky69Pf1kVMbXRx20+zr8goGmABpZYVgMfZtCkcrCuO9yceS
+         8eSlaB4gKsqMF0VLprZ2BS3sjJHttHoiVAj+zez0Q/zLDNWf5VQaf3qyAljYur06OkGe
+         UQV1O3vWtUxLtbXxgRDX6UYKpOSNqtRg1AWq7k3F8Y3i7jPnvheATAqDjk4hMIvN//EM
+         qBZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PBMyTgqn80aag6e4czcq9I1jxLK0LYrMKeS+03hzF/Y=;
-        b=6fdjVMifrqhuRY1IuEfcV+FU9unlgzxXsZwwn8GUftrrqzFTlazXHMdHR1AknKL4RY
-         oeS8uLvJ+bkBi9ig4ttQnHJxIv0Igg++zxyyBBbAO7qtwnnryXqQ4VvtpXR9zfKTrQNu
-         jlt5q29GKJRnNWVgaJzbGrp3Go+V0fYos+Z8FuM22BVFPgjd2UpIsImY+A49hMJ/cB2q
-         stDrJfRa4WbOxBbsN7NijvIdjUcJlaoNKiq0moDLSaqqKLyqE99+1BtQy0h1Ku7sCLw7
-         lpwBbgMApfMq48YaKF5uFRMusf+aFt3+4wruWt+jTYhEDiAHGL3Qr9BPs8WyrVwnvFVD
-         HcTA==
-X-Gm-Message-State: ANoB5pmZW2NrbzxE0sSYVxvlnqzDHfLCfFakvwIoGuHWWyP2dIkBQEEd
-        /D3JpoSaY6ejOkezxHqCL840Iw==
-X-Google-Smtp-Source: AA0mqf464jb6PUw+DV+OSW7ZY+nzwAFUNzb2Epe91dSCKe8EdfbJlkqEo+cYuIL9Fqj1xovm7LbURw==
-X-Received: by 2002:a2e:984b:0:b0:279:fe95:c353 with SMTP id e11-20020a2e984b000000b00279fe95c353mr11789124ljj.48.1671530753290;
-        Tue, 20 Dec 2022 02:05:53 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id b2-20020a056512070200b004c325f34050sm1122604lfs.91.2022.12.20.02.05.51
+        bh=EqFRU8P7zqmZfaYVXOcDfL9WuQYKC06tycOM2BCpeho=;
+        b=Fg5OwBqTFlIgWe1FVggi752+Qf/hkGZuPCWnB6vcixC/MWOvVZ947xJ3TNrH6SoKOK
+         sbByCLTKaa1YV0/tNejBmyeEEMZF95WBdknatpuwn9kiN2b/ojWQ1BmL+wace85KCMFw
+         /eYxTCzU9uzO13vLyoUdBAJJPxiB2BW36vECbEKw4uvZ/Rc+xDh8Lpb/zVb8g3sRJ4Je
+         2NIseymF8Bly0Cw2dTD+JH4t5D9x2lG0KTeUe9PcLT6Qgi3TQVSLb5mJRoFxdLvI5Ycd
+         XSQ4PiJq2kr5WKKjbmdNG2l0y0udDZJqyZr5rs4zt1729nIaNHyk/vRcvUCbHy3oUVtq
+         vZuA==
+X-Gm-Message-State: ANoB5pnSvnYjDQNXZdpdmGCSOruaNN/XXPg8OpnZ66IJGcKL5t/3fLFA
+        6jR8ZoCdZOUCat0t5hdxwz91eA==
+X-Google-Smtp-Source: AA0mqf4Rsq+WF0/EsDCXOfhDk0WK7wbdiGXl4R1p74gdF5pkAZE3k7+uCbJ78GRNpVrjqNW5j5BVfg==
+X-Received: by 2002:a05:6512:39c2:b0:4b4:f303:9b3f with SMTP id k2-20020a05651239c200b004b4f3039b3fmr15110281lfu.66.1671530862859;
+        Tue, 20 Dec 2022 02:07:42 -0800 (PST)
+Received: from [192.168.1.101] (abxh212.neoplus.adsl.tpnet.pl. [83.9.1.212])
+        by smtp.gmail.com with ESMTPSA id q8-20020a056512210800b00498f871f33fsm1399330lfr.86.2022.12.20.02.07.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Dec 2022 02:05:52 -0800 (PST)
-Message-ID: <4c528a35-d3eb-db20-2a1e-3d79d0977d91@linaro.org>
-Date:   Tue, 20 Dec 2022 11:05:51 +0100
+        Tue, 20 Dec 2022 02:07:42 -0800 (PST)
+Message-ID: <8b20bf1d-af39-dcba-cb79-5ad037c1364a@linaro.org>
+Date:   Tue, 20 Dec 2022 11:07:40 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH v3 1/7] dt-bindings: riscv: Add StarFive JH7110 SoC and
- VisionFive 2 board
-Content-Language: en-US
-To:     Hal Feng <hal.feng@starfivetech.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
+Subject: Re: [PATCH v3 04/15] thermal/drivers/tsens: Drop unnecessary hw_ids
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
         Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        linux-kernel@vger.kernel.org
-References: <20221220011247.35560-1-hal.feng@starfivetech.com>
- <20221220011247.35560-2-hal.feng@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221220011247.35560-2-hal.feng@starfivetech.com>
+        Zhang Rui <rui.zhang@intel.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20221220024721.947147-1-dmitry.baryshkov@linaro.org>
+ <20221220024721.947147-5-dmitry.baryshkov@linaro.org>
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221220024721.947147-5-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/12/2022 02:12, Hal Feng wrote:
-> From: Emil Renner Berthing <kernel@esmil.dk>
+
+
+On 20.12.2022 03:47, Dmitry Baryshkov wrote:
+> The tsens driver defaults to using hw_id equal to the index of the
+> sensor. Thus it is superfluous to declare such hw_id arrays. Drop such
+> arrays from mdm9607 and msm8976 data.
 > 
-> Add device tree bindings for the StarFive JH7110 RISC-V SoC
-> and the VisionFive 2 board equipped with it.
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+>  drivers/thermal/qcom/tsens-v0_1.c | 1 -
+>  drivers/thermal/qcom/tsens-v1.c   | 1 -
+>  2 files changed, 2 deletions(-)
 > 
-> VisionFive 2 board has version A and version B, which are
-> different in gmac and phy chip. The version A board has one
-> 1000Mbps and one 100Mbps Ethernet ports while the version B
-> board has two 1000Mbps Ethernet ports.
-> 
-> Link: https://doc-en.rvspace.org/Doc_Center/jh7110.html
-> Link: https://doc-en.rvspace.org/Doc_Center/visionfive_2.html
-> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-
-I assume you did not add my tag because of changes?
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+> diff --git a/drivers/thermal/qcom/tsens-v0_1.c b/drivers/thermal/qcom/tsens-v0_1.c
+> index 04d012e4f728..0bc4e5cec184 100644
+> --- a/drivers/thermal/qcom/tsens-v0_1.c
+> +++ b/drivers/thermal/qcom/tsens-v0_1.c
+> @@ -635,7 +635,6 @@ static const struct tsens_ops ops_9607 = {
+>  struct tsens_plat_data data_9607 = {
+>  	.num_sensors	= 5,
+>  	.ops		= &ops_9607,
+> -	.hw_ids		= (unsigned int []){ 0, 1, 2, 3, 4 },
+>  	.feat		= &tsens_v0_1_feat,
+>  	.fields	= tsens_v0_1_regfields,
+>  };
+> diff --git a/drivers/thermal/qcom/tsens-v1.c b/drivers/thermal/qcom/tsens-v1.c
+> index 1d7f8a80bd13..96ef12d47bff 100644
+> --- a/drivers/thermal/qcom/tsens-v1.c
+> +++ b/drivers/thermal/qcom/tsens-v1.c
+> @@ -387,7 +387,6 @@ static const struct tsens_ops ops_8976 = {
+>  struct tsens_plat_data data_8976 = {
+>  	.num_sensors	= 11,
+>  	.ops		= &ops_8976,
+> -	.hw_ids		= (unsigned int[]){0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+>  	.feat		= &tsens_v1_feat,
+>  	.fields		= tsens_v1_regfields,
+>  };
