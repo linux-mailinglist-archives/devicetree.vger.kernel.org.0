@@ -2,62 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 299F66524D1
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 17:41:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B0A46524D3
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 17:41:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233319AbiLTQlD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 11:41:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40504 "EHLO
+        id S233553AbiLTQlF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 11:41:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232400AbiLTQlA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 11:41:00 -0500
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 159432180;
-        Tue, 20 Dec 2022 08:41:00 -0800 (PST)
-Received: by mail-oi1-f181.google.com with SMTP id e205so11005757oif.11;
-        Tue, 20 Dec 2022 08:41:00 -0800 (PST)
+        with ESMTP id S233392AbiLTQlD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 11:41:03 -0500
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FAED1090;
+        Tue, 20 Dec 2022 08:41:01 -0800 (PST)
+Received: by mail-oi1-f175.google.com with SMTP id i127so9831535oif.8;
+        Tue, 20 Dec 2022 08:41:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=0w2sRCRPvQHg3D+hGvPgtDMOkkeCDypssnO1QesCLFQ=;
-        b=OHTPm6d52fwa6VNB8emM9tlCzxD+Ptw+cPfxhuD+4xWDOU9O8676pnxyJFuPRTIcuZ
-         hnc+k4KdqiulBfSEWxOiobnXJdD7u81rtOAlVMgiE8G4CDsmOLHodblIT++ONnCZk1Iq
-         NKjwIFkfUUJIzgeNSwvLll0wK64LUUNuMqXUC4vX+HS9hZ/R2NdhYvh8Swjf/AgywoF8
-         bffc9zKP5cmOm35hdEVbjVyyGcy7TSZtYNuzBGTFMFgBRuxXd3X9aCkuCiE9SIEmMYeK
-         NHsEpMf2H0I6Y/2f/I1aYIl7zD5tTiaiHuGRTkjQzxJHZ9cnnUtbvnbUgwrEoXWYW7y8
-         q6Tg==
-X-Gm-Message-State: AFqh2krlSWVEe2TtjIdYX29UxTtubgFyAa0SaehZB2hhRh/MhmdtcolH
-        V/MXtWNS6CwtRftAnvyPbQ==
-X-Google-Smtp-Source: AMrXdXvI0L4X9GlyzF5h1oF9MQgmVyU11KU3Ks5KVOj5afvnzhQIasZN3965nKoPWy46eoLjaOYQ6Q==
-X-Received: by 2002:a05:6808:2799:b0:360:bc5d:2ed2 with SMTP id es25-20020a056808279900b00360bc5d2ed2mr6859804oib.53.1671554459154;
-        Tue, 20 Dec 2022 08:40:59 -0800 (PST)
+        bh=UY+Y318S+0GC8+l3K6oMYhoO0DtBzjj8FaFxQfnBzhU=;
+        b=BIiGt5W4Zmf5u+hc+IP6nIO3/Rp6gBxbKWeHLPN0DkxHtQliyVOfS9v1tn2XNxetOz
+         z9uq7ErSsTKdAIfTBwD7+kQm4bT0P0WEgV/5JLhz8zC3nILmXAhmP6ADgNJjFz9anzJS
+         nGct9NdJVJfmEnlA87Ut4nQ6c/rqGX6U8opK+AFbWM1w+gxiu9UyWUOSsF4GAu9VIt3W
+         h9OK3+s7N9MHuCHJP2u6/GIPuOMgH50Hyjyl1XEwCt1YWkIFmOY+xB48Wt8CepejAnqY
+         ruoL131a2bCzCqXGwrJ8mH+Vrp9Z9PcY3LNmra5wu8X4FOdlSrEN/3b56EgECt8+jO0l
+         e3WA==
+X-Gm-Message-State: AFqh2krPFOuHXX3q2iuYSQIimwIsghqQzMUYn3Trpe1q/Hi3/0NbibRY
+        nlti2NAUW32Gi7i2mbZGOQ==
+X-Google-Smtp-Source: AMrXdXsSdPfupRURBPcosH2gmACRMO8G7/u6yz1Jl6zoTYgYploE8g7Bl7rwKSb3o29A+AmWsqZdnA==
+X-Received: by 2002:a05:6808:150b:b0:361:1a1:316 with SMTP id u11-20020a056808150b00b0036101a10316mr3680113oiw.33.1671554460478;
+        Tue, 20 Dec 2022 08:41:00 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id w20-20020a056830281400b0066e968701f8sm5853196otu.27.2022.12.20.08.40.58
+        by smtp.gmail.com with ESMTPSA id s8-20020acaa908000000b00354d8589a15sm5638397oie.45.2022.12.20.08.40.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Dec 2022 08:40:58 -0800 (PST)
-Received: (nullmailer pid 709600 invoked by uid 1000);
+        Tue, 20 Dec 2022 08:40:59 -0800 (PST)
+Received: (nullmailer pid 709598 invoked by uid 1000);
         Tue, 20 Dec 2022 16:40:56 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Manjunatha Venkatesh <manjunatha.venkatesh@nxp.com>
-Cc:     axboe@kernel.dk, sunilmut@microsoft.com, jasowang@redhat.com,
-        will@kernel.org, linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        rvmanjumce@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        mst@redhat.com, Kwame Adwere <kwame.adwere@nxp.com>,
-        ashish.deshpande@nxp.com, arnd@arndb.d, gregkh@linuxfoundation.org,
-        mikelley@microsoft.com, javier@javigon.com, mb@lightnvm.io,
-        devicetree@vger.kernel.org, ckeepax@opensource.cirrus.com,
-        bjorn.andersson@linaro.org
-In-Reply-To: <20221220154747.2372597-2-manjunatha.venkatesh@nxp.com>
-References: <20221220154747.2372597-1-manjunatha.venkatesh@nxp.com>
- <20221220154747.2372597-2-manjunatha.venkatesh@nxp.com>
-Message-Id: <167155421014.690186.2937416148656776999.robh@kernel.org>
-Subject: Re: [PATCH v6 1/2] dt-bindings: uwb: Device tree information for Nxp
- SR1XX SOCs
+To:     Kevin Lu <luminlong@139.com>
+Cc:     robh+dt@kernel.org, alsa-devel@alsa-project.org, kevin-lu@ti.com,
+        lgirdwood@gmail.com, shenghao-ding@ti.com, peeyush@ti.com,
+        linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, navada@ti.com, broonie@kernel.org
+In-Reply-To: <20221220144114.2137-1-luminlong@139.com>
+References: <20221220144114.2137-1-luminlong@139.com>
+Message-Id: <167155420934.690140.217916297367066741.robh@kernel.org>
+Subject: Re: [PATCH] New yaml file: tas2781
 Date:   Tue, 20 Dec 2022 10:40:56 -0600
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -70,48 +64,122 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Tue, 20 Dec 2022 21:17:46 +0530, Manjunatha Venkatesh wrote:
-> Ultra-wideband (UWB) is a short-range wireless communication protocol.
+On Tue, 20 Dec 2022 22:41:14 +0800, Kevin Lu wrote:
+> Add DTS discription for tas2781 driver code
 > 
-> NXP has SR1XX family of UWB Subsystems (UWBS) devices. SR1XX SOCs
-> are FiRa Compliant. SR1XX SOCs are flash less devices and they need
-> Firmware Download on every device boot. More details on the SR1XX Family
-> can be found at https://www.nxp.com/products/:UWB-TRIMENSION
-> 
-> The sr1xx driver work the SR1XX Family of UWBS, and uses UWB Controller
-> Interface (UCI).  The corresponding details are available in the FiRa
-> Consortium Website (https://www.firaconsortium.org/).
-> 
-> Link: https://lore.kernel.org/r/425858dc-59fe-2311-61ae-3b6dc77a2576@nxp.com
-> Signed-off-by: Manjunatha Venkatesh <manjunatha.venkatesh@nxp.com>
-> Signed-off-by: Kwame Adwere <kwame.adwere@nxp.com>
+> Signed-off-by: Kevin Lu <luminlong@139.com>
 > ---
-> Changes since v5:
->   - Moved ioctl command definitions into header file.
->   - Version 5 patch review comments addressed.
->   - Corporate lawyer sign-off updated.
-> 
->  .../bindings/uwb/nxp,uwb-sr1xx.yaml           | 65 +++++++++++++++++++
->  1 file changed, 65 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/uwb/nxp,uwb-sr1xx.yaml
+>  .../devicetree/bindings/sound/tas2781.yaml    | 90 +++++++++++++++++++
+>  1 file changed, 90 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/tas2781.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/uwb/nxp,uwb-sr1xx.yaml:8:8: [warning] too many spaces after colon (colons)
 
 dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/uwb/nxp,uwb-sr1xx.example.dts:31.31-32 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:406: Documentation/devicetree/bindings/uwb/nxp,uwb-sr1xx.example.dtb] Error 1
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/tas2781.yaml: properties:ti,bottomright-channel: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	'description' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('maxItems' was unexpected)
+		hint: A vendor boolean property can use "type: boolean"
+	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/tas2781.yaml: properties:ti,bottomright-channel: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+		hint: A vendor string property with exact values has an implicit type
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/tas2781.yaml: properties:ti,bottomright-channel: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/tas2781.yaml: properties:ti,topleft-channel: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('maxItems' was unexpected)
+		hint: A vendor boolean property can use "type: boolean"
+	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/tas2781.yaml: properties:ti,topleft-channel: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+		hint: A vendor string property with exact values has an implicit type
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/tas2781.yaml: properties:ti,topleft-channel: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/tas2781.yaml: properties:ti,bottomleft-channel: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	'description' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('maxItems' was unexpected)
+		hint: A vendor boolean property can use "type: boolean"
+	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/tas2781.yaml: properties:ti,bottomleft-channel: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+		hint: A vendor string property with exact values has an implicit type
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/tas2781.yaml: properties:ti,bottomleft-channel: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/tas2781.yaml: properties:ti,topright-channel: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	'description' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('maxItems' was unexpected)
+		hint: A vendor boolean property can use "type: boolean"
+	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/tas2781.yaml: properties:ti,topright-channel: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+		hint: A vendor string property with exact values has an implicit type
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/tas2781.yaml: properties:ti,topright-channel: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/tas2781.yaml: properties:ti,global-address: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('maxItems' was unexpected)
+		hint: A vendor boolean property can use "type: boolean"
+	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/tas2781.yaml: properties:ti,global-address: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+		hint: A vendor string property with exact values has an implicit type
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/tas2781.yaml: properties:ti,global-address: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+Documentation/devicetree/bindings/sound/tas2781.example.dts:28.13-45: ERROR (duplicate_property_names): /example-0/i2c0/codec@38:ti,bottomright-channel: Duplicate property name
+ERROR: Input tree has errors, aborting (use -f to force output)
+make[1]: *** [scripts/Makefile.lib:406: Documentation/devicetree/bindings/sound/tas2781.example.dtb] Error 2
 make[1]: *** Waiting for unfinished jobs....
 make: *** [Makefile:1492: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221220154747.2372597-2-manjunatha.venkatesh@nxp.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221220144114.2137-1-luminlong@139.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
