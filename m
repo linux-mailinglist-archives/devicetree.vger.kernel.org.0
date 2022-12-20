@@ -2,240 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 176356526BE
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 20:06:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E672E6526C7
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 20:09:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233685AbiLTTGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 14:06:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47644 "EHLO
+        id S233957AbiLTTJ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 14:09:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229791AbiLTTGr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 14:06:47 -0500
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 391112AC9;
-        Tue, 20 Dec 2022 11:06:46 -0800 (PST)
-Received: by mail-oi1-f172.google.com with SMTP id t62so11371429oib.12;
-        Tue, 20 Dec 2022 11:06:46 -0800 (PST)
+        with ESMTP id S229536AbiLTTJY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 14:09:24 -0500
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDA0EE0C3;
+        Tue, 20 Dec 2022 11:09:23 -0800 (PST)
+Received: by mail-pj1-x102f.google.com with SMTP id v13-20020a17090a6b0d00b00219c3be9830so13133270pjj.4;
+        Tue, 20 Dec 2022 11:09:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1OBgH6qhxVhNETTJtpKxpJyJJwZSaJxAnc72NIfU7q8=;
+        b=UKLuyNP1k8kPnnBJmVy3aAk0U+W/95TQoufIGcDgjVFiLwIeIk2TBu1oY/qGg9+tud
+         IB50e+biUVM5s5wt5rOswlQCHfqug/M2Ei7YRJOChGAiCW2B4Q3XKxOMFSU5Vq4eAxvx
+         OK7eWudtHiUpS5Wtkd4Xwv9pbZRhA1lesJRxUKlb17aIxaAtIyrrBiwQHZk5NWEJjKxR
+         4NyGfKSLw8Bh1b9z72YGiLMcOt42EfNFO3niBDtur1JAstaVwgYTMI1tnjRzrSFQETl0
+         owZfWzbGPktA8S3I9qm6WGr1sSV1Omz8vD6jATxZRZbYoXB/EABKjT4O5faxS86UgOqg
+         WVBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cAroOdFafdSPzLQwUTuMraqKacl3aj1aXlD6YFUl93A=;
-        b=ZENqpbGol/QN1subyobWY3V7fCWYDCb+zZB6cGdx33TlfJR72sAAK03aWExbfuiVPK
-         RgW2EDTspjP/nghWgaAs1Ev5Ct5MR2G71DsUvILm8bj22o2/ViXIHN18aDOk6cImmCTs
-         OLob0Oan52sjjA3LAaCCHDs81y0jrXkRbVhx66VwoKI0n5pV7JtMCdmjNaj9VdFPtvKS
-         bXqvh6OGcRtcM0basS1r1Pr6LtU4EfmjpH02guk/swQcp5wZWwrOVTWiQ88EodgXOY2/
-         pJTn/JseCYSwAaHKiAPB2rdRPo9Sq65TmTdZ9O6euxwhA7RI5lmkx5uwa2wdq/AsTp5I
-         9RvQ==
-X-Gm-Message-State: ANoB5pmUiUYdWdsie9/YkCs2Gdoy16ioiVddZiMCmiDgZMLYoyDiYkS0
-        0lRW5Xik6a7vFG7hAoYJf76maToRYg==
-X-Google-Smtp-Source: AA0mqf7R3vpr3KBdxvczjHxtl3CvtMVqJ0nsz6a5O2A3cUCwllmDs8793shzQkYbN80xyG5OvURbag==
-X-Received: by 2002:aca:1c19:0:b0:35e:2397:2211 with SMTP id c25-20020aca1c19000000b0035e23972211mr17867796oic.51.1671563205330;
-        Tue, 20 Dec 2022 11:06:45 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q124-20020aca5c82000000b003509cc4ad4esm5802705oib.39.2022.12.20.11.06.44
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1OBgH6qhxVhNETTJtpKxpJyJJwZSaJxAnc72NIfU7q8=;
+        b=YujHYemoKBQidgO8QyGYOJUdCkObKQlNoh3Rf1uujj3GjLKtUYjpMAeDPGgqXZTbvd
+         hDdauuSlWImcrnHXyCqD89v8q6aflep/CQK4R8tcMEETkiE1phxo9J6u6f/gp6p6RKQy
+         gexOyXMiXemDwsDon/6DvGxh5QtLDrptIdbFNrNyAXYDbJZlU1OiKf5t8ljpXpVDdeq9
+         ThCvGqvVlSN/rtnn/4DenmpoBnax8KjHXTvfD9dLs8SuqkuDScckmRqooBy4FQ5D2lpe
+         2OTXYeXcGC35+3S3GUJOlJzlzFgBYPf+W+kXGQap5pgKthXLP2hTPI6WVbORDsP0Byv1
+         DQtQ==
+X-Gm-Message-State: ANoB5pn5HaMDGG+RjDpKwTlYQa3F2zYmkeVOppLGKYIeDvw0eaJHpIF3
+        vOqitqA/vvrezd+CrEUudqM=
+X-Google-Smtp-Source: AA0mqf44hNs+GUi8hvM/wSk9nI9bt394TZ0kMyNtYXB/FndXQ6XulwJXq8q6c9Sbnw3nHrI8Qeo5Jw==
+X-Received: by 2002:a17:90a:3188:b0:219:3e5f:2a65 with SMTP id j8-20020a17090a318800b002193e5f2a65mr49327344pjb.36.1671563363053;
+        Tue, 20 Dec 2022 11:09:23 -0800 (PST)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id o37-20020a17090a0a2800b00219ebdf797csm11358864pjo.24.2022.12.20.11.09.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Dec 2022 11:06:44 -0800 (PST)
-Received: (nullmailer pid 920145 invoked by uid 1000);
-        Tue, 20 Dec 2022 19:06:44 -0000
-Date:   Tue, 20 Dec 2022 13:06:44 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Corentin Labbe <clabbe@baylibre.com>
-Cc:     jdelvare@suse.com, krzysztof.kozlowski+dt@linaro.org,
-        linux@roeck-us.net, devicetree@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
-        conor@kernel.org
-Subject: Re: [PATCH v2] dt-bindings: hwmon: gpio-fan: convert to YAML
-Message-ID: <20221220190644.GA898302-robh@kernel.org>
-References: <20221217210423.836948-1-clabbe@baylibre.com>
+        Tue, 20 Dec 2022 11:09:22 -0800 (PST)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     linux-mips@lists.infradead.org
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+        linux-mips@vger.kernel.org (open list:BROADCOM BMIPS MIPS ARCHITECTURE),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH] MIPS: dts: bcm63268: Add missing properties to the TWD node
+Date:   Tue, 20 Dec 2022 11:09:15 -0800
+Message-Id: <20221220190916.2681165-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221217210423.836948-1-clabbe@baylibre.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Dec 17, 2022 at 09:04:23PM +0000, Corentin Labbe wrote:
-> Converts hwmon/gpio-fan.txt to YAML
+We currently have a DTC warning with the current DTS due to the lack of
+a suitable #address-cells and #size-cells property:
 
-s/YAML/DT schema\./
+  DTC     arch/mips/boot/dts/brcm/bcm63268-comtrend-vr-3032u.dtb
+arch/mips/boot/dts/brcm/bcm63268.dtsi:115.5-22: Warning (reg_format): /ubus/timer-mfd@10000080/timer@0:reg: property has invalid length (8 bytes) (#address-cells == 2, #size-cells == 1)
+arch/mips/boot/dts/brcm/bcm63268.dtsi:120.5-22: Warning (reg_format): /ubus/timer-mfd@10000080/watchdog@1c:reg: property has invalid length (8 bytes) (#address-cells == 2, #size-cells == 1)
+arch/mips/boot/dts/brcm/bcm63268.dtsi:111.4-35: Warning (ranges_format): /ubus/timer-mfd@10000080:ranges: "ranges" property has invalid length (12 bytes) (parent #address-cells == 1, child #address-cells == 2, #size-cells == 1)
 
-> 
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> ---
-> Changes since v1:
-> - Keeped only one example and simplified it
-> 
->  .../devicetree/bindings/hwmon/gpio-fan.txt    | 41 -------------
->  .../devicetree/bindings/hwmon/gpio-fan.yaml   | 59 +++++++++++++++++++
->  2 files changed, 59 insertions(+), 41 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/hwmon/gpio-fan.txt
->  create mode 100644 Documentation/devicetree/bindings/hwmon/gpio-fan.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/gpio-fan.txt b/Documentation/devicetree/bindings/hwmon/gpio-fan.txt
-> deleted file mode 100644
-> index f4cfa350f6a1..000000000000
-> --- a/Documentation/devicetree/bindings/hwmon/gpio-fan.txt
-> +++ /dev/null
-> @@ -1,41 +0,0 @@
-> -Bindings for fan connected to GPIO lines
-> -
-> -Required properties:
-> -- compatible : "gpio-fan"
-> -
-> -Optional properties:
-> -- gpios: Specifies the pins that map to bits in the control value,
-> -  ordered MSB-->LSB.
-> -- gpio-fan,speed-map: A mapping of possible fan RPM speeds and the
-> -  control value that should be set to achieve them. This array
-> -  must have the RPM values in ascending order.
-> -- alarm-gpios: This pin going active indicates something is wrong with
-> -  the fan, and a udev event will be fired.
-> -- #cooling-cells: If used as a cooling device, must be <2>
-> -  Also see:
-> -  Documentation/devicetree/bindings/thermal/thermal-cooling-devices.yaml
-> -  min and max states are derived from the speed-map of the fan.
-> -
-> -Note: At least one the "gpios" or "alarm-gpios" properties must be set.
-> -
-> -Examples:
-> -
-> -	gpio_fan {
-> -		compatible = "gpio-fan";
-> -		gpios = <&gpio1 14 1
-> -			 &gpio1 13 1>;
-> -		gpio-fan,speed-map = <0    0
-> -				      3000 1
-> -				      6000 2>;
-> -		alarm-gpios = <&gpio1 15 1>;
-> -	};
-> -	gpio_fan_cool: gpio_fan {
-> -		compatible = "gpio-fan";
-> -		gpios = <&gpio2 14 1
-> -			 &gpio2 13 1>;
-> -		gpio-fan,speed-map =	<0    0>,
-> -					<3000 1>,
-> -					<6000 2>;
-> -		alarm-gpios = <&gpio2 15 1>;
-> -		#cooling-cells = <2>; /* min followed by max */
-> -	};
-> diff --git a/Documentation/devicetree/bindings/hwmon/gpio-fan.yaml b/Documentation/devicetree/bindings/hwmon/gpio-fan.yaml
-> new file mode 100644
-> index 000000000000..c522072c0d07
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/gpio-fan.yaml
-> @@ -0,0 +1,59 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/gpio-fan.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Bindings for fan connected to GPIO lines
+Fixes: d3db4b96ab7f ("mips: dts: bcm63268: add TWD block timer")
+Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+---
+ arch/mips/boot/dts/brcm/bcm63268.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Drop 'Bindings for'. Really, just 'GPIO controlled Fan' is good.
+diff --git a/arch/mips/boot/dts/brcm/bcm63268.dtsi b/arch/mips/boot/dts/brcm/bcm63268.dtsi
+index c663efce91cf..7b788757cb1e 100644
+--- a/arch/mips/boot/dts/brcm/bcm63268.dtsi
++++ b/arch/mips/boot/dts/brcm/bcm63268.dtsi
+@@ -109,6 +109,8 @@ timer-mfd@10000080 {
+ 			compatible = "brcm,bcm7038-twd", "simple-mfd", "syscon";
+ 			reg = <0x10000080 0x30>;
+ 			ranges = <0x0 0x10000080 0x30>;
++			#address-cells = <1>;
++			#size-cells = <1>;
+ 
+ 			timer@0 {
+ 				compatible = "brcm,bcm6345-timer";
+-- 
+2.34.1
 
-> +
-> +maintainers:
-> +  - OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS <devicetree@vger.kernel.org>
-
-Should be a person. You can put me.
-
-> +
-> +properties:
-> +  compatible:
-> +    const: gpio-fan
-> +
-> +  gpios:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-
-Already has a type. Perhaps 'maxItems: N' where N is 'should be enough'. 
-I'd guess 4 is more than enough. Any sane design would go with a PWM 
-controlled fan if that much control is needed.
-
-> +    description: Specifies the pins that map to bits in the control value,
-> +      ordered MSB-->LSB.
-> +
-> +  gpio-fan,speed-map:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> +    description: A mapping of possible fan RPM speeds and the
-> +      control value that should be set to achieve them. This array
-> +      must have the RPM values in ascending order.
-
-Needs some constraints and the entries can be better described:
-
-minItems: 2  (I would assume there is no point in 1 entry?)
-maxItems: N
-items:
-  items:
-    - description: Speed in RPM
-    - description: GPIO Control value
-
-> +
-> +  alarm-gpios:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-
-Drop.
-
-maxItems: 1
-
-> +    description: This pin going active indicates something is wrong with
-> +      the fan, and a udev event will be fired.
-
-'udev event' is way outside the scope of a binding.
-
-> +
-> +  "#cooling-cells":
-> +    const: 2
-> +    description: If used as a cooling device, must be <2>
-
-If not used as a cooling device can be any number of cells? 
-
-Don't repeat constraints in free form text.
-
-> +      Also see Documentation/devicetree/bindings/thermal/thermal-cooling-devices.yaml
-
-No need to reference schema for common properties.
-
-> +      min and max states are derived from the speed-map of the fan.
-
-This IS unique to this binding, so it should stay.
-
-> +
-> +anyOf:
-> +  - required:
-> +      - gpios
-> +  - required:
-> +      - alarm-gpios
-> +
-> +additionalProperties: False
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/clock/cortina,gemini-clock.h>
-> +    #include <dt-bindings/reset/cortina,gemini-reset.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    gpio_fan {
-> +      compatible = "gpio-fan";
-> +        gpios = <&gpio1 8 GPIO_ACTIVE_HIGH>;
-> +        gpio-fan,speed-map = <0    0>,
-> +                             <3000 1>,
-> +                             <6000 2>;
-
-How does a single GPIO encode 3 states?
-
-> +        alarm-gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
-> +    };
-> -- 
-> 2.37.4
-> 
-> 
