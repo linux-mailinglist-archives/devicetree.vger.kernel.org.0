@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62E40652401
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 16:56:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9AF7652405
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 16:58:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230235AbiLTP4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 10:56:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46440 "EHLO
+        id S233028AbiLTP63 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 10:58:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230164AbiLTP4s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 10:56:48 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C78B92DD1
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 07:56:45 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id m29so19030607lfo.11
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 07:56:45 -0800 (PST)
+        with ESMTP id S229821AbiLTP61 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 10:58:27 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 911626322
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 07:58:26 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id b13so19281687lfo.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 07:58:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=0fb3EXHLztSLtWKQrjuaOBtd2wYq7DXjS9sXFC9KWxw=;
-        b=JD3YLblDk1KnQLiONpAMmVlwOK8kLd0l8U1oYnWtwf29xlMiHG1Mig+NXDXTC5yjJG
-         q1R9jmRR9/mL4qxCd8que177PK2j25NCyhOKh674FtCs78E16hEHrB6zQk3NDntAoSQp
-         ew9dh2VusCBE5QGUslUjDjw4rNTPrGc0D7yYJ46/f3+soCNQ6PecIhZw19j9UGKRmYCI
-         bif5ZTWpqZZukcZt3iBHdV1fwmJA2p2QQde86799OlXoZo9oB2+4wgRC8KFElgts5lcT
-         PTMrJgAlqgKWrirOXPcumiVxN9rzq7N58uolgsjWej+Z24fN2ABpAQ+cCFiV9NdpPgBO
-         rSNg==
+        bh=Iok0tfWHvjI2YIYrpMqgnqWPH9Pjk6yIC34HQbrXVj4=;
+        b=RHiDD0Q1KfR73AVqO7L8iHjH8Yux5ME2eL7xpgBKCc30RV1Iyh1q1NGTmb1eO/Ic8l
+         dPt6OcHhrtmUgFnF+oZkf0TbrTnbHZfo44UdT4s2JKnHg/5q+jm/PU7XcouNLkZQpBoo
+         JoH0Td0EJCTrKYu7IOX745vxYJOF82lwVeX/XB1eCo4AGj+vYFpCy2XHcYuyN+rAzLPs
+         xB9ZnGEboaqimD8My81UVte474Mxxz3omYXP3GcqfFUanJYXWuZkrhHCg8bf4SxmkV8V
+         TcTW97t1DY7v+lXdU4gh0prnpaGteo6IsB2+le6s/tQ6eqnbnp1bCIwHaJD/h9MFKdH4
+         YL6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0fb3EXHLztSLtWKQrjuaOBtd2wYq7DXjS9sXFC9KWxw=;
-        b=FU8TZQTKMnRjk1zuhgCDXZfFuewT1EA7Os88BNNxD7uQ+ymGINUlklfsrNQxBJobgT
-         RCXxm8pm+BI4UGb0/kbG2w3QQiBtUlgxz+yyxJbi2VoHnX6TmLjlAkALrF+a4MVrIXyz
-         LtGrn4Rnvjg7O8QFyNcVO1QSEIQfRDbaOREDoa6vEKTPh/K5vs7GVSc/3iCyPQqcJiPe
-         VCYnFTvResxosrHk+0uxSS1c8JEf5MCRptMUTL3MCBRstMBWiKWGx2nEys7zEt7MS7+r
-         zj9F5Im4EaMhR/g0l/HE1ka4MPL1R2yt183ojLE1jwqGSktwQgkiRNFHVV0sUFOK98D2
-         iafQ==
-X-Gm-Message-State: ANoB5pk4O1+ehVHfw0L12+UfmfmAMPf8YzItD6M+Wmbb8RXxwoFMt9Lt
-        DLRcoKjBi0JStSAKcO5Iuxny1Q==
-X-Google-Smtp-Source: AA0mqf7ukslzSdluDLTdG+4vtA+7HiyqX8tSilPUm6kafCwv00ZiTDRsxYasfcBXD5uMKFCQx+OZUA==
-X-Received: by 2002:ac2:4bd6:0:b0:4a4:68b9:60b0 with SMTP id o22-20020ac24bd6000000b004a468b960b0mr13791811lfq.59.1671551804106;
-        Tue, 20 Dec 2022 07:56:44 -0800 (PST)
+        bh=Iok0tfWHvjI2YIYrpMqgnqWPH9Pjk6yIC34HQbrXVj4=;
+        b=U6AycvemkD5eCDEvqU5p7kzQlnna2Qx8RAwZc+iM732VlW+VkHDOkq+fNCUWczIoCK
+         8HpzJOSuOjCQsKZ01eSkFH4cu+kib6g6DmY6h8hBO3V9cBmpD4WYT9NMm1LjPChDm+tv
+         UJMhp4fyNRPJsxBY0HjypbKat+uU7RoPkZ4RVVd6WcVlJwa/lCPrZNbVnBAtaWoJUQt5
+         UEb3EG0d0C+sJJBDebEgCnDy0uWAgRRwEoFEKg7Bq6KAC6QOag+gjP1SaMF8liOhBzfF
+         vXbSFIXy12GJdqtYUPBOvJej1ppEc+9FljfOs4zo8cZN61WwjBQdQJdHKmpdFoJW9CHU
+         p93Q==
+X-Gm-Message-State: ANoB5plRmOnmofiPkHOrDNS7uDhhlJ2N6Od27ywC81jNnK9jzau3eiiH
+        FA5xCL5CoBl0AuH/eTBkosrOgw==
+X-Google-Smtp-Source: AA0mqf7Bcg6J6e7YwYfJL8HhIHW8PORg+AXoOGUHvmnFbL4Yp1Ia/8QU4IGfubKk/IuBXEfxBiANjw==
+X-Received: by 2002:a19:c502:0:b0:4b6:edee:586e with SMTP id w2-20020a19c502000000b004b6edee586emr9387032lfe.10.1671551904993;
+        Tue, 20 Dec 2022 07:58:24 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id m16-20020a056512015000b004b5748fa3afsm1489522lfo.107.2022.12.20.07.56.42
+        by smtp.gmail.com with ESMTPSA id v13-20020ac258ed000000b004996fbfd75esm1495078lfo.71.2022.12.20.07.58.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Dec 2022 07:56:43 -0800 (PST)
-Message-ID: <ae35cbc7-93c8-333a-4786-2c6d4a8a8752@linaro.org>
-Date:   Tue, 20 Dec 2022 16:56:42 +0100
+        Tue, 20 Dec 2022 07:58:24 -0800 (PST)
+Message-ID: <93fbb172-2b0a-cfb1-effd-1b6f1245f91f@linaro.org>
+Date:   Tue, 20 Dec 2022 16:58:23 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH v6 1/2] dt-bindings: uwb: Device tree information for Nxp
- SR1XX SOCs
+Subject: Re: [PATCH v6 2/2] misc: nxp-sr1xx: UWB driver support for sr1xx
+ series chip
 Content-Language: en-US
 To:     Manjunatha Venkatesh <manjunatha.venkatesh@nxp.com>,
         linux-kernel@vger.kernel.org, gregkh@linuxfoundation.org,
@@ -67,14 +67,15 @@ Cc:     mb@lightnvm.io, ckeepax@opensource.cirrus.com, arnd@arndb.d,
         devicetree@vger.kernel.org, ashish.deshpande@nxp.com,
         rvmanjumce@gmail.com, Kwame Adwere <kwame.adwere@nxp.com>
 References: <20221220154747.2372597-1-manjunatha.venkatesh@nxp.com>
- <20221220154747.2372597-2-manjunatha.venkatesh@nxp.com>
+ <20221220154747.2372597-3-manjunatha.venkatesh@nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221220154747.2372597-2-manjunatha.venkatesh@nxp.com>
+In-Reply-To: <20221220154747.2372597-3-manjunatha.venkatesh@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -89,82 +90,35 @@ On 20/12/2022 16:47, Manjunatha Venkatesh wrote:
 > Firmware Download on every device boot. More details on the SR1XX Family
 > can be found at https://www.nxp.com/products/:UWB-TRIMENSION
 > 
-> The sr1xx driver work the SR1XX Family of UWBS, and uses UWB Controller
-> Interface (UCI).  The corresponding details are available in the FiRa
-> Consortium Website (https://www.firaconsortium.org/).
-> 
-> Link: https://lore.kernel.org/r/425858dc-59fe-2311-61ae-3b6dc77a2576@nxp.com
-> Signed-off-by: Manjunatha Venkatesh <manjunatha.venkatesh@nxp.com>
-> Signed-off-by: Kwame Adwere <kwame.adwere@nxp.com>
-> ---
-> Changes since v5:
->   - Moved ioctl command definitions into header file.
 
-How is this related to the binding?
-
->   - Version 5 patch review comments addressed.
->   - Corporate lawyer sign-off updated.
-> 
->  .../bindings/uwb/nxp,uwb-sr1xx.yaml           | 65 +++++++++++++++++++
->  1 file changed, 65 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/uwb/nxp,uwb-sr1xx.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/uwb/nxp,uwb-sr1xx.yaml b/Documentation/devicetree/bindings/uwb/nxp,uwb-sr1xx.yaml
-> new file mode 100644
-> index 000000000000..2a1caa661633
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/uwb/nxp,uwb-sr1xx.yaml
-> @@ -0,0 +1,65 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +
-
-Drop blank line.
-
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/uwb/nxp,uwb-sr1xx.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title:  NXP SR1XX SOC family of Ultra Wide Band(UWB) device bindings
-
-Drop double space and "device bindings"
+(...)
 
 > +
-> +description: The nxp-sr1xx driver works for the NXP SR1XX series of Ultra Wide
-
-Drop references to driver. Missing new line after description.
-
-> +    Band devices namely, SR150 and SR100T devices, and uses UWB Controller Interface (UCI).
-
-This does not look like wrapped according to Linux coding style.
-
-> +    The corresponding details are available in the FiRa Consortium Website.
-> +    (https://www.firaconsortium.org/). More details on the SR1XX Family can be
-> +    found at https://www.nxp.com/products/:UWB-TRIMENSION
-
-You need to describe the hardware here.
-
+> +/**
+> + * sr1xx_dev_suspend
+> + *
+> + * Executed before putting the system into a sleep state
+> + *
+> + */
+> +int sr1xx_dev_suspend(struct device *dev)
+> +{
+> +	struct sr1xx_dev *sr1xx_dev = dev_get_drvdata(dev);
 > +
-> +maintainers:
-> +  - Manjunatha Venkatesh <manjunatha.venkatesh@nxp.com>
+> +	if (device_may_wakeup(dev))
+> +		disable_irq_wake(sr1xx_dev->spi->irq);
+> +	return 0;
+> +}
 > +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nxp,sr1xx
+> +/**
+> + * sr1xx_dev_resume
+> + *
+> + * Executed after waking the system up from a sleep state
+> + *
+> + */
 
-Really?
-
-This is a friendly reminder during the review process.
-
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
-
-Thank you.
-
-I stopped reviewing. Rest is not necessarily good, but we get there later.
+Lines of comments or code should not be part of anyone's Key Performance
+Indicators (KPI). Don't bring your KPI to Linux. Drop all such useless
+comments and adjust your style to Linux coding style.
 
 Best regards,
 Krzysztof
