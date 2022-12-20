@@ -2,113 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08FC6652190
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 14:29:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDDEB652195
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 14:33:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233375AbiLTN3v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 08:29:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49578 "EHLO
+        id S233392AbiLTNdk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 08:33:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233654AbiLTN3Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 08:29:25 -0500
-Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA3371AD99
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 05:29:16 -0800 (PST)
-Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-3bf4ade3364so168812487b3.3
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 05:29:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=oSclea5t/EHK831/eF1SrpTE7OWI2NY6v81C77Yofd4=;
-        b=f46lShXy84IxgyYF2vHTjL6qsCkkxy1vWCjsdPNZic65rYaQvXJLtOt5Bz4mBCeC5x
-         9aQLk6Nal4p+JV+OTbnsKIlKrNhtkdexFui3haEZs0Z/XDUcY8KJGQI9BYqM8Z1wpHtD
-         1Ll9L4tUVkqh3Ta8yMBBnlEmWfakx5sL/ZoH8JosDnjBWUb03exbzacffGN5e5ZT1/8N
-         Wmf25PmRGheEX8o3zqajCMCj6V0ilcsOExbQHRSyQtoXdT0Ku14PkNJnECGgUBX0Myrz
-         dFwMZWUnChHZFC2UfZ2ZpTr3gQkSyyci96BvqQPjFcgJf8wQnHrx7ZhKjE294j15Hxge
-         8o7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oSclea5t/EHK831/eF1SrpTE7OWI2NY6v81C77Yofd4=;
-        b=e2NbSLAx53f8DzGhMmv+ZeBK6PXIyvEZh3Q98sxCYV6jx4tCZ5QBPY7OjAj51Cak9o
-         c9xwCVwvdNkd6OhYcEH9l0gfpbHfViuv8TnwUmb1dXI5g97TTIAWkYibrZ4ixmSlhRCQ
-         iBinqqO8tuq9nCbECIyw/K19etpJN9jdnPCQbicIlM4ORVNPpp6/xnzQ+bazC2d1Se1l
-         Tte+HuCGt46OhAMq5gZyCNYbJp4Jz6k2S8ZSKrQ2a1WO5Rkj0vvLB8vsWMmrGTnOHYfZ
-         +8OwJ+hMJhFaPYzHFiM/n2xHboFOPfiYydBkg/pFxzlguy9Z1UT4rNrmwNDwEeTO+ORA
-         L2NA==
-X-Gm-Message-State: AFqh2kqEPRt4KtB4BZRE1ma1Sr/DgwBo5dAE2Ue8PU2CqHU1cytiVCLa
-        hSOZXvovuQ83PV85PkFxR4fsvU9Cdc9jFaiPuPA0Kw==
-X-Google-Smtp-Source: AMrXdXu10DMhqBX/4ZfrloHoabKd1riMpcrNEFyueUml0ffOGBeLAy+i49BhV5SAwdLzvY+/gPhP2PhFVcJtXGoRgi0=
-X-Received: by 2002:a0d:e081:0:b0:3d6:2151:4038 with SMTP id
- j123-20020a0de081000000b003d621514038mr2104778ywe.418.1671542956095; Tue, 20
- Dec 2022 05:29:16 -0800 (PST)
-MIME-Version: 1.0
-References: <20221220024721.947147-1-dmitry.baryshkov@linaro.org>
- <20221220024721.947147-9-dmitry.baryshkov@linaro.org> <78fd7174-9aa4-f067-72ca-514c8fb09ee5@linaro.org>
- <d0a6b9cb-f321-7d5b-5767-acd12cfd78f1@linaro.org> <5bd2c0cd-741c-8865-5f35-25baf6787480@nexus-software.ie>
- <5f4046df-906b-5673-81b9-ab37294ba443@linaro.org> <2ddd32c8-b69c-0da9-af5c-22a8cb8eaaf0@linaro.org>
-In-Reply-To: <2ddd32c8-b69c-0da9-af5c-22a8cb8eaaf0@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 20 Dec 2022 15:29:05 +0200
-Message-ID: <CAA8EJpqDDi+U4QO9_B=gChbZgXT8hs1QeTtxAY2z3iUtekz4aQ@mail.gmail.com>
-Subject: Re: [PATCH v3 08/15] thermal/drivers/tsens: Drop single-cell code for msm8939
-To:     "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Bryan O'Donoghue" <pure.logic@nexus-software.ie>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S229522AbiLTNdh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 08:33:37 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 613BF18B3E;
+        Tue, 20 Dec 2022 05:33:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=PBKohcfzjSqRdddPpAv4Rwpq7IkcN9J0lMnnbLlGi0M=; b=Z9cx2J1jhbD8p1DOS0Grff44Qn
+        5pp0l9vnMbZknZIlhVTaanZNAJrZ7hCXkOyvCGELpS/Pddu7B5x6tOAS9riIEDi2hDtZzwdRJM4pJ
+        gEzkqbDNXRr6j86EJFL6H8M5eVvVWpqemh0+HsOYXB8NP0WWF3NHGTrDjlOd63wlPkMo=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1p7ckI-0005gG-Lp; Tue, 20 Dec 2022 14:33:26 +0100
+Date:   Tue, 20 Dec 2022 14:33:26 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Michael Walle <michael@walle.cc>
+Cc:     Xu Liang <lxu@maxlinear.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        Shawn Guo <shawn.guo@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v1 4/4] net: phy: mxl-gpy: disable interrupts on
+ GPY215 by default
+Message-ID: <Y6G5phSGSPk+7Dgj@lunn.ch>
+References: <20221202151204.3318592-1-michael@walle.cc>
+ <20221202151204.3318592-5-michael@walle.cc>
+ <Y4pHCQrDbXXmOT+A@lunn.ch>
+ <69e0468cf192455fd2dc7fc93194a8ff@walle.cc>
+ <Y4uzYVSRiE9feD01@lunn.ch>
+ <34dc81b01930e594ca4773ddb8c24160@walle.cc>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <34dc81b01930e594ca4773ddb8c24160@walle.cc>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Bryan,
+> > Yes, it is a valid point to do this check, but on its own i don't
+> > think it is sufficient.
+> 
+> Care to elaborate a bit? E.g. what is the difference to the case
+> the phy would have an interrupt described but no .config_intr()
+> op.
+> 
+> > > > I think a better place for this test is in gpy_config_intr(), return
+> > > > -EOPNOTSUPP. phy_enable_interrupts() failing should then cause
+> > > > phy_request_interrupt() to use polling.
+> > > 
+> > > Which will then print a warning, which might be misleading.
+> > > Or we disable the warning if -EOPNOTSUPP is returned?
+> > 
+> > Disabling the warning is the right thing to do.
+> 
+> There is more to this. .config_intr() is also used in
+> phy_init_hw() and phy_drv_supports_irq(). The latter would
+> still return true in our case. I'm not sure that is correct.
+> 
+> After trying your suggestion, I'm still in favor of somehow
+> tell the phy core to force polling mode during probe() of the
+> driver.
 
-On Tue, 20 Dec 2022 at 12:34, Bryan O'Donoghue
-<bryan.odonoghue@linaro.org> wrote:
->
-> On 20/12/2022 10:32, Konrad Dybcio wrote:
-> > Mainline does not and will not (for the most part) care about
-> > out of tree code, so cleanups of parts like this with no users
-> > are wholly expected if your DT hasn't landed upstream (or has been
-> > stuck in review for a long long time like it is the case with
-> > various parts of 8939).. Keeping this old iteration is blocking
-> > progress, as the other similar ones (that*do*  have mainline users)
-> > are left in place just to be backwards compatible with old DTs
-> > that may have been pulled from torvalds/linux by third party projects,
-> > like U-Boot, *BSDs or something. Trimming away this now-duplicated
-> > code will shrink the driver, reducing bloat for everyone that
-> > compiles it in and doesn't use the 8939-specific path.
->
-> I entirely take your point on duration Konrad but, I think we can be
-> just a little more pragmatic and hold off on dropping working code and
-> land the dtsi.
->
-> We went to the trouble of upstreaming the enabling code for the 8939,
-> the right thing to do, IMO is to finish off the job.
+The problem is that the MAC can set the interrupt number after the PHY
+probe has been called. e.g.
 
-I'm pretty sorry to step on your toes here. It's up to the maintainers
-of the platform and of the thermal subsystem. However I'd suggest
-getting rid of this code.
-Would me doing the dtsi patch for you to test on 8939 help you in any way?
+https://elixir.bootlin.com/linux/latest/source/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c#L524
 
--- 
-With best wishes
-Dmitry
+The interrupt needs to be set by the time the PHY is connected to the
+MAC, which is often in the MAC open method, much later than the PHY
+probe.
+
+     Andrew
