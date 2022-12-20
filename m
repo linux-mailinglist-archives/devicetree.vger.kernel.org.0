@@ -2,86 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A405A651BBB
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 08:33:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A22FB651BBF
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 08:34:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232918AbiLTHdU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 02:33:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52696 "EHLO
+        id S233426AbiLTHep (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 02:34:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232465AbiLTHdT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 02:33:19 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DD5BCD;
-        Mon, 19 Dec 2022 23:33:18 -0800 (PST)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BK6UY33027388;
-        Tue, 20 Dec 2022 07:32:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=6A2qUgdtnzjOdP0NB3K4qRoy0y5kw1SQGVtydHBhUa4=;
- b=bV9e4XgUpQvG1+2Y6+P35+ZaDyGlu4WD/to3ILZumDDVAZr0/Tb2dFVApDTPA6A4r4Jq
- MQN7+OuxBHsGooX7gOhZPw6B+MWkntMrAOYKhFkxTTfTrcavoJEATpqXVbkLoVZYBfpp
- g5qVPzGXkcwirQFQ2SdlmnOxeC4NMzASaiZEKKpxHrPHCWvkkO6Z0fSAVK204ByNi1q6
- iZVBoXqI8IP8zuoc7K+QpoVjCa+goPrBMLBA4yMmZvWJMEa+x8/3QUapxZyv+PvLjgLY
- PNtfegiNcfbc34sHfjqBkVB/rn3DhMQY3GthPGjR4u4murhXBRnMFGNZBnKy8WAcWAjk Zw== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3mk39t8kw6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 20 Dec 2022 07:32:26 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2BK7WPpv024206
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 20 Dec 2022 07:32:25 GMT
-Received: from [10.216.34.45] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 19 Dec
- 2022 23:32:17 -0800
-Message-ID: <5e0abe83-22ac-137b-d08f-6b34353c06a7@quicinc.com>
-Date:   Tue, 20 Dec 2022 13:02:13 +0530
+        with ESMTP id S233208AbiLTHeo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 02:34:44 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA83A259;
+        Mon, 19 Dec 2022 23:34:43 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7E88261295;
+        Tue, 20 Dec 2022 07:34:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA409C433D2;
+        Tue, 20 Dec 2022 07:34:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1671521682;
+        bh=SKMTGuyR9554FXAyRA1M/fIfSE7/4Gt7RZF/9BPt6Cw=;
+        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+        b=dCZXpIPtL0dB6yr7d3HMzMgJkVE9LMfEcGABEzn3ZGygCr+Nqklr6fbHFgV8g2Yv+
+         GKoU4GWxg15VcoWV9OyiUj+6tJM5StECeug+nMgx6NcLiYxJxWbtFX4LsF6Kg2Ffbe
+         1TGZOMzQzT/SRWYCX2DxBJSirw9kkz2MAo8kZgNpB+ISFR7GBHIqaKpTCzWZ6oaDgh
+         nWNsHnvaYcBRM3zzJo3udZLLonwTsRxykkl8nUjCjzxnFgT4m0BbsezKvg5NBBFS9Z
+         a17CzgGIUu7jou1HxNOdpl0FuDewGXLvO3YLM1ynIINmG5u+csZ1ngj/7wUmFOXAbT
+         1mjmtFMOG+JRg==
+From:   Felipe Balbi <balbi@kernel.org>
+To:     Rob Herring <robh@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc:     linux-rockchip@lists.infradead.org,
+        Johan Jonker <jbx6244@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: usb: snps,dwc3: Allow power-domains
+ property
+In-Reply-To: <20221219191038.1973807-1-robh@kernel.org>
+References: <20221219191038.1973807-1-robh@kernel.org>
+Date:   Tue, 20 Dec 2022 09:34:27 +0200
+Message-ID: <87edsua5q4.fsf@balbi.sh>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 1/2] remoteproc: elf_loader: Update resource table name
- check
-Content-Language: en-US
-To:     =?UTF-8?Q?Philippe_Mathieu-Daud=c3=a9?= <philmd@linaro.org>,
-        <linux-remoteproc@vger.kernel.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
-        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
-        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <judyhsiao@chromium.org>,
-        <devicetree@vger.kernel.org>, <krzysztof.kozlowski@linaro.org>,
-        <mathieu.poirier@linaro.org>, <corbet@lwn.net>,
-        Stephen Boyd <swboyd@chromium.org>
-References: <1670924929-26507-1-git-send-email-quic_srivasam@quicinc.com>
- <1670924929-26507-2-git-send-email-quic_srivasam@quicinc.com>
- <fe761bbe-96f9-75ae-b4be-e94b718abac3@linaro.org>
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Organization: Qualcomm
-In-Reply-To: <fe761bbe-96f9-75ae-b4be-e94b718abac3@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: gD1mn5sBzc4LKdecMyC0tUeZQkSPtZuu
-X-Proofpoint-GUID: gD1mn5sBzc4LKdecMyC0tUeZQkSPtZuu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-12-20_01,2022-12-15_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=999 spamscore=0 clxscore=1015 adultscore=0 priorityscore=1501
- impostorscore=0 phishscore=0 lowpriorityscore=0 malwarescore=0 mlxscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2212200062
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+Content-Type: multipart/signed; boundary="=-=-=";
+        micalg=pgp-sha256; protocol="application/pgp-signature"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,46 +58,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+--=-=-=
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
 
-On 12/15/2022 12:36 PM, Philippe Mathieu-Daudé wrote:
-Thanks for your time Phil!!!
-> On 13/12/22 10:48, Srinivasa Rao Mandadapu wrote:
->> Update the way of checking resource table name with prefix
->> substring search instead of complete string search.
->> In general Qualcomm DSP binary is prepared by combining different elfs,
+
+Hi,
+
+Rob Herring <robh@kernel.org> writes:
+
+> The Rockchip RK3399 DWC3 node has 'power-domain' property which isn't
+> allowed by the schema:
 >
-> Maybe 'ELFs'? (twice).
-Okay. Will update accordingly.
+> usb@fe900000: Unevaluated properties are not allowed ('power-domains' was=
+ unexpected)
 >
->> hence section header name (e.g. .resource_table), appended with elf name
->> to differentiate with same section of different elfs.
+> Allow DWC3 nodes to have a single power-domains entry. We could instead
+> move the power-domains property to the parent wrapper node, but the
+> could be an ABI break (Linux shouldn't care). Also, we don't want to
+> encourage the pattern of wrapper nodes just to define resources such as
+> clocks, resets, power-domains, etc. when not necessary.
 >
-> Please include here the section info parsed by readelf as an example,
-> as suggested by Stephen in your v1:
-> https://lore.kernel.org/linux-remoteproc/CAE-0n52cNite8-4HDoQcsZ+UvZFkJU8c5oUjxPB5ag5WP6E9=g@mail.gmail.com/ 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 >
-Okay. Will include example and re-spin the patch set.
->
->> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
->> ---
->> Changes since v1:
->>      -- Update the commit message.
->>     -- Use strstarts instead of strstr.
->>
->>   drivers/remoteproc/remoteproc_elf_loader.c | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/remoteproc/remoteproc_elf_loader.c 
->> b/drivers/remoteproc/remoteproc_elf_loader.c
->> index 5a412d7..77330d6 100644
->> --- a/drivers/remoteproc/remoteproc_elf_loader.c
->> +++ b/drivers/remoteproc/remoteproc_elf_loader.c
->> @@ -272,7 +272,7 @@ find_table(struct device *dev, const struct 
->> firmware *fw)
->>           u64 offset = elf_shdr_get_sh_offset(class, shdr);
->>           u32 name = elf_shdr_get_sh_name(class, shdr);
->>   -        if (strcmp(name_table + name, ".resource_table"))
->> +        if (!strstarts(name_table + name, ".resource_table"))
->>               continue;
->>             table = (struct resource_table *)(elf_data + offset);
->
+> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Docum=
+entation/devicetree/bindings/usb/snps,dwc3.yaml
+> index 6d78048c4613..bcefd1c2410a 100644
+> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> @@ -91,6 +91,9 @@ properties:
+>          - usb2-phy
+>          - usb3-phy
+>=20=20
+> +  power-domains:
+> +    maxItems: 1
+
+AFAICT this can be incorrect. Also, you could have Cc the dwc3
+maintainer to get comments.
+
+@Thinh, how many power rails does dwc3 need? I don't have access to a
+databook anymore, but I have a vague memory that different parts of dwc3
+could, potentially, be powered by completely separate supplies, no? Or
+is that only the case for clock domains in dwc3?
+
+=2D-=20
+balbi
+
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJFBAEBCAAvFiEEg3wK/NVnD14JZqsmho6y4DXKpEQFAmOhZYMRHGJhbGJpQGtl
+cm5lbC5vcmcACgkQho6y4DXKpEQIqA/9H58KYeua+8Pyj7k6pt7/Ib13Pe38UG2p
+d19FS68TdSHctH947Qq126h+hpjanuLKzD4rBPWEoGw3gkC+CKAZhffv0dD6mr48
+IroyOq9ApwHQ4qX7OvRN3f6gwxv3Ab9FvVT0fkcdiX4otdWs6OQku3Wa62hhHl2m
+cgWD0iPrWgZb2TbWcC8r9eEbdFNvu+QEx728WqZuMxYNwUANjkptpwUEQgQyHw52
+nwWASeFu4nl46/p2fOXmKYcFoCLDPDInteIGCg0U9SKFNIDpyKPZXlnfWNQJPLJC
+4oaKORO6h3+aamKcE0b2yZq8o24R4FGx7XpwLJTH2OwnK/z30vwABL0vbvHNW8y6
+0air/Db7AUkAxFpKcwtrze99LtoG5dvTpI7tHxLcCO/E5/UOg5WqzfsVXL6RCIM7
+V11ZlteWaG+LGL2C88XzASTNR+vNUEUUiJv/3sheEYA9WDowoWnTtMGzUAsfq7LH
+1KpHVXd0Yz+vgBNTkpRr1poxnneSCqLgoIs6z94s6WIdSc5Pl9gKIpx84a1dX8od
+LJnhf9eEli91dn9jbM20aXabj/qi32UfE6w6e0FlFDXyLl8itHiqzqAfpm4w2voq
+m75uXunv0FzPkMAIp10+5H0z8lpw8cvcNE+i+5gz8lnbEluJWQkelzttNMbN07TX
+uJ6uSFoq2Hs=
+=ufPS
+-----END PGP SIGNATURE-----
+--=-=-=--
