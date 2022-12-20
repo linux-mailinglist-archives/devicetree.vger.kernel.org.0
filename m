@@ -2,76 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE1B7652607
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 19:11:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D5ED65261D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 19:19:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233847AbiLTSLB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 13:11:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52870 "EHLO
+        id S229757AbiLTSTx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 13:19:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233711AbiLTSLA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 13:11:00 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7292A12D2C;
-        Tue, 20 Dec 2022 10:10:58 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id f16so13194689ljc.8;
-        Tue, 20 Dec 2022 10:10:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YCgvLxGszpcqBmYL7G26fw2zZ2/wqSpCHLDM+cNyPgI=;
-        b=JflZ991nO9+q3StleuPYPYvI/SYtKxCV57+m2ta6t9PMPKDqmD8KqrZGSEjnbhACAf
-         f3GTO4rdd6omXL/Lk00wxSUeoACwLmO2Yy/j8LdGpAok4aafVK86coQ1VAXKjn8dmHRz
-         YaXg1ebaI5OuDYTEj/Eb2GTL3idtNktkpdlc3hg2uDctk9XGaqLRqLdgZFizmhybwcnT
-         jPK1sheetvmtAF3DGG0pxOkyWaY+B/mjmFxnl9w2clkRWPHA59hX3lEJEk1bYUF8yLqS
-         hjyUC58RzVyKFQkPejKQGXzdz7fVHeTxLdb9UllXhjsN0hIA189VHR0NQvHWwhDQh3a0
-         l8Eg==
+        with ESMTP id S229536AbiLTSTw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 13:19:52 -0500
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0437CE07
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 10:19:50 -0800 (PST)
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-1433ef3b61fso16339079fac.10
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 10:19:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YCgvLxGszpcqBmYL7G26fw2zZ2/wqSpCHLDM+cNyPgI=;
-        b=kTXqLvyQHtNOaMadeXQQS0rs92I+vWqbz+/CIHNKTBJ9AI5jwUKq2QkwEhGYP7ojgx
-         HGcB79dusGwkU56GQjZsi+V5b/B23TeXEPnJw5Z2kG+Yo+o0na+XzYFLK7ICH8avOwig
-         OXYp9GyEk++qBqHOUGkenjkGj8HuKDaDR+a/Vs6gsjso4krC+ECED/W32U0VwpTqHI8y
-         EUQBTbsjwqpEVrQm0ONJTqnVu1RiHcJldX1SG1cFKL5LVQBRYp+qN0NiwR8rSdYougJY
-         JYYwPpehvMdqA/7z6T3d+Ac3FFFSBxDR9aJ9AXwxa2Yr+fij+pvviKSPecQvwyKQ422m
-         GcDA==
-X-Gm-Message-State: ANoB5pmeoIFxw2DhzF1Y/+2j+tnKlFLtF4SbetGCZxvrV/jm923dnJ3Y
-        hfxSYUW/Ohn9aslvVx/pUfA=
-X-Google-Smtp-Source: AA0mqf4aKschK9ygVYnNCcRfkDlSGFMATrw4+unJGjXm+d3l3pObcsb2tfiatDf4kFWqCaNWs4g1Dw==
-X-Received: by 2002:a05:651c:198c:b0:279:6514:54e6 with SMTP id bx12-20020a05651c198c00b00279651454e6mr16704634ljb.45.1671559856707;
-        Tue, 20 Dec 2022 10:10:56 -0800 (PST)
-Received: from [192.168.2.145] (109-252-113-89.nat.spd-mgts.ru. [109.252.113.89])
-        by smtp.googlemail.com with ESMTPSA id q14-20020a2eb4ae000000b002790fbb5f89sm1088848ljm.44.2022.12.20.10.10.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Dec 2022 10:10:56 -0800 (PST)
-Message-ID: <4d562b75-854d-1997-8969-e7ef222e4e37@gmail.com>
-Date:   Tue, 20 Dec 2022 21:10:49 +0300
+        bh=yvYSUhN9Lgqqo8NRRxAwZN/kbVSJbYqRGacsJ+ZY83o=;
+        b=eq2TowSMxRPlCjeIdKEq2ypfcW4Noi9TH9I0ku1VXL4/XmQIyk4cLyKTfQ6QX7qg18
+         E50mF/SSCyBV1idaQ+me0b2bcZ2mLOOUup0wmZTAWf4/BoGkvQqAnZ7Uoe8WyTfS7Qrd
+         2ctOcpmYgUHbahuF2wguA63V15wAAJWDjrwc/VeMcUt73wbEG1AgtsetWALzL0mOdnKB
+         WCllSyQjXcS4eFA/I1o+nkBYhtdz28eniw1RJkAabypPVRQObCc41ihWqt7l0RwBgt9g
+         SmjvwQoUUyDChfSIc50Ktp8itSoLkZQFUL+2eRs+nqGup2pveDLKSfpQanp3FX7L1bUI
+         y9YQ==
+X-Gm-Message-State: ANoB5pnJ353Od4bz0NN+ZTs7XzVgo2D61uTuNj2PsKqhVJpnk6lBcJTz
+        IdPxn2A3st3w2i0SnF0UJAoWP6Rz2Q==
+X-Google-Smtp-Source: AA0mqf4DhOxwDe9Kor6K8GQK2yyyxze1bgPG9xFLll91lFoFwbbg5+AyBLIX7Xq27noEvso5Iwxv5w==
+X-Received: by 2002:a05:6870:ed45:b0:144:a626:218b with SMTP id ex5-20020a056870ed4500b00144a626218bmr22778212oab.56.1671560390074;
+        Tue, 20 Dec 2022 10:19:50 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id d20-20020a056871041400b0013c8ae74a14sm6257284oag.42.2022.12.20.10.19.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Dec 2022 10:19:49 -0800 (PST)
+Received: (nullmailer pid 858419 invoked by uid 1000);
+        Tue, 20 Dec 2022 18:19:48 -0000
+Date:   Tue, 20 Dec 2022 12:19:48 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        dri-devel@lists.freedesktop.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 0/2] drm/imx/lcdc: Implement DRM driver for imx21
+Message-ID: <20221220181948.GA828243-robh@kernel.org>
+References: <20221216175006.456831-1-u.kleine-koenig@pengutronix.de>
+ <20221216235758.GA88372-robh@kernel.org>
+ <20221217183806.bvo5vypm6axycdte@pengutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [Patch v1 01/10] memory: tegra: add interconnect support for DRAM
- scaling in Tegra234
-Content-Language: en-US
-To:     Sumit Gupta <sumitg@nvidia.com>, treding@nvidia.com,
-        krzysztof.kozlowski@linaro.org, dmitry.osipenko@collabora.com,
-        viresh.kumar@linaro.org, rafael@kernel.org, jonathanh@nvidia.com,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20221220160240.27494-1-sumitg@nvidia.com>
- <20221220160240.27494-2-sumitg@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-In-Reply-To: <20221220160240.27494-2-sumitg@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+In-Reply-To: <20221217183806.bvo5vypm6axycdte@pengutronix.de>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,15 +75,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-20.12.2022 19:02, Sumit Gupta пишет:
-> +static int tegra_emc_icc_get_init_bw(struct icc_node *node, u32 *avg, u32 *peak)
-> +{
-> +	*avg = 0;
-> +	*peak = 0;
-> +
-> +	return 0;
-> +}
+On Sat, Dec 17, 2022 at 07:38:06PM +0100, Uwe Kleine-K�nig wrote:
+> On Fri, Dec 16, 2022 at 05:57:58PM -0600, Rob Herring wrote:
+> > On Fri, Dec 16, 2022 at 06:50:04PM +0100, Uwe Kleine-K�nig wrote:
+> > > Hello,
+> > > 
+> > > Changes since v2:
+> > > 
+> > >  - added allOf as Krzysztof requested
+> > >  - reworked driver based on Philipp's comments
+> > >    (improved error handling, different selects, moved driver to a subdirectory,
+> > >    header sorting, drm_err instead of DRM_ERROR, inlined
+> > >    imx_lcdc_check_mode_change, make use of dev_err_probe())
+> > >  
+> > > Krzysztof also pointed out that we're now having two compatibles for a
+> > > single hardware. Admittedly this is unusual, but this is the chance that
+> > > the (bad) compatible identifier imx21-fb gets deprecated. The hardware
+> > > is called LCDC and only the linux (framebuffer) driver is called imxfb.
+> > 
+> > The problem is you can't have firmware (with the DTB) that supports 
+> > both. Well, you can if you want to have some firmware setting that 
+> > selects which one. Otherwise, it's really an OS problem to decide what 
+> > to use. 
+> 
+> I don't understand what you intend to say here. The same applies if the
+> compatible is the same for both binding alternatives, isn't it? 
 
-Looks wrong, you should add ICC support to all the drivers first and
-only then enable ICC. I think you added this init_bw() to work around
-the fact that ICC isn't supported by T234 drivers.
+Only if you have both nodes in the DT and both enabled. But 2 enabled 
+nodes at the same address is also a dtc warning, so I was assuming you 
+didn't do that.
+
+> Do you consider a firmware problem better or an OS problem?
+
+The OS created the problem, so they get to keep it. But a PC BIOS is 
+full of OS compatibility switches, so...
+
+In the end, it's the platforms' decision really. I just want what the 
+implications of having 2 compatibles are to be understood.
+
+Rob
