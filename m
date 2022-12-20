@@ -2,106 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 038D3652593
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 18:32:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6E616525AD
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 18:40:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229536AbiLTRcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 12:32:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35024 "EHLO
+        id S232400AbiLTRkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 12:40:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233896AbiLTRcN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 12:32:13 -0500
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CDC81A3B0;
-        Tue, 20 Dec 2022 09:32:11 -0800 (PST)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1p7gTI-00085n-EU; Tue, 20 Dec 2022 18:32:08 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Yuteng Zhong <zonyitoo@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Peter Geis <pgwipeout@gmail.com>,
+        with ESMTP id S229536AbiLTRkC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 12:40:02 -0500
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8711EFF1;
+        Tue, 20 Dec 2022 09:40:01 -0800 (PST)
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-144b21f5e5fso16178680fac.12;
+        Tue, 20 Dec 2022 09:40:01 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=T+uqKNupLom5HOX393/X5dcMBDb877yjyv1k5TVvfHA=;
+        b=dYy9G5znw3qUvh2+VZkZceDeq9Lw8DSJHuPCnucxj3I2yFDJGt3+U4uuckwosxmSci
+         871zqwT91uuGI6q4UVfUGnloPMvMAessZtb4HxRUGtijSN1lfnOMl3uSqt6f9yBqan0J
+         bStGHJZa4jcHF9CHKQwFbvb9aIVyUblAezMfipzFV1bXMorx7lV8kYzKDY9rSCrwFes0
+         0vvr4xWIujVKyMzS/tgD2inoTrAXFmgluLSn9FleU3HkyVTRZZww0Ba9dahJks71n1dX
+         FgRJ7DxlIt1TnhwRhPh8RK1VnauNMxm27IwTK4QFSIwtZmPCbaUFhlqJGQr6r32L3Pvv
+         rcVw==
+X-Gm-Message-State: ANoB5pkryApv9g3LiySo4iYTHevuXf2iSg7z/jXxD4YkqGGUGMFf+PNE
+        0KJHXz7bOZt8QAFXUDSSkw==
+X-Google-Smtp-Source: AA0mqf76SVmlQ2s3MNPaz5jKJiFUnELkYDbfYdBJK/nJs4YnkQox5rSMMXsrtk/xEbpO8oFir2KjVQ==
+X-Received: by 2002:a05:6870:2dc8:b0:13b:9ee:aa19 with SMTP id op8-20020a0568702dc800b0013b09eeaa19mr20163092oab.55.1671558000766;
+        Tue, 20 Dec 2022 09:40:00 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id er34-20020a056870c8a200b0014866eb34cesm6216065oab.48.2022.12.20.09.39.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Dec 2022 09:39:59 -0800 (PST)
+Received: (nullmailer pid 796697 invoked by uid 1000);
+        Tue, 20 Dec 2022 17:39:58 -0000
+Date:   Tue, 20 Dec 2022 11:39:58 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Christian Marangi <ansuelsmth@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
+        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, DHDAXCW <lasstp5011@gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Add RK3566 LubanCat 1
-Date:   Tue, 20 Dec 2022 18:32:06 +0100
-Message-ID: <3325915.e9J7NaK4W3@diego>
-In-Reply-To: <a113d20c-dc6c-2e44-009f-d4b17beb8820@linaro.org>
-References: <Y6GMnq3AC7Kbnag8@VM-66-53-centos> <a113d20c-dc6c-2e44-009f-d4b17beb8820@linaro.org>
+        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org,
+        Tim Harvey <tharvey@gateworks.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Rasmus Villemoes <rasmus.villemoes@prevas.dk>
+Subject: Re: [PATCH v7 11/11] dt-bindings: net: dsa: qca8k: add LEDs
+ definition example
+Message-ID: <20221220173958.GA784285-robh@kernel.org>
+References: <20221214235438.30271-1-ansuelsmth@gmail.com>
+ <20221214235438.30271-12-ansuelsmth@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221214235438.30271-12-ansuelsmth@gmail.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, 20. Dezember 2022, 17:14:51 CET schrieb Krzysztof Kozlowski:
-> On 20/12/2022 11:21, Yuteng Zhong wrote:
-> > LubanCat 1 is a Rockchip RK3566 SBC based
-> > is developed by EmbedFire Electronics Co., Ltd.
-> > Mini Linux Card Type Cheap Computer Development Board
+On Thu, Dec 15, 2022 at 12:54:38AM +0100, Christian Marangi wrote:
+> Add LEDs definition example for qca8k using the offload trigger as the
+> default trigger and add all the supported offload triggers by the
+> switch.
 > 
-> Please wrap commit message according to Linux coding style / submission
-> process:
-> https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  .../devicetree/bindings/net/dsa/qca8k.yaml    | 24 +++++++++++++++++++
+>  1 file changed, 24 insertions(+)
 > 
-> > +	rk809: pmic@20 {
-> > +		compatible = "rockchip,rk809";
-> > +		reg = <0x20>;
-> > +		interrupt-parent = <&gpio0>;
-> > +		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_LOW>;
-> > +		assigned-clocks = <&cru I2S1_MCLKOUT_TX>;
-> > +		assigned-clock-parents = <&cru CLK_I2S1_8CH_TX>;
-> > +		#clock-cells = <1>;
-> > +		clock-names = "mclk";
-> > +		clocks = <&cru I2S1_MCLKOUT_TX>;
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pmic_int>;
-> > +		rockchip,system-power-controller;
-> > +		#sound-dai-cells = <0>;
-> > +		vcc1-supply = <&vcc3v3_sys>;
-> > +		vcc2-supply = <&vcc3v3_sys>;
-> > +		vcc3-supply = <&vcc3v3_sys>;
-> > +		vcc4-supply = <&vcc3v3_sys>;
-> > +		vcc5-supply = <&vcc3v3_sys>;
-> > +		vcc6-supply = <&vcc3v3_sys>;
-> > +		vcc7-supply = <&vcc3v3_sys>;
-> > +		vcc8-supply = <&vcc3v3_sys>;
-> > +		vcc9-supply = <&vcc3v3_sys>;
-> > +		wakeup-source;
-> > +
-> > +		regulators {
-> > +			vdd_logic: DCDC_REG1 {
+> diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
+> index 978162df51f7..4090cf65c41c 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
+> @@ -65,6 +65,8 @@ properties:
+>                   internal mdio access is used.
+>                   With the legacy mapping the reg corresponding to the internal
+>                   mdio is the switch reg with an offset of -1.
+> +                 Each phy have at least 3 LEDs connected and can be declared
+> +                 using the standard LEDs structure.
+>  
+>  patternProperties:
+>    "^(ethernet-)?ports$":
+> @@ -202,6 +204,7 @@ examples:
+>      };
+>    - |
+>      #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/leds/common.h>
+>  
+>      mdio {
+>          #address-cells = <1>;
+> @@ -284,6 +287,27 @@ examples:
+>  
+>                  internal_phy_port1: ethernet-phy@0 {
+>                      reg = <0>;
+> +
+> +                    leds {
+> +                        #address-cells = <1>;
+> +                        #size-cells = <0>;
+> +
+> +                        led@0 {
+> +                            reg = <0>;
+> +                            color = <LED_COLOR_ID_WHITE>;
+> +                            function = LED_FUNCTION_LAN;
+> +                            function-enumerator = <1>;
+> +                            linux,default-trigger = "netdev";
+
+'function' should replace this. Don't encourage more users. 
+
+Also, 'netdev' is not documented which leaves me wondering why there's 
+no warning? Either this patch didn't apply or there's a problem in the 
+schema that's not checking this node.
+
+> +                        };
+> +
+> +                        led@1 {
+> +                            reg = <1>;
+> +                            color = <LED_COLOR_ID_AMBER>;
+> +                            function = LED_FUNCTION_LAN;
+> +                            function-enumerator = <1>;
+
+Typo? These are supposed to be unique. Can't you use 'reg' in your case?
+
+
+> +                            linux,default-trigger = "netdev";
+> +                        };
+> +                    };
+>                  };
+>  
+>                  internal_phy_port2: ethernet-phy@1 {
+> -- 
+> 2.37.2
 > 
-> No underscores in node names. Anything requires it?
-
-looks like the answer is "it depends" :-)
-
-When the regulator-framework searches for the node to get the init-data from
-it uses the actual node-name or the regulator-compatible property [0]
-to match against.
-
-And going via regulator-compatible was the "old" way, already deprecated
-before the yaml-conversion [1] and not even included
-
-So matching against the node-name is the correct way to go and it's actually
-part of the rk8xx-binding as well [2]
-
-
-Hope that helps,
-Heiko
-
-
-[0] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/regulator/of_regulator.c#n477
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/Documentation/devicetree/bindings/regulator/regulator.txt?id=1914a996436b09186489da73b807e1df71259f67
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml#n84
-
-
+> 
