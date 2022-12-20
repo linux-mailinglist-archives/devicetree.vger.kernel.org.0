@@ -2,128 +2,260 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A72036517A7
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 02:15:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5FCB651889
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 02:52:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233049AbiLTBPD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Dec 2022 20:15:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48188 "EHLO
+        id S232876AbiLTBwU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Dec 2022 20:52:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232586AbiLTBOf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 20:14:35 -0500
-Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 04C7C11C32;
-        Mon, 19 Dec 2022 17:13:44 -0800 (PST)
-Received: from unknown (HELO kinkan2-ex.css.socionext.com) ([172.31.9.52])
-  by mx.socionext.com with ESMTP; 20 Dec 2022 10:13:40 +0900
-Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
-        by kinkan2-ex.css.socionext.com (Postfix) with ESMTP id B86AF2059054;
-        Tue, 20 Dec 2022 10:13:40 +0900 (JST)
-Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Tue, 20 Dec 2022 10:13:40 +0900
-Received: from [10.212.159.242] (unknown [10.212.159.242])
-        by kinkan2.css.socionext.com (Postfix) with ESMTP id 1EC71A8558;
-        Tue, 20 Dec 2022 10:13:40 +0900 (JST)
-Message-ID: <96590704-fc2e-5a30-15b9-32fda9cb571e@socionext.com>
-Date:   Tue, 20 Dec 2022 10:13:40 +0900
+        with ESMTP id S232853AbiLTBwT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Dec 2022 20:52:19 -0500
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6742D2DFA
+        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 17:52:16 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id s25so11033466lji.2
+        for <devicetree@vger.kernel.org>; Mon, 19 Dec 2022 17:52:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=6V+bmN9uxO+Stc5Qc5vBCLWzBtVtw74Whdt9SrbLKb8=;
+        b=EW+IrwK85O39rPSIE95d2xOwFjs9csGfVxgVLkPWAikyyzr4HymBnJK84heaIYoQab
+         ElKdXo5+bISjv8KPxOdk8UeHynwD49CzBEmQpbFdBRx8VpGB/Ba2u4OGzvflMVaM1As5
+         srStsgkPIzvi2keafc3qTopWLsMkHD1QLE/l1vufUBRUEeK0hWLTpmS8kbpAXSznmSE4
+         hwf4xdo0ppnufKnJcRXZQNUTjV0LbFUy1DYVdGQsndutnMbYxMp2Kan1cacQmDGpewoz
+         fE3L0dbbRAgjV6jqFNARnS0CfwZeFezc1AJFoVR3+4zt/JgFKtZqaZ1d+eU0Qb7a6ZFl
+         ToFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6V+bmN9uxO+Stc5Qc5vBCLWzBtVtw74Whdt9SrbLKb8=;
+        b=lQsbbUpXnjxWRsGpCgCa/t64f3RQ74gIyU4If9JnUH4+NQyNeBP0eJqgNj/IspnY5g
+         VJrDqT7391DQ8iJDebxYdfGCQS4in4WLVKHwm+NlfPjIr0zxnRdX1WvifLULcw+z8o/x
+         abyiwLMkr3ubPsuvPVPUQlH3QxgbxzG7ReJVyzc0bA9ZgtpbIAaRhDne6NE5RT4Zmlqv
+         89hBpBOIK5J847ozhoaLwrrLYlhbrqXl3nhSJsP1Ef4xWFy4Ct5Mu4p4H8cQ10fUAVls
+         JLQaNZWZ1P512yfEVR3u/3njdQFh9nBmjk+lr4eDi02bnV7HA1xOrT139PXwrvOis6ut
+         7iZA==
+X-Gm-Message-State: AFqh2kpLnXhVVrcNGsgZfLsWA+v6SZgXfAVUbRnJe8IdFa8CpptFXO29
+        sievxfbZjiHvMmUxZlhdEw4OKKTwtadw7l42t64YYg==
+X-Google-Smtp-Source: AMrXdXsIffFAGyFtnO8gZp/ucrVfNMyhpNHmhM0ftTpEoQ5RFtc8MbHOI+Nl9QKDQ5h3Qgj6sPyghHdtIbo77kBJAc8=
+X-Received: by 2002:a05:651c:b08:b0:27e:8a84:6c33 with SMTP id
+ b8-20020a05651c0b0800b0027e8a846c33mr1484006ljr.404.1671501134706; Mon, 19
+ Dec 2022 17:52:14 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v3 00/17] dt-bindings: soc: Introduce UniPhier
- miscellaneous register blocks and fix examples
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
+References: <20221219155616.848690-1-benjamin.gaignard@collabora.com>
+ <CAAEAJfBP_D65kjHbwYP+LWfWKfzFtHtWo+3bDcbdO8tPtBurUA@mail.gmail.com> <20221219215431.GB26315@pengutronix.de>
+In-Reply-To: <20221219215431.GB26315@pengutronix.de>
+From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Date:   Mon, 19 Dec 2022 22:52:02 -0300
+Message-ID: <CAAEAJfBzZWHu9YE38HzRUQ2xRZohYa19JaK7EOaQDqz5K1sz_g@mail.gmail.com>
+Subject: Re: [PATCH v1 0/9] AV1 stateless decoder for RK3588
+To:     Michael Grzeschik <mgr@pengutronix.de>
+Cc:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
+        daniel.almeida@collabora.com, nicolas.dufresne@collabora.co.uk,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20221213082449.2721-1-hayashi.kunihiko@socionext.com>
- <20221219154948.GA1439405-robh@kernel.org>
-Content-Language: en-US
-From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-In-Reply-To: <20221219154948.GA1439405-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Michael,
 
-On 2022/12/20 0:49, Rob Herring wrote:
-> On Tue, Dec 13, 2022 at 05:24:32PM +0900, Kunihiko Hayashi wrote:
->> This series introduces dt-bindings documents for miscellaneous register
->> blocks implemented in Socionext UniPhier SoCs.
->>
->> These are previously defined in the devicetree and used in the examples
->> of subnodes' dt-bindings, however, not documented.
->>
->> These include two types of the blocks
->>
->> * independent block including miscellaneous registers and functions for
->>    the whole SoC (system controller and SoC-glue logic)
->>
->> * sideband logic including control registers in the component (others)
->>
->> And prior to adding these dt-bindings, fix examples in the existing
->> dt-bindings.
->>
->> This series is part of the previous series shown below:
->>
-> https://lore.kernel.org/linux-arm-kernel/20221107103410.3443-2-hayashi.kun
-> ihiko@socionext.com
->>
->> Changes since v2:
->> - Drop redundant nodes in examples (clock, reset, soc-glue-debug)
->> - Drop parent node in examples
->> - Add more properties to examples for pinctrl
->> - Add a patch for regulator change
->> - Use consistent quotes
->> - Drop unit address patterns of patternProperties
->> - Mandatory unit address pattern for efuse (soc-glue-debug)
->> - Fix additionalProperties (ahci-glue)
->>
->> Changes since v1:
->> - Fix examples in the existing dt-bindings (Add PATCH 1-7)
->> - Add dt-bindings for SoC-glue logic debug part (Add PATCH 10)
->> - Drop generic and ld6b compatible strings
->> - Change "usb-controller" node in soc-glue to "usb-hub"
->> - Change "usb-controller" node in USB glue layer example to "usb"
->> - Add negation of child properties by compatible string
->>
->> Kunihiko Hayashi (17):
->>    dt-bindings: clock: Fix node descriptions in uniphier-clock example
->>    dt-bindings: reset: Fix node descriptions in uniphier-reset example
->>    dt-bindings: pinctrl: Fix node descriptions in uniphier-pinctrl
->>      example
->>    dt-bindings: regulator: Fix node descriptions in uniphier-regulator
->>      example
->>    dt-bindings: watchdog: Fix node descriptions in uniphier-wdt example
->>    dt-bindings: thermal: Fix node descriptions in uniphier-thermal
->>      example
->>    dt-bindings: phy: Fix node descriptions in uniphier-phy example
->>    dt-bindings: nvmem: Fix node descriptions in uniphier-efuse example
->>    dt-bindings: soc: socionext: Add UniPhier system controller
->>    dt-bindings: soc: socionext: Add UniPhier SoC-glue logic
->>    dt-bindings: soc: socionext: Add UniPhier SoC-glue logic debug part
->>    dt-bindings: soc: socionext: Add UniPhier peripheral block
->>    dt-bindings: soc: socionext: Add UniPhier media I/O block
->>    dt-bindings: soc: socionext: Add UniPhier SD interface block
->>    dt-bindings: soc: socionext: Add UniPhier ADAMV block
->>    dt-bindings: soc: socionext: Add UniPhier DWC3 USB glue layer
->>    dt-bindings: soc: socionext: Add UniPhier AHCI glue layer
-> 
-> You sent this To me, so I'm assuming you want me to apply it?
- > Otherwise, it can go via the Socionext tree. Let me know and I can fix
- > up Krzysztof's comments and apply the series.
+On Mon, Dec 19, 2022 at 6:54 PM Michael Grzeschik <mgr@pengutronix.de> wrote:
+>
+>
+> Hi Benjamin,
+> Hi Ezequiel,
+>
+> On Mon, Dec 19, 2022 at 06:07:38PM -0300, Ezequiel Garcia wrote:
+> >On Mon, Dec 19, 2022 at 12:56 PM Benjamin Gaignard
+> ><benjamin.gaignard@collabora.com> wrote:
+> >>
+> >> This series implement AV1 stateless decoder for RK3588 SoC.
+> >> The harware support 8 and 10 bits bitstreams up to 7680x4320.
+> >> AV1 feature like film grain or scaling are done by the postprocessor.
+> >> The driver can produce NV12_4L4 and NV12 pixel formats.
+> >> A native 10bits NV12_4L4 format is possible but need more investigation
+> >> to be completly documented and enabled.
+> >>
+> >> It is based on Daniel's "[RFC,v3] media: Add AV1 uAPI" [1] patches and
+> >> Sebastian's device-tree patches for RK3588.
+> >>
+> >
+> >I thought the AV1 decoder in RK3588 was really a separate hardware
+> >from the Hantro G1/G2.
+> >
+> >Shouldn't this need a new driver for this new hardware?
+>
+> Just jumping into this discussion as I am currently working on the rkvenc driver.
+>
 
-Currently I don't have the Socionext tree for pull-request,
-so I'd be happy if you could fix up the comments and apply the series.
+The more the merrier, there's always room for developers :-)
 
-Thank you,
+> In my case I am extending the rkvdec driver to become more generic for
+> other rockchip specific enc/decoders.
+>
+> My first change looks like this:
+> ---
+>  drivers/staging/media/rkvdec/Makefile              |   4 +-
+>  drivers/staging/media/rkvdec/rkvdec-h264.c         | 100 ++++-----
+>  drivers/staging/media/rkvdec/rkvdec-vp9.c          | 142 ++++++-------
+>  drivers/staging/media/rkvdec/{rkvdec.c => rkvpu.c} | 510 +++++++++++++++++++++++-----------------------
+>  drivers/staging/media/rkvdec/{rkvdec.h => rkvpu.h} |  66 +++---
+> ---
+>
+> While working on other parts of the encoder I found many places in the
+> rkvdec driver (e.g. v4l2 and vb2 callbacks) that looked familiar to the hantro
+> functions but where limited to the decoder case.
+>
 
----
-Best Regards
-Kunihiko Hayashi
+Because stateless decoders devices are very similar in their general behavior,
+their drivers could be very similar.
+
+Hantro and Rkvdec could look similar because the same humans worked on them.
+
+Most boilerplate code, as well as V4L2 format negotiation, VB2 buffer handling
+could be shared among all stateless decoder drivers. I think even at one point
+we experimented with having a shared/common code base for all stateless codecs.
+
+In other words, it's entirely possible to support Hantro devices in
+the Cedrus driver
+and vice-versa, you would only have to write the hardware-specific bits.
+
+However, there is consensus to have a separate driver for each
+different hardware,
+even when the hardware is a bit similar. This may lead to some code duplication,
+but it's less fragile / more flexible. Maintaining drivers this way allows
+developers to evolve, testing on a small family of devices, without
+breaking support
+for other devices.
+
+This is important as sometimes it's hard to get the hardware,
+but we still don't want to break the support!
+
+> I think there are two options for the av1 codec.
+>
+> 1) If the vpu981 is a driver that has nothing to do with verisilicon but
+> works with this driver framework, then we should integrate vepu981 into it
+> but consider rename the verisilicon unrelated parts to something generic.
+>
+> 2) Move the vepu981 av1 driver into the rkvdec instead.
+>
+> If 1) is the way to go, we can even think of moving the staging code parts from
+> rkvdec to the verisilicon code. Likewise to the vepu981-av1.
+>
+
+The Hantro driver should only support G1, G2, and VC8000D;
+which can be said to belong to the same family.
+
+The RKVDEC driver supports Rockchip vdpu34x core. I have to admit
+I'm not exactly sure if we support anything else than vdpu34x.
+
+I'm not familiar with the AV1 support provided by this patch,
+but looking at the mpp code:
+
+...
+        "rk3588",
+        ROCKCHIP_SOC_RK3588,
+        HAVE_VDPU2 | HAVE_VDPU2_PP | HAVE_VEPU2 | HAVE_RKVDEC | HAVE_RKVENC |
+        HAVE_JPEG_DEC | HAVE_AV1DEC | HAVE_AVSDEC | HAVE_VEPU2_JPEG,
+        {   &vdpu38x, &rkjpegd, &vdpu2, &vdpu2_jpeg_pp, &av1d, &avspd},
+        {   &vepu58x, &vepu2, &vepu2_jpeg, NULL, },
+
+Seems RK3588 supports a Hantro core (VDPU2), a vdpu38x core and this AV1 core,
+which according to this patchset is vdpu981 (?)
+
+If the vdpu38x device interface, configuration, buffer handling and
+registers are
+similar enough with vdpu34x, adding vdpu38x to the Rkvdec driver
+should be straightforward.
+If the vdpu38x core differs, it may be reason enough to consider a new driver.
+
+As for vdpu981 (AV1), I'm inclined to think it deserves its own driver.
+
+Again, I'm far less worried for a little code duplication in the
+boilerplate (which can be solved
+with helpers, etc.) and more worried about making sure we can evolve
+drivers easily,
+while minimizing regressions.
+
+Hope it helps!
+Ezequiel
+
+
+> I could also keep on integrating the rkvenc on that base instead.
+>
+> Regards,
+> Michael
+>
+> >> The full branch can be found here:
+> >> https://gitlab.collabora.com/linux/for-upstream/-/commits/rk3588_av1_decoder_v1
+> >>
+> >> Fluster score is: 151/239 while testing AV1-TEST-VECTORS with GStreamer-AV1-V4L2SL-Gst1.0.
+> >> The failing tests are:
+> >> - 10bits bitstream because 10bits output formats aren't yet implemented.
+> >> - the 2 tests with 2 spatial layers: few errors in luma/chroma values
+> >> - tests with resolution < hardware limit (64x64)
+> >>
+> >> Benjamin
+> >>
+> >> Benjamin Gaignard (9):
+> >>   dt-bindings: media: rockchip-vpu: Add rk3588 vpu compatible
+> >>   media: verisilicon: Add AV1 decoder mode and controls
+> >>   media: verisilicon: Save bit depth for AV1 decoder
+> >>   media: verisilicon: Check AV1 bitstreams bit depth
+> >>   media: verisilicon: Compute motion vectors size for AV1 frames
+> >>   media: verisilicon: Add AV1 entropy helpers
+> >>   media: verisilicon: Add Rockchip AV1 decoder
+> >>   media: verisilicon: Add film grain feature to AV1 driver
+> >>   media: verisilicon: Enable AV1 decoder on rk3588
+> >>
+> >>  .../bindings/media/rockchip-vpu.yaml          |    1 +
+> >>  drivers/media/platform/verisilicon/Makefile   |    3 +
+> >>  drivers/media/platform/verisilicon/hantro.h   |    5 +
+> >>  .../media/platform/verisilicon/hantro_drv.c   |   54 +
+> >>  .../media/platform/verisilicon/hantro_hw.h    |  102 +
+> >>  .../platform/verisilicon/hantro_postproc.c    |    3 +
+> >>  .../media/platform/verisilicon/hantro_v4l2.c  |    5 +
+> >>  .../verisilicon/rockchip_av1_entropymode.c    | 4536 +++++++++++++++++
+> >>  .../verisilicon/rockchip_av1_entropymode.h    |  272 +
+> >>  .../verisilicon/rockchip_av1_filmgrain.c      |  401 ++
+> >>  .../verisilicon/rockchip_av1_filmgrain.h      |   36 +
+> >>  .../verisilicon/rockchip_vpu981_hw_av1_dec.c  | 2280 +++++++++
+> >>  .../verisilicon/rockchip_vpu981_regs.h        |  477 ++
+> >>  .../platform/verisilicon/rockchip_vpu_hw.c    |  116 +
+> >>  14 files changed, 8291 insertions(+)
+> >>  create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_entropymode.c
+> >>  create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_entropymode.h
+> >>  create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_filmgrain.c
+> >>  create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_filmgrain.h
+> >>  create mode 100644 drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
+> >>  create mode 100644 drivers/media/platform/verisilicon/rockchip_vpu981_regs.h
+> >>
+> >> --
+> >> 2.34.1
+> >>
+> >
+> >_______________________________________________
+> >linux-arm-kernel mailing list
+> >linux-arm-kernel@lists.infradead.org
+> >http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> >
+>
+> --
+> Pengutronix e.K.                           |                             |
+> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
