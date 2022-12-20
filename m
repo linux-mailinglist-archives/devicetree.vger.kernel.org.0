@@ -2,141 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5397B65213D
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 14:07:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14783652145
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 14:10:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233546AbiLTNHW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 08:07:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39664 "EHLO
+        id S233572AbiLTNKi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 08:10:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229684AbiLTNHU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 08:07:20 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61F1A100A;
-        Tue, 20 Dec 2022 05:07:19 -0800 (PST)
-Received: from beast.luon.net (unknown [IPv6:2a10:3781:2531::8])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: sjoerd)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 103A46602CA4;
-        Tue, 20 Dec 2022 13:07:18 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1671541638;
-        bh=dwGE8muU+/jqx+FXW5bPekgc9rReC9jOQ7EeZGHDZW0=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=SMU1eWWa/XtkeC+AMWYvC1/Fb6h053BvmQBU9t5O64HJA6aaRCLgJ+yYjIBqgoJpw
-         zFRKU1vDIrJD8k/aCybGYbWK9DNm3XEDhGYQ7xYfq53qRrLVBhitxJM3dLnmclum6o
-         lbhrMSxttzvCyLtgnNj2nM9MHPjgD0TuoRyJkaqKJCFy2ZnV3yOE8fN5ozerez1O+M
-         2wt7vK3YDBBc8Dnw3o+8LUGGqcx/TZ8oO+bjcethwafjrRkvHBaNS2xUoY1LjrvWV2
-         jadNMV2Ih+iCzpARDMbXPwctl0/tG8/UeAKhCuI8KEx/G6uhs5KMIS0PbCx9ai+bxE
-         2FZNcbKMtbVGg==
-Received: by beast.luon.net (Postfix, from userid 1000)
-        id 10B9E5E81B6D; Tue, 20 Dec 2022 14:07:15 +0100 (CET)
-Message-ID: <a85e08c6af0fbdafaa6f3799264e92bba7607b9c.camel@collabora.com>
-Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-am62-main: Update OTAP and ITAP
- delay select
-From:   Sjoerd Simons <sjoerd@collabora.com>
-To:     Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
-Cc:     martyn.welch@collabora.com, Nitin Yadav <n-yadav@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tero Kristo <kristo@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Date:   Tue, 20 Dec 2022 14:07:14 +0100
-In-Reply-To: <b22b6349-9cec-2e86-294a-249f24de2345@ti.com>
-References: <20221216143624.23708-1-sjoerd@collabora.com>
-         <20221216143624.23708-2-sjoerd@collabora.com>
-         <b22b6349-9cec-2e86-294a-249f24de2345@ti.com>
-Organization: Collabora Ltd.
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.2-1 
+        with ESMTP id S233787AbiLTNKg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 08:10:36 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 706241057A
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 05:10:35 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1p7cO3-0002tt-SE; Tue, 20 Dec 2022 14:10:27 +0100
+Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1p7cO2-000a6K-K2; Tue, 20 Dec 2022 14:10:26 +0100
+Received: from mfe by dude02.red.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1p7cO1-0066OU-Nz; Tue, 20 Dec 2022 14:10:25 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, festevam@gmail.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        kernel@pengutronix.de
+Subject: [PATCH] arm64: dts: imx8mp-evk: pcie0-refclk cosmetic cleanup
+Date:   Tue, 20 Dec 2022 14:10:24 +0100
+Message-Id: <20221220131024.1454495-1-m.felsch@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Vignesh
+Use the correct indention.
 
-On Tue, 2022-12-20 at 16:49 +0530, Vignesh Raghavendra wrote:
->=20
->=20
-> On 16/12/22 8:06 pm, Sjoerd Simons wrote:
-> > From: Nitin Yadav <n-yadav@ti.com>
-> >=20
-> > UHS Class U1 sd-card are not getting detected due to incorrect
-> > OTAP/ITAP delay select values in linux. Update OTAP and ITAP
-> > delay select values for various speed modes. For sdhci0, update
-> > OTAP delay values for ddr52 & HS200 and add ITAP delay for legacy
-> > & mmc-hs. For sdhci1 & sdhci2, update OTAP & ITAP delay select
-> > recommended as in RIOT for various speed modes.
-> >=20
-> > Signed-off-by: Nitin Yadav <n-yadav@ti.com>
-> > [cherry-pick from vendor BSP]
-> > Signed-off-by: Sjoerd Simons <sjoerd@collabora.com>
-> > ---
-> >=20
-> > =C2=A0arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 46 ++++++++++++-------=
--
-> > ----
-> > =C2=A01 file changed, 24 insertions(+), 22 deletions(-)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> > b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> > index 03660476364f..28c250a8d1ec 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> > +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> > @@ -391,8 +391,10 @@ sdhci0: mmc@fa10000 {
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0ti,clkbuf-sel =3D <0x7>;
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0ti,otap-del-sel-legacy =3D <0x0>;
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0ti,otap-del-sel-mmc-hs =3D <0x0>;
-> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0ti,otap-del-sel-ddr52 =3D <0x9>;
-> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0ti,otap-del-sel-hs200 =3D <0x6>;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0ti,otap-del-sel-ddr52 =3D <0x5>;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0ti,otap-del-sel-hs200 =3D <0x5>;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0ti,itap-del-sel-legacy =3D <0xa>;
->=20
-> This is pretty useless without corresponding driver changes=20
-> to pick up ti,itap-del-sel-legacy as well
+Fixes: d50650500064 ("arm64: dts: imx8mp-evk: Add PCIe support")
+Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+---
+ arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Right; itap-del-sel-legacy is properly documented in the device-tree
-binding and was already previously set ofcourse so i didn't pick up it
-needed more driver changes. That said the dtb change itself should
-still be valid even if not actually applied.
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+index 5bfe58e3e6ea..f2951f7b9156 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+@@ -36,8 +36,8 @@ memory@40000000 {
+ 
+ 	pcie0_refclk: pcie0-refclk {
+ 		compatible = "fixed-clock";
+-			#clock-cells = <0>;
+-			clock-frequency = <100000000>;
++		#clock-cells = <0>;
++		clock-frequency = <100000000>;
+ 	};
+ 
+ 	reg_audio_pwr: regulator-audio-pwr {
+-- 
+2.30.2
 
-> https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/commit/drivers/mm=
-c/host/sdhci_am654.c?h=3Dti-linux-5.10.y&id=3D93d22fc56007ee13e589debf0d32c=
-8b1d5fdc6d8
-> https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/commit/drivers/mm=
-c/host/sdhci_am654.c?h=3Dti-linux-5.10.y&id=3D9c878c3dc642f7f1f3ab6ca7f812c=
-d43fe7ed7d8
->=20
-> Could you list that cards affected and fixed by this change?
-
-It's a Collabora branded UHS class 1 (SDR104) card; Matching the commit
-message indication given by Nitin. So that in particular i guess, will
-have been fixed by the change to the ti,otap-del-sel-sdr104 value for
-sdhci1.
-
-For the two patches you highlighted above; Is TI planning to upstream
-those as well?=20
-
-
---=20
-Sjoerd Simons
-Collabora Ltd.
