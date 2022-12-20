@@ -2,116 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3A5A652068
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 13:34:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26E9B65206D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 13:36:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232606AbiLTMeh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 07:34:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43568 "EHLO
+        id S233492AbiLTMgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 07:36:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229657AbiLTMeg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 07:34:36 -0500
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9D326566;
-        Tue, 20 Dec 2022 04:34:35 -0800 (PST)
-Received: by mail-pj1-x102d.google.com with SMTP id u15-20020a17090a3fcf00b002191825cf02so11975085pjm.2;
-        Tue, 20 Dec 2022 04:34:35 -0800 (PST)
+        with ESMTP id S233381AbiLTMgk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 07:36:40 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87AEDBE36
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 04:36:38 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id h11so11548988wrw.13
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 04:36:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Nqu0/Qt0HIWTPrQ5AI2iKSepnaqwzAAmbIKhQba6Gd8=;
-        b=Z8SwdS+qnItrM7Gtn89jjfxFwU1Sfr6Jb9RN5T84LQc3LP5AuPBrgt2bkxSsx4kxGl
-         tTwMp629gMpSlr6mOVT8099BX8xpILtMprr5HzZ8yxt+7ICUJ35RSuVgeSERCDfU6a1H
-         U0uzc3q5Kg7qlXv9CwvBE04hlGm/srh+PKfmPk0GWjQKz7/PzjezJ4SoLxMQMiM9BSvg
-         FwUpatWxCTfTY3y/VLXbDb8IoZmbKP7NVDxzGTDFAvocFJXKcZIrJHsitB7vmONi3Xeo
-         5lizfHJ8lqRJsQS5h99g+B4ivQRX46zAmVrFfOzhaFiSgd3vwTT3FnAKSkGJkEJ77mQh
-         BALg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YZugwc/t/ZJz6w/djvKK9nUP1aiYFAKi2NzgJ26Xsqc=;
+        b=O/D7iMUnkCQJjmK1NOzj8UzCydsf1KMAt58QAorUK0RoBo9wwo+OIQzJr3vE4uEOgF
+         0dv9KjJY8MJby4yfNjmrisKRiEv2uIF7EBvADYyUjA+q+XDOieRnz1+TPwRKd/2dPofP
+         H6V6SlWi1ig3FmXUICAP2UqsJVdI2aBspfOy/K2sNbgbw0oTVbYVfVA8y6tJ6GbKrdP3
+         s6QN5iHR8LEidv0LlZT0n1q/JnekeR2cX5e2GHTGS45sKHjwwdFmVCv94E4hU6JquO2Y
+         F9R86zcfgedOe7Rf8WiMCdWw7izU2Ms4rFQoiWpz7Vu9W67gvP2EBlg6lUjHcPYi6W3M
+         hNLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Nqu0/Qt0HIWTPrQ5AI2iKSepnaqwzAAmbIKhQba6Gd8=;
-        b=ldph1xoWfHSus328FLDPi0BEIVoBeGO1OQ0+I4XRY/7cE3aWH+RYtQJNR7YdI1v7mT
-         mywU1SxJA2yxyflsacxVDVJTzkOptmdYsclZoWB5h5bVgxuoy9DRmhSTuEiYYKHXe0iS
-         f2igphMGGRE/98f3PwW0by4+AUkFQLI3fTUGrPBDgggDcU4Tbp3q56PX88aSKzM0Sd5F
-         ELAcoYzqCedfvLuxsrALM6Sim8lJkxYBscT/Hdus9zwmYPAKM55AS1zFeRivHF10nmHO
-         KEe9XukXRXpO+GK6kR202q0mWx7cvLCzjqXAfjEWuWnbEvrfcISke2wORvu9GkV0M8WX
-         jCIA==
-X-Gm-Message-State: ANoB5pmJbpTv/wDQJ655ENH6xzAwpbol3QKwsYWQoC3C04j2a8RDJV45
-        av+kJIBj799qPew3XOEQL+7CRWMdvymXo8NRr+0=
-X-Google-Smtp-Source: AA0mqf61XudZKB+l3rr/BDyKsVdWt5vzpWfkXuUEN3MkPjb8HIfkiMt/xaE8dizO9cZ1K+jtReZs7hGVSradsTj4OIc=
-X-Received: by 2002:a17:903:40cb:b0:189:dd86:a1e0 with SMTP id
- t11-20020a17090340cb00b00189dd86a1e0mr17766130pld.78.1671539675200; Tue, 20
- Dec 2022 04:34:35 -0800 (PST)
+        bh=YZugwc/t/ZJz6w/djvKK9nUP1aiYFAKi2NzgJ26Xsqc=;
+        b=o5lrlGikWXSQHQhltI1z3eX77YL08xSwguhq6x8Skp7fGblmej92CagdEDGsskvQxV
+         NuxhtW0J23CUITpRwKJSXepQhvbJnf93ohbJBRflddEx7EDt0tYe3XkxmEhBUODMs6Aa
+         eB7nD9nx/xB0GdHqe4P7DXEcJnFf/aLTtLTLzPZp1kXdbPm1zOJUZMnih8yj9JrG7Az1
+         jXA9bsTBnCQx9xHCOXvAzPdLUqK+kX/tcs0/r2M9M2ZBGEa947Mim4B3FVb9Jr7ylstF
+         yOu3HGWGqbMU55RSCvqk+HQkgS2fhuUVlE5VcjI4UvVT5nUyOglumo+huXd8YypraSgZ
+         TKbA==
+X-Gm-Message-State: ANoB5plJlTZcBprt92j9fgyyyMUkNBgxRi99Q6ybcWl54rYAr1ez07J4
+        Bsbk1mgOG4yHXM+lWKsjZKii0w==
+X-Google-Smtp-Source: AA0mqf7iEUd3ZUsc2l/5OvGsGvshsOZUpsxm9RxTXn1RYcv03TDyxEBakFAj0tedvJCg6jhwf5zcgA==
+X-Received: by 2002:a5d:6a12:0:b0:242:63de:2f57 with SMTP id m18-20020a5d6a12000000b0024263de2f57mr38944318wru.26.1671539797040;
+        Tue, 20 Dec 2022 04:36:37 -0800 (PST)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id da13-20020a056000408d00b00242257f2672sm12641208wrb.77.2022.12.20.04.36.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Dec 2022 04:36:36 -0800 (PST)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Cc:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
+        dmitry.baryshkov@linaro.org, sean@poorly.run, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org, dianders@chromium.org,
+        david@ixit.cz, krzysztof.kozlowski+dt@linaro.org,
+        swboyd@chromium.org, konrad.dybcio@somainline.org,
+        agross@kernel.org, andersson@kernel.org,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        bryan.odonoghue@linaro.org
+Subject: [PATCH v5 00/21] mdss-dsi-ctrl binding and dts fixes
+Date:   Tue, 20 Dec 2022 12:36:13 +0000
+Message-Id: <20221220123634.382970-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-References: <CGME20221214044434epcas5p212735c11a8ff9f72e25742e4ac8a7794@epcas5p2.samsung.com>
- <20221214044342.49766-1-sriranjani.p@samsung.com> <20221214044342.49766-5-sriranjani.p@samsung.com>
-In-Reply-To: <20221214044342.49766-5-sriranjani.p@samsung.com>
-From:   Chanho Park <parkch98@gmail.com>
-Date:   Tue, 20 Dec 2022 21:34:24 +0900
-Message-ID: <CAPTzV14Got8JrN_OUnPjd30C1aYo8f3vyi5npZoRZqR1oFwmGA@mail.gmail.com>
-Subject: Re: [PATCH v3 4/4] arm64: dts: exynos: add dedicated SYSREG
- compatibles to Exynosautov9
-To:     Sriranjani P <sriranjani.p@samsung.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, alim.akhtar@samsung.com,
-        pankaj.dubey@samsung.com, ravi.patel@samsung.com,
-        sathya@samsung.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 14, 2022 at 1:50 PM Sriranjani P <sriranjani.p@samsung.com> wrote:
->
-> Exynosautov9 has several different SYSREGs, so use dedicated compatibles
-> for them.
->
-> Signed-off-by: Sriranjani P <sriranjani.p@samsung.com>
+V5:
+- Adds compat strings to bindings/display/msm/qcom,SoC-mdss.yaml - Dmitry
+- Re-orders simple fixes to the start of the series to allow backports - Dmitry 
+- VDDA and drop of node-names - Krzysztof
+- Deprecates qcom,dsi-ctrl-6g-qcm2290 - Krzysztof, Dmitry
+- Expands set of updated files to include new msm8953 - bod
+- Converts to agreed compat string qcom,SoC-dsi-ctrl hence
+  -              - qcom,mdss-dsi-ctrl-msm8996
+  +              - qcom,msm8996-dsi-ctrl
+- Adds RB where indicated for the compat strings.
+V4:
+- Moves the update of the example from patch #5 to patch #4
 
-Reviewed-by: Chanho Park <chanho61.park@samsung.com>
+V3:
+- Moves declaration of mdss-dsi-ctrl into compat string declaration
+  patch - Krzysztof, Dmitry
+- Renames qcm-2290 compat string to agreed compat "qcom,socname-dsi-ctrl"
+  Dmirty, Krzysztof
+- Adds empty line after if clause in yaml control flow section - Dmirty
+- Adds Rb/Ack - Krzysztof, Dmitry, Doug, David
+- vdd*
+  Looking into this some more, I don't believe vdd, vdda, vddio ought to be
+  required properties. Its up to the PCB manufacturer and the panel in-use
+  how that panel is powered. Powering the panel is not something that
+  even necessarily needs to be done from the dsi-ctrl driver.
+  Originally marking vdd* as required in the .txt was an error, its not a
+  SoC level dtsi requirement.
+- clock-names
+  Rather than replicate the clock-name in each if block I listed them with
+  a specific description from a similar reference in usb/qcom,dwc3.yaml.
+ 
+https://lore.kernel.org/linux-arm-msm/eb80681f-2e0b-605f-0444-ec65562f74b8@linaro.org/
 
-> ---
->  arch/arm64/boot/dts/exynos/exynosautov9.dtsi | 9 ++++++---
->  1 file changed, 6 insertions(+), 3 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> index 5dc361734cfe..d3c5cdeff47f 100644
-> --- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> @@ -370,17 +370,20 @@
->                 };
->
->                 syscon_fsys2: syscon@17c20000 {
-> -                       compatible = "samsung,exynosautov9-sysreg", "syscon";
-> +                       compatible = "samsung,exynosautov9-fsys2-sysreg",
-> +                                    "samsung,exynosautov9-sysreg", "syscon";
->                         reg = <0x17c20000 0x1000>;
->                 };
->
->                 syscon_peric0: syscon@10220000 {
-> -                       compatible = "samsung,exynosautov9-sysreg", "syscon";
-> +                       compatible = "samsung,exynosautov9-peric0-sysreg",
-> +                                    "samsung,exynosautov9-sysreg", "syscon";
->                         reg = <0x10220000 0x2000>;
->                 };
->
->                 syscon_peric1: syscon@10820000 {
-> -                       compatible = "samsung,exynosautov9-sysreg", "syscon";
-> +                       compatible = "samsung,exynosautov9-peric1-sysreg",
-> +                                    "samsung,exynosautov9-sysreg", "syscon";
->                         reg = <0x10820000 0x2000>;
->                 };
->
-> --
-> 2.17.1
->
+V2:
+https://www.spinics.net/lists/linux-arm-msm/msg116326.html
+
+- Moves the DSI PHY changes to a different later series.
+  There are enough dsi-controller-main changes to justify its own
+  standalone series.
+
+- The original phy-name binding change given discussion with Rob and
+  Krzysztof became its own standalone series that has since been merged.
+  https://www.mail-archive.com/dri-devel@lists.freedesktop.org/msg403214.html
+
+- Retains the drop of power-domain from yaml as a required property.
+  I dug into the available dtsi. The apq8064 doesn't appear to have any
+  GDSC which can be attached as a power-domain, which means the
+  power-domain requirement is not universal across the various silicon
+  versions.
+
+- Adds Dmitry's RB to power-domain drop
+
+- For the clock declarations I've
+  * I noticed that the simple change I had worked for msm8939 but
+    subsquently broke other dtsi which drove a bigger change to document
+    the clocks on a per compatible basis.
+  * Added compat strings in yaml.
+  * Moved the allOf down later in the file to acomodate the if/then.
+  * Number of clocks validated on a per compatible basis
+  * The driver code which doesn't care about the number of clocks
+    can still operate on the mdss-dsi-ctrl compat but the dts checks will
+    validate against the compat string and yaml.
+
+- vdd descriptions
+  Took the previous text I missed from the .txt file - Krzysztof, Dmitry
+  Adds vdd, vdda and vddio to the required list. This exposes warnings in
+  existing dtsi but the previous .txt declared these regulators as
+  required. - Krzysztof
+ 
+V1:
+This series fixes up a number of dtbs checks which are being flagged adding
+in the msm8939 dtsi.
+
+
+When converting from .txt to .yaml a number of the parameters for the older
+msm8916 silicon were not transmitted into the yaml.
+
+Adding in the msm8939 which is a near 1:1 copy of the msm8916 in terms of
+dtsi triggers a rake of dtbs checks as a result.
+
+https://www.mail-archive.com/dri-devel@lists.freedesktop.org/msg403211.html
+
+Bryan O'Donoghue (21):
+  dt-bindings: msm: dsi-controller-main: Fix operating-points-v2
+    constraint
+  dt-bindings: msm: dsi-controller-main: Fix power-domain constraint
+  dt-bindings: msm: dsi-controller-main: Fix description of core clock
+  dt-bindings: msm: dsi-controller-main: Add compatible strings for
+    every current SoC
+  dt-bindings: msm: dsi-controller-main: Deprecate
+    qcom,dsi-ctrl-6g-qcm2290 in favour of qcom,qcm2290-dsi-ctrl
+  dt-bindings: msm: dsi-controller-main: Document clocks on a per
+    compatible basis
+  dt-bindings: msm: dsi-controller-main: Fix clock declarations
+  dt-bindings: msm: dsi-controller-main: Add vdd* descriptions back in
+  dt-bindings: display/msm: Add list of mdss-dsi-ctrl compats
+  dt-bindings: display/msm: Update MDSS dsi compat strings
+  ARM: dts: qcom: apq8064: add compat qcom,apq8064-dsi-ctrl
+  ARM: dts: qcom: msm8974: Add compat qcom,msm8974-dsi-ctrl
+  arm64: dts: qcom: msm8916: Add compat qcom,msm8916-dsi-ctrl
+  arm64: dts: qcom: msm8953: Add compat qcom,msm8953-dsi-ctrl
+  arm64: dts: qcom: msm8996: Add compat qcom,msm8996-dsi-ctrl
+  arm64: dts: qcom: sc7180: Add compat qcom,sc7180-dsi-ctrl
+  arm64: dts: qcom: sc7280: Add compat qcom,sc7280-dsi-ctrl
+  arm64: dts: qcom: sdm630: Add compat qcom,sdm660-dsi-ctrl
+  arm64: dts: qcom: sdm660: Add compat qcom,sdm660-dsi-ctrl
+  arm64: dts: qcom: sdm845: Add compat qcom,sdm845-dsi-ctrl
+  arm64: dts: qcom: sm8250: Add compat qcom,sm8250-dsi-ctrl
+
+ .../display/msm/dsi-controller-main.yaml      | 250 ++++++++++++++++--
+ .../bindings/display/msm/qcom,mdss.yaml       |  16 +-
+ .../display/msm/qcom,msm8998-mdss.yaml        |   8 +-
+ .../display/msm/qcom,sc7180-mdss.yaml         |   6 +-
+ .../display/msm/qcom,sc7280-mdss.yaml         |   6 +-
+ .../display/msm/qcom,sdm845-mdss.yaml         |   8 +-
+ .../display/msm/qcom,sm8250-mdss.yaml         |   8 +-
+ arch/arm/boot/dts/qcom-apq8064.dtsi           |   3 +-
+ arch/arm/boot/dts/qcom-msm8974.dtsi           |   3 +-
+ arch/arm64/boot/dts/qcom/msm8916.dtsi         |   3 +-
+ arch/arm64/boot/dts/qcom/msm8953.dtsi         |   4 +-
+ arch/arm64/boot/dts/qcom/msm8996.dtsi         |   6 +-
+ arch/arm64/boot/dts/qcom/sc7180.dtsi          |   3 +-
+ arch/arm64/boot/dts/qcom/sc7280.dtsi          |   3 +-
+ arch/arm64/boot/dts/qcom/sdm630.dtsi          |   3 +-
+ arch/arm64/boot/dts/qcom/sdm660.dtsi          |   3 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |   6 +-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |   6 +-
+ 18 files changed, 293 insertions(+), 52 deletions(-)
+
+-- 
+2.38.1
+
