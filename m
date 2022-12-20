@@ -2,86 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC2AC6527D0
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 21:23:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4153E6527D4
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 21:23:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234214AbiLTUVX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 15:21:23 -0500
+        id S234055AbiLTUWS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 15:22:18 -0500
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234251AbiLTUUp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 15:20:45 -0500
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69DFE1EECA;
-        Tue, 20 Dec 2022 12:20:06 -0800 (PST)
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-1442977d77dso16790369fac.6;
-        Tue, 20 Dec 2022 12:20:06 -0800 (PST)
+        with ESMTP id S234338AbiLTUV7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 15:21:59 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C084CB65;
+        Tue, 20 Dec 2022 12:21:58 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id j4so20407870lfk.0;
+        Tue, 20 Dec 2022 12:21:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Uem/Rg0y7RK0QKRnhhb+pOTt6PVpCehNtdD/fJMouvo=;
+        b=n2RYVym0j++xBdJtTs4jg7kJ6kCMuuFIVQy8UMoq3D3cChxpobhm4EnaHRumBO3T6c
+         n8HhrHZRe6UaO7eYyTBwSlP+0mkd4ZkkKAb1TZx/TfXAAGhKnHcrXg3m1kSycklnNo8b
+         OYuVVUb8eF4pBTGpvfC8YHlV+JPyUDc7YY9txn0/p/KOaz/Nfuej9WaP0d2ieVWP/Pf0
+         ml1amYkOw92Z9rXLpnTeq+ch/Rs9y6Y/naGXrsq0C2acTynwGu7WQazalH8yD4seB8Dq
+         XBPBak24O5Fmxfzm2tZTu5f/Qn3HKJKxIpGAEW0I1gDMA2K7tRMhy8/X28gncf44dScD
+         QZhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JPeYdzc9FvSjQnwQpKOSlb+cwbou8KwWYdDez3Iw/jk=;
-        b=ac16FejRi5ezIwBXIytL2pgdiFoPu06dHYcqG+asz2WeXRmORkIbp6Wzbwdz0wrLda
-         kBJOnvWaJP/UOt8OIg+mPZ23OHWsmHSoAO3HPaMfejTLAgO+x/eA/G0yqLfxkDGqk/NW
-         Ndg90FYh9tpJOK64iGK7SYJnzbc1q74JTWk76Bf8x2pBw66/pEYKWDY3njSmEoIZeIg2
-         PNNtqlJH0Bde1plkg4jOwzwKJJaAAOf/e5L3AKTIvLJeNgg6vwH0/YYuR2ogGV9w1YG1
-         YqhamHoBtoqAxpcLRYfg2jJNckQ5C/9fb36YQ5cGZS03p+R1rDN4QGTLdkLw5DuxdkkD
-         uNmw==
-X-Gm-Message-State: ANoB5pkQ3FGIpbNqt0u01vjGptZi+NbR8/5A+FauWzj+lT7gESBKPdI+
-        Agkyu5djImGh//fZ037Cg/uNZNE4Zg==
-X-Google-Smtp-Source: AA0mqf70kKieJ1VKljXtxAEVcFW7fnn2oFjoL/Mkx7cKi1a3tjrtimxtAdfm1Np75u++KaA0pF37FA==
-X-Received: by 2002:a05:6870:9a16:b0:13b:a4fc:cd0 with SMTP id fo22-20020a0568709a1600b0013ba4fc0cd0mr23505636oab.19.1671567605661;
-        Tue, 20 Dec 2022 12:20:05 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id kw8-20020a056870ac0800b001431bf4e5a0sm6442102oab.38.2022.12.20.12.20.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Dec 2022 12:20:05 -0800 (PST)
-Received: (nullmailer pid 1019613 invoked by uid 1000);
-        Tue, 20 Dec 2022 20:20:03 -0000
-Date:   Tue, 20 Dec 2022 14:20:03 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Hal Feng <hal.feng@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Jianlong Huang <jianlong.huang@starfivetech.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/5] dt-bindings: pinctrl: Add StarFive JH7110 aon
- pinctrl
-Message-ID: <20221220202003.GA1018798-robh@kernel.org>
-References: <20221220005529.34744-1-hal.feng@starfivetech.com>
- <20221220005529.34744-4-hal.feng@starfivetech.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Uem/Rg0y7RK0QKRnhhb+pOTt6PVpCehNtdD/fJMouvo=;
+        b=JUdZycBe5lSiRgFJfd06p+mYoE78QalskZnk9UjlNXuMrIF3oHfXTjrIOBUu2W9xJi
+         0CoI/rOMjfGgIZdZ52BQLznp60nyu/DDuZn5fY5GhdO7mWgtgHTiyacHqQ7R7+zbel6a
+         4m+7AMOdb8of1SR9kgCaFzG+Ru0S7wccy2kP+2mJdvCD/H3lS6qzWCE/ma3HfxfrdlXo
+         McatsN1aHZoBwS8Bno9zltr2X3eRfYdXybrEMApmlyFamKQIYne13IxBrqO1s4yAb+Ws
+         j5A/NvhZctP/hYBtvdhw6ZGxIhwznYQ/wa0oZ4f6X6BywcuXdP73nuUJnr5zTUJnbZTl
+         Jv7A==
+X-Gm-Message-State: ANoB5pnyFW71NdJLeTJFyjK19gCrB9pM70Sile3v+cfPIKkNEk6qTFCN
+        HgKA//sFBjPxtV2hqvOl7Hc=
+X-Google-Smtp-Source: AA0mqf50xiaxLBBtKZY+3R63yU+WhzuT/XVOd54mJpdrGz3UjV0WgTPmLiUveiXcBdAvF7VTtc3LxA==
+X-Received: by 2002:a05:6512:260c:b0:4b5:8e1e:867b with SMTP id bt12-20020a056512260c00b004b58e1e867bmr16677059lfb.59.1671567717063;
+        Tue, 20 Dec 2022 12:21:57 -0800 (PST)
+Received: from [192.168.2.145] (109-252-113-89.nat.spd-mgts.ru. [109.252.113.89])
+        by smtp.googlemail.com with ESMTPSA id s1-20020a19ad41000000b004b59c9b7fb4sm1573738lfd.126.2022.12.20.12.21.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Dec 2022 12:21:56 -0800 (PST)
+Message-ID: <a99fa7e5-31bc-4286-17e5-6ba6e4932bcf@gmail.com>
+Date:   Tue, 20 Dec 2022 23:21:49 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221220005529.34744-4-hal.feng@starfivetech.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v2 00/21] Add Tegra20 parallel video input capture
+Content-Language: en-US
+To:     Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Sowjanya Komatineni <skomatineni@nvidia.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc:     linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Richard Leitner <richard.leitner@skidata.com>
+References: <20221128152336.133953-1-luca.ceresoli@bootlin.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+In-Reply-To: <20221128152336.133953-1-luca.ceresoli@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 20, 2022 at 08:55:27AM +0800, Hal Feng wrote:
-> From: Jianlong Huang <jianlong.huang@starfivetech.com>
+28.11.2022 18:23, Luca Ceresoli пишет:
+> Tegra20 and other Tegra SoCs have a video input (VI) peripheral that can
+> receive from either MIPI CSI-2 or parallel video (called respectively "CSI"
+> and "VIP" in the documentation). The kernel currently has a staging driver
+> for Tegra210 CSI capture. This patch set adds support for Tegra20 VIP
+> capture.
 > 
-> Add pinctrl bindings for StarFive JH7110 SoC aon pinctrl controller.
+> Unfortunately I had no real documentation available to base this work on.
+> I only had a working downstream 3.1 kernel, so I started with the driver
+> found there and heavily reworked it to fit into the mainline tegra-video
+> driver structure. The existing code appears written with the intent of
+> being modular and allow adding new input mechanisms and new SoCs while
+> keeping a unique VI core module. However its modularity and extensibility
+> was not enough to add Tegra20 VIP support, so I added some hooks to turn
+> hard-coded behaviour into per-SoC or per-bus customizable code. There are
+> also a fix, some generic cleanups and DT bindings.
 > 
-> Signed-off-by: Jianlong Huang <jianlong.huang@starfivetech.com>
-> Co-developed-by: Emil Renner Berthing <kernel@esmil.dk>
-> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> ---
->  .../pinctrl/starfive,jh7110-aon-pinctrl.yaml  | 126 ++++++++++++++++++
->  .../pinctrl/starfive,jh7110-pinctrl.h         |  22 +++
->  2 files changed, 148 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/starfive,jh7110-aon-pinctrl.yaml
+> Quick tour of the patches:
+> 
+>  * Device tree bindings and minor DTS improvements
+> 
+>    01. dt-bindings: display: tegra: add Tegra20 VIP
+>    02. dt-bindings: display: tegra: vi: add 'vip' property and example
 
-Same comments in this one.
+This series adds the new DT node, but there are no board DTs in upstream
+that will use VIP? Will we see the board patches?
+
+In any case, given that you're likely the only one here who has access
+to hardware with VIP, you should promote yourself to the tegra-video
+driver maintainers and confirm that you will be able to maintain and
+test this code for years to come.
+
