@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 719776526F8
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 20:30:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14A9D6526FD
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 20:30:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234073AbiLTT35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 14:29:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54842 "EHLO
+        id S234075AbiLTT34 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 14:29:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234072AbiLTT3y (ORCPT
+        with ESMTP id S234053AbiLTT3y (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 14:29:54 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE2A11D66D
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 11:29:06 -0800 (PST)
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 417AF1D660
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 11:29:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1671564546;
+        s=mimecast20190719; t=1671564547;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=BxJkhXJ88Dr+809fXkqOoDAQkFxQM5nGSrXbKhgpBTk=;
-        b=V7fgnSrj1vqXhYIQIUu8wYGaat0qpZ14kuLH0RKTx++WpGusa3vQRoRplL52EvKIDL4vaR
-        IyV82EHAVMy9Zsk0cuwiVa2Mz+JZo135RNoGp9C2fUrFDJZoUdi4sXhlpIRDZJP0z9dexb
-        rCr/4lJlKDlgKTJvJITK68X0aEUizUA=
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
- [209.85.160.199]) by relay.mimecast.com with ESMTP with STARTTLS
+        bh=lAqlYrLdasgrEhfJzo+iyfwvixp2O1qnXeEJe7+SmO0=;
+        b=QAHr0Wy9SYuXuzWJF/4b0VDP5O4Bk08nJeZMkTg1YOGAgyXxxzBevvOLKMvRpujb9yfIMd
+        RKjkK6g685ENttsW7RBGDGE+2Nyb4cAtEESUos6wc5Ie4HVNuI4n7kbY5IQ/p5EIFoUZDR
+        I6Ui6Bq0zkuMg79pwZ5iMdDZPKf0SLU=
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
+ [209.85.160.198]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-368-Ymt9ZXSYMrit6xi2y2ddTg-1; Tue, 20 Dec 2022 14:29:04 -0500
-X-MC-Unique: Ymt9ZXSYMrit6xi2y2ddTg-1
-Received: by mail-qt1-f199.google.com with SMTP id bt4-20020ac86904000000b003a96b35e7a8so5906124qtb.8
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 11:29:04 -0800 (PST)
+ us-mta-139-bGaP7gUvPnOD3_rxRHF6JA-1; Tue, 20 Dec 2022 14:29:06 -0500
+X-MC-Unique: bGaP7gUvPnOD3_rxRHF6JA-1
+Received: by mail-qt1-f198.google.com with SMTP id ay40-20020a05622a22a800b003a978b3019cso4750560qtb.16
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 11:29:06 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=BxJkhXJ88Dr+809fXkqOoDAQkFxQM5nGSrXbKhgpBTk=;
-        b=ThNdQqDRTHiEG9hrc4A5Yz1BnqCFIRSOo5ltTAJdd9RxwqCLmYvzcimdqc8XK4DAtX
-         VJVaSsGaOTS3c0ltSiNPfCVMIn2Dfu461wsSWy5kwg15lkgoQThS0TE0LDV+JCTHbaIS
-         uzA8/CjqWG9tp4UEqvtHBZM5Ud1GLDOyPGrF6jqnTd9ib/VMWm6FzE/v8HM8w28IolnG
-         bT9ej6wU2tmM2sgeam/p2FanGmeT7qdfxQp8g5fHez6Oxalmq8YQWTKO+yB4XpkgIFfr
-         x82L1S5SouvwjVjaUlXC/wp5EIO+RC/EvZ0tBlVFa+UDiNz67rGKii47VQh4F5HFIBqB
-         7oog==
-X-Gm-Message-State: ANoB5pmxq9IoFsGTbV2NrmI21Vb956Gy3VMqDcpQhmjZEm4RqI9GNCXV
-        PTVrOdA8ZSWAkgh7VnKW4f+zidHDrG+S8JEsBn/Yhtg+872DPDh/dXJr0v90KmIieaFGiWd81kX
-        R+L7PlS3ZbjqBfu/gXo/3KA==
-X-Received: by 2002:ac8:488e:0:b0:3a8:1793:76d6 with SMTP id i14-20020ac8488e000000b003a8179376d6mr41479716qtq.68.1671564544181;
-        Tue, 20 Dec 2022 11:29:04 -0800 (PST)
-X-Google-Smtp-Source: AA0mqf4Iq0LU3SMOYgbfAr8eLzK6qtHdFB8ucI+2+US/Q0uIkY/W28YmvX5Ej+e+PRnkMQVuSDKIbQ==
-X-Received: by 2002:ac8:488e:0:b0:3a8:1793:76d6 with SMTP id i14-20020ac8488e000000b003a8179376d6mr41479695qtq.68.1671564543948;
-        Tue, 20 Dec 2022 11:29:03 -0800 (PST)
+        bh=lAqlYrLdasgrEhfJzo+iyfwvixp2O1qnXeEJe7+SmO0=;
+        b=c13Gt00bS+XAdixMsu9jDBe5zEu1yk2VujWKwwvUaesUJSA+By2BwkJB4aHUZNaYEx
+         DdLWFjLfQZReYU1wXnf5UmJaut21kLxuhrvyNYO+A70ao9pyQcO0UDORP1gtIqJo5I6Y
+         sSIUnlHEWAwbuNVD8Q+dTG+WAjEDDgzWnU6oaWj3Br9xqhB3FQTA7YkJ6BRyEIgIxD2f
+         qMEwm1/o/yKbM8z85BJcw5/fWcp1DXA1WSnkelP3X0EMw5WkYUqnk2mnfL2ok0xkhxtb
+         P9sp8H5rfQPipqqqMN+jxkoOBc+w5M2NTtfhtl7yvTDp5osimqwKRJFxI/B4XOHLXdTM
+         1TwA==
+X-Gm-Message-State: ANoB5plLobeFECUZkNphHo6LZBQRS/Q2L9rSyqDAX1XeOb3atlizZKIk
+        1EFgwKg6AqZo1nzWxNKCoZbM+eXbA4F2MN6OKIcGmoeRPQ9lNcWVhRpW9hDcw525F3khcxusZqT
+        nyxtf0Es3TIxSDZOWYhgkPw==
+X-Received: by 2002:a05:622a:488b:b0:3a8:1639:35a9 with SMTP id fc11-20020a05622a488b00b003a8163935a9mr50734091qtb.45.1671564545647;
+        Tue, 20 Dec 2022 11:29:05 -0800 (PST)
+X-Google-Smtp-Source: AA0mqf6T8Ynrx1sXnVhYG19dMuHf/tosjh7JbaRcMkvkV89Rywx1gez70FHnfkxGaozaPSPdtuoDJw==
+X-Received: by 2002:a05:622a:488b:b0:3a8:1639:35a9 with SMTP id fc11-20020a05622a488b00b003a8163935a9mr50734071qtb.45.1671564545350;
+        Tue, 20 Dec 2022 11:29:05 -0800 (PST)
 Received: from x1.redhat.com (c-73-214-169-22.hsd1.pa.comcast.net. [73.214.169.22])
-        by smtp.gmail.com with ESMTPSA id gd15-20020a05622a5c0f00b003a82ca4e81csm744348qtb.80.2022.12.20.11.29.02
+        by smtp.gmail.com with ESMTPSA id gd15-20020a05622a5c0f00b003a82ca4e81csm744348qtb.80.2022.12.20.11.29.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Dec 2022 11:29:03 -0800 (PST)
+        Tue, 20 Dec 2022 11:29:04 -0800 (PST)
 From:   Brian Masney <bmasney@redhat.com>
 To:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org
 Cc:     quic_shazhuss@quicinc.com, konrad.dybcio@linaro.org,
@@ -62,9 +62,9 @@ Cc:     quic_shazhuss@quicinc.com, konrad.dybcio@linaro.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, ahalaney@redhat.com,
         echanude@redhat.com
-Subject: [PATCH v3 1/7] arm64: dts: qcom: sc8280xp: rename qup2_uart17 to uart17
-Date:   Tue, 20 Dec 2022 14:28:48 -0500
-Message-Id: <20221220192854.521647-2-bmasney@redhat.com>
+Subject: [PATCH v3 2/7] arm64: dts: qcom: sc8280xp: rename qup2_i2c5 to i2c21
+Date:   Tue, 20 Dec 2022 14:28:49 -0500
+Message-Id: <20221220192854.521647-3-bmasney@redhat.com>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20221220192854.521647-1-bmasney@redhat.com>
 References: <20221220192854.521647-1-bmasney@redhat.com>
@@ -73,7 +73,7 @@ Content-type: text/plain
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,150 +84,316 @@ X-Mailing-List: devicetree@vger.kernel.org
 In preparation for adding the missing SPI and I2C nodes to
 sc8280xp.dtsi, it was decided to rename all of the existing qupX_
 uart, spi, and i2c nodes to drop the qupX_ prefix. Let's go ahead
-and rename qup2_uart17 to uart17. Note that some nodes are moved in the
-file by this patch to preserve the expected sort order in the file.
+and rename qup2_i2c5 to i2c21. Under the old name, this was the 5th
+index under qup2, which starts at index 16.
+
+Note that some nodes are moved in the file by this patch to preserve
+the expected sort order in the file. Additionally, the properties
+within the pinctrl state node are sorted to match the expected order
+that's typically done in other DTs.
 
 Signed-off-by: Brian Masney <bmasney@redhat.com>
 Link: https://lore.kernel.org/lkml/20221212182314.1902632-1-bmasney@redhat.com/
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
 Changes from v2 to v3:
+- Reordered properties on renamed state node to match order typically
+  done elsewhere (Konrod)
 - Add Konrad's R-b
 
 Patch introduced in v2
 
- arch/arm64/boot/dts/qcom/sa8295p-adp.dts  | 12 ++++++------
- arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 12 ++++++------
- arch/arm64/boot/dts/qcom/sc8280xp-crd.dts | 14 +++++++-------
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi    |  2 +-
- 4 files changed, 20 insertions(+), 20 deletions(-)
+ arch/arm64/boot/dts/qcom/sc8280xp-crd.dts     |  89 +++++++------
+ .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 120 +++++++++---------
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi        |   2 +-
+ 3 files changed, 105 insertions(+), 106 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-index 84cb6f3eeb56..61f2e44e70c1 100644
---- a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-@@ -17,7 +17,7 @@ / {
- 	compatible = "qcom,sa8295p-adp", "qcom,sa8540p";
- 
- 	aliases {
--		serial0 = &qup2_uart17;
-+		serial0 = &uart17;
- 	};
- 
- 	chosen {
-@@ -240,11 +240,6 @@ &qup2 {
- 	status = "okay";
- };
- 
--&qup2_uart17 {
--	compatible = "qcom,geni-debug-uart";
--	status = "okay";
--};
--
- &remoteproc_adsp {
- 	firmware-name = "qcom/sa8540p/adsp.mbn";
- 	status = "okay";
-@@ -338,6 +333,11 @@ pm8450g_gpios: gpio@c000 {
- 	};
- };
- 
-+&uart17 {
-+	compatible = "qcom,geni-debug-uart";
-+	status = "okay";
-+};
-+
- &ufs_mem_hc {
- 	reset-gpios = <&tlmm 228 GPIO_ACTIVE_LOW>;
- 
-diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-index 21f3ff024910..b6e0db5508c7 100644
---- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-@@ -17,7 +17,7 @@ / {
- 	compatible = "qcom,sa8540p-ride", "qcom,sa8540p";
- 
- 	aliases {
--		serial0 = &qup2_uart17;
-+		serial0 = &uart17;
- 	};
- 
- 	chosen {
-@@ -192,11 +192,6 @@ &qup2 {
- 	status = "okay";
- };
- 
--&qup2_uart17 {
--	compatible = "qcom,geni-debug-uart";
--	status = "okay";
--};
--
- &remoteproc_nsp0 {
- 	firmware-name = "qcom/sa8540p/cdsp.mbn";
- 	status = "okay";
-@@ -207,6 +202,11 @@ &remoteproc_nsp1 {
- 	status = "okay";
- };
- 
-+&uart17 {
-+	compatible = "qcom,geni-debug-uart";
-+	status = "okay";
-+};
-+
- &ufs_mem_hc {
- 	reset-gpios = <&tlmm 228 GPIO_ACTIVE_LOW>;
- 
 diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-index 551768f97729..db273face248 100644
+index db273face248..03e3814f2722 100644
 --- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
 +++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-@@ -17,7 +17,7 @@ / {
- 	compatible = "qcom,sc8280xp-crd", "qcom,sc8280xp";
- 
- 	aliases {
--		serial0 = &qup2_uart17;
-+		serial0 = &uart17;
- 	};
- 
- 	backlight {
-@@ -363,12 +363,6 @@ keyboard@68 {
+@@ -228,6 +228,43 @@ vreg_l9d: ldo9 {
  	};
  };
  
--&qup2_uart17 {
--	compatible = "qcom,geni-debug-uart";
++&i2c21 {
++	clock-frequency = <400000>;
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c21_default>;
++
++	status = "okay";
++
++	touchpad@15 {
++		compatible = "hid-over-i2c";
++		reg = <0x15>;
++
++		hid-descr-addr = <0x1>;
++		interrupts-extended = <&tlmm 182 IRQ_TYPE_LEVEL_LOW>;
++		vdd-supply = <&vreg_misc_3p3>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&tpad_default>;
++
++		wakeup-source;
++	};
++
++	keyboard@68 {
++		compatible = "hid-over-i2c";
++		reg = <0x68>;
++
++		hid-descr-addr = <0x1>;
++		interrupts-extended = <&tlmm 104 IRQ_TYPE_LEVEL_LOW>;
++		vdd-supply = <&vreg_misc_3p3>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&kybd_default>;
++
++		wakeup-source;
++	};
++};
++
+ &pcie2a {
+ 	perst-gpios = <&tlmm 143 GPIO_ACTIVE_LOW>;
+ 	wake-gpios = <&tlmm 145 GPIO_ACTIVE_LOW>;
+@@ -326,43 +363,6 @@ &qup2 {
+ 	status = "okay";
+ };
+ 
+-&qup2_i2c5 {
+-	clock-frequency = <400000>;
+-
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&qup2_i2c5_default>;
 -
 -	status = "okay";
+-
+-	touchpad@15 {
+-		compatible = "hid-over-i2c";
+-		reg = <0x15>;
+-
+-		hid-descr-addr = <0x1>;
+-		interrupts-extended = <&tlmm 182 IRQ_TYPE_LEVEL_LOW>;
+-		vdd-supply = <&vreg_misc_3p3>;
+-
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&tpad_default>;
+-
+-		wakeup-source;
+-	};
+-
+-	keyboard@68 {
+-		compatible = "hid-over-i2c";
+-		reg = <0x68>;
+-
+-		hid-descr-addr = <0x1>;
+-		interrupts-extended = <&tlmm 104 IRQ_TYPE_LEVEL_LOW>;
+-		vdd-supply = <&vreg_misc_3p3>;
+-
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&kybd_default>;
+-
+-		wakeup-source;
+-	};
 -};
 -
  &remoteproc_adsp {
  	firmware-name = "qcom/sc8280xp/qcadsp8280.mbn";
  
-@@ -381,6 +375,12 @@ &remoteproc_nsp0 {
+@@ -494,6 +494,13 @@ hastings_reg_en: hastings-reg-en-state {
+ &tlmm {
+ 	gpio-reserved-ranges = <74 6>, <83 4>, <125 2>, <128 2>, <154 7>;
+ 
++	i2c21_default: i2c21-default-state {
++		pins = "gpio81", "gpio82";
++		function = "qup21";
++		drive-strength = <16>;
++		bias-disable;
++	};
++
+ 	kybd_default: kybd-default-state {
+ 		disable-pins {
+ 			pins = "gpio102";
+@@ -598,14 +605,6 @@ qup0_i2c4_default: qup0-i2c4-default-state {
+ 		drive-strength = <16>;
+ 	};
+ 
+-	qup2_i2c5_default: qup2-i2c5-default-state {
+-		pins = "gpio81", "gpio82";
+-		function = "qup21";
+-
+-		bias-disable;
+-		drive-strength = <16>;
+-	};
+-
+ 	tpad_default: tpad-default-state {
+ 		int-n-pins {
+ 			pins = "gpio182";
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+index 568c6be1ceaa..ad66a87141be 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
++++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+@@ -282,6 +282,59 @@ vreg_l9d: ldo9 {
+ 	};
+ };
+ 
++&i2c21 {
++	clock-frequency = <400000>;
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c21_default>;
++
++	status = "okay";
++
++	touchpad@15 {
++		compatible = "hid-over-i2c";
++		reg = <0x15>;
++
++		hid-descr-addr = <0x1>;
++		interrupts-extended = <&tlmm 182 IRQ_TYPE_LEVEL_LOW>;
++		vdd-supply = <&vreg_misc_3p3>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&tpad_default>;
++
++		wakeup-source;
++
++		status = "disabled";
++	};
++
++	touchpad@2c {
++		compatible = "hid-over-i2c";
++		reg = <0x2c>;
++
++		hid-descr-addr = <0x20>;
++		interrupts-extended = <&tlmm 182 IRQ_TYPE_LEVEL_LOW>;
++		vdd-supply = <&vreg_misc_3p3>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&tpad_default>;
++
++		wakeup-source;
++	};
++
++	keyboard@68 {
++		compatible = "hid-over-i2c";
++		reg = <0x68>;
++
++		hid-descr-addr = <0x1>;
++		interrupts-extended = <&tlmm 104 IRQ_TYPE_LEVEL_LOW>;
++		vdd-supply = <&vreg_misc_3p3>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&kybd_default>;
++
++		wakeup-source;
++	};
++};
++
+ &pcie2a {
+ 	perst-gpios = <&tlmm 143 GPIO_ACTIVE_LOW>;
+ 	wake-gpios = <&tlmm 145 GPIO_ACTIVE_LOW>;
+@@ -531,59 +584,6 @@ &qup2 {
  	status = "okay";
  };
  
-+&uart17 {
-+	compatible = "qcom,geni-debug-uart";
-+
-+	status = "okay";
-+};
-+
- &ufs_mem_hc {
- 	reset-gpios = <&tlmm 228 GPIO_ACTIVE_LOW>;
+-&qup2_i2c5 {
+-	clock-frequency = <400000>;
+-
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&qup2_i2c5_default>;
+-
+-	status = "okay";
+-
+-	touchpad@15 {
+-		compatible = "hid-over-i2c";
+-		reg = <0x15>;
+-
+-		hid-descr-addr = <0x1>;
+-		interrupts-extended = <&tlmm 182 IRQ_TYPE_LEVEL_LOW>;
+-		vdd-supply = <&vreg_misc_3p3>;
+-
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&tpad_default>;
+-
+-		wakeup-source;
+-
+-		status = "disabled";
+-	};
+-
+-	touchpad@2c {
+-		compatible = "hid-over-i2c";
+-		reg = <0x2c>;
+-
+-		hid-descr-addr = <0x20>;
+-		interrupts-extended = <&tlmm 182 IRQ_TYPE_LEVEL_LOW>;
+-		vdd-supply = <&vreg_misc_3p3>;
+-
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&tpad_default>;
+-
+-		wakeup-source;
+-	};
+-
+-	keyboard@68 {
+-		compatible = "hid-over-i2c";
+-		reg = <0x68>;
+-
+-		hid-descr-addr = <0x1>;
+-		interrupts-extended = <&tlmm 104 IRQ_TYPE_LEVEL_LOW>;
+-		vdd-supply = <&vreg_misc_3p3>;
+-
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&kybd_default>;
+-
+-		wakeup-source;
+-	};
+-};
+-
+ &remoteproc_adsp {
+ 	firmware-name = "qcom/sc8280xp/LENOVO/21BX/qcadsp8280.mbn";
  
+@@ -698,6 +698,13 @@ hall_int_n_default: hall-int-n-state {
+ 		bias-disable;
+ 	};
+ 
++	i2c21_default: i2c21-default-state {
++		pins = "gpio81", "gpio82";
++		function = "qup21";
++		drive-strength = <16>;
++		bias-disable;
++	};
++
+ 	kybd_default: kybd-default-state {
+ 		disable-pins {
+ 			pins = "gpio102";
+@@ -801,13 +808,6 @@ qup0_i2c4_default: qup0-i2c4-default-state {
+ 		drive-strength = <16>;
+ 	};
+ 
+-	qup2_i2c5_default: qup2-i2c5-default-state {
+-		pins = "gpio81", "gpio82";
+-		function = "qup21";
+-		bias-disable;
+-		drive-strength = <16>;
+-	};
+-
+ 	tpad_default: tpad-default-state {
+ 		int-n-pins {
+ 			pins = "gpio182";
 diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index 109c9d2b684d..951cb1b6fcc4 100644
+index 951cb1b6fcc4..929365cff555 100644
 --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -813,7 +813,7 @@ qup2: geniqup@8c0000 {
+@@ -827,7 +827,7 @@ uart17: serial@884000 {
+ 				status = "disabled";
+ 			};
  
- 			status = "disabled";
- 
--			qup2_uart17: serial@884000 {
-+			uart17: serial@884000 {
- 				compatible = "qcom,geni-uart";
- 				reg = <0 0x00884000 0 0x4000>;
- 				clocks = <&gcc GCC_QUPV3_WRAP2_S1_CLK>;
+-			qup2_i2c5: i2c@894000 {
++			i2c21: i2c@894000 {
+ 				compatible = "qcom,geni-i2c";
+ 				reg = <0 0x00894000 0 0x4000>;
+ 				clock-names = "se";
 -- 
 2.38.1
 
