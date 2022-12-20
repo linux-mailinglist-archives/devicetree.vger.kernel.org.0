@@ -2,94 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B23D6523DF
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 16:44:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7303B6523EA
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 16:48:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233829AbiLTPn5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 10:43:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39984 "EHLO
+        id S233877AbiLTPsD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 10:48:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233845AbiLTPn4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 10:43:56 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1684165AB
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 07:43:54 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id f34so3985582lfv.10
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 07:43:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sparkcharge.io; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=XXm3ehVw7jrm3viWPruU6g1/o3468ZLAkGL+jb+KseA=;
-        b=GAvP7CYjU5YZu9KfvJDtO2XdFcK02W9T75Ue1qWCbvvkHjJ4rSng7AFoc66apIkhJl
-         qgHn4Ddi+HeYW9p9x/UNCCttqBUmLXPoDgvy+w8zXkSFFSDkEawh/4NPN9KZmF9pLjMl
-         c165HgVhP9MJuTDxG/YdcMPm8RimvBpBWTy5Nz3Ou+BeRA/YblbkYUrLAkFUSLZnJtgM
-         O/0w5jOKvAcEiDvfCT2icovrwe4aXNJJ6w8JFa2h//sjyOEkS984HaViQf1ML1S5KyG3
-         xOyvM0K7gV8Q008PUE/qn5hioTCaPKJ6X9/hmj/eiVjyrQeugSFbVKnT+4lr44b6QSYc
-         JiAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XXm3ehVw7jrm3viWPruU6g1/o3468ZLAkGL+jb+KseA=;
-        b=cSMMs0MdnvdJZdDAJTPdICytO2L0JoBRSaAMNIJe1e55eKAjjBUfNQllFOIRwBm5wW
-         DzvrTT6Ju8kMM6xSQNITcw3dz7ldAomrf0FYY8WlzvSC9znl84G5kM5PAgfjCvfX5hCK
-         ZjF65BvA0z5yxkac75xb7LsZSx2IiU81oYJsqRiUGwjCpACk02b/kSR2g5CPec0vwpBI
-         Xd30XgFK3msmE6RBqwoB+4Zxwrt4m+03Z7aCkjW1NF6uOujC/1wT4SEOOPp0P3ceBaM4
-         5nBJ83/Mn+wJRc6B2FcsK1lyo1t55+EC8T5D+ZIRSM7xMxY0ZCreBgx/EHp8mGVYmfXN
-         bE2A==
-X-Gm-Message-State: ANoB5pkVltFCzwxkG5EM/ppmpcebNXt9Rr1W6rypx4u+bxCivL6dwsZM
-        oDfbvVK/kAk+1b72kVkUThoTePEGTinrnE6os1zF4w==
-X-Google-Smtp-Source: AA0mqf7ctVcuo3+IQBmTOqNH1YV50lLyDFdhREJWuJeakjXTQIPAz7PpODRrU1Mu3AP68oqP7fRTqZmrFiuRyMVDZ0E=
-X-Received: by 2002:a05:6512:a8c:b0:4b5:a843:58cf with SMTP id
- m12-20020a0565120a8c00b004b5a84358cfmr5381314lfu.531.1671551033206; Tue, 20
- Dec 2022 07:43:53 -0800 (PST)
+        with ESMTP id S233853AbiLTPsC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 10:48:02 -0500
+Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1753C45;
+        Tue, 20 Dec 2022 07:48:00 -0800 (PST)
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 914C1201E61;
+        Tue, 20 Dec 2022 16:47:59 +0100 (CET)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 5A7C3201A61;
+        Tue, 20 Dec 2022 16:47:59 +0100 (CET)
+Received: from lsv03121.swis.in-blr01.nxp.com (lsv03121.swis.in-blr01.nxp.com [92.120.146.118])
+        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id D4E3D1820F59;
+        Tue, 20 Dec 2022 23:47:57 +0800 (+08)
+From:   Manjunatha Venkatesh <manjunatha.venkatesh@nxp.com>
+To:     linux-kernel@vger.kernel.org, gregkh@linuxfoundation.org,
+        will@kernel.org, axboe@kernel.dk, robh+dt@kernel.org
+Cc:     mb@lightnvm.io, ckeepax@opensource.cirrus.com, arnd@arndb.d,
+        manjunatha.venkatesh@nxp.com, mst@redhat.com, javier@javigon.com,
+        mikelley@microsoft.com, jasowang@redhat.com,
+        sunilmut@microsoft.com, bjorn.andersson@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        ashish.deshpande@nxp.com, rvmanjumce@gmail.com
+Subject: [PATCH v6 0/2]Uwb: Nxp: Driver for SR1XX SOCs Patch Series
+Date:   Tue, 20 Dec 2022 21:17:45 +0530
+Message-Id: <20221220154747.2372597-1-manjunatha.venkatesh@nxp.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-References: <20221219190915.3912384-1-dennis@sparkcharge.io>
- <20221219190915.3912384-3-dennis@sparkcharge.io> <a3414477-eb9b-83ee-ab11-b2b629b6d23b@linaro.org>
-In-Reply-To: <a3414477-eb9b-83ee-ab11-b2b629b6d23b@linaro.org>
-From:   Dennis Lambe <dennis@sparkcharge.io>
-Date:   Tue, 20 Dec 2022 10:43:42 -0500
-Message-ID: <CAKYiA1C7Gaw3XYYum2VUSxn=qiCzSJQ=KsSa1hx9c1MGGuv6Fw@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: m41t80: add xtal load capacitance
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-        Alexander Bigga <ab@mycable.de>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: ClamAV using ClamSMTP
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 20, 2022 at 5:52 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> > +  wakeup-source: true
->
-> Why do you need it here? It's already accepted in rtc.yaml. Adding it is
-> not explained in commit msg.
 
-This shouldn't have been included in the patch, my mistake. In the
-next revision of the patch series I'll take this line out. Sorry about
-that, thanks for catching it.
+Here's a sixth version of a Nxp Uwb SR1xx driver.
+Following changes are done with respect to patch series.
+- Device Tree Document for SR1XX SOCs patch added
+- sr1xx driver updated with previous review comment
 
-Aside from that, does this patch look good to you? It passed
-dt_binding_check and reflects my understanding of the logic needed,
-but dt-binding yaml isn't something I'm super familiar with,
-especially the if: not: properties: contains: enum block. The
-intention is to indicate that the `quartz-load-femtofarads` property
-is only applicable to the m41t82 and m41t83, but not the other devices
-supported by the rtc-m41t80 driver.
+
+Manjunatha Venkatesh (2):
+  dt-bindings: uwb: Device tree information for Nxp SR1XX SOCs
+  misc: nxp-sr1xx: UWB driver support for sr1xx series chip
+
+ .../bindings/uwb/nxp,uwb-sr1xx.yaml           |  65 ++
+ MAINTAINERS                                   |   7 +
+ drivers/misc/Kconfig                          |  11 +
+ drivers/misc/Makefile                         |   1 +
+ drivers/misc/nxp-sr1xx.c                      | 728 ++++++++++++++++++
+ include/uapi/misc/sr1xx.h                     |  13 +
+ 6 files changed, 825 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/uwb/nxp,uwb-sr1xx.yaml
+ create mode 100644 drivers/misc/nxp-sr1xx.c
+ create mode 100644 include/uapi/misc/sr1xx.h
+
 -- 
+2.38.1
 
-Dennis Lambe (He/Him)
-Lead Firmware Engineer
-sparkcharge.io
