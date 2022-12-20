@@ -2,74 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A637265234E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 16:00:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34AD3652359
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 16:02:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233994AbiLTPAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 10:00:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50098 "EHLO
+        id S233829AbiLTPCV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 10:02:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234109AbiLTPAH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 10:00:07 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3477962CB;
-        Tue, 20 Dec 2022 07:00:07 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C5005614BD;
-        Tue, 20 Dec 2022 15:00:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 2CB5CC433D2;
-        Tue, 20 Dec 2022 15:00:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671548406;
-        bh=JhK+3dW6gZr5eRXdMHW5F8cx8/ypjKUPkWePISV06ag=;
-        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
-        b=b/28mBGvhq7T3fpidCdWjoXfl6U97/ldOFTibGujxC5bZXzrY1K7mkTo3eLdafmhK
-         F1HdJGxiayViQNgUkRSq1TnUgFKAORyqNKpWPnollFMhm3O92bpKQ8eR8p57Pl8DeB
-         XjFCVZ/WqONMTFUjmOv2e8gt9hYJIv18+hkeTFbei0zvc3hho1TBPvW2bQZURhJIHV
-         J+PxgzA9YhiOnQjEzl1Fb0IpCgAvgp8rLLGC9pAvJ+iYBcgt+joQY21wLGVfjf9FFc
-         OKTWPsZtLknNpfc0Ox0V8+F6gmjN9Bl9NJF05b3HCvNv9vprTjkDwaSaMuyXNO9szk
-         YfhSQ/V3aFtcA==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 191AAC43159;
-        Tue, 20 Dec 2022 15:00:06 +0000 (UTC)
-Subject: Re: [GIT PULL] Devicetree updates for v6.2, part 2
-From:   pr-tracker-bot@kernel.org
-In-Reply-To: <20221219223825.GA2497163-robh@kernel.org>
-References: <20221219223825.GA2497163-robh@kernel.org>
-X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <20221219223825.GA2497163-robh@kernel.org>
-X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-6.2-2
-X-PR-Tracked-Commit-Id: 3367934dd3035afa72ac79ae649f142a530df157
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: 3e0caea7545430a530bec19bb0de6c1c56c04924
-Message-Id: <167154840609.23150.13267044066315697518.pr-tracker-bot@kernel.org>
-Date:   Tue, 20 Dec 2022 15:00:06 +0000
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
+        with ESMTP id S234249AbiLTPCN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 10:02:13 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57B14C1A;
+        Tue, 20 Dec 2022 07:02:12 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id c65-20020a1c3544000000b003cfffd00fc0so11350829wma.1;
+        Tue, 20 Dec 2022 07:02:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pzMfGFc+T+OIDYYl9okQ5zfw6NreFa0yZMhUyrOURHs=;
+        b=X2x/zvCz9r5+AAAYObauwRktUdYKTf4lUnGeUJrACEkwzXnzI6YdTHIg7dA+ZvO4Ay
+         Ntvid8RN1oe7ceqskyB+IFwi0VpUow8r8odxL6gx13QaHzrMFj/ItDaCLZCgJOlJxGk8
+         cZfrnwUzvInv9U8Kq6H1QcssTYUf1XxOCPqKQ6lR7e0D8n+IZoze9k3GaLMC1uRxXQFF
+         EGbaZ974Nqqx03lCN41YPKacfVkZgYWBaHAZhq6fVRzSp/QM4b+eG25iR4wZeuzFLqig
+         E5zxHz+Hx92yvp43E+wrD/VBVgRADusDLUjQyii6D5CxyAyFQxHTtXoAmxuvblzHQg3i
+         MxIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pzMfGFc+T+OIDYYl9okQ5zfw6NreFa0yZMhUyrOURHs=;
+        b=UodZmcBDC6KBjDFGGr2NYCGYDuDV4P5lruwe226x1jxo7avbJq8aUZjc3WAWm24+Ek
+         QW1zOX0T8/t0T76yr4l+K3pY5O/+GQUTeD9iIMbFKYXykW74h3EREQ9bc4TfpOMAuTYE
+         bQtzOqHN0/78qmcAtSjDYv4MvK3Yt4AWWdfi+woxX26AenArZMEGKAqwYrUmkaNgOaOr
+         FLtxYVXggpwzqGQ1zbsIl8id9H8diPfLqCw5LO+aqHU9IGd/cqDZnvds2t3ra6PbtqgL
+         yiVCh5eTdn0E0QtsU5CMT2ecPpfw6QjxQdty7Z1GoS/9wFnqJRTLvVb9cxshE8gkWDQ9
+         /+TA==
+X-Gm-Message-State: ANoB5pn36MrWzN/+tDGy5449GMWEi+PYP8V5TxYVgswyv/T22eQT7V9L
+        Icnst+Hcm+bJoXD8zmmNl/o=
+X-Google-Smtp-Source: AA0mqf4mnN7mbrBWMZrA3GgHFXd3WHHkBz0CyQ1EINScx97Fm6ED8gdAtihCqezouN1INwn+f5S4iw==
+X-Received: by 2002:a05:600c:3544:b0:3d1:e04f:9bfa with SMTP id i4-20020a05600c354400b003d1e04f9bfamr35819264wmq.28.1671548529865;
+        Tue, 20 Dec 2022 07:02:09 -0800 (PST)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id o31-20020a05600c511f00b003cf71b1f66csm17664025wms.0.2022.12.20.07.02.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Dec 2022 07:02:09 -0800 (PST)
+Message-ID: <2f003afc-1375-56fa-f9e2-82ad3bb7cee2@gmail.com>
+Date:   Tue, 20 Dec 2022 16:02:08 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH resend] arm64: dts: mediatek: mt8192: Mark scp_adsp clock
+ as broken
+Content-Language: en-US
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
+        <nfraprado@collabora.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221130031741.3176853-1-wenst@chromium.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20221130031741.3176853-1-wenst@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pull request you sent on Mon, 19 Dec 2022 16:38:25 -0600:
 
-> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-6.2-2
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/3e0caea7545430a530bec19bb0de6c1c56c04924
+On 30/11/2022 04:17, Chen-Yu Tsai wrote:
+> The scp_adsp clock controller is under the SCP_ADSP power domain. This
+> power domain is currently not supported nor defined.
+> 
+> Mark the clock controller as broken for now, to avoid the system from
+> trying to access it, and causing the CPU or bus to stall.
+> 
+> Fixes: 5d2b897bc6f5 ("arm64: dts: mediatek: Add mt8192 clock controllers")
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index 6b20376191a7..ef91941848ae 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -575,6 +575,8 @@ scp_adsp: clock-controller@10720000 {
+>   			compatible = "mediatek,mt8192-scp_adsp";
+>   			reg = <0 0x10720000 0 0x1000>;
+>   			#clock-cells = <1>;
+> +			/* power domain dependency not upstreamed */
+> +			status = "broken";
+>   		};
+>   
+>   		uart0: serial@11002000 {
 
-Thank you!
+Looking into the DT spec, "broken" is no valid value. I suppose we want to have 
+"fail" here.
 
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+Regards,
+Matthias
