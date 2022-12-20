@@ -2,154 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C3C2651E92
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 11:15:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AB26651E99
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 11:16:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230100AbiLTKPW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 05:15:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40698 "EHLO
+        id S232561AbiLTKQd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 05:16:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229522AbiLTKPV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 05:15:21 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFFD3A46F
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 02:15:19 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id bp15so17821186lfb.13
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 02:15:19 -0800 (PST)
+        with ESMTP id S232920AbiLTKQc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 05:16:32 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F7B7333
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 02:16:31 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id o6so12986331lfi.5
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 02:16:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=U9GdfxfR5+EYFRbQQTp+s7HyhqzEMbsaLXxL7CcHk+g=;
-        b=cpGUGSLwT13nmqNu6iSP2AElp+dsMPLQa++MS8J6/OvNCC3S/BxRQVT8tSurRsYtO4
-         G2WvOu6I7stSzI0dl6QE7g6uselrW4jxG/wGWkk3vlvAv1O5zpGN9FAQqdebWtUHpgys
-         vNVT4GipuclKgDNW52xzrhHv2HdwgaJmJZ81hDMgj3Uwv6CJKP5knXb8VmRq7fihDIHL
-         Q/yY2n33GvfvM5VdbbfDjxwV2/EQLpzfZ2JM6YX14Zzi9qLVkm+5mbaUMjstJ8uhpPwW
-         8YHcuVScluC156Gw3KLOxBkbzxhlJtwcjpxVfaiRaUwRHZHNkog9fis1OcizySMJOog2
-         EOww==
+        bh=eC4q4jvQ90KMOVQHs85KxE496/zijPcFgBm5g6Iu/3E=;
+        b=GCU0csYhyLdA1fUP+FjiVmbzah9iH+QaVF0tn15WKsJ4PYEdvpkzSJ3zGxOT+3R558
+         IGlNh3UIZ1KBW7+Cw/2m6Mscqsqfsogrh0bGpCxCD0SVHXwHhCluNtSvNmerctLfgQtY
+         y9+Mn9FGCUVv0IpJzFT+iHURKB0py8fV4V0AJSUoqn/UAUKkfDn2acYf6WUKSuEnJZiE
+         BGeg5YQP3f+Q1itjz4Dp60cl1LxZgXJe9+84PjMV03I1UvD5ro6BPu12F/mziHyVPLSD
+         QYLOnxe7wYkzZBG7fWAxqsfpsvZGnkd0YhC81bUbD+6uG4fVVrsxVpiJz8nCKEzW3vP7
+         8Npg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=U9GdfxfR5+EYFRbQQTp+s7HyhqzEMbsaLXxL7CcHk+g=;
-        b=MaBi97VdVXGU4CJeBXiql+EGmRF6Jdyi6CHRer554lmEVZLLUJv2gJZdWgEkZJuEQA
-         I7bglSlDTUjyitUvpkXCFFFPPKhsp5FJ8tNUf3Xv13o2aPrOgMOSw6fVlEyNR0RmL7eR
-         oMfd7ZN79oX+H/3ZudRYt2jj8seIB0fOC2SNyiiyVllUHdUMDDfE0dMgDeALvlOOM8Dd
-         RMc07Uah4uHMqiDY9Y3pYjNxfbfnt5pkVW/udZEaWbvKlxunnoIuIR1/a+WjqElTL+SZ
-         5PmaxTDIWb6vkty3p1mKP/IjLvjR7rIa3LLWTZdUrd851Od6MYx4EbDXH4dbQCbFdwJd
-         FBAA==
-X-Gm-Message-State: ANoB5pkMfvkfNF5d43icDQeCj+H/ms/1KKyhChYBWW7fIUFVVZmAQSU6
-        /BJiwYBt1V2MxCyUwQuq/yCcBD913QzLgJRS
-X-Google-Smtp-Source: AA0mqf7k5zItWg0Bot3y5LRFmvevyM5Cr0btlX+T/QPdsl6i0E5eWOSOxaCnbN66mFi8QSxTwZGa1Q==
-X-Received: by 2002:a05:6512:3b86:b0:4b5:5f2b:ddfa with SMTP id g6-20020a0565123b8600b004b55f2bddfamr17468217lfv.30.1671531318166;
-        Tue, 20 Dec 2022 02:15:18 -0800 (PST)
+        bh=eC4q4jvQ90KMOVQHs85KxE496/zijPcFgBm5g6Iu/3E=;
+        b=wycMm2Z24+jiQQUWMFyezMarMZWHhrQRKrXJmdPm+8xNZ6rnXqGBoitIolZuJ9MIiQ
+         pei7pXbmNdfiNhDZeo1pv2TPJKM7ddGNEZhJLgRU15bU8PxMzHMZZoVDiSlzeqclcvfF
+         6UcDem0H+pPB9Fo/DNZAIdfORZDK+zZpP0JrcEcJNoExRbzJpdx6WmpsaM+ZbS1hqd/R
+         Zbgn34WwSxiR8JFujLbujRHm2VUOGs0ipaqdjbIUpca+jbWsW44pa5EzO0ob7/TZTVI1
+         /y8tILwSaPSX7fMWATpcTuVJEbdOuv1g6h5v8RkyXP+TVGWFvFT9n/jJoD4abxKizoXC
+         FHNg==
+X-Gm-Message-State: ANoB5plkP35H81E+kmygXLB0QLgcsKC1HKYYFJAP58qUDgMPqYZN5dun
+        tUg0q4KGUA5thhPHuZG4G7AmoccIH5qrUbIm
+X-Google-Smtp-Source: AA0mqf4WdhFI3RPoXCV33iInsZM3tU7zqqIoK39AHQ/gdV9jF5c3SPV50QDxMOvhX45TBpH7BfPX4w==
+X-Received: by 2002:a05:6512:3e19:b0:4b0:6023:6f6f with SMTP id i25-20020a0565123e1900b004b060236f6fmr17385142lfv.57.1671531389777;
+        Tue, 20 Dec 2022 02:16:29 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id d4-20020ac244c4000000b004b57277474esm1395906lfm.106.2022.12.20.02.15.17
+        by smtp.gmail.com with ESMTPSA id u23-20020a196a17000000b004b5774726dcsm1394418lfu.236.2022.12.20.02.16.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Dec 2022 02:15:17 -0800 (PST)
-Message-ID: <e0f620b4-5780-fbea-4446-fd68f281281a@linaro.org>
-Date:   Tue, 20 Dec 2022 11:15:16 +0100
+        Tue, 20 Dec 2022 02:16:29 -0800 (PST)
+Message-ID: <c0e89d2b-1b99-4224-9003-c583cf5171e7@linaro.org>
+Date:   Tue, 20 Dec 2022 11:16:27 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH v2 1/4] dt-bindings: hwmon: adi,ltc2945: Add binding
+Subject: Re: [PATCH] dt-bindings: rtc: pcf2127: add missing pcf/pca2129
+ entries
 Content-Language: en-US
-To:     "Cormier, Jonathan" <jcormier@criticallink.com>,
-        linux-hwmon@vger.kernel.org
-Cc:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+To:     Hugo Villeneuve <hugo@hugovil.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bob Duke <bduke@criticallink.com>,
-        John Pruitt <jpruitt@criticallink.com>
-References: <20221214220727.1350784-1-jcormier@criticallink.com>
- <20221220000457.1163446-1-jcormier@criticallink.com>
- <20221220000457.1163446-2-jcormier@criticallink.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     bruno.thomsen@gmail.com,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221219194241.3817250-1-hugo@hugovil.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221220000457.1163446-2-jcormier@criticallink.com>
+In-Reply-To: <20221219194241.3817250-1-hugo@hugovil.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/12/2022 01:04, Cormier, Jonathan wrote:
-> Create initial binding for the LTC2945 I2C power monitor.
-> Also adds shunt-resistor-micro-ohms parameter
-
-The last sentence does not make sense. I propose to skip it.
-
+On 19/12/2022 20:42, Hugo Villeneuve wrote:
+> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > 
-> Signed-off-by: "Cormier, Jonathan" <jcormier@criticallink.com>
+> The pcf2127_of_match structure in drivers/rtc/rtc-pcf2127.c also
+> contains:
+>     nxp,pcf2129
+>     ncp,pca2129
+> 
+> Add these missing entries.
+> 
+> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > ---
->  .../bindings/hwmon/adi,ltc2945.yaml           | 50 +++++++++++++++++++
->  1 file changed, 50 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/adi,ltc2945.yaml
+>  Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/hwmon/adi,ltc2945.yaml b/Documentation/devicetree/bindings/hwmon/adi,ltc2945.yaml
-> new file mode 100644
-> index 000000000000..f90d40919ee6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/adi,ltc2945.yaml
-> @@ -0,0 +1,50 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/adi,ltc2945.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices LTC2945 wide range i2c power monitor
-> +
-> +maintainers:
-> +  - Guenter Roeck <linux@roeck-us.net>
-
-Maintainer of binding is person interested in the device, e.g. having
-the hardware or datasheet. Not the subsystem maintainer. Unless by
-coincidence this is the same person here?
-
-> +
-> +description: |
-> +  Analog Devices LTC2945 wide range i2c power monitor over I2C.
-> +
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/LTC2945.pdf
-> +
-> +properties:
-> +  compatible:
+> diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+> index cde7b1675ead..00dbae7e23c2 100644
+> --- a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+> @@ -14,7 +14,10 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    const: nxp,pcf2127
 > +    enum:
-> +      - adi,ltc2945
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  shunt-resistor-micro-ohms:
-> +    description:
-> +      Shunt resistor value in micro-Ohms
-> +    default: 1000
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +
-This is a friendly reminder during the review process.
+> +      - nxp,pcf2127
+> +      - nxp,pcf2129
+> +      - ncp,pca2129
 
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
-
-Thank you.
-
-> +additionalProperties: false
-> +
+Keep the entries sorted, e.g. alphabetically.
 
 Best regards,
 Krzysztof
