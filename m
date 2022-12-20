@@ -2,267 +2,325 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49EC0652199
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 14:35:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C8CF565219F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 14:40:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233589AbiLTNfG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 08:35:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53954 "EHLO
+        id S233595AbiLTNkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 08:40:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233569AbiLTNfF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 08:35:05 -0500
-Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8FF018E15
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 05:35:02 -0800 (PST)
-Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-3bf4ade3364so169022657b3.3
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 05:35:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=CVRvy3Zwd4BHRC6erjG/yd9oXmYCOUUBiEqJLMzBd4k=;
-        b=u+eL2eSz4Bv5CA81UcA9onoJs2UyrheC7TFg/EQMmrB5+GDUgDY6CxuQS25L2RK8M7
-         TclTpg4H+piUauq31FzZtF5j02ZjuhzkioEJfOtuvKEWHJW0jvYxBGfNOtasOb9saZsN
-         MlekkM0NqdpKtZw+gVEYu6Am858C7cquyJ/bGFDS4TSQHw8qmeFQO9ZfrcvMxYfnLh/y
-         soby5bno42RVEzpAd/UlcPGjiw6EpNE3zQYzkjBZJ7RevpGav9fX2rQbZ1TMX2J9q6mY
-         5e2spt+3NASccNxl3AaxpmUK73XBls38Tx/gpaOmLn4jha0YeCAMW4s4aWCeGOYh9MMv
-         BkGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CVRvy3Zwd4BHRC6erjG/yd9oXmYCOUUBiEqJLMzBd4k=;
-        b=t+5CJ2QDo/hVfjxVySBZnl1/ukeS74IWKVpJt8vV1XVxtVTB5LJz2X8Mtd3jp4fyV2
-         FS3L9NpZX023urtlHUfjaDMwska7h8BtUxqIHRYmv8WH79jKjwCQlvg9GtSbtF3oJbly
-         4oU01OUH0k0PVYBo7w1+LXeoO0m6Mr3oklFSXNchFy6mHZHxSvh9ZmS8M08jh7fgLoKw
-         4ID36h7/EfBtzyqJ8GAaAYSNtbG+RS2OlB09R0xkUoOHmB1KbEY3OeecCyRyCF98HO2W
-         Qh0Uqe/jwbohE+n25ALcg6q/tYfe556Zh8iaUXD508iy5SXqjSOcM2llw1jCOa3g853o
-         kLeQ==
-X-Gm-Message-State: AFqh2kpDB4q3osxhkYPA8lYGlxJCBY4gR1eeMk2FaFl4ddoW2vWlsBgM
-        X5aZXbUnEc/FUpsEmpo6Cg1kFY0paBWPR2z1rIRy0Q==
-X-Google-Smtp-Source: AMrXdXtbbN+GFvcN2ctLBAsYtbrL/dd2+KyKV9S2iXx4H4AEc1uFmw89+imboCoSKXx57WJj4s8ByfXY3XP4T/8ade0=
-X-Received: by 2002:a0d:d643:0:b0:370:4c23:eacc with SMTP id
- y64-20020a0dd643000000b003704c23eaccmr1115777ywd.127.1671543301820; Tue, 20
- Dec 2022 05:35:01 -0800 (PST)
+        with ESMTP id S233416AbiLTNkU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 08:40:20 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 924AC193FE
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 05:40:18 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mgr@pengutronix.de>)
+        id 1p7cqk-00074A-6D; Tue, 20 Dec 2022 14:40:06 +0100
+Received: from mgr by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mgr@pengutronix.de>)
+        id 1p7cqh-0005jm-Qg; Tue, 20 Dec 2022 14:40:03 +0100
+Date:   Tue, 20 Dec 2022 14:40:03 +0100
+From:   Michael Grzeschik <mgr@pengutronix.de>
+To:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Cc:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
+        daniel.almeida@collabora.com, nicolas.dufresne@collabora.co.uk,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH v1 0/9] AV1 stateless decoder for RK3588
+Message-ID: <20221220134003.GC26315@pengutronix.de>
+References: <20221219155616.848690-1-benjamin.gaignard@collabora.com>
+ <CAAEAJfBP_D65kjHbwYP+LWfWKfzFtHtWo+3bDcbdO8tPtBurUA@mail.gmail.com>
+ <20221219215431.GB26315@pengutronix.de>
+ <CAAEAJfBzZWHu9YE38HzRUQ2xRZohYa19JaK7EOaQDqz5K1sz_g@mail.gmail.com>
 MIME-Version: 1.0
-References: <20221220024721.947147-1-dmitry.baryshkov@linaro.org>
- <20221220024721.947147-11-dmitry.baryshkov@linaro.org> <78a29328-a53b-7a09-c228-b7c373683ca4@linaro.org>
-In-Reply-To: <78a29328-a53b-7a09-c228-b7c373683ca4@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 20 Dec 2022 15:34:50 +0200
-Message-ID: <CAA8EJprN-oppse9Ktoxyk6MUhu7vk4pJ84tv5XyviyG+ODa0=A@mail.gmail.com>
-Subject: Re: [PATCH v3 10/15] thermal/drivers/tsens: Drop single-cell code for msm8976/msm8956
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="UPT3ojh+0CqEDtpF"
+Content-Disposition: inline
+In-Reply-To: <CAAEAJfBzZWHu9YE38HzRUQ2xRZohYa19JaK7EOaQDqz5K1sz_g@mail.gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mgr@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 20 Dec 2022 at 12:24, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+
+--UPT3ojh+0CqEDtpF
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi Ezequiel,
+
+On Mon, Dec 19, 2022 at 10:52:02PM -0300, Ezequiel Garcia wrote:
+>On Mon, Dec 19, 2022 at 6:54 PM Michael Grzeschik <mgr@pengutronix.de> wro=
+te:
+>> On Mon, Dec 19, 2022 at 06:07:38PM -0300, Ezequiel Garcia wrote:
+>> >On Mon, Dec 19, 2022 at 12:56 PM Benjamin Gaignard
+>> ><benjamin.gaignard@collabora.com> wrote:
+>> >>
+>> >> This series implement AV1 stateless decoder for RK3588 SoC.
+>> >> The harware support 8 and 10 bits bitstreams up to 7680x4320.
+>> >> AV1 feature like film grain or scaling are done by the postprocessor.
+>> >> The driver can produce NV12_4L4 and NV12 pixel formats.
+>> >> A native 10bits NV12_4L4 format is possible but need more investigati=
+on
+>> >> to be completly documented and enabled.
+>> >>
+>> >> It is based on Daniel's "[RFC,v3] media: Add AV1 uAPI" [1] patches and
+>> >> Sebastian's device-tree patches for RK3588.
+>> >>
+>> >
+>> >I thought the AV1 decoder in RK3588 was really a separate hardware
+>> >from the Hantro G1/G2.
+>> >
+>> >Shouldn't this need a new driver for this new hardware?
+>>
+>> Just jumping into this discussion as I am currently working on the rkven=
+c driver.
+>>
 >
-> On 20.12.2022 03:47, Dmitry Baryshkov wrote:
-> > There is no dtsi file for msm8976 in the kernel sources.
-> This is not true :/
+>The more the merrier, there's always room for developers :-)
 >
-> But it has just been merged, if we get there fast, we can get
-> this patch going *and* convert the node to use fuses..
-> Unless breaking a platform that's only in linux-next would be
-> an issue.. Maybe we could prettyplease ask Bjorn to send a
-> -fixes pull with a "remove tsens node from 8976" commit?
-> Not sure if it's too late or not...
+>> In my case I am extending the rkvdec driver to become more generic for
+>> other rockchip specific enc/decoders.
+>>
+>> My first change looks like this:
+>> ---
+>>  drivers/staging/media/rkvdec/Makefile              |   4 +-
+>>  drivers/staging/media/rkvdec/rkvdec-h264.c         | 100 ++++-----
+>>  drivers/staging/media/rkvdec/rkvdec-vp9.c          | 142 ++++++-------
+>>  drivers/staging/media/rkvdec/{rkvdec.c =3D> rkvpu.c} | 510 ++++++++++++=
++++++++++++-----------------------
+>>  drivers/staging/media/rkvdec/{rkvdec.h =3D> rkvpu.h} |  66 +++---
+>> ---
+>>
+>> While working on other parts of the encoder I found many places in the
+>> rkvdec driver (e.g. v4l2 and vb2 callbacks) that looked familiar to the =
+hantro
+>> functions but where limited to the decoder case.
+>>
+>
+>Because stateless decoders devices are very similar in their general behav=
+ior,
+>their drivers could be very similar.
+>
+>Hantro and Rkvdec could look similar because the same humans worked on the=
+m.
+>
+>Most boilerplate code, as well as V4L2 format negotiation, VB2 buffer hand=
+ling
+>could be shared among all stateless decoder drivers. I think even at one p=
+oint
+>we experimented with having a shared/common code base for all stateless co=
+decs.
+>
+>In other words, it's entirely possible to support Hantro devices in
+>the Cedrus driver
+>and vice-versa, you would only have to write the hardware-specific bits.
+>
+>However, there is consensus to have a separate driver for each
+>different hardware,
+>even when the hardware is a bit similar. This may lead to some code duplic=
+ation,
+>but it's less fragile / more flexible. Maintaining drivers this way allows
+>developers to evolve, testing on a small family of devices, without
+>breaking support
+>for other devices.
+>
+>This is important as sometimes it's hard to get the hardware,
+>but we still don't want to break the support!
+>
+>> I think there are two options for the av1 codec.
+>>
+>> 1) If the vpu981 is a driver that has nothing to do with verisilicon but
+>> works with this driver framework, then we should integrate vepu981 into =
+it
+>> but consider rename the verisilicon unrelated parts to something generic.
+>>
+>> 2) Move the vepu981 av1 driver into the rkvdec instead.
+>>
+>> If 1) is the way to go, we can even think of moving the staging code par=
+ts from
+>> rkvdec to the verisilicon code. Likewise to the vepu981-av1.
+>>
+>
+>The Hantro driver should only support G1, G2, and VC8000D;
+>which can be said to belong to the same family.
+>
+>The RKVDEC driver supports Rockchip vdpu34x core. I have to admit
+>I'm not exactly sure if we support anything else than vdpu34x.
 
-Ugh. It's a pity that I missed the dtsi. Bjorn, Angelo, Marijn, any thoughts?
+Currently the rkvdec is only supporting vdpu34x. My work would integrate
+vepu54x into the rkvdec boilerplate and so it would support encode as decod=
+e.
 
-> Konrad
-> Drop the
-> > compatibility with unofficial dtsi and remove support for handling the
-> > single-cell calibration data on msm8976.
-> >
-> > Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  drivers/thermal/qcom/tsens-v1.c | 126 +-------------------------------
-> >  1 file changed, 2 insertions(+), 124 deletions(-)
-> >
-> > diff --git a/drivers/thermal/qcom/tsens-v1.c b/drivers/thermal/qcom/tsens-v1.c
-> > index 89955522041d..9151c1043a11 100644
-> > --- a/drivers/thermal/qcom/tsens-v1.c
-> > +++ b/drivers/thermal/qcom/tsens-v1.c
-> > @@ -21,63 +21,6 @@
-> >  #define TM_HIGH_LOW_INT_STATUS_OFF           0x0088
-> >  #define TM_HIGH_LOW_Sn_INT_THRESHOLD_OFF     0x0090
-> >
-> > -/* eeprom layout data for msm8956/76 (v1) */
-> > -#define MSM8976_BASE0_MASK   0xff
-> > -#define MSM8976_BASE1_MASK   0xff
-> > -#define MSM8976_BASE1_SHIFT  8
-> > -
-> > -#define MSM8976_S0_P1_MASK   0x3f00
-> > -#define MSM8976_S1_P1_MASK   0x3f00000
-> > -#define MSM8976_S2_P1_MASK   0x3f
-> > -#define MSM8976_S3_P1_MASK   0x3f000
-> > -#define MSM8976_S4_P1_MASK   0x3f00
-> > -#define MSM8976_S5_P1_MASK   0x3f00000
-> > -#define MSM8976_S6_P1_MASK   0x3f
-> > -#define MSM8976_S7_P1_MASK   0x3f000
-> > -#define MSM8976_S8_P1_MASK   0x1f8
-> > -#define MSM8976_S9_P1_MASK   0x1f8000
-> > -#define MSM8976_S10_P1_MASK  0xf8000000
-> > -#define MSM8976_S10_P1_MASK_1        0x1
-> > -
-> > -#define MSM8976_S0_P2_MASK   0xfc000
-> > -#define MSM8976_S1_P2_MASK   0xfc000000
-> > -#define MSM8976_S2_P2_MASK   0xfc0
-> > -#define MSM8976_S3_P2_MASK   0xfc0000
-> > -#define MSM8976_S4_P2_MASK   0xfc000
-> > -#define MSM8976_S5_P2_MASK   0xfc000000
-> > -#define MSM8976_S6_P2_MASK   0xfc0
-> > -#define MSM8976_S7_P2_MASK   0xfc0000
-> > -#define MSM8976_S8_P2_MASK   0x7e00
-> > -#define MSM8976_S9_P2_MASK   0x7e00000
-> > -#define MSM8976_S10_P2_MASK  0x7e
-> > -
-> > -#define MSM8976_S0_P1_SHIFT  8
-> > -#define MSM8976_S1_P1_SHIFT  20
-> > -#define MSM8976_S2_P1_SHIFT  0
-> > -#define MSM8976_S3_P1_SHIFT  12
-> > -#define MSM8976_S4_P1_SHIFT  8
-> > -#define MSM8976_S5_P1_SHIFT  20
-> > -#define MSM8976_S6_P1_SHIFT  0
-> > -#define MSM8976_S7_P1_SHIFT  12
-> > -#define MSM8976_S8_P1_SHIFT  3
-> > -#define MSM8976_S9_P1_SHIFT  15
-> > -#define MSM8976_S10_P1_SHIFT 27
-> > -#define MSM8976_S10_P1_SHIFT_1       0
-> > -
-> > -#define MSM8976_S0_P2_SHIFT  14
-> > -#define MSM8976_S1_P2_SHIFT  26
-> > -#define MSM8976_S2_P2_SHIFT  6
-> > -#define MSM8976_S3_P2_SHIFT  18
-> > -#define MSM8976_S4_P2_SHIFT  14
-> > -#define MSM8976_S5_P2_SHIFT  26
-> > -#define MSM8976_S6_P2_SHIFT  6
-> > -#define MSM8976_S7_P2_SHIFT  18
-> > -#define MSM8976_S8_P2_SHIFT  9
-> > -#define MSM8976_S9_P2_SHIFT  21
-> > -#define MSM8976_S10_P2_SHIFT 1
-> > -
-> > -#define MSM8976_CAL_SEL_MASK 0x3
-> > -
-> >  /* eeprom layout data for qcs404/405 (v1) */
-> >  #define BASE0_MASK   0x000007f8
-> >  #define BASE1_MASK   0x0007f800
-> > @@ -207,71 +150,6 @@ static int calibrate_v1(struct tsens_priv *priv)
-> >       return 0;
-> >  }
-> >
-> > -static int calibrate_8976(struct tsens_priv *priv)
-> > -{
-> > -     int base0 = 0, base1 = 0, i;
-> > -     u32 p1[11], p2[11];
-> > -     int mode = 0, tmp = 0;
-> > -     u32 *qfprom_cdata;
-> > -
-> > -     qfprom_cdata = (u32 *)qfprom_read(priv->dev, "calib");
-> > -     if (IS_ERR(qfprom_cdata))
-> > -             return PTR_ERR(qfprom_cdata);
-> > -
-> > -     mode = (qfprom_cdata[4] & MSM8976_CAL_SEL_MASK);
-> > -     dev_dbg(priv->dev, "calibration mode is %d\n", mode);
-> > -
-> > -     switch (mode) {
-> > -     case TWO_PT_CALIB:
-> > -             base1 = (qfprom_cdata[2] & MSM8976_BASE1_MASK) >> MSM8976_BASE1_SHIFT;
-> > -             p2[0] = (qfprom_cdata[0] & MSM8976_S0_P2_MASK) >> MSM8976_S0_P2_SHIFT;
-> > -             p2[1] = (qfprom_cdata[0] & MSM8976_S1_P2_MASK) >> MSM8976_S1_P2_SHIFT;
-> > -             p2[2] = (qfprom_cdata[1] & MSM8976_S2_P2_MASK) >> MSM8976_S2_P2_SHIFT;
-> > -             p2[3] = (qfprom_cdata[1] & MSM8976_S3_P2_MASK) >> MSM8976_S3_P2_SHIFT;
-> > -             p2[4] = (qfprom_cdata[2] & MSM8976_S4_P2_MASK) >> MSM8976_S4_P2_SHIFT;
-> > -             p2[5] = (qfprom_cdata[2] & MSM8976_S5_P2_MASK) >> MSM8976_S5_P2_SHIFT;
-> > -             p2[6] = (qfprom_cdata[3] & MSM8976_S6_P2_MASK) >> MSM8976_S6_P2_SHIFT;
-> > -             p2[7] = (qfprom_cdata[3] & MSM8976_S7_P2_MASK) >> MSM8976_S7_P2_SHIFT;
-> > -             p2[8] = (qfprom_cdata[4] & MSM8976_S8_P2_MASK) >> MSM8976_S8_P2_SHIFT;
-> > -             p2[9] = (qfprom_cdata[4] & MSM8976_S9_P2_MASK) >> MSM8976_S9_P2_SHIFT;
-> > -             p2[10] = (qfprom_cdata[5] & MSM8976_S10_P2_MASK) >> MSM8976_S10_P2_SHIFT;
-> > -
-> > -             for (i = 0; i < priv->num_sensors; i++)
-> > -                     p2[i] = ((base1 + p2[i]) << 2);
-> > -             fallthrough;
-> > -     case ONE_PT_CALIB2:
-> > -             base0 = qfprom_cdata[0] & MSM8976_BASE0_MASK;
-> > -             p1[0] = (qfprom_cdata[0] & MSM8976_S0_P1_MASK) >> MSM8976_S0_P1_SHIFT;
-> > -             p1[1] = (qfprom_cdata[0] & MSM8976_S1_P1_MASK) >> MSM8976_S1_P1_SHIFT;
-> > -             p1[2] = (qfprom_cdata[1] & MSM8976_S2_P1_MASK) >> MSM8976_S2_P1_SHIFT;
-> > -             p1[3] = (qfprom_cdata[1] & MSM8976_S3_P1_MASK) >> MSM8976_S3_P1_SHIFT;
-> > -             p1[4] = (qfprom_cdata[2] & MSM8976_S4_P1_MASK) >> MSM8976_S4_P1_SHIFT;
-> > -             p1[5] = (qfprom_cdata[2] & MSM8976_S5_P1_MASK) >> MSM8976_S5_P1_SHIFT;
-> > -             p1[6] = (qfprom_cdata[3] & MSM8976_S6_P1_MASK) >> MSM8976_S6_P1_SHIFT;
-> > -             p1[7] = (qfprom_cdata[3] & MSM8976_S7_P1_MASK) >> MSM8976_S7_P1_SHIFT;
-> > -             p1[8] = (qfprom_cdata[4] & MSM8976_S8_P1_MASK) >> MSM8976_S8_P1_SHIFT;
-> > -             p1[9] = (qfprom_cdata[4] & MSM8976_S9_P1_MASK) >> MSM8976_S9_P1_SHIFT;
-> > -             p1[10] = (qfprom_cdata[4] & MSM8976_S10_P1_MASK) >> MSM8976_S10_P1_SHIFT;
-> > -             tmp = (qfprom_cdata[5] & MSM8976_S10_P1_MASK_1) << MSM8976_S10_P1_SHIFT_1;
-> > -             p1[10] |= tmp;
-> > -
-> > -             for (i = 0; i < priv->num_sensors; i++)
-> > -                     p1[i] = (((base0) + p1[i]) << 2);
-> > -             break;
-> > -     default:
-> > -             for (i = 0; i < priv->num_sensors; i++) {
-> > -                     p1[i] = 500;
-> > -                     p2[i] = 780;
-> > -             }
-> > -             break;
-> > -     }
-> > -
-> > -     compute_intercept_slope(priv, p1, p2, mode);
-> > -     kfree(qfprom_cdata);
-> > -
-> > -     return 0;
-> > -}
-> > -
-> >  /* v1.x: msm8956,8976,qcs404,405 */
-> >
-> >  static struct tsens_features tsens_v1_feat = {
-> > @@ -370,7 +248,7 @@ struct tsens_plat_data data_tsens_v1 = {
-> >
-> >  static const struct tsens_ops ops_8956 = {
-> >       .init           = init_8956,
-> > -     .calibrate      = calibrate_8976,
-> > +     .calibrate      = tsens_calibrate_common,
-> >       .get_temp       = get_temp_tsens_valid,
-> >  };
-> >
-> > @@ -383,7 +261,7 @@ struct tsens_plat_data data_8956 = {
-> >
-> >  static const struct tsens_ops ops_8976 = {
-> >       .init           = init_common,
-> > -     .calibrate      = calibrate_8976,
-> > +     .calibrate      = tsens_calibrate_common,
-> >       .get_temp       = get_temp_tsens_valid,
-> >  };
-> >
+>I'm not familiar with the AV1 support provided by this patch,
+>but looking at the mpp code:
+>
+>...
+>        "rk3588",
+>        ROCKCHIP_SOC_RK3588,
+>        HAVE_VDPU2 | HAVE_VDPU2_PP | HAVE_VEPU2 | HAVE_RKVDEC | HAVE_RKVEN=
+C |
+>        HAVE_JPEG_DEC | HAVE_AV1DEC | HAVE_AVSDEC | HAVE_VEPU2_JPEG,
+>        {   &vdpu38x, &rkjpegd, &vdpu2, &vdpu2_jpeg_pp, &av1d, &avspd},
+>        {   &vepu58x, &vepu2, &vepu2_jpeg, NULL, },
+>
+>Seems RK3588 supports a Hantro core (VDPU2), a vdpu38x core and this AV1 c=
+ore,
+>which according to this patchset is vdpu981 (?)
+>
+>If the vdpu38x device interface, configuration, buffer handling and
+>registers are
+>similar enough with vdpu34x, adding vdpu38x to the Rkvdec driver
+>should be straightforward.
+>If the vdpu38x core differs, it may be reason enough to consider a new dri=
+ver.
+>
+>As for vdpu981 (AV1), I'm inclined to think it deserves its own driver.
+>
+>Again, I'm far less worried for a little code duplication in the
+>boilerplate (which can be solved
+>with helpers, etc.) and more worried about making sure we can evolve
+>drivers easily,
+>while minimizing regressions.
+
+Thanks for the explanation.
+
+As I agree that not breaking current drivers is a strong argument. Also
+rkvdec is still in staging, which makes it less harmful for the
+integration of the encoder path.
+
+Since we can not ensure that the rkvenc/rkvdec is not another unknown
+verisilicon core, going the way of working on a common rkvpu driver is
+probably the best for now.
+
+Also, since I have already done some work into that direction, it sounds
+good for me. :)
 
 
+>> I could also keep on integrating the rkvenc on that base instead.
+>>
+>> Regards,
+>> Michael
+>>
+>> >> The full branch can be found here:
+>> >> https://gitlab.collabora.com/linux/for-upstream/-/commits/rk3588_av1_=
+decoder_v1
+>> >>
+>> >> Fluster score is: 151/239 while testing AV1-TEST-VECTORS with GStream=
+er-AV1-V4L2SL-Gst1.0.
+>> >> The failing tests are:
+>> >> - 10bits bitstream because 10bits output formats aren't yet implement=
+ed.
+>> >> - the 2 tests with 2 spatial layers: few errors in luma/chroma values
+>> >> - tests with resolution < hardware limit (64x64)
+>> >>
+>> >> Benjamin
+>> >>
+>> >> Benjamin Gaignard (9):
+>> >>   dt-bindings: media: rockchip-vpu: Add rk3588 vpu compatible
+>> >>   media: verisilicon: Add AV1 decoder mode and controls
+>> >>   media: verisilicon: Save bit depth for AV1 decoder
+>> >>   media: verisilicon: Check AV1 bitstreams bit depth
+>> >>   media: verisilicon: Compute motion vectors size for AV1 frames
+>> >>   media: verisilicon: Add AV1 entropy helpers
+>> >>   media: verisilicon: Add Rockchip AV1 decoder
+>> >>   media: verisilicon: Add film grain feature to AV1 driver
+>> >>   media: verisilicon: Enable AV1 decoder on rk3588
+>> >>
+>> >>  .../bindings/media/rockchip-vpu.yaml          |    1 +
+>> >>  drivers/media/platform/verisilicon/Makefile   |    3 +
+>> >>  drivers/media/platform/verisilicon/hantro.h   |    5 +
+>> >>  .../media/platform/verisilicon/hantro_drv.c   |   54 +
+>> >>  .../media/platform/verisilicon/hantro_hw.h    |  102 +
+>> >>  .../platform/verisilicon/hantro_postproc.c    |    3 +
+>> >>  .../media/platform/verisilicon/hantro_v4l2.c  |    5 +
+>> >>  .../verisilicon/rockchip_av1_entropymode.c    | 4536 +++++++++++++++=
+++
+>> >>  .../verisilicon/rockchip_av1_entropymode.h    |  272 +
+>> >>  .../verisilicon/rockchip_av1_filmgrain.c      |  401 ++
+>> >>  .../verisilicon/rockchip_av1_filmgrain.h      |   36 +
+>> >>  .../verisilicon/rockchip_vpu981_hw_av1_dec.c  | 2280 +++++++++
+>> >>  .../verisilicon/rockchip_vpu981_regs.h        |  477 ++
+>> >>  .../platform/verisilicon/rockchip_vpu_hw.c    |  116 +
+>> >>  14 files changed, 8291 insertions(+)
+>> >>  create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_e=
+ntropymode.c
+>> >>  create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_e=
+ntropymode.h
+>> >>  create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_f=
+ilmgrain.c
+>> >>  create mode 100644 drivers/media/platform/verisilicon/rockchip_av1_f=
+ilmgrain.h
+>> >>  create mode 100644 drivers/media/platform/verisilicon/rockchip_vpu98=
+1_hw_av1_dec.c
+>> >>  create mode 100644 drivers/media/platform/verisilicon/rockchip_vpu98=
+1_regs.h
+>> >>
+>> >> --
+>> >> 2.34.1
+>> >>
+>> >
+>> >_______________________________________________
+>> >linux-arm-kernel mailing list
+>> >linux-arm-kernel@lists.infradead.org
+>> >http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+>> >
+>>
+>> --
+>> Pengutronix e.K.                           |                            =
+ |
+>> Steuerwalder Str. 21                       | http://www.pengutronix.de/ =
+ |
+>> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0   =
+ |
+>> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555=
+ |
+>
 
--- 
-With best wishes
-Dmitry
+--=20
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+
+--UPT3ojh+0CqEDtpF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEElXvEUs6VPX6mDPT8C+njFXoeLGQFAmOhuzEACgkQC+njFXoe
+LGQkNBAAodpx1wtHCvWZ8qXy5GQhh7jyT4QhcQiQuBgXjFTokznsI0gWqZBbS2cI
+Ye2mIZNmDO5i6+pq81k1PQbuPJPIiPpZmV6vJSBSOm5pWQ3vDKpl+58uhQ4GHPcj
+VBw7HQsGdnxDfcA4YGcY2uXmOukgr1ScJeuHEJOtwS1y/cyJds5s9np7IbVYn3Qe
+z0jhzKKQi+Ga+Z2GdMXw1jjaxDQW93aEQjFe2HPzFJ8OF3VvAAX9DgEuHCpb2uLY
+o/euN8ECdzrpSq8tCCnIFpiNHLjqx4uKFdI4rvhc3CTMDvKx/gaaiuvNRKgzYbsA
+4j9f0IiwayT2C9s3vtrB0QtwRH1QWrej43cKNeGldkKmNvXMVoT0vRNpp4jWi+IH
+ecPfoqFo/EkAHgea3AL9YX59OuSnmcvdD2cZxabTnW/OSv2+cjML4FORL7eQaiUe
+xSC7jgFwBgKGEn3wmPXTtIZpHjF/aiD2uSlxn0E7A0uEWtd3VP/b25GAWhcaaOB3
+hCmPTei/jh3HRnrW1ABf1M+XwRs3+YTY4elqkd3PoxF2q8tZWXEvMQexZtspk3s5
+PrKp7I0ZUJg2YSGdQVIlvkA+2GqPBqsY7TiOMzMbgW0VKLWOp/a68lTwdhu7dn0F
+HGDuS0nB+yADJeQ1Kknufew1iE2+Bgu/vcAcR0r5ey8mh0L5JKY=
+=unC0
+-----END PGP SIGNATURE-----
+
+--UPT3ojh+0CqEDtpF--
