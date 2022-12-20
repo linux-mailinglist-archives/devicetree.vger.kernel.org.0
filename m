@@ -2,117 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C27765270A
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 20:32:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB06365270E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 20:32:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229482AbiLTTbA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 14:31:00 -0500
+        id S234189AbiLTTcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 14:32:12 -0500
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234143AbiLTTaH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 14:30:07 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E08721D30F
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 11:29:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1671564558;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Ecs0/8gH1scEMeIme5t6fO1yMGgoodnS/vov5q84tRw=;
-        b=B4L/Gmd70J72zChQU3IjP2C2jIB0ooyKCX3TujiiwzNgF3G6E5Ns21LOGm0WUlHrn63dtH
-        40VDSOlltgA0ju98DtarXiZ+8qUziulmnt+eok66ZPctNoAtQTbUVN523UTdMnlNqpZ4oH
-        sInhhAAXR4aRgETsWNpUb2h3tq34VSs=
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
- [209.85.222.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-222-jmJB_XM8PeaSG0Pz--rhpQ-1; Tue, 20 Dec 2022 14:29:14 -0500
-X-MC-Unique: jmJB_XM8PeaSG0Pz--rhpQ-1
-Received: by mail-qk1-f198.google.com with SMTP id bi3-20020a05620a318300b00702545f73d5so4356715qkb.8
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 11:29:14 -0800 (PST)
+        with ESMTP id S233411AbiLTTbn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 14:31:43 -0500
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9778BE29;
+        Tue, 20 Dec 2022 11:30:49 -0800 (PST)
+Received: by mail-oi1-f170.google.com with SMTP id r130so11466206oih.2;
+        Tue, 20 Dec 2022 11:30:49 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ecs0/8gH1scEMeIme5t6fO1yMGgoodnS/vov5q84tRw=;
-        b=yDc6GzMh1E7DLyJojLnveW9miwVXNtSJmFFzCtHCkEW2eQKcnSLastAWK6M5+Pl5AN
-         v76CODrZo0lXvqFFAgDdLdFwvm2hVxLZmll5TYailigP9VAbKFh/Z3WG7I/BG1Ig/CgR
-         PLUpZRFmtEdKgeglMOt8Us+vxVdxfQOhSbXhzEUeERnHeowDU2bRH9vumR6tR9CkDMv2
-         dvYKXQu2CBavxZ86+qIJ+LyWkjceZFuoZT/WGYM7ycELQ0hyc1ACkPOMOGA7SpOhagfJ
-         ZExePgRerOUK8EFA8rpMCAel4vYwPfhGQzzg90uN/eZmJRSrV4p+HtXiYmmi2IZ2DahD
-         8eLw==
-X-Gm-Message-State: ANoB5pmaWdisesfs+k9ddtDRj+reUkATqwpwpmpRhJN376//YOSUKAsN
-        KW5L3qQI+BHY4W1/V1hz3t+i19myaTQnbsrCUTgDGaRCznrmpYHKSi3jWe6IV1FUJQfB/ZlQKOf
-        w7I5wZJ7bdWYO9j1oqIp2BQ==
-X-Received: by 2002:ac8:409c:0:b0:3a7:e1d5:3429 with SMTP id p28-20020ac8409c000000b003a7e1d53429mr70867696qtl.22.1671564553693;
-        Tue, 20 Dec 2022 11:29:13 -0800 (PST)
-X-Google-Smtp-Source: AA0mqf4GKVILLxTyjNI2fMC1r5Q2z5HoeC9HtLC0jziqMaxlNF9RToh9O46Khi3OzGsyiVdZQmbEug==
-X-Received: by 2002:ac8:409c:0:b0:3a7:e1d5:3429 with SMTP id p28-20020ac8409c000000b003a7e1d53429mr70867672qtl.22.1671564553450;
-        Tue, 20 Dec 2022 11:29:13 -0800 (PST)
-Received: from x1.redhat.com (c-73-214-169-22.hsd1.pa.comcast.net. [73.214.169.22])
-        by smtp.gmail.com with ESMTPSA id gd15-20020a05622a5c0f00b003a82ca4e81csm744348qtb.80.2022.12.20.11.29.12
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YjPWJdrfuOFUB0CxhY2KgzX/9aMI9KNfJtBkyKPTgBY=;
+        b=qcw2rTWZZpOrRu22A9A4I14nTcqZUUQyBFUq8MWTysogNgdAHfGnSe0PJW43WVpCnQ
+         YHyWTd9HYD9gjf71csL/omMhd1z577lsBLylJISTVDjojkwp/aFXARE/FIPvrKoUCFno
+         Jl2fYrDXRWcPOm+CfGYAI/Wr+0M/qw2HZ1Zk3Te0zAic3E0OW+z+PjNQsPf6XasvITai
+         to5x0bMzbH3SjjvcbZY8fjqOUSeHsGs2TklFjUBukSCgvjGqnfIbJ86ZBnAmwGX42lie
+         sftUjhz+gO2LbjRGv39/dM6kvtE6kCutfChdq+2FVVRtFZSq2QgmteYqHrL+W/1U4jGZ
+         7O1w==
+X-Gm-Message-State: ANoB5pn2qEwSVClZ2lA1cmkKo3BY38/UXDTh0y/F+bdeGLQP6huHKFQ2
+        dJs4/4BARfAqCVHv9vnVky6XNjkfcw==
+X-Google-Smtp-Source: AA0mqf6huOkGLq+cZrYjEX9nrpp2rVd1Ik6MMGx1iXDY4GY8xpjiRL2Mon+jx0pcCkOHhJlSPEf6oQ==
+X-Received: by 2002:aca:1a1a:0:b0:35e:bc27:de53 with SMTP id a26-20020aca1a1a000000b0035ebc27de53mr12061752oia.17.1671564648964;
+        Tue, 20 Dec 2022 11:30:48 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id l22-20020a056808021600b0035c4ec78d0esm5826162oie.47.2022.12.20.11.30.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Dec 2022 11:29:12 -0800 (PST)
-From:   Brian Masney <bmasney@redhat.com>
-To:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     quic_shazhuss@quicinc.com, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, johan+linaro@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ahalaney@redhat.com,
-        echanude@redhat.com
-Subject: [PATCH v3 7/7] arm64: dts: qcom: sc8280xp: add rng device tree node
-Date:   Tue, 20 Dec 2022 14:28:54 -0500
-Message-Id: <20221220192854.521647-8-bmasney@redhat.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221220192854.521647-1-bmasney@redhat.com>
-References: <20221220192854.521647-1-bmasney@redhat.com>
+        Tue, 20 Dec 2022 11:30:48 -0800 (PST)
+Received: (nullmailer pid 951382 invoked by uid 1000);
+        Tue, 20 Dec 2022 19:30:47 -0000
+Date:   Tue, 20 Dec 2022 13:30:47 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     haibo.chen@nxp.com
+Cc:     jic23@kernel.org, lars@metafoo.de,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] dt-bindings: iio: adc: Add binding documentation
+ for NXP IMX93 ADC
+Message-ID: <20221220193047.GA946657-robh@kernel.org>
+References: <20221219101336.3929570-1-haibo.chen@nxp.com>
+ <20221219101336.3929570-3-haibo.chen@nxp.com>
 MIME-Version: 1.0
-Content-type: text/plain
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221219101336.3929570-3-haibo.chen@nxp.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the necessary device tree node for qcom,prng-ee so we can use the
-hardware random number generator. This functionality was tested on a
-SA8540p automotive development board using kcapi-rng from libkcapi.
+On Mon, Dec 19, 2022 at 06:13:35PM +0800, haibo.chen@nxp.com wrote:
+> From: Haibo Chen <haibo.chen@nxp.com>
 
-Signed-off-by: Brian Masney <bmasney@redhat.com>
----
-Changes from v2 to v3:
-- Correctly sort node by MMIO address
+For the subject, no need to say 'binding documentation' twice:
 
-Patch introduced in v2
+dt-bindings: iio: adc: Add NXP IMX93 ADC
 
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+> 
+> The IMX93 SoC has a new ADC IP, so add binding documentation
+> for NXP IMX93 ADC.
+> 
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+> ---
+>  .../bindings/iio/adc/nxp,imx93-adc.yaml       | 81 +++++++++++++++++++
+>  1 file changed, 81 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index 4591d411f5fb..6c2cae83dac6 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -1602,6 +1602,13 @@ spi15: spi@a9c000 {
- 			};
- 		};
- 
-+		rng: rng@10d3000 {
-+			compatible = "qcom,prng-ee";
-+			reg = <0 0x010d3000 0 0x1000>;
-+			clocks = <&rpmhcc RPMH_HWKM_CLK>;
-+			clock-names = "core";
-+		};
-+
- 		pcie4: pcie@1c00000 {
- 			device_type = "pci";
- 			compatible = "qcom,pcie-sc8280xp";
--- 
-2.38.1
+With that,
 
+Reviewed-by: Rob Herring <robh@kernel.org>
