@@ -2,61 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F88465277D
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 21:01:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB016652781
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 21:02:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229750AbiLTUA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 15:00:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45322 "EHLO
+        id S233789AbiLTUB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 15:01:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232195AbiLTUA6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 15:00:58 -0500
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 874A86419;
-        Tue, 20 Dec 2022 12:00:57 -0800 (PST)
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-143ffc8c2b2so16756081fac.2;
-        Tue, 20 Dec 2022 12:00:57 -0800 (PST)
+        with ESMTP id S232195AbiLTUB4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 15:01:56 -0500
+Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4BE91AA3F;
+        Tue, 20 Dec 2022 12:01:53 -0800 (PST)
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-14449b7814bso16762620fac.3;
+        Tue, 20 Dec 2022 12:01:53 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=m7rQADosS+b3+803ppmC4G5l6lsD7QIny2Q7opGqliM=;
-        b=RlYkUyh6J0i/1QPLEukHlVydkZkTIFZ5y09riGRmumVrbJ1IZz7WkKeX4maak66OCQ
-         Om+qqCbNZkfXMY8AThn7j3bFBfvaIx4D3FTJOoN5ZRxOw8JZs0Ce2pYzw4qdWo5AW3o3
-         FkXsWmNPLvJJw78lh5dtuNtOajj3KxEmla5LMmoj6xoUc+0zxJlEtyY4f2DQNqTSynET
-         o3rIFYBmveZ30Cn/aVOJElB8sUfDxuqh4N4zmQIxZYFHGPLxloCLgJr7EYuNpbkeHhHY
-         Lky5jpIbOJs2byDIwoT5zbTVLglerTdnpaNPNCXs9Fg3bFIM7GQ6MZ62jMLM6z3zzA8I
-         IOAw==
-X-Gm-Message-State: AFqh2koZO/cpbpPxnwf1JZHbdNlu+jqC+nCiGWHB3360JMUY8QTfcuLZ
-        zMQCf8TwZOr4IO6maH0ALsSMJcwkCg==
-X-Google-Smtp-Source: AMrXdXt9sEtEqgQZhotj9V3mZGPtA+Z0Jj7vkU5jn2um2dvY3ioakyoO6JU+NnthNj+8BzLMwIRf8g==
-X-Received: by 2002:a05:6870:c991:b0:148:500d:c6fb with SMTP id hi17-20020a056870c99100b00148500dc6fbmr7635185oab.38.1671566456641;
-        Tue, 20 Dec 2022 12:00:56 -0800 (PST)
+        bh=XD55XyA+UeGl0x1txDw04g7E8lf7pFWIOBaB2ROk0Mk=;
+        b=WE2MiXk8UNCWd9iqPQq2ijZnMnH4DhOaIrBmO1/S8k5NqFSvhIrOGg+yDdYDDMu5lL
+         a6pJbe/LSIaNpiO/u3aPTAYLSYa3tm0i4BPkR6l2eDh6c3pP8r//GYjnNAwyugI6vCQU
+         Ua8WnE35a2ojc0hXtpw+v4OgGXIJuCO2uwtL5ci+JryptUB1qUnCrOF/XWrp4Rt+urim
+         WeO1yThmG9INeFfjqdJiSNd9Yx5aqznm7h6T4Y59+SKqRb8rhw8TdvGkIsPrCWmU1pN5
+         mLMQL2gSJiyrSAZg4VNV9WSe7ydzw2NZIZ47y0+rdyGb0Gt1RmE0E6pwr9N5v0q8T60Q
+         ORAg==
+X-Gm-Message-State: AFqh2kpim+zPaN5NO0LUetXbLlYc9KYsEv0TzHLo6GZ1exc0WsONPqYS
+        rZpHs30qmqEaeIEhZ0EHQFqaelhZwg==
+X-Google-Smtp-Source: AMrXdXuG/hfBvY1BIoKYZJjYitZjhW0WF1f7siHccRou8Yx+f0u8pDK0BGhqq69VNRSkB085zCtsMA==
+X-Received: by 2002:a05:6870:2888:b0:137:3ad9:bf0a with SMTP id gy8-20020a056870288800b001373ad9bf0amr5968171oab.20.1671566512847;
+        Tue, 20 Dec 2022 12:01:52 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id y29-20020a056870459d00b0011d02a3fa63sm6504888oao.14.2022.12.20.12.00.54
+        by smtp.gmail.com with ESMTPSA id z36-20020a056870d6a400b0013669485016sm6379637oap.37.2022.12.20.12.01.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Dec 2022 12:00:55 -0800 (PST)
-Received: (nullmailer pid 990414 invoked by uid 1000);
-        Tue, 20 Dec 2022 20:00:54 -0000
-Date:   Tue, 20 Dec 2022 14:00:54 -0600
+        Tue, 20 Dec 2022 12:01:51 -0800 (PST)
+Received: (nullmailer pid 991718 invoked by uid 1000);
+        Tue, 20 Dec 2022 20:01:50 -0000
+Date:   Tue, 20 Dec 2022 14:01:50 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     heiko@sntech.de, hjc@rock-chips.com,
-        krzysztof.kozlowski+dt@linaro.org, airlied@gmail.com,
-        daniel@ffwll.ch, vkoul@kernel.org, kishon@kernel.org,
-        linux-phy@lists.infradead.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 3/5] dt-bindings: phy: add port node to
- phy-rockchip-inno-usb2.yaml
-Message-ID: <20221220200054.GA953433-robh@kernel.org>
-References: <7f38e245-4fc0-1754-e75c-10c1e31bbd4d@gmail.com>
- <e54f7b52-3530-59c4-90c6-1fb5a17d6491@gmail.com>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        festevam@gmail.com, sboyd@kernel.org, abelvesa@kernel.org,
+        Anson.Huang@nxp.com, kernel@pengutronix.de,
+        mturquette@baylibre.com, linux-arm-kernel@lists.infradead.org,
+        shawnguo@kernel.org, robh+dt@kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: clocks: imx8mp: make sai4 a dummy clock
+Message-ID: <167156651020.991660.2392640619605024450.robh@kernel.org>
+References: <20221219171058.164381-1-m.felsch@pengutronix.de>
+ <20221219171058.164381-2-m.felsch@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <e54f7b52-3530-59c4-90c6-1fb5a17d6491@gmail.com>
+In-Reply-To: <20221219171058.164381-2-m.felsch@pengutronix.de>
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -68,35 +66,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 19, 2022 at 05:56:55PM +0100, Johan Jonker wrote:
-> On Rockchip rk3399 a port node with one endpoint can be connected
-> to a USB Type-C connector node.
-> Add a port node to the phy-rockchip-inno-usb2.yaml file.
+
+On Mon, 19 Dec 2022 18:10:58 +0100, Marco Felsch wrote:
+> The hardware don't have a SAI4 instance so remove the define. Use a
+> comment to keep it as reference and to avoid confusion.
 > 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> Fixes: 108869144739 ("dt-bindings: imx: Add clock binding doc for i.MX8MP")
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 > ---
->  .../devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml      | 5 +++++
->  1 file changed, 5 insertions(+)
+>  include/dt-bindings/clock/imx8mp-clock.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml b/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
-> index f71920082..ffc7e7560 100644
-> --- a/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
-> +++ b/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
-> @@ -115,6 +115,11 @@ properties:
->      required:
->        - "#phy-cells"
-> 
-> +  port:
-> +    $ref: /schemas/graph.yaml#/properties/port
-> +    description:
-> +      Port node with one endpoint connected to a USB Type-C connector node.
-> +
 
-This doesn't make sense. First, this phy has an otg and host phy, so 
-which one is it? Second, the USB connector graph is supposed to be 
-connected to the USB controllers, not a phy.
-
-But I guess we already have this in use, so I guess just mark it 
-deprecated to discourage more usage..
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
