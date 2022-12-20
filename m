@@ -2,111 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BAF4652451
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 17:09:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CBF50652457
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 17:11:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233796AbiLTQJe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 11:09:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50582 "EHLO
+        id S233594AbiLTQLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 11:11:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233912AbiLTQIx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 11:08:53 -0500
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80C4F1D668;
-        Tue, 20 Dec 2022 08:07:24 -0800 (PST)
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-1443a16b71cso15838043fac.13;
-        Tue, 20 Dec 2022 08:07:24 -0800 (PST)
+        with ESMTP id S232097AbiLTQLg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 11:11:36 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B082FEB
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 08:11:35 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id o6so14439774lfi.5
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 08:11:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4OPu185Q0+akxyPV8Q2zM2VcNp2VyoX7hjbTkMDLjNA=;
+        b=MLr0HIKRQZqoRZ78fC/VihpPBV8UTSHsUHNZoeJiDyKbp8xpDzVFUz5wAMjhGwTD5J
+         QpUW3E/lJJ/YzE/FVbv0CGDl4uFyt+nymKPo2zhgLinE2Lc8L3FiAP0bILUUe2GKb4uo
+         JueXkX6I8F7NyUo73gGMyUa2I45HSthxUjbZo2zTyXeKeZAzu5DXHUNBS6Gctd1+T8Q4
+         qwMyWzd3fa8uNahKQFQS8LECl16xw6kaLt/y+QafLf6WUnaC6GnHm8eJpPq5MGdyQlzn
+         F6XiVOp6BcG74A8cq3u8s5MrsO0RqCXRO8ynhkcPlMr5ZkREeLX7GcS4h2tydCTZ+Q1K
+         9iMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Q/u+y5GSLZEEG0FI6JVp5YQvEAR9DtzlzUi4XN5IYYg=;
-        b=mt+KXqsEk7bQfD5MVipOX6CdRgPWbe7p/6SdezuFDxN5TU1F8Vh2sj06RUtvR6dojY
-         xCGBeMcfj4gwixBF7HsxoSbgjZuhRsq6gUOTN9UKgsctXqw7L2O2Nx2ob+cWbZ8AVP6Q
-         P4qbbSNo0CO7SuxVnKuKRlCX/aEGKvPkdjvknCYZ+cnIYEaUkDoV7YUQ28nMdP22rMCg
-         u0jMDENMIYyXKb6gJxdDCGvAFNqUrdfougeILwcJo4foVwmReCjCPMUdLpG61QtjQgN/
-         mUBAmJO+VAuJrVp0477Z/6scDDsHb5m48yienroc4LoGqjHQBdzgybTykGz/64kugWBg
-         +4nA==
-X-Gm-Message-State: ANoB5pmItgFGp3TthVL7i3W8GC60bPMHWNyD+9O3+TrgL3K+hgZ6FQtc
-        /5AO0Qk27Mu7mfYodUU86g==
-X-Google-Smtp-Source: AA0mqf7Vr3fx/nZSVhqd0FR3tqQ0t2069C3rCa0EhIFdtpBAjjoKR5PH1zTpaiGVYRnNzM3trAwTnQ==
-X-Received: by 2002:a05:6870:1696:b0:144:7a85:63ea with SMTP id j22-20020a056870169600b001447a8563eamr23948571oae.23.1671552443772;
-        Tue, 20 Dec 2022 08:07:23 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z9-20020a056870460900b00140d421445bsm6185661oao.11.2022.12.20.08.07.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Dec 2022 08:07:23 -0800 (PST)
-Received: (nullmailer pid 647058 invoked by uid 1000);
-        Tue, 20 Dec 2022 16:07:22 -0000
-Date:   Tue, 20 Dec 2022 10:07:22 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     heiko@sntech.de, hjc@rock-chips.com,
-        krzysztof.kozlowski+dt@linaro.org, airlied@gmail.com,
-        daniel@ffwll.ch, vkoul@kernel.org, kishon@kernel.org,
-        linux-phy@lists.infradead.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/5] dt-bindings: soc: rockchip: grf: add
- rockchip,lvds.yaml
-Message-ID: <20221220160722.GA635186-robh@kernel.org>
-References: <7f38e245-4fc0-1754-e75c-10c1e31bbd4d@gmail.com>
- <0b9bb507-1819-4bfa-593f-8b7e92c2ce3d@gmail.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4OPu185Q0+akxyPV8Q2zM2VcNp2VyoX7hjbTkMDLjNA=;
+        b=wN/NCGcfFqVwaL+HbFk2bxNRLqsGmBJda44zxxJWdiSOxI28PF75sRDN5QC/0yTeOJ
+         ZeAalrSATPP+Mnu0LimXibTT9wSWCNDhKjp2CzB75K8+0WqoAZAnAWyqnYBb+WkLAPOC
+         iH7OxC2MVvob7S4vy8YTw9iKtGtv9OXRf0eTj0bMifYC0TRd7uWJqIvd9Rx7iXYGWgD7
+         ybMy98aFFUm5TmcBj3yGhsNSrhwVaHDErFvDj4HokGUmo1FoNGV/nmHoaMlQ2ygneOVt
+         ovSM82jymfM6LJd8j32ZzIsGaNSYbEkUjfhBOKmtO57LlurrJUb4PRAKjpbH6mSRm3lD
+         Vc1w==
+X-Gm-Message-State: AFqh2kreP8yyKZkkpBt0UNt7W6H++p+OHyuv6AHw8vSsKAbrtEmnMvr9
+        1Zq3pjzXuK/bvhJVWvtTS+xumg==
+X-Google-Smtp-Source: AMrXdXslAPY7XyfhFtimUpegXKFxo4fzvFsxFhl4uTujqL2DLM10DmkgXmu8w7QZbjikyIW034Cqcg==
+X-Received: by 2002:ac2:4e90:0:b0:4c3:7634:234c with SMTP id o16-20020ac24e90000000b004c37634234cmr3780393lfr.57.1671552693487;
+        Tue, 20 Dec 2022 08:11:33 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id a5-20020a056512390500b004b5ab5e904esm1519306lfu.306.2022.12.20.08.11.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Dec 2022 08:11:32 -0800 (PST)
+Message-ID: <44a62c49-1894-aee2-63fd-05b2e70a8aef@linaro.org>
+Date:   Tue, 20 Dec 2022 17:11:31 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0b9bb507-1819-4bfa-593f-8b7e92c2ce3d@gmail.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v9 2/7] media: dt-binding: nuvoton: Add NPCM VCD and ECE
+ engine
+Content-Language: en-US
+To:     Marvin Lin <milkfafa@gmail.com>, mchehab@kernel.org,
+        hverkuil-cisco@xs4all.nl, avifishman70@gmail.com,
+        tmaimon77@gmail.com, tali.perry1@gmail.com, venture@google.com,
+        yuenn@google.com, benjaminfair@google.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, andrzej.p@collabora.com
+Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+        kwliu@nuvoton.com, kflin@nuvoton.com
+References: <20221220094055.3011916-1-milkfafa@gmail.com>
+ <20221220094055.3011916-3-milkfafa@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221220094055.3011916-3-milkfafa@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 19, 2022 at 05:56:35PM +0100, Johan Jonker wrote:
-> Add new converted rockchip,lvds.yaml to grf.yaml file.
-> Prepare for more SoCs with lvds output.
+On 20/12/2022 10:40, Marvin Lin wrote:
+> Add dt-binding document for Video Capture/Differentiation Engine (VCD)
+> and Encoding Compression Engine (ECE) present on Nuvoton NPCM SoCs.
 > 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> Signed-off-by: Marvin Lin <milkfafa@gmail.com>
 > ---
->  .../devicetree/bindings/soc/rockchip/grf.yaml          | 10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-> index 2ed8cca79..d74295e98 100644
-> --- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-> +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-> @@ -75,13 +75,17 @@ allOf:
->        properties:
->          compatible:
->            contains:
-> -            const: rockchip,px30-grf
-> +            enum:
-> +              - rockchip,px30-grf
-> 
->      then:
->        properties:
->          lvds:
-> -          description:
-> -            Documentation/devicetree/bindings/display/rockchip/rockchip-lvds.txt
-> +          type: object
-> +
-> +          $ref: "/schemas/display/rockchip/rockchip,lvds.yaml#"
+>  .../bindings/media/nuvoton,npcm-ece.yaml      | 43 +++++++++++
+>  .../bindings/media/nuvoton,npcm-vcd.yaml      | 72 +++++++++++++++++++
+>  2 files changed, 115 insertions(+)
 
-You can drop the quotes.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> +
-> +          unevaluatedProperties: false
-> 
->    - if:
->        properties:
-> --
-> 2.20.1
-> 
-> 
+Best regards,
+Krzysztof
+
