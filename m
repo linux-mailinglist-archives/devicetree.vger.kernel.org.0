@@ -2,65 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84A046521CF
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 14:54:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ADC26521E8
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 15:02:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233781AbiLTNyz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 08:54:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33578 "EHLO
+        id S233240AbiLTOCg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 09:02:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233751AbiLTNys (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 08:54:48 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 832521AF37;
-        Tue, 20 Dec 2022 05:54:46 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 16D016142D;
-        Tue, 20 Dec 2022 13:54:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72381C433F2;
-        Tue, 20 Dec 2022 13:54:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671544485;
-        bh=51j3DYi8PZsu2ybBFHEAX2nCHXBMVEEWlcDfMcYe4e8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=pU6+zDkb5cKgDWZhuAi9MjT8WLszi9Lp07cU4XVZnD+0Tg14V3BB0/q+QyaD8XTWc
-         3orwrwUMh78gDLH6b5vozEXSD/EKiYXt9xBkP9D0mbI+GUmahT4wNxp6MnigbwwoNQ
-         xPWk7rN0ri0YI0hUIGBiVxfNTf2GCjG/sIrA1OWR48GiXc9W9N8Y3omYn8U02Yw9k+
-         qEMA0lO64KDyxB4heR7MkFBxCPRA+KUOGcQgqGZ06Zyqx4541oEqpsHVyqsd/ijVdc
-         EJjAVSKOTyt0mYfUvKaf7iNGngQ8tO4EqEiREcBbV2jKwJuQdckbazPOyV4kNvImDH
-         NAKmRpBo6gLBQ==
-Received: by mail-vk1-f170.google.com with SMTP id r3so5755388vkq.13;
-        Tue, 20 Dec 2022 05:54:45 -0800 (PST)
-X-Gm-Message-State: ANoB5pmqed35NOwzQHq7GopWwSJocef2EotyntFWCvsAglr7JNMjyIah
-        w1vuqamwXpg4FZ+Z+EiZAmHHdAMaOVHuyVOwjA==
-X-Google-Smtp-Source: AA0mqf4CTiHHWgyBY3CrYkE5S3j+xNstE0jPZU+DdqZ/nO+EaBdB9F5/87UaaeM+5CRZufhy9UOUFvc3xxEixGezAio=
-X-Received: by 2002:a1f:2c01:0:b0:3c1:1c3b:c4d9 with SMTP id
- s1-20020a1f2c01000000b003c11c3bc4d9mr3491939vks.19.1671544484430; Tue, 20 Dec
- 2022 05:54:44 -0800 (PST)
+        with ESMTP id S229697AbiLTOCf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 09:02:35 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E454A1B1CB
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 06:02:34 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id ay40so8821660wmb.2
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 06:02:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ggrQrvtjD4raQxhDVum7ur/FE1FzwO0y0Jf1jzOu9qE=;
+        b=ao3/jNrlSI9MJgP/gV24Sjzpa0tWEjQEHhKqQ3v++DTIMLxyxjDF00c7eBczezvoRN
+         7H0AsAXinpogCQvwUje0DTq5eNKB90P4TjqJhjkMUZAR6XKRFbory9G0ES2uxBsDI0HC
+         jubA/U/+D1Bhr4xPuRYL4HBMS0rhZFE2B06q7nYRsxHYUIQHNgo/LwBHKiVtco4Cs5tK
+         Ux5Ct/kXj4g7SgrghrnLAmmUPmYdItAmhQVFlir9GUEnNIa+FFl9JVRCCseCnkkBMo9t
+         1xG/GXjxf41qpwzmMwNkQLDwQIKm/LBMKLCe/ubws6P2GNXfEzKfo0SdIDzA9oX4Mypo
+         GwqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ggrQrvtjD4raQxhDVum7ur/FE1FzwO0y0Jf1jzOu9qE=;
+        b=Mvu+Q0u8eju2p1DlRdtJa4GD6K0v9BLHoUKWVBGv9CtSffK3JhXcRj+ORoiD7iaOsd
+         RCZJ+SjcFdhyULIi011Opm3goYbG5BJW8VZ6Ur0vIufy+UV3T1ZciZJ0GLvx4wpsMfmH
+         +1bja6OOewdIGSPDFiVbDhL680xWUeUEfLM3jRHbNDAcdzc63i8Rqk5MITxwLwR+jX7d
+         TMWTzMZUbQlxDxhWD6smxkQMvwUQ/JgBT4dP6bgHmNcVES/ZPs5yhApSiUCigayFg2N/
+         lkH/kMWbbovZhpo9kMeqSm+En/SQSCIwsvxbbMfDt2qY6VNIwt1Ox/xkDrVxUi1rTUPR
+         ChZA==
+X-Gm-Message-State: ANoB5ploj2Rro24IIlIq2C90xKCqSqPIv/lCpJbk/uapetSX56NCle8l
+        qD4qa2/MKNz2CpQCkEi4PlTx5A==
+X-Google-Smtp-Source: AA0mqf40nv+LdZQlx9TLtX8UvfivjBfsddq/oB/PTH870xyRUEZ+HJNbOGjsdmRfLMyG7/pPkyyh0g==
+X-Received: by 2002:a1c:cc1a:0:b0:3cf:5583:8b3f with SMTP id h26-20020a1ccc1a000000b003cf55838b3fmr36080790wmb.20.1671544953482;
+        Tue, 20 Dec 2022 06:02:33 -0800 (PST)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id p16-20020a1c5450000000b003d07de1698asm22686656wmi.46.2022.12.20.06.02.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Dec 2022 06:02:33 -0800 (PST)
+Message-ID: <5f8bfaa4-945e-21d9-a951-221b9c9b6ac8@linaro.org>
+Date:   Tue, 20 Dec 2022 14:02:32 +0000
 MIME-Version: 1.0
-References: <20221219191038.1973807-1-robh@kernel.org> <20221219191038.1973807-2-robh@kernel.org>
- <87bknya5lv.fsf@balbi.sh>
-In-Reply-To: <87bknya5lv.fsf@balbi.sh>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 20 Dec 2022 07:54:33 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLo4qZRTOu7UR_AN_jHNgiFZp39dsXYwWnD_njyDQfmAA@mail.gmail.com>
-Message-ID: <CAL_JsqLo4qZRTOu7UR_AN_jHNgiFZp39dsXYwWnD_njyDQfmAA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: usb: rockchip,dwc3: Move RK3399 to its
- own schema
-To:     Felipe Balbi <balbi@kernel.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v3 08/15] thermal/drivers/tsens: Drop single-cell code for
+ msm8939
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        linux-rockchip@lists.infradead.org,
-        Johan Jonker <jbx6244@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, Shawn Guo <shawn.guo@linaro.org>
+References: <20221220024721.947147-1-dmitry.baryshkov@linaro.org>
+ <20221220024721.947147-9-dmitry.baryshkov@linaro.org>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20221220024721.947147-9-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,23 +85,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 20, 2022 at 1:37 AM Felipe Balbi <balbi@kernel.org> wrote:
->
-> Rob Herring <robh@kernel.org> writes:
->
-> > The rockchip,dwc3.yaml schema defines a single DWC3 node, but the RK3399
-> > uses the discouraged parent wrapper node and child 'generic' DWC3 node.
->
-> Why discouraged? Splitting those two separate devices (yes, they are
-> separate physical modules) has greatly simplified e.g. power management
-> and encapsulation of the core module.
+On 20/12/2022 02:47, Dmitry Baryshkov wrote:
+> There is no dtsi file for msm8939 in the kernel sources. Drop the
+> compatibility with unofficial dtsi and remove support for handling the
+> single-cell calibration data on msm8939.
+> 
+> Cc: Shawn Guo <shawn.guo@linaro.org>
+> Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Sometimes they are separate and that's fine, but often it's just
-different clocks, resets, etc. and that's no different from every
-other block. If there's wrapper registers or something clearly extra,
-then I agree a wrapper parent node makes sense. Otherwise, for cases
-like RK3399, I don't think it does, but we're stuck with it now.
+Happy to take an off-list or follow on patch from Dmitry to re-enable on 
+8939.
 
-Also, we have this pattern pretty much nowhere else and DWC3 is not special.
+I will drop the relevant node on v2 of the 8939 patches in the interregnum.
 
-Rob
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+
