@@ -2,66 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AE36652143
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 14:10:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6070652123
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 14:02:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233497AbiLTNKA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 08:10:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40644 "EHLO
+        id S233397AbiLTNCf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 08:02:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233028AbiLTNJ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 08:09:58 -0500
-X-Greylist: delayed 545 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 20 Dec 2022 05:09:56 PST
-Received: from out-227.mta0.migadu.com (out-227.mta0.migadu.com [91.218.175.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2A0310563
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 05:09:56 -0800 (PST)
-Date:   Tue, 20 Dec 2022 14:00:46 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-        t=1671541248;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=U/k/xRY6aCVROjNQKNqVLAAjqWFVIFXn4dmdJEoeZ/c=;
-        b=L2Yh9q4cgw1d4IASaLA22zE/BRlp9TFADReqAMHspDAp0QTeef3wrT6R4neo+3qyUWGnlo
-        /7sLvHiooTZinRTSQd9RBcZKL2FKylUFqRXcQ5BWmuzytzvMLTy9NkxgENhUPI7J6a0hof
-        9jFH0miGR1xTiLhWgJneTsExN3AVNm4=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From:   Richard Leitner <richard.leitner@linux.dev>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] arm64: dts: imx8mp: Add LCDIF2 & LDB nodes
-Message-ID: <Y6Gx/mwh/jwRMOxP@g0hl1n.net>
-References: <20221208090842.2869374-1-alexander.stein@ew.tq-group.com>
+        with ESMTP id S233772AbiLTNCX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 08:02:23 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52E9C164BA;
+        Tue, 20 Dec 2022 05:02:13 -0800 (PST)
+Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B6CE456D;
+        Tue, 20 Dec 2022 14:02:10 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1671541331;
+        bh=lNwpBXMbmhBLeOzbMEaPW9nHJmZ7obkuA7HfGtvKB5k=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=KnN0Qq3h6/7NCd4ZEtfGAuj7BYpCsqPwRLFQaXqPD2L8fDIk9bpuLDrdVr9PNWpOP
+         QKL+fjTm7D26zqJd7EnfQvbhVKeowGTJNSpzxVFqQqAUb+jVhm2A6HRVRnGPhyveo+
+         yLus0JXYHAfhhkmI4f0cI7piV65lWgAHs44EWxn8=
+Message-ID: <0cde4a68-220a-915b-c8df-6f3b8f23d486@ideasonboard.com>
+Date:   Tue, 20 Dec 2022 15:02:08 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221208090842.2869374-1-alexander.stein@ew.tq-group.com>
-X-Migadu-Flow: FLOW_OUT
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v6 4/5] drm/tidss: Add IO CTRL and Power support for OLDI
+ TX in am625
+Content-Language: en-US
+To:     Aradhya Bhatia <a-bhatia1@ti.com>, Jyri Sarha <jyri.sarha@iki.fi>,
+        Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     DRI Development List <dri-devel@lists.freedesktop.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>
+References: <20221119173019.15643-1-a-bhatia1@ti.com>
+ <20221119173019.15643-5-a-bhatia1@ti.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <20221119173019.15643-5-a-bhatia1@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 08, 2022 at 10:08:41AM +0100, Alexander Stein wrote:
-> LCDIF2 is directly attached to the LVDS Display Bridge (LDB).
-> Both need the same clock source (VIDEO_PLL1).
+Hi,
+
+On 19/11/2022 19:30, Aradhya Bhatia wrote:
+> The ctrl mmr module of the AM625 is different from the AM65X SoC. Thus
+> the ctrl mmr registers that supported the OLDI TX power have become
+> different in AM625 SoC.
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Add IO CTRL support and control the OLDI TX power for AM625.
+> 
+> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> ---
+>   drivers/gpu/drm/tidss/tidss_dispc.c      | 55 ++++++++++++++++++------
+>   drivers/gpu/drm/tidss/tidss_dispc_regs.h | 37 +++++++++++-----
+>   2 files changed, 70 insertions(+), 22 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c b/drivers/gpu/drm/tidss/tidss_dispc.c
+> index 472226a83251..f26129fb1d8f 100644
+> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
+> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
+> @@ -930,21 +930,52 @@ int dispc_vp_bus_check(struct dispc_device *dispc, u32 hw_videoport,
+>   
+>   static void dispc_oldi_tx_power(struct dispc_device *dispc, bool power)
+>   {
+> -	u32 val = power ? 0 : OLDI_PWRDN_TX;
+> +	u32 val;
+>   
+>   	if (WARN_ON(!dispc->oldi_io_ctrl))
+>   		return;
+>   
+> -	regmap_update_bits(dispc->oldi_io_ctrl, OLDI_DAT0_IO_CTRL,
+> -			   OLDI_PWRDN_TX, val);
+> -	regmap_update_bits(dispc->oldi_io_ctrl, OLDI_DAT1_IO_CTRL,
+> -			   OLDI_PWRDN_TX, val);
+> -	regmap_update_bits(dispc->oldi_io_ctrl, OLDI_DAT2_IO_CTRL,
+> -			   OLDI_PWRDN_TX, val);
+> -	regmap_update_bits(dispc->oldi_io_ctrl, OLDI_DAT3_IO_CTRL,
+> -			   OLDI_PWRDN_TX, val);
+> -	regmap_update_bits(dispc->oldi_io_ctrl, OLDI_CLK_IO_CTRL,
+> -			   OLDI_PWRDN_TX, val);
+> +	if (dispc->feat->subrev == DISPC_AM65X) {
+> +		val = power ? 0 : AM65X_OLDI_PWRDN_TX;
+> +
+> +		regmap_update_bits(dispc->oldi_io_ctrl, AM65X_OLDI_DAT0_IO_CTRL,
+> +				   AM65X_OLDI_PWRDN_TX, val);
+> +		regmap_update_bits(dispc->oldi_io_ctrl, AM65X_OLDI_DAT1_IO_CTRL,
+> +				   AM65X_OLDI_PWRDN_TX, val);
+> +		regmap_update_bits(dispc->oldi_io_ctrl, AM65X_OLDI_DAT2_IO_CTRL,
+> +				   AM65X_OLDI_PWRDN_TX, val);
+> +		regmap_update_bits(dispc->oldi_io_ctrl, AM65X_OLDI_DAT3_IO_CTRL,
+> +				   AM65X_OLDI_PWRDN_TX, val);
+> +		regmap_update_bits(dispc->oldi_io_ctrl, AM65X_OLDI_CLK_IO_CTRL,
+> +				   AM65X_OLDI_PWRDN_TX, val);
+> +
+> +	} else if (dispc->feat->subrev == DISPC_AM625) {
+> +		if (power) {
+> +			switch (dispc->oldi_mode) {
+> +			case OLDI_SINGLE_LINK_SINGLE_MODE:
+> +				/* Power down OLDI TX 1 */
+> +				val = AM625_OLDI1_PWRDN_TX;
+> +				break;
+> +
+> +			case OLDI_SINGLE_LINK_CLONE_MODE:
+> +			case OLDI_DUAL_LINK_MODE:
+> +				/* No Power down */
+> +				val = 0;
+> +				break;
+> +
+> +			default:
+> +				/* Power down both the OLDI TXes */
+> +				val = AM625_OLDI0_PWRDN_TX | AM625_OLDI1_PWRDN_TX;
+> +				break;
+> +			}
+> +		} else {
+> +			/* Power down both the OLDI TXes */
+> +			val = AM625_OLDI0_PWRDN_TX | AM625_OLDI1_PWRDN_TX;
+> +		}
+> +
+> +		regmap_update_bits(dispc->oldi_io_ctrl, AM625_OLDI_PD_CTRL,
+> +				   AM625_OLDI0_PWRDN_TX | AM625_OLDI1_PWRDN_TX, val);
+> +	}
+>   }
+>   
+>   static void dispc_set_num_datalines(struct dispc_device *dispc,
+> @@ -2841,7 +2872,7 @@ int dispc_init(struct tidss_device *tidss)
+>   		dispc->vp_data[i].gamma_table = gamma_table;
+>   	}
+>   
+> -	if (feat->subrev == DISPC_AM65X) {
+> +	if (feat->oldi_supported) {
+>   		r = dispc_init_am65x_oldi_io_ctrl(dev, dispc);
+>   		if (r)
+>   			return r;
 
-Successfully tested this patch on a custom i.MX8MP board. Therefore
-please feel free to add
+I think it makes more sense to test the SoC version here, rather than 
+the generic "oldi_supported". And if the same function is used for 
+am625, maybe rename the func to "_am6xx_".
 
-Tested-by: Richard Leitner <richard.leitner@linux.dev>
+Other than that:
 
-Thanks & regards;rl
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+
+  Tomi
+
