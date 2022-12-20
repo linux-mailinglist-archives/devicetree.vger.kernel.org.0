@@ -2,84 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67ED1651FAB
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 12:30:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6942651FBC
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 12:33:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233486AbiLTLaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 06:30:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44820 "EHLO
+        id S232419AbiLTLdG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 06:33:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233289AbiLTLaC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 06:30:02 -0500
-Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF6DE19025;
-        Tue, 20 Dec 2022 03:29:59 -0800 (PST)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.west.internal (Postfix) with ESMTP id 7AB6A32001FC;
-        Tue, 20 Dec 2022 06:29:58 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Tue, 20 Dec 2022 06:29:59 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
-         h=cc:cc:content-transfer-encoding:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; t=1671535798; x=
-        1671622198; bh=GH62AyLJISEmcTjBHciDga5dnjECW2sy9VV41roQWv0=; b=t
-        p0a48y4Y6UYshSG7vSDLEot48wotk0RaWvXvZooFKY6lLzQAk0slevWW5cmlkFfv
-        ZfXIKJaW17R8GugGjFbRNBCBcAmTkNyVp1p0k8hXoaJssbx++4L0kCR6MAywYCd1
-        2fnYqSZAZnCHQTynrXkj9bLhtKO0INGflSm+AY5Eqa50MzAQTnSPqNgFxsT7xXWw
-        2wv9F14M6043W03FQTDlw1fa0xowWBnADOZJ53NDCz5hBJVZEe4pPuBEraQztlzh
-        VLXO6y4u9PLJkLVOWoiNSSWTHEVw3kUfjs9aIWn60U8ndG2OLk/M915lmeD1O7wz
-        0tn7LYqrHZ8sL9RD3QysA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; t=1671535798; x=1671622198; bh=GH62AyLJISEmc
-        TjBHciDga5dnjECW2sy9VV41roQWv0=; b=fMuWqlgh4hoGBf12Wfvr8+pXtPwE7
-        ij/6KFzaxwY72zWhvcB8EsG06TzuAd4QlRoEFhoL4grNhpWuX/k64hFPr3xU/Ys8
-        gpr/9AamqirqmbK50e5mra6Dh06HiSux9K7Ok/qTuoNNt+tQNkiCNhSaYHjrgixk
-        rnMVoD1tjSUCoZRh02PiQEvNLPrLtujZnRuvCSQPBoKNRn+32ZrEQWYaKs0amILs
-        9MKUZZvc1lZCzakgxhmVOILQ2S6mzX0cBremAyIIYxgZupOt5ScgH5ZP1F5h8hj8
-        TMzWUN4otPKIBwA75BI0mmGk8psvbvTNwMqYOPGzQDsp9v/fBP7CE1aCw==
-X-ME-Sender: <xms:tZyhYxTNHc5KMZt8H_0a_zoLgbjX3ZUoUQY3Y1q2CPkFSNoO4UHJjw>
-    <xme:tZyhY6xlVjc6r4g6yVJQljYtxDrAumC1lHofuH1Rviw1VuWQuuHgSMmkEL1UrWwlv
-    qGWHwNBQSvRQCgqtNY>
-X-ME-Received: <xmr:tZyhY20qEgmJ9pkphL4Tkdz0QGLXoagGUUqbeVIFGaCaKlpi-1dr2vLdnMs_BACiJf0bkNWNE_Yv>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrgeeigddtudcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecunecujfgurhephffvvefufffkofgjfhgggfestdekre
-    dtredttdenucfhrhhomheptehlihhsthgrihhrucfhrhgrnhgtihhsuceorghlihhsthgr
-    ihhrsegrlhhishhtrghirhdvfedrmhgvqeenucggtffrrghtthgvrhhnpeeitdefkeetle
-    dvleevveeuueejffeugfeuvdetkeevjeejueetudeftefhgfehheenucevlhhushhtvghr
-    ufhiiigvpedunecurfgrrhgrmhepmhgrihhlfhhrohhmpegrlhhishhtrghirhesrghlih
-    hsthgrihhrvdefrdhmvg
-X-ME-Proxy: <xmx:tZyhY5BqORa9miBJdauQ6lVwjORAnptZLFO3XPATf9otNRhVUvgHLg>
-    <xmx:tZyhY6iDM2Vcngq9e2V1M5p_vOSVG9gRRJdssEPr0gxqbOJBWUlcGA>
-    <xmx:tZyhY9qa_u5N_iycrWgznCFpZQVMpXtn03tXifBh23BPIXiP1Dfx3A>
-    <xmx:tpyhYxTHLA9T2GXkv3ko7Q7QPHIguviTpbcOwdy_wfasCSuZbFWaBA>
-Feedback-ID: ifd214418:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 20 Dec 2022 06:29:52 -0500 (EST)
-From:   Alistair Francis <alistair@alistair23.me>
-To:     linux-kernel@vger.kernel.org, shawnguo@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        s.hauer@pengutronix.de, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux@armlinux.org.uk, festevam@gmail.com, kernel@pengutronix.de,
-        arnd@arndb.de, alistair23@gmail.com, jernej.skrabec@gmail.com,
-        Alistair Francis <alistair@alistair23.me>
-Subject: [PATCH v2 3/3] ARM: dts: imx7d-remarkable2: Enable the rohm,bd71815
-Date:   Tue, 20 Dec 2022 21:29:27 +1000
-Message-Id: <20221220112927.440506-4-alistair@alistair23.me>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221220112927.440506-1-alistair@alistair23.me>
-References: <20221220112927.440506-1-alistair@alistair23.me>
+        with ESMTP id S233281AbiLTLcz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 06:32:55 -0500
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33ACF18E34;
+        Tue, 20 Dec 2022 03:32:52 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2BKBWZic121289;
+        Tue, 20 Dec 2022 05:32:35 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1671535955;
+        bh=Hv0mbIKFyBb598pquBKlVFVb7r1h3Fu4j9stmCLwOV4=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=PHTk9AE9xGEYTv0kO727iLPBYS8JmgogTJk9aK8sEeT+pZdlaCczXhVh/VwzkfDrB
+         j3EqR42a3diUrKsP4bgTL53ArX78A83/GbZnCR21dH557XIjs2n9ihuJyGpFgHUa0+
+         2ZBwEUyKyq0XvZrj6+NDtza/VCR00Eu5mhC08ahY=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2BKBWZdD129770
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 20 Dec 2022 05:32:35 -0600
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 20
+ Dec 2022 05:32:35 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 20 Dec 2022 05:32:35 -0600
+Received: from [10.250.232.115] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2BKBWVRq010449;
+        Tue, 20 Dec 2022 05:32:32 -0600
+Message-ID: <d882df13-33e6-db53-e59e-53419db4255d@ti.com>
+Date:   Tue, 20 Dec 2022 17:02:30 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH 0/3] Improve K3-am625-sk support (USB, MMC)
+Content-Language: en-US
+To:     Sjoerd Simons <sjoerd@collabora.com>, Nishanth Menon <nm@ti.com>
+CC:     <martyn.welch@collabora.com>, Nitin Yadav <n-yadav@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tero Kristo <kristo@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20221216143624.23708-1-sjoerd@collabora.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+In-Reply-To: <20221216143624.23708-1-sjoerd@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,205 +69,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the rohm,bd71815 power controller controller for the
-reMarkable 2.
+Hi,
 
-Signed-off-by: Alistair Francis <alistair@alistair23.me>
----
- arch/arm/boot/dts/imx7d-remarkable2.dts | 159 ++++++++++++++++++++++++
- 1 file changed, 159 insertions(+)
+On 16/12/22 8:06 pm, Sjoerd Simons wrote:
+> 
+> This series picks up a few patches from the TI BSP tree that
+> unfortunately didn't make it upstream thusfar.
+> 
+> The first patch improve SD card compatibility (allowing U1 class cards
+> to be used), the remaining ones add USB support.
+> 
+> The type-c connector isn't entirely modelled with these changes as
+> it goes through a TPS6598 PD controller. Unfortunately the dtb bindings
+> for that currently require an irq line, which is not connected on E1 and
+> E2 version boards. The patchese to support this setup unfortunately didn't land
+> yet[0].. As such the last patch ignored the PD controller and simply
+> configures usb0 as periphal only rather then mode switch capable, which
+> at least gives some basic usability of that USB port.
+> 
+> 0: https://lore.kernel.org/lkml/f714ee55-ef47-317d-81b9-57020dda064b@ti.com/T/
+> 
+> 
+Really appreciate porting and posting these patches to mainline!
+Wondering what tree are these patches based on?
+I cannot apply cleanly on linux-next.
 
-diff --git a/arch/arm/boot/dts/imx7d-remarkable2.dts b/arch/arm/boot/dts/imx7d-remarkable2.dts
-index a138b292ec6a..4387d30d6180 100644
---- a/arch/arm/boot/dts/imx7d-remarkable2.dts
-+++ b/arch/arm/boot/dts/imx7d-remarkable2.dts
-@@ -92,6 +92,10 @@ wifi_pwrseq: wifi_pwrseq {
- 	};
- };
- 
-+&cpu0 {
-+	cpu-supply = <&buck1_reg>;
-+};
-+
- &clks {
- 	assigned-clocks = <&clks IMX7D_CLKO2_ROOT_SRC>,
- 			  <&clks IMX7D_CLKO2_ROOT_DIV>;
-@@ -119,6 +123,148 @@ wacom_digitizer: digitizer@9 {
- 	};
- };
- 
-+&i2c2 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+	pinctrl-1 = <&pinctrl_i2c2>;
-+	status = "okay";
-+
-+	bd71815: pmic@4b {
-+		compatible = "rohm,bd71815";
-+		reg = <0x4b>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_bd71815>;
-+		interrupt-parent = <&gpio6>; /* PMIC_INT_B GPIO6_IO16 */
-+		interrupts = <16 IRQ_TYPE_LEVEL_LOW>;
-+		gpio-controller;
-+		clocks = <&clks IMX7D_CLKO2_ROOT_SRC>;
-+		clock-output-names = "bd71815-32k-out";
-+		#clock-cells = <0>;
-+		#gpio-cells = <1>;
-+
-+		regulators {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			buck1_reg: regulator@0 {
-+				reg = <0>;
-+				regulator-compatible = "buck1";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <2000000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <1250>;
-+			};
-+
-+			buck2_reg: regulator@1 {
-+				reg = <1>;
-+				regulator-compatible = "buck2";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <2000000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <1250>;
-+			};
-+
-+			buck3_reg: regulator@2 {
-+				reg = <2>;
-+				regulator-compatible = "buck3";
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <2700000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			buck4_reg: regulator@3 {
-+				reg = <3>;
-+				regulator-compatible = "buck4";
-+				regulator-min-microvolt = <1100000>;
-+				regulator-max-microvolt = <1850000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			buck5_reg: regulator@4 {
-+				reg = <4>;
-+				regulator-compatible = "buck5";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo1_reg: regulator@5 {
-+				reg = <5>;
-+				regulator-compatible = "ldo1";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo2_reg: regulator@6 {
-+				reg = <6>;
-+				regulator-compatible = "ldo2";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo3_reg: regulator@7 {
-+				reg = <7>;
-+				regulator-compatible = "ldo3";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo4_reg: regulator@8 {
-+				reg = <8>;
-+				regulator-compatible = "ldo4";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo5_reg: regulator@9 {
-+				reg = <9>;
-+				regulator-compatible = "ldo5";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			dvref_reg: regulator@a {
-+				reg = <0xa>;
-+				regulator-compatible = "dvref";
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			lpsr_reg: regulator@b {
-+				reg = <0xb>;
-+				regulator-compatible = "lpsr";
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			wled_reg: regulator@c {
-+				reg = <0xc>;
-+				regulator-compatible = "wled";
-+				regulator-min-microamp = <10>;
-+				regulator-max-microamp = <25000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+		};
-+	};
-+};
-+
- &i2c3 {
- 	clock-frequency = <100000>;
- 	pinctrl-names = "default";
-@@ -293,6 +439,12 @@ MX7D_PAD_LPSR_GPIO1_IO01__GPIO1_IO1	0x00000034 /* WACOM INT */
- };
- 
- &iomuxc {
-+	pinctrl_bd71815: bd71815grp {
-+		fsl,pins = <
-+			MX7D_PAD_SAI1_RX_SYNC__GPIO6_IO16	0x59
-+		>;
-+	};
-+
- 	pinctrl_brcm_reg: brcmreggrp {
- 		fsl,pins = <
- 			/* WIFI_PWR_EN */
-@@ -323,6 +475,13 @@ MX7D_PAD_I2C1_SCL__I2C1_SCL		0x4000007f
- 		>;
- 	};
- 
-+	pinctrl_i2c2: i2c2grp {
-+		fsl,pins = <
-+			MX7D_PAD_I2C2_SDA__I2C2_SDA		0x4000007f
-+			MX7D_PAD_I2C2_SCL__I2C2_SCL		0x4000007f
-+		>;
-+	};
-+
- 	pinctrl_i2c3: i2c3grp {
- 		fsl,pins = <
- 			MX7D_PAD_I2C3_SDA__I2C3_SDA		0x4000007f
--- 
-2.38.1
 
+> Aswath Govindraju (2):
+>   arm64: dts: ti: k3-am62-main: Add support for USB
+>   arm64: dts: ti: k3-am625-sk: Add support for USB
+> 
+> Nitin Yadav (1):
+>   arm64: dts: ti: k3-am62-main: Update OTAP and ITAP delay select
+> 
+>  arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 90 ++++++++++++++++++------
+>  arch/arm64/boot/dts/ti/k3-am625-sk.dts   | 22 ++++++
+>  2 files changed, 90 insertions(+), 22 deletions(-)
+> 
+
+Regards
+Vignesh
