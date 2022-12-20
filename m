@@ -2,97 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76883651BC5
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 08:37:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D079651C1E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 09:03:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233208AbiLTHhI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 02:37:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54564 "EHLO
+        id S233312AbiLTIDD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 03:03:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233591AbiLTHhI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 02:37:08 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99624DEC9;
-        Mon, 19 Dec 2022 23:37:07 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3FADF61280;
-        Tue, 20 Dec 2022 07:37:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2691C433EF;
-        Tue, 20 Dec 2022 07:37:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671521826;
-        bh=66SlnYG/nwUzCZrhRPG1TjPvZM9jtU1rQo7zEHGPSqU=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=vJB4jk/y5LQIaiEIhTFeBKn0rmFWU1H/8Vzf0VJLLZspPVyyheAqH7K3M9YGN6wgX
-         UxMCDyPdyAWw/z2IKWHGy4uJwYQEmV/txn3N8VAw29BBAavaTQ/MJmmO8HxKKz9oQq
-         ebsD/pIY0KHJHnocDD+LZnWleYHvr2G9Q6f69MxEiVFzixTTgwrFwJ3t8tZwxG560n
-         mtTkiMpkNBDjNusK3sJqN5gLT2S85Au+/5errsNy+6xPf1nJBONFCfQhOaECaAts87
-         zsmQ5L2zsoWepxt7mpIIdmvmXrhHtXUK4RLGzrFxVNMJ2d8OKTVo+DGy6ImTfE/joh
-         aXj4zPS8Tjtig==
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Rob Herring <robh@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Cc:     linux-rockchip@lists.infradead.org,
-        Johan Jonker <jbx6244@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: usb: rockchip,dwc3: Move RK3399 to its
- own schema
-In-Reply-To: <20221219191038.1973807-2-robh@kernel.org>
-References: <20221219191038.1973807-1-robh@kernel.org>
- <20221219191038.1973807-2-robh@kernel.org>
-Date:   Tue, 20 Dec 2022 09:37:00 +0200
-Message-ID: <87bknya5lv.fsf@balbi.sh>
+        with ESMTP id S233639AbiLTICv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 03:02:51 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55ABB178B7;
+        Tue, 20 Dec 2022 00:02:17 -0800 (PST)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BK5nb29016728;
+        Tue, 20 Dec 2022 08:01:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=MHWNQ9PPrAaVQZhymXM7YbjcgyJEHKlcNiBCwgTTUjk=;
+ b=YVlqCe1JWpI2MrbfE5466EUyYJTZ5HaC7CCD3M3jGxQK/OeszZFL2Z5XMUSUwL8LT76g
+ sWuBzd1JUOC08FgGtHTkAKnzhRyjkfbFVsTweSGMN7j4PF75uS5u81+ZPjtL7JpPxTpw
+ ucrJTPoqI8bOVlp2iGnc09ivlUMb26KpusHEBAo8+OgVekaQ3voeYVy2Fo0Z2bNVT5UU
+ KCM2qh5ZhU1pmCjl7b8ypdTyqfqDm0l5XuAdfPrObsJ0A4SYAYtKmL4ATm5eSY+Vjotb
+ v/AyD2Pue3/JXwLPh0dIQqaI9W2/MqNSUqJwnury0DoqePGcfjGv+4F5CYO+Qq6nvJzX 1A== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3mk39t8pm9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 20 Dec 2022 08:01:35 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2BK81Zgm030086
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 20 Dec 2022 08:01:35 GMT
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Tue, 20 Dec 2022 00:01:28 -0800
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <linux-remoteproc@vger.kernel.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
+        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>, <devicetree@vger.kernel.org>,
+        <krzysztof.kozlowski@linaro.org>, <mathieu.poirier@linaro.org>,
+        <corbet@lwn.net>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH v3 0/2] Update section header name check
+Date:   Tue, 20 Dec 2022 13:31:07 +0530
+Message-ID: <1671523269-21154-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha256; protocol="application/pgp-signature"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: s37TnQoVKzinMWq-isR93__7IKXJw4RB
+X-Proofpoint-GUID: s37TnQoVKzinMWq-isR93__7IKXJw4RB
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-12-20_01,2022-12-15_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ mlxlogscore=930 spamscore=0 clxscore=1015 adultscore=0 priorityscore=1501
+ impostorscore=0 phishscore=0 lowpriorityscore=0 malwarescore=0 mlxscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2212200065
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
+Update section header name check and corresponding documentation.
+Changes since v2:
+    -- Update the commit message with example.
+    -- Update the documentation text appropriately.
+Changes since v1:
+    -- Update the commit message.
+    -- Use strstarts instead of strstr.
+    -- Update documentation file.
 
-Rob Herring <robh@kernel.org> writes:
+Srinivasa Rao Mandadapu (2):
+  remoteproc: elf_loader: Update resource table name check
+  docs: remoteproc: Update section header name requirement
 
-> The rockchip,dwc3.yaml schema defines a single DWC3 node, but the RK3399
-> uses the discouraged parent wrapper node and child 'generic' DWC3 node.
+ Documentation/staging/remoteproc.rst       | 5 ++++-
+ drivers/remoteproc/remoteproc_elf_loader.c | 2 +-
+ 2 files changed, 5 insertions(+), 2 deletions(-)
 
-Why discouraged? Splitting those two separate devices (yes, they are
-separate physical modules) has greatly simplified e.g. power management
-and encapsulation of the core module.
+-- 
+2.7.4
 
-=2D-=20
-balbi
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQJFBAEBCAAvFiEEg3wK/NVnD14JZqsmho6y4DXKpEQFAmOhZhwRHGJhbGJpQGtl
-cm5lbC5vcmcACgkQho6y4DXKpEQmdQ/9HUBWlOG25MYVfiwdxaImz5mgCa6Tkae3
-5Jsmxxfrv702yoTBc/Pfh32g6Vfbn5u0zO0D956HzXZub+q4ZXKNzJMRz6Hkgq5Q
-8L3ta+RfPmSGc3pd9cB0zY77xeI4NAWQXeIbt1wz3uik9+RqHONmz2oTU47vIgHS
-U6yNIecEBDIPBIxJ8jgi1kadmPeyBZAEzHjwqzMsJjDM3aYUXY3pMn+tL4N3noxD
-xtCLfnCKSStZfkf1I+J9IG25apct/gdJmVXh8nkL4jxnLJKvobCXBszM/AI4uBo9
-ROgE8mzawpuR8cBzh0FQMhSwcEHFkPoOA30GgJXwgnvrsSXgNSFAWQTdY4T38201
-gKaWXK3dIeQBU32K1Zxlm7/vcLZn2mR6HfkmgRG0Y6ZlVeLvZIj2UVkcQHrMVAGx
-GEjhev3Yn3TBU+237RRAYR6+uYKcFFgtmhc7YU1u6uQWJUVniztdpEe/Yvocz6xK
-CVU8EYO1y4U1jo326JCRnGMwHDKH9JUyt0so+mDmuVGltkMCb+4R26VAXGC3iNl+
-rs2pUYlXUn178Zs8rbBEBQUg/OoToFaT7R3h5zvdDiMr7ux+AhJALy2b+El63q1N
-724mM2/9cm84opCok1LxBLaxeLxUGdCREL7A3uJrhiqK9rC6za8emL86KNPuh6na
-ttm1GYfsohg=
-=LkjN
------END PGP SIGNATURE-----
---=-=-=--
