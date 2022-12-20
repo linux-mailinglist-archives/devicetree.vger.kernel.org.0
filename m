@@ -2,149 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B982265232B
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 15:54:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CFD3765232F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 15:55:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229628AbiLTOyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 09:54:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45810 "EHLO
+        id S233480AbiLTOzJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 09:55:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229994AbiLTOyP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 09:54:15 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF5075FB8
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 06:54:13 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id y25so18942565lfa.9
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 06:54:13 -0800 (PST)
+        with ESMTP id S233240AbiLTOzI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 09:55:08 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAE0EBE3;
+        Tue, 20 Dec 2022 06:55:06 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id ja17so8925243wmb.3;
+        Tue, 20 Dec 2022 06:55:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=CpNRpO9wa9stwssfJtyLudHPW4w/SlfVzYpf2TY5wXw=;
-        b=qmspUH8EQvvCbrbdWy1eZ2Kl+G8Ef6clk3GUnGWJhxrfkEKF/qtlnI6mufTZZ4Wi+d
-         FkY9N1XkwWeh/yrG/uoow2svYQQMrMwyBeARY6QTS3036Yqs4mMKVRWiqNRH8SH1zsuq
-         5vWN94KS9IXJIkdcsQYOv7FsBho4cmozIgMrcmY7JoeMt5RBjk4Am7r8Iz43fVlY7+Gc
-         LR0QItfv1S7tnQQehVv29JTrs2NRJe5oj0vo8RZSa9YYtbiVVwKzwSmewcTdYtlJc4th
-         hD4rA58+p4fan4Di2bnVrtXTn3qE2rmqkr0EGDX11XKgDdslDm9kUTpwGH6/wsVhd1Q1
-         UVYg==
+        bh=FABScePfHhtiT4W0R9UQycfClI9Dz9MSmeYtGfbseBY=;
+        b=A5vuOF5V/5Y5313VZLFZnPM/9kPv8AvbfZs33LTYh1aEn8HNVJZLC7Kv2jtataUO63
+         7OSEcSsJ/j21j7se1crAeyWbw5zb+ZYAH/VsVtF5fVIZiscOb3bD6XNAv1AX3AbQLIHX
+         cjlZL/0DmP0nPNtBec2uo2QjLVxl8R7tlmeBoic1iRdBLB2KsYN9oL2ocZ3evxTi660J
+         FlJZiLt46cS0OijxzyiHzb8RQCTKEqBZwE0Ey/c4ezP3uvxW/D01IBZyhxZj+ZLkF0DP
+         Jc+BJ2Khnw26NWBRqGrf+9bXLViU4qW2OVRRmhu4uU3hwfJ2tiWKB85dezYEvR0C67Iz
+         Mq6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CpNRpO9wa9stwssfJtyLudHPW4w/SlfVzYpf2TY5wXw=;
-        b=RfRrY7rcAznENhf+1aM+AQcA9kdRyfYixgNVCdm8lYN8bpTSU0qiC6Dqx8+C8Q/PMP
-         OCKwXBbUwbm95nh9UvBVzQET8aamxjCeHKhgtuXlC24Hp+Zs8OeHQ9fB3NCkHHkOJ/vR
-         FKvlluGrD28N73EpgEwP1SSuYrmdifFsJG8dqctPxgjsetk83pO6EWKZxLgN0gvwboKn
-         WX8MymjOix3BWQeLwTy8mStodAimuoRqZApVH8Ha25zXHKJEQkceFtjhyOkLiHqP/Dld
-         ZyktgvF4TDiWl0NJzYmWms6MVTBJIiCkAefCFri4pRzhJFPIHm0EsPM58cyQhRt1TM03
-         SI3g==
-X-Gm-Message-State: AFqh2krJIlmu/BSc7HwTGHOavcEpPQkrQZj+HTMlMkcrdseyMdbkmxlB
-        k3bZ8ptoP4SN8MgBiG761RTZbg==
-X-Google-Smtp-Source: AMrXdXs3MjWU/d2BMKBSMrPV3puVinkewStaqEJThI3KvVlGwi+i8CEnNWpd0NY8YOmO/6Xom1daqA==
-X-Received: by 2002:a05:6512:3b2c:b0:4a4:68b7:deab with SMTP id f44-20020a0565123b2c00b004a468b7deabmr1102337lfv.7.1671548052179;
-        Tue, 20 Dec 2022 06:54:12 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id s12-20020a056512214c00b00498f00420e9sm1477486lfr.194.2022.12.20.06.54.10
+        bh=FABScePfHhtiT4W0R9UQycfClI9Dz9MSmeYtGfbseBY=;
+        b=iyNCvZimVidQTWn6OHIYiaym8AOB0tbr4XpDG201Dpcp/9vX+Z16a3mxDW9E2L0rW6
+         bSE/SHgqJPpdZ1FBthruV0IQWagf6nIrHzeOWvENvKMa5eFBPK6bkS61FMKRi4vsHXiZ
+         bAASf3mzUYWeZUtSF4NJ9ZTUwyJVc67H5yfyXODoa8/HaiNqNs892dYNKBzuykX5mXKg
+         yJmVM+FV8wZ4nrgsLMW/sLq7Z6W7RV8kXf4HdoR/Ov+1+T7QYzrI4GWbC0ELHnAO6KM9
+         TVGbwxrflh1bLVkXVT9LCsf2YZbprOxK33XN5pv++jmzXZVq0iKMNEngCqB4qnbwhwcG
+         fnQg==
+X-Gm-Message-State: AFqh2kr9XjbjnBGrXFXg3MU4yZiZusX8eEGdHeX8m3ADqYSGtyMxsWGy
+        TNvFPHu3BKD9EsxF5kPuFLjboHkV/7s=
+X-Google-Smtp-Source: AMrXdXvJI+XNtdN6GZhX4ynZ9rh+zGZxWZNvuHqH1H12zhUjAcFAfqF01kB/5dOEDsNxwNVResOqQw==
+X-Received: by 2002:a05:600c:1f11:b0:3d3:5063:cfe5 with SMTP id bd17-20020a05600c1f1100b003d35063cfe5mr7853231wmb.2.1671548105192;
+        Tue, 20 Dec 2022 06:55:05 -0800 (PST)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id h15-20020a05600c350f00b003c71358a42dsm32054980wmq.18.2022.12.20.06.55.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Dec 2022 06:54:11 -0800 (PST)
-Message-ID: <5ba4295f-1197-913c-b1eb-a23798c3badf@linaro.org>
-Date:   Tue, 20 Dec 2022 15:54:10 +0100
+        Tue, 20 Dec 2022 06:55:04 -0800 (PST)
+Message-ID: <0cf869ae-bbb5-7cb5-eadc-ceaf2f7015dc@gmail.com>
+Date:   Tue, 20 Dec 2022 15:55:03 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH 4/6] dt-bindings: power: supply: add MAX77659 charger
- binding
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v4 0/8] add support MDP3 on MT8195 platform
 Content-Language: en-US
-To:     Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>,
-        lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, sre@kernel.org,
-        lgirdwood@gmail.com, broonie@kernel.org
-Cc:     Nurettin.Bolucu@analog.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20221220132250.19383-1-Zeynep.Arslanbenzer@analog.com>
- <20221220132250.19383-5-Zeynep.Arslanbenzer@analog.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221220132250.19383-5-Zeynep.Arslanbenzer@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To:     =?UTF-8?B?TW91ZHkgSG8gKOS9leWul+WOnyk=?= <Moudy.Ho@mediatek.com>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
+Cc:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+References: <20221207094921.15450-1-moudy.ho@mediatek.com>
+ <5692faa0-6d7e-774f-9d6a-a495b44bdb3e@gmail.com>
+ <dba479ea-968f-89eb-fc59-8235cbb2783a@gmail.com>
+ <abfa4b935938a0b00bcccbc10e1a748f49f3497c.camel@mediatek.com>
+ <212871d92b8062250c83c9db006c1c628b798280.camel@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <212871d92b8062250c83c9db006c1c628b798280.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/12/2022 14:22, Zeynep Arslanbenzer wrote:
-> This patch adds device tree binding documentation for MAX77659 charger.
+Hi Moudy,
 
-Do not use "This commit/patch".
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-
+On 20/12/2022 04:40, Moudy Ho (何宗原) wrote:
+> On Tue, 2022-12-20 at 10:14 +0800, moudy ho wrote:
+>> On Mon, 2022-12-19 at 16:17 +0100, Matthias Brugger wrote:
+>>>
+>>> On 16/12/2022 13:33, Matthias Brugger wrote:
+>>>>
+>>>> Whole series applied, thanks!
+>>>>
+>>>
+>>> And now, whole series reverted, please see comment in 1/8.
+>>>
+>>> Regards,
+>>> Matthias
+>>>
+>>
+>> Hi Matthias,
+>>
+>> May I send a new series without a fallback compatible like the mt8188
+>> VDOSYS does?
+>>
+>>
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20221206020046.11333-3-nathan.lu@mediatek.com/
+>>
+>> Regards,
+>> Moudy
 > 
-> Signed-off-by: Nurettin Bolucu <Nurettin.Bolucu@analog.com>
-> Signed-off-by: Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
-> ---
->  .../power/supply/adi,max77659-charger.yaml    | 42 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 43 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/supply/adi,max77659-charger.yaml
+> Hi Matthias,
 > 
-> diff --git a/Documentation/devicetree/bindings/power/supply/adi,max77659-charger.yaml b/Documentation/devicetree/bindings/power/supply/adi,max77659-charger.yaml
-> new file mode 100644
-> index 000000000000..24f8b5a2bd84
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/supply/adi,max77659-charger.yaml
-> @@ -0,0 +1,42 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/supply/adi,max77659-charger.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Battery charger for MAX77659 PMIC from ADI.
+> Sorry for the inaccurate information, the warning mentioned in [1/8] is
+> because vppsys 0/1 has already been defined in "mediatek,mt8195-
+> clock.yaml" as follows:
+> 
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20210914021633.26377-2-chun-jie.chen@mediatek.com/
+> 
+> Is it possible to fix it by just removing [1/8], or should I send a new
+> series?
+> 
 
-Drop full stop.
+You will need to remove it from the clock binding and of course from the clock 
+drivers. One example is this one:
+https://patchwork.kernel.org/project/linux-mediatek/patch/20210914021633.26377-21-chun-jie.chen@mediatek.com/
 
-> +
-> +maintainers:
-> +  - Nurettin Bolucu <Nurettin.Bolucu@analog.com>
-> +  - Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
-> +
-> +description: |
-> +  This module is part of the MAX77659 MFD device. For more details
-> +  see Documentation/devicetree/bindings/mfd/adi,max77659.yaml.
-> +
-> +  The charger is represented as a sub-node of the PMIC node on the device tree.
-> +
-> +properties:
-> +  compatible:
-> +    const: adi,max77659-charger
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  adi,fast-charge-timer:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Fast-charge safety timer value (in hours).
-
-No, use suffixes for common units.
-
-> +
-> +  adi,fast-charge-microamp:
-> +    description: Fast-charge constant current value.
-
-> +
-> +  adi,topoff-timer:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Top-Off timer value (in minutes).
-
-No, use suffixes for common units.
-
+In the end the mmsys will probe by the compatible and will then probe the clock 
+driver as a platform driver.
 
 Best regards,
-Krzysztof
+Matthias
 
+
+> Regards,
+> Moudy
+> 
+>>>> On 07/12/2022 10:49, Moudy Ho wrote:
+>>>>> From: mtk18742 <moudy.ho@mediatek.com>
+>>>>>
+>>>>> Changes since v3:
+>>>>> - Rebase on linux-next
+>>>>>
+>>>>> Changes since v2:
+>>>>> - Depend on :
+>>>>>     [1]
+>>>>>
+> https://urldefense.com/v3/__https://patchwork.kernel.org/project/linux-mediatek/list/?series=681097__;!!CTRNKA9wMg0ARbw!giZVy8TiFNylgWKOjI75fSmleN6UlckPuiXzFf5jbdVgFbHdIxG3d3Jvkqp7Eka73I2TmataD_d5QjzBnk6-sYY$
+>>>>>   
+>>>>>   
+>>>>> - Split dts settings into two patches based on belonging to
+>>>>> MMSYS
+>>>>> or MUTEX.
+>>>>>
+>>>>> Changes since v1:
+>>>>> - Depend on :
+>>>>>     [1]
+>>>>>
+> https://urldefense.com/v3/__https://patchwork.kernel.org/project/linux-mediatek/list/?series=681097__;!!CTRNKA9wMg0ARbw!giZVy8TiFNylgWKOjI75fSmleN6UlckPuiXzFf5jbdVgFbHdIxG3d3Jvkqp7Eka73I2TmataD_d5QjzBnk6-sYY$
+>>>>>   
+>>>>>   
+>>>>> - Add compatible names to VPPSYS0 and VPPSYS1 in MMSYS binding
+>>>>> file.
+>>>>> - Fix VPPSYS's MMSYS and MUTEX dts to pass the dtsb_check.
+>>>>> - Rename mtk_mmsys_merge_config() and
+>>>>> mtk_mmsys_rsz_dcm_config()
+>>>>> to
+>>>>>     mtk_mmsys_vpp_rsz_merge_config() and
+>>>>> mtk_mmsys_vpp_rsz_dcm_config().
+>>>>> - Clean up mtk_mmsys_vpp_rsz_dcm_config().
+>>>>> - Add a comment to mtk_mutex_write_mod() and clean it up for
+>>>>> use
+>>>>> in more
+>>>>>     than 32 mods.
+>>>>>
+>>>>> Hi,
+>>>>>
+>>>>> This series add support for MT8195's two VPPSYS(Video Processor
+>>>>> Pipe Subsystem),
+>>>>> under which there will be corresponding MMSYS and MUTEX
+>>>>> settings
+>>>>> that
+>>>>> need to be configured.
+>>>>>
+>>>>> Moudy Ho (2):
+>>>>>     dt-bindings: arm: mediatek: mmsys: Add support for MT8195
+>>>>> VPPSYS
+>>>>>     arm64: dts: mediatek: mt8195: add MUTEX configuration for
+>>>>> VPPSYS
+>>>>>
+>>>>> Roy-CW.Yeh (6):
+>>>>>     dt-bindings: soc: mediatek: Add support for MT8195 VPPSYS
+>>>>>     arm64: dts: mediatek: mt8195: add MMSYS configuration for
+>>>>> VPPSYS
+>>>>>     soc: mediatek: mmsys: add support for MT8195 VPPSYS
+>>>>>     soc: mediatek: mmsys: add config api for RSZ switching and
+>>>>> DCM
+>>>>>     soc: mediatek: mutex: Add mtk_mutex_set_mod support to set
+>>>>> MOD1
+>>>>>     soc: mediatek: mutex: support MT8195 VPPSYS
+>>>>>
+>>>>>    .../bindings/arm/mediatek/mediatek,mmsys.yaml |   5 +-
+>>>>>    .../bindings/soc/mediatek/mediatek,mutex.yaml |   1 +
+>>>>>    arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  28 +++-
+>>>>>    drivers/soc/mediatek/mt8195-mmsys.h           |  13 ++
+>>>>>    drivers/soc/mediatek/mtk-mmsys.c              |  64 +++++++++
+>>>>>    drivers/soc/mediatek/mtk-mmsys.h              |   1 +
+>>>>>    drivers/soc/mediatek/mtk-mutex.c              | 135
+>>>>> +++++++++++++++++-
+>>>>>    include/linux/soc/mediatek/mtk-mmsys.h        |   4 +
+>>>>>    include/linux/soc/mediatek/mtk-mutex.h        |  35 +++++
+>>>>>    9 files changed, 274 insertions(+), 12 deletions(-)
+>>>>>
