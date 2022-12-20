@@ -2,81 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A068A652590
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 18:30:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 038D3652593
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 18:32:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229741AbiLTR37 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 12:29:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34238 "EHLO
+        id S229536AbiLTRcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 12:32:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229536AbiLTR36 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 12:29:58 -0500
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E61CBFE;
-        Tue, 20 Dec 2022 09:29:57 -0800 (PST)
-Received: by mail-oi1-f178.google.com with SMTP id k189so11156319oif.7;
-        Tue, 20 Dec 2022 09:29:57 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WnwjYbOSnq96MLGD0jKkXjZD7qvCW3wHn8FBcGEyxRw=;
-        b=Rcqcvelsw+Dqfk9B7OPObNc0Qn6zG7rsta1ck3nus819CiYadWJ2eEVIVlHJ7952Gf
-         vaOaHBKPLfRoCKextjqa+Re9ynlq8Ab0BwSqTLxFZtGM49Np1+S9LXAjH0n/ZRsYDc45
-         UAYHQjIEt6klUFFSF7xoVSBU1a51QBrccf5LmXkNPCWVSqdw+Y/H7FeWrcgss/7yj5GT
-         jyArj4CUCb2u//IaxJR8+VKBOUnw1NQAXQ0NkPBjh3dpXyc0Dmba1FjaZb1PX9aKBsmc
-         6lreLPJckTxURhC6OUvUiQhe2YDghQLC9e3RO8HZ/4TjXYSCWQkb90O5GXsYqAnSrjbn
-         eeHg==
-X-Gm-Message-State: AFqh2ko9imnnSCoxbKCrG+PAlu+KVRyjDxvrK3BH+CIoQXz4r3+qanEK
-        StsXjxwGVRNehh9zkL7dQA==
-X-Google-Smtp-Source: AMrXdXssrh0aJySHKFo2QCwNuEbmMEX7JcTvhjBIj7wrIGwhcl1lkdnvu/3gs0HUN2DabKEeR0M0EA==
-X-Received: by 2002:aca:5a87:0:b0:360:f286:820b with SMTP id o129-20020aca5a87000000b00360f286820bmr4121597oib.2.1671557396639;
-        Tue, 20 Dec 2022 09:29:56 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id i11-20020a056808030b00b0035468f2d410sm5655911oie.55.2022.12.20.09.29.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Dec 2022 09:29:55 -0800 (PST)
-Received: (nullmailer pid 783422 invoked by uid 1000);
-        Tue, 20 Dec 2022 17:29:54 -0000
-Date:   Tue, 20 Dec 2022 11:29:54 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        devicetree@vger.kernel.org,
+        with ESMTP id S233896AbiLTRcN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 12:32:13 -0500
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CDC81A3B0;
+        Tue, 20 Dec 2022 09:32:11 -0800 (PST)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1p7gTI-00085n-EU; Tue, 20 Dec 2022 18:32:08 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Yuteng Zhong <zonyitoo@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Peter Geis <pgwipeout@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>
-Subject: Re: [PATCH] dt-bindings: arm: qcom: add board-id/msm-id for MSM8956,
- SDM636 and SM4250
-Message-ID: <167155739359.783362.13406259397795119629.robh@kernel.org>
-References: <20221214150605.173346-1-krzysztof.kozlowski@linaro.org>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, DHDAXCW <lasstp5011@gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: rockchip: Add RK3566 LubanCat 1
+Date:   Tue, 20 Dec 2022 18:32:06 +0100
+Message-ID: <3325915.e9J7NaK4W3@diego>
+In-Reply-To: <a113d20c-dc6c-2e44-009f-d4b17beb8820@linaro.org>
+References: <Y6GMnq3AC7Kbnag8@VM-66-53-centos> <a113d20c-dc6c-2e44-009f-d4b17beb8820@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221214150605.173346-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Wed, 14 Dec 2022 16:06:05 +0100, Krzysztof Kozlowski wrote:
-> Allow qcom,board-id and qcom,msm-id leagcy properties on these older
-> platforms: MSM8956, SDM636 and SM4250.  Also mention more OnePlus
-> devices using modified qcom,board-id field.
+Am Dienstag, 20. Dezember 2022, 17:14:51 CET schrieb Krzysztof Kozlowski:
+> On 20/12/2022 11:21, Yuteng Zhong wrote:
+> > LubanCat 1 is a Rockchip RK3566 SBC based
+> > is developed by EmbedFire Electronics Co., Ltd.
+> > Mini Linux Card Type Cheap Computer Development Board
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+> Please wrap commit message according to Linux coding style / submission
+> process:
+> https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
 > 
+> > +	rk809: pmic@20 {
+> > +		compatible = "rockchip,rk809";
+> > +		reg = <0x20>;
+> > +		interrupt-parent = <&gpio0>;
+> > +		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_LOW>;
+> > +		assigned-clocks = <&cru I2S1_MCLKOUT_TX>;
+> > +		assigned-clock-parents = <&cru CLK_I2S1_8CH_TX>;
+> > +		#clock-cells = <1>;
+> > +		clock-names = "mclk";
+> > +		clocks = <&cru I2S1_MCLKOUT_TX>;
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pmic_int>;
+> > +		rockchip,system-power-controller;
+> > +		#sound-dai-cells = <0>;
+> > +		vcc1-supply = <&vcc3v3_sys>;
+> > +		vcc2-supply = <&vcc3v3_sys>;
+> > +		vcc3-supply = <&vcc3v3_sys>;
+> > +		vcc4-supply = <&vcc3v3_sys>;
+> > +		vcc5-supply = <&vcc3v3_sys>;
+> > +		vcc6-supply = <&vcc3v3_sys>;
+> > +		vcc7-supply = <&vcc3v3_sys>;
+> > +		vcc8-supply = <&vcc3v3_sys>;
+> > +		vcc9-supply = <&vcc3v3_sys>;
+> > +		wakeup-source;
+> > +
+> > +		regulators {
+> > +			vdd_logic: DCDC_REG1 {
+> 
+> No underscores in node names. Anything requires it?
 
-Acked-by: Rob Herring <robh@kernel.org>
+looks like the answer is "it depends" :-)
+
+When the regulator-framework searches for the node to get the init-data from
+it uses the actual node-name or the regulator-compatible property [0]
+to match against.
+
+And going via regulator-compatible was the "old" way, already deprecated
+before the yaml-conversion [1] and not even included
+
+So matching against the node-name is the correct way to go and it's actually
+part of the rk8xx-binding as well [2]
+
+
+Hope that helps,
+Heiko
+
+
+[0] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/regulator/of_regulator.c#n477
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/Documentation/devicetree/bindings/regulator/regulator.txt?id=1914a996436b09186489da73b807e1df71259f67
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml#n84
+
+
