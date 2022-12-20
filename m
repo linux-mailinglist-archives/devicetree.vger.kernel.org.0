@@ -2,59 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A11E652125
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 14:02:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB8F6652137
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 14:04:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229684AbiLTNCq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 08:02:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36210 "EHLO
+        id S233816AbiLTNEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 08:04:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233810AbiLTNC0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 08:02:26 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0F761403A;
-        Tue, 20 Dec 2022 05:02:21 -0800 (PST)
-Received: from [IPV6:2a01:e0a:120:3210:bf7d:b502:d93b:e4e3] (unknown [IPv6:2a01:e0a:120:3210:bf7d:b502:d93b:e4e3])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: benjamin.gaignard)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id D83F36602CA4;
-        Tue, 20 Dec 2022 13:02:19 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1671541340;
-        bh=haA6w9EmCpkqi5iB2LLsKdnh/6FRvbucp0GFooZKrYY=;
+        with ESMTP id S233825AbiLTNET (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 08:04:19 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 218BF167F9;
+        Tue, 20 Dec 2022 05:04:17 -0800 (PST)
+Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 82A6056D;
+        Tue, 20 Dec 2022 14:04:15 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1671541456;
+        bh=ZvxB9T70TZ+qvTHqWsyTCrDs0kOqGqkVtT2zxrsKU+M=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Ig+qjYbgy6FmCKIolAqd/b+GmUivS+lSt3G3l1Jky716MRoHegVUU/ybihyrv7VZp
-         Kw6t2o6sGuTp8iSV/p7h1I1Bx60Yn2/R0Yz92bD8CpzY/32VjOgI4dVJF7IAnUr/wI
-         YIvlidIoBzkNi1jZqow35Y6HWkT6LLeCEUkyI19rfYCjQvvPmMS/shlpl0sgqtAtvC
-         sAqxuLw6gENlQnloy2hk8RfLXMvYqYozSweCl1Daee9MYSnGS4kJzwxmTiB9M56R30
-         3U2MWzr2HgLc/omi6nDnD9GOQlKZCziVddk/qPypwQTpcYjc0GdwjWF3bQiMOrRhXF
-         0anirHn4J3A4w==
-Message-ID: <4aae8684-5ab4-c5a6-cc73-5dc61309b745@collabora.com>
-Date:   Tue, 20 Dec 2022 14:02:17 +0100
+        b=Hfe8povylTwTJG50jVH0Tn86842ASz9JpSTsbusSKKZes9PP6XL5b5jd/sDohCNTq
+         vyb1DV8if6dwIrMQ37CmKoPNnxvP2rjgWz59tfsW8UG/PgasyHhqBQvWWwB1FG+N57
+         FjRtiEzmfPSgLw0YXs9+kWhWajNsiJo2fq6HYRA4=
+Message-ID: <84977593-4671-7582-d5f2-cf69755f1145@ideasonboard.com>
+Date:   Tue, 20 Dec 2022 15:04:13 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v1 4/9] media: verisilicon: Check AV1 bitstreams bit depth
+Subject: Re: [PATCH v6 5/5] drm/tidss: Enable Dual and Duplicate Modes for
+ OLDI
 Content-Language: en-US
-To:     Nicolas Dufresne <nicolas@ndufresne.ca>,
-        ezequiel@vanguardiasur.com.ar, p.zabel@pengutronix.de,
-        mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
-        daniel.almeida@collabora.com, nicolas.dufresne@collabora.co.uk
-Cc:     linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-References: <20221219155616.848690-1-benjamin.gaignard@collabora.com>
- <20221219155616.848690-5-benjamin.gaignard@collabora.com>
- <e3663c85c75d09259a3135cb6ccfe7d6231bd752.camel@ndufresne.ca>
-From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
-In-Reply-To: <e3663c85c75d09259a3135cb6ccfe7d6231bd752.camel@ndufresne.ca>
+To:     Aradhya Bhatia <a-bhatia1@ti.com>, Jyri Sarha <jyri.sarha@iki.fi>,
+        Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     DRI Development List <dri-devel@lists.freedesktop.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>
+References: <20221119173019.15643-1-a-bhatia1@ti.com>
+ <20221119173019.15643-6-a-bhatia1@ti.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <20221119173019.15643-6-a-bhatia1@ti.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,42 +60,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 19/11/2022 19:30, Aradhya Bhatia wrote:
+> The AM625 DSS IP contains 2 OLDI TXes which can work together to enable 2
+> cloned displays of or even a single dual-link display with higher
+> resolutions like WUXGA (1920x1200@60fps) with a reduced OLDI clock
+> frequency.
+> 
+> Configure the necessary register to enable and disable the OLDI TXes
+> with required modes configurations.
+> 
+> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> ---
+>   drivers/gpu/drm/tidss/tidss_dispc.c | 24 ++++++++++++++++++++++--
+>   1 file changed, 22 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c b/drivers/gpu/drm/tidss/tidss_dispc.c
+> index f26129fb1d8f..cf43de6216a5 100644
+> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
+> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
+> @@ -1012,8 +1012,8 @@ static void dispc_enable_oldi(struct dispc_device *dispc, u32 hw_videoport,
+>   	int count = 0;
+>   
+>   	/*
+> -	 * For the moment DUALMODESYNC, MASTERSLAVE, MODE, and SRC
+> -	 * bits of DISPC_VP_DSS_OLDI_CFG are set statically to 0.
+> +	 * For the moment MASTERSLAVE, and SRC bits of DISPC_VP_DSS_OLDI_CFG are
+> +	 * always set to 0.
+>   	 */
+>   
+>   	if (fmt->data_width == 24)
+> @@ -1030,6 +1030,26 @@ static void dispc_enable_oldi(struct dispc_device *dispc, u32 hw_videoport,
+>   
+>   	oldi_cfg |= BIT(0); /* ENABLE */
+>   
+> +	switch (dispc->oldi_mode) {
+> +	case OLDI_SINGLE_LINK_SINGLE_MODE:
+> +		/* All configuration is done for this mode.  */
+> +		break;
+> +
+> +	case OLDI_SINGLE_LINK_CLONE_MODE:
+> +		oldi_cfg |= BIT(5); /* CLONE MODE */
+> +		break;
+> +
+> +	case OLDI_DUAL_LINK_MODE:
+> +		oldi_cfg |= BIT(11); /* DUALMODESYNC */
+> +		oldi_cfg |= BIT(3); /* data-mapping field also indicates dual-link mode */
+> +		break;
+> +
+> +	default:
+> +		dev_warn(dispc->dev, "%s: Incorrect oldi mode. Returning.\n",
+> +			 __func__);
+> +		return;
+> +	}
+> +
+>   	dispc_vp_write(dispc, hw_videoport, DISPC_VP_DSS_OLDI_CFG, oldi_cfg);
+>   
+>   	while (!(oldi_reset_bit & dispc_read(dispc, DSS_SYSSTATUS)) &&
 
-Le 19/12/2022 à 21:38, Nicolas Dufresne a écrit :
-> Le lundi 19 décembre 2022 à 16:56 +0100, Benjamin Gaignard a écrit :
->> The driver supports 8 and 10 bits bitstreams, make sure to discard
->> other cases.
->>
->> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
->> ---
->>   drivers/media/platform/verisilicon/hantro_drv.c | 6 ++++++
->>   1 file changed, 6 insertions(+)
->>
->> diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/drivers/media/platform/verisilicon/hantro_drv.c
->> index 8e93710dcfed..e10fc59634dd 100644
->> --- a/drivers/media/platform/verisilicon/hantro_drv.c
->> +++ b/drivers/media/platform/verisilicon/hantro_drv.c
->> @@ -282,7 +282,13 @@ static int hantro_try_ctrl(struct v4l2_ctrl *ctrl)
->>   		/* We only support profile 0 */
->>   		if (dec_params->profile != 0)
->>   			return -EINVAL;
->> +	} else if (ctrl->id == V4L2_CID_STATELESS_AV1_SEQUENCE) {
->> +		const struct v4l2_ctrl_av1_sequence *sequence = ctrl->p_new.p_av1_sequence;
->> +
->> +		if (sequence->bit_depth != 8 && sequence->bit_depth != 10)
->> +			return -EINVAL;
-> As you state in the cover letter, should this just be this for now ?
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 
-The driver can decode 8 or 10 bits bitstreams but will on produce 8bits (NV12_4L4 or NV12)
-frames. The hardware is able to truncate 10bits bitstreams to 8 bits output.
+  Tomi
 
->
->
->> +		if (sequence->bit_depth != 8)
->> +			return -EINVAL;
->
->>   	}
->> +
->>   	return 0;
->>   }
->>   
