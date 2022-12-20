@@ -2,72 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BDD86526CC
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 20:10:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 698BC6526F5
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 20:30:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230418AbiLTTJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 14:09:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49054 "EHLO
+        id S234069AbiLTT36 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 14:29:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229536AbiLTTJv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 14:09:51 -0500
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24418E0C3;
-        Tue, 20 Dec 2022 11:09:51 -0800 (PST)
-Received: by mail-pj1-x1030.google.com with SMTP id fy4so13425816pjb.0;
-        Tue, 20 Dec 2022 11:09:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=1OBgH6qhxVhNETTJtpKxpJyJJwZSaJxAnc72NIfU7q8=;
-        b=B8qxUMoE7+EAlwHOenlxiYcmaNiVCwIkv+cLWtLf1DvdFen8d5/GPfZO2AcZfsFJ+C
-         j9hKmE40U0KY1rBXhWTq6axC8jKgEHENzByO3DzGSvsXsk3kzgD/ueQ1XjSumKsvw67C
-         y+kSElTk1YFddpEjE2jy6j0gWutWnUhdwFkykKJchKbQjtqs6pUgSIHs5QtUPPIxIedB
-         2Jsas5Y3PJ+eIGoYWT4tqfcZlY4GmmYmJsmqsb0eMX5qgvYQEtDKc2EjR5LhCvmGA4eX
-         0AzQAky1NMtPLHLKhJ0dAoGNm6Ehfa7t2qqsmbvjggeZ45KTdpX37xBZGvLmGfyaVhmz
-         EeKA==
+        with ESMTP id S229551AbiLTT3y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 14:29:54 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B62E1D653
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 11:29:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1671564545;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=3YLjYErwg7EvBoz0cMAo1uE15YEC6M/l/3SjEzl4Lqc=;
+        b=gK1M0xXxBR+FuvMZG4xX1xApHOsNXnaY+mkq1kCHat45uD6Z1RNzf5GTn/BhaiyGduKJ0r
+        xslYKdH0AiV/uWMvtIUYpdvVxj+r4GLIpUogYwqv3rLbaVA863Xtav6yN4sd6IAsqy17ma
+        YO2z5ynOkjAtGTqhIJIG8lrQnISjmuA=
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
+ [209.85.222.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-496-voL_WzhVM7mKWlXK0YOcIQ-1; Tue, 20 Dec 2022 14:29:03 -0500
+X-MC-Unique: voL_WzhVM7mKWlXK0YOcIQ-1
+Received: by mail-qk1-f199.google.com with SMTP id br6-20020a05620a460600b007021e1a5c48so9959212qkb.6
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 11:29:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=1OBgH6qhxVhNETTJtpKxpJyJJwZSaJxAnc72NIfU7q8=;
-        b=V9Vps8QUJLwS36b+fmbCYqSTLxul5rcOq5BMMDam0gUrz9flwHTfuLPYe+4FLyjZWA
-         hM7Q6DSZau3xh8tRpIXx12Q4n7pyS0nKOA+ZBDJo9z991Te0t9BgnT2iEBr2eXzaxIeY
-         fPxVn3J0pOQ4+Rl8TfuVnKLy893FxCVojDsF8neNdAroGCLkE306tTxITKKSqqVADcdD
-         jc0LSk1QW13LbVLHv2QjrK5+VfVTjOUmmKeMG9Jaw8pQ38wGJCqhzYJtKrTjVQcT2dz8
-         pieIPkm31ex1tzVINTMMrM4/1OSxBgDTUmIb8zJp4LBXGijRDoQp61jnKQ5uT/7+ZrLm
-         v/jA==
-X-Gm-Message-State: ANoB5plkIzRya6cfMMhrQqtlbR2IAvpFFFv407M4NyV4Mwx6jhxu70x+
-        mKzF04kch8Bq6DbXkfoSICEivltyK4rZaw==
-X-Google-Smtp-Source: AA0mqf7jxeSkhNjsR5qNP89OERmGp1AZFIPJVGSOIRilOBXNnwoMcgsIbLYs+BJQGOvtpQXPjSsqhw==
-X-Received: by 2002:a05:6a20:d046:b0:af:7762:4c0b with SMTP id hv6-20020a056a20d04600b000af77624c0bmr32394792pzb.34.1671563390179;
-        Tue, 20 Dec 2022 11:09:50 -0800 (PST)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id h5-20020a656385000000b0045ff216a0casm8586163pgv.3.2022.12.20.11.09.48
+        bh=3YLjYErwg7EvBoz0cMAo1uE15YEC6M/l/3SjEzl4Lqc=;
+        b=C6fOQFWwWjjL7IjNRFronx5/xg9WCqVJQGCxDa2GUH9Jd4XeWVYqac9tIWNAt+rk9v
+         rbhIzBNLQhGAT/TrWlalmm3eL+0OjdH4d89Fu4rcX/HCdecJ2Pt1sb72Lnru1HySHl2z
+         P3gsa3pHj+n6ooN9YLehn0JwUwxmU39U8yriZUTDGx7ZEWcAy2CFvAZU/paBy3VdOMbL
+         Q43ocYwVNCWjFu/14VI7e2zkgfeHzuaAuFgNxr1XNaaHLKvSzDBEyMpVV50obMjYH3Ah
+         jo8ivlmNoE8NAGFXTIXZxtClk82euZVJ3Hw6zIeWB+x7Nt49e8Zl5tvUo8nzcvdr0Cmj
+         GDhA==
+X-Gm-Message-State: ANoB5pmNvjOIwh7pd/px2q+GXVD+xuN+D/vdsmZfLTcifBFKuvf1x+AN
+        3b81xfu57Dn8MP27oY5GNXmE4Ci0BCOHGy+l93NCSBqv+lMNgqjow+bNlAcnPdqo/3Vb5TOnIiY
+        3wf+dTZ7NibarHwr7xpdm+A==
+X-Received: by 2002:ac8:5196:0:b0:3a8:2ccb:f55d with SMTP id c22-20020ac85196000000b003a82ccbf55dmr33658255qtn.33.1671564542753;
+        Tue, 20 Dec 2022 11:29:02 -0800 (PST)
+X-Google-Smtp-Source: AA0mqf6pwikIa2ZHDhIzurqur8k4+IJVtBcz5T2noYSvSQJEBGCbtOgyvU+eSZ0sdDbpJLmYpUZt7w==
+X-Received: by 2002:ac8:5196:0:b0:3a8:2ccb:f55d with SMTP id c22-20020ac85196000000b003a82ccbf55dmr33658230qtn.33.1671564542469;
+        Tue, 20 Dec 2022 11:29:02 -0800 (PST)
+Received: from x1.redhat.com (c-73-214-169-22.hsd1.pa.comcast.net. [73.214.169.22])
+        by smtp.gmail.com with ESMTPSA id gd15-20020a05622a5c0f00b003a82ca4e81csm744348qtb.80.2022.12.20.11.29.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Dec 2022 11:09:49 -0800 (PST)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     linux-mips@vger.kernel.org
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH] MIPS: dts: bcm63268: Add missing properties to the TWD node
-Date:   Tue, 20 Dec 2022 11:09:46 -0800
-Message-Id: <20221220190947.2681192-1-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        Tue, 20 Dec 2022 11:29:01 -0800 (PST)
+From:   Brian Masney <bmasney@redhat.com>
+To:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     quic_shazhuss@quicinc.com, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, johan+linaro@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ahalaney@redhat.com,
+        echanude@redhat.com
+Subject: [PATCH v3 0/7] dts: qcom: sc8280xp: add i2c, spi, and rng nodes
+Date:   Tue, 20 Dec 2022 14:28:47 -0500
+Message-Id: <20221220192854.521647-1-bmasney@redhat.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
+Content-type: text/plain
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,33 +78,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We currently have a DTC warning with the current DTS due to the lack of
-a suitable #address-cells and #size-cells property:
+This patch series adds the i2c and spi nodes that are missing on the
+sc8280xp platform. Since I am already making changes to sc8280xp.dtsi
+in this series, I also included a change to enable the rng node for this
+platform as well.
 
-  DTC     arch/mips/boot/dts/brcm/bcm63268-comtrend-vr-3032u.dtb
-arch/mips/boot/dts/brcm/bcm63268.dtsi:115.5-22: Warning (reg_format): /ubus/timer-mfd@10000080/timer@0:reg: property has invalid length (8 bytes) (#address-cells == 2, #size-cells == 1)
-arch/mips/boot/dts/brcm/bcm63268.dtsi:120.5-22: Warning (reg_format): /ubus/timer-mfd@10000080/watchdog@1c:reg: property has invalid length (8 bytes) (#address-cells == 2, #size-cells == 1)
-arch/mips/boot/dts/brcm/bcm63268.dtsi:111.4-35: Warning (ranges_format): /ubus/timer-mfd@10000080:ranges: "ranges" property has invalid length (12 bytes) (parent #address-cells == 1, child #address-cells == 2, #size-cells == 1)
+The first three patches in this series are new in v2 and rename one node
+at a time to try to make the review easier. Each patch has a changelog.
 
-Fixes: d3db4b96ab7f ("mips: dts: bcm63268: add TWD block timer")
-Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
----
- arch/mips/boot/dts/brcm/bcm63268.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Note that this series needs to be applied on top of:
+[PATCH v5] arm64: dts: qcom: sa8540p-ride: enable pcie2a node
+https://lore.kernel.org/lkml/20221213095922.11649-1-quic_shazhuss@quicinc.com/
 
-diff --git a/arch/mips/boot/dts/brcm/bcm63268.dtsi b/arch/mips/boot/dts/brcm/bcm63268.dtsi
-index c663efce91cf..7b788757cb1e 100644
---- a/arch/mips/boot/dts/brcm/bcm63268.dtsi
-+++ b/arch/mips/boot/dts/brcm/bcm63268.dtsi
-@@ -109,6 +109,8 @@ timer-mfd@10000080 {
- 			compatible = "brcm,bcm7038-twd", "simple-mfd", "syscon";
- 			reg = <0x10000080 0x30>;
- 			ranges = <0x0 0x10000080 0x30>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
- 
- 			timer@0 {
- 				compatible = "brcm,bcm6345-timer";
+Changes from v2 to v3:
+- Reordered rng node in patch 7 so that it's sorted correctly by address
+- Since I respun the series, I made Konrad's sort order suggestion to
+  the state nodes since I'm making changes here.
+- Collected R-b and T-b tags.
+
+Brian Masney (7):
+  arm64: dts: qcom: sc8280xp: rename qup2_uart17 to uart17
+  arm64: dts: qcom: sc8280xp: rename qup2_i2c5 to i2c21
+  arm64: dts: qcom: sc8280xp: rename qup0_i2c4 to i2c4
+  arm64: dts: qcom: sc8280xp: add missing i2c nodes
+  arm64: dts: qcom: sc8280xp: add missing spi nodes
+  arm64: dts: qcom: sa8540p-ride: add i2c nodes
+  arm64: dts: qcom: sc8280xp: add rng device tree node
+
+ arch/arm64/boot/dts/qcom/sa8295p-adp.dts      |  12 +-
+ arch/arm64/boot/dts/qcom/sa8540p-ride.dts     |  91 ++-
+ arch/arm64/boot/dts/qcom/sc8280xp-crd.dts     | 160 ++--
+ .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 178 ++---
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi        | 725 +++++++++++++++++-
+ 5 files changed, 983 insertions(+), 183 deletions(-)
+
 -- 
-2.34.1
+2.38.1
 
