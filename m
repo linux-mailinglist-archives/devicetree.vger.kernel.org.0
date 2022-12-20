@@ -2,78 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6737965275C
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 20:53:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F88465277D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 21:01:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233938AbiLTTwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 14:52:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38334 "EHLO
+        id S229750AbiLTUA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 15:00:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233993AbiLTTwO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 14:52:14 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC95118693
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 11:51:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1671565890;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=gtHJ9MviuoYeXsjx6KkSy+TRGm5AU7U7JjwMVdni4JA=;
-        b=awy+nsvjz14SHAVlnWE6npe8fyrpWOHPvTDbqbmbqYXAUTbyMJK7NcKtc/I+xGq/DjUfK5
-        uGNYQld3W9lJ3kr85vQcZH0bD3mX43WUq1yrE4T86JBt3kXRT5nawFtRfEeIg9wnpD2Bcr
-        Xj+HxwDcYtb9ziR8NyTvnUzSrIpGKZA=
-Received: from mail-oa1-f72.google.com (mail-oa1-f72.google.com
- [209.85.160.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-271-bhBDevSHNL2FLhVV7oLnjA-1; Tue, 20 Dec 2022 14:51:21 -0500
-X-MC-Unique: bhBDevSHNL2FLhVV7oLnjA-1
-Received: by mail-oa1-f72.google.com with SMTP id 586e51a60fabf-1441866fa6cso6028760fac.22
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 11:51:21 -0800 (PST)
+        with ESMTP id S232195AbiLTUA6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 15:00:58 -0500
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 874A86419;
+        Tue, 20 Dec 2022 12:00:57 -0800 (PST)
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-143ffc8c2b2so16756081fac.2;
+        Tue, 20 Dec 2022 12:00:57 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gtHJ9MviuoYeXsjx6KkSy+TRGm5AU7U7JjwMVdni4JA=;
-        b=Rkx35iuORl7mGbooMZbomOcd7fe1e9cbea3d9jo/gNIc97e9NCvemXIROrI8evdJci
-         HviwU27T5/lyULgeP9omBJzRsAHnL26apWRV0KP5u/Kj4mOz84Tym1rAdtYQ8LJKnkdM
-         whEYlMwRnEKOl7kl1BX4CWL5o761s2Ix6m/QSMcQs3+wHZU4FBmQOlblMVoCC8Tu4Cyb
-         lk/6EVNNCgztSGzwYp8UXQhg2FHsKAV2F77O97EDlbaLtJuHKEmbM5vsTpiLstfr9395
-         TSvBnJjkDcQ4C07L510Yde70fSnPpTSZaQMZS6H5kr8eLzamwZAdatOWj9DnHGFYl9J1
-         lX5w==
-X-Gm-Message-State: ANoB5pliZSW8WYhTKWdf+JHLqmfSRp+OWYBLlbazDugGesHMREMPchC2
-        vizPwLLmENWbnHOSBe4QtBMgMdKOSE3grlxxalaROcvlO0YLnd68utW3H7ZpJQeN6rsuFwHoUga
-        JOGOvouBAHRlV0+baVPpf8Q==
-X-Received: by 2002:a05:6870:517:b0:141:d6f8:f83d with SMTP id j23-20020a056870051700b00141d6f8f83dmr23526812oao.1.1671565880556;
-        Tue, 20 Dec 2022 11:51:20 -0800 (PST)
-X-Google-Smtp-Source: AA0mqf7yJ6MGDycAtuwlTjAtrLORR67RpUKz/dZw9P30th+KL9S89yvHFmjk91A5JmpFjwZ3SXeU/w==
-X-Received: by 2002:a05:6870:517:b0:141:d6f8:f83d with SMTP id j23-20020a056870051700b00141d6f8f83dmr23526797oao.1.1671565880325;
-        Tue, 20 Dec 2022 11:51:20 -0800 (PST)
-Received: from halaney-x13s ([2600:1700:1ff0:d0e0::21])
-        by smtp.gmail.com with ESMTPSA id be13-20020a056870588d00b00142fa439ee5sm6400567oab.39.2022.12.20.11.51.19
+        bh=m7rQADosS+b3+803ppmC4G5l6lsD7QIny2Q7opGqliM=;
+        b=RlYkUyh6J0i/1QPLEukHlVydkZkTIFZ5y09riGRmumVrbJ1IZz7WkKeX4maak66OCQ
+         Om+qqCbNZkfXMY8AThn7j3bFBfvaIx4D3FTJOoN5ZRxOw8JZs0Ce2pYzw4qdWo5AW3o3
+         FkXsWmNPLvJJw78lh5dtuNtOajj3KxEmla5LMmoj6xoUc+0zxJlEtyY4f2DQNqTSynET
+         o3rIFYBmveZ30Cn/aVOJElB8sUfDxuqh4N4zmQIxZYFHGPLxloCLgJr7EYuNpbkeHhHY
+         Lky5jpIbOJs2byDIwoT5zbTVLglerTdnpaNPNCXs9Fg3bFIM7GQ6MZ62jMLM6z3zzA8I
+         IOAw==
+X-Gm-Message-State: AFqh2koZO/cpbpPxnwf1JZHbdNlu+jqC+nCiGWHB3360JMUY8QTfcuLZ
+        zMQCf8TwZOr4IO6maH0ALsSMJcwkCg==
+X-Google-Smtp-Source: AMrXdXt9sEtEqgQZhotj9V3mZGPtA+Z0Jj7vkU5jn2um2dvY3ioakyoO6JU+NnthNj+8BzLMwIRf8g==
+X-Received: by 2002:a05:6870:c991:b0:148:500d:c6fb with SMTP id hi17-20020a056870c99100b00148500dc6fbmr7635185oab.38.1671566456641;
+        Tue, 20 Dec 2022 12:00:56 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id y29-20020a056870459d00b0011d02a3fa63sm6504888oao.14.2022.12.20.12.00.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Dec 2022 11:51:19 -0800 (PST)
-Date:   Tue, 20 Dec 2022 13:51:17 -0600
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     Eric Chanudet <echanude@redhat.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Brian Masney <bmasney@redhat.com>
-Subject: Re: [PATCH v4 0/4] arm64: dts: qcom: enable sa8540p-ride rtc
-Message-ID: <20221220195117.zrbnzx3glzmijlvo@halaney-x13s>
-References: <20221219191000.2570545-1-echanude@redhat.com>
+        Tue, 20 Dec 2022 12:00:55 -0800 (PST)
+Received: (nullmailer pid 990414 invoked by uid 1000);
+        Tue, 20 Dec 2022 20:00:54 -0000
+Date:   Tue, 20 Dec 2022 14:00:54 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     heiko@sntech.de, hjc@rock-chips.com,
+        krzysztof.kozlowski+dt@linaro.org, airlied@gmail.com,
+        daniel@ffwll.ch, vkoul@kernel.org, kishon@kernel.org,
+        linux-phy@lists.infradead.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 3/5] dt-bindings: phy: add port node to
+ phy-rockchip-inno-usb2.yaml
+Message-ID: <20221220200054.GA953433-robh@kernel.org>
+References: <7f38e245-4fc0-1754-e75c-10c1e31bbd4d@gmail.com>
+ <e54f7b52-3530-59c4-90c6-1fb5a17d6491@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221219191000.2570545-1-echanude@redhat.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
+In-Reply-To: <e54f7b52-3530-59c4-90c6-1fb5a17d6491@gmail.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,76 +68,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 19, 2022 at 02:09:57PM -0500, Eric Chanudet wrote:
-> Enable sa8540p-ride rtc on pmic@0.
+On Mon, Dec 19, 2022 at 05:56:55PM +0100, Johan Jonker wrote:
+> On Rockchip rk3399 a port node with one endpoint can be connected
+> to a USB Type-C connector node.
+> Add a port node to the phy-rockchip-inno-usb2.yaml file.
 > 
-> sa8540p base boards share the same pmics description, currently in
-> pm8450a.dtsi. Rename the file to make this explicit and use it in both
-> sa8540p-ride.dts and sa8295p-adp.dts.
-> Add the missing offset where appropriate for the alarm register bank in
-> other qcom,pm8941-rtc description.
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> ---
+>  .../devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml      | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> Changes since v3:
-> - Amend patch #1 incorrect description.
+> diff --git a/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml b/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
+> index f71920082..ffc7e7560 100644
+> --- a/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
+> +++ b/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
+> @@ -115,6 +115,11 @@ properties:
+>      required:
+>        - "#phy-cells"
 > 
-> Changes since v2:
-> - rename pm8450a.dtsi to sa8540p-pmics.dtsi.
-> 
-> Changes since v1:
-> - Add "alarm" register bank offset at 0x6100 in qcom,pm8941-rtc
->   descriptions.
-> 
-> Eric Chanudet (4):
->   arm64: dts: qcom: rename pm8450a dtsi to sa8540p-pmics
->   arm64: dts: qcom: sa8450p-pmics: add rtc node
->   arm64: dts: qcom: sa8295p-adp: use sa8540p-pmics
->   arm64: dts: qcom: pm8941-rtc add alarm register
-> 
->  arch/arm64/boot/dts/qcom/pm8150.dtsi          |  2 +-
->  arch/arm64/boot/dts/qcom/pm8916.dtsi          |  3 +-
->  arch/arm64/boot/dts/qcom/pm8950.dtsi          |  2 +-
->  arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi     |  2 +-
->  arch/arm64/boot/dts/qcom/pmp8074.dtsi         |  2 +-
->  arch/arm64/boot/dts/qcom/pms405.dtsi          |  2 +-
->  arch/arm64/boot/dts/qcom/sa8295p-adp.dts      | 79 +------------------
->  .../qcom/{pm8450a.dtsi => sa8540p-pmics.dtsi} |  8 ++
->  arch/arm64/boot/dts/qcom/sa8540p-ride.dts     |  2 +-
->  9 files changed, 17 insertions(+), 85 deletions(-)
->  rename arch/arm64/boot/dts/qcom/{pm8450a.dtsi => sa8540p-pmics.dtsi} (90%)
-> 
-> -- 
-> 2.38.1
-> 
+> +  port:
+> +    $ref: /schemas/graph.yaml#/properties/port
+> +    description:
+> +      Port node with one endpoint connected to a USB Type-C connector node.
+> +
 
-Tested-by: Andrew Halaney <ahalaney@redhat.com> # sa8540p-ride
+This doesn't make sense. First, this phy has an otg and host phy, so 
+which one is it? Second, the USB connector graph is supposed to be 
+connected to the USB controllers, not a phy.
 
-Here's some naive tests I did for the record:
+But I guess we already have this in use, so I guess just mark it 
+deprecated to discourage more usage..
 
-    [root@localhost ~]# cat /proc/interrupts | grep alarm
-    180:          2          0          0          0          0          0          0          0  pmic_arb 101777441 Edge      pm8xxx_rtc_alarm
-    [root@localhost ~]# echocat /proc/interrupts | grep alarm> /sys/class/rtc/rtc0/wakealarm && sleep 10 && cat /proc/interrupts | grep alarm
-    180:          3     cat /proc/interrupts | grep alarm0          0  pmic_arb 101777441 Edge      pm8xxx_rtc_alarm
-    180:          3          0          0          0          0          0          0          0  pmic_arb 101777441 Edge      pm8xxx_rtc_alarm
-    [root@localhost ~]# 
-    [root@localhost ~]# 
-    [root@localhost ~]# cat /proc/interrupts | grep alarm
-    180:          3          0          0          0          0          0          0          0  pmic_arb 101777441 Edge      pm8xxx_rtc_alarm
-    [root@localhost ~]# echo $(date '+%s' -d '+ 10 seconds') > /sys/class/rtc/rtc0/wakealarm && sleep 10 && cat /proc/interrupts | grep alarm
-    180:          3          0          0          0          0          0          0          0  pmic_arb 101777441 Edge      pm8xxx_rtc_alarm
-    [root@localhost ~]# timedatectl && sleep 5 && timedatectl
-                   Local time: Wed 1970-01-14 05:20:32 UTC
-               Universal time: Wed 1970-01-14 05:20:32 UTC
-                     RTC time: Wed 1970-01-14 05:20:32
-                    Time zone: UTC (UTC, +0000)
-    System clock synchronized: no
-                  NTP service: active
-              RTC in local TZ: no
-                   Local time: Wed 1970-01-14 05:20:37 UTC
-               Universal time: Wed 1970-01-14 05:20:37 UTC
-                     RTC time: Wed 1970-01-14 05:20:37
-                    Time zone: UTC (UTC, +0000)
-    System clock synchronized: no
-                  NTP service: active
-              RTC in local TZ: no
-    [root@localhost ~]#
-
+Rob
