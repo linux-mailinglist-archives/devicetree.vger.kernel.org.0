@@ -2,68 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCAD8651F38
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 11:50:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BBE81651F3D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 11:52:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229766AbiLTKuL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 05:50:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57720 "EHLO
+        id S233425AbiLTKwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 05:52:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229749AbiLTKuK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 05:50:10 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12E8BAE74
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 02:50:09 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id bp15so17947267lfb.13
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 02:50:08 -0800 (PST)
+        with ESMTP id S233657AbiLTKwG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 05:52:06 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A7E0186B2
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 02:52:05 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id m29so17771610lfo.11
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 02:52:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=9gfcuA14rqPUTUjjsVp9VcIwRZasaVKQdRygjZ2irTU=;
-        b=anpeRiNM7FlnxT5gtmKwEo9mEc9aOuR5M4DaPXbt9wiIelhZdcKyYLsH612lT0gdbn
-         k4QJetrOLBEGyAF5BB/xzz09GIr8IYoOPuni7OuY50H3Je9KBocnD21s1cDJLacRSOCt
-         HxEoPB81hUQCY/IhV7rb28/FHCgqP+9h7g/RY8Zb2N0fXTc8w+Dk6Oiro79nAhSNsI2R
-         5vQPplpMQBhj2Run4kIKddQzon2gMb8F20JP4rR3ynDsUph9i5Gkx5DrGM9bR658Flqu
-         2oOVfMSYawPY18055kSFOQ//Q6uFcPFnScZlUFTeHHAKEPW6nNpR3GzDUMIRWWa5MAjU
-         JWXw==
+        bh=Xhjhk+r4I/urUe50CHvmJaxBj9q3ZzrLGBb8/x9cWjw=;
+        b=N7iPb/8U9sNHulv5n/T/nqtYGRGjrlGEMFOBX/D45ZP8pBDQ4bQn9gpWmqvXZ7SjyA
+         ShmX8Onj+yeLWXIMzWY/slE6G4UgoDzLe5+ETDepQe0pCWjO5t+OZ+dlXQUUPEH1B5pZ
+         lKY2Wk/RbKX1jia06jDA8UsJVXAUCPOozwk3L88tx1JGbt7dsyU4W7mawrqiiECvxWNB
+         4pFvgp9E3+W/Nv9hEcE9c740Af97tL4s2O6Rm0Lv88JbRX2S21A5jJTtgsvAC39cuBuL
+         FI4kTTD7IjvFfo8XATLf8eyKBD2sY/MKDEY2UjDalSHbh/BlEAx0L4vlRxG1RrpdweNU
+         locg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9gfcuA14rqPUTUjjsVp9VcIwRZasaVKQdRygjZ2irTU=;
-        b=KON6xwiqo6Un/rPiryL4uEnMHhfbV4uX7GP08UH/fOgqEgOIxOQ38w6Ndd0de7TYF4
-         QcD27WvWv6BOKaPOGM/76FgPzyjh1lvMK2Hs6lWq8gmCgageXSwM+DRdnChrkCSOsvOr
-         53sLGdVU4SDDsDhybuOFwuhx2x9a8TF8OczdIO3G3nGcf0h7IL0O9xxm/RFCWNn8TB1B
-         kVSHMkgZ9kX7psP5Gqnk8EHWMwTdJ4kl/IsgQ7vMWRS77+8Iiy8iW2qiYkcC+kzyV93R
-         +6kC6bRt7BQNkme5oQfA+cFFsg9zhzEZtNL75Y160aX8bS5Fj/0BhS5NKHFPpKHvEHBv
-         lfGw==
-X-Gm-Message-State: AFqh2krcNi0qWae/sYu1IcHfafFouqvSFVOLGC1SAAgKHJhr6Li7a/mV
-        MSUGchCc8U2sLoECPSFm48Cb5g==
-X-Google-Smtp-Source: AMrXdXuW0FVi+JBWXdCwrMCPwlIJkB9K57igjb8vvaYBBu5oPOgHP59tcGGEBi0Ow1zr3U4zP9sWhQ==
-X-Received: by 2002:a05:6512:308a:b0:4c0:91d0:e7bc with SMTP id z10-20020a056512308a00b004c091d0e7bcmr5642377lfd.26.1671533407452;
-        Tue, 20 Dec 2022 02:50:07 -0800 (PST)
+        bh=Xhjhk+r4I/urUe50CHvmJaxBj9q3ZzrLGBb8/x9cWjw=;
+        b=Y+OL7gf2M/MxaH1YHV8NHVmbfuQIm4a7+TaWYMqS44R8mhKMjxu2RA4Ey9EeonA11g
+         7BXY0bcXfBxMG0iRpob3HHgT0P2u7CMEw1HVm9eNRPb79aiLaxmNYDzi5k5BZozvWMft
+         4ry+fowxuiNAEocfyX8P0VjU1GEVgRqZW6SgYWE9dDYGdhP6WidQvYIEche9YWs1FuRt
+         hr0+yZaF/SXsd+IjLwnV9q6K/kWAK7hISzGbu8zq7gnpE6np+g5kNm3F/lroEQKEUrI9
+         7ZxS/ZOtv2w9ThjNdElbiOSN0dagLrD/b0ZLxVgYfZGIGmYioHXUS77YWSFegx8FxadJ
+         EVew==
+X-Gm-Message-State: ANoB5pl9dswKOS4h4RkWJ06/QCd2e+CNSQdbgnW/cXrbbTS+iB54KzVy
+        3cHOazI13gAgx1azJZJo0R7BJQ==
+X-Google-Smtp-Source: AA0mqf57xGpbOxVQYqGlY6dApDnrR3iSOA73z3w87Bf1ofEDLxMNEwYRikJWL2oK3oz6tOWmIy39Sg==
+X-Received: by 2002:a19:6a0f:0:b0:4b5:6db0:d598 with SMTP id u15-20020a196a0f000000b004b56db0d598mr12785985lfu.20.1671533523447;
+        Tue, 20 Dec 2022 02:52:03 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id m8-20020a056512358800b004b5284a92f9sm1404763lfr.208.2022.12.20.02.50.06
+        by smtp.gmail.com with ESMTPSA id c5-20020a056512074500b004994117b0fdsm1398758lfs.281.2022.12.20.02.52.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Dec 2022 02:50:06 -0800 (PST)
-Message-ID: <ff5b09db-4900-0b5b-e821-fa05b8d907a4@linaro.org>
-Date:   Tue, 20 Dec 2022 11:50:05 +0100
+        Tue, 20 Dec 2022 02:52:03 -0800 (PST)
+Message-ID: <a3414477-eb9b-83ee-ab11-b2b629b6d23b@linaro.org>
+Date:   Tue, 20 Dec 2022 11:52:02 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH] arm64: dts: ti: k3-j721s2: Add support for ADC nodes
+Subject: Re: [PATCH 2/3] dt-bindings: m41t80: add xtal load capacitance
 Content-Language: en-US
-To:     Bhavya Kapoor <b-kapoor@ti.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        kristo@kernel.org, nm@ti.com
-References: <20221220101249.46450-1-b-kapoor@ti.com>
+To:     Dennis Lambe Jr <dennis@sparkcharge.io>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rtc@vger.kernel.org, Alexander Bigga <ab@mycable.de>
+References: <20221219190915.3912384-1-dennis@sparkcharge.io>
+ <20221219190915.3912384-3-dennis@sparkcharge.io>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221220101249.46450-1-b-kapoor@ti.com>
+In-Reply-To: <20221219190915.3912384-3-dennis@sparkcharge.io>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -75,48 +78,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/12/2022 11:12, Bhavya Kapoor wrote:
-> J721s2 has two instances of 8 channel ADCs in MCU domain. Add DT nodes
-> for 8 channel ADCs for J721s2 SoC.
+On 19/12/2022 20:09, Dennis Lambe Jr wrote:
+> The ST m41t82 and m41t83 support programmable load capacitance from 3.5
+> pF to 17.4 pF. The hardware defaults to 12.5 pF.
 > 
-> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+> The accuracy of the xtal can be calibrated precisely by adjusting the
+> load capacicance.
+> 
+> Add default, minimum, and maximum for the standard rtc property
+> quartz-load-femtofarads on compatible devices.
+> 
+> Signed-off-by: Dennis Lambe Jr <dennis@sparkcharge.io>
 > ---
->  .../dts/ti/k3-j721s2-common-proc-board.dts    | 14 +++++++
->  .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     | 42 ++++++++++++++++++-
->  2 files changed, 55 insertions(+), 1 deletion(-)
+>  .../devicetree/bindings/rtc/st,m41t80.yaml     | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-> index a7aa6cf08acd..67593aa69327 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-> @@ -309,3 +309,17 @@ &mcu_mcan1 {
->  	pinctrl-0 = <&mcu_mcan1_pins_default>;
->  	phys = <&transceiver2>;
->  };
+> diff --git a/Documentation/devicetree/bindings/rtc/st,m41t80.yaml b/Documentation/devicetree/bindings/rtc/st,m41t80.yaml
+> index fc9c6da6483f..6b72580dc031 100644
+> --- a/Documentation/devicetree/bindings/rtc/st,m41t80.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/st,m41t80.yaml
+> @@ -33,6 +33,11 @@ properties:
+>    "#clock-cells":
+>      const: 1
+>  
+> +  quartz-load-femtofarads:
+> +    default: 12500
+> +    minimum: 3500
+> +    maximum: 17375
 > +
-> +&tscadc0 {
-> +	status = "okay";
-> +	adc {
-> +		ti,adc-channels = <0 1 2 3 4 5 6 7>;
-> +	};
-> +};
+>    clock-output-names:
+>      maxItems: 1
+>      description: From common clock binding to override the default output clock name.
+> @@ -44,8 +49,21 @@ properties:
+>        clock-frequency:
+>          const: 32768
+>  
+> +  wakeup-source: true
+
+Why do you need it here? It's already accepted in rtc.yaml. Adding it is
+not explained in commit msg.
+
 > +
-> +&tscadc1 {
-> +	status = "okay";
-> +	adc {
-> +		ti,adc-channels = <0 1 2 3 4 5 6 7>;
-> +	};
-> +};
-> \ No newline at end of file
+>  allOf:
 
-This is a friendly reminder during the review process.
-
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
-
-Thank you.
 
 Best regards,
 Krzysztof
