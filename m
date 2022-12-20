@@ -2,87 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB06365270E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 20:32:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D728B652715
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 20:34:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234189AbiLTTcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 14:32:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55038 "EHLO
+        id S229958AbiLTTdc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 14:33:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233411AbiLTTbn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 14:31:43 -0500
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9778BE29;
-        Tue, 20 Dec 2022 11:30:49 -0800 (PST)
-Received: by mail-oi1-f170.google.com with SMTP id r130so11466206oih.2;
-        Tue, 20 Dec 2022 11:30:49 -0800 (PST)
+        with ESMTP id S234225AbiLTTdK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 14:33:10 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEA131E3FB
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 11:32:44 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id cf42so20171746lfb.1
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 11:32:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mdum3ASsDZJVSBVTfiI3cFyg/lFTrN1LUC9FLkDQJq8=;
+        b=gysPflQ3Dudbc0ydciRVmEjBZ3UAY70FpTbtRgh8VmOOC+rWcu6nz0zw973I46Y/j0
+         +1rkdHjrqAXDyZuypgPs4Ouw1QYHbW0AOWYVyi3J8xRQlhNlLiR2dgoSl0kFZFSqq2jf
+         za6505KPlo54bMFncMq37I26dFpgR1uWfF6d6OTo++XCZFVTbBAVczanuTQm4mQ4CK0m
+         0D6eQBcrLU+MlKxpSvb70bht8tunEr/0+rs68Q4cGnMjdwG3/QJIuqNGHQcfvg+yJ08M
+         y5tI1rMU9wRyBBIvf/QQbMVCvlxn7EWhdXx9JYyFm9yEZ2k8FgMeJE5ChHRynT9kzZ05
+         yRHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YjPWJdrfuOFUB0CxhY2KgzX/9aMI9KNfJtBkyKPTgBY=;
-        b=qcw2rTWZZpOrRu22A9A4I14nTcqZUUQyBFUq8MWTysogNgdAHfGnSe0PJW43WVpCnQ
-         YHyWTd9HYD9gjf71csL/omMhd1z577lsBLylJISTVDjojkwp/aFXARE/FIPvrKoUCFno
-         Jl2fYrDXRWcPOm+CfGYAI/Wr+0M/qw2HZ1Zk3Te0zAic3E0OW+z+PjNQsPf6XasvITai
-         to5x0bMzbH3SjjvcbZY8fjqOUSeHsGs2TklFjUBukSCgvjGqnfIbJ86ZBnAmwGX42lie
-         sftUjhz+gO2LbjRGv39/dM6kvtE6kCutfChdq+2FVVRtFZSq2QgmteYqHrL+W/1U4jGZ
-         7O1w==
-X-Gm-Message-State: ANoB5pn2qEwSVClZ2lA1cmkKo3BY38/UXDTh0y/F+bdeGLQP6huHKFQ2
-        dJs4/4BARfAqCVHv9vnVky6XNjkfcw==
-X-Google-Smtp-Source: AA0mqf6huOkGLq+cZrYjEX9nrpp2rVd1Ik6MMGx1iXDY4GY8xpjiRL2Mon+jx0pcCkOHhJlSPEf6oQ==
-X-Received: by 2002:aca:1a1a:0:b0:35e:bc27:de53 with SMTP id a26-20020aca1a1a000000b0035ebc27de53mr12061752oia.17.1671564648964;
-        Tue, 20 Dec 2022 11:30:48 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l22-20020a056808021600b0035c4ec78d0esm5826162oie.47.2022.12.20.11.30.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Dec 2022 11:30:48 -0800 (PST)
-Received: (nullmailer pid 951382 invoked by uid 1000);
-        Tue, 20 Dec 2022 19:30:47 -0000
-Date:   Tue, 20 Dec 2022 13:30:47 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     haibo.chen@nxp.com
-Cc:     jic23@kernel.org, lars@metafoo.de,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: iio: adc: Add binding documentation
- for NXP IMX93 ADC
-Message-ID: <20221220193047.GA946657-robh@kernel.org>
-References: <20221219101336.3929570-1-haibo.chen@nxp.com>
- <20221219101336.3929570-3-haibo.chen@nxp.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mdum3ASsDZJVSBVTfiI3cFyg/lFTrN1LUC9FLkDQJq8=;
+        b=IBxAHyoxopRhvXsBTZLFVvNFFlU1dGAPCrJaAt9vCp0kzmeRRbtQTX8sl3b+U+31pQ
+         bhy0hZMHER7QFRvJTWQQUbRvNeZC1TYGRlgaLIsCL47KQcglqSdAanBd48I7IXHGA4kL
+         MpNhCYW2t2QmeJQ8lbMBZJx/3j7gtkcH2d37a6gqIXdQYTfFuKpBixVr9fp/w3v71sON
+         9CgDzCg4Uo3617DTAJcvLb57WKiaofevjeNIQmAo6Jab/TyWdR0Y7N6gR9w7SYXRs0es
+         i/HC/1swNSYC2W/dmS1/vOQJxnB2bgi8LjfhufW1clgErHOCWbTsN2ml744sadG0IC4b
+         v+fA==
+X-Gm-Message-State: ANoB5plmjb4dOM2wxPLjO3oZGSjyt5jHMsdiG0XXddPY56quDNM4MWfx
+        Lv54u8G/56X91BCIPzpn+JWdBpXWpGs46eah
+X-Google-Smtp-Source: AA0mqf58yoyhTkjIdRF2KWzIBQLlNZ1jpgVI1TAyr+07fJE0lcHEM7+R1GTWivzPGEiU0gYi1dIj4w==
+X-Received: by 2002:a05:6512:21ce:b0:4aa:f1f2:ad7a with SMTP id d14-20020a05651221ce00b004aaf1f2ad7amr12640886lft.49.1671564763280;
+        Tue, 20 Dec 2022 11:32:43 -0800 (PST)
+Received: from [192.168.1.101] (abyl184.neoplus.adsl.tpnet.pl. [83.9.31.184])
+        by smtp.gmail.com with ESMTPSA id u2-20020ac24c22000000b004979db5aa5bsm1568212lfq.223.2022.12.20.11.32.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Dec 2022 11:32:42 -0800 (PST)
+Message-ID: <66140726-0771-a28b-4916-cc3aef569cab@linaro.org>
+Date:   Tue, 20 Dec 2022 20:32:41 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221219101336.3929570-3-haibo.chen@nxp.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v4 2/4] arm64: dts: qcom: sm6125: Add UFS nodes
+Content-Language: en-US
+To:     Lux Aliaga <they@mint.lgbt>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221215190404.398788-1-they@mint.lgbt>
+ <20221215190404.398788-2-they@mint.lgbt>
+ <e474f99d-2375-c8db-203c-632c918d8e4d@linaro.org>
+ <9c185e36-4342-0f8e-1816-494303ebd072@mint.lgbt>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <9c185e36-4342-0f8e-1816-494303ebd072@mint.lgbt>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 19, 2022 at 06:13:35PM +0800, haibo.chen@nxp.com wrote:
-> From: Haibo Chen <haibo.chen@nxp.com>
 
-For the subject, no need to say 'binding documentation' twice:
 
-dt-bindings: iio: adc: Add NXP IMX93 ADC
-
+On 20.12.2022 19:57, Lux Aliaga wrote:
+> On 16/12/2022 08:24, Konrad Dybcio wrote:
 > 
-> The IMX93 SoC has a new ADC IP, so add binding documentation
-> for NXP IMX93 ADC.
+>>
+>> On 15.12.2022 20:04, Lux Aliaga wrote:
+>>> Adds a UFS host controller node and its corresponding PHY to
+>>> the sm6125 platform.
+>>>
+>>> Signed-off-by: Lux Aliaga <they@mint.lgbt>
+>>> ---
+>> Please include a changelog, I don't know what you changed and
+>> what you didn't. Also, you sent 4 revisions in one day, not
+>> letting others review it.
+>>
+>>
+>>>   arch/arm64/boot/dts/qcom/sm6125.dtsi | 67 ++++++++++++++++++++++++++++
+>>>   1 file changed, 67 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi b/arch/arm64/boot/dts/qcom/sm6125.dtsi
+>>> index 7e25a4f85594..b64c5bc1452f 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sm6125.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sm6125.dtsi
+>>> @@ -508,6 +508,73 @@ sdhc_2: mmc@4784000 {
+>>>               status = "disabled";
+>>>           };
+>>>   +        ufs_mem_hc: ufs@4804000 {
+>>> +            compatible = "qcom,sm6125-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
+>>> +            reg = <0x04804000 0x3000>, <0x04810000 0x8000>;
+>>> +            reg-names = "std", "ice";
+>>> +            interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
+>>> +            phys = <&ufs_mem_phy_lanes>;
+>>> +            phy-names = "ufsphy";
+>>> +            lanes-per-direction = <1>;
+>>> +            #reset-cells = <1>;
+>>> +            resets = <&gcc GCC_UFS_PHY_BCR>;
+>>> +            reset-names = "rst";
+>>> +
+>>> +            clock-names = "core_clk",
+>>> +                      "bus_aggr_clk",
+>>> +                      "iface_clk",
+>>> +                      "core_clk_unipro",
+>>> +                      "ref_clk",
+>>> +                      "tx_lane0_sync_clk",
+>>> +                      "rx_lane0_sync_clk",
+>>> +                      "ice_core_clk";
+>>> +            clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
+>>> +                 <&gcc GCC_SYS_NOC_UFS_PHY_AXI_CLK>,
+>>> +                 <&gcc GCC_UFS_PHY_AHB_CLK>,
+>>> +                 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
+>>> +                 <&rpmcc RPM_SMD_XO_CLK_SRC>,
+>>> +                 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
+>>> +                 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
+>>> +                 <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
+>>> +            freq-table-hz = <50000000 240000000>,
+>>> +                    <0 0>,
+>>> +                    <0 0>,
+>>> +                    <37500000 150000000>,
+>>> +                    <0 0>,
+>>> +                    <0 0>,
+>>> +                    <0 0>,
+>>> +                    <75000000 300000000>;
+>>> +
+>>> +            non-removable;
+>>> +            status = "disabled";
+>>> +        };
+>>> +
+>>> +        ufs_mem_phy: phy@4807000 {
+>>> +            compatible = "qcom,sm6115-qmp-ufs-phy";
+>> Krzysztof asked you to add a SoC-specific compatible in v1.
+> I'm working on adding a new compatible for sm6125's UFS PHY. Should I copy sm6115's tables or just reference them in the sm6125's config in drivers/phy/qualcomm/phy-qcom-qmp-ufs.c?
+If they're identical, you can just do something like this:
+
+compatible = "qcom,sm6125-qmp-ufs-phy", "qcom,sm6115-qmp-ufs-phy";
+
+And ensure your newly added compatible is documented in bindings.
+This way, the driver will fall back to the 6115 compatible that's
+defined in .c, but if we ever need to adjust something specific
+for 6125, we will just use the define that we added here. That's
+important, as we're supposed to stay backwards-compatible with
+old device trees.
+
+Also, wrap your emails at around 80 chars or so, some people
+are grumpy about that :P
+
+Konrad
 > 
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
-> ---
->  .../bindings/iio/adc/nxp,imx93-adc.yaml       | 81 +++++++++++++++++++
->  1 file changed, 81 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
-
-With that,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
