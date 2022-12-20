@@ -2,96 +2,267 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDDEB652195
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 14:33:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49EC0652199
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 14:35:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233392AbiLTNdk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 08:33:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53314 "EHLO
+        id S233589AbiLTNfG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 08:35:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229522AbiLTNdh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 08:33:37 -0500
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 613BF18B3E;
-        Tue, 20 Dec 2022 05:33:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=PBKohcfzjSqRdddPpAv4Rwpq7IkcN9J0lMnnbLlGi0M=; b=Z9cx2J1jhbD8p1DOS0Grff44Qn
-        5pp0l9vnMbZknZIlhVTaanZNAJrZ7hCXkOyvCGELpS/Pddu7B5x6tOAS9riIEDi2hDtZzwdRJM4pJ
-        gEzkqbDNXRr6j86EJFL6H8M5eVvVWpqemh0+HsOYXB8NP0WWF3NHGTrDjlOd63wlPkMo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1p7ckI-0005gG-Lp; Tue, 20 Dec 2022 14:33:26 +0100
-Date:   Tue, 20 Dec 2022 14:33:26 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Michael Walle <michael@walle.cc>
-Cc:     Xu Liang <lxu@maxlinear.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S233569AbiLTNfF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 08:35:05 -0500
+Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8FF018E15
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 05:35:02 -0800 (PST)
+Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-3bf4ade3364so169022657b3.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 05:35:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=CVRvy3Zwd4BHRC6erjG/yd9oXmYCOUUBiEqJLMzBd4k=;
+        b=u+eL2eSz4Bv5CA81UcA9onoJs2UyrheC7TFg/EQMmrB5+GDUgDY6CxuQS25L2RK8M7
+         TclTpg4H+piUauq31FzZtF5j02ZjuhzkioEJfOtuvKEWHJW0jvYxBGfNOtasOb9saZsN
+         MlekkM0NqdpKtZw+gVEYu6Am858C7cquyJ/bGFDS4TSQHw8qmeFQO9ZfrcvMxYfnLh/y
+         soby5bno42RVEzpAd/UlcPGjiw6EpNE3zQYzkjBZJ7RevpGav9fX2rQbZ1TMX2J9q6mY
+         5e2spt+3NASccNxl3AaxpmUK73XBls38Tx/gpaOmLn4jha0YeCAMW4s4aWCeGOYh9MMv
+         BkGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CVRvy3Zwd4BHRC6erjG/yd9oXmYCOUUBiEqJLMzBd4k=;
+        b=t+5CJ2QDo/hVfjxVySBZnl1/ukeS74IWKVpJt8vV1XVxtVTB5LJz2X8Mtd3jp4fyV2
+         FS3L9NpZX023urtlHUfjaDMwska7h8BtUxqIHRYmv8WH79jKjwCQlvg9GtSbtF3oJbly
+         4oU01OUH0k0PVYBo7w1+LXeoO0m6Mr3oklFSXNchFy6mHZHxSvh9ZmS8M08jh7fgLoKw
+         4ID36h7/EfBtzyqJ8GAaAYSNtbG+RS2OlB09R0xkUoOHmB1KbEY3OeecCyRyCF98HO2W
+         Qh0Uqe/jwbohE+n25ALcg6q/tYfe556Zh8iaUXD508iy5SXqjSOcM2llw1jCOa3g853o
+         kLeQ==
+X-Gm-Message-State: AFqh2kpDB4q3osxhkYPA8lYGlxJCBY4gR1eeMk2FaFl4ddoW2vWlsBgM
+        X5aZXbUnEc/FUpsEmpo6Cg1kFY0paBWPR2z1rIRy0Q==
+X-Google-Smtp-Source: AMrXdXtbbN+GFvcN2ctLBAsYtbrL/dd2+KyKV9S2iXx4H4AEc1uFmw89+imboCoSKXx57WJj4s8ByfXY3XP4T/8ade0=
+X-Received: by 2002:a0d:d643:0:b0:370:4c23:eacc with SMTP id
+ y64-20020a0dd643000000b003704c23eaccmr1115777ywd.127.1671543301820; Tue, 20
+ Dec 2022 05:35:01 -0800 (PST)
+MIME-Version: 1.0
+References: <20221220024721.947147-1-dmitry.baryshkov@linaro.org>
+ <20221220024721.947147-11-dmitry.baryshkov@linaro.org> <78a29328-a53b-7a09-c228-b7c373683ca4@linaro.org>
+In-Reply-To: <78a29328-a53b-7a09-c228-b7c373683ca4@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 20 Dec 2022 15:34:50 +0200
+Message-ID: <CAA8EJprN-oppse9Ktoxyk6MUhu7vk4pJ84tv5XyviyG+ODa0=A@mail.gmail.com>
+Subject: Re: [PATCH v3 10/15] thermal/drivers/tsens: Drop single-cell code for msm8976/msm8956
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v1 4/4] net: phy: mxl-gpy: disable interrupts on
- GPY215 by default
-Message-ID: <Y6G5phSGSPk+7Dgj@lunn.ch>
-References: <20221202151204.3318592-1-michael@walle.cc>
- <20221202151204.3318592-5-michael@walle.cc>
- <Y4pHCQrDbXXmOT+A@lunn.ch>
- <69e0468cf192455fd2dc7fc93194a8ff@walle.cc>
- <Y4uzYVSRiE9feD01@lunn.ch>
- <34dc81b01930e594ca4773ddb8c24160@walle.cc>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <34dc81b01930e594ca4773ddb8c24160@walle.cc>
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > Yes, it is a valid point to do this check, but on its own i don't
-> > think it is sufficient.
-> 
-> Care to elaborate a bit? E.g. what is the difference to the case
-> the phy would have an interrupt described but no .config_intr()
-> op.
-> 
-> > > > I think a better place for this test is in gpy_config_intr(), return
-> > > > -EOPNOTSUPP. phy_enable_interrupts() failing should then cause
-> > > > phy_request_interrupt() to use polling.
-> > > 
-> > > Which will then print a warning, which might be misleading.
-> > > Or we disable the warning if -EOPNOTSUPP is returned?
-> > 
-> > Disabling the warning is the right thing to do.
-> 
-> There is more to this. .config_intr() is also used in
-> phy_init_hw() and phy_drv_supports_irq(). The latter would
-> still return true in our case. I'm not sure that is correct.
-> 
-> After trying your suggestion, I'm still in favor of somehow
-> tell the phy core to force polling mode during probe() of the
-> driver.
+On Tue, 20 Dec 2022 at 12:24, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+> On 20.12.2022 03:47, Dmitry Baryshkov wrote:
+> > There is no dtsi file for msm8976 in the kernel sources.
+> This is not true :/
+>
+> But it has just been merged, if we get there fast, we can get
+> this patch going *and* convert the node to use fuses..
+> Unless breaking a platform that's only in linux-next would be
+> an issue.. Maybe we could prettyplease ask Bjorn to send a
+> -fixes pull with a "remove tsens node from 8976" commit?
+> Not sure if it's too late or not...
 
-The problem is that the MAC can set the interrupt number after the PHY
-probe has been called. e.g.
+Ugh. It's a pity that I missed the dtsi. Bjorn, Angelo, Marijn, any thoughts?
 
-https://elixir.bootlin.com/linux/latest/source/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c#L524
+> Konrad
+> Drop the
+> > compatibility with unofficial dtsi and remove support for handling the
+> > single-cell calibration data on msm8976.
+> >
+> > Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> >  drivers/thermal/qcom/tsens-v1.c | 126 +-------------------------------
+> >  1 file changed, 2 insertions(+), 124 deletions(-)
+> >
+> > diff --git a/drivers/thermal/qcom/tsens-v1.c b/drivers/thermal/qcom/tsens-v1.c
+> > index 89955522041d..9151c1043a11 100644
+> > --- a/drivers/thermal/qcom/tsens-v1.c
+> > +++ b/drivers/thermal/qcom/tsens-v1.c
+> > @@ -21,63 +21,6 @@
+> >  #define TM_HIGH_LOW_INT_STATUS_OFF           0x0088
+> >  #define TM_HIGH_LOW_Sn_INT_THRESHOLD_OFF     0x0090
+> >
+> > -/* eeprom layout data for msm8956/76 (v1) */
+> > -#define MSM8976_BASE0_MASK   0xff
+> > -#define MSM8976_BASE1_MASK   0xff
+> > -#define MSM8976_BASE1_SHIFT  8
+> > -
+> > -#define MSM8976_S0_P1_MASK   0x3f00
+> > -#define MSM8976_S1_P1_MASK   0x3f00000
+> > -#define MSM8976_S2_P1_MASK   0x3f
+> > -#define MSM8976_S3_P1_MASK   0x3f000
+> > -#define MSM8976_S4_P1_MASK   0x3f00
+> > -#define MSM8976_S5_P1_MASK   0x3f00000
+> > -#define MSM8976_S6_P1_MASK   0x3f
+> > -#define MSM8976_S7_P1_MASK   0x3f000
+> > -#define MSM8976_S8_P1_MASK   0x1f8
+> > -#define MSM8976_S9_P1_MASK   0x1f8000
+> > -#define MSM8976_S10_P1_MASK  0xf8000000
+> > -#define MSM8976_S10_P1_MASK_1        0x1
+> > -
+> > -#define MSM8976_S0_P2_MASK   0xfc000
+> > -#define MSM8976_S1_P2_MASK   0xfc000000
+> > -#define MSM8976_S2_P2_MASK   0xfc0
+> > -#define MSM8976_S3_P2_MASK   0xfc0000
+> > -#define MSM8976_S4_P2_MASK   0xfc000
+> > -#define MSM8976_S5_P2_MASK   0xfc000000
+> > -#define MSM8976_S6_P2_MASK   0xfc0
+> > -#define MSM8976_S7_P2_MASK   0xfc0000
+> > -#define MSM8976_S8_P2_MASK   0x7e00
+> > -#define MSM8976_S9_P2_MASK   0x7e00000
+> > -#define MSM8976_S10_P2_MASK  0x7e
+> > -
+> > -#define MSM8976_S0_P1_SHIFT  8
+> > -#define MSM8976_S1_P1_SHIFT  20
+> > -#define MSM8976_S2_P1_SHIFT  0
+> > -#define MSM8976_S3_P1_SHIFT  12
+> > -#define MSM8976_S4_P1_SHIFT  8
+> > -#define MSM8976_S5_P1_SHIFT  20
+> > -#define MSM8976_S6_P1_SHIFT  0
+> > -#define MSM8976_S7_P1_SHIFT  12
+> > -#define MSM8976_S8_P1_SHIFT  3
+> > -#define MSM8976_S9_P1_SHIFT  15
+> > -#define MSM8976_S10_P1_SHIFT 27
+> > -#define MSM8976_S10_P1_SHIFT_1       0
+> > -
+> > -#define MSM8976_S0_P2_SHIFT  14
+> > -#define MSM8976_S1_P2_SHIFT  26
+> > -#define MSM8976_S2_P2_SHIFT  6
+> > -#define MSM8976_S3_P2_SHIFT  18
+> > -#define MSM8976_S4_P2_SHIFT  14
+> > -#define MSM8976_S5_P2_SHIFT  26
+> > -#define MSM8976_S6_P2_SHIFT  6
+> > -#define MSM8976_S7_P2_SHIFT  18
+> > -#define MSM8976_S8_P2_SHIFT  9
+> > -#define MSM8976_S9_P2_SHIFT  21
+> > -#define MSM8976_S10_P2_SHIFT 1
+> > -
+> > -#define MSM8976_CAL_SEL_MASK 0x3
+> > -
+> >  /* eeprom layout data for qcs404/405 (v1) */
+> >  #define BASE0_MASK   0x000007f8
+> >  #define BASE1_MASK   0x0007f800
+> > @@ -207,71 +150,6 @@ static int calibrate_v1(struct tsens_priv *priv)
+> >       return 0;
+> >  }
+> >
+> > -static int calibrate_8976(struct tsens_priv *priv)
+> > -{
+> > -     int base0 = 0, base1 = 0, i;
+> > -     u32 p1[11], p2[11];
+> > -     int mode = 0, tmp = 0;
+> > -     u32 *qfprom_cdata;
+> > -
+> > -     qfprom_cdata = (u32 *)qfprom_read(priv->dev, "calib");
+> > -     if (IS_ERR(qfprom_cdata))
+> > -             return PTR_ERR(qfprom_cdata);
+> > -
+> > -     mode = (qfprom_cdata[4] & MSM8976_CAL_SEL_MASK);
+> > -     dev_dbg(priv->dev, "calibration mode is %d\n", mode);
+> > -
+> > -     switch (mode) {
+> > -     case TWO_PT_CALIB:
+> > -             base1 = (qfprom_cdata[2] & MSM8976_BASE1_MASK) >> MSM8976_BASE1_SHIFT;
+> > -             p2[0] = (qfprom_cdata[0] & MSM8976_S0_P2_MASK) >> MSM8976_S0_P2_SHIFT;
+> > -             p2[1] = (qfprom_cdata[0] & MSM8976_S1_P2_MASK) >> MSM8976_S1_P2_SHIFT;
+> > -             p2[2] = (qfprom_cdata[1] & MSM8976_S2_P2_MASK) >> MSM8976_S2_P2_SHIFT;
+> > -             p2[3] = (qfprom_cdata[1] & MSM8976_S3_P2_MASK) >> MSM8976_S3_P2_SHIFT;
+> > -             p2[4] = (qfprom_cdata[2] & MSM8976_S4_P2_MASK) >> MSM8976_S4_P2_SHIFT;
+> > -             p2[5] = (qfprom_cdata[2] & MSM8976_S5_P2_MASK) >> MSM8976_S5_P2_SHIFT;
+> > -             p2[6] = (qfprom_cdata[3] & MSM8976_S6_P2_MASK) >> MSM8976_S6_P2_SHIFT;
+> > -             p2[7] = (qfprom_cdata[3] & MSM8976_S7_P2_MASK) >> MSM8976_S7_P2_SHIFT;
+> > -             p2[8] = (qfprom_cdata[4] & MSM8976_S8_P2_MASK) >> MSM8976_S8_P2_SHIFT;
+> > -             p2[9] = (qfprom_cdata[4] & MSM8976_S9_P2_MASK) >> MSM8976_S9_P2_SHIFT;
+> > -             p2[10] = (qfprom_cdata[5] & MSM8976_S10_P2_MASK) >> MSM8976_S10_P2_SHIFT;
+> > -
+> > -             for (i = 0; i < priv->num_sensors; i++)
+> > -                     p2[i] = ((base1 + p2[i]) << 2);
+> > -             fallthrough;
+> > -     case ONE_PT_CALIB2:
+> > -             base0 = qfprom_cdata[0] & MSM8976_BASE0_MASK;
+> > -             p1[0] = (qfprom_cdata[0] & MSM8976_S0_P1_MASK) >> MSM8976_S0_P1_SHIFT;
+> > -             p1[1] = (qfprom_cdata[0] & MSM8976_S1_P1_MASK) >> MSM8976_S1_P1_SHIFT;
+> > -             p1[2] = (qfprom_cdata[1] & MSM8976_S2_P1_MASK) >> MSM8976_S2_P1_SHIFT;
+> > -             p1[3] = (qfprom_cdata[1] & MSM8976_S3_P1_MASK) >> MSM8976_S3_P1_SHIFT;
+> > -             p1[4] = (qfprom_cdata[2] & MSM8976_S4_P1_MASK) >> MSM8976_S4_P1_SHIFT;
+> > -             p1[5] = (qfprom_cdata[2] & MSM8976_S5_P1_MASK) >> MSM8976_S5_P1_SHIFT;
+> > -             p1[6] = (qfprom_cdata[3] & MSM8976_S6_P1_MASK) >> MSM8976_S6_P1_SHIFT;
+> > -             p1[7] = (qfprom_cdata[3] & MSM8976_S7_P1_MASK) >> MSM8976_S7_P1_SHIFT;
+> > -             p1[8] = (qfprom_cdata[4] & MSM8976_S8_P1_MASK) >> MSM8976_S8_P1_SHIFT;
+> > -             p1[9] = (qfprom_cdata[4] & MSM8976_S9_P1_MASK) >> MSM8976_S9_P1_SHIFT;
+> > -             p1[10] = (qfprom_cdata[4] & MSM8976_S10_P1_MASK) >> MSM8976_S10_P1_SHIFT;
+> > -             tmp = (qfprom_cdata[5] & MSM8976_S10_P1_MASK_1) << MSM8976_S10_P1_SHIFT_1;
+> > -             p1[10] |= tmp;
+> > -
+> > -             for (i = 0; i < priv->num_sensors; i++)
+> > -                     p1[i] = (((base0) + p1[i]) << 2);
+> > -             break;
+> > -     default:
+> > -             for (i = 0; i < priv->num_sensors; i++) {
+> > -                     p1[i] = 500;
+> > -                     p2[i] = 780;
+> > -             }
+> > -             break;
+> > -     }
+> > -
+> > -     compute_intercept_slope(priv, p1, p2, mode);
+> > -     kfree(qfprom_cdata);
+> > -
+> > -     return 0;
+> > -}
+> > -
+> >  /* v1.x: msm8956,8976,qcs404,405 */
+> >
+> >  static struct tsens_features tsens_v1_feat = {
+> > @@ -370,7 +248,7 @@ struct tsens_plat_data data_tsens_v1 = {
+> >
+> >  static const struct tsens_ops ops_8956 = {
+> >       .init           = init_8956,
+> > -     .calibrate      = calibrate_8976,
+> > +     .calibrate      = tsens_calibrate_common,
+> >       .get_temp       = get_temp_tsens_valid,
+> >  };
+> >
+> > @@ -383,7 +261,7 @@ struct tsens_plat_data data_8956 = {
+> >
+> >  static const struct tsens_ops ops_8976 = {
+> >       .init           = init_common,
+> > -     .calibrate      = calibrate_8976,
+> > +     .calibrate      = tsens_calibrate_common,
+> >       .get_temp       = get_temp_tsens_valid,
+> >  };
+> >
 
-The interrupt needs to be set by the time the PHY is connected to the
-MAC, which is often in the MAC open method, much later than the PHY
-probe.
 
-     Andrew
+
+-- 
+With best wishes
+Dmitry
