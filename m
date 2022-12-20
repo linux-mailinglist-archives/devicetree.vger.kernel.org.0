@@ -2,141 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B64A0651D37
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 10:22:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDD33651D5D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 10:33:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233433AbiLTJWv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 04:22:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35474 "EHLO
+        id S229769AbiLTJdE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 04:33:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233320AbiLTJVy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 04:21:54 -0500
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30A83265F
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 01:21:53 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id q2so2549598ljp.6
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 01:21:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DazyWikdI/OzsaaGF39wdaaOlC0XReiy+hFbZZu2Q1I=;
-        b=Hjx00EFpYwP45LwbOziknhwz2zKD+sbAMQ86G061nKhGmmw4qE9jTARKz07mPQht/T
-         1k3StqDnfBGg121+F/oghnfJ9rq45ATS7T/HkmOYgKWBy4gkWf1knqsSRRSXgICSBb64
-         LOnH0EU+gXHUGouF9PyD26nOG17gg7A6Ree5Xf6VXHvU3FD28v/R/8J3IMmUXbgrPHuZ
-         PwNTg1Ah8mxrVtEKBQ+uyoqNGDocJ5EoyqxLd3xjEQiPYtsUzWa5ZBVVxPSI8FTARB/J
-         UQc7cBaoU0zJ6qX97ehqfCmzi4XGWcNRqqIsqHj3v6iy/p7nocOFGOsMiylkAUKKB76R
-         KD3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DazyWikdI/OzsaaGF39wdaaOlC0XReiy+hFbZZu2Q1I=;
-        b=g9w24tMPAIhZAh/Z34kHNl3FvgoAzJOcams+r3A3gVF+eINrPxHVvk+O5Xf71/vkiR
-         qP0/qLpfLZw50avu8yapZr3rF7y9nKRqpYJzAJ8MFM5gMzpjqxjlY3VPScw9tlWxNHL+
-         yJtiBt8Xf6ktG60Y/2APkKMMei1bFGjGlcalqczXcCKkDMsSNBYsxxjQdpoE+5EfKln0
-         mh7feFvf5hz9DdjkWSgnJ7XkR3YFMdtoxtZmy0kPyJ2pbA+D5MQxSROoov+CSnmLbKaP
-         8RAYWrj0U0L/h2QISQoPB3NWjlmclMfq8fY6XJieuV3f1KQYs55GbCGKpA4zUoYejla6
-         uV2g==
-X-Gm-Message-State: ANoB5pl1fLm4v2NJ1ScH0OD0GGzo6Ga1NhWXl6M6qyr84O5XQ/qfBZcs
-        rgFXZt7ykrm0gcPJCgermUeJbw==
-X-Google-Smtp-Source: AA0mqf7cINmxUQTVHIA51W+eyOnDgUmlNBK3MC35Vz0emZ06VI2+JlnPdeEHi9nVd6I2/sVZYIoByA==
-X-Received: by 2002:a2e:3205:0:b0:27b:490b:8478 with SMTP id y5-20020a2e3205000000b0027b490b8478mr10500411ljy.36.1671528111530;
-        Tue, 20 Dec 2022 01:21:51 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id s8-20020a05651c048800b00279d73cdf83sm943007ljc.128.2022.12.20.01.21.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Dec 2022 01:21:51 -0800 (PST)
-Message-ID: <1a696768-45ef-0144-07f3-d356af9659e5@linaro.org>
-Date:   Tue, 20 Dec 2022 10:21:49 +0100
+        with ESMTP id S229638AbiLTJdD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 04:33:03 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 681FCDFB4;
+        Tue, 20 Dec 2022 01:33:02 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 948C66602C4C;
+        Tue, 20 Dec 2022 09:32:59 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1671528780;
+        bh=NfDoU2VGx/bPmc9O90rykHOvdLmE9SU5j8BSusYhG7c=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=doWJNENXTeEbtUq/ZdiNgsIQJORSvV3mk5LPVuFHxKnellKCsoYdCng0vTtrpAmZA
+         GtGS9lMcmEo6LtWo1uecI38nhnqiAN6T6VKFlKZYyASsu0CRtsuLbd2ZDTTzwPAU4x
+         eyMSyNyDtWinEaN36uS3KLMO42mSbdZf/VuK/L9fj6b9oJG9EsyaILppaBydxVRZVi
+         jUx2L3TBJiZxfloK1/OW/kbInrmzkdCMHiax4WE99RygpJ1+0Q9fkm/K5tKRs5fLv+
+         kYhrZlUSowjda67yROzDmsSrawwhI2sZVC6jsRs+OYtKw+yFHXeysIW7XCMldsbODJ
+         5leHMxUFIejUg==
+Message-ID: <56fb0497-adb0-4f31-7051-b3324372ff58@collabora.com>
+Date:   Tue, 20 Dec 2022 10:32:56 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH v2 2/9] dt-bindings: net: snps,dwmac: Update the maxitems
- number of resets and reset-names
+Subject: Re: [PATCH v2,5/7] media: mediatek: vcodec: remove unused lat_buf
 Content-Language: en-US
-To:     yanhong wang <yanhong.wang@starfivetech.com>,
-        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>
-References: <20221216070632.11444-1-yanhong.wang@starfivetech.com>
- <20221216070632.11444-3-yanhong.wang@starfivetech.com>
- <040b56b1-c65c-34c3-e4a1-5cae4428d1d2@linaro.org>
- <7f4339df-6616-120f-f16a-cd38a2b6ea1d@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <7f4339df-6616-120f-f16a-cd38a2b6ea1d@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20221219064332.2124-1-yunfei.dong@mediatek.com>
+ <20221219064332.2124-6-yunfei.dong@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221219064332.2124-6-yunfei.dong@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/12/2022 07:48, yanhong wang wrote:
-
->>> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>> index e26c3e76ebb7..7870228b4cd3 100644
->>> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>> @@ -133,12 +133,19 @@ properties:
->>>          - ptp_ref
->>>  
->>>    resets:
->>> -    maxItems: 1
->>> -    description:
->>> -      MAC Reset signal.
->>> +    minItems: 1
->>> +    maxItems: 3
->>> +    additionalItems: true
->>> +    items:
->>> +      - description: MAC Reset signal
->>>  
->>>    reset-names:
->>> -    const: stmmaceth
->>> +    minItems: 1
->>> +    maxItems: 3
->>> +    additionalItems: true
->>> +    contains:
->>> +      enum:
->>> +        - stmmaceth
->>
->> No, this is highly unspecific and you know affect all the schemas using
->> snps,dwmac.yaml. Both lists must be specific - for your device and for
->> others.
->>
+Il 19/12/22 07:43, Yunfei Dong ha scritto:
+> Remove unused lat_buf from core list, or leading to core list access
+> NULL point.
 > 
-> I have tried to define the resets in "starfive,jh71x0-dwmac.yaml", but it can not over-write the maxItems limit in "snps,dwmac.yaml",therefore, it will report error "reset-names: ['stmmaceth', 'ahb'] is too long"  running "make dt_binding_check". Do you have any suggestions to deal with this situation?
+> Fixes: 365e4ba01df4 ("media: mtk-vcodec: Add work queue for core hardware decode")
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
 
-The solution is not to affect all schemas with allowing anything as reset.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-If you need more items for your case, you can change snps,dwmac.yaml and
-add constraints in allOf:if:then: allowing it only for your compatible.
-There are plenty of examples how this is done, e.g.:
-
-https://elixir.bootlin.com/linux/v5.19-rc6/source/Documentation/devicetree/bindings/clock/samsung,exynos7-clock.yaml#L57
-
-> 
->> Best regards,
->> Krzysztof
->>
-
-Best regards,
-Krzysztof
 
