@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45FCD65285F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 22:26:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F4CD65286D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Dec 2022 22:31:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229451AbiLTV0S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 16:26:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49776 "EHLO
+        id S234014AbiLTVbx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 16:31:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229842AbiLTV0Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 16:26:16 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A0A963E9;
-        Tue, 20 Dec 2022 13:26:15 -0800 (PST)
+        with ESMTP id S233890AbiLTVbv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 16:31:51 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E1501EC68;
+        Tue, 20 Dec 2022 13:31:50 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7165A615C2;
-        Tue, 20 Dec 2022 21:26:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68A0BC433EF;
-        Tue, 20 Dec 2022 21:26:10 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2439661530;
+        Tue, 20 Dec 2022 21:31:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1241EC433EF;
+        Tue, 20 Dec 2022 21:31:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671571573;
-        bh=S5/irmbdxPHRGjloGu2y2uI3gxorhqGUs8rELs0Mt1s=;
+        s=k20201202; t=1671571909;
+        bh=4guvi9YPGFRvRQkeTTfj8xKEOlTkQRxYmYlBnGBXEX0=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=b89knfYZlcl38WQkiGRpaBqBApY5hUs2S/aKIKXC+AC2zW9UlG2rT1zozbgOYyQYr
-         QlrgGtoXRAacuK1DGl9ldAm/+npm77BPnUGKrnVJa15xA523jHpJKk0rTl7PHncgue
-         05UCdMXCtlpxq+OLIggWjkzIbYlQ9tabdCNhWq+Dm5X54FQL5fxwEoSD4RLIApbUk2
-         vQYlrgvY9LQD8nazrhiDVuBD8lm9VYHs1h5YgxiQeoMNEuG1Tn2UxtUmHboFexaYv0
-         rBqAbktDmO5WCAHhLaWGVkppG20n5ILPS8owoOB7uqZtjXNfddyKdhPBEYVQJg2jpI
-         LKlDqyIveRHqw==
-Date:   Tue, 20 Dec 2022 21:26:07 +0000
+        b=ASxomZZ51mjz4Jo/cYvbgQ8eSBD4Tn8igs2KbvX90bcV+batkM9mcEcqR6yEFxKaL
+         m6eRlqXxtHZR8VhA5kAbbr6LjbEcjO+RPq6+oqD1yGOzrZDgu59kpEPGA2T1xLz01B
+         jdlJk4CJCkE4Y+wRWhotjfCFXnlT1GyfNF0oj10fMTQ/p5TOpWLG81hoUgxBnmWWNd
+         lGjeJUQS05LoIFGXZqnUHE2AnoB/bWI/ARiD9MGFabxR5csrcyp2L3u8bmIIBJ26L3
+         yMO8Zmm0BAMkrZ6YcY7IA90xnO2ufKbygNruyugkqY/3jfgdEW9VPeZ1boHijaWKt9
+         0M+sYe8B4HrnA==
+Date:   Tue, 20 Dec 2022 21:31:43 +0000
 From:   Conor Dooley <conor@kernel.org>
 To:     Hal Feng <hal.feng@starfivetech.com>
 Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
@@ -49,16 +49,16 @@ Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
         Linus Walleij <linus.walleij@linaro.org>,
         Emil Renner Berthing <emil.renner.berthing@canonical.com>,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 7/7] riscv: dts: starfive: Add StarFive JH7110
- VisionFive 2 board device tree
-Message-ID: <Y6Iob3csmKMl0rB/@spud>
+Subject: Re: [PATCH v3 6/7] riscv: dts: starfive: Add initial StarFive JH7110
+ device tree
+Message-ID: <Y6Ipv0BUummgqNaw@spud>
 References: <20221220011247.35560-1-hal.feng@starfivetech.com>
- <20221220011247.35560-8-hal.feng@starfivetech.com>
+ <20221220011247.35560-7-hal.feng@starfivetech.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="8xrhEquv/3PxHBwz"
+        protocol="application/pgp-signature"; boundary="ObhNkYFiXiedhNNQ"
 Content-Disposition: inline
-In-Reply-To: <20221220011247.35560-8-hal.feng@starfivetech.com>
+In-Reply-To: <20221220011247.35560-7-hal.feng@starfivetech.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -69,17 +69,16 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---8xrhEquv/3PxHBwz
+--ObhNkYFiXiedhNNQ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 20, 2022 at 09:12:47AM +0800, Hal Feng wrote:
+On Tue, Dec 20, 2022 at 09:12:46AM +0800, Hal Feng wrote:
 > From: Emil Renner Berthing <kernel@esmil.dk>
 >=20
-> Add a minimal device tree for StarFive JH7110 VisionFive 2 board
-> which has version A and version B. Support booting and basic
-> clock/reset/pinctrl/uart drivers.
+> Add initial device tree for the JH7110 RISC-V SoC by StarFive
+> Technology Ltd.
 >=20
 > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
 > Co-developed-by: Jianlong Huang <jianlong.huang@starfivetech.com>
@@ -87,104 +86,79 @@ On Tue, Dec 20, 2022 at 09:12:47AM +0800, Hal Feng wrote:
 > Co-developed-by: Hal Feng <hal.feng@starfivetech.com>
 > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
 > ---
->  arch/riscv/boot/dts/starfive/Makefile         |   1 +
->  .../jh7110-starfive-visionfive-2-va.dts       |  13 ++
->  .../jh7110-starfive-visionfive-2-vb.dts       |  13 ++
->  .../jh7110-starfive-visionfive-2.dtsi         | 111 ++++++++++++++++++
->  4 files changed, 138 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-starfive-visionfi=
-ve-2-va.dts
->  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-starfive-visionfi=
-ve-2-vb.dts
->  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-starfive-visionfi=
-ve-2.dtsi
->=20
-> diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/=
-starfive/Makefile
-> index 0ea1bc15ab30..79e925a4a227 100644
-> --- a/arch/riscv/boot/dts/starfive/Makefile
-> +++ b/arch/riscv/boot/dts/starfive/Makefile
-> @@ -1,2 +1,3 @@
->  # SPDX-License-Identifier: GPL-2.0
->  dtb-$(CONFIG_SOC_STARFIVE) +=3D jh7100-beaglev-starlight.dtb
-> +dtb-$(CONFIG_SOC_STARFIVE) +=3D jh7110-starfive-visionfive-2-va.dtb jh71=
-10-starfive-visionfive-2-vb.dtb
 
-Could you rebase on top of v6.2-rc1 when you submit your next version
-squash this in please (unless Emil hates it):
-diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/st=
-arfive/Makefile
-index c38a9ade7f48..b3744420253a 100644
---- a/arch/riscv/boot/dts/starfive/Makefile
-+++ b/arch/riscv/boot/dts/starfive/Makefile
-@@ -1,3 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
--dtb-$(CONFIG_SOC_STARFIVE) +=3D jh7100-beaglev-starlight.dtb jh7100-starfi=
-ve-visionfive-v1.dtb
--dtb-$(CONFIG_SOC_STARFIVE) +=3D jh7110-starfive-visionfive-2-va.dtb jh7110=
--starfive-visionfive-2-vb.dtb
-+dtb-$(CONFIG_SOC_STARFIVE) +=3D jh7100-beaglev-starlight.dtb
-+dtb-$(CONFIG_SOC_STARFIVE) +=3D jh7100-starfive-visionfive-v1.dtb
-+dtb-$(CONFIG_SOC_STARFIVE) +=3D jh7110-starfive-visionfive-2-va.dtb
-+dtb-$(CONFIG_SOC_STARFIVE) +=3D jh7110-starfive-visionfive-2-vb.dtb
+FWIW, this cpu-map is now the default in linux, so you no longer *need*
+to add it for that purpose - but there's obviously no harm in being
+explicit for other operating systems etc. (IOW, don't remove it!)
 
-I'd rather have more, but easier to read lines than long ones.
-
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dt=
-si b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> new file mode 100644
-> index 000000000000..c60280b89c73
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> @@ -0,0 +1,111 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> +/*
-> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
-> + * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
-> + */
+> +		cpu-map {
+> +			cluster0 {
+> +				core0 {
+> +					cpu =3D <&S76_0>;
+> +				};
 > +
-> +/dts-v1/;
-> +#include "jh7110.dtsi"
-> +#include "jh7110-pinfunc.h"
-> +#include <dt-bindings/gpio/gpio.h>
+> +				core1 {
+> +					cpu =3D <&U74_1>;
+> +				};
 > +
-> +/ {
-> +	aliases {
-> +		serial0 =3D &uart0;
+> +				core2 {
+> +					cpu =3D <&U74_2>;
+> +				};
+> +
+> +				core3 {
+> +					cpu =3D <&U74_3>;
+> +				};
+> +
+> +				core4 {
+> +					cpu =3D <&U74_4>;
+> +				};
+> +			};
+> +		};
 > +	};
-> +
-> +	chosen {
-> +		stdout-path =3D "serial0:115200n8";
-> +	};
-> +
-> +	cpus {
-> +		timebase-frequency =3D <4000000>;
-> +	};
-> +
-> +	memory@40000000 {
-> +		device_type =3D "memory";
-> +		reg =3D <0x0 0x40000000 0x1 0x0>;
 
-Is this a good idea when you have SKUs with 2, 4 & 8 GiB of DDR?
+> +		syscrg: clock-controller@13020000 {
 
-Anyways, I can't review this as I've got neither board nor
-documentation, so with the above stuff sorted out:
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-I'll not apply it until the clock binding header is in my tree.
+For obvious reasons, I cannot apply this until both the clock & pinctrl
+bindings are in my tree - but you know that already.
+
+> +			compatible =3D "starfive,jh7110-syscrg";
+> +			reg =3D <0x0 0x13020000 0x0 0x10000>;
+> +			clocks =3D <&osc>, <&gmac1_rmii_refin>,
+> +				 <&gmac1_rgmii_rxin>,
+> +				 <&i2stx_bclk_ext>, <&i2stx_lrck_ext>,
+> +				 <&i2srx_bclk_ext>, <&i2srx_lrck_ext>,
+> +				 <&tdm_ext>, <&mclk_ext>;
+
+As Krzk asked - are these clocks really all inputs to the SoC?
+
+> +			clock-names =3D "osc", "gmac1_rmii_refin",
+> +				      "gmac1_rgmii_rxin",
+> +				      "i2stx_bclk_ext", "i2stx_lrck_ext",
+> +				      "i2srx_bclk_ext", "i2srx_lrck_ext",
+> +				      "tdm_ext", "mclk_ext";
+> +			#clock-cells =3D <1>;
+> +			#reset-cells =3D <1>;
+> +		};
+> +
+> +		gpio: gpio@13040000 {
+
+> +		gpioa: gpio@17020000 {
+
+Out of curiousity, why gpio & gpioa?
 
 Thanks,
 Conor.
 
 
---8xrhEquv/3PxHBwz
+--ObhNkYFiXiedhNNQ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY6IobwAKCRB4tDGHoIJi
-0jwaAQD7o1TKtLNZlBTk13ECBN0bhssFOZvOLHHDM950ZiX1dAD/Vwfu94KObi+g
-P1wOYMlvne8eqaD+rVW4wZn2KtuR4wU=
-=PJBb
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY6IpvwAKCRB4tDGHoIJi
+0rWYAQDTig/t+OM+9hgBx8d3GAyl2YXKCY8myegiWUBmFC6xAQD/aQpZ/dHH5sUO
+IXoDliLR2oe/z45FzDkNU6ZSUhqQEAA=
+=U8m6
 -----END PGP SIGNATURE-----
 
---8xrhEquv/3PxHBwz--
+--ObhNkYFiXiedhNNQ--
