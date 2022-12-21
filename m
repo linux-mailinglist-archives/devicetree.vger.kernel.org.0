@@ -2,139 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C288D652DB6
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 09:14:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8C7A652DC3
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 09:16:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234493AbiLUIN7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 03:13:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47452 "EHLO
+        id S234528AbiLUIQb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Dec 2022 03:16:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229476AbiLUIN4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 03:13:56 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0B2421276
-        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 00:13:54 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id bf43so22338202lfb.6
-        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 00:13:54 -0800 (PST)
+        with ESMTP id S234514AbiLUIPp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 03:15:45 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57B37FC8
+        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 00:15:43 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id p36so22302794lfa.12
+        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 00:15:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=pkbnwNlIzbD+fefyBrKzBY3j56R66zu85H+p/b4oFEA=;
-        b=UYdFilbWV7A+MZV/xySGbrRhz0Lb+GMht44Sq5YuuyEiDxacld1b9d/v4rYJugfOC4
-         Md5gkhjhx5Hfw22SfE/EnHFav2afuKzeY94VJ5FReAHyqsHynikwpY237myDLKq0yjJH
-         xj2VXCkrzY5gxnsa3NZbomL9VHFnWRh6wxFHrFasg6EtIkw0W78m/sHHaJP8G59RNsXP
-         dH2jQU9T8Lc+2GWcYDmentJpjGpV6tgrkrr2ToLF1In4KjfdA8l6kTpJtAobq72W7EXR
-         ub36dXcQSwd3OagUOC99tWjbNhTc9meepMaizVwpfn5Cz/PC5bO3g2/3L5aE8rV54TKF
-         aBjw==
+        bh=tKVTpYZFPEDtKyLcWavwNidP1gFKsOiP+G6edw3PI9g=;
+        b=vahFHpUDyrqgLEJM7LTlfQSXUee1o2TfjthdfLdgytrvn/mWRZMStW/eUl9K3VhG/2
+         rW3a3BSINNKDlG/kDJ8ERk/Wwdz9KyGmrY9X6HSmHYegm248/3wlGApZXmAvfc8YIZG9
+         UfqpRQNEJQfmABHy1YGf03fdsExb1o6N9UkKHLEsaEiZekXs28Pp500Rg94id2g/3Eed
+         sbWPy7FZRXBMEaVGXZm9n48vANpoT0GV+Gz24KYiw/igkpF3IyVK4SlSzZy07NKKVDWG
+         6pGB3/BFGoBm4h80lujRgi8J3yVVmqVojDmQwW68IKfqhbF3o8fpM12d1bdNyqO9c6pT
+         zRAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pkbnwNlIzbD+fefyBrKzBY3j56R66zu85H+p/b4oFEA=;
-        b=zp3bXUgs81RGREdm6uR2VfTeUgxYMenmN98wzp2Tfhvg1Z5Pa7Yx+6cBryjvLBemuG
-         u0S3N0R40KM0IrGawhmi5EldWBABTl1kEeFJ2sW8dmGo62F6I4BcilX+HwQTx3jhHMMM
-         D5A13cAFb1dcHnlCMVZ/3zqFu1Cu9IJCzejumxDVUJcMYyh3idmRj7ohi5ZXE/Dhky17
-         F9pVEOLRPy6GkF2JSARnEpbONqf/0txp3IV+VapnqAShiotQ33r//MWIVJ6lE7zy088O
-         HJpv86p5U9jU76z5qQAf4fhe/oByJeMHwGBTE+byaPHekFwDcYiXoAHuEvt7UOhJggRx
-         R4Qw==
-X-Gm-Message-State: AFqh2kr9AsCYt5O7kl4bseHpgrb9HPhjUC0myTTDhBQYMBeLU2ndZ6Oj
-        lTlMB7VVjCymp4ssyYZs+WHWaQ==
-X-Google-Smtp-Source: AMrXdXt1jk8G9ZKPcFxKLxyW5hblcLez4+qRH9QHQR4npD+m5WNzpAqhc0NnY5gNKmhQO+Hv4OoEbQ==
-X-Received: by 2002:a05:6512:6d6:b0:4a4:68b9:609b with SMTP id u22-20020a05651206d600b004a468b9609bmr366616lff.38.1671610433245;
-        Wed, 21 Dec 2022 00:13:53 -0800 (PST)
+        bh=tKVTpYZFPEDtKyLcWavwNidP1gFKsOiP+G6edw3PI9g=;
+        b=3y2lG6Z2ON0RQ4G1ES1bv/wgzIUQGEVDT+fflOyGKW7ZYypqCIrmifT+4yREtBeRJ3
+         ++FkS/0C0mzHZ2H4x1n3kAs9/fcN2eXYAdMD9dYkMTqq0fRwkzjySQ8Mwlr+HOBmkFhz
+         0Av66RaMswSr7DBeaBRsgpuElwAL9HS6Now3r3nAzkvWb3geqJDhUpY/8cwZA4pkAaTR
+         7nBJueBqgo5Te+UAyC8FzPAVkP1NMYE7oYS+sRvSw9ChqCx694FBCury3tXqvBJfm2TX
+         EpGhBvo66m+uQdrRcp+IHH9jfjLHOR9Gx9zbexbFJcQAec3KF8fd/4nFExF+NGknqClW
+         /bIA==
+X-Gm-Message-State: AFqh2koCF7xv1PNxGYxvlIw07rRAQiiCynNaaqt0PIkDbvlpu8SrPjwN
+        pItSEnkcfRTBCaK/0m3UsjlmUQ==
+X-Google-Smtp-Source: AMrXdXtXrEk0IuAOycHdERvZxfkVj6P/rVqGYvaomI4T69wVYQdjoSNcMjMry1fmRVNsDStpQx2K9g==
+X-Received: by 2002:a19:c20d:0:b0:4b5:b18b:8966 with SMTP id l13-20020a19c20d000000b004b5b18b8966mr185160lfc.49.1671610541679;
+        Wed, 21 Dec 2022 00:15:41 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id o18-20020a05651238b200b004ac6a444b26sm1769606lft.141.2022.12.21.00.13.52
+        by smtp.gmail.com with ESMTPSA id o9-20020a05651205c900b00497aa190523sm1767100lfo.248.2022.12.21.00.15.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Dec 2022 00:13:52 -0800 (PST)
-Message-ID: <d37e0f2d-eaa5-4eaa-72bb-ead349235d6d@linaro.org>
-Date:   Wed, 21 Dec 2022 09:13:51 +0100
+        Wed, 21 Dec 2022 00:15:41 -0800 (PST)
+Message-ID: <88357291-3cdd-8d5a-fdec-38bd081a4235@linaro.org>
+Date:   Wed, 21 Dec 2022 09:15:40 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH 2/2] dt-bindings: leds: backlight: add binding for Kinetic
- KTZ8866 backlight
+Subject: Re: [PATCH v4 1/2] arm64: dts: rockchip: Add EmbedFire LubanCat 1
 Content-Language: en-US
-To:     Jianhua Lu <lujianhua000@gmail.com>, Lee Jones <lee@kernel.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org
-References: <20221221070216.17850-1-lujianhua000@gmail.com>
+To:     Yuteng Zhong <zonyitoo@gmail.com>, Heiko Stuebner <heiko@sntech.de>
+Cc:     Rob Herring <robh+dt@kernel.org>, Peter Geis <pgwipeout@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, DHDAXCW <lasstp5011@gmail.com>
+References: <Y6KdvAlWLMG4whJh@VM-66-53-centos>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221221070216.17850-1-lujianhua000@gmail.com>
+In-Reply-To: <Y6KdvAlWLMG4whJh@VM-66-53-centos>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/12/2022 08:02, Jianhua Lu wrote:
-> Add device tree bindings for the Kinetic KTZ8866 backlight driver.
-
-1. Your patches are not properly threaded which makes it difficult to
-review and handle them. Resend with proper threads.
-
-2. Subject: drop second, redundant "binding for".
-
+On 21/12/2022 06:46, Yuteng Zhong wrote:
+> from: DHDAXCW <lasstp5011@gmail.com>
 > 
-> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
+> LubanCat 1 is a Rockchip RK3566 SBC based
+> is developed by EmbedFire Electronics Co., Ltd.
+> Mini Linux Card Type Cheap Computer Development Board
+> 
+> It has the following characteristics:
+> - MicroSD card slot, onboard eMMC flash memory
+> - 1GbE Realtek RTL8211F Ethernet Transceiver
+> - 1 USB Type-C port (power and USB2.0 OTG)
+> - 1 USB 3.0 Host port
+> - 3 USB 2.0 Host ports
+> - 1 HDMI
+> - 1 infrared receiver
+> - 1 MIPI DSI
+> - 1 MIPI CSI
+> - 1 x 4-section headphone jack
+> - Mini PCIe socket (USB or PCIe)
+> - 1 SIM Card slot
+> - 1 SYS LED and 1 PWR LED
+> - 40-pin GPIO expansion header
+> 
+> Signed-off-by: Yuteng Zhong <zonyitoo@gmail.com>
+> Signed-off-by: DHDAXCW <lasstp5011@gmail.com>
 > ---
->  .../leds/backlight/kinetic,ktz8866.yaml       | 37 +++++++++++++++++++
->  1 file changed, 37 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml b/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
+> Changed in V2:
+>   - Remove RNG node
+> Changed in V3:
+>   - Sent E-mail with a wrong attachment
+> Changed in V4:
+>   - Modify all node names
+> 
+> ---
+>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>  .../boot/dts/rockchip/rk3566-lubancat-1.dts   | 598 ++++++++++++++++++
+>  2 files changed, 599 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-lubancat-1.dts
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+> index 0a76a2ebb5f6..e52bda04d45a 100644
+> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> @@ -78,6 +78,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-soquartz-blade.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-soquartz-cm4.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-soquartz-model-a.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-box-demo.dtb
+> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-lubancat-1.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-bpi-r2-pro.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-evb1-v10.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-odroid-m1.dtb
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-lubancat-1.dts b/arch/arm64/boot/dts/rockchip/rk3566-lubancat-1.dts
 > new file mode 100644
-> index 000000000000..7286c3fc7f5d
+> index 000000000000..443fcfabbd16
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
-> @@ -0,0 +1,37 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/backlight/kinetic,ktz8866.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +++ b/arch/arm64/boot/dts/rockchip/rk3566-lubancat-1.dts
+> @@ -0,0 +1,598 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> +* Copyright (c) 2021 Rockchip Electronics Co., Ltd.
+> +*/
 > +
-> +title: Kinetic Technologies KTZ8866 backlight
+> +/dts-v1/;
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/pinctrl/rockchip.h>
+> +#include <dt-bindings/soc/rockchip,vop2.h>
+> +#include "rk3566.dtsi"
 > +
-> +maintainers:
-> +  - Jianhua Lu <lujianhua000@gmail.com>
+> +/ {
+> +	model = "EmbedFire LubanCat 1";
+> +	compatible = "embedfire,lubancat-1", "rockchip,rk3566";
 > +
-> +description: |
-> +  The Kinetic Technologies KTZ8866 is a high efficiency 6-sinks led backlight
-> +  with dual lcd bias power.
-> +  https://www.kinet-ic.com/ktz8866/
+> +	aliases {
+> +		ethernet0 = &gmac1;
+> +		mmc0 = &sdmmc0;
+> +		mmc1 = &sdhci;
+> +	};
 > +
-> +allOf:
-> +  - $ref: common.yaml#
+> +	chosen: chosen {
+> +		stdout-path = "serial2:1500000n8";
+> +	};
 > +
-> +properties:
-> +  compatible:
-> +    items:
-> +      const: kinetic,ktz8866
+> +	gmac1_clkin: external-gmac1-clock {
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <125000000>;
+> +		clock-output-names = "gmac1_clkin";
+> +		#clock-cells = <0>;
+> +	};
+> +	
+> +	hdmi-con {
+> +		compatible = "hdmi-connector";
+> +		type = "a";
+> +
+> +		port {
+> +			hdmi_con_in: endpoint {
+> +				remote-endpoint = <&hdmi_out_con>;
+> +			};
+> +		};
+> +	};
+> +
+> +	gpio-leds {
+> +		compatible = "gpio-leds";
+> +
+> +		sys_led: sys-led {
+> +			label = "sys_led";
+> +			linux,default-trigger = "heartbeat";
+> +			default-state = "on";
+> +			gpios = <&gpio0 RK_PC5 GPIO_ACTIVE_LOW>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&sys_led_pin>;
+> +		};
+> +	};
+> +
+> +	usb_5v: usb-5v-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "usb_5v";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +	};
+> +
+> +	vcc5v0_sys: vcc5v0-sys-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc5v0_sys";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		vin-supply = <&usb_5v>;
+> +	};
+> +
+> +	vcc3v3_sys: vcc3v3-sys {
 
-Does not look like you tested the bindings. Please run `make
-dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
+This is a friendly reminder during the review process.
 
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: false
+It seems my previous comments were not fully addressed. Maybe my
+feedback got lost between the quotes, maybe you just forgot to apply it.
+Please go back to the previous discussion and either implement all
+requested changes or keep discussing them.
 
-This should be rather unevaluatedProperties: false, otherwise you do not
-allow any other properties, except compatible. Was this the intention?
+Thank you.
+
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc3v3_sys";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&vcc5v0_sys>;
+> +	};
+> +
+> +	vcc3v3_pcie: vcc3v3-pcie-regulator {
+
 
 Best regards,
 Krzysztof
