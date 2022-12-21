@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91CED652EEB
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 10:50:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE5C7652EF6
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 10:51:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234635AbiLUJud (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 04:50:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54206 "EHLO
+        id S234714AbiLUJvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Dec 2022 04:51:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234697AbiLUJtI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 04:49:08 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 017DB2250F
-        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 01:47:56 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id f34so7462732lfv.10
-        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 01:47:55 -0800 (PST)
+        with ESMTP id S234711AbiLUJuI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 04:50:08 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E92D22BD4
+        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 01:48:10 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id cf42so22702722lfb.1
+        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 01:48:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=FLEBEWFKmVUzABbgomhdjBEc/qQs01rZclQnVraRaAk=;
-        b=ixtgqs69him+R8vofbTGe5rZr6qzBwPsdEWRPLaodvy478LfY48Gn8IZjpy6W/9uno
-         6z86B+MqaGd8IfCzQVzr2Kfu8W8jc8sz0yQiik0Uku40BEZiCWdNe9uapZR99jtiIDtX
-         nRtSS6dVNX2GPaMNdy2ov4TvFcvOjrIoUy0JfLK8p3gCwznQQcu+kp1m6UfwHdMx7D/Y
-         Qp4/W7NQ2pmuuA4Pb/yxuKggZcWCeZ4K20uOHKRQl4ijjX0cU1HVWJ8GiAj5w9LagUYQ
-         PNlfGiMYmATCyRs93yiG9fV6EAHa0VtHKPwHs5jFrp+AiTw/cKb40UooFGTtcNaL27/q
-         dN9w==
+        bh=okq6sy0T7fU71tA3WrKAH0MDghE0qvD1udHSmisw4vU=;
+        b=rSFedQ6ephSqoSOM1xNTjzp4TxR/NrCK8xF040bSJAnk8UZxh6y12xYDiKsgIO0d+I
+         333TAG1ukoMrXJolIfe7YWtp6xonwwsmDdvorEsTUXNX6LBAqwQ2x4r97uTOJEbEEplN
+         p/XOAaeKuItfaHA9VRPsRt0YRx/yUG/m78JcBOgJ9bpYIS2sLE95bh+q+nlRllXjPHTs
+         ym8Hee5bRIISzpSysLbBiYMOMxAMjj1ZG/3YmnJcojHbV8GlY7TNKFqJPx8I0q6y73im
+         ORuDVOVTVAJ4FN/HzIn4LkJkL45qBa0Oghji2Ja73jaUnV1cpEM55gUxn9/L/BjSc5lU
+         oYQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FLEBEWFKmVUzABbgomhdjBEc/qQs01rZclQnVraRaAk=;
-        b=cLVWo1j8LNXVgRQ/3pGlU1j+oXR8DxWkWH17cNEvoTZo7nBKewYoWKQSN6TddWkK/s
-         yk6wqxDu819+pBJTPnCqG6FCqHfZeZPeNMPkYfGmwJVrHZiW1bEH2wzUAXuP1imOSiuz
-         2QT7iWTh2Mzahpd+uPEYTeQ9b2zssVpzGL85apIRpOv24vsltL+3HqYxAB0WoqV6I29t
-         Hykjw7zyqVzvXJETzAo3xEoJsKdPO/RyD6OuoAsff3ro0TDw8lpwABhBJ4bqpVe4kgYo
-         TelOrnNcF2D3BTemcDHYZe3/h/XIVWZNUw6QUtinJWno7swnM9X0wgSkq7h8ItQF+aw5
-         kaSQ==
-X-Gm-Message-State: AFqh2krnVNeVC20MUWY8Ri3PAv2pM+wgbQKxQRZR8EKesYoCBwJXRhs5
-        7i3u0bZliNTVxgGTbKs3zx+lMg==
-X-Google-Smtp-Source: AMrXdXvSUsFWN8Ug4VQ+xJHQ8UMNbhnFMQgxkmiWJZt3pCBQprIlPuJ4OCiySDp51aDBu3BSEWWswQ==
-X-Received: by 2002:a05:6512:31c5:b0:4b0:25f9:14ea with SMTP id j5-20020a05651231c500b004b025f914eamr552097lfe.21.1671616074385;
-        Wed, 21 Dec 2022 01:47:54 -0800 (PST)
+        bh=okq6sy0T7fU71tA3WrKAH0MDghE0qvD1udHSmisw4vU=;
+        b=r9yscg/cUGR6fNuV2qlm6hh+2k+4YGMYt0eTzzdECrCNxuzOCUvVDW1YO7B9mB66v4
+         shlp7FrSs1sF0ftbHy82BZ3H6nyuz9GbPzksmzBIpUFssAPLmqSuWEK4eTe/Nwa4GJqq
+         9qoM26xodQQRpyRao7Sd7NS220difJX9R+BfhuEYz41WP+kFvUQXgsqTzJkRz1jUEosc
+         Exv8zqigFo8Ajsft7DEq+TfuikhrAvjAVWnozzN0RUPpS3xiDd8kls8aTsOWWkChrzh4
+         axYLHHoDPKropOWToNDGGcUGzcuzrZU3DMkHiO1bo8KTKJxT9pryMO8kHZXoFQMZSduh
+         p+mg==
+X-Gm-Message-State: AFqh2krZuQnwNrFYDbrX3PXAqerZQtefjzXfJvjtyJ0E/yPwAcXuKfS7
+        J5s6vhTQC+JdSJOIv5seMSeMLA==
+X-Google-Smtp-Source: AMrXdXsc8QdIyYsJU8wWEIAz1v8DKIhBnjIQ1raMREsIM1Hxn1edvHmFheZfIYI+kgkglBCsKcsOvQ==
+X-Received: by 2002:a05:6512:4005:b0:4b5:9183:5ad0 with SMTP id br5-20020a056512400500b004b591835ad0mr1845395lfb.63.1671616088853;
+        Wed, 21 Dec 2022 01:48:08 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id u24-20020a2e9b18000000b00279ff5d5e10sm1266626lji.38.2022.12.21.01.47.53
+        by smtp.gmail.com with ESMTPSA id 7-20020ac25f07000000b004b49025f96dsm1782191lfq.187.2022.12.21.01.48.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Dec 2022 01:47:54 -0800 (PST)
-Message-ID: <3a26c733-6573-5954-f4e5-8a1f8abba140@linaro.org>
-Date:   Wed, 21 Dec 2022 10:47:52 +0100
+        Wed, 21 Dec 2022 01:48:08 -0800 (PST)
+Message-ID: <cbbf719b-a027-f91b-bd2c-6e6b43447b97@linaro.org>
+Date:   Wed, 21 Dec 2022 10:48:07 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH 1/3] dt-bindings: rng: Add StarFive TRNG module
+Subject: Re: [PATCH 3/3] riscv: dts: starfive: Add TRNG node for VisionFive 2
 Content-Language: en-US
 To:     Jia Jie Ho <jiajie.ho@starfivetech.com>,
         Olivia Mackall <olivia@selenic.com>,
@@ -66,14 +66,15 @@ Cc:     Emil Renner Berthing <kernel@esmil.dk>,
         linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
 References: <20221221090819.1259443-1-jiajie.ho@starfivetech.com>
- <20221221090819.1259443-2-jiajie.ho@starfivetech.com>
+ <20221221090819.1259443-4-jiajie.ho@starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221221090819.1259443-2-jiajie.ho@starfivetech.com>
+In-Reply-To: <20221221090819.1259443-4-jiajie.ho@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -81,20 +82,35 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 21/12/2022 10:08, Jia Jie Ho wrote:
-> Add documentation to describe Starfive true random number generator
-> module.
+> Adding StarFive TRNG controller node to VisionFive 2 SoC.
 > 
 > Co-developed-by: Jenny Zhang <jenny.zhang@starfivetech.com>
 > Signed-off-by: Jenny Zhang <jenny.zhang@starfivetech.com>
 > Signed-off-by: Jia Jie Ho <jiajie.ho@starfivetech.com>
 > ---
->  .../bindings/rng/starfive,jh7110-trng.yaml    | 55 +++++++++++++++++++
->  1 file changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rng/starfive,jh7110-trng.yaml
+>  arch/riscv/boot/dts/starfive/jh7110.dtsi | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
 > 
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> index 4ac159d79d66..dd3ad19772a5 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> @@ -455,5 +455,16 @@ uart5: serial@12020000 {
+>  			reg-shift = <2>;
+>  			status = "disabled";
+>  		};
+> +
+> +		rng: rng@1600c000 {
+> +			compatible = "starfive,jh7110-trng";
+> +			reg = <0x0 0x1600C000 0x0 0x4000>;
+> +			clocks = <&stgcrg JH7110_STGCLK_SEC_HCLK>,
+> +				 <&stgcrg JH7110_STGCLK_SEC_MISCAHB>;
+> +			clock-names = "hclk", "ahb";
+> +			resets = <&stgcrg JH7110_STGRST_SEC_TOP_HRESETN>;
+> +			interrupts = <30>;
+> +			status = "okay";
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Drop. It's by default.
 
 Best regards,
 Krzysztof
