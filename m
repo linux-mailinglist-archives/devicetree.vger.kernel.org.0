@@ -2,111 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D315653058
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 12:44:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF8F5653098
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 13:12:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234450AbiLULod (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 06:44:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48992 "EHLO
+        id S229676AbiLUMMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Dec 2022 07:12:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229448AbiLULoc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 06:44:32 -0500
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39DF5272D;
-        Wed, 21 Dec 2022 03:44:29 -0800 (PST)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1p7xWM-0005Zr-Jf; Wed, 21 Dec 2022 12:44:26 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        ty <zonyitoo@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Peter Geis <pgwipeout@gmail.com>,
+        with ESMTP id S229472AbiLUMMa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 07:12:30 -0500
+Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DE672AE2;
+        Wed, 21 Dec 2022 04:12:29 -0800 (PST)
+Received: by mail-qv1-xf2a.google.com with SMTP id d2so10183638qvp.12;
+        Wed, 21 Dec 2022 04:12:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oQf5YLAPimW4Vw+lXekg7aGz4djtucNpOLvkhBsL8fY=;
+        b=MyQgM3oNihULVPGYU+e06vCoKN5a/flzi84nvSKLIPFKcbzcABA4S8BwGSUlcCFOqV
+         lN6w6ZsEZXlcfEW7+9JzAj9olv9B+iRhJqSS6o4J98blKQEAONcNLrPZgv0EjvdexRUe
+         VI71fSP+yaZulhoFSxLRfWc2fYAtpwW9ih9lIQ5twYPhaHOVyvFFZcSKDnf+GAFEom0F
+         HUr0r2oKpdHe/gGWq15oVcgfOKwTIdNIMrtQsFMNzRhh5+xVrifksmFa3DhPOlqRug1H
+         ZfYrVkbSjtgcCalWzdy2xgW1pk+1mVtWsxmPGAd92n3Cec8qi7Zu/bRWP2fwDAA+zu4Z
+         MMRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oQf5YLAPimW4Vw+lXekg7aGz4djtucNpOLvkhBsL8fY=;
+        b=LKWGXWxHHLpKf4mLgzS8nGcZy93O2++NyNJlnc41UOTQDOa2Ug6M3iDRmrtUVXH9FS
+         cMEMjM5RrdlY11tF0OIE6lqSJ2rd1uluL7Bb5L6X+wXsCHkG3dCxOraG5DuFUc4UcqmC
+         +/jCQuzZurRcEYIkk//2RkME7QpIt+2273XMw6XkqDuHoi9DNXSFi0dL+XTPIUoT0pbu
+         JJZzABMuSiZpFSEd1HVx6dwTcfi3zdIqpdaamz1diPizNCvniSSJOosEtNuCLc4RcTom
+         GS5Xf4CsdqRfqqav1LRObngPIq4hkWAH/sRIHuVrZ8RuM5bqg7XP017MpkYx9CVAy+xf
+         ohew==
+X-Gm-Message-State: AFqh2komHGmre9ZCfcrPOf7AR0ZIq+Yify9fMTufAQMHkdz8RtAhT7GS
+        Ahw8YxUO7qBnG1WSkTBQ1VDJlplEksBES6BNrbUdBhOKDj1sd7W+Jtxbgg==
+X-Google-Smtp-Source: AMrXdXs3I6lQEOnWGKd4HpQBGugdIGOO6wFs7aYgVIashBCALecxPLc7OZbV9+5OFuIdu/AX2jtgr+AY080gTizJnOY=
+X-Received: by 2002:a05:6214:a91:b0:4bb:7998:fed6 with SMTP id
+ ev17-20020a0562140a9100b004bb7998fed6mr69417qvb.86.1671624748724; Wed, 21 Dec
+ 2022 04:12:28 -0800 (PST)
+MIME-Version: 1.0
+References: <Y6KfFEChA67E7oX/@VM-66-53-centos> <5a7907e3-f79e-5de9-ed1b-ec24ea52c437@linaro.org>
+ <CAMmci2UgwqDyPPJXwGRsMW1Y1Cy2c6LMybk+7v7pGz-LtYzGTw@mail.gmail.com> <2673859.iZASKD2KPV@diego>
+In-Reply-To: <2673859.iZASKD2KPV@diego>
+From:   ty <zonyitoo@gmail.com>
+Date:   Wed, 21 Dec 2022 20:12:17 +0800
+Message-ID: <CAMmci2XoF0M81mVt8zko3D3G2oTHq0ia_nZ9CPX9Xz20j92c9Q@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] dt-bindings: arm: rockchip: Add EmbedFire LubanCat 1
+To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, DHDAXCW <lasstp5011@gmail.com>
-Subject: Re: [PATCH v4 2/2] dt-bindings: arm: rockchip: Add EmbedFire LubanCat 1
-Date:   Wed, 21 Dec 2022 12:44:25 +0100
-Message-ID: <2673859.iZASKD2KPV@diego>
-In-Reply-To: <CAMmci2UgwqDyPPJXwGRsMW1Y1Cy2c6LMybk+7v7pGz-LtYzGTw@mail.gmail.com>
-References: <Y6KfFEChA67E7oX/@VM-66-53-centos> <5a7907e3-f79e-5de9-ed1b-ec24ea52c437@linaro.org> <CAMmci2UgwqDyPPJXwGRsMW1Y1Cy2c6LMybk+7v7pGz-LtYzGTw@mail.gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, 21. Dezember 2022, 11:46:36 CET schrieb ty:
-> Dear Kozlowski,
-> 
-> Sorry that we didn't fully get the idea in your previous comments.
-> 
-> >
-> > On 21/12/2022 06:52, Yuteng Zhong wrote:
-> > > from: DHDAXCW <lasstp5011@gmail.com>
-> > >
-> > > LubanCat 1 is a Rockchip RK3566 SBC based
-> > > is developed by EmbedFire Electronics Co., Ltd.
-> > > Mini Linux Card Type Cheap Computer Development Board
-> >
-> > This is a friendly reminder during the review process.
-> >
-> > It seems my previous comments were not fully addressed. Maybe my
-> > feedback got lost between the quotes, maybe you just forgot to apply it.
-> > Please go back to the previous discussion and either implement all
-> > requested changes or keep discussing them.
-> >
-> > Thank you.
-> 
-> Your pervious comment were:
-> 
-> > Please wrap commit message according to Linux coding style / submission
-> > process:
-> > https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
-> 
-> So I think there must be something wrong in the message but I didn't
-> notice. This message has a `from` line, and the body was wrapped at 75
-> columns. Please help me make it better.
-> 
-> 
-> 
-> > >
-> > > Signed-off-by: Yuteng Zhong <zonyitoo@gmail.com>
-> > > Signed-off-by: DHDAXCW <lasstp5011@gmail.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
-> > >  1 file changed, 5 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> > > index 88ff4422a8c1..84d39a3a8843 100644
-> > > --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> > > +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> > > @@ -781,6 +781,11 @@ properties:
-> > >            - const: rockchip,rk3568-bpi-r2pro
-> > >            - const: rockchip,rk3568
-> > >
-> > > +      - description: EmbedFire LubanCat 1
-> > > +        items:
-> > > +          - const: embedfire,lubancat-1
-> > > +          - const: rockchip,rk3566
-> >
-> > Here as well.
-> 
-> This change was addressing the previous comment in V2:
-> 
-> > This is separate patch. Does not look like properly ordered. Don't add
-> > stuff at the end of files/lists.
+Hi, Kozlowski and St=C3=BCbner,
 
-for context sorting order in that file is alphabetical by description
+Thank you very much for pointing me in the right direction.
 
+> So how did you solve the comment "Does not look like properly ordered.
+> Don't add stuff at the end of files/lists."? What did you change to
+> solve it?
 
-Heiko
+> for context sorting order in that file is alphabetical by description
 
+I finally got it. It should be put right after the "Elgin RV1108 R1".
 
+> You do not wrap at 75, but at some other place. Just put it to editor
+> and check where is wrapping (count characters).
+
+The original message was:
+
+>  from: DHDAXCW <lasstp5011@gmail.com>
+>
+> LubanCat 1 is a Rockchip RK3566 SBC based
+> is developed by EmbedFire Electronics Co., Ltd.
+> Mini Linux Card Type Cheap Computer Development Board
+>
+> Signed-off-by: Yuteng Zhong <zonyitoo@gmail.com>
+> Signed-off-by: DHDAXCW <lasstp5011@gmail.com>
+
+The longest line is "Mini Linux Card Type Cheap Computer Development
+Board", which has 53 characters. Or ... I should use the whole line as
+much as possible? Then I see why I was doing wrong. It will be fixed
+in the PATCH v5.
