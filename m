@@ -2,75 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CF81652F3B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 11:18:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D2DF652F41
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 11:21:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229893AbiLUKSv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 05:18:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43136 "EHLO
+        id S234525AbiLUKVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Dec 2022 05:21:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229713AbiLUKSt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 05:18:49 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43C793A3;
-        Wed, 21 Dec 2022 02:18:44 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        with ESMTP id S229472AbiLUKU6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 05:20:58 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9644D9FE9;
+        Wed, 21 Dec 2022 02:20:56 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 5B0056602CBE;
-        Wed, 21 Dec 2022 10:18:42 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1671617923;
-        bh=S0Xrym6TAdQ6LJPpcRENqPLO8Ncf9wcw0DuZgeivVDE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=TcBCH7s0hcKrKC86H7//V+eGbgduYtIrU2UVXd1nVCz9fWHXUZ+gbnItM6T0j9VXX
-         guaMCSEFqEGZ6EiKY+agc14ntF1vpX/n+ytozCd1Aj/gvut38CsRZqkBJHn+OQ+6Bf
-         il5lbCI8BhInU9YQj2UqHG+e2n/bqd8oEdlDNT+yYfAPBjb10E1R+92hPKhAeMzc+t
-         SE+ELXk1y1QBK0dJj/n517VHFGZS076wafg1zab/QFWYzfPjufrFWVijL8cyELs6I0
-         EKNlz1mOZajJYr0/i/8214qMHG23jiGIFivsvf+dAL66QFNRPa23knGKcG3iqhz+sj
-         pOiOSA5e7HyRQ==
-Message-ID: <2ea58598-2e9d-c048-4e6e-014206382758@collabora.com>
-Date:   Wed, 21 Dec 2022 11:18:39 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v2 1/6] soc: mediatek: pm-domains: Add buck isolation
- offset and mask to power domain data
-Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3AA066174D;
+        Wed, 21 Dec 2022 10:20:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90C76C433D2;
+        Wed, 21 Dec 2022 10:20:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1671618055;
+        bh=DvJnhNV9WpC0ryEBXj5Ow4+4ZKHs28oUPewt6p/MjKI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=pkJGbZ5HH5ds2tTvxlmd8Lh5dMVoo9oOVtaJK+9Z7QnKJZRo0Z897P5v+FcOjyyMb
+         6uMkSGPNYwKfo3eBz0wxtSh8Pj9yFJZnv/5LMsDNi/Os2iM6XQkNhZp7lsAQH9xnkT
+         Jewhzzt/wAoHCgSNxsDAHNf2XXYuZnSV7f1dcu/s/oEbgZ16uIuWzFMRvexu9HwXN0
+         Zasa1NOKKmUEpFbVFPk+3VcIHKtKNNqHEe8F7PRbZDbmopIEPhvqbvqT/wDUA0eSxx
+         3LeGczYrVFB2yngu52Ux8Mp2RTOyd3+F5b292KODFYxPwidOJb85mocmjIpIbtmboB
+         D9dkq8HpvCVCQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1p7wDV-00E7hv-58;
+        Wed, 21 Dec 2022 10:20:53 +0000
+Date:   Wed, 21 Dec 2022 10:20:52 +0000
+Message-ID: <86o7rxawhn.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Ikjoon Jang <ikjn@chromium.org>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>
-References: <20221221034407.19605-1-allen-kh.cheng@mediatek.com>
- <20221221034407.19605-2-allen-kh.cheng@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221221034407.19605-2-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v2 4/9] irqchip: irq-renesas-rzg2l: Add support for RZ/G2UL SoC
+In-Reply-To: <20221221000242.340202-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20221221000242.340202-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <20221221000242.340202-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/28.2
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: prabhakar.csengg@gmail.com, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, geert+renesas@glider.be, magnus.damm@gmail.com, linus.walleij@linaro.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org, biju.das.jz@bp.renesas.com, prabhakar.mahadev-lad.rj@bp.renesas.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 21/12/22 04:44, Allen-KH Cheng ha scritto:
-> Add buck isolation offset and mask to power domain data.
+On Wed, 21 Dec 2022 00:02:37 +0000,
+Prabhakar <prabhakar.csengg@gmail.com> wrote:
 > 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> The IRQC block on RZ/G2UL SoC is almost identical to one found on the
+> RZ/G2L SoC the only difference being it can support BUS_ERR_INT for
+> which it has additional registers.
+> 
+> This patch adds a new entry for "renesas,rzg2ul-irqc" compatible string
+> and now that we have interrupt-names property the driver code parses the
+> interrupts based on names and for backward compatibility we fallback to
+> parse interrupts based on index.
+> 
+> For now we will be using rzg2l_irqc_init() as a callback for RZ/G2UL SoC
+> too and in future when the interrupt handler will be registered for
+> BUS_ERR_INT we will have to implement a new callback.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Since you're posting from a different address, please add a second SoB
+with your gmail address.
 
+> ---
+> v1 -> v2
+> * New patch
+> ---
+>  drivers/irqchip/irq-renesas-rzg2l.c | 80 ++++++++++++++++++++++++++---
+>  1 file changed, 74 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/irqchip/irq-renesas-rzg2l.c b/drivers/irqchip/irq-renesas-rzg2l.c
+> index 7918fe201218..5bdf0106ef51 100644
+> --- a/drivers/irqchip/irq-renesas-rzg2l.c
+> +++ b/drivers/irqchip/irq-renesas-rzg2l.c
+> @@ -299,19 +299,86 @@ static const struct irq_domain_ops rzg2l_irqc_domain_ops = {
+>  	.translate = irq_domain_translate_twocell,
+>  };
+>  
+> -static int rzg2l_irqc_parse_interrupts(struct rzg2l_irqc_priv *priv,
+> -				       struct device_node *np)
+> +static int rzg2l_irqc_parse_interrupt_to_fwspec(struct rzg2l_irqc_priv *priv,
+> +						struct device_node *np,
+> +						unsigned int index,
+> +						unsigned int fwspec_index)
+>  {
+>  	struct of_phandle_args map;
+> +	int ret;
+> +
+> +	ret = of_irq_parse_one(np, index, &map);
+> +	if (ret)
+> +		return ret;
+> +
+> +	of_phandle_args_to_fwspec(np, map.args, map.args_count,
+> +				  &priv->fwspec[fwspec_index]);
+> +
+> +	return 0;
+> +}
+> +
+> +static int rzg2l_irqc_parse_interrupt_by_name_to_fwspec(struct rzg2l_irqc_priv *priv,
+> +							struct device_node *np,
+> +							char *irq_name,
+> +							unsigned int fwspec_index)
+> +{
+> +	int index;
+> +
+> +	index = of_property_match_string(np, "interrupt-names", irq_name);
+> +	if (index < 0)
+> +		return index;
+> +
+> +	return rzg2l_irqc_parse_interrupt_to_fwspec(priv, np, index, fwspec_index);
+> +}
+> +
+> +/* Parse hierarchy domain interrupts ie only IRQ0-7 and TINT0-31 */
+> +static int rzg2l_irqc_parse_hierarchy_interrupts(struct rzg2l_irqc_priv *priv,
+> +						 struct device_node *np)
+> +{
+> +	struct property *pp;
+>  	unsigned int i;
+>  	int ret;
+>  
+> +	/*
+> +	 * first check if interrupt-names property exists if so parse them by name
+> +	 * or else parse them by index for backward compatibility.
+> +	 */
+> +	pp = of_find_property(np, "interrupt-names", NULL);
+> +	if (pp) {
+> +		char *irq_name;
+> +
+> +		/* parse IRQ0-7 */
+> +		for (i = 0; i < IRQC_IRQ_COUNT; i++) {
+> +			irq_name = kasprintf(GFP_KERNEL, "irq%d", i);
+> +			if (!irq_name)
+> +				return -ENOMEM;
+> +
+> +			ret = rzg2l_irqc_parse_interrupt_by_name_to_fwspec(priv, np, irq_name, i);
 
+Am I the only one that find it rather odd to construct a name from an
+index, only to get another index back?
+
+In any case, the string stuff could be moved into
+rzg2l_irqc_parse_interrupt_by_name_to_fwspec(). Which could really do
+with a name shortening)... rzg2l_irqc_name_to_fwspec? Same thing for
+the other function (rzg2l_irqc_index_to_fwspec).
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
