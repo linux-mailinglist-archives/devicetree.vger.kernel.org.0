@@ -2,122 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E0F36534F2
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 18:19:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E86F653540
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 18:32:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234762AbiLURSy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 12:18:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60284 "EHLO
+        id S234928AbiLURcu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Dec 2022 12:32:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234758AbiLURSM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 12:18:12 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F66B25C57
-        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 09:17:34 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id g13so7781864lfv.7
-        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 09:17:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tKrXA3voEyFjOSrPuBw4po5+0nfjKm1BQpiqywMAE3I=;
-        b=NlBiJ/E2Yt54PywlbOIicO7rwtW4PNGs+g7ySrU2NYEZwf1bSGkOmtZM0sOXo7JGhk
-         KMZoxHAFWaeSFdSflnFBxul8GRG/nxMQd6syUDZzpeN5nx/N+15TKDVFQuX13ggGGO02
-         AUR+994xKO/SA3vki124lTk27purDRB3hFGlh43QJsdQB9J3yUIZfLKEZgQFjhzekYXh
-         xPj2KhYI3duexmodZHXqr7FX0j4AcMR4ck4nN6a1QBG26Pau+b+5+V38ABlmwmQsC/Rn
-         aZO6dtCC4/4tP3fnA7LkgNz7DsCsafFvM6knQjJPaD5VgNuiBuxOYARgWOWElDuQeYQp
-         1Ygw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tKrXA3voEyFjOSrPuBw4po5+0nfjKm1BQpiqywMAE3I=;
-        b=upm8U9qkZGJZcuXXUOQTbusI3PRaEr815pT2Xu2+t/HFZXqs0m5gYxR9HV6O6U0Inr
-         PIuXclwxHcIbPFtzWRbsXQwQjeufj8mcpgbpVhUDbmEGqex8ebuhuypCFhWQGluCB018
-         JX2cKDHoix+wE0tp5yO9yv6NQUgoDaZaxP7V65luFAhPZDxh79H9fJIrtfvRAdz1+14x
-         xHw6KSrRQjQewU8Tmwqahupyh+lyb/giKK1uj1T/DWVDhhaabJFz8nxWbvmwqg6AF+X5
-         7/DfPqlA2LOIUaUenz7hJB3TyUcpVYDo7nCtEoeaiL6ZjlCkmwR36XpOFFxR31ED+hXY
-         z0LQ==
-X-Gm-Message-State: AFqh2koD0ukgZhVfoeEe8l1PCOjtoydtNJXFNk3RpKCKn5bgVnj8xJ3n
-        IA/zI3X7KPpNkeb7JFIxAUH4lA==
-X-Google-Smtp-Source: AMrXdXv0h1y45BNYGw8hhIOuFkrv1kqp6WAk9k2Cmkc5TZSFOwNFKAj7Xt+aeHOHZ0hRo23tSSFRUw==
-X-Received: by 2002:a05:6512:b25:b0:4b4:b8fc:4ac5 with SMTP id w37-20020a0565120b2500b004b4b8fc4ac5mr908022lfu.3.1671643052449;
-        Wed, 21 Dec 2022 09:17:32 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id q27-20020ac25a1b000000b004b4b5da5f80sm1895027lfn.219.2022.12.21.09.17.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Dec 2022 09:17:31 -0800 (PST)
-Message-ID: <621910a0-d851-409b-99e8-7bdf95dc539d@linaro.org>
-Date:   Wed, 21 Dec 2022 18:17:30 +0100
+        with ESMTP id S235035AbiLURc0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 12:32:26 -0500
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D58181A801;
+        Wed, 21 Dec 2022 09:32:14 -0800 (PST)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BLDfXUF027409;
+        Wed, 21 Dec 2022 18:31:48 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=Zc9Ksvhd8I8nNJuzji2oJDe/YDaWLwaSBoVwQrKbn5w=;
+ b=B6NHKBaI72SbORUCei5gjyMaTQQfN2wSc92Hlku3tMJocQx0QtkYjFo+w49hh3hF0Apb
+ 6lZfyDXORK6eOd6oRfl6v46EQi9pEVHq1/YbyMZQKUw1d0pEmBoTxjJP2TBtAGrw/yYH
+ 0ZuU+wiNNXBDfdR7GKsV9O87Zj26t7RSRwimoTRUQ3zCprvnZGqumSBjn/p5NvPuqpPi
+ 27jscN/i/kYKW50O2ZI2Pw43c0/8RWTTBapOrN60UfuPbDfZ03igOTP0BagbaqATla4K
+ MPDKD4YeAV74bEhO/OsF7AqSB53NFcYyQ8uvS5h2nWdJpIYXEB0QLGoU0j7FwoiKei2j EQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3mh42prmyv-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 21 Dec 2022 18:31:47 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 3E24310003A;
+        Wed, 21 Dec 2022 18:31:42 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D78DF232FEC;
+        Wed, 21 Dec 2022 18:31:09 +0100 (CET)
+Received: from localhost (10.201.21.217) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Wed, 21 Dec
+ 2022 18:31:09 +0100
+From:   Gatien Chevallier <gatien.chevallier@foss.st.com>
+To:     <alexandre.torgue@foss.st.com>, <robh+dt@kernel.org>,
+        <Oleksii_Moisieiev@epam.com>, <linus.walleij@linaro.org>,
+        <gregkh@linuxfoundation.org>
+CC:     <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <loic.pallardy@st.com>,
+        <devicetree@vger.kernel.org>, <mark.rutland@arm.com>,
+        <arnd@arndb.de>, <gatien.chevallier@foss.st.com>
+Subject: [RFC PATCH 0/7] Introduce STM32 system bus
+Date:   Wed, 21 Dec 2022 18:30:48 +0100
+Message-ID: <20221221173055.11719-1-gatien.chevallier@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v2 1/2] Documentation: dt-bindings: k3-r5f-rproc: Add new
- compatible for AM62 SoC family
-Content-Language: en-US
-To:     Devarsh Thakkar <devarsht@ti.com>, andersson@kernel.org,
-        mathieu.poirier@linaro.org, p.zabel@pengutronix.de,
-        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, s-anna@ti.com
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        hnagalla@ti.com, praneeth@ti.com, nm@ti.com, vigneshr@ti.com,
-        a-bhatia1@ti.com, j-luthra@ti.com
-References: <20221130134052.7513-1-devarsht@ti.com>
- <20221130134052.7513-2-devarsht@ti.com>
- <b4b608bf-e347-5500-eb94-bec3611f6a56@linaro.org>
- <645aca4d-b19c-390d-b899-fd40a924a096@ti.com>
- <12010f8f-d1d2-be18-8d4e-e1d282cb1670@linaro.org>
- <2c058ebf-c39c-9cb5-4a6f-afe88940104a@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <2c058ebf-c39c-9cb5-4a6f-afe88940104a@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.201.21.217]
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-12-21_10,2022-12-21_01,2022-06-22_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/12/2022 17:29, Devarsh Thakkar wrote:
->>
->> Just look at your patch - it is clearly incorrect. You said in the patch
->> that for compatibles other than ti,am64-r5fss cluster mode is BOTH [0,
->> 1] AND false.
-> 
-> cluster-mode is BOTH [0,1] and false only in case of AM62x as per below snippet
+Document STM32 System Bus. This bus is intended to control firewall
+access for the peripherals connected to it.
 
-Yes, for that variant you have conflicting approach.
+For every peripheral, the bus checks the firewall registers to see
+if the peripheral is configured as non-secure. If the peripheral
+is configured as secure, the node is marked populated, so the
+device won't be probed.
 
-, but since it's under allOf the impact of latter will supersede, schema
-validation will fail even if cluster-mode set to 0 or 1 for am62x due to
-below snippet as shared in obesrvation log above [2].
+This is useful as a firewall configuration sanity check and avoid
+platform crashes in case peripherals are incorrectly configured.
 
-Yeah, but the code is confusing. So again - you are saying with allOf
-that both conditions are applicable. Your intentions of superseding do
-not matter here - you said that allOf conditions must be taken into
-account. These conditions can be reversed any time, don't you think?
+The STM32 System Bus implements the feature-domain-controller
+bindings. It is used by peripherals to reference a domain
+controller, in this case the firewall feature domain.
+The bus uses the ID referenced by the feature-domains property to
+know where to look in the firewall to get the security configuration
+for the peripheral. This allows a device tree description rather
+than a hardcoded peripheral table in the bus driver.
 
+On STM32MP13/15 platforms, the firewall bus is represented by the
+ETZPC node, which is responsible for the securing / MCU isolating
+the capable peripherals.
 
-> 
-> "  - if:
->       properties:
->         compatible:
->           enum:
->             - ti,am62-r5fss
->     then:
->       properties:
->         ti,cluster-mode: false"
-> 
-> Sorry for the back and forth, I just thought to describe more clearly what I was up-to as I thought above should be functionally fine and it also saves us from having separate if blocks for each compatible, but I am open to adding separate if blocks as you earlier suggested if that seems more cleaner solution.
+STM32MP13/15 device trees are updated in this series to implement
+the bus. All peripherals that are securable or MCU isolation capable
+by the ETZPC are connected to the bus.
 
-You need to fix your email client to properly wrap messages.
+Gatien Chevallier (6):
+  dt-bindings: bus: add STM32 System Bus
+  dt-bindings: bus: add STM32MP15 ETZPC firewall bus bindings
+  dt-bindings: bus: add STM32MP13 ETZPC firewall bus bindings
+  bus: stm32_sys_bus: add support for STM32MP15 and STM32MP13 system bus
+  ARM: dts: stm32: add ETZPC as a system bus for STM32MP15x boards
+  ARM: dts: stm32: add ETZPC as a system bus for STM32MP13x boards
 
-Best regards,
-Krzysztof
+Oleksii Moisieiev (1):
+  dt-bindings: Document common device controller bindings
+
+ .../devicetree/bindings/bus/st,sys-bus.yaml   |   88 +
+ .../feature-domain-controller.yaml            |   84 +
+ MAINTAINERS                                   |    6 +
+ arch/arm/boot/dts/stm32mp131.dtsi             |  242 +-
+ arch/arm/boot/dts/stm32mp151.dtsi             | 2737 +++++++++--------
+ drivers/bus/Kconfig                           |    9 +
+ drivers/bus/Makefile                          |    1 +
+ drivers/bus/stm32_sys_bus.c                   |  180 ++
+ include/dt-bindings/bus/stm32mp13_sys_bus.h   |   60 +
+ include/dt-bindings/bus/stm32mp15_sys_bus.h   |   98 +
+ 10 files changed, 2062 insertions(+), 1443 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/bus/st,sys-bus.yaml
+ create mode 100644 Documentation/devicetree/bindings/feature-controllers/feature-domain-controller.yaml
+ create mode 100644 drivers/bus/stm32_sys_bus.c
+ create mode 100644 include/dt-bindings/bus/stm32mp13_sys_bus.h
+ create mode 100644 include/dt-bindings/bus/stm32mp15_sys_bus.h
+
+-- 
+2.25.1
 
