@@ -2,143 +2,356 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 315736532AF
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 15:51:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 257A46532B2
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 15:52:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229491AbiLUOvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 09:51:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40160 "EHLO
+        id S229522AbiLUOwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Dec 2022 09:52:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229791AbiLUOvG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 09:51:06 -0500
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA7A5617B;
-        Wed, 21 Dec 2022 06:51:05 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2BLEooZS050205;
-        Wed, 21 Dec 2022 08:50:50 -0600
+        with ESMTP id S229472AbiLUOwd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 09:52:33 -0500
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88827C1E
+        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 06:52:32 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2BLEqPKH004043;
+        Wed, 21 Dec 2022 08:52:25 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1671634250;
-        bh=Bv5widqpyas4qVvAZ5Qis86pK9FKLXes1YkCFHKQuwM=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=Bv4PNO7OMqoCfcmfZ+zQ9XIwRP0P+2Fb3l+JoE5YrNQP9jH0jKFuQgne+U7eNpiMV
-         xYaJYuAtfkhZYlBQWaznSe/x6N3CpdH2OfTCTMqgYA/LU9xwJ+EQE6uusDBX6FIoTN
-         1Yq3vjQIi0ZAtP0R1Tu/PQNgMBU/h2IbpaSSZQBY=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2BLEoooe053530
+        s=ti-com-17Q1; t=1671634345;
+        bh=43Jnf7WN1VyPd1OJr719d6STlpdns9sivKKv0a9ffPc=;
+        h=From:To:CC:Subject:Date;
+        b=B7hoiLD9OxyWfHh93xq5YlQlwL6jgJMRO69k3O0q3NvZR0mAB/49TAzMqB/zb3WJy
+         iagPf7e0KNHXhr5t2DNlaad1RoUQlc/tEhm1RToEk7Dd1Xbj1r/7PivyG1fDwf32Gn
+         HUIzeklYFoGms7bOZWYijqq/dxmfw3/OWnWNOux8=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2BLEqPBE018025
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 21 Dec 2022 08:50:50 -0600
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+        Wed, 21 Dec 2022 08:52:25 -0600
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 21
- Dec 2022 08:50:49 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ Dec 2022 08:52:25 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 21 Dec 2022 08:50:49 -0600
-Received: from [10.250.235.211] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2BLEoj3g070098;
-        Wed, 21 Dec 2022 08:50:46 -0600
-Message-ID: <8411f1c0-29e4-cba3-6cce-8b343d40d8aa@ti.com>
-Date:   Wed, 21 Dec 2022 20:20:44 +0530
+ Frontend Transport; Wed, 21 Dec 2022 08:52:25 -0600
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2BLEqOxM074403;
+        Wed, 21 Dec 2022 08:52:24 -0600
+From:   Jai Luthra <j-luthra@ti.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, Jai Luthra <j-luthra@ti.com>
+Subject: [PATCH v4] dt-bindings: sound: tlv320aic3x: Convert to dtschema
+Date:   Wed, 21 Dec 2022 20:22:16 +0530
+Message-ID: <20221221145216.11400-1-j-luthra@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-am62-main: Update OTAP and ITAP
- delay select
-Content-Language: en-US
-To:     Sjoerd Simons <sjoerd@collabora.com>, Nishanth Menon <nm@ti.com>
-CC:     <martyn.welch@collabora.com>, Nitin Yadav <n-yadav@ti.com>,
-        "Aswath Govindraju" <a-govindraju@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Tero Kristo" <kristo@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221216143624.23708-1-sjoerd@collabora.com>
- <20221216143624.23708-2-sjoerd@collabora.com>
- <b22b6349-9cec-2e86-294a-249f24de2345@ti.com>
- <a85e08c6af0fbdafaa6f3799264e92bba7607b9c.camel@collabora.com>
-From:   "Raghavendra, Vignesh" <vigneshr@ti.com>
-In-Reply-To: <a85e08c6af0fbdafaa6f3799264e92bba7607b9c.camel@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert bindings for TI's TLV320AIC3x audio codecs to dtschema.
 
+The following properties are still found in some old dts files, but will
+be ignored by the driver:
+- adc-settle-ms
+- assigned-clock-parents, assigned-clock-rates, assigned-clocks
+- port
 
-On 12/20/2022 6:37 PM, Sjoerd Simons wrote:
-> Hey Vignesh
-> 
-> On Tue, 2022-12-20 at 16:49 +0530, Vignesh Raghavendra wrote:
->>
->>
->> On 16/12/22 8:06 pm, Sjoerd Simons wrote:
->>> From: Nitin Yadav <n-yadav@ti.com>
->>>
->>> UHS Class U1 sd-card are not getting detected due to incorrect
->>> OTAP/ITAP delay select values in linux. Update OTAP and ITAP
->>> delay select values for various speed modes. For sdhci0, update
->>> OTAP delay values for ddr52 & HS200 and add ITAP delay for legacy
->>> & mmc-hs. For sdhci1 & sdhci2, update OTAP & ITAP delay select
->>> recommended as in RIOT for various speed modes.
->>>
->>> Signed-off-by: Nitin Yadav <n-yadav@ti.com>
->>> [cherry-pick from vendor BSP]
->>> Signed-off-by: Sjoerd Simons <sjoerd@collabora.com>
->>> ---
->>>
->>>  arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 46 ++++++++++++--------
->>> ----
->>>  1 file changed, 24 insertions(+), 22 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
->>> b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
->>> index 03660476364f..28c250a8d1ec 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
->>> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
->>> @@ -391,8 +391,10 @@ sdhci0: mmc@fa10000 {
->>>                 ti,clkbuf-sel = <0x7>;
->>>                 ti,otap-del-sel-legacy = <0x0>;
->>>                 ti,otap-del-sel-mmc-hs = <0x0>;
->>> -               ti,otap-del-sel-ddr52 = <0x9>;
->>> -               ti,otap-del-sel-hs200 = <0x6>;
->>> +               ti,otap-del-sel-ddr52 = <0x5>;
->>> +               ti,otap-del-sel-hs200 = <0x5>;
->>> +               ti,itap-del-sel-legacy = <0xa>;
->>
->> This is pretty useless without corresponding driver changes 
->> to pick up ti,itap-del-sel-legacy as well
-> 
-> Right; itap-del-sel-legacy is properly documented in the device-tree
-> binding and was already previously set ofcourse so i didn't pick up it
-> needed more driver changes. That said the dtb change itself should
-> still be valid even if not actually applied.
-> 
->> https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/commit/drivers/mmc/host/sdhci_am654.c?h=ti-linux-5.10.y&id=93d22fc56007ee13e589debf0d32c8b1d5fdc6d8
->> https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/commit/drivers/mmc/host/sdhci_am654.c?h=ti-linux-5.10.y&id=9c878c3dc642f7f1f3ab6ca7f812cd43fe7ed7d8
->>
->> Could you list that cards affected and fixed by this change?
-> 
-> It's a Collabora branded UHS class 1 (SDR104) card; Matching the commit
-> message indication given by Nitin. So that in particular i guess, will
-> have been fixed by the change to the ti,otap-del-sel-sdr104 value for
-> sdhci1.
-> 
-> For the two patches you highlighted above; Is TI planning to upstream
-> those as well? 
->
+Signed-off-by: Jai Luthra <j-luthra@ti.com>
+---
 
-Yes, the plan is to post those patches to mmc list post 6.2-rc1
+Changes in v4:
+- Use generic node name in the example
+- Fix typo in commit message
 
-Regards
-Vignesh
+v3: https://lore.kernel.org/linux-devicetree/20221220123951.29959-1-j-luthra@ti.com/
+v2: https://lore.kernel.org/linux-devicetree/20220803151726.31628-1-j-luthra@ti.com/
+
+ .../bindings/sound/ti,tlv320aic3x.yaml        | 158 ++++++++++++++++++
+ .../devicetree/bindings/sound/tlv320aic3x.txt |  97 -----------
+ 2 files changed, 158 insertions(+), 97 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/ti,tlv320aic3x.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/tlv320aic3x.txt
+
+diff --git a/Documentation/devicetree/bindings/sound/ti,tlv320aic3x.yaml b/Documentation/devicetree/bindings/sound/ti,tlv320aic3x.yaml
+new file mode 100644
+index 000000000000..f0375bbf4c40
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/ti,tlv320aic3x.yaml
+@@ -0,0 +1,158 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++# Copyright (C) 2022 Texas Instruments Incorporated
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/ti,tlv320aic3x.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments TLV320AIC3x Codec
++
++description: |
++  TLV320AIC3x are a series of low-power stereo audio codecs with stereo
++  headphone amplifier, as well as multiple inputs and outputs programmable in
++  single-ended or fully differential configurations.
++
++  The serial control bus supports SPI or I2C protocols, while the serial audio
++  data bus is programmable for I2S, left/right-justified, DSP, or TDM modes.
++
++  The following pins can be referred in the sound node's audio routing property:
++
++  CODEC output pins:
++     LLOUT
++     RLOUT
++     MONO_LOUT
++     HPLOUT
++     HPROUT
++     HPLCOM
++     HPRCOM
++
++  CODEC input pins for TLV320AIC3104:
++     MIC2L
++     MIC2R
++     LINE1L
++     LINE1R
++
++  CODEC input pins for other compatible codecs:
++     MIC3L
++     MIC3R
++     LINE1L
++     LINE2L
++     LINE1R
++     LINE2R
++
++maintainers:
++  - Jai Luthra <j-luthra@ti.com>
++
++properties:
++  compatible:
++    enum:
++      - ti,tlv320aic3x
++      - ti,tlv320aic33
++      - ti,tlv320aic3007
++      - ti,tlv320aic3106
++      - ti,tlv320aic3104
++
++  reg:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++    description:
++      GPIO specification for the active low RESET input.
++
++  gpio-reset:
++    maxItems: 1
++    description:
++      Deprecated, please use reset-gpios instead.
++    deprecated: true
++
++  ai3x-gpio-func:
++    description: AIC3X_GPIO1 & AIC3X_GPIO2 Functionality
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    maxItems: 2
++
++  ai3x-micbias-vg:
++    description: MicBias required voltage. If node is omitted then MicBias is powered down.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    oneOf:
++      - const: 1
++        description: MICBIAS output is powered to 2.0V.
++      - const: 2
++        description: MICBIAS output is powered to 2.5V.
++      - const: 3
++        description: MICBIAS output is connected to AVDD.
++
++  ai3x-ocmv:
++    description: Output Common-Mode Voltage selection.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    oneOf:
++      - const: 0
++        description: 1.35V
++      - const: 1
++        description: 1.5V
++      - const: 2
++        description: 1.65V
++      - const: 3
++        description: 1.8V
++
++  AVDD-supply:
++    description: Analog DAC voltage.
++
++  IOVDD-supply:
++    description: I/O voltage.
++
++  DRVDD-supply:
++    description: ADC analog and output driver voltage.
++
++  DVDD-supply:
++    description: Digital core voltage.
++
++  '#sound-dai-cells':
++    const: 0
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      tlv320aic3x_i2c: audio-codec@1b {
++        compatible = "ti,tlv320aic3x";
++        reg = <0x1b>;
++
++        reset-gpios = <&gpio1 17 GPIO_ACTIVE_LOW>;
++
++        AVDD-supply = <&regulator>;
++        IOVDD-supply = <&regulator>;
++        DRVDD-supply = <&regulator>;
++        DVDD-supply = <&regulator>;
++      };
++    };
++
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    spi {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      tlv320aic3x_spi: audio-codec@0 {
++        compatible = "ti,tlv320aic3x";
++        reg = <0>; /* CS number */
++        #sound-dai-cells = <0>;
++
++        AVDD-supply = <&regulator>;
++        IOVDD-supply = <&regulator>;
++        DRVDD-supply = <&regulator>;
++        DVDD-supply = <&regulator>;
++        ai3x-ocmv = <0>;
++      };
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/sound/tlv320aic3x.txt b/Documentation/devicetree/bindings/sound/tlv320aic3x.txt
+deleted file mode 100644
+index 20931a63fd64..000000000000
+--- a/Documentation/devicetree/bindings/sound/tlv320aic3x.txt
++++ /dev/null
+@@ -1,97 +0,0 @@
+-Texas Instruments - tlv320aic3x Codec module
+-
+-The tlv320aic3x serial control bus communicates through both I2C and SPI bus protocols
+-
+-Required properties:
+-
+-- compatible - "string" - One of:
+-    "ti,tlv320aic3x" - Generic TLV320AIC3x device
+-    "ti,tlv320aic33" - TLV320AIC33
+-    "ti,tlv320aic3007" - TLV320AIC3007
+-    "ti,tlv320aic3106" - TLV320AIC3106
+-    "ti,tlv320aic3104" - TLV320AIC3104
+-
+-
+-- reg - <int> -  I2C slave address
+-
+-
+-Optional properties:
+-
+-- reset-gpios - GPIO specification for the active low RESET input.
+-- ai3x-gpio-func - <array of 2 int> - AIC3X_GPIO1 & AIC3X_GPIO2 Functionality
+-				    - Not supported on tlv320aic3104
+-- ai3x-micbias-vg - MicBias Voltage required.
+-	1 - MICBIAS output is powered to 2.0V,
+-	2 - MICBIAS output is powered to 2.5V,
+-	3 - MICBIAS output is connected to AVDD,
+-	If this node is not mentioned or if the value is incorrect, then MicBias
+-	is powered down.
+-- ai3x-ocmv - Output Common-Mode Voltage selection:
+-	0 - 1.35V,
+-	1 - 1.5V,
+-	2 - 1.65V,
+-	3 - 1.8V
+-- AVDD-supply, IOVDD-supply, DRVDD-supply, DVDD-supply : power supplies for the
+-  device as covered in Documentation/devicetree/bindings/regulator/regulator.txt
+-
+-Deprecated properties:
+-
+-- gpio-reset - gpio pin number used for codec reset
+-
+-CODEC output pins:
+-  * LLOUT
+-  * RLOUT
+-  * MONO_LOUT
+-  * HPLOUT
+-  * HPROUT
+-  * HPLCOM
+-  * HPRCOM
+-
+-CODEC input pins for TLV320AIC3104:
+-  * MIC2L
+-  * MIC2R
+-  * LINE1L
+-  * LINE1R
+-
+-CODEC input pins for other compatible codecs:
+-  * MIC3L
+-  * MIC3R
+-  * LINE1L
+-  * LINE2L
+-  * LINE1R
+-  * LINE2R
+-
+-The pins can be used in referring sound node's audio-routing property.
+-
+-I2C example:
+-
+-#include <dt-bindings/gpio/gpio.h>
+-
+-tlv320aic3x: tlv320aic3x@1b {
+-	compatible = "ti,tlv320aic3x";
+-	reg = <0x1b>;
+-
+-	reset-gpios = <&gpio1 17 GPIO_ACTIVE_LOW>;
+-
+-	AVDD-supply = <&regulator>;
+-	IOVDD-supply = <&regulator>;
+-	DRVDD-supply = <&regulator>;
+-	DVDD-supply = <&regulator>;
+-};
+-
+-SPI example:
+-
+-spi0: spi@f0000000 {
+-	tlv320aic3x: codec@0 {
+-		compatible = "ti,tlv320aic3x";
+-		reg = <0>; /* CS number */
+-		#sound-dai-cells = <0>;
+-		spi-max-frequency = <1000000>;
+-
+-		AVDD-supply = <&regulator>;
+-		IOVDD-supply = <&regulator>;
+-		DRVDD-supply = <&regulator>;
+-		DVDD-supply = <&regulator>;
+-		ai3x-ocmv = <0>;
+-	};
+-};
+-- 
+2.17.1
+
