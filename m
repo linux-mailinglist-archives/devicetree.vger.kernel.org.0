@@ -2,65 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5900A65375C
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 21:09:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D39E1653766
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 21:13:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234562AbiLUUJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 15:09:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50936 "EHLO
+        id S234765AbiLUUN2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Dec 2022 15:13:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234790AbiLUUJo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 15:09:44 -0500
-Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E83226AD3;
-        Wed, 21 Dec 2022 12:09:43 -0800 (PST)
-Received: by mail-oo1-f50.google.com with SMTP id d2-20020a4ab202000000b004ae3035538bso1993354ooo.12;
-        Wed, 21 Dec 2022 12:09:43 -0800 (PST)
+        with ESMTP id S232786AbiLUUN1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 15:13:27 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87392B17
+        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 12:13:26 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id b3so25201084lfv.2
+        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 12:13:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xMyITnYC6iA3G/LtEs1ZWz7dfXVBOhvaku8kkCxxo2s=;
+        b=NJ8AI4l2bQDByL8abuo9ZMfM5BPB4rECN8H01ymKifVUY+P87GD6cLLj1DOw8UYrXJ
+         RFj0+t9/IMWcKCfvpaHXpHjAn8jiwV/W6dJmariZAs0zaIQC27W6YLXL83pkN9LJofS7
+         sWKSxrAIlzfqj1KmTovKHodA+XZN86a5usHWzOFMUwEnlQMqkKT5yXpmlymD1ASRwS9b
+         O5ZYDOZGSNYO896EYzazZhQI25k7JEwA4bka5JyJmOFLXIpCX0QvDDJvssCvHX69ea98
+         GZ8tE+9HSrIapYUsDAlESvqazowB1JwXFO5oZIzKT+HgKLJxBN1x1QEOWdBtaQb5U6VQ
+         Gjtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=7hY8G8o4GP1gTqYrBQoBdXzTjanx+NXgVGTmmfwXwXs=;
-        b=77cDXUw5wB9tIVZUvaIgqdgsJ+nYkuuAZUE6ONMh2rfFE7uHL1ZkorR9IAeaszBxFJ
-         STfmRo1/O+vFdpdM+cSVLrCQZ5qKpcsrySUmzPiKGYVaOPOWsEMqxxsMUjZYgQf9U9Vu
-         2KCQPVcgSozLhYrwtZO/TWKTCT72g+0Pe5kFIWsTB86WB7mzpaM9NoQZnNyYDklHDDJl
-         eHvhMPahbF/HDXT5l/WSWwiT8gr6X4THa8JFOsM/zOrJC7bJvxiu+EXm4rCJ6xOtxPqb
-         H/bJCzCdIT54KoDtK/hwU1rzYlDWNn1/UYmznFzead6SEn9c0bbcSKW/uEzPH7+bUe0U
-         NblA==
-X-Gm-Message-State: AFqh2kqzl9XHfsBlXVPP8FjaydBX2y+Mf7hlyu0slJxwJI5bwi5vwA+j
-        OjQXTSzjxgDKANbW+tYEKrXFssZ5UA==
-X-Google-Smtp-Source: AMrXdXveW3JoX6VWWBCCN4Q7iiVTUWg23bq1ov+RfxpKJ/SnFEaIJTtMr3mHKg7dfWRpEyJaD1BcIg==
-X-Received: by 2002:a4a:e7cf:0:b0:4a3:51a2:f8ba with SMTP id y15-20020a4ae7cf000000b004a351a2f8bamr1438923oov.6.1671653382279;
-        Wed, 21 Dec 2022 12:09:42 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r15-20020a4a964f000000b004a085ddc771sm6463496ooi.6.2022.12.21.12.09.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Dec 2022 12:09:41 -0800 (PST)
-Received: (nullmailer pid 3506211 invoked by uid 1000);
-        Wed, 21 Dec 2022 20:09:41 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xMyITnYC6iA3G/LtEs1ZWz7dfXVBOhvaku8kkCxxo2s=;
+        b=LJesx0RmZQOWEQ7HI8XLCW2ZGMRI7X8sNH9NtSsZS7KZwOY8rNdnEGAZAP3K/P3wpt
+         x5W1LJhNd7FT96RHX+LZmkBr8B0IncQFeFubtv/cBQ07wiAcjLwidYNv+yYhhbJvpBGW
+         n/EpWxTBybahiYxul2gYWruxnhZ/9xmOrmqEn/EbJQnXwso79ZvdvY0Xo5oHJYJSZXMK
+         ZDqg3Lq5Cw3QuicDg1Lai88PYnYIKVuMhFGteW/Rc3bOlFLn8I55pc1J0th7pbbSQGSW
+         BmZMzwg5bsXR2vHzi7JPKDDZbv52QVSBRVgDFPfTbxACAc1T6zofy3s8x+fRRPrrzQJ+
+         hJtQ==
+X-Gm-Message-State: AFqh2kr5Xrjxl3IosY+aZvdQMkNrcmpUEOhBeqRb+tuYxb8MT9zwSJSH
+        3poChZBPp4JQefyPqOKa9FgWyA==
+X-Google-Smtp-Source: AMrXdXute0xsVtVJ10dXcWI2H6DJdIl5HiEylBrKZzmX9Ceo5peUrYXWQp5vg+dwntUF5danaNmPtQ==
+X-Received: by 2002:ac2:5975:0:b0:4b5:8f03:a2bc with SMTP id h21-20020ac25975000000b004b58f03a2bcmr756347lfp.9.1671653604897;
+        Wed, 21 Dec 2022 12:13:24 -0800 (PST)
+Received: from [192.168.1.101] (abyl184.neoplus.adsl.tpnet.pl. [83.9.31.184])
+        by smtp.gmail.com with ESMTPSA id s16-20020a056512215000b004ca0ea7af24sm788834lfr.174.2022.12.21.12.13.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Dec 2022 12:13:24 -0800 (PST)
+Message-ID: <37ee797c-02e5-f35b-2066-feb58e48fb0f@linaro.org>
+Date:   Wed, 21 Dec 2022 21:13:21 +0100
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Gatien Chevallier <gatien.chevallier@foss.st.com>
-Cc:     robh+dt@kernel.org, alexandre.torgue@foss.st.com,
-        loic.pallardy@st.com, linux-stm32@st-md-mailman.stormreply.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linus.walleij@linaro.org, gregkh@linuxfoundation.org,
-        mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org,
-        Oleksii_Moisieiev@epam.com, arnd@arndb.de
-In-Reply-To: <20221221173055.11719-3-gatien.chevallier@foss.st.com>
-References: <20221221173055.11719-1-gatien.chevallier@foss.st.com>
- <20221221173055.11719-3-gatien.chevallier@foss.st.com>
-Message-Id: <167165333929.3500496.17240347378760070278.robh@kernel.org>
-Subject: Re: [RFC PATCH 2/7] dt-bindings: bus: add STM32 System Bus
-Date:   Wed, 21 Dec 2022 14:09:41 -0600
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v4 07/20] thermal/drivers/tsens: limit num_sensors to 9
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>
+Cc:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20221221020520.1326964-1-dmitry.baryshkov@linaro.org>
+ <20221221020520.1326964-8-dmitry.baryshkov@linaro.org>
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221221020520.1326964-8-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -68,46 +85,37 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed, 21 Dec 2022 18:30:50 +0100, Gatien Chevallier wrote:
-> Document STM32 System Bus. This bus is intended to control firewall
-> access for the peripherals connected to it.
+
+On 21.12.2022 03:05, Dmitry Baryshkov wrote:
+> According to the vendor kernels (msm-3.10, 3.14 and 3.18), msm8939
+> supports only 9 sensors. Remove the rogue sensor's hw_id.
+msm-3.18 and 8939.. I would have never thought it was there!
+
+
 > 
-> Signed-off-by: Loic PALLARDY <loic.pallardy@st.com>
-> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+> Fixes: 332bc8ebab2c ("thermal: qcom: tsens-v0_1: Add support for MSM8939")
+> Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  .../devicetree/bindings/bus/st,sys-bus.yaml   | 88 +++++++++++++++++++
->  1 file changed, 88 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/bus/st,sys-bus.yaml
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+>  drivers/thermal/qcom/tsens-v0_1.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/bus/st,sys-bus.yaml:7:8: [warning] too many spaces after colon (colons)
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/bus/st,sys-bus.yaml: $id: 'http://devicetree.org/schemas/bus/stm32,sys-bus.yaml' does not match 'http://devicetree.org/schemas/.*\\.yaml#'
-	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/bus/st,sys-bus.yaml: properties:#feature-domain-cells: 'minItems' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-./Documentation/devicetree/bindings/bus/st,sys-bus.yaml: $id: relative path/filename doesn't match actual path or filename
-	expected: http://devicetree.org/schemas/bus/st,sys-bus.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221221173055.11719-3-gatien.chevallier@foss.st.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+> diff --git a/drivers/thermal/qcom/tsens-v0_1.c b/drivers/thermal/qcom/tsens-v0_1.c
+> index 0bc4e5cec184..57ac23f9d9b7 100644
+> --- a/drivers/thermal/qcom/tsens-v0_1.c
+> +++ b/drivers/thermal/qcom/tsens-v0_1.c
+> @@ -605,9 +605,9 @@ static const struct tsens_ops ops_8939 = {
+>  };
+>  
+>  struct tsens_plat_data data_8939 = {
+> -	.num_sensors	= 10,
+> +	.num_sensors	= 9,
+>  	.ops		= &ops_8939,
+> -	.hw_ids		= (unsigned int []){ 0, 1, 2, 3, 5, 6, 7, 8, 9, 10 },
+> +	.hw_ids		= (unsigned int []){ 0, 1, 2, 3, 5, 6, 7, 8, 9 },
+>  
+>  	.feat		= &tsens_v0_1_feat,
+>  	.fields	= tsens_v0_1_regfields,
