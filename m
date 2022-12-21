@@ -2,123 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEDFF65339F
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 16:45:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2906F6533B3
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 16:54:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231421AbiLUPpo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 10:45:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44814 "EHLO
+        id S229981AbiLUPx7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Dec 2022 10:53:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231698AbiLUPpn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 10:45:43 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16C321033
-        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 07:45:40 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id c65-20020a1c3544000000b003cfffd00fc0so1874227wma.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 07:45:40 -0800 (PST)
+        with ESMTP id S229578AbiLUPx5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 10:53:57 -0500
+Received: from mail-vs1-xe2a.google.com (mail-vs1-xe2a.google.com [IPv6:2607:f8b0:4864:20::e2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2F571AF11;
+        Wed, 21 Dec 2022 07:53:56 -0800 (PST)
+Received: by mail-vs1-xe2a.google.com with SMTP id k185so15165119vsc.2;
+        Wed, 21 Dec 2022 07:53:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KGbeBQRjTmGtaWEzjEWMVtiqNlsW5lW0CoNY9zIiLc4=;
-        b=k81vhdDhN4j7y0R2uh1f2NxwYOxgXJp7lobsFLPPvq/M6F8hB3TFqsN9lZCSAyYnEd
-         w8o1nWeu7EELY58lSlSwPPEf7OHtsaeK5VqI5NdERLRgDlkuD8VoffEoiseBO4Me6Xwa
-         ifuxfqerftFrPqfHxkggSkp/dgjNFkopcT3j7tY3CoHu1j/tr6DqJjhfL2jhzkknG2rW
-         IWHIdkiqSdq/Pns8ulArC0uAW88dF2pnfmWI7AL3zmnA+w8GrN/9mTN8E/U3g+CIdDvs
-         Oo5yH1AG6gEDamjIdU0nuUxw+S7xyIawnU/iFCFr8jrFNF/KdSPBc+13/EGs2AsfNPYz
-         dHQw==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=leprLY9JD3/hXcu+XjENQSWTu9dUrPT/h210JNfsY7I=;
+        b=Yo9YFpUUPfeSzsi52VA89DrS3Gu4vMpE8XGrs//6FMNcq7Fp/Q88KpvI0PCRZJAafQ
+         0lvPg37xG3dp1Yl9gDtCwlXmbGuJNxjYwfrjskPDcDTKHBeGiCDv3mQ5bHDA5AtjTU91
+         hgrXPvNB7YWxUZJfRSqgnO+hxzt65LaTkWGU3LQBl92HwO46R1keIGrFzKniHv5mJmNz
+         5PkJoVkCNgzKTsUjE55zrDkfiVCXMLCQCiho/+0Ws2FBRsirNrIKQ9bCzeqmsW/KcMeV
+         oJAwrsRx0z/Iy3pdGJrBZFocz2Y9AmlKz7x5+QSlzaecVKAgIEVrz3Nrdrkit0AJEuiG
+         gUIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KGbeBQRjTmGtaWEzjEWMVtiqNlsW5lW0CoNY9zIiLc4=;
-        b=25tdtyfkPws7FMQ/TCR6aDoMKdR1JfJQIOWHiwrrhyhT64YvQermBFO++9Qki9AaiS
-         1irUdGcOUzFVGgG0UtgbPguFwNZroYm7pPNnmMg7RdLD7/AEwl2NEQ7j/a0lsgTb7SI6
-         q/AmXfnjrfXDnUaOSMjbooHHUTgTaP8OFDneSs+c3vOJR0dFZxo20nsq15JqjsqTPUIo
-         GLa0a25uQkq8RuN/5ZVkiaD2D1G3dnWaMFy41FIC9r+moHYSnKNAFl4rrWaUY9GIH7LA
-         GtJ2ftT0zCp80RSU1Ksn8CR+e8aiOtI+L5oukN92vVc3TA8NRmlSeKkqb7ZG/rnW0RtJ
-         9DMA==
-X-Gm-Message-State: AFqh2kqW9xUfcVrr0HrsOQOirfft/hWO1h4MKsrzWGCcE5qszP5XNCcb
-        VKy2ywCnwRDB++zel0FNmZxmSA==
-X-Google-Smtp-Source: AMrXdXsMuyF2s0KfLk6G49bLBkUwiohwuGsdWlz+hiiVccvbYcehjbTwlBshzkeCA5pNWrZvwQufJQ==
-X-Received: by 2002:a05:600c:a51:b0:3d2:3376:6f38 with SMTP id c17-20020a05600c0a5100b003d233766f38mr2020662wmq.20.1671637538618;
-        Wed, 21 Dec 2022 07:45:38 -0800 (PST)
-Received: from [192.168.175.23] (pur13-1-78-242-214-186.fbx.proxad.net. [78.242.214.186])
-        by smtp.googlemail.com with ESMTPSA id v192-20020a1cacc9000000b003cfd4e6400csm2531518wme.19.2022.12.21.07.45.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Dec 2022 07:45:37 -0800 (PST)
-Message-ID: <ed4aafb9-c33e-6f24-1e9c-7c7efa0e58ae@linaro.org>
-Date:   Wed, 21 Dec 2022 16:45:34 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=leprLY9JD3/hXcu+XjENQSWTu9dUrPT/h210JNfsY7I=;
+        b=FqxEplPOTMo7LkQBcDv02bGujlv771b4HlPIaLOJKGl3nqssUI2rgrj49fukA4EerB
+         rPzpkdh5zabuZQKw0N+hdJBSkOQQmriRGjpZ6kh5KT+sPJGnNHElg+wYuXuBFnh9TFVu
+         Eziu1bPFKn0tGdOBX/FhGcWcdCn8silbDReQTao5fdC7uk4wG4nereVci3zACrPtQTwa
+         7YZUFuGW3Usm8f8nLfvJCSoVfiiyHJ8HcM/45Y6lIvMt2YfEdYWR5ytZn9VOZw4eWdjE
+         l6ZqxMktyrRROH3XwXkHbVHsYMivqGmJ/Yi5XqV+u30rfNPhm12ozVx7Gp0f5uRiBbGy
+         sXwA==
+X-Gm-Message-State: AFqh2ko0Mwx4T37SAvyqq9OHVabjYbKPJbYlbllbrPhpDa8+hkpZoiQY
+        SFKGdfUP0gwj7K+LzQT9mwh6K2/jq+V7Yl9TGOY=
+X-Google-Smtp-Source: AMrXdXtY7iB+hlGGOUUTBu75bJP0tWHEsDLn2MDc+7yYHIKKMUhin6llZ7uqIRbIkOtFY9cfcD6tGaCRsSKDkaoZHY8=
+X-Received: by 2002:a05:6102:5d:b0:3b5:32d1:bbb8 with SMTP id
+ k29-20020a056102005d00b003b532d1bbb8mr307989vsp.24.1671638035679; Wed, 21 Dec
+ 2022 07:53:55 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v4 07/20] thermal/drivers/tsens: limit num_sensors to 9
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20221220152237.1125178-1-hugo@hugovil.com> <167155487539.723236.827037175847349918.robh@kernel.org>
+In-Reply-To: <167155487539.723236.827037175847349918.robh@kernel.org>
+From:   Bruno Thomsen <bruno.thomsen@gmail.com>
+Date:   Wed, 21 Dec 2022 16:53:39 +0100
+Message-ID: <CAH+2xPDbqh5qXALhyNOcEEN0zQGpvm=Crm4GW3NRO3QdPHi6Dg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: rtc: pcf2127: remove pca/pcf2129 from
+ trivial RTC devices list
+To:     Rob Herring <robh@kernel.org>
+Cc:     Hugo Villeneuve <hugo@hugovil.com>, linux-rtc@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>
-Cc:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20221221020520.1326964-1-dmitry.baryshkov@linaro.org>
- <20221221020520.1326964-8-dmitry.baryshkov@linaro.org>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20221221020520.1326964-8-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/12/2022 03:05, Dmitry Baryshkov wrote:
-> According to the vendor kernels (msm-3.10, 3.14 and 3.18), msm8939
-> supports only 9 sensors. Remove the rogue sensor's hw_id.
-> 
-> Fixes: 332bc8ebab2c ("thermal: qcom: tsens-v0_1: Add support for MSM8939")
-> Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->   drivers/thermal/qcom/tsens-v0_1.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/thermal/qcom/tsens-v0_1.c b/drivers/thermal/qcom/tsens-v0_1.c
-> index 0bc4e5cec184..57ac23f9d9b7 100644
-> --- a/drivers/thermal/qcom/tsens-v0_1.c
-> +++ b/drivers/thermal/qcom/tsens-v0_1.c
-> @@ -605,9 +605,9 @@ static const struct tsens_ops ops_8939 = {
->   };
->   
->   struct tsens_plat_data data_8939 = {
-> -	.num_sensors	= 10,
-> +	.num_sensors	= 9,
->   	.ops		= &ops_8939,
-> -	.hw_ids		= (unsigned int []){ 0, 1, 2, 3, 5, 6, 7, 8, 9, 10 },
-> +	.hw_ids		= (unsigned int []){ 0, 1, 2, 3, 5, 6, 7, 8, 9 },
+Den tir. 20. dec. 2022 kl. 17.48 skrev Rob Herring <robh@kernel.org>:
+>
+>
+> On Tue, 20 Dec 2022 10:22:37 -0500, Hugo Villeneuve wrote:
+> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> >
+> > pca/pcf2129 devices can also have the 'reset-source' property, so
+> > remove them from the trivial RTC devices list.
+> >
+> > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > ---
+> >  Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml | 5 ++++-
+> >  Documentation/devicetree/bindings/rtc/trivial-rtc.yaml | 2 --
+> >  2 files changed, 4 insertions(+), 3 deletions(-)
+> >
+>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Does not patch 4 says we can drop those hw_ids ?
-
->   
->   	.feat		= &tsens_v0_1_feat,
->   	.fields	= tsens_v0_1_regfields,
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
-
+Reviewed-by: Bruno Thomsen <bruno.thomsen@gmail.com>
