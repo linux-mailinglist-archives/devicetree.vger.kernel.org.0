@@ -2,105 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B50B4652C36
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 06:01:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0991D652C6C
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 06:38:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231154AbiLUFBc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 00:01:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41872 "EHLO
+        id S229448AbiLUFh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Dec 2022 00:37:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229597AbiLUFB3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 00:01:29 -0500
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A0791FCF4
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 21:01:28 -0800 (PST)
-Received: by mail-pj1-x102f.google.com with SMTP id w4-20020a17090ac98400b002186f5d7a4cso1054388pjt.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 21:01:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=9uDeIpR3gZlQEuN6OZGowsBPkz2+a3TKumaK+E7tV7M=;
-        b=SsaaBuO7tn3RAhdIkQeSVAHRMaPr9U3H2EyE9I8Rm4FTXFxB17JUFK2dq/IEM8WTOT
-         fLzO2iTdrQlpwSeeeABdgkfgpBM0YeQ09TP20po29jbzYIc37v1+4X4BQOo9yfzwA3Ia
-         tkXeov9L85T2o/dDHUmK2bCHPfETevmFLvBIHujttqWV7zD3vtc88nZA1DeiEGt5xSbB
-         N5W7alf081O26lalJshSupqtLACVSops8UtxQuLhKGLDnL82P1UgN1Vvpd5PquPf8HGY
-         U94N46N+vuUgBLEPFw1/gt8zUkbhGNtCf9nV7gxxAMzkwM6QOzGabFi4Vmlzaym5b9pS
-         KaoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9uDeIpR3gZlQEuN6OZGowsBPkz2+a3TKumaK+E7tV7M=;
-        b=qCScJthu/xyx7a7MAE37h1Ah8Z1mcWO9UqLRpzpM9oAhzTWAAfhpJDq04IS9LdsnP8
-         h0CMeGiD2EvQ5wAQ4/new9aZ7jcisEJBrT33eb2VKP+GP9ARSACzkg6f/e7beOHX47mI
-         RBgXfMUEdw/+qYKSz3r9nBXpQM7VR+9Ks+XUrmzJjbz0G6BjFuCYjKSSZLEBriBC9/Hh
-         yXxCe1Bapt7KsUHW7m5QB6cjqmn0mib/VPr5WqIbCG9m2Xy1gfiFaiHtZfNsv8v8/Ly6
-         4/eZX3DaIg4kHDb7xhK2R/b3ZEPmP6SK/9a/c6iJqMinKcVqViMMEgtEVaxtu3Dno5SN
-         jFfQ==
-X-Gm-Message-State: AFqh2krslml38x5miY/lFXvmmIr4i3xMTz+I8gkHzdBc0oFZBKX73b29
-        BRCJqcgEYd5exbwP1Wpg8RZ+Rw==
-X-Google-Smtp-Source: AMrXdXsAXXw8HbLxnwnKo/sDyx1mzhJbIJ9xlHX7fXi7HmSiLp/ONLWoanQN7QCsvyqJFciiunVQ/A==
-X-Received: by 2002:a05:6300:8181:b0:a5:6ed:669f with SMTP id bt1-20020a056300818100b000a506ed669fmr17419316pzc.2.1671598888114;
-        Tue, 20 Dec 2022 21:01:28 -0800 (PST)
-Received: from localhost ([122.172.82.107])
-        by smtp.gmail.com with ESMTPSA id u62-20020a637941000000b004790eb3fee1sm8923780pgc.90.2022.12.20.21.01.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Dec 2022 21:01:27 -0800 (PST)
-Date:   Wed, 21 Dec 2022 10:31:25 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Sumit Gupta <sumitg@nvidia.com>
-Cc:     treding@nvidia.com, krzysztof.kozlowski@linaro.org,
-        dmitry.osipenko@collabora.com, rafael@kernel.org,
-        jonathanh@nvidia.com, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        sanjayc@nvidia.com, ksitaraman@nvidia.com, ishah@nvidia.com,
-        bbasu@nvidia.com
-Subject: Re: [Patch v1 07/10] cpufreq: Add Tegra234 to cpufreq-dt-platdev
- blocklist
-Message-ID: <20221221050125.6gndqorox5ez2gkb@vireshk-i7>
-References: <20221220160240.27494-1-sumitg@nvidia.com>
- <20221220160240.27494-8-sumitg@nvidia.com>
+        with ESMTP id S229569AbiLUFh6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 00:37:58 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 506151D33A;
+        Tue, 20 Dec 2022 21:37:56 -0800 (PST)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BL59XOf015301;
+        Wed, 21 Dec 2022 05:37:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=iuuCsVMes5uuYN5lfuNxmp9Zc6Nb3HtNYUdhownHy0U=;
+ b=Kn4gEh4QtNZ9WeWNKAkW74Q1RKUniNUdgDFn9L+1XGhXr7a9S82STXa/V6zKJrjhcGpg
+ 37jj7uJPwHsvhUD9sZfoKM3c4rI6WLaEmr20n+C0KFPYIcr/CI6+rXCt5bjPYTAL5g6e
+ ao4k3fubo9IXraL3IKnnpQ1S8aGvgGnX8a6zSAHPYWRUgQ04JeP2zs/wQsqvJJYAI5r0
+ dLzn3zsS43xz5d631Wtrq1iHUOKTj/ym+wDkaHEPidAucNxhv/nCUidGQ4YUjNndjkWK
+ w+kuM6D1lY0TQ3ZBdQSB0zTR/MIAgAp1t90Oc0XP7Fj7QMWOAfTo+913NqqUGFDGtkhx bg== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3mk195k81n-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 21 Dec 2022 05:37:52 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2BL5bp9H004136
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 21 Dec 2022 05:37:51 GMT
+Received: from jprakash-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Tue, 20 Dec 2022 21:37:47 -0800
+From:   Jishnu Prakash <quic_jprakash@quicinc.com>
+To:     <gregkh@linuxfoundation.org>, <sboyd@kernel.org>,
+        <agross@kernel.org>, <devicetree@vger.kernel.org>,
+        <robh+dt@kernel.org>, <linus.walleij@linaro.org>,
+        <quic_kamalw@quicinc.com>, <quic_subbaram@quicinc.com>,
+        <quic_collinsd@quicinc.com>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm-owner@vger.kernel.org>,
+        Jishnu Prakash <quic_jprakash@quicinc.com>
+Subject: [PATCH] Add a check for remove callback in spmi driver removal API
+Date:   Wed, 21 Dec 2022 11:07:11 +0530
+Message-ID: <1671601032-18397-1-git-send-email-quic_jprakash@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221220160240.27494-8-sumitg@nvidia.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: H2MqB-7DbaoUmH9KXmg_xrHfvRJjD1I8
+X-Proofpoint-ORIG-GUID: H2MqB-7DbaoUmH9KXmg_xrHfvRJjD1I8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-12-21_01,2022-12-20_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 spamscore=0
+ priorityscore=1501 mlxlogscore=244 mlxscore=0 impostorscore=0
+ lowpriorityscore=0 adultscore=0 bulkscore=0 malwarescore=0 suspectscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2212210038
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20-12-22, 21:32, Sumit Gupta wrote:
-> Tegra234 platform uses the tegra194-cpufreq driver, so add it
-> to the blocklist in cpufreq-dt-platdev driver to avoid the cpufreq
-> driver registration from there.
-> 
-> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
-> ---
->  drivers/cpufreq/cpufreq-dt-platdev.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c b/drivers/cpufreq/cpufreq-dt-platdev.c
-> index 8ab672883043..e329d29d1f9d 100644
-> --- a/drivers/cpufreq/cpufreq-dt-platdev.c
-> +++ b/drivers/cpufreq/cpufreq-dt-platdev.c
-> @@ -137,6 +137,7 @@ static const struct of_device_id blocklist[] __initconst = {
->  	{ .compatible = "nvidia,tegra30", },
->  	{ .compatible = "nvidia,tegra124", },
->  	{ .compatible = "nvidia,tegra210", },
-> +	{ .compatible = "nvidia,tegra234", },
->  
->  	{ .compatible = "qcom,apq8096", },
->  	{ .compatible = "qcom,msm8996", },
+When removing a SPMI driver, there can be a crash due to NULL pointer
+dereference if it does not have a remove callback defined, as the remove
+callback gets called directly in spmi_drv_remove(). This is one such call
+trace observed when removing the QCOM SPMI PMIC driver:
 
-Applied. Thanks.
+ dump_backtrace.cfi_jt+0x0/0x8
+ dump_stack_lvl+0xd8/0x16c
+ panic+0x188/0x498
+ __cfi_slowpath+0x0/0x214
+ __cfi_slowpath+0x1dc/0x214
+ spmi_drv_remove+0x16c/0x1e0
+ device_release_driver_internal+0x468/0x79c
+ driver_detach+0x11c/0x1a0
+ bus_remove_driver+0xc4/0x124
+ driver_unregister+0x58/0x84
+ cleanup_module+0x1c/0xc24 [qcom_spmi_pmic]
+ __do_sys_delete_module+0x3ec/0x53c
+ __arm64_sys_delete_module+0x18/0x28
+ el0_svc_common+0xdc/0x294
+ el0_svc+0x38/0x9c
+ el0_sync_handler+0x8c/0xf0
+ el0_sync+0x1b4/0x1c0
+
+If a driver has all its resources allocated through devm_() APIs and
+does not need any other explicit cleanup, it would not require a
+remove callback to be defined. The SPMI framework also does not enforce
+the presence of a remove callback when a client driver registers with it.
+Hence, add a check for remove callback presence before calling it
+when removing a SPMI driver.
+
+Jishnu Prakash (1):
+  spmi: Add a check for remove callback when removing a SPMI driver
+
+ drivers/spmi/spmi.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 -- 
-viresh
+2.7.4
+
