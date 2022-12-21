@@ -2,71 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DA03652D85
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 08:54:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 990BF652D8B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 08:59:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229591AbiLUHyy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 02:54:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39510 "EHLO
+        id S234324AbiLUH67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Dec 2022 02:58:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234419AbiLUHyy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 02:54:54 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C50551AF08
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 23:54:52 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id g13so5587339lfv.7
-        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 23:54:52 -0800 (PST)
+        with ESMTP id S233443AbiLUH66 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 02:58:58 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 123392BD
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 23:58:57 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id g13so5601440lfv.7
+        for <devicetree@vger.kernel.org>; Tue, 20 Dec 2022 23:58:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Cd4NlwVfDDcizKG3XwDkBaypBKyNBzdCvZsOkaiYGc0=;
-        b=dbx0OXlU/beOCbWbFfaOtnDaeEFGca8kNTAdOPFMJUPcctJnA7qwGsGBaZsmBmgR7P
-         rkpnPJOvi0/FwW4DvcmmMrB3TkcnnAyP2YudANOsXMMsJ9miumjyz48uJVMDMMfV+FcF
-         cCdbNv+qQTaIQvkh+y9IWrmWFgKFVqFNeUfa+rqXZoEFl4nUOiTXBSCZwaaXvM0DVWYd
-         7YPVEWTDnUiNP/3pOgMW109zmtEtDu0wYbzcKtT8yDX9mpS/NNJ5fr5lp6H+sb4x5ob5
-         LJDF9V4PYX2veRhf+0s21M2UoO9wt5D1/Ka2p4bWeHPDl444zOQMs7Y5h8RBifJwGqZS
-         uNLQ==
+        bh=e8GCz1b2VF0mWtOR9yf+Rv0xFFyTsr8iL68eBnffHjs=;
+        b=apfpV+nJVVyEcEi53k7XYGHX6obMy/OGRT/sqx9uDTR8RjttQLEYj2EWlyGwjiiQPr
+         TvjT0T8ilKqeJHJ6NZdMa9c6feO6j+yj6X5b+iDMN/okmU+RTsu+iI7hRPcqkJoC537D
+         aQhCkqWNyUuhzNTZJ9SlwBKlqTf26FxfuCgThbKJm66orwKWVgkpHoHKtteJoAAJsvxU
+         HrJ2IDOq2C1G3FsNOqt/SUyZxYJUaZJFuu7G54XWpfbwbVdcEwFUQfxskbrfAUp/D8oN
+         lkzMzy2WJnTEN17WsbItT02ABlv6jo1shl274PHCYADQivqTUUnM5nI+SWYqC20+pC4l
+         +MsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Cd4NlwVfDDcizKG3XwDkBaypBKyNBzdCvZsOkaiYGc0=;
-        b=6TVZ0rD0KL897eAw3/JHfOmAglxnhw8Xpz/IITn1yYopG+/l1VyG1GDxJMr27wCidN
-         f8jVT/noPL0S9mJUYRpgtgWIOX9opXQewNswvFZLffMFcsGK08DPvgWnp3SxCovH1Jvl
-         Kvyf8BpXlvtMopY+VpXr7Er1h5xWpMDwQa2E/P4V3tQuRdKVuJh/VsSOXjO6j8JqraYR
-         0fgr4SYrz0C4K/3ewB0emmUFHGHz8fVLuo7A/uXwZBERAQhSuk0+zo0dDZQGTFarmoXW
-         z172YQqCFad1AO+u3KoIomy3NF9uZ8pdoZ9h1XihQDEEQ/M4CYVS+7Bdy+yZxoJZ2G3P
-         nVpA==
-X-Gm-Message-State: AFqh2kpPKZ/85q0KolBmuAu9bLkr7MlOrS0NKGlufy8ZmlTl/j+xWZja
-        Rw2HxfmwwB2Xdpo4FWGHqDpFbA==
-X-Google-Smtp-Source: AMrXdXtBM1Gf9AUc4Z7pCqi61fr4zmdhQ+Weqf5tlehKIBjc/4e7HB24prxfvyQPfYRgcN0Q/Ju5IA==
-X-Received: by 2002:ac2:4435:0:b0:4b5:90bb:e565 with SMTP id w21-20020ac24435000000b004b590bbe565mr333068lfl.36.1671609291070;
-        Tue, 20 Dec 2022 23:54:51 -0800 (PST)
+        bh=e8GCz1b2VF0mWtOR9yf+Rv0xFFyTsr8iL68eBnffHjs=;
+        b=Lj+JMh6P9VYga2tMTN8n0CKLOWVVv3zBt1cGZINQvc1IAwj8IfNNXRXyMm8Dti1YLz
+         H2RvM7gKJILo9G+HEDWxSwktvPoS5zM1DJ4FXMBVidH8lz7otXNblkwWSXiSjD7BgiWH
+         jdyQSqLUnRb85TGhzMxRcVHt+FG0UdtrW6TNtpZSJn8O2pV+V/bNxlBJ39h4e+c6fLun
+         /j/j3cMFg/5V9jw/tPdkHEmzfcX8zIJ9ZHsAg3I9V97YxAx64EDXsepRe9E/GuatpOK/
+         9/kJAq7j2hIEMi0B60DrT72ug/wyDFbjntnwADzJgf3bxxdxswf29tHtGjRzRNK8/tKp
+         COgA==
+X-Gm-Message-State: AFqh2kpsyUyVHG9n5eEx6eJTIOizhrIahzF8bDLQh1Ao6VT0zs4BP6tY
+        KFCDIeDnESFFlXOG2lo3lsliPA==
+X-Google-Smtp-Source: AMrXdXurygVZlWFJZ4zMTAx9l7uSZkERAfz5c7Tp/Hu16TGbWU2otQiv8T2qGY77GmvohtJgNW+aPQ==
+X-Received: by 2002:a05:6512:2508:b0:4b5:9b8f:cc82 with SMTP id be8-20020a056512250800b004b59b8fcc82mr391385lfb.0.1671609535445;
+        Tue, 20 Dec 2022 23:58:55 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id 9-20020ac25f09000000b004a6f66eed7fsm1754646lfq.165.2022.12.20.23.54.50
+        by smtp.gmail.com with ESMTPSA id f9-20020ac251a9000000b004b587e37265sm1767256lfk.58.2022.12.20.23.58.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Dec 2022 23:54:50 -0800 (PST)
-Message-ID: <79ffe459-3827-ea67-e854-8eef3d9b630b@linaro.org>
-Date:   Wed, 21 Dec 2022 08:54:49 +0100
+        Tue, 20 Dec 2022 23:58:54 -0800 (PST)
+Message-ID: <86592f50-b1d9-b633-4ec8-904a7fd97806@linaro.org>
+Date:   Wed, 21 Dec 2022 08:58:53 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [EXTERNAL] Re: [PATCH] arm64: dts: ti: k3-j721s2: Add support for
- ADC nodes
+Subject: Re: [PATCH v5 1/2] dt-bindings: interconnect: Add QDU1000/QRU1000
+ devices
 Content-Language: en-US
-To:     Bhavya Kapoor <b-kapoor@ti.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        kristo@kernel.org, nm@ti.com
-References: <20221220101249.46450-1-b-kapoor@ti.com>
- <ff5b09db-4900-0b5b-e821-fa05b8d907a4@linaro.org>
- <a4d11974-eb97-bfa2-790f-3016950ea961@ti.com>
+To:     Melody Olvera <quic_molvera@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Odelu Kukatla <quic_okukatla@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221216230914.21771-1-quic_molvera@quicinc.com>
+ <20221216230914.21771-2-quic_molvera@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <a4d11974-eb97-bfa2-790f-3016950ea961@ti.com>
+In-Reply-To: <20221216230914.21771-2-quic_molvera@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,60 +82,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/12/2022 06:42, Bhavya Kapoor wrote:
+On 17/12/2022 00:09, Melody Olvera wrote:
+> Add separate schema for QDU1000 and QRU1000 interconnect devices
+> to document the different NoCs on these platforms.
 > 
-> On 20/12/22 16:20, Krzysztof Kozlowski wrote:
->> On 20/12/2022 11:12, Bhavya Kapoor wrote:
->>> J721s2 has two instances of 8 channel ADCs in MCU domain. Add DT nodes
->>> for 8 channel ADCs for J721s2 SoC.
->>>
->>> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
->>> ---
->>>   .../dts/ti/k3-j721s2-common-proc-board.dts    | 14 +++++++
->>>   .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     | 42 ++++++++++++++++++-
->>>   2 files changed, 55 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
->>> index a7aa6cf08acd..67593aa69327 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
->>> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
->>> @@ -309,3 +309,17 @@ &mcu_mcan1 {
->>>   	pinctrl-0 = <&mcu_mcan1_pins_default>;
->>>   	phys = <&transceiver2>;
->>>   };
->>> +
->>> +&tscadc0 {
->>> +	status = "okay";
->>> +	adc {
->>> +		ti,adc-channels = <0 1 2 3 4 5 6 7>;
->>> +	};
->>> +};
->>> +
->>> +&tscadc1 {
->>> +	status = "okay";
->>> +	adc {
->>> +		ti,adc-channels = <0 1 2 3 4 5 6 7>;
->>> +	};
->>> +};
->>> \ No newline at end of file
->> This is a friendly reminder during the review process.
->>
->> It seems my previous comments were not fully addressed. Maybe my
->> feedback got lost between the quotes, maybe you just forgot to apply it.
->> Please go back to the previous discussion and either implement all
->> requested changes or keep discussing them.
->>
->> Thank you.
->>
->> Best regards,
->> Krzysztof
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> ---
+>  .../interconnect/qcom,qdu1000-rpmh.yaml       | 70 +++++++++++++
+>  .../interconnect/qcom,qdu1000-rpmh.h          | 98 +++++++++++++++++++
+>  2 files changed, 168 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,qdu1000-rpmh.yaml
+>  create mode 100644 include/dt-bindings/interconnect/qcom,qdu1000-rpmh.h
 > 
-> Hi , I thought i did addressed the feedback since tscadc is just a 
-> wrapper node.
-> 
-> The actual adc node is inside of tscadc node.
+> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,qdu1000-rpmh.yaml b/Documentation/devicetree/bindings/interconnect/qcom,qdu1000-rpmh.yaml
+> new file mode 100644
+> index 000000000000..dad93b8e4895
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interconnect/qcom,qdu1000-rpmh.yaml
+> @@ -0,0 +1,70 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/interconnect/qcom,qdu1000-rpmh.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm RPMh Network-On-Chip Interconnect on QDU1000
+> +
+> +maintainers:
+> +  - Georgi Djakov <djakov@kernel.org>
+> +  - Odelu Kukatla <quic_okukatla@quicinc.com>
+> +
+> +description: |
+> +   RPMh interconnect providers support system bandwidth requirements through
+> +   RPMh hardware accelerators known as Bus Clock Manager (BCM). The provider is
+> +   able to communicate with the BCM through the Resource State Coordinator (RSC)
+> +   associated with each execution environment. Provider nodes must point to at
+> +   least one RPMh device child node pertaining to their RSC and each provider
+> +   can map to multiple RPMh resources.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,qdu1000-clk-virt
+> +      - qcom,qdu1000-gem-noc
+> +      - qcom,qdu1000-mc-virt
+> +      - qcom,qdu1000-system-noc
+> +
+> +  '#interconnect-cells': true
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +allOf:
+> +  - $ref: qcom,rpmh-common.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,qdu1000-clk-virt
+> +              - qcom,qdu1000-mc-virt
+> +    then:
+> +      properties:
+> +        reg: false
+> +    else:
+> +      required:
+> +        - reg
+> +
+> +required:
+> +  - compatible
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +      #include <dt-bindings/interconnect/qcom,qdu1000-rpmh.h>
+> +
+> +      system_noc: interconnect@1640000 {
+> +             compatible = "qcom,qdu1000-system-noc";
 
-Read the feedback, from all emails.
+Messed indentation.
+
 Best regards,
 Krzysztof
 
