@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8C7A652DC3
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 09:16:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2479652DCA
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 09:17:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234528AbiLUIQb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 03:16:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48230 "EHLO
+        id S234559AbiLUIR3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Dec 2022 03:17:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234514AbiLUIPp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 03:15:45 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57B37FC8
-        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 00:15:43 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id p36so22302794lfa.12
-        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 00:15:43 -0800 (PST)
+        with ESMTP id S234568AbiLUIQQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 03:16:16 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 011E1218A1
+        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 00:16:05 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id bp15so22314018lfb.13
+        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 00:16:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=tKVTpYZFPEDtKyLcWavwNidP1gFKsOiP+G6edw3PI9g=;
-        b=vahFHpUDyrqgLEJM7LTlfQSXUee1o2TfjthdfLdgytrvn/mWRZMStW/eUl9K3VhG/2
-         rW3a3BSINNKDlG/kDJ8ERk/Wwdz9KyGmrY9X6HSmHYegm248/3wlGApZXmAvfc8YIZG9
-         UfqpRQNEJQfmABHy1YGf03fdsExb1o6N9UkKHLEsaEiZekXs28Pp500Rg94id2g/3Eed
-         sbWPy7FZRXBMEaVGXZm9n48vANpoT0GV+Gz24KYiw/igkpF3IyVK4SlSzZy07NKKVDWG
-         6pGB3/BFGoBm4h80lujRgi8J3yVVmqVojDmQwW68IKfqhbF3o8fpM12d1bdNyqO9c6pT
-         zRAA==
+        bh=dRBaCHV+UNDOXNoLk4RfhR9W0+ki+Ik/87sPPJy8yrI=;
+        b=CVZQdBzEjr6RL1Ae0Eo+U9kj3bBVkp3n+L9Xmdm68zecrs+0PcSmQ6xCzdWoTgVNko
+         OLkvzYmtIY5JmEWTyZiHP11QfUZ2V43ZWAf8717nGRFZ3h9IV3mnviXd3F1MK5aVPd5a
+         ChiI0Kgd9eW8buDR/xEiuRePbnduQ8D49GclP1GorMzdPoGZ2prXAvUuR8/nhPGF9KlC
+         5X2LtCk/6Z1Yq62MXp1aRSUDfRNUr5aIzaL5AUn1AZVDJlWHf+03BuPuPmLLO26AmnfD
+         gBe6SxsY+KCSawtftjWBcQUXkXAHUFxpbd8S0KhL6AtbAbXWJROx8vn9hLTLwTCO6Z8P
+         8v/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tKVTpYZFPEDtKyLcWavwNidP1gFKsOiP+G6edw3PI9g=;
-        b=3y2lG6Z2ON0RQ4G1ES1bv/wgzIUQGEVDT+fflOyGKW7ZYypqCIrmifT+4yREtBeRJ3
-         ++FkS/0C0mzHZ2H4x1n3kAs9/fcN2eXYAdMD9dYkMTqq0fRwkzjySQ8Mwlr+HOBmkFhz
-         0Av66RaMswSr7DBeaBRsgpuElwAL9HS6Now3r3nAzkvWb3geqJDhUpY/8cwZA4pkAaTR
-         7nBJueBqgo5Te+UAyC8FzPAVkP1NMYE7oYS+sRvSw9ChqCx694FBCury3tXqvBJfm2TX
-         EpGhBvo66m+uQdrRcp+IHH9jfjLHOR9Gx9zbexbFJcQAec3KF8fd/4nFExF+NGknqClW
-         /bIA==
-X-Gm-Message-State: AFqh2koCF7xv1PNxGYxvlIw07rRAQiiCynNaaqt0PIkDbvlpu8SrPjwN
-        pItSEnkcfRTBCaK/0m3UsjlmUQ==
-X-Google-Smtp-Source: AMrXdXtXrEk0IuAOycHdERvZxfkVj6P/rVqGYvaomI4T69wVYQdjoSNcMjMry1fmRVNsDStpQx2K9g==
-X-Received: by 2002:a19:c20d:0:b0:4b5:b18b:8966 with SMTP id l13-20020a19c20d000000b004b5b18b8966mr185160lfc.49.1671610541679;
-        Wed, 21 Dec 2022 00:15:41 -0800 (PST)
+        bh=dRBaCHV+UNDOXNoLk4RfhR9W0+ki+Ik/87sPPJy8yrI=;
+        b=Kk1uI6ytk/EW2ua/zvbxY0/RQxXEXUHxPK/MbNvCeA7VZaBVkIIAKR9orS36RmMj0R
+         hxLWNXTU/YdiX2gdLDIcmJayiQ6UE7xu9dvKB2KyfwA6mywXD+JCZ3gbPrDGahZyLAsk
+         9sivSuXtMi5fksaFvtgOXn3+M1pRKYZtJ+QdvxUQbcinR+kzd/krGKl1ygaUw5l3VFyY
+         Tw6mkAInCT3p7PtlxelC+3hG06capHPzNZHoZIv9xjCr6yJH8/StRzxaBPVysDOPHtTy
+         Kna1sZYRwSUEn5mdP2B4Np3erUtFo8f5fpbdcR1lsK1VEXz34zszhp79aCUu9J4narDG
+         zHjw==
+X-Gm-Message-State: AFqh2ko0doaYdIUOiZnFLPL6EuS6YYHqG1F3kzKrO3skzrW/BmtmLgia
+        RLRvpZPpN8zpJ2gEFG/tTpuG2w==
+X-Google-Smtp-Source: AMrXdXvu0JzewlvcpSAFLMx6y5F94at0p3f/YQ/rIg3GUPVVM1J4xERq2AC2ortFxt652/XA6s6dLQ==
+X-Received: by 2002:a05:6512:3048:b0:4b5:5f2b:ddf8 with SMTP id b8-20020a056512304800b004b55f2bddf8mr419900lfb.7.1671610564375;
+        Wed, 21 Dec 2022 00:16:04 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id o9-20020a05651205c900b00497aa190523sm1767100lfo.248.2022.12.21.00.15.40
+        by smtp.gmail.com with ESMTPSA id h10-20020ac2596a000000b004b4b69af17dsm1764774lfp.214.2022.12.21.00.16.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Dec 2022 00:15:41 -0800 (PST)
-Message-ID: <88357291-3cdd-8d5a-fdec-38bd081a4235@linaro.org>
-Date:   Wed, 21 Dec 2022 09:15:40 +0100
+        Wed, 21 Dec 2022 00:16:03 -0800 (PST)
+Message-ID: <5a7907e3-f79e-5de9-ed1b-ec24ea52c437@linaro.org>
+Date:   Wed, 21 Dec 2022 09:16:02 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH v4 1/2] arm64: dts: rockchip: Add EmbedFire LubanCat 1
+Subject: Re: [PATCH v4 2/2] dt-bindings: arm: rockchip: Add EmbedFire LubanCat
+ 1
 Content-Language: en-US
 To:     Yuteng Zhong <zonyitoo@gmail.com>, Heiko Stuebner <heiko@sntech.de>
 Cc:     Rob Herring <robh+dt@kernel.org>, Peter Geis <pgwipeout@gmail.com>,
@@ -62,9 +63,9 @@ Cc:     Rob Herring <robh+dt@kernel.org>, Peter Geis <pgwipeout@gmail.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, DHDAXCW <lasstp5011@gmail.com>
-References: <Y6KdvAlWLMG4whJh@VM-66-53-centos>
+References: <Y6KfFEChA67E7oX/@VM-66-53-centos>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y6KdvAlWLMG4whJh@VM-66-53-centos>
+In-Reply-To: <Y6KfFEChA67E7oX/@VM-66-53-centos>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,141 +78,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/12/2022 06:46, Yuteng Zhong wrote:
+On 21/12/2022 06:52, Yuteng Zhong wrote:
 > from: DHDAXCW <lasstp5011@gmail.com>
 > 
 > LubanCat 1 is a Rockchip RK3566 SBC based
 > is developed by EmbedFire Electronics Co., Ltd.
 > Mini Linux Card Type Cheap Computer Development Board
-> 
-> It has the following characteristics:
-> - MicroSD card slot, onboard eMMC flash memory
-> - 1GbE Realtek RTL8211F Ethernet Transceiver
-> - 1 USB Type-C port (power and USB2.0 OTG)
-> - 1 USB 3.0 Host port
-> - 3 USB 2.0 Host ports
-> - 1 HDMI
-> - 1 infrared receiver
-> - 1 MIPI DSI
-> - 1 MIPI CSI
-> - 1 x 4-section headphone jack
-> - Mini PCIe socket (USB or PCIe)
-> - 1 SIM Card slot
-> - 1 SYS LED and 1 PWR LED
-> - 40-pin GPIO expansion header
-> 
-> Signed-off-by: Yuteng Zhong <zonyitoo@gmail.com>
-> Signed-off-by: DHDAXCW <lasstp5011@gmail.com>
-> ---
-> 
-> Changed in V2:
->   - Remove RNG node
-> Changed in V3:
->   - Sent E-mail with a wrong attachment
-> Changed in V4:
->   - Modify all node names
-> 
-> ---
->  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->  .../boot/dts/rockchip/rk3566-lubancat-1.dts   | 598 ++++++++++++++++++
->  2 files changed, 599 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-lubancat-1.dts
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-> index 0a76a2ebb5f6..e52bda04d45a 100644
-> --- a/arch/arm64/boot/dts/rockchip/Makefile
-> +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> @@ -78,6 +78,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-soquartz-blade.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-soquartz-cm4.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-soquartz-model-a.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-box-demo.dtb
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-lubancat-1.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-bpi-r2-pro.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-evb1-v10.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-odroid-m1.dtb
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-lubancat-1.dts b/arch/arm64/boot/dts/rockchip/rk3566-lubancat-1.dts
-> new file mode 100644
-> index 000000000000..443fcfabbd16
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566-lubancat-1.dts
-> @@ -0,0 +1,598 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> +* Copyright (c) 2021 Rockchip Electronics Co., Ltd.
-> +*/
-> +
-> +/dts-v1/;
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/pinctrl/rockchip.h>
-> +#include <dt-bindings/soc/rockchip,vop2.h>
-> +#include "rk3566.dtsi"
-> +
-> +/ {
-> +	model = "EmbedFire LubanCat 1";
-> +	compatible = "embedfire,lubancat-1", "rockchip,rk3566";
-> +
-> +	aliases {
-> +		ethernet0 = &gmac1;
-> +		mmc0 = &sdmmc0;
-> +		mmc1 = &sdhci;
-> +	};
-> +
-> +	chosen: chosen {
-> +		stdout-path = "serial2:1500000n8";
-> +	};
-> +
-> +	gmac1_clkin: external-gmac1-clock {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <125000000>;
-> +		clock-output-names = "gmac1_clkin";
-> +		#clock-cells = <0>;
-> +	};
-> +	
-> +	hdmi-con {
-> +		compatible = "hdmi-connector";
-> +		type = "a";
-> +
-> +		port {
-> +			hdmi_con_in: endpoint {
-> +				remote-endpoint = <&hdmi_out_con>;
-> +			};
-> +		};
-> +	};
-> +
-> +	gpio-leds {
-> +		compatible = "gpio-leds";
-> +
-> +		sys_led: sys-led {
-> +			label = "sys_led";
-> +			linux,default-trigger = "heartbeat";
-> +			default-state = "on";
-> +			gpios = <&gpio0 RK_PC5 GPIO_ACTIVE_LOW>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&sys_led_pin>;
-> +		};
-> +	};
-> +
-> +	usb_5v: usb-5v-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "usb_5v";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +	};
-> +
-> +	vcc5v0_sys: vcc5v0-sys-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc5v0_sys";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		vin-supply = <&usb_5v>;
-> +	};
-> +
-> +	vcc3v3_sys: vcc3v3-sys {
 
 This is a friendly reminder during the review process.
 
@@ -222,17 +94,27 @@ requested changes or keep discussing them.
 
 Thank you.
 
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc3v3_sys";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&vcc5v0_sys>;
-> +	};
-> +
-> +	vcc3v3_pcie: vcc3v3-pcie-regulator {
+> 
+> Signed-off-by: Yuteng Zhong <zonyitoo@gmail.com>
+> Signed-off-by: DHDAXCW <lasstp5011@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> index 88ff4422a8c1..84d39a3a8843 100644
+> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> @@ -781,6 +781,11 @@ properties:
+>            - const: rockchip,rk3568-bpi-r2pro
+>            - const: rockchip,rk3568
+>  
+> +      - description: EmbedFire LubanCat 1
+> +        items:
+> +          - const: embedfire,lubancat-1
+> +          - const: rockchip,rk3566
 
+Here as well.
 
 Best regards,
 Krzysztof
