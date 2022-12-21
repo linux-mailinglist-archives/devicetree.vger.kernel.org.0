@@ -2,68 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B32F7652E2E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 10:04:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DC71652E3A
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 10:08:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234073AbiLUJEo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 04:04:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34616 "EHLO
+        id S234478AbiLUJIj convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 21 Dec 2022 04:08:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229652AbiLUJEm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 04:04:42 -0500
-X-Greylist: delayed 529 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 21 Dec 2022 01:04:41 PST
-Received: from mail.glencoeaur.com (mail.glencoeaur.com [217.61.97.113])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FCCCE000
-        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 01:04:41 -0800 (PST)
-Received: by mail.glencoeaur.com (Postfix, from userid 1001)
-        id F272781D27; Wed, 21 Dec 2022 08:55:46 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=glencoeaur.com;
-        s=mail; t=1671612950;
-        bh=0BgaW9t8GFER5QecxVkFsHrVi3gO/4V5KAZgJaiRYBs=;
-        h=Date:From:To:Subject:From;
-        b=nsC6elmu7ioyfQ8mN91tQRJ2Xnq3KWxnjeIhhZ/PVLKaiMba2pBgi1cM5yJK1xYEK
-         lOxV3ncUAKOG/DpNsTYloGib+Bl9pf/iVhAVEFdSmsrovi2vVYeShoeNjwGgnNf/5S
-         0Q9jIw5CZ0ERkmrEJUqCTu0cQ+IGWxUKZMeLCTKlZNarrjH+er4WJujmxtJUwyJI6S
-         F9kc7e71YS/kLPgNKktDviHpvuIP+sTqxNDH4w6hMFTPl4KDmEpGdFAofIQF4HwA4B
-         16Y+5TUI35CutD5Dmhut4pIO5I7KEgHoms3e+lHq/H3quQjuyDKE3olAXGLJyQM5/9
-         SxPg1FQdinuwg==
-Received: by mail.glencoeaur.com for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 08:55:44 GMT
-Message-ID: <20221221074500-0.1.l.1bhy.0.mnrd43pd76@glencoeaur.com>
-Date:   Wed, 21 Dec 2022 08:55:44 GMT
-From:   "Zbynek Spacek" <zbynek.spacek@glencoeaur.com>
-To:     <devicetree@vger.kernel.org>
-Subject: Silikonmischungen
-X-Mailer: mail.glencoeaur.com
+        with ESMTP id S229652AbiLUJIh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 04:08:37 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 942B8101;
+        Wed, 21 Dec 2022 01:08:34 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id D8FA924E292;
+        Wed, 21 Dec 2022 17:08:27 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 21 Dec
+ 2022 17:08:27 +0800
+Received: from ubuntu.localdomain (161.142.229.243) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 21 Dec
+ 2022 17:08:21 +0800
+From:   Jia Jie Ho <jiajie.ho@starfivetech.com>
+To:     Olivia Mackall <olivia@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
+CC:     Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+Subject: [PATCH 0/3] hwrng: starfive - Add driver for TRNG module
+Date:   Wed, 21 Dec 2022 17:08:16 +0800
+Message-ID: <20221221090819.1259443-1-jiajie.ho@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=1.4 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_FMBLA_NEWDOM28,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+Content-Type: text/plain
+X-Originating-IP: [161.142.229.243]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX168.cuchost.com
+ (172.16.6.78)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Good morning,
+This patch series adds kernel support for StarFive hardware random
+number generator. First 2 patches adds bindings documentations and
+device driver for this module. Patch 3 adds devicetree entry for
+VisionFive v2 SoC.
 
-do you need intermediates for processing, plastics (e.g. rubber) or silic=
-one mixtures?
+Patch 3 needs to be applied on top of:
+https://patchwork.kernel.org/project/linux-riscv/patch/20221220011247.35560-7-hal.feng@starfivetech.com/
 
-We provide a wide range of silicone rubbers with various properties, sili=
-cone mixtures from renowned manufacturers such as Wacker, Elastosil LR an=
-d dyes, stabilizers, primers and anti-adhesive additives.
+Jia Jie Ho (3):
+  dt-bindings: rng: Add StarFive TRNG module
+  hwrng: starfive - Add TRNG driver for StarFive SoC
+  riscv: dts: starfive: Add TRNG node for VisionFive 2
 
-We also produce technical silicone compounds with increased resistance to=
- oils, resistant to high temperatures and water vapor, conductive and man=
-y more.
+ .../bindings/rng/starfive,jh7110-trng.yaml    |  55 +++
+ MAINTAINERS                                   |   6 +
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  11 +
+ drivers/char/hw_random/Kconfig                |  11 +
+ drivers/char/hw_random/Makefile               |   1 +
+ drivers/char/hw_random/starfive-trng.c        | 403 ++++++++++++++++++
+ 6 files changed, 487 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rng/starfive,jh7110-trng.yaml
+ create mode 100644 drivers/char/hw_random/starfive-trng.c
 
-We provide fast order fulfillment, timely deliveries and cost optimizatio=
-n.
+-- 
+2.25.1
 
-Can I introduce what we can offer you?
-
-
-Zbynek Spacek
