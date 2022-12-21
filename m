@@ -2,119 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70DC6652EFB
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 10:53:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA716652F0C
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 10:59:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234730AbiLUJxZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 04:53:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59978 "EHLO
+        id S234663AbiLUJ7g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Dec 2022 04:59:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234731AbiLUJwm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 04:52:42 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3E992338F
-        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 01:49:25 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id x11so15063110ljh.7
-        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 01:49:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=j4pOTa7XD14Zbi1zXxlhwo2uq1WAQLtH0H1dvVBr/wM=;
-        b=TatoTF6KDCty9jYvwLHt8LUJBG4EfDHIWY7OIX8gecMCtklkbUY83XvdqNexPWzVHh
-         7aHcj6cell6x9syMMMUvBbd8IhMjN1Ix2O2vsj7WocOoSuFZ648iIhqPZhcTYevUeYdq
-         6oxyrVV/PxZazRP/iKy3JHVjRKyCE5XANvaaI2OcyddGsO58OUrq7Z5T494E2mOB2uqA
-         F1ga1FNHs+RVzr2KiNpV9JxdgiuANgeWGzt978v2rBbuOVX9+jVyPWqwofW5nJEl0mFc
-         2/TqloOr9Aav3Y6Y0mHnlbIVWq9I0gPrYXhF+V/yZ9FLrz0NcxH3wTQIHdsKqLB1okOk
-         uYDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=j4pOTa7XD14Zbi1zXxlhwo2uq1WAQLtH0H1dvVBr/wM=;
-        b=ISL4CtoqHmyUmO8vzTizo8dHIE4QY61PjnLrCpsK0qC9xwIY6CrQydFdHQJmiSmZS8
-         9NPb7lIMbgjSdqxmLBF+WEiYckud/sA2NMyuVjXQsR9MRnwX9pF9FN1NwIJvgjj4nLpD
-         xEhn9/LJLdFP27WTanXEDqbDNZdtMOq9sCJhB5FA2SU58/EAfkdshanmDt7n1QJieKJ6
-         x43rvuerxH3Tf98UQXlX5gsoH6AGVNSJf0Nmt98IRhoWXHje24ND1u6JTUbo8MIaZb5x
-         9rThiucOX3RZjNpt5pGGy0Qs57THU1/WXLbRL3jDvS6djMBJcqk9szbSjXDX77wK7jVl
-         fHEA==
-X-Gm-Message-State: AFqh2krPg0l/XCyAfj9edZ5sYL+tTYAHYscebKNjD53deaDA+EKhvz0a
-        41QHtV+9yKNnI7V6TRziXDq5Cg==
-X-Google-Smtp-Source: AMrXdXssO9jKbgSHpDGsWvD2A8uvCkDgxTfqEYUdI6PAsmQUFbP3WJ19muNo/XTSwSkvzcwBi9mWuw==
-X-Received: by 2002:a2e:bc87:0:b0:27f:6978:583f with SMTP id h7-20020a2ebc87000000b0027f6978583fmr419058ljf.44.1671616164053;
-        Wed, 21 Dec 2022 01:49:24 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id g5-20020a2eb5c5000000b00279a7266874sm1273754ljn.98.2022.12.21.01.49.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Dec 2022 01:49:23 -0800 (PST)
-Message-ID: <05aaa9f8-7a97-51c9-e18a-1c3753f2006b@linaro.org>
-Date:   Wed, 21 Dec 2022 10:49:22 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH 2/3] hwrng: starfive - Add TRNG driver for StarFive SoC
-Content-Language: en-US
-To:     Jia Jie Ho <jiajie.ho@starfivetech.com>,
-        Olivia Mackall <olivia@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
+        with ESMTP id S234676AbiLUJ64 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 04:58:56 -0500
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE82F233B3;
+        Wed, 21 Dec 2022 01:55:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=LXTjxNIwyTamcsYiCUb1qbSp8dawRiYmOqWzEm2gekI=; b=ln8ec5+mDsvVeVkYSdnkkKkSyL
+        SZXC7xhjFUriKXcoax4iKbHOBqvEK+SXuneJWVll3OY6YVNzsnKSg5y20qCmb3nFPkAw8h4vwDTB8
+        2R6mvqzk1nJ19+pSPicHHwCsf1FO5eJnSYbRIHXmbbW7NKzouJgccP7nbXs1YmEbOX8LWq/rSo/IS
+        KlFf+S5I3eD2a2BzZqskDzKriDhfusCBD1wPwCzF3MVFTDUj3G8ZU1gSouJlNMuHvWa4lcwCLTlhX
+        ntwkPH3nPstYgrYkSNEt8zrxOuldgsLxd7U6u/cONukLoCzBlFq2BhJpHgEkQ3oIcEUXiQMtXdDKV
+        +16P8nww==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:35800)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1p7voG-0000TN-KP; Wed, 21 Dec 2022 09:54:48 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1p7voB-0006Rt-Mc; Wed, 21 Dec 2022 09:54:43 +0000
+Date:   Wed, 21 Dec 2022 09:54:43 +0000
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Christian Marangi <ansuelsmth@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20221221090819.1259443-1-jiajie.ho@starfivetech.com>
- <20221221090819.1259443-3-jiajie.ho@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221221090819.1259443-3-jiajie.ho@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org,
+        Tim Harvey <tharvey@gateworks.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Rasmus Villemoes <rasmus.villemoes@prevas.dk>
+Subject: Re: [PATCH v7 06/11] leds: trigger: netdev: add hardware control
+ support
+Message-ID: <Y6LX43poXJ4k/7mv@shell.armlinux.org.uk>
+References: <20221214235438.30271-1-ansuelsmth@gmail.com>
+ <20221214235438.30271-7-ansuelsmth@gmail.com>
+ <Y5tUU5zA/lkYJza+@shell.armlinux.org.uk>
+ <639ca665.1c0a0220.ae24f.9d06@mx.google.com>
+ <Y6JMe9oJDCyLkq7P@lunn.ch>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y6JMe9oJDCyLkq7P@lunn.ch>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/12/2022 10:08, Jia Jie Ho wrote:
-> This adds driver support for the hardware random number generator in
-> Starfive SoCs and adds StarFive TRNG entry to MAINTAINERS.
+On Wed, Dec 21, 2022 at 12:59:55AM +0100, Andrew Lunn wrote:
+> > > One thought on this approach though - if one has a PHY that supports
+> > > "activity" but not independent "rx" and "tx" activity indications
+> > > and it doesn't support software control, how would one enable activity
+> > > mode? There isn't a way to simultaneously enable both at the same
+> > > time... However, I need to check whether there are any PHYs that fall
+> > > into this category.
+> > >
+> > 
+> > Problem is that for such feature and to have at least something working
+> > we need to face compromise. We really can't support each switch feature
+> > and have a generic API for everything.
 > 
-> Co-developed-by: Jenny Zhang <jenny.zhang@starfivetech.com>
-> Signed-off-by: Jenny Zhang <jenny.zhang@starfivetech.com>
-> Signed-off-by: Jia Jie Ho <jiajie.ho@starfivetech.com>
-> ---
->  MAINTAINERS                            |   6 +
->  drivers/char/hw_random/Kconfig         |  11 +
->  drivers/char/hw_random/Makefile        |   1 +
->  drivers/char/hw_random/starfive-trng.c | 403 +++++++++++++++++++++++++
->  4 files changed, 421 insertions(+)
->  create mode 100644 drivers/char/hw_random/starfive-trng.c
-> 
+> I agree we need to make compromises. We cannot support every LED
+> feature of every PHY, they are simply too diverse. Hopefully we can
+> support some features of every PHY. In the worst case, a PHY simply
+> cannot be controlled via this method, which is the current state
+> today. So it is not worse off.
 
-(...)
+... and that compromise is that it's not going to be possible to enable
+activity mode on 88e151x with how the code stands and with the
+independent nature of "rx" and "tx" activity control currently in the
+netdev trigger... making this whole approach somewhat useless for
+Marvell PHYs.
 
-> +static const struct of_device_id trng_dt_ids[] = {
-> +	{ .compatible = "starfive,jh7110-trng" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, trng_dt_ids);
-> +
-> +static struct platform_driver starfive_trng_driver = {
-> +	.probe	= starfive_trng_probe,
-> +	.driver	= {
-> +		.name		= "starfive-trng",
-> +		.pm		= &starfive_trng_pm_ops,
-> +		.of_match_table	= of_match_ptr(trng_dt_ids),
+We really need to see a working implementation for this code for more
+than just one PHY to prove that it is actually possible for it to
+support other PHYs. If not, it isn't actually solving the problem,
+and we're going to continue getting custom implementations to configure
+the LED settings.
 
-of_match_ptr goes with __maybe_unused. You will have now warnings, so
-please test more your patches (W=1, sparse, smatch).
-
-Best regards,
-Krzysztof
-
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
