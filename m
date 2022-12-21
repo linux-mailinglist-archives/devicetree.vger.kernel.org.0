@@ -2,59 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D39E1653766
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 21:13:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA65D65376B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 21:14:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234765AbiLUUN2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 15:13:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52840 "EHLO
+        id S234562AbiLUUO0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Dec 2022 15:14:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232786AbiLUUN1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 15:13:27 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87392B17
-        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 12:13:26 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id b3so25201084lfv.2
-        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 12:13:26 -0800 (PST)
+        with ESMTP id S230014AbiLUUOZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 15:14:25 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1711EB17
+        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 12:14:24 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id m29so24932054lfo.11
+        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 12:14:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xMyITnYC6iA3G/LtEs1ZWz7dfXVBOhvaku8kkCxxo2s=;
-        b=NJ8AI4l2bQDByL8abuo9ZMfM5BPB4rECN8H01ymKifVUY+P87GD6cLLj1DOw8UYrXJ
-         RFj0+t9/IMWcKCfvpaHXpHjAn8jiwV/W6dJmariZAs0zaIQC27W6YLXL83pkN9LJofS7
-         sWKSxrAIlzfqj1KmTovKHodA+XZN86a5usHWzOFMUwEnlQMqkKT5yXpmlymD1ASRwS9b
-         O5ZYDOZGSNYO896EYzazZhQI25k7JEwA4bka5JyJmOFLXIpCX0QvDDJvssCvHX69ea98
-         GZ8tE+9HSrIapYUsDAlESvqazowB1JwXFO5oZIzKT+HgKLJxBN1x1QEOWdBtaQb5U6VQ
-         Gjtg==
+        bh=sTojYDu6t1WZMYAiBD25KdZKtAIrjPF2oUIAZd2kJ/8=;
+        b=gfr0FX41ftXWGKNCnBw5mRo5nWbRvFlLyRFJGavf6CU7vOCO6rcEAF/bSHnHPKHtO6
+         mrMV4ouUrS7K78mzRGK72ggNAzKsuTOLPFPILrR6W5iyNYA42D4J324UIw1voDkC3/0L
+         bzk6qsy7fMnenVf/SYolVbEGiRa6p5KwTitBg9tEXltImHHCexdFkTIGApDa7hT08UXj
+         nVkvhvllTORf6hyiHI0E6OiQMy3JjH93o3PVBU0zDxXa3Dv5jFMuiBAD2xpTJu9yccsc
+         F0nosOHRU1yBs1uEDnl40X8C0TJW6jpM5Wj5iPjhij+ll6wZ0cOx8wX4IU9Z7P92ixDc
+         4+BA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xMyITnYC6iA3G/LtEs1ZWz7dfXVBOhvaku8kkCxxo2s=;
-        b=LJesx0RmZQOWEQ7HI8XLCW2ZGMRI7X8sNH9NtSsZS7KZwOY8rNdnEGAZAP3K/P3wpt
-         x5W1LJhNd7FT96RHX+LZmkBr8B0IncQFeFubtv/cBQ07wiAcjLwidYNv+yYhhbJvpBGW
-         n/EpWxTBybahiYxul2gYWruxnhZ/9xmOrmqEn/EbJQnXwso79ZvdvY0Xo5oHJYJSZXMK
-         ZDqg3Lq5Cw3QuicDg1Lai88PYnYIKVuMhFGteW/Rc3bOlFLn8I55pc1J0th7pbbSQGSW
-         BmZMzwg5bsXR2vHzi7JPKDDZbv52QVSBRVgDFPfTbxACAc1T6zofy3s8x+fRRPrrzQJ+
-         hJtQ==
-X-Gm-Message-State: AFqh2kr5Xrjxl3IosY+aZvdQMkNrcmpUEOhBeqRb+tuYxb8MT9zwSJSH
-        3poChZBPp4JQefyPqOKa9FgWyA==
-X-Google-Smtp-Source: AMrXdXute0xsVtVJ10dXcWI2H6DJdIl5HiEylBrKZzmX9Ceo5peUrYXWQp5vg+dwntUF5danaNmPtQ==
-X-Received: by 2002:ac2:5975:0:b0:4b5:8f03:a2bc with SMTP id h21-20020ac25975000000b004b58f03a2bcmr756347lfp.9.1671653604897;
-        Wed, 21 Dec 2022 12:13:24 -0800 (PST)
+        bh=sTojYDu6t1WZMYAiBD25KdZKtAIrjPF2oUIAZd2kJ/8=;
+        b=MB6tHM3K/3yvbXjhmazqpiDDrMVq8WK/Xdpiap8M7n44c34uvMq2e0lqmI6bvKUkGM
+         UY8RHTJWkcleeJUkxP9JIA7ktxFQVF7jCmwTYmyNtqVjChrgXU9SRHKK8lT3TKNF56ht
+         kjDITlHGP9bLqjYlEk5kq7S7PtClX+OponaD8UbGUMffuqUm2LssMKB57rQK+2JRCekV
+         Sh2bSCvPWcCl2XQX1IHXtsUl+KF6JHuV4hFXfmWCzDGaNhUHCck/zHMoSGWvVNvXKZKI
+         ib51F+vP2lVu6KtbCkUMFlcBik8VdVPvimiaM2HsKpBdeaWT5UFalJ+9kTzGRRVVClUf
+         sQYA==
+X-Gm-Message-State: AFqh2krtRG/d57uQWMBXQqLvgX6pPLvqkxPhKQPutM86BP0weux8QCLp
+        P7sEMRc4fYd8u6e9p2Iyevu/vQ==
+X-Google-Smtp-Source: AMrXdXtzJ/aCVmUD0psHsH/+qLcP/ciPwob/9Fe6AfIOw9h1tDTRlNf5GxXIK7XLp9Ioh1CSUBEl6Q==
+X-Received: by 2002:a05:6512:3288:b0:4a4:68b7:f87a with SMTP id p8-20020a056512328800b004a468b7f87amr1282657lfe.30.1671653662493;
+        Wed, 21 Dec 2022 12:14:22 -0800 (PST)
 Received: from [192.168.1.101] (abyl184.neoplus.adsl.tpnet.pl. [83.9.31.184])
-        by smtp.gmail.com with ESMTPSA id s16-20020a056512215000b004ca0ea7af24sm788834lfr.174.2022.12.21.12.13.22
+        by smtp.gmail.com with ESMTPSA id v19-20020ac25613000000b004ad5f5c2b28sm1916239lfd.119.2022.12.21.12.14.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Dec 2022 12:13:24 -0800 (PST)
-Message-ID: <37ee797c-02e5-f35b-2066-feb58e48fb0f@linaro.org>
-Date:   Wed, 21 Dec 2022 21:13:21 +0100
+        Wed, 21 Dec 2022 12:14:22 -0800 (PST)
+Message-ID: <108abd37-e302-8f7f-f7bf-fe98fc88250c@linaro.org>
+Date:   Wed, 21 Dec 2022 21:14:20 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH v4 07/20] thermal/drivers/tsens: limit num_sensors to 9
+Subject: Re: [PATCH v4 08/20] thermal/drivers/tsens: fix slope values for
+ msm8939
+Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -69,15 +71,15 @@ Cc:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
         linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org
 References: <20221221020520.1326964-1-dmitry.baryshkov@linaro.org>
- <20221221020520.1326964-8-dmitry.baryshkov@linaro.org>
-Content-Language: en-US
+ <20221221020520.1326964-9-dmitry.baryshkov@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221221020520.1326964-8-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221221020520.1326964-9-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -88,10 +90,8 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On 21.12.2022 03:05, Dmitry Baryshkov wrote:
 > According to the vendor kernels (msm-3.10, 3.14 and 3.18), msm8939
-> supports only 9 sensors. Remove the rogue sensor's hw_id.
-msm-3.18 and 8939.. I would have never thought it was there!
-
-
+> uses non-standard slope values for calibrating the sensors. Fill them
+> accordingly.
 > 
 > Fixes: 332bc8ebab2c ("thermal: qcom: tsens-v0_1: Add support for MSM8939")
 > Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
@@ -100,22 +100,40 @@ msm-3.18 and 8939.. I would have never thought it was there!
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  drivers/thermal/qcom/tsens-v0_1.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  drivers/thermal/qcom/tsens-v0_1.c | 16 +++++++++++++++-
+>  1 file changed, 15 insertions(+), 1 deletion(-)
 > 
 > diff --git a/drivers/thermal/qcom/tsens-v0_1.c b/drivers/thermal/qcom/tsens-v0_1.c
-> index 0bc4e5cec184..57ac23f9d9b7 100644
+> index 57ac23f9d9b7..be173220a939 100644
 > --- a/drivers/thermal/qcom/tsens-v0_1.c
 > +++ b/drivers/thermal/qcom/tsens-v0_1.c
-> @@ -605,9 +605,9 @@ static const struct tsens_ops ops_8939 = {
+> @@ -534,6 +534,20 @@ static int calibrate_9607(struct tsens_priv *priv)
+>  	return 0;
+>  }
+>  
+> +static int __init init_8939(struct tsens_priv *priv) {
+> +	priv->sensor[0].slope = 2911;
+> +	priv->sensor[1].slope = 2789;
+> +	priv->sensor[2].slope = 2906;
+> +	priv->sensor[3].slope = 2763;
+> +	priv->sensor[4].slope = 2922;
+> +	priv->sensor[5].slope = 2867;
+> +	priv->sensor[6].slope = 2833;
+> +	priv->sensor[7].slope = 2838;
+> +	priv->sensor[8].slope = 2840;
+> +
+> +	return init_common(priv);
+> +}
+> +
+>  /* v0.1: 8916, 8939, 8974, 9607 */
+>  
+>  static struct tsens_features tsens_v0_1_feat = {
+> @@ -599,7 +613,7 @@ struct tsens_plat_data data_8916 = {
 >  };
 >  
->  struct tsens_plat_data data_8939 = {
-> -	.num_sensors	= 10,
-> +	.num_sensors	= 9,
->  	.ops		= &ops_8939,
-> -	.hw_ids		= (unsigned int []){ 0, 1, 2, 3, 5, 6, 7, 8, 9, 10 },
-> +	.hw_ids		= (unsigned int []){ 0, 1, 2, 3, 5, 6, 7, 8, 9 },
->  
->  	.feat		= &tsens_v0_1_feat,
->  	.fields	= tsens_v0_1_regfields,
+>  static const struct tsens_ops ops_8939 = {
+> -	.init		= init_common,
+> +	.init		= init_8939,
+>  	.calibrate	= calibrate_8939,
+>  	.get_temp	= get_temp_common,
+>  };
