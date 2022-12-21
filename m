@@ -2,135 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 10B096530A3
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 13:15:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 856E96530AC
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 13:18:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230094AbiLUMPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 07:15:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57734 "EHLO
+        id S229774AbiLUMSZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Dec 2022 07:18:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230084AbiLUMPM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 07:15:12 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE94423149
-        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 04:15:09 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id j4so23293653lfk.0
-        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 04:15:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ei2wiph6SuRSCb268ohc3SeGTY4BbHhEXYgk9wMq0ZE=;
-        b=fOkt1qwQiyPyHPtxLQ/9osQZSDaOkjnadjiEydP8euo7M/ZodaIOHRLtnihPWzqHIx
-         GkmmhxQTrEMfUF28TNtEMmpjdU2fFZvGVDUyd6rLD+G2lq3ESGQ+vvIFaLZ/lMclV9PF
-         Zh90I4pN1TwrIBt3FNHSDIU/gy7RGWo+EaqXFAX9R82di/I6NzAbuqZ4z+YfgkRUp4jk
-         T/vQVnvVcKwTJUXnkEywjlgaahRF8oaQCsqEyQF67EFc2fk1fG95OXd3ABq6lj1Z6h0U
-         BeAlN8b5P6Y9jKuVi5016yudZ254mCZ+ycCFGJgF7nN+bcoON76MU+RGxcHwN132cO4X
-         YxFg==
+        with ESMTP id S229647AbiLUMSZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 07:18:25 -0500
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7858722286;
+        Wed, 21 Dec 2022 04:18:23 -0800 (PST)
+Received: by mail-qt1-f179.google.com with SMTP id c7so13433180qtw.8;
+        Wed, 21 Dec 2022 04:18:23 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ei2wiph6SuRSCb268ohc3SeGTY4BbHhEXYgk9wMq0ZE=;
-        b=yYw3t5mYDjdWvvwyMVf2mu6SabsdX00qHN2JeD3BrRUkMWPhJQ+m2XPw8xtMda/Jfy
-         ShuGF9+5iqkc7L/WF/IZ+GIX+9RoExIcEVGZ4/Vz32cbYXhr/QK3JaDMmiOAYCQ0CaBn
-         WbUEt+aWwkgVn+w6x52z28f3RFrbS1IB71c7XAYSkkWuf3PvKudMD0ayePJNQNB5yAYD
-         NHoErr8OuSUGE58sLJLkriboFPFObDAiX5hnQ9ZA7kr1mhRz9tcRbHEWzRb9I/9w0T5f
-         6asEusvw8Rr0A6qVcsgzP3CvKH61sJ6TI1CGVFAhHl4eMmLD/UD5Mr+wxJOgEnO3ekrv
-         TGlA==
-X-Gm-Message-State: AFqh2kqkUUsmOFDdU82mXqDGtXqQ+pbmKwvcl+hA0zi2oHZ7iNIb48CB
-        hIvPbnB+L6fl7c5huEIfLd5TwA==
-X-Google-Smtp-Source: AMrXdXvEIYapVwokYBeZ8T+UxGWSaE8AFmfC4fVrwgrdJTaZsXGiJjcvZGYGHW9hnz/52waurzdcJw==
-X-Received: by 2002:a05:6512:2a8e:b0:4b6:e4b3:d82d with SMTP id dt14-20020a0565122a8e00b004b6e4b3d82dmr568449lfb.7.1671624908350;
-        Wed, 21 Dec 2022 04:15:08 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id u23-20020a196a17000000b004b5774726dcsm1817293lfu.236.2022.12.21.04.15.07
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CueWZDdtUyE7xl2cqeIjpr9vo6iP5PtwWLtYRbw5JYc=;
+        b=5ow0joktPRyXwDSTmiB5keRAd9waHu4y4czA/Q5GeAW3KwcMujVJbfJWPsKo7CYLmF
+         cUkrtGOqoxJRzxWC+szU/oVmJRylzX3ABR0m2GdCyo92x18gEpYjiTZ2MAGrBCKmesls
+         b0+YBFjQjJRN6N6/N4mau9IrbWdrVdwFZP9cDRV+kjbo/fxfE5G9ztAEAHwae7zG5FPp
+         d59blIQYvGg4pOt5ZfRHLyeBoSwmhkagUC3GKSqsRpAEwvfX5yi/yXBYmaAwuXJV23FP
+         GFN1Hd8X7nnYKmvJ+DFQFlhLDDiBOZPSuq8q8yWu1asT72Pkf7Gvls1SP3GO77wcD8Sy
+         oVzw==
+X-Gm-Message-State: AFqh2krAXy3x+YkOfFXlbv3RIosQBD+ET5YzuT2v9SVp5doqrz1nqefG
+        PzjpOHCTYCingc9JytXUl2nnKFNnvmvfhA==
+X-Google-Smtp-Source: AMrXdXtXXuGs6+5MxY/UPCcVmhc3FoI6Xoejg30d3cl0cM7WbRMSplA6YGpX101uSNamZMQ5jhU8BA==
+X-Received: by 2002:ac8:7c92:0:b0:3a7:eb36:5cb1 with SMTP id y18-20020ac87c92000000b003a7eb365cb1mr1684055qtv.36.1671625101776;
+        Wed, 21 Dec 2022 04:18:21 -0800 (PST)
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
+        by smtp.gmail.com with ESMTPSA id bc6-20020a05622a1cc600b003a820f9fb70sm9144256qtb.36.2022.12.21.04.18.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Dec 2022 04:15:07 -0800 (PST)
-Message-ID: <18f4b0f8-a11c-a706-aafd-063cd6af9e3f@linaro.org>
-Date:   Wed, 21 Dec 2022 13:15:06 +0100
+        Wed, 21 Dec 2022 04:18:21 -0800 (PST)
+Received: by mail-yb1-f180.google.com with SMTP id v126so16288605ybv.2;
+        Wed, 21 Dec 2022 04:18:20 -0800 (PST)
+X-Received: by 2002:a25:418b:0:b0:6f0:9ff5:1151 with SMTP id
+ o133-20020a25418b000000b006f09ff51151mr123793yba.543.1671625100368; Wed, 21
+ Dec 2022 04:18:20 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v4 2/2] dt-bindings: arm: rockchip: Add EmbedFire LubanCat
- 1
-Content-Language: en-US
-To:     ty <zonyitoo@gmail.com>,
-        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>, Peter Geis <pgwipeout@gmail.com>,
+References: <20221221000242.340202-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221221000242.340202-5-prabhakar.mahadev-lad.rj@bp.renesas.com> <86o7rxawhn.wl-maz@kernel.org>
+In-Reply-To: <86o7rxawhn.wl-maz@kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 21 Dec 2022 13:18:08 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdX++dbcsxyGRqiRzgukeU4aoAi3hDV5zyfH1s11dFba-A@mail.gmail.com>
+Message-ID: <CAMuHMdX++dbcsxyGRqiRzgukeU4aoAi3hDV5zyfH1s11dFba-A@mail.gmail.com>
+Subject: Re: [PATCH v2 4/9] irqchip: irq-renesas-rzg2l: Add support for
+ RZ/G2UL SoC
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Prabhakar <prabhakar.csengg@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, DHDAXCW <lasstp5011@gmail.com>
-References: <Y6KfFEChA67E7oX/@VM-66-53-centos>
- <5a7907e3-f79e-5de9-ed1b-ec24ea52c437@linaro.org>
- <CAMmci2UgwqDyPPJXwGRsMW1Y1Cy2c6LMybk+7v7pGz-LtYzGTw@mail.gmail.com>
- <2673859.iZASKD2KPV@diego>
- <CAMmci2XoF0M81mVt8zko3D3G2oTHq0ia_nZ9CPX9Xz20j92c9Q@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAMmci2XoF0M81mVt8zko3D3G2oTHq0ia_nZ9CPX9Xz20j92c9Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/12/2022 13:12, ty wrote:
-> Hi, Kozlowski and Stübner,
-> 
-> Thank you very much for pointing me in the right direction.
-> 
->> So how did you solve the comment "Does not look like properly ordered.
->> Don't add stuff at the end of files/lists."? What did you change to
->> solve it?
-> 
->> for context sorting order in that file is alphabetical by description
-> 
-> I finally got it. It should be put right after the "Elgin RV1108 R1".
-> 
->> You do not wrap at 75, but at some other place. Just put it to editor
->> and check where is wrapping (count characters).
-> 
-> The original message was:
-> 
->>  from: DHDAXCW <lasstp5011@gmail.com>
->>
->> LubanCat 1 is a Rockchip RK3566 SBC based
->> is developed by EmbedFire Electronics Co., Ltd.
->> Mini Linux Card Type Cheap Computer Development Board
->>
->> Signed-off-by: Yuteng Zhong <zonyitoo@gmail.com>
->> Signed-off-by: DHDAXCW <lasstp5011@gmail.com>
-> 
-> The longest line is "Mini Linux Card Type Cheap Computer Development
-> Board", which has 53 characters. Or ... I should use the whole line as
-> much as possible? Then I see why I was doing wrong. It will be fixed
-> in the PATCH v5.
+On Wed, Dec 21, 2022 at 11:20 AM Marc Zyngier <maz@kernel.org> wrote:
+> On Wed, 21 Dec 2022 00:02:37 +0000,
+> Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> >
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > The IRQC block on RZ/G2UL SoC is almost identical to one found on the
+> > RZ/G2L SoC the only difference being it can support BUS_ERR_INT for
+> > which it has additional registers.
+> >
+> > This patch adds a new entry for "renesas,rzg2ul-irqc" compatible string
+> > and now that we have interrupt-names property the driver code parses the
+> > interrupts based on names and for backward compatibility we fallback to
+> > parse interrupts based on index.
+> >
+> > For now we will be using rzg2l_irqc_init() as a callback for RZ/G2UL SoC
+> > too and in future when the interrupt handler will be registered for
+> > BUS_ERR_INT we will have to implement a new callback.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Yes,
-because
-such
-commit
-msg
-is
-also
-within
-75
-characters
-but
-it
-is
-not
-correct,
-right?
+> > +/* Parse hierarchy domain interrupts ie only IRQ0-7 and TINT0-31 */
+> > +static int rzg2l_irqc_parse_hierarchy_interrupts(struct rzg2l_irqc_priv *priv,
+> > +                                              struct device_node *np)
+> > +{
+> > +     struct property *pp;
+> >       unsigned int i;
+> >       int ret;
+> >
+> > +     /*
+> > +      * first check if interrupt-names property exists if so parse them by name
+> > +      * or else parse them by index for backward compatibility.
+> > +      */
+> > +     pp = of_find_property(np, "interrupt-names", NULL);
+> > +     if (pp) {
+> > +             char *irq_name;
+> > +
+> > +             /* parse IRQ0-7 */
+> > +             for (i = 0; i < IRQC_IRQ_COUNT; i++) {
+> > +                     irq_name = kasprintf(GFP_KERNEL, "irq%d", i);
 
-Best regards,
-Krzysztof
+%u
 
+> > +                     if (!irq_name)
+> > +                             return -ENOMEM;
+> > +
+> > +                     ret = rzg2l_irqc_parse_interrupt_by_name_to_fwspec(priv, np, irq_name, i);
+>
+> Am I the only one that find it rather odd to construct a name from an
+> index, only to get another index back?
+
+The issue is that there are two number ranges ("irq%u" and "tint%u"),
+stored in a single interrupts property.
+
+An alternative solution would be to get rid of the "interrupt-names",
+and use two separate prefixed interrupts properties instead, like is
+common for e.g. gpios: "irq-interrupts" and "tint-interrupts".
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
