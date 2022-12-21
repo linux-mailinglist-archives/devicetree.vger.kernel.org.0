@@ -2,66 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 065F5652EB2
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 10:37:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37202652EC5
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 10:45:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234577AbiLUJh1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 04:37:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49348 "EHLO
+        id S234527AbiLUJpI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Dec 2022 04:45:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234145AbiLUJhY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 04:37:24 -0500
-Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C1B92189F;
-        Wed, 21 Dec 2022 01:37:23 -0800 (PST)
-Received: by mail-qt1-x835.google.com with SMTP id h21so563824qta.12;
-        Wed, 21 Dec 2022 01:37:23 -0800 (PST)
+        with ESMTP id S234612AbiLUJpA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 04:45:00 -0500
+Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com [IPv6:2607:f8b0:4864:20::f2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FF391CB11;
+        Wed, 21 Dec 2022 01:44:52 -0800 (PST)
+Received: by mail-qv1-xf2c.google.com with SMTP id d2so9973084qvp.12;
+        Wed, 21 Dec 2022 01:44:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=XASlYx7O9B9S8ryihKVMGI8Jj8VcSqnxG28gXEDkV2Y=;
-        b=ILhE7A8AHKhhtMDA+yTmaOUxLSO12P7UBqkfjq9HBifr3sWkvcu40HaXym2zpEuLnj
-         h5Mf4+WrOINgkffy49D07gxxwpzJXRouJuZPNhe6PddtTNQ3GnNIYyBfwqjuoqWrE06U
-         rja7QwFcMmxaox7o6aFhhXLU/XjydDD3XrsFZTfnjE0R+v/5XYF2A7ePy+roaMjYxYzp
-         CLJkERnHENxhfTBe5TE5/PljpbUZIOW1qEFEvr4OpsyPpRyaAd8TwII5MkzRyQuht9DS
-         s0+kr0lNaoWN4oZ4mwAJYtl7OHlQYP2/s9x+jnl6HCGx2CeTkoeevF8T2UcxzD8kubyK
-         oDAg==
+        bh=aTRZjVs+ZC10gzSWts1gaTVyTRmh0bhpzUVwXGomS1w=;
+        b=eY2hF663BlPaZN1wWAX6Io9R1Scmlmn8/jVlfaBdk84Y0+DgZC/um30n67ZqkhPOZT
+         H+p15ZbvBnwgtRQA7PSmS13BywkeRFvZIgawiqq45gbwziFeC/56QnxciRsn/791U4Li
+         4aVrQ8NcQdXDOFz7RiXcP5wBz9ktQDiZxwpLE7a1e0OlAzSc/9+xBJ6o6A7ixW9MH2k6
+         ja5+m0D4D96rWsgoQH3M5rJ2Y83NDJhadME23X8VQT3zmmrbz2dE5mu549JP2WoFh+LT
+         yhBGXjnXEodpkq2APeDcmByTd0fuCkdDFtJJnO0+rR2B4vU5xMOhLAyo4pyCzDTjnxab
+         k/zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=XASlYx7O9B9S8ryihKVMGI8Jj8VcSqnxG28gXEDkV2Y=;
-        b=hC8Vk6uhqzhGnGUbbIud+OEsR0sRSv8zI29P4UgkRLnCRpcHAadawEjQsgUJHuiLd3
-         1i+1RvbBfQGS2q0T8XxLe3G69juFLluNxFFFwfMCoAjPB8X2JHnOFYsV/SPYwZIVbXJ9
-         yqjcx1Mvby5ah9sYiQ/D9qljId40zLpQTSdCn5fJIc8K3VnpD8shlvCUlIN7Bt9SR0km
-         3dHHn0ub76tTZ0+HCvblc6X45CCZ2/MGZyGxYusGCFqvQtOlAymzUmcOIcgAqIcMdkYO
-         VBrHE8GZohZvuv20HkXdNhn7tnBfwq3plspU0oejSsGkpHcNRimWS7svxcZGhcFKTlLI
-         Rb2Q==
-X-Gm-Message-State: AFqh2kqr4UQ6d6uJKILWx22+v+kLTFI0IHMdjDRx6+kzMucEf19uQch8
-        Ng/h6KwJVLKq+y1XKhyJ7l8iYarDRgEm0BgFyDA=
-X-Google-Smtp-Source: AMrXdXvFxbd/oQRYag7eCk4bBpmPD09EaCTo/iafvuW2CU4WNAj3RZ7t88RKgdrwaPo66KNUlItFdZoOsnwG2p/uDQo=
-X-Received: by 2002:ac8:6a13:0:b0:3a8:e8b:2204 with SMTP id
- t19-20020ac86a13000000b003a80e8b2204mr39563qtr.235.1671615442560; Wed, 21 Dec
- 2022 01:37:22 -0800 (PST)
+        bh=aTRZjVs+ZC10gzSWts1gaTVyTRmh0bhpzUVwXGomS1w=;
+        b=d2ayTbORw4AHCuB3bsw9xkZWHvY/rShMXyWBH+dECGvsslE5a/pm9fNL7svW/vOV3o
+         G/iHgdAD8KszHJH5tgPxM1iBeKFOBsLObe53avMWtl+1vKnK8zd0wLrQ9F7a/enPzb4u
+         fzSL3iqbfzWE8VY2cfj9R3/y09j7GQaRkoGwqsGKGkc7mjG4BYV3mXJqPXyjdhha/GGW
+         ZLyqj4PYmZueRxItua/14DMw1C38tx+SIi1zg1DM94+XJ7+Q8oAfwGGIkXcUFnFfoHR7
+         yLRl/Vrg+sVllmjFG4QZb5x1au0iEtfFOfB7v3XYytDPFbg9dlutYIPqFBtgyOC2/ICq
+         1qmg==
+X-Gm-Message-State: AFqh2krMgv037WjDF+NXNDsZ9/zynVY/FsXMPaHNRg9+cwvyAZcfRG3E
+        DNCMab3yIlCU7KSFe51NDOWvfr4RQCwBBvqt30o=
+X-Google-Smtp-Source: AMrXdXu704n6GIrHINsRbdHORuCEAF2r0AGnKH97K2Ba4BQmlgR92ssx33aWwW4mekPiUne5Nyzc85mc9Djn2Jo5z3M=
+X-Received: by 2002:a05:6214:a91:b0:4bb:7998:fed6 with SMTP id
+ ev17-20020a0562140a9100b004bb7998fed6mr52641qvb.86.1671615891052; Wed, 21 Dec
+ 2022 01:44:51 -0800 (PST)
 MIME-Version: 1.0
-References: <Y6GMnq3AC7Kbnag8@VM-66-53-centos> <a113d20c-dc6c-2e44-009f-d4b17beb8820@linaro.org>
- <CAMmci2XuiwZje53L6Nv9+EG+W6pvXSbwyR2Ko5h8n9LEppS5pg@mail.gmail.com>
- <9474ae59-babb-0cfc-d838-447ff90c40f9@linaro.org> <CAMmci2USuDf2C4hTG=_kRC08uLyiZ8cUnuZwxXHkQkifWUekiQ@mail.gmail.com>
-In-Reply-To: <CAMmci2USuDf2C4hTG=_kRC08uLyiZ8cUnuZwxXHkQkifWUekiQ@mail.gmail.com>
+References: <Y6KdvAlWLMG4whJh@VM-66-53-centos> <88357291-3cdd-8d5a-fdec-38bd081a4235@linaro.org>
+In-Reply-To: <88357291-3cdd-8d5a-fdec-38bd081a4235@linaro.org>
 From:   ty <zonyitoo@gmail.com>
-Date:   Wed, 21 Dec 2022 17:37:11 +0800
-Message-ID: <CAMmci2W9zZkw9ymJfBx4Zs8UX23qAHHA+9_df8VPqBsqBKjyDA@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Add RK3566 LubanCat 1
+Date:   Wed, 21 Dec 2022 17:44:40 +0800
+Message-ID: <CAMmci2XmJ2kN=SBR=GHqDs+ZKhBO0dnjEsPCR_w7sjxNgi=_NQ@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] arm64: dts: rockchip: Add EmbedFire LubanCat 1
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Peter Geis <pgwipeout@gmail.com>,
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, DHDAXCW <lasstp5011@gmail.com>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+        linux-rockchip@lists.infradead.org, DHDAXCW <lasstp5011@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -76,45 +74,202 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Dear Kozlowski,
 
-We just got where we did wrong by reading twice about the
-generic-name-recommendation document and comparing our PATCHes with
-others. We will make a new PATCH v5 addressing all the comments.
+Before making a new PATCH v5 with the whole .dts file, here is a small
+patch base on the current v4.
 
-Thanks for your patient. We felt sincerely sorry.
+This node name was missed in this PATCH.
 
-Recards.
+---
 
-Yuteng Zhong, DHDAXCW.
+@@ -74,7 +74,7 @@
 
-ty <zonyitoo@gmail.com> =E4=BA=8E2022=E5=B9=B412=E6=9C=8821=E6=97=A5=E5=91=
-=A8=E4=B8=89 17:18=E5=86=99=E9=81=93=EF=BC=9A
+     vin-supply =3D <&usb_5v>;
+
+   };
+
+
+
+-  vcc3v3_sys: vcc3v3-sys {
+
++  vcc3v3_sys: vcc3v3-sys-regulator {
+
+     compatible =3D "regulator-fixed";
+
+     regulator-name =3D "vcc3v3_sys";
+
+     regulator-always-on;
+
+
+
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E4=BA=8E2022=E5=B9=B4=
+12=E6=9C=8821=E6=97=A5=E5=91=A8=E4=B8=89 16:15=E5=86=99=E9=81=93=EF=BC=9A
 >
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E4=BA=8E2022=E5=B9=
-=B412=E6=9C=8821=E6=97=A5=E5=91=A8=E4=B8=89 17:05=E5=86=99=E9=81=93=EF=BC=
-=9A
+> On 21/12/2022 06:46, Yuteng Zhong wrote:
+> > from: DHDAXCW <lasstp5011@gmail.com>
 > >
-> > On 21/12/2022 10:01, ty wrote:
-> > > thanks. I am really sorry.
-> > >
-> > > I fixed this based on your feedback in the PATCH V2 content. Regardin=
-g
-> > > the dts issue, I used the kernel-5.15 kernel adaptation before, which
-> > > may not be perfect at that time.
+> > LubanCat 1 is a Rockchip RK3566 SBC based
+> > is developed by EmbedFire Electronics Co., Ltd.
+> > Mini Linux Card Type Cheap Computer Development Board
 > >
-> > Do not send patches based on v5.15. This is some very old kernel. We do
-> > not work on such stuff.
->
-> Thank you for your kindly reminder. We have modified the whole .dts
-> file based on v6.2 kernel and follow the generic-name-regulation[0] in
-> [PATCH v4]. Because it was basically a whole rewrite, so I decided to
-> send a new PATCH v4.
->
-> [0] https://devicetree-specification.readthedocs.io/en/latest/chapter2-de=
-vicetree-basics.html#generic-names-recommendation
->
+> > It has the following characteristics:
+> > - MicroSD card slot, onboard eMMC flash memory
+> > - 1GbE Realtek RTL8211F Ethernet Transceiver
+> > - 1 USB Type-C port (power and USB2.0 OTG)
+> > - 1 USB 3.0 Host port
+> > - 3 USB 2.0 Host ports
+> > - 1 HDMI
+> > - 1 infrared receiver
+> > - 1 MIPI DSI
+> > - 1 MIPI CSI
+> > - 1 x 4-section headphone jack
+> > - Mini PCIe socket (USB or PCIe)
+> > - 1 SIM Card slot
+> > - 1 SYS LED and 1 PWR LED
+> > - 40-pin GPIO expansion header
 > >
-> > The comment was:
-> > "Node names should be generic, so at least with regulator prefix or suf=
-fix."
+> > Signed-off-by: Yuteng Zhong <zonyitoo@gmail.com>
+> > Signed-off-by: DHDAXCW <lasstp5011@gmail.com>
+> > ---
+> >
+> > Changed in V2:
+> >   - Remove RNG node
+> > Changed in V3:
+> >   - Sent E-mail with a wrong attachment
+> > Changed in V4:
+> >   - Modify all node names
+> >
+> > ---
+> >  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+> >  .../boot/dts/rockchip/rk3566-lubancat-1.dts   | 598 ++++++++++++++++++
+> >  2 files changed, 599 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-lubancat-1.dts
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dt=
+s/rockchip/Makefile
+> > index 0a76a2ebb5f6..e52bda04d45a 100644
+> > --- a/arch/arm64/boot/dts/rockchip/Makefile
+> > +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> > @@ -78,6 +78,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3566-soquartz-blad=
+e.dtb
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3566-soquartz-cm4.dtb
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3566-soquartz-model-a.dtb
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3566-box-demo.dtb
+> > +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3566-lubancat-1.dtb
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-bpi-r2-pro.dtb
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-evb1-v10.dtb
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-odroid-m1.dtb
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-lubancat-1.dts b/arch/=
+arm64/boot/dts/rockchip/rk3566-lubancat-1.dts
+> > new file mode 100644
+> > index 000000000000..443fcfabbd16
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3566-lubancat-1.dts
+> > @@ -0,0 +1,598 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > +* Copyright (c) 2021 Rockchip Electronics Co., Ltd.
+> > +*/
+> > +
+> > +/dts-v1/;
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/leds/common.h>
+> > +#include <dt-bindings/pinctrl/rockchip.h>
+> > +#include <dt-bindings/soc/rockchip,vop2.h>
+> > +#include "rk3566.dtsi"
+> > +
+> > +/ {
+> > +     model =3D "EmbedFire LubanCat 1";
+> > +     compatible =3D "embedfire,lubancat-1", "rockchip,rk3566";
+> > +
+> > +     aliases {
+> > +             ethernet0 =3D &gmac1;
+> > +             mmc0 =3D &sdmmc0;
+> > +             mmc1 =3D &sdhci;
+> > +     };
+> > +
+> > +     chosen: chosen {
+> > +             stdout-path =3D "serial2:1500000n8";
+> > +     };
+> > +
+> > +     gmac1_clkin: external-gmac1-clock {
+> > +             compatible =3D "fixed-clock";
+> > +             clock-frequency =3D <125000000>;
+> > +             clock-output-names =3D "gmac1_clkin";
+> > +             #clock-cells =3D <0>;
+> > +     };
+> > +
+> > +     hdmi-con {
+> > +             compatible =3D "hdmi-connector";
+> > +             type =3D "a";
+> > +
+> > +             port {
+> > +                     hdmi_con_in: endpoint {
+> > +                             remote-endpoint =3D <&hdmi_out_con>;
+> > +                     };
+> > +             };
+> > +     };
+> > +
+> > +     gpio-leds {
+> > +             compatible =3D "gpio-leds";
+> > +
+> > +             sys_led: sys-led {
+> > +                     label =3D "sys_led";
+> > +                     linux,default-trigger =3D "heartbeat";
+> > +                     default-state =3D "on";
+> > +                     gpios =3D <&gpio0 RK_PC5 GPIO_ACTIVE_LOW>;
+> > +                     pinctrl-names =3D "default";
+> > +                     pinctrl-0 =3D <&sys_led_pin>;
+> > +             };
+> > +     };
+> > +
+> > +     usb_5v: usb-5v-regulator {
+> > +             compatible =3D "regulator-fixed";
+> > +             regulator-name =3D "usb_5v";
+> > +             regulator-always-on;
+> > +             regulator-boot-on;
+> > +             regulator-min-microvolt =3D <5000000>;
+> > +             regulator-max-microvolt =3D <5000000>;
+> > +     };
+> > +
+> > +     vcc5v0_sys: vcc5v0-sys-regulator {
+> > +             compatible =3D "regulator-fixed";
+> > +             regulator-name =3D "vcc5v0_sys";
+> > +             regulator-always-on;
+> > +             regulator-boot-on;
+> > +             regulator-min-microvolt =3D <5000000>;
+> > +             regulator-max-microvolt =3D <5000000>;
+> > +             vin-supply =3D <&usb_5v>;
+> > +     };
+> > +
+> > +     vcc3v3_sys: vcc3v3-sys {
 >
-> Yes. Node names are all changed in [PATCH v4].
+> This is a friendly reminder during the review process.
+>
+> It seems my previous comments were not fully addressed. Maybe my
+> feedback got lost between the quotes, maybe you just forgot to apply it.
+> Please go back to the previous discussion and either implement all
+> requested changes or keep discussing them.
+>
+> Thank you.
+>
+> > +             compatible =3D "regulator-fixed";
+> > +             regulator-name =3D "vcc3v3_sys";
+> > +             regulator-always-on;
+> > +             regulator-boot-on;
+> > +             regulator-min-microvolt =3D <3300000>;
+> > +             regulator-max-microvolt =3D <3300000>;
+> > +             vin-supply =3D <&vcc5v0_sys>;
+> > +     };
+> > +
+> > +     vcc3v3_pcie: vcc3v3-pcie-regulator {
+>
+>
+> Best regards,
+> Krzysztof
+>
+
+
+--=20
+Y. T. Zhong
+Student of The University of Hong Kong, major in Computer Science.
+E-mail: zonyitoo@gmail.com
