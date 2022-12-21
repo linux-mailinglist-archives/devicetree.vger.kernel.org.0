@@ -2,139 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFF46653133
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 14:01:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1572365313D
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 14:04:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233283AbiLUNBE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 08:01:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51686 "EHLO
+        id S233754AbiLUND7 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 21 Dec 2022 08:03:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229601AbiLUNBD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 08:01:03 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4AA0E86;
-        Wed, 21 Dec 2022 05:01:01 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id p1-20020a05600c1d8100b003d8c9b191e0so409715wms.4;
-        Wed, 21 Dec 2022 05:01:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=AdWnQ27kmD5VfUep6TMl51Z7Mmf8V787tpSu6AJKxEg=;
-        b=oyt/8pGg1HMGojQDGzHmX1gBi3DLmAoeXQRc50l2jVvtEt6ZUyvgBemjlgZWoLJsuT
-         GOGNdrKiCXl8WF1xSR18lM5B4hZhpDb5oK1r8wFqNXYE1wcn5AY2xf8s80pnEEVQMgl9
-         /KU4+l09Zj/e3sGYiIN8fm0y7//8OWmzVSJ0tyS1Md16UtA57RCifis2Ho3SPJfj7S9p
-         jS++UST56AC+kpLbchtuYsTovkvz3OK6cit9gDtpXgZy9ZSd/NbrOj3ahbje6OcVEYJE
-         P2hZUIMC+4SxXDuEc4P5QCc95AgkXXzkmYAeu7/X6z9fJfzrSojuu4OSrh5WajJyqAGu
-         k71Q==
+        with ESMTP id S233283AbiLUND6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 08:03:58 -0500
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF51523392;
+        Wed, 21 Dec 2022 05:03:56 -0800 (PST)
+Received: by mail-qt1-f178.google.com with SMTP id g7so13552421qts.1;
+        Wed, 21 Dec 2022 05:03:56 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AdWnQ27kmD5VfUep6TMl51Z7Mmf8V787tpSu6AJKxEg=;
-        b=AaykZJ6s0eyzzpboq+zFuO6TcWfa+LjCIk29oDbHrJSnOHoNR9HQ9eTD0AuSRrcmY3
-         BcwsQnF7ts38SnOsMpysm/w7wSW1etyFT/lcy53EQSTPq6IpLQkufFX2jh/lyvxZlQKm
-         OB6y53yCbQHEouQAuptJ+pVNnS2aaW4Ia/CrgLiJVC5UJwmD6KhcD1KPhQ+RacYwIIe6
-         eIvf1IPf5lGbepCnuFsthXguSRy14XdlMB5OJJ4PaBqUAEc/yGioUbfBLvQCit2Ahslp
-         QRm7F4VAQeMnE23XoF/KbpF6xcbbOrezkYy0mVqGsH8b7hbrQ/otQTU+hAMuFQ+iUjkP
-         d1ZA==
-X-Gm-Message-State: AFqh2kokdzB5WZY716dRYiDZzy5kUnt1HmD2pBakc0Rk/xKYbh76aaWk
-        zMZHW2s7px11mjS9nu080RI=
-X-Google-Smtp-Source: AMrXdXusTys0JXtfMzelMdlOYTwD5NxEVLnl3ZVjpk1SyvqgRkDQPrajXdSjXMWVddhhIdX2zVCXDQ==
-X-Received: by 2002:a05:600c:510e:b0:3d3:5885:4d21 with SMTP id o14-20020a05600c510e00b003d358854d21mr1527171wms.17.1671627660155;
-        Wed, 21 Dec 2022 05:01:00 -0800 (PST)
-Received: from Ansuel-xps. (host-82-55-238-56.retail.telecomitalia.it. [82.55.238.56])
-        by smtp.gmail.com with ESMTPSA id h20-20020a05600c415400b003d1e34bcbb2sm2263193wmm.13.2022.12.21.05.00.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Dec 2022 05:00:59 -0800 (PST)
-Message-ID: <63a3038b.050a0220.d41c3.6f48@mx.google.com>
-X-Google-Original-Message-ID: <Y6MDiW7SlyPxDU4g@Ansuel-xps.>
-Date:   Wed, 21 Dec 2022 14:00:57 +0100
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4p324fHX/ErZqN1fIQSXCl0+20LjA0Me1b/10VWr6c8=;
+        b=rAncHgsstCCjuCsvNt+G9a+y4Mjx/wmf9P92FDRLR6K196a3ZYmsMiUwTye/ITEhSt
+         Zb2/jU8f3woW17CJoO7zrTPUW0mS0Fp1oh3tS+hWXpnZOp17rMl0p7pBeD3vkv7vplNG
+         7GfFsIg25HknEIag1v6GbY+hWxKyzkyi4q0TbmjMnTJ9FL2XdW6xzASMaR26VdpdQwHa
+         Ohgjx0S69jOyR4VPAXnHvj9P52HAX92icucXdrMWRDh0BVNGyfLcLIgOyLFVzT3S5cc6
+         dCmDGtfDSL2jWjSWRw3q7gUkvuPbmT7/wThDY1nKO8gcIvTm8ZzVDMEr9v3Ubmv8eFDI
+         /QMA==
+X-Gm-Message-State: AFqh2kpemyc6Hm/YV8ZUIoTmtYCvdNVw7MM/dxmEnUkxzycFhjg+cjn6
+        erkkHKX27l3Cj2Fnz21hUGQVRFHtWeFmNQ==
+X-Google-Smtp-Source: AMrXdXvJPYtD/sTVW+SHuOGKf42jQHPBXu/FaNIiDBBLduR22EezyIydkKeSuqFB5826eSCB6df+hw==
+X-Received: by 2002:ac8:6057:0:b0:3a8:1291:a664 with SMTP id k23-20020ac86057000000b003a81291a664mr1977599qtm.54.1671627835663;
+        Wed, 21 Dec 2022 05:03:55 -0800 (PST)
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com. [209.85.128.172])
+        by smtp.gmail.com with ESMTPSA id a12-20020ac84d8c000000b003434d3b5938sm9073061qtw.2.2022.12.21.05.03.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Dec 2022 05:03:55 -0800 (PST)
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-40b40ff39f1so209982287b3.10;
+        Wed, 21 Dec 2022 05:03:55 -0800 (PST)
+X-Received: by 2002:a0d:ca4d:0:b0:38e:e541:d8ca with SMTP id
+ m74-20020a0dca4d000000b0038ee541d8camr94516ywd.283.1671627834811; Wed, 21 Dec
+ 2022 05:03:54 -0800 (PST)
+MIME-Version: 1.0
+References: <20221213133302.218955-1-herve.codina@bootlin.com> <20221213133302.218955-4-herve.codina@bootlin.com>
+In-Reply-To: <20221213133302.218955-4-herve.codina@bootlin.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 21 Dec 2022 14:03:43 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV7QNZ8Rv6iFLhj_MmBHL-vGWuWZdKB=REWba1UAWgkHw@mail.gmail.com>
+Message-ID: <CAMuHMdV7QNZ8Rv6iFLhj_MmBHL-vGWuWZdKB=REWba1UAWgkHw@mail.gmail.com>
+Subject: Re: [PATCH v4 3/5] usb: gadget: udc: add Renesas RZ/N1 USBF
+ controller support
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org,
-        Tim Harvey <tharvey@gateworks.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-Subject: Re: [PATCH v7 06/11] leds: trigger: netdev: add hardware control
- support
-References: <20221214235438.30271-1-ansuelsmth@gmail.com>
- <20221214235438.30271-7-ansuelsmth@gmail.com>
- <Y5tUU5zA/lkYJza+@shell.armlinux.org.uk>
- <639ca665.1c0a0220.ae24f.9d06@mx.google.com>
- <Y6JMe9oJDCyLkq7P@lunn.ch>
- <Y6LX43poXJ4k/7mv@shell.armlinux.org.uk>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y6LX43poXJ4k/7mv@shell.armlinux.org.uk>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        linux-usb@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 21, 2022 at 09:54:43AM +0000, Russell King (Oracle) wrote:
-> On Wed, Dec 21, 2022 at 12:59:55AM +0100, Andrew Lunn wrote:
-> > > > One thought on this approach though - if one has a PHY that supports
-> > > > "activity" but not independent "rx" and "tx" activity indications
-> > > > and it doesn't support software control, how would one enable activity
-> > > > mode? There isn't a way to simultaneously enable both at the same
-> > > > time... However, I need to check whether there are any PHYs that fall
-> > > > into this category.
-> > > >
-> > > 
-> > > Problem is that for such feature and to have at least something working
-> > > we need to face compromise. We really can't support each switch feature
-> > > and have a generic API for everything.
-> > 
-> > I agree we need to make compromises. We cannot support every LED
-> > feature of every PHY, they are simply too diverse. Hopefully we can
-> > support some features of every PHY. In the worst case, a PHY simply
-> > cannot be controlled via this method, which is the current state
-> > today. So it is not worse off.
-> 
-> ... and that compromise is that it's not going to be possible to enable
-> activity mode on 88e151x with how the code stands and with the
-> independent nature of "rx" and "tx" activity control currently in the
-> netdev trigger... making this whole approach somewhat useless for
-> Marvell PHYs.
+Hi Hervé,
 
-Again we can consider adding an activity mode. It seems logical that
-some switch may only support global traffic instead of independend tx or
-rx... The feature are not mutually exclusive. One include the other 2.
+On Tue, Dec 13, 2022 at 2:33 PM Herve Codina <herve.codina@bootlin.com> wrote:
+> Add support for the Renesas USBF controller.
+> This controller is an USB2.0 UDC controller available in the
+> Renesas r9a06g032 SoC (RZ/N1 family).
+>
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 
-We already a simple workaround for the link mode where on the current
-driver, if the link mode is enabled just all rule for 10 100 and 1000
-mbps are enabled simulating a global link event.
+Thanks for your patch!
 
-> 
-> We really need to see a working implementation for this code for more
-> than just one PHY to prove that it is actually possible for it to
-> support other PHYs. If not, it isn't actually solving the problem,
-> and we're going to continue getting custom implementations to configure
-> the LED settings.
-> 
+> --- /dev/null
+> +++ b/drivers/usb/gadget/udc/renesas_usbf.c
 
-Agree that we need other user for this to catch some problem in the
-implementation of this generic API.
+> +#ifdef DEBUG
+> +#define TRACE(_fmt, ...) trace_printk("%s: " _fmt, __func__, ##__VA_ARGS__)
+> +#define USBF_TRACE_EP_MASK 0x0ffff /* All the 16 endpoints */
+> +#define TRACEEP(_ep, _fmt, ...)                                             \
+> +       do {                                                                \
+> +               if ((1 << (_ep)->id) & USBF_TRACE_EP_MASK)                  \
+> +                       trace_printk("%s: " _fmt, __func__, ##__VA_ARGS__); \
+> +       } while (0)
+> +#else
+> +#define TRACE(_fmt, ...) do { } while (0)
+> +#define TRACEEP(_ep, _fmt, ...) do { } while (0)
 
--- 
-	Ansuel
+Please use "no_printk(fmt, ##__VA_ARGS__)" instead of dummy loops,
+to avoid bad callers going unnoticed if DEBUG is not defined.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
