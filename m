@@ -2,106 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0F31652C89
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 06:52:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D2C0652C8E
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 06:55:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234143AbiLUFwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 00:52:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55602 "EHLO
+        id S234319AbiLUFzg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Dec 2022 00:55:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234376AbiLUFw2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 00:52:28 -0500
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B608F209B1;
-        Tue, 20 Dec 2022 21:52:24 -0800 (PST)
-Received: by mail-pf1-x42f.google.com with SMTP id c13so9975407pfp.5;
-        Tue, 20 Dec 2022 21:52:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=9y7vTaoTo9o+JdWAFPFAlEafYcyYlhQjz5DqmnkuKJk=;
-        b=j8d1gvhF8hecKiDysPSjqZZ4ugb+m9nFh6rGhwrS7ZuiNG3EeZnNw0IphSdLA1WgwS
-         lBsoYpe7yplmmXheLFBeeqHRD0LGfZKiTiU0QXu9RS059Fgt48EymgC7rG4+/owrm29E
-         eSLzUnXfsqCGN36JGZ5BXpsgR5V33sljdczdn982mQAChVb/asQqb6pBw+rK3ikSwePo
-         6sPJMLij7oHgVjPcwpk+eQMQrPvaDdqMF3ISGi8nx8gSXShWv9p9fmk3toA0HhB/uUSe
-         8hM58iTSrVCKjs4tuGJqA8BNJ/HuPMleJ2bHQ7VjQC/fTbXK2KblU0LAJRbELRbkEH9K
-         Q9hg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9y7vTaoTo9o+JdWAFPFAlEafYcyYlhQjz5DqmnkuKJk=;
-        b=Z2g31b6gpNoKnCn5QgIw5LZrmL7WW00J2Hkctyxb6YL1S27nzVvBIIdyi88d7N5gtP
-         yp1ndpT0Gos5qRXSm76Qmjai7k1AJw/WL1vqR+DUXXuiiWL9yvNUPUuoJGqKzmYle892
-         R+9IPAMn6ujKBe8fSPI5L19PvIsMo5/l8PvbD4aSuOHy2MsEdL52RXT/AW7R1yEMS/Iv
-         70hjgU67TyvgAm7dN47cbLcZaQQyrhS63bi12a6+/JSZSCpLJRUJTVPW02GrWSCBvZnM
-         jQD96iM/uFuD3quGmATpHAn6KQzWqSiPP5FqngJhjrxRsuQZh7ojL14FWQYqAhUbRNSf
-         JAgA==
-X-Gm-Message-State: AFqh2kqR9K+Y1MRKj6L3z8C3vVV/PxTc0PkHGIHpyszDUnJ8DpEftuBe
-        kSxbQKLM6Io6i+d0HoSPTCw=
-X-Google-Smtp-Source: AMrXdXvhf5ms2kPruq/C1NKfP3TPEEKfe1SiGyJdRIXkZ+UfYpl8EgIGVcikXTdg7BR/iR3L0FsZ1Q==
-X-Received: by 2002:a62:506:0:b0:56c:7216:fbc6 with SMTP id 6-20020a620506000000b0056c7216fbc6mr1004541pff.30.1671601944234;
-        Tue, 20 Dec 2022 21:52:24 -0800 (PST)
-Received: from VM-66-53-centos ([43.132.141.4])
-        by smtp.gmail.com with ESMTPSA id x128-20020a626386000000b005767cb32fdasm9633824pfb.188.2022.12.20.21.52.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Dec 2022 21:52:23 -0800 (PST)
-Date:   Wed, 21 Dec 2022 13:52:20 +0800
-From:   Yuteng Zhong <zonyitoo@gmail.com>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>, Peter Geis <pgwipeout@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        Yuteng Zhong <zonyitoo@gmail.com>,
-        DHDAXCW <lasstp5011@gmail.com>
-Subject: [PATCH v4 2/2] dt-bindings: arm: rockchip: Add EmbedFire LubanCat 1
-Message-ID: <Y6KfFEChA67E7oX/@VM-66-53-centos>
+        with ESMTP id S233820AbiLUFze (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 00:55:34 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 764531DA6F;
+        Tue, 20 Dec 2022 21:55:33 -0800 (PST)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BL3u1Y0008754;
+        Wed, 21 Dec 2022 05:54:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=2+wlnUDmpXmr22tEs76QyJbJB6YDA1VcuJOtP00XjZE=;
+ b=D1TZk6Wge5RaM49p2e4DXPI7rNsIArBfrSed0MNdmkDgjpqD2YVEon9GFS1BBsCjvW0M
+ 5iSAxGP7jN1rhPnOBQtYe7f3UFcXbDBVekQfjEM2Ft79xwPaBSstjiDmeeXZ3ArTR57y
+ yf+m3p9DVU/5JcFy/ety/QBBG6WAkCIcBfSlkK80uU644a4JCxiy6onno5VwHYlPmi0G
+ O5QXJwR7sqYTlx0QwP+Uyb4n3FNonHf6TkBu5rOlB72mxlakZAClMwmC7D58oMHczVED
+ Jch8NqJyj606Jhx2CtZm50AhM3kDevmk6BacAQxmdDPazw97nhknNda40PL68hBgMibX HA== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3mkd379vbp-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 21 Dec 2022 05:54:51 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2BL5soEG005960
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 21 Dec 2022 05:54:50 GMT
+Received: from [10.216.2.240] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 20 Dec
+ 2022 21:54:43 -0800
+Message-ID: <eb8818a5-1f81-561a-b3ee-2f45b3d24355@quicinc.com>
+Date:   Wed, 21 Dec 2022 11:24:40 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y6KdvAlWLMG4whJh@VM-66-53-centos>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v3 1/2] remoteproc: elf_loader: Update resource table name
+ check
+Content-Language: en-US
+To:     Mukesh Ojha <quic_mojha@quicinc.com>,
+        <linux-remoteproc@vger.kernel.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
+        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>, <devicetree@vger.kernel.org>,
+        <krzysztof.kozlowski@linaro.org>, <mathieu.poirier@linaro.org>,
+        <corbet@lwn.net>
+References: <1671523269-21154-1-git-send-email-quic_srivasam@quicinc.com>
+ <1671523269-21154-2-git-send-email-quic_srivasam@quicinc.com>
+ <0d683526-5707-d5b4-e96d-b2d982d4b5da@quicinc.com>
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Organization: Qualcomm
+In-Reply-To: <0d683526-5707-d5b4-e96d-b2d982d4b5da@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: HKnq-NSCI6R5HIlgieDBV5ikftIZ5vUk
+X-Proofpoint-ORIG-GUID: HKnq-NSCI6R5HIlgieDBV5ikftIZ5vUk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-12-21_01,2022-12-20_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ priorityscore=1501 lowpriorityscore=0 phishscore=0 malwarescore=0
+ bulkscore=0 clxscore=1015 impostorscore=0 spamscore=0 adultscore=0
+ mlxscore=0 mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2212210041
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-from: DHDAXCW <lasstp5011@gmail.com>
 
-LubanCat 1 is a Rockchip RK3566 SBC based
-is developed by EmbedFire Electronics Co., Ltd.
-Mini Linux Card Type Cheap Computer Development Board
-
-Signed-off-by: Yuteng Zhong <zonyitoo@gmail.com>
-Signed-off-by: DHDAXCW <lasstp5011@gmail.com>
----
- Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-index 88ff4422a8c1..84d39a3a8843 100644
---- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-+++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-@@ -781,6 +781,11 @@ properties:
-           - const: rockchip,rk3568-bpi-r2pro
-           - const: rockchip,rk3568
- 
-+      - description: EmbedFire LubanCat 1
-+        items:
-+          - const: embedfire,lubancat-1
-+          - const: rockchip,rk3566
-+
- additionalProperties: true
- 
- ...
--- 
-2.27.0
-
+On 12/20/2022 6:20 PM, Mukesh Ojha wrote:
+Thanks for your time Mukesh!!!
+> Hi,
+>
+> On 12/20/2022 1:31 PM, Srinivasa Rao Mandadapu wrote:
+>> Update the way of checking resource table name with prefix
+>> substring search instead of complete string search.
+>> In general Qualcomm DSP binary is prepared by combining different ELFs',
+>> hence section header name (e.g. .resource_table), appended with ELF name
+>> to differentiate with same section(e.g. 
+>> resource_table.ac_bin_process) of
+>> different ELFs'.
+>> Example readelf output of DSP binary:
+>>      [60] .start.ac_bin_process PROGBITS
+>>      [61] .resource_table.ac_bin_process PROGBITS
+>>      [62] .comment.ac_bin_process PROGBITS
+>>
+>
+> Could we rephrase above like below ? It could be also taken why 
+> applying the patch.
+>
+> Update the way of checking resource table name with prefix substring 
+> search instead of complete string search.
+>
+> In general, Qualcomm DSP binary is prepared by combining different 
+> ELF's. Hence, section header name (e.g. .resource_table), appended
+> with ELF name to differentiate with same section(e.g. 
+> resource_table.ac_bin_process) of different ELFs'.
+>
+> Example readelf output of DSP binary:
+>       [60] .start.ac_bin_process PROGBITS
+>       [61] .resource_table.ac_bin_process PROGBITS
+>       [62] .comment.ac_bin_process PROGBITS
+>
+Okay. will change accordingly.
+>
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+>
+> Otherwise, LGTM.
+> Reviewed-by: Mukesh Ojha <quic_mojha@quicinc.com>
+>
+> -Mukesh
+>> ---
+>>   drivers/remoteproc/remoteproc_elf_loader.c | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/remoteproc/remoteproc_elf_loader.c 
+>> b/drivers/remoteproc/remoteproc_elf_loader.c
+>> index 5a412d7..77330d6 100644
+>> --- a/drivers/remoteproc/remoteproc_elf_loader.c
+>> +++ b/drivers/remoteproc/remoteproc_elf_loader.c
+>> @@ -272,7 +272,7 @@ find_table(struct device *dev, const struct 
+>> firmware *fw)
+>>           u64 offset = elf_shdr_get_sh_offset(class, shdr);
+>>           u32 name = elf_shdr_get_sh_name(class, shdr);
+>>   -        if (strcmp(name_table + name, ".resource_table"))
+>> +        if (!strstarts(name_table + name, ".resource_table"))
+>>               continue;
+>>             table = (struct resource_table *)(elf_data + offset);
