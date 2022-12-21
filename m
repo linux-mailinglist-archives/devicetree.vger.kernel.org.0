@@ -2,169 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5CFA6531CB
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 14:31:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B029C6531FC
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 14:46:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229729AbiLUNbB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 08:31:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38978 "EHLO
+        id S232410AbiLUNqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Dec 2022 08:46:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231334AbiLUNa6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 08:30:58 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 316221BEB2;
-        Wed, 21 Dec 2022 05:30:57 -0800 (PST)
-Received: from beast.luon.net (unknown [IPv6:2a10:3781:2531::8])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: sjoerd)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id AB1366602CC7;
-        Wed, 21 Dec 2022 13:30:55 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1671629455;
-        bh=2k9liHIna4KFWxtP8eE1o52G4O3DbqUbH/l1lszJKUM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=LzPsFYvJAVcpWIHbii8uCyIgFc2seyp8lU4/SxWyrACxeZh5zqtbAwCVPbrowdm/9
-         K54WFXsTCQZY+XhK+deBTgDy/ylnXDNMxxmtR6m7N9K/ZKX1QLnWqS2Dm8oTtzpSLn
-         yOWTQsgwj6JuW2Cn43GoxoqTR1eTL4dp8KO9PRvC6FVLC06TW3nqswceRKdMHV5VP+
-         IG3lEAhW0YfB5OGJa0YrjVBdUHqhyJcemLkTIgHbD9U2NS17ZhSAl3s2ZSyC8ilsCY
-         UcCIRhf4e3I7a4Obc4GYXlPtJs+yIpo59bvOdpmEu9HuAfjp+3H7SNv4gxjboOrGUr
-         mjcI4o7nhfRMw==
-Received: by beast.luon.net (Postfix, from userid 1000)
-        id 64A865EC4843; Wed, 21 Dec 2022 14:30:53 +0100 (CET)
-From:   Sjoerd Simons <sjoerd@collabora.com>
-To:     Nishanth Menon <nm@ti.com>
-Cc:     martyn.welch@collabora.com, Nitin Yadav <n-yadav@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tero Kristo <kristo@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] arm64: dts: ti: k3-am625-sk: Add support for USB
-Date:   Wed, 21 Dec 2022 14:30:50 +0100
-Message-Id: <20221221133051.1069480-4-sjoerd@collabora.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20221221133051.1069480-1-sjoerd@collabora.com>
-References: <20221221133051.1069480-1-sjoerd@collabora.com>
-MIME-Version: 1.0
+        with ESMTP id S233281AbiLUNqG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 08:46:06 -0500
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C22D5F7F;
+        Wed, 21 Dec 2022 05:46:01 -0800 (PST)
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-1322d768ba7so19213146fac.5;
+        Wed, 21 Dec 2022 05:46:01 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=TEqm+cWQNHqjxZ1dYY94SUrdlxLeTyeNr9UU8bL+CN4=;
+        b=E9gWWjQGRzO8V4qPawoiNX8mT5dNUkzoqaoYhN0csyn03M9XnZ8xfrfPeies+f+bvl
+         MpJnuAAU1woRL0OG4mPmdRTyXezxhTisqOf2fg+Nh1bBXpZ01NrOwLO6RE2Czu5j3s0c
+         ddynztykadIzKx3BBc76jW5Doy9xCZwKSER5vlHyqFu5XifcYV1qD7qmU1PaH9yA/gXX
+         5QzYW8E+Qh1c30ueW9oeOqW18O2V/+B+0seChGAka3Or+xvic+9r6md/HNQT0rsUgY0n
+         QJk2KZMh+qRYdYKHAEqr+YJoBs6RUgqfPuJ9X87tnaUiQA6Z+lqcqW9WC+SjAFgML82w
+         h+yQ==
+X-Gm-Message-State: AFqh2kq/cgNB69097FPxQionfXTiDTEJiM9BJE/y2tNvVQYKHsKx2Nar
+        4wuiu4euO2JsxijSSVWgrTKNgWmm9Q==
+X-Google-Smtp-Source: AMrXdXshd+N5tqnvx4BjYWqMK259JeDpgS2H3sA2FNIH3uuAerbwEWb38/uWerAxzHpfXw2bAA+a7A==
+X-Received: by 2002:a05:6870:40c8:b0:148:15ba:8869 with SMTP id l8-20020a05687040c800b0014815ba8869mr996840oal.8.1671630360299;
+        Wed, 21 Dec 2022 05:46:00 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id n22-20020a056870559600b0014435b51ef7sm7304861oao.30.2022.12.21.05.45.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Dec 2022 05:45:59 -0800 (PST)
+Received: (nullmailer pid 2733906 invoked by uid 1000);
+        Wed, 21 Dec 2022 13:45:59 -0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Jianhua Lu <lujianhua000@gmail.com>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        linux-kernel@vger.kernel.org, Lee Jones <lee@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+In-Reply-To: <20221221070216.17850-1-lujianhua000@gmail.com>
+References: <20221221070216.17850-1-lujianhua000@gmail.com>
+Message-Id: <167162961165.2717636.4535164259604449279.robh@kernel.org>
+Subject: Re: [PATCH 2/2] dt-bindings: leds: backlight: add binding for Kinetic
+ KTZ8866 backlight
+Date:   Wed, 21 Dec 2022 07:45:59 -0600
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Aswath Govindraju <a-govindraju@ti.com>
 
-AM62 SoC has two instances of USB and they are brought on to the board
-in the following way,
+On Wed, 21 Dec 2022 15:02:16 +0800, Jianhua Lu wrote:
+> Add device tree bindings for the Kinetic KTZ8866 backlight driver.
+> 
+> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
+> ---
+>  .../leds/backlight/kinetic,ktz8866.yaml       | 37 +++++++++++++++++++
+>  1 file changed, 37 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
+> 
 
--> USB0 instance
- - This is brought out to a USB TypeC connector on board through TPS6598 PD
-   controller. The PD controller should decide the role based on CC pin in
-   the connector. Unfortunately the irq line for the TPS isn't hooked up
-   which is a mode not yet support by the driver (some patches were
-   submitted earlier this year[0]). So for now the PD controller is left
-   out and periphal mode chosen.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
--> USB1 instance
- - This is brought out to a USB TypeA connector on board.
+yamllint warnings/errors:
 
-Therefore, add the required device tree support for the above in the board
-dts file.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml: properties:compatible:items: {'const': 'kinetic,ktz8866'} is not of type 'array'
+	from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
 
-0: https://lore.kernel.org/lkml/f714ee55-ef47-317d-81b9-57020dda064b@ti.com/T/
+doc reference errors (make refcheckdocs):
 
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-[merge from vendor bsp, drop TPS6598 support, reword commit message]
-Signed-off-by: Sjoerd Simons <sjoerd@collabora.com>
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221221070216.17850-1-lujianhua000@gmail.com
 
----
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-Changes in v2:
-  - Rebase against linux-next 20221220
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
- arch/arm64/boot/dts/ti/k3-am625-sk.dts | 50 ++++++++++++++++++++++++++
- 1 file changed, 50 insertions(+)
+pip3 install dtschema --upgrade
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-index 4f179b146cab..c82a0ebf6772 100644
---- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-@@ -24,6 +24,8 @@ aliases {
- 		spi0 = &ospi0;
- 		ethernet0 = &cpsw_port1;
- 		ethernet1 = &cpsw_port2;
-+		usb0 = &usb0;
-+		usb1 = &usb1;
- 	};
- 
- 	chosen {
-@@ -284,6 +286,12 @@ main_gpio1_ioexp_intr_pins_default: main-gpio1-ioexp-intr-pins-default {
- 			AM62X_IOPAD(0x01d4, PIN_INPUT, 7) /* (B15) UART0_RTSn.GPIO1_23 */
- 		>;
- 	};
-+
-+	main_usb1_pins_default: main-usb1-pins-default {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x0258, PIN_OUTPUT, 0) /* (F18) USB1_DRVVBUS */
-+		>;
-+	};
- };
- 
- &wkup_uart0 {
-@@ -464,3 +472,45 @@ partition@3fc0000 {
- 		};
- 	};
- };
-+
-+&ecap0 {
-+	status = "disabled";
-+};
-+
-+&ecap1 {
-+	status = "disabled";
-+};
-+
-+&ecap2 {
-+	status = "disabled";
-+};
-+
-+&main_mcan0 {
-+	status = "disabled";
-+};
-+
-+&epwm0 {
-+	status = "disabled";
-+};
-+
-+&epwm1 {
-+	status = "disabled";
-+};
-+
-+&epwm2 {
-+	status = "disabled";
-+};
-+
-+&usbss0 {
-+	ti,vbus-divider;
-+};
-+
-+&usb0 {
-+	dr_mode = "peripheral";
-+};
-+
-+&usb1 {
-+	dr_mode = "host";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_usb1_pins_default>;
-+};
--- 
-2.39.0
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
