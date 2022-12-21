@@ -2,70 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4096F652F88
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 11:32:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96F4C652F8F
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 11:35:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234531AbiLUKcj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 05:32:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49272 "EHLO
+        id S229762AbiLUKe6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Dec 2022 05:34:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234579AbiLUKbR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 05:31:17 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7DC4B4A5;
-        Wed, 21 Dec 2022 02:31:15 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 324D1B81A82;
-        Wed, 21 Dec 2022 10:31:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF24BC433D2;
-        Wed, 21 Dec 2022 10:31:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671618672;
-        bh=v4r7AkfGPQGBVr4AABOMBZ594Y+07pmq57+jDAMnylc=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=SlCp87AsAO1UzRlFdnAHzgRagW0dnNRzElhptPjFic9lQnduegEzyBljIlcDhF9qZ
-         3Gsi5GSrx72LYwuAccxL05yaMqNynG6p9O695L2cpn5A/9ntKSWch+/EXbS0i4voX4
-         EDsOim6wgisvUGB7pInWpTdOW0C4mIqVwIGtyxOTr9FwdHEtLX0gfw/0tAOqfCmpuo
-         RrFB8I6VXZ/6zKlp0vX1m2C4R/t7242UWoGBr5070FdQs0qmF4VNFyG9KizARgpkyj
-         xfGOYOO/n4BLEdUzgD7p59VIItJkq2jpfqWZtmT07voevvUwEY0sLtPqdbtk0kdmAw
-         FFshlNqej6Y8w==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.95)
-        (envelope-from <maz@kernel.org>)
-        id 1p7wNS-00E7ru-GK;
-        Wed, 21 Dec 2022 10:31:10 +0000
-Date:   Wed, 21 Dec 2022 10:31:10 +0000
-Message-ID: <86mt7haw0h.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        with ESMTP id S234715AbiLUKe2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 05:34:28 -0500
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E524DFB5
+        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 02:33:10 -0800 (PST)
+Received: by mail-lj1-x229.google.com with SMTP id b9so15169172ljr.5
+        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 02:33:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tND8dMZ4UYN1tPgLmPx53SiIZZIqD2HEaBgLp/G2TeM=;
+        b=UnSlf9Rhd8aRFFkqHiDrBj0ry1RguPMiz9Lv3xMQh2JPGHHvjOoLjolz8OHwK3FJOF
+         KH8/9UiOtHq+1xys5RZGTubjWv1XIxq99OC+KdUKw/FNrkRpeYDWdWa8CC7Lj0i44gcr
+         enmAnd2tr48Z6TD7P13KK7PovTdF45jYLHtqnwaGReb5SE4wN5DiOMXHO2/7/iKmDze+
+         bWLchDN30mwJwnDCwmmTL84x5TPKN+LnOvvlpSsi3rKzTvebFKg4xc+jMFNP5I/ja2K2
+         w+p8/skyt1gTlQAG69dXxeZqC5W5remmcRTrPKIjX2yXfZvmigCj8aX/P2ohE9+rEIJk
+         Ucaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tND8dMZ4UYN1tPgLmPx53SiIZZIqD2HEaBgLp/G2TeM=;
+        b=WgIK47UQPb/Cyl/MppNGmP9qqR78Tb6xcWGPFp1nSfw4/gsd2jTYgV5uW+nd9r+BuE
+         5AdTG7GwTeO1ROJV0GiuYu8pXhrNnkIVQKLJpEhFeH0u1EY85+RX/lyRWuPpYbtS+k+w
+         0FYFz1VO9ZWoDRhcT9MYfG1S1p4BhrsXnLev3+s/WZ9tvrA8XthtZWduWkVTKfBUxdzk
+         76J1rGG2zLn9JaXmXqS2lJsLOsu9OTC/U55RH+G0cYSJMcG/qfa7LrUI2fg+uIAPcaUf
+         hYFwqo0X5mDpgwCmBXB4H8h3rLfyIAzz2yhvlLK9NtxSoKYQDQ3z3QQcXPE2WZRbE1pF
+         WTPQ==
+X-Gm-Message-State: AFqh2krtARnAjmcS3KE6F5v8zh43C+LEyuTyW6B823k3Ak1IWgukFywG
+        +GqX/GaSDn6nPF/kQIHXbwJ3Sg==
+X-Google-Smtp-Source: AMrXdXsJHVlkkI/BZHuiAvMoxQ5LOirVOUmT+bS3Zi3OPHcp+nkbM/OQR/hoQziwvFLBBAqVlRnbvQ==
+X-Received: by 2002:a2e:8652:0:b0:279:bd34:dcd7 with SMTP id i18-20020a2e8652000000b00279bd34dcd7mr448734ljj.48.1671618788767;
+        Wed, 21 Dec 2022 02:33:08 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id v15-20020a2ea44f000000b0027f792ed10fsm1046801ljn.134.2022.12.21.02.33.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Dec 2022 02:33:08 -0800 (PST)
+Message-ID: <403b0310-070f-1ecc-2188-95c22859bae1@linaro.org>
+Date:   Wed, 21 Dec 2022 11:33:06 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v2 5/6] dt-bindings: arm: mediatek: Add missing
+ power-domains property
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v2 3/9] irqchip: irq-renesas-rzg2l: Skip mapping NMI interrupt as part of hierarchy domain
-In-Reply-To: <20221221000242.340202-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20221221000242.340202-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-        <20221221000242.340202-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/28.2
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: prabhakar.csengg@gmail.com, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, geert+renesas@glider.be, magnus.damm@gmail.com, linus.walleij@linaro.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org, biju.das.jz@bp.renesas.com, prabhakar.mahadev-lad.rj@bp.renesas.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Ikjoon Jang <ikjn@chromium.org>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Chen-Yu Tsai <wenst@chromium.org>
+References: <20221221034407.19605-1-allen-kh.cheng@mediatek.com>
+ <20221221034407.19605-6-allen-kh.cheng@mediatek.com>
+ <ec927229-cf03-136c-5629-22719110313a@collabora.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ec927229-cf03-136c-5629-22719110313a@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,141 +86,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 21 Dec 2022 00:02:36 +0000,
-Prabhakar <prabhakar.csengg@gmail.com> wrote:
+On 21/12/2022 11:22, AngeloGioacchino Del Regno wrote:
+> Il 21/12/22 04:44, Allen-KH Cheng ha scritto:
+>> The "mediatek,mt8192-scp_adsp" binding requires a power domain to be
+>> specified.
+>>
+>> Fixes: 4a803990aeb1 ("dt-bindings: ARM: Mediatek: Add new document bindings of MT8192 clock")
+>> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+>> ---
+>>   .../arm/mediatek/mediatek,mt8192-clock.yaml     | 17 +++++++++++++++++
+>>   1 file changed, 17 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-clock.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-clock.yaml
+>> index b57cc2e69efb..ce8dd2bfb533 100644
+>> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-clock.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-clock.yaml
+>> @@ -40,6 +40,9 @@ properties:
+>>     reg:
+>>       maxItems: 1
+>>   
+>> +  power-domains:
+>> +    maxItems: 1
+>> +
+>>     '#clock-cells':
+>>       const: 1
+>>   
+>> @@ -47,13 +50,27 @@ required:
+>>     - compatible
+>>     - reg
+>>   
+>> +allOf:
 > 
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> NMI interrupt is not an external interrupt as compared to the IRQ0-7 and
-> TINT0-31, this means we need to install the irq handler for NMI in the
-> IRQC driver and not include it as part of IRQ domain.
->
-> This patch skips mapping NMI interrupt as part of the IRQ domain
-> hierarchy.
+> allOf is unnecessary here.
 
-Does it mean nobody can connect anything to it? Where is the handler
-you're mentioning for this NMI?
-
-> 
-> Fixes: 3fed09559cd8 ("irqchip: Add RZ/G2L IA55 Interrupt Controller driver")
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v1 -> v2
-> * New patch
-> ---
->  drivers/irqchip/irq-renesas-rzg2l.c | 24 +++++++++++++-----------
->  1 file changed, 13 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/irqchip/irq-renesas-rzg2l.c b/drivers/irqchip/irq-renesas-rzg2l.c
-> index 25fd8ee66565..7918fe201218 100644
-> --- a/drivers/irqchip/irq-renesas-rzg2l.c
-> +++ b/drivers/irqchip/irq-renesas-rzg2l.c
-> @@ -23,7 +23,8 @@
->  #define IRQC_IRQ_COUNT			8
->  #define IRQC_TINT_START			(IRQC_IRQ_START + IRQC_IRQ_COUNT)
->  #define IRQC_TINT_COUNT			32
-> -#define IRQC_NUM_IRQ			(IRQC_TINT_START + IRQC_TINT_COUNT)
-> +					/* IRQ0-7 + TINT0-31 */
-> +#define IRQC_NUM_HIERARCHY_IRQ		(IRQC_TINT_START + IRQC_TINT_COUNT - 1)
->  
->  #define ISCR				0x10
->  #define IITSR				0x14
-> @@ -58,7 +59,8 @@
->  
->  struct rzg2l_irqc_priv {
->  	void __iomem *base;
-> -	struct irq_fwspec fwspec[IRQC_NUM_IRQ];
-> +	/* IRQ0-7 + TINT0-31 will be part of hierarchy domain */
-> +	struct irq_fwspec fwspec[IRQC_NUM_HIERARCHY_IRQ];
->  	raw_spinlock_t lock;
->  };
->  
-> @@ -99,7 +101,7 @@ static void rzg2l_irqc_eoi(struct irq_data *d)
->  	raw_spin_lock(&priv->lock);
->  	if (hw_irq >= IRQC_IRQ_START && hw_irq <= IRQC_IRQ_COUNT)
->  		rzg2l_irq_eoi(d);
-> -	else if (hw_irq >= IRQC_TINT_START && hw_irq < IRQC_NUM_IRQ)
-> +	else if (hw_irq >= IRQC_TINT_START && hw_irq <= IRQC_NUM_HIERARCHY_IRQ)
->  		rzg2l_tint_eoi(d);
->  	raw_spin_unlock(&priv->lock);
->  	irq_chip_eoi_parent(d);
-> @@ -109,7 +111,7 @@ static void rzg2l_irqc_irq_disable(struct irq_data *d)
->  {
->  	unsigned int hw_irq = irqd_to_hwirq(d);
->  
-> -	if (hw_irq >= IRQC_TINT_START && hw_irq < IRQC_NUM_IRQ) {
-> +	if (hw_irq >= IRQC_TINT_START && hw_irq <= IRQC_NUM_HIERARCHY_IRQ) {
->  		struct rzg2l_irqc_priv *priv = irq_data_to_priv(d);
->  		u32 offset = hw_irq - IRQC_TINT_START;
->  		u32 tssr_offset = TSSR_OFFSET(offset);
-> @@ -129,7 +131,7 @@ static void rzg2l_irqc_irq_enable(struct irq_data *d)
->  {
->  	unsigned int hw_irq = irqd_to_hwirq(d);
->  
-> -	if (hw_irq >= IRQC_TINT_START && hw_irq < IRQC_NUM_IRQ) {
-> +	if (hw_irq >= IRQC_TINT_START && hw_irq <= IRQC_NUM_HIERARCHY_IRQ) {
->  		struct rzg2l_irqc_priv *priv = irq_data_to_priv(d);
->  		unsigned long tint = (uintptr_t)d->chip_data;
->  		u32 offset = hw_irq - IRQC_TINT_START;
-> @@ -228,7 +230,7 @@ static int rzg2l_irqc_set_type(struct irq_data *d, unsigned int type)
->  
->  	if (hw_irq >= IRQC_IRQ_START && hw_irq <= IRQC_IRQ_COUNT)
->  		ret = rzg2l_irq_set_type(d, type);
-> -	else if (hw_irq >= IRQC_TINT_START && hw_irq < IRQC_NUM_IRQ)
-> +	else if (hw_irq >= IRQC_TINT_START && hw_irq <= IRQC_NUM_HIERARCHY_IRQ)
+If you mean that "if:" can be without it, then it is better to have
+allOf. It grows often, so you avoid useless indentation change later.
 
 
-How about you define a "tint_hwirq()" helper that checks got the
-boundaries? Same thing for the other IRQ type.
+Best regards,
+Krzysztof
 
->  		ret = rzg2l_tint_set_edge(d, type);
->  	if (ret)
->  		return ret;
-> @@ -280,7 +282,7 @@ static int rzg2l_irqc_alloc(struct irq_domain *domain, unsigned int virq,
->  			return -EINVAL;
->  	}
->  
-> -	if (hwirq > (IRQC_NUM_IRQ - 1))
-> +	if (!hwirq || hwirq > IRQC_NUM_HIERARCHY_IRQ)
->  		return -EINVAL;
->  
->  	ret = irq_domain_set_hwirq_and_chip(domain, virq, hwirq, &irqc_chip,
-> @@ -288,7 +290,7 @@ static int rzg2l_irqc_alloc(struct irq_domain *domain, unsigned int virq,
->  	if (ret)
->  		return ret;
->  
-> -	return irq_domain_alloc_irqs_parent(domain, virq, nr_irqs, &priv->fwspec[hwirq]);
-> +	return irq_domain_alloc_irqs_parent(domain, virq, nr_irqs, &priv->fwspec[hwirq - 1]);
->  }
->  
->  static const struct irq_domain_ops rzg2l_irqc_domain_ops = {
-> @@ -304,12 +306,12 @@ static int rzg2l_irqc_parse_interrupts(struct rzg2l_irqc_priv *priv,
->  	unsigned int i;
->  	int ret;
->  
-> -	for (i = 0; i < IRQC_NUM_IRQ; i++) {
-> +	for (i = 1; i <= IRQC_NUM_HIERARCHY_IRQ; i++) {
->  		ret = of_irq_parse_one(np, i, &map);
->  		if (ret)
->  			return ret;
->  		of_phandle_args_to_fwspec(np, map.args, map.args_count,
-> -					  &priv->fwspec[i]);
-> +					  &priv->fwspec[i - 1]);
-
-Starting the loop at 1 really is non-idiomatic, and I'd rather see
-something like this:
-
-	for (i = 0; i < IRQC_NUM_HIERARCHY_IRQ; i++) {
-		ret = of_irq_parse_one(np, i + 1, &map);
-		if (ret)
-			return ret;
-		of_phandle_args_to_fwspec(np, map.args, map.args_count,
-					  &priv->fwspec[i]);
-	}
-
-Thanks,
-
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
