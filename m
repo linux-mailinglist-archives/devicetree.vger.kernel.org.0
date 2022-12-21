@@ -2,112 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C5586532D2
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 16:02:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C4DD6532D9
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 16:03:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232524AbiLUPCI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 10:02:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45282 "EHLO
+        id S231986AbiLUPDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Dec 2022 10:03:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229981AbiLUPCH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 10:02:07 -0500
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A9F722295;
-        Wed, 21 Dec 2022 07:02:07 -0800 (PST)
-Received: by mail-oi1-f181.google.com with SMTP id r130so13543335oih.2;
-        Wed, 21 Dec 2022 07:02:07 -0800 (PST)
+        with ESMTP id S229981AbiLUPDt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 10:03:49 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27ABF222A6
+        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 07:03:48 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id z26so23875829lfu.8
+        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 07:03:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=K2l6cewJUPRniIKeMkNSdCkIiOTYnjbP46uLNNT69g4=;
+        b=MudIaipiKdBALhnv3xCVHFsTmKEK5Lgprh4ZlztzuNrWekMnRO39wSGC545djVUghZ
+         z1gvH+QA1cvj4WFt2k72u7d5kUNTT7nKm28L8mw9LlcBCskuJb0yxipq6GJWvjhEEwko
+         P0WIlDAJ+bh/x9Hg1epyyLywpYy/dIvRHdoYNM7xCS2Wvx4Qm2T+PIAQusAoE+c72H+e
+         /A8o9+zLQZ/cEJCscQk7L13ZWvAVWinAX7c8UJpV3J0Fej+vV6xu6wDDhLkyhE0oW83n
+         U4KQUFBJsy6jEdMrqBcxtdkTpeYQMvQ1iuDfx+qZHJRcOXSfBriAaZ6CYw8HVm3c82VR
+         ycfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZUouVsuH4nDvHqNLQ+k2JwBPwVSp7b+SrA5Adtq8QyU=;
-        b=BE1lw3gqL3acaBnun5oJAV3wxvNvCcQ1Dbmr6Sen++AT6qYOVyr3O7LvGCWoaXKdFd
-         cgKnFhO8ysKdhjJziutFhwcGts+joxRV/jT471jrxCpm2EBN+jMQ+9s/Q3G/H1pPftp3
-         hXj5FgZj0/cYtXTSprhcCgwMXkev3Krp5yZPB5eRlte6CmyfN4yNM5xVg7E7bHfTz9tN
-         nJn8AdsSu1q4jynHCuBbSbQ9OuGxzfPY5EYGkvG4AV0edhVPn/qZvHEykRdjM4C2QHG1
-         SdDcSV1lol2JQHomU+ja6LDYUnwh9uZvmT/ccCO1Ewby4nAoGbyNHnM4eqJjY3yJ9PLz
-         ZpQQ==
-X-Gm-Message-State: AFqh2kpoOHiNzJoB4moI8SmEPukbJ3ybC+kSUEIbn1ve04EWKHGusFkY
-        WWdpQ+Eo83ZQ5Nk7OEa3tstt1OH2IITHsw==
-X-Google-Smtp-Source: AMrXdXvNq0OApu+uBKwR+qJ2s7bsdWrjS5FAU3cILaQIa+Yr5KEkVTYR8aiIPBYUaq8AGn2UjDHuIw==
-X-Received: by 2002:a05:6808:1911:b0:360:e643:7e27 with SMTP id bf17-20020a056808191100b00360e6437e27mr1265875oib.36.1671634923973;
-        Wed, 21 Dec 2022 07:02:03 -0800 (PST)
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
-        by smtp.gmail.com with ESMTPSA id ay14-20020a05620a178e00b006b929a56a2bsm10964365qkb.3.2022.12.21.07.02.02
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=K2l6cewJUPRniIKeMkNSdCkIiOTYnjbP46uLNNT69g4=;
+        b=G+UnAYrZm8BGGqbkNbmTMWpZQDSRn/6gBHtfRBZGX+ycYvpeA3x4hJJIXku2b1e/fq
+         hdi3b7BgrSqCRHfmKjgxN4GMU1GQyqEp604qW+KG+DyMFyaNZpXxePmTT1LXLw0cRj6W
+         MpB4lj8tPqPCaTVzIVs91ZeGo6LtD3/5YAx8f7Nge6si97ffLvJzjNrRawpsq5/Q/m3D
+         ET2BLsed6KWpD1L1EuY+PRldKuKISke/+BDMHScB1mAv2CAiDJpxSYxQ7Vdc6lDRcpyv
+         xqiRKQSJ9dDAG2KqloF6mysg6rRep9c8dJGAZLPfS0XGaWui8QpPeQQQb3ivSwdwE7L3
+         jlKQ==
+X-Gm-Message-State: AFqh2koWYQsEdRtwwpuokUSytmqHDljAIKFdShFkpsfjNS/eumcis7Qc
+        bB8uYYI/iGUc7w3lnICwDjHUMw==
+X-Google-Smtp-Source: AMrXdXtbhO7QRkUe2U864JJ/dN3IRzN7x/8klCacqm4gLMX785oEXfttZCalrmBUBMRIxAHk4cKL9g==
+X-Received: by 2002:a05:6512:224d:b0:4ab:d632:788b with SMTP id i13-20020a056512224d00b004abd632788bmr823628lfu.54.1671635026489;
+        Wed, 21 Dec 2022 07:03:46 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id r7-20020a19ac47000000b004b58ebf0399sm1866078lfc.132.2022.12.21.07.03.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Dec 2022 07:02:02 -0800 (PST)
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-46198b81e5eso16931017b3.4;
-        Wed, 21 Dec 2022 07:02:02 -0800 (PST)
-X-Received: by 2002:a81:c84:0:b0:3b4:8af5:48e with SMTP id 126-20020a810c84000000b003b48af5048emr154231ywm.383.1671634922295;
- Wed, 21 Dec 2022 07:02:02 -0800 (PST)
+        Wed, 21 Dec 2022 07:03:45 -0800 (PST)
+Message-ID: <4c37d74d-aaa2-242f-a25f-bf5f92d50756@linaro.org>
+Date:   Wed, 21 Dec 2022 16:03:44 +0100
 MIME-Version: 1.0
-References: <20221213230129.549968-1-fabrizio.castro.jz@renesas.com> <20221213230129.549968-2-fabrizio.castro.jz@renesas.com>
-In-Reply-To: <20221213230129.549968-2-fabrizio.castro.jz@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 21 Dec 2022 16:01:50 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWpViKrCmnO-X0BTemJWqhmNZ-D5anzitJh6atbnFB6dQ@mail.gmail.com>
-Message-ID: <CAMuHMdWpViKrCmnO-X0BTemJWqhmNZ-D5anzitJh6atbnFB6dQ@mail.gmail.com>
-Subject: Re: [PATCH 1/4] clk: renesas: r9a09g011: Add SDHI/eMMC clock and
- reset entries
-To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [RESEND] dt-bindings: leds: backlight: Add Kinetic KTZ8866
+ backlight
+To:     Jianhua Lu <lujianhua000@gmail.com>, Lee Jones <lee@kernel.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jacopo Mondi <jacopo@jmondi.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+References: <20221221132428.702-1-lujianhua000@gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221221132428.702-1-lujianhua000@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabrizio,
+On 21/12/2022 14:24, Jianhua Lu wrote:
+> Add Kinetic KTZ8866 backlight binding documentation.
+> 
+> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
 
-On Wed, Dec 14, 2022 at 12:01 AM Fabrizio Castro
-<fabrizio.castro.jz@renesas.com> wrote:
-> From: Phil Edworthy <phil.edworthy@renesas.com>
->
-> Add SDHI/eMMC clock/reset entries to CPG driver.
->
-> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
-> ---
->
-> This patch can clash with the below patch (which hasn't been reviewed
-> yet):
-> https://patchwork.kernel.org/project/linux-renesas-soc/patch/20221212172804.1277751-2-biju.das.jz@bp.renesas.com/
+Do not resend. You need to fix everything, test and send a new patchset
+(entire) with the changelog.
 
-I'll just ignore the overlap...
+Best regards,
+Krzysztof
 
-I couldn't review the clock parents, as that information seems to
-be restricted, but the rest LGTM.
-
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-clk-for-v6.3.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
