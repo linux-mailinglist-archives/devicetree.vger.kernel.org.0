@@ -2,226 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2C47652D5F
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 08:42:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3880C652D80
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 08:54:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233283AbiLUHmq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 02:42:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35068 "EHLO
+        id S234357AbiLUHx7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Dec 2022 02:53:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229472AbiLUHmp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 02:42:45 -0500
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C86B6555;
-        Tue, 20 Dec 2022 23:42:43 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2BL7gYlk113506;
-        Wed, 21 Dec 2022 01:42:34 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1671608554;
-        bh=Ez96FijQFklJTz8IMFPnWCRlr1eR4+kdyeMz2055puc=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=lKl5Rz3dGRDIv9eNmOQzwZ70i4kCtD4rcddfn3n5Y3Ub/1/1M+L+wH9IDjXoiykb7
-         nAXfnQHGqJZJV1mOgGqEtZOGx8A2p8FNwd5LMh6eoijxiL1sG7yD4ymbTCshJzBt6P
-         DqtsLC9fy75iLCfL2JD6LrBSf9o7Ey6e5lAj1slQ=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2BL7gYAo003429
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 21 Dec 2022 01:42:34 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 21
- Dec 2022 01:42:33 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 21 Dec 2022 01:42:33 -0600
-Received: from [10.0.2.15] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2BL7gS8P100590;
-        Wed, 21 Dec 2022 01:42:28 -0600
-Message-ID: <645aca4d-b19c-390d-b899-fd40a924a096@ti.com>
-Date:   Wed, 21 Dec 2022 13:12:14 +0530
+        with ESMTP id S229634AbiLUHx5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 02:53:57 -0500
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2054.outbound.protection.outlook.com [40.107.237.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E94F1AF08;
+        Tue, 20 Dec 2022 23:53:56 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MtWNyoRrqFy9UrqFdvxCYVPwaycH/fAqn8Bbz4owf+5sXlBWI3/S6olWlErcKoyHq58DiGlgXJhHwAegEo7GjtEzMBdBpNxF9pY1rIknseMkcxmx+mnKdpf+Zv0Gak3cz0Adxcdg6Qn5sIOzXdly8JFwgORb9ChwDB/hV5WKRXLMVR3ptyM4w78iRDjmzx5Bg11T+3daqBG2OELdRp5awz8TtQUddtWnftXC9J+oJqlRkl5ld3Dl8ZZWbwa35YcAl6QQjL9z5//rve90GEl7uCuVedtH0HBV4cqrP1JIbU1LRMNc0CTPZAJ+2k/IH3afM3brM3wbV/bRPaKd/UnDbQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=udefmB4LIQT4WG7iLtbL1wQWJpKxFkNgYnah/UExfT0=;
+ b=mUQ1QdNWU1Yxofx78MtL4K+dlEXu1PUosqKSh0WxWwe1HwKmYY4vWCbRpJD5DGzCpoHgXdmL+t941Kq529lw/Qg8bHyR8Z0nAISAf4TTB9jXn+Eu6T4jNqRZY0MG8Ar4H4fuKgmOduGX+fqL11v6RVBEYP4fLoEr0SPNaakkQWcb1ay0upw/4Tas9tU0YBEeMUG92tIX3QNZad2I6E/Z2HLGc3IOZyyCMSiCWBi9BxGJzlMijZi1Tvust1EDgHVY+SrbaP4rNG2sDYSAH1057xo3xLCEahqC/RdirDq/VO+zmprxGQTKkTQnr+yrZaqfFNdHsv2/yF9iEKYTFXUwCw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=gmail.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=udefmB4LIQT4WG7iLtbL1wQWJpKxFkNgYnah/UExfT0=;
+ b=iAkKq9Snmcrr3aEJBKkS+To/k0LEvqj7JoRPEwnLFIzYX01f9jDxRv8PFMPqCYZGWLO/tD/uMDUk+P3SrwqqlKv6gBLPRpt+JLZOeSgQnRlcZXOekpParj4aHC4aHahMxxJjyOA6Te8Yj8cLckoTzuByywLwPXc0FjZvEta1ak71u3cVs8hbS7pu6TVkVmtoik0lKo92Esnpmj95fa00qGRNTSl9sZvGWnhdhCW6PJEeQzDqTb/44Pvn6ZMMvUjiYUL6hZSpZfbW07yPYwgpITgoHimHupDPj+Zo2jqRCgTa4H+v/536Z/l2oqm9brZJoE38gFF7yAdSNMAUtEwmaA==
+Received: from BN1PR10CA0024.namprd10.prod.outlook.com (2603:10b6:408:e0::29)
+ by CH2PR12MB4198.namprd12.prod.outlook.com (2603:10b6:610:7e::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5924.16; Wed, 21 Dec
+ 2022 07:53:54 +0000
+Received: from BN8NAM11FT081.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:e0:cafe::2e) by BN1PR10CA0024.outlook.office365.com
+ (2603:10b6:408:e0::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5924.21 via Frontend
+ Transport; Wed, 21 Dec 2022 07:53:54 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ BN8NAM11FT081.mail.protection.outlook.com (10.13.177.233) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5944.10 via Frontend Transport; Wed, 21 Dec 2022 07:53:54 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 20 Dec
+ 2022 23:53:45 -0800
+Received: from [10.41.21.79] (10.126.230.37) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 20 Dec
+ 2022 23:53:39 -0800
+Message-ID: <f4ba0a2b-55c2-e142-b002-07a3bcab172f@nvidia.com>
+Date:   Wed, 21 Dec 2022 13:23:37 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v2 1/2] Documentation: dt-bindings: k3-r5f-rproc: Add new
- compatible for AM62 SoC family
+Subject: Re: [Patch v1 01/10] memory: tegra: add interconnect support for DRAM
+ scaling in Tegra234
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <andersson@kernel.org>, <mathieu.poirier@linaro.org>,
-        <p.zabel@pengutronix.de>, <linux-remoteproc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <s-anna@ti.com>
-CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <hnagalla@ti.com>, <praneeth@ti.com>, <nm@ti.com>,
-        <vigneshr@ti.com>, <a-bhatia1@ti.com>, <j-luthra@ti.com>
-References: <20221130134052.7513-1-devarsht@ti.com>
- <20221130134052.7513-2-devarsht@ti.com>
- <b4b608bf-e347-5500-eb94-bec3611f6a56@linaro.org>
-From:   Devarsh Thakkar <devarsht@ti.com>
-In-Reply-To: <b4b608bf-e347-5500-eb94-bec3611f6a56@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+To:     Dmitry Osipenko <digetx@gmail.com>, <treding@nvidia.com>,
+        <krzysztof.kozlowski@linaro.org>, <dmitry.osipenko@collabora.com>,
+        <viresh.kumar@linaro.org>, <rafael@kernel.org>,
+        <jonathanh@nvidia.com>, <robh+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Sumit Gupta <sumitg@nvidia.com>
+References: <20221220160240.27494-1-sumitg@nvidia.com>
+ <20221220160240.27494-2-sumitg@nvidia.com>
+ <8e7f0efb-dc90-9dc7-015e-a2d56630f495@gmail.com>
+From:   Sumit Gupta <sumitg@nvidia.com>
+In-Reply-To: <8e7f0efb-dc90-9dc7-015e-a2d56630f495@gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.126.230.37]
+X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
+ rnnvmail201.nvidia.com (10.129.68.8)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT081:EE_|CH2PR12MB4198:EE_
+X-MS-Office365-Filtering-Correlation-Id: 570f773f-bea4-41ce-82e4-08dae32881e9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: mjPeoBK5XXjjXoCDQ8hcP97595ukrOBFt2DILZHE271bayBowDbcFsnbOEQxqujUp0GQxCJx8X8Q/8x6LqKYWt3qEPliYi1O5AlONHZh2g0R/CT/0Nu0YR+LGdPeg7v4mTjNHt2yIAQgrzAHUZJP5mJuks7QS8MEONn7BPiBB9lpX/TbNA+bNh+L+FcpYiQFrk2ZQxs9rMzwS9g7G/x8PIHadn1eXFJQWw2fWgyD1ZbQGj2R7YLoBWQYrf+7Tf/gmtJNagXL0IH/Auf84WGyRWNMETWW/2nZIRCg0lzQ0a5Qr/iWqB7u66r45ebbDZnL+Vm3LGYS+t7+qubjSdaZsO0qjm4xA/RvJWWbLSCQlXKHtJvmp+/Z9kkTrhUUMm/tHySKVtyGmRMzwcanL/IuFxzOBuWE5r19giKOUYVoqUXlMCo6d9+OqB3/CB3p6YU0OoxL+fHN2DEl1jmUGJWtZXX8YVLnY8FuQzfH7f28kWr4PH1jE3yAXtQeD9wjI6fP2SW2KU3qpQ3iA5ROmdpfSJB6S4qqgAqY+AS3T5sIBm+rScNCDvWS+yX0fme0PguVJsnq1UYuarBtghqIBaUweohUx+zerWQIQAp5CDqRIJtzQk+uWYHZGlyajSElTLiKOmmD3det3rUZWK4RQHq5KLrLglx1p9iTOkn8+D2eVZSPwnjaPsPlRCDJP+G6vOcyv+ruyDnezhDRcydDkG/f3v2HKBH7+TBPukSSMWvavwxOs12ZxmQpsEj8+eTTK658
+X-Forefront-Antispam-Report: CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230022)(4636009)(136003)(39860400002)(376002)(346002)(396003)(451199015)(36840700001)(46966006)(40470700004)(110136005)(40480700001)(478600001)(7636003)(82740400003)(4744005)(7416002)(2906002)(31686004)(36756003)(316002)(5660300002)(8936002)(36860700001)(70206006)(86362001)(70586007)(16576012)(31696002)(8676002)(40460700003)(426003)(26005)(921005)(356005)(336012)(41300700001)(53546011)(47076005)(2616005)(186003)(16526019)(82310400005)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Dec 2022 07:53:54.1920
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 570f773f-bea4-41ce-82e4-08dae32881e9
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT081.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4198
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
 
-Thanks for the review. Please find my response inline.
 
-On 30/11/22 20:33, Krzysztof Kozlowski wrote:
-> On 30/11/2022 14:40, Devarsh Thakkar wrote:
->> AM62 family of devices don't have a R5F cluster, instead
->> they have single core DM R5F.
->> Add new compatible string ti,am62-r5fss to support this scenario.
->>
->> When this new compatible is used don't allow cluster-mode
->> property usage in device-tree as this implies that there
->> is no R5F cluster available and only single R5F core
->> is present.
->>
->> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
->> ---
->> V2: Avoid acronyms, use "Device Manager" instead of "DM"
-> 
-> Use subject prefixes matching the subsystem (git log --oneline -- ...).
-Agreed, I will update the prefix as dt-bindings: remoteproc: k3-r5f: in V3.
-> 
->> ---
->>  .../bindings/remoteproc/ti,k3-r5f-rproc.yaml  | 48 +++++++++++++------
->>  1 file changed, 34 insertions(+), 14 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
->> index fb9605f0655b..91357635025a 100644
->> --- a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
->> +++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
->> @@ -21,6 +21,9 @@ description: |
->>    called "Single-CPU" mode, where only Core0 is used, but with ability to use
->>    Core1's TCMs as well.
->>  
->> +  AM62 SoC family support a single R5F core only which runs Device Manager
->> +  firmware and can also be used as a remote processor with IPC communication.
->> +
->>    Each Dual-Core R5F sub-system is represented as a single DTS node
->>    representing the cluster, with a pair of child DT nodes representing
->>    the individual R5F cores. Each node has a number of required or optional
->> @@ -28,6 +31,9 @@ description: |
->>    the device management of the remote processor and to communicate with the
->>    remote processor.
->>  
->> +  Since AM62 SoC family only support a single core, there is no cluster-mode
->> +  property setting required for it.
->> +
->>  properties:
->>    $nodename:
->>      pattern: "^r5fss(@.*)?"
->> @@ -38,6 +44,7 @@ properties:
->>        - ti,j721e-r5fss
->>        - ti,j7200-r5fss
->>        - ti,am64-r5fss
->> +      - ti,am62-r5fss
-> 
-> Some order? Alphabetical, so before am64? Same in other places.
-Agreed, I will update in V3 accordingly.
+On 20/12/22 23:35, Dmitry Osipenko wrote:
+> External email: Use caution opening links or attachments
 > 
 > 
->>        - ti,j721s2-r5fss
->>  
->>    power-domains:
->> @@ -80,7 +87,8 @@ patternProperties:
->>        node representing a TI instantiation of the Arm Cortex R5F core. There
->>        are some specific integration differences for the IP like the usage of
->>        a Region Address Translator (RAT) for translating the larger SoC bus
->> -      addresses into a 32-bit address space for the processor.
->> +      addresses into a 32-bit address space for the processor. For AM62x,
->> +      should only define one R5F child node as it has only one core available.
->>  
->>        Each R5F core has an associated 64 KB of Tightly-Coupled Memory (TCM)
->>        internal memories split between two banks - TCMA and TCMB (further
->> @@ -104,6 +112,7 @@ patternProperties:
->>            - ti,j721e-r5f
->>            - ti,j7200-r5f
->>            - ti,am64-r5f
->> +          - ti,am62-r5f
->>            - ti,j721s2-r5f
->>  
->>        reg:
->> @@ -207,20 +216,31 @@ patternProperties:
->>        - firmware-name
->>  
->>      unevaluatedProperties: false
+> 20.12.2022 19:02, Sumit Gupta пишет:
+>> @@ -779,6 +780,7 @@ const char *const tegra_mc_error_names[8] = {
+>>    */
+>>   static int tegra_mc_interconnect_setup(struct tegra_mc *mc)
+>>   {
+>> +     struct tegra_icc_node *tnode;
+>>        struct icc_node *node;
+>>        unsigned int i;
+>>        int err;
+>> @@ -792,7 +794,11 @@ static int tegra_mc_interconnect_setup(struct tegra_mc *mc)
+>>        mc->provider.data = &mc->provider;
+>>        mc->provider.set = mc->soc->icc_ops->set;
+>>        mc->provider.aggregate = mc->soc->icc_ops->aggregate;
+>> -     mc->provider.xlate_extended = mc->soc->icc_ops->xlate_extended;
+>> +     mc->provider.get_bw = mc->soc->icc_ops->get_bw;
+>> +     if (mc->soc->icc_ops->xlate)
+>> +             mc->provider.xlate = mc->soc->icc_ops->xlate;
+>> +     if (mc->soc->icc_ops->xlate_extended)
+>> +             mc->provider.xlate_extended = mc->soc->icc_ops->xlate_extended;
 > 
-> Blank line.
-Agreed, I will remove it in V3.
-> 
->> +allOf:
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          enum:
->> +            - ti,am64-r5fss
->> +    then:
->> +      properties:
->> +        ti,cluster-mode:
->> +          enum: [0, 2]
->> +
->> +    else:
->> +      properties:
->> +        ti,cluster-mode:
-> 
-> It's not really valid anymore for ti,am62-r5fss, so this cannot be
-> simple "else".  Instead you need to list all compatibles.
-I agree that the else block is not valid for am62x, but my understanding is that since all the blocks under allOf are checked for validity,
-I thought to add a separate if block only for am62x to set cluster-mode to false [1], which I believe would negate the effect of above else condition for am62x,
-so that we don't have to list all compatibles under separate if blocks.
+> These IFs look pointless
 
-Just to verify this, I deliberately set cluster-mode=1 in am62x devicetree and then ran a dtbs-check and got below log : 
-"linux-next/arch/arm64/boot/dts/ti/k3-am625-sk.dtb: r5fss@78000000: ti,cluster-mode: False schema does not allow [[1]]"
-
-and above warning log goes away when i remove the cluster-mode node in am62x devicetree.
-But please do let me know if I am missing something here or there is a better/more proper way to do this.
-
-Best Regards,
-Devarsh
-
-> 
->> +          enum: [0, 1]
->> +
-[1]
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          enum:
->> +            - ti,am62-r5fss
->> +    then:
->> +      properties:
->> +        ti,cluster-mode: false
->>  
->> -if:
->> -  properties:
->> -    compatible:
->> -      enum:
->> -        - ti,am64-r5fss
->> -then:
->> -  properties:
->> -    ti,cluster-mode:
->> -      enum: [0, 2]
->> -else:
->> -  properties:
->> -    ti,cluster-mode:
->> -      enum: [0, 1]
->>  
->>  required:
->>    - compatible
-> 
-> Best regards,
-> Krzysztof
-> 
+Ok. Will remove.
