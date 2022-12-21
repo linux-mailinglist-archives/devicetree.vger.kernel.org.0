@@ -2,115 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E99A4652F92
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 11:35:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE8A7652FC6
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 11:47:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234563AbiLUKfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 05:35:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50774 "EHLO
+        id S231610AbiLUKrF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Dec 2022 05:47:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234589AbiLUKep (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 05:34:45 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAAB01571C;
-        Wed, 21 Dec 2022 02:34:09 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id C142D6602CBE;
-        Wed, 21 Dec 2022 10:34:07 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1671618848;
-        bh=dYnHLUJwsMgAqRqXR0SLLIpg7sZb52juTMDSydtg2x4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=NJWuTs4kLFIVz6qdw1/352wJnSGg8W+CUVh5jJ4Fh0eCzdhJcGGEbC0udVFsDxFVg
-         RhrTq8CShiU7b1sr1rsIXkCnufUZ77mMTIgsYMxBaEWp5gamaAqX5RtVXMadVMZ+tU
-         wyYSJjGk8Wgs5PRaOWa+bpvVZkjvraBBNBTlepzIsoSByhjYhBl0pLWJbYJ1+cS4RF
-         4YRefd0VGzzz9In7DgfUZBsm8TMJBzuV6uPAQ2RWKW55KeeKtfSl2YM25JvYFXG6qa
-         aaZPhdVWbmLfRhlLpJRjBtC/m2IIGaSblzKqeYz7sL1YVpyWPtcWR337m4AryTNZtH
-         9/VPFLvpFqUvQ==
-Message-ID: <9ea3d941-e68a-ce48-5f34-264f925c4358@collabora.com>
-Date:   Wed, 21 Dec 2022 11:34:05 +0100
+        with ESMTP id S229612AbiLUKqu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 05:46:50 -0500
+Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 465D31A23B;
+        Wed, 21 Dec 2022 02:46:49 -0800 (PST)
+Received: by mail-qk1-x732.google.com with SMTP id a25so6569141qkl.12;
+        Wed, 21 Dec 2022 02:46:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=DNRS4XaCIr+pNxI0B6D9MO5nBjIMTxhyLlBWRC8jTtg=;
+        b=S8Os2Joe8RDvk2V6E2MGGLoqLntI2mMHmuEybFVJNoVHzWZbW9dC7vqg6sI9Y5btYf
+         px59axccSQV2bZa0K2uz/mh6Xwjq63L9deCfZW0f+8zWkuMHzjKGwN+wqw5jU6QzMfRQ
+         g6vCwZaqaiRvgzMRHikIhZ9xLVlrZXw/8QWjVcCnPiygimu8OWBRk0+bCjCR38g8gZoI
+         i4kxMAO7Qs+z4chydFCmXZnxqkpfyebP/MZTAMJbuGfH3b17OY09C/Z4quubPJQ2vMnw
+         IsNMdJCeS50+5JTmb+tIpAVREUshqaSRMFhJ4xJtYfoWnsZkUPKraR4kjzMoxm4eBqVM
+         pBaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DNRS4XaCIr+pNxI0B6D9MO5nBjIMTxhyLlBWRC8jTtg=;
+        b=tI2C9HgYUZ6hd5MwCbSDT82mU3Wql5IBy3CHlweAzCrwf6eA8SZNwKm65kOEfGJdfu
+         oVYynt+Xnc6yE0V/f238Bdvi47erxsEw8jvDnRCUiG9LJV70mHwI3UAtNnDPfrp+n8T9
+         JU0oNdf/7FfeLSk47H4XojGEMRai2iMBEp7ePS7AR/jpfg5+ZnDx3e6JzjSYf1SsCb/5
+         fx7LexG+lEkawTq8lgm3KK/8QqaEZ4UpY1EQU/KEqQL/BO8VzITGhW57v+byD9rZsRAe
+         d9EA6LbefEVe6j/yirddLv8uqDJ6TEaXB5h0axItO0hn7m21YzTov/G24cK0AhS0fBsO
+         cInQ==
+X-Gm-Message-State: AFqh2koRdRlIk4knqZPxujUpsuK6nWsJsHhYbHe9bdo6YSNWyVfbXVci
+        /VJPQzT+S/V363HNy5MN0yAf8WwpcTICXLOe/q0=
+X-Google-Smtp-Source: AMrXdXtD5yxdeFw1QyHVaqgmf2rjXRA/KYamX6ZaftevXCzSpQC1KNQ0AGWes4jvtuAaq355TtF0VtN70rqTJVRaUDE=
+X-Received: by 2002:a05:620a:13e9:b0:6ff:b886:54d3 with SMTP id
+ h9-20020a05620a13e900b006ffb88654d3mr33992qkl.383.1671619608339; Wed, 21 Dec
+ 2022 02:46:48 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v2 5/6] dt-bindings: arm: mediatek: Add missing
- power-domains property
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <Y6KfFEChA67E7oX/@VM-66-53-centos> <5a7907e3-f79e-5de9-ed1b-ec24ea52c437@linaro.org>
+In-Reply-To: <5a7907e3-f79e-5de9-ed1b-ec24ea52c437@linaro.org>
+From:   ty <zonyitoo@gmail.com>
+Date:   Wed, 21 Dec 2022 18:46:36 +0800
+Message-ID: <CAMmci2UgwqDyPPJXwGRsMW1Y1Cy2c6LMybk+7v7pGz-LtYzGTw@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] dt-bindings: arm: rockchip: Add EmbedFire LubanCat 1
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Ikjoon Jang <ikjn@chromium.org>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>
-References: <20221221034407.19605-1-allen-kh.cheng@mediatek.com>
- <20221221034407.19605-6-allen-kh.cheng@mediatek.com>
- <ec927229-cf03-136c-5629-22719110313a@collabora.com>
- <403b0310-070f-1ecc-2188-95c22859bae1@linaro.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <403b0310-070f-1ecc-2188-95c22859bae1@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, DHDAXCW <lasstp5011@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 21/12/22 11:33, Krzysztof Kozlowski ha scritto:
-> On 21/12/2022 11:22, AngeloGioacchino Del Regno wrote:
->> Il 21/12/22 04:44, Allen-KH Cheng ha scritto:
->>> The "mediatek,mt8192-scp_adsp" binding requires a power domain to be
->>> specified.
->>>
->>> Fixes: 4a803990aeb1 ("dt-bindings: ARM: Mediatek: Add new document bindings of MT8192 clock")
->>> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
->>> ---
->>>    .../arm/mediatek/mediatek,mt8192-clock.yaml     | 17 +++++++++++++++++
->>>    1 file changed, 17 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-clock.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-clock.yaml
->>> index b57cc2e69efb..ce8dd2bfb533 100644
->>> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-clock.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-clock.yaml
->>> @@ -40,6 +40,9 @@ properties:
->>>      reg:
->>>        maxItems: 1
->>>    
->>> +  power-domains:
->>> +    maxItems: 1
->>> +
->>>      '#clock-cells':
->>>        const: 1
->>>    
->>> @@ -47,13 +50,27 @@ required:
->>>      - compatible
->>>      - reg
->>>    
->>> +allOf:
->>
->> allOf is unnecessary here.
-> 
-> If you mean that "if:" can be without it, then it is better to have
-> allOf. It grows often, so you avoid useless indentation change later.
-> 
-> 
+Dear Kozlowski,
 
-Yes, that's what I mean. I've suggested so because I don't expect this list
-to grow in the future.
+Sorry that we didn't fully get the idea in your previous comments.
 
-Regards,
-Angelo
+>
+> On 21/12/2022 06:52, Yuteng Zhong wrote:
+> > from: DHDAXCW <lasstp5011@gmail.com>
+> >
+> > LubanCat 1 is a Rockchip RK3566 SBC based
+> > is developed by EmbedFire Electronics Co., Ltd.
+> > Mini Linux Card Type Cheap Computer Development Board
+>
+> This is a friendly reminder during the review process.
+>
+> It seems my previous comments were not fully addressed. Maybe my
+> feedback got lost between the quotes, maybe you just forgot to apply it.
+> Please go back to the previous discussion and either implement all
+> requested changes or keep discussing them.
+>
+> Thank you.
 
+Your pervious comment were:
+
+> Please wrap commit message according to Linux coding style / submission
+> process:
+> https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
+
+So I think there must be something wrong in the message but I didn't
+notice. This message has a `from` line, and the body was wrapped at 75
+columns. Please help me make it better.
+
+
+
+> >
+> > Signed-off-by: Yuteng Zhong <zonyitoo@gmail.com>
+> > Signed-off-by: DHDAXCW <lasstp5011@gmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> > index 88ff4422a8c1..84d39a3a8843 100644
+> > --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> > @@ -781,6 +781,11 @@ properties:
+> >            - const: rockchip,rk3568-bpi-r2pro
+> >            - const: rockchip,rk3568
+> >
+> > +      - description: EmbedFire LubanCat 1
+> > +        items:
+> > +          - const: embedfire,lubancat-1
+> > +          - const: rockchip,rk3566
+>
+> Here as well.
+
+This change was addressing the previous comment in V2:
+
+> This is separate patch. Does not look like properly ordered. Don't add
+> stuff at the end of files/lists.
+
+The previous PATCH v2 merged changes in 3 diffent files:
+
+1. arch/arm64/boot/dts/rockchip/Makefile
+2. arch/arm64/boot/dts/rockchip/rk3566-lubancat-1.dts
+3. Documentation/devicetree/bindings/arm/rockchip.yaml
+
+What we do in this PATCH v4 was separated the 3 into a separated patch.
