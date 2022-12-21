@@ -2,128 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCABD652D1F
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 08:02:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC7D3652D2B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 08:12:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234085AbiLUHCn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 02:02:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52088 "EHLO
+        id S232975AbiLUHMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Dec 2022 02:12:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229448AbiLUHCm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 02:02:42 -0500
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94CE81F60D;
-        Tue, 20 Dec 2022 23:02:41 -0800 (PST)
-Received: by mail-pj1-x102b.google.com with SMTP id o1-20020a17090a678100b00219cf69e5f0so1281853pjj.2;
-        Tue, 20 Dec 2022 23:02:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=iLhpvJLe8wUwjMWhjGdcbiLSvV4O6C2uFJ++EfmUmG8=;
-        b=ZWhyIykfGczTmN7iY79uBrF+cj5WfVjL/MKp0+3TaG2jXVOlJvJ9e92gGZ4MWjw6of
-         l9dpblwzn3TABsiiuhvmhoU3UlbaT9+l6LkP7UdpMxtWPzbr8QOMYjDbrD+U943p3lHi
-         VqF/NCLdFt0peRCyMJSqQKFotKsMQxwTUHFndN4f3Y7RojjP9Z8mKTVXec/K995fzOzR
-         CqgzaaN5qxydD+A/doTMb+RyoxvQhVpfYbb74Y+xBZSN34kzZDc0QmhKXaPlvI98Izax
-         yYu1kI4AS5AX+AlPteOCp2AAZDyDO1Vo1QHkONUOSINTR2ndBL+rokF+KMg1N9tky34C
-         8MaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=iLhpvJLe8wUwjMWhjGdcbiLSvV4O6C2uFJ++EfmUmG8=;
-        b=UYU3i9n8uTlrYHBMjps4ApTYN/9l/11hyIRf8rtpjwXzzu79GL3Uds2DNVHwOAhdFA
-         H6RjHiqoo7WIeDC9X+LyyJVvjZsuHRXJP4vFZn8/yBopztIRtQcPu6T75VIWOcxSB8Mb
-         JJ2ARUwzI4MV96+7YdppX0EztKPo09zdAHeHKnfjTDfm/XDe3QEfO7RAnUAg7rxiYlc0
-         tPJIZmJN4IFHOkWWc0sMycHrbE1e0Rpju6NuUk48mD85nAaw7P2WUAKUrOGaKf1BLDYI
-         DGwJtkHRNdqboqiVf6f0NW5g3+QI/1YYufcXxvCTGe3Vq/rKOKrOJBtXnw+aFm5g6oDW
-         zv1g==
-X-Gm-Message-State: AFqh2krSucJ/9GureOOjkf/bgduUhPn5KI4L9fXHoufIYTCYfcCLsQq2
-        3ib5UfzbNnZrBmto5txABwbbLqzBN4Iz0zkt
-X-Google-Smtp-Source: AMrXdXtuhzounO8Sea7pU0k8a4F9jEl+j9/DmNWNDZTp4WEhskn10OkAmn5yVWLpiVhqsY8RSI3iww==
-X-Received: by 2002:a05:6a20:12ca:b0:ab:e8a7:6137 with SMTP id v10-20020a056a2012ca00b000abe8a76137mr1634889pzg.3.1671606161142;
-        Tue, 20 Dec 2022 23:02:41 -0800 (PST)
-Received: from localhost.localdomain ([117.189.239.185])
-        by smtp.gmail.com with ESMTPSA id q20-20020a631f54000000b00476c2180dbcsm9134146pgm.29.2022.12.20.23.02.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Dec 2022 23:02:40 -0800 (PST)
-From:   Jianhua Lu <lujianhua000@gmail.com>
-To:     Lee Jones <lee@kernel.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        with ESMTP id S229448AbiLUHMP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 02:12:15 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76F6C205CF;
+        Tue, 20 Dec 2022 23:12:14 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 38AFFB819B4;
+        Wed, 21 Dec 2022 07:12:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF365C433EF;
+        Wed, 21 Dec 2022 07:12:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1671606731;
+        bh=wB5ZvGobvITOzarRwRMummvTj0QNOaf/TUyKeEQS7eM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=EJeX7s39E/jGa0z69sFBURv09t0RcsFo6fmF5jnurO1QMjMR3inwl3WsCKdB/Ippv
+         hNs8L0Af8f7zoZZmSu2Gta3B8urQPl1PyWCGYUfwh80fdJzYCs7TtHifJiZhw3w+rV
+         PLJWWMN9m66UOWj0ApluhfFUa0cr7wOx7fjUi8Zz9QZXC8ljutWOPkIhzYyfTCFZtX
+         cKHDAoPX4ml5p+GydmOzZ9xp/YcyYbwWrRUZgy2svvriUhzYXLXiK37ofcAsAGOoz+
+         bMWFZdmzDjzOd1YQn8RN5lPVu4DX50pdSZQxOk/K16NDvOoiFBjeahMzc4PUrti4fl
+         ixZB7lAeDo05w==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1p7tHe-0003Kq-Cd; Wed, 21 Dec 2022 08:12:59 +0100
+Date:   Wed, 21 Dec 2022 08:12:58 +0100
+From:   Johan Hovold <johan@kernel.org>
+To:     Lux Aliaga <they@mint.lgbt>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        Jianhua Lu <lujianhua000@gmail.com>
-Subject: [PATCH 2/2] dt-bindings: leds: backlight: add binding for Kinetic KTZ8866 backlight
-Date:   Wed, 21 Dec 2022 15:02:16 +0800
-Message-Id: <20221221070216.17850-1-lujianhua000@gmail.com>
-X-Mailer: git-send-email 2.38.2
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/4] arm64: dts: qcom: sm6125: Add UFS nodes
+Message-ID: <Y6Kx+iq9c5izbYRH@hovoldconsulting.com>
+References: <20221215190404.398788-1-they@mint.lgbt>
+ <20221215190404.398788-2-they@mint.lgbt>
+ <e474f99d-2375-c8db-203c-632c918d8e4d@linaro.org>
+ <6ddf93eb-aadb-a9b8-d91a-0c56ed54418f@mint.lgbt>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6ddf93eb-aadb-a9b8-d91a-0c56ed54418f@mint.lgbt>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for the Kinetic KTZ8866 backlight driver.
+On Wed, Dec 21, 2022 at 12:34:46AM -0300, Lux Aliaga wrote:
+> 
+> On 16/12/2022 08:24, Konrad Dybcio wrote:
+> >
+> > On 15.12.2022 20:04, Lux Aliaga wrote:
+> >> Adds a UFS host controller node and its corresponding PHY to
+> >> the sm6125 platform.
 
-Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
----
- .../leds/backlight/kinetic,ktz8866.yaml       | 37 +++++++++++++++++++
- 1 file changed, 37 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
+> >> +			reg = <0x04807000 0x1c4>;
+> >> +
+> >> +			power-domains = <&gcc UFS_PHY_GDSC>;
+> >> +
+> >> +			clock-names = "ref", "ref_aux";
+> >> +			clocks = <&gcc GCC_UFS_MEM_CLKREF_CLK>, <&gcc GCC_UFS_PHY_PHY_AUX_CLK>;
+> >> +
+> >> +			resets = <&ufs_mem_hc 0>;
+> >> +			reset-names = "ufsphy";
+> >> +
+> >> +			#address-cells = <1>;
+> >> +			#size-cells = <1>;
+> >> +			ranges;
+> >> +
+> >> +			status = "disabled";
+> >> +
+> >> +			ufs_mem_phy_lanes: lanes@4807400 {
+> >> +				reg = <0x4807400 0x098>,
+> >> +				      <0x4807600 0x130>,
+> >> +				      <0x4807c00 0x16c>;
+> >> +				#phy-cells = <0>;
+> >> +			};
+> > I believe this is deprecated. See [1].
 
-diff --git a/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml b/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
-new file mode 100644
-index 000000000000..7286c3fc7f5d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
-@@ -0,0 +1,37 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/backlight/kinetic,ktz8866.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Kinetic Technologies KTZ8866 backlight
-+
-+maintainers:
-+  - Jianhua Lu <lujianhua000@gmail.com>
-+
-+description: |
-+  The Kinetic Technologies KTZ8866 is a high efficiency 6-sinks led backlight
-+  with dual lcd bias power.
-+  https://www.kinet-ic.com/ktz8866/
-+
-+allOf:
-+  - $ref: common.yaml#
-+
-+properties:
-+  compatible:
-+    items:
-+      const: kinetic,ktz8866
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    backlight {
-+        compatible = "kinetic,ktz8866";
-+
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&bl_en_default>;
-+    };
--- 
-2.38.2
+> > [1] https://lore.kernel.org/linux-arm-msm/20221104092045.17410-1-johan+linaro@kernel.org/T/#m988f3fe3d83b76bac247aea2d9dac34f37728d65
 
+> I've looked into the documentation and this is only for the sc8280xp. 
+> This PHY is defined as it is for the msm8996 and derivatives.
+
+No, it's not just for sc8280xp. It's intended for all new bindings (i.e.
+do not add more platforms to the msm8996 schema file).
+
+Johan
