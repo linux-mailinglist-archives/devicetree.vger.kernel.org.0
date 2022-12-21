@@ -2,148 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11DE6652A43
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 01:03:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6BEA652A4E
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 01:12:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234382AbiLUADp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 19:03:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44902 "EHLO
+        id S229869AbiLUAMa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 19:12:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234331AbiLUADQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 19:03:16 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC6D41F2C2;
-        Tue, 20 Dec 2022 16:03:07 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id o5so13445757wrm.1;
-        Tue, 20 Dec 2022 16:03:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TDx4PoIIM9s55jr76B6tJoItpMqZgxuY5BT2+9L4lSA=;
-        b=KSvwsEDwSmMQkLfJuZJjF/qg5HVZhKX5+asanYJ14dRgci2s8AXZYUaTAqQrpCqoEy
-         hCt7nBBopzrFTlzr/TC4hFxMXpIiN3tSCx7O1fWgA93bH98oC03E7SekzTSp+pLl5C38
-         xCeZC8Kfv/t3sMp4nXEeikNjyHb0Yp00R6krutG3bn2fsJiw+zPQP9EAP6A8z4qrl3Hf
-         01w0zSvZBx5rrhkSd0kSDxsZZFFg3Bov7pdGGZV4sB7VLO/6HKy07O9Vf8Sssk/jUb+a
-         mVk2iI/yz5ZP62UAaI4qeZoHfmUIdmQNR8+VurAChiPN32N69qB6HFuE34YBY7XkxWAi
-         tVQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TDx4PoIIM9s55jr76B6tJoItpMqZgxuY5BT2+9L4lSA=;
-        b=pvEQatrpcSgWL/ol0P4NLg1GKdRxfAfZdLDq/yUPR0+hcEmHMLzjBb0nucsMuZoAwT
-         KOi8YmnNFqCnjjfqKmx5aHL7A11TYX7re4Dy+q46N3QyfUIqCCiRTysdyxCrW5iwzlOL
-         7V9G4cOiAkyGvyb/Mr9YILS1CmlAGC1MOxIutHR9AEhg5pblMEnxaIcuqPKcOIZR+QLv
-         S9qTMrf6vUslMsfp6qd/blNgbK/4UGkuUqMMLqdExbY02l5vSvz5tkLYgQ1/rGXsh2MS
-         32eWInKIFIWcG8Z0OoJr/cBkOchy97tXeHDd95G2M9NFVaI6gUmJAe6CjeiR+jfAyrFk
-         Lc2Q==
-X-Gm-Message-State: AFqh2ko0LP0lC8i5y36yfQX6R/wjr/5rbv5MaLhxcZIZ9qjk9ToQLBxR
-        3lb+YeAjV/cc84LSB0unWzo=
-X-Google-Smtp-Source: AMrXdXv9LRP1Qpx2tmKWUDbyQUAHBj7IkpB6m1UmdJalm1DtiW26Q/6lEjvMRCLz7ljioJgYscwvlg==
-X-Received: by 2002:a05:6000:691:b0:260:6dca:f239 with SMTP id bo17-20020a056000069100b002606dcaf239mr7450448wrb.22.1671580986330;
-        Tue, 20 Dec 2022 16:03:06 -0800 (PST)
-Received: from prasmi.home ([2a00:23c8:2501:c701:1595:a48c:95a8:15e0])
-        by smtp.gmail.com with ESMTPSA id f2-20020a5d50c2000000b002362f6fcaf5sm13740150wrt.48.2022.12.20.16.03.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Dec 2022 16:03:05 -0800 (PST)
-From:   Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S229451AbiLUAM3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 19:12:29 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5E031EAFB;
+        Tue, 20 Dec 2022 16:12:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=GH9M5bV1VooJkjUWIga/hv2jQxEHFDZMjQbWm1O6tc8=; b=YulGIBLlt+uAz1B3XpSn3PEV2l
+        JlPFmq6JYNmPnNsrPUTUWCQv1rTeNKwyMxxG8RqU1knVI4VYHeVZ0IboHTv33PVi7B2CsmxPiyH00
+        t5APlVAPVzm1NTlEkuCzGpEYQKYCtPDAOUKwwtDLsojqRWFXbCL3dSTlJHcPhzRisrzI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1p7miW-0008LK-86; Wed, 21 Dec 2022 01:12:16 +0100
+Date:   Wed, 21 Dec 2022 01:12:16 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc:     Christian Marangi <ansuelsmth@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2 9/9] arm64: dts: renesas: rzg2ul-smarc-som: Add PHY interrupt support for ETH{0/1}
-Date:   Wed, 21 Dec 2022 00:02:42 +0000
-Message-Id: <20221221000242.340202-10-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221221000242.340202-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20221221000242.340202-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org,
+        Tim Harvey <tharvey@gateworks.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Rasmus Villemoes <rasmus.villemoes@prevas.dk>
+Subject: Re: [PATCH v7 09/11] leds: trigger: netdev: add additional hardware
+ only triggers
+Message-ID: <Y6JPYBQhtpZLadry@lunn.ch>
+References: <20221214235438.30271-1-ansuelsmth@gmail.com>
+ <20221214235438.30271-10-ansuelsmth@gmail.com>
+ <Y5ta87eCAQ8XsY8L@shell.armlinux.org.uk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y5ta87eCAQ8XsY8L@shell.armlinux.org.uk>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Thu, Dec 15, 2022 at 05:35:47PM +0000, Russell King (Oracle) wrote:
+> On Thu, Dec 15, 2022 at 12:54:36AM +0100, Christian Marangi wrote:
+> > Add additional hardware only triggers commonly supported by switch LEDs.
+> > 
+> > Additional modes:
+> > link_10: LED on with link up AND speed 10mbps
+> > link_100: LED on with link up AND speed 100mbps
+> > link_1000: LED on with link up AND speed 1000mbps
+> > half_duplex: LED on with link up AND half_duplex mode
+> > full_duplex: LED on with link up AND full duplex mode
+> 
+> Looking at Marvell 88e151x, I don't think this is usable there.
+> We have the option of supporting link_1000 on one of the LEDs,
+> link_100 on another, and link_10 on the other. It's rather rare
+> for all three leds to be wired though.
 
-The PHY interrupt (INT_N) pin is connected to IRQ2 and IRQ7 for ETH0 and
-ETH1 respectively.
+The 88e151x will need to enumerate what it actually supports from the
+above list, per LED. I also think we can carefully expand the list
+above, adding a few more modes. We just need to ensure what is added
+is reasonably generic, modes we expect multiple PHY to support. What
+we need to avoid is adding every single mode a PHY supports, but no
+other PHY has.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-v1 -> v2
-* No change
----
- arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+> This is also a PHY where "activity" mode is supported (illuminated
+> or blinking if any traffic is transmitted or received) but may not
+> support individual directional traffic in hardware. However, it
+> does support forcing the LED on or off, so software mode can handle
+> those until the user selects a combination of modes that are
+> supported in the hardware.
+> 
+> > Additional blink interval modes:
+> > blink_2hz: LED blink on any even at 2Hz (250ms)
+> > blink_4hz: LED blink on any even at 4Hz (125ms)
+> > blink_8hz: LED blink on any even at 8Hz (62ms)
+> 
+> This seems too restrictive. For example, Marvell 88e151x supports
+> none of these, but does support 42, 84, 170, 340, 670ms.
 
-diff --git a/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
-index 931efc07d6fb..49ecd33aeeb8 100644
---- a/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
-@@ -6,6 +6,7 @@
-  */
- 
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irqc-rzg2l.h>
- #include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
- 
- / {
-@@ -77,6 +78,8 @@ phy0: ethernet-phy@7 {
- 		compatible = "ethernet-phy-id0022.1640",
- 			     "ethernet-phy-ieee802.3-c22";
- 		reg = <7>;
-+		interrupt-parent = <&irqc>;
-+		interrupts = <RZG2L_IRQ2 IRQ_TYPE_LEVEL_LOW>;
- 		rxc-skew-psec = <2400>;
- 		txc-skew-psec = <2400>;
- 		rxdv-skew-psec = <0>;
-@@ -104,6 +107,8 @@ phy1: ethernet-phy@7 {
- 		compatible = "ethernet-phy-id0022.1640",
- 			     "ethernet-phy-ieee802.3-c22";
- 		reg = <7>;
-+		interrupt-parent = <&irqc>;
-+		interrupts = <RZG2L_IRQ7 IRQ_TYPE_LEVEL_LOW>;
- 		rxc-skew-psec = <2400>;
- 		txc-skew-psec = <2400>;
- 		rxdv-skew-psec = <0>;
-@@ -151,7 +156,8 @@ eth0_pins: eth0 {
- 			 <RZG2L_PORT_PINMUX(3, 2, 1)>, /* ET0_RXD0 */
- 			 <RZG2L_PORT_PINMUX(3, 3, 1)>, /* ET0_RXD1 */
- 			 <RZG2L_PORT_PINMUX(4, 0, 1)>, /* ET0_RXD2 */
--			 <RZG2L_PORT_PINMUX(4, 1, 1)>; /* ET0_RXD3 */
-+			 <RZG2L_PORT_PINMUX(4, 1, 1)>, /* ET0_RXD3 */
-+			 <RZG2L_PORT_PINMUX(5, 1, 7)>; /* IRQ2 */
- 	};
- 
- 	eth1_pins: eth1 {
-@@ -169,7 +175,8 @@ eth1_pins: eth1 {
- 			 <RZG2L_PORT_PINMUX(9, 1, 1)>, /* ET1_RXD0 */
- 			 <RZG2L_PORT_PINMUX(9, 2, 1)>, /* ET1_RXD1 */
- 			 <RZG2L_PORT_PINMUX(9, 3, 1)>, /* ET1_RXD2 */
--			 <RZG2L_PORT_PINMUX(10, 0, 1)>; /* ET1_RXD3 */
-+			 <RZG2L_PORT_PINMUX(10, 0, 1)>, /* ET1_RXD3 */
-+			 <RZG2L_PORT_PINMUX(18, 5, 1)>; /* IRQ7 */
- 	};
- 
- 	sdhi0_emmc_pins: sd0emmc {
--- 
-2.25.1
+I would actually drop this whole idea of being able to configure the
+blink period. It seems like it is going to cause problems. I expect
+most PHYs actual share the period across multiple LEDs, which you
+cannot easily model here.
 
+So i would have the driver hard coded to pick a frequency at thats' it.
+
+   Andrew
