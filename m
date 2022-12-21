@@ -2,183 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FA10653386
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 16:38:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 46A1C65338B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 16:38:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234556AbiLUPiV convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 21 Dec 2022 10:38:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40712 "EHLO
+        id S234704AbiLUPiy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Dec 2022 10:38:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234357AbiLUPhy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 10:37:54 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E98C825281
-        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 07:36:14 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1p818b-0007if-9S; Wed, 21 Dec 2022 16:36:09 +0100
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1p818Z-000p2n-GJ; Wed, 21 Dec 2022 16:36:07 +0100
-Received: from pza by lupine with local (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1p818X-000AdV-5z; Wed, 21 Dec 2022 16:36:05 +0100
-Message-ID: <432ed015f4ba99d6bddd0a10af72324fea1388da.camel@pengutronix.de>
-Subject: Re: [PATCH 1/2] dt-bindings: net: Add rfkill-gpio binding
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Johannes Berg <johannes@sipsolutions.net>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-wireless@vger.kernel.org, kernel@pengutronix.de
-Date:   Wed, 21 Dec 2022 16:36:05 +0100
-In-Reply-To: <20221221144505.GA2848091-robh@kernel.org>
-References: <20221221104803.1693874-1-p.zabel@pengutronix.de>
-         <20221221144505.GA2848091-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.38.3-1+deb11u1 
+        with ESMTP id S234740AbiLUPi1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 10:38:27 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63A6021D
+        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 07:37:58 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id y16so15351901wrm.2
+        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 07:37:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9m8USarmvldzMr+J44XS7SpGQ8hCtef881SAyiDae8Q=;
+        b=L6UvxrJjfXcNoJPQpXOwq96HLNwZzbk+cHnU6uoWhGine4wKZIgJkQamSrBub9siJw
+         gxPJkjfA3kY7F4qSZFvCHkbvUBe0aNkhZ4GzpKh+r4Dh4g5de0sx5Xvww63M+7St4+5m
+         ku7HPG+dxmp7eBhgJYbDGH6+zt6STAFkhCVTxIO346CzavEADITyo2kCLjNzXKmKe25D
+         wJKESrkMiE5hr+yx26pfJW17O32gBG0gmxw+mxoK2Ki4OrmfWpyPxbZORrV5mED2EvSa
+         evyUayoGxEdPEeOesCCy3VjeMGYG/bbdpg4L/XPbc4Ttv4XlJtNL48ssjHRCxeSzbcg1
+         xVlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9m8USarmvldzMr+J44XS7SpGQ8hCtef881SAyiDae8Q=;
+        b=5wuMaksNKH/klnSliRF0L6/OsmfuF+AXR0/NNuQLNH0Dj3g8nXMhoE+07mgV1vMY55
+         ZuaZNVMMnsjWQp3A9u43dVNVEqSkERwcTk8z3KBx2IJqw+/Tz/LeJT2nwTiQ/1AdqRuQ
+         gyDjuGKigEVkv0U197PPJvp14F0E/EQDBVpqatg/lEf/6f1G8hjzE1o1eg/cxHcUheYZ
+         wZXaH/5NrnuVU/tShF4ixcU+VLJu8VjLiVnYnUnDwyObiWOOznKxoavI3p+X8KQC4le7
+         3vMDna5aoHHZuAUORsUys2I7Cp3DlEIZHNKJ30XMVwMm79oCJVVGSQEksPn2C5jrYoxU
+         ZHOw==
+X-Gm-Message-State: AFqh2kqAxnPP4frS0VLjQJjeQziG2X2etJ5KlGPVCpb3geLNIF8AhNvA
+        FnMgM17ulCYIXXVPi4MvfxQcAg==
+X-Google-Smtp-Source: AMrXdXu2fSetxXEsruEVdCSb86lzCy9KSvy0WpIy6GHQMl6GZ5Bsu8URGnddADll0uNcxHjWk/URNA==
+X-Received: by 2002:a5d:4b84:0:b0:242:5b60:e23c with SMTP id b4-20020a5d4b84000000b002425b60e23cmr1295315wrt.19.1671637076795;
+        Wed, 21 Dec 2022 07:37:56 -0800 (PST)
+Received: from [192.168.175.23] (pur13-1-78-242-214-186.fbx.proxad.net. [78.242.214.186])
+        by smtp.googlemail.com with ESMTPSA id w16-20020adfee50000000b002420dba6447sm15416255wro.59.2022.12.21.07.37.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Dec 2022 07:37:55 -0800 (PST)
+Message-ID: <be2b4fef-b047-7dd5-c375-af90083e4417@linaro.org>
+Date:   Wed, 21 Dec 2022 16:37:52 +0100
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v4 00/15] thermal/drivers/tsens: specify nvmem cells in DT
+ rather than parsing them manually
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>
+Cc:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20221221020520.1326964-1-dmitry.baryshkov@linaro.org>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20221221020520.1326964-1-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mi, 2022-12-21 at 08:45 -0600, Rob Herring wrote:
-> On Wed, Dec 21, 2022 at 11:48:02AM +0100, Philipp Zabel wrote:
-> > Add a device tree binding document for GPIO controlled rfkill switches.
-> > The name, type, shutdown-gpios and reset-gpios properties are the same
-> > as defined for ACPI.
-> > 
-> > Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
-> > ---
-> >  .../devicetree/bindings/net/rfkill-gpio.yaml  | 60 +++++++++++++++++++
-> >  1 file changed, 60 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/net/rfkill-gpio.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/rfkill-gpio.yaml b/Documentation/devicetree/bindings/net/rfkill-gpio.yaml
-> > new file mode 100644
-> > index 000000000000..6e62e6c96456
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/rfkill-gpio.yaml
-> > @@ -0,0 +1,60 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: "http://devicetree.org/schemas/net/rfkill-gpio.yaml#"
-> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > +
-> > +title: GPIO controlled rfkill switch
-> > +
-> > +maintainers:
-> > +  - Johannes Berg <johannes@sipsolutions.net>
-> > +  - Philipp Zabel <p.zabel@pengutronix.de>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: rfkill-gpio
-> > +
-> > +  name:
+
+Hi Dmitry,
+
+On 21/12/2022 03:05, Dmitry Baryshkov wrote:
+> Historically the tsens driver fetches the calibration data as a blob and
+> then parses the blob on its own. This results in semi-duplicated code
+> spreading over the platform-specific functions.
 > 
-> Did you test this? Something should complain, but maybe not. The problem 
-> is 'name' is already a property in the unflattened DT (and old FDT 
-> formats).
-
-Thank you. Maybe this was hidden by the fact that I set the name
-property to the same string as the node's name.
-
-> 'label' would be appropriate perhaps, but why do we care what the name 
-> is?
-
-This is meant to be the identifier of the rfkill API object. It is the
-content of /sys/class/rfkill/rfkill0/name, and the 'ID' in the rfkill
-command line tool, that can be used to select a switch, in case a
-device has multiple radios of the same type.
-
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    description: rfkill switch name, defaults to node name
-> > +
-> > +  type:
+> This patch series changes tsens calibration code to per-value nvmem
+> cells rather than parsing the blob in the driver. For backwards
+> compatibility the old code is left in place for msm8916, msm8974 and
+> qcs404, the platforms which have in-tree DT files. For all other
+> affected platforms the old parsing code has been dropped as a part of
+> this series.
 > 
-> Too generic. Property names should ideally have 1 type globally. I think 
-> 'type' is already in use. 'radio-type' instead?
-
-These values correspond to the 'enum rfkill_type' in Linux UAPI, but I
-think in this context 'radio-type' would be better than 'rfkill-type'.
-
-> > +    description: rfkill radio type
-> > +    enum:
-> > +      - wlan
-> > +      - bluetooth
-> > +      - ultrawideband
-> > +      - wimax
-> > +      - wwan
-> > +      - gps
-> > +      - fm
-> > +      - nfc
-> > +
-> > +  shutdown-gpios:
-> > +    maxItems: 1
-> > +
-> > +  reset-gpios:
-> > +    maxItems: 1
+> The code was tested on msm8916 and qcs404 only.
 > 
-> I'm lost as to why there are 2 GPIOs.
+> Note: the DTs changes depend on driver changes. Tsens driver will not
+> work if DT patches are merged, but the driver bits are not. As the
+> thermal sense is critical for device safety, I'd suggest merging binding
+> and driver during one merge window and then merging DT changes in the
+> next merge window.
 
-I don't know either.  My assumption is that this is for devices that
-are radio silenced by just asserting their reset pin (for example GPS
-chips). The driver handles them the same.
+We can avoid an extra release cycle with a common *immutable* branch 
+shared between the two trees.
 
-I could remove reset-gpios and make shutdown-gpios required.
 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - type
-> > +
-> > +oneOf:
-> > +  - required:
-> > +      - shutdown-gpios
-> > +  - required:
-> > +      - reset-gpios
+> Note2:
+> For v3 I have reworked the legacy bindings support into the small and
+> manageable data-driven piece of code.
 > 
-> But only 1 can be present? So just define 1 GPIO name.
-
-The intent was that only one of them would be required.
-
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +
-> > +    rfkill-pcie-wlan {
+> I still have included patches to drop legacy support for 8939
+> (msm8939.dtsi is on the list, I have provided Bryan with the patch to
+> update it to new bindings) and 8976 (msm8976.dtsi and msm8956.dtsi,
+> which use single-blob bindings, have been accepted for 6.2, dropping old
+> bindings support depends on mutual consensuns of platform and thermal
+> code maintainers). The patches are the last ones in the thermal part of
+> the series, thus if they are declined, the reset of the series still can
+> be applied without any problems.
 > 
-> Node names should be generic.
+> Changes since v3:
+> - Added a patch to fix the tsens compatible string on msm8956 SoC,
+> - Fixed num-sensors and slope coefficients for the msm8939 SoC,
+> - Rewrote code supporting old bindings into the simple data-driven
+>    parser common to all legacy platforms which made dropping support for
+>    old bindings less demanding.
+> 
+> Changes since v2:
+> - Made init_8956 static, as pointed out by the testing robot and by
+>    AngeloGioacchino Del Regno.
+> 
+> Changes since the RFC:
+> - Sorted out the msm8976/msm8956, custom slopes are used only for msm8956,
+> - Implemented proper support for msm8974/apq8084,
+> - Added tsens_calibrate_common() and ops_v0_1 which can be used in
+>    common cases,
+> - Removed superfluous identity hw_ids
+> - Fixed calibration calculation in tsens_calibrate_nvmem() for
+>    ONE_PT_CALIB case
+> 
+> Dmitry Baryshkov (20):
+>    dt-bindings: thermal: tsens: add msm8956 compat
+>    dt-bindings: thermal: tsens: support per-sensor calibration cells
+>    dt-bindings: thermal: tsens: add per-sensor cells for msm8974
+>    thermal/drivers/tsens: Drop unnecessary hw_ids
+>    thermal/drivers/tsens: Drop msm8976-specific defines
+>    thermal/drivers/tsens: Sort out msm8976 vs msm8956 data
+>    thermal/drivers/tsens: limit num_sensors to 9
+>    thermal/drivers/tsens: fix slope values for msm8939
+>    thermal/drivers/tsens: Support using nvmem cells for calibration data
+>    thermal/drivers/tsens: Support using nvmem cells for msm8974
+>      calibration
+>    thermal/drivers/tsens: Rework legacy calibration data parsers
+>    thermal/drivers/tsens: Drop single-cell code for mdm9607
+>    thermal/drivers/tsens: Drop single-cell code for msm8939
+>    thermal/drivers/tsens: Drop single-cell code for msm8976/msm8956
+>    arm64: dts: qcom: msm8956: use SoC-specific compat for tsens
+>    arm64: dts: qcom: msm8916: specify per-sensor calibration cells
+>    arm64: dts: qcom: msm8976: specify per-sensor calibration cells
+>    arm64: dts: qcom: qcs404: specify per-sensor calibration cells
+>    ARM: dts: qcom-msm8974: specify per-sensor calibration cells
+>    ARM: dts: qcom-apq8084: specify per-sensor calibration cells
+> 
+>   .../bindings/thermal/qcom-tsens.yaml          | 123 +++-
+>   arch/arm/boot/dts/qcom-apq8084.dtsi           | 313 ++++++++-
+>   arch/arm/boot/dts/qcom-msm8974.dtsi           | 313 ++++++++-
+>   arch/arm64/boot/dts/qcom/msm8916.dtsi         |  81 ++-
+>   arch/arm64/boot/dts/qcom/msm8956.dtsi         |   4 +
+>   arch/arm64/boot/dts/qcom/msm8976.dtsi         | 153 +++-
+>   arch/arm64/boot/dts/qcom/qcs404.dtsi          | 145 +++-
+>   drivers/thermal/qcom/tsens-v0_1.c             | 653 +++++-------------
+>   drivers/thermal/qcom/tsens-v1.c               | 340 +++------
+>   drivers/thermal/qcom/tsens.c                  | 166 +++++
+>   drivers/thermal/qcom/tsens.h                  |  46 +-
+>   11 files changed, 1572 insertions(+), 765 deletions(-)
+> 
 
-What could be a generic name for this - is "rfkill" acceptable even
-though it is a Linux subsystem name? Or would "rf-kill-switch" be
-better?
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-How should they be called if there are multiple of them?
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
-> > +        compatible = "rfkill-gpio";
-> > +        name = "rfkill-pcie-wlan";
-> > +        type = "wlan";
-> > +        shutdown-gpios = <&gpio2 25 GPIO_ACTIVE_HIGH>;
-> > +    };
-> > -- 
-> > 2.30.2
-
-regards
-Philipp
