@@ -2,135 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 792A365337B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 16:36:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FA10653386
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 16:38:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234897AbiLUPgC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 10:36:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37260 "EHLO
+        id S234556AbiLUPiV convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 21 Dec 2022 10:38:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234905AbiLUPfi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 10:35:38 -0500
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 506BA24F39;
-        Wed, 21 Dec 2022 07:32:17 -0800 (PST)
-Received: by mail-pj1-x102d.google.com with SMTP id u4-20020a17090a518400b00223f7eba2c4so2406293pjh.5;
-        Wed, 21 Dec 2022 07:32:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dX5Ufydbl+p2sHxSvGtWPn7nIriGhnFrTMO/deTHyGc=;
-        b=iiWcSXNheQcb430tsQZJphtJrB+Ja/HWXMfg3h7fPve0YOLZfED3bTDNHtGmGlvP9x
-         N/pP/6ztIdMvRdO6X826MByELkp0Jas+8v6Jt52Y6qhDg0e8kh9zKpEcXqio+p1Vd+/X
-         2yrtWvoxOV19rBVa0IiL0XyzBN01Kf86VA49yynFC9xVGS0fDBAzjXJrk8aeFlFd7cFD
-         q/ndB6hwC3p3fYURXJtwIToBuZFA9dTLJHZxPw545c4V2zeTOKY4pAUupe1zcC6Y2mm7
-         FfQEF73g3gENaScT5fXfRxMD4v8rGKDTyDAp8p03HiNl3nsiF1cgy225Hnq85cAOXgnG
-         KM6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dX5Ufydbl+p2sHxSvGtWPn7nIriGhnFrTMO/deTHyGc=;
-        b=h366jOBxzJDK3xx5OKMy0NxxAtNOZrNgVbH6mWA+dpH8NUToNBH8DdOGV4wUjhqmDD
-         hmmZjExYTvDckMtXsvxpNNnoqrr1U3qDSYOGrudSrgmvfrbw8F9+3xF1yAuBPo+CHNlS
-         7ZmS8sQRfSfHsDzvSvAqrfkwCc/0/q2VHirWwfamNVcRN6rEe013a6pPeHXVLXS1ZtX/
-         D+QklIMWzNmFBNtnvduufznj2jVhQ7/dAOhVLIuyBoVi1ef7iQ1BCtrq/FUKCwSncb5S
-         xxEcYxcd5XZdApVZ/GKN1weHcUX/rJwL+3e0+OfxOfaT5GC3z98bh9p9OKR6j7cxCauN
-         qOgQ==
-X-Gm-Message-State: AFqh2kpldTUrcrD0ZaSFa7W5waZp/w4RjinkcPD7NSx77WkqkiBLR3u7
-        vUaPVWLB6f5MYZ7eazoWlN0=
-X-Google-Smtp-Source: AMrXdXv3PJXfMd9ydRhNUnF86mNqHkZssnnnst4tlLt8CwvNSmBzGTR5Nw9Y5XwRR01EpbYoAIJ+ag==
-X-Received: by 2002:a17:902:db85:b0:189:9fb2:2558 with SMTP id m5-20020a170902db8500b001899fb22558mr2574891pld.1.1671636736830;
-        Wed, 21 Dec 2022 07:32:16 -0800 (PST)
-Received: from localhost.localdomain ([45.62.172.3])
-        by smtp.gmail.com with ESMTPSA id n3-20020a170902e54300b00186ff402508sm11633409plf.281.2022.12.21.07.32.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Dec 2022 07:32:16 -0800 (PST)
-From:   Jianhua Lu <lujianhua000@gmail.com>
-To:     Lee Jones <lee@kernel.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Helge Deller <deller@gmx.de>
-Cc:     linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-fbdev@vger.kernel.org, Jianhua Lu <lujianhua000@gmail.com>
-Subject: [PATCH v2 2/2] dt-bindings: leds: backlight: Add Kinetic KTZ8866 backlight
-Date:   Wed, 21 Dec 2022 23:31:54 +0800
-Message-Id: <20221221153154.25411-2-lujianhua000@gmail.com>
-X-Mailer: git-send-email 2.38.2
-In-Reply-To: <20221221153154.25411-1-lujianhua000@gmail.com>
-References: <20221221153154.25411-1-lujianhua000@gmail.com>
+        with ESMTP id S234357AbiLUPhy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 10:37:54 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E98C825281
+        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 07:36:14 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1p818b-0007if-9S; Wed, 21 Dec 2022 16:36:09 +0100
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1p818Z-000p2n-GJ; Wed, 21 Dec 2022 16:36:07 +0100
+Received: from pza by lupine with local (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1p818X-000AdV-5z; Wed, 21 Dec 2022 16:36:05 +0100
+Message-ID: <432ed015f4ba99d6bddd0a10af72324fea1388da.camel@pengutronix.de>
+Subject: Re: [PATCH 1/2] dt-bindings: net: Add rfkill-gpio binding
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Johannes Berg <johannes@sipsolutions.net>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-wireless@vger.kernel.org, kernel@pengutronix.de
+Date:   Wed, 21 Dec 2022 16:36:05 +0100
+In-Reply-To: <20221221144505.GA2848091-robh@kernel.org>
+References: <20221221104803.1693874-1-p.zabel@pengutronix.de>
+         <20221221144505.GA2848091-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.38.3-1+deb11u1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Kinetic KTZ8866 backlight binding documentation.
+On Mi, 2022-12-21 at 08:45 -0600, Rob Herring wrote:
+> On Wed, Dec 21, 2022 at 11:48:02AM +0100, Philipp Zabel wrote:
+> > Add a device tree binding document for GPIO controlled rfkill switches.
+> > The name, type, shutdown-gpios and reset-gpios properties are the same
+> > as defined for ACPI.
+> > 
+> > Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
+> > ---
+> >  .../devicetree/bindings/net/rfkill-gpio.yaml  | 60 +++++++++++++++++++
+> >  1 file changed, 60 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/net/rfkill-gpio.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/rfkill-gpio.yaml b/Documentation/devicetree/bindings/net/rfkill-gpio.yaml
+> > new file mode 100644
+> > index 000000000000..6e62e6c96456
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/net/rfkill-gpio.yaml
+> > @@ -0,0 +1,60 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: "http://devicetree.org/schemas/net/rfkill-gpio.yaml#"
+> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > +
+> > +title: GPIO controlled rfkill switch
+> > +
+> > +maintainers:
+> > +  - Johannes Berg <johannes@sipsolutions.net>
+> > +  - Philipp Zabel <p.zabel@pengutronix.de>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: rfkill-gpio
+> > +
+> > +  name:
+> 
+> Did you test this? Something should complain, but maybe not. The problem 
+> is 'name' is already a property in the unflattened DT (and old FDT 
+> formats).
 
-Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
----
-Changes in v2:
-  - Remove "items" between "compatible" and "const: kinetic,ktz8866"
-  - Change "additionalProperties" to "unevaluatedProperties"
+Thank you. Maybe this was hidden by the fact that I set the name
+property to the same string as the node's name.
 
- .../leds/backlight/kinetic,ktz8866.yaml       | 36 +++++++++++++++++++
- 1 file changed, 36 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
+> 'label' would be appropriate perhaps, but why do we care what the name 
+> is?
 
-diff --git a/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml b/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
-new file mode 100644
-index 000000000000..c63c21bf69d6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
-@@ -0,0 +1,36 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/backlight/kinetic,ktz8866.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Kinetic Technologies KTZ8866 backlight
-+
-+maintainers:
-+  - Jianhua Lu <lujianhua000@gmail.com>
-+
-+description: |
-+  The Kinetic Technologies KTZ8866 is a high efficiency 6-sinks led backlight
-+  with dual lcd bias power.
-+  https://www.kinet-ic.com/ktz8866/
-+
-+allOf:
-+  - $ref: common.yaml#
-+
-+properties:
-+  compatible:
-+    const: kinetic,ktz8866
-+
-+required:
-+  - compatible
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    backlight {
-+        compatible = "kinetic,ktz8866";
-+
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&bl_en_default>;
-+    };
--- 
-2.38.2
+This is meant to be the identifier of the rfkill API object. It is the
+content of /sys/class/rfkill/rfkill0/name, and the 'ID' in the rfkill
+command line tool, that can be used to select a switch, in case a
+device has multiple radios of the same type.
 
+> > +    $ref: /schemas/types.yaml#/definitions/string
+> > +    description: rfkill switch name, defaults to node name
+> > +
+> > +  type:
+> 
+> Too generic. Property names should ideally have 1 type globally. I think 
+> 'type' is already in use. 'radio-type' instead?
+
+These values correspond to the 'enum rfkill_type' in Linux UAPI, but I
+think in this context 'radio-type' would be better than 'rfkill-type'.
+
+> > +    description: rfkill radio type
+> > +    enum:
+> > +      - wlan
+> > +      - bluetooth
+> > +      - ultrawideband
+> > +      - wimax
+> > +      - wwan
+> > +      - gps
+> > +      - fm
+> > +      - nfc
+> > +
+> > +  shutdown-gpios:
+> > +    maxItems: 1
+> > +
+> > +  reset-gpios:
+> > +    maxItems: 1
+> 
+> I'm lost as to why there are 2 GPIOs.
+
+I don't know either.  My assumption is that this is for devices that
+are radio silenced by just asserting their reset pin (for example GPS
+chips). The driver handles them the same.
+
+I could remove reset-gpios and make shutdown-gpios required.
+
+> > +
+> > +required:
+> > +  - compatible
+> > +  - type
+> > +
+> > +oneOf:
+> > +  - required:
+> > +      - shutdown-gpios
+> > +  - required:
+> > +      - reset-gpios
+> 
+> But only 1 can be present? So just define 1 GPIO name.
+
+The intent was that only one of them would be required.
+
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +    rfkill-pcie-wlan {
+> 
+> Node names should be generic.
+
+What could be a generic name for this - is "rfkill" acceptable even
+though it is a Linux subsystem name? Or would "rf-kill-switch" be
+better?
+
+How should they be called if there are multiple of them?
+
+> > +        compatible = "rfkill-gpio";
+> > +        name = "rfkill-pcie-wlan";
+> > +        type = "wlan";
+> > +        shutdown-gpios = <&gpio2 25 GPIO_ACTIVE_HIGH>;
+> > +    };
+> > -- 
+> > 2.30.2
+
+regards
+Philipp
