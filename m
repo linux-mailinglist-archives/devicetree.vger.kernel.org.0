@@ -2,127 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5158465319D
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 14:24:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1755D6531C9
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 14:31:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229676AbiLUNYo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 08:24:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33278 "EHLO
+        id S229789AbiLUNbA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Dec 2022 08:31:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229522AbiLUNYn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 08:24:43 -0500
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D76EA1A815;
-        Wed, 21 Dec 2022 05:24:42 -0800 (PST)
-Received: by mail-pl1-x62d.google.com with SMTP id w20so8909388ply.12;
-        Wed, 21 Dec 2022 05:24:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=jMBazgguIgQnT/Mfr+HQSy2WLX0y7isn8sMtEFf85Wg=;
-        b=kNRsGjC3Wqkdn/++8P5gRTcdeSLguv5CIeAe43Uy8U3rmvbWCU8Dy9Zr7e0J2htilo
-         Do8IGB9B9IEENSbVKZTj01xL1Rb22uR5Icx6Nc1wCQUBxSrhi5TAnfNrIC1sSvT3khfR
-         7805PWzRGJ0b+BC5v3ndPamSfs5qeDdzJqWMdIq+nbD5Y3Q2QxnutoMHH2wucS7FfazU
-         O+fhyYOA2JfHM2FJ8X6XbfrBbRMfoPz5S2PmI7TcUvv1XyeoINgTGKG9WeENnsUMrHl6
-         Y5e8ataafW4+s503Y0rF0tlGzKFRNO3unMsjreoosE6YMnujBJQUES8MdY4otP8gj6C7
-         ngtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jMBazgguIgQnT/Mfr+HQSy2WLX0y7isn8sMtEFf85Wg=;
-        b=B4+mvcYi99zPxRLplp5xG+KCmCVAQZG2SLS/PlWeebcXU0pKEJGdUm+wQtewcO0stC
-         LZ/L3s9KHiRLyIoxfZonn+2ywHr3dXqRocl598eIqn7ANLNCgZzNMpF4nITghc+OQ8ol
-         lfXJXQVNrtma9F8uV0Y5+InmRQn+LJeUJDU8sBmwqioW6d9YNKBIPcA3PU99AlOqdZDO
-         QJsdMvT879teuFQQyoTc7g64VNv4R/TQXin6luy5+pnv4kE34GBjdH+BbCoorSqx9uFn
-         82Inpild0fxPtl/WsW+kxDIbHT0Q9XJNY9XCJQjsO4NVij9J3m3jUyQN2YGzuaWUrBQa
-         lvxQ==
-X-Gm-Message-State: AFqh2krAId8TSLRlflpVzkSHCxI9/eLeHaaU4E85qI39Dp2HmGEa4UL3
-        9raW6OBH0TNVkviuJSveSmM=
-X-Google-Smtp-Source: AMrXdXviajQgLWtVSDrAHnBTla7bczbaZZ5qjxiASUZtTmQMFu22hW8pKwM96yZVp4ijtFVoisaZ4Q==
-X-Received: by 2002:a17:902:e382:b0:189:db2b:93ad with SMTP id g2-20020a170902e38200b00189db2b93admr1768225ple.2.1671629082341;
-        Wed, 21 Dec 2022 05:24:42 -0800 (PST)
-Received: from localhost.localdomain ([117.189.239.185])
-        by smtp.gmail.com with ESMTPSA id q3-20020a17090311c300b0018099c9618esm11462479plh.231.2022.12.21.05.24.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Dec 2022 05:24:41 -0800 (PST)
-From:   Jianhua Lu <lujianhua000@gmail.com>
-To:     Lee Jones <lee@kernel.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        with ESMTP id S230313AbiLUNa5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 08:30:57 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17DAC617B;
+        Wed, 21 Dec 2022 05:30:55 -0800 (PST)
+Received: from beast.luon.net (unknown [IPv6:2a10:3781:2531::8])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sjoerd)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id A1D956602CBE;
+        Wed, 21 Dec 2022 13:30:53 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1671629453;
+        bh=Dphoi7a4e7uSwycGENJgW6Vw0pbTjwfMZ2OK1vvcJaA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=MtCq/u4lVL2JN8HbLuHpR4IXgq5Br24sPP9LP6qybFu2Cxu0GVBZmD/UciQAsqhtC
+         DvT+qU6QMGfZ8/4OdFzqjT12bOqSxUhKVJl3VpN2Ewi/bRP3PBqW3TTHhsPMqOo0Ro
+         W+TyN0WHINLhJ4y7R5m1ij2Cx1sWJyEj0AsHUgQWD/jWi/XzQMPTRqrTOC+kJZrp1K
+         7dxq0onqwCUcI9vMUVoCcHs4am79pVbKi1nF0s0K4hMsPOqypF47lclqgh6444fkkv
+         ORJYFFPiY0KQz2QSp9+c8xUOz00WH9lnRUIgQ5LhJLbnNI4r40jRz74UiqxcZxmui9
+         UdMR5UzH90hHw==
+Received: by beast.luon.net (Postfix, from userid 1000)
+        id 3AB935EC483D; Wed, 21 Dec 2022 14:30:51 +0100 (CET)
+From:   Sjoerd Simons <sjoerd@collabora.com>
+To:     Nishanth Menon <nm@ti.com>
+Cc:     martyn.welch@collabora.com, Nitin Yadav <n-yadav@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        Jianhua Lu <lujianhua000@gmail.com>
-Subject: [RESEND] dt-bindings: leds: backlight: Add Kinetic KTZ8866 backlight
-Date:   Wed, 21 Dec 2022 21:24:28 +0800
-Message-Id: <20221221132428.702-1-lujianhua000@gmail.com>
-X-Mailer: git-send-email 2.38.2
+        Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] Improve K3-am625-sk support (USB, MMC)
+Date:   Wed, 21 Dec 2022 14:30:47 +0100
+Message-Id: <20221221133051.1069480-1-sjoerd@collabora.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Kinetic KTZ8866 backlight binding documentation.
 
-Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
----
- .../leds/backlight/kinetic,ktz8866.yaml       | 36 +++++++++++++++++++
- 1 file changed, 36 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
+This series picks up a few patches from the TI BSP tree that
+unfortunately didn't make it upstream thusfar.
 
-diff --git a/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml b/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
-new file mode 100644
-index 000000000000..c63c21bf69d6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
-@@ -0,0 +1,36 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/backlight/kinetic,ktz8866.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Kinetic Technologies KTZ8866 backlight
-+
-+maintainers:
-+  - Jianhua Lu <lujianhua000@gmail.com>
-+
-+description: |
-+  The Kinetic Technologies KTZ8866 is a high efficiency 6-sinks led backlight
-+  with dual lcd bias power.
-+  https://www.kinet-ic.com/ktz8866/
-+
-+allOf:
-+  - $ref: common.yaml#
-+
-+properties:
-+  compatible:
-+    const: kinetic,ktz8866
-+
-+required:
-+  - compatible
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    backlight {
-+        compatible = "kinetic,ktz8866";
-+
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&bl_en_default>;
-+    };
+The first patch improve SD card compatibility (allowing U1 class cards
+to be used), the remaining ones add USB support.
+
+The type-c connector isn't entirely modelled with these changes as
+it goes through a TPS6598 PD controller. Unfortunately the dtb bindings
+for that currently require an irq line, which is not connected on E1 and
+E2 version boards. The patchese to support this setup unfortunately didn't land
+yet[0].. As such the last patch ignored the PD controller and simply
+configures usb0 as periphal only rather then mode switch capable, which
+at least gives some basic usability of that USB port.
+
+0: https://lore.kernel.org/lkml/f714ee55-ef47-317d-81b9-57020dda064b@ti.com/T/
+
+Changes in v2:
+  - Rebase against linux-next 20221220
+
+Aswath Govindraju (2):
+  arm64: dts: ti: k3-am62-main: Add support for USB
+  arm64: dts: ti: k3-am625-sk: Add support for USB
+
+Nitin Yadav (1):
+  arm64: dts: ti: k3-am62-main: Update OTAP and ITAP delay select
+
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 90 ++++++++++++++++++------
+ arch/arm64/boot/dts/ti/k3-am625-sk.dts   | 50 +++++++++++++
+ 2 files changed, 118 insertions(+), 22 deletions(-)
+
 -- 
-2.38.2
+2.39.0
 
