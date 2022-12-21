@@ -2,110 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6BEA652A4E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 01:12:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7405E652A7B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Dec 2022 01:31:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229869AbiLUAMa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Dec 2022 19:12:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50344 "EHLO
+        id S234171AbiLUAbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Dec 2022 19:31:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbiLUAM3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 19:12:29 -0500
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5E031EAFB;
-        Tue, 20 Dec 2022 16:12:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=GH9M5bV1VooJkjUWIga/hv2jQxEHFDZMjQbWm1O6tc8=; b=YulGIBLlt+uAz1B3XpSn3PEV2l
-        JlPFmq6JYNmPnNsrPUTUWCQv1rTeNKwyMxxG8RqU1knVI4VYHeVZ0IboHTv33PVi7B2CsmxPiyH00
-        t5APlVAPVzm1NTlEkuCzGpEYQKYCtPDAOUKwwtDLsojqRWFXbCL3dSTlJHcPhzRisrzI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1p7miW-0008LK-86; Wed, 21 Dec 2022 01:12:16 +0100
-Date:   Wed, 21 Dec 2022 01:12:16 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     Christian Marangi <ansuelsmth@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org,
-        Tim Harvey <tharvey@gateworks.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-Subject: Re: [PATCH v7 09/11] leds: trigger: netdev: add additional hardware
- only triggers
-Message-ID: <Y6JPYBQhtpZLadry@lunn.ch>
-References: <20221214235438.30271-1-ansuelsmth@gmail.com>
- <20221214235438.30271-10-ansuelsmth@gmail.com>
- <Y5ta87eCAQ8XsY8L@shell.armlinux.org.uk>
+        with ESMTP id S229727AbiLUAbp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Dec 2022 19:31:45 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 168A9201AC;
+        Tue, 20 Dec 2022 16:31:44 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id i15so19949546edf.2;
+        Tue, 20 Dec 2022 16:31:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=VCqofWIdcRE0wcGcSYV7leS63wz3iWTm3oh5pG3tFkc=;
+        b=ErTUjWAMWzlIL8k4rTRrQFek0BdgPOCmhnjqDcWpWtonCq6c1XTEGzH6sp4pn0lUxz
+         x3z+eUpewj90wgHmbPH3/EgJiZXLKuT8fltUObTY4ZeGXrqq/kCdICQ3ta3JYJ5w9lZv
+         LbmSdH44cxFZgLnTjl96cxPJ2vsx1QSRRkayQwawxQXDXEI+Bk7ncl5SlvTv1ZzF7MkD
+         hvQd2e+Lj3d/lA47bPPz0K0gUAmL5G6iHf5Qq/+uLYvDEb6vo03SWYNjyFgDVcwduge0
+         8B6c3GDvoK23djOrnLLEw9yfz0K/4tqWn/jPN+MkpoN8+Z+X8eMPEn8KSYBwXhg2klHU
+         K5/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VCqofWIdcRE0wcGcSYV7leS63wz3iWTm3oh5pG3tFkc=;
+        b=QnCEhhkubMGcj3ZbPVfJXXQI5BOhh50Eoxw3b95QFG7llJWaarEzlpTYC9cT/XnWbQ
+         pED5kPgIqEIBIc0gYCFg/wezTiwLLKOQhKCDF/SgBxNEDA319pMfhUU/DYbMj8mci1KQ
+         k+9y7/bikUekY6AzS+sG9JOs8whfNFj3SvfWX/vk264IJewkqQlEGhnbs6cCuVSbYHcv
+         /BvAGN7dJNpwpXFnymD0CT5ikSNR+GLakIgoQjOsVrVTKWdcjVbOlp4ZzdhqilQXe9jV
+         pKpm2GHHtWhOQbJWIfOEVcVhVBHyom68Megv/mA9wDqNrZ1jNlq9CJqkS17e3cFhXi/w
+         60Aw==
+X-Gm-Message-State: ANoB5plEWbqYnMh7UXpSd0vAYA0OEnx/oq4+RpesKCAp6gApW7//UMDj
+        +nk3GaFoK1QxA+OLhCsHO9GLAouo69upTDDogL4=
+X-Google-Smtp-Source: AA0mqf7Vj4LDQTGT2qms5U1xLKxeAG3aN068iuTz4pDqzDHwntSg3DsFDaeiJD2ru6wqI5VUjpTXdMYzkArTY5MWRxQ=
+X-Received: by 2002:aa7:cc08:0:b0:461:8a43:e93 with SMTP id
+ q8-20020aa7cc08000000b004618a430e93mr10657639edt.275.1671582702709; Tue, 20
+ Dec 2022 16:31:42 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y5ta87eCAQ8XsY8L@shell.armlinux.org.uk>
+References: <20221212115505.36770-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221212115505.36770-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <Y54ycZdMLjU5QVn5@spud> <CA+V-a8sa1H=Hh2SzbKDWhiAO=C+Y2YN7sk9APBeqktBeHf49jA@mail.gmail.com>
+ <Y6CPQWHrPLk1O6jB@spud>
+In-Reply-To: <Y6CPQWHrPLk1O6jB@spud>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Wed, 21 Dec 2022 00:31:16 +0000
+Message-ID: <CA+V-a8sZeFgbUuuxHmXGEMKoayB02K22dZuw0TZHHv36UcdcVw@mail.gmail.com>
+Subject: Re: [PATCH v5 3/6] riscv: errata: Add Andes alternative ports
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Guo Ren <guoren@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 15, 2022 at 05:35:47PM +0000, Russell King (Oracle) wrote:
-> On Thu, Dec 15, 2022 at 12:54:36AM +0100, Christian Marangi wrote:
-> > Add additional hardware only triggers commonly supported by switch LEDs.
-> > 
-> > Additional modes:
-> > link_10: LED on with link up AND speed 10mbps
-> > link_100: LED on with link up AND speed 100mbps
-> > link_1000: LED on with link up AND speed 1000mbps
-> > half_duplex: LED on with link up AND half_duplex mode
-> > full_duplex: LED on with link up AND full duplex mode
-> 
-> Looking at Marvell 88e151x, I don't think this is usable there.
-> We have the option of supporting link_1000 on one of the LEDs,
-> link_100 on another, and link_10 on the other. It's rather rare
-> for all three leds to be wired though.
+Hi Conor,
 
-The 88e151x will need to enumerate what it actually supports from the
-above list, per LED. I also think we can carefully expand the list
-above, adding a few more modes. We just need to ensure what is added
-is reasonably generic, modes we expect multiple PHY to support. What
-we need to avoid is adding every single mode a PHY supports, but no
-other PHY has.
+On Mon, Dec 19, 2022 at 4:20 PM Conor Dooley <conor@kernel.org> wrote:
+>
+> On Mon, Dec 19, 2022 at 11:19:13AM +0000, Lad, Prabhakar wrote:
+> > Hi Conor,
+> >
+> > Thank you for the review.
+> >
+> > On Sat, Dec 17, 2022 at 9:19 PM Conor Dooley <conor@kernel.org> wrote:
+> > >
+> > > On Mon, Dec 12, 2022 at 11:55:02AM +0000, Prabhakar wrote:
+> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > >
+> > > > Add required ports of the Alternative scheme for Andes CPU cores.
+> > > >
+> > > > I/O Coherence Port (IOCP) provides an AXI interface for connecting external
+> > > > non-caching masters, such as DMA controllers. IOCP is a specification
+> > > > option and is disabled on the Renesas RZ/Five SoC due to this reason cache
+> > > > management needs a software workaround.
+> > > >
+> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > ---
+> > > > v4 -> v5
+> > > > * Sorted the Kconfig/Makefile/Switch based on Core name
+> > > > * Added a comments
+> > > > * Introduced RZFIVE_SBI_EXT_IOCP_SW_WORKAROUND SBI EXT ID to check if
+> > > >   CMO needs to be applied. Is there a way we can access the DTB while patching
+> > > >   as we can drop this SBI EXT ID and add a DT property instead for cmo?
+> > > >
+<snip>
+> > > Seeing as you need a new version for some of the other bits, I think it
+> > > would be good to add a minor comment here somewhere (be it here or the
+> > > commit message) that links to the SBI specs for this.
+> > > I think this looks pretty good though.
+> > Sure I'll add a comment here.
+> >
+> > I was wondering if we can get rid of this vendor specific extension
+> > here if we get access to the DT here (for example having a DT property
+> > which would indicate if IOCP CMO should be applied or not). Do you
+> > think that would be good approach?  ATM we dont have a pointer here
+> > for FDT whie early patching.
+>
+> I dunno. I think it is fine to use the ECALL to be honest - I'd rather
+> that than a property that someone may omit.
+>
+Ok, I was so I will stick with the current implementation.
 
-> This is also a PHY where "activity" mode is supported (illuminated
-> or blinking if any traffic is transmitted or received) but may not
-> support individual directional traffic in hardware. However, it
-> does support forcing the LED on or off, so software mode can handle
-> those until the user selects a combination of modes that are
-> supported in the hardware.
-> 
-> > Additional blink interval modes:
-> > blink_2hz: LED blink on any even at 2Hz (250ms)
-> > blink_4hz: LED blink on any even at 4Hz (125ms)
-> > blink_8hz: LED blink on any even at 8Hz (62ms)
-> 
-> This seems too restrictive. For example, Marvell 88e151x supports
-> none of these, but does support 42, 84, 170, 340, 670ms.
+> That said, for the cache management stuff we are gonna need for
+> PolarFire SoC, we will need to have info from the DT AFAICT - marchid
+> etc are all set to zero on our platform so cannot be used.
+>
+Aha so while patching you will need a pointer to FDT node.
 
-I would actually drop this whole idea of being able to configure the
-blink period. It seems like it is going to cause problems. I expect
-most PHYs actual share the period across multiple LEDs, which you
-cannot easily model here.
+> I was thinking about using the compatible instead, but...
+> we've not tried to "forward"-port our stuff from 5.15 yet as we have
+> not yet completed testing testing on our vendor tree (and need some PCI
+> changes accepted upstream first anyway), as a result I have not looked
+> into what's needed there for use with alternatives. We've been using a
+> pre-alternatives version of that patchset from around the 5.15
+> development point in time instead.
+>
+Good to know. Let me know if you plan to implement the patching
+mechanism based on FDT soon. I can give it a test.
 
-So i would have the driver hard coded to pick a frequency at thats' it.
-
-   Andrew
+Cheers,
+Prabhakar
