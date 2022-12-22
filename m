@@ -2,152 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32C6D654822
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 23:01:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F7F1654846
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 23:17:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229763AbiLVWBp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 17:01:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56942 "EHLO
+        id S235205AbiLVWR3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 17:17:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235595AbiLVWBo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 17:01:44 -0500
+        with ESMTP id S229840AbiLVWR2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 17:17:28 -0500
 Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B80527CF8
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 14:01:43 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id f34so4626782lfv.10
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 14:01:43 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC8692666
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 14:17:26 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id bf43so4693420lfb.6
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 14:17:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=hwyt8ZdI5ZWUHfUGRX4s0PkLUr1UuuhJWewTj+QujR0=;
-        b=sdyRfPiBd704FQG4bNjO87wMafWV6TlycxRFOCRg6C1jFqskYPrheu40WnKLXd97VD
-         9awr9681ZZ40f3yEZ2IV7TOgT6N9WWG8ibxUc6eDGIm+JUjyZLX3o+sCaKvKuvXbGC/K
-         FhxTq13RxetjjMC19nCQz2Cd1WynTrH/8q7rY/Q0ugj5DGuvoBsDN0X830KHShnuh/FQ
-         SlGLo97+D1lqnHkOgPdteqpHcC/bRwOEBxgtL2oG9pTqonU5RBKciuJ/xsbJgR0BIKsl
-         iWxKGuexHDXtiOQgKoz3mSY1ZLtgf0sbmw+VTgwLb4GN7btlbcv4CDGIcClg7UDOwjgS
-         8Jig==
+        bh=S54q1Ly25fucvW8wy0dU1/tQS+0Zh9k/n0J/KMOoAU0=;
+        b=UW/yqmwPTVLenNcJd2Qd9e0NTgzQmDmaeg/bt/1PlCivJ63Y0t909OjvU07U0fiXq5
+         F+fAfdqnxDQCZ3CD1hBEotehTTTx9o02Jrp9q4h5qnUGBTYTyZuyM/4nsDCaMpRFE6bn
+         yxw1PjO7chlYHaKDLmRK/jM3xriUiZsxpwOJQmd4PMJpNJ5ftd11U64ACeCg8Yo6a02d
+         ziaB+GPZOefHkuvljAfNwQo7C5F0DVM2QOHfxosbMflSALoeveHH9J85byzk0nDEFU0y
+         rMrqkMl04eBixz/FrvumqndbNMhC/JV4CE0W4pXBfE2zdOsiCkiYVWb1D6f04Jj0wmJT
+         DQtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hwyt8ZdI5ZWUHfUGRX4s0PkLUr1UuuhJWewTj+QujR0=;
-        b=0oX0e7gkw8bx+HLRPfEYsUonc7vOEkFueDzc5Wz0CiHJKMBdhvHGI3XDWKWVg9kBTc
-         Ic7RRG/uIbZXMHxpdSfq7SsjJ2xXP8fFsteZxJTf1ZfqFjT8SbMQREwgnsFibrG7/6iy
-         CYCFR61aVGstuvWzes7YK04RayilJZKdWNueVlyFCO5Pk21uhs+hupgs/pkQTyD15A3/
-         te4rt8hpyiE5rd9uRfdUsSUByJWEAYq9TV/s1PYtxrNB4PkaS1stbvEkAvjm2gi98bJw
-         BA9GcDJVuwjPPnrS4GxS6PBX3Ah7I8fBT6gMK1qRjHtmadwB5v8WOag+hQVXYeRb7b6/
-         teuA==
-X-Gm-Message-State: AFqh2krAqUEMzclyF/X5h88iTjAFJPzsPv1XA3KnLkHcwrIOCBL8Nl2J
-        g0uj0v/W5Lyjjy/o/jO3YGnvAw==
-X-Google-Smtp-Source: AMrXdXtCv726/Ll7RZS1LYdA1OYHa3A5hq1rDXIE2Lyae6+L1yQnAfH8gZRKJugpTYZo5pID48KFog==
-X-Received: by 2002:a05:6512:16a8:b0:4b5:a70f:8efc with SMTP id bu40-20020a05651216a800b004b5a70f8efcmr3436708lfb.64.1671746501410;
-        Thu, 22 Dec 2022 14:01:41 -0800 (PST)
-Received: from [192.168.1.101] (abyl184.neoplus.adsl.tpnet.pl. [83.9.31.184])
-        by smtp.gmail.com with ESMTPSA id s20-20020a195e14000000b004b0b2212315sm224362lfb.121.2022.12.22.14.01.39
+        bh=S54q1Ly25fucvW8wy0dU1/tQS+0Zh9k/n0J/KMOoAU0=;
+        b=4YwCPfJ/gESq2suDNKZGOkiUM1kLyIGiJiR1vVSvo/HEib8gIa8ZyiYXGYR9GHkBcS
+         wGnk6KfWt7eRfDPDiRQFXc7Ut95NfyV9TqurcAz4tIfeeU14dNZsE2l4ozKYDJsb7cnZ
+         cT7ngCTKn8X4aTSgMk/BNsJICqlH3BaC2iQaCqD0bcjmtXwFkG1nGZ46NF2thOyXmeTf
+         Oo4PSuh7pX5Co80BJ3wTB1EK93moQ++7g/g9t0v4rZMkUNMip/lAm2G3yXP/H1x1SN+F
+         /N8a/t+jdTNqgrSMVW7HvtdurUvO6v5s7hXYgvIfoqBgMuulX4kq+O8+XceraxKVblYt
+         GRnA==
+X-Gm-Message-State: AFqh2koULiyseKo4+d+lz8bY2sD+R9qmb6nFM35XA7VL/nXRAYC4BX0G
+        v+/wRUh9Dxug9Z1tuvtKoVqvlQ==
+X-Google-Smtp-Source: AMrXdXtWAyVvjnaVxKo6msD2MtpwrZhPvPMCjOS4jjqOp4cyiwI3D+yRNc34Pp4Vgq6Bd/bxog2D0g==
+X-Received: by 2002:a05:6512:3e0d:b0:4a9:a1f1:3f57 with SMTP id i13-20020a0565123e0d00b004a9a1f13f57mr2962950lfv.50.1671747445066;
+        Thu, 22 Dec 2022 14:17:25 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id x11-20020a0565123f8b00b004b5adb59ed5sm222468lfa.297.2022.12.22.14.17.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Dec 2022 14:01:40 -0800 (PST)
-Message-ID: <144d7b69-fb67-60dd-2c40-c004fbbba288@linaro.org>
-Date:   Thu, 22 Dec 2022 23:01:38 +0100
+        Thu, 22 Dec 2022 14:17:23 -0800 (PST)
+Message-ID: <71bf6521-71d7-ec45-912f-e3dc6038d3a4@linaro.org>
+Date:   Fri, 23 Dec 2022 00:17:23 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v2] arm64: dts: qcom: sm6350-lena: Flatten gpio-keys
- pinctrl state
-Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        phone-devel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221222215906.324092-1-marijn.suijten@somainline.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221222215906.324092-1-marijn.suijten@somainline.org>
-Content-Type: text/plain; charset=UTF-8
+ Thunderbird/102.5.1
+Subject: Re: [PATCH 1/2] scsi: ufs: ufs-qcom: add basic interconnect support
+Content-Language: en-GB
+To:     Brian Masney <bmasney@redhat.com>, andersson@kernel.org
+Cc:     agross@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jejb@linux.ibm.com,
+        martin.petersen@oracle.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-scsi@vger.kernel.org
+References: <20221117104957.254648-1-bmasney@redhat.com>
+ <20221117104957.254648-2-bmasney@redhat.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221117104957.254648-2-bmasney@redhat.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 22.12.2022 22:59, Marijn Suijten wrote:
-> Pinctrl states typically collate multiple related pins.  In the case of
-> gpio-keys there's no hardware-defined relation at all except all pins
-> representing a key; and especially on Sony's lena board there's only one
-> pin regardless. Flatten it similar to other boards [1].
+On 17/11/2022 12:49, Brian Masney wrote:
+> The firmware on the Qualcomm platforms expects the interconnect votes to
+> be present. Let's add very basic support where the maximum throughput is
+> requested to match what's done in a few other drivers.
 > 
-> As a drive-by fix, clean up the label string.
+> This will not break boot on systems where the interconnects and
+> interconnect-names properties are not specified in device tree for UFS
+> since the interconnect framework will silently return.
 > 
-> [1]: https://lore.kernel.org/linux-arm-msm/11174eb6-0a9d-7df1-6f06-da4010f76453@linaro.org/
-> 
-> Fixes: 2b8bbe985659 ("arm64: dts: qcom: sm6350-lena: Include pm6350 and configure buttons")
-> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> Signed-off-by: Brian Masney <bmasney@redhat.com>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>   drivers/ufs/host/ufs-qcom.c | 25 +++++++++++++++++++++++++
+>   1 file changed, 25 insertions(+)
+> 
+> diff --git a/drivers/ufs/host/ufs-qcom.c b/drivers/ufs/host/ufs-qcom.c
+> index 8ad1415e10b6..55bf8dd88985 100644
+> --- a/drivers/ufs/host/ufs-qcom.c
+> +++ b/drivers/ufs/host/ufs-qcom.c
+> @@ -7,6 +7,7 @@
+>   #include <linux/time.h>
+>   #include <linux/clk.h>
+>   #include <linux/delay.h>
+> +#include <linux/interconnect.h>
+>   #include <linux/module.h>
+>   #include <linux/of.h>
+>   #include <linux/platform_device.h>
+> @@ -936,6 +937,22 @@ static const struct reset_control_ops ufs_qcom_reset_ops = {
+>   	.deassert = ufs_qcom_reset_deassert,
+>   };
+>   
+> +static int ufs_qcom_icc_init(struct device *dev, char *pathname)
+> +{
+> +	struct icc_path *path;
+> +	int ret;
+> +
+> +	path = devm_of_icc_get(dev, pathname);
+> +	if (IS_ERR(path))
+> +		return dev_err_probe(dev, PTR_ERR(path), "failed to acquire interconnect path\n");
+> +
+> +	ret = icc_set_bw(path, 0, UINT_MAX);
 
-Konrad
-> 
-> Changes since v1:
-> 
-> - Replace accidental semicolon in patch title with colon.
-> 
-> v1: https://lore.kernel.org/linux-arm-msm/20221222212634.298135-1-marijn.suijten@somainline.org/T/#u
-> 
->  .../qcom/sm6350-sony-xperia-lena-pdx213.dts    | 18 ++++++++----------
->  1 file changed, 8 insertions(+), 10 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm6350-sony-xperia-lena-pdx213.dts b/arch/arm64/boot/dts/qcom/sm6350-sony-xperia-lena-pdx213.dts
-> index 94f77d376662..4916d0db5b47 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6350-sony-xperia-lena-pdx213.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm6350-sony-xperia-lena-pdx213.dts
-> @@ -35,10 +35,10 @@ framebuffer: framebuffer@a0000000 {
->  	gpio-keys {
->  		compatible = "gpio-keys";
->  		pinctrl-names = "default";
-> -		pinctrl-0 = <&gpio_keys_state>;
-> +		pinctrl-0 = <&vol_down_n>;
->  
->  		key-volume-down {
-> -			label = "volume_down";
-> +			label = "Volume Down";
->  			linux,code = <KEY_VOLUMEDOWN>;
->  			gpios = <&pm6350_gpios 2 GPIO_ACTIVE_LOW>;
->  		};
-> @@ -305,14 +305,12 @@ touchscreen@48 {
->  };
->  
->  &pm6350_gpios {
-> -	gpio_keys_state: gpio-keys-state {
-> -		key-volume-down-pins {
-> -			pins = "gpio2";
-> -			function = PMIC_GPIO_FUNC_NORMAL;
-> -			power-source = <0>;
-> -			bias-disable;
-> -			input-enable;
-> -		};
-> +	vol_down_n: vol-down-n-state {
-> +		pins = "gpio2";
-> +		function = PMIC_GPIO_FUNC_NORMAL;
-> +		power-source = <0>;
-> +		bias-disable;
-> +		input-enable;
->  	};
->  };
->  
+I noticed that this patch bumps peak_bw (and leaves average_bw as 0), 
+while vendor kernels bump average_bw, but ib (peak_bw) is set to 0.
+
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "failed to set bandwidth request\n");
+> +
+> +	return 0;
+> +}
+> +
+>   /**
+>    * ufs_qcom_init - bind phy with controller
+>    * @hba: host controller instance
+> @@ -991,6 +1008,14 @@ static int ufs_qcom_init(struct ufs_hba *hba)
+>   			err = dev_err_probe(dev, PTR_ERR(host->generic_phy), "Failed to get PHY\n");
+>   			goto out_variant_clear;
+>   		}
+> +
+> +		err = ufs_qcom_icc_init(dev, "ufs-ddr");
+> +		if (err)
+> +			goto out_variant_clear;
+> +
+> +		err = ufs_qcom_icc_init(dev, "cpu-ufs");
+> +		if (err)
+> +			goto out_variant_clear;
+>   	}
+>   
+>   	host->device_reset = devm_gpiod_get_optional(dev, "reset",
+
+-- 
+With best wishes
+Dmitry
+
