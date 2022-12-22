@@ -2,137 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1905653E88
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 11:48:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 68FC7653EB9
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 12:09:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235300AbiLVKsl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 05:48:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49662 "EHLO
+        id S235107AbiLVLJn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 06:09:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235329AbiLVKsh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 05:48:37 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A32FF2790F
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 02:48:36 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id p36so2116075lfa.12
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 02:48:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ia8KJdyr/weiXXqDeFy3RTipajicAjUGTpWBPLkZVJ0=;
-        b=MzAOSxLWjD0lC/pnVpkUG4qU7fFfbpeMEKTypsZlFhqZWKl2Q6t+wZieDQLuJDcdSY
-         rQL0ddVlYCruoBG9VqMAmT5nGxkx0dKT5rLygLRsR3Vs2WyiABzv7VeU2l5ptt9Zkvbv
-         kSDxSFKUsQicfk+teRXS5v2RbSgqCvWSy+fJ8Q22G618W8YmR/seO+/JEi5nNw4rADos
-         v1uAq0AKukd3y0ouieyOeiH+AUal0vIRa6f6rU2wGtt/9e4Pusbk8/NnsG6XgfFP6UCB
-         gfgMRNJpyjk3qvFjWdM8ZViqIvTzA4JYqohRIyKqvuLHIlgIXHo35nrcibFKk52py7db
-         XbEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ia8KJdyr/weiXXqDeFy3RTipajicAjUGTpWBPLkZVJ0=;
-        b=h+F7UPDMmRMDSHvay5et/C8RHaM1NkklnnUM47a9Ov2ZEgqc2+NNJWXNMWeLqpzSIv
-         Hx6KOlnP32Zqpln+Ok9Cn7vcZrnA2/XFPmJjIjc/YxTt7qHa0I/L3Ket5FFxkmzbpPZ2
-         D1G33vnZ1/erTIkfgQGzHb3a/+frwN9ASFL/vM43mzMsebSc0/pmTlwfnYtsGaqGcnSO
-         qMrAawAfNV7uAxE97SFHvGn/XeDX5T3gPVMZKSATYRNbuGkbk7psJ+Rf514Ws4UPMmKt
-         XFopEbskliVFIZUEwzJwYsd0GAtvNt8OJPUr1Lru0dnCRDlx2qMYth+tOGUNWKSgNj0J
-         zWkw==
-X-Gm-Message-State: AFqh2krckwrFUwBqFFe7hry5HfaW5miAJ4uEzkTcjKi2fup9gtEqq+6C
-        zgj+A2mC6c2pDwkM8n24srSADg==
-X-Google-Smtp-Source: AMrXdXsDo+FPzvd6zDJCEeGLBfA4RrWUpce4uDKCGO5owSQeUsOnswwVLMSAN96lC8QBw7TJDLei/Q==
-X-Received: by 2002:a05:6512:4014:b0:4b6:f22c:8001 with SMTP id br20-20020a056512401400b004b6f22c8001mr2181830lfb.56.1671706115054;
-        Thu, 22 Dec 2022 02:48:35 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id m12-20020a19710c000000b004b700ba3cf3sm29773lfc.203.2022.12.22.02.48.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Dec 2022 02:48:34 -0800 (PST)
-Message-ID: <a9cf2812-bf12-0127-d156-1cbdc133f6b5@linaro.org>
-Date:   Thu, 22 Dec 2022 11:48:33 +0100
+        with ESMTP id S234894AbiLVLJm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 06:09:42 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96062B861;
+        Thu, 22 Dec 2022 03:09:40 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id A354F6602C5F;
+        Thu, 22 Dec 2022 11:09:37 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1671707378;
+        bh=9AUHReu8S/xX7R3+pH3TTsXI6e8ZAG2uSiP5k+96Fzc=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=AXeZPwjilwQjk5/eDQ0HLfrUo6f0gL/fVzzlGfEL/oKzAx0m0pg6vXy8Fgi97eEhq
+         0jOmqbpJNk0LF/AJTCoK/IUzlAL48XErbsfd5z5LiFPSsdarfb353dIdJHrUByqzTs
+         Z7kIcsC0yqBmUGWS/W7eTjlNv0B5Arbul58aFatvsOv1PLg1Rmux+gwYPspf7/Jv1j
+         mnAjv3r28UFJs+KMQdmXpairBPWsmtXXjVN5ZiE/hx1pso07w7mItLVIcvwMN36cMb
+         zUNRQXbzi+nFlBf2XgXiCNZ7LxwA4y14OyOaLv8uBYzCMCozTgt8Qn41k1cAD7JKYd
+         +RzRbZdL7PSOg==
+Message-ID: <31b2946b-d4f2-5e5b-a107-45b3454c601b@collabora.com>
+Date:   Thu, 22 Dec 2022 12:09:34 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH v15 1/5] arm64: dts: qcom: add data-lanes and
- link-freuencies into dp_out endpoint
+Subject: Re: [PATCH v1 2/3] ASoC: SOF: mediatek: Support mt8188 platform
+To:     Tinghan Shen <tinghan.shen@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
+        Bard Liao <yung-chuan.liao@linux.intel.com>,
+        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
+        Kai Vehmanen <kai.vehmanen@linux.intel.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Chunxu Li <chunxu.li@mediatek.com>,
+        Dan Carpenter <error27@gmail.com>,
+        YC Hung <yc.hung@mediatek.com>,
+        Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        sound-open-firmware@alsa-project.org, alsa-devel@alsa-project.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20221222072150.10627-1-tinghan.shen@mediatek.com>
+ <20221222072150.10627-3-tinghan.shen@mediatek.com>
 Content-Language: en-US
-To:     Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        dri-devel@lists.freedesktop.org, robdclark@gmail.com,
-        sean@poorly.run, swboyd@chromium.org, dianders@chromium.org,
-        vkoul@kernel.org, daniel@ffwll.ch, agross@kernel.org,
-        dmitry.baryshkov@linaro.org, andersson@kernel.org,
-        konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        airlied@gmail.com
-Cc:     quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com,
-        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <1671227102-21717-1-git-send-email-quic_khsieh@quicinc.com>
- <1671227102-21717-2-git-send-email-quic_khsieh@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1671227102-21717-2-git-send-email-quic_khsieh@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221222072150.10627-3-tinghan.shen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/12/2022 22:44, Kuogee Hsieh wrote:
-> Move data-lanes property from mdss_dp node to dp_out endpoint. Also
-> add link-frequencies property into dp_out endpoint as well. The last
-> frequency specified at link-frequencies will be the max link rate
-> supported by DP.
+Il 22/12/22 08:21, Tinghan Shen ha scritto:
+> Add support of SOF on MediaTek MT8188 SoC.
+> MT8188 ADSP integrates with a single core Cadence HiFi-5 DSP.
+> The IPC communication between AP and DSP is based on shared DRAM and
+> mailbox interrupt.
 > 
-> Changes in v5:
-> -- revert changes at sc7180.dtsi and sc7280.dtsi
-> -- add &dp_out to sc7180-trogdor.dtsi and sc7280-herobrine.dtsi
+> The change in the mt8186.h is compatible on both mt8186 and
+> mt8188. The register controls booting the DSP core with the
+> default address or the user specified address. Both mt8186
+> and mt8188 should boot with the user specified boot in the driver.
+> The usage of the register is the same on both SoC, but the
+> control bit is different on mt8186 and mt8188, which is bit 1 on mt8186
+> and bit 0 on mt8188. Configure the redundant bit has noside effect
+> on both SoCs.
 > 
-> Changes in v6:
-> -- add data-lanes and link-frequencies to yaml
-> 
-> Changes in v7:
-> -- change 160000000 to 1620000000
-> -- separate yaml to different patch
-> 
-> Changes in v8:
-> -- correct Bjorn mail address to kernel.org
-> 
-> Changes in v9:
-> -- use symbol rate (hz) for link-frequencies at dp_out at sc7180_trogdor.dtsi
-> 
-> Changes in v13:
-> -- delete an extra space at data-lanes
-> 
-> Changes in v15:
-> -- replace space with tab at sc7180-trogdor.dtsi
-> 
-> Signed-off-by: Kuogee Hsieh <quic_khsieh@quicinc.com>
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> Reviewed-by: Péter Ujfalusi <peter.ujfalusi@linux.intel.com>
+> Reviewed-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+> Reviewed-by: Ranjani Sridharan <ranjani.sridharan@linux.intel.com>
 > ---
->  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi   | 4 ++++
->  arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 4 ++++
->  2 files changed, 8 insertions(+)
+>   sound/soc/sof/mediatek/mt8186/mt8186.c | 17 +++++++++++++++++
+>   sound/soc/sof/mediatek/mt8186/mt8186.h |  3 ++-
+>   2 files changed, 19 insertions(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> index eae22e6..ad98a87 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> @@ -814,7 +814,11 @@ hp_i2c: &i2c9 {
->  	status = "okay";
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&dp_hot_plug_det>;
+> diff --git a/sound/soc/sof/mediatek/mt8186/mt8186.c b/sound/soc/sof/mediatek/mt8186/mt8186.c
+> index 79da25725987..af0dfc2fc4cc 100644
+> --- a/sound/soc/sof/mediatek/mt8186/mt8186.c
+> +++ b/sound/soc/sof/mediatek/mt8186/mt8186.c
+> @@ -625,8 +625,25 @@ static const struct sof_dev_desc sof_of_mt8186_desc = {
+>   	.ops = &sof_mt8186_ops,
+>   };
+>   
+> +static const struct sof_dev_desc sof_of_mt8188_desc = {
+> +	.ipc_supported_mask	= BIT(SOF_IPC),
+> +	.ipc_default		= SOF_IPC,
+> +	.default_fw_path = {
+> +		[SOF_IPC] = "mediatek/sof",
+> +	},
+> +	.default_tplg_path = {
+> +		[SOF_IPC] = "mediatek/sof-tplg",
+> +	},
+> +	.default_fw_filename = {
+> +		[SOF_IPC] = "sof-mt8188.ri",
+> +	},
+> +	.nocodec_tplg_filename = "sof-mt8188-nocodec.tplg",
+> +	.ops = &sof_mt8186_ops,
 > +};
 > +
-> +&dp_out {
+>   static const struct of_device_id sof_of_mt8186_ids[] = {
+>   	{ .compatible = "mediatek,mt8186-dsp", .data = &sof_of_mt8186_desc},
+> +	{ .compatible = "mediatek,mt8188-dsp", .data = &sof_of_mt8188_desc},
+>   	{ }
+>   };
+>   MODULE_DEVICE_TABLE(of, sof_of_mt8186_ids);
+> diff --git a/sound/soc/sof/mediatek/mt8186/mt8186.h b/sound/soc/sof/mediatek/mt8186/mt8186.h
+> index 98b2965e5ba6..886d687449e3 100644
+> --- a/sound/soc/sof/mediatek/mt8186/mt8186.h
+> +++ b/sound/soc/sof/mediatek/mt8186/mt8186.h
+> @@ -52,7 +52,8 @@ struct snd_sof_dev;
+>   #define ADSP_PRID			0x0
+>   #define ADSP_ALTVEC_C0			0x04
+>   #define ADSP_ALTVECSEL			0x0C
+> -#define ADSP_ALTVECSEL_C0		BIT(1)
+> +/* BIT(1) for mt8186. BIT(0) for mt8188 */
 
-Still wrong order, I think.
+We can be clearer here:
 
+#define MT8188_ADSP_ALTVECSEL_C0	BIT(0)
+#define MT8186_ADSP_ALTVECSEL_C0	BIT(1)
 
-Best regards,
-Krzysztof
+/*
+  * On MT8188, BIT(1) is not evaluated and on MT8186 BIT(0) is not evaluated:
+  * We can simplify the driver by safely setting both bits regardless of the SoC.
+  */
+#define ADSP_ALTVECSEL_C0		(MT8188_ADSP_ALTVECSEL_C0 |
+					 MT8186_ADSP_ALTVECSEL_C0)
+
+...so that we don't have to check the commit history to understand what's going
+on here, and it becomes clear that ALTVECSEL is not both bits, but one of them.
+
+Cheers,
+Angelo
 
