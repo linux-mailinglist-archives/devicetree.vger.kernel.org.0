@@ -2,148 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 283E2653D79
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 10:29:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACAA0653D86
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 10:35:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235191AbiLVJ3r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 04:29:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46210 "EHLO
+        id S235196AbiLVJf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 04:35:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235107AbiLVJ3p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 04:29:45 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB522F5AC
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 01:29:43 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id z26so1855723lfu.8
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 01:29:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vUw5+xAR6CSlV90Z9Jtt0PsgfxL4+FK/cN85YO8sYAs=;
-        b=zm86LYJZGJCFyy3q+wYovmpXKRwKszodAeNJ6RdteurEFBASNQgN9TUHEQj0fX7wE4
-         6zycXJq1C/zWOVsbssrIeV3midCXHnk0Rl/twxqIUI1rO8i2sNkWM0gC1TdV+AhsKZhv
-         Q1b9qYKeyaAMpLMWEvQqnAP2v9GDKBh5fyCrT3OWVm/hBITMhqTItVy5lPwFlnJZmcA1
-         Qnb0uSulB7Ti2YXB3j276TUUh/q7IKmM5moA/nXBAn9lmZ8y8Ziz5LcU0vAHjfLqmSDa
-         cBNrxqpPGlx1aQqSHa5pyd5lN74z+kIJ39rODlz9Hj32CJOrPtHQBoxBRJYljjIfcCap
-         k7hQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vUw5+xAR6CSlV90Z9Jtt0PsgfxL4+FK/cN85YO8sYAs=;
-        b=jPOAcRWpFmwm07f84ex0sSCk7yjO4Y46jaSxhCyand2cPb4eHLYu2/GyMymr0eF/fg
-         b7hCJIFyLVTW0/gXy3FdDV7N157zKkQsXkFcDf6za0jCZ7nhFpSXrokVeQ7j1ZCU5JbP
-         pRPcJOsHw/8Q6He55BV8/4bPXHv9FMbHkNdOfbObOt1rsAv9OOeRgsp3HTTwVIy4n5Hi
-         M02LqLanLaMIqxaEttAmSp4NqYkfETdIU3Ih/e8oRcktAsqNnfo3MNqkieQqqn3bbc7K
-         s50Vcz7zaz34hROsvNNEgfxyW9YemORpaSbJcLa3rYfYnW6Q2EzhIoEKZli5HDehNk2a
-         +GFQ==
-X-Gm-Message-State: AFqh2kr0BjnojDhg4IWHGtHkVF1aAMY3IXcmD1hFtxthqd3EZ+M4Crj3
-        a+37QV91D+dq3O49GZkGhRNvIQ==
-X-Google-Smtp-Source: AMrXdXtYCaDp0digHRPYF/xg8yIatz3PMVgSe/I2Y1GSDjmxur7BOI+weI02LhQysJ4UemPWNGi+Pg==
-X-Received: by 2002:a05:6512:3b90:b0:4b5:32e6:12e with SMTP id g16-20020a0565123b9000b004b532e6012emr1921621lfv.65.1671701382051;
-        Thu, 22 Dec 2022 01:29:42 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id k16-20020a192d10000000b004a05837103csm8848lfj.196.2022.12.22.01.29.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Dec 2022 01:29:41 -0800 (PST)
-Message-ID: <a251f29d-58b7-5ccb-2661-a397e41fba80@linaro.org>
-Date:   Thu, 22 Dec 2022 10:29:40 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v4 1/4] dt-bindings: arm-smmu: Document smmu-500 binding
- for SM6125
-Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        phone-devel@vger.kernel.org, Will Deacon <will@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Lux Aliaga <they@mint.lgbt>,
-        Robin Murphy <robin.murphy@arm.com>,
+        with ESMTP id S235074AbiLVJfZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 04:35:25 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CABD275DD;
+        Thu, 22 Dec 2022 01:35:21 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 33E1224E346;
+        Thu, 22 Dec 2022 17:35:09 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 22 Dec
+ 2022 17:35:09 +0800
+Received: from EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4]) by
+ EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4%16]) with mapi id
+ 15.00.1497.044; Thu, 22 Dec 2022 17:35:09 +0800
+From:   JiaJie Ho <jiajie.ho@starfivetech.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Olivia Mackall <olivia@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Thierry Reding <treding@nvidia.com>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20221216215819.1164973-1-marijn.suijten@somainline.org>
- <20221216215819.1164973-2-marijn.suijten@somainline.org>
- <306709f8-7d45-9b76-f95b-1b3088d37a78@linaro.org>
- <6d263321-782d-9d9c-4fdf-8bcf5b280779@linaro.org>
- <20221219192839.6oqialqqw5xw5fxa@SoMainline.org>
- <b4186ec6-a3f2-4dfb-a83e-25cf6d460a39@linaro.org>
- <20221222082353.lhdw7h3pdqyyvsxy@SoMainline.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221222082353.lhdw7h3pdqyyvsxy@SoMainline.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
+Subject: RE: [PATCH 2/3] hwrng: starfive - Add TRNG driver for StarFive SoC
+Thread-Topic: [PATCH 2/3] hwrng: starfive - Add TRNG driver for StarFive SoC
+Thread-Index: AQHZFRwx15kE4gLKu0uxN2CW96B+Oa53kqwAgAIT3RA=
+Date:   Thu, 22 Dec 2022 09:35:08 +0000
+Message-ID: <69dca1be673a40729d750c00d927b437@EXMBX168.cuchost.com>
+References: <20221221090819.1259443-1-jiajie.ho@starfivetech.com>
+ <20221221090819.1259443-3-jiajie.ho@starfivetech.com>
+ <05aaa9f8-7a97-51c9-e18a-1c3753f2006b@linaro.org>
+In-Reply-To: <05aaa9f8-7a97-51c9-e18a-1c3753f2006b@linaro.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [161.142.229.243]
+x-yovoleruleagent: yovoleflag
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/12/2022 09:23, Marijn Suijten wrote:
-> On 2022-12-20 10:52:49, Krzysztof Kozlowski wrote:
->> On 19/12/2022 20:28, Marijn Suijten wrote:
->>> On 2022-12-19 10:09:03, Krzysztof Kozlowski wrote:
->>>> On 19/12/2022 10:07, Krzysztof Kozlowski wrote:
->>>>> On 16/12/2022 22:58, Marijn Suijten wrote:
->>>>>> From: Martin Botka <martin.botka@somainline.org>
->>>>>>
->>>>>> Document smmu-500 compatibility with the SM6125 SoC.
->>>>>>
->>>>>
->>>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>
->>>> Wait, not entirely... no constraints for clocks and regs?
->>>
->>> Quite odd that there is no warning for my DT patch as it clearly
->>> requires at least one clock...
-> 
-> Again, any idea why there's no warning for this DT mismatching minItems:
-> 1 for clocks, clock-names and power-domains?
-
-I don't know what do you have in DT and what is mismatched. Why there
-should be a warning?
-
-> 
->>> Irrespective of that downstream doesn't define any (nor power domains).
->>> How should we proceed?
->>
->> Binding now has constraints for clocks so at least that should be added
->> to your variant.
-> 
-> And that should be:
-> 
->     clock-names: false
->     clocks: false
->     power-domains: false
-> 
-> Because this board does declare have any, at least not when going off of
-> downstream DT?
-
-I'll add it for existing platforms, so you can rebase on top.
-
-Best regards,
-Krzysztof
-
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6eXN6dG9mIEtvemxv
+d3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPg0KPiBTZW50OiBXZWRuZXNkYXks
+IERlY2VtYmVyIDIxLCAyMDIyIDU6NDkgUE0NCj4gVG86IEppYUppZSBIbyA8amlhamllLmhvQHN0
+YXJmaXZldGVjaC5jb20+OyBPbGl2aWEgTWFja2FsbA0KPiA8b2xpdmlhQHNlbGVuaWMuY29tPjsg
+SGVyYmVydCBYdSA8aGVyYmVydEBnb25kb3IuYXBhbmEub3JnLmF1PjsgUm9iDQo+IEhlcnJpbmcg
+PHJvYmgrZHRAa2VybmVsLm9yZz47IEtyenlzenRvZiBLb3psb3dza2kNCj4gPGtyenlzenRvZi5r
+b3psb3dza2krZHRAbGluYXJvLm9yZz4NCj4gQ2M6IEVtaWwgUmVubmVyIEJlcnRoaW5nIDxrZXJu
+ZWxAZXNtaWwuZGs+OyBDb25vciBEb29sZXkNCj4gPGNvbm9yLmRvb2xleUBtaWNyb2NoaXAuY29t
+PjsgbGludXgtY3J5cHRvQHZnZXIua2VybmVsLm9yZzsNCj4gZGV2aWNldHJlZUB2Z2VyLmtlcm5l
+bC5vcmc7IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LQ0KPiByaXNjdkBsaXN0
+cy5pbmZyYWRlYWQub3JnDQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggMi8zXSBod3JuZzogc3RhcmZp
+dmUgLSBBZGQgVFJORyBkcml2ZXIgZm9yIFN0YXJGaXZlIFNvQw0KPiANCj4gT24gMjEvMTIvMjAy
+MiAxMDowOCwgSmlhIEppZSBIbyB3cm90ZToNCj4gPiBUaGlzIGFkZHMgZHJpdmVyIHN1cHBvcnQg
+Zm9yIHRoZSBoYXJkd2FyZSByYW5kb20gbnVtYmVyIGdlbmVyYXRvciBpbg0KPiA+IFN0YXJmaXZl
+IFNvQ3MgYW5kIGFkZHMgU3RhckZpdmUgVFJORyBlbnRyeSB0byBNQUlOVEFJTkVSUy4NCj4gPg0K
+PiA+IENvLWRldmVsb3BlZC1ieTogSmVubnkgWmhhbmcgPGplbm55LnpoYW5nQHN0YXJmaXZldGVj
+aC5jb20+DQo+ID4gU2lnbmVkLW9mZi1ieTogSmVubnkgWmhhbmcgPGplbm55LnpoYW5nQHN0YXJm
+aXZldGVjaC5jb20+DQo+ID4gU2lnbmVkLW9mZi1ieTogSmlhIEppZSBIbyA8amlhamllLmhvQHN0
+YXJmaXZldGVjaC5jb20+DQo+ID4gLS0tDQo+ID4gIE1BSU5UQUlORVJTICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgIHwgICA2ICsNCj4gPiAgZHJpdmVycy9jaGFyL2h3X3JhbmRvbS9LY29uZmln
+ICAgICAgICAgfCAgMTEgKw0KPiA+ICBkcml2ZXJzL2NoYXIvaHdfcmFuZG9tL01ha2VmaWxlICAg
+ICAgICB8ICAgMSArDQo+ID4gIGRyaXZlcnMvY2hhci9od19yYW5kb20vc3RhcmZpdmUtdHJuZy5j
+IHwgNDAzDQo+ID4gKysrKysrKysrKysrKysrKysrKysrKysrKw0KPiA+ICA0IGZpbGVzIGNoYW5n
+ZWQsIDQyMSBpbnNlcnRpb25zKCspDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2No
+YXIvaHdfcmFuZG9tL3N0YXJmaXZlLXRybmcuYw0KPiA+DQo+IA0KPiAoLi4uKQ0KPiANCj4gPiAr
+c3RhdGljIGNvbnN0IHN0cnVjdCBvZl9kZXZpY2VfaWQgdHJuZ19kdF9pZHNbXSA9IHsNCj4gPiAr
+CXsgLmNvbXBhdGlibGUgPSAic3RhcmZpdmUsamg3MTEwLXRybmciIH0sDQo+ID4gKwl7IH0NCj4g
+PiArfTsNCj4gPiArTU9EVUxFX0RFVklDRV9UQUJMRShvZiwgdHJuZ19kdF9pZHMpOw0KPiA+ICsN
+Cj4gPiArc3RhdGljIHN0cnVjdCBwbGF0Zm9ybV9kcml2ZXIgc3RhcmZpdmVfdHJuZ19kcml2ZXIg
+PSB7DQo+ID4gKwkucHJvYmUJPSBzdGFyZml2ZV90cm5nX3Byb2JlLA0KPiA+ICsJLmRyaXZlcgk9
+IHsNCj4gPiArCQkubmFtZQkJPSAic3RhcmZpdmUtdHJuZyIsDQo+ID4gKwkJLnBtCQk9ICZzdGFy
+Zml2ZV90cm5nX3BtX29wcywNCj4gPiArCQkub2ZfbWF0Y2hfdGFibGUJPSBvZl9tYXRjaF9wdHIo
+dHJuZ19kdF9pZHMpLA0KPiANCj4gb2ZfbWF0Y2hfcHRyIGdvZXMgd2l0aCBfX21heWJlX3VudXNl
+ZC4gWW91IHdpbGwgaGF2ZSBub3cgd2FybmluZ3MsIHNvDQo+IHBsZWFzZSB0ZXN0IG1vcmUgeW91
+ciBwYXRjaGVzIChXPTEsIHNwYXJzZSwgc21hdGNoKS4NCj4gDQoNCkhpIEtyenlzenRvZiwNCg0K
+VGhhbmtzIGZvciByZXZpZXdpbmcgdGhpcyBwYXRjaC4NCkhvdyBkbyBJIHByb3Blcmx5IGhhbmRs
+ZSBfX21heWJlX3VudXNlZCBmdW5jdGlvbnMgaW4gdGhpcyBzY2VuYXJpbz8NCldpbGwgaXQgaGVs
+cCBpZiBJIGFkZCAjZGVmaW5lIGFzIGZvbGxvd3M6DQoNCiNpZmRlZiBDT05GSUdfUE0NCiNkZWZp
+bmUgU1RBUkZJVkVfUk5HX1BNX09QUyAoJnN0YXJmaXZlX3JuZ19wbV9vcHMpDQojZWxzZQ0KI2Rl
+ZmluZSBTVEFSRklWRV9STkdfUE1fT1BTIE5VTEwNCiNlbmRpZg0KDQpzdGF0aWMgc3RydWN0IHBs
+YXRmb3JtX2RyaXZlciBzdGFyZml2ZV90cm5nX2RyaXZlciA9IHsNCiAgICAgICAgLnByb2JlICA9
+IHN0YXJmaXZlX3RybmdfcHJvYmUsDQogICAgICAgIC5kcml2ZXIgPSB7DQogICAgICAgICAgICAg
+ICAgLm5hbWUgICAgICAgICAgID0gInN0YXJmaXZlLXRybmciLA0KICAgICAgICAgICAgICAgIC5w
+bSAgICAgICAgICAgICA9IFNUQVJGSVZFX1JOR19QTV9PUFMsDQogICAgICAgICAgICAgICAgLm9m
+X21hdGNoX3RhYmxlID0gb2ZfbWF0Y2hfcHRyKHRybmdfZHRfaWRzKSwNCiAgICAgICAgfSwNCn07
+DQoNCkkgZGlkIGJ1aWxkIHRoZSBwYXRjaGVzIHdpdGggdGhlIHRvb2xzIG1lbnRpb25lZCBidXQg
+ZGlkIG5vdCBnZXQgd2FybmluZ3MuDQpEbyBJIG5lZWQgYSBzcGVjaWZpYyB2ZXJzaW9uLCBvciBo
+YXZlIEkgZG9uZSBzb21ldGhpbmcgd3Jvbmc/DQoNCm1ha2UgQz0yIGRyaXZlcnMvY2hhci9od19y
+YW5kb20vDQogIENIRUNLICAgc2NyaXB0cy9tb2QvZW1wdHkuYw0KICBDQUxMICAgIHNjcmlwdHMv
+Y2hlY2tzeXNjYWxscy5zaA0KICBDSEVDSyAgIGFyY2gvcmlzY3Yva2VybmVsL3Zkc28vdmdldHRp
+bWVvZmRheS5jDQogIENIRUNLICAgZHJpdmVycy9jaGFyL2h3X3JhbmRvbS9jb3JlLmMNCiAgQ0hF
+Q0sgICBkcml2ZXJzL2NoYXIvaHdfcmFuZG9tL3N0YXJmaXZlLXRybmcuYw0KDQpSZWdhcmRzLA0K
+SmlhIEppZQ0K
