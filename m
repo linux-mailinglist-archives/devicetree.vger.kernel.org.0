@@ -2,94 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71D01653A92
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 03:25:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3ABEA653B1A
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 04:57:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234636AbiLVCZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Dec 2022 21:25:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43692 "EHLO
+        id S230462AbiLVD53 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Dec 2022 22:57:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229726AbiLVCZm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 21:25:42 -0500
-Received: from mail-vk1-xa32.google.com (mail-vk1-xa32.google.com [IPv6:2607:f8b0:4864:20::a32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CA2C310;
-        Wed, 21 Dec 2022 18:25:40 -0800 (PST)
-Received: by mail-vk1-xa32.google.com with SMTP id t191so379921vkb.4;
-        Wed, 21 Dec 2022 18:25:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=MfZ23cEJwXLKSr6nmgfag7ZLnBMhbp4IOiKmfURc+PE=;
-        b=hDYZp3HwDVcSHM5PHuNPwkrEgXERdj/uYSRgKEqZyt/Yu2J1bYP8aOgDGPeVgBG6c6
-         fs5xt9vU8j13TMUCVvHrcqTYPidhB2KsZgIV8AYRCchH8O11sQM/8u5RZGucOopdgboN
-         629NNobfnlJLzVwOPDbofAZ/w7mz6h1DtD5DhLohFnDYY94LInD9QGrlrZ5SxA7PPjA3
-         BtkzATZtCZRaL4tHx0RrC1vhP8ppzTHm5JTwDiYi1WXCHJBqk8+tjoGIsfUScZ2sDFib
-         KbRdVp06XfOVtrzp6PtKIYewuSD3LOqeSFR1FU75uGo6zjC42dnHVaM8bdzlmQTwi28i
-         28PQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MfZ23cEJwXLKSr6nmgfag7ZLnBMhbp4IOiKmfURc+PE=;
-        b=xG1DRIf1n6PZU2edO2+JuB2xM4PfzLB8nbwAxHQVoH00AcFbkpd2jn3m1WjsWlO7F9
-         pYkmcFLYQkcT5lJo0v9ChNPYhpp6BDKJJG+Rws31b30ADPgw5+YnrKN3ES9aJ+8sSALr
-         BDk0IASo4ODQLhT+UkIC+4c+g15h9t7S3J503fOHkp0e1U8bIpzRBOtTtF7qxjEv3M1M
-         584vmShp7Hm6CqCo/e7vbjNRJ65VclVVHNNVb3yGSyL4kH41FOcAxS5LBouZX9vrTwIJ
-         mWwV6mTnQXwuDKUl06uYkc19GDz7q6VyxuEXOedkVi9sMsk/YD/iIyA91TmpzbTyxNYr
-         o6EA==
-X-Gm-Message-State: AFqh2krIUaenwZwIjE/xz5vpqNvbn1mKupn4uKMII9Ye/T3LMAwhGmQG
-        5h/vSV5mYhqftrGGIy0HxNsP91Bp387lxrddQyLvHngYDW4=
-X-Google-Smtp-Source: AMrXdXuRFuI8cdaqk75LHVOliXHJsNODxYmahNgKTZ4VEqZEVp6d3ggCrQ60MjROEkrT60IeZnkYPec1crXp7vRwtKA=
-X-Received: by 2002:a1f:7344:0:b0:3b8:615e:f0a with SMTP id
- o65-20020a1f7344000000b003b8615e0f0amr432211vkc.34.1671675939369; Wed, 21 Dec
- 2022 18:25:39 -0800 (PST)
+        with ESMTP id S229620AbiLVD52 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Dec 2022 22:57:28 -0500
+Received: from amity.mint.lgbt (vmi888983.contaboserver.net [149.102.157.145])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88F9B18B2C
+        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 19:57:26 -0800 (PST)
+Received: from amity.mint.lgbt (mx.mint.lgbt [127.0.0.1])
+        by amity.mint.lgbt (Postfix) with ESMTP id 4NcxN3608Kz1S5DD
+        for <devicetree@vger.kernel.org>; Wed, 21 Dec 2022 22:57:23 -0500 (EST)
+Authentication-Results: amity.mint.lgbt (amavisd-new);
+        dkim=pass (2048-bit key) reason="pass (just generated, assumed good)"
+        header.d=mint.lgbt
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mint.lgbt; h=
+        content-transfer-encoding:content-type:in-reply-to:subject:from
+        :content-language:references:to:user-agent:mime-version:date
+        :message-id; s=dkim; t=1671681439; x=1672545440; bh=9EgG6+Ok/3tO
+        B99n2VhMHRfFlk/p7dYnKVT7K/MuQgA=; b=W6PB66sOiH6P0RL5aG1wZh9N+hxT
+        SdKCaOkWpPnNn3Pq1LzM6Fov5GnZ3QY0i6wcWm0u9ULDKG8kFCOmf8RCi3TBxEdE
+        YAH8BDhvmtRx1OnMYZsTh/DKPDoyRCiSW5wO+CxSte++05xfg72qbHxNwOR4oP/j
+        vsLQrkgOJi1ZZQjA6mYQayj6K5SwZ6i/kU9vqlwrkLRea4s35P26mRNQjZ2ndYH0
+        EHnrG3siInSRN0bB0qwWdGQBiGxdHLNDRzHKvFWJfyb3AsSMDbGYdMsGzdlrYrH6
+        hhT/S2w3sHDLYVq88l7YX8xGLN2WXuxnKf0hhjyqQPbbOt0qCI0c5GDC2g==
+X-Virus-Scanned: amavisd-new at amity.mint.lgbt
+Received: from amity.mint.lgbt ([127.0.0.1])
+        by amity.mint.lgbt (amity.mint.lgbt [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id BuxwM2hfub9r for <devicetree@vger.kernel.org>;
+        Wed, 21 Dec 2022 22:57:19 -0500 (EST)
+Received: from [192.168.4.25] (unknown [190.196.92.66])
+        by amity.mint.lgbt (Postfix) with ESMTPSA id 4NcxMt2DXhz1S5B4;
+        Wed, 21 Dec 2022 22:57:13 -0500 (EST)
+Message-ID: <f76f19df-ff82-e24d-511c-ad5b4ff7683b@mint.lgbt>
+Date:   Thu, 22 Dec 2022 00:57:09 -0300
 MIME-Version: 1.0
-References: <20221220094055.3011916-1-milkfafa@gmail.com> <20221220094055.3011916-3-milkfafa@gmail.com>
- <44a62c49-1894-aee2-63fd-05b2e70a8aef@linaro.org>
-In-Reply-To: <44a62c49-1894-aee2-63fd-05b2e70a8aef@linaro.org>
-From:   Kun-Fa Lin <milkfafa@gmail.com>
-Date:   Thu, 22 Dec 2022 10:25:28 +0800
-Message-ID: <CADnNmFrqJH5Vwk-R0M4yeoEK==UWMeMkUed+AiUKmh6aKAdcOA@mail.gmail.com>
-Subject: Re: [PATCH v9 2/7] media: dt-binding: nuvoton: Add NPCM VCD and ECE engine
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
-        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        andrzej.p@collabora.com, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        openbmc@lists.ozlabs.org, kwliu@nuvoton.com, kflin@nuvoton.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Iskren Chernev <iskren.chernev@gmail.com>,
+        Adam Skladowski <a39.skl@gmail.com>
+References: <20221215190404.398788-1-they@mint.lgbt>
+ <20221215190404.398788-2-they@mint.lgbt>
+ <e474f99d-2375-c8db-203c-632c918d8e4d@linaro.org>
+ <6ddf93eb-aadb-a9b8-d91a-0c56ed54418f@mint.lgbt>
+ <Y6Kx+iq9c5izbYRH@hovoldconsulting.com>
+Content-Language: en-US
+From:   Lux Aliaga <they@mint.lgbt>
+Subject: Re: [PATCH v4 2/4] arm64: dts: qcom: sm6125: Add UFS nodes
+In-Reply-To: <Y6Kx+iq9c5izbYRH@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> On 20/12/2022 10:40, Marvin Lin wrote:
-> > Add dt-binding document for Video Capture/Differentiation Engine (VCD)
-> > and Encoding Compression Engine (ECE) present on Nuvoton NPCM SoCs.
-> >
-> > Signed-off-by: Marvin Lin <milkfafa@gmail.com>
-> > ---
-> >  .../bindings/media/nuvoton,npcm-ece.yaml      | 43 +++++++++++
-> >  .../bindings/media/nuvoton,npcm-vcd.yaml      | 72 +++++++++++++++++++
-> >  2 files changed, 115 insertions(+)
->
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
-> Best regards,
-> Krzysztof
->
+On 21/12/2022 04:12, Johan Hovold wrote:
 
-Thank you for your review!
+> On Wed, Dec 21, 2022 at 12:34:46AM -0300, Lux Aliaga wrote:
+>> On 16/12/2022 08:24, Konrad Dybcio wrote:
+>>> On 15.12.2022 20:04, Lux Aliaga wrote:
+>>>> Adds a UFS host controller node and its corresponding PHY to
+>>>> the sm6125 platform.
+>>>> +			reg = <0x04807000 0x1c4>;
+>>>> +
+>>>> +			power-domains = <&gcc UFS_PHY_GDSC>;
+>>>> +
+>>>> +			clock-names = "ref", "ref_aux";
+>>>> +			clocks = <&gcc GCC_UFS_MEM_CLKREF_CLK>, <&gcc GCC_UFS_PHY_PHY_AUX_CLK>;
+>>>> +
+>>>> +			resets = <&ufs_mem_hc 0>;
+>>>> +			reset-names = "ufsphy";
+>>>> +
+>>>> +			#address-cells = <1>;
+>>>> +			#size-cells = <1>;
+>>>> +			ranges;
+>>>> +
+>>>> +			status = "disabled";
+>>>> +
+>>>> +			ufs_mem_phy_lanes: lanes@4807400 {
+>>>> +				reg = <0x4807400 0x098>,
+>>>> +				      <0x4807600 0x130>,
+>>>> +				      <0x4807c00 0x16c>;
+>>>> +				#phy-cells = <0>;
+>>>> +			};
+>>> I believe this is deprecated. See [1].
+>>> [1] https://lore.kernel.org/linux-arm-msm/20221104092045.17410-1-johan+linaro@kernel.org/T/#m988f3fe3d83b76bac247aea2d9dac34f37728d65
+>> I've looked into the documentation and this is only for the sc8280xp.
+>> This PHY is defined as it is for the msm8996 and derivatives.
+> No, it's not just for sc8280xp. It's intended for all new bindings (i.e.
+> do not add more platforms to the msm8996 schema file).
+>
+> Johan
+Alright. But this would mean writing a new config for the sm6125 
+specifically. If we're changing how the bindings for UFS PHYs work, 
+wouldn't it make more sense to change the sm6115 config instead, since 
+they're defined pretty much the same?
 
-Regards,
-Marvin
+-- 
+Lux Aliaga
+https://nixgoat.me/
+
