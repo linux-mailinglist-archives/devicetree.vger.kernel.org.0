@@ -2,125 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B21F865440F
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 16:16:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 87C6465441D
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 16:19:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235802AbiLVPPt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 10:15:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60164 "EHLO
+        id S229736AbiLVPTS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 10:19:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235699AbiLVPOw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 10:14:52 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5370D26AE1
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 07:14:51 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id p36so3130525lfa.12
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 07:14:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sSLbFlXF4cJk3vfeGz8RtjcRsolotrYx5zh+E/VkeoE=;
-        b=sZcoOHoZO12gPLkeli6mfsMwwtirvDpf8bx2sd2LVZ1p0mRzxTRhwB8uyXLor6OHlx
-         zWgwVdHtCqjT56zV3G13Z9P3zC93/McqBkG0uZBntyHOmRgNtBZ4hg6+9Pb6LwZnV5w5
-         pXxHhtg3j0JmEfw9mijYDBbaabyHpSTX91B5p0fUsyNSu3vmWCP8tX+QP1KW9udRW7HO
-         cL53FDy54FC4dXP4DLSwhQQQAj5PGFqFyhdxKLKoBOmkR9W1eBKjgSFiMv5K/0PEoix6
-         ImHcjb5n1+FzS/rYHY6XXewQKutVbtcwosJjT3Bgdv+KBZ+/2kr+fwEtLHU+g1nXFFtN
-         rhQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sSLbFlXF4cJk3vfeGz8RtjcRsolotrYx5zh+E/VkeoE=;
-        b=RY9OQ0n7kf/RjJWUAY/m9ych5+5ev0002v5x6tEAP8B12SQr97DH1DTVwhFOg7h6Cc
-         /f9TGWWHcnzge1WlEtX/TlXKTFiVSy4/Kz2R8t6Aqr5F6gBw2ICwhWLp5E9rh68m9/1j
-         fNGs/fUNbWbM4hKG+3bC6ZhSeEJJGDMgi8SdHghMEbSuBHW5UozK24N7lvoHXehg1/bh
-         VuC8TZ2G8E5TsN3dOoBvY8LO1CZg/8/OMKz3+rBLXIt/LV+l27rdaplGEiIjjc64nIdY
-         SwI9ftgqyPalXU/vmuBsi/gAmXrFiI8tQguIrm4imf//FOOeliKdNDYoxomO5AXc4g0e
-         6qUg==
-X-Gm-Message-State: AFqh2kpEH0b2m5Lo9AdRVlR5gD45L9pDvVyw5h1xNDHzzLPu95DNLgLa
-        pjiGwKONx3Wy4RjPkr7RoiNQ4w==
-X-Google-Smtp-Source: AMrXdXudttQnXV+5W/W5Lc8ZQQgkt4M+MsIUAEQpK0lOsvvJUReeWKaNNeVfeb+uPkwzwLNHlqpufQ==
-X-Received: by 2002:ac2:46cb:0:b0:4b5:b38a:6dff with SMTP id p11-20020ac246cb000000b004b5b38a6dffmr1482433lfo.24.1671722089761;
-        Thu, 22 Dec 2022 07:14:49 -0800 (PST)
-Received: from [192.168.1.101] (abyl184.neoplus.adsl.tpnet.pl. [83.9.31.184])
-        by smtp.gmail.com with ESMTPSA id w4-20020a05651234c400b0049d0a98f73csm94956lfr.154.2022.12.22.07.14.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Dec 2022 07:14:49 -0800 (PST)
-Message-ID: <697f07b4-87e6-9fa5-4298-82b075a96264@linaro.org>
-Date:   Thu, 22 Dec 2022 16:14:47 +0100
+        with ESMTP id S229707AbiLVPTR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 10:19:17 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1048D335;
+        Thu, 22 Dec 2022 07:19:17 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id B524EB81CB7;
+        Thu, 22 Dec 2022 15:19:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A20AC433D2;
+        Thu, 22 Dec 2022 15:19:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1671722354;
+        bh=unTLqCW294ZnziRAsuuEh/oxlIS4oUlm60//dw9SIC0=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=JHFTakD/nnQ1PpVS5ppaccSrB0w8EB04rF49hOcG0adJQrwwjnTPAQiPs47Hzn4Cn
+         M1ek1myDBjkdK7fj7b8Sic/2IwZAJw5jcUOuF9EDfSxhRfzDnkSFE0igaDOAcPfjOx
+         LXoBI+lxKPf/8pzRXD6WV6LK/SGO0CR8WwO3Cc+OUUCEaxrK40jSLxMjXqMYRznS8J
+         qL8niByvNzeIHN+I56sXcs0KWt2IIcX/JTYAvFQI/rOmd3LxH/YxrJ+0/hCttk3kpC
+         VFLgfkkLal7LOk5LJPkYxJ6lomlgH8xwEFlnb2D6RHYmCql8Jj5I4qcjvPIc7bQejy
+         8WdXNj3xn4jlQ==
+Message-ID: <f3ace6f0-12fb-8e97-5115-5511b4ffb223@kernel.org>
+Date:   Thu, 22 Dec 2022 16:19:08 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: sdm845: do not customize SPI0
- pin drive/bias
+Subject: Re: [RFC PATCH 5/7] bus: stm32_sys_bus: add support for STM32MP15 and
+ STM32MP13 system bus
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Joel Selvaraj <joelselvaraj.oss@gmail.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Caleb Connolly <caleb@connolly.tech>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Douglas Anderson <dianders@chromium.org>
-References: <20221222151319.122398-1-krzysztof.kozlowski@linaro.org>
- <20221222151319.122398-4-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221222151319.122398-4-krzysztof.kozlowski@linaro.org>
+To:     Gatien CHEVALLIER <gatien.chevallier@foss.st.com>,
+        alexandre.torgue@foss.st.com, robh+dt@kernel.org,
+        Oleksii_Moisieiev@epam.com, linus.walleij@linaro.org,
+        gregkh@linuxfoundation.org
+Cc:     linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        loic.pallardy@st.com, devicetree@vger.kernel.org,
+        mark.rutland@arm.com, arnd@arndb.de
+References: <20221221173055.11719-1-gatien.chevallier@foss.st.com>
+ <20221221173055.11719-6-gatien.chevallier@foss.st.com>
+ <ed8aa4d3-9570-eb72-a7d4-3b690adc3a6d@kernel.org>
+ <e2086a52-4db8-e247-43de-c78ffa479634@foss.st.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <e2086a52-4db8-e247-43de-c78ffa479634@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 22/12/2022 15:30, Gatien CHEVALLIER wrote:
+>>
+>>> +	if (IS_ERR(mmio))
+>>> +		return PTR_ERR(mmio);
+>>> +
+>>> +	pdata->sys_bus_base = mmio;
+>>> +
+>>> +	mdata = (struct stm32_sys_bus_match_data *)of_device_get_match_data(&pdev->dev);
+>>
+>> Why do you need the cast?
+> 
+> I do not :) TBH, mdata is not useful at all. Changing to directly assign 
+> to pdata->pconf, that is now const there is no reason to modify it.
 
+mdata should be const and then no need for cast.
 
-On 22.12.2022 16:13, Krzysztof Kozlowski wrote:
-> Each board should define pin drive/bias for used busses.  All boards
-> using SPI0 (db845c and cheza) already do it, so drop the bias/drive
-> strength from SoC DTSI.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+>>
+>>> +	if (!mdata)
+>>
+>> Can you explain the case when this can actually happen? If it can, you
+>> have bug in ID table.
 > 
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> No I cannot as the driver is probed. It is only a sanity check, I can 
+> remove it for V3. However the function can return NULL... Would you 
+> prefer an explicit check on NULL or a simple removal?
 
-Konrad
+I propose to drop it. This simply cannot happen.
+
 > 
-> Cc: Doug Anderson <dianders@chromium.org>
-> 
-> Changes since v3:
-> 1. Rb tag
-> 
-> Changes since v2:
-> 1. New patch.
-> ---
->  arch/arm64/boot/dts/qcom/sdm845.dtsi | 2 --
->  1 file changed, 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> index dcea535de9b7..cac70212cc2a 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> @@ -2785,8 +2785,6 @@ qup_i2c15_default: qup-i2c15-default-state {
->  			qup_spi0_default: qup-spi0-default-state {
->  				pins = "gpio0", "gpio1", "gpio2", "gpio3";
->  				function = "qup0";
-> -				drive-strength = <6>;
-> -				bias-disable;
->  			};
->  
->  			qup_spi1_default: qup-spi1-default-state {
+>>
+>>> +		return -EINVAL;
+>>> +
+
+Best regards,
+Krzysztof
+
