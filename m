@@ -2,121 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75965653D46
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 10:04:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0480B653D71
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 10:24:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235215AbiLVJEC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 04:04:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37476 "EHLO
+        id S235193AbiLVJYd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 04:24:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235212AbiLVJD5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 04:03:57 -0500
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29F00205D5;
-        Thu, 22 Dec 2022 01:03:50 -0800 (PST)
-Received: from booty (unknown [77.244.183.192])
-        (Authenticated sender: luca.ceresoli@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 098A8240006;
-        Thu, 22 Dec 2022 09:03:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1671699829;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=gktEAWN3JB8j4tgK6e174eAxgB6KpzGMlNNM9C0jpTQ=;
-        b=hkeMahLxr95J8jRRBnHvUsJYopZH+NMQb36c/kMWeoRhxAs9R0Nsx8Kqm4U4LWysvOU4rF
-        NOIWJ4Zdl2Q5dDwUN/9g+0FVXa2wXZXOsk7HTAxAy0vDhJzSm3+xBN79nR+exWUshQho0n
-        TtXXf4UQwrpswjA0RHE4dVmNNSZqJrhzz3Npot2ARR9J9w3hzGj1YuIKyMSJsiJPG42RrC
-        hed3gv6cFfcUIZtqDTYk0dIwQUY5zfKceYc9cFExuKYtMcklW7NUXc94FiHaP5kEglHpvS
-        jA0pmJ5r/t1D76kP/f+IqMwWqd69m16O/ZRCLR4rCWJLZ5XFm1xIAyAQsSY4LQ==
-Date:   Thu, 22 Dec 2022 10:03:41 +0100
-From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S235007AbiLVJYc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 04:24:32 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 105BBDF7D
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 01:24:31 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id y25so1830520lfa.9
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 01:24:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=68vQHDAyfLGGKwktfUmbOivt9MYU5nkUryP23gTK9rc=;
+        b=Kip7m14Xx/tarhFOdy0J023i0JBfWs63+4+z8MBWphGmFJuVzcG2VvN8GOJda5dMTq
+         7PlAP4gg67X7bhNNylVt/nUYE2COvdoNgidOoxIMVVZCljcEVk2F0f7qTMSNZGSl+1WI
+         XeUtodjxd9xDRpqogO5b6pvoTGQbw8UZD1osYWJ7bjCPl6gg5YdaDOIJ2WfNH0UoMXCb
+         agWbFKevRVcIQ4SlXRFXWjacmIgLqmjluQ1i4lVWLVe5bvu3vwAT53AlvQ1aLIkcaubX
+         qZ7Mlmni4RDfYhwGUBPZ33lOVMQEvSkCXs3gauwe7QtJTI27jH1kPe6f3gSoWaEDWDXL
+         C0zg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=68vQHDAyfLGGKwktfUmbOivt9MYU5nkUryP23gTK9rc=;
+        b=URGJHv+QGMita7JmTTghBivozzjzXJPgT2U3LQX1mIgBzXdvdvOsk5/qbM/rhzO6iJ
+         2o7qCaUVm1h0I8jPIGUAu1LMkYUyH9YS+6U3IixSe/iLds8uF3i6jogWLQCr9usVJuJc
+         5OG4UAsF32pLC7edtnRyw7eUaF9aX398dxKXsxZjB/etinlHqRBC6qe53lBwXAGKd0aJ
+         mvC+1Vben3cdALasNjmtBYQOssCr0d8hQRId+5/z8TXoMz4klOAB1cI/bKpc13o4ELIB
+         e+YpkwkbE1GcT7Jp3ptjb6x/a/k3g6x9SPzA+vd2U/xpwTn3JZknrvtGwvVNT2ZwMkBy
+         TFFQ==
+X-Gm-Message-State: AFqh2kp5xpYjPeqYJFkA+QX2wXjrjhjISGW5mYROoJTnapKH5tmrYzCr
+        y4qJTifTJMOdkNTUT9NbjOKrKjtmpCpw7qBM
+X-Google-Smtp-Source: AMrXdXvRLGXpw/IldWjcH6Psvsy5FKL2mJyz33k7rd2bZ1PP4sfQulfRObsX2FkVtKHWyRygK0FruQ==
+X-Received: by 2002:ac2:4bcc:0:b0:4b6:fae9:c9b7 with SMTP id o12-20020ac24bcc000000b004b6fae9c9b7mr1425029lfq.7.1671701069434;
+        Thu, 22 Dec 2022 01:24:29 -0800 (PST)
+Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id i40-20020a0565123e2800b004b0b131453csm10724lfv.49.2022.12.22.01.24.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Dec 2022 01:24:28 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Sowjanya Komatineni <skomatineni@nvidia.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Richard Leitner <richard.leitner@skidata.com>
-Subject: Re: [PATCH v2 21/21] staging: media: tegra-video: add tegra20
- variant
-Message-ID: <20221222100341.5882c19c@booty>
-In-Reply-To: <30e6b040-aa82-f6a3-1ff6-baa2c0dcb0e2@gmail.com>
-References: <20221128152336.133953-1-luca.ceresoli@bootlin.com>
- <20221128152336.133953-22-luca.ceresoli@bootlin.com>
- <30e6b040-aa82-f6a3-1ff6-baa2c0dcb0e2@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH] dt-bindings: arm-smmu: disallow clocks when not used
+Date:   Thu, 22 Dec 2022 10:23:55 +0100
+Message-Id: <20221222092355.74586-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Dmitry,
+Disallow clocks for variants other than:
+1. SMMUs with platform-specific compatibles which list explicit clocks
+   and clock-names,
+2. SMMUs using only generic compatibles, e.g. arm,mmu-500, which have a
+   variable clocks on different implementations.
 
-On Wed, 21 Dec 2022 00:40:20 +0300
-Dmitry Osipenko <digetx@gmail.com> wrote:
+This requires such variants with platform-specific compatible, to
+explicitly list the clocks or omit them, making the binding more
+constraint.
 
-> 28.11.2022 18:23, Luca Ceresoli =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
-> > +static int tegra20_channel_capture_frame(struct tegra_vi_channel *chan,
-> > +					 struct tegra_channel_buffer *buf)
-> > +{
-> > +	u32 value;
-> > +	int err;
-> > +
-> > +	chan->next_out_sp_idx++;
-> > +
-> > +	tegra20_channel_vi_buffer_setup(chan, buf);
-> > +
-> > +	tegra20_vi_write(chan, TEGRA_VI_CAMERA_CONTROL, VI_CAMERA_CONTROL_VIP=
-_ENABLE);
-> > +
-> > +	/* Wait for syncpt counter to reach frame start event threshold */
-> > +	err =3D host1x_syncpt_wait(chan->out_sp, chan->next_out_sp_idx,
-> > +				 TEGRA_VI_SYNCPT_WAIT_TIMEOUT, &value); =20
->=20
-> You're not using the "value" variable, it should be NULL.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Ah, sure, good catch.
+---
 
-> The "chan->out_sp" looks redundant, it duplicates the chan->mw_ack_sp.
+Cc: Marijn Suijten <marijn.suijten@somainline.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ .../devicetree/bindings/iommu/arm,smmu.yaml   | 28 +++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
-I agree it is redundant and can be improved.
+diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+index 895ec8418465..0d88395e43ad 100644
+--- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
++++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+@@ -367,6 +367,34 @@ allOf:
+             - description: interface clock required to access smmu's registers
+                 through the TCU's programming interface.
+ 
++  # Disallow clocks for all other platforms with specific compatibles
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - cavium,smmu-v2
++              - marvell,ap806-smmu-500
++              - nvidia,smmu-500
++              - qcom,qcm2290-smmu-500
++              - qcom,qdu1000-smmu-500
++              - qcom,sc7180-smmu-500
++              - qcom,sc8180x-smmu-500
++              - qcom,sc8280xp-smmu-500
++              - qcom,sdm670-smmu-500
++              - qcom,sdm845-smmu-500
++              - qcom,sdx55-smmu-500
++              - qcom,sdx65-smmu-500
++              - qcom,sm6115-smmu-500
++              - qcom,sm6350-smmu-500
++              - qcom,sm6375-smmu-500
++              - qcom,sm8350-smmu-500
++              - qcom,sm8450-smmu-500
++    then:
++      properties:
++        clock-names: false
++        clocks: false
++
+   - if:
+       properties:
+         compatible:
+-- 
+2.34.1
 
-> AFAICS from the doc, T20 has two VI channels, and thus, two mw_ack_sp,
-> like T210.
-
-I'm confused by this. In the current driver, each VI channel has an
-array of 2 mw_ack_sp, the second of which is only used the ganged
-CSI ports. I have no docs mentioning ganged ports so I don't know
-exactly how they work and whether T20 might need more than 1 syncpt per
-channel or not for CSI. Definitely when using VIP only one such syncpt
-per each VI (or per each VIP, as per your reply to patch 1) is needed.
-
-Bottom line: I think I can simply remove the out_sp and in the VIP code
-always use chan->mw_ack_sp[0], and document that it's what is called OUT
-in VIP terms.
-
-Does this plan seem good?
-
---=20
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
