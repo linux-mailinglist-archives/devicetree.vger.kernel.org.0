@@ -2,173 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A342F653DAA
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 10:44:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38984653DC4
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 10:52:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235307AbiLVJoC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 04:44:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50818 "EHLO
+        id S235119AbiLVJwb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 04:52:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235261AbiLVJnk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 04:43:40 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CB7127B2A
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 01:43:34 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id bp15so1876429lfb.13
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 01:43:34 -0800 (PST)
+        with ESMTP id S235029AbiLVJw2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 04:52:28 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FC6A3AF
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 01:52:27 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id m29so1917811lfo.11
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 01:52:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YbnftUr0skysBxQQtBVmUp3dl+iPH1CkZ/Pevi319Z4=;
-        b=tu5TQQc2y5XhDDuW5z1bMNpX9zKfROA3s5jKB9G0KQjOJuNM2bcBSmMPCvwgakyl5O
-         uL6oS7md17Acf9ENu9PcB0kxW4Coynu1r1eUkQWdVgV1NSRIxpc8r+QvnR4n0GmhSPlz
-         NW+6+Un28/jlsP/TVjS202yZFoW38ETk9BCzr60pUDqT+pMNb/+kBEme71AG7oFnBEvB
-         tch9duUW2ZeBOftJyGZojAM7ZbJz//uWip1R8Qnald2rMy3Ip6hviGMJJAzxjZLLgMAZ
-         cylKCWrrFaG2G1VV7AtoiPrpLACzWpYQOAkWKtkXXDPlXeyJd70fqFc/3+I+7CwnseFK
-         ORvw==
+        bh=NVo2Nr9yhXPIh+uvPb1YwcBZxRxy1i/aeSoinnkFV8I=;
+        b=E1msI7N92R0+9BCYiWDkqpjEm9jI0scritLDg3TvCQlpWGmO7qEcck9wKwAzOFZV26
+         jbW7tLEcRMWIRoJw49lYsQV38W7BuzwQvJqTD9QQ6GEZMKJJZlUT/LdH0yJSzR2dkcUv
+         okHxJdRxWss3C6BCFLt9ssOXko2z1eAtHS4c9JGDSczWyJxIk8m04RNwxei7t5P+fp/l
+         j0ivALiWvO0eRhEi/IOC0Vd1at3dLNjQwuRTZOI0o34BJikvUgwChfQm0YeAFIEUbzHz
+         MTJJHPjaT+giC5evkp9Vzv6CKBBpK0ewmQHUqeY/Q0rsEBKmXnQ+J/SF5FoPQd/AEzD7
+         ylsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YbnftUr0skysBxQQtBVmUp3dl+iPH1CkZ/Pevi319Z4=;
-        b=C6jQW/Auf1e1Ut8n5qV7+oleIYtlYB7ism3ox0iKcDEd/UfIbA45bXxpTDf/IE4W5L
-         d3nXsF/93MEXcj8i54dAmF00/QbRF1R3ByTt93R3CX9/okCkqe6cUQ+NAX9PaNyIGrwz
-         M+aezAf3FC0oGKmjib6FN+kEIvycKUwkM/hUCWIuBkBDeCBHF7ktKo0radY44o57/qmN
-         TbjMeBpYNNgpnmxmbImv9rePvSl+PTvN+B9S81w7JV4tkbE1Tm60Cl4ZSNSACy0xr0jb
-         JSAfFie8tOkUFw16rpJlbiCuSl0COiRVHSBf6iN04sl9nQVOh7bcYajjjuuUE6i2hQvN
-         viIw==
-X-Gm-Message-State: AFqh2koVrjCXYglysDeAkJeFCrL0O7jrMxQ4hNIYYI+LUp0Ones8MG83
-        kG3BU0V2yRpivK5jIgKbaBEU/w==
-X-Google-Smtp-Source: AMrXdXtIO/l/UEsk2MV0XgK6wMm0UkQrCvnZKcwe7Ug7pLVDdSRQxWA3YLc4a7ZfaL4xaMUG9Yifzg==
-X-Received: by 2002:ac2:4ecd:0:b0:4a4:68b9:6085 with SMTP id p13-20020ac24ecd000000b004a468b96085mr1334382lfr.16.1671702212876;
-        Thu, 22 Dec 2022 01:43:32 -0800 (PST)
+        bh=NVo2Nr9yhXPIh+uvPb1YwcBZxRxy1i/aeSoinnkFV8I=;
+        b=Mx6irgb1sWXW9jVdbh9hxphQXZLh1T//kc7b197pnHixjeDBZoJozMuWUH8kSrtflP
+         2mUdkuFEhp1PkFuszxf9OBGzIsYZA1K/1OpOIa415qmSrF054j+XiXWjMhf+WzawSaP1
+         sGqRrTm0wCozshDnfpHhwUJlbYZkwGBaGDy3uG8kksLjMVOidlDrdZDtBrrd/4T6SlWu
+         FAGxakE7BfklKbj85Pdo3IDkPqYA3yIZ/cO4glfK1GM3/xjnjEgBJnSGAvxikJuMLcVT
+         yg7t5LJpEJObbT3pkF0Ju7WlXVcu63IRmcEMKkhloG6GnUpLcYmIousbGEhWt/rbKcSb
+         Gi6A==
+X-Gm-Message-State: AFqh2koRYOTYfvUumLjaQexhS3ziH0D63yyH0DoXrHf7WES4L6RmGko6
+        w6m9xsimqxmaYOthuwgbXZHy+w==
+X-Google-Smtp-Source: AMrXdXvQctizKczOaFoCzYY85NETgBm+Z0WcmJYHIM4BSWcvt5yIpWWktJjkWiN4OT1USLdY4VmMlw==
+X-Received: by 2002:a19:7614:0:b0:4b6:e95b:5b41 with SMTP id c20-20020a197614000000b004b6e95b5b41mr1394870lff.22.1671702745723;
+        Thu, 22 Dec 2022 01:52:25 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id z1-20020a0565120c0100b004b4b600c093sm15902lfu.92.2022.12.22.01.43.31
+        by smtp.gmail.com with ESMTPSA id bq27-20020a056512151b00b004b591c33b99sm21016lfb.13.2022.12.22.01.52.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Dec 2022 01:43:32 -0800 (PST)
-Message-ID: <27f1c084-60b4-daeb-0ffe-c0500aecbd49@linaro.org>
-Date:   Thu, 22 Dec 2022 10:43:31 +0100
+        Thu, 22 Dec 2022 01:52:25 -0800 (PST)
+Message-ID: <8d35613e-5729-ccc0-6344-eae1ede5616e@linaro.org>
+Date:   Thu, 22 Dec 2022 10:52:24 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH 2/3] hwrng: starfive - Add TRNG driver for StarFive SoC
+Subject: Re: [PATCH v2 1/2] dt-bindings: Add the binding doc for xilinx APM
 Content-Language: en-US
-To:     JiaJie Ho <jiajie.ho@starfivetech.com>,
-        Olivia Mackall <olivia@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
-References: <20221221090819.1259443-1-jiajie.ho@starfivetech.com>
- <20221221090819.1259443-3-jiajie.ho@starfivetech.com>
- <05aaa9f8-7a97-51c9-e18a-1c3753f2006b@linaro.org>
- <69dca1be673a40729d750c00d927b437@EXMBX168.cuchost.com>
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     git@amd.com, devicetree@vger.kernel.org, michal.simek@xilinx.com,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+References: <20221222084235.12235-1-shubhrajyoti.datta@amd.com>
+ <20221222084235.12235-2-shubhrajyoti.datta@amd.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <69dca1be673a40729d750c00d927b437@EXMBX168.cuchost.com>
+In-Reply-To: <20221222084235.12235-2-shubhrajyoti.datta@amd.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/12/2022 10:35, JiaJie Ho wrote:
-> 
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: Wednesday, December 21, 2022 5:49 PM
->> To: JiaJie Ho <jiajie.ho@starfivetech.com>; Olivia Mackall
->> <olivia@selenic.com>; Herbert Xu <herbert@gondor.apana.org.au>; Rob
->> Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
->> <krzysztof.kozlowski+dt@linaro.org>
->> Cc: Emil Renner Berthing <kernel@esmil.dk>; Conor Dooley
->> <conor.dooley@microchip.com>; linux-crypto@vger.kernel.org;
->> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-
->> riscv@lists.infradead.org
->> Subject: Re: [PATCH 2/3] hwrng: starfive - Add TRNG driver for StarFive SoC
->>
->> On 21/12/2022 10:08, Jia Jie Ho wrote:
->>> This adds driver support for the hardware random number generator in
->>> Starfive SoCs and adds StarFive TRNG entry to MAINTAINERS.
->>>
->>> Co-developed-by: Jenny Zhang <jenny.zhang@starfivetech.com>
->>> Signed-off-by: Jenny Zhang <jenny.zhang@starfivetech.com>
->>> Signed-off-by: Jia Jie Ho <jiajie.ho@starfivetech.com>
->>> ---
->>>  MAINTAINERS                            |   6 +
->>>  drivers/char/hw_random/Kconfig         |  11 +
->>>  drivers/char/hw_random/Makefile        |   1 +
->>>  drivers/char/hw_random/starfive-trng.c | 403
->>> +++++++++++++++++++++++++
->>>  4 files changed, 421 insertions(+)
->>>  create mode 100644 drivers/char/hw_random/starfive-trng.c
->>>
->>
->> (...)
->>
->>> +static const struct of_device_id trng_dt_ids[] = {
->>> +	{ .compatible = "starfive,jh7110-trng" },
->>> +	{ }
->>> +};
->>> +MODULE_DEVICE_TABLE(of, trng_dt_ids);
->>> +
->>> +static struct platform_driver starfive_trng_driver = {
->>> +	.probe	= starfive_trng_probe,
->>> +	.driver	= {
->>> +		.name		= "starfive-trng",
->>> +		.pm		= &starfive_trng_pm_ops,
->>> +		.of_match_table	= of_match_ptr(trng_dt_ids),
->>
->> of_match_ptr goes with __maybe_unused. You will have now warnings, so
->> please test more your patches (W=1, sparse, smatch).
->>
-> 
-> Hi Krzysztof,
-> 
-> Thanks for reviewing this patch.
-> How do I properly handle __maybe_unused functions in this scenario?
+On 22/12/2022 09:42, Shubhrajyoti Datta wrote:
+> The LogiCORE IP AXI Performance Monitor core enables AXI system
+> performance measurement for multiple slots (AXI4/AXI3/
+> AXI4-Stream/AXI4-Lite) activity. Add the devicetree binding for
+> xilinx APM.
 
-The same as in other files. Use `git grep`
-
-> Will it help if I add #define as follows:
-> 
-> #ifdef CONFIG_PM
-> #define STARFIVE_RNG_PM_OPS (&starfive_rng_pm_ops)
-> #else
-> #define STARFIVE_RNG_PM_OPS NULL
-> #endif
-
-I talked only about of_match_ptr(). This is not of_match_ptr and should
-have its own syntax (pm_sleep_ptr + static DEFINE_SIMPLE_DEV_PM_OPS)
+You did not implement what I asked for in the subject.
 
 > 
-> static struct platform_driver starfive_trng_driver = {
->         .probe  = starfive_trng_probe,
->         .driver = {
->                 .name           = "starfive-trng",
->                 .pm             = STARFIVE_RNG_PM_OPS,
->                 .of_match_table = of_match_ptr(trng_dt_ids),
->         },
-> };
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
 > 
-> I did build the patches with the tools mentioned but did not get warnings.
-> Do I need a specific version, or have I done something wrong?
+>  
+> ---
+> 
+> Changes in v2:
+>  - Use boolean for the values xlnx,enable-profile , xlnx,enable-trace
+> and xlnx,enable-event-count
+> - Update the file name
+> - use generic node name pmu
+> 
+>  .../bindings/perf/xlnx,axi-perf-monitor.yaml  | 133 ++++++++++++++++++
+>  1 file changed, 133 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/perf/xlnx,axi-perf-monitor.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/perf/xlnx,axi-perf-monitor.yaml b/Documentation/devicetree/bindings/perf/xlnx,axi-perf-monitor.yaml
+> new file mode 100644
+> index 000000000000..72843504c946
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/perf/xlnx,axi-perf-monitor.yaml
+> @@ -0,0 +1,133 @@
+> +# SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/perf/xlnx,axi-perf-monitor.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Xilinx Axi Performance Monitor
+> +
+> +maintainers:
+> +  - Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: xlnx,axi-perf-monitor
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  xlnx,profile:
+> +    description:
+> +      Has profile mode support. Event counting in profile mode consists of a
+> +      fixed number of accumulators for each AXI4/AXI3/AXI4-Lite slot. All the
+> +      events that can be counted are detected and given to the accumulator
+> +      which calculates the aggregate value. There is no selection of events,
+> +      and in this mode, event counting is done only on AXI4/AXI3/AXI4-Lite
+> +      monitor slots.
+> +    type: boolean
+> +
+> +  xlnx,trace:
+> +    description:
+> +      Has trace mode support. In trace mode, the APM provides event logging in a
+> +      reduced dynamic configuration. It captures the specified AXI events,
+> +      external events and the time stamp difference between two successive
+> +      events into the streaming FIFO. The selection of events to be captured
+> +      is set through parameter configuration. Streaming agents are not
+> +      supported in trace mode.
+> +    type: boolean
+> +
+> +  xlnx,num-monitor-slots:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Number of monitor slots.
+> +    minimum: 1
+> +    maximum: 8
+> +
+> +  xlnx,event-count:
+> +    description:
+> +      Has event counting capability..
 
-You just need proper COMPILE_TEST config with OF disabled.
+No need for double full stop.
+
+> +    type: boolean
+> +
+> +  xlnx,event-log:
+> +    type: boolean
+> +    description:
+> +      Has event logging support.
+> +
+> +  xlnx,have-sampled-metric-cnt:
+> +    type: boolean
+> +    description:
+> +      Sampled metric counters enabled in APM.
+> +
+> +  xlnx,metric-count-width:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +      - enum: [32, 64]
+
+Second time, the same problem. I wrote long time ago:
+"All of such comments apply everywhere."
+
+I'll stop review. Implement all the comments, not subset of them.
 
 Best regards,
 Krzysztof
