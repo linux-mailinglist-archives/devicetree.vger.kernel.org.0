@@ -2,72 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B42F653F30
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 12:43:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 68E7A653F40
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 12:47:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229682AbiLVLny (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 06:43:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45936 "EHLO
+        id S235538AbiLVLra (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 06:47:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235362AbiLVLnx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 06:43:53 -0500
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2521728E0D
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 03:43:51 -0800 (PST)
-Received: by mail-wr1-x442.google.com with SMTP id bx10so1392563wrb.0
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 03:43:51 -0800 (PST)
+        with ESMTP id S235480AbiLVLr1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 06:47:27 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7AA32314A
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 03:47:26 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id 1so2363904lfz.4
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 03:47:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:to:subject:message-id:date:from:sender
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=3gyKfH1jVj18fEKQnZBkdyaGFUJVDmsMmPjykh0Om1o=;
-        b=YkHrxqD4sO3G5OdaRYMBNK66/b2GumDMzHqowKw+Q+pBMKdGTbogYE38wchaj8Z0DZ
-         ZHT6qtrDIunho47DqIO1mKxzhJTG7wmOOczH/a1l2zWbRe+csaOOX7GGzs/OOMJYdUWi
-         C6muWPJcWhd5tOOq7NqveSXDeZnF0YrKIry05fDDl0rbaxvZk5bh0zb0lLTjSF0KehZd
-         dacVavl+tZ9rFiv+TApGvOGgQT2o4/VcybGLKYr7ol8tcsXmnA0e/L67KliX7KFpVeJI
-         Da5SDMlrJu2AbcUYUXDxIbFpwQRLftcg1v0CDl7zOhgsDCRHWAVtqZ/57j3w3tFASlRW
-         m0qg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0EHYXR6sSgB5vdGVmrtOtKLZP6yhiJpLufZUquvuMTM=;
+        b=pn1uImfgSjqommdSMhzsURLzDugGu0FTd7vckLh0eIppD+Hkw6yti7KierhwC+ebZK
+         YF138uC/8YhdSSV20XcVnzKKwga9gEKb1OcBV+e08oHnK+JtwEPEbB735yPazKU/no34
+         XDTspm8RPAH0vFr4eyWfXAmb8lnd2u+PpHJBrEeIE8NyCKdi4D61hKBafoBeLdnKj14V
+         mMeoiV/ttwezyotlUUS5QQqu0dXsDHglxuBhKe49Qn9dWEmYTIa7TYC8tFmAugoJS5/B
+         r0XnifxQkvH4tQF90cwlwL7BOj8N0wx2F/WMw04riTFamr+FzXbqRhlobs1jLiN4TepR
+         ny4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:to:subject:message-id:date:from:sender
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3gyKfH1jVj18fEKQnZBkdyaGFUJVDmsMmPjykh0Om1o=;
-        b=HSQn+Q8pV7ApX8dhTr+qYUibTJzw4CtLDnS/g5OMUWrBQhrrB0CM3GCtIT21LGzjis
-         qS9HeoaOq80+iUDWdd/38NiQgQpTp+Lkb2k6IX4c6zdPce+2XapgrxwsqS4SeXGC/oWb
-         2BsxNidfNcxa0adqnJuUAvQVjo6rkJ7XWhAq362eG7y5tVUm9MDbqkbU4bD/4J7Fy4zQ
-         YaSYuxD9HeKib1Pmc9gUarAnjqaCGdXFtwOx0WkvEuJA39yeE6yq6Q4e1uG2L18Vd1rI
-         txGacDqzla+58JNOOWJEw0w+Kw6zBnLjddX4DCxoVUUxAxWoIItojgQZJAq8fhRCR491
-         uRXA==
-X-Gm-Message-State: AFqh2kqdhyTcgMgVn7fA75mgNxuzCUHlxUBBcultW8NjrMn+ICAVPtpZ
-        e9RRGJsRhUeYt4FrOLtIoAz+v9xkUMZggPhJclw=
-X-Google-Smtp-Source: AMrXdXs4DPnlt15yBP9CrsT0i2C63UqlrUGHkqD+xK6DF3qdy3/SVB+FpnWB1evMdt8pD5J0IX43/dieoJqmL/jOpFY=
-X-Received: by 2002:adf:a1d5:0:b0:242:310a:300b with SMTP id
- v21-20020adfa1d5000000b00242310a300bmr194125wrv.698.1671709430244; Thu, 22
- Dec 2022 03:43:50 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0EHYXR6sSgB5vdGVmrtOtKLZP6yhiJpLufZUquvuMTM=;
+        b=D4IFUm5hgDaTsf/1M00bQbQLZrpQPC46dpeq1aQ1JAHZObllWVSzgtrugCo3PuSKDZ
+         hzqSvLnlN8qFPpFkvpLMlAlwC4Qb+m5hj6yNnqq/OzmruomaFZ8TshOpLrUObWYDN9wI
+         jN0rXSdiXLE52n5tGxrro72AxNEINOyOziGeC5tMGEFYDxzYoDJApHSXuPDojLK4jpqi
+         oWeI0tfRFCVY2D341Wc7kVEPeFS3BwrC2g0z8mJMpPGNLs9BWaJEhZx5KdTQ9pRY7HdS
+         W7Z0l/E66qa0cDl3zxuKfG/ajVj88kXW0NYGRKj0pkXDMXG1jtyLXMM38zoaBnMrV6ut
+         YNSQ==
+X-Gm-Message-State: AFqh2kr2rpXTaPOYP2VNXyREtbfDaFIxNJTAFcCzkFKf105wfcLI6Y1Z
+        bzcxiRPUGJeCHz9h2o4jq+DWdg==
+X-Google-Smtp-Source: AMrXdXvejv9SNAwlLbnZmw6FcDQmaKFCvnGJeIOT1kCLtjTtnwqqgUvY/tTwCYifiYAFep31jdzGkA==
+X-Received: by 2002:a05:6512:1582:b0:4b6:e494:a98d with SMTP id bp2-20020a056512158200b004b6e494a98dmr2133911lfb.44.1671709645143;
+        Thu, 22 Dec 2022 03:47:25 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id r12-20020ac25a4c000000b00492d064e8f8sm42937lfn.263.2022.12.22.03.47.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Dec 2022 03:47:24 -0800 (PST)
+Message-ID: <51770a1c-45f6-9f5a-871d-022cd78a0d4b@linaro.org>
+Date:   Thu, 22 Dec 2022 12:47:23 +0100
 MIME-Version: 1.0
-Sender: jombayo12@gmail.com
-Received: by 2002:a5d:4981:0:0:0:0:0 with HTTP; Thu, 22 Dec 2022 03:43:49
- -0800 (PST)
-From:   Fernando Roig <fernandoloans89@gmail.com>
-Date:   Thu, 22 Dec 2022 03:43:49 -0800
-X-Google-Sender-Auth: rBNFrpmK2oQqrn9IJGwfqm6cXlQ
-Message-ID: <CAOkyG6gf-ov9UJn8jhKY-mk+TtZ-LSBj8hGWTJk0swoCFb22Yw@mail.gmail.com>
-Subject: Schnelles und einfaches Weihnachtsdarlehensangebot zu 2 % Zinssatz
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=2.1 required=5.0 tests=BAYES_80,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Level: **
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v5 04/21] dt-bindings: msm: dsi-controller-main: Add
+ compatible strings for every current SoC
+Content-Language: en-US
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Cc:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
+        dmitry.baryshkov@linaro.org, sean@poorly.run, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org, dianders@chromium.org,
+        david@ixit.cz, krzysztof.kozlowski+dt@linaro.org,
+        swboyd@chromium.org, konrad.dybcio@somainline.org,
+        agross@kernel.org, andersson@kernel.org,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+References: <20221220123634.382970-1-bryan.odonoghue@linaro.org>
+ <20221220123634.382970-5-bryan.odonoghue@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221220123634.382970-5-bryan.odonoghue@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=20
-Brauchen Sie einen Kredit? Wenn ja, senden Sie uns jetzt eine E-Mail
-f=C3=BCr weitere Details
+On 20/12/2022 13:36, Bryan O'Donoghue wrote:
+> Currently we do not differentiate between the various users of the
+> qcom,mdss-dsi-ctrl. The driver is flexible enough to operate from one
+> compatible string but, the hardware does have some significant differences
+> in the number of clocks.
+> 
+> To facilitate documenting the clocks add the following compatible strings
+> 
+> - qcom,apq8064-dsi-ctrl
+> - qcom,msm8916-dsi-ctrl
+> - qcom,msm8953-dsi-ctrl
+> - qcom,msm8974-dsi-ctrl
+> - qcom,msm8996-dsi-ctrl
+> - qcom,msm8998-dsi-ctrl
+> - qcom,sc7180-dsi-ctrl
+> - qcom,sc7280-dsi-ctrl
+> - qcom,sdm660-dsi-ctrl
+> - qcom,sdm845-dsi-ctrl
+> - qcom,sm8250-dsi-ctrl
+> 
+> Each SoC dtsi should declare "qcom,socname-dsi-ctrl", "qcom,mdss-dsi-ctrl";
+> 
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>  .../display/msm/dsi-controller-main.yaml      | 20 +++++++++++++++----
+>  1 file changed, 16 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> index 6e2fd6e9fa7f0..01afa9e9c4b3c 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> @@ -14,9 +14,21 @@ allOf:
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - qcom,mdss-dsi-ctrl
+> -      - qcom,dsi-ctrl-6g-qcm2290
+> +    items:
+> +      - enum:
+> +          - qcom,apq8064-dsi-ctrl
+> +          - qcom,msm8916-dsi-ctrl
+> +          - qcom,msm8953-dsi-ctrl
+> +          - qcom,msm8974-dsi-ctrl
+> +          - qcom,msm8996-dsi-ctrl
+> +          - qcom,msm8998-dsi-ctrl
+> +          - qcom,dsi-ctrl-6g-qcm2290
+> +          - qcom,sc7180-dsi-ctrl
+> +          - qcom,sc7280-dsi-ctrl
+> +          - qcom,sdm660-dsi-ctrl
+> +          - qcom,sdm845-dsi-ctrl
+> +          - qcom,sm8250-dsi-ctrl
+
+Usual comment: can we keep the list sorted?
+
+Best regards,
+Krzysztof
+
