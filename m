@@ -2,150 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F0BD653E60
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 11:37:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C12E653E70
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 11:40:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235061AbiLVKhD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 05:37:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44274 "EHLO
+        id S235068AbiLVKkg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 05:40:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235206AbiLVKgz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 05:36:55 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29DFC62DD
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 02:36:53 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id b13so2125704lfo.3
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 02:36:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Y9FtXCraXeF1bNJWdq+qVeCXME0uFG8Ztiufy+tT/Ak=;
-        b=F49hpEpDvjixKw9Z3bdbgWi8NQQ3gWhE9qDeNcBGNCTnhdkBBzlbgtBQefuftVTnKt
-         q1uNjUbh8nTK/9mKc+Sb8VjzEC5Utoxm/kXSZRAX/qppkPsCAAQCYKO4joO8bUxTdEhK
-         FU1bBLFcvhz8OETmUj21d0/8/dmF/OWVbdYnP3Dq0nHng4b//sKKgZLqVmpJnT3zNrXN
-         xBszfcaRtSp+d/iVr/cdJmxqG7Bp5Nj5SQiqs+Rxv7AGTJkXrX98yC6zATuVI575uz74
-         FIDsazYuVfObNctM+sknwG8RsnnltH3NEMO5vFtq5RFfDhkCGYm8zQe3eh+V0QkLNdqK
-         qabg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y9FtXCraXeF1bNJWdq+qVeCXME0uFG8Ztiufy+tT/Ak=;
-        b=M/qnxQfXVSbFgEOQAV0bqRRw3iqUjJP4EziPzgUtjBc2ng27zJPATOa2gcfS5Nsf+N
-         Ulu7GgY3X/WdQKkz4ipSV9gsycGrCBXnWUeRWZok04mUy9iGzZ0Xa0uz6Y8aU575E7rm
-         66Rwg1tzHfp6u+qI9ffU2lIzjItzsMdH+Lk7AVu9kWj4VdcJnpTLQIWzv4K2SNavVr9j
-         A0f0azLiyPhULxs4JXEtuAhB851/uFvrMsabfuuwI48oFtd/UCjyz7pE6+sovP7A/6uB
-         D0Pqddfe6iRChBw5AWSCnCIicaS9PWoZyvelHM/ZM3wbiygSOMYG5A54ZLYy1bOYC9P7
-         eJzw==
-X-Gm-Message-State: AFqh2kqXFvl8tLxr8JrlvI4htc6U2cqAR6IoNGU9n6ZN5czDF8hkDGmS
-        CqyqXktUcK1UFRwAsng8EUW00w==
-X-Google-Smtp-Source: AMrXdXvu1EoX1irEwWg7GOK/BhvjZeB+FZsY9+ZwXfr7eosom0HjDQRzGk0P6ZYQtqF+PJQIGetZYw==
-X-Received: by 2002:a05:6512:3c89:b0:4b6:fddc:1fcd with SMTP id h9-20020a0565123c8900b004b6fddc1fcdmr3402492lfv.23.1671705411525;
-        Thu, 22 Dec 2022 02:36:51 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id v26-20020a05651203ba00b004b593fd84ccsm26971lfp.221.2022.12.22.02.36.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Dec 2022 02:36:51 -0800 (PST)
-Message-ID: <7d45c125-e4f5-b03f-45d6-3ecf87b2f09d@linaro.org>
-Date:   Thu, 22 Dec 2022 11:36:49 +0100
+        with ESMTP id S235120AbiLVKkT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 05:40:19 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 653136454;
+        Thu, 22 Dec 2022 02:40:16 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2BMAe4lr040147;
+        Thu, 22 Dec 2022 04:40:04 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1671705604;
+        bh=1jT5Fj1arrg7WdmKeWHfIf5n+IT2qdlbceDBEC4vDg4=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=UXhHWEknsrR+NJFGPf1lAwYPquGkdhO0h2U/BTd4HKSHbvHSoSQTY91I7iLg0cm4N
+         Nt3ieC2hXfDlr9QWK3sQN70RYhLCj5ZZq8CA7AKNrKINkXvthK2CPvHOwP5+qK5CAb
+         AfPigBZiJEcJnRrWU1zHWcAnRTvpqGMaq91LoO+M=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2BMAe4oP071291
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 22 Dec 2022 04:40:04 -0600
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 22
+ Dec 2022 04:40:04 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Thu, 22 Dec 2022 04:40:04 -0600
+Received: from [10.250.234.78] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2BMAdn6v034347;
+        Thu, 22 Dec 2022 04:39:53 -0600
+Message-ID: <a22a2c32-3b52-8bdf-f959-c95554125c64@ti.com>
+Date:   Thu, 22 Dec 2022 16:09:47 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v4 1/4] dt-bindings: arm-smmu: Document smmu-500 binding
- for SM6125
+ Thunderbird/102.4.2
+Subject: Re: [EXTERNAL] Re: [PATCH] arm64: dts: ti: k3-j721s2: Add support for
+ ADC nodes
 Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        phone-devel@vger.kernel.org, Will Deacon <will@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Lux Aliaga <they@mint.lgbt>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Thierry Reding <treding@nvidia.com>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20221216215819.1164973-1-marijn.suijten@somainline.org>
- <20221216215819.1164973-2-marijn.suijten@somainline.org>
- <306709f8-7d45-9b76-f95b-1b3088d37a78@linaro.org>
- <6d263321-782d-9d9c-4fdf-8bcf5b280779@linaro.org>
- <20221219192839.6oqialqqw5xw5fxa@SoMainline.org>
- <b4186ec6-a3f2-4dfb-a83e-25cf6d460a39@linaro.org>
- <20221222082353.lhdw7h3pdqyyvsxy@SoMainline.org>
- <a251f29d-58b7-5ccb-2661-a397e41fba80@linaro.org>
- <20221222101012.ptrrugxj3ksiyitn@SoMainline.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221222101012.ptrrugxj3ksiyitn@SoMainline.org>
-Content-Type: text/plain; charset=UTF-8
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
+        <kristo@kernel.org>, <nm@ti.com>
+References: <20221220101249.46450-1-b-kapoor@ti.com>
+ <ff5b09db-4900-0b5b-e821-fa05b8d907a4@linaro.org>
+ <a4d11974-eb97-bfa2-790f-3016950ea961@ti.com>
+ <79ffe459-3827-ea67-e854-8eef3d9b630b@linaro.org>
+From:   Bhavya Kapoor <b-kapoor@ti.com>
+In-Reply-To: <79ffe459-3827-ea67-e854-8eef3d9b630b@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/12/2022 11:10, Marijn Suijten wrote:
-> On 2022-12-22 10:29:40, Krzysztof Kozlowski wrote:
->> On 22/12/2022 09:23, Marijn Suijten wrote:
->>> On 2022-12-20 10:52:49, Krzysztof Kozlowski wrote:
->>>> On 19/12/2022 20:28, Marijn Suijten wrote:
->>>>> On 2022-12-19 10:09:03, Krzysztof Kozlowski wrote:
->>>>>> On 19/12/2022 10:07, Krzysztof Kozlowski wrote:
->>>>>>> On 16/12/2022 22:58, Marijn Suijten wrote:
->>>>>>>> From: Martin Botka <martin.botka@somainline.org>
->>>>>>>>
->>>>>>>> Document smmu-500 compatibility with the SM6125 SoC.
->>>>>>>>
->>>>>>>
->>>>>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>>>
->>>>>> Wait, not entirely... no constraints for clocks and regs?
->>>>>
->>>>> Quite odd that there is no warning for my DT patch as it clearly
->>>>> requires at least one clock...
+
+On 21/12/22 13:24, Krzysztof Kozlowski wrote:
+> On 21/12/2022 06:42, Bhavya Kapoor wrote:
+>> On 20/12/22 16:20, Krzysztof Kozlowski wrote:
+>>> On 20/12/2022 11:12, Bhavya Kapoor wrote:
+>>>> J721s2 has two instances of 8 channel ADCs in MCU domain. Add DT nodes
+>>>> for 8 channel ADCs for J721s2 SoC.
+>>>>
+>>>> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+>>>> ---
+>>>>    .../dts/ti/k3-j721s2-common-proc-board.dts    | 14 +++++++
+>>>>    .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     | 42 ++++++++++++++++++-
+>>>>    2 files changed, 55 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+>>>> index a7aa6cf08acd..67593aa69327 100644
+>>>> --- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+>>>> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+>>>> @@ -309,3 +309,17 @@ &mcu_mcan1 {
+>>>>    	pinctrl-0 = <&mcu_mcan1_pins_default>;
+>>>>    	phys = <&transceiver2>;
+>>>>    };
+>>>> +
+>>>> +&tscadc0 {
+>>>> +	status = "okay";
+>>>> +	adc {
+>>>> +		ti,adc-channels = <0 1 2 3 4 5 6 7>;
+>>>> +	};
+>>>> +};
+>>>> +
+>>>> +&tscadc1 {
+>>>> +	status = "okay";
+>>>> +	adc {
+>>>> +		ti,adc-channels = <0 1 2 3 4 5 6 7>;
+>>>> +	};
+>>>> +};
+>>>> \ No newline at end of file
+>>> This is a friendly reminder during the review process.
 >>>
->>> Again, any idea why there's no warning for this DT mismatching minItems:
->>> 1 for clocks, clock-names and power-domains?
+>>> It seems my previous comments were not fully addressed. Maybe my
+>>> feedback got lost between the quotes, maybe you just forgot to apply it.
+>>> Please go back to the previous discussion and either implement all
+>>> requested changes or keep discussing them.
+>>>
+>>> Thank you.
+>>>
+>>> Best regards,
+>>> Krzysztof
+>> Hi , I thought i did addressed the feedback since tscadc is just a
+>> wrapper node.
 >>
->> I don't know what do you have in DT and what is mismatched. Why there
->> should be a warning?
-> 
-> There is:
-> 
->   clock-names:
->     minItems: 1
->     maxItems: 7
-> 
->   clocks:
->     minItems: 1
->     maxItems: 7
-> 
-> But I did not provide _any_ (see patch 2 of this series).  Shouldn't
-> that trigger a warning?
+>> The actual adc node is inside of tscadc node.
+> Read the feedback, from all emails.
+> Best regards,
+> Krzysztof
 
-No. Are these required properties?
 
-Best regards,
-Krzysztof
+Hi , i have gone through all earlier mails but can't find anything else. 
+Can you point out again whats the issue.
+
+Regards
 
