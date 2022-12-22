@@ -2,132 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2714E654632
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 19:54:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA5B365463A
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 19:58:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235107AbiLVSya (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 13:54:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60668 "EHLO
+        id S229524AbiLVS6Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 13:58:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231454AbiLVSyN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 13:54:13 -0500
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EA63275DA
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 10:53:30 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id tz12so6977188ejc.9
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 10:53:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZcsqGPg6FZAoLHqSnlhY2ZqAO977IJDvTdbEOzXS1SA=;
-        b=AamEj6mQ2MbxRL2eTQGNKqmtoyHbk3rHDzkRcFN6JuRLM98nQ/XJwAS2oV1KzfiTG3
-         KASKWAosayh8tChJjITyM7qtpCbQmvCZoGsUz6zA82x+iqbXvIjaRSr/hoBQRO7TVY2g
-         ahPYr09u+OlpS6QVItdO9QwhJ3xF09lfs9xGI=
+        with ESMTP id S229984AbiLVS6Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 13:58:24 -0500
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E59223397;
+        Thu, 22 Dec 2022 10:58:24 -0800 (PST)
+Received: by mail-ot1-f49.google.com with SMTP id k7-20020a056830168700b0067832816190so1611371otr.1;
+        Thu, 22 Dec 2022 10:58:24 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZcsqGPg6FZAoLHqSnlhY2ZqAO977IJDvTdbEOzXS1SA=;
-        b=zSzfqry75fXysRLzwAA3MNTcJMngqioyZVQn4agH2V/GrY+XUE9mhv+AwIWDRBMcgK
-         2hU1j+PTS+j6vmyoD+JVhw0emNKLiiLqNs7PZmZ4OObCdAbIvRAY++Wp/w72V6/2ccgu
-         UOKBEtmdipVyCfe34/WsTVDpTz31R64y//ifMpzFsIwovsdk06hBGVusyR1D16X6Hw5t
-         VURztr0cZISxkK+5XGLtp8ZnjSSnCZkcVdxHnrrLOIqLe1f9ofFBF6MgtGx9ktYFsp/L
-         1JEaHXNcHdA0IHWUCsZwGhiwVjUW1vxpxDze4Yz9/Qc7SgFOWpEJL9CsDDS1hsfPH96T
-         uXjw==
-X-Gm-Message-State: AFqh2krawuQIZiFVRvRlnkLTxdXWh92ZeTR/FPRTgHvEGlnnE19c4GAT
-        Sy5k8HAVXy+bcqKnryiIHt0hCU8UsSn1og5p8m8=
-X-Google-Smtp-Source: AMrXdXtv2wzT5ImpuPn7M93MXlHCzgwXss6BEQnYroXqB3pgANeingEvqOOMeS8C6p5eg9+zQRfcpA==
-X-Received: by 2002:a17:906:f6c1:b0:7cd:ffd:51f2 with SMTP id jo1-20020a170906f6c100b007cd0ffd51f2mr6275241ejb.57.1671735209108;
-        Thu, 22 Dec 2022 10:53:29 -0800 (PST)
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com. [209.85.128.46])
-        by smtp.gmail.com with ESMTPSA id q9-20020a170906770900b0078ddb518a90sm503504ejm.223.2022.12.22.10.53.27
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Dec 2022 10:53:27 -0800 (PST)
-Received: by mail-wm1-f46.google.com with SMTP id bg10so2109232wmb.1
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 10:53:27 -0800 (PST)
-X-Received: by 2002:a05:600c:4aa8:b0:3d0:69f4:d3d0 with SMTP id
- b40-20020a05600c4aa800b003d069f4d3d0mr298494wmp.93.1671735207659; Thu, 22 Dec
- 2022 10:53:27 -0800 (PST)
-MIME-Version: 1.0
-References: <20221222151319.122398-1-krzysztof.kozlowski@linaro.org> <20221222151319.122398-3-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221222151319.122398-3-krzysztof.kozlowski@linaro.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 22 Dec 2022 10:53:15 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=WWPe9bBP2z6Q3GOaGr-5U9conGq4d8obwVCxQtZ7rAUw@mail.gmail.com>
-Message-ID: <CAD=FV=WWPe9bBP2z6Q3GOaGr-5U9conGq4d8obwVCxQtZ7rAUw@mail.gmail.com>
-Subject: Re: [PATCH v4 3/4] arm64: dts: qcom: sdm845: align TLMM pin
- configuration with DT schema
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Joel Selvaraj <joelselvaraj.oss@gmail.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Caleb Connolly <caleb@connolly.tech>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fhbyt8tYgm2186gecgii/47TQCYcaECmRYTmYzgGwIU=;
+        b=gl2ElP+Q/yfaIT8OvrcoXe9/SHAkXmXDk2swpE8IMaZ845oqAD6ViBUFUTty29UV+U
+         dk2glZRI1rb85lQ7Y23mKPy/oIMYY3Kx0N0UbjDEDoK+jvKly16D+BqiOd6QOnEUh2Cz
+         //SZPHdDfDtI9pDakOZGOjRllUTaOVZdzIiwT+B4Sr+DWW6cC7dJ9YNcCQ2FSsG1hwzL
+         FecxAkuCyXQMaC1Ed3wNMYw025hkeo7dYluEWNBbYhLHbimZafoS6SpBfLwUxKZuSRSQ
+         CZoNEhv2zidO/HO1fz8mmozwsTQVbiLnJ2F2xgN3UV3bdWhmCOdqKV0RiRctCIDnLFeU
+         xwWA==
+X-Gm-Message-State: AFqh2ko7jVvrzrmBx4CWn272eh1qOJfxY6s3OzEaL60yYWQJoQSnlmZf
+        EZwu2VaW5/BBLcn5W0MTCpu5Shki+g==
+X-Google-Smtp-Source: AMrXdXvVxDqgiagVMWlnoZXL5Ms8BxpgU7uL4iEG2MUuqKwAEKuN6mdiazLgqReWxfcghnO3M2QriQ==
+X-Received: by 2002:a9d:7507:0:b0:66d:a04b:eeac with SMTP id r7-20020a9d7507000000b0066da04beeacmr3123066otk.30.1671735503321;
+        Thu, 22 Dec 2022 10:58:23 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id e20-20020a0568301f3400b0066e820696edsm667677oth.13.2022.12.22.10.58.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Dec 2022 10:58:23 -0800 (PST)
+Received: (nullmailer pid 1908218 invoked by uid 1000);
+        Thu, 22 Dec 2022 18:58:22 -0000
+Date:   Thu, 22 Dec 2022 12:58:22 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Emekcan Aras <emekcan.aras@arm.com>
+Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Miguel Silva <rui.silva@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Subject: Re: [PATCH v3 0/2] adds corstone500 device tree
+Message-ID: <20221222185822.GB1897073-robh@kernel.org>
+References: <20221222123244.147238-1-emekcan.aras@arm.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221222123244.147238-1-emekcan.aras@arm.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, Dec 22, 2022 at 12:32:42PM +0000, Emekcan Aras wrote:
+> Adds device tree and correspondent binding for ARM Corstone500 reference 
+> solution. 
+> 
+> Thanks for the comments, and sorry for the late reply. Most of the comments are
+> addressed except one.
+> 
+> @Krzysztof Kozlowski: Thanks a lot for the comments. I've tried to fixed all of 
+> them. Just have one question regarding having no dtsi or compatible platform.
+> Corstone500 is a reference hardware design, however there is no silicon solution
+> from it yet. And from device tree perspective, both FPGA and FVP (virtual 
+> platform) implementations are identical(same addresses and same nodes, etc.).
 
-On Thu, Dec 22, 2022 at 7:13 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> DT schema expects TLMM pin configuration nodes to be named with
-> '-state' suffix and their optional children with '-pins' suffix.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
-> ---
->
-> Cc: Doug Anderson <dianders@chromium.org>
->
-> Tested on Qualcomm RB3. Please kndly test a bit more on other devices.
-> This should not have an functional impact.
->
-> Changes since v3:
-> 1. db845c: drop qup_uart3_default override and use qup_uart3_4pin
->    (Doug).
->
-> Changes since v2:
-> 1. Bring back UART6 4-pin bias/drive strength to DTSI.
->
-> Changes since v1:
-> 1. Address comments and implement conclusion with Doug.  Drop
->    default-pins/pinmux/mux/config nodes but instead add subnodes for
->    specific pins for UARTs.  This should match approach used for SC7180.
->
-> v1: https://lore.kernel.org/linux-kernel/1b9dcca8-1abd-99a3-da12-a8763bf77f12@linaro.org/
-> ---
->  arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi    | 397 ++++------
->  arch/arm64/boot/dts/qcom/sdm845-db845c.dts    |  93 +--
->  .../arm64/boot/dts/qcom/sdm845-lg-common.dtsi |  60 +-
->  arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts |   2 +-
->  arch/arm64/boot/dts/qcom/sdm845-mtp.dts       |  77 +-
->  .../boot/dts/qcom/sdm845-oneplus-common.dtsi  | 101 +--
->  .../boot/dts/qcom/sdm845-shift-axolotl.dts    | 150 ++--
->  .../dts/qcom/sdm845-sony-xperia-tama.dtsi     |   6 +-
->  .../qcom/sdm845-xiaomi-beryllium-common.dtsi  |  12 +-
->  .../boot/dts/qcom/sdm845-xiaomi-polaris.dts   |  21 +-
->  arch/arm64/boot/dts/qcom/sdm845.dtsi          | 689 ++++++++----------
->  .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts |  53 +-
->  .../boot/dts/qcom/sdm850-samsung-w737.dts     | 121 +--
->  13 files changed, 701 insertions(+), 1081 deletions(-)
+Does the FVP support virtio devices? Other FVP models do.
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> So we didn't want to create a seperate dtsi file. What would you recommend here
+> ? Can you point me to a device tree from a similar platform?
+> 
+> Cheers,
+> Emek
+> 
+> Emekcan Aras (2):
+>   arm: dts: arm: add arm corstone500 device tree
+>   dt-bindings: Add Arm corstone500 platform
+> 
+>  .../bindings/arm/arm,corstone500.yaml         |  30 +++
+>  arch/arm/boot/dts/Makefile                    |   3 +-
+>  arch/arm/boot/dts/corstone500.dts             | 182 ++++++++++++++++++
+>  3 files changed, 214 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/devicetree/bindings/arm/arm,corstone500.yaml
+>  create mode 100644 arch/arm/boot/dts/corstone500.dts
+> 
+> -- 
+> 2.25.1
+> 
+> 
