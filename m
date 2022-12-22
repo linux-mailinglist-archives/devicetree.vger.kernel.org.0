@@ -2,215 +2,294 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F6046545C6
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 18:56:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0ACEB6545CE
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 19:06:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231233AbiLVR4I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 12:56:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44400 "EHLO
+        id S229660AbiLVSGb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 13:06:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231259AbiLVR4H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 12:56:07 -0500
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 082162876B;
-        Thu, 22 Dec 2022 09:56:05 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2BMHtojr030741;
-        Thu, 22 Dec 2022 11:55:50 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1671731750;
-        bh=HEPNELefQY8vutwbS0sibDLyacHcL0+Y8msG5+P4E+M=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=wTc4sdpHCm+iPiR/Ab41EKgGo47UJhvf5ULbwujKxJqbn7RBH9nZAYnfsR7Fcn7B0
-         f/g6DClbCUeYWgFchIZgUdufRpjXLo8B0RxaT6JHl0VwJmFFjfrM2UrmEYe8ssMx7d
-         fGwJu7ylUWSZ7PQi9+hCUD9FwO82gNHBnc2mT1W4=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2BMHtocF017816
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 22 Dec 2022 11:55:50 -0600
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 22
- Dec 2022 11:55:50 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Thu, 22 Dec 2022 11:55:50 -0600
-Received: from [10.250.232.188] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2BMHtkjH040419;
-        Thu, 22 Dec 2022 11:55:46 -0600
-Message-ID: <d8aaea9b-dc3a-66ba-6bd3-e400be204013@ti.com>
-Date:   Thu, 22 Dec 2022 23:25:45 +0530
+        with ESMTP id S229545AbiLVSGa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 13:06:30 -0500
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5875C15804;
+        Thu, 22 Dec 2022 10:06:29 -0800 (PST)
+Received: by mail-oi1-f175.google.com with SMTP id c129so2627963oia.0;
+        Thu, 22 Dec 2022 10:06:29 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lnwlcEHISNopnq+CmFljTGKvcGCFq1+OvWw4yrNda2k=;
+        b=Il+AyQwsNBwnxSZgBwJuj1YYR88XQf0rhM8fno5g57ZhR9OaMdMSfb95Qi+D3bKFNB
+         /siKZc9lYxobyMscxakMk7SPzDJI0Uel0wxtYLmDyNG2825n/AMWzC7SYvi0OLd6/2sn
+         hg+DFw7AF5oPcSfcHzwt+stQLrBfKWkaNZeDEc9VOvbnDfBfO5iAH0phxBYh2d9wLYAs
+         PZvPniYYDVx3XKQhPZQCS+NxmCJ3fa9Vzqs5xiJItOBZQrPhNsxTFdBM41cUo6qzy9ns
+         MTQEOgidpelqc+iP1evElXX2e+PupvtNTXkJT/1dC3mlrClF8NW7Puj3Mo6IhmwPYTVL
+         Lp8w==
+X-Gm-Message-State: AFqh2koz9sGqT26VZvTJwCOXKdsjrWSafU4XKQRLDN/TfuesjFcl4MmX
+        XgSEHjIkMr98XC/NQlCqQA==
+X-Google-Smtp-Source: AMrXdXtk+Mko16yvalIZW/LDiiAqzitC2SvlNmtRx2poVHSuQ4sMiV+x+LWhDW3u3x4vmThZkw7aiw==
+X-Received: by 2002:a05:6808:2197:b0:360:d8ca:b809 with SMTP id be23-20020a056808219700b00360d8cab809mr12491600oib.28.1671732388461;
+        Thu, 22 Dec 2022 10:06:28 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id m1-20020a05683026c100b0067c87f23476sm596245otu.57.2022.12.22.10.06.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Dec 2022 10:06:28 -0800 (PST)
+Received: (nullmailer pid 1797084 invoked by uid 1000);
+        Thu, 22 Dec 2022 18:06:27 -0000
+Date:   Thu, 22 Dec 2022 12:06:27 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
+        atishp@rivosinc.com, Conor Dooley <conor.dooley@microchip.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org, apatel@ventanamicro.com
+Subject: Re: [PATCH v1] dt-bindings: riscv: add SBI PMU event mappings
+Message-ID: <20221222180627.GA1748427-robh@kernel.org>
+References: <20221221141548.274408-1-conor@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v3 4/4] arm64: dts: ti: Add support for J784S4 EVM board
-Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>, Andrew Davis <afd@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, Hari Nagalla <hnagalla@ti.com>
-References: <20221116130428.161329-1-a-nandan@ti.com>
- <20221116130428.161329-5-a-nandan@ti.com>
- <b57433e7-b309-bd1c-f794-3da74021f03c@ti.com>
- <20221118174754.y37pq77drvla2uxj@tinderbox>
- <8c123fa2-caab-d2dd-5eb4-688f1c6abb33@ti.com>
- <20221118180808.wnel7d6gswsnooww@junkman>
- <93242211-95e7-09a0-fced-5ef2deb9fc08@ti.com>
- <20221118192744.wish2vrxgy7dg7c2@unnerving>
- <3d5e41f6-16a8-4298-ccd3-6db60f94eb47@ti.com>
- <20221118221534.52rfyf5gsck3xrrb@sauciness>
-From:   Apurva Nandan <a-nandan@ti.com>
-In-Reply-To: <20221118221534.52rfyf5gsck3xrrb@sauciness>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221221141548.274408-1-conor@kernel.org>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Dec 21, 2022 at 02:15:49PM +0000, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
+> The SBI PMU extension requires a firmware to be aware of the event to
+> counter/mhpmevent mappings supported by the hardware. OpenSBI may use
+> DeviceTree to describe the PMU mappings. This binding is currently
+> described in markdown in OpenSBI (since v1.0 in Dec 2021) & used by QEMU
+> since v7.2.0.
+> 
+> Import the binding for use while validating dtb dumps from QEMU and
+> upcoming hardware (eg JH7110 SoC) that will make use of the event
+> mapping.
+> 
+> Link: https://github.com/riscv-software-src/opensbi/blob/master/docs/pmu_support.md
+> Co-developed-by: Atish Patra <atishp@rivosinc.com>
+> Signed-off-by: Atish Patra <atishp@rivosinc.com>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> I asked Rob on IRC about these bindings a few weeks ago & he said he
+> would be willing to take them. I have modified wording slightly in the
+> descriptions, but have mostly left things as close to the OpenSBI
+> documentation as possible.
 
-On 19/11/22 03:45, Nishanth Menon wrote:
-> On 15:08-20221118, Andrew Davis wrote:
->> On 11/18/22 1:27 PM, Nishanth Menon wrote:
->>> On 12:15-20221118, Andrew Davis wrote:
->>>> I don't see either of those addressed in that thread, only that
->>>> the aliases should go in the .dts files and be trimmed, nothing
->>> Key is trimmed to what the system and ecosystem needs.
->>>
->>>> stops us from:
->>>>
->>>> chosen {
->>>> 	stdout-path = "serial10:115200n8";
->>>> };
->>>>
->>>> aliases {
->>>> 	serial10 = &main_uart8;
->>>> };
->>> Do we need 10 serial aliases? There are'nt 10 serial ports exposed in
->>> j782s2. ok - lets say we do this, then: [1] is needed to boot? but why
->>> do we need to do that for all armv8 platforms when aliases allows us
->> Why do we need SERIAL_8250_NR_UARTS at all, might be a better question.
->> These should be dynamically allocated if the number goes over the
->> default count imposed by the TTY framework. Maybe folks are still a
->> bit too afraid to touch the TTY subsystem core, I don't blame them..
->>
->>> to trim it to just the 3 or 4 serial ports the platform really needs
->>> That + being able to use the convention that serial2 is always linux
->>> console, is'nt that a good thing? Hence recommending to just expose the
->>> serialports as aliases to exactly what we need while keeping serial2 as
->>> the linux console (which in this case happens to be main_uart8 - example
->>> as j721s2 does).
->>>
->> "serial2 as the linux console" is *not* a convention, we just don't want to
->> fix up our bootloader/userspace to actually reason about what serial ports to
->> put logins on. Why not make ttyS10 the default, or ttyS666, it doesn't solve
->> your multi-distro issue either way since they usually only start a login on
->> ttyS0, console=, and/or the first virtual tty. Never on ttyS2. So you are
->> hacking up DT for a solution that doesn't do what you want in the end.
-> ttyS2 is an accidental convention not a "by design" or definition
-> convention. I suspect we ended up here from old OMAP days - all
-> platforms in k3 ended up with ttyS2. In hindsight, if I had to do it
-> by design, I would probably have picked ttyS0, well, we did'nt.
->
-> $ git grep stdout-path arch/arm/boot/dts|grep serial|cut -d '=' -f 2|cut -d ':' -f1|grep -v '&'|sort|uniq -c
->      379  "serial0
->       21  "serial1
->       33  "serial2
->       13  "serial3
->        1  "/slaves@3e000000/serial@0
->
-> $ git grep stdout-path arch/arm64/boot/dts|grep serial|cut -d '=' -f 2|cut -d ':' -f1|grep -v '&'|sort|uniq -c
->      245  "serial0
->       17  "serial0";
->        7  "serial1
->       49  "serial2
->        3  "serial3
->        2  "serial4
->        2  "serial5
->        2  "serial6
->
-> $ git grep stdout-path arch/arm64/boot/dts/ti|grep serial|cut -d '=' -f 2|cut -d ':' -f1|grep -v '&'|sort|uniq -c
->        8  "serial2
->        1  "serial3
->
-> I don't buy the argument here for 1-1 mapping of aliased serial
-> instances to instances - why should main_uart8 be ttyS10, why not
-> ttyS8 (it is equally valid - why was it called uart8?).. That mapping
-> is just a convention we are choosing to create.
->
-> The iot2050 ecosystem picked ttyS3 as the linux console for reasons of
-> that ecosystem. K3 so far has selected ttyS2 as the convention for
-> console - no matter where the serial instances have been located.
->
-> I want to maintain consistency of existing TI platforms here without
-> needing to shove a dozen things on existing users (yes j78-evm is a new
-> board, but it is within the existing k3 s/w ecosystem and yes, getty,
-> systemd etc are smarter today than once upon a time)
->
-> So, given TI K3 history does'nt follow rest of the non-TI instances
-> unfortunately - and I am going to put my foot down here - serial8 or 10
-> is "fake" anyways - rationalization can be made in different ways. So
-> pushing for one over the other is not something I will entertain.
->
->  From usage model point of view - serial0 will be the best candidate as
-> console followed by serial2 (purely statistically speaking). In K3
-> context, it is just serial2 in TI board ecosystem.
->
-> That is a discussion for pros and cons - Open to hearing opinions.
-> Unless I hear 1000% strong reasons with _backing data_ - not an
-> subjective "it is correct thing to do" - why we'd want to move TI
-> board ecosystem (including all the pains of bootloader combinations
-> etc) switch over to ttyS0[1], having a mix and churn for the s/w
-> ecosystem of having to deal with ttyS0 and ttyS2 nodes in arm64/dts/ti
-> at least for the TI board ecosystem.. I cant see why i want to put the
-> ecosystem through another churn on consoles.. But, fine, i will keep
-> my ears open. If there are no strong arguments with _data_, then we
-> stick with serial2 and y'all can curse me for another decade+ for that
-> call :)
->
-> [1] I have'nt forgotten ttyO2 to ttyS2 transition of OMAP
->   https://duckduckgo.com/?q=ttyO2+to+ttyS2+omap
+Please CC the perf maintainers. Might be crickets, but so they at least 
+have a chance to see it.
 
+> 
+> I'm not super sure about what I've done with the properties being
+> correct type wise, I went digging in bindings and am sorta using the
+> first thing that "fit".
+> 
+> Since you wrote the md doc Atish, I put your co-developed-by. OpenSBI
+> is BSD-2-Clause licensed so I am also unsure as to what license I can
+> use for this binding since that's where I took it from.
+> ---
+>  .../devicetree/bindings/perf/riscv,pmu.yaml   | 158 ++++++++++++++++++
+>  1 file changed, 158 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/perf/riscv,pmu.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/perf/riscv,pmu.yaml b/Documentation/devicetree/bindings/perf/riscv,pmu.yaml
+> new file mode 100644
+> index 000000000000..d65f937680af
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/perf/riscv,pmu.yaml
+> @@ -0,0 +1,158 @@
+> +# SPDX-License-Identifier: BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/perf/riscv,pmu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: RISC-V SBI PMU events
+> +
+> +maintainers:
+> +  - Atish Patra <atishp@rivosinc.com>
+> +
+> +description: |
+> +  SBI PMU extension supports allow supervisor software to configure, start &
+> +  stop any performance counter at anytime. Thus, a user can leverage full
+> +  capability of performance analysis tools such as perf if the SBI PMU
+> +  extension is enabled. The OpenSBI implementation makes the following
+> +  assumptions about the hardware platform:
+> +    MCOUNTINHIBIT CSR must be implemented in the hardware. Otherwise, the SBI
+> +    PMU extension will not be enabled.
+> +
+> +    The platform must provide information about PMU event to counter mapping
+> +    via device tree or platform specific hooks. Otherwise, the SBI PMU
+> +    extension will not be enabled.
+> +
+> +    The platforms should provide information about the PMU event selector
+> +    values that should be encoded in the expected value of MHPMEVENTx while
+> +    configuring MHPMCOUNTERx for that specific event. This can be done via a
+> +    device tree or platform specific hooks. The exact value to be written to
+> +    the MHPMEVENTx is completely dependent on the platform. The generic
+> +    platform writes the zero-extended event_idx as the expected value for
+> +    hardware cache/generic events as suggested by the SBI specification.
+> +
+> +properties:
+> +  compatible:
+> +    const: riscv,pmu
+> +
+> +  riscv,event-to-mhpmevent:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> +    description:
+> +      Represents an ONE-to-ONE mapping between a PMU event and the event
+> +      selector value that platform expects to be written to the MHPMEVENTx CSR
+> +      for that event.
+> +      The mapping is encoded in an array format where each row represents an
 
-Hi all,
+s/array/matrix/
 
-I agree that there could be different standpoints on the aliasing of serial,
-and the current way might not be the right way, but we have been using that
-a quite long without any issues. (All K3 platforms use the same serial2 for
-console).
+> +      event. The first element represents the event idx while the second &
+> +      third elements represent the event selector value that should be encoded
+> +      in the expected value to be written in MHPMEVENTx.
+> +      This property shouldn't encode any raw hardware event.
+> +    minItems: 1
+> +    maxItems: 255
+> +    items:
+> +      $ref: /schemas/types.yaml#/definitions/uint32-array
 
-IMO, if needed, the right way to change to other serial would be to:
-1. Change all the serial aliases across K3 platforms, along with other
-serial dependencies in userspace.
-2. And have that as a separate patch series, i.e. a series that changes 
-all the
-incorrect aliases across K3 platforms. And this J784S4 patch series is 
-not that
-one.
+Huh? A property can only have 1 type. I wonder what the tools do with 
+this...
 
-Coming to a consensus would take time, lets do that separately and no 
-point blocking
-this series for it. All the previous platforms use the serial2 for 
-console uart
-and I will post my next series with the same. If there is a need to 
-change the serial
-aliasing, change it across all previous platforms in a separate patch 
-series.
+> +      maxItems: 3
 
--- 
-Thanks and regards,
-Apurva Nandan,
-Texas Instruments India.
+Better to do:
 
+         items:
+           - description: what's in the 1st word
+           - description: what's in the 2nd word
+           - description: what's in the 3rd word
+
+And rework the overall description to not say the same thing.
+
+> +
+> +  riscv,event-to-mhpmcounters:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> +    description:
+> +      Represents a MANY-to-MANY mapping between a range of events and all the
+> +      MHPMCOUNTERx in a bitmap format that can be used to monitor these range
+> +      of events. The information is encoded in an array format where each
+> +      row represents a certain range of events and corresponding counters.
+> +      The first element represents starting of the pmu event id and 2nd column
+> +      represents the end of the pmu event id. The third element represent a
+> +      bitmap of all the MHPMCOUNTERx.
+> +      This property is mandatory if event-to-mhpmevent is present. Otherwise,
+> +      it can be omitted.
+
+No need to state this in freeform text, use 'dependencies'.
+
+> +      This property shouldn't encode any raw event.
+> +    minItems: 1
+> +    maxItems: 255
+> +    items:
+> +      $ref: /schemas/types.yaml#/definitions/uint32-array
+> +      maxItems: 3
+> +
+> +  riscv,raw-event-to-mhpmcounters:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> +    description:
+> +      Represents an ONE-to-MANY or MANY-to-MANY mapping between the rawevent(s)
+> +      and all the MHPMCOUNTERx in a bitmap format that can be used to monitor
+> +      that raw event.
+> +      The encoding of the raw events are platform specific. The information is
+> +      encoded in an array format where each row represents the specific raw
+> +      event(s). The first element is a 64-bit match value where the invariant
+> +      bits of range of events are set. The second element is a 64-bit mask that
+> +      will have all the variant bits of the range of events cleared. All other
+> +      bits should be set in the mask. The third element is a 32-bit value to
+> +      represent bitmap of all MHPMCOUNTERx that can monitor these set of
+> +      event(s). If a platform directly encodes each raw PMU event as a unique
+> +      ID, the value of select_mask must be 0xffffffff_ffffffff.
+> +    minItems: 1
+> +    maxItems: 255
+> +    items:
+> +      $ref: /schemas/types.yaml#/definitions/uint32-array
+> +      maxItems: 5
+> +
+> +required:
+> +  - compatible
+
+I assume at least one of the other properties must be present?
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    pmu {
+> +        compatible = "riscv,pmu";
+> +        riscv,event-to-mhpmevent = <0x0000B 0x0000 0x0001>;
+> +        riscv,event-to-mhpmcounters = <0x00001 0x00001 0x00000001>,
+> +                                      <0x00002 0x00002 0x00000004>,
+> +                                      <0x00003 0x0000A 0x00000ff8>,
+> +                                      <0x10000 0x10033 0x000ff000>;
+> +        riscv,raw-event-to-mhpmcounters =
+> +            /* For event ID 0x0002 */
+> +            <0x0000 0x0002 0xffffffff 0xffffffff 0x00000f8>,
+> +            /* For event ID 0-4 */
+> +            <0x0 0x0 0xffffffff 0xfffffff0 0x00000ff0>,
+> +            /* For event ID 0xffffffff0000000f - 0xffffffff000000ff */
+> +            <0xffffffff 0x0 0xffffffff 0xffffff0f 0x00000ff0>;
+> +    };
+> +
+> +  - |
+> +    /*
+> +     * For HiFive Unmatched board the encodings can be found here
+> +     * https://sifive.cdn.prismic.io/sifive/1a82e600-1f93-4f41-b2d8-86ed8b16acba_fu740-c000-manual-v1p6.pdf
+> +     * This example also binds standard SBI PMU hardware id's to U74 PMU event
+> +     * codes, U74 uses a bitfield for events encoding, so several U74 events
+> +     * can be bound to single perf id.
+> +     * See SBI PMU hardware id's in OpenSBI's include/sbi/sbi_ecall_interface.h
+> +     */
+> +    pmu {
+> +          compatible = "riscv,pmu";
+> +          riscv,event-to-mhpmevent =
+> +              /* SBI_PMU_HW_CACHE_REFERENCES -> Instruction or Data cache/ITIM busy */
+> +              <0x00003 0x00000000 0x1801>,
+> +              /* SBI_PMU_HW_CACHE_MISSES -> Instruction or Data cache miss or MMIO access */
+> +              <0x00004 0x00000000 0x0302>,
+> +              /* SBI_PMU_HW_BRANCH_INSTRUCTIONS -> Conditional branch retired */
+> +              <0x00005 0x00000000 0x4000>,
+> +              /* SBI_PMU_HW_BRANCH_MISSES -> Branch or jump misprediction */
+> +              <0x00006 0x00000000 0x6001>,
+> +              /* L1D_READ_MISS -> Data cache miss or MMIO access */
+> +              <0x10001 0x00000000 0x0202>,
+> +              /* L1D_WRITE_ACCESS -> Data cache write-back */
+> +              <0x10002 0x00000000 0x0402>,
+> +              /* L1I_READ_ACCESS -> Instruction cache miss */
+> +              <0x10009 0x00000000 0x0102>,
+> +              /* LL_READ_MISS -> UTLB miss */
+> +              <0x10011 0x00000000 0x2002>,
+> +              /* DTLB_READ_MISS -> Data TLB miss */
+> +              <0x10019 0x00000000 0x1002>,
+> +              /* ITLB_READ_MISS-> Instruction TLB miss */
+> +              <0x10021 0x00000000 0x0802>;
+> +          riscv,event-to-mhpmcounters = <0x00003 0x00006 0x18>,
+> +                                        <0x10001 0x10002 0x18>,
+> +                                        <0x10009 0x10009 0x18>,
+> +                                        <0x10011 0x10011 0x18>,
+> +                                        <0x10019 0x10019 0x18>,
+> +                                        <0x10021 0x10021 0x18>;
+> +          riscv,raw-event-to-mhpmcounters = <0x0 0x0 0xffffffff 0xfc0000ff 0x18>,
+> +                                            <0x0 0x1 0xffffffff 0xfff800ff 0x18>,
+> +                                            <0x0 0x2 0xffffffff 0xffffe0ff 0x18>;
+> +    };
+> -- 
+> 2.38.1
+> 
+> 
