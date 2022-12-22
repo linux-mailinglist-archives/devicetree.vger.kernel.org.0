@@ -2,121 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6320F654619
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 19:49:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C06BD65462E
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 19:53:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229668AbiLVSte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 13:49:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59642 "EHLO
+        id S235558AbiLVSxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 13:53:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229524AbiLVStc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 13:49:32 -0500
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3350420F4C;
-        Thu, 22 Dec 2022 10:49:32 -0800 (PST)
-Received: by mail-oi1-f179.google.com with SMTP id i127so2669870oif.8;
-        Thu, 22 Dec 2022 10:49:32 -0800 (PST)
+        with ESMTP id S235514AbiLVSx2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 13:53:28 -0500
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A340C2CC97
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 10:52:33 -0800 (PST)
+Received: by mail-ej1-x631.google.com with SMTP id u19so6976748ejm.8
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 10:52:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Wv5r7o6DzTqSnIpCAKgG7SesTpoF9G2sHu8yiB5cAqQ=;
+        b=mSfrS/J8VO5tRvI4ypr7qpNfnF83I4UW4EOsuJRte7oJb3nlCbheVYTcvXQaLYQY/D
+         mZ3a1yMbIuPZpRRD+rZIyshMQj/e5SwoAOSeLTBjeW0K/mmPSjCm78S6ZU4DiydPBtUa
+         f5cuFbWVbca71QSlKUVjm57bFQnNbBgicqmHc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qaCghvYX4zqIQSRPuINugLmKgprjE1HEO0untMrq5r4=;
-        b=2qtm+bJPGl79q8HskDa0P1ZpaQQs/BQDCGSkW1WowvEcnhqfUufyP81DDVGVI1ySAS
-         ub6ux0V6dJeM4TCd/TRQfraqpKWOdla/MqbD6hHhgAT0doWLMM18zQU5TuPJ6p4TWDOe
-         x78iz6KRkzHNdvsXcHXNnaVZClm98c+9i2CESb/Xd22hnvT0P9e0rb9giNbGURqxs4fk
-         IHck7GUnwcf4nVLTzLZUV4omZi36PusMp5A5kxMKNJLJLAiAFsVPhYEgQIU8V48f/7P0
-         APYqtn2RatjFy5kEPZ0ukZrGujHOjPR97AIE1zvtDIVDWS/dOLQH8BIe/Hmg5Gc4jqjr
-         0lbw==
-X-Gm-Message-State: AFqh2kqUqyYFAu77vmkxae5y1XR1pQpyvjXhI4D4saxyE8iai8Iq/vFb
-        /TOcN/7Abxg9j0OMjp5QQQ==
-X-Google-Smtp-Source: AMrXdXtZLtFmRderXdXOtuvucKah+umvBa8SBMJB0TRrYFjgkxxQHQw9uYW4Q6UE/RewGts39YXWFw==
-X-Received: by 2002:aca:1b09:0:b0:35e:18a6:cf70 with SMTP id b9-20020aca1b09000000b0035e18a6cf70mr3258190oib.50.1671734971474;
-        Thu, 22 Dec 2022 10:49:31 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id f18-20020a05680814d200b003544822f725sm642840oiw.8.2022.12.22.10.49.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Dec 2022 10:49:30 -0800 (PST)
-Received: (nullmailer pid 1898844 invoked by uid 1000);
-        Thu, 22 Dec 2022 18:49:29 -0000
-Date:   Thu, 22 Dec 2022 12:49:29 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Emekcan Aras <emekcan.aras@arm.com>
-Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Miguel Silva <rui.silva@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] dt-bindings: Add Arm corstone500 platform
-Message-ID: <20221222184929.GA1897073-robh@kernel.org>
-References: <20221222123244.147238-1-emekcan.aras@arm.com>
- <20221222123244.147238-3-emekcan.aras@arm.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Wv5r7o6DzTqSnIpCAKgG7SesTpoF9G2sHu8yiB5cAqQ=;
+        b=Y19BoZAM6MLAYS+c1HWGohk4Q0DJAxoj+xAvjylhk2Y9Tmf4tPFKwgblcOH5FoZCBh
+         aZ5qOl8E8YHQTcelUwsna2CuCqtKQnnfWJM+BQaCcrRDCCG18UQzrDlLVlZvU00AnjkW
+         kkO2zA1rxZIykZJLTkWQe8Q8z1tD8IB5YaAziTKRPsJO4k/hHhPsrNQ2HwvIf0tA5ZTi
+         PQ6XoTgr4EHidTaBSGGISOsXyR02m9HzAY5C/BMTyvYfyTunBnORdcm+Byfo5QccjoQM
+         pgpbcO5ebXtWBNIn9aT0o9i9DwqWuJRy0OfYV4hLmK184VuyL6v279m2MoOqQvsHw3mk
+         k43w==
+X-Gm-Message-State: AFqh2kquvCcr55QZGS6jaJnfi1vO/qfmaWdcAa7vSBuy9pWrEBG1W6YD
+        qYQAaAJz4Z0//2ZnnQ1gzfut7u3T/OZxcEh94xg=
+X-Google-Smtp-Source: AMrXdXt8RhhywCWPngxJ3xZC45aErgdOVDPzbEwXiPYKrw4ZRAT6CMtRU7Qae/6VlJZ+FXy1EzDmGg==
+X-Received: by 2002:a17:907:d410:b0:7a7:9a38:d284 with SMTP id vi16-20020a170907d41000b007a79a38d284mr5493798ejc.19.1671735151315;
+        Thu, 22 Dec 2022 10:52:31 -0800 (PST)
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com. [209.85.221.49])
+        by smtp.gmail.com with ESMTPSA id gf3-20020a170906e20300b007bff9fb211fsm529626ejb.57.2022.12.22.10.52.29
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Dec 2022 10:52:30 -0800 (PST)
+Received: by mail-wr1-f49.google.com with SMTP id z10so2534500wrh.10
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 10:52:29 -0800 (PST)
+X-Received: by 2002:a5d:6449:0:b0:242:1f80:6cd9 with SMTP id
+ d9-20020a5d6449000000b002421f806cd9mr273405wrw.405.1671735148968; Thu, 22 Dec
+ 2022 10:52:28 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221222123244.147238-3-emekcan.aras@arm.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+References: <20221222151319.122398-1-krzysztof.kozlowski@linaro.org> <20221222151319.122398-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221222151319.122398-2-krzysztof.kozlowski@linaro.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 22 Dec 2022 10:52:16 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=XsDznyCcrv=DKt6DyPHRg7uJUa6GF-A8h3hRa6cAwa-A@mail.gmail.com>
+Message-ID: <CAD=FV=XsDznyCcrv=DKt6DyPHRg7uJUa6GF-A8h3hRa6cAwa-A@mail.gmail.com>
+Subject: Re: [PATCH v4 2/4] arm64: dts: qcom: sdm845-xiaomi-beryllium: fix
+ audio codec interrupt pin name
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Joel Selvaraj <joelselvaraj.oss@gmail.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Caleb Connolly <caleb@connolly.tech>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 22, 2022 at 12:32:44PM +0000, Emekcan Aras wrote:
-> Add bindings to describe implementation of
-> the ARM Corstone500 platform.
-> 
-> Signed-off-by: Emekcan Aras <emekcan.aras@arm.com>
+Hi,
+
+On Thu, Dec 22, 2022 at 7:13 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> The pin config entry should have a string, not number, for the GPIO used
+> as WCD9340 audio codec interrupt.
+>
+> Fixes: dd6459a0890a ("arm64: dts: qcom: split beryllium dts into common dtsi and tianma dts")
+> Reported-by: Doug Anderson <dianders@chromium.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>
 > ---
->  .../bindings/arm/arm,corstone500.yaml         | 30 +++++++++++++++++++
->  1 file changed, 30 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/arm,corstone500.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/arm,corstone500.yaml b/Documentation/devicetree/bindings/arm/arm,corstone500.yaml
-> new file mode 100644
-> index 000000000000..cfe41f7760fd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/arm,corstone500.yaml
-> @@ -0,0 +1,30 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/arm,corstone500.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ARM Corstone500
+>
+> Cc: Doug Anderson <dianders@chromium.org>
+>
+> Changes since v3:
+> 1. New patch.
+> ---
+>  arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-It's 'Arm' now. :)
-
-> +
-> +maintainers:
-> +  - Emekcan Aras <emekcan.aras@arm.com>
-> +  - Rui Miguel Silva <rui.silva@linaro.org>
-> +
-> +description: |+
-> +  Corstone-500 is an ideal starting point for feature rich System on Chip
-> +  (SoC) designs based on the Cortex-A5 core. These designs can be used in
-> +  Internet of Things (IoT) and embedded products.
-> +
-> +  Corstone-500 includes most of the Arm IP in the SSE-500 subsystem and
-> +  example integration layer, an FPGA, and access to modelling options.
-> +
-> +properties:
-> +  $nodename:
-> +    const: '/'
-> +  compatible:
-> +    items:
-> +      - const: arm,corstone500
-> +
-> +additionalProperties: true
-> +
-> +...
-> -- 
-> 2.25.1
-> 
-> 
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
