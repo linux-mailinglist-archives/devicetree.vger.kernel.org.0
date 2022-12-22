@@ -2,252 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16201654542
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 17:40:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BAD765459C
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 18:25:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230318AbiLVQkC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 11:40:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49964 "EHLO
+        id S229583AbiLVRZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 12:25:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229668AbiLVQkA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 11:40:00 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18F1431ECA
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 08:39:59 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id i7so2207661wrv.8
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 08:39:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=luABOnCrlVSdR9io8JSfc8eAe/zDLsHgsTWLT2NYCGs=;
-        b=V+C376yvgmxQlnX1BlFhBDbJ8j4Sz48pRHQ7M1E3a7NsWkhera/DCE7kFEbPECjspW
-         4JhQpbtcDSUwG1cbxSEzGcw4wjjIkI397fm6cwDEKuQL062zKdpgTRpxbMfTiMOROlEy
-         ehdasNIPFPQhE/FpO88qvU4xqd/4EbIdVuRnOivxhx/7gdXCIqqMOVl8LrDRRRpstERH
-         xzX+HUCDvGqiXIHty3Ula3dqnKM8/NjXW2Q8s7kHxrGBIah7i9YsxI3RM6Bc/zbhPbom
-         Ft6mZkdlyIdAwLjieUdA/teQHO8KubqSE05L//Bl6q4dsO0ixur5K9RDdwQak2l57S2T
-         L61w==
+        with ESMTP id S229552AbiLVRZJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 12:25:09 -0500
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47B6795BC;
+        Thu, 22 Dec 2022 09:25:06 -0800 (PST)
+Received: by mail-ot1-f51.google.com with SMTP id e17-20020a9d7311000000b00678202573f1so1445278otk.8;
+        Thu, 22 Dec 2022 09:25:06 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=luABOnCrlVSdR9io8JSfc8eAe/zDLsHgsTWLT2NYCGs=;
-        b=BHtfi80k+G+Zs+AzBDkIgzP9EmUyY6Eu+tfyrR/UoVVuzdGYHKEOFE6r2vy8BtziuR
-         AlPMDhEstXLvy0J4WlWNp1TBbbzalEGCyOvUY1AWRuZaDM40VQBjN3cIiotYoZb6OHgD
-         dbTwpFiqLvCkfQSBQsFs+YCy6bsfzBAZjOH2EqtueKW7O9ZMY5OMgyjlYINDtidn4mV0
-         m6Br8r7R+3jqipqX/HapA9bfKYdcQZXE3dapMLkgITKZ1ZaOEUtt9SVVH3OkwGVdn+EB
-         G4WhhG6wd52P4IFEhvRSOsDPidBeyNFCseWoXO3QnDppJ/ebdJEYHe3Cc9bhv5uBgC9c
-         7dqw==
-X-Gm-Message-State: AFqh2kruILM2WTn7t1Q5jEz9C40XVP/4RaB5oiLC6jeKwcuXwvgn4bCj
-        aajYv15uyoCaXEZqeZYWYU6zaA==
-X-Google-Smtp-Source: AMrXdXsboUgPbZD28ip7UN92WxcTwW+13dg1F+V6XUKM/L2mYaNDoqDiUlLDmZb8DgmYykHjM3c4Ug==
-X-Received: by 2002:adf:e586:0:b0:241:c603:900 with SMTP id l6-20020adfe586000000b00241c6030900mr7443600wrm.16.1671727197552;
-        Thu, 22 Dec 2022 08:39:57 -0800 (PST)
-Received: from aspen.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
-        by smtp.gmail.com with ESMTPSA id v3-20020a5d4a43000000b0026fc5694a60sm957747wrs.26.2022.12.22.08.39.55
+        bh=8ywdkxpZzszObyiaiHAhYDxjz+PlTqZSkApdfOvvTQ0=;
+        b=BHE2yHXE1DDbI3ikHZ+/LeykKIJu1E5Mgeb2j7aN22epXnKvo7FFp0cjAunNURrpvp
+         n10f1xZazcMWm6weLaMSzDAzgCAAjvQ1KEgpy+6qkMa6uqTsUb6+GfG5dD8C3W1judx7
+         ROUqdAzlJScpqJ4YtyOxtlUyZv1umc7IVPwymurrUPfPIQmxzaltWATX7pew2pzqgTWv
+         k6xi34NMXAftrazFtHoGxQIWacfD/784LIRERZvX9eHzbdCGtuGoS4krhEIgAt5K+Kek
+         ag1lx95+uBmxXBLW1xH+oAx7LKcCANhlWzUdhxtGFW33bTkFRoifTKtuUkbzvCzTvXRU
+         /Kcg==
+X-Gm-Message-State: AFqh2kphPaqLSB+rnyUEe32JY8WuWuvK74rRatu2hwYeCVL9TvvIadmG
+        zP8G3NEBefKP7zE/XaV0Vw==
+X-Google-Smtp-Source: AMrXdXt5z9z5o3HrtDtlpTLaUxF8WJ7smRmdVlV7GJ1nnomSW+EwnHVVb0D3SaYlD4+RiYOwlnOIbQ==
+X-Received: by 2002:a9d:6550:0:b0:670:6f6c:5fc7 with SMTP id q16-20020a9d6550000000b006706f6c5fc7mr2988539otl.9.1671729905440;
+        Thu, 22 Dec 2022 09:25:05 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id u20-20020a9d4d94000000b0066871c3adb3sm557759otk.28.2022.12.22.09.25.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Dec 2022 08:39:56 -0800 (PST)
-Date:   Thu, 22 Dec 2022 16:39:54 +0000
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     Jianhua Lu <lujianhua000@gmail.com>
-Cc:     Lee Jones <lee@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Thu, 22 Dec 2022 09:25:04 -0800 (PST)
+Received: (nullmailer pid 1746062 invoked by uid 1000);
+        Thu, 22 Dec 2022 17:25:04 -0000
+Date:   Thu, 22 Dec 2022 11:25:04 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Yuteng Zhong <zonyitoo@gmail.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Peter Geis <pgwipeout@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Helge Deller <deller@gmx.de>, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] backlight: ktz8866: Add support for Kinetic
- KTZ8866 backlight
-Message-ID: <Y6SIWoVFX/OlNO0n@aspen.lan>
-References: <20221222125441.1547-1-lujianhua000@gmail.com>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, DHDAXCW <lasstp5011@gmail.com>
+Subject: Re: [PATCH v3 1/2] arm64: dts: rockchip: Add RK3566 LubanCat 1
+Message-ID: <20221222172504.GA1741501-robh@kernel.org>
+References: <Y6Kc650FuvHFWxP0@VM-66-53-centos>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221222125441.1547-1-lujianhua000@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <Y6Kc650FuvHFWxP0@VM-66-53-centos>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 22, 2022 at 08:54:40PM +0800, Jianhua Lu wrote:
-> Add support for Kinetic KTZ8866 backlight, which is used in
-> Xiaomi tablet, Mi Pad 5 series. This driver lightly based on
-> downstream implementation [1].
-> [1] https://github.com/MiCode/Xiaomi_Kernel_OpenSource/blob/elish-r-oss/drivers/video/backlight/ktz8866.c
->
-> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
+On Wed, Dec 21, 2022 at 01:43:07PM +0800, Yuteng Zhong wrote:
+> LubanCat 1 is a Rockchip RK3566 SBC based
+> is developed by EmbedFire Electronics Co., Ltd.
+> Mini Linux Card Type Cheap Computer Development Board
+> It has the following characteristics:
+> - MicroSD card slot, onboard eMMC flash memory
+> - 1GbE Realtek RTL8211F Ethernet Transceiver
+> - 1 USB Type-C port (power and USB2.0 OTG)
+> - 1 USB 3.0 Host port
+> - 3 USB 2.0 Host ports
+> - 1 HDMI
+> - 1 infrared receiver
+> - 1 MIPI DSI
+> - 1 MIPI CSI
+> - 1 x 4-section headphone jack
+> - Mini PCIe socket (USB or PCIe)
+> - 1 SIM Card slot
+> - 1 SYS LED and 1 PWR LED
+> - 40-pin GPIO expansion header
+> 
+> Signed-off-by: Yuteng Zhong <zonyitoo@gmail.com>
+> Signed-off-by: DHDAXCW <lasstp5011@gmail.com>
+
+DHDAXCW is a legal name?
+
+The person sending the patch email should be last.
+
 > ---
-> Changes in v2:
->   - Add missing staitc modifier to ktz8866_write function.
->
-> Changes in v3:
->   - Add 2022 to Copyright line.
->   - Sort headers
->   - Remove meaningless comment
->   - Use definitions instead of hardcoding.
->   - Add missing maintainer info
->
->  MAINTAINERS                       |   6 +
->  drivers/video/backlight/Kconfig   |   8 ++
->  drivers/video/backlight/Makefile  |   1 +
->  drivers/video/backlight/ktz8866.c | 180 ++++++++++++++++++++++++++++++
->  drivers/video/backlight/ktz8866.h |  31 +++++
->  5 files changed, 226 insertions(+)
->  create mode 100644 drivers/video/backlight/ktz8866.c
->  create mode 100644 drivers/video/backlight/ktz8866.h
->
-> diff --git a/drivers/video/backlight/ktz8866.c b/drivers/video/backlight/ktz8866.c
-> new file mode 100644
-> index 000000000000..ea641bdfc4d2
-> --- /dev/null
-> +++ b/drivers/video/backlight/ktz8866.c
-> @@ -0,0 +1,180 @@
-> +
-> +#define BL_EN_BIT BIT(6)
-> +#define BL_CURRENT_SINKS 0x1F
-> +#define BL_OVP_LIMIT 0x33
-> +#define LED_CURRENT_RAMPING_TIME 0xBD
-> +#define LED_DIMMING_TIME 0x11
-> +#define LCD_BIAS_EN 0x9F
-> +#define LED_CURRENT 0xF9
-> +
-> +#define low_3_bit(x) ((x)&0x7)
-> +#define high_8_bit(x) ((x >> 3) & 0xFF)
+> 
+> Changed in V2:
+>   - Remove RNG node
+> Changed in V3:
+>   - Modify all node names
+> 
+> ---
+>  .../devicetree/bindings/arm/rockchip.yaml     |   5 +
 
-These don't seem to be particularly useful. They are used exactly once
-so I think it is better just to implement the shifts directly
-in ktz8866_backlight_update_status().
+Bindings should be separate patch.
 
-> +struct ktz8866 {
-> +	struct i2c_client *client;
-> +	struct regmap *regmap;
-> +	bool state;
-> +};
-> +
-> +enum {
-> +	LED_OFF,
-> +	LED_ON,
-> +};
+>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>  .../boot/dts/rockchip/rk3566-lubancat-1.dts   | 600 ++++++++++++++++++
 
-Let's remove this emum. It is better to rename state to
-led_on in order to make the code read well:
-
-  if (ktz->led_on) ...
-  ktz->led_on = true;
-  ktz->led_on = false;
-
-> +static void ktz8866_init(struct ktz8866 *ktz)
-> +{
-> +	/* Enable 1~5 current sinks */
-> +	ktz8866_write(ktz, BL_EN, BL_CURRENT_SINKS);
-> +	/* Backlight OVP 26.4V */
-> +	ktz8866_write(ktz, BL_CFG1, BL_OVP_LIMIT);
-> +	/* LED current ramping time 128ms */
-> +	ktz8866_write(ktz, BL_CFG2, LED_CURRENT_RAMPING_TIME);
-> +	/* LED on/off ramping time 1ms */
-> +	ktz8866_write(ktz, BL_DIMMING, LED_DIMMING_TIME);
-> +	/* Enable OUTP and OUTN via pin ENP and ENN */
-> +	ktz8866_write(ktz, LCD_BIAS_CFG1, LCD_BIAS_EN);
-> +	/* Backlight Full-scale LED Current 30.0mA */
-> +	ktz8866_write(ktz, FULL_SCALE_CURRENT, LED_CURRENT);
-> +}
-
-Are these settings specific to the mipad 5 m/board? Many of these look
-like they should be described in the devicetree rather than hardcoded
-in the driver.
-
-
-> +static int ktz8866_probe(struct i2c_client *client,
-> +			 const struct i2c_device_id *id)
-> +{
-> +	struct backlight_device *backlight_dev;
-> +	struct backlight_properties props;
-> +	struct ktz8866 *ktz;
-> +
-> +	ktz = devm_kzalloc(&client->dev, sizeof(*ktz), GFP_KERNEL);
-> +	if (!ktz)
-> +		return -ENOMEM;
-> +
-> +	ktz->client = client;
-> +	ktz->regmap = devm_regmap_init_i2c(client, &ktz8866_regmap_config);
-> +
-> +	if (IS_ERR(ktz->regmap)) {
-> +		dev_err(&client->dev, "failed to init regmap\n");
-> +		return PTR_ERR(ktz->regmap);
-> +	}
-> +
-> +	memset(&props, 0, sizeof(props));
-> +	props.type = BACKLIGHT_RAW;
-> +	props.max_brightness = MAX_BRIGHTNESS;
-> +	props.brightness = clamp_t(unsigned int, DEFAULT_BRIGHTNESS, 0,
-> +				   props.max_brightness);
-
-Please set the scale property correctly. "Unknown" is never correct for
-new drivers.
-
-
-> +	backlight_dev = devm_backlight_device_register(
-> +		&client->dev, "ktz8866-backlight", &client->dev, ktz,
-> +		&ktz8866_backlight_ops, &props);
-> +
-> +	if (IS_ERR(backlight_dev)) {
-> +		dev_err(&client->dev, "failed to register backlight device\n");
-> +		return PTR_ERR(backlight_dev);
-> +	}
-> +
-> +	ktz8866_init(ktz);
-> +
-> +	i2c_set_clientdata(client, backlight_dev);
-> +	backlight_update_status(backlight_dev);
-> +
-> +	return 0;
-> +}
-> diff --git a/drivers/video/backlight/ktz8866.h b/drivers/video/backlight/ktz8866.h
-> new file mode 100644
-> index 000000000000..b0ed8cbee608
-> --- /dev/null
-> +++ b/drivers/video/backlight/ktz8866.h
-> @@ -0,0 +1,31 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Register definitions for Kinetic KTZ8866 backlight
-> + *
-> + * Copyright (C) 2022 Jianhua Lu <lujianhua000@gmail.com>
-> + */
-> +
-> +#ifndef KTZ8866_H
-> +#define KTZ8866_H
-> +
-> +#define DEVICE_ID 0x01
-> +#define BL_CFG1 0x02
-> +#define BL_CFG2 0x03
-> +#define BL_BRT_LSB 0x04
-> +#define BL_BRT_MSB 0x05
-> +#define BL_EN 0x08
-> +#define LCD_BIAS_CFG1 0x09
-> +#define LCD_BIAS_CFG2 0x0A
-> +#define LCD_BIAS_CFG3 0x0B
-> +#define LCD_BOOST_CFG 0x0C
-> +#define OUTP_CFG 0x0D
-> +#define OUTN_CFG 0x0E
-> +#define FLAG 0x0F
-> +#define BL_OPTION1 0x10
-> +#define BL_OPTION2 0x11
-> +#define PWM2DIG_LSBs 0x12
-> +#define PWM2DIG_MSBs 0x13
-> +#define BL_DIMMING 0x14
-> +#define FULL_SCALE_CURRENT 0x15
-> +
-> +#endif /* KTZ8866_H */
-
-This header file is not required. Please remove and move any definitions
-the driver needs into the C file.
-
-
-Daniel.
+Fix all the whitespace errors checkpatch.pl complains about.
