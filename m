@@ -2,129 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1447D6544C1
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 17:03:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 702AF6544E6
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 17:10:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229548AbiLVQDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 11:03:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32836 "EHLO
+        id S229784AbiLVQKX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 11:10:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229552AbiLVQDi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 11:03:38 -0500
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF42718B0F;
-        Thu, 22 Dec 2022 08:03:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1671725017; x=1703261017;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=CAqWqGE9GPwirTHE/aAhEyHKi+Iccdwhzf4D9CSvaEQ=;
-  b=Cc2SvfP4VDMuXwfLkve5jzIr096Fk7P0Kx2/G5DbBYM15RMw7uamw0oK
-   cLt509k8xIW8H+VVkVGk4A0FDMPP22LMYt81QXuUq0DGQoS8F9k6zAhTF
-   OzOxg1Yebvmgc4fB4ygcYWEN1SFsPbK5mc7J09DRiUXd7qjllASQS1A4c
-   qzsEahBi6jcrKGFQTnwbmVNMDR8W6FuLn7mkPTr8we+LjZAGCRgx5Gpz9
-   se/O2A5kHOKjk4QqznT9z+3CbxEYpP3TpzZDHWqlvQmoM+Qy2z8C9vbTv
-   brSTR0xJ4JZrLrZC2lbBAAvNmiaX9UGT6hLm+uXBu+gfhxDsm0SC6Intv
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10569"; a="321336629"
-X-IronPort-AV: E=Sophos;i="5.96,265,1665471600"; 
-   d="scan'208";a="321336629"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Dec 2022 08:03:23 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10569"; a="684222954"
-X-IronPort-AV: E=Sophos;i="5.96,265,1665471600"; 
-   d="scan'208";a="684222954"
-Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.252.61.195])
-  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Dec 2022 08:03:20 -0800
-Message-ID: <c2d5fb16-2654-6406-63da-626d6d5029c3@intel.com>
-Date:   Thu, 22 Dec 2022 18:03:14 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.6.1
-Subject: Re: [PATCH v2 1/8] mmc: sdhci-pxav2: add initial support for PXA168
- V1 controller
-Content-Language: en-US
-To:     Doug Brown <doug@schmorgal.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S235439AbiLVQKB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 11:10:01 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF8BF3579D
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 08:09:08 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id g13so3391015lfv.7
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 08:09:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=k1dtaKDDkGKVAiwWp9WScF8JO/ojvra0YFJui4t3mI4=;
+        b=PIxL4o4ah0KW1M8l0ifhZo3XsYoFPA9lCxiKj/xQeV/Ne7kGDZo3qgkBgujZh6koqu
+         Jd9zaU7WT8GVw2tCMfPC5X1cEL0yYu1g9V//u9TrXHH8B5jUUeiSdyZedtLGr3bVMUB1
+         AYkPxroPTIz2z2/KDFhAgF251XN3a8XO1/bebhX6pluvS67jGlMWaHfaLSarouVoUk1B
+         fGLByTV3cTvb55LzWRnu7NWdEyKGOkR/r4SK05a27zqjhBcgBh/Q/fThgbMsLxIUfjIc
+         hd9/Etg9V0oCDzqV8ajXmwM2wVJBsyo1Hrg5Q56t3vdX4y/gqXyvJKuvPcSeH8wQVU9a
+         WQ4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=k1dtaKDDkGKVAiwWp9WScF8JO/ojvra0YFJui4t3mI4=;
+        b=B2qz+3x2tA0yVAetVTF6T4mgUDv/jYAmt4NVY/zHSYr1ptZ9nCMd34vSnMHOIZGkA3
+         Y89amg054hYPsJbS4nyDaY+PaiWpp/H3Jiq1sP6bIBXbX1+4N1+ooj+RjgB8FZm8zLrL
+         PaHdYBcKlBirfvw8vcs9oo54i9q9E4UZJnaATOnSj34ScqWEEzy8+xM/U7V/DgkYIhMi
+         pMn5ztuU7JFebm5WutTgsBfYJhxwn7kMq5cN9N18/nN/dgn0y2JwclnsBf8YmW9KrOey
+         CMEcfKZP0c9tNc8P42SDjQubuehIZOPg4z/SpVzfB6Q71NvtZpXRZis+FEPV28NP6c62
+         kZdg==
+X-Gm-Message-State: AFqh2krcutS9JeJVEhhaOl4RdB+4xunt/TkzDccU/9VGiavt7sTVmJ4v
+        CrSV1GanRRvgxvjmbkQ+66d2gg==
+X-Google-Smtp-Source: AMrXdXt7Mb0y1Q3l/cK+o2snE4jU4rov7Lm5jm9cZGQbaz/sUhl0qDXM/THBF7oxd4ELZD1S3xHTNw==
+X-Received: by 2002:a05:6512:2987:b0:4ca:877d:a546 with SMTP id du7-20020a056512298700b004ca877da546mr3120025lfb.12.1671725347156;
+        Thu, 22 Dec 2022 08:09:07 -0800 (PST)
+Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id p7-20020a056512138700b00494643db68fsm114661lfa.81.2022.12.22.08.09.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Dec 2022 08:09:06 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        Ulf Hansson <ulf.hansson@linaro.org>
-References: <20221202031330.94130-1-doug@schmorgal.com>
- <20221202031330.94130-2-doug@schmorgal.com>
-From:   Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-In-Reply-To: <20221202031330.94130-2-doug@schmorgal.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: pinctrl: qcom,sm8450-lpass-lpi: add bias-bus-hold
+Date:   Thu, 22 Dec 2022 17:09:04 +0100
+Message-Id: <20221222160904.172070-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/12/22 05:13, Doug Brown wrote:
-> Add a new compatible string for the version 1 controller used in the
-> PXA168, along with necessary quirks. Use a separate ops struct in
-> preparation for a silicon bug workaround only necessary on V1.
-> 
-> Signed-off-by: Doug Brown <doug@schmorgal.com>
-> ---
->  drivers/mmc/host/sdhci-pxav2.c | 18 +++++++++++++++++-
->  1 file changed, 17 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/mmc/host/sdhci-pxav2.c b/drivers/mmc/host/sdhci-pxav2.c
-> index f18906b5575f..2f9fa0ecbddd 100644
-> --- a/drivers/mmc/host/sdhci-pxav2.c
-> +++ b/drivers/mmc/host/sdhci-pxav2.c
-> @@ -101,6 +101,14 @@ static void pxav2_mmc_set_bus_width(struct sdhci_host *host, int width)
->  	writeb(ctrl, host->ioaddr + SDHCI_HOST_CONTROL);
->  }
->  
-> +static const struct sdhci_ops pxav1_sdhci_ops = {
-> +	.set_clock     = sdhci_set_clock,
-> +	.get_max_clock = sdhci_pltfm_clk_get_max_clock,
-> +	.set_bus_width = pxav2_mmc_set_bus_width,
-> +	.reset         = pxav2_reset,
-> +	.set_uhs_signaling = sdhci_set_uhs_signaling,
-> +};
-> +
->  static const struct sdhci_ops pxav2_sdhci_ops = {
->  	.set_clock     = sdhci_set_clock,
->  	.get_max_clock = sdhci_pltfm_clk_get_max_clock,
-> @@ -114,6 +122,9 @@ static const struct of_device_id sdhci_pxav2_of_match[] = {
->  	{
->  		.compatible = "mrvl,pxav2-mmc",
->  	},
-> +	{
-> +		.compatible = "mrvl,pxav1-mmc",
-> +	},
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, sdhci_pxav2_of_match);
-> @@ -208,7 +219,12 @@ static int sdhci_pxav2_probe(struct platform_device *pdev)
->  			host->mmc->pm_caps |= pdata->pm_caps;
->  	}
->  
-> -	host->ops = &pxav2_sdhci_ops;
-> +	if (match && of_device_is_compatible(dev->of_node, "mrvl,pxav1-mmc")) {
-> +		host->quirks |= SDHCI_QUIRK_NO_BUSY_IRQ | SDHCI_QUIRK_32BIT_DMA_SIZE;
-> +		host->ops = &pxav1_sdhci_ops;
-> +	} else {
-> +		host->ops = &pxav2_sdhci_ops;
-> +	}
+Allow bias-bus-hold and input-enable properties (already used in SM8450):
 
-It would be better to put the information above in a structure and
-get it with of_device_get_match_data() (instead of of_match_device).
-Also drivers typically assume there is always a match since that
-is the only way the driver ->probe() will get run.
+  sm8450-qrd.dtb: pinctrl@3440000: dmic02-default-state: 'oneOf' conditional failed, one must be fixed:
+    'pins' is a required property
+    'function' is a required property
+    'clk-pins', 'data-pins' do not match any of the regexes: 'pinctrl-[0-9]+'
+    'input-enable' does not match any of the regexes: 'pinctrl-[0-9]+'
 
->  
->  	ret = sdhci_add_host(host);
->  	if (ret)
+Compact the properties which are just set to true for readability.
+
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../bindings/pinctrl/qcom,sm8450-lpass-lpi-pinctrl.yaml      | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-lpass-lpi-pinctrl.yaml
+index 01a0a4a40ba5..4fbe8c506cda 100644
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-lpass-lpi-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-lpass-lpi-pinctrl.yaml
+@@ -96,14 +96,11 @@ $defs:
+           2: Lower Slew rate (slower edges)
+           3: Reserved (No adjustments)
+ 
++      bias-bus-hold: true
+       bias-pull-down: true
+-
+       bias-pull-up: true
+-
+       bias-disable: true
+-
+       output-high: true
+-
+       output-low: true
+ 
+     required:
+-- 
+2.34.1
 
