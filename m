@@ -2,140 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D013654161
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 13:55:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C253654174
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 14:02:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235104AbiLVMz0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 07:55:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39844 "EHLO
+        id S235294AbiLVNCL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 08:02:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235133AbiLVMzY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 07:55:24 -0500
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E608E275C7;
-        Thu, 22 Dec 2022 04:55:22 -0800 (PST)
-Received: by mail-pj1-x102d.google.com with SMTP id z8-20020a17090abd8800b00219ed30ce47so5609212pjr.3;
-        Thu, 22 Dec 2022 04:55:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=W/70G/iNRFg0+tqFbgre+zSYvcngTPI1dr+sS/6Z8gg=;
-        b=JKAltLDQ3krQAXiX8vfnL7ROx6AVWxgu47kG7d/yv6i/PcLUOmDydXX8GFy0H7/AUo
-         rHbbLRBbM5kbCSAE5VE7Q0xVGjFzsQyj7QwPAC1RmBbLdHV42VAd2ZqdRmgF5JMwhrMe
-         GM9gtEHX18SQDz2xaMBEs1qA4O6UiFwQSXJK+fepF9E8FKJnZxbg7dl6fVRMYhfiljVX
-         nX/jC3qN5dlX4sMnWAa6Z4+YguoeWz7t7OZa2Ct8ckw2nwb67nnH+pozxHCQVK4LMCQs
-         ZZimW2gQ84jUJZB+LaQaXpaDkHoaZAHt8IXBTz4tF8hwfIPVEDAxlGy+9LHT7EpicHNB
-         S6fA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=W/70G/iNRFg0+tqFbgre+zSYvcngTPI1dr+sS/6Z8gg=;
-        b=UIPa0aWpKWE/V2NCdFlTaVouDiNtgs5q/tGGLJEYcP6F66gRGdDTLXbms4pew9NDmI
-         3f967P2TWwJz9MVa95TKP1ayjRa7x6XPe2m6SS1PvbeqMSXPnaXhvvJxIuw3hXjJDeHh
-         wccIc2vl4ET00IUohnP5UOXoom3kAn8BgCvPv/CwSsnxL/un+ESuH+6YBSKThLlHag+o
-         ckOKhZ+VRIlvcyqNfowBJmMFTd3zvfdSNRhWCptvV1xngQlWZUenGpkirkGAubBcA9Ad
-         NekxQGi9OBLjxauM+cw3SYVMGkV+UJVYdes/44Uf/IivRSFN15qak2ZUZ3SW13mRSyKk
-         RJwg==
-X-Gm-Message-State: AFqh2krfQzNkL72W+JJjAmyxLCfIJwgJoGxjrjdakMisNS3mtW+X9F/a
-        tWFvIRvvTi9Hz0Q6vXX8vdY=
-X-Google-Smtp-Source: AMrXdXu+UkvaD+1wradcsdg55khU6E+1KfnZ/StEOvUkENC+h47PnAfvm4EN7g3Z98Nv8lvs2/Hy/A==
-X-Received: by 2002:a17:902:b58a:b0:186:def0:66f2 with SMTP id a10-20020a170902b58a00b00186def066f2mr5511853pls.11.1671713722425;
-        Thu, 22 Dec 2022 04:55:22 -0800 (PST)
-Received: from localhost.localdomain ([45.62.172.3])
-        by smtp.gmail.com with ESMTPSA id t8-20020a170902e84800b0017849a2b56asm503048plg.46.2022.12.22.04.55.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Dec 2022 04:55:22 -0800 (PST)
-From:   Jianhua Lu <lujianhua000@gmail.com>
-To:     Lee Jones <lee@kernel.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Helge Deller <deller@gmx.de>
-Cc:     linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-fbdev@vger.kernel.org, Jianhua Lu <lujianhua000@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 2/2] dt-bindings: leds: backlight: Add Kinetic KTZ8866 backlight
-Date:   Thu, 22 Dec 2022 20:54:41 +0800
-Message-Id: <20221222125441.1547-2-lujianhua000@gmail.com>
-X-Mailer: git-send-email 2.38.2
-In-Reply-To: <20221222125441.1547-1-lujianhua000@gmail.com>
-References: <20221222125441.1547-1-lujianhua000@gmail.com>
+        with ESMTP id S235247AbiLVNCK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 08:02:10 -0500
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A755526492;
+        Thu, 22 Dec 2022 05:02:09 -0800 (PST)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BMC3dY8016973;
+        Thu, 22 Dec 2022 14:01:44 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=VfXLK2ENqOHIyN2VaJvWoWk54NjhoqbK7T93glbOHVw=;
+ b=APyrqvCMtyI7tjM0vzRax+L5j54dvsPvQ/4AwhOTP8aCo5BZ34d4wrVM3XifSSw7amT0
+ 0mtIosOHPVOV3VBHvLIh5bRB0qMFoUm2lCR9bB5EgD8aFq6IjP8eezE8WMGkJwuBOMX7
+ gyK53sY5RsyCk45ZI2UaDvENCesFIO3zQBoSsyIs+7HhI9OoDZuFJ/frmBE/BHL+VYoB
+ gtp6e1ovQfzWAfbopsAG26GfNxp/F0gAZfg164gPrjbYzIH1fRKKtckwmSiXnXmIWFd0
+ BOpiG8skjzMxL7OqxbGnpshsRtjoxc5Pby0ZsxOuKJXGiMVWRn/tCkpUm2zQwqvbMbYL Zw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3mh605w3as-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 22 Dec 2022 14:01:44 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 7D56C10004A;
+        Thu, 22 Dec 2022 14:01:41 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 610A62291C4;
+        Thu, 22 Dec 2022 14:01:06 +0100 (CET)
+Received: from [10.201.21.217] (10.201.21.217) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Thu, 22 Dec
+ 2022 14:01:05 +0100
+Message-ID: <6e14aecb-e6f5-ec10-a5c5-af6fd1b54e89@foss.st.com>
+Date:   Thu, 22 Dec 2022 14:01:05 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [RFC PATCH 1/7] dt-bindings: Document common device controller
+ bindings
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        <alexandre.torgue@foss.st.com>, <robh+dt@kernel.org>,
+        <Oleksii_Moisieiev@epam.com>, <linus.walleij@linaro.org>,
+        <gregkh@linuxfoundation.org>
+CC:     <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <loic.pallardy@st.com>,
+        <devicetree@vger.kernel.org>, <mark.rutland@arm.com>,
+        <arnd@arndb.de>
+References: <20221221173055.11719-1-gatien.chevallier@foss.st.com>
+ <20221221173055.11719-2-gatien.chevallier@foss.st.com>
+ <2a4b5094-013f-f873-4c0e-bb48ca6ac19e@kernel.org>
+From:   Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
+In-Reply-To: <2a4b5094-013f-f873-4c0e-bb48ca6ac19e@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.201.21.217]
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-12-22_06,2022-12-22_02,2022-06-22_01
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Kinetic KTZ8866 backlight binding documentation.
 
-Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-Changes in v2:
-  - Remove "items" between "compatible" and "const: kinetic,ktz8866"
-  - Change "additionalProperties" to "unevaluatedProperties"
+Hello Krzysztof,
 
-Changes in v3:
-  - Add Krzysztof's R-b
+On 12/22/22 11:22, Krzysztof Kozlowski wrote:
+> Please use scripts/get_maintainers.pl to get a list of necessary people
+> and lists to CC.  It might happen, that command when run on an older
+> kernel, gives you outdated entries.  Therefore please be sure you base
+> your patches on recent Linux kernel.
+> 
+> 
+> On 21/12/2022 18:30, Gatien Chevallier wrote:
+>> From: Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
+> 
+> You same From as SoB.
+> 
+>>
+>> Introducing of the common device controller bindings for the controller
+>> provider and consumer devices. Those bindings are intended to allow
+>> divided system on chip into muliple domains, that can be used to
+>> configure hardware permissions.
+>>
+>> Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+> 
+> Missing SoB.
+> 
+> Missing changelog. This is not v1 but v7 or something >
+> 
+> 
+>> ---
+>>   .../feature-domain-controller.yaml            | 84 +++++++++++++++++++
+>>   1 file changed, 84 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/feature-controllers/feature-domain-controller.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/feature-controllers/feature-domain-controller.yaml b/Documentation/devicetree/bindings/feature-controllers/feature-domain-controller.yaml
+>> new file mode 100644
+>> index 000000000000..90a7c38c833c
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/feature-controllers/feature-domain-controller.yaml
+>> @@ -0,0 +1,84 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/feature-controllers/feature-domain-controller.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Generic Domain Controller bindings
+> 
+> Drop "bindings".
+> 
+> Anyway you duplicate work here:
+> https://lore.kernel.org/all/c869d2751125181a55bc8a88c96e3a892b42f37a.1668070216.git.oleksii_moisieiev@epam.com/
+> and maybe you duplicate comments.
+> 
+> I don't think there is point to review things twice, so NAK.
+This is a result of me not knowing how to handle this particular case. 
+It is a patch that I need to have in my patch set in order to pass Rob's 
+bindings check. Otherwise, feature domains bindings defined here will 
+not be known in the STM32 System Bus binding file, where they are used.
 
- .../leds/backlight/kinetic,ktz8866.yaml       | 36 +++++++++++++++++++
- 1 file changed, 36 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
+I wanted to illustrate the use of Oleksii's binding with a practical 
+use-case that we want to implement.
 
-diff --git a/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml b/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
-new file mode 100644
-index 000000000000..c63c21bf69d6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml
-@@ -0,0 +1,36 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/backlight/kinetic,ktz8866.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Kinetic Technologies KTZ8866 backlight
-+
-+maintainers:
-+  - Jianhua Lu <lujianhua000@gmail.com>
-+
-+description: |
-+  The Kinetic Technologies KTZ8866 is a high efficiency 6-sinks led backlight
-+  with dual lcd bias power.
-+  https://www.kinet-ic.com/ktz8866/
-+
-+allOf:
-+  - $ref: common.yaml#
-+
-+properties:
-+  compatible:
-+    const: kinetic,ktz8866
-+
-+required:
-+  - compatible
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    backlight {
-+        compatible = "kinetic,ktz8866";
-+
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&bl_en_default>;
-+    };
--- 
-2.38.2
+What would be the correct way of managing this dependency?
+-Specify something like "On top of ...." in the cover letter/patch and 
+reference the other thread?
+-Use a "Depends-On" tag on the YAML binding commit?
+-Something else?
 
+Best regards,
+Gatien
+
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
