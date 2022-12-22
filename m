@@ -2,99 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BFCC6546BE
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 20:35:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD56D6546D4
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 20:46:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235891AbiLVTfO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 14:35:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58244 "EHLO
+        id S235630AbiLVTqN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 14:46:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235837AbiLVTey (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 14:34:54 -0500
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F16A430567;
-        Thu, 22 Dec 2022 11:34:07 -0800 (PST)
-Received: by mail-ot1-f54.google.com with SMTP id e17-20020a9d7311000000b00678202573f1so1650610otk.8;
-        Thu, 22 Dec 2022 11:34:07 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uWNJdOIyPtnMcBMmOCjYRTOB2Nr98MKKR7cn2xvEWSg=;
-        b=qgc9MW6WdmHhTnH5/GsgTxy2WNHEb57ssMHkyD97ve2DFmWzjVlA8hT9P1sImaGH1u
-         APvzbXJrkyu+G3v2B7yGal2qxf44h/YE4thvnKvV7Y43Q1kh0onDnR3oidzArbb4ng4S
-         P98fLc8qQ7b12rXW1bLaiJp6H+sM442z231ZVsAMouOBXySLSb74KZ5KOMGI7mdKI8SX
-         n/jDTpoSqgs723akwZzwioEdmHJE4oznHhYME45EQLPTwfQJV7FukmVf4aub5i46TWip
-         yRykTQLuEyOgu/wr5fbawdBw1qP9FLBOcVeUZZsHtEKU01g2/myRpIq+EQQlglyWaK3e
-         HFcA==
-X-Gm-Message-State: AFqh2kqCsdbBSXQbmvaVTXE7x0JQYbHKpFtClYXAllqxMRhZ26Ql94D5
-        /hpOY9AeKn4gkVf3G0jydQ==
-X-Google-Smtp-Source: AMrXdXtxaghkOVQHe3AHMVz+5/vqZ37iknCqFjTCKG0OidUpJkMAaQRBm426028lPeiYNZzv8rdcFQ==
-X-Received: by 2002:a9d:196:0:b0:66e:98f2:edd with SMTP id e22-20020a9d0196000000b0066e98f20eddmr3738313ote.6.1671737647018;
-        Thu, 22 Dec 2022 11:34:07 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a16-20020a0568300b9000b00670763270fcsm699449otv.71.2022.12.22.11.34.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Dec 2022 11:34:06 -0800 (PST)
-Received: (nullmailer pid 1949007 invoked by uid 1000);
-        Thu, 22 Dec 2022 19:34:05 -0000
-Date:   Thu, 22 Dec 2022 13:34:05 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        daniel@ffwll.ch, inki.dae@samsung.com,
-        linux-samsung-soc@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, sw0312.kim@samsung.com,
-        dri-devel@lists.freedesktop.org, robert.foss@linaro.org,
-        Laurent.pinchart@ideasonboard.com, linux-usb@vger.kernel.org,
-        kyungmin.park@samsung.com, hjc@rock-chips.com,
-        alim.akhtar@samsung.com, neil.armstrong@linaro.org,
-        linux-kernel@vger.kernel.org, heiko@sntech.de, airlied@gmail.com,
-        jernej.skrabec@gmail.com, linux-arm-kernel@lists.infradead.org,
-        andrzej.hajda@intel.com, linus.walleij@linaro.org,
-        philippe.cornu@foss.st.com, devicetree@vger.kernel.org,
-        gregkh@linuxfoundation.org, jonas@kwiboo.se
-Subject: Re: [PATCH v6 05/17] dt-bindings: display: rockchip: convert
- dw_mipi_dsi_rockchip.txt to yaml
-Message-ID: <167173764506.1948954.2963463914057934898.robh@kernel.org>
-References: <67771143-fd83-383d-41b2-68e8707134e8@gmail.com>
- <d6dc8453-4807-0a5d-15bf-6dcf80dcd0fe@gmail.com>
+        with ESMTP id S235706AbiLVTqM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 14:46:12 -0500
+Received: from m-r1.th.seeweb.it (m-r1.th.seeweb.it [5.144.164.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 486B91834F;
+        Thu, 22 Dec 2022 11:46:11 -0800 (PST)
+Received: from localhost.localdomain (94-209-172-39.cable.dynamic.v4.ziggo.nl [94.209.172.39])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 1EDE72021C;
+        Thu, 22 Dec 2022 20:46:09 +0100 (CET)
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Lux Aliaga <they@mint.lgbt>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Richard Acayan <mailingradian@gmail.com>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] arm64: dts: qcom: sm6125: Enable GPI DMA
+Date:   Thu, 22 Dec 2022 20:45:58 +0100
+Message-Id: <20221222194600.139854-1-marijn.suijten@somainline.org>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d6dc8453-4807-0a5d-15bf-6dcf80dcd0fe@gmail.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Enable GPI DMA on SM6125 by using the new sdm845 compatible with
+ee_offset 0.
 
-On Thu, 22 Dec 2022 15:26:28 +0100, Johan Jonker wrote:
-> Convert dw_mipi_dsi_rockchip.txt to yaml.
-> 
-> Changed:
->   file name
->   requirements
-> 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> ---
-> 
-> Changed V6:
->   Remove clock-master property
->   Fix $ref
-> ---
->  .../display/rockchip/dw_mipi_dsi_rockchip.txt |  94 ----------
->  .../rockchip/rockchip,dw-mipi-dsi.yaml        | 166 ++++++++++++++++++
->  2 files changed, 166 insertions(+), 94 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/rockchip/dw_mipi_dsi_rockchip.txt
->  create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip,dw-mipi-dsi.yaml
-> 
+Changes since v2:
+- Remove leading zero from iommu stream ID.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+v2: https://lore.kernel.org/linux-arm-msm/20221216231528.1268447-1-marijn.suijten@somainline.org/T/#u
+
+Changes since v1:
+- Drop driver patch in favour of using generic qcom,sdm845-gpi-dma
+  compatible [1];
+- Replace status = "okay" with "disabled";
+- Use 3 instead of 5 dma cells;
+- Reorder properties;
+- Explicitly depend on APPS SMMU series to have apps_smmu label available.
+
+v1: https://lore.kernel.org/all/20221001185526.494095-1-martin.botka@somainline.org/T/#u
+
+Depends on:
+- SM6125 APPS SMMU: https://lore.kernel.org/linux-arm-msm/20221222193254.126925-1-marijn.suijten@somainline.org/T/#u
+
+[1]: https://lore.kernel.org/all/20220927014846.32892-2-mailingradian@gmail.com/
+
+Martin Botka (2):
+  dt-bindings: dma: gpi: Document SM6125 compatible
+  arm64: dts: qcom: sm6125: Add GPI DMA nodes
+
+ .../devicetree/bindings/dma/qcom,gpi.yaml     |  1 +
+ arch/arm64/boot/dts/qcom/sm6125.dtsi          | 37 +++++++++++++++++++
+ 2 files changed, 38 insertions(+)
+
+--
+2.39.0
+
