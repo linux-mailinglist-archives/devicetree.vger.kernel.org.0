@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBF5A6543FD
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 16:13:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1977F6543FE
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 16:13:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234727AbiLVPN1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 10:13:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58910 "EHLO
+        id S235263AbiLVPN3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 10:13:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229849AbiLVPN0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 10:13:26 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DF752AD7
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 07:13:25 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id bp15so3119098lfb.13
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 07:13:25 -0800 (PST)
+        with ESMTP id S230381AbiLVPN1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 10:13:27 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98A5EE8B
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 07:13:26 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id s22so2193669ljp.5
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 07:13:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=lBkTlHTCV7DoPL4le/mwbRFxHR8aDtr9pUpYPexGk+s=;
-        b=zKD5pFwBrN18kAEJOxOpEZiGnAxtZZRyJZP4Z02dzse7A5bBM6cuPBOHL33RF1lrsp
-         Nvzw9ZEYCW6LB0mRHqluqA2HaGP430lbfcPwdMs9zqisP9wpbLHftldIc0HpAJNF4lIm
-         HLymmIZLItMAMzzH5UJ5GEGRvlZuVN5wov5Le8ayUC8cDuANvWk4Qf5lcU1IUIOT2+9s
-         HlZ4ihzOJhduYkqfVDm95ejYrPE0copTH8NEfoA3D3JQ/StBG9qxhP2uv08YXtQBj9nR
-         y5M5H+wvJHUQf/CpHMCJ+a6k1eXpp4jukhEUDJ86PSW4qySMiFkviKUUcAVnEyuLbPI3
-         GJjg==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+H4m/wf/HMSRBe+V8hTigy4zAd13cLvfwfrASaDiTjU=;
+        b=d43RMO3xDPnI5+1xSTx6QhDYpCyGIVMvdnrR20AM6yCbyVJm9TcCPJ4c/gR6dKcZz8
+         EYq2/FaQfOM8snzdO9BOErim5FFSavzjuiDu1zQOay2cyggmrpxjsotrpuPUFV4AQTna
+         H0RqbdN93sU1purKS2MIJw3t276LbUPincXQltDr+03PUxaEy3EG+cRVlaal1Il59e0x
+         qQxdvHuSrBHWBzfml2gzZDJCc56MkUxFEjWzwc4y+6YuhjI8OD0A83z7U2iBnRXGN7iy
+         jOmkXPKYCdlnrmh+E026yWnlxEki7/mqxdvscoQ1A4B2XPotgFifuGbWZm2lp4xI982s
+         o+1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lBkTlHTCV7DoPL4le/mwbRFxHR8aDtr9pUpYPexGk+s=;
-        b=rD/QM47DqXwQj+Y6JuKB9Wa3m+u0t9YkY7qWc2CMR56Mk8uQCq9rGqQDEwnjjjetdK
-         jYsbWSik5iF5O1WBWtQ0yugJC2qQqeAoeRAiynZGSy6RxORk3WFU8XLgdgUA+fD+VSPf
-         4EGhpee1RdHoKUjsGN7UmCaxhk0ZrxeYMtIEJl9gEavvYK/QmQq4sFPdTO523fljki+f
-         //GJfb05WC9BRzqbWqT+1LosShYis1/LDu8/64Y5iF5YS2IFlRWwDWVQnZIxNocz/4T2
-         HZd0h/FosbD5EV1SoEkMT2HHVMSQtTP64qvNZ7i9KnqdtQHQIZ6lwG5TpJw5j5UsB+1u
-         M1Gw==
-X-Gm-Message-State: AFqh2kp6LDz+TD3/l2CfL068aJUaHEMpHDBhPn+6v8rzJ67Kd4y2Jwn2
-        /vOWrMnRNr3vrHDJLglae9B3Ww==
-X-Google-Smtp-Source: AMrXdXvPSg3Ce9ePCSZpKhITo9ZVUUwl+XZWcxQZqS5wNHR/5HJ7vEGSCyjbmdN8Ri1rtr/+1KYC8g==
-X-Received: by 2002:ac2:446b:0:b0:4a4:68b9:66cf with SMTP id y11-20020ac2446b000000b004a468b966cfmr1473439lfl.26.1671722003702;
-        Thu, 22 Dec 2022 07:13:23 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+H4m/wf/HMSRBe+V8hTigy4zAd13cLvfwfrASaDiTjU=;
+        b=Iux61Ftir2wrEThTqqbFCQ/v4nNjUxELddhuaSTEsmlipNE6Cim44SEdxavVOoVnLX
+         6Zd1AGLZ43IEPwmIzABMBMhIhMiTSZlw7Si3E2DHNuuGpp1qCHA+nMZYNSEyrI0UjnlJ
+         gancl6aAKgzmSMnzp3P0FsxSmwvn8z2CEz6OJg0abgvafrT9rS4CrTnHy+4xGT6JYgBX
+         IG4VUaXbbIps3fX6rMUgDwATTJXkHBTLvc2TEkL3nEljiUfm1y3XDI5i2wlRPkbAVkQR
+         6iLuENWtbZw1phBTtMyGalV3cKL7rU+aEs1IvadotSY2zNfWqtLsCzY9mHwISghxfaC4
+         vEpA==
+X-Gm-Message-State: AFqh2kpz6Ry0Tv2V2pVTeTL6U0V2eJebvnFXTV0WRROT5E3ZFiV+M398
+        sIv7x6O3K66OWBSRdiOhOmIoMQ==
+X-Google-Smtp-Source: AMrXdXukbgWHJ8eXS4Y+iIbxXiXx7WDckPMMWlAzb/kDkAsKcE2fYrb3QX5hB0X7v+oiW3YaV8Wffg==
+X-Received: by 2002:a2e:3c18:0:b0:27b:5080:d03d with SMTP id j24-20020a2e3c18000000b0027b5080d03dmr2061095lja.10.1671722004931;
+        Thu, 22 Dec 2022 07:13:24 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id k9-20020ac257c9000000b004947a12232bsm91269lfo.275.2022.12.22.07.13.22
+        by smtp.gmail.com with ESMTPSA id k9-20020ac257c9000000b004947a12232bsm91269lfo.275.2022.12.22.07.13.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Dec 2022 07:13:23 -0800 (PST)
+        Thu, 22 Dec 2022 07:13:24 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -63,10 +64,12 @@ To:     Andy Gross <agross@kernel.org>,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Doug Anderson <dianders@chromium.org>
-Subject: [PATCH v4 1/4] arm64: dts: qcom: sdm845-db845c: fix audio codec interrupt pin name
-Date:   Thu, 22 Dec 2022 16:13:16 +0100
-Message-Id: <20221222151319.122398-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4 2/4] arm64: dts: qcom: sdm845-xiaomi-beryllium: fix audio codec interrupt pin name
+Date:   Thu, 22 Dec 2022 16:13:17 +0100
+Message-Id: <20221222151319.122398-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221222151319.122398-1-krzysztof.kozlowski@linaro.org>
+References: <20221222151319.122398-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,29 +85,25 @@ X-Mailing-List: devicetree@vger.kernel.org
 The pin config entry should have a string, not number, for the GPIO used
 as WCD9340 audio codec interrupt.
 
-Fixes: 89a32a4e769c ("arm64: dts: qcom: db845c: add analog audio support")
+Fixes: dd6459a0890a ("arm64: dts: qcom: split beryllium dts into common dtsi and tianma dts")
 Reported-by: Doug Anderson <dianders@chromium.org>
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
 ---
 
 Cc: Doug Anderson <dianders@chromium.org>
 
 Changes since v3:
-1. Add Fixes and Rb tags.
-
-Changes since v2:
 1. New patch.
 ---
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 2 +-
+ arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-index f41c6d600ea8..774e4352f299 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -979,7 +979,7 @@ sdc2_card_det_n: sd-card-det-n {
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+index eb6b2b676eca..85b8a1b5f0d5 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+@@ -472,7 +472,7 @@ sdc2_card_det_n: sd-card-det-n {
  	};
  
  	wcd_intr_default: wcd_intr_default {
