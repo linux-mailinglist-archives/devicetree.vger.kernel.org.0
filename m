@@ -2,27 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0002654122
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 13:35:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 854A765412C
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 13:41:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235230AbiLVMfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 07:35:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57582 "EHLO
+        id S235306AbiLVMls (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 07:41:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235769AbiLVMfd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 07:35:33 -0500
-Received: from out29-175.mail.aliyun.com (out29-175.mail.aliyun.com [115.124.29.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AFCE23BE8;
-        Thu, 22 Dec 2022 04:35:23 -0800 (PST)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.2206428|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.131169-0.000743072-0.868088;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047209;MF=wangweidong.a@awinic.com;NM=1;PH=DS;RN=28;RT=28;SR=0;TI=SMTPD_---.QbOEy66_1671712480;
-Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.QbOEy66_1671712480)
-          by smtp.aliyun-inc.com;
-          Thu, 22 Dec 2022 20:34:48 +0800
-From:   wangweidong.a@awinic.com
-To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, perex@perex.cz, tiwai@suse.com,
-        ckeepax@opensource.cirrus.com, rf@opensource.cirrus.com,
-        peter.ujfalusi@linux.intel.com,
+        with ESMTP id S234764AbiLVMlr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 07:41:47 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 489FF21E25
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 04:41:45 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id y4so1757644ljc.9
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 04:41:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0RC77huOuZ1tL4G8TsG8hVc4JWG5AumcDRtuYq9SLKc=;
+        b=E7YDzpOwi6G6CgOH+oI5odto7tZlUB+aKr5uh5nxFX5mSEYqom+cJvHx6y5XQTOs2F
+         DFgoASkAQbIHRd33qAk5J7VYNKnjq8XNTbPN9BFNVO+q51I3jKXRyycsMqNqEL5klQWz
+         uxMc8Rud2W/YEuc1ddqTboYD/4WjMsPIXdd+agHxWg9HFl0bgKi/1lKK+6VtK7+2LHsn
+         71iAM2dqzISnZRa1x/ezCuJuzGW2uVYkrfVolzBj1gBdyxaxWZ4Gb6OeWLkpFEXeLkDU
+         boqScC+FcDFJ5nTn1w1ap6IIJp/v1HMmKE9GQsPfIHwSBmrPCpmgZ/2hc+MCjfd4trKV
+         GtLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0RC77huOuZ1tL4G8TsG8hVc4JWG5AumcDRtuYq9SLKc=;
+        b=22mgcUu8aEaPoPkLf+FhvffNrNz2FkwooyWg3aILxz1RuUp+2vjsXR4+Yby0KN3lfa
+         tBQpmiKV5RNChAG3gL5OgNDl4ERlq///OyMMnJw+HFVES4ei1L1nd2Ca8DEPiTgSgeJP
+         0CxlDCnnu+92fPwSIeO8bHtGMpRH2ZbbHAfp1lYB08U7MDfeubx4YdD6C6y6rsKFGvw4
+         Eg9f7Tkv9M7w2X7irMwQHNQACn0qGp/quKKd6BUtfvTAH/U/r1xL9G+c3JxHp+s/t2xD
+         8L9BI2DklpJdUN29BfwozdO1kQwqBKIgmmYabpZ5T5p0+a02g80zu1XmQa/Mwv8KUDgj
+         sDCg==
+X-Gm-Message-State: AFqh2kqIeqjMQnaVcZSsp6fp10uM4Ws5D5sewNUPyHdGOPB1vXvNztBV
+        6XZFJI7wB8OaNkPayhQ9sBx1mA==
+X-Google-Smtp-Source: AMrXdXsvXowNhJXCaGGsO8mKuYF+/MQWHP2HfUgvhMuGS+EhnuwqM/q9CQssShr902wvC5qi9gT5Kw==
+X-Received: by 2002:a2e:8005:0:b0:27a:2e09:c5be with SMTP id j5-20020a2e8005000000b0027a2e09c5bemr1395091ljg.16.1671712903511;
+        Thu, 22 Dec 2022 04:41:43 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id k7-20020a05651239c700b004b5766f48d8sm61833lfu.19.2022.12.22.04.41.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Dec 2022 04:41:42 -0800 (PST)
+Message-ID: <bb05ad5b-6109-a618-0f98-6fe267de8b0b@linaro.org>
+Date:   Thu, 22 Dec 2022 13:41:41 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH V7 5/5] ASoC: dt-bindings: Add schema for "awinic,aw883xx"
+Content-Language: en-US
+To:     wangweidong.a@awinic.com, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        perex@perex.cz, tiwai@suse.com, ckeepax@opensource.cirrus.com,
+        rf@opensource.cirrus.com, peter.ujfalusi@linux.intel.com,
         pierre-louis.bossart@linux.intel.com, james.schulman@cirrus.com,
         flatmax@flatmax.com, ryan.lee.analog@gmail.com,
         jonathan.albrieux@gmail.com, tanureal@opensource.cirrus.com,
@@ -31,89 +68,74 @@ To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
         alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     liweilei@awinic.com, zhaolei@awinic.com, yijiangtao@awinic.com,
-        zhangjianming@awinic.com, duanyibo@awinic.com,
-        Weidong Wang <wangweidong.a@awinic.com>
-Subject: [PATCH V7 5/5] ASoC: dt-bindings: Add schema for "awinic,aw883xx"
-Date:   Thu, 22 Dec 2022 20:34:31 +0800
-Message-Id: <20221222123431.106425-1-wangweidong.a@awinic.com>
-X-Mailer: git-send-email 2.38.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+        zhangjianming@awinic.com, duanyibo@awinic.com
+References: <20221222123431.106425-1-wangweidong.a@awinic.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221222123431.106425-1-wangweidong.a@awinic.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Weidong Wang <wangweidong.a@awinic.com>
+On 22/12/2022 13:34, wangweidong.a@awinic.com wrote:
+> From: Weidong Wang <wangweidong.a@awinic.com>
+> 
+> Add a DT schema for describing Awinic AW883xx audio amplifiers. They are
+> controlled using I2C.
+> 
+> Signed-off-by: Weidong Wang <wangweidong.a@awinic.com>
+> ---
+>  .../bindings/sound/awinic,aw883xx.yaml        | 49 +++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/awinic,aw883xx.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/awinic,aw883xx.yaml b/Documentation/devicetree/bindings/sound/awinic,aw883xx.yaml
+> new file mode 100644
+> index 000000000000..af4e0e27f8f7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/awinic,aw883xx.yaml
 
-Add a DT schema for describing Awinic AW883xx audio amplifiers. They are
-controlled using I2C.
+Filename matching the compatible.
 
-Signed-off-by: Weidong Wang <wangweidong.a@awinic.com>
----
- .../bindings/sound/awinic,aw883xx.yaml        | 49 +++++++++++++++++++
- 1 file changed, 49 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/awinic,aw883xx.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/awinic,aw883xx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Awinic AW883xx Smart Audio Amplifier
+> +
+> +maintainers:
+> +  - Stephan Gerhold <stephan@gerhold.net>
+> +
+> +description:
+> +  The Awinic AW883XX is an I2S/TDM input, high efficiency
+> +  digital Smart K audio amplifier with an integrated 10.25V
+> +  smart boost convert.
+> +
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: awinic,aw883xx_smartpa
 
-diff --git a/Documentation/devicetree/bindings/sound/awinic,aw883xx.yaml b/Documentation/devicetree/bindings/sound/awinic,aw883xx.yaml
-new file mode 100644
-index 000000000000..af4e0e27f8f7
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/awinic,aw883xx.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/awinic,aw883xx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Awinic AW883xx Smart Audio Amplifier
-+
-+maintainers:
-+  - Stephan Gerhold <stephan@gerhold.net>
-+
-+description:
-+  The Awinic AW883XX is an I2S/TDM input, high efficiency
-+  digital Smart K audio amplifier with an integrated 10.25V
-+  smart boost convert.
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: awinic,aw883xx_smartpa
-+
-+  reg:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  sound-name-prefix: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - reset-gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        audio-codec@34 {
-+            compatible = "awinic,aw883xx_smartpa";
-+            reg = <0x34>;
-+            reset-gpios = <&gpio 10 GPIO_ACTIVE_LOW>;
-+        };
-+    };
--- 
-2.38.1
+This is a friendly reminder during the review process.
+
+It seems my previous comments were not fully addressed. Maybe my
+feedback got lost between the quotes, maybe you just forgot to apply it.
+Please go back to the previous discussion and either implement all
+requested changes or keep discussing them.
+
+Thank you.
+
+Best regards,
+Krzysztof
 
