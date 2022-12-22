@@ -2,77 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 854A765412C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 13:41:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2168265413E
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 13:46:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235306AbiLVMls (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 07:41:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33354 "EHLO
+        id S235247AbiLVMqG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 07:46:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234764AbiLVMlr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 07:41:47 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 489FF21E25
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 04:41:45 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id y4so1757644ljc.9
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 04:41:45 -0800 (PST)
+        with ESMTP id S229862AbiLVMqD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 07:46:03 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CDA222B
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 04:46:02 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id n3so768919wrc.5
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 04:46:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=0RC77huOuZ1tL4G8TsG8hVc4JWG5AumcDRtuYq9SLKc=;
-        b=E7YDzpOwi6G6CgOH+oI5odto7tZlUB+aKr5uh5nxFX5mSEYqom+cJvHx6y5XQTOs2F
-         DFgoASkAQbIHRd33qAk5J7VYNKnjq8XNTbPN9BFNVO+q51I3jKXRyycsMqNqEL5klQWz
-         uxMc8Rud2W/YEuc1ddqTboYD/4WjMsPIXdd+agHxWg9HFl0bgKi/1lKK+6VtK7+2LHsn
-         71iAM2dqzISnZRa1x/ezCuJuzGW2uVYkrfVolzBj1gBdyxaxWZ4Gb6OeWLkpFEXeLkDU
-         boqScC+FcDFJ5nTn1w1ap6IIJp/v1HMmKE9GQsPfIHwSBmrPCpmgZ/2hc+MCjfd4trKV
-         GtLQ==
+        bh=6n0bW6AEyag4Yz/fTHAES88HSyxxmFvstBuhh9x5saw=;
+        b=KOROV8lX7w89xX5ufKygg/XiKOHbwq+ahSq/EFXdClSz6A6PPIASH93vwSblhvyfvP
+         z065xKqyID4B23C5FKRtCNBRT7EZeHKqBaXWbTm25nv5NSIM4YVpd6sapwFwIVxhDl9W
+         vgS1DDELxOfO9UFeHBkuF3kXiBeX2Z9lJnUFB7VxxeWgDG2J9dKD9d4mhaDEElya+7OC
+         J/Ifu+V/cIVhsVdOkWv9imdoqJp91AmZx3BU1lsgG0BAioTGznMGTy/nSQNLUBVfUTbu
+         59/w/iEnZzmu8sYKq1kwC+RZvZABDeTzNELZU1mol/HdAZezfgpti3m/1ZYHUj2Ma+AJ
+         OpWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0RC77huOuZ1tL4G8TsG8hVc4JWG5AumcDRtuYq9SLKc=;
-        b=22mgcUu8aEaPoPkLf+FhvffNrNz2FkwooyWg3aILxz1RuUp+2vjsXR4+Yby0KN3lfa
-         tBQpmiKV5RNChAG3gL5OgNDl4ERlq///OyMMnJw+HFVES4ei1L1nd2Ca8DEPiTgSgeJP
-         0CxlDCnnu+92fPwSIeO8bHtGMpRH2ZbbHAfp1lYB08U7MDfeubx4YdD6C6y6rsKFGvw4
-         Eg9f7Tkv9M7w2X7irMwQHNQACn0qGp/quKKd6BUtfvTAH/U/r1xL9G+c3JxHp+s/t2xD
-         8L9BI2DklpJdUN29BfwozdO1kQwqBKIgmmYabpZ5T5p0+a02g80zu1XmQa/Mwv8KUDgj
-         sDCg==
-X-Gm-Message-State: AFqh2kqIeqjMQnaVcZSsp6fp10uM4Ws5D5sewNUPyHdGOPB1vXvNztBV
-        6XZFJI7wB8OaNkPayhQ9sBx1mA==
-X-Google-Smtp-Source: AMrXdXsvXowNhJXCaGGsO8mKuYF+/MQWHP2HfUgvhMuGS+EhnuwqM/q9CQssShr902wvC5qi9gT5Kw==
-X-Received: by 2002:a2e:8005:0:b0:27a:2e09:c5be with SMTP id j5-20020a2e8005000000b0027a2e09c5bemr1395091ljg.16.1671712903511;
-        Thu, 22 Dec 2022 04:41:43 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id k7-20020a05651239c700b004b5766f48d8sm61833lfu.19.2022.12.22.04.41.41
+        bh=6n0bW6AEyag4Yz/fTHAES88HSyxxmFvstBuhh9x5saw=;
+        b=BBp5antoLG8xk6Jg1ObZNy1H6xbfkgXvenzTiPm86Mp9zw3MxngWTBylA2eRjbjCYd
+         lNES/mj0SQrJnxkb+0hXZlRyGsvr9JWY9QYtztdnCfXKyFWs0Jn/OXFH6gFng5A/BIML
+         9dHMj0BfNNADY5O/qZdXKvS74LQbv6+qhBQqGfOP9Y0aFLffN3zwuGW7gzznB/ADVC3e
+         BrjJ+TUPIpMc6sJLG4fAaPHtOJAJJhtEnDqEfpIiCPA9mPh3xmfTifxO9P1fFFs30w+Q
+         J/T2Bv1AuBKHqy+LfkK90YaYuHVIMGX2C3g1HhMNCahd/ErWZILzD9ajTfrnid+FhF3M
+         5pxQ==
+X-Gm-Message-State: AFqh2kpVKdv6ZONMgtaB+3p3oWOdIkS/q0q5unfe08nn1JjfEBXDxSOk
+        apWzP/Fqy0ltUVSXIH3pzPT6Zg==
+X-Google-Smtp-Source: AMrXdXv2CMOs1kyvXBletImJqlJC+DtSfV8o0e7xTIWzSkmMqSaL7v/keKysbviY3GcBchUTo4+AIw==
+X-Received: by 2002:adf:fd4a:0:b0:242:593e:ee08 with SMTP id h10-20020adffd4a000000b00242593eee08mr3616514wrs.36.1671713160841;
+        Thu, 22 Dec 2022 04:46:00 -0800 (PST)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id o2-20020a5d58c2000000b0026a4bb75477sm456705wrf.28.2022.12.22.04.45.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Dec 2022 04:41:42 -0800 (PST)
-Message-ID: <bb05ad5b-6109-a618-0f98-6fe267de8b0b@linaro.org>
-Date:   Thu, 22 Dec 2022 13:41:41 +0100
+        Thu, 22 Dec 2022 04:46:00 -0800 (PST)
+Message-ID: <b1f9dd11-b626-26d8-c6bd-7b5af7340dbb@linaro.org>
+Date:   Thu, 22 Dec 2022 12:45:59 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH V7 5/5] ASoC: dt-bindings: Add schema for "awinic,aw883xx"
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v5 05/21] dt-bindings: msm: dsi-controller-main: Deprecate
+ qcom,dsi-ctrl-6g-qcm2290 in favour of qcom,qcm2290-dsi-ctrl
 Content-Language: en-US
-To:     wangweidong.a@awinic.com, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        perex@perex.cz, tiwai@suse.com, ckeepax@opensource.cirrus.com,
-        rf@opensource.cirrus.com, peter.ujfalusi@linux.intel.com,
-        pierre-louis.bossart@linux.intel.com, james.schulman@cirrus.com,
-        flatmax@flatmax.com, ryan.lee.analog@gmail.com,
-        jonathan.albrieux@gmail.com, tanureal@opensource.cirrus.com,
-        povik+lin@cutebit.org, 13691752556@139.com,
-        cezary.rojewski@intel.com, stephan@gerhold.net,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     liweilei@awinic.com, zhaolei@awinic.com, yijiangtao@awinic.com,
-        zhangjianming@awinic.com, duanyibo@awinic.com
-References: <20221222123431.106425-1-wangweidong.a@awinic.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221222123431.106425-1-wangweidong.a@awinic.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Cc:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
+        dmitry.baryshkov@linaro.org, sean@poorly.run, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org, dianders@chromium.org,
+        david@ixit.cz, krzysztof.kozlowski+dt@linaro.org,
+        swboyd@chromium.org, konrad.dybcio@somainline.org,
+        agross@kernel.org, andersson@kernel.org,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+References: <20221220123634.382970-1-bryan.odonoghue@linaro.org>
+ <20221220123634.382970-6-bryan.odonoghue@linaro.org>
+ <4115ec26-dedf-ca80-b81a-409d9db88f52@linaro.org>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <4115ec26-dedf-ca80-b81a-409d9db88f52@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -83,59 +83,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/12/2022 13:34, wangweidong.a@awinic.com wrote:
-> From: Weidong Wang <wangweidong.a@awinic.com>
+On 22/12/2022 11:50, Krzysztof Kozlowski wrote:
+> On 20/12/2022 13:36, Bryan O'Donoghue wrote:
+>> Deprecate qcom,dsi-ctrl-6g-qcm2290 in favour of the desired format
+>> qcom,qcm2290-dsi-ctrl.
+>>
+>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>> ---
+>>   .../display/msm/dsi-controller-main.yaml      | 36 +++++++++++--------
+>>   1 file changed, 21 insertions(+), 15 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+>> index 01afa9e9c4b3c..98d54a7ee28d4 100644
+>> --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+>> +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+>> @@ -14,21 +14,27 @@ allOf:
+>>   
+>>   properties:
+>>     compatible:
+>> -    items:
+>> -      - enum:
+>> -          - qcom,apq8064-dsi-ctrl
+>> -          - qcom,msm8916-dsi-ctrl
+>> -          - qcom,msm8953-dsi-ctrl
+>> -          - qcom,msm8974-dsi-ctrl
+>> -          - qcom,msm8996-dsi-ctrl
+>> -          - qcom,msm8998-dsi-ctrl
+>> -          - qcom,dsi-ctrl-6g-qcm2290
+>> -          - qcom,sc7180-dsi-ctrl
+>> -          - qcom,sc7280-dsi-ctrl
+>> -          - qcom,sdm660-dsi-ctrl
+>> -          - qcom,sdm845-dsi-ctrl
+>> -          - qcom,sm8250-dsi-ctrl
+>> -      - const: qcom,mdss-dsi-ctrl
+>> +    oneOf:
+>> +      - items:
+>> +          - enum:
+>> +              - qcom,apq8064-dsi-ctrl
+>> +              - qcom,msm8916-dsi-ctrl
+>> +              - qcom,msm8953-dsi-ctrl
+>> +              - qcom,msm8974-dsi-ctrl
+>> +              - qcom,msm8996-dsi-ctrl
+>> +              - qcom,msm8998-dsi-ctrl
+>> +              - qcom,qcm2290-dsi-ctrl
+>> +              - qcom,sc7180-dsi-ctrl
+>> +              - qcom,sc7280-dsi-ctrl
+>> +              - qcom,sdm660-dsi-ctrl
+>> +              - qcom,sdm845-dsi-ctrl
+>> +              - qcom,sm8250-dsi-ctrl
+>> +          - const: qcom,mdss-dsi-ctrl
+>> +      - items:
 > 
-> Add a DT schema for describing Awinic AW883xx audio amplifiers. They are
-> controlled using I2C.
+> I would just squash it with previous. You are adding some code and in
+> next patch immediately:
+> 1. re-indent it,
+> 2. remove it (qcom,dsi-ctrl-6g-qcm2290)
 > 
-> Signed-off-by: Weidong Wang <wangweidong.a@awinic.com>
-> ---
->  .../bindings/sound/awinic,aw883xx.yaml        | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/awinic,aw883xx.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/awinic,aw883xx.yaml b/Documentation/devicetree/bindings/sound/awinic,aw883xx.yaml
-> new file mode 100644
-> index 000000000000..af4e0e27f8f7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/awinic,aw883xx.yaml
+> Best regards,
+> Krzysztof
+> 
 
-Filename matching the compatible.
+Just to make sure.
 
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/awinic,aw883xx.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Awinic AW883xx Smart Audio Amplifier
-> +
-> +maintainers:
-> +  - Stephan Gerhold <stephan@gerhold.net>
-> +
-> +description:
-> +  The Awinic AW883XX is an I2S/TDM input, high efficiency
-> +  digital Smart K audio amplifier with an integrated 10.25V
-> +  smart boost convert.
-> +
-> +allOf:
-> +  - $ref: dai-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: awinic,aw883xx_smartpa
-
-This is a friendly reminder during the review process.
-
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
-
-Thank you.
-
-Best regards,
-Krzysztof
-
+I'll squash this patch down in the previous and include your RB.
