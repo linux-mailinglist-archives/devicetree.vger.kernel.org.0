@@ -2,99 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 645B7653E49
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 11:29:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 626DA653E50
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 11:30:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235282AbiLVK3t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 05:29:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40856 "EHLO
+        id S235326AbiLVKai (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 05:30:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235225AbiLVK3q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 05:29:46 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8577C1A214;
-        Thu, 22 Dec 2022 02:29:43 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 4C1D024E347;
-        Thu, 22 Dec 2022 18:29:42 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 22 Dec
- 2022 18:29:42 +0800
-Received: from EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4]) by
- EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4%16]) with mapi id
- 15.00.1497.044; Thu, 22 Dec 2022 18:29:42 +0800
-From:   JiaJie Ho <jiajie.ho@starfivetech.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Olivia Mackall <olivia@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
-Subject: RE: [PATCH 2/3] hwrng: starfive - Add TRNG driver for StarFive SoC
-Thread-Topic: [PATCH 2/3] hwrng: starfive - Add TRNG driver for StarFive SoC
-Thread-Index: AQHZFRwx15kE4gLKu0uxN2CW96B+Oa53kqwAgAIT3RD//3zVgIAAklKA
-Date:   Thu, 22 Dec 2022 10:29:41 +0000
-Message-ID: <2684abf708f145f4b49ec1680c1ddb87@EXMBX168.cuchost.com>
-References: <20221221090819.1259443-1-jiajie.ho@starfivetech.com>
- <20221221090819.1259443-3-jiajie.ho@starfivetech.com>
- <05aaa9f8-7a97-51c9-e18a-1c3753f2006b@linaro.org>
- <69dca1be673a40729d750c00d927b437@EXMBX168.cuchost.com>
- <27f1c084-60b4-daeb-0ffe-c0500aecbd49@linaro.org>
-In-Reply-To: <27f1c084-60b4-daeb-0ffe-c0500aecbd49@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [161.142.229.243]
-x-yovoleruleagent: yovoleflag
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S229742AbiLVKab (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 05:30:31 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5671920998;
+        Thu, 22 Dec 2022 02:30:26 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id EDD16B81D1B;
+        Thu, 22 Dec 2022 10:30:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 988A2C433D2;
+        Thu, 22 Dec 2022 10:30:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1671705023;
+        bh=vUcSd9J2/pd1O0FG8ub/N5/m3MO3FZNyWwtsGOBo2Ww=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=JJlDCVl2gTQ5OkZojlxa+xBwc1t19Hs+3PB2smEQ6GYOOZmoeQ2Yh00SE9ZqGvj32
+         rXZphqCK/ZRYj/NUVTpMWGb2MvZL6cUUKCuVypiS+S171wVj8wJt7+3XL6s6tFWeFO
+         Q+REsvNpj+th4kooz1Att2S+2BDdyAYhBnNjmcbgvz/nsz//NL99xKZykvodqslrl6
+         Jm35ssvPtb77Z/BzIWZFSt7q9goQAFfaD1VuQpimS7XpiEf30P6H4OYqeLYnWaQQ7p
+         qCV0Pv8kvO57I5pjPD63mut1owm7i5oKV11HFMY904xn/P1IuviL3hkUsZP3YTZHCC
+         3+ij9OO/A+2KQ==
+Message-ID: <2e7c901c-e322-ded6-b170-6d2436d74c0f@kernel.org>
+Date:   Thu, 22 Dec 2022 11:30:17 +0100
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [RFC PATCH 6/7] ARM: dts: stm32: add ETZPC as a system bus for
+ STM32MP15x boards
+Content-Language: en-US
+To:     Gatien Chevallier <gatien.chevallier@foss.st.com>,
+        alexandre.torgue@foss.st.com, robh+dt@kernel.org,
+        Oleksii_Moisieiev@epam.com, linus.walleij@linaro.org,
+        gregkh@linuxfoundation.org
+Cc:     linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        loic.pallardy@st.com, devicetree@vger.kernel.org,
+        mark.rutland@arm.com, arnd@arndb.de
+References: <20221221173055.11719-1-gatien.chevallier@foss.st.com>
+ <20221221173055.11719-7-gatien.chevallier@foss.st.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20221221173055.11719-7-gatien.chevallier@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6eXN6dG9mIEtvemxv
-d3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPg0KPiBTZW50OiBUaHVyc2RheSwg
-RGVjZW1iZXIgMjIsIDIwMjIgNTo0NCBQTQ0KPiBUbzogSmlhSmllIEhvIDxqaWFqaWUuaG9Ac3Rh
-cmZpdmV0ZWNoLmNvbT47IE9saXZpYSBNYWNrYWxsDQo+IDxvbGl2aWFAc2VsZW5pYy5jb20+OyBI
-ZXJiZXJ0IFh1IDxoZXJiZXJ0QGdvbmRvci5hcGFuYS5vcmcuYXU+OyBSb2INCj4gSGVycmluZyA8
-cm9iaCtkdEBrZXJuZWwub3JnPjsgS3J6eXN6dG9mIEtvemxvd3NraQ0KPiA8a3J6eXN6dG9mLmtv
-emxvd3NraStkdEBsaW5hcm8ub3JnPg0KPiBDYzogRW1pbCBSZW5uZXIgQmVydGhpbmcgPGtlcm5l
-bEBlc21pbC5kaz47IENvbm9yIERvb2xleQ0KPiA8Y29ub3IuZG9vbGV5QG1pY3JvY2hpcC5jb20+
-OyBsaW51eC1jcnlwdG9Admdlci5rZXJuZWwub3JnOw0KPiBkZXZpY2V0cmVlQHZnZXIua2VybmVs
-Lm9yZzsgbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsgbGludXgtDQo+IHJpc2N2QGxpc3Rz
-LmluZnJhZGVhZC5vcmcNCj4gU3ViamVjdDogUmU6IFtQQVRDSCAyLzNdIGh3cm5nOiBzdGFyZml2
-ZSAtIEFkZCBUUk5HIGRyaXZlciBmb3IgU3RhckZpdmUgU29DDQo+IA0KPiA+IEhvdyBkbyBJIHBy
-b3Blcmx5IGhhbmRsZSBfX21heWJlX3VudXNlZCBmdW5jdGlvbnMgaW4gdGhpcyBzY2VuYXJpbz8N
-Cj4gDQo+IFRoZSBzYW1lIGFzIGluIG90aGVyIGZpbGVzLiBVc2UgYGdpdCBncmVwYA0KPiANCj4g
-PiBXaWxsIGl0IGhlbHAgaWYgSSBhZGQgI2RlZmluZSBhcyBmb2xsb3dzOg0KPiA+DQo+ID4gI2lm
-ZGVmIENPTkZJR19QTQ0KPiA+ICNkZWZpbmUgU1RBUkZJVkVfUk5HX1BNX09QUyAoJnN0YXJmaXZl
-X3JuZ19wbV9vcHMpICNlbHNlICNkZWZpbmUNCj4gPiBTVEFSRklWRV9STkdfUE1fT1BTIE5VTEwg
-I2VuZGlmDQo+IA0KPiBJIHRhbGtlZCBvbmx5IGFib3V0IG9mX21hdGNoX3B0cigpLiBUaGlzIGlz
-IG5vdCBvZl9tYXRjaF9wdHIgYW5kIHNob3VsZCBoYXZlDQo+IGl0cyBvd24gc3ludGF4IChwbV9z
-bGVlcF9wdHIgKyBzdGF0aWMgREVGSU5FX1NJTVBMRV9ERVZfUE1fT1BTKQ0KPiANCj4gPg0KPiA+
-IHN0YXRpYyBzdHJ1Y3QgcGxhdGZvcm1fZHJpdmVyIHN0YXJmaXZlX3RybmdfZHJpdmVyID0gew0K
-PiA+ICAgICAgICAgLnByb2JlICA9IHN0YXJmaXZlX3RybmdfcHJvYmUsDQo+ID4gICAgICAgICAu
-ZHJpdmVyID0gew0KPiA+ICAgICAgICAgICAgICAgICAubmFtZSAgICAgICAgICAgPSAic3RhcmZp
-dmUtdHJuZyIsDQo+ID4gICAgICAgICAgICAgICAgIC5wbSAgICAgICAgICAgICA9IFNUQVJGSVZF
-X1JOR19QTV9PUFMsDQo+ID4gICAgICAgICAgICAgICAgIC5vZl9tYXRjaF90YWJsZSA9IG9mX21h
-dGNoX3B0cih0cm5nX2R0X2lkcyksDQo+ID4gICAgICAgICB9LA0KPiA+IH07DQo+ID4NCj4gPiBJ
-IGRpZCBidWlsZCB0aGUgcGF0Y2hlcyB3aXRoIHRoZSB0b29scyBtZW50aW9uZWQgYnV0IGRpZCBu
-b3QgZ2V0IHdhcm5pbmdzLg0KPiA+IERvIEkgbmVlZCBhIHNwZWNpZmljIHZlcnNpb24sIG9yIGhh
-dmUgSSBkb25lIHNvbWV0aGluZyB3cm9uZz8NCj4gDQo+IFlvdSBqdXN0IG5lZWQgcHJvcGVyIENP
-TVBJTEVfVEVTVCBjb25maWcgd2l0aCBPRiBkaXNhYmxlZC4NCj4gDQoNCkknbGwgdXBkYXRlIHRo
-ZSBwYXRjaCBhY2NvcmRpbmdseS4NClRoYW5rcyBhZ2FpbiBmb3IgdGhlIGNvbW1lbnRzIGFuZCBz
-dWdnZXN0aW9ucy4NCg0KUmVnYXJkcywNCkppYSBKaWUNCg==
+On 21/12/2022 18:30, Gatien Chevallier wrote:
+> The STM32 System Bus is an internal bus on which devices are connected.
+> ETZPC is a peripheral overseeing the firewall bus that configures
+> and control access to the peripherals connected on it.
+> 
+> For more information on which peripheral is securable, please read
+> the STM32MP15 reference manual.
+> 
+> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+> ---
+>  arch/arm/boot/dts/stm32mp151.dtsi | 2737 +++++++++++++++--------------
+>  1 file changed, 1406 insertions(+), 1331 deletions(-)
+>  
+> -		lptimer1: timer@40009000 {
+> +		etzpc: etzpc@5c007000 {
+
+Node names should be generic.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +			compatible = "st,stm32mp15-sys-bus";
+> +			reg = <0x5c007000 0x400>;
+>  			#address-cells = <1>;
+> -			#size-cells = <0>;
+> -			compatible = "st,stm32-lptimer";
+> -			reg = <0x40009000 0x400>;
+> -			interrupts-extended = <&exti 47 IRQ_TYPE_LEVEL_HIGH>;
+> -			clocks = <&rcc LPTIM1_K>;
+> -			clock-names = "mux";
+> -			wakeup-source;
+> -			status = "disabled";
+
+Why entire bus is disabled? What resources do you miss?
+
+> +			#size-cells = <1>;
+> +			feature-domain-controller;
+> +			#feature-domain-cells = <2>;
+> +			ranges;
+>  
+Best regards,
+Krzysztof
+
