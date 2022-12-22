@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F20C5653F07
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 12:29:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBFEB653F0F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 12:32:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235169AbiLVL30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 06:29:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40310 "EHLO
+        id S235497AbiLVLce (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 06:32:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235487AbiLVL3Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 06:29:24 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E181B27916
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 03:29:22 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id z26so2283595lfu.8
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 03:29:22 -0800 (PST)
+        with ESMTP id S235499AbiLVLcd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 06:32:33 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C02CB1116B
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 03:32:31 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id v11so1574427ljk.12
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 03:32:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=cw6ONA6gogjtYj6TjrALT+rkM8fzFVFzYIu5Fk/INfw=;
-        b=jt/q0ACPAFc/g/Zv9uCt4zdNZswa+Wx4an9/VKA5Jg8SWEXOlAZmiiL3ErCYkKE54c
-         kW9vnG6spQrzTHU+D6zGnCdeDo9YIJrAEnOFOwhq0Vo7TA+EW1MKPbC1q+8wk4wT4cIH
-         lPrKENY8COJZkD6sjJ0ZX/5QLwD8+j5IXMlFzADBXRRKtCEqXV8OAIJv7vMWZgEoagZh
-         fq3DnYKWuHgyNcTfXlgp1zI1BIGR3X16/uy7KtYwciMsDPJ2w2cyQA5Ki8JXiuXFeQl/
-         CUsmbnRVZodZ2ffjUSJDf5VVMfDCsu07kcwxOoohA+qeH3oSdcT6LYDOZzBqJ2TjumZg
-         LLYA==
+        bh=/xNrstpPkvJFRU3x179oushCBItlthfa6HHIQMn+fl0=;
+        b=XNJKvX44os/xzlB2h72vCCQF5Fv0fcE+P3d0QOrW/pnWMjm6sZkhRkyMnLZ7wyhbxN
+         fyHkU+zC6lT0yI9fc9S0R8mh/q3ebB9jVfuKZQ4VKYikM71syttdD/ieZsLzXJWlOD8Y
+         CxPwY7ROLDe2hZPcQ2YlvgcDMiZe64OsI17fNR6Z+u4++zz18ubguM3JQsrbdSBtBYO9
+         nNlhpXVdz6USmyIHN17JFU2/UJ7WG4ODQtIg3FH6El8L/DOmmWSYV1hFHxtURomRggVL
+         yP/yRRIDvCyohZPEyva/tmdthFBEsxMEI42oYR8r8Ky4zBCnT8kz2nhl2FhbCEMv93gE
+         yN/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cw6ONA6gogjtYj6TjrALT+rkM8fzFVFzYIu5Fk/INfw=;
-        b=OQf8YtdozZc2szbxNFFKquBpmQhcr44PDoOxIDJlzjb5hvL861fRy24HteqVhx3sLr
-         x2+iUjAHqJLNrohB+/Smsul40Bn0ZDLSO772Mbt79LDNlpV1mwb+88ZvNZ7sVHbEldc5
-         Ej3NGpdoA9IHog6uRgOU2m9gbNJuUMYUJNUs+fnWgj/l8g39XvPptO8DxJGeLVsfjneD
-         Xhrug8++y4wKs+4KUoiP2z8wNqho+1RM8LXTJvv4oqkjC3ci2Pw2cK3cVofWjD3miVIE
-         /JrAN6+I0vAkXEqa4oUkvpFCqH5THH9ydmkOU+l/TZJmPd8yGixk8qVvXwTyxRGmX5vt
-         7FMg==
-X-Gm-Message-State: AFqh2kpCjubEMu12UxfOxirWwJCM6iiK1Z6EzA8/KBn1kX4YwMV8rzVz
-        liBv0/4p+cb5FBtjIiT6CVtYKw==
-X-Google-Smtp-Source: AMrXdXvh9kv2LIv3hops2Rq43VUnBTN92hH3cTcNK0tsh+RzgeCfNyTF6dzgzg9s0qCCGFzlIbsZTw==
-X-Received: by 2002:a05:6512:308d:b0:4a4:68b7:d61d with SMTP id z13-20020a056512308d00b004a468b7d61dmr2174194lfd.4.1671708561321;
-        Thu, 22 Dec 2022 03:29:21 -0800 (PST)
+        bh=/xNrstpPkvJFRU3x179oushCBItlthfa6HHIQMn+fl0=;
+        b=lqgrsyNn1ej93gYx5bAjbLl8HjdQeBvskEUI9vZC0yzSmiNotzKZDfUgXXnfqHa1H6
+         Solg2cGxWB2mEa6CnnVPMQeyucilb3iMwc+nzfVaa6hgkM4Te4WVqU/daIg7Lusn87gm
+         sRgOYqFJRmMWRPU0a6fWW66LTVr9RqcflZW22x0Q3WdadEh7D1IgRkmpRCvnyGAm/LDw
+         i3cGHPfTzzgGPwLkv6vSz6PvcK6iFkvQXTdYZNLW/72WHJ4WXkebGCiyZhjZZihaSpW2
+         jTgu6Hu8X+OlxaKU2up9d8tHUxC7WprkQGUXHfqZFe6IKd9tI8jv1Yvag37myhSONJTP
+         ydpQ==
+X-Gm-Message-State: AFqh2kqm39xOjtCVUwK581jCLg117Qg6zYHBaFsLw/vIc924xgsc6SYP
+        ctrFXA3lQM0CtXbrac9deIlfmA==
+X-Google-Smtp-Source: AMrXdXsDXofPLyRo/MZV5uBG6NHJwqJ3eB0L8o21eXuNvNJI/yZWhBhJCRXmf8lmR1CP3XUoAnriEQ==
+X-Received: by 2002:a2e:3a15:0:b0:27b:4a50:b85b with SMTP id h21-20020a2e3a15000000b0027b4a50b85bmr1242261lja.29.1671708750035;
+        Thu, 22 Dec 2022 03:32:30 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id j18-20020a056512109200b00498f67cbfa9sm44051lfg.22.2022.12.22.03.29.20
+        by smtp.gmail.com with ESMTPSA id h6-20020a2e9006000000b0027a197d8247sm23693ljg.16.2022.12.22.03.32.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Dec 2022 03:29:20 -0800 (PST)
-Message-ID: <61ff6ca0-4e7e-1a88-05b0-dee462e7b098@linaro.org>
-Date:   Thu, 22 Dec 2022 12:29:19 +0100
+        Thu, 22 Dec 2022 03:32:29 -0800 (PST)
+Message-ID: <b4777025-0220-b1e4-f6f3-00d75ec8f0be@linaro.org>
+Date:   Thu, 22 Dec 2022 12:32:28 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [Patch v1 05/10] dt-bindings: tegra: add icc ids for dummy MC
- clients
+Subject: Re: [Patch v1 01/10] memory: tegra: add interconnect support for DRAM
+ scaling in Tegra234
 Content-Language: en-US
 To:     Sumit Gupta <sumitg@nvidia.com>, treding@nvidia.com,
         dmitry.osipenko@collabora.com, viresh.kumar@linaro.org,
@@ -65,9 +65,9 @@ To:     Sumit Gupta <sumitg@nvidia.com>, treding@nvidia.com,
 Cc:     sanjayc@nvidia.com, ksitaraman@nvidia.com, ishah@nvidia.com,
         bbasu@nvidia.com
 References: <20221220160240.27494-1-sumitg@nvidia.com>
- <20221220160240.27494-6-sumitg@nvidia.com>
+ <20221220160240.27494-2-sumitg@nvidia.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221220160240.27494-6-sumitg@nvidia.com>
+In-Reply-To: <20221220160240.27494-2-sumitg@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,25 +81,178 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 20/12/2022 17:02, Sumit Gupta wrote:
-> Adding ICC id's for dummy software clients representing CCPLEX clusters.
+> Adding Interconnect framework support to dynamically set the DRAM
+> bandwidth from different clients. Both the MC and EMC drivers are
+> added as ICC providers. The path for any request will be:
+>  MC-Client[1-n] -> MC -> EMC -> EMEM/DRAM
+> 
+> MC clients will request for bandwidth to the MC driver which will
+> pass the tegra icc node having current request info to the EMC driver.
+> The EMC driver will send the BPMP Client ID, Client type and bandwidth
+> request info to the BPMP-FW where the final DRAM freq for achieving the
+> requested bandwidth is set based on the passed parameters.
 > 
 > Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
 > ---
->  include/dt-bindings/memory/tegra234-mc.h | 5 +++++
->  1 file changed, 5 insertions(+)
+>  drivers/memory/tegra/mc.c           |  18 ++-
+>  drivers/memory/tegra/tegra186-emc.c | 166 ++++++++++++++++++++++++++++
+>  drivers/memory/tegra/tegra234.c     | 101 ++++++++++++++++-
+>  include/soc/tegra/mc.h              |   7 ++
+>  include/soc/tegra/tegra-icc.h       |  72 ++++++++++++
+>  5 files changed, 362 insertions(+), 2 deletions(-)
+>  create mode 100644 include/soc/tegra/tegra-icc.h
 > 
-> diff --git a/include/dt-bindings/memory/tegra234-mc.h b/include/dt-bindings/memory/tegra234-mc.h
-> index 347e55e89a2a..6e60d55491b3 100644
-> --- a/include/dt-bindings/memory/tegra234-mc.h
-> +++ b/include/dt-bindings/memory/tegra234-mc.h
-> @@ -536,4 +536,9 @@
->  #define TEGRA234_MEMORY_CLIENT_NVJPG1SRD 0x123
->  #define TEGRA234_MEMORY_CLIENT_NVJPG1SWR 0x124
+> diff --git a/drivers/memory/tegra/mc.c b/drivers/memory/tegra/mc.c
+> index 592907546ee6..ff887fb03bce 100644
+> --- a/drivers/memory/tegra/mc.c
+> +++ b/drivers/memory/tegra/mc.c
+> @@ -17,6 +17,7 @@
+>  #include <linux/sort.h>
 >  
-> +/* ICC ID's for dummy MC clients used to represent CPU Clusters */
-> +#define TEGRA_ICC_MC_CPU_CLUSTER0       1003
+>  #include <soc/tegra/fuse.h>
+> +#include <soc/tegra/tegra-icc.h>
+>  
+>  #include "mc.h"
+>  
+> @@ -779,6 +780,7 @@ const char *const tegra_mc_error_names[8] = {
+>   */
+>  static int tegra_mc_interconnect_setup(struct tegra_mc *mc)
+>  {
+> +	struct tegra_icc_node *tnode;
+>  	struct icc_node *node;
+>  	unsigned int i;
+>  	int err;
+> @@ -792,7 +794,11 @@ static int tegra_mc_interconnect_setup(struct tegra_mc *mc)
+>  	mc->provider.data = &mc->provider;
+>  	mc->provider.set = mc->soc->icc_ops->set;
+>  	mc->provider.aggregate = mc->soc->icc_ops->aggregate;
+> -	mc->provider.xlate_extended = mc->soc->icc_ops->xlate_extended;
+> +	mc->provider.get_bw = mc->soc->icc_ops->get_bw;
+> +	if (mc->soc->icc_ops->xlate)
+> +		mc->provider.xlate = mc->soc->icc_ops->xlate;
+> +	if (mc->soc->icc_ops->xlate_extended)
+> +		mc->provider.xlate_extended = mc->soc->icc_ops->xlate_extended;
+>  
+>  	err = icc_provider_add(&mc->provider);
+>  	if (err)
+> @@ -814,6 +820,10 @@ static int tegra_mc_interconnect_setup(struct tegra_mc *mc)
+>  		goto remove_nodes;
+>  
+>  	for (i = 0; i < mc->soc->num_clients; i++) {
+> +		tnode = kzalloc(sizeof(*tnode), GFP_KERNEL);
+> +		if (!tnode)
+> +			return -ENOMEM;
+> +
+>  		/* create MC client node */
+>  		node = icc_node_create(mc->soc->clients[i].id);
+>  		if (IS_ERR(node)) {
+> @@ -828,6 +838,12 @@ static int tegra_mc_interconnect_setup(struct tegra_mc *mc)
+>  		err = icc_link_create(node, TEGRA_ICC_MC);
+>  		if (err)
+>  			goto remove_nodes;
+> +
+> +		node->data = tnode;
 
-Why the IDs do not start from 0?
+Where is it freed?
+
+
+(...)
+
+>  
+>  struct tegra_mc_ops {
+> @@ -238,6 +243,8 @@ struct tegra_mc {
+>  	struct {
+>  		struct dentry *root;
+>  	} debugfs;
+> +
+> +	struct tegra_icc_node *curr_tnode;
+>  };
+>  
+>  int tegra_mc_write_emem_configuration(struct tegra_mc *mc, unsigned long rate);
+> diff --git a/include/soc/tegra/tegra-icc.h b/include/soc/tegra/tegra-icc.h
+> new file mode 100644
+> index 000000000000..3855d8571281
+> --- /dev/null
+> +++ b/include/soc/tegra/tegra-icc.h
+
+Why not in linux?
+
+> @@ -0,0 +1,72 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (C) 2022-2023 NVIDIA CORPORATION.  All rights reserved.
+> + */
+> +
+> +#ifndef MEMORY_TEGRA_ICC_H
+
+This does not match the path/name.
+
+> +#define MEMORY_TEGRA_ICC_H
+> +
+> +enum tegra_icc_client_type {
+> +	TEGRA_ICC_NONE,
+> +	TEGRA_ICC_NISO,
+> +	TEGRA_ICC_ISO_DISPLAY,
+> +	TEGRA_ICC_ISO_VI,
+> +	TEGRA_ICC_ISO_AUDIO,
+> +	TEGRA_ICC_ISO_VIFAL,
+> +};
+> +
+> +struct tegra_icc_node {
+> +	struct icc_node *node;
+> +	struct tegra_mc *mc;
+> +	u32 bpmp_id;
+> +	u32 type;
+> +};
+> +
+> +/* ICC ID's for MC client's used in BPMP */
+> +#define TEGRA_ICC_BPMP_DEBUG		1
+> +#define TEGRA_ICC_BPMP_CPU_CLUSTER0	2
+> +#define TEGRA_ICC_BPMP_CPU_CLUSTER1	3
+> +#define TEGRA_ICC_BPMP_CPU_CLUSTER2	4
+> +#define TEGRA_ICC_BPMP_GPU		5
+> +#define TEGRA_ICC_BPMP_CACTMON		6
+> +#define TEGRA_ICC_BPMP_DISPLAY		7
+> +#define TEGRA_ICC_BPMP_VI		8
+> +#define TEGRA_ICC_BPMP_EQOS		9
+> +#define TEGRA_ICC_BPMP_PCIE_0		10
+> +#define TEGRA_ICC_BPMP_PCIE_1		11
+> +#define TEGRA_ICC_BPMP_PCIE_2		12
+> +#define TEGRA_ICC_BPMP_PCIE_3		13
+> +#define TEGRA_ICC_BPMP_PCIE_4		14
+> +#define TEGRA_ICC_BPMP_PCIE_5		15
+> +#define TEGRA_ICC_BPMP_PCIE_6		16
+> +#define TEGRA_ICC_BPMP_PCIE_7		17
+> +#define TEGRA_ICC_BPMP_PCIE_8		18
+> +#define TEGRA_ICC_BPMP_PCIE_9		19
+> +#define TEGRA_ICC_BPMP_PCIE_10		20
+> +#define TEGRA_ICC_BPMP_DLA_0		21
+> +#define TEGRA_ICC_BPMP_DLA_1		22
+> +#define TEGRA_ICC_BPMP_SDMMC_1		23
+> +#define TEGRA_ICC_BPMP_SDMMC_2		24
+> +#define TEGRA_ICC_BPMP_SDMMC_3		25
+> +#define TEGRA_ICC_BPMP_SDMMC_4		26
+> +#define TEGRA_ICC_BPMP_NVDEC		27
+> +#define TEGRA_ICC_BPMP_NVENC		28
+> +#define TEGRA_ICC_BPMP_NVJPG_0		29
+> +#define TEGRA_ICC_BPMP_NVJPG_1		30
+> +#define TEGRA_ICC_BPMP_OFAA		31
+> +#define TEGRA_ICC_BPMP_XUSB_HOST	32
+> +#define TEGRA_ICC_BPMP_XUSB_DEV		33
+> +#define TEGRA_ICC_BPMP_TSEC		34
+> +#define TEGRA_ICC_BPMP_VIC		35
+> +#define TEGRA_ICC_BPMP_APE		36
+> +#define TEGRA_ICC_BPMP_APEDMA		37
+> +#define TEGRA_ICC_BPMP_SE		38
+> +#define TEGRA_ICC_BPMP_ISP		39
+> +#define TEGRA_ICC_BPMP_HDA		40
+> +#define TEGRA_ICC_BPMP_VIFAL		41
+> +#define TEGRA_ICC_BPMP_VI2FAL		42
+> +#define TEGRA_ICC_BPMP_VI2		43
+> +#define TEGRA_ICC_BPMP_RCE		44
+> +#define TEGRA_ICC_BPMP_PVA		45
+> +
+> +#endif /* MEMORY_TEGRA_ICC_H */
 
 Best regards,
 Krzysztof
