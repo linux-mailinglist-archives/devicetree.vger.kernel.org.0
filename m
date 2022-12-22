@@ -2,127 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0034653E18
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 11:16:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 384F0653E29
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 11:20:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235095AbiLVKQQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 05:16:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35500 "EHLO
+        id S235152AbiLVKUP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 05:20:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234727AbiLVKQO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 05:16:14 -0500
-Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [IPv6:2001:4b7a:2000:18::164])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EEB56479
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 02:16:14 -0800 (PST)
-Received: from SoMainline.org (94-209-172-39.cable.dynamic.v4.ziggo.nl [94.209.172.39])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S234961AbiLVKUO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 05:20:14 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3CDEB497;
+        Thu, 22 Dec 2022 02:20:13 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 4C1B420449;
-        Thu, 22 Dec 2022 11:16:12 +0100 (CET)
-Date:   Thu, 22 Dec 2022 11:16:11 +0100
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: Re: [PATCH] dt-bindings: arm-smmu: disallow clocks when not used
-Message-ID: <20221222101611.nwt5arux2hcvvtvf@SoMainline.org>
-References: <20221222092355.74586-1-krzysztof.kozlowski@linaro.org>
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 09D2561A33;
+        Thu, 22 Dec 2022 10:20:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C06AEC433EF;
+        Thu, 22 Dec 2022 10:20:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1671704412;
+        bh=glWNTP6znXHeUyUwsytdDg1PRwphKPH3sNGK4sk45qc=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=jDTiXDKYKIsXwssxnw9wcyZWbxPNGa/fsIdaBoU08ceMSVzNDzynU8qT8qdJarQyi
+         JmwHa5dcdKHXPjnPQ3E6Cr0IHvJoOz3udKtA48xt7ADmt7nJxaAJi5XrFTD7iPvmUp
+         bex2YQ4/Nn56k7vw+HDT/pvjbnkNWfO0nXdfg1oNcik8xLYvknoPW4m3wKiBMvRiWH
+         W62VTtAKlI69EtACgdf933PRwAIX2vFgyasfs8fqOhE8jmfHO9mZmwN2PMcvLEqi3i
+         AWK2V+RvKdmSLr19NkfL9Tt7Qwd2p6GqEyaWuVtR7C3+SjyiOUuUk0JVTT2X6tVPDZ
+         9JKbCr/O8kPrQ==
+Message-ID: <e99d6756-e275-7dd6-a57f-1c9a120b4ef3@kernel.org>
+Date:   Thu, 22 Dec 2022 11:20:07 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221222092355.74586-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH 1/2] dt-bindings: net: Add rfkill-gpio binding
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Johannes Berg <johannes@sipsolutions.net>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
+        kernel@pengutronix.de
+References: <20221221104803.1693874-1-p.zabel@pengutronix.de>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20221221104803.1693874-1-p.zabel@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Is this missing a cc to linux-arm-msm?
-
-On 2022-12-22 10:23:55, Krzysztof Kozlowski wrote:
-> Disallow clocks for variants other than:
-> 1. SMMUs with platform-specific compatibles which list explicit clocks
->    and clock-names,
-> 2. SMMUs using only generic compatibles, e.g. arm,mmu-500, which have a
->    variable clocks on different implementations.
+On 21/12/2022 11:48, Philipp Zabel wrote:
+> Add a device tree binding document for GPIO controlled rfkill switches.
+> The name, type, shutdown-gpios and reset-gpios properties are the same
+> as defined for ACPI.
 > 
-> This requires such variants with platform-specific compatible, to
-> explicitly list the clocks or omit them, making the binding more
-> constraint.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
 
-Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC.  It might happen, that command when run on an older
+kernel, gives you outdated entries.  Therefore please be sure you base
+your patches on recent Linux kernel.
 
-But...
+You missed several maintainers. Resend.
 
 > ---
+>  .../devicetree/bindings/net/rfkill-gpio.yaml  | 60 +++++++++++++++++++
+>  1 file changed, 60 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/rfkill-gpio.yaml
 > 
-> Cc: Marijn Suijten <marijn.suijten@somainline.org>
-> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Cc: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  .../devicetree/bindings/iommu/arm,smmu.yaml   | 28 +++++++++++++++++++
->  1 file changed, 28 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> index 895ec8418465..0d88395e43ad 100644
-> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> @@ -367,6 +367,34 @@ allOf:
->              - description: interface clock required to access smmu's registers
->                  through the TCU's programming interface.
->  
-> +  # Disallow clocks for all other platforms with specific compatibles
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - cavium,smmu-v2
-> +              - marvell,ap806-smmu-500
-> +              - nvidia,smmu-500
-> +              - qcom,qcm2290-smmu-500
-> +              - qcom,qdu1000-smmu-500
-> +              - qcom,sc7180-smmu-500
+> diff --git a/Documentation/devicetree/bindings/net/rfkill-gpio.yaml b/Documentation/devicetree/bindings/net/rfkill-gpio.yaml
+> new file mode 100644
+> index 000000000000..6e62e6c96456
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/rfkill-gpio.yaml
+> @@ -0,0 +1,60 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/net/rfkill-gpio.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 
-Hmm, sc7280 has two SMMUs.  The one for Adreno has clocks and a PD, the
-one for APPS has neither.  Same story on sm8[12]50.  Aren't those going
-to trip up the other `if` that requires clocks in both scenarios?
+Drop quotes.
 
-Note that the Adreno SMMUs have (or will get when we/Konrad submit
-support for it) the "qcom,adreno-smmu" compatible to distinguish them.
-
-- Marijn
-
-> +              - qcom,sc8180x-smmu-500
-> +              - qcom,sc8280xp-smmu-500
-> +              - qcom,sdm670-smmu-500
-> +              - qcom,sdm845-smmu-500
-> +              - qcom,sdx55-smmu-500
-> +              - qcom,sdx65-smmu-500
-> +              - qcom,sm6115-smmu-500
-> +              - qcom,sm6350-smmu-500
-> +              - qcom,sm6375-smmu-500
-> +              - qcom,sm8350-smmu-500
-> +              - qcom,sm8450-smmu-500
-> +    then:
-> +      properties:
-> +        clock-names: false
-> +        clocks: false
 > +
->    - if:
->        properties:
->          compatible:
-> -- 
-> 2.34.1
-> 
+> +title: GPIO controlled rfkill switch
+> +
+> +maintainers:
+> +  - Johannes Berg <johannes@sipsolutions.net>
+> +  - Philipp Zabel <p.zabel@pengutronix.de>
+> +
+> +properties:
+> +  compatible:
+> +    const: rfkill-gpio
+> +
+> +  name:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: rfkill switch name, defaults to node name
+
+There is a generic label property.
+
+> +
+> +  type:
+> +    description: rfkill radio type
+> +    enum:
+> +      - wlan
+> +      - bluetooth
+> +      - ultrawideband
+> +      - wimax
+> +      - wwan
+> +      - gps
+> +      - fm
+> +      - nfc
+
+Order the list.
+
+> +
+> +  shutdown-gpios:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+
+Reset of rfkill? It seems entire binding is a workaround of missing
+reset in your device. I don't think this is suitable for binding.
+
+> +
+> +required:
+> +  - compatible
+> +  - type
+> +
+> +oneOf:
+> +  - required:
+> +      - shutdown-gpios
+> +  - required:
+> +      - reset-gpios
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    rfkill-pcie-wlan {
+
+Generic node names, so: rfkill
+> +        compatible = "rfkill-gpio";
+> +        name = "rfkill-pcie-wlan";
+> +        type = "wlan";
+> +        shutdown-gpios = <&gpio2 25 GPIO_ACTIVE_HIGH>;
+> +    };
+
+Best regards,
+Krzysztof
+
