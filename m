@@ -2,125 +2,281 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C9216541F7
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 14:33:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60B9A65420B
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 14:39:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230033AbiLVNdY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 08:33:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58458 "EHLO
+        id S229985AbiLVNjz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 08:39:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235192AbiLVNdK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 08:33:10 -0500
-Received: from m-r1.th.seeweb.it (m-r1.th.seeweb.it [5.144.164.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 332F5140F7
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 05:33:09 -0800 (PST)
-Received: from SoMainline.org (94-209-172-39.cable.dynamic.v4.ziggo.nl [94.209.172.39])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 2A27F1F8F4;
-        Thu, 22 Dec 2022 14:33:07 +0100 (CET)
-Date:   Thu, 22 Dec 2022 14:33:05 +0100
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: Re: [PATCH] dt-bindings: arm-smmu: disallow clocks when not used
-Message-ID: <20221222133305.txcla3kk6lrqk7sc@SoMainline.org>
-References: <20221222092355.74586-1-krzysztof.kozlowski@linaro.org>
- <20221222101611.nwt5arux2hcvvtvf@SoMainline.org>
- <bff48e91-3cdc-a052-9573-3c4271f88e5a@linaro.org>
+        with ESMTP id S230381AbiLVNjv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 08:39:51 -0500
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1E711262C;
+        Thu, 22 Dec 2022 05:39:50 -0800 (PST)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BMBh8MW001873;
+        Thu, 22 Dec 2022 14:39:31 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=JWSFMS/RjJJvWBd45Dlnuo9vEz3wrE67COqhffoMv6I=;
+ b=i6mHZi6kuCrWx7KOhnVivhGqK5Oj+mo3k/JyMBsJYS85mXTQbcNrgMDCydoNG/sljHTc
+ mFNOChS9QjmXAvRNO5u7cjZoHPYk+8n19KqgrmnKYwFSHhICrLiFMhHIVxDsEtPv72wc
+ Fs3OBLwu1Ayyt8jrXX7W5y7d+g9A8i8j6b+/AuOu4EZExzXRAML9yHXmjDRUOb63yxoB
+ v4H4bkmeVwMjZMAHUQ19qYI0+QXEbdYVrsk3IbI4pgRPnSU118swSKhavHm7YKgG7HAu
+ LcJeRMrTecNwnp/g8lckgEGHRZNmt7Y22vEuElJhW5EDEwFQ4/cgzpeD+fZhsOdFElYA QA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3mka9xgtvp-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 22 Dec 2022 14:39:30 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 2FA5410002A;
+        Thu, 22 Dec 2022 14:39:30 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0B48B228A31;
+        Thu, 22 Dec 2022 14:39:30 +0100 (CET)
+Received: from [10.201.21.217] (10.201.21.217) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Thu, 22 Dec
+ 2022 14:39:29 +0100
+Message-ID: <f785a9f9-a931-a4b0-5d97-d9e8ce24065a@foss.st.com>
+Date:   Thu, 22 Dec 2022 14:39:28 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bff48e91-3cdc-a052-9573-3c4271f88e5a@linaro.org>
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [RFC PATCH 2/7] dt-bindings: bus: add STM32 System Bus
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        <alexandre.torgue@foss.st.com>, <robh+dt@kernel.org>,
+        <Oleksii_Moisieiev@epam.com>, <linus.walleij@linaro.org>,
+        <gregkh@linuxfoundation.org>
+CC:     <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <loic.pallardy@st.com>,
+        <devicetree@vger.kernel.org>, <mark.rutland@arm.com>,
+        <arnd@arndb.de>
+References: <20221221173055.11719-1-gatien.chevallier@foss.st.com>
+ <20221221173055.11719-3-gatien.chevallier@foss.st.com>
+ <d55cae92-0c4f-f957-4c7b-bdf7b9b6006a@kernel.org>
+From:   Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
+In-Reply-To: <d55cae92-0c4f-f957-4c7b-bdf7b9b6006a@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.201.21.217]
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-12-22_06,2022-12-22_02,2022-06-22_01
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-12-22 11:36:16, Krzysztof Kozlowski wrote:
-> On 22/12/2022 11:16, Marijn Suijten wrote:
-> > Is this missing a cc to linux-arm-msm?
+Hello,
+
+On 12/22/22 11:24, Krzysztof Kozlowski wrote:
+> On 21/12/2022 18:30, Gatien Chevallier wrote:
+>> Document STM32 System Bus. This bus is intended to control firewall
+>> access for the peripherals connected to it.
+>>
+>> Signed-off-by: Loic PALLARDY <loic.pallardy@st.com>
+>> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
 > 
-> No, it is not (or maybe but then fix MAINTAINERS). The policy is to use
-> get_maintainers.pl to CC people.
+> Please use scripts/get_maintainers.pl to get a list of necessary people
+> and lists to CC.  It might happen, that command when run on an older
+> kernel, gives you outdated entries.  Therefore please be sure you base
+> your patches on recent Linux kernel
+As it is based on Oleksii's patchset and older threads:
+[1]: 
+https://lore.kernel.org/all/20190318100605.29120-1-benjamin.gaignard@st.com/
+[2]: 
+https://lore.kernel.org/all/20200701132523.32533-1-benjamin.gaignard@st.com/
 
-Yes, that is the question: is it in MANTAINERS and if not, why not?
+I wanted to include people that have already been included or 
+participated in these.
 
-> > On 2022-12-22 10:23:55, Krzysztof Kozlowski wrote:
-> >> Disallow clocks for variants other than:
-> >> 1. SMMUs with platform-specific compatibles which list explicit clocks
-> >>    and clock-names,
-> >> 2. SMMUs using only generic compatibles, e.g. arm,mmu-500, which have a
-> >>    variable clocks on different implementations.
-> >>
-> >> This requires such variants with platform-specific compatible, to
-> >> explicitly list the clocks or omit them, making the binding more
-> >> constraint.
-> >>
-> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > 
-> > Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
-> > 
-> > But...
-> > 
-> >> ---
-> >>
-> >> Cc: Marijn Suijten <marijn.suijten@somainline.org>
-> >> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> >> Cc: Konrad Dybcio <konrad.dybcio@linaro.org>
-> >> ---
-> >>  .../devicetree/bindings/iommu/arm,smmu.yaml   | 28 +++++++++++++++++++
-> >>  1 file changed, 28 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> >> index 895ec8418465..0d88395e43ad 100644
-> >> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> >> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> >> @@ -367,6 +367,34 @@ allOf:
-> >>              - description: interface clock required to access smmu's registers
-> >>                  through the TCU's programming interface.
-> >>  
-> >> +  # Disallow clocks for all other platforms with specific compatibles
-> >> +  - if:
-> >> +      properties:
-> >> +        compatible:
-> >> +          contains:
-> >> +            enum:
-> >> +              - cavium,smmu-v2
-> >> +              - marvell,ap806-smmu-500
-> >> +              - nvidia,smmu-500
-> >> +              - qcom,qcm2290-smmu-500
-> >> +              - qcom,qdu1000-smmu-500
-> >> +              - qcom,sc7180-smmu-500
-> > 
-> > Hmm, sc7280 has two SMMUs.  The one for Adreno has clocks and a PD, the
+I'm sorry I did miss/added some (extra) people. I will double-check for 
+next patchset version.
+
 > 
-> sc7280 is not here, so what is the mistake you see?
-
-sc7280 has two IOMMU nodes.  One with clocks (should not be in this
-list), the other doesn't have clocks (should be in this list).
-
-How do you want to address that?
-
-> > one for APPS has neither.  Same story on sm8[12]50.  Aren't those going
-> > to trip up the other `if` that requires clocks in both scenarios?
+>> ---
+>>   .../devicetree/bindings/bus/st,sys-bus.yaml   | 88 +++++++++++++++++++
+>>   1 file changed, 88 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/bus/st,sys-bus.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/bus/st,sys-bus.yaml b/Documentation/devicetree/bindings/bus/st,sys-bus.yaml
+>> new file mode 100644
+>> index 000000000000..9c0e86612695
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/bus/st,sys-bus.yaml
+>> @@ -0,0 +1,88 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/bus/stm32,sys-bus.yaml
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title:  STM32 System Bus
 > 
-> They are not here either, so what is the error?
+> Only one space.
+> 
 
-Ditto.
+Ack. I already pushed a V2, that is now outdated with your review, where 
+this error is fixed.
 
-> > Note that the Adreno SMMUs have (or will get when we/Konrad submit
-> > support for it) the "qcom,adreno-smmu" compatible to distinguish them.
+>> +
+>> +description: |
+>> +  The STM32 System Bus is an internal bus to which some internal peripherals
+>> +  are connected. STM32 System Bus integrates a firewall controlling access to each
+>> +  device. This bus prevents non-accessible devices to be probed.
+>> +
+>> +  To see which peripherals are securable, please check the SoC reference manual.
+>> +
+>> +maintainers:
+>> +  - Gatien Chevallier <gatien.chevallier@foss.st.com>
+>> +
+>> +allOf:
+>> +  - $ref: /schemas/feature-controllers/feature-domain-controller.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - st,stm32mp13-sys-bus
+>> +      - st,stm32mp15-sys-bus
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  "#address-cells":
+>> +    const: 1
+>> +
+>> +  "#size-cells":
+>> +    const: 1
+>> +
+>> +  '#feature-domain-cells':
+> 
+> Use consistent quotes, either ' or "
 
-- Marijn
+Ack, will change in V3.
+
+> 
+>> +    minItems: 1
+> 
+> No. Cells must be const. This does not match cells at all...
+> 
+
+Ack, will change to const in V3. What do imply by saying it does not 
+match? Note that I've changed it to "minimum" in V2.
+
+>> +
+>> +  ranges: true
+>> +
+>> +  feature-domain-controller: true
+>> +
+>> +patternProperties:
+>> +  "^.*@[0-9a-f]+$":
+>> +    description: Devices attached to system bus
+>> +    type: object
+>> +    properties:
+>> +      feature-domains:
+>> +        $ref: /schemas/feature-controllers/feature-domain-controller.yaml#/properties/feature-domains
+> 
+> maxItems
+
+I don't think setting a max here is relevant as there can be numerous 
+feature-domains referenced.
+
+Maybe a min?
+
+> 
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - "#address-cells"
+>> +  - "#size-cells"
+>> +  - feature-domain-controller
+>> +  - '#feature-domain-cells'
+>> +  - ranges
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    // In this example,
+>> +    // - the foo1 device refers to etzpc as his domain controller.
+>> +    // - same goes for foo2.
+>> +    // Access rights are verified before creating devices.
+>> +
+>> +    etzpc: etzpc@5c007000 {
+> 
+> Node names should be generic.
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> 
+
+Ack, will change to "etzpc: bus@5c007000" in V3
+
+>> +        compatible = "st,stm32mp15-sys-bus";
+>> +        reg = <0x5c007000 0x400>;
+>> +        #address-cells = <1>;
+>> +        #size-cells = <1>;
+>> +        ranges;
+>> +        feature-domain-controller;
+>> +        #feature-domain-cells = <1>;
+>> +
+>> +        foo1: foo@1000000 {
+> 
+> Node names should be generic.
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+Here, if I use real peripherals, I have an issue with the dependency to 
+YAML files. The feature-domains property is not defined in their 
+bindings. Therefore, the dt_binding_check fails on peripherals whose 
+YAML declare "additionalProperties: false" because the link to the 
+feature domain controller bindings does not exist.
+
+What would be your recommandation here as declaring:
+
+patternProperties:
+   "^.*@[0-9a-f]+$":
+     description: Devices attached to system bus
+     type: object
+     properties:
+       feature-domains:
+         $ref: 
+/schemas/feature-controllers/feature-domain-controller.yaml#/properties/feature-domains
+
+does not solve the issue?
+
+
+
+> 
+>> +          reg = <0x0 0x1000000>;
+> 
+> Missing compatible, missing proper device name. Don't use fake names,
+> but describe real case.
+
+Linked to above issue.
+
+> 
+>> +          feature-domains = <&etzpc 0>;
+>> +        };
+>> +
+>> +        foo2: foo@2000000 {
+>> +          reg = <0x0 0x2000000>;
+>> +          feature-domains = <&etzpc 0>;
+>> +        };
+>> +    };
+> 
+> Best regards,
+> Krzysztof
+> 
+
+Best regards,
+Gatien
