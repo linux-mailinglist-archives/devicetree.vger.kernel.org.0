@@ -2,76 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EADD4654536
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 17:36:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 55A2265453F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 17:39:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229707AbiLVQgd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 11:36:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48778 "EHLO
+        id S229552AbiLVQj3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 11:39:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229674AbiLVQgc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 11:36:32 -0500
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67D7827DFC;
-        Thu, 22 Dec 2022 08:36:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=d99wBLUq4yQ4eQDQtyjO01+kHuKyie+U+1uevyf9EBU=; b=53zDqYwiG4C835IlzVAdpx44nM
-        OfEUQO8pz2dGRMnDvhFA7jIZopgYFjq4LjtPfXL0lkqj4l+T9Cf90HZ+DoMpV6ptk8nihRbGIkrR9
-        +jeagLNU39thNGwsqHqf158MMvg1Igd8lN+wnMfMRBwdYMT2gIEOpzAH9gNuVrduMZ18=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1p8OYQ-000GtY-Ew; Thu, 22 Dec 2022 17:36:22 +0100
-Date:   Thu, 22 Dec 2022 17:36:22 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Lee Jones <lee@kernel.org>,
-        Colin Foster <colin.foster@in-advantage.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: Advice on MFD-style probing of DSA switch SoCs
-Message-ID: <Y6SHhiMx4V9tyJuG@lunn.ch>
-References: <20221222134844.lbzyx5hz7z5n763n@skbuf>
- <Y6Rq8+wYpDkGGbYs@lunn.ch>
- <20221222161806.mhqsr2ot64v34al2@skbuf>
+        with ESMTP id S229526AbiLVQj2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 11:39:28 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCAFE286C7;
+        Thu, 22 Dec 2022 08:39:27 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 93402B81CFB;
+        Thu, 22 Dec 2022 16:39:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6B7FC433D2;
+        Thu, 22 Dec 2022 16:39:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1671727165;
+        bh=egoBgDJa6cP4OcBqEvU1JwAhvMnDYhljcvNAPvTmGOA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=wVsAaR3/PYuF4uefDRfG6KYtQ6kn5M9SvaAgseL3FsMxKUZLoQUbhfJ9s25goBFrr
+         CYsQaziLynj0Nxw5LK8YdkwStTnCcNQXHZUwonRwC6x5Sq+J2ztAG35d+CNH3bHUM3
+         sMJB1Kva+8U0JiUKuzBXOacf9PSlTvyZ7XvMF5/Q=
+Date:   Thu, 22 Dec 2022 17:39:22 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Gatien Chevallier <gatien.chevallier@foss.st.com>
+Cc:     alexandre.torgue@foss.st.com, robh+dt@kernel.org,
+        Oleksii_Moisieiev@epam.com, linus.walleij@linaro.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        loic.pallardy@st.com, devicetree@vger.kernel.org,
+        mark.rutland@arm.com, arnd@arndb.de
+Subject: Re: [RFC PATCH v2 0/7] Introduce STM32 system bus
+Message-ID: <Y6SIOpsxNdezKCTc@kroah.com>
+References: <20221222100504.68247-1-gatien.chevallier@foss.st.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221222161806.mhqsr2ot64v34al2@skbuf>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221222100504.68247-1-gatien.chevallier@foss.st.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > Maybe the media subsystem has some pointers how to do this. It also
-> > has complex devices made up from lots of sub devices.
-> 
-> You mean something like struct v4l2_subdev_ops? This seems like the
-> precise definition of what I'd like to avoid: a predefined set of
-> subfunctions decided by the DSA core.
-> 
-> Or maybe something else? To be honest, I don't know much about the media
-> subsystem. This is what I saw.
+On Thu, Dec 22, 2022 at 11:04:57AM +0100, Gatien Chevallier wrote:
+> Document STM32 System Bus. This bus is intended to control firewall
+> access for the peripherals connected to it.
 
-Russell King put in some infrastructure where a media 'glue' driver
-has a list of other drivers which need to probe and register there
-resources with the kernel before it then becomes active and glues all
-the parts together. I just know it exists, i've never used it, so i've
-no idea if it could be useful or not.
+Why is this an "RFC"?  That usually means "I have more work to do on it,
+but I'll send it out now anyway".  What work is left?
 
-What i'm really trying to say is that we should look outside of netdev
-and see if similar problems have been solved somewhere else and all
-that is needed is some code copying.
+And for most code, I know I don't review "RFC" changes as there are too
+many "real" patches being submitted where people think their code is
+ready to be merged.  Other reviewers might think otherwise, but be aware
+of this...
 
-     Andrew
+thanks,
+
+greg k-h
