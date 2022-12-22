@@ -2,103 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64EF4654663
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 20:10:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42F47654674
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 20:18:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229668AbiLVTKH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 14:10:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44534 "EHLO
+        id S229863AbiLVTSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 14:18:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229548AbiLVTKG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 14:10:06 -0500
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D654110B77;
-        Thu, 22 Dec 2022 11:10:03 -0800 (PST)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1p8Qx6-0000O2-R1; Thu, 22 Dec 2022 20:10:00 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Yuteng Zhong <zonyitoo@gmail.com>, Rob Herring <robh@kernel.org>
-Cc:     Peter Geis <pgwipeout@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, DHDAXCW <lasstp5011@gmail.com>
-Subject: Re: [PATCH v3 1/2] arm64: dts: rockchip: Add RK3566 LubanCat 1
-Date:   Thu, 22 Dec 2022 20:10:00 +0100
-Message-ID: <2863440.ElGaqSPkdT@diego>
-In-Reply-To: <20221222172504.GA1741501-robh@kernel.org>
-References: <Y6Kc650FuvHFWxP0@VM-66-53-centos> <20221222172504.GA1741501-robh@kernel.org>
+        with ESMTP id S229745AbiLVTSg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 14:18:36 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 896176159
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 11:18:34 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id cf42so4165513lfb.1
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 11:18:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+nIjDYFZ/q7w9qAhp90+SKidk8iu8dhx1d9mlC/tW0c=;
+        b=yrRJPcE78fNCnK9sR1nhZnrkvIK0a8Jlo4I9kpkI7hsxVyOT0DRmxB3n4qYH95gbiD
+         Abpr7j/RSJRtamJnLwjBLT4KmXUyp3ogiQ/7R6tXldS3TNrXLYhCwEQFgUJYB7FlaRon
+         CmMIGrLbfcVUMI7ypnCpSpn0n+cBmFbHDNiUZxXfk2eSj2fj4LCYLHwIcAWhG1PxkKXk
+         FZbZkUVGCV8jz7HLm1vmui7AhGLNEkF6GOMjg8pPu3v+chy4roDh/v5fUTL6wKCRUhd8
+         C3s/eqJ8DpA/MT6R512ly5RM0dKxv+Y8mgAXGEpRdfZUE17qWNEAGv1bRVfhV55k5q+F
+         kd0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+nIjDYFZ/q7w9qAhp90+SKidk8iu8dhx1d9mlC/tW0c=;
+        b=suDddJGUILISQYBCQIx2F8f9l6r9FlZQrlrk1dU+1e8FZbExfXEnv420Gd0dKfYwVm
+         n0um1s7tbdiGn6d3hRbgG6/BYm6kbm8j3VOSdpAnE72S8qc6jZD08qZllW74edachzPb
+         wH1YR/L6ew9x4+nz4bEiqpokgDgPp1u7lk8LpYtcH3wzFouojIB7JPhJcB1SwmIcNp6x
+         d9WMxIgoifTkLr/VNp+FKwdCs5ERVEtHp+1rQnHsQFvBR5WDlVePeMTOqE4j/XSCfpOI
+         /SmE7YjIZq+PJ4DUBD95qS2yLiFpHfi/nhkhyNxUYy+zNiloB/XYtHgvFVSvFif4WXO4
+         L3UA==
+X-Gm-Message-State: AFqh2kqsw7BmQioulyu3ffFSPKEUdvTxGw+Vf5/n4Y+LBM6e5TVF73Cf
+        9cFsnlWZQ6xcHwkf2E42ggP8rw==
+X-Google-Smtp-Source: AMrXdXuRA2TZlXiMk/H+rp6r4ihck4Na/0nUwW3npG2/RhtLvzSRWFzNQwklWFPqZmKwzcBtBhNBmA==
+X-Received: by 2002:ac2:5102:0:b0:4b5:6649:eb6c with SMTP id q2-20020ac25102000000b004b56649eb6cmr2397541lfb.25.1671736712582;
+        Thu, 22 Dec 2022 11:18:32 -0800 (PST)
+Received: from [192.168.1.101] (abyl184.neoplus.adsl.tpnet.pl. [83.9.31.184])
+        by smtp.gmail.com with ESMTPSA id c11-20020a056512324b00b004b550c26949sm169532lfr.290.2022.12.22.11.18.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Dec 2022 11:18:32 -0800 (PST)
+Message-ID: <d1e1b18c-0d17-2145-0fc2-3f9be8d68fe9@linaro.org>
+Date:   Thu, 22 Dec 2022 20:18:29 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845-tama: Add volume up and camera
+ GPIO keys
+Content-Language: en-US
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
+        phone-devel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221222190656.31664-1-marijn.suijten@somainline.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221222190656.31664-1-marijn.suijten@somainline.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
 
-Am Donnerstag, 22. Dezember 2022, 18:25:04 CET schrieb Rob Herring:
-> On Wed, Dec 21, 2022 at 01:43:07PM +0800, Yuteng Zhong wrote:
-> > LubanCat 1 is a Rockchip RK3566 SBC based
-> > is developed by EmbedFire Electronics Co., Ltd.
-> > Mini Linux Card Type Cheap Computer Development Board
-> > It has the following characteristics:
-> > - MicroSD card slot, onboard eMMC flash memory
-> > - 1GbE Realtek RTL8211F Ethernet Transceiver
-> > - 1 USB Type-C port (power and USB2.0 OTG)
-> > - 1 USB 3.0 Host port
-> > - 3 USB 2.0 Host ports
-> > - 1 HDMI
-> > - 1 infrared receiver
-> > - 1 MIPI DSI
-> > - 1 MIPI CSI
-> > - 1 x 4-section headphone jack
-> > - Mini PCIe socket (USB or PCIe)
-> > - 1 SIM Card slot
-> > - 1 SYS LED and 1 PWR LED
-> > - 40-pin GPIO expansion header
-> > 
-> > Signed-off-by: Yuteng Zhong <zonyitoo@gmail.com>
-> > Signed-off-by: DHDAXCW <lasstp5011@gmail.com>
+
+On 22.12.2022 20:06, Marijn Suijten wrote:
+> Tama has four GPIO-wired keys: two for camera focus and shutter /
+> snapshot, and two more for volume up and down.  As per the comment these
+> used to not work because the necessary pin bias was missing, which is
+> now set via pinctrl on pm8998_gpio(s).
 > 
-> DHDAXCW is a legal name?
+> The missing bias has also been added to the existing volume down button,
+> which receives a node name and label cleanup at the same time to be more
+> consistent with other DTS and the newly added buttons.  Its deprecated
+> gpio-key,wakeup property has also been replaced with wakeup-source.
 > 
-> The person sending the patch email should be last.
+> Note that volume up is also available through the usual PON RESIN node,
+> but unlike other platforms only triggers when the power button is held
+> down at the same time making it unsuitable to serve as KEY_VOLUMEUP.
+Sounds rather intriguing..
 
-We're on v7 already [0] and at least the Authorship + separate binding
-issue got fixed meanwhile - haven't looked at the whitespace issue there yet.
-
-
-Heiko
-
-
-[0] https://lore.kernel.org/all/Y6MlrbGKiIVc6tXt@VM-66-53-centos/
-
-> > ---
-> > 
-> > Changed in V2:
-> >   - Remove RNG node
-> > Changed in V3:
-> >   - Modify all node names
-> > 
-> > ---
-> >  .../devicetree/bindings/arm/rockchip.yaml     |   5 +
 > 
-> Bindings should be separate patch.
+> Fixes: 30a7f99befc6 ("arm64: dts: qcom: Add support for SONY Xperia XZ2 / XZ2C / XZ3 (Tama platform)")
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+>  .../dts/qcom/sdm845-sony-xperia-tama.dtsi     | 72 +++++++++++++++++--
+>  1 file changed, 68 insertions(+), 4 deletions(-)
 > 
-> >  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
-> >  .../boot/dts/rockchip/rk3566-lubancat-1.dts   | 600 ++++++++++++++++++
-> 
-> Fix all the whitespace errors checkpatch.pl complains about.
-> 
-
-
-
-
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
+> index 87dd0fc36747..6390dadd5f82 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
+> @@ -4,6 +4,7 @@
+>   */
+>  
+>  #include <dt-bindings/input/input.h>
+> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+>  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>  #include "sdm845.dtsi"
+>  #include "pm8005.dtsi"
+> @@ -17,14 +18,43 @@ / {
+>  	gpio-keys {
+>  		compatible = "gpio-keys";
+>  
+> -		/* Neither Camera Focus, nor Camera Shutter seem to work... */
+> +		pinctrl-0 = <&focus_n &snapshot_n &vol_down_n &vol_up_n>;
+> +		pinctrl-names = "default";
+>  
+> -		key-vol-down {
+> -			label = "volume_down";
+> +		key-camera-focus {
+> +			label = "Camera Focus";
+> +			gpios = <&pm8998_gpio 2 GPIO_ACTIVE_LOW>;
+> +			linux,code = <KEY_CAMERA_FOCUS>;
+> +			debounce-interval = <15>;
+> +			linux,can-disable;
+> +			wakeup-source;
+> +		};
+> +
+> +		key-camera-snapshot {
+> +			label = "Camera Snapshot";
+> +			gpios = <&pm8998_gpio 7 GPIO_ACTIVE_LOW>;
+> +			linux,code = <KEY_CAMERA>;
+> +			debounce-interval = <15>;
+> +			linux,can-disable;
+> +			wakeup-source;
+> +		};
+> +
+> +		key-volume-down {
+> +			label = "Volume Down";
+>  			gpios = <&pm8998_gpio 5 GPIO_ACTIVE_LOW>;
+>  			linux,code = <KEY_VOLUMEDOWN>;
+>  			debounce-interval = <15>;
+> -			gpio-key,wakeup;
+> +			linux,can-disable;
+> +			wakeup-source;
+> +		};
+> +
+> +		key-volume-up {
+> +			label = "Volume Up";
+> +			gpios = <&pm8998_gpio 6 GPIO_ACTIVE_LOW>;
+> +			linux,code = <KEY_VOLUMEUP>;
+> +			debounce-interval = <15>;
+> +			linux,can-disable;
+> +			wakeup-source;
+>  		};
+>  	};
+>  
+> @@ -358,6 +388,40 @@ &i2c14 {
+>  	/* AMS TCS3490 RGB+IR color sensor @ 72 */
+>  };
+>  
+> +&pm8998_gpio {
+> +	focus_n: focus-n-state {
+> +		pins = "gpio2";
+> +		function = PMIC_GPIO_FUNC_NORMAL;
+> +		power-source = <0>;
+> +		bias-pull-up;
+> +		input-enable;
+> +	};
+> +
+> +	vol_down_n: vol-down-n-state {
+> +		pins = "gpio5";
+> +		function = PMIC_GPIO_FUNC_NORMAL;
+> +		power-source = <0>;
+> +		bias-pull-up;
+> +		input-enable;
+> +	};
+> +
+> +	vol_up_n: vol-up-n-state {
+> +		pins = "gpio6";
+> +		function = PMIC_GPIO_FUNC_NORMAL;
+> +		power-source = <0>;
+> +		bias-pull-up;
+> +		input-enable;
+> +	};
+> +
+> +	snapshot_n: snapshot-n-state {
+> +		pins = "gpio7";
+> +		function = PMIC_GPIO_FUNC_NORMAL;
+> +		power-source = <0>;
+> +		bias-pull-up;
+> +		input-enable;
+> +	};
+> +};
+> +
+>  &qupv3_id_0 {
+>  	status = "okay";
+>  };
