@@ -2,476 +2,311 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3470E65467F
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 20:23:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89FA4654680
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 20:24:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235394AbiLVTXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 14:23:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49952 "EHLO
+        id S229674AbiLVTYE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 14:24:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235107AbiLVTXt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 14:23:49 -0500
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A2FDFD2D
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 11:23:43 -0800 (PST)
-Received: by mail-qt1-x82b.google.com with SMTP id h21so2100727qta.12
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 11:23:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=qa1MAQnkj/ATNQRkS/5Z8bLxE6iLjX4Tmg9yhdwVXwk=;
-        b=tDueJxZ6gleR7f0q4RSWOButQWwwF9Wj2DDOIpyzAOwBXQ3LSLlzwjkLzfnhwiwXaq
-         8qULrSKR/YIiTO5H9dARnVsrZlOsTrK6TX6PYCGlGVMXU3vvTVibAqhmyNgXdPrHnqAA
-         sgF1j4HfQ544/g7s8+3J3oU4HMqXdwatEXjBamqVAf+2QuP1jOoR4BAAa5FlqEUcPqTb
-         PhjBh+aM7p4stDHnUZSokSaxBE5AM740/leefwn3LQY0ybMhqpqQcxOLHS4zZA1GG5Qk
-         yK8+cTccz40tKfjIt59FiZwXbSkhZzCPCaPzzYLlUtM4thoDquc4mK6eEFmegQjzbiih
-         actw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qa1MAQnkj/ATNQRkS/5Z8bLxE6iLjX4Tmg9yhdwVXwk=;
-        b=WrySJryJ5gAGlXnWq9Me10tRR6Rv4rY1hn3eR7HXYA88wng7nKJMwhyNgDGmgD8+dX
-         71mYKGPgLqvquMvFUXMaXqamS0ySA0Wl61pU+Y8fiZ1FT6+VyDphOKxThzhbkMAmxW/1
-         6QYl/sOS4wsC/GsI+SwaxSbnS7IsDf0RdneVHEcDBaHXupodqAROA1yGIugaj4NzV2pU
-         duw/2TpSP99eueHV/V1u7GvF3rWc3KLe6o9htCV4s+6uCA/RS4u+mkxY5yqZM9C5QNDO
-         QWa7fD49yB5VtrGbR9qFpTE5sqo5KQU+5njzHGcBLUHdzFGiUka/6wV2xlOK2nA8a5O3
-         AeMQ==
-X-Gm-Message-State: AFqh2kqmwcrGYZvwf2vxISVDj1bQUfomaQsmhktpwoRNN0GMlZZ2ql7s
-        lVKMDSOJP6RkqG6Vzqgyr12Mcw==
-X-Google-Smtp-Source: AMrXdXvQliO8R965wT36ePk9rX2V21XgVjS+lRnN8Lzg3w+4ZjB0fVpMuF8VC1R8B+efBYg6AdE3ww==
-X-Received: by 2002:ac8:4682:0:b0:3a7:f642:1d35 with SMTP id g2-20020ac84682000000b003a7f6421d35mr9072337qto.56.1671737022559;
-        Thu, 22 Dec 2022 11:23:42 -0800 (PST)
-Received: from nicolas-tpx395.localdomain (192-222-136-102.qc.cable.ebox.net. [192.222.136.102])
-        by smtp.gmail.com with ESMTPSA id d19-20020a05620a241300b00704a9942708sm878258qkn.73.2022.12.22.11.23.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Dec 2022 11:23:41 -0800 (PST)
-Message-ID: <5fe052ce0d9fed6dcc49d1feb550479cfacc49c0.camel@ndufresne.ca>
-Subject: Re: [Patch v3 05/15] Documention: v4l: Documentation for VP9 CIDs.
-From:   Nicolas Dufresne <nicolas@ndufresne.ca>
-To:     Aakarsh Jain <aakarsh.jain@samsung.com>,
-        'Hans Verkuil' <hverkuil-cisco@xs4all.nl>,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
-        mchehab@kernel.org, ezequiel@vanguardiasur.com.ar,
-        jernej.skrabec@gmail.com, benjamin.gaignard@collabora.com,
-        stanimir.varbanov@linaro.org, dillon.minfei@gmail.com,
-        david.plowman@raspberrypi.com, mark.rutland@arm.com,
-        robh+dt@kernel.org, krzk+dt@kernel.org, andi@etezian.org,
-        alim.akhtar@samsung.com, aswani.reddy@samsung.com,
-        pankaj.dubey@samsung.com, linux-fsd@tesla.com
-Date:   Thu, 22 Dec 2022 14:23:39 -0500
-In-Reply-To: <000001d91522$823eded0$86bc9c70$@samsung.com>
-References: <20221011122516.32135-1-aakarsh.jain@samsung.com>
-         <CGME20221011125155epcas5p1e47309b4dd767e81817c316aa0e8b7ca@epcas5p1.samsung.com>
-         <20221011122516.32135-6-aakarsh.jain@samsung.com>
-         <3b85e6ad-e734-8b36-37bf-06b9c560ca92@xs4all.nl>
-         <000001d90fa6$0ff91470$2feb3d50$@samsung.com>
-         <238edc4adf7e795b48cb9de98ba6f1efc67f3bfd.camel@ndufresne.ca>
-         <000001d91522$823eded0$86bc9c70$@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.2 (3.46.2-1.fc37) 
+        with ESMTP id S235061AbiLVTYD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 14:24:03 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 116D911C05;
+        Thu, 22 Dec 2022 11:24:01 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 99C9161CE1;
+        Thu, 22 Dec 2022 19:24:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2245C433D2;
+        Thu, 22 Dec 2022 19:23:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1671737040;
+        bh=UTqBrX8CXcuLe1Opaa28kaUwSr5L0pWJFjuW7nIbBps=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=VtasgJkPU6ntIB9C8xyRlzibh/eySUioaZp9P3TigK9xUiunga/3zTZQiYtFG8IPu
+         u4aFMWfyPveBOgidduKGfnL59rMwt0CQ1kc3ygJdO26H6Cr67FyvvJjEcClaSl60h6
+         HY5NATp8aHmElr8P6JOfvtL6uueLhPstaB323k6Em2yipj1TT6M9UokipB3xIGCs6k
+         IUpI5hKeDY8eNTfJLXncB45cNIKUITE1unWRA9KXhpPy/g+Mc+lxKzEDhv+0YEcFNn
+         SV3I+Nd/Adsos1N68J5lTrd8HTs/S7hQ5qzvQUEz2ZE8QIf5MqVF0z1mDZHOWkX8IC
+         l6fbhQcgv3+lw==
+Date:   Thu, 22 Dec 2022 19:23:54 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
+        atishp@rivosinc.com, Conor Dooley <conor.dooley@microchip.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org, apatel@ventanamicro.com,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        opensbi@lists.infradead.org
+Subject: Re: [PATCH v1] dt-bindings: riscv: add SBI PMU event mappings
+Message-ID: <Y6SuyiYC/oLB2VzL@spud>
+References: <20221221141548.274408-1-conor@kernel.org>
+ <20221222180627.GA1748427-robh@kernel.org>
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="4wR4/gycHWfjw8/A"
+Content-Disposition: inline
+In-Reply-To: <20221222180627.GA1748427-robh@kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le mercredi 21 d=C3=A9cembre 2022 =C3=A0 15:26 +0530, Aakarsh Jain a =C3=A9=
-crit=C2=A0:
->=20
-> > -----Original Message-----
-> > From: Nicolas Dufresne [mailto:nicolas@ndufresne.ca]
-> > Sent: 16 December 2022 22:51
-> > To: Aakarsh Jain <aakarsh.jain@samsung.com>; 'Hans Verkuil' <hverkuil-
-> > cisco@xs4all.nl>; linux-arm-kernel@lists.infradead.org; linux-
-> > media@vger.kernel.org; linux-kernel@vger.kernel.org;
-> > devicetree@vger.kernel.org
-> > Cc: m.szyprowski@samsung.com; andrzej.hajda@intel.com;
-> > mchehab@kernel.org; ezequiel@vanguardiasur.com.ar;
-> > jernej.skrabec@gmail.com; benjamin.gaignard@collabora.com;
-> > stanimir.varbanov@linaro.org; dillon.minfei@gmail.com;
-> > david.plowman@raspberrypi.com; mark.rutland@arm.com;
-> > robh+dt@kernel.org; krzk+dt@kernel.org; andi@etezian.org;
-> > alim.akhtar@samsung.com; aswani.reddy@samsung.com;
-> > pankaj.dubey@samsung.com; linux-fsd@tesla.com; smitha.t@samsung.com
-> > Subject: Re: [Patch v3 05/15] Documention: v4l: Documentation for VP9 C=
-IDs.
-> >=20
-> > Le mercredi 14 d=C3=A9cembre 2022 =C3=A0 15:52 +0530, Aakarsh Jain a =
-=C3=A9crit :
-> > >=20
-> > > > -----Original Message-----
-> > > > From: Hans Verkuil [mailto:hverkuil-cisco@xs4all.nl]
-> > > > Sent: 24 November 2022 16:54
-> > > > To: aakarsh jain <aakarsh.jain@samsung.com>; linux-arm-
-> > > > kernel@lists.infradead.org; linux-media@vger.kernel.org; linux-
-> > > > kernel@vger.kernel.org; devicetree@vger.kernel.org
-> > > > Cc: m.szyprowski@samsung.com; andrzej.hajda@intel.com;
-> > > > mchehab@kernel.org; ezequiel@vanguardiasur.com.ar;
-> > > > jernej.skrabec@gmail.com; benjamin.gaignard@collabora.com;
-> > > > stanimir.varbanov@linaro.org; dillon.minfei@gmail.com;
-> > > > david.plowman@raspberrypi.com; mark.rutland@arm.com;
-> > > > robh+dt@kernel.org; krzk+dt@kernel.org; andi@etezian.org;
-> > > > alim.akhtar@samsung.com; aswani.reddy@samsung.com;
-> > > > pankaj.dubey@samsung.com; linux-fsd@tesla.com;
-> > smitha.t@samsung.com
-> > > > Subject: Re: [Patch v3 05/15] Documention: v4l: Documentation for V=
-P9
-> > CIDs.
-> > > >=20
-> > > > On 11/10/2022 14:25, aakarsh jain wrote:
-> > > > > From: Smitha T Murthy <smitha.t@samsung.com>
-> > > > >=20
-> > > > > Adds V4l2 controls for VP9 encoder documention.
-> > > > >=20
-> > > > > Cc: linux-fsd@tesla.com
-> > > > > Signed-off-by: Smitha T Murthy <smitha.t@samsung.com>
-> > > > > Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
-> > > > > ---
-> > > > >  .../media/v4l/ext-ctrls-codec.rst             | 167 ++++++++++++=
-++++++
-> > > > >  1 file changed, 167 insertions(+)
-> > > > >=20
-> > > > > diff --git
-> > > > > a/Documentation/userspace-api/media/v4l/ext-ctrls-codec.rst
-> > > > > b/Documentation/userspace-api/media/v4l/ext-ctrls-codec.rst
-> > > > > index 2a165ae063fb..2277d83a7cf0 100644
-> > > > > --- a/Documentation/userspace-api/media/v4l/ext-ctrls-codec.rst
-> > > > > +++ b/Documentation/userspace-api/media/v4l/ext-ctrls-codec.rst
-> > > > > @@ -2187,6 +2187,16 @@ enum v4l2_mpeg_video_vp8_profile -
-> > > > >      * - ``V4L2_MPEG_VIDEO_VP8_PROFILE_3``
-> > > > >        - Profile 3
-> > > > >=20
-> > > > > +VP9 Control Reference
-> > > >=20
-> > > > This is wrong. There is a VPX Control Reference section for both VP=
-8
-> > > > and VP9 controls. That's where this should be added. I suspect
-> > > > several of the controls you are adding here already exist, e.g.
-> > > > V4L2_CID_MPEG_VIDEO_VPX_MIN_QP. The documentation may have
-> > to be
-> > > > updated to specify that it is for both VP8 and VP9.
-> > > >=20
-> > > Since MFC has different profiles, different quantization parameter ra=
-nges
-> > for both VP8 and VP9. So we can't use same control ID's for both.
-> > > So for example in VP8 with control ID
-> > (V4L2_CID_MPEG_VIDEO_VPX_MIN_QP), QP ranges from 0-11 and in VP9
-> > with control ID  (V4L2_CID_CODEC_VP9_MIN_QP) QP ranges from 1-24. So
-> > we can't club together into single control.
-> > >=20
-> >=20
-> > V4L2_CID_MPEG_VIDEO_VPX_PROFILE has been deprecated, and replace
-> > with menu controls. So we now have a
-> > V4L2_CID_MPEG_VIDEO_VP8_PROFILE and a
-> > V4L2_CID_MPEG_VIDEO_VP9_PROFILE as menues. Newly written drivers
-> > should use these. I see that GStreamer notably has never been ported, I=
-'ll fix
-> > it.
-> >=20
-> > When you implement a driver, the generic uAPI will cover all possible i=
-tems,
-> > as menus (a integer was an API mistake made in 2011, hence the
-> > deprecation). You driver can then select which menu items it support, a=
-nd its
-> > server at telling userspace what this HW supports. Though, this should =
-be no
-> > problem if you want to keep the old CID for backward compat, since the
-> > range is just totally undefined there.
-> >=20
-> > For V4L2_CID_MPEG_VIDEO_VPX_MIN_QP (and friends), the doc says
-> > "Minimum quantization parameter for VP8.". A bit strange for a supposed=
-ly
-> > VPX parameter.
-> > But its defines in the code as "VPX Minimum QP Value". Clearly somethin=
-g to
-> > be fixed. There is no VP9 encoder drivers yet in mainline.
-> >=20
-> > Though, the range for these controls is driver defined. In Venus, for V=
-P8:
-> >=20
-> >=20
-> >         v4l2_ctrl_new_std(&inst->ctrl_handler, &venc_ctrl_ops,
-> >                 V4L2_CID_MPEG_VIDEO_VPX_MIN_QP, 1, 128, 1, 1);
-> >=20
-> > It seems to be 1 to 128. While in MFC, it oddly 1 to 11:
-> >=20
-> >=20
-> >         {
-> >                 .id =3D V4L2_CID_MPEG_VIDEO_VPX_MIN_QP,
-> >                 .type =3D V4L2_CTRL_TYPE_INTEGER,
-> >                 .minimum =3D 0,
-> >                 .maximum =3D 11,
-> >                 .step =3D 1,
-> >                 .default_value =3D 0,
-> >         },
-> >=20
-> > While I'm not a huge fan of this, since we all know QP does not scale l=
-inearly,
-> > this is how it is, and this is kind of part of the kernel API now. So u=
-serspace
-> > must ask the driver what is the QP range, and adapt. And in your case, =
-you
-> > should have no issue adding VP9 encoder with a 1 to 24 range (even if t=
-his is a
-> > bit odd and hw specific).
-> >=20
-> > Nicolas
-> >=20
->=20
-> So all controls which I am using in VP9 similar to VPX will implement tha=
-t as menu control. Will not touch VPX controls for backward compatibility.
-> Also will change all remaining VP9 controls implementation from Integer t=
-o menu control.=20
->=20
-> Will this be fine ?
 
-I think so, I'd add menu control to the existing VP8 decoder, so that both =
-are
-supported, but I'd only implement menu controls for newly added formats. Th=
-is is
-to maintain backward compatibility indeed.
+--4wR4/gycHWfjw8/A
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->=20
+Hey Rob,
+
+On Thu, Dec 22, 2022 at 12:06:27PM -0600, Rob Herring wrote:
+> On Wed, Dec 21, 2022 at 02:15:49PM +0000, Conor Dooley wrote:
+> > From: Conor Dooley <conor.dooley@microchip.com>
 > >=20
-> > > > > +---------------------
-> > > > > +
-> > > > > +The VP9 controls include controls for encoding parameters of VP9
-> > > > > +video codec.
-> > > > > +
-> > > > > +.. _vp9-control-id:
-> > > > > +
-> > > > > +VP9 Control IDs
-> > > > > +
-> > > > >  .. _v4l2-mpeg-video-vp9-profile:
-> > > > >=20
-> > > > >  ``V4L2_CID_MPEG_VIDEO_VP9_PROFILE``
-> > > > > @@ -2253,6 +2263,163 @@ enum v4l2_mpeg_video_vp9_level -
-> > > > >      * - ``V4L2_MPEG_VIDEO_VP9_LEVEL_6_2``
-> > > > >        - Level 6.2
-> > > > >=20
-> > > > > +``V4L2_CID_CODEC_VP9_I_FRAME_QP``
-> > > >=20
-> > > > If you do need to add new controls, then please use the same
-> > > > MPEG_VIDEO_ prefix.
-> > > > It's a bit ugly and historical, but let's keep it consistent with t=
-he others.
-> > > >=20
-> > > > Regards,
-> > > >=20
-> > > > 	Hans
-> > > >=20
-> > > > > +    Quantization parameter for an I frame for VP9. Valid range:
-> > > > > + from 1 to
-> > > > 255.
-> > > > > +
-> > > > > +``V4L2_CID_CODEC_VP9_P_FRAME_QP``
-> > > > > +    Quantization parameter for an P frame for VP9. Valid range:
-> > > > > +from 1 to
-> > > > 255.
-> > > > > +
-> > > > > +``V4L2_CID_CODEC_VP9_MAX_QP``
-> > > > > +    Maximum quantization parameter for VP9. Valid range: from 1 =
-to
-> > 255.
-> > > > > +    Recommended range for MFC is from 230 to 255.
-> > > > > +
-> > > > > +``V4L2_CID_CODEC_VP9_MIN_QP``
-> > > > > +    Minimum quantization parameter for VP9. Valid range: from 1 =
-to
-> > 255.
-> > > > > +    Recommended range for MFC is from 1 to 24.
-> > > > > +
-> > > > > +``V4L2_CID_CODEC_VP9_RC_FRAME_RATE``
-> > > > > +    Indicates the number of evenly spaced subintervals, called t=
-icks,
-> > within
-> > > > > +    one second. This is a 16 bit unsigned integer and has a
-> > > > > +maximum value
-> > > > up to
-> > > > > +    0xffff and a minimum value of 1.
-> > > > > +
-> > > > > +``V4L2_CID_CODEC_VP9_GF_REFRESH_PERIOD``
-> > > > > +    Indicates the refresh period of the golden frame for VP9 enc=
-oder.
-> > > > > +
-> > > > > +.. _v4l2-vp9-golden-frame-sel:
-> > > > > +
-> > > > > +``V4L2_CID_CODEC_VP9_GOLDEN_FRAMESEL``
-> > > > > +    (enum)
-> > > > > +
-> > > > > +enum v4l2_mpeg_vp9_golden_framesel -
-> > > > > +    Selects the golden frame for encoding. Valid when NUM_OF_REF=
- is
-> > 2.
-> > > > > +    Possible values are:
-> > > > > +
-> > > > > +.. raw:: latex
-> > > > > +
-> > > > > +    \footnotesize
-> > > > > +
-> > > > > +.. tabularcolumns:: |p{9.0cm}|p{8.0cm}|
-> > > > > +
-> > > > > +.. flat-table::
-> > > > > +    :header-rows:  0
-> > > > > +    :stub-columns: 0
-> > > > > +
-> > > > > +    * - ``V4L2_CID_CODEC_VP9_GOLDEN_FRAME_USE_PREV``
-> > > > > +      - Use the (n-2)th frame as a golden frame, current frame i=
-ndex
-> > being
-> > > > > +        'n'.
-> > > > > +    * - ``V4L2_CID_CODEC_VP9_GOLDEN_FRAME_USE_REF_PERIOD``
-> > > > > +      - Use the previous specific frame indicated by
-> > > > > +        ``V4L2_CID_CODEC_VP9_GF_REFRESH_PERIOD`` as a
-> > > > > +        golden frame.
-> > > > > +
-> > > > > +.. raw:: latex
-> > > > > +
-> > > > > +    \normalsize
-> > > > > +
-> > > > > +
-> > > > > +``V4L2_CID_CODEC_VP9_HIERARCHY_QP_ENABLE``
-> > > > > +    Allows host to specify the quantization parameter values for=
- each
-> > > > > +    temporal layer through HIERARCHICAL_QP_LAYER. This is valid =
-only
-> > > > > +    if HIERARCHICAL_CODING_LAYER is greater than 1. Setting the
-> > control
-> > > > > +    value to 1 enables setting of the QP values for the layers.
-> > > > > +
-> > > > > +.. _v4l2-vp9-ref-number-of-pframes:
-> > > > > +
-> > > > > +``V4L2_CID_CODEC_VP9_REF_NUMBER_FOR_PFRAMES``
-> > > > > +    (enum)
-> > > > > +
-> > > > > +enum v4l2_mpeg_vp9_ref_num_for_pframes -
-> > > > > +    Number of reference pictures for encoding P frames.
-> > > > > +
-> > > > > +.. raw:: latex
-> > > > > +
-> > > > > +    \footnotesize
-> > > > > +
-> > > > > +.. tabularcolumns:: |p{9.0cm}|p{8.0cm}|
-> > > > > +
-> > > > > +.. flat-table::
-> > > > > +    :header-rows:  0
-> > > > > +    :stub-columns: 0
-> > > > > +
-> > > > > +    * - ``V4L2_CID_CODEC_VP9_1_REF_PFRAME``
-> > > > > +      - Indicates one reference frame, last encoded frame will b=
-e
-> > searched.
-> > > > > +    * - ``V4L2_CID_CODEC_VP9_GOLDEN_FRAME_USE_REF_PERIOD``
-> > > > > +      - Indicates 2 reference frames, last encoded frame and gol=
-den
-> > frame
-> > > > > +        will be searched.
-> > > > > +
-> > > > > +.. raw:: latex
-> > > > > +
-> > > > > +    \normalsize
-> > > > > +
-> > > > > +
-> > > > > +``V4L2_CID_CODEC_VP9_HIERARCHICAL_CODING_LAYER``
-> > > > > +    Indicates the number of hierarchial coding layer.
-> > > > > +    In normal encoding (non-hierarchial coding), it should be ze=
-ro.
-> > > > > +    VP9 has upto 3 layer of encoder.
-> > > > > +
-> > > > > +``V4L2_CID_CODEC_VP9_HIERARCHY_RC_ENABLE``
-> > > > > +    Indicates enabling of bit rate for hierarchical coding layer=
-s VP9
-> > encoder.
-> > > > > +
-> > > > > +``V4L2_CID_CODEC_VP9_HIER_CODING_L0_BR``
-> > > > > +    Indicates bit rate for hierarchical coding layer 0 for VP9 e=
-ncoder.
-> > > > > +
-> > > > > +``V4L2_CID_CODEC_VP9_HIER_CODING_L1_BR``
-> > > > > +    Indicates bit rate for hierarchical coding layer 1 for VP9 e=
-ncoder.
-> > > > > +
-> > > > > +``V4L2_CID_CODEC_VP9_HIER_CODING_L2_BR``
-> > > > > +    Indicates bit rate for hierarchical coding layer 2 for VP9 e=
-ncoder.
-> > > > > +
-> > > > > +``V4L2_CID_CODEC_VP9_HIER_CODING_L0_QP``
-> > > > > +    Indicates quantization parameter for hierarchical coding lay=
-er 0.
-> > > > > +    Valid range: [V4L2_CID_CODEC_VP9_MIN_QP,
-> > > > > +    V4L2_CID_CODEC_VP9_MAX_QP].
-> > > > > +
-> > > > > +``V4L2_CID_CODEC_VP9_HIER_CODING_L1_QP``
-> > > > > +    Indicates quantization parameter for hierarchical coding lay=
-er 1.
-> > > > > +    Valid range: [V4L2_CID_CODEC_VP9_MIN_QP,
-> > > > > +    V4L2_CID_CODEC_VP9_MAX_QP].
-> > > > > +
-> > > > > +``V4L2_CID_CODEC_VP9_HIER_CODING_L2_QP``
-> > > > > +    Indicates quantization parameter for hierarchical coding lay=
-er 2.
-> > > > > +    Valid range: [V4L2_CID_CODEC_VP9_MIN_QP,
-> > > > > +    V4L2_CID_CODEC_VP9_MAX_QP].
-> > > > > +
-> > > > > +.. _v4l2-vp9-max-partition-depth:
-> > > > > +
-> > > > > +``V4L2_CID_CODEC_VP9_MAX_PARTITION_DEPTH``
-> > > > > +    (enum)
-> > > > > +
-> > > > > +enum v4l2_mpeg_vp9_num_partitions -
-> > > > > +    Indicate maximum coding unit depth.
-> > > > > +
-> > > > > +.. raw:: latex
-> > > > > +
-> > > > > +    \footnotesize
-> > > > > +
-> > > > > +.. tabularcolumns:: |p{9.0cm}|p{8.0cm}|
-> > > > > +
-> > > > > +.. flat-table::
-> > > > > +    :header-rows:  0
-> > > > > +    :stub-columns: 0
-> > > > > +
-> > > > > +    * - ``V4L2_CID_CODEC_VP9_0_PARTITION``
-> > > > > +      - No coding unit partition depth.
-> > > > > +    * - ``V4L2_CID_CODEC_VP9_1_PARTITION``
-> > > > > +      - Allows one coding unit partition depth.
-> > > > > +
-> > > > > +.. raw:: latex
-> > > > > +
-> > > > > +    \normalsize
-> > > > > +
-> > > > > +
-> > > > > +``V4L2_CID_CODEC_VP9_DISABLE_INTRA_PU_SPLIT``
-> > > > > +    Zero indicates enable intra NxN PU split.
-> > > > > +    One indicates disable intra NxN PU split.
-> > > > > +
-> > > > > +``V4L2_CID_CODEC_VP9_DISABLE_IVF_HEADER``
-> > > > > +    Indicates IVF header generation. Zero indicates enable IVF f=
-ormat.
-> > > > > +    One indicates disable IVF format.
-> > > > > +
-> > > > >=20
-> > > > >  High Efficiency Video Coding (HEVC/H.265) Control Reference
-> > > > >=20
-> > > >=20
-> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > > > =3D
-> > >=20
-> > >=20
+> > The SBI PMU extension requires a firmware to be aware of the event to
+> > counter/mhpmevent mappings supported by the hardware. OpenSBI may use
+> > DeviceTree to describe the PMU mappings. This binding is currently
+> > described in markdown in OpenSBI (since v1.0 in Dec 2021) & used by QEMU
+> > since v7.2.0.
+> >=20
+> > Import the binding for use while validating dtb dumps from QEMU and
+> > upcoming hardware (eg JH7110 SoC) that will make use of the event
+> > mapping.
+> >=20
+> > Link: https://github.com/riscv-software-src/opensbi/blob/master/docs/pm=
+u_support.md
+> > Co-developed-by: Atish Patra <atishp@rivosinc.com>
+> > Signed-off-by: Atish Patra <atishp@rivosinc.com>
+> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> > ---
+> > I asked Rob on IRC about these bindings a few weeks ago & he said he
+> > would be willing to take them. I have modified wording slightly in the
+> > descriptions, but have mostly left things as close to the OpenSBI
+> > documentation as possible.
 >=20
->=20
->=20
+> Please CC the perf maintainers. Might be crickets, but so they at least=
+=20
+> have a chance to see it.
 
+Yah, I was kinda unsure who to CC. It does list them as being
+specifically ARM so I probably made the wrong choice about inclusion.
+I've added them now.
+
+> > I'm not super sure about what I've done with the properties being
+> > correct type wise, I went digging in bindings and am sorta using the
+> > first thing that "fit".
+> >=20
+> > Since you wrote the md doc Atish, I put your co-developed-by. OpenSBI
+> > is BSD-2-Clause licensed so I am also unsure as to what license I can
+> > use for this binding since that's where I took it from.
+> > ---
+> >  .../devicetree/bindings/perf/riscv,pmu.yaml   | 158 ++++++++++++++++++
+> >  1 file changed, 158 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/perf/riscv,pmu.ya=
+ml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/perf/riscv,pmu.yaml b/Do=
+cumentation/devicetree/bindings/perf/riscv,pmu.yaml
+> > new file mode 100644
+> > index 000000000000..d65f937680af
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/perf/riscv,pmu.yaml
+> > @@ -0,0 +1,158 @@
+> > +# SPDX-License-Identifier: BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/perf/riscv,pmu.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: RISC-V SBI PMU events
+> > +
+> > +maintainers:
+> > +  - Atish Patra <atishp@rivosinc.com>
+> > +
+> > +description: |
+> > +  SBI PMU extension supports allow supervisor software to configure, s=
+tart &
+> > +  stop any performance counter at anytime. Thus, a user can leverage f=
+ull
+> > +  capability of performance analysis tools such as perf if the SBI PMU
+> > +  extension is enabled. The OpenSBI implementation makes the following
+> > +  assumptions about the hardware platform:
+> > +    MCOUNTINHIBIT CSR must be implemented in the hardware. Otherwise, =
+the SBI
+> > +    PMU extension will not be enabled.
+> > +
+> > +    The platform must provide information about PMU event to counter m=
+apping
+> > +    via device tree or platform specific hooks. Otherwise, the SBI PMU
+> > +    extension will not be enabled.
+> > +
+> > +    The platforms should provide information about the PMU event selec=
+tor
+> > +    values that should be encoded in the expected value of MHPMEVENTx =
+while
+> > +    configuring MHPMCOUNTERx for that specific event. This can be done=
+ via a
+> > +    device tree or platform specific hooks. The exact value to be writ=
+ten to
+> > +    the MHPMEVENTx is completely dependent on the platform. The generic
+> > +    platform writes the zero-extended event_idx as the expected value =
+for
+> > +    hardware cache/generic events as suggested by the SBI specificatio=
+n.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: riscv,pmu
+> > +
+> > +  riscv,event-to-mhpmevent:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > +    description:
+> > +      Represents an ONE-to-ONE mapping between a PMU event and the eve=
+nt
+> > +      selector value that platform expects to be written to the MHPMEV=
+ENTx CSR
+> > +      for that event.
+> > +      The mapping is encoded in an array format where each row represe=
+nts an
+>=20
+> s/array/matrix/
+>=20
+> > +      event. The first element represents the event idx while the seco=
+nd &
+> > +      third elements represent the event selector value that should be=
+ encoded
+> > +      in the expected value to be written in MHPMEVENTx.
+> > +      This property shouldn't encode any raw hardware event.
+> > +    minItems: 1
+> > +    maxItems: 255
+
+I copied these 255s from dt-schema somewhere as a sane max.
+Atish, is there a cap here or should we allow as many as someone likes?
+The md binding doesn't mention any limits - is it in the SBI spec?
+The strongest wording I saw there was "limited" & event idx is 20 bits
+wide as per the spec [0]. Does that make 2^20 the hard limit here?
+
+0 - https://github.com/riscv-non-isa/riscv-sbi-doc/blob/master/riscv-sbi.ad=
+oc#11-performance-monitoring-unit-extension-eid-0x504d55-pmu
+
+> > +    items:
+> > +      $ref: /schemas/types.yaml#/definitions/uint32-array
+>=20
+> Huh? A property can only have 1 type. I wonder what the tools do with=20
+> this...
+
+I suppose I left this over (by accident) from when I had it arranged
+slightly differently. I guess I never actually noticed as the tools
+don't appear to complain. Now dropped :)
+
+> > +      maxItems: 3
+>=20
+> Better to do:
+>=20
+>          items:
+>            - description: what's in the 1st word
+>            - description: what's in the 2nd word
+>            - description: what's in the 3rd word
+>=20
+> And rework the overall description to not say the same thing.
+
+Yah, good idea. I'll do that for the next version.
+
+> > +  riscv,event-to-mhpmcounters:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > +    description:
+> > +      Represents a MANY-to-MANY mapping between a range of events and =
+all the
+> > +      MHPMCOUNTERx in a bitmap format that can be used to monitor thes=
+e range
+> > +      of events. The information is encoded in an array format where e=
+ach
+> > +      row represents a certain range of events and corresponding count=
+ers.
+> > +      The first element represents starting of the pmu event id and 2n=
+d column
+> > +      represents the end of the pmu event id. The third element repres=
+ent a
+> > +      bitmap of all the MHPMCOUNTERx.
+> > +      This property is mandatory if event-to-mhpmevent is present. Oth=
+erwise,
+> > +      it can be omitted.
+>=20
+> No need to state this in freeform text, use 'dependencies'.
+
+Oh! I didn't know that that existed. I was going to go and do some sort
+of required properties dance but perhaps that's not needed now (at least
+to the same extent).
+
+> > +      This property shouldn't encode any raw event.
+> > +    minItems: 1
+> > +    maxItems: 255
+> > +    items:
+> > +      $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +      maxItems: 3
+> > +
+> > +  riscv,raw-event-to-mhpmcounters:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > +    description:
+> > +      Represents an ONE-to-MANY or MANY-to-MANY mapping between the ra=
+wevent(s)
+> > +      and all the MHPMCOUNTERx in a bitmap format that can be used to =
+monitor
+> > +      that raw event.
+> > +      The encoding of the raw events are platform specific. The inform=
+ation is
+> > +      encoded in an array format where each row represents the specifi=
+c raw
+> > +      event(s). The first element is a 64-bit match value where the in=
+variant
+> > +      bits of range of events are set. The second element is a 64-bit =
+mask that
+> > +      will have all the variant bits of the range of events cleared. A=
+ll other
+> > +      bits should be set in the mask. The third element is a 32-bit va=
+lue to
+> > +      represent bitmap of all MHPMCOUNTERx that can monitor these set =
+of
+> > +      event(s). If a platform directly encodes each raw PMU event as a=
+ unique
+> > +      ID, the value of select_mask must be 0xffffffff_ffffffff.
+> > +    minItems: 1
+> > +    maxItems: 255
+> > +    items:
+> > +      $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +      maxItems: 5
+> > +
+> > +required:
+> > +  - compatible
+>=20
+> I assume at least one of the other properties must be present?
+
+Atish: (and +CC the OpenSBI list)
+Which properties are actually needed here? Or are any? The md binding
+in the OpenSBI sources doesn't seem to require anything other than the
+compatible?
+
+Thanks Rob,
+Conor.
+
+
+--4wR4/gycHWfjw8/A
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY6SuygAKCRB4tDGHoIJi
+0sBJAQCBb8LfSpRr50PGJ/MMYc80DhPX8SA6g08IeSWTCi5UWgD9G4UgEQffHyGP
+OVaTnTLq8t88+8bsyX4LEh8Ov/0zlQ4=
+=COOT
+-----END PGP SIGNATURE-----
+
+--4wR4/gycHWfjw8/A--
