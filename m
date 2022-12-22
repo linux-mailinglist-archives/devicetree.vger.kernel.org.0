@@ -2,134 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C12E653E70
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 11:40:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 22E59653E7B
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 11:46:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235068AbiLVKkg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 05:40:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46080 "EHLO
+        id S235068AbiLVKqQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 05:46:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235120AbiLVKkT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 05:40:19 -0500
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 653136454;
-        Thu, 22 Dec 2022 02:40:16 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2BMAe4lr040147;
-        Thu, 22 Dec 2022 04:40:04 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1671705604;
-        bh=1jT5Fj1arrg7WdmKeWHfIf5n+IT2qdlbceDBEC4vDg4=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=UXhHWEknsrR+NJFGPf1lAwYPquGkdhO0h2U/BTd4HKSHbvHSoSQTY91I7iLg0cm4N
-         Nt3ieC2hXfDlr9QWK3sQN70RYhLCj5ZZq8CA7AKNrKINkXvthK2CPvHOwP5+qK5CAb
-         AfPigBZiJEcJnRrWU1zHWcAnRTvpqGMaq91LoO+M=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2BMAe4oP071291
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 22 Dec 2022 04:40:04 -0600
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 22
- Dec 2022 04:40:04 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Thu, 22 Dec 2022 04:40:04 -0600
-Received: from [10.250.234.78] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2BMAdn6v034347;
-        Thu, 22 Dec 2022 04:39:53 -0600
-Message-ID: <a22a2c32-3b52-8bdf-f959-c95554125c64@ti.com>
-Date:   Thu, 22 Dec 2022 16:09:47 +0530
+        with ESMTP id S229666AbiLVKqQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 05:46:16 -0500
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A94BF1F2FC
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 02:46:14 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id f16so1480147ljc.8
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 02:46:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dyarJ5c7H5K4w/5iPj5Y1u1ARcmMhxdFR6wMTGtvYlQ=;
+        b=iOeDoeF7DYCqPIwidMsIqbuZwFQMl5zDegDjvysdGE54QPpaY2feXLxU+fYQSAZebn
+         a41ITxO7CYgyC6LCqZEp4LOD41YTMP0TM7G1R3HoUmsBUG5M7d4uRkFPe5l1v88EaoAJ
+         L+8C2G5IwaAEEV+GVsjH17WaYXnLJs9rOWKUmTrqVPDJnbc8idCMRpnbZCxTp4aEB+e2
+         bH3Uk24V83xCtRHgG+GvFISMBiPXZ/daYd4r758A4ZsVc1O5qVea2bC0TEEkwI9Ng/K8
+         U9PqL4531+WiF7CQyU/eBcg1n4QISHpqw3zlD8DOo9FwvDZ4mjd8C37VJxpaE3yhhKWq
+         gYUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dyarJ5c7H5K4w/5iPj5Y1u1ARcmMhxdFR6wMTGtvYlQ=;
+        b=5hrkFZUQxOVSC46tplEjoJlTwjgt/+m6u53lt8ZgrVdugl0Dfbi78h+8M71jjcO3Wt
+         /b1jp+femLC+eXFE4cME1k5mow29XWXLdkdT3pFheGQ8X7BQaYmLJ5XM1ogkt2uUvFTR
+         dFWfinoVNmDopiOgul5i8sFn9RI06dg6fOjXd7PMLL1mTWkkfSHoFIE0ZpesRowydNvZ
+         ZTE6BdtPEzuYCd30x+/aQLSKxNrB+oiaREoM6cVg/OWlqg1hx36sFJ5h93NbfzRcrK61
+         8WBmNHjjccz6q+WosFR/NYbk60cWEmuTT/VoKvqpie483kMGTfgx/7iBm+AT5Q0KGyw+
+         HuGg==
+X-Gm-Message-State: AFqh2kqOOHbXx1Xi9Zak0c8zPJOKzFaoovIIAoH3aFDVSmghGYvBQVf2
+        rsUCWcPyqI+A6I7kWEoaTKpfgw==
+X-Google-Smtp-Source: AMrXdXstgUhJPwscBbllB/JamD5vSP8dpvL3OXHGcxmIXLUnk5vte7UKRACZZW5iCgpVHwngF7EtGg==
+X-Received: by 2002:a2e:b004:0:b0:279:e1ba:8c6a with SMTP id y4-20020a2eb004000000b00279e1ba8c6amr1196396ljk.44.1671705973043;
+        Thu, 22 Dec 2022 02:46:13 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id h21-20020a2ea495000000b00279e41de7e6sm14385lji.3.2022.12.22.02.46.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Dec 2022 02:46:12 -0800 (PST)
+Message-ID: <5e8d7388-1b2b-cebb-fd09-38b4364c00e1@linaro.org>
+Date:   Thu, 22 Dec 2022 11:46:11 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
+ Thunderbird/102.6.0
 Subject: Re: [EXTERNAL] Re: [PATCH] arm64: dts: ti: k3-j721s2: Add support for
  ADC nodes
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <kristo@kernel.org>, <nm@ti.com>
+To:     Bhavya Kapoor <b-kapoor@ti.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        kristo@kernel.org, nm@ti.com
 References: <20221220101249.46450-1-b-kapoor@ti.com>
  <ff5b09db-4900-0b5b-e821-fa05b8d907a4@linaro.org>
  <a4d11974-eb97-bfa2-790f-3016950ea961@ti.com>
  <79ffe459-3827-ea67-e854-8eef3d9b630b@linaro.org>
-From:   Bhavya Kapoor <b-kapoor@ti.com>
-In-Reply-To: <79ffe459-3827-ea67-e854-8eef3d9b630b@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+ <a22a2c32-3b52-8bdf-f959-c95554125c64@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <a22a2c32-3b52-8bdf-f959-c95554125c64@ti.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 21/12/22 13:24, Krzysztof Kozlowski wrote:
-> On 21/12/2022 06:42, Bhavya Kapoor wrote:
->> On 20/12/22 16:20, Krzysztof Kozlowski wrote:
->>> On 20/12/2022 11:12, Bhavya Kapoor wrote:
->>>> J721s2 has two instances of 8 channel ADCs in MCU domain. Add DT nodes
->>>> for 8 channel ADCs for J721s2 SoC.
+On 22/12/2022 11:39, Bhavya Kapoor wrote:
+> 
+> On 21/12/22 13:24, Krzysztof Kozlowski wrote:
+>> On 21/12/2022 06:42, Bhavya Kapoor wrote:
+>>> On 20/12/22 16:20, Krzysztof Kozlowski wrote:
+>>>> On 20/12/2022 11:12, Bhavya Kapoor wrote:
+>>>>> J721s2 has two instances of 8 channel ADCs in MCU domain. Add DT nodes
+>>>>> for 8 channel ADCs for J721s2 SoC.
+>>>>>
+>>>>> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+>>>>> ---
+>>>>>    .../dts/ti/k3-j721s2-common-proc-board.dts    | 14 +++++++
+>>>>>    .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     | 42 ++++++++++++++++++-
+>>>>>    2 files changed, 55 insertions(+), 1 deletion(-)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+>>>>> index a7aa6cf08acd..67593aa69327 100644
+>>>>> --- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+>>>>> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+>>>>> @@ -309,3 +309,17 @@ &mcu_mcan1 {
+>>>>>    	pinctrl-0 = <&mcu_mcan1_pins_default>;
+>>>>>    	phys = <&transceiver2>;
+>>>>>    };
+>>>>> +
+>>>>> +&tscadc0 {
+>>>>> +	status = "okay";
+>>>>> +	adc {
+>>>>> +		ti,adc-channels = <0 1 2 3 4 5 6 7>;
+>>>>> +	};
+>>>>> +};
+>>>>> +
+>>>>> +&tscadc1 {
+>>>>> +	status = "okay";
+>>>>> +	adc {
+>>>>> +		ti,adc-channels = <0 1 2 3 4 5 6 7>;
+>>>>> +	};
+>>>>> +};
+>>>>> \ No newline at end of file
+>>>> This is a friendly reminder during the review process.
 >>>>
->>>> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
->>>> ---
->>>>    .../dts/ti/k3-j721s2-common-proc-board.dts    | 14 +++++++
->>>>    .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     | 42 ++++++++++++++++++-
->>>>    2 files changed, 55 insertions(+), 1 deletion(-)
+>>>> It seems my previous comments were not fully addressed. Maybe my
+>>>> feedback got lost between the quotes, maybe you just forgot to apply it.
+>>>> Please go back to the previous discussion and either implement all
+>>>> requested changes or keep discussing them.
 >>>>
->>>> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
->>>> index a7aa6cf08acd..67593aa69327 100644
->>>> --- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
->>>> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
->>>> @@ -309,3 +309,17 @@ &mcu_mcan1 {
->>>>    	pinctrl-0 = <&mcu_mcan1_pins_default>;
->>>>    	phys = <&transceiver2>;
->>>>    };
->>>> +
->>>> +&tscadc0 {
->>>> +	status = "okay";
->>>> +	adc {
->>>> +		ti,adc-channels = <0 1 2 3 4 5 6 7>;
->>>> +	};
->>>> +};
->>>> +
->>>> +&tscadc1 {
->>>> +	status = "okay";
->>>> +	adc {
->>>> +		ti,adc-channels = <0 1 2 3 4 5 6 7>;
->>>> +	};
->>>> +};
->>>> \ No newline at end of file
->>> This is a friendly reminder during the review process.
+>>>> Thank you.
+>>>>
+>>>> Best regards,
+>>>> Krzysztof
+>>> Hi , I thought i did addressed the feedback since tscadc is just a
+>>> wrapper node.
 >>>
->>> It seems my previous comments were not fully addressed. Maybe my
->>> feedback got lost between the quotes, maybe you just forgot to apply it.
->>> Please go back to the previous discussion and either implement all
->>> requested changes or keep discussing them.
->>>
->>> Thank you.
->>>
->>> Best regards,
->>> Krzysztof
->> Hi , I thought i did addressed the feedback since tscadc is just a
->> wrapper node.
->>
->> The actual adc node is inside of tscadc node.
-> Read the feedback, from all emails.
-> Best regards,
-> Krzysztof
+>>> The actual adc node is inside of tscadc node.
+>> Read the feedback, from all emails.
+>> Best regards,
+>> Krzysztof
+> 
+> 
+> Hi , i have gone through all earlier mails but can't find anything else. 
+> Can you point out again whats the issue.
 
+"And this is a v2? Or resend? Or something else?"
 
-Hi , i have gone through all earlier mails but can't find anything else. 
-Can you point out again whats the issue.
+You miss proper versioning and changelog.
 
-Regards
+Additionally - I commented just before error in your patch. You must fix
+it, not ignore it, even though I did not point it out before.
+
+Best regards,
+Krzysztof
 
