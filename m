@@ -2,62 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BAD765459C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 18:25:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B7AF6545C9
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 18:57:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229583AbiLVRZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 12:25:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34648 "EHLO
+        id S231209AbiLVR5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 12:57:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229552AbiLVRZJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 12:25:09 -0500
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47B6795BC;
-        Thu, 22 Dec 2022 09:25:06 -0800 (PST)
-Received: by mail-ot1-f51.google.com with SMTP id e17-20020a9d7311000000b00678202573f1so1445278otk.8;
-        Thu, 22 Dec 2022 09:25:06 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8ywdkxpZzszObyiaiHAhYDxjz+PlTqZSkApdfOvvTQ0=;
-        b=BHE2yHXE1DDbI3ikHZ+/LeykKIJu1E5Mgeb2j7aN22epXnKvo7FFp0cjAunNURrpvp
-         n10f1xZazcMWm6weLaMSzDAzgCAAjvQ1KEgpy+6qkMa6uqTsUb6+GfG5dD8C3W1judx7
-         ROUqdAzlJScpqJ4YtyOxtlUyZv1umc7IVPwymurrUPfPIQmxzaltWATX7pew2pzqgTWv
-         k6xi34NMXAftrazFtHoGxQIWacfD/784LIRERZvX9eHzbdCGtuGoS4krhEIgAt5K+Kek
-         ag1lx95+uBmxXBLW1xH+oAx7LKcCANhlWzUdhxtGFW33bTkFRoifTKtuUkbzvCzTvXRU
-         /Kcg==
-X-Gm-Message-State: AFqh2kphPaqLSB+rnyUEe32JY8WuWuvK74rRatu2hwYeCVL9TvvIadmG
-        zP8G3NEBefKP7zE/XaV0Vw==
-X-Google-Smtp-Source: AMrXdXt5z9z5o3HrtDtlpTLaUxF8WJ7smRmdVlV7GJ1nnomSW+EwnHVVb0D3SaYlD4+RiYOwlnOIbQ==
-X-Received: by 2002:a9d:6550:0:b0:670:6f6c:5fc7 with SMTP id q16-20020a9d6550000000b006706f6c5fc7mr2988539otl.9.1671729905440;
-        Thu, 22 Dec 2022 09:25:05 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id u20-20020a9d4d94000000b0066871c3adb3sm557759otk.28.2022.12.22.09.25.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Dec 2022 09:25:04 -0800 (PST)
-Received: (nullmailer pid 1746062 invoked by uid 1000);
-        Thu, 22 Dec 2022 17:25:04 -0000
-Date:   Thu, 22 Dec 2022 11:25:04 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Yuteng Zhong <zonyitoo@gmail.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Peter Geis <pgwipeout@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, DHDAXCW <lasstp5011@gmail.com>
-Subject: Re: [PATCH v3 1/2] arm64: dts: rockchip: Add RK3566 LubanCat 1
-Message-ID: <20221222172504.GA1741501-robh@kernel.org>
-References: <Y6Kc650FuvHFWxP0@VM-66-53-centos>
+        with ESMTP id S230384AbiLVR5E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 12:57:04 -0500
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F097928742;
+        Thu, 22 Dec 2022 09:57:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1671731822; x=1703267822;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=QEwpG7YPkjygfaW66tLkHP88MR6Pq8dGRwAgelJ9rbY=;
+  b=D7HLLMvjw/nxsmrH20c99fvBf7zgNPiATzct1zSlwdaJMSPahFDiEbaQ
+   NPlvItwNzWS8IRaRRFL1/ySJdzNEOs0RDceKmV/eahdKpyPp33gVWaJUO
+   Ssc+2EjR322OWqxsMFIHn8s/jjuxZ3pszh2tnexqyw2AWlsYIwh1D9ZEo
+   YSr558i0Ke5WFOfxeaPxsxdmzNi/ADqq8gmyHlsWrpSAmoDxPj4lgLRel
+   VsdefJcr7E0lgTokjTurSLSxQ043wpPlRXaF/SgAkJDzzIZhVW13HdEZt
+   QGsBen4+HJI0U8CfHF4ukqyM14MVM7J/Kt59bv+99PAkiqBboCDGExWMg
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10569"; a="382433412"
+X-IronPort-AV: E=Sophos;i="5.96,266,1665471600"; 
+   d="scan'208";a="382433412"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Dec 2022 09:33:52 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10569"; a="629588598"
+X-IronPort-AV: E=Sophos;i="5.96,266,1665471600"; 
+   d="scan'208";a="629588598"
+Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.252.61.195])
+  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Dec 2022 09:33:44 -0800
+Message-ID: <c9e5e377-f3ce-87c2-0ff1-aae8da7045a0@intel.com>
+Date:   Thu, 22 Dec 2022 19:33:38 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y6Kc650FuvHFWxP0@VM-66-53-centos>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.6.1
+Subject: Re: [PATCH v2 5/8] mmc: sdhci-pxav2: add optional core clock
+Content-Language: en-US
+To:     Doug Brown <doug@schmorgal.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org
+References: <20221202031330.94130-1-doug@schmorgal.com>
+ <20221202031330.94130-6-doug@schmorgal.com>
+From:   Adrian Hunter <adrian.hunter@intel.com>
+Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
+ Business Identity Code: 0357606 - 4, Domiciled in Helsinki
+In-Reply-To: <20221202031330.94130-6-doug@schmorgal.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,46 +67,128 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 21, 2022 at 01:43:07PM +0800, Yuteng Zhong wrote:
-> LubanCat 1 is a Rockchip RK3566 SBC based
-> is developed by EmbedFire Electronics Co., Ltd.
-> Mini Linux Card Type Cheap Computer Development Board
-> It has the following characteristics:
-> - MicroSD card slot, onboard eMMC flash memory
-> - 1GbE Realtek RTL8211F Ethernet Transceiver
-> - 1 USB Type-C port (power and USB2.0 OTG)
-> - 1 USB 3.0 Host port
-> - 3 USB 2.0 Host ports
-> - 1 HDMI
-> - 1 infrared receiver
-> - 1 MIPI DSI
-> - 1 MIPI CSI
-> - 1 x 4-section headphone jack
-> - Mini PCIe socket (USB or PCIe)
-> - 1 SIM Card slot
-> - 1 SYS LED and 1 PWR LED
-> - 40-pin GPIO expansion header
+On 2/12/22 05:13, Doug Brown wrote:
+> Add ability to have an optional core clock just like the pxav3 driver.
+> The PXA168 needs this because its SDHC controllers have separate core
+> and io clocks that both need to be enabled. This also correctly matches
+> the documented devicetree bindings for this driver.
 > 
-> Signed-off-by: Yuteng Zhong <zonyitoo@gmail.com>
-> Signed-off-by: DHDAXCW <lasstp5011@gmail.com>
-
-DHDAXCW is a legal name?
-
-The person sending the patch email should be last.
-
+> Signed-off-by: Doug Brown <doug@schmorgal.com>
 > ---
+>  drivers/mmc/host/sdhci-pxav2.c | 40 ++++++++++++++++++++++++++++++----
+>  1 file changed, 36 insertions(+), 4 deletions(-)
 > 
-> Changed in V2:
->   - Remove RNG node
-> Changed in V3:
->   - Modify all node names
-> 
-> ---
->  .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+> diff --git a/drivers/mmc/host/sdhci-pxav2.c b/drivers/mmc/host/sdhci-pxav2.c
+> index 509ba5dd4a4a..1f0c3028987a 100644
+> --- a/drivers/mmc/host/sdhci-pxav2.c
+> +++ b/drivers/mmc/host/sdhci-pxav2.c
+> @@ -41,6 +41,10 @@
+>  #define MMC_CARD		0x1000
+>  #define MMC_WIDTH		0x0100
+>  
+> +struct sdhci_pxav2_host {
+> +	struct clk *clk_core;
+> +};
+> +
+>  static void pxav2_reset(struct sdhci_host *host, u8 mask)
+>  {
+>  	struct platform_device *pdev = to_platform_device(mmc_dev(host->mmc));
+> @@ -176,6 +180,7 @@ static int sdhci_pxav2_probe(struct platform_device *pdev)
+>  {
+>  	struct sdhci_pltfm_host *pltfm_host;
+>  	struct sdhci_pxa_platdata *pdata = pdev->dev.platform_data;
+> +	struct sdhci_pxav2_host *pxav2_host;
+>  	struct device *dev = &pdev->dev;
+>  	struct sdhci_host *host = NULL;
+>  	const struct of_device_id *match;
+> @@ -183,11 +188,12 @@ static int sdhci_pxav2_probe(struct platform_device *pdev)
+>  	int ret;
+>  	struct clk *clk;
+>  
+> -	host = sdhci_pltfm_init(pdev, NULL, 0);
+> +	host = sdhci_pltfm_init(pdev, NULL, sizeof(*pxav2_host));
+>  	if (IS_ERR(host))
+>  		return PTR_ERR(host);
+>  
+>  	pltfm_host = sdhci_priv(host);
+> +	pxav2_host = sdhci_pltfm_priv(pltfm_host);
+>  
+>  	clk = devm_clk_get(dev, "io");
+>  	if (IS_ERR(clk))
+> @@ -204,6 +210,15 @@ static int sdhci_pxav2_probe(struct platform_device *pdev)
+>  		goto free;
+>  	}
+>  
+> +	pxav2_host->clk_core = devm_clk_get(dev, "core");
 
-Bindings should be separate patch.
+This can use devm_clk_get_optional_enabled()
 
->  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->  .../boot/dts/rockchip/rk3566-lubancat-1.dts   | 600 ++++++++++++++++++
+> +	if (!IS_ERR(pxav2_host->clk_core)) {
+> +		ret = clk_prepare_enable(pxav2_host->clk_core);
+> +		if (ret) {
+> +			dev_err(&pdev->dev, "failed to enable core clock\n");
 
-Fix all the whitespace errors checkpatch.pl complains about.
+	if (IS_ERR(pxav2_host->clk_core)) {
+		dev_err_probe(&pdev->dev, PTR_ERR(pxav2_host->clk_core), "failed to enable core clock\n");
+
+> +			goto disable_io_clk;
+> +		}
+> +	}
+> +
+>  	host->quirks = SDHCI_QUIRK_BROKEN_ADMA
+>  		| SDHCI_QUIRK_BROKEN_TIMEOUT_VAL
+>  		| SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN;
+> @@ -240,17 +255,34 @@ static int sdhci_pxav2_probe(struct platform_device *pdev)
+>  
+>  	ret = sdhci_add_host(host);
+>  	if (ret)
+> -		goto disable_clk;
+> +		goto disable_core_clk;
+>  
+>  	return 0;
+>  
+> -disable_clk:
+> +disable_core_clk:
+> +	if (!IS_ERR(pxav2_host->clk_core))
+
+With changes above this would need to be: IS_ERR_OR_NULL
+
+
+> +		clk_disable_unprepare(pxav2_host->clk_core);
+> +disable_io_clk:
+>  	clk_disable_unprepare(clk);
+>  free:
+>  	sdhci_pltfm_free(pdev);
+>  	return ret;
+>  }
+>  
+> +static int sdhci_pxav2_remove(struct platform_device *pdev)
+> +{
+> +	struct sdhci_host *host = platform_get_drvdata(pdev);
+> +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
+> +	struct sdhci_pxav2_host *pxav2_host = sdhci_pltfm_priv(pltfm_host);
+> +
+> +	int ret = sdhci_pltfm_unregister(pdev);
+> +
+> +	if (!IS_ERR(pxav2_host->clk_core))
+
+With changes above this would need to be: IS_ERR_OR_NULL
+
+> +		clk_disable_unprepare(pxav2_host->clk_core);
+> +
+> +	return ret;
+> +}
+> +
+>  static struct platform_driver sdhci_pxav2_driver = {
+>  	.driver		= {
+>  		.name	= "sdhci-pxav2",
+> @@ -259,7 +291,7 @@ static struct platform_driver sdhci_pxav2_driver = {
+>  		.pm	= &sdhci_pltfm_pmops,
+>  	},
+>  	.probe		= sdhci_pxav2_probe,
+> -	.remove		= sdhci_pltfm_unregister,
+> +	.remove		= sdhci_pxav2_remove,
+>  };
+>  
+>  module_platform_driver(sdhci_pxav2_driver);
+
