@@ -2,140 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F57C654526
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 17:28:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F67C65452C
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 17:30:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229660AbiLVQ2z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 11:28:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47250 "EHLO
+        id S229526AbiLVQa4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 11:30:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229526AbiLVQ2y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 11:28:54 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B633A46D;
-        Thu, 22 Dec 2022 08:28:53 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 07FAE60C17;
-        Thu, 22 Dec 2022 16:28:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4530C433D2;
-        Thu, 22 Dec 2022 16:28:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1671726532;
-        bh=quQ2OOb8SYWeKmOuvUZAVXbbPsSJZ2ipg0z5ydmhLNk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=T+behxXYqfS5N7QM8iPekCkNaFdT/IsqRvsyEDTEEbtpgv1A+iBHwxjCH5Png/qfn
-         r+gDGvBk7+Xvpvv6tQsqrr4E0OQQN4FIEfsoNOixyOliGIDPhSgE7y0YsFG1poAcR2
-         XBhnHHDmkBP/BxVmWoaTXGWAIYDC5Pobcn85Iys8=
-Date:   Thu, 22 Dec 2022 17:28:49 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: Re: [PATCH v4 3/5] usb: gadget: udc: add Renesas RZ/N1 USBF
- controller support
-Message-ID: <Y6SFwVqXXmobljwW@kroah.com>
-References: <20221213133302.218955-1-herve.codina@bootlin.com>
- <20221213133302.218955-4-herve.codina@bootlin.com>
- <CAMuHMdV7QNZ8Rv6iFLhj_MmBHL-vGWuWZdKB=REWba1UAWgkHw@mail.gmail.com>
- <Y6MFKdOU4IUQo70L@kroah.com>
- <20221222162438.4d06bd77@bootlin.com>
+        with ESMTP id S229583AbiLVQaz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 11:30:55 -0500
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCF5B209A8;
+        Thu, 22 Dec 2022 08:30:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1671726653; x=1703262653;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=gaikJOwrkaTYxoPnt5Jgv3hjahARUac+2aDD8li1o5k=;
+  b=TLmwuo8Txp7aXY142Mp5VBot4sTc3umgS4eD9sQ9qW25wvYWIE0493U0
+   VjwMJ1COhGAaHPEJXstpHjG5Y0ByqfFRaVxzQilSCH1t71nZu8S9dRQ3o
+   6Vj+jh0HMWcZG4qEw2SeHLgy66lOyIj6yPXHssSvgb9u6kXJFUhaPrHfw
+   Mv19vkZ5DILhN9VNcCHKHyyQqkqqVkv54NtCsgtXdd57gDvkBiYZUlXrY
+   +yGJM3VO7d5ouX+/AhS2arnH5qGxZYYDvkCEQIjrV98ftL3+5JpGr0zmD
+   niFmeeflHkK/Tn1WguGm3MTXsCME6bJz64MSIh5GpYNzgbmoAR1MUOKvO
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10569"; a="406402245"
+X-IronPort-AV: E=Sophos;i="5.96,265,1665471600"; 
+   d="scan'208";a="406402245"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Dec 2022 08:30:53 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10569"; a="653931969"
+X-IronPort-AV: E=Sophos;i="5.96,265,1665471600"; 
+   d="scan'208";a="653931969"
+Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.252.61.195])
+  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Dec 2022 08:30:51 -0800
+Message-ID: <0136d5c6-7bb6-ce28-7db7-79d0f3bb2c4d@intel.com>
+Date:   Thu, 22 Dec 2022 18:30:45 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221222162438.4d06bd77@bootlin.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.6.1
+Subject: Re: [PATCH v2 4/8] mmc: sdhci-pxav2: change clock name to match DT
+ bindings
+Content-Language: en-US
+To:     Doug Brown <doug@schmorgal.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Ulf Hansson <ulf.hansson@linaro.org>
+References: <20221202031330.94130-1-doug@schmorgal.com>
+ <20221202031330.94130-5-doug@schmorgal.com>
+From:   Adrian Hunter <adrian.hunter@intel.com>
+Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
+ Business Identity Code: 0357606 - 4, Domiciled in Helsinki
+In-Reply-To: <20221202031330.94130-5-doug@schmorgal.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 22, 2022 at 04:24:38PM +0100, Herve Codina wrote:
-> Hi Geert, Greg,
+On 2/12/22 05:13, Doug Brown wrote:
+> The devicetree bindings for this driver specify that the two allowed
+> clock names are io and core. Change this driver to look for io, but
+> allow any name if it fails for backwards compatibility. Follow the same
+> pattern used in sdhci-pxav3.
 > 
-> On Wed, 21 Dec 2022 14:07:53 +0100
-> Greg Kroah-Hartman <gregkh@linuxfoundation.org> wrote:
+> Signed-off-by: Doug Brown <doug@schmorgal.com>
+> ---
+>  drivers/mmc/host/sdhci-pxav2.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
-> > On Wed, Dec 21, 2022 at 02:03:43PM +0100, Geert Uytterhoeven wrote:
-> > > Hi Hervé,
-> > > 
-> > > On Tue, Dec 13, 2022 at 2:33 PM Herve Codina <herve.codina@bootlin.com> wrote:  
-> > > > Add support for the Renesas USBF controller.
-> > > > This controller is an USB2.0 UDC controller available in the
-> > > > Renesas r9a06g032 SoC (RZ/N1 family).
-> > > >
-> > > > Signed-off-by: Herve Codina <herve.codina@bootlin.com>  
-> > > 
-> > > Thanks for your patch!
-> > >   
-> > > > --- /dev/null
-> > > > +++ b/drivers/usb/gadget/udc/renesas_usbf.c  
-> > >   
-> > > > +#ifdef DEBUG
-> > > > +#define TRACE(_fmt, ...) trace_printk("%s: " _fmt, __func__, ##__VA_ARGS__)
-> > > > +#define USBF_TRACE_EP_MASK 0x0ffff /* All the 16 endpoints */
-> > > > +#define TRACEEP(_ep, _fmt, ...)                                             \
-> > > > +       do {                                                                \
-> > > > +               if ((1 << (_ep)->id) & USBF_TRACE_EP_MASK)                  \
-> > > > +                       trace_printk("%s: " _fmt, __func__, ##__VA_ARGS__); \
-> > > > +       } while (0)
-> > > > +#else
-> > > > +#define TRACE(_fmt, ...) do { } while (0)
-> > > > +#define TRACEEP(_ep, _fmt, ...) do { } while (0)  
-> > > 
-> > > Please use "no_printk(fmt, ##__VA_ARGS__)" instead of dummy loops,
-> > > to avoid bad callers going unnoticed if DEBUG is not defined.  
-> > 
-> > Even better, do NOT define custom debug/trace macros for a single
-> > driver, just use the ones that the rest of the kernel uses instead
-> > please.
-> > 
-> > thanks,
-> > 
-> > greg k-h
-> 
-> I would like to keep some granularity in debug messages and
-> also keep the function name automatically added.
-> I propose 3 kinds of messages:
-> - general ones,
-> - specific Endpoint0 ones,
-> - other Endpoints ones.
+> diff --git a/drivers/mmc/host/sdhci-pxav2.c b/drivers/mmc/host/sdhci-pxav2.c
+> index 0a16098b963f..509ba5dd4a4a 100644
+> --- a/drivers/mmc/host/sdhci-pxav2.c
+> +++ b/drivers/mmc/host/sdhci-pxav2.c
+> @@ -189,7 +189,9 @@ static int sdhci_pxav2_probe(struct platform_device *pdev)
+>  
+>  	pltfm_host = sdhci_priv(host);
+>  
+> -	clk = devm_clk_get(dev, "PXA-SDHCLK");
+> +	clk = devm_clk_get(dev, "io");
+> +	if (IS_ERR(clk))
+> +		clk = devm_clk_get(dev, NULL);
+>  	if (IS_ERR(clk)) {
+>  		dev_err(dev, "failed to get io clock\n");
+>  		ret = PTR_ERR(clk);
 
-All of those can work just fine using dev_dbg() today, no need to make
-anything special for the driver.  You can turn those messages on/off
-with no need to ever rebuild your driver, which is the key point.
+It is nicer to handle EPROBE_DEFER e.g.
 
-> So before doing any modification in the source code, what do you
-> think about:
->     /*
->      * Suggested tracers:
->      * - no_printk:    Disable tracing
->      * - trace_printk: Print to trace buffer
->      */
->     #define usbf_dbg(_fmt, ...) no_printk("%s: " _fmt, __func__, ##__VA_ARGS__)
->     #define usbf_dbg_ep0(_fmt, ...) no_printk("%s: " _fmt, __func__, ##__VA_ARGS__)
->     #define usbf_dbg_epn(_fmt, ...) no_printk("%s: " _fmt, __func__, ##__VA_ARGS__)
+	if (IS_ERR(clk) && PTR_ERR(clk) != -EPROBE_DEFER)
+		clk = devm_clk_get(dev, NULL);
+	if (IS_ERR(clk)) {
+		ret = PTR_ERR(clk);
+		dev_err_probe(dev, ret, "failed to get io clock\n");
 
-Nope, just use dev_dbg() only please.  It provides MUCH more
-funcationality and a unified interface with the rest of the kernel.
-Please do not attempt to "roll your own" version of debugging macros for
-just a single driver.
-
-thanks,
-
-greg k-h
