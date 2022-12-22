@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 702AF6544E6
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 17:10:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B8E06544F8
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 17:14:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229784AbiLVQKX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 11:10:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36054 "EHLO
+        id S229583AbiLVQO2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 11:14:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235439AbiLVQKB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 11:10:01 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF8BF3579D
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 08:09:08 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id g13so3391015lfv.7
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 08:09:08 -0800 (PST)
+        with ESMTP id S229784AbiLVQO1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 11:14:27 -0500
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C05E5273F
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 08:14:24 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id s25so2397962lji.2
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 08:14:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=k1dtaKDDkGKVAiwWp9WScF8JO/ojvra0YFJui4t3mI4=;
-        b=PIxL4o4ah0KW1M8l0ifhZo3XsYoFPA9lCxiKj/xQeV/Ne7kGDZo3qgkBgujZh6koqu
-         Jd9zaU7WT8GVw2tCMfPC5X1cEL0yYu1g9V//u9TrXHH8B5jUUeiSdyZedtLGr3bVMUB1
-         AYkPxroPTIz2z2/KDFhAgF251XN3a8XO1/bebhX6pluvS67jGlMWaHfaLSarouVoUk1B
-         fGLByTV3cTvb55LzWRnu7NWdEyKGOkR/r4SK05a27zqjhBcgBh/Q/fThgbMsLxIUfjIc
-         hd9/Etg9V0oCDzqV8ajXmwM2wVJBsyo1Hrg5Q56t3vdX4y/gqXyvJKuvPcSeH8wQVU9a
-         WQ4w==
+        bh=PbPXhuWWUXCRtpfbn6zcTOg0AnuCm5I9vIiDytL2HSE=;
+        b=hoQ5+/ua4l1uCEHcyPzLxFU0z00ihnn+72AS2FvqOzEkhDnNgUbMTMmlZaMshGvN6F
+         H9AiYgIGs+dKk1auU2FZVRzQRtQfh68uYuxPJZFXklP5j3GUux/O8MjV9Eg1GKPVriaT
+         3fUFv1t4Xax1nCv2IxWyNtdkwki2Wwg1e78LtqvecXbS/WboO/S8s/pzvDbzikk8oWXc
+         wrE1g9TDBXd3pxNAcsWHyryFGc0soFPmHfZcJMe7jgPigym1yjUn7rxMEYCOACQPK5zO
+         tDk8GJvC4mQdJbZZPGKOlw5oWbPpXc1Yqy2fMAcn78ZWMRl1B2t9PnJUC/lfEsanEEmL
+         SjYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=k1dtaKDDkGKVAiwWp9WScF8JO/ojvra0YFJui4t3mI4=;
-        b=B2qz+3x2tA0yVAetVTF6T4mgUDv/jYAmt4NVY/zHSYr1ptZ9nCMd34vSnMHOIZGkA3
-         Y89amg054hYPsJbS4nyDaY+PaiWpp/H3Jiq1sP6bIBXbX1+4N1+ooj+RjgB8FZm8zLrL
-         PaHdYBcKlBirfvw8vcs9oo54i9q9E4UZJnaATOnSj34ScqWEEzy8+xM/U7V/DgkYIhMi
-         pMn5ztuU7JFebm5WutTgsBfYJhxwn7kMq5cN9N18/nN/dgn0y2JwclnsBf8YmW9KrOey
-         CMEcfKZP0c9tNc8P42SDjQubuehIZOPg4z/SpVzfB6Q71NvtZpXRZis+FEPV28NP6c62
-         kZdg==
-X-Gm-Message-State: AFqh2krcutS9JeJVEhhaOl4RdB+4xunt/TkzDccU/9VGiavt7sTVmJ4v
-        CrSV1GanRRvgxvjmbkQ+66d2gg==
-X-Google-Smtp-Source: AMrXdXt7Mb0y1Q3l/cK+o2snE4jU4rov7Lm5jm9cZGQbaz/sUhl0qDXM/THBF7oxd4ELZD1S3xHTNw==
-X-Received: by 2002:a05:6512:2987:b0:4ca:877d:a546 with SMTP id du7-20020a056512298700b004ca877da546mr3120025lfb.12.1671725347156;
-        Thu, 22 Dec 2022 08:09:07 -0800 (PST)
+        bh=PbPXhuWWUXCRtpfbn6zcTOg0AnuCm5I9vIiDytL2HSE=;
+        b=HG8bbiclYJU1kK/jIBzi4BhIUrprhvD2iJYfhRXAXVEvTUZQdE358Y0z7JJK7h6pKz
+         v0e/BG7OCVKF8FfiFGMWydxZkMHxfY1w/EAx66DXSDm+mbFBgO2HfNrTmhKyR5EG1/WQ
+         hJgR3PH8NDI/oUqNkzwYdZda7Nvi+60J1zT0gW/RzgIN7146pwNXjrGkD3c5pUwGL2Yu
+         6VDqXhdToDIHQg2XcCBkWXt5arllFBZRErLd6C8FrAa9imfcW/cFSRiGFxd/tH+khH3T
+         /Wejzv7CavdbVgzRc4F5JcHgcjUZoJ3zBUJFhufbPgG7uy7G+MWU912BjKAmrO9NOJbl
+         hc7Q==
+X-Gm-Message-State: AFqh2krywfPJ3MH+VMMQAO0tR96bs0y7KsHFzHpt2LyAndfROg/BGQ7/
+        GARDyXUgbQxls+3GO3e4sK8C7Q==
+X-Google-Smtp-Source: AMrXdXu8ilr3WfblXfjnYbETxE1Xt6mHIdo6oVC3go86KQrgoWjBgFCDI+5ScStOnnoxmqAARd/q0Q==
+X-Received: by 2002:a2e:b0e1:0:b0:27d:960:ab5e with SMTP id h1-20020a2eb0e1000000b0027d0960ab5emr1772402ljl.50.1671725663097;
+        Thu, 22 Dec 2022 08:14:23 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id p7-20020a056512138700b00494643db68fsm114661lfa.81.2022.12.22.08.09.06
+        by smtp.gmail.com with ESMTPSA id x24-20020a05651c105800b002797d6bb516sm89450ljm.20.2022.12.22.08.14.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Dec 2022 08:09:06 -0800 (PST)
+        Thu, 22 Dec 2022 08:14:22 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -59,9 +59,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: pinctrl: qcom,sm8450-lpass-lpi: add bias-bus-hold
-Date:   Thu, 22 Dec 2022 17:09:04 +0100
-Message-Id: <20221222160904.172070-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2] dt-bindings: pinctrl: qcom,sm8450-lpass-lpi: add input-enable and bias-bus-hold
+Date:   Thu, 22 Dec 2022 17:14:20 +0100
+Message-Id: <20221222161420.172824-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -86,15 +86,20 @@ Allow bias-bus-hold and input-enable properties (already used in SM8450):
 Compact the properties which are just set to true for readability.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 ---
- .../bindings/pinctrl/qcom,sm8450-lpass-lpi-pinctrl.yaml      | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+
+Changes since v1:
+1. Add input-enable.
+---
+ .../bindings/pinctrl/qcom,sm8450-lpass-lpi-pinctrl.yaml     | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-lpass-lpi-pinctrl.yaml
-index 01a0a4a40ba5..4fbe8c506cda 100644
+index 01a0a4a40ba5..e04d094d1946 100644
 --- a/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-lpass-lpi-pinctrl.yaml
 +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-lpass-lpi-pinctrl.yaml
-@@ -96,14 +96,11 @@ $defs:
+@@ -96,14 +96,12 @@ $defs:
            2: Lower Slew rate (slower edges)
            3: Reserved (No adjustments)
  
@@ -105,6 +110,7 @@ index 01a0a4a40ba5..4fbe8c506cda 100644
 -
        bias-disable: true
 -
++      input-enable: true
        output-high: true
 -
        output-low: true
