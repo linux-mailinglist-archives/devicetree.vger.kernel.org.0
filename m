@@ -2,91 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E38BF653F20
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 12:37:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97244653F24
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 12:40:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235517AbiLVLhk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 06:37:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44042 "EHLO
+        id S229742AbiLVLkv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 06:40:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235278AbiLVLhj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 06:37:39 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E361428E17
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 03:37:37 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id z26so2312282lfu.8
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 03:37:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=o3dFp/oI5Q5dQ5wwd/ulSr6dhNqL6ZqSNPqtr9kld8A=;
-        b=Y+Eab9fFOqbuSpMMx9QaFXsViJH309/ale7ipzeUyetsoBLPSNm3BbbrGFKBXdDT/1
-         Q8SH2+MEOAoGwVjM40B1iFPFSvDqablZBCL2vEH6tK0GacMdKICAmtrHrdZV5b1lMzUV
-         ox/XX271TFp36fjcjjD7yrl/5wD+sU/pFzeQ0dOG2KcM0xoMb78yNS0EGOLcBQaOkTj3
-         EyO+14jpPrYyI/RbjV2gg2OOTlBqbmp3GQQ/dqJMwshgqM4DmJWJwYFExYQ6dOKIXLG9
-         Vx8JY6snphj8c5KyJGwvzXGpuFvAUGTnoTGHBVwcrPhauiyzvLw9VvU47jghvFh1edav
-         B5Cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=o3dFp/oI5Q5dQ5wwd/ulSr6dhNqL6ZqSNPqtr9kld8A=;
-        b=FEpZZ944KQpVGNstXqgsvrZxMfU0ezFGeJ24dn4WCD4mKCkyU2P3iZkahredtofcsp
-         b/gwiED8aCRR1SxXkzMuyi+wn2SN9KJi4LDu8r/PmguYniX5Q4owtpSCyYeHdV81XBkH
-         yTGluXuqTmgI/sLxgfkAy8YsGsekjUOukOuL2AuT8YJ85FVfsDejORtUG1fmgGjvM7xA
-         j2ikLFbkCLzNxEJVMHeR/b7RNjW/tZdKGiMdL5uh3+Mmf3M65p/vHzdB+aDOPn05W9rq
-         AKwzLXcdvj+9Xg7uIiFZzkuP3oDuiepRvlIWsk/V2XftFdTlxFVaR8mZ1fCw/VRy+0RL
-         HIBg==
-X-Gm-Message-State: AFqh2kql8cv4eiJoSMuPQcXl615hyCIyoPSbM8iSVPfuK8Z30Y5RiOZH
-        7MY1kFXP6ou/c5tKLhwWsMQf0g==
-X-Google-Smtp-Source: AMrXdXu5ipMG9KfK2kHMM5bFqFrJnWNtPxPN+7XKps3+Y9S/13kRFXNoin/6IB1zH/viyyNJ3MbNfQ==
-X-Received: by 2002:a05:6512:1115:b0:4aa:e120:b431 with SMTP id l21-20020a056512111500b004aae120b431mr1829201lfg.38.1671709056308;
-        Thu, 22 Dec 2022 03:37:36 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id t17-20020ac243b1000000b004ac088fdfd2sm44242lfl.85.2022.12.22.03.37.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Dec 2022 03:37:35 -0800 (PST)
-Message-ID: <db223161-a424-c4cf-09a8-ff2241fda71a@linaro.org>
-Date:   Thu, 22 Dec 2022 12:37:34 +0100
+        with ESMTP id S229707AbiLVLku (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 06:40:50 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B7099588
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 03:40:46 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 9273DB81CF0
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 11:40:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2099C433D2;
+        Thu, 22 Dec 2022 11:40:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1671709244;
+        bh=zTuzNUymVvHbTroTjuOONLQMG4wasPHUEH1HnLC8izg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=L8/4QfGY9ooe0KCepvqowVKfZIBurfxQlI0XjwGvItYyR3ZTymRtfLaZ6zVd/Jzhv
+         MJ2XTakxQ+Mdp2Mfd2/zIW/MVVpgVvAaO/baBK0jcY7z5S5zP4zdxwv+7wCPxiM1Vx
+         Vj8ngJDgR6mV9D28ii8BCl6s6R8Buika0jGxkWBB03dXn/LWOe68pi7z3PZ+6rfzUs
+         rSMAvuLyXzg8GJYRMFSmUTlFKjid++tDjwMSxleBmDMJ7SejxJ7yvI69rn9/0TEfop
+         LkFtHz+QADarQcgtIZHvC7yq2qqGc+h5z1haF2t79Utt+gjnYzBOrbMwjeicGyDGT7
+         uMoPpoc69O26A==
+Date:   Thu, 22 Dec 2022 11:40:39 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Jai Luthra <j-luthra@ti.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4] dt-bindings: sound: tlv320aic3x: Convert to dtschema
+Message-ID: <Y6RCN9DxeW7WacPD@sirena.org.uk>
+References: <20221221145216.11400-1-j-luthra@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [Patch v1 09/10] memory: tegra: get number of enabled mc channels
-Content-Language: en-US
-To:     Sumit Gupta <sumitg@nvidia.com>, treding@nvidia.com,
-        dmitry.osipenko@collabora.com, viresh.kumar@linaro.org,
-        rafael@kernel.org, jonathanh@nvidia.com, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     sanjayc@nvidia.com, ksitaraman@nvidia.com, ishah@nvidia.com,
-        bbasu@nvidia.com
-References: <20221220160240.27494-1-sumitg@nvidia.com>
- <20221220160240.27494-10-sumitg@nvidia.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221220160240.27494-10-sumitg@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="/E1hF2BNu7Rsk/hm"
+Content-Disposition: inline
+In-Reply-To: <20221221145216.11400-1-j-luthra@ti.com>
+X-Cookie: Yes, but which self do you want to be?
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/12/2022 17:02, Sumit Gupta wrote:
-> Get number of MC channels which are actually enabled
-> in current boot configuration.
 
-Why? You don't do anything with it. Commit msg should give the reason of
-changes.
+--/E1hF2BNu7Rsk/hm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Dec 21, 2022 at 08:22:16PM +0530, Jai Luthra wrote:
+> Convert bindings for TI's TLV320AIC3x audio codecs to dtschema.
+>=20
+> The following properties are still found in some old dts files, but will
+> be ignored by the driver:
 
-Best regards,
-Krzysztof
+> - assigned-clock-parents, assigned-clock-rates, assigned-clocks
 
+These are from the common clock binding and will be handled by the clock
+code.
+
+--/E1hF2BNu7Rsk/hm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmOkQjYACgkQJNaLcl1U
+h9Dgmgf/XEFtbzLCL1wn65FWzVlIblV4e8LdP/CH3v8S08vCVtPKOyJpxl/v2eow
+32rjN4DNjDcxhbJ22zMEJ815ogSZ/1TE+8zpzOKiWMjKAjWwZiARqcq4CvioXeZQ
+qJBmVx+ra4RHqerpUrnHVQ1tjzFz7iPoJvAQ/n2omgg7ZG0u1jnpRUati6j21o+Z
+wzW7ebtQaiFLejLZDlZjQb0OfMwUvasAR/JC1RPFJNX96/N7OITvGvoeEmuGydf8
+AKwLzkZg3RAjcI2MBQ4liz1aNeeP0y538ZPnQdrir00AMb9SgciJM6CgLJPZXkIf
+tVDNcd6gelXr47v/ZpFevq5gVJLcSw==
+=ivai
+-----END PGP SIGNATURE-----
+
+--/E1hF2BNu7Rsk/hm--
