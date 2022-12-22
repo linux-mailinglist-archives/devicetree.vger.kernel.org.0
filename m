@@ -2,93 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8234C654246
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 15:01:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 585DC65424C
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 15:03:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235300AbiLVOBu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 09:01:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42038 "EHLO
+        id S235304AbiLVOD2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 09:03:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235294AbiLVOBs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 09:01:48 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3ABB226AF2;
-        Thu, 22 Dec 2022 06:01:47 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id C109480654;
-        Thu, 22 Dec 2022 15:01:44 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1671717705;
-        bh=YqaNO9kDy3nFfNc/a2RaV0OvzPrs8XfvxLhPTZxI0VQ=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=aILuV8G0LVnhl9CsZCqq8FNrYyCr2x7Hs0Vs5ioyLmaR0iEyIBZ1h38scHWidtDDa
-         x21BQnj9MfV0C8q4GCz7y9/rprMLjKtb0q28MJry4Y57y0Xc8yYk636EmayAb3UlV2
-         HDegMUTAFoVpoiPy7/XKYY9etcJH1FvS2EnK2NdMrJUeWoboJBiUxZ1YeszoTrf1y6
-         Ov79iM1dljOWzniDTE+DZHQiSdWVe2RUfI3zUl8vc5q3cVf1C2cXqeuL0oPDR2kYgj
-         GqLhd6Iz/v59Ty777DgVMJJ2+slSkqAAvalF9IJcVBNm4phtpWOtJ+yTr8wh0dio5P
-         f5jbfRB4sOcBg==
-Message-ID: <3c555cae-999f-ccd2-d114-00b92abd19ba@denx.de>
-Date:   Thu, 22 Dec 2022 15:01:44 +0100
+        with ESMTP id S235369AbiLVOD1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 09:03:27 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66AB5286C7
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 06:03:25 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id p36so2834036lfa.12
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 06:03:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qvJdINC/9JcCcgeCv3yG5/7YU5iZR/sqTBuMXQlWi2Y=;
+        b=BOh1/lUMgSDBzFeBtXG/1PSPJBF+ORZ/32EGsxM/FvL9KaW8hRCFLi29Sqbp3Kp4cL
+         vHDqaOsp4oz7pW3ohi/bpU+TryP0N3zYlJTfpVm7CZ0E/n0qloc3KOF9U0NAVsw+KA1D
+         tXeN6cYMQWAH3aN1U2V3xvRZvyHWtg0KeSx14VLMoZ3j+b8HBpco5ikMFYXdRe3U32Po
+         sg3GNEvZZ1F1FUkvDeVPwKrBIqFeg3r10lFvKnDf7dr9B84Tox1BPyh3j7Zv/lH14+RJ
+         nFzA/ZV1/BES7ktsKYOj8g558tPuuywEa6xlTP48G3dmr3L/m8RxqflIIPEH1LoY4W1r
+         KJcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qvJdINC/9JcCcgeCv3yG5/7YU5iZR/sqTBuMXQlWi2Y=;
+        b=1Frw2rl6wfKNn4g/QZf7TxvDfP5p+ingPMXGD5BmZ0TgqqW33TUToYWgDGryhvBbqu
+         2nH+Cd4RLtFLQXcEfsxm0nFIzy1JrfEoXPsO8pMQLQNEGOkVGfiDMeWpZsmxLdV3n1Iu
+         rBOovDak6ab/yLoiBTW+lLls186KksbUgkfmQuLdhDxI86YBzSvPPupwWtT+cu5Nh9zZ
+         Kw7cMNGRlNtYV2dVHH259xgaJskmnKKvCCY+fA9U+24QbsoynAtfQPCXZrUtvxoipZKi
+         ijpO9iCYgfyF2I3qtCACG0WV4zfYQpclJLxU0YpqaEPsN9Xfxd0opt4OjxvcazG3p2QH
+         9AMg==
+X-Gm-Message-State: AFqh2kqcLO4fCY5mMH+bNA3Oe2RsXQostXSt6jhg5676B51kRgIcX3lV
+        zsPBBd5p2vvziwTqMJur7ggOHw==
+X-Google-Smtp-Source: AMrXdXtM8rE5nZ0g+wD8FJnu/zjwcsgb68xKvqAbYq3B/PJFQEdJKuF1xj4WlzrScoiAiW4OaQlheQ==
+X-Received: by 2002:a05:6512:16a8:b0:4b5:a70f:8efc with SMTP id bu40-20020a05651216a800b004b5a70f8efcmr2753244lfb.64.1671717803160;
+        Thu, 22 Dec 2022 06:03:23 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id s14-20020a05651c200e00b0027a17f86998sm52749ljo.127.2022.12.22.06.03.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Dec 2022 06:03:22 -0800 (PST)
+Message-ID: <5025ab98-ecd2-2fa1-adbc-15b4fd6e85b3@linaro.org>
+Date:   Thu, 22 Dec 2022 15:03:20 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH] dt-bindings: leds: Mark label property as deprecated
+Subject: Re: [PATCH] dt-bindings: arm-smmu: disallow clocks when not used
 Content-Language: en-US
-To:     Pavel Machek <pavel@ucw.cz>,
-        Christoph Niedermaier <cniedermaier@dh-electronics.com>
-Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        kernel <kernel@dh-electronics.com>,
-        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20221122111124.6828-1-cniedermaier@dh-electronics.com>
- <Y3y/S5COG7VPbsqL@duo.ucw.cz> <3f4c89a3-8955-ce41-ac2a-cee9b0ed5210@denx.de>
- <20221130191905.GA2631320-robh@kernel.org>
- <4043d693-7739-4709-8551-9f476031db70@denx.de>
- <38c9aae4-0cae-a5a6-7c76-f23edf259dab@gmail.com>
- <e6b166b399314a91bc97db591c8ec5a7@dh-electronics.com>
- <Y6RgjV4FT57SaTQw@duo.ucw.cz>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <Y6RgjV4FT57SaTQw@duo.ucw.cz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+References: <20221222092355.74586-1-krzysztof.kozlowski@linaro.org>
+ <20221222101611.nwt5arux2hcvvtvf@SoMainline.org>
+ <bff48e91-3cdc-a052-9573-3c4271f88e5a@linaro.org>
+ <20221222133305.txcla3kk6lrqk7sc@SoMainline.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221222133305.txcla3kk6lrqk7sc@SoMainline.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/22/22 14:50, Pavel Machek wrote:
-> Hi!
-> 
->>>> This part I understand. What is not clear to me is, why is 'label' being
->>>> un-deprecated.
->>>
->>> It shouldn't be. It seems to be Pavel's ad-hoc decision.
+On 22/12/2022 14:33, Marijn Suijten wrote:
+> On 2022-12-22 11:36:16, Krzysztof Kozlowski wrote:
+>> On 22/12/2022 11:16, Marijn Suijten wrote:
+>>> Is this missing a cc to linux-arm-msm?
 >>
->> Is there a majority agreement that the "label" property remains
->> deprecated?
+>> No, it is not (or maybe but then fix MAINTAINERS). The policy is to use
+>> get_maintainers.pl to CC people.
 > 
-> 
->> If so, I would say we can mark the label as deprecated.
->>
->> On the other hand, the new generated standardized sysfs name does not seem
->> to provide a full replacement for the "label" property.
->> What is still missing?
-> 
-> Having reasonable naming of the LEDs is pre-requisite for deprecating
-> label property.
+> Yes, that is the question: is it in MANTAINERS and if not, why not?
 
-As far as I can tell, function and function-enumerator is the reasonable 
-naming. Jacek seem to confirm that. I would say, label can be deprecated 
-. What is the counter-argument for why it should NOT be deprecated ?
+You can check by yourself if it is there.
+
+Why not? I don't know. Could be that no one ever added it there.
+
+> 
+>>> On 2022-12-22 10:23:55, Krzysztof Kozlowski wrote:
+>>>> Disallow clocks for variants other than:
+>>>> 1. SMMUs with platform-specific compatibles which list explicit clocks
+>>>>    and clock-names,
+>>>> 2. SMMUs using only generic compatibles, e.g. arm,mmu-500, which have a
+>>>>    variable clocks on different implementations.
+>>>>
+>>>> This requires such variants with platform-specific compatible, to
+>>>> explicitly list the clocks or omit them, making the binding more
+>>>> constraint.
+>>>>
+>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>
+>>> Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+>>>
+>>> But...
+>>>
+>>>> ---
+>>>>
+>>>> Cc: Marijn Suijten <marijn.suijten@somainline.org>
+>>>> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>> Cc: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>>> ---
+>>>>  .../devicetree/bindings/iommu/arm,smmu.yaml   | 28 +++++++++++++++++++
+>>>>  1 file changed, 28 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+>>>> index 895ec8418465..0d88395e43ad 100644
+>>>> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+>>>> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+>>>> @@ -367,6 +367,34 @@ allOf:
+>>>>              - description: interface clock required to access smmu's registers
+>>>>                  through the TCU's programming interface.
+>>>>  
+>>>> +  # Disallow clocks for all other platforms with specific compatibles
+>>>> +  - if:
+>>>> +      properties:
+>>>> +        compatible:
+>>>> +          contains:
+>>>> +            enum:
+>>>> +              - cavium,smmu-v2
+>>>> +              - marvell,ap806-smmu-500
+>>>> +              - nvidia,smmu-500
+>>>> +              - qcom,qcm2290-smmu-500
+>>>> +              - qcom,qdu1000-smmu-500
+>>>> +              - qcom,sc7180-smmu-500
+>>>
+>>> Hmm, sc7280 has two SMMUs.  The one for Adreno has clocks and a PD, the
+>>
+>> sc7280 is not here, so what is the mistake you see?
+> 
+> sc7280 has two IOMMU nodes.  One with clocks (should not be in this
+> list), the other doesn't have clocks (should be in this list).
+> 
+> How do you want to address that?
+
+No, because it is the same compatible.
+
+Best regards,
+Krzysztof
+
