@@ -2,68 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 295426540BF
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 13:11:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC7636540C4
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 13:12:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235669AbiLVMLY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 07:11:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42538 "EHLO
+        id S235540AbiLVMMO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 07:12:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235703AbiLVMLI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 07:11:08 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 707973579E
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 04:02:49 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id f34so2387289lfv.10
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 04:02:49 -0800 (PST)
+        with ESMTP id S235567AbiLVMLr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 07:11:47 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA709218C
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 04:03:58 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id s25so1693961lji.2
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 04:03:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=W0/WYYRiZBUptmaI66MTLgo9LuZpA2AGvxzbCPWDdlk=;
-        b=hr2UUO/mNiySg/OJe785T6rDWQsaL5wuR+cKg25Sfx3KJL7RnyGRxe4vjovpzRI5Vq
-         pXrSDrQsDX2uU6riY9SAob/gXpuIbx+NvDfC1tVmj00LQt05D35HdRs3QQdeeos6Dpzq
-         WCUZ59QJLlzwg4u2RVxEUjw9ZNwZ7R7IQ44bSTCneUnI71TaIJYO4IR0Vc9ZdKtC+Hsg
-         tff3ylJ54TJmNwuYmcwZzkVBc0iDr2f92NBxR/Cc8+Ffc4kmWv2xzrRSvSvfOZdGDp2K
-         h9eVECZtnwGS7svAsm+dDRoHjf2C03mTeERC22jwdMtif0MX9TDdeonYN0k0XwOnvrFx
-         qoUw==
+        bh=pv6qX3My3iKgcKC8fPRcBAdihPFD1OTlyTjs81HEvPg=;
+        b=iSvMnFwRprHPbsiw/+zJY7fRsKjPP39B4vJ1CWjNOtgZXsGZINTugC1mS4nTX3NItT
+         CyOmkAaudh4K3XTCSUR4POKmQAfAPwFw8A+/JYNsMfWwMZJdw+ak+LkKybk5a64X8C2q
+         sQXuxwC5Y0TpZKkN9Irtj4FZv+V1lBthzlUopFMsoLU914ISCQ9ticD1YqELYen4pDGp
+         d5hIQs9ow1An/h7tzAjm5ok8Z2DTtjQ9TeQVQz/AzES/ThNrh7SqfmLHxd5rsPzUJfAi
+         S8+SIIhDZ5BXTKr4p6bERM+16BC1yKCS90OaUWggM72x7kN1FB9q5ZTHx5nc040e28Ng
+         1wKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=W0/WYYRiZBUptmaI66MTLgo9LuZpA2AGvxzbCPWDdlk=;
-        b=u0vjh5o3xvgZ0ScbvzfzodR8w4XWU6ANi2wP4gmqXfNiNn/AEAz7T6SWga1bJ/R9A9
-         OkTDfwPAcOtEhBwkqFzowdowZ63LWrc8wL8PdfC+hhmBtF4/37v5QmTycOyYloZ4O0Ev
-         Jqwwy8NC0k8ql5VYS6GfeTJnGLLSovKAl5Z5uOgvMq0mMtY3jeWxR3NP3bR9iKVisdCp
-         +FXydtQVzkYVD3bWuImc7sKVCBntGiEoXOGY0D09Srq1WTiKtmjPlxxM8c91vA4a/gyd
-         sQnapBckzEi9XudfBUS11b3pzFotCBRMm2by/9z03XMD7DAANU/b9kzI65CUwmXBZ4Be
-         7eeA==
-X-Gm-Message-State: AFqh2krcc/NFPIiG+7degebJSoj2hZkCH936iQyZSoWbzKFGIgutit2O
-        jnL0fTo786KXxnl8UsaQ7hUkNg==
-X-Google-Smtp-Source: AMrXdXuJycJoLh9UbvXcMVXUe6Q2RHi1EKx0BHBv+IoJX0TXdcdFnDm5Mz6e2aCQ1xgovOVI4v4dAg==
-X-Received: by 2002:a05:6512:4005:b0:4b5:9183:5ad0 with SMTP id br5-20020a056512400500b004b591835ad0mr3126053lfb.63.1671710567857;
-        Thu, 22 Dec 2022 04:02:47 -0800 (PST)
+        bh=pv6qX3My3iKgcKC8fPRcBAdihPFD1OTlyTjs81HEvPg=;
+        b=4zCohwuemHCZmXx10KpF8/X5Efr7W5d0yh+/9AZnZkY0GxLIqURRzKZ7FUJiMjTQRs
+         GGtKwV/pqGrssANeKWdyJXNpDWkIGIXGF+eN2pgR9oEQekvnI2vJatg+hT0VF0VIXNfT
+         5QzNUD7aOUAZ6wCGrK8yZQ9GiDq6YMWS6CcX5b6dojuKBFV8a1+cq3sZ9BvCnfEn2F9s
+         +lbwaeHLt7MjZR40VcX/GIJSyrhMRiXHn6X2160zjJtjb0jbaMTGEv7P48OUrs/8pVfv
+         3y8F1BA0fxzp7DKAU5p2wbiT8fX2E34xQpB52lO3Ve8jmhv0NhzOslLLC8zbK4foS3Sn
+         D8ZA==
+X-Gm-Message-State: AFqh2krlw0jrcXUJ5pXy1DVMMCdUdiTAQLLJslKokkufUxP9ZDNb5Bbz
+        byv+2DAuyyjBGkV5chfAwSpZYg==
+X-Google-Smtp-Source: AMrXdXu24YdIUD1vSYqT1ow8qSxi/9t+oQUU4FKC7B9OlC6lUR2ntlD5a51LMAcbwZ2kQTKs1mwtNQ==
+X-Received: by 2002:a05:651c:2321:b0:279:c27a:1335 with SMTP id bi33-20020a05651c232100b00279c27a1335mr1503443ljb.33.1671710637125;
+        Thu, 22 Dec 2022 04:03:57 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id d9-20020a056512368900b004a26ba3458fsm50812lfs.62.2022.12.22.04.02.46
+        by smtp.gmail.com with ESMTPSA id a1-20020a2e88c1000000b0027f93fd606esm28977ljk.58.2022.12.22.04.03.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Dec 2022 04:02:47 -0800 (PST)
-Message-ID: <e21d15f9-10fa-671b-b49c-a9f748aae75d@linaro.org>
-Date:   Thu, 22 Dec 2022 13:02:46 +0100
+        Thu, 22 Dec 2022 04:03:56 -0800 (PST)
+Message-ID: <e039f89c-41ca-8c7e-b755-9701a4571c39@linaro.org>
+Date:   Thu, 22 Dec 2022 13:03:55 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-j721s2: Add support for ADC nodes
+Subject: Re: [PATCH 1/3] ASoC: dt-bindings: fsl,xcvr: Add compatible string
+ for i.MX93 platform
 Content-Language: en-US
-To:     Bhavya Kapoor <b-kapoor@ti.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        kristo@kernel.org, nm@ti.com
-References: <20221221055144.7181-1-b-kapoor@ti.com>
+To:     Chancel Liu <chancel.liu@nxp.com>, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shengjiu.wang@gmail.com,
+        Xiubo.Lee@gmail.com, festevam@gmail.com, nicoleotsuka@gmail.com,
+        perex@perex.cz, tiwai@suse.com, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org
+References: <20221222073618.1064415-1-chancel.liu@nxp.com>
+ <20221222073618.1064415-2-chancel.liu@nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221221055144.7181-1-b-kapoor@ti.com>
+In-Reply-To: <20221222073618.1064415-2-chancel.liu@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -75,48 +78,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/12/2022 06:51, Bhavya Kapoor wrote:
-> J721s2 has two instances of 8 channel ADCs in MCU domain. Add DT nodes
-> for 8 channel ADCs for J721s2 SoC.
+On 22/12/2022 08:36, Chancel Liu wrote:
+> Add compatible string "fsl,imx93-xcvr" for i.MX93 platform.
 > 
-> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
-> ---
-> 
-> Changelog v1 -> v2:
-> 	- Updated Interrupt Values for tscadc
-> 
->  .../dts/ti/k3-j721s2-common-proc-board.dts    | 14 +++++++
->  .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     | 42 ++++++++++++++++++-
->  2 files changed, 55 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-> index a7aa6cf08acd..67593aa69327 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-> @@ -309,3 +309,17 @@ &mcu_mcan1 {
->  	pinctrl-0 = <&mcu_mcan1_pins_default>;
->  	phys = <&transceiver2>;
->  };
-> +
-> +&tscadc0 {
-> +	status = "okay";
-> +	adc {
-> +		ti,adc-channels = <0 1 2 3 4 5 6 7>;
-> +	};
-> +};
-> +
-> +&tscadc1 {
-> +	status = "okay";
-> +	adc {
-> +		ti,adc-channels = <0 1 2 3 4 5 6 7>;
-> +	};
-> +};
-> \ No newline at end of file
+> Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
 
-Same errors as before.
 
-I don't know how many same patches we need to see - this is fourth. None
-of them seems to be correct...
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
