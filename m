@@ -2,84 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCD1965435B
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 15:48:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F12065436A
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 15:56:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235423AbiLVOr6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 09:47:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45438 "EHLO
+        id S230299AbiLVO4I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 09:56:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229603AbiLVOr5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 09:47:57 -0500
-Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [IPv6:2001:4b7a:2000:18::165])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4788113E09
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 06:47:56 -0800 (PST)
-Received: from SoMainline.org (94-209-172-39.cable.dynamic.v4.ziggo.nl [94.209.172.39])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 44A2C1FFC2;
-        Thu, 22 Dec 2022 15:47:54 +0100 (CET)
-Date:   Thu, 22 Dec 2022 15:47:52 +0100
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229811AbiLVO4I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 09:56:08 -0500
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45E901E735;
+        Thu, 22 Dec 2022 06:56:04 -0800 (PST)
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 63DF41C09F5; Thu, 22 Dec 2022 15:56:02 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
+        t=1671720962;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=iGsweO4fT04ZOHHSUyF4a2DG33BMKp9jkHL7IT3pXvE=;
+        b=PjNJgMNphpe/LhbeSipabN44uYFvuXO22OvJn5f5F740gmdEe4ecvaMbHD6plx17LU3iCb
+        bGZCQi24MAnW2V5BaOlXCpN7x0cNs15cz16UFcDGqa9dCMWbzxLweRu12uxUSvQyO74+ha
+        sRSm9D6Zf4sbcWYwSrIcY4Im70mDvaw=
+Date:   Thu, 22 Dec 2022 15:56:01 +0100
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Marek Vasut <marex@denx.de>
+Cc:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: Re: [PATCH] dt-bindings: arm-smmu: disallow clocks when not used
-Message-ID: <20221222144752.2h7huydvbo5zxxtv@SoMainline.org>
-References: <20221222092355.74586-1-krzysztof.kozlowski@linaro.org>
- <20221222101611.nwt5arux2hcvvtvf@SoMainline.org>
- <bff48e91-3cdc-a052-9573-3c4271f88e5a@linaro.org>
- <20221222133305.txcla3kk6lrqk7sc@SoMainline.org>
- <5025ab98-ecd2-2fa1-adbc-15b4fd6e85b3@linaro.org>
+        kernel <kernel@dh-electronics.com>,
+        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: leds: Mark label property as deprecated
+Message-ID: <Y6RwAcXnfY/zjk/b@duo.ucw.cz>
+References: <20221122111124.6828-1-cniedermaier@dh-electronics.com>
+ <Y3y/S5COG7VPbsqL@duo.ucw.cz>
+ <3f4c89a3-8955-ce41-ac2a-cee9b0ed5210@denx.de>
+ <20221130191905.GA2631320-robh@kernel.org>
+ <4043d693-7739-4709-8551-9f476031db70@denx.de>
+ <38c9aae4-0cae-a5a6-7c76-f23edf259dab@gmail.com>
+ <e6b166b399314a91bc97db591c8ec5a7@dh-electronics.com>
+ <Y6RgjV4FT57SaTQw@duo.ucw.cz>
+ <3c555cae-999f-ccd2-d114-00b92abd19ba@denx.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="g1aUR9kw9ctIZUgk"
 Content-Disposition: inline
-In-Reply-To: <5025ab98-ecd2-2fa1-adbc-15b4fd6e85b3@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <3c555cae-999f-ccd2-d114-00b92abd19ba@denx.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-12-22 15:03:20, Krzysztof Kozlowski wrote:
-> On 22/12/2022 14:33, Marijn Suijten wrote:
-> > On 2022-12-22 11:36:16, Krzysztof Kozlowski wrote:
-> >> On 22/12/2022 11:16, Marijn Suijten wrote:
-> >>> Is this missing a cc to linux-arm-msm?
-> >>
-> >> No, it is not (or maybe but then fix MAINTAINERS). The policy is to use
-> >> get_maintainers.pl to CC people.
-> > 
-> > Yes, that is the question: is it in MANTAINERS and if not, why not?
-> 
-> You can check by yourself if it is there.
 
-It's not there.
+--g1aUR9kw9ctIZUgk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Why not? I don't know. Could be that no one ever added it there.
+On Thu 2022-12-22 15:01:44, Marek Vasut wrote:
+> On 12/22/22 14:50, Pavel Machek wrote:
+> > Hi!
+> >=20
+> > > > > This part I understand. What is not clear to me is, why is 'label=
+' being
+> > > > > un-deprecated.
+> > > >=20
+> > > > It shouldn't be. It seems to be Pavel's ad-hoc decision.
+> > >=20
+> > > Is there a majority agreement that the "label" property remains
+> > > deprecated?
+> >=20
+> >=20
+> > > If so, I would say we can mark the label as deprecated.
+> > >=20
+> > > On the other hand, the new generated standardized sysfs name does not=
+ seem
+> > > to provide a full replacement for the "label" property.
+> > > What is still missing?
+> >=20
+> > Having reasonable naming of the LEDs is pre-requisite for deprecating
+> > label property.
+>=20
+> As far as I can tell, function and function-enumerator is the reasonable
+> naming. Jacek seem to confirm that. I would say, label can be deprecated .
+> What is the counter-argument for why it should NOT be deprecated ?
 
-Let's leave it like that then :)
+When the label is no longer neccessary for naming leds, it can be
+deprecated. AFAICT, that is currently not the case.
 
-<snip>
+Best regards,
+									Pavel
+--=20
+People of Russia, stop Putin before his war on Ukraine escalates.
 
-> > sc7280 has two IOMMU nodes.  One with clocks (should not be in this
-> > list), the other doesn't have clocks (should be in this list).
-> > 
-> > How do you want to address that?
-> 
-> No, because it is the same compatible.
+--g1aUR9kw9ctIZUgk
+Content-Type: application/pgp-signature; name="signature.asc"
 
-That is the point.  We can tell them apart based on the presence of
-"qcom,adreno-smmu" though.  But if it is not spitting out any errors
-right now, let's not bother.
+-----BEGIN PGP SIGNATURE-----
 
-- Marijn
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCY6RwAQAKCRAw5/Bqldv6
+8ipDAJ9UQeaV8wbRmUaK78L8ef8b20shsgCfVQip2dhkf7hu87g/yP0SouLr5yU=
+=Vv5l
+-----END PGP SIGNATURE-----
+
+--g1aUR9kw9ctIZUgk--
