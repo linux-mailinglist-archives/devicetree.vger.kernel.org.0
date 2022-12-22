@@ -2,41 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3440565423E
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 14:59:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 809D2654242
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 15:01:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230299AbiLVN7q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 08:59:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40538 "EHLO
+        id S235285AbiLVOBO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 09:01:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229985AbiLVN7p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 08:59:45 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8280A13EBC;
-        Thu, 22 Dec 2022 05:59:44 -0800 (PST)
+        with ESMTP id S235323AbiLVOBL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 09:01:11 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69380E03E;
+        Thu, 22 Dec 2022 06:01:08 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1D3A861B96;
-        Thu, 22 Dec 2022 13:59:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 377B2C433D2;
-        Thu, 22 Dec 2022 13:59:40 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 1CBC2B81D61;
+        Thu, 22 Dec 2022 14:01:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AB8FC433F0;
+        Thu, 22 Dec 2022 14:01:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671717583;
-        bh=ZfUC8QuxpIOQKZDvahJW1arFR8cIEjLdc/Nr2xYH7/A=;
+        s=k20201202; t=1671717665;
+        bh=9W4DMIktV9wOqRKH4YYw4WT/SWQbRbPoXOqm82vucUE=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=ar++h+qa0VDDS13T9TRRuKRw7h1t4jQ4rP4Xpi4NlIycbJW/86PH3CdjHnYAKBR5p
-         PVwb14Jn8xC5EfZxFZM+9RCoBk1AZZX+VoY3HvMOn/gVjS4MawSPptd2k+Rjm/59xr
-         UD/5YPWOMkibaQqgNqFuyp8Wc9hyMT9rx1c8RBjfZkoAsQOnvShJBoII0ghEAmpQl3
-         zmBEzq/uJo/jbYrXLxRuqsFKYhlLcLTBDyjr8SpGESzybDhXHisuGhm2ufKWFsxnWB
-         K2obJQXE8ZcdNp/xatvGgUTi5UEJyHfrKiKQZ3T5gO4c23Ztc7+/4y5pNOddSQtbXp
-         atkMjpQGyX6cQ==
-Message-ID: <791569bf-e373-d600-618b-a343922f3687@kernel.org>
-Date:   Thu, 22 Dec 2022 14:59:39 +0100
+        b=lbKbbvOc7Dt/TGiJmMSbe8HWrzqafnohDwNLbSQvcX5O7YpTUNciD+qt09v73OKuW
+         IENYZma6VGJwJws24sPpOubRvbWMifmhnaoklBN+HpeAJ1OF4Y4AGVzbbFhr7Rjt+Y
+         uniwF5BYyAiG7SMOQ15flJzSt7wVlN5cLthFFSw4qzMRbP0+BrzhkFJ8ypXIHLsALi
+         EXo436Nqx8DquvzbD6iiTz74HQegYehQsKIcCNehHBde3AskcUMUGgytMVpd2hVDez
+         KcSCDjqjwadrcljlUac/HZcpAZj9B24VYFveW++EFuWdhYPciqOEWPsviyZ7JH12+k
+         +l0AK36+PNejw==
+Message-ID: <c7baec50-c838-d8fe-d09a-93ee445de045@kernel.org>
+Date:   Thu, 22 Dec 2022 15:01:01 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH v3 2/2] dt-bindings: Add Arm corstone500 platform
+Subject: Re: [PATCH v3 1/2] arm: dts: arm: add arm corstone500 device tree
 Content-Language: en-US
 To:     Emekcan Aras <emekcan.aras@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -48,9 +48,9 @@ To:     Emekcan Aras <emekcan.aras@arm.com>,
 Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20221222123244.147238-1-emekcan.aras@arm.com>
- <20221222123244.147238-3-emekcan.aras@arm.com>
+ <20221222123244.147238-2-emekcan.aras@arm.com>
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20221222123244.147238-3-emekcan.aras@arm.com>
+In-Reply-To: <20221222123244.147238-2-emekcan.aras@arm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -64,27 +64,71 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 22/12/2022 13:32, Emekcan Aras wrote:
-> Add bindings to describe implementation of
-> the ARM Corstone500 platform.
+> Corstone500[0] is a platform from arm, which includes Cortex-A cores and
+> ideal starting point for feature rich System on Chip (SoC) designs
+> based on the Cortex-A5 core.
+
+Use subject prefixes matching the subsystem (git log --oneline -- ...).
+
+
+You got this comment already and you did not follow it.
+> 
+> These device trees contains the necessary bits to support the
+> Corstone 500 FVP (Fixed Virtual Platform) and the
+> FPGA MPS3 board.
+> 
+> 0: https://developer.arm.com/documentation/102262/0000
 > 
 > Signed-off-by: Emekcan Aras <emekcan.aras@arm.com>
 > ---
->  .../bindings/arm/arm,corstone500.yaml         | 30 +++++++++++++++++++
->  1 file changed, 30 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/arm,corstone500.yaml
+>  arch/arm/boot/dts/Makefile        |   3 +-
+>  arch/arm/boot/dts/corstone500.dts | 182 ++++++++++++++++++++++++++++++
+>  2 files changed, 184 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/arm/boot/dts/corstone500.dts
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/arm,corstone500.yaml b/Documentation/devicetree/bindings/arm/arm,corstone500.yaml
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 6aa7dc4db2fc..4dc4df0707dc 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -1465,7 +1465,8 @@ dtb-$(CONFIG_ARCH_VEXPRESS) += \
+>  	vexpress-v2p-ca5s.dtb \
+>  	vexpress-v2p-ca9.dtb \
+>  	vexpress-v2p-ca15-tc1.dtb \
+> -	vexpress-v2p-ca15_a7.dtb
+> +	vexpress-v2p-ca15_a7.dtb \
+> +	corstone500.dtb
+
+Wrong order. v is not before c.
+
+
+>  dtb-$(CONFIG_ARCH_VIRT) += \
+>  	xenvm-4.2.dtb
+>  dtb-$(CONFIG_ARCH_VT8500) += \
+> diff --git a/arch/arm/boot/dts/corstone500.dts b/arch/arm/boot/dts/corstone500.dts
 > new file mode 100644
-> index 000000000000..cfe41f7760fd
+> index 000000000000..bcca7d736c85
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/arm,corstone500.yaml
+> +++ b/arch/arm/boot/dts/corstone500.dts
+> @@ -0,0 +1,182 @@
+> +// SPDX-License-Identifier: GPL-2.0 or MIT
+> +/*
+> + * Copyright (c) 2022, Arm Limited. All rights reserved.
+> + *
+> + */
+> +
+> +
 
-I don't think you solved my comments. Otherwise please point me how did
-you solve this one:
+Second ignored comment. I'll stop review.
 
-"OK, so similar as Corstone 1000, but please tell me - any reason why
-you keep them separate in the bindings? Next time new file for Corstone
-1001, 1002, 2000, 2221 etc.?"
+
+This is a friendly reminder during the review process.
+
+It seems my previous comments were not fully addressed. Maybe my
+feedback got lost between the quotes, maybe you just forgot to apply it.
+Please go back to the previous discussion and either implement all
+requested changes or keep discussing them.
+
+Thank you.
 
 
 Best regards,
