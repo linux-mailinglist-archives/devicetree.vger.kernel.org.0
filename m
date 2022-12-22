@@ -2,91 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E2126544BB
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 17:00:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1447D6544C1
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 17:03:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231233AbiLVQAp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 11:00:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59998 "EHLO
+        id S229548AbiLVQDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 11:03:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230032AbiLVQAo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 11:00:44 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C4EE3AC;
-        Thu, 22 Dec 2022 08:00:42 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DF4A161C28;
-        Thu, 22 Dec 2022 16:00:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11C28C433F1;
-        Thu, 22 Dec 2022 16:00:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671724841;
-        bh=4PZEhtB+HsEMWZwH6hbUPCcu8L5AHH6AdX/rHB1wVx4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=X94iq2o+ImJJ2csjubHv2gRJ84HqxcfWtZYhbAFGE0rlPT1sL1IKCgiQ6R7AcR6TA
-         kf8Gj+HhTqPRfqca3W9M5GaGJUEjIonQqE2rRLFQx1CubS3w03ZWkCpvS7nYxA5Rjn
-         ksi/V56P02RnbL6kanIQH8b0hrPS81XdToisufWkmoajve2XVGSapqJa8OhdmDSfVy
-         itxs6Cd74hcQJrgaMu/UGP8HBLCji3unE3ucMDirPxubDi4m3XUDiUvWTYSQdHFGhX
-         fTQ3YVCiegq8sPkcBygqzxXHly6EtWBmK5HZcFAehpaQGJK+en+H+eb1cUl6NpllH/
-         357mwXu+KjneA==
-Message-ID: <5d21758f-4e1a-9041-b94d-1352c6a6c8a6@kernel.org>
-Date:   Thu, 22 Dec 2022 17:00:34 +0100
+        with ESMTP id S229552AbiLVQDi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 11:03:38 -0500
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF42718B0F;
+        Thu, 22 Dec 2022 08:03:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1671725017; x=1703261017;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=CAqWqGE9GPwirTHE/aAhEyHKi+Iccdwhzf4D9CSvaEQ=;
+  b=Cc2SvfP4VDMuXwfLkve5jzIr096Fk7P0Kx2/G5DbBYM15RMw7uamw0oK
+   cLt509k8xIW8H+VVkVGk4A0FDMPP22LMYt81QXuUq0DGQoS8F9k6zAhTF
+   OzOxg1Yebvmgc4fB4ygcYWEN1SFsPbK5mc7J09DRiUXd7qjllASQS1A4c
+   qzsEahBi6jcrKGFQTnwbmVNMDR8W6FuLn7mkPTr8we+LjZAGCRgx5Gpz9
+   se/O2A5kHOKjk4QqznT9z+3CbxEYpP3TpzZDHWqlvQmoM+Qy2z8C9vbTv
+   brSTR0xJ4JZrLrZC2lbBAAvNmiaX9UGT6hLm+uXBu+gfhxDsm0SC6Intv
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10569"; a="321336629"
+X-IronPort-AV: E=Sophos;i="5.96,265,1665471600"; 
+   d="scan'208";a="321336629"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Dec 2022 08:03:23 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10569"; a="684222954"
+X-IronPort-AV: E=Sophos;i="5.96,265,1665471600"; 
+   d="scan'208";a="684222954"
+Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.252.61.195])
+  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Dec 2022 08:03:20 -0800
+Message-ID: <c2d5fb16-2654-6406-63da-626d6d5029c3@intel.com>
+Date:   Thu, 22 Dec 2022 18:03:14 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [RFC PATCH 6/7] ARM: dts: stm32: add ETZPC as a system bus for
- STM32MP15x boards
+ Firefox/102.0 Thunderbird/102.6.1
+Subject: Re: [PATCH v2 1/8] mmc: sdhci-pxav2: add initial support for PXA168
+ V1 controller
 Content-Language: en-US
-To:     Gatien CHEVALLIER <gatien.chevallier@foss.st.com>,
-        alexandre.torgue@foss.st.com, robh+dt@kernel.org,
-        Oleksii_Moisieiev@epam.com, linus.walleij@linaro.org,
-        gregkh@linuxfoundation.org
-Cc:     linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        loic.pallardy@st.com, devicetree@vger.kernel.org,
-        mark.rutland@arm.com, arnd@arndb.de
-References: <20221221173055.11719-1-gatien.chevallier@foss.st.com>
- <20221221173055.11719-7-gatien.chevallier@foss.st.com>
- <2e7c901c-e322-ded6-b170-6d2436d74c0f@kernel.org>
- <0bff5b2d-2837-57cb-5434-58158acc1483@foss.st.com>
- <041b77e0-40c5-e724-e5d9-f1da64d5e684@kernel.org>
- <18d0eca0-838e-92c3-4188-d8dcf480ef6e@foss.st.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <18d0eca0-838e-92c3-4188-d8dcf480ef6e@foss.st.com>
+To:     Doug Brown <doug@schmorgal.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Ulf Hansson <ulf.hansson@linaro.org>
+References: <20221202031330.94130-1-doug@schmorgal.com>
+ <20221202031330.94130-2-doug@schmorgal.com>
+From:   Adrian Hunter <adrian.hunter@intel.com>
+Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
+ Business Identity Code: 0357606 - 4, Domiciled in Helsinki
+In-Reply-To: <20221202031330.94130-2-doug@schmorgal.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/12/2022 16:57, Gatien CHEVALLIER wrote:
-> Result after patch is:
+On 2/12/22 05:13, Doug Brown wrote:
+> Add a new compatible string for the version 1 controller used in the
+> PXA168, along with necessary quirks. Use a separate ops struct in
+> preparation for a silicon bug workaround only necessary on V1.
 > 
-> etzpc: etzpc@5c007000 {
-> 	compatible = "st,stm32mp15-sys-bus";
-> 	reg = <0x5c007000 0x400>;
-> 	#address-cells = <1>;
-> 	#size-cells = <1>;
-> 	feature-domain-controller;
-> 	#feature-domain-cells = <2>;
-> 	ranges;
+> Signed-off-by: Doug Brown <doug@schmorgal.com>
+> ---
+>  drivers/mmc/host/sdhci-pxav2.c | 18 +++++++++++++++++-
+>  1 file changed, 17 insertions(+), 1 deletion(-)
 > 
-> 	timers2: timer@40000000 {
-> (...)
-> 
-> Or do I misunderstand you comment?
+> diff --git a/drivers/mmc/host/sdhci-pxav2.c b/drivers/mmc/host/sdhci-pxav2.c
+> index f18906b5575f..2f9fa0ecbddd 100644
+> --- a/drivers/mmc/host/sdhci-pxav2.c
+> +++ b/drivers/mmc/host/sdhci-pxav2.c
+> @@ -101,6 +101,14 @@ static void pxav2_mmc_set_bus_width(struct sdhci_host *host, int width)
+>  	writeb(ctrl, host->ioaddr + SDHCI_HOST_CONTROL);
+>  }
+>  
+> +static const struct sdhci_ops pxav1_sdhci_ops = {
+> +	.set_clock     = sdhci_set_clock,
+> +	.get_max_clock = sdhci_pltfm_clk_get_max_clock,
+> +	.set_bus_width = pxav2_mmc_set_bus_width,
+> +	.reset         = pxav2_reset,
+> +	.set_uhs_signaling = sdhci_set_uhs_signaling,
+> +};
+> +
+>  static const struct sdhci_ops pxav2_sdhci_ops = {
+>  	.set_clock     = sdhci_set_clock,
+>  	.get_max_clock = sdhci_pltfm_clk_get_max_clock,
+> @@ -114,6 +122,9 @@ static const struct of_device_id sdhci_pxav2_of_match[] = {
+>  	{
+>  		.compatible = "mrvl,pxav2-mmc",
+>  	},
+> +	{
+> +		.compatible = "mrvl,pxav1-mmc",
+> +	},
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(of, sdhci_pxav2_of_match);
+> @@ -208,7 +219,12 @@ static int sdhci_pxav2_probe(struct platform_device *pdev)
+>  			host->mmc->pm_caps |= pdata->pm_caps;
+>  	}
+>  
+> -	host->ops = &pxav2_sdhci_ops;
+> +	if (match && of_device_is_compatible(dev->of_node, "mrvl,pxav1-mmc")) {
+> +		host->quirks |= SDHCI_QUIRK_NO_BUSY_IRQ | SDHCI_QUIRK_32BIT_DMA_SIZE;
+> +		host->ops = &pxav1_sdhci_ops;
+> +	} else {
+> +		host->ops = &pxav2_sdhci_ops;
+> +	}
 
+It would be better to put the information above in a structure and
+get it with of_device_get_match_data() (instead of of_match_device).
+Also drivers typically assume there is always a match since that
+is the only way the driver ->probe() will get run.
 
-Ah, you're right. I missed that it's line removal. Sorry for confusion.
-
-Best regards,
-Krzysztof
+>  
+>  	ret = sdhci_add_host(host);
+>  	if (ret)
 
