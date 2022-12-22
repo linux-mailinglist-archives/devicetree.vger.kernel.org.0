@@ -2,146 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49EDE654075
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 12:57:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AECB654071
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 12:57:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235529AbiLVL5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 06:57:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54820 "EHLO
+        id S235573AbiLVL5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 06:57:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235538AbiLVLzv (ORCPT
+        with ESMTP id S235741AbiLVLzv (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 06:55:51 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F3292CCAF;
-        Thu, 22 Dec 2022 03:49:58 -0800 (PST)
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id E4D816602D1D;
-        Thu, 22 Dec 2022 11:49:55 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1671709797;
-        bh=PXg/FppXIPAwQaA1oQS+Wf5hDsh7ZOHb0BNVjLOTW5Y=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=f9W6n2Y+3XLDFPStXfD7nv1eW8u2Cq6hou75Mr0KBNGbXgRhbFUvBDL0gRaXjmkg7
-         UMOAtHy9RpleUcKMqypwUm+7FAP+7WV94SPPDS+iflSM0R/3B0aYQ+zVzsCrD1kbCN
-         GLQRSRhrcBvuMao4KMZkkxqhvQDXv5uRUpuNxj/JtHPg+K9qzLfeMANU/PKqlwK/IW
-         jWq29M4zs7VdJhfxxuCcltCFciWJYoREentf1WHh1zoMt7+ZBmdnEzDUFeSiN8AEmd
-         crxVtp/VRrYmXTljITVZtiquORGQRHUQmrruNQeeitOGEvtUI2kb2G0cp9sMJ1mkVR
-         u8wQ8i1Fqflcw==
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     mturquette@baylibre.com
-Cc:     sboyd@kernel.org, matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        angelogioacchino.delregno@collabora.com, wenst@chromium.org,
-        johnson.wang@mediatek.com, miles.chen@mediatek.com,
-        fparent@baylibre.com, chun-jie.chen@mediatek.com,
-        sam.shih@mediatek.com, y.oudjana@protonmail.com,
-        nfraprado@collabora.com, rex-bc.chen@mediatek.com,
-        ryder.lee@kernel.org, daniel@makrotopia.org,
-        jose.exposito89@gmail.com, yangyingliang@huawei.com,
-        pablo.sun@mediatek.com, msp@baylibre.com, weiyi.lu@mediatek.com,
-        ikjn@chromium.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@collabora.com
-Subject: [PATCH v1 25/25] clk: mediatek: clk-mt7986-topckgen: Migrate to mtk_clk_simple_probe()
-Date:   Thu, 22 Dec 2022 12:48:57 +0100
-Message-Id: <20221222114857.120060-26-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20221222114857.120060-1-angelogioacchino.delregno@collabora.com>
-References: <20221222114857.120060-1-angelogioacchino.delregno@collabora.com>
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5034E28E38;
+        Thu, 22 Dec 2022 03:50:01 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id u9so4438785ejo.0;
+        Thu, 22 Dec 2022 03:50:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=KJeiwtCwvbFZRIQTLTx02v7vDRrPNqXpj4utmGnBGBM=;
+        b=RvDMYvCfFf6vYNpg3Ev2D3liLm4RIqRGg7xA7Sq7wO+ZDOg5tU8i8roFWbTJ4QSb2u
+         XOGbTjBnY6P43RWrFOJcGzen7WHP8IZOGMi/XN4buBEX58cOW0ylHc7MsZR5YhBChvD4
+         IYn2y560lNjGW+MI0uWs54rX/E8ekLdU43QeLurDFg4Exk+w2xQ7SknEk+REnbIvvair
+         VTM92pU76YEElFttcHpUr/CDa7eg7WoS+1keuJ277doeMnjt+oKfDQVuy2yiyW7/WWJ1
+         eM0bvC0njqsIkeDsUbWKc13jqlb8RZg73AjJ82TINx23U7DiYNg6p0Ujtq48wtVHpT4Y
+         gqOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KJeiwtCwvbFZRIQTLTx02v7vDRrPNqXpj4utmGnBGBM=;
+        b=vQMALmeqL/8oNjIccTxVV/gf0ugMqjO1APjmhj3JLzm5NuhvwF9PC7Mc5DwF4wxbuL
+         I7n2nCZEDwrBUaBBgoB5p21FZuwrLxUObVb4RjjttmiNL4oSNcXh8R8OVMTVG3sAkE2W
+         f/3YypaKMUyVB1+ExBU9JzbepF4adE4tzV/Nc7SgEFaa5CFIRFNOdgFDp9lWVvuEPDTd
+         T2ei+LMQJr8SXejPjIHF1P8hcrUUtP3yb55BQ3kYYcNUUNYfBPC7bioHQ4AQW+l3cHKV
+         3rsJdddNeAKSnQr5Yq0Ei8WpybB02iXi26SaDMP0j4udv/Z32z2buEZUc7BleEzcPZuM
+         K8pQ==
+X-Gm-Message-State: AFqh2krlAyrwCn2o95eSNXZ4BplYPqMV9wWUyXHRShycdv5Ckp9HIeZN
+        Qn73fdHFrnKMabC4NcPig6t8k4RUP1tRbd8KBfI=
+X-Google-Smtp-Source: AMrXdXuBAzNpx1C0N/2VT4CHW34cPXonoNMDl+rpKp7IRprinbDgVEXWzuvAzLkLdzHLvaY359uBFAc1rMo1UNsjwwU=
+X-Received: by 2002:a17:906:b01:b0:7c1:808e:765b with SMTP id
+ u1-20020a1709060b0100b007c1808e765bmr340302ejg.196.1671709799747; Thu, 22 Dec
+ 2022 03:49:59 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20221221000242.340202-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221221000242.340202-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <86o7rxawhn.wl-maz@kernel.org> <CAMuHMdX++dbcsxyGRqiRzgukeU4aoAi3hDV5zyfH1s11dFba-A@mail.gmail.com>
+In-Reply-To: <CAMuHMdX++dbcsxyGRqiRzgukeU4aoAi3hDV5zyfH1s11dFba-A@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Thu, 22 Dec 2022 11:49:33 +0000
+Message-ID: <CA+V-a8uRTPhQqtkQqUVtW=HE02YaW0oi=Os__OgtUgQVwWq+Mw@mail.gmail.com>
+Subject: Re: [PATCH v2 4/9] irqchip: irq-renesas-rzg2l: Add support for
+ RZ/G2UL SoC
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are no more non-common calls in clk_mt7986_topckgen_probe():
-migrate this driver to mtk_clk_simple_probe().
+Hi Geert,
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/clk/mediatek/clk-mt7986-topckgen.c | 52 +++++-----------------
- 1 file changed, 12 insertions(+), 40 deletions(-)
+On Wed, Dec 21, 2022 at 12:18 PM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+>
+> On Wed, Dec 21, 2022 at 11:20 AM Marc Zyngier <maz@kernel.org> wrote:
+> > On Wed, 21 Dec 2022 00:02:37 +0000,
+> > Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> > >
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >
+> > > The IRQC block on RZ/G2UL SoC is almost identical to one found on the
+> > > RZ/G2L SoC the only difference being it can support BUS_ERR_INT for
+> > > which it has additional registers.
+> > >
+> > > This patch adds a new entry for "renesas,rzg2ul-irqc" compatible string
+> > > and now that we have interrupt-names property the driver code parses the
+> > > interrupts based on names and for backward compatibility we fallback to
+> > > parse interrupts based on index.
+> > >
+> > > For now we will be using rzg2l_irqc_init() as a callback for RZ/G2UL SoC
+> > > too and in future when the interrupt handler will be registered for
+> > > BUS_ERR_INT we will have to implement a new callback.
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> > > +/* Parse hierarchy domain interrupts ie only IRQ0-7 and TINT0-31 */
+> > > +static int rzg2l_irqc_parse_hierarchy_interrupts(struct rzg2l_irqc_priv *priv,
+> > > +                                              struct device_node *np)
+> > > +{
+> > > +     struct property *pp;
+> > >       unsigned int i;
+> > >       int ret;
+> > >
+> > > +     /*
+> > > +      * first check if interrupt-names property exists if so parse them by name
+> > > +      * or else parse them by index for backward compatibility.
+> > > +      */
+> > > +     pp = of_find_property(np, "interrupt-names", NULL);
+> > > +     if (pp) {
+> > > +             char *irq_name;
+> > > +
+> > > +             /* parse IRQ0-7 */
+> > > +             for (i = 0; i < IRQC_IRQ_COUNT; i++) {
+> > > +                     irq_name = kasprintf(GFP_KERNEL, "irq%d", i);
+>
+> %u
+>
+Ok.
 
-diff --git a/drivers/clk/mediatek/clk-mt7986-topckgen.c b/drivers/clk/mediatek/clk-mt7986-topckgen.c
-index bf3088e6d9e3..286418aa00a0 100644
---- a/drivers/clk/mediatek/clk-mt7986-topckgen.c
-+++ b/drivers/clk/mediatek/clk-mt7986-topckgen.c
-@@ -290,52 +290,24 @@ static const struct mtk_mux top_muxes[] = {
- 			     0x1C4, 5),
- };
- 
--static int clk_mt7986_topckgen_probe(struct platform_device *pdev)
--{
--	struct clk_hw_onecell_data *clk_data;
--	struct device_node *node = pdev->dev.of_node;
--	int r;
--	void __iomem *base;
--	int nr = ARRAY_SIZE(top_fixed_clks) + ARRAY_SIZE(top_divs) +
--		 ARRAY_SIZE(top_muxes);
--
--	base = of_iomap(node, 0);
--	if (!base) {
--		pr_err("%s(): ioremap failed\n", __func__);
--		return -ENOMEM;
--	}
--
--	clk_data = mtk_alloc_clk_data(nr);
--	if (!clk_data)
--		return -ENOMEM;
--
--	mtk_clk_register_fixed_clks(top_fixed_clks, ARRAY_SIZE(top_fixed_clks),
--				    clk_data);
--	mtk_clk_register_factors(top_divs, ARRAY_SIZE(top_divs), clk_data);
--	mtk_clk_register_muxes(top_muxes, ARRAY_SIZE(top_muxes), node,
--			       &mt7986_clk_lock, clk_data, &pdev->dev);
--
--	r = of_clk_add_hw_provider(node, of_clk_hw_onecell_get, clk_data);
--
--	if (r) {
--		pr_err("%s(): could not register clock provider: %d\n",
--		       __func__, r);
--		goto free_topckgen_data;
--	}
--	return r;
--
--free_topckgen_data:
--	mtk_free_clk_data(clk_data);
--	return r;
--}
-+static const struct mtk_clk_desc topck_desc = {
-+	.fixed_clks = top_fixed_clks,
-+	.num_fixed_clks = ARRAY_SIZE(top_fixed_clks),
-+	.factor_clks = top_divs,
-+	.num_factor_clks = ARRAY_SIZE(top_divs),
-+	.mux_clks = top_muxes,
-+	.num_mux_clks = ARRAY_SIZE(top_muxes),
-+	.clk_lock = &mt7986_clk_lock,
-+};
- 
- static const struct of_device_id of_match_clk_mt7986_topckgen[] = {
--	{ .compatible = "mediatek,mt7986-topckgen", },
-+	{ .compatible = "mediatek,mt7986-topckgen", .data = &topck_desc },
- 	{}
- };
- 
- static struct platform_driver clk_mt7986_topckgen_drv = {
--	.probe = clk_mt7986_topckgen_probe,
-+	.probe = mtk_clk_simple_probe,
-+	.remove = mtk_clk_simple_remove,
- 	.driver = {
- 		.name = "clk-mt7986-topckgen",
- 		.of_match_table = of_match_clk_mt7986_topckgen,
--- 
-2.39.0
+> > > +                     if (!irq_name)
+> > > +                             return -ENOMEM;
+> > > +
+> > > +                     ret = rzg2l_irqc_parse_interrupt_by_name_to_fwspec(priv, np, irq_name, i);
+> >
+> > Am I the only one that find it rather odd to construct a name from an
+> > index, only to get another index back?
+>
+> The issue is that there are two number ranges ("irq%u" and "tint%u"),
+> stored in a single interrupts property.
+>
+> An alternative solution would be to get rid of the "interrupt-names",
+> and use two separate prefixed interrupts properties instead, like is
+> common for e.g. gpios: "irq-interrupts" and "tint-interrupts".
+>
+Maybe I will read all the interrupts based on index only for all the
+SoCs and we still add interrupt-names in dt bindings with the
+dt_binding check we can make sure all the interrupts for each SoC
+exist in the DT and the driver still reads them based on index. Does
+that sound good?
 
+Cheers,
+Prabhakar
