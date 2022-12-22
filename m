@@ -2,154 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFAE4653E5E
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 11:36:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F0BD653E60
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 11:37:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229862AbiLVKgV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 05:36:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44078 "EHLO
+        id S235061AbiLVKhD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 05:37:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229630AbiLVKgU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 05:36:20 -0500
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A556562DE
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 02:36:19 -0800 (PST)
-Received: by mail-lj1-x234.google.com with SMTP id s25so1482821lji.2
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 02:36:19 -0800 (PST)
+        with ESMTP id S235206AbiLVKgz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 05:36:55 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29DFC62DD
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 02:36:53 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id b13so2125704lfo.3
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 02:36:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7+5IJIhCpMH6P+7mzwBTOjOH2P/NLSgQduJLQ+ZFZnE=;
-        b=u/FHIhyvBTH3ODdQatZXfqJ4HUrXxu13PFK2fa9NOlw3NeibuQqgjun0GfEa9dF7CM
-         oAq0M+I/sn1TfE2OKrB9h0aKLMIeo/rX4q++iWL++/WTC1T+mrDip2p+QcB29xsPJEm2
-         2zz13/tjmuEZ22VyjaljWw8yn7CWQtz/lHwmjUAgwil34KhOx3qGSbAov40TBSE7teZd
-         9zY+F6HxPqnTFN/JzamtSR1YwxtcaOxE3tbgs579grzgQ6YdKbBTa6oYYt3E5TseonSM
-         zvARrajybk1yqd2xYie2gU+yLkZ117uMGqCrZQLvUSVc/JmlBtSZtauKB666rA4iv8nE
-         nqDw==
+        bh=Y9FtXCraXeF1bNJWdq+qVeCXME0uFG8Ztiufy+tT/Ak=;
+        b=F49hpEpDvjixKw9Z3bdbgWi8NQQ3gWhE9qDeNcBGNCTnhdkBBzlbgtBQefuftVTnKt
+         q1uNjUbh8nTK/9mKc+Sb8VjzEC5Utoxm/kXSZRAX/qppkPsCAAQCYKO4joO8bUxTdEhK
+         FU1bBLFcvhz8OETmUj21d0/8/dmF/OWVbdYnP3Dq0nHng4b//sKKgZLqVmpJnT3zNrXN
+         xBszfcaRtSp+d/iVr/cdJmxqG7Bp5Nj5SQiqs+Rxv7AGTJkXrX98yC6zATuVI575uz74
+         FIDsazYuVfObNctM+sknwG8RsnnltH3NEMO5vFtq5RFfDhkCGYm8zQe3eh+V0QkLNdqK
+         qabg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7+5IJIhCpMH6P+7mzwBTOjOH2P/NLSgQduJLQ+ZFZnE=;
-        b=aTtNu1c+r1MZr912Ar//+q3KI0fHTsQoYxliBaaVVgmZIDqwhR0mH8BUEppJSOrsaN
-         UEKWRCk3UYwDQraluSEGXEawhF+Z2hdB3ioIY/bYkh16UxmF5G9kvaTBo0at1WnBLcAi
-         gW3RFIVAieAd5fcLir+9NHKZovwwpc1jFN1V9+G5dWiXFLKipIix9bZ8J7S4r01X3wnD
-         v4tbtsfq7+HpGpfIoNLFkz+GS04eO1SlU8lBiSrJDXX/yyGxBcX3MD2Y7o+rTjGu3k5t
-         GDr1WM/tNBLNBxXJ4lH19LAMgt5sgy0KBPZ/jFKD1pjEen5J1aH1Q0vLXdF4nZ9D4+7b
-         9Hbg==
-X-Gm-Message-State: AFqh2krptt1U2dJfppNmm1uMrUVsmBkLN/l+P5+N6bdK9ftKpWQYAXrY
-        Idykml+ksSNsYlCVKz5yIAyuLg==
-X-Google-Smtp-Source: AMrXdXsVlTloCzB2iAxBgbSBfusHqnXp2uP31OGYzPRWoJH7xgWb92tAKsblhbawpDaQgajQLr6DIA==
-X-Received: by 2002:a2e:9d86:0:b0:279:b96d:6f79 with SMTP id c6-20020a2e9d86000000b00279b96d6f79mr1462022ljj.20.1671705378050;
-        Thu, 22 Dec 2022 02:36:18 -0800 (PST)
+        bh=Y9FtXCraXeF1bNJWdq+qVeCXME0uFG8Ztiufy+tT/Ak=;
+        b=M/qnxQfXVSbFgEOQAV0bqRRw3iqUjJP4EziPzgUtjBc2ng27zJPATOa2gcfS5Nsf+N
+         Ulu7GgY3X/WdQKkz4ipSV9gsycGrCBXnWUeRWZok04mUy9iGzZ0Xa0uz6Y8aU575E7rm
+         66Rwg1tzHfp6u+qI9ffU2lIzjItzsMdH+Lk7AVu9kWj4VdcJnpTLQIWzv4K2SNavVr9j
+         A0f0azLiyPhULxs4JXEtuAhB851/uFvrMsabfuuwI48oFtd/UCjyz7pE6+sovP7A/6uB
+         D0Pqddfe6iRChBw5AWSCnCIicaS9PWoZyvelHM/ZM3wbiygSOMYG5A54ZLYy1bOYC9P7
+         eJzw==
+X-Gm-Message-State: AFqh2kqXFvl8tLxr8JrlvI4htc6U2cqAR6IoNGU9n6ZN5czDF8hkDGmS
+        CqyqXktUcK1UFRwAsng8EUW00w==
+X-Google-Smtp-Source: AMrXdXvu1EoX1irEwWg7GOK/BhvjZeB+FZsY9+ZwXfr7eosom0HjDQRzGk0P6ZYQtqF+PJQIGetZYw==
+X-Received: by 2002:a05:6512:3c89:b0:4b6:fddc:1fcd with SMTP id h9-20020a0565123c8900b004b6fddc1fcdmr3402492lfv.23.1671705411525;
+        Thu, 22 Dec 2022 02:36:51 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id z5-20020a05651c11c500b0027da3a87ff6sm10067ljo.83.2022.12.22.02.36.17
+        by smtp.gmail.com with ESMTPSA id v26-20020a05651203ba00b004b593fd84ccsm26971lfp.221.2022.12.22.02.36.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Dec 2022 02:36:17 -0800 (PST)
-Message-ID: <bff48e91-3cdc-a052-9573-3c4271f88e5a@linaro.org>
-Date:   Thu, 22 Dec 2022 11:36:16 +0100
+        Thu, 22 Dec 2022 02:36:51 -0800 (PST)
+Message-ID: <7d45c125-e4f5-b03f-45d6-3ecf87b2f09d@linaro.org>
+Date:   Thu, 22 Dec 2022 11:36:49 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH] dt-bindings: arm-smmu: disallow clocks when not used
+Subject: Re: [PATCH v4 1/4] dt-bindings: arm-smmu: Document smmu-500 binding
+ for SM6125
 Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
+        phone-devel@vger.kernel.org, Will Deacon <will@kernel.org>,
         Joerg Roedel <joro@8bytes.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Lux Aliaga <they@mint.lgbt>,
+        Robin Murphy <robin.murphy@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Thierry Reding <treding@nvidia.com>,
+        Melody Olvera <quic_molvera@quicinc.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>,
         linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-References: <20221222092355.74586-1-krzysztof.kozlowski@linaro.org>
- <20221222101611.nwt5arux2hcvvtvf@SoMainline.org>
+        linux-arm-msm@vger.kernel.org
+References: <20221216215819.1164973-1-marijn.suijten@somainline.org>
+ <20221216215819.1164973-2-marijn.suijten@somainline.org>
+ <306709f8-7d45-9b76-f95b-1b3088d37a78@linaro.org>
+ <6d263321-782d-9d9c-4fdf-8bcf5b280779@linaro.org>
+ <20221219192839.6oqialqqw5xw5fxa@SoMainline.org>
+ <b4186ec6-a3f2-4dfb-a83e-25cf6d460a39@linaro.org>
+ <20221222082353.lhdw7h3pdqyyvsxy@SoMainline.org>
+ <a251f29d-58b7-5ccb-2661-a397e41fba80@linaro.org>
+ <20221222101012.ptrrugxj3ksiyitn@SoMainline.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221222101611.nwt5arux2hcvvtvf@SoMainline.org>
+In-Reply-To: <20221222101012.ptrrugxj3ksiyitn@SoMainline.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/12/2022 11:16, Marijn Suijten wrote:
-> Is this missing a cc to linux-arm-msm?
-
-No, it is not (or maybe but then fix MAINTAINERS). The policy is to use
-get_maintainers.pl to CC people.
-
-> 
-> On 2022-12-22 10:23:55, Krzysztof Kozlowski wrote:
->> Disallow clocks for variants other than:
->> 1. SMMUs with platform-specific compatibles which list explicit clocks
->>    and clock-names,
->> 2. SMMUs using only generic compatibles, e.g. arm,mmu-500, which have a
->>    variable clocks on different implementations.
+On 22/12/2022 11:10, Marijn Suijten wrote:
+> On 2022-12-22 10:29:40, Krzysztof Kozlowski wrote:
+>> On 22/12/2022 09:23, Marijn Suijten wrote:
+>>> On 2022-12-20 10:52:49, Krzysztof Kozlowski wrote:
+>>>> On 19/12/2022 20:28, Marijn Suijten wrote:
+>>>>> On 2022-12-19 10:09:03, Krzysztof Kozlowski wrote:
+>>>>>> On 19/12/2022 10:07, Krzysztof Kozlowski wrote:
+>>>>>>> On 16/12/2022 22:58, Marijn Suijten wrote:
+>>>>>>>> From: Martin Botka <martin.botka@somainline.org>
+>>>>>>>>
+>>>>>>>> Document smmu-500 compatibility with the SM6125 SoC.
+>>>>>>>>
+>>>>>>>
+>>>>>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>>>
+>>>>>> Wait, not entirely... no constraints for clocks and regs?
+>>>>>
+>>>>> Quite odd that there is no warning for my DT patch as it clearly
+>>>>> requires at least one clock...
+>>>
+>>> Again, any idea why there's no warning for this DT mismatching minItems:
+>>> 1 for clocks, clock-names and power-domains?
 >>
->> This requires such variants with platform-specific compatible, to
->> explicitly list the clocks or omit them, making the binding more
->> constraint.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> I don't know what do you have in DT and what is mismatched. Why there
+>> should be a warning?
 > 
-> Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+> There is:
 > 
-> But...
+>   clock-names:
+>     minItems: 1
+>     maxItems: 7
 > 
->> ---
->>
->> Cc: Marijn Suijten <marijn.suijten@somainline.org>
->> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> Cc: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>  .../devicetree/bindings/iommu/arm,smmu.yaml   | 28 +++++++++++++++++++
->>  1 file changed, 28 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->> index 895ec8418465..0d88395e43ad 100644
->> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->> @@ -367,6 +367,34 @@ allOf:
->>              - description: interface clock required to access smmu's registers
->>                  through the TCU's programming interface.
->>  
->> +  # Disallow clocks for all other platforms with specific compatibles
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - cavium,smmu-v2
->> +              - marvell,ap806-smmu-500
->> +              - nvidia,smmu-500
->> +              - qcom,qcm2290-smmu-500
->> +              - qcom,qdu1000-smmu-500
->> +              - qcom,sc7180-smmu-500
+>   clocks:
+>     minItems: 1
+>     maxItems: 7
 > 
-> Hmm, sc7280 has two SMMUs.  The one for Adreno has clocks and a PD, the
+> But I did not provide _any_ (see patch 2 of this series).  Shouldn't
+> that trigger a warning?
 
-sc7280 is not here, so what is the mistake you see?
-
-> one for APPS has neither.  Same story on sm8[12]50.  Aren't those going
-> to trip up the other `if` that requires clocks in both scenarios?
-
-They are not here either, so what is the error?
-
-> 
-> Note that the Adreno SMMUs have (or will get when we/Konrad submit
-> support for it) the "qcom,adreno-smmu" compatible to distinguish them.
-> 
-> - Marijn
-> 
-
+No. Are these required properties?
 
 Best regards,
 Krzysztof
