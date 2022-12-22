@@ -2,77 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE0F3654349
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 15:43:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DCD1965435B
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 15:48:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235681AbiLVOng (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 09:43:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42988 "EHLO
+        id S235423AbiLVOr6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 09:47:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234727AbiLVOne (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 09:43:34 -0500
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51C58DF3F;
-        Thu, 22 Dec 2022 06:43:34 -0800 (PST)
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-1322d768ba7so2713701fac.5;
-        Thu, 22 Dec 2022 06:43:34 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PFFd7m/bU9463PFLncKR6cUl2BapFHel3PaN5ohq5f0=;
-        b=mZ9TMNuvZ3ro9y76mK98ILg01hMZXH5wllYwixUjGZEiPFVlvXKZ3+xQkbekMXHnml
-         BN9keBU0d7O6m3ZLWT8rnBBcjmYXs4ppL3/M/fdFTQvZPIglwMsQ5GFknHXp44Cx13kj
-         EqLic31iqzMZDUPcAHVvyk8hsnnhUcuQ8rUncbYGsVUa/H6KvB0Hdnj1MVZuYgsU2YOc
-         2KUds6QUt2PKBDXZs4XUUwGB6rv+/kvLoajXD6zrGgJjWEV+KR9A1K5wQfiRbTQNu6na
-         NoXrvFGDJon1xTmTwivD3Wb2ojLydfRgKDFTpV0dxkUUKT9VAcgKYvMVEAewLj/F1pZO
-         ciTA==
-X-Gm-Message-State: AFqh2kq7CAsuvFSFBQUoH6+qebxhlkGULCiN+cxoNBnXZ4ZOI5hdz6aI
-        gkN0h6O489cROWOn6dVyC7z7b6z/xA==
-X-Google-Smtp-Source: AMrXdXtQBOve/jNx+L/Q8K8KWjdlB5ZI36GhyWwtlKDL2DTz835Npj1AXWHHeMYIsiF/DhTdYe3CWQ==
-X-Received: by 2002:a05:6870:814:b0:144:54b3:750 with SMTP id fw20-20020a056870081400b0014454b30750mr2756769oab.12.1671720213458;
-        Thu, 22 Dec 2022 06:43:33 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z44-20020a056870c22c00b001375188dae9sm147865oae.16.2022.12.22.06.43.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Dec 2022 06:43:33 -0800 (PST)
-Received: (nullmailer pid 1211543 invoked by uid 1000);
-        Thu, 22 Dec 2022 14:43:32 -0000
-Date:   Thu, 22 Dec 2022 08:43:32 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Ricardo Ribalda <ribalda@chromium.org>
-Cc:     linux-kernel@vger.kernel.org,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Joel Fernandes <joel@joelfernandes.org>, kvm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/3] of: overlay: Fix trivial typo
-Message-ID: <167172020686.1211425.17489090373509742153.robh@kernel.org>
-References: <20221220-permited-v1-0-52ea9857fa61@chromium.org>
- <20221220-permited-v1-3-52ea9857fa61@chromium.org>
+        with ESMTP id S229603AbiLVOr5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 09:47:57 -0500
+Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [IPv6:2001:4b7a:2000:18::165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4788113E09
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 06:47:56 -0800 (PST)
+Received: from SoMainline.org (94-209-172-39.cable.dynamic.v4.ziggo.nl [94.209.172.39])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 44A2C1FFC2;
+        Thu, 22 Dec 2022 15:47:54 +0100 (CET)
+Date:   Thu, 22 Dec 2022 15:47:52 +0100
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: Re: [PATCH] dt-bindings: arm-smmu: disallow clocks when not used
+Message-ID: <20221222144752.2h7huydvbo5zxxtv@SoMainline.org>
+References: <20221222092355.74586-1-krzysztof.kozlowski@linaro.org>
+ <20221222101611.nwt5arux2hcvvtvf@SoMainline.org>
+ <bff48e91-3cdc-a052-9573-3c4271f88e5a@linaro.org>
+ <20221222133305.txcla3kk6lrqk7sc@SoMainline.org>
+ <5025ab98-ecd2-2fa1-adbc-15b4fd6e85b3@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221220-permited-v1-3-52ea9857fa61@chromium.org>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <5025ab98-ecd2-2fa1-adbc-15b4fd6e85b3@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Tue, 20 Dec 2022 23:20:32 +0100, Ricardo Ribalda wrote:
-> Permitted is spelled with two t.
+On 2022-12-22 15:03:20, Krzysztof Kozlowski wrote:
+> On 22/12/2022 14:33, Marijn Suijten wrote:
+> > On 2022-12-22 11:36:16, Krzysztof Kozlowski wrote:
+> >> On 22/12/2022 11:16, Marijn Suijten wrote:
+> >>> Is this missing a cc to linux-arm-msm?
+> >>
+> >> No, it is not (or maybe but then fix MAINTAINERS). The policy is to use
+> >> get_maintainers.pl to CC people.
+> > 
+> > Yes, that is the question: is it in MANTAINERS and if not, why not?
 > 
-> Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
-> ---
->  drivers/of/overlay.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+> You can check by yourself if it is there.
 
-Applied, thanks!
+It's not there.
+
+> Why not? I don't know. Could be that no one ever added it there.
+
+Let's leave it like that then :)
+
+<snip>
+
+> > sc7280 has two IOMMU nodes.  One with clocks (should not be in this
+> > list), the other doesn't have clocks (should be in this list).
+> > 
+> > How do you want to address that?
+> 
+> No, because it is the same compatible.
+
+That is the point.  We can tell them apart based on the presence of
+"qcom,adreno-smmu" though.  But if it is not spitting out any errors
+right now, let's not bother.
+
+- Marijn
