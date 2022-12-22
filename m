@@ -2,64 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C06BD65462E
-	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 19:53:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2714E654632
+	for <lists+devicetree@lfdr.de>; Thu, 22 Dec 2022 19:54:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235558AbiLVSxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 13:53:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32990 "EHLO
+        id S235107AbiLVSya (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 13:54:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235514AbiLVSx2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 13:53:28 -0500
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A340C2CC97
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 10:52:33 -0800 (PST)
-Received: by mail-ej1-x631.google.com with SMTP id u19so6976748ejm.8
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 10:52:33 -0800 (PST)
+        with ESMTP id S231454AbiLVSyN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 13:54:13 -0500
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EA63275DA
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 10:53:30 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id tz12so6977188ejc.9
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 10:53:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Wv5r7o6DzTqSnIpCAKgG7SesTpoF9G2sHu8yiB5cAqQ=;
-        b=mSfrS/J8VO5tRvI4ypr7qpNfnF83I4UW4EOsuJRte7oJb3nlCbheVYTcvXQaLYQY/D
-         mZ3a1yMbIuPZpRRD+rZIyshMQj/e5SwoAOSeLTBjeW0K/mmPSjCm78S6ZU4DiydPBtUa
-         f5cuFbWVbca71QSlKUVjm57bFQnNbBgicqmHc=
+        bh=ZcsqGPg6FZAoLHqSnlhY2ZqAO977IJDvTdbEOzXS1SA=;
+        b=AamEj6mQ2MbxRL2eTQGNKqmtoyHbk3rHDzkRcFN6JuRLM98nQ/XJwAS2oV1KzfiTG3
+         KASKWAosayh8tChJjITyM7qtpCbQmvCZoGsUz6zA82x+iqbXvIjaRSr/hoBQRO7TVY2g
+         ahPYr09u+OlpS6QVItdO9QwhJ3xF09lfs9xGI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Wv5r7o6DzTqSnIpCAKgG7SesTpoF9G2sHu8yiB5cAqQ=;
-        b=Y19BoZAM6MLAYS+c1HWGohk4Q0DJAxoj+xAvjylhk2Y9Tmf4tPFKwgblcOH5FoZCBh
-         aZ5qOl8E8YHQTcelUwsna2CuCqtKQnnfWJM+BQaCcrRDCCG18UQzrDlLVlZvU00AnjkW
-         kkO2zA1rxZIykZJLTkWQe8Q8z1tD8IB5YaAziTKRPsJO4k/hHhPsrNQ2HwvIf0tA5ZTi
-         PQ6XoTgr4EHidTaBSGGISOsXyR02m9HzAY5C/BMTyvYfyTunBnORdcm+Byfo5QccjoQM
-         pgpbcO5ebXtWBNIn9aT0o9i9DwqWuJRy0OfYV4hLmK184VuyL6v279m2MoOqQvsHw3mk
-         k43w==
-X-Gm-Message-State: AFqh2kquvCcr55QZGS6jaJnfi1vO/qfmaWdcAa7vSBuy9pWrEBG1W6YD
-        qYQAaAJz4Z0//2ZnnQ1gzfut7u3T/OZxcEh94xg=
-X-Google-Smtp-Source: AMrXdXt8RhhywCWPngxJ3xZC45aErgdOVDPzbEwXiPYKrw4ZRAT6CMtRU7Qae/6VlJZ+FXy1EzDmGg==
-X-Received: by 2002:a17:907:d410:b0:7a7:9a38:d284 with SMTP id vi16-20020a170907d41000b007a79a38d284mr5493798ejc.19.1671735151315;
-        Thu, 22 Dec 2022 10:52:31 -0800 (PST)
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com. [209.85.221.49])
-        by smtp.gmail.com with ESMTPSA id gf3-20020a170906e20300b007bff9fb211fsm529626ejb.57.2022.12.22.10.52.29
+        bh=ZcsqGPg6FZAoLHqSnlhY2ZqAO977IJDvTdbEOzXS1SA=;
+        b=zSzfqry75fXysRLzwAA3MNTcJMngqioyZVQn4agH2V/GrY+XUE9mhv+AwIWDRBMcgK
+         2hU1j+PTS+j6vmyoD+JVhw0emNKLiiLqNs7PZmZ4OObCdAbIvRAY++Wp/w72V6/2ccgu
+         UOKBEtmdipVyCfe34/WsTVDpTz31R64y//ifMpzFsIwovsdk06hBGVusyR1D16X6Hw5t
+         VURztr0cZISxkK+5XGLtp8ZnjSSnCZkcVdxHnrrLOIqLe1f9ofFBF6MgtGx9ktYFsp/L
+         1JEaHXNcHdA0IHWUCsZwGhiwVjUW1vxpxDze4Yz9/Qc7SgFOWpEJL9CsDDS1hsfPH96T
+         uXjw==
+X-Gm-Message-State: AFqh2krawuQIZiFVRvRlnkLTxdXWh92ZeTR/FPRTgHvEGlnnE19c4GAT
+        Sy5k8HAVXy+bcqKnryiIHt0hCU8UsSn1og5p8m8=
+X-Google-Smtp-Source: AMrXdXtv2wzT5ImpuPn7M93MXlHCzgwXss6BEQnYroXqB3pgANeingEvqOOMeS8C6p5eg9+zQRfcpA==
+X-Received: by 2002:a17:906:f6c1:b0:7cd:ffd:51f2 with SMTP id jo1-20020a170906f6c100b007cd0ffd51f2mr6275241ejb.57.1671735209108;
+        Thu, 22 Dec 2022 10:53:29 -0800 (PST)
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com. [209.85.128.46])
+        by smtp.gmail.com with ESMTPSA id q9-20020a170906770900b0078ddb518a90sm503504ejm.223.2022.12.22.10.53.27
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Dec 2022 10:52:30 -0800 (PST)
-Received: by mail-wr1-f49.google.com with SMTP id z10so2534500wrh.10
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 10:52:29 -0800 (PST)
-X-Received: by 2002:a5d:6449:0:b0:242:1f80:6cd9 with SMTP id
- d9-20020a5d6449000000b002421f806cd9mr273405wrw.405.1671735148968; Thu, 22 Dec
- 2022 10:52:28 -0800 (PST)
+        Thu, 22 Dec 2022 10:53:27 -0800 (PST)
+Received: by mail-wm1-f46.google.com with SMTP id bg10so2109232wmb.1
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 10:53:27 -0800 (PST)
+X-Received: by 2002:a05:600c:4aa8:b0:3d0:69f4:d3d0 with SMTP id
+ b40-20020a05600c4aa800b003d069f4d3d0mr298494wmp.93.1671735207659; Thu, 22 Dec
+ 2022 10:53:27 -0800 (PST)
 MIME-Version: 1.0
-References: <20221222151319.122398-1-krzysztof.kozlowski@linaro.org> <20221222151319.122398-2-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221222151319.122398-2-krzysztof.kozlowski@linaro.org>
+References: <20221222151319.122398-1-krzysztof.kozlowski@linaro.org> <20221222151319.122398-3-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221222151319.122398-3-krzysztof.kozlowski@linaro.org>
 From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 22 Dec 2022 10:52:16 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=XsDznyCcrv=DKt6DyPHRg7uJUa6GF-A8h3hRa6cAwa-A@mail.gmail.com>
-Message-ID: <CAD=FV=XsDznyCcrv=DKt6DyPHRg7uJUa6GF-A8h3hRa6cAwa-A@mail.gmail.com>
-Subject: Re: [PATCH v4 2/4] arm64: dts: qcom: sdm845-xiaomi-beryllium: fix
- audio codec interrupt pin name
+Date:   Thu, 22 Dec 2022 10:53:15 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=WWPe9bBP2z6Q3GOaGr-5U9conGq4d8obwVCxQtZ7rAUw@mail.gmail.com>
+Message-ID: <CAD=FV=WWPe9bBP2z6Q3GOaGr-5U9conGq4d8obwVCxQtZ7rAUw@mail.gmail.com>
+Subject: Re: [PATCH v4 3/4] arm64: dts: qcom: sdm845: align TLMM pin
+ configuration with DT schema
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -89,21 +89,45 @@ Hi,
 On Thu, Dec 22, 2022 at 7:13 AM Krzysztof Kozlowski
 <krzysztof.kozlowski@linaro.org> wrote:
 >
-> The pin config entry should have a string, not number, for the GPIO used
-> as WCD9340 audio codec interrupt.
+> DT schema expects TLMM pin configuration nodes to be named with
+> '-state' suffix and their optional children with '-pins' suffix.
 >
-> Fixes: dd6459a0890a ("arm64: dts: qcom: split beryllium dts into common dtsi and tianma dts")
-> Reported-by: Doug Anderson <dianders@chromium.org>
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 >
 > ---
 >
 > Cc: Doug Anderson <dianders@chromium.org>
 >
+> Tested on Qualcomm RB3. Please kndly test a bit more on other devices.
+> This should not have an functional impact.
+>
 > Changes since v3:
-> 1. New patch.
+> 1. db845c: drop qup_uart3_default override and use qup_uart3_4pin
+>    (Doug).
+>
+> Changes since v2:
+> 1. Bring back UART6 4-pin bias/drive strength to DTSI.
+>
+> Changes since v1:
+> 1. Address comments and implement conclusion with Doug.  Drop
+>    default-pins/pinmux/mux/config nodes but instead add subnodes for
+>    specific pins for UARTs.  This should match approach used for SC7180.
+>
+> v1: https://lore.kernel.org/linux-kernel/1b9dcca8-1abd-99a3-da12-a8763bf77f12@linaro.org/
 > ---
->  arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi    | 397 ++++------
+>  arch/arm64/boot/dts/qcom/sdm845-db845c.dts    |  93 +--
+>  .../arm64/boot/dts/qcom/sdm845-lg-common.dtsi |  60 +-
+>  arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts |   2 +-
+>  arch/arm64/boot/dts/qcom/sdm845-mtp.dts       |  77 +-
+>  .../boot/dts/qcom/sdm845-oneplus-common.dtsi  | 101 +--
+>  .../boot/dts/qcom/sdm845-shift-axolotl.dts    | 150 ++--
+>  .../dts/qcom/sdm845-sony-xperia-tama.dtsi     |   6 +-
+>  .../qcom/sdm845-xiaomi-beryllium-common.dtsi  |  12 +-
+>  .../boot/dts/qcom/sdm845-xiaomi-polaris.dts   |  21 +-
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi          | 689 ++++++++----------
+>  .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts |  53 +-
+>  .../boot/dts/qcom/sdm850-samsung-w737.dts     | 121 +--
+>  13 files changed, 701 insertions(+), 1081 deletions(-)
 
 Reviewed-by: Douglas Anderson <dianders@chromium.org>
