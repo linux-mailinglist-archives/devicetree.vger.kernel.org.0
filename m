@@ -2,58 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CB30654F9A
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 12:22:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6612B654FB2
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 12:28:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236112AbiLWLWm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 06:22:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43278 "EHLO
+        id S235843AbiLWL2G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 06:28:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229613AbiLWLWl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 06:22:41 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83FAB6578;
-        Fri, 23 Dec 2022 03:22:39 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 23D7561F1F;
-        Fri, 23 Dec 2022 11:22:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECC9EC433D2;
-        Fri, 23 Dec 2022 11:22:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671794558;
-        bh=iml0LYBf4pgDoBM3uptB0jlwdBiRt0cmsJC1LuqZC2A=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=aY5TgDlrecotk9zN++iFVn917CJ+lpYtPgCOsLqE6mlo5PYbmGFNIjI5j/sG2V9Ve
-         mP1VBTBOiM+b2tyDgBQA/PUos0IbAVXAk7nmRqJlSNskSxf/GJLIX3s8aspc9Fwavq
-         mtVmuSnoXNdbk6sY51QgOH5WocjpZTjle+vrrz5dtyjLj1H9sjgfqmCSrNHBIsAuLS
-         gA+547InUUE5VZrRI/bjIe/z2agrxZQvVNhiILZ2p/DS+sADk/ErmUs52Xhq0mb22w
-         o+9Q/YR2BLRUjlg8xurCRGkcMDRoK2etrW6x7RfzuGUVnr0Lg2BzhkanNjbTEAz5d1
-         r6sJb5SJOgpcg==
-Message-ID: <23436455-098f-6e21-2330-d91158a591ad@kernel.org>
-Date:   Fri, 23 Dec 2022 12:22:34 +0100
+        with ESMTP id S230030AbiLWL2F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 06:28:05 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74F0E2BC7
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 03:28:03 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id m18so11421230eji.5
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 03:28:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rammhold-de.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lFeknuNwkrG7RSqHcx+1XNwP++s/iRA1VEaVxTgmg4g=;
+        b=hBbGx/sx0Xtj3qyO2DnwolsWWeXvKKEA29FnQw2uFnuLWUqZyGEpIfLpeWpV5eFEyH
+         HnvlBU4V1TXDCd5xvURIoA5VkDtmPHJRz7lpADizpMIQVg13g9TmNN0ynsnj2dvANv0r
+         lFdto2x+Zx78dAFxjFeyokkwCapQ6p9krN0nzxWGqRkR+aOZIs+jlLlVPEKT4goFw2VS
+         fOO+zEEeKYzFog9V1fNbWRx9i9doTd966dDU8OLs5Wwci0rCIOQbCLQIdpcOGYzvG41i
+         n70HL3EZVXV998EVqgv/IBFVODy3wTN1a0neae1iRlrsQHoAZf09UrrBMPIc6oVlTV0a
+         dwAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lFeknuNwkrG7RSqHcx+1XNwP++s/iRA1VEaVxTgmg4g=;
+        b=zJZ4zB7CxFq30ALFrJpOhot1Ufoaw/6n+7jYKwe7lQPM+pjcyzVcBcusckEEjGyopq
+         wTgiEciuyWVitAoVraqbNQhOwZqAfka6PyHBIqE7fMXdd95QRVV0TeyoMSbHa4TiiHld
+         K+l5mF70ZAY2AUwd/+gesUkHIKpgcKHgROl2jMoA5WxSjG+k92X9eoJqbm5kXNU+8PqA
+         g7qDahOxGJLU1Y5xqEU7No3qd/0zPAItZ7leV5cE+IBnAmSxH75EF84Yp1p9j3osmd+K
+         h/QEa/weiznhDvViswAHdmSVQwD+4pU1exctsRBteSvaE9UezJUwHxAFqKj+5ixSJaoG
+         DovQ==
+X-Gm-Message-State: AFqh2kpdahRXcnA24MWtYSDK6AWDkZ809bZ+Y6bgTmfdFwbQtjyNfK2H
+        W64fEpi4k5G7Iwxpbrl1TpgjNA==
+X-Google-Smtp-Source: AMrXdXvezyb09TyK7KItP1R8P9rE/8Gjzwdr9cT8Z3YJHnqevqYEgHk0QLQW1O9Ph7jpPT2nb1ImMA==
+X-Received: by 2002:a17:906:5048:b0:7c0:b770:df94 with SMTP id e8-20020a170906504800b007c0b770df94mr7701482ejk.63.1671794881943;
+        Fri, 23 Dec 2022 03:28:01 -0800 (PST)
+Received: from localhost ([2a00:e67:3f2:a:a55e:fcc9:ef69:52ff])
+        by smtp.gmail.com with ESMTPSA id q9-20020a170906770900b0078ddb518a90sm1267202ejm.223.2022.12.23.03.28.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Dec 2022 03:28:00 -0800 (PST)
+From:   andreas@rammhold.de
+To:     John Crispin <john@phrozen.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     Andreas Rammhold <andreas@rammhold.de>, stable@vger.kernel.org,
+        Rob Herring <robh@kernel.org>, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] of/fdt: run soc memory setup when early_init_dt_scan_memory fails
+Date:   Fri, 23 Dec 2022 12:27:47 +0100
+Message-Id: <20221223112748.2935235-1-andreas@rammhold.de>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH 4/5] dt-bindings: firmware: arm,scmi: Add support for
- syspower protocol
-Content-Language: en-US
-To:     Cristian Marussi <cristian.marussi@arm.com>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        sudeep.holla@arm.com, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org
-References: <20221222183823.518856-1-cristian.marussi@arm.com>
- <20221222183823.518856-5-cristian.marussi@arm.com>
- <3d89e135-c8e4-ede4-950f-03900a660822@kernel.org>
- <Y6WE1zQAxYYn6Ahz@e120937-lin>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <Y6WE1zQAxYYn6Ahz@e120937-lin>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,37 +71,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/12/2022 11:37, Cristian Marussi wrote:
+From: Andreas Rammhold <andreas@rammhold.de>
 
->>>  
->>> +  protocol@12:
->>> +    type: object
->>> +    properties:
->>> +      reg:
->>> +        const: 0x12
->>> +
->>
->> Why? It did not got lost, it's already covered by pattern. If you refer
->> to particular warning, please paste it in commit msg. Otherwise it looks
->> incorrect.
->>
-> 
-> Yes indeed, but as a matter of fact it seemed to me that we used to add an
-> entry and an example for all the currently published standard SCMI protocols,
-> even though already covered by the patternProp (which covers also any
-> custom-vendor protocol in the wild) and not sporting any additional
-> custom properties (see protocol@18), but maybe this is just a unneeded wrong
-> habit adding only cruft to the bindings.
-> 
-> If you think it does not add any value I can happily drop this, or
-> limiting the addition just to the example (and/or drop equally the unneeded
-> protocol@18 node too in this case).
+If memory has been found early_init_dt_scan_memory now returns 1. If
+it hasn't found any memory it will return 0, allowing other memory
+setup mechanisms to carry on.
 
-Duplicating the node (once in properties, second in patternProperties)
-is not needed. I am also not sure what would be the point to add to the
-example - example does not have to be complete DTS for all cases, but
-illustrate the binding and allow is to test it.
+Previously early_init_dt_scan_memory always returned 0 without
+distinguishing between any kind of memory setup being done or not. Any
+code path after the early_init_dt_scan memory call in the ramips
+plat_mem_setup code wouldn't be executed anymore. Making
+early_init_dt_scan_memory the only way to initialize the memory.
 
-Best regards,
-Krzysztof
+Some boards, including my mt7621 based Cudy X6 board, depend on memory
+initialization being done via the soc_info.mem_detect function
+pointer. Those wouldn't be able to obtain memory and panic the kernel
+during early bootup with the message "early_init_dt_alloc_memory_arch:
+Failed to allocate 12416 bytes align=0x40".
+
+Fixes: 1f012283e936 ("of/fdt: Rework early_init_dt_scan_memory() to call directly")
+Cc: stable@vger.kernel.org
+Signed-off-by: Andreas Rammhold <andreas@rammhold.de>
+---
+ arch/mips/ralink/of.c | 2 +-
+ drivers/of/fdt.c      | 6 ++++--
+ 2 files changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/arch/mips/ralink/of.c b/arch/mips/ralink/of.c
+index ea8072acf8d94..6873b02634219 100644
+--- a/arch/mips/ralink/of.c
++++ b/arch/mips/ralink/of.c
+@@ -63,7 +63,7 @@ void __init plat_mem_setup(void)
+ 	dtb = get_fdt();
+ 	__dt_setup_arch(dtb);
+ 
+-	if (!early_init_dt_scan_memory())
++	if (early_init_dt_scan_memory())
+ 		return;
+ 
+ 	if (soc_info.mem_detect)
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index 7b571a6316397..4f88e8bbdd279 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -1099,7 +1099,7 @@ u64 __init dt_mem_next_cell(int s, const __be32 **cellp)
+  */
+ int __init early_init_dt_scan_memory(void)
+ {
+-	int node;
++	int node, found_memory = 0;
+ 	const void *fdt = initial_boot_params;
+ 
+ 	fdt_for_each_subnode(node, fdt, 0) {
+@@ -1139,6 +1139,8 @@ int __init early_init_dt_scan_memory(void)
+ 
+ 			early_init_dt_add_memory_arch(base, size);
+ 
++			found_memory = 1;
++
+ 			if (!hotpluggable)
+ 				continue;
+ 
+@@ -1147,7 +1149,7 @@ int __init early_init_dt_scan_memory(void)
+ 					base, base + size);
+ 		}
+ 	}
+-	return 0;
++	return found_memory;
+ }
+ 
+ int __init early_init_dt_scan_chosen(char *cmdline)
+-- 
+2.38.1
 
