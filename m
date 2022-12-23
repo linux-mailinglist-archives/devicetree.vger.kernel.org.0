@@ -2,192 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 637E065516E
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 15:37:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 832CC6551A5
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 15:52:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230322AbiLWOhJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 09:37:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60972 "EHLO
+        id S236414AbiLWOwk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 09:52:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230239AbiLWOhI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 09:37:08 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74BD0389D5;
-        Fri, 23 Dec 2022 06:37:07 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 0EE0BB80315;
-        Fri, 23 Dec 2022 14:37:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47EF8C433D2;
-        Fri, 23 Dec 2022 14:37:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671806224;
-        bh=18BHFIFkjjGnxunFDMVYe0OdKkXN4Kc7XdEmOv/CuOU=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=jt8VtmZCkhEPYXXo0C82YuAGPQD/vOFpOEklHi8MzQ0hfQUgmGCbkp24Y1JBZSJtS
-         4Rs+fbqFfrmCIEhzYGx4FcyXlg2nr74s4hvbGDM8G/II+S2MZp3FBLmah5pTlYC5Ak
-         +qU4zmXNbTR1sntrXeLMvQYj1LWf1EJvAQ5yB0KQ1YcJt/uiw6oWzXdNzmzyIhryaJ
-         zgTUE+AC+Um4TUOO7oR7RTSilckmk0RZXDCI1VhceOySW8SsqEhVkR4UymmZ1gvxHM
-         40V0Qiw99e9cNyDrAPVUdARLUnEOglwZfpG7blgTpVpEJxDMUE5uhSv5NXueTpM35E
-         NSLfGXnu6bgqg==
-Date:   Fri, 23 Dec 2022 14:50:13 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Hugo Villeneuve <hugo@hugovil.com>
-Cc:     hvilleneuve@dimonoff.com, lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
+        with ESMTP id S230452AbiLWOwi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 09:52:38 -0500
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87E82183B3
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 06:52:37 -0800 (PST)
+Received: by mail-pj1-x102b.google.com with SMTP id q17-20020a17090aa01100b002194cba32e9so9038855pjp.1
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 06:52:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=p4c7xeEqpZFltAtynpIOAI0IKcOIz2iKznrCv3M1zGs=;
+        b=qjYXQuHB9RGkuu3DlFhIcPMc97bB/cL5IGsGEG64Cqi/hdbrIWqiJ5xkynxwxjGWkI
+         XR1FF7e4OsW0R+BLrkRKgmncZJImyMzkZwp+2I5RqxqO+A7z/rXkdcL5TdRptLL9m3Z/
+         QaN+AMQOCKf6V3a2MXMDZvYRH6kKvuEvwWtJFfpGBq2aIAHS5NC+Sv6jF1CnD4auFnJ6
+         7MZWAtfHSIMgCk/zbrvZNVN/AY6ogLx78bOHbM0RO57PB2a2Uh9M0m7sLMJ+tMKLuCHS
+         uAphnpXs8MwcsLQ/haIGwqhMwBghrVdcs3LBfQO9UWL/BGqqcxe87A5r0aPNV6bDmWh+
+         JIQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=p4c7xeEqpZFltAtynpIOAI0IKcOIz2iKznrCv3M1zGs=;
+        b=Lvq7QW/KC7DGaIeWxtpzbJnjA4uhd/KgBuGtJO5KBhuJzREcZkTdpOmM8pa2cSrjNj
+         F/TQaXjW67zsjy5OUcE5I+5kswnVyW1ssrDTk1Wj3slIgFN2zcooRbVV2P6f514Ac4uc
+         juIVQWSRa8/lsPfY9oJT/2wTNf+c0m6RPyq5vDROmH3MToOQaeS/kToBSnKr9kDOFGKl
+         Q9SWSxdu1a3gby2F0S9Apl5EQsBnUQWdRPET9yHNCamcAaXxPJ3ZbstWYDt2ho5vZtUJ
+         zU2iM6UZkbDviJ9Mstvfec/Mh3MFS2u1IO1kTPK2kr04WgAKjMOZFdveCA39lOyEfe1o
+         +1OQ==
+X-Gm-Message-State: AFqh2kqhzyV/FOoGWBxs/UNWonqmrgFnYgxct89b2yVAgDz26ICbEx0Z
+        +FMrCncshyVJaaIJ80PaLK6D
+X-Google-Smtp-Source: AMrXdXvSa1lWysAnMFmjkHDIkODKzciYlSGUdV5+Y7XWDKHP7unxftXnBP2vnAr5u8uO/nVChVFEFA==
+X-Received: by 2002:a05:6a21:168c:b0:a4:2a7d:59a5 with SMTP id np12-20020a056a21168c00b000a42a7d59a5mr30259905pzb.59.1671807157028;
+        Fri, 23 Dec 2022 06:52:37 -0800 (PST)
+Received: from thinkpad ([27.111.75.82])
+        by smtp.gmail.com with ESMTPSA id p30-20020a635b1e000000b0043a0de69c94sm2406393pgb.14.2022.12.23.06.52.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Dec 2022 06:52:36 -0800 (PST)
+Date:   Fri, 23 Dec 2022 20:22:26 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        bhelgaas@google.com, konrad.dybcio@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 3/3] dt-bindings: iio: adc: add ADS7924
-Message-ID: <20221223145013.68f7344a@jic23-huawei>
-In-Reply-To: <20221222203610.2571287-4-hugo@hugovil.com>
-References: <20221222203610.2571287-1-hugo@hugovil.com>
-        <20221222203610.2571287-4-hugo@hugovil.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-pc-linux-gnu)
+Subject: Re: [PATCH v2 2/3] dt-bindings: PCI: qcom: Document msi-map and
+ msi-map-mask properties
+Message-ID: <20221223145226.GB4587@thinkpad>
+References: <20221222133123.50676-1-manivannan.sadhasivam@linaro.org>
+ <20221222133123.50676-3-manivannan.sadhasivam@linaro.org>
+ <20221222190141.GA1908434-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221222190141.GA1908434-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 22 Dec 2022 15:36:10 -0500
-Hugo Villeneuve <hugo@hugovil.com> wrote:
-
-> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+On Thu, Dec 22, 2022 at 01:01:41PM -0600, Rob Herring wrote:
+> On Thu, Dec 22, 2022 at 07:01:22PM +0530, Manivannan Sadhasivam wrote:
+> > The Qcom PCIe controller is capable of using either internal MSI controller
+> > or the external GIC-ITS for receiving the MSIs from endpoint devices.
+> > Currently, the binding only documents the internal MSI implementation.
+> > 
+> > Let's document the GIC-ITS imeplementation by making use of msi-map and
+> > msi-map-mask properties. Only one of the implementation should be used
+> > at a time.
 > 
-> Add device tree bindings document for the Texas Instruments ADS7924
-> ADC.
+> Isn't that up to the OS to decide? Some versions may not support MSIs.
 > 
-> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-Hi Hugo,
+Yes, OS may choose either of them but the controller supports both and only one
+implementation can be used at a time.
 
-Whilst you aren't using it yet, the binding should still attempt to be
-a full description of the hardware, so I'd expect the interrupt line to
-be part of it.
+AFAIK, all of the SoCs supported in upstream support both MSI and legacy
+interrupts.
 
-Otherwise, Krzysztof already covered this in detail.
-
-Jonathan
-
-
-> ---
->  .../bindings/iio/adc/ti,ads7924.yaml          | 103 ++++++++++++++++++
->  1 file changed, 103 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads7924.yaml
+> What about legacy interrupts? Don't you need to keep the interrupt 
+> properties for them?
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads7924.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads7924.yaml
-> new file mode 100644
-> index 000000000000..5408ec95e417
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads7924.yaml
-> @@ -0,0 +1,103 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/ti,ads7924.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI ADS7924 4 channels 12 bits I2C analog to digital converter
-> +
-> +maintainers:
-> +  - Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> +
-> +description: |
-> +  Texas Instruments ADS7924 4 channels 12 bits I2C analog to digital converter
-> +
-> +  Specifications:
-> +    https://www.ti.com/lit/gpn/ads7924
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,ads7924
-> +
-> +  vref-supply:
-> +    description:
-> +      The regulator supply for the ADC reference voltage (AVDD)
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    description:
-> +      GPIO used for controlling the reset pin
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  "#io-channel-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vref-supply
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +additionalProperties: false
-> +
-> +patternProperties:
-> +  "^channel@[0-3]+$":
-> +    type: object
-> +    description:
-> +      Child nodes needed for each channel that the platform uses.
-> +
-> +    properties:
-> +      reg:
-> +        description: |
-> +          0: Voltage over AIN0 and GND.
-> +          1: Voltage over AIN1 and GND.
-> +          2: Voltage over AIN2 and GND.
-> +          3: Voltage over AIN3 and GND.
-> +        items:
-> +          - minimum: 0
-> +            maximum: 3
-> +
-> +    required:
-> +      - reg
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        adc@48 {
-> +            compatible = "ti,ads7924";
-> +            reg = <0x48>;
-> +            vref-supply = <&ads7924_reg>;
-> +            reset-gpios = <&gpio 5 GPIO_ACTIVE_LOW>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            channel@0 {
-> +              reg = <0>;
-> +              label = "CH0";
-> +            };
-> +            channel@1 {
-> +              reg = <1>;
-> +              label = "CH1";
-> +            };
-> +            channel@2 {
-> +              reg = <2>;
-> +              label = "CH2";
-> +            };
-> +            channel@3 {
-> +              reg = <3>;
-> +              label = "CH3";
-> +            };
-> +        };
-> +    };
-> +...
 
+We have "interrupt-map-mask" and "interrupt-map" properties for legacy
+interrupts.
+
+Thanks,
+Mani
+
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > ---
+> >  Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 12 +++++++++---
+> >  1 file changed, 9 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> > index 02450fb26bb9..10fec6a7abfc 100644
+> > --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> > +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> > @@ -104,14 +104,20 @@ required:
+> >    - compatible
+> >    - reg
+> >    - reg-names
+> > -  - interrupts
+> > -  - interrupt-names
+> > -  - "#interrupt-cells"
+> >    - interrupt-map-mask
+> >    - interrupt-map
+> >    - clocks
+> >    - clock-names
+> >  
+> > +oneOf:
+> > +  - required:
+> > +      - interrupts
+> > +      - interrupt-names
+> > +      - "#interrupt-cells"
+> > +  - required:
+> > +      - msi-map
+> > +      - msi-map-mask
+> > +
+> >  allOf:
+> >    - $ref: /schemas/pci/pci-bus.yaml#
+> >    - if:
+> > -- 
+> > 2.25.1
+> > 
+> > 
+
+-- 
+மணிவண்ணன் சதாசிவம்
