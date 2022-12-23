@@ -2,41 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80414654D83
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 09:34:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B3A70654D87
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 09:36:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236082AbiLWIec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 03:34:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59332 "EHLO
+        id S236107AbiLWIgB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 03:36:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235897AbiLWIeb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 03:34:31 -0500
+        with ESMTP id S236108AbiLWIf7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 03:35:59 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9540F5FA7
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 00:34:30 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1374A35798
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 00:35:58 -0800 (PST)
 Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1p8dVb-0007oU-43; Fri, 23 Dec 2022 09:34:27 +0100
+        id 1p8dWu-000897-Ev; Fri, 23 Dec 2022 09:35:48 +0100
 Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1p8dVa-00079d-Fh; Fri, 23 Dec 2022 09:34:26 +0100
-Date:   Fri, 23 Dec 2022 09:34:26 +0100
+        id 1p8dWt-0007Hb-PH; Fri, 23 Dec 2022 09:35:47 +0100
+Date:   Fri, 23 Dec 2022 09:35:47 +0100
 From:   Marco Felsch <m.felsch@pengutronix.de>
 To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de,
-        devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
-        kernel@pengutronix.de, festevam@gmail.com,
+Cc:     abelvesa@kernel.org, abel.vesa@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>, linux-kernel@vger.kernel.org,
+        linux-imx@nxp.com, linux-clk@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ARM: dts: imx7s: correct iomuxc gpr mux controller cells
-Message-ID: <20221223083426.kzr4rcl7br3o7qor@pengutronix.de>
-References: <20221223030433.17345-1-peng.fan@oss.nxp.com>
+Subject: Re: [PATCH] dt-bindings: clock: imx8m-clock: correct i.MX8MQ node
+ name
+Message-ID: <20221223083547.wpb7bnizpkjxmf5s@pengutronix.de>
+References: <20221223030540.62018-1-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221223030433.17345-1-peng.fan@oss.nxp.com>
+In-Reply-To: <20221223030540.62018-1-peng.fan@oss.nxp.com>
 User-Agent: NeoMutt/20180716
 X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
 X-SA-Exim-Mail-From: mfe@pengutronix.de
@@ -53,8 +56,31 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 22-12-23, Peng Fan (OSS) wrote:
 > From: Peng Fan <peng.fan@nxp.com>
 > 
-> Per binding doc reg-mux.yaml, the #mux-control-cells should be 1
+> i.MX8MQ CCM is at address 0x30380000, so correct it.
 > 
 > Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
 Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
+
+> ---
+>  Documentation/devicetree/bindings/clock/imx8m-clock.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/imx8m-clock.yaml b/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
+> index e4c4cadec501..0dbc1433fede 100644
+> --- a/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
+> +++ b/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
+> @@ -108,7 +108,7 @@ examples:
+>      };
+>  
+>    - |
+> -    clock-controller@30390000 {
+> +    clock-controller@30380000 {
+>          compatible = "fsl,imx8mq-ccm";
+>          reg = <0x30380000 0x10000>;
+>          #clock-cells = <1>;
+> -- 
+> 2.37.1
+> 
+> 
+> 
