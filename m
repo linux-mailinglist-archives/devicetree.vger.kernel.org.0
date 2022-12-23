@@ -2,64 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97D80655333
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 18:20:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A3DB65534D
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 18:46:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231584AbiLWRSJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 12:18:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34736 "EHLO
+        id S231177AbiLWRqI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 12:46:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230459AbiLWRSE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 12:18:04 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2FA15F5B;
-        Fri, 23 Dec 2022 09:18:03 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 68728B80A26;
-        Fri, 23 Dec 2022 17:18:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8369AC433F0;
-        Fri, 23 Dec 2022 17:17:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671815881;
-        bh=E6htoYRo1h77YE7046JifUKmh34bIHAt+UZTtTgDi6M=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=qFp6OkuTKiAeYlBe52KXZzT1Mylq2610C1itrakaST4KZO1+Md/bUc7L/EcyGyo3a
-         xtgTKjl0OolM+Kg6YXIvIrBgv+FmAbEutZpC4HJwGvYIK4v0c5GEGSqLtJLhTuq2h1
-         qa15eTox2UeLczjro9mj/Y7oiUMf8v27ErSCqGGleVWRPyqN5zxjIjfnO2M8dEOKRD
-         ROES9HLe4jrBY37Uzitudm6oM9FmEUEliWj4tFwUJ+JyjaBRf+K/MGLsY56fduyG21
-         o7hemjPKkXFiYdVC7YYsAaDCYymENvsLwX/F8SKJPiSf8H4MlY/CyoiaOCxTJ1+ULv
-         5tJCVaiA0i0gw==
-Date:   Fri, 23 Dec 2022 17:31:09 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Han Xu <han.xu@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Sean Nyekjaer <sean@geanix.com>,
-        Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
-        Matti Vaittinen <mazziesaccount@gmail.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        Clark Wang <xiaoning.wang@nxp.com>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, imx@lists.linux.dev
-Subject: Re: [PATCH v3 2/4] iio: accel: add the new entry in driver for
- fxls8967af
-Message-ID: <20221223173109.09ff4d06@jic23-huawei>
-In-Reply-To: <88944b64-5e95-389f-5b47-2046c401f1b6@linaro.org>
-References: <20221213171536.1880089-1-han.xu@nxp.com>
-        <20221213171536.1880089-3-han.xu@nxp.com>
-        <84bd582c-1dde-822c-48b7-025887fd0203@linaro.org>
-        <20221214093214.00000a03@Huawei.com>
-        <88944b64-5e95-389f-5b47-2046c401f1b6@linaro.org>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-pc-linux-gnu)
+        with ESMTP id S230222AbiLWRqG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 12:46:06 -0500
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AF3F1B785
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 09:46:01 -0800 (PST)
+Received: by mail-pl1-x631.google.com with SMTP id n4so5561297plp.1
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 09:46:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=MXMOluK6Xnpbtic2Z+7oS3BCbi78lKFqA+xBJbdLvwU=;
+        b=dcCX/N/WwXTbOXRyZjkDFdH7Q07Jq4e9NJezWBAlSmO74HOaxdmb7CVvysm1Dgfrrb
+         z6Am/3vhyTteyyWbNMFfseEJcEa5qDAj6UZd7e4xEDAB++Mg/OilrJYFs0AkAoxM1TLK
+         CHXvhM110CT8QUvNgvtExgqliPI/VPtewcZMfDP0gpDaYDqHCc2iQy3wkCPr73ZoNydw
+         NOYmsbgwgeqR3/55w/zlV42qI0F/Hr4f4MKxKJlvv5ZjbOHSat5Px2qcB9m7uhVD3FWP
+         95n+YvR2wZTxwc+F35zJvbBnrqoOWiuaTcDFmlkK4CzrmJnBS/tFg3Mo3+gZ3oMefutn
+         sqKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MXMOluK6Xnpbtic2Z+7oS3BCbi78lKFqA+xBJbdLvwU=;
+        b=0cwzKS7ZsEN8EbRIgOnCxfzQOUdL7B0Zn7JGpQ5i3BQx0Dupl0/2S+b4SiuGeOosqZ
+         BBA2uYvjznXCmcMIWYt6AUCy1Fy1lcK/72EO0aoOuIOI/zg2Gm3qufbuRNym7t7ltXMU
+         +YYh9l+RvZnKHT/5g82TizaED+qKiLKGym3ka0EHOXrpf8D1S+ETklSXqHi60+QdXy/4
+         PJteIdbz+iWGyHvVGeST5C0dTwl+c1GCK4Sd08lEdUnLC1OZYrjvsSr6Fvz7KtsWGQBD
+         Z/h7NlSm61NQcRfZWo+nXiyt2kGj0itOVdUtOISmeAhZfW12wETzDOBzS3BsOrlvKa2w
+         yvSA==
+X-Gm-Message-State: AFqh2kpZ0zDpujt/irSLHgk1WHWo+4f5xkUMHBKOsZKMvs1NmLAx93T1
+        OaHoIR7SqvpAvzVAGWecs/Pp
+X-Google-Smtp-Source: AMrXdXv3aAsRFCAOyEYWTytV/+fwTIfoq6O48K4E1KnmNXrWmTZk+SDLVmiTiN5t5d5Vi2PAao2Rtg==
+X-Received: by 2002:a17:90b:3597:b0:214:222:6ed3 with SMTP id mm23-20020a17090b359700b0021402226ed3mr11727411pjb.43.1671817561019;
+        Fri, 23 Dec 2022 09:46:01 -0800 (PST)
+Received: from thinkpad ([27.111.75.82])
+        by smtp.gmail.com with ESMTPSA id ne2-20020a17090b374200b001ef8ab65052sm2476399pjb.11.2022.12.23.09.45.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Dec 2022 09:46:00 -0800 (PST)
+Date:   Fri, 23 Dec 2022 23:15:55 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, bhelgaas@google.com,
+        konrad.dybcio@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sm8450: Use GIC-ITS for PCIe0
+ and PCIe1
+Message-ID: <20221223174555.GE4587@thinkpad>
+References: <20221222133123.50676-1-manivannan.sadhasivam@linaro.org>
+ <20221222133123.50676-4-manivannan.sadhasivam@linaro.org>
+ <e756516a-a5e2-a6ac-fd7f-71726766fa81@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <e756516a-a5e2-a6ac-fd7f-71726766fa81@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,97 +77,101 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Dec 2022 10:54:00 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-
-> On 14/12/2022 10:32, Jonathan Cameron wrote:
-> > On Tue, 13 Dec 2022 19:53:30 +0100
-> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> >   
-> >> On 13/12/2022 18:15, Han Xu wrote:  
-> >>> Add this new device entry in the driver id table.
-> >>>
-> >>> Signed-off-by: Han Xu <han.xu@nxp.com>
-> >>>
-> >>> ---
-> >>> changes in v2
-> >>> - change chip info orders
-> >>> ---
-> >>>  drivers/iio/accel/fxls8962af-core.c | 7 +++++++
-> >>>  drivers/iio/accel/fxls8962af-i2c.c  | 2 ++
-> >>>  drivers/iio/accel/fxls8962af.h      | 1 +
-> >>>  3 files changed, 10 insertions(+)
-> >>>
-> >>> diff --git a/drivers/iio/accel/fxls8962af-core.c b/drivers/iio/accel/fxls8962af-core.c
-> >>> index 98811e4e16bb..c3589c3084ee 100644
-> >>> --- a/drivers/iio/accel/fxls8962af-core.c
-> >>> +++ b/drivers/iio/accel/fxls8962af-core.c
-> >>> @@ -127,6 +127,7 @@
-> >>>  #define FXLS8962AF_DEVICE_ID			0x62
-> >>>  #define FXLS8964AF_DEVICE_ID			0x84
-> >>>  #define FXLS8974CF_DEVICE_ID			0x86
-> >>> +#define FXLS8967AF_DEVICE_ID			0x87
-> >>>  
-> >>>  /* Raw temp channel offset */
-> >>>  #define FXLS8962AF_TEMP_CENTER_VAL		25
-> >>> @@ -765,6 +766,12 @@ static const struct fxls8962af_chip_info fxls_chip_info_table[] = {
-> >>>  		.channels = fxls8962af_channels,
-> >>>  		.num_channels = ARRAY_SIZE(fxls8962af_channels),
-> >>>  	},
-> >>> +	[fxls8967af] = {
-> >>> +		.chip_id = FXLS8967AF_DEVICE_ID,
-> >>> +		.name = "fxls8967af",
-> >>> +		.channels = fxls8962af_channels,
-> >>> +		.num_channels = ARRAY_SIZE(fxls8962af_channels),
-> >>> +	},
-> >>>  	[fxls8974cf] = {
-> >>>  		.chip_id = FXLS8974CF_DEVICE_ID,
-> >>>  		.name = "fxls8974cf",
-> >>> diff --git a/drivers/iio/accel/fxls8962af-i2c.c b/drivers/iio/accel/fxls8962af-i2c.c
-> >>> index 17dd56756ff9..a8944b255a28 100644
-> >>> --- a/drivers/iio/accel/fxls8962af-i2c.c
-> >>> +++ b/drivers/iio/accel/fxls8962af-i2c.c
-> >>> @@ -30,6 +30,7 @@ static int fxls8962af_probe(struct i2c_client *client)
-> >>>  static const struct i2c_device_id fxls8962af_id[] = {
-> >>>  	{ "fxls8962af", fxls8962af },
-> >>>  	{ "fxls8964af", fxls8964af },
-> >>> +	{ "fxls8967af", fxls8967af },
-> >>>  	{ "fxls8974cf", fxls8974cf },
-> >>>  	{}
-> >>>  };
-> >>> @@ -38,6 +39,7 @@ MODULE_DEVICE_TABLE(i2c, fxls8962af_id);
-> >>>  static const struct of_device_id fxls8962af_of_match[] = {
-> >>>  	{ .compatible = "nxp,fxls8962af" },
-> >>>  	{ .compatible = "nxp,fxls8964af" },
-> >>> +	{ .compatible = "nxp,fxls8967af" },
-> >>>  	{ .compatible = "nxp,fxls8974cf" },    
-> >>
-> >> This is confusing. The I2C ID table has driver data, but OF ID table
-> >> hasn't. So are they compatible or not?  
+On Fri, Dec 23, 2022 at 07:18:32PM +0200, Dmitry Baryshkov wrote:
+> On 22/12/2022 15:31, Manivannan Sadhasivam wrote:
+> > Both PCIe0 and PCIe1 controllers are capable of receiving MSIs from
+> > endpoint devices using GIC-ITS MSI controller. Add support for it.
 > > 
-> > Due to some evilness in i2c that 'works' as long as the two arrays have
-> > matching entries.  As a general rule we prefer to have the data in both, check
-> > the firmware table first and only then fallback to i2c_device_id data on the
-> > basis it is less fragile.
+> > Currently, BDF (0:0.0) and BDF (1:0.0) are enabled and with the
+> > msi-map-mask of 0xff00, all the 32 devices under these two busses can
+> > share the same Device ID.
 > > 
-> > The evilness in i2c is that the search for match data will use the dt compatible
-> > stripped of the vendor prefix and string match that against the i2c_device_id table.
+> > The GIC-ITS MSI implementation provides an advantage over internal MSI
+> > implementation using Locality-specific Peripheral Interrupts (LPI) that
+> > would allow MSIs to be targeted for each CPU core.
 > > 
-> > Nice to clean this up, but not necessarily in this series (fine if it is though!)  
+> > It should be noted that the MSIs for BDF (1:0.0) only works with Device
+> > ID of 0x5980 and 0x5a00. Hence, the IDs are swapped.
+> > 
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > ---
+> >   arch/arm64/boot/dts/qcom/sm8450.dtsi | 20 ++++++++++++++------
+> >   1 file changed, 14 insertions(+), 6 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> > index 570475040d95..c4dd5838fac6 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> > @@ -1733,9 +1733,13 @@ pcie0: pci@1c00000 {
+> >   			ranges = <0x01000000 0x0 0x60200000 0 0x60200000 0x0 0x100000>,
+> >   				 <0x02000000 0x0 0x60300000 0 0x60300000 0x0 0x3d00000>;
+> > -			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
+> > -			interrupt-names = "msi";
+> > -			#interrupt-cells = <1>;
+> > +			/*
+> > +			 * MSIs for BDF (1:0.0) only works with Device ID 0x5980.
+> > +			 * Hence, the IDs are swapped.
+> > +			 */
+> > +			msi-map = <0x0 &gic_its 0x5981 0x1>,
+> > +				  <0x100 &gic_its 0x5980 0x1>;
 > 
-> OK, so in fact devices are not fully compatible - I got mislead by OF
-> table. I'll comment in bindings about it.
-
-I actually took a look at the driver today. It's not using the driver_data anyway.
-It does the better option of searching for a match based on the WHO_AM_I anyway.
-So best option is a precursor patch dropping the driver_data from the i2c_device_id
-table.
- 
-Oops. I was guilty of making assumptions and didn't previously check. It could have
-been used as described, but wasn't.
-
-> 
-> Best regards,
-> Krzysztof
+> This definitely doesn't match what has been used in the downstream.
 > 
 
+Yes, I do not know why the downstream Device ID doesn't work. I tried finding
+the answer within Qcom but didn't get any answer so far :/ So I just went with
+the value that works on multiple boards.
+
+> Also if I understand correctly this change would prevent us from using
+> multiple MSI interrupts for the connected device, as the last value of the
+> 0x100 mapping is 0x1, while the vendor kernel uses <0x100 &its 0x5981 0x20>.
+> 
+
+Not true. The controller can still support multiple MSIs for the endpoint
+devices but the only difference is, it would use the same Device ID for all.
+
+The Qcom GIC-ITS implementation could only support 32 Device IDs. By specifying
+the size of 0x20, a separate Device ID would be used for each devices of bus 1.
+But if a PCIe switch is connected and the bus count becomes > 1, then the MSI
+allocation would fail because Device IDs are exhausted.
+
+The downstream implementation just assumes that there will be only bus 1 and I
+do not want to follow that assumption.
+
+That's why I used "msi-map-mask" property of value "0xff00" here, as that will
+allow all the devices under the bus 1 to share the same Device ID. For now I
+only mapped bus 1, but extending that in the future for other busses is simple.
+
+Thanks,
+Mani
+
+> Do you know by chance, why do we differ from the vendor dtsi?
+> 
+> > +			msi-map-mask = <0xff00>;
+> >   			interrupt-map-mask = <0 0 0 0x7>;
+> >   			interrupt-map = <0 0 0 1 &intc 0 0 0 149 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
+> >   					<0 0 0 2 &intc 0 0 0 150 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
+> > @@ -1842,9 +1846,13 @@ pcie1: pci@1c08000 {
+> >   			ranges = <0x01000000 0x0 0x40200000 0 0x40200000 0x0 0x100000>,
+> >   				 <0x02000000 0x0 0x40300000 0 0x40300000 0x0 0x1fd00000>;
+> > -			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>;
+> > -			interrupt-names = "msi";
+> > -			#interrupt-cells = <1>;
+> > +			/*
+> > +			 * MSIs for BDF (1:0.0) only works with Device ID 0x5a00.
+> > +			 * Hence, the IDs are swapped.
+> > +			 */
+> > +			msi-map = <0x0 &gic_its 0x5a01 0x1>,
+> > +				  <0x100 &gic_its 0x5a00 0x1>;
+> > +			msi-map-mask = <0xff00>;
+> >   			interrupt-map-mask = <0 0 0 0x7>;
+> >   			interrupt-map = <0 0 0 1 &intc 0 0 0 434 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
+> >   					<0 0 0 2 &intc 0 0 0 435 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
+> 
+> -- 
+> With best wishes
+> Dmitry
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
