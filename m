@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19CCA654DDB
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 09:48:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BD03654DDD
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 09:49:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231345AbiLWIsn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 03:48:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38026 "EHLO
+        id S236151AbiLWItH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 03:49:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236135AbiLWIsg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 03:48:36 -0500
+        with ESMTP id S236150AbiLWItD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 03:49:03 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5124036C4E
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 00:48:34 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7E1736C67
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 00:48:56 -0800 (PST)
 Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1p8djA-0001bq-D1; Fri, 23 Dec 2022 09:48:28 +0100
+        id 1p8djX-0001hG-B0; Fri, 23 Dec 2022 09:48:51 +0100
 Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1p8dj9-0007gM-Np; Fri, 23 Dec 2022 09:48:27 +0100
-Date:   Fri, 23 Dec 2022 09:48:27 +0100
+        id 1p8djW-0007hH-UK; Fri, 23 Dec 2022 09:48:50 +0100
+Date:   Fri, 23 Dec 2022 09:48:50 +0100
 From:   Marco Felsch <m.felsch@pengutronix.de>
 To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
 Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -31,14 +31,14 @@ Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         linux-kernel@vger.kernel.org, linux-imx@nxp.com,
         kernel@pengutronix.de, festevam@gmail.com,
         linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 4/5] arm64: dts: imx8mn: update iomuxc-gpr node name
-Message-ID: <20221223084827.byuld3urdepyqydb@pengutronix.de>
+Subject: Re: [PATCH 2/5] arm64: dts: imx8mq: correct iomuxc-gpr compatible
+Message-ID: <20221223084850.vts5wn4figg45hkd@pengutronix.de>
 References: <20221223025703.15784-1-peng.fan@oss.nxp.com>
- <20221223025703.15784-5-peng.fan@oss.nxp.com>
+ <20221223025703.15784-3-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221223025703.15784-5-peng.fan@oss.nxp.com>
+In-Reply-To: <20221223025703.15784-3-peng.fan@oss.nxp.com>
 User-Agent: NeoMutt/20180716
 X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
 X-SA-Exim-Mail-From: mfe@pengutronix.de
@@ -55,8 +55,9 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 22-12-23, Peng Fan (OSS) wrote:
 > From: Peng Fan <peng.fan@nxp.com>
 > 
-> It is better use syscon for IOMUXC GPR, since it contains various
-> bits for system control
+> The IOMUX Controller General purpose register group are unique almost
+> per SoC, i.MX8MQ is not compatible with i.MX6Q. So correct it.
+> Also update name with syscon.
 > 
 > Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
