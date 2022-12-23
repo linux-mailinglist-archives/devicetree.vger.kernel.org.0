@@ -2,120 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7127654F15
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 11:18:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E61EF654F1B
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 11:18:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235722AbiLWKRl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 05:17:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49264 "EHLO
+        id S235429AbiLWKSn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 05:18:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235477AbiLWKRh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 05:17:37 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80B721CB30
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 02:17:35 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id b3so6561291lfv.2
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 02:17:35 -0800 (PST)
+        with ESMTP id S229783AbiLWKSm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 05:18:42 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEF411BEB2
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 02:18:40 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id f34so6526746lfv.10
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 02:18:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:to:from
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=4yeWUow2E5pd2PmOCYDGqEvn8SqI6E1/L8N2s/4ZDIE=;
-        b=Ve7gil8jUZYofM9V8JzFF/GvDmfNW8+AOx08yqR8aW50OA1NwjrDf+3dJ3z3Rrd2op
-         6Hj6L6E2vnKBFbSpvFob6758PyXPL0SJchZeovU9FVdp+wFh9qz4o/SJ6jCfGHzVhW2k
-         0671EN84JGD3ob0BsnsZjSkc5M7tfq+ZtoVEELCd2uFlHdISfjTRH5L1xQhF+NEpb/OP
-         kKcpubaxqdIrqbxEbW4KCxhOSVxoTXB87xXjP+Aj9eHDmp9s3/rya2YMF+l3UZ1BboVU
-         9L6fZkA7G8cLtjLpZWVsnk13GqX5LblVDTka24aFN9QreuE++buGBu+ae/5wGkkwRWo5
-         s5Ww==
+        bh=YRC804NMX4Ft7zElwiwbqtFM7vLNhKQd0+x9jqgtXVU=;
+        b=etA0VGxOKwiDf0ID/nnsO2FOPTdemnS1pE1whMCSq3ZCeGBmgstZGp2VgEfy/qi6ar
+         T0feRKhj7r19A1bkJjaGbRr/Li0H1iuxCaPYJ++DnJIOxVubTxanaVlcUOnxaa2Jyq+O
+         BoQO+zctjPVflzH4a6aeDk5IRItyUbW7/NYOKzECzethsDhdEqmyvxtMIw9lJZou8N3t
+         oBwlGlDieqZ53Qkirxz7jaSRJXMz7cWVpey485IAzHCEE9hIQc/e8KOED5rHH0R4lVtC
+         JIg+TU9s8BECXDuwT8qFR0xU91hE/uRXs4A+Jkz7+C/4Ajx2OvXePJWtbEqZ6rKgn4vj
+         7fbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:to:from
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4yeWUow2E5pd2PmOCYDGqEvn8SqI6E1/L8N2s/4ZDIE=;
-        b=JLxlE63zBYZQr71x57VtYBAiEVJXGfiaL37eN+nf25CuXSA+o3KgxaycYKo3TS/sfX
-         LqE+lRrelIwwDe9/W3DPIe3OARbqjvHpWVV+ubinEeWcBOFWVyWw3r7lSZJDAXmSRsxt
-         Du40RGGKs7WIYNhwx6e2JNnxSj+2WL4A0Imccb9AKDEDGD4+TYXHljBRZAabJHcS4Ijy
-         YkOwaRGGkdnpj+ItL+W7BZGIl3gVxRDN9kGuSx1Zo1SmGn9x77zrwP096zkKmwhOxKlv
-         vtxDAA4clkMFYCtL7FJ0NwZixk5WLuCg5EOfXpjta5bM+ldc3Set3j7XKLUgelVmrdGB
-         7qnw==
-X-Gm-Message-State: AFqh2krDQaUjqBfRFUievfm9lecrk5j5qEHnuOyYbQzLfgvHy1YI91w4
-        MXw84cxkx86QO/86c0OB/Y/k7A==
-X-Google-Smtp-Source: AMrXdXv1uMaEYM2D/w228oNwbo6Ir5UbrfEO2/Odx4oJ4msCRYOs55faL+1VZkr95dIxzDdUWKfPPw==
-X-Received: by 2002:ac2:4834:0:b0:4b5:7f15:aa21 with SMTP id 20-20020ac24834000000b004b57f15aa21mr2963858lft.52.1671790653881;
-        Fri, 23 Dec 2022 02:17:33 -0800 (PST)
+        bh=YRC804NMX4Ft7zElwiwbqtFM7vLNhKQd0+x9jqgtXVU=;
+        b=A1BS/CEsLHAtgRSn+pihMOsxExTjLFkJjpGqUdBdPnO/hy9yd7s1jyRaIhmWQGpx0z
+         JyRw+vn4CSBdehcUysgwOdKybxm8P8jpJnOGQcxGkrWnt0F7uYwD3RlofOh0eI4rqgqi
+         p5bk5a2h++VqDVfwrgRCujOTjoh+XeSLDQknsyJnOw4TvOruJNL2xlwbqs7u7ILK4fdy
+         G2vZMqsRnRn7dZGw59Kc3LHbJZidektkTMkMcAA0tQNZmKX6Fa8Ndz3WW2BXK6dTWnan
+         PNtktOvaUk0I3DyS8n8jNdvKTEqAT6+U3PgEVd7pe7+7ft8E0WuRWEj4hEoIR69kR00O
+         o2gw==
+X-Gm-Message-State: AFqh2krb4jBxDJx6gUOBrNnQ5mFtE+ICWG4V3CLkTES2gZRHj5oNWCND
+        oxeFsVe9X2NHWQXSmwiNptcS2w==
+X-Google-Smtp-Source: AMrXdXtymcn25ZBG/zJxhmOxOPKCJ0TJ5CVw1wGAsbh0Dg1p4XoieT9sdgtZe5B+ULnpKGF4hzZGOA==
+X-Received: by 2002:a05:6512:507:b0:4a4:68b7:e719 with SMTP id o7-20020a056512050700b004a468b7e719mr2260436lfb.3.1671790719194;
+        Fri, 23 Dec 2022 02:18:39 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id s16-20020a056512315000b0049876c1bb24sm463280lfi.225.2022.12.23.02.17.32
+        by smtp.gmail.com with ESMTPSA id q21-20020a19a415000000b004a46f92a15bsm473828lfc.41.2022.12.23.02.18.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Dec 2022 02:17:33 -0800 (PST)
-Message-ID: <8756ed6b-6ac5-af0b-2f20-236f59f3f80d@linaro.org>
-Date:   Fri, 23 Dec 2022 11:17:32 +0100
+        Fri, 23 Dec 2022 02:18:38 -0800 (PST)
+Message-ID: <62e62d16-aa18-4487-db98-d767f1f9d438@linaro.org>
+Date:   Fri, 23 Dec 2022 11:18:37 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH v5 4/5] ARM: dts: qcom: fix various wrong definition for
- kpss-gcc node
+Subject: Re: [PATCH v9 2/3] dt-bindings: arm: rockchip: Add EmbedFire LubanCat
+ 1
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Christian Marangi <ansuelsmth@gmail.com>,
+To:     ty <zonyitoo@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Alexey Dobriyan <adobriyan@gmail.com>,
-        Takashi Iwai <tiwai@suse.de>,
-        Christian Brauner <brauner@kernel.org>,
-        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
-        Marc Herbert <marc.herbert@intel.com>,
-        James Smart <jsmart2021@gmail.com>,
-        Justin Tee <justin.tee@broadcom.com>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20220914142256.28775-1-ansuelsmth@gmail.com>
- <20220914142256.28775-5-ansuelsmth@gmail.com>
- <1f2901e3-c527-5528-9103-c722e56d046a@linaro.org>
-In-Reply-To: <1f2901e3-c527-5528-9103-c722e56d046a@linaro.org>
+        Peter Geis <pgwipeout@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        Wenhao Cui <lasstp5011@gmail.com>
+References: <Y6UdvrhLjS0/8Oic@VM-66-53-centos>
+ <9a73d8fb-8a73-f8db-2ca7-51bf67cbf659@linaro.org>
+ <CAMmci2UkBVaBgYMF8JaZkL==b9-0AB90VPGK7SNdNV5w5Zyzhg@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAMmci2UkBVaBgYMF8JaZkL==b9-0AB90VPGK7SNdNV5w5Zyzhg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/12/2022 11:17, Krzysztof Kozlowski wrote:
-> On 14/09/2022 16:22, Christian Marangi wrote:
->> Fix dtbs_check warning now that we have a correct kpss-gcc yaml
->> schema. Add additional qcom,kpss-gcc compatible to differentiate
->> devices where kpss-gcc should provide a clk and where kpss-gcc should
->> just provide the registers and the syscon phandle.
->> Add missing #clock-cells and remove useless clock-output-names for
->> ipq806x.
->> Add missing bindings for msm8960 and apq8064 kpss-gcc node.
->>
->> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
->> ---
->>  arch/arm/boot/dts/qcom-apq8064.dtsi | 5 ++++-
->>  arch/arm/boot/dts/qcom-ipq8064.dtsi | 4 ++--
->>  arch/arm/boot/dts/qcom-mdm9615.dtsi | 2 +-
->>  arch/arm/boot/dts/qcom-msm8660.dtsi | 2 +-
->>  arch/arm/boot/dts/qcom-msm8960.dtsi | 7 +++++--
->>  5 files changed, 13 insertions(+), 7 deletions(-)
+On 23/12/2022 10:42, ty wrote:
+> Hi, Krzysztof,
 > 
-> 
-> warning: 1 line adds whitespace errors.
+> Sorry, we do not know the process, this is our first contribution to
+> the Linux Kernel. There is no change since the last review of this
+> file.
 
-Only this is relevant (rest of non-applying is not important)
+So I linked you the process and explain it.
+
 
 Best regards,
 Krzysztof
