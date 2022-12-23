@@ -2,243 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16690654FDC
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 12:57:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E3616654FE0
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 12:57:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231345AbiLWL4z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 06:56:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54474 "EHLO
+        id S235877AbiLWL5z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 06:57:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230448AbiLWL4x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 06:56:53 -0500
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 913392A26F;
-        Fri, 23 Dec 2022 03:56:50 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2BNBuhR0126119;
-        Fri, 23 Dec 2022 05:56:43 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1671796603;
-        bh=Kqps/tfiJGXV621Iub//FTWNyVQs5QhSkQdxwUsfWrc=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=ZPanXUOqf2ViF8sWqrlkqsEkuPnIBZqmwYBTMKgRyXn6hsJYgsgOaQd27n8UgK/uK
-         mrjTaRczAOss6b6LyRUbusr0uVSaRdsFPX3aftikvkggt7GYTvGNWvyYPipvxCq5kS
-         1kleCJwACGy2ZnMfQsnC/HRbJgvbpt9pPpKl5Xbw=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2BNBuhnx111615
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 23 Dec 2022 05:56:43 -0600
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 23
- Dec 2022 05:56:43 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Fri, 23 Dec 2022 05:56:42 -0600
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2BNBug8b008048;
-        Fri, 23 Dec 2022 05:56:42 -0600
-From:   Devarsh Thakkar <devarsht@ti.com>
-To:     <andersson@kernel.org>, <devicetree@vger.kernel.org>,
-        <mathieu.poirier@linaro.org>, <p.zabel@pengutronix.de>,
-        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <krzysztof.kozlowski@linaro.org>, <s-anna@ti.com>
-CC:     <hnagalla@ti.com>, <praneeth@ti.com>, <nm@ti.com>,
-        <vigneshr@ti.com>, <a-bhatia1@ti.com>, <j-luthra@ti.com>,
-        <devarsht@ti.com>
-Subject: [PATCH v3 2/2] remoteproc: k3-r5: Use separate compatible string for TI AM62 SoC family
-Date:   Fri, 23 Dec 2022 17:26:38 +0530
-Message-ID: <20221223115638.20192-3-devarsht@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20221223115638.20192-1-devarsht@ti.com>
-References: <20221223115638.20192-1-devarsht@ti.com>
+        with ESMTP id S236131AbiLWL5f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 06:57:35 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 215DF2A26F
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 03:57:26 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id cf42so6870654lfb.1
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 03:57:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=W1MqNfvQnxK7WcVE1mQ7e/hxZyGccdrLjMvUlPIFUiY=;
+        b=UkVK/LZIxZTiBR+BkqfpY8inJh68syPmg+Qh/SNoFMvBoWDelXFgGHFR/AKNQdqvGy
+         8OIQfMaYFVHKl9CE6vlgSB+YleBy2utSLt8YPnIEtHPq2vBw2NdOY6GnELVLrmR5iqyg
+         nlPWX3Kcjz+KWb0l4qsCyKD8pIB6RD21fekAI2EZCm1RX0G+rwmp5kiLm9PngmJYDJmy
+         3nYfccZqyth1lIgOprWNZdep1EEKXh3+zjSCi01jcvLsVlcbZQm30pmKLrLqVtuNF2E2
+         iW8Ek75LHYAmNw5mlHn1p7klLcaV2xhpA7o89vwT3js+eIlBGLdUavN/4ImwoC5MsYfM
+         BF2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=W1MqNfvQnxK7WcVE1mQ7e/hxZyGccdrLjMvUlPIFUiY=;
+        b=AJSbBfb53X94LZrq1fPv3b/1F3LHcy/zDZM7+a5elnV2drWt28y8eGTI6ZjilK7F7p
+         WvkGU4y6pRnQC4sg1fTgzY1Hs4NBckgQK3oVJnBxIQtKhxIxK+54nmtlM+ufl/+5MFLG
+         FwKit+95+BSOwm4OsjdXrwk0P4JZkOtqbPkoC+wEClvNzw3b0X3DyWQdZ7HQQZQs3xQ2
+         NnT/R+Wy1UPKxfiPmQEYsE7f+DF39hKtsh9lBMBdNr+NSn2JB/FrjAM4vumAlJ8QYvUX
+         VxagVA6jCt1uPMjnqlOEGA3Cx7zZctS6El0PgJJK891j2q5WuQNfLSd7sZ0E/PNk9dK9
+         907A==
+X-Gm-Message-State: AFqh2kowXvPiYpEmJEvt/vY4AnXyodMIyYnEBsfLOxoU5qNcx2W6lJL2
+        yaz+wWCYFSUdpQ1feS9WiWJNCg==
+X-Google-Smtp-Source: AMrXdXvhfZ21xGg5smJtbdtUhsDxNI/aFVZnQvlVSHDHUVBUqKrNwp7Aq1tl1GaHeLp1Q6Fk5vebDw==
+X-Received: by 2002:a05:6512:b25:b0:4b4:b8fc:4ac5 with SMTP id w37-20020a0565120b2500b004b4b8fc4ac5mr2878465lfu.3.1671796644486;
+        Fri, 23 Dec 2022 03:57:24 -0800 (PST)
+Received: from [192.168.1.101] (abyl184.neoplus.adsl.tpnet.pl. [83.9.31.184])
+        by smtp.gmail.com with ESMTPSA id o1-20020ac25e21000000b004979db5aa5bsm502211lfg.223.2022.12.23.03.57.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 Dec 2022 03:57:24 -0800 (PST)
+Message-ID: <0238b9e4-206c-398f-8336-71f712bef538@linaro.org>
+Date:   Fri, 23 Dec 2022 12:57:22 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH 1/5] arm64: dts: qcom: sm6125-seine: Configure PM6125
+ regulators
+Content-Language: en-US
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
+        phone-devel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221222203636.250190-1-marijn.suijten@somainline.org>
+ <20221222203636.250190-2-marijn.suijten@somainline.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221222203636.250190-2-marijn.suijten@somainline.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-AM62 and AM62A SoCs use single core R5F which is a new scenario
-different than the one being used with CLUSTER_MODE_SINGLECPU
-which is for utilizing a single core from a set of cores available
-in R5F cluster present in the SoC.
 
-To support this single core scenario map it with
-newly defined CLUSTER_MODE_NONE and use it when
-compatible is set to ti,am62-r5fss.
 
-Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
----
-V2: Fix indentation and ordering issues as per review comments
-V3: Change CLUSTER_MODE_NONE value to -1
----
- drivers/remoteproc/ti_k3_r5_remoteproc.c | 57 ++++++++++++++++++------
- 1 file changed, 44 insertions(+), 13 deletions(-)
+On 22.12.2022 21:36, Marijn Suijten wrote:
+> Configure PM6125 regulators based on availability and voltages defined
+> downstream, to allow powering up (and/or keeping powered) other hardware
+> blocks going forward.
+> 
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-diff --git a/drivers/remoteproc/ti_k3_r5_remoteproc.c b/drivers/remoteproc/ti_k3_r5_remoteproc.c
-index 0481926c6975..127f1f68e592 100644
---- a/drivers/remoteproc/ti_k3_r5_remoteproc.c
-+++ b/drivers/remoteproc/ti_k3_r5_remoteproc.c
-@@ -74,9 +74,11 @@ struct k3_r5_mem {
-  *   Split mode      : AM65x, J721E, J7200 and AM64x SoCs
-  *   LockStep mode   : AM65x, J721E and J7200 SoCs
-  *   Single-CPU mode : AM64x SoCs only
-+ *   None            : AM62x, AM62A SoCs
-  */
- enum cluster_mode {
--	CLUSTER_MODE_SPLIT = 0,
-+	CLUSTER_MODE_NONE = -1,
-+	CLUSTER_MODE_SPLIT,
- 	CLUSTER_MODE_LOCKSTEP,
- 	CLUSTER_MODE_SINGLECPU,
- };
-@@ -86,11 +88,13 @@ enum cluster_mode {
-  * @tcm_is_double: flag to denote the larger unified TCMs in certain modes
-  * @tcm_ecc_autoinit: flag to denote the auto-initialization of TCMs for ECC
-  * @single_cpu_mode: flag to denote if SoC/IP supports Single-CPU mode
-+ * @is_single_core: flag to denote if SoC/IP has only single core R5
-  */
- struct k3_r5_soc_data {
- 	bool tcm_is_double;
- 	bool tcm_ecc_autoinit;
- 	bool single_cpu_mode;
-+	bool is_single_core;
- };
- 
- /**
-@@ -838,7 +842,8 @@ static int k3_r5_rproc_configure(struct k3_r5_rproc *kproc)
- 
- 	core0 = list_first_entry(&cluster->cores, struct k3_r5_core, elem);
- 	if (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
--	    cluster->mode == CLUSTER_MODE_SINGLECPU) {
-+	    cluster->mode == CLUSTER_MODE_SINGLECPU ||
-+	    cluster->mode == CLUSTER_MODE_NONE) {
- 		core = core0;
- 	} else {
- 		core = kproc->core;
-@@ -853,7 +858,7 @@ static int k3_r5_rproc_configure(struct k3_r5_rproc *kproc)
- 		boot_vec, cfg, ctrl, stat);
- 
- 	/* check if only Single-CPU mode is supported on applicable SoCs */
--	if (cluster->soc_data->single_cpu_mode) {
-+	if (cluster->soc_data->single_cpu_mode || cluster->soc_data->is_single_core) {
- 		single_cpu =
- 			!!(stat & PROC_BOOT_STATUS_FLAG_R5_SINGLECORE_ONLY);
- 		if (single_cpu && cluster->mode == CLUSTER_MODE_SPLIT) {
-@@ -1074,6 +1079,7 @@ static void k3_r5_adjust_tcm_sizes(struct k3_r5_rproc *kproc)
- 
- 	if (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
- 	    cluster->mode == CLUSTER_MODE_SINGLECPU ||
-+	    cluster->mode == CLUSTER_MODE_NONE ||
- 	    !cluster->soc_data->tcm_is_double)
- 		return;
- 
-@@ -1147,7 +1153,9 @@ static int k3_r5_rproc_configure_mode(struct k3_r5_rproc *kproc)
- 	atcm_enable = cfg & PROC_BOOT_CFG_FLAG_R5_ATCM_EN ?  1 : 0;
- 	btcm_enable = cfg & PROC_BOOT_CFG_FLAG_R5_BTCM_EN ?  1 : 0;
- 	loczrama = cfg & PROC_BOOT_CFG_FLAG_R5_TCM_RSTBASE ?  1 : 0;
--	if (cluster->soc_data->single_cpu_mode) {
-+	if (cluster->soc_data->is_single_core) {
-+		mode = CLUSTER_MODE_NONE;
-+	} else if (cluster->soc_data->single_cpu_mode) {
- 		mode = cfg & PROC_BOOT_CFG_FLAG_R5_SINGLE_CORE ?
- 				CLUSTER_MODE_SINGLECPU : CLUSTER_MODE_SPLIT;
- 	} else {
-@@ -1271,7 +1279,8 @@ static int k3_r5_cluster_rproc_init(struct platform_device *pdev)
- 
- 		/* create only one rproc in lockstep mode or single-cpu mode */
- 		if (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
--		    cluster->mode == CLUSTER_MODE_SINGLECPU)
-+		    cluster->mode == CLUSTER_MODE_SINGLECPU ||
-+		    cluster->mode == CLUSTER_MODE_NONE)
- 			break;
- 	}
- 
-@@ -1704,21 +1713,32 @@ static int k3_r5_probe(struct platform_device *pdev)
- 	 * default to most common efuse configurations - Split-mode on AM64x
- 	 * and LockStep-mode on all others
- 	 */
--	cluster->mode = data->single_cpu_mode ?
-+	if (!data->is_single_core)
-+		cluster->mode = data->single_cpu_mode ?
- 				CLUSTER_MODE_SPLIT : CLUSTER_MODE_LOCKSTEP;
-+	else
-+		cluster->mode = CLUSTER_MODE_NONE;
-+
- 	cluster->soc_data = data;
- 	INIT_LIST_HEAD(&cluster->cores);
- 
--	ret = of_property_read_u32(np, "ti,cluster-mode", &cluster->mode);
--	if (ret < 0 && ret != -EINVAL) {
--		dev_err(dev, "invalid format for ti,cluster-mode, ret = %d\n",
--			ret);
--		return ret;
-+	if (!data->is_single_core) {
-+		ret = of_property_read_s32(np, "ti,cluster-mode", &cluster->mode);
-+		if (ret < 0 && ret != -EINVAL) {
-+			dev_err(dev, "invalid format for ti,cluster-mode, ret = %d\n", ret);
-+			return ret;
-+		}
- 	}
- 
- 	num_cores = of_get_available_child_count(np);
--	if (num_cores != 2) {
--		dev_err(dev, "MCU cluster requires both R5F cores to be enabled, num_cores = %d\n",
-+	if (num_cores != 2 && !data->is_single_core) {
-+		dev_err(dev, "MCU cluster requires both R5F cores to be enabled but num_cores is set to = %d\n",
-+			num_cores);
-+		return -ENODEV;
-+	}
-+
-+	if (num_cores != 1 && data->is_single_core) {
-+		dev_err(dev, "SoC supports only single core R5 but num_cores is set to %d\n",
- 			num_cores);
- 		return -ENODEV;
- 	}
-@@ -1760,18 +1780,28 @@ static const struct k3_r5_soc_data am65_j721e_soc_data = {
- 	.tcm_is_double = false,
- 	.tcm_ecc_autoinit = false,
- 	.single_cpu_mode = false,
-+	.is_single_core = false,
- };
- 
- static const struct k3_r5_soc_data j7200_j721s2_soc_data = {
- 	.tcm_is_double = true,
- 	.tcm_ecc_autoinit = true,
- 	.single_cpu_mode = false,
-+	.is_single_core = false,
- };
- 
- static const struct k3_r5_soc_data am64_soc_data = {
- 	.tcm_is_double = true,
- 	.tcm_ecc_autoinit = true,
- 	.single_cpu_mode = true,
-+	.is_single_core = false,
-+};
-+
-+static const struct k3_r5_soc_data am62_soc_data = {
-+	.tcm_is_double = false,
-+	.tcm_ecc_autoinit = true,
-+	.single_cpu_mode = false,
-+	.is_single_core = true,
- };
- 
- static const struct of_device_id k3_r5_of_match[] = {
-@@ -1779,6 +1809,7 @@ static const struct of_device_id k3_r5_of_match[] = {
- 	{ .compatible = "ti,j721e-r5fss", .data = &am65_j721e_soc_data, },
- 	{ .compatible = "ti,j7200-r5fss", .data = &j7200_j721s2_soc_data, },
- 	{ .compatible = "ti,am64-r5fss",  .data = &am64_soc_data, },
-+	{ .compatible = "ti,am62-r5fss",  .data = &am62_soc_data, },
- 	{ .compatible = "ti,j721s2-r5fss",  .data = &j7200_j721s2_soc_data, },
- 	{ /* sentinel */ },
- };
--- 
-2.17.1
-
+Konrad
+>  .../qcom/sm6125-sony-xperia-seine-pdx201.dts  | 139 ++++++++++++++++++
+>  1 file changed, 139 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
+> index 4e7c12863d28..4f825c55692b 100644
+> --- a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
+> @@ -276,6 +276,145 @@ &qupv3_id_0 {
+>  	status = "okay";
+>  };
+>  
+> +&rpm_requests {
+> +	regulators-0 {
+> +		compatible = "qcom,rpm-pm6125-regulators";
+> +
+> +		vdd_l2_l3_l4-supply = <&pm6125_l7>;
+> +		vdd_l5_l15_l19_l20_l21_l22-supply = <&pm6125_l10>;
+> +
+> +		/*
+> +		 * S3/S4 is VDD_CX
+> +		 * S5 is VDD_MX/WCSS_MX
+> +		 */
+> +
+> +		pm6125_s6: s6 {
+> +			regulator-min-microvolt = <936000>;
+> +			regulator-max-microvolt = <1422000>;
+> +		};
+> +
+> +		pm6125_l1: l1 {
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1256000>;
+> +		};
+> +
+> +		pm6125_l2: l2 {
+> +			regulator-min-microvolt = <1000000>;
+> +			regulator-max-microvolt = <1056000>;
+> +		};
+> +
+> +		pm6125_l3: l3 {
+> +			regulator-min-microvolt = <1000000>;
+> +			regulator-max-microvolt = <1064000>;
+> +		};
+> +
+> +		pm6125_l4: l4 {
+> +			regulator-min-microvolt = <872000>;
+> +			regulator-max-microvolt = <976000>;
+> +		};
+> +
+> +		pm6125_l5: l5 {
+> +			regulator-min-microvolt = <1648000>;
+> +			regulator-max-microvolt = <3104000>;
+> +		};
+> +
+> +		pm6125_l6: l6 {
+> +			regulator-min-microvolt = <576000>;
+> +			regulator-max-microvolt = <656000>;
+> +		};
+> +
+> +		pm6125_l7: l7 {
+> +			regulator-min-microvolt = <872000>;
+> +			regulator-max-microvolt = <976000>;
+> +		};
+> +
+> +		pm6125_l8: l8 {
+> +			regulator-min-microvolt = <400000>;
+> +			regulator-max-microvolt = <728000>;
+> +		};
+> +
+> +		pm6125_l9: l9 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1896000>;
+> +		};
+> +
+> +		pm6125_l10: l10 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1896000>;
+> +		};
+> +
+> +		pm6125_l11: l11 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1952000>;
+> +		};
+> +
+> +		pm6125_l12: l12 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1996000>;
+> +		};
+> +
+> +		pm6125_l13: l13 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1832000>;
+> +		};
+> +
+> +		pm6125_l14: l14 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1904000>;
+> +		};
+> +
+> +		pm6125_l15: l15 {
+> +			regulator-min-microvolt = <3104000>;
+> +			regulator-max-microvolt = <3232000>;
+> +		};
+> +
+> +		pm6125_l16: l16 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1904000>;
+> +		};
+> +
+> +		pm6125_l17: l17 {
+> +			regulator-min-microvolt = <1248000>;
+> +			regulator-max-microvolt = <1304000>;
+> +		};
+> +
+> +		pm6125_l18: l18 {
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1264000>;
+> +		};
+> +
+> +		pm6125_l19: l19 {
+> +			regulator-min-microvolt = <1648000>;
+> +			regulator-max-microvolt = <2952000>;
+> +		};
+> +
+> +		pm6125_l20: l20 {
+> +			regulator-min-microvolt = <1648000>;
+> +			regulator-max-microvolt = <2952000>;
+> +		};
+> +
+> +		pm6125_l21: l21 {
+> +			regulator-min-microvolt = <2600000>;
+> +			regulator-max-microvolt = <2856000>;
+> +		};
+> +
+> +		pm6125_l22: l22 {
+> +			regulator-min-microvolt = <2944000>;
+> +			regulator-max-microvolt = <3304000>;
+> +		};
+> +
+> +		pm6125_l23: l23 {
+> +			regulator-min-microvolt = <3000000>;
+> +			regulator-max-microvolt = <3400000>;
+> +		};
+> +
+> +		pm6125_l24: l24 {
+> +			regulator-min-microvolt = <2944000>;
+> +			regulator-max-microvolt = <3304000>;
+> +		};
+> +	};
+> +};
+> +
+>  &sdc2_off_state {
+>  	sd-cd-pins {
+>  		pins = "gpio98";
