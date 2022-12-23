@@ -2,138 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4817D6550C5
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 14:19:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C8D26550CC
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 14:20:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230284AbiLWNS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 08:18:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35376 "EHLO
+        id S236213AbiLWNUt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 08:20:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229625AbiLWNS4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 08:18:56 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F369389CF;
-        Fri, 23 Dec 2022 05:18:54 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id e13so2438648ljn.0;
-        Fri, 23 Dec 2022 05:18:54 -0800 (PST)
+        with ESMTP id S235480AbiLWNUr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 08:20:47 -0500
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F4E6F6D
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 05:20:44 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id l8so4969005ljh.13
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 05:20:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=R4mlEgcwFdImzUImTWxnNI1/88SYWLsS4X9m2YOU33c=;
-        b=irPSz7ia6eybf0/tMnpqcBla8RCDVig3aIFF82ZeqKhARJHKQ/2LAeh7AdG7Pthvzb
-         LTNUbdPd+mLBvv0s8RNwIC4Y+nBsDU7iTFEVbhx8vvWK51jxb+cq8b3ZpAttgVV+hTVB
-         jIWJwvYAQNIj+6KEo/h4XE8mt8DZWHJ2PB8MGCxqFyKLFZaXp4/hgYzuOFH6REgaVTaK
-         /paTuRLSgreuM8GqA56n0CwF7noekoO+IuaoZI6BGTWqtlqaXyGQi7KE/VQ/mKoeesKW
-         wlwyXLRNnCCkqnm6KxVPhusmhBvTgXmO1Rm83hi+JeQfBxNWp+Vq85kfCW54xpKWnxzc
-         m0AA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0h8gBiSip5CPQa41Be2qfSjOofzaNdmELJ6gbSf7W+Q=;
+        b=BM4mM/ZEBiugthpciRcdgoIZedNvK7KRM+cZ568R7kpSRPwACaY8wMlGQ7O3B8PGoi
+         VZImChTjy0m5IHpf5gat1apVPTi+mXna/i8iTWhHOhHZltpJSDUTWGrZw1yg7AcfrSh5
+         WbDGahdlaV4rqorw0UaTGM4HGfGcLutfVb16WdLCZJwqVOTzG2C/AHjQIZ4AcuHRywY9
+         OrI++4i/gTNCk/PtqGvC4jqzLdKflJkvstrz9TnbSSdlfBEmGm+6EEp0WJm4RsuO3hpX
+         XEAjDZt6SDLhtcKEySowhripkYGC8s3W34bObuuUAKCa7OudwzPQSFMKaWJ6nLxVa0HU
+         YatQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=R4mlEgcwFdImzUImTWxnNI1/88SYWLsS4X9m2YOU33c=;
-        b=6nLZT6UrmcqorwiitZO9K3Ju4zq7XJ9u7WPm+njK3zMcRAnhL0TK89YRTVzOfcBwMK
-         yTyQnSXlth5C2Q0tctZX2WCps8UU93hL2ErXVqOQFTMwA1A/mjp/Nh9V504uk2whUhuW
-         brhxywFQuHq+uGvOw49wIPcQdp522YAyr4GTZUw/maT/X/LXCdn6DYyYieY9hGv8xhGX
-         oL+XE0QvQYqLjNfWggRfs4ZvfuVjdaGa8YZuPzjJR8MmPaZXPVYIC8v1c8etuVxHbdR2
-         OAJLPfAA98OzpcWgMturKbWwjQRf1GQKzM6WjFBjf8PRNssGEExtEh0kM8WmJpMKnCQA
-         cYNg==
-X-Gm-Message-State: AFqh2kqmWPULg4lFMp9PWA3hqDa94/9kbejxzTVmtCJzQnCZtJZ6vPSx
-        cSt+ZoGle1xStjLT9967Tdw=
-X-Google-Smtp-Source: AMrXdXuLIQTWWRW/U0cNPGZVwIvRO7tNjx1K1KWmcP/mkV18GGfRGvHxxTf/hPx90vqa1T9r1U/PqA==
-X-Received: by 2002:a2e:97d4:0:b0:279:bbe1:72e1 with SMTP id m20-20020a2e97d4000000b00279bbe172e1mr2592237ljj.18.1671801532634;
-        Fri, 23 Dec 2022 05:18:52 -0800 (PST)
-Received: from [192.168.2.145] (109-252-113-89.nat.spd-mgts.ru. [109.252.113.89])
-        by smtp.googlemail.com with ESMTPSA id u22-20020a2eb816000000b00279f302f652sm422715ljo.111.2022.12.23.05.18.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Dec 2022 05:18:52 -0800 (PST)
-Message-ID: <6098882c-76f5-cdfc-0614-4d3657f598c2@gmail.com>
-Date:   Fri, 23 Dec 2022 16:18:51 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v2 21/21] staging: media: tegra-video: add tegra20 variant
-Content-Language: en-US
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc:     linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Richard Leitner <richard.leitner@skidata.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0h8gBiSip5CPQa41Be2qfSjOofzaNdmELJ6gbSf7W+Q=;
+        b=OlX3pUbxjG8Xs2L9GW0SM3sYeE0R2mWjHd7X49UoJItci38dgbOjw4wJRFcy7Qxw9Q
+         YgDNS5VRArk6ihhsHhB2No+X1lsexIhnFp7CvPbeYKMHIpAcTMEV7Pq3M90jacEycrUB
+         RgevwJTGpo1Q6Y6UH4Bg7jLKNmS0AkpSqQJx3JA7RYV8FISwv6JDXufDKTPopGEiTTOG
+         gctO/OCF4l7f1pQA8Uvf1apMsdQxU4UrmK9hrOgSsXvmidhx+1L4HZ3/v2xjrr1Jbf2e
+         xS+BJI1wTruYCQMQ8HGFSp9eyNnElBEruv7AQqdHzqswJF3MFETZZIh/2Ou5X2SBa7sB
+         +VQA==
+X-Gm-Message-State: AFqh2kqk4+7IgMwCaBowdxiBGMAkMiX8TVQUC1oT6Dc0MtdllLsDjl3r
+        SOgY6y2ec1+CaECLJgtHQ3bLeA==
+X-Google-Smtp-Source: AMrXdXtWY4Wr6HDx1RmiVT5cyM3RHiUOV7DYWSjRrzf7W3d5GqVel23YQGTvIhNqKkWXf8dKFXlpnw==
+X-Received: by 2002:a2e:b637:0:b0:27a:e3f:7dd5 with SMTP id s23-20020a2eb637000000b0027a0e3f7dd5mr2614956ljn.33.1671801643202;
+        Fri, 23 Dec 2022 05:20:43 -0800 (PST)
+Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id v11-20020a2ea60b000000b0026c2baa72d4sm426753ljp.27.2022.12.23.05.20.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Dec 2022 05:20:42 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Sowjanya Komatineni <skomatineni@nvidia.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>
-References: <20221128152336.133953-1-luca.ceresoli@bootlin.com>
- <20221128152336.133953-22-luca.ceresoli@bootlin.com>
- <3c32ee42-2b75-ba16-dcd0-d12acd87b47f@gmail.com>
-In-Reply-To: <3c32ee42-2b75-ba16-dcd0-d12acd87b47f@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+        Odelu Kukatla <okukatla@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/3] dt-bindings: interconnect: split SC7280 to own schema
+Date:   Fri, 23 Dec 2022 14:20:38 +0100
+Message-Id: <20221223132040.80858-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-23.12.2022 16:02, Dmitry Osipenko пишет:
-> 28.11.2022 18:23, Luca Ceresoli пишет:
->> +static int tegra20_vip_start_streaming(struct tegra_vip_channel *vip_chan)
->> +{
->> +	struct tegra_vi_channel *vi_chan = v4l2_get_subdev_hostdata(&vip_chan->subdev);
->> +	int width  = vi_chan->format.width;
->> +	int height = vi_chan->format.height;
->> +
->> +	unsigned int main_input_format;
->> +	unsigned int yuv_input_format;
->> +
->> +	tegra20_vi_get_input_formats(vi_chan, &main_input_format, &yuv_input_format);
->> +
->> +	tegra20_vi_write(vi_chan, TEGRA_VI_VI_CORE_CONTROL, 0);
->> +
->> +	tegra20_vi_write(vi_chan, TEGRA_VI_VI_INPUT_CONTROL,
->> +			 VI_INPUT_VIP_INPUT_ENABLE | main_input_format | yuv_input_format);
->> +
->> +	tegra20_vi_write(vi_chan, TEGRA_VI_V_DOWNSCALE_CONTROL, 0);
->> +	tegra20_vi_write(vi_chan, TEGRA_VI_H_DOWNSCALE_CONTROL, 0);
->> +
->> +	tegra20_vi_write(vi_chan, TEGRA_VI_VIP_V_ACTIVE, height << VI_VIP_V_ACTIVE_PERIOD_SFT);
->> +	tegra20_vi_write(vi_chan, TEGRA_VI_VIP_H_ACTIVE,
->> +			 roundup(width, 2) << VI_VIP_H_ACTIVE_PERIOD_SFT);
->> +
->> +	/*
->> +	 * For VIP, D9..D2 is mapped to the video decoder's P7..P0.
->> +	 * Disable/mask out the other Dn wires. When not in BT656
->> +	 * mode we also need the V/H sync.
->> +	 */
->> +	tegra20_vi_write(vi_chan, TEGRA_VI_PIN_INPUT_ENABLE,
->> +			 GENMASK(9, 2) << VI_PIN_INPUT_VD_SFT |
->> +			 VI_PIN_INPUT_HSYNC | VI_PIN_INPUT_VSYNC);
->> +	tegra20_vi_write(vi_chan, TEGRA_VI_VI_DATA_INPUT_CONTROL,
->> +			 GENMASK(9, 2) << VI_DATA_INPUT_SFT);
->> +	tegra20_vi_write(vi_chan, TEGRA_VI_PIN_INVERSION, 0);
->> +
->> +	tegra20_vi_write(vi_chan, TEGRA_VI_CONT_SYNCPT_OUT_1,
->> +			 VI_CONT_SYNCPT_OUT_1_CONTINUOUS_SYNCPT |
->> +			 host1x_syncpt_id(vi_chan->out_sp) << VI_CONT_SYNCPT_OUT_1_SYNCPT_IDX_SFT);
-> 
-> Wondering whether you also need to set up the sypct_incr condition to
-> op_done, it should be immediate by default. I see that T210 VI code sets
-> up the incr condition.
+SC7280 comes with interconnects having and missing IO address space, so
+split it from common file for easier maintenancen and to fix warnings like:
 
-Found in the doc "Continuous syncpt always use OP_DONE as condition",
-the current code is fine.
+  sc7280-herobrine-crd.dtb: interconnect: 'reg' is a required property
+
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../bindings/interconnect/qcom,rpmh.yaml      | 12 ----
+ .../interconnect/qcom,sc7280-rpmh.yaml        | 71 +++++++++++++++++++
+ 2 files changed, 71 insertions(+), 12 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sc7280-rpmh.yaml
+
+diff --git a/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml b/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
+index a429a1ed1006..4bdcc014c46b 100644
+--- a/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
++++ b/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
+@@ -39,18 +39,6 @@ properties:
+       - qcom,sc7180-npu-noc
+       - qcom,sc7180-qup-virt
+       - qcom,sc7180-system-noc
+-      - qcom,sc7280-aggre1-noc
+-      - qcom,sc7280-aggre2-noc
+-      - qcom,sc7280-clk-virt
+-      - qcom,sc7280-cnoc2
+-      - qcom,sc7280-cnoc3
+-      - qcom,sc7280-dc-noc
+-      - qcom,sc7280-gem-noc
+-      - qcom,sc7280-lpass-ag-noc
+-      - qcom,sc7280-mc-virt
+-      - qcom,sc7280-mmss-noc
+-      - qcom,sc7280-nsp-noc
+-      - qcom,sc7280-system-noc
+       - qcom,sc8180x-aggre1-noc
+       - qcom,sc8180x-aggre2-noc
+       - qcom,sc8180x-camnoc-virt
+diff --git a/Documentation/devicetree/bindings/interconnect/qcom,sc7280-rpmh.yaml b/Documentation/devicetree/bindings/interconnect/qcom,sc7280-rpmh.yaml
+new file mode 100644
+index 000000000000..b135597d9489
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interconnect/qcom,sc7280-rpmh.yaml
+@@ -0,0 +1,71 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interconnect/qcom,sc7280-rpmh.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm RPMh Network-On-Chip Interconnect on SC7280
++
++maintainers:
++  - Bjorn Andersson <andersson@kernel.org>
++  - Konrad Dybcio <konrad.dybcio@linaro.org>
++
++description: |
++  RPMh interconnect providers support system bandwidth requirements through
++  RPMh hardware accelerators known as Bus Clock Manager (BCM).
++
++  See also:: include/dt-bindings/interconnect/qcom,sc7280.h
++
++properties:
++  compatible:
++    enum:
++      - qcom,sc7280-aggre1-noc
++      - qcom,sc7280-aggre2-noc
++      - qcom,sc7280-clk-virt
++      - qcom,sc7280-cnoc2
++      - qcom,sc7280-cnoc3
++      - qcom,sc7280-dc-noc
++      - qcom,sc7280-gem-noc
++      - qcom,sc7280-lpass-ag-noc
++      - qcom,sc7280-mc-virt
++      - qcom,sc7280-mmss-noc
++      - qcom,sc7280-nsp-noc
++      - qcom,sc7280-system-noc
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++
++allOf:
++  - $ref: qcom,rpmh-common.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,sc7280-clk-virt
++    then:
++      properties:
++        reg: false
++    else:
++      required:
++        - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    interconnect {
++        compatible = "qcom,sc7280-clk-virt";
++        #interconnect-cells = <2>;
++        qcom,bcm-voters = <&apps_bcm_voter>;
++    };
++
++    interconnect@9100000 {
++        reg = <0x9100000 0xe2200>;
++        compatible = "qcom,sc7280-gem-noc";
++        #interconnect-cells = <2>;
++        qcom,bcm-voters = <&apps_bcm_voter>;
++    };
+-- 
+2.34.1
+
