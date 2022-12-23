@@ -2,104 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A858654DE7
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 09:53:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4FBB654DF3
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 10:00:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230134AbiLWIw7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 03:52:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39486 "EHLO
+        id S235429AbiLWJAi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 04:00:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230019AbiLWIw6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 03:52:58 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A938D36C42
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 00:52:56 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id cf42so6312718lfb.1
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 00:52:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sKAjt2iJj5kzIuD1ftaS1rKB66aNgi7BWJ7wJa8xL6o=;
-        b=q8gAbYsGWv03QrFQ+UDY/3L35Sn3/iO29JHWFi3224D1nLsT4hUG9IF/q6LqYPb+mJ
-         h/uzrDV24+LiZvswjqUksjbuslDt5NMn43oHs9Qf0V6cHUHwD7YJVlKqDmRpjig/4L49
-         dAT7JgiiNgohgl0rCZrtomAeNr68Vl66xq2UTHx79oeTSll4YVX/qfuzsjA2jiQwX3XD
-         B9k4h8KO6gs+05NTD7bsWo1XyV9SDTKf2NpQMEYpDOzkDTHAARTk5WktkfQ/N4rB4ds5
-         16N6fn8vrxPW7MEHNUXyKv5VFF9xrwrOej9s84n5/RP+6o0gSg7eNPrxPr3EkKXJMUHF
-         BkLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sKAjt2iJj5kzIuD1ftaS1rKB66aNgi7BWJ7wJa8xL6o=;
-        b=icJuBu2RIv2lALTm359EiqYoExMoTF2499Cw+kobDi2JnOxPXs5AnDwBbpBdCGK0TL
-         LQtrSRIgG474aqYjc2UrGQ6M0kzdGTP8dA6XTqP02bJo5bw7Q3bNfxiaw8CCJMpAHlfp
-         HPO+jxuPf4eLHaEXo3QhlcjH2N49n5nRrQ7F/uXYCvQzI6Tjknjy2mvo8RILZic/OEn+
-         gQuUa/Tqr+ZjD8pmgcI901p9atcwEuj3j0CDpc2TIeTK1y4iZFRtF8gfZt8QB66wbUWO
-         xCzQUNQd3p+9kxKHyVW39GYYEDN3lTTMDnXCLKwGgCIEWLT858orjyXgLkJWqPRgo0fY
-         5YRg==
-X-Gm-Message-State: AFqh2kp/EDIB2XR23kMZkefHodJa/wajh39oe7XCT2qCyP1BLKHoDZnx
-        53fs+0kwrTKNU4q2l2k8awmH3g==
-X-Google-Smtp-Source: AMrXdXvBNZVygllcLaQKKB3jySv/Pl0JkRS0BFcl3+kOZGL7NEk0TxfKZBUG2rp2iydlJvHGAZ2eEw==
-X-Received: by 2002:a19:5f58:0:b0:4bb:a49c:2f0c with SMTP id a24-20020a195f58000000b004bba49c2f0cmr2553409lfj.25.1671785575072;
-        Fri, 23 Dec 2022 00:52:55 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id k9-20020ac257c9000000b004947a12232bsm424901lfo.275.2022.12.23.00.52.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Dec 2022 00:52:54 -0800 (PST)
-Message-ID: <869ae494-d74e-03a0-3622-b3a2b0b10470@linaro.org>
-Date:   Fri, 23 Dec 2022 09:52:52 +0100
+        with ESMTP id S235035AbiLWJAh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 04:00:37 -0500
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 146D6357BC;
+        Fri, 23 Dec 2022 01:00:34 -0800 (PST)
+Received: from loongson.cn (unknown [112.20.108.31])
+        by gateway (Coremail) with SMTP id _____8Bx1vAxbqVjJQ0IAA--.17901S3;
+        Fri, 23 Dec 2022 17:00:33 +0800 (CST)
+Received: from localhost.localdomain (unknown [112.20.108.31])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Bxzr4ubqVjuz0JAA--.14684S2;
+        Fri, 23 Dec 2022 17:00:31 +0800 (CST)
+From:   Binbin Zhou <zhoubinbin@loongson.cn>
+To:     Wolfram Sang <wsa@kernel.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Andy Shevchenko <andy@kernel.org>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        linux-i2c@vger.kernel.org
+Cc:     loongarch@lists.linux.dev, devicetree@vger.kernel.org,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        WANG Xuerui <kernel@xen0n.name>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH V8 0/4] i2c: ls2x: Add support for the Loongson-2K/LS7A I2C controller
+Date:   Fri, 23 Dec 2022 17:00:48 +0800
+Message-Id: <cover.1671688961.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v1 08/25] dt-bindings: clock: mt8173: Add dummy clock ID
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, mturquette@baylibre.com
-Cc:     sboyd@kernel.org, matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, wenst@chromium.org,
-        johnson.wang@mediatek.com, miles.chen@mediatek.com,
-        fparent@baylibre.com, chun-jie.chen@mediatek.com,
-        sam.shih@mediatek.com, y.oudjana@protonmail.com,
-        nfraprado@collabora.com, rex-bc.chen@mediatek.com,
-        ryder.lee@kernel.org, daniel@makrotopia.org,
-        jose.exposito89@gmail.com, yangyingliang@huawei.com,
-        pablo.sun@mediatek.com, msp@baylibre.com, weiyi.lu@mediatek.com,
-        ikjn@chromium.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@collabora.com
-References: <20221222114857.120060-1-angelogioacchino.delregno@collabora.com>
- <20221222114857.120060-9-angelogioacchino.delregno@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221222114857.120060-9-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8Bxzr4ubqVjuz0JAA--.14684S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBjvJXoWxXrW3uw4UXr4xWry3tw13Arb_yoWrCFy5pa
+        98u398Kr4qyr17KFn3JF1ruFyFgws3Gayjgr47Gw13uanrWr18Aw4fKa4a9r17Cr98GFWj
+        qFZ0gFn0kFyDArJanT9S1TB71UUUUj7qnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bfkYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20xvaj40_Wr0E3s
+        1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
+        wVC0I7IYx2IY67AKxVW5JVW7JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwA2z4
+        x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Cr1j6rxdM2kK
+        e7AKxVWUAVWUtwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI
+        0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUAVWUtwAv7VC2z280
+        aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JMxkF7I0En4
+        kS14v26r126r1DMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI
+        1I0E14v26r126r1DMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_Jr
+        Wlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1I
+        6r4UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw20EY4v20xvaj40_Jr
+        0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVWUJVW8JbIY
+        CTnIWIevJa73UjIFyTuYvjxUcbAwUUUUU
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/12/2022 12:48, AngeloGioacchino Del Regno wrote:
-> Some old MediaTek clock drivers are starting the clock count (so, the
-> clock ID) from one instead of zero and this is logically incorrect,
-> as we should start from 0.
-> During a cleanup an issue emerged due to that and the cleanest and
-> shortest way to keep devicetree backwards compatibility while still
-> performing the well deserved cleanup is to add a dummy clock where
-> needed, with ID 0.
+Hi all:
 
-Unfortunately I do not understand at all why adding dummy (fake) ID
-cleans anything here. Unifying IDs to start from 0 is not an argument on
-DT bindings header IDs.
+This patch series adds support for the I2C module found on various
+Loongson systems with the Loongson-2K SoC or the Loongson LS7A bridge chip.
 
-Best regards,
-Krzysztof
+For now, the I2C driver is suitable for DT-based or ACPI-based systems.
+
+I have tested on Loongson-3A5000LA+LS7A1000/LS7A2000, Loongson-2K1000LA
+and Loongson-2K0500.
+
+Thanks.
+
+Changes since V7:
+- patch (3/4)
+  - I2C_LS2X should be added to the Kconfig/Makefile in Latin
+    alphabetical order;
+  - To avoid repeated type conversions, 'struct ls2x_i2c_priv *priv'
+    replaces 'struct i2c_adapter *adap' as the function parameter,
+    e.g. ls2x_i2c_start();
+  - Refactor ls2x_i2c_stop() with readb_poll_timeout(), mainly with
+    LS2X_SR_BUSY to indicate the status (success/timeout) of the stop
+    command;
+  - Remove extra parentheses;
+  - For consistency, the variable 'r' in ls2x_i2c_probe() is renamed to
+    'ret'.
+
+Changes since V6:
+- patch (1/4)
+  - Add Reviewed-by tag.
+- patch (3/4)
+  - GPL-2.0 -> GPL-2.0-only;
+  - Add property.h;
+  - writew() should be used to operate I2C_LS2X_PRER, and drop the
+    suffix of I2C_LS2X_PRER_LO/I2C_LS2X_PRER_HI;
+  - Drop ls2x_i2c_priv->dev, for it can be completely replaced by
+    'adapter.dev.parent';
+  - Reasonable return value handling in ls2x_i2c_xfer_one();
+  - Dropping the I2C_M_STOP flag judgment, the stop parameter of
+    ls2x_i2c_xfer_one() represents the last msg;
+  - Add comments for subsys_initcall();
+  - Code formatting, such as dropping unnecessary blank lines.
+
+Changes since V5:
+- patch (1/4)
+  - Add property.h.
+- patch (3/4)
+  - Put the ls2x_i2c_reginit() in front of irq requst;
+  - Refact ls2x_i2c_adjust_bus_speed: discard the magic value of
+    the divider register and LS2X_I2C_FREQ_STD is used to calculate
+    the frequency;
+  - Drop useless parameters: priv->suspended, and also disable I2C
+    interrupts during suspend;
+  - Drop ls2x_i2c_remove(), for the adapter will be auto deleted on
+    driver detach;
+  - Drop MODULE_ALIAS;
+  - Code formatting, such as alignment.
+
+Thanks Andy for your comments.
+
+Changes since V4:
+- patch (1/4)
+  - Drop unneeded headers: of.h;
+  - xxx_props -> xxx_properties.
+- patch (2/4)
+  - Add interrupt headers to fix syntax error found by Rob.
+- patch (3/4)
+  - Drop atmoic loop in ls2x_i2c_master_xfer(), I have tested it on the
+    appropriate environment with no problems;
+  - Define the corresponding bits in I2C_LS2X_CTR to avoid magic
+    numbers;
+  - dev_get_drvdata() is used to get ls2x_i2c_priv() in
+    ls2x_i2c_suspend();
+  - i2c_add_adapter() -> devm_i2c_add_adapter();
+  - SET_SYSTEM_SLEEP_PM_OPS() -> DEFINE_RUNTIME_DEV_PM_OPS();
+  - Code formatting, such as alignment.
+
+    Details: https://lore.kernel.org/all/Y4e%2F6KewuHjAluSZ@smile.fi.intel.com/
+
+Changes since V3:
+- Addressed all review comments from v3
+  - Change the changelog text to make it clearer (1/5);
+  - Fix some minor bugs, such as formatting issues (2/5);
+  - Fix some formatting issues (3/5);
+  - Deep refactoring of code for clarity (4/5).
+     Details: https://lore.kernel.org/all/Y4S2cnlAm3YYvZ8E@smile.fi.intel.com/
+
+Thanks to all for their suggestions.
+
+Changes since V2:
+- Addressed all review comments from v2
+  - Drop of_match_ptr() in i2c-gpio to avoid potential unused warnings
+    (1/5);
+  - Introduce i2c_gpio_get_props() function as the generic interface
+    to get i2c-gpio props from DT or ACPI table (2/5);
+  - Refact ls2x i2c code, similar to removing excessive goto tags (4/5).
+
+Thanks to Andy and Mika for their suggestions.
+
+Changes since V1:
+- Remove the function of getting the static i2c bus number from ACPI "_UID";
+- Fix build warning from kernel test robot.
+
+Binbin Zhou (4):
+  i2c: gpio: Add support on ACPI-based system
+  dt-bindings: i2c: add Loongson LS2X I2C controller
+  i2c: ls2x: Add driver for Loongson-2K/LS7A I2C controller
+  LoongArch: Enable LS2X I2C in loongson3_defconfig
+
+ .../bindings/i2c/loongson,ls2x-i2c.yaml       |  51 +++
+ arch/loongarch/configs/loongson3_defconfig    |   1 +
+ drivers/i2c/busses/Kconfig                    |  11 +
+ drivers/i2c/busses/Makefile                   |   1 +
+ drivers/i2c/busses/i2c-gpio.c                 |  28 +-
+ drivers/i2c/busses/i2c-ls2x.c                 | 366 ++++++++++++++++++
+ 6 files changed, 448 insertions(+), 10 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml
+ create mode 100644 drivers/i2c/busses/i2c-ls2x.c
+
+-- 
+2.31.1
 
