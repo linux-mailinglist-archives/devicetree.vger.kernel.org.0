@@ -2,61 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B2F4654A96
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 02:56:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0D12654A9E
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 03:00:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235724AbiLWB4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 20:56:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51126 "EHLO
+        id S235759AbiLWCAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 21:00:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229627AbiLWB4E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 20:56:04 -0500
+        with ESMTP id S229627AbiLWCAR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 21:00:17 -0500
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F85E1DA44;
-        Thu, 22 Dec 2022 17:56:04 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14AAEC75E;
+        Thu, 22 Dec 2022 18:00:17 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D8F8C61D01;
-        Fri, 23 Dec 2022 01:56:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCC2BC433D2;
-        Fri, 23 Dec 2022 01:56:02 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A45E661E08;
+        Fri, 23 Dec 2022 02:00:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0939AC433F0;
+        Fri, 23 Dec 2022 02:00:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671760563;
-        bh=QLHOFIxMAaRZFbEhphTQh3d6GJiGwh8Gyzy4bVbVsNc=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=Aakj2HGEDAo9GujVyn+9yRJKOH/pSg6B/RLNqUkHchRlHjypvTy689mSkFbCftpqU
-         eSjkBnql2x3fscmbELyMlRdwYvta2hnYIia+pjt3ocKAnFZ0J2jCRzkUEDJeBEeS41
-         aE9b2/Yfl3XauXIknrJnso2zC4I3hsdvyEhjF2XvPhajLFRsJOkt4tNB9dodqD2z/e
-         bLlet89UhhoIbKDRqS1aNFyutPVoMoBAYYGyeuH/o4YsMky7+mIpN1FaXE/HnPPFDH
-         /QVz7YB5dOdZc1S7LWstWEFmEmKj12T1sr4M1EkqL1cX3AB8ohtPEIGCTYO77YcLur
-         QJPsIbxCv1klg==
-Date:   Thu, 22 Dec 2022 17:56:01 -0800
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Michael Ellerman <mpe@ellerman.id.au>
-Cc:     Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        Sean Anderson <sean.anderson@seco.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH net v2] powerpc: dts: t208x: Disable 10G on MAC1 and
- MAC2
-Message-ID: <20221222175601.3cf5883e@kernel.org>
-In-Reply-To: <87o7rvhv8j.fsf@mpe.ellerman.id.au>
-References: <20221216172937.2960054-1-sean.anderson@seco.com>
-        <VI1PR04MB5807014739D89583FF87D43EF2E59@VI1PR04MB5807.eurprd04.prod.outlook.com>
-        <VI1PR04MB5807E65FA99FE10D53804445F2E89@VI1PR04MB5807.eurprd04.prod.outlook.com>
-        <20221222110843.022b07b9@kernel.org>
-        <87o7rvhv8j.fsf@mpe.ellerman.id.au>
+        s=k20201202; t=1671760816;
+        bh=fwvSWB2s9SlQYbz2JB6wiQ2msaLPGTMWu5lU92DYC+E=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=btHwIS4z9bWPNKT/itvQrcnefxYcnYFFv9qBBqDBUODtO65DqipfHJY3Ju8IxftQf
+         qOOUE6EgQamu+0KE+UM0z+UuK9L8ODhufAiGUYnv59Y4NJsIXYCSGSsxo3q+brqQWh
+         vE2ECsxds1R2GvYQoOwL+lk0IiqoUrwpDCOXAclbrIC8M676lhpH+eg/TVKiD2XqBG
+         Lujz/0WF5VAsmJV5ujV9wtJQP0ygb03OAz5csnAGpjMCO4fd/yeK8R7KMU61N5x3IY
+         wBoFnzbOnqjDyft7f+DxUC7nIz9BJmQ/TcLE+PepokxANS3S3pfYvdCJIKQbP4d/uV
+         n/ZPNDYKmrOrw==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id E05A9C5C7C4;
+        Fri, 23 Dec 2022 02:00:15 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net v2] powerpc: dts: t208x: Disable 10G on MAC1 and MAC2
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <167176081591.4251.11693761416005779690.git-patchwork-notify@kernel.org>
+Date:   Fri, 23 Dec 2022 02:00:15 +0000
+References: <20221216172937.2960054-1-sean.anderson@seco.com>
+In-Reply-To: <20221216172937.2960054-1-sean.anderson@seco.com>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     davem@davemloft.net, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        christophe.leroy@csgroup.eu, npiggin@gmail.com, mpe@ellerman.id.au,
+        linuxppc-dev@lists.ozlabs.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-kernel@vger.kernel.org, camelia.groza@nxp.com
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -66,8 +58,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 23 Dec 2022 10:30:36 +1100 Michael Ellerman wrote:
-> The commit it Fixes went in via the networking tree, so I think it would
-> make sense for you to take this also via the networking tree.
+Hello:
 
-Roger that, thanks for confirming.
+This patch was applied to netdev/net.git (master)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Fri, 16 Dec 2022 12:29:37 -0500 you wrote:
+> There aren't enough resources to run these ports at 10G speeds. Disable
+> 10G for these ports, reverting to the previous speed.
+> 
+> Fixes: 36926a7d70c2 ("powerpc: dts: t208x: Mark MAC1 and MAC2 as 10G")
+> Reported-by: Camelia Alexandra Groza <camelia.groza@nxp.com>
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> 
+> [...]
+
+Here is the summary with links:
+  - [net,v2] powerpc: dts: t208x: Disable 10G on MAC1 and MAC2
+    https://git.kernel.org/netdev/net/c/8d8bee13ae9e
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
