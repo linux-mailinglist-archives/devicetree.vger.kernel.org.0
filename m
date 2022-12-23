@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6C7D6550DE
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 14:22:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF95C6550E0
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 14:22:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236340AbiLWNWH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 08:22:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37654 "EHLO
+        id S236307AbiLWNW0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 08:22:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236361AbiLWNVj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 08:21:39 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9C3F15F3D
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 05:21:25 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id z26so7076892lfu.8
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 05:21:25 -0800 (PST)
+        with ESMTP id S236323AbiLWNWF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 08:22:05 -0500
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD5EF3EAC6
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 05:22:03 -0800 (PST)
+Received: by mail-lj1-x229.google.com with SMTP id s10so5028870ljg.1
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 05:22:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=gVhYVj9t0TmO06QRMvsI7c4UDqWdwIO+1a1jibPQ4AY=;
-        b=ZvanVxX+F7wVBwyYwCDbg/57StkMJRP4S/FLgziPsHIv9uizGNIZd6yfvupQnvCQuZ
-         cwoY2O+tpZ5NF3UYmpsC1KyH448Xvv1pUcTdDXWFg0DOEtRK9e0X61JpgINu+z1Iz1Ud
-         WWiDe3yTidIu6u475jt71JXRAmvsS7p5f69AgeiLJV4vXDg5EinHn8hBuamwglIDcZbt
-         bwDjacDTD9dCO3azbieo6ncQzqS3zagxt/eBYii/RmoqRi56obm2q5eVAYNaAzkw0807
-         kdEajfegOnJWN3wedyWZJR+U2f2a/nvhZrJo0vCoRGDxhv7JZ5gz5kMyYbGP7aNz6lGg
-         VpSg==
+        bh=Jdj4vmGyncl7sIQB4NLGtQlaGlrhat1ERXM9DJwYFsA=;
+        b=Nn6vZEwmuZRIRijMjr3r1ECwBxSbFdhYvxhGPT1PKgSLpIKf1dORGzoo3OMtsLkACM
+         KzpI9oKWqoAIbLoBIocnXWEk8Rk7oLDtrqkIwZSK4eDY2X39LRke6P+2JfiVJOBi6jBH
+         Hn6QJQ9gbY6xqW4/TJazhvhfdEzZMD7qakEMkB7yt9ytkHQcQyw6vsx0VXyXhP9lWh8J
+         GBo84yJ/OIP0RPu9eeGlD6SF4pKU96vpZfytcGGzwlsdrqcSB6DVBQxvzir3UK6G+pGh
+         9CUrKDvNYqeGGbkUnCuZSj5qnYxf/fDrFrr1Aeg1I8ppTHdeSzrAyTKg8ibOjG5YATSl
+         4a1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=gVhYVj9t0TmO06QRMvsI7c4UDqWdwIO+1a1jibPQ4AY=;
-        b=ETss/3A04kVDK2uqTG4f0lzEtocB0/QkgfBG6pLHImnT5QKCFNmURz2y9RUAYN82YS
-         HdLIcgzAG79AuQMYphZpP1B2uvVZ3vqm/aV0Joc7aB/jxGGUxtf3CARElxbjRxwurWea
-         pVldRjSwModpv0qFk8R1ES24Bm9PWGHAwV43Vzlj0gwf0MmUxow5TL0C/MVxnqbTmCcd
-         xkUzwEfg65n4+wcWX2tc3PBphTldkN+AKfR3ucpPYVxz5xlirCdNsZ1sIzTpSwVtDqay
-         fUXwpflSbaqtescXtZUSCFarjXI8kiDg2gKU8H7bXniQ+diW8b5t3FNB7jKI19r2r7F/
-         sKCg==
-X-Gm-Message-State: AFqh2koi0Ovd413NdyQID/tyRXHjJC5BBXO7CI8L1ufdG4IgrcsenQCj
-        EifwzlQep2vkHxyVvN4IMXfYPw==
-X-Google-Smtp-Source: AMrXdXsn9wGVN8vb2r8vKVAVBleq7OwhCbadpKhwLM/z1nyaN2UMeps0tffZCh7rqqNddDNnoOp5kw==
-X-Received: by 2002:ac2:48a5:0:b0:4b6:ed1d:38e9 with SMTP id u5-20020ac248a5000000b004b6ed1d38e9mr3616136lfg.64.1671801683968;
-        Fri, 23 Dec 2022 05:21:23 -0800 (PST)
+        bh=Jdj4vmGyncl7sIQB4NLGtQlaGlrhat1ERXM9DJwYFsA=;
+        b=3EzuSAt1D1oBqTRL0ut16m8DU0bUFnZXQJ6m5dQzGBXT4zqWgTYbUr94l+E0PRhfKj
+         mYF5xJ4DL2EkKwUCtfIp17CtQq7f5hat3nDy/8MdtyZ7CBriFZ6rL/RC8dpY0AraE+1O
+         +x5mKe7AtLNzcy2U/o3qgI7ZvLyrtZAJeyC1WGckJJZe464FfQ+azBHwySCdaTVuA/WZ
+         h+fczAaf+y1JVKd5goNmsdrvaAx+H+AU9KtUPddHerqOI8F7YtLXcFM7CPvncU5N/Eve
+         6dt1HAf/3Swv6Eph12V9PeAoweWcVPz897g8xuyjzqJTHwjXo1nV4LwN2Q2kXDZ2mWNH
+         ce3Q==
+X-Gm-Message-State: AFqh2kqp6u+8qJ9FCthPE2/zmbQTpuRhEi4u3auSHJ76ivNHMD91uhR7
+        iiKuOGBQE5pBjjwV/bYJtboZ4w==
+X-Google-Smtp-Source: AMrXdXt1uNGt9tJ6XLlq+A5ZvETbjua0KwGLpqYP2YWjpkpIIcp/1bXCY5y1n9W8DeR1uKleGZruPA==
+X-Received: by 2002:a2e:4949:0:b0:27a:1ea8:185e with SMTP id b9-20020a2e4949000000b0027a1ea8185emr2497855ljd.7.1671801721933;
+        Fri, 23 Dec 2022 05:22:01 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id z11-20020a056512370b00b0049c29389b98sm518929lfr.151.2022.12.23.05.21.23
+        by smtp.gmail.com with ESMTPSA id f3-20020a2eb5a3000000b00279e0b8bae7sm412007ljn.65.2022.12.23.05.22.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Dec 2022 05:21:23 -0800 (PST)
+        Fri, 23 Dec 2022 05:22:01 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -55,49 +55,90 @@ To:     Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rao Mandadapu <quic_srivasam@quicinc.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Ratna Deepthi Kudaravalli <quic_rkudarav@quicinc.com>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: qcom: sm8450: correct Soundwire wakeup interrupt name
-Date:   Fri, 23 Dec 2022 14:21:21 +0100
-Message-Id: <20221223132121.81130-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: soundwire: qcom,soundwire: correct sizes related to number of ports
+Date:   Fri, 23 Dec 2022 14:21:59 +0100
+Message-Id: <20221223132159.81211-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The bindings expect second Soundwire interrupt to be "wakeup" (Linux
-driver takes by index):
+There are several properties depending on number of ports.  Some of them
+had maximum limit of 5 and some of 8.  SM8450 AudioReach comes with 8
+ports, so fix the limits:
 
-  sm8450-hdk.dtb: soundwire-controller@33b0000: interrupt-names:1: 'wakeup' was expected
+  sm8450-sony-xperia-nagara-pdx224.dtb: soundwire-controller@3250000: qcom,ports-word-length: 'oneOf' conditional failed, one must be fixed:
+    [[255, 255, 255, 255, 255, 255, 255, 255]] is too short
+    [255, 255, 255, 255, 255, 255, 255, 255] is too long
 
-Fixes: 14341e76dbc7 ("arm64: dts: qcom: sm8450: add Soundwire and LPASS")
+Fixes: febc50b82bc9 ("dt-bindings: soundwire: Convert text bindings to DT Schema")
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../devicetree/bindings/soundwire/qcom,soundwire.yaml  | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 570475040d95..eb3318516243 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -2263,7 +2263,7 @@ swr2: soundwire-controller@33b0000 {
- 			reg = <0 0x33b0000 0 0x2000>;
- 			interrupts-extended = <&intc GIC_SPI 496 IRQ_TYPE_LEVEL_HIGH>,
- 					      <&intc GIC_SPI 520 IRQ_TYPE_LEVEL_HIGH>;
--			interrupt-names = "core", "wake";
-+			interrupt-names = "core", "wakeup";
+diff --git a/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
+index bcbfa71536cd..3efdc192ab01 100644
+--- a/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
++++ b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
+@@ -80,7 +80,7 @@ properties:
+       or applicable for the respective data port.
+       More info in MIPI Alliance SoundWire 1.0 Specifications.
+     minItems: 3
+-    maxItems: 5
++    maxItems: 8
  
- 			clocks = <&vamacro>;
- 			clock-names = "iface";
+   qcom,ports-sinterval-low:
+     $ref: /schemas/types.yaml#/definitions/uint8-array
+@@ -124,7 +124,7 @@ properties:
+       or applicable for the respective data port.
+       More info in MIPI Alliance SoundWire 1.0 Specifications.
+     minItems: 3
+-    maxItems: 5
++    maxItems: 8
+ 
+   qcom,ports-block-pack-mode:
+     $ref: /schemas/types.yaml#/definitions/uint8-array
+@@ -154,7 +154,7 @@ properties:
+       or applicable for the respective data port.
+       More info in MIPI Alliance SoundWire 1.0 Specifications.
+     minItems: 3
+-    maxItems: 5
++    maxItems: 8
+     items:
+       oneOf:
+         - minimum: 0
+@@ -171,7 +171,7 @@ properties:
+       or applicable for the respective data port.
+       More info in MIPI Alliance SoundWire 1.0 Specifications.
+     minItems: 3
+-    maxItems: 5
++    maxItems: 8
+     items:
+       oneOf:
+         - minimum: 0
+@@ -187,7 +187,7 @@ properties:
+       or applicable for the respective data port.
+       More info in MIPI Alliance SoundWire 1.0 Specifications.
+     minItems: 3
+-    maxItems: 5
++    maxItems: 8
+     items:
+       oneOf:
+         - minimum: 0
 -- 
 2.34.1
 
