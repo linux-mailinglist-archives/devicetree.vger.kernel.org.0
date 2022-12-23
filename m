@@ -2,34 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B27165530A
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 18:05:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 134C665530C
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 18:05:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230078AbiLWRFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 12:05:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57900 "EHLO
+        id S232051AbiLWRFM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 12:05:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229658AbiLWRE6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 12:04:58 -0500
+        with ESMTP id S229658AbiLWRFJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 12:05:09 -0500
 Received: from smtp-out-12.comm2000.it (smtp-out-12.comm2000.it [212.97.32.82])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E355317E20
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 09:04:57 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 312F217E20
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 09:05:09 -0800 (PST)
 Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
         (Authenticated sender: francesco@dolcini.it)
-        by smtp-out-12.comm2000.it (Postfix) with ESMTPSA id 5B87EBA1B6F;
-        Fri, 23 Dec 2022 18:04:47 +0100 (CET)
+        by smtp-out-12.comm2000.it (Postfix) with ESMTPSA id 8A379BA3234;
+        Fri, 23 Dec 2022 18:04:56 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailserver.it;
-        s=mailsrv; t=1671815096;
-        bh=/v0ZzyeLbg7Wkvx4I0D+61INQZAwyhfMUVclgVe+PYA=;
+        s=mailsrv; t=1671815107;
+        bh=fFMm4Z9Jn9GmTLFlEO5rpMTYF/7g0DE4+G2N/Ha2nEs=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=N9gGz1k+BzKiJrKgHd4u2DYniK1Pnu2rRQLot0EoWxY3785omL/voOcQuSgRaisvt
-         7GPq/VSNlypVbqJyY384kkbgzCuYyDbj0eF7KY1X7i3VMI2/Qu7L+2BGbBgQNiPy5v
-         nj/Ds5ibWBp0joXvfGGx6cipUusu1AhOE5ZymWBiyAfy0dW956nrLePuzh6knIw3IM
-         albX3XbnW2K+EHSVk9rPu23AOhTpsaE78idoV+kowIMKXn3MAmSVO1nLnzlKaAopDM
-         xy+ubljDfo8MbNV9R2VNJq4Xi8bXi+38Fa/XkssCd9A6e3sXm2BdpVDfdhB02jicuj
-         YprxvQzhqZO4w==
+        b=eBNdMukwTGGCj16Ui9T+1ZhPjGYqMZQ8BNhmbhAi5q3cqwZyCSwTEnxk3DMf01blG
+         XCeoYNgrsC3QAHEFNA+N2CNkQf4a0E5SL/uPkJjG90++c1dHohvrnoFjCrT5zP7r7n
+         F+F7QLcefFpz9W3CKo1LEhOwdMg/cNdaApmbU6nWdJEIOn1ziLxbEiKkABVNwBZ1I1
+         9pAVR4zEdNzqov4ndrJ6+CwORd90zfzSbNO1ezs0u4AuOez3fCeRhhS6hJ8p//HYZK
+         6NablPAqb15DaqnXSRoycU1sRrZ+VLYpzXLbQHpKnWhrayJTb/8hZBbq73EbxeFLA9
+         fohBhg9+G59ww==
 From:   Francesco Dolcini <francesco@dolcini.it>
 To:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org
 Cc:     Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
@@ -40,11 +40,10 @@ Cc:     Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
         Jaroslav Kysela <perex@perex.cz>,
         Takashi Iwai <tiwai@suse.com>,
         Benjamin Marty <info@benjaminmarty.ch>, kchsu0@nuvoton.com,
-        wtli@nuvoton.com, David Lin <CTLIN0@nuvoton.com>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: [PATCH v1 2/3] ASoC: dt-bindings: nau8822: add nuvoton,spk-btl property to dtschema
-Date:   Fri, 23 Dec 2022 18:04:03 +0100
-Message-Id: <20221223170404.210603-3-francesco@dolcini.it>
+        wtli@nuvoton.com, Francesco Dolcini <francesco.dolcini@toradex.com>
+Subject: [PATCH v1 3/3] ASoC: nau8822: add speaker Bridge Tied Output configuration
+Date:   Fri, 23 Dec 2022 18:04:04 +0100
+Message-Id: <20221223170404.210603-4-francesco@dolcini.it>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221223170404.210603-1-francesco@dolcini.it>
 References: <20221223170404.210603-1-francesco@dolcini.it>
@@ -61,33 +60,63 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
 
-Add nuvoton,spk-btl to configure the two loudspeaker outputs
-as Bridge Tied Load
+Allow configuring the two loudspeaker outputs as a
+single Bridge Tied Load output getting higher output power.
 
-Cc: David Lin <CTLIN0@nuvoton.com>
 Signed-off-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
 Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 ---
- .../devicetree/bindings/sound/nuvoton,nau8822.yaml          | 6 ++++++
- 1 file changed, 6 insertions(+)
+ sound/soc/codecs/nau8822.c | 9 +++++++++
+ sound/soc/codecs/nau8822.h | 9 +++++++++
+ 2 files changed, 18 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/sound/nuvoton,nau8822.yaml b/Documentation/devicetree/bindings/sound/nuvoton,nau8822.yaml
-index 10464170a98f..700c57698133 100644
---- a/Documentation/devicetree/bindings/sound/nuvoton,nau8822.yaml
-+++ b/Documentation/devicetree/bindings/sound/nuvoton,nau8822.yaml
-@@ -21,6 +21,12 @@ properties:
-   reg:
-     maxItems: 1
+diff --git a/sound/soc/codecs/nau8822.c b/sound/soc/codecs/nau8822.c
+index 1aef281a9972..d5006d8de639 100644
+--- a/sound/soc/codecs/nau8822.c
++++ b/sound/soc/codecs/nau8822.c
+@@ -1056,6 +1056,7 @@ static const int update_reg[] = {
+ static int nau8822_probe(struct snd_soc_component *component)
+ {
+ 	int i;
++	struct device_node *of_node = component->dev->of_node;
  
-+  nuvoton,spk-btl:
-+    description:
-+      If set, configure the two loudspeaker outputs as a Bridge Tied Load output
-+      to drive a high power external loudspeaker.
-+    $ref: /schemas/types.yaml#/definitions/flag
+ 	/*
+ 	 * Set the update bit in all registers, that have one. This way all
+@@ -1066,6 +1067,14 @@ static int nau8822_probe(struct snd_soc_component *component)
+ 		snd_soc_component_update_bits(component,
+ 			update_reg[i], 0x100, 0x100);
+ 
++	/* Check property to configure the two loudspeaker outputs as
++	 * a single Bridge Tied Load output
++	 */
++	if (of_property_read_bool(of_node, "nuvoton,spk-btl"))
++		snd_soc_component_update_bits(component,
++					      NAU8822_REG_RIGHT_SPEAKER_CONTROL,
++					      NAU8822_RSUBBYP, NAU8822_RSUBBYP);
 +
- additionalProperties: false
+ 	return 0;
+ }
  
- required:
+diff --git a/sound/soc/codecs/nau8822.h b/sound/soc/codecs/nau8822.h
+index 547ec057f853..646f6bb64bc5 100644
+--- a/sound/soc/codecs/nau8822.h
++++ b/sound/soc/codecs/nau8822.h
+@@ -187,6 +187,15 @@
+ /* NAU8822_REG_PLL_K3 (0x27) */
+ #define NAU8822_PLLK3_MASK			0x1FF
+ 
++/* NAU8822_REG_RIGHT_SPEAKER_CONTROL (0x2B) */
++#define NAU8822_RMIXMUT				0x20
++#define NAU8822_RSUBBYP				0x10
++
++#define NAU8822_RAUXRSUBG_SFT			1
++#define NAU8822_RAUXRSUBG_MASK			0x0E
++
++#define NAU8822_RAUXSMUT			0x01
++
+ /* System Clock Source */
+ enum {
+ 	NAU8822_CLK_MCLK,
 -- 
 2.25.1
 
