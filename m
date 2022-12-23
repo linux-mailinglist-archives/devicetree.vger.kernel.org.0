@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4C5B654E33
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 10:14:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49DEC654E35
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 10:16:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236086AbiLWJOG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 04:14:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47800 "EHLO
+        id S235982AbiLWJQP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 04:16:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235897AbiLWJOF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 04:14:05 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 864A220BC1
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 01:14:04 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id cf42so6378915lfb.1
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 01:14:04 -0800 (PST)
+        with ESMTP id S235673AbiLWJQN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 04:16:13 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E89B836D54
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 01:16:11 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id o6so6357064lfi.5
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 01:16:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ce317vF268IfvnfP9+p1VVXhxTBGucn4dlvIXgjdsZU=;
-        b=lbcLMP6Q0HWuQk3H+EUrd087gzWF425/OhsFFMYt4hGdRdOUV6SaUQNRZLuSlCTujO
-         4GhCLyhanmjjP2Avp9EBcI7tdkVUqbMns1YcHUeZZEVO3t/91c+NG5QX2mYaXiPXSqt1
-         In8EMzGzBFt0nWOOEL18D5yOD07DhJbYXiDNwDDJI91NsAq1escZVkv258nOteTgh2EV
-         WBngyAjP6aDsDZ2mGOcKEJcbKVcwv/BRrncxVuk1dke6OFxey+G+LocDd65zE9x+HdxI
-         BLWI/m/D1joMjV8cCnpDB4tcKcMr+vJ4GBS/OabCU148XwTIv7YP110nGkDBoLgUzzy4
-         1B/Q==
+        bh=BAXn7WRycNRH5XCyQmakEK/X0wSaThgtq8QydfTvChg=;
+        b=FpNsM2s7PSNkuBlNl/27Jb0pSGF8PYGWUUZJQ1sLpfldxx2E1MElUJkE4cjABD3rc6
+         JIxqsRshWSzl+/LBTV934JwGkh+S4oyiTenmtbyYDlHMG5zQMeYaFnjwfh1JmJDzDTUd
+         Gl8d4WO3j1LP6Yy3prEzV5xp0UfeVmSJ4+y6eE0ovZksBvSvvfObricrz40MfGj1rfjy
+         mom3fllbtFaP6cagYc/ihRk66PAxMz6CwS29y76GopzXLSMmdEtXAgMHIbTaa5FKh6ou
+         31dNIdjJShENRcDs2URxIWSFqRfFz5NEAFPlf6WWETHI1QtJ/ZCTaSTZktKkHSo71Cbf
+         0/Mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ce317vF268IfvnfP9+p1VVXhxTBGucn4dlvIXgjdsZU=;
-        b=pZ8RnYhUyvS0ZiB/EAXLLNcMIK6SvUo80km4Ahpf5ijZ4h1vPRL0bac1gDUZ0lwlYJ
-         c2LVUrRgGUW2ddM5iZRZ0DGsPI+ziDkmh5OH/+ZzOsNYVPlF4LAx0ORH4d/fymn6wCW5
-         oZ/0EHeszEpvT0Q6DBkPtNh6+GffwSW5uXc8+PGZp7pJqBgrH1VuSQBHpW2UFpAy2XcV
-         11UT6vHwgBS1Cc54bmHb1XNtjCcwwj6Rm5fRz1v9t3IbMK8YEzm1SpPICNilfIMnpgeW
-         KmaswoZM8O19oBF6+tOdhyhedJuW6Yyo5p4WhXo1XqgM6vPP/USWd3WggilV2Z2mmoFH
-         M4Nw==
-X-Gm-Message-State: AFqh2krdDiJtT81Fg31BHMSrkP+IipX7z9p49X5k4ajuPFHglCwKc5ub
-        ffAID11E0vOnFCA12Be9CrHk0A==
-X-Google-Smtp-Source: AMrXdXuvuxfOoh7btFzaHq0D7UEX6Vdsw/DhoOg+jC0H2+ELHxHS4cMpuHtdiGRPa7224JaeRiKhkw==
-X-Received: by 2002:a05:6512:70a:b0:4c0:4214:cd2c with SMTP id b10-20020a056512070a00b004c04214cd2cmr2211602lfs.43.1671786842930;
-        Fri, 23 Dec 2022 01:14:02 -0800 (PST)
+        bh=BAXn7WRycNRH5XCyQmakEK/X0wSaThgtq8QydfTvChg=;
+        b=Njd1aCmdtuzo9jG1cFAQUYzRCggOh6YpiaO/+d+TToEVuA2rNYlhDfXAbpoHaKHa8O
+         wn9Ikuxddn3t1Yr/+CpSNutGkyzaAflKtPTMtFnoXNPKSXoyMa7Ps6P1VnOUxUMmKE2D
+         SjZ/viMy4L/IeFzsnCtpn5jW9j8IGMfPZVaoQiqbRGWtaN6SowNuC+DijW8Kb4UjSBGo
+         zT8wEd/6r5OFYjfBY0p9RNQjTRNUAFO1jY2tsKrtYN9F2n2WRVZIN2N24LiQ176XEq1k
+         eC/dvjv1VxuY+N7TsNKMGRbRqPyHkA1yDUJq2eIRv5I8QQqgQEFtQjPk7adDlWIjwxyb
+         zXQA==
+X-Gm-Message-State: AFqh2kps5zAqx1RCi7+JnIqJNoAGSRFqMxaZOheEHGUknPSrp1SKs9Au
+        zF4IpVyHNcht4F/rH1QCbbN73w==
+X-Google-Smtp-Source: AMrXdXs3vf/tFkUoxRpr8jN1nvzAYJ0GA8orgeu0gdH9DNTsNxZIdi2j+AfccZfXPnQnqIf7uLmkxA==
+X-Received: by 2002:a05:6512:2213:b0:4bb:7028:f6b6 with SMTP id h19-20020a056512221300b004bb7028f6b6mr3188013lfu.49.1671786970274;
+        Fri, 23 Dec 2022 01:16:10 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id s16-20020a056512315000b0049876c1bb24sm440414lfi.225.2022.12.23.01.14.01
+        by smtp.gmail.com with ESMTPSA id p23-20020a056512139700b004b577085688sm449822lfa.82.2022.12.23.01.16.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Dec 2022 01:14:02 -0800 (PST)
-Message-ID: <9b435fb2-9ba9-e985-e132-e10f793ca659@linaro.org>
-Date:   Fri, 23 Dec 2022 10:14:01 +0100
+        Fri, 23 Dec 2022 01:16:09 -0800 (PST)
+Message-ID: <f4a4b090-0b13-1597-c080-b1cb36bc9571@linaro.org>
+Date:   Fri, 23 Dec 2022 10:16:08 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH 5/7] arm64: dts: qcom: sc7280: audioreach: Add CGCR reset
- property
+Subject: Re: [PATCH 6/7] arm64: dts: qcom: sc7280: audioreach: Update VA/RX/TX
+ macro clock nodes
 Content-Language: en-US
 To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
         agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
@@ -65,9 +65,9 @@ To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
         dianders@chromium.org, swboyd@chromium.org, judyhsiao@chromium.org,
         konrad.dybcio@linaro.org
 References: <1671702170-24781-1-git-send-email-quic_srivasam@quicinc.com>
- <1671702170-24781-6-git-send-email-quic_srivasam@quicinc.com>
+ <1671702170-24781-7-git-send-email-quic_srivasam@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1671702170-24781-6-git-send-email-quic_srivasam@quicinc.com>
+In-Reply-To: <1671702170-24781-7-git-send-email-quic_srivasam@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,40 +80,53 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 22/12/2022 10:42, Srinivasa Rao Mandadapu wrote:
-> Add CGCR register reset property for both RX and TX soundwire
-> slave devices.
+> Update VA, RX and TX macro and lpass_tlmm clock properties and
+> enable them.
+
+No. You need to describe why you are doing. Not just "Update".
+Everything is an "update".
+
 > 
 > Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
 > Tested-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
 > ---
-> This patch depends on:
->     -- https://lore.kernel.org/linux-clk/1671618061-6329-1-git-send-email-quic_srivasam@quicinc.com/
-> 
->  .../arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi | 9 +++++++++
->  1 file changed, 9 insertions(+)
+>  .../qcom/sc7280-herobrine-audioreach-wcd9385.dtsi  | 43 ++++++++++++++++++++++
+>  1 file changed, 43 insertions(+)
 > 
 > diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
-> index a750f05..ce5d69e 100644
+> index ce5d69e..a0061ef 100644
 > --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
 > +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
-> @@ -217,3 +217,12 @@
->  		};
->  	};
+> @@ -119,6 +119,49 @@
+>  	status = "okay";
 >  };
+>  
+> +&lpass_tlmm {
+> +	clocks = <&q6prmcc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +		 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
 > +
-> +&swr0 {
-> +	resets = <&lpasscc LPASS_AUDIO_SWR_RX_CGCR>;
+> +	clock-names = "core", "audio";
+> +	reg = <0 0x033c0000 0x0 0x20000>,
+> +	      <0 0x03550000 0x0 0xa100>;
+
+1. Why are you doing it?
+2. Why here, not in DTSI?
+3. Does it pass dtbs_check?
+
 > +};
 > +
-> +&swr1 {
-
-Why here not in SoC DTSI?
-
-> +	resets = <&lpasscc LPASS_AUDIO_SWR_TX_CGCR>;
-> +};
+> +&lpass_va_macro {
+> +	clocks = <&q6prmcc LPASS_CLK_ID_TX_CORE_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +		 <&q6prmcc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +		 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
 > +
+> +	clock-names = "mclk", "macro", "dcodec";
+> +	power-domain-names = "null";
 
-Are you adding stray new lines?
+???
+
+This code looks like not taken from mainline, but some odd tree. Please
+work on mainline. Do you see anywhere names called "null"?
 
 Best regards,
 Krzysztof
