@@ -2,66 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F018654AA5
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 03:04:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69B5D654AAB
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 03:10:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229930AbiLWCEa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 21:04:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54808 "EHLO
+        id S235573AbiLWCKd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 21:10:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229603AbiLWCE3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 21:04:29 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74B6B1EAE0;
-        Thu, 22 Dec 2022 18:04:24 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 0459F24E24A;
-        Fri, 23 Dec 2022 10:04:17 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 23 Dec
- 2022 10:04:17 +0800
-Received: from [192.168.125.65] (183.27.97.120) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 23 Dec
- 2022 10:04:16 +0800
-Message-ID: <dfe1ea7a-f3b3-4c79-787e-6fa0d3b08ca0@starfivetech.com>
-Date:   Fri, 23 Dec 2022 10:05:19 +0800
+        with ESMTP id S229603AbiLWCKb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 21:10:31 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3ECC7205EE
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 18:10:30 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id z10so3370119wrh.10
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 18:10:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=V61v7o2qMnueojIDHZPqsNgrVDte2LSI7QH2SkLkZNo=;
+        b=iSkKnGD11cub4SDAg2GZe0WUULRc3g0u1XlENGOVVCwXebdReZVkHL1WLa6m4/otJA
+         w9JNwaVAovzNI0loDgLycfSkFCQ64rDkV0hG6gxxpg4RJLojaG/wQdAh0vs82G54DJS9
+         tTaxj0WirSFjEhx2fUepXewVtEwugtgojdo3Eo/Fm7a6f6TQ6z5c9q269Ds9APxKbdiA
+         LGwZ+Ubor/WIzM9FLExydbBg/GTK6vV+CfFeFbB/tA4CKpnOGSjlLpSjhZBUpEAVM2xI
+         epScqBw9fsgNkTFE+GHOLhp5k1ukiqjan+q107Wi0ip0Qc11hQL0CemSbpsCIc+67FsJ
+         fpoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=V61v7o2qMnueojIDHZPqsNgrVDte2LSI7QH2SkLkZNo=;
+        b=GNH6GOwsDUyQyFKE1uCl2LDfS/WOrw+0NiaPsdW4NW6e5RXW0Y9fZClDLB4J9anjWI
+         dX6AYkke4q+9jhHU3VATxzGchDgJTZZ9PemtmueA/0vDMK/z3zXe5nwLF41u8CEOXP+A
+         JEeMn2QiuB8id4q7idl6IAvHLBKqWIK3Xn3teqa17Dh8iBv5p7z51BmC+BxX6ipTq858
+         +dqEbZiZ5Erik1UN/OAelec4GGuHsVEHJtLgX+rzmBDRR+yeWTb5wTZeequMAGuB1klN
+         MaPCdLiPj391oHuMtr4tRAjOfaOO/2xrlQmqDiplwjR/DJIc/dJ2+qZnVX0u8hA92i5X
+         dQeA==
+X-Gm-Message-State: AFqh2ko4aSmK44Tk2z9ZJAlGz/jYKzUQTE1/v549c4CUMpeeTHf0ldEj
+        mjJfVeoZXEOUqHwj4dFGAxKtuA==
+X-Google-Smtp-Source: AMrXdXsOmXW4NSyHwF5rO4+P2Il6blqj62PbuO24b/0DefcbmCMMhsQqCKUbAo7i8e/oXYA2gIfYOg==
+X-Received: by 2002:a05:6000:16c4:b0:242:5083:abea with SMTP id h4-20020a05600016c400b002425083abeamr6224322wrf.69.1671761428736;
+        Thu, 22 Dec 2022 18:10:28 -0800 (PST)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id j11-20020a5d452b000000b0022cc0a2cbecsm1849725wra.15.2022.12.22.18.10.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Dec 2022 18:10:28 -0800 (PST)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Cc:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
+        dmitry.baryshkov@linaro.org, sean@poorly.run, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org, dianders@chromium.org,
+        david@ixit.cz, krzysztof.kozlowski+dt@linaro.org,
+        swboyd@chromium.org, konrad.dybcio@somainline.org,
+        agross@kernel.org, andersson@kernel.org,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        bryan.odonoghue@linaro.org
+Subject: [PATCH v6 00/18] mdss-dsi-ctrl binding and dts fixes
+Date:   Fri, 23 Dec 2022 02:10:07 +0000
+Message-Id: <20221223021025.1646636-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v3 1/7] dt-bindings: riscv: Add StarFive JH7110 SoC and
- VisionFive 2 board
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>
-CC:     Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Thomas Gleixner" <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        <linux-kernel@vger.kernel.org>
-References: <20221220011247.35560-1-hal.feng@starfivetech.com>
- <20221220011247.35560-2-hal.feng@starfivetech.com>
- <4c528a35-d3eb-db20-2a1e-3d79d0977d91@linaro.org>
-Content-Language: en-US
-From:   Hal Feng <hal.feng@starfivetech.com>
-In-Reply-To: <4c528a35-d3eb-db20-2a1e-3d79d0977d91@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.97.120]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,31 +74,135 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 20 Dec 2022 11:05:51 +0100, Krzysztof Kozlowski wrote:
-> On 20/12/2022 02:12, Hal Feng wrote:
-> > From: Emil Renner Berthing <kernel@esmil.dk>
-> > 
-> > Add device tree bindings for the StarFive JH7110 RISC-V SoC
-> > and the VisionFive 2 board equipped with it.
-> > 
-> > VisionFive 2 board has version A and version B, which are
-> > different in gmac and phy chip. The version A board has one
-> > 1000Mbps and one 100Mbps Ethernet ports while the version B
-> > board has two 1000Mbps Ethernet ports.
-> > 
-> > Link: https://doc-en.rvspace.org/Doc_Center/jh7110.html
-> > Link: https://doc-en.rvspace.org/Doc_Center/visionfive_2.html
-> > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> 
-> I assume you did not add my tag because of changes?
+V6:
+- Squashes a number of patches per Krzysztof's comments on bisectability
+- Adds in Acked-by Rob and Krzysztof 
 
-Yes, it might not the original one to which you wanna add the
-Acked-by tag.
+V5:
+- Adds compat strings to bindings/display/msm/qcom,SoC-mdss.yaml - Dmitry
+- Re-orders simple fixes to the start of the series to allow backports - Dmitry 
+- VDDA and drop of node-names - Krzysztof
+- Deprecates qcom,dsi-ctrl-6g-qcm2290 - Krzysztof, Dmitry
+- Expands set of updated files to include new msm8953 - bod
+- Converts to agreed compat string qcom,SoC-dsi-ctrl hence
+  -              - qcom,mdss-dsi-ctrl-msm8996
+  +              - qcom,msm8996-dsi-ctrl
+- Adds RB where indicated for the compat strings.
+V4:
+- Moves the update of the example from patch #5 to patch #4
 
-Best regards,
-Hal
+V3:
+- Moves declaration of mdss-dsi-ctrl into compat string declaration
+  patch - Krzysztof, Dmitry
+- Renames qcm-2290 compat string to agreed compat "qcom,socname-dsi-ctrl"
+  Dmirty, Krzysztof
+- Adds empty line after if clause in yaml control flow section - Dmirty
+- Adds Rb/Ack - Krzysztof, Dmitry, Doug, David
+- vdd*
+  Looking into this some more, I don't believe vdd, vdda, vddio ought to be
+  required properties. Its up to the PCB manufacturer and the panel in-use
+  how that panel is powered. Powering the panel is not something that
+  even necessarily needs to be done from the dsi-ctrl driver.
+  Originally marking vdd* as required in the .txt was an error, its not a
+  SoC level dtsi requirement.
+- clock-names
+  Rather than replicate the clock-name in each if block I listed them with
+  a specific description from a similar reference in usb/qcom,dwc3.yaml.
+ 
+https://lore.kernel.org/linux-arm-msm/eb80681f-2e0b-605f-0444-ec65562f74b8@linaro.org/
 
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+V2:
+https://www.spinics.net/lists/linux-arm-msm/msg116326.html
+
+- Moves the DSI PHY changes to a different later series.
+  There are enough dsi-controller-main changes to justify its own
+  standalone series.
+
+- The original phy-name binding change given discussion with Rob and
+  Krzysztof became its own standalone series that has since been merged.
+  https://www.mail-archive.com/dri-devel@lists.freedesktop.org/msg403214.html
+
+- Retains the drop of power-domain from yaml as a required property.
+  I dug into the available dtsi. The apq8064 doesn't appear to have any
+  GDSC which can be attached as a power-domain, which means the
+  power-domain requirement is not universal across the various silicon
+  versions.
+
+- Adds Dmitry's RB to power-domain drop
+
+- For the clock declarations I've
+  * I noticed that the simple change I had worked for msm8939 but
+    subsquently broke other dtsi which drove a bigger change to document
+    the clocks on a per compatible basis.
+  * Added compat strings in yaml.
+  * Moved the allOf down later in the file to acomodate the if/then.
+  * Number of clocks validated on a per compatible basis
+  * The driver code which doesn't care about the number of clocks
+    can still operate on the mdss-dsi-ctrl compat but the dts checks will
+    validate against the compat string and yaml.
+
+- vdd descriptions
+  Took the previous text I missed from the .txt file - Krzysztof, Dmitry
+  Adds vdd, vdda and vddio to the required list. This exposes warnings in
+  existing dtsi but the previous .txt declared these regulators as
+  required. - Krzysztof
+ 
+V1:
+This series fixes up a number of dtbs checks which are being flagged adding
+in the msm8939 dtsi.
+
+
+When converting from .txt to .yaml a number of the parameters for the older
+msm8916 silicon were not transmitted into the yaml.
+
+Adding in the msm8939 which is a near 1:1 copy of the msm8916 in terms of
+dtsi triggers a rake of dtbs checks as a result.
+
+https://www.mail-archive.com/dri-devel@lists.freedesktop.org/msg403211.html
+
+Bryan O'Donoghue (18):
+  dt-bindings: msm: dsi-controller-main: Fix operating-points-v2
+    constraint
+  dt-bindings: msm: dsi-controller-main: Fix power-domain constraint
+  dt-bindings: msm: dsi-controller-main: Fix description of core clock
+  dt-bindings: msm: dsi-controller-main: Add compatible strings for
+    every current SoC
+  dt-bindings: msm: dsi-controller-main: Document clocks on a per
+    compatible basis
+  dt-bindings: msm: dsi-controller-main: Add vdd* descriptions back in
+  dt-bindings: display/msm: Add list of mdss-dsi-ctrl compats
+  ARM: dts: qcom: apq8064: add compat qcom,apq8064-dsi-ctrl
+  ARM: dts: qcom: msm8974: Add compat qcom,msm8974-dsi-ctrl
+  arm64: dts: qcom: msm8916: Add compat qcom,msm8916-dsi-ctrl
+  arm64: dts: qcom: msm8953: Add compat qcom,msm8953-dsi-ctrl
+  arm64: dts: qcom: msm8996: Add compat qcom,msm8996-dsi-ctrl
+  arm64: dts: qcom: sc7180: Add compat qcom,sc7180-dsi-ctrl
+  arm64: dts: qcom: sc7280: Add compat qcom,sc7280-dsi-ctrl
+  arm64: dts: qcom: sdm630: Add compat qcom,sdm660-dsi-ctrl
+  arm64: dts: qcom: sdm660: Add compat qcom,sdm660-dsi-ctrl
+  arm64: dts: qcom: sdm845: Add compat qcom,sdm845-dsi-ctrl
+  arm64: dts: qcom: sm8250: Add compat qcom,sm8250-dsi-ctrl
+
+ .../display/msm/dsi-controller-main.yaml      | 249 ++++++++++++++++--
+ .../bindings/display/msm/qcom,mdss.yaml       |  16 +-
+ .../display/msm/qcom,msm8998-mdss.yaml        |   8 +-
+ .../display/msm/qcom,sc7180-mdss.yaml         |   6 +-
+ .../display/msm/qcom,sc7280-mdss.yaml         |   6 +-
+ .../display/msm/qcom,sdm845-mdss.yaml         |   8 +-
+ .../display/msm/qcom,sm8250-mdss.yaml         |   8 +-
+ arch/arm/boot/dts/qcom-apq8064.dtsi           |   3 +-
+ arch/arm/boot/dts/qcom-msm8974.dtsi           |   3 +-
+ arch/arm64/boot/dts/qcom/msm8916.dtsi         |   3 +-
+ arch/arm64/boot/dts/qcom/msm8953.dtsi         |   4 +-
+ arch/arm64/boot/dts/qcom/msm8996.dtsi         |   6 +-
+ arch/arm64/boot/dts/qcom/sc7180.dtsi          |   3 +-
+ arch/arm64/boot/dts/qcom/sc7280.dtsi          |   3 +-
+ arch/arm64/boot/dts/qcom/sdm630.dtsi          |   3 +-
+ arch/arm64/boot/dts/qcom/sdm660.dtsi          |   3 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |   6 +-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |   6 +-
+ 18 files changed, 292 insertions(+), 52 deletions(-)
+
+-- 
+2.38.1
 
