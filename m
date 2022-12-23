@@ -2,29 +2,29 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 779BD6553FA
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 20:41:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DCAA6553FD
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 20:42:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232834AbiLWTl5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 14:41:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43812 "EHLO
+        id S232838AbiLWTl6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 14:41:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232838AbiLWTly (ORCPT
+        with ESMTP id S232881AbiLWTly (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 14:41:54 -0500
-Received: from out-95.mta0.migadu.com (out-95.mta0.migadu.com [IPv6:2001:41d0:1004:224b::5f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92CC32124D
+Received: from out-68.mta0.migadu.com (out-68.mta0.migadu.com [IPv6:2001:41d0:1004:224b::44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C104120981
         for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 11:41:51 -0800 (PST)
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ansari.sh; s=key1;
-        t=1671824094;
+        t=1671824095;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=sEEj5Ej8/ePlR6ODry659RSCjAwiu7EXnRI2MiybwOQ=;
-        b=PAoLkAZScyRpo8UeM95cH9S43hxxXS9MKVsd98aIcnhicSZTPydBA24N3uNHIo02AxFX4R
-        bOI9HJ+hwMbHYps3rmGwS+QmGMpjDIeaw1aX44QHhx1qmIyhLaRGhdRaAt8xKt0PTtYfoa
-        DfRP2sfhXqAs8yQ4eKBE5IDm5an0Dw0=
+        bh=X8r3L9P3xaG7CLBnwwcER20pBXHLK0wxZbBvnqI6mPA=;
+        b=EzIKIyIrhWAMZf6k6DT0YswsV8W509+29rW6622nfIuoC+7nBT/fZq0Y8zUnTF244kFJ1/
+        LjOI3m9Ew4+eG1u/csBgesMSae2HqXrcMf8sS9z8tOTibkDlO8Z7icpsz6RjVOZ/KJitN+
+        C6GQHa3E5GC/nAdqOQv40JJlt6n4PjY=
 From:   Rayyan Ansari <rayyan@ansari.sh>
 To:     linux-arm-msm@vger.kernel.org
 Cc:     ~postmarketos/upstreaming@lists.sr.ht,
@@ -35,9 +35,9 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/3] ARM: dts: qcom: pm8226: sort includes alphabetically and nodes by address
-Date:   Fri, 23 Dec 2022 19:34:01 +0000
-Message-Id: <20221223193403.781355-2-rayyan@ansari.sh>
+Subject: [PATCH 2/3] ARM: dts: qcom: pm8226: add PON device node along with resin sub-node
+Date:   Fri, 23 Dec 2022 19:34:02 +0000
+Message-Id: <20221223193403.781355-3-rayyan@ansari.sh>
 In-Reply-To: <20221223193403.781355-1-rayyan@ansari.sh>
 References: <20221223193403.781355-1-rayyan@ansari.sh>
 MIME-Version: 1.0
@@ -52,54 +52,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sort the includes and nodes for consistency.
+The PON (Power On) device in PM8226 supports both the power key and
+resin (reset input).
+The reset input is usually connected to a physical volume up/down button.
 
 Signed-off-by: Rayyan Ansari <rayyan@ansari.sh>
 ---
- arch/arm/boot/dts/qcom-pm8226.dtsi | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+ arch/arm/boot/dts/qcom-pm8226.dtsi | 24 +++++++++++++++++++-----
+ 1 file changed, 19 insertions(+), 5 deletions(-)
 
 diff --git a/arch/arm/boot/dts/qcom-pm8226.dtsi b/arch/arm/boot/dts/qcom-pm8226.dtsi
-index 9b7d9d04ded6..d99532ea70b2 100644
+index d99532ea70b2..403324a35cf5 100644
 --- a/arch/arm/boot/dts/qcom-pm8226.dtsi
 +++ b/arch/arm/boot/dts/qcom-pm8226.dtsi
-@@ -1,7 +1,7 @@
+@@ -1,5 +1,6 @@
  // SPDX-License-Identifier: BSD-3-Clause
-+#include <dt-bindings/iio/qcom,spmi-vadc.h>
+ #include <dt-bindings/iio/qcom,spmi-vadc.h>
++#include <dt-bindings/input/linux-event-codes.h>
  #include <dt-bindings/interrupt-controller/irq.h>
  #include <dt-bindings/spmi/spmi.h>
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
  
- &spmi_bus {
- 	pm8226_0: pm8226@0 {
-@@ -41,13 +41,6 @@ smbb: charger@1000 {
- 			chg_otg: otg-vbus { };
- 		};
+@@ -10,12 +11,25 @@ pm8226_0: pm8226@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
  
--		rtc@6000 {
--			compatible = "qcom,pm8941-rtc";
--			reg = <0x6000>, <0x6100>;
--			reg-names = "rtc", "alarm";
--			interrupts = <0x0 0x61 0x1 IRQ_TYPE_EDGE_RISING>;
--		};
--
- 		pm8226_vadc: adc@3100 {
- 			compatible = "qcom,spmi-vadc";
- 			reg = <0x3100>;
-@@ -81,6 +74,13 @@ adc-chan@f {
- 			};
- 		};
- 
-+		rtc@6000 {
-+			compatible = "qcom,pm8941-rtc";
-+			reg = <0x6000>, <0x6100>;
-+			reg-names = "rtc", "alarm";
-+			interrupts = <0x0 0x61 0x1 IRQ_TYPE_EDGE_RISING>;
-+		};
+-		pwrkey@800 {
+-			compatible = "qcom,pm8941-pwrkey";
++		pon@800 {
++			compatible = "qcom,pm8916-pon";
+ 			reg = <0x800>;
+-			interrupts = <0x0 0x8 0 IRQ_TYPE_EDGE_BOTH>;
+-			debounce = <15625>;
+-			bias-pull-up;
 +
- 		pm8226_mpps: mpps@a000 {
- 			compatible = "qcom,pm8226-mpp", "qcom,spmi-mpp";
- 			reg = <0xa000>;
++			pwrkey {
++				compatible = "qcom,pm8941-pwrkey";
++				interrupts = <0x0 0x8 0 IRQ_TYPE_EDGE_BOTH>;
++				debounce = <15625>;
++				bias-pull-up;
++				linux,code = <KEY_POWER>;
++			};
++
++			pm8226_resin: resin {
++				compatible = "qcom,pm8941-resin";
++				interrupts = <0x0 0x8 1 IRQ_TYPE_EDGE_BOTH>;
++				debounce = <15625>;
++				bias-pull-up;
++				status = "disabled";
++			};
+ 		};
+ 
+ 		smbb: charger@1000 {
 -- 
 2.39.0
 
