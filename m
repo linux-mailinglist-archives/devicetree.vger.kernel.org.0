@@ -2,94 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ABD3B654DFB
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 10:00:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D57D654E0B
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 10:05:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235673AbiLWJA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 04:00:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42128 "EHLO
+        id S235996AbiLWJFN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 04:05:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235818AbiLWJA4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 04:00:56 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C6CA8178B5;
-        Fri, 23 Dec 2022 01:00:54 -0800 (PST)
-Received: from loongson.cn (unknown [112.20.108.31])
-        by gateway (Coremail) with SMTP id _____8CxKelFbqVjeA0IAA--.14644S3;
-        Fri, 23 Dec 2022 17:00:53 +0800 (CST)
-Received: from localhost.localdomain (unknown [112.20.108.31])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxXL5EbqVjET4JAA--.4282S2;
-        Fri, 23 Dec 2022 17:00:52 +0800 (CST)
-From:   Binbin Zhou <zhoubinbin@loongson.cn>
-To:     Wolfram Sang <wsa@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Andy Shevchenko <andy@kernel.org>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org
-Cc:     loongarch@lists.linux.dev, devicetree@vger.kernel.org,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH V8 4/4] LoongArch: Enable LS2X I2C in loongson3_defconfig
-Date:   Fri, 23 Dec 2022 17:01:15 +0800
-Message-Id: <485512df54a8554770b3782665adaa22eff9e036.1671688961.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1671688961.git.zhoubinbin@loongson.cn>
-References: <cover.1671688961.git.zhoubinbin@loongson.cn>
+        with ESMTP id S235854AbiLWJFM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 04:05:12 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B50C36C4F
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 01:05:11 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id x11so6381093lfn.0
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 01:05:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UgkyZLlR8dmps7bIqgtuU0p5kKZJ22gyr0j4DXf+Tuc=;
+        b=Go1z1WOZVAeyBHYx43G2o1a8Yqwp73M6XDVnsyel0fTSrZE7lFmvXu6jECQRR07gBz
+         99nbMAP/RhkSJr3F/TaU4QfxJ2YnyRThXR9yAzmSeI2YISl5G+/wja0nBz5lfp26ARpA
+         NXwz3/M0U6g2ijul298JVbhc/ZkbMUfBhHPhgKTaOgPSjCOdoAt+UTm8+jfqJGY5kVPa
+         lT8546ZP2UjeEalietwdiWWN23EUjBOLEKV2s6xaxlg64Xb+h9CeOCSmY5jtJu3Bmg2A
+         KFDHcbBOt2ZnGYe93EUJ9L157dTvP6V6tl1Sg1g+k4QSh3WfY4ScVsdrlH0IY71yXBwU
+         BhZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UgkyZLlR8dmps7bIqgtuU0p5kKZJ22gyr0j4DXf+Tuc=;
+        b=C8p05cbeweUoKU7qtWYFfu7qeIPQkPPEk5DCXCG74oqkdboYxGAY3fMYezkyOmKjdw
+         GBe6wVM2yQpowj1iSZHavNxQiumgmRnVEChnC2OPTv83Xqjgnal35N+9KqJ6cuRAbG73
+         +7r2CcxxeqrrsJex4tT7GSQBtYy59h/bKqtVEkF+Qbh10086gZ0jNE2ELzICognTPxzO
+         1vDdn6YJI/Og9UE/P/bulHe4PWBFNJ2JEvR1mWlnqGH7u5bjk9eZVctuGSU+boPie3l1
+         OmcTWctdiDOmq2oGzJsuu3hNf0xJPdsgCZBlQUfnsw0D/VppoS80jSrSLoij+7RzLa3F
+         V+GQ==
+X-Gm-Message-State: AFqh2kqZjwjmnFQ2Y2oT3L+64UMGM8LWZwtny8RZrXrJnDFZ4p57ABE8
+        TIdlJS+chAQpmI2Fngxnga4Nmw==
+X-Google-Smtp-Source: AMrXdXu07H/DBU/l0axgXYiPZK261IL8apRQ5mpgRPTJSTtf+JWCe6x+AyhRvRw1adFfKChiMlIlNQ==
+X-Received: by 2002:a05:6512:20d0:b0:4b5:88e4:2ba4 with SMTP id u16-20020a05651220d000b004b588e42ba4mr2175863lfr.15.1671786309930;
+        Fri, 23 Dec 2022 01:05:09 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id z12-20020ac2418c000000b004b58ebf0399sm443827lfh.132.2022.12.23.01.05.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 Dec 2022 01:05:09 -0800 (PST)
+Message-ID: <e079efba-2cd7-6e1d-3ce2-7f0371962252@linaro.org>
+Date:   Fri, 23 Dec 2022 10:05:08 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8CxXL5EbqVjET4JAA--.4282S2
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBjvdXoW7Jry5XrWkuF48uF15Ww1fXrb_yoWxKFX_JF
-        y7Kw1kWr48JFZ7W3WIqw4rGw4DA3W7X3WFkr17Zw1xX3Waqr13JrWDAw17C3Z0ga4DWr43
-        ZaykJF9F9r18tjkaLaAFLSUrUUUUnb8apTn2vfkv8UJUUUU8wcxFpf9Il3svdxBIdaVrn0
-        xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUY
-        C7kC6x804xWl14x267AKxVWUJVW8JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3w
-        AFIxvE14AKwVWUXVWUAwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK
-        6xIIjxv20xvE14v26F1j6w1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwA2z4
-        x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Cr1j6rxdM2kK
-        e7AKxVWUAVWUtwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI
-        0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWrXVW3AwAv7VC2z280
-        aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JMxkF7I0En4
-        kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI
-        1I0E14v26r126r1DMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_Jr
-        Wlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26ryj
-        6F1UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWxJVW8Jr1lIxAIcVCF04k26cxKx2IYs7xG6r
-        1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1U
-        YxBIdaVFxhVjvjDU0xZFpf9x07jfHUhUUUUU=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH 1/7] arm64: dts: qcom: sc7280: Extract audio nodes from
+ common idp dtsi file
+Content-Language: en-US
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_rohkumar@quicinc.com, srinivas.kandagatla@linaro.org,
+        dianders@chromium.org, swboyd@chromium.org, judyhsiao@chromium.org,
+        konrad.dybcio@linaro.org
+References: <1671702170-24781-1-git-send-email-quic_srivasam@quicinc.com>
+ <1671702170-24781-2-git-send-email-quic_srivasam@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1671702170-24781-2-git-send-email-quic_srivasam@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is now supported, enable for Loongson-3 systems.
-Other systems are unaffected.
+On 22/12/2022 10:42, Srinivasa Rao Mandadapu wrote:
+> Split common idp dtsi file into audio specific dtsi and common
+> idp dtsi file.
+> 
+> It is required to isolate idp and crd-rev3 platform device tree nodes
+> and convert crd-rev3 platform device tree nodes into audioreach specific
+> device tree nodes.
+> 
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Tested-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280-audio-idp.dtsi | 242 +++++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts     |   1 +
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi       | 230 -----------------------
+>  arch/arm64/boot/dts/qcom/sc7280-idp2.dts       |   1 +
+>  4 files changed, 244 insertions(+), 230 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-audio-idp.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-audio-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-audio-idp.dtsi
+> new file mode 100644
+> index 0000000..8c9e667
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-audio-idp.dtsi
+> @@ -0,0 +1,242 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * sc7280 Audio IDP board device tree source (common between SKU1 and SKU2)
+> + *
+> + * Copyright (c) 2022, The Linux Foundation. All rights reserved.
+> + */
+> +
 
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
----
- arch/loongarch/configs/loongson3_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Mising includes. Each file is responsible for its own includes and must
+not rely on others to include something.
 
-diff --git a/arch/loongarch/configs/loongson3_defconfig b/arch/loongarch/configs/loongson3_defconfig
-index cb52774c80e8..5677c4f8576e 100644
---- a/arch/loongarch/configs/loongson3_defconfig
-+++ b/arch/loongarch/configs/loongson3_defconfig
-@@ -602,6 +602,7 @@ CONFIG_HW_RANDOM_VIRTIO=m
- CONFIG_I2C_CHARDEV=y
- CONFIG_I2C_PIIX4=y
- CONFIG_I2C_GPIO=y
-+CONFIG_I2C_LS2X=y
- CONFIG_SPI=y
- CONFIG_GPIO_SYSFS=y
- CONFIG_GPIO_LOONGSON=y
--- 
-2.31.1
+> +/{
+> +   /* BOARD-SPECIFIC TOP LEVEL NODES */
+
+Wrong indentation.
+
+> +	sound: sound {
+> +		compatible = "google,sc7280-herobrine";
+> +		model = "sc7280-wcd938x-max98360a-1mic";
+> +
+> +		audio-routing =
+> +			   "IN1_HPHL", "HPHL_OUT",
+> +			   "IN2_HPHR", "HPHR_OUT",
+> +			   "AMIC1", "MIC BIAS1",
+> +			   "AMIC2", "MIC BIAS2",
+> +			   "VA DMIC0", "MIC BIAS3",
+> +			   "VA DMIC1", "MIC BIAS3",
+> +			   "VA DMIC2", "MIC BIAS1",
+> +			   "VA DMIC3", "MIC BIAS1",
+> +			   "TX SWR_ADC0", "ADC1_OUTPUT",
+> +			   "TX SWR_ADC1", "ADC2_OUTPUT",
+> +			   "TX SWR_ADC2", "ADC3_OUTPUT",
+> +			   "TX SWR_DMIC0", "DMIC1_OUTPUT",
+> +			   "TX SWR_DMIC1", "DMIC2_OUTPUT",
+> +			   "TX SWR_DMIC2", "DMIC3_OUTPUT",
+> +			   "TX SWR_DMIC3", "DMIC4_OUTPUT",
+> +			   "TX SWR_DMIC4", "DMIC5_OUTPUT",
+> +			   "TX SWR_DMIC5", "DMIC6_OUTPUT",
+> +			   "TX SWR_DMIC6", "DMIC7_OUTPUT",
+> +			   "TX SWR_DMIC7", "DMIC8_OUTPUT";
+> +
+> +		qcom,msm-mbhc-hphl-swh = <1>;
+> +		qcom,msm-mbhc-gnd-swh = <1>;
+> +
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		#sound-dai-cells = <0>;
+> +
+> +		dai-link@0 {
+> +			link-name = "MAX98360A";
+> +			reg = <0>;
+> +
+> +			cpu {
+> +				sound-dai = <&lpass_cpu MI2S_SECONDARY>;
+> +			};
+> +
+> +			codec {
+> +			   sound-dai = <&max98360a>;
+
+I have no clue what happened here. This was correct code before, now it
+is not. It turns out it was not just a move of code. If you just
+cut+paste, would be fine, but you changed it during moving and now we
+have to review it. Reviewing such diffs is difficult if not impossible,
+so we have no way to validate, maybe except comparing de-compiled dtbs
+(dtx_diff, fdtdump). Did you do it?
+
+Otherwise I do not see a way how can we be sure this code is correct if
+you do not cut+paste but change the code in the meantime.
+
+Best regards,
+Krzysztof
 
