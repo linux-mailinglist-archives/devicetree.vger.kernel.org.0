@@ -2,104 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8D74655123
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 14:59:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A352655142
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 15:19:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230248AbiLWN71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 08:59:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50724 "EHLO
+        id S231345AbiLWOTN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 09:19:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229625AbiLWN70 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 08:59:26 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 370401D0E3;
-        Fri, 23 Dec 2022 05:59:26 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id DBE71B820DE;
-        Fri, 23 Dec 2022 13:59:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE1FBC433D2;
-        Fri, 23 Dec 2022 13:59:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671803963;
-        bh=WPtNm1cTst+I617Sj6ukNNMQUAzdhQ/FmsPYjUxXZlI=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=p1tFthkoFcQXl0H0K0HFxtpdqbQnGM+8Uh/9YPlJ3yi/MpWhXmo97Amk57v8e49+C
-         qkAIIBXCrF9Wa2soLC80y9C63bBetwgBBXt+G/ktlitIvHDMbzn2TuqlLdW8/U4rZf
-         yIDiwVHh+SILxUgWKK0J617kEfmjAWmq7q9mlebv31HGz7gxbAArUhj4RvctzISS4D
-         v2dFCtkq/ZJ00HxsQWL1FBuAospZjPsbMhZXm7BsZyskPM5RfcXV/w9HE+u8jnRgzp
-         0BJ12g5WPwzRI5HMcu+iXdA/7bs+Js8um4k/K6PTea0Sg8Cbw4E9MQ7+aalon2JUlu
-         ECJISIhpJXFjA==
-Date:   Fri, 23 Dec 2022 14:12:32 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Hugo Villeneuve <hugo@hugovil.com>
-Cc:     hvilleneuve@dimonoff.com, lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/3] iio: adc: Kconfig: add SPI interface mention to
- AD7924 description
-Message-ID: <20221223141232.0f570f33@jic23-huawei>
-In-Reply-To: <20221222203610.2571287-2-hugo@hugovil.com>
-References: <20221222203610.2571287-1-hugo@hugovil.com>
-        <20221222203610.2571287-2-hugo@hugovil.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-pc-linux-gnu)
+        with ESMTP id S236303AbiLWOTK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 09:19:10 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 154E03EACA;
+        Fri, 23 Dec 2022 06:19:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=yOe6ftm83MjcbSsPzfhXQYYG0KG1pAc9ELl18Zq14Gs=; b=M2rXfeoOXsELTA+n9t49bHnxKd
+        /wuaZLFU+jz64uDHhv+ghw745Z3XrazuJOTRWkpzlOBC0e51iNCGGcb2N2OsIve322+kf9B8NNdAd
+        MgP4OMuifOp1S+jNaZxbtOGlrLO2D1WYbDiWEi9FP9JNPOUohxdVdgQYtOPQN94VVw5c=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1p8ish-000LAe-KP; Fri, 23 Dec 2022 15:18:39 +0100
+Date:   Fri, 23 Dec 2022 15:18:39 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Biao Huang <biao.huang@mediatek.com>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        macpaul.lin@mediatek.com
+Subject: Re: [PATCH v5 1/2] stmmac: dwmac-mediatek: enable 2ns delay only for
+ special cases
+Message-ID: <Y6W4vwJHG+6PI8fd@lunn.ch>
+References: <20221223015029.24978-1-biao.huang@mediatek.com>
+ <20221223015029.24978-2-biao.huang@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221223015029.24978-2-biao.huang@mediatek.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 22 Dec 2022 15:36:08 -0500
-Hugo Villeneuve <hugo@hugovil.com> wrote:
-
-> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+On Fri, Dec 23, 2022 at 09:50:28AM +0800, Biao Huang wrote:
+> In current driver, MAC will always enable 2ns delay in RGMII mode,
+> but that will lead to transmission failures for "rgmii-id"/"rgmii-txid"
+> cases.
 > 
-> The Analog Devices AD7924 uses an SPI interface. There is also a Texas
-> Instruments ADS7924 which uses an I2C interface.
-> 
-> Adding the SPI mention to the AD7924 will help to avoid confusion
-> between the two chips.
-Hi Hugo,
+> Modify the implementation of fix_mac_speed() to ensure the 2ns delay
+> will only take effect for "rgmii-rxid"/"rgmii" cases, then user can
+> choose phy-mode freely.
 
-Welcome to IIO.
+This does not seem correct. There are three ways the delays can be added:
 
-I don't really mind this, but given they have different part numbers
-and the similarly named TI part could just have easily been SPI
-I'm not sure the clarification is really useful.
+1) The MAC
+2) The PHY
+3) Extra long lines on the board.
 
-Also, under all the circumstances I can think of, if you can see the
-help text you can also see the SPI dependence clearly listed.
+What the four RGMII modes tell you is what is needed in addition to
+whatever the board provides. So it describes the combination of 1) and
+2). Your board does not appear to be applying any delays, so you
+should be using rgmii-id.
 
-Hence I think is just noise, though I'm guessing it reflects a
-confusion you ran into!
+The MAC and PHY driver then need to decide how to add these delays,
+and in most cases, the MAC does nothing, and passes phy-mode to the
+PHY and the PHY adds the delay.
 
-Jonathan
+The MAC can add delays, but if it does, it need to mask out the delays
+it added to the value passed to the PHY. Otherwise the PHY will add
+the delay as well.
 
-
-> 
-> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> ---
->  drivers/iio/adc/Kconfig | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-> index 46c4fc2fc534..235319546974 100644
-> --- a/drivers/iio/adc/Kconfig
-> +++ b/drivers/iio/adc/Kconfig
-> @@ -243,7 +243,7 @@ config AD7923
->  	select IIO_TRIGGERED_BUFFER
->  	help
->  	  Say yes here to build support for Analog Devices
-> -	  AD7904, AD7914, AD7923, AD7924 4 Channel ADCs.
-> +	  AD7904, AD7914, AD7923, AD7924 4 Channel SPI ADCs.
 >  
->  	  To compile this driver as a module, choose M here: the
->  	  module will be called ad7923.
+> -	if ((phy_interface_mode_is_rgmii(priv_plat->phy_mode))) {
+> +	switch (priv_plat->phy_mode) {
+> +	case PHY_INTERFACE_MODE_RGMII:
+> +	case PHY_INTERFACE_MODE_RGMII_RXID:
+>  		/* prefer 2ns fixed delay which is controlled by TXC_PHASE_CTRL,
+>  		 * when link speed is 1Gbps with RGMII interface,
+>  		 * Fall back to delay macro circuit for 10/100Mbps link speed.
 
+So this is wrong. PHY_INTERFACE_MODE_RGMII means the board is adding
+the delay via long lines. You should not be added any delay at all.
+
+For PHY_INTERFACE_MODE_RGMII_RXID, you need to mask the RXID bit from
+phy_mode when connecting the MAC to the PHY. Otherwise the PHY is
+going to add this delay as well.
+
+	 Andrew
