@@ -2,92 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D3528654D24
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 09:02:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1512654D34
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 09:08:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236017AbiLWICC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 03:02:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45648 "EHLO
+        id S236047AbiLWIIR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 03:08:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229959AbiLWIB4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 03:01:56 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A89633CE5
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 00:01:52 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id g13so6125313lfv.7
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 00:01:52 -0800 (PST)
+        with ESMTP id S229483AbiLWIIP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 03:08:15 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A4EF32BA9
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 00:08:13 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id m29so6111197lfo.11
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 00:08:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8TQnzqH82SvQ7sJUIb95QiBqANoSmjRADQ8HXRaKeGo=;
-        b=laX6CMBEHL7EUfJH496zLDpje81hgAz9YUzZOLGBqlK1mrnWF0ZnxAsCa9RVayRmxU
-         phW2gyFp1TGFHEmGDrgvoUMyZLn1K7yGoseHDNhwtSQKXa/bJvzLBBy78xKHgy4Z3AOi
-         lfAns6L4cM8jfV2VWrpeQNRLQWRzpZCAoKjoJn8R7u58hMDGywg2YD8Tca5YKXdZm9e9
-         25zz28uYvL2PcRXvGfqnXnllZ36ANyovOhobn9WIfddHSoMsdHnS5f8IsugoNSqVH4I5
-         jAM1ueitx4R/EURYfk1pLF4eHLNyVO8YpFoT6bE9IEC0PCRSDLC93dDyj2/te1lmH9K1
-         pxEQ==
+        bh=xWV+mX9XaEYOci9c4xzPe42/Ks3lsj8QV14AVfOY9wI=;
+        b=OMuCyF7DLd2mymoUdzCHiPm3nR2+ZIqrmYsjRyiHNgJ2iImYLYoAGnIw52C62t7EVK
+         gJKc6HxkRkZiPz0y7SS2LeyeSkAD+bJ/zVbfqsZwd/2bOI84XQr8dgQgAUGRwfoZR6ey
+         LbaWeSWvTdEuJRF49b3o2TWkr9Ld9ZKdKLyVVygtyBdw1v8IjOl5j7K366ObtfTPJGki
+         sxDPdpqJcQ3FwxwnEGhWVfQI/KyGQMXXJvpaz3uqXcIIxuqOkNRTh0DWdTS1PBGEQWCQ
+         KYEnugCxNIHOXJ3rTlnfxELVxaduorYKI08BpOVsojdI1T3T3vsaDRfmDV7z/A0yvawf
+         8Mvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8TQnzqH82SvQ7sJUIb95QiBqANoSmjRADQ8HXRaKeGo=;
-        b=aSKOm5BFGIU7npRm4+pPenTkiAZmdfD7yDYVG0oDvGRw6w9yZShKN8WRQpGp1nDQgY
-         cs8o2wBVjFe3Vi2zwBmMfkBkV51TReVBUWsK2xD1JlKj3Ec/nwDIrQj81FpRCajLOCQo
-         t6WU17aezfmDvAXuErqAmvtrlSGdpfRyHw0rPQyCS9AB+BTCX0e/4Np8tIDS4w2BlNQK
-         pR2/VAcHZDZK5IGVe30zy73vhCCgAe5FzDPAQ3hmTsTDUOc/RgaAcDGXt9jbCqljXW4u
-         VpD7PTeOQ3cIgKRJLP3JimbDz+9cUSyzxNFa7lvm7LCEAaaWfDQhgSr0ek2KF/5n4J/g
-         MD+w==
-X-Gm-Message-State: AFqh2kr7bM1H6gCBP4keyLQS4SjOIOMtr1F4/MC4Effwc3IHl1UFRUI7
-        rWzfoFn1Py021kZrdmDcRcFqGw==
-X-Google-Smtp-Source: AMrXdXuGO/ZSogTkRDNw22+r/TpFw7Rhrh/MFMaj/vVX8Bk7grMsV5aNsENVA9T9S8Qf3E7ZS/gCHA==
-X-Received: by 2002:a19:2d59:0:b0:4b5:1414:415f with SMTP id t25-20020a192d59000000b004b51414415fmr3091792lft.59.1671782510766;
-        Fri, 23 Dec 2022 00:01:50 -0800 (PST)
+        bh=xWV+mX9XaEYOci9c4xzPe42/Ks3lsj8QV14AVfOY9wI=;
+        b=k07eaW74noc2ElwQScbJtT3hRny1ovpcE0BtFCqhErzuXulu9qHczzYorT4vqYX/2Z
+         83KMe+1yqZ066tz20wkGqRSRr8dQDdo4ZEb4DkBS6yC+79duFl10NZB1MACa+vvVm+TH
+         Kji7/H88uazNsB1mkjs89YI1Yh3QDSXK3QAJDjS6/tMcKS7/blQ1q4kgcC3LBJAMEA9T
+         Ns2KXrQkCEIY9yafEVhDuiu7g/pbL8zmPNVnT5L3Nb7Rx6XHZbME2GUgcVyDziFw3WE8
+         D4WGB6D9tlmnhvqIdiBbzoEju7II2a+KDMbOzNcZKuYO2HPatfKqiCc3izq4Er8ZtQ0s
+         ZKXQ==
+X-Gm-Message-State: AFqh2krOW1YwrE5RHsWTmwaYKiadRyV/DUVjQh/AIYCoA3/q98+OyGRO
+        7+gbQ+nmIVwRFvPpz4osxC19/Q==
+X-Google-Smtp-Source: AMrXdXsflFEH9BteTL2sR3NL4YAGohVHBAwfZdRJlrtvheanNZKDUALwa3cKqS0jIWoVh3ZcaW48FQ==
+X-Received: by 2002:a05:6512:23a5:b0:4b6:f027:2af8 with SMTP id c37-20020a05651223a500b004b6f0272af8mr3265796lfv.66.1671782891516;
+        Fri, 23 Dec 2022 00:08:11 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id z11-20020a056512370b00b0049c29389b98sm413584lfr.151.2022.12.23.00.01.49
+        by smtp.gmail.com with ESMTPSA id e9-20020a05651236c900b004b56d00b2d1sm420235lfs.285.2022.12.23.00.08.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Dec 2022 00:01:50 -0800 (PST)
-Message-ID: <97100086-8521-f05b-f939-605c84e3cfe1@linaro.org>
-Date:   Fri, 23 Dec 2022 09:01:49 +0100
+        Fri, 23 Dec 2022 00:08:11 -0800 (PST)
+Message-ID: <b4c235fd-08fa-c151-4105-147083681f13@linaro.org>
+Date:   Fri, 23 Dec 2022 09:08:09 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH v9 3/3] dt-bindings: vendor-prefixes: Document EmbedFire
+Subject: Re: [PATCH 1/2] dt-bindings: usb: ci-hdrc-usb2: add i.MX8MM
+ compatible
 Content-Language: en-US
-To:     Yuteng Zhong <zonyitoo@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Peter Geis <pgwipeout@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, xu.yang_2@nxp.com
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        Wenhao Cui <lasstp5011@gmail.com>
-References: <Y6Ud9MhRjCVAYMCj@VM-66-53-centos>
+        jun.li@nxp.com, Peng Fan <peng.fan@nxp.com>
+References: <20221223031012.92932-1-peng.fan@oss.nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y6Ud9MhRjCVAYMCj@VM-66-53-centos>
+In-Reply-To: <20221223031012.92932-1-peng.fan@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/12/2022 04:18, Yuteng Zhong wrote:
-> From: Wenhao Cui <lasstp5011@gmail.com>
+On 23/12/2022 04:10, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> EmbedFire is a manufacturer of embed computers and education platform for
-> embed devices from Dongguan.
+> Add fsl,imx8mm-usb compatible for i.MX8MM
 > 
-> Add vendor prefix for it.
-> 
-> Signed-off-by: Wenhao Cui <lasstp5011@gmail.com>
-> Signed-off-by: Yuteng Zhong <zonyitoo@gmail.com>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
+> 
+> I had a V4 patchset to convert the binding to dt schema, but we are in
+> the process of ARM System-Ready 2.0 certification, directly update
+> this binding doc is the easiest way for now.
 
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
