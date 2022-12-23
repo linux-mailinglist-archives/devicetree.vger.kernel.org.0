@@ -2,62 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 54D64654E50
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 10:26:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 40858654E63
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 10:29:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230171AbiLWJ0l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 04:26:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52314 "EHLO
+        id S235982AbiLWJ3C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 04:29:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229637AbiLWJ0k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 04:26:40 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0196136D55
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 01:26:39 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id x11so6448010lfn.0
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 01:26:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sffa2Hux8GaWgWWtPY8hkrJRPTRgOSkXQuS0QSdZFis=;
-        b=aF5d0f6QVvd38Mdy/2T+RdKXdHV1tHP1d/FlSvUZJDO0AMX2oD5pTxWaKLINjsGrCk
-         33voj68lDcU27Mn4+rIW2DPXtxJ+KuXcKnpA9lgUpRLcnAWU63QTKHmzOlp3vXDwOuHY
-         yr/gwVLdfkqPQ2XNiOHal0noWIABZus40cUWsEukeOLonsNe8Z3OWZGztMKeP/OjiWGp
-         EeP2SgoDVIoXd6/wGIkIN9JpwKznnMFEPff86tyFnvB2j6diAL57ZJmaC3Fmd2IbGG2h
-         JRpNNDILKAMpPeb0ofkeHuy6/ndOpNJRZJkn6vdYUMe/4rCpx8Z5SanRUt89QrLZkcV0
-         Nwtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sffa2Hux8GaWgWWtPY8hkrJRPTRgOSkXQuS0QSdZFis=;
-        b=4x78Yg+Aq7CmNC5J3i3BiV5jiIU9UqujgTbLjCcmGjRVDOgg3iamnM0mH8276M7Pdi
-         Cu3HQtbSLjg22Y5uCG3UFbImvK+9mgi/1ctbToLU9gldGWwiAXLHdyE4XgxgsA8T1MYg
-         Pv6/j+OT/bqdiWskTDawD2MA9vat9CMmKwQI75DGCtHpuxogzYBiE8RRC1aKy5rAxVTc
-         pNt5hOrWELRjxqQ5LcScvAJFWgvxsgEfziIjH5Qj5Q9JrPTuJHsgDp2BaTq51Xt2lDAK
-         u7LPYl2voFcb53342v1r2b2rA2Ha2LJbSMilDDrS/tEe9/cUmqmlcWAPEQCvzI7qlL++
-         Lk3Q==
-X-Gm-Message-State: AFqh2koXWJs4mpKRkJ/3sgKDnE3U8yz6UmStmnZ2SKGOpMokZHj3Ej+r
-        v7gRzk/4EXa2ofF61A79tdvHHg==
-X-Google-Smtp-Source: AMrXdXvX2r5mqocclfvoOrl6ACTY0m1OG8B3pC83AXf4Py5ZlLKVUQRwn6/iWosyd9CVfwxT2J+oBA==
-X-Received: by 2002:a05:6512:3d05:b0:4a4:68b8:9c2e with SMTP id d5-20020a0565123d0500b004a468b89c2emr3673035lfv.22.1671787597388;
-        Fri, 23 Dec 2022 01:26:37 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id a20-20020a056512201400b004cafa2bfb7dsm2867lfb.133.2022.12.23.01.26.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Dec 2022 01:26:37 -0800 (PST)
-Message-ID: <46edd627-c128-b979-823f-0a94fe9d425b@linaro.org>
-Date:   Fri, 23 Dec 2022 10:26:35 +0100
+        with ESMTP id S236087AbiLWJ3A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 04:29:00 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 920B637233;
+        Fri, 23 Dec 2022 01:28:58 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id D0F4C6602CE0;
+        Fri, 23 Dec 2022 09:28:55 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1671787737;
+        bh=HMLMMep+mcr89+itvPl0BOj1Xg+OhOyXlyh2zXtaR5w=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=brejs5DLGzFiWPzayUdJwPiSDH5WJUJB3VeuSuz2fvhsfXTAKhUF1zSYlsTfE4jww
+         w6k1k54mM7TNZiTWWA4L0BN2OTVP5ontwkm/KSMq7sqyfX6HvCkj3EfzarEnOIyKMU
+         8G9UumpxeoWpXVbzMUBnPExW9Cke8DdxuVK4Iy3eZ0OvEzh4qEnCF0lyc7z+GVLqNe
+         XN0YjSK3uN70e7jQrH4kQXeWUGviFiAZ2GOP4gijKj2dtVzm50r+k7GYwjUji5Hyti
+         EFJxUN3LeJwEd/Bkj6FGBw6eIxtGT0NtYfNgAHpSsmJuy554PNbkvp8rvIldtlRixa
+         eobv4Zotx0ZvQ==
+Message-ID: <a9f9a86d-459e-314d-446e-e24b5ee469fe@collabora.com>
+Date:   Fri, 23 Dec 2022 10:28:53 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
 Subject: Re: [PATCH v1 08/25] dt-bindings: clock: mt8173: Add dummy clock ID
 Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, mturquette@baylibre.com
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        mturquette@baylibre.com
 Cc:     sboyd@kernel.org, matthias.bgg@gmail.com, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, wenst@chromium.org,
         johnson.wang@mediatek.com, miles.chen@mediatek.com,
@@ -75,58 +57,66 @@ References: <20221222114857.120060-1-angelogioacchino.delregno@collabora.com>
  <20221222114857.120060-9-angelogioacchino.delregno@collabora.com>
  <869ae494-d74e-03a0-3622-b3a2b0b10470@linaro.org>
  <960b0707-f0e5-993b-3706-a7a275e0698f@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <960b0707-f0e5-993b-3706-a7a275e0698f@collabora.com>
-Content-Type: text/plain; charset=UTF-8
+ <46edd627-c128-b979-823f-0a94fe9d425b@linaro.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <46edd627-c128-b979-823f-0a94fe9d425b@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/12/2022 10:21, AngeloGioacchino Del Regno wrote:
-> Il 23/12/22 09:52, Krzysztof Kozlowski ha scritto:
->> On 22/12/2022 12:48, AngeloGioacchino Del Regno wrote:
->>> Some old MediaTek clock drivers are starting the clock count (so, the
->>> clock ID) from one instead of zero and this is logically incorrect,
->>> as we should start from 0.
->>> During a cleanup an issue emerged due to that and the cleanest and
->>> shortest way to keep devicetree backwards compatibility while still
->>> performing the well deserved cleanup is to add a dummy clock where
->>> needed, with ID 0.
+Il 23/12/22 10:26, Krzysztof Kozlowski ha scritto:
+> On 23/12/2022 10:21, AngeloGioacchino Del Regno wrote:
+>> Il 23/12/22 09:52, Krzysztof Kozlowski ha scritto:
+>>> On 22/12/2022 12:48, AngeloGioacchino Del Regno wrote:
+>>>> Some old MediaTek clock drivers are starting the clock count (so, the
+>>>> clock ID) from one instead of zero and this is logically incorrect,
+>>>> as we should start from 0.
+>>>> During a cleanup an issue emerged due to that and the cleanest and
+>>>> shortest way to keep devicetree backwards compatibility while still
+>>>> performing the well deserved cleanup is to add a dummy clock where
+>>>> needed, with ID 0.
+>>>
+>>> Unfortunately I do not understand at all why adding dummy (fake) ID
+>>> cleans anything here. Unifying IDs to start from 0 is not an argument on
+>>> DT bindings header IDs.
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>>
+>>>
 >>
->> Unfortunately I do not understand at all why adding dummy (fake) ID
->> cleans anything here. Unifying IDs to start from 0 is not an argument on
->> DT bindings header IDs.
->>
->> Best regards,
->> Krzysztof
->>
->>
+>> All clocks are in one or multiple arrays, and if we don't register ID 0,
+>> devicetrees will reference the wrong clock, as the IDs will shift back by
+>> one during registration.
 > 
-> All clocks are in one or multiple arrays, and if we don't register ID 0,
-> devicetrees will reference the wrong clock, as the IDs will shift back by
-> one during registration.
-
-So what stops you to register some 0-dummy clock? Why do you need a
-binding for it?
-
-> This was done for a commonization of probe() and remove() callbacks for
-> MediaTek clock drivers... since we have 3 affected SoCs (MT8173, MT2701
-> and MT6779) out of *19* (soon 20), to me, it didn't make sense to write
-> commonized code to address this just because of 3 out of 20 SoCs (note
-> that each SoC has around 4 clock drivers).
+> So what stops you to register some 0-dummy clock? Why do you need a
+> binding for it?
 > 
-> Any suggestion to keep this one short, while not touching dt-bindings?
+>> This was done for a commonization of probe() and remove() callbacks for
+>> MediaTek clock drivers... since we have 3 affected SoCs (MT8173, MT2701
+>> and MT6779) out of *19* (soon 20), to me, it didn't make sense to write
+>> commonized code to address this just because of 3 out of 20 SoCs (note
+>> that each SoC has around 4 clock drivers).
+>>
+>> Any suggestion to keep this one short, while not touching dt-bindings?
+> 
+> Just add a clock or better empty entry in your table, without touching
+> bindings.
+> 
 
-Just add a clock or better empty entry in your table, without touching
-bindings.
 
+Okay, now that's embarassing - that's a simpler and obvious solution I
+should've thought of before sending this series. Heh.
 
-Best regards,
-Krzysztof
+Thanks, by the way!
 
+Regards,
+Angelo
