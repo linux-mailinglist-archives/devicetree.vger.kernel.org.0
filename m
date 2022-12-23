@@ -2,88 +2,269 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B4B0654E10
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 10:05:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 79D31654E19
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 10:08:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236077AbiLWJFt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 04:05:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43746 "EHLO
+        id S236159AbiLWJIq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 04:08:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236129AbiLWJFs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 04:05:48 -0500
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14F15F39
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 01:05:45 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2BN95b9k061490;
-        Fri, 23 Dec 2022 03:05:37 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1671786337;
-        bh=krWiqS2oUAgZnBdjWUYd7ZyOWML2qAZv4M/kjqLdiK8=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=xFkazDvv3nVGN9g0bN4pGSRpbSAZpNHC0N5Bq3+E9lLHyMFJdRb6a4nKuzkFNA5XS
-         LKgoJd9BkcXJs2Dth0WwBUiisJsp/hRUA6M/UG3a+e2pMBXg/1HWUp/5qESSIt3fSL
-         A6+JUJfY7u2XnhGnhwsqNRHRVwkcVkOslXLo9Ris=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2BN95bgR011373
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 23 Dec 2022 03:05:37 -0600
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 23
- Dec 2022 03:05:37 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Fri, 23 Dec 2022 03:05:37 -0600
-Received: from [172.24.145.60] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2BN95Z4u028566;
-        Fri, 23 Dec 2022 03:05:35 -0600
-Message-ID: <c09a1673-7d6c-e2dc-1d29-eef3dc5bd486@ti.com>
-Date:   Fri, 23 Dec 2022 14:35:34 +0530
+        with ESMTP id S236026AbiLWJIo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 04:08:44 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB9BDE0C9
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 01:08:43 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id y25so6314827lfa.9
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 01:08:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=U7cF5JUH51zVHVlPOLsK2nJvYEtOSVvrKIi1yyd2e7E=;
+        b=lbMRs9m4Hdtm7MzHQLvmKZFnUxvOsyYy1rz1k5k62x8Hkf6beO/SqwvrvIl3Mw13ii
+         ZHbAGpVoMCAFyPJqj1NlNuRkxJsoIHy6mnNCSp1BiinSZSxD5jTHClzNOw7PqWW7zq4h
+         eiCHC9572q/rnR7ONlW9zV1uhit8x9ErZU/AUB12TrNHodcF105zEU4S9R3puGxmDfzP
+         6V0F01oX49DjzVAoDkPReTqkCm/+je8QX7w6zbjcA4SElBS24H2tsG8jML4MpAKZs4aA
+         zpnRgLvxJrbb5AiHuxug318Tf49pu6MfAOP3G3EtI+FGIkW87o7L630JpI7R35GpW6kE
+         EAHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=U7cF5JUH51zVHVlPOLsK2nJvYEtOSVvrKIi1yyd2e7E=;
+        b=VqN0IttHZjIZbzEfz1sSTxAnU9MSmc1NdE2KbIhes70hnFJ024ZkT1M86Z0y21DYzU
+         T+/LZC/WYek3kA6GlFgEb+4iBo0BjYmTasb6hdLpjyPnhiJhpk1da5517LzsE7y2cBSe
+         Liqgv4ASm38v6tbeyQbqs4YGNZAHFYBdN6xvfV9A2kb951uk4cELhUg4tgjPwm1+aEgL
+         kSBDL2WEQojR5QThXdecRi0b1gjSfFxsbt/99FuaqPeUvo0rmp8Mf1F66u4vP7uNniLI
+         mFW9RPuuhpujnMxUAQp1opy8EWJ0ON7gx8Zqrg7cCWVCt4RQBl9tmIxbyj8PMAWqUlY+
+         8bkA==
+X-Gm-Message-State: AFqh2kqD+1MB/8YtSaSpdyiz8z/gBpXaJQjVSycwyl9ifccXTjbTZuFc
+        n6FinlHj+K4UROcj627AJ1q16w==
+X-Google-Smtp-Source: AMrXdXshjK45LD383xnMyQqPQ7Mw0nzMDgiMAe1dQJfsUE1wXTsvHdcfXdDTbYCXlllamDDSpbEx3g==
+X-Received: by 2002:a05:6512:3b20:b0:4b5:178f:a14c with SMTP id f32-20020a0565123b2000b004b5178fa14cmr3092978lfv.16.1671786522290;
+        Fri, 23 Dec 2022 01:08:42 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id l18-20020ac24312000000b00485caa0f5dfsm449101lfh.44.2022.12.23.01.08.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 Dec 2022 01:08:41 -0800 (PST)
+Message-ID: <df7dd4aa-1a6c-51a6-d7e5-b313d986c64a@linaro.org>
+Date:   Fri, 23 Dec 2022 10:08:40 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v4] dt-bindings: sound: tlv320aic3x: Convert to dtschema
+ Thunderbird/102.6.0
+Subject: Re: [PATCH 2/7] arm64: dts: qcom: sc7280: audioreach: Add sound node
 Content-Language: en-US
-To:     Mark Brown <broonie@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>
-References: <20221221145216.11400-1-j-luthra@ti.com>
- <Y6RCN9DxeW7WacPD@sirena.org.uk>
-From:   Jai Luthra <j-luthra@ti.com>
-In-Reply-To: <Y6RCN9DxeW7WacPD@sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_rohkumar@quicinc.com, srinivas.kandagatla@linaro.org,
+        dianders@chromium.org, swboyd@chromium.org, judyhsiao@chromium.org,
+        konrad.dybcio@linaro.org
+References: <1671702170-24781-1-git-send-email-quic_srivasam@quicinc.com>
+ <1671702170-24781-3-git-send-email-quic_srivasam@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1671702170-24781-3-git-send-email-quic_srivasam@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mark,
-
-On 22/12/22 17:10, Mark Brown wrote:
-> On Wed, Dec 21, 2022 at 08:22:16PM +0530, Jai Luthra wrote:
->> Convert bindings for TI's TLV320AIC3x audio codecs to dtschema.
->>
->> The following properties are still found in some old dts files, but will
->> be ignored by the driver:
+On 22/12/2022 10:42, Srinivasa Rao Mandadapu wrote:
+> Add sound node for sc7280 based audioreach platforms.
 > 
->> - assigned-clock-parents, assigned-clock-rates, assigned-clocks
+> Include audioreach dtsi into crd-rev3 platform specific dts file.
+> Also remove phandle to sound node, as audio routing is same as
+> audioreach specific dtsi file.
 > 
-> These are from the common clock binding and will be handled by the clock
-> code.
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Tested-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts         |  25 +----
+>  .../qcom/sc7280-herobrine-audioreach-wcd9385.dtsi  | 112 +++++++++++++++++++++
+>  2 files changed, 113 insertions(+), 24 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts b/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
+> index b024626..aea8cbd 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
+> @@ -8,7 +8,7 @@
+>  /dts-v1/;
+>  
+>  #include "sc7280-idp.dtsi"
+> -#include "sc7280-audio-idp.dtsi"
+> +#include "sc7280-herobrine-audioreach-wcd9385.dtsi"
+>  #include "sc7280-idp-ec-h1.dtsi"
+>  
+>  / {
+> @@ -88,29 +88,6 @@ ap_ts_pen_1v8: &i2c13 {
+>  	pins = "gpio51";
+>  };
+>  
+> -&sound {
+> -	audio-routing =
+> -		"IN1_HPHL", "HPHL_OUT",
+> -		"IN2_HPHR", "HPHR_OUT",
+> -		"AMIC1", "MIC BIAS1",
+> -		"AMIC2", "MIC BIAS2",
+> -		"VA DMIC0", "MIC BIAS1",
+> -		"VA DMIC1", "MIC BIAS1",
+> -		"VA DMIC2", "MIC BIAS3",
+> -		"VA DMIC3", "MIC BIAS3",
+> -		"TX SWR_ADC0", "ADC1_OUTPUT",
+> -		"TX SWR_ADC1", "ADC2_OUTPUT",
+> -		"TX SWR_ADC2", "ADC3_OUTPUT",
+> -		"TX SWR_DMIC0", "DMIC1_OUTPUT",
+> -		"TX SWR_DMIC1", "DMIC2_OUTPUT",
+> -		"TX SWR_DMIC2", "DMIC3_OUTPUT",
+> -		"TX SWR_DMIC3", "DMIC4_OUTPUT",
+> -		"TX SWR_DMIC4", "DMIC5_OUTPUT",
+> -		"TX SWR_DMIC5", "DMIC6_OUTPUT",
+> -		"TX SWR_DMIC6", "DMIC7_OUTPUT",
+> -		"TX SWR_DMIC7", "DMIC8_OUTPUT";
+> -};
+> -
+>  &wcd9385 {
+>  	pinctrl-names = "default", "sleep";
+>  	pinctrl-0 = <&wcd_reset_n>, <&us_euro_hs_sel>;
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+> new file mode 100644
+> index 0000000..1eac94e1
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+> @@ -0,0 +1,112 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * sc7280 device tree source for boards using Max98360 and wcd9385 codec
+> + * along with ADSP
+> + *
+> + * Copyright (c) 2022, The Linux Foundation. All rights reserved.
+> + */
+> +
+> +#include <dt-bindings/sound/qcom,q6afe.h>
+> +#include <dt-bindings/soc/qcom,gpr.h>
+> +#include <dt-bindings/clock/qcom,lpass-sc7280.h>
+> +
+> +/{
+> +	/* BOARD-SPECIFIC TOP LEVEL NODES */
+> +	sound: sound {
+> +		compatible = "google,sc7280-herobrine";
+> +		model = "SC7280-AUDIOREACH";
+> +		status = "okay";
+> +		adsp-mode;
+> +		audio-routing =
+> +		   "IN1_HPHL", "HPHL_OUT",
+> +		   "IN2_HPHR", "HPHR_OUT",
+> +		   "AMIC1", "MIC BIAS1",
+> +		   "AMIC2", "MIC BIAS2",
+> +		   "VA DMIC0", "MIC BIAS1",
+> +		   "VA DMIC1", "MIC BIAS1",
+> +		   "VA DMIC2", "MIC BIAS3",
+> +		   "VA DMIC3", "MIC BIAS3",
+> +		   "TX SWR_ADC0", "ADC1_OUTPUT",
+> +		   "TX SWR_ADC1", "ADC2_OUTPUT",
+> +		   "TX SWR_ADC2", "ADC3_OUTPUT",
+> +		   "TX SWR_DMIC0", "DMIC1_OUTPUT",
+> +		   "TX SWR_DMIC1", "DMIC2_OUTPUT",
+> +		   "TX SWR_DMIC2", "DMIC3_OUTPUT",
+> +		   "TX SWR_DMIC3", "DMIC4_OUTPUT",
+> +		   "TX SWR_DMIC4", "DMIC5_OUTPUT",
+> +		   "TX SWR_DMIC5", "DMIC6_OUTPUT",
+> +		   "TX SWR_DMIC6", "DMIC7_OUTPUT",
+> +		   "TX SWR_DMIC7", "DMIC8_OUTPUT";
+> +
+> +		qcom,msm-mbhc-hphl-swh = <1>;
+> +		qcom,msm-mbhc-gnd-swh = <1>;
+> +
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		#sound-dai-cells = <0>;
+> +
+> +		dai-link@0 {
+> +			link-name = "WCD9385 Playback";
+> +			reg = <0>;
+> +
+> +			cpu {
+> +				sound-dai = <&q6apmbedai  RX_CODEC_DMA_RX_0>;
 
-Thanks, I will send v5 where a follow-up commit adds the missing 
-properties for clocks and port in the binding.
+Just one space.
 
---
-Jai
+> +			};
+> +			codec {
+> +				sound-dai = <&wcd9385 0>, <&swr0 0>, <&lpass_rx_macro 0>;
+> +			};
+> +			platform {
+> +				sound-dai = <&q6apm>;
+> +			};
+> +		};
+> +
+> +		dai-link@1 {
+> +			link-name = "WCD9385 Capture";
+> +			reg = <1>;
+> +
+> +			cpu {
+> +				sound-dai = <&q6apmbedai  TX_CODEC_DMA_TX_3>;
+> +			};
+> +			codec {
+> +				sound-dai = <&wcd9385 1>, <&swr1 0>, <&lpass_tx_macro 0>;
+> +			};
+> +			platform {
+> +				sound-dai = <&q6apm>;
+> +			};
+> +		};
+> +
+> +		dai-link@2 {
+> +			link-name = "MAX98360A";
+
+Amplifier playback?
+
+> +			reg = <3>;
+> +
+> +			cpu {
+> +				sound-dai = <&q6apmbedai SECONDARY_MI2S_RX>;
+> +			};
+> +
+> +			codec {
+> +				sound-dai =	 <&max98360a>;
+
+No redundant whitespaces around =.
+
+
+> +			};
+> +
+> +			platform {
+> +				sound-dai = <&q6apm>;
+> +			};
+> +		};
+> +
+> +		dai-link@3 {
+> +			link-name = "DMIC";
+> +			reg = <4>;
+> +
+> +			cpu {
+> +				sound-dai = <&q6apmbedai VA_CODEC_DMA_TX_0>;
+> +			};
+> +
+> +			codec {
+> +				sound-dai = <&lpass_va_macro 0>;
+> +			};
+> +
+> +			platform {
+> +				sound-dai = <&q6apm>;
+> +			};
+> +		};
+> +	};
+> +};
+
+Best regards,
+Krzysztof
+
