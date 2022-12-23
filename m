@@ -2,231 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D298D654F97
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 12:18:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CB30654F9A
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 12:22:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230397AbiLWLSo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 06:18:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42396 "EHLO
+        id S236112AbiLWLWm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 06:22:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230120AbiLWLSn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 06:18:43 -0500
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D1AE1276E
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 03:18:41 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id x11so4682063ljh.7
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 03:18:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=BN78cS6rE9Yp4B3TRTbxmbnWU/S5h0cAk1EFG+5tItQ=;
-        b=uUe6o9Cmm9zvEzHBBsQSg3P4exeeOEsHNZBzcvpO+Nf+oFHMrAJE1KJkbjKlBGj6Vm
-         Bb2rK2s4t81FW6t2SWizTZNrH4BZVxG0Zc4U4PVO5ZMaHf7AfovVTAovpMQ/+t0L7/qM
-         /GvpVlACV3K6MltxN+RNcoAI398QVpDcBqylhrJINlYM23f6Wpf4GkEVYoNel9ZXvD3W
-         lnBuYhrklSFfC9h0X+5gZGwd+d28CNa4GBofaNqQXyhSZttpBVr58VnFYB7jFPRZIwpy
-         Cf/XkF5iBvRCK8jdllUr0AYvC58UrmoAT5Lxfl2GUE0JVDLc1rs+b8cKMoOoXBsjEyqb
-         dVPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BN78cS6rE9Yp4B3TRTbxmbnWU/S5h0cAk1EFG+5tItQ=;
-        b=ZEZhTFM0nXjlamoLxlnZzRM0Ip/C9MYp9LJMKjWOH828r+9csImIj5Fun1X9TxiysB
-         LgxljcFF0sHcF4qYOmFwecYGZo+zlCSLUKee5irpRrquCu/C96UjfOsK9kRDwhZIK0Eh
-         nklWJYHioz+4a335gC88oHHOS0AXKpzlaqPsfkJNQ7GXNZ5khqrokiee8xHAtmm1CZ+X
-         H2BjY69r9RnugyfcFB73Nzotih+RCWkqOlEwJGZycIpbkaeGQmKloMDUmBTgXHK4VFZy
-         Ut3yNRwBsJIGAbWSDVQQoLxTOMNAFellANlJWCyHpCtMcV5+70LISzMIh2fe+CnWmGoJ
-         wZYQ==
-X-Gm-Message-State: AFqh2kqo/+zYwP9s3mKJUlV7244UB0D6WGFL4Vx1tJHtgzxfFCSgAgar
-        vMeHtjbb7lHcSHC9b8jDiEG6wg==
-X-Google-Smtp-Source: AMrXdXvUGRb5NIIujgOVvZRAbSbFSTLCDIcNtu4d6J9ydxgw8Bi+S2NGSfpVFQYVlEhTe0voPcEhMw==
-X-Received: by 2002:a2e:8945:0:b0:27f:958a:9279 with SMTP id b5-20020a2e8945000000b0027f958a9279mr2475446ljk.1.1671794319703;
-        Fri, 23 Dec 2022 03:18:39 -0800 (PST)
-Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id q13-20020a056512210d00b004b5732080d1sm483280lfr.150.2022.12.23.03.18.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Dec 2022 03:18:39 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: clock: qcom,spmi-clkdiv: convert to DT schema
-Date:   Fri, 23 Dec 2022 12:18:35 +0100
-Message-Id: <20221223111835.37610-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S229613AbiLWLWl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 06:22:41 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83FAB6578;
+        Fri, 23 Dec 2022 03:22:39 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 23D7561F1F;
+        Fri, 23 Dec 2022 11:22:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECC9EC433D2;
+        Fri, 23 Dec 2022 11:22:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1671794558;
+        bh=iml0LYBf4pgDoBM3uptB0jlwdBiRt0cmsJC1LuqZC2A=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=aY5TgDlrecotk9zN++iFVn917CJ+lpYtPgCOsLqE6mlo5PYbmGFNIjI5j/sG2V9Ve
+         mP1VBTBOiM+b2tyDgBQA/PUos0IbAVXAk7nmRqJlSNskSxf/GJLIX3s8aspc9Fwavq
+         mtVmuSnoXNdbk6sY51QgOH5WocjpZTjle+vrrz5dtyjLj1H9sjgfqmCSrNHBIsAuLS
+         gA+547InUUE5VZrRI/bjIe/z2agrxZQvVNhiILZ2p/DS+sADk/ErmUs52Xhq0mb22w
+         o+9Q/YR2BLRUjlg8xurCRGkcMDRoK2etrW6x7RfzuGUVnr0Lg2BzhkanNjbTEAz5d1
+         r6sJb5SJOgpcg==
+Message-ID: <23436455-098f-6e21-2330-d91158a591ad@kernel.org>
+Date:   Fri, 23 Dec 2022 12:22:34 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH 4/5] dt-bindings: firmware: arm,scmi: Add support for
+ syspower protocol
+Content-Language: en-US
+To:     Cristian Marussi <cristian.marussi@arm.com>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        sudeep.holla@arm.com, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+References: <20221222183823.518856-1-cristian.marussi@arm.com>
+ <20221222183823.518856-5-cristian.marussi@arm.com>
+ <3d89e135-c8e4-ede4-950f-03900a660822@kernel.org>
+ <Y6WE1zQAxYYn6Ahz@e120937-lin>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <Y6WE1zQAxYYn6Ahz@e120937-lin>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Qualcomm SPMI PMIC clock divider bindings to DT schema.
+On 23/12/2022 11:37, Cristian Marussi wrote:
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/clock/qcom,spmi-clkdiv.txt       | 59 ---------------
- .../bindings/clock/qcom,spmi-clkdiv.yaml      | 71 +++++++++++++++++++
- 2 files changed, 71 insertions(+), 59 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/qcom,spmi-clkdiv.txt
- create mode 100644 Documentation/devicetree/bindings/clock/qcom,spmi-clkdiv.yaml
+>>>  
+>>> +  protocol@12:
+>>> +    type: object
+>>> +    properties:
+>>> +      reg:
+>>> +        const: 0x12
+>>> +
+>>
+>> Why? It did not got lost, it's already covered by pattern. If you refer
+>> to particular warning, please paste it in commit msg. Otherwise it looks
+>> incorrect.
+>>
+> 
+> Yes indeed, but as a matter of fact it seemed to me that we used to add an
+> entry and an example for all the currently published standard SCMI protocols,
+> even though already covered by the patternProp (which covers also any
+> custom-vendor protocol in the wild) and not sporting any additional
+> custom properties (see protocol@18), but maybe this is just a unneeded wrong
+> habit adding only cruft to the bindings.
+> 
+> If you think it does not add any value I can happily drop this, or
+> limiting the addition just to the example (and/or drop equally the unneeded
+> protocol@18 node too in this case).
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,spmi-clkdiv.txt b/Documentation/devicetree/bindings/clock/qcom,spmi-clkdiv.txt
-deleted file mode 100644
-index 7474aba36607..000000000000
---- a/Documentation/devicetree/bindings/clock/qcom,spmi-clkdiv.txt
-+++ /dev/null
-@@ -1,59 +0,0 @@
--Qualcomm Technologies, Inc. SPMI PMIC clock divider (clkdiv)
--
--clkdiv configures the clock frequency of a set of outputs on the PMIC.
--These clocks are typically wired through alternate functions on
--gpio pins.
--
--=======================
--Properties
--=======================
--
--- compatible
--	Usage:      required
--	Value type: <string>
--	Definition: must be "qcom,spmi-clkdiv".
--
--- reg
--	Usage:      required
--	Value type: <prop-encoded-array>
--	Definition: base address of CLKDIV peripherals.
--
--- qcom,num-clkdivs
--	Usage:      required
--	Value type: <u32>
--	Definition: number of CLKDIV peripherals.
--
--- clocks:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: reference to the xo clock.
--
--- clock-names:
--	Usage: required
--	Value type: <stringlist>
--	Definition: must be "xo".
--
--- #clock-cells:
--	Usage: required
--	Value type: <u32>
--	Definition: shall contain 1.
--
--=======
--Example
--=======
--
--pm8998_clk_divs: clock-controller@5b00 {
--	compatible = "qcom,spmi-clkdiv";
--	reg = <0x5b00>;
--	#clock-cells = <1>;
--	qcom,num-clkdivs = <3>;
--	clocks = <&xo_board>;
--	clock-names = "xo";
--
--	assigned-clocks = <&pm8998_clk_divs 1>,
--			  <&pm8998_clk_divs 2>,
--			  <&pm8998_clk_divs 3>;
--	assigned-clock-rates = <9600000>,
--			       <9600000>,
--			       <9600000>;
--};
-diff --git a/Documentation/devicetree/bindings/clock/qcom,spmi-clkdiv.yaml b/Documentation/devicetree/bindings/clock/qcom,spmi-clkdiv.yaml
-new file mode 100644
-index 000000000000..16c95ad6c9d1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/qcom,spmi-clkdiv.yaml
-@@ -0,0 +1,71 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/qcom,spmi-clkdiv.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm SPMI PMIC clock divider
-+
-+maintainers:
-+  - Bjorn Andersson <andersson@kernel.org>
-+  - Stephen Boyd <sboyd@kernel.org>
-+
-+description: |
-+  Qualcomm SPMI PMIC clock divider configures the clock frequency of a set of
-+  outputs on the PMIC.  These clocks are typically wired through alternate
-+  functions on GPIO pins.
-+
-+properties:
-+  compatible:
-+    const: qcom,spmi-clkdiv
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: Board XO source
-+
-+  clock-names:
-+    items:
-+      - const: xo
-+
-+  "#clock-cells":
-+    const: 1
-+
-+  qcom,num-clkdivs:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Number of CLKDIV peripherals.
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - "#clock-cells"
-+  - qcom,num-clkdivs
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    pmic {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        clock-controller@5b00 {
-+            compatible = "qcom,spmi-clkdiv";
-+            reg = <0x5b00>;
-+            clocks = <&xo_board>;
-+            clock-names = "xo";
-+            #clock-cells = <1>;
-+            qcom,num-clkdivs = <3>;
-+
-+            assigned-clocks = <&pm8998_clk_divs 1>,
-+                              <&pm8998_clk_divs 2>,
-+                              <&pm8998_clk_divs 3>;
-+            assigned-clock-rates = <9600000>,
-+                                   <9600000>,
-+                                   <9600000>;
-+        };
-+    };
--- 
-2.34.1
+Duplicating the node (once in properties, second in patternProperties)
+is not needed. I am also not sure what would be the point to add to the
+example - example does not have to be complete DTS for all cases, but
+illustrate the binding and allow is to test it.
+
+Best regards,
+Krzysztof
 
