@@ -2,76 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26CA0655244
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 16:38:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D925655203
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 16:26:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236513AbiLWPiu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 10:38:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53062 "EHLO
+        id S236343AbiLWP0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 10:26:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236516AbiLWPij (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 10:38:39 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D13FA46646
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 07:38:32 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id i7so4890478wrv.8
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 07:38:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MuQJZUiYgsrv6ydPrE/ryH64TRoc2yWi4dM3ARWJNR4=;
-        b=RTjhswt+6tiiYquqWIf1Bv153VnSU5lDEY/YBSphlnlos0M3DB13yo7Hh+2JH2ey+Y
-         1Ymok9XvOR/yPOU0DYRS5sk8YHSlt6OBr9V3sCmo8ujrt6odD5XcgfuoUzb9+BBU/iZd
-         AgFVwYFMQWZUWh4OGWuCgczBV3lRP+qNQSHciNEps3oi4wSyxKE1Hku5Xq/XJsq1wqVg
-         KZJvbjVHNElq3pyjVIF5WJjtUEizlrUOrf/M/cXR2296ja2hQget+VGe1YJ8sIHnzSUy
-         FVswQmXyWDODAv2PevUwlny7tYq4kJP8sQiyc4UQjba38d9U4qXJtndmu2UAvOYWu1m2
-         MhEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MuQJZUiYgsrv6ydPrE/ryH64TRoc2yWi4dM3ARWJNR4=;
-        b=J7H6/pbmkIsRjfcSq6A1iwNNq5t8A5zVhxavmp9ti4lh2QJ3Dsr88csgEO6mAZHim2
-         UEruSHuwIZZFWFcCYAnau1Y5nU8I/DjbFG1w+YyRVAnwS9E46KBuczqUG3ijO4BG6JxJ
-         CQC2rNIXmQS+zt2mslUxlwDC7pY3yq5szq8e0Tyrp2j17/zXpOuvazw2BlipeSLZZLPL
-         JDfJWhX4JHQtw5Kjd2nS/HAt4NecDY6+2kMLrBVegthCfmKvzk3q0Gc10qnWoIfOf4Ci
-         h0Ds1mr9LKZFwuOrk4BnUzTLiU58QPrmfdyLJBVCjH9oWU6qU+FtcFjNJ7iqarDlE4YP
-         /hgA==
-X-Gm-Message-State: AFqh2kqu0/6xeKFg3YDRlBU93cSa62m9ljA7TLbvRwvS0BieM80CIpFW
-        Z6eG0vTxTfokREmoLRe4ZGUB/Q==
-X-Google-Smtp-Source: AMrXdXt+D8+ShGwprnyREr39W/oKiY2rcuXwLgfb5FfMzfQ33k2idZKt03tPoJi/+kllQcoCQDJupQ==
-X-Received: by 2002:a5d:470a:0:b0:242:22e4:998f with SMTP id y10-20020a5d470a000000b0024222e4998fmr6055124wrq.55.1671809912419;
-        Fri, 23 Dec 2022 07:38:32 -0800 (PST)
-Received: from rainbowdash.. (cpc152649-stkp13-2-0-cust121.10-2.cable.virginm.net. [86.15.83.122])
-        by smtp.gmail.com with ESMTPSA id m5-20020adfc585000000b00236488f62d6sm3491610wrg.79.2022.12.23.07.38.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Dec 2022 07:38:32 -0800 (PST)
-From:   Ben Dooks <ben.dooks@sifive.com>
-To:     linux-pwm@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lee Jones <lee.jones@linaro.org>,
-        u.kleine-koenig@pengutronix.de,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        jarkko.nikula@linux.intel.com,
-        William Salmon <william.salmon@sifive.com>,
-        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
-        Ben Dooks <ben.dooks@sifive.com>
-Subject: [PATCH v7 10/10] pwm: dwc: use clock rate in hz to avoid rounding issues
-Date:   Fri, 23 Dec 2022 15:38:20 +0000
-Message-Id: <20221223153820.404565-11-ben.dooks@sifive.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221223153820.404565-1-ben.dooks@sifive.com>
-References: <20221223153820.404565-1-ben.dooks@sifive.com>
+        with ESMTP id S230390AbiLWP0W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 10:26:22 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70A86248EE;
+        Fri, 23 Dec 2022 07:26:21 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1065561497;
+        Fri, 23 Dec 2022 15:26:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 071EAC433EF;
+        Fri, 23 Dec 2022 15:26:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1671809180;
+        bh=zsgzbI+y+B3zcorZp+s237A1XSgIlO7JIhgVXD6bmWs=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=m4gJSHONsShKFHx0RDSOVXVfRQ7nCnAmqrCMO3hmPKiVMr5USWLcxd9yUQibucp7p
+         pvqGzxwR6djEeBMwz/ulZIcU79wOWmVfJlkhfilgbczA8VcoczTFL/F0GEaYHipBsq
+         CfrAHbtQmxbybt/4PQF3ENzWllsw0pb0QoK2cWeydmGSKbyPzmujo+XyZGk/wxyVOJ
+         05vHrr04IOfpvHQR2HnjnBZcoac7EtoTtjCccPHD+Mazu/XykmOxSDRh9Gnfqqhp18
+         Ryyoy7/cGuyMLmwIr2XyC6vRfnD2Xt5gg8mRDKiL8WZdB03f7T35nq352kEu7D0DMW
+         Ih4WseVqvYoyA==
+Date:   Fri, 23 Dec 2022 15:39:29 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     puranjay12@gmail.com, lars@metafoo.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH v2 3/4] iio: temperature: tmp117: add TI TMP116 support
+Message-ID: <20221223153929.3fbad6b2@jic23-huawei>
+In-Reply-To: <20221223150728.34d5agqr4ruixjbu@pengutronix.de>
+References: <20221221092801.1977499-1-m.felsch@pengutronix.de>
+        <20221221092801.1977499-4-m.felsch@pengutronix.de>
+        <20221223151056.4f7d4b7e@jic23-huawei>
+        <20221223150728.34d5agqr4ruixjbu@pengutronix.de>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,127 +57,154 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As noted, the clock-rate when not a nice multiple of ns is probably
-going to end up with inacurate caculations, as well as on a non pci
-system the rate may change (although we've not put a clock rate
-change notifier in this code yet) so we also add some quick checks
-of the rate when we do any calculations with it.
+On Fri, 23 Dec 2022 16:07:28 +0100
+Marco Felsch <m.felsch@pengutronix.de> wrote:
 
-Signed-off-by; Ben Dooks <ben.dooks@sifive.com>
-Reported-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
----
- drivers/pwm/pwm-dwc-of.c |  2 +-
- drivers/pwm/pwm-dwc.c    | 29 ++++++++++++++++++++---------
- drivers/pwm/pwm-dwc.h    |  2 +-
- 3 files changed, 22 insertions(+), 11 deletions(-)
+> Hi Jonathan,
+> 
+> On 22-12-23, Jonathan Cameron wrote:
+> > On Wed, 21 Dec 2022 10:28:00 +0100
+> > Marco Felsch <m.felsch@pengutronix.de> wrote:
+> >   
+> > > The TMP116 is the predecessor of the TMP117. The TMP116 don't support
+> > > custom offset calibration data, instead this register is used as generic
+> > > EEPROM storage as well.
+> > > 
+> > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>  
+> > A few comments inline.
+> > Thanks,
+> > 
+> > Jonathan
+> >   
+> > > ---
+> > > v2:
+> > > - no changes
+> > > 
+> > >  drivers/iio/temperature/tmp117.c | 40 ++++++++++++++++++++++----------
+> > >  1 file changed, 28 insertions(+), 12 deletions(-)
+> > > 
+> > > diff --git a/drivers/iio/temperature/tmp117.c b/drivers/iio/temperature/tmp117.c
+> > > index f9b8f2b570f6..468dafa6fa8e 100644
+> > > --- a/drivers/iio/temperature/tmp117.c
+> > > +++ b/drivers/iio/temperature/tmp117.c
+> > > @@ -31,9 +31,11 @@
+> > >  #define TMP117_REG_DEVICE_ID		0xF
+> > >  
+> > >  #define TMP117_RESOLUTION_10UC		78125
+> > > -#define TMP117_DEVICE_ID		0x0117
+> > >  #define MICRODEGREE_PER_10MILLIDEGREE	10000
+> > >  
+> > > +#define TMP116_DEVICE_ID		0x1116
+> > > +#define TMP117_DEVICE_ID		0x0117
+> > > +
+> > >  struct tmp117_data {
+> > >  	struct i2c_client *client;
+> > >  	s16 calibbias;
+> > > @@ -105,6 +107,13 @@ static const struct iio_chan_spec tmp117_channels[] = {
+> > >  		.type = IIO_TEMP,
+> > >  		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+> > >  			BIT(IIO_CHAN_INFO_CALIBBIAS) | BIT(IIO_CHAN_INFO_SCALE),
+> > > +};
+> > > +
+> > > +static const struct iio_chan_spec tmp116_channels[] = {
+> > > +	{
+> > > +		.type = IIO_TEMP,
+> > > +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+> > > +				      BIT(IIO_CHAN_INFO_SCALE),
+> > >  	},
+> > >  };
+> > >  
+> > > @@ -118,27 +127,28 @@ static int tmp117_identify(struct i2c_client *client)
+> > >  	int dev_id;
+> > >  
+> > >  	dev_id = i2c_smbus_read_word_swapped(client, TMP117_REG_DEVICE_ID);
+> > > -	if (dev_id < 0)  
+> > 
+> > Keep this handling of the smbus read returning an error.
+> > Otherwise, you end up replacing the error code with -ENODEV rather than
+> > returning what actually happened.
+> > 
+> > 	if (dev_id < 0)
+> > 		return dev_id;  
+> 
+> You're right, I will change this thanks.
+> 
+> > 	switch (dev_id) {
+> > ...
+> >   
+> > > +	switch (dev_id) {
+> > > +	case TMP116_DEVICE_ID:
+> > > +	case TMP117_DEVICE_ID:
+> > >  		return dev_id;
+> > > -	if (dev_id != TMP117_DEVICE_ID) {
+> > > -		dev_err(&client->dev, "TMP117 not found\n");
+> > > +	default:
+> > > +		dev_err(&client->dev, "TMP116/117 not found\n");
+> > >  		return -ENODEV;
+As per the other branch of this thread.  This isn't an error.
+If we want fallback compatibles to work in their role of allowing
+for newer devices that are actually compatible, the most we should
+do here is warn.
 
-diff --git a/drivers/pwm/pwm-dwc-of.c b/drivers/pwm/pwm-dwc-of.c
-index c5b4351cc7b0..5f7f066859d4 100644
---- a/drivers/pwm/pwm-dwc-of.c
-+++ b/drivers/pwm/pwm-dwc-of.c
-@@ -50,7 +50,7 @@ static int dwc_pwm_plat_probe(struct platform_device *pdev)
- 		return dev_err_probe(dev, PTR_ERR(dwc->clk),
- 				     "failed to get timer clock\n");
- 
--	dwc->clk_ns = NSEC_PER_SEC / clk_get_rate(dwc->clk);
-+	dwc->clk_rate = clk_get_rate(dwc->clk);
- 	return devm_pwmchip_add(dev, &dwc->chip);
- }
- 
-diff --git a/drivers/pwm/pwm-dwc.c b/drivers/pwm/pwm-dwc.c
-index 5ef0fe7ea3e9..f48a6245a3b5 100644
---- a/drivers/pwm/pwm-dwc.c
-+++ b/drivers/pwm/pwm-dwc.c
-@@ -43,18 +43,22 @@ static int __dwc_pwm_configure_timer(struct dwc_pwm *dwc,
- 	u32 high;
- 	u32 low;
- 
-+	if (dwc->clk)
-+		dwc->clk_rate = clk_get_rate(dwc->clk);
-+
- 	/*
- 	 * Calculate width of low and high period in terms of input clock
- 	 * periods and check are the result within HW limits between 1 and
- 	 * 2^32 periods.
- 	 */
--	tmp = DIV_ROUND_CLOSEST_ULL(state->duty_cycle, dwc->clk_ns);
-+	tmp = state->duty_cycle * dwc->clk_rate;
-+	tmp = DIV_ROUND_CLOSEST_ULL(tmp, NSEC_PER_SEC);
- 	if (tmp < 1 || tmp > (1ULL << 32))
- 		return -ERANGE;
- 	low = tmp - 1;
- 
--	tmp = DIV_ROUND_CLOSEST_ULL(state->period - state->duty_cycle,
--				    dwc->clk_ns);
-+	tmp = (state->period - state->duty_cycle) * dwc->clk_rate;
-+	tmp = DIV_ROUND_CLOSEST_ULL(tmp, NSEC_PER_SEC);
- 	if (tmp < 1 || tmp > (1ULL << 32))
- 		return -ERANGE;
- 	high = tmp - 1;
-@@ -120,6 +124,7 @@ static void dwc_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
- 			      struct pwm_state *state)
- {
- 	struct dwc_pwm *dwc = to_dwc_pwm(chip);
-+	unsigned long clk_rate;
- 	u64 duty, period;
- 	u32 ctrl, ld, ld2;
- 
-@@ -129,22 +134,28 @@ static void dwc_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
- 	ld = dwc_pwm_readl(dwc, DWC_TIM_LD_CNT(pwm->hwpwm));
- 	ld2 = dwc_pwm_readl(dwc, DWC_TIM_LD_CNT2(pwm->hwpwm));
- 
-+	if (dwc->clk)
-+		dwc->clk_rate = clk_get_rate(dwc->clk);
-+
-+	clk_rate = dwc->clk_rate;
- 	state->enabled = !!(ctrl & DWC_TIM_CTRL_EN);
- 
- 	/* If we're not in PWM, technically the output is a 50-50
- 	 * based on the timer load-count only.
- 	 */
- 	if (ctrl & DWC_TIM_CTRL_PWM) {
--		duty = (ld + 1) * dwc->clk_ns;
--		period = (ld2 + 1)  * dwc->clk_ns;
-+		duty = ld + 1;
-+		period = ld2 + 1;
- 		period += duty;
- 	} else {
--		duty = (ld + 1) * dwc->clk_ns;
-+		duty = ld + 1;
- 		period = duty * 2;
- 	}
- 
--	state->period = period;
--	state->duty_cycle = duty;
-+	duty *= NSEC_PER_SEC;
-+	period *= NSEC_PER_SEC;
-+	state->period = DIV_ROUND_CLOSEST_ULL(period, clk_rate);
-+	state->duty_cycle = DIV_ROUND_CLOSEST_ULL(duty, clk_rate);
- 	state->polarity = PWM_POLARITY_INVERSED;
- 
- 	pm_runtime_put_sync(chip->dev);
-@@ -164,7 +175,7 @@ struct dwc_pwm *dwc_pwm_alloc(struct device *dev)
- 	if (!dwc)
- 		return NULL;
- 
--	dwc->clk_ns = 10;
-+	dwc->clk_rate = NSEC_PER_SEC / 10;
- 	dwc->chip.dev = dev;
- 	dwc->chip.ops = &dwc_pwm_ops;
- 	dwc->chip.npwm = DWC_TIMERS_TOTAL;
-diff --git a/drivers/pwm/pwm-dwc.h b/drivers/pwm/pwm-dwc.h
-index dc451cb2eff5..19bdc2224690 100644
---- a/drivers/pwm/pwm-dwc.h
-+++ b/drivers/pwm/pwm-dwc.h
-@@ -41,7 +41,7 @@ struct dwc_pwm {
- 	struct pwm_chip chip;
- 	void __iomem *base;
- 	struct clk *clk;
--	unsigned int clk_ns;
-+	unsigned long clk_rate;
- 	struct dwc_pwm_ctx ctx[DWC_TIMERS_TOTAL];
- };
- #define to_dwc_pwm(p)	(container_of((p), struct dwc_pwm, chip))
--- 
-2.35.1
+Say a new tmp117b device is released. It's fully backwards compatible
+with the exception of an ID - or supports only new features + backwards
+compatibility then that would have a fallback to tmp117 and we need
+it to work.
+
+> > >  	}
+> > > -	return 0;
+> > >  }
+> > >  
+> > >  static int tmp117_probe(struct i2c_client *client)
+> > >  {
+> > >  	struct tmp117_data *data;
+> > >  	struct iio_dev *indio_dev;
+> > > -	int ret;
+> > > +	int dev_id;
+> > >  
+> > >  	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_WORD_DATA))
+> > >  		return -EOPNOTSUPP;
+> > >  
+> > > -	ret = tmp117_identify(client);
+> > > -	if (ret < 0)
+> > > -		return ret;
+> > > +	dev_id = tmp117_identify(client);
+> > > +	if (dev_id < 0)
+> > > +		return dev_id;
+> > >  
+> > >  	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
+> > >  	if (!indio_dev)
+> > > @@ -148,12 +158,18 @@ static int tmp117_probe(struct i2c_client *client)
+> > >  	data->client = client;
+> > >  	data->calibbias = 0;
+> > >  
+> > > -	indio_dev->name = "tmp117";
+> > >  	indio_dev->modes = INDIO_DIRECT_MODE;
+> > >  	indio_dev->info = &tmp117_info;
+> > >  
+> > > -	indio_dev->channels = tmp117_channels;
+> > > -	indio_dev->num_channels = ARRAY_SIZE(tmp117_channels);
+> > > +	if (dev_id == TMP117_DEVICE_ID) {  
+> > 
+> > Probably better to assume we may get more parts in future and use a
+> > switch statement here to explicitly match each value.  
+> 
+> As you want, I will change it.
+> 
+> Regards,
+>   Marco
+> 
+> > > +		indio_dev->channels = tmp117_channels;
+> > > +		indio_dev->num_channels = ARRAY_SIZE(tmp117_channels);
+> > > +		indio_dev->name = "tmp117";
+> > > +	} else {
+> > > +		indio_dev->channels = tmp116_channels;
+> > > +		indio_dev->num_channels = ARRAY_SIZE(tmp116_channels);
+> > > +		indio_dev->name = "tmp116";
+> > > +	}
+> > >  
+> > >  	return devm_iio_device_register(&client->dev, indio_dev);
+> > >  }  
+> > 
+> >   
 
