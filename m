@@ -2,112 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFC3F6550F7
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 14:25:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 081866550FA
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 14:25:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230287AbiLWNZu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 08:25:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41456 "EHLO
+        id S236240AbiLWNZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 08:25:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229959AbiLWNZt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 08:25:49 -0500
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2038C65EC
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 05:25:47 -0800 (PST)
-Received: by mail-pj1-x1032.google.com with SMTP id o1-20020a17090a678100b00219cf69e5f0so8831606pjj.2
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 05:25:47 -0800 (PST)
+        with ESMTP id S235814AbiLWNZx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 08:25:53 -0500
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E06513CF3
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 05:25:52 -0800 (PST)
+Received: by mail-pj1-x102e.google.com with SMTP id k88-20020a17090a4ce100b00219d0b857bcso4989331pjh.1
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 05:25:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=wundbcH2g9xN6/PVxd6vNLcmcPbSkSP9WqIdH+1twe8=;
-        b=3YYEJ6fsDDNLI6BSPUn9UAVpJ3cm8A8yF4bM3GKpdiztut/6kkMEIugr9asK8oqPwb
-         7col/iMpBEqJSKt1RV5xgrw3gOOwdqKXQtzhOngDvel74k9wZsQy+GIf2LNHMTlZuBZd
-         W1e7SvML5sc7KGk7DhlhvdenKHckc8FWOIP+hSbcb7zAYvzLJw2NDAHf94/UuZAqcxZv
-         YbAAevXIsrWLjuQ+YIbIqZwXqjY636/jjUSKwYaB42cLTgLa3SgAaJGXWx7YRmAkRGfC
-         SnYmpbQUXDkrX55LIpOKGX/mCUuPXDk0loPoKSkPDQkDwXSzocet1Qz1rosrrnbqnEVK
-         TwGQ==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jiT9KYDx3RWtZOPtEp+4OpN+KsQgOdSJKLeTP2zJWcs=;
+        b=GkBa160SclbJh4m4+Uvp0lPozlPivWtIJN0Ejk04u5nAj/brwEzVRt0PVJCx0DFy4B
+         cjQlwmXKnSoFJjWvq4NQZHUOL4jD+fcp680/1S2mx8RmC1R5F1noBoBbtbpPxxrjnZTF
+         F2PC6MW6KblVmd3dTCn3dNBnKhSuNmHakt+b82Jm+DmgUN4Yxagsoxo9Lobf/19Bk8hS
+         bT9AYYB5MqfoimYFLS/gGwVBm5h7j2ZTdoDhiTFtV4nRbrt1fCaq6Vtwr6Z7Cn/bwNsT
+         2FdjeQo2h2vSxMbZc+wRSINIfsDs5tDOOGGdH08Qqk4MdDc9UJNmCHnQOidfb7RbHMZT
+         atGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wundbcH2g9xN6/PVxd6vNLcmcPbSkSP9WqIdH+1twe8=;
-        b=sqjMetu5MMBz/JPgDYnftrquoUm73QhA2gk3+ix1KMUPcSo2w3J7Me1fv/+B5JxAs7
-         q1O7KR2vdEwSiyP87rFgsuQ67GcHY4HZgQ3nO9YJVV3X7BLTW8kSlBu4RWlfOlh+BxEw
-         ezpb1dPPksXa13x1IIUEnBBX9v5pNsqILTugIhgh9UTWrJI8aNch+ejSzqiLc8kWNC3G
-         72GoX6ZP+usVLfsasMnPYB9G6ltdzdFcENoWGMLF2v1uZbZ3N4feYqhuYjj5RzAxH+US
-         3xAPrDXo4QZupJNK2kH6LMF3w/Nuqkz3JOuDNHlCBf7MF1uk6zu5k/mG6SzDD8dtViSe
-         uI/A==
-X-Gm-Message-State: AFqh2koC6V/GIQXAiVLIJKh1bl+9Ms/V3ZXdFBFqJbpkZH3ERyxR6Wfv
-        /4Bd3H/b9nkoXUOGeBaOeqkJjg==
-X-Google-Smtp-Source: AMrXdXupbRVLFT1bwpmjESvCYz8d60hQsjaf+PgnNKc51oTZ642XvF1P0pE3Ipqp5xf+VO1u+RWjnA==
-X-Received: by 2002:a05:6a21:6da2:b0:b2:56ba:63ee with SMTP id wl34-20020a056a216da200b000b256ba63eemr14967634pzb.24.1671801946506;
-        Fri, 23 Dec 2022 05:25:46 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jiT9KYDx3RWtZOPtEp+4OpN+KsQgOdSJKLeTP2zJWcs=;
+        b=j38AL75fH3Wg8kAQGgQUMs0NVjsePNbKi31UCe00sIhojcFuNuW5uQ8i+0didHF6sK
+         n4Qo3spdSGrLTtc1z3/+j1T4dMBupOW/5jilm+0ErRX/vNz8ybyLL2d14SScEf7To3pT
+         r8UohHaxkghjAfkP3FTyc80daTlqjfaavIBeVXKKUjB2ZpE+veoP/utnLT5ovUTCrlgb
+         TKtsY9YXoIp5KLU010vgNl9UBQQ2oPGsmxycOP7Ds4iya6h4GMbJkI7f/2gC2RDLweDe
+         Nmh5+OHM41VPs1SUgYJ9TPfQwkJglAmcDOyl6DKWuAo+/kcEg4T/GfA/AbGpwALWkMXD
+         lI1g==
+X-Gm-Message-State: AFqh2kospLfDggM1l7FJ9Ks9abWpoJZ4QDl73xN8AHfkkabDKnYNh7bY
+        6FjV2+4jnl7vSRBBft7+HgIA3g==
+X-Google-Smtp-Source: AMrXdXti9h/NrRYG5tbJrKi6OGMy8J3N5HQuTT5LyCzyDyi8oa6oBJO6uPoipFdscTyMJ6g5+ihMgA==
+X-Received: by 2002:a05:6a20:bb10:b0:ad:2c7c:9510 with SMTP id fc16-20020a056a20bb1000b000ad2c7c9510mr10966527pzb.19.1671801952092;
+        Fri, 23 Dec 2022 05:25:52 -0800 (PST)
 Received: from archl-hc1b.. ([45.112.3.26])
-        by smtp.gmail.com with ESMTPSA id m3-20020a635803000000b0047681fa88d1sm1308587pgb.53.2022.12.23.05.25.41
+        by smtp.gmail.com with ESMTPSA id m3-20020a635803000000b0047681fa88d1sm1308587pgb.53.2022.12.23.05.25.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Dec 2022 05:25:46 -0800 (PST)
+        Fri, 23 Dec 2022 05:25:51 -0800 (PST)
 From:   Anand Moon <anand@edgeble.ai>
-To:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        David Wu <david.wu@rock-chips.com>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     Anand Moon <anand@edgeble.ai>, Jagan Teki <jagan@edgeble.ai>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCHv1 linux-next 1/4] dt-bindings: net: rockchip-dwmac: fix rv1126 compatible warning
-Date:   Fri, 23 Dec 2022 13:22:30 +0000
-Message-Id: <20221223132235.16149-1-anand@edgeble.ai>
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCHv1 linux-next 2/4] ARM: dts: rockchip: rv1126: Add rgmiim1 pin-control
+Date:   Fri, 23 Dec 2022 13:22:31 +0000
+Message-Id: <20221223132235.16149-2-anand@edgeble.ai>
 X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20221223132235.16149-1-anand@edgeble.ai>
+References: <20221223132235.16149-1-anand@edgeble.ai>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix compatible string for RV1126 gmac, and constrain it to
-be compatible with Synopsys dwmac 4.20a.
-
-fix below warning
-arch/arm/boot/dts/rv1126-edgeble-neu2-io.dtb: ethernet@ffc40000:
-		 compatible: 'oneOf' conditional failed, one must be fixed:
-        ['rockchip,rv1126-gmac', 'snps,dwmac-4.20a'] is too long
-        'rockchip,rv1126-gmac' is not one of ['rockchip,rk3568-gmac', 'rockchip,rk3588-gmac']
+Add ethernet pin-control for rv1126 SoC.
 
 Signed-off-by: Anand Moon <anand@edgeble.ai>
 Signed-off-by: Jagan Teki <jagan@edgeble.ai>
 ---
- Documentation/devicetree/bindings/net/rockchip-dwmac.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/rv1126-pinctrl.dtsi | 42 +++++++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-index 42fb72b6909d..04936632fcbb 100644
---- a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-@@ -49,11 +49,11 @@ properties:
-               - rockchip,rk3368-gmac
-               - rockchip,rk3399-gmac
-               - rockchip,rv1108-gmac
--              - rockchip,rv1126-gmac
-       - items:
-           - enum:
-               - rockchip,rk3568-gmac
-               - rockchip,rk3588-gmac
-+              - rockchip,rv1126-gmac
-           - const: snps,dwmac-4.20a
- 
-   clocks:
+diff --git a/arch/arm/boot/dts/rv1126-pinctrl.dtsi b/arch/arm/boot/dts/rv1126-pinctrl.dtsi
+index 4bc419cc1210..b77021772781 100644
+--- a/arch/arm/boot/dts/rv1126-pinctrl.dtsi
++++ b/arch/arm/boot/dts/rv1126-pinctrl.dtsi
+@@ -11,6 +11,14 @@
+  * by adding changes at end of this file.
+  */
+ &pinctrl {
++	clk_out_ethernet {
++		/omit-if-no-ref/
++		clk_out_ethernetm1_pins: clk-out-ethernetm1-pins {
++			rockchip,pins =
++				/* clk_out_ethernet_m1 */
++				<2 RK_PC5 2 &pcfg_pull_none>;
++		};
++	};
+ 	emmc {
+ 		/omit-if-no-ref/
+ 		emmc_rstnout: emmc-rstnout {
+@@ -61,6 +69,40 @@ i2c0_xfer: i2c0-xfer {
+ 				<0 RK_PB5 1 &pcfg_pull_none_drv_level_0_smt>;
+ 		};
+ 	};
++	rgmii {
++		/omit-if-no-ref/
++		rgmiim1_pins: rgmiim1-pins {
++			rockchip,pins =
++				/* rgmii_mdc_m1 */
++				<2 RK_PC2 2 &pcfg_pull_none>,
++				/* rgmii_mdio_m1 */
++				<2 RK_PC1 2 &pcfg_pull_none>,
++				/* rgmii_rxclk_m1 */
++				<2 RK_PD3 2 &pcfg_pull_none>,
++				/* rgmii_rxd0_m1 */
++				<2 RK_PB5 2 &pcfg_pull_none>,
++				/* rgmii_rxd1_m1 */
++				<2 RK_PB6 2 &pcfg_pull_none>,
++				/* rgmii_rxd2_m1 */
++				<2 RK_PC7 2 &pcfg_pull_none>,
++				/* rgmii_rxd3_m1 */
++				<2 RK_PD0 2 &pcfg_pull_none>,
++				/* rgmii_rxdv_m1 */
++				<2 RK_PB4 2 &pcfg_pull_none>,
++				/* rgmii_txclk_m1 */
++				<2 RK_PD2 2 &pcfg_pull_none_drv_level_3>,
++				/* rgmii_txd0_m1 */
++				<2 RK_PC3 2 &pcfg_pull_none_drv_level_3>,
++				/* rgmii_txd1_m1 */
++				<2 RK_PC4 2 &pcfg_pull_none_drv_level_3>,
++				/* rgmii_txd2_m1 */
++				<2 RK_PD1 2 &pcfg_pull_none_drv_level_3>,
++				/* rgmii_txd3_m1 */
++				<2 RK_PA4 2 &pcfg_pull_none_drv_level_3>,
++				/* rgmii_txen_m1 */
++				<2 RK_PC6 2 &pcfg_pull_none_drv_level_3>;
++		};
++	};
+ 	sdmmc0 {
+ 		/omit-if-no-ref/
+ 		sdmmc0_bus4: sdmmc0-bus4 {
 -- 
 2.39.0
 
