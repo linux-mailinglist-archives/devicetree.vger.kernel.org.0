@@ -2,99 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4646655029
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 13:11:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 40DBA65502F
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 13:15:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229996AbiLWMLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 07:11:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40140 "EHLO
+        id S231423AbiLWMPj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 07:15:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236283AbiLWMKl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 07:10:41 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDF5958BFC
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 04:06:41 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id o6so6868169lfi.5
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 04:06:41 -0800 (PST)
+        with ESMTP id S229585AbiLWMPh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 07:15:37 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71A7923D;
+        Fri, 23 Dec 2022 04:15:33 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id v11so4800636ljk.12;
+        Fri, 23 Dec 2022 04:15:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YlCXAwdO/mz/cXYX3UWbY4nAqrujGEVKbpFeE3SLQNk=;
-        b=XhBBwkRdZ8DGm4b3pnYd3KcRYru3gnKX8kY+va5S6IZ8rbMSdcFEP/KTCJEoHuO5aK
-         AQCeiAs3H6ExrJ1UnBnN6oMtyJhUzrmsWFW6IAGsv7qeMb7hLNfJg/7uemzx8LwaHinX
-         yV+NW5xdaz0SsJUMrPvPcX3auG90mXirNUiXRJ4ENRVF0+vXX3PMAGOCJrunzq6wBOCv
-         Jws26oY9pXkRWblQKzfwaSfYJY+QtNtWCUpi15v2RnFdyCVsej6cFEiGDiEpcoE6dArW
-         prUb//3VmKDu91ZgilhX+i90/a2uIozR89z16n66CT4NYLXcz0CJ5mSvpsVWaBNY0B0v
-         0ybA==
+        bh=U5kHe4kFKe8GciyEd0D6yxSAat+6tJA2KlX+zERnbZM=;
+        b=JbCzdsM2tjp/t+U1y9Uc7NbFga0zKTuD7/qYbtgv8UBf1o7AMtZuB19gvXSDXg3q7G
+         4kyl/01zusivdIf07cOAv+wObyjy9K4zkdQYcg9CZihmigK8pRkaGG87jt7qb0HzQLny
+         1eAYThtFX6/mpvIZPoXNff+Ln8Th0BRsQ2KoSm5GODsoE8upEMYAZzoGoKh/IkVw2HfZ
+         DfX/Cs4+GcX/KSemC4ZQO3mZuK4mVVEGwb3MqSYsZ8nu9vFg+awCSPxGXgNSBE9apFya
+         +oekj3bvQAraJvqbbRIHrccZt3U9jdAf1s4DULioWPxser1gDcA8kLIvg+t4EHiIyAAF
+         ZYHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YlCXAwdO/mz/cXYX3UWbY4nAqrujGEVKbpFeE3SLQNk=;
-        b=ERRBnTN2m39mr3a4bo1P8A8KYP5DHyb/X3xjxX+wrVLuAbawDVueZz4YtqqQL4BjsU
-         vQpsUYLC+QXBZu5dfaRv+jkVSMgtW3+EW3CSSjpf5qZWqvRTgkha25cv20q00R08SjsN
-         iRHPPcN/9fYEL+ui9S6yihhoxTF3YaAk/XOVWcbgeDxk6BbMhnRxCbHn5oe0E1JKEBuX
-         pupZ+RkRJ3CI/j+BQ3+MwFEhAK9E4yVSR7+5ePMEkN12eQm1m4KpNg5FWmDrwiL9+Pqj
-         sWw5vQavUfCCmfyqOn/CjjkIdoCUoOwWiFN06LESwcC4UBmQdv6y+Zo6NyLQy2RBB9I9
-         5V5g==
-X-Gm-Message-State: AFqh2koVp/mySLgeDpXkCE+zVF9psQaPMosN2MuksGMcdKTOZIB8+KMn
-        iZwWPzBrk6/Xn7scVkuzHc+UXSwCD31tZArm
-X-Google-Smtp-Source: AMrXdXvh0YYp1o3nnjY3mzA3nKO381f+B7NX0kIC3NndvsKJF4nsO8msym7mwCkHmtIxBqlrs3o7TA==
-X-Received: by 2002:ac2:5e71:0:b0:4a4:68b9:66d3 with SMTP id a17-20020ac25e71000000b004a468b966d3mr2364499lfr.30.1671797152253;
-        Fri, 23 Dec 2022 04:05:52 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id r12-20020ac25f8c000000b004b585003839sm494955lfe.265.2022.12.23.04.05.51
+        bh=U5kHe4kFKe8GciyEd0D6yxSAat+6tJA2KlX+zERnbZM=;
+        b=gWh6gsdUljjir4zSBlQpyADpMgtOnDhAFyt9J32cvGa2qdU1QK2El/4f2ZFeepl4GD
+         Df3OUTahG2912ATO8biYR0j1iNINbuiJj9TJMRzfiVK+67l30X5iR0vQDUaEXCN4/9PB
+         SLeFXhqaDIqstABJmzGdcwycRpqZdpJz9pdt4VPboamqiNr/SwVrCzbGe70sy1Ok50x+
+         hMdvGjdZyjFwv1p/CZAbfeRQJ3pusp+iQlnYO+ELDtv+DvHJRVrTCs8svuqNV4nuY5wI
+         LxDdsVIbH0YKKbDYzkgJwbRMV15XEYzRDFBLxZtgj640E3c24zJTU7jJyVCV6px1N0yL
+         3FXg==
+X-Gm-Message-State: AFqh2kr6cXmsm8xv5hE+sR18+e+xBNg+ucogrf0NhOIApj2YiqRXD1gT
+        CZr7bAUfkChjkmq0C9woirc=
+X-Google-Smtp-Source: AMrXdXuFncqdpV7MwxrbpwS9opnJzxQzZgiu2wJohaBy5psBQl9VkPk8qgO3HzlJODeOzfBeXB4TDA==
+X-Received: by 2002:a2e:3a15:0:b0:27b:4a50:b85b with SMTP id h21-20020a2e3a15000000b0027b4a50b85bmr2309038lja.29.1671797731691;
+        Fri, 23 Dec 2022 04:15:31 -0800 (PST)
+Received: from [192.168.2.145] ([109.252.113.89])
+        by smtp.googlemail.com with ESMTPSA id u12-20020a2e2e0c000000b0025ebaef9570sm400766lju.40.2022.12.23.04.15.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Dec 2022 04:05:51 -0800 (PST)
-Message-ID: <258196d4-5279-daf8-0b9d-b4847149fe9c@linaro.org>
-Date:   Fri, 23 Dec 2022 13:05:50 +0100
+        Fri, 23 Dec 2022 04:15:30 -0800 (PST)
+Message-ID: <a64e2aea-2e06-a72e-5ced-a86de4458c61@gmail.com>
+Date:   Fri, 23 Dec 2022 15:15:29 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: remoteproc: ti: Add new compatible
- for AM62 SoC family
+Subject: Re: [PATCH v2 21/21] staging: media: tegra-video: add tegra20 variant
+To:     Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Sowjanya Komatineni <skomatineni@nvidia.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Richard Leitner <richard.leitner@skidata.com>
+References: <20221128152336.133953-1-luca.ceresoli@bootlin.com>
+ <20221128152336.133953-22-luca.ceresoli@bootlin.com>
+ <30e6b040-aa82-f6a3-1ff6-baa2c0dcb0e2@gmail.com>
+ <20221222100341.5882c19c@booty>
 Content-Language: en-US
-To:     Devarsh Thakkar <devarsht@ti.com>, andersson@kernel.org,
-        devicetree@vger.kernel.org, mathieu.poirier@linaro.org,
-        p.zabel@pengutronix.de, linux-remoteproc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, s-anna@ti.com
-Cc:     hnagalla@ti.com, praneeth@ti.com, nm@ti.com, vigneshr@ti.com,
-        a-bhatia1@ti.com, j-luthra@ti.com
-References: <20221223115638.20192-1-devarsht@ti.com>
- <20221223115638.20192-2-devarsht@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221223115638.20192-2-devarsht@ti.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+In-Reply-To: <20221222100341.5882c19c@booty>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/12/2022 12:56, Devarsh Thakkar wrote:
-> AM62 family of devices don't have a R5F cluster, instead
-> they have single core DM R5F.
-> Add new compatible string ti,am62-r5fss to support this scenario.
+22.12.2022 12:03, Luca Ceresoli пишет:
+> Hello Dmitry,
 > 
-> When this new compatible is used don't allow cluster-mode
-> property usage in device-tree as this implies that there
-> is no R5F cluster available and only single R5F core
-> is present.
+> On Wed, 21 Dec 2022 00:40:20 +0300
+> Dmitry Osipenko <digetx@gmail.com> wrote:
+> 
+>> 28.11.2022 18:23, Luca Ceresoli пишет:
+>>> +static int tegra20_channel_capture_frame(struct tegra_vi_channel *chan,
+>>> +					 struct tegra_channel_buffer *buf)
+>>> +{
+>>> +	u32 value;
+>>> +	int err;
+>>> +
+>>> +	chan->next_out_sp_idx++;
+>>> +
+>>> +	tegra20_channel_vi_buffer_setup(chan, buf);
+>>> +
+>>> +	tegra20_vi_write(chan, TEGRA_VI_CAMERA_CONTROL, VI_CAMERA_CONTROL_VIP_ENABLE);
+>>> +
+>>> +	/* Wait for syncpt counter to reach frame start event threshold */
+>>> +	err = host1x_syncpt_wait(chan->out_sp, chan->next_out_sp_idx,
+>>> +				 TEGRA_VI_SYNCPT_WAIT_TIMEOUT, &value);  
+>>
+>> You're not using the "value" variable, it should be NULL.
+> 
+> Ah, sure, good catch.
+> 
+>> The "chan->out_sp" looks redundant, it duplicates the chan->mw_ack_sp.
+> 
+> I agree it is redundant and can be improved.
+> 
+>> AFAICS from the doc, T20 has two VI channels, and thus, two mw_ack_sp,
+>> like T210.
+> 
+> I'm confused by this. In the current driver, each VI channel has an
+> array of 2 mw_ack_sp, the second of which is only used the ganged
+> CSI ports. I have no docs mentioning ganged ports so I don't know
+> exactly how they work and whether T20 might need more than 1 syncpt per
+> channel or not for CSI. Definitely when using VIP only one such syncpt
+> per each VI (or per each VIP, as per your reply to patch 1) is needed.
+> 
+> Bottom line: I think I can simply remove the out_sp and in the VIP code
+> always use chan->mw_ack_sp[0], and document that it's what is called OUT
+> in VIP terms.
+> 
+> Does this plan seem good?
 
-It's v3 but addresses are still not correct.
+Older Tegra VI doesn't have ganged ports, but two memory/CSI channels.
+It feels to me that Tegra VI can capture both channels independently,
+though downstream driver stack used only one of the channels, IIRC.
 
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC.  It might happen, that command when run on an older
-kernel, gives you outdated entries.  Therefore please be sure you base
-your patches on recent Linux kernel.
+There is a VI header file from nvddk in downstream kernel, which is
+pretty much the doc by itself.
 
-Best regards,
-Krzysztof
-
+https://nv-tegra.nvidia.com/r/gitweb?p=linux-2.6.git;a=blob;f=arch/arm/mach-tegra/include/ap20/arvi.h;h=6ce52e8e9a7213e33466d34a71cf3af2b6944b8a;
