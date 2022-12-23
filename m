@@ -2,145 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 892E7654FF7
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 13:01:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4646655029
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 13:11:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236235AbiLWMBv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 07:01:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56722 "EHLO
+        id S229996AbiLWMLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 07:11:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236142AbiLWMBX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 07:01:23 -0500
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9AD03EAFF
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 04:01:02 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id s25so4810146lji.2
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 04:01:02 -0800 (PST)
+        with ESMTP id S236283AbiLWMKl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 07:10:41 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDF5958BFC
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 04:06:41 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id o6so6868169lfi.5
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 04:06:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=N1aNKlBIziXpmLydIr0jJUQXVMvYMyv68eRxTgy5p6Y=;
-        b=r/H2RdTv7mw258Cku7x7bpkH32f6hz5mvwEZLIaRG2bv8/4A5LEuu0K4zEVMMTkntJ
-         L8sKVmcMv3QNLH/Y+g7FEQ0AxQnJ2qld5iE1liiPswa1o/wKD76QOd/rX5wQI0ei18ju
-         n2zDj6itGEAfk/N0UEwhL8PCvrG6t1l79bOvu7EwRza9xGUzsdlfDVJi2m/dxxuvOaVI
-         F7L2vZdDK55WZFo4Ysjbz4PlAFEBxwfol6bHAtnuByU0vv3yuj+jCB/n0C2d7/cBz3Vi
-         eUlbgLPuX9V7B5ibAsFQcSLoQQQo6gojWUU9IYi8p66tSBCDB0CjoRnoEtRHqZO6Ni5v
-         IqtQ==
+        bh=YlCXAwdO/mz/cXYX3UWbY4nAqrujGEVKbpFeE3SLQNk=;
+        b=XhBBwkRdZ8DGm4b3pnYd3KcRYru3gnKX8kY+va5S6IZ8rbMSdcFEP/KTCJEoHuO5aK
+         AQCeiAs3H6ExrJ1UnBnN6oMtyJhUzrmsWFW6IAGsv7qeMb7hLNfJg/7uemzx8LwaHinX
+         yV+NW5xdaz0SsJUMrPvPcX3auG90mXirNUiXRJ4ENRVF0+vXX3PMAGOCJrunzq6wBOCv
+         Jws26oY9pXkRWblQKzfwaSfYJY+QtNtWCUpi15v2RnFdyCVsej6cFEiGDiEpcoE6dArW
+         prUb//3VmKDu91ZgilhX+i90/a2uIozR89z16n66CT4NYLXcz0CJ5mSvpsVWaBNY0B0v
+         0ybA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=N1aNKlBIziXpmLydIr0jJUQXVMvYMyv68eRxTgy5p6Y=;
-        b=Phd3TMW0bHr1Vi7NdxJT48Db+WMKodgNv0LWoWtnTg06HrhasM5NgClB8dAtA9ecF0
-         /apbQtDTbsx37bnGgu0MbIM0+k15OZHkaTId3hSmfz0OJHNS4O2w0W92jKBLs0jxO4Tn
-         B0iv6C1FntdzBXm29nwetnkIHSqUuAFcDP6/DogEl4I4JE8u0BbHGZFwGpLDTdl+POXa
-         U3ellmVdWMiPYm0Ohwsv366AJRDm0s1jL+Yn0vlHmZIu28mv2pNxPrZiOeRRlnvJ2xyA
-         eaWO9m2NAVOyZ32CiublBZf6FMY0bfHPuZ3uYNSmXi4xnoHfDKoTdkWccdPqst12gUrj
-         LbDw==
-X-Gm-Message-State: AFqh2kqnDxLkPNVFIPfQUtExpCmNEbH5DJL9r8fLU0N0DY4xwC1N+dNy
-        /h3ahNeb0efdjkZczK1/4WEwxg==
-X-Google-Smtp-Source: AMrXdXtQcMgU0pyjzHRHZ0uL6+TvsbRA+E+3Dl7Ry9EwQQ2HRqceuKKtK2BdlmML4/CztnMqUcTgug==
-X-Received: by 2002:a05:651c:48b:b0:27f:81f4:bcb with SMTP id s11-20020a05651c048b00b0027f81f40bcbmr2130319ljc.29.1671796860967;
-        Fri, 23 Dec 2022 04:01:00 -0800 (PST)
-Received: from [192.168.1.101] (abyl184.neoplus.adsl.tpnet.pl. [83.9.31.184])
-        by smtp.gmail.com with ESMTPSA id v18-20020a2e9f52000000b0027a099ad7efsm392685ljk.35.2022.12.23.04.00.59
+        bh=YlCXAwdO/mz/cXYX3UWbY4nAqrujGEVKbpFeE3SLQNk=;
+        b=ERRBnTN2m39mr3a4bo1P8A8KYP5DHyb/X3xjxX+wrVLuAbawDVueZz4YtqqQL4BjsU
+         vQpsUYLC+QXBZu5dfaRv+jkVSMgtW3+EW3CSSjpf5qZWqvRTgkha25cv20q00R08SjsN
+         iRHPPcN/9fYEL+ui9S6yihhoxTF3YaAk/XOVWcbgeDxk6BbMhnRxCbHn5oe0E1JKEBuX
+         pupZ+RkRJ3CI/j+BQ3+MwFEhAK9E4yVSR7+5ePMEkN12eQm1m4KpNg5FWmDrwiL9+Pqj
+         sWw5vQavUfCCmfyqOn/CjjkIdoCUoOwWiFN06LESwcC4UBmQdv6y+Zo6NyLQy2RBB9I9
+         5V5g==
+X-Gm-Message-State: AFqh2koVp/mySLgeDpXkCE+zVF9psQaPMosN2MuksGMcdKTOZIB8+KMn
+        iZwWPzBrk6/Xn7scVkuzHc+UXSwCD31tZArm
+X-Google-Smtp-Source: AMrXdXvh0YYp1o3nnjY3mzA3nKO381f+B7NX0kIC3NndvsKJF4nsO8msym7mwCkHmtIxBqlrs3o7TA==
+X-Received: by 2002:ac2:5e71:0:b0:4a4:68b9:66d3 with SMTP id a17-20020ac25e71000000b004a468b966d3mr2364499lfr.30.1671797152253;
+        Fri, 23 Dec 2022 04:05:52 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id r12-20020ac25f8c000000b004b585003839sm494955lfe.265.2022.12.23.04.05.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Dec 2022 04:01:00 -0800 (PST)
-Message-ID: <53e5ee81-6ee7-66cc-c7d8-2a0e72974d59@linaro.org>
-Date:   Fri, 23 Dec 2022 13:00:59 +0100
+        Fri, 23 Dec 2022 04:05:51 -0800 (PST)
+Message-ID: <258196d4-5279-daf8-0b9d-b4847149fe9c@linaro.org>
+Date:   Fri, 23 Dec 2022 13:05:50 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH 4/5] arm64: dts: qcom: sm6125-seine: Configure SD Card
- slot on SDHCI 2
+Subject: Re: [PATCH v3 1/2] dt-bindings: remoteproc: ti: Add new compatible
+ for AM62 SoC family
 Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        phone-devel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221222203636.250190-1-marijn.suijten@somainline.org>
- <20221222203636.250190-5-marijn.suijten@somainline.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221222203636.250190-5-marijn.suijten@somainline.org>
+To:     Devarsh Thakkar <devarsht@ti.com>, andersson@kernel.org,
+        devicetree@vger.kernel.org, mathieu.poirier@linaro.org,
+        p.zabel@pengutronix.de, linux-remoteproc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, s-anna@ti.com
+Cc:     hnagalla@ti.com, praneeth@ti.com, nm@ti.com, vigneshr@ti.com,
+        a-bhatia1@ti.com, j-luthra@ti.com
+References: <20221223115638.20192-1-devarsht@ti.com>
+ <20221223115638.20192-2-devarsht@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221223115638.20192-2-devarsht@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 22.12.2022 21:36, Marijn Suijten wrote:
-> Sony's seine board features an SD Card slot on SDHCI 2, that is to be
-> powered by l5 and l22.  The card detect pin is already biased via
-> updates on the generic sdc2_*_state pinctrl nodes.
+On 23/12/2022 12:56, Devarsh Thakkar wrote:
+> AM62 family of devices don't have a R5F cluster, instead
+> they have single core DM R5F.
+> Add new compatible string ti,am62-r5fss to support this scenario.
 > 
-> As usual regulator voltages are decreased to the maximum voted by the
-> downstream driver for safety.  SDHCI 2 is the only hardware block
-> feeding off of these.
-> 
-> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> When this new compatible is used don't allow cluster-mode
+> property usage in device-tree as this implies that there
+> is no R5F cluster available and only single R5F core
+> is present.
 
-Konrad
->  .../dts/qcom/sm6125-sony-xperia-seine-pdx201.dts  | 15 +++++++++++++--
->  1 file changed, 13 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
-> index eaddbe522695..4c9b8ad77dd9 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
-> @@ -318,7 +318,8 @@ pm6125_l4: l4 {
->  
->  		pm6125_l5: l5 {
->  			regulator-min-microvolt = <1648000>;
-> -			regulator-max-microvolt = <3104000>;
-> +			regulator-max-microvolt = <2950000>;
-> +			regulator-allow-set-load;
->  		};
->  
->  		pm6125_l6: l6 {
-> @@ -404,7 +405,8 @@ pm6125_l21: l21 {
->  
->  		pm6125_l22: l22 {
->  			regulator-min-microvolt = <2944000>;
-> -			regulator-max-microvolt = <3304000>;
-> +			regulator-max-microvolt = <2950000>;
-> +			regulator-allow-set-load;
->  		};
->  
->  		pm6125_l23: l23 {
-> @@ -444,6 +446,15 @@ &sdhc_1 {
->  	status = "okay";
->  };
->  
-> +&sdhc_2 {
-> +	cd-gpios = <&tlmm 98 GPIO_ACTIVE_HIGH>;
-> +	vmmc-supply = <&pm6125_l22>;
-> +	vqmmc-supply = <&pm6125_l5>;
-> +	no-sdio;
-> +	no-mmc;
-> +	status = "okay";
-> +};
-> +
->  &tlmm {
->  	gpio-reserved-ranges = <22 2>, <28 6>;
->  
+It's v3 but addresses are still not correct.
+
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC.  It might happen, that command when run on an older
+kernel, gives you outdated entries.  Therefore please be sure you base
+your patches on recent Linux kernel.
+
+Best regards,
+Krzysztof
+
