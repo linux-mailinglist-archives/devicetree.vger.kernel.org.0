@@ -2,74 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8389C654B03
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 03:12:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B11E654B0F
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 03:17:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235866AbiLWCML (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Dec 2022 21:12:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56206 "EHLO
+        id S229637AbiLWCRE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Dec 2022 21:17:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235120AbiLWCLT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 21:11:19 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74D1A10066
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 18:10:47 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id y16so3402110wrm.2
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 18:10:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eHjoTnRNTZFA0ZBsqDkIXARH9jeUb+0DAfgRumKgoyA=;
-        b=lBDQtSit+1LqfmJbT1uhbKUQP17QT6jOYcXSoMTBTOZLa2xXlUhOmhQKhAvtRFKopi
-         Ay1nv3bo5Xrq8o5PcsK6DjS4wliQlovmoSSTSpInMaUc8mErA8Ro1SyVnrhidsTAfAzl
-         SFv5CVFN01XmU0CiED1g7Wh6QdmlHPrvuSv0YkFUQWkCjCY4Crb582wgyPwFIVloO4iv
-         UVn9aehPzGoeFjylzhnKGyO4yMuMEQIiQ/My8GmvBzObXQ4uLD6kmTKz3PeVzkTgXorZ
-         RvAw4sA4vGMjWnfUnjv7wxYrvC92tR8p5w0OpByZ87hIyTzNOnVlEOFoKOix2lgJCbH3
-         zzzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eHjoTnRNTZFA0ZBsqDkIXARH9jeUb+0DAfgRumKgoyA=;
-        b=YAWp3KUkLE/ewETFswNWT6TIu0IZnjtuUP8O+PGi+PUi5a21WSq1Mv1178I5GIiNzw
-         Im62+AXhrTTLTIQg63fJ0eZAccGx9cEmkNgZinJiNuHGW2G3MIgPKp4W3JLl9Ke+yZQ9
-         KF3ZOJP3rk23lxOpfwp8WsJVxQpQrUD2Tfa2EhA7T3WawlG3HsFvWF1vc2AnSBJ+KvF5
-         U/UijX/hGw0vKBVtchLhQj6Bmt3xu8r7/bnv/p8YRp9xiblaVF26hWDqimxSBJ6gzYzb
-         vvdBTCNNPOFk2aIVcBfM+/zdPubsYtOZRyhbLJVcQJm7d2huX4zwbCYxGId5ftU21dt6
-         1Dww==
-X-Gm-Message-State: AFqh2kqT1PISYiiW8n+laiEw3DZKUHVztYHpMYD4Yag8SovBm7bXt3+1
-        asFqP0yKML1gmA3xBqcY7E7VQw==
-X-Google-Smtp-Source: AMrXdXsjlvDyNSKBvKq4fxfuBOK1I1bluwc0R6MKJ8g3VyJ6MY+VRGeAv1iWAuoPLG8kUzwNT8Trjg==
-X-Received: by 2002:a5d:4950:0:b0:26e:7604:6575 with SMTP id r16-20020a5d4950000000b0026e76046575mr3878257wrs.65.1671761447428;
-        Thu, 22 Dec 2022 18:10:47 -0800 (PST)
-Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id j11-20020a5d452b000000b0022cc0a2cbecsm1849725wra.15.2022.12.22.18.10.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Dec 2022 18:10:47 -0800 (PST)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-Cc:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
-        dmitry.baryshkov@linaro.org, sean@poorly.run, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org, dianders@chromium.org,
-        david@ixit.cz, krzysztof.kozlowski+dt@linaro.org,
-        swboyd@chromium.org, konrad.dybcio@somainline.org,
-        agross@kernel.org, andersson@kernel.org,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        bryan.odonoghue@linaro.org
-Subject: [PATCH v6 18/18] arm64: dts: qcom: sm8250: Add compat qcom,sm8250-dsi-ctrl
-Date:   Fri, 23 Dec 2022 02:10:25 +0000
-Message-Id: <20221223021025.1646636-19-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221223021025.1646636-1-bryan.odonoghue@linaro.org>
-References: <20221223021025.1646636-1-bryan.odonoghue@linaro.org>
+        with ESMTP id S235916AbiLWCQi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 21:16:38 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAFC265C6;
+        Thu, 22 Dec 2022 18:14:36 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 6F92924E233;
+        Fri, 23 Dec 2022 10:14:35 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 23 Dec
+ 2022 10:14:35 +0800
+Received: from [192.168.125.65] (183.27.97.120) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 23 Dec
+ 2022 10:14:34 +0800
+Message-ID: <91397902-e11d-89c3-1fe4-d262a463b0b9@starfivetech.com>
+Date:   Fri, 23 Dec 2022 10:15:37 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v3 1/7] dt-bindings: riscv: Add StarFive JH7110 SoC and
+ VisionFive 2 board
+Content-Language: en-US
+To:     Conor Dooley <conor@kernel.org>
+CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "Thomas Gleixner" <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <linux-kernel@vger.kernel.org>
+References: <20221220011247.35560-1-hal.feng@starfivetech.com>
+ <20221220011247.35560-2-hal.feng@starfivetech.com> <Y6Ih/oG661gkA9Rd@spud>
+From:   Hal Feng <hal.feng@starfivetech.com>
+In-Reply-To: <Y6Ih/oG661gkA9Rd@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [183.27.97.120]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,40 +67,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add silicon specific compatible qcom,sm8250-dsi-ctrl to the
-mdss-dsi-ctrl block. This allows us to differentiate the specific bindings
-for sm8250 against the yaml documentation.
+On Tue, 20 Dec 2022 20:58:38 +0000, Conor Dooley wrote:
+> On Tue, Dec 20, 2022 at 09:12:41AM +0800, Hal Feng wrote:
+> > From: Emil Renner Berthing <kernel@esmil.dk>
+> > 
+> > Add device tree bindings for the StarFive JH7110 RISC-V SoC
+> > and the VisionFive 2 board equipped with it.
+> > 
+> > VisionFive 2 board has version A and version B, which are
+> > different in gmac and phy chip. The version A board has one
+> > 1000Mbps and one 100Mbps Ethernet ports while the version B
+> > board has two 1000Mbps Ethernet ports.
+> > 
+> > Link: https://doc-en.rvspace.org/Doc_Center/jh7110.html
+> > Link: https://doc-en.rvspace.org/Doc_Center/visionfive_2.html
+> > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> 
+> Unless Emil objects, I'll queue this for 6.3 once -rc1 has been tagged.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+Thank you so much.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index dab5579946f35..9240132efa75e 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -4050,7 +4050,8 @@ opp-460000000 {
- 			};
- 
- 			dsi0: dsi@ae94000 {
--				compatible = "qcom,mdss-dsi-ctrl";
-+				compatible = "qcom,sm8250-dsi-ctrl",
-+					     "qcom,mdss-dsi-ctrl";
- 				reg = <0 0x0ae94000 0 0x400>;
- 				reg-names = "dsi_ctrl";
- 
-@@ -4141,7 +4142,8 @@ dsi0_phy: phy@ae94400 {
- 			};
- 
- 			dsi1: dsi@ae96000 {
--				compatible = "qcom,mdss-dsi-ctrl";
-+				compatible = "qcom,sm8250-dsi-ctrl",
-+					     "qcom,mdss-dsi-ctrl";
- 				reg = <0 0x0ae96000 0 0x400>;
- 				reg-names = "dsi_ctrl";
- 
--- 
-2.38.1
-
+Best regards,
+Hal
