@@ -2,49 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C6C8655293
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 17:14:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 792BD6552A0
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 17:18:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231191AbiLWQOK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 11:14:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37520 "EHLO
+        id S231217AbiLWQSq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 11:18:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230211AbiLWQOJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 11:14:09 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9532A461
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 08:14:08 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1p8kgJ-0001pp-RM; Fri, 23 Dec 2022 17:13:59 +0100
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1p8kgJ-00080q-FP; Fri, 23 Dec 2022 17:13:59 +0100
-Date:   Fri, 23 Dec 2022 17:13:59 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     puranjay12@gmail.com, lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH v2 3/4] iio: temperature: tmp117: add TI TMP116 support
-Message-ID: <20221223161359.wla6l5kd5gddloid@pengutronix.de>
-References: <20221221092801.1977499-1-m.felsch@pengutronix.de>
- <20221221092801.1977499-4-m.felsch@pengutronix.de>
- <20221223151056.4f7d4b7e@jic23-huawei>
- <20221223150728.34d5agqr4ruixjbu@pengutronix.de>
- <20221223153929.3fbad6b2@jic23-huawei>
+        with ESMTP id S230396AbiLWQSn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 11:18:43 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCE3E1A214
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 08:18:42 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id g13so7620431lfv.7
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 08:18:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ssdvzhuee2XQDm50/3Dh08z9mzFiguEgbpNiLUtPtQk=;
+        b=UYjsne41U/8//XGrEZ6dq42DkOf4pl/H4mBwv95l7LC/HPOBxZBwIOHP512CSawS/V
+         ZXRxPXvOBUKILtZWA6ZCHDGiTWcfnPi5EujmFDoS/QYeXBeVfd9qGhjN0xdyqARDD2h9
+         WV4xJo5w7mJN3fK5yuHO7DCiAZh1cBTovHrXChNvE3TCggPvirfwVf/stzpztbef/jDR
+         ox7SMWCthNCXopIH0fL+A93HX0+5N2zKKbKGXHEEwh3wS/HFJB7V/lfin8nsd2xAAK2p
+         ZqNj2j1L4PYBVZYbqF1Y3cQ7ARbhV53zt3b2HXhYSrm+70WsNa9pUsC1Yux6sObo/tEQ
+         tPyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ssdvzhuee2XQDm50/3Dh08z9mzFiguEgbpNiLUtPtQk=;
+        b=i9wFxCZ9/1ae73zdVSSqwffjKVrKiSxn+Iw2qHzDX7ydlVFzjFSNscKFYVxjWSK547
+         yVvJm+AAa47WETONK+GbEKQsYgbslCpb539nDGRe/yO4RX7soBBQydDM/uvIdUIwoixi
+         szSYLGz8x44D+PYn24PZa1srLNaniHYLAQFOwkMkxnaUc4TGSZII2md1u5hL83zaeEX8
+         6M+q6l/bKLd3rNXh0lRKzPMOALDkhinybc5tezfgBWaKvUFvOX12vbgvTGZx0c1rrA9C
+         1meoO+q7qITsUQXTWbxVeUWAKXzFS73BE2kIjTJaVjXUmQiLtcJD8CnZt/eupHND96fH
+         l2Yg==
+X-Gm-Message-State: AFqh2kqlNYn3fvQParL0C3uQ+BgYCtqwEKCCDt05mje7p/dtSBW6c3vm
+        mjwx3XT8rirUCndy1AF6cART2g==
+X-Google-Smtp-Source: AMrXdXsWw512KHluUBDJzRaXuHifwQ7aus50gdJRaT8b2kbKkEG6+slseJlplBRP71EZhfMrDmokPQ==
+X-Received: by 2002:a19:f80c:0:b0:4b5:853c:ed30 with SMTP id a12-20020a19f80c000000b004b5853ced30mr2676054lff.23.1671812321141;
+        Fri, 23 Dec 2022 08:18:41 -0800 (PST)
+Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id n18-20020a05651203f200b004b4f2a30e6csm581360lfq.0.2022.12.23.08.18.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Dec 2022 08:18:40 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/4] dt-bindings: phy: qcom,usb-snps-femto-v2: use fallback compatibles
+Date:   Fri, 23 Dec 2022 17:18:32 +0100
+Message-Id: <20221223161835.112079-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221223153929.3fbad6b2@jic23-huawei>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -53,50 +76,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-12-23, Jonathan Cameron wrote:
+Document SoC-specific compatibles with generic fallback (e.g.
+qcom,usb-snps-hs-7nm-phy) already used in DTSI.  Add SoC-specific
+compatibles for PHY on SDX55 and SDX65.
 
-...
+This disallows usage of the qcom,usb-snps-hs-5nm-phy and
+qcom,usb-snps-hs-7nm-phy generic compatibles alone.  Do not touch
+remaining two compatibles - qcom,usb-snps-femto-v2-phy and
+qcom,sc8180x-usb-hs-phy - because there are no upstream users, so not
+sure what was the intention for them.
 
-> > > > @@ -118,27 +127,28 @@ static int tmp117_identify(struct i2c_client *client)
-> > > >  	int dev_id;
-> > > >  
-> > > >  	dev_id = i2c_smbus_read_word_swapped(client, TMP117_REG_DEVICE_ID);
-> > > > -	if (dev_id < 0)  
-> > > 
-> > > Keep this handling of the smbus read returning an error.
-> > > Otherwise, you end up replacing the error code with -ENODEV rather than
-> > > returning what actually happened.
-> > > 
-> > > 	if (dev_id < 0)
-> > > 		return dev_id;  
-> > 
-> > You're right, I will change this thanks.
-> > 
-> > > 	switch (dev_id) {
-> > > ...
-> > >   
-> > > > +	switch (dev_id) {
-> > > > +	case TMP116_DEVICE_ID:
-> > > > +	case TMP117_DEVICE_ID:
-> > > >  		return dev_id;
-> > > > -	if (dev_id != TMP117_DEVICE_ID) {
-> > > > -		dev_err(&client->dev, "TMP117 not found\n");
-> > > > +	default:
-> > > > +		dev_err(&client->dev, "TMP116/117 not found\n");
-> > > >  		return -ENODEV;
->
-> As per the other branch of this thread.  This isn't an error.
-> If we want fallback compatibles to work in their role of allowing
-> for newer devices that are actually compatible, the most we should
-> do here is warn.
-> 
-> Say a new tmp117b device is released. It's fully backwards compatible
-> with the exception of an ID - or supports only new features + backwards
-> compatibility then that would have a fallback to tmp117 and we need
-> it to work.
+This fixes warnings like:
 
-This isn't part of this patchset and IMHO implementing something which
-may happen in the future is not the way we should go.
+  sa8295p-adp.dtb: phy@88e5000: compatible: 'oneOf' conditional failed, one must be fixed:
+    ['qcom,sc8280xp-usb-hs-phy', 'qcom,usb-snps-hs-5nm-phy'] is too long
+    'qcom,sc8280xp-usb-hs-phy' is not one of ['qcom,sm8150-usb-hs-phy', 'qcom,sm8250-usb-hs-phy', 'qcom,sm8350-usb-hs-phy', 'qcom,sm8450-usb-hs-phy']
+    'qcom,usb-snps-hs-7nm-phy' was expected
 
-Regards,
-  Marco
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../bindings/phy/qcom,usb-snps-femto-v2.yaml  | 33 +++++++++++--------
+ 1 file changed, 20 insertions(+), 13 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+index 68e70961beb2..85d405e028b9 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+@@ -14,18 +14,25 @@ description: |
+ 
+ properties:
+   compatible:
+-    enum:
+-      - qcom,usb-snps-hs-5nm-phy
+-      - qcom,usb-snps-hs-7nm-phy
+-      - qcom,sc7280-usb-hs-phy
+-      - qcom,sc8180x-usb-hs-phy
+-      - qcom,sc8280xp-usb-hs-phy
+-      - qcom,sm6375-usb-hs-phy
+-      - qcom,sm8150-usb-hs-phy
+-      - qcom,sm8250-usb-hs-phy
+-      - qcom,sm8350-usb-hs-phy
+-      - qcom,sm8450-usb-hs-phy
+-      - qcom,usb-snps-femto-v2-phy
++    oneOf:
++      - enum:
++          - qcom,sc8180x-usb-hs-phy
++          - qcom,usb-snps-femto-v2-phy
++      - items:
++          - enum:
++              - qcom,sc8280xp-usb-hs-phy
++          - const: qcom,usb-snps-hs-5nm-phy
++      - items:
++          - enum:
++              - qcom,sc7280-usb-hs-phy
++              - qcom,sdx55-usb-hs-phy
++              - qcom,sdx65-usb-hs-phy
++              - qcom,sm6375-usb-hs-phy
++              - qcom,sm8150-usb-hs-phy
++              - qcom,sm8250-usb-hs-phy
++              - qcom,sm8350-usb-hs-phy
++              - qcom,sm8450-usb-hs-phy
++          - const: qcom,usb-snps-hs-7nm-phy
+ 
+   reg:
+     maxItems: 1
+@@ -160,7 +167,7 @@ examples:
+     #include <dt-bindings/clock/qcom,rpmh.h>
+     #include <dt-bindings/clock/qcom,gcc-sm8150.h>
+     phy@88e2000 {
+-        compatible = "qcom,sm8150-usb-hs-phy";
++        compatible = "qcom,sm8150-usb-hs-phy", "qcom,usb-snps-hs-7nm-phy";
+         reg = <0x088e2000 0x400>;
+         #phy-cells = <0>;
+ 
+-- 
+2.34.1
+
