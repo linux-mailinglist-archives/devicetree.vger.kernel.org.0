@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0B51654AB3
+	by mail.lfdr.de (Postfix) with ESMTP id 3CBE8654AB1
 	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 03:10:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229627AbiLWCKg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S235818AbiLWCKg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 22 Dec 2022 21:10:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56100 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235782AbiLWCKd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 21:10:33 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 329AB20F45
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 18:10:31 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id i7so3380844wrv.8
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 18:10:31 -0800 (PST)
+        with ESMTP id S230303AbiLWCKe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Dec 2022 21:10:34 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ACA72124D
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 18:10:32 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id bx10so3427530wrb.0
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 18:10:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=2Hu/pgFNNxfeH2Gjp98s64ccughmNvrwi5MiArHpcHo=;
-        b=yGfe4DQ3KTq24nSAmHQc46jlKLMrFw+CZHP76fuhN/IebnDh20dINzhgLujYqKVX+Y
-         dXgJ2eP1ZKXLeOM6QoxMhqcpwOgoEejsvHf9d2BghPVYx62uqO2xtM2ky4/bLGMMHWXt
-         rI9xvCXv3MSDG5h0FyJl5qV4R6BUPJB63A7kN86CDGbvDqJB7sP5y9Bz8s3zHfDTx4Wh
-         1rmntAJPoc2qG9vCfGqtnQ75Srt6XE8pzFV9AbvBfcJd2ReH0qUsjsoYvGUOe4nPAWcl
-         8YFRd04buMiGVmi+MF7lA0m064vhPo+nshLgB18tEfW9vYMl/lO5oUnGdPE1Ti3BXwM3
-         nvog==
+        bh=u+Ok/Y8Pr2ds0xVbkzxTKyFSBfTt/36m9CaPlTa4hTI=;
+        b=MrhN4Xb9RiUuzbzu5slyO/DpcQyG5glXnDF/6fqL9FJZMT/5dc2CHnWYXtss5wwPn2
+         ckcR8BQ/3elmwT5pBC3a4mf3/Adv99wKrgjZ9dEPMbJoc8bVMj7leoXXLPTtaldcvV3Q
+         07dMJ4wwtxmyipd+bHdalaiHQahJM+JPV/dAz7lMU1OQp3Ne9y5wfMMtjlps0w6YqIUj
+         z3ZR8mJsgvYejDkdD7B0wNV7uYQbZ+4qHAqTRMWUWAadb8kdcTmrPVKr6Gyennx5r4VT
+         cSZYiLEhwi3T2GlyUNEYuS/0vtyn/v19F0TB+RBqGQDyUikwtsQPDwEdzVY4RyFCOms2
+         xUwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=2Hu/pgFNNxfeH2Gjp98s64ccughmNvrwi5MiArHpcHo=;
-        b=GYXWBXY8WBZiaBv/F0bOCSdMAQxDQVJnhsgvTgvjDnwSr2ShJsYBMYGzGpQT6ibJN7
-         26dicnKzmSZM6Q6I0UNtjJ8jNrJVXNLoCILnc8kpkZbaXyWKd/eYZSnFC+lDOGudvuFq
-         VCujlVniLnRJFGf5C7iQyRep2QzGUDGdPulMr5uzoV3MyPuE1KX4qrZkCWJRqWgHZzIs
-         ThoQGuFdauDAFrBbXQZkGJiOrcgjB2ow5mtPMBaKETlUY3dcjEW7zPQGU2oH1CCA25jD
-         B0ZPj3TzLzcD1M1sS4spYyctJl1BWSXmZvhubgIu8gF1cVYxKNRjRiDPh0pGLN1eCUiB
-         qP4A==
-X-Gm-Message-State: AFqh2krv4hRTI6lS1Q9Mvo25stfmID6+NKxv6/RXIZual5WLT93Oq6ls
-        9wc4ADc9BQftCYssFZjaA9o9mQ==
-X-Google-Smtp-Source: AMrXdXsqclnk5dTKs8dX2sprcRns0P/6Ejt8NwsXpgOv6nEraTPK8YW8miSgwRDhRTOx+hRIEHHMcQ==
-X-Received: by 2002:a05:6000:1373:b0:242:30b3:3ca7 with SMTP id q19-20020a056000137300b0024230b33ca7mr4544772wrz.11.1671761429741;
-        Thu, 22 Dec 2022 18:10:29 -0800 (PST)
+        bh=u+Ok/Y8Pr2ds0xVbkzxTKyFSBfTt/36m9CaPlTa4hTI=;
+        b=XHDJr/o/7CD60c+oMScohUOBYHYlqvyTgwyVm6ivvAU94lgFp7dyAZ0usM+jPo3b1D
+         KTEoDccu35Lj8NCgE3P/+4msl7OTHJpzAVxSD2urWyk+Sf99zgvfaA/3hMraYOcLT4qX
+         QPuzszUR39+2ZPNPP1tQxKowMXln6ffsTLPGkncxcneCj8Y8CCSPM1HylcCS23bMN9Cr
+         JoQVkN5SjuoasId1Jj5WS3m5dsVSutBkGCWGC0ux30xi+X8VdPsOvc4OAvXIlI+UUeiC
+         ZuOiDPGEqeMxBq22ArCnXViCFkBA23ueqc3kHnixNGmP4uXrCQQwOe138GzbV9hmS2Bv
+         7Wtw==
+X-Gm-Message-State: AFqh2krK3Rh5wCxbvy0YkGphkg7ZkpDIwkOlmh2VGxcEyxp4pSwtXKwp
+        s6LKx2Pl1n3J9Rz/TUYOSqM4HQ==
+X-Google-Smtp-Source: AMrXdXuu2FQx7IxvbWNkPzFPFbP1DApQ4G+dhRhfQmOT0QbUCc2Q1fzyKDnhG2hNUyqkCCJ6/z7dag==
+X-Received: by 2002:a5d:4d8c:0:b0:241:fb7d:2f15 with SMTP id b12-20020a5d4d8c000000b00241fb7d2f15mr4047043wru.29.1671761430916;
+        Thu, 22 Dec 2022 18:10:30 -0800 (PST)
 Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id j11-20020a5d452b000000b0022cc0a2cbecsm1849725wra.15.2022.12.22.18.10.28
+        by smtp.gmail.com with ESMTPSA id j11-20020a5d452b000000b0022cc0a2cbecsm1849725wra.15.2022.12.22.18.10.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Dec 2022 18:10:29 -0800 (PST)
+        Thu, 22 Dec 2022 18:10:30 -0800 (PST)
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
         devicetree@vger.kernel.org
@@ -61,9 +61,9 @@ Cc:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
         dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
         bryan.odonoghue@linaro.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v6 01/18] dt-bindings: msm: dsi-controller-main: Fix operating-points-v2 constraint
-Date:   Fri, 23 Dec 2022 02:10:08 +0000
-Message-Id: <20221223021025.1646636-2-bryan.odonoghue@linaro.org>
+Subject: [PATCH v6 02/18] dt-bindings: msm: dsi-controller-main: Fix power-domain constraint
+Date:   Fri, 23 Dec 2022 02:10:09 +0000
+Message-Id: <20221223021025.1646636-3-bryan.odonoghue@linaro.org>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20221223021025.1646636-1-bryan.odonoghue@linaro.org>
 References: <20221223021025.1646636-1-bryan.odonoghue@linaro.org>
@@ -79,7 +79,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The existing msm8916.dtsi does not depend on nor require operating points.
+power-domain is required for the sc7180 dispcc GDSC but not every qcom SoC
+has a similar dependency for example the apq8064.
+
+Most Qcom SoC's using mdss-dsi-ctrl seem to have the ability to
+power-collapse the MDP without collapsing DSI.
+
+For example the qcom vendor kernel commit for apq8084, msm8226, msm8916,
+msm8974.
+
+https://review.carbonrom.org/plugins/gitiles/CarbonROM/android_kernel_oneplus_msm8994/+/7b5c011a770daa2811778937ed646237a28a8694
+
+"ARM: dts: msm: add mdss gdsc supply to dsi controller device
+
+ It is possible for the DSI controller to be active when MDP is
+ power collapsed. DSI controller needs to have it's own vote for
+ mdss gdsc to ensure that gdsc remains on in such cases."
+
+This however doesn't appear to be the case for the apq8064 so we shouldn't
+be marking power-domain as required in yaml checks.
 
 Fixes: 4dbe55c97741 ("dt-bindings: msm: dsi: add yaml schemas for DSI bindings")
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
@@ -90,14 +108,14 @@ Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
  1 file changed, 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-index f2c143730a551..55bfe1101d6f4 100644
+index 55bfe1101d6f4..8ba61fef576a5 100644
 --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
 +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-@@ -138,7 +138,6 @@ required:
+@@ -137,7 +137,6 @@ required:
+   - phys
    - assigned-clocks
    - assigned-clock-parents
-   - power-domains
--  - operating-points-v2
+-  - power-domains
    - ports
  
  additionalProperties: false
