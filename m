@@ -2,56 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6FAB65512E
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 15:09:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A8D74655123
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 14:59:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230517AbiLWOJa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 09:09:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52688 "EHLO
+        id S230248AbiLWN71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 08:59:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229625AbiLWOJ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 09:09:29 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F49C248C2;
-        Fri, 23 Dec 2022 06:09:28 -0800 (PST)
+        with ESMTP id S229625AbiLWN70 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 08:59:26 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 370401D0E3;
+        Fri, 23 Dec 2022 05:59:26 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3BDFA6100A;
-        Fri, 23 Dec 2022 14:09:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E96BC433EF;
-        Fri, 23 Dec 2022 14:09:27 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id DBE71B820DE;
+        Fri, 23 Dec 2022 13:59:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE1FBC433D2;
+        Fri, 23 Dec 2022 13:59:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671804567;
-        bh=/faS2TA/UFNT5gRFa1SBNTgmSqPE0EN7xs34H8GrcqY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qUMrZbj0niPvvbkxQJTaU+akV4SNzL6wHHfTtDp1RuUWM9YTOJWLNHr3VIbs/KGZh
-         nnR6nRpuU/pWgl+WeTJOcXbfQEh3DiXkV0dk5+oJZw3vCeRFNntmhu5sCAxG/jVIzR
-         MHShAMQW4V2+4KXeJyoFSqkSaGq0mcVMKSYs1lzrkiREQXYl5V4ek0RN6+vUcdmYAp
-         RQUCGAd8h+0P/sP+KUUGmKpFZJatR+TFdbEdYXiy4O1Nmx5GSg95wEJloHq0T87EC0
-         YqX6Q2ESUVNef/gNt1cXnO4j2A0PUyZ+9b18lHwW8r8jeEY6PaMmQO+qaMTgB7MALa
-         wX/itAzNwJ9yg==
-Date:   Fri, 23 Dec 2022 09:09:26 -0500
-From:   Sasha Levin <sashal@kernel.org>
-To:     Icenowy Zheng <uwu@icenowy.me>
-Cc:     Andre Przywara <andre.przywara@arm.com>,
-        linux-kernel@vger.kernel.org, stable@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@gmail.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, wens@csie.org,
-        samuel@sholland.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH AUTOSEL 6.1 8/9] arm64: dts: allwinner: h616: Add USB
- nodes
-Message-ID: <Y6W2lp36Kog68Z98@sashalap>
-References: <20221217000937.41115-1-sashal@kernel.org>
- <20221217000937.41115-8-sashal@kernel.org>
- <20221220000115.19c152fe@slackpad.lan>
- <671ce02325703fa3e4969ba66e014001e6b83314.camel@icenowy.me>
+        s=k20201202; t=1671803963;
+        bh=WPtNm1cTst+I617Sj6ukNNMQUAzdhQ/FmsPYjUxXZlI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=p1tFthkoFcQXl0H0K0HFxtpdqbQnGM+8Uh/9YPlJ3yi/MpWhXmo97Amk57v8e49+C
+         qkAIIBXCrF9Wa2soLC80y9C63bBetwgBBXt+G/ktlitIvHDMbzn2TuqlLdW8/U4rZf
+         yIDiwVHh+SILxUgWKK0J617kEfmjAWmq7q9mlebv31HGz7gxbAArUhj4RvctzISS4D
+         v2dFCtkq/ZJ00HxsQWL1FBuAospZjPsbMhZXm7BsZyskPM5RfcXV/w9HE+u8jnRgzp
+         0BJ12g5WPwzRI5HMcu+iXdA/7bs+Js8um4k/K6PTea0Sg8Cbw4E9MQ7+aalon2JUlu
+         ECJISIhpJXFjA==
+Date:   Fri, 23 Dec 2022 14:12:32 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Hugo Villeneuve <hugo@hugovil.com>
+Cc:     hvilleneuve@dimonoff.com, lars@metafoo.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/3] iio: adc: Kconfig: add SPI interface mention to
+ AD7924 description
+Message-ID: <20221223141232.0f570f33@jic23-huawei>
+In-Reply-To: <20221222203610.2571287-2-hugo@hugovil.com>
+References: <20221222203610.2571287-1-hugo@hugovil.com>
+        <20221222203610.2571287-2-hugo@hugovil.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <671ce02325703fa3e4969ba66e014001e6b83314.camel@icenowy.me>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -61,35 +56,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 20, 2022 at 02:48:29PM +0800, Icenowy Zheng wrote:
->在 2022-12-20星期二的 00:01 +0000，Andre Przywara写道：
->> On Fri, 16 Dec 2022 19:09:35 -0500
->> Sasha Levin <sashal@kernel.org> wrote:
->>
->> > From: Andre Przywara <andre.przywara@arm.com>
->> >
->> > [ Upstream commit f40cf244c3feb4e1a442f8029b691add2c65b3ab ]
->>
->> This is not really a backport candidate:
->> - This is not a fix, but a new feature.
->> - This relies on the H616 USB PHY support patch, which will be only
->> in
->>   v6.2 (and won't be backported).
+On Thu, 22 Dec 2022 15:36:08 -0500
+Hugo Villeneuve <hugo@hugovil.com> wrote:
 
-I'll go ahead and drop it.
+> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> 
+> The Analog Devices AD7924 uses an SPI interface. There is also a Texas
+> Instruments ADS7924 which uses an I2C interface.
+> 
+> Adding the SPI mention to the AD7924 will help to avoid confusion
+> between the two chips.
+Hi Hugo,
 
->> - DT backports are generally not useful to begin with, and should
->>   actually not be necessary anyway.
->
->DT changes include fixes and new features. New features are not useful,
->but fixes are useful.
->
->This specific change is a new feature one, not a fix one though.
+Welcome to IIO.
 
-Right - this is a similar issue to PCI/USB/etc IDs, or quirks - we try
-and backport patches that enable new hardware to work (proerly) with
-drivers that already exist in the kernel.
+I don't really mind this, but given they have different part numbers
+and the similarly named TI part could just have easily been SPI
+I'm not sure the clarification is really useful.
 
--- 
-Thanks,
-Sasha
+Also, under all the circumstances I can think of, if you can see the
+help text you can also see the SPI dependence clearly listed.
+
+Hence I think is just noise, though I'm guessing it reflects a
+confusion you ran into!
+
+Jonathan
+
+
+> 
+> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> ---
+>  drivers/iio/adc/Kconfig | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+> index 46c4fc2fc534..235319546974 100644
+> --- a/drivers/iio/adc/Kconfig
+> +++ b/drivers/iio/adc/Kconfig
+> @@ -243,7 +243,7 @@ config AD7923
+>  	select IIO_TRIGGERED_BUFFER
+>  	help
+>  	  Say yes here to build support for Analog Devices
+> -	  AD7904, AD7914, AD7923, AD7924 4 Channel ADCs.
+> +	  AD7904, AD7914, AD7923, AD7924 4 Channel SPI ADCs.
+>  
+>  	  To compile this driver as a module, choose M here: the
+>  	  module will be called ad7923.
+
