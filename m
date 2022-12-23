@@ -2,55 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C558655200
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 16:24:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D31E865522A
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 16:38:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236479AbiLWPYX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 10:24:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48648 "EHLO
+        id S235944AbiLWPi0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 10:38:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236453AbiLWPYW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 10:24:22 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B058644954;
-        Fri, 23 Dec 2022 07:24:21 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0316C613B3;
-        Fri, 23 Dec 2022 15:24:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0BD0C433D2;
-        Fri, 23 Dec 2022 15:24:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1671809060;
-        bh=WHnWK9DbQq4R0T/pOjLswrnzE42oO7aoOIyi4cfjU18=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=TH2Y8bT24HW1cUJp04r++FdgmCk9qRAs0MZIyjYcy+3fbkznrfoBbd5K93GA8fkmt
-         BygH2SRBkIjOTyJmde3psD9SBhfyGC7P7RGdHJ2TE9KYqb+Sz3WBpe4FnTjKutgAFC
-         /1AHcr79eA/M2V/LKkO96OBPzlhxMdmlL85fKVUHIFeve1e9nZDUdsYl71GzxjWQh2
-         RAw0xlmsTxB1fA73E0EDj4db8ZGke/Y4gl29xslBr1l1K2MZoqvqjMAMCFnbisP2aU
-         7AvlRqOqpdTDOhUJPcxYwM0YT8GKfI6aj4V3sE7XvrS/aGrbKTfkL66eFwSRfZsL6Y
-         pJr0ZYZMwubaA==
-Date:   Fri, 23 Dec 2022 15:37:29 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     puranjay12@gmail.com, lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH v2 2/4] dt-bindings: iio: ti,tmp117: add binding for the
- TMP116
-Message-ID: <20221223153729.3353a315@jic23-huawei>
-In-Reply-To: <20221223150338.iqpnp6z3m35eb5hz@pengutronix.de>
-References: <20221221092801.1977499-1-m.felsch@pengutronix.de>
-        <20221221092801.1977499-3-m.felsch@pengutronix.de>
-        <20221223150803.37e2939d@jic23-huawei>
-        <20221223150338.iqpnp6z3m35eb5hz@pengutronix.de>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-pc-linux-gnu)
+        with ESMTP id S230124AbiLWPi0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 10:38:26 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0D5E37F8F
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 07:38:24 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id o5so4917005wrm.1
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 07:38:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=N5OT3dG+TVvhR7aK9FlQndiJCY9sU+0Z1Btwvq5Xrts=;
+        b=WRgzCDaaJoXTA9MQT7MCWDZRK26MgzVEuanVXy4Wyokc0DvTB29ulM5/TKktPNzZ/b
+         Yak+HtAWd8PoPTuEbNthfEXkUHPa/MnCGRrXumhMzwAXaLPYkcEcWsjqG0+2YvalGDON
+         77Hh0BeVQPSsy5F8zlaUV2pTdu1YPSNa1uSCz3InLFwDhiA2OIMXQJXWRRByv1Ks1xvg
+         lc78VvKDvLIlrY6jSer3hGlx419dgNCHADeHAnv5B8q2VVyhe8md/8hbbPBZMVWLN+3Y
+         +5SjAP1V/wnfQjQsQZSsst7qxPPWaV4xYqQ5/zH46TRkCFPYeqoUUUb6xIZy7KICH9Ji
+         kfUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=N5OT3dG+TVvhR7aK9FlQndiJCY9sU+0Z1Btwvq5Xrts=;
+        b=5Z/sfjBFuy8l8J/qkEUhePT6M62zgmUhZUtYUq1RikPvc7UmE3vdwoNZNfaQm31SsF
+         3fRhEcMyPW8JNtC7yHvWbHc1Fqf2LJ5/X+AODHyz+RMT2IlXEdBJXysce2Fv/L/0BSKn
+         5nxdBkqNzhSmBEd0HOs7UHaBQEdyXGoNCW2zZQAcHDBzBZxBwzBqOk8aEI1MD4yvPzkH
+         d14+PhlKiN3EsRLzw/yIcW1TgPzJv0iERhYWnQ0al47tUVgdq48BaXRwWDpNaIEJbYsW
+         /L022JnutgajP5WK6opfALj3lGVN0qrHEgthunIh6nkF6Ci6BeNzQ31jPTBT2b/WYtwY
+         ceTA==
+X-Gm-Message-State: AFqh2kpRgzgrwZEOH3xPqRra+kek4htkJhDIeG7qk7ec0M21LIbLCLbN
+        IdhlINxRcoMjSrAp24WnRwgyHA==
+X-Google-Smtp-Source: AMrXdXv1YRDjT5K2nkk8kGQJSQrW+/YnHjJkAIzhCHXfkt26zepoAwL+Ga/KYTApH6VMhYGdjuDH4g==
+X-Received: by 2002:adf:f905:0:b0:242:37e3:1747 with SMTP id b5-20020adff905000000b0024237e31747mr6446751wrr.21.1671809903423;
+        Fri, 23 Dec 2022 07:38:23 -0800 (PST)
+Received: from rainbowdash.. (cpc152649-stkp13-2-0-cust121.10-2.cable.virginm.net. [86.15.83.122])
+        by smtp.gmail.com with ESMTPSA id m5-20020adfc585000000b00236488f62d6sm3491610wrg.79.2022.12.23.07.38.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Dec 2022 07:38:23 -0800 (PST)
+From:   Ben Dooks <ben.dooks@sifive.com>
+To:     linux-pwm@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lee Jones <lee.jones@linaro.org>,
+        u.kleine-koenig@pengutronix.de,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        jarkko.nikula@linux.intel.com,
+        William Salmon <william.salmon@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
+        Ben Dooks <ben.dooks@sifive.com>
+Subject: [PATCH v7 00/10] Designware PWM driver updates for OF
+Date:   Fri, 23 Dec 2022 15:38:10 +0000
+Message-Id: <20221223153820.404565-1-ben.dooks@sifive.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,98 +76,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 23 Dec 2022 16:03:38 +0100
-Marco Felsch <m.felsch@pengutronix.de> wrote:
+An updated set of patches for the Designware PWM driver
+split into PCI and OF versions. I think I got all the
+review issues in this set.
 
-> On 22-12-23, Jonathan Cameron wrote:
-> > On Wed, 21 Dec 2022 10:27:59 +0100
-> > Marco Felsch <m.felsch@pengutronix.de> wrote:
-> >   
-> > > The TMP116 is the predecessor of the TMP117.
-> > > 
-> > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>  
-> > I'm not sure this is introducing a valid fallback. The driver changes
-> > imply some things the tmp117 driver supports, that this device
-> > does not. A fallback compatible would mean that a new DT
-> > with an old kernel would load the tmp117 against a tmp116 and
-> > expect it to fully work.  
-> 
-> Since driver does all the detection an update of the bindings isn't
-> really necessary. It is just to have a compatible already in place in
-> case there a things we can't detected during runtime. This flow is
-> common for a lot of SoC drivers. The fallback will be used as long as
-> possible and once a specific feature can't be detected only via the
-> binding, the driver adds the new binding to it of_compatible.
+Sorry for the delay in getting this out, between conferences
+and other absences there has been little time to deal with
+this set. I will be now out of office until 3rd Jan 2023.
 
-That's true going forwards and for drivers that introduce a shared
-generic compatible alongside the initial binding. It can't be easily
-retrofit.
+v7:
+ - fixup kconfig from previous pcie changes
+ - re-order kconfig to make dwc core be selected by PCI driver
+ - move clk variable to patch it is used in
+v6:
+ - fix removal ordering of DWC_PERIOD_NS
+v5:
+ - fixed kconfig string error
+ - merged pwm-nr into main of code
+ - split of code from pci code
+ - updated pwm-nr capping
+ - fix duplicate error reporting in of-code
+ - fix return in of-probe
+ - remove unecessary remove function as devm_ functions sort this
+ - fixed ordering of properties
+ - added missing reg item
+ - fixed missing split of the two clock sources.
+ - get bus clock in of code
+v4:
+ - split pci and of into new modules
+ - fixup review comments
+ - fix typos in dt-bindings
+v3:
+- change the compatible name
+- squash down pwm count patch
+- fixup patch naming
+v2:
+- fix #pwm-cells count to be 3
+- fix indetation 
+- merge the two clock patches
+- add HAS_IOMEM as a config dependency
 
-Fallback compatible is also to allow this to work with old kernels
-- which it doesn't because the kernel driver
-a) rejects non tmp117 ids (we should fix that by just warning instead 
-if the ID isn't what we expect. It would be good to factor that out
-as a separate patch that we can backport)
+Ben Dooks (10):
+  dt-bindings: pwm: Document Synopsys DesignWare
+    snps,pwm-dw-apb-timers-pwm2
+  pwm: dwc: allow driver to be built with COMPILE_TEST
+  pwm: dwc: change &pci->dev to dev in probe
+  pwm: dwc: move memory alloc to own function
+  pwm: dwc: use devm_pwmchip_add
+  pwm: dwc: split pci out of core driver
+  pwm: dwc: make timer clock configurable
+  pwm: dwc: add of/platform support
+  pwm: dwc: add PWM bit unset in get_state call
+  pwm: dwc: use clock rate in hz to avoid rounding issues
 
-b) assumes the tmp116 (after above fixed) supports things it doesn't.
+ .../bindings/pwm/snps,dw-apb-timers-pwm2.yaml |  68 ++++++
+ drivers/pwm/Kconfig                           |  26 ++-
+ drivers/pwm/Makefile                          |   2 +
+ drivers/pwm/pwm-dwc-of.c                      |  76 +++++++
+ drivers/pwm/pwm-dwc-pci.c                     | 134 +++++++++++
+ drivers/pwm/pwm-dwc.c                         | 210 ++++--------------
+ drivers/pwm/pwm-dwc.h                         |  59 +++++
+ 7 files changed, 404 insertions(+), 171 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml
+ create mode 100644 drivers/pwm/pwm-dwc-of.c
+ create mode 100644 drivers/pwm/pwm-dwc-pci.c
+ create mode 100644 drivers/pwm/pwm-dwc.h
 
-So it's not a valid use of a fallback compatible.  A driver can't
-rely on matching device IDs it didn't previously know about. It sees
-tmp116 compatible and thinks it knows how to handle the device, which
-it doesn't. This might lead to some very grumpy people not understanding
-why their old kernel doesn't work.
-
-Jonathan
-
-> 
-> Regards,
->   Marco
-> 
-> > An example is calibbias which you've dropped from the channels
-> > array entry.
-> > 
-> > Jonathan
-> > 
-> >   
-> > > ---
-> > > v2:
-> > > - drop items from single enum
-> > > 
-> > >  .../bindings/iio/temperature/ti,tmp117.yaml        | 14 ++++++++++----
-> > >  1 file changed, 10 insertions(+), 4 deletions(-)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml b/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
-> > > index 8d1ec4d39b28..9b78357d6a79 100644
-> > > --- a/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
-> > > +++ b/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
-> > > @@ -7,8 +7,9 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > >  title: "TI TMP117 - Digital temperature sensor with integrated NV memory"
-> > >  
-> > >  description: |
-> > > -    TI TMP117 - Digital temperature sensor with integrated NV memory that supports
-> > > -    I2C interface.
-> > > +    TI TMP116/117 - Digital temperature sensor with integrated NV memory that
-> > > +    supports I2C interface.
-> > > +      https://www.ti.com/lit/gpn/tmp116
-> > >        https://www.ti.com/lit/gpn/tmp117
-> > >  
-> > >  maintainers:
-> > > @@ -16,8 +17,13 @@ maintainers:
-> > >  
-> > >  properties:
-> > >    compatible:
-> > > -    enum:
-> > > -      - ti,tmp117
-> > > +    oneOf:
-> > > +      - enum:
-> > > +          - ti,tmp117
-> > > +      - items:
-> > > +          - enum:
-> > > +              - ti,tmp116
-> > > +          - const: ti,tmp117
-> > >  
-> > >    reg:
-> > >      maxItems: 1  
-> > 
-> >   
+-- 
+2.35.1
 
