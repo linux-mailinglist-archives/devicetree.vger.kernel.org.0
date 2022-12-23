@@ -2,112 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 481D2654D0A
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 08:54:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EE76654D14
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 08:58:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235944AbiLWHyY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 02:54:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42370 "EHLO
+        id S235969AbiLWH6A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 02:58:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229637AbiLWHyX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 02:54:23 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40EF13137A
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 23:54:22 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id b3so6128599lfv.2
-        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 23:54:22 -0800 (PST)
+        with ESMTP id S235979AbiLWH56 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 02:57:58 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E635931DD4
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 23:57:36 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id f20so4240116lja.4
+        for <devicetree@vger.kernel.org>; Thu, 22 Dec 2022 23:57:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kHsW91FIykT3ETIcseYYZdpJ59EvWczSWtEr9Q4ddGc=;
-        b=XANUS3h/629z1cmOnKSREk2r30tKYxk1EAT+9Ix43JS/t/GysjuFub0CW4C1HIbBRc
-         /o2IK2CFQmaGFAbiWX+U2X9KFBldKGJIQgn0gP8aMCfBK9E3ucKCTgM2E93lW6AJD1RZ
-         QxKvDY6fCj3gTx6p6RLI8JfG+Muv7s4GlHQGFMGCyUeykLotwItQRKvdW32sW0Nu6zyR
-         YKIS8824eST+X8UmG1DddoY2OSImdm9V/tN4pPT3fysIRi7fyB4GNb3bGDoNmpWokws9
-         E0Rqv2Qm0kWdZRcH7S731X9WcwW96jUHq81EGgAvXo8IWkQiyXlnuBMUZYxv0ChZkMCd
-         LGxQ==
+        bh=zBvQKOto+vmplvuOPy0PMGPzXwMlPMKtXIbJlmwmhJM=;
+        b=hXvibYBkLGjTrJYbsFqKhXLOegd4W20iLdjD3iKt01q1zPltmfjZY8kX+oOr8XLO5Y
+         LpdkD//YhwUuB5g0E1vllQlEFb61gRUI3OKL1z4E9UuCAWbSEuByLrEUpa1+crvaugV4
+         v8m9+iz35sStKAUq4inDeaI6AVbvGxu1r0p+HjAIq31Uw9Q4XJbtj6xK5Z7Pn1lx+RiB
+         kOUoZnU6h0sLNpwcJUp18PRU8gGMrcGF0xqm7aMS6YDVFl/qDOy/qf6WhuCHSIlIpqrD
+         UM4t4L1sKbP+/1oOucr3Hryzx4Srk3FFC2Vg4Tz70g4If7xafsB/VPOirUUMTmbTcn9C
+         Q+cg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kHsW91FIykT3ETIcseYYZdpJ59EvWczSWtEr9Q4ddGc=;
-        b=L9nKR2ai+WNpmwUVGdikhrhjbeRvM7X2rPNDgxNMEex+if5nSdSBpov/anprGjgoZi
-         i0VmS6thMI0FgbNBKEUZ3A/+ffRCCbDB078UBG1Qy0JHgCCkwzYhvKPSuMfpLH930psv
-         usUvJ2uaH6he7xNc7X1zVg4OtBJOPK006Kv2IGSt4VABET4ldgYyZ7pxUlpy/E7V2M29
-         onnHydXc7Gd63CJxlKCZtzUMEzvl1fAEhjHEcodNbih5w2aFap/9nx+q+7+B1nOMEuJy
-         N8u1JGIi5EpMSU1IbLyzjaxeHFQDFSic2Xf3dJoqGRUdfZMHX3JJvGmPlxXtKrvE3TgH
-         FzCA==
-X-Gm-Message-State: AFqh2koO/IymVN/E655Xdy7316k07hiI9h+qk3E9Ng/D2yLqMHXD7yPE
-        heMK2IgX3Djx4jPNdEEK+ZdOrQ==
-X-Google-Smtp-Source: AMrXdXujbAO3lhTaxi13KZ4puH+Lq4CfpP22MO2G/ltjadsCxKB8sUmNhp1sAqUHDANn3i6GKQrozQ==
-X-Received: by 2002:ac2:5df2:0:b0:4aa:7821:8021 with SMTP id z18-20020ac25df2000000b004aa78218021mr2946852lfq.34.1671782060501;
-        Thu, 22 Dec 2022 23:54:20 -0800 (PST)
+        bh=zBvQKOto+vmplvuOPy0PMGPzXwMlPMKtXIbJlmwmhJM=;
+        b=d/EKcy+4W1vj4QKhpyAXYM8EBbqmHYORjDgjI05EKc9t5H2/imrDp4Dz2wszb54cnq
+         Kh6ZgkZKwAY74mpYhqx1/1uonoHfbsqluZOoFnyt/gfm2k3YSlKBcXfwqsWgjX98CvG2
+         Nko4/3NoB/yjjzPtofUSCdsya2q3lvV0vLA444zboH53PusXJYWlici+pU/U/I+90tLh
+         jreWVm+Z654Mp4qW1wS82E6zTg8rZFtf0LJa2+YsB9auOQ28awwB9nYJhtDwOSXnow1+
+         djeN3V1Rt9ZnoJ8kYw3jPbtIjg05a8JwaQ72n4imI+nUwy6NHX/kOpbzd7jLS9nW0oj/
+         faIg==
+X-Gm-Message-State: AFqh2kp3r7cDjTcYMl5/QTuu1IC5LwJrCUc8+IWlLokRRAYk/McNxs7q
+        ui1ZpoAi4h49Rwc9AoghOMREGg==
+X-Google-Smtp-Source: AMrXdXsZDZ5XmTLs7XUsj5QJeRBTIPRou5NU5Myhiv5VfkgR31vazIcUFlwh0ULYxb6j2gSaFSMQRA==
+X-Received: by 2002:a05:651c:b94:b0:277:3b1:7017 with SMTP id bg20-20020a05651c0b9400b0027703b17017mr3520368ljb.33.1671782255306;
+        Thu, 22 Dec 2022 23:57:35 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id bi2-20020a0565120e8200b004b543f38b7csm420615lfb.21.2022.12.22.23.54.19
+        by smtp.gmail.com with ESMTPSA id e3-20020a2e8183000000b002778d482800sm306576ljg.59.2022.12.22.23.57.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Dec 2022 23:54:19 -0800 (PST)
-Message-ID: <5e3cbe2d-5a13-7bbd-647e-94e6690266a9@linaro.org>
-Date:   Fri, 23 Dec 2022 08:54:18 +0100
+        Thu, 22 Dec 2022 23:57:34 -0800 (PST)
+Message-ID: <f8ed0927-a97e-9395-1297-addb57ecd855@linaro.org>
+Date:   Fri, 23 Dec 2022 08:57:33 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: Add the binding doc for xilinx APM
-To:     "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Cc:     "git (AMD-Xilinx)" <git@amd.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-References: <20221222084235.12235-1-shubhrajyoti.datta@amd.com>
- <20221222084235.12235-2-shubhrajyoti.datta@amd.com>
- <8d35613e-5729-ccc0-6344-eae1ede5616e@linaro.org>
- <BY5PR12MB4902A397745DA48813C6548D81E99@BY5PR12MB4902.namprd12.prod.outlook.com>
+Subject: Re: [PATCH v14 1/5] arm64: dts: qcom: add data-lanes and
+ link-freuencies into dp_out endpoint
 Content-Language: en-US
+To:     Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        dri-devel@lists.freedesktop.org, robdclark@gmail.com,
+        sean@poorly.run, swboyd@chromium.org, dianders@chromium.org,
+        vkoul@kernel.org, daniel@ffwll.ch, agross@kernel.org,
+        dmitry.baryshkov@linaro.org, andersson@kernel.org,
+        konrad.dybcio@somainline.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        airlied@gmail.com
+Cc:     quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <1671217893-17496-1-git-send-email-quic_khsieh@quicinc.com>
+ <1671217893-17496-2-git-send-email-quic_khsieh@quicinc.com>
+ <1a5cc3d3-ac2d-52c8-79f4-b13252a4bb86@linaro.org>
+ <54bd8b85-8b68-4b28-ec68-28edf9a8a097@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <BY5PR12MB4902A397745DA48813C6548D81E99@BY5PR12MB4902.namprd12.prod.outlook.com>
+In-Reply-To: <54bd8b85-8b68-4b28-ec68-28edf9a8a097@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/12/2022 05:55, Datta, Shubhrajyoti wrote:
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: Thursday, December 22, 2022 3:22 PM
->> To: Datta, Shubhrajyoti <shubhrajyoti.datta@amd.com>; linux-arm-
->> kernel@lists.infradead.org
->> Cc: git (AMD-Xilinx) <git@amd.com>; devicetree@vger.kernel.org;
->> michal.simek@xilinx.com; krzysztof.kozlowski+dt@linaro.org;
->> robh+dt@kernel.org
->> Subject: Re: [PATCH v2 1/2] dt-bindings: Add the binding doc for xilinx APM
->>
->> Caution: This message originated from an External Source. Use proper
->> caution when opening attachments, clicking links, or responding.
->>
->>
->> On 22/12/2022 09:42, Shubhrajyoti Datta wrote:
->>> The LogiCORE IP AXI Performance Monitor core enables AXI system
->>> performance measurement for multiple slots (AXI4/AXI3/
->>> AXI4-Stream/AXI4-Lite) activity. Add the devicetree binding for xilinx
->>> APM.
->>
->> You did not implement what I asked for in the subject.
->>
-> I missed out I will fix in next version. 
+On 22/12/2022 17:22, Kuogee Hsieh wrote:
+> 
+> On 12/22/2022 2:47 AM, Krzysztof Kozlowski wrote:
+>> On 16/12/2022 20:11, Kuogee Hsieh wrote:
+>>> Move data-lanes property from mdss_dp node to dp_out endpoint. Also
+>>> add link-frequencies property into dp_out endpoint as well. The last
+>>> frequency specified at link-frequencies will be the max link rate
+>>> supported by DP.
+>>>
+>>> Changes in v5:
+>>> -- revert changes at sc7180.dtsi and sc7280.dtsi
+>>> -- add &dp_out to sc7180-trogdor.dtsi and sc7280-herobrine.dtsi
+>>>
+>>> Changes in v6:
+>>> -- add data-lanes and link-frequencies to yaml
+>>>
+>>> Changes in v7:
+>>> -- change 160000000 to 1620000000
+>>> -- separate yaml to different patch
+>>>
+>>> Changes in v8:
+>>> -- correct Bjorn mail address to kernel.org
+>>>
+>>> Changes in v9:
+>>> -- use symbol rate (hz) for link-frequencies at dp_out at sc7180_trogdor.dtsi
+>>>
+>>> Changes in v13:
+>>> -- delete an extra space at data-lanes
+>>>
+>>> Signed-off-by: Kuogee Hsieh <quic_khsieh@quicinc.com>
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi   | 6 +++++-
+>>>   arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 4 ++++
+>>>   2 files changed, 9 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+>>> index eae22e6..e2783dd 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+>>> @@ -814,7 +814,11 @@ hp_i2c: &i2c9 {
+>>>   	status = "okay";
+>>>   	pinctrl-names = "default";
+>>>   	pinctrl-0 = <&dp_hot_plug_det>;
+>>> -	data-lanes = <0 1>;
+>>> +};
+>>> +
+>>> +&dp_out {
+>>> +    data-lanes = <0 1>;
+>>> +    link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000>;
+>> Messed order of nodes.
+> 
+> can you please give me more details and how should i fixed it?
 
-Be sure you implemented all other comments.
+Node overrides/extends are more or less ordered by name. dp should not
+be around mdp, but for example dsi.
 
 Best regards,
 Krzysztof
