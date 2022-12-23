@@ -2,176 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D57D654E0B
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 10:05:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B4B0654E10
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 10:05:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235996AbiLWJFN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 04:05:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43202 "EHLO
+        id S236077AbiLWJFt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 04:05:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235854AbiLWJFM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 04:05:12 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B50C36C4F
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 01:05:11 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id x11so6381093lfn.0
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 01:05:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=UgkyZLlR8dmps7bIqgtuU0p5kKZJ22gyr0j4DXf+Tuc=;
-        b=Go1z1WOZVAeyBHYx43G2o1a8Yqwp73M6XDVnsyel0fTSrZE7lFmvXu6jECQRR07gBz
-         99nbMAP/RhkSJr3F/TaU4QfxJ2YnyRThXR9yAzmSeI2YISl5G+/wja0nBz5lfp26ARpA
-         NXwz3/M0U6g2ijul298JVbhc/ZkbMUfBhHPhgKTaOgPSjCOdoAt+UTm8+jfqJGY5kVPa
-         lT8546ZP2UjeEalietwdiWWN23EUjBOLEKV2s6xaxlg64Xb+h9CeOCSmY5jtJu3Bmg2A
-         KFDHcbBOt2ZnGYe93EUJ9L157dTvP6V6tl1Sg1g+k4QSh3WfY4ScVsdrlH0IY71yXBwU
-         BhZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UgkyZLlR8dmps7bIqgtuU0p5kKZJ22gyr0j4DXf+Tuc=;
-        b=C8p05cbeweUoKU7qtWYFfu7qeIPQkPPEk5DCXCG74oqkdboYxGAY3fMYezkyOmKjdw
-         GBe6wVM2yQpowj1iSZHavNxQiumgmRnVEChnC2OPTv83Xqjgnal35N+9KqJ6cuRAbG73
-         +7r2CcxxeqrrsJex4tT7GSQBtYy59h/bKqtVEkF+Qbh10086gZ0jNE2ELzICognTPxzO
-         1vDdn6YJI/Og9UE/P/bulHe4PWBFNJ2JEvR1mWlnqGH7u5bjk9eZVctuGSU+boPie3l1
-         OmcTWctdiDOmq2oGzJsuu3hNf0xJPdsgCZBlQUfnsw0D/VppoS80jSrSLoij+7RzLa3F
-         V+GQ==
-X-Gm-Message-State: AFqh2kqZjwjmnFQ2Y2oT3L+64UMGM8LWZwtny8RZrXrJnDFZ4p57ABE8
-        TIdlJS+chAQpmI2Fngxnga4Nmw==
-X-Google-Smtp-Source: AMrXdXu07H/DBU/l0axgXYiPZK261IL8apRQ5mpgRPTJSTtf+JWCe6x+AyhRvRw1adFfKChiMlIlNQ==
-X-Received: by 2002:a05:6512:20d0:b0:4b5:88e4:2ba4 with SMTP id u16-20020a05651220d000b004b588e42ba4mr2175863lfr.15.1671786309930;
-        Fri, 23 Dec 2022 01:05:09 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id z12-20020ac2418c000000b004b58ebf0399sm443827lfh.132.2022.12.23.01.05.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Dec 2022 01:05:09 -0800 (PST)
-Message-ID: <e079efba-2cd7-6e1d-3ce2-7f0371962252@linaro.org>
-Date:   Fri, 23 Dec 2022 10:05:08 +0100
+        with ESMTP id S236129AbiLWJFs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 04:05:48 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14F15F39
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 01:05:45 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2BN95b9k061490;
+        Fri, 23 Dec 2022 03:05:37 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1671786337;
+        bh=krWiqS2oUAgZnBdjWUYd7ZyOWML2qAZv4M/kjqLdiK8=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=xFkazDvv3nVGN9g0bN4pGSRpbSAZpNHC0N5Bq3+E9lLHyMFJdRb6a4nKuzkFNA5XS
+         LKgoJd9BkcXJs2Dth0WwBUiisJsp/hRUA6M/UG3a+e2pMBXg/1HWUp/5qESSIt3fSL
+         A6+JUJfY7u2XnhGnhwsqNRHRVwkcVkOslXLo9Ris=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2BN95bgR011373
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 23 Dec 2022 03:05:37 -0600
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 23
+ Dec 2022 03:05:37 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Fri, 23 Dec 2022 03:05:37 -0600
+Received: from [172.24.145.60] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2BN95Z4u028566;
+        Fri, 23 Dec 2022 03:05:35 -0600
+Message-ID: <c09a1673-7d6c-e2dc-1d29-eef3dc5bd486@ti.com>
+Date:   Fri, 23 Dec 2022 14:35:34 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH 1/7] arm64: dts: qcom: sc7280: Extract audio nodes from
- common idp dtsi file
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v4] dt-bindings: sound: tlv320aic3x: Convert to dtschema
 Content-Language: en-US
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_rohkumar@quicinc.com, srinivas.kandagatla@linaro.org,
-        dianders@chromium.org, swboyd@chromium.org, judyhsiao@chromium.org,
-        konrad.dybcio@linaro.org
-References: <1671702170-24781-1-git-send-email-quic_srivasam@quicinc.com>
- <1671702170-24781-2-git-send-email-quic_srivasam@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1671702170-24781-2-git-send-email-quic_srivasam@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Mark Brown <broonie@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>
+References: <20221221145216.11400-1-j-luthra@ti.com>
+ <Y6RCN9DxeW7WacPD@sirena.org.uk>
+From:   Jai Luthra <j-luthra@ti.com>
+In-Reply-To: <Y6RCN9DxeW7WacPD@sirena.org.uk>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/12/2022 10:42, Srinivasa Rao Mandadapu wrote:
-> Split common idp dtsi file into audio specific dtsi and common
-> idp dtsi file.
+Hi Mark,
+
+On 22/12/22 17:10, Mark Brown wrote:
+> On Wed, Dec 21, 2022 at 08:22:16PM +0530, Jai Luthra wrote:
+>> Convert bindings for TI's TLV320AIC3x audio codecs to dtschema.
+>>
+>> The following properties are still found in some old dts files, but will
+>> be ignored by the driver:
 > 
-> It is required to isolate idp and crd-rev3 platform device tree nodes
-> and convert crd-rev3 platform device tree nodes into audioreach specific
-> device tree nodes.
+>> - assigned-clock-parents, assigned-clock-rates, assigned-clocks
 > 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Tested-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280-audio-idp.dtsi | 242 +++++++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts     |   1 +
->  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi       | 230 -----------------------
->  arch/arm64/boot/dts/qcom/sc7280-idp2.dts       |   1 +
->  4 files changed, 244 insertions(+), 230 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-audio-idp.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-audio-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-audio-idp.dtsi
-> new file mode 100644
-> index 0000000..8c9e667
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-audio-idp.dtsi
-> @@ -0,0 +1,242 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * sc7280 Audio IDP board device tree source (common between SKU1 and SKU2)
-> + *
-> + * Copyright (c) 2022, The Linux Foundation. All rights reserved.
-> + */
-> +
+> These are from the common clock binding and will be handled by the clock
+> code.
 
-Mising includes. Each file is responsible for its own includes and must
-not rely on others to include something.
+Thanks, I will send v5 where a follow-up commit adds the missing 
+properties for clocks and port in the binding.
 
-> +/{
-> +   /* BOARD-SPECIFIC TOP LEVEL NODES */
-
-Wrong indentation.
-
-> +	sound: sound {
-> +		compatible = "google,sc7280-herobrine";
-> +		model = "sc7280-wcd938x-max98360a-1mic";
-> +
-> +		audio-routing =
-> +			   "IN1_HPHL", "HPHL_OUT",
-> +			   "IN2_HPHR", "HPHR_OUT",
-> +			   "AMIC1", "MIC BIAS1",
-> +			   "AMIC2", "MIC BIAS2",
-> +			   "VA DMIC0", "MIC BIAS3",
-> +			   "VA DMIC1", "MIC BIAS3",
-> +			   "VA DMIC2", "MIC BIAS1",
-> +			   "VA DMIC3", "MIC BIAS1",
-> +			   "TX SWR_ADC0", "ADC1_OUTPUT",
-> +			   "TX SWR_ADC1", "ADC2_OUTPUT",
-> +			   "TX SWR_ADC2", "ADC3_OUTPUT",
-> +			   "TX SWR_DMIC0", "DMIC1_OUTPUT",
-> +			   "TX SWR_DMIC1", "DMIC2_OUTPUT",
-> +			   "TX SWR_DMIC2", "DMIC3_OUTPUT",
-> +			   "TX SWR_DMIC3", "DMIC4_OUTPUT",
-> +			   "TX SWR_DMIC4", "DMIC5_OUTPUT",
-> +			   "TX SWR_DMIC5", "DMIC6_OUTPUT",
-> +			   "TX SWR_DMIC6", "DMIC7_OUTPUT",
-> +			   "TX SWR_DMIC7", "DMIC8_OUTPUT";
-> +
-> +		qcom,msm-mbhc-hphl-swh = <1>;
-> +		qcom,msm-mbhc-gnd-swh = <1>;
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		#sound-dai-cells = <0>;
-> +
-> +		dai-link@0 {
-> +			link-name = "MAX98360A";
-> +			reg = <0>;
-> +
-> +			cpu {
-> +				sound-dai = <&lpass_cpu MI2S_SECONDARY>;
-> +			};
-> +
-> +			codec {
-> +			   sound-dai = <&max98360a>;
-
-I have no clue what happened here. This was correct code before, now it
-is not. It turns out it was not just a move of code. If you just
-cut+paste, would be fine, but you changed it during moving and now we
-have to review it. Reviewing such diffs is difficult if not impossible,
-so we have no way to validate, maybe except comparing de-compiled dtbs
-(dtx_diff, fdtdump). Did you do it?
-
-Otherwise I do not see a way how can we be sure this code is correct if
-you do not cut+paste but change the code in the meantime.
-
-Best regards,
-Krzysztof
-
+--
+Jai
