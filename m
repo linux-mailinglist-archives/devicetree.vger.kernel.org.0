@@ -2,95 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30B526552BA
-	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 17:22:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A29F26552C0
+	for <lists+devicetree@lfdr.de>; Fri, 23 Dec 2022 17:24:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231615AbiLWQWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Dec 2022 11:22:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41966 "EHLO
+        id S231317AbiLWQYC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Dec 2022 11:24:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231143AbiLWQWh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 11:22:37 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EF21B7D7
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 08:22:36 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id y25so7624356lfa.9
-        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 08:22:36 -0800 (PST)
+        with ESMTP id S230334AbiLWQYA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Dec 2022 11:24:00 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8533B7D7
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 08:23:58 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id b3so7666629lfv.2
+        for <devicetree@vger.kernel.org>; Fri, 23 Dec 2022 08:23:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=EMPz0MtuVMWlwIKG4Db0qbIbQdeIr2p2KQ20CqF4p88=;
-        b=wes4jimP9QZ7W14rfnCeo8l4yJ9ydId4GOHcDaUdSJV7vxbzYP85Wc+igPDGPwrboG
-         jxZIUHQoaa7Ehg4XGeMdQRsVWge91MG8XSGvV6iVFZpFkVvjXENpbw55HqdvMtpyhw0s
-         KJHazRSzjXY35ApKTYhqwGAU75rk0ALgaDWHuNLZrVjZKkfdC74v/uz8t1jucV34G9BV
-         CORYnLMrPQR+qVL4IFGQYa5HXPeUYhDjrUllhv6A8zxrASohbBwmkg0az4rZ94M759WY
-         LuJdqnHdQOlcs9xHcPXQibIZh/Cpxd8wEaztMVXAl6E9yFZ1ecdTJPuzXLjTR028BVgf
-         xvmQ==
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LqbPtdN4Ga8jmbf4cA7qcYGgPp+8Cr3OAzvWEvWWVNE=;
+        b=DTAu3kbsyBh6Rh8zBfqvr9pLjcOwfpVYU9Lt8Nfb+3RVpCQEG9VhJAagxg8t2ijg+f
+         cGMkATIRp3sKr7poAgSxOiwzpmnC7lnxtDPXmJvc9VmXqX4dbtiwBwWRqYUe+vzfiq8p
+         8osWt36RqOR7CnXs3rsmZdqswoQ1rRt4QXEvVG7eCXTKjXGQ79AiV+DSk7+Hz5CqkYyH
+         B/jAcRENWk20wVjesXLrMb5lqU+GbslxqFdxfnoF7+zJ02YiiEXGQDGNV9wGd7JlbSgn
+         CkwC+75RL76/51nrCnTv3seo1nbJqiGorEnrBdPYGkyR1wUCfIU39dHEfgGvVhEqWDzS
+         ZKrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EMPz0MtuVMWlwIKG4Db0qbIbQdeIr2p2KQ20CqF4p88=;
-        b=7cNmG9+Rql4YLD37El5UxqorERRe4bzC+BCV+vMlPaQqXn6SOQu0V+zHlvI8mH6iQu
-         GydrqkpdCK6wzvMhc7QiHy8EIESHAk4Y0RfX24pS5r3QcBEAitpCLjQVdhZeGcQsGXyo
-         figjS6UNcNUXm2suHecrxByULtND4MCQ3UKtYTSryjLUzyv4MWo6OtJediiLXigWVun3
-         MdA7/dRIHFcbrEO2go962c7u9OLO6k8JijcHI7u8H8eXFIQTBrmrG3+giUN9Z0MRyHlr
-         p+XrmVg56BoIv6ydrLu6KW+l6nHdItX126rmljAFO5FDvlDRo42K7mV1BhTsRJxCuRG7
-         jObg==
-X-Gm-Message-State: AFqh2kqfqBKSClybeyIp7ANx7zV2sNuKSu++DigsUCB8tm/JlPiP2uH7
-        6LmN5Ycqz57s2nVBQtIEMyigUw==
-X-Google-Smtp-Source: AMrXdXsscBAwhaF92Zi0fKqEgTfluKLygxgolteoWlx2FymqcR2KSq5QVpVFyyeX0eMLzwmBRzKY/A==
-X-Received: by 2002:a05:6512:3a8f:b0:4c8:5f19:ccb8 with SMTP id q15-20020a0565123a8f00b004c85f19ccb8mr3391639lfu.48.1671812554766;
-        Fri, 23 Dec 2022 08:22:34 -0800 (PST)
-Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id m7-20020a056512358700b004b55da14ba8sm569758lfr.291.2022.12.23.08.22.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Dec 2022 08:22:34 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: iio: adc: maxim,max1363: fix interface typo
-Date:   Fri, 23 Dec 2022 17:22:31 +0100
-Message-Id: <20221223162231.120216-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LqbPtdN4Ga8jmbf4cA7qcYGgPp+8Cr3OAzvWEvWWVNE=;
+        b=LV/9045BqYHX54ZR6JPcDalb50lTdooWzBSEFg1Fh1eidLGg+4vafjgfu9Tp/B/Ipm
+         5jYMqWTWINLPN77KrccyWv/HzM8fYK2763eghhbDH/k0zEQ0vcAhGmDjX3BSpi0AL0Pm
+         q8QiqRoIPwtvUQy7Foa63lxAHUODfjqEh6c418znRFAFF8z3cJ26bertFDC9l+mgDei8
+         1o0k73m52S0Cprv9PM3DCb9hltbAQsxC+c2dxnmpMUlP8yhbBHcHYtVupxtOer5Uq1nk
+         xag6vuO1Jdif5sB6cQXcRq9ZCCdV+AH0FgFyKCdk/K8b8nKjrudTDXcveU8AynOKDvTf
+         8xNw==
+X-Gm-Message-State: AFqh2koDvuOaNjapgHdNLJEY/a9qnflyMWaC7AkuiRDkeB5+wrOY09p+
+        JAPrDH2Br4zb9CoqifKf3HOp1g==
+X-Google-Smtp-Source: AMrXdXsFDMYXg8JXISUy+Ue5UM8tHDF0Ayo8BBFfVXP0vcTdZYfoO4mJpcorsXJtcTOjF/YVeZXyIg==
+X-Received: by 2002:a19:8c4e:0:b0:4b5:78e1:8924 with SMTP id i14-20020a198c4e000000b004b578e18924mr2673159lfj.19.1671812637234;
+        Fri, 23 Dec 2022 08:23:57 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id j11-20020ac253ab000000b004b585157b62sm573801lfh.258.2022.12.23.08.23.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 Dec 2022 08:23:56 -0800 (PST)
+Message-ID: <70b0b66a-550d-5b40-47d8-73dce197a2dd@linaro.org>
+Date:   Fri, 23 Dec 2022 17:23:55 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH] dt-bindings: iio: adc: max1238: Fix a typo in the
+ description
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Fabio Estevam <festevam@denx.de>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20221216004015.2902966-1-festevam@denx.de>
+ <e7b95521-9a2d-7c0f-a379-b32d4aaf1031@linaro.org>
+ <20221223160405.32ba9716@jic23-huawei>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221223160405.32ba9716@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Correct inteface->interface in description.
+On 23/12/2022 17:04, Jonathan Cameron wrote:
+> On Fri, 16 Dec 2022 12:30:42 +0100
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> 
+>> On 16/12/2022 01:40, Fabio Estevam wrote:
+>>> Fix a typo in the description, where "interface" is spelled incorrectly.
+>>>
+>>> Signed-off-by: Fabio Estevam <festevam@denx.de>
+>>> ---
+>>>  Documentation/devicetree/bindings/iio/adc/maxim,max1238.yaml | 2 +-
+>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/iio/adc/maxim,max1238.yaml b/Documentation/devicetree/bindings/iio/adc/maxim,max1238.yaml
+>>> index 50bcd72ac9d6..60d7b34e3286 100644
+>>> --- a/Documentation/devicetree/bindings/iio/adc/maxim,max1238.yaml
+>>> +++ b/Documentation/devicetree/bindings/iio/adc/maxim,max1238.yaml  
+>>
+>> While fixing such, fix also max1363 in the same patch. Or maybe even
+>> more files (but then usually split per maintainer).
+> 
+> Absolutely agree that it would be good to fix the other instances.
+> Still, I'm not going to not take the one fix in front of me today
+> whilst waiting on that ;)
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/iio/adc/maxim,max1363.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+It's also quite a churn to do reviews/commits/applies for such trivial
+(without functional impact) stuff per each commit... but if that's okay
+with you, let it be. I sent one for max1363.
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/maxim,max1363.yaml b/Documentation/devicetree/bindings/iio/adc/maxim,max1363.yaml
-index e04f09f35601..96f3f535fe34 100644
---- a/Documentation/devicetree/bindings/iio/adc/maxim,max1363.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/maxim,max1363.yaml
-@@ -10,7 +10,7 @@ maintainers:
-   - Jonathan Cameron <jic23@kernel.org>
- 
- description: |
--   Family of ADCs with i2c inteface, internal references and threshold
-+   Family of ADCs with i2c interface, internal references and threshold
-    monitoring.
- 
- properties:
--- 
-2.34.1
+More commits towards next LWN stats :)
+
+Best regards,
+Krzysztof
 
