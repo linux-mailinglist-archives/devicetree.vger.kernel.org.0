@@ -2,91 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B52D0655A53
-	for <lists+devicetree@lfdr.de>; Sat, 24 Dec 2022 15:29:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7508A655A57
+	for <lists+devicetree@lfdr.de>; Sat, 24 Dec 2022 15:40:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231178AbiLXO3v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Dec 2022 09:29:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58604 "EHLO
+        id S230343AbiLXOka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Dec 2022 09:40:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231174AbiLXO3s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Dec 2022 09:29:48 -0500
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F2A6DFA1
-        for <devicetree@vger.kernel.org>; Sat, 24 Dec 2022 06:29:41 -0800 (PST)
-Received: by mail-yb1-xb33.google.com with SMTP id g4so7903417ybg.7
-        for <devicetree@vger.kernel.org>; Sat, 24 Dec 2022 06:29:41 -0800 (PST)
+        with ESMTP id S229485AbiLXOk2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Dec 2022 09:40:28 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E74CAE037
+        for <devicetree@vger.kernel.org>; Sat, 24 Dec 2022 06:40:26 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id 1so10571287lfz.4
+        for <devicetree@vger.kernel.org>; Sat, 24 Dec 2022 06:40:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=mbcutGH6OL7LuSP42at3fK5Z1YIFoEUC0KBJRJ/ehLg=;
-        b=o/D+RD6UfC13biE/yqQzwpWU6ouvKMvajgU41qpaL3psqSD8JDUscjZXrZxO75n0Wy
-         hHDMfTyQRqxZ0BSElRccT1toOMAUwjS2Wjzg7k2hWdbXQNYFm0aZBlQyI/s0tG+Ks64z
-         YYBk6AUAhmOpuww5ky43AGCmJ2WYt1kiwaUr7eBuwzKhEywzPno/1KaHKys80LbyVZVG
-         ly4/Xy3RRRXLji1hb0pTaBVkjayPjXWaxlkYnISGy29CNIXUscAG7XGEsvM2h/czLMhs
-         dnwf0bnL2xrkYIb0vD7xt1BbfdtHKNeR7oVoLhuJ7QKUq9+zmA4AC7FrNmzt8njD2WmX
-         JVAQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ot4y1v/6kGhsB43W5lYaREV5k7vVErtV06ABJyLGw3E=;
+        b=lVPZBYKatl1jb0EDXy5sPKMfxCQjGR5rk4JhOUSJyAz+lMGw4vYWdFEpyNJPHdmDIP
+         8O1LsSJfpkpESOKMJSn4QGDA27Z4xjagR/HbiiqiEqbldN32b+MgohZ9xgBMljvelWwr
+         JbII+QbxL+LDlg0gKaJWKcamYq4uWM/+/37t0TyVMHGUD1ltucEQtQ3yTxvsLZ4blpZL
+         gAYUP16Hitp5U/T88SzM0DcjbyvR2UrQkJeTMWFfZZaer+FQAaaWFWCz5CPeeIbAbA7n
+         w6YhlMpND98RphOBPx9UoaCgWEUq77yf6zBcjEi33aJh3jzxBnian8Ga4R724+RZM6D3
+         bgPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mbcutGH6OL7LuSP42at3fK5Z1YIFoEUC0KBJRJ/ehLg=;
-        b=34SG/bFyMfiycjP+xIOX3maU/Rbxo5aXDCr6Tv4AwGUvoB6NZI2bQCsK3vHAoV033r
-         IE5o3bw8pGMR+eEUCESieUO0wk/luN4YMuFTWUuwvHSqmcGmaJsA7JnOee2vyfvlHG3Y
-         3VEPThKnU9EoxKklstTXNWE6017C3Lj+d0262H22mLQTALX+2n45nrthjHLQsFcfkKcG
-         PflVfxvpTc1r7bpVdO8L5tM7QJbvpTSWXaYTYZ8J/pd7IOVX2c2wFtUCfcX47VOAJppR
-         qKjYfssQZEy8hNbDnB02FMFHBZ3SjpZexwLdPdrlzrI5i2iKcgSEOCsz3xBQDhiJzEuz
-         ECUw==
-X-Gm-Message-State: AFqh2kprdjyWFUdKSkTpQgMD2dQvvEGYULTmlLEOC4XGXMI4WToOpTa6
-        IW9IHS+hwpAzdA3cxBj0zIWtSscvPiP+6WN38q/3ew==
-X-Google-Smtp-Source: AMrXdXuAv8OyH+cafe6ZRM/QujXFFE6/O1p5c35GQydmuCBIMhPqc0FHSLHxWlN2i8ZOcK6L+qZ5K5UtAV6gJh8mDtw=
-X-Received: by 2002:a25:d496:0:b0:70c:4fa3:2cce with SMTP id
- m144-20020a25d496000000b0070c4fa32ccemr1816768ybf.539.1671892180573; Sat, 24
- Dec 2022 06:29:40 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ot4y1v/6kGhsB43W5lYaREV5k7vVErtV06ABJyLGw3E=;
+        b=Bfi3LVNFxfaKq0N1CHR5K2qWLgq25a6kCNwqU/XbvPR0MQ4UubWqr+7jozuJAkbExf
+         grm+50PBV21SoZhMIEQ5X+7DRAut6B6Wr9oepumVPiCeNAHw9OEpRDH61Wgtop5jWoFV
+         E4m9o+RVVL1vhiG4wfcZoAkX+1HxLkfsFgOLzXRinkKbhi1E2nATj/aCk96EWAIVXzg1
+         ZUk4QNB0nj1VMIs0/qeH03LB1Eo2LPfIu2eB7j+OBwkCHRq8B0zDQaQnbq9AjYwkdAeL
+         I6XhIiGqWnF5czJrTkLy5PiuA0uvfU9tJeRHCw6N1npbZ1TRuSHx0YHJPM63zqusJJ3O
+         fXPA==
+X-Gm-Message-State: AFqh2kr6GYPbiEjOigtW4SSx4WGp2pJAEJiVJD7WUEkUB0qkVVaIQJkH
+        5IKyEV5lWlCadRpfHxG1JWsu6A==
+X-Google-Smtp-Source: AMrXdXvJGiHSbaP745Kpqugib5NXtxgXQBl1bFHWh9CyQRBuB7Fir6p3+hlgpoKSVVVVR+ygW956OQ==
+X-Received: by 2002:a05:6512:168d:b0:4ca:fd5f:ce82 with SMTP id bu13-20020a056512168d00b004cafd5fce82mr530060lfb.49.1671892825195;
+        Sat, 24 Dec 2022 06:40:25 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id c18-20020ac244b2000000b004cb018ad4dfsm15286lfm.135.2022.12.24.06.40.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 24 Dec 2022 06:40:24 -0800 (PST)
+Message-ID: <838e7657-817c-e5bd-5a45-d852560c7fe1@linaro.org>
+Date:   Sat, 24 Dec 2022 15:40:23 +0100
 MIME-Version: 1.0
-References: <20221223132235.16149-1-anand@edgeble.ai>
-In-Reply-To: <20221223132235.16149-1-anand@edgeble.ai>
-From:   Jagan Teki <jagan@edgeble.ai>
-Date:   Sat, 24 Dec 2022 19:59:28 +0530
-Message-ID: <CA+VMnFz8nQ2DnD6L9cPmoRqk+uohRqTEpak9g=WGJnSBoONmrA@mail.gmail.com>
-Subject: Re: [PATCHv1 linux-next 1/4] dt-bindings: net: rockchip-dwmac: fix
- rv1126 compatible warning
-To:     Anand Moon <anand@edgeble.ai>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        David Wu <david.wu@rock-chips.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: lpass-va: add npl clock for new
+ VA macro
+Content-Language: en-US
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        broonie@kernel.org
+Cc:     alsa-devel@alsa-project.org, lgirdwood@gmail.com, perex@perex.cz,
+        tiwai@suse.com, linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
+References: <20221118071849.25506-1-srinivas.kandagatla@linaro.org>
+ <20221118071849.25506-2-srinivas.kandagatla@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221118071849.25506-2-srinivas.kandagatla@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 23 Dec 2022 at 18:55, Anand Moon <anand@edgeble.ai> wrote:
->
-> Fix compatible string for RV1126 gmac, and constrain it to
-> be compatible with Synopsys dwmac 4.20a.
->
-> fix below warning
-> arch/arm/boot/dts/rv1126-edgeble-neu2-io.dtb: ethernet@ffc40000:
->                  compatible: 'oneOf' conditional failed, one must be fixed:
->         ['rockchip,rv1126-gmac', 'snps,dwmac-4.20a'] is too long
->         'rockchip,rv1126-gmac' is not one of ['rockchip,rk3568-gmac', 'rockchip,rk3588-gmac']
->
-> Signed-off-by: Anand Moon <anand@edgeble.ai>
-> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+On 18/11/2022 08:18, Srinivas Kandagatla wrote:
+> LPASS VA Macro now has soundwire master to deal with access to
+> analog mic in low power island use cases. This also means that VA macro
+> now needs to get hold of the npl clock too. Add clock bindings required
+> for this.
+> 
+> As part of adding this bindings, also update bindings to be able to
+> specific and associate the clock names specific to the SoC.
+> 
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 > ---
+>  .../bindings/sound/qcom,lpass-va-macro.yaml   | 63 ++++++++++++++++---
+>  1 file changed, 55 insertions(+), 8 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
+> index c36caf90b837..288a1d5ad585 100644
+> --- a/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
+> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
+> @@ -27,16 +27,12 @@ properties:
+>      const: 0
+>  
+>    clocks:
+> -    maxItems: 3
+> +    minItems: 1
+> +    maxItems: 4
+>  
+>    clock-names:
+> -    oneOf:
+> -      - items:   #for ADSP based platforms
+> -          - const: mclk
+> -          - const: core
+> -          - const: dcodec
+> -      - items:   #for ADSP bypass based platforms
+> -          - const: mclk
+> +    minItems: 1
+> +    maxItems: 4
+>  
+>    clock-output-names:
+>      maxItems: 1
+> @@ -60,6 +56,57 @@ required:
+>    - compatible
+>    - reg
+>    - "#sound-dai-cells"
+> +  - clock-names
+> +  - clocks
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: qcom,sc7280-lpass-va-macro
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 1
+> +        clock-names:
+> +          items:
+> +            - const: mclk
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: qcom,sm8250-lpass-va-macro
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 3
+> +          maxItems: 3
+> +        clock-names:
+> +          items:
+> +            - const: mclk
+> +            - const: core
 
-Please add Fixes above SoB.
+There was no follow up on this patch and I just hit the warning here, so
+let me bring this back - that's not correct name. DTS and drivers use macro.
+
+Best regards,
+Krzysztof
+
