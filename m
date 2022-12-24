@@ -2,102 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 713FE655B51
-	for <lists+devicetree@lfdr.de>; Sat, 24 Dec 2022 22:24:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A03E655B5A
+	for <lists+devicetree@lfdr.de>; Sat, 24 Dec 2022 22:44:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230203AbiLXVYV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Dec 2022 16:24:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54260 "EHLO
+        id S230167AbiLXVoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Dec 2022 16:44:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229820AbiLXVYU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Dec 2022 16:24:20 -0500
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B239AE62
-        for <devicetree@vger.kernel.org>; Sat, 24 Dec 2022 13:24:19 -0800 (PST)
-Received: by mail-pl1-x62a.google.com with SMTP id jl4so1587564plb.8
-        for <devicetree@vger.kernel.org>; Sat, 24 Dec 2022 13:24:19 -0800 (PST)
+        with ESMTP id S229485AbiLXVoA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Dec 2022 16:44:00 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 530A6B7FD
+        for <devicetree@vger.kernel.org>; Sat, 24 Dec 2022 13:43:58 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id j17so1944546lfr.3
+        for <devicetree@vger.kernel.org>; Sat, 24 Dec 2022 13:43:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sladewatkins.net; s=googled;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=O7iUW2yvLkltdJ+802lqDxjH4K6OrXY0D1JeDdF3S9E=;
-        b=EZbEFdk/4VytSmEsom5jkRfrt7725OovIF6pGEOEMPd4rC1NNZYoDFjRjzeRUreWOL
-         ynDybyobQH27InarSzLpWQ9iyd/lmERXpIdRfUQeAQqb5chcYYHTDXDdRR845nXnJkE7
-         fn3nvIApiPI3z13VkU6Z1vkxDAz0pXgRpvhOTY3jKjeLZzQQwuH7eSODc27nbP04f4oH
-         4UMvrLlYZvJ2zI6k8hEI2Iq4Ih+1VTyOqyEdD7Xcox3YNrTkiZYdrun8Gkp2J13ONj/y
-         TOMaEDtq0H0sh56QLOUWA2+YIsHBVYy+Cswc9eMkyNVmOd6nI9HsWghT9t8r6HvpIEuc
-         WadQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Tzz+BP69NAct4xSytGrEtJG8lGhPYUMzf/5vG9X4+Ps=;
+        b=w8U8ZHfSAS0HK7Nj9h2jGYe8lct0qZlXSdiyx7S4Q707B0DTMdFZDG8uifTX3jp/Qu
+         5/DvyefC9yxvCCiK3rb0SQQjKxDoIZlM/JgqCPd6wp1+OhtjgS6cLZEBQn2yxJrDgc1F
+         r8s3Vt0ohIZ9jz1zFL015Z3+ddZRx1LN11+HVUN/gaBZZv01oO3bO/7tToBSFvdb0v9p
+         OGXTKIwRdg4e4gjirE0jyH0OVpJa/lB3bk2S/vA/FHrAto0XllJZmkRioNFD4N0ZndRO
+         fKnRznYqDrCT4BgLPih1VVi9iBqjztfGXbyHPlf0j2iro6TETC2a1FqG+WDnrsgkFmXI
+         jUjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=O7iUW2yvLkltdJ+802lqDxjH4K6OrXY0D1JeDdF3S9E=;
-        b=kdFTCN5ZCdfQ2ZgQOgUL1s8yQfopVyWId9t2dgaW6LinKhMbKjYlyIXZ6HVcUK+0Ok
-         2Ngg+wMBdGlTaeS1FUUuY2Q9I79EWf4Z7aRK6XYLcYrqGXSI4TjGj5lP4PUK2c2aHhZ4
-         0vBaxISzya4vh4niZ8tKjzcAyLlU4dfAeSBc9sWV1ogOfAdWruCzbdUrsbWJ/aOEo5bX
-         ScBgixJNophD9ojRbL36HWR/3NBSlITocKHQA9fVDGgXaERoPE+B2dJLADdaYt/Lhmrc
-         QEUg+pEe76aiEdBQCzMRR7X0O76foyexexbj0rqdFeD0IHYYDMc9yrRmiicQ2hljHCeI
-         73wA==
-X-Gm-Message-State: AFqh2kpi/QeoeBjtXlFsPS7ohMGwzYdhkAFWaXoaCl0ViCq0KeaV0rza
-        8ddcQIhuJCvZQidN9BJwlD/U3zFw6xWgkY2uS7ACuj/6AW5Nkw+rMCE=
-X-Google-Smtp-Source: AMrXdXufSdzDq92KU6O4AEt6bGZwOQ4Kh8UTOP3WX1snLwgRIm8pHsfb3BR79NcWRxjinsFrfjD9knwbA/uHq88zD7I=
-X-Received: by 2002:a17:90a:b301:b0:218:fb5c:a762 with SMTP id
- d1-20020a17090ab30100b00218fb5ca762mr1562383pjr.241.1671917057817; Sat, 24
- Dec 2022 13:24:17 -0800 (PST)
-MIME-Version: 1.0
-References: <20221223132235.16149-1-anand@edgeble.ai> <CA+VMnFz8nQ2DnD6L9cPmoRqk+uohRqTEpak9g=WGJnSBoONmrA@mail.gmail.com>
-In-Reply-To: <CA+VMnFz8nQ2DnD6L9cPmoRqk+uohRqTEpak9g=WGJnSBoONmrA@mail.gmail.com>
-From:   Slade Watkins <srw@sladewatkins.net>
-Date:   Sat, 24 Dec 2022 16:24:07 -0500
-Message-ID: <CA+pv=HP8ckG8dsh-uZ6=k2nMGDGbw3gnh2b1ZWV31mzuYsjNig@mail.gmail.com>
-Subject: Re: [PATCHv1 linux-next 1/4] dt-bindings: net: rockchip-dwmac: fix
- rv1126 compatible warning
-To:     Jagan Teki <jagan@edgeble.ai>
-Cc:     Anand Moon <anand@edgeble.ai>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        bh=Tzz+BP69NAct4xSytGrEtJG8lGhPYUMzf/5vG9X4+Ps=;
+        b=JWrmybPcZd0e+kBb+jHDtKAgL3FI2aUkj/hJ3mUrd3Uh8PTSxjmgjo62FEAnVcR2hh
+         1yj6ZfnwwlkFV+sgBYGsIGi7VRGWHua9IKfoEPNLp7D/IYz4QWAVC2tFca2AF62a8DdQ
+         YCVBHy84WdSRl9h8CwL0RBgdvL7dADnZIJPF+/ZgQ4nSFUYS/T/9WmqYquuMO/qNpTMR
+         QyrjfIPrh9Nqh474rxkhPyeo9FjoYaxcFi1yFbonaPSGUTg0J/z5s15wYusCfkPEQVlS
+         UBuvdnBs7a9+opXhUtN+FHCdcFgOfjiYkr4NemsmVOXb6ZSwMqJDA/R8xRSXObX6ZlPr
+         EHQw==
+X-Gm-Message-State: AFqh2kqhbqJodRSNtTNYE+imZ1XrVsbPW9rgpGTM6yC2mXtADbaZc217
+        k5bbGPf0J+NJI1lD3/GxCxv2Bg==
+X-Google-Smtp-Source: AMrXdXtLkrVO94d3AI+pDVIzVjoeW9kMIQB460bixhhadhOrpeWKsfMz5O1mCw12RV1VBi3tVyNzFQ==
+X-Received: by 2002:a19:7414:0:b0:4b4:bea4:15c9 with SMTP id v20-20020a197414000000b004b4bea415c9mr4302729lfe.21.1671918236644;
+        Sat, 24 Dec 2022 13:43:56 -0800 (PST)
+Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id j13-20020ac2454d000000b004c7d0ed9619sm1117861lfm.123.2022.12.24.13.43.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 24 Dec 2022 13:43:56 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        David Wu <david.wu@rock-chips.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: sm8350: correct SDHCI interconnect arguments
+Date:   Sat, 24 Dec 2022 22:43:51 +0100
+Message-Id: <20221224214351.18215-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Dec 24, 2022 at 9:30 AM Jagan Teki <jagan@edgeble.ai> wrote:
->
-> On Fri, 23 Dec 2022 at 18:55, Anand Moon <anand@edgeble.ai> wrote:
-> >
-> > Fix compatible string for RV1126 gmac, and constrain it to
-> > be compatible with Synopsys dwmac 4.20a.
-> >
-> > fix below warning
-> > arch/arm/boot/dts/rv1126-edgeble-neu2-io.dtb: ethernet@ffc40000:
-> >                  compatible: 'oneOf' conditional failed, one must be fixed:
-> >         ['rockchip,rv1126-gmac', 'snps,dwmac-4.20a'] is too long
-> >         'rockchip,rv1126-gmac' is not one of ['rockchip,rk3568-gmac', 'rockchip,rk3588-gmac']
-> >
-> > Signed-off-by: Anand Moon <anand@edgeble.ai>
-> > Signed-off-by: Jagan Teki <jagan@edgeble.ai>
-> > ---
->
-> Please add Fixes above SoB.
+The interconnect providers accept only one argument (cells == 1), so fix
+a copy&paste from SM8450:
 
-That and, shouldn't the Signed-off-by: tags be reversed if Anand is
-sending this?
+  sm8350-hdk.dtb: mmc@8804000: interconnects: [[74, 9, 0], [75, 1, 0], [76, 2, 0], [77, 36, 0]] is too long
 
-Confused,
+Fixes: 60477435e4de ("arm64: dts: qcom: sm8350: Add SDHCI2")
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
--- Slade
+---
+
+Fix for v6.2-rc merge window.
+---
+ arch/arm64/boot/dts/qcom/sm8350.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+index 4fc15cc69b8c..0726930c9e28 100644
+--- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+@@ -2382,8 +2382,8 @@ sdhc_2: mmc@8804000 {
+ 				 <&rpmhcc RPMH_CXO_CLK>;
+ 			clock-names = "iface", "core", "xo";
+ 			resets = <&gcc GCC_SDCC2_BCR>;
+-			interconnects = <&aggre2_noc MASTER_SDCC_2 0 &mc_virt SLAVE_EBI1 0>,
+-					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_SDCC_2 0>;
++			interconnects = <&aggre2_noc MASTER_SDCC_2 &mc_virt SLAVE_EBI1>,
++					<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_SDCC_2>;
+ 			interconnect-names = "sdhc-ddr","cpu-sdhc";
+ 			iommus = <&apps_smmu 0x4a0 0x0>;
+ 			power-domains = <&rpmhpd SM8350_CX>;
+-- 
+2.34.1
+
