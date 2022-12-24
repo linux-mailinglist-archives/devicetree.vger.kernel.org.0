@@ -2,184 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A06736559E1
-	for <lists+devicetree@lfdr.de>; Sat, 24 Dec 2022 12:13:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFABF655A2B
+	for <lists+devicetree@lfdr.de>; Sat, 24 Dec 2022 13:54:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230445AbiLXLN1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Dec 2022 06:13:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58804 "EHLO
+        id S230353AbiLXMyC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Dec 2022 07:54:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229615AbiLXLNZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Dec 2022 06:13:25 -0500
-Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEB34EE26
-        for <devicetree@vger.kernel.org>; Sat, 24 Dec 2022 03:13:22 -0800 (PST)
-Received: by mail-yb1-xb35.google.com with SMTP id b16so7651282yba.0
-        for <devicetree@vger.kernel.org>; Sat, 24 Dec 2022 03:13:22 -0800 (PST)
+        with ESMTP id S229831AbiLXMyB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Dec 2022 07:54:01 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F09B7D101
+        for <devicetree@vger.kernel.org>; Sat, 24 Dec 2022 04:53:59 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id bq39so2529840lfb.0
+        for <devicetree@vger.kernel.org>; Sat, 24 Dec 2022 04:53:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=+T3Wi0FxR+aQY00oUGjtUElYaHTEjFLNV0YO6IaCnFM=;
-        b=h9NJv1kP89kJ0GRcE9rjnc9YCWp4VMHvr8ipvZd7g47/fBlTBStvfj/laeLc8/ZWsD
-         V6IcD9VA8qRhL8mwoqQFlpnQhyQOCp9+Ws/f3jdZ7EBR5d9sgBPouZdU2KD3q21J+0Ae
-         6HlcYgtwZ2/C6xwPx0oxIwZBOEpIzx/BoHBHi4gGWiBHsrTZNCPFZX0CVmHLdjni4zOv
-         9S6Yo1COwWNOdWNDzkk2x7pzyhodJw3hQ16bGBrlDncDmJTzpU0C8cVxWqR7Jylxy2Aw
-         MkQL35cKpcdk3hkQUBrQafmtADcPfeiUWQFqYOFB2We6o9Ip3h8DaryqoqP075yi1+AZ
-         f+nA==
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zv9IznoKeqq4XhdztR/BEG3Np/4v5us6ivTnhTur1yY=;
+        b=VEhDA7Skf/Euj6CB+4WOCDIlaiEh0+vrmGApjwwGSqvB0tFz/UXpDq0ZiY4SYLaGW7
+         F+RlU2Tv3bcdEnYc/wfC/3+iq8KSub7YapZDDv/NbMQndGiukFR+ngew9IuA8LRZ85yO
+         zO5uuoASGTB7c/KJ5vySrRPIXE1aPQEcwdEyDnEMRm0elCf5sbEbs3GUIMaFnTZn7+FJ
+         ZeJJmbqTCSWxDiZWPEcam5KztnZnB4KO+ENgQwIjCEJAJMMyDD59ShhSDVRFPXn61Xh9
+         TjwT86HXVR1Hw0ziAJ6TjlWpHchzxGc3JO20eHOl5BHtbpDDe0TBQZ6hetr4nmlQJV8J
+         b+Tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+T3Wi0FxR+aQY00oUGjtUElYaHTEjFLNV0YO6IaCnFM=;
-        b=NnWFvlIyQC3DSNGHc6/cl9ySsHDFIef+oQCnrlTpjhlrnoIVenM8w9XffLN+shhY4q
-         POG7VCxdXz/6nQoceTA+QfcvtALLpu8Uiou+JwcMw97AXu5A2rmO8vwSPGmwSg7WLcey
-         I3mXrHX5+6kRbJdqpRmJP5rtY8wopzjbPIE2Os5CpCgdskQ1pttkKvz598g/VMhAtX0e
-         6B6s5BcfzhqUjzPFbeNxQSs7pZ8qGS0OTqQ5mNweG77W7XumciIPncBtfPAg4kP0BRta
-         CROpARK9798eBGLNL4GWpw20jJiJEU+khiQ1L1kErr/cEXSM1fUFheGC2aeJEw76VFcC
-         U90Q==
-X-Gm-Message-State: AFqh2kr38SdpfzPdNhctv6TKniOeaEbNxG7MG26a3RjQatPRVrzvVMVU
-        qruVkhKgUWyOfNgq/AKTl0MTqgAikjhb7RdncIUL1g==
-X-Google-Smtp-Source: AMrXdXsdBrBzp3zIBNfzByhXKd6O3hYee5f3EPjHDp6AKPkLSeGQkpzTN0Cw8ffKmOR7kJb9uytDzpFHXF6QEkIqiDA=
-X-Received: by 2002:a25:aa0d:0:b0:76d:bea0:8a05 with SMTP id
- s13-20020a25aa0d000000b0076dbea08a05mr391174ybi.153.1671880401925; Sat, 24
- Dec 2022 03:13:21 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zv9IznoKeqq4XhdztR/BEG3Np/4v5us6ivTnhTur1yY=;
+        b=mwN5IwMsPiAbnkuk4CPOuFmUL1thIfXwQX634SbtMv6mNq5y1GdrHG8cjeCqLUUFvg
+         kcT8g0yLnAmWOC2tu04z0jJxk8yO2PgcsD1ySWyEu5rLQxI2bcgFhBUSTE2Gu1alKK6w
+         AGT3ovkCCJUO5/Oytz0JhYk1B/uMZi6g4NFghE1Mh7l7+2PqEkcRP63xe3xhxB+hE+6D
+         9NH23LWdpOv1Ue4Hndy1KAMmN7xp9lSIbgBUKuYq18gnkj9bifbOD4t/Tv96CAKGY5aT
+         4cL6ptGMhZwmKFq2BpOx0Uodbtf37k7lbIH9aOh1hoTAIrUwWL55qprPsORAlO7J1Szk
+         Rggw==
+X-Gm-Message-State: AFqh2koo0qF8X0hComkJq9WKSaGfFE56fTf5WBzfkURxOFVjAg81+5hQ
+        3a2CSI5bhb/SDvtZbQFteaqkrQ==
+X-Google-Smtp-Source: AMrXdXuodh9FHymbmpohqNn+aN73HnLyNMGQMfaM4A8CMcQthOis9+U3w2QaUyRVjC6UF3jQ0FdJzQ==
+X-Received: by 2002:ac2:5e9d:0:b0:4b6:ec97:a629 with SMTP id b29-20020ac25e9d000000b004b6ec97a629mr3352154lfq.35.1671886438132;
+        Sat, 24 Dec 2022 04:53:58 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id x30-20020a0565123f9e00b0048a9e899693sm952658lfa.16.2022.12.24.04.53.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 24 Dec 2022 04:53:57 -0800 (PST)
+Message-ID: <9d2c05f6-af5a-2d79-02ea-85c49e244957@linaro.org>
+Date:   Sat, 24 Dec 2022 13:53:56 +0100
 MIME-Version: 1.0
-References: <20221223233200.26089-1-quic_wcheng@quicinc.com> <20221223233200.26089-9-quic_wcheng@quicinc.com>
-In-Reply-To: <20221223233200.26089-9-quic_wcheng@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Sat, 24 Dec 2022 13:13:11 +0200
-Message-ID: <CAA8EJppsK=L69AaBgj=MzWp-ess3NSn=gPYf8-3QtJVqEVqGzw@mail.gmail.com>
-Subject: Re: [RFC PATCH 08/14] usb: dwc3: Add DT parameter to specify maximum
- number of interrupters
-To:     Wesley Cheng <quic_wcheng@quicinc.com>
-Cc:     srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
-        perex@perex.cz, broonie@kernel.org, lgirdwood@gmail.com,
-        andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        gregkh@linuxfoundation.org, Thinh.Nguyen@synopsys.com,
-        bgoswami@quicinc.com, tiwai@suse.com, robh+dt@kernel.org,
-        agross@kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        quic_jackp@quicinc.com, quic_plai@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v4 2/3] dt-bindings: leds: add worldsemi,ws2812b
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     Chuanhong Guo <gch981213@gmail.com>, linux-leds@vger.kernel.org,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20221212045558.69602-1-gch981213@gmail.com>
+ <20221212045558.69602-3-gch981213@gmail.com>
+ <c592dd31-5e9a-c2a2-1c70-46b7cffa9c5d@linaro.org>
+ <Y6XjHNCLXY9s1IOF@duo.ucw.cz>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y6XjHNCLXY9s1IOF@duo.ucw.cz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 24 Dec 2022 at 01:33, Wesley Cheng <quic_wcheng@quicinc.com> wrote:
->
-> Allow for the DWC3 host driver to pass along a XHCI property that defines
-> how many interrupters to allocate.  This is in relation for the number of
-> event rings that can be potentially used by other processors within the
-> system.
->
-> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
-> ---
->  drivers/usb/dwc3/core.c | 12 ++++++++++++
->  drivers/usb/dwc3/core.h |  2 ++
->  drivers/usb/dwc3/host.c |  5 ++++-
->  3 files changed, 18 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-> index 476b63618511..67d6f0ae81d2 100644
-> --- a/drivers/usb/dwc3/core.c
-> +++ b/drivers/usb/dwc3/core.c
-> @@ -1446,6 +1446,7 @@ static void dwc3_get_properties(struct dwc3 *dwc)
->         u8                      tx_thr_num_pkt_prd = 0;
->         u8                      tx_max_burst_prd = 0;
->         u8                      tx_fifo_resize_max_num;
-> +       u8                      num_hc_interrupters;
->         const char              *usb_psy_name;
->         int                     ret;
->
-> @@ -1468,6 +1469,9 @@ static void dwc3_get_properties(struct dwc3 *dwc)
->          */
->         tx_fifo_resize_max_num = 6;
->
-> +       /* default to a single XHCI interrupter */
-> +       num_hc_interrupters = 1;
-> +
->         dwc->maximum_speed = usb_get_maximum_speed(dev);
->         dwc->max_ssp_rate = usb_get_maximum_ssp_rate(dev);
->         dwc->dr_mode = usb_get_dr_mode(dev);
-> @@ -1511,6 +1515,12 @@ static void dwc3_get_properties(struct dwc3 *dwc)
->                                 &tx_thr_num_pkt_prd);
->         device_property_read_u8(dev, "snps,tx-max-burst-prd",
->                                 &tx_max_burst_prd);
-> +       device_property_read_u8(dev, "snps,num-hc-interrupters",
-> +                               &num_hc_interrupters);
+On 23/12/2022 18:19, Pavel Machek wrote:
+> Hi!
+> 
+>>> Add dt binding schema for WorldSemi WS2812B driven using SPI
+>>> bus.
+>>>
+>>> Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
+>>> ---
+>>> Changes since v1:
+>>> remove linux driver reference from description
+>>> remove some obvious descriptions
+>>> fix unit address regex in multi-led property
+>>> drop various minItems
+>>> add maxItems = 1 to reg
+>>> fix node names and property orders in binding example
+>>> drop -spi from compatible string
+>>> add default-brightness
+>>>
+>>> Change since v2:
+>>> drop "this patch" from commit message
+>>> rename leds to led-controller
+>>> drop default-brightness and default-intensity
+>>>
+>>> Change since v3:
+>>> reword commit title
+>>>
+>>>  .../bindings/leds/worldsemi,ws2812b.yaml      | 116 ++++++++++++++++++
+>>>  1 file changed, 116 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/leds/worldsemi,ws2812b.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/leds/worldsemi,ws2812b.yaml b/Documentation/devicetree/bindings/leds/worldsemi,ws2812b.yaml
+>>> new file mode 100644
+>>> index 000000000000..548c05ac3d31
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/leds/worldsemi,ws2812b.yaml
+>>> @@ -0,0 +1,116 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/leds/worldsemi,ws2812b.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: WS2812B LEDs driven using SPI
+>>> +
+>>> +maintainers:
+>>> +  - Chuanhong Guo <gch981213@gmail.com>
+>>> +
+>>> +description: |
+>>> +  WorldSemi WS2812B is a individually addressable LED chip that can be chained
+>>> +  together and controlled individually using a single wire.
+>>> +  This binding describes a chain of WS2812B LEDs connected to the SPI MOSI pin.
+>>> +  Typical setups includes connecting the data pin of the LED chain to MOSI as
+>>> +  the only device or using CS and MOSI with a tri-state voltage-level shifter
+>>> +  for the data pin.
+>>> +  The SPI frequency needs to be 2.105MHz~2.85MHz for the timing to be correct
+>>> +  and the controller needs to send all the bytes continuously.
+>>> +
+>>> +allOf:
+>>> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: worldsemi,ws2812b
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  spi-max-frequency:
+>>> +    minimum: 2105000
+>>> +    maximum: 2850000
+>>> +
+>>> +  "#address-cells":
+>>> +    const: 1
+>>> +
+>>> +  "#size-cells":
+>>> +    const: 0
+>>> +
+>>> +patternProperties:
+>>> +  "^multi-led@[0-9a-f]+$":
+>>> +    type: object
+>>> +    $ref: leds-class-multicolor.yaml#
+>>> +    unevaluatedProperties: false
+>>> +
+>>> +    properties:
+>>> +      color-index:
+>>> +        description: |
+>>> +          A 3-item array specifying color of each components in this LED. It
+>>> +          should be one of the LED_COLOR_ID_* prefixed definitions from the
+>>> +          header include/dt-bindings/leds/common.h. Defaults to
+>>> +          <LED_COLOR_ID_GREEN LED_COLOR_ID_RED LED_COLOR_ID_BLUE>
+>>> +          if unspecified.
+>>> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+>>> +        maxItems: 3
+>>
+>> In general I am fine with it, although there is still question for
+>> adding more multi-color defines in binding headers to replace this
+>> property - GRB/RBG/GBR and even more for RGBW.
+>>
+>> Pavel, Lee, any thoughts from your side?
+> 
+> This really needs to mention the name this hardware is known as -- I
+> believe it is NeoPixel.
 
-bindings change?
+We wait here for feedback on colors... The binding is re-implementing
+color, just because of combinations GRB/RBG/GBR, which could be achieved
+with new color defines.
 
-> +       /* DWC3 core allowed to have a max of 8 interrupters */
-> +       if (num_hc_interrupters > 8)
-> +               num_hc_interrupters = 8;
-> +
->         dwc->do_fifo_resize = device_property_read_bool(dev,
->                                                         "tx-fifo-resize");
->         if (dwc->do_fifo_resize)
-> @@ -1589,6 +1599,8 @@ static void dwc3_get_properties(struct dwc3 *dwc)
->         dwc->imod_interval = 0;
->
->         dwc->tx_fifo_resize_max_num = tx_fifo_resize_max_num;
-> +
-> +       dwc->num_hc_interrupters = num_hc_interrupters;
->  }
->
->  /* check whether the core supports IMOD */
-> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
-> index 8f9959ba9fd4..09037299da53 100644
-> --- a/drivers/usb/dwc3/core.h
-> +++ b/drivers/usb/dwc3/core.h
-> @@ -1050,6 +1050,7 @@ struct dwc3_scratchpad_array {
->   * @tx_max_burst_prd: max periodic ESS transmit burst size
->   * @tx_fifo_resize_max_num: max number of fifos allocated during txfifo resize
->   * @clear_stall_protocol: endpoint number that requires a delayed status phase
-> + * @num_hc_interrupters: number of host controller interrupters
->   * @hsphy_interface: "utmi" or "ulpi"
->   * @connected: true when we're connected to a host, false otherwise
->   * @softconnect: true when gadget connect is called, false when disconnect runs
-> @@ -1275,6 +1276,7 @@ struct dwc3 {
->         u8                      tx_max_burst_prd;
->         u8                      tx_fifo_resize_max_num;
->         u8                      clear_stall_protocol;
-> +       u8                      num_hc_interrupters;
->
->         const char              *hsphy_interface;
->
-> diff --git a/drivers/usb/dwc3/host.c b/drivers/usb/dwc3/host.c
-> index f6f13e7f1ba1..52a284fdd704 100644
-> --- a/drivers/usb/dwc3/host.c
-> +++ b/drivers/usb/dwc3/host.c
-> @@ -66,7 +66,7 @@ static int dwc3_host_get_irq(struct dwc3 *dwc)
->
->  int dwc3_host_init(struct dwc3 *dwc)
->  {
-> -       struct property_entry   props[4];
-> +       struct property_entry   props[5];
->         struct platform_device  *xhci;
->         int                     ret, irq;
->         int                     prop_idx = 0;
-> @@ -112,6 +112,9 @@ int dwc3_host_init(struct dwc3 *dwc)
->         if (DWC3_VER_IS_WITHIN(DWC3, ANY, 300A))
->                 props[prop_idx++] = PROPERTY_ENTRY_BOOL("quirk-broken-port-ped");
->
-> +       props[prop_idx++] = PROPERTY_ENTRY_U8("num-hc-interrupters",
-> +                                                               dwc->num_hc_interrupters);
-> +
->         if (prop_idx) {
->                 ret = device_create_managed_software_node(&xhci->dev, props, NULL);
->                 if (ret) {
+Best regards,
+Krzysztof
 
-
-
--- 
-With best wishes
-Dmitry
