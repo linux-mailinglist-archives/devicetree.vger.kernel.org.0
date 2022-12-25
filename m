@@ -2,74 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C7E0655D46
-	for <lists+devicetree@lfdr.de>; Sun, 25 Dec 2022 14:10:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 076C1655D60
+	for <lists+devicetree@lfdr.de>; Sun, 25 Dec 2022 15:32:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229445AbiLYNKD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Dec 2022 08:10:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34986 "EHLO
+        id S229489AbiLYOcD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Dec 2022 09:32:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229631AbiLYNKB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Dec 2022 08:10:01 -0500
-Received: from mail-vs1-xe2c.google.com (mail-vs1-xe2c.google.com [IPv6:2607:f8b0:4864:20::e2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24EC22AE1
-        for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 05:10:01 -0800 (PST)
-Received: by mail-vs1-xe2c.google.com with SMTP id 3so8403862vsq.7
-        for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 05:10:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=K1DFvd/qB2iPwiRdxjvsshI/YDS4Nv+p2asGKuDLehw=;
-        b=IOjoR6E3xrSRc1h/vzh4ywDX4D8KcpV8NUbWBQolOST5S4/rqsiiIVzegQo6qUUfxG
-         ms07edslAAi3te4oxW/82CmRDbNMUyl91XKYDYBaltk8m7NOS3Haa02gBgG8AenkZAWP
-         4fQPL9vSDN/Vx6KVA+BDnMT2R96qQ/v30RSU0Dzkd3DE7PasfUGCGBMQcw1/BJtENrDq
-         K3G42xXTmqBmlZV7deCrJ2dScEEPkhc+QYYJ14yKhfBRr2oLaVVBQYIQWpUg05V7MudA
-         rf176LtiZxxZUa8L593TvIfUOD8ibwS0GS8ro0b1W/e/+4UqMB29D/mRPb0awI8X5NsX
-         9qWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:reply-to:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=K1DFvd/qB2iPwiRdxjvsshI/YDS4Nv+p2asGKuDLehw=;
-        b=izh+cD56Uf1OBUBTUiwDmbgqwnhIqON58FFEEg3tOy3q6AsHidFJEmdAMjv3hk6w+j
-         zoPLVIa8s9LM/+FmmK4UTLr723aUK8PxGuDjLo/JTwQEgBU53YSLB/SLklYwQLPaQ3ub
-         3NgbuXz3Wu+MXbZP2+x5hfMeJOE7sJADcw+hXsjRAcRyCkHZxRXTvy0Gn9g+024SLk4v
-         wlKlxjw6cBV7WWobD2y5sJ3hbMfMsFO8+BSyw1K/xMAfFl89dFa+EEM1+4xrK8fnS2FU
-         itsLrjht0g0ICB25DufLHW0EYBhh3SxFj4ubDwfq+VhzTCeEZ0F6J5rjoBA2pLslpvqm
-         hV8A==
-X-Gm-Message-State: AFqh2kqvGkK3LoytYOFRilCwyjlDmpZV6Xp+MAPshNB0rns37iNEhntE
-        DtyhA1Ym+dw5WZzaPS6Z3MiYEdSsDVD1y3CvCgM=
-X-Google-Smtp-Source: AMrXdXsOMXQVo855JFYwx7Le/ie5HeFuR9Lj1rO9OfTv1h5n+p3Ia/MSFuW0zfRxBJ2RDtZUe0m0eZLm6LPK16Px+mc=
-X-Received: by 2002:a67:cf0b:0:b0:3c7:cfca:ee2c with SMTP id
- y11-20020a67cf0b000000b003c7cfcaee2cmr30741vsl.16.1671973800165; Sun, 25 Dec
- 2022 05:10:00 -0800 (PST)
+        with ESMTP id S229445AbiLYOcD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Dec 2022 09:32:03 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23535C04;
+        Sun, 25 Dec 2022 06:31:53 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id C1C7424DFCE;
+        Sun, 25 Dec 2022 22:31:44 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sun, 25 Dec
+ 2022 22:31:44 +0800
+Received: from [192.168.2.237] (113.72.145.114) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sun, 25 Dec
+ 2022 22:31:43 +0800
+Message-ID: <e23460e8-0ca4-b20b-e48e-faeca4f30e88@starfivetech.com>
+Date:   Sun, 25 Dec 2022 22:31:41 +0800
 MIME-Version: 1.0
-Received: by 2002:a05:6122:1688:0:0:0:0 with HTTP; Sun, 25 Dec 2022 05:09:59
- -0800 (PST)
-Reply-To: thajxoa@gmail.com
-From:   Thaj Xoa <houseinemoustapha@gmail.com>
-Date:   Sun, 25 Dec 2022 13:09:59 +0000
-Message-ID: <CACb7pkC_av4p7bZc7aEKQiAJQ8bq14iV4o8Vpw_+Q0dbqjWc_Q@mail.gmail.com>
-Subject: 
-To:     undisclosed-recipients:;
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+From:   Hal Feng <hal.feng@starfivetech.com>
+Subject: Re: [PATCH v3 6/7] riscv: dts: starfive: Add initial StarFive JH7110
+ device tree
+To:     Conor Dooley <conor@kernel.org>
+CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "Thomas Gleixner" <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <linux-kernel@vger.kernel.org>
+References: <20221220011247.35560-1-hal.feng@starfivetech.com>
+ <20221220011247.35560-7-hal.feng@starfivetech.com> <Y6Ipv0BUummgqNaw@spud>
+Content-Language: en-US
+In-Reply-To: <Y6Ipv0BUummgqNaw@spud>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=4.3 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,UNDISC_FREEM autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Level: ****
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.145.114]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
--- 
-Good Day Dearest,
+On Tue, 20 Dec 2022 21:31:43 +0000, Conor Dooley wrote:
+> On Tue, Dec 20, 2022 at 09:12:46AM +0800, Hal Feng wrote:
+> > From: Emil Renner Berthing <kernel@esmil.dk>
+> > 
+> > Add initial device tree for the JH7110 RISC-V SoC by StarFive
+> > Technology Ltd.
+> > 
+> > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> > Co-developed-by: Jianlong Huang <jianlong.huang@starfivetech.com>
+> > Signed-off-by: Jianlong Huang <jianlong.huang@starfivetech.com>
+> > Co-developed-by: Hal Feng <hal.feng@starfivetech.com>
+> > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> > ---
+> 
+> FWIW, this cpu-map is now the default in linux, so you no longer *need*
+> to add it for that purpose - but there's obviously no harm in being
+> explicit for other operating systems etc. (IOW, don't remove it!)
+> 
+> > +		cpu-map {
+> > +			cluster0 {
+> > +				core0 {
+> > +					cpu = <&S76_0>;
+> > +				};
+> > +
+> > +				core1 {
+> > +					cpu = <&U74_1>;
+> > +				};
+> > +
+> > +				core2 {
+> > +					cpu = <&U74_2>;
+> > +				};
+> > +
+> > +				core3 {
+> > +					cpu = <&U74_3>;
+> > +				};
+> > +
+> > +				core4 {
+> > +					cpu = <&U74_4>;
+> > +				};
+> > +			};
+> > +		};
+> > +	};
+> 
+> > +		syscrg: clock-controller@13020000 {
+> 
+> For obvious reasons, I cannot apply this until both the clock & pinctrl
+> bindings are in my tree - but you know that already.
+> 
+> > +			compatible = "starfive,jh7110-syscrg";
+> > +			reg = <0x0 0x13020000 0x0 0x10000>;
+> > +			clocks = <&osc>, <&gmac1_rmii_refin>,
+> > +				 <&gmac1_rgmii_rxin>,
+> > +				 <&i2stx_bclk_ext>, <&i2stx_lrck_ext>,
+> > +				 <&i2srx_bclk_ext>, <&i2srx_lrck_ext>,
+> > +				 <&tdm_ext>, <&mclk_ext>;
+> 
+> As Krzk asked - are these clocks really all inputs to the SoC?
 
- I am Mrs. Thaj Xoa from Vietnam, I Have an important message I want
-to tell you please reply back for more details.
+Yes, they are all external clock sources inputted to the SoC. They are
+used as root clocks or optional parent clocks in clock tree.
 
-Regards
-Mrs. Thaj xoa
+> 
+> > +			clock-names = "osc", "gmac1_rmii_refin",
+> > +				      "gmac1_rgmii_rxin",
+> > +				      "i2stx_bclk_ext", "i2stx_lrck_ext",
+> > +				      "i2srx_bclk_ext", "i2srx_lrck_ext",
+> > +				      "tdm_ext", "mclk_ext";
+> > +			#clock-cells = <1>;
+> > +			#reset-cells = <1>;
+> > +		};
+> > +
+> > +		gpio: gpio@13040000 {
+> 
+> > +		gpioa: gpio@17020000 {
+> 
+> Out of curiousity, why gpio & gpioa?
+
+Oh, is it easier to read if I change "gpio" and "gpioa"
+to "sysgpio" and "aongpio"? Thanks.
+
+Best regards,
+Hal
