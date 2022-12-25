@@ -2,421 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEDEF655CD7
-	for <lists+devicetree@lfdr.de>; Sun, 25 Dec 2022 11:30:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B65EB655CF2
+	for <lists+devicetree@lfdr.de>; Sun, 25 Dec 2022 12:51:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229760AbiLYKal (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Dec 2022 05:30:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39966 "EHLO
+        id S229888AbiLYLvD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Dec 2022 06:51:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229489AbiLYKak (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Dec 2022 05:30:40 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2EC9E94;
-        Sun, 25 Dec 2022 02:30:35 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 23A8D24DFCE;
-        Sun, 25 Dec 2022 18:30:27 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sun, 25 Dec
- 2022 18:30:27 +0800
-Received: from [192.168.125.65] (113.72.146.158) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sun, 25 Dec
- 2022 18:30:25 +0800
-Message-ID: <d81cabc8-0229-1acf-03da-9a988a53a890@starfivetech.com>
-Date:   Sun, 25 Dec 2022 18:31:31 +0800
+        with ESMTP id S229441AbiLYLvA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Dec 2022 06:51:00 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88F81BA0;
+        Sun, 25 Dec 2022 03:50:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
+        s=s31663417; t=1671968822;
+        bh=cigTGUVAg3Yj9PBuOXrP7a8GktisvMkb4W/saccjwJQ=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=Ma/xkta6H/Vvu8O4rhc4uZyrSkGoLzcj0u3e+4+TsD4ecPjO4RdiTm8nzUIpHBg8t
+         yODU1TLBIFTfdJLVBlQPzfNkaUw4INHVjuJ4gklf1gC+4NS7bQxFhZdLTJComCawxT
+         FoNsX+YKxX2QusrfdnIZzotnf9ovGBKNZvqERLVsG8XKa+QpTP+3jnz5cduXBc6ZJb
+         XDpzyAP8rRElSmXpRYqE6Flyu5JYhkA9jbHoa88IAt8F0oKr/i8WXIlnG/A1H+x37k
+         jIamcERWlvttUqlamw9zawJZdLhlNurOM2MxVzlYyQE7NYgmOINTAzmtKMDzqbr6AT
+         fINsT6KW8DG/g==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [157.180.225.172] ([157.180.225.172]) by web-mail.gmx.net
+ (3c-app-gmx-bap38.server.lan [172.19.172.108]) (via HTTP); Sun, 25 Dec 2022
+ 12:47:02 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v3 6/7] riscv: dts: starfive: Add initial StarFive JH7110
- device tree
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>
-CC:     Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
+Message-ID: <trinity-b51cbf64-8df3-4a0b-883a-dbb7443eb954-1671968822286@3c-app-gmx-bap38>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Daniel Golle <daniel@makrotopia.org>
+Cc:     Frank Wunderlich <linux@fw-web.de>,
+        linux-mediatek@lists.infradead.org,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Vinod Koul <vkoul@kernel.org>, linux-usb@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Thomas Gleixner" <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        <linux-kernel@vger.kernel.org>
-References: <20221220011247.35560-1-hal.feng@starfivetech.com>
- <20221220011247.35560-7-hal.feng@starfivetech.com>
- <ebb27bb2-158c-8207-7184-0d5b5ca0ce14@linaro.org>
-From:   Hal Feng <hal.feng@starfivetech.com>
-In-Reply-To: <ebb27bb2-158c-8207-7184-0d5b5ca0ce14@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.146.158]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+        devicetree@vger.kernel.org
+Subject: Aw: Re: [next v7 8/8] arm64: dts: mt7986: add Bananapi R3
+Content-Type: text/plain; charset=UTF-8
+Date:   Sun, 25 Dec 2022 12:47:02 +0100
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <Y6dMWFy7gChG88j0@makrotopia.org>
+References: <20221127114142.156573-1-linux@fw-web.de>
+ <20221127114142.156573-9-linux@fw-web.de> <Y6dMWFy7gChG88j0@makrotopia.org>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:10CT/kHfUVpSwqOqwS7PiCBR0/UkRQWIuyHUPEIPBF4ZQybqHeav5erxkfhPt6CkPU6ev
+ P2jwPeR/U1/CsU0cypsmIs4UKNmh6TMGRmE9N8BKS0TbhXVNMX4nifJlVBx0/sT+mC1DTHpe7Lm0
+ ZWTvo5zBoXH7rzgei9CR+fXrJGdfl+LYJmaNbBJV9dJV3cfgTHqW/IWi9dXZWuu9PEWsGOdppoeX
+ JFIMemszjkAeplliNJluXNK5PmagMPT+eXXsMkTHO3XWdQck6hJrq/ckQvChW3JNDndJB1bzqU4q
+ GY=
+UI-OutboundReport: notjunk:1;M01:P0:pwFcvI8EngI=;Xzb4kTlhYwuChZI1qpgA1uiBqPU
+ 0VRdCykSt9KTXu8yY9kmRrx7TUx5EFBj/CWBFLhFCAuUvqO+4VGvbUWKt0/ui4Stz591phL4x
+ V6D2S/PlSOoK+x7PH/19JEuZKEr5cZZhv/LAaLdmWxmbQ6Ch8dMf/wUp1jZ/eXMG6DQ5sj46p
+ EXO5bAt6xkRITCny9gY4QR1XL7ITdV97qUPfmQRubcACLurNRiTr1QjoIHgepkenO2tKABFEZ
+ aJlUCiDQm5KNF8h4qRZgm+UrvL87097zlMkEmBYS0EhImEM4apgdFixunpgiN9VC0tE6hKIN0
+ RulXsPDMfJyIbonqk8r0HLhEzVeqs6enS34vIqnFEbe8J51x8eU6Jg6NdGPFevExob8aDMeA5
+ r4qRPKfr7LrlcIZgNnTPkmGZlLHG8op2cuELClFACNBxSYklDi61bGdcrGZ7zgWk3QN5sMjFd
+ KlKgPUWpw5/2Ky/5xfMK3GT7p3vDoQsfCHWpotsshwNqzEVX7wneqQHwqgxD//E/bDFOw5OMa
+ ok4obFcCNMkLzPS+ofYi4/P0dL4DeC2uH2WDbe3VoYjcV/6sH3jn/5XmyqldDIs+E5Djrt7LP
+ QLVtrJzCxdBJwNbpDlCK6jlqsRSUyIk7Auv2qYiSoTNGfBqQuwpHW2LI5G2C0x3uOnx2kkzUP
+ sFzbOVN9r/dTxS9JeWVf4mH3r5urzdXFrMvBaujgNVJ3jt6wvufj84Ejbe88doESaimya4+QF
+ +jTNS8V4hj1DozC05FKDuBggiU2hqUxx5Q6lGPoMFa94cU4cBp5hYxx4dU5WsG6eYssc0MUJe
+ v7pKBoXRZTACH/SOAAOVa4uzu3j406KqJjqu430gP7Hiw=
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 20 Dec 2022 11:10:11 +0100, Krzysztof Kozlowski wrote:
-> On 20/12/2022 02:12, Hal Feng wrote:
->> From: Emil Renner Berthing <kernel@esmil.dk>
->> 
->> Add initial device tree for the JH7110 RISC-V SoC by StarFive
->> Technology Ltd.
->> 
->> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
->> Co-developed-by: Jianlong Huang <jianlong.huang@starfivetech.com>
->> Signed-off-by: Jianlong Huang <jianlong.huang@starfivetech.com>
->> Co-developed-by: Hal Feng <hal.feng@starfivetech.com>
->> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
->> ---
->>  arch/riscv/boot/dts/starfive/jh7110.dtsi | 411 +++++++++++++++++++++++
->>  1 file changed, 411 insertions(+)
->>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110.dtsi
->> 
->> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
->> new file mode 100644
->> index 000000000000..64d260ea1f29
->> --- /dev/null
->> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
->> @@ -0,0 +1,411 @@
->> +// SPDX-License-Identifier: GPL-2.0 OR MIT
->> +/*
->> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
->> + * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
->> + */
->> +
->> +/dts-v1/;
->> +#include <dt-bindings/clock/starfive,jh7110-crg.h>
->> +#include <dt-bindings/reset/starfive,jh7110-crg.h>
->> +
->> +/ {
->> +	compatible = "starfive,jh7110";
->> +	#address-cells = <2>;
->> +	#size-cells = <2>;
->> +
->> +	cpus {
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +
->> +		S76_0: cpu@0 {
->> +			compatible = "sifive,u74-mc", "riscv";
->> +			reg = <0>;
->> +			d-cache-block-size = <64>;
->> +			d-cache-sets = <64>;
->> +			d-cache-size = <8192>;
->> +			d-tlb-sets = <1>;
->> +			d-tlb-size = <40>;
->> +			device_type = "cpu";
->> +			i-cache-block-size = <64>;
->> +			i-cache-sets = <64>;
->> +			i-cache-size = <16384>;
->> +			i-tlb-sets = <1>;
->> +			i-tlb-size = <40>;
->> +			mmu-type = "riscv,sv39";
->> +			next-level-cache = <&ccache>;
->> +			riscv,isa = "rv64imac";
->> +			tlb-split;
->> +			status = "disabled";
->> +
->> +			cpu0_intc: interrupt-controller {
->> +				compatible = "riscv,cpu-intc";
->> +				interrupt-controller;
->> +				#interrupt-cells = <1>;
->> +			};
->> +		};
->> +
->> +		U74_1: cpu@1 {
->> +			compatible = "sifive,u74-mc", "riscv";
->> +			reg = <1>;
->> +			d-cache-block-size = <64>;
->> +			d-cache-sets = <64>;
->> +			d-cache-size = <32768>;
->> +			d-tlb-sets = <1>;
->> +			d-tlb-size = <40>;
->> +			device_type = "cpu";
->> +			i-cache-block-size = <64>;
->> +			i-cache-sets = <64>;
->> +			i-cache-size = <32768>;
->> +			i-tlb-sets = <1>;
->> +			i-tlb-size = <40>;
->> +			mmu-type = "riscv,sv39";
->> +			next-level-cache = <&ccache>;
->> +			riscv,isa = "rv64imafdc";
->> +			tlb-split;
->> +
->> +			cpu1_intc: interrupt-controller {
->> +				compatible = "riscv,cpu-intc";
->> +				interrupt-controller;
->> +				#interrupt-cells = <1>;
->> +			};
->> +		};
->> +
->> +		U74_2: cpu@2 {
->> +			compatible = "sifive,u74-mc", "riscv";
->> +			reg = <2>;
->> +			d-cache-block-size = <64>;
->> +			d-cache-sets = <64>;
->> +			d-cache-size = <32768>;
->> +			d-tlb-sets = <1>;
->> +			d-tlb-size = <40>;
->> +			device_type = "cpu";
->> +			i-cache-block-size = <64>;
->> +			i-cache-sets = <64>;
->> +			i-cache-size = <32768>;
->> +			i-tlb-sets = <1>;
->> +			i-tlb-size = <40>;
->> +			mmu-type = "riscv,sv39";
->> +			next-level-cache = <&ccache>;
->> +			riscv,isa = "rv64imafdc";
->> +			tlb-split;
->> +
->> +			cpu2_intc: interrupt-controller {
->> +				compatible = "riscv,cpu-intc";
->> +				interrupt-controller;
->> +				#interrupt-cells = <1>;
->> +			};
->> +		};
->> +
->> +		U74_3: cpu@3 {
->> +			compatible = "sifive,u74-mc", "riscv";
->> +			reg = <3>;
->> +			d-cache-block-size = <64>;
->> +			d-cache-sets = <64>;
->> +			d-cache-size = <32768>;
->> +			d-tlb-sets = <1>;
->> +			d-tlb-size = <40>;
->> +			device_type = "cpu";
->> +			i-cache-block-size = <64>;
->> +			i-cache-sets = <64>;
->> +			i-cache-size = <32768>;
->> +			i-tlb-sets = <1>;
->> +			i-tlb-size = <40>;
->> +			mmu-type = "riscv,sv39";
->> +			next-level-cache = <&ccache>;
->> +			riscv,isa = "rv64imafdc";
->> +			tlb-split;
->> +
->> +			cpu3_intc: interrupt-controller {
->> +				compatible = "riscv,cpu-intc";
->> +				interrupt-controller;
->> +				#interrupt-cells = <1>;
->> +			};
->> +		};
->> +
->> +		U74_4: cpu@4 {
->> +			compatible = "sifive,u74-mc", "riscv";
->> +			reg = <4>;
->> +			d-cache-block-size = <64>;
->> +			d-cache-sets = <64>;
->> +			d-cache-size = <32768>;
->> +			d-tlb-sets = <1>;
->> +			d-tlb-size = <40>;
->> +			device_type = "cpu";
->> +			i-cache-block-size = <64>;
->> +			i-cache-sets = <64>;
->> +			i-cache-size = <32768>;
->> +			i-tlb-sets = <1>;
->> +			i-tlb-size = <40>;
->> +			mmu-type = "riscv,sv39";
->> +			next-level-cache = <&ccache>;
->> +			riscv,isa = "rv64imafdc";
->> +			tlb-split;
->> +
->> +			cpu4_intc: interrupt-controller {
->> +				compatible = "riscv,cpu-intc";
->> +				interrupt-controller;
->> +				#interrupt-cells = <1>;
->> +			};
->> +		};
->> +
->> +		cpu-map {
->> +			cluster0 {
->> +				core0 {
->> +					cpu = <&S76_0>;
->> +				};
->> +
->> +				core1 {
->> +					cpu = <&U74_1>;
->> +				};
->> +
->> +				core2 {
->> +					cpu = <&U74_2>;
->> +				};
->> +
->> +				core3 {
->> +					cpu = <&U74_3>;
->> +				};
->> +
->> +				core4 {
->> +					cpu = <&U74_4>;
->> +				};
->> +			};
->> +		};
->> +	};
->> +
->> +	osc: osc {
-> 
-> Node names should be generic, so why this is "osc" and other oscillators
-> are not "osc"?
+Hi
 
-Only "osc" and "rtc_osc" are oscillators, the rest are clock sources provided
-through gpio. I will modify the node names according to your link below. So
+> Gesendet: Samstag, 24. Dezember 2022 um 20:00 Uhr
+> Von: "Daniel Golle" <daniel@makrotopia.org>
 
-	osc: oscillator {
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dtso
+> > @@ -0,0 +1,30 @@
+> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> > +/*
+> > + * Copyright (C) 2021 MediaTek Inc.
+> > + * Author: Sam.Shih <sam.shih@mediatek.com>
+> > + */
+> > +
+> > +/dts-v1/;
+> > +/plugin/;
+> > +
+> > +/ {
+> > +	compatible =3D "bananapi,bpi-r3", "mediatek,mt7986a";
+> > +	model =3D "Bananapi BPI-R3 (emmc)";
+>
+> Why do you set the model string here?
 
-> 
-> 
->> +		compatible = "fixed-clock";
->> +		#clock-cells = <0>;
->> +	};
->> +
->> +	rtc_osc: rtc_osc {
-> 
-> No underscores in node names. Generic node names (so each of them
-> starting or ending with clock).
+seems to be a left over from testing where i wanted to see which base-dtb =
+was
+loaded without comparing mmc-node settings. Was easier to see with model-s=
+tring :)
 
-Will change this line to
+> > +
+> > +	fragment@0 {
+> > +		target-path =3D "/soc/mmc@11230000";
+> > +		__overlay__ {
+> > +			bus-width =3D <8>;
+> > +			max-frequency =3D <200000000>;
+> > +			cap-mmc-highspeed;
+> > +			mmc-hs200-1_8v;
+> > +			mmc-hs400-1_8v;
+> > +			hs400-ds-delay =3D <0x14014>;
+> > +			non-removable;
+> > +			no-sd;
+> > +			no-sdio;
+> > +			status =3D "okay";
+> > +		};
+> > +	};
+> > +};
 
-	rtc_osc: oscillator {
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts =
+b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
+> > new file mode 100644
+> > index 000000000000..618d3bb2f32f
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
 
-> 
->> +		compatible = "fixed-clock";
->> +		#clock-cells = <0>;
->> +	};
->> +
->> +	gmac0_rmii_refin: gmac0_rmii_refin {
-> 
-> Same problem... and actually you have way too many fixed clocks which do
+> > +&mdio {
+> > +	switch: switch@31 {
+> > +		compatible =3D "mediatek,mt7531";
+> > +		reg =3D <31>;
+> > +		reset-gpios =3D <&pio 5 GPIO_ACTIVE_HIGH>;
+>
+> Please add:
+>
+>                 interrupt-controller;
+>                 #interrupt-cells =3D <1>;
+>                 interrupt-parent =3D <&pio>;
+>                 interrupts =3D <66 IRQ_TYPE_LEVEL_HIGH>;
+>
+> to have IRQ driven phy status instead of having to poll the link status
+> of the 5x rj-45 ports.
+> The value comes from schematics (pin AD24, GPIO66, 7531_INT) and I've
+> tested this on my board.
 
-Will change the node names as follows.
+ok, if you have it tested i add these properties in next version (and test=
+ it too).
+I wait for tphy-binding to be applied to next (pcie and xhci already in to=
+rvalds/master).
 
-	gmac0_rmii_refin: clock {
-		...
-	};
+> > +	};
+> > +};
+> > +
 
-	gmac0_rgmii_rxin: clock {
-		...
-	};
-	...
+> > +&spi0 {
+> > +	pinctrl-names =3D "default";
+> > +	pinctrl-0 =3D <&spi_flash_pins>;
+> > +	cs-gpios =3D <0>, <0>;
+>
+> I don't think those bogus cs-gpios here and for spi1 below are needed.
 
-> nothing. It looks like you avoid to define proper clock controller.
-> What's the point for all these clocks? These are no-op.
+can drop them in next version
 
-These are all external fixed rate clocks inputted to the SoC. They are the root
-clocks of the clock tree made by clock drivers. Their ops are provided in
-drivers/clk/clk-fixed-rate.c.
+> > +	status =3D "okay";
+> > +};
+> > +
+> > +&spi1 {
+> > +	pinctrl-names =3D "default";
+> > +	pinctrl-0 =3D <&spic_pins>;
+> > +	cs-gpios =3D <0>, <0>;
+> > +	status =3D "okay";
+> > +};
+> > +
 
-> 
->> +		compatible = "fixed-clock";
->> +		#clock-cells = <0>;
->> +	};
->> +
->> +	gmac0_rgmii_rxin: gmac0_rgmii_rxin {
->> +		compatible = "fixed-clock";
->> +		#clock-cells = <0>;
->> +	};
->> +
->> +	gmac1_rmii_refin: gmac1_rmii_refin {
->> +		compatible = "fixed-clock";
->> +		#clock-cells = <0>;
->> +	};
->> +
->> +	gmac1_rgmii_rxin: gmac1_rgmii_rxin {
->> +		compatible = "fixed-clock";
->> +		#clock-cells = <0>;
->> +	};
->> +
->> +	i2stx_bclk_ext: i2stx_bclk_ext {
->> +		compatible = "fixed-clock";
->> +		#clock-cells = <0>;
->> +	};
->> +
->> +	i2stx_lrck_ext: i2stx_lrck_ext {
->> +		compatible = "fixed-clock";
->> +		#clock-cells = <0>;
->> +	};
->> +
->> +	i2srx_bclk_ext: i2srx_bclk_ext {
->> +		compatible = "fixed-clock";
->> +		#clock-cells = <0>;
->> +	};
->> +
->> +	i2srx_lrck_ext: i2srx_lrck_ext {
->> +		compatible = "fixed-clock";
->> +		#clock-cells = <0>;
->> +	};
->> +
->> +	tdm_ext: tdm_ext {
->> +		compatible = "fixed-clock";
->> +		#clock-cells = <0>;
->> +	};
->> +
->> +	mclk_ext: mclk_ext {
->> +		compatible = "fixed-clock";
->> +		#clock-cells = <0>;
->> +	};
->> +
->> +	soc {
->> +		compatible = "simple-bus";
->> +		interrupt-parent = <&plic>;
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->> +		ranges;
->> +
->> +		clint: clint@2000000 {
-> 
-> Node names should be generic.
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-Change it to 
-
-		clint: timer@2000000 {
-
-> 
->> +			compatible = "starfive,jh7110-clint", "sifive,clint0";
->> +			reg = <0x0 0x2000000 0x0 0x10000>;
->> +			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>,
->> +					      <&cpu1_intc 3>, <&cpu1_intc 7>,
->> +					      <&cpu2_intc 3>, <&cpu2_intc 7>,
->> +					      <&cpu3_intc 3>, <&cpu3_intc 7>,
->> +					      <&cpu4_intc 3>, <&cpu4_intc 7>;
->> +		};
->> +
->> +		plic: plic@c000000 {
-> 
-> Node names should be generic, so interrupt-controller
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-Change it to 
-
-		plic: interrupt-controller@c000000 {
-
-Best regards,
-Hal
-
-> 
->> +			compatible = "starfive,jh7110-plic", "sifive,plic-1.0.0";
->> +			reg = <0x0 0xc000000 0x0 0x4000000>;
->> +			interrupts-extended = <&cpu0_intc 11>,
->> +					      <&cpu1_intc 11>, <&cpu1_intc 9>,
->> +					      <&cpu2_intc 11>, <&cpu2_intc 9>,
->> +					      <&cpu3_intc 11>, <&cpu3_intc 9>,
->> +					      <&cpu4_intc 11>, <&cpu4_intc 9>;
->> +			interrupt-controller;
->> +			#interrupt-cells = <1>;
->> +			#address-cells = <0>;
->> +			riscv,ndev = <136>;
->> +		};
+regards Frank
