@@ -2,151 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E42F3655B5F
-	for <lists+devicetree@lfdr.de>; Sat, 24 Dec 2022 22:44:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E037655C13
+	for <lists+devicetree@lfdr.de>; Sun, 25 Dec 2022 02:28:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230463AbiLXVoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Dec 2022 16:44:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56940 "EHLO
+        id S229497AbiLYB2g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Dec 2022 20:28:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230060AbiLXVoJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Dec 2022 16:44:09 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E715BC19
-        for <devicetree@vger.kernel.org>; Sat, 24 Dec 2022 13:44:08 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id bp15so11419954lfb.13
-        for <devicetree@vger.kernel.org>; Sat, 24 Dec 2022 13:44:08 -0800 (PST)
+        with ESMTP id S229441AbiLYB2f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Dec 2022 20:28:35 -0500
+Received: from mail-il1-x136.google.com (mail-il1-x136.google.com [IPv6:2607:f8b0:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5DF3B4BB;
+        Sat, 24 Dec 2022 17:28:34 -0800 (PST)
+Received: by mail-il1-x136.google.com with SMTP id j28so4222161ila.9;
+        Sat, 24 Dec 2022 17:28:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=E6YG72yT6P2Xf4EVWM2/oNdMhJIz+PxjF3DxMSN/2MY=;
-        b=L6W+ILV89UzVX4p54i0Aiyfx2Tj/2KmrlTtXJVEpnFUvSw3ZjBtUuLoZQqzAx4Vqkr
-         PJBuaxG9/LCh4jNEFDEbr66CKzjdOcQn3v6IRjWzyu8LX/6UQvshUDAUsaMlkEhZJ6jg
-         EE/3aRAt6A5+FxIpP2y49WOc7zmUXaf2vfQ+1eacxJQWkrot30TygoNd6aW8hIRWBrTV
-         GWCgGZRPCJu/BdvW/+4wdSXmCYAYnY643YYxWQ5pqYdH83Z6xfv1voRe0VPym09rAKqw
-         8aZwS/Zu+D6SyDB2+cGTI4EjKJ+MnbnFATjF3nF7oyCMj7IvY4+BEc9IVQsHk60Q+Ffn
-         b0tA==
+        bh=gRpYtnpGHDyDiD3CgctrwyEpPrHlIsvIW1qOn5G6hEQ=;
+        b=PW/nffsaEDuYpJow7BF21cHssKEKP9sc8mu+7YN3Wy/K3jfK0sVNdDxJavjgXYVvwo
+         8lUBw0qwPfyQuDO8b2gL2EbsMYpqlRee+SQjBCSePKVUjpge7Z3NGowlmtxKNq/gqY/L
+         ODBpQVOxWN34GZjEXCkIaeJPrvVWdClLpvw4qmW8FFGWO5nxJa42L7wNSVPAAeG2ovSB
+         LsH/2RoVXDKGnXnxqqDVVO6prRpHUj+IbEscD3nR+tPbcxK4u5Xux/vqT5zzGwezNla3
+         /L+r4lJkbAUDa65+ovUMvjZyQQ4T8Lm8jY7lXVaUHHvXLf9QzY8xdOScwHtLB6Uk+sSo
+         5feQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=E6YG72yT6P2Xf4EVWM2/oNdMhJIz+PxjF3DxMSN/2MY=;
-        b=rZrwkLcX1EwhRD+VmvPvA0X6HYPAyhjL8SyHyO9z+uQXap+fbdag/m+fRwIpW1SUdX
-         6CaxHFp1+pSOMXGU0V2uvhbVBRNJZqxsDl7ppWGevLnbZo3S36yLbIcB451+gb+iTrCN
-         z9f2fK32l8PxHwZFmrPWWtuUnhEVQqA/vE8ycwW+fkhjdiLHN2cINqGb5ySihTMY8Iip
-         IBmXDcfwDIkeHIErj26ckk8Gyv3qJKI4MvMYTn9IYA2GHYTDUsPLe+iogpZDp56CX1h8
-         /nNHw6/x12siHf1j4IRaZaWwOQ6OL6zPOwUTXOVZX69XfILDNwrASDMkz3TgJlWRO3tr
-         avIA==
-X-Gm-Message-State: AFqh2kosQHjKhLqQZgNLpTQAC55RFec8ZYorSRFyApnTH+MR3FyGUpGm
-        gXGP+EGmQ4t7cLW/aSJ4ryms2g==
-X-Google-Smtp-Source: AMrXdXtLymnfGtKqLGeilvw3UM7v35kiK5lgoSFpB1glWTmqhP7U2DQerc3OoHluZnDBc5HE0oSiCQ==
-X-Received: by 2002:a05:6512:168d:b0:4ca:fd5f:ce82 with SMTP id bu13-20020a056512168d00b004cafd5fce82mr794946lfb.49.1671918246547;
-        Sat, 24 Dec 2022 13:44:06 -0800 (PST)
-Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id o4-20020ac25b84000000b004aa3d587c84sm1110903lfn.200.2022.12.24.13.44.05
+        bh=gRpYtnpGHDyDiD3CgctrwyEpPrHlIsvIW1qOn5G6hEQ=;
+        b=t/ONokd5XnQNlSMc3uqGTrY4ETp17D8VO0Srb2DbM3yD0L01w2unYnUMZNiV2mHNCo
+         VALD3jJs3/rjCvNnY/bTaTtdn8XEQbeDxAp4eKiYOfUsXKuNQjU63aS0Tv74uJSPkXnL
+         UWiF3VPjAkUOxx5pKqwBCUvBPWRr7QQ6lY3QQk7r768uJg6dYYx3L4mqxG0spmKCs7k1
+         QsW5cPo0oAIFRl+DQXAOSYM6GjRzpX2HCIFraNF4MsIHDpKn/+FAQMp3S7SsKNdq4LTh
+         LGqRcKsBFdz0X3hvOAGMcSE1JFkFPXG2nbXWbBJ1+V50LFTFnkvgEZLII38aeHW4xoIP
+         EpDw==
+X-Gm-Message-State: AFqh2kpk2kuSV7b3R4XIVxReXl7AFfg+M2bD9QvfA5xkN2oMqct/jCQ5
+        a42LYZMkAJeJSC+yba4oE9INzzJwczA=
+X-Google-Smtp-Source: AMrXdXsAiOUoiJpu0NlINaJRTgOYeoCrdklOAQ0mlRbkJ6YBPVE5lrWUUq12Ohx8pEoAqGKbgnsXhA==
+X-Received: by 2002:a92:cd0c:0:b0:30b:d25b:e0f5 with SMTP id z12-20020a92cd0c000000b0030bd25be0f5mr9686330iln.27.1671931713810;
+        Sat, 24 Dec 2022 17:28:33 -0800 (PST)
+Received: from aford-IdeaCentre-A730.lan ([2601:447:d001:9aea:c6f8:5d92:f3af:e321])
+        by smtp.gmail.com with ESMTPSA id y11-20020a92d20b000000b00302a772730esm2179838ily.54.2022.12.24.17.28.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 24 Dec 2022 13:44:06 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        Sat, 24 Dec 2022 17:28:33 -0800 (PST)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: clock: qcom,camcc-sm8250: extend clocks and power domains
-Date:   Sat, 24 Dec 2022 22:44:04 +0100
-Message-Id: <20221224214404.18280-1-krzysztof.kozlowski@linaro.org>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH V4 1/2] dt-bindings: arm: Add Beacon EmbeddedWorks i.MX8M Plus kit
+Date:   Sat, 24 Dec 2022 19:28:18 -0600
+Message-Id: <20221225012820.206328-1-aford173@gmail.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add clocks and properties (power-domains, required-opps) already used in
-SM8250 DTS:
+Add DT compatible string for a Beacon EmbeddedWorks development
+kit based on the i.MX8M Plus from NXP.
 
-  sm8250-hdk.dtb: clock-controller@ad00000: clocks: [[46, 10], [44, 0], [44, 1], [45]] is too long
-  sm8250-hdk.dtb: clock-controller@ad00000: clock-names:0: 'bi_tcxo' was expected
-  sm8250-hdk.dtb: clock-controller@ad00000: 'power-domains', 'required-opps' do not match any of the regexes: 'pinctrl-[0-9]+'
+Signed-off-by: Adam Ford <aford173@gmail.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/clock/qcom,camcc-sm8250.yaml     | 20 +++++++++++++++++--
- 1 file changed, 18 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/clock/qcom,camcc-sm8250.yaml b/Documentation/devicetree/bindings/clock/qcom,camcc-sm8250.yaml
-index 93ec1f598e6e..426335a2841c 100644
---- a/Documentation/devicetree/bindings/clock/qcom,camcc-sm8250.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,camcc-sm8250.yaml
-@@ -21,12 +21,16 @@ properties:
- 
-   clocks:
-     items:
-+      - description: AHB
-       - description: Board XO source
-+      - description: Board active XO source
-       - description: Sleep clock source
- 
-   clock-names:
-     items:
-+      - const: iface
-       - const: bi_tcxo
-+      - const: bi_tcxo_ao
-       - const: sleep_clk
- 
-   '#clock-cells':
-@@ -38,9 +42,18 @@ properties:
-   '#power-domain-cells':
-     const: 1
- 
-+  power-domains:
-+    items:
-+      - description: MMCX power domain
-+
-   reg:
-     maxItems: 1
- 
-+  required-opps:
-+    maxItems: 1
-+    description:
-+      OPP node describing required MMCX performance point.
-+
- required:
-   - compatible
-   - reg
-@@ -54,13 +67,16 @@ additionalProperties: false
- 
- examples:
-   - |
-+    #include <dt-bindings/clock/qcom,gcc-sm8250.h>
-     #include <dt-bindings/clock/qcom,rpmh.h>
-     clock-controller@ad00000 {
-       compatible = "qcom,sm8250-camcc";
-       reg = <0x0ad00000 0x10000>;
--      clocks = <&rpmhcc RPMH_CXO_CLK>,
-+      clocks = <&gcc GCC_CAMERA_AHB_CLK>,
-+               <&rpmhcc RPMH_CXO_CLK>,
-+               <&rpmhcc RPMH_CXO_CLK_A>,
-                <&sleep_clk>;
--      clock-names = "bi_tcxo", "sleep_clk";
-+      clock-names = "iface", "bi_tcxo", "bi_tcxo_ao", "sleep_clk";
-       #clock-cells = <1>;
-       #reset-cells = <1>;
-       #power-domain-cells = <1>;
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 05b5276a0e14..4a92e0b2b890 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -931,6 +931,7 @@ properties:
+       - description: i.MX8MP based Boards
+         items:
+           - enum:
++              - beacon,imx8mp-beacon-kit  # i.MX8MP Beacon Development Kit
+               - dh,imx8mp-dhcom-som       # i.MX8MP DHCOM SoM
+               - dh,imx8mp-dhcom-pdk2      # i.MX8MP DHCOM SoM on PDK2 board
+               - fsl,imx8mp-evk            # i.MX8MP EVK Board
 -- 
 2.34.1
 
