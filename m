@@ -2,120 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DCA9655D26
-	for <lists+devicetree@lfdr.de>; Sun, 25 Dec 2022 13:07:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38852655CF9
+	for <lists+devicetree@lfdr.de>; Sun, 25 Dec 2022 12:56:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231164AbiLYMHG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Dec 2022 07:07:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54372 "EHLO
+        id S230468AbiLYL4Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Dec 2022 06:56:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231197AbiLYMGv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Dec 2022 07:06:51 -0500
-Received: from m12.mail.163.com (m12.mail.163.com [220.181.12.216])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 333422DD1;
-        Sun, 25 Dec 2022 04:06:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-        s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=lYD3w
-        XNUFmWhBTXZjF8aH8HBuUSp1esXXHCXlQj+fyE=; b=IcoUKgmsGm8ucyKR4cN+B
-        8QK0lLQE+SwzwGYuZkxT9BVLBdegzV7bh2gwTEoZmfqX15BkA8H0czvOYPEN3EmE
-        eqk7xhnN6ak33aP1xYi32BpoY8dnSIPIBiGa1zuZXBLRphahExjSaGCoCU8AY7pE
-        jgePJqc/XiiKcgSvY9ePXU=
-Received: from ProDesk.. (unknown [58.22.7.114])
-        by zwqz-smtp-mta-g4-1 (Coremail) with SMTP id _____wC3jPniOKhjahJ1AA--.53952S2;
-        Sun, 25 Dec 2022 19:49:58 +0800 (CST)
-From:   Andy Yan <andyshrk@163.com>
-To:     heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
-        piotr.oniszczuk@gmail.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-Cc:     Andy Yan <andyshrk@163.com>
-Subject: [PATCH 2/2] arm64: dts: rockchip: Enable wifi module AP6398s for rk3566 box demo
-Date:   Sun, 25 Dec 2022 19:49:53 +0800
-Message-Id: <20221225114953.3518595-1-andyshrk@163.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221225114915.3518502-1-andyshrk@163.com>
-References: <20221225114915.3518502-1-andyshrk@163.com>
+        with ESMTP id S229445AbiLYL4T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Dec 2022 06:56:19 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A3CF271E
+        for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 03:56:18 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id b3so12898144lfv.2
+        for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 03:56:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Oy3KTZRmmZDj4xApOU3vUmfi37HfOOVtyQiknilDRLI=;
+        b=LI0JS6O1PtxtpBxePGHS4r6jgnZl71En4y256Wu3TVvgxjzMwXI0C8q2lHfYp/Rb+7
+         7UjAyaNjpvTcUATGPx2HAIUFuYYHL/uYmalg1C9iKi3otRfxNtz9LGtOVtfw2E0zCkk4
+         aZsuhvtcPphI8U4Os3SLQ/Y12+BOpOwMqtg8NzuVY23HcZWCVeLSBRywbP1szGKTD0md
+         PFlbn7VhaG6sWzlYSON/g40zoO05CbLFw3GTLS/zLc2pM7gSS4h7JdHt0h7i7/eeFQcM
+         jwZQUem0Z1iQpyCYf7MuXfAjmFL5JC9se/p9Fdf4tIOmhmOwp42lcVwSFMbW+nIaxq/s
+         mbKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Oy3KTZRmmZDj4xApOU3vUmfi37HfOOVtyQiknilDRLI=;
+        b=rAUylAtDLND389sq7jSBDcdUbPk+WpQRP9JL7tl3kCXEH1+8W10cviVvEVKCLjDwOJ
+         StJ4/ywQhBimAlF/BKJ4GMcB7V/9yurPPiC9lsz+uz888WfkvRJ+fe02v60qTi68m3Vf
+         N4KpGWL045ZRGEz2Nb/Y7bu4FRQJOD20upKGuR1V2SUM2efuy3+7sJffA8Qs9q24tGdD
+         jUl4K5JdMIqSTbAz/fMQm0cxpstPHyywflfGSOe7TC2H6QIHYe67vtpOAz33tdpPCMdn
+         BnY1Pl0dbotp5DIQFocp/mQPDQAsVugARMVhprJPqCaZuDT3tesITg0aH0Ffd674g+pZ
+         sIWQ==
+X-Gm-Message-State: AFqh2kqK5RPFuRbRNbeCMxH+4gCvZtC5gzBU1z90EBqit2UM7UW0vZlA
+        iFEwpLbUZCrER1LaUfZHOs4uLg==
+X-Google-Smtp-Source: AMrXdXvTXZf26KCY23tgUobrWG3maSx8EH/B5TUzagwUnCZOjBtanKaIlIcDa7OhNzmX/KtNu046pQ==
+X-Received: by 2002:a05:6512:1513:b0:4a4:a7d7:4769 with SMTP id bq19-20020a056512151300b004a4a7d74769mr4839924lfb.8.1671969376886;
+        Sun, 25 Dec 2022 03:56:16 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id bq8-20020a056512150800b00492e5d31201sm1322404lfb.7.2022.12.25.03.56.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 25 Dec 2022 03:56:16 -0800 (PST)
+Message-ID: <a65632b8-3303-c45a-8877-85fdf5527db0@linaro.org>
+Date:   Sun, 25 Dec 2022 12:56:15 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: _____wC3jPniOKhjahJ1AA--.53952S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxJF15Xw47Jr4rWr1kKF18uFg_yoW8AFWrpa
-        sxCrZYgr1kCr4jganxXrn5Xrn5C395ta1vkwnrua4fKr1S9a1kGF1Uurn5AFn8WF48Xa1Y
-        9rs8Aa43Wrs2qw7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-        9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zMKZXNUUUUU=
-X-Originating-IP: [58.22.7.114]
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbivBriXmASacxd7AABs9
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_SORBS_WEB,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v3 6/7] riscv: dts: starfive: Add initial StarFive JH7110
+ device tree
+To:     Hal Feng <hal.feng@starfivetech.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        linux-kernel@vger.kernel.org
+References: <20221220011247.35560-1-hal.feng@starfivetech.com>
+ <20221220011247.35560-7-hal.feng@starfivetech.com>
+ <ebb27bb2-158c-8207-7184-0d5b5ca0ce14@linaro.org>
+ <d81cabc8-0229-1acf-03da-9a988a53a890@starfivetech.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <d81cabc8-0229-1acf-03da-9a988a53a890@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is a AP6398s wifi/bt module on this board.
-Fix the sdmmc1 dt node to make wifi work.
+On 25/12/2022 11:31, Hal Feng wrote:
 
-Fixes: 2e0537b16b25 ("arm64: dts: rockchip: Add dts for rockchip rk3566 box demo board")
+> 
+> 	gmac0_rmii_refin: clock {
+> 		...
+> 	};
+> 
+> 	gmac0_rgmii_rxin: clock {
+> 		...
+> 	};
+> 	...
+> 
+>> nothing. It looks like you avoid to define proper clock controller.
+>> What's the point for all these clocks? These are no-op.
+> 
+> These are all external fixed rate clocks inputted to the SoC. They are the root
 
-Signed-off-by: Andy Yan <andyshrk@163.com>
----
+If they are all external, then it is fine.
 
- .../boot/dts/rockchip/rk3566-box-demo.dts     | 26 ++++++++++++++++---
- 1 file changed, 22 insertions(+), 4 deletions(-)
+> 
+>>
+>>> +		compatible = "fixed-clock";
+>>> +		#clock-cells = <0>;
+>>> +	};
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts b/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
-index d956496d5221..6c0c24226b52 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
-@@ -324,8 +324,12 @@ wifi_enable_h: wifi-enable-h {
- 			rockchip,pins = <2 RK_PB1 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
- 
-+		wifi_host_wake_h: wifi-host-wake-l {
-+			rockchip,pins = <2 RK_PB2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
- 		wifi_32k: wifi-32k {
--			rockchip,pins = <0 RK_PB0 2 &pcfg_pull_none>;
-+			rockchip,pins = <2 RK_PC6 1 &pcfg_pull_none>;
- 		};
- 	};
- 
-@@ -391,16 +395,30 @@ &sdmmc0 {
- };
- 
- &sdmmc1 {
-+	/* WiFi & BT combo module AMPAK AP6398S */
-+	#address-cells = <1>;
-+	#size-cells = <0>;
- 	bus-width = <4>;
-+	clock-frequency = <150000000>;
-+	cap-sdio-irq;
- 	cap-sd-highspeed;
--	disable-wp;
-+	sd-uhs-sdr104;
-+	keep-power-in-suspend;
- 	mmc-pwrseq = <&sdio_pwrseq>;
- 	non-removable;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&sdmmc1_bus4 &sdmmc1_cmd &sdmmc1_clk>;
--	vmmc-supply = <&vcc_3v3>;
--	vqmmc-supply = <&vcca_1v8>;
- 	status = "okay";
-+
-+	brcmf: wifi@1 {
-+		compatible = "brcm,bcm4329-fmac";
-+		reg = <1>;
-+		interrupt-parent = <&gpio2>;
-+		interrupts = <RK_PB2 GPIO_ACTIVE_HIGH>;
-+		interrupt-names = "host-wake";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&wifi_host_wake_h>;
-+	};
- };
- 
- &spdif {
--- 
-2.25.1
+Best regards,
+Krzysztof
 
