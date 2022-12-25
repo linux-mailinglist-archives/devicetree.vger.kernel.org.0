@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09041655CFF
-	for <lists+devicetree@lfdr.de>; Sun, 25 Dec 2022 12:58:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CF79655D02
+	for <lists+devicetree@lfdr.de>; Sun, 25 Dec 2022 12:58:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231137AbiLYL6y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Dec 2022 06:58:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49536 "EHLO
+        id S230169AbiLYL6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Dec 2022 06:58:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231143AbiLYL6w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Dec 2022 06:58:52 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D47A2BC9
-        for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 03:58:51 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id p36so12840838lfa.12
-        for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 03:58:51 -0800 (PST)
+        with ESMTP id S231174AbiLYL6x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Dec 2022 06:58:53 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28AEE2709
+        for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 03:58:52 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id bq39so5076390lfb.0
+        for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 03:58:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=dNdtkpZEOdXfGy9MVfRgRPj0usqVhiDHi+woWZD1xjo=;
-        b=m/iai6Vlbz0GJG5ZHbVyp1ybwn46NRWNLDSc797akIT3T/41+w19KNVkoFhKpwdOqM
-         +WNycOcfo5oSla8yrZPsMqIF0QxISzrHNyBTgSsHTigaQ/5sqOrXflKzrjDaspQwL6tH
-         9haa9TVw4sYHQeRyzC4j266VEQuoPRZAdVv1XkCJ5BOym1nL7NG7i1NqHvAdu828ho7e
-         0DubTFOOVloVaxnAWuAyvy9iI/NyCogGGpmcSuSnM3ZwpqnbRM1rjSztm8rDmIUBhnNL
-         +hiG32Yw7zJSsAy2KtaJvQUtfpGT5szkrISIAUu9KwHv9vVNyllG2pvjYQCmxFA/gEcD
-         qGOg==
+        bh=j7AC94VQgQoxhQZz7ucxTtLY+de0f9ECtnoEPYUnvao=;
+        b=LeB4KI+DzfuH+OCQmBRFiP0IthvFrX11t34yBSgZSKj6SsY6KKvZYlotoJlWkmsPDb
+         PlUSX90b5W5XFwqDQUcWcWkepZRy6DZVnFDPUw9PAZ3/z3x+x2ujIQ7wI2VtH3jMrcBa
+         LO67rdkr97MrHTKINCwkGK1Zf+RMVq7cjd8Odn+ui1EqHBsijrg4S7mnF0P7ADP4Sb4C
+         F8UxDbXTzSZH5WsIidwklfNTAx3dVHJEixxRCv/pua5hhkYyaU7N86MRTYv1V5xFQJ89
+         aceV33cscmLVHmaQ8mTs3BqXVOFL2mE+wYM5XyNKMx39hlL1q09hSLYI3WMgUc8JwA98
+         pMzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=dNdtkpZEOdXfGy9MVfRgRPj0usqVhiDHi+woWZD1xjo=;
-        b=Cmt5Tzb3/5wfaklMkFGhMgYdV0QwPvhMj9jiGmu3m8ddwA17awSomUX3zp70DaFJqa
-         AYLT1MMEyRqaeMJDr/b9GEq6YhhOpB8Cq/viWwr1AtfJYxSPBmWxYxSMaV9TIWYmW9g+
-         jdXP2H+Hq+fyax3t0UrMHQJCM1x5+ZgUYnrgSnZPlhNauxOpV7fTAZJnXHaX8p4YweAx
-         Y911dTd5fT1GzQZxdJ6BTtnuGw21UcLB+D6xmFEZqwxfE7xesXhRImqWP7GFQiI5Yo0g
-         KzJHyOrz6St4iaGk22CAy+3pz+3s0EGzPbcrrR6nGdxRrV3g/wP4XpMOXPZ/N9ownSKc
-         n4gQ==
-X-Gm-Message-State: AFqh2krPx2P3yAkO4ZWFfvgglulqX30kRsYTuSBT+yVQD0sw+JIkEHI3
-        iMO6XSQmw1Npyy3bRs9PRF5aNA==
-X-Google-Smtp-Source: AMrXdXtoJlGkmUulr0XOrAtaQZh6wOEnqmTJV9ZA/AGFnxp2Z/9/oCAmLMmfsWHWY2acc7kv3TYvTw==
-X-Received: by 2002:a05:6512:1288:b0:4cb:63a:54e2 with SMTP id u8-20020a056512128800b004cb063a54e2mr238699lfs.41.1671969529640;
-        Sun, 25 Dec 2022 03:58:49 -0800 (PST)
+        bh=j7AC94VQgQoxhQZz7ucxTtLY+de0f9ECtnoEPYUnvao=;
+        b=6i645K+2N9or5MKGgeCLx9+8Ru+jrIiSDViAnR2sWB0C90UBiM0n9oAfX6oZOQkh0c
+         F+VC0RLCtXGaUfc0p1m2TT1g7DJmex4dNBzM5ba2Nwkw5rUxXXh7DScKAZEGyPXPnrjZ
+         /uXL2Ymh1Nn8LhNV8vU8yvxlHtjXssrZ9j8QkWneQSTbBjXP4didtLh4GT1cGjbX0scU
+         pM9y+XgbWkg0ZoVSQeXnabYBNDSy/aFhpTCV9XVYtJnvAxh4cOfOVLhUi6cbk91U8cxY
+         WJW0M2L/Tq7XEdrs1dUgRkDIHBlhI+Wr9exHhXOPIGMkiquMQ0d3ujCVm+pxAVmG5lKh
+         z9Kw==
+X-Gm-Message-State: AFqh2kpyfC+PrU6jqpwGbdb3SfLheAUNWQRFtch9m31rmV4J2GD9QVuH
+        2j9lTyhWCl5HNiFyqfOs79fq9w==
+X-Google-Smtp-Source: AMrXdXtiuFUjd+pLdr9EJXHaqoUgrI8X4mE8u7Ett0S+pQz0zW4GUj+p2U+yiARdqbxibRzfADzwiA==
+X-Received: by 2002:a05:6512:39cc:b0:4b5:580f:2497 with SMTP id k12-20020a05651239cc00b004b5580f2497mr4627027lfu.17.1671969530513;
+        Sun, 25 Dec 2022 03:58:50 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id c1-20020ac25301000000b004b5901b8011sm1318141lfh.105.2022.12.25.03.58.48
+        by smtp.gmail.com with ESMTPSA id c1-20020ac25301000000b004b5901b8011sm1318141lfh.105.2022.12.25.03.58.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Dec 2022 03:58:49 -0800 (PST)
+        Sun, 25 Dec 2022 03:58:50 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -58,9 +58,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/4] arm64: dts: qcom: sm8250: drop unused clock-frequency from wsa-macro
-Date:   Sun, 25 Dec 2022 12:58:43 +0100
-Message-Id: <20221225115844.55126-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 4/4] arm64: dts: qcom: sm8250: drop unused properties from tx-macro
+Date:   Sun, 25 Dec 2022 12:58:44 +0100
+Message-Id: <20221225115844.55126-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221225115844.55126-1-krzysztof.kozlowski@linaro.org>
 References: <20221225115844.55126-1-krzysztof.kozlowski@linaro.org>
@@ -68,35 +68,37 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Neither qcom,sm8250-lpass-wsa-macro bindings nor the driver use
-"clock-frequency" property.
+Neither qcom,sm8250-lpass-tx-macro bindings nor the driver use
+"clock-frequency" and address/size cells properties.
 
-  sm8250-hdk.dtb: codec@3240000: Unevaluated properties are not allowed ('clock-frequency' was unexpected)
+  sm8250-mtp.dtb: txmacro@3220000: Unevaluated properties are not allowed ('clock-frequency', '#address-cells', '#size-cells' were unexpected)
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 3 ---
+ 1 file changed, 3 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 434e2c4cce79..a58f51083715 100644
+index a58f51083715..ddd750591e8c 100644
 --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -2215,7 +2215,6 @@ wsamacro: codec@3240000 {
- 			clock-names = "mclk", "npl", "macro", "dcodec", "va", "fsgen";
+@@ -2329,10 +2329,7 @@ txmacro: txmacro@3220000 {
+ 			clock-names = "mclk", "npl", "macro", "dcodec", "fsgen";
  
  			#clock-cells = <0>;
 -			clock-frequency = <9600000>;
  			clock-output-names = "mclk";
+-			#address-cells = <2>;
+-			#size-cells = <2>;
  			#sound-dai-cells = <1>;
+ 		};
  
 -- 
 2.34.1
