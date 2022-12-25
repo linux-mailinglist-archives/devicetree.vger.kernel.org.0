@@ -2,106 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 759E2655DEC
-	for <lists+devicetree@lfdr.de>; Sun, 25 Dec 2022 18:00:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D79CD655DF1
+	for <lists+devicetree@lfdr.de>; Sun, 25 Dec 2022 18:07:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231434AbiLYRAA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Dec 2022 12:00:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42968 "EHLO
+        id S231271AbiLYRHH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Dec 2022 12:07:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231404AbiLYQ77 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Dec 2022 11:59:59 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D07938BE;
-        Sun, 25 Dec 2022 08:59:58 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id o15so6511245wmr.4;
-        Sun, 25 Dec 2022 08:59:57 -0800 (PST)
+        with ESMTP id S231191AbiLYRHC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Dec 2022 12:07:02 -0500
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26AA83B4
+        for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 09:06:56 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id x22so22239760ejs.11
+        for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 09:06:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=W7Uxgqg5mAtgEreFJVlyY9FG6dh29sWzofDPJcOPslk=;
-        b=W+z5fHTW0GWZfXeF5Fz+zx0jp9fjQpYyWv/sgsDVZguqzeap9vHyRDwo8Pd3tg6PHk
-         O0Gyr/CHU/wSZJYlL5ASoF2XVE370spCTn7F5hxACWF4dMnLNxew9n/Q2ZEv0mjNm6Hf
-         6bDTzqaQd3Kp64PYuMNdhjg/sTFuHHENKsP6YS5HO+v20avYKx1rQTrk/nxPJSE7kdUH
-         P35nPj+Eprgyl+f0bwnG99lXoiy6hh8ffynJbLXuQVgz/Se1eRm9Z2m83yhF+mFT9/Ok
-         7duSnv4dibiRHVZjNvAWURAd97D3uIelrZlUwR1aTnDq5uhuqQilq7VLqf7zj8DcYofN
-         VSrA==
+        d=kali.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=vyDyfKRe4UciHLbWhp5EP/ZhHAR/iZg7adKyYym7xzY=;
+        b=N4QcCUEG2b8wZOSRUGbQHEasDbDcOxPvvwT8t3U8oYzVSvInG5+110rCSiI9rP/ReG
+         hCdVnmCzCISjX40Dt3IiLQ7cRo2jWEdwpI5zUkfMxXPmsK3yWtTGojAF9OImQxOe7f+a
+         NQNWSOZ22Z4ezO3hYUp+lM4aHTNLl+G91YwKy7SwywuO/O6EJ9lAmhfOGEa0Mthe63vS
+         ekXqsr9VDEbnsDwEOxLhI0J83jdSBBJ6aXSpZEc63q2IoiJZ8Jf8chO30iAM6Fb87dsJ
+         jPYTjRSl+S63jqn3fdPO48Zvxy78A/seAKYzsFV+XAfqKEpY+W3Lm1GkrZ2Tk5eYI+MM
+         kCiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=W7Uxgqg5mAtgEreFJVlyY9FG6dh29sWzofDPJcOPslk=;
-        b=VpPa6lzJzk6ZDcEG7dvLZVka/e+gSW/YjzB8zi1JaXrOiLGGkQ+GcTp0KFSUaFHnhm
-         ASck7QiPHV0zPPerhPyzzhyAMjlJDKmtuGRfm/a6BCWFtIU7YiaJ3JyxQ5f2Ui8Vpqfr
-         vzTaSCv45l1ITlh6zAvHJT3zfQrKUponZ64LNlk+zq41FjB1bBRAZhOm9iJdYexder09
-         seWVL9pEUWs/KlLTxNPiD/9ho5usq5MiAIPHq+9X+JLrZaV8f/iKhxVx05O9VwNA86tB
-         9xCi11uJ6gq+ED8dd1yEmgGRzaImiZdpj2wwQPsDnmg0kVuLoEQqQ+8wr+y7yAhLbr8J
-         xDOg==
-X-Gm-Message-State: AFqh2kqFjItVa5oL1pn5etsSs9R8IJsygIEHW5YIWU6dZ8iP1xuqcrEJ
-        VeXqKUrWK+bSzQUCodWSX5hkX3jzA+o=
-X-Google-Smtp-Source: AMrXdXuT2E457V230n2bDHOPYEK+CtL4Z9J9GgfherN++wEWxFmuDoWgzzapKU7pA2H3QSlks2mPTw==
-X-Received: by 2002:a1c:7c0f:0:b0:3d5:816e:2fb2 with SMTP id x15-20020a1c7c0f000000b003d5816e2fb2mr12060163wmc.14.1671987596475;
-        Sun, 25 Dec 2022 08:59:56 -0800 (PST)
-Received: from localhost.localdomain (188.red-83-35-57.dynamicip.rima-tde.net. [83.35.57.188])
-        by smtp.gmail.com with ESMTPSA id l42-20020a05600c1d2a00b003d23928b654sm17734371wms.11.2022.12.25.08.59.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Dec 2022 08:59:56 -0800 (PST)
-From:   Angel Iglesias <ang.iglesiasg@gmail.com>
-To:     linux-iio@vger.kernel.org
-Cc:     Angel Iglesias <ang.iglesiasg@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vyDyfKRe4UciHLbWhp5EP/ZhHAR/iZg7adKyYym7xzY=;
+        b=aY5g4MyDnemivACT9k6550+2y7Qdgg7gHLGy1lBWQ8QBQu0Z2CwgvIsor3sC+GI/7u
+         XEYa3IxJErr65YfL0zDrgFBssrNCZum0gZy1FDqpq38PtRFWBiNnxozlzb5SYkJJcxrg
+         RGWAby4BjRuY8BnIOPoyWCD1vgrGYh3URLrm4/PkrbSoLtUMM8K2hzyA5QhfyIeKV025
+         DpeqAR8liuj5xxdUDyvVn1pa3y8jMwRShvtT/2EjQZxY/5QIXFf4w2DMg27OOP56cKK0
+         Wh9T/hhXlQMHmWaAsUYDoBXCaP5qvLwEHr8mHeypDh5wJ+BgkoY5Kfr1k7Tum83fv1ud
+         iUIA==
+X-Gm-Message-State: AFqh2kpQhRy5oFlHBBdUgi0DgidV2xoXTSlryjmakE27KFOJ2zPm5+dt
+        b/D1DKfylNYPBcjozkZ49xQvJO6JaIM/oW5G0vlJB5uwcRSEdQ==
+X-Google-Smtp-Source: AMrXdXtOvc9dlNwPaScI0wSXynsYQ7+IqTsTIyB525hizm7bv+IyI2UsppjW9+rsTRedl4krrJ/m5q6e6bEowJCO9TY=
+X-Received: by 2002:a17:907:1703:b0:7c0:b569:8efd with SMTP id
+ le3-20020a170907170300b007c0b5698efdmr1965453ejc.652.1671988014767; Sun, 25
+ Dec 2022 09:06:54 -0800 (PST)
+MIME-Version: 1.0
+References: <20221225040821.8395-1-steev@kali.org> <CAA8EJpqD6pvZjXa4_cQ=02o_Ns94LAJ3n-S2Q8LjfqOySgHHfA@mail.gmail.com>
+In-Reply-To: <CAA8EJpqD6pvZjXa4_cQ=02o_Ns94LAJ3n-S2Q8LjfqOySgHHfA@mail.gmail.com>
+From:   Steev Klimaszewski <steev@kali.org>
+Date:   Sun, 25 Dec 2022 11:06:30 -0600
+Message-ID: <CAKXuJqhHF6FCe26KKoFMHnKgoV3WifveQYq5FyiGKHPbvHXPyA@mail.gmail.com>
+Subject: Re: [PATCH 26/26] arm64: dts: qcom: c630: set venus firmware name
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andreas Klinger <ak@it-klinger.de>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 4/5] dt-bindings: iio: pressure: bmp085: Add BMP580 compatible string
-Date:   Sun, 25 Dec 2022 17:59:21 +0100
-Message-Id: <778a9d07ad1d88e036cc1ddd9c3fa53390b906a3.1671986815.git.ang.iglesiasg@gmail.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <cover.1671986815.git.ang.iglesiasg@gmail.com>
-References: <cover.1671986815.git.ang.iglesiasg@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bosch,bmp580 to compatible string for the new family of sensors.
-This family includes the BMP580 and BMP581 sensors. The register map
-in this family presents significant departures from previous generations.
+On Sun, Dec 25, 2022 at 9:22 AM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On Sun, 25 Dec 2022 at 06:08, Steev Klimaszewski <steev@kali.org> wrote:
+> >
+> > The Lenovo Yoga C630 can't use the generic venus firmware that is in the
+> > linux-firmware repository, and needs a signed one.  This file is
+> > qcvss850.mbn from the Windows partition and needs to be copied manually.
+> >
+> > Signed-off-by: Steev Klimaszewski <steev@kali.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> > index 7e80e2950f8d..78a14f899df9 100644
+> > --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> > @@ -801,6 +801,7 @@ &usb_2_qmpphy {
+> >  };
+> >
+> >  &venus {
+> > +       firmware-name = "qcom/venus-5.2/qcvss850.mbn";
+>
+> Please follow the established convention (see e.g. the x13s laptop firmware).
+> It should be "qcom/sdm850/LENOVO/81JL/qcvss850.mbn" (or
+> qcom/sdm845/LENOVO/....).
+>
+> >         status = "okay";
+> >  };
+> >
+> > --
+> > 2.35.1
+> >
+>
+>
+> --
+> With best wishes
+> Dmitry
 
-Signed-off-by: Angel Iglesias <ang.iglesiasg@gmail.com>
-
-diff --git a/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml b/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
-index 72cd2c2d3f17..f52c4794e21b 100644
---- a/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
-+++ b/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
-@@ -17,6 +17,7 @@ description: |
-     https://www.bosch-sensortec.com/bst/products/all_products/bmp280
-     https://www.bosch-sensortec.com/bst/products/all_products/bme280
-     https://www.bosch-sensortec.com/bst/products/all_products/bmp380
-+    https://www.bosch-sensortec.com/bst/products/all_products/bmp580
- 
- properties:
-   compatible:
-@@ -26,6 +27,7 @@ properties:
-       - bosch,bmp280
-       - bosch,bme280
-       - bosch,bmp380
-+      - bosch,bmp580
- 
-   reg:
-     maxItems: 1
--- 
-2.39.0
-
+Thanks for pointing that out; will make the change for v2!
