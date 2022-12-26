@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 408B6655FE3
-	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 05:22:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F547655FE5
+	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 05:22:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231490AbiLZEWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Dec 2022 23:22:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55478 "EHLO
+        id S231725AbiLZEWg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Dec 2022 23:22:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231650AbiLZEWL (ORCPT
+        with ESMTP id S231653AbiLZEWL (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sun, 25 Dec 2022 23:22:11 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A242559F
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C80CF55A5
         for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 20:22:06 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id bq39so6883108lfb.0
+Received: by mail-lf1-x134.google.com with SMTP id bf43so14689567lfb.6
         for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 20:22:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=C/K3RoFVEkUUUw0DjLS0gT74F0yinCMJe2iA2VdQ2lI=;
-        b=atNI4M2yBuG99VOUYNrGxI77gagHmcuwTpqPUYjH0S7MqBQjtqbsY8kDIJRqMhbbls
-         0QlGX5d4pIpK9fe870P2yJstUxrrtz50oAqtZyYboaihEKnL0Z58ep4iVJIRlxPSgKhx
-         jk+yUPMxngfL76w4Ji4ZdU+WmHrQOXs2xq/wW/1Ve5/nDB+FWRHZbWBahG6zQqVonE0z
-         O2/hpCBwKSr3wN04uA7lhI78o7GKpdcUB7PJmrHE6JAqKVTbHi4xvHVMh45BLE4bqoj6
-         LcZafTWWCjgYzpZ+l9Qgtj5E/a3V+jJAqGLHKkJ+bFJ1pSk7y/905dG+S6w2bxGVc0aq
-         rYOw==
+        bh=oaGBZm9XOHdhHqe4KYTQ28e7yXtOmnBOw61TUxGxm5k=;
+        b=qLsODe8ZuxYPrZAbOtyb38xp9A89wzwHpEyrUQYCs6ckZrrWVMhGl8dZCPZOTGH8eR
+         m7BqgjioD8Fej5vIysG6MkdS8LSVZsfsmv2aMnOrC7zEdEWWFnHWRa81vpepshAmrE4N
+         e9v0Eda3CvBhEffCGSxZuZHiqAlYsDfRV55NaVs0vuqGIRfpsPEWM9emzRJ4iA4AYdle
+         4//qzUqXQsWrMB29Fz0Dtruv1OOeB5AXoJHKNsX3ku1ouUx/9SWqnwrfpDWq5e6Yhm+x
+         QAdfQqT/u1vQuukvy629JLDf7M9Pe/WCd7iMtzAFFE3LXhtdBd0KzDqEZyuhon382ePH
+         8rfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=C/K3RoFVEkUUUw0DjLS0gT74F0yinCMJe2iA2VdQ2lI=;
-        b=76Ts27qc8KpMNvGiV+nuR8BBU5bIB4k0O5r5T8X9kNq/gPjcKeUGdAxmg1eHIpD9/t
-         X6VcdRljuPBK+0o58p1gr+13t7chn+DJlOWMW7AJ+gu2V7BWLEokv0MctcpLUfoMa2MP
-         vH4vJanm13XZo8vDIM8+sGwl7q8FkFHHLrLBcg9S1X8GP+C9lBaYNXXDbgj/Kl/Nm35z
-         HbK14TYKtvHnGRP4EhxeVUGpym3p987XmMhjvIuGa4B/PD0bNQWz4/9UQVjczkgKIYiP
-         RdjEmkdmPZFgeho6wqRuxXfIYXgTswwWsVFKbU8yAZCHzCR9aN/vCRvzhnN55JGeFZil
-         rdmQ==
-X-Gm-Message-State: AFqh2kr54Y+nllA86rswX3F1yiA+xxNnnKkM2/MRXJ7gbKPYNw5Dd0kp
-        BWBG7UcdnFCyi/sNWGw/3MEhKg==
-X-Google-Smtp-Source: AMrXdXtgnAdvs6Bhe5nsUVzwTXoAOHs+6uPb0RY8k5M3CsSbbKB7Gp6wYIG5W3Oi9iSMkJ+zgDG+nQ==
-X-Received: by 2002:a05:6512:3a8f:b0:4b5:8a01:570e with SMTP id q15-20020a0565123a8f00b004b58a01570emr5288504lfu.45.1672028525821;
-        Sun, 25 Dec 2022 20:22:05 -0800 (PST)
+        bh=oaGBZm9XOHdhHqe4KYTQ28e7yXtOmnBOw61TUxGxm5k=;
+        b=e6lyEyKBQfdbCIQaNQVv8+CAS/OCk+coMNJ9m4207Y9patMxFjmEP0Oy3qc4Kl4anu
+         bpHhjpW6ZOoPPPb+OQGxF1fOHLnLcGPcev2RYAcRrl9Q0Ee8g5POU7mzC/WrdOr7n0oJ
+         547EeZ8XkScZDmQsb4PVMRnYsLJbK/rg5UBh2F8uzBPFGHg2VH/lpWAmYes5OWG8cqTC
+         PzVVZ4Dk3nP3yvHq/OERkkv+cpPSZfEdz2ooI3DK14YwSVmoFhI/s22ZTLeq1hoKKEBM
+         eO235YG6PhFJj68W0NudC32CVpWbgu36HRea7znMAraNJOSQvkeSGpeo7YD6U8wTvHni
+         mblA==
+X-Gm-Message-State: AFqh2kryDVuuHPow6zsGrySqfWsrfbSMWQ+wzJD/yEOzbUDtq9wviVqP
+        e7Y6JtAFuFjOcEhm5+AmRD2UWg==
+X-Google-Smtp-Source: AMrXdXvtiRo+vqrragM5g1xfti7wxlrI/SLa8CIobg4X6HXpizWrlLQhDUPkAHap8ev/H68xOLQXYg==
+X-Received: by 2002:a05:6512:1094:b0:4a4:68b9:19e7 with SMTP id j20-20020a056512109400b004a468b919e7mr5402453lfg.15.1672028526406;
+        Sun, 25 Dec 2022 20:22:06 -0800 (PST)
 Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
         by smtp.gmail.com with ESMTPSA id o9-20020ac25e29000000b004b4b5da5f80sm1641129lfg.219.2022.12.25.20.22.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Dec 2022 20:22:05 -0800 (PST)
+        Sun, 25 Dec 2022 20:22:06 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -60,9 +60,9 @@ To:     Andy Gross <agross@kernel.org>,
         Taniya Das <quic_tdas@quicinc.com>
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH v2 15/16] arm64: dts: qcom: qcs404: add clocks to the gcc node
-Date:   Mon, 26 Dec 2022 06:21:53 +0200
-Message-Id: <20221226042154.2666748-16-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v2 16/16] arm64: dts: qcom: qcs404: add xo clock to rpm clock controller
+Date:   Mon, 26 Dec 2022 06:21:54 +0200
+Message-Id: <20221226042154.2666748-17-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221226042154.2666748-1-dmitry.baryshkov@linaro.org>
 References: <20221226042154.2666748-1-dmitry.baryshkov@linaro.org>
@@ -70,41 +70,34 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Populate the gcc node with the clocks and clock-names properties to
-enable DT-based lookups for the parent clocks.
+Populate the rpm clock controller node with clocks and clock-names
+properties.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/qcs404.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+ arch/arm64/boot/dts/qcom/qcs404.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-index b72542631337..9206ab13977f 100644
+index 9206ab13977f..4721b3139df0 100644
 --- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
 +++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-@@ -731,6 +731,13 @@ gcc: clock-controller@1800000 {
- 			#reset-cells = <1>;
- 			#power-domain-cells = <1>;
+@@ -230,6 +230,8 @@ rpm_requests: glink-channel {
+ 			rpmcc: clock-controller {
+ 				compatible = "qcom,rpmcc-qcs404", "qcom,rpmcc";
+ 				#clock-cells = <1>;
++				clocks = <&xo_board>;
++				clock-names = "xo";
+ 			};
  
-+			clocks = <&xo_board>,
-+				 <&sleep_clk>,
-+				 <&pcie_phy>,
-+				 <0>,
-+				 <0>,
-+				 <0>;
-+
- 			assigned-clocks = <&gcc GCC_APSS_AHB_CLK_SRC>;
- 			assigned-clock-rates = <19200000>;
- 		};
+ 			rpmpd: power-controller {
 -- 
 2.35.1
 
