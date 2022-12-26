@@ -2,70 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 176F6656555
-	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 23:35:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F39C656550
+	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 23:35:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232370AbiLZWfr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Dec 2022 17:35:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40108 "EHLO
+        id S232327AbiLZWfk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Dec 2022 17:35:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232369AbiLZWfn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 17:35:43 -0500
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9F9929A;
-        Mon, 26 Dec 2022 14:35:42 -0800 (PST)
-Received: by mail-ot1-f54.google.com with SMTP id p17-20020a9d6951000000b00678306ceb94so7301959oto.5;
-        Mon, 26 Dec 2022 14:35:42 -0800 (PST)
+        with ESMTP id S229491AbiLZWfj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 17:35:39 -0500
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BE3C10BD;
+        Mon, 26 Dec 2022 14:35:38 -0800 (PST)
+Received: by mail-oi1-f174.google.com with SMTP id s186so11157326oia.5;
+        Mon, 26 Dec 2022 14:35:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=/FIVtgOfoetx2+iKjQWRO7oUwO0rmk0bglLRwll9VtM=;
-        b=4cFaHLFbRsrHcL+WQpo413ubZue6WVYIXlgQbWf2jW0l/YpXzVnYui7vbvbxAckNS8
-         akFOw5StPhyNGPSfMLJwS/co1dpger39xT+41jK7P5Y2iA41GIh4PkriSzypwWxatWIZ
-         UOK1tXoIgTqgYYMJ8t+21qsLBGbh+hK9oaf7eOOY2sWMrAJWrcrxH1RtDN5Zj5am3Nc4
-         +ozYxkBQRpgzvpneVmG06IkhzB7RXZtRzRA6johhnzbGLYuGiN/y5BujWOcXaJ4FbNxZ
-         Rkv9uaz8oszDo39Rf1+8xnJ0yo4ZbhN5jkgM9kOj9NIZIvPldUoE4rzX/1hkLAVrMpBl
-         Nfqw==
-X-Gm-Message-State: AFqh2kqYFq80J2rwPXqHkaOJRqpAHtx2GkQ15d0WNwqSyy19if+HqADw
-        TdVZyFRP+8Wz3tiHIx765EehZuWE2A==
-X-Google-Smtp-Source: AMrXdXvW8LHvAfj4KWoIrHhR3c7GcbuIfhPNCrI4jgr57c45UOhD9Gt6Ew/A0Z9zVBuKEFXogiBVkA==
-X-Received: by 2002:a9d:7a86:0:b0:677:9d4e:14a5 with SMTP id l6-20020a9d7a86000000b006779d4e14a5mr10384764otn.35.1672094141970;
-        Mon, 26 Dec 2022 14:35:41 -0800 (PST)
+        bh=gBSooSLPzvFUglz1GFfFXWzQ/wwPHw1yRamjP7L9bo0=;
+        b=UhOZeBV6pDsYZ88eEIHIBxinK8g9yIAQxqXQbJvXeTPIyZLgCui3Lth5b3LBNK+TgP
+         M+ILaBY85/CTY36fZe4tYFD/BOeLmS+MDl11O8gktbxrpZpXxEJXd87YPYTFbSdDvY6J
+         6KX4ac6NUCAuEzBlzmBjpi91JPBz8aJx0v5SW8ujVpdtrip/aqy46skY3Jn+4Ze4FDBm
+         cCBCAa5itsiq6DY8uADTnu7B+TfuyphkbxshK/8PT2C37NziBgUp3pZPjw6erqxPQMq4
+         bjHSaW1QeluCEOSb57+RI6j1fDZnkHH+/4gEdSL/qBTDyxYJFT8cOUtfZA2pIzkZqJF/
+         n5KA==
+X-Gm-Message-State: AFqh2kryafPimI1XakxcbfdrjaKYyjZ3Zg7ZnF8MiKC3YVw/QSnQRNne
+        7e9YMoregLxkE0drMUtdqA==
+X-Google-Smtp-Source: AMrXdXvcuVIeH2Tw+m5YOf9l3TcXQPRxCMxRGeZCs8uX37jkZLCuXi4dXT4hTHIyu2rwKIak05kI0w==
+X-Received: by 2002:a05:6808:2906:b0:35e:7b67:2eca with SMTP id ev6-20020a056808290600b0035e7b672ecamr7972402oib.2.1672094137683;
+        Mon, 26 Dec 2022 14:35:37 -0800 (PST)
 Received: from robh_at_kernel.org ([2605:ef80:80e8:2792:eb0e:539f:f657:547b])
-        by smtp.gmail.com with ESMTPSA id e21-20020a9d0195000000b00670523bf1cfsm5967666ote.47.2022.12.26.14.35.40
+        by smtp.gmail.com with ESMTPSA id bq13-20020a056830388d00b00670641eb272sm5941188otb.20.2022.12.26.14.35.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Dec 2022 14:35:41 -0800 (PST)
-Received: (nullmailer pid 72471 invoked by uid 1000);
-        Mon, 26 Dec 2022 21:57:57 -0000
-Date:   Mon, 26 Dec 2022 15:57:57 -0600
+        Mon, 26 Dec 2022 14:35:37 -0800 (PST)
+Received: (nullmailer pid 74851 invoked by uid 1000);
+        Mon, 26 Dec 2022 21:59:57 -0000
+Date:   Mon, 26 Dec 2022 15:59:57 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Kishon Vijay Abraham I <kishon@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+To:     Marcel Ziswiler <marcel@ziswiler.com>
+Cc:     Fabio Estevam <festevam@denx.de>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        Denys Drozdov <denys.drozdov@toradex.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-phy@lists.infradead.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        devicetree@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: phy: qcom,pcie2-phy: convert to YAML
- format
-Message-ID: <167209187655.72399.4038954760167968816.robh@kernel.org>
-References: <20221226031059.2563165-1-dmitry.baryshkov@linaro.org>
- <20221226031059.2563165-2-dmitry.baryshkov@linaro.org>
+        Shawn Guo <shawnguo@kernel.org>, linux-kernel@vger.kernel.org,
+        Li Yang <leoyang.li@nxp.com>, Marek Vasut <marex@denx.de>,
+        Matthias Schiffer <matthias.schiffer@tq-group.com>
+Subject: Re: [PATCH v1 4/5] dt-bindings: arm: fsl: add toradex,apalis-imx8 et
+ al.
+Message-ID: <167209199586.74782.7148832334662428314.robh@kernel.org>
+References: <20221226062824.53113-1-marcel@ziswiler.com>
+ <20221226062824.53113-5-marcel@ziswiler.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221226031059.2563165-2-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221226062824.53113-5-marcel@ziswiler.com>
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -73,17 +75,18 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Mon, 26 Dec 2022 05:10:57 +0200, Dmitry Baryshkov wrote:
-> Convert the bindings for the Qualcomm PCIe2 PHY into the YAML format
-> from the text description.
+On Mon, 26 Dec 2022 07:28:22 +0100, Marcel Ziswiler wrote:
+> From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Add toradex,apalis-imx8 for the Apalis iMX8 aka QuadMax modules and the
+> carrier boards (Apalis Evaluation board as well as Ixora V1.1 and V1.2)
+> they may be mated in.
+> 
+> Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 > ---
->  .../bindings/phy/qcom,pcie2-phy.yaml          | 87 +++++++++++++++++++
->  .../bindings/phy/qcom-pcie2-phy.txt           | 42 ---------
->  2 files changed, 87 insertions(+), 42 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/phy/qcom,pcie2-phy.yaml
->  delete mode 100644 Documentation/devicetree/bindings/phy/qcom-pcie2-phy.txt
+> 
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
