@@ -2,37 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDCA56561FF
-	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 11:53:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 462636561FD
+	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 11:53:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231913AbiLZKxS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Dec 2022 05:53:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50290 "EHLO
+        id S231896AbiLZKxR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Dec 2022 05:53:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231534AbiLZKxP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 05:53:15 -0500
+        with ESMTP id S229917AbiLZKxO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 05:53:14 -0500
 Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3001526CE;
-        Mon, 26 Dec 2022 02:53:12 -0800 (PST)
-X-UUID: 7f0b932396a34b2288ca039908c4e11a-20221226
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F7A82670;
+        Mon, 26 Dec 2022 02:53:10 -0800 (PST)
+X-UUID: 6264b13060ef40bfaf2badb8d9cf549d-20221226
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=EK8uCrrU60lpnX4wcnjP/i76wgKEFQunyGApqFGjCxI=;
-        b=eoGPuLDnhwHeeRzSfCHtFdTyCEw+vFR1EsocWserOqQc8b5Jbqp5yiz/3jsC+sVtaqSYqL+0Qmy/ts0iOOGKpJMenj0ylG7fPiPzdqpvP4xsgwH/qtDhDWKWkELZaWfsWBptx+9sFcRhfmTL1tkH5F6iKmhayXfZs4s8yaslUVU=;
+        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=LoWOBCRpuIv0lWQImnSJ5VJr+gKMSYGQngXpmKueuqc=;
+        b=enbKf5RNDhhhM1JVBdRFKx8Vq6LHLUCcU1F5LzmQNhd91kw5hhP9mGNmeN3N/WHO2VecvuAgTVVB5aZz9yfDWLvuvg+Lp52aBYHwyBQ75M3UMzTOR6jyZog/zpi0KkVAmSYwphDGGaqvTTo7M8GZCK+3AKNldLaFOqwNMMkvZxw=;
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.14,REQID:158e605a-4544-403e-a65e-d484cfebd713,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:95
-X-CID-INFO: VERSION:1.1.14,REQID:158e605a-4544-403e-a65e-d484cfebd713,IP:0,URL
-        :0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTION
-        :quarantine,TS:95
-X-CID-META: VersionHash:dcaaed0,CLOUDID:f8836b8a-8530-4eff-9f77-222cf6e2895b,B
-        ulkID:22122617425317A1VCJY,BulkQuantity:11,Recheck:0,SF:38|28|17|19|48,TC:
-        nil,Content:0,EDM:-3,IP:nil,URL:11|1,File:nil,Bulk:40,QS:nil,BEC:nil,COL:0
-X-UUID: 7f0b932396a34b2288ca039908c4e11a-20221226
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+X-CID-O-INFO: VERSION:1.1.14,REQID:726831db-f83e-4bca-bc27-626d60e78ad4,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:dcaaed0,CLOUDID:6126faf3-ff42-4fb0-b929-626456a83c14,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 6264b13060ef40bfaf2badb8d9cf549d-20221226
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw02.mediatek.com
         (envelope-from <roger.lu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1783567569; Mon, 26 Dec 2022 18:53:05 +0800
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 954341511; Mon, 26 Dec 2022 18:53:02 +0800
 Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
  mtkmbs11n1.mediatek.inc (172.21.101.185) with ShadowRedundancy id 15.2.792.3;
  Mon, 26 Dec 2022 10:52:54 +0000
@@ -55,9 +52,9 @@ CC:     Fan Chen <fan.chen@mediatek.com>, Roger Lu <roger.lu@mediatek.com>,
         <linux-mediatek@lists.infradead.org>,
         <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
         <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v1 07/13] soc: mtk-svs: mt8183: refactor o_slope calculation
-Date:   Mon, 26 Dec 2022 17:42:42 +0800
-Message-ID: <20221226094248.4506-8-roger.lu@mediatek.com>
+Subject: [PATCH v1 08/13] soc: mediatek: mtk-svs: add main_clk check during system-wide suspend
+Date:   Mon, 26 Dec 2022 17:42:43 +0800
+Message-ID: <20221226094248.4506-9-roger.lu@mediatek.com>
 X-Mailer: git-send-email 2.18.0
 In-Reply-To: <20221226094248.4506-1-roger.lu@mediatek.com>
 References: <20221226094248.4506-1-roger.lu@mediatek.com>
@@ -74,92 +71,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The o_slope value is dependent of the o_slope_sign, refactor code to get
-rid of unnecessary if constructs.
+SVS's main_clk might be disabled in svs_resume(). Therefore, if main_clk
+is disabled and svs_suspend() is called by system-wide suspend stage,
+return 0 directly.
 
-Signed-off-by: Matthias Brugger <matthias.bgg@gmail.com>
 Signed-off-by: Roger Lu <roger.lu@mediatek.com>
 ---
- drivers/soc/mediatek/mtk-svs.c | 51 +++++++++++++++-------------------
- 1 file changed, 22 insertions(+), 29 deletions(-)
+ drivers/soc/mediatek/mtk-svs.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
 diff --git a/drivers/soc/mediatek/mtk-svs.c b/drivers/soc/mediatek/mtk-svs.c
-index 477f5bd1e1d1..2c1fbf11b554 100644
+index 2c1fbf11b554..934e7ea976b0 100644
 --- a/drivers/soc/mediatek/mtk-svs.c
 +++ b/drivers/soc/mediatek/mtk-svs.c
-@@ -1897,26 +1897,27 @@ static bool svs_mt8183_efuse_parsing(struct svs_platform *svsp)
- 	o_slope_sign = (svsp->tefuse[0] >> 7) & BIT(0);
+@@ -6,6 +6,7 @@
+ #include <linux/bitfield.h>
+ #include <linux/bits.h>
+ #include <linux/clk.h>
++#include <linux/clk-provider.h>
+ #include <linux/completion.h>
+ #include <linux/cpuidle.h>
+ #include <linux/debugfs.h>
+@@ -1543,6 +1544,9 @@ static int svs_suspend(struct device *dev)
+ 	int ret;
+ 	u32 idx;
  
- 	ts_id = (svsp->tefuse[1] >> 9) & BIT(0);
--	o_slope = (svsp->tefuse[0] >> 26) & GENMASK(5, 0);
--
--	if (adc_cali_en_t == 1) {
--		if (!ts_id)
--			o_slope = 0;
--
--		if (adc_ge_t < 265 || adc_ge_t > 758 ||
--		    adc_oe_t < 265 || adc_oe_t > 758 ||
--		    o_vtsmcu[0] < -8 || o_vtsmcu[0] > 484 ||
--		    o_vtsmcu[1] < -8 || o_vtsmcu[1] > 484 ||
--		    o_vtsmcu[2] < -8 || o_vtsmcu[2] > 484 ||
--		    o_vtsmcu[3] < -8 || o_vtsmcu[3] > 484 ||
--		    o_vtsmcu[4] < -8 || o_vtsmcu[4] > 484 ||
--		    o_vtsabb < -8 || o_vtsabb > 484 ||
--		    degc_cali < 1 || degc_cali > 63) {
--			dev_err(svsp->dev, "bad thermal efuse, no mon mode\n");
--			goto remove_mt8183_svsb_mon_mode;
--		}
-+	if (!ts_id) {
-+		o_slope = 1534;
- 	} else {
--		dev_err(svsp->dev, "no thermal efuse, no mon mode\n");
-+		o_slope = (svsp->tefuse[0] >> 26) & GENMASK(5, 0);
-+		if (!o_slope_sign)
-+			o_slope = 1534 + o_slope * 10;
-+		else
-+			o_slope = 1534 - o_slope * 10;
-+	}
++	if (!__clk_is_enabled(svsp->main_clk))
++		return 0;
 +
-+	if (adc_cali_en_t == 0 ||
-+	    adc_ge_t < 265 || adc_ge_t > 758 ||
-+	    adc_oe_t < 265 || adc_oe_t > 758 ||
-+	    o_vtsmcu[0] < -8 || o_vtsmcu[0] > 484 ||
-+	    o_vtsmcu[1] < -8 || o_vtsmcu[1] > 484 ||
-+	    o_vtsmcu[2] < -8 || o_vtsmcu[2] > 484 ||
-+	    o_vtsmcu[3] < -8 || o_vtsmcu[3] > 484 ||
-+	    o_vtsmcu[4] < -8 || o_vtsmcu[4] > 484 ||
-+	    o_vtsabb < -8 || o_vtsabb > 484 ||
-+	    degc_cali < 1 || degc_cali > 63) {
-+		dev_err(svsp->dev, "bad thermal efuse, no mon mode\n");
- 		goto remove_mt8183_svsb_mon_mode;
- 	}
- 
-@@ -1935,11 +1936,7 @@ static bool svs_mt8183_efuse_parsing(struct svs_platform *svsp)
- 		x_roomt[i] = (((format[i] * 10000) / 4096) * 10000) / gain;
- 
- 	temp0 = (10000 * 100000 / gain) * 15 / 18;
--
--	if (!o_slope_sign)
--		mts = (temp0 * 10) / (1534 + o_slope * 10);
--	else
--		mts = (temp0 * 10) / (1534 - o_slope * 10);
-+	mts = (temp0 * 10) / o_slope;
- 
  	for (idx = 0; idx < svsp->bank_max; idx++) {
  		svsb = &svsp->banks[idx];
-@@ -1966,11 +1963,7 @@ static bool svs_mt8183_efuse_parsing(struct svs_platform *svsp)
- 		temp0 = (degc_cali * 10 / 2);
- 		temp1 = ((10000 * 100000 / 4096 / gain) *
- 			 oe + tb_roomt * 10) * 15 / 18;
--
--		if (!o_slope_sign)
--			temp2 = temp1 * 100 / (1534 + o_slope * 10);
--		else
--			temp2 = temp1 * 100 / (1534 - o_slope * 10);
-+		temp2 = temp1 * 100 / o_slope;
  
- 		svsb->bts = (temp0 + temp2 - 250) * 4 / 10;
- 	}
 -- 
 2.18.0
 
