@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AE796562E9
-	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 14:50:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6A1E6562E8
+	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 14:50:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229850AbiLZNuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Dec 2022 08:50:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60954 "EHLO
+        id S229502AbiLZNuJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Dec 2022 08:50:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbiLZNuL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 08:50:11 -0500
+        with ESMTP id S229450AbiLZNuH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 08:50:07 -0500
 Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C8531081
-        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 05:49:23 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4F15110C
+        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 05:49:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1672062563;
+        s=mimecast20190719; t=1672062566;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=zUK8ohDvHrqcANf/NgU5DC4WBrgNFcEfShtnNkgckEM=;
-        b=O4MI79toXJnEL7uzduGYR9A2y3+ObMwOyFBlON8EAmeYRDjWbao+ELwsc3ap8z5aijVjwW
-        PVSYsjmt7x3xokGugenWapj812X40MePXf54Tp4pFMHwUeZCT/xEyYcGsZDQmwSZp1poT+
-        Pfty1GG6KAB61pSyhjrdpoG446/NOl4=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=mw7xpxVI9Q/Jnt3L05urCEGaaPOXvycGiSQd0FrpIik=;
+        b=KjEJJa3exCPgBlZhn11G2jOupsf4SsmtnhfK0NZ93TUfRuUL3f4EryYBIH0W5QFkT2rAo/
+        l036xHm13WKPiEkhZH7ree+8K0DH+lTGUM+ENz6rzLz+obLc+4iMZ3MpAxJku2x1nSMO5r
+        wYckTZwllqzgRamJ1dFNUM+DpY7HUn4=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-348-CWf-TmqhOIyD7S7EyeynlA-1; Mon, 26 Dec 2022 08:49:21 -0500
-X-MC-Unique: CWf-TmqhOIyD7S7EyeynlA-1
-Received: by mail-wm1-f70.google.com with SMTP id bg10-20020a05600c3c8a00b003d9717d882eso4541682wmb.2
-        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 05:49:21 -0800 (PST)
+ us-mta-116-ujKXcLHfPNS7y9dupKd59w-1; Mon, 26 Dec 2022 08:49:24 -0500
+X-MC-Unique: ujKXcLHfPNS7y9dupKd59w-1
+Received: by mail-wm1-f72.google.com with SMTP id m38-20020a05600c3b2600b003d1fc5f1f80so8116669wms.1
+        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 05:49:24 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zUK8ohDvHrqcANf/NgU5DC4WBrgNFcEfShtnNkgckEM=;
-        b=nss4RwFVwzvuWM0X5o1dwSqXjcn+zAwz/ZaQTadVtCr+VZrJE5UmYMy3hn9uT8scrU
-         ujuaNGaAi2R78mH3Bgx7QB/tdvoDghmPl/QfQdE8mE5SGFrIBlu7SQU2wp5QIx2QkFdx
-         sOzjIDcwbW863Aidvrtqhhrh6VLK3JCAQ0+MEzl/0Ih9b/48lIE6HlYlO+90czl2G5YL
-         48q/GOH9acLpPF27unK9d4vMsLb8pGmLkZU7gFjB3T9d1vQIy3EysR+i/gm4MqQnhcyg
-         FVU6Kgf6E6ZBGY7A03wAjfZyhNM4g/KS3oop/3/iIICW9jv0BSJbkkPxkAPCZc5+bIpM
-         QU2g==
-X-Gm-Message-State: AFqh2kovIdZ/VKRFDkP7fmXUsZyTfiG4ESCgkipB81pvOAJu2kE1eG27
-        eQTwVSl7L/o7x/4dA2WqNeEUlIXzImJIAV+CfKFJxObSr6vkTZkUqfAxK2wcC6LKgXIwsKifiEk
-        LWr+JeyDtF3pgI5eUaZUQvg==
-X-Received: by 2002:a5d:53cd:0:b0:261:d8be:3047 with SMTP id a13-20020a5d53cd000000b00261d8be3047mr12086638wrw.3.1672062560710;
-        Mon, 26 Dec 2022 05:49:20 -0800 (PST)
-X-Google-Smtp-Source: AMrXdXtsZFk+AKv2denQ6Lk8VrO7aAH7Y5BneyC/FpbtIetK0t17olrLdqcrM70WD3U/nREM6lduGQ==
-X-Received: by 2002:a5d:53cd:0:b0:261:d8be:3047 with SMTP id a13-20020a5d53cd000000b00261d8be3047mr12086623wrw.3.1672062560498;
-        Mon, 26 Dec 2022 05:49:20 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mw7xpxVI9Q/Jnt3L05urCEGaaPOXvycGiSQd0FrpIik=;
+        b=U012fhHqKST1Q1k0w/kxfKlTCUFquIwi6vgmBH5NRpfoml1a04LZKVOlnLa7+qqtAB
+         6o12oF/Og9HCuz+zeyVeSzpSNFceaosvmJWF9wP08/H3VRe3fL03NhTs+fwdVvB2DAXW
+         UrlKGaOaHkOD395PimumdzHWcF2vgfuAf6wXIPtbfvNK9VBaXhiMHiGT+MTxnhu7QHlV
+         J+4ssNKtI7lV4TisqPJEBA8TiUAD0ny42yzc4OlsBFg/YqPUZr//Sj4W3H/hVar9RB/O
+         xa/7lo+d2NpmyRaJJ4rZXaRy17tzBLuhrvEnFj0++Mk6PMPpJV+QV4tjhLVhoOcWynwS
+         jAvw==
+X-Gm-Message-State: AFqh2krN23otze31wyX5sWjGAu0r91x3QObjW9+j96RBw1AFNvN80odS
+        /BB+TYiUoy6PCxaY7w07kPx4FjL6226ajRDQkVcWqv1CP4nahUcNHkS0r0AMbeGfg3VT2d7BA0R
+        vH61KFZT95st5iT2j79Ta9A==
+X-Received: by 2002:a05:6000:1246:b0:24f:869a:6c13 with SMTP id j6-20020a056000124600b0024f869a6c13mr11747358wrx.2.1672062563914;
+        Mon, 26 Dec 2022 05:49:23 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXvUvZdjNR7Fa8fpKiew/GyjwBoEhaZv2N568YBi4HBO08rtzrVuxhbL312QdhdG1u5YjDEtcA==
+X-Received: by 2002:a05:6000:1246:b0:24f:869a:6c13 with SMTP id j6-20020a056000124600b0024f869a6c13mr11747344wrx.2.1672062563708;
+        Mon, 26 Dec 2022 05:49:23 -0800 (PST)
 Received: from minerva.home (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id a18-20020adfed12000000b0027cfd9463d7sm3340947wro.110.2022.12.26.05.49.18
+        by smtp.gmail.com with ESMTPSA id a18-20020adfed12000000b0027cfd9463d7sm3340947wro.110.2022.12.26.05.49.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Dec 2022 05:49:19 -0800 (PST)
+        Mon, 26 Dec 2022 05:49:23 -0800 (PST)
 From:   Javier Martinez Canillas <javierm@redhat.com>
 To:     linux-kernel@vger.kernel.org
 Cc:     Ondrej Jirman <megi@xff.cz>,
@@ -68,19 +69,17 @@ Cc:     Ondrej Jirman <megi@xff.cz>,
         Javier Martinez Canillas <javierm@redhat.com>,
         Daniel Vetter <daniel@ffwll.ch>,
         David Airlie <airlied@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Thierry Reding <thierry.reding@gmail.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: [PATCH v2 0/4] Add PinePhone Pro display support
-Date:   Mon, 26 Dec 2022 14:49:04 +0100
-Message-Id: <20221226134909.2822179-1-javierm@redhat.com>
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH v2 2/4] dt-bindings: display: Add Himax HX8394 panel controller
+Date:   Mon, 26 Dec 2022 14:49:06 +0100
+Message-Id: <20221226134909.2822179-3-javierm@redhat.com>
 X-Mailer: git-send-email 2.38.1
+In-Reply-To: <20221226134909.2822179-1-javierm@redhat.com>
+References: <20221226134909.2822179-1-javierm@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -92,66 +91,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series add support for the display present in the PinePhone Pro.
+Add device tree bindings for panels based on the Himax HX8394 controller,
+such as the HannStar HSD060BHW4 720x1440 TFT LCD panel that is connected
+through a MIPI-DSI video interface.
 
-Patch #1 adds a driver for panels using the Himax HX8394 panel controller,
-such as the HSD060BHW4 720x1440 TFT LCD panel present in the PinePhone Pro.
-
-Patch #2 adds a devicetree binding schema for this driver and patch #3 adds
-an entry for the driver in the MAINTAINERS file.
-
-Finally patch #4 adds the needed devicetree nodes in the PinePhone Pro DTS,
-to enable both the display and the touchscreen. This makes the upstream DTS
-much more usable and will allow for example to enable support for the phone
-in the Fedora distribution.
-
-I only added myself as the maintainer for the driver because I don't know
-if Kamil and Ondrej that worked in the driver would be interested. Please
-let me know folks if you are, and I can add you too in the next revision.
-
-This is a v2 of the patch-set that addresses issues pointed out in v1:
-
-https://lore.kernel.org/all/20221222223830.2494900-1-javierm@redhat.com/T/#m692655a06093fe8df0d8748b3df338e57494af2a
-
-The patches were tested on a PinePhone Pro Explorer Edition using a Fedora
-37 Workstation image.
-
-Best regards,
-Javier
+Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
 
 Changes in v2:
-- Add year to driver's copyright notice (Sam Ravnborg)
-- Remove unused <video/display_timing.h> header include (Sam Ravnborg).
-- Use mipi_dsi_dcs_write_seq() helper and drop custom macro (Sam Ravnborg).
-- Drop unnecessary info messages and move useful one to debug (Sam Ravnborg).
 - Drop redundant "bindings" in subject (Krzysztof Kozlowski).
 - Drop "device tree bindings" in title (Krzysztof Kozlowski).
 - Put port next to other "true" properties (Krzysztof Kozlowski).
 - Add Krzysztof Kozlowski's Reviewed-by tag.
-- Fix regulator node names (Maya Matuszczyk).
-- Drop non-existent "poweroff-in-suspend" property (Maya Matuszczyk).
-- Remove unnecessary comments in panel node (Maya Matuszczyk).
 
-Javier Martinez Canillas (2):
-  dt-bindings: display: Add Himax HX8394 panel controller
-  MAINTAINERS: Add entry for Himax HX8394 panel controller driver
-
-Kamil Trzciński (1):
-  drm: panel: Add Himax HX8394 panel controller driver
-
-Ondrej Jirman (1):
-  arm64: dts: rk3399-pinephone-pro: Add internal display support
-
- .../bindings/display/panel/himax,hx8394.yaml  |  65 +++
- MAINTAINERS                                   |   7 +
- .../dts/rockchip/rk3399-pinephone-pro.dts     | 123 +++++
- drivers/gpu/drm/panel/Kconfig                 |  12 +
- drivers/gpu/drm/panel/Makefile                |   1 +
- drivers/gpu/drm/panel/panel-himax-hx8394.c    | 446 ++++++++++++++++++
- 6 files changed, 654 insertions(+)
+ .../bindings/display/panel/himax,hx8394.yaml  | 65 +++++++++++++++++++
+ 1 file changed, 65 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
- create mode 100644 drivers/gpu/drm/panel/panel-himax-hx8394.c
 
+diff --git a/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml b/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
+new file mode 100644
+index 000000000000..bead3f0b05c5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
+@@ -0,0 +1,65 @@
++# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/himax,hx8394.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Himax HX8394 MIPI-DSI LCD panel controller
++
++maintainers:
++  - Javier Martinez Canillas <javierm@redhat.com>
++
++description:
++  Device tree bindings for panels based on the Himax HX8394 controller,
++  such as the HannStar HSD060BHW4 720x1440 TFT LCD panel connected with
++  a MIPI-DSI video interface.
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    enum:
++      # HannStar HSD060BHW4 5.99" 720x1440 TFT LCD panel
++      - hannstar,hsd060bhw4
++
++  vcc-supply:
++    description: Panel power supply
++
++  iovcc-supply:
++    description: I/O voltage supply
++
++  port: true
++
++  reset-gpios: true
++
++  backlight: true
++
++required:
++  - compatible
++  - vcc-supply
++  - iovcc-supply
++  - port
++  - reset-gpios
++  - backlight
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    dsi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        panel@0 {
++            compatible = "hannstar,hsd060bhw4";
++            reg = <0>;
++            vcc-supply = <&reg_2v8_p>;
++            iovcc-supply = <&reg_1v8_p>;
++            reset-gpios = <&gpio3 13 GPIO_ACTIVE_LOW>;
++            backlight = <&backlight>;
++        };
++    };
++
++...
 -- 
 2.38.1
 
