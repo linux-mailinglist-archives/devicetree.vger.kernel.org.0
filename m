@@ -2,109 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBFBA6561B0
-	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 10:52:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B87AB6561B8
+	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 10:58:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231759AbiLZJwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Dec 2022 04:52:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38144 "EHLO
+        id S231777AbiLZJ6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Dec 2022 04:58:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231585AbiLZJw2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 04:52:28 -0500
-Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CAA6267C
-        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 01:52:28 -0800 (PST)
-Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-46d4840b51fso85570537b3.12
-        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 01:52:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=pWR+JUq2o54AwQ6BNKo0a70xKICVf0zlgFYzCKYUAOo=;
-        b=TUHkEMzI3Wy4MLlTkNJX+3OEd6QSPQdePraNM80YuZEXokTfMTzDVKEozBRheYrj4t
-         IpQyhHNCY/3lw3BY/4WEEsfccP6F/fTMik/mzIQUOiV+dXxCuiwpu78RATZfxSGxj7RM
-         VGdi/3kVo5p0MJdUGki5mCrGgpb9ihyuHihy1mW361eTBVEKBax3Br4yDNmi7G0gQH83
-         VSzMZO0L0iTB0C+IAceJ8xv1tTsUtXt9Kc4UPZ3kgDKAtOYhPev6+NVtyMYN+ewUqGp0
-         I3OJ435+cygdtXdyOHKyPCalgjegid2ZWu8xWyNMmwHXBjAGkjb2CSPVWherGbeJvM1C
-         AEBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pWR+JUq2o54AwQ6BNKo0a70xKICVf0zlgFYzCKYUAOo=;
-        b=VAlPXjW/VB+2Cjihw72zYenQp5P8vi1QnzKhGG93ArwXhTNMPAjbLp7swuHkM3SdxX
-         KuosaBhULAwMrK0Ee/6uCstlZsbwDeLOMOBeKKLSjX9qTtTuOufrjOXmVLFSVuPS2//4
-         BSQhvPkkML4RaFDXSNtimv/hqwhOPJ3ZeahVFIeSdP2w9afFYDwaawmVR6lpfQwP57sq
-         veJQ/VaW/FpKvfiUkzdkpENOzjPq6BB5g/QHS6EqsDi1TQ7mY6XHepsLVdzhru1sVkCy
-         X1IXW+9LRkpAMRJPPwMi4bhZxKHC2vGre+CMzIKB4LjQXY71GGSB01QWn5YUz0ZGmcbm
-         zE1w==
-X-Gm-Message-State: AFqh2kqrrv1+Xw4/uSr52xor6HbTZ5knGHxfjwZeeBKHVTJ2rf/jRs9N
-        mM2xwtr+xePi0ooDC5G8cPlbqhamJ0HwZmasRpihzA==
-X-Google-Smtp-Source: AMrXdXtRB3VvIx7J4rn3WevIT08YlZ4foe9Ony+g6JZFUVO05YJlfKaQdwx0TxNNs0/V0i32acgO6sRgIXzMtChb/G0=
-X-Received: by 2002:a0d:f1c1:0:b0:358:36cc:b6cf with SMTP id
- a184-20020a0df1c1000000b0035836ccb6cfmr2088607ywf.505.1672048347366; Mon, 26
- Dec 2022 01:52:27 -0800 (PST)
+        with ESMTP id S229447AbiLZJ6E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 04:58:04 -0500
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 087F12603;
+        Mon, 26 Dec 2022 01:58:02 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2BQ9vk6R078242;
+        Mon, 26 Dec 2022 03:57:46 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1672048667;
+        bh=iHhOUXpNSlhf+aIXB7cwH4ZQHQG6+xLFZJXmmofWBM8=;
+        h=From:To:CC:Subject:Date;
+        b=QLs8CJTcw7OO2+SIzSsESij60DuJnA6+1qwFCX6vT9twmSPXyp5HEN8R7pnfwVJzk
+         czacw1K381uVNiUVG1QDKGZ65c8DNLVP+euEU9eGVUtzKi4psVndnyuz2ov1v6R257
+         DnugGubXoX57ytDRuSDsmcJSSgjRA0wkxCVBgAzk=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2BQ9vk09112194
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 26 Dec 2022 03:57:46 -0600
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 26
+ Dec 2022 03:57:46 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 26 Dec 2022 03:57:46 -0600
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2BQ9vjCi003614;
+        Mon, 26 Dec 2022 03:57:46 -0600
+From:   Aradhya Bhatia <a-bhatia1@ti.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Tomi Valkeinen <tomba@kernel.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Linux Clock List <linux-clk@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Jai Luthra <j-luthra@ti.com>, Aradhya Bhatia <a-bhatia1@ti.com>
+Subject: [PATCH 0/2] Re-introduce parent clock-rate set for fixed-factor clock
+Date:   Mon, 26 Dec 2022 15:27:43 +0530
+Message-ID: <20221226095745.19757-1-a-bhatia1@ti.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-References: <20221226063625.1913-1-anand@edgeble.ai> <20221226063625.1913-4-anand@edgeble.ai>
-In-Reply-To: <20221226063625.1913-4-anand@edgeble.ai>
-From:   Jagan Teki <jagan@edgeble.ai>
-Date:   Mon, 26 Dec 2022 15:22:16 +0530
-Message-ID: <CA+VMnFz3JTJt7pYsMcKgt+cqbHNg=f0Tofrp-wgcj-51wkdxUQ@mail.gmail.com>
-Subject: Re: [PATCHv2 linux-next 4/4] ARM: dts: rockchip: rv1126: Enable
- Ethernet for Neu2-IO
-To:     Anand Moon <anand@edgeble.ai>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 26 Dec 2022 at 12:08, Anand Moon <anand@edgeble.ai> wrote:
->
-> Rockchip RV1126 has GMAC 10/100/1000M ethernet controller.
-> Enable ethernet node on Neu2-IO board.
->
-> Signed-off-by: Anand Moon <anand@edgeble.ai>
-> ---
-> drop SoB of Jagan Teki
-> ---
->  arch/arm/boot/dts/rv1126-edgeble-neu2-io.dts | 37 ++++++++++++++++++++
->  1 file changed, 37 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/rv1126-edgeble-neu2-io.dts b/arch/arm/boot/dts/rv1126-edgeble-neu2-io.dts
-> index dded0a12f0cd..bd592026eae6 100644
-> --- a/arch/arm/boot/dts/rv1126-edgeble-neu2-io.dts
-> +++ b/arch/arm/boot/dts/rv1126-edgeble-neu2-io.dts
-> @@ -22,6 +22,43 @@ chosen {
->         };
->  };
->
-> +&gmac {
-> +       clock_in_out = "input";
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&rgmiim1_pins &clk_out_ethernetm1_pins>;
-> +       phy-mode = "rgmii";
-> +       phy-handle = <&phy>;
+Hi all,
 
-arch/arm/boot/dts/rv1126-edgeble-neu2-io.dtb: phy@0: '#phy-cells' is a
-required property     From schema:
-/home/j/.local/lib/python3.8/site-packages/dtschema/schemas/phy/phy-provider.yaml
+The support for configuring CLK_SET_RATE_PARENT flag for a few specific
+clocks was only used by the legacy Allwinner A10 sunxi clock, and the
+reason its compatible was dropped was that the code supporting the
+legacy sunxi platforms was removed (as the below-mentioned patch set
+highlights) and no other fixed factor clock needed to do the same.
 
-> +       assigned-clocks = <&cru CLK_GMAC_SRC>, <&cru CLK_GMAC_TX_RX>,
-> +                       <&cru CLK_GMAC_ETHERNET_OUT>;
-> +       assigned-clock-parents = <&cru CLK_GMAC_SRC_M1>, <&cru RGMII_MODE_CLK>;
-> +       assigned-clock-rates = <125000000>, <0>, <25000000>;
+https://lore.kernel.org/lkml/20220531051742.43273-1-samuel@sholland.org/T/
 
-Keep them in sorting order.
 
-Jagan.
+The current patch series adds "ti,k3-am62-oldi-clk-div" (TI's display
+subsystem (DSS) clock for the 1st videoport (vp0) on the AM625 SoC) as
+a fixed factor clock and further, it also re-introduces the same support
+to set the CLK_SET_RATE_PARENT flag.
+
+Based on the clock-set request from DSS (equivalent to pixel frequency),
+this clock asks its parent for a serial clock (with 7 times the pixel
+frequrncy), which is required for the generation of serial LVDS signals.
+This clock thus requires the CLK_SET_RATE_PARENT flag to be set, in
+order to propagate the set clock-rate request to its parent clock.
+
+Aradhya Bhatia (2):
+  dt-bindings: clock: fixed-factor: Add TI AM62 SoC OLDI clock
+  clk: fixed-factor: Re-introduce support for clocks to set parent
+    clock-rate
+
+ .../devicetree/bindings/clock/fixed-factor-clock.yaml |  1 +
+ drivers/clk/clk-fixed-factor.c                        | 11 ++++++++++-
+ 2 files changed, 11 insertions(+), 1 deletion(-)
+
+-- 
+2.39.0
+
