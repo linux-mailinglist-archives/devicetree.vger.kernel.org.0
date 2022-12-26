@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6A1E6562E8
-	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 14:50:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 431936562ED
+	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 14:51:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229502AbiLZNuJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Dec 2022 08:50:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60968 "EHLO
+        id S229496AbiLZNvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Dec 2022 08:51:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbiLZNuH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 08:50:07 -0500
+        with ESMTP id S231750AbiLZNut (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 08:50:49 -0500
 Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4F15110C
-        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 05:49:26 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 553051120
+        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 05:49:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1672062566;
+        s=mimecast20190719; t=1672062569;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=mw7xpxVI9Q/Jnt3L05urCEGaaPOXvycGiSQd0FrpIik=;
-        b=KjEJJa3exCPgBlZhn11G2jOupsf4SsmtnhfK0NZ93TUfRuUL3f4EryYBIH0W5QFkT2rAo/
-        l036xHm13WKPiEkhZH7ree+8K0DH+lTGUM+ENz6rzLz+obLc+4iMZ3MpAxJku2x1nSMO5r
-        wYckTZwllqzgRamJ1dFNUM+DpY7HUn4=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+        bh=gw4YKyE6m3dvm+AI9a6ZkGYjDJAM63OXGslSUuAlLo8=;
+        b=U8wRbb1XCOV2x17MxYeUvJ46Q+VYOBpkrNKt1jOHEmfXIs4rl31yLfYGXV/lFGozkTwwPL
+        gqNawRh5aLKiHggFTG3O9DjUP6oOBl7N+aVFM4zJCt4w6TdxcfXIBRG6HFWmUyrWkyLC5a
+        zhK84Z/o8SGxgJzuNHHvNPxa9lr5J3o=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-116-ujKXcLHfPNS7y9dupKd59w-1; Mon, 26 Dec 2022 08:49:24 -0500
-X-MC-Unique: ujKXcLHfPNS7y9dupKd59w-1
-Received: by mail-wm1-f72.google.com with SMTP id m38-20020a05600c3b2600b003d1fc5f1f80so8116669wms.1
-        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 05:49:24 -0800 (PST)
+ us-mta-490-3GrZlM4dPDuhSFuBZRSpXA-1; Mon, 26 Dec 2022 08:49:28 -0500
+X-MC-Unique: 3GrZlM4dPDuhSFuBZRSpXA-1
+Received: by mail-wm1-f71.google.com with SMTP id m38-20020a05600c3b2600b003d1fc5f1f80so8116712wms.1
+        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 05:49:27 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=mw7xpxVI9Q/Jnt3L05urCEGaaPOXvycGiSQd0FrpIik=;
-        b=U012fhHqKST1Q1k0w/kxfKlTCUFquIwi6vgmBH5NRpfoml1a04LZKVOlnLa7+qqtAB
-         6o12oF/Og9HCuz+zeyVeSzpSNFceaosvmJWF9wP08/H3VRe3fL03NhTs+fwdVvB2DAXW
-         UrlKGaOaHkOD395PimumdzHWcF2vgfuAf6wXIPtbfvNK9VBaXhiMHiGT+MTxnhu7QHlV
-         J+4ssNKtI7lV4TisqPJEBA8TiUAD0ny42yzc4OlsBFg/YqPUZr//Sj4W3H/hVar9RB/O
-         xa/7lo+d2NpmyRaJJ4rZXaRy17tzBLuhrvEnFj0++Mk6PMPpJV+QV4tjhLVhoOcWynwS
-         jAvw==
-X-Gm-Message-State: AFqh2krN23otze31wyX5sWjGAu0r91x3QObjW9+j96RBw1AFNvN80odS
-        /BB+TYiUoy6PCxaY7w07kPx4FjL6226ajRDQkVcWqv1CP4nahUcNHkS0r0AMbeGfg3VT2d7BA0R
-        vH61KFZT95st5iT2j79Ta9A==
-X-Received: by 2002:a05:6000:1246:b0:24f:869a:6c13 with SMTP id j6-20020a056000124600b0024f869a6c13mr11747358wrx.2.1672062563914;
-        Mon, 26 Dec 2022 05:49:23 -0800 (PST)
-X-Google-Smtp-Source: AMrXdXvUvZdjNR7Fa8fpKiew/GyjwBoEhaZv2N568YBi4HBO08rtzrVuxhbL312QdhdG1u5YjDEtcA==
-X-Received: by 2002:a05:6000:1246:b0:24f:869a:6c13 with SMTP id j6-20020a056000124600b0024f869a6c13mr11747344wrx.2.1672062563708;
-        Mon, 26 Dec 2022 05:49:23 -0800 (PST)
+        bh=gw4YKyE6m3dvm+AI9a6ZkGYjDJAM63OXGslSUuAlLo8=;
+        b=xiEGHNl7Tshj8pz6gB3S0LrUTszNnEsQ/bgR86nNMKEcjgGNCwdA67d9XJItjPqqEh
+         92RgRK3qVvK0Xwdwy8O0WJfhnQTKKE8clkjphTvk1XA9NaLWL2jmBSOZvqRjinDV7EF8
+         UpLFWQsbSCONZzlqtF97E52OIK4dgoXoN/w5LrBluCCeKiam7cFh0A4l6e/cehLmTE8q
+         TOW9ZRZqLZManRXVjDD4GaKjOso7P+12D7ii26br8IJd4Y9fzEd+LVKpz3HMzeLbwpCV
+         s8OtZqenA+1yXv83cWGIWuYrlt7h7xp5Ilwunp73743bGilSaHJ87w8i6i2mx7PTjDpj
+         C1Ug==
+X-Gm-Message-State: AFqh2kqmPGP+uEy2Si7F6Bi0j3Om+X6SXhOtJ6soFbncYPNwMOzsQYq+
+        w0SnzH2WIT8dmvWtIe2lRtPFrYsY71ZxhVUTziXhn+EXZWUIezLcyXfQi59HXk1Wn3rSLh/AySY
+        +gG0I6cHo1gfP+ecZjrMQ2A==
+X-Received: by 2002:a7b:c7d6:0:b0:3d1:ee3a:62ae with SMTP id z22-20020a7bc7d6000000b003d1ee3a62aemr15855532wmk.8.1672062567022;
+        Mon, 26 Dec 2022 05:49:27 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXsSXL0Ns8UFml4pgFquWr3xql1Chfes3jlMi8ynWpv2K9/OhcnWWzORV78VW6XaRzrrIKwXrg==
+X-Received: by 2002:a7b:c7d6:0:b0:3d1:ee3a:62ae with SMTP id z22-20020a7bc7d6000000b003d1ee3a62aemr15855517wmk.8.1672062566819;
+        Mon, 26 Dec 2022 05:49:26 -0800 (PST)
 Received: from minerva.home (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id a18-20020adfed12000000b0027cfd9463d7sm3340947wro.110.2022.12.26.05.49.22
+        by smtp.gmail.com with ESMTPSA id a18-20020adfed12000000b0027cfd9463d7sm3340947wro.110.2022.12.26.05.49.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Dec 2022 05:49:23 -0800 (PST)
+        Mon, 26 Dec 2022 05:49:26 -0800 (PST)
 From:   Javier Martinez Canillas <javierm@redhat.com>
 To:     linux-kernel@vger.kernel.org
 Cc:     Ondrej Jirman <megi@xff.cz>,
@@ -67,19 +67,19 @@ Cc:     Ondrej Jirman <megi@xff.cz>,
         Peter Robinson <pbrobinson@gmail.com>,
         Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
         Javier Martinez Canillas <javierm@redhat.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH v2 2/4] dt-bindings: display: Add Himax HX8394 panel controller
-Date:   Mon, 26 Dec 2022 14:49:06 +0100
-Message-Id: <20221226134909.2822179-3-javierm@redhat.com>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: [PATCH v2 4/4] arm64: dts: rk3399-pinephone-pro: Add internal display support
+Date:   Mon, 26 Dec 2022 14:49:08 +0100
+Message-Id: <20221226134909.2822179-5-javierm@redhat.com>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20221226134909.2822179-1-javierm@redhat.com>
 References: <20221226134909.2822179-1-javierm@redhat.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -91,95 +91,214 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for panels based on the Himax HX8394 controller,
-such as the HannStar HSD060BHW4 720x1440 TFT LCD panel that is connected
-through a MIPI-DSI video interface.
+From: Ondrej Jirman <megi@xff.cz>
 
+The phone's display is using Hannstar LCD panel, and Goodix based
+touchscreen. Support it.
+
+Signed-off-by: Ondrej Jirman <megi@xff.cz>
+Co-developed-by: Martijn Braam <martijn@brixit.nl>
+Signed-off-by: Martijn Braam <martijn@brixit.nl>
+Co-developed-by: Kamil Trzciński <ayufan@ayufan.eu>
+Signed-off-by: Kamil Trzciński <ayufan@ayufan.eu>
 Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
 
 Changes in v2:
-- Drop redundant "bindings" in subject (Krzysztof Kozlowski).
-- Drop "device tree bindings" in title (Krzysztof Kozlowski).
-- Put port next to other "true" properties (Krzysztof Kozlowski).
-- Add Krzysztof Kozlowski's Reviewed-by tag.
+- Fix regulator node names (Maya Matuszczyk).
+- Drop non-existent "poweroff-in-suspend" property (Maya Matuszczyk).
+- Remove unnecessary comments in panel node (Maya Matuszczyk).
 
- .../bindings/display/panel/himax,hx8394.yaml  | 65 +++++++++++++++++++
- 1 file changed, 65 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
+ .../dts/rockchip/rk3399-pinephone-pro.dts     | 123 ++++++++++++++++++
+ 1 file changed, 123 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml b/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
-new file mode 100644
-index 000000000000..bead3f0b05c5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
-@@ -0,0 +1,65 @@
-+# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/himax,hx8394.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+index 0e4442b59a55..55048236eef7 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+@@ -29,6 +29,12 @@ chosen {
+ 		stdout-path = "serial2:1500000n8";
+ 	};
+ 
++	backlight: backlight {
++		compatible = "pwm-backlight";
++		pwms = <&pwm0 0 1000000 0>;
++		pwm-delay-us = <10000>;
++	};
 +
-+title: Himax HX8394 MIPI-DSI LCD panel controller
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+ 		pinctrl-names = "default";
+@@ -81,6 +87,32 @@ vcc1v8_codec: vcc1v8-codec-regulator {
+ 		regulator-max-microvolt = <1800000>;
+ 		vin-supply = <&vcc3v3_sys>;
+ 	};
 +
-+maintainers:
-+  - Javier Martinez Canillas <javierm@redhat.com>
++	/* MIPI DSI panel 1.8v supply */
++	vcc1v8_lcd: vcc1v8-lcd-regulator {
++		compatible = "regulator-fixed";
++		enable-active-high;
++		regulator-name = "vcc1v8_lcd";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		vin-supply = <&vcc3v3_sys>;
++		gpio = <&gpio3 RK_PA5 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&display_pwren1>;
++	};
 +
-+description:
-+  Device tree bindings for panels based on the Himax HX8394 controller,
-+  such as the HannStar HSD060BHW4 720x1440 TFT LCD panel connected with
-+  a MIPI-DSI video interface.
++	/* MIPI DSI panel 2.8v supply */
++	vcc2v8_lcd: vcc2v8-lcd-regulator {
++		compatible = "regulator-fixed";
++		enable-active-high;
++		regulator-name = "vcc2v8_lcd";
++		regulator-min-microvolt = <2800000>;
++		regulator-max-microvolt = <2800000>;
++		vin-supply = <&vcc3v3_sys>;
++		gpio = <&gpio3 RK_PA1 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&display_pwren>;
++	};
+ };
+ 
+ &cpu_l0 {
+@@ -111,6 +143,11 @@ &emmc_phy {
+ 	status = "okay";
+ };
+ 
++&gpu {
++	mali-supply = <&vdd_gpu>;
++	status = "okay";
++};
 +
-+allOf:
-+  - $ref: panel-common.yaml#
+ &i2c0 {
+ 	clock-frequency = <400000>;
+ 	i2c-scl-rising-time-ns = <168>;
+@@ -193,6 +230,9 @@ vcc3v0_touch: LDO_REG2 {
+ 				regulator-name = "vcc3v0_touch";
+ 				regulator-min-microvolt = <3000000>;
+ 				regulator-max-microvolt = <3000000>;
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
+ 			};
+ 
+ 			vcca1v8_codec: LDO_REG3 {
+@@ -326,6 +366,25 @@ opp07 {
+ 	};
+ };
+ 
++&i2c3 {
++	i2c-scl-rising-time-ns = <450>;
++	i2c-scl-falling-time-ns = <15>;
++	status = "okay";
 +
-+properties:
-+  compatible:
-+    enum:
-+      # HannStar HSD060BHW4 5.99" 720x1440 TFT LCD panel
-+      - hannstar,hsd060bhw4
++	touchscreen@14 {
++		compatible = "goodix,gt917s";
++		reg = <0x14>;
++		interrupt-parent = <&gpio3>;
++		interrupts = <RK_PB5 IRQ_TYPE_EDGE_RISING>;
++		irq-gpios = <&gpio3 RK_PB5 GPIO_ACTIVE_HIGH>;
++		reset-gpios = <&gpio3 RK_PB4 GPIO_ACTIVE_HIGH>;
++		AVDD28-supply = <&vcc3v0_touch>;
++		VDDIO-supply = <&vcc3v0_touch>;
++		touchscreen-size-x = <720>;
++		touchscreen-size-y = <1440>;
++	};
++};
 +
-+  vcc-supply:
-+    description: Panel power supply
+ &io_domains {
+ 	bt656-supply = <&vcc1v8_dvp>;
+ 	audio-supply = <&vcca1v8_codec>;
+@@ -334,6 +393,40 @@ &io_domains {
+ 	status = "okay";
+ };
+ 
++&mipi_dsi {
++	status = "okay";
++	clock-master;
 +
-+  iovcc-supply:
-+    description: I/O voltage supply
++	ports {
++		mipi_out: port@1 {
++			#address-cells = <0>;
++			#size-cells = <0>;
++			reg = <1>;
 +
-+  port: true
++			mipi_out_panel: endpoint {
++				remote-endpoint = <&mipi_in_panel>;
++			};
++		};
++	};
 +
-+  reset-gpios: true
++	panel@0 {
++		compatible = "hannstar,hsd060bhw4";
++		reg = <0>;
++		backlight = <&backlight>;
++		reset-gpios = <&gpio4 RK_PD1 GPIO_ACTIVE_LOW>;
++		vcc-supply = <&vcc2v8_lcd>;
++		iovcc-supply = <&vcc1v8_lcd>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&display_rst_l>;
 +
-+  backlight: true
++		port {
++			mipi_in_panel: endpoint {
++				remote-endpoint = <&mipi_out_panel>;
++			};
++		};
++	};
++};
 +
-+required:
-+  - compatible
-+  - vcc-supply
-+  - iovcc-supply
-+  - port
-+  - reset-gpios
-+  - backlight
+ &pmu_io_domains {
+ 	pmu1830-supply = <&vcc_1v8>;
+ 	status = "okay";
+@@ -360,6 +453,20 @@ vsel2_pin: vsel2-pin {
+ 		};
+ 	};
+ 
++	dsi {
++		display_rst_l: display-rst-l {
++			rockchip,pins = <4 RK_PD1 RK_FUNC_GPIO &pcfg_pull_down>;
++		};
 +
-+additionalProperties: false
++		display_pwren: display-pwren {
++			rockchip,pins = <3 RK_PA1 RK_FUNC_GPIO &pcfg_pull_down>;
++		};
 +
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
++		display_pwren1: display-pwren1 {
++			rockchip,pins = <3 RK_PA5 RK_FUNC_GPIO &pcfg_pull_down>;
++		};
++	};
 +
-+    dsi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        panel@0 {
-+            compatible = "hannstar,hsd060bhw4";
-+            reg = <0>;
-+            vcc-supply = <&reg_2v8_p>;
-+            iovcc-supply = <&reg_1v8_p>;
-+            reset-gpios = <&gpio3 13 GPIO_ACTIVE_LOW>;
-+            backlight = <&backlight>;
-+        };
-+    };
+ 	sound {
+ 		vcc1v8_codec_en: vcc1v8-codec-en {
+ 			rockchip,pins = <3 RK_PA4 RK_FUNC_GPIO &pcfg_pull_down>;
+@@ -367,6 +474,10 @@ vcc1v8_codec_en: vcc1v8-codec-en {
+ 	};
+ };
+ 
++&pwm0 {
++	status = "okay";
++};
 +
-+...
+ &sdmmc {
+ 	bus-width = <4>;
+ 	cap-sd-highspeed;
+@@ -396,3 +507,15 @@ &tsadc {
+ &uart2 {
+ 	status = "okay";
+ };
++
++&vopb {
++	status = "okay";
++	assigned-clocks = <&cru DCLK_VOP0_DIV>, <&cru DCLK_VOP0>,
++			  <&cru ACLK_VOP0>, <&cru HCLK_VOP0>;
++	assigned-clock-rates = <0>, <0>, <400000000>, <100000000>;
++	assigned-clock-parents = <&cru PLL_CPLL>, <&cru DCLK_VOP0_FRAC>;
++};
++
++&vopb_mmu {
++	status = "okay";
++};
 -- 
 2.38.1
 
