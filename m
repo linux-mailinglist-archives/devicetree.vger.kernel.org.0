@@ -2,217 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FBCC6562C7
-	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 14:06:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AE796562E9
+	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 14:50:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231830AbiLZNGb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Dec 2022 08:06:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55850 "EHLO
+        id S229850AbiLZNuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Dec 2022 08:50:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229502AbiLZNGb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 08:06:31 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0E3322B
-        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 05:05:48 -0800 (PST)
+        with ESMTP id S229450AbiLZNuL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 08:50:11 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C8531081
+        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 05:49:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1672059947;
+        s=mimecast20190719; t=1672062563;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=5HwcZaA2sM/B/lkvzfdRvvoZ71F34zcgGLsOqes2MUk=;
-        b=JLRsAifTEc5NSa5xfoN3q+vW8DS4RgZMCmWsZ2SKi0OAngK+x4nAhVYauLkQVNTDbKKmNK
-        f/sSg+TfiRpVZCu+ta1KV/rvbXMMvF2h0cXnYvFKQy5UBuyw6pJi0XZetbuM4fiBuuOT6l
-        lPSS/0DaEmu/J3Tz3i4fzknuASmlLAs=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+         content-transfer-encoding:content-transfer-encoding;
+        bh=zUK8ohDvHrqcANf/NgU5DC4WBrgNFcEfShtnNkgckEM=;
+        b=O4MI79toXJnEL7uzduGYR9A2y3+ObMwOyFBlON8EAmeYRDjWbao+ELwsc3ap8z5aijVjwW
+        PVSYsjmt7x3xokGugenWapj812X40MePXf54Tp4pFMHwUeZCT/xEyYcGsZDQmwSZp1poT+
+        Pfty1GG6KAB61pSyhjrdpoG446/NOl4=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-447-DUtSaZkoOeueqhPf9VSeGA-1; Mon, 26 Dec 2022 08:05:46 -0500
-X-MC-Unique: DUtSaZkoOeueqhPf9VSeGA-1
-Received: by mail-wm1-f72.google.com with SMTP id b47-20020a05600c4aaf00b003d031aeb1b6so8051950wmp.9
-        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 05:05:46 -0800 (PST)
+ us-mta-348-CWf-TmqhOIyD7S7EyeynlA-1; Mon, 26 Dec 2022 08:49:21 -0500
+X-MC-Unique: CWf-TmqhOIyD7S7EyeynlA-1
+Received: by mail-wm1-f70.google.com with SMTP id bg10-20020a05600c3c8a00b003d9717d882eso4541682wmb.2
+        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 05:49:21 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5HwcZaA2sM/B/lkvzfdRvvoZ71F34zcgGLsOqes2MUk=;
-        b=bRD4BahJMlvHdF6eKj9KXfoG1fX8GkIhTX1xVq6uzCWfYHdIpjDCciG2AvwTmVZZsm
-         4qjWN0RPtIPNMHfHBsH7qdfZajfVx6nD3bfFyn+Waiu3N5eb0wDKugJuZyeUVrTXOjbL
-         8ju4N7b3LfZgOjaj+Pe16w1hAjvNdc18CqkVwbDpBH4rOVrP7Lel1qmK0Do8acdbg+aY
-         LYvtFf9HBoipRyP9zJf3XE+OCE7IOPwqJapvttN3kupQlWK35s/Qu+QtqryBFtGqbn9l
-         xIZ/O9CPlO9SSI8Hqa/lyZjq84WIwGxuti8n7HVPbkZpvkAYa6kGIMfOkii2IdZy+nxz
-         EXMw==
-X-Gm-Message-State: AFqh2kqNxe2WEwfA4GYB2PvzYupC8syxl5btiPZ8ZH8EDzAFxom3h6cU
-        5h0thq0L6DlWxNgoEd1OPzI2n5tooD8PG4XoYEqc9dJXZ4rZJv5dMaTskYWq7vSYc6z8W+/2CAV
-        NGH7ASN9ww0DOTFsLtGg6ng==
-X-Received: by 2002:a05:600c:34d0:b0:3d6:b691:b80d with SMTP id d16-20020a05600c34d000b003d6b691b80dmr12927825wmq.21.1672059945409;
-        Mon, 26 Dec 2022 05:05:45 -0800 (PST)
-X-Google-Smtp-Source: AMrXdXuB8uWC1YkrMzvSoNX2/+CoR/kzQ1LiWZ0PSZdafOK0oPqeMekB++8piVRthVz4KooVG2Xcdg==
-X-Received: by 2002:a05:600c:34d0:b0:3d6:b691:b80d with SMTP id d16-20020a05600c34d000b003d6b691b80dmr12927789wmq.21.1672059945137;
-        Mon, 26 Dec 2022 05:05:45 -0800 (PST)
-Received: from [192.168.1.130] (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id o27-20020a05600c511b00b003c6f8d30e40sm20234587wms.31.2022.12.26.05.05.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Dec 2022 05:05:44 -0800 (PST)
-Message-ID: <e575579e-3db3-6f67-1351-614f752234bf@redhat.com>
-Date:   Mon, 26 Dec 2022 14:05:42 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH 4/4] arm64: dts: rk3399-pinephone-pro: Add internal
- display support
-Content-Language: en-US
-To:     Maya Matuszczyk <maccraft123mc@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, Ondrej Jirman <megi@xff.cz>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zUK8ohDvHrqcANf/NgU5DC4WBrgNFcEfShtnNkgckEM=;
+        b=nss4RwFVwzvuWM0X5o1dwSqXjcn+zAwz/ZaQTadVtCr+VZrJE5UmYMy3hn9uT8scrU
+         ujuaNGaAi2R78mH3Bgx7QB/tdvoDghmPl/QfQdE8mE5SGFrIBlu7SQU2wp5QIx2QkFdx
+         sOzjIDcwbW863Aidvrtqhhrh6VLK3JCAQ0+MEzl/0Ih9b/48lIE6HlYlO+90czl2G5YL
+         48q/GOH9acLpPF27unK9d4vMsLb8pGmLkZU7gFjB3T9d1vQIy3EysR+i/gm4MqQnhcyg
+         FVU6Kgf6E6ZBGY7A03wAjfZyhNM4g/KS3oop/3/iIICW9jv0BSJbkkPxkAPCZc5+bIpM
+         QU2g==
+X-Gm-Message-State: AFqh2kovIdZ/VKRFDkP7fmXUsZyTfiG4ESCgkipB81pvOAJu2kE1eG27
+        eQTwVSl7L/o7x/4dA2WqNeEUlIXzImJIAV+CfKFJxObSr6vkTZkUqfAxK2wcC6LKgXIwsKifiEk
+        LWr+JeyDtF3pgI5eUaZUQvg==
+X-Received: by 2002:a5d:53cd:0:b0:261:d8be:3047 with SMTP id a13-20020a5d53cd000000b00261d8be3047mr12086638wrw.3.1672062560710;
+        Mon, 26 Dec 2022 05:49:20 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXtsZFk+AKv2denQ6Lk8VrO7aAH7Y5BneyC/FpbtIetK0t17olrLdqcrM70WD3U/nREM6lduGQ==
+X-Received: by 2002:a5d:53cd:0:b0:261:d8be:3047 with SMTP id a13-20020a5d53cd000000b00261d8be3047mr12086623wrw.3.1672062560498;
+        Mon, 26 Dec 2022 05:49:20 -0800 (PST)
+Received: from minerva.home (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id a18-20020adfed12000000b0027cfd9463d7sm3340947wro.110.2022.12.26.05.49.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Dec 2022 05:49:19 -0800 (PST)
+From:   Javier Martinez Canillas <javierm@redhat.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Ondrej Jirman <megi@xff.cz>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Robert Mader <robert.mader@posteo.de>,
-        Peter Robinson <pbrobinson@gmail.com>,
-        =?UTF-8?Q?Kamil_Trzci=c5=84ski?= <ayufan@ayufan.eu>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>,
+        =?UTF-8?q?Kamil=20Trzci=C5=84ski?= <ayufan@ayufan.eu>,
         Martijn Braam <martijn@brixit.nl>,
-        Caleb Connolly <kc@postmarketos.org>,
+        Peter Robinson <pbrobinson@gmail.com>,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
         Heiko Stuebner <heiko@sntech.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org
-References: <20221222223830.2494900-1-javierm@redhat.com>
- <20221222223830.2494900-5-javierm@redhat.com>
- <CAO_Mup+P-QMDfVzpg_eg=gmoHUzm6+Kipaq-4q=kdVdS0_xp6A@mail.gmail.com>
-From:   Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <CAO_Mup+P-QMDfVzpg_eg=gmoHUzm6+Kipaq-4q=kdVdS0_xp6A@mail.gmail.com>
+Subject: [PATCH v2 0/4] Add PinePhone Pro display support
+Date:   Mon, 26 Dec 2022 14:49:04 +0100
+Message-Id: <20221226134909.2822179-1-javierm@redhat.com>
+X-Mailer: git-send-email 2.38.1
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Maya,
+This series add support for the display present in the PinePhone Pro.
 
-I'm going through this now and addressing your comments.
+Patch #1 adds a driver for panels using the Himax HX8394 panel controller,
+such as the HSD060BHW4 720x1440 TFT LCD panel present in the PinePhone Pro.
 
-On 12/22/22 23:57, Maya Matuszczyk wrote:
+Patch #2 adds a devicetree binding schema for this driver and patch #3 adds
+an entry for the driver in the MAINTAINERS file.
 
-[...]
+Finally patch #4 adds the needed devicetree nodes in the PinePhone Pro DTS,
+to enable both the display and the touchscreen. This makes the upstream DTS
+much more usable and will allow for example to enable support for the phone
+in the Fedora distribution.
 
->> +       /* MIPI DSI panel 1.8v supply */
->> +       vcc1v8_lcd: vcc1v8-lcd {
-> Node names should be generic, for example "vcc1v8-lcd-regulator".
->
+I only added myself as the maintainer for the driver because I don't know
+if Kamil and Ondrej that worked in the driver would be interested. Please
+let me know folks if you are, and I can add you too in the next revision.
 
-Fixed.
- 
->> +               compatible = "regulator-fixed";
->> +               enable-active-high;
-> Is this really needed?
-> You can set the polarity in "gpios" property.
->
+This is a v2 of the patch-set that addresses issues pointed out in v1:
 
-I understand that it is needed. The regulator-fixing binding says:
+https://lore.kernel.org/all/20221222223830.2494900-1-javierm@redhat.com/T/#m692655a06093fe8df0d8748b3df338e57494af2a
 
-  enable-active-high:
-    description:
-      Polarity of GPIO is Active high. If this property is missing,
-      the default assumed is Active low.
-    type: boolean
+The patches were tested on a PinePhone Pro Explorer Edition using a Fedora
+37 Workstation image.
 
-and indeed by looking at the source in drivers/gpio/gpiolib-of.c, there is
-a check for this property in the of_gpio_flags_quirks() function:
+Best regards,
+Javier
 
-static void of_gpio_flags_quirks(const struct device_node *np,
-				 const char *propname,
-				 enum of_gpio_flags *flags,
-				 int index)
-{
-	/*
-	 * Some GPIO fixed regulator quirks.
-	 * Note that active low is the default.
-	 */
-	if (IS_ENABLED(CONFIG_REGULATOR) &&
-	    (of_device_is_compatible(np, "regulator-fixed") ||
-	     of_device_is_compatible(np, "reg-fixed-voltage") ||
-	     (!(strcmp(propname, "enable-gpio") &&
-		strcmp(propname, "enable-gpios")) &&
-	      of_device_is_compatible(np, "regulator-gpio")))) {
-		bool active_low = !of_property_read_bool(np,
-							 "enable-active-high");
-		/*
-		 * The regulator GPIO handles are specified such that the
-		 * presence or absence of "enable-active-high" solely controls
-		 * the polarity of the GPIO line. Any phandle flags must
-		 * be actively ignored.
-		 */
-		if ((*flags & OF_GPIO_ACTIVE_LOW) && !active_low) {
-			pr_warn("%s GPIO handle specifies active low - ignored\n",
-				of_node_full_name(np));
-			*flags &= ~OF_GPIO_ACTIVE_LOW;
-		}
-		if (active_low)
-			*flags |= OF_GPIO_ACTIVE_LOW;
-	}
-...
-}
+Changes in v2:
+- Add year to driver's copyright notice (Sam Ravnborg)
+- Remove unused <video/display_timing.h> header include (Sam Ravnborg).
+- Use mipi_dsi_dcs_write_seq() helper and drop custom macro (Sam Ravnborg).
+- Drop unnecessary info messages and move useful one to debug (Sam Ravnborg).
+- Drop redundant "bindings" in subject (Krzysztof Kozlowski).
+- Drop "device tree bindings" in title (Krzysztof Kozlowski).
+- Put port next to other "true" properties (Krzysztof Kozlowski).
+- Add Krzysztof Kozlowski's Reviewed-by tag.
+- Fix regulator node names (Maya Matuszczyk).
+- Drop non-existent "poweroff-in-suspend" property (Maya Matuszczyk).
+- Remove unnecessary comments in panel node (Maya Matuszczyk).
 
-So I'll keep those.
- 
->> +               regulator-name = "vcc1v8_lcd";
->> +               regulator-min-microvolt = <1800000>;
->> +               regulator-max-microvolt = <1800000>;
->> +               vin-supply = <&vcc3v3_sys>;
->> +               gpio = <&gpio3 RK_PA5 GPIO_ACTIVE_HIGH>;
-> Is this a typo? Documentation says "gpios"
->
+Javier Martinez Canillas (2):
+  dt-bindings: display: Add Himax HX8394 panel controller
+  MAINTAINERS: Add entry for Himax HX8394 panel controller driver
 
-Documentation/devicetree/bindings/gpio/gpio.txt indeed says "gpios" but "gpio"
-is also supported for older DT that are using bindings that got it wrong. See
-commits e7ae65ced7dd ("gpio: mention in DT binding doc that <name>-gpio is
-deprecated") and dd34c37aa3e8 ("gpio: of: Allow -gpio suffix for property names").
+Kamil Trzciński (1):
+  drm: panel: Add Himax HX8394 panel controller driver
 
-The regulator-fixed bindings is such an example. See that its bindings schema
-Documentation/devicetree/bindings/regulator/regulator.yaml mentions "gpio" and
-not "gpios", also in the example.
+Ondrej Jirman (1):
+  arm64: dts: rk3399-pinephone-pro: Add internal display support
 
-So until that is fixed, I would prefer to stick with that's documented in the
-regulator-fixed bindings doc.
- 
-[...]
-
->> +       touchscreen@14 {
->> +               compatible = "goodix,gt917s";
->> +               reg = <0x14>;
->> +               interrupt-parent = <&gpio3>;
->> +               interrupts = <RK_PB5 IRQ_TYPE_EDGE_RISING>;
->> +               irq-gpios = <&gpio3 RK_PB5 GPIO_ACTIVE_HIGH>;
->> +               reset-gpios = <&gpio3 RK_PB4 GPIO_ACTIVE_HIGH>;
->> +               AVDD28-supply = <&vcc3v0_touch>;
->> +               VDDIO-supply = <&vcc3v0_touch>;
->> +               touchscreen-size-x = <720>;
->> +               touchscreen-size-y = <1440>;
->> +               poweroff-in-suspend;
-> Are you really sure this property exists in touchscreen driver's dt bindings?
->
-
-It's not indeed. I've dropped that now.
-
-[...]
-
->> +               vcc-supply = <&vcc2v8_lcd>; // 2v8
-> What is the purpose of that comment?
-> 
->> +               iovcc-supply = <&vcc1v8_lcd>; // 1v8
-
-Yeah, not that useful. I've removed those two now.
+ .../bindings/display/panel/himax,hx8394.yaml  |  65 +++
+ MAINTAINERS                                   |   7 +
+ .../dts/rockchip/rk3399-pinephone-pro.dts     | 123 +++++
+ drivers/gpu/drm/panel/Kconfig                 |  12 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ drivers/gpu/drm/panel/panel-himax-hx8394.c    | 446 ++++++++++++++++++
+ 6 files changed, 654 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-himax-hx8394.c
 
 -- 
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+2.38.1
 
