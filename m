@@ -2,103 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B611F6564CE
-	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 20:25:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A6646564E8
+	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 21:35:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232271AbiLZTZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Dec 2022 14:25:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48982 "EHLO
+        id S229791AbiLZUfX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Dec 2022 15:35:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229568AbiLZTZn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 14:25:43 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA0751E5;
-        Mon, 26 Dec 2022 11:25:41 -0800 (PST)
-Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5F2ED904;
-        Mon, 26 Dec 2022 20:25:37 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1672082738;
-        bh=WYeeL1tFF+mdzsb2TM6BHvYLKX8R50jHZODrjsruKHs=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=S5NzcHdiEbMPUSAbbGRYD0sJQJohu7zh7qlHjj4J4nygU8l8lGEqOWMXM9JENVvsH
-         DlRd5+/ID9CoXxxVbq+lFdZT7WLhYmboH976MgMqdeDFrjAA1ySbKtcoO8rTNmXw7b
-         9Jk79VqgYYnyKVGE8OuDSPHFpVKNjsnDE0An1EEM=
-Message-ID: <61729020-0977-521a-6137-3bd89f300652@ideasonboard.com>
-Date:   Mon, 26 Dec 2022 21:25:34 +0200
+        with ESMTP id S229547AbiLZUfW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 15:35:22 -0500
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F3E52737
+        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 12:35:20 -0800 (PST)
+Received: by mail-pj1-x102b.google.com with SMTP id gt4so11484506pjb.1
+        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 12:35:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=schmorgal.com; s=google;
+        h=content-transfer-encoding:in-reply-to:subject:from:content-language
+         :references:cc:to:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6zZT04BE0Jy+qQBeK2Ut0h38WWYJ74qKLrwC/57eVCw=;
+        b=NSXT/nLjP4E4YaOEKbSANohMbFND9Z5HDvSHbwini59mb8vxFnQKUCj1eMVzGQLkWg
+         MJJAvTDgIJH17cvo1i6MwEtuYWSHj+g+HKMdCsZyckewz/9mFvfLrjWjlrjjVZKoI1v8
+         WeiWbZWfeIKA7QFyGKXFqw0vzektIICrbWCwM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:subject:from:content-language
+         :references:cc:to:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6zZT04BE0Jy+qQBeK2Ut0h38WWYJ74qKLrwC/57eVCw=;
+        b=hXuonOBICiMurxlfh2GrBZWosU4I1wGxWPiPlbLPFK6xzpFrmH89/4jcZKC/nOmfxQ
+         bso9JnSznXg3oEGdjojbV+CtbthaEyUpGx1lkDNXcgyq+LYV/dj26+3UqKowdCd5zbq2
+         o750FTlSRa0DMOeJHMdLwgKUCtNxdgbRKakiRWQWcMj+WxlPVajWmZVFB9bIUAbatw8Z
+         awfzey9XcV2JOrDgy0b3WKea0gfwfhCEa9Nm7A3yNxKIr6fgjimsngVqIxcK++zr/muZ
+         Ry60FXPuE3/ISm8lPgexM3AoCFgJetKhCccDEYrbD/OVtp8xD9Tf5f9/M2qKBeIUnPLT
+         y0dg==
+X-Gm-Message-State: AFqh2kpcZBcSN3kZAC10q22g0jNs4Di1IP/LPjwrA3Aj/EMxr9SLUxe/
+        fEUheVuwHKYdHIaPkTx0PriUGg==
+X-Google-Smtp-Source: AMrXdXu4HGH/Oc5jIA0bmeKP0p6oaZVxyT0RYL1f1Kixkj8ddZFdQ7bpumdtU2zazOZhNJvhQwws1w==
+X-Received: by 2002:a17:902:ee13:b0:189:13df:9d86 with SMTP id z19-20020a170902ee1300b0018913df9d86mr23857377plb.14.1672086919133;
+        Mon, 26 Dec 2022 12:35:19 -0800 (PST)
+Received: from [192.168.1.33] ([192.183.212.197])
+        by smtp.googlemail.com with ESMTPSA id p23-20020a1709027ed700b00178b6ccc8a0sm7541996plb.51.2022.12.26.12.35.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Dec 2022 12:35:18 -0800 (PST)
+Message-ID: <beda0a3a-05d9-6c24-0fd2-1d80a86beb6d@schmorgal.com>
+Date:   Mon, 26 Dec 2022 12:35:15 -0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v5 7/8] media: i2c: add DS90UB913 driver
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+To:     Adrian Hunter <adrian.hunter@intel.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>
-References: <20221208104006.316606-1-tomi.valkeinen@ideasonboard.com>
- <20221208104006.316606-8-tomi.valkeinen@ideasonboard.com>
- <Y5YiazDtaxtLJyL0@pendragon.ideasonboard.com>
- <4d349785-ca37-d930-db3c-2581bba9fde0@ideasonboard.com>
- <7ddd576f-6e8a-7581-178c-2e8575227811@ideasonboard.com>
- <Y6nSVlmlweUuUwJf@pendragon.ideasonboard.com>
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Ulf Hansson <ulf.hansson@linaro.org>
+References: <20221202031330.94130-1-doug@schmorgal.com>
+ <20221202031330.94130-2-doug@schmorgal.com>
+ <c2d5fb16-2654-6406-63da-626d6d5029c3@intel.com>
 Content-Language: en-US
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <Y6nSVlmlweUuUwJf@pendragon.ideasonboard.com>
+From:   Doug Brown <doug@schmorgal.com>
+Subject: Re: [PATCH v2 1/8] mmc: sdhci-pxav2: add initial support for PXA168
+ V1 controller
+In-Reply-To: <c2d5fb16-2654-6406-63da-626d6d5029c3@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/12/2022 18:56, Laurent Pinchart wrote:
-> Hi Tomi,
-> 
-> On Wed, Dec 14, 2022 at 08:36:47AM +0200, Tomi Valkeinen wrote:
->> On 14/12/2022 08:29, Tomi Valkeinen wrote:
+Hi Adrian,
+
+On 12/22/2022 8:03 AM, Adrian Hunter wrote:
+> On 2/12/22 05:13, Doug Brown wrote:
+>> Add a new compatible string for the version 1 controller used in the
+>> PXA168, along with necessary quirks. Use a separate ops struct in
+>> preparation for a silicon bug workaround only necessary on V1.
 >>
->>>> wondering if the struct device of the DS90UB913 could be passed instead
->>>> of the port, to avoid passing the port throught
->>>> ds90ub9xx_platform_data.
->>>
->>> Interesting thought. That would limit the number of remote i2c busses to
->>> one, though. Not a problem for FPD-Link, but I wonder if that's assuming
->>> too much for the future users. Then again, this is an in-kernel API so
->>> we could extend it later if needed. So I'll try this out and see if I
->>> hit any issues.
+>> Signed-off-by: Doug Brown <doug@schmorgal.com>
+>> ---
+>>   drivers/mmc/host/sdhci-pxav2.c | 18 +++++++++++++++++-
+>>   1 file changed, 17 insertions(+), 1 deletion(-)
 >>
->> Right, so the issue with this one would be that it would prevent a
->> single device uses. E.g. a single chip which acts as an ATR (similar to
->> i2c-mux chips), i.e. it contains both the main and the remote i2c busses.
+>> diff --git a/drivers/mmc/host/sdhci-pxav2.c b/drivers/mmc/host/sdhci-pxav2.c
+>> index f18906b5575f..2f9fa0ecbddd 100644
+>> --- a/drivers/mmc/host/sdhci-pxav2.c
+>> +++ b/drivers/mmc/host/sdhci-pxav2.c
+>> @@ -101,6 +101,14 @@ static void pxav2_mmc_set_bus_width(struct sdhci_host *host, int width)
+>>   	writeb(ctrl, host->ioaddr + SDHCI_HOST_CONTROL);
+>>   }
+>>   
+>> +static const struct sdhci_ops pxav1_sdhci_ops = {
+>> +	.set_clock     = sdhci_set_clock,
+>> +	.get_max_clock = sdhci_pltfm_clk_get_max_clock,
+>> +	.set_bus_width = pxav2_mmc_set_bus_width,
+>> +	.reset         = pxav2_reset,
+>> +	.set_uhs_signaling = sdhci_set_uhs_signaling,
+>> +};
+>> +
+>>   static const struct sdhci_ops pxav2_sdhci_ops = {
+>>   	.set_clock     = sdhci_set_clock,
+>>   	.get_max_clock = sdhci_pltfm_clk_get_max_clock,
+>> @@ -114,6 +122,9 @@ static const struct of_device_id sdhci_pxav2_of_match[] = {
+>>   	{
+>>   		.compatible = "mrvl,pxav2-mmc",
+>>   	},
+>> +	{
+>> +		.compatible = "mrvl,pxav1-mmc",
+>> +	},
+>>   	{},
+>>   };
+>>   MODULE_DEVICE_TABLE(of, sdhci_pxav2_of_match);
+>> @@ -208,7 +219,12 @@ static int sdhci_pxav2_probe(struct platform_device *pdev)
+>>   			host->mmc->pm_caps |= pdata->pm_caps;
+>>   	}
+>>   
+>> -	host->ops = &pxav2_sdhci_ops;
+>> +	if (match && of_device_is_compatible(dev->of_node, "mrvl,pxav1-mmc")) {
+>> +		host->quirks |= SDHCI_QUIRK_NO_BUSY_IRQ | SDHCI_QUIRK_32BIT_DMA_SIZE;
+>> +		host->ops = &pxav1_sdhci_ops;
+>> +	} else {
+>> +		host->ops = &pxav2_sdhci_ops;
+>> +	}
 > 
-> I don't think I understand this, sorry.
+> It would be better to put the information above in a structure and
+> get it with of_device_get_match_data() (instead of of_match_device).
+> Also drivers typically assume there is always a match since that
+> is the only way the driver ->probe() will get run.
 
-What you are suggesting above means that we'd have a separate device for 
-each port of the ATR. Which is fine in our current case, as the i2c 
-master busses are behind separate remote devices.
+Thanks for all of your great feedback on this series. That makes sense.
+I did have one question about this suggestion. There are other parts of
+sdhci_pxav2_probe() that don't assume there was a match so that it can
+be set up the old way as a platform_device without CONFIG_OF. I was
+trying to preserve compatibility by defaulting to pxav2_sdhci_ops if
+it was set up as a platform_device. Is it all right if I leave a
+fallback in place for that, or should I just end compatibility with the
+old way at this point and assume a match in all cases? I don't see any
+legacy board files that use this driver.
 
-But if you consider a case similar to i2c-mux, where we have a single 
-chip with the slave bus and, say, 4 master busses. We would probably 
-have only a single device for that.
+> 
+>>   
+>>   	ret = sdhci_add_host(host);
+>>   	if (ret)
+> 
 
-  Tomi
-
+Thanks,
+Doug
