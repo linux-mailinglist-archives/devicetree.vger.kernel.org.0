@@ -2,88 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 431936562ED
-	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 14:51:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E6D565635E
+	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 15:30:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229496AbiLZNvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Dec 2022 08:51:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60994 "EHLO
+        id S229547AbiLZOaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Dec 2022 09:30:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231750AbiLZNut (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 08:50:49 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 553051120
-        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 05:49:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1672062569;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=gw4YKyE6m3dvm+AI9a6ZkGYjDJAM63OXGslSUuAlLo8=;
-        b=U8wRbb1XCOV2x17MxYeUvJ46Q+VYOBpkrNKt1jOHEmfXIs4rl31yLfYGXV/lFGozkTwwPL
-        gqNawRh5aLKiHggFTG3O9DjUP6oOBl7N+aVFM4zJCt4w6TdxcfXIBRG6HFWmUyrWkyLC5a
-        zhK84Z/o8SGxgJzuNHHvNPxa9lr5J3o=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-490-3GrZlM4dPDuhSFuBZRSpXA-1; Mon, 26 Dec 2022 08:49:28 -0500
-X-MC-Unique: 3GrZlM4dPDuhSFuBZRSpXA-1
-Received: by mail-wm1-f71.google.com with SMTP id m38-20020a05600c3b2600b003d1fc5f1f80so8116712wms.1
-        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 05:49:27 -0800 (PST)
+        with ESMTP id S229532AbiLZOaJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 09:30:09 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7D81F5;
+        Mon, 26 Dec 2022 06:30:02 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id o15so7615526wmr.4;
+        Mon, 26 Dec 2022 06:30:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VFIJomb/mQCAttQ+nb+AVnywnrRMyslLFJlDXuhv2cg=;
+        b=fGaA4uzxMk4aEwNMfCKwOq0qn3mEmABOnHLQSR2DVjHBqdH8/7aGzDyOxkI5D9o5lN
+         EWMtezM66uEgh5gCIQMZE6MsZrhukgUaM84SAY9efB1nLFFcwpTKMYytRQJOSlv2U5/n
+         Vt939tP2UG8qHhefdHWjPfY2+KNHYSK4KQZ4pPezoBLW/A33rwNTXiLm8PL7hr2IWX8x
+         gJ6Rmys6QcDv4EELHXrwKX8MW0WzGs6kV3ofCMyVs+HC3MX9ZZi3S0Dn/T8Me3j9l3AQ
+         WpnwndwuPViq2l4Z4LZ94Ph/s2Q2ZD+/PSZRfzFtfU/W5pI8UNhOPtuY7bjOd/wFiTmr
+         fF5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gw4YKyE6m3dvm+AI9a6ZkGYjDJAM63OXGslSUuAlLo8=;
-        b=xiEGHNl7Tshj8pz6gB3S0LrUTszNnEsQ/bgR86nNMKEcjgGNCwdA67d9XJItjPqqEh
-         92RgRK3qVvK0Xwdwy8O0WJfhnQTKKE8clkjphTvk1XA9NaLWL2jmBSOZvqRjinDV7EF8
-         UpLFWQsbSCONZzlqtF97E52OIK4dgoXoN/w5LrBluCCeKiam7cFh0A4l6e/cehLmTE8q
-         TOW9ZRZqLZManRXVjDD4GaKjOso7P+12D7ii26br8IJd4Y9fzEd+LVKpz3HMzeLbwpCV
-         s8OtZqenA+1yXv83cWGIWuYrlt7h7xp5Ilwunp73743bGilSaHJ87w8i6i2mx7PTjDpj
-         C1Ug==
-X-Gm-Message-State: AFqh2kqmPGP+uEy2Si7F6Bi0j3Om+X6SXhOtJ6soFbncYPNwMOzsQYq+
-        w0SnzH2WIT8dmvWtIe2lRtPFrYsY71ZxhVUTziXhn+EXZWUIezLcyXfQi59HXk1Wn3rSLh/AySY
-        +gG0I6cHo1gfP+ecZjrMQ2A==
-X-Received: by 2002:a7b:c7d6:0:b0:3d1:ee3a:62ae with SMTP id z22-20020a7bc7d6000000b003d1ee3a62aemr15855532wmk.8.1672062567022;
-        Mon, 26 Dec 2022 05:49:27 -0800 (PST)
-X-Google-Smtp-Source: AMrXdXsSXL0Ns8UFml4pgFquWr3xql1Chfes3jlMi8ynWpv2K9/OhcnWWzORV78VW6XaRzrrIKwXrg==
-X-Received: by 2002:a7b:c7d6:0:b0:3d1:ee3a:62ae with SMTP id z22-20020a7bc7d6000000b003d1ee3a62aemr15855517wmk.8.1672062566819;
-        Mon, 26 Dec 2022 05:49:26 -0800 (PST)
-Received: from minerva.home (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id a18-20020adfed12000000b0027cfd9463d7sm3340947wro.110.2022.12.26.05.49.25
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VFIJomb/mQCAttQ+nb+AVnywnrRMyslLFJlDXuhv2cg=;
+        b=HOWYkCuaKYCF5XW4uxDg1oezNJl7GY2Twk1Fw86Vg5h9izEMH8IDyMd3AP/A6j8wzE
+         jaBcNhJyFW7Ad3qH4+qXHxa6TYuCQbrxvaNob7wK9I02IdwNUSyb3QoVs0naXR8ViyQI
+         J6Xnr6zMVNsNh4ENDST1pX9tEHjWJMLgx0KOdfQ59TpMEbifMVnEwr16n4lZmgj3/AmR
+         V5v+UYHevzSgOithQ6OB4MHi/GjkqB3cMXf5QzRnkPlX/ViRrA3IzdQ4+PIsZLGkSvVn
+         JOMuF9vYStEFkZDOILIJ+joaVWTb9V4ztDDhYHjhwzNBFsJO1o3gqfIVPY2bXuAPyYAK
+         x8TA==
+X-Gm-Message-State: AFqh2koGdzpf1ISwDa5SoeFGvnckwbI21AY/YURyjj76zyq07uoa8Xkd
+        N68H7quGlWR2uIt1UEXQsO5OdNXQmG8=
+X-Google-Smtp-Source: AMrXdXvK9iky3bReAaSSKV7dGYZpClFij6a/zVWGHSqaR5BZbrKVO0blUb/6gMSUUW8H2MjBsZzcNA==
+X-Received: by 2002:a05:600c:4e09:b0:3d4:5741:af9b with SMTP id b9-20020a05600c4e0900b003d45741af9bmr15961265wmq.0.1672065001066;
+        Mon, 26 Dec 2022 06:30:01 -0800 (PST)
+Received: from localhost.localdomain (188.red-83-35-57.dynamicip.rima-tde.net. [83.35.57.188])
+        by smtp.gmail.com with ESMTPSA id c4-20020a05600c0a4400b003cf75213bb9sm21511754wmq.8.2022.12.26.06.29.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Dec 2022 05:49:26 -0800 (PST)
-From:   Javier Martinez Canillas <javierm@redhat.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Ondrej Jirman <megi@xff.cz>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Robert Mader <robert.mader@posteo.de>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>,
-        =?UTF-8?q?Kamil=20Trzci=C5=84ski?= <ayufan@ayufan.eu>,
-        Martijn Braam <martijn@brixit.nl>,
-        Peter Robinson <pbrobinson@gmail.com>,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Heiko Stuebner <heiko@sntech.de>,
+        Mon, 26 Dec 2022 06:30:00 -0800 (PST)
+From:   Angel Iglesias <ang.iglesiasg@gmail.com>
+To:     linux-iio@vger.kernel.org
+Cc:     Angel Iglesias <ang.iglesiasg@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: [PATCH v2 4/4] arm64: dts: rk3399-pinephone-pro: Add internal display support
-Date:   Mon, 26 Dec 2022 14:49:08 +0100
-Message-Id: <20221226134909.2822179-5-javierm@redhat.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221226134909.2822179-1-javierm@redhat.com>
-References: <20221226134909.2822179-1-javierm@redhat.com>
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Andreas Klinger <ak@it-klinger.de>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/5] Add support for pressure sensor Bosch BMP580
+Date:   Mon, 26 Dec 2022 15:29:19 +0100
+Message-Id: <cover.1672062380.git.ang.iglesiasg@gmail.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -91,214 +78,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ondrej Jirman <megi@xff.cz>
+This patchset adds support for the new pressure sensors BMP580 extending
+the bmp280 driver.
 
-The phone's display is using Hannstar LCD panel, and Goodix based
-touchscreen. Support it.
+Patch 1 introduces a variant enumeration and refactors sensor verification
+logic adding a chip_id field to the chip_info struct. This change is
+required because BMP380 and BMP580 have the same chip_id and values would
+collide using the chip_id as the driver_data value.
+Patch 2 introduces new preinit callback and unifies init logic across all
+supported variants.
+Patch 3 extends the bmp280 driver with the new logic to read measurements
+and configure the operation parameters for the BMP580 sensors.
+Patch 4 updates the devicetree binding docs with the new sensor id.
+Patch 5 adds the NVMEM operations to read and program the NVM user range
+contained in the non-volatile memory of the BMP580 sensors.
 
-Signed-off-by: Ondrej Jirman <megi@xff.cz>
-Co-developed-by: Martijn Braam <martijn@brixit.nl>
-Signed-off-by: Martijn Braam <martijn@brixit.nl>
-Co-developed-by: Kamil Trzciński <ayufan@ayufan.eu>
-Signed-off-by: Kamil Trzciński <ayufan@ayufan.eu>
-Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
----
+Changes in V2:
+* For patch 3, fixed missing retcodes reported by the kernel test robot.
+* For patch 5, fixed logic paths that left the sensor mutex locked
+  reported by the kernel test robot.
 
-Changes in v2:
-- Fix regulator node names (Maya Matuszczyk).
-- Drop non-existent "poweroff-in-suspend" property (Maya Matuszczyk).
-- Remove unnecessary comments in panel node (Maya Matuszczyk).
+Angel Iglesias (5):
+  iio: pressure: bmp280: Add enumeration to handle chip variants
+  iio: pressure: bmp280: Add preinit callback
+  iio: pressure: bmp280: Add support for new sensor BMP580
+  dt-bindings: iio: pressure: bmp085: Add BMP580 compatible string
+  iio: pressure: bmp280: Add nvmem operations for BMP580
 
- .../dts/rockchip/rk3399-pinephone-pro.dts     | 123 ++++++++++++++++++
- 1 file changed, 123 insertions(+)
+ .../bindings/iio/pressure/bmp085.yaml         |   2 +
+ drivers/iio/pressure/Kconfig                  |   6 +-
+ drivers/iio/pressure/bmp280-core.c            | 617 +++++++++++++++++-
+ drivers/iio/pressure/bmp280-i2c.c             |  33 +-
+ drivers/iio/pressure/bmp280-regmap.c          |  60 ++
+ drivers/iio/pressure/bmp280-spi.c             |  23 +-
+ drivers/iio/pressure/bmp280.h                 | 115 ++++
+ 7 files changed, 815 insertions(+), 41 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-index 0e4442b59a55..55048236eef7 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-@@ -29,6 +29,12 @@ chosen {
- 		stdout-path = "serial2:1500000n8";
- 	};
- 
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pwm0 0 1000000 0>;
-+		pwm-delay-us = <10000>;
-+	};
-+
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 		pinctrl-names = "default";
-@@ -81,6 +87,32 @@ vcc1v8_codec: vcc1v8-codec-regulator {
- 		regulator-max-microvolt = <1800000>;
- 		vin-supply = <&vcc3v3_sys>;
- 	};
-+
-+	/* MIPI DSI panel 1.8v supply */
-+	vcc1v8_lcd: vcc1v8-lcd-regulator {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		regulator-name = "vcc1v8_lcd";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc3v3_sys>;
-+		gpio = <&gpio3 RK_PA5 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&display_pwren1>;
-+	};
-+
-+	/* MIPI DSI panel 2.8v supply */
-+	vcc2v8_lcd: vcc2v8-lcd-regulator {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		regulator-name = "vcc2v8_lcd";
-+		regulator-min-microvolt = <2800000>;
-+		regulator-max-microvolt = <2800000>;
-+		vin-supply = <&vcc3v3_sys>;
-+		gpio = <&gpio3 RK_PA1 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&display_pwren>;
-+	};
- };
- 
- &cpu_l0 {
-@@ -111,6 +143,11 @@ &emmc_phy {
- 	status = "okay";
- };
- 
-+&gpu {
-+	mali-supply = <&vdd_gpu>;
-+	status = "okay";
-+};
-+
- &i2c0 {
- 	clock-frequency = <400000>;
- 	i2c-scl-rising-time-ns = <168>;
-@@ -193,6 +230,9 @@ vcc3v0_touch: LDO_REG2 {
- 				regulator-name = "vcc3v0_touch";
- 				regulator-min-microvolt = <3000000>;
- 				regulator-max-microvolt = <3000000>;
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
- 			};
- 
- 			vcca1v8_codec: LDO_REG3 {
-@@ -326,6 +366,25 @@ opp07 {
- 	};
- };
- 
-+&i2c3 {
-+	i2c-scl-rising-time-ns = <450>;
-+	i2c-scl-falling-time-ns = <15>;
-+	status = "okay";
-+
-+	touchscreen@14 {
-+		compatible = "goodix,gt917s";
-+		reg = <0x14>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <RK_PB5 IRQ_TYPE_EDGE_RISING>;
-+		irq-gpios = <&gpio3 RK_PB5 GPIO_ACTIVE_HIGH>;
-+		reset-gpios = <&gpio3 RK_PB4 GPIO_ACTIVE_HIGH>;
-+		AVDD28-supply = <&vcc3v0_touch>;
-+		VDDIO-supply = <&vcc3v0_touch>;
-+		touchscreen-size-x = <720>;
-+		touchscreen-size-y = <1440>;
-+	};
-+};
-+
- &io_domains {
- 	bt656-supply = <&vcc1v8_dvp>;
- 	audio-supply = <&vcca1v8_codec>;
-@@ -334,6 +393,40 @@ &io_domains {
- 	status = "okay";
- };
- 
-+&mipi_dsi {
-+	status = "okay";
-+	clock-master;
-+
-+	ports {
-+		mipi_out: port@1 {
-+			#address-cells = <0>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+
-+			mipi_out_panel: endpoint {
-+				remote-endpoint = <&mipi_in_panel>;
-+			};
-+		};
-+	};
-+
-+	panel@0 {
-+		compatible = "hannstar,hsd060bhw4";
-+		reg = <0>;
-+		backlight = <&backlight>;
-+		reset-gpios = <&gpio4 RK_PD1 GPIO_ACTIVE_LOW>;
-+		vcc-supply = <&vcc2v8_lcd>;
-+		iovcc-supply = <&vcc1v8_lcd>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&display_rst_l>;
-+
-+		port {
-+			mipi_in_panel: endpoint {
-+				remote-endpoint = <&mipi_out_panel>;
-+			};
-+		};
-+	};
-+};
-+
- &pmu_io_domains {
- 	pmu1830-supply = <&vcc_1v8>;
- 	status = "okay";
-@@ -360,6 +453,20 @@ vsel2_pin: vsel2-pin {
- 		};
- 	};
- 
-+	dsi {
-+		display_rst_l: display-rst-l {
-+			rockchip,pins = <4 RK_PD1 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+
-+		display_pwren: display-pwren {
-+			rockchip,pins = <3 RK_PA1 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+
-+		display_pwren1: display-pwren1 {
-+			rockchip,pins = <3 RK_PA5 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+	};
-+
- 	sound {
- 		vcc1v8_codec_en: vcc1v8-codec-en {
- 			rockchip,pins = <3 RK_PA4 RK_FUNC_GPIO &pcfg_pull_down>;
-@@ -367,6 +474,10 @@ vcc1v8_codec_en: vcc1v8-codec-en {
- 	};
- };
- 
-+&pwm0 {
-+	status = "okay";
-+};
-+
- &sdmmc {
- 	bus-width = <4>;
- 	cap-sd-highspeed;
-@@ -396,3 +507,15 @@ &tsadc {
- &uart2 {
- 	status = "okay";
- };
-+
-+&vopb {
-+	status = "okay";
-+	assigned-clocks = <&cru DCLK_VOP0_DIV>, <&cru DCLK_VOP0>,
-+			  <&cru ACLK_VOP0>, <&cru HCLK_VOP0>;
-+	assigned-clock-rates = <0>, <0>, <400000000>, <100000000>;
-+	assigned-clock-parents = <&cru PLL_CPLL>, <&cru DCLK_VOP0_FRAC>;
-+};
-+
-+&vopb_mmu {
-+	status = "okay";
-+};
+
+base-commit: e807541c2b273677e82ef50b5747ec7ae7d652b9
 -- 
-2.38.1
+2.39.0
 
