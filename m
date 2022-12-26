@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F22B655FD5
-	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 05:22:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E977655FE0
+	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 05:22:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231685AbiLZEWU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Dec 2022 23:22:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55390 "EHLO
+        id S231645AbiLZEW3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Dec 2022 23:22:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231629AbiLZEWH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Dec 2022 23:22:07 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F6812DCD
-        for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 20:22:04 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id bf43so14689488lfb.6
-        for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 20:22:04 -0800 (PST)
+        with ESMTP id S231496AbiLZEWK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Dec 2022 23:22:10 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CA7B38AE
+        for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 20:22:06 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id p36so14650922lfa.12
+        for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 20:22:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=83ljR628GMOo2KYTso3qbZ9GKZWBVlBN2pNQ+FKekz8=;
-        b=Tf4EO1USYGxBH0DQXO/BBddmsourIV604KoNr8sA+KU6ddOtNCZnb5aUI6gvgF9Dwt
-         Xg0luC2V/FnqGheWyW6fciPo7oc8muEajoGAZwry6F+8wKHhG+tHJBRSAQjO9ZRW79El
-         ixJxLO8XvyD+vL9rz1jQaerKESD1VSCJOKQWPv4dOrgq7EffChZsyd81ughN+buN3JE8
-         aBHWNMaqqXO84Uiap1pG/Drh0VoGuV6OAOcdLFUwRB0K+9IMSxcetP4H6zxc7yN++/Cs
-         NaLk4ZNlsevPSWSnPGw5IEQAgUVpKWcX3pe9wEC9Z8+LbV3jNScaAaIe8YyZbOA0FliK
-         k/rg==
+        bh=K3Cjy9s6gypFp3ghKgty1JYd6DQSNA1Ltc9upzL/NcE=;
+        b=ort+xNiFTW1OLCtBf9mySYVPp/oh2y0W7fcdvsiGLVD8ffg2068oh/jBCHfBngMXLk
+         9a216O+Mvxwcgi42b0wNcGdy/UHsj0IHZL1HMO01zTsS8TCL7KRyj7TmMqsjMRISTNMs
+         brPoNwt0kcRrVJKeCmolumLDAcwl+W0ViDnbnlz0P3m6/0ux6XhwBER+DWnZk8i+rapl
+         MEMOwS57bV1Q81OkFY27I9F5uueu+i7HHlZqF8xBWq4kEEjsxMm99Wf2IbqC6Pra94D4
+         g6YAGTEtrVU8gBOMKQES9swUgR3QfAJWiqQF3lm5oPZ3VmwN9EBF/lpnKZw4XHvYFzv3
+         0YJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=83ljR628GMOo2KYTso3qbZ9GKZWBVlBN2pNQ+FKekz8=;
-        b=VMZynk2tIB4e+9fqaN0VQ6lW3z61dC2bvyrMf+WZOffuX/mzvtdrLIzAGBTuz+3oPH
-         Jje2MyfF84myKu3537LyZOJkIXUJR4G3mjqOn65bQZGwemU64FSt86CRGUG2hE3s1uit
-         0A0umrjDS578Uw5S1tItcepq8aC7jaKOGEetlfQE71fdiXzjgRVmb3bNjMQXtaDFbX+V
-         +6Qdz2f/DlGo5uQyHvOs/tGz67jkP91RvzDyxkBLOx8iJUDxLHXSdoVsbs1d2WXpPu2D
-         GNJH1ajYH2hU1/em5i9lxJr6ezXVuA/dlkkp9SkdsLymuB81C3AluL5u1DZ8sFnZogkb
-         AUWg==
-X-Gm-Message-State: AFqh2kqbVuEfcEMjLuLdahCE2D2639iBdpCNh85pFNriLqEpEgEqAn9F
-        W5DOikAtYRI0pkP0WrToHiHPBQ==
-X-Google-Smtp-Source: AMrXdXtxDYdagGxb5aSzdZcXz5UTYghzUvUWF9muCvcRAyVZKzak2F6b6EtRCqpIo5gyUAKE1cKXeA==
-X-Received: by 2002:ac2:431a:0:b0:4c8:ae6b:ea8d with SMTP id l26-20020ac2431a000000b004c8ae6bea8dmr4350823lfh.8.1672028523746;
-        Sun, 25 Dec 2022 20:22:03 -0800 (PST)
+        bh=K3Cjy9s6gypFp3ghKgty1JYd6DQSNA1Ltc9upzL/NcE=;
+        b=rbGwDdMomLT6MXNltmXtRnrdT3KakJ+ieIV9t3ua/mXRKaRjEQIv/ZrhffrXza4rDr
+         ITGlJJxnZ2sRHiGJr1/RSxFaA168eGi3r1BnS4AxjOs/U+3cqZ5lbBytG54Ffr60jS3P
+         ExzofoE7XseEgxttTf+jvKGSzFDq1v4MLWsZdocIeT1HgnTWXNUcqGKG/4KQBiOh8M1C
+         6yOwdNBURBH0W8mDEdegKMC1i91tdURBL29jYe2YOcmGNV5EwQHIiz2qigMzA+Tex2Y7
+         nmmDRJQZyE8+xuisZf/zbXpDq93Mt2fle9Qhxh4zBVJeK276nTzvAMhgoYEGfkMMZkF3
+         oKAw==
+X-Gm-Message-State: AFqh2kpOTJtq2mUaXG0I8WC+5Hc2L9/F8soAXDyPSKRdPOP1FuDhI+3H
+        SxrQQUEhLlDXqXXHMo5+T2XiJQ==
+X-Google-Smtp-Source: AMrXdXttQJDfNNEbtYq/mZaOMKWs7K3DAmhknVeOeKGMe+SZhCQ3+Zm7jCfw/DTE33ixK2oVZg6TLQ==
+X-Received: by 2002:a05:6512:2102:b0:4ca:f9bd:3390 with SMTP id q2-20020a056512210200b004caf9bd3390mr2247565lfr.31.1672028524475;
+        Sun, 25 Dec 2022 20:22:04 -0800 (PST)
 Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
         by smtp.gmail.com with ESMTPSA id o9-20020ac25e29000000b004b4b5da5f80sm1641129lfg.219.2022.12.25.20.22.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Dec 2022 20:22:03 -0800 (PST)
+        Sun, 25 Dec 2022 20:22:04 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -60,9 +60,9 @@ To:     Andy Gross <agross@kernel.org>,
         Taniya Das <quic_tdas@quicinc.com>
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH v2 12/16] clk: qcom: gcc-qcs404: add support for GDSCs
-Date:   Mon, 26 Dec 2022 06:21:50 +0200
-Message-Id: <20221226042154.2666748-13-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v2 13/16] arm64: dts: qcom: qcs404: use symbol names for PCIe resets
+Date:   Mon, 26 Dec 2022 06:21:51 +0200
+Message-Id: <20221226042154.2666748-14-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221226042154.2666748-1-dmitry.baryshkov@linaro.org>
 References: <20221226042154.2666748-1-dmitry.baryshkov@linaro.org>
@@ -70,77 +70,57 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for two GDSCs provided by this clock controller.
+The commit e5bbbff5b7d7 ("clk: gcc-qcs404: Add PCIe resets") added names
+for PCIe resets, but it did not change the existing qcs404.dtsi to use
+these names. Do it now and use symbol names to make it easier to check
+and modify the dtsi in future.
 
+Fixes: e5bbbff5b7d7 ("clk: gcc-qcs404: Add PCIe resets")
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/clk/qcom/gcc-qcs404.c | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+ arch/arm64/boot/dts/qcom/qcs404.dtsi | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/clk/qcom/gcc-qcs404.c b/drivers/clk/qcom/gcc-qcs404.c
-index fa2adf242648..5f58dd82d3fe 100644
---- a/drivers/clk/qcom/gcc-qcs404.c
-+++ b/drivers/clk/qcom/gcc-qcs404.c
-@@ -19,6 +19,7 @@
- #include "clk-rcg.h"
- #include "clk-regmap.h"
- #include "common.h"
-+#include "gdsc.h"
- #include "reset.h"
+diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+index ffffaa7507cf..ffc4b081bb62 100644
+--- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+@@ -806,7 +806,7 @@ pcie_phy: phy@7786000 {
  
- enum {
-@@ -2591,6 +2592,22 @@ static struct clk_branch gcc_wdsp_q6ss_axim_clk = {
- 	},
- };
+ 			clocks = <&gcc GCC_PCIE_0_PIPE_CLK>;
+ 			resets = <&gcc GCC_PCIEPHY_0_PHY_BCR>,
+-				 <&gcc 21>;
++				 <&gcc GCC_PCIE_0_PIPE_ARES>;
+ 			reset-names = "phy", "pipe";
  
-+static struct gdsc mdss_gdsc = {
-+	.gdscr = 0x4d078,
-+	.pd = {
-+		.name = "mdss",
-+	},
-+	.pwrsts = PWRSTS_OFF_ON,
-+};
-+
-+static struct gdsc oxili_gdsc = {
-+	.gdscr = 0x5901c,
-+	.pd = {
-+		.name = "oxili",
-+	},
-+	.pwrsts = PWRSTS_OFF_ON,
-+};
-+
- static struct clk_hw *gcc_qcs404_hws[] = {
- 	&cxo.hw,
- };
-@@ -2741,6 +2758,11 @@ static struct clk_regmap *gcc_qcs404_clocks[] = {
+ 			clock-output-names = "pcie_0_pipe_clk";
+@@ -1337,12 +1337,12 @@ pcie: pci@10000000 {
+ 				 <&gcc GCC_PCIE_0_SLV_AXI_CLK>;
+ 			clock-names = "iface", "aux", "master_bus", "slave_bus";
  
- };
- 
-+static struct gdsc *gcc_qcs404_gdscs[] = {
-+	[MDSS_GDSC] = &mdss_gdsc,
-+	[OXILI_GDSC] = &oxili_gdsc,
-+};
-+
- static const struct qcom_reset_map gcc_qcs404_resets[] = {
- 	[GCC_GENI_IR_BCR] = { 0x0F000 },
- 	[GCC_CDSP_RESTART] = { 0x18000 },
-@@ -2783,6 +2805,8 @@ static const struct qcom_cc_desc gcc_qcs404_desc = {
- 	.num_resets = ARRAY_SIZE(gcc_qcs404_resets),
- 	.clk_hws = gcc_qcs404_hws,
- 	.num_clk_hws = ARRAY_SIZE(gcc_qcs404_hws),
-+	.gdscs = gcc_qcs404_gdscs,
-+	.num_gdscs = ARRAY_SIZE(gcc_qcs404_gdscs),
- };
- 
- static const struct of_device_id gcc_qcs404_match_table[] = {
+-			resets = <&gcc 18>,
+-				 <&gcc 17>,
+-				 <&gcc 15>,
+-				 <&gcc 19>,
++			resets = <&gcc GCC_PCIE_0_AXI_MASTER_ARES>,
++				 <&gcc GCC_PCIE_0_AXI_SLAVE_ARES>,
++				 <&gcc GCC_PCIE_0_AXI_MASTER_STICKY_ARES>,
++				 <&gcc GCC_PCIE_0_CORE_STICKY_ARES>,
+ 				 <&gcc GCC_PCIE_0_BCR>,
+-				 <&gcc 16>;
++				 <&gcc GCC_PCIE_0_AHB_ARES>;
+ 			reset-names = "axi_m",
+ 				      "axi_s",
+ 				      "axi_m_sticky",
 -- 
 2.35.1
 
