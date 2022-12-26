@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1ADAE655FDE
-	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 05:22:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 408B6655FE3
+	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 05:22:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231715AbiLZEW2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Dec 2022 23:22:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55434 "EHLO
+        id S231490AbiLZEWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Dec 2022 23:22:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231645AbiLZEWJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Dec 2022 23:22:09 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FB9E3887
-        for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 20:22:05 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id bf43so14689538lfb.6
-        for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 20:22:05 -0800 (PST)
+        with ESMTP id S231650AbiLZEWL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Dec 2022 23:22:11 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A242559F
+        for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 20:22:06 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id bq39so6883108lfb.0
+        for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 20:22:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=bYtAPbaOIrpvmuNd+Z18UO1jiB4rVtL7fqIVx9X8Dkw=;
-        b=xijE81+qRG/+QaiHQUIrDo2nHp8Q1dJL8Ql4C5JNlw753HBQ3O5S/YpuZIZqCStDwS
-         ZdX3V88sgNikYIMeyqZP7DfvGPfCrnJq2/mNa6CnwilYPm0OJDE+rReKYbqgCIP51uHp
-         X95f/iS2fBm9HFmvcVAlahTlqF3UZV54F+5z62O3PyJ/uit8CwWQxS9yVMRuYPAwZJJn
-         6D+F7/mpXgjE1eD5MfQM92j8di0qwhKqwEfepXxFkpJ411qW7oylxYODP8TelsmnFqZu
-         lAkZxTMJhZlHfORpiTQ+27EO1vKCvp8JtWp6eqrdKsE+8G4nplC9zggZ6NRC/A3V8ml3
-         jJmw==
+        bh=C/K3RoFVEkUUUw0DjLS0gT74F0yinCMJe2iA2VdQ2lI=;
+        b=atNI4M2yBuG99VOUYNrGxI77gagHmcuwTpqPUYjH0S7MqBQjtqbsY8kDIJRqMhbbls
+         0QlGX5d4pIpK9fe870P2yJstUxrrtz50oAqtZyYboaihEKnL0Z58ep4iVJIRlxPSgKhx
+         jk+yUPMxngfL76w4Ji4ZdU+WmHrQOXs2xq/wW/1Ve5/nDB+FWRHZbWBahG6zQqVonE0z
+         O2/hpCBwKSr3wN04uA7lhI78o7GKpdcUB7PJmrHE6JAqKVTbHi4xvHVMh45BLE4bqoj6
+         LcZafTWWCjgYzpZ+l9Qgtj5E/a3V+jJAqGLHKkJ+bFJ1pSk7y/905dG+S6w2bxGVc0aq
+         rYOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=bYtAPbaOIrpvmuNd+Z18UO1jiB4rVtL7fqIVx9X8Dkw=;
-        b=FcgwR+SSvMzoUK0xZF9u1FpkfQAqAF4VcYZWuGzIkUi+b1MrD2eCa5qzKkPMLqS8Lr
-         VsjXmqFBK1Yl0wZ//3wFk2ORelJqgbI4d0kaKdB0M235ImXVlTdxlP21RJsP+Ian+Ls2
-         ZjHgw80lBo+buVTjJFu8zn+sbvAfYyAPdagi1H8QsXj8fEKxnlCuy6tSaxNfm3bdqFj1
-         t0e8vn8EN8V9U3U0tdEoO2dcTXDg4GyFw0EZ5FMxju9MLqXHTp8+N1qTMxGknqSJBV9G
-         q/6wvbqlBCDnHbbzcUfNrqsd4alSzm7PcR64j66//ON1XmKORXJGr0Eb2vtvZkyS8XzW
-         d35Q==
-X-Gm-Message-State: AFqh2kpkyCbUoafEf8/zWwl/GRmlXEKN/jQn+neEmGiYWNjiCbYzaOWH
-        cuucF6riwy5xDchKW7a1w+1AYw==
-X-Google-Smtp-Source: AMrXdXtZFjRronhgYVZ5q4X6RAAPYK1UKVSP5s1hEQv9hUf3v2yfLOkSIuo9uN5Cb68mERnspmFs8A==
-X-Received: by 2002:a05:6512:b14:b0:4ca:f5a1:8896 with SMTP id w20-20020a0565120b1400b004caf5a18896mr4290367lfu.37.1672028525134;
+        bh=C/K3RoFVEkUUUw0DjLS0gT74F0yinCMJe2iA2VdQ2lI=;
+        b=76Ts27qc8KpMNvGiV+nuR8BBU5bIB4k0O5r5T8X9kNq/gPjcKeUGdAxmg1eHIpD9/t
+         X6VcdRljuPBK+0o58p1gr+13t7chn+DJlOWMW7AJ+gu2V7BWLEokv0MctcpLUfoMa2MP
+         vH4vJanm13XZo8vDIM8+sGwl7q8FkFHHLrLBcg9S1X8GP+C9lBaYNXXDbgj/Kl/Nm35z
+         HbK14TYKtvHnGRP4EhxeVUGpym3p987XmMhjvIuGa4B/PD0bNQWz4/9UQVjczkgKIYiP
+         RdjEmkdmPZFgeho6wqRuxXfIYXgTswwWsVFKbU8yAZCHzCR9aN/vCRvzhnN55JGeFZil
+         rdmQ==
+X-Gm-Message-State: AFqh2kr54Y+nllA86rswX3F1yiA+xxNnnKkM2/MRXJ7gbKPYNw5Dd0kp
+        BWBG7UcdnFCyi/sNWGw/3MEhKg==
+X-Google-Smtp-Source: AMrXdXtgnAdvs6Bhe5nsUVzwTXoAOHs+6uPb0RY8k5M3CsSbbKB7Gp6wYIG5W3Oi9iSMkJ+zgDG+nQ==
+X-Received: by 2002:a05:6512:3a8f:b0:4b5:8a01:570e with SMTP id q15-20020a0565123a8f00b004b58a01570emr5288504lfu.45.1672028525821;
         Sun, 25 Dec 2022 20:22:05 -0800 (PST)
 Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id o9-20020ac25e29000000b004b4b5da5f80sm1641129lfg.219.2022.12.25.20.22.04
+        by smtp.gmail.com with ESMTPSA id o9-20020ac25e29000000b004b4b5da5f80sm1641129lfg.219.2022.12.25.20.22.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Dec 2022 20:22:04 -0800 (PST)
+        Sun, 25 Dec 2022 20:22:05 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -60,9 +60,9 @@ To:     Andy Gross <agross@kernel.org>,
         Taniya Das <quic_tdas@quicinc.com>
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH v2 14/16] arm64: dts: qcom: qcs404: add power-domains-cells to gcc node
-Date:   Mon, 26 Dec 2022 06:21:52 +0200
-Message-Id: <20221226042154.2666748-15-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v2 15/16] arm64: dts: qcom: qcs404: add clocks to the gcc node
+Date:   Mon, 26 Dec 2022 06:21:53 +0200
+Message-Id: <20221226042154.2666748-16-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221226042154.2666748-1-dmitry.baryshkov@linaro.org>
 References: <20221226042154.2666748-1-dmitry.baryshkov@linaro.org>
@@ -70,34 +70,41 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As gcc now provides two GDSCs, add #power-domain-cells property to the
-gcc device node.
+Populate the gcc node with the clocks and clock-names properties to
+enable DT-based lookups for the parent clocks.
 
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/qcs404.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/qcom/qcs404.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-index ffc4b081bb62..b72542631337 100644
+index b72542631337..9206ab13977f 100644
 --- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
 +++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-@@ -729,6 +729,7 @@ gcc: clock-controller@1800000 {
- 			reg = <0x01800000 0x80000>;
- 			#clock-cells = <1>;
+@@ -731,6 +731,13 @@ gcc: clock-controller@1800000 {
  			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
+ 			#power-domain-cells = <1>;
  
++			clocks = <&xo_board>,
++				 <&sleep_clk>,
++				 <&pcie_phy>,
++				 <0>,
++				 <0>,
++				 <0>;
++
  			assigned-clocks = <&gcc GCC_APSS_AHB_CLK_SRC>;
  			assigned-clock-rates = <19200000>;
+ 		};
 -- 
 2.35.1
 
