@@ -2,76 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9585C6565A0
-	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 23:52:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 41EF5656599
+	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 23:52:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229926AbiLZWuY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Dec 2022 17:50:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48046 "EHLO
+        id S232318AbiLZWuv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Dec 2022 17:50:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232487AbiLZWuH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 17:50:07 -0500
-Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29C8325E7;
-        Mon, 26 Dec 2022 14:50:06 -0800 (PST)
-Received: by mail-il1-x12a.google.com with SMTP id j28so6049324ila.9;
-        Mon, 26 Dec 2022 14:50:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LZo1+zZbDU851svvZrpetQZsycA9nka/hfFDXAXts9I=;
-        b=VT+s1JCH90UTNm8fVY1bB1Wx7bLPvjipR1LOcRQJBG6QCh0IPD5nEFOB7CghEafgdq
-         QpBxQyALVrtivt3EoDZ4JPJZrSKy4JVxtsRWxmC4/dOWuIvniHJEweEnBnjhxKiOVhLa
-         yDSST4vhUxdU4dNucJGcRZho8k/WWg/+Fddn2mrowvt+sCdFBalJMCCKFhAjBGvwJCUa
-         x+CR+k1rlAE5EjIYfQPD0QJwT/RsSeT8Pjlq3HtBHnR1Dj6/Qe2luoF0KbGUTw4G6CgU
-         anJSAF26wXsOrfBFIC5msp9s+4/qXpIEm7WviaGrc+OVM7ru8B9AHWq717JCuByRyrb4
-         1RqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LZo1+zZbDU851svvZrpetQZsycA9nka/hfFDXAXts9I=;
-        b=uydg0IaikKnUSxoj9+NCpg+7RJEz1OvBme+rmfHR20wnCoI/SKB/IB0c1Mc0MrdszE
-         8QWGFLg5ufTAcZbthp+dc+8k4Wl/UEszThG7DLzJQO54+drkFuITrfbywSVCbiuFxQ9r
-         ezHdqScAPh7OoU0FsbporVq3BsRc3yTympck2LJeQMwfNe88XeFxfzX8T3/D6KC5ABSS
-         Ll6wLYVnnAK3ArfyIRZHOqVEoZJm1yih5TozXI8x8mt3oCnLPsjn1Ui5TCLuLErBd8li
-         iLUvJivsmu1EScmYSuO9tB06SrhKOyLgUIt/ndVMX9ZnD0hCwffky9Z0ewfLlw2bK87u
-         L+mA==
-X-Gm-Message-State: AFqh2kpLkFJrbKPZumqzjNrsq8E8XaUyvNv6aTJ2DYd+kqyI6G3w9ahd
-        6z15441ZxwuSTfaSZigN0j0=
-X-Google-Smtp-Source: AMrXdXufYvwEnol/khG5SZTqYyHGpBNRqlFQhVkqaspdOEKC8Scd2puo8ycX12atSOuMBXsyqivvvg==
-X-Received: by 2002:a92:4b0c:0:b0:302:fa94:c741 with SMTP id m12-20020a924b0c000000b00302fa94c741mr13414424ilg.3.1672095005434;
-        Mon, 26 Dec 2022 14:50:05 -0800 (PST)
-Received: from localhost ([2607:fea8:a2df:3d00::e694])
-        by smtp.gmail.com with ESMTPSA id 15-20020a056e0211af00b00300df8bfcf5sm3712337ilj.14.2022.12.26.14.50.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Dec 2022 14:50:05 -0800 (PST)
-From:   Richard Acayan <mailingradian@gmail.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Odelu Kukatla <quic_okukatla@quicinc.com>,
-        Luca Weiss <luca@z3ntu.xyz>,
-        Richard Acayan <mailingradian@gmail.com>
-Subject: [PATCH 4/4] arm64: dts: qcom: sdm670: add opps for peripherals
-Date:   Mon, 26 Dec 2022 17:49:44 -0500
-Message-Id: <20221226224944.37242-5-mailingradian@gmail.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20221226224944.37242-1-mailingradian@gmail.com>
-References: <20221226224944.37242-1-mailingradian@gmail.com>
+        with ESMTP id S232575AbiLZWuj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 17:50:39 -0500
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 258AB2AD1;
+        Mon, 26 Dec 2022 14:50:36 -0800 (PST)
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BQMeM8B010287;
+        Mon, 26 Dec 2022 17:50:33 -0500
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3mnv5cajfy-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 26 Dec 2022 17:50:33 -0500
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 2BQMoVvL001014
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 26 Dec 2022 17:50:31 -0500
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Mon, 26 Dec 2022 17:50:30 -0500
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Mon, 26 Dec 2022 17:50:30 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Mon, 26 Dec 2022 17:50:30 -0500
+Received: from okan.localdomain ([10.158.19.61])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 2BQMoHeo032737;
+        Mon, 26 Dec 2022 17:50:20 -0500
+From:   Okan Sahin <okan.sahin@analog.com>
+To:     <okan.sahin@analog.com>
+CC:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH v2 0/5] Add MAX77541/MAX77540 PMIC Support
+Date:   Tue, 27 Dec 2022 01:50:04 +0300
+Message-ID: <20221226225006.105598-1-okan.sahin@analog.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: tQjAurLHTpzznaEwmX3er6KOaxCmysrE
+X-Proofpoint-ORIG-GUID: tQjAurLHTpzznaEwmX3er6KOaxCmysrE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-12-26_18,2022-12-23_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ impostorscore=0 priorityscore=1501 mlxscore=0 spamscore=0 bulkscore=0
+ phishscore=0 mlxlogscore=931 suspectscore=0 lowpriorityscore=0
+ clxscore=1015 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2212260193
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,281 +71,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The interconnects are now in place. Add Operating Performance Points for
-them to allow the kernel to properly manage them.
+MFD, regulator and ADC driver and related bindings for MAX77540/MAX77541.
+The patches are requeired to be applied in sequence.
 
-Signed-off-by: Richard Acayan <mailingradian@gmail.com>
----
- arch/arm64/boot/dts/qcom/sdm670.dtsi | 109 +++++++++++++++++++++++++++
- 1 file changed, 109 insertions(+)
+Changes in v2:
+* Patch 1: "drivers: mfd: Add MAX77541/MAX77540 PMIC Support"
+  * Drop "this patch adds" from commit message.
+  * Drop redundant blank lines.
+  * Drop module version
+  * Use definition for parameter of devm_mfd_add_devices(.., -1,..)
+  * Use desc in chip_info to adding desc for different devices.
+  * Add missing headers and forward declarations.
+  * Drop unused elements from max77541_dev struct
+  * Add chip_info into max77541_dev struct to identify different devices.
+* Patch 2: "dt-bindings: mfd: adi,max77541.yaml Add MAX77541 bindings"
+  * Drop "this patch adds" from commit message.
+  * Fix $ref path
+  * Drop adc part under allOf
+  * Keep only one example (more complex one)
+  * Fix make dt_binding_check errors.(trailing space, No newline)
+* Patch 3: "drivers: regulator: Add MAX77541 Regulator Support"
+  * Drop "this patch adds" from commit message.
+  * Add trailing comma for required structs.
+  * Fix wrong indentation.
+  * Drop redundant blank lines.
+  * Drop max77541_regulator_dev struct.
+  * Use "regulator_desc *desc" for both regulator
+    regarding to "max77541->id"
+* Patch 4: "dt-bindings: regulator: max77541-regulator.yaml Add MAX77541
+            Regulator bindings"
+  * Drop "this patch adds" from commit message.
+  * Chance filename (matching compatible), so adi,max77541-regulator.yaml
+  * Fix make dt_binding_check errors.(trailing space, No newline)
+* Patch 5: "drivers: iio: adc: Add MAX77541 ADC Support"
+  * Drop "this patch adds" from commit message.
+  * Drop redundant blank lines.
+  * Fix wrong include path.
+  * Use switch instead of if-else for range setting in max77541_adc_scale
+  * Move max77541_adc_range enum from max77541.h to here.
+  * Use definition from units.h
+  * Drop unused elements from max77541_adc_iio struct
+  * Drop the .data from platform_device_id
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-index 67a7428291e2..e91da9274bf3 100644
---- a/arch/arm64/boot/dts/qcom/sdm670.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-@@ -10,6 +10,7 @@
- #include <dt-bindings/clock/qcom,rpmh.h>
- #include <dt-bindings/dma/qcom-gpi.h>
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interconnect/qcom,sdm670.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/phy/phy-qcom-qusb2.h>
- #include <dt-bindings/power/qcom-rpmpd.h>
-@@ -418,6 +419,10 @@ sdhc_1: mmc@7c4000 {
- 				 <&gcc GCC_SDCC1_ICE_CORE_CLK>,
- 				 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>;
- 			clock-names = "iface", "core", "xo", "ice", "bus";
-+			interconnects = <&aggre1_noc MASTER_EMMC 0 &aggre1_noc SLAVE_A1NOC_SNOC 0>,
-+					<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_EMMC_CFG 0>;
-+			interconnect-names = "sdhc-ddr", "cpu-sdhc";
-+			operating-points-v2 = <&sdhc1_opp_table>;
- 
- 			iommus = <&apps_smmu 0x140 0xf>;
- 
-@@ -430,6 +435,38 @@ sdhc_1: mmc@7c4000 {
- 			non-removable;
- 
- 			status = "disabled";
-+
-+			sdhc1_opp_table: opp-table {
-+				compatible = "operating-points-v2";
-+
-+				opp-20000000 {
-+					opp-hz = /bits/ 64 <20000000>;
-+					required-opps = <&rpmhpd_opp_min_svs>;
-+					opp-peak-kBps = <80000 80000>;
-+					opp-avg-kBps = <52286 80000>;
-+				};
-+
-+				opp-50000000 {
-+					opp-hz = /bits/ 64 <50000000>;
-+					required-opps = <&rpmhpd_opp_low_svs>;
-+					opp-peak-kBps = <200000 100000>;
-+					opp-avg-kBps = <130718 100000>;
-+				};
-+
-+				opp-100000000 {
-+					opp-hz = /bits/ 64 <100000000>;
-+					required-opps = <&rpmhpd_opp_svs>;
-+					opp-peak-kBps = <200000 130000>;
-+					opp-avg-kBps = <130718 130000>;
-+				};
-+
-+				opp-384000000 {
-+					opp-hz = /bits/ 64 <384000000>;
-+					required-opps = <&rpmhpd_opp_nom>;
-+					opp-peak-kBps = <4096000 4096000>;
-+					opp-avg-kBps = <1338562 1338562>;
-+				};
-+			};
- 		};
- 
- 		gpi_dma0: dma-controller@800000 {
-@@ -465,6 +502,8 @@ qupv3_id_0: geniqup@8c0000 {
- 			#address-cells = <2>;
- 			#size-cells = <2>;
- 			ranges;
-+			interconnects = <&aggre1_noc MASTER_BLSP_1 0 &config_noc SLAVE_BLSP_1 0>;
-+			interconnect-names = "qup-core";
- 			status = "disabled";
- 
- 			i2c0: i2c@880000 {
-@@ -478,6 +517,10 @@ i2c0: i2c@880000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM670_CX>;
-+				interconnects = <&aggre1_noc MASTER_BLSP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&aggre1_noc MASTER_BLSP_1 0 &mem_noc SLAVE_EBI_CH0 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				dmas = <&gpi_dma0 0 0 QCOM_GPI_I2C>,
- 				       <&gpi_dma0 1 0 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -495,6 +538,10 @@ i2c1: i2c@884000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM670_CX>;
-+				interconnects = <&aggre1_noc MASTER_BLSP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&aggre1_noc MASTER_BLSP_1 0 &mem_noc SLAVE_EBI_CH0 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				dmas = <&gpi_dma0 0 1 QCOM_GPI_I2C>,
- 				       <&gpi_dma0 1 1 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -512,6 +559,10 @@ i2c2: i2c@888000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM670_CX>;
-+				interconnects = <&aggre1_noc MASTER_BLSP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&aggre1_noc MASTER_BLSP_1 0 &mem_noc SLAVE_EBI_CH0 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				dmas = <&gpi_dma0 0 2 QCOM_GPI_I2C>,
- 				       <&gpi_dma0 1 2 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -529,6 +580,10 @@ i2c3: i2c@88c000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM670_CX>;
-+				interconnects = <&aggre1_noc MASTER_BLSP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&aggre1_noc MASTER_BLSP_1 0 &mem_noc SLAVE_EBI_CH0 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				dmas = <&gpi_dma0 0 3 QCOM_GPI_I2C>,
- 				       <&gpi_dma0 1 3 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -546,6 +601,10 @@ i2c4: i2c@890000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM670_CX>;
-+				interconnects = <&aggre1_noc MASTER_BLSP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&aggre1_noc MASTER_BLSP_1 0 &mem_noc SLAVE_EBI_CH0 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				dmas = <&gpi_dma0 0 4 QCOM_GPI_I2C>,
- 				       <&gpi_dma0 1 4 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -563,6 +622,10 @@ i2c5: i2c@894000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM670_CX>;
-+				interconnects = <&aggre1_noc MASTER_BLSP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&aggre1_noc MASTER_BLSP_1 0 &mem_noc SLAVE_EBI_CH0 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				dmas = <&gpi_dma0 0 5 QCOM_GPI_I2C>,
- 				       <&gpi_dma0 1 5 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -580,6 +643,10 @@ i2c6: i2c@898000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM670_CX>;
-+				interconnects = <&aggre1_noc MASTER_BLSP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&aggre1_noc MASTER_BLSP_1 0 &mem_noc SLAVE_EBI_CH0 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				dmas = <&gpi_dma0 0 6 QCOM_GPI_I2C>,
- 				       <&gpi_dma0 1 6 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -597,6 +664,10 @@ i2c7: i2c@89c000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM670_CX>;
-+				interconnects = <&aggre1_noc MASTER_BLSP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&aggre1_noc MASTER_BLSP_1 0 &mem_noc SLAVE_EBI_CH0 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				dmas = <&gpi_dma0 0 7 QCOM_GPI_I2C>,
- 				       <&gpi_dma0 1 7 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -637,6 +708,8 @@ qupv3_id_1: geniqup@ac0000 {
- 			#address-cells = <2>;
- 			#size-cells = <2>;
- 			ranges;
-+			interconnects = <&aggre2_noc MASTER_BLSP_2 0 &config_noc SLAVE_BLSP_2 0>;
-+			interconnect-names = "qup-core";
- 			status = "disabled";
- 
- 			i2c8: i2c@a80000 {
-@@ -650,6 +723,10 @@ i2c8: i2c@a80000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM670_CX>;
-+				interconnects = <&aggre2_noc MASTER_BLSP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&aggre2_noc MASTER_BLSP_2 0 &mem_noc SLAVE_EBI_CH0 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				dmas = <&gpi_dma1 0 0 QCOM_GPI_I2C>,
- 				       <&gpi_dma1 1 0 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -667,6 +744,10 @@ i2c9: i2c@a84000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM670_CX>;
-+				interconnects = <&aggre2_noc MASTER_BLSP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&aggre2_noc MASTER_BLSP_2 0 &mem_noc SLAVE_EBI_CH0 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				dmas = <&gpi_dma1 0 1 QCOM_GPI_I2C>,
- 				       <&gpi_dma1 1 1 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -684,6 +765,10 @@ i2c10: i2c@a88000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM670_CX>;
-+				interconnects = <&aggre2_noc MASTER_BLSP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&aggre2_noc MASTER_BLSP_2 0 &mem_noc SLAVE_EBI_CH0 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				dmas = <&gpi_dma1 0 2 QCOM_GPI_I2C>,
- 				       <&gpi_dma1 1 2 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -701,6 +786,10 @@ i2c11: i2c@a8c000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM670_CX>;
-+				interconnects = <&aggre2_noc MASTER_BLSP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&aggre2_noc MASTER_BLSP_2 0 &mem_noc SLAVE_EBI_CH0 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				dmas = <&gpi_dma1 0 3 QCOM_GPI_I2C>,
- 				       <&gpi_dma1 1 3 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -718,6 +807,10 @@ i2c12: i2c@a90000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM670_CX>;
-+				interconnects = <&aggre2_noc MASTER_BLSP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&aggre2_noc MASTER_BLSP_2 0 &mem_noc SLAVE_EBI_CH0 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				dmas = <&gpi_dma1 0 4 QCOM_GPI_I2C>,
- 				       <&gpi_dma1 1 4 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -735,6 +828,10 @@ i2c13: i2c@a94000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM670_CX>;
-+				interconnects = <&aggre2_noc MASTER_BLSP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&aggre2_noc MASTER_BLSP_2 0 &mem_noc SLAVE_EBI_CH0 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				dmas = <&gpi_dma1 0 5 QCOM_GPI_I2C>,
- 				       <&gpi_dma1 1 5 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -752,6 +849,10 @@ i2c14: i2c@a98000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM670_CX>;
-+				interconnects = <&aggre2_noc MASTER_BLSP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&aggre2_noc MASTER_BLSP_2 0 &mem_noc SLAVE_EBI_CH0 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				dmas = <&gpi_dma1 0 6 QCOM_GPI_I2C>,
- 				       <&gpi_dma1 1 6 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -769,6 +870,10 @@ i2c15: i2c@a9c000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM670_CX>;
-+				interconnects = <&aggre2_noc MASTER_BLSP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&aggre2_noc MASTER_BLSP_2 0 &mem_noc SLAVE_EBI_CH0 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				dmas = <&gpi_dma1 0 7 QCOM_GPI_I2C>,
- 				       <&gpi_dma1 1 7 QCOM_GPI_I2C>;
- 				dma-names = "tx", "rx";
-@@ -1014,6 +1119,10 @@ usb_1: usb@a6f8800 {
- 
- 			resets = <&gcc GCC_USB30_PRIM_BCR>;
- 
-+			interconnects = <&aggre2_noc MASTER_USB3 0 &mem_noc SLAVE_EBI_CH0 0>,
-+					<&gladiator_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_USB3 0>;
-+			interconnect-names = "usb-ddr", "apps-usb";
-+
- 			status = "disabled";
- 
- 			usb_1_dwc3: usb@a600000 {
+Okan Sahin (5):
+  drivers: mfd: Add MAX77541/MAX77540 PMIC Support
+  dt-bindings: mfd: adi,max77541.yaml Add MAX77541 bindings
+  drivers: regulator: Add MAX77541 Regulator Support
+  dt-bindings: regulator: adi,max77541-regulator.yaml Add MAX77541
+    Regulator bindings
+  drivers: iio: adc: Add MAX77541 ADC Support
+
+ .../devicetree/bindings/mfd/adi,max77541.yaml | 102 ++++++++
+ .../regulator/adi,max77541-regulator.yaml     |  44 ++++
+ MAINTAINERS                                   |  11 +
+ drivers/iio/adc/Kconfig                       |  11 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/max77541-adc.c                | 199 ++++++++++++++
+ drivers/mfd/Kconfig                           |  13 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/max77541.c                        | 244 ++++++++++++++++++
+ drivers/regulator/Kconfig                     |   9 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/max77541-regulator.c        | 161 ++++++++++++
+ include/linux/mfd/max77541.h                  | 108 ++++++++
+ 13 files changed, 905 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/adi,max77541.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/adi,max77541-regulator.yaml
+ create mode 100644 drivers/iio/adc/max77541-adc.c
+ create mode 100644 drivers/mfd/max77541.c
+ create mode 100644 drivers/regulator/max77541-regulator.c
+ create mode 100644 include/linux/mfd/max77541.h
+
 -- 
-2.39.0
+2.30.2
 
