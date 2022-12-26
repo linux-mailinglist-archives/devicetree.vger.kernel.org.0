@@ -2,159 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00F18655F3E
-	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 03:40:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C941655F54
+	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 04:11:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231504AbiLZCkf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Dec 2022 21:40:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38086 "EHLO
+        id S231516AbiLZDLI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Dec 2022 22:11:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229906AbiLZCke (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Dec 2022 21:40:34 -0500
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2053.outbound.protection.outlook.com [40.107.22.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24EDD26CE;
-        Sun, 25 Dec 2022 18:40:33 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EZ080PzxlCdTB+mpXCZ5wKYgzoBh6InqXCAqIeJNsv2UlQJgrCFUdfrDZRo7+r70ufXRcdgayUXo6F8/VR+gMUtzKINvJEKSwXkbyoa72k22S33mkdESGHYEOlaz8YquWYxbXCMK38Guq3R8IenKKoy/Q3z8O9ikZBNbEsysZWPuYI32xuj4qRfru3MmN8X3zlN0lc8uK/qPTd+Yzr4wgiYbTalKEn30fAzSwX7y4HNSU0n+3MibMNYAjpHDxuDCnsvlc0iKsRN+1DROc70+y3RwtdK8/gcod59P3RuvmtPE/Hms4LqToWMsFfijEAphTDS14mpl2Iobeo27aAbfTg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=F3ANuUaZeHdjNh8mAtIjTsBv8P1s1mHWAJrMQk/TSdY=;
- b=dJcypKDva27LKC8b/cfloOiioX7CWfut01ISrHW0aw8gy++FjdeGusZsVisHDX4LRwCievIvxSUsFZsMj0Kgp3PqFriQVd69MZHd9NMtjh+6Rnj8+EMm+HtY4ax6tyDA27gWSd5MUiD/t5lDISRMBX6qJiYZegt9DiRsqpnvr8G3Y8B6F9ZOJq4f2+uiOct/OfGXiZ79brwXZuOdBa0cS6VR1AIDCIhOuSY4rlYnJIbMwSmFCuVGG0OmTaJA+OqoWp/Z9IfKYzzJ0dgiWH/K7dgBg54Y68Uf6RImH+ktT3YD0mma0rzn2PX/aEWvOYFXXO7I40zLSOdjk9DGw8kp6g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=F3ANuUaZeHdjNh8mAtIjTsBv8P1s1mHWAJrMQk/TSdY=;
- b=CZInMSxHxXblybKnFL4D4mQW2wUqw4pnbceRqo3c+Eg8ey7fdA018KKpMwf4oQfaopRYSoW5BjbzFQK+MGu3alb3i0g/UKTfUwa+3UtrC17BmKHVC9hkmRIL76RUd5E0glgp7Sw0z7t2OPux5cq3IM2jL2yNP5TNWWNA5yedTiE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS8PR04MB8642.eurprd04.prod.outlook.com (2603:10a6:20b:429::24)
- by AS8PR04MB8344.eurprd04.prod.outlook.com (2603:10a6:20b:3b3::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.16; Mon, 26 Dec
- 2022 02:40:31 +0000
-Received: from AS8PR04MB8642.eurprd04.prod.outlook.com
- ([fe80::ebf:5645:b490:166c]) by AS8PR04MB8642.eurprd04.prod.outlook.com
- ([fe80::ebf:5645:b490:166c%7]) with mapi id 15.20.5944.016; Mon, 26 Dec 2022
- 02:40:31 +0000
-From:   Jacky Bai <ping.bai@nxp.com>
-To:     lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, dmitry.torokhov@gmail.com,
-        a.zummo@towertech.it, alexandre.belloni@bootlin.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-input@vger.kernel.org, linux-rtc@vger.kernel.org,
-        kernel@pengutronix.de, linux-imx@nxp.com, festevam@gmail.com
-Subject: [PATCH v2 4/4] arm64: dts: imx93: Add the bbnsm dts node
-Date:   Mon, 26 Dec 2022 10:39:42 +0800
-Message-Id: <20221226023942.1027270-5-ping.bai@nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20221226023942.1027270-1-ping.bai@nxp.com>
-References: <20221226023942.1027270-1-ping.bai@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR01CA0147.apcprd01.prod.exchangelabs.com
- (2603:1096:4:8f::27) To AS8PR04MB8642.eurprd04.prod.outlook.com
- (2603:10a6:20b:429::24)
+        with ESMTP id S231487AbiLZDLG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Dec 2022 22:11:06 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB2FDFD4
+        for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 19:11:01 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id f34so14544975lfv.10
+        for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 19:11:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xCxzLVf2hWUuKQW8OMy2XQ3RUyeAaq22gTKfh7WKh4U=;
+        b=hQIuSbsfbmlPARYuxNQwe4qSwEgYlbiOx6KYQRcH1k0LpsQxmW+FA/gXHE3lcX1p9+
+         AKL4BAdnuGZ2VsyqMJlruS4ITeqCC4R5hw3Kt5iSLeAuDHfSvNaru1aXeFba9onDONtm
+         U9UusTUy5MT+QGi8a/Zc+2v0n1JhTVNQkyqucWSOsu62dtsRIN2GC1W5DeLp7ssVnDeE
+         fi0HIzu86On5zb+1Xk025AiXdDAdmEXvUgKFK1hCsbQOcGSh2qX8HnpC/CnPdZTgdZZB
+         MTWZ4BLmSeDcNaoPnkkvC1OTY66x9mTOvvo8hBFAB1xDrwJ4vyStdv1CPWrEYOI52bMR
+         NoTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xCxzLVf2hWUuKQW8OMy2XQ3RUyeAaq22gTKfh7WKh4U=;
+        b=FlJQZxBecb8RAE+r0qSo6akp16JRLKR03zY+dzLOCr4a9FAByDEx6nxLBmIKqT1tNp
+         Hz0GmquqaHlLJIqrOqybqAjgbYcqER/fObRoHE1m3CsVHQO2EdLWOVXsJy766ktKcRBe
+         ooOVVtReTN+pFI7btgC9lg+APxeF5FznW3JE5ALOQPSs/3qjHrV2P1qE2NpH9Uy4ppBo
+         KsXM+io66MShqQ3fZ3/8kgkWKKN36XR/2j0xe8Qmf6pfNO/qaowaDrOdA6UDU2q2Mau0
+         8rzmmRGvflz3cvUdflpK7oJj5v/u5rIp3Cm9dQEl14FUAQkLBs3akTara94wG2bc4RCA
+         ulVg==
+X-Gm-Message-State: AFqh2kr0Zq+ohnEGZj22e5KC0b9UX0g4Tb1Attf6T+kSaZLOsk+9VKGE
+        3G/Bj0MbAfobBzvA9uVGWmP0xA==
+X-Google-Smtp-Source: AMrXdXsa9LCbzhYW+UV9AYutbv4orTGDloCpOs6CcMUL2eLTERixNfveBNLln72T/fHuKQXP+Tsxsg==
+X-Received: by 2002:a05:6512:1527:b0:4ca:f4f2:49ab with SMTP id bq39-20020a056512152700b004caf4f249abmr4081935lfb.39.1672024260274;
+        Sun, 25 Dec 2022 19:11:00 -0800 (PST)
+Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id a12-20020a2e860c000000b0027f770526ebsm1165388lji.75.2022.12.25.19.10.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 25 Dec 2022 19:10:59 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 0/3] phy: qualcomm: pcie2: register as clock provider
+Date:   Mon, 26 Dec 2022 05:10:56 +0200
+Message-Id: <20221226031059.2563165-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8642:EE_|AS8PR04MB8344:EE_
-X-MS-Office365-Filtering-Correlation-Id: 278d0f87-1315-4fc7-8303-08dae6ea8e15
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: sQtywuWgRjlNY4IiL8RzS9HtZFb7Hx+gfnpRjFhivGBhDe2izfar9zrDoIQxik1pzsSZ3mb/2He6QUpec9wBFbl3Rrrdd7xVaQWqEJWAfcZ/IJEEqKV7dSFOBku6GxOSexhMzbz6+tgtC9CHsLfAheNEHLBQPuksgralV8094qSReun5cQcqpwNCMOPQBahAAMnDBbltm6ZIacAKW6xv8sSa0gp0oTWEqz/4sKiL/WClS3Re7D5mXD5De//Y4I9phb+96L9s/c3BYQcTdLigMvUNeeZtftNsfRh3VhMJm4Tohi94yQt3ERyklQ0jugVsIrOauq+EU9VAo65rmABCFNawZ9kgpNXVgG3797+oX7lBF9tyRiZBVi1rTFFQb1QdaZfplPcr5Z/hE7I2FzTtk0D7g9SN4w4SzysbhPNUmdWKPB99ax7tlLAZ5U24TDJoXistg7tRw83ZojZ4JlWwahLERCARLzT7DSMJ32heNwf3/6k7x6ZkRLzeNaQQxqdJD/FwRuIUiqVlcmSrdWN8rM7a2eGkPdjnE/1sljitgmLMuqJCVeg2/ys0351NZZ2mADXUFeEDTHA3v7ecQlyZWUCkIGQTYifXDToOlfVeqd+aH6DHgVf6lORfXtgLN6AhGt6g4bibtdFV3TnfjEiy4uQw2uuJ0sEzFNYargShHWel7+YF/EUB0ffNaR10utGPBS2LmO12Rs6KPlOcXNccsg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(136003)(376002)(39860400002)(366004)(396003)(451199015)(478600001)(6486002)(52116002)(316002)(36756003)(2906002)(83380400001)(38100700002)(38350700002)(86362001)(6666004)(2616005)(1076003)(6506007)(186003)(26005)(6512007)(5660300002)(7416002)(4326008)(8676002)(66946007)(66476007)(66556008)(8936002)(41300700001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?uG5soIEBJw8ZCk53t2FQi6zfRJXKl5PP68dy3w4epBWe43yI4fscayAq1m2R?=
- =?us-ascii?Q?C0106typchT+6eyrbZHzkDHw/xjfupWsVcilTtfv/FB0bUBeuBnGPD/dr3iw?=
- =?us-ascii?Q?8vfwSomq6EXjwXHJBPwyHsVsQHpgobtnEqRzN0zR0GXbTf1D0r1qJBRgUd6x?=
- =?us-ascii?Q?OsYxvtXriUFvQTkPdjrMTg1j9d87Jwu6eIyfgLXhmdT3xsmn71Z2cYeVn52j?=
- =?us-ascii?Q?QmXLtH95AuAdc3DMxTiNKf9tBXK1Rcn/hG37iGTlMSGi6XisFqovubPu4Bgn?=
- =?us-ascii?Q?2jboB7rs/HEodOzJKea0BWNVsQSoZv5iWIEwpLtcb/IECbCsdXADDJrnBhrN?=
- =?us-ascii?Q?65eJ/CJhooc0FQZ00hB73DbqY2gen2IxiiYgMDAwCBL39RzE7A62UQuHvRio?=
- =?us-ascii?Q?orL2pk1JmMpVRniBheIPpFH/fvkdEMAJ1I62Oetqrlb10zZ/ZMUBdOwodA6y?=
- =?us-ascii?Q?Fj1EQHT4XZiOZblB3D5qMvVJdOF6R6B1N5Ix0WLwmpdrigci7Gvgvh/MA1X0?=
- =?us-ascii?Q?7mGaioGwrsSq3uibwd19S+IS+N9Id3L8R28vvGQzHk22aiFErxkJ4woYRfVi?=
- =?us-ascii?Q?XKce8PxYyOvSKD2AlXVxXX9MjvvBuyb9rmfgy4wkwDjJvGoSVnSCF1VzeKae?=
- =?us-ascii?Q?92l6tBAdDLBQK0Tc9e4NDO6K1gQMcahc52KV3gsexaY5aKQ0RucMorB33UAo?=
- =?us-ascii?Q?lOWIPhP3GegVnPCtMXPEPH+bfFFhJfaSIzTByB9vTyGjvR1SVHhPLv7TXaJc?=
- =?us-ascii?Q?yVLsmquqz6S11031P7slzp0b1rtnTSZGLE7HRbLjFmiiaAm3hbRugtlkRPNz?=
- =?us-ascii?Q?zXJKum+68pcNgr53qOwMiJStG8ONXBmW0qOgsR30ubFjNZ70tiO2zOJvDUlP?=
- =?us-ascii?Q?f1mixxc9pQ7Yb/KvN56O3nIwfccFsN/4+w0fO/MS3gKQkr0QeGeNqujeNtAf?=
- =?us-ascii?Q?Y0MbJMP8GXdz+87F3WRqlOKEJzAVAcZtKNJmyM9mOXzU5A7m6hrmVRfVKuC6?=
- =?us-ascii?Q?+HyGCD07RCPb/oGTtSZNYxNRVOSSMJhp2IXSRWticNjMBAGUjJ1kOgrjSZ8P?=
- =?us-ascii?Q?EXRwMIRm4XL9xjL2UgecYZgSQ1z4ljsFJ1UVvrV4OjR9wC2NZCpkD6B5985V?=
- =?us-ascii?Q?bEALFDfmefTqF9bt0E59/VjmDscuBFXhz/kEO0f0sshcOzrFZ8VvmNs84S+2?=
- =?us-ascii?Q?c8/KRRwPsrisDsPzyr1VeXNdfgN9n0cykFUlKFgWokQwBQxapFmXSCkKMpup?=
- =?us-ascii?Q?TNyBJI+QPUP46ME6TdLgj9lSYZNCATnmuu1ULCHvi8AyBwgKACZ357sPWQZW?=
- =?us-ascii?Q?8xfHSt5tfsg62yxTaa31V79XxaZkiq+M2JPtHxT5vcxRdmqjbqMHt5N3wQkA?=
- =?us-ascii?Q?9eBnxbtgRLhs0Xb2Kc6ViwL3ruBfAXJQ0sz8mrfqonPyxx5OaSqMh4W9feF8?=
- =?us-ascii?Q?vy2uzYQXg0xYgBr4zKm1Ka/HcYD/ynFg60k9Mn137g/BdQ/wDRzpvgN4jWHG?=
- =?us-ascii?Q?lXZSyscqhuJHVsy0uQJu3kOUVi6aGJh0vjnelky7ZdyWqrjFCAU4Gr48hFBi?=
- =?us-ascii?Q?5Gf70f1kpf+kc5CBneVbWcWR3sxO45y0fkMQm5UG?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 278d0f87-1315-4fc7-8303-08dae6ea8e15
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Dec 2022 02:40:30.9649
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rtevXXXhV/ChF0RFA6OblzFVJHiAAgRlPoQTXbwD5o50r5ej29Lnw62qa/+KPUnwuuoRWl+Ws+vp+qBDZI7Gtw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8344
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the bbnsm node for RTC & ON/OFF button support
+On Qualcomm QCS404 platform the PCIe2 PHY provides PIPE clock to the gcc
+(Global Clock Controller). Register the PHY as clock provider.
 
-Signed-off-by: Jacky Bai <ping.bai@nxp.com>
----
-  - v2 changes:
-    - update the regmap property to align with binding doc
----
- arch/arm64/boot/dts/freescale/imx93.dtsi | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+Changes since v1:
+- Dropped 'phandle to' from supply descriptions in schema (Krzysztof),
+- Reordered clock-related property definitions in schema as suggested by
+  Krzysztof,
+- Dropped extra empty line at the end of the schema (reported by
+  Krzysztof).
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
-index 5d79663b3b84..5d7cf2d99444 100644
---- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-@@ -229,6 +229,24 @@ iomuxc: pinctrl@443c0000 {
- 				status = "okay";
- 			};
- 
-+			bbnsm: bbnsm@44440000 {
-+				compatible = "nxp,bbnsm", "syscon", "simple-mfd";
-+				reg = <0x44440000 0x10000>;
-+
-+				bbnsm_rtc: rtc {
-+					compatible = "nxp,bbnsm-rtc";
-+					nxp,bbnsm-regmap = <&bbnsm>;
-+					interrupts = <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
-+				};
-+
-+				bbnsm_pwrkey: pwrkey {
-+					compatible = "nxp,bbnsm-pwrkey";
-+					nxp,bbnsm-regmap = <&bbnsm>;
-+					interrupts = <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
-+					linux,code = <KEY_POWER>;
-+				};
-+			};
-+
- 			clk: clock-controller@44450000 {
- 				compatible = "fsl,imx93-ccm";
- 				reg = <0x44450000 0x10000>;
+Dmitry Baryshkov (3):
+  dt-bindings: phy: qcom,pcie2-phy: convert to YAML format
+  phy: qualcomm: pcie2: register as clock provider
+  arm64: dts: qcom: qcs404: register PCIe PHY as a clock provider
+
+ .../bindings/phy/qcom,pcie2-phy.yaml          | 87 +++++++++++++++++++
+ .../bindings/phy/qcom-pcie2-phy.txt           | 42 ---------
+ arch/arm64/boot/dts/qcom/qcs404.dtsi          |  1 +
+ drivers/phy/qualcomm/phy-qcom-pcie2.c         |  6 +-
+ 4 files changed, 93 insertions(+), 43 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,pcie2-phy.yaml
+ delete mode 100644 Documentation/devicetree/bindings/phy/qcom-pcie2-phy.txt
+
 -- 
-2.37.1
+2.35.1
 
