@@ -2,91 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67171656152
-	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 09:57:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A305656182
+	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 10:43:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231924AbiLZI5Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Dec 2022 03:57:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52220 "EHLO
+        id S231693AbiLZJnE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Dec 2022 04:43:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231751AbiLZI5O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 03:57:14 -0500
-Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCFB95F81
-        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 00:57:12 -0800 (PST)
-Received: by mail-io1-xd2f.google.com with SMTP id p6so5426599iod.13
-        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 00:57:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=y9TbX3Ceh1FvaBv664udZf8XfrOpdKKd1+DeV95MdyU=;
-        b=Bi5owdA6WovVAMZcv9Xg7UtskNw4+684vpuoZJeflxtV3ZDO4PKd2iJDfmLTyqqNpq
-         lOVR9fPEoBWOyeiHd85xuiPaMJnyBllR19W6q6zN8qOmAkm9E7Kl+IrfWMsltiZ4cmA1
-         C+ow+S7IbcqHZPmSLrl2qKxwome1/bjEv8xaM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=y9TbX3Ceh1FvaBv664udZf8XfrOpdKKd1+DeV95MdyU=;
-        b=ZPhQFbtBDbTptAnf8OokRbY0v0f0RRDKxUZ2qzCTyF43KbpeR0BKvO1aMcbGywr4g6
-         ep8PAsUxNFX0tkOBtOjsFpqD/VdaNEnGNrczqosm3IpuBsVTf4Fi/D084lu/awBgaNs+
-         zghnQbG5kwqKSUtIOVxmtYLabiO21+D5SIKjFSAVRyhovqg9NuEVCCCRUfaFnFoeX6HE
-         l3i/cQTykL1/mR2iMMORCfy+Rc/BkDOS1vIolVS+iEpmQs8P3y5PXmCDSXhb/G76wx52
-         l6B3HSqk6E2JR8wV4vQz2tYf72GgAfA59q4/5WsuWpN5GddGIK34PxTVdO91qMC9coOT
-         SRpw==
-X-Gm-Message-State: AFqh2krqycfZXxOjeGElpViPZVFckMz8MuDKmafe2j4515TL+QbvoPZc
-        L6nzl4f2QFGJK//TDQ3xF8HmBBMvGQzXXhaScXIXjA==
-X-Google-Smtp-Source: AMrXdXvZZwiu7qagoS6yQmOv/xa7NoF2r1prkxbf2PgG2eUjFk6I49fFzrxM9Ian30iQB4AcDtL7g9FaZUcFi4kfwfI=
-X-Received: by 2002:a6b:490f:0:b0:6e3:29a8:47a with SMTP id
- u15-20020a6b490f000000b006e329a8047amr1409337iob.209.1672045032266; Mon, 26
- Dec 2022 00:57:12 -0800 (PST)
+        with ESMTP id S229556AbiLZJnC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 04:43:02 -0500
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9628B2664;
+        Mon, 26 Dec 2022 01:42:58 -0800 (PST)
+X-UUID: 137b51f9acee48b88c09b044779c4c8d-20221226
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=wO/YlaAH2Y8g68ssS2G0vi1odeG2J8FOazjyVtZ7WaE=;
+        b=OLDnyltbOD+xTBPL9FjUEBln8vxhHiSgFQuvsuIBTMOUv1kU78iWCfV+wN9UtB4PYCQe75+0OcW3pvBq5FgZfrfdS5cm1js1LN9aAzI5Nmpkc2+c6dF+wUrvkpKWWXrKZL/DKgz8ToC2eWsTDEYMuomWTiYawhUb499ZC+A7sH8=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.14,REQID:9f24a36a-77df-4c10-9cbf-3b57c36c38a4,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:dcaaed0,CLOUDID:9fb7f8f3-ff42-4fb0-b929-626456a83c14,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 137b51f9acee48b88c09b044779c4c8d-20221226
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <roger.lu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 675022121; Mon, 26 Dec 2022 17:42:50 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Mon, 26 Dec 2022 17:42:49 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Mon, 26 Dec 2022 17:42:49 +0800
+From:   Roger Lu <roger.lu@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Kevin Hilman <khilman@kernel.org>,
+        Nicolas Boichat <drinkcat@google.com>
+CC:     Fan Chen <fan.chen@mediatek.com>, Roger Lu <roger.lu@mediatek.com>,
+        Jia-wei Chang <jia-wei.chang@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v1 0/13] Enahance SVS's robustness
+Date:   Mon, 26 Dec 2022 17:42:35 +0800
+Message-ID: <20221226094248.4506-1-roger.lu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-References: <20221124102056.393220-1-treapking@chromium.org>
- <20221124102056.393220-7-treapking@chromium.org> <a2a8cd80-a614-e96f-90ab-a98c60527344@linaro.org>
-In-Reply-To: <a2a8cd80-a614-e96f-90ab-a98c60527344@linaro.org>
-From:   Pin-yen Lin <treapking@chromium.org>
-Date:   Mon, 26 Dec 2022 16:57:01 +0800
-Message-ID: <CAEXTbpeYZTeWvnGtRo3i7eGSAoQnkSmcpV=SS8MZA+an3SHUwQ@mail.gmail.com>
-Subject: Re: [PATCH v6 6/7] dt/bindings: drm/bridge: it6505: Add mode-switch support
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        dri-devel@lists.freedesktop.org,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
-        linux-acpi@vger.kernel.org, Marek Vasut <marex@denx.de>,
-        Xin Ji <xji@analogixsemi.com>, Lyude Paul <lyude@redhat.com>,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-kernel@vger.kernel.org, Allen Chen <allen.chen@ite.com.tw>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -94,182 +66,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+SVS driver got accepted upstream but still has room to be improved.
+Therefore, we add these patches to fix issues and coding style.
 
-On Mon, Nov 28, 2022 at 5:02 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 24/11/2022 11:20, Pin-yen Lin wrote:
-> > ITE IT6505 can be used in systems to switch the DP traffic between
-> > two downstreams, which can be USB Type-C DisplayPort alternate mode
-> > lane or regular DisplayPort output ports.
-> >
-> > Update the binding to accommodate this usage by introducing a
-> > data-lanes and a mode-switch property on endpoints.
-> >
-> > Signed-off-by: Pin-yen Lin <treapking@chromium.org>
-> >
-> > ---
-> >
-> > Changes in v6:
-> > - Remove switches node and use endpoints and data-lanes property to
-> >   describe the connections.
-> >
-> >  .../bindings/display/bridge/ite,it6505.yaml   | 94 ++++++++++++++++++-
-> >  1 file changed, 90 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> > index 833d11b2303a..b4b9881c7759 100644
-> > --- a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> > +++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> > @@ -52,9 +52,53 @@ properties:
-> >      maxItems: 1
-> >      description: extcon specifier for the Power Delivery
-> >
-> > -  port:
-> > -    $ref: /schemas/graph.yaml#/properties/port
-> > -    description: A port node pointing to DPI host port node
-> > +  data-lanes:
-> > +    maxItems: 1
-> > +    description: restrict the dp output data-lanes with value of 1-4
->
-> Hm, where is the definition of this type? For example it comes with
-> video-interfaces, which you did not reference here.
->
-Actually I messed up here with another accepted patch:
-https://lore.kernel.org/all/20221103091243.96036-2-allen.chen@ite.com.tw/
+Matthias Brugger (4):
+  soc: mediatek: mtk-svs: clean up platform probing
+  soc: mediatek: mtk-svs: improve readability of platform_probe
+  soc: mediatek: mtk-svs: move svs_platform_probe into probe
+  soc: mediatek: mtk-svs: delete superfluous platform data entries
 
-This and the next new property have been added in that patch.
-> > +
-> > +  max-pixel-clock-khz:
->
-> There is no such unit accepted:
-> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
->
-> > +    maxItems: 1
->
-> maxItems of what type? What is this?
->
-> > +    description: restrict max pixel clock
-> > +
-> > +  ports:
-> > +    $ref: /schemas/graph.yaml#/properties/ports
->
-> This is incompatible change... how do you handle now ABI break?
->
-This is also added in another patch, and currently we don't have any
-upstream it6505 users now.
-> > +
-> > +    properties:
-> > +      port@0:
-> > +        $ref: /schemas/graph.yaml#/$defs/port-base
->
-> Why changing the ref?
+Ricardo Ribalda (1):
+  soc: mediatek: mtk-svs: enable the IRQ later
 
-The `unevaluatedProperties: false` in
-`/schemas/graph.yaml#/properties/port` does not allow me to add new
-properties here.
->
-> > +        unevaluatedProperties: false
-> > +        description: A port node pointing to DPI host port node
-> > +
-> > +      port@1:
-> > +        $ref: /schemas/graph.yaml#/properties/port-base
-> > +        description:
-> > +          Video port for panel or connector.
-> > +
-> > +        patternProperties:
-> > +          "^endpoint@[01]$":
-> > +            $ref: /schemas/media/video-interfaces.yaml#
-> > +            type: object
-> > +            unevaluatedProperties: false
-> > +
-> > +            properties:
-> > +              reg:
-> > +                maxItems: 1
-> > +
-> > +              remote-endpoint: true
-> > +
-> > +              data-lanes:
-> > +                minItems: 1
-> > +                uniqueItems: true
-> > +                items:
-> > +                  - enum: [ 0, 1, 2, 3]
->
-> Same problem as your previouspatch.
->
-> > +
-> > +              mode-switch:
-> > +                type: boolean
-> > +                description: Register this node as a Type-C mode switch or not.
-> > +
-> > +         required:
-> > +        - reg
-> > +           - remote-endpoint
-> >
-> >  required:
-> >    - compatible
-> > @@ -62,7 +106,7 @@ required:
-> >    - pwr18-supply
-> >    - interrupts
-> >    - reset-gpios
-> > -  - extcon
-> > +  - ports
-> >
-> >  additionalProperties: false
-> >
-> > @@ -92,3 +136,45 @@ examples:
-> >              };
-> >          };
-> >      };
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +
-> > +    &i2c3 {
-> > +        clock-frequency = <100000>;
-> > +
-> > +        it6505dptx: it6505dptx@5c {
->
-> Node names should be generic.
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
->
-I'll fix this in v7.
-> > +            compatible = "ite,it6505";
-> > +            interrupts = <8 IRQ_TYPE_LEVEL_LOW 8 0>;
-> > +            reg = <0x5c>;
-> > +            pinctrl-names = "default";
-> > +            pinctrl-0 = <&it6505_pins>;
-> > +            ovdd-supply = <&mt6366_vsim2_reg>;
-> > +            pwr18-supply = <&pp1800_dpbrdg_dx>;
-> > +            reset-gpios = <&pio 177 0>;
-> > +            hpd-gpios = <&pio 10 0>;
-> > +
-> > +            ports {
-> > +                #address-cells = <1>;
-> > +                #size-cells = <0>;
-> > +                port@0 {
-> > +                    reg = <0>;
-> > +                    it6505_in: endpoint {
-> > +                        remote-endpoint = <&dpi_out>;
-> > +                    };
-> > +                };
-> > +                port@1 {
-> > +                    reg = <1>;
-> > +                    ite_typec0: endpoint@0 {
-> > +                        mode-switch;
-> > +                        data-lanes = <0 1>;
->
-> Does not look like you tested the bindings. Please run `make
-> dt_binding_check` (see
-> Documentation/devicetree/bindings/writing-schema.rst for instructions).
-Sorry for not checking the documentation and testing the patches
-before submitting this.
+Roger Lu (7):
+  soc: mediatek: mtk-svs: use svs get efuse common function
+  soc: mtk-svs: mt8183: refactor o_slope calculation
+  soc: mediatek: mtk-svs: add main_clk check during system-wide suspend
+  soc: mediatek: mtk-svs: use common function to disable restore
+    voltages
+  soc: mediatek: mtk-svs: restore default voltages when svs init02 fail
+  soc: mediatek: mtk-svs: add thermal voltage compensation if needed
+  soc: mediatek: mtk-svs: keep svs alive even though debug cmd create
+    fail
 
-I'll fix the errors in v7.
+Shang XiaoJing (1):
+  soc: mediatek: mtk-svs: Use pm_runtime_resume_and_get() in
+    svs_init01()
 
-Best regards,
-Pin-yen
->
-> Best regards,
-> Krzysztof
->
+ drivers/soc/mediatek/mtk-svs.c | 279 +++++++++++++++------------------
+ 1 file changed, 124 insertions(+), 155 deletions(-)
+
+
