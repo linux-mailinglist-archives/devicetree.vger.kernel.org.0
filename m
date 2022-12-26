@@ -2,154 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A6646564E8
-	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 21:35:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38BDA656564
+	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 23:36:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229791AbiLZUfX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Dec 2022 15:35:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54942 "EHLO
+        id S232392AbiLZWgU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Dec 2022 17:36:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229547AbiLZUfW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 15:35:22 -0500
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F3E52737
-        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 12:35:20 -0800 (PST)
-Received: by mail-pj1-x102b.google.com with SMTP id gt4so11484506pjb.1
-        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 12:35:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=schmorgal.com; s=google;
-        h=content-transfer-encoding:in-reply-to:subject:from:content-language
-         :references:cc:to:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6zZT04BE0Jy+qQBeK2Ut0h38WWYJ74qKLrwC/57eVCw=;
-        b=NSXT/nLjP4E4YaOEKbSANohMbFND9Z5HDvSHbwini59mb8vxFnQKUCj1eMVzGQLkWg
-         MJJAvTDgIJH17cvo1i6MwEtuYWSHj+g+HKMdCsZyckewz/9mFvfLrjWjlrjjVZKoI1v8
-         WeiWbZWfeIKA7QFyGKXFqw0vzektIICrbWCwM=
+        with ESMTP id S232395AbiLZWgE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 17:36:04 -0500
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E260D60FD;
+        Mon, 26 Dec 2022 14:35:55 -0800 (PST)
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-14fb3809eaeso7875284fac.1;
+        Mon, 26 Dec 2022 14:35:55 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:content-language
-         :references:cc:to:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6zZT04BE0Jy+qQBeK2Ut0h38WWYJ74qKLrwC/57eVCw=;
-        b=hXuonOBICiMurxlfh2GrBZWosU4I1wGxWPiPlbLPFK6xzpFrmH89/4jcZKC/nOmfxQ
-         bso9JnSznXg3oEGdjojbV+CtbthaEyUpGx1lkDNXcgyq+LYV/dj26+3UqKowdCd5zbq2
-         o750FTlSRa0DMOeJHMdLwgKUCtNxdgbRKakiRWQWcMj+WxlPVajWmZVFB9bIUAbatw8Z
-         awfzey9XcV2JOrDgy0b3WKea0gfwfhCEa9Nm7A3yNxKIr6fgjimsngVqIxcK++zr/muZ
-         Ry60FXPuE3/ISm8lPgexM3AoCFgJetKhCccDEYrbD/OVtp8xD9Tf5f9/M2qKBeIUnPLT
-         y0dg==
-X-Gm-Message-State: AFqh2kpcZBcSN3kZAC10q22g0jNs4Di1IP/LPjwrA3Aj/EMxr9SLUxe/
-        fEUheVuwHKYdHIaPkTx0PriUGg==
-X-Google-Smtp-Source: AMrXdXu4HGH/Oc5jIA0bmeKP0p6oaZVxyT0RYL1f1Kixkj8ddZFdQ7bpumdtU2zazOZhNJvhQwws1w==
-X-Received: by 2002:a17:902:ee13:b0:189:13df:9d86 with SMTP id z19-20020a170902ee1300b0018913df9d86mr23857377plb.14.1672086919133;
-        Mon, 26 Dec 2022 12:35:19 -0800 (PST)
-Received: from [192.168.1.33] ([192.183.212.197])
-        by smtp.googlemail.com with ESMTPSA id p23-20020a1709027ed700b00178b6ccc8a0sm7541996plb.51.2022.12.26.12.35.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Dec 2022 12:35:18 -0800 (PST)
-Message-ID: <beda0a3a-05d9-6c24-0fd2-1d80a86beb6d@schmorgal.com>
-Date:   Mon, 26 Dec 2022 12:35:15 -0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-To:     Adrian Hunter <adrian.hunter@intel.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mXw9ffGM0STfm5nv2OP42rA/NLvK1bhEG4FMYvs1IJQ=;
+        b=BmkbRxOaTn2INrqDp6S9y/hlVo0HfHP9lKviiRa8bRDohfFbYLJiq9tg9u3W+I0m00
+         5cQkg7uIwdMdqH4m3iqHMyXKNGnk2S7M2kpaO6q1b+S2APYPlc4cp6I/IGkSHoZHgps9
+         xw3JQ1QRVR+AmYW6hRIqAkc483Uiz7frayamuG6Heo9gR/9NZzVOYe0HMHVY06gFXaDN
+         WDXxYHSfHkFULlTbPKZJSZ2bWpSDuQxPyi/E3kiZCJMsqkBCvWhx0TZBDtIMcKw0HRyX
+         PkEteC7tGY0Bb45UVCN6XQyBuJqIH3O158PegrLmpIfz0X/pt7pBMmAgjBDgHFyuqYw4
+         hkMQ==
+X-Gm-Message-State: AFqh2kpD3knWuxy2EAnIXF9NdTjeugUZjf628ZeQ6VWoTKtyGuONlTCs
+        p64kkDu4x+ig2yd9R7z2gdl4jKM3Kg==
+X-Google-Smtp-Source: AMrXdXtqHkssymZkRQcOlIcbqWQOAhxG9xqARqlEjOUPU6wmQcC5aU0CYeWs3hZzRW6MUwM2J52mkg==
+X-Received: by 2002:a05:6871:1c5:b0:14c:2aca:ac10 with SMTP id q5-20020a05687101c500b0014c2acaac10mr10626044oad.23.1672094155568;
+        Mon, 26 Dec 2022 14:35:55 -0800 (PST)
+Received: from robh_at_kernel.org ([2605:ef80:80e8:2792:eb0e:539f:f657:547b])
+        by smtp.gmail.com with ESMTPSA id g17-20020a056870c15100b00148316f78fesm5441578oad.2.2022.12.26.14.35.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Dec 2022 14:35:55 -0800 (PST)
+Received: (nullmailer pid 67156 invoked by uid 1000);
+        Mon, 26 Dec 2022 21:53:14 -0000
+Date:   Mon, 26 Dec 2022 15:53:14 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        Ulf Hansson <ulf.hansson@linaro.org>
-References: <20221202031330.94130-1-doug@schmorgal.com>
- <20221202031330.94130-2-doug@schmorgal.com>
- <c2d5fb16-2654-6406-63da-626d6d5029c3@intel.com>
-Content-Language: en-US
-From:   Doug Brown <doug@schmorgal.com>
-Subject: Re: [PATCH v2 1/8] mmc: sdhci-pxav2: add initial support for PXA168
- V1 controller
-In-Reply-To: <c2d5fb16-2654-6406-63da-626d6d5029c3@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: Re: [PATCH] dt-bindings: remoteproc: qcom,glink-edge: add GPR node
+Message-ID: <167209158838.66981.1878172348789642636.robh@kernel.org>
+References: <20221223132213.81273-1-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221223132213.81273-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adrian,
 
-On 12/22/2022 8:03 AM, Adrian Hunter wrote:
-> On 2/12/22 05:13, Doug Brown wrote:
->> Add a new compatible string for the version 1 controller used in the
->> PXA168, along with necessary quirks. Use a separate ops struct in
->> preparation for a silicon bug workaround only necessary on V1.
->>
->> Signed-off-by: Doug Brown <doug@schmorgal.com>
->> ---
->>   drivers/mmc/host/sdhci-pxav2.c | 18 +++++++++++++++++-
->>   1 file changed, 17 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/mmc/host/sdhci-pxav2.c b/drivers/mmc/host/sdhci-pxav2.c
->> index f18906b5575f..2f9fa0ecbddd 100644
->> --- a/drivers/mmc/host/sdhci-pxav2.c
->> +++ b/drivers/mmc/host/sdhci-pxav2.c
->> @@ -101,6 +101,14 @@ static void pxav2_mmc_set_bus_width(struct sdhci_host *host, int width)
->>   	writeb(ctrl, host->ioaddr + SDHCI_HOST_CONTROL);
->>   }
->>   
->> +static const struct sdhci_ops pxav1_sdhci_ops = {
->> +	.set_clock     = sdhci_set_clock,
->> +	.get_max_clock = sdhci_pltfm_clk_get_max_clock,
->> +	.set_bus_width = pxav2_mmc_set_bus_width,
->> +	.reset         = pxav2_reset,
->> +	.set_uhs_signaling = sdhci_set_uhs_signaling,
->> +};
->> +
->>   static const struct sdhci_ops pxav2_sdhci_ops = {
->>   	.set_clock     = sdhci_set_clock,
->>   	.get_max_clock = sdhci_pltfm_clk_get_max_clock,
->> @@ -114,6 +122,9 @@ static const struct of_device_id sdhci_pxav2_of_match[] = {
->>   	{
->>   		.compatible = "mrvl,pxav2-mmc",
->>   	},
->> +	{
->> +		.compatible = "mrvl,pxav1-mmc",
->> +	},
->>   	{},
->>   };
->>   MODULE_DEVICE_TABLE(of, sdhci_pxav2_of_match);
->> @@ -208,7 +219,12 @@ static int sdhci_pxav2_probe(struct platform_device *pdev)
->>   			host->mmc->pm_caps |= pdata->pm_caps;
->>   	}
->>   
->> -	host->ops = &pxav2_sdhci_ops;
->> +	if (match && of_device_is_compatible(dev->of_node, "mrvl,pxav1-mmc")) {
->> +		host->quirks |= SDHCI_QUIRK_NO_BUSY_IRQ | SDHCI_QUIRK_32BIT_DMA_SIZE;
->> +		host->ops = &pxav1_sdhci_ops;
->> +	} else {
->> +		host->ops = &pxav2_sdhci_ops;
->> +	}
+On Fri, 23 Dec 2022 14:22:13 +0100, Krzysztof Kozlowski wrote:
+> The existing SM8450 DTS (and newer platforms) come with a "gpr" child node,
+> not "apr":
 > 
-> It would be better to put the information above in a structure and
-> get it with of_device_get_match_data() (instead of of_match_device).
-> Also drivers typically assume there is always a match since that
-> is the only way the driver ->probe() will get run.
-
-Thanks for all of your great feedback on this series. That makes sense.
-I did have one question about this suggestion. There are other parts of
-sdhci_pxav2_probe() that don't assume there was a match so that it can
-be set up the old way as a platform_device without CONFIG_OF. I was
-trying to preserve compatibility by defaulting to pxav2_sdhci_ops if
-it was set up as a platform_device. Is it all right if I leave a
-fallback in place for that, or should I just end compatibility with the
-old way at this point and assume a match in all cases? I don't see any
-legacy board files that use this driver.
-
+>   sm8450-sony-xperia-nagara-pdx224.dtb: remoteproc@30000000: glink-edge: Unevaluated properties are not allowed ('gpr' was unexpected)
+>     From schema: Documentation/devicetree/bindings/remoteproc/qcom,sm8350-pas.yaml
 > 
->>   
->>   	ret = sdhci_add_host(host);
->>   	if (ret)
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../bindings/remoteproc/qcom,glink-edge.yaml  | 24 ++++++++++++++++++-
+>  1 file changed, 23 insertions(+), 1 deletion(-)
 > 
 
-Thanks,
-Doug
+Reviewed-by: Rob Herring <robh@kernel.org>
