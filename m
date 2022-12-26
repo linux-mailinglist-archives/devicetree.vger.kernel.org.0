@@ -2,233 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1D67655F9F
-	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 04:51:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B8E5655FB6
+	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 05:22:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231519AbiLZDvK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Dec 2022 22:51:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51186 "EHLO
+        id S231573AbiLZEV7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Dec 2022 23:21:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229595AbiLZDvI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Dec 2022 22:51:08 -0500
-Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C693F4D;
-        Sun, 25 Dec 2022 19:51:07 -0800 (PST)
-Received: by mail-vs1-xe31.google.com with SMTP id 128so9396715vsz.12;
-        Sun, 25 Dec 2022 19:51:07 -0800 (PST)
+        with ESMTP id S229842AbiLZEV6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Dec 2022 23:21:58 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8A6821AC
+        for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 20:21:57 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id g13so14672425lfv.7
+        for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 20:21:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ebdzjNZkPM5tKxMYiRS8XjnRbsm2WIJ55zWlFIDdo/M=;
-        b=MblcnAWS481tElFFCtcHLHp/1bPzKgl42LGIunOJDMq/cyFIfuNEH4PhXP5wO3p+h1
-         AA7U0R2Rcur3i3kidhnOFtdTL2uSlKc8bG9PN/K620uCQBIvm1Trli0lvc45dK3+lxCF
-         tXD1RLPlndPfgZw6EkuDBl9UGPQYaFpDCb+tU6MVaOxefhdxRaDbIf2q7xs0bL9xYveH
-         i+3iJD1NSDavycLLPvi3FG8BMIxkT2gmb0zRI8LMQjah1vomnCt5G0wuDTffveUvFMJp
-         GurW/p8kYzEka0SE8Q8XWG0aKG/wlaknT5iaONCXk/MDLJET8P56lKvhSq4R0v6dvX5Z
-         EBVg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+3SEVXCpqtMQ7g1JXR22/XO6zUi+AE7nM2fHDOiRODo=;
+        b=xsINPV2IWkJHhVZvcG4Xea2uI16QV1FXkcXDJrc45h4mPuQxbsvlbrmQBc7Q9u992z
+         M2whfyxRnsO2LhhIzURRkPUdROLDNPIb7k8fdW65l3t82I9HYZQWwsDN7ZV35QIndMX3
+         2qro9LWR7C9YbZi/nPMJD7BD8mPJWeoTRpOP9cib8Cwsj6NJ+P4Xo4rqTndVBvFIz2NS
+         YbrGgB8HXNr9kh6MDdm3KqKMff1JNQ+KZKx2CXT1X7oCbDbWH3nuVjGap3Y+WNE9TbyZ
+         Bi1eDYNPDwghjub+RDxP2sKjLaIPBCthsSTGpbj4XX5Qj394PMkKOjbybigJqwGGIL3X
+         2Qjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ebdzjNZkPM5tKxMYiRS8XjnRbsm2WIJ55zWlFIDdo/M=;
-        b=TFFFTJ+pXKB73LG1mAzNNaozkpJM+foariq36lhkH8keUXW1wRY0SN6AAggzro/l6g
-         PAXXP8AlDtMEUqfW3SqCyJnPJ5PZ1Uymv/HQ1txIQE8iXjBNIuP5Et7UyCE8Q9go1vIV
-         RU8BT2G3xVf5FLv0bG1VDaiJs+jgYBkRjgw/FrBM/KsJkyiAA4fQE512UFWzuevmuYFQ
-         lZSeaqyCjaSnAnI9ppBHSL1HrqTcHuWYfCArHs1vaZFtHB9q/lEAYh81I1CD7JK0GOLb
-         jQ743dviGfjihfYo1/aZUiLwl6lE1MjeLt4MUA7UZrqtxfu5JgBeyrbLUTVvbHgRA79A
-         072g==
-X-Gm-Message-State: AFqh2koVKv/6/RXeBUWlBYDAfDHAx5WRBUGNFNyneDvuRJOkKOysh6HA
-        YpB+q9AOv6IE5CEp8QiLOEYVri/ZVkttrWe1u2Y=
-X-Google-Smtp-Source: AMrXdXv7O/NhidrnpBGzUMwPNfsTKnYtgU/aAn85pdY6ULJakn7iPm/W42Lju4MTmpWQuMZLKSjjRpip2rnB5HnPrGA=
-X-Received: by 2002:a05:6102:e94:b0:3b1:3231:ac9e with SMTP id
- l20-20020a0561020e9400b003b13231ac9emr1815373vst.50.1672026666154; Sun, 25
- Dec 2022 19:51:06 -0800 (PST)
+        bh=+3SEVXCpqtMQ7g1JXR22/XO6zUi+AE7nM2fHDOiRODo=;
+        b=kHnYILseOw195Y4bA4PgiOoOK1fGMFQ6lb34gUGQtzxdjoaqX6OzdPcN8PP2hTBKws
+         KsTm4w1fgfXg/bCdxHgBaX/UnGRPnk1a1Y8IqPyE1qdA4ib5C/YpeUwmhYQsOVgsVRV7
+         imsDS28heKNBt++kifUan4+9Tslrfh6Wh6/G8Ml3iSvJjOmGYbUa2nznrwo4IAv3+9Sx
+         pRhbRyWU6kbfr+dk7sdkHiJfClsYyFrGlYTKwbQIDiJJGQ2bJ2NWje3vf3nKBxL2PeJi
+         pDcfN9pN38C+K3v58bL4oNZCJ6ZtWPaJhVOTVdtveoCF6f8gjedYuXvzMGZQvL6UAv76
+         Iwfw==
+X-Gm-Message-State: AFqh2kraZDtwqml3g45sWKr8BkYQ+MtTJqJ++24Zu+fNZMndhMHRFvjh
+        Zw5cMoOOuLv0gTmu/JPXZR8tcA==
+X-Google-Smtp-Source: AMrXdXtEyxcUu4KSqzIWG86PCTaQVWmuwiR94Vitd+SGffEoqiqVJMRnodhEC3A62MvlRWU6ZS+Fiw==
+X-Received: by 2002:a05:6512:1688:b0:4ca:fa75:a64a with SMTP id bu8-20020a056512168800b004cafa75a64amr2651323lfb.0.1672028515566;
+        Sun, 25 Dec 2022 20:21:55 -0800 (PST)
+Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id o9-20020ac25e29000000b004b4b5da5f80sm1641129lfg.219.2022.12.25.20.21.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 25 Dec 2022 20:21:55 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 00/16] clk: qcom: gcc-qcs404: convert to parent_data
+Date:   Mon, 26 Dec 2022 06:21:38 +0200
+Message-Id: <20221226042154.2666748-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-References: <20221223032859.3055638-1-milkfafa@gmail.com> <20221223032859.3055638-4-milkfafa@gmail.com>
- <Y6WniKjA6BHLknP6@zn.tnic>
-In-Reply-To: <Y6WniKjA6BHLknP6@zn.tnic>
-From:   Kun-Fa Lin <milkfafa@gmail.com>
-Date:   Mon, 26 Dec 2022 11:50:54 +0800
-Message-ID: <CADnNmFqQ5_OQ-FiqdSZAtXFdG2X=qociXBykqL0TqtMw9r_=_A@mail.gmail.com>
-Subject: Re: [PATCH v17 3/3] EDAC/npcm: Add NPCM memory controller driver
-To:     Borislav Petkov <bp@alien8.de>
-Cc:     krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
-        tony.luck@intel.com, james.morse@arm.com, mchehab@kernel.org,
-        rric@kernel.org, benjaminfair@google.com, yuenn@google.com,
-        venture@google.com, avifishman70@gmail.com, tmaimon77@gmail.com,
-        tali.perry1@gmail.com, linux-edac@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        openbmc@lists.ozlabs.org, KWLIU@nuvoton.com, YSCHU@nuvoton.com,
-        ctcchien@nuvoton.com, kflin@nuvoton.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Boris,
+This patchset reworks and improves the Qualcomm QCS404 global clock
+controller driver and it's platform usage.
 
-Thanks for the review.
+It fixes some omissions (MDSS and oxili GDSCs, incorrect clock names,
+direct number usage in the qcs404.dtsi). Then it converts the gcc driver
+to use parent_data/parent_hws where prefereable and finally applies
+these features and fixes to the qcs404.dtsi.
 
-> > +     u64 addr = 0;
-> > +     u64 data = 0;
-> > +     u32 val_h = 0;
-> > +     u32 val_l, id, synd;
->
->         u32 val_h = 0, val_l, id, synd;
->         u64 addr = 0, data = 0;
->
-> Also, for all your functions:
->
-> The EDAC tree preferred ordering of variable declarations at the
-> beginning of a function is reverse fir tree order::
->
->         struct long_struct_name *descriptive_name;
->         unsigned long foo, bar;
->         unsigned int tmp;
->         int ret;
->
-> The above is faster to parse than the reverse ordering::
->
->         int ret;
->         unsigned int tmp;
->         unsigned long foo, bar;
->         struct long_struct_name *descriptive_name;
->
-> And even more so than random ordering::
->
->         unsigned long foo, bar;
->         int ret;
->         struct long_struct_name *descriptive_name;
->         unsigned int tmp;
+Dependency: [1] (for the qcs404.dtsi changes only)
 
-I'll check all functions and follow this order.
+[1] https://lore.kernel.org/linux-arm-msm/20221226031059.2563165-1-dmitry.baryshkov@linaro.org
 
-> > +     edac_mc_handle_error(HW_EVENT_ERR_CORRECTED, mci, 1, addr >> PAGE_SHIFT,
-> > +                          addr & ~PAGE_MASK, synd, 0, 0, -1, priv->message,
->
-> No need for that linebreak with the trailing piece.
->
-> > +                          "");
+Changes since v1:
+- Reworked the patchset to use indices for the clocks rather than fw
+  names (suggested by Konrad)
+- Added a patch to add the xo clock to the rpmcc node.
 
-> > +     u64 addr = 0;
-> > +     u64 data = 0;
-> > +     u32 val_h = 0;
-> > +     u32 val_l, id, synd;
->
-> As above.
+Dmitry Baryshkov (16):
+  dt-bindings: clock: qcom: gcc-qcs404: add two GDSC entries
+  dt-bindings: clock: qcom: gcc-qcs404: switch to gcc.yaml
+  dt-bindings: clock: qcom: gcc-qcs404: define clocks/clock-names for
+    QCS404
+  clk: qcom: gcc-qcs404: use ARRAY_SIZE instead of specifying
+    num_parents
+  clk: qcom: gcc-qcs404: disable gpll[04]_out_aux parents
+  clk: qcom: gcc-qcs404: fix names of the DSI clocks used as parents
+  clk: qcom: gcc-qcs404: fix the name of the HDMI PLL clock
+  clk: qcom: gcc-qcs404: get rid of the test clock
+  clk: qcom: gcc-qcs404: move PLL clocks up
+  clk: qcom: gcc-qcs404: use parent_hws/_data instead of parent_names
+  clk: qcom: gcc-qcs404: sort out the cxo clock
+  clk: qcom: gcc-qcs404: add support for GDSCs
+  arm64: dts: qcom: qcs404: use symbol names for PCIe resets
+  arm64: dts: qcom: qcs404: add power-domains-cells to gcc node
+  arm64: dts: qcom: qcs404: add clocks to the gcc node
+  arm64: dts: qcom: qcs404: add xo clock to rpm clock controller
 
-Check.
+ .../bindings/clock/qcom,gcc-qcs404.yaml       |  38 +-
+ arch/arm64/boot/dts/qcom/qcs404.dtsi          |  22 +-
+ drivers/clk/qcom/gcc-qcs404.c                 | 841 +++++++++---------
+ include/dt-bindings/clock/qcom,gcc-qcs404.h   |   4 +
+ 4 files changed, 455 insertions(+), 450 deletions(-)
 
-> > +     regmap_read(npcm_regmap, pdata->ctl_int_status, &status);
-> > +     if (status & pdata->int_status_ce_mask) {
-> > +             handle_ce(mci);
-> > +
-> > +             /* acknowledge the CE interrupt */
-> > +             regmap_write(npcm_regmap, pdata->ctl_int_ack,
-> > +                          pdata->int_ack_ce_mask);
-> > +             return IRQ_HANDLED;
-> > +     } else if (status & pdata->int_status_ue_mask) {
-> > +             handle_ue(mci);
-> > +
-> > +             /* acknowledge the UE interrupt */
-> > +             regmap_write(npcm_regmap, pdata->ctl_int_ack,
-> > +                          pdata->int_ack_ue_mask);
-> > +             return IRQ_HANDLED;
-> > +     }
->
->         WARN_ON_ONCE(1);
->
-> to catch weird cases.
+-- 
+2.35.1
 
-OK.
-
-> > +     /* write syndrome to XOR_CHECK_BITS */
-> > +     if (priv->error_type == 0) {
->
->         if (priv->error_type == ERROR_TYPE_CORRECTABLE
->
-> Use defines. Below too.
->
-> > +             if (priv->location == 0 && priv->bit > 63) {
-
-Will add defines.
-
-> > +                     edac_printk(KERN_INFO, EDAC_MOD_NAME,
-> > +                                 "data bit should not exceed 63\n");
->
->                                 "data bit should not exceed 63 (%d)\n", priv->bit...)
->
-> Below too.
->
-> > +                     return count;
-> > +             }
-> > +
-> > +             if (priv->location == 1 && priv->bit > 7) {
-> > +                     edac_printk(KERN_INFO, EDAC_MOD_NAME,
-> > +                                 "checkcode bit should not exceed 7\n");
-
-OK.
-
-> > +             syndrome = priv->location ? 1 << priv->bit :
-> > +                        data_synd[priv->bit];
->
->                 syndrome = priv->location ? 1 << priv->bit
->                                           : data_synd[priv->bit];
-
-Just to confirm the indentation, is it right as follows?
-
-syndrome = priv->location ? 1 << priv->bit
-                                           : data_synd[priv->bit];
-
-And I was wondering if I should just remove the line break and let it stick out?
-
-> I'd find it helpful if there were a short recipe in a comment here
-> explaining how the injection should be done...
->
-> > +static void setup_debugfs(struct mem_ctl_info *mci)
-> > +{
-
-OK, will add some injection examples here.
-
-> > +     regmap_update_bits(npcm_regmap, pdata->ctl_ecc_en, pdata->ecc_en_mask,
-> > +                        0);
->
-> You have a bunch of those things: the 80 cols rule is not a rigid and a
-> static one - you should rather apply common sense. As in:
->
-> Does it make sense to have this ugly linebreak with only the 0 argument there?
->
->         regmap_update_bits(npcm_regmap, pdata->ctl_ecc_en, pdata->ecc_en_mask,
->                            0);
->
-> or should I simply let it stick out:
->
->         regmap_update_bits(npcm_regmap, pdata->ctl_ecc_en, pdata->ecc_en_mask, 0);
->
-> and have much more readable code?
->
-> Please apply common sense to all your linebreaks above.
-
-Thanks for the guide.
-
-> > +     edac_mc_del_mc(&pdev->dev);
-> > +     edac_mc_free(mci);
->
-> <--- What happens if someone tries to inject errors right at this
-> moment, when you've freed the mci?
->
-> Hint: you should destroy resources in the opposite order you've
-> allocated them.
-
-Understand. I'll correct the destroy order.
-
-Regards,
-Marvin
