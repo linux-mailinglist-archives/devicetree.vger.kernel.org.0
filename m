@@ -2,117 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02843656212
-	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 12:12:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8232A65624F
+	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 12:58:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231934AbiLZLMZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Dec 2022 06:12:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54890 "EHLO
+        id S231716AbiLZL6I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Dec 2022 06:58:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231593AbiLZLMY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 06:12:24 -0500
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCA962BD8
-        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 03:12:23 -0800 (PST)
-Received: by mail-pj1-x102a.google.com with SMTP id gt4so10440523pjb.1
-        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 03:12:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=7rZU9dTo4wiGfju+EwyLkXwgkgO09mbh8HYe4DpIC1w=;
-        b=wTNiiwzt/3kspxRepwC1qVDxgDCwVGnFpuQ1eXIMlcaAuIHSpkyw/XlLbSm1ZP0B3I
-         GlwC3aCchJJn6IYLy5ZLChBNDbOG8IjAiIr/TMUoZfdH9aF72YnYFO02Ql3ghe13h3qJ
-         Z5awNX+Knrx9vtLeBheG8khM9CESWwj8/0DmJVL4VCLbSr38cacUOX9wYhTu5JUqqiiN
-         wmAzq+rfAoww/vSGnSElcmAaAJyNopFw+Sldm9e/WM8yagDND0yiWHU1KSatLmUBye26
-         3sxFKfDEaEt00UQHwezBKZUcGyCy5jLR0KP1F7syonxVNSKh3Uhg2b2SWL7EB0OG86+E
-         ql6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7rZU9dTo4wiGfju+EwyLkXwgkgO09mbh8HYe4DpIC1w=;
-        b=gen/wKidqrWiQ9Z+9RFdzL9imCNwR0XoXatm/d/RVdZRurvJNwN1nedGW1F78aVohu
-         QrC8l4LFrGE9B6RtSpVcIeYh0+xuPri+93reZMseStlulpExXV/7jDV2WjDcn4nEd928
-         FXt14TGHBnqrMCvypxyt9lxsyvOnznpFJ2M4o7pTjazuWl9dUQu//2ddcAMRZOeyoftV
-         nMlwFYFXEtS6nkrZfj2NVx0OEFfdfzdImcmvkRT7hOGeQrSciUPxQpkxAV79OkllPDmD
-         +toI47MRgmwhqKOzYE+fH+XNdD7VbaFlIpNGQGxyIQ6ItnwdmfY+cdKETOfjqU2aIhgZ
-         1wog==
-X-Gm-Message-State: AFqh2kqhVNzggTwnFZW28NHbxe+rhg7Y8vPdAzFaHU6gz89U8M/naQNV
-        3fRp5ibbmk37MEZqCiXc7TxBAfyF4rkS9lnxX58jpA==
-X-Google-Smtp-Source: AMrXdXvBV4igNAgXU1JyRiRa+FjCfnx1fNUHpTVHdpvoED/8dwGrSMCqMjrYL0r7mq0TDsyV/NPDQIp+e8Le7sjgZBY=
-X-Received: by 2002:a17:903:4294:b0:192:7e73:f21c with SMTP id
- ju20-20020a170903429400b001927e73f21cmr137439plb.23.1672053143381; Mon, 26
- Dec 2022 03:12:23 -0800 (PST)
+        with ESMTP id S229686AbiLZL6G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 06:58:06 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E2C16179;
+        Mon, 26 Dec 2022 03:58:05 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 3AA24B80C75;
+        Mon, 26 Dec 2022 11:58:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 895F8C433EF;
+        Mon, 26 Dec 2022 11:58:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1672055882;
+        bh=BCmdieMBicJXuI4/ZzBxG2C09Q8TUmVSKdBVNnqsWpU=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=te4U/bKJZYL4EQq81SVivnn5sAAcIlPZSoc8sgbMclBd6VwxkgzF/U449dFkQGQy+
+         c6fLeqQ1NzSM2BW0L3AD0BhSaV+h7beqCBfjXtXDjzGCVfYh9IW/nXXSDdy4sax1yy
+         QXyXhpZXX+KeyY93fGKGpgtWJveehZdNgZ+BNKJY3Ki/CUQLyw9UuddKrLtXZtoBrx
+         N56P9F1qyQuPWFyvmRhTXjmakqk4bB5mpKoEe3SlQTofARTV4vzWfSElvPWRPBnLld
+         KKCHDiVjimTxpRFN7nVBYDzwoaa4GcNpHAP4vKns7souAh0XrUWjJEiJixhyIAMUMq
+         +EyBEB9UvCr5Q==
+Received: by pali.im (Postfix)
+        id A794D77D; Mon, 26 Dec 2022 12:57:59 +0100 (CET)
+From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v4 1/3] dt-bindings: reset: syscon-reboot: Add priority property
+Date:   Mon, 26 Dec 2022 12:45:11 +0100
+Message-Id: <20221226114513.4569-1-pali@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20220820102925.29476-1-pali@kernel.org>
+References: <20220820102925.29476-1-pali@kernel.org>
 MIME-Version: 1.0
-References: <20221226063625.1913-1-anand@edgeble.ai> <20221226063625.1913-3-anand@edgeble.ai>
- <CA+VMnFwq=iHBMtpu6QQKdPDoMz8zU-4WyNOJmvHaCRgXx4RVNg@mail.gmail.com>
-In-Reply-To: <CA+VMnFwq=iHBMtpu6QQKdPDoMz8zU-4WyNOJmvHaCRgXx4RVNg@mail.gmail.com>
-From:   Anand Moon <anand@edgeble.ai>
-Date:   Mon, 26 Dec 2022 16:42:12 +0530
-Message-ID: <CACF1qnf+gAWqAqrqDVd_rtUJvnkB4soyxURkOuikmaRrrt1JDg@mail.gmail.com>
-Subject: Re: [PATCHv2 linux-next 3/4] ARM: dts: rockchip: rv1126: Add GMAC node
-To:     Jagan Teki <jagan@edgeble.ai>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Richard Cochran <richardcochran@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jagan,
+This new optional priority property allows to specify custom priority level
+of reset device. Prior this change priority level was hardcoded to 192 and
+not possible to specify or change. Specifying other value is needed for
+some boards. Default level when not specified stays at 192 as before.
 
-Thanks for the review comments.
+Signed-off-by: Pali Rohár <pali@kernel.org>
 
-On Mon, 26 Dec 2022 at 15:20, Jagan Teki <jagan@edgeble.ai> wrote:
->
-> On Mon, 26 Dec 2022 at 12:07, Anand Moon <anand@edgeble.ai> wrote:
-> >
-> > Rockchip RV1126 has GMAC 10/100/1000M ethernet controller
-> > add GMAC node for RV1126 SoC.
-> >
-> > Signed-off-by: Anand Moon <anand@edgeble.ai>
-> > ---
-> > drop SoB of Jagan Teki
-> > ---
-> >  arch/arm/boot/dts/rv1126.dtsi | 63 +++++++++++++++++++++++++++++++++++
-> >  1 file changed, 63 insertions(+)
-> >
-> > diff --git a/arch/arm/boot/dts/rv1126.dtsi b/arch/arm/boot/dts/rv1126.dtsi
-> > index 1cb43147e90b..bae318c1d839 100644
-> > --- a/arch/arm/boot/dts/rv1126.dtsi
-> > +++ b/arch/arm/boot/dts/rv1126.dtsi
-> > @@ -90,6 +90,69 @@ xin24m: oscillator {
-> >                 #clock-cells = <0>;
-> >         };
-> >
-> > +       gmac_clkin_m0: external-gmac-clockm0 {
-> > +               compatible = "fixed-clock";
-> > +               clock-frequency = <125000000>;
-> > +               clock-output-names = "clk_gmac_rgmii_clkin_m0";
-> > +               #clock-cells = <0>;
-> > +       };
-> > +
-> > +       gmac_clkini_m1: external-gmac-clockm1 {
-> > +               compatible = "fixed-clock";
-> > +               clock-frequency = <125000000>;
-> > +               clock-output-names = "clk_gmac_rgmii_clkin_m1";
-> > +               #clock-cells = <0>;
-> > +       };
->
-> These seems not needed,
+---
+Changes in v4:
+* Use restart-handler.yaml
 
-Ok, I will drop this in next version.
+Changes in v3:
+* Add explanation into commit message
 
-Thanks
--Anand
+Changes in v2:
+* Change sint32 to int32
+* Add default
+---
+ .../devicetree/bindings/power/reset/syscon-reboot.yaml      | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml b/Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml
+index da2509724812..f721bdf63a98 100644
+--- a/Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml
++++ b/Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml
+@@ -19,6 +19,9 @@ description: |+
+   sub-node of a "syscon", "simple-mfd" node. Though the regmap property
+   pointing to the system controller node is also supported.
+ 
++allOf:
++  - $ref: restart-handler.yaml#
++
+ properties:
+   compatible:
+     const: syscon-reboot
+@@ -42,6 +45,9 @@ properties:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     description: The reset value written to the reboot register (32 bit access).
+ 
++  priority:
++    default: 192
++
+ required:
+   - compatible
+   - offset
+-- 
+2.20.1
+
