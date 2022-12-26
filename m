@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50DB5655FCD
-	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 05:22:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B36A655FD2
+	for <lists+devicetree@lfdr.de>; Mon, 26 Dec 2022 05:22:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231600AbiLZEWN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Dec 2022 23:22:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55246 "EHLO
+        id S231673AbiLZEWQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Dec 2022 23:22:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231601AbiLZEWC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Dec 2022 23:22:02 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA1382BE7
-        for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 20:22:00 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id f34so14666659lfv.10
-        for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 20:22:00 -0800 (PST)
+        with ESMTP id S231620AbiLZEWF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Dec 2022 23:22:05 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4F032BF7
+        for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 20:22:02 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id 1so14688918lfz.4
+        for <devicetree@vger.kernel.org>; Sun, 25 Dec 2022 20:22:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+BSMHD+c2gHpfQgRvnQWh7QBxsgW6TDMIYioeA0tiyU=;
-        b=GSG/uPASW5MnAW2J6MoCurBK4kTDfD09wDZMETAMkR2BQDSJZLXgPBxuC7WpCIsXfa
-         bhladb55cCu6v+AxHyDcUDrg6Vj/dYL98aez4hmlJUQfAcdc/Fww2Iu000YFNU6n6gB/
-         Qfk6QMBHB+ttNsUOnEgK5cSXB+zDgyLQ6P4V8UQKsKM283wN8mX4TuL0N5obbTXUjCX2
-         Od8mib1YgWK1Pu4zgR/Lfz9P7FVPLj3XsCbFmCmyvfMB5WND4V9yaWyE6DhdYvIt6fgm
-         VSfMjgP+DWCNG+orVpYrp5eNViOuoOAVAQXFkrBksd6yembPg6LyNsgw0u5ZEdO0f50/
-         ZXDA==
+        bh=QM1NA3WnzCUzuM7DIb0MXBpOI8QpMEHVGqr4lbpcw6E=;
+        b=ePvzrTg0SDyKWv3XcziFp1y3BAjEtmWHW0GA+1aKDoQWIHSufAbsqo/gqVd43mYIiC
+         a1pGnvqhD2pQmtpvKi2sWN830SGZjT65qpsccCFbpkI64CyDsPrneC44V10WaXqu7fjO
+         xi4HlgaUni/JBmaFqOS8mTaWKEDtkVyOL0i8baT/Ckoauet9D7gjTWpranLvOLGoT5Co
+         Ksq+ZnV2iY0IhJrO17Oihss6u3N2T2+wVmZnsCr2tSoCaep9a2XWARtpdxfTw7fUnNY4
+         A/vrDsoammeRN5ZjLIFlE+m+5hmTC/tepjj/B4TsOUDcgRp3c8tbuLm7L+qIKF+JVGMV
+         Oefw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=+BSMHD+c2gHpfQgRvnQWh7QBxsgW6TDMIYioeA0tiyU=;
-        b=MAKa27teNBIB4oAIyQioeXqs0p4ItLTGjSokkVsbBZa625Yj5zcFLOrrYO1EyKl4mT
-         WyLkRBtxgTAwdBRR/8TA4Wtne3oTCM1CUvrfzHL8AXNnlhVedjQIDyehAkCuBHtVGUFJ
-         fYmjHm2YnObBlg2d7Myu+8bA1Z2sVJdwJIW50rzT/TBGk4GAQU3xY1I/y2I44rU1VZv5
-         usDNLhv5fnYB4gxiXLtsiPjOTBa1ng5oe6MBLwW5iAi1gAfg/EzofRzfONeoGSD0t2tV
-         EFkpIgK1d+77U7NC/NhkCH5zlylICT2xAC8mPLyoCSIOdc2QiYxqw7L2/D6ged/LSAsZ
-         buSw==
-X-Gm-Message-State: AFqh2koEJ0T/2jAzZWK9K6EVcxMLF+MKsiac9ZlqPakRa9v2wIT52FWx
-        zPAcEVrnDgmQSf4Bpp5JYt3kfg==
-X-Google-Smtp-Source: AMrXdXtny0j8UKNsOeIfUn/TQ+czvRnUPd4+0U0IkWIjg7Y9RXoIwpyLFJNU1J0wXAn08wzdm7GOvg==
-X-Received: by 2002:ac2:562d:0:b0:4b5:670e:b708 with SMTP id b13-20020ac2562d000000b004b5670eb708mr4155105lff.14.1672028520462;
-        Sun, 25 Dec 2022 20:22:00 -0800 (PST)
+        bh=QM1NA3WnzCUzuM7DIb0MXBpOI8QpMEHVGqr4lbpcw6E=;
+        b=T/gxGSmIcyjSrSmNMUkVZXQSqIQBM2mbh02gdszSdY7qSDoipdVh3aKelk949sekvD
+         MFENjDvjPIY1MBwI/Sw8VoYYBF5U7mjJ/nG5rHTDqJJyEjebJt+IRI9WW8Ta7BG70VQp
+         oRvCvEqIiH0n31DAy39t4LQ7+KO5IMnZ6lral5k76oDUdu4qqVp7XRxUhg2Q2yfcE3Pb
+         HmKBZq50jQFzW5NudaxsHiziTaK01Qd7sEqmIKgNn93Es///ZPvh6YB0vLsshVEuCkKN
+         erTTYwlC03eF+9LeITpQstzaJlETAvzcJpk6/ANsNSlNz4hJ1urOY+d+J/Rs0YEJcdEN
+         Fv1Q==
+X-Gm-Message-State: AFqh2koOo1Qzr5wvbq8ljjSswaf6G2iZqG/1yWaxselZxfIFNHQOfcnS
+        AYUQzYRa4A1Tfu057DXboWAj6w==
+X-Google-Smtp-Source: AMrXdXtW1nCgdkbrHXhcjicn6j2V9OWLvwvd/Dr0BDIf9EddSzEQOU0pvITg7xzFjdqMkeGI5CcTQQ==
+X-Received: by 2002:a05:6512:c7:b0:4cb:7c2:8cb6 with SMTP id c7-20020a05651200c700b004cb07c28cb6mr567846lfp.44.1672028521102;
+        Sun, 25 Dec 2022 20:22:01 -0800 (PST)
 Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id o9-20020ac25e29000000b004b4b5da5f80sm1641129lfg.219.2022.12.25.20.21.59
+        by smtp.gmail.com with ESMTPSA id o9-20020ac25e29000000b004b4b5da5f80sm1641129lfg.219.2022.12.25.20.22.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Sun, 25 Dec 2022 20:22:00 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
@@ -59,10 +59,10 @@ To:     Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Taniya Das <quic_tdas@quicinc.com>
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v2 07/16] clk: qcom: gcc-qcs404: fix the name of the HDMI PLL clock
-Date:   Mon, 26 Dec 2022 06:21:45 +0200
-Message-Id: <20221226042154.2666748-8-dmitry.baryshkov@linaro.org>
+        devicetree@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>
+Subject: [PATCH v2 08/16] clk: qcom: gcc-qcs404: get rid of the test clock
+Date:   Mon, 26 Dec 2022 06:21:46 +0200
+Message-Id: <20221226042154.2666748-9-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221226042154.2666748-1-dmitry.baryshkov@linaro.org>
 References: <20221226042154.2666748-1-dmitry.baryshkov@linaro.org>
@@ -70,38 +70,247 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The QCS404 uses 28nm HDMI PHY. The in-kernel driver doesn't provide the
-PLL (yet), but the out of tree patches used the name "hdmi_pll" for it.
-Other Qualcomm HDMI PHYs use either the name "hdmi_pll" (8960) or
-"hdmipll" (8996). Thus change the expected HDMI PLL clock name to
-"hdmi_pll".
+The test clock isn't in the bindings and apparently it's not used by
+anyone upstream.  Remove it.
 
+Suggested-by: Stephen Boyd <swboyd@chromium.org>
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/clk/qcom/gcc-qcs404.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/clk/qcom/gcc-qcs404.c | 34 ----------------------------------
+ 1 file changed, 34 deletions(-)
 
 diff --git a/drivers/clk/qcom/gcc-qcs404.c b/drivers/clk/qcom/gcc-qcs404.c
-index 67a180d688c3..241768da2263 100644
+index 241768da2263..e1d1d3a700f7 100644
 --- a/drivers/clk/qcom/gcc-qcs404.c
 +++ b/drivers/clk/qcom/gcc-qcs404.c
-@@ -152,7 +152,7 @@ static const struct parent_map gcc_parent_map_8[] = {
+@@ -22,7 +22,6 @@
+ #include "reset.h"
+ 
+ enum {
+-	P_CORE_BI_PLL_TEST_SE,
+ 	P_DSI0_PHY_PLL_OUT_BYTECLK,
+ 	P_DSI0_PHY_PLL_OUT_DSICLK,
+ 	P_GPLL0_OUT_MAIN,
+@@ -39,29 +38,24 @@ enum {
+ static const struct parent_map gcc_parent_map_0[] = {
+ 	{ P_XO, 0 },
+ 	{ P_GPLL0_OUT_MAIN, 1 },
+-	{ P_CORE_BI_PLL_TEST_SE, 7 },
+ };
+ 
+ static const char * const gcc_parent_names_0[] = {
+ 	"cxo",
+ 	"gpll0_out_main",
+-	"core_bi_pll_test_se",
+ };
+ 
+ static const char * const gcc_parent_names_ao_0[] = {
+ 	"cxo",
+ 	"gpll0_ao_out_main",
+-	"core_bi_pll_test_se",
+ };
+ 
+ static const struct parent_map gcc_parent_map_1[] = {
+ 	{ P_XO, 0 },
+-	{ P_CORE_BI_PLL_TEST_SE, 7 },
+ };
+ 
+ static const char * const gcc_parent_names_1[] = {
+ 	"cxo",
+-	"core_bi_pll_test_se",
+ };
+ 
+ static const struct parent_map gcc_parent_map_2[] = {
+@@ -82,50 +76,42 @@ static const struct parent_map gcc_parent_map_3[] = {
+ 	{ P_XO, 0 },
+ 	{ P_GPLL0_OUT_MAIN, 1 },
+ 	{ P_GPLL6_OUT_AUX, 2 },
+-	{ P_CORE_BI_PLL_TEST_SE, 7 },
+ };
+ 
+ static const char * const gcc_parent_names_3[] = {
+ 	"cxo",
+ 	"gpll0_out_main",
+ 	"gpll6_out_aux",
+-	"core_bi_pll_test_se",
+ };
+ 
+ static const struct parent_map gcc_parent_map_4[] = {
+ 	{ P_XO, 0 },
+ 	{ P_GPLL1_OUT_MAIN, 1 },
+-	{ P_CORE_BI_PLL_TEST_SE, 7 },
+ };
+ 
+ static const char * const gcc_parent_names_4[] = {
+ 	"cxo",
+ 	"gpll1_out_main",
+-	"core_bi_pll_test_se",
+ };
+ 
+ static const struct parent_map gcc_parent_map_5[] = {
+ 	{ P_XO, 0 },
+ 	{ P_DSI0_PHY_PLL_OUT_BYTECLK, 1 },
+-	{ P_CORE_BI_PLL_TEST_SE, 7 },
+ };
+ 
+ static const char * const gcc_parent_names_5[] = {
+ 	"cxo",
+ 	"dsi0pllbyte",
+-	"core_bi_pll_test_se",
+ };
+ 
+ static const struct parent_map gcc_parent_map_6[] = {
+ 	{ P_XO, 0 },
+ 	{ P_DSI0_PHY_PLL_OUT_BYTECLK, 2 },
+-	{ P_CORE_BI_PLL_TEST_SE, 7 },
+ };
+ 
+ static const char * const gcc_parent_names_6[] = {
+ 	"cxo",
+ 	"dsi0pllbyte",
+-	"core_bi_pll_test_se",
+ };
+ 
+ static const struct parent_map gcc_parent_map_7[] = {
+@@ -133,7 +119,6 @@ static const struct parent_map gcc_parent_map_7[] = {
+ 	{ P_GPLL0_OUT_MAIN, 1 },
+ 	{ P_GPLL3_OUT_MAIN, 2 },
+ 	{ P_GPLL6_OUT_AUX, 3 },
+-	{ P_CORE_BI_PLL_TEST_SE, 7 },
+ };
+ 
+ static const char * const gcc_parent_names_7[] = {
+@@ -141,19 +126,16 @@ static const char * const gcc_parent_names_7[] = {
+ 	"gpll0_out_main",
+ 	"gpll3_out_main",
+ 	"gpll6_out_aux",
+-	"core_bi_pll_test_se",
+ };
+ 
+ static const struct parent_map gcc_parent_map_8[] = {
+ 	{ P_XO, 0 },
+ 	{ P_HDMI_PHY_PLL_CLK, 1 },
+-	{ P_CORE_BI_PLL_TEST_SE, 7 },
+ };
  
  static const char * const gcc_parent_names_8[] = {
  	"cxo",
--	"hdmi_phy_pll_clk",
-+	"hdmi_pll",
- 	"core_bi_pll_test_se",
+ 	"hdmi_pll",
+-	"core_bi_pll_test_se",
  };
  
+ static const struct parent_map gcc_parent_map_9[] = {
+@@ -161,7 +143,6 @@ static const struct parent_map gcc_parent_map_9[] = {
+ 	{ P_GPLL0_OUT_MAIN, 1 },
+ 	{ P_DSI0_PHY_PLL_OUT_DSICLK, 2 },
+ 	{ P_GPLL6_OUT_AUX, 3 },
+-	{ P_CORE_BI_PLL_TEST_SE, 7 },
+ };
+ 
+ static const char * const gcc_parent_names_9[] = {
+@@ -169,43 +150,36 @@ static const char * const gcc_parent_names_9[] = {
+ 	"gpll0_out_main",
+ 	"dsi0pll",
+ 	"gpll6_out_aux",
+-	"core_bi_pll_test_se",
+ };
+ 
+ static const struct parent_map gcc_parent_map_10[] = {
+ 	{ P_XO, 0 },
+ 	{ P_SLEEP_CLK, 1 },
+-	{ P_CORE_BI_PLL_TEST_SE, 7 },
+ };
+ 
+ static const char * const gcc_parent_names_10[] = {
+ 	"cxo",
+ 	"sleep_clk",
+-	"core_bi_pll_test_se",
+ };
+ 
+ static const struct parent_map gcc_parent_map_11[] = {
+ 	{ P_XO, 0 },
+ 	{ P_PCIE_0_PIPE_CLK, 1 },
+-	{ P_CORE_BI_PLL_TEST_SE, 7 },
+ };
+ 
+ static const char * const gcc_parent_names_11[] = {
+ 	"cxo",
+ 	"pcie_0_pipe_clk",
+-	"core_bi_pll_test_se",
+ };
+ 
+ static const struct parent_map gcc_parent_map_12[] = {
+ 	{ P_XO, 0 },
+ 	{ P_DSI0_PHY_PLL_OUT_DSICLK, 1 },
+-	{ P_CORE_BI_PLL_TEST_SE, 7 },
+ };
+ 
+ static const char * const gcc_parent_names_12[] = {
+ 	"cxo",
+ 	"dsi0pll",
+-	"core_bi_pll_test_se",
+ };
+ 
+ static const struct parent_map gcc_parent_map_13[] = {
+@@ -213,7 +187,6 @@ static const struct parent_map gcc_parent_map_13[] = {
+ 	{ P_GPLL0_OUT_MAIN, 1 },
+ 	{ P_GPLL4_OUT_MAIN, 2 },
+ 	{ P_GPLL6_OUT_AUX, 3 },
+-	{ P_CORE_BI_PLL_TEST_SE, 7 },
+ };
+ 
+ static const char * const gcc_parent_names_13[] = {
+@@ -221,41 +194,34 @@ static const char * const gcc_parent_names_13[] = {
+ 	"gpll0_out_main",
+ 	"gpll4_out_main",
+ 	"gpll6_out_aux",
+-	"core_bi_pll_test_se",
+ };
+ 
+ static const struct parent_map gcc_parent_map_14[] = {
+ 	{ P_XO, 0 },
+ 	{ P_GPLL0_OUT_MAIN, 1 },
+-	{ P_CORE_BI_PLL_TEST_SE, 7 },
+ };
+ 
+ static const char * const gcc_parent_names_14[] = {
+ 	"cxo",
+ 	"gpll0_out_main",
+-	"core_bi_pll_test_se",
+ };
+ 
+ static const struct parent_map gcc_parent_map_15[] = {
+ 	{ P_XO, 0 },
+-	{ P_CORE_BI_PLL_TEST_SE, 7 },
+ };
+ 
+ static const char * const gcc_parent_names_15[] = {
+ 	"cxo",
+-	"core_bi_pll_test_se",
+ };
+ 
+ static const struct parent_map gcc_parent_map_16[] = {
+ 	{ P_XO, 0 },
+ 	{ P_GPLL0_OUT_MAIN, 1 },
+-	{ P_CORE_BI_PLL_TEST_SE, 7 },
+ };
+ 
+ static const char * const gcc_parent_names_16[] = {
+ 	"cxo",
+ 	"gpll0_out_main",
+-	"core_bi_pll_test_se",
+ };
+ 
+ static struct clk_fixed_factor cxo = {
 -- 
 2.35.1
 
