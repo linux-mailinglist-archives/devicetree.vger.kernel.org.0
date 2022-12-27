@@ -2,97 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D69A2656B38
-	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 14:07:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 55616656B67
+	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 14:45:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230497AbiL0NHV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 08:07:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51296 "EHLO
+        id S231668AbiL0NpT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 08:45:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231712AbiL0NHH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 08:07:07 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BEEA65AF
-        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 05:07:05 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id f34so19531257lfv.10
-        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 05:07:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fryBc2ReBKYkm7biN0NMY5X+SgbelRAYfE7u3q3Vjvc=;
-        b=g1+FfsFLLO3Au2G2wQyk+87Ld6OTtPTu2OndtMJegNU20G1rTnG0h0PB61VJ4AhU4m
-         VFv161Um8Wtc4TPXv/gOObd5JhEtosjD1hS/0yTSJZmkSZ5CeQFGdUhL7sch8k4xHqj3
-         H1DvbfoukxNChz4bTCYSaKQbAbI5PfNqibuCDeapOgwB9abfSyowXdQjIuMNcCnu6s7h
-         4PM2ToaHrf2kTR0eAJ2Bm5NcVNHJmKJRYchXCTRcyr19A0OmFgXChM2O0COzcHDvpPNk
-         KTFVQXZs27Vci23VfQ4fmimwjET/uVnnUMsmmcY6JqnJZe+zFr46JsCRh/Y9nNVa3bnR
-         s+9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fryBc2ReBKYkm7biN0NMY5X+SgbelRAYfE7u3q3Vjvc=;
-        b=R81jSerMlWjVh6iwfvC1k7mb7sbl64Nm3vhbtRyLkTIy+h9ITKNnmKtjxjUSiySc95
-         fU6NDoNl7U+CoqOFK1mZdgyCH1bCc4Skc61Bb0BpMsYT0iHYTFnw4ZuhlSCSA3KK1CYg
-         kKtJUONkav7kffwhZuee/Izx4aC4dD8iXKaVui+CogSIXamUp6lHPJbABnctvprz0W2m
-         fKY37XxhJUa1KGOBdr25fH5FxSjbW062zIgQoN7dlIkn7cie7WrsBlOxIQAE8D+gvUKX
-         A8a72/yS/c0AqxlwVdnLFEchNDvWN2hUFYQFzn+2A/h6twssd9duffNhQlEmOLvETrtn
-         /RIg==
-X-Gm-Message-State: AFqh2krTgQKZ8LdPpUp0jQOrIKvRDTd7uuKOup+YOU7ce65nMDPhGP6+
-        6gtnze1VEsjqa9CblNf6M9IOXQ==
-X-Google-Smtp-Source: AMrXdXuEJ2vq5a5iMYzw9r11cWpAKWUMFX8b3JRMjpyzCwOIaKmFhfpmQPHLLXnrMGdf3awwezLogg==
-X-Received: by 2002:a05:6512:210c:b0:4a4:68b7:deda with SMTP id q12-20020a056512210c00b004a468b7dedamr5468462lfr.54.1672146423528;
-        Tue, 27 Dec 2022 05:07:03 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id q27-20020ac246fb000000b004b48e0f619asm2295003lfo.48.2022.12.27.05.07.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Dec 2022 05:07:02 -0800 (PST)
-Message-ID: <02e8c75f-658f-320c-7c90-64ccf2beccbe@linaro.org>
-Date:   Tue, 27 Dec 2022 14:07:01 +0100
+        with ESMTP id S231448AbiL0NpS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 08:45:18 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 353F7DC7;
+        Tue, 27 Dec 2022 05:45:17 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BCD616115E;
+        Tue, 27 Dec 2022 13:45:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9ECE7C433D2;
+        Tue, 27 Dec 2022 13:45:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1672148716;
+        bh=rz3uMAjXUtgjTO4lgVlXOKO3ue1KZ7jGfnmeuq3J5Js=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=XapDBzzd/bZ8Mr9cF8NgX64eOKDfmSw6Y7ERRkuEXsBO/tp7dvnoLIqb9N/2kPSJc
+         qT9nqMH3v+uDUffDXLsLvnW/Pz48nhnGeHVXohon9StxTJS5DYKaU719Vo61VE7/Hr
+         bAyImdXoGvBG3/HEw82VNV5VHPD0AYBixeNBMbbY=
+Date:   Tue, 27 Dec 2022 14:45:13 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Wesley Cheng <quic_wcheng@quicinc.com>,
+        srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
+        perex@perex.cz, lgirdwood@gmail.com, andersson@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, Thinh.Nguyen@synopsys.com,
+        bgoswami@quicinc.com, tiwai@suse.com, robh+dt@kernel.org,
+        agross@kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+        quic_jackp@quicinc.com, quic_plai@quicinc.com
+Subject: Re: [RFC PATCH 03/14] ASoC: qcom: Add USB backend ASoC driver for Q6
+Message-ID: <Y6r26VfIfpE8zpPY@kroah.com>
+References: <20221223233200.26089-1-quic_wcheng@quicinc.com>
+ <20221223233200.26089-4-quic_wcheng@quicinc.com>
+ <Y6bAQ8hDLkvrvjQQ@kroah.com>
+ <Y6rtdy4NPfi/KOqd@sirena.org.uk>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 0/3] StarFive's SDIO/eMMC driver support
-Content-Language: en-US
-To:     William Qiu <william.qiu@starfivetech.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@linux.starfivetech.com>,
-        linux-kernel@vger.kernel.org
-References: <20221227115856.460790-1-william.qiu@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221227115856.460790-1-william.qiu@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y6rtdy4NPfi/KOqd@sirena.org.uk>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/12/2022 12:58, William Qiu wrote:
-> Hi,
+On Tue, Dec 27, 2022 at 01:04:55PM +0000, Mark Brown wrote:
+> On Sat, Dec 24, 2022 at 10:02:59AM +0100, Greg KH wrote:
+> > On Fri, Dec 23, 2022 at 03:31:49PM -0800, Wesley Cheng wrote:
 > 
-> This patchset adds initial rudimentary support for the StarFive
-> designware mobile storage host controller driver. And this driver will
-> be used in StarFive's VisionFive 2 board. The main purpose of adding
-> this driver is to accommodate the ultra-high speed mode of eMMC.
+> > > + * struct q6usb_offload
+> > > + * @dev - dev handle to usb be
 > 
-> The last patch should be applied after the patchset [1]:
-> [1] https://lore.kernel.org/all/20221118011714.70877-1-hal.feng@starfivetech.com/
+> > "be"?  What is that?
+> 
+> Back end.  This is a concept in DPCM which should be reasonably
+> discoverable to people working on the audio portions of this code.
 
-It's a duplicate? Why do I have two of them in mailbox? Isn't this v3 then?
+Ok, then how is the reference counting logic handled here?  USB devices
+can be removed from the system at any point in time...
 
-Best regards,
-Krzysztof
+> > > +// SPDX-License-Identifier: GPL-2.0
+> > > +/*
+> > > + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+> 
+> > All of the code in this patch series is older than 2022 as I know it has
+> > been in shipping devices for many years.  Please use the proper
+> > copyright year to make your lawyers happy...
+> 
+> Are you *positive* about this.  Based on some preparatory discussions
+> the Qualcomm people had with Takashi and I it seemed like this was a new
+> version of existing concepts.  I'm sure they had something already but
+> it's not obvious to me that they're just posting the same code.
 
+I thought that this same code has been shipping in devices for a few
+years now in the last few Samsung phone models.  Is this not the same
+code that is in those devices?
+
+If not, why not, what happened to that codebase that makes it not worthy
+of being submitted upstream?
+
+> > > +static const struct snd_soc_dapm_route q6usb_dapm_routes[] = {
+> > > +	{"USB Playback", NULL, "USB_RX_BE"},
+> > > +};
+> 
+> > No terminating entry?  How does this not break?  Why do you need to
+> > specify the size of the array, that feels like a design bug somewhere.
+> 
+> It's how the interface works, the number of entries is passed in when
+> adding routes.
+
+Ah, you all might want to change that to make it simpler :)
+
+thanks,
+
+greg k-h
