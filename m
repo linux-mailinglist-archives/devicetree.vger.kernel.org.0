@@ -2,120 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56EAA65665D
-	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 02:07:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F4CB65666C
+	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 02:32:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232588AbiL0BHm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Dec 2022 20:07:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42868 "EHLO
+        id S232532AbiL0Bca (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Dec 2022 20:32:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229578AbiL0BHk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 20:07:40 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC5352AFC
-        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 17:07:38 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id bf43so17780133lfb.6
-        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 17:07:38 -0800 (PST)
+        with ESMTP id S230375AbiL0Bc3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 20:32:29 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8827C75
+        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 17:32:27 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id z26so17837198lfu.8
+        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 17:32:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=semihalf.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bKjUuVwKy7MrjSAEHNMOGQAaYSQbj1BNhWoLDICHVlY=;
-        b=F1hB1XenSCpaNpl/jTtpeCOe4pi+v3igAKxQAAtlGbvxzEei8fVTUlGmDKS9hC1xV6
-         i5dksdDk80it6tVrB/yQ70ivkSCYipiBAjLnJMIp6h3s8OsHsImXkMzYUpccjsQYL11n
-         R/NzNnes0vD6kULTRdSVE689dddLM06FQaWp1pQR9+nPr96mEjkKrG0d9VL8OHADYa+Y
-         aWsff39+3rA/r2c8u6LR95f2/HGNqEpCtjz5VoIH/6IRIsccgzE5WrX94W6jk+R3mwN5
-         +kVPPE5x7ndVwI/DspxTxv5snfWdhbNFA6Iaad67AKQ/LfxTwnThywr0q1YFacfS/eBR
-         Ai4Q==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=eEXLAvh/0qpSDc3bNh+/vKGT8NSfGyUdyOpGl38+5BM=;
+        b=nqJh613j482ufkCQq7hCTDH6YVjmwwailU8xGsIC7pDv8TM//7FaKM2QkVDxYgvJob
+         wbs/iKHeSem21XXd8rXeAamNPKzMtLmpVyjdZkKg14ctdnYD+DMJWVYPTZmTbqY0KiQA
+         caKdeKCYUiHNnPyL4dmfsDxZqH+vPcwDwVc+oAAc54Qg4SDZAmMVMKRFcuy/4EDyFV5m
+         K5JdERMlYIu7VmjE0Jxi7ALDDI5L1WAaTgrjFM/P12/nAdlm941riEmhfFCFxsQvB4Ix
+         ssboKe6YSnIB9LnNtLOhrMuq92P3Y3nffa/erE5PWsiv6AWv1aEgTUyBoXqEM5DQ6M/A
+         1khQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bKjUuVwKy7MrjSAEHNMOGQAaYSQbj1BNhWoLDICHVlY=;
-        b=sa+Hd86RGpAWwzV18LXFYENoGtzeYcFFmXKpblMSYr5CISyoxODF+IF4I/yNaKbX4x
-         zkD0O9uokVQZMhn/Yt0cBEyOJe8q+QAn0NK+qYcXr1Rp1O+jD4qvBSgSgg6hvB6XgbV9
-         jD5W5WR3eFhzPZMeznUSafTdcSw8l9e/BpXjAh/b4E97jqT75yt6XgdkdyymCNalfDPq
-         iv71s59zvoxQCVeK9ayQyey+I9sAqBDGPcPPim9JAQjMHNbBSe6wKbNq+ZrcEWiQg/fK
-         X56jrrMORurOnCKdIimc3CAgT6MKFnO047M4VT21ii4QVu0UUOUpxLoIPG1T44bhJsI3
-         T6tA==
-X-Gm-Message-State: AFqh2kqP9e/tUwjoNZZR7gzrpy2gVpzzLXItpJ8nv9xxsC8K0Vs6jsci
-        z3rKiZYHvNjWubhoNozjIPqrdtmPxCt+NaQU+Ts=
-X-Google-Smtp-Source: AMrXdXteJKt3/ZtkyRWyMI+gfdzgFIxwpJbdwzmrYHW8w7ULsNIcLqRCc9x25aiHc4L5LjSoN7FHrQ==
-X-Received: by 2002:a05:6512:3ba1:b0:4b5:8fbf:7dd6 with SMTP id g33-20020a0565123ba100b004b58fbf7dd6mr9788635lfv.61.1672103257296;
-        Mon, 26 Dec 2022 17:07:37 -0800 (PST)
-Received: from michal-H370M-DS3H.office.semihalf.net ([83.142.187.84])
-        by smtp.googlemail.com with ESMTPSA id l14-20020a2e99ce000000b00277159d7f2esm1392098ljj.104.2022.12.26.17.07.36
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eEXLAvh/0qpSDc3bNh+/vKGT8NSfGyUdyOpGl38+5BM=;
+        b=SffEFVdAv8OfN9W44HD4X25OcsAZSS8yMeGou+FwDtoeKnEi4CIgUK3lseJ6UGUwa7
+         hRytpvgyxSQ7f+jKHiUNiQFxOgPQFTQ9WDrTAc0XQRcEa2JTIRaSoveP21lNgrcUAswr
+         ilDz3UMGZFsnsPupCB74LIcj2Et1anbIbeJYDllDsW2sPdRbhpOj0i0CfgPsTQBy11P5
+         R/Symnxii6LoOrmGSllPFQKLbz/pGvh+WSKiyGgNjqhzrZB9NQYo2aZh/iAmBQbgLaFf
+         B89OdO4d8J3RyjHvLw5nb9PasxcoAFvmdJXHiD7qNMfsYAIVgV8hgKZEY13qtikBRyIk
+         F5yA==
+X-Gm-Message-State: AFqh2kpdQuoTds7FZsX89LS1NGDKDhLfdMM+/5utEcMa0X08ouRZkr8s
+        rOw/DhZoGA9I+iBapqKkeVMoiQ==
+X-Google-Smtp-Source: AMrXdXvNDv7yze88ht/iIQP82iCX/8YgN/uCLLwCz1QpyL0ohJ4rN1/1W8zxAFEqA9L+lvJ7K3Km6A==
+X-Received: by 2002:a19:f514:0:b0:4b5:61e8:8934 with SMTP id j20-20020a19f514000000b004b561e88934mr5013779lfb.64.1672104746321;
+        Mon, 26 Dec 2022 17:32:26 -0800 (PST)
+Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id v6-20020a2e87c6000000b0027fbb12aa53sm674752ljj.20.2022.12.26.17.32.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Dec 2022 17:07:37 -0800 (PST)
-From:   =?UTF-8?q?Micha=C5=82=20Grzelak?= <mig@semihalf.com>
-To:     devicetree@vger.kernel.org
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, andrew@lunn.ch,
-        chris.packham@alliedtelesis.co.nz, netdev@vger.kernel.org,
-        upstream@semihalf.com, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Micha=C5=82=20Grzelak?= <mig@semihalf.com>
-Subject: [net PATCH 2/2] dt-bindings: net: marvell,orion-mdio: Fix examples
-Date:   Tue, 27 Dec 2022 02:05:23 +0100
-Message-Id: <20221227010523.59328-3-mig@semihalf.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221227010523.59328-1-mig@semihalf.com>
-References: <20221227010523.59328-1-mig@semihalf.com>
+        Mon, 26 Dec 2022 17:32:25 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [RFC PATCH 00/12] clock: qcom: apq8084: convert to parent_data/_hws
+Date:   Tue, 27 Dec 2022 03:32:13 +0200
+Message-Id: <20221227013225.2847382-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As stated in marvell-orion-mdio.txt deleted in 'commit 0781434af811f
-("dt-bindings: net: orion-mdio: Convert to JSON schema")' if
-'interrupts' property is present, width of 'reg' should be 0x84.
-Otherwise, width of 'reg' should be 0x4. Fix 'examples:' and extend it
-by second example from marvell-orion-mdio.txt.
+Rework apq8084 gcc and mmcc drivers to use parent_data and parent_hws
+instead of parent_names. The series is sent as an RFC, since some of the
+parents are not fully clear to me.
 
-Signed-off-by: Michał Grzelak <mig@semihalf.com>
----
- .../devicetree/bindings/net/marvell,orion-mdio.yaml  | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+Dmitry Baryshkov (12):
+  dt-bindings: clock: qcom,gcc-apq8084: define clocks/clock-names
+  dt-bindings: clock: qcom,gcc-apq8084: add GCC_MMSS_GPLL0_CLK_SRC
+  dt-bindings: clock: qcom,mmcc: define clocks/clock-names for APQ8084
+  clk: qcom: gcc-apq8084: use ARRAY_SIZE instead of specifying
+    num_parents
+  clk: qcom: gcc-apq8084: move PLL clocks up
+  clk: qcom: gcc-apq8084: use parent_hws/_data instead of parent_names
+  clk: qcom: gcc-apq8084: add GCC_MMSS_GPLL0_CLK_SRC
+  clk: qcom: mmcc-apq8084: use ARRAY_SIZE instead of specifying
+    num_parents
+  clk: qcom: mmcc-apq8084: move clock parent tables down
+  clk: qcom: mmcc-apq8084: remove spdm clocks
+  clk: qcom: mmcc-apq8084: use parent_hws/_data instead of parent_names
+  ARM: dts: qcom: apq8084: add clocks and clock-names to gcc device
 
-diff --git a/Documentation/devicetree/bindings/net/marvell,orion-mdio.yaml b/Documentation/devicetree/bindings/net/marvell,orion-mdio.yaml
-index 2b2b3f8709fc..d260794e92c5 100644
---- a/Documentation/devicetree/bindings/net/marvell,orion-mdio.yaml
-+++ b/Documentation/devicetree/bindings/net/marvell,orion-mdio.yaml
-@@ -47,9 +47,10 @@ unevaluatedProperties: false
- 
- examples:
-   - |
-+    // MDIO binding with interrupt
-     mdio@d0072004 {
-       compatible = "marvell,orion-mdio";
--      reg = <0xd0072004 0x4>;
-+      reg = <0xd0072004 0x84>;
-       #address-cells = <1>;
-       #size-cells = <0>;
-       interrupts = <30>;
-@@ -62,3 +63,12 @@ examples:
-         reg = <1>;
-       };
-     };
-+
-+  - |
-+    // MDIO binding without interrupt
-+    mdio@d0072004 {
-+      compatible = "marvell,orion-mdio";
-+      reg = <0xd0072004 0x4>;
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+    };
+ .../bindings/clock/qcom,gcc-apq8084.yaml      |   43 +
+ .../devicetree/bindings/clock/qcom,mmcc.yaml  |   40 +
+ arch/arm/boot/dts/qcom-apq8084.dtsi           |   18 +
+ drivers/clk/qcom/gcc-apq8084.c                | 1024 +++++++-------
+ drivers/clk/qcom/mmcc-apq8084.c               | 1189 +++++++----------
+ include/dt-bindings/clock/qcom,gcc-apq8084.h  |    1 +
+ 6 files changed, 1095 insertions(+), 1220 deletions(-)
+
 -- 
-2.34.1
+2.35.1
 
