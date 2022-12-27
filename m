@@ -2,133 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD0776569F2
-	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 12:30:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E82D66569F5
+	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 12:30:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231318AbiL0LaH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 06:30:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36364 "EHLO
+        id S231220AbiL0Lay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 06:30:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231215AbiL0LaF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 06:30:05 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9757C63FF
-        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 03:30:03 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id z26so19241974lfu.8
-        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 03:30:03 -0800 (PST)
+        with ESMTP id S231281AbiL0Lan (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 06:30:43 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 459D4A1
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 03:30:41 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id bq39so11437315lfb.0
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 03:30:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=aN3V6trDzvXSYtL26lx3FV7PuCk2Xl5LGxwnUm2VEh4=;
-        b=D6oARKb10jppciRnCilQ32Dej7uYF6DSTuvY/IP+oORmU/pLbrptAk5OvgLB7b/LGz
-         oV7OFaGBSJvYCcJ3rAVE0CPVtzVzFcW2cR8kTME64K70KdZ/lptsknSNE/p30R/f21LA
-         3lM1SXOztnLyMbdSVbrcivQ2061TJzTVnxqf7On/F8qq0kRkjnkZa18PgdDC9Hv+ignV
-         W7vIpGaICcqC0D2lGZKXk+fsw5IaD7DBbJ086Nzn4G0d7mVLzFf87cZ9EIvcFel5+6gU
-         NvZHoLsyoB/h+VSobCXAqiX1fM8XhxpwhGTqkRsnQVH1lmhvjuujtsXH4pA3l/sDDVQo
-         wYHA==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VXMhLcKfKzWw0oHXnh35yzuW1kpXbkLLBZjvh8oDJEw=;
+        b=TmS6Idtmj7gkjIZtZZwacuweBL8Ts34juarY0OPoVWc117eHWKPOdaQogOpwSAJpqD
+         9J9cadMc0cX4exv+6BNXN+MqRc6Kil4+KvMhmclvdcFTyk5TnRyIIIypRvcN/ZvTB1PS
+         fBb+NomEjI7ZujSsXUqQz87qXlNgyvLmAKyEHNSYv+zVXraVgV98QAh13RGcbv/odwEQ
+         jtoOna03X13UJLZ6nc8mKxOtYSSmOO7p76qMYngh+zo6+NScB/bvpf4pEklSzbFJj2t4
+         mM5EupLmekpB9XVrL19qEmsMhJiEeadLkbIZln8K5VsEI7JQ4d4gYzR8NTtP3wPDQmuH
+         McJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aN3V6trDzvXSYtL26lx3FV7PuCk2Xl5LGxwnUm2VEh4=;
-        b=kxid/vY+P/0QF1F6fIt1A7zzQIM/StGMEuYAocaMRHttrrJMc49vVC1XZqHA+dKMVa
-         KUIb529nIg8t12euUiwRcnWpBLiXVYZEziRj/VXtaMtIKClJVg/nO5dsCxy2nPkpyYey
-         aJ/xfbU7EkLU0wF4nQ9obm/7iPy/JQd4zwAzr5tCyQEUN03b451ho6hIdV++30I7nRff
-         vDijWjNa9pFKLLEcWbNG1qBKfJp9DhqUgJnVb/57rtvZkghyrbkHIArP767NKMphg/Ux
-         pU1dAF0J0CiPZBx1pGLt7YJIRsOaOPMKQ3yfWWqnQuQv4cEGJfUaNYNmza+GZf0v4Sb7
-         oG4A==
-X-Gm-Message-State: AFqh2krP0D210cDsW3gDHqGetXNCgdi7SRMV01gVnJAt6cCGQojvbZzr
-        Ga4HnJNtWog/XnUtks/+Mjrh5A==
-X-Google-Smtp-Source: AMrXdXuQCFF6EAuPGhKVlnd9xb+jRbrMxibY4uYGpnnSUw158af9QxPKYTxPgBMtBgUBq5JAQ+Szdg==
-X-Received: by 2002:a05:6512:6cb:b0:4a4:68b7:e71a with SMTP id u11-20020a05651206cb00b004a468b7e71amr6566622lff.4.1672140601477;
-        Tue, 27 Dec 2022 03:30:01 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id k2-20020ac24562000000b004b4ea0f4e7fsm2192712lfm.299.2022.12.27.03.30.00
+        bh=VXMhLcKfKzWw0oHXnh35yzuW1kpXbkLLBZjvh8oDJEw=;
+        b=ZuBh0VGL0cBEn75zDm88H/WMCO224LxclkAmVIjqeoAp4bgPwfI3sQVHNopFIvB2do
+         j+ZFcNJqnp09+FwUebnWFJo85C/y6wAjyvqZeR6FnNUkCw6t4fUBGiC+f/p7oIgoIIml
+         oZq5WLUJ1MuK1xjZswmLU9QlxARGmvKN4PwTg4MNny3/F2GOqg1uYU2r0k9v98su4gFX
+         Iaj3QLGZt07IFSqAH77lS1ECQpewxykOWP0dPY0Idd3IzkQDIwjVoRDsNP/3ua4qy9UQ
+         tq07ZvRTVBfl4mC2yOHPe+25AeCVsCgGXTuDNYkyAQnnu0h27bypGXm94KM+vJofUcuJ
+         74zg==
+X-Gm-Message-State: AFqh2kr16gs2XXmiOnyNQsCs9GR4X6LvNo5GtPa2m5+a1AQjl99+mzFR
+        YXK7t0vGJ9M/eFfrVpPkyd+CEZ+r2aamaDdB
+X-Google-Smtp-Source: AMrXdXuDFQD2cwkfhw2f26SzySLn167KjIIblKX26xknVaNeM8P3vq5eWMJou03msaRyoS4uPM2btg==
+X-Received: by 2002:a05:6512:c14:b0:4b5:abe3:c63d with SMTP id z20-20020a0565120c1400b004b5abe3c63dmr7182137lfu.42.1672140639659;
+        Tue, 27 Dec 2022 03:30:39 -0800 (PST)
+Received: from [192.168.1.101] (abyl184.neoplus.adsl.tpnet.pl. [83.9.31.184])
+        by smtp.gmail.com with ESMTPSA id n18-20020a05651203f200b004b4f2a30e6csm2226056lfq.0.2022.12.27.03.30.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Dec 2022 03:30:01 -0800 (PST)
-Message-ID: <e1725365-2751-ea09-7699-012f4ee3cd1b@linaro.org>
-Date:   Tue, 27 Dec 2022 12:29:59 +0100
+        Tue, 27 Dec 2022 03:30:39 -0800 (PST)
+Message-ID: <dc30c057-fa58-39c8-eed8-090dff484fef@linaro.org>
+Date:   Tue, 27 Dec 2022 12:30:38 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 3/4] ARM: dts: qcom: sdx65: add specific compatible for
- USB HS PHY
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Thunderbird/102.6.0
+Subject: Re: [PATCH] ARM: dts: qcom: msm8974: add xo clock to rpm clock
+ controller
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221223161835.112079-1-krzysztof.kozlowski@linaro.org>
- <20221223161835.112079-3-krzysztof.kozlowski@linaro.org>
- <d6fcecda-2f78-bd75-579b-672f6db779a2@linaro.org>
- <6a9506a5-caf0-0977-af75-0a4e4c0e3a0f@linaro.org>
- <542a4f6f-931a-3e0a-bd5d-1344339651ea@linaro.org>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <542a4f6f-931a-3e0a-bd5d-1344339651ea@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20221227001547.2830656-1-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221227001547.2830656-1-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/12/2022 12:14, Konrad Dybcio wrote:
+
+
+On 27.12.2022 01:15, Dmitry Baryshkov wrote:
+> Populate the rpm clock controller node with clocks and clock-names
+> properties.
 > 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+>  arch/arm/boot/dts/qcom-msm8974.dtsi | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> On 24.12.2022 14:12, Krzysztof Kozlowski wrote:
->> On 23/12/2022 17:20, Konrad Dybcio wrote:
->>>
->>>
->>> On 23.12.2022 17:18, Krzysztof Kozlowski wrote:
->>>> Add SoC-specific compatible to the USB HS PHY to match other devices and
->>>> bindings.
->>>>
->>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>> ---
->>>>  arch/arm/boot/dts/qcom-sdx65.dtsi | 3 ++-
->>>>  1 file changed, 2 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/arch/arm/boot/dts/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom-sdx65.dtsi
->>>> index b073e0c63df4..d3c661d7650d 100644
->>>> --- a/arch/arm/boot/dts/qcom-sdx65.dtsi
->>>> +++ b/arch/arm/boot/dts/qcom-sdx65.dtsi
->>>> @@ -219,7 +219,8 @@ blsp1_uart3: serial@831000 {
->>>>  		};
->>>>  
->>>>  		usb_hsphy: phy@ff4000 {
->>>> -			compatible = "qcom,usb-snps-hs-7nm-phy";
->>>> +			compatible = "qcom,sdx65-usb-hs-phy",
->>>> +				     "qcom,usb-snps-hs-7nm-phy";
->>> Not sure if the newline is necessary, but still:
->>>
->>> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>
->> It is over 80 - up to 90 - and we still keep 80-limit in coding style.
-> Torvalds said 100 is fine a year a go or so.
-
-Yes - when it increases the readability. When it does not, the limit by
-coding style is still 80. Otherwise the coding style would be updated,
-which did not happen:
-
-https://lore.kernel.org/all/20220119160642.140e84c6@gandalf.local.home/
-
-
-
-
-Best regards,
-Krzysztof
-
+> diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
+> index 8d216a3c0851..81636c76e068 100644
+> --- a/arch/arm/boot/dts/qcom-msm8974.dtsi
+> +++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
+> @@ -307,6 +307,8 @@ rpm_requests: rpm_requests {
+>  				rpmcc: clock-controller {
+>  					compatible = "qcom,rpmcc-msm8974", "qcom,rpmcc";
+>  					#clock-cells = <1>;
+> +					clocks = <&xo_board>;
+> +					clock-names = "xo";
+>  				};
+>  			};
+>  		};
