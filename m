@@ -2,137 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3E58657024
-	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 22:57:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF7E765702F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 23:17:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229731AbiL0V5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 16:57:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33516 "EHLO
+        id S230046AbiL0WRB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 17:17:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbiL0V5Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 16:57:24 -0500
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 073F4C758;
-        Tue, 27 Dec 2022 13:57:22 -0800 (PST)
-X-IronPort-AV: E=McAfee;i="6500,9779,10573"; a="407027847"
-X-IronPort-AV: E=Sophos;i="5.96,279,1665471600"; 
-   d="scan'208";a="407027847"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Dec 2022 13:57:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10573"; a="721609669"
-X-IronPort-AV: E=Sophos;i="5.96,279,1665471600"; 
-   d="scan'208";a="721609669"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga004.fm.intel.com with ESMTP; 27 Dec 2022 13:57:19 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andy@kernel.org>)
-        id 1pAHwj-000H8E-0y;
-        Tue, 27 Dec 2022 23:57:17 +0200
-Date:   Tue, 27 Dec 2022 23:57:17 +0200
-From:   Andy Shevchenko <andy@kernel.org>
-To:     Binbin Zhou <zhoubinbin@loongson.cn>
-Cc:     Wolfram Sang <wsa@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
-        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>, Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>
-Subject: Re: [PATCH V8 3/4] i2c: ls2x: Add driver for Loongson-2K/LS7A I2C
- controller
-Message-ID: <Y6tqPenv3NBEl9qD@smile.fi.intel.com>
-References: <cover.1671688961.git.zhoubinbin@loongson.cn>
- <9d3e4997519fd9ecebae6fd241148cc22d3fe04f.1671688961.git.zhoubinbin@loongson.cn>
+        with ESMTP id S230438AbiL0WQ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 17:16:59 -0500
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13713DEE3
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 14:16:59 -0800 (PST)
+Received: by mail-pg1-x531.google.com with SMTP id s67so219206pgs.3
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 14:16:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dowhile0-org.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=2nz+0xpf/FwZYsXl34br/szBrwNJc+k2jQRK/lfXtjA=;
+        b=DGJa8SlxJIzUxSfemShBGXpsL8Wtha+pI2wuXtLL7AR7v+4qQd674pnUjr1j9rT5YQ
+         9RBVW0r7ExG9qO7tsSokHH20t1t/ANRvfv7fjA131WDL+3iy6OfGL64zCunszN2D0zia
+         stbXzFNdb32jdP2PF48udsdQ8diDRq5maFn7fc634Lq31D2wycikbpQK/x9K4cUROHHH
+         yLe+gtESc5XkCzV4idqKAsTr4pUI92YTCA/54oRKoHR5Sj1sQ16ZsOxKESKub69V2lyj
+         9Q462b7tBeueWmkti8A+1lsu/4qP9Z91tbfiwMs32MQMjDBUU901KFrGor8Qoz32Kk6S
+         ookw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2nz+0xpf/FwZYsXl34br/szBrwNJc+k2jQRK/lfXtjA=;
+        b=bmbCTzv16/3wbnc/msUEazuyN76mW1ZuOGJyz2Qygh4SlT48VMkzG8cyZii/P+z/2T
+         UWggUxf9EjbXyezymGnYoKYM3kBne8OfUCi79Dk5tDhrcA6iYnTgtuIV+l1HxqlHE/nD
+         1as2xSE1zHdHn42sD3i9cGra1ULZT96QTcyqh8sUaskWtmUf05K2zP+3vOUY1Fi4y2DR
+         3YtDYH0VBUZmHbUhUT6HvQUmsrgXjJRvvZ3+vKquArnUyxKzII1jdpXJGzxIiZkxaM4U
+         WDrIFhz4hZqeo+r4xJ/mCcmU9MQXi9KSwy7ZCnkdMVNylHlDYPHOI56KeiTTU0h7ss/t
+         z1tQ==
+X-Gm-Message-State: AFqh2kqt9RRhzcVpufp6yBFXItrCF3gT3pK1BMYeiC0hoADsHS69iArf
+        0VcH5rs2/ZTexMZmwo2XgUpLM9npiP/GSRYr4jOg7g==
+X-Google-Smtp-Source: AMrXdXtezi5rDNeB0Nbw47Kco1JdQdNlIn5BXcEJuJPLNDYS047a83X3tjrfItS0VtvqbaZrvwHSUqxzmDB29aes3lY=
+X-Received: by 2002:a63:1e66:0:b0:47c:c502:3713 with SMTP id
+ p38-20020a631e66000000b0047cc5023713mr1287923pgm.28.1672179418571; Tue, 27
+ Dec 2022 14:16:58 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9d3e4997519fd9ecebae6fd241148cc22d3fe04f.1671688961.git.zhoubinbin@loongson.cn>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_SOFTFAIL autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20221227110335.2923359-1-javierm@redhat.com> <20221227110335.2923359-2-javierm@redhat.com>
+ <CAMty3ZAaHKJ21D8mE=HU3D3KOGAiZ7vfmW_Hgc-E5JO5S+tMNA@mail.gmail.com>
+ <CABxcv=kwtk21UbOwaV4tq=BpPsrYmnTrzuhybjbknipqk5R-fA@mail.gmail.com> <CAMty3ZDESyJoWMO_BgHzUJN=hLV0dH6y=3B9ogOsSUvaTMqarQ@mail.gmail.com>
+In-Reply-To: <CAMty3ZDESyJoWMO_BgHzUJN=hLV0dH6y=3B9ogOsSUvaTMqarQ@mail.gmail.com>
+From:   Javier Martinez Canillas <javier@dowhile0.org>
+Date:   Tue, 27 Dec 2022 23:16:46 +0100
+Message-ID: <CABxcv=mFzuUq0-PQ8H3N0Sxmzg+z1v_uwhUe0jcH2++NDQRR0w@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: display: Add Himax HX8394 panel controller
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Javier Martinez Canillas <javierm@redhat.com>,
+        devicetree@vger.kernel.org, Robert Mader <robert.mader@posteo.de>,
+        Onuralp Sezer <thunderbirdtr@fedoraproject.org>,
+        Neal Gompa <ngompa13@gmail.com>, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
+        Martijn Braam <martijn@brixit.nl>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Ondrej Jirman <megi@xff.cz>,
+        Peter Robinson <pbrobinson@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?Q?Kamil_Trzci=C5=84ski?= <ayufan@ayufan.eu>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 23, 2022 at 05:00:51PM +0800, Binbin Zhou wrote:
-> This I2C module is integrated into the Loongson-2K SoCs and Loongson
-> LS7A bridge chip.
+On Tue, Dec 27, 2022 at 8:37 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
+>
+> On Wed, Dec 28, 2022 at 12:58 AM Javier Martinez Canillas
+> <javier@dowhile0.org> wrote:
+> >
+> > Hello Jagan,
+> >
+> > On Tue, Dec 27, 2022 at 7:16 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
+> >
+> > [...]
+> >
+> > > > +allOf:
+> > > > +  - $ref: panel-common.yaml#
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    enum:
+> > > > +      # HannStar HSD060BHW4 5.99" 720x1440 TFT LCD panel
+> > > > +      - hannstar,hsd060bhw4
+> > >
+> > > Parent controller can have a compatible where the associated panels
+> > > will be enum list.
+> > >
+> >
+> > I'm not sure to follow what you meant. Could you please elaborate?
+>
+> compatible:
+>     items:
+>       - enum:
+>           - hannstar,hsd060bhw4
+>       - const: himax,hx8394
+>
+> himax,hx8394 is the actual controller and is denoted as fallback compatible.
+>
 
-...
+I see. Do you have an example of a panel controller that does this? I
+don't see that much value in doing this since you want the DTS to
+describe the actual HW and so want the panel I believe.
 
-> +static int ls2x_i2c_xfer_one(struct ls2x_i2c_priv *priv,
-> +			     struct i2c_msg *msg, bool stop)
-> +{
-> +	int ret;
-> +	bool is_read = msg->flags & I2C_M_RD;
-> +
-> +	/* Contains steps to send start condition and address */
-> +	ret = ls2x_i2c_start(priv, msg);
-> +	if (!ret) {
-> +		if (is_read)
-> +			ret = ls2x_i2c_rx(priv, msg->buf, msg->len);
-> +		else
-> +			ret = ls2x_i2c_tx(priv, msg->buf, msg->len);
-> +
-> +		if (!ret && stop)
-> +			ret = ls2x_i2c_stop(priv);
-> +	}
-> +
-> +	if (ret == -ENXIO)
-> +		ls2x_i2c_stop(priv);
-> +	else if (ret < 0)
-> +		ls2x_i2c_init(priv);
-> +
-> +	return ret;
-> +}
+But also there isn't an of_device_id entry for this fallback
+controller compatible string. Feel free to propose that as a follow-up
+if you think it is worth doing so.
 
-Still this code is odd from reader's perspective. It's in particular not clear
-if the stop can be called twice in a row. I recommend to split it to two
-functions and then do something like
-
-_read_one()
-{
-	ret = start();
-	if (ret)
-		goto _stop; // Do we really need this?
-
-		ret = rx();
-		if (ret)
-			goto _stop; // Do we need this?
-
-		/* By setting this call the stop */
-		if (stop)
-			ret = -ENXIO;
-
-	out_send_stop:
-		if (ret == ...)
-			return _stop();
-		// I don't like above, so this error checking/setting parts
-		// also can be rethought and refactored accordingly
-
-		return ret;
-}
-
-
-	if (is_read)
-		ret = _read_one();
-	else
-		ret = _write_one();
-
-	if (ret)
-		_init();
-
-	return ret;
-
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Best regards,
+Javier
