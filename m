@@ -2,177 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2293B6567F0
-	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 08:48:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A98046567F8
+	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 08:50:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229612AbiL0Hsf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 02:48:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49048 "EHLO
+        id S229561AbiL0HuT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 02:50:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229561AbiL0Hse (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 02:48:34 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 132D2E1A;
-        Mon, 26 Dec 2022 23:48:29 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id B471C24E2B2;
-        Tue, 27 Dec 2022 15:48:21 +0800 (CST)
-Received: from EXMBX173.cuchost.com (172.16.6.93) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 27 Dec
- 2022 15:48:21 +0800
-Received: from [192.168.120.49] (171.223.208.138) by EXMBX173.cuchost.com
- (172.16.6.93) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 27 Dec
- 2022 15:48:20 +0800
-Message-ID: <25fce6e7-604e-6c07-3ff1-b65a5115a491@starfivetech.com>
-Date:   Tue, 27 Dec 2022 15:48:18 +0800
+        with ESMTP id S230103AbiL0HuS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 02:50:18 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DE0FE3F
+        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 23:50:17 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id b3so18633048lfv.2
+        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 23:50:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hzXsYCwMTv/IXyBUyGK/jvkgx7DUqvPKPo9aKzdn+YQ=;
+        b=M7q4WYjuG/Nc8kH8QWTCRMCJaioC6DMORZxU3UxY+flf61tk1lqDfCQhZ/paTlGQ9t
+         nvHfhgoXjuSB2NctVns7gqs/dlG8eWLfdHnvOTkbOluSm+80iFIDRdtc8GABSzIk6sVo
+         aEPF4gkkLX/JVqHb3KsOugo3W14hFwfpJMtcuMnJSelHdlUPOw4Ai6Ik8QK57febc01R
+         +A5hmw7/9BGAnLOSwK4uOTux858Ttnkngu887yuAa8LkCFgGegY3eSYfC7lD3Bxdriko
+         924M7HZkTgdNMjpXjW2PQLPTHx4RGmDPPclYuwCk6p3Ehffc71AZdlLkEyKXpQGs1KmH
+         e/KQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hzXsYCwMTv/IXyBUyGK/jvkgx7DUqvPKPo9aKzdn+YQ=;
+        b=OFYIf9t0SuOeknc8r18HdKHB2mI6WuDks8JIDDTYcpWpmCarWi1L95opNRAoCiBpS8
+         Cv1Bg0lH8n0piHv+v/4ynUcz86slkJcKte/RfTkFrOHREUBsnDkR60FCURfWfMpEywI9
+         0kk/r05G8mHV3UpkVsxjUluIfyOguZxG4/nQ83I7MArVjgLzZ31aJtOsSV1Mcd8h8dLg
+         lq3Tb8O+Z8QtGvQLOwrMbW4pjxIjrU52thCDfzm6NMfjil14fYsxx1lHTsM0KaQCp60C
+         p3poyfa5NoadCYNHJqi6JQxMUtYIkSq5iv0R+2fut+j/BZiyWr3WBfSMqnnpfrJsVX+M
+         iowg==
+X-Gm-Message-State: AFqh2kpXr8/2YCx7CSkNtlYwZYEWiC8feszTjtQiNzw9G6JIGNlntciv
+        162L3nYlT9UVea0DkPM0qSyG9Q==
+X-Google-Smtp-Source: AMrXdXu2X8V66vkMys4iSbPakcSEtq7XPjdJ8Z+Sz5gZDOgytIkYQE590cD1S4YJH4SRplT/hjWBUw==
+X-Received: by 2002:a05:6512:2255:b0:4a4:68b8:c2ad with SMTP id i21-20020a056512225500b004a468b8c2admr6511068lfu.4.1672127415594;
+        Mon, 26 Dec 2022 23:50:15 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id s20-20020a195e14000000b004b0b2212315sm2160253lfb.121.2022.12.26.23.50.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Dec 2022 23:50:14 -0800 (PST)
+Message-ID: <5801b0ed-282e-331f-00cf-fdce1adcda31@linaro.org>
+Date:   Tue, 27 Dec 2022 08:50:13 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v2 2/9] dt-bindings: net: snps,dwmac: Update the maxitems
- number of resets and reset-names
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-riscv@lists.infradead.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+Subject: Re: [PATCH v2 0/5] Add MAX77541/MAX77540 PMIC Support
+Content-Language: en-US
+To:     Okan Sahin <okan.sahin@analog.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>
-References: <20221216070632.11444-1-yanhong.wang@starfivetech.com>
- <20221216070632.11444-3-yanhong.wang@starfivetech.com>
- <040b56b1-c65c-34c3-e4a1-5cae4428d1d2@linaro.org>
- <7f4339df-6616-120f-f16a-cd38a2b6ea1d@starfivetech.com>
- <1a696768-45ef-0144-07f3-d356af9659e5@linaro.org>
-Content-Language: en-US
-From:   yanhong wang <yanhong.wang@starfivetech.com>
-In-Reply-To: <1a696768-45ef-0144-07f3-d356af9659e5@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20221226225123.105907-1-okan.sahin@analog.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221226225123.105907-1-okan.sahin@analog.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX173.cuchost.com
- (172.16.6.93)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2022/12/20 17:21, Krzysztof Kozlowski wrote:
-> On 20/12/2022 07:48, yanhong wang wrote:
-> 
->>>> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>>> index e26c3e76ebb7..7870228b4cd3 100644
->>>> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>>> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>>> @@ -133,12 +133,19 @@ properties:
->>>>          - ptp_ref
->>>>  
->>>>    resets:
->>>> -    maxItems: 1
->>>> -    description:
->>>> -      MAC Reset signal.
->>>> +    minItems: 1
->>>> +    maxItems: 3
->>>> +    additionalItems: true
->>>> +    items:
->>>> +      - description: MAC Reset signal
->>>>  
->>>>    reset-names:
->>>> -    const: stmmaceth
->>>> +    minItems: 1
->>>> +    maxItems: 3
->>>> +    additionalItems: true
->>>> +    contains:
->>>> +      enum:
->>>> +        - stmmaceth
->>>
->>> No, this is highly unspecific and you know affect all the schemas using
->>> snps,dwmac.yaml. Both lists must be specific - for your device and for
->>> others.
->>>
->> 
->> I have tried to define the resets in "starfive,jh71x0-dwmac.yaml", but it can not over-write the maxItems limit in "snps,dwmac.yaml",therefore, it will report error "reset-names: ['stmmaceth', 'ahb'] is too long"  running "make dt_binding_check". Do you have any suggestions to deal with this situation?
-> 
-> The solution is not to affect all schemas with allowing anything as reset.
-> 
-> If you need more items for your case, you can change snps,dwmac.yaml and
-> add constraints in allOf:if:then: allowing it only for your compatible.
-> There are plenty of examples how this is done, e.g.:
-> 
-> https://elixir.bootlin.com/linux/v5.19-rc6/source/Documentation/devicetree/bindings/clock/samsung,exynos7-clock.yaml#L57
+On 26/12/2022 23:51, Okan Sahin wrote:
+> MFD, regulator and ADC driver and related bindings for MAX77540/MAX77541.
+> The patches are requeired to be applied in sequence.
 > 
 
-Thanks. Refer to the definition in the example and update the definition as follows:
+I got two cover letters, with nothing attached, sent to different people
+yet still both of them sent to incomplete list.
 
-snps,dwmac.yaml[Partial Content]:
+Make a RESEND or send a v3 to all necessary people, not some subset.
+Properly thread your patchset so it comes as one thread, not just one
+cover letter.
 
-properties:
-  resets:
-    maxItems: 1
-    description:
-      MAC Reset signal.
+Best regards,
+Krzysztof
 
-  reset-names:
-    const: stmmaceth
-
-allOf:
-  - if:
-      properties:
-        compatible:
-          contains:
-            const: starfive,jh7110-dwmac
-
-    then:
-      properties:
-        resets:
-          minItems: 2
-          maxItems: 2
-        reset-names:
-          items:
-            - const: stmmaceth
-            - const: ahb
-      required:
-        - resets
-        - reset-names
-
-
-starfive,jh7110-dwmac.yaml[Partial Content]:
-
-properties:
-  resets:
-    items:
-      - description: MAC Reset signal.
-      - description: AHB Reset signal.
-
-  reset-names:
-    items:
-      - const: stmmaceth
-      - const: ahb
-
-allOf:
-  - $ref: snps,dwmac.yaml#
-
-It will also report error "reset-names: ['stmmaceth', 'ahb'] is too long"  running "make dt_binding_check" with 'starfive,jh7110-dwmac.yaml'. Do you have any better suggestions to solve this problem?
-
->> 
->>> Best regards,
->>> Krzysztof
->>>
-> 
-> Best regards,
-> Krzysztof
-> 
