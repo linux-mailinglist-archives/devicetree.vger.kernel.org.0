@@ -2,117 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85AFC6566E2
-	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 03:36:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD6FF65674A
+	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 06:12:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229792AbiL0CgP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Dec 2022 21:36:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33000 "EHLO
+        id S229478AbiL0FMo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 00:12:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229880AbiL0CgO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 21:36:14 -0500
-Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 605A2C63
-        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 18:36:13 -0800 (PST)
-Received: by mail-qt1-x830.google.com with SMTP id s9so9626010qtx.6
-        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 18:36:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vtremblay.dev; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OI0zO948M7Usl6Mh9jnJL/dQvMAibdS+Nj8w4BoMGME=;
-        b=kDp212TWBINw212tyfVcBrg6aIGbE5iwcI+XNzxugxoeQ6FmSBcrU5H9km8lJmwRSP
-         E5NA94s5LcCSTiBf6wn9xWJfPEXwsaTUnbigCwqJhlxfilq/2FZQiKb1lqvsnFq5/YKI
-         JoAp6YMYstfGQ2YN54U6fcsaAqJzQo5QIbsJKTvCvB9ZkReC/p5f9xg5AJM3qJ0xR14o
-         OD1rIomKmKa6FT1VwDKsUMobTU3arij5/gxAm10ZXVg/WaUhwlbE7omCmTu9LW2/sSyr
-         slMpt82oDP0j75vPmVA1Wub7PFaRwg78dZxfHmQ3SQGuI/e6hRiH9OEp6YjJ6Oviy7S5
-         VVBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OI0zO948M7Usl6Mh9jnJL/dQvMAibdS+Nj8w4BoMGME=;
-        b=WTYox8IBe+z0VSvJ7Z7M9v3JABeonBPQEMH94Md5S9OrTk9RZjIBOvK2VcWSZ37Ed1
-         L6yaqg/jADbWieU823f3QMOpYVceee8/AHdu1mx5cgTjuwdvAD7m7NQEVt2N8ssSdBap
-         JfogO5yA+ddsaPEHXwCQf5xY3eGnAFsVZA0szGj4p+E8coDdGP+2kProK4ugvFDmhKB5
-         gnhuL9J26VNKPY1i8MsT5B873kdkHEBC5DkHS4yk6quIjUTwwWgQlpiNR9w+MrFKimtE
-         67TqMtNpGi3yBjOEvHKC9nyhO3jRn+t1P8M67VqiFboIYRczhOqJtj69R5dtIPNwQENV
-         WmNA==
-X-Gm-Message-State: AFqh2koqsmXP45kqpzg6uvUyZlCJUjBHsmWZCJon4V1Se3zvaHp8qfrn
-        nv486GWmhfwiyFSIjTaFjWtNXQ==
-X-Google-Smtp-Source: AMrXdXvq0+yjcebqLKcA4+wy9C5HzvVhAnP5rXJNCVgr9M0cSlodEIE3Z4uTv9Du8jMG2JpnnBtZLw==
-X-Received: by 2002:ac8:7583:0:b0:3a7:eb2c:efea with SMTP id s3-20020ac87583000000b003a7eb2cefeamr28495539qtq.19.1672108572568;
-        Mon, 26 Dec 2022 18:36:12 -0800 (PST)
-Received: from vtremblay.. (modemcable190.194-177-173.mc.videotron.ca. [173.177.194.190])
-        by smtp.gmail.com with ESMTPSA id l8-20020a37f908000000b006fcab4da037sm8612322qkj.39.2022.12.26.18.36.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Dec 2022 18:36:12 -0800 (PST)
-From:   Vincent Tremblay <vincent@vtremblay.dev>
-Cc:     vincent@vtremblay.dev, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Stanislav Jakubek <stano.jakubek@gmail.com>,
-        Marcello Sylvester Bauer <sylv@sylv.io>,
-        Marek Vasut <marex@denx.de>,
-        Samuel Holland <samuel@sholland.org>,
-        "Greg.Schwendimann@infineon.com" <Greg.Schwendimann@infineon.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org
-Subject: [PATCH v2 2/2] spidev: Add Silicon Labs EM3581 device compatible
-Date:   Mon, 26 Dec 2022 21:35:48 -0500
-Message-Id: <20221227023550.569547-2-vincent@vtremblay.dev>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20221227023550.569547-1-vincent@vtremblay.dev>
-References: <20221224041825.171345-1-vincent@vtremblay.dev>
- <20221227023550.569547-1-vincent@vtremblay.dev>
+        with ESMTP id S229447AbiL0FMm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 00:12:42 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A76025F6;
+        Mon, 26 Dec 2022 21:12:37 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2BR5CL1j110604;
+        Mon, 26 Dec 2022 23:12:21 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1672117941;
+        bh=CgmGw+dFUCEc9kNHgk9+wDsEsqV5Z4l7nEelOZRhQkM=;
+        h=From:To:CC:Subject:Date;
+        b=HblTwrzR4ERHxsMkRkSCW18TavOuHzASRELSNCm7WL+EEZDtSN1RaS1LtcNUSahq1
+         gcus9i3vCLgmB4hKbnJODklAnEm3vdf3b3qLVajRkAiWWgWlCx9U6O27uLj2QhTRa0
+         YvL3LRQLJRUsCMMAZVBo/bClTDS2CJwwNzjwdOS4=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2BR5CLWi072300
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 26 Dec 2022 23:12:21 -0600
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 26
+ Dec 2022 23:12:21 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 26 Dec 2022 23:12:20 -0600
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2BR5CJHM124680;
+        Mon, 26 Dec 2022 23:12:20 -0600
+From:   Dhruva Gole <d-gole@ti.com>
+To:     Vignesh Raghavendra <vigneshr@ti.com>
+CC:     Dhruva Gole <d-gole@ti.com>, <nm@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH] arm64: dts: ti: k3-am62-main: Fix clocks for McSPI
+Date:   Tue, 27 Dec 2022 10:42:08 +0530
+Message-ID: <20221227051208.158894-1-d-gole@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible string for Silicon Labs EM3581 device.
+Fixes the clock Device ID's in the DT according to the tisci docs clock
+identifiers for AM62x
 
-Signed-off-by: Vincent Tremblay <vincent@vtremblay.dev>
+Signed-off-by: Dhruva Gole <d-gole@ti.com>
 ---
-Changes in v2:
- - Add missing documentation in trivial-devices
 
- drivers/spi/spidev.c | 2 ++
- 1 file changed, 2 insertions(+)
+For reference, TISCI Docs: clock id's for AM62
+https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am62x/clocks.html
 
-diff --git a/drivers/spi/spidev.c b/drivers/spi/spidev.c
-index 6313e7d0cdf8..46f53ca03f8d 100644
---- a/drivers/spi/spidev.c
-+++ b/drivers/spi/spidev.c
-@@ -702,6 +702,7 @@ static const struct spi_device_id spidev_spi_ids[] = {
- 	{ .name = "m53cpld" },
- 	{ .name = "spi-petra" },
- 	{ .name = "spi-authenta" },
-+	{ .name = "em3581" },
- 	{},
- };
- MODULE_DEVICE_TABLE(spi, spidev_spi_ids);
-@@ -728,6 +729,7 @@ static const struct of_device_id spidev_dt_ids[] = {
- 	{ .compatible = "menlo,m53cpld", .data = &spidev_of_check },
- 	{ .compatible = "cisco,spi-petra", .data = &spidev_of_check },
- 	{ .compatible = "micron,spi-authenta", .data = &spidev_of_check },
-+	{ .compatible = "silabs,em3581", .data = &spidev_of_check },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, spidev_dt_ids);
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+index 7ad7dd74e079..625e6a004292 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+@@ -418,7 +418,7 @@ main_spi0: spi@20100000 {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 		power-domains = <&k3_pds 141 TI_SCI_PD_EXCLUSIVE>;
+-		clocks = <&k3_clks 172 0>;
++		clocks = <&k3_clks 141 0>;
+ 	};
+ 
+ 	main_spi1: spi@20110000 {
+@@ -428,7 +428,7 @@ main_spi1: spi@20110000 {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 		power-domains = <&k3_pds 142 TI_SCI_PD_EXCLUSIVE>;
+-		clocks = <&k3_clks 173 0>;
++		clocks = <&k3_clks 142 0>;
+ 	};
+ 
+ 	main_spi2: spi@20120000 {
+@@ -438,7 +438,7 @@ main_spi2: spi@20120000 {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 		power-domains = <&k3_pds 143 TI_SCI_PD_EXCLUSIVE>;
+-		clocks = <&k3_clks 174 0>;
++		clocks = <&k3_clks 143 0>;
+ 	};
+ 
+ 	main_gpio_intr: interrupt-controller@a00000 {
 -- 
-2.37.2
+2.25.1
 
