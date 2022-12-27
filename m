@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4161F656CE4
-	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 17:32:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A83F2656CEA
+	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 17:32:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231277AbiL0QcX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 11:32:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55182 "EHLO
+        id S229635AbiL0Qcy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 11:32:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232035AbiL0QcI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 11:32:08 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72162B7E2
-        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 08:32:02 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id bt23so3610379lfb.5
-        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 08:32:01 -0800 (PST)
+        with ESMTP id S232079AbiL0QcK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 11:32:10 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A6EEBC82
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 08:32:04 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id bp15so20237348lfb.13
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 08:32:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=frC0CMdSQBqRvRfV0Ly2ms9MOr7jMien4e0QpzgS4Y0=;
-        b=ioGOQbrwpxf9zbZNpX07DCYteltcLFONw7PZ/AdAZS1rp3VVGTaokfcHJaASR3on9l
-         7d/p7tQ2TGINwm1/LuAo44wxzkXHWiKzesovAjOXHfqXhnpIDiJbNFeZfo5QxYRRCuix
-         g7ZtFwQNY9ViDfTjGt1DcqOpl++KxkIIKLR0P/u8R/j3daZwrkXKqKvnChpggvTAne8X
-         YuvQjz3RzFqvfrd7KdK+/HmbiYEN1Ft5DiyYYWNZc/QQObjTGCxfL8UbJIZXm8a1U0vV
-         bfHHUKZA80s7xz0ZW2fVF8EBFSRd5AZqas7Hbm6p/ypMNh2zDWCshKmWg46bMuOyC+CE
-         pJ3w==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Jj3odR24R3zltoZ8J0vvuKsCnJFZ1r/NGOBMtXzcGls=;
+        b=BJqrcT6WZus5i8s+2oU+P2gJAgp1c8WWSeXt36RLawrbLJzLL/xxIq5obXGVMDaADo
+         ZFs8cG+V45I5V4ife5KLrUA/j9Gt5er/wznTBA9EXCNWIj03SFlshD7DAb7MZmpfa29w
+         IWr6It9bF7HX5hrefh4QDvx58nJLgdLZXfNuHDylWr+9jMvD+gOyuVcxq8V8lO/Jqa6i
+         k5DBCO2gwWhQcXT1GL2iaFu4EmIoJXgvul2/zDp04KHRZfSQkFaQo1s1UDDjnrPOxb4Y
+         XqIqihPzCBfArf18vd8VpGu95Aw5Wv5C3NTLliM2AbNf9My3TuuHdkoLYdJz/JW5fBKv
+         n1+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=frC0CMdSQBqRvRfV0Ly2ms9MOr7jMien4e0QpzgS4Y0=;
-        b=l6Ay6kevnJ0gdkqZgUsgPedgfq9pj+TOVPNunTJ2xXE4Kf+f4VlauOBN8/2iXETYHG
-         22PEUCgeIa33hsHsAHCAJ2ev0KYIT+2DgmnOCfIdsvjDgxR7I3a0rLdiSlsTBoxo1ZMc
-         J8CNTysR8lm5WKJuSmWJVAiIrc+cAerkd3l8Wvia7n4YReEKRRlryWjpRi8ubTSPDxe5
-         WRYynmtHtitPtfZl8WGLcmWJTA+aqIZkIwKoEhkP1jgyOUNB0G4XlaqRDqZMhiVq9zQt
-         dMX99pdiPi0SUO1IkFVks6ZcsJHI5AcMsP6aBP+7flaxh9fMgznUlplS2+fDgN9OdxBK
-         D5MA==
-X-Gm-Message-State: AFqh2krVdslphZpOz4snYtwP6Cqgg29VdwwY98UCurV3NX8GEo43iRwI
-        m5ZBymPcqPtFxDh91ROX4YqZGQ==
-X-Google-Smtp-Source: AMrXdXt9Cz0ZmNvQ1RK+Z+vtmF660kCSUOPgVi3EWU0VmRLB9+L7Hxqajr5QuGPf+oYMgeyvVZ8CGw==
-X-Received: by 2002:a05:6512:ba5:b0:4a4:68b9:19f9 with SMTP id b37-20020a0565120ba500b004a468b919f9mr6635267lfv.33.1672158721634;
-        Tue, 27 Dec 2022 08:32:01 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Jj3odR24R3zltoZ8J0vvuKsCnJFZ1r/NGOBMtXzcGls=;
+        b=tFk3Cg63djGEFaECKDKe6GldTwCF9mbgpTtzU2rZw8ZaRWm7tarQ+p0UA92TmsJwab
+         2uIp4aliXCdqDloMOYZvnfuW0HC5QYe5FdrUJEfhf0aBixDPd3rxI0CT8nziRxxJZllN
+         o3Gb5ZaFDDhX5LWDOVPrpyEJrjwChGU8IQ/NdnRbkAl/4KX/bDJ2gyqAUoX3dkOZB47P
+         mFPFdVuGnvFarNfD41iokkEIyEm15YK7rUCjV6hDQABtOHlyrxPLP+CP1MWH/PHprDji
+         zqr/kYjuR0uUQjOTg2qqj+7jYl5tWZoFzjkqLN1RjENSjyq7LAAgEvej7Xz3Y3AwlRvW
+         Zp7A==
+X-Gm-Message-State: AFqh2kpQP26WE43LYmyIMfk5Z7nStGbl+m8Hp7iz+8zkldcfS7BeDg0F
+        oxr9ZNOiiOjFSoN0X/bGN/ixoQ==
+X-Google-Smtp-Source: AMrXdXsR/f5ChOpOBVEToYJox+k43YLCl7w7oekaq//lCeatIW6bPIGiR8kmybCiHw3OC6WqAs1bcg==
+X-Received: by 2002:a05:6512:3ca0:b0:4b5:b7c3:8053 with SMTP id h32-20020a0565123ca000b004b5b7c38053mr6901004lfv.42.1672158722840;
+        Tue, 27 Dec 2022 08:32:02 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id q8-20020ac25108000000b004aac23e0dd6sm2319853lfb.29.2022.12.27.08.32.00
+        by smtp.gmail.com with ESMTPSA id q8-20020ac25108000000b004aac23e0dd6sm2319853lfb.29.2022.12.27.08.32.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Dec 2022 08:32:01 -0800 (PST)
+        Tue, 27 Dec 2022 08:32:02 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -57,43 +58,59 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 1/2] arm64: dts: qcom: sm8350: drop unused dispcc power-domain-names
-Date:   Tue, 27 Dec 2022 17:31:57 +0100
-Message-Id: <20221227163158.102737-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/2] arm64: dts: qcom: sc7180-trogdor: align DAI children names with DT schema
+Date:   Tue, 27 Dec 2022 17:31:58 +0100
+Message-Id: <20221227163158.102737-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221227163158.102737-1-krzysztof.kozlowski@linaro.org>
+References: <20221227163158.102737-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Display clock controller bindings do not allow power-domain-names:
+Bindings expect DAI children to be named "dai-link":
 
-  sm8350-hdk.dtb: clock-controller@af00000: 'power-domain-names' does not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
+  sc7180-trogdor-coachz-r1.dtb: lpass@62d87000: Unevaluated properties are not allowed ('hdmi@5', 'mi2s@0', 'mi2s@1' were unexpected)
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8350.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index 0726930c9e28..d473194c968d 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -2637,7 +2637,6 @@ dispcc: clock-controller@af00000 {
- 			#power-domain-cells = <1>;
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+index d134d172a3c5..64e85cfb36d3 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+@@ -788,18 +788,18 @@ &lpass_cpu {
+ 	#address-cells = <1>;
+ 	#size-cells = <0>;
  
- 			power-domains = <&rpmhpd SM8350_MMCX>;
--			power-domain-names = "mmcx";
- 		};
+-	mi2s@0 {
++	dai-link@0 {
+ 		reg = <MI2S_PRIMARY>;
+ 		qcom,playback-sd-lines = <1>;
+ 		qcom,capture-sd-lines = <0>;
+ 	};
  
- 		adsp: remoteproc@17300000 {
+-	secondary_mi2s: mi2s@1 {
++	secondary_mi2s: dai-link@1 {
+ 		reg = <MI2S_SECONDARY>;
+ 		qcom,playback-sd-lines = <0>;
+ 	};
+ 
+-	hdmi@5 {
++	dai-link@5 {
+ 		reg = <LPASS_DP_RX>;
+ 	};
+ };
 -- 
 2.34.1
 
