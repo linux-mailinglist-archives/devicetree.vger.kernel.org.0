@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A9A56570B4
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 00:04:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14DD96570BA
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 00:04:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229972AbiL0XEi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 18:04:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44698 "EHLO
+        id S232306AbiL0XEx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 18:04:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232210AbiL0XEU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 18:04:20 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20FF6DFD7
-        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 15:04:16 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id bt23so4767594lfb.5
-        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 15:04:16 -0800 (PST)
+        with ESMTP id S232376AbiL0XEW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 18:04:22 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC149DF96
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 15:04:20 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id s22so15050027ljp.5
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 15:04:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=kkirVz/33x31xBhYi0JWwLjL/jhzRe4WWEuKEkFMsWo=;
-        b=RLGiwgxjXRKc4EsXCwQvENz0JiKBKPzIuszL+O72xNIyJFyyHKJeL8r9MEzjhKdZS8
-         q4HqvnZwSMwOyApCGuSCpVLJWrEVHv4EdSQhHTZWdH+R1g7qB5uQRAd5NQ4QdD18Ugml
-         twuEIRSX6sESMNwC7fenxmYuaQ8nL0sjFFB5sxfcPLRLqNfglSk2ap2gferOOXxEFAnX
-         ism+O2+77CnkhV+3dIJfDwEqf9NUczrfpn2xsVHmzHLC+Eiwoq6NjYqf3haNgghsWgZh
-         kXaHxyrS4GatK5nDBFeiZTHjfInTE1y5g+HYPADV+PvYxtkgcyw4u+AE/g40Oumfuaon
-         u1ZA==
+        bh=ALCXqoODJG4Fl1tVrTYiR0YIC0rXIReKhT1lUtG3hdA=;
+        b=yUVecZ76fCB6IvA+Cy8N88tPkw06p37lZ0KXjxTx3ZHIslky5t2WXlZV9KZb/ZaFPK
+         26aLSaHZwMTeKto5N5oUi4HW12FrVrdFD8umOH9DB8DoPdV3MIL7bsFbWfGkoP0hxs98
+         A3267hW+oerZP6yQzyh2Gn/JaxqbCm8XCBJ+q4M3H+jOIPsQae5d1TEuD0BUiFkp376H
+         iY1LUWlWKCFJGekC4nxaq5WJczPk5sUoAFpX/DZC9cT8Plmy3MCkuutHjcmfNnPMxiJw
+         fW3RrTjPpbINPMFi26xnHCtSRItCjMSvKI10Ew9AnhUQzNFoBTVYD4WHjeh3WLLPGBr4
+         3LBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=kkirVz/33x31xBhYi0JWwLjL/jhzRe4WWEuKEkFMsWo=;
-        b=YBKQBOs5KbnxYmyPTrn1hCTwlJHNlgq0yvfXMZae5QpmAVRD45YPxdOLV4NvrFIK/s
-         AuGf2emhiK460aB/gq4P+Gfa3DgMZbOloREkIgt/+JyOWejqhriVgrpxJczN0bDmAJiE
-         miUfPrkniulgejk6kVKOiIWga2Ip1MqzsANOuHy2xNjvcdWxPD0X9leKPOHDnWKvAJjc
-         f8wkrSPAxHw4K192WLiVSSUOYEvN79p+gH0Umtwg3UPmdPyPQWfzXnPITZU8LWk8bovB
-         EUFrhamwmSbsUsSqnSjhdCdW9UROZlxYgjxBx932CxAKzucsPUBca6qZuZxITwU2I/pg
-         YWVA==
-X-Gm-Message-State: AFqh2kr7jhUY1suxxa2rAXN9JuUutLkHPJR17IvN6XjK8xBHihbOOP5c
-        DotACB8/LtngO8qi8mAkU1ADrw==
-X-Google-Smtp-Source: AMrXdXuRg+RWZECcd05OZBukglo+UoFlAtGbMa+BgMEGs3zidEZnp+S5U/6qnvyErizFnkt12pIUFg==
-X-Received: by 2002:a05:6512:3d11:b0:4b5:2ef3:fd2a with SMTP id d17-20020a0565123d1100b004b52ef3fd2amr12007982lfv.47.1672182254389;
-        Tue, 27 Dec 2022 15:04:14 -0800 (PST)
+        bh=ALCXqoODJG4Fl1tVrTYiR0YIC0rXIReKhT1lUtG3hdA=;
+        b=tnMJknYeLjtm4Z+Enp2fyWto1GKFLMutSd623q/kz4VImr+TRozmO7O2SW9TzcP1wS
+         uWBqVApPSBsOrfO7LOt6Yii4EwR/dlYlsoxbNcw/fU8MOvQBFxtWGEYEDGsQaYPWKjKC
+         ea6vSIh1+JjWkS6l+kIjSnBWGVzyb9IgDGz0f7O8fsfqG4dZERLUupMqWy4bSeDNV2fs
+         w4CsNU4cGy0Sau+G9EgnBrNCfGJ+xiVfI7Z6rX+VVJR+6Myeda5Yo2PW3mZNKyUOivOx
+         wDfRjOnpLERrUxQ+HP/1aAogXXCXmELiiX618YAW8byY/PPoyal1qq9BLy6MKdJwsX3x
+         oGaQ==
+X-Gm-Message-State: AFqh2krmLrjs/RnOUuNF1YO96c/ChRcsiaEd62rCtw/HLwU/x3pqS4W6
+        QXzOChwFHyoBeROfj7FZbzCH5A==
+X-Google-Smtp-Source: AMrXdXuLm80d+XZDJHjvTajcZdy9zM+KujZjLg2FBDMAjQSW+sWpH+i5cLf5CJvpjqnCzwbw8l2iiA==
+X-Received: by 2002:a2e:b0d0:0:b0:27f:8b85:4098 with SMTP id g16-20020a2eb0d0000000b0027f8b854098mr6719151ljl.52.1672182260250;
+        Tue, 27 Dec 2022 15:04:20 -0800 (PST)
 Received: from Fecusia.local (c-05d8225c.014-348-6c756e10.bbcust.telenor.se. [92.34.216.5])
-        by smtp.gmail.com with ESMTPSA id bg25-20020a05651c0b9900b0027fbd4ee003sm876925ljb.124.2022.12.27.15.04.04
+        by smtp.gmail.com with ESMTPSA id bg25-20020a05651c0b9900b0027fbd4ee003sm876925ljb.124.2022.12.27.15.04.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Dec 2022 15:04:12 -0800 (PST)
+        Tue, 27 Dec 2022 15:04:15 -0800 (PST)
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 28 Dec 2022 00:03:36 +0100
-Subject: [PATCH 4/7] crypto: stm32/hash: Make dma_mode a bool
+Date:   Wed, 28 Dec 2022 00:03:37 +0100
+Subject: [PATCH 5/7] crypto: stm32/hash: Wait for idle before final CPU xmit
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20221227-ux500-stm32-hash-v1-4-b637ac4cda01@linaro.org>
+Message-Id: <20221227-ux500-stm32-hash-v1-5-b637ac4cda01@linaro.org>
 References: <20221227-ux500-stm32-hash-v1-0-b637ac4cda01@linaro.org>
 In-Reply-To: <20221227-ux500-stm32-hash-v1-0-b637ac4cda01@linaro.org>
 To:     Herbert Xu <herbert@gondor.apana.org.au>,
@@ -80,74 +80,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This flag enables/disables DMA mode and is a true/false
-flag so make it a bool. Clamp the value from the
-HASH_HWCFGR register to a bool as well using a double-bang
-construction.
+When calculating the hash using the CPU, right before the final
+hash calculation, heavy testing on Ux500 reveals that it is wise
+to wait for the hardware to go idle before calculating the
+final hash.
+
+The default test vectors mostlt worked fine, but when I used the
+extensive tests and stress the hardware I ran into this problem.
 
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- drivers/crypto/stm32/stm32-hash.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/crypto/stm32/stm32-hash.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/drivers/crypto/stm32/stm32-hash.c b/drivers/crypto/stm32/stm32-hash.c
-index cc0a4e413a82..5f03be121787 100644
+index 5f03be121787..92b2d55d6e93 100644
 --- a/drivers/crypto/stm32/stm32-hash.c
 +++ b/drivers/crypto/stm32/stm32-hash.c
-@@ -166,7 +166,7 @@ struct stm32_hash_dev {
- 	struct reset_control	*rst;
- 	void __iomem		*io_base;
- 	phys_addr_t		phys_base;
--	u32			dma_mode;
-+	bool			dma_mode;
- 	u32			dma_maxburst;
+@@ -362,6 +362,9 @@ static int stm32_hash_xmit_cpu(struct stm32_hash_dev *hdev,
+ 		stm32_hash_write(hdev, HASH_DIN, buffer[count]);
  
- 	struct ahash_request	*req;
-@@ -481,7 +481,7 @@ static int stm32_hash_hmac_dma_send(struct stm32_hash_dev *hdev)
- 	struct stm32_hash_ctx *ctx = crypto_ahash_ctx(tfm);
- 	int err;
- 
--	if (ctx->keylen < HASH_DMA_THRESHOLD || (hdev->dma_mode == 1)) {
-+	if (ctx->keylen < HASH_DMA_THRESHOLD || (hdev->dma_mode)) {
- 		err = stm32_hash_write_key(hdev);
- 		if (stm32_hash_wait_busy(hdev))
- 			return -ETIMEDOUT;
-@@ -568,7 +568,7 @@ static int stm32_hash_dma_send(struct stm32_hash_dev *hdev)
- 
- 		sg[0] = *tsg;
- 		if (sg_is_last(sg)) {
--			if (hdev->dma_mode == 1) {
-+			if (hdev->dma_mode) {
- 				len = (ALIGN(sg->length, 16) - 16);
- 
- 				ncp = sg_pcopy_to_buffer(
-@@ -602,7 +602,7 @@ static int stm32_hash_dma_send(struct stm32_hash_dev *hdev)
- 			return err;
- 	}
- 
--	if (hdev->dma_mode == 1) {
-+	if (hdev->dma_mode) {
- 		if (stm32_hash_wait_busy(hdev))
- 			return -ETIMEDOUT;
- 		reg = stm32_hash_read(hdev, HASH_CR);
-@@ -663,7 +663,7 @@ static bool stm32_hash_dma_aligned_data(struct ahash_request *req)
- 		return false;
- 
- 	if (sg_nents(req->src) > 1) {
--		if (hdev->dma_mode == 1)
-+		if (hdev->dma_mode)
- 			return false;
- 		for_each_sg(req->src, sg, sg_nents(req->src), i) {
- 			if ((!IS_ALIGNED(sg->length, sizeof(u32))) &&
-@@ -1525,7 +1525,7 @@ static int stm32_hash_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto err_engine_start;
- 
--	hdev->dma_mode = stm32_hash_read(hdev, HASH_HWCFGR);
-+	hdev->dma_mode = !!stm32_hash_read(hdev, HASH_HWCFGR);
- 
- 	/* Register algos */
- 	ret = stm32_hash_register_algs(hdev);
+ 	if (final) {
++		if (stm32_hash_wait_busy(hdev))
++			return -ETIMEDOUT;
++
+ 		stm32_hash_set_nblw(hdev, length);
+ 		reg = stm32_hash_read(hdev, HASH_STR);
+ 		reg |= HASH_STR_DCAL;
 
 -- 
 2.38.1
