@@ -2,64 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D5C76565F2
-	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 00:02:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9518656637
+	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 01:15:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232415AbiLZXCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Dec 2022 18:02:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51872 "EHLO
+        id S232197AbiL0APx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Dec 2022 19:15:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229926AbiLZXCB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 18:02:01 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 666BCFE3;
-        Mon, 26 Dec 2022 15:02:00 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id CADB6B80DC4;
-        Mon, 26 Dec 2022 23:01:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DF9CC433F0;
-        Mon, 26 Dec 2022 23:01:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672095717;
-        bh=SX0BmzYTkCHs1PHSbj2Sqc0jerZcZXqTrHn2k8779eM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JwGcph3jDWpdUjn8PKQaR9ejzHI5fqrV9b9P06X97nG5sMCTGDO9HQEg4Pr2/eI/o
-         26/EW4ZJtG/QB2pl8o7gVPQlUMO4rlXHGuWslxcfAjdDTwnowdgwEh2YLgjJhz+j9W
-         rS2UUxD1E2L4jO0YsAF7YCBGUvCBJNAVcNc7CicZ79UdXix73w1xxENYjX06V5aflU
-         OreCAkz3XI3DbWaFkU72O8EXH/OqtM7aSMxClJqxr+OIl01r4PXSJxpCesBTKPixtt
-         M+CLKKuDRxlnj3AJc9/fJP31FSrDJpk5Ox0gYpzJ3QEsJv+lHzr6r1qKjy0aG2LqxT
-         eMcMcjS8+O7QQ==
-Date:   Mon, 26 Dec 2022 23:01:51 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Hal Feng <hal.feng@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Palmer Dabbelt <palmer@dabbelt.com>,
+        with ESMTP id S230072AbiL0APw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 19:15:52 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1631F25E6
+        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 16:15:51 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id z26so17662694lfu.8
+        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 16:15:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yQbjy/ZqQS2EH0Nc/WoIrxmxQvS/DxkNoFagQx5floQ=;
+        b=xgOfHZZxcfMwW/GCxlxjiiQqnTaoPCYrcvvhwuaHQBQDUXxQ+3r9dfXSV4SeSG+Pss
+         xD1fDWvdWemteAFs/86yaxIZLh7l2D1mPWpkAvyPjIrTOrjCmRhQJLVkT2U/z9inUekN
+         nX8Fx3VnMKu3z9lobBje37tjqkZZWK3IfsIh7w4+a7AHDxvvaTat7ShOhyViE/8bw+y0
+         5tHDJU6JRhWPOFpAfXkolcF2ixEBYNqppuERqDpavUMhwfofZWjzNwtE9yCOR5wv2ii/
+         dWJZgj3h17ygYExafg3mMntHjRTHESmJOYYzEpkaSSwKgwvNdfrE59ggfB4OqDTFQOUL
+         GB2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yQbjy/ZqQS2EH0Nc/WoIrxmxQvS/DxkNoFagQx5floQ=;
+        b=JJyBH50KmTYXKDc/I6rPgEk2G/rkdX5r+WJ9YSpCE29a9gY5ccjg3ggYAy2TfLIXem
+         MiAGDgFKt80S/nWHXn6aHq3OJG6Qgt0h/4Qml2yLt4eeRgIx8TCDQgFFziJJzEsInEF3
+         meiTby0O5gANv55DTcmG7bivImUpYyJFb3wYRoAruAJuQJDGTskSSDExH1gbRTzMazJl
+         tRw14kl9dOa6TjWYSWiWrvN2LN3s+c6kjBymGlkBddYbu7tSdiHk6DMrb5FbmH8g+BRv
+         EEeW07FrhNoiPIULZdBLWVlpuAL17f8h1oWfWy+u2V3Gt7pYo5C5xITVkmHGvyD+bx3l
+         v55A==
+X-Gm-Message-State: AFqh2krqP6oMl2KmGdAfJQTqQU/tdyhkNHKYCcktbIO24wxsOTK94MVJ
+        0mMovBK0TprNteLjdVlo3B4iWg==
+X-Google-Smtp-Source: AMrXdXsoYCxCv+M6D7afOzt/1q/9AqEzRrhajRLHlNSAWF8htm3jcbootoNq0qQRYIeTiYkn72Gw4w==
+X-Received: by 2002:a05:6512:2348:b0:4b5:1e6c:785c with SMTP id p8-20020a056512234800b004b51e6c785cmr6348172lfu.34.1672100149157;
+        Mon, 26 Dec 2022 16:15:49 -0800 (PST)
+Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id z25-20020ac24199000000b004b55ef84338sm2017801lfh.305.2022.12.26.16.15.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Dec 2022 16:15:48 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/7] Basic device tree support for StarFive JH7110
- RISC-V SoC
-Message-ID: <Y6on34WC2u3PSBHl@spud>
-References: <20221220011247.35560-1-hal.feng@starfivetech.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] ARM: dts: qcom: msm8974: add xo clock to rpm clock controller
+Date:   Tue, 27 Dec 2022 02:15:47 +0200
+Message-Id: <20221227001547.2830656-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="f/iFEOT8SIj34xAh"
-Content-Disposition: inline
-In-Reply-To: <20221220011247.35560-1-hal.feng@starfivetech.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,53 +70,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Populate the rpm clock controller node with clocks and clock-names
+properties.
 
---f/iFEOT8SIj34xAh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ arch/arm/boot/dts/qcom-msm8974.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-On Tue, Dec 20, 2022 at 09:12:40AM +0800, Hal Feng wrote:
-> This patch series adds basic device tree support for StarFive JH7110 SoC.
-> This patch series depends on series [1] and [2]. You can simply get or
-> review the patches at the link [3].
-> Emil Renner Berthing (7):
->   dt-bindings: riscv: Add StarFive JH7110 SoC and VisionFive 2 board
+diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
+index 8d216a3c0851..81636c76e068 100644
+--- a/arch/arm/boot/dts/qcom-msm8974.dtsi
++++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
+@@ -307,6 +307,8 @@ rpm_requests: rpm_requests {
+ 				rpmcc: clock-controller {
+ 					compatible = "qcom,rpmcc-msm8974", "qcom,rpmcc";
+ 					#clock-cells = <1>;
++					clocks = <&xo_board>;
++					clock-names = "xo";
+ 				};
+ 			};
+ 		};
+-- 
+2.35.1
 
-I've applied this one to riscv-dt-for-next
-https://git.kernel.org/conor/c/97b7ed072784
-
->   dt-bindings: timer: Add StarFive JH7110 clint
->   dt-bindings: interrupt-controller: Add StarFive JH7110 plic
-
->   dt-bindings: sifive,ccache0: Support StarFive JH7110 SoC
->   soc: sifive: ccache: Add StarFive JH7110 support
-
-And these two to riscv-soc-for-next
-https://git.kernel.org/conor/c/1caf002efa22
-https://git.kernel.org/conor/c/6635e91648ce
-
->   riscv: dts: starfive: Add initial StarFive JH7110 device tree
->   riscv: dts: starfive: Add StarFive JH7110 VisionFive 2 board device
->     tree
-
-The rest I can take with maintainer Acks alongside the DT, or they can
-go via subsystem trees.
-The DT is waiting for the clock/reset & pinctrl binding headers anyway,
-so IDC which it is.
-
-Thanks,
-Conor.
-
-
---f/iFEOT8SIj34xAh
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY6on3wAKCRB4tDGHoIJi
-0tjwAP9w54bxRzyxyIptYDA+Fq7fMvb7SJHNF9qgWs6aGwBT1gD+OOPrBoNFXa9g
-/EJQoDkPAke1E2T/1IuPwS5c7HAnUgU=
-=r4lC
------END PGP SIGNATURE-----
-
---f/iFEOT8SIj34xAh--
