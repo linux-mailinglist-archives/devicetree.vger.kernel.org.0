@@ -2,65 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 057C1656BA6
-	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 15:20:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0403656BF3
+	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 15:36:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229711AbiL0OUy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 09:20:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43084 "EHLO
+        id S231844AbiL0Oge (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 09:36:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229445AbiL0OUx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 09:20:53 -0500
+        with ESMTP id S232063AbiL0Oga (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 09:36:30 -0500
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3AB7FEA;
-        Tue, 27 Dec 2022 06:20:52 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 100C82A3;
+        Tue, 27 Dec 2022 06:36:29 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 449E461169;
-        Tue, 27 Dec 2022 14:20:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC432C433EF;
-        Tue, 27 Dec 2022 14:20:47 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9E71360F92;
+        Tue, 27 Dec 2022 14:36:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C23DC433D2;
+        Tue, 27 Dec 2022 14:36:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672150851;
-        bh=eszlHNnwyNqenWwhKzQ+6Bi2gaQg/fCsFC2uNABjCnU=;
+        s=k20201202; t=1672151788;
+        bh=/EDm6xhhHpeJLbxbvhfcWbFizxBuWlsdVT/F3n9zhI8=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YjNkSZobSLITUsrFDYjjw5wWsL5+U+K1fNc+qPZLS4I3pTDDKea1l7/BVRuqMabBH
-         IYcUeJVMXeF2SourDqOTfpVeitr9w3SEGC3Exx5duAKS1ePBqb3JgtGnOhuIBFBp/y
-         m5651OY2LIOGPN4G9tw7k4lTgLsyS5zVKroND//oZFHNUILRaPj8+liO7kXw08+Em4
-         yCIPvOmAa5p0lvMvIaFHRtO/aC0io+9/ye7yo2S95nXy3LLRbGGXeQ0ljbdCONj+1Q
-         nhmHBf9DA6yZ7mbIykq02XytDyrR9xAtblDkOJxOCijvRhKm00X70eLFqD5XD0dT/J
-         tHB1wVY+Yjd2A==
-Date:   Tue, 27 Dec 2022 14:20:45 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Hal Feng <hal.feng@starfivetech.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/7] Basic device tree support for StarFive JH7110
- RISC-V SoC
-Message-ID: <Y6r/Pa6mxzIiYnuC@spud>
-References: <20221220011247.35560-1-hal.feng@starfivetech.com>
- <Y6on34WC2u3PSBHl@spud>
- <7cc1078e-744a-c68f-98d2-6c68d2784df2@linaro.org>
+        b=CLqf7O8kcixh9nFMoanB7/3AjIQ/vkR6JwoLk/VkZpj/dZIOCVMr9XHmbajyDVUkq
+         DMynJ4rVrF1rYXU5ED00w18DFAHLR+lj3isG3KzHwRnKfb+7ni3KrBNcn9IxDrteU/
+         gQu3GI7S14K+jwCyCR/BjVfJMh5+E0aQXEY3OyyYHW2f8S83HNMNjoYZzXhJh15dlC
+         COFEKUOJdwwzauI7le8XIP39UiH+8Pkl+66lQf145BESc9gHJdmFU18qxf3w0anHaO
+         mqCBRpcJwFSMHEHsB88PZNbZ6WsPFSIQY2OObZcZ983HjO2Boqe5fGwrW0cSFI1fD/
+         HKWrefRYy432g==
+Date:   Tue, 27 Dec 2022 14:36:21 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     Wesley Cheng <quic_wcheng@quicinc.com>,
+        srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
+        perex@perex.cz, lgirdwood@gmail.com, andersson@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, Thinh.Nguyen@synopsys.com,
+        bgoswami@quicinc.com, tiwai@suse.com, robh+dt@kernel.org,
+        agross@kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+        quic_jackp@quicinc.com, quic_plai@quicinc.com
+Subject: Re: [RFC PATCH 00/14] Introduce QC USB SND audio offloading support
+Message-ID: <Y6sC5e9Zrd2JWTHU@sirena.org.uk>
+References: <20221223233200.26089-1-quic_wcheng@quicinc.com>
+ <Y6agEsfXKMMXPpmz@kroah.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="FU7aTXDCvLLRKW0J"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="1+ZKSFcDOruBirf+"
 Content-Disposition: inline
-In-Reply-To: <7cc1078e-744a-c68f-98d2-6c68d2784df2@linaro.org>
+In-Reply-To: <Y6agEsfXKMMXPpmz@kroah.com>
+X-Cookie: If it heals good, say it.
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -71,34 +63,50 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---FU7aTXDCvLLRKW0J
+--1+ZKSFcDOruBirf+
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 27, 2022 at 08:58:01AM +0100, Krzysztof Kozlowski wrote:
-> On 27/12/2022 00:01, Conor Dooley wrote:
-> > On Tue, Dec 20, 2022 at 09:12:40AM +0800, Hal Feng wrote:
-> > The DT is waiting for the clock/reset & pinctrl binding headers anyway,
->=20
-> Which were sent with build warnings/errors...
+On Sat, Dec 24, 2022 at 07:45:38AM +0100, Greg KH wrote:
+> On Fri, Dec 23, 2022 at 03:31:46PM -0800, Wesley Cheng wrote:
 
-Yah, DW chief - I'm not in a rush. Figure it'll take a few more
-iterations.
+> > soc-usb: Intention is to treat a USB port similar to a headphone jack.
+> > The port is always present on the device, but cable/pin status can be
+> > enabled/disabled.  Expose mechanisms for USB backend ASoC drivers to
+> > communicate with USB SND.
 
-Errors/warnings aside, responding to the clock series again is in my
-todo list, not convinced by the clock binding itself.
+> > Create a USB backend for Q6DSP:
+> > q6usb: Basic backend driver that will be responsible for maintaining the
+> > resources needed to initiate a playback stream using the Q6DSP.  Will
 
+> This looks to duplicate a bunch of the same things that a number of
+> different google developers have posted recently.  Please work with them
+> to come up with a unified set of patches that you all can agree with,
+> AND get them to sign off on the changes before resubmitting them.
 
---FU7aTXDCvLLRKW0J
+> This uncoordinated drip of patches from different people doing the same
+> thing is almost impossible to review from our side, as I'm sure you can
+> imagine.
+
+I have to say this is the first I've heard of any such patches other
+than from the Qualcomm people and I can't immediately see anything that
+was on the list either, though I might be missing something since I
+don't have the subject or anything.  If other people send things again
+it's probably good to suggest they copy in audio people and lists.
+
+--1+ZKSFcDOruBirf+
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY6r/HgAKCRB4tDGHoIJi
-0gYeAQCeWz9Cz2cqX8w05FRvSFr+0vhC8blylBRMdd0k4kNzCwD/RcbCjRaC4y1l
-3MMyFlRE9sQKhQSovtr0C9rIztbO9wI=
-=anTB
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmOrAuQACgkQJNaLcl1U
+h9AjZwgAhsVgucuD8v8EbY26CtQPykN5gxWGJ+7ciqU2SrnCmlf+PFa++50wRWOa
+pDrX7dQ+fLhgUGMXCKWlY7dRqGjtYicvaKElyZXfKt8vdXifdNur+KBhJW979lbF
+X2c3CK0pl7plOpv43L4vYExx5Qlr7B4Jz+sYbdw6ND1CqpW7a5lghIAOL2d0kTxB
+yPdeMrE4vmzXcN24/XFrTb0zgfTkh13j6et4DocgNe9UhHjgMzgEfHKmM7W/QBZf
+RNE8voHGyXvSb0w92ZyX1AGLIZF0sU2gOSR0tAQwH/5w5emoHj3b+LvGz1ArQVmj
+ms5nPnW0UpzZU8QkG6f+w8tJiSQCcw==
+=XxVJ
 -----END PGP SIGNATURE-----
 
---FU7aTXDCvLLRKW0J--
+--1+ZKSFcDOruBirf+--
