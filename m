@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3080F6570B0
+	by mail.lfdr.de (Postfix) with ESMTP id D4BE66570B2
 	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 00:04:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230256AbiL0XEg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 18:04:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44388 "EHLO
+        id S229744AbiL0XEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 18:04:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231468AbiL0XED (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 18:04:03 -0500
+        with ESMTP id S230409AbiL0XEI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 18:04:08 -0500
 Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC69CDF35
-        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 15:03:57 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id z7so9399221ljq.12
-        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 15:03:57 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74F53DF68
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 15:04:04 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id bn6so5165936ljb.13
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 15:04:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=i2N7NNifAQ86WoZ7rTUxWJfmzgVYj68lx1CkkjLHfuc=;
-        b=oKTHfe5WpDJ+0S0x9Q64mivXn6gj2tUZMKKd+8RnEujrrZl0qNLXkvCbulXJooqt04
-         EoqpfufbUrXy9fHKA/OlX/D7kQNF3+6GgR5OXGr5Gkp61L/j4g6Pb6bS64LBj7/OVVX0
-         42UnDcK2eAj9hkH+31lKbADQ5LIwKAK6CiSzZkIrvYw9oUvs5icpP537v50zIj435cCu
-         B0TADlrv2/+zvFxwe8Y8/mmkevlhPAIZ0zCY+4W2dKqmmFRJD8SXZyQMXRUdrRXq2KZR
-         nYV7FVyieFgWYBAHV4DIim/oxTMFmGRoFTXhYm2Aab//s3485UxwOZ0URpjJj6ppgvJu
-         AkwQ==
+        bh=omVnieNGh1C2BQOqxL85pqNlOA8iwg1l4f9DGmSm+F0=;
+        b=NpMquUy6XSCZlHF1B5JCxa1+IGZudC6z51dvvZyQWfgok2tgu+eONhBG59X2PafkeI
+         K9nO5jMavETPIF67WKoPGuL+6WIhuWKFd2rOVSYXTXR6Wv7Uja617HpHDc5mv+N9zoDL
+         srouCvYvhXyeEu3rHCBmx06/6txqAAy91FnspCCNRW9i+eDikpjySd3WFHrq0JtXSZOJ
+         i8w/9xkbSxT0NTgOVQhxKKflSjTrfXlRr7ACVrurfcYE37o0ru88N2jBCtFB1kOjk/eo
+         Kxb2cwoZndwWQMzjmEgg496wJ5IUAzr6ebbFKTYj5D7UboN1N5tD09vVUjCIEXVw2/WR
+         xB3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=i2N7NNifAQ86WoZ7rTUxWJfmzgVYj68lx1CkkjLHfuc=;
-        b=cFkdTMPcwmpgWvWjkG2f63ug8Apb1wDxwBboD17r+3SJy7uzIaQWYXbNA7XZ68WUR8
-         /ai3oy011XmoGiEz4Xq0D9UgDR8LRlQquzpu2HZ/G681+yQhDTHOsUL/5t0UnklPF2FI
-         ljYtJqf+e9FiucQWRAHTmrQwLbpd0QYAx3Zv7rZdcBdomEh1ObV3jOBY7MS++C3ZZhUQ
-         LQ8cKCVv90nriN1wa8EQ90lWrK4Ti0iRfWH7iyuc/9L3cqRklkmlwfcuvP2PXp/aDzWH
-         9yfjJ0+YFcxJmfL7/+lErL+0w3trvusjTIEaXTZkKjAnhZKKgfGVV/BjEwxZs/NmVxh6
-         apYA==
-X-Gm-Message-State: AFqh2kr7zngacHk/Aetkb6LfVwinP2KyWtdDeiYKxZww95AHrrsq30Hp
-        sOM8w1o4mwQGjg6SLVRg+VyHaA==
-X-Google-Smtp-Source: AMrXdXvrQu86e9KN1tewvOMgrDxWfgLXTRrdS3k1l5PdDsuMATBoNzZFvn6HMaqHHB4dG5xK1SAnpA==
-X-Received: by 2002:a2e:954f:0:b0:27f:c258:b24a with SMTP id t15-20020a2e954f000000b0027fc258b24amr1866334ljh.11.1672182235821;
-        Tue, 27 Dec 2022 15:03:55 -0800 (PST)
+        bh=omVnieNGh1C2BQOqxL85pqNlOA8iwg1l4f9DGmSm+F0=;
+        b=5QWmbeSSHdFJ5mzJnEXYwGYx/3dpR+EczyzAqDR9N0Swq42ek28FPvExe6fmJVlGhe
+         ZayRURX69xNT1kglDdPSYvRrLc9fEt8YK5IvUd5yCRcyabHOT9mZBfcul58mk7oXMuqB
+         zlsO5moz5E/kAiccoN2DgxnjMihtcFIk1fbAMYkT1rppd9nRNFHExpHLsGK5nW5H14C5
+         L46PU+4yis/bCjDUU38UgNsFc/TlhQ4m5XymBqIUOjcjah1dnFXQCraoZOzW0iw6XrvY
+         S5b+c5iEQKiu8GsC7ls45aU52Mup94fltortGflhXSimvyT4OmXhxIh1TBc8Q1F4bsPm
+         Iy5A==
+X-Gm-Message-State: AFqh2ko7IFmT1dqQDIWgAi6+gkB4nlG3OLd5+2filProYKfwRuzalzsE
+        xOwGFQ0jTqTca5qvhHeKaJLGdg==
+X-Google-Smtp-Source: AMrXdXs6RKKLQeK7L+Utv1AckslGJBa9ecdEOR5vI3IypBndmXbMZ3kAyf/SE1bdQMkdDmv+mh+DiQ==
+X-Received: by 2002:a05:651c:1992:b0:27f:b2cf:85a0 with SMTP id bx18-20020a05651c199200b0027fb2cf85a0mr4532982ljb.43.1672182244053;
+        Tue, 27 Dec 2022 15:04:04 -0800 (PST)
 Received: from Fecusia.local (c-05d8225c.014-348-6c756e10.bbcust.telenor.se. [92.34.216.5])
-        by smtp.gmail.com with ESMTPSA id bg25-20020a05651c0b9900b0027fbd4ee003sm876925ljb.124.2022.12.27.15.03.48
+        by smtp.gmail.com with ESMTPSA id bg25-20020a05651c0b9900b0027fbd4ee003sm876925ljb.124.2022.12.27.15.03.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Dec 2022 15:03:49 -0800 (PST)
+        Tue, 27 Dec 2022 15:03:57 -0800 (PST)
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 28 Dec 2022 00:03:34 +0100
-Subject: [PATCH 2/7] crypto: stm32/hash: Simplify code
+Date:   Wed, 28 Dec 2022 00:03:35 +0100
+Subject: [PATCH 3/7] crypto: stm32/hash: Use existing busy poll function
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20221227-ux500-stm32-hash-v1-2-b637ac4cda01@linaro.org>
+Message-Id: <20221227-ux500-stm32-hash-v1-3-b637ac4cda01@linaro.org>
 References: <20221227-ux500-stm32-hash-v1-0-b637ac4cda01@linaro.org>
 In-Reply-To: <20221227-ux500-stm32-hash-v1-0-b637ac4cda01@linaro.org>
 To:     Herbert Xu <herbert@gondor.apana.org.au>,
@@ -72,38 +72,44 @@ Cc:     linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
 X-Mailer: b4 0.11.1
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We are passing (rctx->flags & HASH_FLAGS_FINUP) as indicator
-for the final request but we already know this to be true since
-we are in the (final) arm of an if-statement set from the same
-flag. Just open-code it as true.
+When exporting state we are waiting indefinitely in the same
+was as the ordinary stm32_hash_wait_busy() poll-for-completion
+function but without a timeout, which means we could hang in
+an eternal loop. Fix this by waiting for completion like the
+rest of the code.
 
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- drivers/crypto/stm32/stm32-hash.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/crypto/stm32/stm32-hash.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/crypto/stm32/stm32-hash.c b/drivers/crypto/stm32/stm32-hash.c
-index d33006d43f76..0473ced7b4ea 100644
+index 0473ced7b4ea..cc0a4e413a82 100644
 --- a/drivers/crypto/stm32/stm32-hash.c
 +++ b/drivers/crypto/stm32/stm32-hash.c
-@@ -399,8 +399,7 @@ static int stm32_hash_update_cpu(struct stm32_hash_dev *hdev)
- 	if (final) {
- 		bufcnt = rctx->bufcnt;
- 		rctx->bufcnt = 0;
--		err = stm32_hash_xmit_cpu(hdev, rctx->buffer, bufcnt,
--					  (rctx->flags & HASH_FLAGS_FINUP));
-+		err = stm32_hash_xmit_cpu(hdev, rctx->buffer, bufcnt, 1);
- 	}
+@@ -960,11 +960,13 @@ static int stm32_hash_export(struct ahash_request *req, void *out)
+ 	struct stm32_hash_dev *hdev = stm32_hash_find_dev(ctx);
+ 	u32 *preg;
+ 	unsigned int i;
++	int ret;
  
- 	return err;
+ 	pm_runtime_get_sync(hdev->dev);
+ 
+-	while ((stm32_hash_read(hdev, HASH_SR) & HASH_SR_BUSY))
+-		cpu_relax();
++	ret = stm32_hash_wait_busy(hdev);
++	if (ret)
++		return ret;
+ 
+ 	rctx->hw_context = kmalloc_array(3 + HASH_CSR_REGISTER_NUMBER,
+ 					 sizeof(u32),
 
 -- 
 2.38.1
