@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 582B26569DB
-	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 12:22:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D68B46569DE
+	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 12:23:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231404AbiL0LWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 06:22:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33184 "EHLO
+        id S229728AbiL0LW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 06:22:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230403AbiL0LWY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 06:22:24 -0500
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41FD82DDA
-        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 03:22:20 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id n1so13475026ljg.3
-        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 03:22:20 -0800 (PST)
+        with ESMTP id S231623AbiL0LWy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 06:22:54 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFBE42DD3
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 03:22:52 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id g13so19199108lfv.7
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 03:22:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=e5EFgYQntWNk0XeqnPs3OnLgENTqm+gZt7nu2kRdcTA=;
-        b=DGiZSNV4OPpGVlQpParhlgaY49UGFCc3KdFDS8fD1BQcppfv54C3QOcjPS1B1zhUJv
-         df3pGzJ3HI/3nGOAgH+IDAxmgCSm0g65v13U719KYuhvTfZGpM6VTxUC5Fr0SGdHIgVC
-         2ywoCYNWdY8MPUwS0FDAYyorMrARxZM47qZPicsk/cNiABeaQyE26lNNxlHPb3Bt5KMJ
-         rFpaLcQSpmG29yYgrdJ7r9ovhLsX2yYqwaEqdu5AG2lSdh366CUaUQznS0/rtQ97cU6U
-         UwCupR9W+mwR0NSlFBdIh1CME9Q1+PMslyD1ojlqlhFcKMMxnc6QZdQg+lXDUjCmCz+s
-         RF/w==
+        bh=ksnoCNJ1qONO4wO2TMe95UeroS7VFopu//mYkJLJxUE=;
+        b=SITCaE/2FuFKhryuOmd/Et8sD9DhOsFSlEyRTAxu68ND6eWS8iFhfhnyawoaInJ9cW
+         /wAXIEr2mNb4u+n+9Xv+mKPR51wtg76K3pR6nR1ndtWjtWg8WYR4JyghIZ+irCPdFXgJ
+         X2cE3OzkMJal4R8eL0vVGdLmBQsaqlaLntmin6uxjApGs7wLH24OG78m4t76ickssHLj
+         2sgvUs1GsNvp6IQkU6duP4ZtmDvMizZu6j2wudweBgw+8guuk9CpTDhyW/cq/RKTq5rJ
+         7cniwnK2duuEgAYoqREZuWlD5WTdPwvQ5HgPDJesNxsVjY/WnaGXDCWZXTis5V3t6deT
+         mnZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=e5EFgYQntWNk0XeqnPs3OnLgENTqm+gZt7nu2kRdcTA=;
-        b=QKnp84+NzSpOnJDov4WrxpzRO+Ve+YYTFdDNJU4Buv+PHsjtSIQU3jCHBTa22Tdppz
-         zVlhWsYVGoe3isH9Qg/LyRLXIa/PuHK170w60nB3PTuY+pxrO4mxxDip0V2bvZOSHrD8
-         5AtLZj1U66B175kSwnI/PeP+pAmsI/MfHeB98ZqkTre0IbVzh9icmNcIs1swULFM2m3d
-         6Yp/uI8hLHbNTv0rvh3UOsKJzK5DIBUtSmoF+HTUtbKnk8ir7ohB+06+ZWriy7ks9/M0
-         +BIe2Y1hklfiTrNebW/xJqrB7EVdqfFX9n7sEUZLelrWuZASwf27veib6VWRCLfuZSh5
-         GqyA==
-X-Gm-Message-State: AFqh2kp0sY9EHfwrx/ULVnm0zLKcNEW0GBAYct43rtkholwsj+Aicgjy
-        HDgQoXUMiTVzKEADfgnPbRBWHQ==
-X-Google-Smtp-Source: AMrXdXs8D64HdRDszzjxWUfiS/tIjTaA7q/YbbZPLRp+mrkjB/y4RmPv0aIZHNfZJbz7lli16oqC8w==
-X-Received: by 2002:a2e:9007:0:b0:27f:c11c:315e with SMTP id h7-20020a2e9007000000b0027fc11c315emr1536534ljg.31.1672140138622;
-        Tue, 27 Dec 2022 03:22:18 -0800 (PST)
+        bh=ksnoCNJ1qONO4wO2TMe95UeroS7VFopu//mYkJLJxUE=;
+        b=z/ukvokGYAf1Z4QcHgTGDP6+8UafMUztQKRcQZFWE6BBgWZeGyEKHjnN74vuBUFsBx
+         xX9K/X1lUHoj00JUdmSoHEINW7pjVVJEDc1HvvHRb6rcppE0tqVY63/5E/J1s1WlZHDJ
+         m1e0LoO3jEzoFPJPoAmhEbzA49b2LlaXfBxu+ZrEY7/ms1rKpRyblmeA3zdDrnbIhUBb
+         H5fWKy2k5nv/tRC5N0G+oReMT0IdHImD0tn+e1X7e8VZBKEVHXVY8U14w40PQdcJ+UAr
+         1autAiNToCVWGki/F1yj7i2g5H3EncGg1oyAf9LJCFxQEheSN+BLLEKacCp7wRY2ZREX
+         r36w==
+X-Gm-Message-State: AFqh2kqkQNzcGZD3+DoiH63FM4lOrq2v70tf8SEqXcf/0kvFjWFBKa9z
+        piykqBrI62Gs38HS+hIMDHTvgg==
+X-Google-Smtp-Source: AMrXdXsgb4g6b0HRHXeusv48ZOMuWuFykfy0DyyF0MHa5irzJmekBaBIjp1PYrf6SDGrvB/LRC7YQA==
+X-Received: by 2002:a05:6512:141:b0:4ca:f887:fe99 with SMTP id m1-20020a056512014100b004caf887fe99mr3647965lfo.25.1672140171087;
+        Tue, 27 Dec 2022 03:22:51 -0800 (PST)
 Received: from [192.168.1.101] (abyl184.neoplus.adsl.tpnet.pl. [83.9.31.184])
-        by smtp.gmail.com with ESMTPSA id i5-20020a2e8085000000b0027fcc99d7dfsm2660ljg.55.2022.12.27.03.22.17
+        by smtp.gmail.com with ESMTPSA id k6-20020ac257c6000000b004b551cdfe13sm2189772lfo.279.2022.12.27.03.22.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Dec 2022 03:22:18 -0800 (PST)
-Message-ID: <c8f9d608-6fa6-48d0-5dc9-3daba9d96d66@linaro.org>
-Date:   Tue, 27 Dec 2022 12:22:17 +0100
+        Tue, 27 Dec 2022 03:22:50 -0800 (PST)
+Message-ID: <fd6fbdba-12e9-724f-8e0d-ac60035bd19d@linaro.org>
+Date:   Tue, 27 Dec 2022 12:22:49 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH 5/5] arm64: dts: qcom: use generic node name for CS35L41
- speaker
+Subject: Re: [PATCH 1/5] arm64: dts: qcom: msm8996: align bus node names with
+ DT schema
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -65,9 +65,8 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20221224154255.43499-1-krzysztof.kozlowski@linaro.org>
- <20221224154255.43499-5-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221224154255.43499-5-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221224154255.43499-1-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,59 +82,32 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 24.12.2022 16:42, Krzysztof Kozlowski wrote:
-> Node names should be generic so use consistently speaker-amp for CS35L41
-> speaker amplifier.
+> The node names should be generic and the bindings expect "bus" for
+> simple-bus nodes:
+> 
+>   msm8996-mtp.dtb: agnoc@0: $nodename:0: 'agnoc@0' does not match '^bus(@[0-9a-f]+)?$'
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi    | 4 ++--
->  arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi | 4 ++--
->  2 files changed, 4 insertions(+), 4 deletions(-)
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
-> index 09a31f707639..25c3e02f224b 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
-> @@ -454,7 +454,7 @@ &i2c2 {
->  	status = "okay";
->  	clock-frequency = <1000000>;
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> index c53018ca81d7..cf2f5b74a4c2 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> @@ -1814,7 +1814,7 @@ spmi_bus: spmi@400f000 {
+>  			#interrupt-cells = <4>;
+>  		};
 >  
-> -	cs35l41_l: cs35l41@40 {
-> +	cs35l41_l: speaker-amp@40 {
->  		compatible = "cirrus,cs35l41";
->  		reg = <0x40>;
->  		interrupt-parent = <&tlmm>;
-> @@ -469,7 +469,7 @@ cs35l41_l: cs35l41@40 {
->  		#sound-dai-cells = <1>;
->  	};
->  
-> -	cs35l41_r: cs35l41@41 {
-> +	cs35l41_r: speaker-amp@41 {
->  		compatible = "cirrus,cs35l41";
->  		reg = <0x41>;
->  		interrupt-parent = <&tlmm>;
-> diff --git a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
-> index 1f2d660f8f86..4862fd69413e 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
-> @@ -461,7 +461,7 @@ &i2c11 {
->  	status = "okay";
->  	clock-frequency = <1000000>;
->  
-> -	cs35l41_l: cs35l41@40 {
-> +	cs35l41_l: speaker-amp@40 {
->  		compatible = "cirrus,cs35l41";
->  		reg = <0x40>;
->  		interrupt-parent = <&tlmm>;
-> @@ -476,7 +476,7 @@ cs35l41_l: cs35l41@40 {
->  		#sound-dai-cells = <1>;
->  	};
->  
-> -	cs35l41_r: cs35l41@41 {
-> +	cs35l41_r: speaker-amp@41 {
->  		compatible = "cirrus,cs35l41";
->  		reg = <0x41>;
->  		interrupt-parent = <&tlmm>;
+> -		agnoc@0 {
+> +		bus@0 {
+>  			power-domains = <&gcc AGGRE0_NOC_GDSC>;
+>  			compatible = "simple-pm-bus";
+Mind sending a separate patch to move compatible up on this one?
+
+Konrad
+>  			#address-cells = <1>;
