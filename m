@@ -2,199 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDD0D656853
-	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 09:18:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE3EE65685F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 09:21:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229579AbiL0ISr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 03:18:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59750 "EHLO
+        id S230088AbiL0IV5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 03:21:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231204AbiL0IS3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 03:18:29 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C9337647
-        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 00:18:27 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id y25so18670980lfa.9
-        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 00:18:27 -0800 (PST)
+        with ESMTP id S230201AbiL0IVy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 03:21:54 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9092C21B2
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 00:21:52 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id bf43so18690230lfb.6
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 00:21:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ln/8Ql524XEPoI9ew3MSboAB3m1N4yBN0rK6DAhoSQc=;
-        b=Gn8jP14aqJUl2sYT/CC74nEl6iK3r3GlM8+8U3U2+YDVio9yhnwmgt8kiSBHdIbqcZ
-         ddDMnFUk4+QFTQuGirYV8QtkNE66naw29OBxcx0z8sYGypp/mQy3TidxPa/umQ3qgxGz
-         P1fF5EZWv1mavEyymtzMJLNrgXuv8eaYS9qZNKXSxRAs8scvzL8HOiGSFuoA29gIrDU4
-         CgwZGcGgIiqXJ+CU6dt7sBv3UVEMDJ1Kz6CfdlAqz5RUv7scScTe1mDYrPxpGJ+8ihmW
-         jwh+XoTRXbJmB1BtsNOBREKB4Ka/6luOkNqYop1dp7ZxBs3D1q/P1SGWcAGjkFq1cs7w
-         U2qw==
+        bh=uoVHCl3unE9x2Jn5slc8bNEN4YZ+jWXSChdKV0ixQj0=;
+        b=ZI8OJfIc905Yn+MWE5wMmwIpiFn7IeAP2mnnBjX5uBdSCQsNf/fqewspwLYOryhbDl
+         Rx8hVU2uLTw+roEmTbtM5IvP0zkd3xYp/nFfJF9D+wUGLrAZhY9ibXDU1AH786SCePjK
+         vzFJUaU/CBsdDTseBDk/DPoCWku5A7m3c0iZEnOrloUYWAn2ARmjNZK+etc7FAH9QdeQ
+         /+Miv5mF4RRus/5ljCuPRH8hYWjxlhegGB2OXEBl8PzUpr0svVf7/ExEXdZMqI3exMiC
+         ENyx1Y7MxMPFV5Ho+VfOsHcYXE0pi9omLVggP4wPkGhssQBb2m9djEeqed+XMxnxx33q
+         E+4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ln/8Ql524XEPoI9ew3MSboAB3m1N4yBN0rK6DAhoSQc=;
-        b=uktN+VdEwTD5x2QEWK2yUQmtLOfirqy6mukY2Tlf0g2tBxcUbBAPKtSoDjPzi7LXYE
-         obxmMkOHBeVgzRfdAqnTSsKApcL0RcuKmGuQb45Qw5O4mZNqM11GzsrZQfq469smpyi+
-         byRFAtsfnbXXf9EEBzWcYEEnS/zUHQu6Y0MoOd7o4/5Ptrxxy8SlOtnd60lNinCLJ+a5
-         UBAaUkV1bTePxQ6QcXcB9eqC/lgvNRwBrC07gclaUEAkEgzIt1rw5FNLohgk3YZWLWRz
-         xEarI2Ep/t8YVkAFeiKENUf7skSWUY8czbgMdDCyRFyyO1DuZTqG+n8Nw2JFuPGXKEEt
-         73Lg==
-X-Gm-Message-State: AFqh2kpOhz5lcmsRHFe8YI2IwXZDB7LEPdpuXojfENQx2AeZWYXREkaB
-        vjBhLfcJnKZiBt0aAE6bkEg14Q==
-X-Google-Smtp-Source: AMrXdXtinLKfEQpXrboACp/LM0hIqO/J5ZwM/NFnK4xJuv9eNoY6MPwpJBHtI2U0eFo6wqOde5ngRg==
-X-Received: by 2002:a05:6512:3ba1:b0:4b5:8fbf:7dd6 with SMTP id g33-20020a0565123ba100b004b58fbf7dd6mr10587170lfv.61.1672129106302;
-        Tue, 27 Dec 2022 00:18:26 -0800 (PST)
+        bh=uoVHCl3unE9x2Jn5slc8bNEN4YZ+jWXSChdKV0ixQj0=;
+        b=O8yIT/e2Xqqe45L0WZKUjcVju0rRDCdbdHHtsSicxCD8reMdSsVznkzU8MNdeeQpvM
+         VT1D2LtVQw1Klv8vR86rFaI7rXPNmSW+stfXATyhA5k/zdWABWcY4OdgPnf4GNISd8sR
+         l98GcNJ1+haK6BN/lN34LtY3tQFccL+yTF0+lgJ1uDa0JD9+1ONnXXrn2BdVkzMMIpz3
+         qXtKgLV1eEeLMurkw6LgTVpwXKn9BwMSaGyZiqS+mo4cFXQnQyJBivDJ/ypyg5tCMYIR
+         OUb65/N6zjSUsrP/HtsMgv7mX5Dz8UhHO2hARCRb+OHxDWSrtIbafesMssDVEDVvGUe4
+         45BQ==
+X-Gm-Message-State: AFqh2kpsodCKmgwO3FbnCY+okV1SC9QxRo7o8uo4td0RXmxJJ4cyX+Zx
+        AmZtWPEQWVhdvxPWanGKyAemlg==
+X-Google-Smtp-Source: AMrXdXtoddcMkOLR+6nt/68Thn2viOa1im3IPX1dUrStspBW0W9iMq1f1LNYBvUNgMruK3SG2/zyMA==
+X-Received: by 2002:a05:6512:539:b0:4c5:64ed:df06 with SMTP id o25-20020a056512053900b004c564eddf06mr5883556lfc.27.1672129310889;
+        Tue, 27 Dec 2022 00:21:50 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id m1-20020a197101000000b004b094730074sm2142854lfc.267.2022.12.27.00.18.24
+        by smtp.gmail.com with ESMTPSA id c19-20020a056512075300b004cafa01ebbfsm1697985lfs.101.2022.12.27.00.21.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Dec 2022 00:18:25 -0800 (PST)
-Message-ID: <526ab8a0-f77c-64f8-7209-c33bec8cb3e6@linaro.org>
-Date:   Tue, 27 Dec 2022 09:18:24 +0100
+        Tue, 27 Dec 2022 00:21:50 -0800 (PST)
+Message-ID: <38352fbb-663f-71f7-b7ef-d539b98fc423@linaro.org>
+Date:   Tue, 27 Dec 2022 09:21:49 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v2 2/9] dt-bindings: net: snps,dwmac: Update the maxitems
- number of resets and reset-names
+Subject: Re: [PATCH V20 1/7] dt-bindings: Added the yaml bindings for DCC
 Content-Language: en-US
-To:     yanhong wang <yanhong.wang@starfivetech.com>,
-        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>
-References: <20221216070632.11444-1-yanhong.wang@starfivetech.com>
- <20221216070632.11444-3-yanhong.wang@starfivetech.com>
- <040b56b1-c65c-34c3-e4a1-5cae4428d1d2@linaro.org>
- <7f4339df-6616-120f-f16a-cd38a2b6ea1d@starfivetech.com>
- <1a696768-45ef-0144-07f3-d356af9659e5@linaro.org>
- <25fce6e7-604e-6c07-3ff1-b65a5115a491@starfivetech.com>
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@ieee.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>, vkoul@kernel.org
+References: <cover.1672068481.git.quic_schowdhu@quicinc.com>
+ <fd3b99b07bd40612a76313429635026471d273ef.1672068481.git.quic_schowdhu@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <25fce6e7-604e-6c07-3ff1-b65a5115a491@starfivetech.com>
+In-Reply-To: <fd3b99b07bd40612a76313429635026471d273ef.1672068481.git.quic_schowdhu@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/12/2022 08:48, yanhong wang wrote:
-> 
-> 
-> On 2022/12/20 17:21, Krzysztof Kozlowski wrote:
->> On 20/12/2022 07:48, yanhong wang wrote:
->>
->>>>> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>>>> index e26c3e76ebb7..7870228b4cd3 100644
->>>>> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>>>> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>>>> @@ -133,12 +133,19 @@ properties:
->>>>>          - ptp_ref
->>>>>  
->>>>>    resets:
->>>>> -    maxItems: 1
->>>>> -    description:
->>>>> -      MAC Reset signal.
->>>>> +    minItems: 1
->>>>> +    maxItems: 3
->>>>> +    additionalItems: true
->>>>> +    items:
->>>>> +      - description: MAC Reset signal
->>>>>  
->>>>>    reset-names:
->>>>> -    const: stmmaceth
->>>>> +    minItems: 1
->>>>> +    maxItems: 3
->>>>> +    additionalItems: true
->>>>> +    contains:
->>>>> +      enum:
->>>>> +        - stmmaceth
->>>>
->>>> No, this is highly unspecific and you know affect all the schemas using
->>>> snps,dwmac.yaml. Both lists must be specific - for your device and for
->>>> others.
->>>>
->>>
->>> I have tried to define the resets in "starfive,jh71x0-dwmac.yaml", but it can not over-write the maxItems limit in "snps,dwmac.yaml",therefore, it will report error "reset-names: ['stmmaceth', 'ahb'] is too long"  running "make dt_binding_check". Do you have any suggestions to deal with this situation?
->>
->> The solution is not to affect all schemas with allowing anything as reset.
->>
->> If you need more items for your case, you can change snps,dwmac.yaml and
->> add constraints in allOf:if:then: allowing it only for your compatible.
->> There are plenty of examples how this is done, e.g.:
->>
->> https://elixir.bootlin.com/linux/v5.19-rc6/source/Documentation/devicetree/bindings/clock/samsung,exynos7-clock.yaml#L57
->>
-> 
-> Thanks. Refer to the definition in the example and update the definition as follows:
-> 
-> snps,dwmac.yaml[Partial Content]:
-> 
-> properties:
->   resets:
->     maxItems: 1
->     description:
->       MAC Reset signal.
-> 
->   reset-names:
->     const: stmmaceth
-> 
-> allOf:
->   - if:
->       properties:
->         compatible:
->           contains:
->             const: starfive,jh7110-dwmac
-> 
->     then:
->       properties:
->         resets:
->           minItems: 2
->           maxItems: 2
->         reset-names:
->           items:
->             - const: stmmaceth
->             - const: ahb
->       required:
->         - resets
->         - reset-names
-> 
-> 
-> starfive,jh7110-dwmac.yaml[Partial Content]:
-> 
-> properties:
->   resets:
->     items:
->       - description: MAC Reset signal.
->       - description: AHB Reset signal.
-> 
->   reset-names:
->     items:
->       - const: stmmaceth
->       - const: ahb
-> 
-> allOf:
->   - $ref: snps,dwmac.yaml#
-> 
-> It will also report error "reset-names: ['stmmaceth', 'ahb'] is too long"  running "make dt_binding_check" with 'starfive,jh7110-dwmac.yaml'. Do you have any better suggestions to solve this problem?
+On 26/12/2022 17:52, Souradeep Chowdhury wrote:
+> Documentation for Data Capture and Compare(DCC) device tree bindings
+> in yaml format.
 
-Because it is not correct. The top-level properties must have the widest
-constraints which in allOf:if:then:else you are further narrowing for
-all of variants. ALL.
+Use subject prefixes matching the subsystem (which you can get for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching).
 
-https://elixir.bootlin.com/linux/v5.19-rc6/source/Documentation/devicetree/bindings/clock/samsung,exynos7-clock.yaml#L57
+Subject: drop second, redundant "bindings". Drop "yaml" (also unrelated).
+
+Use proper imperative mode.
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+
+> 
+> Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../devicetree/bindings/soc/qcom/qcom,dcc.yaml     | 44 ++++++++++++++++++++++
+>  1 file changed, 44 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,dcc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,dcc.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,dcc.yaml
+> new file mode 100644
+> index 0000000..ac3b51b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,dcc.yaml
+> @@ -0,0 +1,44 @@
+> +# SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/qcom/qcom,dcc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Data Capture and Compare
+> +
+> +maintainers:
+> +  - Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+> +
+> +description: |
+> +    DCC (Data Capture and Compare) is a DMA engine which is used to save
+> +    configuration data or system memory contents during catastrophic failure
+> +    or SW trigger. DCC is used to capture and store data for debugging purpose
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - qcom,sm8150-dcc
+> +          - qcom,sc7280-dcc
+> +          - qcom,sc7180-dcc
+> +          - qcom,sdm845-dcc
+> +      - const: qcom,dcc
+> +
+> +  reg:
+> +    items:
+> +      - description: DCC base
+> +      - description: DCC RAM base
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    dma@10a2000{
+> +        compatible = "qcom,sm8150-dcc","qcom,dcc";
+
+Missing space between compatibles.
 
 Best regards,
 Krzysztof
