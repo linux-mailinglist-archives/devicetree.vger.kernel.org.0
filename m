@@ -2,52 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39486656DDA
-	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 19:08:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C21BF656DE0
+	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 19:16:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229488AbiL0SIj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 13:08:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55338 "EHLO
+        id S230129AbiL0SQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 13:16:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230178AbiL0SIa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 13:08:30 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC5A6F22;
-        Tue, 27 Dec 2022 10:08:29 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 96888B8117A;
-        Tue, 27 Dec 2022 18:08:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 692BEC433EF;
-        Tue, 27 Dec 2022 18:08:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672164507;
-        bh=Dk53CrhfhfmbIX1qYUefjJ5yOfddXAGZ6MMYK4h0Pl0=;
-        h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=A5d28eAKT2f1nkoZZh4cBix3FJwqkMpFyoyiC396ciF+D/iiGcLERFQRjY/Fpz4dd
-         ruTysSEEjHCdd+RAUsfnSVcUpWOGoU5fd7o8CkvmiuD48QWeP6/2PwfbI5POME4iM2
-         uwNt/Zytos5Kel4NDu4NP3YFXKM/Z9f9XkyPjsvBwR0CVSIlaXT5p2OXaDnIVf30Vn
-         Oc4QMD2nOIlm9vbfTtKxnBk6/Mb5co/BW+NaqD2tuzFBwoNpgrGsE9UAK/nlBnlTbW
-         eywu0qHvroThNMbm+osyVL0MlAexqbYEfTTanr57gT37ufeMRsrqmSAwetj7v8dbhL
-         lju8nxJk1ZHGA==
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     linux-arm-msm@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        mani@kernel.org, devicetree@vger.kernel.org,
-        konrad.dybcio@linaro.org, agross@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski@linaro.org, mathieu.poirier@linaro.org
-Subject: Re: (subset) [PATCH v3 00/15] dt-bindings: remoteproc: qcom: split and reorganize PAS/PIL
-Date:   Tue, 27 Dec 2022 12:08:25 -0600
-Message-Id: <167216450118.745591.6304578385014026556.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20221124184333.133911-1-krzysztof.kozlowski@linaro.org>
-References: <20221124184333.133911-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S229848AbiL0SQK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 13:16:10 -0500
+Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9363D66
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 10:16:07 -0800 (PST)
+Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-46d4840b51fso133683797b3.12
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 10:16:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=RMSJEr54reUvLsyEt0g6Qxy3nLHgzy6qj5b2+DqI7ho=;
+        b=X+6ZSBqj6+QbPQ/oVoNJxqSfA4TEC1NlbNWMHYbLX17sbXX7sjNwWUfLlzPU+qg7J7
+         cyoxzCJSk4kMxzsbz7iwcMfhEDd1QGCzgwWeazP+/u4h99ML7Y094RoQJu+UzHkTl+rz
+         QY718wii4f30Ct1DdK1ghFj6XNrj1FEbwsnMc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RMSJEr54reUvLsyEt0g6Qxy3nLHgzy6qj5b2+DqI7ho=;
+        b=XSDBbfVfULltOyM4kBvfl5u0xdjUNbGg2SFyDrahUl+DEbL7AqKaspAi2yGBTcExOR
+         Tv6ihdfEs9DEADeRpyRF18SmpjxzluzHV10ZKs/t6OkRC5Fpm3K/IAOeG0Q35tIpdrdH
+         Gqi9IIlogXR7U1J1jGdGY2BpWeV9bOVntSrrnAKikJfE3rbWEWgUm/GaJDU+P1cSRFpj
+         ueJx7xC8TJr9VfHNsrr8+i28yDSGLiubXfn2nNaTwjFEUSrBsVuhISpWOhr/8KAGPDbx
+         746tHf4CUIslOaYgRbtvs0f/3T7nlecgG4TPMzoivy3QHrECAtVgeuJRoebgp34sD5H3
+         bCTQ==
+X-Gm-Message-State: AFqh2kra27msQ5NXEjFvVO9VjXLvvRD4XXzR7h0kDpzpTxDOrWGPrV3j
+        SVBRJ92QPd4nGAJkrDMnMksaA5w1J2vIy8zN5T8K7Q==
+X-Google-Smtp-Source: AMrXdXs2qXVXbIeSOZPrUECD4HGZK+sdJA4II7CFyF3HP+ffttgcN305uaUmfBpTIQrHV0crlgYRUZzRx39vYS7ZhsM=
+X-Received: by 2002:a0d:ff86:0:b0:47a:a05b:7d0d with SMTP id
+ p128-20020a0dff86000000b0047aa05b7d0dmr839791ywf.230.1672164966844; Tue, 27
+ Dec 2022 10:16:06 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+References: <20221227110335.2923359-1-javierm@redhat.com> <20221227110335.2923359-2-javierm@redhat.com>
+In-Reply-To: <20221227110335.2923359-2-javierm@redhat.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Tue, 27 Dec 2022 23:45:55 +0530
+Message-ID: <CAMty3ZAaHKJ21D8mE=HU3D3KOGAiZ7vfmW_Hgc-E5JO5S+tMNA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: display: Add Himax HX8394 panel controller
+To:     Javier Martinez Canillas <javierm@redhat.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Robert Mader <robert.mader@posteo.de>,
+        Onuralp Sezer <thunderbirdtr@fedoraproject.org>,
+        Neal Gompa <ngompa13@gmail.com>,
+        dri-devel@lists.freedesktop.org,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
+        Martijn Braam <martijn@brixit.nl>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Ondrej Jirman <megi@xff.cz>,
+        Peter Robinson <pbrobinson@gmail.com>,
+        =?UTF-8?Q?Kamil_Trzci=C5=84ski?= <ayufan@ayufan.eu>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,42 +75,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 24 Nov 2022 19:43:18 +0100, Krzysztof Kozlowski wrote:
-> Changes since v2
-> ================
-> 1. Allow only one or two clocks, after dropping clocks related to PIL binding.
-> 2. Drop if:then: for the clock and put it directly under properties
-> 3. Merge two if:then: clauses for setting interrupts.
-> 4. New patches: DTS fixes, qcom,adsp: drop resets and qcom,halt-regs,
->    qcom,qcs404-pas, qcom,sc7180-pas and last msm8996-slpi-pil fix.
-> 
-> [...]
+On Tue, Dec 27, 2022 at 4:33 PM Javier Martinez Canillas
+<javierm@redhat.com> wrote:
+>
+> Add device tree bindings for panels based on the Himax HX8394 controller,
+> such as the HannStar HSD060BHW4 720x1440 TFT LCD panel that is connected
+> through a MIPI-DSI video interface.
+>
+> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>
+> Changes in v3:
+> - Fix example snippet for `make dt_binding_check` to pass (Krzysztof Kozlowski).
+>
+> Changes in v2:
+> - Drop redundant "bindings" in subject (Krzysztof Kozlowski).
+> - Drop "device tree bindings" in title (Krzysztof Kozlowski).
+> - Put port next to other "true" properties (Krzysztof Kozlowski).
+> - Add Krzysztof Kozlowski's Reviewed-by tag.
+>
+>  .../bindings/display/panel/himax,hx8394.yaml  | 74 +++++++++++++++++++
+>  1 file changed, 74 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml b/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
+> new file mode 100644
+> index 000000000000..fb1981cacfc8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
+> @@ -0,0 +1,74 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/himax,hx8394.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Himax HX8394 MIPI-DSI LCD panel controller
+> +
+> +maintainers:
+> +  - Javier Martinez Canillas <javierm@redhat.com>
+> +
+> +description:
+> +  Device tree bindings for panels based on the Himax HX8394 controller,
+> +  such as the HannStar HSD060BHW4 720x1440 TFT LCD panel connected with
+> +  a MIPI-DSI video interface.
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      # HannStar HSD060BHW4 5.99" 720x1440 TFT LCD panel
+> +      - hannstar,hsd060bhw4
 
-Applied, thanks!
+Parent controller can have a compatible where the associated panels
+will be enum list.
 
-[05/15] dt-bindings: remoteproc: qcom,adsp: drop resets and qcom,halt-regs
-        commit: c97c4b480fcba2e6ebfacb3990d8b9092916d986
-[06/15] dt-bindings: remoteproc: qcom,adsp: split common part
-        commit: ea5a10ae295425c9f52577d91b2e45290291d242
-[07/15] dt-bindings: remoteproc: qcom,sm8350-pas: split into separate file
-        commit: 4e8b39a4d38ebb192ebff977d8a961fd97e7ce5f
-[08/15] dt-bindings: remoteproc: qcom,sm8150-pas: split into separate file
-        commit: db292776589f1fcbcf2fc6eaebe40a3a2abb4521
-[09/15] dt-bindings: remoteproc: qcom,sm6350-pas: split into separate file
-        commit: 41729b772c13105ee126ee6fe1bf2cd93c7bd258
-[10/15] dt-bindings: remoteproc: qcom,sc8280xp-pas: split into separate file
-        commit: 397c619cad8109f5904466ee76d5a1533d2f1590
-[11/15] dt-bindings: remoteproc: qcom,sc8180x-pas: split into separate file
-        commit: 4b4157518f1ab1276cd08dfab0e51b1409c22e40
-[12/15] dt-bindings: remoteproc: qcom,sdx55-pas: split into separate file
-        commit: b6f8410eab9270000b8b13b88bc038e9f27c2c45
-[13/15] dt-bindings: remoteproc: qcom,qcs404-pas: split into separate file
-        commit: 255d7a9581ed4506dddf993aad9dc27bff8296d1
-[14/15] dt-bindings: remoteproc: qcom,sc7180-pas: split into separate file
-        commit: 8bb92d6fd0b3788b4270eff547cb42cb64db1bff
-[15/15] dt-bindings: remoteproc: qcom,adsp: correct msm8996-slpi-pil clocks
-        commit: 569d3a7580bcbc463920b0d84ca5caf23e808f90
-
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+Jagan.
