@@ -2,67 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB2F4656ADC
-	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 13:21:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C05F1656ADF
+	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 13:23:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232198AbiL0MVp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 07:21:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36884 "EHLO
+        id S231857AbiL0MXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 07:23:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231220AbiL0MVV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 07:21:21 -0500
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8935BC90
-        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 04:18:13 -0800 (PST)
-Received: by mail-yb1-xb2b.google.com with SMTP id i186so14189497ybc.9
-        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 04:18:13 -0800 (PST)
+        with ESMTP id S232263AbiL0MWf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 07:22:35 -0500
+Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B99F6C75F
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 04:19:13 -0800 (PST)
+Received: by mail-il1-x12a.google.com with SMTP id y2so6671372ily.5
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 04:19:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=MT35Wy/vgyGsnQSdR3P4BkZLQ4sxrgSNujIQe36ifI4=;
-        b=GHlNjtZ1ePZDamd4yQr1QhXhgYvBVOGXYO6WQK3vzD+8bNWX8KMwePtqzetxWSjkna
-         zotwJtMSzFIE6KZtzWk/HkNXjtLHGgIaah6XlDWW21iQobfyx2Yd5ZpO+DU6AdvHd6Hf
-         qkAqPyjuc0GuFgLw2xFO6ncJu/Ubf4DOGGRtYUatJatt7T9P6daSXN6dSoFzEez0opZA
-         1Jeo3JkVN7tT/WVXvfNJsKc2W7no3bYh5OQbcpF5JHf0eSCNlhVo3HURUe++sZzHkRDF
-         C+vgjMdF0ozXq4RMdQ/kQ0PUsii38tGeMQSEsTgid6VYuD72QAMGiMRYgMWhMsZktxx4
-         9scw==
+        bh=lWSHAKtiPsDtgkX2rcEcG1df3ve/T2GKoX3O6Tm7Vig=;
+        b=uIR065Dp7wPHoUh7TZLntTjJaAtOgm9k4wuBfxtEj7w3PwW4OxAqnyYF2saAEiwusj
+         vU2OIdxtHgfDj63nrA0v4hgncrtk5qAAuiXOJVyfs2FE18KJ/AISocxxzR+IHGgEDat7
+         9CGChEa76dAsMRnkGPsO4gaMjjpSgB6N/dWURNX1v10Zb4OqOuGJPNtjHR4i4+HCCJcC
+         lUwGGgVaa6QY/VCGX8m0ZXnJXoDNXX94TejxHQQBeRZEzjJzgaKmwWCz3+NcMFeSAAX+
+         7/nqQbxDkJuf08trR+gTL3PpFWj3wJG3QVhekFQToxIeUV17uO3HPS9kqxtGgH6BJgVV
+         jHqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=MT35Wy/vgyGsnQSdR3P4BkZLQ4sxrgSNujIQe36ifI4=;
-        b=HZXrfdGmrl2icaiJ6JnlLwSpWFtxl8stoD6bm/NtQ7PmQwEUio2Yqv19iu0KlIl+p2
-         WUzi+BWaJCf3eF2jIwneqIl0cyODCtndzfaj/tmKbB2BaakXxLZlv/5eUp5XryL69Fjb
-         kPcGXnUMebkbiVZYIw8n6ZgQbIqIdcG8Mq7E3mdMhEzLEdIU9Es+ZnDXnz6Px8qLqo/6
-         Ll4ebSdkNBD29mLTMGLB154IS9XrcBbGEt6mjSIoolTJIrq96SF56BiNP0X9dZW4znq4
-         0CaBGKQ5nX2VwW1bJAs8K4rnoHF31pJPdLMTU9OmwRa/M3qyzGAyUs3hvzG3lZYkqE2y
-         1RdQ==
-X-Gm-Message-State: AFqh2kp6+JUk1i1jclVn0SZhKZPD8Au+1MP61znPnslyw9rywGJVcjBh
-        o34e2BIJbUAFQejWz+zTq5uIZQl/9ikddP03tNT0sg==
-X-Google-Smtp-Source: AMrXdXt6WexlgjyQ0WqJ/qZOzu56fpjkePyD8ACuFjYqrdT6ADKBN8MgyXd9S6GPUl76lCZMr/d+jXQ8MlDepkFmkI0=
-X-Received: by 2002:a25:aa0d:0:b0:76d:bea0:8a05 with SMTP id
- s13-20020a25aa0d000000b0076dbea08a05mr1356971ybi.153.1672143488604; Tue, 27
- Dec 2022 04:18:08 -0800 (PST)
+        bh=lWSHAKtiPsDtgkX2rcEcG1df3ve/T2GKoX3O6Tm7Vig=;
+        b=dooohEcJgEVMJRsPMZMzy5K5D6GzvzwF70XLPIWH88Mt5E3Fl0vbuZAGpLLUvPvPzv
+         OacQvAu1Ypo1FlyAB/Z/RJ2IeN3WK0GL2fwdocrv7NuACaXvuK0KByH+KjXBk05C1Cc6
+         L9nxThvMX74dSMzKSNVkG+Vnoc75pQ8L9sKqBnSf7rlFkumnC708qdv8pMSLOZUhipFP
+         DbrDHrdm+/UJruSvUUo+uV2kTobQL+B2b9F2R4boaFULW2oCK9Fbx4fQZ82bRJ5NQnmF
+         LJtTSto0twZlcdXRLOwbOq+0S9gjifyTBr0v+7stBjq25d1mSoNL2CUnkuPClCvlDNOt
+         Ykag==
+X-Gm-Message-State: AFqh2krFKgJWeU8Gtw9sF8bX+YIakPhz1iNcJHgTq18iIyeSLAxcwWHy
+        8CQNacTJvfA5m40XBxFLYfozToCROTsx9MwaXXxUFg==
+X-Google-Smtp-Source: AMrXdXsYz2lGrPY0q7M0+455zRuRNV5KPHADZ0Rc78pYQGBa7M2eaCMK/tEjA+XUREZbiaMa1wFmAmnUSWxhkFvUj0k=
+X-Received: by 2002:a92:ab0f:0:b0:2ff:daa8:dbbe with SMTP id
+ v15-20020a92ab0f000000b002ffdaa8dbbemr1938423ilh.14.1672143536694; Tue, 27
+ Dec 2022 04:18:56 -0800 (PST)
 MIME-Version: 1.0
-References: <20221227013225.2847382-1-dmitry.baryshkov@linaro.org>
- <20221227013225.2847382-8-dmitry.baryshkov@linaro.org> <b3696a4b-4ddf-9ddf-a096-ccc43f1230a7@linaro.org>
-In-Reply-To: <b3696a4b-4ddf-9ddf-a096-ccc43f1230a7@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 27 Dec 2022 14:17:57 +0200
-Message-ID: <CAA8EJprLwjE0woynmRsB2yn961Kdt4SpawB8rrk=tTdQPp-srQ@mail.gmail.com>
-Subject: Re: [RFC PATCH 07/12] clk: qcom: gcc-apq8084: add GCC_MMSS_GPLL0_CLK_SRC
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
+References: <20221213140724.8612-1-quic_sibis@quicinc.com>
+In-Reply-To: <20221213140724.8612-1-quic_sibis@quicinc.com>
+From:   Amit Pundir <amit.pundir@linaro.org>
+Date:   Tue, 27 Dec 2022 17:48:20 +0530
+Message-ID: <CAMi1Hd08aVZE4Hg_tnVd0-hb5QfUydEQjGhQyPdBTpE5O9Os4g@mail.gmail.com>
+Subject: Re: [PATCH 0/4] Fix XPU violation during modem metadata authentication
+To:     Sibi Sankar <quic_sibis@quicinc.com>
+Cc:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, manivannan.sadhasivam@linaro.org,
+        agross@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        konrad.dybcio@somainline.org, regressions@leemhuis.info,
+        sumit.semwal@linaro.org, will@kernel.org, catalin.marinas@arm.com,
+        robin.murphy@arm.com
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -73,67 +70,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 27 Dec 2022 at 13:58, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+On Tue, 13 Dec 2022 at 19:37, Sibi Sankar <quic_sibis@quicinc.com> wrote:
 >
+> The memory region allocated using dma_alloc_attr with no kernel mapping
+> attribute set would still be a part of the linear kernel map. Any access
+> to this region by the application processor after assigning it to the
+> remote Q6 will result in a XPU violation. Fix this by replacing the
+> dynamically allocated memory region with a no-map carveout and unmap the
+> modem metadata memory region before passing control to the remote Q6.
+> The addition of the carveout and memunmap is required only on SoCs that
+> mandate memory protection before transferring control to Q6, hence the
+> driver falls back to dynamic memory allocation in the absence of the
+> modem metadata carveout.
 >
+> Relevant discussions on the mailing list:
+> https://lore.kernel.org/lkml/20221114110329.68413-1-manivannan.sadhasivam@linaro.org/
 >
-> On 27.12.2022 02:32, Dmitry Baryshkov wrote:
-> > Add the GCC_MMSS_GPLL0_CLK_SRC, the branch clock gating gpll0 clock for
-> > the multimedia subsystem.
-> >
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> I'm thinking whether it would maybe make sense to put 8974
-> and 8084 clocks in a single driver.. They seem close to identical.
-
-Unfortunately the bindings are quite different. So even if we pack
-both gcc drivers into a single one, we'd still have to cope with
-different numeric ids.
-The only sensible solution that  I have in mind is to have a common C
-file, containing common clock definitions.
-
+> Depends on:
+> https://patchwork.kernel.org/project/linux-arm-msm/cover/20221124184333.133911-1-krzysztof.kozlowski@linaro.org/
 >
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Reported-by: Amit Pundir <amit.pundir@linaro.org>
+
+Smoke tested this series on db845c (SDM845) running v6.2-rc1, with the
+upstream workaround (b7d9aae40484 Revert "arm64: dma: Drop cache
+invalidation from arch_dma_prep_coherent()") reverted and I can no
+longer reproduce the above crash in my limited (10+) test runs so far.
+So for the entire series:
+
+Tested-by: Amit Pundir <amit.pundir@linaro.org>
+
+Regards,
+Amit Pundir
+
+> https://people.linaro.org/~amit.pundir/linaro-sid-developer-dragonboard-845c-569/6.1-rc4_defconfig
+> Reproduced with ^^ defconfig SDM845 SoCs
 >
-> Konrad
-> >  drivers/clk/qcom/gcc-apq8084.c | 14 ++++++++++++++
-> >  1 file changed, 14 insertions(+)
-> >
-> > diff --git a/drivers/clk/qcom/gcc-apq8084.c b/drivers/clk/qcom/gcc-apq8084.c
-> > index c26e222c78d4..7085d2ccae49 100644
-> > --- a/drivers/clk/qcom/gcc-apq8084.c
-> > +++ b/drivers/clk/qcom/gcc-apq8084.c
-> > @@ -1382,6 +1382,19 @@ static struct clk_rcg2 usb_hsic_system_clk_src = {
-> >       },
-> >  };
-> >
-> > +static struct clk_regmap gcc_mmss_gpll0_clk_src = {
-> > +     .enable_reg = 0x1484,
-> > +     .enable_mask = BIT(26),
-> > +     .hw.init = &(struct clk_init_data){
-> > +             .name = "mmss_gpll0_vote",
-> > +             .parent_hws = (const struct clk_hw*[]){
-> > +                     &gpll0_vote.hw,
-> > +             },
-> > +             .num_parents = 1,
-> > +             .ops = &clk_branch_simple_ops,
-> > +     },
-> > +};
-> > +
-> >  static struct clk_branch gcc_bam_dma_ahb_clk = {
-> >       .halt_reg = 0x0d44,
-> >       .halt_check = BRANCH_HALT_VOTED,
-> > @@ -3480,6 +3493,7 @@ static struct clk_regmap *gcc_apq8084_clocks[] = {
-> >       [GCC_USB_HSIC_IO_CAL_SLEEP_CLK] = &gcc_usb_hsic_io_cal_sleep_clk.clkr,
-> >       [GCC_USB_HSIC_MOCK_UTMI_CLK] = &gcc_usb_hsic_mock_utmi_clk.clkr,
-> >       [GCC_USB_HSIC_SYSTEM_CLK] = &gcc_usb_hsic_system_clk.clkr,
-> > +     [GCC_MMSS_GPLL0_CLK_SRC] = &gcc_mmss_gpll0_clk_src,
-> >  };
-> >
-> >  static struct gdsc *gcc_apq8084_gdscs[] = {
-
-
-
--- 
-With best wishes
-Dmitry
+> Sibi Sankar (4):
+>   arm64: dts: qcom: Introduce a carveout for modem metadata
+>   dt-bindings: remoteproc: qcom: sc7180: Update memory-region
+>     requirements
+>   dt-bindings: remoteproc: qcom: q6v5: Update memory region requirements
+>   remoteproc: qcom_q6v5_mss: Use a carveout to authenticate modem
+>     headers
+>
+>  .../bindings/remoteproc/qcom,q6v5.txt         | 29 ++++++-
+>  .../remoteproc/qcom,sc7180-mss-pil.yaml       |  3 +-
+>  .../remoteproc/qcom,sc7280-mss-pil.yaml       |  3 +-
+>  .../boot/dts/qcom/msm8996-xiaomi-common.dtsi  |  6 ++
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi         |  9 ++
+>  arch/arm64/boot/dts/qcom/msm8998.dtsi         |  9 ++
+>  arch/arm64/boot/dts/qcom/sc7180-idp.dts       |  7 +-
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  |  7 +-
+>  .../dts/qcom/sc7280-herobrine-lte-sku.dtsi    |  7 +-
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi          |  9 ++
+>  drivers/remoteproc/qcom_q6v5_mss.c            | 85 +++++++++++++------
+>  11 files changed, 142 insertions(+), 32 deletions(-)
+>
+> --
+> 2.17.1
+>
