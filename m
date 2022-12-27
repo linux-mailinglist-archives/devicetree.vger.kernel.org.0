@@ -2,71 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12865656E58
-	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 20:33:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2177656E65
+	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 20:37:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231817AbiL0TdR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 14:33:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50552 "EHLO
+        id S230178AbiL0ThW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 14:37:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230333AbiL0TdH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 14:33:07 -0500
-Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1400AD123
-        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 11:33:06 -0800 (PST)
-Received: by mail-io1-xd2e.google.com with SMTP id n63so7327215iod.7
-        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 11:33:06 -0800 (PST)
+        with ESMTP id S229764AbiL0ThV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 14:37:21 -0500
+Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9EF6D116
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 11:37:20 -0800 (PST)
+Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-381662c78a9so195555197b3.7
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 11:37:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1NE5d0lxAdxXOL2nWwxUeL+Wf2ItY+N8jvCklovTdI8=;
-        b=ZU7hVaxlc2Z6/FY0OVxnYgSn1236LzQmO45sPj4Rnz6qGZuzu6mf76ojheaMgApR3S
-         A+keFrT6ujnMgVXrk85N3uZiQHVmkALI7AuOk8ixSsibcZRcR66BGH76Pc7gB++UbezD
-         +xmhXK1Ol5kHxHg0gUGBkiu/dM8VNODTRppso=
+        d=amarulasolutions.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=TDuSRMT7LeuW6RQ7N+xypX5CPMcCsvqhVlnHymvmVtI=;
+        b=rEZX25ycDQZ1thQanMnm+pHbQa936C7pegvTyeEJbbP0xHMpnpylJ/PxzJHrDDGqCm
+         uh9TvIADFBvJpo0yFkZgHkBkdDfpmVSAU+FKksylfr1HrbmquN5Wff0v1DclOXJ3uGpM
+         LZddDRee3hQpJtoqDzbXQ2IXnexVIDhN9FgN0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1NE5d0lxAdxXOL2nWwxUeL+Wf2ItY+N8jvCklovTdI8=;
-        b=OUeUkhTSlQM0aQaKV3upyadgMDvchwZ4zE+y9HogqFSqF+eAAR2tBJd/bxwEJlbCkl
-         9FowSsAllfsD/UWfAPjdJCMiZJmXhcHFsRo404Ov+dTgdmbqQsOpstDHW7mfAoEhXPUC
-         EeGmeUn7qXrwcQDi/9hQV0lvuN48dR9RGUmTKAZy9kWW3C7u164YmLXb33lgFEBUqiJX
-         ofR6rE3geS6XfxaNm0uWeKVCC8wkMbtcBnUci/Mlsnv7WSGpaRrpVpFySb/ZIPHM5mSa
-         dg/Vnvdho4jYtyRd73uRfvwEN15jVwqiP9BE8re7tqdMNLFdFef1Qp1x1Y+8Z+1l+ihi
-         y8QA==
-X-Gm-Message-State: AFqh2krrAiDf1TC8mHzxwqeK+Th6h+o4yU6h12O6ZAEV71Yc6BuyznF9
-        ytQZuFCB+m47if6Qzefi2SW0dg==
-X-Google-Smtp-Source: AMrXdXsP/YWzJ2jJguC0rczqMhzG3Croiw/nM0t9TB0bu5KL/yr4iwHHaC7myyEdSjjTAfBFIeYhng==
-X-Received: by 2002:a6b:d919:0:b0:6e9:9776:a6c8 with SMTP id r25-20020a6bd919000000b006e99776a6c8mr23184159ioc.2.1672169585446;
-        Tue, 27 Dec 2022 11:33:05 -0800 (PST)
-Received: from markhas1.corp.google.com ([100.107.108.223])
-        by smtp.gmail.com with ESMTPSA id a10-20020a02ac0a000000b003755a721e98sm4504995jao.107.2022.12.27.11.33.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Dec 2022 11:33:05 -0800 (PST)
-From:   Mark Hasemeyer <markhas@chromium.org>
-To:     LKML <linux-kernel@vger.kernel.org>
-Cc:     Raul Rangel <rrangel@chromium.org>,
-        Bhanu Prakash Maiya <bhanumaiya@chromium.org>,
-        Mark Hasemeyer <markhas@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org
-Subject: [PATCH v13 2/3] dt-bindings: mfd: cros-ec: Add UART compatible string
-Date:   Tue, 27 Dec 2022 12:32:23 -0700
-Message-Id: <20221227123212.v13.2.I9e018ecb8bdf341648cb64417085978ff0d22a46@changeid>
-X-Mailer: git-send-email 2.39.0.314.g84b9a713c41-goog
-In-Reply-To: <20221227123212.v13.1.If7926fcbad397bc6990dd725690229bed403948c@changeid>
-References: <20221227123212.v13.1.If7926fcbad397bc6990dd725690229bed403948c@changeid>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TDuSRMT7LeuW6RQ7N+xypX5CPMcCsvqhVlnHymvmVtI=;
+        b=B03JPOmdqfZUjgUMq3D/nwhlspoRKVIoYNx0zOLz020W+LyXIJA2fvzGjwZD/x/XeL
+         bw0ITkcmZtCh03HIRclksanOIV9IL16l3teq7TuyDBvoiQEgwQptNm6+YvjhUKSPzgY1
+         lGEc8jcMN81QxnogQDiIcZJ3NKH2yr4DLTTrmw++jyGVz8A2M7WvxG+ucFuzj1tuebTR
+         GTioHJfjS7mzhOTGtcaUvjedob/R7nDTW0zc6WPKTzeh6JfceBGXl7iloiYuVNLkqnw+
+         y7EVu7eBg2mqe525ZO9XQ8jRlNnR0NYbWYCvG/x1GF1MrLkQ5KqtYmpPla4sh6YHQhNi
+         poWQ==
+X-Gm-Message-State: AFqh2krGR71IBIGKSDlyiJU+hdnP071ggBIs806IAWU+OWwTbxR8GmXk
+        Jq38Q65qNhgLUbDqGzIB83d4nBWd5TzGqbMRi2nDwQ==
+X-Google-Smtp-Source: AMrXdXtk1VEXi6sU/cPZRwXTFvEyMW0TOBsoND8twqKnIwU8PKZUmc1bpUOjkUgxf0ckeok/mCZ824hGpaMayafFoCw=
+X-Received: by 2002:a0d:ff86:0:b0:47a:a05b:7d0d with SMTP id
+ p128-20020a0dff86000000b0047aa05b7d0dmr859893ywf.230.1672169839892; Tue, 27
+ Dec 2022 11:37:19 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+References: <20221227110335.2923359-1-javierm@redhat.com> <20221227110335.2923359-2-javierm@redhat.com>
+ <CAMty3ZAaHKJ21D8mE=HU3D3KOGAiZ7vfmW_Hgc-E5JO5S+tMNA@mail.gmail.com> <CABxcv=kwtk21UbOwaV4tq=BpPsrYmnTrzuhybjbknipqk5R-fA@mail.gmail.com>
+In-Reply-To: <CABxcv=kwtk21UbOwaV4tq=BpPsrYmnTrzuhybjbknipqk5R-fA@mail.gmail.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Wed, 28 Dec 2022 01:07:08 +0530
+Message-ID: <CAMty3ZDESyJoWMO_BgHzUJN=hLV0dH6y=3B9ogOsSUvaTMqarQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: display: Add Himax HX8394 panel controller
+To:     Javier Martinez Canillas <javier@dowhile0.org>
+Cc:     Javier Martinez Canillas <javierm@redhat.com>,
+        devicetree@vger.kernel.org, Robert Mader <robert.mader@posteo.de>,
+        Onuralp Sezer <thunderbirdtr@fedoraproject.org>,
+        Neal Gompa <ngompa13@gmail.com>, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
+        Martijn Braam <martijn@brixit.nl>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Ondrej Jirman <megi@xff.cz>,
+        Peter Robinson <pbrobinson@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?Q?Kamil_Trzci=C5=84ski?= <ayufan@ayufan.eu>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,105 +76,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bhanu Prakash Maiya <bhanumaiya@chromium.org>
+On Wed, Dec 28, 2022 at 12:58 AM Javier Martinez Canillas
+<javier@dowhile0.org> wrote:
+>
+> Hello Jagan,
+>
+> On Tue, Dec 27, 2022 at 7:16 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
+>
+> [...]
+>
+> > > +allOf:
+> > > +  - $ref: panel-common.yaml#
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      # HannStar HSD060BHW4 5.99" 720x1440 TFT LCD panel
+> > > +      - hannstar,hsd060bhw4
+> >
+> > Parent controller can have a compatible where the associated panels
+> > will be enum list.
+> >
+>
+> I'm not sure to follow what you meant. Could you please elaborate?
 
-Add a compatible string to support the UART implementation of the cros
-ec interface. The driver does not support the reg and interrupt
-properties, so exempt them from being required for UART compatible nodes.
+compatible:
+    items:
+      - enum:
+          - hannstar,hsd060bhw4
+      - const: himax,hx8394
 
-Signed-off-by: Bhanu Prakash Maiya <bhanumaiya@chromium.org>
-Co-developed-by: Mark Hasemeyer <markhas@chromium.org>
-Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
+himax,hx8394 is the actual controller and is denoted as fallback compatible.
 
-Changes in v13:
-- No change
-
-Changes in v12:
-- No change
-
-Changes in v11:
-- Update commit message to include device
-
-Changes in v10:
-- No change
-
-Changes in v9:
-- Rebase onto for-next
-- Update node-name from uart0 to serial
-- Remove reg and interrupt property requirement for UART compatible
-  nodes.
-- Update authorship
-
-Changes in v8:
-- Update commit message
-
-Changes in v7:
-- No change
-
-Changes in v6:
-- No change
-
-Changes in v5:
-- No change
-
-Changes in v4:
-- Changes in commit message.
-
-Changes in v3:
-- Rebased changes on google,cros-ec.yaml
-
-Changes in v2:
-- No change
-
----
- .../bindings/mfd/google,cros-ec.yaml          | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-index 3d5efa5578d1b..cdf1d719efe9d 100644
---- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-+++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-@@ -33,6 +33,9 @@ properties:
-       - description:
-           For implementations of the EC connected through RPMSG.
-         const: google,cros-ec-rpmsg
-+      - description:
-+          For implementations of the EC connected through UART.
-+        const: google,cros-ec-uart
- 
-   controller-data: true
- 
-@@ -187,6 +190,15 @@ allOf:
-       properties:
-         mediatek,rpmsg-name: false
- 
-+  - if:
-+      properties:
-+        compatible:
-+          not:
-+            contains:
-+              enum:
-+                - google,cros-ec-rpmsg
-+                - google,cros-ec-uart
-+    then:
-       required:
-         - reg
-         - interrupts
-@@ -299,4 +311,12 @@ examples:
-         vdd-supply = <&pp3300_fp_mcu>;
-       };
-     };
-+
-+  # Example for UART
-+  - |
-+    serial {
-+        cros-ec {
-+            compatible = "google,cros-ec-uart";
-+        };
-+    };
- ...
--- 
-2.39.0.314.g84b9a713c41-goog
-
+Jagan.
