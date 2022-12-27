@@ -2,75 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E82D66569F5
-	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 12:30:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 788596569F9
+	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 12:33:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231220AbiL0Lay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 06:30:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36650 "EHLO
+        id S229929AbiL0LdY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 06:33:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231281AbiL0Lan (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 06:30:43 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 459D4A1
-        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 03:30:41 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id bq39so11437315lfb.0
-        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 03:30:41 -0800 (PST)
+        with ESMTP id S229728AbiL0LdW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 06:33:22 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD62F299
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 03:33:21 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id b3so19277083lfv.2
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 03:33:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=VXMhLcKfKzWw0oHXnh35yzuW1kpXbkLLBZjvh8oDJEw=;
-        b=TmS6Idtmj7gkjIZtZZwacuweBL8Ts34juarY0OPoVWc117eHWKPOdaQogOpwSAJpqD
-         9J9cadMc0cX4exv+6BNXN+MqRc6Kil4+KvMhmclvdcFTyk5TnRyIIIypRvcN/ZvTB1PS
-         fBb+NomEjI7ZujSsXUqQz87qXlNgyvLmAKyEHNSYv+zVXraVgV98QAh13RGcbv/odwEQ
-         jtoOna03X13UJLZ6nc8mKxOtYSSmOO7p76qMYngh+zo6+NScB/bvpf4pEklSzbFJj2t4
-         mM5EupLmekpB9XVrL19qEmsMhJiEeadLkbIZln8K5VsEI7JQ4d4gYzR8NTtP3wPDQmuH
-         McJw==
+        bh=Y+uwmeC8cgwwNhOwqaWBQr6Qls/0UIDT6UTLmfxOw6Y=;
+        b=R+ugUEyQS77A2PYAeNNxIs1XIgHvOTEZx+2vR4zx+FrLs5xDfMMa3AulwXPKyzl9j2
+         /VEYdQLRauNmmq7VaXZIV2ZzY2jfJFj3w9dzuNleAe2pWwKmL9uEZ8L3orGkWntSxmDc
+         vGhvdUxaOIYHDbTdwEX0L869h62oMQP5ROUrq671m3TQvmx10DVZ9ydqdRwp8CfSTHXr
+         mHM10ddXEiwNqbhAfN+ODK7T6tWeZ6NzZyNwNTlZz3y/ngxc4S9lzNcCbqU1kjv7SJT4
+         Tx+Ccw8vehCtNloVR0Dl73/SqSRsXCZq+oYOC5J5ZpSLa34ljTNZqmEwJa4RfGssK8X5
+         N2Pw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VXMhLcKfKzWw0oHXnh35yzuW1kpXbkLLBZjvh8oDJEw=;
-        b=ZuBh0VGL0cBEn75zDm88H/WMCO224LxclkAmVIjqeoAp4bgPwfI3sQVHNopFIvB2do
-         j+ZFcNJqnp09+FwUebnWFJo85C/y6wAjyvqZeR6FnNUkCw6t4fUBGiC+f/p7oIgoIIml
-         oZq5WLUJ1MuK1xjZswmLU9QlxARGmvKN4PwTg4MNny3/F2GOqg1uYU2r0k9v98su4gFX
-         Iaj3QLGZt07IFSqAH77lS1ECQpewxykOWP0dPY0Idd3IzkQDIwjVoRDsNP/3ua4qy9UQ
-         tq07ZvRTVBfl4mC2yOHPe+25AeCVsCgGXTuDNYkyAQnnu0h27bypGXm94KM+vJofUcuJ
-         74zg==
-X-Gm-Message-State: AFqh2kr16gs2XXmiOnyNQsCs9GR4X6LvNo5GtPa2m5+a1AQjl99+mzFR
-        YXK7t0vGJ9M/eFfrVpPkyd+CEZ+r2aamaDdB
-X-Google-Smtp-Source: AMrXdXuDFQD2cwkfhw2f26SzySLn167KjIIblKX26xknVaNeM8P3vq5eWMJou03msaRyoS4uPM2btg==
-X-Received: by 2002:a05:6512:c14:b0:4b5:abe3:c63d with SMTP id z20-20020a0565120c1400b004b5abe3c63dmr7182137lfu.42.1672140639659;
-        Tue, 27 Dec 2022 03:30:39 -0800 (PST)
+        bh=Y+uwmeC8cgwwNhOwqaWBQr6Qls/0UIDT6UTLmfxOw6Y=;
+        b=zMjb0akMZIFnssR7BoDIXPFQRHpf7+4XbmMelCFKxdUDiQDafLfwIF4fJg7/Lpzxn8
+         eCpJaV+qyI4GQpGDl2KwGCQ7NwMsTKNw/i72XppYnUse3jXbCHKcdD+QOMcA8C53i/Zh
+         Zd5UiwYT6RWtnC9A8bep7WE4eht6K08hXn+DA3q863y43W9OIFkJOZDlItw165K8OSdr
+         4Dh9QSHUrdkrg22RaqIbzQIYFVvlWO9hwSJpwiAinUcP6Yv5wukiN2UDw3rBADANLcY1
+         eKGQHe+QprRfWJI2VsCNHcJ7OJ9VIHWSqPmcfCAIhPXXjqclNw552Cs/MqmBxsZscJI1
+         h08g==
+X-Gm-Message-State: AFqh2krsvmYW1p38Y21iN2q4OPIlcU5S9uh2/Y8xTivT/PekoAAzcC6X
+        KWZZHbDphcLIkjghdeY78DzcOcwbzDZVQjRs
+X-Google-Smtp-Source: AMrXdXv+l9z4RnHC8eYh6g1MxUZacAJCU7efctHJRWdCKFPT3HsDfvdF+ppXe/VC9C+s1zDhqpZ+RA==
+X-Received: by 2002:ac2:551d:0:b0:4ca:fe5f:bc0e with SMTP id j29-20020ac2551d000000b004cafe5fbc0emr5275440lfk.21.1672140800075;
+        Tue, 27 Dec 2022 03:33:20 -0800 (PST)
 Received: from [192.168.1.101] (abyl184.neoplus.adsl.tpnet.pl. [83.9.31.184])
-        by smtp.gmail.com with ESMTPSA id n18-20020a05651203f200b004b4f2a30e6csm2226056lfq.0.2022.12.27.03.30.38
+        by smtp.gmail.com with ESMTPSA id p18-20020ac246d2000000b004ae24559388sm2199521lfo.111.2022.12.27.03.33.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Dec 2022 03:30:39 -0800 (PST)
-Message-ID: <dc30c057-fa58-39c8-eed8-090dff484fef@linaro.org>
-Date:   Tue, 27 Dec 2022 12:30:38 +0100
+        Tue, 27 Dec 2022 03:33:19 -0800 (PST)
+Message-ID: <5c8b8aa0-3286-e46d-635e-7eed9bd3b13c@linaro.org>
+Date:   Tue, 27 Dec 2022 12:33:18 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH] ARM: dts: qcom: msm8974: add xo clock to rpm clock
- controller
+Subject: Re: [PATCH v2 16/16] arm64: dts: qcom: qcs404: add xo clock to rpm
+ clock controller
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20221227001547.2830656-1-dmitry.baryshkov@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20221226042154.2666748-1-dmitry.baryshkov@linaro.org>
+ <20221226042154.2666748-17-dmitry.baryshkov@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221227001547.2830656-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221226042154.2666748-17-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -79,7 +85,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 27.12.2022 01:15, Dmitry Baryshkov wrote:
+On 26.12.2022 05:21, Dmitry Baryshkov wrote:
 > Populate the rpm clock controller node with clocks and clock-names
 > properties.
 > 
@@ -88,19 +94,19 @@ On 27.12.2022 01:15, Dmitry Baryshkov wrote:
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm/boot/dts/qcom-msm8974.dtsi | 2 ++
+>  arch/arm64/boot/dts/qcom/qcs404.dtsi | 2 ++
 >  1 file changed, 2 insertions(+)
 > 
-> diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
-> index 8d216a3c0851..81636c76e068 100644
-> --- a/arch/arm/boot/dts/qcom-msm8974.dtsi
-> +++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
-> @@ -307,6 +307,8 @@ rpm_requests: rpm_requests {
->  				rpmcc: clock-controller {
->  					compatible = "qcom,rpmcc-msm8974", "qcom,rpmcc";
->  					#clock-cells = <1>;
-> +					clocks = <&xo_board>;
-> +					clock-names = "xo";
->  				};
+> diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+> index 9206ab13977f..4721b3139df0 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+> @@ -230,6 +230,8 @@ rpm_requests: glink-channel {
+>  			rpmcc: clock-controller {
+>  				compatible = "qcom,rpmcc-qcs404", "qcom,rpmcc";
+>  				#clock-cells = <1>;
+> +				clocks = <&xo_board>;
+> +				clock-names = "xo";
 >  			};
->  		};
+>  
+>  			rpmpd: power-controller {
