@@ -2,95 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87EED656940
-	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 10:56:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6857656961
+	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 11:24:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229621AbiL0J4y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 04:56:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59238 "EHLO
+        id S229987AbiL0KYD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 05:24:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229521AbiL0J42 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 04:56:28 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A4BAB49B
-        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 01:55:18 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id g13so18935173lfv.7
-        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 01:55:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IPELBybm3OZnPzS1qLb2eKjz0NHNGczcyBgATwq2AJ8=;
-        b=a3UtnFcbLnbcl0VpqfiGS+3wdLVd8cVaF6vWs6Z73JN9u8GKOcwuHvZ7PeFo2Fz8Gb
-         Dg33aK8GsX9rXOk5JHLN+UFwwLtUGge2vDJcLxDgKQBj0UlrAwxvRdTyIlqjOBxb6uL2
-         3r8wy+ifXw9wMu+5ohSWs57+ivuQsve9TeeIsGrOCr3I2UKbfLcVTzYjnN3o5GN79Z8V
-         4aixJ758qbUSfUaK04lAaM+3z/IdBQ94CY7xifFwzdw5ESD37q6+CFXOjjzRg1KEvOb9
-         bx3izGa6470MaOEzPMLBZD6oRxIvl+pgygrs7v2swp3COdc38cNfCwdd7rXSjYmxbKqi
-         A25Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IPELBybm3OZnPzS1qLb2eKjz0NHNGczcyBgATwq2AJ8=;
-        b=7T64R9zm+iof6dakKwZW+0ry3BJGYwhn/kXxlt637tUwQIWj5AC+PKif9mRZ2fZN3e
-         dWKhvXZ05UAqTHLvAoYRaSAMarvXPQrZCXd08pfsk7wIaNLZnPIUFSx4XO8kdO/4isSl
-         oqhb3EozDOWuZQrAAGOMN0FAVnZ8QK0putizbI9NZGyM0SBcwr/S99zJlmXJ/iiI4qQS
-         vsW0nA8CZftNDu3RxGFEkf/7TgrLghArNFUSb8Db+LUhWE5f6lajVEig3yoUNwlP2nbj
-         ckgOUmuVORaUJDU4oQF2fhGt9AFcx3J8hw4S1p85jwDNBDTkPWGRGIswpgT3X+0O92/6
-         Wbcg==
-X-Gm-Message-State: AFqh2krMBtU05jUiIW673HGdrscJNWdxauJKoEKLz9mn2gpkJrSdlJGA
-        auEbTTwbTzzSwehIdVSpCKqi3g==
-X-Google-Smtp-Source: AMrXdXtltf4vB2TNQasjCgOUGdVW5TjMPZt530L9JnGeaOu3jfGKIVxewdonxiUQ0BeVA82qYm+DzA==
-X-Received: by 2002:a19:f514:0:b0:4b5:61e8:8934 with SMTP id j20-20020a19f514000000b004b561e88934mr5295350lfb.64.1672134916572;
-        Tue, 27 Dec 2022 01:55:16 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id o17-20020a05651205d100b00498f77cfa63sm2211382lfo.280.2022.12.27.01.55.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Dec 2022 01:55:16 -0800 (PST)
-Message-ID: <1cc66b84-fcf3-2801-57ad-94430fa38055@linaro.org>
-Date:   Tue, 27 Dec 2022 10:55:14 +0100
+        with ESMTP id S229789AbiL0KYB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 05:24:01 -0500
+Received: from smtpout1.mo528.mail-out.ovh.net (smtpout1.mo528.mail-out.ovh.net [46.105.34.251])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1551225CB;
+        Tue, 27 Dec 2022 02:23:59 -0800 (PST)
+Received: from pro2.mail.ovh.net (unknown [10.108.4.193])
+        by mo528.mail-out.ovh.net (Postfix) with ESMTPS id 8ABB5147C1BE7;
+        Tue, 27 Dec 2022 11:07:05 +0100 (CET)
+Received: from localhost.localdomain (88.161.25.233) by DAG1EX1.emp2.local
+ (172.16.2.1) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.16; Tue, 27 Dec
+ 2022 11:07:04 +0100
+From:   Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+To:     <lee@kernel.org>, <pavel@ucw.cz>, <robh+dt@kernel.org>,
+        <sven.schwermer@disruptive-technologies.com>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <johan+linaro@kernel.org>, <marijn.suijten@somainline.org>,
+        <bjorn.andersson@linaro.org>, <andy.shevchenko@gmail.com>,
+        <jacek.anaszewski@gmail.com>, <linux-leds@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+Subject: [RESEND PATCH v6 0/6] Add a multicolor LED driver for groups of monochromatic LEDs
+Date:   Tue, 27 Dec 2022 11:06:53 +0100
+Message-ID: <20221227100659.157071-1-jjhiblot@traphandler.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v10 3/7] dt-bindings: arm: nuvoton: Add bindings for NPCM
- GFXI
-Content-Language: en-US
-To:     Marvin Lin <milkfafa@gmail.com>, mchehab@kernel.org,
-        hverkuil-cisco@xs4all.nl, avifishman70@gmail.com,
-        tmaimon77@gmail.com, tali.perry1@gmail.com, venture@google.com,
-        yuenn@google.com, benjaminfair@google.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, andrzej.p@collabora.com
-Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
-        kwliu@nuvoton.com, kflin@nuvoton.com
-References: <20221227095123.2447948-1-milkfafa@gmail.com>
- <20221227095123.2447948-4-milkfafa@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221227095123.2447948-4-milkfafa@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [88.161.25.233]
+X-ClientProxiedBy: DAG3EX1.emp2.local (172.16.2.21) To DAG1EX1.emp2.local
+ (172.16.2.1)
+X-Ovh-Tracer-Id: 14107807311632546267
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvhedriedtgdduudcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecunecujfgurhephffvvefufffkofgggfgtihesthekredtredttdenucfhrhhomheplfgvrghnqdflrggtqhhuvghsucfjihgslhhothcuoehjjhhhihgslhhothesthhrrghphhgrnhgulhgvrhdrtghomheqnecuggftrfgrthhtvghrnhepjeeuhfeklefghfelhfethfegkedtvedvgfekledtheegueejuedtheekuefhffdtnecukfhppeduvdejrddtrddtrddupdekkedrudeiuddrvdehrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepuddvjedrtddrtddruddpmhgrihhlfhhrohhmpeeojhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmqedpnhgspghrtghpthhtohepuddprhgtphhtthhopehlvggvsehkvghrnhgvlhdrohhrghdpphgrvhgvlhesuhgtfidrtgiipdhrohgshhdoughtsehkvghrnhgvlhdrohhrghdpshhvvghnrdhstghhfigvrhhmvghrseguihhsrhhuphhtihhvvgdqthgvtghhnhholhhoghhivghsrdgtohhmpdhkrhiihihsiihtohhfrdhkohiilhhofihskhhiodgutheslhhinhgrrhhordhorhhgpdhjohhhrghnodhlihhnrghroheskhgvrhhnvghlrdhorhhgpdhmrghrihhjnhdrshhuihhjthgvnhesshhomhgrihhnlhhinhgvrdhorh
+ hgpdgsjhhorhhnrdgrnhguvghrshhsohhnsehlihhnrghrohdrohhrghdprghnugihrdhshhgvvhgthhgvnhhkohesghhmrghilhdrtghomhdpjhgrtggvkhdrrghnrghsiigvfihskhhisehgmhgrihhlrdgtohhmpdhlihhnuhigqdhlvggushesvhhgvghrrdhkvghrnhgvlhdrohhrghdpuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhohedvkedpmhhouggvpehsmhhtphhouhht
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,RCVD_IN_VALIDITY_RPBL,SPF_HELO_NONE,SPF_NONE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/12/2022 10:51, Marvin Lin wrote:
-> Add dt-bindings document for Graphics Core Information (GFXI) node. It
-> is used by NPCM video driver to retrieve Graphics core information.
-> 
-> Signed-off-by: Marvin Lin <milkfafa@gmail.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-The comment about subject from v8 applies here as well. Once you receive
-a comment apply it everywhere, fix all the issues, not only one.
+Resending the v6 of the series.
+
+I updated the date and kernel version in Documentation/ABI/testing/sysfs-class-led
+to Dec 2022 and version 6.2.
+
+Thanks,
+
+JJ
 
 
-Best regards,
-Krzysztof
+Some HW design implement multicolor LEDs with several monochromatic LEDs.
+Grouping the monochromatic LEDs allows to configure them in sync and use
+the triggers.
+The PWM multicolor LED driver implements such grouping but only for
+PWM-based LEDs. As this feature is also desirable for the other types of
+LEDs, this series implements it for any kind of LED device.
+
+changes v5->v6:
+ - restore sysfs access to the leds when the device is removed
+
+changes v4->v5:
+ - Use "depends on COMPILE_TEST || OF" in Kconfig to indicate that OF
+   is a functional requirement, not just a requirement for the
+   compilation.
+ - in led_mcg_probe() check if devm_of_led_get_optional() returns an
+   error before testing for the end of the list.
+ - use sysfs_emit() instead of sprintf() in color_show().
+ - some grammar fixes in the comments and the commit logs.
+
+changes v2->v3, only minor changes:
+ - rephrased the Kconfig descritpion
+ - make the sysfs interface of underlying LEDs read-only only if the probe
+   is successful.
+ - sanitize the header files
+ - removed the useless call to dev_set_drvdata()
+ - use dev_fwnode() to get the fwnode to the device.
+
+changes v1->v2:
+ - Followed Rob Herrings's suggestion to make the dt binding much simpler.
+ - Added a patch to store the color property of a LED in its class
+   structure (struct led_classdev).
+
+
+Jean-Jacques Hiblot (6):
+  devres: provide devm_krealloc_array()
+  leds: class: simplify the implementation of devm_of_led_get()
+  leds: provide devm_of_led_get_optional()
+  leds: class: store the color index in struct led_classdev
+  dt-bindings: leds: Add binding for a multicolor group of LEDs
+  leds: Add a multicolor LED driver to group monochromatic LEDs
+
+ Documentation/ABI/testing/sysfs-class-led     |   9 +
+ .../bindings/leds/leds-group-multicolor.yaml  |  64 +++++++
+ drivers/leds/led-class.c                      |  65 +++++--
+ drivers/leds/rgb/Kconfig                      |  10 ++
+ drivers/leds/rgb/Makefile                     |   1 +
+ drivers/leds/rgb/leds-group-multicolor.c      | 168 ++++++++++++++++++
+ include/linux/device.h                        |  13 ++
+ include/linux/leds.h                          |   3 +
+ 8 files changed, 319 insertions(+), 14 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
+ create mode 100644 drivers/leds/rgb/leds-group-multicolor.c
+
+-- 
+2.25.1
 
