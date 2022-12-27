@@ -2,160 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B776B656FFB
-	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 22:33:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BB11657007
+	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 22:37:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232067AbiL0VdR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 16:33:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55224 "EHLO
+        id S230127AbiL0Vhs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 16:37:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231945AbiL0VdQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 16:33:16 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 353F92644
-        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 13:33:14 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id bt23so4540318lfb.5
-        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 13:33:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=blLdzUMAkH6NNOpHUUK0r2VWc/AFPUHqvr7AifIWIZI=;
-        b=TwQ0/7811fSSzMqrJssEzw6BoEyyvfG48ujo0eQ+zgnPM/yKo+OCopgEGg+EKtRWMY
-         Qjz1Qd+h/pa7QIfjiFjtXEuuzalGr2V0xAUOmPIIrIpnacNZDIceeuFTlQ4tSbvmSEsv
-         Rpsbm/XfJ+wTPN5x5I4uoJF5xuYOJgInoSgEOKn8owlQAsn3CaVmMkZaMayM19wLxfr7
-         MiEReiWiQ/jT3i/siSclbwlZ99e+tyrR1hXoHr05Xur+WotgBs5evT2iu/fUdGLBxinv
-         xTk8zpsTHIFDLNj2Tj2qaasRYvWJHLmLPEy0T96EoTjlvvQi2XSk6uegPdpiJ0dmRrD2
-         7wlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=blLdzUMAkH6NNOpHUUK0r2VWc/AFPUHqvr7AifIWIZI=;
-        b=SsnzaQVZa1AaTv2heGp4tH09FhiOKlYVrtZGyvyOcV7UR+/tp300WnJls5p42Do6IJ
-         Odgz8ikf2EZrWrZIkJwT5jDnsVp+AI6oz5Km087h9fZLE6uZMJnWKIuEm7GWL3qc2qhK
-         yxpoeAXjGQO0HPfxDu/JH0sXgaycPFeMy6ShwhL/IO3Zt+4+t5fAo4FAoO/hcvW7VnhI
-         Ybldxp42aYmv20KDCpxjTHbQwqZclrLhwAZf3FDa8NBqeBz7hySRZbXjGTkQWEt0hNDT
-         D896ZGhkgbW7cChyfH+7Y3QJpZcfeQRk9EVs60GF9Kv/J1SoBsgpgqMEf8ws+s0P+ByE
-         qsXA==
-X-Gm-Message-State: AFqh2krEo3DpysTPs08xTiPAwzTNW9cEHiCy40h1BySH+5mch1NnRCJ7
-        5F7DFTlzASccX9vMuym8/wwT2w==
-X-Google-Smtp-Source: AMrXdXuaAAOW9AP+69/mg0K8pYcjI6noxqGBDzQUMRrrItvqeB0VXR5G4dXsaLjX2lWQlF+DRJmCSg==
-X-Received: by 2002:a19:7b18:0:b0:4b5:9cce:73a0 with SMTP id w24-20020a197b18000000b004b59cce73a0mr6987359lfc.39.1672176792470;
-        Tue, 27 Dec 2022 13:33:12 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id q25-20020a194319000000b004c57abccb8bsm2388708lfa.102.2022.12.27.13.33.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Dec 2022 13:33:11 -0800 (PST)
-Message-ID: <f6e4e538-b4dd-a45a-0078-ea7ebb960672@linaro.org>
-Date:   Tue, 27 Dec 2022 23:33:10 +0200
+        with ESMTP id S229731AbiL0Vhr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 16:37:47 -0500
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 944B6E44;
+        Tue, 27 Dec 2022 13:37:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1672177066; x=1703713066;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=7aRB3Na6+UMGKeVFbVMFj8VMFlINfqaup6ApmodHJro=;
+  b=lKByGZZwoqPILHHiF13X4AtdtlE/7uEZJ3SJvwhKDnvK4RGjbeMCutbk
+   X9AGs4wWe8EMcoknu/0hLiGi3Wax1ujJNeRsPObpdB0+l72EjA3tIYjBT
+   bwEWpswR3t3UENDAvapJFlUdgYFoLYu5wHsxVL/Eq7v0DbseNXHKhgxvy
+   TRkUT84q+OvXMb1Dk6HSyliO8jlFJ7+hPhHpI6QSp47B4Lt/+wKO2WTfw
+   B4Uj2X4YbYRRBe/pNepGYrq3MDvkI6HLq4awOwFu/FYG/Bu/ig9W9e1hn
+   1wshKHdRJkJDWKlbo7hsgsjb6/XkA4c1zaNylHVCvRt88axiRZqZL58YO
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10573"; a="383063320"
+X-IronPort-AV: E=Sophos;i="5.96,279,1665471600"; 
+   d="scan'208";a="383063320"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Dec 2022 13:37:45 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10573"; a="795454719"
+X-IronPort-AV: E=Sophos;i="5.96,279,1665471600"; 
+   d="scan'208";a="795454719"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga001.fm.intel.com with ESMTP; 27 Dec 2022 13:37:42 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1pAHdk-000GfT-1C;
+        Tue, 27 Dec 2022 23:37:40 +0200
+Date:   Tue, 27 Dec 2022 23:37:40 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Angel Iglesias <ang.iglesiasg@gmail.com>
+Cc:     linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        Andreas Klinger <ak@it-klinger.de>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] iio: pressure: bmp280: Add enumeration to handle
+ chip variants
+Message-ID: <Y6tlpP2SgsgoVBrK@smile.fi.intel.com>
+References: <cover.1672062380.git.ang.iglesiasg@gmail.com>
+ <f0368a3f460707417110dffdb0166824da20af15.1672062380.git.ang.iglesiasg@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [RFC PATCH 04/14] sound: usb: card: Introduce USB SND vendor op
- callbacks
-Content-Language: en-GB
-To:     Wesley Cheng <quic_wcheng@quicinc.com>
-Cc:     srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
-        perex@perex.cz, broonie@kernel.org, lgirdwood@gmail.com,
-        andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        gregkh@linuxfoundation.org, Thinh.Nguyen@synopsys.com,
-        bgoswami@quicinc.com, tiwai@suse.com, robh+dt@kernel.org,
-        agross@kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        quic_jackp@quicinc.com, quic_plai@quicinc.com
-References: <20221223233200.26089-1-quic_wcheng@quicinc.com>
- <20221223233200.26089-5-quic_wcheng@quicinc.com>
- <CAA8EJprFD53zmECHJ44FpjztRjwsMym2QP_Gk-JWya-SL_ryHA@mail.gmail.com>
- <730d8cbc-c391-6d77-2374-713f539d38b6@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <730d8cbc-c391-6d77-2374-713f539d38b6@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f0368a3f460707417110dffdb0166824da20af15.1672062380.git.ang.iglesiasg@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/12/2022 23:07, Wesley Cheng wrote:
-> Hi Dmitry,
-> 
-> On 12/24/2022 3:03 AM, Dmitry Baryshkov wrote:
->> Hi,
->>
->> On Sat, 24 Dec 2022 at 01:33, Wesley Cheng <quic_wcheng@quicinc.com> 
->> wrote:
->>>
->>> Allow for different vendors to be notified on USB SND connect/disconnect
->>> seqeunces.  This allows for vendor USB SND modules to properly 
->>> initialize
->>> and populate internal structures with references to the USB SND chip
->>> device.
->>
->> The commit message definitely needs some improvement. We do not notify
->> vendors on SND connect/disconnect events.
->>
->>
->>>
->>> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
->>> ---
->>>   sound/usb/card.c | 22 ++++++++++++++++++++++
->>>   sound/usb/card.h |  7 +++++++
->>>   2 files changed, 29 insertions(+)
->>>
->>> diff --git a/sound/usb/card.c b/sound/usb/card.c
->>> index 26268ffb8274..212f55a7683c 100644
->>> --- a/sound/usb/card.c
->>> +++ b/sound/usb/card.c
->>> @@ -117,6 +117,21 @@ MODULE_PARM_DESC(skip_validation, "Skip unit 
->>> descriptor validation (default: no)
->>>   static DEFINE_MUTEX(register_mutex);
->>>   static struct snd_usb_audio *usb_chip[SNDRV_CARDS];
->>>   static struct usb_driver usb_audio_driver;
->>> +static struct snd_usb_vendor_ops *vendor_ops;
->>> +
->>> +int snd_usb_register_vendor_ops(struct snd_usb_vendor_ops *ops)
->>
->> platform ops?
->>
-> 
-> Will change it.
-> 
->>> +{
->>> +       vendor_ops = ops;
->>> +       return 0;
->>> +}
->>> +EXPORT_SYMBOL_GPL(snd_usb_register_vendor_ops);
->>
->> What happens if several platforms try to register different ops? I saw
->> from the patch 09/14 that you register these ops unconditionally. If
->> other devices follow your approach there is an obvious conflict.
->>
-> 
-> Thank you for the review.
-> 
-> That is true.  I don't think there is a proper need to have multiple 
-> vendor ops being registered, so maybe just returning an error for if ops 
-> are already registered is sufficient.
+On Mon, Dec 26, 2022 at 03:29:20PM +0100, Angel Iglesias wrote:
+> Adds enumeration to improve handling the different supported sensors
+> on driver initialization. This avoid collisions if different variants
+> share the same device idetifier on ID register.
 
-This would be a required step. And also you have to check the running 
-platform before registering your ops unconditionally. Ideally this 
-should be done as a part of the device's driver, so that we can control 
-registration of the platform ops using the usual interface.
-
-> 
-> Thanks
-> Wesley Cheng
+As per v1, use pointers in the ID tables.
 
 -- 
-With best wishes
-Dmitry
+With Best Regards,
+Andy Shevchenko
+
 
