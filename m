@@ -2,116 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63083656E87
-	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 21:09:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 379D6656E8F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 21:15:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230140AbiL0UJz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 15:09:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59570 "EHLO
+        id S230333AbiL0UPa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 15:15:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229488AbiL0UJy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 15:09:54 -0500
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ECEA1C9;
-        Tue, 27 Dec 2022 12:09:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1672171792; x=1703707792;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=3sBZGyq73ZD2hku2pLOI+6amo8ZCX9wNt+AZ72j6k9o=;
-  b=QhyHeC07prThXtod2ewQVSUELuXWeWuHAuZVsZAPsikchOTuyFnOhiQG
-   pU4TsPTjlvOHhm4vmQjyAvUZ46Ne0/mQNA4U6hIdf/lKweja34NfF0cQ3
-   ZOMPxzaFOcH4Mas9nRlkptkf2nPTnldZtRn0KsGmSAXDDHdPiHywEfjOn
-   hmY4IhJskrrbS1GPxmQtutgP430t07PTxddXh6BRM+Evyp6wBIvwzIH3F
-   qEnD6QE1TvM4sEbzMigDaQ2brVR6yirYohfOlX3TUgCpIHrmiAK+zfMzh
-   WFbQ5oioa2POw+fqwg0QhQo8FyXKclt7HDjxRlNhi613pZmQ8dBBMf3y2
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10573"; a="318428997"
-X-IronPort-AV: E=Sophos;i="5.96,279,1665471600"; 
-   d="scan'208";a="318428997"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Dec 2022 12:09:52 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10573"; a="716423485"
-X-IronPort-AV: E=Sophos;i="5.96,279,1665471600"; 
-   d="scan'208";a="716423485"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga008.fm.intel.com with ESMTP; 27 Dec 2022 12:09:47 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1pAGGe-000DiC-0K;
-        Tue, 27 Dec 2022 22:09:44 +0200
-Date:   Tue, 27 Dec 2022 22:09:43 +0200
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        with ESMTP id S229533AbiL0UP3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 15:15:29 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EE1BE67;
+        Tue, 27 Dec 2022 12:15:28 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id E8940B811F9;
+        Tue, 27 Dec 2022 20:15:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24085C433F1;
+        Tue, 27 Dec 2022 20:15:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1672172125;
+        bh=05aH1T5J9X8xJdMwaufCNdVfPimoX7Jh2SPx1rTYKAs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=IdvX0FuRE3DZzXJE2NJ8B8iXHgzLBh44LQM3ukhziA1887ExlNtE2PerPLw3RRE6r
+         Gzt4SoUi2Iq5lPBQlRV9yaQD2TKna5BucJVlwKcpBwquw+hIN0RI/Yyg6SrwB9QV1p
+         aF+6xK0cYJskPZPEL8H2YyuBk754wukCQHcNxQRTRm7Q27FNtMX8dN1Mut7bUdLoNj
+         oqqTpR+GfpTga3hWeJbFpAuBKP1lcKHUKvqPPZYnOaerhsl6tg+zeYDfuH6ye2LYaC
+         cOKAFhM/jnob+CN5It7laI/GjTWMLNpYyZF2hcvlgS7Nbhg3kJs3huZRxJCaw3Mhez
+         +Fi2cLLD2ql3w==
+Date:   Tue, 27 Dec 2022 20:15:20 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Hal Feng <hal.feng@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, Palmer Dabbelt <palmer@dabbelt.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>
-Subject: Re: [PATCH v5 7/8] media: i2c: add DS90UB913 driver
-Message-ID: <Y6tRB6DckOKWYHTv@smile.fi.intel.com>
-References: <20221208104006.316606-1-tomi.valkeinen@ideasonboard.com>
- <20221208104006.316606-8-tomi.valkeinen@ideasonboard.com>
- <Y5YiazDtaxtLJyL0@pendragon.ideasonboard.com>
- <4d349785-ca37-d930-db3c-2581bba9fde0@ideasonboard.com>
- <Y6nTV16me9aQL3iT@pendragon.ideasonboard.com>
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 07/11] dt-bindings: clock: Add StarFive JH7110 system
+ clock and reset generator
+Message-ID: <Y6tSWB2+98a8k9Qw@spud>
+References: <20221220005054.34518-1-hal.feng@starfivetech.com>
+ <20221220005054.34518-8-hal.feng@starfivetech.com>
+ <Y6JB37Pd5TZoGMy4@spud>
+ <7a7bccb1-4d47-3d32-36e6-4aab7b5b8dad@starfivetech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="QeM6KLNzCPBbmiJk"
 Content-Disposition: inline
-In-Reply-To: <Y6nTV16me9aQL3iT@pendragon.ideasonboard.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <7a7bccb1-4d47-3d32-36e6-4aab7b5b8dad@starfivetech.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 26, 2022 at 07:01:11PM +0200, Laurent Pinchart wrote:
-> On Wed, Dec 14, 2022 at 08:29:48AM +0200, Tomi Valkeinen wrote:
-> > On 11/12/2022 20:33, Laurent Pinchart wrote:
-> > > On Thu, Dec 08, 2022 at 12:40:05PM +0200, Tomi Valkeinen wrote:
 
-...
+--QeM6KLNzCPBbmiJk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> > >> +	dev_dbg(dev, "Bind %s\n", source_subdev->name);
-> > > 
-> > > I'd drop this message.
+On Mon, Dec 26, 2022 at 12:26:32AM +0800, Hal Feng wrote:
+> On Tue, 20 Dec 2022 23:14:39 +0000, Conor Dooley wrote:
+> > On Tue, Dec 20, 2022 at 08:50:50AM +0800, Hal Feng wrote:
+> > > From: Emil Renner Berthing <kernel@esmil.dk>
+> > >=20
+> > > Add bindings for the system clock and reset generator (SYSCRG) on the
+> > > JH7110 RISC-V SoC by StarFive Ltd.
+> > >=20
+> > > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> > > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
 
-+1 here.
+> > > +  clocks:
+> > > +    items:
+> > > +      - description: Main Oscillator (24 MHz)
+> > > +      - description: GMAC1 RMII reference
+> > > +      - description: GMAC1 RGMII RX
+> > > +      - description: External I2S TX bit clock
+> > > +      - description: External I2S TX left/right channel clock
+> > > +      - description: External I2S RX bit clock
+> > > +      - description: External I2S RX left/right channel clock
+> > > +      - description: External TDM clock
+> > > +      - description: External audio master clock
+> >=20
+> > So, from peeking at the clock driver & the dt - it looks like a bunch of
+> > these are not actually required?
+>=20
+> These clocks are used as root clocks or optional parent clocks in clock t=
+ree.
+> Some of them are optional, but they are required if we want to describe t=
+he
+> complete clock tree of JH7110 SoC.
 
-> > Why is that? Do we get this easily from the v4l2 core? These debug 
-> > prints in the bind/unbind process have been valuable for me.
-> 
-> Because debug messages are not meant to be a tracing infrastructure, and
-> because, if we want to keep this message, it would be best handled in
-> the v4l2-async core instead of being duplicated across drivers. Same for
-> the messages at the end of the function.
+Perhaps I have a misunderstand of what required means. To me, required
+means "you must provide this clock for the SoC to operate in all
+configurations".
+Optional therefore would be for things that are needed only for some
+configurations and may be omitted if not required.
 
-I don't think v4l2 needs debug prints. If we consider the above case, the
-ftrace already provides that. If we consider something specific to v4l2 to
-trace only critical parts, then trace events should be implemented.
+=46rom your comment below, boards with a JH7110 may choose not to populate
+both external clock inputs to a mux. In that case, "dummy" clocks should
+not have to be provided in the DT of such boards to satisfy this binding
+which seems wrong to me..
 
--- 
-With Best Regards,
-Andy Shevchenko
+It would seem to me that you need to set minItems < maxItems here to
+account for that & you do in fact need clock-names.
+
+>=20
+> > I'd have ploughed through this, but having read Krzysztof's comments on
+> > the DTS I'm not sure that this binding is correct.
+> > https://lore.kernel.org/linux-riscv/20221220011247.35560-1-hal.feng@sta=
+rfivetech.com/T/#mdf67621a2344dce801aa8015d4963593a2c28bcc
+> >=20
+> > I *think* the DT is correct - the fixed clocks are all inputs from clock
+> > sources on the board and as such they are empty in soc.dtsi and are
+> > populated in board.dts?
+>=20
+> Yes, the fixed clocks are all clock sources on the board and input to the=
+ SoC.
+>=20
+> >=20
+> > However, are they all actually required? In the driver I see:
+> > 	JH71X0__MUX(JH7110_SYSCLK_GMAC1_RX, "gmac1_rx", 2,
+> > 		    JH7110_SYSCLK_GMAC1_RGMII_RXIN,
+> > 		    JH7110_SYSCLK_GMAC1_RMII_RTX),
+> > That macro is:
+> > #define JH71X0__MUX(_idx, _name, _nparents, ...) [_idx] =3D {			\
+> > 	.name =3D _name,								\
+> > 	.flags =3D 0,								\
+> > 	.max =3D ((_nparents) - 1) << JH71X0_CLK_MUX_SHIFT,			\
+> > 	.parents =3D { __VA_ARGS__ },						\
+> > }
+> >=20
+> > AFAICT, RMII reference feeds RMII_RTX & RGMII RX *is* RGMII_RXIN?
+> > Does that mean you need to populate only one of GMAC1 RMII reference
+> > and GMAC1 RMGII RX and the other is optional?
+>=20
+> Yes, actually only one of them is chosen as the root clock
+> source of the clock "gmac1_rx".
+>=20
+> >=20
+> > What have I missed?
+> >=20
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: osc
+> > > +      - const: gmac1_rmii_refin
+> > > +      - const: gmac1_rgmii_rxin
+> > > +      - const: i2stx_bclk_ext
+> > > +      - const: i2stx_lrck_ext
+> > > +      - const: i2srx_bclk_ext
+> > > +      - const: i2srx_lrck_ext
+> > > +      - const: tdm_ext
+> > > +      - const: mclk_ext
+> >=20
+> > If all clocks are in fact required though, isn't this kinda pointless to
+> > have since we already know that the order is fixed from the "clocks"
+> > property?
+> > Krzk/Rob?
+>=20
+> The clock-names are used to easily identify these clocks in the clock dri=
+ver.
+
+*IF* all clocks were in fact required, which they aren't, you could rely
+on the order alone in the driver as it is enforced by the binding.
+
+Thanks,
+Conor.
 
 
+--QeM6KLNzCPBbmiJk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY6tSWAAKCRB4tDGHoIJi
+0okFAQDbwbv2vh4vzfMxQaOPh/4qjm21F5guRuUmxtaUrbR/ewD+ITavqwpW/C9k
+P7J8TeZguPS5ySAAW47uKDXola3y3QQ=
+=YoA4
+-----END PGP SIGNATURE-----
+
+--QeM6KLNzCPBbmiJk--
