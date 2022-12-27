@@ -2,104 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E78B6656E37
-	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 20:21:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC231656E52
+	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 20:28:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231388AbiL0TVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 14:21:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43292 "EHLO
+        id S231220AbiL0T2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 14:28:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229679AbiL0TVC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 14:21:02 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDCF095A0;
-        Tue, 27 Dec 2022 11:20:53 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 59E6561226;
-        Tue, 27 Dec 2022 19:20:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A31B8C433F0;
-        Tue, 27 Dec 2022 19:20:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672168852;
-        bh=MqsS38ApDgq02vqqGG6mvUVIL0HVzihDGlS5x4jYiPM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MwJjTCPiyZjERTr6u9tuz3mfo6PcsnEEZrPSdVoFOPlfh+KLjxSRIrm4EV9hcw7zP
-         BRGz+TY+iQ/zPF9fbkao8b1GctKRqTr8h99bAUmNhe3ClNXAgp/G1UQbvgYpaBAn5x
-         CTTNKrItbmtJMKW8TkLbJLoW9rTGpiKkF2JM8BEmwimeF5HNE+2Ks5cEu8902ev9p3
-         fyGWVa2/Et2kt7RSg4m6/k5bR4ub0kjI9WvvZvCsygVSLn7Sk6R6ct2pP+6M801/Ht
-         C5NVxLUtJ3OuBWrz1nox53tHEtsGl+6E2y6rZ4bPdo7kvWSQYc5ui26UX/oXwKRSgu
-         7tq5Bh0Xp10Og==
-Date:   Tue, 27 Dec 2022 13:20:49 -0600
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Robert Marko <robimarko@gmail.com>
-Cc:     agross@kernel.org, konrad.dybcio@linaro.org, bhelgaas@google.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        mani@kernel.org, lpieralisi@kernel.org, kw@linux.com,
-        svarbanov@mm-sol.com, shawn.guo@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/9] arm64: dts: qcom: ipq8074: fix Gen3 PCIe QMP PHY
-Message-ID: <20221227192049.zk5gqhpnq2m7baqa@builder.lan>
-References: <20221116214841.1116735-1-robimarko@gmail.com>
- <20221116214841.1116735-2-robimarko@gmail.com>
- <20221205215253.itobukkyiecn7xi7@builder.lan>
- <CAOX2RU5C6uYKS4Hc7NBwnzRju1=gzewrEHudMksUAL1XdKcfCQ@mail.gmail.com>
+        with ESMTP id S229801AbiL0T2W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 14:28:22 -0500
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8017B1C2
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 11:28:21 -0800 (PST)
+Received: by mail-pl1-x62b.google.com with SMTP id jl4so7776652plb.8
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 11:28:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dowhile0-org.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=F3yGec1v/pAZdlsdz4KptKUFtToX+P4HKect6tvS0bM=;
+        b=eZBHoAftWthVp/W6i1eY7oWJRD71Y9IPWPP49BSMuDdLH48aPJpqXUHhnHjcQ3vxWA
+         ZElU5SN+QVdH4rtn71R3XmF1NZb/hHZiRp4vSIr57NzmfzKvfF2CpsWiOmID82+AKp6Y
+         WoFCh9ct+g0Kcltcu1FrAU32Xw5daqNdSiPPaPVWMqdfsM5TWGAuWgvIEOl4KvauhwWS
+         VBWOYYOLzHxRJd+P24Npz/HegJMC3wwrVJR3mkGFj1Zc1ovw21WVJ5h5BEBd0orRN8S5
+         JZdt7pjgX64uGwkPxT0pUtDPeh4DIwUJB+37rVEhy4erYpHB99SzJTCDyNADiLzEMlX6
+         kzrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=F3yGec1v/pAZdlsdz4KptKUFtToX+P4HKect6tvS0bM=;
+        b=ydKID2MGeIUHOW747i3W5noiQJRgAJvHTDP1QIzYh72KHLIZmuF3tyS6pg8NkgaJ8e
+         ET6Bp6YTmO60P+SrJcRlOTf+VfKBixuqK26zpxVFg57yYRKHlyiaJg/4a6GSoia5MCGv
+         99c796NvEgNaKTARM28dHouJY1QrPcN//gako1Rg3Oc6HsHdvwNTfVVyoNCohvSnl+Eh
+         4MI1Di50DRK+t7ONQtmzPEdBXKl0aKRbzzSW4G3yfiF31gNdW8kxAQ8BusYZdSc1lFaw
+         D4zmm12oD3YB0db1LNjBIIhaLEoD9cCnfsPr+zKjOI+qwQ989zINdZZHCp60fAKjHfUW
+         nkoA==
+X-Gm-Message-State: AFqh2koJMjl3toM2WxqkahwFT5vqew/hj1XLC/CMrXFaZQPwlC4ORi6q
+        Jsabat8FYmDsWTE9sc9zuKvVZsezjH/bC2qmOsAzYg==
+X-Google-Smtp-Source: AMrXdXsOvBld3xBN5qjRM49UlgQSR/vTb5qkj6SsVg9Om1xjMhqlnlFj5FBPS6mSldhVyUhf3qbUFTbJ4PIqwLf2jHQ=
+X-Received: by 2002:a17:902:7089:b0:189:9cfd:be76 with SMTP id
+ z9-20020a170902708900b001899cfdbe76mr1390560plk.21.1672169301016; Tue, 27 Dec
+ 2022 11:28:21 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAOX2RU5C6uYKS4Hc7NBwnzRju1=gzewrEHudMksUAL1XdKcfCQ@mail.gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221227110335.2923359-1-javierm@redhat.com> <20221227110335.2923359-2-javierm@redhat.com>
+ <CAMty3ZAaHKJ21D8mE=HU3D3KOGAiZ7vfmW_Hgc-E5JO5S+tMNA@mail.gmail.com>
+In-Reply-To: <CAMty3ZAaHKJ21D8mE=HU3D3KOGAiZ7vfmW_Hgc-E5JO5S+tMNA@mail.gmail.com>
+From:   Javier Martinez Canillas <javier@dowhile0.org>
+Date:   Tue, 27 Dec 2022 20:28:09 +0100
+Message-ID: <CABxcv=kwtk21UbOwaV4tq=BpPsrYmnTrzuhybjbknipqk5R-fA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: display: Add Himax HX8394 panel controller
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Javier Martinez Canillas <javierm@redhat.com>,
+        devicetree@vger.kernel.org, Robert Mader <robert.mader@posteo.de>,
+        Onuralp Sezer <thunderbirdtr@fedoraproject.org>,
+        Neal Gompa <ngompa13@gmail.com>, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
+        Martijn Braam <martijn@brixit.nl>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Ondrej Jirman <megi@xff.cz>,
+        Peter Robinson <pbrobinson@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?Q?Kamil_Trzci=C5=84ski?= <ayufan@ayufan.eu>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 06, 2022 at 10:51:40AM +0100, Robert Marko wrote:
-> On Mon, 5 Dec 2022 at 22:52, Bjorn Andersson <andersson@kernel.org> wrote:
-> >
-> > On Wed, Nov 16, 2022 at 10:48:34PM +0100, Robert Marko wrote:
-> > > IPQ8074 comes in 2 silicon versions:
-> > > * v1 with 2x Gen2 PCIe ports and QMP PHY-s
-> > > * v2 with 1x Gen3 and 1x Gen2 PCIe ports and QMP PHY-s
-> > >
-> > > v2 is the final and production version that is actually supported by the
-> > > kernel, however it looks like PCIe related nodes were added for the v1 SoC.
-> > >
-> > > Now that we have Gen3 QMP PHY support, we can start fixing the PCIe support
-> > > by fixing the Gen3 QMP PHY node first.
-> > >
-> > > Change the compatible to the Gen3 QMP PHY, correct the register space start
-> > > and size, add the missing misc PCS register space.
-> > >
-> >
-> > Does this imply that the current node doesn't actually work?
-> 
-> Hi Bjorn,
-> Yes, the node is for a completely different PHY generation, basically
-> PCIe on IPQ8074
-> is completely broken, hence this patch series.
-> 
-> >
-> > If that's the case, could we perhaps adopt Johan Hovolds' new binding
-> > and drop the subnode in favor of just a flat reg covering the whole
-> > QMP region?
-> 
-> I have not seen that so far, any examples?
-> 
+Hello Jagan,
 
-See
-Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml in
-v6.2-rc1.
+On Tue, Dec 27, 2022 at 7:16 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
 
-The idea is to, at least, use this for all new platforms introduced.
+[...]
 
-And if the current definition doesn't actually work I suggest that we
-replace it with the new one.
+> > +allOf:
+> > +  - $ref: panel-common.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      # HannStar HSD060BHW4 5.99" 720x1440 TFT LCD panel
+> > +      - hannstar,hsd060bhw4
+>
+> Parent controller can have a compatible where the associated panels
+> will be enum list.
+>
 
-Regards,
-Bjorn
+I'm not sure to follow what you meant. Could you please elaborate?
+
+Best regards,
+Javier
