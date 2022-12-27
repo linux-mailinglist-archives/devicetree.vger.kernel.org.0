@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F4CB65666C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 02:32:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 325C165666E
+	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 02:32:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232532AbiL0Bca (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Dec 2022 20:32:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46332 "EHLO
+        id S232589AbiL0Bcb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Dec 2022 20:32:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230375AbiL0Bc3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 20:32:29 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8827C75
-        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 17:32:27 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id z26so17837198lfu.8
-        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 17:32:27 -0800 (PST)
+        with ESMTP id S230375AbiL0Bca (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Dec 2022 20:32:30 -0500
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCA8E2AFD
+        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 17:32:28 -0800 (PST)
+Received: by mail-lj1-x230.google.com with SMTP id n1so12495953ljg.3
+        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 17:32:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=eEXLAvh/0qpSDc3bNh+/vKGT8NSfGyUdyOpGl38+5BM=;
-        b=nqJh613j482ufkCQq7hCTDH6YVjmwwailU8xGsIC7pDv8TM//7FaKM2QkVDxYgvJob
-         wbs/iKHeSem21XXd8rXeAamNPKzMtLmpVyjdZkKg14ctdnYD+DMJWVYPTZmTbqY0KiQA
-         caKdeKCYUiHNnPyL4dmfsDxZqH+vPcwDwVc+oAAc54Qg4SDZAmMVMKRFcuy/4EDyFV5m
-         K5JdERMlYIu7VmjE0Jxi7ALDDI5L1WAaTgrjFM/P12/nAdlm941riEmhfFCFxsQvB4Ix
-         ssboKe6YSnIB9LnNtLOhrMuq92P3Y3nffa/erE5PWsiv6AWv1aEgTUyBoXqEM5DQ6M/A
-         1khQ==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1J+JLW+JOrxXoy4HXkqu5YJ4mlU978iZ0LW4LiFN3dM=;
+        b=i2mBXemUB7BENkLv8GJbobhnUVlQmuP08CQ8PuFJLKOkBpVrIrxXc0KwMwPrcdkoXC
+         wprmwlcLozYhibtBwlAx05MvzboJbTW23USWOpRVf/1SQ607Z3Gos7QolC1qW83KMFEA
+         torArT6XxOq430vEaiJLXFhIcCpuOKkoeQ9jqdALN8R+C3gD08A9ZUwOxW6U2HcsyORP
+         30sqGcNl+BMMzrR5LXUWk5BlbVMxLhSFI731QXH8wQONjVBaXE8Hk54KI1kYt0rRsfJ5
+         DbxJW/IBRksYG4Ges37gNf8dnZ1ennm5VXpEZhoxqGB4vzpP+5Sx4Kv+i3ihGwoMrTRP
+         34dQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=eEXLAvh/0qpSDc3bNh+/vKGT8NSfGyUdyOpGl38+5BM=;
-        b=SffEFVdAv8OfN9W44HD4X25OcsAZSS8yMeGou+FwDtoeKnEi4CIgUK3lseJ6UGUwa7
-         hRytpvgyxSQ7f+jKHiUNiQFxOgPQFTQ9WDrTAc0XQRcEa2JTIRaSoveP21lNgrcUAswr
-         ilDz3UMGZFsnsPupCB74LIcj2Et1anbIbeJYDllDsW2sPdRbhpOj0i0CfgPsTQBy11P5
-         R/Symnxii6LoOrmGSllPFQKLbz/pGvh+WSKiyGgNjqhzrZB9NQYo2aZh/iAmBQbgLaFf
-         B89OdO4d8J3RyjHvLw5nb9PasxcoAFvmdJXHiD7qNMfsYAIVgV8hgKZEY13qtikBRyIk
-         F5yA==
-X-Gm-Message-State: AFqh2kpdQuoTds7FZsX89LS1NGDKDhLfdMM+/5utEcMa0X08ouRZkr8s
-        rOw/DhZoGA9I+iBapqKkeVMoiQ==
-X-Google-Smtp-Source: AMrXdXvNDv7yze88ht/iIQP82iCX/8YgN/uCLLwCz1QpyL0ohJ4rN1/1W8zxAFEqA9L+lvJ7K3Km6A==
-X-Received: by 2002:a19:f514:0:b0:4b5:61e8:8934 with SMTP id j20-20020a19f514000000b004b561e88934mr5013779lfb.64.1672104746321;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1J+JLW+JOrxXoy4HXkqu5YJ4mlU978iZ0LW4LiFN3dM=;
+        b=wsUwQbiuz27x9VAQAtm0vrkuncvGOrnOp4+o5PUpkgn4b9N1zWN+zlLmo2c8NjswY4
+         UJA/8Tqqwb60H4RF2rmvqCYDb7kOtIPteEseKUafuaY+C60uwi7TYwRVCBWxWN3SBApw
+         tOg1fy97+5CGTAUAoE7F4nXdNOKzklkUIClLg1H6E2LiWHPCl5Uip5iNu4MjOOdYgjId
+         cCMHBoP/z4UpWLrzlYdHnpzM1ei5+6rtV6vNajKquDFGhQLf4tBxruWJH1jZ/2arRSEE
+         +0OIdeMfhBRW1bPQQFZxLBBL+5ihpOiUlXmwBBt2JbBrX6DlIzBo2xyoSHmRBeLXInIZ
+         aL7g==
+X-Gm-Message-State: AFqh2kpQJI2oY19yVIwRBOGnxZxg6lhJrr8OAo24IuiRVFPs2bwq8bz1
+        WYA8hppadjVPyvtdTWH0SlZPqA==
+X-Google-Smtp-Source: AMrXdXvizx5puQ1MceYv0WdD3Y/xFwj/iiK/sA5BbkJRedRnaGJimmFTdjLEDfJ2rT90wcChKngcQQ==
+X-Received: by 2002:a2e:95d1:0:b0:278:eab6:7523 with SMTP id y17-20020a2e95d1000000b00278eab67523mr7683699ljh.37.1672104746989;
         Mon, 26 Dec 2022 17:32:26 -0800 (PST)
 Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id v6-20020a2e87c6000000b0027fbb12aa53sm674752ljj.20.2022.12.26.17.32.25
+        by smtp.gmail.com with ESMTPSA id v6-20020a2e87c6000000b0027fbb12aa53sm674752ljj.20.2022.12.26.17.32.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Dec 2022 17:32:25 -0800 (PST)
+        Mon, 26 Dec 2022 17:32:26 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -59,49 +60,95 @@ To:     Andy Gross <agross@kernel.org>,
         Taniya Das <quic_tdas@quicinc.com>
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [RFC PATCH 00/12] clock: qcom: apq8084: convert to parent_data/_hws
-Date:   Tue, 27 Dec 2022 03:32:13 +0200
-Message-Id: <20221227013225.2847382-1-dmitry.baryshkov@linaro.org>
+Subject: [RFC PATCH 01/12] dt-bindings: clock: qcom,gcc-apq8084: define clocks/clock-names
+Date:   Tue, 27 Dec 2022 03:32:14 +0200
+Message-Id: <20221227013225.2847382-2-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20221227013225.2847382-1-dmitry.baryshkov@linaro.org>
+References: <20221227013225.2847382-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rework apq8084 gcc and mmcc drivers to use parent_data and parent_hws
-instead of parent_names. The series is sent as an RFC, since some of the
-parents are not fully clear to me.
+Define clock/clock-names properties of the GCC device node to be used
+on APQ8084 platform.
 
-Dmitry Baryshkov (12):
-  dt-bindings: clock: qcom,gcc-apq8084: define clocks/clock-names
-  dt-bindings: clock: qcom,gcc-apq8084: add GCC_MMSS_GPLL0_CLK_SRC
-  dt-bindings: clock: qcom,mmcc: define clocks/clock-names for APQ8084
-  clk: qcom: gcc-apq8084: use ARRAY_SIZE instead of specifying
-    num_parents
-  clk: qcom: gcc-apq8084: move PLL clocks up
-  clk: qcom: gcc-apq8084: use parent_hws/_data instead of parent_names
-  clk: qcom: gcc-apq8084: add GCC_MMSS_GPLL0_CLK_SRC
-  clk: qcom: mmcc-apq8084: use ARRAY_SIZE instead of specifying
-    num_parents
-  clk: qcom: mmcc-apq8084: move clock parent tables down
-  clk: qcom: mmcc-apq8084: remove spdm clocks
-  clk: qcom: mmcc-apq8084: use parent_hws/_data instead of parent_names
-  ARM: dts: qcom: apq8084: add clocks and clock-names to gcc device
+Note: the driver uses a single pcie_pipe clock, however most probably
+there are two pipe clocks, one from each of PCIe QMP PHYs.
 
- .../bindings/clock/qcom,gcc-apq8084.yaml      |   43 +
- .../devicetree/bindings/clock/qcom,mmcc.yaml  |   40 +
- arch/arm/boot/dts/qcom-apq8084.dtsi           |   18 +
- drivers/clk/qcom/gcc-apq8084.c                | 1024 +++++++-------
- drivers/clk/qcom/mmcc-apq8084.c               | 1189 +++++++----------
- include/dt-bindings/clock/qcom,gcc-apq8084.h  |    1 +
- 6 files changed, 1095 insertions(+), 1220 deletions(-)
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ .../bindings/clock/qcom,gcc-apq8084.yaml      | 43 +++++++++++++++++++
+ 1 file changed, 43 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml
+index 8ade176c24f4..02a856f14fbe 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml
+@@ -25,6 +25,30 @@ properties:
+   compatible:
+     const: qcom,gcc-apq8084
+ 
++  clocks:
++    items:
++      - description: XO source
++      - description: Sleep clock source
++      - description: UFS RX symbol 0 clock
++      - description: UFS RX symbol 1 clock
++      - description: UFS TX symbol 0 clock
++      - description: UFS TX symbol 1 clock
++      - description: SATA ASIC0 clock
++      - description: SATA RX clock
++      - description: PCIe PIPE clock
++
++  clock-names:
++    items:
++      - const: xo
++      - const: sleep_clk
++      - const: ufs_rx_symbol_0_clk_src
++      - const: ufs_rx_symbol_1_clk_src
++      - const: ufs_tx_symbol_0_clk_src
++      - const: ufs_tx_symbol_1_clk_src
++      - const: sata_asic0_clk
++      - const: sata_rx_clk
++      - const: pcie_pipe
++
+ required:
+   - compatible
+ 
+@@ -38,5 +62,24 @@ examples:
+         #clock-cells = <1>;
+         #reset-cells = <1>;
+         #power-domain-cells = <1>;
++
++        clocks = <&xo_board>,
++                 <&sleep_clk>,
++                 <&ufsphy 0>,
++                 <&ufsphy 1>,
++                 <&ufsphy 2>,
++                 <&ufsphy 3>,
++                 <&sata 0>,
++                 <&sata 1>,
++                 <&pcie_phy>;
++        clock-names = "xo",
++                      "sleep_clk",
++                      "ufs_rx_symbol_0_clk_src",
++                      "ufs_rx_symbol_1_clk_src",
++                      "ufs_tx_symbol_0_clk_src",
++                      "ufs_tx_symbol_1_clk_src",
++                      "sata_asic0_clk",
++                      "sata_rx_clk",
++                      "pcie_pipe";
+     };
+ ...
 -- 
 2.35.1
 
