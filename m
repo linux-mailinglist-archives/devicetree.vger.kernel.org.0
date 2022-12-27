@@ -2,164 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 897DF6567EA
-	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 08:44:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2293B6567F0
+	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 08:48:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230026AbiL0Hod (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 02:44:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48386 "EHLO
+        id S229612AbiL0Hsf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 02:48:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230013AbiL0Hoc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 02:44:32 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 842FE3883
-        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 23:44:30 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id y25so18587272lfa.9
-        for <devicetree@vger.kernel.org>; Mon, 26 Dec 2022 23:44:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aOVYkZxxKsbhw75iIPorGD6czBegT76jGDD2E1ugnSw=;
-        b=EkUsdF1Xsu/m2xxqaQd6vkNWPP72fGbMXmWvG3FRb05pNjBEbhl22BY8CbCkowAnPT
-         0TM6ijjMC8IycOqIgIpFi3PQiEnyjbHjIGZj533TQxJQZQ8ZLPBOPYZ7E8VW6TNHLlE3
-         JzDDdNXMToh/0OEzwcsmIsK+lvDCtVRphNnDmMOTv6xLIBB6BQ8nXat+dESmbf3P0J3/
-         +vkJNqqUDojmMskeGTK3d1FX/2KZ7NcPE8FqOt/8gJMGE/BAPyvB1ZtUEDThTEcO3ZiM
-         3yyhg0lknpwJJ8xALJ0j5ZRD8iXAaTIm/O+L3uYpkRvyA0XzMLShMH3KARcyaszRVr+d
-         NkNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aOVYkZxxKsbhw75iIPorGD6czBegT76jGDD2E1ugnSw=;
-        b=gAgHo2QdBIlJuR68bpZ+0ObngoyfXGCF/G1rd81IZcUx5rp1Y7sL6aEoGnD1K2jejY
-         c1lSC5RfwM4nJC9gh05q177Hu5aKOGpbDwa2twtmG/TfgDsklFAesnFgcjEdlMfoINf2
-         L7Tt1FQugYhKTwTnczV2AjZdy+ydxEKxCJiRP5GDn808Dn0iaHE9HMySc8nfNi/z0YRb
-         4DUlEGcJgRBtV8xVcFO9qWenaKjFXAWOcpOpjcDLdxRferUyC/2t2JPjRhIkRxMbC6d4
-         Val1628jOaXTcGK2VX8aqiuDbw7c5qS2ogMegHqLdmWk8Crc7ITBtN6WKPGFGCabGStr
-         8b5w==
-X-Gm-Message-State: AFqh2kqqFsg30Sbr/s0xqFbUMA150Ov0c5nSU7G9DhROWQIxJRUh3aFf
-        dl3YzJtJboh3kCdX/gbZrvINmg==
-X-Google-Smtp-Source: AMrXdXsFrxQWaAaSLuxH3iop/N0+P56sRuckOjOr9ApBjTDbXw5HqvDHjO+M3IQbjGPyO2dFQnqbHw==
-X-Received: by 2002:a05:6512:39ce:b0:4b4:e559:8b10 with SMTP id k14-20020a05651239ce00b004b4e5598b10mr6697970lfu.24.1672127068773;
-        Mon, 26 Dec 2022 23:44:28 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id a14-20020a056512390e00b004b5872a7003sm2153971lfu.98.2022.12.26.23.44.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Dec 2022 23:44:28 -0800 (PST)
-Message-ID: <f47cab97-2c8c-a3d5-b362-774f970dffd3@linaro.org>
-Date:   Tue, 27 Dec 2022 08:44:26 +0100
+        with ESMTP id S229561AbiL0Hse (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 02:48:34 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 132D2E1A;
+        Mon, 26 Dec 2022 23:48:29 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id B471C24E2B2;
+        Tue, 27 Dec 2022 15:48:21 +0800 (CST)
+Received: from EXMBX173.cuchost.com (172.16.6.93) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 27 Dec
+ 2022 15:48:21 +0800
+Received: from [192.168.120.49] (171.223.208.138) by EXMBX173.cuchost.com
+ (172.16.6.93) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 27 Dec
+ 2022 15:48:20 +0800
+Message-ID: <25fce6e7-604e-6c07-3ff1-b65a5115a491@starfivetech.com>
+Date:   Tue, 27 Dec 2022 15:48:18 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v2 2/4] dt-bindings: display: Add Himax HX8394 panel
- controller
-To:     Javier Martinez Canillas <javierm@redhat.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Ondrej Jirman <megi@xff.cz>, Robert Mader <robert.mader@posteo.de>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>,
-        =?UTF-8?Q?Kamil_Trzci=c5=84ski?= <ayufan@ayufan.eu>,
-        Martijn Braam <martijn@brixit.nl>,
-        Peter Robinson <pbrobinson@gmail.com>,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+Subject: Re: [PATCH v2 2/9] dt-bindings: net: snps,dwmac: Update the maxitems
+ number of resets and reset-names
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <linux-riscv@lists.infradead.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-References: <20221226134909.2822179-1-javierm@redhat.com>
- <20221226134909.2822179-3-javierm@redhat.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>
+References: <20221216070632.11444-1-yanhong.wang@starfivetech.com>
+ <20221216070632.11444-3-yanhong.wang@starfivetech.com>
+ <040b56b1-c65c-34c3-e4a1-5cae4428d1d2@linaro.org>
+ <7f4339df-6616-120f-f16a-cd38a2b6ea1d@starfivetech.com>
+ <1a696768-45ef-0144-07f3-d356af9659e5@linaro.org>
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221226134909.2822179-3-javierm@redhat.com>
-Content-Type: text/plain; charset=UTF-8
+From:   yanhong wang <yanhong.wang@starfivetech.com>
+In-Reply-To: <1a696768-45ef-0144-07f3-d356af9659e5@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX173.cuchost.com
+ (172.16.6.93)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/12/2022 14:49, Javier Martinez Canillas wrote:
-> Add device tree bindings for panels based on the Himax HX8394 controller,
-> such as the HannStar HSD060BHW4 720x1440 TFT LCD panel that is connected
-> through a MIPI-DSI video interface.
-> 
-> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-> 
-> Changes in v2:
-> - Drop redundant "bindings" in subject (Krzysztof Kozlowski).
-> - Drop "device tree bindings" in title (Krzysztof Kozlowski).
-> - Put port next to other "true" properties (Krzysztof Kozlowski).
-> - Add Krzysztof Kozlowski's Reviewed-by tag.
-> 
->  .../bindings/display/panel/himax,hx8394.yaml  | 65 +++++++++++++++++++
->  1 file changed, 65 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml b/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
-> new file mode 100644
-> index 000000000000..bead3f0b05c5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
-> @@ -0,0 +1,65 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/himax,hx8394.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Himax HX8394 MIPI-DSI LCD panel controller
-> +
-> +maintainers:
-> +  - Javier Martinez Canillas <javierm@redhat.com>
-> +
-> +description:
-> +  Device tree bindings for panels based on the Himax HX8394 controller,
-> +  such as the HannStar HSD060BHW4 720x1440 TFT LCD panel connected with
-> +  a MIPI-DSI video interface.
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      # HannStar HSD060BHW4 5.99" 720x1440 TFT LCD panel
-> +      - hannstar,hsd060bhw4
-> +
-> +  vcc-supply:
-> +    description: Panel power supply
-> +
-> +  iovcc-supply:
-> +    description: I/O voltage supply
-> +
-> +  port: true
-> +
-> +  reset-gpios: true
-> +
-> +  backlight: true
-> +
-> +required:
-> +  - compatible
-> +  - vcc-supply
-> +  - iovcc-supply
-> +  - port
 
-Does not look like you tested the bindings. Please run `make
-dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
 
-Best regards,
-Krzysztof
+On 2022/12/20 17:21, Krzysztof Kozlowski wrote:
+> On 20/12/2022 07:48, yanhong wang wrote:
+> 
+>>>> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>>>> index e26c3e76ebb7..7870228b4cd3 100644
+>>>> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>>>> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>>>> @@ -133,12 +133,19 @@ properties:
+>>>>          - ptp_ref
+>>>>  
+>>>>    resets:
+>>>> -    maxItems: 1
+>>>> -    description:
+>>>> -      MAC Reset signal.
+>>>> +    minItems: 1
+>>>> +    maxItems: 3
+>>>> +    additionalItems: true
+>>>> +    items:
+>>>> +      - description: MAC Reset signal
+>>>>  
+>>>>    reset-names:
+>>>> -    const: stmmaceth
+>>>> +    minItems: 1
+>>>> +    maxItems: 3
+>>>> +    additionalItems: true
+>>>> +    contains:
+>>>> +      enum:
+>>>> +        - stmmaceth
+>>>
+>>> No, this is highly unspecific and you know affect all the schemas using
+>>> snps,dwmac.yaml. Both lists must be specific - for your device and for
+>>> others.
+>>>
+>> 
+>> I have tried to define the resets in "starfive,jh71x0-dwmac.yaml", but it can not over-write the maxItems limit in "snps,dwmac.yaml",therefore, it will report error "reset-names: ['stmmaceth', 'ahb'] is too long"  running "make dt_binding_check". Do you have any suggestions to deal with this situation?
+> 
+> The solution is not to affect all schemas with allowing anything as reset.
+> 
+> If you need more items for your case, you can change snps,dwmac.yaml and
+> add constraints in allOf:if:then: allowing it only for your compatible.
+> There are plenty of examples how this is done, e.g.:
+> 
+> https://elixir.bootlin.com/linux/v5.19-rc6/source/Documentation/devicetree/bindings/clock/samsung,exynos7-clock.yaml#L57
+> 
 
+Thanks. Refer to the definition in the example and update the definition as follows:
+
+snps,dwmac.yaml[Partial Content]:
+
+properties:
+  resets:
+    maxItems: 1
+    description:
+      MAC Reset signal.
+
+  reset-names:
+    const: stmmaceth
+
+allOf:
+  - if:
+      properties:
+        compatible:
+          contains:
+            const: starfive,jh7110-dwmac
+
+    then:
+      properties:
+        resets:
+          minItems: 2
+          maxItems: 2
+        reset-names:
+          items:
+            - const: stmmaceth
+            - const: ahb
+      required:
+        - resets
+        - reset-names
+
+
+starfive,jh7110-dwmac.yaml[Partial Content]:
+
+properties:
+  resets:
+    items:
+      - description: MAC Reset signal.
+      - description: AHB Reset signal.
+
+  reset-names:
+    items:
+      - const: stmmaceth
+      - const: ahb
+
+allOf:
+  - $ref: snps,dwmac.yaml#
+
+It will also report error "reset-names: ['stmmaceth', 'ahb'] is too long"  running "make dt_binding_check" with 'starfive,jh7110-dwmac.yaml'. Do you have any better suggestions to solve this problem?
+
+>> 
+>>> Best regards,
+>>> Krzysztof
+>>>
+> 
+> Best regards,
+> Krzysztof
+> 
