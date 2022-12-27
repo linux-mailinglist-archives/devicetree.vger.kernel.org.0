@@ -2,48 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C3ED656A2B
-	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 12:58:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E65C0656A28
+	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 12:58:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231739AbiL0L6C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 06:58:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42868 "EHLO
+        id S231730AbiL0L6A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 06:58:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232001AbiL0L5r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 06:57:47 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B555B481;
-        Tue, 27 Dec 2022 03:57:46 -0800 (PST)
+        with ESMTP id S232036AbiL0L5z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 06:57:55 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 447329FE2;
+        Tue, 27 Dec 2022 03:57:54 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 14D34B80F9F;
-        Tue, 27 Dec 2022 11:57:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F42DC433D2;
-        Tue, 27 Dec 2022 11:57:42 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 01BE5B80ED9;
+        Tue, 27 Dec 2022 11:57:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFFC3C433D2;
+        Tue, 27 Dec 2022 11:57:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672142263;
-        bh=XEY00UJGVEilypSNo3qCX4Bi19Op389MXWhwCRixKPs=;
+        s=k20201202; t=1672142271;
+        bh=bZfJB2u0JwifyT37HdrvtWpabXNKxyHB+8ikOAbuUfc=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=d6sYGprSOwDPnlA77oi0xaeENJ6fvU7OELgTWqw53Ny/P4zLEF7TpgObc90By7d5e
-         NGLv8nWYVCZhtJAmoxKSZCRg2wsEt/LQgtqecYapZ722iDxJsczy73M3q3C5dq34QX
-         Tcq2+RFVOrj3HDyNSluMdAJl74i5nBcDAMOt0gccpnsHVayvRNxgFCjZBl5EYEsBN6
-         rw9ApURqjsOWbhcji82KEghO7J1uqrX6Wv2VkorolSZgoDlJPGOlejdYZEk5Mzmh8U
-         rgPapPEjmFxo4a2/bTouYoI/8hXaA0/rux6++U6ziveLkTcnGZ5q8q1m4Dw28yX5qO
-         x58NuscfltJUA==
+        b=Oe8l7CqGmdtTHu5NKFrc5orRriJxmtJnJyfRPuzG4Jux8CIxuF4voUB9UD8eFgs/Q
+         FfXgOsvbKddzGRjvJN7F8iUrUaxlkKy0B7rUu9hQZtyn1CN5BbtDkUgH11NgmDgDqS
+         51IKuXsa9SF34JBEisoPeLF7PCcMxKA2KW3M+olaY8FOqx7Mlmy8hLUsB+qQbG3WcG
+         rVegO4/Cl6RRQ/lDtvCmXQECh0p0LlSEKmTqnIHbIwBIoOkCF0pP808KMn5Jlknqdt
+         AwYANQqeqZu0+Mh3Cmad2O+xads++G9JYfzpfhgWu17c++rVJfVvuyJJYixoND9KRJ
+         0Z3BMtuZ1Hozw==
 From:   Mark Brown <broonie@kernel.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Cercueil <paul@crapouillou.net>
-Cc:     list@opendingux.net, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-In-Reply-To: <20221214155152.14349-1-paul@crapouillou.net>
-References: <20221214155152.14349-1-paul@crapouillou.net>
-Subject: Re: [PATCH v4] regulator: dt-bindings: Convert active-semi PMIC docs
- to YAML schemas
-Message-Id: <167214226204.87975.1012017619670810099.b4-ty@kernel.org>
-Date:   Tue, 27 Dec 2022 11:57:42 +0000
+To:     Witold Sadowski <wsadowski@marvell.com>
+Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, jpawar@cadence.com,
+        pthombar@cadence.com, konrad@cadence.com, wbartczak@marvell.com,
+        wzmuda@marvell.com
+In-Reply-To: <20221219144254.20883-1-wsadowski@marvell.com>
+References: <20221219144254.20883-1-wsadowski@marvell.com>
+Subject: Re: (subset) [PATCH 0/7] Support for Marvell modifications for Cadence XSPI
+Message-Id: <167214226970.88639.17320415439798476005.b4-ty@kernel.org>
+Date:   Tue, 27 Dec 2022 11:57:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
@@ -57,25 +55,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Dec 2022 16:51:52 +0100, Paul Cercueil wrote:
-> Create YAML bindings for the Active-semi PMICs and remove the old text
-> files.
-> 
-> The bindings aren't perfect, for instance I couldn't find good
-> descriptions for the vendor properties in the "charger" node of the
-> ACT8945A because I am not familiar with the hardware and these
-> properties were not documented anywhere.
+On Mon, 19 Dec 2022 06:42:47 -0800, Witold Sadowski wrote:
+> This patch series is fixing bugs, and adding support for
+> Marvell changes for Cadence XSPI IP.
+> It includes:
+> - Polling mode support
+> - Changes for modebyte handling
+> - Busycycles calculations
+> - Marvell specific IP changes
 > 
 > [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
 Thanks!
 
-[1/1] regulator: dt-bindings: Convert active-semi PMIC docs to YAML schemas
-      commit: 413ec72963fc297f419a3d5f931bb43921969749
+[1/7] spi: cadence: Fix busy cycles calculation
+      commit: e8bb8f19e73a1e855e54788f8673b9b49e46b5cd
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
