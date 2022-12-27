@@ -2,159 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0811656AEF
-	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 13:25:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6FDD656AFB
+	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 13:31:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231557AbiL0MZM convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 27 Dec 2022 07:25:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36886 "EHLO
+        id S229619AbiL0Mbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 07:31:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232380AbiL0MYV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 07:24:21 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DE83112D;
-        Tue, 27 Dec 2022 04:22:33 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 5AB9724E00A;
-        Tue, 27 Dec 2022 20:22:31 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 27 Dec
- 2022 20:22:31 +0800
-Received: from williamqiu-virtual-machine.starfivetech.com (171.223.208.138)
- by EXMBX168.cuchost.com (172.16.6.78) with Microsoft SMTP Server (TLS) id
- 15.0.1497.42; Tue, 27 Dec 2022 20:22:30 +0800
-From:   William Qiu <william.qiu@starfivetech.com>
-To:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-mmc@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        William Qiu <william.qiu@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 3/3] riscv: dts: starfive: Add mmc node
-Date:   Tue, 27 Dec 2022 20:22:27 +0800
-Message-ID: <20221227122227.460921-4-william.qiu@starfivetech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221227122227.460921-1-william.qiu@starfivetech.com>
-References: <20221227122227.460921-1-william.qiu@starfivetech.com>
+        with ESMTP id S229488AbiL0Mbr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 07:31:47 -0500
+Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 400082A3
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 04:31:46 -0800 (PST)
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-482363a1232so27367347b3.3
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 04:31:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=+tl/MMO0LNH8CVE2OF2niAolP3jhRwKfQCRDYekLpNQ=;
+        b=zazgU0tXivH1SJAdqyqhQxpuVq3FENTRmfluatcJcxkl+XXOcYzDvqyF1taChqBxhV
+         DlO7vFZ095SKfSxgW/kgXKvANzWsIjExJg4UJsmn3MgrRhxZLU0iOnAWZcubpzHNRlkS
+         s3VdqO/klkDV9R208rDTm1c5ImlOa37awJMp494OFxluVQy9TsiehcqIt+qoHTNJfWJd
+         dASkaDn9rok8Heh+zuvyZvnZvcChk+gQ9oF0hGt2Q8Lwk1iZpnsyoPyCGb1RBwrIk+G4
+         sKnS8uG36+09mMdOHAylAHTxWQnfjpp0wLaSi49R7itpwkjbihF7z1HLDawAfjD8rFLd
+         Ehig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+tl/MMO0LNH8CVE2OF2niAolP3jhRwKfQCRDYekLpNQ=;
+        b=gvYroOlFRmspwmqW7jaUi5wA/wzl6NCIJXeveNyDEB9sDSlVnhu4jSMycthD6dGIEQ
+         l0YP32/8tywlyOZ9RUD8tttgkkeO1TCx427wH0vlkmScFjmUxryUPaedPFVwKaVhzJOA
+         qSukRMJxjbiohI7ZmdB+jcg+LqICEcyjh/fn76ztICm3emLcCUvnwMc6plOyNQaN4FiA
+         amJXkIZDx9i6ie5BvLH8Y1n6L6DnYOYX0p8VRXys+ZjG1AMOlZ34EBX72hs6srUeALKr
+         E4fg9A8JbUf02c2PNLAFYeMZoKM/Ga655qLQS2dDUbiTu7gy2hsK9HdNP5CE3M8b/gwN
+         iYwg==
+X-Gm-Message-State: AFqh2kp7sQz2NGziZ/5qKzXgy8pzmQ8zG2bgtPFq39N2VryZ6DDDIbC4
+        TZfjN1azfgWBSc9O1CHt2lqFLCZ9P57CBPo54JiyRg==
+X-Google-Smtp-Source: AMrXdXufhet8xX2NEFv1dVmYX+HK7Wb2Pg01cOuGbRe8PqvIJtBO5ThL/Pjudw04zzo3ow3Ah0J0YglvG4PYKEGdsyw=
+X-Received: by 2002:a0d:e64a:0:b0:3c0:c065:7608 with SMTP id
+ p71-20020a0de64a000000b003c0c0657608mr3352010ywe.378.1672144305428; Tue, 27
+ Dec 2022 04:31:45 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX168.cuchost.com
- (172.16.6.78)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221227013225.2847382-1-dmitry.baryshkov@linaro.org>
+ <20221227013225.2847382-13-dmitry.baryshkov@linaro.org> <a6622a6c-7378-4f3a-a34b-1227c51a3326@linaro.org>
+In-Reply-To: <a6622a6c-7378-4f3a-a34b-1227c51a3326@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 27 Dec 2022 14:31:34 +0200
+Message-ID: <CAA8EJpp0PJgrCv1oaeaDfhVq36X-XgXDTHvXjO97rQfaKyiPng@mail.gmail.com>
+Subject: Re: [RFC PATCH 12/12] ARM: dts: qcom: apq8084: add clocks and
+ clock-names to gcc device
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds the mmc node for the StarFive JH7110 SoC.
-Set sdioo node to emmc and set sdio1 node to sd.
+On Tue, 27 Dec 2022 at 14:08, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+>
+>
+> On 27.12.2022 02:32, Dmitry Baryshkov wrote:
+> > Add clocks and clock-names nodes to the gcc device to bind clocks using
+> > the DT links.
+> >
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>
+> Though - again at the end of reviewing - I noticed you could have
+> gone .index instead, like with qcs404.
 
-Signed-off-by: William Qiu <william.qiu@starfivetech.com>
----
- .../jh7110-starfive-visionfive-v2.dts         | 25 ++++++++++++
- arch/riscv/boot/dts/starfive/jh7110.dtsi      | 38 +++++++++++++++++++
- 2 files changed, 63 insertions(+)
+QCS404 driver was in a good shape, so I doubt there will be any
+significant changes for the bindings. On the other hand the apq8084 is
+in such a flux state, that I can easily imagine getting additional
+clock parents and/or removing existing parents. This can better be
+coped with by using the clock-names instead of indices. For example,
+see my comment regarding the pcie pipe clocks. I fear that apq8084 was
+not seriously touched for the last 5 years. And even back in those
+days not everything was plumbed together. None of MMCC (and thus
+display, camera, venus), SATA, PCIe are present in the
+qcom-apq8084.dtsi.
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
-index c8946cf3a268..d8244fd1f5a0 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
-@@ -47,6 +47,31 @@ &clk_rtc {
- 	clock-frequency = <32768>;
- };
- 
-+&mmc0 {
-+	max-frequency = <100000000>;
-+	card-detect-delay = <300>;
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+	non-removable;
-+	cap-mmc-hw-reset;
-+	post-power-on-delay-ms = <200>;
-+	status = "okay";
-+};
-+
-+&mmc1 {
-+	max-frequency = <100000000>;
-+	card-detect-delay = <300>;
-+	bus-width = <4>;
-+	no-sdio;
-+	no-mmc;
-+	broken-cd;
-+	cap-sd-highspeed;
-+	post-power-on-delay-ms = <200>;
-+	status = "okay";
-+};
-+
- &gmac0_rmii_refin {
- 	clock-frequency = <50000000>;
- };
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index c22e8f1d2640..08a780d2c0f4 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -331,6 +331,11 @@ aoncrg: clock-controller@17000000 {
- 			#reset-cells = <1>;
- 		};
- 
-+		syscon: syscon@13030000 {
-+			compatible = "starfive,syscon", "syscon";
-+			reg = <0x0 0x13030000 0x0 0x1000>;
-+		};
-+
- 		gpio: gpio@13040000 {
- 			compatible = "starfive,jh7110-sys-pinctrl";
- 			reg = <0x0 0x13040000 0x0 0x10000>;
-@@ -433,5 +438,38 @@ uart5: serial@12020000 {
- 			reg-shift = <2>;
- 			status = "disabled";
- 		};
-+
-+		/* unremovable emmc as mmcblk0 */
-+		mmc0: mmc@16010000 {
-+			compatible = "starfive,jh7110-mmc";
-+			reg = <0x0 0x16010000 0x0 0x10000>;
-+			clocks = <&syscrg JH7110_SYSCLK_SDIO0_AHB>,
-+				 <&syscrg JH7110_SYSCLK_SDIO0_SDCARD>;
-+			clock-names = "biu","ciu";
-+			resets = <&syscrg JH7110_SYSRST_SDIO0_AHB>;
-+			reset-names = "reset";
-+			interrupts = <74>;
-+			fifo-depth = <32>;
-+			fifo-watermark-aligned;
-+			data-addr = <0>;
-+			starfive,syscon = <&syscon 0x14 0x1a 0x7c000000>;
-+			status = "disabled";
-+		};
-+
-+		mmc1: mmc@16020000 {
-+			compatible = "starfive,jh7110-mmc";
-+			reg = <0x0 0x16020000 0x0 0x10000>;
-+			clocks = <&syscrg JH7110_SYSCLK_SDIO1_AHB>,
-+				 <&syscrg JH7110_SYSCLK_SDIO1_SDCARD>;
-+			clock-names = "biu","ciu";
-+			resets = <&syscrg JH7110_SYSRST_SDIO1_AHB>;
-+			reset-names = "reset";
-+			interrupts = <75>;
-+			fifo-depth = <32>;
-+			fifo-watermark-aligned;
-+			data-addr = <0>;
-+			starfive,syscon = <&syscon 0x9c 0x1 0x3e>;
-+			status = "disabled";
-+		};
- 	};
- };
+>
+> Konrad
+>
+> >  arch/arm/boot/dts/qcom-apq8084.dtsi | 18 ++++++++++++++++++
+> >  1 file changed, 18 insertions(+)
+> >
+> > diff --git a/arch/arm/boot/dts/qcom-apq8084.dtsi b/arch/arm/boot/dts/qcom-apq8084.dtsi
+> > index fe30abfff90a..815b6c53f7b8 100644
+> > --- a/arch/arm/boot/dts/qcom-apq8084.dtsi
+> > +++ b/arch/arm/boot/dts/qcom-apq8084.dtsi
+> > @@ -388,6 +388,24 @@ gcc: clock-controller@fc400000 {
+> >                       #reset-cells = <1>;
+> >                       #power-domain-cells = <1>;
+> >                       reg = <0xfc400000 0x4000>;
+> > +                     clocks = <&xo_board>,
+> > +                              <&sleep_clk>,
+> > +                              <0>, /* ufs */
+> > +                              <0>,
+> > +                              <0>,
+> > +                              <0>,
+> > +                              <0>, /* sata */
+> > +                              <0>,
+> > +                              <0>; /* pcie */
+> > +                     clock-names = "xo",
+> > +                                   "sleep_clk",
+> > +                                   "ufs_rx_symbol_0_clk_src",
+> > +                                   "ufs_rx_symbol_1_clk_src",
+> > +                                   "ufs_tx_symbol_0_clk_src",
+> > +                                   "ufs_tx_symbol_1_clk_src",
+> > +                                   "sata_asic0_clk",
+> > +                                   "sata_rx_clk",
+> > +                                   "pcie_pipe";
+> >               };
+> >
+> >               tcsr_mutex: hwlock@fd484000 {
+
+
+
 -- 
-2.34.1
-
+With best wishes
+Dmitry
