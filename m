@@ -2,101 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FE6F656B18
-	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 13:57:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DB0A656B20
+	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 14:02:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231490AbiL0M45 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 07:56:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47886 "EHLO
+        id S231154AbiL0NC0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 08:02:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231394AbiL0M4v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 07:56:51 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46CEA1158;
-        Tue, 27 Dec 2022 04:56:50 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 0CD81B80F9E;
-        Tue, 27 Dec 2022 12:56:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 501DAC433D2;
-        Tue, 27 Dec 2022 12:56:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672145807;
-        bh=jwJ3gYVZg/wd6rOxqD2UjAIUN05A1rPdGSTSIc9QPSM=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=cEOBWWfYwhX+vi+hIc9qPtxxGfizpZofUZ10zJ5PpYpm/9SF6bHWGyZNMbPrU4g3I
-         th6Tn/xPuiherZpQyJI5mHjG2lQW+8zTO4I55sxKs6z7RZ1/DZCWz2jOkb20tvK9LA
-         E1fI7xgJeGKN3XFhbg9wICQQ+rcSWCqraYqHpRTfrtJKncrNTxliGhuRHfw9QiLBp7
-         VtmDIiN6Z5IVCpK/5nChh3KoA6RvPIA88hD629d+BQONqgWZ0V51I8zW1gGgOFFp+n
-         nT6d5x8M/OWR+y34sewk1N7keA1hGj6XKwty8RZkic+BBokiUes2bv6E4xR2jBHAL+
-         QivAevwyMbXQg==
-From:   Mark Brown <broonie@kernel.org>
-To:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, perex@perex.cz, tiwai@suse.com,
-        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-        Claudiu Beznea <claudiu.beznea@microchip.com>
-Cc:     alsa-devel@alsa-project.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20221213112851.89212-1-claudiu.beznea@microchip.com>
-References: <20221213112851.89212-1-claudiu.beznea@microchip.com>
-Subject: Re: [PATCH v3 0/4] ASoC: microchip: power saving features and cleanups
-Message-Id: <167214580504.324212.14250110724683049782.b4-ty@kernel.org>
-Date:   Tue, 27 Dec 2022 12:56:45 +0000
+        with ESMTP id S229873AbiL0NCZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 08:02:25 -0500
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE96A283;
+        Tue, 27 Dec 2022 05:02:24 -0800 (PST)
+Received: by mail-qt1-f182.google.com with SMTP id g7so10374551qts.1;
+        Tue, 27 Dec 2022 05:02:24 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=As9R9cHjsoEUKawysSraV8MPqyGDXYZgkaD+AH1/+1g=;
+        b=l49dLBge3idM2ouN9VPuHDojZ7mnjTaCIaSq5vzSyPgFa+FWvz+ifCzlHX1zugpEmW
+         RUohrHwOnZ1pJApJvnnw7/wKklzw0Jw+AfxsrfJ1fr2Y2ZraLZbX/exPVFRvsxD2l671
+         2GvvmKUIcgiHtqjO5YjZ53x0E/iASjgg/LO9M7SBdF6Oh/SqAdmRnjsc03U0bxAGciIq
+         5Co9nzT/xNYCd99sZ65AAc+xT7GH1JQ1kgCp9gH+XMy2IVvM2L7a4v/cQJOxnWPxCkZp
+         8PpntSL/ePcmSs8Hn3VzXVXM3RvoYUdVqROVYQ4emZTh/eh/p6cYaN5AdGqXlaQ9jWWH
+         K/kA==
+X-Gm-Message-State: AFqh2kp8gaVBjLkzRNLNsnzeuWdJT7BTiNZHFEOtKrsz/0bQY8whRQiI
+        +G+iYHqV8GHCoK++a21/17d5rfg/z/TAMw==
+X-Google-Smtp-Source: AMrXdXubLtB1i6Xwjh9JlRo9jTjPcM8Eo4ecC5/xq1c03/ls2er3wIl54ipWrkrww9qua7FG71jGqw==
+X-Received: by 2002:ac8:7285:0:b0:3a7:f599:d7f2 with SMTP id v5-20020ac87285000000b003a7f599d7f2mr28808053qto.51.1672146143578;
+        Tue, 27 Dec 2022 05:02:23 -0800 (PST)
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
+        by smtp.gmail.com with ESMTPSA id bn9-20020a05622a1dc900b003a7e38055c9sm8185956qtb.63.2022.12.27.05.02.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Dec 2022 05:02:23 -0800 (PST)
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-43ea87d0797so183207617b3.5;
+        Tue, 27 Dec 2022 05:02:22 -0800 (PST)
+X-Received: by 2002:a05:690c:c02:b0:370:202b:f085 with SMTP id
+ cl2-20020a05690c0c0200b00370202bf085mr1630998ywb.502.1672146142353; Tue, 27
+ Dec 2022 05:02:22 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12-dev-7ab1d
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221221000242.340202-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20221221000242.340202-10-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20221221000242.340202-10-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 27 Dec 2022 14:02:05 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV1UAF0Pgk6omcLz6-kHLD6xnMFDN-UJ2ge_bhoD7rAcw@mail.gmail.com>
+Message-ID: <CAMuHMdV1UAF0Pgk6omcLz6-kHLD6xnMFDN-UJ2ge_bhoD7rAcw@mail.gmail.com>
+Subject: Re: [PATCH v2 9/9] arm64: dts: renesas: rzg2ul-smarc-som: Add PHY
+ interrupt support for ETH{0/1}
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 13 Dec 2022 13:28:47 +0200, Claudiu Beznea wrote:
-> The following series adds runtime PM and suspend to RAM features for
-> mchp-pdmc driver.
-> 
-> Along with it 2 cleanup patches were added:
-> - patch 1/4: use vendor,device.yaml file format for Microchip AT91 ASoC
->   bindings
-> - patch 4/4: use FIELD_PREP() in mchp-spdiftx.c
-> 
-> [...]
+Hi Prabhakar,
 
-Applied to
+On Wed, Dec 21, 2022 at 1:04 AM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> The PHY interrupt (INT_N) pin is connected to IRQ2 and IRQ7 for ETH0 and
+> ETH1 respectively.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Thanks for your patch!
 
-Thanks!
+> --- a/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
+> @@ -6,6 +6,7 @@
+>   */
+>
+>  #include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/interrupt-controller/irqc-rzg2l.h>
+>  #include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
+>
+>  / {
+> @@ -77,6 +78,8 @@ phy0: ethernet-phy@7 {
+>                 compatible = "ethernet-phy-id0022.1640",
+>                              "ethernet-phy-ieee802.3-c22";
+>                 reg = <7>;
+> +               interrupt-parent = <&irqc>;
 
-[1/4] ASoC: dt-bindings: microchip: use proper naming syntax
-      commit: cfec019399f6a90ae7b73b0edff053d10ba1ad25
-[2/4] ASoC: mchp-pdmc: use runtime pm for clock power saving
-      commit: e8c8e9de4ee3e9e1231b4f179c3f0e340bc2b1cf
-[3/4] ASoC: mchp-pdmc: add support for suspend to RAM
-      commit: 404c61c47d84bf1662e9d698e4f0c42898893c59
-[4/4] ASoC: mchp-spdiftx: use FIELD_PREP() where possible
-      commit: 24c86c8a3bb1bd12aa8bc32933df7394b83233dc
+Note that arch/riscv/boot/dts/renesas/r9a07g043f.dtsi does not have
+the irqc node yet, so I cannot take this as-is.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+> +               interrupts = <RZG2L_IRQ2 IRQ_TYPE_LEVEL_LOW>;
+>                 rxc-skew-psec = <2400>;
+>                 txc-skew-psec = <2400>;
+>                 rxdv-skew-psec = <0>;
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Gr{oetje,eeting}s,
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+                        Geert
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Thanks,
-Mark
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
