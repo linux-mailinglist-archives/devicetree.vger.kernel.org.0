@@ -2,277 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEEBD656964
-	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 11:24:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 174E8656975
+	for <lists+devicetree@lfdr.de>; Tue, 27 Dec 2022 11:30:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231263AbiL0KYD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 05:24:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41224 "EHLO
+        id S229561AbiL0Kab (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 05:30:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230366AbiL0KYC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 05:24:02 -0500
-Received: from smtpout1.mo528.mail-out.ovh.net (smtpout1.mo528.mail-out.ovh.net [46.105.34.251])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A39BD9FE2;
-        Tue, 27 Dec 2022 02:23:59 -0800 (PST)
-Received: from pro2.mail.ovh.net (unknown [10.109.146.229])
-        by mo528.mail-out.ovh.net (Postfix) with ESMTPS id 8F372147C1C0A;
-        Tue, 27 Dec 2022 11:07:08 +0100 (CET)
-Received: from localhost.localdomain (88.161.25.233) by DAG1EX1.emp2.local
- (172.16.2.1) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.16; Tue, 27 Dec
- 2022 11:07:07 +0100
-From:   Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-To:     <lee@kernel.org>, <pavel@ucw.cz>, <robh+dt@kernel.org>,
-        <sven.schwermer@disruptive-technologies.com>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <johan+linaro@kernel.org>, <marijn.suijten@somainline.org>,
-        <bjorn.andersson@linaro.org>, <andy.shevchenko@gmail.com>,
-        <jacek.anaszewski@gmail.com>, <linux-leds@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-Subject: [RESEND PATCH v6 6/6] leds: Add a multicolor LED driver to group monochromatic LEDs
-Date:   Tue, 27 Dec 2022 11:06:59 +0100
-Message-ID: <20221227100659.157071-7-jjhiblot@traphandler.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221227100659.157071-1-jjhiblot@traphandler.com>
-References: <20221227100659.157071-1-jjhiblot@traphandler.com>
+        with ESMTP id S229445AbiL0Kaa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 05:30:30 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D71D512B;
+        Tue, 27 Dec 2022 02:30:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
+        s=s31663417; t=1672136978;
+        bh=6rUL/0fqLXUc3EXcoTbmuRQCiIi6QAilAchLciXsdAw=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=r+YiZvZlnUxMyhBIQFkg9VK1CsEsBPCu6gPQmPLEQAbDGpbAgmHGBNxB9+1Wb6M8d
+         bup5FzjJkrbh1fMYLiyeFtuDwJa6ZkHx0E+STBoBmQLLSf4a7EBZmaXYTnyqq15MK6
+         bih6f6Upn/2wdI00+suCEySy+JEh086fjGTuOr71z2z7vLwlI0gNKqv9/QQRrajwr2
+         cXjHb/p4UJPo/MrkCPMTfwfNWb0jtaiEVQfgMStgHTrt/o4A+ZUNKX6xZMRIGbLwWI
+         w5r8HysTrW/d6YI606cN0756PxNSy1S7CL4J9npulX21/9iXbrjfPpZEFkmcmPijUz
+         xVlGB6lU/wpfA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [217.61.153.252] ([217.61.153.252]) by web-mail.gmx.net
+ (3c-app-gmx-bap27.server.lan [172.19.172.97]) (via HTTP); Tue, 27 Dec 2022
+ 11:29:38 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [88.161.25.233]
-X-ClientProxiedBy: DAG3EX1.emp2.local (172.16.2.21) To DAG1EX1.emp2.local
- (172.16.2.1)
-X-Ovh-Tracer-Id: 14108651734926113243
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: 0
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvhedriedtgdduudcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecunecujfgurhephffvvefufffkofgjfhgggfgtihesthekredtredttdenucfhrhhomheplfgvrghnqdflrggtqhhuvghsucfjihgslhhothcuoehjjhhhihgslhhothesthhrrghphhgrnhgulhgvrhdrtghomheqnecuggftrfgrthhtvghrnhepudetveelveevgffgvdeuffffjefhheehueeitdegtdejgefhheeuuddugeeffeeunecukfhppeduvdejrddtrddtrddupdekkedrudeiuddrvdehrddvfeefnecuvehluhhsthgvrhfuihiivgepkeenucfrrghrrghmpehinhgvthepuddvjedrtddrtddruddpmhgrihhlfhhrohhmpeeojhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmqedpnhgspghrtghpthhtohepuddprhgtphhtthhopehlvggvsehkvghrnhgvlhdrohhrghdpphgrvhgvlhesuhgtfidrtgiipdhrohgshhdoughtsehkvghrnhgvlhdrohhrghdpshhvvghnrdhstghhfigvrhhmvghrseguihhsrhhuphhtihhvvgdqthgvtghhnhholhhoghhivghsrdgtohhmpdhkrhiihihsiihtohhfrdhkohiilhhofihskhhiodgutheslhhinhgrrhhordhorhhgpdhjohhhrghnodhlihhnrghroheskhgvrhhnvghlrdhorhhgpdhmrghrihhjnhdrshhuihhjthgvnhesshhomhgrihhnlhhinhgvrd
- horhhgpdgsjhhorhhnrdgrnhguvghrshhsohhnsehlihhnrghrohdrohhrghdprghnugihrdhshhgvvhgthhgvnhhkohesghhmrghilhdrtghomhdpjhgrtggvkhdrrghnrghsiigvfihskhhisehgmhgrihhlrdgtohhmpdhlihhnuhigqdhlvggushesvhhgvghrrdhkvghrnhgvlhdrohhrghdpuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhohedvkedpmhhouggvpehsmhhtphhouhht
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,RCVD_IN_VALIDITY_RPBL,SPF_HELO_NONE,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+Message-ID: <trinity-6777c8ee-36ac-4564-8542-f74d3a942a91-1672136978587@3c-app-gmx-bap27>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Frank Wunderlich <frank-w@public-files.de>
+Cc:     Daniel Golle <daniel@makrotopia.org>,
+        Frank Wunderlich <linux@fw-web.de>,
+        linux-mediatek@lists.infradead.org,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Vinod Koul <vkoul@kernel.org>, linux-usb@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+        devicetree@vger.kernel.org
+Subject: Aw: Re: [next v7 8/8] arm64: dts: mt7986: add Bananapi R3
+Content-Type: text/plain; charset=UTF-8
+Date:   Tue, 27 Dec 2022 11:29:38 +0100
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <trinity-256904b6-bbb5-4424-9686-50ec7fa14f26-1672134220733@3c-app-gmx-bap27>
+References: <20221127114142.156573-1-linux@fw-web.de>
+ <20221127114142.156573-9-linux@fw-web.de> <Y6dMWFy7gChG88j0@makrotopia.org>
+ <trinity-256904b6-bbb5-4424-9686-50ec7fa14f26-1672134220733@3c-app-gmx-bap27>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:uoMc7nMOIJIrLTMKyLHi5Zf+w/mb4Fzoluw4dxHqiG7Oh3NCdu3bQPysJDKjXeSdF3pWn
+ jaWkxXdLvNm01Hn/aewnT06IsBqEfmbeCdLtU+ilvh7Nvs5l2AOup2GSF8gppkuGSLyU1iSxGiv+
+ ptXmk1z2u14AHo0epOf9V04OMa20adKrX+D38DcBs6YA/e2rffYiPf6hNVrblfNU6Q8qlHy1svFl
+ FcSO5I8fpT3Bm/fGPcLdiGgk4WFUT8NQRt3q3Fb+zatO03cpqNqj3lWpRWG9hHwQNVG2DrXuL1YE
+ Tw=
+UI-OutboundReport: notjunk:1;M01:P0:zRngNs/wW1c=;wpD4ghfb7HZxstpqtJ4IJmHdX7N
+ Nh97dEZkWW/RqQx7esRtmZ/sUkd5Z7pn7kzVkfTKFrprUoZ8RYp8I8kjw9SfGMq17fGTL6teZ
+ xNEE5R5GD9wo9ZYbcwsY8iCr/nkj6AV8L5j2Zt8xwJDFoezR7BDmknG4R3j4milCUSgJOdyi/
+ cIzq+a9DCoQLMcR1Z0wjpmY/ZiMQy5JVt1e8J3340hf5RTTs2gujA5Kf4T0/wLTYEOeWc/1Lh
+ GnxQZuRatOn35fBKz7I10efG2DJUqmCah6Ab/ohbSEZqlNM7ZmbxVj4lulKoMrTIG0UuwjUmu
+ QJZ6tbNcIXDKsJCrqNX9PW1CvD3tySRFkXbS4V5ifIsoL0fAHXy1USexOWPXRDva1TAi8OIWi
+ a8KkRFoU+3N5QXEghfPevzMmkf+f7WeSLEG+ySQYFC3fyJ6iFp1t9oxEv9cZXxYUGZeCURbUe
+ L42ylPAQg3xqLQgR82+aXdFWKEYTVfGPBqgekqye/ZhedDaIu+hkMivudxlY6pOB+Y/vy0h94
+ x1fS3kz+qVRejgFh6fKMxDq+NTUgRMBpNxaKqBAHXQyDf/8Fdvzq/ug8EGuKyDR6PAPQ8gDhr
+ EvaTpEPQPX6pt4qBGEWYO8SxLgjDQL5zr2VqYDoCkXKGufX6YxVPG4nG0xm2iw15fHHb1FeSf
+ FSi4gbxb5+5ZQ19xfx2v4QEpeeOtNHBWrmy1asxToSqD3FcI+HUX8MXJEJxhUkd+1nnvcugAD
+ K8G749+8bBgWSqokMRKk4onu7yBdK09ngsSuA2d/e0d1Zk3F+bOrgWAQXBJIEeWOdAVxtHCwy
+ 4jJA7C8+M/YaDnXtB/4ZYFug==
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-By allowing to group multiple monochrome LED into multicolor LEDs,
-all involved LEDs can be controlled in-sync. This enables using effects
-using triggers, etc.
+looks like i've found it:
 
-Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
----
- drivers/leds/rgb/Kconfig                 |  10 ++
- drivers/leds/rgb/Makefile                |   1 +
- drivers/leds/rgb/leds-group-multicolor.c | 168 +++++++++++++++++++++++
- 3 files changed, 179 insertions(+)
- create mode 100644 drivers/leds/rgb/leds-group-multicolor.c
+when reverting these 2 (latter alone was not enough and seems not fixing t=
+he timeout as shown in my trace)
 
-diff --git a/drivers/leds/rgb/Kconfig b/drivers/leds/rgb/Kconfig
-index 204cf470beae..1a87f53faa8a 100644
---- a/drivers/leds/rgb/Kconfig
-+++ b/drivers/leds/rgb/Kconfig
-@@ -2,6 +2,16 @@
- 
- if LEDS_CLASS_MULTICOLOR
- 
-+config LEDS_GRP_MULTICOLOR
-+	tristate "Multi-color LED grouping support"
-+	depends on COMPILE_TEST || OF
-+	help
-+	  This option enables support for monochrome LEDs that are
-+	  grouped into multicolor LEDs.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called leds-grp-multicolor.
-+
- config LEDS_PWM_MULTICOLOR
- 	tristate "PWM driven multi-color LED Support"
- 	depends on PWM
-diff --git a/drivers/leds/rgb/Makefile b/drivers/leds/rgb/Makefile
-index 0675bc0f6e18..4de087ad79bc 100644
---- a/drivers/leds/rgb/Makefile
-+++ b/drivers/leds/rgb/Makefile
-@@ -1,4 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
- 
-+obj-$(CONFIG_LEDS_GRP_MULTICOLOR)	+= leds-group-multicolor.o
- obj-$(CONFIG_LEDS_PWM_MULTICOLOR)	+= leds-pwm-multicolor.o
- obj-$(CONFIG_LEDS_QCOM_LPG)		+= leds-qcom-lpg.o
-diff --git a/drivers/leds/rgb/leds-group-multicolor.c b/drivers/leds/rgb/leds-group-multicolor.c
-new file mode 100644
-index 000000000000..1766642c7604
---- /dev/null
-+++ b/drivers/leds/rgb/leds-group-multicolor.c
-@@ -0,0 +1,168 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * multi-color LED built with monochromatic LED devices
-+ *
-+ * Copyright 2022 Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-+ */
-+
-+#include <linux/err.h>
-+#include <linux/leds.h>
-+#include <linux/led-class-multicolor.h>
-+#include <linux/math.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+
-+struct led_mcg_priv {
-+	struct led_classdev_mc mc_cdev;
-+	struct led_classdev **monochromatics;
-+};
-+
-+static int led_mcg_set(struct led_classdev *cdev,
-+			  enum led_brightness brightness)
-+{
-+	struct led_classdev_mc *mc_cdev = lcdev_to_mccdev(cdev);
-+	struct led_mcg_priv *priv = container_of(mc_cdev, struct led_mcg_priv, mc_cdev);
-+	const unsigned int mc_max_brightness = mc_cdev->led_cdev.max_brightness;
-+	int i;
-+
-+	for (i = 0; i < mc_cdev->num_colors; i++) {
-+		struct led_classdev *mono = priv->monochromatics[i];
-+		const unsigned int mono_max = mono->max_brightness;
-+		unsigned int rel_intensity = mc_cdev->subled_info[i].intensity;
-+		int b;
-+
-+		/*
-+		 * Scale the brightness according to relative intensity of the
-+		 * color AND the max brightness of the monochromatic LED.
-+		 */
-+		b = DIV_ROUND_CLOSEST(brightness * rel_intensity * mono_max,
-+			mc_max_brightness * mc_max_brightness);
-+
-+		led_set_brightness(mono, b);
-+	}
-+
-+	return 0;
-+}
-+
-+static void restore_sysfs_access(void *data)
-+{
-+	struct led_classdev *led_cdev = data;
-+
-+	mutex_lock(&led_cdev->led_access);
-+	led_sysfs_enable(led_cdev);
-+	mutex_unlock(&led_cdev->led_access);
-+}
-+
-+static int led_mcg_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct led_init_data init_data = {};
-+	struct led_classdev *cdev;
-+	struct mc_subled *subled;
-+	struct led_mcg_priv *priv;
-+	unsigned int max_brightness;
-+	int i, count, ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	count = 0;
-+	max_brightness = 0;
-+	for (;;) {
-+		struct led_classdev *led_cdev;
-+
-+		led_cdev = devm_of_led_get_optional(dev, count);
-+
-+		if (IS_ERR(led_cdev))
-+			return dev_err_probe(dev, PTR_ERR(led_cdev),
-+					     "Unable to get led #%d", count);
-+
-+		/* Reached the end of the list ?*/
-+		if (!led_cdev)
-+			break;
-+
-+		count++;
-+
-+		priv->monochromatics = devm_krealloc_array(dev, priv->monochromatics,
-+					count, sizeof(*priv->monochromatics),
-+					GFP_KERNEL);
-+		if (!priv->monochromatics)
-+			return -ENOMEM;
-+
-+		priv->monochromatics[count - 1] = led_cdev;
-+
-+		max_brightness = max(max_brightness, led_cdev->max_brightness);
-+	}
-+
-+	subled = devm_kcalloc(dev, count, sizeof(*subled), GFP_KERNEL);
-+	if (!subled)
-+		return -ENOMEM;
-+	priv->mc_cdev.subled_info = subled;
-+
-+	for (i = 0; i < count; i++) {
-+		struct led_classdev *led_cdev = priv->monochromatics[i];
-+
-+		subled[i].color_index = led_cdev->color;
-+		/* configure the LED intensity to its maximum */
-+		subled[i].intensity = max_brightness;
-+	}
-+
-+	/* init the multicolor's LED class device */
-+	cdev = &priv->mc_cdev.led_cdev;
-+	cdev->flags = LED_CORE_SUSPENDRESUME;
-+	cdev->brightness_set_blocking = led_mcg_set;
-+	cdev->max_brightness = max_brightness;
-+	cdev->color = LED_COLOR_ID_MULTI;
-+	priv->mc_cdev.num_colors = count;
-+
-+	init_data.fwnode = dev_fwnode(dev);
-+	ret = devm_led_classdev_multicolor_register_ext(dev, &priv->mc_cdev,
-+							&init_data);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+			"failed to register multicolor led for %s.\n",
-+			cdev->name);
-+
-+	ret = led_mcg_set(cdev, cdev->brightness);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "failed to set led value for %s.",
-+				     cdev->name);
-+
-+	for (i = 0; i < count; i++) {
-+		struct led_classdev *led_cdev = priv->monochromatics[i];
-+
-+		/* Make the sysfs of the monochromatic LED read-only */
-+		mutex_lock(&led_cdev->led_access);
-+		led_sysfs_disable(led_cdev);
-+		mutex_unlock(&led_cdev->led_access);
-+
-+		/* Restore sysfs access when the multicolor LED is released */
-+		devm_add_action_or_reset(dev, restore_sysfs_access, led_cdev);
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id of_led_mcg_match[] = {
-+	{ .compatible = "leds-group-multicolor" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, of_led_mcg_match);
-+
-+static struct platform_driver led_mcg_driver = {
-+	.probe		= led_mcg_probe,
-+	.driver		= {
-+		.name	= "leds_group_multicolor",
-+		.of_match_table = of_led_mcg_match,
-+	}
-+};
-+module_platform_driver(led_mcg_driver);
-+
-+MODULE_AUTHOR("Jean-Jacques Hiblot <jjhiblot@traphandler.com>");
-+MODULE_DESCRIPTION("multi-color LED group driver");
-+MODULE_LICENSE("GPL");
-+MODULE_ALIAS("platform:leds-group-multicolor");
--- 
-2.25.1
+Revert "spi: mediatek: Enable irq when pdata is ready"  (HEAD -> 6.2-rc)
+Revert "spi: spi-mtk-nor: Add recovery mechanism for dma read timeout"
+
+so this breaks spi on mt7986:
+
+c6f7874687f7 2022-11-28 spi: mediatek: Enable irq when pdata is ready
+
+have sent bug-report to mailinglist and author/reviewer/maintainer...
+
+regards Frank
+
+
+> Gesendet: Dienstag, 27. Dezember 2022 um 10:43 Uhr
+> Von: "Frank Wunderlich" <frank-w@public-files.de>
+>
+> at first look it seems it is needed...as i get this trace with 6.2:
+>
+> [    2.145931] pc : mtk_spi_can_dma+0x0/0x34
+> [    2.155212] lr : mtk_spi_interrupt+0x74/0x360
+>
+> [    2.091801] mtk-spi 1100a000.spi: spi-mem transfer timeout
+> [    2.097310] spi-nor: probe of spi0.0 failed with error -110
+> [    2.102930] Unable to handle kernel read from unreadable memory at vi=
+rtual address 0000000000000010
+>
+> but i get the same trace when reverting the cs-gpios change....seems som=
+ething is broken in 6.2-rc1
+>
+> 6.1 works without the bogus cs-gpios (and the mt7531 interrupt-change)..=
+.
+>
+> have tried reverting this commit, but it does not fix the issue:
+>
+> 8330e9e8269b 2022-12-07 spi: spi-mtk-nor: Add recovery mechanism for dma=
+ read timeout
 
