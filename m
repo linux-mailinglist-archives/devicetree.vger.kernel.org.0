@@ -2,49 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A520E658635
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 20:04:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A253658642
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 20:13:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230224AbiL1TEi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 14:04:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39914 "EHLO
+        id S232837AbiL1TNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 14:13:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232366AbiL1TEh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 14:04:37 -0500
+        with ESMTP id S230224AbiL1TNu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 14:13:50 -0500
 Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4404D140AA;
-        Wed, 28 Dec 2022 11:04:36 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07B4715FCA;
+        Wed, 28 Dec 2022 11:13:50 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id DABC1B818BF;
-        Wed, 28 Dec 2022 19:04:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E7BBC433D2;
-        Wed, 28 Dec 2022 19:04:32 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A1514B818C8;
+        Wed, 28 Dec 2022 19:13:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 843FCC433EF;
+        Wed, 28 Dec 2022 19:13:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672254273;
-        bh=2sPDqSv4XfgXtrU9TtQZwuf1yZc/sk1JV//l/lt6t30=;
+        s=k20201202; t=1672254827;
+        bh=p70BTFSkLiba81PvWG5NKv48AXo6CdAN0ZnzCg0XeEw=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=L+/rPCcrsgGsAHNyAcVTFV+3AGC5z5yhobjz/b5ixj6jx0z1YoUMgAThgkn/3iH2y
-         yonRij1Mhd3zwcazRc4h/x4Scu3E+5WGQxQFMGSJ4AyfbDBCV7LY7CpLOfllYnI0++
-         kqrmCRl2ABh3zYTJOyR62XeyxIpdo2KVG8XxRbP+2SR08ANSos0+N/3SrC7GIR545z
-         nKuhxQvIVj7j7fDKWcvSsXhNmIE3agDZioQpS69HS/KLsYInfy7FAZsV5jynJ0FDFY
-         WhjRecAlWXe/38bANu9N1R5aa5jVB85fy3hKU+vmx9b1feGxFwUyqLnb+zLMjia2En
-         OKWojytFpOFdA==
+        b=ZcGq/UcDyU2sUmIW1MYUBum4WJ72UMJ+mUZyk4+mZGGSu71tzxwI0xukjjbGDnsbn
+         tqqPhIgllceBURSMD//VcJFxhFvOqDm/Uvz/Eqq8bmsq+2T/Orn2LlvvhIJ+hF3/pS
+         IgYkMzLfm7VaXcuHhVvtOiLJFNQQfSEwsZ3DsPm1Z8Qb+miuIGrQ0Vy/+uDgJW/+bE
+         T/qPbsQPopaIr9yL8JhkzzwZa3w3iXaMyvTs9Gxf61pAQuF8rsWfHEr2imR4pkkEkP
+         uqFLp7ypGexUofjuYcnlOpU5TheZRwuL1Qd6nx3vUwjkBUFdRS9BWY709X32wLM/Wm
+         Y+tyGUTidxTAA==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     agross@kernel.org, konrad.dybcio@linaro.org,
-        krzysztof.kozlowski@linaro.org, linux-arm-msm@vger.kernel.org
-Cc:     robh+dt@kernel.org, linux-clk@vger.kernel.org,
-        mturquette@baylibre.com, konrad.dybcio@somainline.org,
-        marijn.suijten@somainline.org, linux-kernel@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        sboyd@kernel.org
-Subject: Re: (subset) [PATCH 1/2] dt-bindings: clock: add QCOM SM6350 camera clock bindings
-Date:   Wed, 28 Dec 2022 13:04:28 -0600
-Message-Id: <167225426552.971585.7520385380811591762.b4-ty@kernel.org>
+To:     dsankouski@gmail.com, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, marijn.suijten@somainline.org,
+        Andy Gross <agross@kernel.org>
+Subject: Re: [PATCH v2] arm64: dts: qcom: Re-enable resin on MSM8998 and SDM845 boards
+Date:   Wed, 28 Dec 2022 13:13:42 -0600
+Message-Id: <167225482209.977158.11261223838020673662.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20221213152617.296426-1-konrad.dybcio@linaro.org>
-References: <20221213152617.296426-1-konrad.dybcio@linaro.org>
+In-Reply-To: <20221228115243.201038-1-dsankouski@gmail.com>
+References: <20221228115243.201038-1-dsankouski@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -57,18 +58,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 13 Dec 2022 16:26:15 +0100, Konrad Dybcio wrote:
-> Add device tree bindings for camera clock controller for
-> Qualcomm Technology Inc's SM6350 SoC.
+On Wed, 28 Dec 2022 14:52:43 +0300, Dzmitry Sankouski wrote:
+> resin node declaration was moved to pm8998.dtsi file (in disabled state).
+> MSM8998 and SDM845 boards defining resin node did not previously have
+> status="okay" and ended up disabled.
+> Re-enable it by using resin node link from pm8998.dtsi with status="okay".
 > 
 > 
 
 Applied, thanks!
 
-[1/2] dt-bindings: clock: add QCOM SM6350 camera clock bindings
-      commit: 7afc1f6977d0b0d1b722aaedf6d9796df9a82325
-[2/2] clk: qcom: Add camera clock controller driver for SM6350
-      commit: 80f5451d9a7c20d8c09f44f4eb1083fd861d7a46
+[1/1] arm64: dts: qcom: Re-enable resin on MSM8998 and SDM845 boards
+      commit: 4c881ab73a64cdbf8691e258ef17b740d27040a0
 
 Best regards,
 -- 
