@@ -2,72 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FF0C657619
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 12:55:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D7811657623
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 12:58:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230183AbiL1LzT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 06:55:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38828 "EHLO
+        id S232995AbiL1L6j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 06:58:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232989AbiL1LzQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 06:55:16 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60B321055D
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 03:55:15 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id f34so23284680lfv.10
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 03:55:15 -0800 (PST)
+        with ESMTP id S232997AbiL1L6g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 06:58:36 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F2D811456
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 03:58:33 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id 1so23316525lfz.4
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 03:58:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=cJcl46MI5RR8btKw7j2dJfA3w1szrqjhaKNcGHRcG5Q=;
-        b=zS5iBp6QPRq2LmndJwyrn7LjFwzIsXy4sjKotWIEc6iYEzWksnWigGMnDIorBX5/K9
-         W5Aw7q+GmPVIIVGPeOeRIzqgmYXSHr5TKZ7j6DavEBEHEVTFFYM3Y+jepsVlKxgeHD3T
-         f/CASpolMuUooCQysl5ddrSJLf6aAt+a03+j2mBI31fZfTe5Mizb5LmDqPROuNfBHxLQ
-         7AKJsvwfHd/cQakmpLVhbUGvtV6CGldaWhtd0RxmGGe45aVOO+8e0m685s1k96eoIZto
-         GVs1IhgcuOyrJyB3fi8wh9/Ny3DnqOwCtP8iXQNW3KhjQoXRoOluaqSD68itrZbssj5P
-         YmOQ==
+        bh=WnXYH4qLynXgTdL39MoHqXN5EMW38TQiUZiVR1DxEeQ=;
+        b=JJVU3PTcvSE3KUUGIfvJBRh97Si8pN9Fapb4MGpR2amkOIBxz5I+yTHUpNOH0RpIgR
+         6q8PQ5nwQOCVfGdeY3kZcX9NdSciVOjRc/iCixqoHqERLuNAeu2xCF4CXSiZEIXNU6AQ
+         S78hOnlQKQGlpZ4LDmtPmh05YO34NuncA1fB4OHXsFSWmYcKISoOYEQ6kRVzF+ZkZRSG
+         AswvNzlIZViD+b7bWrk+ps9a3jD6/MkeJDKR7hIeI7rkJ3yVmioOP3xlSW4rRdJdNIYn
+         JA6h2U4GrJBAvpaFbRSYAplAcPsPDcW40+Pk4PsnXiyWYs5zEHiVAZjXwa4GwwgaD0wU
+         YC8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cJcl46MI5RR8btKw7j2dJfA3w1szrqjhaKNcGHRcG5Q=;
-        b=Im8spJeFrQRZ2bQx4Ud2Sekp9lHqZTO8WT/Tp59DkZhxK3dub6TH76TbTGzUcW+Fq8
-         OANcbYP0bjNsd3XZchPtFlru/bJuexOg9vQNGilJcXuRrJnbBURFIar999VJ4lK3LjA0
-         IK0m6UEj/EEW+suKHPFjAQfHc+GwoBA5Z0r/4D6DMoHE318BsfR4ZamfYRXXsFwgjV87
-         K649Mb0rwSLpKwnIFjlU4M0DFHhaC5YM3XwUfOujyfmX/XMhRIq/Dj0wylM4BnWfWsFi
-         73PBJZhDOdQxyDT771Sp5b/0o49uP2u1MsDkpOvqREZQGz8dRsLNfwt1rcN99LBY3/kG
-         Gtog==
-X-Gm-Message-State: AFqh2kpltr917SvfpOogzOneX+kQecwytZkFSAU40Gfi+0pzeTkMwGzM
-        mTjDLExwB2wWs177+QCpucGJHg==
-X-Google-Smtp-Source: AMrXdXvfsXmeDlz4TQc8GxqaNcnOs4agF62kEE7aXeTk2NJaTudG8+xpW+DFjbxZCBzv40gTbOLHVw==
-X-Received: by 2002:a05:6512:3135:b0:4b6:fdbe:773d with SMTP id p21-20020a056512313500b004b6fdbe773dmr7334264lfd.43.1672228513757;
-        Wed, 28 Dec 2022 03:55:13 -0800 (PST)
+        bh=WnXYH4qLynXgTdL39MoHqXN5EMW38TQiUZiVR1DxEeQ=;
+        b=chvdCPO8UUZBx930+v0QzW09wEFSa0FYhmwPoKH947+nprPTeMK8ieItqDfXsCewsA
+         Iv4vOc4qu4llkYGGoQWG+iPq+r80Bz2/r6Ejou8l8uijTOvJ/jdtKqK0Ip6+KZaa9CRW
+         kmoEbp2PKIQrt7G+NePOz/O3bKiqPDuhYT6dMoRMDYrsxgpyKgVWZ2gCB71Xkl8s/0r5
+         BeFRDSoSfpghYZKVSFfOTbmHt41jHkCnrfK6XDq6W+HgSpbQKVYzCPJ/O/+SrbSCMmmp
+         4LktL7fXdkedHaXvx7knke4X668SLWvPfRWfMQuExu6mlnhy+miWlbeW2O4UjYyAhXJm
+         zoYg==
+X-Gm-Message-State: AFqh2krVisVugWCaocpR0NjKkoyQ1YFpE2crL1DzEf3P8cOgThbJIRSH
+        +oDJf0/uiWD3UcnQk95qy3mpNA==
+X-Google-Smtp-Source: AMrXdXt4PV8yq8guZTESHWBuI7Pgb3yXXbymZcLJRNWE/tWew9Yf+0+pOCQKIAX0t7/max5UYbBgZQ==
+X-Received: by 2002:ac2:46f8:0:b0:4b5:9ec5:dbed with SMTP id q24-20020ac246f8000000b004b59ec5dbedmr8003412lfo.40.1672228711451;
+        Wed, 28 Dec 2022 03:58:31 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id o20-20020ac25e34000000b004b4b69af17dsm2663436lfg.214.2022.12.28.03.55.12
+        by smtp.gmail.com with ESMTPSA id d21-20020ac24c95000000b0049465afdd38sm2637727lfl.108.2022.12.28.03.58.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Dec 2022 03:55:13 -0800 (PST)
-Message-ID: <5001001a-203f-e832-f916-ce483b2d8ea1@linaro.org>
-Date:   Wed, 28 Dec 2022 12:55:12 +0100
+        Wed, 28 Dec 2022 03:58:30 -0800 (PST)
+Message-ID: <5391e6e5-3773-a012-c396-b59b1f54ea51@linaro.org>
+Date:   Wed, 28 Dec 2022 12:58:29 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8350: add missing
- core_bi_pll_test_se GCC clock
+Subject: Re: [PATCH] dt-bindings: ufs: qcom: Add reg-names property for ICE
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+To:     Luca Weiss <luca.weiss@fairphone.com>,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221228112456.31348-1-krzysztof.kozlowski@linaro.org>
- <d2e303d9-3ac4-f574-680f-4f5ccbf5ed13@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221209-dt-binding-ufs-v1-0-8d502f0e18d5@fairphone.com>
+ <c4109766-22f1-7227-47bb-9273a027bb0c@linaro.org>
+ <CPDFHXBPSP76.5CWNQK4N1KGI@otso>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <d2e303d9-3ac4-f574-680f-4f5ccbf5ed13@linaro.org>
+In-Reply-To: <CPDFHXBPSP76.5CWNQK4N1KGI@otso>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,22 +84,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/12/2022 12:37, Konrad Dybcio wrote:
+On 28/12/2022 12:53, Luca Weiss wrote:
+> Hi Krzysztof,
 > 
+> On Wed Dec 28, 2022 at 12:50 PM CET, Krzysztof Kozlowski wrote:
+>> On 09/12/2022 15:29, Luca Weiss wrote:
+>>> The code in ufs-qcom-ice.c needs the ICE reg to be named "ice". Add this
+>>> in the bindings so the existing dts can validate successfully.
+>>>
+>>> Also sm8450 is using ICE since commit 276ee34a40c1 ("arm64: dts: qcom:
+>>> sm8450: add Inline Crypto Engine registers and clock") so move the
+>>> compatible to the correct if.
+>>>
+>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>> ---
+>>> (no cover subject)
+>>>
+>>> The only remaining validation issues I see is the following on sc8280xp-crd.dtb
+>>> and sa8540p-ride.dtb:
+>>>
+>>
+>> Any plans on fixing the patch (after testing it) and resending?
 > 
-> On 28.12.2022 12:24, Krzysztof Kozlowski wrote:
->> The GCC bindings expect core_bi_pll_test_se clock input, even if it is
->> optional:
->>
->>   sm8350-mtp.dtb: clock-controller@100000: clock-names:2: 'core_bi_pll_test_se' was expected
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
-> Is it even going to be used by anybody, or should we just drop
-> it on the driver side as per usual?
+> I wasn't quite sure how to fix the comments, but re-reading them this
+> comment from you is how you expect it to be in v2?
 
-It's mentioned as possible parent, so there might be users somewhere...
-Or you want to say that other binding and DTS users cannot use that clock?
+The patch fails testing, so I meant this.
+
+> 
+>> Just add it to top-level with minItems: 1 and per variant customize:
+>> 1. maxItems: 1
+>> 2. minItems: 2 + required
+> 
+
+Yes.
 
 Best regards,
 Krzysztof
