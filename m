@@ -2,89 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EF5065757C
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 11:50:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CC76657585
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 11:58:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229864AbiL1Kuu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 05:50:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44896 "EHLO
+        id S231533AbiL1K6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 05:58:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232785AbiL1Kuo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 05:50:44 -0500
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C47F565FF;
-        Wed, 28 Dec 2022 02:50:37 -0800 (PST)
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BSAoVv2022579;
-        Wed, 28 Dec 2022 04:50:31 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=/oJf1TOlCzp8cbvlvuGdfVB98faQ75HUAlntSWortiA=;
- b=kC6QGTVvuIOi9fupJC0/ZsnG6r5EMwARIpmG6OxB27pMYYkc5ODuyx+OG2oubEDEUKsb
- 9ZeIwhdySGsevS4bKejT3XvU75/7y/CY6cYvZIojhRmH2jc7DfmBT2qM6juqm4gwKAty
- au5+Ss5/uWEDzK4VGJSIJ42JfRXGecOBkWpNhRuF2ZRqNSAydeuDiJDajaUMpoqMDJAL
- ga0guqHAJ2ND42kdK/kvVbJYdRgrFlxuGaQLMTkyOC20nqrU1k2p8LjNzrC0SnTWjHqu
- SFHQxFqijx+KqDyEB0swZlobZ7Y31n3pjhumtX8KWj7ud55HvKUl31gozMUPfPOHXu4z mw== 
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3mnyq7aygh-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 28 Dec 2022 04:50:31 -0600
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.20; Wed, 28 Dec
- 2022 04:50:29 -0600
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1118.20 via Frontend Transport; Wed, 28 Dec 2022 04:50:29 -0600
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 574E311CB;
-        Wed, 28 Dec 2022 10:50:29 +0000 (UTC)
-Date:   Wed, 28 Dec 2022 10:50:29 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+        with ESMTP id S229587AbiL1K6q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 05:58:46 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBE1321A4;
+        Wed, 28 Dec 2022 02:58:45 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5B05B6146B;
+        Wed, 28 Dec 2022 10:58:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFA36C433EF;
+        Wed, 28 Dec 2022 10:58:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1672225124;
+        bh=T0C4xkF9Fh07C/j92Rbl0JH6oQ5sn/u8/fIOu7dNH9g=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ik/sVIcZOGwffEkYYPkdyX5AR0xgMAgixZGNT7rzznszonHRtBB1kt+w3jO5dHDAs
+         x0WQ0zb+RnJLMsgHd80EbVX6aopWrnOKSQKj85qu0nBBUXK2LVzISgWD8bBcKowsvB
+         4u9VvwAU1bRuiJSRceMPMVbv8Z/A6T6ztD7j7RuHe4Ee8l1pXhyKkj9vLmLqwMIRWK
+         z3RlnweiHie8Cgt2VSMKDDqcz/Bh39aeba/jNnKwWzWA9gJesLrBq86/h7fqo/cbL7
+         TJl0xglyKd2DpdalgAOztM89RAp28JZ0FwNXIFTO8OOG15E4pnf8P+9zrDUJl7CYpA
+         ngnRLX5p7NEdw==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1pAU91-00064B-5M; Wed, 28 Dec 2022 11:58:47 +0100
+Date:   Wed, 28 Dec 2022 11:58:47 +0100
+From:   Johan Hovold <johan@kernel.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     James Schulman <james.schulman@cirrus.com>,
-        David Rhodes <david.rhodes@cirrus.com>,
-        Lucas Tanure <tanureal@opensource.cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] ASoC: dt-bindings: cirrus,cs35l41: cleanup $ref and
- example
-Message-ID: <20221228105029.GI36097@ediswmail.ad.cirrus.com>
-References: <20221224154210.43356-1-krzysztof.kozlowski@linaro.org>
- <20221224154210.43356-2-krzysztof.kozlowski@linaro.org>
+Cc:     Andrew Halaney <ahalaney@redhat.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@somainline.org,
+        lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        dianders@chromium.org, Johan Hovold <johan+kernel@kernel.org>
+Subject: Re: [PATCH v3] regulator: dt-bindings: qcom,rpmh: Indicate
+ regulator-allow-set-load dependencies
+Message-ID: <Y6whZ50Lz07xG/R1@hovoldconsulting.com>
+References: <20220907204924.173030-1-ahalaney@redhat.com>
+ <14b0237d-6511-4a1f-3bda-e0e72b442a56@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221224154210.43356-2-krzysztof.kozlowski@linaro.org>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-GUID: eTk1Kx9mksOACjqG-XD8SXgx-L4E-D6J
-X-Proofpoint-ORIG-GUID: eTk1Kx9mksOACjqG-XD8SXgx-L4E-D6J
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <14b0237d-6511-4a1f-3bda-e0e72b442a56@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Dec 24, 2022 at 04:42:10PM +0100, Krzysztof Kozlowski wrote:
-> Non-functional cleanup:
-> 1. Drop unneeded quotes form $ref,
-> 2. Example: Use generic node name, use define for GPIO flag, adjust
->    indentation to consistent 4-space style.
+On Wed, Dec 28, 2022 at 11:37:06AM +0100, Krzysztof Kozlowski wrote:
+> On 07/09/2022 22:49, Andrew Halaney wrote:
+> > For RPMH regulators it doesn't make sense to indicate
+> > regulator-allow-set-load without saying what modes you can switch to,
+> > so be sure to indicate a dependency on regulator-allowed-modes.
+> > 
+> > In general this is true for any regulators that are setting modes
+> > instead of setting a load directly, for example RPMH regulators. A
+> > counter example would be RPM based regulators, which set a load
+> > change directly instead of a mode change. In the RPM case
+> > regulator-allow-set-load alone is sufficient to describe the regulator
+> > (the regulator can change its output current, here's the new load),
+> > but in the RPMH case what valid operating modes exist must also be
+> > stated to properly describe the regulator (the new load is this, what
+> > is the optimum mode for this regulator with that load, let's change to
+> > that mode now).
+> > 
+> > With this in place devicetree validation can catch issues like this:
+> > 
+> >     /mnt/extrassd/git/linux-next/arch/arm64/boot/dts/qcom/sm8350-hdk.dtb: pm8350-rpmh-regulators: ldo5: 'regulator-allowed-modes' is a dependency of 'regulator-allow-set-load'
+> >             From schema: /mnt/extrassd/git/linux-next/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
+> Andrew,
+> 
+> This patch was merged therefore we started seeing such warnings. Any
+> plans to actually fix them?
 
-Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+Didn't Doug already do that?
 
-Thanks,
-Charles
+	https://lore.kernel.org/all/20220829164952.2672848-1-dianders@chromium.org/
+
+Johan
