@@ -2,83 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD3A66574B2
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 10:35:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF5F96574BF
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 10:38:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230006AbiL1Jfx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 04:35:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40064 "EHLO
+        id S232161AbiL1Jie (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 04:38:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232023AbiL1Jfw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 04:35:52 -0500
-Received: from mail-vk1-xa2a.google.com (mail-vk1-xa2a.google.com [IPv6:2607:f8b0:4864:20::a2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D16701E1;
-        Wed, 28 Dec 2022 01:35:49 -0800 (PST)
-Received: by mail-vk1-xa2a.google.com with SMTP id 6so7217450vkz.0;
-        Wed, 28 Dec 2022 01:35:49 -0800 (PST)
+        with ESMTP id S230451AbiL1Jic (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 04:38:32 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 701D1DEBA
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 01:38:31 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id j17so13393486lfr.3
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 01:38:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=3sibGBIP0qfr15zCs+LR1FWj+O5p4xMBAwTb8KT3ZFo=;
-        b=ElMpyQfw4EjT7pVErCiIjYzpl5WTibySHAZpxETa4BVArl7fsr9mjYahaMf6ueUx2c
-         fEUyFA/phIDj0kaDm1T7kVDXym+9sfa+9uSKDBEqj5DZ9pql1gHqg0vlmt/JBBtGCYIu
-         tznZtG8UmydP1EyOcSVE7mSEQgCf+gQTkUQFApLOspcKpw3NX0s0AmHkVGPTG2gUOEoX
-         3LKwW5YdaA1BFznohGea70qC55P2RpSE7TCV2ZdAV54U5ivgkl8S0qcjl3lbWcSwOg7h
-         8BNGsxMW8nQvtRBZO8WM+xUKQXXmUCjiUz/pAYHrogYIzMuDIFo5TduYS/h1w3+Eo5Wk
-         9wwQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gYtnsrsBFcQTG1av2UWtN0kx27fKyWTq2Zrc2a2wfxM=;
+        b=sacrvLygAj1iHwqkRipFn4nMm1FzsvAz9KNrIfMSZ9MjIpXtDAB+M2GtYDI+7/+msD
+         XSiqgSfBt15RbckykdF+O84tXQf2G3Sg5Wn22cZ3Pgl8//AhpP5hjXj3QjXN6gH/sbaW
+         EVxNvDpmAKGk+jvBkksZMLFUZTWOWW3Dp+vLNpqRh/FX6ZdR0AORLGXqNxj+yXLxXpir
+         NJ6qMMyaNw2Obh6GlsdDqhPt2U/7L/wmbT26+EpySXU8oUx89ermqjaZ4nHfqazSugZ+
+         D6nriAUICLmQ+TPzs6npcutnq9MqVT4ub9v3qdwk91W4xuB3PC/r15QkQ/n5Roed9U4A
+         /s/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3sibGBIP0qfr15zCs+LR1FWj+O5p4xMBAwTb8KT3ZFo=;
-        b=nhCzcq/kN41EavFOGKtnZ3eppx8eX3Md94Qle8/970f6CqgyvfT5+U80ljJSTUQWlv
-         62LxJ/Z6N2Xy/ETCQe2pexAoSgVpfdasUBYd0iX+PYxnQIcggExTaD0klIkDcWPJbJEC
-         BVvrgeMtPeFirtJPQjlBpgCG+sRZkyk5FlUTxJWZ4/HdX2WdPPSfvesk8vmuDNWXQvZ1
-         MUoRyuuLrG96sK8fmcZbOlaeAgdDzJunnvyjdYmbsqFDkiH5QidR17IVCdKdObE+uh4+
-         k/eZeT6GjlLTNLEMthl3YUou6+J1eMdEaubUk/e4U4c/4uw1gh8byutbub788Uc3Ze9J
-         faKA==
-X-Gm-Message-State: AFqh2krCiOrzo4Pd4OnFyx0UJrDNi6iK0mBJrl4BvWizaXwOBycXeEgG
-        eLM3hrsg6jA91287qVOCZDvxghIqtkzXvyH6dE8=
-X-Google-Smtp-Source: AMrXdXu2vG/opw86gJxJic7D2pXoI0xu8KoLJ3tKlVtyUwLrpZVECwWc7O02O0XkPUZCRxdlL3IsKI++4Td+5L4funY=
-X-Received: by 2002:a1f:a954:0:b0:3b8:ba98:bd43 with SMTP id
- s81-20020a1fa954000000b003b8ba98bd43mr2717589vke.34.1672220148952; Wed, 28
- Dec 2022 01:35:48 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gYtnsrsBFcQTG1av2UWtN0kx27fKyWTq2Zrc2a2wfxM=;
+        b=wHuEmsuv5m2wUl0Oln+6hlADSQbVKRH8e2czKPO2j2JL7ym3CO+zrtMXGBTWQigpo5
+         B4lRRgHN5cd2BnwSEQ+JLjnqn8aFfZNrZCOxL1FHDSozPSLzWMGYjBhNt+JiSoiD5MLu
+         n/gtFj9VvPKQI6iJU3/fdyaC1hB6wx3pH6z4q7SzNAfDkygvMknHFu4XYsb1/9McZlOh
+         ls401SFdS3wToefT/nfPS4TZ0ZvYKwSsUDFSXMtbH7lrG5KO+yOrvRkgqJSEM0g5oEh4
+         rPShNe/tIYe6WCKIkH5QA4WSOZdraIIGeOMZg7l66PIWe121CRbhMQTMPhPVJNxTXbVM
+         OB+w==
+X-Gm-Message-State: AFqh2krAW0N1n0sX1pVToqL6sjHhh2PR4ZMOR3aIxSG4tHUVoHRTaR2R
+        QBR+IuFjtZnQUxvUvBekCE99Ug==
+X-Google-Smtp-Source: AMrXdXvXtfgms35hvbxnTMlL2x6vX9WQvhB7vGtTELGY8uA2FGUrxGYGG9l/PNJZQecbWUWbkD5EbA==
+X-Received: by 2002:a05:6512:3b07:b0:4a4:68b9:60b4 with SMTP id f7-20020a0565123b0700b004a468b960b4mr7211308lfv.63.1672220309826;
+        Wed, 28 Dec 2022 01:38:29 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id bi7-20020a0565120e8700b004b590c768edsm2582611lfb.1.2022.12.28.01.38.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Dec 2022 01:38:28 -0800 (PST)
+Message-ID: <c0142eb6-aa46-a157-6a9a-9134c7e06ca2@linaro.org>
+Date:   Wed, 28 Dec 2022 10:38:27 +0100
 MIME-Version: 1.0
-References: <20221223032859.3055638-1-milkfafa@gmail.com> <20221223032859.3055638-3-milkfafa@gmail.com>
- <2a88ee33-91ab-431f-b9ce-472dc64f7430@linaro.org>
-In-Reply-To: <2a88ee33-91ab-431f-b9ce-472dc64f7430@linaro.org>
-From:   Kun-Fa Lin <milkfafa@gmail.com>
-Date:   Wed, 28 Dec 2022 17:35:37 +0800
-Message-ID: <CADnNmFrchhZqv_KzXq1RGQXhFF5A8G_CkXzgT+7Rj+--7cfdtw@mail.gmail.com>
-Subject: Re: [PATCH v17 2/3] dt-bindings: edac: nuvoton: Add document for NPCM
- memory controller
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     robh+dt@kernel.org, bp@alien8.de, tony.luck@intel.com,
-        james.morse@arm.com, mchehab@kernel.org, rric@kernel.org,
-        benjaminfair@google.com, yuenn@google.com, venture@google.com,
-        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
-        linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
-        KWLIU@nuvoton.com, YSCHU@nuvoton.com, ctcchien@nuvoton.com,
-        kflin@nuvoton.com, Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 2/4] arm64: dts: qcom: align OPP table node name with DT
+ schema
+Content-Language: en-US
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221225115844.55126-1-krzysztof.kozlowski@linaro.org>
+ <20221225115844.55126-2-krzysztof.kozlowski@linaro.org>
+ <Y6somGn+V0CAxVA5@hovoldconsulting.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y6somGn+V0CAxVA5@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > Add dt-bindings document for Nuvoton NPCM memory controller.
->
-> Subject: use "memory-controllers" prefix, not edac.
+On 27/12/2022 18:17, Johan Hovold wrote:
+> On Sun, Dec 25, 2022 at 12:58:42PM +0100, Krzysztof Kozlowski wrote:
+>> Bindings expect OPP tables to start with "opp-table".
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>  arch/arm64/boot/dts/qcom/msm8996-v3.0.dtsi | 2 +-
+>>  arch/arm64/boot/dts/qcom/sa8540p.dtsi      | 4 ++--
+>>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi     | 6 +++---
+>>  arch/arm64/boot/dts/qcom/sdm845.dtsi       | 2 +-
+>>  4 files changed, 7 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/msm8996-v3.0.dtsi b/arch/arm64/boot/dts/qcom/msm8996-v3.0.dtsi
+>> index 5728583af41e..929bdcd45d02 100644
+>  
+>> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+>> index 109c9d2b684d..89004cb657e0 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+>> @@ -33,7 +33,7 @@ sleep_clk: sleep-clk {
+>>  		};
+>>  	};
+>>  
+>> -	cpu0_opp_table: cpu0-opp-table {
+>> +	cpu0_opp_table: opp-table-cpu0 {
+>>  		compatible = "operating-points-v2";
+>>  		opp-shared;
+>>  
+>> @@ -123,7 +123,7 @@ opp-2438400000 {
+>>  		};
+>>  	};
+>>  
+>> -	cpu4_opp_table: cpu4-opp-table {
+>> +	cpu4_opp_table: opp-table-cpu4 {
+>>  		compatible = "operating-points-v2";
+>>  		opp-shared;
+>>  
+>> @@ -591,7 +591,7 @@ CLUSTER_PD: cpu-cluster0 {
+>>  		};
+>>  	};
+>>  
+>> -	qup_opp_table_100mhz: qup-100mhz-opp-table {
+>> +	qup_opp_table_100mhz: opp-table-qup100mhz {
+>>  		compatible = "operating-points-v2";
+>>  
+>>  		opp-75000000 {
+> 
+> Please also move these nodes after the 'memory' node so that they remain
+> sorted by name.
 
-Thanks for the review. I'll correct it in the next patch.
+OK
 
-Regards,
-Marvin
+Best regards,
+Krzysztof
+
