@@ -2,76 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE2E565768D
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 13:39:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 40C9B657693
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 13:43:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229603AbiL1MjU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 07:39:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56382 "EHLO
+        id S230224AbiL1Mnl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 07:43:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232729AbiL1Mix (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 07:38:53 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC67510FD4
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 04:38:51 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id 1so23448791lfz.4
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 04:38:51 -0800 (PST)
+        with ESMTP id S230080AbiL1Mnk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 07:43:40 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D22010FE2
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 04:43:39 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id m6so13081083lfj.11
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 04:43:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5gVWXE7z6V0jr17DL5tWq//fgcFRcs4qyTA+UKWgDDc=;
-        b=HsIlFhBTpBa0Btk0oee65VTeaCe8A9pEqSA49U65BZyWdgEnYXS94jkHdMIgggtg60
-         JklnSc9C9yt7j+lDbcEW+/9tr2H2gdn6YV7OASRqTiAG0xxofK83LTyiX/2Qc31qv4So
-         tVQG4D9uLibKDhsna70XFXMY4wpiUYczQB+aUTNck15N4sU2/2WfbwR7rbUUojOfeFWe
-         RsYqPrC4/0JZu+PFhj3bA/VMkCqRW3vztmaoZyFvdLkVzN2uWN3NIG/2G5JWt4jXwDaP
-         /e0cpDjxtk2KXtVoC4znhNiN7xC/9YATLseNrRsbeDy1h81qQm4NffaLQVrJ0v2pM7M0
-         7x0g==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wyLEEKIyqkAjb9IQ0Oi9TdXRS+RdmpHpVD+IMGR2Kbs=;
+        b=Y2dv+v5dkIAzONv9TPRC7w/+PzHLta6hYhIHZA/4acoueQatOfsspyB144denkYekh
+         DuJ+mf9M+cyqWx//dBNZLvQTnyDQF06A5/ilUVpYmS5LgDZMWRDVwORd9kDBj+1CxTLY
+         qOXWKtrgCb0n6HOCoYN3in5OJHIzAoBVOW6OtIv3/yeLi+0TJ1b+oM2Ib9nJ28ThxNwf
+         y55psogOh1MG0bszg1YtBGJ0F4+fqqnxsNCm/nIkIoSSRIQ27vxyX391u3EtdCUyV6F6
+         zqNKnm1ObLwQMYxYNLaareaMMPDTUIA6la9CXa5VTuPVyYN0dzSRgyyKWwz3knS0tl+r
+         9KYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5gVWXE7z6V0jr17DL5tWq//fgcFRcs4qyTA+UKWgDDc=;
-        b=GQV9gR6H0fzzNU9IPUNEwo8DLuc+YOZq6IdMJsxfMYv1c6+WKY9pJHkoCVMSuZdYjt
-         iUt95qT/fb4uEIc3ctUf/35Xa0ar/7snfohAYVUe64WgKOzBRNY7EFywEx4/q/qKEMvp
-         +9PBNktSDhN8dYjF68roF1dX2FWR3l8Stzixj8wSWlIYiA1A6Pt8+mW5Pwy91tLY/u6y
-         CMhSebQYN7XL1k9JUkvBCTzNdzRwGBCXmBgyaBPbjyAS8HxEEIsu2Bsgh3KQFoTwpKwT
-         5dWMG6rHg9nRT1RejR4+ftdTOc8stlsUdYRey/PseNR5WHHk8eF/TaKRkuSjkr5B4TZ/
-         uyxg==
-X-Gm-Message-State: AFqh2koT++HSfW4a7x7L5qttOTno6RqXbQjcJD0iNxVKKr2yk41zlRXL
-        VbFwWBTxL81JUXvDgMkD+e/XRA==
-X-Google-Smtp-Source: AMrXdXszEivzFZIcilj7nrufZ29e6vg8o/RIJzRWXm9ibvZczGVg5f2m+W9s5+FcsEXwKu7P5zmVKw==
-X-Received: by 2002:a19:ca54:0:b0:4b5:889c:f2cf with SMTP id h20-20020a19ca54000000b004b5889cf2cfmr6914060lfj.20.1672231130142;
-        Wed, 28 Dec 2022 04:38:50 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id p16-20020ac24ed0000000b004b4f3c0d9f8sm2636938lfr.283.2022.12.28.04.38.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Dec 2022 04:38:49 -0800 (PST)
-Message-ID: <18a2fd76-c708-0c14-2d5c-b771ab8baee5@linaro.org>
-Date:   Wed, 28 Dec 2022 13:38:48 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: k3-dsp: update bindings for
- AM62A SoCs
-Content-Language: en-US
-To:     Hari Nagalla <hnagalla@ti.com>, andersson@kernel.org,
-        devicetree@vger.kernel.org, mathieu.poirier@linaro.org,
-        p.zabel@pengutronix.de, linux-remoteproc@vger.kernel.org,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, s-anna@ti.com
-Cc:     praneeth@ti.com, nm@ti.com, vigneshr@ti.com, a-bhatia1@ti.com,
-        j-luthra@ti.com, devarsht@ti.com
-References: <20221228123655.15384-1-hnagalla@ti.com>
- <20221228123655.15384-2-hnagalla@ti.com>
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wyLEEKIyqkAjb9IQ0Oi9TdXRS+RdmpHpVD+IMGR2Kbs=;
+        b=1q+o2twup/yAFiFbV1DELHVC0LzsD0I4OYSDeVcpXyi5nAw2VXyaJPQsMjQmL7nNEG
+         K8bPcZ916niVgYThcxrwd35C2W6F/xalm2RTUs/+uXhZIROsXuarIiR13RHd8UJ3+LXo
+         i0otQ10CuveY1DrIzC8Bm/w4GHfgLdAayo1HSvfqhALcfEznD9xJtIgenG4SBDZNBZ4k
+         xsq7YgwtpJ4uC0ED+01cbAVE3+e5ZV98CZSQzsme/uhTpwHBrVmKCWRM54UZKPw6TJ3e
+         eVKseInQdNtwPfdCl9RCBZ0rL3MgeALv6E0J1JYSNK9vLYQuhLROxFnPxTDP0/cZKCIg
+         FQGg==
+X-Gm-Message-State: AFqh2koWDq/KQTh4mxQcyUD9PKEwxg5uWSSdWNRn1tz6WnqQymYfUG28
+        V1r1+ymy14EthTr6FiKA23p83g==
+X-Google-Smtp-Source: AMrXdXtJknrPqpsSn+QPvuHwcVlU6sMMhCqPKVdgnUPn88kT7MU7FTU5h/obHREzhpHJTWFCmh6zMA==
+X-Received: by 2002:a05:6512:398c:b0:4ac:ec52:e063 with SMTP id j12-20020a056512398c00b004acec52e063mr7993973lfu.29.1672231417668;
+        Wed, 28 Dec 2022 04:43:37 -0800 (PST)
+Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id c1-20020ac25f61000000b0049f54c5f2a4sm2647356lfc.229.2022.12.28.04.43.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Dec 2022 04:43:37 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221228123655.15384-2-hnagalla@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: ufs: qcom,ufs: document required-opps
+Date:   Wed, 28 Dec 2022 13:43:31 +0100
+Message-Id: <20221228124331.258416-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,51 +76,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/12/2022 13:36, Hari Nagalla wrote:
-> The TI AM62A SoCs have a C7xv DSP and Analytics engine for deep
-> learning purposes. The DSP part is similar to the C71x DSP found on
-> K3 J7 SoCs, but additional hardware accelerators and IP are added to
-> the subsystem for deep learning.
-> 
-> Compatible info is updated to match AM62A SoCs.
-> 
-> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-> ---
->  .../devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml        | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-> index cedbc5efdc56..846c9c14169a 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-> @@ -34,10 +34,12 @@ properties:
->        - ti,j721e-c66-dsp
->        - ti,j721e-c71-dsp
->        - ti,j721s2-c71-dsp
-> +      - ti,am62a-c7xv-dsp
+UFS device node on SC8280XP uses required-opps:
 
-Add it in some order, e.g. alphabetical.
+  sc8280xp-crd.dtb: ufs@1d84000: Unevaluated properties are not allowed ('required-opps' was unexpected)
 
->      description:
->        Use "ti,j721e-c66-dsp" for C66x DSPs on K3 J721E SoCs
->        Use "ti,j721e-c71-dsp" for C71x DSPs on K3 J721E SoCs
->        Use "ti,j721s2-c71-dsp" for C71x DSPs on K3 J721S2 SoCs
-> +      Use "ti,am62a-c7xv-dsp" for AM62A Deep learning DSPs on K3 AM62A SoCs
->  
->    resets:
->      description: |
-> @@ -111,6 +113,7 @@ else:
->          enum:
->            - ti,j721e-c71-dsp
->            - ti,j721s2-c71-dsp
-> +	  - ti,am62a-c7xv-dsp
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Does not look like you tested the bindings. Please run `make
-dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
-
-Wrong indentation.
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+index e53c6e203ac8..41ac2fe861f3 100644
+--- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
++++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+@@ -75,6 +75,9 @@ properties:
+     minItems: 1
+     maxItems: 2
+ 
++  required-opps:
++    maxItems: 1
++
+   resets:
+     maxItems: 1
+ 
+-- 
+2.34.1
 
