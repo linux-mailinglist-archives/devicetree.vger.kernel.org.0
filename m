@@ -2,109 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEB54657645
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 13:03:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EB8F65765B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 13:22:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230037AbiL1MDH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 07:03:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41952 "EHLO
+        id S230127AbiL1MWl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 07:22:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230145AbiL1MCk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 07:02:40 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EB0D1173;
-        Wed, 28 Dec 2022 04:01:53 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CD9316136E;
-        Wed, 28 Dec 2022 12:01:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D00DC433EF;
-        Wed, 28 Dec 2022 12:01:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672228912;
-        bh=mSKLstnN8UErpGX3SpV286l5MB64KVuBWn9aENVo6uU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=uP6BKCG4B92YvGOjiIMg5muVDxbIR1nd7iCwR6y3ZECXLYn+jcOv8+WyvpBhqZNnc
-         sTSfBsb28qm0npZCoSC+Ow42cHqn1uriOaWiOG36j28ZmFr9UCd0lmuJ7l5Cu3AMEA
-         4ps62l4Z4L9rOAXMbMFQGQyX02Kl8JMfKORoAO2HDAyWP2Wf524O8rrCwZYzEHDDv2
-         Vz0or3eSbDVwbGKPxDP5roUMd2giRm10t0Q4BjyxS80sNTRoxc/GukOJM3tO3mOGq2
-         d10+o4uPHaRw5V0PGiZheyYtxcEMFum6DQC74tuSoZd0Gw/0thdZAmwoEEdNmCcGtL
-         GaP3Odh+clihg==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1pAV86-0004WX-St; Wed, 28 Dec 2022 13:01:54 +0100
-Date:   Wed, 28 Dec 2022 13:01:54 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     agross@kernel.org, srinivas.kandagatla@linaro.org,
-        konrad.dybcio@somainline.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v4 0/3] arm64: dts: qcom: sc8280xp: add audio support
-Message-ID: <Y6wwMo8KLulNAoiU@hovoldconsulting.com>
-References: <20221123104342.26140-1-srinivas.kandagatla@linaro.org>
- <167220221217.833009.5730063788271218487.b4-ty@kernel.org>
+        with ESMTP id S230071AbiL1MWk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 07:22:40 -0500
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB29921AC
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 04:22:39 -0800 (PST)
+Received: by mail-pf1-x436.google.com with SMTP id e21so1045129pfl.1
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 04:22:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=huaqin-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LFvhTcaRZjgL74aw0ImWpDb76fTfKVSz3niY5jO7t2U=;
+        b=6XK8iaEvevvXqDOBb77pn2jRDoRsZbUa51M+NyT8XpjYcuaxY7TVVgDTdJX44JzIT1
+         6vItea01ki1fvLX8FOid6Mfm9aEGnD+ivk7GAVyKN2EyZYFut5kuce2/vz/6lLVPJ7Ji
+         e4xFy50sBPkC4c6aKDAgIkSv/9g69rOW5gS+8WsG1MZuW2riLAdU+2YDVbWqtWo4WB9p
+         tEw3/eL6f8YWvVdn8uAJdzrITvinPwmvvPLcGpjHCY6bO8rA0ZSgLdSIbQQLkrXpPxNT
+         bNWYeh3H5gY47F0u6MG4axq5XEIRinEAlW4ZjsoNZR8nQ5z4iB+aO22ksTFhdgC8Gr3a
+         p3oQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LFvhTcaRZjgL74aw0ImWpDb76fTfKVSz3niY5jO7t2U=;
+        b=DhTTw8pStXYwA1vkjw2uI/54r88v1iTBAiKNCj7hr4QTkNIuB+YB0Y3qBFdmTh1O2T
+         kZ7eiwR2bptIRcS/eMQyQJa2cx0/DjkGEVxhL3tvhqRiwxpYM8R9khl5iyGuQ92mu8Li
+         YzrQeP5a0o2c/Ve1ox2+4js87qnjfe0LliDaR87DjRj35v+eZZ9/2lPG1mCZoBUNpkeM
+         iu/rR1dErsQYEfDGAsv+MKtHEpR3BXCOC52HyxS/ZObEFh4vv7LcGKHqhO5KTyuO8OR3
+         o/4NqLyK+aF1aAT//X3f7YuziVfMAI5QVf6wwqwV00RdB67vdbQYkQEgunzm0yKS1shy
+         f5uw==
+X-Gm-Message-State: AFqh2krxDHEa29Wjgcd0Wvy40wpk60sOb3ToGPdNPIa9Ssm1avidry3m
+        W7HS8CjWLlRDuhY/fkyotipN/Q==
+X-Google-Smtp-Source: AMrXdXuPM0D6h33ggS86tdoKbX4wsqChC1KyEbKeUzk2LWBE9WFxvgTxRvaU/KF9H7dMQzvrnz2Ctg==
+X-Received: by 2002:a62:6102:0:b0:578:3bc0:57d7 with SMTP id v2-20020a626102000000b005783bc057d7mr24847846pfb.13.1672230159291;
+        Wed, 28 Dec 2022 04:22:39 -0800 (PST)
+Received: from localhost.localdomain (202.60.225.077.static.cyberec.com. [202.60.225.77])
+        by smtp.gmail.com with ESMTPSA id h1-20020a056a00000100b0058124f92399sm5236074pfk.219.2022.12.28.04.22.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Dec 2022 04:22:39 -0800 (PST)
+From:   tongjian <tongjian@huaqin.corp-partner.google.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        perex@perex.cz, tiwai@suse.com,
+        angelogioacchino.delregno@collabora.com, nfraprado@collabora.com,
+        jiaxin.yu@mediatek.com, chunxu.li@mediatek.com,
+        ajye_huang@compal.corp-partner.google.com,
+        tongjian@huaqin.corp-partner.google.com
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] Add new AMP MAX98360A for RT5682S
+Date:   Wed, 28 Dec 2022 20:22:28 +0800
+Message-Id: <20221228122230.3818533-1-tongjian@huaqin.corp-partner.google.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <167220221217.833009.5730063788271218487.b4-ty@kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 27, 2022 at 10:36:56PM -0600, Bjorn Andersson wrote:
-> On Wed, 23 Nov 2022 10:43:39 +0000, Srinivas Kandagatla wrote:
-> > This patchset adds audio support for sc8280xp Lenovo x13s.
-> > Support for Headset Playback/Capture, Speaker Playback and DMIC is
-> > tested.
-> > 
-> > A prebuit ASoC topology file available at
-> > https://git.linaro.org/people/srinivas.kandagatla/audioreach-topology.git/tree/prebuilt/SC8280XP-LENOVO-X13S-tplg.bin
-> > 
-> > [...]
-> 
-> Applied, thanks!
-> 
-> [1/3] arm64: dts: qcom: sc8280xp: add gpr node
->       commit: e73defb2deee74f3f4988196bf0c21782dffa415
-> [2/3] arm64: dts: qcom: sc8280xp: add SoundWire and LPASS
->       commit: c18773d162a63f65024e80ae355e3fbc923e7255
-> [3/3] arm64: dts: qcom: sc8280xp-x13s: Add soundcard support
->       commit: f29077d8665221ba2802a29ee7bd9fcef66cde81
+Add MAX98360A for RT5682S, MAX98360A works same as rt1019. So, it can
+be supported.
 
-Perhaps merging this was a bit premature. I just gave it a spin, but
-this is apparently not even expected to work without various changes
-that are still work in progress. For example, the codecs fails to probe
-with:
+tongjian (2):
+  ASoC: mediatek: mt8186: support rt5682s_max98360
+  ASoC: dt-bindings: mt8186-mt6366: add new compatible for max98360a
 
-[   11.077727] qcom-prm gprsvc:service:2:2: DSP returned error[100100f] 1
-[   11.077926] rx_macro: probe of 3200000.rxmacro failed with error -22
+ .../sound/mt8186-mt6366-rt1019-rt5682s.yaml   |  1 +
+ .../mt8186/mt8186-mt6366-rt1019-rt5682s.c     | 22 ++++++++++++++++++-
+ 2 files changed, 22 insertions(+), 1 deletion(-)
 
-and you need an out-of-tree hack to get around that:
+-- 
+2.25.1
 
-	https://git.linaro.org/people/srinivas.kandagatla/linux.git/commit/?h=lenovo-x13s-6.1.0-rc7-audio&id=0bffb619bf7929c56b7458af3a583fa9ce87fc26
-
-I learned that the hard way after a debugging session.
-
-Even with those hacks in place, I see:
-
-[   14.466733] qcom-soundwire 3330000.soundwire-controller: qcom_swrm_irq_handler: SWR bus clsh detected
-[   14.522324] qcom-soundwire 3330000.soundwire-controller: swrm_wait_for_frame_gen_enabled: link status not disconnected
-[   14.522372] qcom-soundwire 3330000.soundwire-controller: link failed to connect
-
-so this does not look like it was ready to be merged. I'm still not sure
-what else is needed, but there are a bunch of other work-in-progress
-changes in the above branch.
-
-Srini, next time can you please document such dependencies in the cover
-letter to avoid having people debug things that are not even supposed to
-work yet and so that we can hold-off on merging the dts changes until
-driver support in place.
-
-Johan
