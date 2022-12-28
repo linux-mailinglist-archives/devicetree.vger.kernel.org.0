@@ -2,60 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B418658539
+	by mail.lfdr.de (Postfix) with ESMTP id B552565853B
 	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 18:17:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234793AbiL1RQ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 12:16:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36074 "EHLO
+        id S232887AbiL1RQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 12:16:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234868AbiL1RQw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 12:16:52 -0500
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC1AEB87E;
-        Wed, 28 Dec 2022 09:16:51 -0800 (PST)
-Received: by mail-io1-f45.google.com with SMTP id v2so8552010ioe.4;
-        Wed, 28 Dec 2022 09:16:51 -0800 (PST)
+        with ESMTP id S234855AbiL1RQv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 12:16:51 -0500
+Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 459DCB87E;
+        Wed, 28 Dec 2022 09:16:50 -0800 (PST)
+Received: by mail-io1-f43.google.com with SMTP id n63so8543948iod.7;
+        Wed, 28 Dec 2022 09:16:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=rHfMwaOAV9fi7ueWL2mqIc1grouYvmeBq3yswelgrso=;
-        b=bjhChm3Hfmb2xSRTSgswj/nT2k3MBDyOXQUlneX/zlDG4PFn3dpoqWK6JFYi9vUGXw
-         XR5slAJmQNuezfr4Qjt9d60BfAvKnhLNbdp9trw7JDlT7ilP0Yggo6m81fc+7RLtkBLp
-         YY1oi0+bMDca2czkSAKsWHDI0TYoLzVXiAluEg/+55jzhrxuVE9ELgy8FTkA/J6zm5MS
-         UgO+zASxZ53D8v/G0xKjUDgynM4z/ZfDiUxaMF3SBlotRvKg8KdoKL5vwDryTPxut0p+
-         h+95Zf6PqWD7MUd64buHkk4macl/EDQUvzmBHyXpBR/42CkJ5jtueWZsJok85Z26OeG+
-         09mw==
-X-Gm-Message-State: AFqh2krTQGbT5SYO/zMcKr7Ydg46gxElHRO6EpruafY5Li9VkEhXq6HK
-        WRhowxD7rEgKkuh7AyzO1Q==
-X-Google-Smtp-Source: AMrXdXuqOhuydqoQh6LM+Q1TGzx6ph5WP1cYnBRmcVnCotV8vYKiaASi4zDljOx5xBH5l20Bxr6vNQ==
-X-Received: by 2002:a6b:4114:0:b0:6df:dc79:a205 with SMTP id n20-20020a6b4114000000b006dfdc79a205mr15104766ioa.20.1672247811344;
-        Wed, 28 Dec 2022 09:16:51 -0800 (PST)
+        bh=Kws3uwMtrY+FuMqLAlK4QwrZhceDZCqUsibK8/wgUTM=;
+        b=wFCwi63MzHQp192uxhIB8AMFRsIGy9ipOHJ6vJ/UUibimRSGSC+AQem9eqPrlQ9Cgc
+         eGOeuqLAbh2UqmUaW26gvRlLCZG7q45h3/0XjAE0PJIbg6hatmyV5YY413q6FEhTfzp5
+         Pnt7S+6q1A2k2jG+ijaYuMi4MbxkqK0XSzPtlI2sgvqEKaf8TlfWO3MeoxYefLjxFHYN
+         iL+Tx1aiw6j1WsFYKKTN8AE+mUUeNipW4wzsdOtMkkwSRpLPYTRxeRBaefif9Gmgxiqs
+         pb1srL13Th+iBGrtQrHunzzJGVATy1D7mSlBgrEsznVo6/2QVMNUOE/zc8lvWo/4NP3r
+         CAUw==
+X-Gm-Message-State: AFqh2kpBEj4RyLg0xJHQT4THeU/9LK1jVLWOUY3WIMUZ4/RmJzjJJUyQ
+        mzIFmsIeBa9c0tOMnr8c+sw4bj+o/Q==
+X-Google-Smtp-Source: AMrXdXsxtfXIdRf6NFPgIYsJl+SBmJxdpwxCgbwPWzfTt0i1r4DbvWN9npBTHgWET7TqkG0cH9wIkw==
+X-Received: by 2002:a5e:db4d:0:b0:6df:427:1ecd with SMTP id r13-20020a5edb4d000000b006df04271ecdmr26901601iop.8.1672247809362;
+        Wed, 28 Dec 2022 09:16:49 -0800 (PST)
 Received: from robh_at_kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id v1-20020a056602058100b006bb57cfcb88sm6057433iox.44.2022.12.28.09.16.50
+        by smtp.gmail.com with ESMTPSA id b10-20020a056638388a00b00374fbd37c72sm5350795jav.147.2022.12.28.09.16.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Dec 2022 09:16:51 -0800 (PST)
-Received: (nullmailer pid 1928461 invoked by uid 1000);
+        Wed, 28 Dec 2022 09:16:48 -0800 (PST)
+Received: (nullmailer pid 1928463 invoked by uid 1000);
         Wed, 28 Dec 2022 17:16:44 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Hari Nagalla <hnagalla@ti.com>
-Cc:     andersson@kernel.org, p.zabel@pengutronix.de, j-luthra@ti.com,
-        robh+dt@kernel.org, praneeth@ti.com, vigneshr@ti.com,
-        a-bhatia1@ti.com, nm@ti.com, devarsht@ti.com, s-anna@ti.com,
-        linux-remoteproc@vger.kernel.org, mathieu.poirier@linaro.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-In-Reply-To: <20221228123655.15384-2-hnagalla@ti.com>
-References: <20221228123655.15384-1-hnagalla@ti.com>
- <20221228123655.15384-2-hnagalla@ti.com>
-Message-Id: <167224753896.1921532.11791738136486951543.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: k3-dsp: update bindings for
- AM62A SoCs
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+        devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+In-Reply-To: <20221228133243.3052132-2-dmitry.baryshkov@linaro.org>
+References: <20221228133243.3052132-1-dmitry.baryshkov@linaro.org>
+ <20221228133243.3052132-2-dmitry.baryshkov@linaro.org>
+Message-Id: <167224753985.1921575.2829498629927482782.robh@kernel.org>
+Subject: Re: [PATCH 01/16] dt-bindings: clock: qcom,gcc-msm8998: drop
+ core_bi_pll_test_se
 Date:   Wed, 28 Dec 2022 11:16:44 -0600
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -68,38 +71,30 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed, 28 Dec 2022 06:36:54 -0600, Hari Nagalla wrote:
-> The TI AM62A SoCs have a C7xv DSP and Analytics engine for deep
-> learning purposes. The DSP part is similar to the C71x DSP found on
-> K3 J7 SoCs, but additional hardware accelerators and IP are added to
-> the subsystem for deep learning.
+On Wed, 28 Dec 2022 15:32:28 +0200, Dmitry Baryshkov wrote:
+> The test clock apparently it's not used by anyone upstream. Remove it.
 > 
-> Compatible info is updated to match AM62A SoCs.
-> 
-> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  .../devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml        | 3 +++
->  1 file changed, 3 insertions(+)
+>  Documentation/devicetree/bindings/clock/qcom,gcc-msm8998.yaml | 4 ----
+>  1 file changed, 4 deletions(-)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml:116:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
 
 dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.example.dts'
-Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml:116:1: found character '\t' that cannot start any token
-make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.example.dts] Error 1
+Error: Documentation/devicetree/bindings/clock/qcom,gcc-msm8998.example.dts:31.9-10 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:434: Documentation/devicetree/bindings/clock/qcom,gcc-msm8998.example.dtb] Error 1
 make[1]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml:116:1: found character '\t' that cannot start any token
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml: ignoring, error parsing file
 make: *** [Makefile:1508: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221228123655.15384-2-hnagalla@ti.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221228133243.3052132-2-dmitry.baryshkov@linaro.org
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
