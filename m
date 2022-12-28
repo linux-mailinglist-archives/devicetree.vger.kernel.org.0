@@ -2,105 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77B196576D0
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 14:11:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FFB86576E1
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 14:20:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230171AbiL1NLR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 08:11:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35908 "EHLO
+        id S230183AbiL1NUF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 08:20:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230350AbiL1NLQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 08:11:16 -0500
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35E0011816
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 05:11:15 -0800 (PST)
-Received: by mail-ej1-x62e.google.com with SMTP id gh17so38315485ejb.6
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 05:11:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yIvj6CLKAGPbCzVViYil+tBlKneBu3LIA/3PrIIlxx4=;
-        b=DRQ24GnDGTJCp91rOOPpd4MtC7ukbeiX4EMp7aaJqkpCm2c4YkEhnQWvzuFja3CjCQ
-         xI8qWXKmegyowqhNcU0SRG6LG/3GTHzQVxYleWpeTMVFfvPr7egRzwtTTWtdAUS8KHRO
-         szlcy8xQTiLOXFeK0pyHFjIIfvlKZynD1wkg68WL3IGYgSEl67eXeV9d/EvA/oEkJV/1
-         GMf0IFUgvhrMLi2dGnhjqq2drvfm7x3zG1+No14q//ZhIWA14kk3GPU+MXbaNLB38jvA
-         JNIql6COciiep7X4T8M1aFIBNsgChvXrzni5hhVsOsLBBV5BarNDFp4VFceKo2y4iE8s
-         N6hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yIvj6CLKAGPbCzVViYil+tBlKneBu3LIA/3PrIIlxx4=;
-        b=YYDVYORo0jtE5xeD5FupU9FdKkuVcUL4hpSrqkurDQm0pH2eRXdVx7q+zsJgYY8KB4
-         zjyyEXefuBsh4qSOS4JjLNbT5lT7vpQpA8PG090gBSuRVNohccU8U+EeIzNrzPAP5UNe
-         iIGIlJawtrPVJ6eYTI1G19Wu5qywYvF/rgl6fKDYtWD+GanpuL6crFTKEXKTLiy2P022
-         7fOgRrSTi8hN5AFbHsHM5IzojV+1LIrkhMgww1lA6xSYalj67EIJWNcU/PkiHYUa3nLl
-         fddmZ5cSqqfJ8FSBppEadpxHxthRmmYDRJ1whGlxVfa4CMn/JkTYxNeqGFRsuZGzqw7H
-         CcSA==
-X-Gm-Message-State: AFqh2kpSbaInnWA6EvXovnjBaxWVTZY7KmzqwxeTC7I1WttgM1xDRb5e
-        7g1D01DxlkAEa1pItXUUoTer5A==
-X-Google-Smtp-Source: AMrXdXvpJhSvObvLScgLH6nL9n1cKt22C9piLD5CYaGNWqas2AZDzHDkw5CZGHCuOLlqJ7typZS3DQ==
-X-Received: by 2002:a17:906:6b96:b0:7c1:4bb2:f62b with SMTP id l22-20020a1709066b9600b007c14bb2f62bmr21246963ejr.27.1672233073820;
-        Wed, 28 Dec 2022 05:11:13 -0800 (PST)
-Received: from planet9.chello.ie (2001-1c06-2302-5600-85f6-04b5-1651-3b6c.cable.dynamic.v6.ziggo.nl. [2001:1c06:2302:5600:85f6:4b5:1651:3b6c])
-        by smtp.gmail.com with ESMTPSA id g11-20020a056402180b00b0046bb7503d9asm7099545edy.24.2022.12.28.05.11.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Dec 2022 05:11:13 -0800 (PST)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
-        dmitry.baryshkov@linaro.org, sean@poorly.run, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     quic_mkrishn@quicinc.com, andersson@kernel.org,
-        swboyd@chromium.org, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        bryan.odonoghue@linaro.org
-Subject: [PATCH v2 1/1] dt-bindings: msm: dsi-phy-28nm: Add missing qcom,dsi-phy-regulator-ldo-mode
-Date:   Wed, 28 Dec 2022 13:11:10 +0000
-Message-Id: <20221228131110.213116-2-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221228131110.213116-1-bryan.odonoghue@linaro.org>
-References: <20221228131110.213116-1-bryan.odonoghue@linaro.org>
+        with ESMTP id S229587AbiL1NUD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 08:20:03 -0500
+Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3603E09D;
+        Wed, 28 Dec 2022 05:20:02 -0800 (PST)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.west.internal (Postfix) with ESMTP id BE22E320093C;
+        Wed, 28 Dec 2022 08:20:00 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Wed, 28 Dec 2022 08:20:02 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        tom-fitzhenry.me.uk; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; t=1672233600; x=1672320000; bh=NnxyuSjPe4
+        7CKfUwte6w8c6VBQb/k7DbuSDxv2BLmng=; b=WfyjGyqG12yhYjnnlt5yX0bY/s
+        c1uKXrryw2mU/oh5Fta4torBmnvK6GXs+ixYQgL4gehIHdm9+XRIBu9osoGiQBh8
+        NeOdLruTyqdEMCeb24P06V9X8UDvPJLMD2AaZKvu1ZEY7E/WOVuj3fale9ntQmU1
+        EFx9halZUjzdDE1yM+fe2GvuTfbUCq6J6Rs3xtAhg1lU6fRanJ4eLVxyt54smY7V
+        srWk/yLwkm2gjFasXJMcXbHIqGAf4S1e8yRED5PDf2sp8/2J2EqaGaaT5v48PbVZ
+        1lnhgkDZ+3xXZdvFPKqDAMM3ZpcrNvd7X8v5wPVkF3fsR9PoYi7e8cxBIbRw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1672233600; x=
+        1672320000; bh=NnxyuSjPe47CKfUwte6w8c6VBQb/k7DbuSDxv2BLmng=; b=t
+        78bjezcCqMhL/qEsXN52xffaVFBfszMEfSa6xYQ5qvMnN7yLY6C1CG4+bAz3Jj5p
+        t6aA2pP6NBzvLJ44oNUwW5NTeXTOmZO6cUqBAd3GptVTdN06CYe/tCtO1tA9sBcf
+        djPOjWvjaMj3xx0KdtR5q6WsQfWmrSt80i4+jcA2iWKeU+EoYVMCU6yQuHAasod4
+        x9xhoi48jCod2aUzPDWyWpIPAnYag4UQ/7ud5cUe485LHJ4cNax+wDch8ga//idF
+        fOLOyWkcUyPsXuioeM2sNvZc9ZFu6mQTn7szkWhm69Q7/563pe6rLYRjGq4EANZ5
+        Crr17XPGzwnKFyI/yurbQ==
+X-ME-Sender: <xms:f0KsY4-OCSSwjsN2AxNQN5xWdex9kw4YVm79doe5x4daF3525u-ElQ>
+    <xme:f0KsYwtJ8KN9cFNO08g3cgCi0zo6kqXw14L1O3k-QsaP8w9lfq9BIVdCaCAOyvSdq
+    aNjvqrC_26ZHiH_hg>
+X-ME-Received: <xmr:f0KsY-BTc4Z4uRrH-i8QAtF6P9rRSU2VBdNxBDhmncDeM2JCgWFdooSx5xSXls9CWbyLIt1U0KBoXPihbSfzKn4l>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedriedvgdehudcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefkffggfgfvvehfhffujggtgfesthekredttdefjeenucfhrhhomhepvfhomhcu
+    hfhithiihhgvnhhrhicuoehtohhmsehtohhmqdhfihhtiihhvghnrhihrdhmvgdruhhkqe
+    enucggtffrrghtthgvrhhnpeeiueelgedvudfhkeeufeeiuefhteeftdffhfefudehjeet
+    hedtfeeikeevieffgeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrih
+    hlfhhrohhmpehtohhmsehtohhmqdhfihhtiihhvghnrhihrdhmvgdruhhk
+X-ME-Proxy: <xmx:f0KsY4di2bMNhJ7Jj3CMM5B-mA0K4lMHMv38ArJTepf789lv8uSa6w>
+    <xmx:f0KsY9MBzATAzVxlLCG_NGVeLZgzgBMY6pY7FNodevssuBN3BKlXmQ>
+    <xmx:f0KsYyn16n3v4StfC8hzQQ3csWM_XNST5ty3qJEjrQ_V3nDmPlwFlA>
+    <xmx:gEKsY_3s_-bJy5Sl3TehTCToUXiFNdCiYP6xr4uUMNDJVqt61kZK4Q>
+Feedback-ID: iefc945ae:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 28 Dec 2022 08:19:55 -0500 (EST)
+Message-ID: <b7204e9a-cb23-c2ed-88de-0d6271bba98a@tom-fitzhenry.me.uk>
+Date:   Thu, 29 Dec 2022 00:19:52 +1100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Content-Language: en-US
+To:     Javier Martinez Canillas <javierm@redhat.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Peter Robinson <pbrobinson@gmail.com>,
+        Martijn Braam <martijn@brixit.nl>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Neal Gompa <ngompa13@gmail.com>,
+        =?UTF-8?Q?Kamil_Trzci=c5=84ski?= <ayufan@ayufan.eu>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Robert Mader <robert.mader@posteo.de>,
+        Onuralp Sezer <thunderbirdtr@fedoraproject.org>,
+        Ondrej Jirman <megi@xff.cz>, dri-devel@lists.freedesktop.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+References: <20221227110335.2923359-1-javierm@redhat.com>
+ <20221227110335.2923359-5-javierm@redhat.com>
+From:   Tom Fitzhenry <tom@tom-fitzhenry.me.uk>
+Subject: Re: [PATCH v3 4/4] arm64: dts: rk3399-pinephone-pro: Add internal
+ display support
+In-Reply-To: <20221227110335.2923359-5-javierm@redhat.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add in missing qcom,dsi-phy-regulator-ldo-mode to the 28nm DSI PHY.
-When converting from .txt to .yaml we missed this one.
+On 27/12/22 22:03, Javier Martinez Canillas wrote:
+> From: Ondrej Jirman <megi@xff.cz>
+> 
+> The phone's display is using Hannstar LCD panel, and Goodix based
+> touchscreen. Support it.
+> 
+> Signed-off-by: Ondrej Jirman <megi@xff.cz>
+> Co-developed-by: Martijn Braam <martijn@brixit.nl>
+> Signed-off-by: Martijn Braam <martijn@brixit.nl>
+> Co-developed-by: Kamil Trzciński <ayufan@ayufan.eu>
+> Signed-off-by: Kamil Trzciński <ayufan@ayufan.eu>
+> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
 
-Fixes: 4dbe55c97741 ("dt-bindings: msm: dsi: add yaml schemas for DSI bindings")
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- .../devicetree/bindings/display/msm/dsi-phy-28nm.yaml         | 4 ++++
- 1 file changed, 4 insertions(+)
+Tested-by: Tom Fitzhenry <tom@tom-fitzhenry.me.uk>
 
-diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml
-index 3d8540a06fe22..95076c90ea171 100644
---- a/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml
-@@ -25,6 +25,10 @@ properties:
-       - description: dsi phy register set
-       - description: dsi phy regulator register set
- 
-+  qcom,dsi-phy-regulator-ldo-mode:
-+    type: boolean
-+    description: Indicates if the LDO mode PHY regulator is wanted.
-+
-   reg-names:
-     items:
-       - const: dsi_pll
--- 
-2.34.1
+Display and touchscreen works on my Pinephone Pro, thanks for the 
+mainlining!
 
+> @@ -367,6 +474,10 @@ vcc1v8_codec_en: vcc1v8-codec-en {
+>   	};
+>   };
+>   
+> +&pwm0 {
+> +	status = "okay";
+> +};
+
+Please move &pwm0 before &sdio0, to keep this ~alphabetical.
