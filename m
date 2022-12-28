@@ -2,77 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A7F0657665
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 13:26:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2114E657680
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 13:37:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229632AbiL1M0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 07:26:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50024 "EHLO
+        id S232618AbiL1MhK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 07:37:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229822AbiL1M00 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 07:26:26 -0500
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC5DFE72
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 04:26:25 -0800 (PST)
-Received: by mail-lj1-x22d.google.com with SMTP id g14so16376914ljh.10
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 04:26:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ub4ATzUfOQ3XmwVarg+cJkngzbh6iXKnfcPqJ9I4RlY=;
-        b=JQTsGEnoyxqTgLMb3BsXtAxnqxGelXXtAenB1eBJeZbzHYymRlyju3DIpRW+PcTFZp
-         kljrBbN9AXs3aTwyTPG0ALjls2UfO9yPRMM6sGkW3jX7UaRpvUntGTRTHUpN1GpOoaAV
-         cjgbg7+oFkAnQVA1vJD/YeBq+fhk55c4bknUjgSBMSoJQt7OqZplK6gdoOpgTnwi2q0w
-         P0egTcxMqtR+45w3aUzERJfPz86cfwATnvcBqXav3x5ee4OD3gortep1QKoZUL3uFVit
-         WxM3yLB8DThZszAM/fY1p/xMbS19hyTdRMBbYx7q5cU8JcRZhjBcSzfkZKrkC0V/vjDf
-         8YNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ub4ATzUfOQ3XmwVarg+cJkngzbh6iXKnfcPqJ9I4RlY=;
-        b=7ttoBVCq0gS6Su0ovMHMypgivmGhNIQrorQZb1sgRbDRYSO+rfs6IA7Q1LNjvVbwF9
-         MffaSkp7mvclIrWWs2TgpqomDihn4KC0YOlBG+9RTwXbP9mc9G6sDxXcFo7X8T53sBvz
-         twrzwlwsstGcRDZbd9N6z7CtB1AbhYAmQpZYKlpoWjdBZmam0P555He3qu4YR78WlF6C
-         i5LjXH5tiIiNCwVId79BB5p0e3o1OX4Cp1jXncB7Sp77ghiUgUnFUIrm9HfkykvxNbhb
-         cDnrABRjx0NljJC6xiNqm/kOM4flwex3mOI7BxDFvrChmlKqBv7hz91LBjY2FTOJ6cs7
-         7jnw==
-X-Gm-Message-State: AFqh2koRMSWvoBHdICp2qyUl0Voi8zetcCcRQGLXo5pYwjnNu7hT/0bC
-        wNwX+2jf9dKfCXiiRtxB4+nX1Q==
-X-Google-Smtp-Source: AMrXdXuFOgavTsz6/VjUbcdE+BABkvmBsLjBmuASv+YLKGodRKLJ5a+n9HlkS7L6YG3pZVFop41hhQ==
-X-Received: by 2002:a2e:998e:0:b0:278:e50e:9b38 with SMTP id w14-20020a2e998e000000b00278e50e9b38mr6272779lji.5.1672230384061;
-        Wed, 28 Dec 2022 04:26:24 -0800 (PST)
-Received: from [192.168.1.101] (abyl184.neoplus.adsl.tpnet.pl. [83.9.31.184])
-        by smtp.gmail.com with ESMTPSA id o10-20020a2e730a000000b00279ebd80387sm1916232ljc.133.2022.12.28.04.26.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Dec 2022 04:26:23 -0800 (PST)
-Message-ID: <508441b7-5af1-ee58-4787-9e3996fb16da@linaro.org>
-Date:   Wed, 28 Dec 2022 13:26:22 +0100
+        with ESMTP id S232929AbiL1MhI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 07:37:08 -0500
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED8881057D;
+        Wed, 28 Dec 2022 04:37:07 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2BSCatOp126422;
+        Wed, 28 Dec 2022 06:36:55 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1672231015;
+        bh=O2Hz9Uvtnd+mG34FJzY1H/GA1klNaJL0QZfQb3d9kfY=;
+        h=From:To:CC:Subject:Date;
+        b=TI1bvCpWE/6Ij7fMFfjrHZck0cNcwJYaRqLDNA4kxmvY+C2qQmPePk5OzEZ4tgOCN
+         g+Y/rWANr8f/RbmW6lO0XljFPnkJoxGvrroSx+HjAi+s+2u5SDbsDuvqAgPhduKmzX
+         T6MiPH0a2jupG9V92SkPj4djhGIE5L6EpYQ9nros=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2BSCatlQ055671
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 28 Dec 2022 06:36:55 -0600
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 28
+ Dec 2022 06:36:55 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 28 Dec 2022 06:36:55 -0600
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2BSCatiw064113;
+        Wed, 28 Dec 2022 06:36:55 -0600
+From:   Hari Nagalla <hnagalla@ti.com>
+To:     <andersson@kernel.org>, <devicetree@vger.kernel.org>,
+        <mathieu.poirier@linaro.org>, <p.zabel@pengutronix.de>,
+        <linux-remoteproc@vger.kernel.org>, <robh+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <s-anna@ti.com>
+CC:     <hnagalla@ti.com>, <praneeth@ti.com>, <nm@ti.com>,
+        <vigneshr@ti.com>, <a-bhatia1@ti.com>, <j-luthra@ti.com>,
+        <devarsht@ti.com>
+Subject: [PATCH 0/2] Add C7xv DSP for AM62A
+Date:   Wed, 28 Dec 2022 06:36:53 -0600
+Message-ID: <20221228123655.15384-1-hnagalla@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8350: add missing
- core_bi_pll_test_se GCC clock
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221228112456.31348-1-krzysztof.kozlowski@linaro.org>
- <d2e303d9-3ac4-f574-680f-4f5ccbf5ed13@linaro.org>
- <5001001a-203f-e832-f916-ce483b2d8ea1@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <5001001a-203f-e832-f916-ce483b2d8ea1@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,33 +64,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+AM62A SoC family has a C7xv DSP subsystem with Analytics engine. This
+susbystem is intended for deep learning purposes. C7xv is similar to C71
+DSPs on K3 J7 SoCs with additional harware accelerators and IP updates
+for deep learining.
 
+Hari Nagalla (2):
+  dt-bindings: remoteproc: k3-dsp: update bindings for AM62A SoCs
+  remoteproc: k3-c7x: Add support for C7xv DSP on AM62A SoC
 
-On 28.12.2022 12:55, Krzysztof Kozlowski wrote:
-> On 28/12/2022 12:37, Konrad Dybcio wrote:
->>
->>
->> On 28.12.2022 12:24, Krzysztof Kozlowski wrote:
->>> The GCC bindings expect core_bi_pll_test_se clock input, even if it is
->>> optional:
->>>
->>>   sm8350-mtp.dtb: clock-controller@100000: clock-names:2: 'core_bi_pll_test_se' was expected
->>>
->>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> ---
->> Is it even going to be used by anybody, or should we just drop
->> it on the driver side as per usual?
-> 
-> It's mentioned as possible parent, so there might be users somewhere...
-> Or you want to say that other binding and DTS users cannot use that clock?
-There's no driver (even downstream) for a supplier of this clock and it's
-(probably) only used for early validation by qcom folks. What we're
-interested in, as far as debugging clocks goes, is handled by debugcc [1].
+ .../bindings/remoteproc/ti,k3-dsp-rproc.yaml         |  3 +++
+ drivers/remoteproc/ti_k3_dsp_remoteproc.c            | 12 ++++++++++++
+ 2 files changed, 15 insertions(+)
 
-Konrad
+-- 
+2.17.1
 
-[1] https://github.com/andersson/debugcc/
-> 
-> Best regards,
-> Krzysztof
-> 
