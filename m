@@ -2,130 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09C986575E7
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 12:25:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 418C16575EC
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 12:32:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232250AbiL1LZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 06:25:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58272 "EHLO
+        id S232680AbiL1LcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 06:32:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232802AbiL1LZD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 06:25:03 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41CD910FDA
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 03:25:02 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id bf43so23225963lfb.6
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 03:25:02 -0800 (PST)
+        with ESMTP id S229976AbiL1LcN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 06:32:13 -0500
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22C7063FC
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 03:32:13 -0800 (PST)
+Received: by mail-pg1-x530.google.com with SMTP id r18so10392599pgr.12
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 03:32:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wxQKtpqEKgNK0XIww8UA1aIJr9PXHMFG6enXL7OwExY=;
-        b=X2yYaoQkwcf+fjR2y5L5/FMtbY5h8aX9N1N9MLHHS6HY/UL9kV694QTCF2e/AeMsh1
-         W7odb08NMLRXNkwpjJCN4tEui8RbViWxpaMly2HfR2hq6FtaijaHAwAFATmukD5WyWMw
-         Lv4v5DgUgVGyOgT/EsIb6ApRJxFY0lQjnOLKrago59JiGtyFbwK7E/1GpbNP1x24BFLX
-         L9AYsu5cFf82wc3ERKcY0XB75hdl2Lz84SAtn23ISgvWO7sh0wqpVcZQPFMoxcR/PMvK
-         MQii8pX0WE6t98maJQDYf4f9wU+JuxOJ2fAM6l5Z4Sfi1dF93awz40P75S8+QvfcovFI
-         h2Kw==
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KTmLp3WPbuZV+b+hTAD9egOWKyUGIagroxlWC31ebpo=;
+        b=nvJ56kdO6TYBqlvfyBBy44mrPbj6j0sswfmD+BfW6JUnz947+VBa0I4+vIvGnGxL2C
+         xsOILcAE8JSmL+VcfWGh+DcPuST3RRIwqbyi/SEUy/pYwNbKJkCU429Z+w9m3YyJfkj+
+         osoiuk3YMs4zhIh181anhkeSpwMm/FhgqeYWI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wxQKtpqEKgNK0XIww8UA1aIJr9PXHMFG6enXL7OwExY=;
-        b=ZcjDBFp+aXPMIgVyYzA6MTqy/iVoNae6HTGwmSir/eTPliMK+n+b+eiX+YI2g4Gk+V
-         2IRPI9DSM2qzSDO3MGU6X22EF0DIxxacbHBlZ7XvFWo85enkAAhKGF7YOwkpmHjffs+n
-         IcCY2YHBnDWec0gOdhSqRYmR3UStlczm2rCN0UqcuXLYRGJwFkcqP8ajekbKD0zZ88SZ
-         QbiqoMC0tDtiW4pDMPxntvcSij7fbHCFcASX9ujSV30yf6w1rvRgUfvpsRGjTb0q7Ilu
-         DzBa+ls1ZnuQxVB2CzmGGSJ3lQR+4omV5Dfaw5cQLAP/7ve7a+pQjcNtnFyFgeu5xN0I
-         fXHw==
-X-Gm-Message-State: AFqh2kqvclgUex1JGHDgiFv2Ac7NEqJZCX5abEYqOQ3c+Ra3HFI/7xN3
-        1xW3gDOewwTzFOJCvqWMnHMoJQ==
-X-Google-Smtp-Source: AMrXdXtCuX1JohTI75HT0EnQ6wennnb5DL6K2v/XA9356DTxwFDa+hJP9kdXWCba5ho8k6zebHlwIw==
-X-Received: by 2002:a05:6512:3589:b0:4b1:feb:a338 with SMTP id m9-20020a056512358900b004b10feba338mr6613067lfr.46.1672226700677;
-        Wed, 28 Dec 2022 03:25:00 -0800 (PST)
-Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id y16-20020ac255b0000000b004cb0242704asm1627039lfg.255.2022.12.28.03.24.59
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KTmLp3WPbuZV+b+hTAD9egOWKyUGIagroxlWC31ebpo=;
+        b=wW0F9KpPM+VD4PK1oGWo+yJTFowUlmFLDk8fuSGO9nkHsUQTC2h42YEIr6Nx1HEFbr
+         +Awlax0HH7XP7PubgQzKrGWRJ8uRYSHTADA+hJ8uWzjisRTm71G3vD7QgG/QKdRXsh9h
+         RmMhITMJUhzghRIpfLMRM1prhOtmkE+ZXl4Ul+eo8A6h+/Nh9giWSiqBm5ctH02brD/q
+         ixek9V56ZxWfBDBxJ/XwQyUGmdX4h+WfK02ZoMHYKiHJrF17MCGbBhl9zm1VnSE7diKi
+         zTyltVJTxCE40toevPDs4TTwPU3wPgKRLpBVIGQUyQ4ZQVpHnSzkVlZiJzUZgLajJJfc
+         i1tA==
+X-Gm-Message-State: AFqh2kphy63xDosVK5FDyA+ChAWyYCNub1DjBKMoJ+Fk6n4yA6QAc/mi
+        maC+hvgWqpjDQWnuUjdK/XeHtg==
+X-Google-Smtp-Source: AMrXdXsMYQjyC6xgL+G4AOqkuUQJXWG3LyE0123LXzv3W/PwJe5cSz4GYQWNfvPJ8/GMg0yggFHymw==
+X-Received: by 2002:a05:6a00:26d8:b0:56b:9b71:ca2f with SMTP id p24-20020a056a0026d800b0056b9b71ca2fmr23155416pfw.11.1672227132377;
+        Wed, 28 Dec 2022 03:32:12 -0800 (PST)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:882f:1d5e:9d7e:ebbd])
+        by smtp.gmail.com with ESMTPSA id w18-20020aa79a12000000b00581816425f3sm1987756pfj.112.2022.12.28.03.32.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Dec 2022 03:25:00 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Wed, 28 Dec 2022 03:32:12 -0800 (PST)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] arm64: dts: qcom: sm8350-sony-xperia-sagami: specify which LDO modes are allowed
-Date:   Wed, 28 Dec 2022 12:24:56 +0100
-Message-Id: <20221228112456.31348-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221228112456.31348-1-krzysztof.kozlowski@linaro.org>
-References: <20221228112456.31348-1-krzysztof.kozlowski@linaro.org>
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: [PATCH] arm64: dts: mt8183: jacuzzi: Move panel under aux-bus
+Date:   Wed, 28 Dec 2022 19:32:04 +0800
+Message-Id: <20221228113204.1551180-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.39.0.314.g84b9a713c41-goog
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This board uses RPMH, specifies "regulator-allow-set-load" for LDOs,
-but doesn't specify any modes with "regulator-allowed-modes":
+Read edp panel edid through aux bus, which is a more preferred way. Also
+use a more generic compatible since each jacuzzi models use different
+panels.
 
-  sm8350-sony-xperia-sagami-pdx214.dtb: regulators-0: ldo5: 'regulator-allowed-modes' is a dependency of 'regulator-allow-set-load'
-
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
 ---
- arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ .../dts/mediatek/mt8183-kukui-jacuzzi.dtsi    | 26 ++++++++++---------
+ 1 file changed, 14 insertions(+), 12 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
-index 4862fd69413e..a403fabc8da7 100644
---- a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
-@@ -171,6 +171,8 @@ pm8350_l5: ldo5 {
- 			regulator-max-microvolt = <888000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
- 		};
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
+index 3ac83be53627..543286ce9cea 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
+@@ -6,18 +6,6 @@
+ #include "mt8183-kukui.dtsi"
  
- 		pm8350_l6: ldo6 {
-@@ -179,6 +181,8 @@ pm8350_l6: ldo6 {
- 			regulator-max-microvolt = <1208000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
+ / {
+-	panel: panel {
+-		compatible = "auo,b116xw03";
+-		power-supply = <&pp3300_panel>;
+-		backlight = <&backlight_lcd0>;
+-
+-		port {
+-			panel_in: endpoint {
+-				remote-endpoint = <&anx7625_out>;
+-			};
+-		};
+-	};
+-
+ 	pp1200_mipibrdg: pp1200-mipibrdg {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "pp1200_mipibrdg";
+@@ -181,6 +169,20 @@ anx7625_out: endpoint {
+ 				remote-endpoint = <&panel_in>;
+ 			};
  		};
- 
- 		pm8350_l7: ldo7 {
-@@ -187,6 +191,8 @@ pm8350_l7: ldo7 {
- 			regulator-max-microvolt = <3008000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
- 		};
- 
- 		/* L8 - lcx.lvl (ARC) */
-@@ -197,6 +203,8 @@ pm8350_l9: ldo9 {
- 			regulator-max-microvolt = <1200000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
- 		};
++
++		aux-bus {
++			panel: panel {
++				compatible = "edp-panel";
++				power-supply = <&pp3300_panel>;
++				backlight = <&backlight_lcd0>;
++
++				port {
++					panel_in: endpoint {
++						remote-endpoint = <&anx7625_out>;
++					};
++				};
++			};
++		};
  	};
+ };
  
 -- 
-2.34.1
+2.39.0.314.g84b9a713c41-goog
 
