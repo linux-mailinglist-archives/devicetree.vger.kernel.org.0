@@ -2,65 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 115A1657249
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 04:23:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5034B657257
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 04:33:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229692AbiL1DXn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 22:23:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58248 "EHLO
+        id S229660AbiL1DdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 22:33:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229475AbiL1DXm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 22:23:42 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72B4A10DC;
-        Tue, 27 Dec 2022 19:23:36 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 7D12C24E232;
-        Wed, 28 Dec 2022 11:23:33 +0800 (CST)
-Received: from EXMBX173.cuchost.com (172.16.6.93) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 28 Dec
- 2022 11:23:33 +0800
-Received: from [192.168.120.49] (171.223.208.138) by EXMBX173.cuchost.com
- (172.16.6.93) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 28 Dec
- 2022 11:23:31 +0800
-Message-ID: <e03fb7bc-b196-bc8a-b396-fab8686d396b@starfivetech.com>
-Date:   Wed, 28 Dec 2022 11:23:31 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 5/9] dt-bindings: net: motorcomm: add support for
- Motorcomm YT8531
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-riscv@lists.infradead.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230356AbiL1DdG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 22:33:06 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24A39E00A;
+        Tue, 27 Dec 2022 19:33:05 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id CD060B8109D;
+        Wed, 28 Dec 2022 03:33:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2A14C433EF;
+        Wed, 28 Dec 2022 03:33:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1672198382;
+        bh=OxYFzOxUddD53IoxgH6JG051kpj+BcBJ+9Mpo8HDiak=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=aEXlyD5g+mFtRA2cM1mdUHTGTEgazk6SERcHP3xA5YWEAE4iHaRaIEW5oX//3dDgv
+         bOgpnNWzebrP6OETwArgTHByz+xXgrqEJ0/sfobogNufdBeOLQ+ukUK5TYYmaO35DC
+         r5EUFupMsrvNyPAx6xKyl8Gx1MvJoemmoTAQODy9J70F+hu0dNbLzL03JNsPGpBCIk
+         6pvP6/EnJMdGEpOCWu8k8RJf2ENL/BLREDHOPLhGNS0CMryeJnZ5hH9umOIAGI5Ayp
+         V+Nsh5J065k7gLpBaaPaopDKNEMZ61Xw6HHe/T3TIxK/vQlUbWlYXb48PSgv++c7yr
+         62a/rwQKmyjNA==
+Date:   Tue, 27 Dec 2022 21:32:59 -0600
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     swboyd@chromium.org, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        mka@chromium.org, Yunlong Jia <ecs.beijing2022@gmail.com>,
+        linux-arm-msm@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-input@vger.kernel.org, Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>
-References: <20221216070632.11444-1-yanhong.wang@starfivetech.com>
- <20221216070632.11444-6-yanhong.wang@starfivetech.com>
- <994718d8-f3ee-af5e-bda7-f913f66597ce@linaro.org>
- <134a2ead-e272-c32e-b14f-a9e98c8924ac@starfivetech.com>
- <c296cf6b-6c50-205d-d5f5-6095c0a6c523@linaro.org>
-From:   yanhong wang <yanhong.wang@starfivetech.com>
-In-Reply-To: <c296cf6b-6c50-205d-d5f5-6095c0a6c523@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX173.cuchost.com
- (172.16.6.93)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 4/4] arm64: dts: qcom: sc7180: Add pazquel360
+ touschreen
+Message-ID: <20221228033259.vdajrkgxl5sy2ete@builder.lan>
+References: <20221209171240.1614904-1-dianders@chromium.org>
+ <20221209091234.v3.4.Id132522bda31fd97684cb076a44a0907cd28097d@changeid>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221209091234.v3.4.Id132522bda31fd97684cb076a44a0907cd28097d@changeid>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,31 +60,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2022/12/27 17:52, Krzysztof Kozlowski wrote:
-> On 27/12/2022 10:38, yanhong wang wrote:
->>>
->>> This must be false. After referencing ethernet-phy this should be
->>> unevaluatedProperties: false.
->>>
->>>
->> 
->> Thanks. Parts of this patch exist already, after discussion unanimity was achieved,
->> i will remove the parts of YT8531 in the next version.
+On Fri, Dec 09, 2022 at 09:12:40AM -0800, Douglas Anderson wrote:
+> The touchscreen was supposed to have been added when pazquel360 first
+> was added upstream but was missed. Add it now.
 > 
-> I don't understand what does it mean. You sent duplicated patch? If so,
-> please do not... you waste reviewers time.
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+> ---
 > 
-> Anyway this entire patch does not meet criteria for submission at all,
-> so please start over from example-schema.
+> Changes in v3:
+> - Removed hid-descr-addr
 > 
+>  .../dts/qcom/sc7180-trogdor-pazquel360.dtsi   | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi
+> index 5702325d0c7b..ff9dd6857f8b 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi
+> @@ -14,6 +14,25 @@ &alc5682 {
+>  	realtek,dmic-clk-rate-hz = <2048000>;
+>  };
+>  
+> +ap_ts_pen_1v8: &i2c4 {
+> +	status = "okay";
 
-Sorry, maybe I didn't make it clear, which led to misunderstanding. Motorcomm Inc is also 
-carrying out the upstream of YT8531, and my patch will be duplicated and conflicted 
-with their submission. By communicating with the developers of Motorcomm Inc, the part 
-of YT8531 will be submitted by Motorcomm Inc, so my submission about YT8531 will be withdrawn.
+I'm told that we want status to be the last property, so I moved it
+one step down as I applied the patch.
 
-> Best regards,
-> Krzysztof
+Thanks,
+Bjorn
+
+> +	clock-frequency = <400000>;
+> +
+> +	ap_ts: touchscreen@10 {
+> +		compatible = "elan,ekth3915", "elan,ekth3500";
+> +		reg = <0x10>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&ts_int_l>, <&ts_reset_l>;
+> +
+> +		interrupt-parent = <&tlmm>;
+> +		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +		vcc33-supply = <&pp3300_ts>;
+> +		vccio-supply = <&pp1800_l10a>;
+> +		reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
+> +	};
+> +};
+> +
+>  &keyboard_controller {
+>  	function-row-physmap = <
+>  		MATRIX_KEY(0x00, 0x02, 0)	/* T1 */
+> -- 
+> 2.39.0.rc1.256.g54fd8350bd-goog
 > 
