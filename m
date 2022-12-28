@@ -2,101 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8611B65765E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 13:23:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A7F0657665
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 13:26:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232733AbiL1MXI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 07:23:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47778 "EHLO
+        id S229632AbiL1M0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 07:26:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232810AbiL1MXF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 07:23:05 -0500
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61C3BB5F
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 04:23:03 -0800 (PST)
-Received: by mail-pf1-x42a.google.com with SMTP id 65so10609259pfx.9
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 04:23:03 -0800 (PST)
+        with ESMTP id S229822AbiL1M00 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 07:26:26 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC5DFE72
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 04:26:25 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id g14so16376914ljh.10
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 04:26:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=F0LQcrjzcqyHGx/EG+ZxulY1MidQR+dP6F+oRvG3vQs=;
-        b=x/ZSlQ8pHG3xkV8dK6KyzVm22eyZhu3j80eOGMvGPMwCebW/JYa9bvXGKtSFn8vbV5
-         5aC30qO+FGeVDqa6hM3f99d42d8Y+EUt0EWm8TFlq/4TkyPTXHubCPe6BK6txdD2JPJ/
-         cYErJ2c2Ye/cFe9UA9HJlFki7EhknDZ7YBu+183MID3AA4U4OWc421E+CU5jvpKL53Wq
-         SkMh7FCqoS9IAMN7cCNgH84NXgJcgvj083upOmOktH6ErMszWA+rp4ftCOeuQOWRWfUg
-         VRaZLGm0Ka0jC0o/RtTXruMlZ0UTjdD0si5vTQceCk80DTEva2K3MqCzm6l5oU4u0gWG
-         SGmQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ub4ATzUfOQ3XmwVarg+cJkngzbh6iXKnfcPqJ9I4RlY=;
+        b=JQTsGEnoyxqTgLMb3BsXtAxnqxGelXXtAenB1eBJeZbzHYymRlyju3DIpRW+PcTFZp
+         kljrBbN9AXs3aTwyTPG0ALjls2UfO9yPRMM6sGkW3jX7UaRpvUntGTRTHUpN1GpOoaAV
+         cjgbg7+oFkAnQVA1vJD/YeBq+fhk55c4bknUjgSBMSoJQt7OqZplK6gdoOpgTnwi2q0w
+         P0egTcxMqtR+45w3aUzERJfPz86cfwATnvcBqXav3x5ee4OD3gortep1QKoZUL3uFVit
+         WxM3yLB8DThZszAM/fY1p/xMbS19hyTdRMBbYx7q5cU8JcRZhjBcSzfkZKrkC0V/vjDf
+         8YNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=F0LQcrjzcqyHGx/EG+ZxulY1MidQR+dP6F+oRvG3vQs=;
-        b=Ywp1rjiBDjh2GyZfAjQsEKxRIS4rQYGDzSlR32Hm/Gr3sYIsnPEV19AOyquNou8/nh
-         AbaMVyb5uyat/XqBMmjOjZ2uJkHbMdiA9bAU92rK3IOjfaTIDNbmsBorlt1igM1OBSJ1
-         uqZXr56ieg6poIr0zvc85nRFO1lVW/KBlZMW5DUmWANAfDknDEVkmoJcb+y0yEcxwl1q
-         j0vIx39XNXkUMmnru5iqnGKxXRvdeBn0CArGYxsD+i+waVIDoMBo5Pw8kbX5NRURQp7i
-         ESDAbRj0g2sb9EhcM4wnfsOvY7cbT3yq+U3eLxO+AVbFVUlxCbdlEHAgRo7JqO9N+U1q
-         yelQ==
-X-Gm-Message-State: AFqh2krDn/hKBy4KJ9dJuxC2F34wMqOeKN7PD6LdyvqJpFZMg3ZGrsrw
-        bikyus6T9Ee/6p0GHF2onkttYA==
-X-Google-Smtp-Source: AMrXdXudRa1wP9H6e6vGFfQm6qY0zfkdkBMEcZaDW22e10mqSIjt3bIqPJ0YRH0r2IRG0HPaz0kP6g==
-X-Received: by 2002:a62:16d5:0:b0:580:f58f:efb3 with SMTP id 204-20020a6216d5000000b00580f58fefb3mr14897592pfw.15.1672230182928;
-        Wed, 28 Dec 2022 04:23:02 -0800 (PST)
-Received: from localhost.localdomain (202.60.225.077.static.cyberec.com. [202.60.225.77])
-        by smtp.gmail.com with ESMTPSA id h1-20020a056a00000100b0058124f92399sm5236074pfk.219.2022.12.28.04.22.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Dec 2022 04:23:02 -0800 (PST)
-From:   tongjian <tongjian@huaqin.corp-partner.google.com>
-To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        perex@perex.cz, tiwai@suse.com,
-        angelogioacchino.delregno@collabora.com, nfraprado@collabora.com,
-        jiaxin.yu@mediatek.com, chunxu.li@mediatek.com,
-        ajye_huang@compal.corp-partner.google.com,
-        tongjian@huaqin.corp-partner.google.com
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] ASoC: dt-bindings: mt8186-mt6366: add new compatible for max98360a
-Date:   Wed, 28 Dec 2022 20:22:30 +0800
-Message-Id: <20221228122230.3818533-3-tongjian@huaqin.corp-partner.google.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221228122230.3818533-1-tongjian@huaqin.corp-partner.google.com>
-References: <20221228122230.3818533-1-tongjian@huaqin.corp-partner.google.com>
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ub4ATzUfOQ3XmwVarg+cJkngzbh6iXKnfcPqJ9I4RlY=;
+        b=7ttoBVCq0gS6Su0ovMHMypgivmGhNIQrorQZb1sgRbDRYSO+rfs6IA7Q1LNjvVbwF9
+         MffaSkp7mvclIrWWs2TgpqomDihn4KC0YOlBG+9RTwXbP9mc9G6sDxXcFo7X8T53sBvz
+         twrzwlwsstGcRDZbd9N6z7CtB1AbhYAmQpZYKlpoWjdBZmam0P555He3qu4YR78WlF6C
+         i5LjXH5tiIiNCwVId79BB5p0e3o1OX4Cp1jXncB7Sp77ghiUgUnFUIrm9HfkykvxNbhb
+         cDnrABRjx0NljJC6xiNqm/kOM4flwex3mOI7BxDFvrChmlKqBv7hz91LBjY2FTOJ6cs7
+         7jnw==
+X-Gm-Message-State: AFqh2koRMSWvoBHdICp2qyUl0Voi8zetcCcRQGLXo5pYwjnNu7hT/0bC
+        wNwX+2jf9dKfCXiiRtxB4+nX1Q==
+X-Google-Smtp-Source: AMrXdXuFOgavTsz6/VjUbcdE+BABkvmBsLjBmuASv+YLKGodRKLJ5a+n9HlkS7L6YG3pZVFop41hhQ==
+X-Received: by 2002:a2e:998e:0:b0:278:e50e:9b38 with SMTP id w14-20020a2e998e000000b00278e50e9b38mr6272779lji.5.1672230384061;
+        Wed, 28 Dec 2022 04:26:24 -0800 (PST)
+Received: from [192.168.1.101] (abyl184.neoplus.adsl.tpnet.pl. [83.9.31.184])
+        by smtp.gmail.com with ESMTPSA id o10-20020a2e730a000000b00279ebd80387sm1916232ljc.133.2022.12.28.04.26.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Dec 2022 04:26:23 -0800 (PST)
+Message-ID: <508441b7-5af1-ee58-4787-9e3996fb16da@linaro.org>
+Date:   Wed, 28 Dec 2022 13:26:22 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8350: add missing
+ core_bi_pll_test_se GCC clock
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221228112456.31348-1-krzysztof.kozlowski@linaro.org>
+ <d2e303d9-3ac4-f574-680f-4f5ccbf5ed13@linaro.org>
+ <5001001a-203f-e832-f916-ce483b2d8ea1@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <5001001a-203f-e832-f916-ce483b2d8ea1@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adds new compatible string "mt8186-mt6366-rt5682s-max98360-sound" for machines
-with max98360a and rt5682s.
 
-Signed-off-by: tongjian <tongjian@huaqin.corp-partner.google.com>
----
- .../devicetree/bindings/sound/mt8186-mt6366-rt1019-rt5682s.yaml  | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/sound/mt8186-mt6366-rt1019-rt5682s.yaml b/Documentation/devicetree/bindings/sound/mt8186-mt6366-rt1019-rt5682s.yaml
-index 9d3139990237..aa23b0024c46 100644
---- a/Documentation/devicetree/bindings/sound/mt8186-mt6366-rt1019-rt5682s.yaml
-+++ b/Documentation/devicetree/bindings/sound/mt8186-mt6366-rt1019-rt5682s.yaml
-@@ -16,6 +16,7 @@ properties:
-   compatible:
-     enum:
-       - mediatek,mt8186-mt6366-rt1019-rt5682s-sound
-+      - mediatek,mt8186-mt6366-rt5682s-max98360-sound
- 
-   mediatek,platform:
-     $ref: "/schemas/types.yaml#/definitions/phandle"
--- 
-2.25.1
+On 28.12.2022 12:55, Krzysztof Kozlowski wrote:
+> On 28/12/2022 12:37, Konrad Dybcio wrote:
+>>
+>>
+>> On 28.12.2022 12:24, Krzysztof Kozlowski wrote:
+>>> The GCC bindings expect core_bi_pll_test_se clock input, even if it is
+>>> optional:
+>>>
+>>>   sm8350-mtp.dtb: clock-controller@100000: clock-names:2: 'core_bi_pll_test_se' was expected
+>>>
+>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> ---
+>> Is it even going to be used by anybody, or should we just drop
+>> it on the driver side as per usual?
+> 
+> It's mentioned as possible parent, so there might be users somewhere...
+> Or you want to say that other binding and DTS users cannot use that clock?
+There's no driver (even downstream) for a supplier of this clock and it's
+(probably) only used for early validation by qcom folks. What we're
+interested in, as far as debugging clocks goes, is handled by debugcc [1].
 
+Konrad
+
+[1] https://github.com/andersson/debugcc/
+> 
+> Best regards,
+> Krzysztof
+> 
