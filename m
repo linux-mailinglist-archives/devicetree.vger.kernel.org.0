@@ -2,109 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7472965755E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 11:37:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82FB3657566
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 11:40:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229627AbiL1Khb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 05:37:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40482 "EHLO
+        id S229997AbiL1Kk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 05:40:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232827AbiL1KhO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 05:37:14 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86E8510577
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 02:37:09 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id 1so23072759lfz.4
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 02:37:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eMzR93zP+dFBEJ+GNpqNw86ldxjfHZpuKwLVB+qsmz8=;
-        b=atJAVq84Qr4MNOmDoxgh9c5GCnHkI5Qt5UzCqg9VDYcRTARsvzzvhD0a3v+ng8Vl/x
-         JqwPdPoUn1VUj0aR2kg6VGdwTWzFRaG6pQ0ejWKkJRIi+Qrm3rIUZ++EkNo5wF7AcORh
-         dzdkaYOnP6xlE7DkdYZ98znB22/iPDRs4gpjDamxoSioyucNxyJkv+P8t39g4b8ij7Pj
-         bYPrdDObXbGaKVYsQ4+RkmoTKRjr30fVMk/oKZHBXz2rTaUT3+zc2rHauUO1WJ6y1Kbs
-         jYyb48SeuQcRRUDDnYYkGB+U4kbUKRCyr4grUlpQ18nH+hxQ5Rn+MvlRGExeAGnAITlu
-         sqrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eMzR93zP+dFBEJ+GNpqNw86ldxjfHZpuKwLVB+qsmz8=;
-        b=0pFTCoXS4OQ3kuV8nNt2zZ4J9suTm132/OCxNW66dNJi4mxcopuh+fulUDJXDrhn+Q
-         xgu7WKYrpjjFLoFWnlGsHDN0g4AhHTdNYeiMWL8iLUSYXCw51DlbnuKdDnn8CVH4mEoA
-         RAJ8hBCdalwQC+C5QefoPESMXXVvEGp3z1Xy2reSBEIN0n8hOG1A4prnAGtn9HwMsxAp
-         3vdqkxSl4jbhT1SPkggRnqDMhJ/DrpIqKjjGzvDuPNUtAt6x4HHeNsCJqlrv8WloFSgl
-         Kr0VpxCtlNZMkPY2KrEMEe6IS3qukmVhgrX4RPWgkF5Fj1x0QkDYe/+57IEPrdoNF1d3
-         x5KA==
-X-Gm-Message-State: AFqh2kpkf/iQf7zIRk3NXwuaY/1K5S24gj1H3voWB27m6A8IdH7vIaEu
-        KeZYij6fa/vgg7ojxv6KucIQBw==
-X-Google-Smtp-Source: AMrXdXuW/rMK0LTP9vvTQ+TXMMllq4ywWs+fNRTxKGAaz/uPjoIjhLwSzQEK5ySK/Nkb5pddHATYHg==
-X-Received: by 2002:a05:6512:15a7:b0:4ae:8476:2df with SMTP id bp39-20020a05651215a700b004ae847602dfmr9615943lfb.10.1672223827947;
-        Wed, 28 Dec 2022 02:37:07 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id i19-20020a0565123e1300b0048af9576d30sm2600905lfv.83.2022.12.28.02.37.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Dec 2022 02:37:07 -0800 (PST)
-Message-ID: <14b0237d-6511-4a1f-3bda-e0e72b442a56@linaro.org>
-Date:   Wed, 28 Dec 2022 11:37:06 +0100
+        with ESMTP id S229632AbiL1Kk1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 05:40:27 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60EEBCEB;
+        Wed, 28 Dec 2022 02:40:22 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 66CF424E102;
+        Wed, 28 Dec 2022 18:40:19 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 28 Dec
+ 2022 18:40:19 +0800
+Received: from [192.168.120.55] (171.223.208.138) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 28 Dec
+ 2022 18:40:18 +0800
+Message-ID: <4cb26636-8f65-b801-9374-e8b7e9fff2fe@starfivetech.com>
+Date:   Wed, 28 Dec 2022 18:40:18 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v3] regulator: dt-bindings: qcom,rpmh: Indicate
- regulator-allow-set-load dependencies
+Subject: Re: [PATCH v2 1/3] dt-bindings: mmc: Add bindings for StarFive
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-mmc@vger.kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20221227122227.460921-1-william.qiu@starfivetech.com>
+ <20221227122227.460921-2-william.qiu@starfivetech.com>
+ <fc5866ef-4eea-bc15-7cbe-d2e00c37e282@linaro.org>
 Content-Language: en-US
-To:     Andrew Halaney <ahalaney@redhat.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@somainline.org,
-        lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dianders@chromium.org,
-        johan@kernel.org, Johan Hovold <johan+kernel@kernel.org>
-References: <20220907204924.173030-1-ahalaney@redhat.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220907204924.173030-1-ahalaney@redhat.com>
-Content-Type: text/plain; charset=UTF-8
+From:   William Qiu <william.qiu@starfivetech.com>
+In-Reply-To: <fc5866ef-4eea-bc15-7cbe-d2e00c37e282@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX168.cuchost.com
+ (172.16.6.78)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/09/2022 22:49, Andrew Halaney wrote:
-> For RPMH regulators it doesn't make sense to indicate
-> regulator-allow-set-load without saying what modes you can switch to,
-> so be sure to indicate a dependency on regulator-allowed-modes.
+
+
+On 2022/12/27 21:05, Krzysztof Kozlowski wrote:
+> On 27/12/2022 13:22, William Qiu wrote:
+>> Add documentation to describe StarFive
+>> designware mobile storage host controller driver.
 > 
-> In general this is true for any regulators that are setting modes
-> instead of setting a load directly, for example RPMH regulators. A
-> counter example would be RPM based regulators, which set a load
-> change directly instead of a mode change. In the RPM case
-> regulator-allow-set-load alone is sufficient to describe the regulator
-> (the regulator can change its output current, here's the new load),
-> but in the RPMH case what valid operating modes exist must also be
-> stated to properly describe the regulator (the new load is this, what
-> is the optimum mode for this regulator with that load, let's change to
-> that mode now).
+> Please wrap commit message according to Linux coding style / submission
+> process (neither too early nor over the limit):
+> https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
 > 
-> With this in place devicetree validation can catch issues like this:
+> The subject is a bit redundant and not precise. No need to mention
+> "bindings" twice but "StarFive" is really too generic. Do you add now
+> all possible devices from StarFive? I see only one. Rephrase (use git
+> log to find examples).
 > 
->     /mnt/extrassd/git/linux-next/arch/arm64/boot/dts/qcom/sm8350-hdk.dtb: pm8350-rpmh-regulators: ldo5: 'regulator-allowed-modes' is a dependency of 'regulator-allow-set-load'
->             From schema: /mnt/extrassd/git/linux-next/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
 
-Andrew,
+Will update
 
-This patch was merged therefore we started seeing such warnings. Any
-plans to actually fix them?
+>> 
+>> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+>> ---
+>>  .../bindings/mmc/starfive,jh7110-mmc.yaml     | 72 +++++++++++++++++++
+>>  1 file changed, 72 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml
+>> 
+>> diff --git a/Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml b/Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml
+>> new file mode 100644
+>> index 000000000000..430dd5f24933
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml
+>> @@ -0,0 +1,72 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mmc/starfive,jh7110-mmc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: StarFive Designware Mobile Storage Host Controller
+>> +
+>> +description:
+>> +  StarFive uses the Synopsys designware mobile storage host controller
+>> +  to interface a SoC with storage medium such as eMMC or SD/MMC cards.
+>> +
+>> +allOf:
+>> +  - $ref: synopsys-dw-mshc-common.yaml#
+>> +
+>> +maintainers:
+>> +  - William Qiu <william.qiu@starfivetech.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: starfive,jh7110-mmc
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: biu clock
+>> +      - description: ciu clock
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: biu
+>> +      - const: ciu
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  starfive,syscon:
+> 
+> Name is not specific enough. What is syscon? Any syscon? This needs to
+> be specific.
+> 
 
-Best regards,
-Krzysztof
+Will update.
 
+>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>> +    description:
+>> +      arg0:arg0 is syscon.
+> 
+> What is syscon?
+> 
+
+Will update.
+
+>> +      arg1:arg1 is syscon register offset, used to enable MMC function.
+> 
+> Describe the argument, not what it is used for, e.g. "offset of XXX YYY ZZZ"
+> 
+>> +      arg2:arg2 is used to enable the register shift of the MMC function.
+>> +      arg3:arg3 is used to enable the register mask of the MMC function.
+> 
+> That's not how the phandle array is described. Instead:
+> 
+> https://elixir.bootlin.com/linux/v5.18-rc1/source/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml#L42
+> 
+
+Hi Krzysztof,
+
+Thank you for taking time to review and provide helpful comments for this patch.
+I will fix all the above issues in the next version.
+
+Best Regards,
+William Qiu
+
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
