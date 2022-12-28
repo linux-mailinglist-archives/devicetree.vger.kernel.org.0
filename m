@@ -2,73 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA1CB658647
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 20:14:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A756658656
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 20:21:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233023AbiL1TNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 14:13:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42132 "EHLO
+        id S232864AbiL1TVm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 14:21:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232938AbiL1TNx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 14:13:53 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 839BC15FCA;
-        Wed, 28 Dec 2022 11:13:52 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 22FDAB818C8;
-        Wed, 28 Dec 2022 19:13:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C60EC433EF;
-        Wed, 28 Dec 2022 19:13:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672254829;
-        bh=v94CXa36zIMp9DOqCD7zQebw66UQI3X3ozPtbJeqUaY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=TR5iXlFDGMLoTc2/nSRKIphi0NMNYJpEUdZoB1s/fIBz7KovbnO+Hsn2TG2QN9vCi
-         bm9CiQRzzDUnudOHPeP6VJA86BZ7pCATkda5U7RjZq8vRuro+e8QLsRe2efl6sVfMx
-         t1wtgD5ngH2SmB8240EUIChCR7mBBYLQp90A/1lKpsOp5xL7aqbpowSphdqRJ01pCc
-         jj/5d0lBV6JFjNfIQ3RfI1+SGeUkfxIPjS48wu/M3bniJJUel+TNrPMh7R+5xpsohI
-         zCSyuIwkMWHbuHBLEKZIKLwtblA7B7AAXGHLImODIZhk2l0Otf19DCASPdhwkt2qbp
-         4gOfMI3TE6d9Q==
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     steev@kali.org
-Cc:     agross@kernel.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: c630: Fix firmware paths
-Date:   Wed, 28 Dec 2022 13:13:45 -0600
-Message-Id: <167225482207.977158.2618349540018032300.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20221226004727.204986-1-steev@kali.org>
-References: <20221225040821.8395-1-steev@kali.org> <20221226004727.204986-1-steev@kali.org>
+        with ESMTP id S232797AbiL1TVl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 14:21:41 -0500
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FBB0B7FA;
+        Wed, 28 Dec 2022 11:21:39 -0800 (PST)
+Received: from [80.120.31.194] (helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1pAbzZ-000631-1G; Wed, 28 Dec 2022 20:21:33 +0100
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     krzysztof.kozlowski+dt@linaro.org, piotr.oniszczuk@gmail.com,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, Andy Yan <andyshrk@163.com>
+Cc:     Andy Yan <andyshrk@163.com>
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Enable wifi module AP6398s for rk3566 box demo
+Date:   Wed, 28 Dec 2022 20:21:32 +0100
+Message-ID: <17226287.uLZWGnKmhe@phil>
+In-Reply-To: <20221225114953.3518595-1-andyshrk@163.com>
+References: <20221225114915.3518502-1-andyshrk@163.com> <20221225114953.3518595-1-andyshrk@163.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 25 Dec 2022 18:47:27 -0600, Steev Klimaszewski wrote:
-> The firmware paths were pointing to qcom/manufacturer whereas other
-> devices have them under qcom/chipset/manufacturer, so fix this up on the
-> c630, so we follow the same standard setup.
+Hi Andy,
+
+Am Sonntag, 25. Dezember 2022, 12:49:53 CET schrieb Andy Yan:
+> There is a AP6398s wifi/bt module on this board.
+> Fix the sdmmc1 dt node to make wifi work.
 > 
+> Fixes: 2e0537b16b25 ("arm64: dts: rockchip: Add dts for rockchip rk3566 box demo board")
+> 
+> Signed-off-by: Andy Yan <andyshrk@163.com>
+> ---
+> 
+>  .../boot/dts/rockchip/rk3566-box-demo.dts     | 26 ++++++++++++++++---
+>  1 file changed, 22 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts b/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
+> index d956496d5221..6c0c24226b52 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
+> @@ -324,8 +324,12 @@ wifi_enable_h: wifi-enable-h {
+>  			rockchip,pins = <2 RK_PB1 RK_FUNC_GPIO &pcfg_pull_none>;
+>  		};
+>  
+> +		wifi_host_wake_h: wifi-host-wake-l {
+> +			rockchip,pins = <2 RK_PB2 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +
+>  		wifi_32k: wifi-32k {
+> -			rockchip,pins = <0 RK_PB0 2 &pcfg_pull_none>;
+> +			rockchip,pins = <2 RK_PC6 1 &pcfg_pull_none>;
+>  		};
+>  	};
+>  
+> @@ -391,16 +395,30 @@ &sdmmc0 {
+>  };
+>  
+>  &sdmmc1 {
+> +	/* WiFi & BT combo module AMPAK AP6398S */
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+>  	bus-width = <4>;
+> +	clock-frequency = <150000000>;
+> +	cap-sdio-irq;
+>  	cap-sd-highspeed;
+> -	disable-wp;
+> +	sd-uhs-sdr104;
+> +	keep-power-in-suspend;
+>  	mmc-pwrseq = <&sdio_pwrseq>;
+>  	non-removable;
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&sdmmc1_bus4 &sdmmc1_cmd &sdmmc1_clk>;
+> -	vmmc-supply = <&vcc_3v3>;
+> -	vqmmc-supply = <&vcca_1v8>;
+
+why are you removing the mmc-supplies here?
+The supplies needed for mmc to work should very much be present
+I think, especially to also make sure something else doesn't
+turn them off.
+
+Heiko
+
+>  	status = "okay";
+> +
+> +	brcmf: wifi@1 {
+> +		compatible = "brcm,bcm4329-fmac";
+> +		reg = <1>;
+> +		interrupt-parent = <&gpio2>;
+> +		interrupts = <RK_PB2 GPIO_ACTIVE_HIGH>;
+> +		interrupt-names = "host-wake";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&wifi_host_wake_h>;
+> +	};
+>  };
+>  
+>  &spdif {
 > 
 
-Applied, thanks!
 
-[01/1] arm64: dts: qcom: c630: Fix firmware paths
-       commit: 40103eabe3d3139a69e5235cf3a86c89214ef584
-[26/26] arm64: dts: qcom: c630: set venus firmware name
-        (no commit info)
 
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+
