@@ -2,56 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 344F4658545
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 18:28:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 02C4965857C
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 19:13:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230464AbiL1R2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 12:28:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39300 "EHLO
+        id S232636AbiL1SNu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 13:13:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230443AbiL1R2b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 12:28:31 -0500
+        with ESMTP id S230443AbiL1SNt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 13:13:49 -0500
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D00A61658C;
-        Wed, 28 Dec 2022 09:28:29 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86F3E17063;
+        Wed, 28 Dec 2022 10:13:48 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1D2C36158D;
-        Wed, 28 Dec 2022 17:28:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67ADCC433D2;
-        Wed, 28 Dec 2022 17:28:27 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1FE87615A1;
+        Wed, 28 Dec 2022 18:13:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D8ECC433EF;
+        Wed, 28 Dec 2022 18:13:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672248508;
-        bh=Dibxouqu84SBg/J/yTbFauKUYfl32fPLgSeV3dyv87M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=vKUt7VZwbGsaph7PITSfybymzqitYVro09zdOLMCKweCHJswdPLN8+DWtM5OaADkI
-         Y5l4AjmP5JAsT5O+Un3k0kQTEabwFunEg87S3l/whHsadqK/3BLQRavztcIKMBpoT2
-         ASdFFeIKZlOEV6+gEoAmRpHQYaL6NmaJOTFzbL/kDdO1raB4+l92tz1MWcMcp/sbmv
-         hlXLsuGHg5KS2oOhXgKbdzW7XTPh+TtnHGuJHKq9UNXWHveZRkVicVKEv5VyhiL91o
-         KOQCXczg5VyfRxJ7YP2k4/36749ogmfcs8U4EGhVDUJs3fv5s4RHcKDdNJrfbF3Z+Q
-         7VMYnCXL7W2zA==
-Date:   Wed, 28 Dec 2022 11:28:25 -0600
+        s=k20201202; t=1672251227;
+        bh=vAo070a0jAGDolutvmQrHXsrQbuhIo5yLBOr+7FrUrE=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=FfCU35iOXm/SFi6xQxJJLluqgrtQ/caDiJjrWGtMi4dLgwkcxnPVkLbJ5aR+kufPl
+         PY2G/Gh56qofZlNZrxKouiqChtdnm8oZDCwlLwa+Z3qY3LHWuzUZUwo/y47fcUesEA
+         xxXtbV1RC+NVl5ePrxEL2tNULPUaEu96ntnXQ2ARBMaLiGh3yZzcSPrhwSSMJATZ0B
+         qOLUu7t+9HmrqJqJZZHqZsidyUyZoCmf2yHW7fTfrfR573QSP4g7msvA8Dxg4O5sRt
+         tZKSe8js7QKupd9uyiZvl6w2rMZyBegkGD7YpWjJ3mcufRYJ7hIYTJeScNHr/smPnr
+         3aoruT2u1Iaog==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@ieee.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>, vkoul@kernel.org
-Subject: Re: [PATCH V21 2/7] soc: qcom: dcc: Add driver support for Data
- Capture and Compare unit(DCC)
-Message-ID: <20221228172825.r32vpphbdulaldvv@builder.lan>
-References: <cover.1672148732.git.quic_schowdhu@quicinc.com>
- <644b4f66a358492a8a6738454035c3b120092fe7.1672148732.git.quic_schowdhu@quicinc.com>
+To:     dmitry.baryshkov@linaro.org, quic_abhinavk@quicinc.com,
+        robdclark@gmail.com, robh+dt@kernel.org, konrad.dybcio@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, sean@poorly.run,
+        agross@kernel.org
+Cc:     airlied@gmail.com, freedreno@lists.freedesktop.org,
+        swboyd@chromium.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        daniel@ffwll.ch
+Subject: Re: [PATCH v4 0/5] arm64: dts: qcom: sm8450-hdk: enable HDMI output
+Date:   Wed, 28 Dec 2022 12:13:41 -0600
+Message-Id: <167225121528.949655.5387408578769393815.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20221207012803.114959-1-dmitry.baryshkov@linaro.org>
+References: <20221207012803.114959-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <644b4f66a358492a8a6738454035c3b120092fe7.1672148732.git.quic_schowdhu@quicinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -61,53 +58,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 27, 2022 at 08:52:46PM +0530, Souradeep Chowdhury wrote:
-> The DCC is a DMA Engine designed to capture and store data
-> during system crash or software triggers. The DCC operates
-> based on user inputs via the debugfs interface. The user gives
-> addresses as inputs and these addresses are stored in the
-> dcc sram. In case of a system crash or a manual software
-> trigger by the user through the debugfs interface,
-> the dcc captures and stores the values at these addresses.
-> This patch contains the driver which has all the methods
-> pertaining to the debugfs interface, auxiliary functions to
-> support all the four fundamental operations of dcc namely
-> read, write, read/modify/write and loop. The probe method
-> here instantiates all the resources necessary for dcc to
-> operate mainly the dedicated dcc sram where it stores the
-> values. The DCC driver can be used for debugging purposes
-> without going for a reboot since it can perform software
-> triggers as well based on user inputs.
+On Wed, 7 Dec 2022 03:27:58 +0200, Dmitry Baryshkov wrote:
+> Add device tree nodes for MDSS, DPU and DSI devices on Qualcomm SM8450
+> platform. Enable these devices and add the HDMI bridge configuration on
+> SM8450 HDK.
 > 
-> Also add the documentation for debugfs entries which explains
-> the functionalities of each debugfs file that has been created
-> for dcc.
+> Changes since v3:
+> - Renamed mdss node to display-subsystem@ (Krzysztof)
+> - Dropped empty line from the patch4 (Krzysztof)
+> - Renamed HDMI connector endpoint to hdmi_connector_out
 > 
-> The following is the justification of using debugfs interface
-> over the other alternatives like sysfs/ioctls
-> 
-> i) As can be seen from the debugfs attribute descriptions,
-> some of the debugfs attribute files here contains multiple
-> arguments which needs to be accepted from the user. This goes
-> against the design style of sysfs.
-> 
-> ii) The user input patterns have been made simple and convenient
-> in this case with the use of debugfs interface as user doesn't
-> need to shuffle between different files to execute one instruction
-> as was the case on using other alternatives.
-> 
+> [...]
 
-I would have preferred to get some more input from users of the debugfs
-interface, but it's after all not ABI. So let's get this merged and
-if people has concerns/objections/suggestions we'll improve it as
-necessary.
+Applied, thanks!
 
-Thanks for pushing this Souradeep!
+[1/5] arm64: dts: qcom: sm8450: add RPMH_REGULATOR_LEVEL_LOW_SVS_D1
+      commit: a5ac24ba17590866cf1ff8fe44cd2738c003d52f
+[2/5] arm64: dts: qcom: sm8450: add display hardware devices
+      commit: a6dd1206e45a43d7e6c46435437307b051471b69
+[3/5] arm64: dts: qcom: sm8450-hdk: enable display hardware
+      commit: 928a7b4269634369b152342a37b2809d18774726
+[4/5] arm64: dts: qcom: sm8450-hdk: Add LT9611uxc HDMI bridge
+      commit: 0cbe8e1953e083f8435bdb5548c3ba59acfcb97e
+[5/5] arm64: dts: qcom: sm8450-hdk: Enable HDMI Display
+      commit: 0f48b65f716b4fa806fa864ea7f750113f4bd7c9
 
-> Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-> Reviewed-by: Alex Elder <elder@linaro.org>
-
-Thanks Alex.
-
-Regards,
-Bjorn
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
