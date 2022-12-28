@@ -2,135 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E1F7657A0C
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 16:07:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACB3F657A24
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 16:08:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233584AbiL1PHS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 10:07:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54982 "EHLO
+        id S233617AbiL1PIR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 10:08:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233587AbiL1PHR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 10:07:17 -0500
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 036E313D74
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 07:07:16 -0800 (PST)
-Received: by mail-pg1-x533.google.com with SMTP id v3so10719209pgh.4
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 07:07:15 -0800 (PST)
+        with ESMTP id S233605AbiL1PIP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 10:08:15 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BFF613D79
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 07:08:14 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id p36so23949766lfa.12
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 07:08:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=KgQT/alxlLYW0WFupTnnqaIko3uIyucGCDE9ru/lFUk=;
-        b=u+i9ifEFN8xTXhij5j2STaK7a8nJTPFtyzhvF1AfWoOJ9S0Q9Ti2Qhqs9a6QTBaXaK
-         j8qSX9KwDLTx1kZ+9Gpg7pbuUX44/1FBE3nsBTM93qUqDfGqkl651Rqf05uuBT0IfLQd
-         7VuNzwxzY2XKTnCly5ayNyNHE/U91Rg+5vwMREYwRQ1s5EK3y4wcQ7I0pvAekQWPFMaq
-         Wt9ckX2CutbfeQgmR74awci4X/2ONaUjdWmzIkTP7DX8cGxey59LmLz8tn011DnCxqNV
-         yWxbgXsuikRgwDdabdpVXGIbeqheWkmhvMCpymYNkqXWQYOTaIS8SMVqgslipJ9Tgwsh
-         p4KA==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=uvoaUVlI285DJxXau3dNL+g6kLRhbJT4y1ScX7i8GqI=;
+        b=KRz1ugeTeE5shFPwKo2/mZX2HG1BAXYV25vlDoxH61FV1a/byeKAmLbT85OUcTwEnI
+         k7a1z6tqBbOVHm+L4kEBUi4VkXVwLDpsFtaEHHX+aog84SzM9uL4e2j7XVD2z3Xdo/9c
+         KSNgtASrBFziQzgpxKYn8Mz1YXG9odRbiAQkcLr/E4lGZEZZ5khszA3Ln9RBhIj1ZzAf
+         0AVjtaWLRqHqDhroXTQxPfBq7u+mUDPZuGb8F5y90djUHG2cbxTg0oRLo24uhVvWJoG9
+         ML95E3ivHoe+NCam7PKsWdV6qVc5QV2KMHl1h4kZTbUWivmlONKdUS5UgItgkscJrSXV
+         lBuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KgQT/alxlLYW0WFupTnnqaIko3uIyucGCDE9ru/lFUk=;
-        b=OvyghpaKmiQhKkeYawClowzNm8VNGxYmT/QbJcqSXuDrZBhi6QDJe8JAdibrQi9KwF
-         S/qDBmfmgf9fH+46liH0nDEDK9VHQwMhh7htX1ABa8N2yguSVuzJXDiyUzcg9Y2AfgiV
-         AVQCuN7zNhlJfzmPH5HhRWiy9HxONcMnLJbsmE6hU1H6T3w5fpNHm7bYZW5EVQJajcwB
-         7YsAhyF7NdHmvzH8SG04lejqD3uYW3sJm4NStiLFsGtqP+oIr9T/z1EeLE9HC5uFlNLC
-         OtnnD2njpEUac0tYC+RRy+oEYyhV75xjsl2MdHf+6n3mttrh2xkoIsnDfFHiMFUftv+B
-         HzhQ==
-X-Gm-Message-State: AFqh2kqsfq3DDl3V9Jpt3MljwxukHP4JqM84ajdkDkgF0HUwrkfBO8mN
-        qvrLzEG6kgceLGlxcFTvu7LCtrTgeLdEZ5Q=
-X-Google-Smtp-Source: AMrXdXtBESYjT/Prx4f+YrYEUwbmivOJ0hGM8ZWl3dM7aTOi6spZlddrNBZSu8CHzCESycLIaORBJA==
-X-Received: by 2002:a62:19cd:0:b0:580:9935:ffdb with SMTP id 196-20020a6219cd000000b005809935ffdbmr14481895pfz.20.1672240035482;
-        Wed, 28 Dec 2022 07:07:15 -0800 (PST)
-Received: from thinkpad ([117.217.178.100])
-        by smtp.gmail.com with ESMTPSA id c134-20020a624e8c000000b00572198393c2sm10380770pfb.194.2022.12.28.07.07.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Dec 2022 07:07:13 -0800 (PST)
-Date:   Wed, 28 Dec 2022 20:37:06 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+        bh=uvoaUVlI285DJxXau3dNL+g6kLRhbJT4y1ScX7i8GqI=;
+        b=LBjMN2HSWgic/mxoQaqpNM9ArRcYHKDX33OmmfL8fgXuZMRxQBnlXiCM1APBTgC8X9
+         oNiba2U30QpfRoSKlPAemYQpo+RvqSoPkNWjAutMDf5pxgv68yUhjc0hcPq//yxtq92O
+         ndC6XT6MVe4P/SqlQYAWC9hv27lucwWcvUXM1aaRbDbv0m3+yhxVr+DxMt8+IhoLN1iT
+         LicPkaPDjlZs7NJ2qBa/oSFN7C4/YXwvDH+/qbUriJQAyQam2UNypwJliZoFp9f2UT/g
+         J5StdcHkssayc495iANUKBWzXcOHeT1JbEiAR/b5SpId0YHUm5KyfHbNfWF4HADKabaW
+         QBxg==
+X-Gm-Message-State: AFqh2koq/EGWrt3tY6H+Dd1DMivFCgozO0NBD4JeutQPD9m98ivhdri4
+        I0vooSmZPQTOPkmy5aqRVxyEjw==
+X-Google-Smtp-Source: AMrXdXsyazxH9ayip6OwOKWlEqFs9prb83uyZtAy6fABC4Qtj1GpnFuz0aWl3a2VV3M1BIZoYotubQ==
+X-Received: by 2002:a05:6512:2356:b0:4b5:6417:43bb with SMTP id p22-20020a056512235600b004b5641743bbmr9430166lfu.51.1672240090961;
+        Wed, 28 Dec 2022 07:08:10 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id p1-20020ac24ec1000000b004b15bc0ff63sm2671305lfr.277.2022.12.28.07.08.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Dec 2022 07:08:10 -0800 (PST)
+Message-ID: <d0127811-6be1-4f1c-c138-1e8b0c69aaeb@linaro.org>
+Date:   Wed, 28 Dec 2022 16:08:09 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v1 01/11] dt-bindings: usb: Add device id for Genesys
+ Logic hub controller
+Content-Language: en-US
+To:     Anand Moon <linux.amoon@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 00/16] clk: qcom: get rid of core_bi_pll_test_se
-Message-ID: <20221228150706.GD30143@thinkpad>
-References: <20221228133243.3052132-1-dmitry.baryshkov@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221228133243.3052132-1-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Icenowy Zheng <uwu@icenowy.me>
+Cc:     linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221228100321.15949-1-linux.amoon@gmail.com>
+ <20221228100321.15949-2-linux.amoon@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221228100321.15949-2-linux.amoon@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 28, 2022 at 03:32:27PM +0200, Dmitry Baryshkov wrote:
-> Drop core_bi_pll_test_se from all Qualcomm clock controller's bindings
-> and drivers. The clock is not used by anyone.
+On 28/12/2022 11:03, Anand Moon wrote:
+> Add usb hub device id for Genesys Logic, Inc. GL852G-OHG Hub USB 2.0
+> root hub and Genesys Logic, Inc. GL3523-QFN76 USB 3.1 root hub.
 > 
-
-For the series,
-
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-
-Thanks for the nice cleanup!
-
--Mani
-
-> Dmitry Baryshkov (16):
->   dt-bindings: clock: qcom,gcc-msm8998: drop core_bi_pll_test_se
->   dt-bindings: clock: qcom,gcc-sdx55: drop core_bi_pll_test_se
->   dt-bindings: clock: qcom,gcc-sdx65: drop core_bi_pll_test_se
->   dt-bindings: clock: qcom,gcc-sm8350: drop core_bi_pll_test_se
->   dt-bindings: clock: qcom,mmcc-msm8998: drop core_bi_pll_test_se
->   dt-bindings: clock: qcom: gcc-sm8350: drop test clock
->   dt-bindings: clock: qcom: gcc-sm8450: drop test clock
->   clk: qcom: dispcc-qcm2290: get rid of test clock
->   clk: qcom: gcc-msm8998: get rid of test clock
->   clk: qcom: gcc-sc7180: get rid of test clock
->   clk: qcom: gcc-sdx55: use ARRAY_SIZE instead of specifying num_parents
->   clk: qcom: gcc-sdx55: get rid of test clock
->   clk: qcom: gcc-sm8150: get rid of test clock
->   clk: qcom: gcc-sm8350: get rid of test clock
->   clk: qcom: mmcc-msm8998: get rid of test clock
->   arm64: dts: qcom: msm8998: get rid of test clock
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/usb/genesys,gl850g.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
->  .../bindings/clock/qcom,gcc-msm8998.yaml      |  4 --
->  .../bindings/clock/qcom,gcc-sdx55.yaml        |  9 +--
->  .../bindings/clock/qcom,gcc-sdx65.yaml        |  8 +--
->  .../bindings/clock/qcom,gcc-sm8350.yaml       |  2 -
->  .../devicetree/bindings/clock/qcom,mmcc.yaml  |  2 -
->  arch/arm64/boot/dts/qcom/msm8998.dtsi         |  4 +-
->  drivers/clk/qcom/dispcc-qcm2290.c             |  6 --
->  drivers/clk/qcom/gcc-msm8998.c                | 13 ----
->  drivers/clk/qcom/gcc-sc7180.c                 | 16 -----
->  drivers/clk/qcom/gcc-sdx55.c                  | 64 ++++++++-----------
->  drivers/clk/qcom/gcc-sm8150.c                 | 17 -----
->  drivers/clk/qcom/gcc-sm8350.c                 | 15 -----
->  drivers/clk/qcom/mmcc-msm8998.c               | 25 --------
->  include/dt-bindings/clock/qcom,gcc-sm8350.h   |  1 -
->  include/dt-bindings/clock/qcom,gcc-sm8450.h   |  1 -
->  15 files changed, 32 insertions(+), 155 deletions(-)
-> 
-> -- 
-> 2.35.1
-> 
+> diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> index a9f831448cca..db009f3ef438 100644
+> --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> @@ -16,6 +16,8 @@ properties:
+>    compatible:
+>      enum:
+>        - usb5e3,608
+> +      - genesys,usb5e3,610
+> +      - genesys,usb5e3,620
 
--- 
-மணிவண்ணன் சதாசிவம்
+This does not look like correct compatible. Did you test the bindings
+and DTS? This should fail.
+
+Best regards,
+Krzysztof
+
