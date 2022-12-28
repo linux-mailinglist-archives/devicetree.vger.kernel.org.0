@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12A0F65754E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 11:30:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CFF9657551
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 11:30:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232770AbiL1KaW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 05:30:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38606 "EHLO
+        id S229630AbiL1Kaw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 05:30:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232723AbiL1KaU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 05:30:20 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E345101D4
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 02:30:19 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id b3so23078157lfv.2
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 02:30:18 -0800 (PST)
+        with ESMTP id S232802AbiL1Ka2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 05:30:28 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61F36101D4
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 02:30:27 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id y25so23058087lfa.9
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 02:30:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6nPSbBF3msVMuWzevYV4EugkSSaHkMBJx9fPUzPBtfk=;
-        b=PRJaWoaVlCs0q+DnquL7DYvFahZ1m04vbvJKPAYE6b2a0CXt631NmaqQCPYoM9zkAS
-         Hyj2vu/xuq9mydT2ICDMfvuFm9c3xcsd/J0KZLG2PQUeSniterC048diZvcj/GxCy7dw
-         0g/2C+dsKYvhnBK8k+CozC9n1YAg3qx6/Yr7T/ZxXSE81tTEBNJY0YvK1hOjxghpSX6p
-         O0R720UGrywxkhsps//PiCGwmSO+lSTaO1rnfGn2DB/gllZDrwVcc5JQwjnDv8a0BDRE
-         gzh1ZYRZphpKdjj7I6Tccgr2RrEHkz1Fi9txwm5Sv1fGQUvHFKH6fSWdnQLIaONFfJoV
-         R8ng==
+        bh=YfNKDjlL/IBl1ps/WofCT5YK2K0PufWBlxgDjQwdl4E=;
+        b=lJGNxRx+sm07vUaqz8eAVaBOvOBkecJOnFvIcvhMOAT0I+PrVovIFnfL6Luks7og4H
+         zO52YlagtGiMGQgb6VdZXHoNSWrG+xTDlFw3sMdYSa34NdNZWGzkdGNa/LuAUiWN2eRT
+         TTRUVYtz4drubFMqo3c06IUbWUAk/yteM0lmoRHqe6sUx/0mbkIb5gpuwOPXiS7R+Jnk
+         R0JTvimpdkbkhKNjLd5evTTV+L5riw69EdC01cpckED8UAM1vC/b9mA9iaS91gXieB4i
+         p1uZW1LrpVd/75PVKiW9KK/C5kmvt4IBKmWyNTXzIMabkDk72cVwzRrXfaxCmnfts2rf
+         dT4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6nPSbBF3msVMuWzevYV4EugkSSaHkMBJx9fPUzPBtfk=;
-        b=LTQXrgpIpjU1MdtiA+NWy86A1is27/pEgRaimpwDozDUBTQcgWUxIREyGBtfdDD7Cs
-         CiLLrj+o/6RDeXsSZ5eNr1nJPhCinZ6cMGF1MjkgoZyg/TFHbbUhtPkiYOyJMv5IZ16p
-         /J04ZMZ9p8LP3pNup66moe5jknPNEYAk61dVcN85/6Ho1dx8K184eMJ+aBecH0kR4UsK
-         24XhwIi+6iE+FLESAn/WyetNPZy27lT4bDOD/JyksnDBTcL92Kev8UoWNGJ1ZLk/Vil0
-         pBjduzc9+8ABlZe04Mn0jYmaAIsCSvJmbWMtNX7qaG3sUEOJdHGRkSej3brc4mcLQsOA
-         JDsA==
-X-Gm-Message-State: AFqh2kphvZlNa1ueujpBdPdGHD300j3PGN66gKkmXdGS4Rtqh0e8biFR
-        XOSeQfZRDitGOf9kkEb2INjtpQ==
-X-Google-Smtp-Source: AMrXdXtXxdaNvh4g+EtYDpLxYoj0OiScsVjPE6/B/8gnSnJkB7/VG0EiuChkO0RcO3ZtiraZXg3ZCg==
-X-Received: by 2002:a05:6512:3901:b0:4a4:68b7:e71c with SMTP id a1-20020a056512390100b004a468b7e71cmr6832469lfu.6.1672223417287;
-        Wed, 28 Dec 2022 02:30:17 -0800 (PST)
+        bh=YfNKDjlL/IBl1ps/WofCT5YK2K0PufWBlxgDjQwdl4E=;
+        b=FVMQLevDMw7FFYIeAGnZ5106sVIVH75o66hX1Ifk1PtL561SVtdKRualLD0na1jvf7
+         BZ6PoeG8BI8qNuxSIdvoWJZaMi2AX2g9IgvlQwGfAb6KjRPB0h8XRwb+k+yZGdVyUDMk
+         zQjB3ZFYRuNTqOdNwZeAgqUKUjjrJPP0XOAApVWOxZ/eKh8ijfmhLOyYeKI2Nm52aeeh
+         8uVoyaoXTCuI6IVhwNyUrXCWNQgREbyuicnR4yVzh0Y0+n2rDqkUKYPmQStX4/5lsSc7
+         DMQwIMPOJphX1HJT3ThENzoxzdo9x/9sRI19FgPzBDxW9e8UkvqxbdTZlde4aIvs3BfI
+         o7UA==
+X-Gm-Message-State: AFqh2koy5XVgtT0KlRuleSbBH4MHadkDPGzvnVU7BlbgdbZzZV8HUdSe
+        HuLhzR2ZrbI02XF926FFLLpdww==
+X-Google-Smtp-Source: AMrXdXslXpgAENEAPDKauCftaqi9wz7ttpBfkZ3cUa33HcIgUm13+2ieJ/WemhBKEoarQNwN2JSMtw==
+X-Received: by 2002:a05:6512:3b9c:b0:4a4:68b7:ded7 with SMTP id g28-20020a0565123b9c00b004a468b7ded7mr10549365lfv.51.1672223425765;
+        Wed, 28 Dec 2022 02:30:25 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id l28-20020ac24a9c000000b004b50b4f63b7sm2593666lfp.170.2022.12.28.02.30.16
+        by smtp.gmail.com with ESMTPSA id z20-20020ac24194000000b004b56a8d9e90sm2608883lfh.116.2022.12.28.02.30.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Dec 2022 02:30:16 -0800 (PST)
-Message-ID: <262fb9c4-c7d3-989f-c3fb-3e36da26b081@linaro.org>
-Date:   Wed, 28 Dec 2022 11:30:15 +0100
+        Wed, 28 Dec 2022 02:30:25 -0800 (PST)
+Message-ID: <687b83e6-9dbe-2f12-b4a8-5810f249ed43@linaro.org>
+Date:   Wed, 28 Dec 2022 11:30:24 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [RFC PATCH 01/12] dt-bindings: clock: qcom,gcc-apq8084: define
- clocks/clock-names
+Subject: Re: [RFC PATCH 02/12] dt-bindings: clock: qcom,gcc-apq8084: add
+ GCC_MMSS_GPLL0_CLK_SRC
+Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -68,10 +69,9 @@ To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org
 References: <20221227013225.2847382-1-dmitry.baryshkov@linaro.org>
- <20221227013225.2847382-2-dmitry.baryshkov@linaro.org>
-Content-Language: en-US
+ <20221227013225.2847382-3-dmitry.baryshkov@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221227013225.2847382-2-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221227013225.2847382-3-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,62 +85,14 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 27/12/2022 02:32, Dmitry Baryshkov wrote:
-> Define clock/clock-names properties of the GCC device node to be used
-> on APQ8084 platform.
-> 
-> Note: the driver uses a single pcie_pipe clock, however most probably
-> there are two pipe clocks, one from each of PCIe QMP PHYs.
+> Add GCC_MMSS_GPLL0_CLK_SRC, the branch clock gating gpll0 clock for the
+> multimedia subsystem.
 > 
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  .../bindings/clock/qcom,gcc-apq8084.yaml      | 43 +++++++++++++++++++
->  1 file changed, 43 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml
-> index 8ade176c24f4..02a856f14fbe 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml
-> @@ -25,6 +25,30 @@ properties:
->    compatible:
->      const: qcom,gcc-apq8084
->  
-> +  clocks:
-> +    items:
-> +      - description: XO source
-> +      - description: Sleep clock source
-> +      - description: UFS RX symbol 0 clock
-> +      - description: UFS RX symbol 1 clock
-> +      - description: UFS TX symbol 0 clock
-> +      - description: UFS TX symbol 1 clock
-> +      - description: SATA ASIC0 clock
-> +      - description: SATA RX clock
-> +      - description: PCIe PIPE clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: xo
-> +      - const: sleep_clk
-> +      - const: ufs_rx_symbol_0_clk_src
-> +      - const: ufs_rx_symbol_1_clk_src
-> +      - const: ufs_tx_symbol_0_clk_src
-> +      - const: ufs_tx_symbol_1_clk_src
-> +      - const: sata_asic0_clk
-> +      - const: sata_rx_clk
-> +      - const: pcie_pipe
-> +
->  required:
->    - compatible
->  
-> @@ -38,5 +62,24 @@ examples:
->          #clock-cells = <1>;
->          #reset-cells = <1>;
->          #power-domain-cells = <1>;
-> +
-> +        clocks = <&xo_board>,
-> +                 <&sleep_clk>,
-> +                 <&ufsphy 0>,
 
-No IDs available yet?
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
