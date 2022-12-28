@@ -2,69 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05E52657177
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 01:44:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DCF9657199
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 02:36:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229639AbiL1Aou (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 19:44:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48528 "EHLO
+        id S230127AbiL1BgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 20:36:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229742AbiL1Aot (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 19:44:49 -0500
-Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B103DFDF;
-        Tue, 27 Dec 2022 16:44:49 -0800 (PST)
-Received: by mail-qk1-x733.google.com with SMTP id pj1so6947056qkn.3;
-        Tue, 27 Dec 2022 16:44:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=AVmMB7LWgzdDIBRBEs9sPvtNNzf69pakGxYpB1OitTQ=;
-        b=EmI/12RhYqoyRBOJGISVnnAJyd8SrqHywjQceEQHxUb4IWGfUxyMYH6Oj3vA2gemwl
-         AanGkRJ/RL+HzJ161PC6ENC/uJJCwX2XqA22LpYHrrPko3aDo/QeFNPaUNFD0s92d/CB
-         qqkU3L3cj92IJ6TUQjxR9oPutRRx9N1/CYePYuCCP5lN/wwtW1nzxu48xCXuPodMSsrn
-         Us1gz2P/zfmPvH9fzhzU8hlHQWepG0ZLmXeq0yH8su++ManAM6QJos8zGvNrdAdaRptk
-         wSXjVQSIJiBqbuMr3oJZ/fGSviUKaUe8EW1f8hE9yto9l8gqPedSSH94Vvsh03Q6OZMo
-         kW1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AVmMB7LWgzdDIBRBEs9sPvtNNzf69pakGxYpB1OitTQ=;
-        b=iTEBb7leJd162y6P7lNeI0W9D8hiioiMrMS0JfrAHUobDZdoVfk4Rs4JDMZfE01V1r
-         0jep++59uDOjp9SKyWfbeb9BQWPB632MRYWlBV0WgpswaFJkkDC8biq7SDRI3tXLCHAT
-         cGRyQXbjftxntKO39QCpOxGIf4Z3j/MsRntvXQr7zfpGw7caYDDRKGNMKoyxO25/6u0K
-         JtJSAJw8f17lN4I8W2npv1tR5fBJSxHiOxS3F941awG2h5Eo1MlDvWPsFOj0bfCu4niF
-         EexunRmx9587UO442B5RChCaNE2SIajk7un9yj/t+1ROCm47adjXHwnLfSlX8nv6Rli8
-         S/AA==
-X-Gm-Message-State: AFqh2krBCA3AwMmxKhYfP4VMqJYGjPMWygd+G3Uf5OZJzQezpaGpJq6j
-        RkfUjbw+fLbOiS6OAbQaC3dwubfM216h8L9KfAI=
-X-Google-Smtp-Source: AMrXdXvR7x7YM6+Gq7ish224E78nPWdIqhJd3dcvNp6WaxeLjEbrEYNp+Z7vKscJjkyqHGwxbQLF4bHEsp3LditEKCE=
-X-Received: by 2002:a05:620a:489:b0:6ff:c2e:c71c with SMTP id
- 9-20020a05620a048900b006ff0c2ec71cmr1057568qkr.734.1672188287751; Tue, 27 Dec
- 2022 16:44:47 -0800 (PST)
+        with ESMTP id S229475AbiL1BgJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 20:36:09 -0500
+Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66389C777;
+        Tue, 27 Dec 2022 17:36:07 -0800 (PST)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.nyi.internal (Postfix) with ESMTP id C8B725C00B5;
+        Tue, 27 Dec 2022 20:36:06 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Tue, 27 Dec 2022 20:36:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm3; t=1672191366; x=
+        1672277766; bh=rGmjN/Zp6wsSXxFVU1GiemrfxEb1GghLPn/O3CM4LCI=; b=0
+        tHnb8enKTn6h2VSCBz/zkz/xBrtkRlHfBqDZlKqezt/pHVAw6SmabtQObnR3VJXW
+        gaqflSfRHL0ufdy6I9VFokpELuuKFi8SwcxwBjV8zAeziXlk4nhsOj8NJP41rmwr
+        1n2dShlQCozuJMyqZqO4pwulSuTwZEExg41tm/1aIrjlXhSUfrSXX3xN5vp/pcBP
+        pqczAgF2CMOVuIO7F/+XAvKbJysoA7IUtlQxCq6/8/DxzPyNbQk640axo0lUrdP/
+        SB3BWgCjV3cfDImBjqZ2xcbCOsaroZG+T8PDIxwePfk/MMz9VLQLPbUdYh3+R0oX
+        Z65jiP13IyAzAL0IEaegA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1672191366; x=
+        1672277766; bh=rGmjN/Zp6wsSXxFVU1GiemrfxEb1GghLPn/O3CM4LCI=; b=d
+        TebGABsW4bWxo7t02h2arQyHHhOI9iuK9g9G81XKVemWjMSbi9ctY+q+nudZxTmD
+        fQHLFGavekstDooNg+R0X55Q9c81H6hjwNR7IXzGwhg23TMbEnkXrWrFVS1FXWKf
+        NkB5Q4UPuvIMtozahLntRU857XbgVsl65vTBWBAybTQ5DL5m1p0QF0bJ31w5iVaa
+        KXrlbSYP+LzES7ddJ82sP9y2zKjQK+A4QGMV52VbF0BKlZvZ6OWqzJ3NDNN8chuA
+        KSahD/xj4wwS37wjgREJYTsBdMPb0G8ki1KiYwwev6y1kC0qy86/GbnBUfquP/N3
+        48cbOyONtyDoBmWF/BjQA==
+X-ME-Sender: <xms:hp2rYxHd80icm3eGLczM_hq1nfa-IVazMlZnjWOLVvwQrSKzrTB0pw>
+    <xme:hp2rY2WCFPqDKyvuMblRgsO1szVDnuip-ASBFPpc5DtJAJbYnrt_gzUpYNr2ZjonU
+    0wtU6HrVVhcKkGeJQ>
+X-ME-Received: <xmr:hp2rYzKbXqrGkg8OaMqrxEkqHPHvdCawSIsUeqWVW2zXR1hujT_Y0x80CCQL6pekDzdCwHZZmDSCOGJxAhTd-XnFQVnKRO91K511ONFnF8n2TOIzutN9J9slCw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedriedugdefkecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefkffggfgfuvfevfhfhjggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
+    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+    ftrfgrthhtvghrnhepkeejleelfeeitdfhtdfgkeeghedufeduueegffdvhfdukeelleef
+    tdetjeehuddtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
+    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:hp2rY3Fssjzf8ZeS7qFPL8SOiE-AxvG1IQe01nwxXX4DoIfLx0p_mQ>
+    <xmx:hp2rY3V21Vfo1X6ryFOVJLpjcoKidxuBKi6lpCQ73Vbfh4lgfk86OQ>
+    <xmx:hp2rYyMqE1nSIsI44o_ID0ucQ2D5LxtJYQvmBs_C6fO1VZkoIc9USw>
+    <xmx:hp2rYwOQihVNCRrZkc842rELvmv163HV0ue4oymSC9GcXcCraG6w0Q>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 27 Dec 2022 20:36:04 -0500 (EST)
+Message-ID: <8f82ddb6-cd3a-c7f7-5a20-427403d8600c@sholland.org>
+Date:   Tue, 27 Dec 2022 19:36:03 -0600
 MIME-Version: 1.0
-References: <20221227100659.157071-1-jjhiblot@traphandler.com>
- <20221227100659.157071-7-jjhiblot@traphandler.com> <CAHp75VceSOCiu=17jrmHVOaqAoaqw4He9DKgH8Vjw_oYZdi7Eg@mail.gmail.com>
-In-Reply-To: <CAHp75VceSOCiu=17jrmHVOaqAoaqw4He9DKgH8Vjw_oYZdi7Eg@mail.gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 28 Dec 2022 02:44:11 +0200
-Message-ID: <CAHp75VfkcZCN+6i9bUAXQbj62GxBAJMwn-5xeU76yTKC7ek7wg@mail.gmail.com>
-Subject: Re: [RESEND PATCH v6 6/6] leds: Add a multicolor LED driver to group
- monochromatic LEDs
-To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-Cc:     lee@kernel.org, pavel@ucw.cz, robh+dt@kernel.org,
-        sven.schwermer@disruptive-technologies.com,
-        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
-        marijn.suijten@somainline.org, jacek.anaszewski@gmail.com,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v3] riscv: Use PUD/P4D/PGD pages for the linear mapping
+Content-Language: en-US
+To:     Conor Dooley <conor@kernel.org>,
+        Alexandre Ghiti <alexghiti@rivosinc.com>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arch@vger.kernel.org
+References: <20221213060204.27286-1-alexghiti@rivosinc.com>
+ <Y6TmYjr07W9WJEPn@spud>
+From:   Samuel Holland <samuel@sholland.org>
+In-Reply-To: <Y6TmYjr07W9WJEPn@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,62 +94,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 28, 2022 at 2:41 AM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
-> On Tue, Dec 27, 2022 at 12:07 PM Jean-Jacques Hiblot
-> <jjhiblot@traphandler.com> wrote:
-> >
-> > By allowing to group multiple monochrome LED into multicolor LEDs,
-> > all involved LEDs can be controlled in-sync. This enables using effects
-> > using triggers, etc.
->
-> ...
->
-> > +       count = 0;
-> > +       max_brightness = 0;
-> > +       for (;;) {
-> > +               struct led_classdev *led_cdev;
-> > +
-> > +               led_cdev = devm_of_led_get_optional(dev, count);
->
-> > +
->
-> Redundant blank line.
->
-> > +               if (IS_ERR(led_cdev))
-> > +                       return dev_err_probe(dev, PTR_ERR(led_cdev),
-> > +                                            "Unable to get led #%d", count);
-> > +
-> > +               /* Reached the end of the list ?*/
-> > +               if (!led_cdev)
-> > +                       break;
->
-> > +               count++;
->
-> If I understand the flow correctly, this can be moved...
->
-> > +               priv->monochromatics = devm_krealloc_array(dev, priv->monochromatics,
-> > +                                       count, sizeof(*priv->monochromatics),
+On 12/22/22 17:21, Conor Dooley wrote:
+> On Tue, Dec 13, 2022 at 07:02:04AM +0100, Alexandre Ghiti wrote:
+>> During the early page table creation, we used to set the mapping for
+>> PAGE_OFFSET to the kernel load address: but the kernel load address is
+>> always offseted by PMD_SIZE which makes it impossible to use PUD/P4D/PGD
+>> pages as this physical address is not aligned on PUD/P4D/PGD size (whereas
+>> PAGE_OFFSET is).
+>>
+>> But actually we don't have to establish this mapping (ie set va_pa_offset)
+>> that early in the boot process because:
+>>
+>> - first, setup_vm installs a temporary kernel mapping and among other
+>>   things, discovers the system memory,
+>> - then, setup_vm_final creates the final kernel mapping and takes
+>>   advantage of the discovered system memory to create the linear
+>>   mapping.
+>>
+>> During the first phase, we don't know the start of the system memory and
+>> then until the second phase is finished, we can't use the linear mapping at
+>> all and phys_to_virt/virt_to_phys translations must not be used because it
+>> would result in a different translation from the 'real' one once the final
+>> mapping is installed.
+>>
+>> So here we simply delay the initialization of va_pa_offset to after the
+>> system memory discovery. But to make sure noone uses the linear mapping
+>> before, we add some guard in the DEBUG_VIRTUAL config.
+>>
+>> Finally we can use PUD/P4D/PGD hugepages when possible, which will result
+>> in a better TLB utilization.
+>>
+>> Note that we rely on the firmware to protect itself using PMP.
+>>
+>> Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
+>> ---
+>>
+>> v3:
+>> - Change the comment about initrd_start VA conversion so that it fits
+>>   ARM64 and RISCV64 (and others in the future if needed), as suggested
+>>   by Rob
+>>
+>> v2:
+>> - Add a comment on why RISCV64 does not need to set initrd_start/end that
+>>   early in the boot process, as asked by Rob
+>>
+>> Note that this patch is rebased on top of:
+>> [PATCH v1 1/1] riscv: mm: call best_map_size many times during linear-mapping
+> 
+> Hey Alex, unfortunately I could not get this to apply either (I tried a
+> riscv/for-next & Linus' tree).
+> The above patch should be in both, so idk:
+> git am -3 v3_20221213_alexghiti_riscv_use_pud_p4d_pgd_pages_for_the_linear_mapping.mbx
+> Applying: riscv: Use PUD/P4D/PGD pages for the linear mapping
+> error: sha1 information is lacking or useless (arch/riscv/mm/init.c).
+> error: could not build fake ancestor
+> Patch failed at 0001 riscv: Use PUD/P4D/PGD pages for the linear mapping
 
-Yes, here the + 1 will be needed instead. But I think it would be
-better from the reader perspective, as we try to allocate memory for
-existing amount + 1 as it would be clearly written.
+That's because my CONFIG_DEBUG_VIRTUAL fix got applied first. This patch
+applies cleanly after:
 
-> > +                                       GFP_KERNEL);
-> > +               if (!priv->monochromatics)
-> > +                       return -ENOMEM;
->
-> > +               priv->monochromatics[count - 1] = led_cdev;
->
-> ...here either as a separate line or a part of the above assignment,
-> in either case the -1 wouldn't be needed.
->
->
-> > +               max_brightness = max(max_brightness, led_cdev->max_brightness);
-> > +       }
+	git revert -m1 61b2f0bdaa3c7e6956fdac0a7c1e8284b9b81d1d
 
-P.S. Bjorn's address is wrong.
+though you'll get one trivial conflict if you try to undo the revert.
 
--- 
-With Best Regards,
-Andy Shevchenko
+Regards,
+Samuel
+
