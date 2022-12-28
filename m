@@ -2,85 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02E2A6571DE
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 02:54:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A30C96571E5
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 02:56:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232548AbiL1Bya (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 20:54:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37176 "EHLO
+        id S230286AbiL1B4r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 20:56:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232718AbiL1ByG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 20:54:06 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDDF5F585;
-        Tue, 27 Dec 2022 17:52:28 -0800 (PST)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BS1RbQ2006084;
-        Wed, 28 Dec 2022 01:52:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=OWoUMHMAg6ZFQZMXZ1sQvOf70adLDMIIlMo8dd0/UUU=;
- b=OZTgQcvHqblhK/p/LeC+MgtmZI8Q82Y4hNFjcBxsja2zGnBtj9HUkM8A4KIqaTCMt9sw
- Xw3rjTXe0xle0Y2Vl0vRBWI/HFMMNx1JBNSK2v0Hj5ieGbhuSLQiOqGOL9TR0ApCh3Yv
- p/lWe0oSIMStvO59aFpbBe5/zCBI0KdRf2qqd5KzYSNMm9qj5/f8IUmPsTHQ9/s0GiMz
- rcDjyKfMTWSAZx4gqIYk5IK1BHYROsg1pQbWyOlIuQIbQyZ6BsIZgoVvwZ8M8CzDMWOk
- CT9HgdFZQwoMPSZJVsrpSlBp34Unv1vAF5cvE10PcWMBz75lFsozH3I6eFN17h53A5LE 3A== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3mnrd1dvk0-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 28 Dec 2022 01:52:24 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2BS1qNhI000348
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 28 Dec 2022 01:52:23 GMT
-Received: from [10.110.12.185] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 27 Dec
- 2022 17:52:22 -0800
-Message-ID: <9bec497c-a0f9-ac9a-03a4-82e42688df1f@quicinc.com>
-Date:   Tue, 27 Dec 2022 17:52:21 -0800
+        with ESMTP id S231233AbiL1B4l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 20:56:41 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 663C313F
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 17:56:39 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id f34so21783540lfv.10
+        for <devicetree@vger.kernel.org>; Tue, 27 Dec 2022 17:56:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=semihalf.com; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ya4OkwTxkQIsQisM/Dm9mdZB4FBQpxpLG/pVmuZn5L4=;
+        b=Jmkig8CX48nfiBERsCtde7QIRT0twnS96s3BpTt0B0ITmbwVmk/jZs0M5M+b0Z8M83
+         aLA6MekTcPxaFRbkxVsmD/rLYAguq9i9pNrAafQaFsotkoCz23OCWAsioM50+5YZB7g6
+         UrzhhlLStPOCi+86IReulMj3AiM2aTy6FT5BUHXEqfzBu6nNEFdBlfrzQSPO4/Ob0lGQ
+         fcn7fg5+czVUC4vqcZcf1beJwirxZP7iXgmjEV9v5VNOLybuPofxjfaxXqxcJllN/jI3
+         5qREHDaBfdTx/apFiu2HEZTGcRybUPp/YXxEMdMHMwc59TuIDfeZOVnffh1tj6llK+CN
+         r45w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Ya4OkwTxkQIsQisM/Dm9mdZB4FBQpxpLG/pVmuZn5L4=;
+        b=SI9lLdk+X/dVUTxvxvKXPyrm2FBq5AX6VkSA5D6lNMMR/MKFT1ioXYk5Xb3JYn2Hgx
+         02+Z4fiLWxmfA7bi94W6tKsVWb/nEN61dF2r+7qK+ONcsWvq0020Pa2PuxrfXnYqmgKi
+         bLp2+GcnShe51LTUPBhXORXkaK9QC7vlvls2EXBkO94qC/C+RtLBKVsANsDxSnDFMcU0
+         E3S1bkJaGRJNqAAMZ/qP9a2Jklx12Xwi2uv4Hr3NADupeCoAWr7Bq3TO9imb4FdpGhyh
+         vS/ve/Y2jdWTSf6TVMOSabikShdYAXdpS6GVFndabagrGVcqNrZUuEvBbGBrb+f9ARht
+         BWfA==
+X-Gm-Message-State: AFqh2koAgth87l9NEl4aKU2pr7P1g+U8A5rQaXE/euZ9oe8H9N8GpNc0
+        LZj7zcboaOSmmjO1P5SsI6DWSw==
+X-Google-Smtp-Source: AMrXdXswpTVzhGP9x29LisdW+YxBu8bpDSgNf2VvWKUP22usyT4Oykd1ed9f4Aw/ebsj32589xEcDQ==
+X-Received: by 2002:a05:6512:2527:b0:4b5:8504:7072 with SMTP id be39-20020a056512252700b004b585047072mr6558508lfb.14.1672192597725;
+        Tue, 27 Dec 2022 17:56:37 -0800 (PST)
+Received: from michal-H370M-DS3H.office.semihalf.net ([83.142.187.84])
+        by smtp.googlemail.com with ESMTPSA id h10-20020a2ea48a000000b002776eb5b1ccsm1842623lji.4.2022.12.27.17.56.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Dec 2022 17:56:37 -0800 (PST)
+From:   =?UTF-8?q?Micha=C5=82=20Grzelak?= <mig@semihalf.com>
+To:     krzysztof.kozlowski@linaro.org
+Cc:     andrew@lunn.ch, chris.packham@alliedtelesis.co.nz,
+        davem@davemloft.net, devicetree@vger.kernel.org,
+        edumazet@google.com, krzysztof.kozlowski+dt@linaro.org,
+        kuba@kernel.org, linux-kernel@vger.kernel.org, mig@semihalf.com,
+        netdev@vger.kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+        upstream@semihalf.com
+Subject: [PATCH v2] dt-bindings: net: marvell,orion-mdio: Fix examples
+Date:   Wed, 28 Dec 2022 02:54:33 +0100
+Message-Id: <20221228015433.73919-1-mig@semihalf.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <7f6a2072-f26b-e2f0-9c07-d2ea43c8c4bc@linaro.org>
+References: <7f6a2072-f26b-e2f0-9c07-d2ea43c8c4bc@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.2
-Subject: Re: [PATCH] dt-bindings: msm/dsi: Don't require vdds-supply on 10nm
- PHY
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <andersson@kernel.org>,
-        <agross@kernel.org>, <krzysztof.kozlowski@linaro.org>
-CC:     <patches@linaro.org>, Rob Clark <robdclark@gmail.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221116163218.42449-1-konrad.dybcio@linaro.org>
-From:   Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <20221116163218.42449-1-konrad.dybcio@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: tpnjjpBv9_QGlzROx12kjvd7-_5yLgmr
-X-Proofpoint-GUID: tpnjjpBv9_QGlzROx12kjvd7-_5yLgmr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-12-27_18,2022-12-27_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
- spamscore=0 malwarescore=0 suspectscore=0 adultscore=0 lowpriorityscore=0
- impostorscore=0 phishscore=0 priorityscore=1501 mlxscore=0 mlxlogscore=906
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2212280011
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,33 +75,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+As stated in marvell-orion-mdio.txt deleted in commit 0781434af811f
+("dt-bindings: net: orion-mdio: Convert to JSON schema") if
+'interrupts' property is present, width of 'reg' should be 0x84.
+Otherwise, width of 'reg' should be 0x4. Fix 'examples:' and add
+constraints checking whether 'interrupts' property is present
+and validate it against fixed values in reg.
 
+Signed-off-by: Michał Grzelak <mig@semihalf.com>
+---
+Changelog:
+v1->v2:
+- remove second example
+- add 'if:' constraint to 'allOf:'
+- move 'allOf:' before 'examples:'
 
-On 11/16/2022 8:32 AM, Konrad Dybcio wrote:
-> On some SoCs (hello SM6350) vdds-supply is not wired to any smd-rpm
-> or rpmh regulator, but instead powered by the VDD_MX/mx.lvl line,
-> which is voted for in the DSI ctrl node.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+ .../bindings/net/marvell,orion-mdio.yaml      | 31 ++++++++++++++++---
+ 1 file changed, 27 insertions(+), 4 deletions(-)
 
-Fixes: 8fc939e72ff8 ("dt-bindings: msm: dsi: add yaml schemas for DSI 
-PHY bindings")
+diff --git a/Documentation/devicetree/bindings/net/marvell,orion-mdio.yaml b/Documentation/devicetree/bindings/net/marvell,orion-mdio.yaml
+index d2906b4a0f59..381cd8edebed 100644
+--- a/Documentation/devicetree/bindings/net/marvell,orion-mdio.yaml
++++ b/Documentation/devicetree/bindings/net/marvell,orion-mdio.yaml
+@@ -16,9 +16,6 @@ description: |
+   8k has a second unit which provides an interface with the xMDIO bus. This
+   driver handles these interfaces.
+ 
+-allOf:
+-  - $ref: "mdio.yaml#"
+-
+ properties:
+   compatible:
+     enum:
+@@ -39,13 +36,39 @@ required:
+   - compatible
+   - reg
+ 
++allOf:
++
++  - $ref: "mdio.yaml#"
++
++  - if:
++      required:
++        - interrupts
++
++    then:
++      properties:
++        reg:
++          items:
++            - items:
++                - $ref: /schemas/types.yaml#/definitions/cell
++                - const: 0x84
++
++    else:
++      properties:
++        reg:
++          items:
++            - items:
++                - $ref: /schemas/types.yaml#/definitions/cell
++                - enum:
++                    - 0x4
++                    - 0x10
++
+ unevaluatedProperties: false
+ 
+ examples:
+   - |
+     mdio@d0072004 {
+       compatible = "marvell,orion-mdio";
+-      reg = <0xd0072004 0x4>;
++      reg = <0xd0072004 0x84>;
+       #address-cells = <1>;
+       #size-cells = <0>;
+       interrupts = <30>;
+-- 
+2.34.1
 
-Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
-
-> ---
->   Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml | 1 -
->   1 file changed, 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
-> index d9ad8b659f58..3ec466c3ab38 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
-> @@ -69,7 +69,6 @@ required:
->     - compatible
->     - reg
->     - reg-names
-> -  - vdds-supply
->   
->   unevaluatedProperties: false
->   
