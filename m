@@ -2,72 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 400626587CE
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 00:11:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C3A36587E9
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 00:37:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230280AbiL1XLA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 18:11:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35478 "EHLO
+        id S231316AbiL1Xg4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 18:36:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229822AbiL1XK7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 18:10:59 -0500
-Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [IPv6:2001:4b7a:2000:18::165])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5699160E1;
-        Wed, 28 Dec 2022 15:10:57 -0800 (PST)
-Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id D1053200C9;
-        Thu, 29 Dec 2022 00:10:54 +0100 (CET)
-Date:   Thu, 29 Dec 2022 00:10:53 +0100
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        krzysztof.kozlowski@linaro.org, Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S229716AbiL1Xgy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 18:36:54 -0500
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 963FE13DFA;
+        Wed, 28 Dec 2022 15:36:53 -0800 (PST)
+Received: by mail-yb1-xb30.google.com with SMTP id c124so18931851ybb.13;
+        Wed, 28 Dec 2022 15:36:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Gm5dF1TCz05P7Iy/oXiMOgKCZdzl0vuE+lOSnhvhB1I=;
+        b=m23rT/oTev+19JERS5Q1QW0yplRprnZiJSp7MFMa8u9ysgZ7AvSFxd7hcTT9rmzne7
+         QzV9sqpc84Eq1NKtsU9ZFTMlXn0xshmm5ZxNyhZMl6zLnTwbupw+t5RK2wT1m80DhqS6
+         DID2TW+CtcNN1HRN3pdDtnqnd04EztZTFkRIumES1r/PV8bh/db8HN5KGnIFnYGiNSfP
+         nAIcTWD4o+zR1rjyKW36m7RU+aM0tdzJFeK0qe4U+B2hqS/fGmquic3N9O/CuT+LovBT
+         9/BPISI+flnVPexwPxFXH8dK4Stpba0YEeeEM/wIUhAXC4ksTgARmZaiLrButW03dOie
+         MIRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Gm5dF1TCz05P7Iy/oXiMOgKCZdzl0vuE+lOSnhvhB1I=;
+        b=Vh53pHD4Csz0iTCtDKaH4CKImCpAdzrtUCxx2c4ibUK8sYkXgUV7+JcmrLNVui+Im1
+         JFaSJ9e2uV+WDRI9a3OqFItEZkLPlsTdlm8k/9QxdZqlsbdx4tz0LXas/IYvYR9X+iAv
+         KxoJqatB8K8Q9ker4yodvLG2Q0N5jzXHM5xMeJFB+klafitCheKLvbt5PQDc4dTjOky/
+         dDCBflFZZRnNVo/MJmYZo8nWWcoLCoefVZQ0KbgG3a7EQHbcw4hf9iUkh53GlANnaj6B
+         gPuuwkuXMzSNGNDk/TAkaeDDBu8moKycFcj1+6z28PcC44VrDDvRGhmCip5BQFBb4X/c
+         7cOg==
+X-Gm-Message-State: AFqh2krEcNcRAicY8muaNPUOrrkrrpoD4OtgE86b3hEn++P7b7YVHv/o
+        CbgH3PJulXKrSQJHNfOpO/F7kldK54NRv/Oivsk=
+X-Google-Smtp-Source: AMrXdXth9uqLygFz5q+Ml/vbHiYDL95C6DJSssRFAvIg51n4np68SQvY3Gq+HgqtEKPZjRPzByrKnVthisS02KGmHIE=
+X-Received: by 2002:a25:5506:0:b0:768:6ae8:df82 with SMTP id
+ j6-20020a255506000000b007686ae8df82mr2467006ybb.398.1672270612800; Wed, 28
+ Dec 2022 15:36:52 -0800 (PST)
+MIME-Version: 1.0
+References: <20221221000242.340202-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221221000242.340202-10-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdV1UAF0Pgk6omcLz6-kHLD6xnMFDN-UJ2ge_bhoD7rAcw@mail.gmail.com>
+In-Reply-To: <CAMuHMdV1UAF0Pgk6omcLz6-kHLD6xnMFDN-UJ2ge_bhoD7rAcw@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Wed, 28 Dec 2022 23:36:26 +0000
+Message-ID: <CA+V-a8sFV+vqXN8mA4c8wKe15chcZKsiZf1gCdcc+ZoFWtNGtw@mail.gmail.com>
+Subject: Re: [PATCH v2 9/9] arm64: dts: renesas: rzg2ul-smarc-som: Add PHY
+ interrupt support for ETH{0/1}
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm8150: Add DISPCC node
-Message-ID: <20221228231053.46fclmazl5qrjbmo@SoMainline.org>
-References: <20221212093315.11390-1-konrad.dybcio@linaro.org>
- <20221212093315.11390-2-konrad.dybcio@linaro.org>
- <20221228041658.hpmlspnhm2ssinai@builder.lan>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221228041658.hpmlspnhm2ssinai@builder.lan>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-12-27 22:16:58, Bjorn Andersson wrote:
-> On Mon, Dec 12, 2022 at 10:33:13AM +0100, Konrad Dybcio wrote:
-> > [..]
-> > +			power-domains = <&rpmhpd SM8150_MMCX>;
-> > +			/* TODO: Maybe rpmhpd_opp_min_svs could work as well? */
-> 
-> The power-domain being not disabled should be sufficient for us to
-> access the dispcc. Beyond that votes would be needed for particular
-> frequencies, and that goes in the client nodes/opp-tables.
-> 
-> So you should be able to drop this comment and the required-opps.
-> 
-> Regards,
-> Bjorn
-> 
-> > +			required-opps = <&rpmhpd_opp_low_svs>;
+Hi Geert,
 
-Tested the removal of this on Xperia 5, no regressions.
+Thank you for the review.
 
-- Marijn
+On Tue, Dec 27, 2022 at 1:02 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Wed, Dec 21, 2022 at 1:04 AM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > The PHY interrupt (INT_N) pin is connected to IRQ2 and IRQ7 for ETH0 and
+> > ETH1 respectively.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> > --- a/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
+> > +++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
+> > @@ -6,6 +6,7 @@
+> >   */
+> >
+> >  #include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/interrupt-controller/irqc-rzg2l.h>
+> >  #include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
+> >
+> >  / {
+> > @@ -77,6 +78,8 @@ phy0: ethernet-phy@7 {
+> >                 compatible = "ethernet-phy-id0022.1640",
+> >                              "ethernet-phy-ieee802.3-c22";
+> >                 reg = <7>;
+> > +               interrupt-parent = <&irqc>;
+>
+> Note that arch/riscv/boot/dts/renesas/r9a07g043f.dtsi does not have
+> the irqc node yet, so I cannot take this as-is.
+>
+Agreed, is it OK if we temporarily add the (above+below) properties in
+the boards DTS and once we have full fledged support for RZ/Five we
+move it back to the SoM DTSi (as done in this patch)?
+
+Cheers,
+Prabhakar
+
+> > +               interrupts = <RZG2L_IRQ2 IRQ_TYPE_LEVEL_LOW>;
+> >                 rxc-skew-psec = <2400>;
+> >                 txc-skew-psec = <2400>;
+> >                 rxdv-skew-psec = <0>;
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
