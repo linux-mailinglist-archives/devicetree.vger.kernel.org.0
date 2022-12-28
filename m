@@ -2,115 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E5776571A0
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 02:37:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE3E76571A5
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 02:38:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229475AbiL1Bhg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 20:37:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59938 "EHLO
+        id S231162AbiL1Bip (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 20:38:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232412AbiL1Bh3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 20:37:29 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC6C91F4;
-        Tue, 27 Dec 2022 17:37:28 -0800 (PST)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BS1R4iL017686;
-        Wed, 28 Dec 2022 01:37:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=EtQgIDvKrvyHmtio3MslDG+WSNFv2qz7IHi4lqsPyIA=;
- b=RXs/YccymCgepIvT8lOyxHm0td1w0KFI48IZmCEo8f5d0DDcDDe9ZLQ5Vvy8+VMl3q8i
- d7UhoXnOYO9YXNMJWHhuQjljwQkcLSDq9o9KSBC+UcUOfgX9//t/pUP4jEjGZJqMVknS
- fgjA1P3PLvvw2p9DtFk5GVSFS9ajCwcC32yiembKAmrSGlB4GJAQlAmIJkuU5tqVDdaz
- AO9A4q0xRP6ZTUjIfOkjJHWBlxZuIRlSIWoMLT/quqAr4fR5WzNRvd3XulvUAWJXl9j0
- 1/Mr5lHWo0Pl0/fu6GuDT7sWWoK/grJS5X+nEXXmKzKy8RgS46HbdX+wsDxu/UAkxRsj 0w== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3mr1r1h4d6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 28 Dec 2022 01:37:16 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2BS1bFnR004746
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 28 Dec 2022 01:37:15 GMT
-Received: from [10.110.12.185] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 27 Dec
- 2022 17:37:14 -0800
-Message-ID: <e4d8d393-c940-d322-ef19-92393515f4ef@quicinc.com>
-Date:   Tue, 27 Dec 2022 17:37:13 -0800
+        with ESMTP id S231263AbiL1Bio (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 20:38:44 -0500
+Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66762DFB4;
+        Tue, 27 Dec 2022 17:38:43 -0800 (PST)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id D26AD5C00AE;
+        Tue, 27 Dec 2022 20:38:42 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Tue, 27 Dec 2022 20:38:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm3; t=1672191522; x=
+        1672277922; bh=iC1a58fopLg2dyidRFyFPZOZXaXL0ZruSKVGJ6/nOig=; b=E
+        4w5GwRQ+8JtzSAznWScl6ANpSNTjAR+dZdPBmXkUxKOxPUKBvBTmcTyi63N5kKT7
+        H1963AjYxTST5hYfg15Tu3+OOWKXIh15dyJuisJVNytsv93pnA0ZAVFN5JmiJAtn
+        z8uPTmwonvlgkAIBOEVputB9tKYEwKmXKHgJz1vAhGYWIJYcDp3474+w62ZfXNgq
+        T6xaC8eR3smBS/r3Y5xjSztycCyBj67yMmr1mLzR2TOMIlhi+A9ep3ZBnFiE7PwH
+        j8+AUT1bmwH/si70iqIx0swW/vF+fYN4+ejARZD2sOofT+E380VoiArSVBObC+qN
+        KhrYdgMFB12Z9rvw/1NAQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1672191522; x=
+        1672277922; bh=iC1a58fopLg2dyidRFyFPZOZXaXL0ZruSKVGJ6/nOig=; b=I
+        cteJ0wEdzCTJFIm693Mp4YyQCI8l/LyY2LVrrKKqnmlteO3PMjNrEYrZI5CTtvCF
+        9SWl09pJ7NnkfDGOPS8xJIyLgH95IstiYl8GJAdqgEpsUvXAsDHjKxFmtPyvJCdw
+        foijtjsJ/i8pQsoSYHBR+/xt9la3IQKXXlSc+m42tteJeqOfBeQlf+uulfKGjtmi
+        Oq+Ts2yQ8RSma6RI4fx5aC6n2RHG/CNolSglPQiz/Oncz8CMsgZLOyfRZd4Fsvt+
+        I/KaftcoNbaMjA/m9ZYon7K+xWmiWBi48/vrnGIqLxMraJ8kaJrQ0oNY/8IkTNLs
+        9aZasQs0C5YV83pL5LuEg==
+X-ME-Sender: <xms:Ip6rY86Hc6PfiZorb-ViYn7cNsgRiihh9R7R33UgMPXDgjO4aqJfnw>
+    <xme:Ip6rY94CEoJ_6ykeqyIPHootVw0AH3sNJXM-zOCi-pUA0Dc3etv6lAudQ_kV4JBWH
+    U8AY5SnV3Uakbw64g>
+X-ME-Received: <xmr:Ip6rY7cER7AJqKJEMsP9Ncx65pyKHt8M-0sphpSR0tOfhOgImORxG5pB6NtKDpXzwSaZbLJPJErZi4bSEyK86Zvv9uZkfuQpB9FzBSpgGdE5FSsYK09mHly0lw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedriedugdefkecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefkffggfgfuvfhfvefhjggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
+    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+    ftrfgrthhtvghrnhepjeegjeejteeftedvgfdtlefgveelgedugeelheeuudeigeejjeef
+    jeelkeffvedvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
+    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:Ip6rYxLYECx36W0zOVc1NHzxPgXH_frOUR53fxfeS385DymiHcQ-PQ>
+    <xmx:Ip6rYwLwJ-7liOxx2WSKJ1R7fL9sycFYmRGedr5AsVW7g_w7_ETyOQ>
+    <xmx:Ip6rYyyZYce9HaGHafCHt4Bmua1nOgrAUqVtfEDflxEzd6DkoM6Y6w>
+    <xmx:Ip6rY1UhNBd3iVCNH7Pu8J_R9vIFbDPEX6lkL72oWO2KIKYzIziqig>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 27 Dec 2022 20:38:41 -0500 (EST)
+Message-ID: <cedd59be-e194-aef9-6249-aa6a15a53842@sholland.org>
+Date:   Tue, 27 Dec 2022 19:38:41 -0600
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.2
-Subject: Re: [PATCH] dt-bindings: msm/dsi: Don't require vcca-supply on 14nm
- PHY
+User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v3] riscv: Use PUD/P4D/PGD pages for the linear mapping
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <andersson@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <patches@linaro.org>, Rob Clark <robdclark@gmail.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+To:     Alexandre Ghiti <alexghiti@rivosinc.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>
+References: <20221213060204.27286-1-alexghiti@rivosinc.com>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221130135807.45028-1-konrad.dybcio@linaro.org>
-From:   Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <20221130135807.45028-1-konrad.dybcio@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arch@vger.kernel.org
+From:   Samuel Holland <samuel@sholland.org>
+In-Reply-To: <20221213060204.27286-1-alexghiti@rivosinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: e2ae_V3ReDy4r0afdqyLoT5y5ZIezzZN
-X-Proofpoint-ORIG-GUID: e2ae_V3ReDy4r0afdqyLoT5y5ZIezzZN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-12-27_18,2022-12-27_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
- phishscore=0 mlxlogscore=906 lowpriorityscore=0 priorityscore=1501
- suspectscore=0 spamscore=0 impostorscore=0 adultscore=0 malwarescore=0
- clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2212280009
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 11/30/2022 5:58 AM, Konrad Dybcio wrote:
-> On some SoCs (hello SM6115) vcca-supply is not wired to any smd-rpm
-> or rpmh regulator, but instead powered by the VDD_MX line, which is
-> voted for in the DSI ctrl node.
+On 12/13/22 00:02, Alexandre Ghiti wrote:
+> During the early page table creation, we used to set the mapping for
+> PAGE_OFFSET to the kernel load address: but the kernel load address is
+> always offseted by PMD_SIZE which makes it impossible to use PUD/P4D/PGD
+> pages as this physical address is not aligned on PUD/P4D/PGD size (whereas
+> PAGE_OFFSET is).
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Fixes: 8fc939e72ff8 ("dt-bindings: msm: dsi: add yaml schemas for DSI 
-PHY bindings")
-Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+> But actually we don't have to establish this mapping (ie set va_pa_offset)
+> that early in the boot process because:
+> 
+> - first, setup_vm installs a temporary kernel mapping and among other
+>   things, discovers the system memory,
+> - then, setup_vm_final creates the final kernel mapping and takes
+>   advantage of the discovered system memory to create the linear
+>   mapping.
+> 
+> During the first phase, we don't know the start of the system memory and
+> then until the second phase is finished, we can't use the linear mapping at
+> all and phys_to_virt/virt_to_phys translations must not be used because it
+> would result in a different translation from the 'real' one once the final
+> mapping is installed.
+> 
+> So here we simply delay the initialization of va_pa_offset to after the
+> system memory discovery. But to make sure noone uses the linear mapping
+> before, we add some guard in the DEBUG_VIRTUAL config.
+> 
+> Finally we can use PUD/P4D/PGD hugepages when possible, which will result
+> in a better TLB utilization.
+> 
+> Note that we rely on the firmware to protect itself using PMP.
+> 
+> Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
 > ---
->   Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml | 1 -
->   1 file changed, 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
-> index 819de5ce0bc9..a43e11d3b00d 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
-> @@ -39,7 +39,6 @@ required:
->     - compatible
->     - reg
->     - reg-names
-> -  - vcca-supply
->   
->   unevaluatedProperties: false
->   
+> v3:
+> - Change the comment about initrd_start VA conversion so that it fits
+>   ARM64 and RISCV64 (and others in the future if needed), as suggested
+>   by Rob
+> 
+> v2:
+> - Add a comment on why RISCV64 does not need to set initrd_start/end that
+>   early in the boot process, as asked by Rob
+> 
+> Note that this patch is rebased on top of:
+> [PATCH v1 1/1] riscv: mm: call best_map_size many times during linear-mapping
+> 
+>  arch/riscv/include/asm/page.h | 16 ++++++++++++++++
+>  arch/riscv/mm/init.c          | 25 +++++++++++++++++++------
+>  arch/riscv/mm/physaddr.c      | 16 ++++++++++++++++
+>  drivers/of/fdt.c              | 11 ++++++-----
+>  4 files changed, 57 insertions(+), 11 deletions(-)
+
+This works nicely on D1! Before:
+	MemTotal:         490680 kB
+after:
+	MemTotal:         492472 kB
+and I tested booting with CONFIG_DEBUG_VIRTUAL without issue as well.
+
+Reviewed-by: Samuel Holland <samuel@sholland.org>
+Tested-by: Samuel Holland <samuel@sholland.org>
+
