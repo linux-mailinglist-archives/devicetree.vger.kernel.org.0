@@ -2,76 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E33D6573E5
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 09:27:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 54E636573F4
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 09:31:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232494AbiL1I1C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 03:27:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41898 "EHLO
+        id S232464AbiL1Ibd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 03:31:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231533AbiL1I05 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 03:26:57 -0500
-Received: from mail-oa1-x31.google.com (mail-oa1-x31.google.com [IPv6:2001:4860:4864:20::31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0615BE0D9
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 00:26:56 -0800 (PST)
-Received: by mail-oa1-x31.google.com with SMTP id 586e51a60fabf-1322d768ba7so17917721fac.5
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 00:26:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=1Z9/PqGQwTjm38REEONxEQHatW3RqTg7g05P268BC1M=;
-        b=nji85v022+wAGzmuUCmXUT7B5uYInWB2zkQn16q8fdGe7/NDlAMQUr5Cp2I9SaCEjj
-         u5yD4380zCWtdDuPfOC8UZCmJ6L++mibjRQruP1ULO0tQJvhxgNb5Uu/N/e+62vZyALf
-         Yuf5rkLMepoBBrL0JMSbuODZglCg/qcegi4vZE13eGKWxRgBLBbU2lnYCnpfonxmRvhY
-         qH0XGE1LhursulJ0Ga0m1dEkKfrFwcC6iSmJrDhfNu+QgmNKdTSyccuBk1f/rUWiJbaO
-         EkyKHYcNB+MP1iLxe2+Ut/Z49LyDteNB0PJQXprHM7fgb1L529pMts20yuxoEpSIodZz
-         iu9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1Z9/PqGQwTjm38REEONxEQHatW3RqTg7g05P268BC1M=;
-        b=Qu/4qYsFHLiy0EEt6fQaQZcR3R7xga8VZoB5eN4zJ1go6ERaVHi3B9a87EX30gCXel
-         1/pb892HSDuBeL4/kuqcB8V0JAn/BXwugAaKKQaXz+JUMmJx2Qb+Eav3kaNh/0P745oG
-         EIUnZ0ZOa2seYMcYHnwpNWXYx62vOjpo4C9MULZ4f1zZw5hZRvxXYS9yqfyEm92jdeOr
-         NTrwtO4t0RhQIoBWOoPd7G8PEzYM2drubeXkXKoe/zNkcSLCpHf5X5dDuKB+yseodDW5
-         mh6KVhJo2eQNHKaWPOnxMZEza3nO65VqEi3kfHvP1we9K2dThbOUFt/PzDNHkBp1jbnS
-         xqfQ==
-X-Gm-Message-State: AFqh2krdhrdniqOyBKek59opHFYva8nEhBu9yY8DJ3Mrxp+ZdUx38OIE
-        M9T5ZL9Xgb8T8Gujd2qLZNe0Cv9nwDGhitJP4ZKhog==
-X-Google-Smtp-Source: AMrXdXvBQl9y5tcOiVIyN/zYA7iZvfKaDqF0akasn2AMX0NYxoPxxzLuE0yanG7HITqm7KzMeYSloUiGJcFvvJfwVNo=
-X-Received: by 2002:a05:6870:d906:b0:13c:33d0:22e2 with SMTP id
- gq6-20020a056870d90600b0013c33d022e2mr1595918oab.14.1672216014029; Wed, 28
- Dec 2022 00:26:54 -0800 (PST)
+        with ESMTP id S230183AbiL1Ibc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 03:31:32 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62A216551;
+        Wed, 28 Dec 2022 00:31:30 -0800 (PST)
+X-UUID: b6cc379d00bc44399e34b83d95cd5a9a-20221228
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=GcaUuOgVIhiyz19WJXVeJeBFNH9yp3Z0VXXuo9zLxwE=;
+        b=R2xxp2UmDyyobUZ8BvIrb3wAqgq6lA2PzJcjaKucTsEmAqjUhs47HQbUPjJ2o63v6CXMKRYvhMdbL9nPN+eFmC15d5kCAzvq00Edm2dEMXhQAr9O0M2AXty9KdQrKWf5UMfs+kBZn2mpn1psB2Yg9uWPC9NLTFKbQ2klZxE6phQ=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.14,REQID:f6a07d0e-40a7-424d-9fdb-3c77808d55d2,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:dcaaed0,CLOUDID:92330453-dd49-462e-a4be-2143a3ddc739,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: b6cc379d00bc44399e34b83d95cd5a9a-20221228
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <miles.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 290507137; Wed, 28 Dec 2022 16:31:24 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Wed, 28 Dec 2022 16:31:23 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Wed, 28 Dec 2022 16:31:23 +0800
+From:   Miles Chen <miles.chen@mediatek.com>
+To:     <angelogioacchino.delregno@collabora.com>
+CC:     <chun-jie.chen@mediatek.com>, <daniel@makrotopia.org>,
+        <devicetree@vger.kernel.org>, <fparent@baylibre.com>,
+        <ikjn@chromium.org>, <johnson.wang@mediatek.com>,
+        <jose.exposito89@gmail.com>, <kernel@collabora.com>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <matthias.bgg@gmail.com>,
+        <miles.chen@mediatek.com>, <msp@baylibre.com>,
+        <mturquette@baylibre.com>, <nfraprado@collabora.com>,
+        <pablo.sun@mediatek.com>, <rex-bc.chen@mediatek.com>,
+        <robh+dt@kernel.org>, <ryder.lee@kernel.org>,
+        <sam.shih@mediatek.com>, <sboyd@kernel.org>,
+        <weiyi.lu@mediatek.com>, <wenst@chromium.org>,
+        <y.oudjana@protonmail.com>, <yangyingliang@huawei.com>
+Subject: Re: [PATCH v2 15/23] clk: mediatek: mt8192: Join top_adj_divs and top_muxes
+Date:   Wed, 28 Dec 2022 16:31:23 +0800
+Message-ID: <20221228083123.15298-1-miles.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <20221223094259.87373-16-angelogioacchino.delregno@collabora.com>
+References: <20221223094259.87373-16-angelogioacchino.delregno@collabora.com>
 MIME-Version: 1.0
-References: <20221205163754.221139-1-robert.foss@linaro.org>
- <20221205163754.221139-12-robert.foss@linaro.org> <ed8c6ca2-e4e1-52f5-0858-8c774819dd73@linaro.org>
-In-Reply-To: <ed8c6ca2-e4e1-52f5-0858-8c774819dd73@linaro.org>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Wed, 28 Dec 2022 09:26:43 +0100
-Message-ID: <CAG3jFysSBF_bkeUu=0wWFh-2yBx1HBP=36AdsBKFew_0r1qApw@mail.gmail.com>
-Subject: Re: [PATCH v3 11/11] arm64: dts: qcom: sm8350-hdk: Enable lt9611uxc
- dsi-hdmi bridge
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
-        dmitry.baryshkov@linaro.org, sean@poorly.run, airlied@linux.ie,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, konrad.dybcio@somainline.org,
-        quic_kalyant@quicinc.com, angelogioacchino.delregno@somainline.org,
-        loic.poulain@linaro.org, swboyd@chromium.org,
-        quic_vpolimer@quicinc.com, vkoul@kernel.org, dianders@chromium.org,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jonathan Marek <jonathan@marek.ca>,
-        vinod.koul@linaro.org, quic_jesszhan@quicinc.com,
-        andersson@kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-MTK:  N
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,58 +73,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 5 Dec 2022 at 17:47, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 05/12/2022 17:37, Robert Foss wrote:
-> > The sm8350-hdk ships with the LT9611 UXC DSI/HDMI bridge chip.
-> >
-> > In order to toggle the board to enable the HDMI output,
-> > switch #7 & #8 on the rightmost multi-switch package have
-> > to be toggled to On.
-> >
-> > Signed-off-by: Robert Foss <robert.foss@linaro.org>
->
-> Thank you for your patch. There is something to discuss/improve.
->
-> > +
-> >  &slpi {
-> >       status = "okay";
-> >       firmware-name = "qcom/sm8350/slpi.mbn";
-> > @@ -544,4 +633,20 @@ usb_hub_enabled_state: usb-hub-enabled-state {
-> >               drive-strength = <2>;
-> >               output-low;
-> >       };
-> > +
-> > +     lt9611_state: lt9611-state {
-> > +             lt9611_rst_pin {
->
-> No underscores in node names.
+Hi,
 
-Ack
+> These two are both mtk_composite arrays, one dependent on another, but
+> that's something that the clock framework is supposed to sort out and
+> anyway registering them separately isn't going to ease the framework's
+> job in checking dependencies.
+> 
+> Put the contents of top_adj_divs in top_muxes to join them together
+> and register them in one shot.
+> 
 
->
-> > +                     pins = "gpio48";
-> > +                     function = "normal";
-> > +
-> > +                     output-high;
-> > +                     input-disable;
-> > +             };
-> > +
-> > +             lt9611_irq_pin {
->
-> Ditto
+In mt8192, we can join top_adj_divs and top_muxes:
 
-Ack
+mtk_clk_register_composites(top_muxes, ARRAY_SIZE(top_muxes), base, &mt8192_clk_lock,
+		top_clk_data);
+mtk_clk_register_composites(top_adj_divs, ARRAY_SIZE(top_adj_divs), base, &mt8192_clk_lock,
+		top_clk_data);
 
->
-> > +                     pins = "gpio50";
-> > +                     function = "gpio";
-> > +                     bias-disable;
-> > +             };
-> > +     };
-> >  };
->
-> Best regards,
-> Krzysztof
->
+However, there are other top_adj_divs[] and top_muxes[] in different types so 
+we cannot join them.
+
+For example:
+in drivers/clk/mediatek/clk-mt8167.c:mtk_topckgen_init():
+
+mtk_clk_register_composites(top_muxes, ARRAY_SIZE(top_muxes), base,
+		&mt8167_clk_lock, clk_data);
+mtk_clk_register_dividers(top_adj_divs, ARRAY_SIZE(top_adj_divs),
+		base, &mt8167_clk_lock, clk_data);
+
+So we can join top_adj_divs and top_muxes in some platforms, but we
+cannot join top_adj_divs and top_muxes in some other platforms.
+
+I'm afraid that this will confuses people.
+
+
+thanks,
+Miles
