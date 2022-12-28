@@ -2,102 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0F09657473
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 10:08:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 086D0657478
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 10:11:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232672AbiL1JIH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 04:08:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59016 "EHLO
+        id S232714AbiL1JLu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 04:11:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232659AbiL1JIG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 04:08:06 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 386FDB7E1
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 01:08:03 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id p36so22782418lfa.12
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 01:08:03 -0800 (PST)
+        with ESMTP id S232554AbiL1JLt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 04:11:49 -0500
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71D25C7E
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 01:11:48 -0800 (PST)
+Received: by mail-lj1-x229.google.com with SMTP id s22so15995388ljp.5
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 01:11:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+HNDGl0CkeiVnfu4DKkljwbpaMCU00subuxv0w1IOF4=;
-        b=B2b0rr/+3MbCnHJ7koxvaWUEBxLj7XcfLLDkocukvaP28KWiXboGL3BgqxKn0QaNtm
-         w1g7lDbqOG0zMNS3MpaOYFI13h4oTd0w8eMxz3rOnuFxfQVjeKcSD/9710JOunsziCNt
-         pxqRa42efjQ62TmVUJRAP+jdj2Tmpt6Yu8XK6y7jZPp4YqB6dxknKOVa9kr6lOJ3hTzY
-         Adn0yOLNprf6ZDcGkX7+npRHBLc/qMJFzGEYKa/Q3Ib67fHk+oqoSsj1FbnuSuETN6ua
-         jWYeXldEtJOTdXjccGAtFdlVlTtTOnn5z009Fz7kbMdoEPG6N/w+Yz9yrRHSz+QHxv0b
-         NiKA==
+        bh=0iU0lEEi+NPvnevFz5v/nUd+nt+xlbi55hYpYeF8kv8=;
+        b=ZlHAN2Qm4X+4bssNjlhgXwc8CTx1TnTGHd2REjIfdPyoL9XYLnoO+oTKZ/fYg1pl1z
+         CvAkMwnXhkgNsRxLUHnxqCLoocXFQWx2oRKEKu+BfxTUhSZp9+k30JerybpCYMvryA3v
+         yXSBC5GV9ZPP2pQKZVTkb6ERWgG69R2/C9hOItndq1BwS1E84D7Gm0Kd5Sa2xoGF/boQ
+         98K6ZwvyeR+k5OZgL+E4SOSC+D5k8Ud0IUW7m042LRXXwONQ4b09Ec1MvyChTzf7HkNX
+         QERdR8ekbUkw5pK3TLrJKviunp5SVGom7FGrukWB+F9T/aAKtw/Af/bNk+swft+on4fm
+         KOEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+HNDGl0CkeiVnfu4DKkljwbpaMCU00subuxv0w1IOF4=;
-        b=zZPnOlvsmEi5zCFe8Cl7SirSO2j96FDe1SE1xO+6S4yL4H5azvAa+6w45xL/xWkY+Z
-         IltaNNcjLCrg+anmEJryOfw2w5lGCpxs2Wv5g6xjNIMIXe/1qb+fXvTCg2xowrwuz1Yk
-         w8GUWvv03pw2LnAvJZoaQKnX+lqVpHQT5giyvodYqRN2dtolwHgP7ioDkuNHcu2tKpUM
-         mvmO9IK+yr1mphRFwoOQtfSTC2ONCMnS+Xiiyaij7yh4j0wvRHL9NBdeCxRFCUxkad1T
-         VF9Y5CP0o3QzJlVO7aE5asMKbGHEk7EgoIx/5ojcOWPXP0FvL0I1k52GMqwMBZ9QgFXo
-         AnKw==
-X-Gm-Message-State: AFqh2kpwa8X5Eqj5EcFjUXaQoINCtJO9DGf58xsUgt2Xxy+NvLgd9tSo
-        jK1oOMJdSMffo8H/1jlVl8oq2g==
-X-Google-Smtp-Source: AMrXdXvgnBhT/wBJ+njx2CS8B902YKZjIykvEHjKmdUXjX1vspPf1TvfXGSrKDSbMHha4vZSIRqBXw==
-X-Received: by 2002:a05:6512:3ba1:b0:4b5:8fbf:7dd6 with SMTP id g33-20020a0565123ba100b004b58fbf7dd6mr12347056lfv.61.1672218481618;
-        Wed, 28 Dec 2022 01:08:01 -0800 (PST)
+        bh=0iU0lEEi+NPvnevFz5v/nUd+nt+xlbi55hYpYeF8kv8=;
+        b=FgVrr9AzlZhAk2oY+tmYjIEDPI7O9GOorEkTskQhfm1f/V+PNA9KcmSDyJKbvticmV
+         F9MaKl9dHsAGVS2U9PGK6CrmCo7v5xBKGASWcLJriJH7MGLCI8xCZcqu+j6//dDE47la
+         6mSQ9kfwCRfsh7I3jNj7FYkzkV0k8TgPeiqzU92jsmwlfjD2J4Ch6eJ5K527dSqg5S3e
+         tXqdmN6CVLEdiydJrofsiZxDvMBYVwtRL67q/Cd04BBaOWVevjiE5y2JxLcn4iiaPNBb
+         bFtJXUc8jp70L6iasMe/GdT770tJUffPZsuVCZf8pLgdxFBhlmNFM+Fuo/0m2KnQghrZ
+         xz3Q==
+X-Gm-Message-State: AFqh2krqESXXp0IfPyMGyqQt9sU2K8KHBUz+EQS+cBGpVuy8rEgdN9h1
+        cFuSu/09xNMax5+inp2rJhYj2g==
+X-Google-Smtp-Source: AMrXdXsm9YuIsn0AG+RnQD6psOq8x79YYXxCot3n430np+AbdgZ3DeKWY9XoGdQCIRAveXW9tKysUA==
+X-Received: by 2002:a05:651c:b0c:b0:27f:66ec:b57 with SMTP id b12-20020a05651c0b0c00b0027f66ec0b57mr12033879ljr.39.1672218706774;
+        Wed, 28 Dec 2022 01:11:46 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id a1-20020a056512200100b004cafe989c6dsm1873287lfb.91.2022.12.28.01.08.00
+        by smtp.gmail.com with ESMTPSA id f2-20020a05651c02c200b0027fc4f018a8sm711703ljo.5.2022.12.28.01.11.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Dec 2022 01:08:01 -0800 (PST)
-Message-ID: <f03e693a-cb65-fef6-2070-7c94230188d3@linaro.org>
-Date:   Wed, 28 Dec 2022 10:08:00 +0100
+        Wed, 28 Dec 2022 01:11:46 -0800 (PST)
+Message-ID: <9b098bf9-59d7-e58d-aba3-a8055af053c6@linaro.org>
+Date:   Wed, 28 Dec 2022 10:11:44 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v2] arm64: dts: qcom: sc7280: Add wifi alias for
- SC7280-idp
+Subject: Re: [PATCH v2 5/9] dt-bindings: net: motorcomm: add support for
+ Motorcomm YT8531
 Content-Language: en-US
-To:     "Youghandhar Chintala (Temp)" <quic_youghand@quicinc.com>,
-        agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, quic_mpubbise@quicinc.com,
+To:     yanhong wang <yanhong.wang@starfivetech.com>,
+        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221223073353.20612-1-quic_youghand@quicinc.com>
- <8f9ddaeb-5481-85e2-314e-8c2a99bd48c0@linaro.org>
- <50adff46-be9e-7f4f-74dd-7e71b84bd3ac@quicinc.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>
+References: <20221216070632.11444-1-yanhong.wang@starfivetech.com>
+ <20221216070632.11444-6-yanhong.wang@starfivetech.com>
+ <994718d8-f3ee-af5e-bda7-f913f66597ce@linaro.org>
+ <134a2ead-e272-c32e-b14f-a9e98c8924ac@starfivetech.com>
+ <c296cf6b-6c50-205d-d5f5-6095c0a6c523@linaro.org>
+ <e03fb7bc-b196-bc8a-b396-fab8686d396b@starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <50adff46-be9e-7f4f-74dd-7e71b84bd3ac@quicinc.com>
+In-Reply-To: <e03fb7bc-b196-bc8a-b396-fab8686d396b@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/12/2022 08:02, Youghandhar Chintala (Temp) wrote:
+On 28/12/2022 04:23, yanhong wang wrote:
 > 
-> On 12/23/2022 1:29 PM, Krzysztof Kozlowski wrote:
->> On 23/12/2022 08:33, Youghandhar Chintala wrote:
->>> Currently, the boot loader code used in the SC7280 SoC accesses
->>> the WiFi node using node names (wifi@<addr>). Since the bootloader
->>> is a common code that is used in SoCs having different WiFi chipsets,
->>> it is better if the bootloader code accesses the WiFi node using
->>> a WiFi alias. The advantage of this method is that the boot loader
->>> code need not be changed for every new WiFi chip.
->>> Therefore, add wifi alias entry for SC7280-idp device tree
->> Sounds good but which bootloader.
+> 
+> On 2022/12/27 17:52, Krzysztof Kozlowski wrote:
+>> On 27/12/2022 10:38, yanhong wang wrote:
+>>>>
+>>>> This must be false. After referencing ethernet-phy this should be
+>>>> unevaluatedProperties: false.
+>>>>
+>>>>
+>>>
+>>> Thanks. Parts of this patch exist already, after discussion unanimity was achieved,
+>>> i will remove the parts of YT8531 in the next version.
 >>
->> Best regards,
->> Krzysztof
+>> I don't understand what does it mean. You sent duplicated patch? If so,
+>> please do not... you waste reviewers time.
+>>
+>> Anyway this entire patch does not meet criteria for submission at all,
+>> so please start over from example-schema.
+>>
 > 
-> Depth-charge Chrome OS bootloader.
+> Sorry, maybe I didn't make it clear, which led to misunderstanding. Motorcomm Inc is also 
+> carrying out the upstream of YT8531, and my patch will be duplicated and conflicted 
+> with their submission. By communicating with the developers of Motorcomm Inc, the part 
+> of YT8531 will be submitted by Motorcomm Inc, so my submission about YT8531 will be withdrawn.
 
-Put it in the commit msg.
+Are they going to apply the feedback received for this series?
 
 Best regards,
 Krzysztof
