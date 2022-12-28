@@ -2,75 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3C6765733A
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 07:30:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C6BBD65733F
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 07:33:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229608AbiL1GaZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 01:30:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39478 "EHLO
+        id S229710AbiL1Gdr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 01:33:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229549AbiL1GaX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 01:30:23 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3AC3CE0B;
-        Tue, 27 Dec 2022 22:30:21 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 38434CE076E;
-        Wed, 28 Dec 2022 06:30:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67B22C433EF;
-        Wed, 28 Dec 2022 06:30:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672209018;
-        bh=1/0Qo7uZdBg6poAyG+gq3WMWdGUTd5TU0DqGYCIMt5c=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=RCdRiF0STMeexx7+ooaCKIe1tyJnShm01+HzVlLXU3sr+XoZQHayvUf+mARkboCMO
-         TX3meeWrRZ9zWRSwPEKIt4TduGyMo/T5s4fDxRVQSMxTc8zk7tLIlTKPHepNkguV9H
-         HxugcirSguVeH60RifAfTa0/bUXdptQvlEmtgHrghzcZC+L/T+X3ulvWKgZ8VRZTHp
-         QRhhKVb8Ws7q9oTNNhS0b9LiUN5kYB/bgwke8XYaA033ELa4au8W9y9+w9akyOFiuu
-         OQtNhvZjE3BGJghcLKCeG+075geslMMfOn7PP9IMUbN3Kq7Msf//hXsIUBl1VoYfWO
-         Vq/DWJqpnPqog==
-Date:   Wed, 28 Dec 2022 12:00:13 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        with ESMTP id S229608AbiL1Gdp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 01:33:45 -0500
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17BDDBC07;
+        Tue, 27 Dec 2022 22:33:41 -0800 (PST)
+X-UUID: e744cec906a04018814d323291558934-20221228
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=ZQtki9cjS456yItlFDFoypb+Uyo9A59Q46rWl6WroCI=;
+        b=ZJ5pz0GIDQbrDthYBJYUie0s0wZziX9EHivHKAsIJdMcyf9PQyb1DIy3tKI7FtzFwH65pY+zcaeLBG9ZMOwAmHwnXQCCEswoD51/40n7oMVaBRugC+Fs+R23iNajxvawHSqqcDuBfvlWP4qwhWggQaZIyR5yXfj59e+rijnCjas=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.14,REQID:d4a5b7ca-21dc-4ba5-bb2b-558237caa246,IP:0,U
+        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:-5
+X-CID-META: VersionHash:dcaaed0,CLOUDID:f49b0053-dd49-462e-a4be-2143a3ddc739,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: e744cec906a04018814d323291558934-20221228
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
+        (envelope-from <biao.huang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1794413813; Wed, 28 Dec 2022 14:33:34 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Wed, 28 Dec 2022 14:33:33 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Wed, 28 Dec 2022 14:33:32 +0800
+From:   Biao Huang <biao.huang@mediatek.com>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, dmaengine@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2] dt-bindings: dma: fsl-mxs-dma: Convert MXS DMA to DT
- schema
-Message-ID: <Y6vidV6U6AkTcwc1@matsya>
-References: <20221219093713.328776-1-marex@denx.de>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        "Jakub Kicinski" <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        "Biao Huang" <biao.huang@mediatek.com>, <macpaul.lin@mediatek.com>
+Subject: [PATCH v6 0/2] arm64: dts: mt8195: Add Ethernet controller
+Date:   Wed, 28 Dec 2022 14:33:28 +0800
+Message-ID: <20221228063331.10756-1-biao.huang@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221219093713.328776-1-marex@denx.de>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19-12-22, 10:37, Marek Vasut wrote:
-> Convert the MXS DMA binding to DT schema format using json-schema.
-> 
-> Drop "interrupt-names" property, since it is broken. The drivers/dma/mxs-dma.c
-> in Linux kernel does not use it, the property contains duplicate array entries
-> in existing DTs, and even malformed entries (gmpi, should have been gpmi). Get
-> rid of that optional property altogether.
-> 
-> Update example node names to be standard dma-controller@ ,
-> add global interrupt-parent property into example.
+Changes in v6:
+1. add reviewed-by as Angelo's comments
+2. remove fix_mac_speed in driver as Andrew's comments.
 
-Applied, thanks
+Changes in v5:
+1. reorder the clocks as Angelo's comments
+2. add a driver patch to fix rgmii-id issue, then we can
+use a ususal way rgmii/rgmii-id as Andrew's comments.
+
+Changes in v4:
+1. remove {address,size}-cells = <0> to avoid warning as Angelo's feedback.
+2. Add reviewd-by as Angelo's comments.
+
+Changes in v3:
+1. move stmmac-axi-config, rx-queues-config, tx-queues-configs inside ethernet
+node as Angelo's comments.
+2. add {address,size}-cells = <0> in ethernet node as Angelo's comments.
+
+Changes in v2:
+1. modify pinctrl node used by ethernet to match rules in pinctrl-mt8195.yaml,
+which is pointed by Krzysztof.
+2. remove "mac-address" property in ethernet node as comments of Krzysztof.
+
+Changes in v1:
+add dts node for MT8195 Ethernet controller
+
+Biao Huang (2):
+  stmmac: dwmac-mediatek: remove the dwmac_fix_mac_speed
+  arm64: dts: mt8195: Add Ethernet controller
+
+ arch/arm64/boot/dts/mediatek/mt8195-demo.dts  | 81 +++++++++++++++++
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      | 86 +++++++++++++++++++
+ .../ethernet/stmicro/stmmac/dwmac-mediatek.c  | 26 ------
+ 3 files changed, 167 insertions(+), 26 deletions(-)
 
 -- 
-~Vinod
+2.18.0
+
+
