@@ -2,172 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA360658697
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 21:03:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 176EC6586A3
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 21:17:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232110AbiL1UDo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 15:03:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55402 "EHLO
+        id S231229AbiL1URi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 15:17:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230390AbiL1UDn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 15:03:43 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBD5313E86
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 12:03:41 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id bt23so8301938lfb.5
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 12:03:41 -0800 (PST)
+        with ESMTP id S229835AbiL1URg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 15:17:36 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8484814D28;
+        Wed, 28 Dec 2022 12:17:35 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id jo4so40668334ejb.7;
+        Wed, 28 Dec 2022 12:17:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=semihalf.com; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y62W+4unrt0N1H/hbHDjd85DqMlPKfNIDH0roBe5Np8=;
-        b=NVIyXU8MzWCazUdcvGbQ/5Ku9kMxsWMu7ejGi6aplzBVcX5KuR0eRkDML9JE/G6gOi
-         H9n+CGBJSazsisajWbC8ADQxLeQ/L6PPEprxD1ERwc1apAZ4C1rT4TiKYVUchh2i7G4+
-         HAjjgJmClFAMGghB8hw4NlsaCNDHlwe2Mko86prS67+yRg3zdCr76jGxausvorEWzaL1
-         o6mJaWoD3hW0Qsd9uU6HtH8ZQu/Sc66Zo66I0s89dIOaaA8mPTMeP1QWG04rJHpf0lGb
-         lqAcXk3NzKWfBH7GEy9WIU4B5FZNJwWR2g8fjnFRloDjCFCy0EZFrcQNgg5NCkOGVmZF
-         tWOQ==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nw2wDsJ+8m3AoVC2xWGg3UQxTLWSLHBuRafQhz5yuoY=;
+        b=GPsLfiynTG606YaieJjxQ/cG9X3K6EIGPkkV0ZR/u+a3dIYLWEA3HPIN4PMUHLTo2G
+         gXDRkxIPZzQ4rK8/NIOI7LPfu6sm7ndLWg4hyqrJmh163Uc3DcGXZt9pfyASPk5sOJUW
+         CBlSzxVNPYPIi0W+ilcipBWpgZlqYW4rhCcxkFoUvSWkg76KdO0WywFzasnXA+cwS0nU
+         ReklC54vqnSnMCUCGVQVGyxvmQ48lgUoDwEcBz+PzdkchAdzOCt9tHwJ0zLPdcbbl7VP
+         ocnhjWMXAqxX8UyzoYEjflKHJgL0M/qU6HceCEPRJm/+nzSHgD+7pTyfzA69IHM4tuUN
+         9KWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Y62W+4unrt0N1H/hbHDjd85DqMlPKfNIDH0roBe5Np8=;
-        b=dXVy6S9/rwi7aHYmfGljEX+R66So7YUfed3yzGoiD7Eqa8TQxvwIWamda49V9xe6AN
-         EvaONxu8yznWc4hKk0aZGsDxGkT51kMTwa8o6hUFCjXaYFVCws06J98+Hc4wCnQfPLGr
-         0iiszRRivuixEToGuKfQGID236LhVqSuulzHEIXHlX3g0ORV7uyd8x6Qci7AU5AVDz0t
-         OwjZs3ca2qeXXOpAAoycam06NruqrlxCu5EI83HIs5W2qMlo5iMzMQLcXMat4Kebcjay
-         n20y77NYFKX9/3y5oP02eoFFVqGKChJkpFmvqqQzXy7cyAJywKSFynTKADgH2ZC0kQZl
-         mguw==
-X-Gm-Message-State: AFqh2ko/Cofdv1/lHHnH8weLbyPnPs1BvOJnGe6Zw+DxHNkW25HvRyDL
-        6E0rtZdAL4BnkWZoTCLiYuMLYw==
-X-Google-Smtp-Source: AMrXdXvFDhQ0vprWhz+60YAD5Z4AVVtnKNcpjAKMdhCQNCbRD7s6x2CjmuLik55JG7+s8H2bESsb8g==
-X-Received: by 2002:a05:6512:2385:b0:4b5:90be:33c8 with SMTP id c5-20020a056512238500b004b590be33c8mr8190561lfv.48.1672257820194;
-        Wed, 28 Dec 2022 12:03:40 -0800 (PST)
-Received: from michal-H370M-DS3H.office.semihalf.net ([83.142.187.84])
-        by smtp.googlemail.com with ESMTPSA id j13-20020ac2454d000000b004c7d0ed9619sm2806156lfm.123.2022.12.28.12.03.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Dec 2022 12:03:39 -0800 (PST)
-From:   =?UTF-8?q?Micha=C5=82=20Grzelak?= <mig@semihalf.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     andrew@lunn.ch, sebastian.hesselbarth@gmail.com,
-        gregory.clement@bootlin.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        mw@semihalf.com, upstream@semihalf.com, mchl.grzlk@gmail.com,
-        =?UTF-8?q?Micha=C5=82=20Grzelak?= <mig@semihalf.com>
-Subject: [PATCH v2] ARM: dts: dove.dtsi: Move ethphy to fix schema error
-Date:   Wed, 28 Dec 2022 21:02:34 +0100
-Message-Id: <20221228200234.86391-1-mig@semihalf.com>
-X-Mailer: git-send-email 2.34.1
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=nw2wDsJ+8m3AoVC2xWGg3UQxTLWSLHBuRafQhz5yuoY=;
+        b=gcb+FmgDv0Ns21dT+ZoVW6AivLMDi6AQsm8nS5+1+id9aZy9IL3iyCwY+Sfez2St+G
+         U7USRfSOSufMQbObiGHmuWtAcW5N3GNvXJTa2AOS0zcBCctcXRqd36amhWeip5lc6fD4
+         Q0YjxyBejFkC3x7D90U3/uO3m81vG2RSNJ+dIkUnlKBOMAEV4+4QXjyNg8gn6EGhpoaJ
+         b2HyopNTk0WeGWjHELoyO6+URrD5fXh6Choe0H2olXYF0fJttfSgSAl26EEHeycUmwEy
+         i4Z4J6QpFYOF/DW4ryq29B3nh05zUP6lAtSD69VI5ykqHyZTja5wztQ/mbTanPdFuRAD
+         z63w==
+X-Gm-Message-State: AFqh2kqVvBdcrwMXPisJNQ6END9whm0Xd0H6XrCI/BaxuEC0FJH/tIFI
+        +/CznLMDBKtLAdbUt33QdZIqzTx5Ta0=
+X-Google-Smtp-Source: AMrXdXvw8ADwoIA/nMdHR76kcmwF4uUR4zEn0Pkfet1bjBNastuGkmVj5Xn+l1FWbA6k+McfmjZuZQ==
+X-Received: by 2002:a17:907:a643:b0:83c:7308:b2ed with SMTP id vu3-20020a170907a64300b0083c7308b2edmr22521777ejc.17.1672258654001;
+        Wed, 28 Dec 2022 12:17:34 -0800 (PST)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id g7-20020a17090670c700b0084c7574630csm2119984ejk.97.2022.12.28.12.17.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Dec 2022 12:17:33 -0800 (PST)
+Message-ID: <dab85bfb-9f55-86a1-5cd5-7388c43e0ec5@gmail.com>
+Date:   Wed, 28 Dec 2022 21:17:32 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+From:   Johan Jonker <jbx6244@gmail.com>
+Subject: [PATCH v1] ARM: dts: rockchip: rk3288: add power-domains property to
+ dp node
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Running 'make dtbs_check' with schema in net/marvell,orion-mdio.yaml
-gives the following warnings:
-mdio-bus@72004: Unevaluated properties are not allowed
-('ethernet-phy' was unexpected)
-	arch/arm/boot/dts/dove-cubox.dtb
-	arch/arm/boot/dts/dove-cubox-es.dtb
-	arch/arm/boot/dts/dove-d2plug.dtb
-	arch/arm/boot/dts/dove-d2plug.dtb
-	arch/arm/boot/dts/dove-dove-db.dtb
-	arch/arm/boot/dts/dove-d3plug.dtb
-	arch/arm/boot/dts/dove-sbc-a510.dtb
-Fix them by removing empty ethphy subnode from dove.dtsi and describe
-PHY on the relevant board .dts files level.
+The clocks in the Rockchip rk3288 DisplayPort node are
+included in the power-domain@RK3288_PD_VIO logic, but the
+power-domains property in the dp node is missing, so fix it.
 
-Signed-off-by: Michał Grzelak <mig@semihalf.com>
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 ---
- arch/arm/boot/dts/dove-cm-a510.dtsi | 14 +++++++++++---
- arch/arm/boot/dts/dove-cubox.dts    | 15 +++++++++++----
- arch/arm/boot/dts/dove.dtsi         |  5 -----
- 3 files changed, 22 insertions(+), 12 deletions(-)
+ arch/arm/boot/dts/rk3288.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/boot/dts/dove-cm-a510.dtsi b/arch/arm/boot/dts/dove-cm-a510.dtsi
-index 9b9dfbe07be4..2f2f0a4bf004 100644
---- a/arch/arm/boot/dts/dove-cm-a510.dtsi
-+++ b/arch/arm/boot/dts/dove-cm-a510.dtsi
-@@ -124,9 +124,17 @@ wifi_power: regulator@1 {
- };
- 
- /* Optional RTL8211D GbE PHY on SMI address 0x03 */
--&ethphy {
--	reg = <3>;
--	status = "disabled";
-+&mdio {
-+	ethphy: ethernet-phy@3 {
-+		reg = <3>;
-+		status = "disabled";
-+	};
-+};
-+
-+&eth {
-+	ethernet-port@0 {
-+		phy-handle = <&ethphy>;
-+	};
- };
- 
- &i2c0 {
-diff --git a/arch/arm/boot/dts/dove-cubox.dts b/arch/arm/boot/dts/dove-cubox.dts
-index 2639b9fe0ab4..170c14d7f5c8 100644
---- a/arch/arm/boot/dts/dove-cubox.dts
-+++ b/arch/arm/boot/dts/dove-cubox.dts
-@@ -72,11 +72,18 @@ gpu-subsystem {
- &uart0 { status = "okay"; };
- &sata0 { status = "okay"; };
- &mdio { status = "okay"; };
--&eth { status = "okay"; };
-+&eth {
-+	status = "okay";
-+	ethernet-port@0 {
-+		phy-handle = <&ethphy>;
-+	};
-+};
- 
--&ethphy {
--	compatible = "marvell,88e1310";
--	reg = <1>;
-+&mdio {
-+	ethphy: ethernet-phy@1 {
-+		compatible = "marvell,88e1310";
-+		reg = <1>;
-+	};
- };
- 
- &gpu {
-diff --git a/arch/arm/boot/dts/dove.dtsi b/arch/arm/boot/dts/dove.dtsi
-index 00a36fba2fd2..c7a3fa33c56e 100644
---- a/arch/arm/boot/dts/dove.dtsi
-+++ b/arch/arm/boot/dts/dove.dtsi
-@@ -382,7 +382,6 @@ ethernet-port@0 {
- 					interrupts = <29>;
- 					/* overwrite MAC address in bootloader */
- 					local-mac-address = [00 00 00 00 00 00];
--					phy-handle = <&ethphy>;
- 				};
- 			};
- 
-@@ -394,10 +393,6 @@ mdio: mdio-bus@72004 {
- 				interrupts = <30>;
- 				clocks = <&gate_clk 2>;
- 				status = "disabled";
--
--				ethphy: ethernet-phy {
--					/* set phy address in board file */
--				};
- 			};
- 
- 			sdio0: sdio-host@92000 {
--- 
-2.34.1
+diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
+index 487b0e03d..2ca76b69a 100644
+--- a/arch/arm/boot/dts/rk3288.dtsi
++++ b/arch/arm/boot/dts/rk3288.dtsi
+@@ -1181,6 +1181,7 @@
+ 		clock-names = "dp", "pclk";
+ 		phys = <&edp_phy>;
+ 		phy-names = "dp";
++		power-domains = <&power RK3288_PD_VIO>;
+ 		resets = <&cru SRST_EDP>;
+ 		reset-names = "dp";
+ 		rockchip,grf = <&grf>;
+--
+2.20.1
 
