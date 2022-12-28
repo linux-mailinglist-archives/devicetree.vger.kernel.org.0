@@ -2,178 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35C646577B2
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 15:24:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5067E6577BA
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 15:25:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232627AbiL1OYA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 09:24:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57684 "EHLO
+        id S230183AbiL1OZt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 09:25:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229627AbiL1OX7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 09:23:59 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B73AEE0E6;
-        Wed, 28 Dec 2022 06:23:58 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 58CE4B816E1;
-        Wed, 28 Dec 2022 14:23:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FB14C433D2;
-        Wed, 28 Dec 2022 14:23:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672237436;
-        bh=U6K/0V7altRlePQgzg3SYcQ96jXCm6YD0UaJiksHmgs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ASoQ6rawQwU3jGTGh2yhyOm1ShVJoN8CDTbOMj/CcqIAFiM7uIZELwBMrdGJsjt9F
-         gzyHm6qsxawB16HpnJQ/NbUhhOfkVEyzfHSSdVMyaVmc+23Uep3MW+VjE7ELPQXm3j
-         R+wNdLf/0ZIAnIS23rW5bFPxnaQXmNRWKxXt6QWWUAWuwpggwNqKYAVsWrRnO8tN4G
-         m6HOCuzjONvQ8wOgp46CEWHxNHhwQ1+I1MtattVkU9Kt6KB55NPQfciZYYwkI0OYvG
-         t3JxpwwNXMuypfBGj+7RbB+sbO30ZfnW/Z3aTFhl8OLYc0hjtXi3GIsF71XjSBIrGi
-         kXr8AsL8rO4fA==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1pAXLa-0006XI-BU; Wed, 28 Dec 2022 15:23:59 +0100
-Date:   Wed, 28 Dec 2022 15:23:58 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Luca Weiss <luca.weiss@fairphone.com>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        with ESMTP id S230006AbiL1OZr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 09:25:47 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A5F6B55
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 06:25:45 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id 1so23814899lfz.4
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 06:25:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ygg4rZrJblpZ6eqkZAtejmvUQwK/bibHGkf2D9EMGIM=;
+        b=BUMDGfKKV22rQbn8SNIQb9RAQHxfELwgw6NrxPFq85ffLnigQXv8yyBybUZy+gr96m
+         egezrCwLm9bGn/lfSkiSHPlWlsex7MOZfydyP3oPP957mabM2vGvVi0sm5Io6jZo2e1T
+         4u0E+g8FhPCQOI6rq3aOpGvQZ+gnioj1AtGsHBmAFZshKidyhJwxcaW7gccjYtc1eImc
+         d/GJKDhLL24i360XSC+yGicc3zMCZmCC9jS0M5L+mz7ybihnCmr3SIl8WbMfeC0K67wK
+         5ST63pLx21PNCL3MOUbC4cRrgb6ktRJnSa+Q+6xGuNH0sG2UNGDvOeYfiurS5ZvZSpuw
+         Ubeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ygg4rZrJblpZ6eqkZAtejmvUQwK/bibHGkf2D9EMGIM=;
+        b=Q8nxBLLSVwBw8qfHBkTCtJ2mz2ze+2+C7bsTpSCdPYHu4WQo7tJCwe5xKmYe1g5J6Q
+         WcIZdJZJGTrQaOqgE73d3TCr9onU6E7IhSGIY4czAFz4+VW+7l8bh4U2IjrwFULkXilI
+         4kKPNJJ3oENtsU8x16i0kDmAb2cjHAZv6NzuuPz83Ll2HI6jFC1qwacdq24y2lRan64c
+         GmsxBCY8RlIz65k/1KOSo2vn6cXWouaHWwHdB6zfGg6UenD6hODRNOson6wES2Rqbw4r
+         rnWuwny6oB+b2VSIlt0TDnt7lsmb2Ee7JPXQVtVEGqSbgv5YqPhRe6Pnx4PuNYVQVQH+
+         D/NQ==
+X-Gm-Message-State: AFqh2kqiSXCzjK/mLajrDPdNcxuNHuq0mK8fqYKRYtyobWmVqfI8jbZV
+        +NKnSd9R4WcKw2qduGJI/tY8lw==
+X-Google-Smtp-Source: AMrXdXvtfDNkf8QO95Rlz6ZYLer9mXJSPCN1r/5ISLAJ2smSsYjdzD+58fKhGTVqtYGOIJVyQVBEEg==
+X-Received: by 2002:a19:7110:0:b0:4b5:5a25:f2d0 with SMTP id m16-20020a197110000000b004b55a25f2d0mr7778543lfc.44.1672237543647;
+        Wed, 28 Dec 2022 06:25:43 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id p1-20020a2e9a81000000b0027fcb748a32sm451291lji.52.2022.12.28.06.25.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Dec 2022 06:25:43 -0800 (PST)
+Message-ID: <279dc76c-9e60-dd93-e2d2-c2dad241620f@linaro.org>
+Date:   Wed, 28 Dec 2022 15:25:42 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8350: add missing
+ core_bi_pll_test_se GCC clock
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: sm6350: Use specific qmpphy
- compatible
-Message-ID: <Y6xRftXTCYgy8gN3@hovoldconsulting.com>
-References: <20221130081430.67831-1-luca.weiss@fairphone.com>
- <20221130081430.67831-3-luca.weiss@fairphone.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221130081430.67831-3-luca.weiss@fairphone.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221228112456.31348-1-krzysztof.kozlowski@linaro.org>
+ <d2e303d9-3ac4-f574-680f-4f5ccbf5ed13@linaro.org>
+ <5001001a-203f-e832-f916-ce483b2d8ea1@linaro.org>
+ <97a27c10-411e-8823-507c-ebb3f71a48ed@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <97a27c10-411e-8823-507c-ebb3f71a48ed@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 30, 2022 at 09:14:29AM +0100, Luca Weiss wrote:
-> The sc7180 phy compatible works fine for some cases, but it turns out
-> sm6350 does need proper phy configuration in the driver, so use the
-> newly added sm6350 compatible.
+On 28/12/2022 13:50, Dmitry Baryshkov wrote:
+> On 28/12/2022 13:55, Krzysztof Kozlowski wrote:
+>> On 28/12/2022 12:37, Konrad Dybcio wrote:
+>>>
+>>>
+>>> On 28.12.2022 12:24, Krzysztof Kozlowski wrote:
+>>>> The GCC bindings expect core_bi_pll_test_se clock input, even if it is
+>>>> optional:
+>>>>
+>>>>    sm8350-mtp.dtb: clock-controller@100000: clock-names:2: 'core_bi_pll_test_se' was expected
+>>>>
+>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> ---
+>>> Is it even going to be used by anybody, or should we just drop
+>>> it on the driver side as per usual?
+>>
+>> It's mentioned as possible parent, so there might be users somewhere...
+>> Or you want to say that other binding and DTS users cannot use that clock?
 > 
-> Because the sm6350 compatible is using the new binding, we need to
-> change the node quite a bit to match it.
-> 
-> This fixes qmpphy init when no USB cable is plugged in during bootloader
-> stage.
-> 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
-> Changes since v2:
-> * Rebase on https://lore.kernel.org/all/20221111094729.11842-2-johan+linaro@kernel.org/
->   While this commit deletes the changes there it's still good to get it
->   in for completeness
-> * Fix clocks, add power-domain
-> 
->  arch/arm64/boot/dts/qcom/sm6350.dtsi | 50 ++++++++--------------------
->  1 file changed, 14 insertions(+), 36 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-> index 43324bf291c3..cb48f03a6cc9 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-> @@ -11,6 +11,7 @@
->  #include <dt-bindings/interconnect/qcom,sm6350.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/mailbox/qcom-ipcc.h>
-> +#include <dt-bindings/phy/phy-qcom-qmp.h>
->  #include <dt-bindings/power/qcom-rpmpd.h>
->  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
->  
-> @@ -1119,49 +1120,26 @@ usb_1_hsphy: phy@88e3000 {
->  			resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
->  		};
->  
-> -		usb_1_qmpphy: phy@88e9000 {
-> -			compatible = "qcom,sc7180-qmp-usb3-dp-phy";
-> -			reg = <0 0x088e9000 0 0x200>,
-> -			      <0 0x088e8000 0 0x40>,
-> -			      <0 0x088ea000 0 0x200>;
-> -			status = "disabled";
-> -			#address-cells = <2>;
-> -			#size-cells = <2>;
-> -			ranges;
-> +		usb_1_qmpphy: phy@88e8000 {
-> +			compatible = "qcom,sm6350-qmp-usb3-dp-phy";
-> +			reg = <0 0x088e8000 0 0x3000>;
->  
->  			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
-> -				 <&xo_board>,
-> -				 <&rpmhcc RPMH_QLINK_CLK>,
-> -				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>;
-> -			clock-names = "aux", "cfg_ahb", "ref", "com_aux";
-> +				 <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
-> +				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
-> +				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
-> +			clock-names = "aux", "ref", "com_aux", "usb3_pipe";
-> +
-> +			power-domains = <&gcc USB30_PRIM_GDSC>;
->  
->  			resets = <&gcc GCC_USB3_DP_PHY_PRIM_BCR>,
->  				 <&gcc GCC_USB3_PHY_PRIM_BCR>;
+> Yes. In the past few months we have been removing the core_bi_pll_test 
+> from the old clock drivers (and new clock drivers mostly lack them). 
+> Let's remove it from the rest of clock drivers.
 
-These have been switched too.
+If you are going to start doing the same work, please at least share it
+upfront.
 
->  			reset-names = "phy", "common";
->  
-> -			usb_1_ssphy: usb3-phy@88e9200 {
-> -				reg = <0 0x088e9200 0 0x200>,
-> -				      <0 0x088e9400 0 0x200>,
-> -				      <0 0x088e9c00 0 0x400>,
-> -				      <0 0x088e9600 0 0x200>,
-> -				      <0 0x088e9800 0 0x200>,
-> -				      <0 0x088e9a00 0 0x100>;
-> -				#clock-cells = <0>;
-> -				#phy-cells = <0>;
-> -				clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
-> -				clock-names = "pipe0";
-> -				clock-output-names = "usb3_phy_pipe_clk_src";
-> -			};
-> +			#clock-cells = <1>;
-> +			#phy-cells = <1>;
->  
-> -			dp_phy: dp-phy@88ea200 {
-> -				reg = <0 0x088ea200 0 0x200>,
-> -				      <0 0x088ea400 0 0x200>,
-> -				      <0 0x088eaa00 0 0x200>,
-> -				      <0 0x088ea600 0 0x200>,
-> -				      <0 0x088ea800 0 0x200>;
-> -				#phy-cells = <0>;
-> -				#clock-cells = <1>;
-> -			};
-> +			status = "disabled";
->  		};
->  
->  		dc_noc: interconnect@9160000 {
-> @@ -1235,7 +1213,7 @@ usb_1_dwc3: usb@a600000 {
->  				snps,dis_enblslpm_quirk;
->  				snps,has-lpm-erratum;
->  				snps,hird-threshold = /bits/ 8 <0x10>;
-> -				phys = <&usb_1_hsphy>, <&usb_1_ssphy>;
-> +				phys = <&usb_1_hsphy>, <&usb_1_qmpphy QMP_USB43DP_USB3_PHY>;
->  				phy-names = "usb2-phy", "usb3-phy";
->  			};
->  		};
+Best regards,
+Krzysztof
 
-Looks good otherwise. With the resets fixed you can add my:
-
-Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
-
-Johan
