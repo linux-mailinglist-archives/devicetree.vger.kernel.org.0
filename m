@@ -2,67 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1833658760
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 23:50:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DFE2658766
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 23:54:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231243AbiL1WuA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 17:50:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57424 "EHLO
+        id S230050AbiL1Wy1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 17:54:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229630AbiL1Wt7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 17:49:59 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08AC4140E9;
-        Wed, 28 Dec 2022 14:49:59 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S229835AbiL1Wy0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 17:54:26 -0500
+Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [5.144.164.165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03AAC14D36;
+        Wed, 28 Dec 2022 14:54:24 -0800 (PST)
+Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A184861635;
-        Wed, 28 Dec 2022 22:49:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 903F4C433EF;
-        Wed, 28 Dec 2022 22:49:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672267798;
-        bh=eKpTMGHSO/ZTiq4eGqbwHQljT2nRfrSmDBVcf8nJCYI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZXpJJnxOYfx1zvBUjyx9GEH+2hTVRek2WMdMyP+RQl8OiGWzkwrq5GdTM82ZFyS6e
-         fzVLwa0jK6yhYivq7y4tsnxPKJ9G3FevsX2ZhoyBgeAXEfmkKA67V0839PmTKAUXHC
-         0AzKeJnExpNBUHdLjcscNXvKSzoSAERPh8vb//oHp3h335yAshQz5+kq3enT1GTTfq
-         aKYlPOOn8EGC8XQ570ilGBn1FVE0KxLoOLPOZN6S7YFtNrPmb4Tnrw4Gnm56qWIVRb
-         NMdTtg07SzUo+xkOWdDthrDKohLeUS7IHPlXnl+ozdVtRAvzm92EIZ2RZkg0ZNEHzo
-         R1viICb+35LbA==
-Date:   Wed, 28 Dec 2022 22:49:52 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Hal Feng <hal.feng@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 7/7] riscv: dts: starfive: Add StarFive JH7110
- VisionFive 2 board device tree
-Message-ID: <Y6zIEMZJUW6CsPNS@spud>
-References: <20221220011247.35560-1-hal.feng@starfivetech.com>
- <20221220011247.35560-8-hal.feng@starfivetech.com>
- <Y6Iob3csmKMl0rB/@spud>
- <94c90f3f-0ca7-7cfb-4d4f-8f90e3300e16@starfivetech.com>
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 1FB5F1F8BE;
+        Wed, 28 Dec 2022 23:54:22 +0100 (CET)
+Date:   Wed, 28 Dec 2022 23:54:10 +0100
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     cw00.choi@samsung.com, myungjoo.ham@samsung.com,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
+        agross@kernel.org, konrad.dybcio@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 2/2 RESEND] extcon: qcom-spmi: Switch to
+ platform_get_irq_byname_optional
+Message-ID: <20221228225410.dejid2ezu52xfzay@SoMainline.org>
+References: <20221228133058.213886-1-bryan.odonoghue@linaro.org>
+ <20221228133058.213886-3-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="0TJGFiimdGLWYNPZ"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <94c90f3f-0ca7-7cfb-4d4f-8f90e3300e16@starfivetech.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20221228133058.213886-3-bryan.odonoghue@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,81 +46,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2022-12-28 13:30:58, Bryan O'Donoghue wrote:
+> Valid configurations for the extcon interrupt declarations are
+> 
+> - usb_id
+> - usb_vbus
+> - (usb_id | usb_vbus)
+> 
+> In the case of a standalone usb_id or usb_vbus failure to find one of the
+> interrupts shouldn't generate a warning message. A warning is already in
+> place if both IRQs are missing.
+> 
+> Switch to using platform_get_irq_byname_optional() in order to facilitate
+> this behaviour.
+> 
+> Suggested-by: Marijn Suijten <marijn.suijten@somainline.org>
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
---0TJGFiimdGLWYNPZ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
 
-On Fri, Dec 23, 2022 at 11:12:34AM +0800, Hal Feng wrote:
-> On Tue, 20 Dec 2022 21:26:07 +0000, Conor Dooley wrote:
-> > On Tue, Dec 20, 2022 at 09:12:47AM +0800, Hal Feng wrote:
-> > > From: Emil Renner Berthing <kernel@esmil.dk>
-> > >=20
-> > > Add a minimal device tree for StarFive JH7110 VisionFive 2 board
-> > > which has version A and version B. Support booting and basic
-> > > clock/reset/pinctrl/uart drivers.
-> > >=20
-> > > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> > > Co-developed-by: Jianlong Huang <jianlong.huang@starfivetech.com>
-> > > Signed-off-by: Jianlong Huang <jianlong.huang@starfivetech.com>
-> > > Co-developed-by: Hal Feng <hal.feng@starfivetech.com>
-> > > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> > > ---
-
-> > > diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-=
-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> > > new file mode 100644
-> > > index 000000000000..c60280b89c73
-> > > --- /dev/null
-> > > +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> > > @@ -0,0 +1,111 @@
-> > > +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> > > +/*
-> > > + * Copyright (C) 2022 StarFive Technology Co., Ltd.
-> > > + * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
-> > > + */
-> > > +
-> > > +/dts-v1/;
-> > > +#include "jh7110.dtsi"
-> > > +#include "jh7110-pinfunc.h"
-> > > +#include <dt-bindings/gpio/gpio.h>
-> > > +
-> > > +/ {
-> > > +	aliases {
-> > > +		serial0 =3D &uart0;
-> > > +	};
-> > > +
-> > > +	chosen {
-> > > +		stdout-path =3D "serial0:115200n8";
-> > > +	};
-> > > +
-> > > +	cpus {
-> > > +		timebase-frequency =3D <4000000>;
-> > > +	};
-> > > +
-> > > +	memory@40000000 {
-> > > +		device_type =3D "memory";
-> > > +		reg =3D <0x0 0x40000000 0x1 0x0>;
-> >=20
-> > Is this a good idea when you have SKUs with 2, 4 & 8 GiB of DDR?
->=20
-> The VisionFive 2 board only has 4GB version and 8GB version now. Before
-> linux startup, we will change this property in dtb through u-boot to
-> make sure the board can boot up with the correct memory size.
-
-Ah I see. Thanks.
-
-
---0TJGFiimdGLWYNPZ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY6zIDwAKCRB4tDGHoIJi
-0gMNAQCvOfHtZr3PoXFX2+mCzgr6JsCjRiW7PbUqOVqUw8b9dgD/clvylp+cEFHt
-ztVMWXpjCLcWCFgDniZe/S3nBDLNmQA=
-=tziJ
------END PGP SIGNATURE-----
-
---0TJGFiimdGLWYNPZ--
+> ---
+>  drivers/extcon/extcon-qcom-spmi-misc.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/extcon/extcon-qcom-spmi-misc.c b/drivers/extcon/extcon-qcom-spmi-misc.c
+> index eb02cb962b5e1..f72e90ceca53d 100644
+> --- a/drivers/extcon/extcon-qcom-spmi-misc.c
+> +++ b/drivers/extcon/extcon-qcom-spmi-misc.c
+> @@ -123,7 +123,7 @@ static int qcom_usb_extcon_probe(struct platform_device *pdev)
+>  	if (ret)
+>  		return ret;
+>  
+> -	info->id_irq = platform_get_irq_byname(pdev, "usb_id");
+> +	info->id_irq = platform_get_irq_byname_optional(pdev, "usb_id");
+>  	if (info->id_irq > 0) {
+>  		ret = devm_request_threaded_irq(dev, info->id_irq, NULL,
+>  					qcom_usb_irq_handler,
+> @@ -136,7 +136,7 @@ static int qcom_usb_extcon_probe(struct platform_device *pdev)
+>  		}
+>  	}
+>  
+> -	info->vbus_irq = platform_get_irq_byname(pdev, "usb_vbus");
+> +	info->vbus_irq = platform_get_irq_byname_optional(pdev, "usb_vbus");
+>  	if (info->vbus_irq > 0) {
+>  		ret = devm_request_threaded_irq(dev, info->vbus_irq, NULL,
+>  					qcom_usb_irq_handler,
+> -- 
+> 2.34.1
+> 
