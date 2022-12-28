@@ -2,126 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC04A6579EA
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 16:06:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E1F7657A0C
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 16:07:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233556AbiL1PGB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 10:06:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53474 "EHLO
+        id S233584AbiL1PHS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 10:07:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233550AbiL1PF6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 10:05:58 -0500
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10B6EB4BE
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 07:05:57 -0800 (PST)
-Received: by mail-lj1-x230.google.com with SMTP id s22so16756748ljp.5
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 07:05:56 -0800 (PST)
+        with ESMTP id S233587AbiL1PHR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 10:07:17 -0500
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 036E313D74
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 07:07:16 -0800 (PST)
+Received: by mail-pg1-x533.google.com with SMTP id v3so10719209pgh.4
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 07:07:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OzSUnApml1On80n7HfJBsepysNXlW5SfzG3qgcD+3YY=;
-        b=Ucg0KAuaFVS6RZhtg5VTMBCnV8AWw20pioDwN5l2+3ea5pB1VTawBz7sU7JbpUJMRU
-         OsLL1hSe0TSHNria3+/uvqD6fMw/S3IUonC1avKPjUAwJ4OEz4GPaSPJeACewXdojU+o
-         kzJPCeLHUOoCMHfybTAOV9SfUQQkIoKBZy0lalfRvTcNk77uAnkWLYcWzbA6tvvfZo0I
-         AwTko5xOjuXhUHdDTbA/FBl3M4Xo7Qn4GQhPL0UiqbFhCUBwn0C+h7fTGgOp1zQET9Vu
-         JLe3Rku/Jmotjq9ZgqR8p/3LCqocnBI5jBsmk5xCTqJmS2KlF5w1uo90KNcgckRT8Bmy
-         xUgg==
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=KgQT/alxlLYW0WFupTnnqaIko3uIyucGCDE9ru/lFUk=;
+        b=u+i9ifEFN8xTXhij5j2STaK7a8nJTPFtyzhvF1AfWoOJ9S0Q9Ti2Qhqs9a6QTBaXaK
+         j8qSX9KwDLTx1kZ+9Gpg7pbuUX44/1FBE3nsBTM93qUqDfGqkl651Rqf05uuBT0IfLQd
+         7VuNzwxzY2XKTnCly5ayNyNHE/U91Rg+5vwMREYwRQ1s5EK3y4wcQ7I0pvAekQWPFMaq
+         Wt9ckX2CutbfeQgmR74awci4X/2ONaUjdWmzIkTP7DX8cGxey59LmLz8tn011DnCxqNV
+         yWxbgXsuikRgwDdabdpVXGIbeqheWkmhvMCpymYNkqXWQYOTaIS8SMVqgslipJ9Tgwsh
+         p4KA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OzSUnApml1On80n7HfJBsepysNXlW5SfzG3qgcD+3YY=;
-        b=dFHzPSlenMfcQici7v7ZPikEPhZiVuMmjnlTgoKOmjWQJGFCB9w20Ki/ktAo+6zLgV
-         g7kWM/BYFzOEyf5572nn9joH3M0hUKEtlHA6vN00NTz9DfqLc/YI2Ww9v6lVZeoSmX7h
-         2K5abTGR7lnZ+NVBjt83veREoY+lQRe1kCx/oyeGQaGV1Ht8A/XOmWB7V+06wkRE7pmJ
-         5SO+MKNzDABNYO+Zjop+FJ5haWTazzaY/L2VJUprtI/LmO0cKvkMlkpgmbI5uWkA4XtF
-         ePRFYGgQItju3sRq6yEnt1VWig7GaFO2xxv9NUdHjdtUdZET/ga+4Pn1PomiM+b3YhIc
-         2d2A==
-X-Gm-Message-State: AFqh2kpB8r8F4TaW6Xrtswj9sutPd9cJS5m6fWeQgi9tJoFOwVaLiddd
-        zfGXq3QS7CHk+AG/qmC51cMtaw==
-X-Google-Smtp-Source: AMrXdXvd6Ndb66kaIUVSlnQox53Xq+xs+gRtFV8y4vpR06yi1LfOu1OELbHFZzyDArQ4TxSObNmpng==
-X-Received: by 2002:a2e:a604:0:b0:279:c230:a6fb with SMTP id v4-20020a2ea604000000b00279c230a6fbmr9620137ljp.9.1672239955439;
-        Wed, 28 Dec 2022 07:05:55 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id b3-20020a2eb903000000b0027fb672d5fesm1532318ljb.59.2022.12.28.07.05.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Dec 2022 07:05:54 -0800 (PST)
-Message-ID: <513807db-4cf8-5123-fa07-8d4d1feb84db@linaro.org>
-Date:   Wed, 28 Dec 2022 16:05:54 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v5 2/2] dt-bindings: sound: tlv320aic3x: Add optional
- clock and port properties
-Content-Language: en-US
-To:     Jai Luthra <j-luthra@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        bh=KgQT/alxlLYW0WFupTnnqaIko3uIyucGCDE9ru/lFUk=;
+        b=OvyghpaKmiQhKkeYawClowzNm8VNGxYmT/QbJcqSXuDrZBhi6QDJe8JAdibrQi9KwF
+         S/qDBmfmgf9fH+46liH0nDEDK9VHQwMhh7htX1ABa8N2yguSVuzJXDiyUzcg9Y2AfgiV
+         AVQCuN7zNhlJfzmPH5HhRWiy9HxONcMnLJbsmE6hU1H6T3w5fpNHm7bYZW5EVQJajcwB
+         7YsAhyF7NdHmvzH8SG04lejqD3uYW3sJm4NStiLFsGtqP+oIr9T/z1EeLE9HC5uFlNLC
+         OtnnD2njpEUac0tYC+RRy+oEYyhV75xjsl2MdHf+6n3mttrh2xkoIsnDfFHiMFUftv+B
+         HzhQ==
+X-Gm-Message-State: AFqh2kqsfq3DDl3V9Jpt3MljwxukHP4JqM84ajdkDkgF0HUwrkfBO8mN
+        qvrLzEG6kgceLGlxcFTvu7LCtrTgeLdEZ5Q=
+X-Google-Smtp-Source: AMrXdXtBESYjT/Prx4f+YrYEUwbmivOJ0hGM8ZWl3dM7aTOi6spZlddrNBZSu8CHzCESycLIaORBJA==
+X-Received: by 2002:a62:19cd:0:b0:580:9935:ffdb with SMTP id 196-20020a6219cd000000b005809935ffdbmr14481895pfz.20.1672240035482;
+        Wed, 28 Dec 2022 07:07:15 -0800 (PST)
+Received: from thinkpad ([117.217.178.100])
+        by smtp.gmail.com with ESMTPSA id c134-20020a624e8c000000b00572198393c2sm10380770pfb.194.2022.12.28.07.07.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Dec 2022 07:07:13 -0800 (PST)
+Date:   Wed, 28 Dec 2022 20:37:06 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-References: <20221227082717.29561-1-j-luthra@ti.com>
- <20221227082717.29561-3-j-luthra@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221227082717.29561-3-j-luthra@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Taniya Das <quic_tdas@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 00/16] clk: qcom: get rid of core_bi_pll_test_se
+Message-ID: <20221228150706.GD30143@thinkpad>
+References: <20221228133243.3052132-1-dmitry.baryshkov@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221228133243.3052132-1-dmitry.baryshkov@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/12/2022 09:27, Jai Luthra wrote:
-> Describe optional properties for clocks and ports that were missing in
-> the original txt binding, to fix warnings like:
+On Wed, Dec 28, 2022 at 03:32:27PM +0200, Dmitry Baryshkov wrote:
+> Drop core_bi_pll_test_se from all Qualcomm clock controller's bindings
+> and drivers. The clock is not used by anyone.
 > 
-> aic33@18: 'assigned-clock-parents', 'assigned-clock-rates',
-> 	'assigned-clocks' do not match any of the regexes:
-> 	'pinctrl-[0-9]+'
-> 	arch/arm/boot/dts/omap2420-n810.dtb
+
+For the series,
+
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+Thanks for the nice cleanup!
+
+-Mani
+
+> Dmitry Baryshkov (16):
+>   dt-bindings: clock: qcom,gcc-msm8998: drop core_bi_pll_test_se
+>   dt-bindings: clock: qcom,gcc-sdx55: drop core_bi_pll_test_se
+>   dt-bindings: clock: qcom,gcc-sdx65: drop core_bi_pll_test_se
+>   dt-bindings: clock: qcom,gcc-sm8350: drop core_bi_pll_test_se
+>   dt-bindings: clock: qcom,mmcc-msm8998: drop core_bi_pll_test_se
+>   dt-bindings: clock: qcom: gcc-sm8350: drop test clock
+>   dt-bindings: clock: qcom: gcc-sm8450: drop test clock
+>   clk: qcom: dispcc-qcm2290: get rid of test clock
+>   clk: qcom: gcc-msm8998: get rid of test clock
+>   clk: qcom: gcc-sc7180: get rid of test clock
+>   clk: qcom: gcc-sdx55: use ARRAY_SIZE instead of specifying num_parents
+>   clk: qcom: gcc-sdx55: get rid of test clock
+>   clk: qcom: gcc-sm8150: get rid of test clock
+>   clk: qcom: gcc-sm8350: get rid of test clock
+>   clk: qcom: mmcc-msm8998: get rid of test clock
+>   arm64: dts: qcom: msm8998: get rid of test clock
 > 
-> tlv320aic3106@1b: 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	arch/arm/boot/dts/am335x-sl50.dtb
+>  .../bindings/clock/qcom,gcc-msm8998.yaml      |  4 --
+>  .../bindings/clock/qcom,gcc-sdx55.yaml        |  9 +--
+>  .../bindings/clock/qcom,gcc-sdx65.yaml        |  8 +--
+>  .../bindings/clock/qcom,gcc-sm8350.yaml       |  2 -
+>  .../devicetree/bindings/clock/qcom,mmcc.yaml  |  2 -
+>  arch/arm64/boot/dts/qcom/msm8998.dtsi         |  4 +-
+>  drivers/clk/qcom/dispcc-qcm2290.c             |  6 --
+>  drivers/clk/qcom/gcc-msm8998.c                | 13 ----
+>  drivers/clk/qcom/gcc-sc7180.c                 | 16 -----
+>  drivers/clk/qcom/gcc-sdx55.c                  | 64 ++++++++-----------
+>  drivers/clk/qcom/gcc-sm8150.c                 | 17 -----
+>  drivers/clk/qcom/gcc-sm8350.c                 | 15 -----
+>  drivers/clk/qcom/mmcc-msm8998.c               | 25 --------
+>  include/dt-bindings/clock/qcom,gcc-sm8350.h   |  1 -
+>  include/dt-bindings/clock/qcom,gcc-sm8450.h   |  1 -
+>  15 files changed, 32 insertions(+), 155 deletions(-)
 > 
-> codec@18: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	arch/arm/boot/dts/imx6dl-gw5903.dtb
-> 	arch/arm/boot/dts/imx6q-gw5903.dtb
+> -- 
+> 2.35.1
 > 
-> Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> ---
->  Documentation/devicetree/bindings/sound/ti,tlv320aic3x.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/ti,tlv320aic3x.yaml b/Documentation/devicetree/bindings/sound/ti,tlv320aic3x.yaml
-> index f0375bbf4c40..2f9fc76bba55 100644
-> --- a/Documentation/devicetree/bindings/sound/ti,tlv320aic3x.yaml
-> +++ b/Documentation/devicetree/bindings/sound/ti,tlv320aic3x.yaml
-> @@ -110,6 +110,12 @@ properties:
->    '#sound-dai-cells':
->      const: 0
->  
-> +  clocks: true
 
-maxItems
-
-> +
-> +  port:
-> +    description: For DAI connection when the codec is used via graph card
-> +    type: object
-
-Instead this should be $ref to graph port
-
-> +
->  required:
->    - compatible
->    - reg
-
-Best regards,
-Krzysztof
-
+-- 
+மணிவண்ணன் சதாசிவம்
