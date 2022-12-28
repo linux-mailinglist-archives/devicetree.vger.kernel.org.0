@@ -2,283 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3927D657725
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 14:33:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F7FD657728
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 14:33:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232918AbiL1Ndb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 08:33:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41934 "EHLO
+        id S232920AbiL1Ndc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 08:33:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232923AbiL1Nc7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 08:32:59 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC65210061
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 05:32:57 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id g13so23619769lfv.7
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 05:32:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=stqRnlsi18apgRZUrzRrn07ImuYozpaA515MKTA31uc=;
-        b=RjJ49XRu33XO1WP3+hJQuTExPY9niK7zFFyT7wqU9d4XiHJmIKz8GBwkoExkx6apCE
-         gZSLVQuRkkBE4AtQpw5NQc2GxsBjm6kNBZixvKAddaedXxAJ+q2it6LDuF1axAqITD0D
-         5fqYWgHFq97r8lagI3kFN2ByQH09J1qU527lcZ4TxazCQFgvAQRBcjRUo7+2z7H3mGR3
-         IrmgZXPL4V4BjlH5SqmeNvKiMA59n4fkUTi8D0YQ2H8tiINvWyDmix85NeZNULyr8zUJ
-         vQ6Uqucdu+HoUglbKAc3VdoztGI7KWf/mNpI+T8dvPgf46jJz41fNPZ6QOzGm8po8FLy
-         VDHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=stqRnlsi18apgRZUrzRrn07ImuYozpaA515MKTA31uc=;
-        b=vylKqZywGX9F5262WnORWPPt1yjdW+yxfAW2xqGhvztgp0B3TdyuufAu48fP5V3PGw
-         HP4AW9WvKJH/QIMrVLo7KYr1nieqd/PH9YK2ys/Yws9B/6yQDwNdzux9qOULBG1yE7Is
-         uGvpXy8a0Kl7udKwoEXapGznhhrPt/L+pEbvBgjVzHvoaAKxq24fBKmik4hflDw1fqIU
-         bDnuE0e0mrwJSAID0NiLrfDPX2swkHtlIJ3K0iDF9KSsR/r3GdgtxDG0bRKBNlYLYMbP
-         VxKlDngJ4I2X9+s1rc0gk+xlcSirOybdp56T1IPVdivc7eP6+C+oAjjbKJCrv04Uk9Af
-         BS1g==
-X-Gm-Message-State: AFqh2koHvXAe5DT4IMKwVG/llwQYe1GJT0uqL2fLhMP4ZhvwYZoAQW1a
-        nw5hbcI74jZ5YzR64m+eDFyy0Q==
-X-Google-Smtp-Source: AMrXdXvvvQ5P0vl6/ZQ9gQAf/yo2g5r6EI3SkSCAlOKHG5lG9umdBkCZ+63+6HXlXAbQ8eHH7SX9rA==
-X-Received: by 2002:a05:6512:10c3:b0:4ca:dee9:543a with SMTP id k3-20020a05651210c300b004cadee9543amr8797928lfg.32.1672234377475;
-        Wed, 28 Dec 2022 05:32:57 -0800 (PST)
-Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id d7-20020ac241c7000000b004a47e7b91c4sm2613876lfi.195.2022.12.28.05.32.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Dec 2022 05:32:57 -0800 (PST)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH 15/16] clk: qcom: mmcc-msm8998: get rid of test clock
-Date:   Wed, 28 Dec 2022 15:32:42 +0200
-Message-Id: <20221228133243.3052132-16-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221228133243.3052132-1-dmitry.baryshkov@linaro.org>
-References: <20221228133243.3052132-1-dmitry.baryshkov@linaro.org>
+        with ESMTP id S232965AbiL1NdH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 08:33:07 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4950F5A7;
+        Wed, 28 Dec 2022 05:33:05 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2BSDWoW8088719;
+        Wed, 28 Dec 2022 07:32:50 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1672234370;
+        bh=4YCOxMJnjSsz8u4Iw6/xtyCElou+fLA9tDITLKKOMqw=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=ShTRw6k8y1e0JYEvJc8bCoWCUysLdttyJ/GJTiuVktaT7vBS3/imG9pArdp7s0UdM
+         S+iEuZ8sCfyeOK13EHLcTAHcaFd/fi05HaEJM6MudEKugDFacWPX2OXeKHt4k3VeGd
+         yLxClkbTgw2LLMA/OZm0pBJYbF1Y3sJv/pXwM1NI=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2BSDWoHa083769
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 28 Dec 2022 07:32:50 -0600
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 28
+ Dec 2022 07:32:49 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 28 Dec 2022 07:32:50 -0600
+Received: from [10.250.235.211] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2BSDWhKb043709;
+        Wed, 28 Dec 2022 07:32:44 -0600
+Message-ID: <617decfc-bab6-2ba9-53de-c9a0462a2c2a@ti.com>
+Date:   Wed, 28 Dec 2022 19:02:43 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 2/2] remoteproc: k3-c7x: Add support for C7xv DSP on AM62A
+ SoC
+Content-Language: en-US
+To:     Hari Nagalla <hnagalla@ti.com>, <andersson@kernel.org>,
+        <devicetree@vger.kernel.org>, <mathieu.poirier@linaro.org>,
+        <p.zabel@pengutronix.de>, <linux-remoteproc@vger.kernel.org>,
+        <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <s-anna@ti.com>
+CC:     <praneeth@ti.com>, <nm@ti.com>, <a-bhatia1@ti.com>,
+        <j-luthra@ti.com>, <devarsht@ti.com>
+References: <20221228123655.15384-1-hnagalla@ti.com>
+ <20221228123655.15384-3-hnagalla@ti.com>
+From:   "Raghavendra, Vignesh" <vigneshr@ti.com>
+In-Reply-To: <20221228123655.15384-3-hnagalla@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The test clock apparently it's not used by anyone upstream. Remove it.
+Hi Hari,
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- drivers/clk/qcom/mmcc-msm8998.c | 25 -------------------------
- 1 file changed, 25 deletions(-)
+On 12/28/2022 6:06 PM, Hari Nagalla wrote:
+> Add support to the K3 DSP remoteproc driver to configure the C7xv
+> subsystem core on AM62A SoCs. The C7xv susbsytem is based on C71 DSP
+> with anlytics engine for deep leraning purposes. The remoteproc
+> handling for device management is similar to the C66/C71 DSPs on K3
+> J7 family SoCs, even though there are additional hardware accelerators
+> and IP updates to C7xv subsystem.
+> 
+> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> ---
 
-diff --git a/drivers/clk/qcom/mmcc-msm8998.c b/drivers/clk/qcom/mmcc-msm8998.c
-index c421b1291651..4490594bde69 100644
---- a/drivers/clk/qcom/mmcc-msm8998.c
-+++ b/drivers/clk/qcom/mmcc-msm8998.c
-@@ -44,7 +44,6 @@ enum {
- 	P_HDMIPLL,
- 	P_DPVCO,
- 	P_DPLINK,
--	P_CORE_BI_PLL_TEST_SE,
- };
- 
- static struct clk_fixed_factor gpll0_div = {
-@@ -303,69 +302,59 @@ static struct clk_alpha_pll_postdiv mmpll10_out_even = {
- static const struct parent_map mmss_xo_hdmi_map[] = {
- 	{ P_XO, 0 },
- 	{ P_HDMIPLL, 1 },
--	{ P_CORE_BI_PLL_TEST_SE, 7 }
- };
- 
- static const struct clk_parent_data mmss_xo_hdmi[] = {
- 	{ .fw_name = "xo" },
- 	{ .fw_name = "hdmipll" },
--	{ .fw_name = "core_bi_pll_test_se" },
- };
- 
- static const struct parent_map mmss_xo_dsi0pll_dsi1pll_map[] = {
- 	{ P_XO, 0 },
- 	{ P_DSI0PLL, 1 },
- 	{ P_DSI1PLL, 2 },
--	{ P_CORE_BI_PLL_TEST_SE, 7 }
- };
- 
- static const struct clk_parent_data mmss_xo_dsi0pll_dsi1pll[] = {
- 	{ .fw_name = "xo" },
- 	{ .fw_name = "dsi0dsi" },
- 	{ .fw_name = "dsi1dsi" },
--	{ .fw_name = "core_bi_pll_test_se" },
- };
- 
- static const struct parent_map mmss_xo_dsibyte_map[] = {
- 	{ P_XO, 0 },
- 	{ P_DSI0PLL_BYTE, 1 },
- 	{ P_DSI1PLL_BYTE, 2 },
--	{ P_CORE_BI_PLL_TEST_SE, 7 }
- };
- 
- static const struct clk_parent_data mmss_xo_dsibyte[] = {
- 	{ .fw_name = "xo" },
- 	{ .fw_name = "dsi0byte" },
- 	{ .fw_name = "dsi1byte" },
--	{ .fw_name = "core_bi_pll_test_se" },
- };
- 
- static const struct parent_map mmss_xo_dp_map[] = {
- 	{ P_XO, 0 },
- 	{ P_DPLINK, 1 },
- 	{ P_DPVCO, 2 },
--	{ P_CORE_BI_PLL_TEST_SE, 7 }
- };
- 
- static const struct clk_parent_data mmss_xo_dp[] = {
- 	{ .fw_name = "xo" },
- 	{ .fw_name = "dplink" },
- 	{ .fw_name = "dpvco" },
--	{ .fw_name = "core_bi_pll_test_se" },
- };
- 
- static const struct parent_map mmss_xo_gpll0_gpll0_div_map[] = {
- 	{ P_XO, 0 },
- 	{ P_GPLL0, 5 },
- 	{ P_GPLL0_DIV, 6 },
--	{ P_CORE_BI_PLL_TEST_SE, 7 }
- };
- 
- static const struct clk_parent_data mmss_xo_gpll0_gpll0_div[] = {
- 	{ .fw_name = "xo" },
- 	{ .fw_name = "gpll0" },
- 	{ .hw = &gpll0_div.hw },
--	{ .fw_name = "core_bi_pll_test_se" },
- };
- 
- static const struct parent_map mmss_xo_mmpll0_gpll0_gpll0_div_map[] = {
-@@ -373,7 +362,6 @@ static const struct parent_map mmss_xo_mmpll0_gpll0_gpll0_div_map[] = {
- 	{ P_MMPLL0_OUT_EVEN, 1 },
- 	{ P_GPLL0, 5 },
- 	{ P_GPLL0_DIV, 6 },
--	{ P_CORE_BI_PLL_TEST_SE, 7 }
- };
- 
- static const struct clk_parent_data mmss_xo_mmpll0_gpll0_gpll0_div[] = {
-@@ -381,7 +369,6 @@ static const struct clk_parent_data mmss_xo_mmpll0_gpll0_gpll0_div[] = {
- 	{ .hw = &mmpll0_out_even.clkr.hw },
- 	{ .fw_name = "gpll0" },
- 	{ .hw = &gpll0_div.hw },
--	{ .fw_name = "core_bi_pll_test_se" },
- };
- 
- static const struct parent_map mmss_xo_mmpll0_mmpll1_gpll0_gpll0_div_map[] = {
-@@ -390,7 +377,6 @@ static const struct parent_map mmss_xo_mmpll0_mmpll1_gpll0_gpll0_div_map[] = {
- 	{ P_MMPLL1_OUT_EVEN, 2 },
- 	{ P_GPLL0, 5 },
- 	{ P_GPLL0_DIV, 6 },
--	{ P_CORE_BI_PLL_TEST_SE, 7 }
- };
- 
- static const struct clk_parent_data mmss_xo_mmpll0_mmpll1_gpll0_gpll0_div[] = {
-@@ -399,7 +385,6 @@ static const struct clk_parent_data mmss_xo_mmpll0_mmpll1_gpll0_gpll0_div[] = {
- 	{ .hw = &mmpll1_out_even.clkr.hw },
- 	{ .fw_name = "gpll0" },
- 	{ .hw = &gpll0_div.hw },
--	{ .fw_name = "core_bi_pll_test_se" },
- };
- 
- static const struct parent_map mmss_xo_mmpll0_mmpll5_gpll0_gpll0_div_map[] = {
-@@ -408,7 +393,6 @@ static const struct parent_map mmss_xo_mmpll0_mmpll5_gpll0_gpll0_div_map[] = {
- 	{ P_MMPLL5_OUT_EVEN, 2 },
- 	{ P_GPLL0, 5 },
- 	{ P_GPLL0_DIV, 6 },
--	{ P_CORE_BI_PLL_TEST_SE, 7 }
- };
- 
- static const struct clk_parent_data mmss_xo_mmpll0_mmpll5_gpll0_gpll0_div[] = {
-@@ -417,7 +401,6 @@ static const struct clk_parent_data mmss_xo_mmpll0_mmpll5_gpll0_gpll0_div[] = {
- 	{ .hw = &mmpll5_out_even.clkr.hw },
- 	{ .fw_name = "gpll0" },
- 	{ .hw = &gpll0_div.hw },
--	{ .fw_name = "core_bi_pll_test_se" },
- };
- 
- static const struct parent_map mmss_xo_mmpll0_mmpll3_mmpll6_gpll0_gpll0_div_map[] = {
-@@ -427,7 +410,6 @@ static const struct parent_map mmss_xo_mmpll0_mmpll3_mmpll6_gpll0_gpll0_div_map[
- 	{ P_MMPLL6_OUT_EVEN, 4 },
- 	{ P_GPLL0, 5 },
- 	{ P_GPLL0_DIV, 6 },
--	{ P_CORE_BI_PLL_TEST_SE, 7 }
- };
- 
- static const struct clk_parent_data mmss_xo_mmpll0_mmpll3_mmpll6_gpll0_gpll0_div[] = {
-@@ -437,7 +419,6 @@ static const struct clk_parent_data mmss_xo_mmpll0_mmpll3_mmpll6_gpll0_gpll0_div
- 	{ .hw = &mmpll6_out_even.clkr.hw },
- 	{ .fw_name = "gpll0" },
- 	{ .hw = &gpll0_div.hw },
--	{ .fw_name = "core_bi_pll_test_se" },
- };
- 
- static const struct parent_map mmss_xo_mmpll4_mmpll7_mmpll10_gpll0_gpll0_div_map[] = {
-@@ -447,7 +428,6 @@ static const struct parent_map mmss_xo_mmpll4_mmpll7_mmpll10_gpll0_gpll0_div_map
- 	{ P_MMPLL10_OUT_EVEN, 3 },
- 	{ P_GPLL0, 5 },
- 	{ P_GPLL0_DIV, 6 },
--	{ P_CORE_BI_PLL_TEST_SE, 7 }
- };
- 
- static const struct clk_parent_data mmss_xo_mmpll4_mmpll7_mmpll10_gpll0_gpll0_div[] = {
-@@ -457,7 +437,6 @@ static const struct clk_parent_data mmss_xo_mmpll4_mmpll7_mmpll10_gpll0_gpll0_di
- 	{ .hw = &mmpll10_out_even.clkr.hw },
- 	{ .fw_name = "gpll0" },
- 	{ .hw = &gpll0_div.hw },
--	{ .fw_name = "core_bi_pll_test_se" },
- };
- 
- static const struct parent_map mmss_xo_mmpll0_mmpll7_mmpll10_gpll0_gpll0_div_map[] = {
-@@ -467,7 +446,6 @@ static const struct parent_map mmss_xo_mmpll0_mmpll7_mmpll10_gpll0_gpll0_div_map
- 	{ P_MMPLL10_OUT_EVEN, 3 },
- 	{ P_GPLL0, 5 },
- 	{ P_GPLL0_DIV, 6 },
--	{ P_CORE_BI_PLL_TEST_SE, 7 }
- };
- 
- static const struct clk_parent_data mmss_xo_mmpll0_mmpll7_mmpll10_gpll0_gpll0_div[] = {
-@@ -477,7 +455,6 @@ static const struct clk_parent_data mmss_xo_mmpll0_mmpll7_mmpll10_gpll0_gpll0_di
- 	{ .hw = &mmpll10_out_even.clkr.hw },
- 	{ .fw_name = "gpll0" },
- 	{ .hw = &gpll0_div.hw },
--	{ .fw_name = "core_bi_pll_test_se" },
- };
- 
- static const struct parent_map mmss_xo_mmpll0_mmpll4_mmpll7_mmpll10_gpll0_gpll0_div_map[] = {
-@@ -488,7 +465,6 @@ static const struct parent_map mmss_xo_mmpll0_mmpll4_mmpll7_mmpll10_gpll0_gpll0_
- 	{ P_MMPLL10_OUT_EVEN, 4 },
- 	{ P_GPLL0, 5 },
- 	{ P_GPLL0_DIV, 6 },
--	{ P_CORE_BI_PLL_TEST_SE, 7 }
- };
- 
- static const struct clk_parent_data mmss_xo_mmpll0_mmpll4_mmpll7_mmpll10_gpll0_gpll0_div[] = {
-@@ -499,7 +475,6 @@ static const struct clk_parent_data mmss_xo_mmpll0_mmpll4_mmpll7_mmpll10_gpll0_g
- 	{ .hw = &mmpll10_out_even.clkr.hw },
- 	{ .fw_name = "gpll0" },
- 	{ .hw = &gpll0_div.hw },
--	{ .fw_name = "core_bi_pll_test_se" },
- };
- 
- static struct clk_rcg2 byte0_clk_src = {
--- 
-2.35.1
+Signed-off-by of submitter should be at the last.
 
+I see original author of the patch is Jai here. So you need to amend the
+patch such that original author is set to Jai. His Signed-off-by should
+be the first and then yours.
+
+>  drivers/remoteproc/ti_k3_dsp_remoteproc.c | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+> 
+> diff --git a/drivers/remoteproc/ti_k3_dsp_remoteproc.c b/drivers/remoteproc/ti_k3_dsp_remoteproc.c
+> index eb9c64f7b9b4..ec626a37fef6 100644
+> --- a/drivers/remoteproc/ti_k3_dsp_remoteproc.c
+> +++ b/drivers/remoteproc/ti_k3_dsp_remoteproc.c
+> @@ -870,6 +870,10 @@ static const struct k3_dsp_mem_data c71_mems[] = {
+>  	{ .name = "l1dram", .dev_addr = 0xe00000 },
+>  };
+>  
+> +static const struct k3_dsp_mem_data c7xv_mems[] = {
+> +	{ .name = "l2sram", .dev_addr = 0x800000 },
+> +};
+> +
+>  static const struct k3_dsp_dev_data c66_data = {
+>  	.mems = c66_mems,
+>  	.num_mems = ARRAY_SIZE(c66_mems),
+> @@ -884,10 +888,18 @@ static const struct k3_dsp_dev_data c71_data = {
+>  	.uses_lreset = false,
+>  };
+>  
+> +static const struct k3_dsp_dev_data c7xv_data = {
+> +	.mems = c7xv_mems,
+> +	.num_mems = ARRAY_SIZE(c7xv_mems),
+> +	.boot_align_addr = SZ_2M,
+> +	.uses_lreset = false,
+> +};
+> +
+>  static const struct of_device_id k3_dsp_of_match[] = {
+>  	{ .compatible = "ti,j721e-c66-dsp", .data = &c66_data, },
+>  	{ .compatible = "ti,j721e-c71-dsp", .data = &c71_data, },
+>  	{ .compatible = "ti,j721s2-c71-dsp", .data = &c71_data, },
+> +	{ .compatible = "ti,am62a-c7xv-dsp", .data = &c7xv_data, },
+>  	{ /* sentinel */ },
+>  };
+>  MODULE_DEVICE_TABLE(of, k3_dsp_of_match);
