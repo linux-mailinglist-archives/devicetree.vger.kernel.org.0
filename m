@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48B3C657716
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 14:33:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 057C765771E
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 14:33:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232767AbiL1Nd2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 08:33:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41984 "EHLO
+        id S232967AbiL1Nd3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 08:33:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232824AbiL1Nc4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 08:32:56 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A53510055
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 05:32:55 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id bt23so6982631lfb.5
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 05:32:55 -0800 (PST)
+        with ESMTP id S232918AbiL1Nc7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 08:32:59 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A7E1FCF0
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 05:32:57 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id cf42so23655319lfb.1
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 05:32:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=mcHpjhwd3Vn4U4/hJVP6nnKjBoCImDzUqfwBFS1MqI0=;
-        b=a4aqhXEJLJveNgCXieqi35Ycpt8rRnzHl2o12ERhuLpWzuP3Yn9Mp5tyess4EIa1L7
-         XwfKpCQ8sNEH7muEpaDxnUCvfUkHJjNvqCsMUeXjA6xJv9MDPQKVSF3XReeyWJiSF1L+
-         PWcWSa4yxD9tBzn1ba9YtSpA0jiQ1MA5IUJbDLKK0bcZpqp9yAJ6teQIc5rBIAi844Dh
-         31RjOPO+MyxtxR7Pgg8Mlrk0/hAqQ4tr7i70oiQuhY2mBO9WOM6AD08PoCQsImw48wGq
-         ZHlHjvrN9p7y+H/r23CeQxrfmta3KiNlV6MnG8n8v3W0MwWsPSZvB6zO9iwKCBIBvpGG
-         ypbQ==
+        bh=DVaPOKc+H+0Vcod3E6ZP3gLIK6rMcGI380liWty1x2Q=;
+        b=QgCrBLO0l4YvXDcLMmzw7ZKGVwMW458ddac26R1qLLCgABFBKlikkLTLk+snCwcBxH
+         Rcp2aOpFqGiueK5GUH5+mMS3wm8BYXPE4Qq4GtIrIbloRt/IYCnH1Mr0x+KIWMnahZYH
+         +kB4CSQciU/qWW1Sl5SXDQAizVnabH73R8Lof+bjmuM6a3MitWpBV3wyV6xVqXWMUQfu
+         miM2mc8jpcZavt/PzuEGSP/uOwcSMqhqLf0zunudo3AmvsXaMd8RKplZ89gXSBebAqog
+         aeBTRWWUBvy7th7IIWgmZUlhj0k1aoB3EE1J9zyNlu+Hd9/FIZzNIKAPT5WRq+7EV1m4
+         jV8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=mcHpjhwd3Vn4U4/hJVP6nnKjBoCImDzUqfwBFS1MqI0=;
-        b=czzRvbN1evcir3T6/cKmRV/NQwKQLpwWojKjfpziaU3sM0m7hhUlRfThlLWNPfwZWG
-         sfLDtEqoGbEOofEzodv7PIg87Fn4gRhkgQYpszWwpxjPE6QzP7YsdZw+PD/W2q/QSQVQ
-         lJezGXXmI71a4sK6Y8oQCCJ5XHq+M/Bie7o/JZWrHuMmfGwB4/nkPkh6KpUAHOul8LjY
-         /0jU4ny3VNkNR4bwqGq6OuFKxlUCxZ6CPX7DFeRoASN6+umXWJENqHVhi1z4z5wm5LBr
-         IqaAO5lQe7+LAJ1vh9wY2eqp+sfK5gcULjJiwdIQaZUM+MX5KXrGRCXLuNDuEZemqGEF
-         Mxxw==
-X-Gm-Message-State: AFqh2kqxBZaEv/3JjWkkDGUUWRdxjzBgsZ+ut0M/+qdGX/NJCYiqXrwC
-        a3VwSNU0y69Bd6Wp7+E4lZhK6A==
-X-Google-Smtp-Source: AMrXdXtFTbPmLHB5xxh/62Ka+FXJSEpwene4q7441S5CKIlFd6oZEyXUXnY8NmfG9+n2dgazDRUwPA==
-X-Received: by 2002:a05:6512:10c3:b0:4b6:e8fa:a48d with SMTP id k3-20020a05651210c300b004b6e8faa48dmr9392450lfg.5.1672234375063;
+        bh=DVaPOKc+H+0Vcod3E6ZP3gLIK6rMcGI380liWty1x2Q=;
+        b=yGb8JSK/1Xuggq1trI2OQAzriIaV201rJmG6oJ+T7K+FFb0nfFsmok8BcNpYMZjqRm
+         QFz0i5kWFV1xaj5SvwIF6qpkRV7niYzhrOxfMGS+40Pir5ynalIRqMRYXf0hGVTexOIN
+         uSBaMlEGOp3oRaZveJ/SuhxIxlud0rgynpeSKKLqe9aCsKgQ5zch0Ebc6NdjGvEzm5kp
+         6zmag9IAWEsyg16v+XWk4zlx8ZSvzseYpmkETlh/7yJIFaeBB/BSBMYFyAMnADYRbNWx
+         jOqZx4egRY3KtqLTwanmm8k34NSUjgQSQqFHrOfysEis3gDWYoGSvnN6hXGDjBY+V1v1
+         tKqw==
+X-Gm-Message-State: AFqh2kpO8C3VAQeSM/0rHlBc8WBkZnrPyQCFzem2sQJ5jfnoDcNOHZYa
+        ZPoYkpq7FsmGKeAk3xsJvJJOzw==
+X-Google-Smtp-Source: AMrXdXvVg/w3e9PenPR9y67cSvRAnplVjDf2RXtq9UgZ5YdLnAGaC6No0a6U3oShai8gwHy4wCLd6A==
+X-Received: by 2002:a05:6512:21c6:b0:4b6:ed8b:4f14 with SMTP id d6-20020a05651221c600b004b6ed8b4f14mr7117267lft.25.1672234375960;
         Wed, 28 Dec 2022 05:32:55 -0800 (PST)
 Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id d7-20020ac241c7000000b004a47e7b91c4sm2613876lfi.195.2022.12.28.05.32.54
+        by smtp.gmail.com with ESMTPSA id d7-20020ac241c7000000b004a47e7b91c4sm2613876lfi.195.2022.12.28.05.32.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Dec 2022 05:32:54 -0800 (PST)
+        Wed, 28 Dec 2022 05:32:55 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -60,9 +60,9 @@ To:     Andy Gross <agross@kernel.org>,
         Taniya Das <quic_tdas@quicinc.com>
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH 12/16] clk: qcom: gcc-sdx55: get rid of test clock
-Date:   Wed, 28 Dec 2022 15:32:39 +0200
-Message-Id: <20221228133243.3052132-13-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 13/16] clk: qcom: gcc-sm8150: get rid of test clock
+Date:   Wed, 28 Dec 2022 15:32:40 +0200
+Message-Id: <20221228133243.3052132-14-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221228133243.3052132-1-dmitry.baryshkov@linaro.org>
 References: <20221228133243.3052132-1-dmitry.baryshkov@linaro.org>
@@ -70,7 +70,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -81,22 +82,22 @@ The test clock apparently it's not used by anyone upstream. Remove it.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/clk/qcom/gcc-sdx55.c | 12 ------------
- 1 file changed, 12 deletions(-)
+ drivers/clk/qcom/gcc-sm8150.c | 17 -----------------
+ 1 file changed, 17 deletions(-)
 
-diff --git a/drivers/clk/qcom/gcc-sdx55.c b/drivers/clk/qcom/gcc-sdx55.c
-index 758b295e1bfa..d5e17122698c 100644
---- a/drivers/clk/qcom/gcc-sdx55.c
-+++ b/drivers/clk/qcom/gcc-sdx55.c
-@@ -22,7 +22,6 @@
- 
+diff --git a/drivers/clk/qcom/gcc-sm8150.c b/drivers/clk/qcom/gcc-sm8150.c
+index 09cf827addab..70b067f3618c 100644
+--- a/drivers/clk/qcom/gcc-sm8150.c
++++ b/drivers/clk/qcom/gcc-sm8150.c
+@@ -26,7 +26,6 @@
  enum {
  	P_BI_TCXO,
+ 	P_AUD_REF_CLK,
 -	P_CORE_BI_PLL_TEST_SE,
  	P_GPLL0_OUT_EVEN,
  	P_GPLL0_OUT_MAIN,
- 	P_GPLL4_OUT_EVEN,
-@@ -137,21 +136,18 @@ static const struct parent_map gcc_parent_map_0[] = {
+ 	P_GPLL7_OUT_MAIN,
+@@ -117,14 +116,12 @@ static const struct parent_map gcc_parent_map_0[] = {
  	{ P_BI_TCXO, 0 },
  	{ P_GPLL0_OUT_MAIN, 1 },
  	{ P_GPLL0_OUT_EVEN, 6 },
@@ -104,80 +105,111 @@ index 758b295e1bfa..d5e17122698c 100644
  };
  
  static const struct clk_parent_data gcc_parents_0[] = {
- 	{ .fw_name = "bi_tcxo" },
+ 	{ .fw_name = "bi_tcxo", .name = "bi_tcxo" },
  	{ .hw = &gpll0.clkr.hw },
  	{ .hw = &gpll0_out_even.clkr.hw },
 -	{ .fw_name = "core_bi_pll_test_se" },
  };
  
- static const struct clk_parent_data gcc_parents_0_ao[] = {
- 	{ .fw_name = "bi_tcxo_ao" },
+ static const struct parent_map gcc_parent_map_1[] = {
+@@ -132,7 +129,6 @@ static const struct parent_map gcc_parent_map_1[] = {
+ 	{ P_GPLL0_OUT_MAIN, 1 },
+ 	{ P_SLEEP_CLK, 5 },
+ 	{ P_GPLL0_OUT_EVEN, 6 },
+-	{ P_CORE_BI_PLL_TEST_SE, 7 },
+ };
+ 
+ static const struct clk_parent_data gcc_parents_1[] = {
+@@ -140,41 +136,34 @@ static const struct clk_parent_data gcc_parents_1[] = {
  	{ .hw = &gpll0.clkr.hw },
+ 	{ .fw_name = "sleep_clk", .name = "sleep_clk" },
  	{ .hw = &gpll0_out_even.clkr.hw },
 -	{ .fw_name = "core_bi_pll_test_se" },
  };
  
  static const struct parent_map gcc_parent_map_2[] = {
-@@ -160,7 +156,6 @@ static const struct parent_map gcc_parent_map_2[] = {
- 	{ P_GPLL4_OUT_EVEN, 2 },
- 	{ P_GPLL5_OUT_MAIN, 5 },
- 	{ P_GPLL0_OUT_EVEN, 6 },
--	{ P_CORE_BI_PLL_TEST_SE, 7 },
- };
- 
- static const struct clk_parent_data gcc_parents_2[] = {
-@@ -169,7 +164,6 @@ static const struct clk_parent_data gcc_parents_2[] = {
- 	{ .hw = &gpll4_out_even.clkr.hw },
- 	{ .hw = &gpll5.clkr.hw },
- 	{ .hw = &gpll0_out_even.clkr.hw },
--	{ .fw_name = "core_bi_pll_test_se" },
- };
- 
- static const struct parent_map gcc_parent_map_3[] = {
-@@ -177,7 +171,6 @@ static const struct parent_map gcc_parent_map_3[] = {
- 	{ P_GPLL0_OUT_MAIN, 1 },
- 	{ P_SLEEP_CLK, 5 },
- 	{ P_GPLL0_OUT_EVEN, 6 },
--	{ P_CORE_BI_PLL_TEST_SE, 7 },
- };
- 
- static const struct clk_parent_data gcc_parents_3[] = {
-@@ -185,19 +178,16 @@ static const struct clk_parent_data gcc_parents_3[] = {
- 	{ .hw = &gpll0.clkr.hw },
- 	{ .fw_name = "sleep_clk", .name = "sleep_clk" },
- 	{ .hw = &gpll0_out_even.clkr.hw },
--	{ .fw_name = "core_bi_pll_test_se" },
- };
- 
- static const struct parent_map gcc_parent_map_4[] = {
  	{ P_BI_TCXO, 0 },
  	{ P_SLEEP_CLK, 5 },
 -	{ P_CORE_BI_PLL_TEST_SE, 7 },
  };
  
- static const struct clk_parent_data gcc_parents_4[] = {
- 	{ .fw_name = "bi_tcxo" },
+ static const struct clk_parent_data gcc_parents_2[] = {
+ 	{ .fw_name = "bi_tcxo", .name = "bi_tcxo" },
  	{ .fw_name = "sleep_clk", .name = "sleep_clk" },
 -	{ .fw_name = "core_bi_pll_test_se" },
  };
  
- static const struct parent_map gcc_parent_map_5[] = {
-@@ -205,7 +195,6 @@ static const struct parent_map gcc_parent_map_5[] = {
+ static const struct parent_map gcc_parent_map_3[] = {
+ 	{ P_BI_TCXO, 0 },
  	{ P_GPLL0_OUT_MAIN, 1 },
- 	{ P_GPLL4_OUT_EVEN, 2 },
+-	{ P_CORE_BI_PLL_TEST_SE, 7 },
+ };
+ 
+ static const struct clk_parent_data gcc_parents_3[] = {
+ 	{ .fw_name = "bi_tcxo", .name = "bi_tcxo" },
+ 	{ .hw = &gpll0.clkr.hw },
+-	{ .fw_name = "core_bi_pll_test_se"},
+ };
+ 
+ static const struct parent_map gcc_parent_map_4[] = {
+ 	{ P_BI_TCXO, 0 },
+-	{ P_CORE_BI_PLL_TEST_SE, 7 },
+ };
+ 
+ static const struct clk_parent_data gcc_parents_4[] = {
+ 	{ .fw_name = "bi_tcxo", .name = "bi_tcxo" },
+-	{ .fw_name = "core_bi_pll_test_se" },
+ };
+ 
+ static const struct parent_map gcc_parent_map_5[] = {
+@@ -182,7 +171,6 @@ static const struct parent_map gcc_parent_map_5[] = {
+ 	{ P_GPLL0_OUT_MAIN, 1 },
+ 	{ P_GPLL7_OUT_MAIN, 3 },
  	{ P_GPLL0_OUT_EVEN, 6 },
 -	{ P_CORE_BI_PLL_TEST_SE, 7 },
  };
  
  static const struct clk_parent_data gcc_parents_5[] = {
-@@ -213,7 +202,6 @@ static const struct clk_parent_data gcc_parents_5[] = {
+@@ -190,7 +178,6 @@ static const struct clk_parent_data gcc_parents_5[] = {
  	{ .hw = &gpll0.clkr.hw },
- 	{ .hw = &gpll4_out_even.clkr.hw },
+ 	{ .hw = &gpll7.clkr.hw },
  	{ .hw = &gpll0_out_even.clkr.hw },
 -	{ .fw_name = "core_bi_pll_test_se" },
  };
  
- static const struct freq_tbl ftbl_gcc_blsp1_qup1_i2c_apps_clk_src[] = {
+ static const struct parent_map gcc_parent_map_6[] = {
+@@ -198,7 +185,6 @@ static const struct parent_map gcc_parent_map_6[] = {
+ 	{ P_GPLL0_OUT_MAIN, 1 },
+ 	{ P_GPLL9_OUT_MAIN, 2 },
+ 	{ P_GPLL0_OUT_EVEN, 6 },
+-	{ P_CORE_BI_PLL_TEST_SE, 7 },
+ };
+ 
+ static const struct clk_parent_data gcc_parents_6[] = {
+@@ -206,7 +192,6 @@ static const struct clk_parent_data gcc_parents_6[] = {
+ 	{ .hw = &gpll0.clkr.hw },
+ 	{ .hw = &gpll9.clkr.hw },
+ 	{ .hw = &gpll0_out_even.clkr.hw },
+-	{ .fw_name = "core_bi_pll_test_se" },
+ };
+ 
+ static const struct parent_map gcc_parent_map_7[] = {
+@@ -214,7 +199,6 @@ static const struct parent_map gcc_parent_map_7[] = {
+ 	{ P_GPLL0_OUT_MAIN, 1 },
+ 	{ P_AUD_REF_CLK, 2 },
+ 	{ P_GPLL0_OUT_EVEN, 6 },
+-	{ P_CORE_BI_PLL_TEST_SE, 7 },
+ };
+ 
+ static const struct clk_parent_data gcc_parents_7[] = {
+@@ -222,7 +206,6 @@ static const struct clk_parent_data gcc_parents_7[] = {
+ 	{ .hw = &gpll0.clkr.hw },
+ 	{ .fw_name = "aud_ref_clk", .name = "aud_ref_clk" },
+ 	{ .hw = &gpll0_out_even.clkr.hw },
+-	{ .fw_name = "core_bi_pll_test_se" },
+ };
+ 
+ static const struct freq_tbl ftbl_gcc_cpuss_ahb_clk_src[] = {
 -- 
 2.35.1
 
