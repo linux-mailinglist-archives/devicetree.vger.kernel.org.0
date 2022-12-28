@@ -2,111 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 54E636573F4
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 09:31:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B998365745B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 09:56:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232464AbiL1Ibd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 03:31:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43632 "EHLO
+        id S229707AbiL1I4d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 03:56:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230183AbiL1Ibc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 03:31:32 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62A216551;
-        Wed, 28 Dec 2022 00:31:30 -0800 (PST)
-X-UUID: b6cc379d00bc44399e34b83d95cd5a9a-20221228
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=GcaUuOgVIhiyz19WJXVeJeBFNH9yp3Z0VXXuo9zLxwE=;
-        b=R2xxp2UmDyyobUZ8BvIrb3wAqgq6lA2PzJcjaKucTsEmAqjUhs47HQbUPjJ2o63v6CXMKRYvhMdbL9nPN+eFmC15d5kCAzvq00Edm2dEMXhQAr9O0M2AXty9KdQrKWf5UMfs+kBZn2mpn1psB2Yg9uWPC9NLTFKbQ2klZxE6phQ=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.14,REQID:f6a07d0e-40a7-424d-9fdb-3c77808d55d2,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:dcaaed0,CLOUDID:92330453-dd49-462e-a4be-2143a3ddc739,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: b6cc379d00bc44399e34b83d95cd5a9a-20221228
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <miles.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 290507137; Wed, 28 Dec 2022 16:31:24 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Wed, 28 Dec 2022 16:31:23 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Wed, 28 Dec 2022 16:31:23 +0800
-From:   Miles Chen <miles.chen@mediatek.com>
-To:     <angelogioacchino.delregno@collabora.com>
-CC:     <chun-jie.chen@mediatek.com>, <daniel@makrotopia.org>,
-        <devicetree@vger.kernel.org>, <fparent@baylibre.com>,
-        <ikjn@chromium.org>, <johnson.wang@mediatek.com>,
-        <jose.exposito89@gmail.com>, <kernel@collabora.com>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <matthias.bgg@gmail.com>,
-        <miles.chen@mediatek.com>, <msp@baylibre.com>,
-        <mturquette@baylibre.com>, <nfraprado@collabora.com>,
-        <pablo.sun@mediatek.com>, <rex-bc.chen@mediatek.com>,
-        <robh+dt@kernel.org>, <ryder.lee@kernel.org>,
-        <sam.shih@mediatek.com>, <sboyd@kernel.org>,
-        <weiyi.lu@mediatek.com>, <wenst@chromium.org>,
-        <y.oudjana@protonmail.com>, <yangyingliang@huawei.com>
-Subject: Re: [PATCH v2 15/23] clk: mediatek: mt8192: Join top_adj_divs and top_muxes
-Date:   Wed, 28 Dec 2022 16:31:23 +0800
-Message-ID: <20221228083123.15298-1-miles.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20221223094259.87373-16-angelogioacchino.delregno@collabora.com>
-References: <20221223094259.87373-16-angelogioacchino.delregno@collabora.com>
+        with ESMTP id S229587AbiL1I4c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 03:56:32 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A954025FB;
+        Wed, 28 Dec 2022 00:56:31 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 2AF61B8109E;
+        Wed, 28 Dec 2022 08:56:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDE75C433EF;
+        Wed, 28 Dec 2022 08:56:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1672217788;
+        bh=8kKUNMcrrr0Y1Xedt+qZwO8rQtcXcgKODbZvvAQe4s4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=aoXKtyVbdTegZBUNjqHSM7SCk+/d0e4FILbzyhIIyO7lLNdPSFWTDUWOB9kfmv7jx
+         Iv8mzbwlViYooCyKok8B06eQCMt3UdUcJfHfwpCtqsy/XwoB6U48ONP01yj9Cq06h2
+         pORUpHfTzwjgWv3l5v6ndnSg1SV9WvPLmASN22KFwtKvQLOfrZYFBdXgJ0ISYmGzks
+         fZP18ADire1ZG+VJuR4CyZXV5bWSbn42brQAi0OzgFALwBJ8dhQTf2axoxUHtYQa6q
+         W5jfPiGOEo5zux8uNnZPEYc0Y3FqvA0CWWmFoq7Xx+/YPwqvbjemeuGM9pFiQxVq51
+         0dzLZ6yySmsqA==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan+linaro@kernel.org>)
+        id 1pASEg-0003vQ-G3; Wed, 28 Dec 2022 09:56:31 +0100
+From:   Johan Hovold <johan+linaro@kernel.org>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH] arm64: dts: qcom: sc8280xp-x13s: move 'regulator-vph-pwr' node
+Date:   Wed, 28 Dec 2022 09:56:14 +0100
+Message-Id: <20221228085614.15080-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.37.4
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Move the new 'regulator-vph-pwr' node before the wlan regulator node to
+restore the root-node sort order (alphabetically by node name).
 
-> These two are both mtk_composite arrays, one dependent on another, but
-> that's something that the clock framework is supposed to sort out and
-> anyway registering them separately isn't going to ease the framework's
-> job in checking dependencies.
-> 
-> Put the contents of top_adj_divs in top_muxes to join them together
-> and register them in one shot.
-> 
+While at it, add a couple of newlines to separate the properties for
+consistency with the other regulator nodes.
 
-In mt8192, we can join top_adj_divs and top_muxes:
+Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+---
+ .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 18 ++++++++++--------
+ 1 file changed, 10 insertions(+), 8 deletions(-)
 
-mtk_clk_register_composites(top_muxes, ARRAY_SIZE(top_muxes), base, &mt8192_clk_lock,
-		top_clk_data);
-mtk_clk_register_composites(top_adj_divs, ARRAY_SIZE(top_adj_divs), base, &mt8192_clk_lock,
-		top_clk_data);
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+index aeb9e1800f71..0201c6776746 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
++++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+@@ -95,6 +95,16 @@ vreg_nvme: regulator-nvme {
+ 		regulator-boot-on;
+ 	};
+ 
++	vreg_vph_pwr: regulator-vph-pwr {
++		compatible = "regulator-fixed";
++
++		regulator-name = "VPH_VCC3R9";
++		regulator-min-microvolt = <3900000>;
++		regulator-max-microvolt = <3900000>;
++
++		regulator-always-on;
++	};
++
+ 	vreg_wlan: regulator-wlan {
+ 		compatible = "regulator-fixed";
+ 
+@@ -127,14 +137,6 @@ vreg_wwan: regulator-wwan {
+ 		regulator-boot-on;
+ 	};
+ 
+-	vreg_vph_pwr: regulator-vph-pwr {
+-		compatible = "regulator-fixed";
+-		regulator-name = "VPH_VCC3R9";
+-		regulator-min-microvolt = <3900000>;
+-		regulator-max-microvolt = <3900000>;
+-		regulator-always-on;
+-	};
+-
+ 	thermal-zones {
+ 		skin-temp-thermal {
+ 			polling-delay-passive = <250>;
+-- 
+2.37.4
 
-However, there are other top_adj_divs[] and top_muxes[] in different types so 
-we cannot join them.
-
-For example:
-in drivers/clk/mediatek/clk-mt8167.c:mtk_topckgen_init():
-
-mtk_clk_register_composites(top_muxes, ARRAY_SIZE(top_muxes), base,
-		&mt8167_clk_lock, clk_data);
-mtk_clk_register_dividers(top_adj_divs, ARRAY_SIZE(top_adj_divs),
-		base, &mt8167_clk_lock, clk_data);
-
-So we can join top_adj_divs and top_muxes in some platforms, but we
-cannot join top_adj_divs and top_muxes in some other platforms.
-
-I'm afraid that this will confuses people.
-
-
-thanks,
-Miles
