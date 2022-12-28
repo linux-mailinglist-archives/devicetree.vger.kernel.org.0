@@ -2,108 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2035D6576A8
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 13:51:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90C816576CE
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 14:11:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230154AbiL1Mvs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 07:51:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59968 "EHLO
+        id S232182AbiL1NLQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 08:11:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231716AbiL1Mvq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 07:51:46 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25108E5D;
-        Wed, 28 Dec 2022 04:51:45 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id t17so38164301eju.1;
-        Wed, 28 Dec 2022 04:51:45 -0800 (PST)
+        with ESMTP id S230171AbiL1NLQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 08:11:16 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 366E310555
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 05:11:14 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id c17so22735382edj.13
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 05:11:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=bj/ZL2pLmcXfsa7o3GSd/7KGOVFsIvFAmCWaGTxxqbg=;
-        b=TJKeuhAUb7ZbCaOdrTkQUd7Z/r49zaO58n0Zv4PflVM5kx/E7dGV7Bc8K1rzlnXGEj
-         i5o3LcLDVH1m6fmvJqG0lX7Clr1Cn3YwbUrX7EZxgiXcTAMJgarkvDCjxSjkltL99D9Q
-         e4Y8QxpsD/fgWvSA59zanzRiabPEgKbp5bcWE6Gzk2qBM85zIjxTsYnYq6LkZwZvofYE
-         BCE3jA11Wb3kiIaaAzEHrfNjmCbsUungBSriRinw3u098ZSp+HznCc88mIRX6XfgJbd0
-         WcO0vhFxIFZeMAUuEiMv7hHPcSMCn7Qk/pmWtBgvSPEgC2VybeF1eWfXp12QL1KETVQ8
-         D23w==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=F6wwrS7RcdUciPublS8eDzKLlrNTuJCUJ8yWm395dEU=;
+        b=HQID7UlXuGYljA8lWzj1CBVUHd9+8294st7MpCGh2yB+noGxikCM/UEtjIr+GXSLlI
+         UMh4Puq91qpnhMLj9Ota6dO4XoHI0ASsotTZ2vxxSGiZ5wXZR8ruJXKeIheSjJwAWFOj
+         j5MPzCX4xL6NTi/ZnZmTLOzDA4yJ9Pnw+mCF/92PFZ27HdnNmxHWWdhe3yXvIWYpZfDD
+         EGnQ4Uvd8jHsLMGSR7LI1ZxSW7/eOHH3+wst5JG1N2q4p32Abi+NHg/2/v0/rg0TyyEn
+         JAhYV4rSq/7p125wk5oMCOLhTZKPALdn02lg53eCe1+8vHS3APpdKDZQYAO0t4N3la1f
+         F1pg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=bj/ZL2pLmcXfsa7o3GSd/7KGOVFsIvFAmCWaGTxxqbg=;
-        b=Ur8pSF6vIFErYk8XwRRH8pdXVeETwxSNbHjOPXVfoFWBuZBP+AlKEiP3Do27BCly9H
-         x2Q3MBg7Fh5dKUcENL3O5RRP/7PXMbPFfR6b12Rlh29EKl6aU7pMVfXpXNUDxnX8F0d6
-         n/yiAtT+nIfwgivu86KgNIm8PbO5g5wKUBvPVG5VlMFqkHFFSmkw/JeAJQFvDLz2lt2A
-         HBiBJfbi8yVi+ljQ+u4GKCXYm9bJx8sXIN/hBHoAEA1KjNr4nSTckA7KVNL3ItKE0Sn2
-         ozs143DIMidCuEkuN1XgHA+SQTBohDFQmeXY428ODsxUOqN8JU6Hqd5fH9hBy3MKRAjE
-         L2hA==
-X-Gm-Message-State: AFqh2kqJx+61Zlb5YWfRnd+sBqKpc7tEZjMaOsZ+PEfT4Ndd8r5J9j8i
-        t+xHba7dUq2MNkmrA8asdbN2GgcUhJLLW9K7Md5bEP2PXDs=
-X-Google-Smtp-Source: AMrXdXuldPgrgToRGeOjUGw40QIrUzyl/L/VlUjm7Dv3WJDMBybJwNUKSnb0YjxKfDZiXJU/66WeGLUtchDsNY1LAQs=
-X-Received: by 2002:a17:906:e4f:b0:7c0:ae1c:3eb7 with SMTP id
- q15-20020a1709060e4f00b007c0ae1c3eb7mr1575024eji.510.1672231903589; Wed, 28
- Dec 2022 04:51:43 -0800 (PST)
+        bh=F6wwrS7RcdUciPublS8eDzKLlrNTuJCUJ8yWm395dEU=;
+        b=a13hToMnvy4LTGvvWHIwRV67dcrEWq8Dvy0y4FPPSnpszbniH3r2w82f2giAXa2OFo
+         9L+0/fX+B6io/1mDB7jkcNAGj1thV0M43YxNY7haxCoOI/9Vw85oe+2eXZXWSQcGGA4o
+         RGw31gfiIYhmfYXOv89+pYvRtKB5MoSdvEK1nWrtI/IWiMTcizl4RBqdvpmATItLKOED
+         oskx4WzwBCnHjQ3nmV3O0t4KED0iVf9tBdrSRuV1xJRcwoGp0y5tRQnX3+/9I+pMWjJa
+         TSCMas7rvE2P9XJCwpzoQ1ltgwC3nAB4O8+w38SqxbrUeZ51GkneRn2H1QsKcPuyemEO
+         5vwg==
+X-Gm-Message-State: AFqh2kogmqeERyo9JOh1jhsFNCdtcB8RU6RiV02AtjAQeKEllIkeDEA9
+        KzbX2Q0VQ470v1FrIeFpoviOeg==
+X-Google-Smtp-Source: AMrXdXvCEIaQ/+rAZCjHFzbt62dc75UuPXrtdkwyrRSmtxO55O1twdfpHfhj6AE0hBMtXuZXr06Y7g==
+X-Received: by 2002:a05:6402:528e:b0:481:420e:206d with SMTP id en14-20020a056402528e00b00481420e206dmr15879206edb.42.1672233072828;
+        Wed, 28 Dec 2022 05:11:12 -0800 (PST)
+Received: from planet9.chello.ie (2001-1c06-2302-5600-85f6-04b5-1651-3b6c.cable.dynamic.v6.ziggo.nl. [2001:1c06:2302:5600:85f6:4b5:1651:3b6c])
+        by smtp.gmail.com with ESMTPSA id g11-20020a056402180b00b0046bb7503d9asm7099545edy.24.2022.12.28.05.11.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Dec 2022 05:11:12 -0800 (PST)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
+        dmitry.baryshkov@linaro.org, sean@poorly.run, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     quic_mkrishn@quicinc.com, andersson@kernel.org,
+        swboyd@chromium.org, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        bryan.odonoghue@linaro.org
+Subject: [PATCH v2 0/1] Fixup documentation for dsi-phy-28nm
+Date:   Wed, 28 Dec 2022 13:11:09 +0000
+Message-Id: <20221228131110.213116-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20221228100321.15949-1-linux.amoon@gmail.com> <20221228100321.15949-4-linux.amoon@gmail.com>
-In-Reply-To: <20221228100321.15949-4-linux.amoon@gmail.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Wed, 28 Dec 2022 13:51:32 +0100
-Message-ID: <CAFBinCCtJbF6UjG3czQjVy_Zy_B4DO8BkcayOqDirn0OXw3PtQ@mail.gmail.com>
-Subject: Re: [PATCH v1 03/11] arm64: dts: amlogic: Used onboard usb hub reset
- on odroid c2
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Anand,
+This is the one remaining patch I had from a previous series for
+mdss-dsi-ctrl and the dsi-phy. The mdss-dsi-ctrl set became a bigger so I
+split out the 28nm phy fixes.
 
-thank you for working on this topic!
+I'm resubmitting with Dmitry's RB as a standalone.
 
-On Wed, Dec 28, 2022 at 11:05 AM Anand Moon <linux.amoon@gmail.com> wrote:
-[...]
-> +       usb {
-> +               dr_mode = "host";
-> +               #address-cells = <1>;
-> +               #size-cells = <0>;
-> +
-> +               hub@1 {
-> +                       /* Genesys Logic GL852G-OHG usb hub */
-> +                       compatible = "genesys,usb5e3,610";
-> +                       reg = <1>;
-> +                       vdd-supply = <&usb_otg_pwr>;
-> +                       reset-gpio = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_LOW>;
-> +               };
-> +       };
-My understanding is that the hub@1 node should be part of the
-corresponding USB controller node, not a new node.
-In this case hub@1 should go into the existing &usb1 node. That way we
-describe the way the hardware is set up (meaning: hub@1 is connected
-to &usb1).
+Old: https://lore.kernel.org/all/20220630120845.3356144-1-bryan.odonoghue@linaro.org/
 
-In case hub@1 is not detected within &usb1 then you may need something
-like [0] (not tested for your use-case).
-If that helps: feel free to include that patch in your series.
+Bryan O'Donoghue (1):
+  dt-bindings: msm: dsi-phy-28nm: Add missing
+    qcom,dsi-phy-regulator-ldo-mode
 
+ .../devicetree/bindings/display/msm/dsi-phy-28nm.yaml         | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Best regards,
-Martin
+-- 
+2.34.1
 
-
-[0] https://github.com/xdarklight/linux/commit/d8b96e5bc9c20ab2585194e0e59580c3b062c431
