@@ -2,118 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C1646577D8
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 15:35:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 722B46577FD
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 15:45:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230158AbiL1OfF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 09:35:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59618 "EHLO
+        id S232969AbiL1OpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 09:45:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229603AbiL1OfE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 09:35:04 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 319151146D
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 06:34:59 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id z26so23858311lfu.8
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 06:34:59 -0800 (PST)
+        with ESMTP id S229835AbiL1OpL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 09:45:11 -0500
+Received: from mail-vk1-xa29.google.com (mail-vk1-xa29.google.com [IPv6:2607:f8b0:4864:20::a29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE4FA11A18;
+        Wed, 28 Dec 2022 06:44:42 -0800 (PST)
+Received: by mail-vk1-xa29.google.com with SMTP id f24so7481997vkl.9;
+        Wed, 28 Dec 2022 06:44:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=W09qrZAS/ID+UsTvkuyxxc8lA+fggw9LXlkJ+801LXU=;
-        b=iysEDXGdU7jReCgeyeqkyJYoV7Td45kPUW4zqBzDu6XdPGgpuVjRc3j5jlVf3tnce/
-         VUNV3ICiZiC5NZ39Sp5OnXnE9b0DFz22oLeIMpUWrTFDxVbq5cku3DzW1Yc+K5wDbjdk
-         Y8RMTqumyb13sfQl2m3DNqqf6RjJaLFsVk5pvTRwP6snX2/YA7p1mhNcTAPdwhyKWN1F
-         +sJN+SZwc5dUhZoBxtbmN5lN5Ct/nqw5sT8F4JBAYq9exU7wLj3WBGFvcfgNpM+t1yJ5
-         2JQKPfQ7rdpr5xq1fnigUn8cITgVvWCGVKikuDuCi63ZRqjoHdUxbMJCattD9PC4bzH4
-         IvrQ==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=nWly6CS117lh6W/pWnUHNuJLnc15iy3WKMaFGfN+hgI=;
+        b=bC2m3zrfa87ubxBUOud/XnpoJ6JRQtIp5AvFP+Dg/RAfR3vLc3p3BbBnNuHMaFMkei
+         wBdlTKZYONWbZWmgtF80/Od4Gw2vptTCDBS2qOKfrjzlwz4nObQZXJIu/K/woxvOyUHL
+         gwAKm/jeYk5ljndDFPSMualoMn2J6ZmAu66QNS4n6mzyGS6hlJq0hF/UIm4R9Uk4Twq2
+         DsLXuCnICp2OMF48mttlcnLUy0LSASlzfARftklE8BhyNiGwVDmFwd9jK1OzACUUCm3s
+         olYwbfI1R9iaZEIYOL+Au9daFjixBBJSwM47bm1z45J4NFutuytYsdawrsRBhigy6MJO
+         3ixA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=W09qrZAS/ID+UsTvkuyxxc8lA+fggw9LXlkJ+801LXU=;
-        b=d/K7vU7XW8vxs2ISXB0GnFM1HHFAT6NzFEa0fVShs+rebkdVNcQf4wW3Eq9Lgd9L0Q
-         07fTQMBGo2Ow8xoINVYztCdTY44glwJb5OvHkhH3tpqjpWUfcQSizmhBuD2nl8B/THLk
-         /CWYMZXTlr9Mz+sD9/C3gyQyCOsGlPi4zE2nLxJmiyO/GvxrGZMkUl4L6ygMRCTfTZhM
-         RUsEPC3wJ2konKnUjliBs/zA+Z+6s6/6ZKa3YSoUBJe2PtNIDSfyWRbMdwVz4Co2/Qlh
-         oWM5XY53QzbuGY6pR0LqNjUz8nY4q+LxClvUQcXCKRVfbd5Exa5src2YDcROyaVbGR7k
-         VZow==
-X-Gm-Message-State: AFqh2kqaxXOU+qWyWQmedHbrWmKt3RDEqQe9dq2yqtWwGCib3drS96vZ
-        f3UUxF3H1pQgFpFVY3VLCnrJxA==
-X-Google-Smtp-Source: AMrXdXuaPKgphx1nky7u++/3z48lKqRU2Zj5P+7jKAgcP3VWCF+usscJL0HLX5B8epTdQjBTSZNAnA==
-X-Received: by 2002:ac2:47e2:0:b0:4b5:7282:868c with SMTP id b2-20020ac247e2000000b004b57282868cmr6949839lfp.55.1672238097574;
-        Wed, 28 Dec 2022 06:34:57 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id c9-20020a056512074900b004caf6f0b08csm2428551lfs.107.2022.12.28.06.34.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Dec 2022 06:34:57 -0800 (PST)
-Message-ID: <47bb59f1-c696-5be3-cc6e-f82f5ee0998e@linaro.org>
-Date:   Wed, 28 Dec 2022 16:34:56 +0200
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nWly6CS117lh6W/pWnUHNuJLnc15iy3WKMaFGfN+hgI=;
+        b=Xio1cw8k8Q+sUcjUwP6+u7bnQ6rk+w3jSplqiKGbigohKf1UFWRDzvTQ9pY1FEJDbL
+         ieOf2YWuUY8SK43+F1RJ2Gi7ypvWOtC5TU4fbRqwGvf23Ldo98U9nuBzYAxyT2KkAeA3
+         DFqW6HwTtHnRTD+X8jThcs01KKUZE113cYt7ioLuwT7RQ9B4avGE7/EwgYL92vTgcUfi
+         8zsaqG5uvogVFTV99k9nJfUM30o+8vbv3WK9iQXtGmdIzpB1po6Jk5WU/Nh3cqyNjPry
+         a78yEWZ2+IjfSRLBvC+ENhhCH+/Oj6IS1+h9KP7LJkHSGC67r4mwNfFKwTiy4v9+4r7h
+         uscQ==
+X-Gm-Message-State: AFqh2kpVWoxIqqPRmLoDfiBU1I7AdKUNnUlc4ULK8fnL29GqV288bXyp
+        LibAw93q/a8tQdKHbijcudKmLAFDI4CxGKxHlmIFJaRShx2DvA==
+X-Google-Smtp-Source: AMrXdXvufFe8mF9LmkJ38VB3Th1R8eAghiEZYOYmoZ632g02xmiJBzLZcs2CNmlAkxfTxs9jvjt4E0bKNvbqBXn1tGc=
+X-Received: by 2002:a1f:2189:0:b0:3d5:8603:a96f with SMTP id
+ h131-20020a1f2189000000b003d58603a96fmr191769vkh.22.1672238681977; Wed, 28
+ Dec 2022 06:44:41 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8350: add missing
- core_bi_pll_test_se GCC clock
-Content-Language: en-GB
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20221228100321.15949-1-linux.amoon@gmail.com> <20221228100321.15949-4-linux.amoon@gmail.com>
+ <CAFBinCCtJbF6UjG3czQjVy_Zy_B4DO8BkcayOqDirn0OXw3PtQ@mail.gmail.com>
+In-Reply-To: <CAFBinCCtJbF6UjG3czQjVy_Zy_B4DO8BkcayOqDirn0OXw3PtQ@mail.gmail.com>
+From:   Anand Moon <linux.amoon@gmail.com>
+Date:   Wed, 28 Dec 2022 20:14:26 +0530
+Message-ID: <CANAwSgTS+j_oRrckwmi60afX6-D=OP0oy05m3eQga_gEZJJ_mg@mail.gmail.com>
+Subject: Re: [PATCH v1 03/11] arm64: dts: amlogic: Used onboard usb hub reset
+ on odroid c2
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221228112456.31348-1-krzysztof.kozlowski@linaro.org>
- <d2e303d9-3ac4-f574-680f-4f5ccbf5ed13@linaro.org>
- <5001001a-203f-e832-f916-ce483b2d8ea1@linaro.org>
- <97a27c10-411e-8823-507c-ebb3f71a48ed@linaro.org>
- <279dc76c-9e60-dd93-e2d2-c2dad241620f@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <279dc76c-9e60-dd93-e2d2-c2dad241620f@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/12/2022 16:25, Krzysztof Kozlowski wrote:
-> On 28/12/2022 13:50, Dmitry Baryshkov wrote:
->> On 28/12/2022 13:55, Krzysztof Kozlowski wrote:
->>> On 28/12/2022 12:37, Konrad Dybcio wrote:
->>>>
->>>>
->>>> On 28.12.2022 12:24, Krzysztof Kozlowski wrote:
->>>>> The GCC bindings expect core_bi_pll_test_se clock input, even if it is
->>>>> optional:
->>>>>
->>>>>     sm8350-mtp.dtb: clock-controller@100000: clock-names:2: 'core_bi_pll_test_se' was expected
->>>>>
->>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>> ---
->>>> Is it even going to be used by anybody, or should we just drop
->>>> it on the driver side as per usual?
->>>
->>> It's mentioned as possible parent, so there might be users somewhere...
->>> Or you want to say that other binding and DTS users cannot use that clock?
->>
->> Yes. In the past few months we have been removing the core_bi_pll_test
->> from the old clock drivers (and new clock drivers mostly lack them).
->> Let's remove it from the rest of clock drivers.
-> 
-> If you are going to start doing the same work, please at least share it
-> upfront.
+Hi Martin,
 
-Excuse me.
+On Wed, 28 Dec 2022 at 18:21, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> Hi Anand,
+>
+Thanks for your review comments.
 
--- 
-With best wishes
-Dmitry
+> thank you for working on this topic!
+>
+> On Wed, Dec 28, 2022 at 11:05 AM Anand Moon <linux.amoon@gmail.com> wrote:
+> [...]
+> > +       usb {
+> > +               dr_mode = "host";
+> > +               #address-cells = <1>;
+> > +               #size-cells = <0>;
+> > +
+> > +               hub@1 {
+> > +                       /* Genesys Logic GL852G-OHG usb hub */
+> > +                       compatible = "genesys,usb5e3,610";
+> > +                       reg = <1>;
+> > +                       vdd-supply = <&usb_otg_pwr>;
+> > +                       reset-gpio = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_LOW>;
+> > +               };
+> > +       };
+> My understanding is that the hub@1 node should be part of the
+> corresponding USB controller node, not a new node.
+> In this case hub@1 should go into the existing &usb1 node. That way we
+> describe the way the hardware is set up (meaning: hub@1 is connected
+> to &usb1).
+>
 
+Ok, I will move this code under &usb0 and &usb1 nodes.
+
+onboard_usb_hub module just assists in usb hub reset.
+so these changes are meant to replace the gpio-hog.
+
+$ dmesg | grep onboard
+[    5.405558] usbcore: registered new device driver onboard-usb-hub
+[    6.383428] onboard-usb-hub 1-1: reset high-speed USB device number
+2 using dwc2
+
+Here is the boot log of the odroid c2 [0] https://pastebin.com/PFy5waPb
+
+> In case hub@1 is not detected within &usb1 then you may need something
+> like [0] (not tested for your use-case).
+> If that helps: feel free to include that patch in your series.
+>
+
+Thanks, will check if this is needed in this case. As of now it just
+reinitializes the hub.
+
+>
+> Best regards,
+> Martin
+>
+>
+> [0] https://github.com/xdarklight/linux/commit/d8b96e5bc9c20ab2585194e0e59580c3b062c431
+
+Thanks
+-Anand
