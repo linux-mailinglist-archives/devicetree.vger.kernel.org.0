@@ -2,157 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E07C65777A
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 15:06:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2520657782
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 15:09:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230224AbiL1OG2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 09:06:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52462 "EHLO
+        id S230392AbiL1OJY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 09:09:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229627AbiL1OG1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 09:06:27 -0500
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BB67BC96
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 06:06:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-        q=dns/txt; i=@phytec.de; t=1672236384; x=1674828384;
-        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=TBKS80vKaipFTFE6LaivfcVJSzpQsKy/Yk+eyXeau1I=;
-        b=GOw4qB+JmFH6/xLMLnlNQh64Fp4VlH1vTxk2J4wDkOk2LIB+aRTD7e8pRZ3DMgQW
-        StR0BYUQ35lF+FlkdCqyfldAIFxW5qM2PsO1U6hQLaoL1DKsUdHRq8n6ePt1hLWL
-        a7/lVkWDWmKb6M/gQVM63jYoG/Ec911+Zl4JajwFIY4=;
-X-AuditID: ac14000a-917fe70000007ecb-97-63ac4d60f0eb
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-        (using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (Client did not present a certificate)
-        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 5E.B5.32459.06D4CA36; Wed, 28 Dec 2022 15:06:24 +0100 (CET)
-Received: from augenblix2.phytec.de (172.25.0.11) by Berlix.phytec.de
- (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Wed, 28 Dec
- 2022 15:06:24 +0100
-From:   Wadim Egorov <w.egorov@phytec.de>
-To:     <upstream@lists.phytec.de>, <devicetree@vger.kernel.org>,
-        <linux-rtc@vger.kernel.org>
-CC:     <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <alexandre.belloni@bootlin.com>, <a.zummo@towertech.it>
-Subject: [PATCH] dt-bindings: rtc: Add rv3028 to rv3032.yaml dtschema
-Date:   Wed, 28 Dec 2022 15:06:10 +0100
-Message-ID: <20221228140610.938686-1-w.egorov@phytec.de>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229745AbiL1OJX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 09:09:23 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E60FA64CD
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 06:09:21 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id b3so23782947lfv.2
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 06:09:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=e4j1qGCEoGtKCI0wCRT6rOlwoDi/wlt0pDciUU2bxHI=;
+        b=aH2o4vsdxPeZTdl2rooIpROLJR6U8vYZVwpfy5nJSxcJ3EfbkoRlpovoJvEefOOuu9
+         BKvmKyWluut4CURswwF9a8WNvRc93wPvwvTTP8ucc2772PR/uxyCdDfgNghKzbN1kw4o
+         Fpex3Lkdb0wYId5v1ADZcuMcRn46iUzjmnqZMUumLOUXghGL4mBXM14huEGQcV5zw0Sg
+         psIPvpEO7MDn3IkGx25vUfDRWhd8cKM/GX7xSrT/qTrbdZ3c2XdF74OYvLTjV3DB4Dxc
+         ou9sMZMOyXMrYrakZZetmrOkwH+s68+RKZQuLpYt5jzKVRcuCq0W3t6Ofa0BbF6LN9Z4
+         RIaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=e4j1qGCEoGtKCI0wCRT6rOlwoDi/wlt0pDciUU2bxHI=;
+        b=PJQtvfgYbIRgeSXEOWbr2dOl+22lg+0648Sj4R+l2JdobllLuFmcXj/X59DAuGbH2t
+         uDEQtoIIomlcjd/RcR2R3KUPXc2p68vnJZbVvWHw4L6kDPBsy3hG70vLs3mhanJ3pKJO
+         kGS0G/pmesHQUg+v7zVVcxHIR/vQfbOXcmc1pSuWSG0u0rZP2lLjo5N9ND41BgTdWrol
+         rK0MvsN+7b3ZM+KM+CZno1kXtOasXzHnAPJlRCKUtk4gey+AXeildVZPZwUNZo9PL0ix
+         r6i6km54duG5agoA/DbN1wxH7uVAxO5YFawLerjqpJxOg06+UYh56UWT2oIGlznu318I
+         op5w==
+X-Gm-Message-State: AFqh2komfyQa1l7ftuk1TgNB3XHyKovWG3/WrADeZlj7xgOExZAzq2JX
+        AmKBLogu+B0YY71IHuitEsy5yw==
+X-Google-Smtp-Source: AMrXdXtvOwy9176SBULSVKLT8ia+0BSCLTun/dqYKPkWXFY/GtiOB+PqVu5Q1obszAMr9WRQ7SdSjQ==
+X-Received: by 2002:a05:6512:2506:b0:4a7:7d62:2808 with SMTP id be6-20020a056512250600b004a77d622808mr7364407lfb.27.1672236560306;
+        Wed, 28 Dec 2022 06:09:20 -0800 (PST)
+Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id 20-20020a2eb954000000b002778801240asm1935017ljs.10.2022.12.28.06.09.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Dec 2022 06:09:19 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/3] dt-bindings: clock: qcom,gcc-sm8350: drop core_bi_pll_test_se input
+Date:   Wed, 28 Dec 2022 15:09:15 +0100
+Message-Id: <20221228140917.118861-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [172.25.0.11]
-X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
- (172.25.0.12)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrDLMWRmVeSWpSXmKPExsWyRpKBRzfBd02ywfQn8hZLLl5lt2h/t4zd
-        Yv6Rc6wWfS8eMlscW32FzaJ17xF2i+536g7sHvPWVHtsWtXJ5nHn2h42j/7uFlaP6fN+Mnl8
-        3iQXwBbFZZOSmpNZllqkb5fAldHfO4O54JJwxZxFy5gaGPfxdzFyckgImEi0Pb/H1sXIxSEk
-        sJhJ4vXJ36wQzhNGiT+n3rOAVLEJqEvc2fCNFcQWEYiWaJ37hQ3EZhaokPh49z4jiC0s4Cqx
-        /dlGoDgHB4uAqsTf71YgJq+AhcT/ZmuIXfISMy99ZwexeQUEJU7OfMICMUVeonnrbGYIW0Li
-        4IsXYLYQUPzFpeUsML3Tzr1mhrBDJbZ+2c40gVFgFpJRs5CMmoVk1AJG5lWMQrmZydmpRZnZ
-        egUZlSWpyXopqZsYQSEuwsC1g7FvjschRiYOxkOMEhzMSiK8GmdXJwvxpiRWVqUW5ccXleak
-        Fh9ilOZgURLnvd/DlCgkkJ5YkpqdmlqQWgSTZeLglGpgVLzP+rH84XFB6Xzva0afnFgWPzO6
-        kxm1duMzdkW59Ej9KqMlib1cczyWiLRPzTyUr5W1UEwv7o7pEsusiYvd66vL1eWubFWSU2Lx
-        cFFMUt3nltb9u6chySbDxNtL6a2UzHnpbK95yqZH8y5d/KocxJ5jW6K6OEFZ4lImn1Ljtwkf
-        HttZCSmxFGckGmoxFxUnAgDtfW0LXwIAAA==
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Move RV3028 RTC bindings from trivial-rtc.yaml into microcrystal,rv3032.yaml.
-RV3028 can have a trickle-resitor-ohms property. Make it known to dtschema.
+Drop unused core_bi_pll_test_se clock input to the clock controller.
 
-Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../bindings/rtc/microcrystal,rv3028.yaml     | 56 +++++++++++++++++++
- .../devicetree/bindings/rtc/trivial-rtc.yaml  |  2 -
- 2 files changed, 56 insertions(+), 2 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/rtc/microcrystal,rv3028.yaml
+ Documentation/devicetree/bindings/clock/qcom,gcc-sm8350.yaml | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/rtc/microcrystal,rv3028.yaml b/Documentation/devicetree/bindings/rtc/microcrystal,rv3028.yaml
-new file mode 100644
-index 000000000000..4abe4756bc9b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/rtc/microcrystal,rv3028.yaml
-@@ -0,0 +1,56 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/rtc/microcrystal,rv3028.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip RV-3028 RTC
-+
-+allOf:
-+  - $ref: "rtc.yaml#"
-+
-+maintainers:
-+  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-+
-+properties:
-+  compatible:
-+    const: microcrystal,rv3028
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  start-year: true
-+
-+  trickle-resistor-ohms:
-+    enum:
-+      - 3000
-+      - 5000
-+      - 9000
-+      - 15000
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        rtc@51 {
-+            compatible = "microcrystal,rv3028";
-+            reg = <0x51>;
-+            pinctrl-0 = <&rtc_nint_pins>;
-+            interrupts-extended = <&gpio1 16 IRQ_TYPE_LEVEL_HIGH>;
-+            trickle-resistor-ohms = <3000>;
-+        };
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-index d9fc120c61cc..84cce1f0ca0c 100644
---- a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-+++ b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-@@ -48,8 +48,6 @@ properties:
-       # Intersil ISL12022 Real-time Clock
-       - isil,isl12022
-       # Real Time Clock Module with I2C-Bus
--      - microcrystal,rv3028
--      # Real Time Clock Module with I2C-Bus
-       - microcrystal,rv3029
-       # Real Time Clock
-       - microcrystal,rv8523
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-sm8350.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-sm8350.yaml
+index 703d9e075247..b4fdde71ef18 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,gcc-sm8350.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sm8350.yaml
+@@ -23,7 +23,6 @@ properties:
+     items:
+       - description: Board XO source
+       - description: Sleep clock source
+-      - description: PLL test clock source (Optional clock)
+       - description: PCIE 0 Pipe clock source (Optional clock)
+       - description: PCIE 1 Pipe clock source (Optional clock)
+       - description: UFS card Rx symbol 0 clock source (Optional clock)
+@@ -40,7 +39,6 @@ properties:
+     items:
+       - const: bi_tcxo
+       - const: sleep_clk
+-      - const: core_bi_pll_test_se # Optional clock
+       - const: pcie_0_pipe_clk # Optional clock
+       - const: pcie_1_pipe_clk # Optional clock
+       - const: ufs_card_rx_symbol_0_clk # Optional clock
 -- 
 2.34.1
 
