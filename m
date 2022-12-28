@@ -2,107 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A855657166
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 01:27:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B347D65716F
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 01:42:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229674AbiL1A1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Dec 2022 19:27:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45508 "EHLO
+        id S229745AbiL1AmX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Dec 2022 19:42:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229502AbiL1A1p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 19:27:45 -0500
-Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EF4210E4;
-        Tue, 27 Dec 2022 16:27:44 -0800 (PST)
-Received: by mail-il1-f175.google.com with SMTP id i25so7569865ila.8;
-        Tue, 27 Dec 2022 16:27:44 -0800 (PST)
+        with ESMTP id S229639AbiL1AmW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Dec 2022 19:42:22 -0500
+Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B3ADDF6B;
+        Tue, 27 Dec 2022 16:42:21 -0800 (PST)
+Received: by mail-qk1-x72d.google.com with SMTP id o14so6940158qkk.5;
+        Tue, 27 Dec 2022 16:42:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=AT7wAljAc6zDS49obSZ6/gRr6I2iWE2SnMYOzdxGqH0=;
+        b=fvIBLKx8DB6ok4Yjy/zo/XKMF3Byp8a5yFT3Ef77uPXvhLsoM9zDllhfaa9Ey9n+2u
+         9zj7G2KpZRv2QZmtXQbqB1yWEZCehBVK3PxiG0PAcVPYLHn2JemTIvBiCIw8vyExr3fM
+         dMdA/uzQ7csB8vttR0z5KDUnNlJeBnR/w7sNwlEpgJQed5OOBPtZa/20AnabYzxCe8Ol
+         hBEyaxTvAr/SQ69YzxNPqBPwQddcJQLLTFLba1DWWu6oRSA8sEhcNrEe0R7jiPmWQbwn
+         4zrwTDg9D6a23LWMpq3OkKH2R4NDWdAPbParXPoYwnNzUl4x+Ze2hqGDkPplcapNSR22
+         Ea3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=lzEg4VO5GMi09m7RLPNF4beRTGaDDincjcOLdN8zZdk=;
-        b=MYVPFXSiAJF3rKVPNgcOuKV7X2v1OdQE9f6coPHd3r2GRSL4+dFVjeHoFv0aokx2UZ
-         QOuF0YEYT8T8c87kE5fsRJTfgTZQZfbOhL36g6l4ImaR9Z8utEN+0vZvs5eoA9lJ4KFq
-         /PW9PtBB91QLycXbmnQvsK1FfLIownZ28Wo0uJGvXsZLXaIL1p0CzHfoxwYjvVkJYUx4
-         f9pa1+7LRngJBOt5B10nEYzD/z/oec1q4G4I0jK6ej0or5BeowWjdowMKrACHC3CnG7i
-         EgAilLapp7KDJjKgMQj9jzE68DnuFaCys5UxjomSP/HeOGc4eX6aI5JZBV/9aFynGCQ9
-         Fz0g==
-X-Gm-Message-State: AFqh2kpnXXbjxPJ7ILKOlT8Kuz2oVDpAMIPXaTDkLXaIA3d0XkHwCQ09
-        lZDQSHN/gbMGiVLVhjHM9A==
-X-Google-Smtp-Source: AMrXdXtSbeY5HcnJUrgcgnQWGZZB8V4nCKmekBJ+lCyjQy174hnKaPbClWYr0MaWlXwbR6bSTkuH0Q==
-X-Received: by 2002:a92:d2cf:0:b0:30b:e45c:3d1a with SMTP id w15-20020a92d2cf000000b0030be45c3d1amr12815714ilg.23.1672187263562;
-        Tue, 27 Dec 2022 16:27:43 -0800 (PST)
-Received: from robh_at_kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id w9-20020a92c889000000b0030c00897497sm2423967ilo.19.2022.12.27.16.27.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Dec 2022 16:27:42 -0800 (PST)
-Received: (nullmailer pid 42254 invoked by uid 1000);
-        Wed, 28 Dec 2022 00:27:41 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8bit
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AT7wAljAc6zDS49obSZ6/gRr6I2iWE2SnMYOzdxGqH0=;
+        b=ATCBn8v4YIfUxPFpZLTirwB76J/5f9vMy4CAoHZ8xXdXJCwdebvrmWbQpabbc2VF3M
+         KwQGNZdnyEXHQGroEGVi6MMgr2TO+dJTFGBQdvrsySZXBBvLvJVGTmcaVwgkI/6A8YyZ
+         QtJcCrWlLXeWF+AJ+Tz5onuPvmneuzSHLD9tUm3qZTxs40KR9Qm/DAWHemZTr2B44K5x
+         T++9DJmw51ZP/0GxgsGx/f9La8bV01H3olVhMXQ1qO7dQ5RMXB05LG7BPTm1p1d0nKIT
+         baIjh8H9GJM9JjQ+Nuuv7FWixcoDtrQTNiuRyue1FdRo+P0zBXLNGOX0gXurkDjpFOqp
+         yHTA==
+X-Gm-Message-State: AFqh2kpZMpLZdwZ1xJHfO3kNXlwC1LhB3AsBh5TwW83j9h2wjfxcoL8O
+        mxfcKpWruU2OLPdlb40vcuBjDYMuP1onFpKJIUc=
+X-Google-Smtp-Source: AMrXdXvadVuBZc49Yci9KBEGhRvSOnalF7+vOEUiJL87B02SslH2yeN532lzCUleTYh1rl74xZR7szjpmTOZI1+urq0=
+X-Received: by 2002:a05:620a:1aa2:b0:702:34dc:25a8 with SMTP id
+ bl34-20020a05620a1aa200b0070234dc25a8mr1108830qkb.748.1672188140306; Tue, 27
+ Dec 2022 16:42:20 -0800 (PST)
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Okan Sahin <okan.sahin@analog.com>
-Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:MAXIM MAX77541 PMIC MFD DRIVER" 
-        <linux-kernel@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-In-Reply-To: <20221226223839.103460-3-okan.sahin@analog.com>
-References: <20221226223839.103460-1-okan.sahin@analog.com>
- <20221226223839.103460-3-okan.sahin@analog.com>
-Message-Id: <167218706106.33727.591355104841763067.robh@kernel.org>
-Subject: Re: [PATCH v2 2/5] dt-bindings: mfd: adi,max77541.yaml Add MAX77541 bindings
-Date:   Tue, 27 Dec 2022 18:27:41 -0600
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+References: <20221227100659.157071-1-jjhiblot@traphandler.com> <20221227100659.157071-7-jjhiblot@traphandler.com>
+In-Reply-To: <20221227100659.157071-7-jjhiblot@traphandler.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Wed, 28 Dec 2022 02:41:44 +0200
+Message-ID: <CAHp75VceSOCiu=17jrmHVOaqAoaqw4He9DKgH8Vjw_oYZdi7Eg@mail.gmail.com>
+Subject: Re: [RESEND PATCH v6 6/6] leds: Add a multicolor LED driver to group
+ monochromatic LEDs
+To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+Cc:     lee@kernel.org, pavel@ucw.cz, robh+dt@kernel.org,
+        sven.schwermer@disruptive-technologies.com,
+        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
+        marijn.suijten@somainline.org, bjorn.andersson@linaro.org,
+        jacek.anaszewski@gmail.com, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Dec 27, 2022 at 12:07 PM Jean-Jacques Hiblot
+<jjhiblot@traphandler.com> wrote:
+>
+> By allowing to group multiple monochrome LED into multicolor LEDs,
+> all involved LEDs can be controlled in-sync. This enables using effects
+> using triggers, etc.
 
-On Tue, 27 Dec 2022 01:38:36 +0300, Okan Sahin wrote:
-> The bindings for MAX77541 MFD driver. It also
-> includes MAX77540 driver whose regmap is covered by MAX77541.
-> 
-> Signed-off-by: Okan Sahin <okan.sahin@analog.com>
-> ---
->  .../devicetree/bindings/mfd/adi,max77541.yaml | 102 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  2 files changed, 103 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/adi,max77541.yaml
-> 
+...
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> +       count = 0;
+> +       max_brightness = 0;
+> +       for (;;) {
+> +               struct led_classdev *led_cdev;
+> +
+> +               led_cdev = devm_of_led_get_optional(dev, count);
 
-yamllint warnings/errors:
+> +
 
-dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/mfd/adi,max77541.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/regulator/adi,max77541-regulator.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/adi,max77541.example.dtb: pmic@69: regulators: False schema does not allow {'BUCK1': {'regulator-min-microvolt': [[500000]], 'regulator-max-microvolt': [[5200000]], 'regulator-boot-on': True, 'regulator-always-on': True}, 'BUCK2': {'regulator-min-microvolt': [[500000]], 'regulator-max-microvolt': [[5200000]], 'regulator-boot-on': True, 'regulator-always-on': True}}
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/adi,max77541.yaml
+Redundant blank line.
 
-doc reference errors (make refcheckdocs):
+> +               if (IS_ERR(led_cdev))
+> +                       return dev_err_probe(dev, PTR_ERR(led_cdev),
+> +                                            "Unable to get led #%d", count);
+> +
+> +               /* Reached the end of the list ?*/
+> +               if (!led_cdev)
+> +                       break;
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221226223839.103460-3-okan.sahin@analog.com
+> +               count++;
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+If I understand the flow correctly, this can be moved...
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+> +               priv->monochromatics = devm_krealloc_array(dev, priv->monochromatics,
+> +                                       count, sizeof(*priv->monochromatics),
+> +                                       GFP_KERNEL);
+> +               if (!priv->monochromatics)
+> +                       return -ENOMEM;
 
-pip3 install dtschema --upgrade
+> +               priv->monochromatics[count - 1] = led_cdev;
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+...here either as a separate line or a part of the above assignment,
+in either case the -1 wouldn't be needed.
 
+
+> +               max_brightness = max(max_brightness, led_cdev->max_brightness);
+> +       }
+
+-- 
+With Best Regards,
+Andy Shevchenko
