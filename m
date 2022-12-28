@@ -2,122 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 086D0657478
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 10:11:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 29445657483
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 10:15:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232714AbiL1JLu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 04:11:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60416 "EHLO
+        id S232602AbiL1JPv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 04:15:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232554AbiL1JLt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 04:11:49 -0500
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71D25C7E
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 01:11:48 -0800 (PST)
-Received: by mail-lj1-x229.google.com with SMTP id s22so15995388ljp.5
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 01:11:48 -0800 (PST)
+        with ESMTP id S229470AbiL1JPq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 04:15:46 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBDE713C
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 01:15:42 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id g13so22817930lfv.7
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 01:15:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=0iU0lEEi+NPvnevFz5v/nUd+nt+xlbi55hYpYeF8kv8=;
-        b=ZlHAN2Qm4X+4bssNjlhgXwc8CTx1TnTGHd2REjIfdPyoL9XYLnoO+oTKZ/fYg1pl1z
-         CvAkMwnXhkgNsRxLUHnxqCLoocXFQWx2oRKEKu+BfxTUhSZp9+k30JerybpCYMvryA3v
-         yXSBC5GV9ZPP2pQKZVTkb6ERWgG69R2/C9hOItndq1BwS1E84D7Gm0Kd5Sa2xoGF/boQ
-         98K6ZwvyeR+k5OZgL+E4SOSC+D5k8Ud0IUW7m042LRXXwONQ4b09Ec1MvyChTzf7HkNX
-         QERdR8ekbUkw5pK3TLrJKviunp5SVGom7FGrukWB+F9T/aAKtw/Af/bNk+swft+on4fm
-         KOEA==
+        bh=zHfGy9Laz7eCuwSYN292QO9okKvZGpgecX/zbeSHhK0=;
+        b=YUmZMBTkEjZmJYJe7NsLeaKDHqpUyJWPHoelRZsaowbOOIMm9QTjoF2VhTb9ub2hss
+         JIbxiNc34Q2MdqjLxsoHf9T+1ixwg0+dOQQCeOysINni1OGL29+taOwaaYi7VtQ5ZRgh
+         FXgggDcPJJL7JfuKMrMVmyGFU8AsjNWHPqNq/boCB18NwE+3XsoXs5cVaPCd3XdKT+I5
+         VLsSX52YwgWh4JBFaAnWElSijRsWxtN3dlgd0VpNB1FKAZ5k+zsNV3aTvQV5vGje+AMD
+         EWS46Zs4ini68nHvEVVPbu1w66gh73M5CoXzyVvvxwuzmmB595RzqU/WW4z29SBR7WTx
+         0YEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0iU0lEEi+NPvnevFz5v/nUd+nt+xlbi55hYpYeF8kv8=;
-        b=FgVrr9AzlZhAk2oY+tmYjIEDPI7O9GOorEkTskQhfm1f/V+PNA9KcmSDyJKbvticmV
-         F9MaKl9dHsAGVS2U9PGK6CrmCo7v5xBKGASWcLJriJH7MGLCI8xCZcqu+j6//dDE47la
-         6mSQ9kfwCRfsh7I3jNj7FYkzkV0k8TgPeiqzU92jsmwlfjD2J4Ch6eJ5K527dSqg5S3e
-         tXqdmN6CVLEdiydJrofsiZxDvMBYVwtRL67q/Cd04BBaOWVevjiE5y2JxLcn4iiaPNBb
-         bFtJXUc8jp70L6iasMe/GdT770tJUffPZsuVCZf8pLgdxFBhlmNFM+Fuo/0m2KnQghrZ
-         xz3Q==
-X-Gm-Message-State: AFqh2krqESXXp0IfPyMGyqQt9sU2K8KHBUz+EQS+cBGpVuy8rEgdN9h1
-        cFuSu/09xNMax5+inp2rJhYj2g==
-X-Google-Smtp-Source: AMrXdXsm9YuIsn0AG+RnQD6psOq8x79YYXxCot3n430np+AbdgZ3DeKWY9XoGdQCIRAveXW9tKysUA==
-X-Received: by 2002:a05:651c:b0c:b0:27f:66ec:b57 with SMTP id b12-20020a05651c0b0c00b0027f66ec0b57mr12033879ljr.39.1672218706774;
-        Wed, 28 Dec 2022 01:11:46 -0800 (PST)
+        bh=zHfGy9Laz7eCuwSYN292QO9okKvZGpgecX/zbeSHhK0=;
+        b=JKKU3cOi7GA4djR/819wrnIvBL64ADyoPlEoHrLcvw54Ivo3F9A5LDc2Cin0vZgJOb
+         0HQYNH12MRs7yk25AeEFz9FzUHzrsYMAJ3oJ8zUlSAYnzm7TfWqlJpbhxqSVklqOzCLV
+         pQmv/Vum3h9vAkfVbobnp0U2T7gKeyXQ/7ajnYAz1dFQpQmc6JntgnGD7bwDhnYnN1zc
+         MYOV0tKiR9ak1J1TJV25QNeq1Tfz6qml94ochxIYxFIgwSe+EfHnRU5EyPcp41ygCIXT
+         ZxtGQqDp4Dj4jwiWEbCpVV6YMB+pgJZxXTDCCw0TMWmiaX/Bou8KYpQp1wc7ooqwHH5t
+         JbCg==
+X-Gm-Message-State: AFqh2krYJs4kbRIhaAcRYoTqT4W8/sMlgWZd11BxogXVNPHnr4Q+Hu1r
+        Abf2GWRZY9uMexrKwxtIcO41gg==
+X-Google-Smtp-Source: AMrXdXuSBPe3YclVGcr+1kAh/FcxwSdU2wFJT56/FdPUnYvTp9rDQnmdWkSNxnp/7u0kvt1xW4nbuQ==
+X-Received: by 2002:a19:7b18:0:b0:4b5:9cce:73a0 with SMTP id w24-20020a197b18000000b004b59cce73a0mr7415088lfc.39.1672218941331;
+        Wed, 28 Dec 2022 01:15:41 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id f2-20020a05651c02c200b0027fc4f018a8sm711703ljo.5.2022.12.28.01.11.45
+        by smtp.gmail.com with ESMTPSA id q13-20020a056512210d00b004b5732080d1sm2577189lfr.150.2022.12.28.01.15.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Dec 2022 01:11:46 -0800 (PST)
-Message-ID: <9b098bf9-59d7-e58d-aba3-a8055af053c6@linaro.org>
-Date:   Wed, 28 Dec 2022 10:11:44 +0100
+        Wed, 28 Dec 2022 01:15:40 -0800 (PST)
+Message-ID: <73599d25-cd2c-e89a-20b4-d34471583a6b@linaro.org>
+Date:   Wed, 28 Dec 2022 10:15:39 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v2 5/9] dt-bindings: net: motorcomm: add support for
- Motorcomm YT8531
+Subject: Re: [PATCH] ARM: dts: n900: switch accelerometer to iio driver
 Content-Language: en-US
-To:     yanhong wang <yanhong.wang@starfivetech.com>,
-        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>
-References: <20221216070632.11444-1-yanhong.wang@starfivetech.com>
- <20221216070632.11444-6-yanhong.wang@starfivetech.com>
- <994718d8-f3ee-af5e-bda7-f913f66597ce@linaro.org>
- <134a2ead-e272-c32e-b14f-a9e98c8924ac@starfivetech.com>
- <c296cf6b-6c50-205d-d5f5-6095c0a6c523@linaro.org>
- <e03fb7bc-b196-bc8a-b396-fab8686d396b@starfivetech.com>
+To:     "Sicelo A. Mhlongo" <absicsz@gmail.com>, linux-omap@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, tony@atomide.com,
+        devicetree@vger.kernel.org
+References: <20221227223841.2990847-1-absicsz@gmail.com>
+ <20221227223841.2990847-2-absicsz@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <e03fb7bc-b196-bc8a-b396-fab8686d396b@starfivetech.com>
+In-Reply-To: <20221227223841.2990847-2-absicsz@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/12/2022 04:23, yanhong wang wrote:
-> 
-> 
-> On 2022/12/27 17:52, Krzysztof Kozlowski wrote:
->> On 27/12/2022 10:38, yanhong wang wrote:
->>>>
->>>> This must be false. After referencing ethernet-phy this should be
->>>> unevaluatedProperties: false.
->>>>
->>>>
->>>
->>> Thanks. Parts of this patch exist already, after discussion unanimity was achieved,
->>> i will remove the parts of YT8531 in the next version.
->>
->> I don't understand what does it mean. You sent duplicated patch? If so,
->> please do not... you waste reviewers time.
->>
->> Anyway this entire patch does not meet criteria for submission at all,
->> so please start over from example-schema.
->>
-> 
-> Sorry, maybe I didn't make it clear, which led to misunderstanding. Motorcomm Inc is also 
-> carrying out the upstream of YT8531, and my patch will be duplicated and conflicted 
-> with their submission. By communicating with the developers of Motorcomm Inc, the part 
-> of YT8531 will be submitted by Motorcomm Inc, so my submission about YT8531 will be withdrawn.
+On 27/12/2022 23:38, Sicelo A. Mhlongo wrote:
+> Since 8a7449d68670a8f9033d57b9e7997af77a900d53, lis302dl is supported by an iio
 
-Are they going to apply the feedback received for this series?
+Use commit SHA ("title") format, as suggested by checkpatch.
+
+> driver. Make the switch, to accommodate modern userspace, even though the iio
+> interface lacks some of the extended features of the older driver
+> 
+> Signed-off-by: Sicelo A. Mhlongo <absicsz@gmail.com>
+> ---
+>  arch/arm/boot/dts/omap3-n900.dts | 53 +++++---------------------------
+>  1 file changed, 8 insertions(+), 45 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/omap3-n900.dts b/arch/arm/boot/dts/omap3-n900.dts
+> index 6ba2e8f81973..94fa1d492fb4 100644
+> --- a/arch/arm/boot/dts/omap3-n900.dts
+> +++ b/arch/arm/boot/dts/omap3-n900.dts
+> @@ -767,56 +767,19 @@ &i2c3 {
+>  
+>  	clock-frequency = <400000>;
+>  
+> -	lis302dl: lis3lv02d@1d {
+> -		compatible = "st,lis3lv02d";
+> +	lis302dl: lis302dl@1d {
+
+That's not really explained in commit msg and does not look related to
+your goal. If changing - in separate patch - make the node name generic.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +		compatible = "st,lis302dl";
+>  		reg = <0x1d>;
+>  
+> -		Vdd-supply = <&vaux1>;
+> -		Vdd_IO-supply = <&vio>;
+> +		vdd-supply = <&vaux1>;
+> +		vddio-supply = <&vio>;
+
+Does not look related/explained in commit msg.
+
+>  
+>  		interrupt-parent = <&gpio6>;
+> -		interrupts = <21 20>; /* 181 and 180 */
+> -
+> -		/* click flags */
+> -		st,click-single-x;
+> -		st,click-single-y;
+> -		st,click-single-z;
+> -
+> -		/* Limits are 0.5g * value */
+> -		st,click-threshold-x = <8>;
+> -		st,click-threshold-y = <8>;
+> -		st,click-threshold-z = <10>;
+> -
+> -		/* Click must be longer than time limit */
+> -		st,click-time-limit = <9>;
+> -
+> -		/* Kind of debounce filter */
+> -		st,click-latency = <50>;
+> -
+> -		/* Interrupt line 2 for click detection */
+> -		st,irq2-click;
+> -
+> -		st,wakeup-x-hi;
+> -		st,wakeup-y-hi;
+> -		st,wakeup-threshold = <(800/18)>; /* millig-value / 18 to get HW values */
+> -
+> -		st,wakeup2-z-hi;
+> -		st,wakeup2-threshold = <(900/18)>; /* millig-value / 18 to get HW values */
+> -
+> -		st,hipass1-disable;
+> -		st,hipass2-disable;
+> -
+> -		st,axis-x = <1>;    /* LIS3_DEV_X */
+> -		st,axis-y = <(-2)>; /* LIS3_INV_DEV_Y */
+> -		st,axis-z = <(-3)>; /* LIS3_INV_DEV_Z */
+> -
+> -		st,min-limit-x = <(-32)>;
+> -		st,min-limit-y = <3>;
+> -		st,min-limit-z = <3>;
+> +		interrupts = <21 IRQ_TYPE_EDGE_RISING>, <20 IRQ_TYPE_EDGE_RISING>; /* 181 and 180 */
+
+Does not fit in 80-wrap length.
+
+>  
+> -		st,max-limit-x = <(-3)>;
+> -		st,max-limit-y = <32>;
+> -		st,max-limit-z = <32>;
+> +		mount-matrix =	 "-1",  "0",  "0",
+> +				  "0",  "1",  "0",
+> +				  "0",  "0",  "1";
+>  	};
+>  
+>  	cam1: camera@3e {
 
 Best regards,
 Krzysztof
