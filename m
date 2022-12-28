@@ -2,102 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75DD3657527
-	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 11:10:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 84198657536
+	for <lists+devicetree@lfdr.de>; Wed, 28 Dec 2022 11:17:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230012AbiL1KKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 05:10:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56788 "EHLO
+        id S232781AbiL1KQw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 05:16:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232921AbiL1KJm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 05:09:42 -0500
-Received: from sender4-op-o18.zoho.com (sender4-op-o18.zoho.com [136.143.188.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E21011144C;
-        Wed, 28 Dec 2022 02:08:34 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1672222100; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=DR7EU7XZmfJBsV2/fzc+7dKvSMdtHaD/bwPhesW4sa4eMih2Y1Ph9CuNLETSurqR8o2Ai6hOwQbyTn+dVXGTxCAmEjcFzH446+Kx80SWfo+VJgw2Hc2Dg39mjyAyzs6lLXkFGOca1Pk+IwAw4sCFetUMl2RL9gpfk1jH9P91ZuI=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1672222100; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=6RIh+iAefWxFs9a9psv5C07vlRmV2frNtjn4+K4G0VM=; 
-        b=BKs3u9KWDNUajiU+Op2bpOgXKzEeCIjYwETWhAV87+4/RT9u1qFGzgjWW9JQ/Wo2a/bJfd/XaZo0xtNWpHxuUUFfZM9GIb7US8g1ORsYQlC+l8FIAmFvaNvJN/AxPMCT/JinzJ1Wagm/qN15itYSSgINEo9C1Io8cDRrWRq2Lzw=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=icenowy.me;
-        spf=pass  smtp.mailfrom=uwu@icenowy.me;
-        dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1672222100;
-        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
-        h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-        bh=6RIh+iAefWxFs9a9psv5C07vlRmV2frNtjn4+K4G0VM=;
-        b=F8u11A+Qt19bpek999EarlNKxkoaqLgAYN38B8vxF24KC138yn43JyPyf+oG0LGf
-        IkDuB71tnIwS34asv4r4AZoW4TJA+AYc3Ns8A45xmR+6YNL20rDeLZFyw55jq9kjkoL
-        /B09D9UzudyRmbuS+XujDxBHHuSD+EknYGBfNkcU=
-Received: from edelgard.fodlan.icenowy.me (120.85.99.39 [120.85.99.39]) by mx.zohomail.com
-        with SMTPS id 1672222099827577.0094574854984; Wed, 28 Dec 2022 02:08:19 -0800 (PST)
-Message-ID: <ef20a7dfa027f1a5a24a515e347af10c06a4da85.camel@icenowy.me>
-Subject: Re: [PATCH v1 01/11] dt-bindings: usb: Add device id for Genesys
- Logic hub controller
-From:   Icenowy Zheng <uwu@icenowy.me>
-To:     Anand Moon <linux.amoon@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Date:   Wed, 28 Dec 2022 18:08:15 +0800
-In-Reply-To: <20221228100321.15949-2-linux.amoon@gmail.com>
-References: <20221228100321.15949-1-linux.amoon@gmail.com>
-         <20221228100321.15949-2-linux.amoon@gmail.com>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 
+        with ESMTP id S232799AbiL1KQb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 05:16:31 -0500
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B714E194
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 02:16:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+        q=dns/txt; i=@phytec.de; t=1672222588; x=1674814588;
+        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=oVJnYDbF2ktfkp8XSbH6Wj64VWVTuGh5A3DbFRH21Xg=;
+        b=kBfry2KtVaplH9pn2UX9jrd6GM5n5b7LKjPeOksZ5cUdjOrtW1k8lWcgIBfNcl7C
+        gAL7WFuk2RpXZq2uTBSFYKR7suZEx8jtJKfjofq1QDUrQSyG9f8Jufjg6xY0T4yN
+        +RK8CFBoEWcl92jAJC4ZSVDvrCcYMljge+dzwlekntA=;
+X-AuditID: ac14000a-917fe70000007ecb-bf-63ac177cd8dc
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+        (using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (Client did not present a certificate)
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 87.C4.32459.C771CA36; Wed, 28 Dec 2022 11:16:28 +0100 (CET)
+Received: from Berlix.phytec.de (172.25.0.12) by Berlix.phytec.de
+ (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Wed, 28 Dec
+ 2022 11:16:27 +0100
+Received: from Berlix.phytec.de ([fe80::61cc:ebf0:7375:8768]) by
+ berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4%4]) with mapi id 15.01.2375.018;
+ Wed, 28 Dec 2022 11:16:27 +0100
+From:   Wadim Egorov <W.Egorov@phytec.de>
+To:     Mark Brown <broonie@kernel.org>, Nishanth Menon <nm@ti.com>
+CC:     jerome Neanne <jneanne@baylibre.com>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "kristo@kernel.org" <kristo@kernel.org>,
+        "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "lee@kernel.org" <lee@kernel.org>,
+        "tony@atomide.com" <tony@atomide.com>,
+        "vigneshr@ti.com" <vigneshr@ti.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "geert+renesas@glider.be" <geert+renesas@glider.be>,
+        "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
+        "marcel.ziswiler@toradex.com" <marcel.ziswiler@toradex.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "biju.das.jz@bp.renesas.com" <biju.das.jz@bp.renesas.com>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "jeff@labundy.com" <jeff@labundy.com>, "afd@ti.com" <afd@ti.com>,
+        "khilman@baylibre.com" <khilman@baylibre.com>,
+        "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
+        "msp@baylibre.com" <msp@baylibre.com>,
+        "j-keerthy@ti.com" <j-keerthy@ti.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>
+Subject: Re: [PATCH v7 1/6] DONOTMERGE: arm64: dts: ti: Add TI TPS65219 PMIC
+ support for AM642 SK board.
+Thread-Topic: [PATCH v7 1/6] DONOTMERGE: arm64: dts: ti: Add TI TPS65219 PMIC
+ support for AM642 SK board.
+Thread-Index: AQHY8GHP4sH8k9jEvEicIzv1bzoxDa5vPM8AgAAL5wCAAAUUAIAAHSeAgAAH4YCAADe5gIABDDwAgBKiloA=
+Date:   Wed, 28 Dec 2022 10:16:27 +0000
+Message-ID: <c2a0f9fb-3b54-0a3f-2bfa-9575a9ae937f@phytec.de>
+References: <20221104152311.1098603-1-jneanne@baylibre.com>
+ <20221104152311.1098603-2-jneanne@baylibre.com>
+ <d0d7e315-ce86-0420-8ef5-fe2e4aefd5b4@phytec.de>
+ <e2bc53fe-3a0c-cf24-8b29-ca377aba3721@baylibre.com>
+ <Y5tGzjgcAWPqdFNE@sirena.org.uk> <20221215175411.znxy3d6ussq2iq5h@grieving>
+ <Y5tl3+2pJispcXy6@sirena.org.uk> <20221215214149.whcjdphxxvvedrih@affront>
+ <Y5x1oAzezZGqyZSx@sirena.org.uk>
+In-Reply-To: <Y5x1oAzezZGqyZSx@sirena.org.uk>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.25.0.11]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <C5CFE471CAD70F4EABAD6E65C4662516@phytec.de>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLACK autolearn=no autolearn_force=no
-        version=3.4.6
+X-Brightmail-Tracker: H4sIAAAAAAAAA02SfUzMcRzH+/4e7ve7I/t24r7VMG2mTHkY22fWPP31G/8UY4ZNp35zp6Rd
+        MVkbUtGVuJPMXUW0os5DP1kPDnVSuenBJCEqNaJyPaxS5OE6pv9e3/fn/dr3892+PK1sZr15
+        bVSsqItSR/rKFIzFy21mQLzKErY8p0YODruBg0ljDQc5ZaMUXOjsloEjPw3B5eoGFgyN4zJ4
+        fLUHQbbZiMBemkDBs7e5FGR2fEQwfqqEgoJhMwfpPZ00lCXnMjDafJoCqauFhddDoyy8qMiS
+        gTnvLAMnugopSDR+kIEtfRf0faunIOlBNQc9JSp41LwJftUPcFDeVkdDYtvq9QsES44FCd8n
+        jEgYHTEygqM1iRNu9Jg5wVAfIJSb3nGCVJgiEwqqMimhrcUqE+7mHRNqW0spQfoiCMPS/OBZ
+        OxVB4WKk9rCoW7Y2VKGpSXGg6A6PI4a6J+xxlOehR3Ke4FVkUn+e0yMFr8TXKNLXYWRdhw5E
+        bvZLfyfFiAwMtSGnIsOLiWGy7k+L5z3xOpKQsNXZobE0g+TarJSzMxvvJwnFRVPsiSPIj8Ei
+        2sV7yaeqJNbJDF5E7MWvp3J3HEReFORP5UqcQZMzt5Y7WY4DiKOpkXEywvPInTuNU30aq4j0
+        cYx1PQGTPKsrJ3gO+dz182++gNS9yaSce9LYn9yuWOZSgaT1JiMXLyQZqZ2cawUP8vRSN3MO
+        qUzTbjD9t03TbNM02zTNvoLYQqQ8oA2LEHXaiMBoTVysGBYYLkrI+fM83RRlKD1LsCGKRzZE
+        eNrX092vvihM6R6ujjsq6g7u0R2KFGNsyIdnfFXu7WmUWon3qWPFCFGMFnX/phQv9z6Obl+P
+        yu9Xh+zZt/LLIXvL9onu3qw1GyuH9Dfv+41sKasMDt14Sb/Ei7d/XfN88YaZ2UE+yR+kDEtT
+        ZshJ78HU4Nr8vTtfLpXvvhcCrRuYdrV//JFN3Y+8aGvQq/crcpB/qH9D6Y648hOM/OGiZw+t
+        Upxmzti2lxd/kRSzZm7J+OZsrS8To1GvWELrYtS/AfgfHpFnAwAA
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=E5=9C=A8 2022-12-28=E6=98=9F=E6=9C=9F=E4=B8=89=E7=9A=84 10:03 +0000=EF=BC=
-=8CAnand Moon=E5=86=99=E9=81=93=EF=BC=9A
-> Add usb hub device id for Genesys Logic, Inc. GL852G-OHG Hub USB 2.0
-> root hub and Genesys Logic, Inc. GL3523-QFN76 USB 3.1 root hub.
->=20
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> ---
-> =C2=A0Documentation/devicetree/bindings/usb/genesys,gl850g.yaml | 2 ++
-> =C2=A01 file changed, 2 insertions(+)
->=20
-> diff --git
-> a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> index a9f831448cca..db009f3ef438 100644
-> --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> @@ -16,6 +16,8 @@ properties:
-> =C2=A0=C2=A0 compatible:
-> =C2=A0=C2=A0=C2=A0=C2=A0 enum:
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - usb5e3,608
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - genesys,usb5e3,610
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - genesys,usb5e3,620
-
-I don't think genesys, is needed here because usb5e3 means USB VID
-0x05e3, which is already linked to Genesys Logic.
-
-In addition, the control logic of these two hubs are needed to be
-verified.
-
-And what's the status of the companion hub of the USB3 hub? Is it
-really a USB3-only hub, or is its USB2 part just equal to another USB3
-hub?
-
-> =C2=A0
-> =C2=A0=C2=A0 reg: true
-> =C2=A0
-
+QW0gMTYuMTIuMjIgdW0gMTQ6NDEgc2NocmllYiBNYXJrIEJyb3duOg0KPiBPbiBUaHUsIERlYyAx
+NSwgMjAyMiBhdCAwMzo0MTo0OVBNIC0wNjAwLCBOaXNoYW50aCBNZW5vbiB3cm90ZToNCj4NCj4+
+IFllYWggLSB0aGlzIGhhcHBlbnMgdG8gYmUgU0RjYXJkIHN1cHBseSAoYXQgbGVhc3QgaW4gbXkg
+Y2FzZSkuLiBJJ2QNCj4+IHJhdGhlciBub3QgY2hhbmdlIHRoZSBtbWMgaG9zdCBvciBjb3JlIGxh
+eWVyIHRvIGhhbmRsZSBhIGNhc2Ugd2hlcmUNCj4+IExETyBoYXBwZW5lZCB0byBiZSBpbiBieXBh
+c3MuIGl0IGlzIGEgcmVndWxhdG9yIGRyaXZlcidzIHByb2JsZW0sIElNSE8NCj4+IGhvdyB0byBw
+cm92aWRlIHRoZSBzdGF0ZWQgdm9sdGFnZSBPUiBmYWlsIHRvIHRyYW5zaXRpb24gdGhlIHZvbHRh
+Z2UuDQo+IFdlbGwsIGlmIHRoZSByZWd1bGF0b3IgaXMgaW4gYnlwYXNzIG1vZGUgdGhlbiBpdCBp
+cyBieSBkZWZpbml0aW9uIG5vdA0KPiByZWd1bGF0aW5nIGFuZCBzbyBpdCdzIGxpa2UgcHJvZ3Jh
+bW1pbmcgdGhlIHZvbHRhZ2Ugd2hpbGUgc3dpdGNoZWQgb2ZmLA0KPiBzZXR0aW5nIHRoZSB0YXJn
+ZXQgZm9yIHdoZW4gaXQgc3RhcnRzIHJlZ3VsYXRpbmcgYWdhaW4uICBJdCdzIGEgd2VpcmRlcg0K
+PiB1c2UgY2FzZSBidXQgaXQgZG9lcyBmZWVsIGxpa2UgdGhlIGNvbnNpc3RlbnQgdGhpbmcgdG8g
+ZG8gYXQgbGVhc3QuDQo+IFRoZSBkcml2ZXIgc2hvdWxkbid0IGVudGVyL2xlYXZlIGJ5cGFzcyB3
+aXRob3V0IGJlaW5nIGV4cGxpY2l0bHkgdG9sZCB0bw0KPiBzbyBzaW5jZSB0aGVyZSdsbCBiZSBh
+IHBlcmZvcm1hbmNlIGltcGFjdC4NCj4NCj4+IGIpIElmIEkgd2FudGVkIHRoZSBMRE8gdG8gcG93
+ZXJvZmYgdGhlIGJ5cGFzcyBiaXQgYXQgc3RhcnQgKGRlZmluZSB0aGUNCj4+ICAgICBzdGFydHVw
+IGhhcmR3YXJlIGNvbmRpdGlvbiksIEkgZG9udCBzZWVtIHRvIGhhdmUgYSBkZXNjcmlwdGlvbiBm
+b3INCj4+ICAgICB0aGF0IGVpdGhlci4NCj4gVGhhdCdzIHNvbWV0aGluZyB3ZSBjb3VsZCBhZGQg
+aW4gY29uc3RyYWludHMsIHRob3VnaCB0aGUgYWN0dWFsIHByb2Nlc3MNCj4gb2YgaW1wbGVtZW50
+aW5nIGl0IG1pZ2h0IGdldCBtZXNzeSBpZiB0aGVyZSdzIHJlc3RyaWN0aW9ucyBsaWtlIGhhdmlu
+Zw0KPiB0byBwb3dlciBvZmYgKHRob3VnaCBmcm9tIGZ1cnRoZXIgZG93biB0aGUgdGhyZWFkIEkg
+c2VlIHRoYXQgbWlnaHQgbm90DQo+IGFwcGx5IHRvIHRoaXMgZGV2aWNlKS4NCg0KSnVzdCBmb3Ig
+dGhlIHJlY29yZDoNCg0KTXkgcmVwb3J0ZWQgcHJvYmxlbSB3YXMgYWN0dWFsbHkgbm90IHRoZSBM
+RE8xL2J5cGFzcyBzaXR1YXRpb24sIGJ1dCBhbiBpc3N1ZSBpbiANCnRoZSBwcm9jZXNzIG9mIHJl
+c29sdmluZyB0aGUgcmVndWxhdG9yIHN1cHBsaWVzLg0KDQpJdCB3YXMgcmVzb2x2ZWQgYnkNCiDC
+oCBjb21taXQgMGRlYmVkNWIxMTdkICgicmVndWxhdG9yOiBjb3JlOiBGaXggcmVzb2x2ZSBzdXBw
+bHkgbG9va3VwIGlzc3VlIikNCg0KTm93IGV2ZXJ5dGhpbmcgc2VlbXMgdG8gd29yayB3aXRoIG15
+IHNldHVwIHdpdGggTERPMSBzdXBwbGllZCBieSBhIGZpeGVkIA0KcmVndWxhdG9yIGFuZCBMRE8x
+IGFjdGluZyBpbiBieXBhc3MgbW9kZSBvbiBvdXIgaGFyZHdhcmUuDQoNClJlZ2FyZHMsDQpXYWRp
+bQ0KDQo=
