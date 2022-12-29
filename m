@@ -2,131 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7F4B658B47
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 10:57:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61D96658B6A
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 11:14:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233186AbiL2J5n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 04:57:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40882 "EHLO
+        id S233220AbiL2KOY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 05:14:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233269AbiL2Jzl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 04:55:41 -0500
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8845EAE41
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 01:54:00 -0800 (PST)
-Received: by mail-yb1-xb2f.google.com with SMTP id t15so20034593ybq.4
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 01:54:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=+yOD3yNpp4Sg8yVPxedVVEWiPubXWdIpWJ3m/jNQjH0=;
-        b=dQ6fcikk6vSdmKrU4eLNH7HDLeidwKolv/8H1oeAG7B3pwfbe/kHq+/7rbE/BKd+RA
-         n+mqeyGKLCphg6xq4Oz5tF6OBBE4Q1JQFKzdIxXoilNO4y4H0hyxMzb+9L1169fnqqy3
-         un6K0fBFwKRxCBklBsCzB3FI2vkT89pN/4fyQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+yOD3yNpp4Sg8yVPxedVVEWiPubXWdIpWJ3m/jNQjH0=;
-        b=oHGZfzO2N4H0JszWjo9vw2XzoZWlEzJKnJ+LyQeKy4sdzDAc8CpHwoDVAvKt2t030E
-         hGOyo09Uo+MZlNpLZov2bQDrgT06kC0ujeOjf2MHnnyhD4jQI+wSzDgtRNzhdqROMu8J
-         eWa0BJpBeTg+AXUvU7v76o39jLvR6lRJj3PvXkJxvU0reZLTsnh0O93RNMv1WAdVNawk
-         5ueAcu83aHodV+8MkjXcKYP/oP3JV5IQEGUERu1rasolvkjQWHwaKhNU5zkzeVuUvPI9
-         cERz45YcQQihYK3p3DZ6vKs15mLl/Kb1MDGafWcjqhdLgP59bmLeb9AQ58q8UGAikZmK
-         54QA==
-X-Gm-Message-State: AFqh2kqC+Ub/UDJz42rcMDZ31CDoNi85bqfRequBnvPdRc8WGa4eh5NM
-        OXVhT9BdrlYMUExEbHGA9PDfUZAgLRbvcMbxpUSr+AtY+MAq5+4LuME=
-X-Google-Smtp-Source: AMrXdXuoA9vvADI0ga1A0rofeM2WbLDlgYQM51CNwbZv9FCgQQSqThlpYZEU3IL66FDhwNeWBldubTZDmOBxovx8eek=
-X-Received: by 2002:a25:cc82:0:b0:6f9:bd14:f0b4 with SMTP id
- l124-20020a25cc82000000b006f9bd14f0b4mr3559292ybf.408.1672307639746; Thu, 29
- Dec 2022 01:53:59 -0800 (PST)
-MIME-Version: 1.0
-References: <20221227110335.2923359-1-javierm@redhat.com> <20221227110335.2923359-2-javierm@redhat.com>
- <CAMty3ZAaHKJ21D8mE=HU3D3KOGAiZ7vfmW_Hgc-E5JO5S+tMNA@mail.gmail.com>
- <CABxcv=kwtk21UbOwaV4tq=BpPsrYmnTrzuhybjbknipqk5R-fA@mail.gmail.com>
- <CAMty3ZDESyJoWMO_BgHzUJN=hLV0dH6y=3B9ogOsSUvaTMqarQ@mail.gmail.com> <CABxcv=mFzuUq0-PQ8H3N0Sxmzg+z1v_uwhUe0jcH2++NDQRR0w@mail.gmail.com>
-In-Reply-To: <CABxcv=mFzuUq0-PQ8H3N0Sxmzg+z1v_uwhUe0jcH2++NDQRR0w@mail.gmail.com>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Thu, 29 Dec 2022 15:23:48 +0530
-Message-ID: <CAMty3ZDJEx6J6xtbAVyO61vSKeW_7F-xWk5yvkwKvHNc1oyykA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: display: Add Himax HX8394 panel controller
-To:     Javier Martinez Canillas <javier@dowhile0.org>
-Cc:     Javier Martinez Canillas <javierm@redhat.com>,
-        devicetree@vger.kernel.org, Robert Mader <robert.mader@posteo.de>,
-        Onuralp Sezer <thunderbirdtr@fedoraproject.org>,
-        Neal Gompa <ngompa13@gmail.com>, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
-        Martijn Braam <martijn@brixit.nl>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Ondrej Jirman <megi@xff.cz>,
-        Peter Robinson <pbrobinson@gmail.com>,
+        with ESMTP id S233122AbiL2KMW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 05:12:22 -0500
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24BFE13F6B
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 02:04:13 -0800 (PST)
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20221229100410epoutp04a59ddd4f1d58b13b6718348898124cd6~1O35m31Xb1194511945epoutp04f
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 10:04:10 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20221229100410epoutp04a59ddd4f1d58b13b6718348898124cd6~1O35m31Xb1194511945epoutp04f
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1672308250;
+        bh=DtPVu8p7sdBj9CQdfQCk6CJxEwkdoavAEbDxm2QfmWk=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=D5xpVKToAmVcbCosRYMcsCkWTfItKIIKU5k/q1QX1NDWWyimlbVLK4GVaEzqPfrQr
+         4EiXFE+O3sW9aOwUm3nlmnAN715E8pBmKEip9QUNc+OwLAIYMxLU7qY1H27DD4Qkxf
+         rthEc6b91MdvvoTRJ16BXqEBsGgYRZFRTnuNvDHE=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+        epcas2p4.samsung.com (KnoxPortal) with ESMTP id
+        20221229100410epcas2p4e739cf8aa0ff82af4fb8ff98f0eccf89~1O35HVMo73162931629epcas2p4J;
+        Thu, 29 Dec 2022 10:04:10 +0000 (GMT)
+Received: from epsmges2p3.samsung.com (unknown [182.195.36.100]) by
+        epsnrtp4.localdomain (Postfix) with ESMTP id 4NjPB15yYKz4x9Pq; Thu, 29 Dec
+        2022 10:04:09 +0000 (GMT)
+Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
+        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
+        53.55.61831.9166DA36; Thu, 29 Dec 2022 19:04:09 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
+        20221229100409epcas2p123de28f73dfb4d7429d0e15e41bb13a7~1O34MDlHF1798217982epcas2p11;
+        Thu, 29 Dec 2022 10:04:09 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20221229100409epsmtrp21e560dddf159e642eb14e6249086df26~1O34LFmDl1682316823epsmtrp24;
+        Thu, 29 Dec 2022 10:04:09 +0000 (GMT)
+X-AuditID: b6c32a47-619ff7000000f187-8f-63ad6619e131
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        83.1F.02211.9166DA36; Thu, 29 Dec 2022 19:04:09 +0900 (KST)
+Received: from ubuntu.dsn.sec.samsung.com (unknown [10.229.95.128]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20221229100408epsmtip23a7a42850ad83e5c2e471e96b6b7a43f~1O338961l2157121571epsmtip2X;
+        Thu, 29 Dec 2022 10:04:08 +0000 (GMT)
+From:   Daehwan Jung <dh10.jung@samsung.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?Q?Kamil_Trzci=C5=84ski?= <ayufan@ayufan.eu>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>
+Cc:     linux-usb@vger.kernel.org (open list:USB SUBSYSTEM),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list),
+        sc.suh@samsung.com, taehyun.cho@samsung.com,
+        jh0801.jung@samsung.com, eomji.oh@samsung.com,
+        Daehwan Jung <dh10.jung@samsung.com>
+Subject: [RFC PATCH v2 0/3] support Samsung Exynos xHCI Controller
+Date:   Thu, 29 Dec 2022 18:57:43 +0900
+Message-Id: <1672307866-25839-1-git-send-email-dh10.jung@samsung.com>
+X-Mailer: git-send-email 2.7.4
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrFKsWRmVeSWpSXmKPExsWy7bCmua5k2tpkg2+TdS2OtT1ht5h/5Byr
+        xZ0F05gsTi1fyGTRvHg9m8Xdhz9YLPpePGS2uLxrDpvFomWtzBbNm6awWrTuPcJu0XX3BqPF
+        pIOiFqsWHGB34PNYvOclk8emVZ1sHneu7WHz2D93DbtH35ZVjB5b9n9m9Pi8SS6APSrbJiM1
+        MSW1SCE1Lzk/JTMv3VbJOzjeOd7UzMBQ19DSwlxJIS8xN9VWycUnQNctMwfoZCWFssScUqBQ
+        QGJxsZK+nU1RfmlJqkJGfnGJrVJqQUpOgXmBXnFibnFpXrpeXmqJlaGBgZEpUGFCdsatno3M
+        Beu4Khq7J7I0ML5i72Lk5JAQMJF4t34XkM3FISSwg1HiVet3RgjnE6PEjtPHWSGcb4wSq3ZO
+        Z4Vped/QwQSR2Mso8WfpFCaQhJDAD0aJrmWmXYwcHGwCWhLfF4JNEhHoYpLYducrC4jDLHCE
+        SWLjjFOMIEXCAk4Sd076gvSyCKhK/Nq+mw3E5hVwlXj/6BkjxDI5iZvnOplBeiUEvrJLLO/b
+        xgSRcJH4eOcBVJGwxKvjW6AekpL4/G4vG4SdLXH9WzcLhF0hsWIvjG0sMetZO9gNzAKaEut3
+        6YOYEgLKEkdugVUwC/BJdBz+yw4R5pXoaBOCaFSWmH55AjQYJCUOvj7HDGF7SMy49p8VEgqx
+        EpMX9LNPYJSdhTB/ASPjKkax1ILi3PTUYqMCY3gcJefnbmIEJ0It9x2MM95+0DvEyMTBeIhR
+        goNZSYRX4+zqZCHelMTKqtSi/Pii0pzU4kOMpsDgmsgsJZqcD0zFeSXxhiaWBiZmZobmRqYG
+        5krivEFb5ycLCaQnlqRmp6YWpBbB9DFxcEo1MFXJxns/mvqf84umzgOpwqa73tOXbAo2iJ0Q
+        1eSbpjv/b5Gk/dPNBbXTz/MtK1bkWxXraDBla2/y74NxK6SUUleLdO155fOzs+rs08f/blXn
+        sPFobk09coj/4k8TpWfhKVNVvn92vbjmjkwTS++SRZe+8l6u7+n5/uJC27eXq34UdlXJOPp5
+        nyk8YfJopXh89pdjaUoVs9bE8O31Ot6tObfR/+DE8oPnQrfXfajp/xqsLujw3zzYYr2MfmC6
+        fP8XHv0ykQfZBfMT6g5ncTnn1Qvwfeu61RTrq3zBOraRedVDRgPhWdvX8f/0vbTksAd7p7dV
+        lmxW9+LF045L1jVkty2xKHC+v2UNgyiH0MkbSizFGYmGWsxFxYkAP6kcAA0EAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrNLMWRmVeSWpSXmKPExsWy7bCSvK5k2tpkg0XbWSyOtT1ht5h/5Byr
+        xZ0F05gsTi1fyGTRvHg9m8Xdhz9YLPpePGS2uLxrDpvFomWtzBbNm6awWrTuPcJu0XX3BqPF
+        pIOiFqsWHGB34PNYvOclk8emVZ1sHneu7WHz2D93DbtH35ZVjB5b9n9m9Pi8SS6APYrLJiU1
+        J7MstUjfLoEr41bPRuaCdVwVjd0TWRoYX7F3MXJySAiYSLxv6GDqYuTiEBLYzSix/s4FFoiE
+        pMTSuTegioQl7rccYYUo+sYocbK5gbmLkYODTUBL4vtCRpC4iEAPk8TCKVvZQBxmgVNMEreO
+        v2ICKRIWcJK4c9IXZBCLgKrEr+272UBsXgFXifePnjFCLJCTuHmuk3kCI88CRoZVjJKpBcW5
+        6bnFhgWGeanlesWJucWleel6yfm5mxjB4amluYNx+6oPeocYmTgYDzFKcDArifBqnF2dLMSb
+        klhZlVqUH19UmpNafIhRmoNFSZz3QtfJeCGB9MSS1OzU1ILUIpgsEwenVAPT+czt9Zblb0UY
+        foe/uhNh1ny4w+jXpZXT5M0nNVrefbD8UcQWq0UHzLaob/Q6z8B359bb51dWvvq5y41NI068
+        KU7b/5KgiJUcz8yPH6efnSgk7e/cseLr5MPr8wUvKScdEJwcm7TrWYP2NV6vurK9lyIcndgO
+        Jz4xsJgQ1niieCLXblZeMYlKbufZqk1fGCyeXfATiZ62bYED89vz66672O7LX/ai8H5e27kJ
+        O1f8adM3CevcPmct08vEPxMZJRQCj9x/FPNRK+LLyR8ucd0CXqv4e3YpBtqGxVS732cM3SPS
+        3vFo/u5bj1dudfnWoLgpe+MXS/G8r9uX+6n+FfiVePv38a1r/qfst7+9dMdVLSWW4oxEQy3m
+        ouJEAMhm1wS+AgAA
+X-CMS-MailID: 20221229100409epcas2p123de28f73dfb4d7429d0e15e41bb13a7
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20221229100409epcas2p123de28f73dfb4d7429d0e15e41bb13a7
+References: <CGME20221229100409epcas2p123de28f73dfb4d7429d0e15e41bb13a7@epcas2p1.samsung.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 28, 2022 at 3:46 AM Javier Martinez Canillas
-<javier@dowhile0.org> wrote:
->
-> On Tue, Dec 27, 2022 at 8:37 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
-> >
-> > On Wed, Dec 28, 2022 at 12:58 AM Javier Martinez Canillas
-> > <javier@dowhile0.org> wrote:
-> > >
-> > > Hello Jagan,
-> > >
-> > > On Tue, Dec 27, 2022 at 7:16 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
-> > >
-> > > [...]
-> > >
-> > > > > +allOf:
-> > > > > +  - $ref: panel-common.yaml#
-> > > > > +
-> > > > > +properties:
-> > > > > +  compatible:
-> > > > > +    enum:
-> > > > > +      # HannStar HSD060BHW4 5.99" 720x1440 TFT LCD panel
-> > > > > +      - hannstar,hsd060bhw4
-> > > >
-> > > > Parent controller can have a compatible where the associated panels
-> > > > will be enum list.
-> > > >
-> > >
-> > > I'm not sure to follow what you meant. Could you please elaborate?
-> >
-> > compatible:
-> >     items:
-> >       - enum:
-> >           - hannstar,hsd060bhw4
-> >       - const: himax,hx8394
-> >
-> > himax,hx8394 is the actual controller and is denoted as fallback compatible.
-> >
->
-> I see. Do you have an example of a panel controller that does this? I
-> don't see that much value in doing this since you want the DTS to
-> describe the actual HW and so want the panel I believe.
+This patchset is to support xHCI Controller on Samsung Exynos SOCs.
+Thanks for all reviews on v1 and have tried to modify it well.
+I again added "RFC" because I haven't solved below problem when checking dt bindings.
 
-Yes, but the Panel needs to be built on top of the display IC so the
-actual parent here is the display IC and the panel is sub-HW.  This is
-what usually follows, here are some reference bindings.
+usb@4a000000: #size-cells:0:0: 0 was expected
+Documentation/devicetree/bindings/usb/snps,dwc3.yaml
 
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/display/panel/sitronix,st7701.yaml
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/display/panel/ilitek,ili9163.yaml
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/display/panel/ilitek,ili9322.yaml
+Changes in v2 :
+- Rename subject of cover letter
+    ([RFC,v1,0/2] add xhci-exynos to support Samsung Exynos SOC)
+- Add Exynos compatible in xhci platform driver instead making new platform driver.
+- Make xhci platform driver as child of dwc3 with DT schema.
+- Override roothub ops for xhci platform driver.
 
-Jagan.
+Daehwan Jung (3):
+  usb: support Samsung Exynos xHCI Controller
+  dt-bindings: usb: generic-xhci: add Samsung Exynos compatible
+  dt-bindings: usb: snps,dwc3: add generic-xhci as child
+
+ .../devicetree/bindings/usb/generic-xhci.yaml |  2 +
+ .../devicetree/bindings/usb/snps,dwc3.yaml    | 29 +++++++++
+ drivers/usb/dwc3/drd.c                        |  7 +++
+ drivers/usb/dwc3/host.c                       | 33 +++++++++-
+ drivers/usb/host/xhci-plat.c                  | 60 ++++++++++++++++++-
+ drivers/usb/host/xhci.c                       |  4 ++
+ drivers/usb/host/xhci.h                       |  5 ++
+ 7 files changed, 137 insertions(+), 3 deletions(-)
+
+-- 
+2.31.1
+
