@@ -2,76 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98FA4658AA3
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 09:45:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 59349658AA4
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 09:46:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233061AbiL2Ipj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 03:45:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50590 "EHLO
+        id S229673AbiL2Iqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 03:46:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229747AbiL2Ipi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 03:45:38 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF3FB1006D
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 00:45:37 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id f20so18794093lja.4
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 00:45:37 -0800 (PST)
+        with ESMTP id S229747AbiL2Iqg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 03:46:36 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 551541147D
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 00:46:35 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id cf42so26691308lfb.1
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 00:46:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=WhhThnTcIHOOnU4TldxJQBEXkc0+gKJ8zUJ0NnzGF8w=;
-        b=iACwngYUW2NO/QI//cidNjkSY6IR2L6BvEIVEAFyQl0zymVU79PvIQBgWY/D0yoIUe
-         YHYOZTLiJ7al8Uhw/p2hy2ex26ZQnXD1iiHLEMEy/hmj2+NQkBlLigPtVAD5NOdvtBNG
-         VB9oL/XGZGiX6MdxU6BF4B/vso6HnrBhOFK0LTJ2IU4eG1qzFOnPxH0CnEgkjSk25GWY
-         erPOj9vqGBiDKUC3d6OSvczpyfB50aIKlVfZsPIS+3aacZswA4WH+wmEjE6LLUzGK0sU
-         gNVQqSd9DluhlXf1dt1jNqWOSgx8UvUegBW+Ws2oTxsEANYuMcCmMHAL7erVaeoRj7th
-         KLLw==
+        bh=00JBJmBBiBVV/0bx3FG8bOjOr7Fe2FO016Rg6RwMTyA=;
+        b=OHDKnWDlr4rdofCxcy9mYZ1WJwSzWBQgYbEyFkdnLkXivVwKpIvsEJZayqCTMEq7sT
+         k2X5KQyuZ7yCPvcLd6KoI7XDFrKQZXcb4npzm6ryg4QOPKKXoECuj/72FPEOXc26T2UX
+         U3gqO3DdFxJjTNTHK9Ac+h7wYQQ5oni1NDeROmDHT4+E39GJP+M9OYna4aD82cT1R977
+         q3y/UsvsAzhvV0KH+zpoaco1S4d64fKe1MPtWQJhb6l/Sf9d55fXeWZH/Ue5IE1Us/K6
+         JNBIrc9ix/SpgDowBRGPp6Q20iTqmqfhrexOeIPF6cKfiS0DCB+wOg2VnU8+toylFMJT
+         oSdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WhhThnTcIHOOnU4TldxJQBEXkc0+gKJ8zUJ0NnzGF8w=;
-        b=n95muT7NvD0OArhE4h4nLOR1OuAU1CdPq+a/r6sLJ/Fv4imuNOgQWr0Dv9cYNBbAnB
-         Shg5aiXAEu66kMmqRGZq/K6RErvG2hmRHQUsVMXIfJ1pNBDWn/OuI5JFPzRYv630UubU
-         1EF4hYNTn+VF/WLc2E9x6AQCqiNg8I2QlG81Rk6EkHJw8nb0NRlKLarrlwY+I5uUyZn3
-         mepj7w26Q9NShtKU4WiN02aW6NgnnTDT0jVwIBC57Mivj+JImK8x5Xoy4W1UJAxgYnr0
-         DmjANnRiqe2ls/lOYOJjgaVgVV5D0UPCz+Vbije/pDENCuk62zkYqzchw7XP4OxMGjks
-         n7lw==
-X-Gm-Message-State: AFqh2kpIGyeTLc0OD7nztv29uIZAFXRu7qLwECcvAe8UuzO22VIZR78J
-        2uuD+ZHW7uLmbj93KKQJCRdlXw==
-X-Google-Smtp-Source: AMrXdXutjgkEHkED1oh840UWFw8WlnqcYr1SfxtSQLUXyecp3Hg4fP6tMrLui8h4uuPLKErhi1FUEw==
-X-Received: by 2002:a2e:92c3:0:b0:27a:1860:eb86 with SMTP id k3-20020a2e92c3000000b0027a1860eb86mr7218840ljh.31.1672303536156;
-        Thu, 29 Dec 2022 00:45:36 -0800 (PST)
+        bh=00JBJmBBiBVV/0bx3FG8bOjOr7Fe2FO016Rg6RwMTyA=;
+        b=0SFpviWm9wKJrSxTK/5rMVB6+Gut4uG96VzyA+L79TIkOu9QcLhTq+COd5yEVoC0c/
+         caVXbEF01/IiKaRTv8byomeSPtAz7AyDm1neLlmTK0U4nmrNEMrdBzlsFrd3TVRmWwEx
+         hzSL2oZiz8oc9k/TZvqn7uIc96M3uXdFGSEfIE1xP2fNq5LVYur3wsiKPY2vwrDxuXpY
+         KZtUrd/YTWw6yIuYov2PiL3C1/S1XZWgEbRdFLgYWL1oqQUSGM4T6ou7zxND7NJaRozW
+         nFvE2Q5bVa+azMwbGT59g9ed/wunGXE5+pN2PqVnGDJL74fHQlhlQN026CRn7tkJunA7
+         srzA==
+X-Gm-Message-State: AFqh2krSYUUvfe6SBsQjx9XyrNJHBpspN4dknDgxzdyHZvKLX1s3l1we
+        RHSdNWLqICTAJtoeWN23RUoULw==
+X-Google-Smtp-Source: AMrXdXuDtZLYWJ1O1/6oOKr2ktf6+/ZBpd7g4CJ6Z4Rsk8pzJAsC89j6hBEXcq05OZLzKeZlxTTZrg==
+X-Received: by 2002:a05:6512:220a:b0:4b4:b667:4b1d with SMTP id h10-20020a056512220a00b004b4b6674b1dmr9041214lfu.27.1672303593720;
+        Thu, 29 Dec 2022 00:46:33 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id p7-20020a2ea4c7000000b0027fc5d5dbb5sm1018709ljm.77.2022.12.29.00.45.34
+        by smtp.gmail.com with ESMTPSA id p16-20020ac24ed0000000b004b4f3c0d9f8sm2980668lfr.283.2022.12.29.00.46.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Dec 2022 00:45:35 -0800 (PST)
-Message-ID: <da10e351-1f22-9583-5f0a-ae7db060cf0b@linaro.org>
-Date:   Thu, 29 Dec 2022 09:45:34 +0100
+        Thu, 29 Dec 2022 00:46:33 -0800 (PST)
+Message-ID: <170665b6-161a-6dd0-6ceb-199277c0ce2f@linaro.org>
+Date:   Thu, 29 Dec 2022 09:46:32 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v2 1/3] dt-bindings: phy: qcom,pcie2-phy: convert to YAML
- format
+Subject: Re: [PATCH v2 2/9] dt-bindings: interrupt-controller: irqc-rzg2l:
+ Drop RZG2L_NMI macro
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+To:     Prabhakar <prabhakar.csengg@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org
-References: <20221226031059.2563165-1-dmitry.baryshkov@linaro.org>
- <20221226031059.2563165-2-dmitry.baryshkov@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20221221000242.340202-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221221000242.340202-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221226031059.2563165-2-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221221000242.340202-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,33 +84,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/12/2022 04:10, Dmitry Baryshkov wrote:
-> Convert the bindings for the Qualcomm PCIe2 PHY into the YAML format
-> from the text description.
+On 21/12/2022 01:02, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> NMI interrupt is not an external interrupt as compared to IRQ0-7 and
+> TINT0-31 on RZ/G2L SoC, so there is no need for RZG2L_NMI macro.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > ---
->  .../bindings/phy/qcom,pcie2-phy.yaml          | 87 +++++++++++++++++++
->  .../bindings/phy/qcom-pcie2-phy.txt           | 42 ---------
->  2 files changed, 87 insertions(+), 42 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/phy/qcom,pcie2-phy.yaml
->  delete mode 100644 Documentation/devicetree/bindings/phy/qcom-pcie2-phy.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,pcie2-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,pcie2-phy.yaml
-> new file mode 100644
-> index 000000000000..672035199c19
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/qcom,pcie2-phy.yaml
-> @@ -0,0 +1,87 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +
+> v1 -> v2
 
-Drop the blank line.
 
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/qcom,pcie2-phy.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
