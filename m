@@ -2,191 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7ECBD658B34
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 10:49:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B7F4B658B47
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 10:57:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229584AbiL2JtX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 04:49:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38736 "EHLO
+        id S233186AbiL2J5n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 04:57:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232179AbiL2JrC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 04:47:02 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B16F713CC6;
-        Thu, 29 Dec 2022 01:45:19 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id g1so11816505edj.8;
-        Thu, 29 Dec 2022 01:45:19 -0800 (PST)
+        with ESMTP id S233269AbiL2Jzl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 04:55:41 -0500
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8845EAE41
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 01:54:00 -0800 (PST)
+Received: by mail-yb1-xb2f.google.com with SMTP id t15so20034593ybq.4
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 01:54:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=0cpfrQrCcKnzaVIJpPos2V3z+c3X6E+K3Dy1Hme0IGc=;
-        b=bgTGDGl+BrixW/GRVJOepBvDeQGJgJl0spl3smoeAQhKAOtEVSZ8auWuMTaYprBQf9
-         EW3OSYdPofHkUlis0qABqDvHYwQYvLsIh7qmLemIV7DnLNphROwbjIuz3qJXjyynfu2/
-         41uxQ3FMbS5076Ic3DKuwdl3B15ZVDsjPkJndHOTB6UAvDtu0Qb5I6rX426rYKQ/6sLX
-         P0Yph0fU0NGRLlJWZZ2aMvfUCDmcl9H9skEGjiZ+AvtkdT+A7hDyzgha9RC0JeF78pWl
-         YkgUW+ctTUEy8HSL+YVqRx7jyPGGfDxbWQaHhzOYIgftUtJWkSVIuKgAxlL1iFRir6P+
-         Zcpw==
+        d=amarulasolutions.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=+yOD3yNpp4Sg8yVPxedVVEWiPubXWdIpWJ3m/jNQjH0=;
+        b=dQ6fcikk6vSdmKrU4eLNH7HDLeidwKolv/8H1oeAG7B3pwfbe/kHq+/7rbE/BKd+RA
+         n+mqeyGKLCphg6xq4Oz5tF6OBBE4Q1JQFKzdIxXoilNO4y4H0hyxMzb+9L1169fnqqy3
+         un6K0fBFwKRxCBklBsCzB3FI2vkT89pN/4fyQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0cpfrQrCcKnzaVIJpPos2V3z+c3X6E+K3Dy1Hme0IGc=;
-        b=UGGJZcMDS7nm9AdOnD/nPkMrb3RsCap6si10qO6Pzvl1n1RHMDMFE+F1EQGSkmXv+u
-         dkw2dbL+0hQpUAT5aSQvRdgML/AZpjYaKtJkSkSI9mc/og5gAg7cPLI7ek9tkvPKXvxa
-         ckqcNWeLQ0YILWW+KDgw7fFQqn+bfkVye1spd4bW792VMA5YoNJ8rGLzRJq87OGUupHW
-         pBgB/rT6b065UaOjb4LdMVK1vpXvGK+N2ccS1ouTUYGWZuMtLneHn8tdswKVuYxroHvy
-         DqsQkRAPm0l8QNW7ORdaTy11l6yMjzMChWNYo+kJ6gW6Z49cYRRQvdSCe48GirOEKvtc
-         RQHw==
-X-Gm-Message-State: AFqh2koNbZz8cyW/VFDvIxzd4iOl8/oBWjW3RsMzVQOhlVt7a0GBELHf
-        ANr7kPjbkPq+zcg57JPD7GY=
-X-Google-Smtp-Source: AMrXdXvDNY0hTnxgzXYxlRZ5nuTWqtRuO9Vf+bIy6BtI6hHCS2hyZFrD7MqhMYOw0ACyN7ts1vIeYQ==
-X-Received: by 2002:a05:6402:f04:b0:46d:ca42:2e59 with SMTP id i4-20020a0564020f0400b0046dca422e59mr26446335eda.11.1672307118304;
-        Thu, 29 Dec 2022 01:45:18 -0800 (PST)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id f9-20020a056402004900b0046c7c3755a7sm8091016edu.17.2022.12.29.01.45.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Dec 2022 01:45:18 -0800 (PST)
-Message-ID: <5759c6e1-9c89-4cb2-dd57-83a8db09f547@gmail.com>
-Date:   Thu, 29 Dec 2022 10:45:16 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+yOD3yNpp4Sg8yVPxedVVEWiPubXWdIpWJ3m/jNQjH0=;
+        b=oHGZfzO2N4H0JszWjo9vw2XzoZWlEzJKnJ+LyQeKy4sdzDAc8CpHwoDVAvKt2t030E
+         hGOyo09Uo+MZlNpLZov2bQDrgT06kC0ujeOjf2MHnnyhD4jQI+wSzDgtRNzhdqROMu8J
+         eWa0BJpBeTg+AXUvU7v76o39jLvR6lRJj3PvXkJxvU0reZLTsnh0O93RNMv1WAdVNawk
+         5ueAcu83aHodV+8MkjXcKYP/oP3JV5IQEGUERu1rasolvkjQWHwaKhNU5zkzeVuUvPI9
+         cERz45YcQQihYK3p3DZ6vKs15mLl/Kb1MDGafWcjqhdLgP59bmLeb9AQ58q8UGAikZmK
+         54QA==
+X-Gm-Message-State: AFqh2kqC+Ub/UDJz42rcMDZ31CDoNi85bqfRequBnvPdRc8WGa4eh5NM
+        OXVhT9BdrlYMUExEbHGA9PDfUZAgLRbvcMbxpUSr+AtY+MAq5+4LuME=
+X-Google-Smtp-Source: AMrXdXuoA9vvADI0ga1A0rofeM2WbLDlgYQM51CNwbZv9FCgQQSqThlpYZEU3IL66FDhwNeWBldubTZDmOBxovx8eek=
+X-Received: by 2002:a25:cc82:0:b0:6f9:bd14:f0b4 with SMTP id
+ l124-20020a25cc82000000b006f9bd14f0b4mr3559292ybf.408.1672307639746; Thu, 29
+ Dec 2022 01:53:59 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-From:   Johan Jonker <jbx6244@gmail.com>
-Subject: [PATCH v2 2/2] dt-bindings: soc: rockchip: grf: add
- rockchip,rk3288-dp-phy.yaml
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-phy@lists.infradead.org,
-        vkoul@kernel.org, kishon@kernel.org
-References: <aa6fe473-71f2-edba-f009-994a3dbc9802@gmail.com>
-Content-Language: en-US
-In-Reply-To: <aa6fe473-71f2-edba-f009-994a3dbc9802@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20221227110335.2923359-1-javierm@redhat.com> <20221227110335.2923359-2-javierm@redhat.com>
+ <CAMty3ZAaHKJ21D8mE=HU3D3KOGAiZ7vfmW_Hgc-E5JO5S+tMNA@mail.gmail.com>
+ <CABxcv=kwtk21UbOwaV4tq=BpPsrYmnTrzuhybjbknipqk5R-fA@mail.gmail.com>
+ <CAMty3ZDESyJoWMO_BgHzUJN=hLV0dH6y=3B9ogOsSUvaTMqarQ@mail.gmail.com> <CABxcv=mFzuUq0-PQ8H3N0Sxmzg+z1v_uwhUe0jcH2++NDQRR0w@mail.gmail.com>
+In-Reply-To: <CABxcv=mFzuUq0-PQ8H3N0Sxmzg+z1v_uwhUe0jcH2++NDQRR0w@mail.gmail.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Thu, 29 Dec 2022 15:23:48 +0530
+Message-ID: <CAMty3ZDJEx6J6xtbAVyO61vSKeW_7F-xWk5yvkwKvHNc1oyykA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: display: Add Himax HX8394 panel controller
+To:     Javier Martinez Canillas <javier@dowhile0.org>
+Cc:     Javier Martinez Canillas <javierm@redhat.com>,
+        devicetree@vger.kernel.org, Robert Mader <robert.mader@posteo.de>,
+        Onuralp Sezer <thunderbirdtr@fedoraproject.org>,
+        Neal Gompa <ngompa13@gmail.com>, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
+        Martijn Braam <martijn@brixit.nl>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Ondrej Jirman <megi@xff.cz>,
+        Peter Robinson <pbrobinson@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?Q?Kamil_Trzci=C5=84ski?= <ayufan@ayufan.eu>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add new converted rockchip,rk3288-dp-phy.yaml to grf.yaml file.
+On Wed, Dec 28, 2022 at 3:46 AM Javier Martinez Canillas
+<javier@dowhile0.org> wrote:
+>
+> On Tue, Dec 27, 2022 at 8:37 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
+> >
+> > On Wed, Dec 28, 2022 at 12:58 AM Javier Martinez Canillas
+> > <javier@dowhile0.org> wrote:
+> > >
+> > > Hello Jagan,
+> > >
+> > > On Tue, Dec 27, 2022 at 7:16 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
+> > >
+> > > [...]
+> > >
+> > > > > +allOf:
+> > > > > +  - $ref: panel-common.yaml#
+> > > > > +
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    enum:
+> > > > > +      # HannStar HSD060BHW4 5.99" 720x1440 TFT LCD panel
+> > > > > +      - hannstar,hsd060bhw4
+> > > >
+> > > > Parent controller can have a compatible where the associated panels
+> > > > will be enum list.
+> > > >
+> > >
+> > > I'm not sure to follow what you meant. Could you please elaborate?
+> >
+> > compatible:
+> >     items:
+> >       - enum:
+> >           - hannstar,hsd060bhw4
+> >       - const: himax,hx8394
+> >
+> > himax,hx8394 is the actual controller and is denoted as fallback compatible.
+> >
+>
+> I see. Do you have an example of a panel controller that does this? I
+> don't see that much value in doing this since you want the DTS to
+> describe the actual HW and so want the panel I believe.
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
+Yes, but the Panel needs to be built on top of the display IC so the
+actual parent here is the display IC and the panel is sub-HW.  This is
+what usually follows, here are some reference bindings.
 
-Apply after:
-  dt-bindings: soc: rockchip: grf: add rockchip,lvds.yaml
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/display/panel/sitronix,st7701.yaml
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/display/panel/ilitek,ili9163.yaml
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/display/panel/ilitek,ili9322.yaml
 
-Changed V2:
-  Use the compatible as filename.
-  Drop blank lines.
----
- .../devicetree/bindings/soc/rockchip/grf.yaml | 21 +++----------------
- 1 file changed, 3 insertions(+), 18 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-index 7ac9aa5fa..8dc141410 100644
---- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-+++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-@@ -82,9 +82,7 @@ allOf:
-       properties:
-         lvds:
-           type: object
--
-           $ref: /schemas/display/rockchip/rockchip,lvds.yaml#
--
-           unevaluatedProperties: false
-
-   - if:
-@@ -96,8 +94,9 @@ allOf:
-     then:
-       properties:
-         edp-phy:
--          description:
--            Documentation/devicetree/bindings/phy/rockchip-dp-phy.txt
-+          type: object
-+          $ref: /schemas/phy/rockchip,rk3288-dp-phy.yaml#
-+          unevaluatedProperties: false
-
-   - if:
-       properties:
-@@ -112,9 +111,7 @@ allOf:
-       properties:
-         usbphy:
-           type: object
--
-           $ref: /schemas/phy/rockchip-usb-phy.yaml#
--
-           unevaluatedProperties: false
-
-   - if:
-@@ -127,16 +124,12 @@ allOf:
-       properties:
-         gpio:
-           type: object
--
-           $ref: /schemas/gpio/rockchip,rk3328-grf-gpio.yaml#
--
-           unevaluatedProperties: false
-
-         power-controller:
-           type: object
--
-           $ref: /schemas/power/rockchip,power-controller.yaml#
--
-           unevaluatedProperties: false
-
-   - if:
-@@ -149,9 +142,7 @@ allOf:
-       properties:
-         mipi-dphy-rx0:
-           type: object
--
-           $ref: /schemas/phy/rockchip-mipi-dphy-rx0.yaml#
--
-           unevaluatedProperties: false
-
-         pcie-phy:
-@@ -177,9 +168,7 @@ allOf:
-       properties:
-         reboot-mode:
-           type: object
--
-           $ref: /schemas/power/reset/syscon-reboot-mode.yaml#
--
-           unevaluatedProperties: false
-
-   - if:
-@@ -203,9 +192,7 @@ allOf:
-       patternProperties:
-         "usb2phy@[0-9a-f]+$":
-           type: object
--
-           $ref: /schemas/phy/phy-rockchip-inno-usb2.yaml#
--
-           unevaluatedProperties: false
-
-   - if:
-@@ -231,9 +218,7 @@ allOf:
-       properties:
-         io-domains:
-           type: object
--
-           $ref: /schemas/power/rockchip-io-domain.yaml#
--
-           unevaluatedProperties: false
-
- examples:
---
-2.20.1
-
+Jagan.
