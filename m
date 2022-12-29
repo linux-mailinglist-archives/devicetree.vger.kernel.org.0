@@ -2,119 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57EC1659308
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 00:03:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A6D4659351
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 00:38:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230219AbiL2XDn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 18:03:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35690 "EHLO
+        id S233995AbiL2XiZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 18:38:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229585AbiL2XDm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 18:03:42 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A25C13F83;
-        Thu, 29 Dec 2022 15:03:41 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id y8so18470066wrl.13;
-        Thu, 29 Dec 2022 15:03:41 -0800 (PST)
+        with ESMTP id S234333AbiL2XiI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 18:38:08 -0500
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F0831758C
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 15:38:07 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id u9so48279686ejo.0
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 15:38:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=e1AZ5G8QdvwsjRXOP4YGY0iwqvUTHtMnrEchm0crWkw=;
-        b=OrNOIe5F6kwD3gvBb13uLI1jiPKI7ZhRmfv2ONO+sPyfEHiG3dBVd8BchL0itwUYUk
-         6wnI+GOa5NeqF9eAT7M5IIW5J4fztW06SmyP+5oDard61Ns62R0MP2mSJoz2c57MrE/S
-         Tq7vrEduhs3Kk6rPtHtQ+4+lFk+7vnnljUHjsu5+AWrtYvj+L5hJSwqO8tcvpRsHK6GV
-         Ur08RUkqMM7TflssQZWU9ScAKOTUzmqUlJbsMwj2oHV3d1RFCCbtY8AZ8Wjx8zaQqbXt
-         1idm+2bIA4IwVz+hxEnvNdiBHvUWh96VxI8Jt/pC754z6YUEe3VbwaFhBBdjqwNVp0+W
-         F7KQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9vpODbbW8nv/1gmrzoOYAs/3zgZuLXQsZO+5Y3msoUU=;
+        b=K7yPI0bqehDYYKmfM5pZ1XgC4V47yDWUlIWB8GHEJhQn/TDttLg7lDZ/EZjdkAQdVi
+         vZQFwcOky+GluhCFel1lIXQKkeHHgbDgu1sfzQqUNil+gS9rYztr8zIgsvNZMok5Oqsn
+         Wo+lPiB0IYThjUgYy7OrRjamQsmLlYf0L2kdV//k/f3W3h+RPPvWHdOMJgMxQvQM1oMq
+         2/IagqkbQ7hV6fHFE309gqleJ4OpHATAmDpd2XRDNJm+oLwHu7D5fLAXYy3eGhUP+IEb
+         6nQ2XuDj/SEzWistc2eWiPT5rD5351Xtl40w6t1i6s56cFt7wHZzNNdKgVeMo7sumbgN
+         kTtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=e1AZ5G8QdvwsjRXOP4YGY0iwqvUTHtMnrEchm0crWkw=;
-        b=hAraNuekXT4pfSTkCUygiFIqNCHwJTCrlTtCT0NVkeqicJnwTZLWm2tVIq1kOmgDdh
-         gTeXEGHexNF0WPo88dTgt7K6e7WxsNjWwPzwBt25q7Ycel5ag1v6uOBbe5IiW8Am6F+k
-         9vwNGmT1NhJNqOphAKMnMITmXnPxNkGyAPPndAYW0x651V5qNYR/pkQmFp5UkkgC0XZY
-         F+PKHyrbU+gOyZpogcvqw0stDSaAC3Qcqf3MB8xc+d4Qt3aGoQ1/bGrV/l05ZgfLtZsh
-         lXXj8U+QrPKzPfYdWF7i2z9fo8CI9HSMnYzRoevDeoq725/E07m92oN7LAej2d5noRzm
-         wAKQ==
-X-Gm-Message-State: AFqh2ko7WDZfPLhDFx9PVq0iIq8wMSd7yp03/M8zimtmp2cmXoa1vpRQ
-        uoXKAMTnSvjgd8l+bah2n5Y=
-X-Google-Smtp-Source: AMrXdXtFEYvWXlgWHpUtQQSJ9uFe1qiaXPSmpUChY+HKun8x4LG88d8sQabX63FNkBzy4tffYEvyjQ==
-X-Received: by 2002:a5d:484d:0:b0:27b:45ba:3b53 with SMTP id n13-20020a5d484d000000b0027b45ba3b53mr9467197wrs.12.1672355019974;
-        Thu, 29 Dec 2022 15:03:39 -0800 (PST)
-Received: from prasmi.home ([2a00:23c8:2501:c701:88e9:3a08:4328:85c4])
-        by smtp.gmail.com with ESMTPSA id b9-20020adff909000000b00267bcb1bbe5sm18995683wrr.56.2022.12.29.15.03.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Dec 2022 15:03:39 -0800 (PST)
-From:   Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH] riscv: dts: renesas: rzfive-smarc-som: Enable OSTM nodes
-Date:   Thu, 29 Dec 2022 23:03:00 +0000
-Message-Id: <20221229230300.104524-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9vpODbbW8nv/1gmrzoOYAs/3zgZuLXQsZO+5Y3msoUU=;
+        b=zOJ9ii0IgS/iQsGdhh42EcRcB8VEV5My5chXdDYyZ0Ch2VFa9N3hVnx79yPGstt9il
+         g7TLx/8A3pyXJzOAh5+Ss3mBqqzpWp3Qd9mZKgxuKtC7+cZX1JbuVlrWp0Br1kC5bkbc
+         8L1diMsR8PRuvC6rRm9N+Pou1v2EZjwpuVSz+f5nLR1G0LAhvtpu2gnWDrrgLS4oSDN3
+         eM45y0jhxNKh5Ulf5yo0DPbb2s0UzUoanEDNwccp5hjtPoGmMuE1ZNmNcp2RQ2fkueTE
+         Acko5fO1HjsCnDBUMBX2toakuiCAFwR3EjkD5WIVZ0BCSZmXW/wbfCH03vzaWCFihOar
+         BbMw==
+X-Gm-Message-State: AFqh2koWs1Mv3brIA0StLfucNBcij+z6LqGHvqjsoqPbhfakGW6tcxAK
+        XX0y0TriiaLoVZYXP3grZKbsApk/IRBwzTBMMKI=
+X-Google-Smtp-Source: AMrXdXtHDddptb63umIGoRiuWh8e+jb0yppN9RIWyWkJa+ed5ZRq8TA9Y5v2Z4xFLMqrd4IgIwysPw==
+X-Received: by 2002:a17:907:d10:b0:82d:e258:fa55 with SMTP id gn16-20020a1709070d1000b0082de258fa55mr30292942ejc.36.1672357086039;
+        Thu, 29 Dec 2022 15:38:06 -0800 (PST)
+Received: from ?IPV6:2001:1c06:2302:5600:12a8:8cf4:e3f6:f90f? (2001-1c06-2302-5600-12a8-8cf4-e3f6-f90f.cable.dynamic.v6.ziggo.nl. [2001:1c06:2302:5600:12a8:8cf4:e3f6:f90f])
+        by smtp.gmail.com with ESMTPSA id q26-20020a17090676da00b008302732f569sm9071899ejn.78.2022.12.29.15.38.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Dec 2022 15:38:05 -0800 (PST)
+Message-ID: <da671da3-61f5-ce4d-05aa-76f3f6ae12cf@linaro.org>
+Date:   Thu, 29 Dec 2022 23:38:04 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 2/2] phy: qcom-usb-hs: Add qcom,dp-manual-pullup logic
+Content-Language: en-US
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     agross@kernel.org, andersson@kernel.org, vkoul@kernel.org,
+        kishon@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+References: <20221229183410.683584-1-bryan.odonoghue@linaro.org>
+ <20221229183410.683584-3-bryan.odonoghue@linaro.org>
+ <Y63uSgMdP4m6nvhL@gerhold.net> <Y64AfHcUw192Pyr6@gerhold.net>
+ <6061938c-b830-2fe0-2f4d-368e34c33676@linaro.org>
+ <Y64CaOzWZXERrvkz@gerhold.net>
+ <cdcef656-1ae7-fe8a-a4dd-3547d6395b33@linaro.org>
+ <Y64Jgu2o6aJV4ggk@gerhold.net>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <Y64Jgu2o6aJV4ggk@gerhold.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 29/12/2022 21:41, Stephan Gerhold wrote:
+> That is still good enough to replace qcom,dp-manual-pullup though.
 
-Enable OSTM{1,2} nodes on RZ/Five SMARC SoM.
+But there's no requirement to tie USB_IN_x high if VBUS is not connected 
+to it.
 
-Note, OSTM{1,2} nodes are enabled in the RZ/G2UL SMARC SoM DTSI [0] hence
-deleting the disabled nodes from RZ/Five SMARC SoM DTSI enables it here
-too as we include [0] in RZ/Five SMARC SoM DTSI.
-
-[0] arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
-
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 ---
-Note, without patch [0] clocksource-switch tests fail on RZ/Five SoC.
-
-[0] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20221229224601.103851-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
----
- arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi | 8 --------
- 1 file changed, 8 deletions(-)
-
-diff --git a/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi b/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
-index 318a584be341..43a74c8a4321 100644
---- a/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
-+++ b/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
-@@ -28,11 +28,3 @@ phy1: ethernet-phy@7 {
- 		/delete-property/ interrupts;
- 	};
- };
--
--&ostm1 {
--	status = "disabled";
--};
--
--&ostm2 {
--	status = "disabled";
--};
--- 
-2.25.1
-
+bod
