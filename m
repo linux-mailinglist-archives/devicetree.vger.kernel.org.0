@@ -2,206 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C6B6658D17
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 14:27:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37FF4658D1D
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 14:32:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233183AbiL2N1l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 08:27:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50038 "EHLO
+        id S233258AbiL2NcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 08:32:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233150AbiL2N1l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 08:27:41 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3152CFAED
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 05:27:37 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id cf42so27510307lfb.1
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 05:27:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=gZSCpbFYEqU4kXdvZagC2f9wuaUgm6zGDC72Dg77aBg=;
-        b=EwfxI6MHyfLh+RSomgQ/cBEJaIlk0FfQzfv/1WmxeBnIqFl+gB6RBwDJjb6x2mq5xV
-         i74mE6DVGWFPrVoCO9sqzlYASEzyvDfz6oS2BwoyAVRfmmwuIgg3+VwrJ6DZ0XWwB3nk
-         KKL2qZYJ4M0emp+ggc19qQhLyiohmz2/MYqxv+B0g/V/5naXND6T1B7YL3SADG9+6RaV
-         I94ex3DIgPZL9BHtpCFYGTOgUn/3rNJP/OaueAMsBr/6XKAvlO9l7e+8nTwNYzJNDm4d
-         sbsyZa3JprKLvqb/Om/QIawYIMq2EtLzVqF8KCWv5HbvZBFrFanYXbhwsIGdFr+KddNp
-         jAIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gZSCpbFYEqU4kXdvZagC2f9wuaUgm6zGDC72Dg77aBg=;
-        b=Q9e6c+qpPK8H3TqfjbpfrN+jVBVkCOhiwCZ/B7NDi3NI9mfWkNbr+G4lNLwik49seD
-         vYXA/eCoDtkdA+hJv60nTaZIxx0JNhhuTbvhPqb/kOrJebIjkvJln6GJ5caGLeoLVjyN
-         NO+nEGj5SCM4LOomdFXd91VfH1WsfJ0oIL4RydlEeKxTmXjp3UCOIUNnnnJJ1o5eT5uh
-         QAhXCoRgr5vnijYl1Fu2yAied3aUOACguFCi2ZEj2SATaAEKQEv2ilOo5tDs8x24mZnL
-         r5rr5EdSPfExWzlAQmOOIxVW/l0agSWSyyPagIDNAv89LMf7b5ECAFL+bucd3hOv2rd4
-         iveg==
-X-Gm-Message-State: AFqh2krsQNbVawUPJYelHP4eD8BTEYV4m08WjghrNMn1BFykKDB+22+C
-        F9x/sWtvPa7Jcuf+YV80BhTHvw==
-X-Google-Smtp-Source: AMrXdXsZF5PMbIvZk9Qtlm7oBw6pmmt5L+LuelrSLsR94OcdSMuTwoN6ZdPt/P+Mn+1tEN8QXaqxhg==
-X-Received: by 2002:ac2:5327:0:b0:4b6:e64c:aec1 with SMTP id f7-20020ac25327000000b004b6e64caec1mr7226461lfh.53.1672320455538;
-        Thu, 29 Dec 2022 05:27:35 -0800 (PST)
-Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id 3-20020ac25f43000000b004996fbfd75esm3040595lfz.71.2022.12.29.05.27.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Dec 2022 05:27:35 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S229535AbiL2NcR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 08:32:17 -0500
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3185711156;
+        Thu, 29 Dec 2022 05:32:14 -0800 (PST)
+Received: from booty.fritz.box (unknown [77.244.183.192])
+        (Authenticated sender: luca.ceresoli@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPA id 717F1FF807;
+        Thu, 29 Dec 2022 13:32:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1672320733;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=jKTmICtgS5CE15mgXypcbICDTCnPat9jm5uLCXEeSv8=;
+        b=R8b59MnDxsb9rbaru0h1PgKK2ZDdCxXKz63dZF8YIzLJZjTTkqnR06fVirDyejBgyNkmFM
+        gSUfbjUpS4QORukiC84rwyECuySp80jHZnrcgLtnPVpQwRUpvJSM1t5lyDtP4cepJDDwn1
+        Wxc0xEok6MgqHsj0N7LX/SlCYFCdRX0SeWPTekoPmEazrorBlMJuGLsNeCGsro9Y8S16UE
+        roqGLHs7Mh4bHj16IxxGHfqqDLz5GbAK0A0/fc8plbpPHQnfANr/ygne5WtfTMlRwNeMYX
+        D1Nm8jNt+h3bBjN1/dQ/tw1UXK6ZTrsjJk63Qy71R3lbsi45f/zP1dij0GfoYA==
+From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Sowjanya Komatineni <skomatineni@nvidia.com>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: qcom: sm8250: add cache size
-Date:   Thu, 29 Dec 2022 14:27:31 +0100
-Message-Id: <20221229132731.1193713-1-krzysztof.kozlowski@linaro.org>
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc:     linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Richard Leitner <richard.leitner@skidata.com>
+Subject: [PATCH v3 00/21] Add Tegra20 parallel video input capture
+Date:   Thu, 29 Dec 2022 14:31:44 +0100
+Message-Id: <20221229133205.981397-1-luca.ceresoli@bootlin.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add full cache description to DTS to avoid:
-1. "Early cacheinfo failed" warnings,
-2. Cache topology detection which leads to early memory allocations and
-   "BUG: sleeping function called from invalid context" on PREEMPT_RT
-   kernel:
+Tegra20 and other Tegra SoCs have a video input (VI) peripheral that can
+receive from either MIPI CSI-2 or parallel video (called respectively "CSI"
+and "VIP" in the documentation). The kernel currently has a staging driver
+for Tegra210 CSI capture. This patch set adds support for Tegra20 VIP
+capture.
 
-  smp: Bringing up secondary CPUs ...
-  Detected VIPT I-cache on CPU1
-  BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:46
-  in_atomic(): 1, irqs_disabled(): 128, non_block: 0, pid: 0, name: swapper/1
-  preempt_count: 1, expected: 0
-  RCU nest depth: 1, expected: 1
-  3 locks held by swapper/1/0:
-   #0: ffff5e337eee5f18 (&pcp->lock){+.+.}-{3:3}, at: get_page_from_freelist+0x20c/0xffc
-   #1: ffffa9e24a900b18 (rcu_read_lock){....}-{1:3}, at: rt_spin_trylock+0x40/0xe4
-   #2: ffff5e337efc8918 (&zone->lock){+.+.}-{3:3}, at: rmqueue_bulk+0x54/0x720
-  irq event stamp: 0
-  Call trace:
-   __might_resched+0x17c/0x214
-   rt_spin_lock+0x5c/0x100
-   rmqueue_bulk+0x54/0x720
-   get_page_from_freelist+0xcfc/0xffc
-   __alloc_pages+0xec/0x1150
-   alloc_page_interleave+0x1c/0xd0
-   alloc_pages+0xec/0x160
-   new_slab+0x330/0x454
-   ___slab_alloc+0x5b8/0xba0
-   __kmem_cache_alloc_node+0xf4/0x20c
-   __kmalloc+0x60/0x100
-   detect_cache_attributes+0x2a8/0x5a0
-   update_siblings_masks+0x28/0x300
-   store_cpu_topology+0x58/0x70
-   secondary_start_kernel+0xc8/0x154
+Unfortunately I had no real documentation available to base this work on.
+I only had a working downstream 3.1 kernel, so I started with the driver
+found there and heavily reworked it to fit into the mainline tegra-video
+driver structure. The existing code appears written with the intent of
+being modular and allow adding new input mechanisms and new SoCs while
+keeping a unique VI core module. However its modularity and extensibility
+was not enough to add Tegra20 VIP support, so I added some hooks to turn
+hard-coded behaviour into per-SoC or per-bus customizable code. There are
+also a fix, some generic cleanups and DT bindings.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Quick tour of the patches:
 
----
+ * Device tree bindings and minor DTS improvements
 
-The patch extends and depends in context on:
-https://lore.kernel.org/r/20221107155825.1644604-17-pierre.gondois@arm.com
+   01. dt-bindings: display: tegra: add Tegra20 VIP
+   02. dt-bindings: display: tegra: vi: add 'vip' property and example
 
-Cache sizes from publicly available data:
-https://en.wikichip.org/wiki/qualcomm/snapdragon_800/865
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+ * A fix
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 4478bf0e7b22..4555345ee42e 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -111,10 +111,14 @@ CPU0: cpu@0 {
- 			L2_0: l2-cache {
- 				compatible = "cache";
- 				cache-level = <2>;
-+				cache-size = <0x20000>;
-+				cache-unified;
- 				next-level-cache = <&L3_0>;
- 				L3_0: l3-cache {
- 					compatible = "cache";
- 					cache-level = <3>;
-+					cache-size = <0x400000>;
-+					cache-unified;
- 				};
- 			};
- 		};
-@@ -137,6 +141,8 @@ CPU1: cpu@100 {
- 			L2_100: l2-cache {
- 				compatible = "cache";
- 				cache-level = <2>;
-+				cache-size = <0x20000>;
-+				cache-unified;
- 				next-level-cache = <&L3_0>;
- 			};
- 		};
-@@ -159,6 +165,8 @@ CPU2: cpu@200 {
- 			L2_200: l2-cache {
- 				compatible = "cache";
- 				cache-level = <2>;
-+				cache-size = <0x20000>;
-+				cache-unified;
- 				next-level-cache = <&L3_0>;
- 			};
- 		};
-@@ -181,6 +189,8 @@ CPU3: cpu@300 {
- 			L2_300: l2-cache {
- 				compatible = "cache";
- 				cache-level = <2>;
-+				cache-size = <0x20000>;
-+				cache-unified;
- 				next-level-cache = <&L3_0>;
- 			};
- 		};
-@@ -203,6 +213,8 @@ CPU4: cpu@400 {
- 			L2_400: l2-cache {
- 				compatible = "cache";
- 				cache-level = <2>;
-+				cache-size = <0x40000>;
-+				cache-unified;
- 				next-level-cache = <&L3_0>;
- 			};
- 		};
-@@ -225,6 +237,8 @@ CPU5: cpu@500 {
- 			L2_500: l2-cache {
- 				compatible = "cache";
- 				cache-level = <2>;
-+				cache-size = <0x40000>;
-+				cache-unified;
- 				next-level-cache = <&L3_0>;
- 			};
- 
-@@ -248,6 +262,8 @@ CPU6: cpu@600 {
- 			L2_600: l2-cache {
- 				compatible = "cache";
- 				cache-level = <2>;
-+				cache-size = <0x40000>;
-+				cache-unified;
- 				next-level-cache = <&L3_0>;
- 			};
- 		};
-@@ -270,6 +286,8 @@ CPU7: cpu@700 {
- 			L2_700: l2-cache {
- 				compatible = "cache";
- 				cache-level = <2>;
-+				cache-size = <0x80000>;
-+				cache-unified;
- 				next-level-cache = <&L3_0>;
- 			};
- 		};
+   03. staging: media: tegra-video: fix .vidioc_enum_fmt_vid_cap to return all formats
+
+ * Minor improvements to logging, comments, cleanups
+
+   04. staging: media: tegra-video: improve documentation of tegra_video_format fields
+   05. staging: media: tegra-video: document tegra_channel_get_remote_source_subdev
+   06. staging: media: tegra-video: fix typos in comment
+   07. staging: media: tegra-video: improve error messages
+   08. staging: media: tegra-video: slightly simplify cleanup on errors
+   09. staging: media: tegra-video: move private struct declaration to C file
+   10. staging: media: tegra-video: move tegra210_csi_soc to C file
+   11. staging: media: tegra-video: remove unneeded include
+
+ * Preparation to make the VI module generic enough to host Tegra20 and VIP
+
+   12. staging: media: tegra-video: Kconfig: allow TPG only on Tegra210
+   13. staging: media: tegra-video: move tegra_channel_fmt_align to a per-soc op
+   14. staging: media: tegra-video: move default format to soc-specific data
+   15. staging: media: tegra-video: move MIPI calibration calls from VI to CSI
+   16. staging: media: tegra-video: add a per-soc enable/disable op
+   17. staging: media: tegra-video: move syncpt init/free to a per-soc op
+   18. staging: media: tegra-video: add syncpts for Tegra20 to struct tegra_vi
+   19. staging: media: tegra-video: add hooks for planar YUV and H/V flip
+   20. staging: media: tegra-video: add H/V flip controls
+
+ * Implementation of VIP and Tegra20
+
+   21. staging: media: tegra-video: add support for Tegra20 parallel input
+
+Enjoy!
+
+Changed in v3:
+- removed the 'channel@0' node from the device tree representation of vip
+- squashed the last two patches (VIP + T20) into one
+- small cleanups
+- rebase on v6.2-rc1
+
+Changed in v2:
+- improved dt-bindings patches based on reviews
+- removed patches 3 and 4 adding DT labels without a mainline user
+- two small fixes to the last patch
+
+[v2] https://lore.kernel.org/linux-tegra/20221222100328.6e341874@booty/T/#t
+[v1] https://lore.kernel.org/linux-tegra/20221124155634.5bc2a423@booty/T/#t
+
+Luca
+
+Luca Ceresoli (21):
+  dt-bindings: display: tegra: add Tegra20 VIP
+  dt-bindings: display: tegra: vi: add 'vip' property and example
+  staging: media: tegra-video: fix .vidioc_enum_fmt_vid_cap to return
+    all formats
+  staging: media: tegra-video: improve documentation of
+    tegra_video_format fields
+  staging: media: tegra-video: document
+    tegra_channel_get_remote_source_subdev
+  staging: media: tegra-video: fix typos in comment
+  staging: media: tegra-video: improve error messages
+  staging: media: tegra-video: slightly simplify cleanup on errors
+  staging: media: tegra-video: move private struct declaration to C file
+  staging: media: tegra-video: move tegra210_csi_soc to C file
+  staging: media: tegra-video: remove unneeded include
+  staging: media: tegra-video: Kconfig: allow TPG only on Tegra210
+  staging: media: tegra-video: move tegra_channel_fmt_align to a per-soc
+    op
+  staging: media: tegra-video: move default format to soc-specific data
+  staging: media: tegra-video: move MIPI calibration calls from VI to
+    CSI
+  staging: media: tegra-video: add a per-soc enable/disable op
+  staging: media: tegra-video: move syncpt init/free to a per-soc op
+  staging: media: tegra-video: add syncpts for Tegra20 to struct
+    tegra_vi
+  staging: media: tegra-video: add hooks for planar YUV and H/V flip
+  staging: media: tegra-video: add H/V flip controls
+  staging: media: tegra-video: add support for Tegra20 parallel input
+
+ .../display/tegra/nvidia,tegra20-vi.yaml      |  64 ++
+ .../display/tegra/nvidia,tegra20-vip.yaml     |  49 ++
+ MAINTAINERS                                   |   3 +
+ drivers/staging/media/tegra-video/Kconfig     |   1 +
+ drivers/staging/media/tegra-video/Makefile    |   2 +
+ drivers/staging/media/tegra-video/csi.c       |  48 ++
+ drivers/staging/media/tegra-video/csi.h       |   4 -
+ drivers/staging/media/tegra-video/tegra20.c   | 661 ++++++++++++++++++
+ drivers/staging/media/tegra-video/tegra210.c  |  97 ++-
+ drivers/staging/media/tegra-video/vi.c        | 321 ++-------
+ drivers/staging/media/tegra-video/vi.h        |  75 +-
+ drivers/staging/media/tegra-video/video.c     |   5 +
+ drivers/staging/media/tegra-video/video.h     |   2 +-
+ drivers/staging/media/tegra-video/vip.c       | 290 ++++++++
+ drivers/staging/media/tegra-video/vip.h       |  68 ++
+ 15 files changed, 1400 insertions(+), 290 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vip.yaml
+ create mode 100644 drivers/staging/media/tegra-video/tegra20.c
+ create mode 100644 drivers/staging/media/tegra-video/vip.c
+ create mode 100644 drivers/staging/media/tegra-video/vip.h
+
 -- 
 2.34.1
 
