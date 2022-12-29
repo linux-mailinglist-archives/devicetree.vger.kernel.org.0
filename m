@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B38E9658BA2
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 11:24:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BEA8E658BA5
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 11:25:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233296AbiL2KYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 05:24:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52980 "EHLO
+        id S233313AbiL2KZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 05:25:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233260AbiL2KXl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 05:23:41 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFC9F6315
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 02:19:12 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id z26so26933725lfu.8
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 02:19:12 -0800 (PST)
+        with ESMTP id S233200AbiL2KYh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 05:24:37 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6270A13DE4
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 02:23:05 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id bp15so26915546lfb.13
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 02:23:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vMKLMjJpe5LSVosq/kgKiCUoGwlkMRk7EHg56MOXRG0=;
-        b=W0/mzJ+BVYSeYNkqjUy3oTgPwLK1Bx4J2+308QC0ISlojj5vA7qUfYge3guPCW0vHR
-         b4uo//YVXlquaTDtBEvxbnRLbSNe2ihsWAdvxUgYoZl+UxYKxRxRXRGdEQEh7KaHZttC
-         xpqJPTr4MDV22D3FtYZIe7qJK+0g+cgNpJuRko0WgzLNja/E9UpMy3KX18bIVuCgwKiL
-         V8rVp2b+G80ZWFuy43MTMYfn63OXdXuXo5NEd6S8hbKUe/B6ad/PPDyK0m7G68Rp9Ud+
-         WY5lvy6RWe3ZNXefsOkQFswi8xsP9eDLrPYQdvUe7Z+JZCEz5+l1pwcPfVV/fNbCcnr1
-         3AAg==
+        bh=xT1pcIHoVC+1Kb3uKk2wZih8Ww6QX+aLdKaotJW20mU=;
+        b=NxVs//1rsJfC8Xq6Fxx8I/9s10fHxROXpoiHgzhOwM/wFk2aGYViA9Bd8tVJ1z9wXF
+         rUljgrbdKizmoFK4g105uBaUZKD9tDjMeSLM6/jKe3ZNUi1aPLmyU+/F7gZF5xbedLny
+         R8oKCUwJ3qA2GQMEGU5wbsBte813yqJs6TSdHqoms0VJmgIS8oqdCuH73svzQxrD/et2
+         anJFvY02Pt8ZQ9NKYGXkSysMzxdWyH99OAmqOroNRKsm1zKv1/0O2IqL/lJOqzujtM+u
+         O9baICV29kw4+NcAPMXjJ+ybVRv1dKNnBe4+PDcNyUxcVeb3y+F86uBSVx32iEWW5cuc
+         PCZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vMKLMjJpe5LSVosq/kgKiCUoGwlkMRk7EHg56MOXRG0=;
-        b=uykNCqT81OmggUCycm717UTIP3rvi3XK7HO8eKxz4k334eC8QKUOl62R9XITHx0KTg
-         Tw/JpHcWZxvpdIRD7424p1kodmHn5Tz6hNsTb/pWJ+Ywc4RlpqL4NsCsoPtYn45kBIhD
-         u+w2z52FlpVRoXgxo8lcigoZOr3+51XoRIHNUNFX1jIWIVf1uli8PYCpDbBNUe6cP1k1
-         5x6LIe7r1AOu9raV7uTDJcbgmg+RNrZa+If4m6wtnGEY0KZ8XsUgXksf9I2IsS1RUGHx
-         lW1D8TrIFoFUd+oUgnDvF2VxCAUrKfTrq4WMBmM4BbYPfwzzWj/a24M6qLBIGuGZEC/D
-         JMQQ==
-X-Gm-Message-State: AFqh2kpt+nlRo7ZhzXyJ4BqAXGSceOOyHzHh8URnuIgIxJs1vPiyKiiB
-        pfnk3OuQ1DQTcSLIzQmeR3+ahA==
-X-Google-Smtp-Source: AMrXdXvLe1i7tZ7mGvfACMbmYCAO3F40RJhpPtndbkRc12jHOJYE7rKTNP/9+510BhvQHTQwfbG2xg==
-X-Received: by 2002:a05:6512:3b2c:b0:4a4:68b7:deab with SMTP id f44-20020a0565123b2c00b004a468b7deabmr11677612lfv.7.1672309151197;
-        Thu, 29 Dec 2022 02:19:11 -0800 (PST)
+        bh=xT1pcIHoVC+1Kb3uKk2wZih8Ww6QX+aLdKaotJW20mU=;
+        b=xKmiUVG+krZ8fJCzTOwLXlh3so/MfgRsors+JxoOIL0Hu4PV8zTPutWFShDqCBxAOa
+         GFvi2X58YIUPsxG4gaUzamRzDSScAJGhpyvmTerzwwVCm/+jpR1nv6gE4RIhvuSWnc9C
+         RsH86TStrO6rJV9bis7jzNzZHrdf3XFnlYYeBplFhFjwGNnXDaR2w2k4N0xp7stjD9MA
+         jByH/21YE9bb09bh9K1XCoyxa2a38mY7UVzuIyryFL5u3ApEIgdwWarvSZLdi261qL7z
+         3+okb6k2luStzZzlRu7EaghEaE6EAyevpwSZZumMFnDEJL42IlxUSaXltz3+IhEulqcX
+         CKsg==
+X-Gm-Message-State: AFqh2kqN2rOkvKj1s1yK/aOdzD2VE7LZFXzrTEycZYqKdGEdFBB61xHB
+        nF2JQsAGmb66G50Obdt4ViJxPg==
+X-Google-Smtp-Source: AMrXdXuejIrgLC617Mnl3g4WkCNbIZz1YM58zJh2SFp42JdgDiuwOxHKRRlnkX9vo6cIau7UJ5fAuQ==
+X-Received: by 2002:a05:6512:4005:b0:4b5:9183:5ad0 with SMTP id br5-20020a056512400500b004b591835ad0mr10354256lfb.63.1672309383759;
+        Thu, 29 Dec 2022 02:23:03 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id d2-20020ac241c2000000b004a05402c5c3sm3024922lfi.93.2022.12.29.02.19.09
+        by smtp.gmail.com with ESMTPSA id s16-20020a056512203000b004b4a0482a53sm2986603lfs.231.2022.12.29.02.23.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Dec 2022 02:19:10 -0800 (PST)
-Message-ID: <d84f46f5-9975-cde2-0b56-b51990e27150@linaro.org>
-Date:   Thu, 29 Dec 2022 11:19:09 +0100
+        Thu, 29 Dec 2022 02:23:03 -0800 (PST)
+Message-ID: <f9b59733-61b1-67d8-01fa-fb3d3d7fbe0e@linaro.org>
+Date:   Thu, 29 Dec 2022 11:23:02 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [RFC PATCH v2 2/3] dt-bindings: usb: generic-xhci: add Samsung
- Exynos compatible
+Subject: Re: [RFC PATCH v2 3/3] dt-bindings: usb: snps,dwc3: add generic-xhci
+ as child
+Content-Language: en-US
 To:     Daehwan Jung <dh10.jung@samsung.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -70,11 +71,10 @@ Cc:     "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
         taehyun.cho@samsung.com, jh0801.jung@samsung.com,
         eomji.oh@samsung.com
 References: <1672307866-25839-1-git-send-email-dh10.jung@samsung.com>
- <CGME20221229100416epcas2p3614b693ab922aadbdc76c0387f768de9@epcas2p3.samsung.com>
- <1672307866-25839-3-git-send-email-dh10.jung@samsung.com>
-Content-Language: en-US
+ <CGME20221229100416epcas2p18f7600737b8f4149a1d75d2d8db3317a@epcas2p1.samsung.com>
+ <1672307866-25839-4-git-send-email-dh10.jung@samsung.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1672307866-25839-3-git-send-email-dh10.jung@samsung.com>
+In-Reply-To: <1672307866-25839-4-git-send-email-dh10.jung@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -87,37 +87,76 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 29/12/2022 10:57, Daehwan Jung wrote:
-> Add compatible for Samsung Exynos SOCs
+> Currently, dwc3 invokes just xhci platform driver(generic-xhci) without
+> DT schema even though xhci works as child of dwc3. It makes sense to add
+> xhci as child of dwc3 with DT schema. It also supports to use another
+> compatible in xhci platform driver.
 
-Missing full stop. Please explain here in details the hardware.
-Otherwise it looks it is not for any hardware and patch should be dropped.
-
-Also, missing DTS. I am going to keep NAK-ing this till you provide the
-user.
-
-NAK.
+You use some driver as an argument for hardware description, which is
+not what we need. Describe the hardware.
 
 > 
 > Signed-off-by: Daehwan Jung <dh10.jung@samsung.com>
 > ---
->  Documentation/devicetree/bindings/usb/generic-xhci.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../devicetree/bindings/usb/snps,dwc3.yaml    | 29 +++++++++++++++++++
+>  1 file changed, 29 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/generic-xhci.yaml b/Documentation/devicetree/bindings/usb/generic-xhci.yaml
-> index db841589fc33..f54aff477637 100644
-> --- a/Documentation/devicetree/bindings/usb/generic-xhci.yaml
-> +++ b/Documentation/devicetree/bindings/usb/generic-xhci.yaml
-> @@ -29,6 +29,8 @@ properties:
->          enum:
->            - brcm,xhci-brcm-v2
->            - brcm,bcm7445-xhci
-> +      - description: Samsung Exynos SoCs with xHCI
-> +        const: samsung,exynos-xhci
+> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> index 6d78048c4613..83ed7c526dba 100644
+> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> @@ -360,8 +360,22 @@ properties:
+>      description:
+>        Enable USB remote wakeup.
+>  
+> +  "#address-cells":
+> +    enum: [ 1, 2 ]
+> +
+> +  "#size-cells":
+> +    enum: [ 1, 2 ]
+> +
+> +  ranges: true
+> +
+>  unevaluatedProperties: false
+>  
+> +# Required child node:
+> +patternProperties:
+> +  "^usb@[0-9a-f]+$":
+> +    $ref: generic-xhci.yaml#
+> +    description: Required child node
 
-Missing fallback.
+DWC does not have another piece of controller as child... DWC is the
+controller. Not mentioning that you now affect several other devices
+without describing the total hardware picture (just some drivers which
+is not that relevant).
 
->        - description: Generic xHCI device>          const: xhci-platform
->          deprecated: true
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -388,4 +402,19 @@ examples:
+>        snps,dis_u2_susphy_quirk;
+>        snps,dis_enblslpm_quirk;
+>      };
+> +  - |
+> +    usb@4a200000 {
+> +      compatible = "snps,dwc3";
+> +      reg = <0x4a200000 0xcfff>;
+> +      interrupts = <0 92 4>;
+> +      #address-cells = <1>;
+> +      #size-cells = <1>;
+> +      ranges;
+> +
+> +      xhci: usb@4a200000 {
+> +        compatible = "generic-xhci";
+
+There are no such device...
+
+> +        reg = <0x4a200000 0x7fff>;
+> +        interrupts = <0 92 4>;
+> +      };
+> +    };
+>  ...
 
 Best regards,
 Krzysztof
