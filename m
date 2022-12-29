@@ -2,105 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D755658CC4
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 13:44:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C6B6658D17
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 14:27:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233263AbiL2Moz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 07:44:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35350 "EHLO
+        id S233183AbiL2N1l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 08:27:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230052AbiL2Moy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 07:44:54 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9394E12ABC
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 04:44:52 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id l29so19505937edj.7
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 04:44:52 -0800 (PST)
+        with ESMTP id S233150AbiL2N1l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 08:27:41 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3152CFAED
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 05:27:37 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id cf42so27510307lfb.1
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 05:27:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Rxg/cFQV5AJ+KK+e2LcSmN9+piXsVTnLsnVoNNfzlWY=;
-        b=RN+xJDnlX/Nks9M2zzXKHBUUN3mNvGk5Rx4W+JlCaa8LqmMUm+Ls0gZLS/E+lZVuiw
-         pfKgnm0PNSxb0lvFRMYLWJn23/j1VKmsrq+9dnUip/pTY3W35H+M7IGqnwi3zcOaLr27
-         Fav7zW75RA37CptvTK2rIxYUHtN9SeimcTtS/47LqIWW0FflZchIPnNdaSQYXLrXuL9Q
-         RykR//wzIBEnH+xmiZ/qVnYiUCWT0xeJ6rlwWOWUTO5bouV79d6lc5rgSlREFmVioU5d
-         XVEKp9KJiQ/4KFY1K9Z6jBhnOSzrnnnhQwyxHd95Qa+rBY+8cPxD+Nb6bfB1xE+vtqb7
-         66BQ==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gZSCpbFYEqU4kXdvZagC2f9wuaUgm6zGDC72Dg77aBg=;
+        b=EwfxI6MHyfLh+RSomgQ/cBEJaIlk0FfQzfv/1WmxeBnIqFl+gB6RBwDJjb6x2mq5xV
+         i74mE6DVGWFPrVoCO9sqzlYASEzyvDfz6oS2BwoyAVRfmmwuIgg3+VwrJ6DZ0XWwB3nk
+         KKL2qZYJ4M0emp+ggc19qQhLyiohmz2/MYqxv+B0g/V/5naXND6T1B7YL3SADG9+6RaV
+         I94ex3DIgPZL9BHtpCFYGTOgUn/3rNJP/OaueAMsBr/6XKAvlO9l7e+8nTwNYzJNDm4d
+         sbsyZa3JprKLvqb/Om/QIawYIMq2EtLzVqF8KCWv5HbvZBFrFanYXbhwsIGdFr+KddNp
+         jAIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Rxg/cFQV5AJ+KK+e2LcSmN9+piXsVTnLsnVoNNfzlWY=;
-        b=e/gHFvgtknmUFyBh5EGYJzXf9kBQnYVjXy6LOD80O+PGi+eFNUPV8vI7ZZhBrXgSVl
-         s9Z3foPHekdjw726REE7W1P0oNXBbNbjcc7LGBtVTG1Uf75HbHScscYnUyVY6DZnf9j0
-         csnHo39xHHPWvsOalOGWdZPWaPcMRzaPDuGd4YVCvKi8TKC8oFb31kYYLI5XwEk641ix
-         tzJgYfEH7kOfO5kA+6gfuQeYVHJvG3ooMvQRCg3Ddb7OkHAn98PEpyOlJO5wUxDkksSe
-         /PR0kqavM3TzGRHY1W57NrH+nuMaST49lcPnKxnqo2skXIQUP6tsc4JOz4+RzaggkYg/
-         Y5CA==
-X-Gm-Message-State: AFqh2krkyk+Ly7/3uPmXvEZqtRSmqbqrVyOLz99DtHSi0GenhBiu8Xnz
-        yDVAHXzP1W2c18Daj2/5vkcmQA==
-X-Google-Smtp-Source: AMrXdXuUPNTQPjnr1WWBCZcOc80Er1IGpuAXTohqoM/RvMoJrvIxqy9gwwTiAwv9NbYKfn2wl+PhGg==
-X-Received: by 2002:aa7:db53:0:b0:45c:835c:c6d0 with SMTP id n19-20020aa7db53000000b0045c835cc6d0mr24246529edt.1.1672317891042;
-        Thu, 29 Dec 2022 04:44:51 -0800 (PST)
-Received: from planet9.chello.ie (2001-1c06-2302-5600-12a8-8cf4-e3f6-f90f.cable.dynamic.v6.ziggo.nl. [2001:1c06:2302:5600:12a8:8cf4:e3f6:f90f])
-        by smtp.gmail.com with ESMTPSA id 15-20020a170906318f00b0078db5bddd9csm8483461ejy.22.2022.12.29.04.44.50
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gZSCpbFYEqU4kXdvZagC2f9wuaUgm6zGDC72Dg77aBg=;
+        b=Q9e6c+qpPK8H3TqfjbpfrN+jVBVkCOhiwCZ/B7NDi3NI9mfWkNbr+G4lNLwik49seD
+         vYXA/eCoDtkdA+hJv60nTaZIxx0JNhhuTbvhPqb/kOrJebIjkvJln6GJ5caGLeoLVjyN
+         NO+nEGj5SCM4LOomdFXd91VfH1WsfJ0oIL4RydlEeKxTmXjp3UCOIUNnnnJJ1o5eT5uh
+         QAhXCoRgr5vnijYl1Fu2yAied3aUOACguFCi2ZEj2SATaAEKQEv2ilOo5tDs8x24mZnL
+         r5rr5EdSPfExWzlAQmOOIxVW/l0agSWSyyPagIDNAv89LMf7b5ECAFL+bucd3hOv2rd4
+         iveg==
+X-Gm-Message-State: AFqh2krsQNbVawUPJYelHP4eD8BTEYV4m08WjghrNMn1BFykKDB+22+C
+        F9x/sWtvPa7Jcuf+YV80BhTHvw==
+X-Google-Smtp-Source: AMrXdXsZF5PMbIvZk9Qtlm7oBw6pmmt5L+LuelrSLsR94OcdSMuTwoN6ZdPt/P+Mn+1tEN8QXaqxhg==
+X-Received: by 2002:ac2:5327:0:b0:4b6:e64c:aec1 with SMTP id f7-20020ac25327000000b004b6e64caec1mr7226461lfh.53.1672320455538;
+        Thu, 29 Dec 2022 05:27:35 -0800 (PST)
+Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id 3-20020ac25f43000000b004996fbfd75esm3040595lfz.71.2022.12.29.05.27.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Dec 2022 04:44:50 -0800 (PST)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
-        dmitry.baryshkov@linaro.org, sean@poorly.run, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     quic_mkrishn@quicinc.com, andersson@kernel.org,
-        swboyd@chromium.org, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        bryan.odonoghue@linaro.org
-Subject: [PATCH v3 1/1] dt-bindings: msm: dsi-phy-28nm: Add missing qcom,dsi-phy-regulator-ldo-mode
-Date:   Thu, 29 Dec 2022 12:44:38 +0000
-Message-Id: <20221229124438.504770-2-bryan.odonoghue@linaro.org>
+        Thu, 29 Dec 2022 05:27:35 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: sm8250: add cache size
+Date:   Thu, 29 Dec 2022 14:27:31 +0100
+Message-Id: <20221229132731.1193713-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221229124438.504770-1-bryan.odonoghue@linaro.org>
-References: <20221229124438.504770-1-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add in missing qcom,dsi-phy-regulator-ldo-mode to the 28nm DSI PHY.
-When converting from .txt to .yaml we missed this one.
+Add full cache description to DTS to avoid:
+1. "Early cacheinfo failed" warnings,
+2. Cache topology detection which leads to early memory allocations and
+   "BUG: sleeping function called from invalid context" on PREEMPT_RT
+   kernel:
 
-Fixes: 4dbe55c97741 ("dt-bindings: msm: dsi: add yaml schemas for DSI bindings")
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+  smp: Bringing up secondary CPUs ...
+  Detected VIPT I-cache on CPU1
+  BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:46
+  in_atomic(): 1, irqs_disabled(): 128, non_block: 0, pid: 0, name: swapper/1
+  preempt_count: 1, expected: 0
+  RCU nest depth: 1, expected: 1
+  3 locks held by swapper/1/0:
+   #0: ffff5e337eee5f18 (&pcp->lock){+.+.}-{3:3}, at: get_page_from_freelist+0x20c/0xffc
+   #1: ffffa9e24a900b18 (rcu_read_lock){....}-{1:3}, at: rt_spin_trylock+0x40/0xe4
+   #2: ffff5e337efc8918 (&zone->lock){+.+.}-{3:3}, at: rmqueue_bulk+0x54/0x720
+  irq event stamp: 0
+  Call trace:
+   __might_resched+0x17c/0x214
+   rt_spin_lock+0x5c/0x100
+   rmqueue_bulk+0x54/0x720
+   get_page_from_freelist+0xcfc/0xffc
+   __alloc_pages+0xec/0x1150
+   alloc_page_interleave+0x1c/0xd0
+   alloc_pages+0xec/0x160
+   new_slab+0x330/0x454
+   ___slab_alloc+0x5b8/0xba0
+   __kmem_cache_alloc_node+0xf4/0x20c
+   __kmalloc+0x60/0x100
+   detect_cache_attributes+0x2a8/0x5a0
+   update_siblings_masks+0x28/0x300
+   store_cpu_topology+0x58/0x70
+   secondary_start_kernel+0xc8/0x154
+
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 ---
- .../devicetree/bindings/display/msm/dsi-phy-28nm.yaml         | 4 ++++
- 1 file changed, 4 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml
-index 3d8540a06fe22..2f1fd140c87df 100644
---- a/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml
-@@ -34,6 +34,10 @@ properties:
-   vddio-supply:
-     description: Phandle to vdd-io regulator device node.
+The patch extends and depends in context on:
+https://lore.kernel.org/r/20221107155825.1644604-17-pierre.gondois@arm.com
+
+Cache sizes from publicly available data:
+https://en.wikichip.org/wiki/qualcomm/snapdragon_800/865
+---
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index 4478bf0e7b22..4555345ee42e 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -111,10 +111,14 @@ CPU0: cpu@0 {
+ 			L2_0: l2-cache {
+ 				compatible = "cache";
+ 				cache-level = <2>;
++				cache-size = <0x20000>;
++				cache-unified;
+ 				next-level-cache = <&L3_0>;
+ 				L3_0: l3-cache {
+ 					compatible = "cache";
+ 					cache-level = <3>;
++					cache-size = <0x400000>;
++					cache-unified;
+ 				};
+ 			};
+ 		};
+@@ -137,6 +141,8 @@ CPU1: cpu@100 {
+ 			L2_100: l2-cache {
+ 				compatible = "cache";
+ 				cache-level = <2>;
++				cache-size = <0x20000>;
++				cache-unified;
+ 				next-level-cache = <&L3_0>;
+ 			};
+ 		};
+@@ -159,6 +165,8 @@ CPU2: cpu@200 {
+ 			L2_200: l2-cache {
+ 				compatible = "cache";
+ 				cache-level = <2>;
++				cache-size = <0x20000>;
++				cache-unified;
+ 				next-level-cache = <&L3_0>;
+ 			};
+ 		};
+@@ -181,6 +189,8 @@ CPU3: cpu@300 {
+ 			L2_300: l2-cache {
+ 				compatible = "cache";
+ 				cache-level = <2>;
++				cache-size = <0x20000>;
++				cache-unified;
+ 				next-level-cache = <&L3_0>;
+ 			};
+ 		};
+@@ -203,6 +213,8 @@ CPU4: cpu@400 {
+ 			L2_400: l2-cache {
+ 				compatible = "cache";
+ 				cache-level = <2>;
++				cache-size = <0x40000>;
++				cache-unified;
+ 				next-level-cache = <&L3_0>;
+ 			};
+ 		};
+@@ -225,6 +237,8 @@ CPU5: cpu@500 {
+ 			L2_500: l2-cache {
+ 				compatible = "cache";
+ 				cache-level = <2>;
++				cache-size = <0x40000>;
++				cache-unified;
+ 				next-level-cache = <&L3_0>;
+ 			};
  
-+  qcom,dsi-phy-regulator-ldo-mode:
-+    type: boolean
-+    description: Indicates if the LDO mode PHY regulator is wanted.
-+
- required:
-   - compatible
-   - reg
+@@ -248,6 +262,8 @@ CPU6: cpu@600 {
+ 			L2_600: l2-cache {
+ 				compatible = "cache";
+ 				cache-level = <2>;
++				cache-size = <0x40000>;
++				cache-unified;
+ 				next-level-cache = <&L3_0>;
+ 			};
+ 		};
+@@ -270,6 +286,8 @@ CPU7: cpu@700 {
+ 			L2_700: l2-cache {
+ 				compatible = "cache";
+ 				cache-level = <2>;
++				cache-size = <0x80000>;
++				cache-unified;
+ 				next-level-cache = <&L3_0>;
+ 			};
+ 		};
 -- 
 2.34.1
 
