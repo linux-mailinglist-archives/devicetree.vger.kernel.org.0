@@ -2,153 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4FE3658A2B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 09:06:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EFB5658A6B
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 09:21:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233075AbiL2IGR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 03:06:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34828 "EHLO
+        id S233057AbiL2IVJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 03:21:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231194AbiL2IGP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 03:06:15 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0F91B92
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 00:06:13 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id bf43so26565518lfb.6
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 00:06:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ben8+4oiArxexQJyJIBwbQtQ9giuKq12emDFPOAB0/A=;
-        b=jufpxaDQuVBA0SebIRrM4IEex4ljQthZbGvev2zfkGOV/gkQ+/y36QDPqFDhUpOLdB
-         md5nPBiW5qSbkYYISL+qf1hh07zuo6X8/peed5sHge+qh0ZCXqT0Gsbq6H8XADK0D7bD
-         fMMDbnIj1oxGmllKQ1upIjpqwH+xb7wfGNsfNDkH0gpv9Xyu2OutUCjKr65X0K4WwdqE
-         CZXCWg6A4TgTvbhOFy0467qt3gdO1easnHGL7bsnu8lVXhu+uocBJLLppPxb9ypvspSj
-         qVSmDLyaDopfP2csfVO8wu0dPb4eafmJiSajVISsX3RCpUFcx4eFL28gH5/ErN+0xSVY
-         eCpA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ben8+4oiArxexQJyJIBwbQtQ9giuKq12emDFPOAB0/A=;
-        b=5VzJ2ywOb0/oeermV38ojb9FBQBX5PzThOlld05cmabvtOLOesfPbu+QhqWHMT2sYh
-         B2sweIy2OlibxzcjgyophvNDgtHP0GZvjnd6nf1lWqeikvI8ii2ilgAJUXCxNNAWQPbb
-         0/gJyhAHfK26Q1GWjGLhtoziehjmxFE+KAQWblXKkPmhFE5s+03sSkq0htjO42WGQuny
-         zVswpkATnpN+bxoYQtWDmZ2WmLn6WjzXhvpjHA+Wjertlg1kvx12PhqLwzm26cIPQ6fO
-         43peSP60sdjhLzU7upGyP8J80jRoJUqIcGa4b4fd7OglOWB41w/6qulHldsxjgBiu24o
-         d+NA==
-X-Gm-Message-State: AFqh2kredZDJsSfM+pQe5NH1ki9tp5dJrp5tsqBc4uyMH3dvI2NPG9pI
-        Os2h/3ji0D5UljyWoy6WKWNMog==
-X-Google-Smtp-Source: AMrXdXtAmfVtj1IoPnGmK4xqeGUXuvnkJ8kCHhPjHiGxwb3HU1LujrXhq0Ja4bqnsKuNo/EyORORyA==
-X-Received: by 2002:ac2:528f:0:b0:4b5:6504:a556 with SMTP id q15-20020ac2528f000000b004b56504a556mr7164960lfm.61.1672301172157;
-        Thu, 29 Dec 2022 00:06:12 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id d21-20020ac24c95000000b0049465afdd38sm2979222lfl.108.2022.12.29.00.06.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Dec 2022 00:06:11 -0800 (PST)
-Message-ID: <0180241f-4f10-f914-1288-371106c4fa1c@linaro.org>
-Date:   Thu, 29 Dec 2022 09:06:10 +0100
+        with ESMTP id S232731AbiL2IVJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 03:21:09 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FC1CC28;
+        Thu, 29 Dec 2022 00:21:06 -0800 (PST)
+X-UUID: 88ca326cd7674b848a6254c0d0564ccf-20221229
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=HORV9bMIP2LGFNhuhm7UuJjpXIYYSO+nEqUSjtucA64=;
+        b=ZqQORkXKc0FXCVkrXWlcGmciE2mqA3pl3o8oVeVjFL79KQvZtLwheEdRXYCvqB019ANXgSU+d+iNNrzEVvG9dB/JK16L1Qi5KzDJCdGTxd8mhI3+kzHke7OX6a5Qg0Rx2c2t/i7G7ZshW/fJIGPQhDdwJFBvB5lXEyh8mloPOo4=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.14,REQID:9564ab36-ded9-4df7-8f0b-db2fbc4aa091,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:45
+X-CID-INFO: VERSION:1.1.14,REQID:9564ab36-ded9-4df7-8f0b-db2fbc4aa091,IP:0,URL
+        :0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+        elease,TS:45
+X-CID-META: VersionHash:dcaaed0,CLOUDID:3db548f4-ff42-4fb0-b929-626456a83c14,B
+        ulkID:221229162104179HRAPB,BulkQuantity:0,Recheck:0,SF:28|17|19|48|102,TC:
+        nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 88ca326cd7674b848a6254c0d0564ccf-20221229
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <miles.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 311895922; Thu, 29 Dec 2022 16:21:04 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Thu, 29 Dec 2022 16:21:03 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Thu, 29 Dec 2022 16:21:03 +0800
+From:   Miles Chen <miles.chen@mediatek.com>
+To:     <angelogioacchino.delregno@collabora.com>
+CC:     <chun-jie.chen@mediatek.com>, <daniel@makrotopia.org>,
+        <devicetree@vger.kernel.org>, <fparent@baylibre.com>,
+        <ikjn@chromium.org>, <johnson.wang@mediatek.com>,
+        <jose.exposito89@gmail.com>, <kernel@collabora.com>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <matthias.bgg@gmail.com>,
+        <miles.chen@mediatek.com>, <msp@baylibre.com>,
+        <mturquette@baylibre.com>, <nfraprado@collabora.com>,
+        <pablo.sun@mediatek.com>, <rex-bc.chen@mediatek.com>,
+        <robh+dt@kernel.org>, <ryder.lee@kernel.org>,
+        <sam.shih@mediatek.com>, <sboyd@kernel.org>,
+        <weiyi.lu@mediatek.com>, <wenst@chromium.org>,
+        <y.oudjana@protonmail.com>, <yangyingliang@huawei.com>
+Subject: Re: [PATCH v2 18/23] clk: mediatek: clk-mtk: Register MFG notifier in mtk_clk_simple_probe()
+Date:   Thu, 29 Dec 2022 16:21:03 +0800
+Message-ID: <20221229082103.21064-1-miles.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <20221223094259.87373-19-angelogioacchino.delregno@collabora.com>
+References: <20221223094259.87373-19-angelogioacchino.delregno@collabora.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH] dt-bindings: ufs: qcom: Add reg-names property for ICE
-Content-Language: en-US
-To:     Luca Weiss <luca.weiss@fairphone.com>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221209-dt-binding-ufs-v1-0-8d502f0e18d5@fairphone.com>
- <c4109766-22f1-7227-47bb-9273a027bb0c@linaro.org>
- <CPDFHXBPSP76.5CWNQK4N1KGI@otso>
- <5391e6e5-3773-a012-c396-b59b1f54ea51@linaro.org>
- <CPDJZJHDL1XJ.2UY1U1E19CTUH@otso>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CPDJZJHDL1XJ.2UY1U1E19CTUH@otso>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/12/2022 16:24, Luca Weiss wrote:
-> On Wed Dec 28, 2022 at 12:58 PM CET, Krzysztof Kozlowski wrote:
->> On 28/12/2022 12:53, Luca Weiss wrote:
->>> Hi Krzysztof,
->>>
->>> On Wed Dec 28, 2022 at 12:50 PM CET, Krzysztof Kozlowski wrote:
->>>> On 09/12/2022 15:29, Luca Weiss wrote:
->>>>> The code in ufs-qcom-ice.c needs the ICE reg to be named "ice". Add this
->>>>> in the bindings so the existing dts can validate successfully.
->>>>>
->>>>> Also sm8450 is using ICE since commit 276ee34a40c1 ("arm64: dts: qcom:
->>>>> sm8450: add Inline Crypto Engine registers and clock") so move the
->>>>> compatible to the correct if.
->>>>>
->>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->>>>> ---
->>>>> (no cover subject)
->>>>>
->>>>> The only remaining validation issues I see is the following on sc8280xp-crd.dtb
->>>>> and sa8540p-ride.dtb:
->>>>>
->>>>
->>>> Any plans on fixing the patch (after testing it) and resending?
->>>
->>> I wasn't quite sure how to fix the comments, but re-reading them this
->>> comment from you is how you expect it to be in v2?
->>
->> The patch fails testing, so I meant this.
->>
->>>
->>>> Just add it to top-level with minItems: 1 and per variant customize:
->>>> 1. maxItems: 1
->>>> 2. minItems: 2 + required
->>>
+>In preparation for commonizing topckgen probe on various MediaTek SoCs
+>clock drivers, add the ability to register the MFG MUX notifier in
+>mtk_clk_simple_probe() by passing a custom notifier register function
+>pointer, as this function will be slightly different across different
+>SoCs.
+>
+>Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>---
+> drivers/clk/mediatek/clk-mtk.c | 8 ++++++++
+> drivers/clk/mediatek/clk-mtk.h | 3 +++
+> 2 files changed, 11 insertions(+)
+>
+>diff --git a/drivers/clk/mediatek/clk-mtk.c b/drivers/clk/mediatek/clk-mtk.c
+>index b0a6225cd7b2..df6281492fb6 100644
+>--- a/drivers/clk/mediatek/clk-mtk.c
+>+++ b/drivers/clk/mediatek/clk-mtk.c
+>@@ -533,6 +533,14 @@ int mtk_clk_simple_probe(struct platform_device *pdev)
+> 			goto unregister_composites;
+> 	}
 > 
-> I tried a bit now but couldn't get it to work when using 'items' so that
-> we have the "std" and "ice" names in there.
-> 
-> Documentation/devicetree/bindings/ufs/qcom,ufs.yaml: allOf:2:then:properties:reg-names: 'oneOf' conditional failed, one must be fixed:
->         [{'const': 'std'}, {'const': 'ice'}] is too long
->         [{'const': 'std'}, {'const': 'ice'}] is too short
->         False schema does not allow 2
->         1 was expected
->         hint: "minItems" is only needed if less than the "items" list length
->         from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-> 
-> Since I have 'minItems: 1' in top-level I seemingly cannot use 'items'
-> in the 'if' neither alone nor with 'minItems' and/or 'maxItems', getting
-> different errors when doing that.
+>+	if (mcd->clk_notifier_func) {
+>+		struct clk *mfg_mux = clk_data->hws[mcd->mfg_clk_idx]->clk;
+>+
+>+		r = mcd->clk_notifier_func(&pdev->dev, mfg_mux);
+>+		if (r)
+>+			goto unregister_clks;
+>+	}
 
-top-level cannot have only minItems:1.
+Should we have a IS_ERR_OR_NULL() check for clk_data->hws[mcd->mfg_clk_idx]?
 
-> 
-> Can I just put 'reg-names: true' top-level and then specify either items
-> for the ones that use ICE or for the others use the 'maxItems: 1'?
-> 
-> Or am I supposed to ignore 'items' completely but driver expects 'ice'
-> name so I'd rather include it.
-
-Use the syntax like:
-https://elixir.bootlin.com/linux/v5.19-rc6/source/Documentation/devicetree/bindings/clock/samsung,exynos7-clock.yaml#L57
-
-
-Best regards,
-Krzysztof
-
+thanks,
+Miles
+>+
+> 	r = of_clk_add_hw_provider(node, of_clk_hw_onecell_get, clk_data);
+> 	if (r)
