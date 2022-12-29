@@ -2,76 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB919658BCD
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 11:37:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 29CEA658BD1
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 11:38:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229734AbiL2KhU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 05:37:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59770 "EHLO
+        id S233085AbiL2KiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 05:38:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229930AbiL2KhD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 05:37:03 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 835B410060
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 02:37:02 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id m6so16596212lfj.11
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 02:37:02 -0800 (PST)
+        with ESMTP id S233098AbiL2Khz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 05:37:55 -0500
+Received: from mail-vs1-xe2c.google.com (mail-vs1-xe2c.google.com [IPv6:2607:f8b0:4864:20::e2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1BD310566
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 02:37:53 -0800 (PST)
+Received: by mail-vs1-xe2c.google.com with SMTP id a64so14539365vsc.2
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 02:37:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7SwWwnfZr+uBEvsIuFz/yYh7XO2beOzaYWIBtOLhwsc=;
-        b=wklaEMwa/1iRPi/ZBWVSzDnc15wt+GyNfabUflkM9an6lp25NFZDFPjOih/22pIwKT
-         RTZFeyJ4tCIkbJdC7deYC4l1OpDZZtai1Yl/bEibpO6fCQmS67IddAdOl/0ho+cefTBJ
-         gbW5Iao4tt0SWG5o+wcYSfbVsLFDtzlHNUda0OCQYvtG8P08ekaSpnJ39en6gZFxH1Dr
-         qB6QfqXyIH0Ryhp97Qw0juNvpHGG3ia4AuHoVSLnAUiTNFrlL6aFjOExzh2SFDCypqZX
-         ld/Vzr7fvZTNei4uOUru3K7AzXXXXsOrzkNMWOlG55QQKRV3PmTNUf+iSt8XOH/3fb12
-         MQqw==
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=b8Y42xIXgL1eMkrgLpvrHsYvzuZh55E8nXO8bqFw93M=;
+        b=n+1rGnKC54+rbc4cgQix6MlqAvLsOt+mxxCIvHqRujHtqOBdnTa21rRtnbRJeRS9C8
+         ET7G5Cv5S0SiyXRAkPQ6x4aHcSt/MR2F0W2INwqkgkHIJ1ODE1omptcwDMPkxBQp3qFo
+         FeI9BsYoYgtYllUyGD5PdfmRjS/iBH+1AJPb0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7SwWwnfZr+uBEvsIuFz/yYh7XO2beOzaYWIBtOLhwsc=;
-        b=QxKGDKrSz/cojI4nTgFLoczz2UuTCIipAVV+uKMtNS6syaRsD/+eSFdPpcP7VlsWNt
-         75m+qkDkJKNxYyHdtrP/PUfFdzPcCj0zGFRHWEpEFIZ+9R6y2hnCKEYKWetQgeuT/8I4
-         m8xF+Tt48g+Pl0U8gVxYwgMZnlQc3tQag8LgvJORLheQRIUWT7VWEJ15YY1eUkQyuDTn
-         XuXvj8+S7UBy63tJqWQWwQjfXMFtQgKZMC5OgbXHrgN4LgMD3woCYu3nxhds6NDhIlW5
-         View+kMTCD5+mmFafTwGdpKAJuqQppZ2mZcqGdMx3fEFEpQI6Asqgmg7KPkHtPZhkdHz
-         Z8cw==
-X-Gm-Message-State: AFqh2kpAIyhyutJBTH1Mn+gD0G6SRPhCJJ/5EVautM81bdn0i3U0s3FQ
-        KZ3Bh+ow0GZU/yrX5gF1wRIcBQ==
-X-Google-Smtp-Source: AMrXdXslPob+FNgzHy2CAfC4/AAEPuPKx+TO27hrbUTcw0/b/25IJF1RaU4L2XRUOCJayuxD5zThNw==
-X-Received: by 2002:a05:6512:141:b0:4ca:f887:fe99 with SMTP id m1-20020a056512014100b004caf887fe99mr5516459lfo.25.1672310220931;
-        Thu, 29 Dec 2022 02:37:00 -0800 (PST)
-Received: from [192.168.1.101] (abyl184.neoplus.adsl.tpnet.pl. [83.9.31.184])
-        by smtp.gmail.com with ESMTPSA id w16-20020a05651234d000b004b57a253deasm3014886lfr.162.2022.12.29.02.36.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Dec 2022 02:37:00 -0800 (PST)
-Message-ID: <f0bfcbe0-5053-49b9-5598-7d23dcc4cbb3@linaro.org>
-Date:   Thu, 29 Dec 2022 11:36:59 +0100
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=b8Y42xIXgL1eMkrgLpvrHsYvzuZh55E8nXO8bqFw93M=;
+        b=I2owvGqrcn2dMBfnzLzZ8ZMZbS4BG9iQL0Y9LdcVBYJGnKk/7tu6pY2yEKq7sLFQ97
+         idmaSvT7UkVDIxxBS6VWm5SnWwTqwnGDZfFbNG5bEtxdPaYcw3Jjj+vsKQXwJ2rAZcx3
+         hX9z5DAwshERoU8sMdIdaNDGwmSsxKM3RukZwsFk8Pr2fbcrBwwewyki2sf8BXnDJ3jU
+         jKDM23bk/+5s3qsbnYf7sRGpsOfHXIdS43HpsTARyX5VM/lUOWOAUnEKd49r57sG2vaV
+         oj0fAu5/Murctz99G9RPo1mOerlrDGWfWiQ2c4bbeCGlwuJazkIO7tw/B8SHkrE1N/zk
+         PX7w==
+X-Gm-Message-State: AFqh2krcPbtP7fmqTeAX5M2MeBacfnBM88cu8pTZs7eNGsyXIgvxnQ7S
+        gnQg9OSWEMFgiQA25oSOhTcaTZgps/93DBrHYozCSw==
+X-Google-Smtp-Source: AMrXdXuGd+euo/Y/QzF70Wh9yJgo9zt/cVIVFVgu/E4UIEn36ysnrttGlo14HEh6kgdeVcojyAcKK885ahyhQcOCVdg=
+X-Received: by 2002:a05:6102:74b:b0:3ad:3d65:22b with SMTP id
+ v11-20020a056102074b00b003ad3d65022bmr3992771vsg.65.1672310272757; Thu, 29
+ Dec 2022 02:37:52 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v2 2/4] ARM: dts: qcom: pm8226: add PON device node along
- with resin sub-node
-Content-Language: en-US
-To:     Rayyan Ansari <rayyan@ansari.sh>, linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221228230421.56250-1-rayyan@ansari.sh>
- <20221228230421.56250-3-rayyan@ansari.sh>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221228230421.56250-3-rayyan@ansari.sh>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20221108033209.22751-1-allen-kh.cheng@mediatek.com>
+In-Reply-To: <20221108033209.22751-1-allen-kh.cheng@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Thu, 29 Dec 2022 18:37:41 +0800
+Message-ID: <CAGXv+5EkPWF77ATVRhxygVOyYmxXgdTNPmOefP7jGeOMeZw_MA@mail.gmail.com>
+Subject: Re: [PATCH v5 0/7] MediaTek watchdog: Convert mtk-wdt.txt to dt-schema
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     nfraprado@collabora.com, angelogioacchino.delregno@collabora.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,61 +67,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Nov 8, 2022 at 12:03 PM Allen-KH Cheng
+<allen-kh.cheng@mediatek.com> wrote:
+>
+> Based on git/groeck/linux-staging.git, watchdog-next.
+> We use [1] and [2] as references to send a new series.
+>
+> This series converts mtk-wdt.txt to dt-schema and contains
+> - Fix watchdog compatibles for MT7986, MT8186, MT8188 and MT8195,
+> - Fix the watchdog name of mt8516
+> - Add mt6795 and MT8173 watchdog compatible
+>
+> Changes since v4:
+>  - Drop label for watchdog node in mt8516
+>
+> Changes since v3:
+>  - Drop label for watchdog example in yaml
+>
+> Changes since v2:
+>  - Drop merged patch from series
+>  - Rebase to watchdog-next (for mt8188)
+>
+> Changes since v1:
+>  - Drop "items" for a single enum=C2=B7
+>
+> Changes since [1]:
+>   - Update the commit message with some details
+>  - Drop "timeout-sec: true" and use unevaluatedProperties
+> [1] https://lore.kernel.org/all/20221005113517.70628-1-angelogioacchino.d=
+elregno@collabora.com/
+> [2] https://lore.kernel.org/all/20220422121017.23920-3-allen-kh.cheng@med=
+iatek.com/
+>
+> Allen-KH Cheng (3):
+>   arm64: dts: mediatek: mt7986: Fix watchdog compatible
+>   arm64: dts: mediatek: mt8516: Fix the watchdog node name
+>   dt-bindings: watchdog: mediatek,mtk-wdt: Add compatible for MT8173
+>
+> AngeloGioacchino Del Regno (4):
+>   arm64: dts: mediatek: mt8186: Fix watchdog compatible
+>   arm64: dts: mediatek: mt8195: Fix watchdog compatible
+
+Looks like the dt-bindings have been merged, but the dts fixes haven't.
+
+Matthias, could you queue them up?
 
 
-On 29.12.2022 00:04, Rayyan Ansari wrote:
-> The PON (Power On) device in PM8226 supports both the power key and
-> resin (reset input).
-> The reset input is usually connected to a physical volume up/down button.
-> 
-> Signed-off-by: Rayyan Ansari <rayyan@ansari.sh>
-> ---
->  arch/arm/boot/dts/qcom-pm8226.dtsi | 24 +++++++++++++++++++-----
->  1 file changed, 19 insertions(+), 5 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/qcom-pm8226.dtsi b/arch/arm/boot/dts/qcom-pm8226.dtsi
-> index a2092569970a..6af259218f63 100644
-> --- a/arch/arm/boot/dts/qcom-pm8226.dtsi
-> +++ b/arch/arm/boot/dts/qcom-pm8226.dtsi
-> @@ -1,5 +1,6 @@
->  // SPDX-License-Identifier: BSD-3-Clause
->  #include <dt-bindings/iio/qcom,spmi-vadc.h>
-> +#include <dt-bindings/input/linux-event-codes.h>
->  #include <dt-bindings/interrupt-controller/irq.h>
->  #include <dt-bindings/spmi/spmi.h>
->  
-> @@ -10,12 +11,25 @@ pm8226_0: pm8226@0 {
->  		#address-cells = <1>;
->  		#size-cells = <0>;
->  
-> -		pwrkey@800 {
-> -			compatible = "qcom,pm8941-pwrkey";
-> +		pon@800 {
-> +			compatible = "qcom,pm8916-pon";
->  			reg = <0x800>;
-> -			interrupts = <0x0 0x8 0 IRQ_TYPE_EDGE_BOTH>;
-> -			debounce = <15625>;
-> -			bias-pull-up;
-> +
-> +			pwrkey {
-> +				compatible = "qcom,pm8941-pwrkey";
-> +				interrupts = <0x0 0x8 0 IRQ_TYPE_EDGE_BOTH>;
-> +				debounce = <15625>;
-> +				bias-pull-up;
-> +				linux,code = <KEY_POWER>;
-That's redundant, the driver sets this by default if linux,code is
-not found.
+Thanks
+ChenYu
 
-Konrad
-> +			};
-> +
-> +			pm8226_resin: resin {
-> +				compatible = "qcom,pm8941-resin";
-> +				interrupts = <0x0 0x8 1 IRQ_TYPE_EDGE_BOTH>;
-> +				debounce = <15625>;
-> +				bias-pull-up;
-> +				status = "disabled";
-> +			};
->  		};
->  
->  		smbb: charger@1000 {
+>   dt-bindings: watchdog: mediatek: Convert mtk-wdt to json-schema
+>   dt-bindings: watchdog: mediatek,mtk-wdt: Add compatible for MT6795
+>
+>  .../bindings/watchdog/mediatek,mtk-wdt.yaml   | 80 +++++++++++++++++++
+>  .../devicetree/bindings/watchdog/mtk-wdt.txt  | 43 ----------
+>  arch/arm64/boot/dts/mediatek/mt7986a.dtsi     |  3 +-
+>  arch/arm64/boot/dts/mediatek/mt8186.dtsi      |  3 +-
+>  arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  3 +-
+>  arch/arm64/boot/dts/mediatek/mt8516.dtsi      |  2 +-
+>  6 files changed, 84 insertions(+), 50 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/mediatek,m=
+tk-wdt.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/watchdog/mtk-wdt.tx=
+t
+>
+> --
+> 2.18.0
+>
+>
