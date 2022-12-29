@@ -2,77 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59349658AA4
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 09:46:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A5AE5658AAF
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 09:47:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229673AbiL2Iqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 03:46:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51118 "EHLO
+        id S231214AbiL2Ire (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 03:47:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229747AbiL2Iqg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 03:46:36 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 551541147D
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 00:46:35 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id cf42so26691308lfb.1
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 00:46:35 -0800 (PST)
+        with ESMTP id S233085AbiL2Ird (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 03:47:33 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C6CB11A3D
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 00:47:30 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id j17so17171714lfr.3
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 00:47:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=00JBJmBBiBVV/0bx3FG8bOjOr7Fe2FO016Rg6RwMTyA=;
-        b=OHDKnWDlr4rdofCxcy9mYZ1WJwSzWBQgYbEyFkdnLkXivVwKpIvsEJZayqCTMEq7sT
-         k2X5KQyuZ7yCPvcLd6KoI7XDFrKQZXcb4npzm6ryg4QOPKKXoECuj/72FPEOXc26T2UX
-         U3gqO3DdFxJjTNTHK9Ac+h7wYQQ5oni1NDeROmDHT4+E39GJP+M9OYna4aD82cT1R977
-         q3y/UsvsAzhvV0KH+zpoaco1S4d64fKe1MPtWQJhb6l/Sf9d55fXeWZH/Ue5IE1Us/K6
-         JNBIrc9ix/SpgDowBRGPp6Q20iTqmqfhrexOeIPF6cKfiS0DCB+wOg2VnU8+toylFMJT
-         oSdg==
+        bh=4cemsfu0VaWmJoNllBIK96LxIdmY+A3DSnp/dsjJwnM=;
+        b=z8pgJ4Ovtr6LQ4qC0f8Lc1A7iQHUjeNKLE3T4eBQV8smae26lIVpLUuv7TF3lQowMM
+         U9cq9VnbnF7aXWP2KnlaACTowHeAT0g8zoxJcLDpVApOAcZc8Mv7gdS99iNGdfAp76Ru
+         UlstAQdPmiMFRx5flqNzrdh9mGAHj5olThDKqW33IUpZ6QbQ6ls6ZBpvzj1verqTa3uo
+         Wb4NBJDkN5jHGqtCqeU3ib1TszrySYsrn/Q7vvCA3UE5/vZyTFMZ//0WOsEW1QnBCzD0
+         mmbP355GfwRK4XrcnHGXyEq3ESqwA/3X8rb00QIMN4UN4zGI3YuO6ITXUq+XZJIRD1nV
+         CZJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=00JBJmBBiBVV/0bx3FG8bOjOr7Fe2FO016Rg6RwMTyA=;
-        b=0SFpviWm9wKJrSxTK/5rMVB6+Gut4uG96VzyA+L79TIkOu9QcLhTq+COd5yEVoC0c/
-         caVXbEF01/IiKaRTv8byomeSPtAz7AyDm1neLlmTK0U4nmrNEMrdBzlsFrd3TVRmWwEx
-         hzSL2oZiz8oc9k/TZvqn7uIc96M3uXdFGSEfIE1xP2fNq5LVYur3wsiKPY2vwrDxuXpY
-         KZtUrd/YTWw6yIuYov2PiL3C1/S1XZWgEbRdFLgYWL1oqQUSGM4T6ou7zxND7NJaRozW
-         nFvE2Q5bVa+azMwbGT59g9ed/wunGXE5+pN2PqVnGDJL74fHQlhlQN026CRn7tkJunA7
-         srzA==
-X-Gm-Message-State: AFqh2krSYUUvfe6SBsQjx9XyrNJHBpspN4dknDgxzdyHZvKLX1s3l1we
-        RHSdNWLqICTAJtoeWN23RUoULw==
-X-Google-Smtp-Source: AMrXdXuDtZLYWJ1O1/6oOKr2ktf6+/ZBpd7g4CJ6Z4Rsk8pzJAsC89j6hBEXcq05OZLzKeZlxTTZrg==
-X-Received: by 2002:a05:6512:220a:b0:4b4:b667:4b1d with SMTP id h10-20020a056512220a00b004b4b6674b1dmr9041214lfu.27.1672303593720;
-        Thu, 29 Dec 2022 00:46:33 -0800 (PST)
+        bh=4cemsfu0VaWmJoNllBIK96LxIdmY+A3DSnp/dsjJwnM=;
+        b=PS6dhfUeJ0sw0iMLkBc8j4IKXYkz54/DY6OvbgzRPY/cX7UYiHkmehpp87XkUdxELT
+         k8Bmvfkou7FQm3aX/mnfIj5/BDvvJfh5+Y2ZlF0OwnvBVW8VcogAYJI8Q1dPyZsLaO/p
+         pmzXp7tDscc6mfePbPAw70Vg/VRuQOfBrDJkRQRkVhH0H8L+pBDJ6G0Ihm3XowwhBehb
+         QBQbdF7+oOk29d0HT8A0ACauRl2oyDy3YGg1m8+EFWmFShrzEx0qA9oeXS/tOeRklXk0
+         4QgaOTwQlGXR2wu3RbGDawjGmEk03tO33sqeQhzTu9d57atcf8aHWYCb+kxYawwyPqgo
+         C2pg==
+X-Gm-Message-State: AFqh2krMT2EnfyuJ4Q2jQLyyr5M8lBzZZwJlNngi6sO7fN6u69npkNrU
+        4mnZUMp2NxNUw9JPFUr5aJST6w==
+X-Google-Smtp-Source: AMrXdXvHQpo/g6VjyDZZZBZ4JHZ/0GDqwy0mwFL0s9vQERWlTIACcnMY4tr9YXTVbuTN7Ir8C6PfpA==
+X-Received: by 2002:ac2:558f:0:b0:4b6:f51e:b8b6 with SMTP id v15-20020ac2558f000000b004b6f51eb8b6mr7010798lfg.56.1672303648851;
+        Thu, 29 Dec 2022 00:47:28 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id p16-20020ac24ed0000000b004b4f3c0d9f8sm2980668lfr.283.2022.12.29.00.46.32
+        by smtp.gmail.com with ESMTPSA id x16-20020a056512079000b004bbd09aca40sm2974914lfr.77.2022.12.29.00.47.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Dec 2022 00:46:33 -0800 (PST)
-Message-ID: <170665b6-161a-6dd0-6ceb-199277c0ce2f@linaro.org>
-Date:   Thu, 29 Dec 2022 09:46:32 +0100
+        Thu, 29 Dec 2022 00:47:28 -0800 (PST)
+Message-ID: <98992679-47bb-24d3-d253-48fefb4a45f5@linaro.org>
+Date:   Thu, 29 Dec 2022 09:47:27 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v2 2/9] dt-bindings: interrupt-controller: irqc-rzg2l:
- Drop RZG2L_NMI macro
+Subject: Re: [PATCH v2 4/4] dt-bindings: iio/adc: qcom,spmi-iadc: document
+ PM8226 compatible
 Content-Language: en-US
-To:     Prabhakar <prabhakar.csengg@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+To:     Rayyan Ansari <rayyan@ansari.sh>, linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20221221000242.340202-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221221000242.340202-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Luca Weiss <luca@z3ntu.xyz>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221228230421.56250-1-rayyan@ansari.sh>
+ <20221228230421.56250-5-rayyan@ansari.sh>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221221000242.340202-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20221228230421.56250-5-rayyan@ansari.sh>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,15 +80,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/12/2022 01:02, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 29/12/2022 00:04, Rayyan Ansari wrote:
+> Document the compatible for the IADC used on PM8226.
 > 
-> NMI interrupt is not an external interrupt as compared to IRQ0-7 and
-> TINT0-31 on RZ/G2L SoC, so there is no need for RZG2L_NMI macro.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v1 -> v2
+> Signed-off-by: Rayyan Ansari <rayyan@ansari.sh>
 
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
