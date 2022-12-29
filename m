@@ -2,107 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65698658C79
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 12:59:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 77142658C82
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 13:06:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231229AbiL2L7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 06:59:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53272 "EHLO
+        id S233215AbiL2MF7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 07:05:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229930AbiL2L7i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 06:59:38 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46B7813EB3
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 03:59:37 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id g13so27209421lfv.7
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 03:59:37 -0800 (PST)
+        with ESMTP id S230487AbiL2MF6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 07:05:58 -0500
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AE4DF18
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 04:05:56 -0800 (PST)
+Received: by mail-pf1-x434.google.com with SMTP id g20so4270968pfb.3
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 04:05:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=0Xg7dGXofrzsw5igv77htQx0UkAkniEaw5zG0MsVPy8=;
-        b=DyZDFT0YCwwmXR3gSaTKtmDmOpGfDdLZADx9qJN6ufDUW/d9wg/hv1PIQAGLgphG5S
-         38rwTd5aZQJJQYlHklylpV6+MrdJ+9kedNYzCFiZijlvqFnaSHAb1ITJJUOpi8C15hRJ
-         K4+1n5RkzQzh7l29G7UC9h+g+e8PiqchRXecoOuIINRrJUhhqGgNvWMJQSWF2BDRPiJj
-         2zBXitp8js1YCkQ1BpsC5vPqu852hU1rbh7EJxXFGbsZmJqtr9KTt4aHUyrXls9GlO/d
-         mdHhVO3pHayvoDRoDZ2hpztjmf7zOpxCRjIZRuLlXa/sgxigNz4QDYgJhH9Coh06ofTn
-         +dkg==
+        bh=UFt/9SdMGfTEVCLCVkiPAaVjO+1ZMNg673Kf483FlMw=;
+        b=zeRF4EPO9yZmbZX5LQqkiT84jiJu0uU8LRMEC52xpjJDrlz8OYTDt0Ebk5xGYoq4a3
+         I6f9Kkag/WV8srQtn+Xu/+ClyP4v+GOqlbjcGzbDqLtLhK0oeXBdVBQsAkqSm4Q9Udki
+         0OyR/PuRzq65wqFgZ6Q/jDxH+ZU7u0yZHSQHXRakZDkPFMx1CtSKPqBAtwnyqqJ7jQli
+         eztT+I7WZTnj7BKA5Zr8i3NLDQWY9lT9zozuSAbFKgaewIhFvkij6qcXvgNY7SMCNNPd
+         +XCNBqf9XWi6Z3TQweBASwLKCNmnOf1GrwMOQu7BpojCSqHxUcx6fM7mwcROZEIkt9m+
+         kh1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=0Xg7dGXofrzsw5igv77htQx0UkAkniEaw5zG0MsVPy8=;
-        b=Qm36NJFIrhvGfr2hnOLxcG9zo8TL3pfIUOu9woF10five5M/YysNUoGBfl4LJjY0qE
-         NNIQH3ZdY3amxN9rQGsLVAigdj2cOZsiDCpxlNZy5/Lv4Cyuz6HbbJ31caAxI6I8Uj5v
-         wa/FszQhrJIwjBTOED+qB+XxAlRlOWa7kw4RH2uaM0+Y4dW3r5ptlBxh4nbgggR6otqr
-         l64nmaOfQlbJYtdFi67MGZm2vZH7KrKgJieLkHn+1V26/VaAWkn3s2OfkJDQq31sGexz
-         dFNQLCawL9ZcLjv6HAgRa5qtPNvSvpBkrXYQo3ChXL2ptB1xnihYlsCeavpSVCi9jYb0
-         t69A==
-X-Gm-Message-State: AFqh2kqV1Y+bxROkIlj5k57/iLxOcB/kfnyI3Nf79nYtCvFpOruzB0R/
-        z4M1oDU7RHHSg34B2YvFqQ4XqvzB8OetUhrlRsI=
-X-Google-Smtp-Source: AMrXdXtk00yspwEYYPdNRmyAg/9yb0OXDcRpi7r6iKKgLFHlaK3NFMrBOxzDEeLwITXDad5UDEh+XQ==
-X-Received: by 2002:a05:6512:2a89:b0:4b9:f5e5:8fbd with SMTP id dt9-20020a0565122a8900b004b9f5e58fbdmr7653957lfb.52.1672315175537;
-        Thu, 29 Dec 2022 03:59:35 -0800 (PST)
-Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id n7-20020a05651203e700b0049464d89e40sm3006313lfq.72.2022.12.29.03.59.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Dec 2022 03:59:34 -0800 (PST)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
+        bh=UFt/9SdMGfTEVCLCVkiPAaVjO+1ZMNg673Kf483FlMw=;
+        b=p/AHjtWkn8jtOiAXpdSeAa6QQpQtK79KY2mhdbgXrpuuPgGM+9YEznrylbRQVRpeDf
+         sw6PgTsxG0i9AU6sc2VhbGezU3wiAnwgV79LqexwaP/Jgo1XNTmcZfo9/w2IrsR1o4xV
+         8gNLgW8fIOZuM0EUKJ1k5Ti2TMWsGMiIJHhqRLn0fNZ/kSClmKTh5TzCmagUXRHlSNXo
+         9SBiPOucIjzbMPrDACaZ/LdAfLYwIVDUdUEzyrJ949iOS2U5z8cSupQJs9PUaqritrV0
+         ht6RggUAVDjSS2aT6kh3raeSRwTHx+FtWYGYhirpkAIWMY/286tQZjun9meQNXurweGQ
+         uv2g==
+X-Gm-Message-State: AFqh2krxQi/v4l5uYuDCrIG0MQ5ZyShXqVGYIVkX8yiTlsHviWcknRYt
+        O278pKchjZJafXkvloG3CT+grg==
+X-Google-Smtp-Source: AMrXdXtm2PzXld+2NQtlz1s7eORtwWEuPoJ8A7kNC4dyLdlcm5OboMi6TM6M32CZt1nPIo/Iher0VQ==
+X-Received: by 2002:a62:65c3:0:b0:580:1cbe:edb6 with SMTP id z186-20020a6265c3000000b005801cbeedb6mr28082526pfb.20.1672315556132;
+        Thu, 29 Dec 2022 04:05:56 -0800 (PST)
+Received: from T480 (80.251.214.228.16clouds.com. [80.251.214.228])
+        by smtp.gmail.com with ESMTPSA id 64-20020a620543000000b0056bd1bf4243sm11983976pff.53.2022.12.29.04.05.51
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 29 Dec 2022 04:05:55 -0800 (PST)
+Date:   Thu, 29 Dec 2022 20:05:47 +0800
+From:   Shawn Guo <shawn.guo@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH v3 2/2] phy: qualcomm: pcie2: register as clock provider
-Date:   Thu, 29 Dec 2022 13:59:32 +0200
-Message-Id: <20221229115932.3312318-3-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20221229115932.3312318-1-dmitry.baryshkov@linaro.org>
-References: <20221229115932.3312318-1-dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v5 07/20] thermal/drivers/tsens: fix slope values for
+ msm8939
+Message-ID: <20221229120545.GA18875@T480>
+References: <20221229030106.3303205-1-dmitry.baryshkov@linaro.org>
+ <20221229030106.3303205-8-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221229030106.3303205-8-dmitry.baryshkov@linaro.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Register pcie2 PHY as a clock provider to enable using it in the
-DT-based clock lookup.
+On Thu, Dec 29, 2022 at 05:00:53AM +0200, Dmitry Baryshkov wrote:
+> According to the vendor kernels (msm-3.10, 3.14 and 3.18), msm8939
+> uses non-standard slope values for calibrating the sensors. Fill them
+> accordingly.
+> 
+> Fixes: 332bc8ebab2c ("thermal: qcom: tsens-v0_1: Add support for MSM8939")
+> Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Cc: Shawn Guo <shawn.guo@linaro.org>
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- drivers/phy/qualcomm/phy-qcom-pcie2.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+Acked-by: Shawn Guo <shawn.guo@linaro.org>
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-pcie2.c b/drivers/phy/qualcomm/phy-qcom-pcie2.c
-index 5407e59bb185..11a2bb958681 100644
---- a/drivers/phy/qualcomm/phy-qcom-pcie2.c
-+++ b/drivers/phy/qualcomm/phy-qcom-pcie2.c
-@@ -243,7 +243,11 @@ static int phy_pipe_clksrc_register(struct qcom_phy *qphy)
- 	fixed->fixed_rate = 250000000;
- 	fixed->hw.init = &init;
- 
--	return devm_clk_hw_register(qphy->dev, &fixed->hw);
-+	ret = devm_clk_hw_register(qphy->dev, &fixed->hw);
-+	if (ret < 0)
-+		return ret;
-+
-+	return devm_of_clk_add_hw_provider(qphy->dev, of_clk_hw_simple_get, &fixed->hw);
- }
- 
- static int qcom_pcie2_phy_probe(struct platform_device *pdev)
--- 
-2.39.0
-
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
