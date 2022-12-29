@@ -2,270 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDFC76589F9
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 08:32:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 515F5658A23
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 09:04:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233041AbiL2HcJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 02:32:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51726 "EHLO
+        id S233095AbiL2IEZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 03:04:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233044AbiL2HcF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 02:32:05 -0500
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E2C212A90;
-        Wed, 28 Dec 2022 23:32:03 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id tz12so43255097ejc.9;
-        Wed, 28 Dec 2022 23:32:03 -0800 (PST)
+        with ESMTP id S229520AbiL2IEY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 03:04:24 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62F80FADB
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 00:04:23 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id 1so26556631lfz.4
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 00:04:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=tFzVpEFAc7K+Vt+oAjXGPFPLJF61ACW2fyTFNlsKf0w=;
-        b=GwKY9Vy9sER0WOm+SjW90uwpKfh5LPZ+ULB2fosmyTL9xnj6xJDYo3Zdhik4NDjwZ5
-         +nKwD0el2fc/0dcQPjQIlzhLK9Ey9NUubJ9RqoKpsfzukNtS3q0uV3diCUCBydHqqcA6
-         J4Uq2kpaz52U2YzMemOrFSWxZiiKNJoMZaaAH2lxtieozQ1FF8VqnPNsIEEwBnxHjcZy
-         zNTybIwDWHA5UpY/yZZOGwnN0vD2i0olP/kNShfS67q1O3n8eYRuRyZzroN84lXEqS1U
-         iDHCgqgNoGizsLXwJ+Bv8hkq6qvFvu9N+pihET0xOpZYXTi3SgPqn2B1251dUO0xR1nh
-         1W+A==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0DYLiElYQgv4EGpAL4uv9JD+TX+jA5euJMoTh7FRrC8=;
+        b=PBZ+vnE4/SqRWBbQf/R6Bu3YpqzM3EBlm1qj8DgHKEx1Zpc1IzWcqcLMmR1jU22Ypa
+         BXfRxNdWJHUeUN3+wQ3XMj1iP0VK6uNXCWlNAxoN2PnXUH2jMd0PmarK2gDF09rgRDOd
+         bBwVCQ2XKkRawy+coeJb6rZdiXeEqtgwAAo4wygIeo+RzO6z+hW5HTlr/APoWtyQDNJi
+         fCvuIXATG5i+PBDDsL5juXSe2L9OR1qvVWimKMo7IgFhjj3Ay6Sloos9fC8D6F8kG15n
+         Jk8Iy/daslBdQ2/xDhqFeLW6JMINvvZKBl4EFmCU/K6vy/N0Xge6+gUmridkWSHgCi/e
+         f01w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tFzVpEFAc7K+Vt+oAjXGPFPLJF61ACW2fyTFNlsKf0w=;
-        b=jKF3GcazAoyBannsU2Wq6ZUOir/7EyhdXZ1ultm8Gv7kKDLnJaxO+OsCg/PZ31E36J
-         9zMt4xFfsADRddLj67Uxl7N3Wa+H8DOF8xp6Acd60rXQ7dB6CGHZ7eB5rmC7JNr7Hsp/
-         U8puKQk23+Ly6H07h7TpHdJFn1wt3HB2tJR6xXiKzeylguvU0c04Ywsr7onEfOQ/9MqE
-         GLAXszEEfqZ8V74k/CTexYHhGVbpzmQo5DpiIT7/sBl4aQ2DvLpnuoqtLD0ptsB/yaqO
-         eLkmT3gwkXvTzQklH+rUKZBMnXjeCHpnlNlqI0I/De9nPvGsMBRMKF2Og2VhQ4tjvORB
-         IzJA==
-X-Gm-Message-State: AFqh2koWJtC1fjzmcKbrJgo5D1p1BjY+7Iqm+fCSL2XU+vUcdWtm545n
-        JqXVyuOP+oSLps8RvPqOQLHWBvyhlKV3Att0jWQ=
-X-Google-Smtp-Source: AMrXdXswgwmT56brOvP2/gqW8vL3NYl6Aj4vIsHtgapQzQrY8gMW/G9Kxo/Q5qIUOjqUMjvRfcvP1FpZEy0yBdsYdT0=
-X-Received: by 2002:a17:907:a510:b0:7c0:e060:e819 with SMTP id
- vr16-20020a170907a51000b007c0e060e819mr3590920ejc.763.1672299121891; Wed, 28
- Dec 2022 23:32:01 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0DYLiElYQgv4EGpAL4uv9JD+TX+jA5euJMoTh7FRrC8=;
+        b=sWug7aeuhqt4AVW22veZ+cFYmz76lhn1Z2nZOkyV9W4yey4mrAkRAWhb3zDPmolRJ+
+         4fEQndzMc7gYBNDeTCHZkjqMjn3T75KrlE5mTbyxsBztwSptrkKCcKrR7Bar0psg6YKr
+         vwbyfUZ3umuE0FpbctBsjJPj9E6n+Wiaf2khXBhWTMBYFRAq2AX7yqEyXhSKjNwCHA23
+         dwMS0JkfXcsaNKXS+a+tMDnMLVj2Hq3Ggx2bJitovy8u0/1a+61Hx7HYQd5lbJVd8q1P
+         Gj7LPXo2VLV1yKptzm9vtaUKpDyFm4A5fk0ukAcH5qNBmJlTlVi7rJHNomgD0eSGXBba
+         3V0A==
+X-Gm-Message-State: AFqh2kovFoESSxh6gKk+imS+kYOVtRmDSLYFtmz6Hj20GcEKDDa2Nomk
+        9N0A8G1KGUmZYvbUz60OiR+wHg==
+X-Google-Smtp-Source: AMrXdXsBM/+5SkTv2g2UOivb3O+hOArlgmPvXOxeIWL0XdAQwTEvZjoR3USSVK3GX7IJ5Jgc1VuWqA==
+X-Received: by 2002:a05:6512:31c5:b0:4a4:68b9:66f1 with SMTP id j5-20020a05651231c500b004a468b966f1mr8800288lfe.60.1672301061752;
+        Thu, 29 Dec 2022 00:04:21 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id t12-20020a056512208c00b004b551505c29sm2980736lfr.218.2022.12.29.00.04.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Dec 2022 00:04:21 -0800 (PST)
+Message-ID: <ba935a94-ccd6-e062-a9f4-2431cc69f097@linaro.org>
+Date:   Thu, 29 Dec 2022 09:04:19 +0100
 MIME-Version: 1.0
-References: <cover.1671688961.git.zhoubinbin@loongson.cn> <9d3e4997519fd9ecebae6fd241148cc22d3fe04f.1671688961.git.zhoubinbin@loongson.cn>
- <Y6tqPenv3NBEl9qD@smile.fi.intel.com>
-In-Reply-To: <Y6tqPenv3NBEl9qD@smile.fi.intel.com>
-From:   Binbin Zhou <zhoubb.aaron@gmail.com>
-Date:   Thu, 29 Dec 2022 15:31:47 +0800
-Message-ID: <CAMpQs4L-2stVQA43hd2Q-uR8fgekLZJmWzmBZvEDg1+AvT3uSQ@mail.gmail.com>
-Subject: Re: [PATCH V8 3/4] i2c: ls2x: Add driver for Loongson-2K/LS7A I2C controller
-To:     Andy Shevchenko <andy@kernel.org>
-Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Wolfram Sang <wsa@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
-        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>, Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 1/2] ASoC: mediatek: mt8186: support rt5682s_max98360
+To:     Jian Tong <tongjian@huaqin.corp-partner.google.com>
+Cc:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        perex@perex.cz, tiwai@suse.com,
+        angelogioacchino.delregno@collabora.com, nfraprado@collabora.com,
+        jiaxin.yu@mediatek.com, chunxu.li@mediatek.com,
+        ajye_huang@compal.corp-partner.google.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221228122230.3818533-1-tongjian@huaqin.corp-partner.google.com>
+ <20221228122230.3818533-2-tongjian@huaqin.corp-partner.google.com>
+ <cae5273e-aac5-0c4c-6686-fb2cbc5379e3@linaro.org>
+ <CAKKM_AVxcSW+ZaTbMuR-+=Fbkr64Arm2-3-MPWmoYV9Dpxkqdw@mail.gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAKKM_AVxcSW+ZaTbMuR-+=Fbkr64Arm2-3-MPWmoYV9Dpxkqdw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy:
+On 29/12/2022 02:57, Jian Tong wrote:
+> Hi,
+> Yes, this is my full name.
 
-Sorry for my late reply.
+Here you use different, so that's confusing...
 
-On Wed, Dec 28, 2022 at 5:57 AM Andy Shevchenko <andy@kernel.org> wrote:
->
-> On Fri, Dec 23, 2022 at 05:00:51PM +0800, Binbin Zhou wrote:
-> > This I2C module is integrated into the Loongson-2K SoCs and Loongson
-> > LS7A bridge chip.
->
-> ...
->
-> > +static int ls2x_i2c_xfer_one(struct ls2x_i2c_priv *priv,
-> > +                          struct i2c_msg *msg, bool stop)
-> > +{
-> > +     int ret;
-> > +     bool is_read = msg->flags & I2C_M_RD;
-> > +
-> > +     /* Contains steps to send start condition and address */
-> > +     ret = ls2x_i2c_start(priv, msg);
-> > +     if (!ret) {
-> > +             if (is_read)
-> > +                     ret = ls2x_i2c_rx(priv, msg->buf, msg->len);
-> > +             else
-> > +                     ret = ls2x_i2c_tx(priv, msg->buf, msg->len);
-> > +
-> > +             if (!ret && stop)
-> > +                     ret = ls2x_i2c_stop(priv);
-> > +     }
-> > +
-> > +     if (ret == -ENXIO)
-> > +             ls2x_i2c_stop(priv);
-> > +     else if (ret < 0)
-> > +             ls2x_i2c_init(priv);
-> > +
-> > +     return ret;
-> > +}
->
-> Still this code is odd from reader's perspective. It's in particular not clear
-> if the stop can be called twice in a row. I recommend to split it to two
+> 
+> Best regards,
+> tongjian
+> 
+> 
+> On Wed, Dec 28, 2022 at 8:37 PM Krzysztof Kozlowski <
+> krzysztof.kozlowski@linaro.org> wrote:
+> 
+>> On 28/12/2022 13:22, tongjian wrote:
+>>> Add support for using the rt5682s codec together with max98360a on
+>>> MT8186-MT6366-RT1019-RT5682S machines.
+>>>
+>>> Signed-off-by: tongjian <tongjian@huaqin.corp-partner.google.com>
+>>
+>> The author and SoB should be full name. Is this correct (full)
+>> transliteration of your name?
+>>
+>>
+>> Best regards,
+>> Krzysztof
+>>
+>>
+> 
 
-Sorry,
-Actually, I don't quite understand why you keep thinking that the stop
-can be called twice in a row.
+Best regards,
+Krzysztof
 
-As I said in my last email, the logic here should be:
-In the first case, stop is called when the last msg is transmitted successfully;
-In the second case, stop is called when there is a NOACK during the
-transmission;
-In the third case, init is called when other errors occur during the
-transmission, such as TIMEOUT.
-
-The key pointer is the stop function will only return a TIMEOUT error
-or 0 for success, so if the stop function above is failed, the stop
-function below will never be called twice.
-
-Anyway, I also admit that this part of the code may not be concise and
-clear enough, and I have tried the following changes:
-
-1. put the start function into the rx/tx function respectively. As followers:
-
-@@ -177,10 +177,16 @@ static int ls2x_i2c_start(struct ls2x_i2c_priv
-*priv, struct i2c_msg *msgs)
-        return ls2x_i2c_send_byte(priv, LS2X_CR_START | LS2X_CR_WRITE);
- }
-
--static int ls2x_i2c_rx(struct ls2x_i2c_priv *priv, u8 *buf, u16 len)
-+static int ls2x_i2c_rx(struct ls2x_i2c_priv *priv, struct i2c_msg *msg)
- {
-        int ret;
--       u8 rxdata;
-+       u8 rxdata, *buf = msg->buf;
-+       u16 len = msg->len;
-+
-+       /* Contains steps to send start condition and address */
-+       ret = ls2x_i2c_start(priv, msg);
-+       if (ret)
-+               return ret;
-
-        while (len--) {
-                ret = ls2x_i2c_xfer_byte(priv,
-@@ -195,9 +201,16 @@ static int ls2x_i2c_rx(struct ls2x_i2c_priv
-*priv, u8 *buf, u16 len)
-        return 0;
- }
-
--static int ls2x_i2c_tx(struct ls2x_i2c_priv *priv, u8 *buf, u16 len)
-+static int ls2x_i2c_tx(struct ls2x_i2c_priv *priv, struct i2c_msg *msg)
- {
-        int ret;
-+       u8 *buf = msg->buf;
-+       u16 len = msg->len;
-+
-+       /* Contains steps to send start condition and address */
-+       ret = ls2x_i2c_start(priv, msg);
-+       if (ret)
-+               return ret;
-
-        while (len--) {
-                writeb(*buf++, priv->base + I2C_LS2X_TXR);
-
-2. define the variable 'reinit' in the xfer_one function to mark the
-cases where reinit is needed. As follows:
-
-static int ls2x_i2c_xfer_one(struct ls2x_i2c_priv *priv,
-                             struct i2c_msg *msg, bool stop)
-{
-        int ret, ret2;
-        bool reinit = false;
-        bool is_read = msg->flags & I2C_M_RD;
-
-        if (is_read)
-                ret = ls2x_i2c_rx(priv, msg);
-        else
-                ret = ls2x_i2c_tx(priv, msg);
-
-        if (ret == -EAGAIN) /* could not acquire bus. bail out without STOP */
-                return ret;
-
-        if (ret == -ETIMEDOUT) {
-                /* Fatal error. Needs reinit. */
-                stop = false;
-                reinit = true;
-        }
-
-        if (stop) {
-                ret2 = ls2x_i2c_stop(priv);
-
-                if (ret2) {
-                        /* Failed to issue STOP. Needs reinit. */
-                        reinit = true;
-                        ret = ret ?: ret2;
-                }
-        }
-
-        if (reinit)
-                ls2x_i2c_init(priv);
-
-        return ret;
-}
-
-
-Do you think this is better?
-
-Thanks.
-
-Binbin
-
-
-
-> functions and then do something like
->
-> _read_one()
-> {
->         ret = start();
->         if (ret)
->                 goto _stop; // Do we really need this?
->
->                 ret = rx();
->                 if (ret)
->                         goto _stop; // Do we need this?
->
->                 /* By setting this call the stop */
->                 if (stop)
->                         ret = -ENXIO;
->
->         out_send_stop:
->                 if (ret == ...)
->                         return _stop();
->                 // I don't like above, so this error checking/setting parts
->                 // also can be rethought and refactored accordingly
->
->                 return ret;
-> }
->
->
->         if (is_read)
->                 ret = _read_one();
->         else
->                 ret = _write_one();
->
->         if (ret)
->                 _init();
->
->         return ret;
->
->
-
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
->
