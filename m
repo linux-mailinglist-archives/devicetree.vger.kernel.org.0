@@ -2,129 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D120658F20
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 17:39:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D01E6658F3E
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 17:51:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231324AbiL2Qjh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 11:39:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33830 "EHLO
+        id S229535AbiL2Qv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 11:51:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231207AbiL2Qjg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 11:39:36 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A85B213F96
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 08:39:34 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id cf42so28237112lfb.1
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 08:39:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=txhwA/ZUpFbIFup9wIuYZkJbnGVjKJ2jOcyXprhCmPo=;
-        b=dciD/Ycio+250FM8/AnXaPz7gWoiQnZOdqmXMoWmcp4LN7w7crY0b6I2jusEBfZXtb
-         ktw4vWgyJ5jgYO9TR6pKjLXzCcMFVGX1Ss5Y0tQvijj2VkDHekM0sIXS0NddjGSEuwEn
-         06nXyfTFWuMz94aVPy4D2FnFXUQY+k7dl7x9wbEjgrV7klfIGDflVhZQ9jBTK33he120
-         yUlrzN98WHnDpN/FwIIwwnBIk7LV2RjS3VAVYYf7JsleInUKpbjWIUn8cub29ioBxett
-         qlcnodjnJTOj3GDtc7dhrYVnQfreLB3buLsnAfcsqcykkTK9jOdnu0KyRslmdiXdApq+
-         14Bg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=txhwA/ZUpFbIFup9wIuYZkJbnGVjKJ2jOcyXprhCmPo=;
-        b=GycLAzbarD6lP8A8MpK12GFQPNEFOlMId69jRaervQLHuSrWNfxBcXAVFBh4ZO5y8+
-         ti18t4CvgF2kzwxSkQp/HXUplnOvGR5qzVZQUMB0RiiKnTKDuSBd+GVhKcvf2j/iDesA
-         zk/akjkh5TTpM53oGGR8vLDdxXl8TlnFcbna6S3cGGJRN9hpnm2E8VcbN6WBFc9h4ugi
-         HQonUTEpN6NXOMpcxoMK9OZmCEBLP/hdMqZPuHK/QwQWRAVDT+LAs3O6a9WEiLR4NHk6
-         9nzYzvG3Ysmh2/NlsE6FQ4YNbc6IVLxGnZZolBIyEYyJTtZsoSfTkRXYrTRQcLcxw+OZ
-         tdQw==
-X-Gm-Message-State: AFqh2krI15Kjjo6jt0zzrsCCWBqoKADALkLmKVgSHpyNtPX4yNgFbhuz
-        DnVnTkGrwguxKqEBSgpBQLlNcg==
-X-Google-Smtp-Source: AMrXdXvRaSHvaRVe+JHJaQXcOjSgEqHn7LvdZ9o/fNdzXysgRNxJg4InJ4AXNIgDCb7l0sIfT68vxA==
-X-Received: by 2002:a05:6512:529:b0:4cb:1438:12d6 with SMTP id o9-20020a056512052900b004cb143812d6mr2499958lfc.8.1672331972997;
-        Thu, 29 Dec 2022 08:39:32 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id c8-20020a056512324800b00499aefcf68esm3141911lfr.292.2022.12.29.08.39.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Dec 2022 08:39:32 -0800 (PST)
-Message-ID: <105cae8a-ba03-ea60-70f2-8a307a26ad14@linaro.org>
-Date:   Thu, 29 Dec 2022 17:39:30 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 3/3] dt-bindings: hwmon: Add bindings for max31732
-Content-Language: en-US
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Sinan Divarci <Sinan.Divarci@analog.com>, jdelvare@suse.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        with ESMTP id S230022AbiL2Qv0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 11:51:26 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A26ADF1A;
+        Thu, 29 Dec 2022 08:51:25 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3ABB66184A;
+        Thu, 29 Dec 2022 16:51:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D73CC433EF;
+        Thu, 29 Dec 2022 16:51:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1672332684;
+        bh=rXWUVU0CoyZ1qakTHHbRkRCXH6L/vHInrFwNMvYuoKo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qMoTmF8IlANG5ZCFExaEO2AC2Vr3ZlROU6txSnwhGAQR2gK7I2mColCcnixDQeEEe
+         hVPlDB0P2+spuVdAVMNaK1IAHNNniUdpn3PnkpsgAWj3qy8E2nob0Rn1/I7G8opfOW
+         ewC98Aac6U402TK/bW8lL5EchJTer7wCdEpt/xsdyBp98SIJC5mgxFdqiydvdwH3Mq
+         I37aDUIA0m4L1kl3WkwLeUWoAZGG7Ja7+dnpVzBI6gMQzZ4LEfdnu/l1QI8nXcJCog
+         hIEzMx/dsMYONLXh1BhwusXhE/6AN6RDqmnHaE3VnOOLdHKd1xKW+w7ShaKEh0yPdh
+         w39pgEPJt7zkA==
+Date:   Thu, 29 Dec 2022 10:51:22 -0600
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20221214142206.13288-1-Sinan.Divarci@analog.com>
- <20221214142206.13288-4-Sinan.Divarci@analog.com>
- <386e3717-a063-a2ea-6028-19d11b5838b0@linaro.org>
- <20221229155227.GA22937@roeck-us.net>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221229155227.GA22937@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Subject: Re: [PATCH] arm64: dts: qcom: sm8350: correct SDHCI interconnect
+ arguments
+Message-ID: <20221229165122.w3qg36yefyuzgpx6@builder.lan>
+References: <20221224214351.18215-1-krzysztof.kozlowski@linaro.org>
+ <9b17c480-db10-3e57-d071-8382e4989d1b@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9b17c480-db10-3e57-d071-8382e4989d1b@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/12/2022 16:52, Guenter Roeck wrote:
->>> +  adi,alarm1-interrupt-mode:
->>> +    description: |
->>> +      Enables the ALARM1 output to function in interrupt mode.
->>> +      Default ALARM1 output function is comparator mode.
->>
->> Why this is a property of DT/hardware? Don't encode policy in DT.
->>
+On Tue, Dec 27, 2022 at 12:17:22PM +0100, Konrad Dybcio wrote:
 > 
-> I would not call this "policy". Normally it is an implementation
-> question or decision, since interrupts behave differently depending
-> on the mode. Impact is difficult to see, though, since the chip
-> documentation is not available to the public.
+> 
+> On 24.12.2022 22:43, Krzysztof Kozlowski wrote:
+> > The interconnect providers accept only one argument (cells == 1), so fix
+> > a copy&paste from SM8450:
+> > 
+> >   sm8350-hdk.dtb: mmc@8804000: interconnects: [[74, 9, 0], [75, 1, 0], [76, 2, 0], [77, 36, 0]] is too long
+> > 
+> > Fixes: 60477435e4de ("arm64: dts: qcom: sm8350: Add SDHCI2")
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > 
+> > ---
+> This patch is correct, but if 8350 dts mdss [1] gets merged, it will become
+> unnecessary, as it changes icc-cells to 2. Apply with caution i guess :D
+> 
 
-Some more background would be useful here from the author...
+Seems reasonable to pick this fix for 6.2. Please help me remember to
+check that [1] gets this right...
+
+
+Thanks Krzysztof.
 
 > 
->>> +    type: boolean
->>> +
->>> +  adi,alarm2-interrupt-mode:
->>> +    description: |
->>> +      Enables the ALARM2 output to function in interrupt mode.
->>> +      Default ALARM2 output function is comparator mode.
->>
->> Same question.
->>
->>> +    type: boolean
->>> +
->>> +  adi,alarm1-fault-queue:
->>> +    description: The number of consecutive faults required to assert ALARM1.
->>
->> Same question - why this number differs with hardware?
->>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Thanks,
+Bjorn
+
 > 
-> Noisier hardware will require more samples to avoid spurious faults.
-> Trade-off is speed of reporting a fault. Normally the board designer
-> would determine a value which is low enough to avoid spurious faults.
+> Konrad
 > 
-> Note that the chip (according to patch 2/3) supports resistance
-> cancellation as well as beta compensation, which are also board specific.
-> I don't have access to the datasheet, so I don't know for sure if those
-> are configurable (typically they are). If they are configurable, I would
-> expect to see respective properties.
-
-If that's the argument behind property, then it's fine.
-
-Best regards,
-Krzysztof
-
+> [1] https://lore.kernel.org/linux-arm-msm/CAG3jFyuoXekXN48jAgXxLMy8yGAzK9oJH_1HHYAuRLBCzyordQ@mail.gmail.com/T/#mdd42dd600f0818ec103daa27c63add6700db86d3
+> > 
+> > Fix for v6.2-rc merge window.
+> > ---
+> >  arch/arm64/boot/dts/qcom/sm8350.dtsi | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> > index 4fc15cc69b8c..0726930c9e28 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> > @@ -2382,8 +2382,8 @@ sdhc_2: mmc@8804000 {
+> >  				 <&rpmhcc RPMH_CXO_CLK>;
+> >  			clock-names = "iface", "core", "xo";
+> >  			resets = <&gcc GCC_SDCC2_BCR>;
+> > -			interconnects = <&aggre2_noc MASTER_SDCC_2 0 &mc_virt SLAVE_EBI1 0>,
+> > -					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_SDCC_2 0>;
+> > +			interconnects = <&aggre2_noc MASTER_SDCC_2 &mc_virt SLAVE_EBI1>,
+> > +					<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_SDCC_2>;
+> >  			interconnect-names = "sdhc-ddr","cpu-sdhc";
+> >  			iommus = <&apps_smmu 0x4a0 0x0>;
+> >  			power-domains = <&rpmhpd SM8350_CX>;
