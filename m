@@ -2,109 +2,257 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 54577658DE8
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 15:30:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 98568658DF2
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 15:40:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231163AbiL2Oar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 09:30:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48114 "EHLO
+        id S233383AbiL2OkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 09:40:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231135AbiL2Oap (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 09:30:45 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FD41F7C
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 06:30:44 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id m6so17335270lfj.11
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 06:30:44 -0800 (PST)
+        with ESMTP id S229611AbiL2OkR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 09:40:17 -0500
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9A1C6555;
+        Thu, 29 Dec 2022 06:40:14 -0800 (PST)
+Received: by mail-ot1-x332.google.com with SMTP id p17-20020a9d6951000000b00678306ceb94so11570224oto.5;
+        Thu, 29 Dec 2022 06:40:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6LYwz1qn2s4qGACWQSbmDxApuR34DufDaU+RI2+KuWw=;
-        b=mj43JvvnNhnzPQWDcjUsze/7KP4my9MvlGNV/5XAq+lZG0jQoEUNa1pA7JHE887LQ6
-         pf/cjAsrruHdJmb8PF429FMp9YVt4537mCMyhs49NjPU5Y3oeOFCNqusuaNe9JK7Di/9
-         iVawCvmIfcTO1jVIzf2bP5ivo5+UqfbXroiuRi8jDlFBNLLQ+N0egPquQWpTKOxhfmUW
-         35quWEA1YohxXpwL8MfLWflaFu2jH2cOGgkzwIikOUf8ZXsG+Hs6+6qbIeGtX15DHB+D
-         DdRbFArJjxEiee6VKt3F8Chjjs2t1OBRMnE5g/3OCDsAvdesjJm4r8nw+bQB2JSf2Amf
-         FZ/A==
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=a/XGav2fVBrMMfQpmyYq7BMpz+OnssndpRxnYupnueU=;
+        b=AdJPo8vLnRuly1dfKC8NK6rj+69wFvWsRgK1CHo2eM6KQbkgBBUKgDa+HA7HgQjVLE
+         6LuNL5ZgyejnpJBKdb3ucTYkXps4mpwHFarRa/7dTDhp0lc2FUyazciXTnQ48hUcxrEn
+         fTZt9IkBJjmMwJqfLdZX8R9JPGombopx7ypyM253YhRn/+IlZsoItE+YvCWVK8PukJmf
+         ksj7/Z8XMRHl8EqmwzNAeBFzm1cvRz8lqmAMEM1wU56QN8jCDhyQberebavtENPARZkI
+         PsFrtau42cLMdwd3Ehf+RuuPz9T+ruzcyegELmiWOg2rKKfbn8yRb8a37gciIWZWjRiy
+         8rkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6LYwz1qn2s4qGACWQSbmDxApuR34DufDaU+RI2+KuWw=;
-        b=BOtewQcrfaM3n7EG+CtJGdRE/1QrI0UOy4szZ3ski3B5U3JtNhxn8fhVF2d9WbPupo
-         I+qdGOywS3TLe6w9uGR8D3+r5G5w5ZHt6uMmEFfYeUGzZQOS/Jc1QcpuZWSN/vzFuirD
-         mCEzxs8BopvMkkVClWdRkjEnFEsTdbk7uj6q2TexBDiRYMciSxMeSWATu+2oIziYBBQw
-         4qa5A7mWnL665Q2h2hdha72Hsi6ianI2uMKJldfk1eiyZkLUBTjYzYgFMOVvlRRVIbDQ
-         /VpLaQEiE8wZeARvkznfgcb6unhNKXdn/Br7n11HwZTPRwhn3XYmxLBCfr3nztAwie4X
-         5h1Q==
-X-Gm-Message-State: AFqh2kqRtmDE7qwDDWu8y6QDuNdeCaE+owAVMZ4HtRzavd1woHeL7oC7
-        6UsZsdl+rmI6Ei5Kl4Jdh8A8wQ==
-X-Google-Smtp-Source: AMrXdXu2zPB5WYahfzU5Fq/+bVmDyKwKnc/QAR56Pj2pBAq5GrS/LujfLws576bX6jz3LMymtbLfAQ==
-X-Received: by 2002:ac2:430c:0:b0:4cb:10ad:76bd with SMTP id l12-20020ac2430c000000b004cb10ad76bdmr2438382lfh.64.1672324242748;
-        Thu, 29 Dec 2022 06:30:42 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id d16-20020a193850000000b004cb14fa604csm844364lfj.262.2022.12.29.06.30.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Dec 2022 06:30:42 -0800 (PST)
-Message-ID: <8e4ec6b0-63cf-c086-c00e-5b4e8a2b2d25@linaro.org>
-Date:   Thu, 29 Dec 2022 15:30:40 +0100
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=a/XGav2fVBrMMfQpmyYq7BMpz+OnssndpRxnYupnueU=;
+        b=k+wua3fCnvYizgIo2emh1DaKchzpX7KKNvSODLLDTf8DCACXGvupzllFL5xq871O6l
+         DgnPpo8tIFi7azHkUzhb6R9po34dLGQQQ357M1YFodQKx7HMNJOA2YB5MkG4J8lnTqWT
+         57Ze8YJ8I1++EJiMRl13/GRBGrHElVCsAxVc/bJwUX7ynFSGGW9UFGe68I7KmEwTmesw
+         ztI/10bijdbikbgBiwanVErm9pwmrclJUXoFBcKmAA7Zy9ehxFSEFB+zJprgXv8PM2n4
+         BjMP3RuJzN8TNmfJhPKubLpBU/ljg4QJ4N0z8Tm3q5agH2W4QG85nn4n35R84Sbytizz
+         +QzA==
+X-Gm-Message-State: AFqh2koBaQVTMXH001jiZm1bkznqITX2p8dxnpdhk3njVfpJFFb5GKdb
+        m+HDdqixfXdIJsU9Ygv11KCDNwA1LmQ=
+X-Google-Smtp-Source: AMrXdXt9X/gPI2Xaz7I3GHM3wW4t6mk/eFPmGOU42r16earhKt0Cs6rBhsOR+7uHbk9gOpsGw58mOA==
+X-Received: by 2002:a9d:6007:0:b0:661:dfeb:ae15 with SMTP id h7-20020a9d6007000000b00661dfebae15mr13982072otj.12.1672324813886;
+        Thu, 29 Dec 2022 06:40:13 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id r26-20020a05683001da00b006706247fdbfsm9196714ota.23.2022.12.29.06.40.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Dec 2022 06:40:13 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Thu, 29 Dec 2022 06:40:12 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Naresh Solanki <naresh.solanki@9elements.com>
+Cc:     devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>
+Subject: Re: [PATCH RESEND v6 1/5] hwmon: (pmbus/core): Add interrupt support
+Message-ID: <20221229144012.GA21213@roeck-us.net>
+References: <20221214080715.2700442-1-Naresh.Solanki@9elements.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v3] dt-bindings: net: marvell,orion-mdio: Fix examples
-Content-Language: en-US
-To:     =?UTF-8?Q?Micha=c5=82_Grzelak?= <mig@semihalf.com>,
-        linux-kernel@vger.kernel.org
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, andrew@lunn.ch,
-        chris.packham@alliedtelesis.co.nz, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, upstream@semihalf.com, mw@semihalf.com,
-        mchl.grzlk@gmail.com
-References: <20221229142219.93427-1-mig@semihalf.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221229142219.93427-1-mig@semihalf.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221214080715.2700442-1-Naresh.Solanki@9elements.com>
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/12/2022 15:22, Michał Grzelak wrote:
-> As stated in marvell-orion-mdio.txt deleted in commit 0781434af811f
-> ("dt-bindings: net: orion-mdio: Convert to JSON schema") if
-> 'interrupts' property is present, width of 'reg' should be 0x84.
-> Otherwise, width of 'reg' should be 0x4. Fix 'examples:' and add
-> constraints checking whether 'interrupts' property is present
-> and validate it against fixed values in reg.
+On Wed, Dec 14, 2022 at 09:07:11AM +0100, Naresh Solanki wrote:
+> From: Patrick Rudolph <patrick.rudolph@9elements.com>
 > 
-> Signed-off-by: Michał Grzelak <mig@semihalf.com>
+> Implement PMBUS irq handler.
+> 
+> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
 
-This is a friendly reminder during the review process.
+$ scripts/checkpatch.pl --strict index.html
+CHECK: Blank lines aren't necessary after an open brace '{'
+#131: FILE: drivers/hwmon/pmbus/pmbus_core.c:3088:
++	for (i = 0; i < data->info->pages; i++) {
++
 
-It looks like you received a tag and forgot to add it.
+CHECK: Alignment should match open parenthesis
+#183: FILE: drivers/hwmon/pmbus/pmbus_core.c:3140:
++	ret = devm_request_threaded_irq(dev, client->irq, NULL, pmbus_fault_handler,
++			      0, "pmbus-irq", data);
 
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions. However, there's no need to repost patches *only* to add the
-tags. The upstream maintainer will do that for acks received on the
-version they apply.
+CHECK: Please use a blank line after function/struct/union/enum declarations
+#197: FILE: drivers/hwmon/pmbus/pmbus_core.c:3154:
+ }
++static int pmbus_irq_setup(struct i2c_client *client, struct pmbus_data *data)
 
-https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+total: 0 errors, 0 warnings, 3 checks, 109 lines checked
 
-If a tag was not added on purpose, please state why and what changed.
+NOTE: For some of the reported defects, checkpatch may be able to
+      mechanically convert to the typical style using --fix or --fix-inplace.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+index.html has style problems, please review.
 
-Best regards,
-Krzysztof
+Please run checkpatch --strict on your patches.
+Also see Documentation/hwmon/submitting-patches.rst.
 
+> ---
+>  drivers/hwmon/pmbus/pmbus.h      |  2 +-
+>  drivers/hwmon/pmbus/pmbus_core.c | 84 ++++++++++++++++++++++++++++++++
+>  2 files changed, 85 insertions(+), 1 deletion(-)
+> 
+> 
+> base-commit: 364ffd2537c44cb6914ff5669153f4a86fffad29
+> 
+> diff --git a/drivers/hwmon/pmbus/pmbus.h b/drivers/hwmon/pmbus/pmbus.h
+> index 10fb17879f8e..6b2e6cf93b19 100644
+> --- a/drivers/hwmon/pmbus/pmbus.h
+> +++ b/drivers/hwmon/pmbus/pmbus.h
+> @@ -26,7 +26,7 @@ enum pmbus_regs {
+>  
+>  	PMBUS_CAPABILITY		= 0x19,
+>  	PMBUS_QUERY			= 0x1A,
+> -
+> +	PMBUS_SMBALERT_MASK		= 0x1B,
+>  	PMBUS_VOUT_MODE			= 0x20,
+>  	PMBUS_VOUT_COMMAND		= 0x21,
+>  	PMBUS_VOUT_TRIM			= 0x22,
+> diff --git a/drivers/hwmon/pmbus/pmbus_core.c b/drivers/hwmon/pmbus/pmbus_core.c
+> index 95e95783972a..244fd2597252 100644
+> --- a/drivers/hwmon/pmbus/pmbus_core.c
+> +++ b/drivers/hwmon/pmbus/pmbus_core.c
+> @@ -3072,11 +3072,89 @@ static int pmbus_regulator_register(struct pmbus_data *data)
+>  
+>  	return 0;
+>  }
+> +
+> +static int pmbus_write_smbalert_mask(struct i2c_client *client, u8 page, u8 reg, u8 val)
+> +{
+> +	return pmbus_write_word_data(client, page, PMBUS_SMBALERT_MASK, reg | (val << 8));
+> +}
+> +
+> +static irqreturn_t pmbus_fault_handler(int irq, void *pdata)
+> +{
+> +	struct pmbus_data *data = pdata;
+> +	struct i2c_client *client = to_i2c_client(data->dev);
+> +	int i, status;
+> +
+> +	for (i = 0; i < data->info->pages; i++) {
+> +
+> +		mutex_lock(&data->update_lock);
+> +		status = pmbus_read_status_word(client, i);
+> +		if (status < 0) {
+> +			mutex_unlock(&data->update_lock);
+> +			return status;
+> +		}
+> +
+> +		if (status & ~(PB_STATUS_OFF | PB_STATUS_BUSY | PB_STATUS_POWER_GOOD_N))
+> +			pmbus_clear_fault_page(client, i);
+> +
+> +		mutex_unlock(&data->update_lock);
+> +	}
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int pmbus_irq_setup(struct i2c_client *client, struct pmbus_data *data)
+> +{
+> +	struct device *dev = &client->dev;
+> +	const struct pmbus_regulator_status_category *cat;
+> +	const struct pmbus_regulator_status_assoc *bit;
+> +	int i, j, err, ret, func;
+> +	u8 mask;
+> +
+> +	for (i = 0; i < data->info->pages; i++) {
+> +		func = data->info->func[i];
+> +
+> +		for (j = 0; j < ARRAY_SIZE(pmbus_regulator_flag_map); j++) {
+> +			cat = &pmbus_regulator_flag_map[j];
+> +			if (!(func & cat->func))
+> +				continue;
+> +			mask = 0;
+> +			for (bit = cat->bits; bit->pflag; bit++)
+> +				mask |= bit->pflag;
+> +
+> +			err = pmbus_write_smbalert_mask(client, i, cat->reg, ~mask);
+> +			if (err)
+> +				dev_err(dev, "Failed to set smbalert for reg 0x%02x\n",	cat->reg);
+
+This concerns me. It might mean that the chip does not support
+PMBUS_SMBALERT_MASK. If so, there would be lots of error messages.
+
+> +		}
+> +
+> +		pmbus_write_smbalert_mask(client, i, PMBUS_STATUS_CML, 0xff);
+> +		pmbus_write_smbalert_mask(client, i, PMBUS_STATUS_OTHER, 0xff);
+> +		pmbus_write_smbalert_mask(client, i, PMBUS_STATUS_MFR_SPECIFIC, 0xff);
+
+Why check the return value from pmbus_write_smbalert_mask above but not here ?
+
+> +		if (data->info->func[i] & PMBUS_HAVE_FAN12)
+> +			pmbus_write_smbalert_mask(client, i, PMBUS_STATUS_FAN_12, 0xff);
+> +		if (data->info->func[i] & PMBUS_HAVE_FAN34)
+> +			pmbus_write_smbalert_mask(client, i, PMBUS_STATUS_FAN_34, 0xff);
+> +	}
+> +
+> +	/* Register notifiers - can fail if IRQ is not given */
+
+The comment does not make sense. pmbus_irq_setup() is not called
+if the interrupt "is not given".
+
+> +	ret = devm_request_threaded_irq(dev, client->irq, NULL, pmbus_fault_handler,
+> +			      0, "pmbus-irq", data);
+> +	if (ret) {
+> +		dev_warn(dev, "IRQ disabled %d\n", ret);
+
+This is not a warning, it is an error.
+
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  #else
+
+This is still in regulator code. I said several times that this is not
+acceptable.
+
+>  static int pmbus_regulator_register(struct pmbus_data *data)
+>  {
+>  	return 0;
+>  }
+> +static int pmbus_irq_setup(struct i2c_client *client, struct pmbus_data *data)
+> +{
+> +	return 0;
+> +}
+>  #endif
+>  
+>  static struct dentry *pmbus_debugfs_dir;	/* pmbus debugfs directory */
+> @@ -3441,6 +3519,12 @@ int pmbus_do_probe(struct i2c_client *client, struct pmbus_driver_info *info)
+>  	if (ret)
+>  		return ret;
+>  
+> +	if (client->irq > 0) {
+> +		ret = pmbus_irq_setup(client, data);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+>  	ret = pmbus_init_debugfs(client, data);
+>  	if (ret)
+>  		dev_warn(dev, "Failed to register debugfs\n");
