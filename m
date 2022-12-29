@@ -2,100 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63BE2658C93
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 13:11:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4B0D658C74
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 12:59:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229669AbiL2MLm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 07:11:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56160 "EHLO
+        id S233151AbiL2L7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 06:59:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229611AbiL2MLl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 07:11:41 -0500
-X-Greylist: delayed 942 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 29 Dec 2022 04:11:40 PST
-Received: from m13122.mail.163.com (m13122.mail.163.com [220.181.13.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0ADE765AE;
-        Thu, 29 Dec 2022 04:11:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-        s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
-        Message-ID; bh=dVm2duRCYQpcLBg/h6h7ZaAY5XzexeXnERJ1uibrhjI=; b=f
-        XHvF1ImNoQ1/Tff3vBhJXjopdx2O2Pp84u3qUo6LNhtbwogjLUaa41+R8WmDKcak
-        7HaAyWNJgNlezFgo2j+sLnQPqRKER5MaMQQL0IOtHyNFOn8MTAI5EkEoG5CW7ZsS
-        vH0QgPBlVfulDIajUOOJYhsAGp3nyp30xN0Hfm1qNw=
-Received: from andyshrk$163.com ( [58.22.7.114] ) by ajax-webmail-wmsvr122
- (Coremail) ; Thu, 29 Dec 2022 19:55:32 +0800 (CST)
-X-Originating-IP: [58.22.7.114]
-Date:   Thu, 29 Dec 2022 19:55:32 +0800 (CST)
-From:   "Andy Yan" <andyshrk@163.com>
-To:     "Heiko Stuebner" <heiko@sntech.de>
-Cc:     krzysztof.kozlowski+dt@linaro.org, piotr.oniszczuk@gmail.com,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org
-Subject: Re:Re: [PATCH 2/2] arm64: dts: rockchip: Enable wifi module AP6398s
- for rk3566 box demo
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20220708(c4627114)
- Copyright (c) 2002-2022 www.mailtech.cn 163com
-In-Reply-To: <17226287.uLZWGnKmhe@phil>
-References: <20221225114915.3518502-1-andyshrk@163.com>
- <20221225114953.3518595-1-andyshrk@163.com> <17226287.uLZWGnKmhe@phil>
-X-NTES-SC: AL_QuycAP+au0Eo5CSeZOkZnEobh+Y5UcK2s/ki2YFXN5k0nSvC4DkcY3FzN2PEyuieIQq0vha7cgNw1N95QLZJcKXVjFLqKLEiWdP6kzd/LRYB
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+        with ESMTP id S229930AbiL2L7g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 06:59:36 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6969D13EB3
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 03:59:35 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id y25so27224391lfa.9
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 03:59:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gEsFbKUIu0XVvlqZcexvpdadohfi+18CrCsQnK6kHVo=;
+        b=pwLPTDeNfutcTpD97wfs9uklsc7z7CN5BJa9bHyW+Bj0FlXcZVAZjRRRyyGX7W3Aze
+         Pa133yepsSy643bjjEXJni7xZ2g3hoVJpqpmeQfC/A3on858EUETMzytPhywhUqjBnN1
+         Kk0rt+5yW7CRwGFydXMcK6UtJn2q/0y/R7pYuSGZRSoxzEzT0Coaq+UFYWKGT+j6nP4b
+         3sJE6ea4ipDvxT3rxxTY8UtoExGCHYHEL0VKyQPvFXL2d0rFYP+VWhtA+QBcka/Gsnfx
+         c0iYyHOzfD9qTbSuRuNOX8m8fMkbFRgJHEY7wl1IXGwell/ONuqwIq94Mer5SRi0CIrf
+         3Oog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gEsFbKUIu0XVvlqZcexvpdadohfi+18CrCsQnK6kHVo=;
+        b=ZPIfE3H5W8wVsPUp4Ja0H6mE0pFYcqYimS5Blzx63JRbFn17/L0YW3zw0k9VCGz/DE
+         39rFE4ubkjv6nDIbqwpAetR+Na9th590b0+SjRw9rL3ZH10f/bYaiafa1iKmis3gWBQN
+         w+bsh15B9GJ3InFyRvMelXg4dcUldKoQBXOhmSZpU7lb5CNCVgRUmoBdnwni6Z6JRcLX
+         ZwR8Qv+ygJUM0wdcJ5ABFHpLLmE2+jspplOgJzqZIeLuaq5NmIKulF1Kau1FADhITFjB
+         iv0H26EQU+QRw5Hs3YkyFlfxMCDiZ6Q3G7Qt48qhJWkTIa5hzdtTPiQSh5A5WPx1C84J
+         pK4A==
+X-Gm-Message-State: AFqh2kpuSGHsugiaVBj5aFR1JVHmqxajyowQEHZearrEM0H8KcF8XiTu
+        wPFcPVVy9u73mLBR5UMNJEsFBSM6ZKmjvxUZ2NI=
+X-Google-Smtp-Source: AMrXdXugQ6tsD415QdLyqJf7RmcCWDNO7Rfdbo/Hum7s+PEBIynbUG1Q1GCUFNzUKtcDximBmyiiqQ==
+X-Received: by 2002:a05:6512:3288:b0:4a4:68b7:f87a with SMTP id p8-20020a056512328800b004a468b7f87amr12419339lfe.30.1672315173741;
+        Thu, 29 Dec 2022 03:59:33 -0800 (PST)
+Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id n7-20020a05651203e700b0049464d89e40sm3006313lfq.72.2022.12.29.03.59.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Dec 2022 03:59:33 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v3 0/2] phy: qualcomm: pcie2: register as clock provider
+Date:   Thu, 29 Dec 2022 13:59:30 +0200
+Message-Id: <20221229115932.3312318-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Message-ID: <98e7c6a.2e9c.1855dbcccf1.Coremail.andyshrk@163.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID: esGowACnSCw0gK1jVYppAA--.8778W
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbivBnmXmASagkiyQABsm
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-CgoKSGkgSGVpa286CgoKCgoKCgoKCgoKQXQgMjAyMi0xMi0yOSAwMzoyMTozMiwgIkhlaWtvIFN0
-dWVibmVyIiA8aGVpa29Ac250ZWNoLmRlPiB3cm90ZToKPkhpIEFuZHksCj4KPkFtIFNvbm50YWcs
-IDI1LiBEZXplbWJlciAyMDIyLCAxMjo0OTo1MyBDRVQgc2NocmllYiBBbmR5IFlhbjoKPj4gVGhl
-cmUgaXMgYSBBUDYzOThzIHdpZmkvYnQgbW9kdWxlIG9uIHRoaXMgYm9hcmQuCj4+IEZpeCB0aGUg
-c2RtbWMxIGR0IG5vZGUgdG8gbWFrZSB3aWZpIHdvcmsuCj4+IAo+PiBGaXhlczogMmUwNTM3YjE2
-YjI1ICgiYXJtNjQ6IGR0czogcm9ja2NoaXA6IEFkZCBkdHMgZm9yIHJvY2tjaGlwIHJrMzU2NiBi
-b3ggZGVtbyBib2FyZCIpCj4+IAo+PiBTaWduZWQtb2ZmLWJ5OiBBbmR5IFlhbiA8YW5keXNocmtA
-MTYzLmNvbT4KPj4gLS0tCj4+IAo+PiAgLi4uL2Jvb3QvZHRzL3JvY2tjaGlwL3JrMzU2Ni1ib3gt
-ZGVtby5kdHMgICAgIHwgMjYgKysrKysrKysrKysrKysrKy0tLQo+PiAgMSBmaWxlIGNoYW5nZWQs
-IDIyIGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25zKC0pCj4+IAo+PiBkaWZmIC0tZ2l0IGEvYXJj
-aC9hcm02NC9ib290L2R0cy9yb2NrY2hpcC9yazM1NjYtYm94LWRlbW8uZHRzIGIvYXJjaC9hcm02
-NC9ib290L2R0cy9yb2NrY2hpcC9yazM1NjYtYm94LWRlbW8uZHRzCj4+IGluZGV4IGQ5NTY0OTZk
-NTIyMS4uNmMwYzI0MjI2YjUyIDEwMDY0NAo+PiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL3Jv
-Y2tjaGlwL3JrMzU2Ni1ib3gtZGVtby5kdHMKPj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9y
-b2NrY2hpcC9yazM1NjYtYm94LWRlbW8uZHRzCj4+IEBAIC0zMjQsOCArMzI0LDEyIEBAIHdpZmlf
-ZW5hYmxlX2g6IHdpZmktZW5hYmxlLWggewo+PiAgCQkJcm9ja2NoaXAscGlucyA9IDwyIFJLX1BC
-MSBSS19GVU5DX0dQSU8gJnBjZmdfcHVsbF9ub25lPjsKPj4gIAkJfTsKPj4gIAo+PiArCQl3aWZp
-X2hvc3Rfd2FrZV9oOiB3aWZpLWhvc3Qtd2FrZS1sIHsKPj4gKwkJCXJvY2tjaGlwLHBpbnMgPSA8
-MiBSS19QQjIgUktfRlVOQ19HUElPICZwY2ZnX3B1bGxfbm9uZT47Cj4+ICsJCX07Cj4+ICsKPj4g
-IAkJd2lmaV8zMms6IHdpZmktMzJrIHsKPj4gLQkJCXJvY2tjaGlwLHBpbnMgPSA8MCBSS19QQjAg
-MiAmcGNmZ19wdWxsX25vbmU+Owo+PiArCQkJcm9ja2NoaXAscGlucyA9IDwyIFJLX1BDNiAxICZw
-Y2ZnX3B1bGxfbm9uZT47Cj4+ICAJCX07Cj4+ICAJfTsKPj4gIAo+PiBAQCAtMzkxLDE2ICszOTUs
-MzAgQEAgJnNkbW1jMCB7Cj4+ICB9Owo+PiAgCj4+ICAmc2RtbWMxIHsKPj4gKwkvKiBXaUZpICYg
-QlQgY29tYm8gbW9kdWxlIEFNUEFLIEFQNjM5OFMgKi8KPj4gKwkjYWRkcmVzcy1jZWxscyA9IDwx
-PjsKPj4gKwkjc2l6ZS1jZWxscyA9IDwwPjsKPj4gIAlidXMtd2lkdGggPSA8ND47Cj4+ICsJY2xv
-Y2stZnJlcXVlbmN5ID0gPDE1MDAwMDAwMD47Cj4+ICsJY2FwLXNkaW8taXJxOwo+PiAgCWNhcC1z
-ZC1oaWdoc3BlZWQ7Cj4+IC0JZGlzYWJsZS13cDsKPj4gKwlzZC11aHMtc2RyMTA0Owo+PiArCWtl
-ZXAtcG93ZXItaW4tc3VzcGVuZDsKPj4gIAltbWMtcHdyc2VxID0gPCZzZGlvX3B3cnNlcT47Cj4+
-ICAJbm9uLXJlbW92YWJsZTsKPj4gIAlwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiOwo+PiAgCXBp
-bmN0cmwtMCA9IDwmc2RtbWMxX2J1czQgJnNkbW1jMV9jbWQgJnNkbW1jMV9jbGs+Owo+PiAtCXZt
-bWMtc3VwcGx5ID0gPCZ2Y2NfM3YzPjsKPj4gLQl2cW1tYy1zdXBwbHkgPSA8JnZjY2FfMXY4PjsK
-Pgo+d2h5IGFyZSB5b3UgcmVtb3ZpbmcgdGhlIG1tYy1zdXBwbGllcyBoZXJlPwo+VGhlIHN1cHBs
-aWVzIG5lZWRlZCBmb3IgbW1jIHRvIHdvcmsgc2hvdWxkIHZlcnkgbXVjaCBiZSBwcmVzZW50Cj5J
-IHRoaW5rLCBlc3BlY2lhbGx5IHRvIGFsc28gbWFrZSBzdXJlIHNvbWV0aGluZyBlbHNlIGRvZXNu
-J3QKPnR1cm4gdGhlbSBvZmYuCgpUaGFua3MgZm9yIGNhdGNoaW5nIHRoaXMsIEkgd2lsbCBmaXgg
-aXQgaW4gVjIuCgo+Cj5IZWlrbwo+Cj4+ICAJc3RhdHVzID0gIm9rYXkiOwo+PiArCj4+ICsJYnJj
-bWY6IHdpZmlAMSB7Cj4+ICsJCWNvbXBhdGlibGUgPSAiYnJjbSxiY200MzI5LWZtYWMiOwo+PiAr
-CQlyZWcgPSA8MT47Cj4+ICsJCWludGVycnVwdC1wYXJlbnQgPSA8JmdwaW8yPjsKPj4gKwkJaW50
-ZXJydXB0cyA9IDxSS19QQjIgR1BJT19BQ1RJVkVfSElHSD47Cj4+ICsJCWludGVycnVwdC1uYW1l
-cyA9ICJob3N0LXdha2UiOwo+PiArCQlwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiOwo+PiArCQlw
-aW5jdHJsLTAgPSA8JndpZmlfaG9zdF93YWtlX2g+Owo+PiArCX07Cj4+ICB9Owo+PiAgCj4+ICAm
-c3BkaWYgewo+PiAKPgo+Cj4K
+On Qualcomm QCS404 platform the PCIe2 PHY provides PIPE clock to the gcc
+(Global Clock Controller). Register the PHY as clock provider.
+
+Changes since v2:
+- Removed extra empty line in the schema (Krzysztof),
+- Dropped dtsi patch accepted by Bjorn.
+
+Changes since v1:
+- Dropped 'phandle to' from supply descriptions in schema (Krzysztof),
+- Reordered clock-related property definitions in schema as suggested by
+  Krzysztof,
+- Dropped extra empty line at the end of the schema (reported by
+  Krzysztof).
+
+Dmitry Baryshkov (2):
+  dt-bindings: phy: qcom,pcie2-phy: convert to YAML format
+  phy: qualcomm: pcie2: register as clock provider
+
+ .../bindings/phy/qcom,pcie2-phy.yaml          | 86 +++++++++++++++++++
+ .../bindings/phy/qcom-pcie2-phy.txt           | 42 ---------
+ drivers/phy/qualcomm/phy-qcom-pcie2.c         |  6 +-
+ 3 files changed, 91 insertions(+), 43 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,pcie2-phy.yaml
+ delete mode 100644 Documentation/devicetree/bindings/phy/qcom-pcie2-phy.txt
+
+-- 
+2.39.0
+
