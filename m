@@ -2,72 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 470E9658C4F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 12:39:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8501F658C52
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 12:41:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233148AbiL2Ljc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 06:39:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47242 "EHLO
+        id S229611AbiL2LlI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 06:41:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233151AbiL2LjW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 06:39:22 -0500
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C71B13E9B;
-        Thu, 29 Dec 2022 03:39:21 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id z11so10493633ede.1;
-        Thu, 29 Dec 2022 03:39:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZL7W0UbK/uwHhrL/ebbYLl16dFNUQnqpqk5DlrkcofQ=;
-        b=XZebkHQJ416b2bVgOIpHp7OjUe+l5KMCIwXfMscGFBwoNs4j4l32Jrbn64AgdoaKq3
-         eFwp5ruKCymbMl4iHGbjt7ZXCZlJkRwMKoETrNz77eX670EGUDPV1qg8mOzLTl4W8KzN
-         gRHxEacLvb0dGJZGd8nlhzlLvohACE2GeQj/CKmRFWDug9fkVV1GI6G4Dd6ZPJUTgwBX
-         8kIyQS4FNd6Qail9uIbTpfhf0rBoaK1poKfC2To12ARZAvYLBDPdjfetv50kXBInudH4
-         ZxQrQKLJioMFOTe4eWEyAj+mvbMunSRGNUyrZhApDj1E1omytLGjg+70ejvgUP1GoG1B
-         b0iw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ZL7W0UbK/uwHhrL/ebbYLl16dFNUQnqpqk5DlrkcofQ=;
-        b=bWkGqh51u/dLLBNANViz3Ol9fKhSeAazzp534ZwLtVPVcjN1xcvx9QHhDTOjlekfbF
-         RIAKnw/jQi4MuswpZnqvoa5zpS/gbKuv1wlCWMke1UC9rNwi6s4/gsW2DFc+e1hV5VDF
-         LuBiuIg4B84rDy/BIQlCN0cHPS7oGFi6NqegfyjJbRbwVKxQzvHFS2awzsLVje5I6ERF
-         zxkZatxBJAklIPNeR676liE9Va2Dr1viiy0Hp9qjTLdwuIshKcsUTuPnc/ihNeToLNg6
-         PmGem/PU//6Aqe86W/YXUzkxKsYcxkKpcWDhIIqZRPTnIgQ7obcdyht46ius3+wolTu+
-         bo4A==
-X-Gm-Message-State: AFqh2kq1heE0cJkmsBaeOUF77ujbsPOpxTbHkzXuPq83UendZQsSwxeX
-        NWDLZ0BrRJtQG8QTrKD1ueJ8J0XrWSw=
-X-Google-Smtp-Source: AMrXdXvpRLDZqD2mcnt2ORSXZKriqyX1MovkfFzEg33cDv6OGKF42t7q6lJRk0KCvZs3N4kx+yTweQ==
-X-Received: by 2002:aa7:c516:0:b0:485:48ed:b1f3 with SMTP id o22-20020aa7c516000000b0048548edb1f3mr10954209edq.26.1672313959810;
-        Thu, 29 Dec 2022 03:39:19 -0800 (PST)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id r28-20020a056402035c00b0045b4b67156fsm8161374edw.45.2022.12.29.03.39.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Dec 2022 03:39:19 -0800 (PST)
-Message-ID: <99794484-d67e-ee1f-4e76-200de20a879c@gmail.com>
-Date:   Thu, 29 Dec 2022 12:39:17 +0100
+        with ESMTP id S229871AbiL2LlH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 06:41:07 -0500
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74FE6EE2B;
+        Thu, 29 Dec 2022 03:41:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1672314066; x=1703850066;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=oeDbj0ZIAbnEAMYuTDE6Q/zKo/muKo1PNiMLz3nWAeY=;
+  b=KD+lrPt/NcRcZ6/8xtlfKCQccqpsG4rV7HDX7IvitcUa+tV2wu4XQmUE
+   5bie8qWl7kDww6KUrVvsoP6DxzxmJlhW4e/CQz9m9dpZIGo2eSNshod3C
+   2xNSQ5ztSHzREg7xGZagifBAYaYztuWsGF98VBuAiWwi9xQy9ZyCP3N/c
+   ktbgCaCxXZRJ1FR0Liexw3GvaIRiaz6xA3jSgR5sCUVYLTHkBan2s6sMS
+   l+FQIhx4DzJMlxjiaqAuFmQsmwS2huTw3g0NLKqjU1Ir5z2kpckVzvFec
+   7KKDE30cYyELMmyIolBss0439sVEZ1I58n1g+nohYnlrK3LHX+tk/d1N7
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10574"; a="301396004"
+X-IronPort-AV: E=Sophos;i="5.96,283,1665471600"; 
+   d="scan'208";a="301396004"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Dec 2022 03:40:54 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10574"; a="603607003"
+X-IronPort-AV: E=Sophos;i="5.96,283,1665471600"; 
+   d="scan'208";a="603607003"
+Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.252.63.128])
+  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Dec 2022 03:40:51 -0800
+Message-ID: <36cea7c5-75bb-8382-7f76-fcd36a9b482d@intel.com>
+Date:   Thu, 29 Dec 2022 13:40:46 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-From:   Johan Jonker <jbx6244@gmail.com>
-Subject: [PATCH v1] dt-bindings: phy: rename phy-rockchip-inno-usb2.yaml
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-phy@lists.infradead.org,
-        vkoul@kernel.org, kishon@kernel.org
+ Firefox/102.0 Thunderbird/102.6.1
+Subject: Re: [PATCH v2 1/8] mmc: sdhci-pxav2: add initial support for PXA168
+ V1 controller
 Content-Language: en-US
+To:     Doug Brown <doug@schmorgal.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Ulf Hansson <ulf.hansson@linaro.org>
+References: <20221202031330.94130-1-doug@schmorgal.com>
+ <20221202031330.94130-2-doug@schmorgal.com>
+ <c2d5fb16-2654-6406-63da-626d6d5029c3@intel.com>
+ <beda0a3a-05d9-6c24-0fd2-1d80a86beb6d@schmorgal.com>
+From:   Adrian Hunter <adrian.hunter@intel.com>
+Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
+ Business Identity Code: 0357606 - 4, Domiciled in Helsinki
+In-Reply-To: <beda0a3a-05d9-6c24-0fd2-1d80a86beb6d@schmorgal.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,49 +70,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rename phy-rockchip-inno-usb2.yaml to a more common format of
-rockchip,inno-usb2phy.yaml
+On 26/12/22 22:35, Doug Brown wrote:
+> Hi Adrian,
+> 
+> On 12/22/2022 8:03 AM, Adrian Hunter wrote:
+>> On 2/12/22 05:13, Doug Brown wrote:
+>>> Add a new compatible string for the version 1 controller used in the
+>>> PXA168, along with necessary quirks. Use a separate ops struct in
+>>> preparation for a silicon bug workaround only necessary on V1.
+>>>
+>>> Signed-off-by: Doug Brown <doug@schmorgal.com>
+>>> ---
+>>>   drivers/mmc/host/sdhci-pxav2.c | 18 +++++++++++++++++-
+>>>   1 file changed, 17 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/mmc/host/sdhci-pxav2.c b/drivers/mmc/host/sdhci-pxav2.c
+>>> index f18906b5575f..2f9fa0ecbddd 100644
+>>> --- a/drivers/mmc/host/sdhci-pxav2.c
+>>> +++ b/drivers/mmc/host/sdhci-pxav2.c
+>>> @@ -101,6 +101,14 @@ static void pxav2_mmc_set_bus_width(struct sdhci_host *host, int width)
+>>>       writeb(ctrl, host->ioaddr + SDHCI_HOST_CONTROL);
+>>>   }
+>>>   +static const struct sdhci_ops pxav1_sdhci_ops = {
+>>> +    .set_clock     = sdhci_set_clock,
+>>> +    .get_max_clock = sdhci_pltfm_clk_get_max_clock,
+>>> +    .set_bus_width = pxav2_mmc_set_bus_width,
+>>> +    .reset         = pxav2_reset,
+>>> +    .set_uhs_signaling = sdhci_set_uhs_signaling,
+>>> +};
+>>> +
+>>>   static const struct sdhci_ops pxav2_sdhci_ops = {
+>>>       .set_clock     = sdhci_set_clock,
+>>>       .get_max_clock = sdhci_pltfm_clk_get_max_clock,
+>>> @@ -114,6 +122,9 @@ static const struct of_device_id sdhci_pxav2_of_match[] = {
+>>>       {
+>>>           .compatible = "mrvl,pxav2-mmc",
+>>>       },
+>>> +    {
+>>> +        .compatible = "mrvl,pxav1-mmc",
+>>> +    },
+>>>       {},
+>>>   };
+>>>   MODULE_DEVICE_TABLE(of, sdhci_pxav2_of_match);
+>>> @@ -208,7 +219,12 @@ static int sdhci_pxav2_probe(struct platform_device *pdev)
+>>>               host->mmc->pm_caps |= pdata->pm_caps;
+>>>       }
+>>>   -    host->ops = &pxav2_sdhci_ops;
+>>> +    if (match && of_device_is_compatible(dev->of_node, "mrvl,pxav1-mmc")) {
+>>> +        host->quirks |= SDHCI_QUIRK_NO_BUSY_IRQ | SDHCI_QUIRK_32BIT_DMA_SIZE;
+>>> +        host->ops = &pxav1_sdhci_ops;
+>>> +    } else {
+>>> +        host->ops = &pxav2_sdhci_ops;
+>>> +    }
+>>
+>> It would be better to put the information above in a structure and
+>> get it with of_device_get_match_data() (instead of of_match_device).
+>> Also drivers typically assume there is always a match since that
+>> is the only way the driver ->probe() will get run.
+> 
+> Thanks for all of your great feedback on this series. That makes sense.
+> I did have one question about this suggestion. There are other parts of
+> sdhci_pxav2_probe() that don't assume there was a match so that it can
+> be set up the old way as a platform_device without CONFIG_OF. I was
+> trying to preserve compatibility by defaulting to pxav2_sdhci_ops if
+> it was set up as a platform_device. Is it all right if I leave a
+> fallback in place for that, or should I just end compatibility with the
+> old way at this point and assume a match in all cases? I don't see any
+> legacy board files that use this driver.
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
+I didn't think about matching by name.  As you say, there doesn't seem
+to be anything in mainline.  I will leave it to you to decide.
 
-Apply after:
-  dt-bindings: soc: rockchip: grf: add rockchip,rk3288-dp-phy.yaml
----
- .../{phy-rockchip-inno-usb2.yaml => rockchip,inno-usb2phy.yaml} | 2 +-
- Documentation/devicetree/bindings/soc/rockchip/grf.yaml         | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
- rename Documentation/devicetree/bindings/phy/{phy-rockchip-inno-usb2.yaml => rockchip,inno-usb2phy.yaml} (98%)
-
-diff --git a/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
-similarity index 98%
-rename from Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
-rename to Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
-index f71920082..0d6b8c28b 100644
---- a/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
-+++ b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/phy/phy-rockchip-inno-usb2.yaml#
-+$id: http://devicetree.org/schemas/phy/rockchip,inno-usb2phy.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
-
- title: Rockchip USB2.0 phy with inno IP block
-diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-index 8dc141410..39d8c3b5d 100644
---- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-+++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-@@ -192,7 +192,7 @@ allOf:
-       patternProperties:
-         "usb2phy@[0-9a-f]+$":
-           type: object
--          $ref: /schemas/phy/phy-rockchip-inno-usb2.yaml#
-+          $ref: /schemas/phy/rockchip,inno-usb2phy.yaml#
-           unevaluatedProperties: false
-
-   - if:
---
-2.20.1
+> 
+>>
+>>>         ret = sdhci_add_host(host);
+>>>       if (ret)
+>>
+> 
+> Thanks,
+> Doug
 
