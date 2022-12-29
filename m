@@ -2,95 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D044659242
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 22:41:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FFFB659295
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 23:45:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229693AbiL2Vlj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 16:41:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45988 "EHLO
+        id S229794AbiL2Wpx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 17:45:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230155AbiL2Vli (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 16:41:38 -0500
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D7F310046;
-        Thu, 29 Dec 2022 13:41:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1672350091;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=FCYu/+2jwjS7Uakcb1o/IFHjx95os9NV5cCdt0qqmk8=;
-    b=KHZEnWSD93VHbRpn+w8cWpmVwvFEi0phNEmA+U/yDBBm/sFOOw9waFX5bRGoUBykfJ
-    ZYy018apK3SS3Vv75pqE5DPIBwwuexceGl1dT9EM0qFuR3rD3x0xR1FoJLvFe5wDRHDX
-    KWwki68lyyzmD+w2h3WsFXDbsE4D01P9TGyzVekZHg7SBuBUkLd3BY2QvwkMpgBPWhUR
-    k0tsy4hDeBCzondU4TAfqAgLji187irI5e1jAHFcpenKmspGKb0r3OTdFdCP30WGQiWP
-    lHX3HstFw5DcblnKS6JqpLhH4MiKfQf96qIb3WnTzqF2irDAi5dHaED0tpgrUsdXsb63
-    XDPw==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJAhdlWyvDI"
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 48.2.1 DYNA|AUTH)
-    with ESMTPSA id Yce349yBTLfTXsA
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Thu, 29 Dec 2022 22:41:29 +0100 (CET)
-Date:   Thu, 29 Dec 2022 22:41:22 +0100
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     agross@kernel.org, andersson@kernel.org, vkoul@kernel.org,
-        kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] phy: qcom-usb-hs: Add qcom,dp-manual-pullup logic
-Message-ID: <Y64Jgu2o6aJV4ggk@gerhold.net>
-References: <20221229183410.683584-1-bryan.odonoghue@linaro.org>
- <20221229183410.683584-3-bryan.odonoghue@linaro.org>
- <Y63uSgMdP4m6nvhL@gerhold.net>
- <Y64AfHcUw192Pyr6@gerhold.net>
- <6061938c-b830-2fe0-2f4d-368e34c33676@linaro.org>
- <Y64CaOzWZXERrvkz@gerhold.net>
- <cdcef656-1ae7-fe8a-a4dd-3547d6395b33@linaro.org>
+        with ESMTP id S229537AbiL2Wpw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 17:45:52 -0500
+Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FC87C66;
+        Thu, 29 Dec 2022 14:45:51 -0800 (PST)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.west.internal (Postfix) with ESMTP id 2AE7C3200583;
+        Thu, 29 Dec 2022 17:45:50 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Thu, 29 Dec 2022 17:45:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
+        :message-id:mime-version:reply-to:sender:subject:subject:to:to;
+         s=fm3; t=1672353949; x=1672440349; bh=/PKHe3zt/KewFuduOYX4v7Y/1
+        VdJEV6pvckvKTHr4GM=; b=VLmOJmaJJIiJP0vuks/1uFzKAYjgTkV1mkNosSZW6
+        /5LD4FBO6nQG51Kn/vUSSU4nnWA7LuL8LeZFsaoQQ56P1HLtXCsqNfb8Xi1x0iWY
+        gANdB/rto338hbLcWgpcZ9i5U6TuDqqowo3irBacO8Nc0+wKdkwbHsNb7mL7RvF6
+        VRmol8Qs8Gu26oBshyYkm8wVrq0mvodO45dLKA0pYxlK4hndatqMJ9okKxqJ2YOg
+        s9HCSswhTaW0Km2+WM38ueEbFfA9+8UmPWbxn7bUj6vEfH+++ug13tC+d9l5BtQI
+        ufckLyVUgjt8dVkxsZm5dOJQVVXUG7pOnLPHzmanXJ2ng==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:message-id
+        :mime-version:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
+        1672353949; x=1672440349; bh=/PKHe3zt/KewFuduOYX4v7Y/1VdJEV6pvck
+        vKTHr4GM=; b=uC9ST3Dr6I/PU9Y2BLqYCTdiCkq6vh5PdeG0nLoHEzk0lLXaqY2
+        dDgXFqhbF/fXmHDOQWfltcCosbg67EcYehzlNxcHy2sn4rkRCqBydL/hCB1tMr27
+        W6mWnFYjDv/GZYjyveH8f4qJOyUFVAgC+CUXbY0JO1YjV+AZxt0p7jszG7t5squx
+        Jlzu3x/ApuW0lpFlxVYvG9eO3EEsIw4H0EuP1r9jNNZRiJHHK+pt8bhsBurIjyzl
+        gcBfDXWRKjvn43hseROI1H31VgtuJ+YtJ8duPHuBPJcQlMQi363FrvaOQ1/wvACI
+        /z7aHaXcTzDg9MSnYx6cWbKPT4REdBtrMNA==
+X-ME-Sender: <xms:nRiuY4c4cmwqVNmh-LL2LlBDzOEsPHZE1s59pLeB_ZXqPpg8odJEYA>
+    <xme:nRiuY6N31UHoFKEmDgi5niFT8GjQlFzEImG0d1WA0VlpagLQ7LPXS1Q3p84ubO4Lx
+    OLm5vH55DUtJdCOqA>
+X-ME-Received: <xmr:nRiuY5i6BG0Von58tbOAFwggT-5r1vzwePa5K9lkY0PAVGhhpoWRhpXv0M_5F-jvLjbvm66X4c6U-7Lg-AuE4GiYdzerKutDDu8dEMrhX-ss1IFXU8kUQhhO9kQuXsZrpgphgg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrieehgddtvdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvfevufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgvlhcu
+    jfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtffrrg
+    htthgvrhhnpedthfefheegleelfeduhffgvdevhfejkeevhfevuefghfefhffgffeihedt
+    lefgieenucffohhmrghinheplhhinhhugidqshhunhigihdrohhrghenucevlhhushhtvg
+    hrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhl
+    lhgrnhgurdhorhhg
+X-ME-Proxy: <xmx:nRiuY99uq8MWuuLcFxwIdoocdNsGufWywe1T9nuAVIZjyWfcoNMFRQ>
+    <xmx:nRiuY0tTcilbxn2ORleGJ2Be8AL7xXDMdfDqXosz7Lja_rxWIv1VnA>
+    <xmx:nRiuY0F1jbCLIxo5pcp848ebJJBL2OPd7UA9ltiFp0eRgUZrPurExg>
+    <xmx:nRiuY58waKqFImkTNdPVGBSVAdexbacYCqio1aFuv93IxbXbi8PZ9g>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 29 Dec 2022 17:45:48 -0500 (EST)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Samuel Holland <samuel@sholland.org>
+Subject: [PATCH 0/2] iNet U70B Rev 01 Tablet Support
+Date:   Thu, 29 Dec 2022 16:45:45 -0600
+Message-Id: <20221229224547.25225-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.37.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <cdcef656-1ae7-fe8a-a4dd-3547d6395b33@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,URIBL_BLACK autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 29, 2022 at 09:20:03PM +0000, Bryan O'Donoghue wrote:
-> On 29/12/2022 21:11, Stephan Gerhold wrote:
-> > Then it doesn't seem to be a particularly complete schematic. 😄
-> > PM8916 definitely has USB_IN pads (pad # N13, P13). 😄
-> 
-> Let me check again.
-> 
-> No sorry USB_IN_0 and USB_IN_1 are connected to +5V in my schematic, I did
-> check USB_IN I just forgot why it wasn't usable... +5v not VBUS is what its
-> connected to.
-> 
+This series adds a binding and devicetree for yet another A33-based
+tablet board. The devicetree currently fails validation because I have
+no idea what compatible string to use for the DPI panel. Neither the
+hardware nor the software provide any clues about a manufacturer or
+model -- the driver used by the vendor Android is called "default_lcd".
 
-That is still good enough to replace qcom,dp-manual-pullup though.
+Link: https://linux-sunxi.org/Inet_U70B
 
-If you have +5V connected to USB_IN then &pm8916_usbin should report
-active VBUS permanently. Set it as extcon for &usb and &usb_hs_phy and
-you should have VBUSVLDEXT "pulled-up" like in your patch here, without
-any driver changes. :-)
 
-It's a bit of a hack of course, which probably deserves a comment in the
-device tree. But since it should not make any functional difference
-compared to this patch the approach might be easier than getting this
-patch finalized & accepted.
+Samuel Holland (2):
+  dt-bindings: arm: sunxi: Add iNet U70B Rev 01 Tablet
+  ARM: dts: sun8i: A33: Add iNet U70B Rev 01
 
-I leave that up to you :)
+ .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../boot/dts/sun8i-a33-inet-u70b-rev01.dts    | 172 ++++++++++++++++++
+ 3 files changed, 178 insertions(+)
+ create mode 100644 arch/arm/boot/dts/sun8i-a33-inet-u70b-rev01.dts
 
-Stephan
+-- 
+2.37.4
+
