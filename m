@@ -2,123 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89061658ECE
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 17:12:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D120658F20
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 17:39:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233693AbiL2QMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 11:12:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51032 "EHLO
+        id S231324AbiL2Qjh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 11:39:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231217AbiL2QMx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 11:12:53 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A605FF0;
-        Thu, 29 Dec 2022 08:12:53 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9AABA6183D;
-        Thu, 29 Dec 2022 16:12:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EE60C433F0;
-        Thu, 29 Dec 2022 16:12:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672330372;
-        bh=1FBrD6XHPFiM6g/S/VhHmBUtyYNpfvk6206YTBkt7w8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=q131yO/zv6p1g6U2mU9idvwcbdySugYey845zHfH6jwVsd8IPXO4vQrzm1K4h1EJj
-         rlxP9tKe3/ejHQrxsqhv/GhtgiWSoP6MmWnW8Ow4v1HCm6AgLah9zTpQit0UjO0bJU
-         ceSwQQWClkT/eb3jq2Jwk5YiQ9GCA18sObq5WU/tmSmVGBMWtnQdRjM63frJ8lguv/
-         O7ufGJLxx0ZfeILrkidSLMOhjPZ7/kHL5woC59gBHlNwSIcqDjIWKp075EMWs4Mbjk
-         TYTB71xXqacRWGGoOIg08f9nc0ckd9FV+mlnXXt+ngaQxL/V9DBV6slbNDYcrHAokm
-         WqURj/aty78kg==
-Date:   Thu, 29 Dec 2022 10:12:49 -0600
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        marijn.suijten@somainline.org, Vinod Koul <vkoul@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/7] arm64: dts: qcom: sm8450: add spmi node
-Message-ID: <20221229161249.34jgdev2446rdxkf@builder.lan>
-References: <20221229103212.984324-1-konrad.dybcio@linaro.org>
- <7b32e414-96a9-7265-efee-f872badb32b2@linaro.org>
- <71d7a162-569d-1443-9e53-3ba374d06ccd@linaro.org>
- <ee24809b-cf9b-c555-9c30-956949be25a4@linaro.org>
+        with ESMTP id S231207AbiL2Qjg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 11:39:36 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A85B213F96
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 08:39:34 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id cf42so28237112lfb.1
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 08:39:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=txhwA/ZUpFbIFup9wIuYZkJbnGVjKJ2jOcyXprhCmPo=;
+        b=dciD/Ycio+250FM8/AnXaPz7gWoiQnZOdqmXMoWmcp4LN7w7crY0b6I2jusEBfZXtb
+         ktw4vWgyJ5jgYO9TR6pKjLXzCcMFVGX1Ss5Y0tQvijj2VkDHekM0sIXS0NddjGSEuwEn
+         06nXyfTFWuMz94aVPy4D2FnFXUQY+k7dl7x9wbEjgrV7klfIGDflVhZQ9jBTK33he120
+         yUlrzN98WHnDpN/FwIIwwnBIk7LV2RjS3VAVYYf7JsleInUKpbjWIUn8cub29ioBxett
+         qlcnodjnJTOj3GDtc7dhrYVnQfreLB3buLsnAfcsqcykkTK9jOdnu0KyRslmdiXdApq+
+         14Bg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=txhwA/ZUpFbIFup9wIuYZkJbnGVjKJ2jOcyXprhCmPo=;
+        b=GycLAzbarD6lP8A8MpK12GFQPNEFOlMId69jRaervQLHuSrWNfxBcXAVFBh4ZO5y8+
+         ti18t4CvgF2kzwxSkQp/HXUplnOvGR5qzVZQUMB0RiiKnTKDuSBd+GVhKcvf2j/iDesA
+         zk/akjkh5TTpM53oGGR8vLDdxXl8TlnFcbna6S3cGGJRN9hpnm2E8VcbN6WBFc9h4ugi
+         HQonUTEpN6NXOMpcxoMK9OZmCEBLP/hdMqZPuHK/QwQWRAVDT+LAs3O6a9WEiLR4NHk6
+         9nzYzvG3Ysmh2/NlsE6FQ4YNbc6IVLxGnZZolBIyEYyJTtZsoSfTkRXYrTRQcLcxw+OZ
+         tdQw==
+X-Gm-Message-State: AFqh2krI15Kjjo6jt0zzrsCCWBqoKADALkLmKVgSHpyNtPX4yNgFbhuz
+        DnVnTkGrwguxKqEBSgpBQLlNcg==
+X-Google-Smtp-Source: AMrXdXvRaSHvaRVe+JHJaQXcOjSgEqHn7LvdZ9o/fNdzXysgRNxJg4InJ4AXNIgDCb7l0sIfT68vxA==
+X-Received: by 2002:a05:6512:529:b0:4cb:1438:12d6 with SMTP id o9-20020a056512052900b004cb143812d6mr2499958lfc.8.1672331972997;
+        Thu, 29 Dec 2022 08:39:32 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id c8-20020a056512324800b00499aefcf68esm3141911lfr.292.2022.12.29.08.39.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Dec 2022 08:39:32 -0800 (PST)
+Message-ID: <105cae8a-ba03-ea60-70f2-8a307a26ad14@linaro.org>
+Date:   Thu, 29 Dec 2022 17:39:30 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ee24809b-cf9b-c555-9c30-956949be25a4@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2 3/3] dt-bindings: hwmon: Add bindings for max31732
+Content-Language: en-US
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Sinan Divarci <Sinan.Divarci@analog.com>, jdelvare@suse.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221214142206.13288-1-Sinan.Divarci@analog.com>
+ <20221214142206.13288-4-Sinan.Divarci@analog.com>
+ <386e3717-a063-a2ea-6028-19d11b5838b0@linaro.org>
+ <20221229155227.GA22937@roeck-us.net>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221229155227.GA22937@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 29, 2022 at 11:57:58AM +0100, Krzysztof Kozlowski wrote:
-> On 29/12/2022 11:45, Konrad Dybcio wrote:
-> > 
-> > 
-> > On 29.12.2022 11:42, Krzysztof Kozlowski wrote:
-> >> On 29/12/2022 11:32, Konrad Dybcio wrote:
-> >>> From: Vinod Koul <vkoul@kernel.org>
-> >>>
-> >>> Add the spmi bus as found in the SM8450 SoC
-> >>>
-> >>> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> >>> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> >>> [Konrad: 0x0 -> 0, move #cells down, make reg-names a vertical list]
-> >>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> >>> ---
-> >>> v1 -> v2:
-> >>> No changes
-> >>>
-> >>>  arch/arm64/boot/dts/qcom/sm8450.dtsi | 22 ++++++++++++++++++++++
-> >>>  1 file changed, 22 insertions(+)
-> >>>
-> >>> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> >>> index 570475040d95..b9b59c5223eb 100644
-> >>> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> >>> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> >>> @@ -2715,6 +2715,28 @@ aoss_qmp: power-controller@c300000 {
-> >>>  			#clock-cells = <0>;
-> >>>  		};
-> >>>  
-> >>> +		spmi_bus: spmi@c42d000 {
-> >>
-> >> Hmm looks different than reg.
-> >>
-> >>> +			compatible = "qcom,spmi-pmic-arb";
-> >>> +			reg = <0 0x0c400000 0 0x00003000>,
-> >>> +			      <0 0x0c500000 0 0x00400000>,
-> >>> +			      <0 0x0c440000 0 0x00080000>,
-> >>> +			      <0 0x0c4c0000 0 0x00010000>,
-> >>> +			      <0 0x0c42d000 0 0x00010000>;
-> >> x
-> > Hm, my guess would be that Vinod chose to put the "cnfg" reg
-> > instead of "core" in the unit address, as 8450 has 2 SPMI bus
-> > hosts and they both share the core reg, so it would have been
-> > impossible to have two spmi@core nodes..
+On 29/12/2022 16:52, Guenter Roeck wrote:
+>>> +  adi,alarm1-interrupt-mode:
+>>> +    description: |
+>>> +      Enables the ALARM1 output to function in interrupt mode.
+>>> +      Default ALARM1 output function is comparator mode.
+>>
+>> Why this is a property of DT/hardware? Don't encode policy in DT.
+>>
 > 
-> Eh? SM8450 has 2 SPMI hosts both using 0x0c400000? How does that work?
-> Usually address can be mapped only once.
-> 
+> I would not call this "policy". Normally it is an implementation
+> question or decision, since interrupts behave differently depending
+> on the mode. Impact is difficult to see, though, since the chip
+> documentation is not available to the public.
 
-The SPMI controller does something like multi-master. The driver expects
-the same region to be mapped multiple times and qcom,channel is used to
-select which one each instance should operate on.
+Some more background would be useful here from the author...
 
-Regards,
-Bjorn
+> 
+>>> +    type: boolean
+>>> +
+>>> +  adi,alarm2-interrupt-mode:
+>>> +    description: |
+>>> +      Enables the ALARM2 output to function in interrupt mode.
+>>> +      Default ALARM2 output function is comparator mode.
+>>
+>> Same question.
+>>
+>>> +    type: boolean
+>>> +
+>>> +  adi,alarm1-fault-queue:
+>>> +    description: The number of consecutive faults required to assert ALARM1.
+>>
+>> Same question - why this number differs with hardware?
+>>
+> 
+> Noisier hardware will require more samples to avoid spurious faults.
+> Trade-off is speed of reporting a fault. Normally the board designer
+> would determine a value which is low enough to avoid spurious faults.
+> 
+> Note that the chip (according to patch 2/3) supports resistance
+> cancellation as well as beta compensation, which are also board specific.
+> I don't have access to the datasheet, so I don't know for sure if those
+> are configurable (typically they are). If they are configurable, I would
+> expect to see respective properties.
 
-> Where is the second SPMI? I cannot find it in linux-next.
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+If that's the argument behind property, then it's fine.
+
+Best regards,
+Krzysztof
+
