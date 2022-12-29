@@ -2,78 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EED865885C
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 02:32:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73F63658860
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 02:35:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230469AbiL2Bca (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 20:32:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34776 "EHLO
+        id S231956AbiL2Bfh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 20:35:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229716AbiL2Bca (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 20:32:30 -0500
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 922B010B56;
-        Wed, 28 Dec 2022 17:32:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=wFEk/iA1Bc8CnhqgYSVgaN6BA6Rzt62Yam9vSIo8sOo=; b=hr
-        HVMsYaNFJPBAuXoUwdUWyibrAQ3REPBAUF4rnqyNCD+xF8dFOQkRgUaaXJx6/VZHR0UOfSbIBX1D6
-        lUeH7IOfip9xQeN2cs5B8WSHy0bVup+/W0OkFqQ4BQxgbSfB0bVXtZknAi3gn7eOwEsRWQ87OQp3b
-        TyeE83eTKjLo2nw=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1pAhmQ-000g6A-DP; Thu, 29 Dec 2022 02:32:22 +0100
-Date:   Thu, 29 Dec 2022 02:32:22 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     =?utf-8?Q?Micha=C5=82?= Grzelak <mig@semihalf.com>
-Cc:     linux-kernel@vger.kernel.org, sebastian.hesselbarth@gmail.com,
-        gregory.clement@bootlin.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        mw@semihalf.com, upstream@semihalf.com, mchl.grzlk@gmail.com
-Subject: Re: [PATCH v2] ARM: dts: dove.dtsi: Move ethphy to fix schema error
-Message-ID: <Y6zuJrb+8j+XCksN@lunn.ch>
-References: <20221228200234.86391-1-mig@semihalf.com>
+        with ESMTP id S230419AbiL2Bfg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 20:35:36 -0500
+Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com [IPv6:2001:4860:4864:20::30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBFC6101E3
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 17:35:34 -0800 (PST)
+Received: by mail-oa1-x30.google.com with SMTP id 586e51a60fabf-142b72a728fso20332896fac.9
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 17:35:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=GSGVEBKAIlZ/VnnDwbHEfeqaFj6W4dYVfJZG8J1vDEo=;
+        b=gsovTz3yzb1pKKs0dp289XjkaJot2Z40OSbWPF2alhZHXfW++J5gfpK/oO9oqRSEwq
+         gy+ZHb0kLlJeq3lwip/JbZW51xKV6WHIqFcRMLCTJBLOWg0AcMH8pua1smaY5X/auMKw
+         4tda35LCLWxbv6U7m2HJY7+Y142RGe7W3bdRbqpTdmoLIWMORkj3hATr7Z1DZpWqeijc
+         7rgK/OJue/1jwA2047Xf4/YXLAFey+WkMLdWqO/slCMnjQehHux8uTbKNkSCEkVOJpYE
+         /MVLjWkYYfJqMNmZ+Wp/c7DDMtmi42RoH0brk40ndz37MzngbuKkeytx/ybor/xqWFcz
+         absQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GSGVEBKAIlZ/VnnDwbHEfeqaFj6W4dYVfJZG8J1vDEo=;
+        b=2XPdsjV9XgX3DS2PKYXr1+U4QfGPrmzaQ3AkXJwE3/fg3owb7Td1f1HDMFQKzntiPK
+         HZvnLZtEU2e23l3oCw5OGCuy9yMih2zPZlLohccEtiNn/57TkZSZPtmEW9foZ1APi+Zi
+         0e1NeSpp0DZlWjJJTZFd4p1w+3qIE6kF2vGaxoeU69sJ9vgSlLoQNyoNibDtiyY1CsFy
+         WX4FQkvtyGVOCRlhGsuNdb1j4cVULyB1tBalNbz0u3IxdMkYNVs+NiwVNZXNBgJzfCkm
+         Yt29rrIEawARyzM9rug3Jyvh3FRdtwFGPpvszflKZ65iGgdcGq5WcZs28I7dMAq6mav/
+         UmkA==
+X-Gm-Message-State: AFqh2kr5NslKGduR2pbXS8VolksGF8Y/g66bh10wt5134Wb/EVWKLfGn
+        c/6yp7myTNyEoshQQ6E5yzDB/xXiRF46MDaKErG6EQ==
+X-Google-Smtp-Source: AMrXdXvMwXPYtYQv54THgA1W7w60L7MLGAdEz2x/u+WyEhE+Cwj1ntLWJ1S9Qxazr8++Wnd8vJezQiZLoOp7G5hQ4Uw=
+X-Received: by 2002:a05:6870:6c0b:b0:13b:96fc:18c1 with SMTP id
+ na11-20020a0568706c0b00b0013b96fc18c1mr1778248oab.291.1672277733910; Wed, 28
+ Dec 2022 17:35:33 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221228200234.86391-1-mig@semihalf.com>
+References: <20221216230852.21691-1-quic_molvera@quicinc.com>
+In-Reply-To: <20221216230852.21691-1-quic_molvera@quicinc.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 29 Dec 2022 02:37:28 +0100
+Message-ID: <CACRpkdbbFetp0rmOx3k4kaQvFZJWNQGeW+VC_ry3pRcEiDSOfg@mail.gmail.com>
+Subject: Re: [PATCH v5 0/2] Add pinctrl support for QDU1000/QRU1000 SoCs
+To:     Melody Olvera <quic_molvera@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 28, 2022 at 09:02:34PM +0100, Michał Grzelak wrote:
-> Running 'make dtbs_check' with schema in net/marvell,orion-mdio.yaml
-> gives the following warnings:
-> mdio-bus@72004: Unevaluated properties are not allowed
-> ('ethernet-phy' was unexpected)
-> 	arch/arm/boot/dts/dove-cubox.dtb
-> 	arch/arm/boot/dts/dove-cubox-es.dtb
-> 	arch/arm/boot/dts/dove-d2plug.dtb
-> 	arch/arm/boot/dts/dove-d2plug.dtb
-> 	arch/arm/boot/dts/dove-dove-db.dtb
-> 	arch/arm/boot/dts/dove-d3plug.dtb
-> 	arch/arm/boot/dts/dove-sbc-a510.dtb
-> Fix them by removing empty ethphy subnode from dove.dtsi and describe
-> PHY on the relevant board .dts files level.
+On Sat, Dec 17, 2022 at 12:09 AM Melody Olvera <quic_molvera@quicinc.com> wrote:
 
-I don't think your description is correct. What i think is causing the
-problem is that the ethphy subnode in dove.dtsi does not have an @X.
+> This patchset adds pinctrl support for the Qualcomm QDU1000 and QRU1000
+> SoCs.
 
-By moving it into the .dts file, you can then give it the correct @1,
-or @3, which makes the linter happy. The kernel itself does not care
-about this, it is an example of the linter being much more strict than
-the kernel.
+Patches applied!
 
-If you agree with me, please update the description.
-
-   Andrew
+Yours,
+Linus Walleij
