@@ -2,112 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C7DD6589B7
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 07:30:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDFC76589F9
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 08:32:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233055AbiL2Ga6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 01:30:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37782 "EHLO
+        id S233041AbiL2HcJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 02:32:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233022AbiL2Gat (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 01:30:49 -0500
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2041.outbound.protection.outlook.com [40.107.20.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FD47D90;
-        Wed, 28 Dec 2022 22:30:44 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BEd1dHCl1yNp3EzVJoGdioTs74YSlOPdfldLbcggjFwxAyVqPzS1/9Mr64yVdtG/4gjm2LfPID2BeN+aFh30D7nrN7AeTaAogujeFTmRhf0E61+PnfHr++jSJVB+7Vx5WVjquHYKC3DGY1QgGWKZT+29OjnyR1rJEPu2KJhgmDjCVhYi7DF75e/yFwjWTyEvmvIvsPDFfx4e+KXM5776K92uiPHZtbfsKgF/aPStus2l/cSIO1V6zx7lod0b8irmGFnkIvXKR8DGxqVwIWJ45QYCr+OuC/AiVG2yE4YXA4iD7lL3yHEmd7yL05MdLWsDR4V2l1MZ09XFQjv7GMDeBg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jfqqfKq+p5L47STbaiUShceGluBUv/TPjceQ6WfftIM=;
- b=kydmW3ZBJaWd+xvRWgXuKL6q0/b3M3zsvZGfEl4/+9emuNuuCAv8p/1L2Fcv0Mi/pNZZ/+pQE5hw5l5/Fpso0ozilvfgw9iDh9QOOnKjFuFVOnn5MtroAZ6sZ2gu86mHEc9fbnoeeZpzmJ6TPqKdipfv+WqI7BwGlwuJBY2qXAIumf5KjE3ap/b9ywRkJwDQHe0Wqv6DMSbrqYXxKdbLy7dZBbOQPErJTWhqpggoO83VNPzPybiL4DstBV9SjuLD3qwDTgsF8J2oOdekfxBdH7ydXzmWj04jGo/PcqyfS+poTn4nXaePB6s0pD/tFQGR1xOgtNlDrd6lAdGTJuYD2Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jfqqfKq+p5L47STbaiUShceGluBUv/TPjceQ6WfftIM=;
- b=QxsFXlnozdgYE1p4XmVKn8783+vx3jNXL7f3ZyE1lrW9anYOYoBt2CTmud1bX+5OVYEjjrVEU3yzIDod/WkIoFRkUiZwAtfB7dJxN6xJRyn+hnPPJ1u2XDNFJMIoreRwycL1wHx6GVaXG0gDZISynkH122aXCd4S4SGCXapiPcE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM0PR04MB4211.eurprd04.prod.outlook.com (2603:10a6:208:5b::30)
- by DU2PR04MB9193.eurprd04.prod.outlook.com (2603:10a6:10:2f8::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.16; Thu, 29 Dec
- 2022 06:30:42 +0000
-Received: from AM0PR04MB4211.eurprd04.prod.outlook.com
- ([fe80::c1e7:eafb:408c:6ae5]) by AM0PR04MB4211.eurprd04.prod.outlook.com
- ([fe80::c1e7:eafb:408c:6ae5%4]) with mapi id 15.20.5944.016; Thu, 29 Dec 2022
- 06:30:42 +0000
-From:   Chancel Liu <chancel.liu@nxp.com>
-To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shengjiu.wang@gmail.com,
-        Xiubo.Lee@gmail.com, festevam@gmail.com, nicoleotsuka@gmail.com,
-        perex@perex.cz, tiwai@suse.com, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org
-Cc:     Chancel Liu <chancel.liu@nxp.com>
-Subject: [PATCH v2 3/3] ASoC: fsl_xcvr: Add constraints of period size while using eDMA
-Date:   Thu, 29 Dec 2022 14:30:09 +0800
-Message-Id: <20221229063009.2396716-4-chancel.liu@nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221229063009.2396716-1-chancel.liu@nxp.com>
-References: <20221229063009.2396716-1-chancel.liu@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR02CA0017.apcprd02.prod.outlook.com
- (2603:1096:3:17::29) To AM0PR04MB4211.eurprd04.prod.outlook.com
- (2603:10a6:208:5b::30)
+        with ESMTP id S233044AbiL2HcF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 02:32:05 -0500
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E2C212A90;
+        Wed, 28 Dec 2022 23:32:03 -0800 (PST)
+Received: by mail-ej1-x62f.google.com with SMTP id tz12so43255097ejc.9;
+        Wed, 28 Dec 2022 23:32:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=tFzVpEFAc7K+Vt+oAjXGPFPLJF61ACW2fyTFNlsKf0w=;
+        b=GwKY9Vy9sER0WOm+SjW90uwpKfh5LPZ+ULB2fosmyTL9xnj6xJDYo3Zdhik4NDjwZ5
+         +nKwD0el2fc/0dcQPjQIlzhLK9Ey9NUubJ9RqoKpsfzukNtS3q0uV3diCUCBydHqqcA6
+         J4Uq2kpaz52U2YzMemOrFSWxZiiKNJoMZaaAH2lxtieozQ1FF8VqnPNsIEEwBnxHjcZy
+         zNTybIwDWHA5UpY/yZZOGwnN0vD2i0olP/kNShfS67q1O3n8eYRuRyZzroN84lXEqS1U
+         iDHCgqgNoGizsLXwJ+Bv8hkq6qvFvu9N+pihET0xOpZYXTi3SgPqn2B1251dUO0xR1nh
+         1W+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tFzVpEFAc7K+Vt+oAjXGPFPLJF61ACW2fyTFNlsKf0w=;
+        b=jKF3GcazAoyBannsU2Wq6ZUOir/7EyhdXZ1ultm8Gv7kKDLnJaxO+OsCg/PZ31E36J
+         9zMt4xFfsADRddLj67Uxl7N3Wa+H8DOF8xp6Acd60rXQ7dB6CGHZ7eB5rmC7JNr7Hsp/
+         U8puKQk23+Ly6H07h7TpHdJFn1wt3HB2tJR6xXiKzeylguvU0c04Ywsr7onEfOQ/9MqE
+         GLAXszEEfqZ8V74k/CTexYHhGVbpzmQo5DpiIT7/sBl4aQ2DvLpnuoqtLD0ptsB/yaqO
+         eLkmT3gwkXvTzQklH+rUKZBMnXjeCHpnlNlqI0I/De9nPvGsMBRMKF2Og2VhQ4tjvORB
+         IzJA==
+X-Gm-Message-State: AFqh2koWJtC1fjzmcKbrJgo5D1p1BjY+7Iqm+fCSL2XU+vUcdWtm545n
+        JqXVyuOP+oSLps8RvPqOQLHWBvyhlKV3Att0jWQ=
+X-Google-Smtp-Source: AMrXdXswgwmT56brOvP2/gqW8vL3NYl6Aj4vIsHtgapQzQrY8gMW/G9Kxo/Q5qIUOjqUMjvRfcvP1FpZEy0yBdsYdT0=
+X-Received: by 2002:a17:907:a510:b0:7c0:e060:e819 with SMTP id
+ vr16-20020a170907a51000b007c0e060e819mr3590920ejc.763.1672299121891; Wed, 28
+ Dec 2022 23:32:01 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0PR04MB4211:EE_|DU2PR04MB9193:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5bf28895-f001-4487-2b87-08dae9663551
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ItHFV4CRocwZ2OYoA3PtprqWOYuVZuFkjUOr+NU7PS82gb4abM5+nZNBdwdExL3hrnunIJOyl03uxjlPlS/Fla2yy2KYFCmgbjFZfsZH7l+gAQ3LpvVogneGmBvB8A6E080dmjiuZdBmuPrepnfNV/29VKKnwM3T0N27phpGeRctPvVNxE/QVJTUZEmIoWak5Ce343AORTP/UeCgS8DIrrMwg1VMNJVu/9kxYdhhMnCATpjwnrCkrpMd8+z25moGWhM7y0JN1gpLF+gAJ+kUi35FPRaed2Xt1WXl3QNhEr/cglEw4JpiLXNB1wG80zrKGlnlB8Mj+LVY35FOBnSQGXMsSuSw3iviVd2fS6/uCYeuMtpBAInWRF/rllvCFLg+5PNOmjm8a764hv+bP5gTBWwZI6nVCVwM9REbQG/VuidS9vKGg7KzbLULqlHYtjS3shlI3r85gOqivMi6Ly0jqJdFisnvQ/If/f6OKf+WpJMEGICIQHt9KddZBFYNzvQKvjC3owiHucrLvAQ6/4U/tiU+KK0WEMzx4uSqaOh/GRrCW2bcH4k/2QPZTxtrH1kwVFWiH+yzsoEKxJP8IKdg7IOoOF2IkMeTno/SFxJ8K3RR/lw2jjBU0Il1g40o7oP/VJpw+AJmFPKBHoKeNlxJOM/tg4WUuWA8qOS9W3VjoL7g2QygqhzuPQLNcEjnpE2+2wx6+xr4jgipTgm+1tMdZA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB4211.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(39860400002)(346002)(136003)(396003)(376002)(451199015)(8936002)(8676002)(66556008)(66476007)(66946007)(4326008)(44832011)(316002)(2906002)(7416002)(38350700002)(86362001)(6486002)(52116002)(478600001)(36756003)(6666004)(5660300002)(2616005)(38100700002)(6512007)(186003)(26005)(6506007)(921005)(41300700001)(1076003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?XwUyp0vqZUecVTL1foS7FPM/iTV60IVyOl7UepDfdMHU7A4b50tg2JAI648Q?=
- =?us-ascii?Q?28M0nWa5s4e8RBGBq6jmd7WtOvqh5iKc1+PiGBWpixvDDdZNlHa8+9jonT1E?=
- =?us-ascii?Q?/RPyDE5kOW8W+kU6LYJXj3mW6lBVtAMsFCa0JhNMa0sAw/sz2u0J7Zenx3FZ?=
- =?us-ascii?Q?SgOD1vvobSG6+RQ0d1XmHfZA+8M6ELjyfKb1Bs7SjuyLaIzfqNDEJph1lPqV?=
- =?us-ascii?Q?sL/KcxrMgAHqyJBx55o8Aa7+wo32L/NujSdobdZIvBnwCjtErrhPv1lvC3Qc?=
- =?us-ascii?Q?VJmTM2MUjdBi3yqrCPqwhSIP9BcS/vg3YHmnQKBMsj8KoozKi/Jm9bQJMERR?=
- =?us-ascii?Q?8nWZVIfuwAnBGmv9aINMqSWYmmDOjxk79Vt5N59aIt/kxKHVsDq9M4voCL25?=
- =?us-ascii?Q?P084/yzZpnO2y5EMBI+onUgNE3pIFUnj6SXC2aVFPWQiaf9EL/atkph5Qa19?=
- =?us-ascii?Q?dBXsJQJPy2rvrIRN/l502La6qDGlxg5WAFguyLT8ltMQ0GWuwe+QWKmy8csw?=
- =?us-ascii?Q?Y8G+g/NWqlP5JHq8WKdUoV3+0B2/dItiPEyMmjkNymjknw/Kc2Z7Bhe581ld?=
- =?us-ascii?Q?lNJ6Thxy1C0m214EHZ5+gDkrHjYiwpV9ThlurbT9fGBEMbt08buSA7KqiBS/?=
- =?us-ascii?Q?NFs5vLiLNw5tQz/XJaVF+756YTL6tA6IfjufX0jwZJUYclPF7t1Wq3qQeLNa?=
- =?us-ascii?Q?vV7DXiBLQbBTKVgbU1xVAmzwoRyv3+S5lHhkbQaOJi2UIJhz7oz/s+wlvEl+?=
- =?us-ascii?Q?iSKs+qrYy84Z68ts1BB/08UIlXaA7Ua8CDyBuNVT/qjQabGXb79fpy53+BS/?=
- =?us-ascii?Q?YGPaXTp7A/XSDwXecBMBC/GgdHuaLEbFrCtAfs7AAqjcONlyxpqbltik6A+X?=
- =?us-ascii?Q?HqWASGjXF+nWxN9LxwuFgZuF5+ZHszkGllloOZ5sqZIPq4sRQWA3U+MqWYD+?=
- =?us-ascii?Q?2fsuJk8PAw3zyBRzJ8DBb/nE6Dac8Nhx4LeWv+qZ5LxHxYRCFL1H56Zi7nDV?=
- =?us-ascii?Q?dMPcwKqfjo6hGw0Pb/fBPqvVnqNlqBz5nEXJAch7XQCgDHdk9L2OGcVMRK9w?=
- =?us-ascii?Q?fvWHMCw15wIZWos4yOD/x/a95zPdWR6suXIn3FtD1wtTWFpf6xNmRIKnmuJO?=
- =?us-ascii?Q?G+T3dkLu+StC9XVOXqQF0RxPuw5S1cUz6o6876gPAYq+eNXwC/OPihS4yng8?=
- =?us-ascii?Q?V9OQnrjEn5q5A477fc1G+V6bsIJXwHviT+xILPI3XEszvxryjseLHeKCSD5K?=
- =?us-ascii?Q?LxFBiMvAiWtyobijnKXkiZGvcGjcjdBUAtOWx2ge7iP2byL/I6veIFQGS4ZM?=
- =?us-ascii?Q?rojO6jZb/GltEPUgyXn9wzCnpzOEZz/0mKL8IZ7FdcuW0UcN+Fa8XO2sZMJI?=
- =?us-ascii?Q?qTOiac+9j6mt4Bftrv7ThLVm50kMaQ1E3ruQy+5CHX78KIOIBYHN0G10YzL2?=
- =?us-ascii?Q?hn7RKa9Vbnco42dUptVuE4jqsZoGxncf0E2qH83xRVRJdoYcuQc3mPz2/ONF?=
- =?us-ascii?Q?0JgzCdbgckntsc1oMw6dnrqZ+Bgg4pfSbWzi2gyWgtZpdWDLAvrozgZb6Gvn?=
- =?us-ascii?Q?6QJN/b7HwmkTA/RMSLmmrECRWc6xC2fjPGVO9wN2?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5bf28895-f001-4487-2b87-08dae9663551
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB4211.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Dec 2022 06:30:42.0387
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /8x5LKoU0BhMZPe7iiNk8id7cGhETF1PWL2sJ6pTl93qnSccilwX14vSfL8qiwUOl+Ja+INSsKHuSiB3s79slg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB9193
+References: <cover.1671688961.git.zhoubinbin@loongson.cn> <9d3e4997519fd9ecebae6fd241148cc22d3fe04f.1671688961.git.zhoubinbin@loongson.cn>
+ <Y6tqPenv3NBEl9qD@smile.fi.intel.com>
+In-Reply-To: <Y6tqPenv3NBEl9qD@smile.fi.intel.com>
+From:   Binbin Zhou <zhoubb.aaron@gmail.com>
+Date:   Thu, 29 Dec 2022 15:31:47 +0800
+Message-ID: <CAMpQs4L-2stVQA43hd2Q-uR8fgekLZJmWzmBZvEDg1+AvT3uSQ@mail.gmail.com>
+Subject: Re: [PATCH V8 3/4] i2c: ls2x: Add driver for Loongson-2K/LS7A I2C controller
+To:     Andy Shevchenko <andy@kernel.org>
+Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Wolfram Sang <wsa@kernel.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
+        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
+        WANG Xuerui <kernel@xen0n.name>, Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jianmin Lv <lvjianmin@loongson.cn>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -115,51 +75,197 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-eDMA on i.MX93 platform requires the period size to be multiple of
-maxburst.
+Hi Andy:
 
-Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
----
- sound/soc/fsl/fsl_xcvr.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Sorry for my late reply.
 
-diff --git a/sound/soc/fsl/fsl_xcvr.c b/sound/soc/fsl/fsl_xcvr.c
-index b794158a7876..2a78243df752 100644
---- a/sound/soc/fsl/fsl_xcvr.c
-+++ b/sound/soc/fsl/fsl_xcvr.c
-@@ -22,6 +22,7 @@
- struct fsl_xcvr_soc_data {
- 	const char *fw_name;
- 	bool spdif_only;
-+	bool use_edma;
- };
- 
- struct fsl_xcvr {
-@@ -538,6 +539,16 @@ static int fsl_xcvr_startup(struct snd_pcm_substream *substream,
- 		return -EBUSY;
- 	}
- 
-+	/*
-+	 * EDMA controller needs period size to be a multiple of
-+	 * tx/rx maxburst
-+	 */
-+	if (xcvr->soc_data->use_edma)
-+		snd_pcm_hw_constraint_step(substream->runtime, 0,
-+					   SNDRV_PCM_HW_PARAM_PERIOD_SIZE,
-+					   tx ? xcvr->dma_prms_tx.maxburst :
-+					   xcvr->dma_prms_rx.maxburst);
+On Wed, Dec 28, 2022 at 5:57 AM Andy Shevchenko <andy@kernel.org> wrote:
+>
+> On Fri, Dec 23, 2022 at 05:00:51PM +0800, Binbin Zhou wrote:
+> > This I2C module is integrated into the Loongson-2K SoCs and Loongson
+> > LS7A bridge chip.
+>
+> ...
+>
+> > +static int ls2x_i2c_xfer_one(struct ls2x_i2c_priv *priv,
+> > +                          struct i2c_msg *msg, bool stop)
+> > +{
+> > +     int ret;
+> > +     bool is_read = msg->flags & I2C_M_RD;
+> > +
+> > +     /* Contains steps to send start condition and address */
+> > +     ret = ls2x_i2c_start(priv, msg);
+> > +     if (!ret) {
+> > +             if (is_read)
+> > +                     ret = ls2x_i2c_rx(priv, msg->buf, msg->len);
+> > +             else
+> > +                     ret = ls2x_i2c_tx(priv, msg->buf, msg->len);
+> > +
+> > +             if (!ret && stop)
+> > +                     ret = ls2x_i2c_stop(priv);
+> > +     }
+> > +
+> > +     if (ret == -ENXIO)
+> > +             ls2x_i2c_stop(priv);
+> > +     else if (ret < 0)
+> > +             ls2x_i2c_init(priv);
+> > +
+> > +     return ret;
+> > +}
+>
+> Still this code is odd from reader's perspective. It's in particular not clear
+> if the stop can be called twice in a row. I recommend to split it to two
+
+Sorry,
+Actually, I don't quite understand why you keep thinking that the stop
+can be called twice in a row.
+
+As I said in my last email, the logic here should be:
+In the first case, stop is called when the last msg is transmitted successfully;
+In the second case, stop is called when there is a NOACK during the
+transmission;
+In the third case, init is called when other errors occur during the
+transmission, such as TIMEOUT.
+
+The key pointer is the stop function will only return a TIMEOUT error
+or 0 for success, so if the stop function above is failed, the stop
+function below will never be called twice.
+
+Anyway, I also admit that this part of the code may not be concise and
+clear enough, and I have tried the following changes:
+
+1. put the start function into the rx/tx function respectively. As followers:
+
+@@ -177,10 +177,16 @@ static int ls2x_i2c_start(struct ls2x_i2c_priv
+*priv, struct i2c_msg *msgs)
+        return ls2x_i2c_send_byte(priv, LS2X_CR_START | LS2X_CR_WRITE);
+ }
+
+-static int ls2x_i2c_rx(struct ls2x_i2c_priv *priv, u8 *buf, u16 len)
++static int ls2x_i2c_rx(struct ls2x_i2c_priv *priv, struct i2c_msg *msg)
+ {
+        int ret;
+-       u8 rxdata;
++       u8 rxdata, *buf = msg->buf;
++       u16 len = msg->len;
 +
- 	switch (xcvr->mode) {
- 	case FSL_XCVR_MODE_SPDIF:
- 	case FSL_XCVR_MODE_ARC:
-@@ -1207,6 +1218,7 @@ static const struct fsl_xcvr_soc_data fsl_xcvr_imx8mp_data = {
- 
- static const struct fsl_xcvr_soc_data fsl_xcvr_imx93_data = {
- 	.spdif_only = true,
-+	.use_edma = true,
- };
- 
- static const struct of_device_id fsl_xcvr_dt_ids[] = {
--- 
-2.25.1
++       /* Contains steps to send start condition and address */
++       ret = ls2x_i2c_start(priv, msg);
++       if (ret)
++               return ret;
 
+        while (len--) {
+                ret = ls2x_i2c_xfer_byte(priv,
+@@ -195,9 +201,16 @@ static int ls2x_i2c_rx(struct ls2x_i2c_priv
+*priv, u8 *buf, u16 len)
+        return 0;
+ }
+
+-static int ls2x_i2c_tx(struct ls2x_i2c_priv *priv, u8 *buf, u16 len)
++static int ls2x_i2c_tx(struct ls2x_i2c_priv *priv, struct i2c_msg *msg)
+ {
+        int ret;
++       u8 *buf = msg->buf;
++       u16 len = msg->len;
++
++       /* Contains steps to send start condition and address */
++       ret = ls2x_i2c_start(priv, msg);
++       if (ret)
++               return ret;
+
+        while (len--) {
+                writeb(*buf++, priv->base + I2C_LS2X_TXR);
+
+2. define the variable 'reinit' in the xfer_one function to mark the
+cases where reinit is needed. As follows:
+
+static int ls2x_i2c_xfer_one(struct ls2x_i2c_priv *priv,
+                             struct i2c_msg *msg, bool stop)
+{
+        int ret, ret2;
+        bool reinit = false;
+        bool is_read = msg->flags & I2C_M_RD;
+
+        if (is_read)
+                ret = ls2x_i2c_rx(priv, msg);
+        else
+                ret = ls2x_i2c_tx(priv, msg);
+
+        if (ret == -EAGAIN) /* could not acquire bus. bail out without STOP */
+                return ret;
+
+        if (ret == -ETIMEDOUT) {
+                /* Fatal error. Needs reinit. */
+                stop = false;
+                reinit = true;
+        }
+
+        if (stop) {
+                ret2 = ls2x_i2c_stop(priv);
+
+                if (ret2) {
+                        /* Failed to issue STOP. Needs reinit. */
+                        reinit = true;
+                        ret = ret ?: ret2;
+                }
+        }
+
+        if (reinit)
+                ls2x_i2c_init(priv);
+
+        return ret;
+}
+
+
+Do you think this is better?
+
+Thanks.
+
+Binbin
+
+
+
+> functions and then do something like
+>
+> _read_one()
+> {
+>         ret = start();
+>         if (ret)
+>                 goto _stop; // Do we really need this?
+>
+>                 ret = rx();
+>                 if (ret)
+>                         goto _stop; // Do we need this?
+>
+>                 /* By setting this call the stop */
+>                 if (stop)
+>                         ret = -ENXIO;
+>
+>         out_send_stop:
+>                 if (ret == ...)
+>                         return _stop();
+>                 // I don't like above, so this error checking/setting parts
+>                 // also can be rethought and refactored accordingly
+>
+>                 return ret;
+> }
+>
+>
+>         if (is_read)
+>                 ret = _read_one();
+>         else
+>                 ret = _write_one();
+>
+>         if (ret)
+>                 _init();
+>
+>         return ret;
+>
+>
+
+> --
+> With Best Regards,
+> Andy Shevchenko
+>
+>
+>
