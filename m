@@ -2,79 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3264D658C2E
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 12:31:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A77AC658C46
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 12:38:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229535AbiL2Lbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 06:31:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44656 "EHLO
+        id S233085AbiL2Lik (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 06:38:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229773AbiL2Lbf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 06:31:35 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91A2C13DF6
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 03:31:33 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id j17so17637719lfr.3
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 03:31:33 -0800 (PST)
+        with ESMTP id S233073AbiL2Lih (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 06:38:37 -0500
+Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8627C13DDA
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 03:38:36 -0800 (PST)
+Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-46d4840b51fso197428727b3.12
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 03:38:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QQDxoBS/o/39TrH1qe45eXS30LOpQBp1BK407ABXLfk=;
-        b=tNpYVaVAsbbviDjADfCQME8VsRaT2ukWQpzL3RsY3j51GVwQvkH70JlekgOwUDKpza
-         9f8IoTlMG4hRrs2mva6Hce+gRg4WNq0T+wfK0ctsg8l5OChH5A/CQfhfKxktRnJhAaJn
-         U5BNbEXbZSIWQ3aVTf4RPhoVQI8DNwiyUp+4OI5d0rkVMqa9oj33QD4WyazsDA919SV2
-         Yv0x2/ZA4G/PBj4kfzL7IyQSRcqT4eysH5sLfI+co64jKP7YTELhRMq+yEffj2rxYNZd
-         adgxe1SwLP9RBBS+XHb5z8ZMpOnDEu4pQvLbmyhWcvhEIWQboDLk5iVjQjQ8KnQyOLJp
-         B2lw==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=QzVijDpOmDlJ/TO0wgjRtfeBQOxC0cctQS/eEfP3SpY=;
+        b=WhascANlVjl5U5gZFZPJX1JCvzaY0eFSP57cDDpyQWbsemmdB+gKOGNgG9ea0ke1Wo
+         INWSY6J4eO1atBRfG7CHK0mNffIF3QX3IiegBrcTUIoNlJhGvCJpzQD8Hd9E/59NaKyR
+         E6z/EKVKXOU+DwZsRme7VUyXydyN/i2j+jRHB3cIxlk6iYeIsU934d2wN9H10OBM27bq
+         IwFyHbWsFtyoz7IXv+sK0MzmD9O6BQEk+zi5AoTstfJSVX5hHt8lKQkGKdwKB80MhFJM
+         N84++q/77POvO4qIxhkcTodWOnIxPNRZ6EQI6I0r88YkSCDMtzVkk7gT4nv8CjQJriC4
+         C8rA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QQDxoBS/o/39TrH1qe45eXS30LOpQBp1BK407ABXLfk=;
-        b=NlpJsqDMZdgk9gUGEqucBvHS8ynyYmyrFW88YQ4NPq/l+vOAfl/m5/k2RAcqlKnAe0
-         Ks1/Mh5U1RNLEyue42RfHfCdqDaE4lD55ISRLwRPfRo+hmDZeNsi6Y/qISgsNNBiVLHU
-         ogKbw8pHgjviN5S9wGzSedTC9z2OhFlRz/12D6TRxFA5kP0HjjFw8t4sv+oXBfkIhVED
-         YAYLgUYs8ZTiWjYozxz4Hrm2Gh9LT5YPdDsToVRlYzpIbH49S5KNQewnSIdgVpxY5qeE
-         Vttt6wnVBqFZSmcJ45J0ll3oDztp3d52ZOCDh32VmkAYsP1A1/noMXwDl07Pej4MSiZ+
-         eALw==
-X-Gm-Message-State: AFqh2kp/YlTd2hfLepDsVEn6JWLLwuGM7pej+moBMEMXu2g2gJHbfwEo
-        JlxMagVVplY4htrca9Z4KXREIw==
-X-Google-Smtp-Source: AMrXdXv8NQZRUm/WQTClSW9gKM7555QdSJfE3CZZ3i1we7CBGcg/d4BOuq888+1ZGIdoYqvDzNKbdw==
-X-Received: by 2002:a05:6512:3c97:b0:4a5:42ba:d827 with SMTP id h23-20020a0565123c9700b004a542bad827mr8766477lfv.14.1672313491952;
-        Thu, 29 Dec 2022 03:31:31 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id a14-20020a056512390e00b004b5872a7003sm3046435lfu.98.2022.12.29.03.31.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Dec 2022 03:31:31 -0800 (PST)
-Message-ID: <24837866-9da2-9c9d-4094-d604db19cebd@linaro.org>
-Date:   Thu, 29 Dec 2022 12:31:30 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QzVijDpOmDlJ/TO0wgjRtfeBQOxC0cctQS/eEfP3SpY=;
+        b=kzC4QHJnQyN/tToAH/zXOw561iThikXDv1I+J4AbaYeY14zi0GcIUj/nlzBS6hT76e
+         jtepSCDSqjQlh48cSOfYhfx1LX9FWBSDuaFcZw8/rtmrWN9DZ6rUjTa51/5Bn10CeCST
+         XxJVcFRWFFjKoYjufK0vRsncXkgNBQdKpsaY3GS5v0698ziAcAiwwCWTuwd7cw6ThBpp
+         xHSQ6Ekm9dZ9g+ZlgAPuqkq5/mxzAjVsVr2XZ3bSI/5H2Z56fehWEMf5clP9svIQy9s7
+         EvNpImsD2wBA6zhGE9oN6MnTl5isTmGbGkJn9gidNvfGMVZL1WRngGD/ltKUeCTXerja
+         +DEQ==
+X-Gm-Message-State: AFqh2koJLu2FMvMslGUaodYiRHmpooKYrcZMFNnt4MPAkFAmmKksIzyi
+        esdNMdgKVsqMIBDv8jKS4U0GNdjMDPXHMj4VI/xBOg==
+X-Google-Smtp-Source: AMrXdXv9e+eV4tISPHDx2U7r7Ck2jrKmPt6GILLj/sOAVw2uAMBZi0tErVUE4qTF18qsGZPTIq0H1EH0sOHq3nJLvRY=
+X-Received: by 2002:a0d:dc86:0:b0:3d5:ecbb:2923 with SMTP id
+ f128-20020a0ddc86000000b003d5ecbb2923mr3630692ywe.485.1672313915726; Thu, 29
+ Dec 2022 03:38:35 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 1/7] arm64: dts: qcom: sm8450: add spmi node
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     marijn.suijten@somainline.org, Vinod Koul <vkoul@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+References: <20221229100511.979972-1-konrad.dybcio@linaro.org> <20221229100511.979972-2-konrad.dybcio@linaro.org>
+In-Reply-To: <20221229100511.979972-2-konrad.dybcio@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 29 Dec 2022 13:38:24 +0200
+Message-ID: <CAA8EJpr2AzT9W44mR4=5QBcmQzsznvO7XROObFGiSv+T3kJznA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: sm8150: Add DISPCC node
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org,
+        marijn.suijten@somainline.org, Rob Herring <robh@kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221229103212.984324-1-konrad.dybcio@linaro.org>
- <7b32e414-96a9-7265-efee-f872badb32b2@linaro.org>
- <71d7a162-569d-1443-9e53-3ba374d06ccd@linaro.org>
- <ee24809b-cf9b-c555-9c30-956949be25a4@linaro.org>
- <c4cc7365-df3e-f591-58b8-b844d5bf1737@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c4cc7365-df3e-f591-58b8-b844d5bf1737@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,76 +75,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/12/2022 12:04, Konrad Dybcio wrote:
-> 
-> 
-> On 29.12.2022 11:57, Krzysztof Kozlowski wrote:
->> On 29/12/2022 11:45, Konrad Dybcio wrote:
->>>
->>>
->>> On 29.12.2022 11:42, Krzysztof Kozlowski wrote:
->>>> On 29/12/2022 11:32, Konrad Dybcio wrote:
->>>>> From: Vinod Koul <vkoul@kernel.org>
->>>>>
->>>>> Add the spmi bus as found in the SM8450 SoC
->>>>>
->>>>> Signed-off-by: Vinod Koul <vkoul@kernel.org>
->>>>> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
->>>>> [Konrad: 0x0 -> 0, move #cells down, make reg-names a vertical list]
->>>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>>>> ---
->>>>> v1 -> v2:
->>>>> No changes
->>>>>
->>>>>  arch/arm64/boot/dts/qcom/sm8450.dtsi | 22 ++++++++++++++++++++++
->>>>>  1 file changed, 22 insertions(+)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>>>> index 570475040d95..b9b59c5223eb 100644
->>>>> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>>>> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>>>> @@ -2715,6 +2715,28 @@ aoss_qmp: power-controller@c300000 {
->>>>>  			#clock-cells = <0>;
->>>>>  		};
->>>>>  
->>>>> +		spmi_bus: spmi@c42d000 {
->>>>
->>>> Hmm looks different than reg.
->>>>
->>>>> +			compatible = "qcom,spmi-pmic-arb";
->>>>> +			reg = <0 0x0c400000 0 0x00003000>,
->>>>> +			      <0 0x0c500000 0 0x00400000>,
->>>>> +			      <0 0x0c440000 0 0x00080000>,
->>>>> +			      <0 0x0c4c0000 0 0x00010000>,
->>>>> +			      <0 0x0c42d000 0 0x00010000>;
->>>> x
->>> Hm, my guess would be that Vinod chose to put the "cnfg" reg
->>> instead of "core" in the unit address, as 8450 has 2 SPMI bus
->>> hosts and they both share the core reg, so it would have been
->>> impossible to have two spmi@core nodes..
->>
->> Eh? SM8450 has 2 SPMI hosts both using 0x0c400000? How does that work?
->> Usually address can be mapped only once.
-> No idea either!
-> 
->>
->> Where is the second SPMI? I cannot find it in linux-next.
-> It's only there on downstream and I'm not sure how useful it is
-> really, only some debug subdevice is attached to it.. Perhaps
-> we could ignore its existence for now and I could use the core
-> reg in unit address for spmi0?
+On Thu, 29 Dec 2022 at 12:05, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+> Years after the SoC support has been added, it's high time for it to
+> get dispcc going. Add the node to ensure that.
+>
+> Tested-by: Marijn Suijten <marijn.suijten@somainline.org> # Xperia 5
+> Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-I see it indeed in downstream. core, chnls and obsrvr IO are the same.
-There is quite of debug devices attached.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-There is a comment in PMIC arbiter code to use a IO mapping allowing
-simultaneous mappings, so this is actually valid.
 
-Anyway, DT expects unit address to match first reg, so if we want to
-have second PMIC, we need to change the order of reg entries.
+> ---
+> v1 -> v2:
+> - Pick up tags
+> - Remove required-opps
+> - Move power-domains up
+>  arch/arm64/boot/dts/qcom/sm8150.dtsi | 23 +++++++++++++++++++++++
+>  1 file changed, 23 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> index a0c57fb798d3..c7935f7a2926 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> @@ -3579,6 +3579,29 @@ camnoc_virt: interconnect@ac00000 {
+>                         qcom,bcm-voters = <&apps_bcm_voter>;
+>                 };
+>
+> +               dispcc: clock-controller@af00000 {
+> +                       compatible = "qcom,sm8150-dispcc";
+> +                       reg = <0 0x0af00000 0 0x10000>;
+> +                       clocks = <&rpmhcc RPMH_CXO_CLK>,
+> +                                <0>,
+> +                                <0>,
+> +                                <0>,
+> +                                <0>,
+> +                                <0>,
+> +                                <0>;
+> +                       clock-names = "bi_tcxo",
+> +                                     "dsi0_phy_pll_out_byteclk",
+> +                                     "dsi0_phy_pll_out_dsiclk",
+> +                                     "dsi1_phy_pll_out_byteclk",
+> +                                     "dsi1_phy_pll_out_dsiclk",
+> +                                     "dp_phy_pll_link_clk",
+> +                                     "dp_phy_pll_vco_div_clk";
+> +                       power-domains = <&rpmhpd SM8150_MMCX>;
+> +                       #clock-cells = <1>;
+> +                       #reset-cells = <1>;
+> +                       #power-domain-cells = <1>;
+> +               };
+> +
+>                 pdc: interrupt-controller@b220000 {
+>                         compatible = "qcom,sm8150-pdc", "qcom,pdc";
+>                         reg = <0 0x0b220000 0 0x400>;
+> --
+> 2.39.0
+>
 
-We can ignore this problem till we add second PMIC...
 
-Best regards,
-Krzysztof
-
+-- 
+With best wishes
+Dmitry
