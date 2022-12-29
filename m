@@ -2,96 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5B53658FE4
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 18:32:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49E76658FFB
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 18:43:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231226AbiL2RcR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 12:32:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58678 "EHLO
+        id S231261AbiL2RnH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 12:43:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233949AbiL2Rbs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 12:31:48 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 897B015825;
-        Thu, 29 Dec 2022 09:31:39 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 46DC0B81A13;
-        Thu, 29 Dec 2022 17:31:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2E31C433EF;
-        Thu, 29 Dec 2022 17:31:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672335097;
-        bh=j3qG4bGdaEXrYNRPEIJY/y6BAFFyj1LA3ARl7FLkrLc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=A4sAGzauvpyN7efg6S4Tt8IiUEpZ0pASvRe3oGUwwaLxVTNcPdlHIqrN58hpmaUUa
-         RiM42MzPJVTqIJe9AaD62iuWZQDB/STAAszJSBI2BMPdbPDzp12xY7nk22is9soD/t
-         qeAX9Bgon5afLZcXNpUckXI7DxqyBeEwUt64BhPYSf+TO3ZMWipEzT9+/gAokNa6Zi
-         OLE8z+ltM47ZoJsjQZ68IRB+FhS46sZIC60r2C2e59Y/m931blIbdT9TWtfKHb428C
-         kUWSuVrFYQNjK6TN89D+dVXgmG2KxR40igx+ARV/vRLI+B3j68ZLaNOBJz5bP5SClB
-         QjsaX0jrHUlFw==
-Date:   Thu, 29 Dec 2022 11:31:34 -0600
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 3/8] PCI: qcom: Add support for SM8350
-Message-ID: <20221229173134.ul2kzupf4yjvbvgk@builder.lan>
-References: <20221118233242.2904088-1-dmitry.baryshkov@linaro.org>
- <20221118233242.2904088-4-dmitry.baryshkov@linaro.org>
+        with ESMTP id S229535AbiL2RnF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 12:43:05 -0500
+X-Greylist: delayed 450 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 29 Dec 2022 09:43:04 PST
+Received: from smtp.smtpout.orange.fr (smtp-22.smtpout.orange.fr [80.12.242.22])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B8362BF5C
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 09:43:04 -0800 (PST)
+Received: from [192.168.1.18] ([86.243.100.34])
+        by smtp.orange.fr with ESMTPA
+        id AwoUpb98MIwEfAwoUpvG0O; Thu, 29 Dec 2022 18:35:32 +0100
+X-ME-Helo: [192.168.1.18]
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Thu, 29 Dec 2022 18:35:32 +0100
+X-ME-IP: 86.243.100.34
+Message-ID: <d0e98b2d-1c00-b7cc-d0b3-4477e27cf822@wanadoo.fr>
+Date:   Thu, 29 Dec 2022 18:35:29 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221118233242.2904088-4-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 3/5] iio: pressure: bmp280: Add support for new sensor
+ BMP580
+Content-Language: fr, en-US
+To:     ang.iglesiasg@gmail.com
+Cc:     ak@it-klinger.de, andriy.shevchenko@linux.intel.com,
+        devicetree@vger.kernel.org, jic23@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lars@metafoo.de,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        nikita.yoush@cogentembedded.com, paul@crapouillou.net,
+        rafael.j.wysocki@intel.com, robh+dt@kernel.org,
+        ulf.hansson@linaro.org
+References: <cover.1672062380.git.ang.iglesiasg@gmail.com>
+ <c053976f56c3810915ca2ead6c358b5997b782e5.1672062380.git.ang.iglesiasg@gmail.com>
+From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <c053976f56c3810915ca2ead6c358b5997b782e5.1672062380.git.ang.iglesiasg@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 19, 2022 at 01:32:37AM +0200, Dmitry Baryshkov wrote:
-> Add support for the PCIe host on Qualcomm SM8350 platform.
+Le 26/12/2022 à 15:29, Angel Iglesias a écrit :
+> Adds compatibility with the new sensor generation, the BMP580.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
-Reviewed-by: Bjorn Andersson <andersson@kernel.org>
-
-Regards,
-Bjorn
-
-> ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 1 +
->  1 file changed, 1 insertion(+)
+> The measurement and initialization codepaths are adapted from
+> the device datasheet and the repository from manufacturer at
+> https://github.com/boschsensortec/BMP5-Sensor-API.
 > 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index 77e5dc7b88ad..b9350d93b4ba 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -1826,6 +1826,7 @@ static const struct of_device_id qcom_pcie_match[] = {
->  	{ .compatible = "qcom,pcie-sdm845", .data = &cfg_2_7_0 },
->  	{ .compatible = "qcom,pcie-sm8150", .data = &cfg_1_9_0 },
->  	{ .compatible = "qcom,pcie-sm8250", .data = &cfg_1_9_0 },
-> +	{ .compatible = "qcom,pcie-sm8350", .data = &cfg_1_9_0 },
->  	{ .compatible = "qcom,pcie-sm8450-pcie0", .data = &cfg_1_9_0 },
->  	{ .compatible = "qcom,pcie-sm8450-pcie1", .data = &cfg_1_9_0 },
->  	{ }
-> -- 
-> 2.35.1
+> Signed-off-by: Angel Iglesias <ang.iglesiasg-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 > 
+
+[...]
+
+> diff --git a/drivers/iio/pressure/bmp280.h b/drivers/iio/pressure/bmp280.h
+> index efc31bc84708..27d2abc17d01 100644
+> --- a/drivers/iio/pressure/bmp280.h
+> +++ b/drivers/iio/pressure/bmp280.h
+
+[...]
+
+> +#define BMP580_CHIP_ID			0x50
+>   #define BMP380_CHIP_ID			0x50
+
+Hi,
+
+this is maybe correct (I've not been able to find the datasheet to check 
+myself), but it looks odd to have the same ID for 2 different chips.
+
+CJ
+
+>   #define BMP180_CHIP_ID			0x55
+>   #define BMP280_CHIP_ID			0x58
+
