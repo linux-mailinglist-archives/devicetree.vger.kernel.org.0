@@ -2,87 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F15D65884F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 02:18:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EED865885C
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 02:32:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231722AbiL2BST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 20:18:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60292 "EHLO
+        id S230469AbiL2Bca (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 20:32:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229822AbiL2BSR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 20:18:17 -0500
-Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28A9E13F5A
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 17:18:17 -0800 (PST)
-Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-12c8312131fso20335476fac.4
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 17:18:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=tF88S2Hv4sGeYM0IJIhlaIGexQCWBfknOiRvMdfr8IQ=;
-        b=ErJOFlw0/sxpSqS5/yP6KnCa/ipcN5aykXU3V/tUmwx5KFRj7Xlc7+PimX2rk3AbZa
-         nvYV82wqQgN42DHllbPXiPLydrZBhAGJbHPYlN/GDgX071J4I1uSqGJNGVH1OMrk9Q8U
-         QXKbdbVAlD5AAMieHpAKJ/nNtyI2+v0KsAuP9nfC8J9+im7sN0imPVgdSNBME2Tz4K0J
-         wSMT2j2IbN23iejfo9O/2LzVuGOP0IgR5rBVmJ68DHvY0keaqzIs93EPyfd72GHTJ551
-         7pp2p15x7RPeugYnimzuygdWdQHb07QT8ymXvlg++xza77108AVviR7rfT0s/g8h53pq
-         2GFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tF88S2Hv4sGeYM0IJIhlaIGexQCWBfknOiRvMdfr8IQ=;
-        b=zG2hw5PW80ScXho6jJPwpuNy9JhLhkF9YdMTx+L1G0RK2hpFXXMA9iAZrjfjCTeJTg
-         9ISQdGSlxPrsEbueCBkyeAisSiZwvYdKs2e5k4belKTirwFPAG0//MALQQYOi0ndMFbF
-         itG4u+svJNGG21ob3IEkmlPVLkycb8/3EeCJq279P9nKAu2gzwMRhEWaGWthcmaA1G5M
-         TVzf7hKuWaHUPgS9JUbnC3QKm4/Uh9YbdjM7lshDh4K5FOEVlnQ8YREt/ZjImGWTN46u
-         Ezt4f2Jcs4HG5s23UKBDqADUOP8XaAo/PLpnMXi7OERR/jLkRwfMQBSVvKQv1mzzEhaZ
-         2NGg==
-X-Gm-Message-State: AFqh2kr+/AlN/D3VnTjP/QGdbVN22U88d6UTw3dwefMAWQCc0K+FmXTc
-        Dv5xvBehKkTNyXUHGnB63h2cLSE96gH0JSyoOVDLXg==
-X-Google-Smtp-Source: AMrXdXsVwziQundR1fwbIB4yBVcJ+hmaEtqLmbyZ5bauQjKbV7xMCLbbZvo+Th31AipBIbAj3PSQkJCNE/ow1xf8mmw=
-X-Received: by 2002:a05:6870:fd89:b0:14f:ede2:db25 with SMTP id
- ma9-20020a056870fd8900b0014fede2db25mr904396oab.42.1672276696527; Wed, 28 Dec
- 2022 17:18:16 -0800 (PST)
+        with ESMTP id S229716AbiL2Bca (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 20:32:30 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 922B010B56;
+        Wed, 28 Dec 2022 17:32:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+        In-Reply-To:References; bh=wFEk/iA1Bc8CnhqgYSVgaN6BA6Rzt62Yam9vSIo8sOo=; b=hr
+        HVMsYaNFJPBAuXoUwdUWyibrAQ3REPBAUF4rnqyNCD+xF8dFOQkRgUaaXJx6/VZHR0UOfSbIBX1D6
+        lUeH7IOfip9xQeN2cs5B8WSHy0bVup+/W0OkFqQ4BQxgbSfB0bVXtZknAi3gn7eOwEsRWQ87OQp3b
+        TyeE83eTKjLo2nw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pAhmQ-000g6A-DP; Thu, 29 Dec 2022 02:32:22 +0100
+Date:   Thu, 29 Dec 2022 02:32:22 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     =?utf-8?Q?Micha=C5=82?= Grzelak <mig@semihalf.com>
+Cc:     linux-kernel@vger.kernel.org, sebastian.hesselbarth@gmail.com,
+        gregory.clement@bootlin.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        mw@semihalf.com, upstream@semihalf.com, mchl.grzlk@gmail.com
+Subject: Re: [PATCH v2] ARM: dts: dove.dtsi: Move ethphy to fix schema error
+Message-ID: <Y6zuJrb+8j+XCksN@lunn.ch>
+References: <20221228200234.86391-1-mig@semihalf.com>
 MIME-Version: 1.0
-References: <20221215213206.56666-1-biju.das.jz@bp.renesas.com> <20221215213206.56666-2-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20221215213206.56666-2-biju.das.jz@bp.renesas.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 29 Dec 2022 02:20:10 +0100
-Message-ID: <CACRpkdbBua9-0o+vK1mWeQV9pr=1DE100AE7cdymEyhZQY39QA@mail.gmail.com>
-Subject: Re: [PATCH v5 1/9] dt-bindings: pinctrl: renesas: Add RZ/G2L POEG binding
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, linux-pwm@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221228200234.86391-1-mig@semihalf.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 15, 2022 at 10:32 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+On Wed, Dec 28, 2022 at 09:02:34PM +0100, Michał Grzelak wrote:
+> Running 'make dtbs_check' with schema in net/marvell,orion-mdio.yaml
+> gives the following warnings:
+> mdio-bus@72004: Unevaluated properties are not allowed
+> ('ethernet-phy' was unexpected)
+> 	arch/arm/boot/dts/dove-cubox.dtb
+> 	arch/arm/boot/dts/dove-cubox-es.dtb
+> 	arch/arm/boot/dts/dove-d2plug.dtb
+> 	arch/arm/boot/dts/dove-d2plug.dtb
+> 	arch/arm/boot/dts/dove-dove-db.dtb
+> 	arch/arm/boot/dts/dove-d3plug.dtb
+> 	arch/arm/boot/dts/dove-sbc-a510.dtb
+> Fix them by removing empty ethphy subnode from dove.dtsi and describe
+> PHY on the relevant board .dts files level.
 
-> Add device tree bindings for the RZ/G2L Port Output Enable for GPT (POEG).
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+I don't think your description is correct. What i think is causing the
+problem is that the ethphy subnode in dove.dtsi does not have an @X.
 
-Patch applied!
+By moving it into the .dts file, you can then give it the correct @1,
+or @3, which makes the linter happy. The kernel itself does not care
+about this, it is an example of the linter being much more strict than
+the kernel.
 
-Yours,
-Linus Walleij
+If you agree with me, please update the description.
+
+   Andrew
