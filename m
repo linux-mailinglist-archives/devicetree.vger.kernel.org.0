@@ -2,92 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5AE5658AAF
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 09:47:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA239658AB9
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 09:56:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231214AbiL2Ire (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 03:47:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51666 "EHLO
+        id S230323AbiL2I4E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 03:56:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233085AbiL2Ird (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 03:47:33 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C6CB11A3D
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 00:47:30 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id j17so17171714lfr.3
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 00:47:30 -0800 (PST)
+        with ESMTP id S229483AbiL2I4D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 03:56:03 -0500
+Received: from mail-vs1-xe33.google.com (mail-vs1-xe33.google.com [IPv6:2607:f8b0:4864:20::e33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54CD41EF;
+        Thu, 29 Dec 2022 00:56:02 -0800 (PST)
+Received: by mail-vs1-xe33.google.com with SMTP id h27so4142708vsq.3;
+        Thu, 29 Dec 2022 00:56:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4cemsfu0VaWmJoNllBIK96LxIdmY+A3DSnp/dsjJwnM=;
-        b=z8pgJ4Ovtr6LQ4qC0f8Lc1A7iQHUjeNKLE3T4eBQV8smae26lIVpLUuv7TF3lQowMM
-         U9cq9VnbnF7aXWP2KnlaACTowHeAT0g8zoxJcLDpVApOAcZc8Mv7gdS99iNGdfAp76Ru
-         UlstAQdPmiMFRx5flqNzrdh9mGAHj5olThDKqW33IUpZ6QbQ6ls6ZBpvzj1verqTa3uo
-         Wb4NBJDkN5jHGqtCqeU3ib1TszrySYsrn/Q7vvCA3UE5/vZyTFMZ//0WOsEW1QnBCzD0
-         mmbP355GfwRK4XrcnHGXyEq3ESqwA/3X8rb00QIMN4UN4zGI3YuO6ITXUq+XZJIRD1nV
-         CZJQ==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Zdi5JNQLgXGQ66qKu+yMeeWn88rw9Bky4W1XebdlBEw=;
+        b=D56q6hHZtVDkrih3nWz96tO0tf1ETJTioa9UJmFtlGOcgLwyVcG0N4bT7abG4iHyTK
+         taiOmgzI3/MFU25z/6eACBHBsm0ZUcykUQVJedq9U4CbMYzDxArIv72uYbCo95e4/iK0
+         SLxlYWW6Ouq817lvgU6TGpvSl58TdyfDCYYw5vweZ9+y8yHvhRA0JpOCyYo3NedDFKG9
+         dx/8A2MIwQqYB4pFcohP8C9/DnmuhH7rjBBMQERFgYCgqkcAf3dnPuNii/PSvymQVGi7
+         LCIrQE0ZUI0cygqCW74rY1+eIjvRnYWR5H73K5ndrQNTj46Lj6x4hT8v6ObhbgQddN//
+         DMTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4cemsfu0VaWmJoNllBIK96LxIdmY+A3DSnp/dsjJwnM=;
-        b=PS6dhfUeJ0sw0iMLkBc8j4IKXYkz54/DY6OvbgzRPY/cX7UYiHkmehpp87XkUdxELT
-         k8Bmvfkou7FQm3aX/mnfIj5/BDvvJfh5+Y2ZlF0OwnvBVW8VcogAYJI8Q1dPyZsLaO/p
-         pmzXp7tDscc6mfePbPAw70Vg/VRuQOfBrDJkRQRkVhH0H8L+pBDJ6G0Ihm3XowwhBehb
-         QBQbdF7+oOk29d0HT8A0ACauRl2oyDy3YGg1m8+EFWmFShrzEx0qA9oeXS/tOeRklXk0
-         4QgaOTwQlGXR2wu3RbGDawjGmEk03tO33sqeQhzTu9d57atcf8aHWYCb+kxYawwyPqgo
-         C2pg==
-X-Gm-Message-State: AFqh2krMT2EnfyuJ4Q2jQLyyr5M8lBzZZwJlNngi6sO7fN6u69npkNrU
-        4mnZUMp2NxNUw9JPFUr5aJST6w==
-X-Google-Smtp-Source: AMrXdXvHQpo/g6VjyDZZZBZ4JHZ/0GDqwy0mwFL0s9vQERWlTIACcnMY4tr9YXTVbuTN7Ir8C6PfpA==
-X-Received: by 2002:ac2:558f:0:b0:4b6:f51e:b8b6 with SMTP id v15-20020ac2558f000000b004b6f51eb8b6mr7010798lfg.56.1672303648851;
-        Thu, 29 Dec 2022 00:47:28 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id x16-20020a056512079000b004bbd09aca40sm2974914lfr.77.2022.12.29.00.47.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Dec 2022 00:47:28 -0800 (PST)
-Message-ID: <98992679-47bb-24d3-d253-48fefb4a45f5@linaro.org>
-Date:   Thu, 29 Dec 2022 09:47:27 +0100
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Zdi5JNQLgXGQ66qKu+yMeeWn88rw9Bky4W1XebdlBEw=;
+        b=DHQvaqil6DBjCIgQ5dZmR3RPbGUZKxxW7UaM34vz2o9DZ6mpm2vGoCoI7ou9PeH/SF
+         U2GtRqMVej5YmAZydmrEkm0acd+T4m1cI12jBr7mq37lppw0KmJodLhzpgaXwOEmqgID
+         bD6+XQsJgIPxlSH+ojAPfEibKsR1+8y5wiTJJDKMYReNIHPeskLql4MoZFX8n09oS+tR
+         ajwzG0f7PXRwimImkJ7XNRyUz647vTatQThtl40FOhz5HItrPG9fOrw7Gf2TgG0Odw1o
+         sJh5O+XVBTgnKLZ/2W95FW/9GBALhG2vZTWeao1XvEn33LGa1w5pz6ls0Hu6PhMODcgX
+         gOog==
+X-Gm-Message-State: AFqh2kq/RxtYMAESKlMiHe4O5EnHrqtuvNvscawFPEP/37q0gMy3kD6v
+        4q/WUHY1EE5I2eW3rswO6OIKlboEWrmFie78FAvqUH1gqjZL8A==
+X-Google-Smtp-Source: AMrXdXvNrWrqy7ubjkhG7TGAHD6J4jDrQchAzhwTRpmi1zRv9eF8yToeWNw3Uhq9nGQovgVQ2fqq8ofaBMYifzcDReM=
+X-Received: by 2002:a05:6102:f8c:b0:3c9:8cc2:dd04 with SMTP id
+ e12-20020a0561020f8c00b003c98cc2dd04mr1182236vsv.73.1672304161401; Thu, 29
+ Dec 2022 00:56:01 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 4/4] dt-bindings: iio/adc: qcom,spmi-iadc: document
- PM8226 compatible
-Content-Language: en-US
-To:     Rayyan Ansari <rayyan@ansari.sh>, linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Luca Weiss <luca@z3ntu.xyz>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221228230421.56250-1-rayyan@ansari.sh>
- <20221228230421.56250-5-rayyan@ansari.sh>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221228230421.56250-5-rayyan@ansari.sh>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221227095123.2447948-1-milkfafa@gmail.com> <20221227095123.2447948-8-milkfafa@gmail.com>
+ <b8f173c0-6d40-d6aa-543e-fa8b06557f4f@molgen.mpg.de>
+In-Reply-To: <b8f173c0-6d40-d6aa-543e-fa8b06557f4f@molgen.mpg.de>
+From:   Kun-Fa Lin <milkfafa@gmail.com>
+Date:   Thu, 29 Dec 2022 16:55:50 +0800
+Message-ID: <CADnNmFr1naRfam=z0p-4hEugSDJy_HCK8XZyQJ0eFirnmwuH4A@mail.gmail.com>
+Subject: Re: [PATCH v10 7/7] media: nuvoton: Add driver for NPCM video capture
+ and encode engine
+To:     Paul Menzel <pmenzel@molgen.mpg.de>
+Cc:     mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
+        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        andrzej.p@collabora.com, kwliu@nuvoton.com,
+        devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, kflin@nuvoton.com,
+        linux-media@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/12/2022 00:04, Rayyan Ansari wrote:
-> Document the compatible for the IADC used on PM8226.
-> 
-> Signed-off-by: Rayyan Ansari <rayyan@ansari.sh>
+Hi Paul,
 
+Thanks for the review.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Add driver for Video Capture/Differentiation Engine (VCD) and Encoding
+> > Compression Engine (ECE) present on Nuvoton NPCM SoCs. The VCD can
+> > capture and differentiate video data from digital or analog sources,
+>
+> =E2=80=9Cdifferentiate video data=E2=80=9D sounds uncommon to me. Am I ju=
+st ignorant or
+> is there a better term?
 
-Best regards,
-Krzysztof
+How about "The VCD can capture a frame from digital video input and
+compare two frames in memory, then the ECE will compress the frame
+data into HEXTITLE format", is it better?
 
+> Wich VNC viewer and version?
+
+I used RealVNC version 6.21.1109 to test.
+Do I have to add this information in the commit message?
+
+> Maybe also paste the new dev_ log messages
+> you get from one boot.
+
+Do you mean dev_info/dev_debug messages of the driver?
+If yes, I get these messages from one boot (only dev_info will be
+printed in default):
+
+npcm-video f0810000.video: assigned reserved memory node framebuffer@0x3300=
+0000
+npcm-video f0810000.video: NPCM video driver probed
+
+> It=E2=80=99d be great if you noted the datasheet name and revision.
+
+I can note the datasheet name and revision in the commit message but
+can't provide the file link because it is not public.
+Is it ok with you?
+
+> > +static unsigned int npcm_video_ece_get_ed_size(struct npcm_video *vide=
+o,
+> > +                                            u32 offset, u8 *addr)
+> > +{
+> > +     struct regmap *ece =3D video->ece.regmap;
+> > +     u32 size, gap, val;
+>
+> Using a fixed size type for variables not needing is, is actually not an
+> optimization [1]. It=E2=80=99d be great, if you went over the whole chang=
+e-set
+> to use the non-fixed types, where possible. (You can also check the
+> difference with `scripts/bloat-o-meter`.
+
+So what I have to do is replace "u8/u16/u32" with "unsigned int" for
+generic local variables as much as possible.
+Is my understanding correct?
+
+> > +MODULE_AUTHOR("Joseph Liu<kwliu@nuvoton.com>");
+> > +MODULE_AUTHOR("Marvin Lin<kflin@nuvoton.com>");
+>
+> Please add a space before the <.
+>
+> > +MODULE_DESCRIPTION("Driver for Nuvoton NPCM Video Capture/Encode Engin=
+e");
+> > +MODULE_LICENSE("GPL");
+>
+> Not GPL v2?
+
+I'll correct them in the next patch.
+
+Regards,
+Marvin
