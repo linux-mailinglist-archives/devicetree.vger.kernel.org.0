@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D998A6588D9
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 04:01:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23EBD6588DC
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 04:01:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233046AbiL2DBW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 22:01:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57526 "EHLO
+        id S233049AbiL2DBX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 22:01:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233090AbiL2DBP (ORCPT
+        with ESMTP id S233097AbiL2DBP (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 22:01:15 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8688812776
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 19:01:12 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id p36so25883438lfa.12
-        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 19:01:12 -0800 (PST)
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C23612A86
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 19:01:13 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id bp15so25883805lfb.13
+        for <devicetree@vger.kernel.org>; Wed, 28 Dec 2022 19:01:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=4MW0phKWlXpbBUcPLtblyJtyFj83QhXQn2uWltgLH9s=;
-        b=o++t5rB/h8ngTpR/bexCoPX+Bi6Xi6oLat8zSbkIu/FOFiAXdUrVZlu75Q19eRl0kA
-         YlBFdyzX9byjG4unHRP+HwQ71/kGldNs0/qwNfmGMXKIr0TrYx283fEc7Te306W8uwYQ
-         e0X47OTOQ9p3qqdWMMtKXkbRQa4xNCN5mNps2vIiel1BkZaSbM/ryUXzadad6BqLnm0m
-         hfTfFDmFEQ6j7sf3JLOGKfdq+bUnEz0YU0+VjT2mqHAhPlz4BhaNc+HlZEFTfEMwDC8V
-         1nz3okN4z7HSaS34wmTo7WI/KG7+r+4Z2JOEPaazK3P+W1+xK9Pms8uH4IJDRX/0ZF8S
-         CM+Q==
+        bh=FlcwXoa9Z1Zub33BGG0XBB+zLvZVGpO/Coytg4v1lJY=;
+        b=DYFFS4SEYB9xvyg6s6bwK4NmjxACzFjZeEjygs7KiNoPN/1VztICgx9gtZHv4G+Qho
+         ql7o57kVcvNmXN8uMpWYRNar4vs8YADFzw3yEExcrV0w0/1D7BRV5HYaiEb4QeEvXhm8
+         Y0wxFx//gKPGeWi5zKcAFNBM/bypXAcHCh2Svod41yY9b1+kqrI1DQKAyb8U1x5aCyXH
+         FniIJThs5YBqwdlj4Wn8kDZgjYvsrXw/4xFz4CqSP+OGVBwaFIeb4l4akiZtXTOq4OIZ
+         qHg5RO0wgvXd9Ccf9R+N1zq0zKVH21rMGWconjmSJ4yl1JHfc+3O0Zt/4uD6etVLo2Q2
+         L48Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=4MW0phKWlXpbBUcPLtblyJtyFj83QhXQn2uWltgLH9s=;
-        b=da7RptGzdNIGGtlCXbShOCzHH65ULpR5hin500e7zMNMTpG/areta3aod5Q1xSeyiv
-         KSsmrHeyCOZLPyg7nzDTT+tLgCXD5gFBbaZ469Vi3T9mh7dik3LN7/9Muurcd9JOeZbM
-         zuUwFOi8XMiPZ7DGBRQoYWgjrw0j8rPSPOn5fF5Zudqm+lf0faHiEEkHIYQdP3hXxIWf
-         jz1/4z3TCguwGQevrRZ2h5dHO209IlmgjdT2rjmDIeZlwA5sFhMHMKaLZK42ZC7cmldY
-         95wUWo1CoMXCN/v2lKBpMl/02QlLKl0NNPOYSAhyZaFf/7FfqwmC1vF/jpYKMnM3nKcb
-         2Eyg==
-X-Gm-Message-State: AFqh2kpEhTtAqNEQuS1phcx/DbALTPSv1ewM616lM10uYdKMU/OHfXKl
-        dS5MXf9pnF3WAavCWjHZOBlNkQ==
-X-Google-Smtp-Source: AMrXdXvxiqdPQZVqwwXwrOOrRYtjN+1TYudN30JA/pkSqvXvBeO5ECH9nwWkCEvVSaA+JM+v85uMtg==
-X-Received: by 2002:ac2:414b:0:b0:4b5:3505:d7f9 with SMTP id c11-20020ac2414b000000b004b53505d7f9mr7044911lfi.35.1672282870900;
-        Wed, 28 Dec 2022 19:01:10 -0800 (PST)
+        bh=FlcwXoa9Z1Zub33BGG0XBB+zLvZVGpO/Coytg4v1lJY=;
+        b=fl3QE1D3c4YkXWWFz3WpM/Hlzw50y+CDWSR0/x6OQmL6TIgD5WKvduZZ+BZCo7S/F+
+         JwrMnAZXSpPIsLFrVHQUYrMqZ50Y9G06TE0KjxT3YS0Y55LbvVz8gaW9oepiqcVlRvaL
+         lN6zT71oJtZqRQl/+qAxAd+87paxp3UUI1NMPFSD8uXc1N2DC2dHSSjsA8wJFiFrHEt8
+         B4uCu5J3sSCI1VbEW1Ce/aUgH6Pbjrdiw1c/3aWQwSZrs91c2qNIGupqyCdwvZ+0aR5H
+         OIz0x0Em0bRCV8f0vNHfRRxCdRAiGMJnSnTMS4gh5SBuQRBpMzDJDFLZyRl/Ldt6k73k
+         cgNg==
+X-Gm-Message-State: AFqh2krjJISRbOc3gTtlnSKDlU4P5PECWSZUPaTUAuIE9QUWmL5dvKYL
+        k2RUo7ebALNngKcQSOkZWUSi4w==
+X-Google-Smtp-Source: AMrXdXty0ToiRwuohIDaGeAram9uJXN0txOkrOEtuQ1Y38+A/B7QQJRiE/eDbTxUZI1cC2oW5pecjQ==
+X-Received: by 2002:a05:6512:224e:b0:4cb:ea9:b0d7 with SMTP id i14-20020a056512224e00b004cb0ea9b0d7mr2348509lfu.9.1672282871859;
+        Wed, 28 Dec 2022 19:01:11 -0800 (PST)
 Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
         by smtp.gmail.com with ESMTPSA id b11-20020a056512024b00b004b57277474esm2883070lfo.106.2022.12.28.19.01.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Dec 2022 19:01:10 -0800 (PST)
+        Wed, 28 Dec 2022 19:01:11 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -63,10 +63,12 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
         Shawn Guo <shawn.guo@linaro.org>,
         linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v5 04/20] thermal/drivers/tsens: Drop unnecessary hw_ids
-Date:   Thu, 29 Dec 2022 05:00:50 +0200
-Message-Id: <20221229030106.3303205-5-dmitry.baryshkov@linaro.org>
+        devicetree@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: [PATCH v5 05/20] thermal/drivers/tsens: Drop msm8976-specific defines
+Date:   Thu, 29 Dec 2022 05:00:51 +0200
+Message-Id: <20221229030106.3303205-6-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20221229030106.3303205-1-dmitry.baryshkov@linaro.org>
 References: <20221229030106.3303205-1-dmitry.baryshkov@linaro.org>
@@ -74,48 +76,51 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The tsens driver defaults to using hw_id equal to the index of the
-sensor. Thus it is superfluous to declare such hw_id arrays. Drop such
-arrays from mdm9607 and msm8976 data.
+Drop msm8976-specific defines, which duplicate generic ones.
 
+Fixes: 0e580290170d ("thermal: qcom: tsens-v1: Add support for MSM8956 and MSM8976")
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/thermal/qcom/tsens-v0_1.c | 1 -
- drivers/thermal/qcom/tsens-v1.c   | 1 -
- 2 files changed, 2 deletions(-)
+ drivers/thermal/qcom/tsens-v1.c | 9 ++-------
+ 1 file changed, 2 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/thermal/qcom/tsens-v0_1.c b/drivers/thermal/qcom/tsens-v0_1.c
-index 04d012e4f728..0bc4e5cec184 100644
---- a/drivers/thermal/qcom/tsens-v0_1.c
-+++ b/drivers/thermal/qcom/tsens-v0_1.c
-@@ -635,7 +635,6 @@ static const struct tsens_ops ops_9607 = {
- struct tsens_plat_data data_9607 = {
- 	.num_sensors	= 5,
- 	.ops		= &ops_9607,
--	.hw_ids		= (unsigned int []){ 0, 1, 2, 3, 4 },
- 	.feat		= &tsens_v0_1_feat,
- 	.fields	= tsens_v0_1_regfields,
- };
 diff --git a/drivers/thermal/qcom/tsens-v1.c b/drivers/thermal/qcom/tsens-v1.c
-index 1d7f8a80bd13..96ef12d47bff 100644
+index 96ef12d47bff..a7f53966156b 100644
 --- a/drivers/thermal/qcom/tsens-v1.c
 +++ b/drivers/thermal/qcom/tsens-v1.c
-@@ -387,7 +387,6 @@ static const struct tsens_ops ops_8976 = {
- struct tsens_plat_data data_8976 = {
- 	.num_sensors	= 11,
- 	.ops		= &ops_8976,
--	.hw_ids		= (unsigned int[]){0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
- 	.feat		= &tsens_v1_feat,
- 	.fields		= tsens_v1_regfields,
- };
+@@ -78,11 +78,6 @@
+ 
+ #define MSM8976_CAL_SEL_MASK	0x3
+ 
+-#define MSM8976_CAL_DEGC_PT1	30
+-#define MSM8976_CAL_DEGC_PT2	120
+-#define MSM8976_SLOPE_FACTOR	1000
+-#define MSM8976_SLOPE_DEFAULT	3200
+-
+ /* eeprom layout data for qcs404/405 (v1) */
+ #define BASE0_MASK	0x000007f8
+ #define BASE1_MASK	0x0007f800
+@@ -160,8 +155,8 @@ static void compute_intercept_slope_8976(struct tsens_priv *priv,
+ 	priv->sensor[10].slope = 3286;
+ 
+ 	for (i = 0; i < priv->num_sensors; i++) {
+-		priv->sensor[i].offset = (p1[i] * MSM8976_SLOPE_FACTOR) -
+-				(MSM8976_CAL_DEGC_PT1 *
++		priv->sensor[i].offset = (p1[i] * SLOPE_FACTOR) -
++				(CAL_DEGC_PT1 *
+ 				priv->sensor[i].slope);
+ 	}
+ }
 -- 
 2.39.0
 
