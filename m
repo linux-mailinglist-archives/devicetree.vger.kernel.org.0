@@ -2,147 +2,279 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA239658AB9
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 09:56:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF5CE658AC1
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 10:02:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230323AbiL2I4E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 03:56:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53422 "EHLO
+        id S229930AbiL2JCU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 04:02:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229483AbiL2I4D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 03:56:03 -0500
-Received: from mail-vs1-xe33.google.com (mail-vs1-xe33.google.com [IPv6:2607:f8b0:4864:20::e33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54CD41EF;
-        Thu, 29 Dec 2022 00:56:02 -0800 (PST)
-Received: by mail-vs1-xe33.google.com with SMTP id h27so4142708vsq.3;
-        Thu, 29 Dec 2022 00:56:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Zdi5JNQLgXGQ66qKu+yMeeWn88rw9Bky4W1XebdlBEw=;
-        b=D56q6hHZtVDkrih3nWz96tO0tf1ETJTioa9UJmFtlGOcgLwyVcG0N4bT7abG4iHyTK
-         taiOmgzI3/MFU25z/6eACBHBsm0ZUcykUQVJedq9U4CbMYzDxArIv72uYbCo95e4/iK0
-         SLxlYWW6Ouq817lvgU6TGpvSl58TdyfDCYYw5vweZ9+y8yHvhRA0JpOCyYo3NedDFKG9
-         dx/8A2MIwQqYB4pFcohP8C9/DnmuhH7rjBBMQERFgYCgqkcAf3dnPuNii/PSvymQVGi7
-         LCIrQE0ZUI0cygqCW74rY1+eIjvRnYWR5H73K5ndrQNTj46Lj6x4hT8v6ObhbgQddN//
-         DMTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Zdi5JNQLgXGQ66qKu+yMeeWn88rw9Bky4W1XebdlBEw=;
-        b=DHQvaqil6DBjCIgQ5dZmR3RPbGUZKxxW7UaM34vz2o9DZ6mpm2vGoCoI7ou9PeH/SF
-         U2GtRqMVej5YmAZydmrEkm0acd+T4m1cI12jBr7mq37lppw0KmJodLhzpgaXwOEmqgID
-         bD6+XQsJgIPxlSH+ojAPfEibKsR1+8y5wiTJJDKMYReNIHPeskLql4MoZFX8n09oS+tR
-         ajwzG0f7PXRwimImkJ7XNRyUz647vTatQThtl40FOhz5HItrPG9fOrw7Gf2TgG0Odw1o
-         sJh5O+XVBTgnKLZ/2W95FW/9GBALhG2vZTWeao1XvEn33LGa1w5pz6ls0Hu6PhMODcgX
-         gOog==
-X-Gm-Message-State: AFqh2kq/RxtYMAESKlMiHe4O5EnHrqtuvNvscawFPEP/37q0gMy3kD6v
-        4q/WUHY1EE5I2eW3rswO6OIKlboEWrmFie78FAvqUH1gqjZL8A==
-X-Google-Smtp-Source: AMrXdXvNrWrqy7ubjkhG7TGAHD6J4jDrQchAzhwTRpmi1zRv9eF8yToeWNw3Uhq9nGQovgVQ2fqq8ofaBMYifzcDReM=
-X-Received: by 2002:a05:6102:f8c:b0:3c9:8cc2:dd04 with SMTP id
- e12-20020a0561020f8c00b003c98cc2dd04mr1182236vsv.73.1672304161401; Thu, 29
- Dec 2022 00:56:01 -0800 (PST)
+        with ESMTP id S229483AbiL2JCT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 04:02:19 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE226EE3C;
+        Thu, 29 Dec 2022 01:02:18 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7DB6E6172F;
+        Thu, 29 Dec 2022 09:02:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 012C5C433D2;
+        Thu, 29 Dec 2022 09:02:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1672304537;
+        bh=tXATY4KZQL5eJdjtFiw5SsutFcRCdNZBrm9YANKpbw8=;
+        h=Date:From:To:CC:Subject:In-Reply-To:References:From;
+        b=le3kjPHTluNrX7soEmSCjjqP4F384ylButSRptyGN8e0Z2KlBCXrRc0Q/v5ZH8uRi
+         k3Fc5+nDpS6ty5GSYKajQ4i2+GxWRO0eeWWONkLJIvAbgldYcr20Li/1wFngDRdEUI
+         C7hnlGHGzG5wptXia/euUBC1FiUS4raq/obyQBaouNfJUwTZja6Rn1VnubWrWNE/HY
+         mPQpBkb/AD0h+1bRE8HB+T7JB4YUiiy1vSM+0uwzjZCFaBSJGs5jPNJVv5oV4yxL+h
+         0rj9cfoRHFLcUR+Y4MQeG1yNyr4YRS1IO/skUnig8sTf5qCyA+wDdxnNFqewy3O2/n
+         jD7cytAkpjEOg==
+Date:   Thu, 29 Dec 2022 09:02:15 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Icenowy Zheng <uwu@icenowy.me>,
+        Hal Feng <hal.feng@starfivetech.com>
+CC:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        linux-kernel@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v3_6/7=5D_riscv=3A_dts=3A_starfive=3A?= =?US-ASCII?Q?_Add_initial_StarFive_JH7110_device_tree?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <dda144a8397a175f3ce092485f08896c9a66d232.camel@icenowy.me>
+References: <20221220011247.35560-1-hal.feng@starfivetech.com> <20221220011247.35560-7-hal.feng@starfivetech.com> <Y6zHy9oL4xzl+6Rd@spud> <dda144a8397a175f3ce092485f08896c9a66d232.camel@icenowy.me>
+Message-ID: <51F38449-56BA-4260-B46F-0996FD29E169@kernel.org>
 MIME-Version: 1.0
-References: <20221227095123.2447948-1-milkfafa@gmail.com> <20221227095123.2447948-8-milkfafa@gmail.com>
- <b8f173c0-6d40-d6aa-543e-fa8b06557f4f@molgen.mpg.de>
-In-Reply-To: <b8f173c0-6d40-d6aa-543e-fa8b06557f4f@molgen.mpg.de>
-From:   Kun-Fa Lin <milkfafa@gmail.com>
-Date:   Thu, 29 Dec 2022 16:55:50 +0800
-Message-ID: <CADnNmFr1naRfam=z0p-4hEugSDJy_HCK8XZyQJ0eFirnmwuH4A@mail.gmail.com>
-Subject: Re: [PATCH v10 7/7] media: nuvoton: Add driver for NPCM video capture
- and encode engine
-To:     Paul Menzel <pmenzel@molgen.mpg.de>
-Cc:     mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
-        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        andrzej.p@collabora.com, kwliu@nuvoton.com,
-        devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, kflin@nuvoton.com,
-        linux-media@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain;
+ charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+Hey Icenowy, Hal
 
-Thanks for the review.
-
-> > Add driver for Video Capture/Differentiation Engine (VCD) and Encoding
-> > Compression Engine (ECE) present on Nuvoton NPCM SoCs. The VCD can
-> > capture and differentiate video data from digital or analog sources,
+On 29 December 2022 05:25:00 GMT, Icenowy Zheng <uwu@icenowy=2Eme> wrote:
+>=E5=9C=A8 2022-12-28=E6=98=9F=E6=9C=9F=E4=B8=89=E7=9A=84 22:48 +0000=EF=
+=BC=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
+>> Hey,
+>>=20
+>> On Tue, Dec 20, 2022 at 09:12:46AM +0800, Hal Feng wrote:
+>> > From: Emil Renner Berthing <kernel@esmil=2Edk>
+>> >=20
+>> > Add initial device tree for the JH7110 RISC-V SoC by StarFive
+>> > Technology Ltd=2E
+>> >=20
+>> > Signed-off-by: Emil Renner Berthing <kernel@esmil=2Edk>
+>> > Co-developed-by: Jianlong Huang <jianlong=2Ehuang@starfivetech=2Ecom>
+>> > Signed-off-by: Jianlong Huang <jianlong=2Ehuang@starfivetech=2Ecom>
+>> > Co-developed-by: Hal Feng <hal=2Efeng@starfivetech=2Ecom>
+>> > Signed-off-by: Hal Feng <hal=2Efeng@starfivetech=2Ecom>
+>> > ---
+>> > =C2=A0arch/riscv/boot/dts/starfive/jh7110=2Edtsi | 411
+>> > +++++++++++++++++++++++
+>> > =C2=A01 file changed, 411 insertions(+)
+>> > =C2=A0create mode 100644 arch/riscv/boot/dts/starfive/jh7110=2Edtsi
+>> >=20
+>> > diff --git a/arch/riscv/boot/dts/starfive/jh7110=2Edtsi
+>> > b/arch/riscv/boot/dts/starfive/jh7110=2Edtsi
+>> > new file mode 100644
+>> > index 000000000000=2E=2E64d260ea1f29
+>> > --- /dev/null
+>> > +++ b/arch/riscv/boot/dts/starfive/jh7110=2Edtsi
+>> > @@ -0,0 +1,411 @@
+>> > +// SPDX-License-Identifier: GPL-2=2E0 OR MIT
+>> > +/*
+>> > + * Copyright (C) 2022 StarFive Technology Co=2E, Ltd=2E
+>> > + * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil=2Edk>
+>> > + */
+>> > +
+>> > +/dts-v1/;
+>> > +#include <dt-bindings/clock/starfive,jh7110-crg=2Eh>
+>> > +#include <dt-bindings/reset/starfive,jh7110-crg=2Eh>
+>> > +
+>> > +/ {
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0compatible =3D "starfive,j=
+h7110";
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0#address-cells =3D <2>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0#size-cells =3D <2>;
+>> > +
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0cpus {
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0#address-cells =3D <1>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0#size-cells =3D <0>;
+>> > +
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0S76_0: cpu@0 {
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0com=
+patible =3D "sifive,u74-mc", "riscv";
+>>=20
+>> The label here says S76 but the compatible says u74-mc=2E
+>> Which is correct? Your docs say S7 and S76, so I would imagine that
+>> it
+>> is actually an S76?
+>>=20
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0reg=
+ =3D <0>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0d-c=
+ache-block-size =3D <64>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0d-c=
+ache-sets =3D <64>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0d-c=
+ache-size =3D <8192>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0d-t=
+lb-sets =3D <1>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0d-t=
+lb-size =3D <40>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0dev=
+ice_type =3D "cpu";
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0i-c=
+ache-block-size =3D <64>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0i-c=
+ache-sets =3D <64>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0i-c=
+ache-size =3D <16384>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0i-t=
+lb-sets =3D <1>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0i-t=
+lb-size =3D <40>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0mmu=
+-type =3D "riscv,sv39";
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0nex=
+t-level-cache =3D <&ccache>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ris=
+cv,isa =3D "rv64imac";
+>>=20
+>> While I was poking around trying to see if there was some logic
+>> behind
+>> that compatible, I noticed that SiFive's docs for the S76 say it is
+>> RV64GBC *but* the docs for the u74-mc say "4xRV64GBC and 1xRV64IMAC"=2E
+>> I assume that rv64imac is the correct one here?
+>>=20
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0tlb=
+-split;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0sta=
+tus =3D "disabled";
+>> > +
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0cpu=
+0_intc: interrupt-controller {
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0compatible =3D "riscv,cpu-intc=
+";
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0interrupt-controller;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0#interrupt-cells =3D <1>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0};
+>> > +
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0U74_1: cpu@1 {
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0com=
+patible =3D "sifive,u74-mc", "riscv";
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0reg=
+ =3D <1>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0d-c=
+ache-block-size =3D <64>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0d-c=
+ache-sets =3D <64>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0d-c=
+ache-size =3D <32768>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0d-t=
+lb-sets =3D <1>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0d-t=
+lb-size =3D <40>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0dev=
+ice_type =3D "cpu";
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0i-c=
+ache-block-size =3D <64>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0i-c=
+ache-sets =3D <64>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0i-c=
+ache-size =3D <32768>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0i-t=
+lb-sets =3D <1>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0i-t=
+lb-size =3D <40>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0mmu=
+-type =3D "riscv,sv39";
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0nex=
+t-level-cache =3D <&ccache>;
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ris=
+cv,isa =3D "rv64imafdc";
+>>=20
+>> That also begs the question:
+>> Do your u74s support RV64GBC, as the (current) SiFive documentation
+>> suggests?
 >
-> =E2=80=9Cdifferentiate video data=E2=80=9D sounds uncommon to me. Am I ju=
-st ignorant or
-> is there a better term?
+>It supports RV64GCZbaZbb=2E
 
-How about "The VCD can capture a frame from digital video input and
-compare two frames in memory, then the ECE will compress the frame
-data into HEXTITLE format", is it better?
+Sweet, thanks=2E
 
-> Wich VNC viewer and version?
+>B is not a well-defined thing by specifications, so it should be
+>prevented here=2E
 
-I used RealVNC version 6.21.1109 to test.
-Do I have to add this information in the commit message?
+Yah, don't worry - my next question was going to be which bits were suppor=
+ted :)
 
-> Maybe also paste the new dev_ log messages
-> you get from one boot.
+Hal, can you update the isa string in the next version please?
 
-Do you mean dev_info/dev_debug messages of the driver?
-If yes, I get these messages from one boot (only dev_info will be
-printed in default):
-
-npcm-video f0810000.video: assigned reserved memory node framebuffer@0x3300=
-0000
-npcm-video f0810000.video: NPCM video driver probed
-
-> It=E2=80=99d be great if you noted the datasheet name and revision.
-
-I can note the datasheet name and revision in the commit message but
-can't provide the file link because it is not public.
-Is it ok with you?
-
-> > +static unsigned int npcm_video_ece_get_ed_size(struct npcm_video *vide=
-o,
-> > +                                            u32 offset, u8 *addr)
-> > +{
-> > +     struct regmap *ece =3D video->ece.regmap;
-> > +     u32 size, gap, val;
->
-> Using a fixed size type for variables not needing is, is actually not an
-> optimization [1]. It=E2=80=99d be great, if you went over the whole chang=
-e-set
-> to use the non-fixed types, where possible. (You can also check the
-> difference with `scripts/bloat-o-meter`.
-
-So what I have to do is replace "u8/u16/u32" with "unsigned int" for
-generic local variables as much as possible.
-Is my understanding correct?
-
-> > +MODULE_AUTHOR("Joseph Liu<kwliu@nuvoton.com>");
-> > +MODULE_AUTHOR("Marvin Lin<kflin@nuvoton.com>");
->
-> Please add a space before the <.
->
-> > +MODULE_DESCRIPTION("Driver for Nuvoton NPCM Video Capture/Encode Engin=
-e");
-> > +MODULE_LICENSE("GPL");
->
-> Not GPL v2?
-
-I'll correct them in the next patch.
-
-Regards,
-Marvin
+Thanks,
+Conor=2E
