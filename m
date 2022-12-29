@@ -2,151 +2,298 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8501F658C52
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 12:41:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4381658C5A
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 12:43:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229611AbiL2LlI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 06:41:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48270 "EHLO
+        id S229871AbiL2LnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 06:43:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229871AbiL2LlH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 06:41:07 -0500
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74FE6EE2B;
-        Thu, 29 Dec 2022 03:41:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1672314066; x=1703850066;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=oeDbj0ZIAbnEAMYuTDE6Q/zKo/muKo1PNiMLz3nWAeY=;
-  b=KD+lrPt/NcRcZ6/8xtlfKCQccqpsG4rV7HDX7IvitcUa+tV2wu4XQmUE
-   5bie8qWl7kDww6KUrVvsoP6DxzxmJlhW4e/CQz9m9dpZIGo2eSNshod3C
-   2xNSQ5ztSHzREg7xGZagifBAYaYztuWsGF98VBuAiWwi9xQy9ZyCP3N/c
-   ktbgCaCxXZRJ1FR0Liexw3GvaIRiaz6xA3jSgR5sCUVYLTHkBan2s6sMS
-   l+FQIhx4DzJMlxjiaqAuFmQsmwS2huTw3g0NLKqjU1Ir5z2kpckVzvFec
-   7KKDE30cYyELMmyIolBss0439sVEZ1I58n1g+nohYnlrK3LHX+tk/d1N7
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10574"; a="301396004"
-X-IronPort-AV: E=Sophos;i="5.96,283,1665471600"; 
-   d="scan'208";a="301396004"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Dec 2022 03:40:54 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10574"; a="603607003"
-X-IronPort-AV: E=Sophos;i="5.96,283,1665471600"; 
-   d="scan'208";a="603607003"
-Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.252.63.128])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Dec 2022 03:40:51 -0800
-Message-ID: <36cea7c5-75bb-8382-7f76-fcd36a9b482d@intel.com>
-Date:   Thu, 29 Dec 2022 13:40:46 +0200
+        with ESMTP id S233226AbiL2Lmy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 06:42:54 -0500
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69A4913F56
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 03:42:50 -0800 (PST)
+Received: by mail-yb1-xb2c.google.com with SMTP id o127so20286729yba.5
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 03:42:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=a/IIbQKAFM6Zt58ndJdNEj1tqwKhxfRop2Ff3VIPQR4=;
+        b=PxUDiZ8SCHxiihinCYVwRB+6u7b51QC7dO0q5gAqgeGHIOmlyYZiPEVJjQXmUswjtZ
+         zvLcBFSS2+4lksGjDg6UXpNfig4cvIEutERjwix4UeSSOAKuph3phepAaK0/cO7Yiuef
+         3iP2I7LLmBKLM9wOe6mCH/eZihbvoByyUUHM1E95+JHMp1OuJ6skw1TXX2C/mqViomp3
+         +PclXE5wxnl85vrgWSQFj5XODa1pVtN6XEAXmggrXAgo9UnnTEQ0vqD7jEZCrHNfZTxW
+         0ouuBxINiJ7ptF3Y/QxcuhmQOESA2ldyYCu9zjMVQ6kSEFFKMBXXd1SJIM7U4POsG8SK
+         0gNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=a/IIbQKAFM6Zt58ndJdNEj1tqwKhxfRop2Ff3VIPQR4=;
+        b=GpcZUTsVSIeh8ziCGN8S4EzXtH2d2Ayd40TlQ0H1J45WfvW1lol0yRkzhi4k8GaGu8
+         B5IIVSUs0eBcKunnNB14GjgqpISf4SAoX8tUh2AXEd0+1WkXqEtD2JI5bD4QMHgcTDNv
+         9J39YLvdY7f4QK8os2uAGDIcmkS/a1VOoNGw7T9D0RDOs9DcQM2s3bRjF7Raq8ZtCQxM
+         NBE//VxPrkDb0+8VWIn9bpr4gmUrqoRd1IQSdyOqj8EzTkCqYZlkgc6l1Ex1E2IbFBPG
+         EGO00pGcp5kgqyU45c00ET7Nnlf1cx4P9ZzGY5GYg6ZoJ8UiUEz0m764beKi/o/GaP5b
+         pkew==
+X-Gm-Message-State: AFqh2kr/FyPuMGA0o3Kq6vm60ey1ZYzloczYAcoK4JaMHY/+hl1fqT6V
+        SVRZQOq8KP9B4hMaQuvN+BakCcWEBclghX9aofDjsg==
+X-Google-Smtp-Source: AMrXdXtW//IN3ReKjaHkPt/+xif7R3OYcUyiXsGnG8OQRQzU50Z1BJTHZtcYKiaSt6HCUe8X+Gyrsns4klTOEKa+fNQ=
+X-Received: by 2002:a25:aa0d:0:b0:76d:bea0:8a05 with SMTP id
+ s13-20020a25aa0d000000b0076dbea08a05mr2034470ybi.153.1672314169431; Thu, 29
+ Dec 2022 03:42:49 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.6.1
-Subject: Re: [PATCH v2 1/8] mmc: sdhci-pxav2: add initial support for PXA168
- V1 controller
-Content-Language: en-US
-To:     Doug Brown <doug@schmorgal.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+References: <20221229030106.3303205-1-dmitry.baryshkov@linaro.org>
+ <20221229030106.3303205-10-dmitry.baryshkov@linaro.org> <e8faca42-090b-6103-603d-06caa7476787@linaro.org>
+In-Reply-To: <e8faca42-090b-6103-603d-06caa7476787@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 29 Dec 2022 13:42:38 +0200
+Message-ID: <CAA8EJprbCi18JG61sw+Ayc14fbHYUVkEHms0vUyVE8QzsH8zJA@mail.gmail.com>
+Subject: Re: [PATCH v5 09/20] thermal/drivers/tsens: Support using nvmem cells
+ for calibration data
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        Ulf Hansson <ulf.hansson@linaro.org>
-References: <20221202031330.94130-1-doug@schmorgal.com>
- <20221202031330.94130-2-doug@schmorgal.com>
- <c2d5fb16-2654-6406-63da-626d6d5029c3@intel.com>
- <beda0a3a-05d9-6c24-0fd2-1d80a86beb6d@schmorgal.com>
-From:   Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-In-Reply-To: <beda0a3a-05d9-6c24-0fd2-1d80a86beb6d@schmorgal.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/12/22 22:35, Doug Brown wrote:
-> Hi Adrian,
-> 
-> On 12/22/2022 8:03 AM, Adrian Hunter wrote:
->> On 2/12/22 05:13, Doug Brown wrote:
->>> Add a new compatible string for the version 1 controller used in the
->>> PXA168, along with necessary quirks. Use a separate ops struct in
->>> preparation for a silicon bug workaround only necessary on V1.
->>>
->>> Signed-off-by: Doug Brown <doug@schmorgal.com>
->>> ---
->>>   drivers/mmc/host/sdhci-pxav2.c | 18 +++++++++++++++++-
->>>   1 file changed, 17 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/mmc/host/sdhci-pxav2.c b/drivers/mmc/host/sdhci-pxav2.c
->>> index f18906b5575f..2f9fa0ecbddd 100644
->>> --- a/drivers/mmc/host/sdhci-pxav2.c
->>> +++ b/drivers/mmc/host/sdhci-pxav2.c
->>> @@ -101,6 +101,14 @@ static void pxav2_mmc_set_bus_width(struct sdhci_host *host, int width)
->>>       writeb(ctrl, host->ioaddr + SDHCI_HOST_CONTROL);
->>>   }
->>>   +static const struct sdhci_ops pxav1_sdhci_ops = {
->>> +    .set_clock     = sdhci_set_clock,
->>> +    .get_max_clock = sdhci_pltfm_clk_get_max_clock,
->>> +    .set_bus_width = pxav2_mmc_set_bus_width,
->>> +    .reset         = pxav2_reset,
->>> +    .set_uhs_signaling = sdhci_set_uhs_signaling,
->>> +};
->>> +
->>>   static const struct sdhci_ops pxav2_sdhci_ops = {
->>>       .set_clock     = sdhci_set_clock,
->>>       .get_max_clock = sdhci_pltfm_clk_get_max_clock,
->>> @@ -114,6 +122,9 @@ static const struct of_device_id sdhci_pxav2_of_match[] = {
->>>       {
->>>           .compatible = "mrvl,pxav2-mmc",
->>>       },
->>> +    {
->>> +        .compatible = "mrvl,pxav1-mmc",
->>> +    },
->>>       {},
->>>   };
->>>   MODULE_DEVICE_TABLE(of, sdhci_pxav2_of_match);
->>> @@ -208,7 +219,12 @@ static int sdhci_pxav2_probe(struct platform_device *pdev)
->>>               host->mmc->pm_caps |= pdata->pm_caps;
->>>       }
->>>   -    host->ops = &pxav2_sdhci_ops;
->>> +    if (match && of_device_is_compatible(dev->of_node, "mrvl,pxav1-mmc")) {
->>> +        host->quirks |= SDHCI_QUIRK_NO_BUSY_IRQ | SDHCI_QUIRK_32BIT_DMA_SIZE;
->>> +        host->ops = &pxav1_sdhci_ops;
->>> +    } else {
->>> +        host->ops = &pxav2_sdhci_ops;
->>> +    }
->>
->> It would be better to put the information above in a structure and
->> get it with of_device_get_match_data() (instead of of_match_device).
->> Also drivers typically assume there is always a match since that
->> is the only way the driver ->probe() will get run.
-> 
-> Thanks for all of your great feedback on this series. That makes sense.
-> I did have one question about this suggestion. There are other parts of
-> sdhci_pxav2_probe() that don't assume there was a match so that it can
-> be set up the old way as a platform_device without CONFIG_OF. I was
-> trying to preserve compatibility by defaulting to pxav2_sdhci_ops if
-> it was set up as a platform_device. Is it all right if I leave a
-> fallback in place for that, or should I just end compatibility with the
-> old way at this point and assume a match in all cases? I don't see any
-> legacy board files that use this driver.
+On Thu, 29 Dec 2022 at 12:47, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+>
+>
+> On 29.12.2022 04:00, Dmitry Baryshkov wrote:
+> > Add a unified function using nvmem cells for parsing the calibration
+> > data rather than parsing the calibration blob manually.
+> >
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> >  drivers/thermal/qcom/tsens-v0_1.c | 15 ++++++
+> >  drivers/thermal/qcom/tsens-v1.c   | 11 ++++-
+> >  drivers/thermal/qcom/tsens.c      | 76 +++++++++++++++++++++++++++++++
+> >  drivers/thermal/qcom/tsens.h      |  5 ++
+> >  4 files changed, 106 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/thermal/qcom/tsens-v0_1.c b/drivers/thermal/qcom/tsens-v0_1.c
+> > index 579028ea48f4..6c9e491f9559 100644
+> > --- a/drivers/thermal/qcom/tsens-v0_1.c
+> > +++ b/drivers/thermal/qcom/tsens-v0_1.c
+> > @@ -229,6 +229,11 @@ static int calibrate_8916(struct tsens_priv *priv)
+> >       u32 p1[5], p2[5];
+> >       int mode = 0;
+> >       u32 *qfprom_cdata, *qfprom_csel;
+> > +     int ret;
+> > +
+> > +     ret = tsens_calibrate_nvmem(priv, 3);
+> > +     if (!ret)
+> > +             return 0;
+> >
+> >       qfprom_cdata = (u32 *)qfprom_read(priv->dev, "calib");
+> >       if (IS_ERR(qfprom_cdata))
+> > @@ -286,6 +291,11 @@ static int calibrate_8939(struct tsens_priv *priv)
+> >       int mode = 0;
+> >       u32 *qfprom_cdata;
+> >       u32 cdata[4];
+> > +     int ret;
+> > +
+> > +     ret = tsens_calibrate_common(priv);
+> > +     if (!ret)
+> > +             return 0;
+> >
+> >       qfprom_cdata = (u32 *)qfprom_read(priv->dev, "calib");
+> >       if (IS_ERR(qfprom_cdata))
+> > @@ -486,6 +496,11 @@ static int calibrate_9607(struct tsens_priv *priv)
+> >       u32 p1[5], p2[5];
+> >       int mode = 0;
+> >       u32 *qfprom_cdata;
+> > +     int ret;
+> > +
+> > +     ret = tsens_calibrate_common(priv);
+> > +     if (!ret)
+> > +             return 0;
+> >
+> >       qfprom_cdata = (u32 *)qfprom_read(priv->dev, "calib");
+> >       if (IS_ERR(qfprom_cdata))
+> > diff --git a/drivers/thermal/qcom/tsens-v1.c b/drivers/thermal/qcom/tsens-v1.c
+> > index 83c2853546d0..5bba75a845c5 100644
+> > --- a/drivers/thermal/qcom/tsens-v1.c
+> > +++ b/drivers/thermal/qcom/tsens-v1.c
+> > @@ -143,7 +143,11 @@ static int calibrate_v1(struct tsens_priv *priv)
+> >       u32 p1[10], p2[10];
+> >       u32 mode = 0, lsb = 0, msb = 0;
+> >       u32 *qfprom_cdata;
+> > -     int i;
+> > +     int i, ret;
+> > +
+> > +     ret = tsens_calibrate_common(priv);
+> > +     if (!ret)
+> > +             return 0;
+> >
+> >       qfprom_cdata = (u32 *)qfprom_read(priv->dev, "calib");
+> >       if (IS_ERR(qfprom_cdata))
+> > @@ -209,6 +213,11 @@ static int calibrate_8976(struct tsens_priv *priv)
+> >       u32 p1[11], p2[11];
+> >       int mode = 0, tmp = 0;
+> >       u32 *qfprom_cdata;
+> > +     int ret;
+> > +
+> > +     ret = tsens_calibrate_common(priv);
+> > +     if (!ret)
+> > +             return 0;
+> >
+> >       qfprom_cdata = (u32 *)qfprom_read(priv->dev, "calib");
+> >       if (IS_ERR(qfprom_cdata))
+> > diff --git a/drivers/thermal/qcom/tsens.c b/drivers/thermal/qcom/tsens.c
+> > index b191e19df93d..ce568a68de4a 100644
+> > --- a/drivers/thermal/qcom/tsens.c
+> > +++ b/drivers/thermal/qcom/tsens.c
+> > @@ -70,6 +70,82 @@ char *qfprom_read(struct device *dev, const char *cname)
+> >       return ret;
+> >  }
+> >
+> > +int tsens_calibrate_nvmem(struct tsens_priv *priv, int shift)
+> > +{
+> > +     u32 mode;
+> > +     u32 base1, base2;
+> > +     u32 p1[MAX_SENSORS], p2[MAX_SENSORS];
+> > +     char name[] = "sXX_pY"; /* s10_p1 */
+> > +     int i, ret;
+> > +
+> > +     if (priv->num_sensors > MAX_SENSORS)
+> > +             return -EINVAL;
+> > +
+> > +     ret = nvmem_cell_read_variable_le_u32(priv->dev, "mode", &mode);
+> > +     if (ret == -ENOENT)
+> > +             dev_warn(priv->dev, "Please migrate to separate nvmem cells for calibration data\n");
+> > +     if (ret < 0)
+> > +             return ret;
+> > +
+> > +     dev_dbg(priv->dev, "calibration mode is %d\n", mode);
+> > +
+> > +     ret = nvmem_cell_read_variable_le_u32(priv->dev, "base1", &base1);
+> > +     if (ret < 0)
+> > +             return ret;
+> > +
+> > +     ret = nvmem_cell_read_variable_le_u32(priv->dev, "base2", &base2);
+> > +     if (ret < 0)
+> > +             return ret;
+> > +
+> > +     for (i = 0; i < priv->num_sensors; i++) {
+> > +             ret = snprintf(name, sizeof(name), "s%d_p1", priv->sensor[i].hw_id);
+> I think you forgot to update the underscore to a hyphen here
+> (unless the nvmem api does some magic internally).
 
-I didn't think about matching by name.  As you say, there doesn't seem
-to be anything in mainline.  I will leave it to you to decide.
+No. Please see the nvmem-cell-names property of the tsens nodes. It
+uses underscores. Then OF code translates this sX_pY string into an
+index in the nvmem-cells array or phandles. The sX-pY@ZZ node name is
+not used during lookups at all.
 
-> 
->>
->>>         ret = sdhci_add_host(host);
->>>       if (ret)
->>
-> 
-> Thanks,
-> Doug
+>
+> Konrad
+> > +             if (ret < 0)
+> > +                     return ret;
+> > +
+> > +             ret = nvmem_cell_read_variable_le_u32(priv->dev, name, &p1[i]);
+> > +             if (ret)
+> > +                     return ret;
+> > +
+> > +             ret = snprintf(name, sizeof(name), "s%d_p2", priv->sensor[i].hw_id);
+> > +             if (ret < 0)
+> > +                     return ret;
+> > +
+> > +             ret = nvmem_cell_read_variable_le_u32(priv->dev, name, &p2[i]);
+> > +             if (ret)
+> > +                     return ret;
+> > +     }
+> > +
+> > +     switch (mode) {
+> > +     case ONE_PT_CALIB:
+> > +             for (i = 0; i < priv->num_sensors; i++)
+> > +                     p1[i] = p1[i] + (base1 << shift);
+> > +             break;
+> > +     case TWO_PT_CALIB:
+> > +             for (i = 0; i < priv->num_sensors; i++)
+> > +                     p2[i] = (p2[i] + base2) << shift;
+> > +             fallthrough;
+> > +     case ONE_PT_CALIB2:
+> > +             for (i = 0; i < priv->num_sensors; i++)
+> > +                     p1[i] = (p1[i] + base1) << shift;
+> > +             break;
+> > +     default:
+> > +             dev_dbg(priv->dev, "calibrationless mode\n");
+> > +             for (i = 0; i < priv->num_sensors; i++) {
+> > +                     p1[i] = 500;
+> > +                     p2[i] = 780;
+> > +             }
+> > +     }
+> > +
+> > +     compute_intercept_slope(priv, p1, p2, mode);
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +int tsens_calibrate_common(struct tsens_priv *priv)
+> > +{
+> > +     return tsens_calibrate_nvmem(priv, 2);
+> > +}
+> > +
+> >  /*
+> >   * Use this function on devices where slope and offset calculations
+> >   * depend on calibration data read from qfprom. On others the slope
+> > diff --git a/drivers/thermal/qcom/tsens.h b/drivers/thermal/qcom/tsens.h
+> > index 7dd5fc246894..645ae02438fa 100644
+> > --- a/drivers/thermal/qcom/tsens.h
+> > +++ b/drivers/thermal/qcom/tsens.h
+> > @@ -6,6 +6,7 @@
+> >  #ifndef __QCOM_TSENS_H__
+> >  #define __QCOM_TSENS_H__
+> >
+> > +#define NO_PT_CALIB          0x0
+> >  #define ONE_PT_CALIB         0x1
+> >  #define ONE_PT_CALIB2                0x2
+> >  #define TWO_PT_CALIB         0x3
+> > @@ -17,6 +18,8 @@
+> >  #define THRESHOLD_MAX_ADC_CODE       0x3ff
+> >  #define THRESHOLD_MIN_ADC_CODE       0x0
+> >
+> > +#define MAX_SENSORS 16
+> > +
+> >  #include <linux/interrupt.h>
+> >  #include <linux/thermal.h>
+> >  #include <linux/regmap.h>
+> > @@ -582,6 +585,8 @@ struct tsens_priv {
+> >  };
+> >
+> >  char *qfprom_read(struct device *dev, const char *cname);
+> > +int tsens_calibrate_nvmem(struct tsens_priv *priv, int shift);
+> > +int tsens_calibrate_common(struct tsens_priv *priv);
+> >  void compute_intercept_slope(struct tsens_priv *priv, u32 *pt1, u32 *pt2, u32 mode);
+> >  int init_common(struct tsens_priv *priv);
+> >  int get_temp_tsens_valid(const struct tsens_sensor *s, int *temp);
 
+
+
+-- 
+With best wishes
+Dmitry
