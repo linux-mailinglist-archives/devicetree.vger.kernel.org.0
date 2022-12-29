@@ -2,146 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A5286591F6
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 22:05:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1487F6591FD
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 22:06:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234118AbiL2VFc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 16:05:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35614 "EHLO
+        id S234143AbiL2VGt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 16:06:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233980AbiL2VFa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 16:05:30 -0500
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF51A164A2
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 13:05:26 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id fc4so47480104ejc.12
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 13:05:26 -0800 (PST)
+        with ESMTP id S234090AbiL2VGs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 16:06:48 -0500
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3DB7C4A
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 13:06:47 -0800 (PST)
+Received: by mail-ot1-x332.google.com with SMTP id l8-20020a056830054800b006705fd35eceso12111297otb.12
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 13:06:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kRNvQQbqnc8KpHoJTZ87k7EPwQ8SCvjzbGkb6QD2t84=;
-        b=AtpuXY4pnZ/cz0rHmEe4NJ0VRgHooaz5lYW1clJ77Gyl3wlv3NASy2lWHNOPISj2z+
-         WDrqh4h+g8dTh1z6ToLGHIa5cJoa1vRQSQDNEXT0kJxDe2fXAsSljWj8qf1JIYnlTOgY
-         wyEBb0iT2cgDgv765MdZqONc3N9dGJQG9gu6Bp8TyByDdvbEbQn86XGYvtncC+xuSH6W
-         VjRhnfDE7W/XV/tVI4WUWXSDhPXtGX/YaOdVJJVgVskefjWdaXfiHD3DHNhYC7cpssya
-         gdjsZEu3BV8p7qS/e/an47bB6hPrja7v+ZvZ7rEhoPNMTOHXwzV5pZ/x88AUZtOGeLp/
-         hviw==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=+yHonGhQ+U58uUS0jyslPVrKLC3sDduyu0s9k7MuOZs=;
+        b=gBmWUGN11WcIq9eznUyhrhXJC+dJMe09abUHO0k06U95JePClNHH2Ur7gB94QY6VQ7
+         NAfeKDSwI9yLVpc8jaoNHay0mxrbP2RtT1dbNktLG4/1J1MbJKPzz1rq2pqyAH8lZlL/
+         TS6UTi1q1vk3+CRrNfDahlwTWno4JVIj4HK1PWeOzsm8psfdCuOHIPjL8lSbN1aafGYl
+         /qdo/VEc0OHf5tW6lWvqqK/s8wlL0082kwsdq4oTnx71rRbqZ2ZG3nS0jv8zoSAc6Z3a
+         7hgebQ6/Mec/dljnJq6uSS2p/nUgRqnGL2xyWwXj/de3ynx2ggHviWrsXf+gOkJwQhng
+         MomQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kRNvQQbqnc8KpHoJTZ87k7EPwQ8SCvjzbGkb6QD2t84=;
-        b=DdgTfXgJS3ZcOBML4eBftIoCsMkzR4Rj0Fn0jixuTWOc48RCN+fv4lmlklVnqZJxtR
-         z2a6N94U5cXhV6emSmFpqQMmF3R1mDrBekg5Qnj4wVg5QlxzdmP04wNnDo5c0vPBaf85
-         ekre8LGpUNaZ4VGw+IvJL4QSgEBcYd3hJ8mfHiak24uCMEAv/MaLHynxDCoJWlcle+3W
-         JRYMybEC5s52rzw81VS1Fg4BnmHBS8riZM8buN0vWqs+IvtsHx+c/9oqFN/nyfZVg6U4
-         alg6udCVCHaFzXpkEMP2499jL+Poi3/oj4Rykw13u4oxbZE3zt9ZzeEPGlepMFeQ7sw3
-         OdnQ==
-X-Gm-Message-State: AFqh2koDJ4ZwJ95S83xahlL9enQzhqAqQrnqVxMMUEH1X2myUnif+f/M
-        mTWhuHfahAd2lCBHMF4EQWekUA==
-X-Google-Smtp-Source: AMrXdXsaE45OPfrv95sRhArvsNcedxszCSPth5aVOjsY5weGoCmGV3Nl27JhjKLR4xx64Mf9m6NppA==
-X-Received: by 2002:a17:906:5786:b0:78d:f455:3105 with SMTP id k6-20020a170906578600b0078df4553105mr24292744ejq.45.1672347925471;
-        Thu, 29 Dec 2022 13:05:25 -0800 (PST)
-Received: from ?IPV6:2001:1c06:2302:5600:12a8:8cf4:e3f6:f90f? (2001-1c06-2302-5600-12a8-8cf4-e3f6-f90f.cable.dynamic.v6.ziggo.nl. [2001:1c06:2302:5600:12a8:8cf4:e3f6:f90f])
-        by smtp.gmail.com with ESMTPSA id gf26-20020a170906e21a00b007c0b9500129sm8905790ejb.68.2022.12.29.13.05.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Dec 2022 13:05:25 -0800 (PST)
-Message-ID: <6061938c-b830-2fe0-2f4d-368e34c33676@linaro.org>
-Date:   Thu, 29 Dec 2022 21:05:23 +0000
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+yHonGhQ+U58uUS0jyslPVrKLC3sDduyu0s9k7MuOZs=;
+        b=X4eBVyX6BDu2cqAPEVE25W47lu6dYWI03FpLdfeRAogcPvmHHKNbq7RwvRQjUWwXlO
+         ysI14pnOF34MevnVKKOMrXojGRV8HBgh0w9W55vvoOBKmMfBTjo8aOcSi5AziKCsGdD1
+         QTTscCR02hG1sqiE9KZmbKnxMhmcn1IoB5R5UVM0Dwqo5QCNQsFUeY7LPG4uiz8X5Ds0
+         LhgHgqYENZ34GX+jifMH1YErWynDSt+0yiQPmbo/UmWe0h0wTLy/spvvK1e4PT9PZb0X
+         X290LCaYP/P8XN5wZLHTxomv8Iz9vgHtlOFhkyGONpJUm3ljCoNdNuMdUjpEGkhDpwQO
+         4AOA==
+X-Gm-Message-State: AFqh2kpi8SoMNvJVm6hL6SL4XwaA7MrKSCXQREDko/UdAXAhNH4nxCIp
+        OyJmIKvPPfwxsnAebinMHozifu7TwcBRIrodxtCXmkbhU2sI7Nvj
+X-Google-Smtp-Source: AMrXdXuujWF8gx7voSqxkRTNv1kjsqLg4eRTHc6xFQCHkGHSgzYPaKhgFSkgb1IIJHEJN/NuVzgVX8rLozR+rdb/2dc=
+X-Received: by 2002:a9d:750d:0:b0:66e:abbc:cfe4 with SMTP id
+ r13-20020a9d750d000000b0066eabbccfe4mr1943058otk.102.1672348007150; Thu, 29
+ Dec 2022 13:06:47 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 2/2] phy: qcom-usb-hs: Add qcom,dp-manual-pullup logic
-Content-Language: en-US
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     agross@kernel.org, andersson@kernel.org, vkoul@kernel.org,
-        kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+References: <20221219195233.375637-1-cbranchereau@gmail.com>
+In-Reply-To: <20221219195233.375637-1-cbranchereau@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 29 Dec 2022 22:08:41 +0100
+Message-ID: <CACRpkda4NpF9D=1zu6-MU5T9+eoNfSrNhXLUhYJizKmYs_b+jg@mail.gmail.com>
+Subject: Re: [PATCH v3 0/2] Add support for the orisetech ota5601
+To:     Christophe Branchereau <cbranchereau@gmail.com>
+Cc:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dri-devel@lists.freedesktop.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org
-References: <20221229183410.683584-1-bryan.odonoghue@linaro.org>
- <20221229183410.683584-3-bryan.odonoghue@linaro.org>
- <Y63uSgMdP4m6nvhL@gerhold.net> <Y64AfHcUw192Pyr6@gerhold.net>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <Y64AfHcUw192Pyr6@gerhold.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        paul@crapouillou.net
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/12/2022 21:02, Stephan Gerhold wrote:
-> On Thu, Dec 29, 2022 at 08:45:15PM +0100, Stephan Gerhold wrote:
->> On Thu, Dec 29, 2022 at 06:34:10PM +0000, Bryan O'Donoghue wrote:
->>> Downstream has a flag called qcom,dp-manual-pullup which informs the
->>> downstream driver if it should toggle ULPI_MISC_A_VBUSVLDEXTSEL and
->>> ULPI_MISC_A_VBUSVLDEXT.
->>>
->>> Downstream states:
->>>
->>> "qcom,dp-manual-pullup: If present, vbus is not routed to USB
->>>          controller/phy and controller driver therefore enables pull-up
->>>          explicitly before starting controller using usbcmd run/stop bit."
->>>
->>> Working with a system that has both an external Type-C port controller and
->>> an internal USB Hub results in a situation where VBUS is not connected to
->>> the SoC.
->>>
->>> In this case we still need to set the DP pullup.
->>>
->>> This patch enables and disables the DP pullup on PHY power_on and power_off
->>> respectively if the DT has declared the bool "qcom,enable-vbus-pullup"
->>> effectively replicating the downstream logic to the same effect.
->>>
->>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->> [...]
->>
->> An alternative that I've occasionally used for early bring-up is to
->> simply use a dummy extcon driver [1] that permanently reports active
->> VBUS. The end result is the same. While it's clearly a hack perhaps this
->> makes it a bit more clear that ideally you really should try to assign
->> an extcon device, to avoid keeping the USB controller and PHY on
->> permanently.
->>
-> 
-> BTW another nice trick that should work in all almost all cases is to
-> use the state of the PMIC USB_IN pin as VBUS detection. All battery-
-> powered devices I have seen route the USB VBUS to PM8916 USB_IN. And
-> even many boards like DB410c seem to do that or at least permanently
-> supply 5V there. In all these cases the &pm8916_usbin extcon will
-> report a VBUS state that should make USB work.
-> 
-> Have you tried using that on your MSM8939 board with the Type-C setup?
-> 
-> &pm8916_usbin {
-> 	status = "okay";
-> };
-> 
-> &usb {
-> 	status = "okay";
-> 	usb-role-switch;
-> 	extcon = <&pm8916_usbin>;
-> };
-> 
-> &usb_hs_phy {
-> 	extcon = <&pm8916_usbin>;
-> };
-> 
-> Stephan
+On Mon, Dec 19, 2022 at 8:52 PM Christophe Branchereau
+<cbranchereau@gmail.com> wrote:
 
-I checked USBIN before my last email reply.
+> Changes since v2:
 
-Its possible its connected but its not there on the 8939 schematic I have.
+This v3 patch set applied and pushed to drm-misc-next.
 
----
-bod
+There were some minor checkpatch warnings that I just fixed
+up while applying. Check the result in linux-next once it percolates.
+
+Yours,
+Linus Walleij
