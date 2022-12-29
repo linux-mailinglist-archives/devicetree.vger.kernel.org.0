@@ -2,55 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B631E65892B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 04:34:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2E5B658938
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 04:45:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230257AbiL2Deo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Dec 2022 22:34:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36620 "EHLO
+        id S232623AbiL2Dpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Dec 2022 22:45:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230078AbiL2Den (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 22:34:43 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D86BADFBB;
-        Wed, 28 Dec 2022 19:34:42 -0800 (PST)
+        with ESMTP id S230488AbiL2Dpp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Dec 2022 22:45:45 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0C72B3F;
+        Wed, 28 Dec 2022 19:45:44 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 59040B818B9;
-        Thu, 29 Dec 2022 03:34:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3107DC433D2;
-        Thu, 29 Dec 2022 03:34:39 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 68D16B816E4;
+        Thu, 29 Dec 2022 03:45:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7066CC433EF;
+        Thu, 29 Dec 2022 03:45:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672284879;
-        bh=ejt+OXLyDQo0MjucsaexNekRIuQpY4FgVYViadWiGDU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZjxF5Do4VUhcHJ4gFm8eQD8u6OOPuZRFIC0hzBksdKFIuI09yxoMVJivrp9Nrb9J0
-         vSMw6zIP50vFhG/tpdDmlTrFbhs5qlh4Pr578MEw7whX44MXC5YCUkdFwZ/z5P4JiF
-         OWUjEXATofADcGMpQrucewypVjXdwAFKOThc0zTvsxEf8OqGlz2QSdtFhh4FTnpPMv
-         NsccKZ1FG5JYjMm/sulqPJPak+hwHAQKjRJAdaKaWS15LV3lVjc7gkt85fCEK7ljKo
-         E/h6bp5Y5mo2zAXUOUyVc9NtlY7e+0zz5EUfIz2CXx93yydBzDMf6eDWKNLOViGVSz
-         P+ZMtTfsji54Q==
-Date:   Wed, 28 Dec 2022 21:34:37 -0600
+        s=k20201202; t=1672285542;
+        bh=alCJu5XAjMvKb+w02CBSziyyOEltpCAw/XCcSnAbcuk=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=AWVpuj5foLvPtcXPEKqfw0DoLzqyOXgKpm8loWrcWzFCx9x1HAGhq1+H2xh6FDgft
+         tiOxrDVp42TPAczZTjiaTkNCyYelRu20N7woz+978EI9U2qo6D4sM6IdbrTLjJm9b9
+         BDYjBz4hkRwGBlqFp35eyon5jyCkJscIJVhqb2A732TGBiK3d29+nVmZHyuxDyeI7a
+         AkUqXhS7acN3Gu4GTg61iI2ijgBZNZbhdo5nO7F+8XWJZZV+1gshYlBR8Z02nRLJGU
+         ZYtCzy1PNtJFO39EmgrTvIDu3rH3HRI+ouTvdVNVVBCdeY9BV/5LQdLrBmn1CWUDZW
+         u5JbdpRlv3fcA==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Rayyan Ansari <rayyan@ansari.sh>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] ARM: dts: qcom: pm8226: add IADC node
-Message-ID: <20221229033437.kxwe73bomxw6sfi2@builder.lan>
-References: <20221223193403.781355-1-rayyan@ansari.sh>
- <20221223193403.781355-4-rayyan@ansari.sh>
- <4448368.LvFx2qVVIh@g550jk>
+To:     keescook@chromium.org, Tony Luck <tony.luck@intel.com>,
+        luca@z3ntu.xyz, gpiccoli@igalia.com,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        agross@kernel.org, konrad.dybcio@linaro.org
+Cc:     linux-kernel@vger.kernel.org, a39.skl@gmail.com,
+        krzysztof.kozlowski@linaro.org, devicetree@vger.kernel.org,
+        ultracoolguy@disroot.org, vladimir.lypak@gmail.com,
+        morf3089@gmail.com, atafalla@dnyon.com,
+        linux-arm-msm@vger.kernel.org, jenneron@protonmail.com,
+        ~postmarketos/upstreaming@lists.sr.ht, julianbraha@gmail.com,
+        fekz115@gmail.com, JIaxyga@protonmail.com,
+        sireeshkodali1@gmail.com, linux-hardening@vger.kernel.org,
+        phone-devel@vger.kernel.org
+Subject: Re: (subset) [PATCH v3 0/9] Add a bunch of msm8953 dts files
+Date:   Wed, 28 Dec 2022 21:45:38 -0600
+Message-Id: <167228553507.1017132.4894386227853517055.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20221207-msm8953-6-1-next-dtbs-v3-v3-0-a64b3b0af0eb@z3ntu.xyz>
+References: <20221207-msm8953-6-1-next-dtbs-v3-v3-0-a64b3b0af0eb@z3ntu.xyz>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4448368.LvFx2qVVIh@g550jk>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -60,54 +63,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 26, 2022 at 01:14:59PM +0100, Luca Weiss wrote:
-> Hi Rayyan,
+On Wed, 07 Dec 2022 19:30:37 +0100, Luca Weiss wrote:
+> The following patches add a bunch of msm8953-based devices that have
+> been created in the msm8953-mainline[0] repository, which includes
+> Snapdragon 450 (SDM450), Snapdragon 625 (msm8953) and Snapdragon 632
+> (SDM632) devices.
+> The dts files are trimmed down to what is currently supported upstream,
+> as a way to also minimizing diff for further patches.
 > 
-> On Freitag, 23. Dezember 2022 20:34:03 CET Rayyan Ansari wrote:
-> > Add a node for the current ADC (IADC) found in PM8226.
-> > 
-> > Signed-off-by: Rayyan Ansari <rayyan@ansari.sh>
-> > ---
-> >  arch/arm/boot/dts/qcom-pm8226.dtsi | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> > 
-> > diff --git a/arch/arm/boot/dts/qcom-pm8226.dtsi
-> > b/arch/arm/boot/dts/qcom-pm8226.dtsi index 403324a35cf5..82470549f240
-> > 100644
-> > --- a/arch/arm/boot/dts/qcom-pm8226.dtsi
-> > +++ b/arch/arm/boot/dts/qcom-pm8226.dtsi
-> > @@ -88,6 +88,12 @@ adc-chan@f {
-> >  			};
-> >  		};
-> > 
-> > +		pm8226_iadc: iadc@3600 {
-> 
-> Make this adc@ to conform to qcom,spmi-pmic.yaml docs
-> 
-> > +			compatible = "qcom,spmi-iadc";
-> 
-> Make this "qcom,pm8226-iadc", "qcom,spmi-iadc" and add to docs to conform to 
-> qcom,spmi-iadc.yaml
-> 
+> [...]
 
-I adjusted the patch according to your requests and applied it. Rayyan,
-please update dt binding documentation per Luca's request.
+Applied, thanks!
 
-Thanks,
-Bjorn
+[2/9] arm64: dts: qcom: msm8953: Adjust reserved-memory nodes
+      commit: eca9ee35e895686d179964dc6f94e6c473d2a171
+[3/9] arm64: dts: qcom: sdm450: Add device tree for Motorola Moto G6
+      commit: eee5a89b4fe5615ba57fd8048102504aaa052065
+[4/9] arm64: dts: qcom: msm8953: Add device tree for Motorola G5 Plus
+      commit: 4ccd0dd6a3d2a98b11664992012af04cb0ce8f6c
+[5/9] arm64: dts: qcom: msm8953: Add device tree for Xiaomi Mi A2 Lite
+      commit: 38d779c26395df5f7f66bb5da7af6241180283e1
+[6/9] arm64: dts: qcom: msm8953: Add device tree for Xiaomi Redmi Note 4X
+      commit: c144005129b09141b292820d35f0094e54b12d6d
+[7/9] arm64: dts: qcom: msm8953: Add device tree for Xiaomi Mi A1
+      commit: cf152c05eb35afc9db3c9480ce17b27a703b2893
+[8/9] arm64: dts: qcom: msm8953: Add device tree for Xiaomi Redmi 5 Plus
+      commit: aa17e707e04a0446de5e40f74aac979582185559
+[9/9] arm64: dts: qcom: sdm632: Add device tree for Motorola G7 Power
+      commit: 3176c4d6b9beba4a554bebba6b19b56942705a28
 
-> Regards
-> Luca
-> 
-> > +			reg = <0x3600>;
-> > +			interrupts = <0x0 0x36 0x0 
-> IRQ_TYPE_EDGE_RISING>;
-> > +		};
-> > +
-> >  		rtc@6000 {
-> >  			compatible = "qcom,pm8941-rtc";
-> >  			reg = <0x6000>, <0x6100>;
-> 
-> 
-> 
-> 
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
