@@ -2,116 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0143658A99
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 09:42:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08F83658A9D
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 09:43:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232624AbiL2ImH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 03:42:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49028 "EHLO
+        id S231203AbiL2InL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 03:43:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229535AbiL2ImF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 03:42:05 -0500
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F15911004D;
-        Thu, 29 Dec 2022 00:42:04 -0800 (PST)
-Received: from g550jk.localnet (2a02-8388-6582-fe80-0000-0000-0000-0005.cable.dynamic.v6.surfer.at [IPv6:2a02:8388:6582:fe80::5])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id B7620CC38B;
-        Thu, 29 Dec 2022 08:42:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1672303323; bh=z74Wvw2dl/J6TN1vPrye61RN3quWMD3vkV0739va1Mk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=ppugLIFkeEkZ3D4fy3r7n+6r6SIVDcfslAWLHs8RwdKwYzwjUFMkefDrC78v4nBbN
-         D6pEU6RrZTh9eUHAJeqnUp2lpF0GtcmMsc/RKjyHXuqCJSVm8U1ICR5A+Wc2dEyxk6
-         WGADAKl7S02wwi6laqsDQ8cc1Z0DwKAR+JbjkqJs=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Matti =?ISO-8859-1?Q?Lehtim=E4ki?= <matti.lehtimaki@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Matti =?ISO-8859-1?Q?Lehtim=E4ki?= <matti.lehtimaki@gmail.com>
-Subject: Re: [PATCH v2] ARM: dts: qcom: apq8026-samsung-matisse-wifi: Enable ADSP
-Date:   Thu, 29 Dec 2022 09:42:02 +0100
-Message-ID: <2660205.mvXUDI8C0e@g550jk>
-In-Reply-To: <20221218211957.118473-1-matti.lehtimaki@gmail.com>
-References: <20221218211957.118473-1-matti.lehtimaki@gmail.com>
+        with ESMTP id S229988AbiL2InK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 03:43:10 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49A3B10053
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 00:43:09 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id n1so18798012ljg.3
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 00:43:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nw6Uct2xEoCrpgNOW52yhpC+6eWgh3FH1ea9ZVctRno=;
+        b=pCEbAz0T1XglJBlSXuxTbjrwiv4wNCqyqHaBl1cOgxC10WIhJUx1XqILAymx7HuKL7
+         YEirVgRe2/THfR1kO517BhOCIMS+PAEtVjBc4YNbFiofwma/9gT8KCWra1vU9uCvIC0n
+         mXx0nvisliErqfV8PaeB9avYKzMt0Fb6GjUP1Oxh65vFUX40XpReTzIY3Dp41IFwmtDv
+         Bu4MUCYmpUSGxfTOpb2UAgTtg/VBNJ6PS6XbPqMunEsBX0Sy8WoX5r0OnW22IupWT0Wm
+         m+T9P+udIGI5H6sI4kE0k48FkYlopTBUBREA8rySzIwdMBgtRUOCbaDOc3ffNgts9p79
+         DN1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nw6Uct2xEoCrpgNOW52yhpC+6eWgh3FH1ea9ZVctRno=;
+        b=63DizKwJXKGa/lxj9g93QNvF1owCKM3xFetR5V0yQHb9U4UiUa8j+hf0DyCB5jhU8k
+         BfJsngEnSMrkXWfKjo+V+947VJ91OWkSZWxsJFoyiLkzgJguLsIpJWrAUAHrreo4v5ga
+         6T4meIxFuH3pZqkYBo83CnmlwVjpQTd6hAOAGRQGcZwmfdLcLEWSUsU3NY9cD2LMlDkz
+         9qkbHtrh+2n6PpmUTDNoFGrkSV3yFLdRiX/gciIGJrsWf1edSjSOIrF0pPha5DDsQuP3
+         v5ddL2w3eQD7K9RBdl+LYxFvtjEXiIyn1xKqwaIxbMFmahdP8DqRXbVF+5DyN6Fx3DmN
+         bA5Q==
+X-Gm-Message-State: AFqh2koePRnHyzHUzihruWzavf45+y1Re4yKnlUhk67E721TuT6UbLoG
+        IP1s3rdhtRMK9veJtCb1ln9d0w==
+X-Google-Smtp-Source: AMrXdXuuazk2ZVLVLqbx4q6boiXtVROmzLgnwiJeIj7jTd31t+WbE4I92u8Xfu1JSmorUwKMHbVB9Q==
+X-Received: by 2002:a2e:a234:0:b0:27f:cdec:38be with SMTP id i20-20020a2ea234000000b0027fcdec38bemr1652357ljm.40.1672303387661;
+        Thu, 29 Dec 2022 00:43:07 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id r8-20020ac252a8000000b004b54ca56cf9sm2984212lfm.303.2022.12.29.00.43.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Dec 2022 00:43:07 -0800 (PST)
+Message-ID: <95068572-51c3-4caa-7df7-4d3303c5182c@linaro.org>
+Date:   Thu, 29 Dec 2022 09:43:06 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,FROM_SUSPICIOUS_NTLD,SPF_HELO_NONE,SPF_PASS,
-        T_PDS_OTHER_BAD_TLD autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v1 1/2] dt-bindings: phy: rockchip: convert
+ rockchip-dp-phy.txt to yaml
+Content-Language: en-US
+To:     Johan Jonker <jbx6244@gmail.com>, heiko@sntech.de
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-phy@lists.infradead.org,
+        vkoul@kernel.org, kishon@kernel.org
+References: <5fa3aaca-4e49-8baa-68c4-2b3981400d3b@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <5fa3aaca-4e49-8baa-68c4-2b3981400d3b@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matti,
-
-On Sonntag, 18. Dezember 2022 22:19:57 CET Matti Lehtim=E4ki wrote:
-> Configure the reserved memory for ADSP and enable it.
-> Delete nodes with reference to label.
->=20
-> Signed-off-by: Matti Lehtim=E4ki <matti.lehtimaki@gmail.com>
-
-Reviewed-by: Luca Weiss <luca@z3ntu.xyz>
-
+On 28/12/2022 23:01, Johan Jonker wrote:
+> Convert rockchip-dp-phy.txt to yaml.
+> 
+> Changed:
+>   rename file name
+> 
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 > ---
-> Changes in v2:
->   - Delete nodes with reference to label
-> ---
->  .../arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts | 10 ++++++++--
->  1 file changed, 8 insertions(+), 2 deletions(-)
->=20
-> diff --git a/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts
-> b/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts index
-> 1c52337af560..15b9590ba07b 100644
-> --- a/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts
-> +++ b/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts
-> @@ -9,6 +9,9 @@
->  #include "qcom-msm8226.dtsi"
->  #include "qcom-pm8226.dtsi"
->=20
-> +/delete-node/ &adsp_region;
-> +/delete-node/ &smem_region;
+>  .../bindings/phy/rockchip,dp-phy.yaml         | 41 +++++++++++++++++++
+>  .../bindings/phy/rockchip-dp-phy.txt          | 26 ------------
+>  2 files changed, 41 insertions(+), 26 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/phy/rockchip,dp-phy.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/phy/rockchip-dp-phy.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/rockchip,dp-phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,dp-phy.yaml
+> new file mode 100644
+> index 000000000..73f75ab1c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/rockchip,dp-phy.yaml
+> @@ -0,0 +1,41 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/rockchip,dp-phy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  / {
->  	model =3D "Samsung Galaxy Tab 4 10.1";
->  	compatible =3D "samsung,matisse-wifi", "qcom,apq8026";
-> @@ -133,7 +136,7 @@ wcnss@d200000 {
->  			no-map;
->  		};
->=20
-> -		adsp@d900000 {
-> +		adsp_region: adsp@d900000 {
->  			reg =3D <0x0d900000 0x1800000>;
->  			no-map;
->  		};
-> @@ -143,7 +146,6 @@ venus@f100000 {
->  			no-map;
->  		};
->=20
-> -		/delete-node/ smem@3000000;
->  		smem_region: smem@fa00000 {
->  			reg =3D <0x0fa00000 0x100000>;
->  			no-map;
-> @@ -169,6 +171,10 @@ rmtfs@fd80000 {
->  	};
->  };
->=20
-> +&adsp {
-> +	status =3D "okay";
-> +};
+> +title: Rockchip specific extensions to the Analogix Display Port PHY
 > +
->  &blsp1_i2c2 {
->  	status =3D "okay";
+> +maintainers:
+> +  - Heiko Stuebner <heiko@sntech.de>
+> +
+> +properties:
+> +  compatible:
+> +    const: rockchip,rk3288-dp-phy
 
+No new compatibles were added here for the last 7 years, so it is safe
+to assume none will appear in the future. Use the compatible as filename.
 
-
+Best regards,
+Krzysztof
 
