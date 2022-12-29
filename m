@@ -2,71 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA3E7658A8E
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 09:33:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49DD5658A91
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 09:35:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233194AbiL2Idj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 03:33:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47386 "EHLO
+        id S229483AbiL2Ifu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 03:35:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233192AbiL2Idg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 03:33:36 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBC2FC769
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 00:33:34 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id p2so3182183ljn.7
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 00:33:34 -0800 (PST)
+        with ESMTP id S233117AbiL2Ifs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 03:35:48 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BF3925E1
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 00:35:47 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id 1so26638487lfz.4
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 00:35:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2DbYkte6+L+Cr8TE5Lz9IdM41YLyTWgT3D+LkTXTvZc=;
-        b=TM3kkB2j9ZQ0cQ2arKZaxphmUkIs22Q9WkBAIkTuiKaDBevRBs8R1Y1J25gLpxCBO3
-         9RoNxVQfx0Wf6mQoCb2rYpc24Y3e0SeHC/2WniaZ2sXKKGa/jepvCZPF2pu5FvmJpruA
-         0si/6FqDOiHl0NgPrVl7VvHE/2MyVFjn9RxahsIY4SZXkWbcsuSv/jpQJmfEuWKB70NJ
-         KkQso0FRKJ0k9RjSm581fLNzNccCy5dz5XIsWtHaFCMb1WxsEAYW1v1Ypou92BV4XZ3s
-         ZdZG3QOxBHGPq4lNsSBqKgEc4+Ugdrq+QXCN9C43WgVQgMUc/VQFjiXr2ow3gTHHR705
-         Nabw==
+        bh=nn+L7ZFW/RK3/kCOolsV87i3HVKdOq4YpEDAmCcTxBM=;
+        b=UgJuilLIQDUhAmJ6TlExHb682enSnsoybnVOxhzesUJ473aemV7pUT7ZOuvdzKt991
+         Ng0r5nSA9aMFYBrQ7bfyJGkFcixVHevpJgYRTWr8uknKzRa21ljLaayNvdyFuWPgkkYn
+         sHS8BNcfFxz9N9ZNHFvRAB1epi97g3pniYBu7O9WxFETtYp0hB+x4LmdevPDKoJO25VO
+         yFRgL5KxqS7imE53ybKT/4wNwLPjRlWZmyqRvQiaq/8nuEEd97EQTKvWgW/f3tLPs5+D
+         Jg0312reonBJkcjYr5mhlCDN0CgOSd3AhqYhS8SXwngBrqIAWABey7S7cqypf/ZEKZF3
+         +XFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2DbYkte6+L+Cr8TE5Lz9IdM41YLyTWgT3D+LkTXTvZc=;
-        b=0tjLawg5Swj4KZ2NbdV7ukcxuIWw25yp2VXgyOUrp9ByxjCKA8kGrGp8hlQ3cx8D8n
-         WJM04OU2g7NWOBL240M8N+NzNg5vL7mjlu/bsnSqqpz7oXbc7yaYkeW6N7gj07mqZv2W
-         NN4/FHnkeW5reqdSF0DGvVas/ec5jWllfDoMYdSI7Q+IKmbNqAo+KGaOkCy4nBKNtR3G
-         lSB5awcV/ELOzWBR/W8iJTRMMACr8N1VHridsuWgiJhsv8nd4TulgNd1E20ng4QnV0fq
-         /jwvYqNaoS0eG8NQvqdxFm3DGp1rSqTnrK3BFiG4Sl8LAuD1vIlZmgsQpcPAHRRxRFrQ
-         HjsQ==
-X-Gm-Message-State: AFqh2korcEfLG4JDgA6CYrOsdiMBsQVI6zL29cVMb58+Y03E3WsH+W59
-        so7m3jgaA3WX42/MArtUjv2G0w==
-X-Google-Smtp-Source: AMrXdXtlKNE7qMglk70f1cqT2C2029qOJIrB/AnaeaV/ZtmCr4Qj8LKT0y3U9qFMd56bJL2UbmZyyw==
-X-Received: by 2002:a2e:934c:0:b0:27f:b265:d6c3 with SMTP id m12-20020a2e934c000000b0027fb265d6c3mr5390937ljh.29.1672302813136;
-        Thu, 29 Dec 2022 00:33:33 -0800 (PST)
+        bh=nn+L7ZFW/RK3/kCOolsV87i3HVKdOq4YpEDAmCcTxBM=;
+        b=RkfYZV6AaxlPm8JBWOH9PkTTuMOSA2do6c05SJPGbd9VMOPBYbxLg0NSy6UMOBswQ4
+         I7yvfL8Kl72t3Dsn2m/KyLvMVQLETlSXxt+4obUezwqt26y2+/aj+MgO0aOHwHlNVw2H
+         Qs02SZ++pCdbdEpYBGwmKKC5YGMHPL9ruzQa/XpdNmrPDcEjOhgv+Xbhb5a3lmPHJJeS
+         y4bONzxVZFRi01IDyVBeOPuO7DghFAIlKidXsRN5nFQLIzmNAYf1yzZZq+OzaGmn8YRh
+         kH7vDn6spMy/bG48yt5cORSPN71o0DqmVLh0bo6OZcgzVZ30tkTqBYGC3Y5KoSHJ9GbK
+         /QYg==
+X-Gm-Message-State: AFqh2krTAR46dmQ7QiLO738VZqQtFVAbkreerG7Rui3SPChpNoXap1kh
+        kNTNcvlbVdO5zmOcFyrzh4bECA==
+X-Google-Smtp-Source: AMrXdXsenEXFrzEM+P6NXUEyIR8Q04dG1lJhUB27Nv56yKOGvZGysmx5i31pwnnDdK8i0WWOkNWlmw==
+X-Received: by 2002:ac2:5318:0:b0:4b5:7720:5fe4 with SMTP id c24-20020ac25318000000b004b577205fe4mr8365186lfh.67.1672302945497;
+        Thu, 29 Dec 2022 00:35:45 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id p22-20020a2eb7d6000000b002796fb63dbdsm2267177ljo.13.2022.12.29.00.33.32
+        by smtp.gmail.com with ESMTPSA id o6-20020ac25e26000000b004b01305732bsm2977571lfg.216.2022.12.29.00.35.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Dec 2022 00:33:32 -0800 (PST)
-Message-ID: <2aae081d-25bb-4e93-da31-d19d51d0b4fc@linaro.org>
-Date:   Thu, 29 Dec 2022 09:33:31 +0100
+        Thu, 29 Dec 2022 00:35:45 -0800 (PST)
+Message-ID: <ef9d5f72-e39a-e32c-5d7d-4a6ee57101aa@linaro.org>
+Date:   Thu, 29 Dec 2022 09:35:43 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v2 1/3] ASoC: dt-bindings: fsl,xcvr: Add compatible string
- for i.MX93 platform
+Subject: Re: [PATCH v5 02/20] dt-bindings: thermal: tsens: support per-sensor
+ calibration cells
 Content-Language: en-US
-To:     Chancel Liu <chancel.liu@nxp.com>, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shengjiu.wang@gmail.com,
-        Xiubo.Lee@gmail.com, festevam@gmail.com, nicoleotsuka@gmail.com,
-        perex@perex.cz, tiwai@suse.com, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org
-References: <20221229063009.2396716-1-chancel.liu@nxp.com>
- <20221229063009.2396716-2-chancel.liu@nxp.com>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>
+Cc:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20221229030106.3303205-1-dmitry.baryshkov@linaro.org>
+ <20221229030106.3303205-3-dmitry.baryshkov@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221229063009.2396716-2-chancel.liu@nxp.com>
+In-Reply-To: <20221229030106.3303205-3-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,24 +87,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/12/2022 07:30, Chancel Liu wrote:
-> Add compatible string "fsl,imx93-xcvr" for i.MX93 platform.
+On 29/12/2022 04:00, Dmitry Baryshkov wrote:
+> Allow specifying the exact calibration mode and calibration data as nvmem
+> cells, rather than specifying just a single calibration data blob.
 > 
-> Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
+> Note, unlike the vendor kernel the calibration data uses hw_ids rather
+> than software sensor indices (to match actual tsens usage in
+> thermal zones).
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../bindings/thermal/qcom-tsens.yaml          | 95 +++++++++++++++++--
+>  1 file changed, 85 insertions(+), 10 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> index f3660af0b3bf..4bb689f4602d 100644
+> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> @@ -81,18 +81,63 @@ properties:
+>      maxItems: 2
+>  
+>    nvmem-cells:
+> -    minItems: 1
+> -    maxItems: 2
+> -    description:
+> -      Reference to an nvmem node for the calibration data
+> +    oneOf:
+> +      - minItems: 1
+> +        maxItems: 2
+> +        description:
+> +          Reference to an nvmem node for the calibration data
+> +      - minItems: 5
+> +        maxItems: 35
+> +        description: |
+> +          Reference to nvmem cells for the calibration mode, two calibration
+> +          bases and two cells per each sensor
+>  
+>    nvmem-cell-names:
+> -    minItems: 1
+> -    items:
+> -      - const: calib
+> -      - enum:
+> -          - calib_backup
+> -          - calib_sel
+> +    oneOf:
+> +      - minItems: 1
+> +        items:
+> +          - const: calib
+> +          - enum:
+> +              - calib_backup
+> +              - calib_sel
+> +      - minItems: 5
+> +        items:
+> +          enum:
 
-This is a friendly reminder during the review process.
+This should not be an enum but a list of const... unless "holes" are
+expected (e.g. s0_p1 and s5_p2, without ones in between).
 
-It looks like you received a tag and forgot to add it.
+> +            - mode
+> +            - base1
+> +            - base2
+> +            - s0_p1
+> +            - s0_p2
+> +            - s1_p1
+> +            - s1_p2
+> +            - s2_p1
+> +            - s2_p2
+> +            - s3_p1
+> +            - s3_p2
+> +            - s4_p1
 
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions. However, there's no need to repost patches *only* to add the
-tags. The upstream maintainer will do that for acks received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
-
-If a tag was not added on purpose, please state why and what changed.
 
 Best regards,
 Krzysztof
