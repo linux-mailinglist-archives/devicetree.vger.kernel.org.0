@@ -2,112 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EFB5658A6B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 09:21:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AA0F658A7D
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 09:25:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233057AbiL2IVJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 03:21:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43020 "EHLO
+        id S232753AbiL2IYu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 03:24:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232731AbiL2IVJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 03:21:09 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FC1CC28;
-        Thu, 29 Dec 2022 00:21:06 -0800 (PST)
-X-UUID: 88ca326cd7674b848a6254c0d0564ccf-20221229
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=HORV9bMIP2LGFNhuhm7UuJjpXIYYSO+nEqUSjtucA64=;
-        b=ZqQORkXKc0FXCVkrXWlcGmciE2mqA3pl3o8oVeVjFL79KQvZtLwheEdRXYCvqB019ANXgSU+d+iNNrzEVvG9dB/JK16L1Qi5KzDJCdGTxd8mhI3+kzHke7OX6a5Qg0Rx2c2t/i7G7ZshW/fJIGPQhDdwJFBvB5lXEyh8mloPOo4=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.14,REQID:9564ab36-ded9-4df7-8f0b-db2fbc4aa091,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:45
-X-CID-INFO: VERSION:1.1.14,REQID:9564ab36-ded9-4df7-8f0b-db2fbc4aa091,IP:0,URL
-        :0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-        elease,TS:45
-X-CID-META: VersionHash:dcaaed0,CLOUDID:3db548f4-ff42-4fb0-b929-626456a83c14,B
-        ulkID:221229162104179HRAPB,BulkQuantity:0,Recheck:0,SF:28|17|19|48|102,TC:
-        nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 88ca326cd7674b848a6254c0d0564ccf-20221229
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <miles.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 311895922; Thu, 29 Dec 2022 16:21:04 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 29 Dec 2022 16:21:03 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Thu, 29 Dec 2022 16:21:03 +0800
-From:   Miles Chen <miles.chen@mediatek.com>
-To:     <angelogioacchino.delregno@collabora.com>
-CC:     <chun-jie.chen@mediatek.com>, <daniel@makrotopia.org>,
-        <devicetree@vger.kernel.org>, <fparent@baylibre.com>,
-        <ikjn@chromium.org>, <johnson.wang@mediatek.com>,
-        <jose.exposito89@gmail.com>, <kernel@collabora.com>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <matthias.bgg@gmail.com>,
-        <miles.chen@mediatek.com>, <msp@baylibre.com>,
-        <mturquette@baylibre.com>, <nfraprado@collabora.com>,
-        <pablo.sun@mediatek.com>, <rex-bc.chen@mediatek.com>,
-        <robh+dt@kernel.org>, <ryder.lee@kernel.org>,
-        <sam.shih@mediatek.com>, <sboyd@kernel.org>,
-        <weiyi.lu@mediatek.com>, <wenst@chromium.org>,
-        <y.oudjana@protonmail.com>, <yangyingliang@huawei.com>
-Subject: Re: [PATCH v2 18/23] clk: mediatek: clk-mtk: Register MFG notifier in mtk_clk_simple_probe()
-Date:   Thu, 29 Dec 2022 16:21:03 +0800
-Message-ID: <20221229082103.21064-1-miles.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20221223094259.87373-19-angelogioacchino.delregno@collabora.com>
-References: <20221223094259.87373-19-angelogioacchino.delregno@collabora.com>
+        with ESMTP id S230193AbiL2IYP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 03:24:15 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39A8110A9
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 00:24:14 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id i19so5855920ljg.8
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 00:24:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gBp65jpO3PEExPdtu3hqOSvpNeK/wify2K2KN3pGtSU=;
+        b=l9By2aTLtiw1kEWkSbP8F4vkIcYOnHs/y++ZUsVV2tJ3MDW7k6vthjXXa+dFkOGXw/
+         7KClNTEWtsZqZ9vOukvaz8GYA6wGf+HICwW8sHN4zC6fiZaCEiN6ROTP/NUnKnHZXJgn
+         kxI6VZE6TB0YTYH1TIxqWKBifCIWloTlAxnJqoFHUK9kLZ5ajol8UWhYXnA/C1JjkIQQ
+         NvKbfEyFbE8WUc+Ntu2ji+pWFeWI8chiJWDu7jZ0TFSEh2xx8r5zzX2azwFpYkQDi3rh
+         CZbcXdp8MqjPA25fNuV1YR3rd8anHIba5bv5psEpBWz51e9DZlVVroW5o8sjwcQlkf+M
+         /wmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gBp65jpO3PEExPdtu3hqOSvpNeK/wify2K2KN3pGtSU=;
+        b=56Ab5QY/TmidS8Jfr3iNUkTDhSRjqOi9C+WRYhm0ztUTE2oC1G+tz99ktmetBmSkf4
+         lpabzB4ALU+nEx5hO7PAT7DrzsUa4b0ZG0nLWMl/lwRdk6+Y+2dFG3RdALPwnqwLpnJG
+         t9bk3MKfwbVMzpgzocJFqTIm/Z/OySr4FK3TUpoAvmwpUgoQIR6Y0aj6ogtK6nrhjLth
+         ld/AfOMD9a3l4RvSUYM4DWKpayvlfEuKnUdtw3U2FQ4ZEl5pAFFzoeQC15Ms8weifNvl
+         RG0pGwE9uOXG/m3pLj0WQU9hVwrGCrTYdT0KNgJRMhOKSTWtWxJNysxIFUrP3h/4FKs5
+         43jw==
+X-Gm-Message-State: AFqh2kpjWqua7neFudKm+9iOc5YPkDWtyppvdfSDw0lF8i8GdZZATb2P
+        Q738fROJNQYzh9YnnpS6n1crxg==
+X-Google-Smtp-Source: AMrXdXtTG6LcBciIa3S5diQyKKuos8SJpSElOgxGtcLp9TTzRopulJQmQfqiinq1ATDSPVppovwd8w==
+X-Received: by 2002:a2e:a281:0:b0:277:4450:b334 with SMTP id k1-20020a2ea281000000b002774450b334mr7088827lja.3.1672302252603;
+        Thu, 29 Dec 2022 00:24:12 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id u22-20020a2eb816000000b00279f302f652sm2241847ljo.111.2022.12.29.00.24.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Dec 2022 00:24:12 -0800 (PST)
+Message-ID: <86e83233-4dde-04dc-ae05-fb38ab774316@linaro.org>
+Date:   Thu, 29 Dec 2022 09:24:11 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2] dt-bindings: net: marvell,orion-mdio: Fix examples
+Content-Language: en-US
+To:     =?UTF-8?Q?Micha=c5=82_Grzelak?= <mig@semihalf.com>
+Cc:     andrew@lunn.ch, chris.packham@alliedtelesis.co.nz,
+        davem@davemloft.net, devicetree@vger.kernel.org,
+        edumazet@google.com, krzysztof.kozlowski+dt@linaro.org,
+        kuba@kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+        upstream@semihalf.com
+References: <7f6a2072-f26b-e2f0-9c07-d2ea43c8c4bc@linaro.org>
+ <20221228015433.73919-1-mig@semihalf.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221228015433.73919-1-mig@semihalf.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->In preparation for commonizing topckgen probe on various MediaTek SoCs
->clock drivers, add the ability to register the MFG MUX notifier in
->mtk_clk_simple_probe() by passing a custom notifier register function
->pointer, as this function will be slightly different across different
->SoCs.
->
->Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->---
-> drivers/clk/mediatek/clk-mtk.c | 8 ++++++++
-> drivers/clk/mediatek/clk-mtk.h | 3 +++
-> 2 files changed, 11 insertions(+)
->
->diff --git a/drivers/clk/mediatek/clk-mtk.c b/drivers/clk/mediatek/clk-mtk.c
->index b0a6225cd7b2..df6281492fb6 100644
->--- a/drivers/clk/mediatek/clk-mtk.c
->+++ b/drivers/clk/mediatek/clk-mtk.c
->@@ -533,6 +533,14 @@ int mtk_clk_simple_probe(struct platform_device *pdev)
-> 			goto unregister_composites;
-> 	}
+On 28/12/2022 02:54, Michał Grzelak wrote:
+> As stated in marvell-orion-mdio.txt deleted in commit 0781434af811f
+> ("dt-bindings: net: orion-mdio: Convert to JSON schema") if
+> 'interrupts' property is present, width of 'reg' should be 0x84.
+> Otherwise, width of 'reg' should be 0x4. Fix 'examples:' and add
+> constraints checking whether 'interrupts' property is present
+> and validate it against fixed values in reg.
 > 
->+	if (mcd->clk_notifier_func) {
->+		struct clk *mfg_mux = clk_data->hws[mcd->mfg_clk_idx]->clk;
->+
->+		r = mcd->clk_notifier_func(&pdev->dev, mfg_mux);
->+		if (r)
->+			goto unregister_clks;
->+	}
+> Signed-off-by: Michał Grzelak <mig@semihalf.com>
+> ---
+> Changelog:
+> v1->v2:
+> - remove second example
+> - add 'if:' constraint to 'allOf:'
+> - move 'allOf:' before 'examples:'
+> 
+>  .../bindings/net/marvell,orion-mdio.yaml      | 31 ++++++++++++++++---
+>  1 file changed, 27 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/marvell,orion-mdio.yaml b/Documentation/devicetree/bindings/net/marvell,orion-mdio.yaml
+> index d2906b4a0f59..381cd8edebed 100644
+> --- a/Documentation/devicetree/bindings/net/marvell,orion-mdio.yaml
+> +++ b/Documentation/devicetree/bindings/net/marvell,orion-mdio.yaml
+> @@ -16,9 +16,6 @@ description: |
+>    8k has a second unit which provides an interface with the xMDIO bus. This
+>    driver handles these interfaces.
+>  
+> -allOf:
+> -  - $ref: "mdio.yaml#"
+> -
+>  properties:
+>    compatible:
+>      enum:
+> @@ -39,13 +36,39 @@ required:
+>    - compatible
+>    - reg
+>  
+> +allOf:
+> +
 
-Should we have a IS_ERR_OR_NULL() check for clk_data->hws[mcd->mfg_clk_idx]?
+Drop blank line.
 
-thanks,
-Miles
->+
-> 	r = of_clk_add_hw_provider(node, of_clk_hw_onecell_get, clk_data);
-> 	if (r)
+> +  - $ref: "mdio.yaml#"
+
+Drop quotes while moving it.
+
+> +
+> +  - if:
+> +      required:
+> +        - interrupts
+> +
+> +    then:
+> +      properties:
+> +        reg:
+> +          items:
+> +            - items:
+> +                - $ref: /schemas/types.yaml#/definitions/cell
+> +                - const: 0x84
+> +
+> +    else:
+> +      properties:
+> +        reg:
+> +          items:
+> +            - items:
+> +                - $ref: /schemas/types.yaml#/definitions/cell
+> +                - enum:
+> +                    - 0x4
+> +                    - 0x10
+
+Rest looks good.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
