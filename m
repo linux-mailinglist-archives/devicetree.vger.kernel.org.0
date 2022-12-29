@@ -2,68 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADCF8658BAC
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 11:27:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89A39658BB3
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 11:30:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229625AbiL2K1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 05:27:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54852 "EHLO
+        id S230229AbiL2Ka5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 05:30:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230237AbiL2K1S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 05:27:18 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 970E8197
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 02:27:17 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id b3so26972988lfv.2
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 02:27:17 -0800 (PST)
+        with ESMTP id S230427AbiL2Ka4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 05:30:56 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82CD795A3
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 02:30:54 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id cf42so26983669lfb.1
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 02:30:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ft7gGGKwhqy6onxKMBZrC3Z+780qIINlP0uOCJFvFlc=;
-        b=BUXFyO9S9rpPnApfWejJZqSDcBv0h0435eJWDScbk4Z4pvN8iIQGRQy9Ow/alISZhv
-         PzROq82Klz9gs8abq7ikGqttVZD8aBscpDMStUPcJmDZs/haNf3v+8xbYtp+pkwHUobS
-         Vem7UgxP+YVUJVojU42F7lY1FWk62Qxnl0oUqRmnalRbcvXtYr1A41NGmQFybTd3MXzk
-         Jag5nDdoT3FyXKOdIAYK1r1iaOvbIWXcX9UVy5/fJMVMhgYW/R0R7oc1UDtboQh/nqWs
-         1oPTbnYl2R7tktw0O2V/gd7O3KXNhwwm1uT8eNjSkAKOYT0LmBvYE0QFzqXlvzOWkiB/
-         2gQg==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iAox9jZdEvifzmLQL+c6tUgFpF++A9pWe7sG2ptRj0I=;
+        b=vW6WcxQf2oA57xpF12GrMN5nxO7C+GTBWRcwy6OFCaQ1xipbnG2BJ3uqema3wdK+df
+         2x/+KN367tqENjlU619vns3XOhuW+19APzRsdN7o6SX2WrIRHAYFAoPKlXMbJH+ME1Gd
+         eC2mihlLh2q+JUxZvFvcTE0wIk7Ye7MbIZ3H4Z4h/kL3FMUJJdY0uu9D5DdYs2xB7ebR
+         wDsFP6ownoJPAxDyIlGLDQK2qFhcKuHZ7Ydv+hhzGyj+/w4WvEYdiwAtCDn/mayPKvya
+         plVvgsNoqiJC/agaS3LXF+CQQdl9yngkvMS9NzbUftg+6EBOP45InBgxPS+p9SnA8qHo
+         iiBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ft7gGGKwhqy6onxKMBZrC3Z+780qIINlP0uOCJFvFlc=;
-        b=3pN2z5vP42zDOXvdjfRe4NhEG2wTW2dMb7qXWJvzZF0iMPjddsWDD4g1p9dJWRUprK
-         Tpv+vhpDP2b60S0JOR32YYRo7JLyYudPPDgPoEo+uuks6HgZJZg0zJu3yBdhp83c/edZ
-         iBqKI2OeGZcGiT1hARvSd09y7Rq1BXxfcLQG9F8D4r/qvOEvgbfkXjuvB1e4OjAUhucp
-         +mIph9dnPVmqBsyInEBIxMb3JkITNTyAhQtvT5DSvaN5NtOb9X2DsYphNp+WfAMnRJ3u
-         C/paqbC8NMH7EkD7OWDdpgwaE1EReJDpvaVpLT7CSY93VvI06MlcNWUR5pC1Jpgao5fA
-         FJcw==
-X-Gm-Message-State: AFqh2kog3ZqQa5XEFH0fQkQX8g09I8dsKPuVxXAkJVksDE6iE1KX2n1D
-        GLPuALNa19ai8tdshAUM2ap5qw==
-X-Google-Smtp-Source: AMrXdXtamGDUxEsU769t/Ai4KlYzcdY9lVEKhscj/2izanZMSV7WrhEQFXkwbnF909DQnYOtIDcQ9w==
-X-Received: by 2002:ac2:538a:0:b0:4cb:17d0:f05e with SMTP id g10-20020ac2538a000000b004cb17d0f05emr1429586lfh.47.1672309635994;
-        Thu, 29 Dec 2022 02:27:15 -0800 (PST)
-Received: from localhost.localdomain (abyl184.neoplus.adsl.tpnet.pl. [83.9.31.184])
-        by smtp.gmail.com with ESMTPSA id f18-20020a056512361200b004cafd1af647sm2416403lfs.129.2022.12.29.02.27.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Dec 2022 02:27:15 -0800 (PST)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org
-Cc:     marijn.suijten@somainline.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3] arm64: dts: qcom: sm8350-sagami: Rectify GPIO keys
-Date:   Thu, 29 Dec 2022 11:27:12 +0100
-Message-Id: <20221229102712.983306-1-konrad.dybcio@linaro.org>
-X-Mailer: git-send-email 2.39.0
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iAox9jZdEvifzmLQL+c6tUgFpF++A9pWe7sG2ptRj0I=;
+        b=CNh3pVOi4OQbIu1a+/TekKXLoLO96M6g0dxfUFuQi8d7Mgb6PPGJ+6/A17hT8rugZ1
+         q2VIsK6isUBlPlTGVNw4d/aA02pbEs6hEq2/g0C6PMEq2+kMKipAFXHx3WGF6oqQaQVj
+         AyQ3NAsDYab3jnq44ojIipmgvFtdBVaa8TS7jItFUO/xL40TyfceWhmU9mjPZrm9g6uq
+         kwfyT2qxTONOlj0Gwu7jb00PYX7Hph9l+diei6EWaeYUfnc1Daru/jR9BFSn2/mNfDQx
+         Wtv282ZIjoCrr6XmqT/jHLuhurdyKCoCPJC8wYArCoAJZvdjxxtcP+LrV5QbkkV73aPn
+         Y47A==
+X-Gm-Message-State: AFqh2kqXfnk7/jChOUkS9xpjXpg4xlynBI5SaY2j/YfMsZEFcQG2xxLF
+        v9W16cJ8Se//sLl8hBZGe59CNA==
+X-Google-Smtp-Source: AMrXdXsUMVEakLd8I9Ld+9cvNnWvLibPZXo9wxW/3r/FhHxjIMmijyS3NwrUfhTgMxmGNghGO4E02Q==
+X-Received: by 2002:a19:f70b:0:b0:4ca:cb4a:1875 with SMTP id z11-20020a19f70b000000b004cacb4a1875mr7178275lfe.45.1672309852903;
+        Thu, 29 Dec 2022 02:30:52 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id bu16-20020a056512169000b004b5ab5e904esm3027993lfb.306.2022.12.29.02.30.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Dec 2022 02:30:52 -0800 (PST)
+Message-ID: <a606f91c-1a68-09c7-2081-03484fd0d513@linaro.org>
+Date:   Thu, 29 Dec 2022 11:30:50 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2 1/2] dt-bindings: phy: rockchip: convert
+ rockchip-dp-phy.txt to yaml
+Content-Language: en-US
+To:     Johan Jonker <jbx6244@gmail.com>, heiko@sntech.de
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-phy@lists.infradead.org,
+        vkoul@kernel.org, kishon@kernel.org
+References: <aa6fe473-71f2-edba-f009-994a3dbc9802@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <aa6fe473-71f2-edba-f009-994a3dbc9802@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,119 +77,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-With enough pins set properly, the hardware buttons now also work
-like a charm.
+On 29/12/2022 10:44, Johan Jonker wrote:
+> Convert rockchip-dp-phy.txt to yaml.
+> 
+> Changed:
+>   rename file name
+> 
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 
-Fixes: c2721b0c23d9 ("arm64: dts: qcom: Add support for Xperia 1 III / 5 III")
-Tested-by: Marijn Suijten <marijn.suijten@somainline.org> # On Xperia 1 III and Xperia 5 III
-Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
-v2 -> v3:
-- Update tags
-- gpio-key,wakeup -> wakeup-source
 
- .../dts/qcom/sm8350-sony-xperia-sagami.dtsi   | 66 ++++++++++++++++++-
- 1 file changed, 64 insertions(+), 2 deletions(-)
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
-index 41c4101ec8f0..8df6ccbedfae 100644
---- a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
-@@ -49,7 +49,35 @@ framebuffer: framebuffer@e1000000 {
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 
--		/* For reasons still unknown, GAssist key and Camera Focus/Shutter don't work.. */
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&focus_n &snapshot_n &vol_down_n &g_assist_n>;
-+
-+		key-camera-focus {
-+			label = "Camera Focus";
-+			linux,code = <KEY_CAMERA_FOCUS>;
-+			gpios = <&pm8350b_gpios 8 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <15>;
-+			linux,can-disable;
-+			wakeup-source;
-+		};
-+
-+		key-camera-snapshot {
-+			label = "Camera Snapshot";
-+			linux,code = <KEY_CAMERA>;
-+			gpios = <&pm8350b_gpios 5 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <15>;
-+			linux,can-disable;
-+			wakeup-source;
-+		};
-+
-+		key-google-assist {
-+			label = "Google Assistant Key";
-+			gpios = <&pm8350_gpios 9 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_LEFTMETA>;
-+			debounce-interval = <15>;
-+			linux,can-disable;
-+			wakeup-source;
-+		};
- 
- 		key-vol-down {
- 			label = "Volume Down";
-@@ -57,7 +85,7 @@ key-vol-down {
- 			gpios = <&pmk8350_gpios 3 GPIO_ACTIVE_LOW>;
- 			debounce-interval = <15>;
- 			linux,can-disable;
--			gpio-key,wakeup;
-+			wakeup-source;
- 		};
- 	};
- 
-@@ -545,6 +573,32 @@ &pm8350_gpios {
- 			  "NC",
- 			  "G_ASSIST_N",
- 			  "PM8350_OPTION"; /* GPIO_10 */
-+
-+	g_assist_n: g-assist-n-state {
-+		pins = "gpio9";
-+		function = "normal";
-+		power-source = <1>;
-+		bias-pull-up;
-+		input-enable;
-+	};
-+};
-+
-+&pm8350b_gpios {
-+	snapshot_n: snapshot-n-state {
-+		pins = "gpio5";
-+		function = "normal";
-+		power-source = <0>;
-+		bias-pull-up;
-+		input-enable;
-+	};
-+
-+	focus_n: focus-n-state {
-+		pins = "gpio8";
-+		function = "normal";
-+		power-source = <0>;
-+		input-enable;
-+		bias-pull-up;
-+	};
- };
- 
- &pmk8350_gpios {
-@@ -552,6 +606,14 @@ &pmk8350_gpios {
- 			  "NC",
- 			  "VOL_DOWN_N",
- 			  "PMK8350_OPTION";
-+
-+	vol_down_n: vol-down-n-state {
-+		pins = "gpio3";
-+		function = "normal";
-+		power-source = <0>;
-+		bias-pull-up;
-+		input-enable;
-+	};
- };
- 
- &pmk8350_rtc {
--- 
-2.39.0
+Best regards,
+Krzysztof
 
