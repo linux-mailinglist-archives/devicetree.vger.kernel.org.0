@@ -2,70 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFDC9658B9C
-	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 11:19:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B38E9658BA2
+	for <lists+devicetree@lfdr.de>; Thu, 29 Dec 2022 11:24:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232879AbiL2KTQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Dec 2022 05:19:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46266 "EHLO
+        id S233296AbiL2KYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Dec 2022 05:24:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233355AbiL2KS3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 05:18:29 -0500
-Received: from mail-vs1-xe33.google.com (mail-vs1-xe33.google.com [IPv6:2607:f8b0:4864:20::e33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2244DE8E
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 02:16:05 -0800 (PST)
-Received: by mail-vs1-xe33.google.com with SMTP id m129so12206818vsc.11
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 02:16:05 -0800 (PST)
+        with ESMTP id S233260AbiL2KXl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Dec 2022 05:23:41 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFC9F6315
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 02:19:12 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id z26so26933725lfu.8
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 02:19:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=C0fNA7li2melRrJ2fvEzBzk17w400NPv5/Za3XTFksU=;
-        b=WP3Wk7cvHe6N0tLUiOIS7JTVEgh+E17QI7Uug3ObedTrhMZ6oPVIyzN4bFPBSd4Qra
-         6HtQlzFNVLs8ucXNKoWXoUA1RYiR0Afu9OEYz9w3obvnCTS3WupMh6giZgM1elCQC1mY
-         iT0oJMt1ACyH7XBdw+0uPqMpxJaD0pSl1Y9oo=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vMKLMjJpe5LSVosq/kgKiCUoGwlkMRk7EHg56MOXRG0=;
+        b=W0/mzJ+BVYSeYNkqjUy3oTgPwLK1Bx4J2+308QC0ISlojj5vA7qUfYge3guPCW0vHR
+         b4uo//YVXlquaTDtBEvxbnRLbSNe2ihsWAdvxUgYoZl+UxYKxRxRXRGdEQEh7KaHZttC
+         xpqJPTr4MDV22D3FtYZIe7qJK+0g+cgNpJuRko0WgzLNja/E9UpMy3KX18bIVuCgwKiL
+         V8rVp2b+G80ZWFuy43MTMYfn63OXdXuXo5NEd6S8hbKUe/B6ad/PPDyK0m7G68Rp9Ud+
+         WY5lvy6RWe3ZNXefsOkQFswi8xsP9eDLrPYQdvUe7Z+JZCEz5+l1pwcPfVV/fNbCcnr1
+         3AAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=C0fNA7li2melRrJ2fvEzBzk17w400NPv5/Za3XTFksU=;
-        b=uER3TQf+TBmBzyool6NRtb7Dm6hzlCMFt8G4XQVcOKPVtbyGOnTebIsJfvnPsR9Jep
-         6d7ToVgW/fv5ewDn1tjffIiS7b6k97nzrwHotGRKt6Oe3tzKaTXlsZWD+cZwfZtY+35k
-         07qsM96KJbAIcyk7jGTrivBSIv9e8h6b90AMjwhgpn/Aw/mnz6h9y0LmCYCcbxAKT51Y
-         FeSpUBz1WfXPNOVdTeIwIRrLHxVafRlY3UjvwfamqGGdAlXRoj2/r69D/zVDwwskq0xF
-         RtEHWEgQBPRHpF/KE0B+7o0C6v15I5SohDLs8lF883NRJDLYP7DkG9F9STU7tO8Y2FBK
-         9vEg==
-X-Gm-Message-State: AFqh2koi9jfi4YTiR7X6E9CUslxifWy/dDMCtnLoaaskz2C8aeP08er1
-        uXokM5u0gI9PMQhBx9BGmHisxT4SUhJbXK+V9whyPw==
-X-Google-Smtp-Source: AMrXdXuCQ1T74QcCwFC81IAplOKfPkT1QH9WpfKDVIsV5w8/XaAZftVUaaUiCLqnt1gCsoFAsMNsWbl24g2ZotKJ9BQ=
-X-Received: by 2002:a67:f985:0:b0:3b3:7477:5aa2 with SMTP id
- b5-20020a67f985000000b003b374775aa2mr3316243vsq.65.1672308964971; Thu, 29 Dec
- 2022 02:16:04 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vMKLMjJpe5LSVosq/kgKiCUoGwlkMRk7EHg56MOXRG0=;
+        b=uykNCqT81OmggUCycm717UTIP3rvi3XK7HO8eKxz4k334eC8QKUOl62R9XITHx0KTg
+         Tw/JpHcWZxvpdIRD7424p1kodmHn5Tz6hNsTb/pWJ+Ywc4RlpqL4NsCsoPtYn45kBIhD
+         u+w2z52FlpVRoXgxo8lcigoZOr3+51XoRIHNUNFX1jIWIVf1uli8PYCpDbBNUe6cP1k1
+         5x6LIe7r1AOu9raV7uTDJcbgmg+RNrZa+If4m6wtnGEY0KZ8XsUgXksf9I2IsS1RUGHx
+         lW1D8TrIFoFUd+oUgnDvF2VxCAUrKfTrq4WMBmM4BbYPfwzzWj/a24M6qLBIGuGZEC/D
+         JMQQ==
+X-Gm-Message-State: AFqh2kpt+nlRo7ZhzXyJ4BqAXGSceOOyHzHh8URnuIgIxJs1vPiyKiiB
+        pfnk3OuQ1DQTcSLIzQmeR3+ahA==
+X-Google-Smtp-Source: AMrXdXvLe1i7tZ7mGvfACMbmYCAO3F40RJhpPtndbkRc12jHOJYE7rKTNP/9+510BhvQHTQwfbG2xg==
+X-Received: by 2002:a05:6512:3b2c:b0:4a4:68b7:deab with SMTP id f44-20020a0565123b2c00b004a468b7deabmr11677612lfv.7.1672309151197;
+        Thu, 29 Dec 2022 02:19:11 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id d2-20020ac241c2000000b004a05402c5c3sm3024922lfi.93.2022.12.29.02.19.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Dec 2022 02:19:10 -0800 (PST)
+Message-ID: <d84f46f5-9975-cde2-0b56-b51990e27150@linaro.org>
+Date:   Thu, 29 Dec 2022 11:19:09 +0100
 MIME-Version: 1.0
-References: <20221221034407.19605-1-allen-kh.cheng@mediatek.com>
- <20221221034407.19605-6-allen-kh.cheng@mediatek.com> <6576a435-dcc1-af80-bbe9-dd98bb0d53e8@linaro.org>
-In-Reply-To: <6576a435-dcc1-af80-bbe9-dd98bb0d53e8@linaro.org>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Thu, 29 Dec 2022 18:15:54 +0800
-Message-ID: <CAGXv+5GniKdzf2cQfmc=usR693gJDq26kvgoUYOjhPdHFTKx2w@mail.gmail.com>
-Subject: Re: [PATCH v2 5/6] dt-bindings: arm: mediatek: Add missing
- power-domains property
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [RFC PATCH v2 2/3] dt-bindings: usb: generic-xhci: add Samsung
+ Exynos compatible
+To:     Daehwan Jung <dh10.jung@samsung.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Ikjoon Jang <ikjn@chromium.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        angelogioacchino.delregno@collabora.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>
+Cc:     "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>, sc.suh@samsung.com,
+        taehyun.cho@samsung.com, jh0801.jung@samsung.com,
+        eomji.oh@samsung.com
+References: <1672307866-25839-1-git-send-email-dh10.jung@samsung.com>
+ <CGME20221229100416epcas2p3614b693ab922aadbdc76c0387f768de9@epcas2p3.samsung.com>
+ <1672307866-25839-3-git-send-email-dh10.jung@samsung.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1672307866-25839-3-git-send-email-dh10.jung@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,27 +86,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 21, 2022 at 4:18 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 21/12/2022 04:44, Allen-KH Cheng wrote:
-> > The "mediatek,mt8192-scp_adsp" binding requires a power domain to be
-> > specified.
->
-> That's not true. Before this patch, how does the binding require a power
-> domain? Please show me the part of binding which requires it.
+On 29/12/2022 10:57, Daehwan Jung wrote:
+> Add compatible for Samsung Exynos SOCs
 
-Maybe this should be reworded to something like the following?
+Missing full stop. Please explain here in details the hardware.
+Otherwise it looks it is not for any hardware and patch should be dropped.
 
-<--- cut
-The SCP_ADSP clock controller has a power domain dependency that was not
-described properly. Add it to the binding.
-<--- cut
+Also, missing DTS. I am going to keep NAK-ing this till you provide the
+user.
 
-This was discovered when I was reworking the clock drivers. The clocks
-in this controller were being turned off by the clock core, which would
-result in the system locking up. MediaTek said this was due to the power
-domain.
+NAK.
 
-Regards
-ChenYu
+> 
+> Signed-off-by: Daehwan Jung <dh10.jung@samsung.com>
+> ---
+>  Documentation/devicetree/bindings/usb/generic-xhci.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/generic-xhci.yaml b/Documentation/devicetree/bindings/usb/generic-xhci.yaml
+> index db841589fc33..f54aff477637 100644
+> --- a/Documentation/devicetree/bindings/usb/generic-xhci.yaml
+> +++ b/Documentation/devicetree/bindings/usb/generic-xhci.yaml
+> @@ -29,6 +29,8 @@ properties:
+>          enum:
+>            - brcm,xhci-brcm-v2
+>            - brcm,bcm7445-xhci
+> +      - description: Samsung Exynos SoCs with xHCI
+> +        const: samsung,exynos-xhci
+
+Missing fallback.
+
+>        - description: Generic xHCI device>          const: xhci-platform
+>          deprecated: true
+
+Best regards,
+Krzysztof
+
