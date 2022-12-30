@@ -2,224 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B91F7659B8D
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 20:03:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A05FD659BB3
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 20:45:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229861AbiL3TDO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 14:03:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35302 "EHLO
+        id S235391AbiL3TpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 14:45:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229519AbiL3TDN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 14:03:13 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FFAB1B9E3;
-        Fri, 30 Dec 2022 11:03:12 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3694361B76;
-        Fri, 30 Dec 2022 19:03:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A46F8C433D2;
-        Fri, 30 Dec 2022 19:03:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672426991;
-        bh=CoyJlW49fOqwJ+4r20pKWD1OZFtwRKrkSTZjaCFJLq8=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=bq+J983/JdlT5ZqidG79JKn5LV8hl1VMzzLihJXwmKaMUH7FD3dVEQqf70/ItOwGK
-         xoWydqHW5I+ILgkFGBL4b58aACdBnW7XjCmujNJ3pd9t3VqfGzyx78xglkLMrdxJs9
-         getOCAc/zXCzDYe6SmebGy5qacoRiw+XvbNHFrlAF0Dr7WNxlYPGC0IKbxx2QOLz2n
-         5DI+ZBWE/zYGzW6OMUrzZSbDptSsdS3sSIdkTWgsC/K68vL/QyxHANoy/MzSccCzAf
-         EqUKL+NQDFAOdrCKo444wZUCq8B89+qKkLCF+AqIjjpBV+gfuQNCJbmxx2mCJvHED3
-         9q9sfWv77wMUA==
-Date:   Fri, 30 Dec 2022 19:16:29 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     haibo.chen@nxp.com
-Cc:     lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/3] iio: adc: add imx93 adc support
-Message-ID: <20221230191629.01205144@jic23-huawei>
-In-Reply-To: <20221226042719.694659-2-haibo.chen@nxp.com>
-References: <20221226042719.694659-1-haibo.chen@nxp.com>
-        <20221226042719.694659-2-haibo.chen@nxp.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-pc-linux-gnu)
+        with ESMTP id S235325AbiL3TpH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 14:45:07 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77ED719C10
+        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 11:45:04 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id i17-20020a05600c355100b003d99434b1cfso5550696wmq.1
+        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 11:45:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=q72SkNrjUv6hApXPAFQeSLQafL5ZXzh4liHqcfBQoss=;
+        b=cl+lv5TpIcUAycTAeAn5TmieFmvwZ3TC9P3bzUzh8NMNaZlhTHCchdvZLOWRsIwFHF
+         N739iA1eLpJa7Rth4rnlBI9QqtmQKQGA5bjBmcwrUOS7Rrj0lzIqslyIPJZTZyS+FTt1
+         bwfUrkYy1W85CM42cEi+eqleY8cvrhYnwutMZrTSmmzQAY/W1W27lVBQ8YyCxvvqGjbC
+         YDkMQiAkXazpjplvjj+Jn0i+CsnsLgbpSgJ9FlrQwnBTzQM7YKBoWutv07wbQX7/hRIX
+         fq8YzxjbBpkKJvpOwi+f/HGK9+xIy1CxvKgOTwS7DQDHMCoFpanNaTvE1wvHv6WZ+viZ
+         qiEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=q72SkNrjUv6hApXPAFQeSLQafL5ZXzh4liHqcfBQoss=;
+        b=x9QfAWHlPe2/ozYlvT1+NTWD85OQcDgVKQRlTca5EKSpAZYCjNahsBudVT8f1vqrV4
+         ODF1yg6bx5iNYlET0XIHOtDdISNlvTV75gmOGWeO7tV2S+cl2HPvnWeLb+zRCp4ORQua
+         j4P/wBaMb8e4TQToNxpRBSPfeEo/YModima9WjV3wGnlsuJ/25mFg7zMbnf8DVgxDulF
+         QbL6GRGYnX3WGnIK+JULxgUXsmlZ+AXyf2HeGFRVhvF5ZukfHnjZG5gHknxpvF8pN+Dg
+         xYL8N6y4UPFhYjcATTKRZF/2WLec7dmDGVImy+DijccY1dFu9IzpjHyITFqRtnOzfR+I
+         jSlQ==
+X-Gm-Message-State: AFqh2krqt5CiE1flwPsDZ/gmGOQ8NuGaaj22H2RNYCWIUvVtyM5Mc6SK
+        LJ+kzy1UzeL2nzSyhH9qj99Cmw==
+X-Google-Smtp-Source: AMrXdXsnGymGIz5wKkyeGlp5NGCZTlccx+1TfgiDq4nzoUgDuD/JJts9ZAFkwK5mVOXUx44yP3ydGA==
+X-Received: by 2002:a05:600c:3491:b0:3d1:f16d:5848 with SMTP id a17-20020a05600c349100b003d1f16d5848mr23777360wmq.26.1672429502975;
+        Fri, 30 Dec 2022 11:45:02 -0800 (PST)
+Received: from hackbox.lan ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id j30-20020a05600c1c1e00b003c71358a42dsm44855413wms.18.2022.12.30.11.45.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Dec 2022 11:45:02 -0800 (PST)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+Subject: [PATCH v3 0/2] pinctrl: qcom: Add support for SM8550
+Date:   Fri, 30 Dec 2022 21:44:57 +0200
+Message-Id: <20221230194459.2370924-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 26 Dec 2022 12:27:17 +0800
-haibo.chen@nxp.com wrote:
+This patchset adds pinctrl support for the new Qualcomm SM8550 SoC,
 
-> From: Haibo Chen <haibo.chen@nxp.com>
-> 
-> The ADC in i.mx93 is a total new ADC IP, add a driver to support
-> this ADC.
-> 
-> Currently, only support one shot normal conversion triggered by
-> software. For other mode, will add in future.
-> 
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+Changes since v2:
+ * dropped the i2c pull up bit for now. (dropped patches #2 and #3).
+   It needs a proper approach which I intend to take care of soon.
 
-Hi Haibo,
+To: Andy Gross <agross@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-gpio@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
 
-I think there are still improvements to be made in ordering in probe()/remove()
-and also you aren't calling pm_runtime_dont_use_autosuspend()
-which is a requirement if manually handling runtime pm disabling on remove()
+Abel Vesa (2):
+  dt-bindings: pinctrl: qcom: Add SM8550 pinctrl
+  pinctrl: qcom: Add SM8550 pinctrl driver
 
-Jonathan
+ .../bindings/pinctrl/qcom,sm8550-tlmm.yaml    |  163 ++
+ drivers/pinctrl/qcom/Kconfig                  |   10 +
+ drivers/pinctrl/qcom/Makefile                 |    1 +
+ drivers/pinctrl/qcom/pinctrl-sm8550.c         | 1789 +++++++++++++++++
+ 4 files changed, 1963 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm8550-tlmm.yaml
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-sm8550.c
 
-> ---
->
-> diff --git a/drivers/iio/adc/imx93_adc.c b/drivers/iio/adc/imx93_adc.c
-> new file mode 100644
-> index 000000000000..677f13a040f8
-> --- /dev/null
-> +++ b/drivers/iio/adc/imx93_adc.c
-> @@ -0,0 +1,477 @@
-
-
-
-> +static int imx93_adc_probe(struct platform_device *pdev)
-> +{
-> +	struct imx93_adc *adc;
-> +	struct iio_dev *indio_dev;
-> +	struct device *dev = &pdev->dev;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*adc));
-> +	if (!indio_dev) {
-> +		dev_err(dev, "Failed allocating iio device\n");
-> +		return -ENOMEM;
-> +	}
-> +
-> +	adc = iio_priv(indio_dev);
-> +	adc->dev = dev;
-> +
-> +	mutex_init(&adc->lock);
-> +	adc->regs = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(adc->regs))
-> +		return PTR_ERR(adc->regs);
-> +
-> +	/* The third irq is for ADC conversion usage */
-> +	adc->irq = platform_get_irq(pdev, 2);
-> +	if (adc->irq < 0)
-> +		return adc->irq;
-> +
-> +	adc->ipg_clk = devm_clk_get(dev, "ipg");
-> +	if (IS_ERR(adc->ipg_clk))
-> +		return dev_err_probe(dev, PTR_ERR(adc->ipg_clk),
-> +				     "Failed getting clock.\n");
-> +
-> +	adc->vref = devm_regulator_get(dev, "vref");
-> +	if (IS_ERR(adc->vref))
-> +		return dev_err_probe(dev, PTR_ERR(adc->vref),
-> +				     "Failed getting reference voltage.\n");
-> +
-> +	ret = regulator_enable(adc->vref);
-> +	if (ret) {
-> +		dev_err(dev, "Can't enable adc reference top voltage.\n");
-
-You can use dev_err_probe() for all such handling in probe() whether or not
-it can defer.  That tends to simplify things and avoids the need for reviewers
-to consider if a function can defer of not.
-
-> +		return ret;
-> +	}
-> +
-> +	platform_set_drvdata(pdev, indio_dev);
-> +
-> +	init_completion(&adc->completion);
-> +
-> +	indio_dev->name = "imx93-adc";
-> +	indio_dev->info = &imx93_adc_iio_info;
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +	indio_dev->channels = imx93_adc_iio_channels;
-> +	indio_dev->num_channels = ARRAY_SIZE(imx93_adc_iio_channels);
-> +
-> +	ret = clk_prepare_enable(adc->ipg_clk);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "Could not prepare or enable the clock.\n");
-> +		goto error_regulator_disable;
-> +	}
-> +
-> +	ret = request_irq(adc->irq, imx93_adc_isr, 0, IMX93_ADC_DRIVER_NAME, adc);
-> +	if (ret < 0) {
-> +		dev_err(dev, "Failed requesting irq, irq = %d\n", adc->irq);
-> +		goto error_ipg_clk_disable;
-> +	}
-> +
-> +	ret = imx93_adc_calibration(adc);
-> +	if (ret < 0)
-> +		goto error_free_adc_irq;
-> +
-> +	imx93_adc_config_ad_clk(adc);
-> +
-> +	ret = iio_device_register(indio_dev);
-> +	if (ret) {
-> +		dev_err(dev, "Couldn't register the device.\n");
-> +		goto error_free_adc_irq;
-> +	}
-> +
-> +	pm_runtime_set_active(dev);
-> +	pm_runtime_set_autosuspend_delay(dev, 50);
-> +	pm_runtime_use_autosuspend(dev);
-> +	pm_runtime_enable(dev);
-> +
-> +	return 0;
-> +
-> +error_free_adc_irq:
-> +	free_irq(adc->irq, adc);
-> +error_ipg_clk_disable:
-> +	clk_disable_unprepare(adc->ipg_clk);
-> +error_regulator_disable:
-> +	regulator_disable(adc->vref);
-> +
-> +	return ret;
-> +}
-> +
-> +static int imx93_adc_remove(struct platform_device *pdev)
-> +{
-> +	struct iio_dev *indio_dev = platform_get_drvdata(pdev);
-> +	struct imx93_adc *adc = iio_priv(indio_dev);
-> +	struct device *dev = adc->dev;
-> +
-> +	/* adc power down need clock on */
-> +	pm_runtime_get_sync(dev);
-> +
-> +	iio_device_unregister(indio_dev);
-> +	imx93_adc_power_down(adc);
-
-Why is there no similar power down in the error path in probe for
-iio_device_register() returning an error?
-
-> +	free_irq(adc->irq, adc);
-> +	clk_disable_unprepare(adc->ipg_clk);
-> +	regulator_disable(adc->vref);
-> +
-> +	pm_runtime_disable(dev);
-> +	pm_runtime_put_noidle(dev);
-
-I think I caused confusion a bit here by pointing out the device unregister
-needed to be first. That's now fine, but the rest would benefit from a rethink.
-To my mind, the ideal situation is that the remove() is a reverse of the probe()
-function, so I'd expect to see these pm_runtime_disable(), pm_runtime_put_noidle()
-at the start of this
-function.  Note that you also need to call pm_runtime_dont_use_autosuspend() somewhere
-in here - or take all the probe/remove devm_ managed and use
-devm_pm_runtime_enable() which tidies that up for you as needed.
-(see docs in pm_runtime.h)
-
-> +
-> +	return 0;
-> +}
+-- 
+2.34.1
 
