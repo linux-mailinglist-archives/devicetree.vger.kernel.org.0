@@ -2,59 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D0FE6594C9
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 06:16:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB4C06594CD
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 06:17:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229839AbiL3FQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 00:16:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46720 "EHLO
+        id S229379AbiL3FRa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 00:17:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229379AbiL3FQ4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 00:16:56 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 360B9640D;
-        Thu, 29 Dec 2022 21:16:55 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C100FB819EB;
-        Fri, 30 Dec 2022 05:16:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA194C433EF;
-        Fri, 30 Dec 2022 05:16:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672377412;
-        bh=j2+6UeRT2aBSsAEe8hXoqg43P5bsOp3tTR0mxHo9hWY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=R6ZDEJIhlXrRnthkudDQRtSh3t1UAYZtQQfj+1U+NzPFVFY2c9aLwIzCy4l3/XlEh
-         qN6U6EwmjCZ7qP8KUDbazGzsbwBzjkwU/pbDioOVaVS+pDGt14H5fysTuIwmSdwFBK
-         BE2U4GAwvfME3Qo30LzU42evl2Q/o3NWxUsMfDEEj4dZs+JU/WeFCgVzEuDwVWXBf3
-         FPxl9Z24UyCjq5KhZv9/44lw39nd/3nTd0KBCKt6UW6t6RQS7Utc3AAql4iQpEpxKh
-         ydkqqVm8KI63GBbGzuQoMkIRPQBNg3MCeZhuca+zDcKx6afcWHZdK2W6Ul+XdR7X0v
-         3GGGq+97F+3NA==
-Date:   Fri, 30 Dec 2022 10:46:47 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        marijn.suijten@somainline.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/7] arm64: dts: qcom: sm8450: add spmi node
-Message-ID: <Y650PwlDUJsyKxzC@matsya>
-References: <20221229103212.984324-1-konrad.dybcio@linaro.org>
- <7b32e414-96a9-7265-efee-f872badb32b2@linaro.org>
- <71d7a162-569d-1443-9e53-3ba374d06ccd@linaro.org>
- <ee24809b-cf9b-c555-9c30-956949be25a4@linaro.org>
- <20221229161249.34jgdev2446rdxkf@builder.lan>
+        with ESMTP id S234188AbiL3FRX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 00:17:23 -0500
+Received: from mail-vs1-xe33.google.com (mail-vs1-xe33.google.com [IPv6:2607:f8b0:4864:20::e33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D06D117E37
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 21:17:22 -0800 (PST)
+Received: by mail-vs1-xe33.google.com with SMTP id a66so20375958vsa.6
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 21:17:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=dEYbMSY9mT2OK2c114me8utvLFZz2JqIKXFmopSmQiw=;
+        b=RKih9fLMpxINT80ky9qXSQ53n2p/gq4DqtkictxoVB6aWfa9UX7D6geobbaZRNdi9V
+         cD0zg7UKY1wl5gpbFTbIxiJlMqwsZOqM7dtq2O2aTqKYFqeoSA4YkrNJktTS7P3yDmJW
+         NVl1tmtgJy8t3YgObj5WvVVF6dgavhZvjCHDA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dEYbMSY9mT2OK2c114me8utvLFZz2JqIKXFmopSmQiw=;
+        b=N0T7oJ/f42UpH2VoAQfjmI1xZLp1kRu6vWYEirYVfXEqHgrvuaG5xIvMoWm/JUb7PV
+         crkfu1YFMCQ6Lnrff1qOFbpJ8GyK1A+iyr2Tlyg+dB0gxZVQZGGp9UW8pmH479/kx1VQ
+         85zPG45OCtusmqBU52lxW/tN70pbqOl8gYRF+MVUU5effIf3TRhKi68rBlnGUtmxEjCY
+         sgy5C8N47GVEpS67pcoup6uZ76W7aYdo0jcs7cTBqYwjVMpuWGgGhe214KEmUkow4Zul
+         yKrybtKJ4WAc/9YPCSBcY5VuRc8ISHVhk3WZLpPQzTAX5mgrXYNd1zf6088RNSmlPtW2
+         FUvQ==
+X-Gm-Message-State: AFqh2koFmFt0xgkXle89XDfttHbKfF/FlzKnApsVNCbzfcf5F3zenUCi
+        lIpqptSag74E+66LS1TrrZne7qauaTxYU+qvZv1eTw==
+X-Google-Smtp-Source: AMrXdXtbyCSpMJ4eNW7yhoCCnZ4ewGuLOy71q3P5g49tLuLwFTAwiq8BtlKIVACuyhU5eRY9Mp/AdemXnMQUi2cYMbk=
+X-Received: by 2002:a67:f985:0:b0:3b3:7477:5aa2 with SMTP id
+ b5-20020a67f985000000b003b374775aa2mr3636972vsq.65.1672377442038; Thu, 29 Dec
+ 2022 21:17:22 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221229161249.34jgdev2446rdxkf@builder.lan>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+References: <20221223094259.87373-1-angelogioacchino.delregno@collabora.com> <20221223094259.87373-15-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221223094259.87373-15-angelogioacchino.delregno@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Fri, 30 Dec 2022 13:17:11 +0800
+Message-ID: <CAGXv+5H26DA6McV_6XJiquM44MkrhYh1HmGQr+sB-82EOGvinQ@mail.gmail.com>
+Subject: Re: [PATCH v2 14/23] clk: mediatek: clk-mt8192: Move
+ CLK_TOP_CSW_F26M_D2 in top_divs
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, matthias.bgg@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        johnson.wang@mediatek.com, miles.chen@mediatek.com,
+        fparent@baylibre.com, chun-jie.chen@mediatek.com,
+        sam.shih@mediatek.com, y.oudjana@protonmail.com,
+        nfraprado@collabora.com, rex-bc.chen@mediatek.com,
+        ryder.lee@kernel.org, daniel@makrotopia.org,
+        jose.exposito89@gmail.com, yangyingliang@huawei.com,
+        pablo.sun@mediatek.com, msp@baylibre.com, weiyi.lu@mediatek.com,
+        ikjn@chromium.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,64 +75,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29-12-22, 10:12, Bjorn Andersson wrote:
-> On Thu, Dec 29, 2022 at 11:57:58AM +0100, Krzysztof Kozlowski wrote:
-> > On 29/12/2022 11:45, Konrad Dybcio wrote:
-> > > 
-> > > 
-> > > On 29.12.2022 11:42, Krzysztof Kozlowski wrote:
-> > >> On 29/12/2022 11:32, Konrad Dybcio wrote:
-> > >>> From: Vinod Koul <vkoul@kernel.org>
-> > >>>
-> > >>> Add the spmi bus as found in the SM8450 SoC
-> > >>>
-> > >>> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> > >>> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> > >>> [Konrad: 0x0 -> 0, move #cells down, make reg-names a vertical list]
-> > >>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> > >>> ---
-> > >>> v1 -> v2:
-> > >>> No changes
-> > >>>
-> > >>>  arch/arm64/boot/dts/qcom/sm8450.dtsi | 22 ++++++++++++++++++++++
-> > >>>  1 file changed, 22 insertions(+)
-> > >>>
-> > >>> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> > >>> index 570475040d95..b9b59c5223eb 100644
-> > >>> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> > >>> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> > >>> @@ -2715,6 +2715,28 @@ aoss_qmp: power-controller@c300000 {
-> > >>>  			#clock-cells = <0>;
-> > >>>  		};
-> > >>>  
-> > >>> +		spmi_bus: spmi@c42d000 {
-> > >>
-> > >> Hmm looks different than reg.
-> > >>
-> > >>> +			compatible = "qcom,spmi-pmic-arb";
-> > >>> +			reg = <0 0x0c400000 0 0x00003000>,
-> > >>> +			      <0 0x0c500000 0 0x00400000>,
-> > >>> +			      <0 0x0c440000 0 0x00080000>,
-> > >>> +			      <0 0x0c4c0000 0 0x00010000>,
-> > >>> +			      <0 0x0c42d000 0 0x00010000>;
-> > >> x
-> > > Hm, my guess would be that Vinod chose to put the "cnfg" reg
-> > > instead of "core" in the unit address, as 8450 has 2 SPMI bus
-> > > hosts and they both share the core reg, so it would have been
-> > > impossible to have two spmi@core nodes..
-> > 
-> > Eh? SM8450 has 2 SPMI hosts both using 0x0c400000? How does that work?
-> > Usually address can be mapped only once.
-> > 
-> 
-> The SPMI controller does something like multi-master. The driver expects
-> the same region to be mapped multiple times and qcom,channel is used to
-> select which one each instance should operate on.
+On Fri, Dec 23, 2022 at 5:43 PM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> This driver is registered early in clk_mt8192_top_init_early() and
+> then again in clk_mt8192_top_probe(): the difference between the
+> two is that the early one is probed with CLK_OF_DECLARE_DRIVER and
+> the latter is regularly probed as a platform_driver.
+>
+> Knowing that it is not necessary for this platform to register the
+> TOP_CSW_F26M_D2 clock that early, move it to top_divs and register
+> it with the others during platform_driver probe for topckgen;
+>
+> While at it, since the only reason why the early probe existed was
+> to register that clock, remove that entirely - leaving this driver
+> to use only platform_driver.
+>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Right, this one adds same as downstream. I agree in future we should
-revisit this and decide how we should model this. For now I am more
-inclined to get this piece closed, it been more than a year :-( lets not
-make it two!
+I had some other changes dealing with this, but since the systimer DT
+fixes have been merged, and this is cleaner,
 
--- 
-~Vinod
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
