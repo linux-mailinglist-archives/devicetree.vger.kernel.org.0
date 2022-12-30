@@ -2,159 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED985659B06
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 18:42:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EC24659B29
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 18:56:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231174AbiL3Rmm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 12:42:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38006 "EHLO
+        id S229861AbiL3R43 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 12:56:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbiL3Rmm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 12:42:42 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F442A452;
-        Fri, 30 Dec 2022 09:42:41 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B733961B19;
-        Fri, 30 Dec 2022 17:42:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AEC9C433EF;
-        Fri, 30 Dec 2022 17:42:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672422160;
-        bh=i3XwKN6BpXFvy+XIJ24PzvzFUAvWk2LGqWNk56jmzlA=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=MJ3f+DP4mAUzxmpxQLY87wmxTmEWwWwvj2AhdQTs/+CsFeABZyG9eeWkeykeJ3Eyf
-         Kt13RQNCJr2fPM+2jwlkdXFltscl4jeWvkc8FmFHyOBUiPAz8g5wgTglEyPhJM5VSL
-         nnaTYpyLPraPXEqAdLQr4y5pGzilbF8J/m91N/4u8w7ht7gcjnWTjLS4FDuGtH/xSR
-         UIbjAtGFdtNg+2iCmzNASKud6rCAdfpJInL20q47SX7I4d2c5LTduEmTsk7sZTAzLw
-         HAPPTIRWlbbAYhy07WkFVKREGD+cq5rAxSbwhfmcSRKYoMW/A4KNR/YJXSrDRKnsfO
-         vhW9/nv9xTsng==
-Date:   Fri, 30 Dec 2022 17:55:57 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Marco Felsch <m.felsch@pengutronix.de>, puranjay12@gmail.com,
-        lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH v2 3/4] iio: temperature: tmp117: add TI TMP116 support
-Message-ID: <20221230175558.4495bc00@jic23-huawei>
-In-Reply-To: <34b6b5b3-079d-3f6b-b55a-6d05a775e3b8@linaro.org>
-References: <20221221092801.1977499-1-m.felsch@pengutronix.de>
-        <20221221092801.1977499-4-m.felsch@pengutronix.de>
-        <20221223151056.4f7d4b7e@jic23-huawei>
-        <20221223150728.34d5agqr4ruixjbu@pengutronix.de>
-        <20221223153929.3fbad6b2@jic23-huawei>
-        <20221223161359.wla6l5kd5gddloid@pengutronix.de>
-        <20221223171647.43a6153e@jic23-huawei>
-        <34b6b5b3-079d-3f6b-b55a-6d05a775e3b8@linaro.org>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-pc-linux-gnu)
+        with ESMTP id S229456AbiL3R43 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 12:56:29 -0500
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1739BE1B;
+        Fri, 30 Dec 2022 09:56:27 -0800 (PST)
+Received: from g550jk.localnet (2a02-8388-6582-fe80-0000-0000-0000-0005.cable.dynamic.v6.surfer.at [IPv6:2a02:8388:6582:fe80::5])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id A8F7ECA59D;
+        Fri, 30 Dec 2022 17:56:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1672422986; bh=9SMJto/BbTzXNOAp7b3wav53yOz7csIc23s0OeluJrY=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=boxv0jwrk7qJI2n/2Jy8o2f/Cn625a6JYc+epwjAOLmqEGhmLoEGRDm0HUiL2IrDg
+         JsHmGheKyUgGM5I5BEangD0dVHym0bjVZgtbGL0rmjGKcaJ3+kdN+7xboIStw9Ssqo
+         S7pD/dLisvEb61oCRte/ht/LowiJs3YRwwQiVAPY=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     linux-arm-msm@vger.kernel.org, Mark Brown <broonie@kernel.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3] regulator: dt-bindings: qcom,usb-vbus-regulator: change node
+ name
+Date:   Fri, 30 Dec 2022 18:56:24 +0100
+Message-ID: <4449469.LvFx2qVVIh@g550jk>
+In-Reply-To: <167235422463.130576.13068228295548630470.b4-ty@kernel.org>
+References: <20221229191542.123367-1-luca@z3ntu.xyz>
+ <167235422463.130576.13068228295548630470.b4-ty@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,FROM_SUSPICIOUS_NTLD,SPF_HELO_NONE,SPF_PASS,
+        T_PDS_OTHER_BAD_TLD autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 27 Dec 2022 09:30:08 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-
-> On 23/12/2022 18:16, Jonathan Cameron wrote:
-> > On Fri, 23 Dec 2022 17:13:59 +0100
-> > Marco Felsch <m.felsch@pengutronix.de> wrote:
-> >   
-> >> On 22-12-23, Jonathan Cameron wrote:
-> >>
-> >> ...
-> >>  
-> >>>>>> @@ -118,27 +127,28 @@ static int tmp117_identify(struct i2c_client *client)
-> >>>>>>  	int dev_id;
-> >>>>>>  
-> >>>>>>  	dev_id = i2c_smbus_read_word_swapped(client, TMP117_REG_DEVICE_ID);
-> >>>>>> -	if (dev_id < 0)      
-> >>>>>
-> >>>>> Keep this handling of the smbus read returning an error.
-> >>>>> Otherwise, you end up replacing the error code with -ENODEV rather than
-> >>>>> returning what actually happened.
-> >>>>>
-> >>>>> 	if (dev_id < 0)
-> >>>>> 		return dev_id;      
-> >>>>
-> >>>> You're right, I will change this thanks.
-> >>>>     
-> >>>>> 	switch (dev_id) {
-> >>>>> ...
-> >>>>>       
-> >>>>>> +	switch (dev_id) {
-> >>>>>> +	case TMP116_DEVICE_ID:
-> >>>>>> +	case TMP117_DEVICE_ID:
-> >>>>>>  		return dev_id;
-> >>>>>> -	if (dev_id != TMP117_DEVICE_ID) {
-> >>>>>> -		dev_err(&client->dev, "TMP117 not found\n");
-> >>>>>> +	default:
-> >>>>>> +		dev_err(&client->dev, "TMP116/117 not found\n");
-> >>>>>>  		return -ENODEV;    
-> >>>
-> >>> As per the other branch of this thread.  This isn't an error.
-> >>> If we want fallback compatibles to work in their role of allowing
-> >>> for newer devices that are actually compatible, the most we should
-> >>> do here is warn.
-> >>>
-> >>> Say a new tmp117b device is released. It's fully backwards compatible
-> >>> with the exception of an ID - or supports only new features + backwards
-> >>> compatibility then that would have a fallback to tmp117 and we need
-> >>> it to work.    
-> >>
-> >> This isn't part of this patchset and IMHO implementing something which
-> >> may happen in the future is not the way we should go.  
-> > 
-> > I held a similar view, but the response I got from the DT maintainers was
-> > that a driver should not reject a DTS that says it is compatible based
-> > on an unknown ID - because it prevents that case of an old kernel working
-> > absolutely fine with a completely compatible newer part.  
+On Donnerstag, 29. Dezember 2022 23:50:24 CET Mark Brown wrote:
+> On Thu, 29 Dec 2022 20:15:43 +0100, luca@z3ntu.xyz wrote:
+> > usb-vbus-regulator is a better generic node name than dcdc to change the
+> > example to match.
 > 
-> I don't think that there was such generic recommendation. Accepting
-> unknown devices (unknown register IDs) is a risk - device might behave
-> correct or not. If it is a critical device, like regulator, misbehave
-> might damage something.
-
-Agreed - I didn't express that there are limits to such a requirement.
-Indeed not a good idea with regulators etc!  However, for input devices
-like this one things are a little simpler - in theory they could be used
-for something that ends up damaging hardware if done wrong, but it's much
-less likely.
-
+> Applied to
 > 
-> What's more, how Linux driver behaves on device IDs (not compatibles) is
-> also a bit outside of DT scope.
+>    broonie/regulator.git for-next
 > 
-> If a driver claims it handles compatibles tmp117, then indeed it should
-> work fine with any DTS node claiming to be compatible with tmp117.
-> However driver is free to make further checks (if possible) whether the
-> device (e.g. tmp116 or tmp11X) is really compatible and reject unknown
-> devices for safety reason.
-
-Ok. For input devices at least in IIO we went around this a few times and
-ended up with deciding that a dev_info() type message was the best balance.
-We will need to be more careful for output devices.
-
+> Thanks!
 > 
-> The same as x86 kernel is fine to reject to work on newest (unknown) x86
-> processors for safety reasons... which is terrible from user-experience
-> point of view unless it is real safety case.
-
-Hopefully that never happens :)
-
-Jonathan
-
+> [1/1] regulator: dt-bindings: qcom,usb-vbus-regulator: change node name
+>       commit: d13da2f4c81602fc22cdf2cb13b15283b260e0d5
 > 
-> Best regards,
-> Krzysztof
+
+Thank you and sorry about the mess on the v2.
+
+Regards
+Luca
+
+> All being well this means that it will be integrated into the linux-next
+> tree (usually sometime in the next 24 hours) and sent to Linus during
+> the next merge window (or sooner if it is a bug fix), however if
+> problems are discovered then the patch may be dropped or reverted.
 > 
+> You may get further e-mails resulting from automated or manual testing
+> and review of the tree, please engage with people reporting problems and
+> send followup patches addressing any issues that are reported if needed.
+> 
+> If any updates are required or you are submitting further changes they
+> should be sent as incremental updates against current git, existing
+> patches will not be replaced.
+> 
+> Please add any relevant lists and maintainers to the CCs when replying
+> to this mail.
+> 
+> Thanks,
+> Mark
+
+
+
 
