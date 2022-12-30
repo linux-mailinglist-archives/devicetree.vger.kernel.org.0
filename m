@@ -2,89 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 934496595F4
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 08:53:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BC6F6595F7
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 08:55:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234626AbiL3Hxz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 02:53:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34920 "EHLO
+        id S234774AbiL3Hyt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 02:54:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234521AbiL3Hxy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 02:53:54 -0500
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3E7F17E17
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 23:53:53 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id s22so21454839ljp.5
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 23:53:53 -0800 (PST)
+        with ESMTP id S234771AbiL3Hys (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 02:54:48 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25AAF18397
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 23:54:46 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id z26so30784570lfu.8
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 23:54:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=wteaOjqUStv05kTX2dIgFUVrbZUO7TezK4q3XUbgysk=;
-        b=XuKRrftvoCemAypeWsYZ0OiXxkS4hQi2gBTIyPGNI4lGIBuK5bqaVk9Y1ZICA9cnD+
-         WDBtvLfP6rxHilBzLcL38FZ/JACauxH/Itw8LSMISVqT3P+Yt9Olu6F1CmrVKK3vwbol
-         PHxE6YrkEM1mAdMa2uIX9GBnTTSSbiyjMB1hp9d6zQPiJcpOybIap24zZMNDPA3X/LIw
-         0MqfMgbF7t+zTB9Nyg3XNhJWiNeBYH4eKuFpZEk5TAf0eOLlXpb1Q09TIwXRkXeQgaWS
-         UjFllRndYjHNRATCRRia/QKbVsp8Era6Vba3xgx/bdoMnZg+4E9Naq3q9Eh7r1FtecfN
-         UYqw==
+        bh=W/u2lHtYt55h9eLW2aJ8+8WfUAL34DdGK7BA4/nzMmE=;
+        b=OopDNledczuyTzgtVFh2rmVJwXXPMsGu5yX/fyAnjBIIa87cnSEhCvBYBRXvL42x1a
+         3i4xB94tUgIsqxkLksrKqYko0zEmGb2m/ZLDevg6ZYfIMaFSfhDyBwRCUQRA9FJloRL1
+         F2GD8txY7GFpnaf3OrWLJKanpUrvG0ZSNhdmgs4Y651Ir5ELHPicOPj51pWYcWxTQ6j5
+         V6vWW9b+DKkZKfGGEvcZFOYski2TFhH35YPlnoVEA8oi/tLY/leMVNuKVPoRtVKdpBNc
+         nbY6HFnIc52C9OZ+4IpZE/Wdf8Zn46px6BZwiY0x9s0ls4P3anN1nWIIKXPkS7PtdqXP
+         LaXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wteaOjqUStv05kTX2dIgFUVrbZUO7TezK4q3XUbgysk=;
-        b=fYRBrJsRtOLbYZQaIO3mYJzwO+CtwVS88Z1ZX4CUIv4B4lmqSoo5B+ZlnBU8F73u8L
-         emqgCsVvFNWBHdYXcQHfafZLRy+3qtUD/ssvvN9KpM52dRP2q4XlRCatDlPrD4ZNc66o
-         IjbLw0yHq/RFlnwVxpe1h5iO9t1EPrrSQxSzqYxqck6YM7EiMIpJOixBUjfEcHPLdl/o
-         47VNePm2IxUapG40jpmtoDZY04uYUOsTiPOkkGDo7eGt3B1Gmc4x9b0aFeRa4DFobS38
-         maOOmOkLHAkRGcUVqbPkQul7f73lb0uVPphWcGGWB2xC0EF3wNuV9uP16q9acdWkJQ6G
-         eo/Q==
-X-Gm-Message-State: AFqh2kqTllDOEsAdw0wgaLAakv1TOGb4NHCmPa3250q6wMxBH0/Hj1C9
-        n8FHPgemF3VYQcXmvBQ0txlNJg==
-X-Google-Smtp-Source: AMrXdXtbev16q7ONLYZzOU/zdhnSOOqAY/gknViUZlAxu6zfISXg8REkGb6Rdz8hBco08PPeeVSieQ==
-X-Received: by 2002:a2e:b904:0:b0:26f:db35:6173 with SMTP id b4-20020a2eb904000000b0026fdb356173mr8628548ljb.17.1672386832058;
-        Thu, 29 Dec 2022 23:53:52 -0800 (PST)
+        bh=W/u2lHtYt55h9eLW2aJ8+8WfUAL34DdGK7BA4/nzMmE=;
+        b=KHA/ABWU/NgE+5iG7AI8yBc5qcEyHprOV7/7WLotG88d8bnpS0cpohvktCMccPpXyL
+         M78GqdnwfDYJMT+G0+1u6XxgJR5cBrodNyVrcBdu6VBR5guobVQNCAUmqgwKvQwCo42N
+         WFAnFDVJOsbzvq+HDOfOknjaO/JOZFFIVG8Bqg/XDxAxCQAi3VngKCeXaxZDNaBE3ySQ
+         KHVJKLnI9AiSz78WV14LBGF84luGXEAiYnX96/GoNxDbFdj2xN/GjzemF9H0YJ7M48xd
+         fnIdOoQJU9x3FKA5X59du89AGFlZPm6kK6wPrhxe1UA0rc12NXkcQ6KEjDeQIa6Kg7jM
+         EQtg==
+X-Gm-Message-State: AFqh2kq6Hpv9dNymNq+UAG1PH6sHyl1Wqe/Z4A14GAIvwY5oGG456/RZ
+        QXqjKfiXpfuN869ur611G1FctQ==
+X-Google-Smtp-Source: AMrXdXs6UbI+YlGXHQdgRobkLgdafexKjyXND6gJW3NXNDJkoQVoneNf4yNrc33qh+lahEZxrBHZzA==
+X-Received: by 2002:a05:6512:108f:b0:4a4:68b8:c2e4 with SMTP id j15-20020a056512108f00b004a468b8c2e4mr9867605lfg.59.1672386884508;
+        Thu, 29 Dec 2022 23:54:44 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id r18-20020a2e8e32000000b0027cf0ecab3fsm2570075ljk.138.2022.12.29.23.53.50
+        by smtp.gmail.com with ESMTPSA id bt17-20020a056512261100b00494942bec60sm3363337lfb.17.2022.12.29.23.54.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Dec 2022 23:53:51 -0800 (PST)
-Message-ID: <c2932014-57f9-f80e-3c86-2aa7e5bd422d@linaro.org>
-Date:   Fri, 30 Dec 2022 08:53:50 +0100
+        Thu, 29 Dec 2022 23:54:43 -0800 (PST)
+Message-ID: <115b649b-f0ff-1fc6-36c8-fae63e5c73f5@linaro.org>
+Date:   Fri, 30 Dec 2022 08:54:42 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 1/2] dt-bindings: arm: sunxi: Add iNet U70B Rev 01 Tablet
+Subject: Re: [PATCH v2 2/3] dt-bindings: ufs: qcom: Add reg-names property for
+ ICE
 Content-Language: en-US
-To:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
+To:     Luca Weiss <luca.weiss@fairphone.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20221229224547.25225-1-samuel@sholland.org>
- <20221229224547.25225-2-samuel@sholland.org>
+        Iskren Chernev <me@iskren.info>
+Cc:     linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20221209-dt-binding-ufs-v2-0-dc7a04699579@fairphone.com>
+ <20221209-dt-binding-ufs-v2-2-dc7a04699579@fairphone.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221229224547.25225-2-samuel@sholland.org>
+In-Reply-To: <20221209-dt-binding-ufs-v2-2-dc7a04699579@fairphone.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/12/2022 23:45, Samuel Holland wrote:
-> This is a white-label 7" tablet board based on the A33 SoC. It is found
-> in products such as the "Nimbus 17 V1" tablet.
+On 30/12/2022 08:42, Luca Weiss wrote:
+> The code in ufs-qcom-ice.c needs the ICE reg to be named "ice". Add this
+> in the bindings so the existing dts can validate successfully.
 > 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+>  Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
