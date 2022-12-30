@@ -2,91 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C56AC6596B8
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 10:23:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06CA36596D4
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 10:35:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229839AbiL3JXW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 04:23:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32840 "EHLO
+        id S234876AbiL3Jf0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 04:35:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229519AbiL3JXV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 04:23:21 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E9371A39E;
-        Fri, 30 Dec 2022 01:23:20 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0C42661AC2;
-        Fri, 30 Dec 2022 09:23:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 603C7C433D2;
-        Fri, 30 Dec 2022 09:23:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672392199;
-        bh=wCEpgrR2Zn8QZRYZE3sT1DPQBW2YKRPQLy0ZSJSb8zc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FpTb71uSiyGhJNvJ4LDHVbIN0MHC/uEPSCeTHk3Zzm88sC2wDJMr0HHbWky7wachi
-         VoGktx4uzoP/xByMaJ0FWLNh/GORCi7GqOaYgJHzuW+JfFBCWyID24yi91jZeLGF7g
-         lO92MPKxUXScFqYlcu7cyeXblOcMIWYT6rpZmgddqFqP1p0L2Hf41egicOQjvMZ2Ex
-         W8ryRzGG+9XHhkRNWk4Agg9ae4BH+ToJGZ6C1Yzrghh6FB18dRSLkc8yCGmhWPuWPQ
-         TOdx2IV3oDURSbIeOc4N6F2Za+PtueRomYjH5E1csEccPGe+FUyniF3lSdjL86LLXA
-         ZHl+G9GaLYP5Q==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1pBBbq-0002ti-Jz; Fri, 30 Dec 2022 10:23:27 +0100
-Date:   Fri, 30 Dec 2022 10:23:26 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Abel Vesa <abel.vesa@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-x13s: Add RTC support
-Message-ID: <Y66uDhAnKlcYM2tX@hovoldconsulting.com>
-References: <20221230085010.717423-1-abel.vesa@linaro.org>
- <Y66qkR+WWkopNzQ4@hovoldconsulting.com>
- <Y66tSyDKOkH3T1BT@linaro.org>
+        with ESMTP id S234875AbiL3JfV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 04:35:21 -0500
+Received: from out29-81.mail.aliyun.com (out29-81.mail.aliyun.com [115.124.29.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6E141A3B1;
+        Fri, 30 Dec 2022 01:35:19 -0800 (PST)
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.09643909|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.00387715-6.27374e-05-0.99606;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047192;MF=wangweidong.a@awinic.com;NM=1;PH=DS;RN=27;RT=27;SR=0;TI=SMTPD_---.Qh0QfiN_1672392896;
+Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.Qh0QfiN_1672392896)
+          by smtp.aliyun-inc.com;
+          Fri, 30 Dec 2022 17:35:04 +0800
+From:   wangweidong.a@awinic.com
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, perex@perex.cz, tiwai@suse.com,
+        ckeepax@opensource.cirrus.com, rf@opensource.cirrus.com,
+        povik+lin@cutebit.org, pierre-louis.bossart@linux.intel.com,
+        james.schulman@cirrus.com, flatmax@flatmax.com,
+        cezary.rojewski@intel.com, srinivas.kandagatla@linaro.org,
+        tanureal@opensource.cirrus.com, steve@sk2.org, stephan@gerhold.net,
+        zhuning0077@gmail.com, shumingf@realtek.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, wangweidong.a@awinic.com
+Cc:     zhaolei@awinic.com, liweilei@awinic.com, yijiangtao@awinic.com,
+        duanyibo@awinic.com
+Subject: [PATCH V8 0/5] ASoC: codecs: Add Awinic AW883XX audio amplifier driver
+Date:   Fri, 30 Dec 2022 17:34:49 +0800
+Message-Id: <20221230093454.190579-1-wangweidong.a@awinic.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y66tSyDKOkH3T1BT@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 30, 2022 at 11:20:11AM +0200, Abel Vesa wrote:
-> On 22-12-30 10:08:33, Johan Hovold wrote:
-> > Hi Abel,
-> > 
-> > On Fri, Dec 30, 2022 at 10:50:10AM +0200, Abel Vesa wrote:
-> > > The PMK8350 PMIC has an available RTC block. Describe it in
-> > > sc8280xp-pmics dtsi and enable it in Lenovo Thinkpad X13s specific dts.
-> > > Mark it as wakeup-source to allow waking the system from sleep.
-> > > 
-> > > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > 
-> > I'm currently working on proper RTC support which implies reading and
-> > storing the time offset from EFI.
-> > 
-> > This patch in itself is pretty much useless as the returned time is just
-> > some random time from the epoch (e.g. in the 1970's).
-> > 
-> > So I suggest waiting another week or so until I'm done.
-> 
-> Sure thing. Consider this dropped then.
-> 
-> Please CC me when you have something so I can try it out.
+From: Weidong Wang <wangweidong.a@awinic.com>
 
-Sure, I will. Since it depends on UEFI support it may take a while to
-get everything merged in mainline, but we should have working
-out-of-tree support shortly.
+The Awinic AW883XX is an I2S/TDM input, high efficiency
+digital Smart K audio amplifier with an integrated 10.25V
+smart boost convert
 
-Johan
+Add a DT schema for describing Awinic AW883xx audio amplifiers. They are
+controlled using I2C
+
+v7 -> v8: Delete retry for double loops Enable PA
+          Delete useless initialization and use reverse x-mas tree style
+          Add Spaces in comments
+          Modify aw883xx_switch_set function
+          Delete our own workqueue, use a default one
+          Change variable name
+          Modifying function name
+          Use dev_ replace pr_ function
+          Use define replace number
+          Modify the compatible of the awinic,aw883xx.yaml file
+
+Weidong Wang (5):
+  ASoC: codecs: Add i2c and codec registration for aw883xx and their
+    associated operation functions
+  ASoC: codecs: Aw883xx function for ACF file parse and check
+  ASoC: codecs: Aw883xx common function for ALSA Audio Driver
+  ASoC: codecs: Aw883xx chip register file, data type file and Kconfig
+    Makefile
+  ASoC: dt-bindings: Add schema for "awinic,aw883xx"
+
+ .../bindings/sound/awinic,aw883xx.yaml        |   49 +
+ sound/soc/codecs/Kconfig                      |   10 +
+ sound/soc/codecs/Makefile                     |    6 +
+ sound/soc/codecs/aw883xx/aw883xx.c            |  667 ++++++
+ sound/soc/codecs/aw883xx/aw883xx.h            |   59 +
+ sound/soc/codecs/aw883xx/aw883xx_bin_parse.c  | 1067 ++++++++++
+ sound/soc/codecs/aw883xx/aw883xx_bin_parse.h  |   92 +
+ sound/soc/codecs/aw883xx/aw883xx_data_type.h  |  143 ++
+ sound/soc/codecs/aw883xx/aw883xx_device.c     | 1790 +++++++++++++++++
+ sound/soc/codecs/aw883xx/aw883xx_device.h     |  198 ++
+ .../soc/codecs/aw883xx/aw883xx_pid_2049_reg.h |  384 ++++
+ 11 files changed, 4465 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/awinic,aw883xx.yaml
+ create mode 100644 sound/soc/codecs/aw883xx/aw883xx.c
+ create mode 100644 sound/soc/codecs/aw883xx/aw883xx.h
+ create mode 100644 sound/soc/codecs/aw883xx/aw883xx_bin_parse.c
+ create mode 100644 sound/soc/codecs/aw883xx/aw883xx_bin_parse.h
+ create mode 100644 sound/soc/codecs/aw883xx/aw883xx_data_type.h
+ create mode 100644 sound/soc/codecs/aw883xx/aw883xx_device.c
+ create mode 100644 sound/soc/codecs/aw883xx/aw883xx_device.h
+ create mode 100644 sound/soc/codecs/aw883xx/aw883xx_pid_2049_reg.h
+
+
+base-commit: bff687b3dad6e0e56b27f4d3ed8a9695f35c7b1a
+-- 
+2.38.1
+
