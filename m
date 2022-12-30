@@ -2,141 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C804659AD4
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 18:09:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 630B3659AE0
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 18:16:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235273AbiL3RJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 12:09:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57352 "EHLO
+        id S230507AbiL3RQY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 12:16:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231193AbiL3RJF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 12:09:05 -0500
+        with ESMTP id S229456AbiL3RQY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 12:16:24 -0500
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0337114011;
-        Fri, 30 Dec 2022 09:09:04 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56BFB2654;
+        Fri, 30 Dec 2022 09:16:23 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 95AB561B0C;
-        Fri, 30 Dec 2022 17:09:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D798AC433D2;
-        Fri, 30 Dec 2022 17:09:00 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E3DA86181A;
+        Fri, 30 Dec 2022 17:16:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B68FC433EF;
+        Fri, 30 Dec 2022 17:16:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672420144;
-        bh=GvOiKqNHF1H13zIfDzDktRmecgOy4gbqAWyr1vFM/84=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=Pa2dtf4MfixEfHN8xynX38q0GPGJHp0VN/zKLX/gGc1+pO+MPbw56VNkUFU3lBg9q
-         uK4rcvqNnC4iWfRvp+Nvc2zrw4OI48KnOUVk93nnXmwGuS70rQJmmSAtN9zSWBqfjl
-         yie+H8PXjJY9Ax9Yc9eJdgqM6Y/yE79v8yBsMUp6XtUjQ+RfltNqjF4JjTsb4TkQCt
-         KdbkKQ9JF/5FR4hoRpROuWiYP5yp3h6hunc9C+2/lxeRWqiWcspsZfIKNjLdK/PP71
-         2fJmYLNEzZt1Dr8UWy7G8g/ilV8rcjgx+qdf0/Cl7Y3SIIQVPCCvNDAlFujz7zytsT
-         zJPYBtdTa76xw==
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        s=k20201202; t=1672420582;
+        bh=EjjJYlDGDYCeAbL7B91JnbZs5ulwNKec7qPkIMCdOvw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=lLn77BkYgZHJjz375jHL6HGSvBeJ1aI/IBmmoKjVVWEEDDKKLsjEK2SsN9XYimbYi
+         bjRAmiJp25ARsoy2dOFjrqZxbH+RcFEaUmUgXZKm5gOPqoaKV11T7OCYQ+tN/BNMUw
+         Jd5FlVE2Eknoj6Rk8k88/bwM8Au0J88/owbTTwLyphdRA2prmsfeJvGG6253aROfUQ
+         nUNsrxAYP/x+kA3+VDigcc5JnAUXEPA5Sqvre1xzZIgJyZUDfQThM3RG63W9rrExOf
+         WLpwP1SM2IAT9+Ydkd3asy4aNDTymnstCLVzfKHSh2icxkoublQaiHYFFaEHJyE2sF
+         YJfzY4n3/lTjw==
+Date:   Fri, 30 Dec 2022 11:16:19 -0600
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-rockchip@lists.infradead.org" 
-        <linux-rockchip@lists.infradead.org>,
-        Johan Jonker <jbx6244@gmail.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: usb: snps,dwc3: Allow power-domains
- property
-In-Reply-To: <CAL_Jsq+viP_aY3n378WC7WpxZFnsTc-vKjW9Ojvcy0Ef-z09Ng@mail.gmail.com>
-References: <20221219191038.1973807-1-robh@kernel.org>
- <87edsua5q4.fsf@balbi.sh>
- <CAL_JsqKgGWN93QJ=V34=X3hC2bgdcd3vwO0Mne-8z8HOfVDz-g@mail.gmail.com>
- <878riy9ztm.fsf@balbi.sh> <20221223235712.h54lggnjjuu3weol@synopsys.com>
- <CAL_Jsq+gCi8g0jY2ic1tJebc_JijMU-GntWQg09q+X41O3=1RA@mail.gmail.com>
- <87o7rlffi7.fsf@balbi.sh>
- <CAL_Jsq+viP_aY3n378WC7WpxZFnsTc-vKjW9Ojvcy0Ef-z09Ng@mail.gmail.com>
-Date:   Fri, 30 Dec 2022 19:08:58 +0200
-Message-ID: <87k028g6ol.fsf@balbi.sh>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RFT PATCH] arm64: dts: qcom: sc8280xp: remove GCC from CX power
+ domain
+Message-ID: <20221230171619.om5mfvsp7gwatvu6@builder.lan>
+References: <20221230155502.115205-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221230155502.115205-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-6.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,TVD_SUBJ_WIPE_DEBT autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Dec 30, 2022 at 04:55:02PM +0100, Krzysztof Kozlowski wrote:
+> Bindings do not allow power-domain property in GCC clock controller and
+> documentation does not indicate that GCC is part of VDD_CX.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Maybe the bindings should be fixed? Maybe this was added as workaround?
+> Anyway looking at documentation I do not see such relation, except
+> downstream vdd_cx-supply (which is the same as in other SoCs and we do
+> not represent it in upstream).
 
-Hi,
+The GCC itself is powered by CX and the GDSC power-domains exposed by
+GCC are powered by CX.
 
-Rob Herring <robh@kernel.org> writes:
->> >> > >> >  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 3 +++
->> >> > >> >  1 file changed, 3 insertions(+)
->> >> > >> >
->> >> > >> > diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->> >> > >> > index 6d78048c4613..bcefd1c2410a 100644
->> >> > >> > --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->> >> > >> > +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->> >> > >> > @@ -91,6 +91,9 @@ properties:
->> >> > >> >          - usb2-phy
->> >> > >> >          - usb3-phy
->> >> > >> >
->> >> > >> > +  power-domains:
->> >> > >> > +    maxItems: 1
->> >> > >>
->> >> > >> AFAICT this can be incorrect. Also, you could have Cc the dwc3
->> >> > >> maintainer to get comments.
->> >>
->> >> Felipe is correct. We have 2 power-domains: Core domain and PMU.
->> >
->> > Power management unit? Performance management unit?
->> >
->> > That doesn't change that the rk3399 is 1 and we're stuck with it. So I
->> > can say 1 or 2 domains, or we add the 2nd domain when someone needs
->> > it.
->>
->> Isn't the snps,dwc3.yaml document supposed to document dwc3's view of
->> the world? In that case, dwc3 expects 2 power domains. It just so
->> happens that in rk3399 they are fed from the same power supply, but
->> dwc3' still thinks there are two of them. No?
->
-> Yes. That is how bindings *should* be. However, RK3399 defined one PD
-> long ago and it's an ABI. So we are stuck with it. Everyone else put
+It's fairly recently that we started attempting to scale CX - and
+attempted to suspend things. But this is probably how it should be
+represented on all platforms.
 
-Are you confusing things, perhaps? DWC3, the block Synopsys licenses,
-has, as Thinh confirmed, 2 internal power domains. How OEMs (TI, Intel,
-Rockchip, Allwinner, etc) decide to integrate the IP into their systems
-is something different. That is part of the (so-called)
-wrapper. Different integrators will wrap Synopsys IP however they see
-fit, as long as they can provide a suitable translation layer between
-Synopsys own view of the world (its own interconnect implementation, of
-which there are 3 to choose from, IIRC) and the rest of the SoC.
 
-Perhaps what RK3399 did was provide a single power domain at the wrapper
-level that feeds both of DWC3's own power domains, but DWC3 itself still
-has 2 power domains, that's not something rockchip can change without
-risking the loss of support from Synopsys, as it would not be Synopsys
-IP anymore.
+So let's fix the binding instead.
 
-> power-domains in the parent because obviously the DWC3 has 0
-> power-domains.
+Regards,
+Bjorn
 
-How did you come to this conclusion?
-
->> It's a similar situation when you have multiple clock domains with the
->> same parent clock.
->
-> Yes, that's a common problem in clock bindings too. Not really
-> anything we can do about that other than require a detailed reference
-> manual with every binding and someone (me) reviewing the manual
-> against the binding. Neither of those are going to happen. Even on Arm
-> Primecell blocks which clearly (and publicly) document the clocks,
-> we've gotten these wrong (or .dts authors just didn't follow the
-> binding).
-
-Heh
-
--- 
-balbi
+> ---
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> index 1d1420c8720c..d14663c9f34c 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> @@ -799,7 +799,6 @@ gcc: clock-controller@100000 {
+>  				 <&pcie4_phy>,
+>  				 <0>,
+>  				 <0>;
+> -			power-domains = <&rpmhpd SC8280XP_CX>;
+>  		};
+>  
+>  		ipcc: mailbox@408000 {
+> -- 
+> 2.34.1
+> 
