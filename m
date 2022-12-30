@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A15936599FD
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 16:37:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4E31659A00
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 16:37:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235154AbiL3PhF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 10:37:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49652 "EHLO
+        id S235215AbiL3PhK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 10:37:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235289AbiL3Pg3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 10:36:29 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3387B1C11B
+        with ESMTP id S235018AbiL3Pgd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 10:36:33 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6A721C122
         for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 07:36:20 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id m3so6492708wmq.0
+Received: by mail-wm1-x32d.google.com with SMTP id ja17so15380819wmb.3
         for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 07:36:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=yUZ4tH5NR3ShWZI1wP6dN+Rtb/3uNAvjYHh4qP5xPyE=;
-        b=FuUdHcpUYQ9YPPxX4SKwXxQvofU88zGqyShLAyTMeaKmnILpPJQWKjaD9YxGKVrQcV
-         W2hIH79me7FKOF8/Y1SB/koRnyad4gOnEl7UQkCVKXSw1RTi28RHLKhZ9jsnlh9QFU3y
-         lK7oQ/5Ic27ki8095V8Cthvy3rc90ovibaN471dl1lcBjRDnU9rafr4zITjqECRkuXxG
-         6nJmbXYELd7+JuPC1G8TIx7GrtYlPLYEKVppT194T61kc35ThguwFQimR+PMNEsMpbkB
-         ETj8IXSQCPjYdwH17YFaYu9c5k/I+qVRuYwEYFYq+9Wgw4lHHF+a4PXwaHkdRCzuLCjk
-         Trcw==
+        bh=ctxOvK28D28f3o6Pe3qUkH7ZxEJEHxVrpCcUg+NUh04=;
+        b=g+KWhYGJxl7BWHkPVNQW1thWA8kAFGFXKPDHOZ373tFmfHrrrPrIE8mDNU+pEvbUcv
+         sYbdVvT4u8d+m/kCUGSTSPZsQvC4+rrnz6+zgo+346ucE9ZCvb/Wx3BHgmR92wKGPbmi
+         T9oHmoYYv3xuSLBhnj1fxSNfm4vVXAFA2EG6KHsA5TKAo5ifpHxLny4+OExRO6+uUwXJ
+         g5T18A0HRPaIxiNXHMIaIrcovFujD0egizRlMXz6MTMPwMy9FQhJvlyxMmkiIxEx+sBS
+         2BnoQnguqkD7JYL3lq4S4xSpGPaW/fkXLLIbdC3L7QDhqaBbrEf8dYHKOhPgJUwEykwA
+         Z0kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=yUZ4tH5NR3ShWZI1wP6dN+Rtb/3uNAvjYHh4qP5xPyE=;
-        b=qP7dFj6SydH1DYbABDAD1QS+3Rxnon4BLvVwEzzWgPqVbitQvmuj7Jpvn59LvDVCDP
-         wJPWVGxMOBFlzrG313jThJifelAm+Y3i48OqvgFtthLhBG7uiivtFuiOqCob/gakeutK
-         UOzXHO9KHCMN940IUQxbnPEroBHoiZcRi29w/kkqH2GO0Lc0ciTZJRfycq0PgCwCT0KB
-         BZ3KQxGl8ERZ8X6btr+3Cu1nzcMNOsODN3S1A1SI3wxW7dBHyGGELhG6TtXqbQXx7vKX
-         UQCNj0fq7TlZ0n0jKzkJd5oDws1iyn1NF5Wv11o89AkcuFfV5HhdFQoW1jvuqs4uuuoh
-         fPtA==
-X-Gm-Message-State: AFqh2kp/foFZyIQJo/3PAB1XY3XWhCGDKL6PdQiDUV6K46XszLraNJMz
-        fm1av/eNa36zYgnY5sPeJNSyyg==
-X-Google-Smtp-Source: AMrXdXusPgecTGP7fZw7vXdt4tF+S4NwgTctVJuFf4pxyAgs9zjLTxk3FWQlnp0PQZM4bfCkaapj4A==
-X-Received: by 2002:a05:600c:1e10:b0:3d1:f496:e25f with SMTP id ay16-20020a05600c1e1000b003d1f496e25fmr24402994wmb.16.1672414578700;
-        Fri, 30 Dec 2022 07:36:18 -0800 (PST)
+        bh=ctxOvK28D28f3o6Pe3qUkH7ZxEJEHxVrpCcUg+NUh04=;
+        b=nGhLDoPkcSftrWTQM+Q6aqHfDNw3D3lWT07M5PdQHjgT4Z3UwQQjnMqRiTN23PV5Dy
+         JA8B+RLSkOG3KzJfEtvFR+d51moyz5lSxuyyi/M7auBkjMauksMjxr/hImnXYifuHtoU
+         Mdyuae2CiBIa+M+mD1jq5gCU1s0r3BGR/eJysUOgdypcoY6FhVOyLrmQYEXrl3ojz03f
+         6ROSEPrUGny4NR7kgJCD/pP2+CIcM7j3ATefrQ+SkUcv/Ae4YJFsWqHUw/jZIp5TB0Id
+         dKvwt6OzXpYELGREQrzsg6yaraSqnxZpWwNngzBsQzw8tHuPAN5pFUNzy84+4ZsXOWsX
+         lwQw==
+X-Gm-Message-State: AFqh2koxKChpz778CMLq851FhaF6QBfRsNmj1bsvJFFmdRT/74VcLfbH
+        GaAnv8a18viskKai86CVEa3zAQ==
+X-Google-Smtp-Source: AMrXdXupiR1KHz1rC6eEmvSjNUuoXVux4kIV6jTnI6HXoz6vZWYwnghGJbUlafDEiY/R85jV3v2VKw==
+X-Received: by 2002:a05:600c:4995:b0:3d3:4f43:fbc2 with SMTP id h21-20020a05600c499500b003d34f43fbc2mr23117665wmp.41.1672414580409;
+        Fri, 30 Dec 2022 07:36:20 -0800 (PST)
 Received: from prec5560.. (freifunk-gw.bsa1-cpe1.syseleven.net. [176.74.57.43])
-        by smtp.gmail.com with ESMTPSA id l42-20020a05600c1d2a00b003cfbbd54178sm49857993wms.2.2022.12.30.07.36.17
+        by smtp.gmail.com with ESMTPSA id l42-20020a05600c1d2a00b003cfbbd54178sm49857993wms.2.2022.12.30.07.36.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Dec 2022 07:36:18 -0800 (PST)
+        Fri, 30 Dec 2022 07:36:20 -0800 (PST)
 From:   Robert Foss <robert.foss@linaro.org>
 To:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
         dmitry.baryshkov@linaro.org, sean@poorly.run, airlied@gmail.com,
@@ -64,9 +64,9 @@ To:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
         freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, Jonathan Marek <jonathan@marek.ca>,
         vinod.koul@linaro.org
-Subject: [PATCH v4 10/11] arm64: dts: qcom: sm8350-hdk: Enable display & dsi nodes
-Date:   Fri, 30 Dec 2022 16:35:53 +0100
-Message-Id: <20221230153554.105856-11-robert.foss@linaro.org>
+Subject: [PATCH v4 11/11] arm64: dts: qcom: sm8350-hdk: Enable lt9611uxc dsi-hdmi bridge
+Date:   Fri, 30 Dec 2022 16:35:54 +0100
+Message-Id: <20221230153554.105856-12-robert.foss@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221230153554.105856-1-robert.foss@linaro.org>
 References: <20221230153554.105856-1-robert.foss@linaro.org>
@@ -83,51 +83,166 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the display subsystem and the dsi0 output for
-the sm8350-hdk board.
+The sm8350-hdk ships with the LT9611 UXC DSI/HDMI bridge chip.
+
+In order to toggle the board to enable the HDMI output,
+switch #7 & #8 on the rightmost multi-switch package have
+to be toggled to On.
 
 Signed-off-by: Robert Foss <robert.foss@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8350-hdk.dts | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ arch/arm64/boot/dts/qcom/sm8350-hdk.dts | 105 ++++++++++++++++++++++++
+ 1 file changed, 105 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-index e6deb08c6da0..1961f941ff83 100644
+index 1961f941ff83..6b21897c92dc 100644
 --- a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
 +++ b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-@@ -213,10 +213,32 @@ &cdsp {
- 	firmware-name = "qcom/sm8350/cdsp.mbn";
+@@ -20,6 +20,17 @@ chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+ 
++	hdmi-connector {
++		compatible = "hdmi-connector";
++		type = "a";
++
++		port {
++			hdmi_con: endpoint {
++				remote-endpoint = <&lt9611_out>;
++			};
++		};
++	};
++
+ 	vph_pwr: vph-pwr-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vph_pwr";
+@@ -29,6 +40,31 @@ vph_pwr: vph-pwr-regulator {
+ 		regulator-always-on;
+ 		regulator-boot-on;
+ 	};
++
++	lt9611_1v2: lt9611-1v2-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "LT9611_1V2";
++
++		vin-supply = <&vph_pwr>;
++		regulator-min-microvolt = <1200000>;
++		regulator-max-microvolt = <1200000>;
++		gpio = <&tlmm 49 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		regulator-boot-on;
++	};
++
++	lt9611_3v3: lt9611-3v3-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "LT9611_3V3";
++
++		vin-supply = <&vreg_bob>;
++		gpio = <&tlmm 47 GPIO_ACTIVE_HIGH>;
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		enable-active-high;
++		regulator-boot-on;
++		regulator-always-on;
++	};
  };
  
-+&dispcc {
-+	status = "okay";
-+};
+ &adsp {
+@@ -220,6 +256,15 @@ &dispcc {
+ &mdss_dsi0 {
+ 	vdda-supply = <&vreg_l6b_1p2>;
+ 	status = "okay";
 +
-+&mdss_dsi0 {
-+	vdda-supply = <&vreg_l6b_1p2>;
-+	status = "okay";
-+};
-+
-+&mdss_dsi0_phy  {
-+	vdds-supply = <&vreg_l5b_0p88>;
-+	status = "okay";
-+};
-+
- &gpi_dma1 {
++	ports {
++		port@1 {
++			endpoint {
++				remote-endpoint = <&lt9611_a>;
++				data-lanes = <0 1 2 3>;
++			};
++		};
++	};
+ };
+ 
+ &mdss_dsi0_phy  {
+@@ -231,6 +276,46 @@ &gpi_dma1 {
  	status = "okay";
  };
  
-+&mdss {
++&i2c15 {
++	clock-frequency = <400000>;
 +	status = "okay";
++
++	lt9611_codec: hdmi-bridge@2b {
++		compatible = "lontium,lt9611uxc";
++		reg = <0x2b>;
++
++		interrupts-extended = <&tlmm 50 IRQ_TYPE_EDGE_FALLING>;
++		reset-gpios = <&tlmm 48 GPIO_ACTIVE_HIGH>;
++
++		vdd-supply = <&lt9611_1v2>;
++		vcc-supply = <&lt9611_3v3>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&lt9611_state>;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++
++				lt9611_a: endpoint {
++					remote-endpoint = <&dsi0_out>;
++				};
++			};
++
++			port@2 {
++				reg = <2>;
++
++				lt9611_out: endpoint {
++					remote-endpoint = <&hdmi_con>;
++				};
++			};
++		};
++	};
 +};
 +
-+&mdss_mdp {
-+	status = "okay";
-+};
-+
- &mpss {
+ &mdss {
  	status = "okay";
- 	firmware-name = "qcom/sm8350/modem.mbn";
+ };
+@@ -248,6 +333,10 @@ &qupv3_id_0 {
+ 	status = "okay";
+ };
+ 
++&qupv3_id_2 {
++	status = "okay";
++};
++
+ &slpi {
+ 	status = "okay";
+ 	firmware-name = "qcom/sm8350/slpi.mbn";
+@@ -544,4 +633,20 @@ usb_hub_enabled_state: usb-hub-enabled-state {
+ 		drive-strength = <2>;
+ 		output-low;
+ 	};
++
++	lt9611_state: lt9611-state {
++		rst {
++			pins = "gpio48";
++			function = "normal";
++
++			output-high;
++			input-disable;
++		};
++
++		irq {
++			pins = "gpio50";
++			function = "gpio";
++			bias-disable;
++		};
++	};
+ };
 -- 
 2.34.1
 
