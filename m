@@ -2,257 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BAB5659769
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 11:41:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B49365977B
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 12:08:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234455AbiL3KlR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 05:41:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55386 "EHLO
+        id S229876AbiL3LIv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 06:08:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234693AbiL3KlP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 05:41:15 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3510CBCA5
-        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 02:41:14 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id 1so31218624lfz.4
-        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 02:41:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LAt50/c1XxD+d5an6LMQKbLUUo7P/Ao2RnbkovM7714=;
-        b=nocHCo/Y60JUaApj7QepMG0/BYQpgVEBD6JFQe6EwJv1va+ujnkO/ott5KiRJK8wTx
-         cEX+4mxaieGqL/opS5CimllxoYV67A0PseukhIpmcozAa/CluPUE/r8wH7ZEln0JnKS/
-         8cBBgeYSiza1ZiGU+Qdjaef7neIOkScslIwcWLz7pWe2FYI7B7dlMjeMbGeAfJUAVFMn
-         o4mODUay6zb/zWlwgmi6acNiPB+Zz+3wO/hxaIyPFdXhlOV7JA8zvaWnOTENJK9RIDhE
-         IXfb9ESaNYl+NlZaZ22hKIdagv3GnxY+mDhkYz9SKMf3h8xcs+ya+jbtqxjBIiXPB2E2
-         s43A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LAt50/c1XxD+d5an6LMQKbLUUo7P/Ao2RnbkovM7714=;
-        b=VvycyhIq+7IDmw66p4cSHhrhkAMNOIL2JvH92QLTb6Ept5ddk5841Jw2ZVlRmM7R8n
-         So5WfymHpqfOop5X3DxOCu4hmzNg0cqVE2Eo8cHRlfGBkoRqdzLvaMq1248/vnODsGd3
-         EYgA50FZjfqQdObMO32e9rsynLU9sX13zx292cwxoYYAhV4B7fDY6s4fHvq1q/3yOz5z
-         kYWXmOO4jXdNkhRocYc3m8lFPe4oImRW/H9PmPOIm9Qq19SNbj1qkcDvmr4lD6UP6d0K
-         JBhnvYD0R/At7PijuAYL0HTvP+ULhU40u+nsuMMXqj8eHfYngZW2Qv3xSXrfKwNXDFTW
-         Qocw==
-X-Gm-Message-State: AFqh2kqgyn3wj+7w2M6rQ67zwUrk6XckeBr6d5cTVfrfkoztDlVJdJux
-        eC1t95W0dS4iJYfOIz46AIHWmg==
-X-Google-Smtp-Source: AMrXdXsSkyaGu9E9QH7yKdMdxqcdZNJgrJO39Y3lFx2Nl+hw+pOn8KhPjTbifaGpSB/RJyJAiyU9Vg==
-X-Received: by 2002:ac2:5604:0:b0:4ba:83f3:fb36 with SMTP id v4-20020ac25604000000b004ba83f3fb36mr8239472lfd.9.1672396872059;
-        Fri, 30 Dec 2022 02:41:12 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id n20-20020a05651203f400b004a44ffb1023sm3436267lfq.57.2022.12.30.02.41.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Dec 2022 02:41:11 -0800 (PST)
-Message-ID: <33196eef-b1d5-8dd2-7c59-16a73327e8c0@linaro.org>
-Date:   Fri, 30 Dec 2022 11:41:10 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v3 01/19] dt-bindings: ARM: MediaTek: Add new document
- bindings of MT8188 clock
-Content-Language: en-US
-To:     "Garmin.Chang" <Garmin.Chang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229519AbiL3LIu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 06:08:50 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4CE82BE6;
+        Fri, 30 Dec 2022 03:08:49 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 814ADB81BB3;
+        Fri, 30 Dec 2022 11:08:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E075C433D2;
+        Fri, 30 Dec 2022 11:08:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1672398527;
+        bh=x960N/FOlAW8vIqJIIQSYtb2+7LJKCRkTDYzD2ebnMg=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=FSQ/Izs30GpDwt/PvZVjyAqSfsF16ud3fxls/WN3ZEooGJ8HY48MP+pE+COFTvMpx
+         VLgW/AqPAR3jAekfoFRJms+XqGBTIfhJF6HqIAEENHvlqAwc78CnfjTYCvuABnmL1I
+         j7KDELG8t8sagMBkPxIItHrQW/L6FE18H3XqSDvIzyvuKkTTqk4CJ+cG7uPqeCs2/c
+         2o1up9Fta2e/Gar/nSqC6lFkAQ+1rl55d8jizfze6u2wiwObum8A0Or7Zxu5P3nrjL
+         RwJY4cad0IPXfluIEbVYLqGtEY8Vxmb87B59nQTBf1vk8jipUTZf92/q855+NvvwlV
+         ZHEq0HVaiVwtg==
+From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-clk@vger.kernel.org, netdev@vger.kernel.org
-References: <20221230073357.18503-1-Garmin.Chang@mediatek.com>
- <20221230073357.18503-2-Garmin.Chang@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221230073357.18503-2-Garmin.Chang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-arm-msm@vger.kernel.org,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bjorn Helgaas <bhelgaas@google.com>
+Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>
+Subject: Re: (subset) [PATCH 1/4] dt-bindings: PCI: qcom: add MSM8998 specific compatible
+Date:   Fri, 30 Dec 2022 12:08:25 +0100
+Message-Id: <167239846281.742638.918628227544664589.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221115125310.184012-1-krzysztof.kozlowski@linaro.org>
+References: <20221115125310.184012-1-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/12/2022 08:33, Garmin.Chang wrote:
-> Add the new binding documentation for system clock
-> and functional clock on MediaTek MT8188.
+On Tue, 15 Nov 2022 13:53:07 +0100, Krzysztof Kozlowski wrote:
+> Add new compatible for MSM8998 (compatible with MSM8996) to allow
+> further customizing if needed and to accurately describe the hardware.
+> 
 > 
 
-Subject: drop second, redundant "document bindings of".
+Applied to pci/dt, thanks!
 
-> Signed-off-by: Garmin.Chang <Garmin.Chang@mediatek.com>
-> ---
->  .../arm/mediatek/mediatek,mt8188-clock.yaml   |  71 ++
->  .../mediatek/mediatek,mt8188-sys-clock.yaml   |  55 ++
->  .../dt-bindings/clock/mediatek,mt8188-clk.h   | 733 ++++++++++++++++++
->  3 files changed, 859 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8188-clock.yaml
->  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8188-sys-clock.yaml
->  create mode 100644 include/dt-bindings/clock/mediatek,mt8188-clk.h
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8188-clock.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8188-clock.yaml
-> new file mode 100644
-> index 000000000000..6654cead71f6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8188-clock.yaml
+[1/4] dt-bindings: PCI: qcom: add MSM8998 specific compatible
+      https://git.kernel.org/lpieralisi/pci/c/c427f45c1e99
+[2/4] dt-bindings: PCI: qcom: unify clock order between MSM8996 and MSM8998
+      https://git.kernel.org/lpieralisi/pci/c/3617fb0d8345
 
-Clock controllers do not go to arm but to clock. It's so suprising
-directory that I missed to notice it in v1... Why putting it in some
-totally irrelevant directory?
-
-
-> @@ -0,0 +1,71 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,mt8188-clock.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek Functional Clock Controller for MT8188
-> +
-> +maintainers:
-> +  - Garmin Chang <garmin.chang@mediatek.com>
-> +
-> +description: |
-> +  The clock architecture in MediaTek like below
-> +  PLLs -->
-> +          dividers -->
-> +                      muxes
-> +                           -->
-> +                              clock gate
-> +
-> +  The devices provide clock gate control in different IP blocks.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt8188-adsp-audio26m
-> +      - mediatek,mt8188-imp-iic-wrap-c
-> +      - mediatek,mt8188-imp-iic-wrap-en
-> +      - mediatek,mt8188-imp-iic-wrap-w
-> +      - mediatek,mt8188-mfgcfg
-> +      - mediatek,mt8188-vppsys0
-> +      - mediatek,mt8188-wpesys
-> +      - mediatek,mt8188-wpesys-vpp0
-> +      - mediatek,mt8188-vppsys1
-> +      - mediatek,mt8188-imgsys
-> +      - mediatek,mt8188-imgsys-wpe1
-> +      - mediatek,mt8188-imgsys-wpe2
-> +      - mediatek,mt8188-imgsys-wpe3
-> +      - mediatek,mt8188-imgsys1-dip-top
-> +      - mediatek,mt8188-imgsys1-dip-nr
-> +      - mediatek,mt8188-ipesys
-> +      - mediatek,mt8188-camsys
-> +      - mediatek,mt8188-camsys-rawa
-> +      - mediatek,mt8188-camsys-yuva
-> +      - mediatek,mt8188-camsys-rawb
-> +      - mediatek,mt8188-camsys-yuvb
-> +      - mediatek,mt8188-ccusys
-> +      - mediatek,mt8188-vdecsys-soc
-> +      - mediatek,mt8188-vdecsys
-> +      - mediatek,mt8188-vencsys
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#clock-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    clock-controller@11283000 {
-> +        compatible = "mediatek,mt8188-imp-iic-wrap-c";
-> +        reg = <0x11283000 0x1000>;
-> +        #clock-cells = <1>;
-> +    };
-> +
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8188-sys-clock.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8188-sys-clock.yaml
-> new file mode 100644
-> index 000000000000..2b28df1ff895
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8188-sys-clock.yaml
-
-Wrong directory.
-
-> @@ -0,0 +1,55 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,mt8188-sys-clock.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek System Clock Controller for MT8188
-> +
-> +maintainers:
-> +  - Garmin Chang <garmin.chang@mediatek.com>
-> +
-> +description: |
-> +  The clock architecture in MediaTek like below
-> +  PLLs -->
-> +          dividers -->
-> +                      muxes
-> +                           -->
-> +                              clock gate
-> +
-> +  The apmixedsys provides most of PLLs which generated from SoC 26m.
-> +  The topckgen provides dividers and muxes which provide the clock source to other IP blocks.
-> +  The infracfg_ao provides clock gate in peripheral and infrastructure IP blocks.
-> +  The mcusys provides mux control to select the clock source in AP MCU.
-> +  The device nodes also provide the system control capacity for configuration.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - mediatek,mt8188-topckgen
-> +          - mediatek,mt8188-infracfg-ao
-> +          - mediatek,mt8188-apmixedsys
-> +          - mediatek,mt8188-pericfg-ao
-> +      - const: syscon
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#clock-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    syscon@10000000 {
-
-clock-controller
-
-> +        compatible = "mediatek,mt8188-topckgen", "syscon";
-> +        reg = <0x10000000 0x1000>;
-> +        #clock-cells = <1>;
-
-
-
-Best regards,
-Krzysztof
-
+Thanks,
+Lorenzo
