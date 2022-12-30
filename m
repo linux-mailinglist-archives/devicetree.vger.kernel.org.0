@@ -2,116 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3472B659C4E
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 21:50:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E64EF659D0E
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 23:41:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235390AbiL3UuH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 15:50:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33806 "EHLO
+        id S231570AbiL3WlH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 17:41:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229681AbiL3UuF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 15:50:05 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D426EBE18
-        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 12:50:04 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id h16so20687887wrz.12
-        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 12:50:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Y6b9aelL9iSEbjyOBwL53WmG//4FVZXwYLwFNbDpMUw=;
-        b=UCCgE4fCvwFxwjRK0yqscFsK3vDERv1qxNA9peDx8gyIK+a8/FgD2X9kHWgF9H4VJM
-         qlpFIqNXW2wUUtAahQVXwtFvSgO8LAHd2luBNq3m6fh2Dy16Zk0K8csGaoqkt+1uPBLz
-         KJXtoRaKO7H/I+r0bWwP+FEL4HcdT6ouoUk72Biak4xLsaykZ1eMdKEA7s4jbY4uB5Os
-         Beld5Cs/ZNFIuaFEndlE5Ul4WiYRu8HEsvc/eIkqQejNmjwv3QHmLxQBtiWs5owKA8+f
-         fRILj6CqkdMB7xwVTX4+6vSxXRqzq2t/0OgycASrqwatUyeQBIuhdETa1eJb1Oot+xtG
-         UZJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y6b9aelL9iSEbjyOBwL53WmG//4FVZXwYLwFNbDpMUw=;
-        b=BFqZZuKOTBs+tQhvJYco5ilUeTmAFEzmgg0nTvFpPjxkWPSQF2qA2mmS2G5tRg3+ZK
-         qYwxCmMrIEu/DnsqOoLgtSyjRy/AWw+kSdqgBeQ/fCn7jzQJ0hMVDf2lqhuPkYxqU67O
-         rnQRefUEbQ9nJydu1O7XFuc3WALGqUDzs+qEvLv55W6eN23p0PBwG2vhIoSmIEq6fWOT
-         qVCcImmqxZFkpoYmZl/9mfMd5+3nHB99/mZd035ezTVcWCte2rSff7t83+Xz8G2KPBLd
-         ohKXXgzD9tcsEcBUMoJZL4Zz4zPx6iyZPtq5/fNIjf0SHvuHLmykv5EiWstCzE8l+CTp
-         Q1gg==
-X-Gm-Message-State: AFqh2krR0V6261SoHmmcGuepN8Kc8Ywkw37WRyTO1yMggSsK6aR9hA32
-        VCn8OG4kIzayvEIGUpimwiTbFw==
-X-Google-Smtp-Source: AMrXdXs9zsAkclgd1Vq9SvyW38PaxbPK3XY99VdcD1efED48RBNOm7YL3SK6EhMGoQ2pzLyYvqQuXg==
-X-Received: by 2002:a5d:6808:0:b0:272:3a86:29c1 with SMTP id w8-20020a5d6808000000b002723a8629c1mr17458587wru.16.1672433403417;
-        Fri, 30 Dec 2022 12:50:03 -0800 (PST)
-Received: from [192.168.1.12] (host-92-24-101-87.as13285.net. [92.24.101.87])
-        by smtp.gmail.com with ESMTPSA id o15-20020adfe80f000000b0028965dc7c6bsm7006911wrm.73.2022.12.30.12.50.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Dec 2022 12:50:02 -0800 (PST)
-Message-ID: <1dee1e8e-60dd-0a9d-ad4f-1370bba66bde@linaro.org>
-Date:   Fri, 30 Dec 2022 20:50:01 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: qcom,ipa: Add SM6350
- compatible
-Content-Language: en-US
-To:     Alex Elder <elder@linaro.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com
-Cc:     Luca Weiss <luca.weiss@fairphone.com>, andersson@kernel.org,
-        konrad.dybcio@linaro.org, agross@kernel.org, elder@kernel.org,
-        linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221208211529.757669-1-elder@linaro.org>
- <mlVN9KS9KdswblsJtK7F6Yyu3c3vWIsdzIwAo8iVaZDt_Ti53FvYwfzzVF60yEeCXuw17joStgI1cti0HipwCA==@protonmail.internalid>
- <20221208211529.757669-2-elder@linaro.org>
-From:   Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <20221208211529.757669-2-elder@linaro.org>
+        with ESMTP id S235541AbiL3WlD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 17:41:03 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B24B7F78;
+        Fri, 30 Dec 2022 14:41:02 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 6ED3BB81C06;
+        Fri, 30 Dec 2022 22:41:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32887C433EF;
+        Fri, 30 Dec 2022 22:41:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1672440060;
+        bh=modTSy1vCT2gxH29EjhljDH3rQB/B9z2JuOf7c3W/Vs=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=P9PsFTGCH8xdqF06N8P2gxEMkzdfo/EXRCu7Yg6ul/QolpSWDtq0nxMgLzDEDR1E5
+         D6rIzfd31blvFPlHkMdN+aXVbqpAg+e9ZQLqSbb/AxLEpK7JMOAuleJ22B6RzgM/At
+         nEItP74/XPAUXP887dP8FsW/fD/5/h50Ux/QjSutfOq+gS8utrEWVIHs1mNY/YI2tH
+         e7XhH1MX9xLKdGwXlDHmm1WcWTo5XMQw/0yJASZQ2K69WYAy68TwtB92NbcMDJ5PFZ
+         ux+uwNR+k8wNyFsgO4PR5HrVkO2HljdO1TvnAe5i++JtGOc2XqxnqGK69plZ0p/4kH
+         0Q2Nlwl1ARJ5Q==
+Received: from ip-185-104-136-29.ptr.icomera.net ([185.104.136.29] helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1pBO3d-00FxL1-Ot;
+        Fri, 30 Dec 2022 22:40:57 +0000
+Date:   Fri, 30 Dec 2022 22:39:36 +0000
+Message-ID: <87v8lsect3.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Bernhard =?UTF-8?B?Um9zZW5rcsOkbnplcg==?= <bero@baylibre.com>
+Cc:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        matthias.bgg@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, gregkh@linuxfoundation.org,
+        chunfeng.yun@mediatek.com, linus.walleij@linaro.org,
+        lee@kernel.org, tglx@linutronix.de,
+        angelogioacchino.delregno@collabora.com
+Subject: Re: [PATCH v6 7/7] arm64: dts: mediatek: Initial mt8365-evk support
+In-Reply-To: <20221230203541.146807-8-bero@baylibre.com>
+References: <20221230203541.146807-1-bero@baylibre.com>
+        <20221230203541.146807-8-bero@baylibre.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 185.104.136.29
+X-SA-Exim-Rcpt-To: bero@baylibre.com, linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, matthias.bgg@gmail.com, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, gregkh@linuxfoundation.org, chunfeng.yun@mediatek.com, linus.walleij@linaro.org, lee@kernel.org, tglx@linutronix.de, angelogioacchino.delregno@collabora.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 30 Dec 2022 20:35:41 +0000,
+Bernhard Rosenkr=C3=A4nzer <bero@baylibre.com> wrote:
+>=20
+> From: Fabien Parent <fparent@baylibre.com>
+>=20
+> This adds minimal support for the Mediatek 8365 SOC and the EVK reference
+> board, allowing the board to boot to initramfs with serial port I/O.
+>=20
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> [bero@baylibre.com: Removed parts depending on drivers that aren't upstre=
+am yet, cleanups, add CPU cache layout, add systimer]
+> Signed-off-by: Bernhard Rosenkr=C3=A4nzer <bero@baylibre.com>
+> Tested-by: Kevin Hilman <khilman@baylibre.com>
 
+[...]
 
-On 08/12/2022 21:15, Alex Elder wrote:
-> From: Luca Weiss <luca.weiss@fairphone.com>
-> 
-> Add support for SM6350, which uses IPA v4.7.
-> 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> Signed-off-by: Alex Elder <elder@linaro.org>
+> +	soc {
+> +		#address-cells =3D <2>;
+> +		#size-cells =3D <2>;
+> +		compatible =3D "simple-bus";
+> +		ranges;
+> +
+> +		gic: interrupt-controller@c000000 {
+> +			compatible =3D "arm,gic-v3";
+> +			#interrupt-cells =3D <4>;
 
-Reviewed-by: Caleb Connolly <caleb.connolly@linaro.org>
-> ---
->  Documentation/devicetree/bindings/net/qcom,ipa.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/qcom,ipa.yaml b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-> index 9e81b9ec7cfdd..4aeda379726fa 100644
-> --- a/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-> +++ b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-> @@ -49,6 +49,7 @@ properties:
->        - qcom,sc7280-ipa
->        - qcom,sdm845-ipa
->        - qcom,sdx55-ipa
-> +      - qcom,sm6350-ipa
->        - qcom,sm8350-ipa
-> 
->    reg:
-> --
-> 2.34.1
-> 
+Why 4 cells? All the SPIs routed via sysirq are perfectly happy with 3
+cells, and all the PPIs have 0 for the 4th cell (none of them use any
+form of partitioning that'd require 4 cells). So where is this coming
+from?
 
--- 
-Kind Regards,
-Caleb (they/them)
+> +			interrupt-parent =3D <&gic>;
+> +			interrupt-controller;
+> +			reg =3D <0 0x0c000000 0 0x80000>, <0 0x0c080000 0 0x80000>;
+> +
+
+The first region is obviously wrong (512kB for the distributor?
+that's... most generous, but the architecture states that it is 64kB,
+and that's wasteful enough).
+
+This is also missing the GICC/GICH/GICV regions that Cortex-A53
+implements, and that must be provided as per the binding.
+
+> +			interrupts =3D <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH 0>;
+> +		};
+
+Thanks,
+
+	M.
+
+--=20
+Without deviation from the norm, progress is not possible.
