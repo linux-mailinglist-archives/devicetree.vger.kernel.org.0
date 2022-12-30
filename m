@@ -2,121 +2,353 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3537A659663
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 09:43:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FFC465966E
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 09:49:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234757AbiL3Inw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 03:43:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50686 "EHLO
+        id S230186AbiL3ItW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 03:49:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230316AbiL3Inw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 03:43:52 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60B4918E36;
-        Fri, 30 Dec 2022 00:43:51 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E5FBB61A0D;
-        Fri, 30 Dec 2022 08:43:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D86AC433D2;
-        Fri, 30 Dec 2022 08:43:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672389830;
-        bh=oxPX55GSzrEg4Xut6zu5HPxj2Ni8vtV2mF93cd30lns=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=roDK69SfgitggRUmVYhS1zUe2p+s9s47eId7r7uDqmn66uyeyQS7KtAAgRa1c8/OO
-         Wl26PgoSJLBGjFFLhssXINx0Wz7ZM5ueJIvqltcGObsUGXUCLeDATQZn7lxDWsOdhu
-         qhtYL+x7ynbWQj5eCAE63YIAXkN7PQWC13jfG0fTgWagj0LhwbtzLAL/cBDw1YnLtg
-         Y+6jYrOa7UTTB3JkKQIpoV76+3fBhJc/JEa0BO/xvlpmBq+T4Z/54tou5W/e1VO/f8
-         qN+nan6MDluay6Hl3ME4LQmmYow8WdR5YalsUzIl8eCJe/e9PQ2fMenyJqIwmJe4ro
-         guFTz/dtfpyeQ==
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Rob Herring <robh@kernel.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-rockchip@lists.infradead.org" 
-        <linux-rockchip@lists.infradead.org>,
-        Johan Jonker <jbx6244@gmail.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: usb: snps,dwc3: Allow power-domains
- property
-In-Reply-To: <CAL_Jsq+gCi8g0jY2ic1tJebc_JijMU-GntWQg09q+X41O3=1RA@mail.gmail.com>
-References: <20221219191038.1973807-1-robh@kernel.org>
- <87edsua5q4.fsf@balbi.sh>
- <CAL_JsqKgGWN93QJ=V34=X3hC2bgdcd3vwO0Mne-8z8HOfVDz-g@mail.gmail.com>
- <878riy9ztm.fsf@balbi.sh> <20221223235712.h54lggnjjuu3weol@synopsys.com>
- <CAL_Jsq+gCi8g0jY2ic1tJebc_JijMU-GntWQg09q+X41O3=1RA@mail.gmail.com>
-Date:   Fri, 30 Dec 2022 10:43:44 +0200
-Message-ID: <87o7rlffi7.fsf@balbi.sh>
+        with ESMTP id S229519AbiL3ItV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 03:49:21 -0500
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2A23C764;
+        Fri, 30 Dec 2022 00:49:19 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id bj12so49993705ejb.13;
+        Fri, 30 Dec 2022 00:49:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=+NOKd1AXj4Vxaw+3bzzUcFYlTTg0beyv5HIpvl5mGmQ=;
+        b=hQewvjbOM4u8yql5dKUC9eNTAufDXlfdDXFQSCuKYodGGGNMsj2u8S2OQ/LQmt+jUc
+         HIe7OlrxD23P2ssPyf/qpzw3x52I6khjfFJ9vP0wb0OWye5hzatA9RrgZN5dB1MMmc/a
+         Y96d1v3J9Qfs2g5ljyJJ3Wi3g8/Hof9Z5vRMqyhRZtmp+W37MNwCjT0JG4MWshwePWRq
+         FBNKlots9KR3OgVsNJSw6uvTPI+pUPXGlmmxxJeDAiOoAok2EjBiImLhgJkb1RYGyp3N
+         7nkOEhVdUSt2L1BtkaQ7n9JdSGg/Lx06AGklYFUo2yoDfsMEQ4o4vEcktIdtNSUGu62t
+         HEcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+NOKd1AXj4Vxaw+3bzzUcFYlTTg0beyv5HIpvl5mGmQ=;
+        b=tRcGrHlhmPRpvnB+7FJpXHAgiugLK3ZksMIDHpdCSYTO4SWJiCWkdD0sG2v+HNXd8r
+         ybBH624qDFoGmVbmZgKv054915shu3c4/ut+f4l+Hok4/mmrKePqPhBocAeNbHUwX2le
+         sxKjzQljktTRlokxJNdyTczPw/Ev0P1EPX+hY0e6tzk1qLUDCqnVTlAeCFKG26QtRBIN
+         c1YZDnUylxhCr/RjOfIgTkfF7ucPCwXOaNSoP0SBYcqKwnxBx5c+nqS8GxTFjMnXQuxr
+         Tyh+N74Pu0vP8lFPM+ucTomSU/UcU//dLAFOdLzTKzprYgzngI6G2ud4NX9MqjA7T8lt
+         3pPA==
+X-Gm-Message-State: AFqh2krksdxFP1/BG6DBY3LGYiLyk0AjcEhlXFvv4tTZ+aDBDlY28XBT
+        A/B41yryo3/bsMAiV03iMqGDkuwGCpH+YbaVxjU=
+X-Google-Smtp-Source: AMrXdXujxgYL6n9DFZ75NEwvXwd3gmYpZzPjYrWJsoaK0tFLDgRgpy9YU+4i8CCrSEGS8nl/iloZi2qRtNp/BlyQIIQ=
+X-Received: by 2002:a17:907:6f13:b0:7ad:e161:b026 with SMTP id
+ sy19-20020a1709076f1300b007ade161b026mr4109276ejc.760.1672390158291; Fri, 30
+ Dec 2022 00:49:18 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <cover.1671688961.git.zhoubinbin@loongson.cn> <9d3e4997519fd9ecebae6fd241148cc22d3fe04f.1671688961.git.zhoubinbin@loongson.cn>
+ <Y6tqPenv3NBEl9qD@smile.fi.intel.com> <CAMpQs4L-2stVQA43hd2Q-uR8fgekLZJmWzmBZvEDg1+AvT3uSQ@mail.gmail.com>
+ <Y61bwY4OpRFixx5r@smile.fi.intel.com> <Y61chbeq9bo8bi7p@smile.fi.intel.com>
+ <CAMpQs4LK5xmG2467csM=C5a1EAg8pFkqj=0OwSYL4rcO+8eFHA@mail.gmail.com> <Y66g0OV0pgMa5K1p@smile.fi.intel.com>
+In-Reply-To: <Y66g0OV0pgMa5K1p@smile.fi.intel.com>
+From:   Binbin Zhou <zhoubb.aaron@gmail.com>
+Date:   Fri, 30 Dec 2022 16:49:06 +0800
+Message-ID: <CAMpQs4LPTRcue3v=gjO2aXgJp51S0AgVnb8Jsyepwx12mVd+OA@mail.gmail.com>
+Subject: Re: [PATCH V8 3/4] i2c: ls2x: Add driver for Loongson-2K/LS7A I2C controller
+To:     Andy Shevchenko <andy@kernel.org>
+Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Wolfram Sang <wsa@kernel.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
+        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
+        WANG Xuerui <kernel@xen0n.name>, Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jianmin Lv <lvjianmin@loongson.cn>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-Hi,
-
-Rob Herring <robh@kernel.org> writes:
-> On Fri, Dec 23, 2022 at 5:57 PM Thinh Nguyen <Thinh.Nguyen@synopsys.com> wrote:
->> > Rob Herring <robh@kernel.org> writes:
->> > >> > The Rockchip RK3399 DWC3 node has 'power-domain' property which isn't
->> > >> > allowed by the schema:
->> > >> >
->> > >> > usb@fe900000: Unevaluated properties are not allowed ('power-domains' was unexpected)
->> > >> >
->> > >> > Allow DWC3 nodes to have a single power-domains entry. We could instead
->> > >> > move the power-domains property to the parent wrapper node, but the
->> > >> > could be an ABI break (Linux shouldn't care). Also, we don't want to
->> > >> > encourage the pattern of wrapper nodes just to define resources such as
->> > >> > clocks, resets, power-domains, etc. when not necessary.
->> > >> >
->> > >> > Signed-off-by: Rob Herring <robh@kernel.org>
->> > >> > ---
->> > >> >  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 3 +++
->> > >> >  1 file changed, 3 insertions(+)
->> > >> >
->> > >> > diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->> > >> > index 6d78048c4613..bcefd1c2410a 100644
->> > >> > --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->> > >> > +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->> > >> > @@ -91,6 +91,9 @@ properties:
->> > >> >          - usb2-phy
->> > >> >          - usb3-phy
->> > >> >
->> > >> > +  power-domains:
->> > >> > +    maxItems: 1
->> > >>
->> > >> AFAICT this can be incorrect. Also, you could have Cc the dwc3
->> > >> maintainer to get comments.
->>
->> Felipe is correct. We have 2 power-domains: Core domain and PMU.
+On Fri, Dec 30, 2022 at 4:27 PM Andy Shevchenko <andy@kernel.org> wrote:
 >
-> Power management unit? Performance management unit?
+> On Fri, Dec 30, 2022 at 09:46:25AM +0800, Binbin Zhou wrote:
+> > On Thu, Dec 29, 2022 at 5:23 PM Andy Shevchenko <andy@kernel.org> wrote:
+> > >
+> > > On Thu, Dec 29, 2022 at 11:20:01AM +0200, Andy Shevchenko wrote:
+> > > > On Thu, Dec 29, 2022 at 03:31:47PM +0800, Binbin Zhou wrote:
+> > > > > On Wed, Dec 28, 2022 at 5:57 AM Andy Shevchenko <andy@kernel.org> wrote:
+> > > > > > On Fri, Dec 23, 2022 at 05:00:51PM +0800, Binbin Zhou wrote:
 >
-> That doesn't change that the rk3399 is 1 and we're stuck with it. So I
-> can say 1 or 2 domains, or we add the 2nd domain when someone needs
-> it.
+> ...
+>
+> > > > > > > +static int ls2x_i2c_xfer_one(struct ls2x_i2c_priv *priv,
+> > > > > > > +                          struct i2c_msg *msg, bool stop)
+> > > > > > > +{
+> > > > > > > +     int ret;
+> > > > > > > +     bool is_read = msg->flags & I2C_M_RD;
+> > > > > > > +
+> > > > > > > +     /* Contains steps to send start condition and address */
+> > > > > > > +     ret = ls2x_i2c_start(priv, msg);
+> > > > > > > +     if (!ret) {
+> > > > > > > +             if (is_read)
+> > > > > > > +                     ret = ls2x_i2c_rx(priv, msg->buf, msg->len);
+> > > > > > > +             else
+> > > > > > > +                     ret = ls2x_i2c_tx(priv, msg->buf, msg->len);
+> > > > > > > +
+> > > > > > > +             if (!ret && stop)
+> > > > > > > +                     ret = ls2x_i2c_stop(priv);
+> > > > > > > +     }
+> > > > > > > +
+> > > > > > > +     if (ret == -ENXIO)
+> > > > > > > +             ls2x_i2c_stop(priv);
+> > > > > > > +     else if (ret < 0)
+> > > > > > > +             ls2x_i2c_init(priv);
+> > > > > > > +
+> > > > > > > +     return ret;
+> > > > > > > +}
+> > > > > >
+> > > > > > Still this code is odd from reader's perspective. It's in particular not clear
+> > > > > > if the stop can be called twice in a row. I recommend to split it to two
+> > > > >
+> > > > > Sorry,
+> > > > > Actually, I don't quite understand why you keep thinking that the stop
+> > > > > can be called twice in a row.
+> > > >
+> > > > Because nothing in the code suggests otherwise. You need deeply understand
+> > > > the flow to ensure that it won't. This means that the code is fragile and
+> > > > needs refactoring (even comment, which you can do a least won't help, because
+> > > > changing code in the other parts may break all this and you won't notice it).
+> > > >
+> > > > > As I said in my last email, the logic here should be:
+> > > > > In the first case, stop is called when the last msg is transmitted successfully;
+> > > > > In the second case, stop is called when there is a NOACK during the
+> > > > > transmission;
+> > > > > In the third case, init is called when other errors occur during the
+> > > > > transmission, such as TIMEOUT.
+> > > > >
+> > > > > The key pointer is the stop function will only return a TIMEOUT error
+> > > > > or 0 for success, so if the stop function above is failed, the stop
+> > > > > function below will never be called twice.
+> > > > >
+> > > > > Anyway, I also admit that this part of the code may not be concise and
+> > > > > clear enough, and I have tried the following changes:
+> > > > >
+> > > > > 1. put the start function into the rx/tx function respectively. As followers:
+> > > > >
+> > > > > @@ -177,10 +177,16 @@ static int ls2x_i2c_start(struct ls2x_i2c_priv
+> > > > > *priv, struct i2c_msg *msgs)
+> > > > >         return ls2x_i2c_send_byte(priv, LS2X_CR_START | LS2X_CR_WRITE);
+> > > > >  }
+> > > > >
+> > > > > -static int ls2x_i2c_rx(struct ls2x_i2c_priv *priv, u8 *buf, u16 len)
+> > > > > +static int ls2x_i2c_rx(struct ls2x_i2c_priv *priv, struct i2c_msg *msg)
+> > > > >  {
+> > > > >         int ret;
+> > > > > -       u8 rxdata;
+> > > > > +       u8 rxdata, *buf = msg->buf;
+> > > > > +       u16 len = msg->len;
+> > > > > +
+> > > > > +       /* Contains steps to send start condition and address */
+> > > > > +       ret = ls2x_i2c_start(priv, msg);
+> > > > > +       if (ret)
+> > > > > +               return ret;
+> > > > >
+> > > > >         while (len--) {
+> > > > >                 ret = ls2x_i2c_xfer_byte(priv,
+> > > > > @@ -195,9 +201,16 @@ static int ls2x_i2c_rx(struct ls2x_i2c_priv
+> > > > > *priv, u8 *buf, u16 len)
+> > > > >         return 0;
+> > > > >  }
+> > > > >
+> > > > > -static int ls2x_i2c_tx(struct ls2x_i2c_priv *priv, u8 *buf, u16 len)
+> > > > > +static int ls2x_i2c_tx(struct ls2x_i2c_priv *priv, struct i2c_msg *msg)
+> > > > >  {
+> > > > >         int ret;
+> > > > > +       u8 *buf = msg->buf;
+> > > > > +       u16 len = msg->len;
+> > > > > +
+> > > > > +       /* Contains steps to send start condition and address */
+> > > > > +       ret = ls2x_i2c_start(priv, msg);
+> > > > > +       if (ret)
+> > > > > +               return ret;
+> > > > >
+> > > > >         while (len--) {
+> > > > >                 writeb(*buf++, priv->base + I2C_LS2X_TXR);
+> > > > >
+> > > > > 2. define the variable 'reinit' in the xfer_one function to mark the
+> > > > > cases where reinit is needed. As follows:
+> > > > >
+> > > > > static int ls2x_i2c_xfer_one(struct ls2x_i2c_priv *priv,
+> > > > >                              struct i2c_msg *msg, bool stop)
+> > > > > {
+> > > > >         int ret, ret2;
+> > > > >         bool reinit = false;
+> > > > >         bool is_read = msg->flags & I2C_M_RD;
+> > > > >
+> > > > >         if (is_read)
+> > > > >                 ret = ls2x_i2c_rx(priv, msg);
+> > > > >         else
+> > > > >                 ret = ls2x_i2c_tx(priv, msg);
+> > > > >
+> > > > >         if (ret == -EAGAIN) /* could not acquire bus. bail out without STOP */
+> > > > >                 return ret;
+> > > > >
+> > > > >         if (ret == -ETIMEDOUT) {
+> > > > >                 /* Fatal error. Needs reinit. */
+> > > > >                 stop = false;
+> > > > >                 reinit = true;
+> > >
+> > > Why do you need to initialize stop here?
+> > > Why not to call reinit here and bailout?
+> > >
+> > > > >         }
+> > > > >
+> > > > >         if (stop) {
+> > > > >                 ret2 = ls2x_i2c_stop(priv);
+> > > > >
+> > > > >                 if (ret2) {
+> > > > >                         /* Failed to issue STOP. Needs reinit. */
+> > > > >                         reinit = true;
+> > > > >                         ret = ret ?: ret2;
+> > >
+> > > All the same, try to be less verbose with unneeded variables.
+> >
+> > Ok, the reinit and ret2 variables seem to be a bit redundant, I will
+> > remove them.
+> >
+> >  I will divide the whole thing into two parts:
+> > The first part is to handle errors: if ret < 0, return ret directly.
+> > One of the special handling is the fatal error timeout, which requires
+> > reinit.
+> >
+> >         if (ret < 0) {
+> >                 if (ret == -ETIMEDOUT) /* Fatel error. Needs reinit. */
+> >                         ls2x_i2c_init(priv);
+> >                 return ret;
+> >         }
+> >
+> > The second part is to handle the final stop command: it should be
+> > noted that if the stop command fails, reinit is also required.
+> >
+> >         if (stop) {
+> >                 /* Failed to issue STOP. Needs reinit. */
+> >                 ret = ls2x_i2c_stop(priv);
+> >                 if (ret)
+> >                         ls2x_i2c_init(priv);
+> >         }
+> >
+> > The complete code is as follows:
+>
+> This looks much better!
+> See a couple of nit-picks below.
+>
+> > static int ls2x_i2c_xfer_one(struct ls2x_i2c_priv *priv,
+> >                              struct i2c_msg *msg, bool stop)
+> > {
+> >         int ret;
+>
+> >         bool is_read = msg->flags & I2C_M_RD;
+> >
+> >         if (is_read)
+>
+> With this you don't need to have is_read variable.
 
-Isn't the snps,dwc3.yaml document supposed to document dwc3's view of
-the world? In that case, dwc3 expects 2 power domains. It just so
-happens that in rk3399 they are fed from the same power supply, but
-dwc3' still thinks there are two of them. No?
+Well, is_read is a bit redundant, I would use 'msg->flags & I2C_M_RD'
+directly in the if judgment condition.
 
-It's a similar situation when you have multiple clock domains with the
-same parent clock.
+>
+> >                 ret = ls2x_i2c_rx(priv, msg);
+> >         else
+> >                 ret = ls2x_i2c_tx(priv, msg);
+> >
+> >         if (ret < 0) {
+> >                 if (ret == -ETIMEDOUT) /* Fatel error. Needs reinit. */
+>
+> Split comment and code, so the comment is followed by the code.
 
--- 
-balbi
+Got it.
+
+In the meantime I'll double check the rest!
+
+Thanks.
+Binbin
+>
+> >                         ls2x_i2c_init(priv);
+> >                 return ret;
+> >         }
+> >
+> >         if (stop) {
+> >                 /* Failed to issue STOP. Needs reinit. */
+> >                 ret = ls2x_i2c_stop(priv);
+> >                 if (ret)
+> >                         ls2x_i2c_init(priv);
+> >         }
+> >
+> >         return ret;
+> > }
+> >
+> > Do you think this is better?
+>
+> > > > >                 }
+> > > > >         }
+> > > > >
+> > > > >         if (reinit)
+> > > > >                 ls2x_i2c_init(priv);
+> > > > >
+> > > > >         return ret;
+> > > > > }
+> > > > >
+> > > > > Do you think this is better?
+> > > >
+> > > > Slightly, but still twisted at the end with the play of error codes. Try to
+> > > > make it even more clear.
+> > > >
+> > > > > > functions and then do something like
+> > > > > >
+> > > > > > _read_one()
+> > > > > > {
+> > > > > >         ret = start();
+> > > > > >         if (ret)
+> > > > > >                 goto _stop; // Do we really need this?
+> > > > > >
+> > > > > >                 ret = rx();
+> > > > > >                 if (ret)
+> > > > > >                         goto _stop; // Do we need this?
+> > > > > >
+> > > > > >                 /* By setting this call the stop */
+> > > > > >                 if (stop)
+> > > > > >                         ret = -ENXIO;
+> > > > > >
+> > > > > >         out_send_stop:
+> > > > > >                 if (ret == ...)
+> > > > > >                         return _stop();
+> > > > > >                 // I don't like above, so this error checking/setting parts
+> > > > > >                 // also can be rethought and refactored accordingly
+> > > > > >
+> > > > > >                 return ret;
+> > > > > > }
+> > > > > >
+> > > > > >
+> > > > > >         if (is_read)
+> > > > > >                 ret = _read_one();
+> > > > > >         else
+> > > > > >                 ret = _write_one();
+> > > > > >
+> > > > > >         if (ret)
+> > > > > >                 _init();
+> > > > > >
+> > > > > >         return ret;
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
+>
+>
