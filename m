@@ -2,53 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7331E6595A1
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 08:14:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5037B6595A4
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 08:16:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234555AbiL3HOq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 02:14:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48162 "EHLO
+        id S234580AbiL3HQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 02:16:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234532AbiL3HOp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 02:14:45 -0500
-Received: from mail-vs1-xe2d.google.com (mail-vs1-xe2d.google.com [IPv6:2607:f8b0:4864:20::e2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E003918B2C
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 23:14:41 -0800 (PST)
-Received: by mail-vs1-xe2d.google.com with SMTP id a64so17044119vsc.2
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 23:14:41 -0800 (PST)
+        with ESMTP id S234567AbiL3HQE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 02:16:04 -0500
+Received: from mail-vs1-xe2a.google.com (mail-vs1-xe2a.google.com [IPv6:2607:f8b0:4864:20::e2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F2BA1740A
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 23:16:01 -0800 (PST)
+Received: by mail-vs1-xe2a.google.com with SMTP id k4so16453154vsc.4
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 23:16:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=a8F4zzV/vu1q4g0plcu6P3mnsAHtPvIOrW+ZJBWEg+E=;
-        b=ECRs6s2lm792mTvvDaGmappALn9IJ1FxWTnPjsUmFd+98x4+MqXc6uuKzC5EeGg6gQ
-         v8xVHUT4t9v3qq+yEBJaykPBOAEqa9eXhsaB9+zsThYh2o1vj3ZSXpGF02pPLKi/INVh
-         Ezr+JfuKthFSrL0TlmY0yvLe/Bo+QZOicPGWE=
+        bh=77WNp07597wRX7W6AdblvnXM0gbT+J8p0UTrY090tdA=;
+        b=a1TSSDKNx2rDH/1nQRZ3nsQAgU4EnJrb3cB4rL2w3rGVSnCSdJoydjkUEqg0pkKvwP
+         BOUabMFAUBOiW2MctJYO0CZSokjrh4wBmMrUCRZZrhQSowF61LYBSO56LqRh0YyBs6Rf
+         Z9XIBDkk2XH4TDTWmiHNCLlO8DF5CzCijXb0A=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=a8F4zzV/vu1q4g0plcu6P3mnsAHtPvIOrW+ZJBWEg+E=;
-        b=IibhLnIm66fdCdnh8mn1nGou2mBNRpKZABOYCggCWhrNqdxAbs4e5yFuHnTP08/AY+
-         xjQaWgxWbLdNGG8GfaQkjgm4/cxYBFQCY22I2+WKByhKhSzH+qDRxbNr00kx8P2twJfj
-         THRqAq5Pa4m5i6Jk+WjNNjIn1R1ms/4xAWXn3d3EO5GK0hgM6I1Z1s2csUuj6zDknt7M
-         rZ2SVlwfG8+eBivzT/NY4M43SM2zNG47PtnnqQdXPapnRpX0vgdsITrdtWcKdr0f0aSs
-         Uo/aFrhExktjdfYl0z4hMzXpAq51bw17c5cNmV04+CojMQpk55inlfgSthmLHENIie6P
-         0KXQ==
-X-Gm-Message-State: AFqh2krwJ8ZY6BTONfOLWxe9iM2UpTigH4vR0OLsY72Q3GllnVT2StHg
-        8HtfSeeM5qWpMjjLGfaxcsk9Ygs88UhTrdwFEY7Nrg==
-X-Google-Smtp-Source: AMrXdXsBKahjZiIz8GIZGM9hHBUj2ovAFRxVWv0Ln6hq7bm27mA8O1d5BlU91ycIAu2cd1gvqaT+Nk4TP644ARCusgE=
-X-Received: by 2002:a05:6102:4427:b0:3b0:6da7:39ba with SMTP id
- df39-20020a056102442700b003b06da739bamr4325181vsb.26.1672384480981; Thu, 29
- Dec 2022 23:14:40 -0800 (PST)
+        bh=77WNp07597wRX7W6AdblvnXM0gbT+J8p0UTrY090tdA=;
+        b=4GFP94NkKqOZkvvTUOOQd5NXsw62QVA/liywomPM1O270srPba9x/IPmhBRf5DMKK6
+         sCwMM21AgNcsmfI4/gd4xRyIe+lvG7lPMdvxvNJrw/epUYdfZ1tMYM0lcpt9ILrklk1d
+         JF7nzo1pTq+rgR2VnO+7bBjpfuEwDq3vPgH59+MJ0H0UviEqylQCfo+ODNHP9g1QziHK
+         u0IkofTzGKpZyk6CSdfXuQYjNdguHocuVTaFnO/bB7tHdrsA8JRJYY4A4g/WVC6gwNNc
+         5ZvEcxui1UXvQI9RU7XjgPx461gX2/L9TXVoADs2QZq++kWDkjJWM9syZvv/EfC9QK8x
+         Dgpw==
+X-Gm-Message-State: AFqh2kpjTzlvKHWzgH2dN6aPuTs5HXvkA5WUfGFdfuEoZCWB8lAger3r
+        9EakUqEfT50VXgU5AB/bhGrsj16IGw+wlI6zYEgh0A==
+X-Google-Smtp-Source: AMrXdXv0ZVlpanVEg2D1eXiIaHSf5I+bsKPIfCgfS93tmGGPyZU7JO/WUQxFmta6DR2aqOTUfYFciBm2MfmiJHbu/kM=
+X-Received: by 2002:a05:6102:3d9f:b0:3c4:4918:80c with SMTP id
+ h31-20020a0561023d9f00b003c44918080cmr2663570vsv.9.1672384560459; Thu, 29 Dec
+ 2022 23:16:00 -0800 (PST)
 MIME-Version: 1.0
-References: <20221223094259.87373-1-angelogioacchino.delregno@collabora.com> <20221223094259.87373-13-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221223094259.87373-13-angelogioacchino.delregno@collabora.com>
+References: <20221223094259.87373-1-angelogioacchino.delregno@collabora.com> <20221223094259.87373-14-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221223094259.87373-14-angelogioacchino.delregno@collabora.com>
 From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Fri, 30 Dec 2022 15:14:29 +0800
-Message-ID: <CAGXv+5HC3BpO0RKUgpkNxsRtLJ+0+-WgfU8H55JSJ3ETTeRPVg@mail.gmail.com>
-Subject: Re: [PATCH v2 12/23] clk: mediatek: clk-mtk: Extend mtk_clk_simple_probe()
+Date:   Fri, 30 Dec 2022 15:15:49 +0800
+Message-ID: <CAGXv+5GBREamLPmjURz5Rb+dYe4oKAxw+gKNqeeSBns_h37=Ng@mail.gmail.com>
+Subject: Re: [PATCH v2 13/23] clk: mediatek: mt8173: Migrate pericfg/topckgen
+ to mtk_clk_simple_probe()
 To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
 Cc:     mturquette@baylibre.com, sboyd@kernel.org, matthias.bgg@gmail.com,
@@ -78,200 +79,10 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Fri, Dec 23, 2022 at 5:43 PM AngeloGioacchino Del Regno
 <angelogioacchino.delregno@collabora.com> wrote:
 >
-> As a preparation to increase probe functions commonization across
-> various MediaTek SoC clock controller drivers, extend function
-> mtk_clk_simple_probe() to be able to register not only gates, but
-> also fixed clocks, factors, muxes and composites.
+> Function mtk_clk_simple_probe() gained the ability to register multiple
+> clock types: migrate MT8173's pericfg and topckgen to this common
+> probe function to reduce duplication and code size.
 >
 > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  drivers/clk/mediatek/clk-mtk.c | 101 ++++++++++++++++++++++++++++++---
->  drivers/clk/mediatek/clk-mtk.h |  10 ++++
->  2 files changed, 103 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/clk/mediatek/clk-mtk.c b/drivers/clk/mediatek/clk-mtk.c
-> index d05364e17e95..b0a6225cd7b2 100644
-> --- a/drivers/clk/mediatek/clk-mtk.c
-> +++ b/drivers/clk/mediatek/clk-mtk.c
-> @@ -11,12 +11,14 @@
->  #include <linux/mfd/syscon.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> +#include <linux/of_address.h>
->  #include <linux/of_device.h>
->  #include <linux/platform_device.h>
->  #include <linux/slab.h>
->
->  #include "clk-mtk.h"
->  #include "clk-gate.h"
-> +#include "clk-mux.h"
->
->  const struct mtk_gate_regs cg_regs_dummy = { 0, 0, 0 };
->
-> @@ -465,20 +467,71 @@ int mtk_clk_simple_probe(struct platform_device *pdev)
->         const struct mtk_clk_desc *mcd;
->         struct clk_hw_onecell_data *clk_data;
->         struct device_node *node = pdev->dev.of_node;
-> -       int r;
-> +       void __iomem *base;
-> +       int num_clks, r;
->
->         mcd = of_device_get_match_data(&pdev->dev);
->         if (!mcd)
->                 return -EINVAL;
->
-> -       clk_data = mtk_alloc_clk_data(mcd->num_clks);
-> +       /* Composite clocks needs us to pass iomem pointer */
-> +       if (mcd->composite_clks) {
-> +               if (!mcd->shared_io)
-> +                       base = devm_platform_ioremap_resource(pdev, 0);
-> +               else
-> +                       base = of_iomap(node, 0);
-> +
-> +               if (IS_ERR_OR_NULL(base))
-> +                       return IS_ERR(base) ? PTR_ERR(base) : -ENOMEM;
-> +       }
-> +
-> +       /* Calculate how many clk_hw_onecell_data entries to allocate */
-> +       num_clks = mcd->num_clks + mcd->num_composite_clks;
-> +       num_clks += mcd->num_fixed_clks + mcd->num_factor_clks;
-> +       num_clks += mcd->num_mux_clks;
-> +
-> +       clk_data = mtk_alloc_clk_data(num_clks);
->         if (!clk_data)
->                 return -ENOMEM;
->
-> -       r = mtk_clk_register_gates(node, mcd->clks, mcd->num_clks,
-> -                                  clk_data, &pdev->dev);
-> -       if (r)
-> -               goto free_data;
-> +       if (mcd->fixed_clks) {
-> +               r = mtk_clk_register_fixed_clks(mcd->fixed_clks,
-> +                                               mcd->num_fixed_clks, clk_data);
-> +               if (r)
-> +                       goto free_data;
-> +       }
-> +
-> +       if (mcd->factor_clks) {
-> +               r = mtk_clk_register_factors(mcd->factor_clks,
-> +                                            mcd->num_factor_clks, clk_data);
-> +               if (r)
-> +                       goto unregister_fixed_clks;
-> +       }
-> +
-> +       if (mcd->mux_clks) {
-> +               r = mtk_clk_register_muxes(mcd->mux_clks, mcd->num_mux_clks,
-> +                                          node, mcd->clk_lock, clk_data,
-> +                                          &pdev->dev);
-> +               if (r)
-> +                       goto unregister_factors;
-> +       };
-> +
-> +       if (mcd->composite_clks) {
-> +               /* We don't check composite_lock because it's optional */
-> +               r = mtk_clk_register_composites(mcd->composite_clks,
-> +                                               mcd->num_composite_clks,
-> +                                               base, mcd->clk_lock,
-> +                                               clk_data, &pdev->dev);
-> +               if (r)
-> +                       goto unregister_muxes;
-> +       }
-> +
-> +       if (mcd->clks) {
-> +               r = mtk_clk_register_gates(node, mcd->clks, mcd->num_clks,
-> +                                          clk_data, &pdev->dev);
-> +               if (r)
-> +                       goto unregister_composites;
-> +       }
->
->         r = of_clk_add_hw_provider(node, of_clk_hw_onecell_get, clk_data);
->         if (r)
-> @@ -496,9 +549,28 @@ int mtk_clk_simple_probe(struct platform_device *pdev)
->         return r;
->
->  unregister_clks:
-> -       mtk_clk_unregister_gates(mcd->clks, mcd->num_clks, clk_data);
-> +       if (mcd->clks)
-> +               mtk_clk_unregister_gates(mcd->clks, mcd->num_clks, clk_data);
-> +unregister_composites:
-> +       if (mcd->composite_clks)
-> +               mtk_clk_unregister_composites(mcd->composite_clks,
-> +                                             mcd->num_composite_clks, clk_data);
-> +unregister_muxes:
-> +       if (mcd->mux_clks)
-> +               mtk_clk_unregister_muxes(mcd->mux_clks,
-> +                                        mcd->num_mux_clks, clk_data);
-> +unregister_factors:
-> +       if (mcd->factor_clks)
-> +               mtk_clk_unregister_factors(mcd->factor_clks,
-> +                                          mcd->num_factor_clks, clk_data);
-> +unregister_fixed_clks:
-> +       if (mcd->fixed_clks)
-> +               mtk_clk_unregister_fixed_clks(mcd->fixed_clks,
-> +                                             mcd->num_fixed_clks, clk_data);
->  free_data:
->         mtk_free_clk_data(clk_data);
-> +       if (mcd->shared_io && base)
-> +               iounmap(base);
->         return r;
->  }
->  EXPORT_SYMBOL_GPL(mtk_clk_simple_probe);
-> @@ -510,7 +582,20 @@ int mtk_clk_simple_remove(struct platform_device *pdev)
->         struct device_node *node = pdev->dev.of_node;
->
->         of_clk_del_provider(node);
-> -       mtk_clk_unregister_gates(mcd->clks, mcd->num_clks, clk_data);
-> +       if (mcd->clks)
-> +               mtk_clk_unregister_gates(mcd->clks, mcd->num_clks, clk_data);
-> +       if (mcd->composite_clks)
-> +               mtk_clk_unregister_composites(mcd->composite_clks,
-> +                                             mcd->num_composite_clks, clk_data);
-> +       if (mcd->mux_clks)
-> +               mtk_clk_unregister_muxes(mcd->mux_clks,
-> +                                        mcd->num_mux_clks, clk_data);
-> +       if (mcd->factor_clks)
-> +               mtk_clk_unregister_factors(mcd->factor_clks,
-> +                                          mcd->num_factor_clks, clk_data);
-> +       if (mcd->fixed_clks)
-> +               mtk_clk_unregister_fixed_clks(mcd->fixed_clks,
-> +                                             mcd->num_fixed_clks, clk_data);
->         mtk_free_clk_data(clk_data);
->
->         return 0;
-> diff --git a/drivers/clk/mediatek/clk-mtk.h b/drivers/clk/mediatek/clk-mtk.h
-> index dd43235285db..1d036ba6ca07 100644
-> --- a/drivers/clk/mediatek/clk-mtk.h
-> +++ b/drivers/clk/mediatek/clk-mtk.h
-> @@ -220,7 +220,17 @@ void mtk_clk_unregister_ref2usb_tx(struct clk_hw *hw);
->  struct mtk_clk_desc {
->         const struct mtk_gate *clks;
->         size_t num_clks;
-
-I would've suggested renaming this to "gates" as well, but that seems
-likely to cause additional unnecessary churn. Maybe you could leave
-a comment in the header about this "historical reason"?
-
-> +       const struct mtk_composite *composite_clks;
-> +       size_t num_composite_clks;
-> +       const struct mtk_fixed_clk *fixed_clks;
-> +       size_t num_fixed_clks;
-> +       const struct mtk_fixed_factor *factor_clks;
-> +       size_t num_factor_clks;
-> +       const struct mtk_mux *mux_clks;
-> +       size_t num_mux_clks;
-
-Nit: I would order these based on the order they are used/registered.
-
-Otherwise,
 
 Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-
->         const struct mtk_clk_rst_desc *rst_desc;
-> +       spinlock_t *clk_lock;
-> +       bool shared_io;
->  };
->
->  int mtk_clk_simple_probe(struct platform_device *pdev);
-> --
-> 2.39.0
->
