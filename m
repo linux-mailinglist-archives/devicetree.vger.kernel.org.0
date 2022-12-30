@@ -2,72 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E07F4659A98
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 17:34:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CCF4659A94
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 17:34:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235124AbiL3Qer (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 11:34:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45832 "EHLO
+        id S235237AbiL3Qeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 11:34:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229967AbiL3Qej (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 11:34:39 -0500
-Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FF521C40D;
-        Fri, 30 Dec 2022 08:34:39 -0800 (PST)
-Received: by mail-il1-f180.google.com with SMTP id o8so11532037ilq.6;
-        Fri, 30 Dec 2022 08:34:39 -0800 (PST)
+        with ESMTP id S235176AbiL3Qer (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 11:34:47 -0500
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F34521C41E;
+        Fri, 30 Dec 2022 08:34:42 -0800 (PST)
+Received: by mail-io1-f49.google.com with SMTP id n63so11335934iod.7;
+        Fri, 30 Dec 2022 08:34:42 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=YUQ13UNlMnnU+RdBOzrUXm3dMsngq/6hNGyj9q9MZiw=;
-        b=MqngqLelLySO6dK/awJ4Fg4u4I58fNcQgs1TdoBAMkIZM/UI7BjLCewQz7dYyyu6hN
-         BAkHjNKtIeBR5DU/ASGzb2Fsu3j23HvcsJvtQc3eDhWFSNFBm/XwRXN68eUMEAw93tUV
-         WipdaFKc1RzGc9jkWdZKIQhdDcEOo6e5wGAk+s8zL9oxncMBq3umTBgBCIyHmEIQXpYf
-         DYwXOoX5zKTiqnqtNt8xR+2Q0hE3b+STWSdPtXw1EFVMJQjawYP9TPx66T07M1lsHVxk
-         t3sceYR3P4KowyXnXXK84/pWlkgk2r3f+0hA3mh3bjneFJ1Hfk8xWkfa8znf3l+75eK/
-         XhmQ==
-X-Gm-Message-State: AFqh2koimuh/PKl58p3gUe/WS1nXhlZknBizOB5j5pdTyKfYeGbD2srF
-        r2Jq4ln92oRN23xZ7D9Kxg==
-X-Google-Smtp-Source: AMrXdXuqzf/p/KUX/Q6NKkpnki1GkGA1OTlRSftkvhspmWMJCquaB27tfx1TAffdn4xlh0Cred4a0g==
-X-Received: by 2002:a92:504:0:b0:30c:323c:f7d1 with SMTP id q4-20020a920504000000b0030c323cf7d1mr1707763ile.15.1672418078764;
-        Fri, 30 Dec 2022 08:34:38 -0800 (PST)
+        bh=IVMuYU/vHF21K2lU7GvEDrbozOGbCPgQ7TCMzyTk+uk=;
+        b=wZi7Q2nf//sCl9k7VltUioqd28xzWcNk8syJXCa3KCv2MxYk/9pkxx37QGwuARna+N
+         udX1q0v/B7SSN0UjnfCOQfqTQMXGRcZReLi/GsITP42FyDt1Hnx9C5IkNnnHZPwJZTNN
+         JZWIaZoPAMgHMvILYlzXr+yVSpIYWf+sTJfk1xgnSzGg1QwGo0P9YLqonqHZ8n8ilxNl
+         jveZsxBlDoLN+kn+vBkYn3V6rjEmTT34DcystnSfh2Sl1okcbfRvPUWgYzTjIS8PSvMf
+         or7+iwPRFg4JOXSXVfsru7Wjw/wgaEoY+ywOSZRLyFAWTiM3SNU/nzWt+CIQx5zLK5PZ
+         2NQQ==
+X-Gm-Message-State: AFqh2ko88Hily23todooZdoMZ5komLWLMI6dKZ6UcFMgyCBLs341Eyxw
+        7KXeFlcHzmJ0KBcHeq/Jk/hlgLnOqA==
+X-Google-Smtp-Source: AMrXdXt0zJP+koONqfFZC0NfkxNdtKlpaZUPY1hKOqMFpfmsDx1palO47uHfosnYAYiLZTtyJW2w1w==
+X-Received: by 2002:a05:6602:4189:b0:6f1:f493:7240 with SMTP id bx9-20020a056602418900b006f1f4937240mr23844642iob.3.1672418082443;
+        Fri, 30 Dec 2022 08:34:42 -0800 (PST)
 Received: from robh_at_kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id o3-20020a92c683000000b00302f7654187sm6670218ilg.72.2022.12.30.08.34.37
+        by smtp.gmail.com with ESMTPSA id b20-20020a026f54000000b003987df8bccdsm7045959jae.43.2022.12.30.08.34.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Dec 2022 08:34:38 -0800 (PST)
-Received: (nullmailer pid 1935053 invoked by uid 1000);
+        Fri, 30 Dec 2022 08:34:42 -0800 (PST)
+Received: (nullmailer pid 1935061 invoked by uid 1000);
         Fri, 30 Dec 2022 16:34:28 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Sowjanya Komatineni <skomatineni@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Richard Leitner <richard.leitner@skidata.com>,
-        linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+To:     Richard Acayan <mailingradian@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        David Airlie <airlied@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-tegra@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-staging@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20221229133205.981397-3-luca.ceresoli@bootlin.com>
-References: <20221229133205.981397-1-luca.ceresoli@bootlin.com>
- <20221229133205.981397-3-luca.ceresoli@bootlin.com>
-Message-Id: <167241769230.1925726.8527129486424295727.robh@kernel.org>
-Subject: Re: [PATCH v3 02/21] dt-bindings: display: tegra: vi: add 'vip'
- property and example
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        Odelu Kukatla <quic_okukatla@quicinc.com>,
+        Luca Weiss <luca@z3ntu.xyz>,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>
+In-Reply-To: <20221230001442.369608-2-mailingradian@gmail.com>
+References: <20221230001442.369608-1-mailingradian@gmail.com>
+ <20221230001442.369608-2-mailingradian@gmail.com>
+Message-Id: <167241775321.1928629.8586378707373499445.robh@kernel.org>
+Subject: Re: [PATCH v2 1/4] dt-bindings: interconnect: add sdm670 interconnects
 Date:   Fri, 30 Dec 2022 10:34:28 -0600
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -80,58 +70,139 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu, 29 Dec 2022 14:31:46 +0100, Luca Ceresoli wrote:
-> The Tegra20 VI peripheral can receive parallel input from the VIP parallel
-> input module. Add it to the allowed properties and augment the existing
-> nvidia,tegra20-vi example to show a 'vip' property.
+On Thu, 29 Dec 2022 19:14:39 -0500, Richard Acayan wrote:
+> There are controllable interconnects on Snapdragon 670. Add the
+> compatible strings to the documentation and interconnect ID definitions.
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> The device tree header was generated by
+> linux-interconnect-driver-generator and the copyright year was changed.
 > 
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
 > ---
-> 
-> Changed in v3 (suggested by Rob Herring):
->  - drop 'endpoint', unneeded as there's no extra properties in the
->    endpoints
-> 
-> Changed in v2 (suggested by Krzysztof Kozlowski):
->  - rename "i2c3" -> "ic2"
->  - add review tag
-> ---
->  .../display/tegra/nvidia,tegra20-vi.yaml      | 64 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 65 insertions(+)
+>  .../bindings/interconnect/qcom,rpmh.yaml      |   8 ++
+>  .../interconnect/qcom,sdm670-rpmh.h           | 136 ++++++++++++++++++
+>  2 files changed, 144 insertions(+)
+>  create mode 100644 include/dt-bindings/interconnect/qcom,sdm670-rpmh.h
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-yamllint warnings/errors:
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vi.example.dtb: vi@54080000: vip: Unevaluated properties are not allowed ('channel@0' was unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vi.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vi.example.dtb: vi@54080000: vip: 'ports' is a required property
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vi.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vi.example.dtb: vip: Unevaluated properties are not allowed ('channel@0' was unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vip.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vi.example.dtb: vip: 'ports' is a required property
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vip.yaml
+Full log is available here: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221230001442.369608-2-mailingradian@gmail.com
 
-doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221229133205.981397-3-luca.ceresoli@bootlin.com
+interconnect-0: 'reg' is a required property
+	arch/arm64/boot/dts/qcom/sm8450-hdk.dtb
+	arch/arm64/boot/dts/qcom/sm8450-qrd.dtb
+	arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara-pdx223.dtb
+	arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara-pdx224.dtb
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+interconnect@16e0000: Unevaluated properties are not allowed ('clocks' was unexpected)
+	arch/arm64/boot/dts/qcom/sm8450-hdk.dtb
+	arch/arm64/boot/dts/qcom/sm8450-qrd.dtb
+	arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara-pdx223.dtb
+	arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara-pdx224.dtb
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+interconnect@1700000: Unevaluated properties are not allowed ('clocks' was unexpected)
+	arch/arm64/boot/dts/qcom/sm8450-hdk.dtb
+	arch/arm64/boot/dts/qcom/sm8450-qrd.dtb
+	arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara-pdx223.dtb
+	arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara-pdx224.dtb
 
-pip3 install dtschema --upgrade
+interconnect-1: 'reg' is a required property
+	arch/arm64/boot/dts/qcom/sm8450-hdk.dtb
+	arch/arm64/boot/dts/qcom/sm8450-qrd.dtb
+	arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara-pdx223.dtb
+	arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara-pdx224.dtb
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+interconnect-aggre1-noc: 'reg' is a required property
+	arch/arm64/boot/dts/qcom/sa8295p-adp.dtb
+	arch/arm64/boot/dts/qcom/sa8540p-ride.dtb
+	arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb
+	arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb
+
+interconnect-aggre2-noc: 'reg' is a required property
+	arch/arm64/boot/dts/qcom/sa8295p-adp.dtb
+	arch/arm64/boot/dts/qcom/sa8540p-ride.dtb
+	arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb
+	arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb
+
+interconnect-clk-virt: 'reg' is a required property
+	arch/arm64/boot/dts/qcom/sa8295p-adp.dtb
+	arch/arm64/boot/dts/qcom/sa8540p-ride.dtb
+	arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb
+	arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb
+
+interconnect-config-noc: 'reg' is a required property
+	arch/arm64/boot/dts/qcom/sa8295p-adp.dtb
+	arch/arm64/boot/dts/qcom/sa8540p-ride.dtb
+	arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb
+	arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb
+
+interconnect-dc-noc: 'reg' is a required property
+	arch/arm64/boot/dts/qcom/sa8295p-adp.dtb
+	arch/arm64/boot/dts/qcom/sa8540p-ride.dtb
+	arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb
+	arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb
+
+interconnect-gem-noc: 'reg' is a required property
+	arch/arm64/boot/dts/qcom/sa8295p-adp.dtb
+	arch/arm64/boot/dts/qcom/sa8540p-ride.dtb
+	arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb
+	arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb
+
+interconnect-lpass-ag-noc: 'reg' is a required property
+	arch/arm64/boot/dts/qcom/sa8295p-adp.dtb
+	arch/arm64/boot/dts/qcom/sa8540p-ride.dtb
+	arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb
+	arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb
+
+interconnect-mc-virt: 'reg' is a required property
+	arch/arm64/boot/dts/qcom/sa8295p-adp.dtb
+	arch/arm64/boot/dts/qcom/sa8540p-ride.dtb
+	arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb
+	arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb
+	arch/arm/boot/dts/qcom-sdx65-mtp.dtb
+
+interconnect-mmss-noc: 'reg' is a required property
+	arch/arm64/boot/dts/qcom/sa8295p-adp.dtb
+	arch/arm64/boot/dts/qcom/sa8540p-ride.dtb
+	arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb
+	arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb
+
+interconnect-nspa-noc: 'reg' is a required property
+	arch/arm64/boot/dts/qcom/sa8295p-adp.dtb
+	arch/arm64/boot/dts/qcom/sa8540p-ride.dtb
+	arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb
+	arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb
+
+interconnect-nspb-noc: 'reg' is a required property
+	arch/arm64/boot/dts/qcom/sa8295p-adp.dtb
+	arch/arm64/boot/dts/qcom/sa8540p-ride.dtb
+	arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb
+	arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb
+
+interconnect: 'reg' is a required property
+	arch/arm64/boot/dts/qcom/sc7280-crd-r3.dtb
+	arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dtb
+	arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtb
+	arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dtb
+	arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dtb
+	arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1.dtb
+	arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtb
+	arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-lte.dtb
+	arch/arm64/boot/dts/qcom/sc7280-idp2.dtb
+	arch/arm64/boot/dts/qcom/sc7280-idp.dtb
+
+interconnect-system-noc: 'reg' is a required property
+	arch/arm64/boot/dts/qcom/sa8295p-adp.dtb
+	arch/arm64/boot/dts/qcom/sa8540p-ride.dtb
+	arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb
+	arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb
 
