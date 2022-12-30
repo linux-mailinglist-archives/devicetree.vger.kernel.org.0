@@ -2,121 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5295065996C
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 15:45:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB1036599C9
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 16:36:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233838AbiL3OpA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 09:45:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36194 "EHLO
+        id S235186AbiL3PgL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 10:36:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234743AbiL3Oo6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 09:44:58 -0500
-Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [IPv6:2001:4b98:dc4:8::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 660E3193DB;
-        Fri, 30 Dec 2022 06:44:57 -0800 (PST)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 418D8100002;
-        Fri, 30 Dec 2022 14:44:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1672411496;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=dAVafXIrgH3DH1GW8qt3K/eKjzRQTHeoc+yUmzH+sBU=;
-        b=IXgBiOYSLNpvHxY2Xy7HZ+BuNIt617n2k93ltVqZ9amm/eG7wFAYhd8xMAVKFNzbozgkw2
-        dVfJGEMvuMlaTatKhqC6HwjmD5frbJQYCKkeKkQ+UyDlle3tnJ4DD4Ia8D4U/G1jWLALu5
-        uGfTplqSHq/vqWLH/096cg6H9LWGYrkkxRSjdELxeNFLNyH3AQZ5VbMdwFCgL1mgmXsBu6
-        w7SuXJEDdqkmWi/ltcLiMaM9g41hbwT8CrIgWiJ3hDdBcwdXaF/c6VQ+23CWiNRE11o8eh
-        tJuY40rY3DhOEmLUWOpvenIBSv3BpWs7FKpNjMtl91bXKJ/gjSpD1+fe1NQXBw==
-Date:   Fri, 30 Dec 2022 15:44:54 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Wadim Egorov <W.Egorov@phytec.de>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "upstream@lists.phytec.de" <upstream@lists.phytec.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "a.zummo@towertech.it" <a.zummo@towertech.it>
-Subject: Re: [PATCH] dt-bindings: rtc: Add rv3028 to rv3032.yaml dtschema
-Message-ID: <Y675ZsZsbQIga6fG@mail.local>
-References: <20221228140610.938686-1-w.egorov@phytec.de>
- <19f62c10-de9f-88ee-70c3-279efbbcef0b@linaro.org>
- <08d74257-5f8b-31ae-8077-2c73c1430c0a@phytec.de>
+        with ESMTP id S235159AbiL3PgK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 10:36:10 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62790DEDC
+        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 07:36:03 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id bs20so18062775wrb.3
+        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 07:36:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=c9FYypUZxhVnipSoAtLo7GGj9WnmgyVtuwl9yefi90s=;
+        b=J5msw1dZTdnUCMgZxUFQAt34cNNcRzEAfRyGMXeLNyoXYLmGDuMPW6gmrzHRReNXMQ
+         EfLg7XionD7Lsf3mca9wLAPUtZxh3PMn5lygfzvmFzusYZvgVIdQ7HMJZ744GFFGpqlr
+         Nfj/IFeetd13nZlYEh/aj0WCHYvq87uAJGLE0IHk1y60lHt7CCdXTAAWIOjTsNOFR1AR
+         TsVgG+2w4ju/ZRaP1ATLzw8W9q7FlAXhQwFyxD7+JX31BxXA89sIwCsGhXcyhC6sjmQ5
+         vW+WjR1T22nu7hyRMVmiChyY29C0vNgMUrLf3biak5vufgcfydFHlyjZ9ICDS5tl1g+G
+         Isig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=c9FYypUZxhVnipSoAtLo7GGj9WnmgyVtuwl9yefi90s=;
+        b=QuOMfZqTzjtlmRP5ybM3li3g0Ah/7sZmLQ0GWoaFmZZYCvuarqAT4aEXvJ0/BX/3nK
+         u2xM8cPNxchfgpSTvbwZ/EvUb/klwKm0h90UWFO5txzPFYBDJG7l3nDnx2RLMP5f8+Qy
+         t4dmZ2y6dTKx6oZHFNMGp6r53k88BW0JpNVZGYenYqn9OFiCFFZrb9zYD8rsiLUuua5U
+         JU491yfftfQt+01nE4gUHRdTDCxaGoumyd0zo5P6x0kM4rXZkvC0U+XU01mEb/9/OtaF
+         zD1m2n7ML/98AKceaWkGs5LoI96XIfR4ADsjGcUgcFSLX98wVh9dYfod8ZYl/VSAwMau
+         PfOQ==
+X-Gm-Message-State: AFqh2kqVS4m4jjP4fhVfogh7TmXy/7mceHnN6yxjhIPFOMc+zYR1/2B+
+        gqvQOqDQxvTUXXWWy/V/u5Nb6Q==
+X-Google-Smtp-Source: AMrXdXv7NkkzLCn2dX8D1EQI3XuO6+dd5wfHyEZf5EVn5PrA4DPy/SvDGi+zAQdDINfRD5/Ox40xUg==
+X-Received: by 2002:adf:f590:0:b0:242:5cf0:2039 with SMTP id f16-20020adff590000000b002425cf02039mr19609196wro.65.1672414561886;
+        Fri, 30 Dec 2022 07:36:01 -0800 (PST)
+Received: from prec5560.. (freifunk-gw.bsa1-cpe1.syseleven.net. [176.74.57.43])
+        by smtp.gmail.com with ESMTPSA id l42-20020a05600c1d2a00b003cfbbd54178sm49857993wms.2.2022.12.30.07.36.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Dec 2022 07:36:01 -0800 (PST)
+From:   Robert Foss <robert.foss@linaro.org>
+To:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
+        dmitry.baryshkov@linaro.org, sean@poorly.run, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@somainline.org,
+        quic_jesszhan@quicinc.com, robert.foss@linaro.org,
+        angelogioacchino.delregno@somainline.org, loic.poulain@linaro.org,
+        vkoul@kernel.org, a39.skl@gmail.com, quic_khsieh@quicinc.com,
+        quic_vpolimer@quicinc.com, swboyd@chromium.org,
+        dianders@chromium.org, liushixin2@huawei.com,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jonathan Marek <jonathan@marek.ca>,
+        vinod.koul@linaro.org
+Subject: [PATCH v4 00/11] Enable Display for SM8350
+Date:   Fri, 30 Dec 2022 16:35:43 +0100
+Message-Id: <20221230153554.105856-1-robert.foss@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <08d74257-5f8b-31ae-8077-2c73c1430c0a@phytec.de>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/12/2022 11:09:32+0000, Wadim Egorov wrote:
-> Am 28.12.22 um 15:15 schrieb Krzysztof Kozlowski:
-> > Your subject is a bit incorrect. You do not add rv3028 to rv3032.yaml.
-> > Also drop redundant "dtschema". Instead "Extend rv3028 bindings"
-> >
-> >
-> > On 28/12/2022 15:06, Wadim Egorov wrote:
-> >> Move RV3028 RTC bindings from trivial-rtc.yaml into microcrystal,rv3032.yaml.
-> >> RV3028 can have a trickle-resitor-ohms property. Make it known to dtschema.
-> > I don't understand what is here made known to dtschema, so maybe drop
-> > last sentence.
-> >
-> >> Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
-> >> ---
-> >>   .../bindings/rtc/microcrystal,rv3028.yaml     | 56 +++++++++++++++++++
-> >>   .../devicetree/bindings/rtc/trivial-rtc.yaml  |  2 -
-> >>   2 files changed, 56 insertions(+), 2 deletions(-)
-> >>   create mode 100644 Documentation/devicetree/bindings/rtc/microcrystal,rv3028.yaml
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/rtc/microcrystal,rv3028.yaml b/Documentation/devicetree/bindings/rtc/microcrystal,rv3028.yaml
-> >> new file mode 100644
-> >> index 000000000000..4abe4756bc9b
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/rtc/microcrystal,rv3028.yaml
-> >> @@ -0,0 +1,56 @@
-> >> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/rtc/microcrystal,rv3028.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: Microchip RV-3028 RTC
-> >> +
-> >> +allOf:
-> >> +  - $ref: "rtc.yaml#"
-> > Drop quotes.
-> >
-> >> +
-> >> +maintainers:
-> >> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-> > This should not be maintainer of subsystem but maintainer of device
-> > (unless it is the same person?).
-> >
-> Hi Krzysztof,
-> 
-> who would be the maintainer for this RTC?
-> I am not able to find a maintainer.
-> 
+Dependencies:
+https://lore.kernel.org/all/20221102231309.583587-1-dmitry.baryshkov@linaro.org/
+https://lore.kernel.org/all/20221024164225.3236654-1-dmitry.baryshkov@linaro.org/
+https://lore.kernel.org/all/20221104130324.1024242-5-dmitry.baryshkov@linaro.org/
 
-I am the maintainer for this RTC driver
+Branch:
+https://git.linaro.org/people/robert.foss/linux.git/log/?h=sm8350_dsi_v4
 
-> Can I keep Alexandre Belloni as the maintainer since there seem to be no 
-> maintainer for the RV3028 RTC.
-> 
-> Regards,
-> Wadim
-> 
-> 
+
+This series implements display support for SM8350 and
+enables HDMI output for the SM8350-HDK platform.
+
+
+Changes from v1:
+ - Added R-b tags from v1
+ - Added qcom,sm8350-dpu binding patch
+ - Added qcom,sm8350-mdss binding patch
+ - Corrected sm8350.dtsi according to new dpu/mdss bindings
+ - Bjorn: Removed regulator-always-on property from lt9611_1v2 regulator
+ - Bjorn: Moved lt9611 pinctl pins into a common node
+ - Bjorn/Krzysztof: Moved status property to last in node
+ - Krzysztof: Changed hdmi-out to hdmi-connector
+ - Krzysztof: Fixed regulator node name
+ - Krzysztof: Changed &mdss to status=disabled as default
+ - Krzysztof: Changed &mdss_mdp node name to display-controller
+ - Krzysztof: Fixed opp-table node name
+ - Krzysztof: Fixed phy node name
+ - Dmitry: Split commit containing dpu & mdss compatibles string
+ - Dmitry: Added msm_mdss_enable case
+ - Dmitry: Fixed dpu ctl features
+ 
+Changes from v2:
+ - Rob: Added r-b
+ - Rob: Improved mdss binding description
+ - Rob: Added interconnect names for mdss-binding
+ - Rob: Removed phy from example
+ - Konrad: Remove sc7280_pp refactor patch
+ - Konrad: Fixed upper case hex in dpu_hw_catalog
+ - Konrad: Fixed various downstream dts based values for dpu_hw_catalog
+ - Konrad: Removed status=disabled from mdss_mdp
+ - Konrad: Removed phy-names from dsi nodes
+ - Konrad/Dmitry: Change mdp_opp_table opp-200000000 to use &rpmhpd_opp_svs, add comment
+ - Dmitry: Move mdp_opp_table to dsi0 node
+
+Changes from v3:
+ - Rebased on drm-msm-display-for-6.2
+ - Abhinav: Remove dsc_2 block
+ - Bjorn/Dmitry: Add "mdss_" prefix for dsi & dsi_phy nodes
+ - Dmitry: Add r-b
+ - Dmitry: Fixed msm_mdss_setup_ubwc_dec_40 arguments
+ - Dmitry: Changed &mdss to use display-subsystem@
+ - Dmitry: Moved &mdp_opp_table to &display-subsystem node
+ - Dmitry: Chancged &mdp_opp_table to &dpu_upp_table
+ - Dmitry: Correct opp-table disclaimer & fix opp
+ - Dmitry: Move dsi_opp_table from &mdss_dsi0_phy to &mdss_dsi0
+ - Dmitry: Add dsi1
+ - Dmitry: Remove dispcc required opp
+ - Georgi: Add missing interconnect cell
+ - Krzysztof: Fix underscores in sm8350-hdk.dts node names
+ - Krzysztof: Change dsi-opp-table to opp-table
+ - Rob: Add r-b tags
+
+
+
+
+
+Robert Foss (11):
+  dt-bindings: display: msm: Add qcom,sm8350-dpu binding
+  dt-bindings: display: msm: Add qcom,sm8350-mdss binding
+  drm/msm/dpu: Add SM8350 to hw catalog
+  drm/msm/dpu: Add support for SM8350
+  drm/msm: Add support for SM8350
+  arm64: dts: qcom: sm8350: Add &tlmm gpio-line-names
+  arm64: dts: qcom: sm8350: Remove mmxc power-domain-name
+  arm64: dts: qcom: sm8350: Use 2 interconnect cells
+  arm64: dts: qcom: sm8350: Add display system nodes
+  arm64: dts: qcom: sm8350-hdk: Enable display & dsi nodes
+  arm64: dts: qcom: sm8350-hdk: Enable lt9611uxc dsi-hdmi bridge
+
+ .../bindings/display/msm/qcom,sm8350-dpu.yaml | 120 +++++++
+ .../display/msm/qcom,sm8350-mdss.yaml         | 221 ++++++++++++
+ arch/arm64/boot/dts/qcom/sm8350-hdk.dts       | 332 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8350.dtsi          | 326 ++++++++++++++++-
+ .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c    | 195 ++++++++++
+ .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |   1 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       |   1 +
+ drivers/gpu/drm/msm/msm_mdss.c                |   5 +
+ 8 files changed, 1182 insertions(+), 19 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8350-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml
 
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.34.1
+
