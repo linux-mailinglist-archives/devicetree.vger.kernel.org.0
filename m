@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6654D65962B
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 09:16:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BBD2659634
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 09:18:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234455AbiL3IQX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 03:16:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42152 "EHLO
+        id S230249AbiL3ISa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 03:18:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234740AbiL3IQF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 03:16:05 -0500
-Received: from mail-vs1-xe2d.google.com (mail-vs1-xe2d.google.com [IPv6:2607:f8b0:4864:20::e2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65FC91A067
-        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 00:16:04 -0800 (PST)
-Received: by mail-vs1-xe2d.google.com with SMTP id 128so20600046vsz.12
-        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 00:16:04 -0800 (PST)
+        with ESMTP id S234764AbiL3IR5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 03:17:57 -0500
+Received: from mail-ua1-x935.google.com (mail-ua1-x935.google.com [IPv6:2607:f8b0:4864:20::935])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6BFD1A05C
+        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 00:17:56 -0800 (PST)
+Received: by mail-ua1-x935.google.com with SMTP id x24so4663523uaf.4
+        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 00:17:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=KPlTEqYa3MYCMl9BvqJcl9vvn2yJXyimwlsnQsWb80g=;
-        b=YhAxgjwByMUVtC0QltQ0WZbdI/jd05toOa5H1jc5GThVHN2I114FIGBg6IFEm61vTO
-         vjueufSh3oZGhR632HQeIa257kEzkJLao4uA7qTC8d7DgDRea0pwxhRcTZcFSnZ9xmoj
-         mnvt8dyoAkT7xtkdOpPxs554wJdeEe+ZrTvxY=
+        bh=UKptmBLuOQg1RM4zVHa29163pPmBL0D399wKsCGeJf8=;
+        b=LvNoP9vLe6bcqAB3jeW57I2iLYWVxxrHHxAE39uHilcHZ6iInZxn9iXNpVYI6S6hbs
+         uqsm6uaQKXnYhhYQF6xbVj2/Ja/3HTtor48an7kltiVPUAVGykta8SDU3e5xXlf9Zaru
+         Led7+q/PlqhI5FT3ZPnIlOHDStqgRUxpeIF9M=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=KPlTEqYa3MYCMl9BvqJcl9vvn2yJXyimwlsnQsWb80g=;
-        b=AoWhgm0HwYwlJ7ceezGgSz6qkkKx6TdrdDEV0vd2/hCuFjCyJo9aKjfo4Gwo4cWUGk
-         WA+fK7ydZDLI69/9lcnaW+g0BPpS67KID4qT402NaoqiG5fHfN/QbZr+244gEX7EeGeo
-         8JAITwGgG6AVvBJWPolhvrGzGHd6D9DaAMt+kiII3cOlboN2YyKK+Bi7KXF0no+WaL7o
-         ql04/raJZIKe8bm7da6YvTmxX5+SYjHEy2bp46W461qDlN5GGkO0q1zy8Y4OhD12M3Fd
-         K/fyPsITVENKomGO+QO//ZJWr39v3n2seezDB1YcxZPmQXDvZ7Dh19S4ABeAK1P7l69w
-         NGrA==
-X-Gm-Message-State: AFqh2ko0Rkv58v4wm8sFOqhpzVkneXdieHE1/B9QP3D4kn0+AWn4EZR+
-        y5JtTWolKb0sOREtw/xOsYTXHTeTIZWuRhoNLwLyTA==
-X-Google-Smtp-Source: AMrXdXv0jj8OdD6WjSDbEKQJNJ1yRigoEOsjWSkDG9TTutwpBPDNw73XntP58sJQMP+TekyU6XVuIFUl5/GDLYHuanA=
-X-Received: by 2002:a05:6102:3e06:b0:3b5:fd8:7948 with SMTP id
- j6-20020a0561023e0600b003b50fd87948mr4003899vsv.85.1672388163532; Fri, 30 Dec
- 2022 00:16:03 -0800 (PST)
+        bh=UKptmBLuOQg1RM4zVHa29163pPmBL0D399wKsCGeJf8=;
+        b=ztpQu5YIgJcRnMcZmasN+s3jZJJ/FYPTh8HNW4VWUOy+MSHFyqK2Q3LZZ2k1VyLPG2
+         4mPMuRspCtYsUl5uqTu3bBkBzO1uIx05WwY3+bZIGX37k/g6cmh6vPq13FnFY9mYi/lu
+         UVZ3CdOfcQv/I5jWczQ97iMLkjMBjYmFqms+0Ah+k2A0FWmPzMXD0vweTcSXrI+goPVR
+         NOM5Cto3et8HGBV6ZzVb7zfq2mKpa5TrW0dzO2eGOSZMT7KzDyLPHoAZ5FSUfMuCsXSI
+         sUg9vxOvJKuRxv/A9EbTAfOPB+cTdTSnfOZ1Byx4bEHIO6wyapdiWX3/v7dx+7qjWl63
+         67jw==
+X-Gm-Message-State: AFqh2koQo7bnyYRF9IlFPn4wzQ3bxkRUMyT1ddujfd0zE7Lfk5hMcEnd
+        yRDVxKXW5W6dmdPirpN3rSjIbMT8OuuE675nQ57Cng==
+X-Google-Smtp-Source: AMrXdXvVoiFEJpFzEVXeUJXm4MP1RYdUzBiiTLiLJOdYxjRbC1msIGJnP7BIg5ubV8Sk8yKBy18sm6YwSacIh59ToeA=
+X-Received: by 2002:a9f:386b:0:b0:419:1620:be75 with SMTP id
+ q40-20020a9f386b000000b004191620be75mr2823546uad.78.1672388275999; Fri, 30
+ Dec 2022 00:17:55 -0800 (PST)
 MIME-Version: 1.0
-References: <20221223094259.87373-1-angelogioacchino.delregno@collabora.com> <20221223094259.87373-21-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221223094259.87373-21-angelogioacchino.delregno@collabora.com>
+References: <20221223094259.87373-1-angelogioacchino.delregno@collabora.com> <20221223094259.87373-17-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221223094259.87373-17-angelogioacchino.delregno@collabora.com>
 From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Fri, 30 Dec 2022 16:15:52 +0800
-Message-ID: <CAGXv+5E26i6F2BPZYDfRhM-OMei-Br276UNtRVr5=+7pT+HTqg@mail.gmail.com>
-Subject: Re: [PATCH v2 20/23] clk: mediatek: clk-mt8186-topckgen: Migrate to mtk_clk_simple_probe()
+Date:   Fri, 30 Dec 2022 16:17:45 +0800
+Message-ID: <CAGXv+5GR7ef8pTVDHa20QH4hBv2rMAqoY2MjKqK5QRdbFdfDKw@mail.gmail.com>
+Subject: Re: [PATCH v2 16/23] clk: mediatek: mt8186: Join top_adj_div and top_muxes
 To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
 Cc:     mturquette@baylibre.com, sboyd@kernel.org, matthias.bgg@gmail.com,
@@ -77,9 +77,68 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Fri, Dec 23, 2022 at 5:43 PM AngeloGioacchino Del Regno
 <angelogioacchino.delregno@collabora.com> wrote:
 >
-> As done with MT8192, migrate MT8186 topckgen away from a custom probe
-> function and use mtk_clk_simple_{probe, remove}().
+> Like done for MT8192, join the two to register them in one shot, as
+> there's no point in doing that separately from one another.
 >
 > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  drivers/clk/mediatek/clk-mt8186-topckgen.c | 15 ++-------------
+>  1 file changed, 2 insertions(+), 13 deletions(-)
+>
+> diff --git a/drivers/clk/mediatek/clk-mt8186-topckgen.c b/drivers/clk/mediatek/clk-mt8186-topckgen.c
+> index d05143891b69..63befb1f492d 100644
+> --- a/drivers/clk/mediatek/clk-mt8186-topckgen.c
+> +++ b/drivers/clk/mediatek/clk-mt8186-topckgen.c
+> @@ -669,9 +669,6 @@ static struct mtk_composite top_muxes[] = {
+>         MUX(CLK_TOP_APLL_I2S4_MCK_SEL, "apll_i2s4_mck_sel", apll_mck_parents, 0x0320, 19, 1),
+>         MUX(CLK_TOP_APLL_TDMOUT_MCK_SEL, "apll_tdmout_mck_sel", apll_mck_parents,
+>                 0x0320, 20, 1),
+> -};
+> -
+> -static const struct mtk_composite top_adj_divs[] = {
+>         DIV_GATE(CLK_TOP_APLL12_CK_DIV0, "apll12_div0", "apll_i2s0_mck_sel",
+>                         0x0320, 0, 0x0328, 8, 0),
+>         DIV_GATE(CLK_TOP_APLL12_CK_DIV1, "apll12_div1", "apll_i2s1_mck_sel",
+> @@ -747,26 +744,19 @@ static int clk_mt8186_topck_probe(struct platform_device *pdev)
+>         if (r)
+>                 goto unregister_muxes;
+>
+> -       r = mtk_clk_register_composites(top_adj_divs, ARRAY_SIZE(top_adj_divs), base,
+> -                                       &mt8186_clk_lock, clk_data, &pdev->dev);
+> -       if (r)
+> -               goto unregister_composite_muxes;
+> -
+>         r = clk_mt8186_reg_mfg_mux_notifier(&pdev->dev,
+>                                             clk_data->hws[CLK_TOP_MFG]->clk);
+>         if (r)
+> -               goto unregister_composite_divs;
+> +               goto unregister_composite_muxes;
+>
+>         r = of_clk_add_hw_provider(node, of_clk_hw_onecell_get, clk_data);
+>         if (r)
+> -               goto unregister_composite_divs;
+> +               goto unregister_composite_muxes;
+>
+>         platform_set_drvdata(pdev, clk_data);
+>
+>         return r;
+>
+> -unregister_composite_divs:
+> -       mtk_clk_unregister_composites(top_adj_divs, ARRAY_SIZE(top_adj_divs), clk_data);
+>  unregister_composite_muxes:
+>         mtk_clk_unregister_composites(top_muxes, ARRAY_SIZE(top_muxes), clk_data);
+>  unregister_muxes:
+> @@ -787,7 +777,6 @@ static int clk_mt8186_topck_remove(struct platform_device *pdev)
+>
+>         of_clk_del_provider(node);
+>         mtk_clk_unregister_composites(top_adj_divs, ARRAY_SIZE(top_adj_divs), clk_data);
+> -       mtk_clk_unregister_composites(top_muxes, ARRAY_SIZE(top_muxes), clk_data);
 
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+Wrong line? Not sure how this would've compiled.
+
+>         mtk_clk_unregister_muxes(top_mtk_muxes, ARRAY_SIZE(top_mtk_muxes), clk_data);
+>         mtk_clk_unregister_factors(top_divs, ARRAY_SIZE(top_divs), clk_data);
+>         mtk_clk_unregister_fixed_clks(top_fixed_clks, ARRAY_SIZE(top_fixed_clks), clk_data);
+> --
+> 2.39.0
+>
