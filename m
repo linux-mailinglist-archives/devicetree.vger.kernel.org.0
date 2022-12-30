@@ -2,96 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EC24659B29
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 18:56:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26B79659B0C
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 18:46:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229861AbiL3R43 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 12:56:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43620 "EHLO
+        id S235048AbiL3RqI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 12:46:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbiL3R43 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 12:56:29 -0500
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1739BE1B;
-        Fri, 30 Dec 2022 09:56:27 -0800 (PST)
-Received: from g550jk.localnet (2a02-8388-6582-fe80-0000-0000-0000-0005.cable.dynamic.v6.surfer.at [IPv6:2a02:8388:6582:fe80::5])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id A8F7ECA59D;
-        Fri, 30 Dec 2022 17:56:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1672422986; bh=9SMJto/BbTzXNOAp7b3wav53yOz7csIc23s0OeluJrY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=boxv0jwrk7qJI2n/2Jy8o2f/Cn625a6JYc+epwjAOLmqEGhmLoEGRDm0HUiL2IrDg
-         JsHmGheKyUgGM5I5BEangD0dVHym0bjVZgtbGL0rmjGKcaJ3+kdN+7xboIStw9Ssqo
-         S7pD/dLisvEb61oCRte/ht/LowiJs3YRwwQiVAPY=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     linux-arm-msm@vger.kernel.org, Mark Brown <broonie@kernel.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3] regulator: dt-bindings: qcom,usb-vbus-regulator: change node
- name
-Date:   Fri, 30 Dec 2022 18:56:24 +0100
-Message-ID: <4449469.LvFx2qVVIh@g550jk>
-In-Reply-To: <167235422463.130576.13068228295548630470.b4-ty@kernel.org>
-References: <20221229191542.123367-1-luca@z3ntu.xyz>
- <167235422463.130576.13068228295548630470.b4-ty@kernel.org>
+        with ESMTP id S235173AbiL3RqH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 12:46:07 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7DDE1B1F7;
+        Fri, 30 Dec 2022 09:46:06 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 61280B81CE7;
+        Fri, 30 Dec 2022 17:46:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67DA3C433EF;
+        Fri, 30 Dec 2022 17:46:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1672422364;
+        bh=I3ep+rQ0/VZ7kAqzduFEV8TFODV3T0c81MfAi5VnWPA=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=rRfeauykgiNbfgxd9XMCMWxVWbR3+19le8ytmpjZFg2JbkeK4upelMAysRQmg7Gea
+         KaI1G4/fO9lpLLsY7Y26N1+QmGkLDw+G2/qrMkLrsCqauPqwMB9BM2xRrnD1fPPaDU
+         w5Uqj3+YDtjuBpBBV2ALg/LWzImhU34hwOUcZemPgHlkd1Q1luXEGAHKrwlcHSlTPq
+         aNzSvQHeBAUKjq1I3xhAGQn9aEJ9EFrjrgCM6jJwLEplrthvJArg/Yoe+jZsGmrVFJ
+         21RKQSawMvh4BQfaGyIGLOzexAQRANPvNOWNLNUcPk8RUY9Src5fdLmRQKB/imUY4u
+         LO7RZ3lu0TI4Q==
+Date:   Fri, 30 Dec 2022 17:59:21 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Marco Felsch <m.felsch@pengutronix.de>, puranjay12@gmail.com,
+        lars@metafoo.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH v2 2/4] dt-bindings: iio: ti,tmp117: add binding for the
+ TMP116
+Message-ID: <20221230175921.06e0d4c0@jic23-huawei>
+In-Reply-To: <144609b6-8da2-1a2b-941c-4163d38adab1@linaro.org>
+References: <20221221092801.1977499-1-m.felsch@pengutronix.de>
+        <20221221092801.1977499-3-m.felsch@pengutronix.de>
+        <20221223150803.37e2939d@jic23-huawei>
+        <20221223150338.iqpnp6z3m35eb5hz@pengutronix.de>
+        <20221223153729.3353a315@jic23-huawei>
+        <20221223161051.3c6lvmly7tsjh4eu@pengutronix.de>
+        <20221223171458.7bc18893@jic23-huawei>
+        <20221223171323.qhuhq42tivcdllvq@pengutronix.de>
+        <144609b6-8da2-1a2b-941c-4163d38adab1@linaro.org>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,FROM_SUSPICIOUS_NTLD,SPF_HELO_NONE,SPF_PASS,
-        T_PDS_OTHER_BAD_TLD autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Donnerstag, 29. Dezember 2022 23:50:24 CET Mark Brown wrote:
-> On Thu, 29 Dec 2022 20:15:43 +0100, luca@z3ntu.xyz wrote:
-> > usb-vbus-regulator is a better generic node name than dcdc to change the
-> > example to match.
-> 
-> Applied to
-> 
->    broonie/regulator.git for-next
-> 
-> Thanks!
-> 
-> [1/1] regulator: dt-bindings: qcom,usb-vbus-regulator: change node name
->       commit: d13da2f4c81602fc22cdf2cb13b15283b260e0d5
-> 
+On Tue, 27 Dec 2022 09:40:13 +0100
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-Thank you and sorry about the mess on the v2.
-
-Regards
-Luca
-
-> All being well this means that it will be integrated into the linux-next
-> tree (usually sometime in the next 24 hours) and sent to Linus during
-> the next merge window (or sooner if it is a bug fix), however if
-> problems are discovered then the patch may be dropped or reverted.
+> On 23/12/2022 18:13, Marco Felsch wrote:
+> > Hi Jonathan,
+> > 
+> > On 22-12-23, Jonathan Cameron wrote:  
+> >> On Fri, 23 Dec 2022 17:10:51 +0100
+> >> Marco Felsch <m.felsch@pengutronix.de> wrote:
+> >>  
+> >>> On 22-12-23, Jonathan Cameron wrote:  
+> >>>> On Fri, 23 Dec 2022 16:03:38 +0100
+> >>>> Marco Felsch <m.felsch@pengutronix.de> wrote:
+> >>>>     
+> >>>>> On 22-12-23, Jonathan Cameron wrote:    
+> >>>>>> On Wed, 21 Dec 2022 10:27:59 +0100
+> >>>>>> Marco Felsch <m.felsch@pengutronix.de> wrote:
+> >>>>>>       
+> >>>>>>> The TMP116 is the predecessor of the TMP117.
+> >>>>>>>
+> >>>>>>> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>      
+> >>>>>> I'm not sure this is introducing a valid fallback. The driver changes
+> >>>>>> imply some things the tmp117 driver supports, that this device
+> >>>>>> does not. A fallback compatible would mean that a new DT
+> >>>>>> with an old kernel would load the tmp117 against a tmp116 and
+> >>>>>> expect it to fully work.      
+> >>>>>
+> >>>>> Since driver does all the detection an update of the bindings isn't
+> >>>>> really necessary. It is just to have a compatible already in place in
+> >>>>> case there a things we can't detected during runtime. This flow is
+> >>>>> common for a lot of SoC drivers. The fallback will be used as long as
+> >>>>> possible and once a specific feature can't be detected only via the
+> >>>>> binding, the driver adds the new binding to it of_compatible.    
+> >>>>
+> >>>> That's true going forwards and for drivers that introduce a shared
+> >>>> generic compatible alongside the initial binding. It can't be easily
+> >>>> retrofit.
+> >>>>
+> >>>> Fallback compatible is also to allow this to work with old kernels    
 > 
-> You may get further e-mails resulting from automated or manual testing
-> and review of the tree, please engage with people reporting problems and
-> send followup patches addressing any issues that are reported if needed.
+> Yes, if the devices are compatible, e.g. there is no need to change in
+> the driver to support new device.
 > 
-> If any updates are required or you are submitting further changes they
-> should be sent as incremental updates against current git, existing
-> patches will not be replaced.
+> If the devices need auto-detection and are compatible in an auto-detect
+> way, then I don't think we have such goal.
 > 
-> Please add any relevant lists and maintainers to the CCs when replying
-> to this mail.
+> >>>
+> >>> What this small series does is adding the support for the chip. So the
+> >>> support starts with the kernel version which includes these patches. Why
+> >>> do you assume that one expect to have a proper support with an older
+> >>> kernel? I fully get the point that driver needs to deal with older
+> >>> device-tree's but having using a newer device-tree's (fw) on older
+> >>> kernels and expecting that older kernels does support the chip is a bit
+> >>> odd to me.  
+> >>
+> >> Probably need the DT maintainers to offer the opinion on this as we
+> >> disagree on how fallback compatibles are supposed to work.
+> >> I'll accept whatever they say on this point (I've been persuaded
+> >> into a more relaxed stance in the past on this).  
 > 
-> Thanks,
-> Mark
+> DTS can be used outside of kernel - other projects or new DTS with old
+> kernel - and the way of working is bound by bindings. Therefore it is
+> really good if you use new DTS with older kernel and it works.
+> 
+> As I said above, for devices that are fully compatible, this should be
+> the goal. Many SoC components are like this and we describe them that
+> way. However they do not have mostly auto-detection.
+> 
+> Now for devices which are both:
+>  - compatible according to the binding (so the interface is the same,
+> stable and handled by Linux),
+>  - AND actually significantly different, where the difference is
+> recognized by auto-detection,
+> the Linux should be reasonable and it might freely choose not to support
+> unknown devices.
 
+Ok. In this case my gut feeling would be that a new ID and no fallback
+is the best balance.  Ironically if we'd had a binding for the tmp116 first
+and fell back to that from the tmp117 we'd probably be fine (just
+have fewer features).  I guess nothing stops us documenting that binding
+even though the tmp117 is already used to match in Linux.
 
+> 
+> You can compare it to the world without DT where everything is
+> auto-detectable. The Linux kernel performs auto-detection and based on
+> this either works or does not work with the device. But the kernel has
+> full discretion to decide about it.
+> 
+> Users would be happy if kernel would work with unknown, new devices. But
+> also users would be unhappy if this damages their system because of e.g.
+> wrong voltage.
 
+Agreed - using old code is a nice to have, but not always the best choice.
+
+Jonathan
+
+> 
+> Best regards,
+> Krzysztof
+> 
 
