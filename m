@@ -2,61 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A55F76595DC
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 08:44:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 494156595E1
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 08:44:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234585AbiL3Hnh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 02:43:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58180 "EHLO
+        id S234573AbiL3Hnk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 02:43:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234734AbiL3Hmp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 02:42:45 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A43017893
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 23:42:29 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id z10so19223020wrh.10
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 23:42:29 -0800 (PST)
+        with ESMTP id S234761AbiL3Hmv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 02:42:51 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DF691A383
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 23:42:30 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id z10so19223046wrh.10
+        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 23:42:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=fairphone.com; s=fair;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=2AFK51349QJ0+Ar/9LyUa3RFs2+XbTP6GGanaFPZqqk=;
-        b=4tlJg+Kyqh+spAFYZ6rsYwogBP/vXCAFmaT1XKGDZZDMMUB++fkGLqwyuJbEIJQ7kC
-         ooM9OmaNK6b2hAgY/KK7qEKv3KN8nFmeU+93vJ2LVa6oi0VHaw1R57RcGNWHt5jotVl2
-         uH0zJPNZBuDIbAZgSC+ZTybWeLsn8RfQGcmmGZc7Ky1ghjsNDfF3X5kv1x4KHheduHL4
-         M5FC96CCgsKI3SMPsORry/ecoNGVjM3TBpmb0/4IJrvCh6dEU9aR8ZfWnoWEgl2m7lMX
-         EeAMBk+CIYZVUu8Rorz7Mxa7PMpHN9BlBygFbgLDzvpvTORkFcPs2hRcDZASqoSfpO+/
-         bBDg==
+        bh=a9KZvHtdorqf0E3UCE3FjyDYt+OjcwxTa7RCQl2CLMo=;
+        b=NWSkRKoXBESiB/nZagBfRLuPFsG5gMXGXnMO6T5e2BvIsYXh8o7eX3R64FKiyGv28r
+         Y7G3nE8cW72SQqUGd2NDbxfl0m0MoB8urwcPqSRdELxgCyEVRn9HpQoy2AynY858fUG5
+         ciyvAkHULwuZEWhgo2R0OkF9kNZJJWV3349m9Sz4f7a1+9PXBMjV1Vc5w2ArQGBJXNTe
+         61vXHo6Swb9wX8A7o3OsYta9yYAKo7D+nNYsOWByYVZBwt9HbHiCwpHVkxgcX7RQQc5a
+         zb6HFFGuNF8Eyd4kLf+4FqheIkbwR8f3IfkvNleDxCrdaKBEUXeuK2QoyudmHlvv89oI
+         bEkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=2AFK51349QJ0+Ar/9LyUa3RFs2+XbTP6GGanaFPZqqk=;
-        b=x+Jg9Tdp+2ZOJ3XK5KWZVojMzNFnLXCBb4GWb8Y58XZakzJ/nzLIF6k23EDb4VNi2w
-         rEURsY6i/g60duAW7/+omp+vUj2LyYaG8ISRNInreR6qaKenaD2UhJii3+byOHihbTEw
-         BL69l1SFbjUoRN2uECbv61CUGS+cRGYZogj8vUAjMbRoZPiTqeBgfGjadwx8SRp3k8kH
-         636+0xcAsgTDsBiL/2Ukfk5VSWTH5SWgamvHSJFx37enNk1H8gtSMzJKLP+Z3r2vFRqp
-         rsJ8wCyK7iQTe5RbFQbVl3jkZNSMPOPcck7jt5/v4SeWSB64ttvEkqkJmeESNrF/TEVR
-         rPpQ==
-X-Gm-Message-State: AFqh2kpJZZrlbD4//IHaVjiRgfvWukwwJYIEl8wsJK9FYhX1L4CbSJZD
-        AqZaODFwpxZgm7KPYmsvn5Exew/ehwtVQBSeEeg=
-X-Google-Smtp-Source: AMrXdXvvSxOl/IYJdRtoKk7/wnZsSzRjN8xIDWKHKQKkGCwAPDL65dluoUtz1mfi8uDEAqt1p56Oug==
-X-Received: by 2002:a5d:66c6:0:b0:277:ae6c:a94d with SMTP id k6-20020a5d66c6000000b00277ae6ca94dmr13187947wrw.68.1672386147843;
-        Thu, 29 Dec 2022 23:42:27 -0800 (PST)
+        bh=a9KZvHtdorqf0E3UCE3FjyDYt+OjcwxTa7RCQl2CLMo=;
+        b=DZsRHe2RksQ0JQI6roa/gme3tic34pnMr8Ke7kVzWtTwF7s1HZGzO4x7FU80pBZPAr
+         MAQH9ImJAdCHrsa8cFPzI4LA5P+Pmpe/2iNMrWQamwmJQss0yAG4Myg80Yo8QLsDRWE4
+         Vv2PW7rkr5pdqjIl6DSgN/pueREwqLbIKzmEC3qmrdmbGbVDBH+JzrPL8IE9YrkRoRDf
+         ic9LIFAjYamaVTmPXy+8KMH9u1M4yQuKCbfswhtAw6zx+/Mt+05vvBluMr0qfmTCuEb3
+         6jhqde42KFCPeTGARidaQ8DazPWh8+JcEUcCo7v4IXb44rcJ8ycxHY6LSy52CcdLPr6n
+         sljg==
+X-Gm-Message-State: AFqh2kpZBXMWflzz0v3sn3Tdx/Ao4W5qwt4FbwV5TjGeVXdzzR37x/Di
+        K2n4e1sZDojvfV0WfC2gvvvBkhEPyBpx/VLIwZ4=
+X-Google-Smtp-Source: AMrXdXvzvlboLEA512IiSe7z5KkCx4WoIHDQBkvbpJnMDjX9lWKZOjUCqTmFrx87ITkrljpO4hKKjg==
+X-Received: by 2002:adf:dd48:0:b0:242:70f0:9196 with SMTP id u8-20020adfdd48000000b0024270f09196mr20350631wrm.45.1672386148758;
+        Thu, 29 Dec 2022 23:42:28 -0800 (PST)
 Received: from [192.168.0.28] (2a02-8388-6582-fe80-0000-0000-0000-0007.cable.dynamic.v6.surfer.at. [2a02:8388:6582:fe80::7])
-        by smtp.gmail.com with ESMTPSA id a6-20020adfed06000000b0028e8693bb75sm1887655wro.63.2022.12.29.23.42.26
+        by smtp.gmail.com with ESMTPSA id a6-20020adfed06000000b0028e8693bb75sm1887655wro.63.2022.12.29.23.42.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Dec 2022 23:42:27 -0800 (PST)
+        Thu, 29 Dec 2022 23:42:28 -0800 (PST)
 From:   Luca Weiss <luca.weiss@fairphone.com>
-Date:   Fri, 30 Dec 2022 08:42:05 +0100
-Subject: [PATCH v2 1/3] arm64: dts: qcom: sm6115: Add missing reg-names
- property for UFS
+Date:   Fri, 30 Dec 2022 08:42:06 +0100
+Subject: [PATCH v2 2/3] dt-bindings: ufs: qcom: Add reg-names property for ICE
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20221209-dt-binding-ufs-v2-1-dc7a04699579@fairphone.com>
+Message-Id: <20221209-dt-binding-ufs-v2-2-dc7a04699579@fairphone.com>
 References: <20221209-dt-binding-ufs-v2-0-dc7a04699579@fairphone.com>
 In-Reply-To: <20221209-dt-binding-ufs-v2-0-dc7a04699579@fairphone.com>
 To:     Andy Gross <agross@kernel.org>,
@@ -83,27 +82,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The UFS driver expects the second reg to be named "ice" otherwise the
-Inline Crypto Engine won't get enabled.
+The code in ufs-qcom-ice.c needs the ICE reg to be named "ice". Add this
+in the bindings so the existing dts can validate successfully.
 
-Fixes: 97e563bf5ba1 ("arm64: dts: qcom: sm6115: Add basic soc dtsi")
 Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 ---
- arch/arm64/boot/dts/qcom/sm6115.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+ Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-index 572bf04adf90..85673d562723 100644
---- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-@@ -704,6 +704,7 @@ opp-202000000 {
- 		ufs_mem_hc: ufs@4804000 {
- 			compatible = "qcom,sm6115-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
- 			reg = <0x04804000 0x3000>, <0x04810000 0x8000>;
-+			reg-names = "std", "ice";
- 			interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
- 			phys = <&ufs_mem_phy_lanes>;
- 			phy-names = "ufsphy";
+diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+index b517d76215e3..a8d896e1617b 100644
+--- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
++++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+@@ -72,6 +72,10 @@ properties:
+     minItems: 1
+     maxItems: 2
+ 
++  reg-names:
++    minItems: 1
++    maxItems: 2
++
+   resets:
+     maxItems: 1
+ 
+@@ -122,6 +126,8 @@ allOf:
+         reg:
+           minItems: 1
+           maxItems: 1
++        reg-names:
++          maxItems: 1
+ 
+   - if:
+       properties:
+@@ -150,6 +156,12 @@ allOf:
+         reg:
+           minItems: 2
+           maxItems: 2
++        reg-names:
++          items:
++            - const: std
++            - const: ice
++      required:
++        - reg-names
+ 
+   - if:
+       properties:
+@@ -178,6 +190,8 @@ allOf:
+         reg:
+           minItems: 1
+           maxItems: 1
++        reg-names:
++          maxItems: 1
+ 
+   - if:
+       properties:
+@@ -203,6 +217,12 @@ allOf:
+         reg:
+           minItems: 2
+           maxItems: 2
++        reg-names:
++          items:
++            - const: std
++            - const: ice
++      required:
++        - reg-names
+ 
+     # TODO: define clock bindings for qcom,msm8994-ufshc
+ 
 
 -- 
 2.39.0
