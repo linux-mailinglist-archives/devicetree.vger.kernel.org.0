@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F589659A56
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 17:02:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51DA5659A54
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 17:02:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235397AbiL3QCR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 11:02:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35090 "EHLO
+        id S235380AbiL3QCP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 11:02:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235395AbiL3QBw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 11:01:52 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 493BFE0EB
+        with ESMTP id S235389AbiL3QBv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 11:01:51 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34ACDE08C
         for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 08:01:50 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id bf43so32239499lfb.6
+Received: by mail-lf1-x134.google.com with SMTP id 1so32234051lfz.4
         for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 08:01:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=k95saGKNV3oo8L8imXQdteC3frkkr+UuodEJidAAnPY=;
-        b=jCQ6iDRcZXPpDvREglDNCm2qTsAZ0ppEMBGyG0+pt7tgDRhQygJVHx8rZdW6L4o8eO
-         rBR/HRdiqO9SimTy6VgPs8K7ZfPshNj1IIud9wlUVDk0yQtTnOCbowNewATq1qyRaJvk
-         ffS43mwb1XCWmxqAAGrnybs6VE4UHY9xWObn6do2aT/w+Av2JIr8m1vg+IG5RQinxCxu
-         GsicuUkxyucqoQKXRsCBoPcCylCRRbK25qBVL4JxdS2cZT3rSb0xLwDOMbGg2jFpKlDe
-         W5ZG6dNAFNza+7DgbQxbapZjmcwuIn0EG4E5ShnZtGZp0r8J1qBWznFYuVATybVNz6sC
-         hg/g==
+        bh=pllbBh5k3s3WnAvY6E7FolG6ZQajmtIaJ+/Mr0bUYm0=;
+        b=EmoHFYlMs9hdzhxoDYd2Z4UKQvagKJ+8aN9R3HZI4/MYN1CuIsRsqDSd/izCAZXt84
+         KGG6TJDjNsX8TfQkni5Ipyd/429Mwaaipw89jnt7aSPcAa5C4P+QDwkBwSQTInaJVodv
+         QKw5ng7VrOvn0nTNuDmipEw4wt8+gsWY0RWDQtBaXxyNlQRbfm1xzAkejThXfKayP+/d
+         3NNWm1ggmQpwsKubMAIeqFBsyW34aTOp0/ihcLbcDoNetinBfHW+e6VwseyIhgv5JBb/
+         P7H4tewnRg144w5lLx56b9EiF7TMmH5GuIkBzA9KNN5BUAE4T+JtSk9eCaOK/w/3y/33
+         OqqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=k95saGKNV3oo8L8imXQdteC3frkkr+UuodEJidAAnPY=;
-        b=6wnnsduOk7z6fnfZ6uACC2MX4cf1od4F6tcYjfFev1WCYAap+I8IV+ECt5LpeJBkMF
-         OzTdhxHOWPOmIlr2KhvMfu9dbSwfJkuEGIvVKEd33WgiOfrJ+wCYIqDrBfGrdSLo65Jm
-         jxK8Hiq2U+rOPh2JfmiCiHyg+ok/BpsoLzuEJZY6X40sJSh+98+jnMeZxBBM8KeQgune
-         9ph1T2sFNJTtYPJ+U6uPPiY91cg2Uyp1fSxQpX0jQHLPakhBKI+Bn1cMr3Dch0gEV+Xg
-         tLvBWiajBqhBnONtmb3F0kz8sE46CHERMzxifVJF7qNYvkmnamyOZGpf/2ClhT2g0qpg
-         0m6w==
-X-Gm-Message-State: AFqh2kofmLpi++DBJgxM4Ez9MIvJfKwx8VPI+ZwNfWORsBL/fzMO/YGW
-        ulaoq5ipibiIRqqpERiu97gJAGgSkbn9B80o
-X-Google-Smtp-Source: AMrXdXuOmD/Br2iqoEI+Dq2lOSKeLA40AVIW5Ewkqr1aDH2KTyyWrxrGkqsJR2bHJ0WgIHEP3Q+ebw==
-X-Received: by 2002:a05:6512:258b:b0:4b5:b85a:5ba6 with SMTP id bf11-20020a056512258b00b004b5b85a5ba6mr9989453lfb.20.1672416108662;
-        Fri, 30 Dec 2022 08:01:48 -0800 (PST)
+        bh=pllbBh5k3s3WnAvY6E7FolG6ZQajmtIaJ+/Mr0bUYm0=;
+        b=jYDNcWjLptYx1is+W0cUB3qZeRApwrq7zJcBwPKF8ZVfl6TUir1lRYH0emgxZm8Bzf
+         S3Vkw+irLZqVeVxJ6Idw2c5K4Kk45L0szNGXNoJ979aFDNnd3k2I1AAoZ2drQTac7DpG
+         LARV6bQ4k4D2HWNOJ8rutXQkabjqJ45T3NlZfqjWwg/ZL2ETbA5waXJ1y4eWHJr5MnI2
+         s+ufJeidbRPidQLksr6Q10qd5n7fZ7r3yFbCtNAHItfvZGRZxY1bxKJFOwGbYnolRHbM
+         KtPa/BqBMwVk+EPpwMFTAtgKm0mmD9owqdSkO6Hty9qMct2yqeqMXqfE/cydSV+C0iXM
+         zXQw==
+X-Gm-Message-State: AFqh2kqezGaeOSxXNBOqfJosMUrmwkgUQ/GY3YfKnRqq1sfnhhY17/bk
+        3qJMk/QCaCeS/JWbGhBqwAObuA==
+X-Google-Smtp-Source: AMrXdXuUerX2c1HYYTDveeYwTVRRZfLrggq6WWcCLFBZgsKuV7YnQNaRLp7fzojNfkuqYUNkDoiKZQ==
+X-Received: by 2002:a05:6512:3d94:b0:4a4:68b8:f4f4 with SMTP id k20-20020a0565123d9400b004a468b8f4f4mr11730876lfv.58.1672416109789;
+        Fri, 30 Dec 2022 08:01:49 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id p1-20020ac24ec1000000b004b15bc0ff63sm3520874lfr.277.2022.12.30.08.01.47
+        by smtp.gmail.com with ESMTPSA id p1-20020ac24ec1000000b004b15bc0ff63sm3520874lfr.277.2022.12.30.08.01.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Dec 2022 08:01:48 -0800 (PST)
+        Fri, 30 Dec 2022 08:01:49 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -58,9 +58,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 6/7] arm64: dts: qcom: sm8350: align PSCI domain names with DT schema
-Date:   Fri, 30 Dec 2022 17:01:02 +0100
-Message-Id: <20221230160103.250996-6-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 7/7] arm64: dts: qcom: sm8450: align PSCI domain names with DT schema
+Date:   Fri, 30 Dec 2022 17:01:03 +0100
+Message-Id: <20221230160103.250996-7-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221230160103.250996-1-krzysztof.kozlowski@linaro.org>
 References: <20221230160103.250996-1-krzysztof.kozlowski@linaro.org>
@@ -68,8 +68,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -78,19 +77,19 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Bindings expect power domains to follow generic naming pattern:
 
-  sm8350-hdk.dtb: psci: 'cpu-cluster0', 'cpu0', 'cpu1', 'cpu2', 'cpu3', 'cpu4', 'cpu5', 'cpu6',
+  sm8450-qrd.dtb: psci: 'cpu-cluster0', 'cpu0', 'cpu1', 'cpu2', 'cpu3', 'cpu4', 'cpu5', 'cpu6',
     'cpu7' do not match any of the regexes: '^power-domain-', 'pinctrl-[0-9]+'
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8350.dtsi | 18 +++++++++---------
+ arch/arm64/boot/dts/qcom/sm8450.dtsi | 18 +++++++++---------
  1 file changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index a7da48b7e788..743ca0c80ac3 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -297,55 +297,55 @@ psci {
+diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+index 33db6b6c4123..5530bdee6f25 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+@@ -311,55 +311,55 @@ psci {
  		compatible = "arm,psci-1.0";
  		method = "smc";
  
@@ -153,7 +152,7 @@ index a7da48b7e788..743ca0c80ac3 100644
 -		CLUSTER_PD: cpu-cluster0 {
 +		CLUSTER_PD: power-domain-cpu-cluster0 {
  			#power-domain-cells = <0>;
- 			domain-idle-states = <&CLUSTER_SLEEP_0>;
+ 			domain-idle-states = <&CLUSTER_SLEEP_0>, <&CLUSTER_SLEEP_1>;
  		};
 -- 
 2.34.1
