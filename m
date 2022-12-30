@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DB2265992F
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 14:57:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8582465992D
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 14:57:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235234AbiL3N5g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 08:57:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51192 "EHLO
+        id S235225AbiL3N5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 08:57:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235230AbiL3N5E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 08:57:04 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E4F012083
+        with ESMTP id S235236AbiL3N5F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 08:57:05 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB75D1B1DE
         for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 05:56:59 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id bt23so15175915lfb.5
+Received: by mail-lf1-x12a.google.com with SMTP id f34so31794013lfv.10
         for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 05:56:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=U/0JIymRfzWnkT5ZkJG8MHW4ZCHhVkLlNKj1eR8OlNg=;
-        b=u2bFQ31d/40MfjQoMcTvocQ0k5dw0BSqHiKJ77las+/8Vd0JTKp06Q+qd3BtZ7E6Kw
-         vloTsC38MjY335x6Dwhxc75d7P2FcKnEUM2xmLHZKKo36v4ZvjnJwTr/uFbCLeAM5BSf
-         v1Tstd2hns4PgIh7n2MRt69zJP7bzeIOrR/pSGAqNgBeLXjsbGulrnVGsmLD/Zn23FSx
-         D5Fu8YZVO7QAVywfGZDkwBBkptL5WY22mOFuTD9A5sJVtprKQYPpFNKHTlylDDccmLWB
-         1MrblgVtP3ubzdnliVbO1Cs4nrnCH6ca4wvwegBBsQXVrileCmSCsFx1sXnuk34Owsap
-         qHDw==
+        bh=yp9/s8XcL0YdBuoi+jisb8bsx211FBUuKCpaqFKJu4A=;
+        b=YPZmLIfjbQWjQQ0ptB1Mmfqjk9auW+aqx1qDx/JGKmI+egvoVhPbY+aYNspz7ZMAit
+         1yi/6TFcsvtqqWBn9ysNy5xnvSrEcOGPQautwmCmmmiMl88Rj2B8+sSDdfGBytO1DxiJ
+         ixo5lfXBy71OQuD8rdR9W96JGXhwsk6Z+/b8hM+8w52hnnXI6QlxE1BnATfI4E6xkxAt
+         inuLeds1C109J1cPhTD5NQiP74mE/uX0RkaSbNMcx2xBCrsUVAMDY751P12DySiaAHQK
+         ZDf60RfdeRxlfS89Lv/U5/VIbPeMRioLuwIlkdAh9kEnDyD7j/S71aCe65eM2YKx1Hy1
+         uXWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=U/0JIymRfzWnkT5ZkJG8MHW4ZCHhVkLlNKj1eR8OlNg=;
-        b=CPpU7wXeBSlA4OV3E8RUCQahGfXLa6uimHUyhTG37+OsJRAjZUvmlHw19QvDnNCDA+
-         iPSpHkp878XwFS670aaikl/yICRe5igIhzqBgmPM30NUDxap6gjV3VHXQ51IYuFTmSok
-         kUicn27w+t8MMetRumKPbbLSJH8FuDy0dBUemiWRkAu7btLV2+EPX2hz273b8nKq29c/
-         NbJje97IxFktbEYPCHNBDMEJbXbeV7yIzGaRfjsKmnpXxcw+w0Uh/JNdPTI1LxT1SMzw
-         a5tHAtS/1TAVOCR+mdHXT0ONhOeulcpd2IUoSZ1AY2F3epG6SALQiHqDyiU/pRC3meOj
-         myew==
-X-Gm-Message-State: AFqh2krfr1NllsK3dmCXyO2V7ZaOzlFmodejr9OLI4vMkW32VPUxtT5z
-        JIx9W51QXsAoBrd5nWE3F6h1qw==
-X-Google-Smtp-Source: AMrXdXvkPprzeB1IUzETTdoVkePbL94vuQItUepj8R8qzjGYgzrprUu2+T0fKpJAOkCV285vj8fUEg==
-X-Received: by 2002:a19:7414:0:b0:4b4:bea4:15c9 with SMTP id v20-20020a197414000000b004b4bea415c9mr10172789lfe.21.1672408618030;
-        Fri, 30 Dec 2022 05:56:58 -0800 (PST)
+        bh=yp9/s8XcL0YdBuoi+jisb8bsx211FBUuKCpaqFKJu4A=;
+        b=jqdU/Bhy0hEzWC/mJ2/FW4erI5AFsKTqyVGL4gFC3sufRetO8QangNt171sGbJ+gTG
+         ODeW8QEl+fLJMGwYNL7IfdV/U4NXOzo3QFafgi6E2f6CRlXZeHgOvesnP79XZLbTWC1H
+         5Pd+Gn7hy5xkxiYI+btZ0HEvCp/0Eq/RFCO86A/NuYcFLAis3aPSK+tregCyCOI+lht/
+         q/zSg75TGJFV/CG7MoxYpmtQvu7unubUf8fZ+ukwdmeL1GhbOaLcAd41IKqh4IP6Y8Qj
+         lyM7K8PmxW8X9NnFL0gpy+vGPwNJIryyCQfWoCdnMLh7y+mUbwAHcDYBZ6Nkt/LTpWDi
+         9MkQ==
+X-Gm-Message-State: AFqh2kqZqSIww+6BVQIGvuU92NL2aY83ci84nsGAx5RxL69UHk4sIP2K
+        b13vTPCHykHLQd8SXKUq4DVBLg==
+X-Google-Smtp-Source: AMrXdXs/UgZBZEu72sGwNZexPHK2xXzY/zmUTOhC2nyM7o/gONDppRlsn8lmQ3nsWqs1mnqZx47abw==
+X-Received: by 2002:a05:6512:529:b0:4cb:1438:12d6 with SMTP id o9-20020a056512052900b004cb143812d6mr3465362lfc.8.1672408619548;
+        Fri, 30 Dec 2022 05:56:59 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id d9-20020a056512368900b004a26ba3458fsm3454787lfs.62.2022.12.30.05.56.56
+        by smtp.gmail.com with ESMTPSA id d9-20020a056512368900b004a26ba3458fsm3454787lfs.62.2022.12.30.05.56.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Dec 2022 05:56:57 -0800 (PST)
+        Fri, 30 Dec 2022 05:56:59 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -67,9 +67,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 8/9] arm64: dts: qcom: msm8916-samsung-a2015: correct motor pinctrl node name
-Date:   Fri, 30 Dec 2022 14:56:44 +0100
-Message-Id: <20221230135645.56401-8-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 9/9] arm64: dts: qcom: sc7280-idp: add amp pin config function
+Date:   Fri, 30 Dec 2022 14:56:45 +0100
+Message-Id: <20221230135645.56401-9-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221230135645.56401-1-krzysztof.kozlowski@linaro.org>
 References: <20221230135645.56401-1-krzysztof.kozlowski@linaro.org>
@@ -85,28 +85,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Correct typo in motor pinctrl node name:
+Bindings expect each pin config to come with a "function" property:
 
-  msm8916-samsung-a5u-eur.dtb: pinctrl@1000000: 'motor-en-default-stae' does not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
+  sc7280-crd-r3.dtb: pinctrl@f100000: amp-en-state: 'oneOf' conditional failed, one must be fixed:
+    'function' is a required property
+    'bias-pull-down', 'drive-strength', 'pins' do not match any of the regexes: '-pins$', 'pinctrl-[0-9]+'
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-index d600916a0e55..a2ed7bdbf528 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-@@ -434,7 +434,7 @@ mdss_sleep: mdss-sleep-state {
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+index fa10dddadbb0..43e61a1aa779 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+@@ -732,6 +732,7 @@ &sdc2_data {
+ &tlmm {
+ 	amp_en: amp-en-state {
+ 		pins = "gpio63";
++		function = "gpio";
  		bias-pull-down;
+ 		drive-strength = <2>;
  	};
- 
--	motor_en_default: motor-en-default-stae {
-+	motor_en_default: motor-en-default-state {
- 		pins = "gpio76";
- 		function = "gpio";
- 
 -- 
 2.34.1
 
