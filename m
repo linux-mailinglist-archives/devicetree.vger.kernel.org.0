@@ -2,71 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A41A6659612
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 09:06:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B8CA2659614
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 09:08:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234572AbiL3IGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 03:06:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38868 "EHLO
+        id S234659AbiL3II0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 03:08:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229839AbiL3IGr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 03:06:47 -0500
-Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com [IPv6:2607:f8b0:4864:20::e35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCE3712D15
-        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 00:06:46 -0800 (PST)
-Received: by mail-vs1-xe35.google.com with SMTP id i188so20619283vsi.8
-        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 00:06:46 -0800 (PST)
+        with ESMTP id S233908AbiL3IIZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 03:08:25 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7727112AE3
+        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 00:08:24 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id g13so30806451lfv.7
+        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 00:08:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=iQdcqRijxUkHsak+jAfhkkvLukBS0vcYzdFtrdyXflw=;
-        b=hJrOI48JiYR65s9nCvSCbLB6/evML3aOoc6h+o+f3sjNM430ssdY4mTfsfoOuqiE77
-         SfnNNqM26q/P0n106if0Zu2bwW9SvUE5hjv4D9piG3JN02D1FVQl65JpTXlhhT0mEDhD
-         lf0+C7oAiy61ZM+ycfbYEnO9A6aiVYZIH5934=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qZuUPPj7POQgrgUmQr0W44coDKoeQ+r4sHxkONGBEbo=;
+        b=gcQi1AjRCRn0NUKC9qb1Lxm3ZX3cooPwQ0vv7LWza7T9fSIfpwbAFvDwGjXZZ/UM5+
+         iWw8rLFaPnauTg3x8EAuk8EqYj51wHLdrv2B5lb7ukwnjBeCtQSCv3/It0AM39c1EHFJ
+         AqxFb2a/6etdbc5UziuZZSNueKJ4uBe0zdU6urtjk3b3mDYDASMKng3eaLKJh8p5p0LU
+         83volJT0FNUmMCCbwGxoH/6AeFs08P55kPZRFsAu9kR2NI1AEbh6uLubHO/b8x0CkVnq
+         rxI9oWOU9xx6+aVdu7idMmC3DLP68NeRhPGQ8MiTjekZRjPDtuHbbJKNdVg+6TAt0wDz
+         aaWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=iQdcqRijxUkHsak+jAfhkkvLukBS0vcYzdFtrdyXflw=;
-        b=xFyVyVmn1gGK1Eil1rXDYJdwz+JJPfOC3c6r0wetoNnCHY9IE6nF8A95TgRBfw9z10
-         jMjNwE0xo3ZokN9yWspA6TKDKy5ZsXu6+QNb4g6dJxU4MG8xaGe8P7BBC1qG+DjOkUwS
-         aEevRRip7GrOQPR/Hkapx/c/ZrHF9WoFCQnIQ3s0ZY0yQozuaJcVl4dDQ4z67Gt0KVB1
-         jMT7vUcA0bSVQnvfdLM+iYN51M1N9BdBc+bCercJo21mJEfFkMcKU0vcsJVPmpqcOpFh
-         XsHsPvctamCElR94nYhrE1IKc10o2vpQWs2VATBWdOiph6Frjc2pkG6EeWmGlqk3RcSe
-         AqKw==
-X-Gm-Message-State: AFqh2kptAyKDJexA/QibY81NnQQDMf4DSU213jSZIw34rgHFRoXCduTb
-        Yy5O6/CsCDzwLRpvMK7aMEjZBOCQudtbkxrkjEa0pg==
-X-Google-Smtp-Source: AMrXdXtUtwb9Xd2cX7zaHUb5ee4VgtB+nh99Dg/x/skgVf2ZCGUYciWzd1E+Ypz1KXO3wscCEMwAn2Ze8MjLtrhpUfM=
-X-Received: by 2002:a05:6102:74b:b0:3ad:3d65:22b with SMTP id
- v11-20020a056102074b00b003ad3d65022bmr4417228vsg.65.1672387606063; Fri, 30
- Dec 2022 00:06:46 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qZuUPPj7POQgrgUmQr0W44coDKoeQ+r4sHxkONGBEbo=;
+        b=cQjU+QWCFlB1htYBRG+6JnqRuUaBw8ugxL1TtqXRdIVEyKx1BT20RI5QCHLunsZTdo
+         R28tyBz5XLVmuPNZGUkdh+dH56ZxCrYlA4Bq45QZX36evMu/VwP+nV09ugf45bQfvv5b
+         CHO7lV64klSZSajJxB31J7VIRX4vDY1V8y0KYlaidK2fVnJ1rfzNfnHrDFcjpCFKyypH
+         +l20JDxJiCZNcNbt1NQ6DNvx5D/KtInUQyKfNcnNgv8GnhpcRa3D1C0uKE+0q6PY5xzX
+         EakAOrapr5egtSFXV2lp/3zm1UHui15A63GDpdjs30Y4A/E+ahLkCAf/LJfokhaZn6gH
+         BAzQ==
+X-Gm-Message-State: AFqh2krN1bnifoO11s5ifyunnulSMkx7qkiv94RNGh3Fq3hckhYV4uzp
+        70DicAZObwOUEsqTlbIgPYfwgGsjPEhOj/s1
+X-Google-Smtp-Source: AMrXdXt2dvOLFZXV9QC0OXYs6SE6Jvai4T8mNKAEwswxW7IRGJJWozZmK0quXrerlcKLULgfRmjyKQ==
+X-Received: by 2002:a05:6512:4002:b0:4b5:637f:f1b0 with SMTP id br2-20020a056512400200b004b5637ff1b0mr9675274lfb.2.1672387702887;
+        Fri, 30 Dec 2022 00:08:22 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id h4-20020a056512054400b004a9b9ccfbe6sm3396021lfl.51.2022.12.30.00.08.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 30 Dec 2022 00:08:22 -0800 (PST)
+Message-ID: <9b37ca5b-b28a-f5c0-661f-3c7168439470@linaro.org>
+Date:   Fri, 30 Dec 2022 09:08:21 +0100
 MIME-Version: 1.0
-References: <20221223094259.87373-1-angelogioacchino.delregno@collabora.com> <20221223094259.87373-16-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221223094259.87373-16-angelogioacchino.delregno@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Fri, 30 Dec 2022 16:06:35 +0800
-Message-ID: <CAGXv+5H9FqFeng+dev2A-W6FPuWvVuLMgSgVcubwE7NLCy58pw@mail.gmail.com>
-Subject: Re: [PATCH v2 15/23] clk: mediatek: mt8192: Join top_adj_divs and top_muxes
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, matthias.bgg@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        johnson.wang@mediatek.com, miles.chen@mediatek.com,
-        fparent@baylibre.com, chun-jie.chen@mediatek.com,
-        sam.shih@mediatek.com, y.oudjana@protonmail.com,
-        nfraprado@collabora.com, rex-bc.chen@mediatek.com,
-        ryder.lee@kernel.org, daniel@makrotopia.org,
-        jose.exposito89@gmail.com, yangyingliang@huawei.com,
-        pablo.sun@mediatek.com, msp@baylibre.com, weiyi.lu@mediatek.com,
-        ikjn@chromium.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 1/2] dt-bindings: soc: qcom: apr: Make
+ qcom,protection-domain optional again
+Content-Language: en-US
+To:     Stephan Gerhold <stephan@gerhold.net>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Jiasheng Jiang <jiasheng@iscas.ac.cn>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <20221229151648.19839-1-stephan@gerhold.net>
+ <20221229151648.19839-2-stephan@gerhold.net>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221229151648.19839-2-stephan@gerhold.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,37 +84,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 23, 2022 at 5:43 PM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> These two are both mtk_composite arrays, one dependent on another, but
-> that's something that the clock framework is supposed to sort out and
-> anyway registering them separately isn't going to ease the framework's
-> job in checking dependencies.
->
-> Put the contents of top_adj_divs in top_muxes to join them together
-> and register them in one shot.
->
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+On 29/12/2022 16:16, Stephan Gerhold wrote:
+> The protection domain functionality exists only in SoCs starting from
+> MSM8998 [1], while the APR bindings are also used on older platforms.
+> 
+> Commit 41288c305836 ("ASoC: dt-bindings: qcom,apr: Split services to
+> shared schema") made the "qcom,protection-domain" required but it
+> should remain optional to avoid dtbs_check warnings on older platforms,
+> e.g.:
+> 
+> arch/arm64/boot/dts/qcom/apq8096-db820c.dtb:
+>   apr: service@3: 'qcom,protection-domain' is a required property
+>   From schema: Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml
+> 
+> [1]: https://lore.kernel.org/all/20200312120842.21991-1-sibis@codeaurora.org/
+> 
+> Fixes: 41288c305836 ("ASoC: dt-bindings: qcom,apr: Split services to shared schema")
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 > ---
->  drivers/clk/mediatek/clk-mt8192.c | 13 ++-----------
->  1 file changed, 2 insertions(+), 11 deletions(-)
->
-> diff --git a/drivers/clk/mediatek/clk-mt8192.c b/drivers/clk/mediatek/clk-mt8192.c
-> index ec9dc7fe848e..702770326286 100644
-> --- a/drivers/clk/mediatek/clk-mt8192.c
-> +++ b/drivers/clk/mediatek/clk-mt8192.c
-> @@ -698,9 +698,7 @@ static struct mtk_composite top_muxes[] = {
->         MUX(CLK_TOP_APLL_I2S7_M_SEL, "apll_i2s7_m_sel", apll_i2s_m_parents, 0x320, 23, 1),
->         MUX(CLK_TOP_APLL_I2S8_M_SEL, "apll_i2s8_m_sel", apll_i2s_m_parents, 0x320, 24, 1),
->         MUX(CLK_TOP_APLL_I2S9_M_SEL, "apll_i2s9_m_sel", apll_i2s_m_parents, 0x320, 25, 1),
-> -};
-> -
-> -static const struct mtk_composite top_adj_divs[] = {
-> +       /* APLL_DIV */
 
-This would be CLK_AUDDIV_2 ~ 4 actually. 4 dividers per register.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Otherwise,
+Best regards,
+Krzysztof
 
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
