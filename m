@@ -2,59 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA2B16598B6
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 14:27:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BFA66598BE
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 14:34:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231392AbiL3N1C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 08:27:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38002 "EHLO
+        id S230283AbiL3Ne4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 08:34:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230216AbiL3N1C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 08:27:02 -0500
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A313B71
-        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 05:27:00 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2BUDQl7p049625;
-        Fri, 30 Dec 2022 07:26:47 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1672406807;
-        bh=dbCx/VXUiWAoUqcghBEwXB4ZiVVFhxpChn2d7CnKOXU=;
-        h=From:To:CC:Subject:Date;
-        b=ZIW+RKVz4OU9MFov9wSeeSoFO4Vyjv+6tywWrO+5IoE5KwZxvN5FTq7qfr4kRvlG+
-         dYBQ/v6pbJr0L0V/6HRcLVLkSeR8tFcg6Qe/1fcEjZU9/GBm3r1WIizA5RY0gccWHv
-         1SO8ofVJSaHSU0zaAQoKWxAEzi/No8hpV813c55Q=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2BUDQlrF010566
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 30 Dec 2022 07:26:47 -0600
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 30
- Dec 2022 07:26:47 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Fri, 30 Dec 2022 07:26:47 -0600
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2BUDQkpp003672;
-        Fri, 30 Dec 2022 07:26:46 -0600
-From:   Jai Luthra <j-luthra@ti.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231392AbiL3Nex (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 08:34:53 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 475311A834;
+        Fri, 30 Dec 2022 05:34:50 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D2926B81AD4;
+        Fri, 30 Dec 2022 13:34:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3229C433EF;
+        Fri, 30 Dec 2022 13:34:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1672407287;
+        bh=yrf2Y3khUKxgM7o3Wxz+A9SrdKCJD/kM3XHdczUHHOo=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=bstHmpurRjvPkBxZV4rUmq4T5nmLlDq0Lwm5RwqpyYJMS6Eyj1gdwvjxn1vQzMqf7
+         gfDcD8fYulm9R92JEn0YGYbQ4NEbIOAfPc3jno2y+p7ScnF0MqwG7kOUVG8rWCkvhN
+         WJ0YF7aDcCmnmabzQZFdvU1dnQbBdkq2ojpQRakIMAMkPAxXyZSTepP6pGVeNkjtPJ
+         IsMBlv9qfd+6CLascwe2rfzpcFprPlL1U77q6hK7p+1jnett0w03WIMZaMZbyjA8R5
+         1QUhz78+6wiWpKP7SUubltEnM//9YbaJkYrK11kNkpY/ReAQ8o/U7YHJyu2C+J35+X
+         5aV48SEu6fJ4w==
+From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        Jai Luthra <j-luthra@ti.com>
-Subject: [PATCH v2] dt-bindings: sound: tlv320aic3x: Add optional clock and port properties
-Date:   Fri, 30 Dec 2022 18:56:44 +0530
-Message-ID: <20221230132644.6398-1-j-luthra@ti.com>
-X-Mailer: git-send-email 2.17.1
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>
+Cc:     linux-phy@lists.infradead.org,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, Johan Hovold <johan@kernel.org>
+Subject: Re: (subset) [PATCH v4 0/8] PCI/phy: Add support for PCI on sm8350 platform
+Date:   Fri, 30 Dec 2022 14:34:38 +0100
+Message-Id: <167240726511.753517.16556407698236838050.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221118233242.2904088-1-dmitry.baryshkov@linaro.org>
+References: <20221118233242.2904088-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,60 +66,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe optional properties for clocks and ports that were missing in
-the original txt binding, to fix warnings like:
+On Sat, 19 Nov 2022 01:32:34 +0200, Dmitry Baryshkov wrote:
+> SM8350 is one of the recent Qualcomm platforms which lacks PCIe support.
+> Use sm8450 PHY tables to add support for the PCIe hosts on Qualcomm SM8350 platform.
+> 
+> Note: the PCIe0 table is based on the lahaina-v2.1.dtsi file, so it
+> might work incorrectly on earlier SoC revisions.
+> 
+> Dependencies:
+> - phy/next (for PHY patches only)
+> 
+> [...]
 
-aic33@18: 'assigned-clock-parents', 'assigned-clock-rates',
-	'assigned-clocks' do not match any of the regexes:
-	'pinctrl-[0-9]+'
-	arch/arm/boot/dts/omap2420-n810.dtb
+Applied to pci/qcom, thanks!
 
-tlv320aic3106@1b: 'port' does not match any of the regexes:
-	'pinctrl-[0-9]+'
-	arch/arm/boot/dts/am335x-sl50.dtb
+[1/8] dt-bindings: PCI: qcom: Add sm8350 to bindings
+      https://git.kernel.org/lpieralisi/pci/c/781d814cc348
 
-codec@18: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/imx6dl-gw5903.dtb
-	arch/arm/boot/dts/imx6q-gw5903.dtb
-
-Some uses of "port" still lead to warnings because they pass clocks in
-the endpoint, but that is discouraged:
-https://lore.kernel.org/all/20210205152644.GA3083322@robh.at.kernel.org/
-
-Signed-off-by: Jai Luthra <j-luthra@ti.com>
----
-
-Splitting this patch from v5 of the old series, as the base bindings in 
-[1/2] were picked in broonie's tree
-
-v2:
-- Add maxItems to clocks
-- Use audio-graph-port bindings
-
-v1:
-https://lore.kernel.org/all/20221227082717.29561-3-j-luthra@ti.com/
-
- .../devicetree/bindings/sound/ti,tlv320aic3x.yaml          | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/sound/ti,tlv320aic3x.yaml b/Documentation/devicetree/bindings/sound/ti,tlv320aic3x.yaml
-index f0375bbf4c40..e8ca9f3369f8 100644
---- a/Documentation/devicetree/bindings/sound/ti,tlv320aic3x.yaml
-+++ b/Documentation/devicetree/bindings/sound/ti,tlv320aic3x.yaml
-@@ -110,6 +110,13 @@ properties:
-   '#sound-dai-cells':
-     const: 0
- 
-+  clocks:
-+    maxItems: 1
-+
-+  port:
-+    $ref: audio-graph-port.yaml#
-+    unevaluatedProperties: false
-+
- required:
-   - compatible
-   - reg
--- 
-2.17.1
-
+Thanks,
+Lorenzo
