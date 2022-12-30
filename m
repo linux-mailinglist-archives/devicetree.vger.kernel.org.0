@@ -2,124 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C6DA65957E
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 07:42:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 22CAF659A2C
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 16:49:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229490AbiL3Gmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 01:42:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42834 "EHLO
+        id S235103AbiL3Pt2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 10:49:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229839AbiL3Gmy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 01:42:54 -0500
-Received: from mail-vs1-xe36.google.com (mail-vs1-xe36.google.com [IPv6:2607:f8b0:4864:20::e36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8852186AD
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 22:42:51 -0800 (PST)
-Received: by mail-vs1-xe36.google.com with SMTP id m129so14701731vsc.11
-        for <devicetree@vger.kernel.org>; Thu, 29 Dec 2022 22:42:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=XrpQaBNpbz5C7gEc30JXJD4ksBAoVukkRs4REF7J3cA=;
-        b=ieXRxqKlr8oyA7r8oWv5vNjeFdB1A3ZleV0nsNDeN+cCb+ZLeuFA5X93VFGh/jXSpy
-         8vhLveMu+xVU3utEC/s5ogI75eX3T82AglX1Uu2BHmrdqEb5fqhkuelWB5l3GEOzeI0i
-         GFlJcKDDe2AAgKzGmoaCY8hHz4nCxh5d6ERJQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XrpQaBNpbz5C7gEc30JXJD4ksBAoVukkRs4REF7J3cA=;
-        b=lummWxkGIqQlOwSAkYl4KIwVOnhOF3xNEUVtIigW55CdKm8ZFCEhnm0/DvUsJpLE67
-         WDdV4Svk4/t2GoVZwOE5Lu7DGuQCUy7P3sdfNLXPrgR8vcqXff6WH1BojWpiN2Dnq+4C
-         b4+ehAbnd7h4P2gNK0/2SyLrsQnXFAAzITEkP/rmF1p2bLn7TZb27Fkp3r8oUHGbNFf4
-         xOD3WE2mL2X2zpvtid8H0UbcHMN05+OUHsqDJfMC6r0HZpSTo6VNgOerqdrJffT/BAwy
-         UAtAc0KyWYxwHSNLhCHuJdpFfHGbsFP2U3nICKktQNaILTfXTBg5590E9YQRcuqiW0Uq
-         wCvg==
-X-Gm-Message-State: AFqh2kpIdklOBwmb40vmxKFZ7wBAlEyLC1D9G1ntFI9xG1szaMpfPmwd
-        4vCOSmVijetEJFLkxwwy5avP7J/AndEr8tB+CGqKt13sQWvEx5GC
-X-Google-Smtp-Source: AMrXdXvrIUXju3J24bym43P+d+BGgTRL65FUNwwpDeRTxYGdxEQI/sLV9PJ9RkGhzNeKQ2VL0EKFXN2ejtTMxQEBC1c=
-X-Received: by 2002:a05:6102:3d9f:b0:3c4:4918:80c with SMTP id
- h31-20020a0561023d9f00b003c44918080cmr2656935vsv.9.1672382570811; Thu, 29 Dec
- 2022 22:42:50 -0800 (PST)
+        with ESMTP id S229527AbiL3Pt0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 10:49:26 -0500
+X-Greylist: delayed 23679 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 30 Dec 2022 07:49:24 PST
+Received: from mail.vacuumatic.cc (vacuumatic.cc [163.123.140.34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A73F1B9EF
+        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 07:49:24 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+        by mail.vacuumatic.cc (Postfix) with ESMTP id EE90570B0071;
+        Fri, 30 Dec 2022 01:57:24 -0500 (EST)
+Received: from mail.vacuumatic.cc ([127.0.0.1])
+        by localhost (mail.vacuumatic.cc [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id ujLDe0S8FQLJ; Fri, 30 Dec 2022 01:57:23 -0500 (EST)
+Received: from localhost (localhost [127.0.0.1])
+        by mail.vacuumatic.cc (Postfix) with ESMTP id BB8BA70B0066;
+        Fri, 30 Dec 2022 01:57:19 -0500 (EST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.vacuumatic.cc BB8BA70B0066
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vacuumatic.cc;
+        s=BD5E5048-7767-11ED-9AB1-AEF27DAD29AF; t=1672383439;
+        bh=8OSRQtZ/XGMt0m+/MV768q5oZkUB/T254Ol9zod/hVE=;
+        h=Date:From:Message-ID:MIME-Version;
+        b=LlXCJMBbefl3ElB8nEr+TV28dIICqVEW7Rf3oBvWG5K471GvpWsPE7fMtXoK9XqAC
+         mI6VLqftBayGNWp0WIYpi3/8TpDLHHIsshRZ2jagH1Z7kQn6awjNLlQM2bfdy+SkoL
+         Lljkcco20oyaBG7rdfMLuNTMRM7fYBFWQoqzjPTsrKVisXfTpO1om60bgRwTPDyDYf
+         WER7UQoFznPXnQLC+haCZ8bSLH6IKnrfffhvI6gbw9w4+LfS19kVUBMuseFBjw4slW
+         acrz7M9/czgVk4bynY9em1eu228KWlsdYFWaY90Qn4rK6KnT3EdsIaH645ZBO1hky5
+         iiF6hCtwP89+w==
+X-Virus-Scanned: amavisd-new at vacuumatic.cc
+Received: from mail.vacuumatic.cc ([127.0.0.1])
+        by localhost (mail.vacuumatic.cc [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id JkbToB9vD_-E; Fri, 30 Dec 2022 01:57:19 -0500 (EST)
+Received: from mail.vacuumatic.cc (mail.vacuumatic.cc [163.123.140.34])
+        by mail.vacuumatic.cc (Postfix) with ESMTP id C133370AFC33;
+        Fri, 30 Dec 2022 01:57:08 -0500 (EST)
+Date:   Fri, 30 Dec 2022 01:57:08 -0500 (EST)
+From:   Lukas Reinhardt <support@vacuumatic.cc>
+Reply-To: Lukas Reinhardt <lukreinhard1@vivaldi.net>
+Message-ID: <1209536302.254834.1672383428728.JavaMail.zimbra@vacuumatic.cc>
+In-Reply-To: <1397014707.241670.1672348232055.JavaMail.zimbra@vacuumatic.cc>
+References: <1397014707.241670.1672348232055.JavaMail.zimbra@vacuumatic.cc>
+Subject: 3% IR Loan Offer
 MIME-Version: 1.0
-References: <20221223094259.87373-1-angelogioacchino.delregno@collabora.com> <20221230061309.16643-1-miles.chen@mediatek.com>
-In-Reply-To: <20221230061309.16643-1-miles.chen@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Fri, 30 Dec 2022 14:42:39 +0800
-Message-ID: <CAGXv+5HqLc2xsz6b_d5hrPiAu363aMcJkQrqX32ukA2pcsj6kQ@mail.gmail.com>
-Subject: Re: [PATCH v2 00/23] MediaTek clocks cleanups and improvements
-To:     Miles Chen <miles.chen@mediatek.com>
-Cc:     angelogioacchino.delregno@collabora.com,
-        chun-jie.chen@mediatek.com, daniel@makrotopia.org,
-        devicetree@vger.kernel.org, fparent@baylibre.com,
-        ikjn@chromium.org, johnson.wang@mediatek.com,
-        jose.exposito89@gmail.com, kernel@collabora.com,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        matthias.bgg@gmail.com, msp@baylibre.com, mturquette@baylibre.com,
-        nfraprado@collabora.com, pablo.sun@mediatek.com,
-        rex-bc.chen@mediatek.com, robh+dt@kernel.org, ryder.lee@kernel.org,
-        sam.shih@mediatek.com, sboyd@kernel.org, weiyi.lu@mediatek.com,
-        y.oudjana@protonmail.com, yangyingliang@huawei.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [163.123.140.34]
+X-Mailer: Zimbra 8.8.15_GA_4484 (zclient/8.8.15_GA_4484)
+Thread-Topic: 3% IR Loan Offer
+Thread-Index: u96i7u0zPj8LOsjj2ctwnSi+vmZefwh1k8E0
+X-Spam-Status: Yes, score=7.4 required=5.0 tests=BAYES_99,BAYES_999,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,MISSING_HEADERS,
+        RCVD_IN_MSPIKE_H2,RCVD_IN_VALIDITY_RPBL,REPLYTO_WITHOUT_TO_CC,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Report: *  3.5 BAYES_99 BODY: Bayes spam probability is 99 to 100%
+        *      [score: 0.9998]
+        *  0.2 BAYES_999 BODY: Bayes spam probability is 99.9 to 100%
+        *      [score: 0.9998]
+        *  1.3 RCVD_IN_VALIDITY_RPBL RBL: Relay in Validity RPBL,
+        *      https://senderscore.org/blocklistlookup/
+        *      [163.123.140.34 listed in bl.score.senderscore.com]
+        * -0.0 RCVD_IN_MSPIKE_H2 RBL: Average reputation (+2)
+        *      [163.123.140.34 listed in wl.mailspike.net]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  1.0 MISSING_HEADERS Missing To: header
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        *  1.6 REPLYTO_WITHOUT_TO_CC No description available.
+X-Spam-Level: *******
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 30, 2022 at 2:13 PM Miles Chen <miles.chen@mediatek.com> wrote:
-> > Changes in v2:
-> >  - Moved dt-bindings CLK_DUMMY to clk-mtk.h instead
-> >
-> >
-> > This series performs cleanups and improvements on MediaTek clock
-> > drivers, greatly reducing code duplication (hence also reducing
-> > kernel size).
-> >
-> > There would be a lot to say about it, but summarizing:
-> >
-> > * Propagates struct device where possible in order to introduce the
-> >   possibility of using Runtime PM on clock drivers as needed,
-> >   possibly enhancing reliability of some platforms (obviously, this
-> >   will do nothing unless power-domains are added to devicetree);
-> >
-> > * Cleans up some duplicated clock(s) registration attempt(s): on
-> >   some platforms the 26M fixed factor clock is registered early,
-> >   but then upon platform_driver probe, an attempt to re-register
-> >   that clock was performed;
-> >
-> > * Removes some early clock registration where possible, moving
-> >   everything to platform_driver clock probe;
-> >
-> > * Breaks down the big MT8173 clock driver in multiple ones, as it's
-> >   already done with the others, cleans it up and adds possibility
-> >   possibility to compile non-boot-critical clock drivers (for 8173)
-> >   as modules;
-> >
-> > * Extends the common mtk_clk_simple_probe() function to be able to
-> >   register multiple MediaTek clock types;
-> >
-> > * Removes duplicated [...]_probe functions from multiple MediaTek SoC
-> >   clock drivers, migrating almost everything to the common functions
-> >   mtk_clk_simple_probe();
-> >
-> > * Adds a .remove() callback, pointing to the common mtk_clk_simple_remove()
-> >   function to all clock drivers that were migrated to the common probe;
-> >
-> > * Some more spare cleanups here and there.
-> >
-> > All of this was manually tested on various Chromebooks (with different MTK
-> > SoCs) and no regression was detected.
-> >
-> > Cheers!
->
-> I tested this v2 series on mt6779 and mt8192 without any problem.
+Hello,
 
-Please give Tested-by. :)
+We are a Kuwait Based Investment company offering corporate and personal loans at 3% interest rate for the duration of 10 years. We also give 1% commission to brokers, who introduce project owners for finance or other opportunities.
+
+Please get back to me if you are interested in more details.
+
+
+Best Regards,
+Mr.Lukas Reinhardt
+Assistant Secretary
+General Global Financial Investment.
