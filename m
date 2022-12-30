@@ -2,63 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9C31659AB8
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 17:55:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C804659AD4
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 18:09:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235159AbiL3Qz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 11:55:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52456 "EHLO
+        id S235273AbiL3RJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 12:09:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235124AbiL3Qz1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 11:55:27 -0500
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47DA312742;
-        Fri, 30 Dec 2022 08:55:26 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2BUGtCup043522;
-        Fri, 30 Dec 2022 10:55:12 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1672419312;
-        bh=d30Wym9qx6BNk0JFWtaJxSIVPqMT14wAaa/TcS4I8wY=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=kCg6CxOp+8JjMg31ZywwYJEYoOuyaZ1qCMqqcvwbGP3lmg71EuQ9/X+FiI5PXnRVV
-         Ik5Aj46uAsLp0x+RB9p5dzjGwLwcVA7CuGihDglqAioXX8aD0UZy3pqFltfSHAjqpZ
-         k499sXijJoEEvlYC7IYElg3zuQpzJrUTuCECUi5I=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2BUGtCpG084689
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 30 Dec 2022 10:55:12 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 30
- Dec 2022 10:55:11 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Fri, 30 Dec 2022 10:55:11 -0600
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2BUGtBbQ004873;
-        Fri, 30 Dec 2022 10:55:11 -0600
-Date:   Fri, 30 Dec 2022 10:55:11 -0600
-From:   Bryan Brattlof <bb@ti.com>
-To:     Dhruva Gole <d-gole@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>, <nm@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231193AbiL3RJF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 12:09:05 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0337114011;
+        Fri, 30 Dec 2022 09:09:04 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 95AB561B0C;
+        Fri, 30 Dec 2022 17:09:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D798AC433D2;
+        Fri, 30 Dec 2022 17:09:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1672420144;
+        bh=GvOiKqNHF1H13zIfDzDktRmecgOy4gbqAWyr1vFM/84=;
+        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+        b=Pa2dtf4MfixEfHN8xynX38q0GPGJHp0VN/zKLX/gGc1+pO+MPbw56VNkUFU3lBg9q
+         uK4rcvqNnC4iWfRvp+Nvc2zrw4OI48KnOUVk93nnXmwGuS70rQJmmSAtN9zSWBqfjl
+         yie+H8PXjJY9Ax9Yc9eJdgqM6Y/yE79v8yBsMUp6XtUjQ+RfltNqjF4JjTsb4TkQCt
+         KdbkKQ9JF/5FR4hoRpROuWiYP5yp3h6hunc9C+2/lxeRWqiWcspsZfIKNjLdK/PP71
+         2fJmYLNEzZt1Dr8UWy7G8g/ilV8rcjgx+qdf0/Cl7Y3SIIQVPCCvNDAlFujz7zytsT
+         zJPYBtdTa76xw==
+From:   Felipe Balbi <balbi@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "linux-rockchip@lists.infradead.org" 
+        <linux-rockchip@lists.infradead.org>,
+        Johan Jonker <jbx6244@gmail.com>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am62-main: Fix clocks for McSPI
-Message-ID: <20221230165511.7spk6cedrtm6nkv2@bryanbrattlof.com>
-References: <20221227051208.158894-1-d-gole@ti.com>
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: usb: snps,dwc3: Allow power-domains
+ property
+In-Reply-To: <CAL_Jsq+viP_aY3n378WC7WpxZFnsTc-vKjW9Ojvcy0Ef-z09Ng@mail.gmail.com>
+References: <20221219191038.1973807-1-robh@kernel.org>
+ <87edsua5q4.fsf@balbi.sh>
+ <CAL_JsqKgGWN93QJ=V34=X3hC2bgdcd3vwO0Mne-8z8HOfVDz-g@mail.gmail.com>
+ <878riy9ztm.fsf@balbi.sh> <20221223235712.h54lggnjjuu3weol@synopsys.com>
+ <CAL_Jsq+gCi8g0jY2ic1tJebc_JijMU-GntWQg09q+X41O3=1RA@mail.gmail.com>
+ <87o7rlffi7.fsf@balbi.sh>
+ <CAL_Jsq+viP_aY3n378WC7WpxZFnsTc-vKjW9Ojvcy0Ef-z09Ng@mail.gmail.com>
+Date:   Fri, 30 Dec 2022 19:08:58 +0200
+Message-ID: <87k028g6ol.fsf@balbi.sh>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20221227051208.158894-1-d-gole@ti.com>
-X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Type: text/plain
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,15 +68,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On December 27, 2022 thus sayeth Dhruva Gole:
-> Fixes the clock Device ID's in the DT according to the tisci docs clock
-> identifiers for AM62x
-> 
-> Signed-off-by: Dhruva Gole <d-gole@ti.com>
-> ---
 
-Good catch!
+Hi,
 
-Reviewed-by: Bryan Brattlof <bb@ti.com>
+Rob Herring <robh@kernel.org> writes:
+>> >> > >> >  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 3 +++
+>> >> > >> >  1 file changed, 3 insertions(+)
+>> >> > >> >
+>> >> > >> > diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>> >> > >> > index 6d78048c4613..bcefd1c2410a 100644
+>> >> > >> > --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>> >> > >> > +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>> >> > >> > @@ -91,6 +91,9 @@ properties:
+>> >> > >> >          - usb2-phy
+>> >> > >> >          - usb3-phy
+>> >> > >> >
+>> >> > >> > +  power-domains:
+>> >> > >> > +    maxItems: 1
+>> >> > >>
+>> >> > >> AFAICT this can be incorrect. Also, you could have Cc the dwc3
+>> >> > >> maintainer to get comments.
+>> >>
+>> >> Felipe is correct. We have 2 power-domains: Core domain and PMU.
+>> >
+>> > Power management unit? Performance management unit?
+>> >
+>> > That doesn't change that the rk3399 is 1 and we're stuck with it. So I
+>> > can say 1 or 2 domains, or we add the 2nd domain when someone needs
+>> > it.
+>>
+>> Isn't the snps,dwc3.yaml document supposed to document dwc3's view of
+>> the world? In that case, dwc3 expects 2 power domains. It just so
+>> happens that in rk3399 they are fed from the same power supply, but
+>> dwc3' still thinks there are two of them. No?
+>
+> Yes. That is how bindings *should* be. However, RK3399 defined one PD
+> long ago and it's an ABI. So we are stuck with it. Everyone else put
 
-~Bryan
+Are you confusing things, perhaps? DWC3, the block Synopsys licenses,
+has, as Thinh confirmed, 2 internal power domains. How OEMs (TI, Intel,
+Rockchip, Allwinner, etc) decide to integrate the IP into their systems
+is something different. That is part of the (so-called)
+wrapper. Different integrators will wrap Synopsys IP however they see
+fit, as long as they can provide a suitable translation layer between
+Synopsys own view of the world (its own interconnect implementation, of
+which there are 3 to choose from, IIRC) and the rest of the SoC.
+
+Perhaps what RK3399 did was provide a single power domain at the wrapper
+level that feeds both of DWC3's own power domains, but DWC3 itself still
+has 2 power domains, that's not something rockchip can change without
+risking the loss of support from Synopsys, as it would not be Synopsys
+IP anymore.
+
+> power-domains in the parent because obviously the DWC3 has 0
+> power-domains.
+
+How did you come to this conclusion?
+
+>> It's a similar situation when you have multiple clock domains with the
+>> same parent clock.
+>
+> Yes, that's a common problem in clock bindings too. Not really
+> anything we can do about that other than require a detailed reference
+> manual with every binding and someone (me) reviewing the manual
+> against the binding. Neither of those are going to happen. Even on Arm
+> Primecell blocks which clearly (and publicly) document the clocks,
+> we've gotten these wrong (or .dts authors just didn't follow the
+> binding).
+
+Heh
+
+-- 
+balbi
