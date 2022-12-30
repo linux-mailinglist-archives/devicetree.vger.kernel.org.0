@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA535659A63
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 17:08:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71F98659A65
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 17:10:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229456AbiL3QIn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 11:08:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38846 "EHLO
+        id S229464AbiL3QKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 11:10:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234929AbiL3QIm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 11:08:42 -0500
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 123D810B59
-        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 08:08:41 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id v23so12319258ljj.9
-        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 08:08:40 -0800 (PST)
+        with ESMTP id S229489AbiL3QKX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 11:10:23 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C1EA120B2
+        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 08:10:22 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id y25so32266193lfa.9
+        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 08:10:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=k+XZHGIpulnrk6UeuGmkBAGm9SCc/MFKF9J8rbks3c0=;
-        b=Mb0X+5bT7/GlQRuARbA0pIFikUpU0mww4rMiNW8FwhwkKR3fpmttSq6/ZRyUpTaGWT
-         fTRupk09o5RCZ8d5EZAUTwBeUuP8Zj5zi3DCiv/qsUygWvnhUVwJH/esQAhktQOgkhWY
-         vWAXfse8jBqJUkx/bFejr/ALNSZrZDNnn/1kgZOxgy2/hscqA57xLsLQar2kOxgHNwx9
-         bNydihKhYeTozUeWOWzx0YCxWcbZD2aX1W8OpXH/jXPv78AdPxr6zCnCJG2wRxVKhKA4
-         jrNkUB66LqHH155XKKKSsmcDbKLojsMRmVkexeuKz2sMtpL8fupBQWNHp/+susyU5qBU
-         VgSw==
+        bh=7VpJq3uaQ6VSJbXoQmKZPgl7VgJ9y1FhwzpD47l7pvg=;
+        b=PNDQXlY9X0Hd72HAFMeIHDHE6+sS8CQHIpzf8ZXYIZKGTGCbYCoVPAzOFvUcqza6Z4
+         y702O9KuZMyH43HsAUOwEienG9YdpZUrmlHfcKE2FNh0LF1U31wp1qGAyvgM/AaPfHon
+         2uPBS96XOxmRILId/f7fzKBJ5/sxOWTlcSWynziJefvXNVF41ZotLGsywCJKDO4Lb6mm
+         veXmoJw483pUePpvkCXRfmeT44hsI6ckhXPx85Z0t01MtGDVUjI0jwvTSbOYq6/9DqUG
+         bK/4SdJp1x8u7WzgA+/CMwqXw5ej6C+XwzIDKh8XRjgyVrvY86vte8bu9gcvZ1wzBVJy
+         AZjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=k+XZHGIpulnrk6UeuGmkBAGm9SCc/MFKF9J8rbks3c0=;
-        b=Tm+je4NeVRN4X+pS5IknEMiGGZc836f0fJk1FVtqeRbcmWv5du5Pr1+iFFesU+v1Ym
-         YXGvqjq+AgF3QmjonTPtFsbD6kGJSvzhysTJfJ3ppzITQ9+aNbSwMe5Wj7/OkYKbC1Xf
-         atrSQCgiKB8nBBjDc1SBvT2eR5/71pxCPxifSkkXKSNqHFuauWHO9pUD6sLH0FfbfCX1
-         eat3Of8X6JHd9e1Bjt/EH8UbEqJgpkEcsqDvjrGkvO8FlZG17UvT0pAfYZEnp95ZCPDD
-         ChhwrThqWnQ1HFSNoXPQI5xwL8GjPQ+3v66gQ9tflrSxjZf/9J96AVlE+e9I7aJOXuGw
-         sctQ==
-X-Gm-Message-State: AFqh2krJs0+FVsISz8n8hzfN/Vpyx35hmyFt8hddr3TUf+TtfKlvylzU
-        jAdB8HBMM9vXUE/ZKYBALvQPnQ==
-X-Google-Smtp-Source: AMrXdXvRn3sUfEbSzeRam9/Uw6UtQMtyJKA0wCqO4TX07lj+cfIknvXkCdmVIVG/fZcE6LEmnhFktg==
-X-Received: by 2002:a2e:a4a4:0:b0:27f:e162:15c3 with SMTP id g4-20020a2ea4a4000000b0027fe16215c3mr690799ljm.48.1672416519325;
-        Fri, 30 Dec 2022 08:08:39 -0800 (PST)
+        bh=7VpJq3uaQ6VSJbXoQmKZPgl7VgJ9y1FhwzpD47l7pvg=;
+        b=NrQidrAGwZy8tyVDTEXjbHTxnY06negQ+ECxLc4O+uHdYrihQNCMxMsqTQ9U8ZAYr/
+         xSufaEAdwJmH9rn6dozVKVs30txpo2uUzvJljMGDMIUUL1XZ9lI3S+y8P3MfcHq4GLVz
+         9wqEPdexk53Drp4Tu0eF7n7C5/FX93byddt231L3hu4geO1Z+5WsaRCtzBtFuSxiRrtR
+         Pzx8HIe0Fc00fCc0/NVx+dFrzbSlVY2HBiLm84nRv8yfjreOnefQb0J19aB53hUqQzAM
+         RWZmlxmNAyPlXbRHfmRO2iSbKN78xtg44Ej3/TTUlCjqTi9OQLGdXb8QF9Dx4ygtmcOA
+         g7TA==
+X-Gm-Message-State: AFqh2kpIUWMT2on2MAMdn5aRSTXpw4wPjfPUdifCKN2N0AIRE3pcwpbV
+        nb3huE7bZ/uq87JzuI6MDTvuuQ==
+X-Google-Smtp-Source: AMrXdXsDKIiMJXFKJxuCcmocpg4ulyZr2lszHJLW+UVp83brU2ok80VlZpbYNRKg95MOqvX87HQWvQ==
+X-Received: by 2002:ac2:59c9:0:b0:4c4:6a8e:24 with SMTP id x9-20020ac259c9000000b004c46a8e0024mr9537798lfn.5.1672416620742;
+        Fri, 30 Dec 2022 08:10:20 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id p5-20020a2eb105000000b0027f77c96339sm2706881ljl.0.2022.12.30.08.08.38
+        by smtp.gmail.com with ESMTPSA id u13-20020a2e9f0d000000b0027fe42c38f7sm120950ljk.134.2022.12.30.08.10.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Dec 2022 08:08:38 -0800 (PST)
-Message-ID: <4d847dbf-c417-eb82-9ae7-53c52844270d@linaro.org>
-Date:   Fri, 30 Dec 2022 17:08:37 +0100
+        Fri, 30 Dec 2022 08:10:20 -0800 (PST)
+Message-ID: <99f07cb2-b299-f4ac-f479-177090a2c541@linaro.org>
+Date:   Fri, 30 Dec 2022 17:10:19 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm8250: Touch up audio hw nodes
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm8250: Sort audio hw nodes
 Content-Language: en-US
 To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
         linux-arm-msm@vger.kernel.org, andersson@kernel.org,
@@ -63,9 +63,9 @@ Cc:     marijn.suijten@somainline.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20221230135044.287874-1-konrad.dybcio@linaro.org>
- <20221230135044.287874-2-konrad.dybcio@linaro.org>
+ <20221230135044.287874-3-konrad.dybcio@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221230135044.287874-2-konrad.dybcio@linaro.org>
+In-Reply-To: <20221230135044.287874-3-konrad.dybcio@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,35 +78,40 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 30/12/2022 14:50, Konrad Dybcio wrote:
-> - Expand long clock-names into vertical lists
-> - Shuffle properties around:
->   - Make sure compatible goes first and status goes last
->   - Make property order consistent between similar nodes
-> - Fix up indentation
-> - Remove stray newlines
-> - Remove a redundant comment about swr2 being associated with TX macro
->   (it's obvious by looking at the label property 10 lines below)
-> - Change unnecessary interrupts-extended to interrupts
-> - Disable SWR0 and WSA macro by default and enable them on SM8250 MTP and
->   RB5, which were the only users
-> - Remove stray #address/size-cells from txmacro, as it's not even
->   supposed to have children
-
-You duplicate here some work:
-https://lore.kernel.org/all/20221225115844.55126-4-krzysztof.kozlowski@linaro.org/
-
-and maybe:
-https://lore.kernel.org/all/167233461775.1099840.3444272939352778399.b4-ty@kernel.org/
-
-If you wish to avoid trivial cleanup conflicts, feel free to poke to my
-pending branch:
-https://github.com/krzk/linux/commits/pending/dt-bindings-qcom-new-and-fixes-for-warnings-linux-next
-
-Also, this is a mixture of non-functional changes (re-ordering,
-whitespace) with something close to functional (interrupts-extended ->
-interrupts, disabling nodes in DTSI). These should be split.
+> Half of the audio hardware nodes were not sorted properly. Fix that.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
 
 
+Just a note:
+
+> +		wsamacro: codec@3240000 {
+> +			compatible = "qcom,sm8250-lpass-wsa-macro";
+> +			reg = <0 0x03240000 0 0x1000>;
+> +			clocks = <&audiocc LPASS_CDC_WSA_MCLK>,
+> +				 <&audiocc LPASS_CDC_WSA_NPL>,
+> +				 <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&q6afecc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&aoncc LPASS_CDC_VA_MCLK>,
+> +				 <&vamacro>;
+> +			clock-names = "mclk",
+> +				      "npl",
+> +				      "macro",
+> +				      "dcodec",
+> +				      "va",
+> +				      "fsgen";
+> +
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&wsa_swr_active>;
+> +
+> +			#clock-cells = <0>;
+> +			clock-frequency = <9600000>;
+
+This will conflict:
+https://lore.kernel.org/all/20221224154255.43499-3-krzysztof.kozlowski@linaro.org/
+
+https://lore.kernel.org/all/20221225115844.55126-3-krzysztof.kozlowski@linaro.org/
 
 Best regards,
 Krzysztof
