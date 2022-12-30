@@ -2,64 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E37D659A87
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 17:34:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 498D3659A96
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 17:34:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229649AbiL3Qed (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 11:34:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45802 "EHLO
+        id S235170AbiL3Qeq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 11:34:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229464AbiL3Qec (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 11:34:32 -0500
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C62B4FDF;
-        Fri, 30 Dec 2022 08:34:31 -0800 (PST)
-Received: by mail-io1-f49.google.com with SMTP id n63so11335704iod.7;
-        Fri, 30 Dec 2022 08:34:31 -0800 (PST)
+        with ESMTP id S235088AbiL3Qei (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 11:34:38 -0500
+Received: from mail-il1-f172.google.com (mail-il1-f172.google.com [209.85.166.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12B881C408;
+        Fri, 30 Dec 2022 08:34:37 -0800 (PST)
+Received: by mail-il1-f172.google.com with SMTP id u8so11501608ilq.13;
+        Fri, 30 Dec 2022 08:34:37 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=p0lVTJW+o2MV1Wr+rp1DHYDL0BIjyZC98wPp6+2qLBY=;
-        b=Blv0c2NOZ4OhnqrDgn0Y9E55t2meW1oNIAwnyodpAkCjIvVwngE1F1mPzDQRRAn5ze
-         FXI665GGAt476RIyI2hqw00bimH3NPhAOADGBfL/dtYLeLUUsbz+9VMt46Nc0wC/0/Db
-         RTkc/QSRs6pX23UgHqpH6Avi6HB2RyNaJu/mKSmH1K9IwQK54FSWeBuv6f1K5VlZR6FX
-         +KVbmQGhNq1khEQxjgFg0YvvdARcRWaubw7qLQlRb+d9595cL/NiNXw3wJMeTvLnsIMH
-         PWLekwBMCg6W/QKmz0JDxGeFpWJrmf2MOADDer/qeP5BKF4Ji2cQYlm5s6k5zgCVjgXU
-         +TcQ==
-X-Gm-Message-State: AFqh2kr4EjfKzX9luQmTnY52rq9aTKL8gv9L06WtPbihCKlZmuJh8raW
-        /suBz9bB/MMHS0IVOA7WPQt2TWZCnA==
-X-Google-Smtp-Source: AMrXdXtmmwEiDuX/16L//5BcoPYSJ1o3moPc/QYb+10ZKGI08/ULjxqkJC1zOa3EBVcJCs6vhnYQfg==
-X-Received: by 2002:a5d:928e:0:b0:6e0:7dd:59ac with SMTP id s14-20020a5d928e000000b006e007dd59acmr22689251iom.14.1672418071006;
-        Fri, 30 Dec 2022 08:34:31 -0800 (PST)
+        bh=3qCFiFhr0DQPqKmGNLpxSeO70Nn9s9xGFSB4LOgYnXw=;
+        b=qaHac45RcIoEFwbpXAc32IVXmJbm0Sset8CnJerXmBQhwxeSoZOORbR/JZqKKV85vG
+         1RPPVy2Z9DahiiJF2azRE2dvSXarSCDNg9QxNDlgH3XDUwiNCbkepGaC+5mR7QH2QLST
+         rXcNbMo29GgAHGSMdbv7O3epioZRs5TTfcezMY7LBB1l5Ot6rsBpp7P9Ik5//sg5R6uU
+         PmqrkJfEXfwflvh7CoISTwKFGcmzvyed6we6+B1RVmk9Fv13lRnzwKwMzib+mi+lTy2P
+         8O66WcpgwqQUweySdrAJMqXUnZ3WkEKlYvANjhzAwcOIReHcNuovggK6Amp07mpS/x1P
+         nkDg==
+X-Gm-Message-State: AFqh2kqektIy9Quai0E4k1H3do+vcutkY/8Y45d2uGil3+lmpUEEmJU4
+        XNIhZebmi035Mss0nlyb7w==
+X-Google-Smtp-Source: AMrXdXsrunY7o/6mCaL+SQFRgNYEeWlguOTFS+A5Edf7YR0n7hEhWIph7cWjYLAgeDIKK/OhX3Xqnw==
+X-Received: by 2002:a05:6e02:f53:b0:30b:f436:930a with SMTP id y19-20020a056e020f5300b0030bf436930amr15645641ilj.28.1672418076269;
+        Fri, 30 Dec 2022 08:34:36 -0800 (PST)
 Received: from robh_at_kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id x6-20020a056602160600b006e00556dc9esm7676832iow.16.2022.12.30.08.34.29
+        by smtp.gmail.com with ESMTPSA id n12-20020a056638110c00b00389d6a02740sm6731560jal.157.2022.12.30.08.34.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Dec 2022 08:34:30 -0800 (PST)
-Received: (nullmailer pid 1935050 invoked by uid 1000);
+        Fri, 30 Dec 2022 08:34:35 -0800 (PST)
+Received: (nullmailer pid 1935057 invoked by uid 1000);
         Fri, 30 Dec 2022 16:34:28 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Daehwan Jung <dh10.jung@samsung.com>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        jh0801.jung@samsung.com, sc.suh@samsung.com,
-        taehyun.cho@samsung.com, Mathias Nyman <mathias.nyman@intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        eomji.oh@samsung.com, Felipe Balbi <balbi@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-usb@vger.kernel.org
-In-Reply-To: <1672307866-25839-4-git-send-email-dh10.jung@samsung.com>
-References: <1672307866-25839-1-git-send-email-dh10.jung@samsung.com>        
- =?utf-8?q?=3CCGME20221229100416epcas2p18f7600737b8f4149a1d75d2d8db3317a=40e?=
- =?utf-8?q?pcas2p1=2Esamsung=2Ecom=3E?=
- <1672307866-25839-4-git-send-email-dh10.jung@samsung.com>
-Message-Id: <167241769120.1925686.13640146638423143826.robh@kernel.org>
-Subject: Re: [RFC PATCH v2 3/3] dt-bindings: usb: snps,dwc3: add generic-xhci as child
+To:     wangweidong.a@awinic.com
+Cc:     liweilei@awinic.com, povik+lin@cutebit.org, shumingf@realtek.com,
+        yijiangtao@awinic.com, perex@perex.cz, stephan@gerhold.net,
+        flatmax@flatmax.com, lgirdwood@gmail.com, broonie@kernel.org,
+        linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        tiwai@suse.com, duanyibo@awinic.com,
+        pierre-louis.bossart@linux.intel.com, zhuning0077@gmail.com,
+        cezary.rojewski@intel.com, james.schulman@cirrus.com,
+        srinivas.kandagatla@linaro.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, robh+dt@kernel.org,
+        zhaolei@awinic.com, rf@opensource.cirrus.com,
+        tanureal@opensource.cirrus.com, steve@sk2.org,
+        ckeepax@opensource.cirrus.com
+In-Reply-To: <20221230093454.190579-6-wangweidong.a@awinic.com>
+References: <20221230093454.190579-1-wangweidong.a@awinic.com>
+ <20221230093454.190579-6-wangweidong.a@awinic.com>
+Message-Id: <167241769462.1925797.17416584377760317319.robh@kernel.org>
+Subject: Re: [PATCH V8 5/5] ASoC: dt-bindings: Add schema for "awinic,aw883xx"
 Date:   Fri, 30 Dec 2022 10:34:28 -0600
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -72,16 +73,17 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu, 29 Dec 2022 18:57:46 +0900, Daehwan Jung wrote:
-> Currently, dwc3 invokes just xhci platform driver(generic-xhci) without
-> DT schema even though xhci works as child of dwc3. It makes sense to add
-> xhci as child of dwc3 with DT schema. It also supports to use another
-> compatible in xhci platform driver.
+On Fri, 30 Dec 2022 17:34:54 +0800, wangweidong.a@awinic.com wrote:
+> From: Weidong Wang <wangweidong.a@awinic.com>
 > 
-> Signed-off-by: Daehwan Jung <dh10.jung@samsung.com>
+> Add a DT schema for describing Awinic AW883xx audio amplifiers. They are
+> controlled using I2C.
+> 
+> Signed-off-by: Weidong Wang <wangweidong.a@awinic.com>
 > ---
->  .../devicetree/bindings/usb/snps,dwc3.yaml    | 29 +++++++++++++++++++
->  1 file changed, 29 insertions(+)
+>  .../bindings/sound/awinic,aw883xx.yaml        | 49 +++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/awinic,aw883xx.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -90,12 +92,15 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/snps,dwc3.example.dtb: usb@4a200000: #size-cells:0:0: 0 was expected
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+Error: Documentation/devicetree/bindings/sound/awinic,aw883xx.example.dts:24.41-42 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:434: Documentation/devicetree/bindings/sound/awinic,aw883xx.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1508: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/1672307866-25839-4-git-send-email-dh10.jung@samsung.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221230093454.190579-6-wangweidong.a@awinic.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
