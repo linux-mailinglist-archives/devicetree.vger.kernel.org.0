@@ -2,124 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A095E6596A5
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 10:17:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D68676596B0
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 10:20:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234615AbiL3JRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 04:17:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57872 "EHLO
+        id S229876AbiL3JUX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 04:20:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234764AbiL3JRP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 04:17:15 -0500
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 735611A3A9
-        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 01:17:13 -0800 (PST)
-Received: by mail-ej1-x632.google.com with SMTP id tz12so50184150ejc.9
-        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 01:17:13 -0800 (PST)
+        with ESMTP id S234892AbiL3JUP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 04:20:15 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48BC01A238
+        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 01:20:14 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id co23so19413787wrb.4
+        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 01:20:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rUxMUm4HUy6Yckpe/AvN8V7dp0DoIgBNaECuK4JNG4g=;
-        b=XZuGepdH0HvyeQp6+qogQgniYIwMd2yrV2MoB259RLtxcl+LaQrDk57NudMcv3S+oe
-         1tjhN/A6WYcgR53N/A/4wC7GrmuD4xLvefxGXVloCno6dUuS8SOj+zQ6QGNI+lSdR1dp
-         VK65cSs6ZcQ42Rz4bWn1/hLf2mBDnJmRushv6eJW+7cxUqJIzBd34LFqYQ38BGw5ZCD4
-         2/naZU4jr4IxTLIDPveNllMDoqiy9RwuyccbfthasdCT5K8tm2ffF2xyx8mNGStKxYP0
-         4wCV53zE+kmtd+vTjxDOnc9qdRfjnWdaq0mHPV3+rtO/FFrTXzgaBIDrB8h8BmbGRyTE
-         M43A==
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=+lt3n3rG4Y9lEnTnt6F68qMx8dXRezJp1CS2q5yx68c=;
+        b=EZmeAzqjxZoo5qSHNrVV/kUBc/pe0vnExRlFi4wZ32pNr0cAq2NpYgidG7pnNZQeLt
+         H7+oxjbq9Jv1SFUVeTqc6CsUtblk9mLb8skbVQj+/b7YBdogxKwDMqGPSqFZtQAsigV5
+         iNuiG91zs1zX6s19Kxk7nuR0ONv0YgO8iFHfHSdtvlQb3ApiCJqNTTEqr56Pl8Gs1/Oz
+         mY38aIOL9BgxZix8GVCu8qoYM6Dl9+h07Qh5B/qDhWFctL/vsHHZ2xmufRkn93LzwxR8
+         t0TE35s5o1cLgVm4WXAvzICNHBomgf99ko0SNmqKGb565KWAclbIekTLlSXF1fZV6iOq
+         cA5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=rUxMUm4HUy6Yckpe/AvN8V7dp0DoIgBNaECuK4JNG4g=;
-        b=tostFvhWKYelH62L5KK9GSYW30sgo0ydbN5CKDKgNOg4Y/raR0Kla4C92T3yn5Dcvt
-         rIKoukBIxJMbEHIIBBfUzbUAWZMTPAjMRCuFklkVMxGZpdx4rOTnFMmRPoCN3PRBcvz9
-         2TSi3KR0hV6O/Zo9e6wH1FdEuvP2auWm4ExslpRQ9cM3PCf+SDDFpC1uPhh6SYW7yASc
-         SUpqtXJcgcs/4dyFwvpGJU8+tZyr3azlp+tGrUgtHnL5dBqtss1JqqziO63B9NaRY0oe
-         +Aatkhbfg/eF5sM29CEiTrsbeUWE8k0W9DYK3+gSi5z3KVP/DMf2SMStdzjfOfSyO3xj
-         nrfg==
-X-Gm-Message-State: AFqh2kreXE5EbNhgaahoXHMFlSBWPuKkpfxac0I1ePnmkbNz4ddoKgUj
-        gbBvRsLEag+vYuCe6LvMTWgYQw==
-X-Google-Smtp-Source: AMrXdXsp62WNiKFzlGd4UGKMueL3KaZQLeoEbTjQJh6tTgDO4GAXYtGLBEIbpGWgbqjQzPqLhYkPJw==
-X-Received: by 2002:a17:906:4483:b0:7fd:f028:50ff with SMTP id y3-20020a170906448300b007fdf02850ffmr25321524ejo.49.1672391832036;
-        Fri, 30 Dec 2022 01:17:12 -0800 (PST)
-Received: from localhost (2a02-8388-6582-fe80-0000-0000-0000-0007.cable.dynamic.v6.surfer.at. [2a02:8388:6582:fe80::7])
-        by smtp.gmail.com with ESMTPSA id ky14-20020a170907778e00b007c4f8bc322asm9417498ejc.196.2022.12.30.01.17.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Dec 2022 01:17:11 -0800 (PST)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Fri, 30 Dec 2022 10:17:11 +0100
-Message-Id: <CPF1FCV59AIY.6YVGAUIENHA2@otso>
-Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sm6115: Add missing reg-names
- property for UFS
-From:   "Luca Weiss" <luca.weiss@fairphone.com>
-To:     "Konrad Dybcio" <konrad.dybcio@linaro.org>,
-        "Andy Gross" <agross@kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        "Alim Akhtar" <alim.akhtar@samsung.com>,
-        "Avri Altman" <avri.altman@wdc.com>,
-        "Bart Van Assche" <bvanassche@acm.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Iskren Chernev" <me@iskren.info>
-Cc:     <linux-arm-msm@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        <phone-devel@vger.kernel.org>
-X-Mailer: aerc 0.13.0
-References: <20221209-dt-binding-ufs-v2-0-dc7a04699579@fairphone.com>
- <20221209-dt-binding-ufs-v2-1-dc7a04699579@fairphone.com>
- <61cb9bab-aefb-cd45-acb0-ef846a411d76@linaro.org>
-In-Reply-To: <61cb9bab-aefb-cd45-acb0-ef846a411d76@linaro.org>
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+lt3n3rG4Y9lEnTnt6F68qMx8dXRezJp1CS2q5yx68c=;
+        b=vm9+1L4I4Ml3tDGmICVG2SUBaH8UGwwPmQnSIzhoDlWTE/HIyz15ireonLenML6kbH
+         z0iU/7VBz3NrZE2Nj0y+QPsnQGaQjSPUJYl+Iu/nNbKPh/PtDOrtPCWkP7N2YZwZSdh/
+         2CX2adKxcfRPoBc6k6IoCSAsDXB5e2YIRNU93ctBwYJVJ5vx5wl59O+7+bhAUonx/i0D
+         v9utojm/k32VZeNMK1o4Dwh/4aD41IoXJVR4uMIi5Qdd+8Sc7uU4SBQorNEm1ZcN6nwo
+         KmealPSHI4NZeMWD11DyBetnN3d7N2hLUQ7FhVRfbUOeQ1ARgrvdw/MCLU7SmludXtpa
+         Z1Vw==
+X-Gm-Message-State: AFqh2koH1n5O8y5jziUr67wsjCf6sWs52m0s9rbNP5Jg+c9ykXqcPIj8
+        xEuDaNoWvF6VMxLHFZWtP15zGg==
+X-Google-Smtp-Source: AMrXdXsxRFqhUQkGFaEdxIUamk2HnFD7/ql/BysxaOE1KK/YBtvo8PfSmK8ryUb7nORcuIyJsfBjrQ==
+X-Received: by 2002:a05:6000:234:b0:28f:62f:b4eb with SMTP id l20-20020a056000023400b0028f062fb4ebmr1101525wrz.44.1672392012795;
+        Fri, 30 Dec 2022 01:20:12 -0800 (PST)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id j5-20020adfea45000000b0024206ed539fsm20126081wrn.66.2022.12.30.01.20.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Dec 2022 01:20:12 -0800 (PST)
+Date:   Fri, 30 Dec 2022 11:20:11 +0200
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-x13s: Add RTC support
+Message-ID: <Y66tSyDKOkH3T1BT@linaro.org>
+References: <20221230085010.717423-1-abel.vesa@linaro.org>
+ <Y66qkR+WWkopNzQ4@hovoldconsulting.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y66qkR+WWkopNzQ4@hovoldconsulting.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri Dec 30, 2022 at 10:12 AM CET, Konrad Dybcio wrote:
->
->
-> On 30.12.2022 08:42, Luca Weiss wrote:
-> > The UFS driver expects the second reg to be named "ice" otherwise the
-> > Inline Crypto Engine won't get enabled.
-> >=20
-> > Fixes: 97e563bf5ba1 ("arm64: dts: qcom: sm6115: Add basic soc dtsi")
-> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> > ---
->
-> https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/commit/?h=
-=3Dfor-next&id=3D01b6041454e8bc4f5feb76e6bcdc83a48cea21f2
+On 22-12-30 10:08:33, Johan Hovold wrote:
+> Hi Abel,
+> 
+> On Fri, Dec 30, 2022 at 10:50:10AM +0200, Abel Vesa wrote:
+> > The PMK8350 PMIC has an available RTC block. Describe it in
+> > sc8280xp-pmics dtsi and enable it in Lenovo Thinkpad X13s specific dts.
+> > Mark it as wakeup-source to allow waking the system from sleep.
+> > 
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> 
+> I'm currently working on proper RTC support which implies reading and
+> storing the time offset from EFI.
+> 
+> This patch in itself is pretty much useless as the returned time is just
+> some random time from the epoch (e.g. in the 1970's).
+> 
+> So I suggest waiting another week or so until I'm done.
 
-Oh, thanks!
+Sure thing. Consider this dropped then.
 
-Disregard this patch then please.
+Please CC me when you have something so I can try it out.
 
->
-> Konrad
-> >  arch/arm64/boot/dts/qcom/sm6115.dtsi | 1 +
-> >  1 file changed, 1 insertion(+)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts=
-/qcom/sm6115.dtsi
-> > index 572bf04adf90..85673d562723 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> > @@ -704,6 +704,7 @@ opp-202000000 {
-> >  		ufs_mem_hc: ufs@4804000 {
-> >  			compatible =3D "qcom,sm6115-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
-> >  			reg =3D <0x04804000 0x3000>, <0x04810000 0x8000>;
-> > +			reg-names =3D "std", "ice";
-> >  			interrupts =3D <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
-> >  			phys =3D <&ufs_mem_phy_lanes>;
-> >  			phy-names =3D "ufsphy";
-> >=20
+Thanks,
+Abel
 
+> 
+> Johan
