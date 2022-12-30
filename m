@@ -2,104 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5D58659A3A
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 16:55:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4110659A42
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 17:00:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229527AbiL3PzK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 10:55:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60538 "EHLO
+        id S235334AbiL3QAN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 11:00:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235186AbiL3PzI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 10:55:08 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 061951BE8E
-        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 07:55:08 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id p36so32191518lfa.12
-        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 07:55:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=VGfyma8Qn7sSFvu2zSEpMZKY5/A9O53T6J2YqTZdXjc=;
-        b=OFnopBeZPQAUbNaRLYVpb7OIMIGUbHsbCDQv1dukARbxv0lwF2fMcinCIPg1rIHLbY
-         NTZTfoA/ZCefIue/e5dCz10TeMPxcPglosk4+DzVZiWfOsq7CxTuuPZ5ae3EesO8OXAI
-         YsVACSTniFkatgmHIoR6S5oQ1VVz5XUMcnN4a+dtg88N2as97ludx9SYvWC1mUciC9RI
-         visOK15+zSj+U7tD4J5/+2Q/ex53tdisF5gvrCSCuBL18vTPOc4kc0SJ4kHfSACcRy8c
-         YG7xOu8fynvbJtyfQaJXL79fWmsWIRdMZKqlscul5NmJyDtC8qDtN/XSWA91r/n6jyy3
-         Zi8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VGfyma8Qn7sSFvu2zSEpMZKY5/A9O53T6J2YqTZdXjc=;
-        b=H1NTlRrF6SdXnWyTIvRDdG/E7jl6+M3mM+R2FoAekd0xKR8EWM7Z2qieVU6ID4S8xh
-         vgHnPGnFAnk1CXOYNRkvvp+TOxQCoOc3W78nAVb7+x+fJNnogYhQPL81GN6W0jgjD6v9
-         +uZOYGF/gx7jJ9igyq37JNVVPU9OkivHRGJYAKU+wv8wQhF0oYA3i/ZjcUq1+7vpyqug
-         mwFGrI6FCQtEEd0P1FCWI17ThJVQYlzq3OKaXHsVvJ9vy/qUfayWCIk8Xct4WEG4ceTr
-         dDANcU2pj/5nHwi9TL432PHQPpb6kNPVs7PncuCOaHFz81wHb1yG6AG5Erie+12mvnUb
-         HJAg==
-X-Gm-Message-State: AFqh2krRWK98juhIEicMlX1XUngo1wcMgj0zTDnG1G2AD8DGW1StcZNv
-        6ehDq2mCtQ/MkD5jWBCRZpFFvA==
-X-Google-Smtp-Source: AMrXdXvLmPUA4Zd1qNu6Cy/5mT64Qmj3iYHxUKZJgRpzLHWD6hamB78MApyV68kq/q7oikoYxyl1CA==
-X-Received: by 2002:a05:6512:1049:b0:4b0:a1e7:915a with SMTP id c9-20020a056512104900b004b0a1e7915amr10290789lfb.49.1672415706422;
-        Fri, 30 Dec 2022 07:55:06 -0800 (PST)
-Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id z21-20020a196515000000b004b4bab7d5a9sm3546979lfb.46.2022.12.30.07.55.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Dec 2022 07:55:05 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [RFT PATCH] arm64: dts: qcom: sc8280xp: remove GCC from CX power domain
-Date:   Fri, 30 Dec 2022 16:55:02 +0100
-Message-Id: <20221230155502.115205-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S235316AbiL3QAM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 11:00:12 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B1F31B9F9;
+        Fri, 30 Dec 2022 08:00:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+        In-Reply-To:References; bh=TYJQQyWiHCgaeEo0TARUgqve7BqMF8sKjCBmTA8xSzQ=; b=WN
+        LEH4kjKIcumTeN/K1lwKEHndKRlon+WKhe0XR0tvuoivXz4vQzc6EqIQSfrbruRWtZAvl0S1GO6g/
+        6FNTwWIAUvwemFTKdoX6WHVTt0BumpcQYdWS76ZuAWUY+WhF9OnxpMsiFzO6+0d5mBLDR3TLnBAn8
+        gkGR90Lh9pXaHRI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pBHnd-000lbk-Dv; Fri, 30 Dec 2022 17:00:01 +0100
+Date:   Fri, 30 Dec 2022 17:00:01 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     =?utf-8?Q?Micha=C5=82?= Grzelak <mig@semihalf.com>
+Cc:     linux-kernel@vger.kernel.org, sebastian.hesselbarth@gmail.com,
+        gregory.clement@bootlin.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        mw@semihalf.com, upstream@semihalf.com, mchl.grzlk@gmail.com
+Subject: Re: [PATCH v3] ARM: dts: dove.dtsi: Move ethphy to fix schema error
+Message-ID: <Y68LASVPztAWYVfX@lunn.ch>
+References: <20221229180155.99303-1-mig@semihalf.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,TVD_SUBJ_WIPE_DEBT autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20221229180155.99303-1-mig@semihalf.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bindings do not allow power-domain property in GCC clock controller and
-documentation does not indicate that GCC is part of VDD_CX.
+On Thu, Dec 29, 2022 at 07:01:55PM +0100, Michał Grzelak wrote:
+> Running 'make dtbs_check' with schema in net/marvell,orion-mdio.yaml
+> gives following warnings:
+> mdio-bus@72004: Unevaluated properties are not allowed
+> ('ethernet-phy' was unexpected)
+> 	arch/arm/boot/dts/dove-cubox.dtb
+> 	arch/arm/boot/dts/dove-cubox-es.dtb
+> 	arch/arm/boot/dts/dove-d2plug.dtb
+> 	arch/arm/boot/dts/dove-d2plug.dtb
+> 	arch/arm/boot/dts/dove-dove-db.dtb
+> 	arch/arm/boot/dts/dove-d3plug.dtb
+> 	arch/arm/boot/dts/dove-sbc-a510.dtb
+> As every subnode of mdio is expected to have an @X, ethernet-phy subnode
+> in dove.dtsi doesn't have one. Fix these errors by moving ethernet-phy
+> into relevant .dts files with correct @<reg address>.
+> 
+> Signed-off-by: Michał Grzelak <mig@semihalf.com>
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
----
-
-Maybe the bindings should be fixed? Maybe this was added as workaround?
-Anyway looking at documentation I do not see such relation, except
-downstream vdd_cx-supply (which is the same as in other SoCs and we do
-not represent it in upstream).
----
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index 1d1420c8720c..d14663c9f34c 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -799,7 +799,6 @@ gcc: clock-controller@100000 {
- 				 <&pcie4_phy>,
- 				 <0>,
- 				 <0>;
--			power-domains = <&rpmhpd SC8280XP_CX>;
- 		};
- 
- 		ipcc: mailbox@408000 {
--- 
-2.34.1
-
+    Andrew
