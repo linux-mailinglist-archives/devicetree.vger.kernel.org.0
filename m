@@ -2,81 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96308659690
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 10:12:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A095E6596A5
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 10:17:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234592AbiL3JM4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 04:12:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56032 "EHLO
+        id S234615AbiL3JRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 04:17:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230249AbiL3JMz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 04:12:55 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50D121A201
-        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 01:12:52 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id cf42so30998764lfb.1
-        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 01:12:52 -0800 (PST)
+        with ESMTP id S234764AbiL3JRP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 04:17:15 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 735611A3A9
+        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 01:17:13 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id tz12so50184150ejc.9
+        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 01:17:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=U8m08wd2vDX8ay+lo65k2BbC5GMWrcKUp9ctsSVUIqs=;
-        b=s7pMjuIQWKB4M+Qnch9uGyog9Va5JvOv1kgRUeKdRjfoHEmvfcknx/2UfRSwdMDGUX
-         MrRfu8gptKD7+lacqMrIGQW29LABOBEpEyX7yC4tmrQ0wnYHqno+zSl1jHx/Z2kXJn1/
-         0LVghMFx+Qvlq5ZuGjYlR+SMvPDnm/tzMATlzoJ5LGmh6XcM15yyu8au+7dnNOX1MoQH
-         /YiuMn5OlrIGiQV0C104cMUOTW9A6EIBhojoEW1kFFFvXz7T8euAxFr0yyBnf5viUebV
-         DChwn+lBDtyrjhyURSoggd5vbDmZR6r0DJxkZF3eUdT85t+ktHSPd5ZYROSUaCGV3acK
-         yxZA==
+        d=fairphone.com; s=fair;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rUxMUm4HUy6Yckpe/AvN8V7dp0DoIgBNaECuK4JNG4g=;
+        b=XZuGepdH0HvyeQp6+qogQgniYIwMd2yrV2MoB259RLtxcl+LaQrDk57NudMcv3S+oe
+         1tjhN/A6WYcgR53N/A/4wC7GrmuD4xLvefxGXVloCno6dUuS8SOj+zQ6QGNI+lSdR1dp
+         VK65cSs6ZcQ42Rz4bWn1/hLf2mBDnJmRushv6eJW+7cxUqJIzBd34LFqYQ38BGw5ZCD4
+         2/naZU4jr4IxTLIDPveNllMDoqiy9RwuyccbfthasdCT5K8tm2ffF2xyx8mNGStKxYP0
+         4wCV53zE+kmtd+vTjxDOnc9qdRfjnWdaq0mHPV3+rtO/FFrTXzgaBIDrB8h8BmbGRyTE
+         M43A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=U8m08wd2vDX8ay+lo65k2BbC5GMWrcKUp9ctsSVUIqs=;
-        b=gRVB3GSJvf7G8VRRCkpPC84hLbhJORLmllpZVyRw7QrqZBx1/KQOrCXj2PUNWHFoKn
-         FLpsI5Zj1ompl1Q8CV/vajrpLpS0NLhLE4qCe3hJhMhKo+xNX2Kp7NkuhVe+Bhx3TkW5
-         8VXoDX9Bghcpc+Np/ZmRqYvNVH/7CGplXG5shZoCQdCx1eSnlbzyEhSV3gYSYe2k8XP/
-         D/2WV185totdxz8gjLQxT4UObAO3JjfviY3NfY8gIl7ctNZF/aWTr7U9e9TYkAR5um1+
-         ptSs0gFRzJHxyNBX/qHQIrw9azZvQG5QA9NhQ1IjP/rhiVPDSdjJcOAwmVE5nBM4T94j
-         YWgw==
-X-Gm-Message-State: AFqh2kpS2dHGqkFkS23izvraiHnz19+racyLetgYbnIZmBIZUESq9t8V
-        OC/4M40Q/icdceiWVtB1IhtFlA==
-X-Google-Smtp-Source: AMrXdXs9oq+R0PbV1NHmE5MAQN80YkxJP/ew/rTsagiQaX9yzC/vjPqitxm4OOz4jLi31y45Spuvxw==
-X-Received: by 2002:ac2:5dfa:0:b0:4b5:41fa:69d8 with SMTP id z26-20020ac25dfa000000b004b541fa69d8mr9169080lfq.16.1672391570694;
-        Fri, 30 Dec 2022 01:12:50 -0800 (PST)
-Received: from [192.168.1.101] (abyl184.neoplus.adsl.tpnet.pl. [83.9.31.184])
-        by smtp.gmail.com with ESMTPSA id u12-20020ac258cc000000b0049fff3f645esm3379965lfo.70.2022.12.30.01.12.49
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=rUxMUm4HUy6Yckpe/AvN8V7dp0DoIgBNaECuK4JNG4g=;
+        b=tostFvhWKYelH62L5KK9GSYW30sgo0ydbN5CKDKgNOg4Y/raR0Kla4C92T3yn5Dcvt
+         rIKoukBIxJMbEHIIBBfUzbUAWZMTPAjMRCuFklkVMxGZpdx4rOTnFMmRPoCN3PRBcvz9
+         2TSi3KR0hV6O/Zo9e6wH1FdEuvP2auWm4ExslpRQ9cM3PCf+SDDFpC1uPhh6SYW7yASc
+         SUpqtXJcgcs/4dyFwvpGJU8+tZyr3azlp+tGrUgtHnL5dBqtss1JqqziO63B9NaRY0oe
+         +Aatkhbfg/eF5sM29CEiTrsbeUWE8k0W9DYK3+gSi5z3KVP/DMf2SMStdzjfOfSyO3xj
+         nrfg==
+X-Gm-Message-State: AFqh2kreXE5EbNhgaahoXHMFlSBWPuKkpfxac0I1ePnmkbNz4ddoKgUj
+        gbBvRsLEag+vYuCe6LvMTWgYQw==
+X-Google-Smtp-Source: AMrXdXsp62WNiKFzlGd4UGKMueL3KaZQLeoEbTjQJh6tTgDO4GAXYtGLBEIbpGWgbqjQzPqLhYkPJw==
+X-Received: by 2002:a17:906:4483:b0:7fd:f028:50ff with SMTP id y3-20020a170906448300b007fdf02850ffmr25321524ejo.49.1672391832036;
+        Fri, 30 Dec 2022 01:17:12 -0800 (PST)
+Received: from localhost (2a02-8388-6582-fe80-0000-0000-0000-0007.cable.dynamic.v6.surfer.at. [2a02:8388:6582:fe80::7])
+        by smtp.gmail.com with ESMTPSA id ky14-20020a170907778e00b007c4f8bc322asm9417498ejc.196.2022.12.30.01.17.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Dec 2022 01:12:50 -0800 (PST)
-Message-ID: <61cb9bab-aefb-cd45-acb0-ef846a411d76@linaro.org>
-Date:   Fri, 30 Dec 2022 10:12:48 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
+        Fri, 30 Dec 2022 01:17:11 -0800 (PST)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Fri, 30 Dec 2022 10:17:11 +0100
+Message-Id: <CPF1FCV59AIY.6YVGAUIENHA2@otso>
 Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sm6115: Add missing reg-names
  property for UFS
-To:     Luca Weiss <luca.weiss@fairphone.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Iskren Chernev <me@iskren.info>
-Cc:     linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+From:   "Luca Weiss" <luca.weiss@fairphone.com>
+To:     "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        "Andy Gross" <agross@kernel.org>,
+        "Bjorn Andersson" <andersson@kernel.org>,
+        "Alim Akhtar" <alim.akhtar@samsung.com>,
+        "Avri Altman" <avri.altman@wdc.com>,
+        "Bart Van Assche" <bvanassche@acm.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Iskren Chernev" <me@iskren.info>
+Cc:     <linux-arm-msm@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <~postmarketos/upstreaming@lists.sr.ht>,
+        <phone-devel@vger.kernel.org>
+X-Mailer: aerc 0.13.0
 References: <20221209-dt-binding-ufs-v2-0-dc7a04699579@fairphone.com>
  <20221209-dt-binding-ufs-v2-1-dc7a04699579@fairphone.com>
-Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221209-dt-binding-ufs-v2-1-dc7a04699579@fairphone.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+ <61cb9bab-aefb-cd45-acb0-ef846a411d76@linaro.org>
+In-Reply-To: <61cb9bab-aefb-cd45-acb0-ef846a411d76@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -85,32 +85,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri Dec 30, 2022 at 10:12 AM CET, Konrad Dybcio wrote:
+>
+>
+> On 30.12.2022 08:42, Luca Weiss wrote:
+> > The UFS driver expects the second reg to be named "ice" otherwise the
+> > Inline Crypto Engine won't get enabled.
+> >=20
+> > Fixes: 97e563bf5ba1 ("arm64: dts: qcom: sm6115: Add basic soc dtsi")
+> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> > ---
+>
+> https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/commit/?h=
+=3Dfor-next&id=3D01b6041454e8bc4f5feb76e6bcdc83a48cea21f2
 
+Oh, thanks!
 
-On 30.12.2022 08:42, Luca Weiss wrote:
-> The UFS driver expects the second reg to be named "ice" otherwise the
-> Inline Crypto Engine won't get enabled.
-> 
-> Fixes: 97e563bf5ba1 ("arm64: dts: qcom: sm6115: Add basic soc dtsi")
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
+Disregard this patch then please.
 
-https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/commit/?h=for-next&id=01b6041454e8bc4f5feb76e6bcdc83a48cea21f2
+>
+> Konrad
+> >  arch/arm64/boot/dts/qcom/sm6115.dtsi | 1 +
+> >  1 file changed, 1 insertion(+)
+> >=20
+> > diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts=
+/qcom/sm6115.dtsi
+> > index 572bf04adf90..85673d562723 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> > @@ -704,6 +704,7 @@ opp-202000000 {
+> >  		ufs_mem_hc: ufs@4804000 {
+> >  			compatible =3D "qcom,sm6115-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
+> >  			reg =3D <0x04804000 0x3000>, <0x04810000 0x8000>;
+> > +			reg-names =3D "std", "ice";
+> >  			interrupts =3D <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
+> >  			phys =3D <&ufs_mem_phy_lanes>;
+> >  			phy-names =3D "ufsphy";
+> >=20
 
-Konrad
->  arch/arm64/boot/dts/qcom/sm6115.dtsi | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> index 572bf04adf90..85673d562723 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> @@ -704,6 +704,7 @@ opp-202000000 {
->  		ufs_mem_hc: ufs@4804000 {
->  			compatible = "qcom,sm6115-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
->  			reg = <0x04804000 0x3000>, <0x04810000 0x8000>;
-> +			reg-names = "std", "ice";
->  			interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
->  			phys = <&ufs_mem_phy_lanes>;
->  			phy-names = "ufsphy";
-> 
