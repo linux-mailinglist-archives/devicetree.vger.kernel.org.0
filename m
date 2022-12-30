@@ -2,78 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E71A6659AFA
-	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 18:28:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED985659B06
+	for <lists+devicetree@lfdr.de>; Fri, 30 Dec 2022 18:42:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235357AbiL3R2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Dec 2022 12:28:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35102 "EHLO
+        id S231174AbiL3Rmm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Dec 2022 12:42:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235356AbiL3R2G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 12:28:06 -0500
-Received: from mail-io1-xd29.google.com (mail-io1-xd29.google.com [IPv6:2607:f8b0:4864:20::d29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 094B51A38C
-        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 09:28:04 -0800 (PST)
-Received: by mail-io1-xd29.google.com with SMTP id n63so11406386iod.7
-        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 09:28:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=X6dzcadWG965pjXXGhRbOuxD3/hHkIfiEhSRMzTbYQg=;
-        b=kZhoNNlFcLnGllEIgDT/7CXdj2TjQt8Qh+7ARl8Orcp1KeUK+VeotBlpKhLTuVxzXW
-         MQHGfQepe2ok1lpP90gRGcrydNAd4wsF9hWeydamcQHg9JX1pUQEMGdjRtTRai7T8WHu
-         yDISr88HRL6ZXF3btw0DLeXsl/60WWVQuODS+AlCkt6CQ04RH5tBLDhexR6qwwhctXP/
-         VkSI35XZ4cLVlmYOqNW0ofRjtmQ1d+QmlkWXjKLbniw0jNlQXLKov2aKbgmvMd51EHtZ
-         bq2hPCG0AGAlK8ZsOPhH4mQi3FoLlLbQ7N0a647X1UxXCFjladZ58fflDayv4rirmd2e
-         m1TA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=X6dzcadWG965pjXXGhRbOuxD3/hHkIfiEhSRMzTbYQg=;
-        b=T0Q14OoKnfanfiR4wS3nrPK0ybrgmA5NS0mJplPfj/r79BTnGqdtfMe6nFsgjvQ+fu
-         OmNmXB7YK3hI8uZYeAMfN4xzCl9QSRpOeYEx/3PVeb3quBaX6TfB9qMpWLUfqSEQtfzL
-         WZSf2gzGwzAs6gSdGgezFrv8aqIZujie0+CWDqhlVv98SNJnwJ6uwe26hL4TgE892M94
-         7VI3ZXmLbEjjtHn4qq5arROK9bvlSD+qpvR4EBbAviFojQI0eEg/GSd2jDKPUlt+FT+s
-         kG4LvE32p/h7pXFpKi9G2dasHSpSYgIwdlf/RHWfBPMOCWNlq5idNMw2Ffm3K67p0Moh
-         bGyA==
-X-Gm-Message-State: AFqh2krivuLqDaswjMzcKMjbJL+GR3PqcVQGDTP27a0FlUtX9fEPs5wN
-        ZNGVSsvpCqO9SzUJx+t/cJqw0A==
-X-Google-Smtp-Source: AMrXdXuo6HE7NOLaBqIP976Rae9ut1/0OVFHv6OHWbSC8uoDU2l8xUjDGS5VDFDHYWqtHDKbQeDOUA==
-X-Received: by 2002:a5d:8f8f:0:b0:6e5:ef2:8451 with SMTP id l15-20020a5d8f8f000000b006e50ef28451mr21864429iol.20.1672421283282;
-        Fri, 30 Dec 2022 09:28:03 -0800 (PST)
-Received: from [172.22.22.4] ([98.61.227.136])
-        by smtp.googlemail.com with ESMTPSA id q8-20020a0566022f0800b006cecd92164esm7828319iow.34.2022.12.30.09.28.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Dec 2022 09:28:02 -0800 (PST)
-Message-ID: <20b2f7c3-6481-eabf-7c46-f5f38d258c62@linaro.org>
-Date:   Fri, 30 Dec 2022 11:28:01 -0600
+        with ESMTP id S229456AbiL3Rmm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Dec 2022 12:42:42 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F442A452;
+        Fri, 30 Dec 2022 09:42:41 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B733961B19;
+        Fri, 30 Dec 2022 17:42:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AEC9C433EF;
+        Fri, 30 Dec 2022 17:42:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1672422160;
+        bh=i3XwKN6BpXFvy+XIJ24PzvzFUAvWk2LGqWNk56jmzlA=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=MJ3f+DP4mAUzxmpxQLY87wmxTmEWwWwvj2AhdQTs/+CsFeABZyG9eeWkeykeJ3Eyf
+         Kt13RQNCJr2fPM+2jwlkdXFltscl4jeWvkc8FmFHyOBUiPAz8g5wgTglEyPhJM5VSL
+         nnaTYpyLPraPXEqAdLQr4y5pGzilbF8J/m91N/4u8w7ht7gcjnWTjLS4FDuGtH/xSR
+         UIbjAtGFdtNg+2iCmzNASKud6rCAdfpJInL20q47SX7I4d2c5LTduEmTsk7sZTAzLw
+         HAPPTIRWlbbAYhy07WkFVKREGD+cq5rAxSbwhfmcSRKYoMW/A4KNR/YJXSrDRKnsfO
+         vhW9/nv9xTsng==
+Date:   Fri, 30 Dec 2022 17:55:57 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Marco Felsch <m.felsch@pengutronix.de>, puranjay12@gmail.com,
+        lars@metafoo.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH v2 3/4] iio: temperature: tmp117: add TI TMP116 support
+Message-ID: <20221230175558.4495bc00@jic23-huawei>
+In-Reply-To: <34b6b5b3-079d-3f6b-b55a-6d05a775e3b8@linaro.org>
+References: <20221221092801.1977499-1-m.felsch@pengutronix.de>
+        <20221221092801.1977499-4-m.felsch@pengutronix.de>
+        <20221223151056.4f7d4b7e@jic23-huawei>
+        <20221223150728.34d5agqr4ruixjbu@pengutronix.de>
+        <20221223153929.3fbad6b2@jic23-huawei>
+        <20221223161359.wla6l5kd5gddloid@pengutronix.de>
+        <20221223171647.43a6153e@jic23-huawei>
+        <34b6b5b3-079d-3f6b-b55a-6d05a775e3b8@linaro.org>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH net-next 2/2] net: ipa: add IPA v4.7 support
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com
-Cc:     andersson@kernel.org, agross@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, elder@kernel.org,
-        linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Luca Weiss <luca.weiss@fairphone.com>
-References: <20221208211529.757669-1-elder@linaro.org>
- <20221208211529.757669-3-elder@linaro.org>
- <47b2fb29-1c2e-db6e-b14f-6dfe90341825@linaro.org>
- <fa6d342e-0cfe-b870-b044-b0af476e3905@linaro.org>
- <48bef9dd-b71c-b6aa-e853-1cf821e88b50@linaro.org>
-From:   Alex Elder <elder@linaro.org>
-In-Reply-To: <48bef9dd-b71c-b6aa-e853-1cf821e88b50@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,130 +62,99 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/10/22 3:31 AM, Konrad Dybcio wrote:
+On Tue, 27 Dec 2022 09:30:08 +0100
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+
+> On 23/12/2022 18:16, Jonathan Cameron wrote:
+> > On Fri, 23 Dec 2022 17:13:59 +0100
+> > Marco Felsch <m.felsch@pengutronix.de> wrote:
+> >   
+> >> On 22-12-23, Jonathan Cameron wrote:
+> >>
+> >> ...
+> >>  
+> >>>>>> @@ -118,27 +127,28 @@ static int tmp117_identify(struct i2c_client *client)
+> >>>>>>  	int dev_id;
+> >>>>>>  
+> >>>>>>  	dev_id = i2c_smbus_read_word_swapped(client, TMP117_REG_DEVICE_ID);
+> >>>>>> -	if (dev_id < 0)      
+> >>>>>
+> >>>>> Keep this handling of the smbus read returning an error.
+> >>>>> Otherwise, you end up replacing the error code with -ENODEV rather than
+> >>>>> returning what actually happened.
+> >>>>>
+> >>>>> 	if (dev_id < 0)
+> >>>>> 		return dev_id;      
+> >>>>
+> >>>> You're right, I will change this thanks.
+> >>>>     
+> >>>>> 	switch (dev_id) {
+> >>>>> ...
+> >>>>>       
+> >>>>>> +	switch (dev_id) {
+> >>>>>> +	case TMP116_DEVICE_ID:
+> >>>>>> +	case TMP117_DEVICE_ID:
+> >>>>>>  		return dev_id;
+> >>>>>> -	if (dev_id != TMP117_DEVICE_ID) {
+> >>>>>> -		dev_err(&client->dev, "TMP117 not found\n");
+> >>>>>> +	default:
+> >>>>>> +		dev_err(&client->dev, "TMP116/117 not found\n");
+> >>>>>>  		return -ENODEV;    
+> >>>
+> >>> As per the other branch of this thread.  This isn't an error.
+> >>> If we want fallback compatibles to work in their role of allowing
+> >>> for newer devices that are actually compatible, the most we should
+> >>> do here is warn.
+> >>>
+> >>> Say a new tmp117b device is released. It's fully backwards compatible
+> >>> with the exception of an ID - or supports only new features + backwards
+> >>> compatibility then that would have a fallback to tmp117 and we need
+> >>> it to work.    
+> >>
+> >> This isn't part of this patchset and IMHO implementing something which
+> >> may happen in the future is not the way we should go.  
+> > 
+> > I held a similar view, but the response I got from the DT maintainers was
+> > that a driver should not reject a DTS that says it is compatible based
+> > on an unknown ID - because it prevents that case of an old kernel working
+> > absolutely fine with a completely compatible newer part.  
 > 
+> I don't think that there was such generic recommendation. Accepting
+> unknown devices (unknown register IDs) is a risk - device might behave
+> correct or not. If it is a critical device, like regulator, misbehave
+> might damage something.
+
+Agreed - I didn't express that there are limits to such a requirement.
+Indeed not a good idea with regulators etc!  However, for input devices
+like this one things are a little simpler - in theory they could be used
+for something that ends up damaging hardware if done wrong, but it's much
+less likely.
+
 > 
-> On 9.12.2022 21:22, Alex Elder wrote:
->> On 12/8/22 3:22 PM, Konrad Dybcio wrote:
->>>
->>>
->>> On 8.12.2022 22:15, Alex Elder wrote:
->>>> Add the necessary register and data definitions needed for IPA v4.7,
->>>> which is found on the SM6350 SoC.
->>>>
->>>> Co-developed-by: Luca Weiss <luca.weiss@fairphone.com>
->>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->>>> Signed-off-by: Alex Elder <elder@linaro.org>
->>>> ---
->>> [...]
-
-I'm finally getting back to this...  I'm about to send an
-update to net-next to address your comment.  But before
-doing that I'm going to explain my thinking on it.
-
->>>> +
->>>> +/* Memory configuration data for an SoC having IPA v4.7 */
->>>> +static const struct ipa_mem_data ipa_mem_data = {
->>>> +    .local_count    = ARRAY_SIZE(ipa_mem_local_data),
->>>> +    .local        = ipa_mem_local_data,
->>>> +    .imem_addr    = 0x146a9000,
->>>> +    .imem_size    = 0x00002000,
->>> Should probably be
->>>
->>> 0x146a8000
->>> 0x00003000
-
-The IMEM memory region is a distinct from main memory, but
-is "local" to certain parts of the SoC and is used for
-specific things for faster access.  The size and location
-of this region differs per-SoC.  Previously I believed this
-to be the same for a given version of IPA, and as such the
-range was defined in the "config data".  But I now know
-that is not the case, and during this release cycle I
-intend to get that fixed.
-
-Anyway, for a given SoC, the whole IMEM region is used
-by different entities.  For SM7550, for example, it is
-divided into 6 parts of various sizes (100KB, 24KB, 32KB,
-8KB, 8KB, and 4KB).  For IPA on this SoC, the offset is
-0x146a9000, with size 0x2000.  Hence the range defined
-above.
-
->>> with an appropriate change in dt to reserve that region.
->>>
->>> Qualcomm does:
->>> ipa@... { qcom,additional-mapping = <0x146a8000 0x146a8000 0x2000>; };
->>>
->>> which covers 0x146a8000-0x146a9fff
->>>
->>> plus
->>>
->>> imem@.. { reg = <0x146aa000 0x1000>; };
->>>
->>> which in total gives us 0x146a8000-0x146aafff
->>
->> Can you tell me where you found this information?
-> [1], [2]
-
-Following the first link, I see that this Sony device (which uses
-IPA v4.7) uses MSM7225 as its SoC.  I am not able to verify the
-values shown in the DTS file elsewhere, so in this case, that DTS
-file is my best source for information.
-
-The first link defines the IPA portion of IMEM at offset
-0x146a8000, size 0x2000.  That's what I'll use here instead.
-
-The other region you mention (in the second link) appears to
-be a distinct part, which follows the part set aside for IPA
-to use.  For SM7550, that part is "shared" and immediately
-follows the IPA part, with size 0x1000.  So I believe that
-is what the qcom,msm-imem@146aa000 is defining in the second
-link you supply.
-
->>> That would also mean all of your writes are kind of skewed, unless
->>> you already applied some offsets to them.
-
-Luca tested the code the way I defined it initially and found
-it worked.  It's possible the part of IMEM defined by my patch
-was just not used for it's intended purpose during his testing
-and therefore he saw no obvious problems.
-
-My plan is to patch "ipa_data-v4.7.c" to change the IMEM region
-to have offset 0x146a8000, size 0x2000, as you suggested.  I will
-supply this to Luca for testing (actually I think he already did),
-and we'll go with that as the final location for the IPA portion
-of IMEM for IPA v4.7.
-
-Later (sometime soon) the definition of this IPA IMEM area will
-get done differently--not defined in the "config data" files and
-instead defined in DTS.  There is already an imem node available
-(for example imem@146a5000 in "sc7280.dtsi"), so the fix *might*
-involve using that.
-
-					-Alex
-
->> This region is used by the modem, but must be set up
->> by the AP.
->>
->>> (IMEM on 6350 starts at 0x14680000 and is 0x2e000 long, as per
->>> the bootloader memory map)
->>
->> On SM7250 (sorry, I don't know about 7225, or 6350 for that matter),
->> the IMEM starts at 0x14680000 and has length 0x2c000.  However that
->> memory is used by multiple entities.  The portion set aside for IPA
->> starts at 0x146a9000 and has size 0x2000.
->>
-> Not sure how 7250 relates to 6350, but I don't think there's much
-> overlap..
+> What's more, how Linux driver behaves on device IDs (not compatibles) is
+> also a bit outside of DT scope.
 > 
+> If a driver claims it handles compatibles tmp117, then indeed it should
+> work fine with any DTS node claiming to be compatible with tmp117.
+> However driver is free to make further checks (if possible) whether the
+> device (e.g. tmp116 or tmp11X) is really compatible and reject unknown
+> devices for safety reason.
+
+Ok. For input devices at least in IIO we went around this a few times and
+ended up with deciding that a dev_info() type message was the best balance.
+We will need to be more careful for output devices.
+
 > 
-> Konrad
+> The same as x86 kernel is fine to reject to work on newest (unknown) x86
+> processors for safety reasons... which is terrible from user-experience
+> point of view unless it is real safety case.
+
+Hopefully that never happens :)
+
+Jonathan
+
 > 
-> [1] https://github.com/sonyxperiadev/kernel/blob/aosp/LA.UM.9.12.r1/arch/arm64/boot/dts/qcom/lagoon.dtsi#L3698-L3707
+> Best regards,
+> Krzysztof
 > 
-> [2] https://github.com/sonyxperiadev/kernel/blob/aosp/LA.UM.9.12.r1/arch/arm64/boot/dts/qcom/lagoon.dtsi#L1004-L1045
->>                      -Alex
->>
->>> Konrad
->>
 
