@@ -2,111 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2C2765A441
-	for <lists+devicetree@lfdr.de>; Sat, 31 Dec 2022 13:58:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8658E65A443
+	for <lists+devicetree@lfdr.de>; Sat, 31 Dec 2022 13:59:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235605AbiLaM6K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Dec 2022 07:58:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37646 "EHLO
+        id S235440AbiLaM7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Dec 2022 07:59:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235669AbiLaM6J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Dec 2022 07:58:09 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C9F0DF45
-        for <devicetree@vger.kernel.org>; Sat, 31 Dec 2022 04:58:08 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D7387B8075C
-        for <devicetree@vger.kernel.org>; Sat, 31 Dec 2022 12:58:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79F30C433D2;
-        Sat, 31 Dec 2022 12:58:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672491485;
-        bh=jfouaBFZY7D744CnAjd/T1uUdUhpkpQAziqm9aDdJr0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Yb+r5SB3wVnitCiAf4Qgw49wWaVKeeUMIYT0drFdVclFLFQCg+NRbsXXuMu1hv47R
-         LoJKARJz8yjX6cVNloQhEJ67pZkI2HWkWWsU+L47ZvhhgBAwrHTlUyNFx6QarfU1Uk
-         57i0w8SuaHf71YUQZjpOiQHNUzMNMXejtxxbHppmDbivDLyr6W9mJphxIMHVvKNKpZ
-         1UkseNB7EMmtMY+xzcxtqw1ep5VoJXBMWhxcgA7Zm+DCgrHPdnijbhrn69H4y83x3G
-         eBFqQcaJs7Pemiznfhr9k++6UYBLTXORhOvGnP6pSjRKznSpZhguL1CmxuHnD/VANo
-         zfmYJ/jiid+gQ==
-Date:   Sat, 31 Dec 2022 20:57:58 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S235620AbiLaM7T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Dec 2022 07:59:19 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D50C9FC2
+        for <devicetree@vger.kernel.org>; Sat, 31 Dec 2022 04:59:18 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id cf42so35169063lfb.1
+        for <devicetree@vger.kernel.org>; Sat, 31 Dec 2022 04:59:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xNv+AayRgEP2hIxnzst42s6qKfcZMM4RXSAyHy1K9G4=;
+        b=iiOrpMY3w/TTbypkaSZHyRFyhzS5ObSH/eR4zV4HAkNCnI9zY+xVtU/3LS6fknbrH3
+         piIXpyKIXMTWjG2G0HnDdHFozuY5+ftZ0MXoesnv0Q7oEhVn9mUOql2sjj/nQd1SABgE
+         +DnTu54G5rxwyfGD8/qKs17b4ufqhApFyT7Un/PTw3v23DDi4fBpvLRz6UsrHGeoBvk+
+         XlOgnJHlTQM/ui//CCF7vc9lAvAt2T5ZTWOShtwXKy8R/LoX7gZhdFoil7H+UmL9tUeM
+         gEio07V6A9BY63LuGs5sEI2eVwPEzE4BOYyoQolmnLC1bSyIpXfgL8fpVIloM2Bsl5St
+         hQ7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xNv+AayRgEP2hIxnzst42s6qKfcZMM4RXSAyHy1K9G4=;
+        b=HI7rM4CPyqf7NjHsoLQOYePf3EC84WpEz1R5PITPhIaejaTz8yEq4lUgoS7/UnPH4k
+         NPU3pSejK1IcUx1waxvgUC7J6g1E26LJJVcEnNZrr5zvO8L5RQOBfMGlDmqzS/0HuUFj
+         nVwOx40izDcMNFdgt6lWbhHrlBlZ7O0kKuGRfeRjXTN6jEWMwcKpAK0N38qftKHOTxD0
+         k4bqagQgIfI2rcNlgOHUR+lP4vGWJ8FsHK6W1zg9ii7Bz2qEk7dPiUn3ll2+jBN8ytLX
+         YGPPtJhMekDFZ1t0aIjbGlkZGskas8k3om/AAeWbIKfHRm4jQExeY7GW2MLOoDCZBJiM
+         HLEQ==
+X-Gm-Message-State: AFqh2kqHM8N5rsglbjCQ41q3NdGK5apPFdPBneQJHcfP0pXX9Xb0tSBE
+        S3us0HfzqPr+YFSwSCkqtPkp6w==
+X-Google-Smtp-Source: AMrXdXvBXBFn0BdIQmVWY9ZjxUjycuef0AXYuWEwfXq/BVNQwH7N1rqZ8Lf4kRvdHoR76cuuimycnw==
+X-Received: by 2002:a05:6512:695:b0:4b5:8502:efb4 with SMTP id t21-20020a056512069500b004b58502efb4mr12175038lfe.69.1672491556888;
+        Sat, 31 Dec 2022 04:59:16 -0800 (PST)
+Received: from localhost.localdomain (abxi45.neoplus.adsl.tpnet.pl. [83.9.2.45])
+        by smtp.gmail.com with ESMTPSA id d10-20020a0565123d0a00b004cb344a8c77sm22266lfv.54.2022.12.31.04.59.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 31 Dec 2022 04:59:16 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, linux@ew.tq-group.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/7] arm64: dts: tqma8mpql: Fix temperature sensor
- compatible
-Message-ID: <20221231125758.GZ6112@T480>
-References: <20221207124205.1373202-1-alexander.stein@ew.tq-group.com>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 01/18] arm64: dts: qcom: ipq6018: Pad addresses to 8 hex digits
+Date:   Sat, 31 Dec 2022 13:58:54 +0100
+Message-Id: <20221231125911.437599-2-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20221231125911.437599-1-konrad.dybcio@linaro.org>
+References: <20221231125911.437599-1-konrad.dybcio@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221207124205.1373202-1-alexander.stein@ew.tq-group.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 07, 2022 at 01:41:59PM +0100, Alexander Stein wrote:
-> Use the correct compatible 'nxp,se97b' as it is an SE97BTP chip.
-> While at it, fix the node name according to device tree spec
-> recommendations. The EEPROM is a separate node anyway.
-> 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Some addresses were 7-hex-digits long, or less. Fix that.
 
-Could you combine the series into two patches, one for arm64 and the
-other for ARM?
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi | 67 ++++++++++++++++++++++-----
+ 1 file changed, 55 insertions(+), 12 deletions(-)
 
-Shawn
+diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+index 2ceae73a6069..17e15a06254f 100644
+--- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+@@ -146,7 +146,7 @@ reserved-memory {
+ 		ranges;
+ 
+ 		rpm_msg_ram: memory@60000 {
+-			reg = <0x0 0x60000 0x0 0x6000>;
++			reg = <0x0 0x00060000 0x0 0x6000>;
+ 			no-map;
+ 		};
+ 
+@@ -181,7 +181,7 @@ soc: soc {
+ 
+ 		prng: qrng@e1000 {
+ 			compatible = "qcom,prng-ee";
+-			reg = <0x0 0xe3000 0x0 0x1000>;
++			reg = <0x0 0x000e3000 0x0 0x1000>;
+ 			clocks = <&gcc GCC_PRNG_AHB_CLK>;
+ 			clock-names = "core";
+ 		};
+@@ -366,6 +366,49 @@ qpic_nand: nand-controller@79b0000 {
+ 			status = "disabled";
+ 		};
+ 
++		usb3: usb@8af8800 {
++			compatible = "qcom,ipq6018-dwc3", "qcom,dwc3";
++			reg = <0x0 0x08af8800 0x0 0x400>;
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges;
++
++			clocks = <&gcc GCC_SYS_NOC_USB0_AXI_CLK>,
++				 <&gcc GCC_USB0_MASTER_CLK>,
++				 <&gcc GCC_USB0_SLEEP_CLK>,
++				 <&gcc GCC_USB0_MOCK_UTMI_CLK>;
++			clock-names = "cfg_noc",
++				      "core",
++				      "sleep",
++				      "mock_utmi";
++
++			assigned-clocks = <&gcc GCC_SYS_NOC_USB0_AXI_CLK>,
++					  <&gcc GCC_USB0_MASTER_CLK>,
++					  <&gcc GCC_USB0_MOCK_UTMI_CLK>;
++			assigned-clock-rates = <133330000>,
++					       <133330000>,
++					       <20000000>;
++
++			resets = <&gcc GCC_USB0_BCR>;
++			status = "disabled";
++
++			dwc_0: usb@8a00000 {
++				compatible = "snps,dwc3";
++				reg = <0x0 0x08a00000 0x0 0xcd00>;
++				interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
++				phys = <&qusb_phy_0>, <&usb0_ssphy>;
++				phy-names = "usb2-phy", "usb3-phy";
++				clocks = <&xo>;
++				clock-names = "ref";
++				tx-fifo-resize;
++				snps,is-utmi-l1-suspend;
++				snps,hird-threshold = /bits/ 8 <0x0>;
++				snps,dis_u2_susphy_quirk;
++				snps,dis_u3_susphy_quirk;
++				dr_mode = "host";
++			};
++		};
++
+ 		intc: interrupt-controller@b000000 {
+ 			compatible = "qcom,msm-qgic2";
+ 			#address-cells = <2>;
+@@ -388,7 +431,7 @@ v2m@0 {
+ 
+ 		pcie_phy: phy@84000 {
+ 			compatible = "qcom,ipq6018-qmp-pcie-phy";
+-			reg = <0x0 0x84000 0x0 0x1bc>; /* Serdes PLL */
++			reg = <0x0 0x00084000 0x0 0x1bc>; /* Serdes PLL */
+ 			status = "disabled";
+ 			#address-cells = <2>;
+ 			#size-cells = <2>;
+@@ -404,10 +447,10 @@ pcie_phy: phy@84000 {
+ 				      "common";
+ 
+ 			pcie_phy0: phy@84200 {
+-				reg = <0x0 0x84200 0x0 0x16c>, /* Serdes Tx */
+-				      <0x0 0x84400 0x0 0x200>, /* Serdes Rx */
+-				      <0x0 0x84800 0x0 0x1f0>, /* PCS: Lane0, COM, PCIE */
+-				      <0x0 0x84c00 0x0 0xf4>; /* pcs_misc */
++				reg = <0x0 0x00084200 0x0 0x16c>, /* Serdes Tx */
++				      <0x0 0x00084400 0x0 0x200>, /* Serdes Rx */
++				      <0x0 0x00084800 0x0 0x1f0>, /* PCS: Lane0, COM, PCIE */
++				      <0x0 0x00084c00 0x0 0xf4>; /* pcs_misc */
+ 				#phy-cells = <0>;
+ 
+ 				clocks = <&gcc GCC_PCIE0_PIPE_CLK>;
+@@ -623,7 +666,7 @@ mdio: mdio@90000 {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			compatible = "qcom,ipq6018-mdio", "qcom,ipq4019-mdio";
+-			reg = <0x0 0x90000 0x0 0x64>;
++			reg = <0x0 0x00090000 0x0 0x64>;
+ 			clocks = <&gcc GCC_MDIO_AHB_CLK>;
+ 			clock-names = "gcc_mdio_ahb_clk";
+ 			status = "disabled";
+@@ -631,7 +674,7 @@ mdio: mdio@90000 {
+ 
+ 		qusb_phy_1: qusb@59000 {
+ 			compatible = "qcom,ipq6018-qusb2-phy";
+-			reg = <0x0 0x059000 0x0 0x180>;
++			reg = <0x0 0x00059000 0x0 0x180>;
+ 			#phy-cells = <0>;
+ 
+ 			clocks = <&gcc GCC_USB1_PHY_CFG_AHB_CLK>,
+@@ -664,7 +707,7 @@ usb2: usb@70f8800 {
+ 
+ 			dwc_1: usb@7000000 {
+ 			       compatible = "snps,dwc3";
+-			       reg = <0x0 0x7000000 0x0 0xcd00>;
++			       reg = <0x0 0x07000000 0x0 0xcd00>;
+ 			       interrupts = <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>;
+ 			       phys = <&qusb_phy_1>;
+ 			       phy-names = "usb2-phy";
+@@ -679,7 +722,7 @@ dwc_1: usb@7000000 {
+ 
+ 		ssphy_0: ssphy@78000 {
+ 			compatible = "qcom,ipq6018-qmp-usb3-phy";
+-			reg = <0x0 0x78000 0x0 0x1c4>;
++			reg = <0x0 0x00078000 0x0 0x1c4>;
+ 			#address-cells = <2>;
+ 			#size-cells = <2>;
+ 			ranges;
+@@ -708,7 +751,7 @@ usb0_ssphy: phy@78200 {
+ 
+ 		qusb_phy_0: qusb@79000 {
+ 			compatible = "qcom,ipq6018-qusb2-phy";
+-			reg = <0x0 0x079000 0x0 0x180>;
++			reg = <0x0 0x00079000 0x0 0x180>;
+ 			#phy-cells = <0>;
+ 
+ 			clocks = <&gcc GCC_USB0_PHY_CFG_AHB_CLK>,
+-- 
+2.39.0
 
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts | 5 ++---
->  arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi         | 5 ++---
->  2 files changed, 4 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-> index a3340814099aa..f7f657b007a18 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-> @@ -516,9 +516,8 @@ tlv320aic3x04: audio-codec@18 {
->  		ldoin-supply = <&reg_vcc_3v3>;
->  	};
->  
-> -	/* NXP SE97BTP with temperature sensor + eeprom */
-> -	se97_1c: temperature-sensor-eeprom@1c {
-> -		compatible = "nxp,se97", "jedec,jc-42.4-temp";
-> +	se97_1c: temperature-sensor@1c {
-> +		compatible = "nxp,se97b", "jedec,jc-42.4-temp";
->  		reg = <0x1c>;
->  	};
->  
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi
-> index 7bd680a926ce7..ebc29a950ba9a 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi
-> @@ -63,9 +63,8 @@ &i2c1 {
->  	sda-gpios = <&gpio5 15 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->  	status = "okay";
->  
-> -	/* NXP SE97BTP with temperature sensor + eeprom */
-> -	se97: temperature-sensor-eeprom@1b {
-> -		compatible = "nxp,se97", "jedec,jc-42.4-temp";
-> +	se97: temperature-sensor@1b {
-> +		compatible = "nxp,se97b", "jedec,jc-42.4-temp";
->  		reg = <0x1b>;
->  	};
->  
-> -- 
-> 2.34.1
-> 
