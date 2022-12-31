@@ -2,52 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E78365A317
-	for <lists+devicetree@lfdr.de>; Sat, 31 Dec 2022 08:24:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AAAC65A31B
+	for <lists+devicetree@lfdr.de>; Sat, 31 Dec 2022 08:39:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229684AbiLaHYg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Dec 2022 02:24:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40492 "EHLO
+        id S230138AbiLaHjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Dec 2022 02:39:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229514AbiLaHYg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Dec 2022 02:24:36 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F566A45F;
-        Fri, 30 Dec 2022 23:24:35 -0800 (PST)
+        with ESMTP id S229514AbiLaHjw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Dec 2022 02:39:52 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A1C911175;
+        Fri, 30 Dec 2022 23:39:51 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 19E3F60A4E;
-        Sat, 31 Dec 2022 07:24:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 271FFC433D2;
-        Sat, 31 Dec 2022 07:24:30 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A82DEB80184;
+        Sat, 31 Dec 2022 07:39:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDAC8C433EF;
+        Sat, 31 Dec 2022 07:39:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672471474;
-        bh=W0A+nhDaTJdpBHbljAA/f8vZK5hDhe3mp9IfpUWV71g=;
+        s=k20201202; t=1672472388;
+        bh=TbG6cv/YLAHYJhLgQKAODUCdlCQYiEACzAqRj80DFKw=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FffWctcpwkG65Yz3WLR1u/fnbk1DPrY2VPoVXb+CyLBM75XPQ2KXiZb2qNyoehLwZ
-         kgJOrvVQuZF/C09J22sKTMXzXnEjOqgbfpXnsj0BIhSI1YzfhhQbC7KFNf3lKgsor+
-         9YobkLfXzpw05Zf4rK6CFioGR2nTNmCWjp5u3bbsRQg5bFWKuyeY/wbpS3GhluROwX
-         I/uQXKRLeYuuZBZTQvYw4H4lVd2ftrWYdQvdu2bqncTHzr/RPRZDdpBvV6jC25G1f8
-         qVUga0xeyEpOR9uBKbvuoppCX29ANjia0roSiOb4OEkK0J/wAxrOTTAsWt6OhEdm+y
-         rY0HAs9ZNnK+Q==
-Date:   Sat, 31 Dec 2022 15:24:25 +0800
+        b=p015iKkPZ5dzdyZyK1whqrk+J6+zfuzz8GvGnLSWik4Y80g41rWrZ38PLqi1xQec/
+         JaHYQ34I3O9Y2MO72udRpMm7hoi2ZEO9C+2UudHo85ZQYjTQQXYL38Uo/th79eXROG
+         yFiEr4b3dbMHVADaKutmUjXIM6D4JaL+2trZAPnXCorpgBj97rtf9vhyLgcC9l/HMp
+         OoOtHmcSJlrkWQAD0us3rm4/fhIhaezPU+6kv6EqmWO0UxkpmiFKbCJ5yOH7MagT/9
+         2epSyvimqmIMkzxng6JNzC1XyJSWbrsGRE7s6gEd6QpsQNsVd9EP7MKLSTZb7wIHMY
+         GfcdLrXD+r5dA==
+Date:   Sat, 31 Dec 2022 15:39:39 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     haibo.chen@nxp.com
-Cc:     wg@grandegger.com, mkl@pengutronix.de, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/3] arm64: dts: imx93: add flexcan nodes
-Message-ID: <20221231072424.GK6112@T480>
-References: <1669116752-4260-1-git-send-email-haibo.chen@nxp.com>
- <1669116752-4260-3-git-send-email-haibo.chen@nxp.com>
+To:     Philippe Schenker <dev@pschenker.ch>
+Cc:     devicetree@vger.kernel.org,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 0/5] Unify USB Over Current Settings on Toradex Boards
+Message-ID: <20221231073938.GL6112@T480>
+References: <20221122155439.456142-1-dev@pschenker.ch>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1669116752-4260-3-git-send-email-haibo.chen@nxp.com>
+In-Reply-To: <20221122155439.456142-1-dev@pschenker.ch>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
@@ -58,11 +63,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 22, 2022 at 07:32:32PM +0800, haibo.chen@nxp.com wrote:
-> From: Haibo Chen <haibo.chen@nxp.com>
+On Tue, Nov 22, 2022 at 04:54:33PM +0100, Philippe Schenker wrote:
+> From: Philippe Schenker <philippe.schenker@toradex.com>
 > 
-> Add flexcan1 and flexcan2 nodes.
 > 
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+> This patchset intends to disable the USB Over Current for Toradex i.MX
+> boards using the USB chipidea driver.
+> 
+> We do this on the Carrier-Board device-trees due to the reason, that if
+> a customer of us inheriting the module-level device-tree (named -.dtsi)
+> does not inherit settings from us that may be incorrect for his
+> use-case.
+> 
+> 
+> Philippe Schenker (5):
+>   ARM: dts: apalis-imx6: Disable usb over-current
+>   ARM: dts: colibri-imx6: Disable usb over-current
+>   ARM: dts: colibri-imx6ull: Disable usb over-current
+>   ARM: dts: colibri-imx7: Disable usb over-current
+>   arm64: dts: verdin-imx8mm: Disable usb over-current
 
-Applied, thanks!
+Applied all, thanks!
