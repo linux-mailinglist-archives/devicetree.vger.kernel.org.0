@@ -2,56 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C07FE65A436
-	for <lists+devicetree@lfdr.de>; Sat, 31 Dec 2022 13:54:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2C2765A441
+	for <lists+devicetree@lfdr.de>; Sat, 31 Dec 2022 13:58:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231539AbiLaMyD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Dec 2022 07:54:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36110 "EHLO
+        id S235605AbiLaM6K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Dec 2022 07:58:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229486AbiLaMyD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Dec 2022 07:54:03 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEB5C6584
-        for <devicetree@vger.kernel.org>; Sat, 31 Dec 2022 04:54:01 -0800 (PST)
+        with ESMTP id S235669AbiLaM6J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Dec 2022 07:58:09 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C9F0DF45
+        for <devicetree@vger.kernel.org>; Sat, 31 Dec 2022 04:58:08 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 5C730B8072F
-        for <devicetree@vger.kernel.org>; Sat, 31 Dec 2022 12:54:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69272C433D2;
-        Sat, 31 Dec 2022 12:53:56 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D7387B8075C
+        for <devicetree@vger.kernel.org>; Sat, 31 Dec 2022 12:58:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79F30C433D2;
+        Sat, 31 Dec 2022 12:58:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672491239;
-        bh=ETtplnlwnY8No57XVTHoevZoVAKca2LHdqXWuebbCQs=;
+        s=k20201202; t=1672491485;
+        bh=jfouaBFZY7D744CnAjd/T1uUdUhpkpQAziqm9aDdJr0=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=h03Inyu4rjBw+NPk0SkWO5k8Cp0FxwxKrTY6noOUWy01Pt1brF9+kNIYdERN9IQlV
-         u2afIH8+PLGp97Bfi08pL5cblVstrsuzVAdMj7mSB/JNwkfkHCTqj9kLrF86IsxcZg
-         lJJEULZ+TyI16cZY/WCt/uKz3PYbPTu0zo9Kesg/54xAr/dTVsrNZMgCSn4VWyyC1t
-         aghv8J/9Y3E/hjRCehFGYkjod+Kjhn0b3meNt74udPECGH3Of53iyRhEiWWCaWU+OI
-         d1gpC2o/ZIeqZA9RN34lgyqJq6/lF/N3ZJ8UOCqF5lwqq1MIHqM7BG1WHThkfDvW/E
-         L7IAJ5vW8aHcw==
-Date:   Sat, 31 Dec 2022 20:53:50 +0800
+        b=Yb+r5SB3wVnitCiAf4Qgw49wWaVKeeUMIYT0drFdVclFLFQCg+NRbsXXuMu1hv47R
+         LoJKARJz8yjX6cVNloQhEJ67pZkI2HWkWWsU+L47ZvhhgBAwrHTlUyNFx6QarfU1Uk
+         57i0w8SuaHf71YUQZjpOiQHNUzMNMXejtxxbHppmDbivDLyr6W9mJphxIMHVvKNKpZ
+         1UkseNB7EMmtMY+xzcxtqw1ep5VoJXBMWhxcgA7Zm+DCgrHPdnijbhrn69H4y83x3G
+         eBFqQcaJs7Pemiznfhr9k++6UYBLTXORhOvGnP6pSjRKznSpZhguL1CmxuHnD/VANo
+         zfmYJ/jiid+gQ==
+Date:   Sat, 31 Dec 2022 20:57:58 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Francesco Dolcini <francesco@dolcini.it>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org,
-        Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: Re: [PATCH v1] arm64: dts: verdin-imx8mm: fix dev board audio
- playback
-Message-ID: <20221231125350.GY6112@T480>
-References: <20221207102749.180485-1-francesco@dolcini.it>
+        Fabio Estevam <festevam@gmail.com>, linux@ew.tq-group.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/7] arm64: dts: tqma8mpql: Fix temperature sensor
+ compatible
+Message-ID: <20221231125758.GZ6112@T480>
+References: <20221207124205.1373202-1-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221207102749.180485-1-francesco@dolcini.it>
+In-Reply-To: <20221207124205.1373202-1-alexander.stein@ew.tq-group.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
@@ -62,17 +58,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 07, 2022 at 11:27:49AM +0100, Francesco Dolcini wrote:
-> From: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+On Wed, Dec 07, 2022 at 01:41:59PM +0100, Alexander Stein wrote:
+> Use the correct compatible 'nxp,se97b' as it is an SE97BTP chip.
+> While at it, fix the node name according to device tree spec
+> recommendations. The EEPROM is a separate node anyway.
 > 
-> Set optional `simple-audio-card,mclk-fs` parameter to ensure a proper
-> clock to the nau8822 audio codec. Without this change with an audio
-> stream rate of 44.1 kHz the playback is faster.
-> Set the MCLK at the right frequency, codec can properly use it to
-> generate 44.1 kHz I2S-FS.
-> 
-> Fixes: 6a57f224f734 ("arm64: dts: freescale: add initial support for verdin imx8m mini")
-> Signed-off-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
-> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-Applied, thanks!
+Could you combine the series into two patches, one for arm64 and the
+other for ARM?
+
+Shawn
+
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts | 5 ++---
+>  arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi         | 5 ++---
+>  2 files changed, 4 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
+> index a3340814099aa..f7f657b007a18 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
+> @@ -516,9 +516,8 @@ tlv320aic3x04: audio-codec@18 {
+>  		ldoin-supply = <&reg_vcc_3v3>;
+>  	};
+>  
+> -	/* NXP SE97BTP with temperature sensor + eeprom */
+> -	se97_1c: temperature-sensor-eeprom@1c {
+> -		compatible = "nxp,se97", "jedec,jc-42.4-temp";
+> +	se97_1c: temperature-sensor@1c {
+> +		compatible = "nxp,se97b", "jedec,jc-42.4-temp";
+>  		reg = <0x1c>;
+>  	};
+>  
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi
+> index 7bd680a926ce7..ebc29a950ba9a 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi
+> @@ -63,9 +63,8 @@ &i2c1 {
+>  	sda-gpios = <&gpio5 15 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+>  	status = "okay";
+>  
+> -	/* NXP SE97BTP with temperature sensor + eeprom */
+> -	se97: temperature-sensor-eeprom@1b {
+> -		compatible = "nxp,se97", "jedec,jc-42.4-temp";
+> +	se97: temperature-sensor@1b {
+> +		compatible = "nxp,se97b", "jedec,jc-42.4-temp";
+>  		reg = <0x1b>;
+>  	};
+>  
+> -- 
+> 2.34.1
+> 
