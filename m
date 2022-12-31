@@ -2,134 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD19365A63A
-	for <lists+devicetree@lfdr.de>; Sat, 31 Dec 2022 20:12:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 46ABF65A74F
+	for <lists+devicetree@lfdr.de>; Sat, 31 Dec 2022 23:02:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231986AbiLaTMh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Dec 2022 14:12:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52408 "EHLO
+        id S232274AbiLaWCK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Dec 2022 17:02:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229628AbiLaTMg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Dec 2022 14:12:36 -0500
-Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89FF560F5;
-        Sat, 31 Dec 2022 11:12:35 -0800 (PST)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id 537605C006E;
-        Sat, 31 Dec 2022 14:12:32 -0500 (EST)
+        with ESMTP id S229823AbiLaWB5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Dec 2022 17:01:57 -0500
+Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 927B55F84;
+        Sat, 31 Dec 2022 14:01:53 -0800 (PST)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.nyi.internal (Postfix) with ESMTP id 7B5BA5C00AB;
+        Sat, 31 Dec 2022 17:01:49 -0500 (EST)
 Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Sat, 31 Dec 2022 14:12:32 -0500
+  by compute5.internal (MEProxy); Sat, 31 Dec 2022 17:01:49 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm3; t=1672513952; x=
-        1672600352; bh=HHwFSzhmhIiAgDL5hBXf37YFQCuiHuO5p0U4EW3wAx8=; b=V
-        WeqovfpPdFmBhGmEQD5h3drvcmV5ssytOYssZ/BKcWxVYRuQK8sa2tiT4o1JQJNQ
-        lfhuIl7PvtNeZ5HwC4xXsS3RihF6BrHsrm32/sSAbCb8RWsniz0DEzsCg7oaa4YN
-        ugld2286ow2ioLdq/yBkg8rhqXdr7HlmJyVGaOtFEeqF8P89Nz/W6Y2uw+GyhKAv
-        pdwTkH/0UuUVtNQX8Sisrt55hPJfiBetWxxFSMZZhvtFjp8sTEjuhobxM3xpqP79
-        1zlKWvvKJWLYEK7DjgkUSMZZYasrXAjvUcinmvfzg6jHWCKIB1EuafaGTft8lcMr
-        TrP1hp4liYtrk9uf8W93w==
+        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
+        :message-id:mime-version:reply-to:sender:subject:subject:to:to;
+         s=fm3; t=1672524109; x=1672610509; bh=uEGwd78iouIBfqIK3t/RRS7S+
+        +4GQDRNvKIt4E61Pgc=; b=T7zIRNB7y343XX5YH2dmlezUMp+hc2shyHwqMfd6S
+        1lRhKykBUE5ynNXNfY5JEe56s6/drHw+pGSUWkE30nl/ZE7BjxuTi5voaPkt70CJ
+        ytfzZVNPmpj8xqNPeUrAjULzx5LYcCaT9cheOg9D9dRMRjb7aHF6rHFSxiVIJ4uO
+        PcRgBeEwpo4KeKwZyM1KWq7cRPAt5KxcPw8WkILDzgbEss7HBo++dng4FFxEgBiH
+        2UBozlU6oBiaCg0r4gk57NeugKJh39z5y2IOMZCF9saG6WRfLCLNpmCMorA5G4tj
+        re2w/xl9lN8pfGajmfyomJtp9GpbsWu3Ksqgr/vMKTCNQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1672513952; x=
-        1672600352; bh=HHwFSzhmhIiAgDL5hBXf37YFQCuiHuO5p0U4EW3wAx8=; b=c
-        ivXP4CFRjwGlmbcHS5kB9EwAExLnIq+CT0cF+5WeDiovq9WIGVa0RWMrbVS0UTGT
-        WO0qesh3quQpWxDeJ9BnZqFNB8j2aQicdv3xuU4fTue7VlcZly5rlLBLFyqjs2vL
-        lWoMIABUIPPUWB+DaYkvawPL95id2rBOgrT/h/+abIoMpnjOEmVH4lhjD3knKU5T
-        vGBelDhuEoEVCeEAxU6XoXnXDzmEpeoAxCRNojnRuVN1eG0mV6nrr2+o4gPvCVjy
-        k9CKPxZUTbC1xcDNs0eXJGfoCx+EvxoLjf8lVjblvFMUBZr6lTETa1mdVYaJFO6A
-        a2mV94i+CNDdPn4svAWFA==
-X-ME-Sender: <xms:n4mwY8vh5UG0-q_64t3UOe9SvqPX-SI2OvMoC-nMcyg7XaHgWpi2OA>
-    <xme:n4mwY5eh1xCi7BGEs0LY15eHB6DWqTWx00lxAnqStebKfK533-iSF0yjmviUrQBVr
-    NbJXuvIpW1xZHiPsA>
-X-ME-Received: <xmr:n4mwY3zPkceXdffHBnlTdP6UBMTcgg41VTeHK-wXnKj-OhCnI0tTXYVF-POMgt8FG2QdK7VZAwYq84D_QOf8vlLrw0YIhOlEK8qhFFyCBcFdTVqRdn1IwBzJYQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrieekgdduvddvucetufdoteggodetrfdotf
+        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:message-id
+        :mime-version:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
+        1672524109; x=1672610509; bh=uEGwd78iouIBfqIK3t/RRS7S++4GQDRNvKI
+        t4E61Pgc=; b=G7lOHcQgKBoGMWpvwy6cOD6JEJzXzdc26/du93Hn6fwYmzDaDlr
+        QPjwWVFCfcp8vmAiEjaOzQzVEms/AVZKoHZMM9q4sTRBQ3LaFHgQBdj/9CumLqdK
+        uYkPcmFH1xVWJygQww7+4smC3sAohtXsoVjhj0HPo0G4G+ti88CXmWNV72OIq3bq
+        er2bcNVxlWhNbGiwvclg0eD/rZItnLeqlk0A5nQ4Lozr5apJjgzLaf94cKhbQuZZ
+        pLyKfNMHofkpryOUCxQt97KxY8wg8cmkvZr/X+RmhEJCrQQZIqILYFYDNzKOhRvb
+        fI/EUNWStiEPWV7unPNGqe/1ZbB1L6jALkg==
+X-ME-Sender: <xms:S7GwY6FQd6hZJEG4YIRcIq-0J7QcwvL0LZI70BYVYc3sxQ5CaG67yA>
+    <xme:S7GwY7UWoCcAeDdOarYJoHUhTzBufT8U8e9bojz6NlbeU6DrQDZ3kELA9yWsF_5sX
+    GXokwZPxn3ATtiNlw>
+X-ME-Received: <xmr:S7GwY0KhzI81Va4aLI6SCksAv4w2zCruZVNDjyS8wGmNIMaxrAtvTtE7KgRV9sLctzbxhNXDCDUtxg0Y3iGqdWyEwT5uH4I7CIPYKjetMZDxlmvcBf1_u_7pMwhDY75qamkWpA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrieekgdduheehucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepkfffgggfvfevfhfhufgjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghm
-    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
-    ggtffrrghtthgvrhhnpeegteekvefhgefhgfeigeejffejvdeihedvfefgtedvjeeiudet
-    teeihfffgfeugfenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecuvehluh
-    hsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehs
-    hhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:n4mwY_MrsgxFUNbHQUPM0rmn3enNPZsq9R9QUwQRjaJaXKWsMY56gA>
-    <xmx:n4mwY8_MoPVQ0qMucFc89pSo1WvcL3b9eOzxcrMWCAm1o8kXYkzlTA>
-    <xmx:n4mwY3XKM9-VY_CkUvEtfl_UVl67ZVu5RlTUG7tvvCH1ry2pwIHVfg>
-    <xmx:oImwYwSPg4u3dImYw_gCexNr_AFFsMCDsXSokGyvFZnklAjTSK8eiw>
+    cujfgurhephffvvefufffkofgggfestdekredtredttdenucfhrhhomhepufgrmhhuvghl
+    ucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecuggftrf
+    grthhtvghrnhepkeehffethedtteffgfefteetjedvfeelueevudffgfeutdejvdehledv
+    vdffhfevnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucevlhhushhtvghrufhiii
+    gvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhllhgrnhgu
+    rdhorhhg
+X-ME-Proxy: <xmx:S7GwY0FhvTw1JxpLhzraacJm7Uby1ptVkwc_xqWU9fHGEpq9z-zbhw>
+    <xmx:S7GwYwWTMkRDvIzRhCJu-8q8ysKNwu74KYpBwJQrYIhJGIqbLazqiQ>
+    <xmx:S7GwY3OzIdkhZUpR--lWaCybgzz0u19jz3uHkb0XbYVgW8hzb72-mQ>
+    <xmx:TbGwY8mHggTyKBxh-0GO0wvPyIIv5VTAA1jdtcrZpLAzkGYZQShSQQ>
 Feedback-ID: i0ad843c9:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 31 Dec 2022 14:12:31 -0500 (EST)
-Message-ID: <b63e8e05-6ca0-ea77-bfb8-f9ecca2ebdcc@sholland.org>
-Date:   Sat, 31 Dec 2022 13:12:30 -0600
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ 31 Dec 2022 17:01:46 -0500 (EST)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Corentin Labbe <clabbe.montjoie@gmail.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
         Chen-Yu Tsai <wens@csie.org>,
         Jernej Skrabec <jernej.skrabec@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-References: <20221231160402.16157-1-samuel@sholland.org>
- <20221231160402.16157-2-samuel@sholland.org>
- <92dbd096-b02f-b5e5-6275-a37a3d582685@linaro.org>
-From:   Samuel Holland <samuel@sholland.org>
-Subject: Re: [PATCH 1/2] dt-bindings: power: Add Allwinner D1 PPU
-In-Reply-To: <92dbd096-b02f-b5e5-6275-a37a3d582685@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject: [PATCH v2 0/3] crypto: Allwinner D1 crypto support
+Date:   Sat, 31 Dec 2022 16:01:42 -0600
+Message-Id: <20221231220146.646-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.37.4
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/31/22 12:58, Krzysztof Kozlowski wrote:
-> On 31/12/2022 17:04, Samuel Holland wrote:
->> The Allwinner D1 family of SoCs contain a "PPU" power domain controller
->> separate from the PRCM. It can power down the video engine and DSP, and
->> it contains special logic for hardware-assisted CPU idle. Other recent
->> Allwinner SoCs (e.g. TV303) have a PPU with a different set of domains.
->>
->> Signed-off-by: Samuel Holland <samuel@sholland.org>
->> ---
->>
->>  .../power/allwinner,sun20i-d1-ppu.yaml        | 54 +++++++++++++++++++
->>  .../power/allwinner,sun20i-d1-ppu.h           | 10 ++++
->>  2 files changed, 64 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/power/allwinner,sun20i-d1-ppu.yaml
->>  create mode 100644 include/dt-bindings/power/allwinner,sun20i-d1-ppu.h
->>
->> diff --git a/Documentation/devicetree/bindings/power/allwinner,sun20i-d1-ppu.yaml b/Documentation/devicetree/bindings/power/allwinner,sun20i-d1-ppu.yaml
->> new file mode 100644
->> index 000000000000..64c9a9f398a2
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/power/allwinner,sun20i-d1-ppu.yaml
->> @@ -0,0 +1,54 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/power/allwinner,sun20i-d1-ppu.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Allwinner SoCs "PPU" power domain controller
-> 
-> Drop quotes over "PPU" - it's not some nickname, alias, but acronym.
-> Explain the acronym in description.
+This series finishes adding crypto support for the Allwinner D1 SoC. The
+driver patch from v1 was merged, but not the binding[1]. This turned out
+to be a good thing, because I later found that the TRNG needed another
+clock reference in the devicetree. That is fixed in v2. I include the DT
+update here too, since the SoC DT has been on the list for a while[2].
 
-I don't know what the acronym stands for; it is never spelled out in the
-vendor code. I will drop the quotes in v2, but I can't give an explanation.
+[1]: https://lore.kernel.org/all/20211119051026.13049-1-samuel@sholland.org/T/
+[2]: https://lore.kernel.org/lkml/20221208090237.20572-1-samuel@sholland.org/
 
-Regards,
-Samuel
+Changes in v2:
+ - Add TRNG clock
+
+Samuel Holland (3):
+  dt-bindings: crypto: sun8i-ce: Add compatible for D1
+  crypto: sun8i-ce - Add TRNG clock to the D1 variant
+  riscv: dts: allwinner: d1: Add crypto engine node
+
+ .../bindings/crypto/allwinner,sun8i-ce.yaml   | 33 ++++++++++++++-----
+ .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    | 12 +++++++
+ .../crypto/allwinner/sun8i-ce/sun8i-ce-core.c |  1 +
+ drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h  |  2 +-
+ 4 files changed, 39 insertions(+), 9 deletions(-)
+
+-- 
+2.37.4
 
