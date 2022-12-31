@@ -2,50 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CB5A65A313
-	for <lists+devicetree@lfdr.de>; Sat, 31 Dec 2022 08:19:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E78365A317
+	for <lists+devicetree@lfdr.de>; Sat, 31 Dec 2022 08:24:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231151AbiLaHTx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Dec 2022 02:19:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39394 "EHLO
+        id S229684AbiLaHYg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Dec 2022 02:24:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229943AbiLaHTw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Dec 2022 02:19:52 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B025C7669
-        for <devicetree@vger.kernel.org>; Fri, 30 Dec 2022 23:19:51 -0800 (PST)
+        with ESMTP id S229514AbiLaHYg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Dec 2022 02:24:36 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F566A45F;
+        Fri, 30 Dec 2022 23:24:35 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 51402B80184
-        for <devicetree@vger.kernel.org>; Sat, 31 Dec 2022 07:19:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66994C433EF;
-        Sat, 31 Dec 2022 07:19:47 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 19E3F60A4E;
+        Sat, 31 Dec 2022 07:24:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 271FFC433D2;
+        Sat, 31 Dec 2022 07:24:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672471189;
-        bh=cs3q1kSo7wSbdRxsOXirkBoh0irqpR9qinOAxpR/Avg=;
+        s=k20201202; t=1672471474;
+        bh=W0A+nhDaTJdpBHbljAA/f8vZK5hDhe3mp9IfpUWV71g=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=X6Kav1DWzYbe8ciYKIZM12t6POQAQPD+VIW7CN/b1X1Tb/X/uz5Sz4mCdAY0xqaEC
-         Ur4kBahEtu2675i5rVOF+NC0VE5lPnvMa8B7uaFt1DZTvbbg+IVjhOsxes8stU3nGp
-         HpHJ/gljLgoOMCoYSnacrNlOsQOni14yZOZaJMMnLq/wPiTc1v4pxp0PV8/xF+cGyt
-         jWDI5DcuTSiClCHgIz7bOvbdpYSRB2yjOqv5DBxtcgQ00x0DirCapo1SJaoOEhAHvb
-         pM1snWh2l6YfMogs+tC1IkVoiTQ+t2uSoSWBcO13O9uo1I0cJGrLm0KAXIjIArEJow
-         Rn++njdaMjeZg==
-Date:   Sat, 31 Dec 2022 15:19:42 +0800
+        b=FffWctcpwkG65Yz3WLR1u/fnbk1DPrY2VPoVXb+CyLBM75XPQ2KXiZb2qNyoehLwZ
+         kgJOrvVQuZF/C09J22sKTMXzXnEjOqgbfpXnsj0BIhSI1YzfhhQbC7KFNf3lKgsor+
+         9YobkLfXzpw05Zf4rK6CFioGR2nTNmCWjp5u3bbsRQg5bFWKuyeY/wbpS3GhluROwX
+         I/uQXKRLeYuuZBZTQvYw4H4lVd2ftrWYdQvdu2bqncTHzr/RPRZDdpBvV6jC25G1f8
+         qVUga0xeyEpOR9uBKbvuoppCX29ANjia0roSiOb4OEkK0J/wAxrOTTAsWt6OhEdm+y
+         rY0HAs9ZNnK+Q==
+Date:   Sat, 31 Dec 2022 15:24:25 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, tharvey@gateworks.com,
-        linux-arm-kernel@lists.infradead.org,
-        Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH] ARM: dts: imx6qdl-gw560x: Remove incorrect
- 'uart-has-rtscts'
-Message-ID: <20221231071941.GI6112@T480>
-References: <20221121202259.2415821-1-festevam@gmail.com>
+To:     haibo.chen@nxp.com
+Cc:     wg@grandegger.com, mkl@pengutronix.de, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/3] arm64: dts: imx93: add flexcan nodes
+Message-ID: <20221231072424.GK6112@T480>
+References: <1669116752-4260-1-git-send-email-haibo.chen@nxp.com>
+ <1669116752-4260-3-git-send-email-haibo.chen@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221121202259.2415821-1-festevam@gmail.com>
+In-Reply-To: <1669116752-4260-3-git-send-email-haibo.chen@nxp.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
@@ -56,25 +58,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 21, 2022 at 05:22:59PM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+On Tue, Nov 22, 2022 at 07:32:32PM +0800, haibo.chen@nxp.com wrote:
+> From: Haibo Chen <haibo.chen@nxp.com>
 > 
-> The following build warning is seen when running:
+> Add flexcan1 and flexcan2 nodes.
 > 
-> make dtbs_check DT_SCHEMA_FILES=fsl-imx-uart.yaml
-> 
-> arch/arm/boot/dts/imx6dl-gw560x.dtb: serial@2020000: rts-gpios: False schema does not allow [[20, 1, 0]]
-> 	From schema: Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
-> 
-> The imx6qdl-gw560x board does not expose the UART RTS and CTS
-> as native UART pins, so 'uart-has-rtscts' should not be used.
-> 
-> Using 'uart-has-rtscts' with 'rts-gpios' is an invalid combination
-> detected by serial.yaml.
-> 
-> Fix the problem by removing the incorrect 'uart-has-rtscts' property.
-> 
-> Fixes: b8a559feffb2 ("ARM: dts: imx: add Gateworks Ventana GW5600 support")
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
 
 Applied, thanks!
