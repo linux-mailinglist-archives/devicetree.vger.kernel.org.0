@@ -2,60 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AAAC65A31B
-	for <lists+devicetree@lfdr.de>; Sat, 31 Dec 2022 08:39:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1F6465A384
+	for <lists+devicetree@lfdr.de>; Sat, 31 Dec 2022 11:47:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230138AbiLaHjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Dec 2022 02:39:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41492 "EHLO
+        id S231511AbiLaKry (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Dec 2022 05:47:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229514AbiLaHjw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Dec 2022 02:39:52 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A1C911175;
-        Fri, 30 Dec 2022 23:39:51 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A82DEB80184;
-        Sat, 31 Dec 2022 07:39:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDAC8C433EF;
-        Sat, 31 Dec 2022 07:39:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672472388;
-        bh=TbG6cv/YLAHYJhLgQKAODUCdlCQYiEACzAqRj80DFKw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=p015iKkPZ5dzdyZyK1whqrk+J6+zfuzz8GvGnLSWik4Y80g41rWrZ38PLqi1xQec/
-         JaHYQ34I3O9Y2MO72udRpMm7hoi2ZEO9C+2UudHo85ZQYjTQQXYL38Uo/th79eXROG
-         yFiEr4b3dbMHVADaKutmUjXIM6D4JaL+2trZAPnXCorpgBj97rtf9vhyLgcC9l/HMp
-         OoOtHmcSJlrkWQAD0us3rm4/fhIhaezPU+6kv6EqmWO0UxkpmiFKbCJ5yOH7MagT/9
-         2epSyvimqmIMkzxng6JNzC1XyJSWbrsGRE7s6gEd6QpsQNsVd9EP7MKLSTZb7wIHMY
-         GfcdLrXD+r5dA==
-Date:   Sat, 31 Dec 2022 15:39:39 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Philippe Schenker <dev@pschenker.ch>
-Cc:     devicetree@vger.kernel.org,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
+        with ESMTP id S229500AbiLaKrx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Dec 2022 05:47:53 -0500
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1344E6141
+        for <devicetree@vger.kernel.org>; Sat, 31 Dec 2022 02:47:51 -0800 (PST)
+Received: by mail-ej1-x641.google.com with SMTP id qk9so56377773ejc.3
+        for <devicetree@vger.kernel.org>; Sat, 31 Dec 2022 02:47:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mEyhDLjUotgmC3JtXt/RMPu+Hko7HSi75jUhaPS/Wts=;
+        b=Q7ihk4LOj4p8w+nLZjeNXShVWZ67NNNje/AuDd5IQufoP47QxJgIuldn+X+o46xQ8i
+         AhWSy7tf636P11d11KqtmI5tCp4Iwo99zJefOwSN+8AcHLwzpvhESQL23dUDvLQDZflj
+         xm9+6T7RR3Wy4n9WKFoit7oXGUDhNvjZO2OnU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mEyhDLjUotgmC3JtXt/RMPu+Hko7HSi75jUhaPS/Wts=;
+        b=ieY9SGk9SbVJlgkKasuEi3cuGZwq9EkeQ/bTVzIM2AD0yuvPTpVu8fzVDX887G72Y0
+         Z8mEIBPJAkaSl1mKZUW8mxWguo+ey/MLDxoxonTZY3Ikh8OnFTxflQ9qHAvAZY1RIC1z
+         5fITtEUkgvVrCtoTPb3TfWRl4u0xzkU5ZgFWTa/V9VAJBLmRG48NxwQBZyAAJfcU/frV
+         iJ4J6f3AGiiL14+dfbWDzi9/uOT3LDhv2c1iTFjvOrtPZGEtECqAlEYeuhjNuN9QY0Hk
+         ftnpFaY5dwuvRReK9TFUFxFSa3Mozs8X2V+CTgSjggCA2mjzrjhIUrJrrTMIELpqHIcP
+         sKqw==
+X-Gm-Message-State: AFqh2krN7xBg8brYrJ95tu2MLcNXDmVAlV0/E2hr3ETvLVO8MO8ZKVgK
+        N8pq7HTLjcoS8oEXlrFddoVx8w==
+X-Google-Smtp-Source: AMrXdXu1x8liAPz491BtUIf6hj5bm8qPI+F9cy8Jl1JSxQW5vdTGZNokloNsBS4HQ5CBnhvuMsfdxQ==
+X-Received: by 2002:a17:907:2918:b0:818:3f54:8db6 with SMTP id eq24-20020a170907291800b008183f548db6mr27872605ejc.6.1672483669569;
+        Sat, 31 Dec 2022 02:47:49 -0800 (PST)
+Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-80-180-23-57.retail.telecomitalia.it. [80.180.23.57])
+        by smtp.gmail.com with ESMTPSA id z4-20020a17090655c400b0083ffb81f01esm10765438ejp.136.2022.12.31.02.47.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 31 Dec 2022 02:47:49 -0800 (PST)
+From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     tommaso.merciai@amarulasolutions.com,
+        linux-amarula@amarulasolutions.com,
+        Chen-Yu Tsai <wenst@chromium.org>, jagan@amarulasolutions.com,
+        angelo@amarulasolutions.com, anthony@amarulasolutions.com,
+        michael@amarulasolutions.com,
+        Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        Abel Vesa <abelvesa@kernel.org>,
+        Adam Ford <aford173@gmail.com>,
         Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Li Jun <jun.li@nxp.com>, Lucas Stach <l.stach@pengutronix.de>,
+        Marek Vasut <marex@denx.de>,
+        Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+        Michael Turquette <mturquette@baylibre.com>,
         NXP Linux Team <linux-imx@nxp.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 0/5] Unify USB Over Current Settings on Toradex Boards
-Message-ID: <20221231073938.GL6112@T480>
-References: <20221122155439.456142-1-dev@pschenker.ch>
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
+Subject: [RFC PATCH 00/11] clk: imx8mn: setup clocks from the device tree
+Date:   Sat, 31 Dec 2022 11:47:25 +0100
+Message-Id: <20221231104736.12635-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221122155439.456142-1-dev@pschenker.ch>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,24 +83,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 22, 2022 at 04:54:33PM +0100, Philippe Schenker wrote:
-> From: Philippe Schenker <philippe.schenker@toradex.com>
-> 
-> 
-> This patchset intends to disable the USB Over Current for Toradex i.MX
-> boards using the USB chipidea driver.
-> 
-> We do this on the Carrier-Board device-trees due to the reason, that if
-> a customer of us inheriting the module-level device-tree (named -.dtsi)
-> does not inherit settings from us that may be incorrect for his
-> use-case.
-> 
-> 
-> Philippe Schenker (5):
->   ARM: dts: apalis-imx6: Disable usb over-current
->   ARM: dts: colibri-imx6: Disable usb over-current
->   ARM: dts: colibri-imx6ull: Disable usb over-current
->   ARM: dts: colibri-imx7: Disable usb over-current
->   arm64: dts: verdin-imx8mm: Disable usb over-current
+The idea for this series was born back from Dublin (ELCE 2022) after
+having attended the talk entitled "Updating and Modernizing Clock
+Drivers" held by Chen-Yu Tsai and the availability of a board with
+imx8mn SOC.
 
-Applied all, thanks!
+This series aims to setup all imx8mn's clocks from the device tree and
+remove the legacy setup code with hardwired parameters.
+
+I am well aware that the series lacks patches for the DT bindings. The
+effort up to this point has been important and so I thought I'd ask for
+feedback from the community before proceeding to implement them. If it
+is positive I will add the DT binding patches starting from version 2.
+
+The series has been tested on the BSH SystemMaster (SMM) S2 board:
+https://www.apertis.org/reference_hardware/imx8mn_bsh_smm_s2pro_setup
+
+
+
+Dario Binacchi (11):
+  clk: imx: add structure to extend register accesses
+  clk: imx: add clk_hw based API imx_get_clk_hw_from_dt()
+  clk: imx8mn: add gate driver
+  clk: imx8mn: add mux driver
+  clk: imx8mn: add divider driver
+  clk: imx: pll14xx: add device tree support
+  clk: imx: composite-8m: add device tree support
+  clk: imx: gate2: add device tree support
+  clk: imx: cpu: add device tree support
+  arm64: dts: imx8mn: add dumy clock
+  arm64: dts: imx8mn: add clocks description
+
+ .../boot/dts/freescale/imx8mn-clocks.dtsi     | 1885 +++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8mn.dtsi     |   51 +-
+ drivers/clk/imx/Makefile                      |    3 +
+ drivers/clk/imx/clk-composite-8m.c            |   83 +
+ drivers/clk/imx/clk-cpu.c                     |   54 +
+ drivers/clk/imx/clk-divider.c                 |  235 ++
+ drivers/clk/imx/clk-gate.c                    |  156 ++
+ drivers/clk/imx/clk-gate2.c                   |   86 +
+ drivers/clk/imx/clk-imx8mn.c                  |  716 ++-----
+ drivers/clk/imx/clk-mux.c                     |  258 +++
+ drivers/clk/imx/clk-pll14xx.c                 |  220 +-
+ drivers/clk/imx/clk.c                         |   21 +
+ drivers/clk/imx/clk.h                         |   15 +
+ 13 files changed, 3176 insertions(+), 607 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-clocks.dtsi
+ create mode 100644 drivers/clk/imx/clk-divider.c
+ create mode 100644 drivers/clk/imx/clk-gate.c
+ create mode 100644 drivers/clk/imx/clk-mux.c
+
+-- 
+2.32.0
+
