@@ -2,53 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8C8965A3C7
-	for <lists+devicetree@lfdr.de>; Sat, 31 Dec 2022 12:43:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9F5465A3CD
+	for <lists+devicetree@lfdr.de>; Sat, 31 Dec 2022 12:51:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231719AbiLaLnx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Dec 2022 06:43:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50300 "EHLO
+        id S231539AbiLaLvw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Dec 2022 06:51:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbiLaLnx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Dec 2022 06:43:53 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 803246585;
-        Sat, 31 Dec 2022 03:43:51 -0800 (PST)
+        with ESMTP id S229484AbiLaLvt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Dec 2022 06:51:49 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5B9B6255
+        for <devicetree@vger.kernel.org>; Sat, 31 Dec 2022 03:51:48 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 09823B8037A;
-        Sat, 31 Dec 2022 11:43:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CA35C433D2;
-        Sat, 31 Dec 2022 11:43:46 +0000 (UTC)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 2BC00CE127C
+        for <devicetree@vger.kernel.org>; Sat, 31 Dec 2022 11:51:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E43FCC433D2;
+        Sat, 31 Dec 2022 11:51:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672487028;
-        bh=2BRHVCnJSCiNgdpz8pKFueVlfuaotxlZrd19TYFK35o=;
+        s=k20201202; t=1672487505;
+        bh=VR0gMcynXU/oB4yTFnS9K1GiRNhYX9ISmV6ST/FFhEU=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YMuSquco7gBP+J0YHBdGMkYhxpHBiX2ox61JPfmtbNIbGCtkEU6FjeoTu+ovMHkZA
-         LA3lnDWI28Q91jvK/MtTNcsSwxOjr047/7zULiY89b8XRf456JRLwrsAQ5V7d9LPKD
-         pbs3k8F9l5Sku4IrixPb7vrjzY8sU44HPvU5iQiXIXIKI7HDrVRAnOjTT9qJhhAw81
-         qrREB0zNyInbkea8U32SGsldrBGcRzlY3JikKKP9Vazz/VqrS9jkfqxArtxShTEtb9
-         N4o57Ocaa0/pd8m9f57q7Mmq4+GUuQqLO0ZF6kU4kWSKWV1Y6iojTSv9hEx1uiljSp
-         MBAdMmjgOZEoQ==
-Date:   Sat, 31 Dec 2022 19:43:41 +0800
+        b=i6iYNZDfdZNPH6Ft8bttlLPwm5WQd4ksoiw0Dt1+vao7PZdNFCxOTW6FT6rnV7kY1
+         POn8iVr/8MSLDLrOqdZMPmIxZ4s6st3PEG8MZrQNVah2NoK9WVzCSK/gs/fzH3ftEv
+         hhVJhPSzQPYrSSXniEbpDr9QkXCrNdih5O9Q+M4yjtEcfdfHH1p8be++8oAdFLTntr
+         8JBh4VtIwsTauz3YqOdd8QgdF5X23aTjgKjQB4bPIqyzZpc9Wc7jwof4cBzPa60Mm9
+         M7z0FEkWWkxq8st6dsy+KKQZX8YTcLK5qKBk7jFw+tlb+z9kA6hLBoIe4jjc8xgi25
+         7r/uXLzTdZYzQ==
+Date:   Sat, 31 Dec 2022 19:51:38 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Francesco Dolcini <francesco@dolcini.it>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Stefan Eichenberger <stefan.eichenberger@toradex.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        Stefan Agner <stefan@agner.ch>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] arm64: dts: imx: align LED node names with dtschema
-Message-ID: <20221231114340.GN6112@T480>
-References: <20221125144223.477376-1-krzysztof.kozlowski@linaro.org>
+        devicetree@vger.kernel.org,
+        Francesco Dolcini <francesco.dolcini@toradex.com>
+Subject: Re: [PATCH v2] arm64: dts: imx8mm-verdin: enable hpd on
+ hdmi-connector
+Message-ID: <20221231115137.GO6112@T480>
+References: <20221129140935.34428-1-francesco@dolcini.it>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221125144223.477376-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221129140935.34428-1-francesco@dolcini.it>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
@@ -59,11 +62,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 25, 2022 at 03:42:21PM +0100, Krzysztof Kozlowski wrote:
-> The node names should be generic and DT schema expects certain pattern:
+On Tue, Nov 29, 2022 at 03:09:35PM +0100, Francesco Dolcini wrote:
+> From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
 > 
->   freescale/imx8mm-emcon-avari.dtb: leds: 'green', 'red' do not match any of the regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
+> Add hot plug detect gpio to the HDMI connector.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-Applied all, thanks!
+Applied, thanks!
