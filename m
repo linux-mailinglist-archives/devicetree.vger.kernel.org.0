@@ -2,76 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3668665A624
-	for <lists+devicetree@lfdr.de>; Sat, 31 Dec 2022 19:56:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E474165A626
+	for <lists+devicetree@lfdr.de>; Sat, 31 Dec 2022 19:58:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229823AbiLaS4Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Dec 2022 13:56:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48454 "EHLO
+        id S229882AbiLaS6q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Dec 2022 13:58:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229595AbiLaS4Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Dec 2022 13:56:24 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C0FBEBD
-        for <devicetree@vger.kernel.org>; Sat, 31 Dec 2022 10:56:22 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id bt23so19549014lfb.5
-        for <devicetree@vger.kernel.org>; Sat, 31 Dec 2022 10:56:22 -0800 (PST)
+        with ESMTP id S229684AbiLaS6p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Dec 2022 13:58:45 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76C476417
+        for <devicetree@vger.kernel.org>; Sat, 31 Dec 2022 10:58:43 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id j17so26714813lfr.3
+        for <devicetree@vger.kernel.org>; Sat, 31 Dec 2022 10:58:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=492r+yHdPMIoILRLNSFxtqbe5eiM6CMIAFGWnVFQ6z4=;
-        b=DoHcuI1rMdXexe2kY5VzaXWPc4wCEoewmgZDGedv5XM1Vt7Ue8EhfdBPHyPGX+OpHG
-         8cisv7vaV9DNF3uZ4/zBhiP9MAGmJQiSDx9RZzs0E65oXOOcJFDzQ7cyHzfOh99jDhkv
-         403Ud+Xe/jeoj1X+QVBGmHnPgHYbwPeBSyxyLoglfovbGmrkofH9JVyTLeyrRZkhFeSB
-         2p3L2Wrgdg7UCa8vlvG6iyEPz7P4e4aWCiMYraoTxXcA+ngKJsCiMgntpKkrQhx1hQab
-         sHfNLHZGmIa8UQWmKDXWi+/XC4cAxMpixyJpriGHZzmFcucTSShVy3cr/gVQyaM2UhC1
-         bkQg==
+        bh=+f6MEHPvraJbIhg/Qh3EFX2QlA+pVzk6PS1RzpejfpU=;
+        b=mm3rbNvErKbm878y6ZLKO1BRezWJCBTu40Aw7nN6SC3nL6oJPiv5NeSsIlrJzNCIbp
+         ZRDOe0BQ1Ch84+IMryAV9ZLzjpNG/UAaaXQFnv0oTvj9CJBq+UueBnEXN1N85nBnud4L
+         5q9pflE6Cz7vI7A2XGBRgpVVGCPOhb39Sdcxgi1WpSlaeZS9cuMSnEzgkG244Ny6x+/7
+         KLIA1Jw11GUCtITafrih993ehavRbxdQ50Ya4g7ei/mE2gBmWJpuEJqs/vApnsY1HeGR
+         Uwt4c1ihY6b3SERs5S64i21VDRMGTIUZ3UeC9pRcfUj93ZA5WWHbglMljiKP0BRVnRtE
+         MZBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=492r+yHdPMIoILRLNSFxtqbe5eiM6CMIAFGWnVFQ6z4=;
-        b=D5bQNAdKGIaXh+gQQ0ZdG0QfMLjdyBB64QVSfq4/BXWLyKHo3X+pR5AmSjKhi/NmFM
-         0ZWfeU4NT+DyZfdkxhon+96UgQdBk34OGD5v5z4oJOwOX1qbkc/0xTP05vhB02rGbG7e
-         1CodP5qIfSevqaeHlnda2FMUZj5XuAAolFdBuy7P3SVwoRZkjgRuUkCAYifgEvBU8qoY
-         iOWlLy5Dm9BjNtiXgKeuzeXDy+R1OnrmxDyyL1bVflvkCzpqJYTH8XzERwI1k4Q6ZoVp
-         7avKcmCfVQ9DZbTVYkkX6yM0e46HMdluS4VBar1w5WK+YD4vULK7MPYiGtLkb/b+5xEQ
-         TOFw==
-X-Gm-Message-State: AFqh2kpipL84ILaMKjkxqhAXcWGDBm5tRnM4142ysN1iLWAp4vgRK5Q6
-        Wso67PkFTc5DSIz9D2qIZvLEyA==
-X-Google-Smtp-Source: AMrXdXu8eL8KxwSARuXzEKBEb1u2dlv6u1JJjlQ8Yg52EBl26UBeSJbZIkU3p1dtStt0qQ3KEMJOHA==
-X-Received: by 2002:a05:6512:13a1:b0:4b6:f0ea:4f49 with SMTP id p33-20020a05651213a100b004b6f0ea4f49mr11080983lfa.9.1672512980943;
-        Sat, 31 Dec 2022 10:56:20 -0800 (PST)
+        bh=+f6MEHPvraJbIhg/Qh3EFX2QlA+pVzk6PS1RzpejfpU=;
+        b=EUgZhaAtpAs24OCtnRPmftpVa6h28lcY82UFK0RyiRc6lsdwAwOVsvkp2Zxfo5amU5
+         36OhtHjVPC0Yyq0HWV4pTZwNmMzAFDYh9hNquvVddmipGih5cXcTjbZM/Ino0aEkRrap
+         CgM7Zc/zBFxETI6dzrXYCwJ9prvBk8PFAoLR7FVvD8bolIANfh0IiJy4HWAr4lCfB7xE
+         a1s+rhMwbH/SptEWsJH3hucvrCx46qcRs3+iGxrX7rc5MsNoagiahkX9jwvB97eikLxO
+         ptCNLMUbSCkavdyPXzhGWP2LSoaKvp6GYgd5kFHW+Z+F0Y4bLIjQilX5eSoRfPH94GRH
+         DNJA==
+X-Gm-Message-State: AFqh2kpc+sF/aJZVOmZZ5M0fnCi4Mn2Inb/AuzJ8B821BNEkj8neBrAN
+        iQ7s1IQPAsojpgFBc8K84WhzSQ==
+X-Google-Smtp-Source: AMrXdXu3hVDP0pdMCRE0xDMOyOhqgWtFfHo8ZaBoTE2AP8DSG03gyX4aawLsVQD04bpROMi9ee4vzw==
+X-Received: by 2002:a05:6512:3d9e:b0:4b5:5efe:966e with SMTP id k30-20020a0565123d9e00b004b55efe966emr13561654lfv.15.1672513121712;
+        Sat, 31 Dec 2022 10:58:41 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id c19-20020a056512075300b004b53eb60e3csm3663570lfs.256.2022.12.31.10.56.19
+        by smtp.gmail.com with ESMTPSA id q14-20020a056512210e00b004a2c447598fsm3910225lfr.159.2022.12.31.10.58.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 31 Dec 2022 10:56:20 -0800 (PST)
-Message-ID: <55a1f2c5-8ef8-4291-8c95-49abe2637007@linaro.org>
-Date:   Sat, 31 Dec 2022 19:56:18 +0100
+        Sat, 31 Dec 2022 10:58:41 -0800 (PST)
+Message-ID: <92dbd096-b02f-b5e5-6275-a37a3d582685@linaro.org>
+Date:   Sat, 31 Dec 2022 19:58:39 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH] dt-bindings: msm: dsi-phy-28nm: Document fam-b compatible
-To:     Adam Skladowski <a39.skl@gmail.com>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221231170532.77000-1-a39.skl@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: power: Add Allwinner D1 PPU
 Content-Language: en-US
+To:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev
+References: <20221231160402.16157-1-samuel@sholland.org>
+ <20221231160402.16157-2-samuel@sholland.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221231170532.77000-1-a39.skl@gmail.com>
+In-Reply-To: <20221231160402.16157-2-samuel@sholland.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,16 +78,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/12/2022 18:05, Adam Skladowski wrote:
-> Document omitted 28nm compatible which will be used on MSM8976 SoC.
+On 31/12/2022 17:04, Samuel Holland wrote:
+> The Allwinner D1 family of SoCs contain a "PPU" power domain controller
+> separate from the PRCM. It can power down the video engine and DSP, and
+> it contains special logic for hardware-assisted CPU idle. Other recent
+> Allwinner SoCs (e.g. TV303) have a PPU with a different set of domains.
 > 
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> ---
+> 
+>  .../power/allwinner,sun20i-d1-ppu.yaml        | 54 +++++++++++++++++++
+>  .../power/allwinner,sun20i-d1-ppu.h           | 10 ++++
+>  2 files changed, 64 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/allwinner,sun20i-d1-ppu.yaml
+>  create mode 100644 include/dt-bindings/power/allwinner,sun20i-d1-ppu.h
+> 
+> diff --git a/Documentation/devicetree/bindings/power/allwinner,sun20i-d1-ppu.yaml b/Documentation/devicetree/bindings/power/allwinner,sun20i-d1-ppu.yaml
+> new file mode 100644
+> index 000000000000..64c9a9f398a2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/allwinner,sun20i-d1-ppu.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/allwinner,sun20i-d1-ppu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Allwinner SoCs "PPU" power domain controller
 
-Commit msg is not entirely accurate - this compatible is already used in
-the Linux DSI PHY driver.
+Drop quotes over "PPU" - it's not some nickname, alias, but acronym.
+Explain the acronym in description.
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +
+> +maintainers:
+> +  - Samuel Holland <samuel@sholland.org>
+> +
+> +description:
+> +  D1 and related SoCs contain a power domain controller for the CPUs, GPU, and
+> +  video-related hardware.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - allwinner,sun20i-d1-ppu
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description: Bus Clock
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  '#power-domain-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - resets
+> +  - '#power-domain-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/sun20i-d1-r-ccu.h>
+> +    #include <dt-bindings/reset/sun20i-d1-r-ccu.h>
+> +
+> +    ppu: power-controller@7001000 {
+> +            compatible = "allwinner,sun20i-d1-ppu";
 
+Use 4 spaces for example indentation.
+
+With above:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
