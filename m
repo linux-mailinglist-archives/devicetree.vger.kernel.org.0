@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 731CE65AB02
-	for <lists+devicetree@lfdr.de>; Sun,  1 Jan 2023 19:47:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E54E65AB04
+	for <lists+devicetree@lfdr.de>; Sun,  1 Jan 2023 19:47:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229612AbjAASrC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Jan 2023 13:47:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34660 "EHLO
+        id S229588AbjAASrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Jan 2023 13:47:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbjAASqz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Jan 2023 13:46:55 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFCBF2199
-        for <devicetree@vger.kernel.org>; Sun,  1 Jan 2023 10:46:54 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id bf43so38794508lfb.6
-        for <devicetree@vger.kernel.org>; Sun, 01 Jan 2023 10:46:54 -0800 (PST)
+        with ESMTP id S229552AbjAASq7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Jan 2023 13:46:59 -0500
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F24A2ACC
+        for <devicetree@vger.kernel.org>; Sun,  1 Jan 2023 10:46:56 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id x11so2902810ljh.12
+        for <devicetree@vger.kernel.org>; Sun, 01 Jan 2023 10:46:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=WXvfGEHTzXKuks+EcxR/n48YaAfRkRku9Lb7SUrYa5g=;
-        b=xBXW6Bgz5HnII7O19jLVbin+o5EhuOhKP7X65FhamnTQTjWcdPlx+OLh/dV9LNve3o
-         U+DrYXZCneBSKwgnXArxQFz22UfM4IQ/4ac9zKl43gW8jIbV6vvZqriqZgsDV75unGqj
-         3Z5YgrRP7kT1c2q9bKonyrtDlN/Zd6OaDET1E7rcLuDFIDSBK9EOjbsYayl8QvH0/lze
-         fakKYXep7PXBL3dugwOtSqZzXoU9+byit4pLL8q34raGklChd28KkMhRVVwN8p25EuaH
-         YzdzQmuqA4ZoRdkcPtzUOjDJaehVEE5yco0JdnW1RcBpIDzYUFTMfv/yTOwcMBiWLaO5
-         alAw==
+        bh=G0VPlunljxm1bTHh2sUzBDUpx4xVc8dYql+3Cx49grs=;
+        b=DHko1r+HazfjTO/kR578a3GhElN/ABG0k0PMraLvj90rgl3DoGMhywPw1OcUq5qDx9
+         zPmjWIx3JX+8ZtSMgw/KTFQ8bgEH0eHvcvlugtWw/KSiN5qCk8AG7JHFUUR0GMxbYkHE
+         Xem2xNRWeVP0QMAfsjD4K1CgWy2nXhlW2ay5Ebj5FhrsbBeV1RPz+1nqMMo1HR2xLy9+
+         aRN6LcMTVtG4oec5QGT+qNEku3ctORthd3lQAg5g+mdMNlQr/euJHjHejAq4kZs2+KiQ
+         +46iHuow16vJyLwqDnruXGNQyeC0V721rbYLmFPjFyjaB+Uh8t9nEubnDY6gZvJg/aeQ
+         ZAhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=WXvfGEHTzXKuks+EcxR/n48YaAfRkRku9Lb7SUrYa5g=;
-        b=lFH4ECqLVxDxeGYcriOjUeFXathzbRA3GQmPCTDELYyYivWrOZHwvS8ZmdqpDlj63h
-         odbwcbxei0GgRIardog4TTZwJ3SMsS0n3QF4QMaOAOtgVklZOso7kj+cR9cAyWQGSZdY
-         lMP+n4H1zf2woRuFqzzw0xWTkRApRxrnDrs4AmKDyYQQ+RIwmGhGascMRfI8l5I27KEX
-         89lGoE3j7Ko8/N71nDPbs/Vp6iFa4ubEogsA5znYxakt4fIvRfYKVhVUiAbc8uAY1RZg
-         5JRSElLWm5pzIBhCaS1aCJ7Y/MFwo37rKRzZAx/GsUdDicl5HogmpCD5A0E1Wal1GxlL
-         QibQ==
-X-Gm-Message-State: AFqh2kpIurlP54+5Bnw8whg3931Q/BGRs50hgbAKL95P4ux8f33Ujotm
-        ELxO/S8u1Asiy8XdgWgbFGe+iw==
-X-Google-Smtp-Source: AMrXdXscNeOq++ACRzomRbJVxPs+buxzeLnkc1WfW47n6ELJDZJvsBLn3NC64G9fC1g33K9nuEbM2Q==
-X-Received: by 2002:a05:6512:b92:b0:4cb:1645:7251 with SMTP id b18-20020a0565120b9200b004cb16457251mr6123873lfv.62.1672598813365;
-        Sun, 01 Jan 2023 10:46:53 -0800 (PST)
+        bh=G0VPlunljxm1bTHh2sUzBDUpx4xVc8dYql+3Cx49grs=;
+        b=yjha+8HCviyZg512Kx4Rn586X7y4xUI/bOa4l9DmZKis0xH9PkgkxmnYDBl92uVmdk
+         mcl10Ho21KQCeroy6VpKrpKAZL7E3cy037xMzG3UgkHJuvnPXuL03Fy0GCuuAYQNZADx
+         zXSES0Nw1fsIPAS+FGcvvmgUGcJPNPUdIdabLHOJDxYPGWBN8wPS6Zaix9IlaY3qUjpk
+         dwq220bfBA7GZ7mHE7E5DLnhzUpB/kFSv6H0NVLe2mxuu7yqW4Hpc8pFfY9tykC1g2+3
+         YppjUCQ0c9sbK22fizCk0ciFEXEbv1kugvlk5iKF7y/qirxzzmII+AM3cPN54RtcgrLl
+         nUuA==
+X-Gm-Message-State: AFqh2kpULyk6V6mXvDzFRChma9CzDKh3k3aVPDU+tnZg8Q0qoWQcfp6z
+        ZI7mB/3yTqraO3SKGlMRzy/Itg==
+X-Google-Smtp-Source: AMrXdXv1M/LYg2cw7FPoriqanzomnlia5sG28FDlafM0sdVj8BPHAhK2hYGWrCoFnroxdOFkTIE+TA==
+X-Received: by 2002:a2e:a58c:0:b0:27f:bc55:1c5d with SMTP id m12-20020a2ea58c000000b0027fbc551c5dmr12109570ljp.45.1672598814510;
+        Sun, 01 Jan 2023 10:46:54 -0800 (PST)
 Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id bd9-20020a05651c168900b0027fdb26e4b1sm955760ljb.91.2023.01.01.10.46.52
+        by smtp.gmail.com with ESMTPSA id bd9-20020a05651c168900b0027fdb26e4b1sm955760ljb.91.2023.01.01.10.46.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 01 Jan 2023 10:46:52 -0800 (PST)
+        Sun, 01 Jan 2023 10:46:53 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -58,9 +58,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 2/3] dt-bindings: arm: fsl: Add the Starterkit SK-iMX53 board
-Date:   Sun,  1 Jan 2023 20:46:50 +0200
-Message-Id: <20230101184651.807900-2-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v2 3/3] ARM: dts: imx: Add support for SK-iMX53 board
+Date:   Sun,  1 Jan 2023 20:46:51 +0200
+Message-Id: <20230101184651.807900-3-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230101184651.807900-1-dmitry.baryshkov@linaro.org>
 References: <20230101184651.807900-1-dmitry.baryshkov@linaro.org>
@@ -75,25 +75,414 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add an entry for the Starterkit SK-iMX53 development board.
+Add support for the StartKit sk-imx53 board, a simple development board
+with the iMX536A SoC.
+
+Tested and works:
+- UARTs
+- SPI
+- I2C
+- GPU
+- USB
+- uSD
+- NAND
+- Ethernet
+
+Not tested:
+- Display
+- VPU
+- capture
+
+Not yet working:
+- Sound
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm/boot/dts/Makefile           |   1 +
+ arch/arm/boot/dts/imx53-sk-imx53.dts | 362 +++++++++++++++++++++++++++
+ 2 files changed, 363 insertions(+)
+ create mode 100644 arch/arm/boot/dts/imx53-sk-imx53.dts
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 05b5276a0e14..fba7c19d7991 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -173,6 +173,7 @@ properties:
-               - kiebackpeter,imx53-ddc        # K+P imx53 DDC
-               - kiebackpeter,imx53-hsc        # K+P imx53 HSC
-               - menlo,m53menlo                # i.MX53 Menlo board
-+              - starterkit,sk-imx53
-               - voipac,imx53-dmm-668          # Voipac i.MX53 X53-DMM-668
-           - const: fsl,imx53
- 
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index d08a3c450ce7..d20fd01a8d07 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -465,6 +465,7 @@ dtb-$(CONFIG_SOC_IMX53) += \
+ 	imx53-ppd.dtb \
+ 	imx53-qsb.dtb \
+ 	imx53-qsrb.dtb \
++	imx53-sk-imx53.dtb \
+ 	imx53-smd.dtb \
+ 	imx53-tx53-x03x.dtb \
+ 	imx53-tx53-x13x.dtb \
+diff --git a/arch/arm/boot/dts/imx53-sk-imx53.dts b/arch/arm/boot/dts/imx53-sk-imx53.dts
+new file mode 100644
+index 000000000000..392f6af59ecd
+--- /dev/null
++++ b/arch/arm/boot/dts/imx53-sk-imx53.dts
+@@ -0,0 +1,362 @@
++// SPDX-License-Identifier: GPL-2.0+
++//
++// Copyright 2023 Linaro Ltd.
++
++/dts-v1/;
++
++#include "imx53.dtsi"
++
++/ {
++	model = "StarterKit SK-iMX53 Board";
++	compatible = "starterkit,sk-imx53", "fsl,imx53";
++
++	aliases {
++		/*
++		 * iMX RTC is not battery powered on this board.
++		 * Use the i2c RTC as rtc0.
++		 */
++		rtc0 = &rtc;
++		rtc1 = &srtc;
++	};
++
++	chosen {
++		stdout-path = &uart1;
++	};
++
++	memory@70000000 {
++		device_type = "memory";
++		/* v2 had only 256 MB, v3 has 512 MB */
++		reg = <0x70000000 0x20000000>;
++	};
++
++	reg_usb1_vbus: regulator-usb-vbus {
++		compatible = "regulator-fixed";
++		regulator-name = "usb_vbus";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		gpio = <&gpio2 29 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++
++	reg_usb_otg_vbus: regulator-otg-vbus {
++		compatible = "regulator-fixed";
++		regulator-name = "usb_vbus";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		gpio = <&gpio2 24 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++};
++
++&audmux {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_audmux>;
++	status = "okay";
++};
++
++&can1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_can1>;
++	status = "okay";
++};
++
++&ecspi1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_ecspi1>;
++	cs-gpios = <&gpio3 23 GPIO_ACTIVE_LOW>;
++	status = "okay";
++};
++
++&ecspi2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_ecspi2>;
++	cs-gpios = <&gpio2 27 GPIO_ACTIVE_LOW>;
++	status = "okay";
++};
++
++&esdhc1 {
++	cd-gpios = <&gpio3 14 GPIO_ACTIVE_LOW>;
++	fsl,wp-controller;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_esdhc1>;
++	status = "okay";
++};
++
++&fec {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_fec>;
++	phy-mode = "rmii";
++	phy-handle = <&phy0>;
++	mac-address = [000000000000]; /* placeholder; will be overwritten by bootloader */
++	status = "okay";
++
++	mdio {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		phy0: ethernet-phy@0 {
++			reg = <0>;
++			device_type = "ethernet-phy";
++			reset-gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
++		};
++	};
++};
++
++&i2c1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_i2c1>;
++	status = "okay";
++};
++
++&i2c2 {
++	pinctrl-names = "default", "gpio";
++	pinctrl-0 = <&pinctrl_i2c2>;
++	pinctrl-1 = <&pinctrl_i2c2_gpio>;
++	sda-gpios = <&gpio4 13 GPIO_ACTIVE_HIGH>;
++	scl-gpios = <&gpio2 30 GPIO_ACTIVE_HIGH>;
++	status = "okay";
++
++	tlv320aic23: codec@1a {
++		compatible = "ti,tlv320aic23";
++		reg = <0x1a>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_codec>;
++		#sound-dai-cells = <0>;
++	};
++
++	rtc: rtc@68 {
++		compatible = "dallas,ds1338";
++		reg = <0x68>;
++	};
++};
++
++&iomuxc {
++	pinctrl_audmux: audmuxgrp {
++		fsl,pins = <
++			MX53_PAD_SD2_DATA3__AUDMUX_AUD4_TXC	0x1e4
++			MX53_PAD_SD2_DATA2__AUDMUX_AUD4_TXD	0x1e4
++			MX53_PAD_SD2_DATA1__AUDMUX_AUD4_TXFS	0x1e4
++			MX53_PAD_SD2_DATA0__AUDMUX_AUD4_RXD	0x1e4
++		>;
++	};
++
++	pinctrl_can1: can1grp {
++		fsl,pins = <
++			MX53_PAD_PATA_INTRQ__CAN1_TXCAN		0x1e4
++			MX53_PAD_PATA_DIOR__CAN1_RXCAN		0x1e4
++		>;
++	};
++
++	pinctrl_codec: codecgrp {
++		fsl,pins = <
++			MX53_PAD_GPIO_0__CCM_SSI_EXT1_CLK	0x1c4
++		>;
++	};
++
++	pinctrl_ecspi1: ecspi1grp {
++		fsl,pins = <
++			MX53_PAD_EIM_D16__ECSPI1_SCLK		0x1e4
++			MX53_PAD_EIM_D17__ECSPI1_MISO		0x1e4
++			MX53_PAD_EIM_D18__ECSPI1_MOSI		0x1e4
++		>;
++	};
++
++	pinctrl_ecspi2: ecspi2grp {
++		fsl,pins = <
++			MX53_PAD_CSI0_DAT9__ECSPI2_MOSI		0x1e4
++			MX53_PAD_CSI0_DAT10__ECSPI2_MISO	0x1e4
++			MX53_PAD_EIM_CS0__ECSPI2_SCLK		0x1e4
++		>;
++	};
++
++	pinctrl_esdhc1: esdhc1grp {
++		fsl,pins = <
++			MX53_PAD_SD1_DATA0__ESDHC1_DAT0		0x1d5
++			MX53_PAD_SD1_DATA1__ESDHC1_DAT1		0x1d5
++			MX53_PAD_SD1_DATA2__ESDHC1_DAT2		0x1d5
++			MX53_PAD_SD1_DATA3__ESDHC1_DAT3		0x1d5
++			MX53_PAD_SD1_CMD__ESDHC1_CMD		0x1d5
++			MX53_PAD_SD1_CLK__ESDHC1_CLK		0x1d5
++			MX53_PAD_EIM_DA14__GPIO3_14		0x1f0
++		>;
++	};
++
++	pinctrl_fec: fecgrp {
++		fsl,pins = <
++			MX53_PAD_FEC_MDC__FEC_MDC		0x1e4
++			MX53_PAD_FEC_MDIO__FEC_MDIO		0x1e4
++			MX53_PAD_FEC_REF_CLK__FEC_TX_CLK	0x1e4
++			MX53_PAD_FEC_RX_ER__FEC_RX_ER		0x1e4
++			MX53_PAD_FEC_CRS_DV__FEC_RX_DV		0x1e4
++			MX53_PAD_FEC_RXD1__FEC_RDATA_1		0x1e4
++			MX53_PAD_FEC_RXD0__FEC_RDATA_0		0x1e4
++			MX53_PAD_FEC_TX_EN__FEC_TX_EN		0x1c4
++			MX53_PAD_FEC_TXD1__FEC_TDATA_1		0x1e4
++			MX53_PAD_FEC_TXD0__FEC_TDATA_0		0x1e4
++			MX53_PAD_GPIO_1__GPIO1_1		0x1c4
++		>;
++	};
++
++	pinctrl_i2c1: i2c1grp {
++		fsl,pins = <
++			MX53_PAD_EIM_D21__I2C1_SCL		0x400001e4
++			MX53_PAD_EIM_D28__I2C1_SDA		0x400001e4
++		>;
++	};
++
++	pinctrl_i2c2: i2c2grp {
++		fsl,pins = <
++			MX53_PAD_KEY_ROW3__I2C2_SDA             0x400001e4
++			MX53_PAD_EIM_EB2__I2C2_SCL		0x400001e4
++		>;
++	};
++
++	pinctrl_i2c2_gpio: i2c2gpiogrp {
++		fsl,pins = <
++			MX53_PAD_KEY_ROW3__GPIO4_13		0x1e4
++			MX53_PAD_EIM_EB2__GPIO2_30		0x1e4
++		>;
++	};
++
++	pinctrl_nand: nandgrp {
++		fsl,pins = <
++			MX53_PAD_NANDF_WE_B__EMI_NANDF_WE_B	0x4
++			MX53_PAD_NANDF_RE_B__EMI_NANDF_RE_B	0x4
++			MX53_PAD_NANDF_CLE__EMI_NANDF_CLE	0x4
++			MX53_PAD_NANDF_ALE__EMI_NANDF_ALE	0x4
++			MX53_PAD_NANDF_WP_B__EMI_NANDF_WP_B	0xe0
++			MX53_PAD_NANDF_RB0__EMI_NANDF_RB_0	0xe0
++			MX53_PAD_NANDF_CS0__EMI_NANDF_CS_0	0x4
++			MX53_PAD_NANDF_CS1__EMI_NANDF_CS_1	0x4
++			MX53_PAD_NANDF_CS2__EMI_NANDF_CS_2	0x4
++			MX53_PAD_NANDF_CS3__EMI_NANDF_CS_3	0x4
++			MX53_PAD_EIM_DA0__EMI_NAND_WEIM_DA_0	0xa4
++			MX53_PAD_EIM_DA1__EMI_NAND_WEIM_DA_1	0xa4
++			MX53_PAD_EIM_DA2__EMI_NAND_WEIM_DA_2	0xa4
++			MX53_PAD_EIM_DA3__EMI_NAND_WEIM_DA_3	0xa4
++			MX53_PAD_EIM_DA4__EMI_NAND_WEIM_DA_4	0xa4
++			MX53_PAD_EIM_DA5__EMI_NAND_WEIM_DA_5	0xa4
++			MX53_PAD_EIM_DA6__EMI_NAND_WEIM_DA_6	0xa4
++			MX53_PAD_EIM_DA7__EMI_NAND_WEIM_DA_7	0xa4
++		>;
++	};
++
++	pinctrl_pwm1: pwm1grp {
++		fsl,pins = <
++			MX53_PAD_GPIO_9__PWM1_PWMO		0x5
++		>;
++	};
++
++	pinctrl_uart1: uart1grp {
++		fsl,pins = <
++			MX53_PAD_PATA_DIOW__UART1_TXD_MUX	0x1e4
++			MX53_PAD_PATA_DMACK__UART1_RXD_MUX	0x1e4
++		>;
++	};
++
++	pinctrl_uart3: uart3grp {
++		fsl,pins = <
++			MX53_PAD_EIM_D24__UART3_TXD_MUX		0x1e4
++			MX53_PAD_EIM_D25__UART3_RXD_MUX		0x1e4
++		>;
++	};
++
++	pinctrl_uart4: uart4grp {
++		fsl,pins = <
++			MX53_PAD_KEY_COL0__UART4_TXD_MUX	0x1e4
++			MX53_PAD_KEY_ROW0__UART4_RXD_MUX	0x1e4
++		>;
++	};
++};
++
++&nfc {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_nand>;
++	nand-bus-width = <8>;
++	status = "okay";
++
++	partitions {
++		compatible = "fixed-partitions";
++		#address-cells = <1>;
++		#size-cells = <1>;
++
++		partition@0 {
++			label = "boot";
++			reg = <0x00000000 0x00100000>;
++			read-only;
++		};
++
++		partition@100000 {
++			label = "u-boot";
++			reg = <0x00100000 0x00100000>;
++			read-only;
++		};
++
++		partition@200000 {
++			label = "u-boot-env";
++			reg = <0x00200000 0x00100000>;
++			read-only;
++		};
++
++		partition@1000000 {
++			label = "kernel-safe";
++			reg = <0x01000000 0x00a00000>;
++			read-only;
++		};
++
++		partition@1a00000 {
++			label = "kernel";
++			reg = <0x01a00000 0x005e0000>;
++		};
++
++		partition@2000000 {
++			label = "ubifs";
++			reg = <0x02000000 0x0e000000>;
++		};
++	};
++};
++
++&pwm1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_pwm1>;
++	status = "okay";
++};
++
++&sata {
++	status = "okay";
++};
++
++&uart1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart1>;
++	status = "okay";
++};
++
++&uart3 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart3>;
++	status = "okay";
++};
++
++&uart4 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart4>;
++	status = "okay";
++};
++
++&usbh1 {
++	vbus-supply = <&reg_usb1_vbus>;
++	phy_type = "utmi";
++	disable-over-current;
++	status = "okay";
++};
++
++&usbotg {
++	dr_mode = "peripheral";
++	disable-over-current;
++	status = "okay";
++};
++
++&vpu {
++	status = "okay";
++};
 -- 
 2.39.0
 
