@@ -2,117 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A7D165ABBC
-	for <lists+devicetree@lfdr.de>; Sun,  1 Jan 2023 22:33:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1EF365ABD7
+	for <lists+devicetree@lfdr.de>; Sun,  1 Jan 2023 22:58:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229879AbjAAVdm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Jan 2023 16:33:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55882 "EHLO
+        id S230162AbjAAV6N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Jan 2023 16:58:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbjAAVdl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Jan 2023 16:33:41 -0500
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F6C4F28
-        for <devicetree@vger.kernel.org>; Sun,  1 Jan 2023 13:33:40 -0800 (PST)
-Received: by mail-ej1-x62e.google.com with SMTP id gh17so62911683ejb.6
-        for <devicetree@vger.kernel.org>; Sun, 01 Jan 2023 13:33:40 -0800 (PST)
+        with ESMTP id S230033AbjAAV6M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Jan 2023 16:58:12 -0500
+Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66E21272C
+        for <devicetree@vger.kernel.org>; Sun,  1 Jan 2023 13:58:10 -0800 (PST)
+Received: by mail-ot1-x32c.google.com with SMTP id k44-20020a9d19af000000b00683e176ab01so11504098otk.13
+        for <devicetree@vger.kernel.org>; Sun, 01 Jan 2023 13:58:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yyX96uVGJMMaNM8wZZWyXIyRqapSrshMe1zf2VI54Gc=;
-        b=gSw5fX1Bkm7fQmXRIRnGTyyos+zIm+kBLxXP81KQpsb3rLEabKuUAbHFc3zYDXnWbs
-         AGjnENSsuIA9DPgm6QM/wXLIoq/IQ7jBnzxyDYNg/FGfwEKGIfg2x27FyhCI7Xo9OwTQ
-         ygZUVFs79gcCVrwujTUUTHSf+GHYcGTa88YGaqkgeXAEShwLBYbyNHFh9bSxB+/WVmxW
-         yrjGG0q3DeSv4SA2WYrtz2qLAmT67GyE5lMyTb16pO41/JofWyYesQ8PqUGBmsmqq8mq
-         i77+4PyJq0tAeMMr58zyQRSZhBTyf4uirsCvZqH6BQaR9ULl21lVr8xoUKjTLYonDjXD
-         8BRg==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=itENd4bv7sUz5J3kCLw+9gAbPG9mWjjKo0129xbt1AQ=;
+        b=fb3LXnCyZ/kIWmb8tqNRWca8LIYBDCd5S3QU9qS017ZBuOHwJAjp+7E2RHKrwghQXA
+         F89bQEWQvafxF0QTsYtfvmnT9B9ObbMuXSZLZ0Z4iu25Wi4QZ9pm31JRiQb1DGxqM8kg
+         bKaa/o1DTP9MJKqpZI3nwwYjJLm3JLVzu1pgpf+AkBkWfuGJ2W6iKguyxa1s7VtCEuuX
+         xrVeEaiCOnUiewnJ/MAySvKL/TNapMzc1RnofDNBVdu+OSqhQf5wHlzjOyNX+S1tMnnR
+         GwHW7xQnDN6N6yg8yH6mUKhHkQDQyTf9KgtT9ISuGGkQ2ysnrKYx6sSPM2Ba/RG4ipgc
+         l57A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yyX96uVGJMMaNM8wZZWyXIyRqapSrshMe1zf2VI54Gc=;
-        b=FV3CAW9sa4ligNGMoZfWPvEIXRchGtSOmeTcmFLcylcsbHMXwCz88/u5tCw5mULiEK
-         21ZK7c0dxmZOL9FAauz+pOrY4k0SznIaoEpEItiBAuRnazdeu/O6XD1PB9OWv+jdJxO6
-         LK+I3mRCFXkPRp/NELMrZVUgk0EULaKPwF8r0THfAok5KeEIV6Kxn9APTSV9VXrISPQ9
-         J24gCc2I59NOI6ZTJnQmXGaQxm46U6T1kBiavdi/y/ZzYzEQlnVEdKvZjmQCWSKJn79q
-         iumd/W2psXUrU7/rDs+xuqTvmUp+aEjmFx7hn828b2/okp9wh174uEBI+dk2/Kh+sARE
-         aD3g==
-X-Gm-Message-State: AFqh2koqVDQxyzEhrw+MPiKVeoJPXEJpMdETtT84smiC5wvV6xDtn3TU
-        seg3r2CKi31opymYYLV5F/mDYWoVhN3iEpIU
-X-Google-Smtp-Source: AMrXdXuIzVKHbCr/cOQ9XZLjyA7akuauNPpkKOy2DJ228mNpxKjLLqaiW0w47WAi5TfUVRXgYtr0fg==
-X-Received: by 2002:a17:906:b043:b0:7c0:d23c:ead3 with SMTP id bj3-20020a170906b04300b007c0d23cead3mr33986334ejb.27.1672608819181;
-        Sun, 01 Jan 2023 13:33:39 -0800 (PST)
-Received: from ?IPV6:2001:1c06:2302:5600:5825:7f8d:c381:cef4? (2001-1c06-2302-5600-5825-7f8d-c381-cef4.cable.dynamic.v6.ziggo.nl. [2001:1c06:2302:5600:5825:7f8d:c381:cef4])
-        by smtp.gmail.com with ESMTPSA id h21-20020a170906829500b00782e3cf7277sm12056805ejx.120.2023.01.01.13.33.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 01 Jan 2023 13:33:38 -0800 (PST)
-Message-ID: <fde591a3-1e1c-c186-a119-5d2af48d2ae5@linaro.org>
-Date:   Sun, 1 Jan 2023 21:33:37 +0000
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=itENd4bv7sUz5J3kCLw+9gAbPG9mWjjKo0129xbt1AQ=;
+        b=Gm++6tGplyINRXsdpwoQ6gEpQzYtHWGbIWec0K9DD4b7Fy5YoE45/Vtb3+pYE+Aj8h
+         duJ66XKyoV0GOGzUVQMo/SLB/xhpUjYkpYBtYN909GWYMQvAz5ETVeXS6reMj/e20pAG
+         0PlXt36avcpwHe6w9/uBs8f96w8vGoTXApohftX7Ao4Yy4TGZbBm2Icl4WB94NdLsP3Y
+         7FoWDGYoCIJMhLnyQzLKYzkSSwmkaE0zBoErlLKZHXqndHOjKgOMZiwqSLqeiM9EAP/Z
+         6A7MGs1qHRZrBU2cehli2LeuJt/e53T9mymdd7o2+jwMUUZjG1r6xNAC4a9YPLoA7Ad2
+         EosQ==
+X-Gm-Message-State: AFqh2koAv1ZwHkYP7lq3zGESy87NsQUiGdgsT9vIIO1dTdKb60vKM97d
+        4UH9sfA7K83Yx8ryE5WDU0qYGfw+6CwBcyZva9HFGQ==
+X-Google-Smtp-Source: AMrXdXvYUSzWN57SlzCh3DW6LHX/uMQkh78bq7FU+RCyZ2XJRZPNKpSvrWCsru+LAl/TArGUqJFdjZTYm0mHsKAx6SI=
+X-Received: by 2002:a05:6830:1dac:b0:670:99fe:2dc5 with SMTP id
+ z12-20020a0568301dac00b0067099fe2dc5mr1566669oti.137.1672610289731; Sun, 01
+ Jan 2023 13:58:09 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v6 07/20] thermal/drivers/tsens: fix slope values for
- msm8939
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>
-Cc:     Shawn Guo <shawn.guo@linaro.org>, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230101194034.831222-1-dmitry.baryshkov@linaro.org>
- <20230101194034.831222-8-dmitry.baryshkov@linaro.org>
- <7298fd96-14ec-c82b-8005-bb5dd912a055@linaro.org>
- <fc6f9558-46c6-a7f6-7f41-afad418c8f7b@linaro.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <fc6f9558-46c6-a7f6-7f41-afad418c8f7b@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221230203541.146807-1-bero@baylibre.com> <20221230203541.146807-8-bero@baylibre.com>
+ <87v8lsect3.wl-maz@kernel.org>
+In-Reply-To: <87v8lsect3.wl-maz@kernel.org>
+From:   =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>
+Date:   Sun, 1 Jan 2023 22:57:58 +0100
+Message-ID: <CAP2ifjMkKJbE_+B=XaxzXoALrc5+FUb7TKpPJQBLV3-3xqVh=g@mail.gmail.com>
+Subject: Re: [PATCH v6 7/7] arm64: dts: mediatek: Initial mt8365-evk support
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        matthias.bgg@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, gregkh@linuxfoundation.org,
+        chunfeng.yun@mediatek.com, linus.walleij@linaro.org,
+        lee@kernel.org, tglx@linutronix.de,
+        angelogioacchino.delregno@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/01/2023 21:30, Dmitry Baryshkov wrote:
-> On 01/01/2023 22:24, Bryan O'Donoghue wrote:
->> On 01/01/2023 19:40, Dmitry Baryshkov wrote:
->>> +static int __init init_8939(struct tsens_priv *priv) {
->>> +    priv->sensor[0].slope = 2911;
->>> +    priv->sensor[1].slope = 2789;
->>> +    priv->sensor[2].slope = 2906;
->>> +    priv->sensor[3].slope = 2763;
->>> +    priv->sensor[4].slope = 2922;
->>> +    priv->sensor[5].slope = 2867;
->>> +    priv->sensor[6].slope = 2833;
->>> +    priv->sensor[7].slope = 2838;
->>> +    priv->sensor[8].slope = 2840;
->>> +    priv->sensor[9].slope = 2852;
->>
->> How are you coming up with the last value here ?
->>
->> https://github.com/android-linux-stable/msm-3.18/blob/60a8d8af3751b9dc22894fe68b3964ea94ae7888/arch/arm/boot/dts/qcom/msm8939-common.dtsi#L525
-> 
->  From this DTSi. There was a separate configuration for 8939 v3. And I 
-> don't know why Qualcomm completely ignored it for later releases (3.14, 
-> 3.18).
-> 
-> https://git.codelinaro.org/clo/la/kernel/msm-3.10/-/blob/LA.BR.1.3.7.c26-03900-8976.0/arch/arm/boot/dts/qcom/msm8939-v3.0.dtsi#L613
-> 
+On Fri, Dec 30, 2022 at 11:41 PM Marc Zyngier <maz@kernel.org> wrote:
+> > +             gic: interrupt-controller@c000000 {
+> > +                     compatible = "arm,gic-v3";
+> > +                     #interrupt-cells = <4>;
+>
+> Why 4 cells? All the SPIs routed via sysirq are perfectly happy with 3
+> cells, and all the PPIs have 0 for the 4th cell (none of them use any
+> form of partitioning that'd require 4 cells). So where is this coming
+> from?
 
-Fair enough
+It's coming from the SoC vendor kernel (and went unnoticed because it
+happens to work).
+Will send an updated version that does the right thing instead. I've
+been running it most of the day, so far looking good.
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> > +                     interrupt-parent = <&gic>;
+> > +                     interrupt-controller;
+> > +                     reg = <0 0x0c000000 0 0x80000>, <0 0x0c080000 0 0x80000>;
+> > +
+>
+> The first region is obviously wrong (512kB for the distributor?
+> that's... most generous, but the architecture states that it is 64kB,
+> and that's wasteful enough).
+>
+> This is also missing the GICC/GICH/GICV regions that Cortex-A53
+> implements, and that must be provided as per the binding.
+
+This was also taken from the vendor kernel; unfortunately neiter the
+datasheet for the SoC not the vendor kernel specifies the addresses
+for GICC/GICH/GICV.
+I've "guessed" based on what's in similar SoCs (MT8183, MT7986a) in
+v7; this seems to work (boots, kvm initializes hyp mode properly).
+
+ttyl
+bero
