@@ -2,115 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3E3665AC15
-	for <lists+devicetree@lfdr.de>; Sun,  1 Jan 2023 23:43:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AA4F65AC18
+	for <lists+devicetree@lfdr.de>; Sun,  1 Jan 2023 23:46:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229948AbjAAWni (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Jan 2023 17:43:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39204 "EHLO
+        id S229984AbjAAWqC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Jan 2023 17:46:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbjAAWng (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Jan 2023 17:43:36 -0500
-Received: from mail-il1-f195.google.com (mail-il1-f195.google.com [209.85.166.195])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06E7521B9
-        for <devicetree@vger.kernel.org>; Sun,  1 Jan 2023 14:43:35 -0800 (PST)
-Received: by mail-il1-f195.google.com with SMTP id h26so1040229ila.11
-        for <devicetree@vger.kernel.org>; Sun, 01 Jan 2023 14:43:34 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=UlPt3SCz6GbepQxlKYW49Ply/kmolBapqH0fQ69WCTo=;
-        b=FxYRd6vnupsT5Tkq2geNqG6DQn6+ClO5c/X0tmchcHPHfLqDyuG5iZpjK6I1O3yGiA
-         oWbL7M1oheAzLbv3IjMv2r2tdx2hL/yYIG2df0flzmbJ+3c76MUVS31H2tM5npPyhBd6
-         jHEhRMwkVC2NOi7qmDY/8+XSl87CNs2jZ4nhFr4+tD/c+Uc7YhbuMFfNSpBqJeV7KhbT
-         MVrCVd/qSVLaGTmt4k8DZeRI/WYxONe6ndcZJn9vnxjdA84gUse2NiBvqiVl4FFai9Wv
-         pZY4Xmg33SAbgT3LhNbUrYQ+Q7jQ2ExJzY1wSNw5unIRKp2qCnCFJa8cfwaxNeDpzV4z
-         YTqw==
-X-Gm-Message-State: AFqh2kr3vzTaMaO6BuBh7Rq0VUZ8HituGcMRcEB5g+9djnKEqqY5m0sg
-        Yoh/317wI6DjF/xa+vfE8w==
-X-Google-Smtp-Source: AMrXdXun3kI/QdAzH9h+2IXrlY7DpMYiS1XNk58wd1xzeFKKzJpoC/MH1aAwN3jBSOOO3EHb7+/Zdg==
-X-Received: by 2002:a92:b708:0:b0:30b:cbb3:9dfb with SMTP id k8-20020a92b708000000b0030bcbb39dfbmr25665079ili.22.1672613014013;
-        Sun, 01 Jan 2023 14:43:34 -0800 (PST)
-Received: from robh_at_kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id y11-20020a92d20b000000b00302a772730esm8498285ily.54.2023.01.01.14.43.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 01 Jan 2023 14:43:33 -0800 (PST)
-Received: (nullmailer pid 2887016 invoked by uid 1000);
-        Sun, 01 Jan 2023 22:43:31 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-In-Reply-To: <20230101184651.807900-1-dmitry.baryshkov@linaro.org>
-References: <20230101184651.807900-1-dmitry.baryshkov@linaro.org>
-Message-Id: <167261289973.2882321.12834182171105981289.robh@kernel.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: add Startkit
-Date:   Sun, 01 Jan 2023 16:43:31 -0600
-X-Spam-Status: No, score=1.3 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,URIBL_DBL_SPAM autolearn=no autolearn_force=no
-        version=3.4.6
-X-Spam-Level: *
+        with ESMTP id S229447AbjAAWqB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Jan 2023 17:46:01 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3591B1144;
+        Sun,  1 Jan 2023 14:45:58 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A6E7860E83;
+        Sun,  1 Jan 2023 22:45:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05DBBC433D2;
+        Sun,  1 Jan 2023 22:45:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1672613157;
+        bh=puCrFpi65CZPLTug1sTI/K7FXDEL7ysdynSiNUjiHjM=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=lLuv2sI0twxXXwFtob+q3T/m/TaGKcrYXNijV3Yd+gxuCFoTlwB4RqPisvZ8VjxmT
+         +KBsHScrw7VSVqr/YaZPUB26i9YBmBMeonrZOZNCWQapTLT2PryaksSlfu9P3w9JLr
+         XVFvBCAjOFlMoQaPwqJBDN9z2c3aNlyTJu30Meg/9AFlRKZ+Oob1jYFMz5iXcUZFJ2
+         glY/2+LvhrNXADNQIAroHgiiSCo6CAsX8aabbdOynUdlG6xkcqypvupo5h9/vlN2q7
+         gjbKK4wxKab8YVZYIbelu350fB+b2nefUkky888RkJouJkQ1koy4ZcFd2Ct8o/kBti
+         48PFeHB2b/ZgA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1pC75W-00GEJt-OM;
+        Sun, 01 Jan 2023 22:45:54 +0000
+Date:   Sun, 01 Jan 2023 22:44:39 +0000
+Message-ID: <87sfgteuy0.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Bernhard =?UTF-8?B?Um9zZW5rcsOkbnplcg==?= <bero@baylibre.com>
+Cc:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        matthias.bgg@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, gregkh@linuxfoundation.org,
+        chunfeng.yun@mediatek.com, linus.walleij@linaro.org,
+        lee@kernel.org, tglx@linutronix.de,
+        angelogioacchino.delregno@collabora.com
+Subject: Re: [PATCH v6 7/7] arm64: dts: mediatek: Initial mt8365-evk support
+In-Reply-To: <CAP2ifjMkKJbE_+B=XaxzXoALrc5+FUb7TKpPJQBLV3-3xqVh=g@mail.gmail.com>
+References: <20221230203541.146807-1-bero@baylibre.com>
+        <20221230203541.146807-8-bero@baylibre.com>
+        <87v8lsect3.wl-maz@kernel.org>
+        <CAP2ifjMkKJbE_+B=XaxzXoALrc5+FUb7TKpPJQBLV3-3xqVh=g@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: bero@baylibre.com, linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, matthias.bgg@gmail.com, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, gregkh@linuxfoundation.org, chunfeng.yun@mediatek.com, linus.walleij@linaro.org, lee@kernel.org, tglx@linutronix.de, angelogioacchino.delregno@collabora.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, 01 Jan 2023 21:57:58 +0000,
+Bernhard Rosenkr=C3=A4nzer <bero@baylibre.com> wrote:
+>=20
+> On Fri, Dec 30, 2022 at 11:41 PM Marc Zyngier <maz@kernel.org> wrote:
+> > > +             gic: interrupt-controller@c000000 {
+> > > +                     compatible =3D "arm,gic-v3";
+> > > +                     #interrupt-cells =3D <4>;
+> >
+> > Why 4 cells? All the SPIs routed via sysirq are perfectly happy with 3
+> > cells, and all the PPIs have 0 for the 4th cell (none of them use any
+> > form of partitioning that'd require 4 cells). So where is this coming
+> > from?
+>=20
+> It's coming from the SoC vendor kernel (and went unnoticed because
+> it happens to work).  Will send an updated version that does the
+> right thing instead. I've been running it most of the day, so far
+> looking good.
+>=20
+> > > +                     interrupt-parent =3D <&gic>;
+> > > +                     interrupt-controller;
+> > > +                     reg =3D <0 0x0c000000 0 0x80000>, <0 0x0c080000=
+ 0 0x80000>;
+> > > +
+> >
+> > The first region is obviously wrong (512kB for the distributor?
+> > that's... most generous, but the architecture states that it is 64kB,
+> > and that's wasteful enough).
+> >
+> > This is also missing the GICC/GICH/GICV regions that Cortex-A53
+> > implements, and that must be provided as per the binding.
+>=20
+> This was also taken from the vendor kernel; unfortunately neiter the
+> datasheet for the SoC not the vendor kernel specifies the addresses
+> for GICC/GICH/GICV.
+> I've "guessed" based on what's in similar SoCs (MT8183, MT7986a) in
+> v7; this seems to work (boots, kvm initializes hyp mode properly).
 
-On Sun, 01 Jan 2023 20:46:49 +0200, Dmitry Baryshkov wrote:
-> Starterkit is small vendor of development boards and SoM based on Atmel,
-> i.MX and Allwinner SoCs.
-> 
-> http://starterkit.ru/html/index.php
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+Please don't "guess", because this adds zero value, and we might as
+well run with the vendor crap instead.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Read CBAR_EL1, and use this value to construct the memory map, as per
+the A53 TRM. Just booting with KVM enabled means nothing, as this is
+solely used at VM run time. You need run a full VM with GIC-2
+emulation.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/vendor-prefixes.yaml:1250:5: [error] syntax error: could not find expected ':' (syntax)
+	M.
 
-dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/vendor-prefixes.example.dts'
-Documentation/devicetree/bindings/vendor-prefixes.yaml:1250:5: could not find expected ':'
-make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/vendor-prefixes.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/vendor-prefixes.yaml:1250:5: could not find expected ':'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/vendor-prefixes.yaml: ignoring, error parsing file
-make: *** [Makefile:1508: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230101184651.807900-1-dmitry.baryshkov@linaro.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--=20
+Without deviation from the norm, progress is not possible.
