@@ -2,107 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D61A365AA81
-	for <lists+devicetree@lfdr.de>; Sun,  1 Jan 2023 16:58:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E37AE65AAAC
+	for <lists+devicetree@lfdr.de>; Sun,  1 Jan 2023 17:34:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231563AbjAAP6A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Jan 2023 10:58:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39632 "EHLO
+        id S231421AbjAAQeW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Jan 2023 11:34:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231562AbjAAP57 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Jan 2023 10:57:59 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BC24DA8
-        for <devicetree@vger.kernel.org>; Sun,  1 Jan 2023 07:57:58 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id g13so38406660lfv.7
-        for <devicetree@vger.kernel.org>; Sun, 01 Jan 2023 07:57:58 -0800 (PST)
+        with ESMTP id S231132AbjAAQeV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Jan 2023 11:34:21 -0500
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E7F2100D
+        for <devicetree@vger.kernel.org>; Sun,  1 Jan 2023 08:34:20 -0800 (PST)
+Received: by mail-pf1-x433.google.com with SMTP id w203so748931pfc.12
+        for <devicetree@vger.kernel.org>; Sun, 01 Jan 2023 08:34:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nT/wNs755CbJKKo2LqAykZZrkcpLMwiTj6TNgle5VUo=;
-        b=eo2daS8tNzHeAfX1ggtEjRelM1E2AF/hZuQKDrbXvG1nlNzr7BJmfDltGHTHO0zhhA
-         pEwxywhyUViXLBBhaaJne7jZg4rbdon105hNzvzu1hDwdJ1FPuSnCUD99OjEwXnqu1xu
-         qd4fLi8h7SEG+geon3hCdA1oARaMljmezubuIdioM/6Hxbfih/IGvbaRb4jLzsJeRBIo
-         QJtULYJpdbgUz8q4AL2fOnfpO3f92H0Xb1W0bIKcmz4Kksztm0XFozAwUtafmUVViydn
-         79Gza9o6Jxy3UzLBA1F65XWVPsK3VDfRXMFwwWGaPwxoYOrXuWFwoMya2wCXReopzVSy
-         7+Zg==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=5QmpB6w2eTszonb1ei5svsq+jt7QbOAjcjqCoLLi2GU=;
+        b=CMY1S63FWZKBaOZiNDBrz7zsy8/vvCMBWXu0odLIWro3F+B8ZX9cnXUNxES1U251eZ
+         KXQhXiz6rRnjMDhc880+D6RAEVcNyiTEBQffndLO/Ozrlk+46BtDC9qMhLyYjn9EplGf
+         IrQoNVx1EfHlnEDr1WWrX35YfOCmWdAY1g9Qgi9fEj/mcBj/pCbH/AIosZfYgehCs9uk
+         3Br/9I5ZdYnl/OSoq0QXKCx6lyXptJ7i3Yx2Y4TaipRmmHqL2UgI1h/uBRbRdGz8iNty
+         5in/cLBzGOjmtbdYaMlZBn3WStiah0y3xNLpxCfWrrKWixC668IG5PfbltA1JTikjsrh
+         3BHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nT/wNs755CbJKKo2LqAykZZrkcpLMwiTj6TNgle5VUo=;
-        b=Cr3D5U9e5Bt0DckUB7agXBXs8kpaATHz5ZQNZQfHYfeNY5ijfxmsTHOGX7mE3v32aJ
-         Y0ofkeGZrfDU984K7L58IYSj5BDGmsiKB2/de8xtb8+CGMr4ssRK2mc2gEYp2ih72TbZ
-         jGxvmAOk8eWH7WL0Z9lQp66NHhhn8Ac9q19LCLkuXDfvuxxgAkfKq7bALM0Lf8CKJTsF
-         QLMNGkvPk7MjpNH59h0VrEyTGZu1qZr1i28lN4N166vuBpQKPEs3sV9F4SZcLwkPn6kj
-         h1XTmb6WAvNTbghB7iK0FyXjNb/SAqt1NDbNoie1rUpw7wCoyz2NK8jUbPzUxkEHRI9F
-         y10A==
-X-Gm-Message-State: AFqh2kqqNPC+z6bZOqwGRDZF+KqF4KMCbV+FIKXmWp8KKfYXcDESeDAh
-        BMbxt0+C5RCrRurV6BaYad/s7Q==
-X-Google-Smtp-Source: AMrXdXvmDgwvA1xnXZ9dJ32ybmiv38vs5VFBCn8qj8MqbxNP93P9wdvJlMzbkINyTln+UR426UlIWw==
-X-Received: by 2002:ac2:58d4:0:b0:4b5:9e70:ca6e with SMTP id u20-20020ac258d4000000b004b59e70ca6emr10831226lfo.17.1672588676468;
-        Sun, 01 Jan 2023 07:57:56 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id 7-20020ac25f47000000b0049482adb3basm4199109lfz.63.2023.01.01.07.57.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 01 Jan 2023 07:57:55 -0800 (PST)
-Message-ID: <ce838de7-4dfc-4631-8f87-1fb311dcc739@linaro.org>
-Date:   Sun, 1 Jan 2023 16:57:54 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5QmpB6w2eTszonb1ei5svsq+jt7QbOAjcjqCoLLi2GU=;
+        b=sk8wGIWYq2kWg44IswECiETFgfw5B0z1x6uTbOlbyR9Hqnk21II6KHKUgtNAgdQ2QP
+         NTdbN5PjCDHhQlO7N8QmIwSz0KvlkAnx5LLXwrgwmA9lFz5ALCB2WsetgBKYoRy2fuIo
+         v0WjRU/J+9WWKABvNCCYpzphunZaq6SZDmgSh+ZaU6KjvHfljb89bxTDKrkKPeHVI5oq
+         lUzBJoLNTwXarxfvmFVwAphKY7uQlaVMVl8G+k+N1vjhfuYwkNSSVdQVB9s3Oyhdr+bc
+         E9mpPlSDr/lpjlMlMH+tj7uxK2y2pSOg11jsNr3RnlwB1bWoYfqFMDT7kng6EUjCjtLO
+         VOvQ==
+X-Gm-Message-State: AFqh2krla6B+N8H884R0gCBLSVuHwXijhaD0pXp+Quz6wzlqX21kzclm
+        0BtP2XlOnzkC5FBNvhuXEsrfSUO3hRyxuE4irhA=
+X-Google-Smtp-Source: AMrXdXv90SRZVnQ5VAOXjdVevqfQ/bpePtmnrC0sV0hb5BuCKLwvR9ISAhDuBSrAmu5HneVNuGnMrp0kb5k2azRT3M4=
+X-Received: by 2002:a63:585c:0:b0:434:911a:301 with SMTP id
+ i28-20020a63585c000000b00434911a0301mr1767465pgm.50.1672590859922; Sun, 01
+ Jan 2023 08:34:19 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 1/3] dt-bindings: crypto: sun8i-ce: Add compatible for
- D1
-Content-Language: en-US
-To:     Samuel Holland <samuel@sholland.org>,
-        Corentin Labbe <clabbe.montjoie@gmail.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
+References: <20230101004954.613652-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230101004954.613652-1-dmitry.baryshkov@linaro.org>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Sun, 1 Jan 2023 13:34:08 -0300
+Message-ID: <CAOMZO5Bwni0EusHQMWvN5Sr1joCX=r4_LosVy+qz38XQyTyiuw@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: imx: Add support for SK-iMX53 board
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev
-References: <20221231220146.646-1-samuel@sholland.org>
- <20221231220146.646-2-samuel@sholland.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221231220146.646-2-samuel@sholland.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/12/2022 23:01, Samuel Holland wrote:
-> D1 has a crypto engine similar to the one in other Allwinner SoCs.
-> Like H6, it has a separate MBUS clock gate.
-> 
-> It also requires the internal RC oscillator to be enabled for the TRNG
-> to return data, presumably because noise from the oscillator is used as
-> an entropy source. This is likely the case for earlier variants as well,
-> but it really only matters for H616 and newer SoCs, as H6 provides no
-> way to disable the internal oscillator.
-> 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> ---
+Hi Dmitry,
 
+On Sat, Dec 31, 2022 at 9:49 PM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +/ {
+> +       model = "StarterKit SK-iMX53 Board";
+> +       compatible = "starterkit,sk-imx53", "fsl,imx53";
+> +
+> +       aliases {
+> +               /*
+> +                * iMX RTC is not battery powered on this boart.
 
-Best regards,
-Krzysztof
+s/boart/board
 
+> +&fec {
+> +       pinctrl-names = "default";
+> +       pinctrl-0 = <&pinctrl_fec>;
+> +       phy-mode = "rmii";
+> +       phy-reset-gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
+
+This property is deprecated. It is better to pass the standard
+'reset-gpios' property inside the mdio node.
+
+> +       phy-handle = <&phy0>;
+> +       mac-address = [000000000000]; /* placeholder; will be overwritten by bootloader */
+> +       status = "okay";
+> +
+> +       mdio {
+> +               #address-cells = <1>;
+> +               #size-cells = <0>;
+> +
+> +               phy0: ethernet-phy@0 {
+> +                       reg = <0>;
+> +                       device_type = "ethernet-phy";
+> +               };
+> +       };
+> +};
+
+> +
+> +&iomuxc {
+> +       pinctrl_audmux: audmuxgrp {
+> +               fsl,pins = <
+> +                       MX53_PAD_SD2_DATA3__AUDMUX_AUD4_TXC     0x80000000
+
+Please use the real pinctrl value instead of 0x80000000.
+
+The same applies globally.
+
+> +&vpu {
+> +       status = "okay";
+> +};
+
+No need to enable the vpu node here as it is not disabled in imx53.dtsi.
