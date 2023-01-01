@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 388E765AB5B
-	for <lists+devicetree@lfdr.de>; Sun,  1 Jan 2023 20:41:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B309765AB67
+	for <lists+devicetree@lfdr.de>; Sun,  1 Jan 2023 20:41:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231330AbjAATlD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Jan 2023 14:41:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44202 "EHLO
+        id S231613AbjAATlI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Jan 2023 14:41:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231575AbjAATkv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Jan 2023 14:40:51 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C74EDD56
-        for <devicetree@vger.kernel.org>; Sun,  1 Jan 2023 11:40:47 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id p36so38873042lfa.12
-        for <devicetree@vger.kernel.org>; Sun, 01 Jan 2023 11:40:47 -0800 (PST)
+        with ESMTP id S231653AbjAATk7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Jan 2023 14:40:59 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF05D1010
+        for <devicetree@vger.kernel.org>; Sun,  1 Jan 2023 11:40:48 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id bq39so31102880lfb.0
+        for <devicetree@vger.kernel.org>; Sun, 01 Jan 2023 11:40:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wt9qF2p4XV3UcntcRwMREXcr64MEVdaJRIf7w8TkGqg=;
-        b=fAHb4vfOg6yVNKEGLNvpXBkuRYnXYROhkq3UvltOqfNlLGJzFICONebpMGsA+uDX3b
-         VM8yOs/O1aGzqqDqvSarPnTuirSI8i2liBiwLjMxpBC5/jK4xppmJ6N2Zc1WiaXG306Z
-         SLFGYcef/UWGg64ggayXXg99kXFWlHAEMrhOLr9bTab/WNq/336/SrXTiXkIyqTYNQq5
-         QMGJ63DqHu5fz0phR865Q6ODUFMzRkmA5uMbbp+x3JuCMTzZiGe7pRDD0hoRCp3S5XmO
-         I/S6UniANcdvAcrCrDXVoFs2WR4m35D2mTbLE96n6apfZX8mngNSresJ7s0tvHfLiBMx
-         P/vQ==
+        bh=zvBs74YfpWC4BlnlrgIGPtcDViBoUL8HTEcoEwvCBA8=;
+        b=H5B7N3z5HmbvnUAap8b+0J9g19cmjTXFDe7f80d/0ogLbfCPP/mph6SISOuV/8zP9D
+         vyVIbiLA1HqpeoyNuuTRqfTMQMKO6lqjA3+/Ya3qySMaFxbujQry3h/gWCKgcFdijhQt
+         4RyFMLZBM7rh7sEhXm/FK9CEN75Em2FIJX+aMbsWJgrPEpIn+D2IfGqgWm0Q4tXUKu/I
+         Rji3QvECGDbOMh75rGWj4VeeD3yORX3gfbvOXFWXG9nJJWeWXhuP1YUYNj5vk3f9kASS
+         Gj2FrAnwJyG2TvsScH1d9EkEFGtcEvfTbV669mIkjkbXc0/uZWvNAYkviKLvnGpE0Vx5
+         USWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=wt9qF2p4XV3UcntcRwMREXcr64MEVdaJRIf7w8TkGqg=;
-        b=Kd/CyE2IbcPyko7c/1TU8Mzm19uNsDUzAJhQEDrwFlq0AZg+0X177dUEJxJOKLHQht
-         ENNQkUYpmvVQlQ15MhcbKZ1e7CUAFq9b2GzfnyE1F3Gmj0E5Uqxobx6c7MDxHHEcvoGZ
-         AB9BPrbVFyxP4L3muXXG3PktY11B7skL7jtuWA1Jy6UvHqaJbiddZjTLOpY5w7kpkyPG
-         nzN6zWun/Hxsv0qcQw3UlWsbFx2Jl6hrdCm/YMpLDUfy/OzbOdzcWp7+2F/PDOLW6iGN
-         p8QTlEyAs1UcJHAEDip44yqIbArb/XZsyfLa4FkutyS5jkfUtKA8Q0uTjX8FhDJBdU+i
-         nN9w==
-X-Gm-Message-State: AFqh2kpki7oXZXSbh0LggU3tyI3Cj4cuIy/nHf9MOiIs39surfnJ/V4S
-        Ath8cfsosZRtku/iA78HQTO9rA==
-X-Google-Smtp-Source: AMrXdXvbdbMuCebo3Of93Q9x1IBW1OOWRb3oS3VGR2JzaBJKVjKsPpwjpWybdeF3LUBRiwvFOV/8Qg==
-X-Received: by 2002:a05:6512:3f1b:b0:4cb:2aa:9e58 with SMTP id y27-20020a0565123f1b00b004cb02aa9e58mr7769977lfa.13.1672602047401;
-        Sun, 01 Jan 2023 11:40:47 -0800 (PST)
+        bh=zvBs74YfpWC4BlnlrgIGPtcDViBoUL8HTEcoEwvCBA8=;
+        b=tff17SQwWeNoc2Ra33zIdoR6dwnGqv4zoscnfhWdsh33TsOsA6a6ALEquDeHzJUT1g
+         hpNonZWIgkNJJ3KK2SUJc5GVpOcJeM+Qxjjc9YuGlnB/JlnkU1gpCa8Htnj+lriinAxh
+         suzFk5tVMJ3afpMpgNzCXQAJaLJcNYQiRM7C3qzjYFCJXGTqHjEe4C56tnnnyIOQ4566
+         RShD0oBhLFCnqscQ2DFqo9lG3uD0C1IE5Sb9zO/I6fb2HHYXvCXzt5u4INkg/bjY6WJM
+         QkydY3nghXzq7N7yMWxxgG1Hpd24NTmI/KLcRPVfT2LUgNfXT5gUAr7lvTn9zOPf2cCI
+         pTRA==
+X-Gm-Message-State: AFqh2kp9CIkpS5QwSoV5phtnttHv+8sIuI1WTQJNIYgBWtY/BIxdN+cN
+        AZXLp7EiU9Ut2GwOOAECGogLFw==
+X-Google-Smtp-Source: AMrXdXue3QJH27rRQHt1kNxFyvrmcDGwWgd5top/bBUbSdiiizljPqJMh73IKaKZiEBzf+cd85HAQA==
+X-Received: by 2002:a05:6512:3f16:b0:4ca:f97f:4a21 with SMTP id y22-20020a0565123f1600b004caf97f4a21mr9460201lfa.37.1672602048431;
+        Sun, 01 Jan 2023 11:40:48 -0800 (PST)
 Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id w11-20020a056512098b00b004a100c21eaesm4228013lft.97.2023.01.01.11.40.46
+        by smtp.gmail.com with ESMTPSA id w11-20020a056512098b00b004a100c21eaesm4228013lft.97.2023.01.01.11.40.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 01 Jan 2023 11:40:46 -0800 (PST)
+        Sun, 01 Jan 2023 11:40:47 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -63,10 +63,12 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
         Shawn Guo <shawn.guo@linaro.org>,
         linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v6 13/20] thermal/drivers/tsens: Drop single-cell code for msm8939
-Date:   Sun,  1 Jan 2023 21:40:27 +0200
-Message-Id: <20230101194034.831222-14-dmitry.baryshkov@linaro.org>
+        devicetree@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: [PATCH v6 14/20] thermal/drivers/tsens: Drop single-cell code for msm8976/msm8956
+Date:   Sun,  1 Jan 2023 21:40:28 +0200
+Message-Id: <20230101194034.831222-15-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230101194034.831222-1-dmitry.baryshkov@linaro.org>
 References: <20230101194034.831222-1-dmitry.baryshkov@linaro.org>
@@ -82,31 +84,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is no dtsi file for msm8939 in the kernel sources. Drop the
+There is no dtsi file for msm8976 in the kernel sources. Drop the
 compatibility with unofficial dtsi and remove support for handling the
-single-cell calibration data on msm8939.
+single-cell calibration data on msm8976.
 
-Cc: Shawn Guo <shawn.guo@linaro.org>
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Acked-by: Shawn Guo <shawn.guo@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/thermal/qcom/tsens-v0_1.c | 26 +-------------------------
- 1 file changed, 1 insertion(+), 25 deletions(-)
+ drivers/thermal/qcom/tsens-v1.c | 29 ++---------------------------
+ 1 file changed, 2 insertions(+), 27 deletions(-)
 
-diff --git a/drivers/thermal/qcom/tsens-v0_1.c b/drivers/thermal/qcom/tsens-v0_1.c
-index 9488416b568c..e89c6f39a3ae 100644
---- a/drivers/thermal/qcom/tsens-v0_1.c
-+++ b/drivers/thermal/qcom/tsens-v0_1.c
-@@ -150,30 +150,6 @@ static int calibrate_8916(struct tsens_priv *priv)
+diff --git a/drivers/thermal/qcom/tsens-v1.c b/drivers/thermal/qcom/tsens-v1.c
+index 6d1ea430f90b..b822a426066d 100644
+--- a/drivers/thermal/qcom/tsens-v1.c
++++ b/drivers/thermal/qcom/tsens-v1.c
+@@ -88,31 +88,6 @@ static int calibrate_v1(struct tsens_priv *priv)
  	return 0;
  }
  
--static int calibrate_8939(struct tsens_priv *priv)
+-static int calibrate_8976(struct tsens_priv *priv)
 -{
--	u32 p1[10], p2[10];
+-	u32 p1[11], p2[11];
 -	u32 *qfprom_cdata;
 -	int mode, ret;
 -
@@ -118,9 +117,10 @@ index 9488416b568c..e89c6f39a3ae 100644
 -	if (IS_ERR(qfprom_cdata))
 -		return PTR_ERR(qfprom_cdata);
 -
--	mode = tsens_read_calibration_legacy(priv, &tsens_8939_nvmem,
+-	mode = tsens_read_calibration_legacy(priv, &tsens_8976_nvmem,
 -					     p1, p2,
 -					     qfprom_cdata, NULL);
+-
 -
 -	compute_intercept_slope(priv, p1, p2, mode);
 -	kfree(qfprom_cdata);
@@ -128,16 +128,25 @@ index 9488416b568c..e89c6f39a3ae 100644
 -	return 0;
 -}
 -
- static void fixup_8974_points(int mode, u32 *p1, u32 *p2)
- {
- 	int i;
-@@ -354,7 +330,7 @@ struct tsens_plat_data data_8916 = {
+ /* v1.x: msm8956,8976,qcs404,405 */
  
- static const struct tsens_ops ops_8939 = {
- 	.init		= init_8939,
--	.calibrate	= calibrate_8939,
+ static struct tsens_features tsens_v1_feat = {
+@@ -211,7 +186,7 @@ struct tsens_plat_data data_tsens_v1 = {
+ 
+ static const struct tsens_ops ops_8956 = {
+ 	.init		= init_8956,
+-	.calibrate	= calibrate_8976,
 +	.calibrate	= tsens_calibrate_common,
- 	.get_temp	= get_temp_common,
+ 	.get_temp	= get_temp_tsens_valid,
+ };
+ 
+@@ -224,7 +199,7 @@ struct tsens_plat_data data_8956 = {
+ 
+ static const struct tsens_ops ops_8976 = {
+ 	.init		= init_common,
+-	.calibrate	= calibrate_8976,
++	.calibrate	= tsens_calibrate_common,
+ 	.get_temp	= get_temp_tsens_valid,
  };
  
 -- 
