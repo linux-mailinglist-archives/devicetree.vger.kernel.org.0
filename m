@@ -2,149 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F8FF65AB8C
-	for <lists+devicetree@lfdr.de>; Sun,  1 Jan 2023 21:26:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 765C965ABAC
+	for <lists+devicetree@lfdr.de>; Sun,  1 Jan 2023 22:21:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230201AbjAAU0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Jan 2023 15:26:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49478 "EHLO
+        id S229503AbjAAVV0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Jan 2023 16:21:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230161AbjAAU0W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Jan 2023 15:26:22 -0500
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E691E261E
-        for <devicetree@vger.kernel.org>; Sun,  1 Jan 2023 12:26:20 -0800 (PST)
-Received: by mail-ej1-x62c.google.com with SMTP id x22so62633504ejs.11
-        for <devicetree@vger.kernel.org>; Sun, 01 Jan 2023 12:26:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TvLuMLYG5Lyi3eSpq/moHp/w6kLksJAaK/i2ILTJE14=;
-        b=B51Jm9Q7/NgbCdlTnvK/u8ZITzOSWeMynDS2qj691R5fLIbFrrL0vOm+Kco3Xsc+FI
-         UW5QPdLQYqKt5B/xJhnzgLmRQ8gVU5sZbDjwM301UYQCpWxcGO9lqvyaWq1xIeMJ/AQr
-         JY1YVHvnrkqcujSjUsEwYR0w8pPYD/vKZ0cRyJ6Cvd0Dl+SlQ/4+KiWng+VvYmEPXhC/
-         eSNdjvIvKkFZDI11N5jpCfN1KKKOWjYXe/NE4z6xJabJuLJxB+lGDBCeCeIFLOi2BzBa
-         0xbb09UmCc38qzjRy1v76ATAlLf9Drkh/Py1m5uEGYtCk6uCQ1fwlRJFifWHKGjo/MXV
-         AOGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TvLuMLYG5Lyi3eSpq/moHp/w6kLksJAaK/i2ILTJE14=;
-        b=kOr6GEnSbSCYnq0esvU02kR/6rfJ5O1tqrY1g/bRJj+qLLJ5IzmqEnKNdMtJPI5gAj
-         TSde/epkA5n6VB9SPa6577NBkfsb7/5Jz10Q/WIPwQhp+D8TMjaXlrv9OWImC4+TzlzU
-         z0kKg05y7OrnKUgSCG7lN6KB3YXw6gjNRm3AcS9GAZ2tlTpmExbX88ljh4M09gDW+xGa
-         ukUo/kJUxpFbZfichIazTF/7/R8MBozg3l6nJszj4+eDftSKeNIWJyxjpVj0vYa0GUKs
-         V6JhMOqKo4INFMA44oT2KUN5hMg1chGOrsM4SE0Xe4A2G313maEnDmweOM5vokB9x2cH
-         AdxA==
-X-Gm-Message-State: AFqh2kpCGfgppaK7dVNvZ4dQvGZSbG+MWwmK592zz0vMsvi34oXIm1nW
-        O30EEApHONTDppNgsxBcnGwgrw==
-X-Google-Smtp-Source: AMrXdXtJcjaTSfVHu5GSdVjTUsJ3dGhzRjDjghQ1EuwL12kz2e0Yr6QQ17hyhSsf4ES6LWsH+JgOlg==
-X-Received: by 2002:a17:906:944c:b0:7c0:bd68:ce30 with SMTP id z12-20020a170906944c00b007c0bd68ce30mr32903402ejx.54.1672604779538;
-        Sun, 01 Jan 2023 12:26:19 -0800 (PST)
-Received: from ?IPV6:2001:1c06:2302:5600:5825:7f8d:c381:cef4? (2001-1c06-2302-5600-5825-7f8d-c381-cef4.cable.dynamic.v6.ziggo.nl. [2001:1c06:2302:5600:5825:7f8d:c381:cef4])
-        by smtp.gmail.com with ESMTPSA id 17-20020a170906319100b0084610118010sm12163168ejy.184.2023.01.01.12.26.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 01 Jan 2023 12:26:19 -0800 (PST)
-Message-ID: <46045e89-e1c4-535d-7ed9-6727e90046f9@linaro.org>
-Date:   Sun, 1 Jan 2023 20:26:18 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v6 13/20] thermal/drivers/tsens: Drop single-cell code for
- msm8939
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229447AbjAAVVZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Jan 2023 16:21:25 -0500
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 699D7241;
+        Sun,  1 Jan 2023 13:21:24 -0800 (PST)
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id CDCFD1C09F4; Sun,  1 Jan 2023 22:21:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
+        t=1672608080;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=Aq0v+DYHcUKp6Xj+Ok8b/poNMw5kQJV4suii1vowS2Y=;
+        b=hp4FrWfGD9sf/WF/sIKeSJh2cWjkqGkhJgEbwyHMiXN7Xf4KewzwFCmD59UY7hXAraoIOq
+        Exgfp8xbd9cPZL8Oy5UZ4IBa+EWGo967xtUlVWDyBC8oAATD5qC0UYN9yAdsWtHijeluIm
+        6rGR62jAzP9MiMHQHk22l8L9lRoAu9g=
+Date:   Sun, 1 Jan 2023 22:21:20 +0100
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Javier Martinez Canillas <javierm@redhat.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Kamil =?utf-8?Q?Trzci=C5=84ski?= <ayufan@ayufan.eu>,
+        Martijn Braam <martijn@brixit.nl>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Robert Mader <robert.mader@posteo.de>,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
+        Peter Robinson <pbrobinson@gmail.com>,
+        Onuralp Sezer <thunderbirdtr@fedoraproject.org>,
+        dri-devel@lists.freedesktop.org, Ondrej Jirman <megi@xff.cz>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>,
+        Neal Gompa <ngompa13@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Caleb Connolly <kc@postmarketos.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>
-Cc:     Shawn Guo <shawn.guo@linaro.org>, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230101194034.831222-1-dmitry.baryshkov@linaro.org>
- <20230101194034.831222-14-dmitry.baryshkov@linaro.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230101194034.831222-14-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v4 0/4] Add PinePhone Pro display support
+Message-ID: <Y7H5UJOz/zYuZn7j@duo.ucw.cz>
+References: <20221230113155.3430142-1-javierm@redhat.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="RTMPi14+3aUpRgHm"
+Content-Disposition: inline
+In-Reply-To: <20221230113155.3430142-1-javierm@redhat.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/01/2023 19:40, Dmitry Baryshkov wrote:
-> There is no dtsi file for msm8939 in the kernel sources. Drop the
-> compatibility with unofficial dtsi and remove support for handling the
-> single-cell calibration data on msm8939.
-> 
-> Cc: Shawn Guo <shawn.guo@linaro.org>
-> Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Acked-by: Shawn Guo <shawn.guo@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->   drivers/thermal/qcom/tsens-v0_1.c | 26 +-------------------------
->   1 file changed, 1 insertion(+), 25 deletions(-)
-> 
-> diff --git a/drivers/thermal/qcom/tsens-v0_1.c b/drivers/thermal/qcom/tsens-v0_1.c
-> index 9488416b568c..e89c6f39a3ae 100644
-> --- a/drivers/thermal/qcom/tsens-v0_1.c
-> +++ b/drivers/thermal/qcom/tsens-v0_1.c
-> @@ -150,30 +150,6 @@ static int calibrate_8916(struct tsens_priv *priv)
->   	return 0;
->   }
->   
-> -static int calibrate_8939(struct tsens_priv *priv)
-> -{
-> -	u32 p1[10], p2[10];
-> -	u32 *qfprom_cdata;
-> -	int mode, ret;
-> -
-> -	ret = tsens_calibrate_common(priv);
-> -	if (!ret)
-> -		return 0;
-> -
-> -	qfprom_cdata = (u32 *)qfprom_read(priv->dev, "calib");
-> -	if (IS_ERR(qfprom_cdata))
-> -		return PTR_ERR(qfprom_cdata);
-> -
-> -	mode = tsens_read_calibration_legacy(priv, &tsens_8939_nvmem,
-> -					     p1, p2,
-> -					     qfprom_cdata, NULL);
-> -
-> -	compute_intercept_slope(priv, p1, p2, mode);
-> -	kfree(qfprom_cdata);
-> -
-> -	return 0;
-> -}
-> -
->   static void fixup_8974_points(int mode, u32 *p1, u32 *p2)
->   {
->   	int i;
-> @@ -354,7 +330,7 @@ struct tsens_plat_data data_8916 = {
->   
->   static const struct tsens_ops ops_8939 = {
->   	.init		= init_8939,
-> -	.calibrate	= calibrate_8939,
-> +	.calibrate	= tsens_calibrate_common,
->   	.get_temp	= get_temp_common,
->   };
->   
 
-Thanks for sending me dtsi code to accompany this
+--RTMPi14+3aUpRgHm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Hi!
+
+> This series add support for the display present in the PinePhone Pro.
+>=20
+> Patch #1 adds a driver for panels using the Himax HX8394 panel controller,
+> such as the HSD060BHW4 720x1440 TFT LCD panel present in the PinePhone Pr=
+o.
+>=20
+> Patch #2 adds a devicetree binding schema for this driver and patch #3 ad=
+ds
+> an entry for the driver in the MAINTAINERS file.
+>=20
+> Finally patch #4 adds the needed devicetree nodes in the PinePhone Pro DT=
+S,
+> to enable both the display and the touchscreen. This makes the upstream D=
+TS
+> much more usable and will allow for example to enable support for the pho=
+ne
+> in the Fedora distribution.
+
+Thanks for the series. Please cc: phone-devel@vger.kernel.org with
+future patches.
+
+Best regards,
+								Pavel
+--=20
+People of Russia, stop Putin before his war on Ukraine escalates.
+
+--RTMPi14+3aUpRgHm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCY7H5UAAKCRAw5/Bqldv6
+8umEAKCiiwwQLTUUm7OHMP64I5tMJAdxgACfQsIjJN7Qg6MhlcLpmicQs5rvGSs=
+=0ZNJ
+-----END PGP SIGNATURE-----
+
+--RTMPi14+3aUpRgHm--
