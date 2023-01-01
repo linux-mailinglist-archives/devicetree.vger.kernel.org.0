@@ -2,77 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AB6165AA64
-	for <lists+devicetree@lfdr.de>; Sun,  1 Jan 2023 16:40:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26EFC65AA69
+	for <lists+devicetree@lfdr.de>; Sun,  1 Jan 2023 16:40:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230013AbjAAPkN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Jan 2023 10:40:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35130 "EHLO
+        id S231433AbjAAPkf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Jan 2023 10:40:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229620AbjAAPkM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Jan 2023 10:40:12 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E54D2DED
-        for <devicetree@vger.kernel.org>; Sun,  1 Jan 2023 07:40:11 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id bf43so38403714lfb.6
-        for <devicetree@vger.kernel.org>; Sun, 01 Jan 2023 07:40:11 -0800 (PST)
+        with ESMTP id S229452AbjAAPke (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Jan 2023 10:40:34 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 937962AEF
+        for <devicetree@vger.kernel.org>; Sun,  1 Jan 2023 07:40:33 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id bp15so38383736lfb.13
+        for <devicetree@vger.kernel.org>; Sun, 01 Jan 2023 07:40:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+pVoAe8bQDQU8ygNqgrsQtDq/4LXhpcuUhVS3IiT3ps=;
-        b=X1cSZ8BdKum/BGWzz+RS9YB0SX1pWreF0BlzZxBQytsixQ508QjMbAd52nR3uXroak
-         8fwsNligWrCarMkm0E0EtEeInqdOf6UZL2bFhqKHJA2XWLULkHVarGZ0PpFAMvyhGo3j
-         KyJt3N5UfeenjeKKYHE4bsoX9Z08fUO7WUO816DH7L7u4y9aa+01LxZOWH7UvICf9nXR
-         euMR0kFt2ywwTTDisHAM4LwiAqrsdzffzMbouypZD1liuqTf2ko24VinCGWp3gbYMsFQ
-         l5aU/EHrhoCBtZVylPmiGTFphlLs81JAzYacei9DfwfgU7+yQomF56idRl1IKI4GaOW3
-         fKWg==
+        bh=c5RuwWSVhOy4bx3U84+ZDzXx4NkVujrybKX74oDk6bs=;
+        b=p8LUuneUt0KRQyiTOVJOG2ZINoHCZC9JZAqRg65HoN7tPfgd5wC+2B6khS0mexhByU
+         SS+4PaKyhWC/kdYaWlwAXb269IxXgLwbb8qUvZafx95iD465JmTZQx62XmmhyC3U6ne+
+         /MipjrLY/AkgJtPrEkyGfbuzn/6rog13TatWOE9MAPNSTGYWeZ1t+zrshD2qG1w71wCA
+         t5yJXTlLSXXf+ImaMNnjcyqovYkUatErnMvdY0mVgorfLuo8HFMg98My3H1sNjMtzIiU
+         fsy+YBuUB1Yxuh3XgpgO4VNYUP++bDc0hzNj3++CThwNLOT+8wDeCxbYo1uWtGPbJicA
+         8UvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+pVoAe8bQDQU8ygNqgrsQtDq/4LXhpcuUhVS3IiT3ps=;
-        b=Jy3J0In5xmQMEMa61o6loOFqenpuRWJjjqDLYa+yPcwQbAxkSQDmnrg12UO2UQcmS7
-         EVPhCOQMsKREXCv/ovdFm8h4wIc5PsRceWJrVwqrRS6Sy2cm++UdxzJHsUmk507J6/T7
-         VLRZ3vBRqMkwsy9vQHRJ52pEJcepZLDLzkYe6xqeqtnJjpclZJyVjlO7MKcZvcNgxUt4
-         FkAXTUvwQG5LitTJJKGAz5tilZckj2bOxy4lfeqpiTaFhHiwMh/NOFQU+SWJfNaIlq55
-         +uKPTZ4uM6Bqws5XIQiUqwF3Z5UnMhB6kz6imfqfqyXDCaw4IQ1LFxnvh5pcTPt6hWlh
-         1uZA==
-X-Gm-Message-State: AFqh2krpU7/kkm1V+QdwjNbEy3huGmn8kbvg+W5kyTXEy8/bjQHukvE/
-        pwIFT1CExwJV2/vmpK/VV6tlug==
-X-Google-Smtp-Source: AMrXdXvzKlCCuN1UVeapGWNHxfTvED0EGCsl7XmG6riyWSVPIzac849lCJ0t3ALG9CwZXk4OPKxIRg==
-X-Received: by 2002:a05:6512:3e21:b0:4a4:68b7:deb7 with SMTP id i33-20020a0565123e2100b004a468b7deb7mr14384652lfv.19.1672587609601;
-        Sun, 01 Jan 2023 07:40:09 -0800 (PST)
+        bh=c5RuwWSVhOy4bx3U84+ZDzXx4NkVujrybKX74oDk6bs=;
+        b=Bxwpz9nR25+q8cDt5p6wp54V/4gC7c4YUBywNx22WYhhSBovC/oSWg2/TUoIBYss8M
+         fj5KxvQr8QuEYR5aX3oKKP2aqMNBq234LOU72BMYrtxhDT3xl2y5A5EswWgMwtrw+RSN
+         b6Rg9IBetaHJSW5xp6+sHm1SnK3B8s+zsguycWiRDpMkCPrlFy3b1G91LvXhAAFYUKns
+         GPQMVhVxEtRhD0CFLb9ZTT980BrVhbr7+kCz+DMv/lwzI2BoBBxo8ggTfcyyi37kC9Nr
+         xXiC6F+xhEjzcJIF0h2xZZk+OidMw1VtshmUtfrnwtgcLQcrDeHKmjzHA9KYF/WAdDzC
+         V3vQ==
+X-Gm-Message-State: AFqh2kp9TSVwyoAABADOLLzelLNkfGRl93/MQqTJ+0t4IHTHtoYlnAfw
+        edOgFes0ZHFsP74U1Zr6eSDy+g==
+X-Google-Smtp-Source: AMrXdXskNqBM5s1DAF2mSUlq4PHai+KtIFBVwyONA30znFvyr7u1VisNSecOLbVdEMZCF73YgMbNnw==
+X-Received: by 2002:ac2:5494:0:b0:4b5:5bc1:16da with SMTP id t20-20020ac25494000000b004b55bc116damr10172196lfk.39.1672587633160;
+        Sun, 01 Jan 2023 07:40:33 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id m4-20020a056512114400b004a764f9d653sm4198387lfg.242.2023.01.01.07.40.08
+        by smtp.gmail.com with ESMTPSA id w4-20020a05651234c400b0049d0a98f73csm4152591lfr.154.2023.01.01.07.40.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 01 Jan 2023 07:40:09 -0800 (PST)
-Message-ID: <311f2e5e-24bf-9c52-8773-7a350e0fb3c7@linaro.org>
-Date:   Sun, 1 Jan 2023 16:40:07 +0100
+        Sun, 01 Jan 2023 07:40:32 -0800 (PST)
+Message-ID: <396b0ef2-b3da-2c44-66a1-16d1b21ac6ef@linaro.org>
+Date:   Sun, 1 Jan 2023 16:40:31 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v5 1/6] dt-bindings: ufs: qcom: Add SM6125 compatible
- string
+Subject: Re: [PATCH v5 5/6] dt-bindings: arm: qcom: Document
+ xiaomi,laurel-sprout board
 Content-Language: en-US
 To:     Lux Aliaga <they@mint.lgbt>, Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
         marijn.suijten@somainline.org, linux-arm-msm@vger.kernel.org,
-        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20221231222420.75233-1-they@mint.lgbt>
- <20221231222420.75233-2-they@mint.lgbt>
+ <20221231222420.75233-6-they@mint.lgbt>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221231222420.75233-2-they@mint.lgbt>
+In-Reply-To: <20221231222420.75233-6-they@mint.lgbt>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,12 +82,27 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 31/12/2022 23:24, Lux Aliaga wrote:
-> Document the compatible for UFS found on the SM6125.
+> Document the Xiaomi Mi A3 (xiaomi-laurel-sprout) smartphone which is
+> based on the Snapdragon 665 SoC.
 > 
 > Signed-off-by: Lux Aliaga <they@mint.lgbt>
 
+This is a friendly reminder during the review process.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+It looks like you received a tag and forgot to add it.
+
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions. However, there's no need to repost patches *only* to add the
+tags. The upstream maintainer will do that for acks received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+
+If a tag was not added on purpose, please state why and what changed.
+
+
+
 
 Best regards,
 Krzysztof
