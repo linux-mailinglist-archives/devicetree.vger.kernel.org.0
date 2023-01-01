@@ -2,113 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 765C965ABAC
-	for <lists+devicetree@lfdr.de>; Sun,  1 Jan 2023 22:21:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B9F8B65ABB7
+	for <lists+devicetree@lfdr.de>; Sun,  1 Jan 2023 22:31:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229503AbjAAVV0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Jan 2023 16:21:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54762 "EHLO
+        id S229550AbjAAVbD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Jan 2023 16:31:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbjAAVVZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Jan 2023 16:21:25 -0500
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 699D7241;
-        Sun,  1 Jan 2023 13:21:24 -0800 (PST)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id CDCFD1C09F4; Sun,  1 Jan 2023 22:21:20 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-        t=1672608080;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=Aq0v+DYHcUKp6Xj+Ok8b/poNMw5kQJV4suii1vowS2Y=;
-        b=hp4FrWfGD9sf/WF/sIKeSJh2cWjkqGkhJgEbwyHMiXN7Xf4KewzwFCmD59UY7hXAraoIOq
-        Exgfp8xbd9cPZL8Oy5UZ4IBa+EWGo967xtUlVWDyBC8oAATD5qC0UYN9yAdsWtHijeluIm
-        6rGR62jAzP9MiMHQHk22l8L9lRoAu9g=
-Date:   Sun, 1 Jan 2023 22:21:20 +0100
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Javier Martinez Canillas <javierm@redhat.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Kamil =?utf-8?Q?Trzci=C5=84ski?= <ayufan@ayufan.eu>,
-        Martijn Braam <martijn@brixit.nl>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Robert Mader <robert.mader@posteo.de>,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
-        Peter Robinson <pbrobinson@gmail.com>,
-        Onuralp Sezer <thunderbirdtr@fedoraproject.org>,
-        dri-devel@lists.freedesktop.org, Ondrej Jirman <megi@xff.cz>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>,
-        Neal Gompa <ngompa13@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Caleb Connolly <kc@postmarketos.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v4 0/4] Add PinePhone Pro display support
-Message-ID: <Y7H5UJOz/zYuZn7j@duo.ucw.cz>
-References: <20221230113155.3430142-1-javierm@redhat.com>
+        with ESMTP id S229447AbjAAVbB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Jan 2023 16:31:01 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF407BE3
+        for <devicetree@vger.kernel.org>; Sun,  1 Jan 2023 13:30:56 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id bq39so31323867lfb.0
+        for <devicetree@vger.kernel.org>; Sun, 01 Jan 2023 13:30:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wadRULsNjGv3JLmdwEv3tAVRSsp8mW5cYkUY+ZGJhzA=;
+        b=AF9kj3dVWZ7Tsys2r1tbj4hFa8TBqpVpKc21Llx+NHO68+OcaczkSKP6sF1bI3AGKX
+         hQKHPUFIHvyfFk0UGC07iYza70Kown7r38hqEVlqg0wyDFYzDMc8nVbCdR8XhcAKK0p9
+         InAVarPTbl+pN8avnfCgdEyhBxiClBb/qzECBtrEEYzujtfF32Rp/NG2ziXvmCunikrT
+         MaGYwUxPGvKh4HtibZ7QK/ulw+yy1FuiB+XjKZZ0Zf0HCp0U/Yh55IN+0NpZ8x74eBIe
+         pLoXUInJCW/L/YdKTUsGC2cKqYWS7tEcUYb4vNGOONgBsK1+8wdBqhY950ip57/RLcZU
+         tsDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wadRULsNjGv3JLmdwEv3tAVRSsp8mW5cYkUY+ZGJhzA=;
+        b=ZjYN5rLFsySmDL2FlVxE2Dcew9J2HTvMDrEwcgODVSjIJidbuRKdoj/Ooo2NcSs7wB
+         D9jp2Y8Go04TVTRQ7Tux/bC11uKBa7D5exw09O78tgeJzTA1Ki1DY3UAVljaCdlhvP8n
+         zzS/a6Iv0UFeRa+hEFhT0TloQff1/xnLxhsSWhInFplvz/4GKJeIbSJahZRMukF5jvbH
+         R+oFD6O4TL/zEd8dnoylVUO/Zh9KAWKfzmuYMqgyqrRIrUcwMTV4OgUh7vfVWhn4EaQI
+         BNrCKqYioz6bjn+TRioup8QkDRvJxK8UoOsq2g/zE6GQZGbW+EHvBveg4UyJg0byGNH3
+         zBJA==
+X-Gm-Message-State: AFqh2kpgKAs1pne4qNM8ER6u1uE0wk+Ns4m6O98rFX68VOq7I/HpAYbq
+        LnW3R8E+orNYxJ/B7V0ortBSbw==
+X-Google-Smtp-Source: AMrXdXs69AvJvDyXi9J0AjohK7USrhhVRpbBpawny2fOsJWeIZRyPHxGCzInQgBWLAsGHvuQdm80cg==
+X-Received: by 2002:a05:6512:1505:b0:4b5:7bfe:4e44 with SMTP id bq5-20020a056512150500b004b57bfe4e44mr13080472lfb.6.1672608655217;
+        Sun, 01 Jan 2023 13:30:55 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id bq25-20020a056512151900b004b592043413sm4240931lfb.12.2023.01.01.13.30.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 01 Jan 2023 13:30:54 -0800 (PST)
+Message-ID: <fc6f9558-46c6-a7f6-7f41-afad418c8f7b@linaro.org>
+Date:   Sun, 1 Jan 2023 23:30:53 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="RTMPi14+3aUpRgHm"
-Content-Disposition: inline
-In-Reply-To: <20221230113155.3430142-1-javierm@redhat.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v6 07/20] thermal/drivers/tsens: fix slope values for
+ msm8939
+Content-Language: en-GB
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>
+Cc:     Shawn Guo <shawn.guo@linaro.org>, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230101194034.831222-1-dmitry.baryshkov@linaro.org>
+ <20230101194034.831222-8-dmitry.baryshkov@linaro.org>
+ <7298fd96-14ec-c82b-8005-bb5dd912a055@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <7298fd96-14ec-c82b-8005-bb5dd912a055@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 01/01/2023 22:24, Bryan O'Donoghue wrote:
+> On 01/01/2023 19:40, Dmitry Baryshkov wrote:
+>> +static int __init init_8939(struct tsens_priv *priv) {
+>> +    priv->sensor[0].slope = 2911;
+>> +    priv->sensor[1].slope = 2789;
+>> +    priv->sensor[2].slope = 2906;
+>> +    priv->sensor[3].slope = 2763;
+>> +    priv->sensor[4].slope = 2922;
+>> +    priv->sensor[5].slope = 2867;
+>> +    priv->sensor[6].slope = 2833;
+>> +    priv->sensor[7].slope = 2838;
+>> +    priv->sensor[8].slope = 2840;
+>> +    priv->sensor[9].slope = 2852;
+> 
+> How are you coming up with the last value here ?
+> 
+> https://github.com/android-linux-stable/msm-3.18/blob/60a8d8af3751b9dc22894fe68b3964ea94ae7888/arch/arm/boot/dts/qcom/msm8939-common.dtsi#L525
 
---RTMPi14+3aUpRgHm
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+ From this DTSi. There was a separate configuration for 8939 v3. And I 
+don't know why Qualcomm completely ignored it for later releases (3.14, 
+3.18).
 
-Hi!
+https://git.codelinaro.org/clo/la/kernel/msm-3.10/-/blob/LA.BR.1.3.7.c26-03900-8976.0/arch/arm/boot/dts/qcom/msm8939-v3.0.dtsi#L613
 
-> This series add support for the display present in the PinePhone Pro.
->=20
-> Patch #1 adds a driver for panels using the Himax HX8394 panel controller,
-> such as the HSD060BHW4 720x1440 TFT LCD panel present in the PinePhone Pr=
-o.
->=20
-> Patch #2 adds a devicetree binding schema for this driver and patch #3 ad=
-ds
-> an entry for the driver in the MAINTAINERS file.
->=20
-> Finally patch #4 adds the needed devicetree nodes in the PinePhone Pro DT=
-S,
-> to enable both the display and the touchscreen. This makes the upstream D=
-TS
-> much more usable and will allow for example to enable support for the pho=
-ne
-> in the Fedora distribution.
+-- 
+With best wishes
+Dmitry
 
-Thanks for the series. Please cc: phone-devel@vger.kernel.org with
-future patches.
-
-Best regards,
-								Pavel
---=20
-People of Russia, stop Putin before his war on Ukraine escalates.
-
---RTMPi14+3aUpRgHm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCY7H5UAAKCRAw5/Bqldv6
-8umEAKCiiwwQLTUUm7OHMP64I5tMJAdxgACfQsIjJN7Qg6MhlcLpmicQs5rvGSs=
-=0ZNJ
------END PGP SIGNATURE-----
-
---RTMPi14+3aUpRgHm--
