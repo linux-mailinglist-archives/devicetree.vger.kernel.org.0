@@ -2,73 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B82E65AA75
-	for <lists+devicetree@lfdr.de>; Sun,  1 Jan 2023 16:49:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0549B65AA7F
+	for <lists+devicetree@lfdr.de>; Sun,  1 Jan 2023 16:57:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231215AbjAAPtK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Jan 2023 10:49:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37840 "EHLO
+        id S231558AbjAAP5B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Jan 2023 10:57:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229542AbjAAPtI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Jan 2023 10:49:08 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B964B37
-        for <devicetree@vger.kernel.org>; Sun,  1 Jan 2023 07:49:07 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id j17so28928248lfr.3
-        for <devicetree@vger.kernel.org>; Sun, 01 Jan 2023 07:49:07 -0800 (PST)
+        with ESMTP id S229686AbjAAP5A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Jan 2023 10:57:00 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CB53B44
+        for <devicetree@vger.kernel.org>; Sun,  1 Jan 2023 07:56:58 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id i19so14081747ljg.8
+        for <devicetree@vger.kernel.org>; Sun, 01 Jan 2023 07:56:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=gb6XglI1fED0fL7pjVB3dDglcOozlQzsZ5vAYulGpKU=;
-        b=xSnFTJp57tAHeSA3XQAXatgzTSJRFKFpUXXcB6PsSFYj1XRN1Qq8FXzEolByoHhajK
-         59H2Yy7YNBKzkHbw2aXlE2XVpnN4ygjn/vQm4qe1nnH1USl3iSK/PyGyElk0pSLnj/06
-         kqkdi6Wqewhy19j1fUpg0MzdCNduD/e9dqY3+LnjZ3zRM085JEdDcU2sxgvdVTt4szi+
-         vUbnzCL0cUQCCZKuQLeHT+hMvJrzBwRZhxfnAceQU46UjdTa8L9WraWojz6BvlhnBqkI
-         cE1wexVGS92IW0EJdQAbFRyyEu3Fu2e1yxWQOdAD9yR35vPWR0tplPWxePA5IVYWpvpt
-         G2/A==
+        bh=D8WOYy3wB9J2+waZ/fTnF+QgXM8b1vl0mlMJvZFGPBQ=;
+        b=yAgXcGblGr+ppUUxGs+IHS2AVdk2MFyylT8POztdRNAPWvNSWGn5SDtUel44U95S4/
+         aSj2X9CfRmM5WHVPSqeFL2UKhGacFCyNpxDM4n6lupEp357PxIl2zIJ9TmUXv0Te63yy
+         AoIRkhXAxkERIgFqxwmbzZ6G+Admbn8tZT1A0Cv6+vgGFHsnZKhlP40dMeJiVTiYmHIa
+         QlBsdwdKmKlQGe1JOHcTHNVYBul4wBUx/zbtaauVLIDL6KPUyImlVaPowMdEDPwqbPzO
+         7JgGEVGJKqZ3R3dtvdYAO2FxM1gArdEanB816VS7W+hNBBEP5YUZ3+kTzGGbQBTu8zO/
+         17Ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gb6XglI1fED0fL7pjVB3dDglcOozlQzsZ5vAYulGpKU=;
-        b=6BKUlp/vYT61E3V5irfanULNAKc7q17mjsAvzmjUPi+ggjV6dqFEAacnnqRAPtQtMR
-         UJnE2GQChRXA/il1D8cQYw9MH8g6uyfZn7HoDZQXbS1Ld90LQbwZ0ZX3Pd5U4XVKrXHG
-         2keLm2hESQ2IIlr+XirL5LiBBcqKohDUjM2cYoUjvJavZvZH7KYmHBbOng4Y0EJWiRQW
-         t2Oy1C4/v35ltEasJH8i3OGPP/tBrigr8QzLoVL5moAkKr7R7B16F6O/J4jnQ0Wz9dY1
-         0FfhB62Nmp3z8na6prYe7WkDT/ebkev8ZuEFJvquJn9DB8jzvI/raXxClMdLhj6ZAhRs
-         nG0Q==
-X-Gm-Message-State: AFqh2kq4l9GI/k0xekb5yLWjECkFDULV/0bk8oXT0TfaUfASk0rH8MOg
-        477xL5Y7/uLA9ZaxeQeuJNNbOw==
-X-Google-Smtp-Source: AMrXdXvTEpmjOAE8ruMv7Z4jW+vI7unK1ZXvCqAwJt+Oko1tewzBJufCT4Aw0PSo4TWz1dRdphWTRA==
-X-Received: by 2002:a05:6512:2528:b0:4b6:f22c:7dc9 with SMTP id be40-20020a056512252800b004b6f22c7dc9mr10666239lfb.57.1672588145653;
-        Sun, 01 Jan 2023 07:49:05 -0800 (PST)
+        bh=D8WOYy3wB9J2+waZ/fTnF+QgXM8b1vl0mlMJvZFGPBQ=;
+        b=ZxqOUpBKs6EbXMa8ITQrwZZTM6ymxIIhEjwkd/rUipWRNXcDn4Rkkjfr/oiF094pZq
+         RJf5VMwEP3U1h363T0VrCMuHd3LRdH10zCPbn63aRJgBvTI/nkdXq+Bc6cLv9b6CC2PU
+         4n12QNOdu7mcoW6l0P13Lr4l5G2xxWdkkP3k26obXMlrvlt16pP8CsaHPIEc4mw0z95J
+         IIZA4AfuLTiVKpuJ8hmyisS4nPVU1b/4cPdYe2SUbuD1rzFIOK58JysQGX7lj0j09tBi
+         c16k+AQ+WygNFBXWiEI/JeypeeEDlVM8KBiKYXEYl05PeEWVFCmmH3qjlCuGq812uALP
+         EK/A==
+X-Gm-Message-State: AFqh2koNui6pgYkF0l7IR6xnR/IPwi87fw/WOyiMEjRjGI0clcU0YatE
+        wdNz7msjr8prc9Ax7PZ5dugqgg==
+X-Google-Smtp-Source: AMrXdXv5Ct9sXU9i4M0QTsKIu0OMbu2eQ5HTSWZu/Tx0yqLnUE76WgGPZwMdHxn/NnUmzmw3A+A7dg==
+X-Received: by 2002:a2e:a48a:0:b0:27f:dee0:2c69 with SMTP id h10-20020a2ea48a000000b0027fdee02c69mr2627749lji.53.1672588616723;
+        Sun, 01 Jan 2023 07:56:56 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id z5-20020ac24f85000000b004b5480edf67sm4176567lfs.36.2023.01.01.07.49.04
+        by smtp.gmail.com with ESMTPSA id bg25-20020a05651c0b9900b0027fbd4ee003sm2190535ljb.124.2023.01.01.07.56.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 01 Jan 2023 07:49:05 -0800 (PST)
-Message-ID: <ec43c40d-66fc-b4e3-273c-c21e1418ddab@linaro.org>
-Date:   Sun, 1 Jan 2023 16:49:03 +0100
+        Sun, 01 Jan 2023 07:56:56 -0800 (PST)
+Message-ID: <74d22d8b-04b6-77ec-610e-d7f5844225a5@linaro.org>
+Date:   Sun, 1 Jan 2023 16:56:55 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v8 02/10] arm64: dts: qcom: Add base SM8550 dtsi
+Subject: Re: [PATCH v5 02/20] dt-bindings: thermal: tsens: support per-sensor
+ calibration cells
 Content-Language: en-US
-To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>
-References: <20221230202230.2493494-1-abel.vesa@linaro.org>
- <20221230202230.2493494-3-abel.vesa@linaro.org>
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20221229030106.3303205-1-dmitry.baryshkov@linaro.org>
+ <20221229030106.3303205-3-dmitry.baryshkov@linaro.org>
+ <ef9d5f72-e39a-e32c-5d7d-4a6ee57101aa@linaro.org>
+ <CAA8EJppp967vZNaMBDmB7HaU_EaCJfvUxFFHikb9oXRohGSCBg@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221230202230.2493494-3-abel.vesa@linaro.org>
+In-Reply-To: <CAA8EJppp967vZNaMBDmB7HaU_EaCJfvUxFFHikb9oXRohGSCBg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,98 +89,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/12/2022 21:22, Abel Vesa wrote:
-> Add base dtsi for SM8550 SoC and includes base description of
-> CPUs, GCC, RPMHCC, UART, interrupt controller, TLMM, reserved
-> memory, RPMh PD, TCSRCC, ITS, IPCC, AOSS QMP, LLCC, cpufreq,
-> interconnect, thermal sensor, cpu cooling maps and SMMU nodes
-> which helps boot to shell with console on boards with this SoC.
+On 29/12/2022 12:49, Dmitry Baryshkov wrote:
+> On Thu, 29 Dec 2022 at 10:35, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 29/12/2022 04:00, Dmitry Baryshkov wrote:
+>>> Allow specifying the exact calibration mode and calibration data as nvmem
+>>> cells, rather than specifying just a single calibration data blob.
+>>>
+>>> Note, unlike the vendor kernel the calibration data uses hw_ids rather
+>>> than software sensor indices (to match actual tsens usage in
+>>> thermal zones).
+>>>
+>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>> ---
+>>>  .../bindings/thermal/qcom-tsens.yaml          | 95 +++++++++++++++++--
+>>>  1 file changed, 85 insertions(+), 10 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+>>> index f3660af0b3bf..4bb689f4602d 100644
+>>> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+>>> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+>>> @@ -81,18 +81,63 @@ properties:
+>>>      maxItems: 2
+>>>
+>>>    nvmem-cells:
+>>> -    minItems: 1
+>>> -    maxItems: 2
+>>> -    description:
+>>> -      Reference to an nvmem node for the calibration data
+>>> +    oneOf:
+>>> +      - minItems: 1
+>>> +        maxItems: 2
+>>> +        description:
+>>> +          Reference to an nvmem node for the calibration data
+>>> +      - minItems: 5
+>>> +        maxItems: 35
+>>> +        description: |
+>>> +          Reference to nvmem cells for the calibration mode, two calibration
+>>> +          bases and two cells per each sensor
+>>>
+>>>    nvmem-cell-names:
+>>> -    minItems: 1
+>>> -    items:
+>>> -      - const: calib
+>>> -      - enum:
+>>> -          - calib_backup
+>>> -          - calib_sel
+>>> +    oneOf:
+>>> +      - minItems: 1
+>>> +        items:
+>>> +          - const: calib
+>>> +          - enum:
+>>> +              - calib_backup
+>>> +              - calib_sel
+>>> +      - minItems: 5
+>>> +        items:
+>>> +          enum:
+>>
+>> This should not be an enum but a list of const... unless "holes" are
+>> expected (e.g. s0_p1 and s5_p2, without ones in between).
 > 
-> Co-developed-by: Neil Armstrong <neil.armstrong@linaro.org>
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Reviewed-by: Sai Prakash Ranjan <quic_saipraka@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sm8550.dtsi | 3519 ++++++++++++++++++++++++++
->  1 file changed, 3519 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sm8550.dtsi
+> Yes, this is the case. See the msm8916.dtsi changes. There is no
+> sensor with hw_id 3, so the sequence is: ... s2_p1, s2_p2, s4_p1,
+> s4_p2,....
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> new file mode 100644
-> index 000000000000..a9514fcd6109
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> @@ -0,0 +1,3519 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2022, Linaro Limited
-> + */
-> +
-> +#include <dt-bindings/clock/qcom,rpmh.h>
-> +#include <dt-bindings/clock/qcom,sm8550-gcc.h>
-> +#include <dt-bindings/clock/qcom,sm8550-tcsr.h>
-> +#include <dt-bindings/dma/qcom-gpi.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/interconnect/qcom,sm8550-rpmh.h>
-> +#include <dt-bindings/mailbox/qcom-ipcc.h>
-> +#include <dt-bindings/power/qcom-rpmpd.h>
-> +#include <dt-bindings/soc/qcom,rpmh-rsc.h>
-> +#include <dt-bindings/thermal/thermal.h>
-> +
-> +/ {
-> +	interrupt-parent = <&intc>;
-> +
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	chosen { };
-> +
-> +	clocks {
-> +		xo_board: xo-board {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +		};
-> +
-> +		sleep_clk: sleep-clk {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +		};
-> +	};
-> +
-> +	cpus {
-> +		#address-cells = <2>;
-> +		#size-cells = <0>;
-> +
-> +		CPU0: cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "qcom,kryo";
-> +			reg = <0 0>;
-> +			enable-method = "psci";
-> +			next-level-cache = <&L2_0>;
-> +			power-domains = <&CPU_PD0>;
-> +			power-domain-names = "psci";
-> +			qcom,freq-domain = <&cpufreq_hw 0>;
-> +			capacity-dmips-mhz = <1024>;
-> +			dynamic-power-coefficient = <100>;
-> +			#cooling-cells = <2>;
-> +			L2_0: l2-cache {
-> +			      compatible = "cache";
+> Same applies to the msm8939 (no sensor #4).
+> 
+> Note: if there was support for the prefixItems, I'd have probably
+> marked mode/base1/base2 to be the first items of the array.
 
-You miss cache-level properties in all cache nodes.
-
-> +			      next-level-cache = <&L3_0>;
-> +				L3_0: l3-cache {
-
-Messed indentation,
-
-> +					compatible = "cache";
-> +				};
-> +			};
-> +		};
-> +
-
+Then how about list of const items and patterns? Would be similar number
+of lines, just a bit more complicated pattern instead of simple string
+to enum.
 
 Best regards,
 Krzysztof
