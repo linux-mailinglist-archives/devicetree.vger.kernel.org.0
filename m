@@ -2,49 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D27D65AAD4
-	for <lists+devicetree@lfdr.de>; Sun,  1 Jan 2023 18:57:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 966EC65AAEA
+	for <lists+devicetree@lfdr.de>; Sun,  1 Jan 2023 18:58:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229846AbjAAR5t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Jan 2023 12:57:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53362 "EHLO
+        id S231815AbjAAR6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Jan 2023 12:58:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbjAAR5t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Jan 2023 12:57:49 -0500
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4D0A26F3
-        for <devicetree@vger.kernel.org>; Sun,  1 Jan 2023 09:57:47 -0800 (PST)
-Received: by mail-ej1-x642.google.com with SMTP id ud5so62262144ejc.4
-        for <devicetree@vger.kernel.org>; Sun, 01 Jan 2023 09:57:47 -0800 (PST)
+        with ESMTP id S231575AbjAAR6P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Jan 2023 12:58:15 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 967313899
+        for <devicetree@vger.kernel.org>; Sun,  1 Jan 2023 09:58:02 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id fc4so62185047ejc.12
+        for <devicetree@vger.kernel.org>; Sun, 01 Jan 2023 09:58:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ALuH1lvp2knJtHcYW+i1s8ZvzexDo4P1ZGTmQCOOx0Q=;
-        b=gHsBdSknCJsKckxDmgjNLhkIjW0BxoYHD+AxZTIb+PS2dNuIJEZd4QJm8tJIyMCBJU
-         XEwkcyZsEk5WCx+RKUZPFU5911LKl++VPqkPCh19NouOSUBwJkSYCCYfCvAa21cuLqDO
-         oGo46nKNjTTqMNb169uhDu7J5qhO7AHEKeQkQ=
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XsYrEdCaHlgX8drO/C/Unhu39WRz/1FMxnB9rmFaTNg=;
+        b=OEtlIibZSYDv4KHy0g5ZT8e7sDptPOx0fTR/kA+cE0JzCl4xqXwofj3NX30ebTdtEy
+         XKNXcGNIYorwvhatoXWPpI7o62BMeayGEfdLejTu6x4Tjhv1soh6y3qYosOGXQI2KDc8
+         Hxq0Hfw9VOWHEZ4UYecLq18VH/6W/tsI0XwIc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ALuH1lvp2knJtHcYW+i1s8ZvzexDo4P1ZGTmQCOOx0Q=;
-        b=oSB9CSA55K8Mpl4ReFtEC1FVRf1XlDUfhmXpj5PZJhLLCwvEFrKk1znhkuEF3Dt52Q
-         Bz/HkAPlsI22KoNQRKnn02MdjdoEge6ob8i8NujCqUomG+WcKuCPGhIBBmBQEwu8w2WQ
-         /ppoa6vmhvoNRRny0aCg6ACnymJ33iWT9Z0DhZTCiApvUwGk6SStq6DCCz/tALsLEb38
-         xg5ZmOVQv/UKDWCCHT9CXI8Rd5crEz2r2zI1T/pj5/RdlJmbgrgUcxfJ3LNV5TvCuiYP
-         gZxsWrmwuW45btHgDdNmhFHL+d2PPpce4u00kBz5QoOLwKWy6xzBwHyLByW0fXMQZX7Z
-         kB4w==
-X-Gm-Message-State: AFqh2kpvbSOjYv8ftR7TsJS681cklPtLMoF69FBOffRw9zE83jwqkb35
-        k32P7B6+dYRchCtdP1920m7ncQ==
-X-Google-Smtp-Source: AMrXdXtH/xODB+NwyqHz8wDEhZ9XJ4jQWEMdW5ab3YH90LKN2zFnY89AaK56+GQ0jAgFvwBdZvArxw==
-X-Received: by 2002:a17:907:d602:b0:7c1:286a:d87c with SMTP id wd2-20020a170907d60200b007c1286ad87cmr32679732ejc.65.1672595866417;
-        Sun, 01 Jan 2023 09:57:46 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XsYrEdCaHlgX8drO/C/Unhu39WRz/1FMxnB9rmFaTNg=;
+        b=HhZ8ZcbkI7t4apy8FaoMFhBKfUmXmciXYNfc0wR84uKrTSTaLWvx/YvbWqTFe+5OpL
+         xCGLMYwBt2njpGIs63Sc85H1c0gVvJtAOOZrjdT/RsR7bKI8M7zwYZLnqmwITIsmolam
+         j8k4g8HsTpyA5MLfYhiaUqaYbvZ/dnmqP5O9Dhu3dK+6deqtuy9NYFFfjlHBxDWKrkaX
+         CGVhvurpRUC22BuCnQSBxBvhVY0YTq6IZGYdyj+c+bRvmSI5NjtR3iHXRlfZf9GaedGg
+         k7z0YmlBdcTs3rzFQhLfHd64MV4D2BxzEpDghwmdT3OV3IP1H6OEwUOB/9DMgjzlyEAK
+         6pQw==
+X-Gm-Message-State: AFqh2krm+xtej2Dybka4ZrOIT6wFsZkQ4bzAXuC2VjUzF+R9szFWmMCt
+        KBXu77yIg485XKACJTf1LR4DXA==
+X-Google-Smtp-Source: AMrXdXuu991g9oTbSJB3EhShFeufVC0HBwXhEGZH63P1DyNgk/EnqXbULOn+ZNOhYczR53kB8jdbgg==
+X-Received: by 2002:a17:907:76ad:b0:7c0:f2cf:23fb with SMTP id jw13-20020a17090776ad00b007c0f2cf23fbmr35278937ejc.52.1672595881217;
+        Sun, 01 Jan 2023 09:58:01 -0800 (PST)
 Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-80-180-23-57.retail.telecomitalia.it. [80.180.23.57])
-        by smtp.gmail.com with ESMTPSA id q2-20020a1709063d4200b0082ddfb47d06sm12273018ejf.148.2023.01.01.09.57.43
+        by smtp.gmail.com with ESMTPSA id q2-20020a1709063d4200b0082ddfb47d06sm12273018ejf.148.2023.01.01.09.57.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 01 Jan 2023 09:57:46 -0800 (PST)
+        Sun, 01 Jan 2023 09:58:00 -0800 (PST)
 From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
 To:     linux-kernel@vger.kernel.org
 Cc:     angelo@amarulasolutions.com, michael@amarulasolutions.com,
@@ -68,73 +69,83 @@ Cc:     angelo@amarulasolutions.com, michael@amarulasolutions.com,
         Shawn Guo <shawnguo@kernel.org>,
         Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
-Subject: [RFC PATCH v2 00/11] clk: imx8mn: setup clocks from the device tree
-Date:   Sun,  1 Jan 2023 18:57:29 +0100
-Message-Id: <20230101175740.1010258-1-dario.binacchi@amarulasolutions.com>
+Subject: [RFC PATCH v2 10/11] arm64: dts: imx8mn: add dumy clock
+Date:   Sun,  1 Jan 2023 18:57:39 +0100
+Message-Id: <20230101175740.1010258-11-dario.binacchi@amarulasolutions.com>
 X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20230101175740.1010258-1-dario.binacchi@amarulasolutions.com>
+References: <20230101175740.1010258-1-dario.binacchi@amarulasolutions.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The idea for this series was born back from Dublin (ELCE 2022) after
-having attended the talk entitled "Updating and Modernizing Clock
-Drivers" held by Chen-Yu Tsai and the availability of a board with
-imx8mn SOC.
+The dummy clock was the only fixed rate clock not initialized from the
+device tree. So let's add it to the device tree like we did for the
+others fixed rate clocks.
 
-This series aims to setup all imx8mn's clocks from the device tree and
-remove the legacy setup code with hardwired parameters.
+This is a preparation patch for the upcoming support to setup all the
+clocks directly from the device tree.
 
-I am well aware that the series lacks patches for the DT bindings. The
-effort up to this point has been important and so I thought I'd ask for
-feedback from the community before proceeding to implement them. If it
-is positive I will add the DT binding patches starting from version 2.
+Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+---
 
-The series has been tested on the BSH SystemMaster (SMM) S2 board:
-https://www.apertis.org/reference_hardware/imx8mn_bsh_smm_s2pro_setup
+(no changes since v1)
 
+ arch/arm64/boot/dts/freescale/imx8mn.dtsi | 11 +++++++++--
+ drivers/clk/imx/clk-imx8mn.c              |  2 +-
+ 2 files changed, 10 insertions(+), 3 deletions(-)
 
-Changes in v2:
-- Fix compiler warnings reported by kernel test robot.
-
-Dario Binacchi (11):
-  clk: imx: add structure to extend register accesses
-  clk: imx: add clk_hw based API imx_get_clk_hw_from_dt()
-  clk: imx8mn: add gate driver
-  clk: imx8mn: add mux driver
-  clk: imx8mn: add divider driver
-  clk: imx: pll14xx: add device tree support
-  clk: imx: composite-8m: add device tree support
-  clk: imx: gate2: add device tree support
-  clk: imx: cpu: add device tree support
-  arm64: dts: imx8mn: add dumy clock
-  arm64: dts: imx8mn: add clocks description
-
- .../boot/dts/freescale/imx8mn-clocks.dtsi     | 1885 +++++++++++++++++
- arch/arm64/boot/dts/freescale/imx8mn.dtsi     |   51 +-
- drivers/clk/imx/Makefile                      |    3 +
- drivers/clk/imx/clk-composite-8m.c            |   84 +
- drivers/clk/imx/clk-cpu.c                     |   54 +
- drivers/clk/imx/clk-divider.c                 |  235 ++
- drivers/clk/imx/clk-gate.c                    |  156 ++
- drivers/clk/imx/clk-gate2.c                   |   86 +
- drivers/clk/imx/clk-imx8mn.c                  |  716 ++-----
- drivers/clk/imx/clk-mux.c                     |  258 +++
- drivers/clk/imx/clk-pll14xx.c                 |  220 +-
- drivers/clk/imx/clk.c                         |   21 +
- drivers/clk/imx/clk.h                         |   15 +
- 13 files changed, 3177 insertions(+), 607 deletions(-)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-clocks.dtsi
- create mode 100644 drivers/clk/imx/clk-divider.c
- create mode 100644 drivers/clk/imx/clk-gate.c
- create mode 100644 drivers/clk/imx/clk-mux.c
-
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+index b7d91df71cc2..1949db3e08f7 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+@@ -217,6 +217,13 @@ clk_ext4: clock-ext4 {
+ 		clock-output-names = "clk_ext4";
+ 	};
+ 
++	clk_dummy: clock-dummy {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <0>;
++		clock-output-names = "dummy";
++	};
++
+ 	pmu {
+ 		compatible = "arm,cortex-a53-pmu";
+ 		interrupts = <GIC_PPI 7
+@@ -614,9 +621,9 @@ clk: clock-controller@30380000 {
+ 				reg = <0x30380000 0x10000>;
+ 				#clock-cells = <1>;
+ 				clocks = <&osc_32k>, <&osc_24m>, <&clk_ext1>, <&clk_ext2>,
+-					 <&clk_ext3>, <&clk_ext4>;
++					 <&clk_ext3>, <&clk_ext4>, <&clk_dummy>;
+ 				clock-names = "osc_32k", "osc_24m", "clk_ext1", "clk_ext2",
+-					      "clk_ext3", "clk_ext4";
++					      "clk_ext3", "clk_ext4", "dummy";
+ 				assigned-clocks = <&clk IMX8MN_CLK_A53_SRC>,
+ 						<&clk IMX8MN_CLK_A53_CORE>,
+ 						<&clk IMX8MN_CLK_NOC>,
+diff --git a/drivers/clk/imx/clk-imx8mn.c b/drivers/clk/imx/clk-imx8mn.c
+index af256ade554f..e1f059dc5afa 100644
+--- a/drivers/clk/imx/clk-imx8mn.c
++++ b/drivers/clk/imx/clk-imx8mn.c
+@@ -331,7 +331,7 @@ static int imx8mn_clocks_probe(struct platform_device *pdev)
+ 	clk_hw_data->num = IMX8MN_CLK_END;
+ 	hws = clk_hw_data->hws;
+ 
+-	hws[IMX8MN_CLK_DUMMY] = imx_clk_hw_fixed("dummy", 0);
++	hws[IMX8MN_CLK_DUMMY] = imx_get_clk_hw_by_name(np, "dummy");
+ 	hws[IMX8MN_CLK_24M] = imx_get_clk_hw_by_name(np, "osc_24m");
+ 	hws[IMX8MN_CLK_32K] = imx_get_clk_hw_by_name(np, "osc_32k");
+ 	hws[IMX8MN_CLK_EXT1] = imx_get_clk_hw_by_name(np, "clk_ext1");
 -- 
 2.32.0
 
