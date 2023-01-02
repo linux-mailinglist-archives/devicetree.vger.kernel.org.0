@@ -2,145 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66A7265AFF6
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 11:52:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75E2565B023
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 11:57:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232611AbjABKvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 05:51:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52458 "EHLO
+        id S232730AbjABK5y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 05:57:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232657AbjABKvO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 05:51:14 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5404962E2;
-        Mon,  2 Jan 2023 02:50:54 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D7047B80D07;
-        Mon,  2 Jan 2023 10:50:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82C12C433B3;
-        Mon,  2 Jan 2023 10:50:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672656651;
-        bh=NnSjzogFraldpT+XgAkjYumPBRSVym0mp3juRqkdBpI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=R9XUZ6DlHPc+bBa0ForStYZhT5tJwdXf/wFRBVQ5wdWU+fYlbl5yISWRi5rxUKSBD
-         M6jiVrGmjr3TIORGvzU+BHTsZLJdbWelF2azHeNme6dc0lY+SiV/6ner5FlG/VbY2L
-         tR40DLeW4viM5CNAn22sOvh85Kp1DHUxk60kQsLD0Wq7GAB+SArbcXJhV8WJnE9PfD
-         8RX1ee7JEDXEhC5GswkxemVwGaDvZAbLTZLe4HcBligs7MzVWyPX9dGI3oeTqBCzeo
-         nJCY7d+blk0TCw84twVzigMjo53JkEVAqDSP/lcxum4kUANFpeImylqiWmwnUfCC6Y
-         NXdcD8B2XUWzg==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan+linaro@kernel.org>)
-        id 1pCIPM-000273-Jl; Mon, 02 Jan 2023 11:51:08 +0100
-From:   Johan Hovold <johan+linaro@kernel.org>
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232724AbjABK5x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 05:57:53 -0500
+Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFD1C25E;
+        Mon,  2 Jan 2023 02:57:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
+        t=1672657066; bh=F4SkNUKtXmiMKcbm5JjpkGe1luxSiwhxxZE9A69pJoQ=;
+        h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
+        b=t3Gf17cNfS97ha3LFp5M06o5kw9u6PX4x3stnGo1CUvJAdNqxmXcnyjcI3Wg19En1
+         e0HZPRGHjG+pd5NWMDj7TuyAgXfpQpKvc+jNNZhox38nBMbbSOS5zCSwZMii5slNhQ
+         JPV0KP8jgpKaGjz/aBAeO5OPqzeb0BKBDBRYtbnc=
+Date:   Mon, 2 Jan 2023 11:57:46 +0100
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
+To:     Javier Martinez Canillas <javierm@redhat.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Kamil =?utf-8?Q?Trzci=C5=84ski?= <ayufan@ayufan.eu>,
+        Martijn Braam <martijn@brixit.nl>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Robert Mader <robert.mader@posteo.de>,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
+        Peter Robinson <pbrobinson@gmail.com>,
+        Onuralp Sezer <thunderbirdtr@fedoraproject.org>,
+        dri-devel@lists.freedesktop.org,
+        Maya Matuszczyk <maccraft123mc@gmail.com>,
+        Neal Gompa <ngompa13@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Caleb Connolly <kc@postmarketos.org>,
+        Heiko Stuebner <heiko@sntech.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v4 4/4] arm64: dts: rk3399-pinephone-pro: Add internal
+ display support
+Message-ID: <20230102105746.5abnjzwf365c6hy2@core>
+Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
+        Javier Martinez Canillas <javierm@redhat.com>,
         linux-kernel@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH 6/6] arm64: dts: qcom: sm8450-hdk: fix wcd938x codec node
-Date:   Mon,  2 Jan 2023 11:50:38 +0100
-Message-Id: <20230102105038.8074-7-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.37.4
-In-Reply-To: <20230102105038.8074-1-johan+linaro@kernel.org>
-References: <20230102105038.8074-1-johan+linaro@kernel.org>
+        Kamil =?utf-8?Q?Trzci=C5=84ski?= <ayufan@ayufan.eu>,
+        Martijn Braam <martijn@brixit.nl>, Sam Ravnborg <sam@ravnborg.org>,
+        Robert Mader <robert.mader@posteo.de>,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
+        Peter Robinson <pbrobinson@gmail.com>,
+        Onuralp Sezer <thunderbirdtr@fedoraproject.org>,
+        dri-devel@lists.freedesktop.org,
+        Maya Matuszczyk <maccraft123mc@gmail.com>,
+        Neal Gompa <ngompa13@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Caleb Connolly <kc@postmarketos.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
+References: <20221230113155.3430142-1-javierm@redhat.com>
+ <20221230113155.3430142-5-javierm@redhat.com>
+ <20221230153745.tfs6n4zy4xfwugbw@core>
+ <e21b5c12-0cc0-5ec0-b2c6-9dde633d5e10@redhat.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <e21b5c12-0cc0-5ec0-b2c6-9dde633d5e10@redhat.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The wcd938x codec is not a memory-mapped device and does not belong
-under the soc node.
+Hello Javier,
 
-Move the node to the root node to avoid DT validation failures.
+On Sat, Dec 31, 2022 at 04:29:49PM +0100, Javier Martinez Canillas wrote:
+> Hello Ondřej,
+> 
+> Thanks a lot for your feedback.
+> 
+> On 12/30/22 16:37, Ondřej Jirman wrote:
+> 
+> [...]
+> 
+> >>  &i2c0 {
+> >>  	clock-frequency = <400000>;
+> >>  	i2c-scl-rising-time-ns = <168>;
+> >> @@ -214,6 +251,9 @@ vcc3v0_touch: LDO_REG2 {
+> >>  				regulator-name = "vcc3v0_touch";
+> >>  				regulator-min-microvolt = <3000000>;
+> >>  				regulator-max-microvolt = <3000000>;
+> >> +				regulator-state-mem {
+> >> +					regulator-off-in-suspend;
+> >> +				};
+> > 
+> > You're instructing RK818 to shut down the regulator for touch controller during
+> > suspend, but I think Goodix driver expects touch controller to be kept powered on
+> > during suspend. Am I missing something?
+> > 
+> > https://elixir.bootlin.com/linux/latest/source/drivers/input/touchscreen/goodix.c#L1405
+> >
+> 
+> You tell me, it is your patch :) I just cherry-picked this from your tree:
 
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
- arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 52 ++++++++++++-------------
- 1 file changed, 25 insertions(+), 27 deletions(-)
+I have other patches to goodix driver that do power off the touch sensor chip
+during sleep, so that it doesn't consume excessinve amounts of power when
+the phone is suspended. Mainline doesn't. You have to adapt this to mainline,
+because you're not upstreaming the required Goodix patches, for regulator-off-in-suspend
+to not break things.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-index 4de3e1f1c39c..217b2c654745 100644
---- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-@@ -17,6 +17,31 @@ aliases {
- 		serial0 = &uart7;
- 	};
- 
-+	wcd938x: codec {
-+		compatible = "qcom,wcd9380-codec";
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&wcd_default>;
-+
-+		qcom,micbias1-microvolt = <1800000>;
-+		qcom,micbias2-microvolt = <1800000>;
-+		qcom,micbias3-microvolt = <1800000>;
-+		qcom,micbias4-microvolt = <1800000>;
-+		qcom,mbhc-buttons-vthreshold-microvolt = <75000 150000 237000 500000 500000 500000 500000 500000>;
-+		qcom,mbhc-headset-vthreshold-microvolt = <1700000>;
-+		qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
-+		qcom,rx-device = <&wcd_rx>;
-+		qcom,tx-device = <&wcd_tx>;
-+
-+		reset-gpios = <&tlmm 43 GPIO_ACTIVE_LOW>;
-+		#sound-dai-cells = <1>;
-+
-+		vdd-buck-supply = <&vreg_s10b_1p8>;
-+		vdd-rxtx-supply = <&vreg_s10b_1p8>;
-+		vdd-io-supply = <&vreg_s10b_1p8>;
-+		vdd-mic-bias-supply = <&vreg_bob>;
-+	};
-+
- 	chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
-@@ -407,33 +432,6 @@ &sdhc_2 {
- 	status = "okay";
- };
- 
--&soc {
--	wcd938x: codec {
--		compatible = "qcom,wcd9380-codec";
--
--		pinctrl-names = "default";
--		pinctrl-0 = <&wcd_default>;
--
--		qcom,micbias1-microvolt = <1800000>;
--		qcom,micbias2-microvolt = <1800000>;
--		qcom,micbias3-microvolt = <1800000>;
--		qcom,micbias4-microvolt = <1800000>;
--		qcom,mbhc-buttons-vthreshold-microvolt = <75000 150000 237000 500000 500000 500000 500000 500000>;
--		qcom,mbhc-headset-vthreshold-microvolt = <1700000>;
--		qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
--		qcom,rx-device = <&wcd_rx>;
--		qcom,tx-device = <&wcd_tx>;
--
--		reset-gpios = <&tlmm 43 GPIO_ACTIVE_LOW>;
--		#sound-dai-cells = <1>;
--
--		vdd-buck-supply = <&vreg_s10b_1p8>;
--		vdd-rxtx-supply = <&vreg_s10b_1p8>;
--		vdd-io-supply = <&vreg_s10b_1p8>;
--		vdd-mic-bias-supply = <&vreg_bob>;
--	};
--};
--
- &sound {
- 	compatible = "qcom,sm8450-sndcard";
- 	model = "SM8450-HDK";
--- 
-2.37.4
+> https://github.com/megous/linux/commit/11f8da60d6a5
+> 
+> But if that is not correct, then I can drop the regulator-off-in-suspend.
+>  
+> [...]
+> 
+> >> +
+> >> +	touchscreen@14 {
+> >> +		compatible = "goodix,gt917s";
+> > 
+> > This is not the correct compatible. Pinephone Pro uses Goodix GT1158:
+> > 
+> > Goodix-TS 3-0014: ID 1158, version: 0100
+> > Goodix-TS 3-0014: Direct firmware load for goodix_1158_cfg.bin failed with error -2
+> > 
+> >
+> 
+> Same thing. I wasn't aware of this since your patch was using this compatible
+> string. If "goodix,gt1158" is the correct compatible string, then I agree we
+> should have that instead even when the firmware is missing. Because the DT is
+> supposed to describe the hardware. The FW issue can be tackled as a follow-up.
+> 
+> [...] 
 
+Yes, compatible string is sort of irrelevant, because the driver does runtime
+auto-detection based on chip ID. I didn't bother with superficial issues in the
+original code from Martijn/Kamil. Now that you're mainlining the code, this
+should be sorted out, though.
+
+There's no FW issue, I was just using the log to show you the actual chip ID the
+driver detects.
+
+(You should probably put my SoB after Kamil/Martijn, since I took the
+maintenance/development of the driver after they wrote the base support
+initially in secret. I'm not the original author of the code.)
+
+> >> +
+> >> +&vopb {
+> >> +	status = "okay";
+> >> +	assigned-clocks = <&cru DCLK_VOP0_DIV>, <&cru DCLK_VOP0>,
+> >> +			  <&cru ACLK_VOP0>, <&cru HCLK_VOP0>;
+> >> +	assigned-clock-rates = <0>, <0>, <400000000>, <100000000>;
+> >> +	assigned-clock-parents = <&cru PLL_CPLL>, <&cru DCLK_VOP0_FRAC>;
+> >> +};
+> > 
+> > So here you're putting a fractional clock into path between CPLL -> VOP0_DIV
+> > -> DCLK_VOP0_FRAC -> DCLK_VOP0.
+> > 
+> > Fractional clocks require 20x difference between input and output rates, and
+> > CPLL is 800Mhz IIRC, while you require 74.25MHz DCLK, so this will not work
+> > correctly.
+> > 
+> > Even if this somehow works by fractional clock being bypassed, I did not design
+> > the panel mode to be used with CPLL's 800 MHz, but with GPLL frequecy of 594 MHz.
+> > 
+> > GPLL 594/74.25 = 8  (integral divider without the need for fractional clock)
+> > CPLL 800/74.25 = ~10.77441077441077441077
+> > 
+> > If you really want to use fractional clock, you'd need to parent it to VPLL
+> > and set VPLL really high, like close to 2GHz.
+> >
+> 
+> Thanks for the explanation. Then I just need to squash on top of this, the
+> following patch. Is that correct?
+> 
+> https://github.com/megous/linux/commit/f19ce7bb7d72
+
+Yes, and test the driver more thoroughly:
+
+- look at clk_summary to verify clock rate the kernel thinks it's using
+- test refresh rate, somehow, to again verify the actual clock rate (kernel can
+  lie in debugfs)
+- test power cycling the panel (eg. via system suspend/resume or other means)
+
+thank you and kind regards,
+	o.
+
+> -- 
+> Best regards,
+> 
+> Javier Martinez Canillas
+> Core Platforms
+> Red Hat
+> 
