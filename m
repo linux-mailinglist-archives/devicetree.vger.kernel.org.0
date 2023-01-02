@@ -2,91 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97D4A65B241
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 13:44:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD47965B263
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 13:50:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232572AbjABMo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 07:44:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50904 "EHLO
+        id S232991AbjABMul (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 07:50:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229494AbjABMo0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 07:44:26 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4AA05FE0;
-        Mon,  2 Jan 2023 04:44:23 -0800 (PST)
+        with ESMTP id S232858AbjABMuk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 07:50:40 -0500
+Received: from mail-vs1-xe2c.google.com (mail-vs1-xe2c.google.com [IPv6:2607:f8b0:4864:20::e2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2D106356
+        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 04:50:39 -0800 (PST)
+Received: by mail-vs1-xe2c.google.com with SMTP id p30so23239113vsr.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 04:50:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1672663464; x=1704199464;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=ioVYIpFG8DC6v6ZQ/LA0HIv3ZhntmZW8xS8Dwp6vcB4=;
-  b=jR+wKcWlWSjlbQJYqLgQYrEQVS/zhH5PaH6Vp9i67lsocR8zpej2v11i
-   DP7B9hSg5sjA+iSdcVezEU6U4hp6HSF5a/6LdMPYrnBWJVnFZ0+F7X7Xp
-   YF4MbOBTJ3h+EvZdYKtiX/mya7sQE361c+GXLof1qsn2vaxG9Ii8Tax6I
-   YYlgj/FzUaE0GaXLnKZ7g4b6Yi0ZTu7qC6SJ2D5tNx448mYRbz5ReAqKC
-   2iVn/wL+hBBLkiUoPhPgI1VYH0P98FUQKogmsxq43rz93H6F/+QARgWOS
-   YzkGWYPRIJ6vAyeuMA+HntabzysMAxemwOmNDKgWZ1Y9pSBuN54iFpfrV
-   A==;
-X-IronPort-AV: E=Sophos;i="5.96,294,1665439200"; 
-   d="scan'208";a="28204263"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 02 Jan 2023 13:44:21 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 02 Jan 2023 13:44:21 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 02 Jan 2023 13:44:21 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1672663461; x=1704199461;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=ioVYIpFG8DC6v6ZQ/LA0HIv3ZhntmZW8xS8Dwp6vcB4=;
-  b=R2nkheNI3fJ58pMHLE41u24BQONdzetUJ29PCXdIwLv0mzar1jCWEosY
-   m2BserLigf+MQx7FAPWMFj3ivGGgq/C7cv+PZ7rnOe8H6J0rrsX0TSPw+
-   7lCTkcMG8yLdT64gHJQ7PzPMT1EwOXF/6qCwq+AB7t3Hwm+NLywxEoBfR
-   mYQzBSnxcSMffBgs56AodHh1RhKeuX+O8/+yoHfwkIAvp/e0vUETDz4aw
-   95hY4o4dy2ylT+iWPj825Z+Xd6a5pgYWssWAe5kut1yD5SBscGQ/Ai5nr
-   PzLrM30/Meyu1HVJ+QtA1v/suX6jTGmtzFFDgASJSJoT7kAoNLZfzj98Y
-   g==;
-X-IronPort-AV: E=Sophos;i="5.96,294,1665439200"; 
-   d="scan'208";a="28204262"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 02 Jan 2023 13:44:21 +0100
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 2E201280056;
-        Mon,  2 Jan 2023 13:44:21 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Christian Marangi <ansuelsmth@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=xMZx54Xj2ddNmH7CYT53GxPmLR4IA/SYVliSYQdrkpw=;
+        b=PvM8eQTCd7btpRU4ZlTCF4FwTkgmzS/WWSkogViUT4SQitmOmeDGaqAImpqXDZ/bY8
+         dLHKKQiFQVLZNAG2Mmg9uEIIPxtGNiy97XDqBa/o3o2u0/HIfb0uqNsE6X/EXjDfj3u8
+         bk4BrFfCqpq173Y33Qph5m+UGqQy1aNVr3SywMseBY3Z1BdR8BMm3VowUdMBX6eK791A
+         nubZzDTPaYiBJeKbyCkFpnZRqgp+TBnOSKpA0H1xBgtJsYshe4+kLQ/a92E1B5TdlR0C
+         IXpoG1QNu5LzzygGiEdtNtkbw/qsPlJFlsVsk+ohSK5YTkiKAh2v2ZREkI3hAoZrmO+x
+         STnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xMZx54Xj2ddNmH7CYT53GxPmLR4IA/SYVliSYQdrkpw=;
+        b=y20bqCodfuMh0KLBSf65Yawgm7F5vnW/4Z2S7uI/FirgbVbgF7FdfESu1vJ1Xs89K4
+         fNdmtca71uHBZ2EX3YaRcy/I5+O0EhlcVQb9FiaR/A9p8KgSg6mCSNrJgehe24N3qHTc
+         PqrzxjNfiLvXgOhX32HEeb90phnw1Lc1owixTJdLMLN+tCSClWzJwx2rcXfcx9D0SOL+
+         ECV+qOJ+V5q6NIh1urkjCLuzqcygVFRnFuvyD/ltWWMYL9NtIrxVaCaheoDkZYj56ch0
+         2c/NwBBq95TP6/vUTbKO1uhVYVeTWq/dPt5UYboTmEfiNo+HnAOKe50w9gaEzIG0zAbi
+         B2QA==
+X-Gm-Message-State: AFqh2kqqoVwi2Tx/zz656Buy/n8ELcBK2o/XB1qTnST09EbBowj21fNe
+        1nkRuryswI4mdBwmzfEDE2kBT6x/qYj20V7XbQ2KVw==
+X-Google-Smtp-Source: AMrXdXuf4b3Bg22BCumrnpgf8Qq1Vd3sY7tHk7TVqhJ7KpYvOygxJe3TYd/BrwSL62GTL8cl0TxrybJiy7UffzX4Kus=
+X-Received: by 2002:a67:df8c:0:b0:3c5:1ac1:bf38 with SMTP id
+ x12-20020a67df8c000000b003c51ac1bf38mr4030319vsk.78.1672663838685; Mon, 02
+ Jan 2023 04:50:38 -0800 (PST)
+MIME-Version: 1.0
+References: <20221213224310.543243-1-fabrizio.castro.jz@renesas.com> <20221213224310.543243-5-fabrizio.castro.jz@renesas.com>
+In-Reply-To: <20221213224310.543243-5-fabrizio.castro.jz@renesas.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Mon, 2 Jan 2023 13:50:27 +0100
+Message-ID: <CAMRc=MdmtzynWR22Cyzm-vzt_g0g9aAmNX4fYbnB4invDq3+Fg@mail.gmail.com>
+Subject: Re: [PATCH 4/5] gpio: Add support for Renesas RZ/V2M PWC
+To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
-        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        Sebastian Reichel <sre@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Lee Jones <lee@kernel.org>, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org,
-        Tim Harvey <tharvey@gateworks.com>,
-        Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-Subject: Re: [PATCH v7 06/11] leds: trigger: netdev: add hardware control support
-Date:   Mon, 02 Jan 2023 13:44:20 +0100
-Message-ID: <13186102.dW097sEU6C@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <639ca43c.050a0220.e6d91.9fe8@mx.google.com>
-References: <20221214235438.30271-1-ansuelsmth@gmail.com> <3770526.R56niFO833@steina-w> <639ca43c.050a0220.e6d91.9fe8@mx.google.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        linux-pm@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Phil Edworthy <phil.edworthy@renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -94,404 +77,200 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Freitag, 16. Dezember 2022, 18:00:45 CET schrieb Christian Marangi:
-> On Thu, Dec 15, 2022 at 04:27:17PM +0100, Alexander Stein wrote:
-> > Hi,
-> > 
-> > thanks for the v7 series.
-> > 
-> > Am Donnerstag, 15. Dezember 2022, 00:54:33 CET schrieb Christian Marangi:
-> > > Add hardware control support for the Netdev trigger.
-> > > The trigger on config change will check if the requested trigger can set
-> > > to blink mode using LED hardware mode and if every blink mode is
-> > > supported,
-> > > the trigger will enable hardware mode with the requested configuration.
-> > > If there is at least one trigger that is not supported and can't run in
-> > > hardware mode, then software mode will be used instead.
-> > > A validation is done on every value change and on fail the old value is
-> > > restored and -EINVAL is returned.
-> > > 
-> > > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > > ---
-> > > 
-> > >  drivers/leds/trigger/ledtrig-netdev.c | 155 +++++++++++++++++++++++++-
-> > >  1 file changed, 149 insertions(+), 6 deletions(-)
-> > > 
-> > > diff --git a/drivers/leds/trigger/ledtrig-netdev.c
-> > > b/drivers/leds/trigger/ledtrig-netdev.c index dd63cadb896e..ed019cb5867c
-> > > 100644
-> > > --- a/drivers/leds/trigger/ledtrig-netdev.c
-> > > +++ b/drivers/leds/trigger/ledtrig-netdev.c
-> > > @@ -37,6 +37,7 @@
-> > > 
-> > >   */
-> > >  
-> > >  struct led_netdev_data {
-> > > 
-> > > +	enum led_blink_modes blink_mode;
-> > > 
-> > >  	spinlock_t lock;
-> > >  	
-> > >  	struct delayed_work work;
-> > > 
-> > > @@ -53,11 +54,105 @@ struct led_netdev_data {
-> > > 
-> > >  	bool carrier_link_up;
-> > >  
-> > >  };
-> > > 
-> > > +struct netdev_led_attr_detail {
-> > > +	char *name;
-> > > +	bool hardware_only;
-> > > +	enum led_trigger_netdev_modes bit;
-> > > +};
-> > > +
-> > > +static struct netdev_led_attr_detail attr_details[] = {
-> > > +	{ .name = "link", .bit = TRIGGER_NETDEV_LINK},
-> > > +	{ .name = "tx", .bit = TRIGGER_NETDEV_TX},
-> > > +	{ .name = "rx", .bit = TRIGGER_NETDEV_RX},
-> > > +};
-> > > +
-> > > +static bool validate_baseline_state(struct led_netdev_data
-> > > *trigger_data)
-> > > +{
-> > > +	struct led_classdev *led_cdev = trigger_data->led_cdev;
-> > > +	struct netdev_led_attr_detail *detail;
-> > > +	u32 hw_blink_mode_supported = 0;
-> > > +	bool force_sw = false;
-> > > +	int i;
-> > > +
-> > > +	for (i = 0; i < ARRAY_SIZE(attr_details); i++) {
-> > > +		detail = &attr_details[i];
-> > > +
-> > > +		/* Mode not active, skip */
-> > > +		if (!test_bit(detail->bit, &trigger_data->mode))
-> > > +			continue;
-> > > +
-> > > +		/* Hardware only mode enabled on software controlled led
-> > 
-> > */
-> > 
-> > > +		if (led_cdev->blink_mode == SOFTWARE_CONTROLLED &&
-> > > +		    detail->hardware_only)
-> > > +			return false;
-> > > +
-> > > +		/* Check if the mode supports hardware mode */
-> > > +		if (led_cdev->blink_mode != SOFTWARE_CONTROLLED) {
-> > > +			/* With a net dev set, force software mode.
-> > > +			 * With modes are handled by hardware, led will
-> > 
-> > blink
-> > 
-> > > +			 * based on his own events and will ignore any
-> > 
-> > event
-> > 
-> > > +			 * from the provided dev.
-> > > +			 */
-> > > +			if (trigger_data->net_dev) {
-> > > +				force_sw = true;
-> > > +				continue;
-> > > +			}
-> > > +
-> > > +			/* With empty dev, check if the mode is
-> > 
-> > supported */
-> > 
-> > > +			if
-> > 
-> > (led_trigger_blink_mode_is_supported(led_cdev, detail->bit))
-> > 
-> > > +				hw_blink_mode_supported |= BIT(detail-
-> > >
-> > >bit);
-> > 
-> > Shouldn't this be BIT(detail->bit)?
-> 
-> I think I didn't understand?
+On Tue, Dec 13, 2022 at 11:43 PM Fabrizio Castro
+<fabrizio.castro.jz@renesas.com> wrote:
+>
+> The RZ/V2M SoC contains an External Power Sequence Controller (PWC)
+> module. This module provides an external power supply on/off sequence,
+> on/off signal for the LPDDR4 core power supply, control signals for
+> external I/O power supplies of the SD host interfaces, and key input
+> signals.
+> PWC is essentially a Multi-Function Device (MFD).
+>
+> The driver just implements the control signals for external I/O
+> power supplies of the SD host interfaces as gpios, and it relies on
+> syscon and simple-mfd.
+>
+> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> ---
+>  drivers/gpio/Kconfig          |   8 +++
+>  drivers/gpio/Makefile         |   1 +
+>  drivers/gpio/gpio-rzv2m-pwc.c | 123 ++++++++++++++++++++++++++++++++++
+>  3 files changed, 132 insertions(+)
+>  create mode 100644 drivers/gpio/gpio-rzv2m-pwc.c
+>
+> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
+> index e6ebc4c90a5d..e016919b9643 100644
+> --- a/drivers/gpio/Kconfig
+> +++ b/drivers/gpio/Kconfig
+> @@ -553,6 +553,14 @@ config GPIO_ROCKCHIP
+>         help
+>           Say yes here to support GPIO on Rockchip SoCs.
+>
+> +config GPIO_RZV2M_PWC
+> +       tristate "Renesas RZ/V2M PWC GPIO support"
+> +       depends on MFD_SYSCON
+> +       depends on ARCH_R9A09G011 || COMPILE_TEST
+> +       help
+> +         Say yes here to support the External Power Sequence Controller (PWC)
+> +         GPIO controller driver for RZ/V2M devices.
+> +
+>  config GPIO_SAMA5D2_PIOBU
+>         tristate "SAMA5D2 PIOBU GPIO support"
+>         depends on MFD_SYSCON
+> diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
+> index 3462a138764a..5f655684603f 100644
+> --- a/drivers/gpio/Makefile
+> +++ b/drivers/gpio/Makefile
+> @@ -132,6 +132,7 @@ obj-$(CONFIG_GPIO_RDC321X)          += gpio-rdc321x.o
+>  obj-$(CONFIG_GPIO_REALTEK_OTTO)                += gpio-realtek-otto.o
+>  obj-$(CONFIG_GPIO_REG)                 += gpio-reg.o
+>  obj-$(CONFIG_GPIO_ROCKCHIP)    += gpio-rockchip.o
+> +obj-$(CONFIG_GPIO_RZV2M_PWC)           += gpio-rzv2m-pwc.o
+>  obj-$(CONFIG_ARCH_SA1100)              += gpio-sa1100.o
+>  obj-$(CONFIG_GPIO_SAMA5D2_PIOBU)       += gpio-sama5d2-piobu.o
+>  obj-$(CONFIG_GPIO_SCH311X)             += gpio-sch311x.o
+> diff --git a/drivers/gpio/gpio-rzv2m-pwc.c b/drivers/gpio/gpio-rzv2m-pwc.c
+> new file mode 100644
+> index 000000000000..672d868cb8c9
+> --- /dev/null
+> +++ b/drivers/gpio/gpio-rzv2m-pwc.c
+> @@ -0,0 +1,123 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2022 Renesas Electronics Corporation
+> + *
+> + * GPIO driver for Renesas RZ/V2M External Power Sequence Controller (PWC)
+> + */
+> +
+> +#include <linux/gpio/driver.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/spinlock.h>
+> +
+> +struct rzv2m_pwc_gpio_priv {
+> +       struct gpio_chip gp;
+> +       int offset;
+> +       struct regmap *regmap;
+> +       DECLARE_BITMAP(ch_en_bits, 2);
+> +};
+> +
+> +static void rzv2m_pwc_gpio_set(struct gpio_chip *chip, unsigned int offset,
+> +                              int value)
+> +{
+> +       struct rzv2m_pwc_gpio_priv *priv = gpiochip_get_data(chip);
+> +       u32 reg;
+> +
+> +       /* BIT 16 enables write to BIT 0, and BIT 17 enables write to BIT 1 */
+> +       reg = BIT(offset + 16);
+> +       if (value)
+> +               reg |= BIT(offset);
+> +
+> +       regmap_write(priv->regmap, priv->offset, reg);
+> +
+> +       if (value)
+> +               set_bit(offset, priv->ch_en_bits);
+> +       else
+> +               clear_bit(offset, priv->ch_en_bits);
 
-The name 'bit' indicates this is a single bit number rather than a bitmask. 
-AFAICS the value (detail->bit) passed to led_trigger_blink_mode_is_supported 
-is eventually used within test_bit inside dp83867_parse_netdev. I assume you 
-have to actually pass the bitmask with this single bit set, not the bit number 
-itself.
+You can use assign_bit() here and pass value to it.
 
-Best regards,
-Alexander
+> +}
+> +
+> +static int rzv2m_pwc_gpio_get(struct gpio_chip *chip, unsigned int offset)
+> +{
+> +       struct rzv2m_pwc_gpio_priv *priv = gpiochip_get_data(chip);
+> +
+> +       return test_bit(offset, priv->ch_en_bits);
+> +}
+> +
+> +static int rzv2m_pwc_gpio_direction_output(struct gpio_chip *gc,
+> +                                          unsigned int nr, int value)
+> +{
+> +       if (nr > 1)
+> +               return -EINVAL;
+> +
+> +       rzv2m_pwc_gpio_set(gc, nr, value);
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct gpio_chip rzv2m_pwc_gc = {
+> +       .label = "rzv2m_pwc_gpio",
+> +       .owner = THIS_MODULE,
+> +       .get = rzv2m_pwc_gpio_get,
+> +       .set = rzv2m_pwc_gpio_set,
+> +       .direction_output = rzv2m_pwc_gpio_direction_output,
+> +       .can_sleep = false,
+> +       .ngpio = 2,
+> +       .base = -1,
+> +};
+> +
+> +static int rzv2m_pwc_gpio_probe(struct platform_device *pdev)
+> +{
+> +       struct rzv2m_pwc_gpio_priv *priv;
+> +       int err;
+> +
+> +       priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
+> +       if (!priv)
+> +               return -ENOMEM;
+> +
+> +       priv->regmap = syscon_regmap_lookup_by_phandle(pdev->dev.of_node,
+> +                                                      "regmap");
+> +
+> +       if (IS_ERR(priv->regmap))
+> +               return dev_err_probe(&pdev->dev, PTR_ERR(priv->regmap),
+> +                                    "Can't find regmap property");
+> +
+> +       err = of_property_read_u32(pdev->dev.of_node, "offset", &priv->offset);
 
-> > > +		}
-> > > +	}
-> > > +
-> > > +	/* We can't run modes handled by both software and hardware.
-> > > +	 * Check if we run hardware modes and check if all the modes
-> > > +	 * can be handled by hardware.
-> > > +	 */
-> > > +	if (hw_blink_mode_supported && hw_blink_mode_supported !=
-> > > trigger_data->mode) +		return false;
-> > > +
-> > > +	/* Modes are valid. Decide now the running mode to later
-> > > +	 * set the baseline.
-> > > +	 * Software mode is enforced with net_dev set. With an empty
-> > > +	 * one hardware mode is selected by default (if supported).
-> > > +	 */
-> > > +	if (force_sw || led_cdev->blink_mode == SOFTWARE_CONTROLLED)
-> > 
-> > IMHO '|| !hw_blink_mode_supported' should be added here for blink_modes.
-> > This might happen if a PHY LED is SOFTWARE_HARDWARE_CONTROLLED, but some
-> > blink mode is not supported by hardware, thus hw_blink_mode_supported=0.
-> 
-> Will check this and report back.
-> 
-> > Best regards,
-> > Alexander
-> > 
-> > > +		trigger_data->blink_mode = SOFTWARE_CONTROLLED;
-> > > +	else
-> > > +		trigger_data->blink_mode = HARDWARE_CONTROLLED;
-> > > +
-> > > +	return true;
-> > > +}
-> > > +
-> > > 
-> > >  static void set_baseline_state(struct led_netdev_data *trigger_data)
-> > >  {
-> > > 
-> > > +	int i;
-> > > 
-> > >  	int current_brightness;
-> > > 
-> > > +	struct netdev_led_attr_detail *detail;
-> > > 
-> > >  	struct led_classdev *led_cdev = trigger_data->led_cdev;
-> > > 
-> > > +	/* Modes already validated. Directly apply hw trigger modes */
-> > > +	if (trigger_data->blink_mode == HARDWARE_CONTROLLED) {
-> > > +		/* We are refreshing the blink modes. Reset them */
-> > > +		led_cdev->hw_control_configure(led_cdev,
-> > 
-> > BIT(TRIGGER_NETDEV_LINK),
-> > 
-> > > +					       BLINK_MODE_ZERO);
-> > > +
-> > > +		for (i = 0; i < ARRAY_SIZE(attr_details); i++) {
-> > > +			detail = &attr_details[i];
-> > > +
-> > > +			if (!test_bit(detail->bit, &trigger_data->mode))
-> > > +				continue;
-> > > +
-> > > +			led_cdev->hw_control_configure(led_cdev,
-> > 
-> > BIT(detail->bit),
-> > 
-> > > +
-> > 
-> > BLINK_MODE_ENABLE);
-> > 
-> > Shouldn't this be BIT(detail->bit)?
-> > 
-> > > +		}
-> > > +
-> > > +		led_cdev->hw_control_start(led_cdev);
-> > > +
-> > > +		return;
-> > > +	}
-> > > +
-> > > +	/* Handle trigger modes by software */
-> > > 
-> > >  	current_brightness = led_cdev->brightness;
-> > >  	if (current_brightness)
-> > >  	
-> > >  		led_cdev->blink_brightness = current_brightness;
-> > > 
-> > > @@ -100,10 +195,15 @@ static ssize_t device_name_store(struct device
-> > > *dev,
-> > > 
-> > >  				 size_t size)
-> > >  
-> > >  {
-> > >  
-> > >  	struct led_netdev_data *trigger_data = led_trigger_get_drvdata(dev);
-> > > 
-> > > +	struct net_device *old_net = trigger_data->net_dev;
-> > > +	char old_device_name[IFNAMSIZ];
-> > > 
-> > >  	if (size >= IFNAMSIZ)
-> > >  	
-> > >  		return -EINVAL;
-> > > 
-> > > +	/* Backup old device name */
-> > > +	memcpy(old_device_name, trigger_data->device_name, IFNAMSIZ);
-> > > +
-> > > 
-> > >  	cancel_delayed_work_sync(&trigger_data->work);
-> > >  	
-> > >  	spin_lock_bh(&trigger_data->lock);
-> > > 
-> > > @@ -122,6 +222,19 @@ static ssize_t device_name_store(struct device
-> > > *dev,
-> > > 
-> > >  		trigger_data->net_dev =
-> > >  		
-> > >  		    dev_get_by_name(&init_net, trigger_data->device_name);
-> > > 
-> > > +	if (!validate_baseline_state(trigger_data)) {
-> > > +		/* Restore old net_dev and device_name */
-> > > +		if (trigger_data->net_dev)
-> > > +			dev_put(trigger_data->net_dev);
-> > > +
-> > > +		dev_hold(old_net);
-> > > +		trigger_data->net_dev = old_net;
-> > > +		memcpy(trigger_data->device_name, old_device_name,
-> > 
-> > IFNAMSIZ);
-> > 
-> > > +
-> > > +		spin_unlock_bh(&trigger_data->lock);
-> > > +		return -EINVAL;
-> > > +	}
-> > > +
-> > > 
-> > >  	trigger_data->carrier_link_up = false;
-> > >  	if (trigger_data->net_dev != NULL)
-> > >  	
-> > >  		trigger_data->carrier_link_up =
-> > 
-> > netif_carrier_ok(trigger_data->net_dev);
-> > 
-> > > @@ -159,7 +272,7 @@ static ssize_t netdev_led_attr_store(struct device
-> > > *dev, const char *buf, size_t size, enum led_trigger_netdev_modes attr)
-> > > 
-> > >  {
-> > >  
-> > >  	struct led_netdev_data *trigger_data = led_trigger_get_drvdata(dev);
-> > > 
-> > > -	unsigned long state;
-> > > +	unsigned long state, old_mode = trigger_data->mode;
-> > > 
-> > >  	int ret;
-> > >  	int bit;
-> > > 
-> > > @@ -184,6 +297,12 @@ static ssize_t netdev_led_attr_store(struct device
-> > > *dev, const char *buf, else
-> > > 
-> > >  		clear_bit(bit, &trigger_data->mode);
-> > > 
-> > > +	if (!validate_baseline_state(trigger_data)) {
-> > > +		/* Restore old mode on validation fail */
-> > > +		trigger_data->mode = old_mode;
-> > > +		return -EINVAL;
-> > > +	}
-> > > +
-> > > 
-> > >  	set_baseline_state(trigger_data);
-> > >  	
-> > >  	return size;
-> > > 
-> > > @@ -220,6 +339,8 @@ static ssize_t interval_store(struct device *dev,
-> > > 
-> > >  			      size_t size)
-> > >  
-> > >  {
-> > >  
-> > >  	struct led_netdev_data *trigger_data = led_trigger_get_drvdata(dev);
-> > > 
-> > > +	int old_interval = atomic_read(&trigger_data->interval);
-> > > +	u32 old_mode = trigger_data->mode;
-> > > 
-> > >  	unsigned long value;
-> > >  	int ret;
-> > > 
-> > > @@ -228,13 +349,22 @@ static ssize_t interval_store(struct device *dev,
-> > > 
-> > >  		return ret;
-> > >  	
-> > >  	/* impose some basic bounds on the timer interval */
-> > > 
-> > > -	if (value >= 5 && value <= 10000) {
-> > > -		cancel_delayed_work_sync(&trigger_data->work);
-> > > +	if (value < 5 || value > 10000)
-> > > +		return -EINVAL;
-> > > +
-> > > +	cancel_delayed_work_sync(&trigger_data->work);
-> > > +
-> > > +	atomic_set(&trigger_data->interval, msecs_to_jiffies(value));
-> > > 
-> > > -		atomic_set(&trigger_data->interval,
-> > 
-> > msecs_to_jiffies(value));
-> > 
-> > > -		set_baseline_state(trigger_data);	/* resets timer
-> > 
-> > */
-> > 
-> > > +	if (!validate_baseline_state(trigger_data)) {
-> > > +		/* Restore old interval on validation error */
-> > > +		atomic_set(&trigger_data->interval, old_interval);
-> > > +		trigger_data->mode = old_mode;
-> > > +		return -EINVAL;
-> > > 
-> > >  	}
-> > > 
-> > > +	set_baseline_state(trigger_data);	/* resets timer */
-> > > +
-> > > 
-> > >  	return size;
-> > >  
-> > >  }
-> > > 
-> > > @@ -368,13 +498,25 @@ static int netdev_trig_activate(struct
-> > > led_classdev
-> > > *led_cdev) trigger_data->mode = 0;
-> > > 
-> > >  	atomic_set(&trigger_data->interval, msecs_to_jiffies(50));
-> > >  	trigger_data->last_activity = 0;
-> > > 
-> > > +	if (led_cdev->blink_mode != SOFTWARE_CONTROLLED) {
-> > > +		/* With hw mode enabled reset any rule set by default */
-> > > +		if (led_cdev->hw_control_status(led_cdev)) {
-> > > +			rc = led_cdev->hw_control_configure(led_cdev,
-> > 
-> > BIT(TRIGGER_NETDEV_LINK),
-> > 
-> > > +
-> > 
-> > BLINK_MODE_ZERO);
-> > 
-> > > +			if (rc)
-> > > +				goto err;
-> > > +		}
-> > > +	}
-> > > 
-> > >  	led_set_trigger_data(led_cdev, trigger_data);
-> > >  	
-> > >  	rc = register_netdevice_notifier(&trigger_data->notifier);
-> > >  	if (rc)
-> > > 
-> > > -		kfree(trigger_data);
-> > > +		goto err;
-> > > 
-> > > +	return 0;
-> > > +err:
-> > > +	kfree(trigger_data);
-> > > 
-> > >  	return rc;
-> > >  
-> > >  }
-> > > 
-> > > @@ -394,6 +536,7 @@ static void netdev_trig_deactivate(struct
-> > > led_classdev
-> > > *led_cdev)
-> > > 
-> > >  static struct led_trigger netdev_led_trigger = {
-> > >  
-> > >  	.name = "netdev",
-> > > 
-> > > +	.supported_blink_modes = SOFTWARE_HARDWARE,
-> > > 
-> > >  	.activate = netdev_trig_activate,
-> > >  	.deactivate = netdev_trig_deactivate,
-> > >  	.groups = netdev_trig_groups,
+Please don't use OF APIs in drivers anymore, use
+device_property_read_u32() instead.
 
+Otherwise looks pretty good!
 
+Bart
 
-
+> +       if (err)
+> +               return dev_err_probe(&pdev->dev, -EINVAL,
+> +                                    "Can't find offset property");
+> +
+> +       /*
+> +        * The register used by this driver cannot be read, therefore set the
+> +        * outputs to their default values and initialize priv->ch_en_bits accordingly.
+> +        * BIT 16 enables write to BIT 0, BIT 17 enables write to BIT 1, and the
+> +        * default value of both BIT 0 and BIT 1 is 0.
+> +        */
+> +       regmap_write(priv->regmap, priv->offset, BIT(17) | BIT(16));
+> +       bitmap_zero(priv->ch_en_bits, 2);
+> +
+> +       priv->gp = rzv2m_pwc_gc;
+> +       priv->gp.parent = pdev->dev.parent;
+> +       priv->gp.fwnode = dev_fwnode(&pdev->dev);
+> +
+> +       return devm_gpiochip_add_data(&pdev->dev, &priv->gp, priv);
+> +}
+> +
+> +static const struct of_device_id rzv2m_pwc_gpio_of_match[] = {
+> +       { .compatible = "renesas,rzv2m-pwc-gpio" },
+> +       { /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, rzv2m_pwc_gpio_of_match);
+> +
+> +static struct platform_driver rzv2m_pwc_gpio_driver = {
+> +       .probe = rzv2m_pwc_gpio_probe,
+> +       .driver = {
+> +               .name = "rzv2m_pwc_gpio",
+> +               .of_match_table = of_match_ptr(rzv2m_pwc_gpio_of_match),
+> +       },
+> +};
+> +module_platform_driver(rzv2m_pwc_gpio_driver);
+> +
+> +MODULE_LICENSE("GPL");
+> +MODULE_AUTHOR("Fabrizio Castro <castro.fabrizio.jz@renesas.com>");
+> +MODULE_DESCRIPTION("Renesas RZ/V2M PWC GPIO");
+> --
+> 2.34.1
+>
