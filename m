@@ -2,133 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFE9F65AED0
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 10:45:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DB6F65AECE
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 10:45:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232032AbjABJpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 04:45:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45776 "EHLO
+        id S230253AbjABJpd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 04:45:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231984AbjABJpp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 04:45:45 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB2772DC1
-        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 01:44:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1672652697;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=hrNAqV6ZY5ivQJapJxCgpk49bJb25LBax+4yjjic7Lg=;
-        b=WmNDkqtCQk6ec86uQyjquoaw9HFORyJS2745aVBd3OqWytSqiH7Lp4vLpB8L+yoe5eGep/
-        GIFl+aEjP4z7ZbnvDWPHnY6ebquk30uRLk3MiyDp8V3eOeAqUTAVh3A6TpOsSEGJSY8jt0
-        QEUxx0/AgY0BB84i2cnCGSGLQea7rmM=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-193-5yslNnOPNnmoJK0yc5j65g-1; Mon, 02 Jan 2023 04:44:56 -0500
-X-MC-Unique: 5yslNnOPNnmoJK0yc5j65g-1
-Received: by mail-wm1-f70.google.com with SMTP id fl12-20020a05600c0b8c00b003d96f0a7f36so13429745wmb.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 01:44:56 -0800 (PST)
+        with ESMTP id S231995AbjABJpY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 04:45:24 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B8D55585
+        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 01:45:23 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id p1-20020a05600c1d8100b003d8c9b191e0so20211989wms.4
+        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 01:45:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0LrOzQPa8gD5g9L4P3t7SIyp2Mv9DEJkOptQ3B3iXV8=;
+        b=BafktxLPHJuCW6QiDiEOMJh2F3XBEG/ttPYufCQmdjkjvw8Kd8B1JCbLPJDbtv81Pb
+         lfTkbJrgND0waoiT9qaArWhLT/I5XmtLFeVKGdJhmL72GkJ9N2Lkl96CNeF3ZiCCshCd
+         NxFbz9fF7a7SKsW37+qGDsDp0EcWAAOLd1SFtEnzBYdiC/enBNJqbNhsEFCskSlF5DE2
+         CePuOlCKvNn1OyUnhUKJUWckxPiapr8lAFHp5+3TRU53Q/1tYiKdz3ELzttdmexcNhTV
+         sRYhWvnVT2Ot38IjeqGUh02oV5ZNSXyWRPXLQVMN4ZBKsAvk5flxeMdK89r/eBB5kayG
+         oEsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hrNAqV6ZY5ivQJapJxCgpk49bJb25LBax+4yjjic7Lg=;
-        b=iFVOC9NOsp9kPKeueoR1UZPGdMNQHYpg3IwgksO1OQjuy42TmBGBYZi3W6aNK9JoUE
-         5toYgCvNPE/OHt6l/oGvRXRhF40bl3HSnc4/uw7Z/neb1Mciv6/adTsZiGaqmObJtEvV
-         q61bjw3iMGX1hGrSMGOFVl8f/WFNHgSDib9Jjpdq+8wLLGDmztcee0A8RYsjoVYB1+ab
-         QMtJDAJkp4lpDhb/W+YrBH/vQxgvh00AmNzutu5Qg/nWjhkFwN3nXaJhGWKc/IpM09fV
-         sbsN5baoVTRfyPQjYabEtslLDFcf7u3OTQlRYLDaV1UOXzRpAe/XkWYbdBTgRtve6V4y
-         kGmA==
-X-Gm-Message-State: AFqh2kqrZC4FeOJPVJ4AKAsM0pPvX/qvcENeT9UxSy3ORwLaY67PDbxt
-        yl+jz2I1w58EVBAyXG1GP9AMuRL+7PqsXtrMYW5107TLofa3PaEHHxfeSCEXNhDzDROVpAfI4+N
-        ixEdrhm86wc7RS27WLpJ8gg==
-X-Received: by 2002:a05:600c:d2:b0:3d2:2b70:f2fd with SMTP id u18-20020a05600c00d200b003d22b70f2fdmr29035349wmm.21.1672652695631;
-        Mon, 02 Jan 2023 01:44:55 -0800 (PST)
-X-Google-Smtp-Source: AMrXdXvGGW0J+6nq6DUxW1h2xRC/i7kscSszFCvw0h/Drz9ysxqRksonNdlBfYAtcIGbHZBQsbKS3Q==
-X-Received: by 2002:a05:600c:d2:b0:3d2:2b70:f2fd with SMTP id u18-20020a05600c00d200b003d22b70f2fdmr29035334wmm.21.1672652695377;
-        Mon, 02 Jan 2023 01:44:55 -0800 (PST)
-Received: from [192.168.1.130] (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id m8-20020a05600c4f4800b003cfaae07f68sm44938241wmq.17.2023.01.02.01.44.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Jan 2023 01:44:54 -0800 (PST)
-Message-ID: <c0c5b5ac-821c-1277-a2f1-d896a6ed680b@redhat.com>
-Date:   Mon, 2 Jan 2023 10:44:53 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v4 0/4] Add PinePhone Pro display support
-Content-Language: en-US
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Neal Gompa <ngompa13@gmail.com>, dri-devel@lists.freedesktop.org,
-        Martijn Braam <martijn@brixit.nl>,
-        Caleb Connolly <kc@postmarketos.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0LrOzQPa8gD5g9L4P3t7SIyp2Mv9DEJkOptQ3B3iXV8=;
+        b=HCf1DGB9DGLhG3vlJWQTXgPNFXkXOCU4MkbZXo5cwLWcTTS5tKoXE3ifbVlvUy4fL5
+         k+BJj3MnCPTXbvpkfz2QueQbWj3TGAn2fxWA+5wtrCpiwXFsyMP8XkCrP6CtDPn/duVk
+         D++fbJb1chjaX4h+rZDzu938j7X3dYrJg1tz7EUub/PKDH3rSCQdlMHzre8ZrQ2/4VEj
+         hiv608X0r4FlK0uTwzCdMlEp+p2DzVDBGk3LNSwC7bCjE37670PoGZ8PYxEwAMwT4/Dd
+         vPaomUMWCJ+FtVsuaGOx216OdxnjQyM6SR5LRaSYgVpOxJQmiLKvmv7F26+DSkJzRW2J
+         6bWA==
+X-Gm-Message-State: AFqh2kpYKlTmv2XW4+chIHhwuSiMPVNiywSM/QIcESU7QPxo1djVG0q3
+        dbF/QDtZkhiCobI8evt47wl1SQ==
+X-Google-Smtp-Source: AMrXdXuN+K1vBJMRelJpQcZd+lJtspet80eKKFN6LeiLPG1BkFP4jO4WEIszB8YePk86AM6y94MHAA==
+X-Received: by 2002:a05:600c:4f48:b0:3d6:8570:1239 with SMTP id m8-20020a05600c4f4800b003d685701239mr35213480wmq.16.1672652721945;
+        Mon, 02 Jan 2023 01:45:21 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id m1-20020a7bca41000000b003d1de805de5sm37458526wml.16.2023.01.02.01.45.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Jan 2023 01:45:21 -0800 (PST)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        linux-amlogic@lists.infradead.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?Q?Kamil_Trzci=c5=84ski?= <ayufan@ayufan.eu>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        linux-rockchip@lists.infradead.org,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Peter Robinson <pbrobinson@gmail.com>,
-        devicetree@vger.kernel.org, Robert Mader <robert.mader@posteo.de>,
-        Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org,
-        Onuralp Sezer <thunderbirdtr@fedoraproject.org>,
-        linux-kernel@vger.kernel.org,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Ondrej Jirman <megi@xff.cz>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>
-References: <20221230113155.3430142-1-javierm@redhat.com>
- <Y7H5UJOz/zYuZn7j@duo.ucw.cz>
-From:   Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <Y7H5UJOz/zYuZn7j@duo.ucw.cz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>
+In-Reply-To: <20221125144120.476933-1-krzysztof.kozlowski@linaro.org>
+References: <20221125144120.476933-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] ARM: dts: meson: align LED node names with dtschema
+Message-Id: <167265272108.284515.8939989113770770752.b4-ty@linaro.org>
+Date:   Mon, 02 Jan 2023 10:45:21 +0100
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.10.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Pavel,
+Hi,
 
-On 1/1/23 22:21, Pavel Machek wrote:
-> Hi!
+On Fri, 25 Nov 2022 15:41:20 +0100, Krzysztof Kozlowski wrote:
+> The node names should be generic and DT schema expects certain pattern:
 > 
->> This series add support for the display present in the PinePhone Pro.
->>
->> Patch #1 adds a driver for panels using the Himax HX8394 panel controller,
->> such as the HSD060BHW4 720x1440 TFT LCD panel present in the PinePhone Pro.
->>
->> Patch #2 adds a devicetree binding schema for this driver and patch #3 adds
->> an entry for the driver in the MAINTAINERS file.
->>
->> Finally patch #4 adds the needed devicetree nodes in the PinePhone Pro DTS,
->> to enable both the display and the touchscreen. This makes the upstream DTS
->> much more usable and will allow for example to enable support for the phone
->> in the Fedora distribution.
+>   meson8-minix-neo-x8.dtb: gpio-leds: 'blue' does not match any of the regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
 > 
-> Thanks for the series. Please cc: phone-devel@vger.kernel.org with
-> future patches.
->
+> 
 
-Sure, I will.
- 
-> Best regards,
-> 								Pavel
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.3/arm-dt)
+
+[1/1] ARM: dts: meson: align LED node names with dtschema
+      https://git.kernel.org/amlogic/c/efccf602b37fc1064214e6b5fdfa9e77879a9bca
+
+These changes has been applied on the intermediate git tree [1].
+
+The v6.3/arm-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
 -- 
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
-
+Neil
