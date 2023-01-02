@@ -2,74 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D86165B364
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 15:36:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1165865B383
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 15:47:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231730AbjABOgV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 09:36:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33296 "EHLO
+        id S236211AbjABOq5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 09:46:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236184AbjABOf7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 09:35:59 -0500
-Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B1BC29A;
-        Mon,  2 Jan 2023 06:35:58 -0800 (PST)
-Received: by mail-oi1-x22b.google.com with SMTP id h185so2560554oif.5;
-        Mon, 02 Jan 2023 06:35:58 -0800 (PST)
+        with ESMTP id S236242AbjABOqy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 09:46:54 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F082D5FA2
+        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 06:46:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oldXDimbyQpQ7zpEgLfAQ9A9jkVkeyPyVeSx90WR90g=;
-        b=AFap4DC2gK8aOZIgTD18L6fjbI1+0XDHkm9J6PTAyE4o7S59mu9inc4lkWxtnZKy1D
-         CNl9KAp2hyPvEbQxgiBRoNKLqxZhP+F6rwP/BIUrNtLnR2T3N7mRjMbeTSB6boUsyQBl
-         /pXdP0pM1yY97dR9YT+xRZa3nS7bWJsN4EN6f8QuTH4FCAFfquLALhf1NUi53/QKFzxs
-         2MtuIdZNsPKoCxMXt4OMbdPXjZSn/9F0McFdukOEvVZrQBcCQF6AUCu27IKdYPTE9KwQ
-         5N8RhfMPGykJ235lQVhg/zs633WCx80WjzYRPx/gEavvLUHuCNIRb932N47a84UP0Sq9
-         3oqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oldXDimbyQpQ7zpEgLfAQ9A9jkVkeyPyVeSx90WR90g=;
-        b=KEb0yV0RBv3FMRq0YrSEpWpCwiimOS2sMQ61Q9vdrCEPFb0JiQKNmfawBNXh9GCtjk
-         Lmln1frdRM9qXACP5XBPrZfkJrS5resd3c3FecgdyKRXuGk8NK29hsy8f4lm8tMjR1/N
-         GYURELZmIorHsxMzzJ1MmSusGtRySbIxPQ8PoZe+yzG+x6/uyqcxV+O7mUXI7Rx9cEcU
-         qrEf+qCTJORm+yKLi5hAffImgVwgaXnj0TjAiunI9mjZU02xLgBg2heBJvcllG5t9qhY
-         2KE+tA+FdnVFnDWDRuHsDZW0NMWoxS5pp9QSfxyKfaXqo+fR1/xA26RENMz396LyYZgW
-         PK8w==
-X-Gm-Message-State: AFqh2ko8N4TUrq6zWD2eXywvtUWWjnM+xmy7XismslCV94Pbv7z+Mycm
-        /d7RkmcJdwc3hxgDCn39UWqnYudiuQ8=
-X-Google-Smtp-Source: AMrXdXt8niPHIGc7xRuIs3/6sCnds5wMxcVVOZD0/L9VpRGvlsiVzdjOPRi0lH58mzrLIq8DNj5bqg==
-X-Received: by 2002:a05:6808:2c9:b0:35e:b231:1a27 with SMTP id a9-20020a05680802c900b0035eb2311a27mr16695489oid.33.1672670157909;
-        Mon, 02 Jan 2023 06:35:57 -0800 (PST)
-Received: from ?IPV6:2600:1700:2442:6db0:e082:9c8d:c88c:a11? ([2600:1700:2442:6db0:e082:9c8d:c88c:a11])
-        by smtp.gmail.com with ESMTPSA id r204-20020aca44d5000000b00354d9b9f6b4sm12015179oia.27.2023.01.02.06.35.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Jan 2023 06:35:57 -0800 (PST)
-Message-ID: <a7e15b62-8929-b76e-77d7-42d78aaa02e1@gmail.com>
-Date:   Mon, 2 Jan 2023 08:35:56 -0600
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1672670813; x=1704206813;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=izcwXf5nXG7tVnpB0QPy1qhei3IIAiaI22Sj9RUYRDM=;
+  b=E+20elLYrjSaVsndYTvp9X2X1rw4Q11CmI02aIrapVzD13RBo1jDu0sq
+   YM4D4QHbC3SFsakd5Az7ga2dMAIut9I7pSC26SnQ0rGrNqvOaacDe8+pj
+   WWNPUqGCGJcNh8pYzxh+Jnh4unnBxnJT4kBhptlcIEPUDfjdn83FED4Vz
+   i9diUQCfLF0szG3jtLkQ2EGBf6jNuTtyYfzj2/9i4V5o33hgnld9Sr8yr
+   o+/rI38dNDScZaKZ/OQJAVOM2j5bhayqONl5AO98tT6Ytm/02ZtgjsRgo
+   z+9A/RqNjumVgkkzxVKPrZw4yqc8TZr1NWlk+Us/fPIXPoDs2ru0c1m7v
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.96,294,1665439200"; 
+   d="scan'208";a="28206312"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 02 Jan 2023 15:46:51 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Mon, 02 Jan 2023 15:46:51 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Mon, 02 Jan 2023 15:46:51 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1672670811; x=1704206811;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=izcwXf5nXG7tVnpB0QPy1qhei3IIAiaI22Sj9RUYRDM=;
+  b=cihTqajtHveUpr3iF+mnxKWvUw0DyQzOR7Nkmeuzfxh4F3PcPUerKEIa
+   lubinfBLhQuCw459NKI7ziMaDo8fHuQ3Q0rZq0RX2bRuDvbV4aV7rAhXr
+   iTt/YtGTpUuRbzsa9xcjsNm3H7OjxNzruE4ocTLzGC84ID9YYLGIODg6V
+   5+J11e8Yg1jop4sqxDJJS1+WMB73L70/NTEkW2ysRN9ytasqXcPasnxWW
+   4sKUYROVPCaTjq7Ew1yo7v0craxzgi0K0abeqRmea5S8n64bYeryCjULi
+   jVVfeqn26uW+4FnzMyYJMAfQ68FJNXyO9Gs8TgHDe5PAzpVE1tPALPdVD
+   w==;
+X-IronPort-AV: E=Sophos;i="5.96,294,1665439200"; 
+   d="scan'208";a="28206311"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 02 Jan 2023 15:46:51 +0100
+Received: from steina-w.tq-net.de (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id CC842280056;
+        Mon,  2 Jan 2023 15:46:50 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux@ew.tq-group.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 1/2] ARM: dts: mba6ulx: Fix temperature sensor compatible
+Date:   Mon,  2 Jan 2023 15:46:45 +0100
+Message-Id: <20230102144647.3135147-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH] of: overlay: fix warning being reported as error in
- add_changeset_property
-Content-Language: en-US
-To:     "Ankit 16. Kumar (Nokia)" <ankit.16.kumar@nokia.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <1671195782-23078-1-git-send-email-ankit.16.kumar@nokia.com>
- <VI1PR0701MB68298749C8133A7D69CFDBBFC9F09@VI1PR0701MB6829.eurprd07.prod.outlook.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-In-Reply-To: <VI1PR0701MB68298749C8133A7D69CFDBBFC9F09@VI1PR0701MB6829.eurprd07.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,39 +83,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/30/22 02:40, Ankit 16. Kumar (Nokia) wrote:
-> 
-> The print causes false reporting of the issue which actually is a warning
+Use the correct compatible 'nxp,se97b' as it is an SE97BTP chip.
 
-How did you select the commit in this Fixes tag?
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+Changes in v2:
+* Split into arm-only series
 
-> Fixes: 2fe0e8769df9 ("of: overlay: check prevents multiple fragments touching same property")
-> 
-> Signed-off-by: Ankit Kumar <ankit.16.kumar@nokia.com>
-> ---
->  drivers/of/overlay.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c index ed4e6c144a68..0da39b8461e7 100644
-> --- a/drivers/of/overlay.c
-> +++ b/drivers/of/overlay.c
-> @@ -358,7 +358,7 @@ static int add_changeset_property(struct overlay_changeset *ovcs,
->  	}
->  
->  	if (!of_node_check_flag(target->np, OF_OVERLAY))
-> -		pr_err("WARNING: memory leak will occur if overlay removed, property: %pOF/%s\n",
-> +		pr_warn("WARNING: memory leak will occur if overlay removed, 
-> +property: %pOF/%s\n",
->  		       target->np, new_prop->name);
->  
->  	if (ret) {
-> --
-> 2.30.1
-> 
+ arch/arm/boot/dts/mba6ulx.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-NACK.  This patch is incorrect.  The reported memory leak is a bug, not a warning.
+diff --git a/arch/arm/boot/dts/mba6ulx.dtsi b/arch/arm/boot/dts/mba6ulx.dtsi
+index b8e576ab8860..d08f525acfe5 100644
+--- a/arch/arm/boot/dts/mba6ulx.dtsi
++++ b/arch/arm/boot/dts/mba6ulx.dtsi
+@@ -229,7 +229,7 @@ tlv320aic32x4: audio-codec@18 {
+ 	};
+ 
+ 	jc42: temperature-sensor@19 {
+-		compatible = "nxp,se97", "jedec,jc-42.4-temp";
++		compatible = "nxp,se97b", "jedec,jc-42.4-temp";
+ 		reg = <0x19>;
+ 	};
+ 
+-- 
+2.34.1
 
-I'll write up some information about why the memory leak occurs, then reply to this
-email with the additional info.
-
--Frank
