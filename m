@@ -2,91 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BD5F65B545
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 17:45:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B89A65B553
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 17:50:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233439AbjABQpP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 11:45:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44650 "EHLO
+        id S234468AbjABQum (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 11:50:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230120AbjABQpO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 11:45:14 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C336B4A2
-        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 08:45:13 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id bq39so34471301lfb.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 08:45:13 -0800 (PST)
+        with ESMTP id S230127AbjABQul (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 11:50:41 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F799243
+        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 08:50:40 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id z26so42275005lfu.8
+        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 08:50:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rVqQuVQCPOiYO1dU8dGWxyFL4WN4RC04R3gc0Olsf5Q=;
-        b=P37AMU2e+Xb20EtsUCr/YG3yMoDoL6xU5CftE4/nXdb+kSfu+dNyH7+H+pwZINke25
-         Sya+e3tZzVSnVoxyXzxY0I3tR1pzlL9cvSezjxVP/CYCDVR1LvUYMnOck76/5ztUMyND
-         MCBm/AQl/jnuik1dAwrQelNEifyZa9tw+V4BuPvzaVlCS5bpXGCvsH3TPpFTt22udjTC
-         WFSsAKdEvlRZRqyJk571FqLPCsqYXWu9cGsxoq7kL8WSTYtSw3CydAdkePQZgS8mdR+P
-         yqooeer/zWGVtm0qvOgpCk82EtGDGroVlWjuBurpp9Jh/NTTjSPwhZ4rr+uhAN9cewWT
-         B+RQ==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2X3LClvVib2/hNnEXNqeR2CvZH0rmRAd8DFSNKxgY5Q=;
+        b=Y45y59OzI05LisjUASag+l5CMJMSN/UZaH9vfPtswX7N7TxqyneLfl2pw6WYJhCw6G
+         jsb/ezF4j1nV8hZTxX9mvWMSskhHzYkNHYd4Fx6nDWM07v0/O3TsLXPgtk3owTfmTs87
+         jJYHpHHg5Mz8oXt+3Oq+iOXSZxVvRWdxrRpW2Vm5hi13zJaSwfinXaDH6H+fx+dzMGKW
+         ZkBe01H7+h/xHNmBPst4kdUxUMAst7O6+wNKLrcNaENRKpN8VzTzkFv5ga9C4Zr9IB+q
+         s+k5wx8oEq8eUkO2IO8B5IMzXk5q+06lfXRnhTaem7e6SOcRi8MnCkGZmPBtTYXEmrVq
+         lnfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rVqQuVQCPOiYO1dU8dGWxyFL4WN4RC04R3gc0Olsf5Q=;
-        b=sFsBFOUWcvqi0eIzd+Sr+Rht09dPoJDqjMttopKhOJMe2xXx5HxBRKdPTzyLE9FEbw
-         oaVHa5abaK69StYq3sjKw7O00BaFlEj36Tc0rkz0OSQv0ugpN6sW6C0nTgwzcdvKGQ3I
-         nqTIuxHT029M7fOEaZPumxYrq1PEjOt5Yc+du0BwFesqNpjWR82gftz9xi6eagewj8aU
-         2teyGiBLF4AmhVNwowxoRqzrKVPDoFtN90WVHHASPQORI1Dtxt2GM2b+9wGo0sjcRKkv
-         xc2gHePW3JBypI60UcUxSBfueEIRwc0Hfy+a3P+7BUK540OH6Edb0rM+jE77SORW5lix
-         0B3Q==
-X-Gm-Message-State: AFqh2kqzRLH+ZAXRy+1bhPKnMOYCxqgdZlk9N3AyCmHVelRN5z+p8PlD
-        uFjV2Slxq79AsvwbbiFBALBQwQ==
-X-Google-Smtp-Source: AMrXdXtN/cSdgPJEu7Pd5yStGAsI0GmBJb6OX1v/KfqTg2vf6fL7Od4epvsjN3KjEy0KnvMEgw1LEA==
-X-Received: by 2002:a05:6512:3b22:b0:4a4:68b9:19e1 with SMTP id f34-20020a0565123b2200b004a468b919e1mr13152025lfv.9.1672677911726;
-        Mon, 02 Jan 2023 08:45:11 -0800 (PST)
-Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id h13-20020a05651211cd00b004a2511b8224sm4455876lfr.103.2023.01.02.08.45.10
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2X3LClvVib2/hNnEXNqeR2CvZH0rmRAd8DFSNKxgY5Q=;
+        b=7hYV+MMgFTE2uIKwGNY7rS6zKBn4HaE0jaR04BvmgEuxDLWCB0iEAJBUAysbL1dxaU
+         +c1dCU0Z3lxZhlc0k+p7TrvMCqtPswCrSezAsj1I29LpUWAgDIzbytdqr8pD0Q/y0Gjv
+         cRbOm4cdctBVJG35/Wk1y+Iv75hyqXsea+teOHjQ6Bn12eknyEvuKy+KxzdIzJ2rQwim
+         cWv/mHbGam8zxwaAVynsiCZHbVuf5Z1lY6aFm82/yduNhmOV8unVn/sCZqmuATPkFC3l
+         FlGoSOzRI5rP7wfg9PVnFLqPJri3nkuLE0KY+rK6vWlmdqIhdWzrqLlskjQCKnJvviRV
+         dByA==
+X-Gm-Message-State: AFqh2kruMCk8At7WFy2Zl0ZctPmzMtQ1rdk4ttSQYbM2EvqgiPl2SoF7
+        KsUXlpAQNNcPS+yDtpe/X9z2TA==
+X-Google-Smtp-Source: AMrXdXvpFp/QqEMFzhlvlw9F1EmytinBUgmWeBn1onXB1ZylG8nB9w1epxkq0ZkZmIlMewmtq5QC7A==
+X-Received: by 2002:a19:7b01:0:b0:4b5:a64a:4408 with SMTP id w1-20020a197b01000000b004b5a64a4408mr17292512lfc.48.1672678238609;
+        Mon, 02 Jan 2023 08:50:38 -0800 (PST)
+Received: from localhost.localdomain (abxi45.neoplus.adsl.tpnet.pl. [83.9.2.45])
+        by smtp.gmail.com with ESMTPSA id o8-20020ac24348000000b004b49025f96dsm4510491lfl.187.2023.01.02.08.50.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Jan 2023 08:45:11 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     robh+dt@kernel.org, alim.akhtar@samsung.com,
-        pankaj.dubey@samsung.com, krzysztof.kozlowski+dt@linaro.org,
-        s.prashar@samsung.com,
-        Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: fsd: fix PUD values as per FSD HW UM
-Date:   Mon,  2 Jan 2023 17:45:09 +0100
-Message-Id: <167267790505.932878.15397748468342899542.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230102093247.59649-1-p.rajanbabu@samsung.com>
-References: <CGME20230102093302epcas5p2d48e893eb8af30e4d78b1377e022ff3a@epcas5p2.samsung.com> <20230102093247.59649-1-p.rajanbabu@samsung.com>
+        Mon, 02 Jan 2023 08:50:37 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: reserved-memory: rmtfs: Document qcom,assign-to-nav
+Date:   Mon,  2 Jan 2023 17:50:33 +0100
+Message-Id: <20230102165034.830620-1-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2 Jan 2023 15:02:47 +0530, Padmanabhan Rajanbabu wrote:
-> PUD values used for UFS, SPI and UART are not reflecting
-> the default values recommended by FSD HW UM. Therefore,
-> changing the same to comply with HW UM recommendation.
-> 
-> 
+Some SoCs mandate that the RMTFS is also assigned to the NAV VM, while
+others really don't want that. Since it has to be conditional, add a
+bool property to toggle this behavior.
 
-Applied, thanks!
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+v1 -> v2:
+- Rewrite the newly added description
 
-[1/1] arm64: dts: fsd: fix PUD values as per FSD HW UM
-      https://git.kernel.org/krzk/linux/c/32d0c06801172e258a66ffb5dfad7d5d2b9557a9
+ .../devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Best regards,
+diff --git a/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml b/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml
+index 2998f1c8f0db..4026788a4e40 100644
+--- a/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml
++++ b/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml
+@@ -31,6 +31,12 @@ properties:
+     description: >
+       vmid of the remote processor, to set up memory protection
+ 
++  qcom,assign-to-nav:
++    type: boolean
++    description:
++      Whether to also assign the region to a third (NAV) VM, as opposed to
++      the usual 2.
++
+ required:
+   - qcom,client-id
+ 
 -- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+2.39.0
+
