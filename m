@@ -2,33 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27E1165B397
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 15:50:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AAE065B395
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 15:49:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229660AbjABOta (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 09:49:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39646 "EHLO
+        id S236023AbjABOtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 09:49:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236244AbjABOs5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 09:48:57 -0500
+        with ESMTP id S232535AbjABOs6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 09:48:58 -0500
 Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0869F6465
-        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 06:48:55 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09C0C5F4E
+        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 06:48:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1672670936; x=1704206936;
+  t=1672670937; x=1704206937;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=Ewg8ABq8NGsr4fD5Pv67VxPCgXWRDuoTFssTuBmSY68=;
-  b=Hi6Hy8UewQnjntBDdR/Mvy9xC7LPZJdW2QZ2TWJl89UatgyPd9GSwEsL
-   b68EWJYCzl4uPbpnPfnh0q/2xnz2x6vixUc2ddaAnd+SRDGZHx8ZJbW9X
-   2zdsefVW4zalpcCRd+Za/dnWJ+Amu/cFTohCkLElNjdXKS6ulZL7i9Tzo
-   nW596awJe5jTHJwVXMWv0nCwgih9yyErjaZxiOWGdtNcDQ+E7gAI2DGAJ
-   Q2l1ERkUFMo/5zIwqN44uaSVaf+VRidSjF5yj0EOc627VZyGq//8u3yLP
-   c4FGGuoXM0MqDktpTa6aZixvkB5PZXsZ0H+BL0sfRaV0d/uA0Cs0WgLMM
+  bh=+kBQGa+iFIzWukItyAeiyVxkSzyBBe+tg187kqPYMC0=;
+  b=gv9Zdyf8rXhFzrLMPMeah7ewMFaEs5t14R04he2FiVe9zpcGgPYWkLRW
+   BnwmLoRly/+S2A0MQxKP0yfbmmIx1zXuHjvqP59piIIZVJOHbWG7evbE9
+   Ee7uvED+fz9rKKvBUZxGf8ZdkQK3Q5pnvOyhQV/BMKF4zGYjYk4Gd6V9K
+   oEPuW+UhFJTQOo+E/MJgFuDXeWHWLW+mfCRq8PKb29Vn9rAcKjfmQj3/j
+   xcQkf4SHuGjNcaE9QuIZqpc6twqeYI0bpsqWUong5gyPj/ZsWFP12bBv5
+   23JrChpfPAPc3eCB5gdXK0eStNgk0khftABJ7bBPkdn876RB9u82kV0jR
    Q==;
 X-IronPort-AV: E=Sophos;i="5.96,294,1665439200"; 
-   d="scan'208";a="28206341"
+   d="scan'208";a="28206343"
 Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
   by mx1-pgp.tq-group.com with ESMTP; 02 Jan 2023 15:48:51 +0100
 Received: from mx1.tq-group.com ([192.168.6.7])
@@ -41,23 +41,23 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   t=1672670931; x=1704206931;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=Ewg8ABq8NGsr4fD5Pv67VxPCgXWRDuoTFssTuBmSY68=;
-  b=mOSs7210E4jGU1MxAoZ+UMizw8aquhdXMxx1Tkuz5EE2kOSXTYCZ0c5k
-   CqiDghTiLxWQbP4JD3+OSmKezjTMyl+/D5bjZ70X9NhPX70p6UAnkbYJF
-   e7Tl/wAs/8YgJYZK8aT78u34RfUvvR95M2DAKIjA9uPzzS8XzXGRoPsMX
-   bKsjYpYHjVmjHV6irdUcYW5X+sWuV41WvsfNYljLmuZm1K/3zmjnQUi2/
-   BAqQ2sSCUjYRzG8LqMMLNtrquu3HcvwuQdmNS0fgix6Nu1JRQHINRcgLY
-   G1HtNtYMb0uUTPfKfzlTLLYU5kk7wzD5nt2WTfTtdV+q8L80uFHo7RAYS
+  bh=+kBQGa+iFIzWukItyAeiyVxkSzyBBe+tg187kqPYMC0=;
+  b=lx6GuDRpiaS9VxbUNMvXlNeScdNwX0V6dsvRTtk+fGoQ0hfg4cCoQrxV
+   GYkpWbxxyPuHTM482kQlzwHFKmmmPnna2he+fk0gjR2pqyoboJL42xi0D
+   zyoqIvnzHL5As9ThVf4lG8FzUPgpIx3LxtGu1ZlSJuEsvN+7hIZZvS64y
+   gUMiiJH67+6qkFh8YjBiw9TBA8OLzi7O7sEcvKW5FSgzaDCdmkvSmzXoc
+   CeiXri8wbKWUlXHlW7xhQWpwv09fDLzJO0lbKRDaLSIc+8sy42FUcxlXK
+   KHczR42qm4zWvZ95g/CCc9d1HCILmasv16YR0mPYlndsnoROhu+MOyz0f
    A==;
 X-IronPort-AV: E=Sophos;i="5.96,294,1665439200"; 
-   d="scan'208";a="28206340"
+   d="scan'208";a="28206342"
 Received: from vtuxmail01.tq-net.de ([10.115.0.20])
   by mx1.tq-group.com with ESMTP; 02 Jan 2023 15:48:51 +0100
 Received: from steina-w.tq-net.de (unknown [10.123.53.21])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id F2F4C280056;
-        Mon,  2 Jan 2023 15:48:50 +0100 (CET)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 2CA62280072;
+        Mon,  2 Jan 2023 15:48:51 +0100 (CET)
 From:   Alexander Stein <alexander.stein@ew.tq-group.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -68,9 +68,9 @@ Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         linux@ew.tq-group.com, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 4/5] arm64: dts: imx8mn-tqma8mqnl: Fix temperature sensor compatible
-Date:   Mon,  2 Jan 2023 15:48:47 +0100
-Message-Id: <20230102144848.3135398-4-alexander.stein@ew.tq-group.com>
+Subject: [PATCH v2 5/5] arm64: dts: imx8mm-tqma8mqml: Fix temperature sensor compatible
+Date:   Mon,  2 Jan 2023 15:48:48 +0100
+Message-Id: <20230102144848.3135398-5-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230102144848.3135398-1-alexander.stein@ew.tq-group.com>
 References: <20230102144848.3135398-1-alexander.stein@ew.tq-group.com>
@@ -94,14 +94,14 @@ Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 Changes in v2:
 * Split into arm64-only series
 
- arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi | 4 ++--
+ arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi
-index 48b965386e87..391ca5516e4c 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi
-@@ -77,8 +77,8 @@ &i2c1 {
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi
+index 88d89cd46c74..b4466a26d838 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi
+@@ -87,8 +87,8 @@ &i2c1 {
  	sda-gpios = <&gpio5 15 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
  	status = "okay";
  
