@@ -2,754 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4773E65B6D0
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 20:02:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3FC865B6E9
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 20:22:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235353AbjABTCG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 14:02:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37182 "EHLO
+        id S232106AbjABTWL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 14:22:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235275AbjABTCF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 14:02:05 -0500
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE3B1386
-        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 11:02:02 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id s25so29797911lji.2
-        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 11:02:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=eRENzn8p2H3N0iaqkrymXVoPVUflbqm/wr2bptlPmLs=;
-        b=VmeFlcXSE14K2Em6HliCCtvgVTmhSd+MXZ4jOK0F6Mx2/R2qFRfL7Nj50kDppHKCBy
-         fEAFiH9KDHLty64zTia+9d12Y831c8vU2Y+QYulUDSZxJH1XrXUJDKYqWfZhyEe+hvC+
-         sSZEr/erJ7jDVj3XOpdlmtEwCpgWmQRJqGd1aYKkG5mAtYaV/oc1EgYL4HsKJcYdXxtq
-         Tp/STrWoUEl8Ys3FuuUooaRX2CAT5MXYIrvDThA8F8otCrZyQ2vmf1BD1lskIweMnbZ1
-         Jt+MzIpVvDM4pHwi2z9xw58r8j9ZEJg0eAHbMMrFMPSnma3zP+cx7McCY00g6wxIah2N
-         sw5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=eRENzn8p2H3N0iaqkrymXVoPVUflbqm/wr2bptlPmLs=;
-        b=U1RiByWWuR/lpGcqFbAAXrZNzlA8Pq3Fq7HGfdj+eXi7K/ylI/QpgzuduM8KuaOXhY
-         DaPq58/ptLmpT+pAy7abc3m0uKmEXHbffD8GBm6oMKDCKPzYFK+xeAaILwA30CznEtkO
-         7DtpfJpWWL9tC3iJYFgy/D/lNkxgQyGBLiTiWJ+KBiHWdzJhKvu30KPdgJIF4zOCDMF4
-         aKDLL6+SAfB/7cLajWd/ui768C2++s1dfG2jHJTJsy0bP50Pw8NK41KyymuuKaDXXh+e
-         cAfgcNucYj8PhVPBPNOEtKPI3xMX0poT+0TxVuavr4qakjyS9KNL0wM1sMf38eA94nnl
-         Q08Q==
-X-Gm-Message-State: AFqh2krIJEA4zhwy/vBvb4axdfUMtCI8yGAyucJHkaVXGmv1O2hTNwS0
-        0F2VH+wyje6h9nNJ7iVRSLoXQw==
-X-Google-Smtp-Source: AMrXdXvv90HMRs4lLv4hG7ivHdngN3mSXSA5OuGl0lWYVNdQDlf/bW1lnb2f6zOqtbG3vnUUe98v1g==
-X-Received: by 2002:a05:651c:54b:b0:27f:b4b0:d44c with SMTP id q11-20020a05651c054b00b0027fb4b0d44cmr9021817ljp.24.1672686121180;
-        Mon, 02 Jan 2023 11:02:01 -0800 (PST)
-Received: from localhost.localdomain (abxi45.neoplus.adsl.tpnet.pl. [83.9.2.45])
-        by smtp.gmail.com with ESMTPSA id y22-20020a2e9d56000000b0027965d3cc9fsm3317927ljj.47.2023.01.02.11.01.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Jan 2023 11:02:00 -0800 (PST)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org
-Cc:     marijn.suijten@somainline.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S230230AbjABTWK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 14:22:10 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13173B7EE;
+        Mon,  2 Jan 2023 11:22:08 -0800 (PST)
+Received: from mercury (unknown [185.209.196.162])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 295B96600366;
+        Mon,  2 Jan 2023 19:22:07 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1672687327;
+        bh=ax85ysWHxGBboN/YbL/BniKZvLGAF1s7cHi/6Es2iL4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GiWCmoLFB61xPaZRXra8T62Tr+N0vCOXpJpx5CkKDpa6taqF/Bgv/jcBhiiyW/QsH
+         XulqguF7e5fKvWWEvMXLyX6iZcB28mjhXg4+kwnQNpaPXRi8xS/LQlgIiNldl3Ff75
+         Rvc4O3VdJiv7wAlQoecPYZTLqtaqbw4x8TNNHz/9F/mJI+D5SfX87hZrUZbOROVpv9
+         vC/aAS8/iUX1qxnuMzGBA/JwsMfxl9/F0qih7dDxpVD1P3GwP7ZGAyu7vezS0OEy2J
+         3vbtidmWOivdjXoSHUCmv9vYv7VVy9zwCvfiy1u3H0+sOHclsqBCoAbVl52n2wdjV5
+         /PSNaGzXAeyhQ==
+Received: by mercury (Postfix, from userid 1000)
+        id 7C76A106076E; Mon,  2 Jan 2023 20:22:04 +0100 (CET)
+Date:   Mon, 2 Jan 2023 20:22:04 +0100
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: msm8998-yoshino: Use SONY GPIO names
-Date:   Mon,  2 Jan 2023 20:01:57 +0100
-Message-Id: <20230102190157.970053-1-konrad.dybcio@linaro.org>
-X-Mailer: git-send-email 2.39.0
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Lee Jones <lee@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jacopo Mondi <jacopo@jmondi.org>
+Subject: Re: [PATCH v2 4/4] power: reset: Add new driver for RZ/V2M PWC
+ poweroff
+Message-ID: <20230102192204.hcqhtrl5gbpuqhyd@mercury.elektranox.org>
+References: <20221221210917.458537-1-fabrizio.castro.jz@renesas.com>
+ <20221221210917.458537-5-fabrizio.castro.jz@renesas.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="gildbygudiea755e"
+Content-Disposition: inline
+In-Reply-To: <20221221210917.458537-5-fabrizio.castro.jz@renesas.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sony ever so graciously provides GPIO line names in their downstream
-kernel (though sometimes they are not 100% accurate and you can judge
-that by simply looking at them and with what drivers they are used).
 
-Add these to the Yoshino devices DTs to better document the hardware and
-rename already-defined GPIO nodes to fit the "official" names.
-Note that 4k_ is replaced with four_k_ in one pin, as labels can't start
-with numbers.
+--gildbygudiea755e
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Lilac and Poplar have identical pin assignments.
+Hi,
 
-Diff between these two and maple:
+On Wed, Dec 21, 2022 at 09:09:17PM +0000, Fabrizio Castro wrote:
+> The RZ/V2M PWC IP controls external power supplies and therefore
+> can turn the power supplies off when powering down the system.
+>=20
+> Add driver to poweroff the system.
+>=20
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> ---
 
-TLMM:
--  "NC",
-+  "TS_VDDIO_EN",
+Acked-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-PMI8998:
--  "NC"
-+  "USB_SWITCH_SEL"
+-- Sebastian
 
--  "NC"
-+  "4K_DISP_DCDC_EN"
+>=20
+> v1->v2: Dropped OF match table and syscon as a result of the change in
+>         DT model
+>=20
+>  drivers/power/reset/Kconfig              |  9 ++++
+>  drivers/power/reset/Makefile             |  1 +
+>  drivers/power/reset/rzv2m-pwc-poweroff.c | 67 ++++++++++++++++++++++++
+>  3 files changed, 77 insertions(+)
+>  create mode 100644 drivers/power/reset/rzv2m-pwc-poweroff.c
+>=20
+> diff --git a/drivers/power/reset/Kconfig b/drivers/power/reset/Kconfig
+> index a8c46ba5878f..1fcf691ae68e 100644
+> --- a/drivers/power/reset/Kconfig
+> +++ b/drivers/power/reset/Kconfig
+> @@ -303,4 +303,13 @@ config POWER_MLXBF
+>  	help
+>  	  This driver supports reset or low power mode handling for Mellanox Bl=
+ueField.
+> =20
+> +config POWER_RESET_RZV2M_PWC
+> +	tristate "Renesas RZ/V2M PWC Power OFF support"
+> +	depends on MFD_RZV2M_PWC_CORE || COMPILE_TEST
+> +	help
+> +	  The RZ/V2M PWC IP controls external power supplies and therefore can
+> +	  turn the power supplies off when powering down the system.
+> +	  Enable this driver when PWC is in control of the system power supplies
+> +	  and it's the preferred way to shutdown the system.
+> +
+>  endif
+> diff --git a/drivers/power/reset/Makefile b/drivers/power/reset/Makefile
+> index 0a39424fc558..f05a8abff2eb 100644
+> --- a/drivers/power/reset/Makefile
+> +++ b/drivers/power/reset/Makefile
+> @@ -36,3 +36,4 @@ obj-$(CONFIG_SYSCON_REBOOT_MODE) +=3D syscon-reboot-mod=
+e.o
+>  obj-$(CONFIG_POWER_RESET_SC27XX) +=3D sc27xx-poweroff.o
+>  obj-$(CONFIG_NVMEM_REBOOT_MODE) +=3D nvmem-reboot-mode.o
+>  obj-$(CONFIG_POWER_MLXBF) +=3D pwr-mlxbf.o
+> +obj-$(CONFIG_POWER_RESET_RZV2M_PWC) +=3D rzv2m-pwc-poweroff.o
+> diff --git a/drivers/power/reset/rzv2m-pwc-poweroff.c b/drivers/power/res=
+et/rzv2m-pwc-poweroff.c
+> new file mode 100644
+> index 000000000000..f5bc383c22e1
+> --- /dev/null
+> +++ b/drivers/power/reset/rzv2m-pwc-poweroff.c
+> @@ -0,0 +1,67 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2022 Renesas Electronics Corporation
+> + *
+> + * Reset driver for Renesas RZ/V2M External Power Sequence Controller (P=
+WC)
+> + */
+> +
+> +#include <linux/delay.h>
+> +#include <linux/io.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/reboot.h>
+> +#include "../../mfd/rzv2m-pwc.h"
+> +
+> +#define PWC_PWCRST_RSTSOFTAX		0x1
+> +#define PWC_PWCCKEN_ENGCKMAIN		0x1
+> +#define PWC_PWCCTL_PWOFF		0x1
+> +
+> +struct rzv2m_pwc_poweroff_priv {
+> +	void __iomem *base;
+> +	struct device *dev;
+> +};
+> +
+> +static int rzv2m_pwc_poweroff(struct sys_off_data *data)
+> +{
+> +	struct rzv2m_pwc_poweroff_priv *priv =3D
+> +		(struct rzv2m_pwc_poweroff_priv *)data->cb_data;
+> +
+> +	writel(PWC_PWCRST_RSTSOFTAX, priv->base + PWC_PWCRST);
+> +	writel(PWC_PWCCKEN_ENGCKMAIN, priv->base + PWC_PWCCKEN);
+> +	writel(PWC_PWCCTL_PWOFF, priv->base + PWC_PWCCTL);
+> +
+> +	mdelay(150);
+> +
+> +	dev_err(priv->dev, "Failed to power off the system");
+> +
+> +	return NOTIFY_DONE;
+> +}
+> +
+> +static int rzv2m_pwc_poweroff_probe(struct platform_device *pdev)
+> +{
+> +	struct rzv2m_pwc_priv *pdata =3D dev_get_drvdata(pdev->dev.parent);
+> +	struct rzv2m_pwc_poweroff_priv *priv;
+> +
+> +	priv =3D devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->base =3D pdata->base;
+> +	priv->dev =3D &pdev->dev;
+> +
+> +	return devm_register_power_off_handler(&pdev->dev, rzv2m_pwc_poweroff,
+> +					       priv);
+> +}
+> +
+> +static struct platform_driver rzv2m_pwc_poweroff_driver =3D {
+> +	.probe =3D rzv2m_pwc_poweroff_probe,
+> +	.driver =3D {
+> +		.name =3D "rzv2m_pwc_poweroff",
+> +	},
+> +};
+> +module_platform_driver(rzv2m_pwc_poweroff_driver);
+> +
+> +MODULE_ALIAS("platform:rzv2m_pwc_poweroff");
+> +MODULE_SOFTDEP("pre: rzv2m_pwc");
+> +MODULE_LICENSE("GPL");
+> +MODULE_AUTHOR("Fabrizio Castro <castro.fabrizio.jz@renesas.com>");
+> +MODULE_DESCRIPTION("Renesas RZ/V2M PWC power OFF driver");
+> --=20
+> 2.34.1
+>=20
 
-PM8005:
--  "NC"
-+  "EAR_EN"
+--gildbygudiea755e
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Which is probably due to Maple being designed and released quite a bit
-earlier than the other two and it having a super high tech true-4K
-display.
+-----BEGIN PGP SIGNATURE-----
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- .../msm8998-sony-xperia-yoshino-maple.dts     | 179 +++++++++++-
- .../dts/qcom/msm8998-sony-xperia-yoshino.dtsi | 260 +++++++++++++++---
- 2 files changed, 406 insertions(+), 33 deletions(-)
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmOzLtQACgkQ2O7X88g7
++prTTg/9HkvNJVx9BOHDiQcRZH+EsFjNs11wFNtFgW/M/6FE6hk02XJ5BU0QqBze
+wDCZD98NCE/rQqjJGFSMxwrZI+i5zm6caKEB1+A+55CJ3EMcEW/XhmfMFYEZk4qC
+Rb7mC/jZMpYKc5jrGuMSFu6OIlHda50InxsanXGpSPb42/fShElu6MrtqqAzhmWB
++MMfFV6Wv6nI6Qk3RgAi48VtHCOr5Ue3RziJTAwryLloqJoEZgIJksI2c7j+Qj+9
+tgHAOOrSQ9XdOU/aexM74/RvM+Eej7nh0jat+YtSpVQSKRClH9G+nXsR1jG9oxVk
+bLPxYv0veN90V522p5ZG/c19ZWurgBtrzaK+LrlmH29yAv4Z30UXLQcS77SGZdjx
+ytwBV/wYLyv3r3piSm/XySuMmtk+Jsa6LPZkYI4OLathsQQ4U/nqdBhWVttbz5f8
+2C+xdmHlYuBy5JY1ZMW1U4ReJRbXfpT9bgrpsAn0POGckjqIaRwIa/Huobpbwrbp
+ov+J/UcivMNjHveglfxSC/zB8eNCyQfvYPXbsBp+FPjWVHGuHktsenF/9jZGl4al
+VLHYkX6ImpgTbvS9LRRGsPCZSQlO1jBcslPK6R0djmSMJQgiU69U55MZ2pRe5V9R
+IcheJrJDoix0msZmTu2c1QzZTiLLdzjfUPHM2syKoQLRk/j8CSc=
+=40sW
+-----END PGP SIGNATURE-----
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-maple.dts b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-maple.dts
-index 20fe0394a3c1..e813b41f6db8 100644
---- a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-maple.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-maple.dts
-@@ -22,7 +22,7 @@ disp_dvdd_vreg: disp-dvdd-vreg {
- 		enable-active-high;
- 		gpio = <&pmi8998_gpio 10 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
--		pinctrl-0 = <&disp_dvdd_en>;
-+		pinctrl-0 = <&four_k_disp_dcdc_en>;
- 	};
- };
- 
-@@ -37,8 +37,30 @@ &lab {
- 	qcom,soft-start-us = <200>;
- };
- 
-+&pm8005_gpio {
-+	gpio-line-names = "EAR_EN", /* GPIO_1 */
-+			  "NC",
-+			  "SLB",
-+			  "OPTION_1_PM8005";
-+};
-+
- &pmi8998_gpio {
--	disp_dvdd_en: disp-dvdd-en-active-state {
-+	gpio-line-names = "MAIN_CAM_PWR_IO_EN", /* GPIO_1 */
-+			  "NC",
-+			  "NC",
-+			  "TYPEC_UUSB_SEL",
-+			  "VIB_LDO_EN",
-+			  "NC",
-+			  "DISPLAY_TYPE_SEL",
-+			  "USB_SWITCH_SEL",
-+			  "NC",
-+			  "4K_DISP_DCDC_EN", /* GPIO_10 */
-+			  "NC",
-+			  "DIV_CLK3",
-+			  "SPMI_I2C_SEL",
-+			  "NC";
-+
-+	four_k_disp_dcdc_en: 4k-disp-dcdc-en-state {
- 		pins = "gpio10";
- 		function = "normal";
- 		bias-disable;
-@@ -49,6 +71,159 @@ disp_dvdd_en: disp-dvdd-en-active-state {
- 	};
- };
- 
-+&tlmm {
-+	gpio-line-names = "", /* GPIO_0 */
-+			  "",
-+			  "",
-+			  "",
-+			  "DEBUG_UART_TX",
-+			  "DEBUG_UART_RX",
-+			  "CAMSENSOR_I2C_SDA",
-+			  "CAMSENSOR_I2C_SCL",
-+			  "NC",
-+			  "NC",
-+			  "MDP_VSYNC_P", /* GPIO_10 */
-+			  "RGBC_IR_INT",
-+			  "NFC_VEN",
-+			  "CAM_MCLK0",
-+			  "CAM_MCLK1",
-+			  "NC",
-+			  "NC",
-+			  "CCI_I2C_SDA0",
-+			  "CCI_I2C_SCL0",
-+			  "CCI_I2C_SDA1",
-+			  "CCI_I2C_SCL1", /* GPIO_20 */
-+			  "MAIN_CAM_PWR_EN",
-+			  "TOF_INT_N",
-+			  "NC",
-+			  "NC",
-+			  "CHAT_CAM_PWR_EN",
-+			  "NC",
-+			  "TOF_RESET_N",
-+			  "CAM2_RSTN",
-+			  "NC",
-+			  "CAM1_RSTN", /* GPIO_30 */
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "CC_DIR",
-+			  "UIM2_DETECT_EN",
-+			  "FP_RESET_N", /* GPIO_40 */
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "BT_HCI_UART_TXD",
-+			  "BT_HCI_UART_RXD",
-+			  "BT_HCI_UART_CTS_N",
-+			  "BT_HCI_UART_RFR_N",
-+			  "NC",
-+			  "NC", /* GPIO_50 */
-+			  "NC",
-+			  "NC",
-+			  "CODEC_INT2_N",
-+			  "CODEC_INT1_N",
-+			  "APPS_I2C_SDA",
-+			  "APPS_I2C_SCL",
-+			  "FORCED_USB_BOOT",
-+			  "NC",
-+			  "NC",
-+			  "NC", /* GPIO_60 */
-+			  "NC",
-+			  "NC",
-+			  "TRAY2_DET_DS",
-+			  "CODEC_RST_N",
-+			  "WSA_L_EN",
-+			  "WSA_R_EN",
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "LPASS_SLIMBUS_CLK", /* GPIO_70 */
-+			  "LPASS_SLIMBUS_DATA0",
-+			  "LPASS_SLIMBUS_DATA1",
-+			  "BT_FM_SLIMBUS_DATA",
-+			  "BT_FM_SLIMBUS_CLK",
-+			  "NC",
-+			  "RF_LCD_ID_EN",
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "NC", /* GPIO_80 */
-+			  "SW_SERVICE",
-+			  "TX_GTR_THRES_IN",
-+			  "HW_ID0",
-+			  "HW_ID1",
-+			  "NC",
-+			  "NC",
-+			  "TS_I2C_SDA",
-+			  "TS_I2C_SCL",
-+			  "TS_RESET_N",
-+			  "NC", /* GPIO_90 */
-+			  "NC",
-+			  "NFC_IRQ",
-+			  "NFC_DWLD_EN",
-+			  "DISP_RESET_N",
-+			  "TRAY2_DET",
-+			  "CAM_SOF",
-+			  "RFFE6_CLK",
-+			  "RFFE6_DATA",
-+			  "DEBUG_GPIO0",
-+			  "DEBUG_GPIO1", /* GPIO_100 */
-+			  "GRFC4",
-+			  "NC",
-+			  "NC",
-+			  "RSVD",
-+			  "UIM2_DATA",
-+			  "UIM2_CLK",
-+			  "UIM2_RESET",
-+			  "UIM2_PRESENT",
-+			  "UIM1_DATA",
-+			  "UIM1_CLK", /* GPIO_110 */
-+			  "UIM1_RST",
-+			  "UIM1_PRESENT",
-+			  "UIM_BATT_ALARM",
-+			  "RSVD",
-+			  "NC",
-+			  "NC",
-+			  "ACCEL_INT",
-+			  "GYRO_INT",
-+			  "COMPASS_INT",
-+			  "ALS_PROX_INT_N", /* GPIO_120 */
-+			  "FP_INT_N",
-+			  "NC",
-+			  "BAROMETER_INT",
-+			  "ACC_COVER_OPEN",
-+			  "TS_INT_N",
-+			  "NC",
-+			  "NC",
-+			  "USB_DETECT_EN",
-+			  "NC",
-+			  "QLINK_REQUEST", /* GPIO_130 */
-+			  "QLINK_ENABLE",
-+			  "NC",
-+			  "TS_VDDIO_EN",
-+			  "WMSS_RESET_N",
-+			  "PA_INDICATOR_OR",
-+			  "NC",
-+			  "RFFE3_DATA",
-+			  "RFFE3_CLK",
-+			  "RFFE4_DATA",
-+			  "RFFE4_CLK", /* GPIO_140 */
-+			  "RFFE5_DATA",
-+			  "RFFE5_CLK",
-+			  "GNSS_EN",
-+			  "MSS_LTE_COXM_TXD",
-+			  "MSS_LTE_COXM_RXD",
-+			  "RFFE2_DATA",
-+			  "RFFE2_CLK",
-+			  "RFFE1_DATA",
-+			  "RFFE1_CLK";
-+};
-+
- &vreg_l22a_2p85 {
- 	regulator-min-microvolt = <2704000>;
- 	regulator-max-microvolt = <2704000>;
-diff --git a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-index 5da87baa2b23..a083361a7bc4 100644
---- a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-@@ -21,7 +21,7 @@ / {
- 	clocks {
- 		div1_mclk: divclk1 {
- 			compatible = "gpio-gate-clock";
--			pinctrl-0 = <&audio_mclk_pin>;
-+			pinctrl-0 = <&div_clk1>;
- 			pinctrl-names = "default";
- 			clocks = <&rpmcc RPM_SMD_DIV_CLK1>;
- 			#clock-cells = <0>;
-@@ -46,7 +46,7 @@ cam0_vdig_vreg: cam0-vdig {
- 		enable-active-high;
- 		gpio = <&tlmm 21 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
--		pinctrl-0 = <&cam0_vdig_default>;
-+		pinctrl-0 = <&main_cam_pwr_en>;
- 	};
- 
- 	cam1_vdig_vreg: cam1-vdig {
-@@ -56,7 +56,7 @@ cam1_vdig_vreg: cam1-vdig {
- 		enable-active-high;
- 		gpio = <&tlmm 25 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
--		pinctrl-0 = <&cam1_vdig_default>;
-+		pinctrl-0 = <&chat_cam_pwr_en>;
- 		vin-supply = <&vreg_s3a_1p35>;
- 	};
- 
-@@ -67,7 +67,7 @@ cam_vio_vreg: cam-vio-vreg {
- 		enable-active-high;
- 		gpio = <&pmi8998_gpio 1 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
--		pinctrl-0 = <&cam_vio_default>;
-+		pinctrl-0 = <&main_cam_pwr_io_en>;
- 		vin-supply = <&vreg_lvs1a_1p8>;
- 	};
- 
-@@ -92,15 +92,14 @@ extcon_usb: extcon-usb {
- 		id-gpio = <&tlmm 38 GPIO_ACTIVE_HIGH>;
- 		vbus-gpio = <&tlmm 128 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
--		pinctrl-0 = <&usb_extcon_active &usb_vbus_active>;
-+		pinctrl-0 = <&cc_dir_default &usb_detect_en>;
- 	};
- 
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 		label = "Side buttons";
- 		pinctrl-names = "default";
--		pinctrl-0 = <&vol_down_pin_a>, <&cam_focus_pin_a>,
--			    <&cam_snapshot_pin_a>;
-+		pinctrl-0 = <&vol_down_n &focus_n &snapshot_n>;
- 		button-vol-down {
- 			label = "Volume Down";
- 			gpios = <&pm8998_gpio 5 GPIO_ACTIVE_LOW>;
-@@ -131,7 +130,7 @@ gpio-hall-sensor {
- 		compatible = "gpio-keys";
- 		label = "Hall sensors";
- 		pinctrl-names = "default";
--		pinctrl-0 = <&hall_sensor0_default>;
-+		pinctrl-0 = <&acc_cover_open>;
- 
- 		event-hall-sensor0 {
- 			label = "Cover Hall Sensor";
-@@ -189,7 +188,7 @@ vibrator {
- 		compatible = "gpio-vibrator";
- 		enable-gpios = <&pmi8998_gpio 5 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
--		pinctrl-0 = <&vib_default>;
-+		pinctrl-0 = <&vib_ldo_en>;
- 	};
- };
- 
-@@ -263,7 +262,7 @@ proximity@29 {
- 		vdd-supply = <&cam_vio_vreg>;
- 
- 		pinctrl-names = "default";
--		pinctrl-0 = <&tof_int &tof_reset>;
-+		pinctrl-0 = <&tof_int_n &tof_reset>;
- 	};
- };
- 
-@@ -292,6 +291,13 @@ &lab {
- 	regulator-soft-start;
- };
- 
-+&pm8005_gpio {
-+	gpio-line-names = "NC", /* GPIO_1 */
-+			  "NC",
-+			  "SLB",
-+			  "OPTION_1_PM8005";
-+};
-+
- &pm8005_regulators {
- 	/* VDD_GFX supply */
- 	pm8005_s1: s1 {
-@@ -304,7 +310,34 @@ pm8005_s1: s1 {
- };
- 
- &pm8998_gpio {
--	vol_down_pin_a: vol-down-active-state {
-+	gpio-line-names = "UIM_BATT_ALARM", /* GPIO_1 */
-+			  "NC",
-+			  "WLAN_SW_CTRL (DISALLOWED)",
-+			  "SSC_PWR_EN",
-+			  "VOL_DOWN_N",
-+			  "VOL_UP_N",
-+			  "SNAPSHOT_N",
-+			  "FOCUS_N",
-+			  "FLASH_THERM",
-+			  "", /* GPIO_10 */
-+			  "",
-+			  "",
-+			  "DIV_CLK1",
-+			  "NC",
-+			  "NC (DISALLOWED)",
-+			  "DIV_CLK3",
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "NC (DISALLOWED)", /* GPIO_20 */
-+			  "NFC_CLK_REQ",
-+			  "NC (DISALLOWED)",
-+			  "WCSS_PWR_REQ",
-+			  "OPTION_1 (DISALLOWED)",
-+			  "OPTION_2 (DISALLOWED)",
-+			  "PM_SLB (DISALLOWED)";
-+
-+	vol_down_n: vol-down-n-state {
- 		pins = "gpio5";
- 		function = PMIC_GPIO_FUNC_NORMAL;
- 		bias-pull-up;
-@@ -312,7 +345,7 @@ vol_down_pin_a: vol-down-active-state {
- 		qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
- 	};
- 
--	cam_focus_pin_a: cam-focus-btn-active-state {
-+	focus_n: focus-n-state {
- 		pins = "gpio7";
- 		function = PMIC_GPIO_FUNC_NORMAL;
- 		bias-pull-up;
-@@ -320,7 +353,7 @@ cam_focus_pin_a: cam-focus-btn-active-state {
- 		qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
- 	};
- 
--	cam_snapshot_pin_a: cam-snapshot-btn-active-state {
-+	snapshot_n: snapshot-n-state {
- 		pins = "gpio8";
- 		function = PMIC_GPIO_FUNC_NORMAL;
- 		bias-pull-up;
-@@ -328,7 +361,7 @@ cam_snapshot_pin_a: cam-snapshot-btn-active-state {
- 		qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
- 	};
- 
--	audio_mclk_pin: audio-mclk-pin-active-state {
-+	div_clk1: div-clk1-state {
- 		pins = "gpio13";
- 		function = "func2";
- 		power-source = <0>;
-@@ -336,7 +369,22 @@ audio_mclk_pin: audio-mclk-pin-active-state {
- };
- 
- &pmi8998_gpio {
--	cam_vio_default: cam-vio-active-state {
-+	gpio-line-names = "MAIN_CAM_PWR_IO_EN", /* GPIO_1 */
-+			  "NC",
-+			  "NC",
-+			  "TYPEC_UUSB_SEL",
-+			  "VIB_LDO_EN",
-+			  "NC",
-+			  "DISPLAY_TYPE_SEL",
-+			  "NC",
-+			  "NC",
-+			  "NC", /* GPIO_10 */
-+			  "NC",
-+			  "DIV_CLK3",
-+			  "SPMI_I2C_SEL",
-+			  "NC";
-+
-+	main_cam_pwr_io_en: main-cam-pwr-io-en-state {
- 		pins = "gpio1";
- 		function = PMIC_GPIO_FUNC_NORMAL;
- 		bias-disable;
-@@ -346,7 +394,7 @@ cam_vio_default: cam-vio-active-state {
- 		power-source = <1>;
- 	};
- 
--	vib_default: vib-en-state {
-+	vib_ldo_en: vib-ldo-en-state {
- 		pins = "gpio5";
- 		function = PMIC_GPIO_FUNC_NORMAL;
- 		bias-disable;
-@@ -595,8 +643,158 @@ &sdhc2 {
- 
- &tlmm {
- 	gpio-reserved-ranges = <0 4>, <81 4>;
--
--	mdp_vsync_n: mdp-vsync-n-state {
-+	gpio-line-names = "", /* GPIO_0 */
-+			  "",
-+			  "",
-+			  "",
-+			  "DEBUG_UART_TX",
-+			  "DEBUG_UART_RX",
-+			  "CAMSENSOR_I2C_SDA",
-+			  "CAMSENSOR_I2C_SCL",
-+			  "NC",
-+			  "NC",
-+			  "MDP_VSYNC_P", /* GPIO_10 */
-+			  "RGBC_IR_INT",
-+			  "NFC_VEN",
-+			  "CAM_MCLK0",
-+			  "CAM_MCLK1",
-+			  "NC",
-+			  "NC",
-+			  "CCI_I2C_SDA0",
-+			  "CCI_I2C_SCL0",
-+			  "CCI_I2C_SDA1",
-+			  "CCI_I2C_SCL1", /* GPIO_20 */
-+			  "MAIN_CAM_PWR_EN",
-+			  "TOF_INT_N",
-+			  "NC",
-+			  "NC",
-+			  "CHAT_CAM_PWR_EN",
-+			  "NC",
-+			  "TOF_RESET_N",
-+			  "CAM2_RSTN",
-+			  "NC",
-+			  "CAM1_RSTN", /* GPIO_30 */
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "CC_DIR",
-+			  "UIM2_DETECT_EN",
-+			  "FP_RESET_N", /* GPIO_40 */
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "BT_HCI_UART_TXD",
-+			  "BT_HCI_UART_RXD",
-+			  "BT_HCI_UART_CTS_N",
-+			  "BT_HCI_UART_RFR_N",
-+			  "NC",
-+			  "NC", /* GPIO_50 */
-+			  "NC",
-+			  "NC",
-+			  "CODEC_INT2_N",
-+			  "CODEC_INT1_N",
-+			  "APPS_I2C_SDA",
-+			  "APPS_I2C_SCL",
-+			  "FORCED_USB_BOOT",
-+			  "NC",
-+			  "NC",
-+			  "NC", /* GPIO_60 */
-+			  "NC",
-+			  "NC",
-+			  "TRAY2_DET_DS",
-+			  "CODEC_RST_N",
-+			  "WSA_L_EN",
-+			  "WSA_R_EN",
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "LPASS_SLIMBUS_CLK", /* GPIO_70 */
-+			  "LPASS_SLIMBUS_DATA0",
-+			  "LPASS_SLIMBUS_DATA1",
-+			  "BT_FM_SLIMBUS_DATA",
-+			  "BT_FM_SLIMBUS_CLK",
-+			  "NC",
-+			  "RF_LCD_ID_EN",
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "NC", /* GPIO_80 */
-+			  "SW_SERVICE",
-+			  "TX_GTR_THRES_IN",
-+			  "HW_ID0",
-+			  "HW_ID1",
-+			  "NC",
-+			  "NC",
-+			  "TS_I2C_SDA",
-+			  "TS_I2C_SCL",
-+			  "TS_RESET_N",
-+			  "NC", /* GPIO_90 */
-+			  "NC",
-+			  "NFC_IRQ",
-+			  "NFC_DWLD_EN",
-+			  "DISP_RESET_N",
-+			  "TRAY2_DET",
-+			  "CAM_SOF",
-+			  "RFFE6_CLK",
-+			  "RFFE6_DATA",
-+			  "DEBUG_GPIO0",
-+			  "DEBUG_GPIO1", /* GPIO_100 */
-+			  "GRFC4",
-+			  "NC",
-+			  "NC",
-+			  "RSVD",
-+			  "UIM2_DATA",
-+			  "UIM2_CLK",
-+			  "UIM2_RESET",
-+			  "UIM2_PRESENT",
-+			  "UIM1_DATA",
-+			  "UIM1_CLK", /* GPIO_110 */
-+			  "UIM1_RST",
-+			  "UIM1_PRESENT",
-+			  "UIM_BATT_ALARM",
-+			  "RSVD",
-+			  "NC",
-+			  "NC",
-+			  "ACCEL_INT",
-+			  "GYRO_INT",
-+			  "COMPASS_INT",
-+			  "ALS_PROX_INT_N", /* GPIO_120 */
-+			  "FP_INT_N",
-+			  "NC",
-+			  "BAROMETER_INT",
-+			  "ACC_COVER_OPEN",
-+			  "TS_INT_N",
-+			  "NC",
-+			  "NC",
-+			  "USB_DETECT_EN",
-+			  "NC",
-+			  "QLINK_REQUEST", /* GPIO_130 */
-+			  "QLINK_ENABLE",
-+			  "NC",
-+			  "NC",
-+			  "WMSS_RESET_N",
-+			  "PA_INDICATOR_OR",
-+			  "NC",
-+			  "RFFE3_DATA",
-+			  "RFFE3_CLK",
-+			  "RFFE4_DATA",
-+			  "RFFE4_CLK", /* GPIO_140 */
-+			  "RFFE5_DATA",
-+			  "RFFE5_CLK",
-+			  "GNSS_EN",
-+			  "MSS_LTE_COXM_TXD",
-+			  "MSS_LTE_COXM_RXD",
-+			  "RFFE2_DATA",
-+			  "RFFE2_CLK",
-+			  "RFFE1_DATA",
-+			  "RFFE1_CLK";
-+
-+	mdp_vsync_p: mdp-vsync-p-state {
- 		pins = "gpio10";
- 		function = "mdp_vsync_a";
- 		drive-strength = <2>;
-@@ -611,14 +809,14 @@ nfc_ven: nfc-ven-state {
- 		output-low;
- 	};
- 
--	msm_mclk0_default: msm-mclk0-active-state {
-+	cam_mclk0_active: cam-mclk0-active-state {
- 		pins = "gpio13";
- 		function = "cam_mclk";
- 		drive-strength = <2>;
- 		bias-disable;
- 	};
- 
--	msm_mclk1_default: msm-mclk1-active-state {
-+	cam_mclk1_active: cam-mclk1-active-state {
- 		pins = "gpio14";
- 		function = "cam_mclk";
- 		drive-strength = <2>;
-@@ -639,14 +837,14 @@ cci1_default: cci1-default-state {
- 		drive-strength = <2>;
- 	};
- 
--	cam0_vdig_default: cam0-vdig-default-state {
-+	main_cam_pwr_en: main-cam-pwr-en-default-state {
- 		pins = "gpio21";
- 		function = "gpio";
- 		bias-disable;
- 		drive-strength = <2>;
- 	};
- 
--	tof_int: tof-int-state {
-+	tof_int_n: tof-int-n-state {
- 		pins = "gpio22";
- 		function = "gpio";
- 		bias-pull-up;
-@@ -654,28 +852,28 @@ tof_int: tof-int-state {
- 		input-enable;
- 	};
- 
--	cam1_vdig_default: cam1-vdig-default-state {
-+	chat_cam_pwr_en: chat-cam-pwr-en-default-state {
- 		pins = "gpio25";
- 		function = "gpio";
- 		bias-disable;
- 		drive-strength = <2>;
- 	};
- 
--	usb_extcon_active: usb-extcon-active-state {
--		pins = "gpio38";
-+	tof_reset: tof-reset-state {
-+		pins = "gpio27";
- 		function = "gpio";
- 		bias-disable;
--		drive-strength = <16>;
-+		drive-strength = <2>;
- 	};
- 
--	tof_reset: tof-reset-state {
--		pins = "gpio27";
-+	cc_dir_default: cc-dir-active-state {
-+		pins = "gpio38";
- 		function = "gpio";
- 		bias-disable;
--		drive-strength = <2>;
-+		drive-strength = <16>;
- 	};
- 
--	hall_sensor0_default: acc-cover-open-state {
-+	acc_cover_open: acc-cover-open-state {
- 		pins = "gpio124";
- 		function = "gpio";
- 		bias-disable;
-@@ -690,7 +888,7 @@ ts_int_n: ts-int-n-state {
- 		bias-pull-up;
- 	};
- 
--	usb_vbus_active: usb-vbus-active-state {
-+	usb_detect_en: usb-detect-en-active-state {
- 		pins = "gpio128";
- 		function = "gpio";
- 		bias-disable;
--- 
-2.39.0
-
+--gildbygudiea755e--
