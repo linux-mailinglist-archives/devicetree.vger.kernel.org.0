@@ -2,192 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01D9665B51B
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 17:32:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4A7865B525
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 17:37:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234541AbjABQc1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 11:32:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40102 "EHLO
+        id S232197AbjABQhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 11:37:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230205AbjABQc0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 11:32:26 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2830260A
-        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 08:32:25 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id p36so42191286lfa.12
-        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 08:32:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OPOWYK4xS+6xhzOdhfTnsSnUcVxUYMBnV8hiXVR43SI=;
-        b=WuNHynlhNUkJUcD6KxjstzrRlxBGV8jbuBJ/hrag17I5q4FZ19LDt1kUasU+Mf/ow1
-         JBdFdf/Q0EPoES9VCm0vib2w7JjQ6b0vOTXDcL9B89agvmmRsdc/EE+vKc/H2Lep6lT7
-         kvujpwUNElUfG8MRBS8uQJjwjOD3nhMAo9M0FcLNOllZ8+YQVMk5PaCE3nKmji6OVgcG
-         IIz+6L5GswHwQziHEeMp6UDveSxrLnfs0llc1Zs1AvixoQrFZYbEhPSGKbxY3n135fNu
-         jgyNdng/nhQCdHUrDtQKR65iViyWju50338n/pJMMU4qhyrO6wxw1rk0Q8wo/7AJuJQa
-         yEkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OPOWYK4xS+6xhzOdhfTnsSnUcVxUYMBnV8hiXVR43SI=;
-        b=0Q+xGspE/MFB94olYx4tjeA9NLtfaKJMl4YK30wGK6fN0I2K7KP5qDAztyOaFHvcwM
-         NtQ/QqeDcVMPizGvSrXenPyxW3625QOSixLmfKH+MD9tB5UyxbjiBz8xC7LT+p6WH25M
-         0wqqegWqTod4t+sQ/fBBXU/dxeJ+GDrFSLcEfnPbZljHHveBq7NZSrW8BTt7aarJ6+ri
-         ymnb8vbu2kAZYJV5CDm+zsR/O3RI/bPbHV05S42oJvvtkHdq/lZPRfXUufEKXFex857E
-         33ABLN/ZM30+3kZZgNS0jBW0usedzu6KpFGkyi3bof94V7b8J0M4n8SKf+HMJiv2wxWn
-         sRAA==
-X-Gm-Message-State: AFqh2krJuOBGUHcFvVwTokCjtSNlnqff6CG17wcqxUxy9Vu+k3l5Egp4
-        JqnsxVE3rKhKtu3UdTmIqE1NsQ==
-X-Google-Smtp-Source: AMrXdXtWnVOJrl54acwW1/P+lvWqyeGREQQIrliL5JrxuI2mDuRvgOBvBPJG9vCCGvebf+wH1RlFEw==
-X-Received: by 2002:ac2:5fcf:0:b0:4b5:5f97:6a16 with SMTP id q15-20020ac25fcf000000b004b55f976a16mr11197018lfg.43.1672677144056;
-        Mon, 02 Jan 2023 08:32:24 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id w12-20020a05651234cc00b0047f7722b73csm4481991lfr.142.2023.01.02.08.32.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Jan 2023 08:32:23 -0800 (PST)
-Message-ID: <a885bf4b-253d-75fe-0224-02f8dfb44006@linaro.org>
-Date:   Mon, 2 Jan 2023 17:32:22 +0100
+        with ESMTP id S229447AbjABQhp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 11:37:45 -0500
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 911BC138;
+        Mon,  2 Jan 2023 08:37:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1672677464; x=1704213464;
+  h=message-id:date:mime-version:to:cc:references:from:
+   subject:in-reply-to:content-transfer-encoding;
+  bh=kN/SHISxRWT2L0F6Vw5HZe3KAE4ojWJmQqCG+JrHEBY=;
+  b=bkWqbt/f39Iw7pW+XOg9nMrRmbBXx7XZ62MCajUm5kMOcV56gWMEU3eQ
+   Zia2FjVcaHHhFuha+7K80h9s06ArLjp0cCGssNZL0/L4G5Z7xLXtgbn9b
+   ACfHB5vfn6u1vp2qBFNEylhfyXhFEtqOotOp/FlXLOLyOzMyyNc17Rtv/
+   R5pAUb3ANPglM/HfkcEuUbcUw1oGnfpYQ5PvLsp+97aepUg2v6E3jqJQ4
+   qZf7mXBel/mpa/OFTgrVl0/TLsovW/Mi6k9R05x7S6WmKJjgKivry3O0R
+   ub749ADbGAUaTu/BHrk8mf3U4I5P5cpPVLE/7p5EnuxdRkvhIrAsl1SNg
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10578"; a="305019794"
+X-IronPort-AV: E=Sophos;i="5.96,294,1665471600"; 
+   d="scan'208";a="305019794"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jan 2023 08:37:43 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10578"; a="743245438"
+X-IronPort-AV: E=Sophos;i="5.96,294,1665471600"; 
+   d="scan'208";a="743245438"
+Received: from mattu-haswell.fi.intel.com (HELO [10.237.72.199]) ([10.237.72.199])
+  by FMSMGA003.fm.intel.com with ESMTP; 02 Jan 2023 08:37:38 -0800
+Message-ID: <5f54c5a3-caf0-2920-e90f-68124ed2e06c@linux.intel.com>
+Date:   Mon, 2 Jan 2023 18:38:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v4 13/13] dt-bindings: mediatek: mt8188: add mt8188-mt6359
- document
+ Firefox/102.0 Thunderbird/102.4.2
+To:     Wesley Cheng <quic_wcheng@quicinc.com>,
+        srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
+        perex@perex.cz, broonie@kernel.org, lgirdwood@gmail.com,
+        andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        gregkh@linuxfoundation.org, Thinh.Nguyen@synopsys.com,
+        bgoswami@quicinc.com, tiwai@suse.com, robh+dt@kernel.org,
+        agross@kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, quic_jackp@quicinc.com,
+        quic_plai@quicinc.com
+References: <20221223233200.26089-1-quic_wcheng@quicinc.com>
+ <20221223233200.26089-8-quic_wcheng@quicinc.com>
+ <7dfe215b-4cc7-f95f-17c3-563c0120151a@linux.intel.com>
+ <f7f80320-02bb-a573-dd95-b6d58c260624@quicinc.com>
 Content-Language: en-US
-To:     Trevor Wu <trevor.wu@mediatek.com>, broonie@kernel.org,
-        lgirdwood@gmail.com, tiwai@suse.com, perex@perex.cz,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, p.zabel@pengutronix.de
-Cc:     angelogioacchino.delregno@collabora.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20221230055443.16024-1-trevor.wu@mediatek.com>
- <20221230055443.16024-14-trevor.wu@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221230055443.16024-14-trevor.wu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+From:   Mathias Nyman <mathias.nyman@linux.intel.com>
+Subject: Re: [RFC PATCH 07/14] usb: host: xhci: Add XHCI secondary interrupter
+ support
+In-Reply-To: <f7f80320-02bb-a573-dd95-b6d58c260624@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/12/2022 06:54, Trevor Wu wrote:
-> Add document for mt8188 board with mt6359.
+On 29.12.2022 23.14, Wesley Cheng wrote:
+> Hi Mathias,
+> 
+> On 12/28/2022 7:47 AM, Mathias Nyman wrote:
+>> On 24.12.2022 1.31, Wesley Cheng wrote:
+>>> Implement the XHCI operations for allocating and requesting for a secondary
+>>> interrupter.  The secondary interrupter can allow for events for a
+>>> particular endpoint to be routed to a separate event ring.  The event
+>>> routing is defined when submitting a transfer descriptor to the USB HW.
+>>> There is a specific field which denotes which interrupter ring to route the
+>>> event to when the transfer is completed.
+>>>
+>>> An example use case, such as audio packet offloading can utilize a separate
+>>> event ring, so that these events can be routed to a different processor
+>>> within the system.  The processor would be able to independently submit
+>>> transfers and handle its completions without intervention from the main
+>>> processor.
+>>>
+>>
+>> Adding support for more xHCI interrupters than just the primary one make sense for
+>> both the offloading and virtualization cases.
+>>
+>> xHCI support for several interrupters was probably added to support virtualization,
+>> to hand over usb devices to virtual machines and give them their own event ring and
+>> MSI/MSI-X vector.
+>>
+>> In this offloading case you probably want to avoid xHC interrupts from this device
+>> completely, making sure it doesn't wake up the main CPU unnecessarily.
+>>
+>> So is the idea here to let xhci driver set up the new interrupter, its event ring,
+>> and the endpoint transfer rings. Then pass the address of the endpoint transfer rings
+>> and the new event ring to the separate processor.
+>>
+>> This separate processor then both polls the event ring for new events, sets its dequeue
+>> pointer, clears EHB bit, and queues new TRBs on the transfer ring.
+>>
+>> so xhci driver does not handle any events for the audio part, and no audio data URBs
+>> are sent to usb core?
+> 
+> Your entire description is correct.  To clarify, the interfaces which are non-audio will still be handled by the main processor.  For example, a USB headset can have a HID interface as well for volume control.  The HID interface will still be handled by the main processor, and events routed to the main event ring.
+> 
+>>
+>> How about the control part?
+>> Is the control endpoint for this device still handled normally by usb core/xhci?
+>>
+> 
+> Control transfers are always handled on the main processor.  Only audio interface's endpoints.
 
-Use subject prefixes matching the subsystem (which you can get for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching).
+Good to know, that means interrupter should be chosen per endpoint, not per device.
 
 > 
-> Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
-> ---
->  .../sound/mediatek,mt8188-mt6359.yaml         | 93 +++++++++++++++++++
->  1 file changed, 93 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml
+>> For the xhci parts I think we should start start by adding generic support for several
+>> interrupters, then add parts needed for offloading.
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml
-> new file mode 100644
-> index 000000000000..5754c1d460db
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml
-> @@ -0,0 +1,93 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/mediatek,mt8188-mt6359.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek MT8188 ASoC sound card
-> +
-> +maintainers:
-> +  - Trevor Wu <trevor.wu@mediatek.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt8188-mt6359-evb
-> +
-> +  model:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description: User specified audio sound card name
-> +
-> +  audio-routing:
-> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> +    description:
-> +      A list of the connections between audio components. Each entry is a
-> +      sink/source pair of strings. Valid names could be the input or output
-> +      widgets of audio components, power supplies, MicBias of codec and the
-> +      software switch.
-> +
-> +  mediatek,platform:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: The phandle of MT8188 ASoC platform.
-> +
-> +patternProperties:
-> +  "^dai-link-[0-9]+$":
-> +    type: object
-
-On this level:
-additionalProperties: false
-
-> +    description: |
-> +      Container for dai-link level properties and CODEC sub-nodes.
-> +
-> +    properties:
-> +      dai-link-name:
-
-Instead:
-link-name
-> +        description: |
-> +          This property corresponds to the name of the BE dai-link to which
-> +          we are going to update parameters in this node.
-> +        items:
-> +          enum:
-> +            - ADDA_BE
-> +            - DPTX_BE
-> +            - ETDM1_IN_BE
-> +            - ETDM2_IN_BE
-> +            - ETDM1_OUT_BE
-> +            - ETDM2_OUT_BE
-> +            - ETDM3_OUT_BE
-> +            - PCM1_BE
-> +
-> +      codec:
-> +        description: Holds subnode which indicates codec dai.
-> +        type: object
-> +        additionalProperties: false
-> +        properties:
-> +          sound-dai:
-> +            minItems: 1
-> +            maxItems: 2
-
-required sound-dai
-
-> +
-> +    required:
-> +      - dai-link-name
-> +      - codec
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - mediatek,platform
-> +
-
-Your example looks pretty straightforward. Maybe you can use
-simple-card.yaml?	
+> I can split up the patchsets to add interrupters first, then adding the offloading APIs in a separate patch.
 
 
-Best regards,
-Krzysztof
+I started looking at supporting secondary interrupters myself.
+Let me work on that part a bit first. We have a bit different end goals.
+I want to handle interrupts from a secondary interrupter, while this audio offload
+really just wants to mask some interrupts.
+
+Thanks
+Mathias
 
