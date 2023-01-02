@@ -2,105 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E74365AEC5
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 10:42:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFE9F65AED0
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 10:45:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231614AbjABJm1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 04:42:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44874 "EHLO
+        id S232032AbjABJpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 04:45:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230215AbjABJmZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 04:42:25 -0500
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89F37DF1
-        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 01:42:24 -0800 (PST)
-Received: by mail-lj1-x234.google.com with SMTP id x37so21709224ljq.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 01:42:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xcvUq9UmyoEcHCIHRWfiFIf8dqA/idA+5+kkBDP3Jwc=;
-        b=Enze+qE85rszC5l162+SsytKiZVRn651c+AptSbBqDeg5CshqP5D9I9DLhQLomlsQU
-         aoWaxQ/Uv11McO77pbu15jV+qcjG4Most/S51gDs235PYfDMs/F1gHmF/0kjUb8mZtl7
-         yROT4X7bKUc42ZAGuX/MRlZ9Us47NvpEc8KRLl/s1Dag3/VgRa0SnC+M9Lzr2xjqgoCg
-         EGwe8Qu+93rEU+1hrm7AG5h6KxX45djw0vW46Zy5hFclNWHL2MoaMF4godTuiTbKcR5u
-         4FUkEmM/9agUvzErz8wWtO1qmrOoZ8li66OIEY27EhvCk3UQbBEavCz6KbA+hYtdWWAT
-         4nJQ==
+        with ESMTP id S231984AbjABJpp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 04:45:45 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB2772DC1
+        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 01:44:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1672652697;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=hrNAqV6ZY5ivQJapJxCgpk49bJb25LBax+4yjjic7Lg=;
+        b=WmNDkqtCQk6ec86uQyjquoaw9HFORyJS2745aVBd3OqWytSqiH7Lp4vLpB8L+yoe5eGep/
+        GIFl+aEjP4z7ZbnvDWPHnY6ebquk30uRLk3MiyDp8V3eOeAqUTAVh3A6TpOsSEGJSY8jt0
+        QEUxx0/AgY0BB84i2cnCGSGLQea7rmM=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-193-5yslNnOPNnmoJK0yc5j65g-1; Mon, 02 Jan 2023 04:44:56 -0500
+X-MC-Unique: 5yslNnOPNnmoJK0yc5j65g-1
+Received: by mail-wm1-f70.google.com with SMTP id fl12-20020a05600c0b8c00b003d96f0a7f36so13429745wmb.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 01:44:56 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xcvUq9UmyoEcHCIHRWfiFIf8dqA/idA+5+kkBDP3Jwc=;
-        b=xoHV4jqvbEk11yOIJomXSuU/wxST4apFMGOnQcCp8hVcrQiSpXV6rVlVfEi6V/EWaN
-         E6R9um7BzNghE79We8MZvpUr/Pcg3lGdcUuv87MVVpKZ+3THaTONQ4n0dEG4BfoMcd3H
-         fQHSy1tXD3J1aqaNo85hmQ51iTh6Jn51kjjDKYsnGUncAyEvoXqDHGkScV1gobQBkn+k
-         euWfJuv/SFAdVc0KUX6jE2MYgeU5iZF0Bv7wrS+XKhLpA4r7UxyuQqzLQVMbmbyIw05K
-         RoKUs42NXUKNbTO9LTvFliBD2t2xReFbZAjA8B360/fFuGs/1mal2YX/jOX3re/i7ZsM
-         ihug==
-X-Gm-Message-State: AFqh2kqD7Y1x0jfnmOWmes/oDkjDdpxFUc1bvxF/capljEquEmuzp0z9
-        yU5vEF/6k8xdg+S0IQtS1SJovDu+kzW2YDwS
-X-Google-Smtp-Source: AMrXdXvIOdKJ5XgKS4KvY6aM9o/FsDhmwNFMqN1FOzgDaixGx2p6xYkl2sb5r+OmNajN9s+2sMoAgw==
-X-Received: by 2002:a2e:720f:0:b0:27a:991:4d11 with SMTP id n15-20020a2e720f000000b0027a09914d11mr9304108ljc.30.1672652542942;
-        Mon, 02 Jan 2023 01:42:22 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id z14-20020ac24f8e000000b004b55cebdbd7sm4433673lfs.120.2023.01.02.01.42.21
+        bh=hrNAqV6ZY5ivQJapJxCgpk49bJb25LBax+4yjjic7Lg=;
+        b=iFVOC9NOsp9kPKeueoR1UZPGdMNQHYpg3IwgksO1OQjuy42TmBGBYZi3W6aNK9JoUE
+         5toYgCvNPE/OHt6l/oGvRXRhF40bl3HSnc4/uw7Z/neb1Mciv6/adTsZiGaqmObJtEvV
+         q61bjw3iMGX1hGrSMGOFVl8f/WFNHgSDib9Jjpdq+8wLLGDmztcee0A8RYsjoVYB1+ab
+         QMtJDAJkp4lpDhb/W+YrBH/vQxgvh00AmNzutu5Qg/nWjhkFwN3nXaJhGWKc/IpM09fV
+         sbsN5baoVTRfyPQjYabEtslLDFcf7u3OTQlRYLDaV1UOXzRpAe/XkWYbdBTgRtve6V4y
+         kGmA==
+X-Gm-Message-State: AFqh2kqrZC4FeOJPVJ4AKAsM0pPvX/qvcENeT9UxSy3ORwLaY67PDbxt
+        yl+jz2I1w58EVBAyXG1GP9AMuRL+7PqsXtrMYW5107TLofa3PaEHHxfeSCEXNhDzDROVpAfI4+N
+        ixEdrhm86wc7RS27WLpJ8gg==
+X-Received: by 2002:a05:600c:d2:b0:3d2:2b70:f2fd with SMTP id u18-20020a05600c00d200b003d22b70f2fdmr29035349wmm.21.1672652695631;
+        Mon, 02 Jan 2023 01:44:55 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXvGGW0J+6nq6DUxW1h2xRC/i7kscSszFCvw0h/Drz9ysxqRksonNdlBfYAtcIGbHZBQsbKS3Q==
+X-Received: by 2002:a05:600c:d2:b0:3d2:2b70:f2fd with SMTP id u18-20020a05600c00d200b003d22b70f2fdmr29035334wmm.21.1672652695377;
+        Mon, 02 Jan 2023 01:44:55 -0800 (PST)
+Received: from [192.168.1.130] (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id m8-20020a05600c4f4800b003cfaae07f68sm44938241wmq.17.2023.01.02.01.44.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Jan 2023 01:42:22 -0800 (PST)
-Message-ID: <0de2354a-d140-364d-1a7c-380bb899c3e5@linaro.org>
-Date:   Mon, 2 Jan 2023 10:42:20 +0100
+        Mon, 02 Jan 2023 01:44:54 -0800 (PST)
+Message-ID: <c0c5b5ac-821c-1277-a2f1-d896a6ed680b@redhat.com>
+Date:   Mon, 2 Jan 2023 10:44:53 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v3 01/21] dt-bindings: display: tegra: add Tegra20 VIP
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v4 0/4] Add PinePhone Pro display support
 Content-Language: en-US
-To:     Luca Ceresoli <luca.ceresoli@bootlin.com>,
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     Neal Gompa <ngompa13@gmail.com>, dri-devel@lists.freedesktop.org,
+        Martijn Braam <martijn@brixit.nl>,
+        Caleb Connolly <kc@postmarketos.org>,
         Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Sowjanya Komatineni <skomatineni@nvidia.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Richard Leitner <richard.leitner@skidata.com>
-References: <20221229133205.981397-1-luca.ceresoli@bootlin.com>
- <20221229133205.981397-2-luca.ceresoli@bootlin.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221229133205.981397-2-luca.ceresoli@bootlin.com>
+        =?UTF-8?Q?Kamil_Trzci=c5=84ski?= <ayufan@ayufan.eu>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        linux-rockchip@lists.infradead.org,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Peter Robinson <pbrobinson@gmail.com>,
+        devicetree@vger.kernel.org, Robert Mader <robert.mader@posteo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Onuralp Sezer <thunderbirdtr@fedoraproject.org>,
+        linux-kernel@vger.kernel.org,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Ondrej Jirman <megi@xff.cz>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>
+References: <20221230113155.3430142-1-javierm@redhat.com>
+ <Y7H5UJOz/zYuZn7j@duo.ucw.cz>
+From:   Javier Martinez Canillas <javierm@redhat.com>
+In-Reply-To: <Y7H5UJOz/zYuZn7j@duo.ucw.cz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/12/2022 14:31, Luca Ceresoli wrote:
-> VIP is the parallel video capture component within the video input
-> subsystem of Tegra20 (and other Tegra chips, apparently).
-> 
-> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> 
-> ---
-> 
+Hello Pavel,
 
+On 1/1/23 22:21, Pavel Machek wrote:
+> Hi!
+> 
+>> This series add support for the display present in the PinePhone Pro.
+>>
+>> Patch #1 adds a driver for panels using the Himax HX8394 panel controller,
+>> such as the HSD060BHW4 720x1440 TFT LCD panel present in the PinePhone Pro.
+>>
+>> Patch #2 adds a devicetree binding schema for this driver and patch #3 adds
+>> an entry for the driver in the MAINTAINERS file.
+>>
+>> Finally patch #4 adds the needed devicetree nodes in the PinePhone Pro DTS,
+>> to enable both the display and the touchscreen. This makes the upstream DTS
+>> much more usable and will allow for example to enable support for the phone
+>> in the Fedora distribution.
+> 
+> Thanks for the series. Please cc: phone-devel@vger.kernel.org with
+> future patches.
+>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Sure, I will.
+ 
+> Best regards,
+> 								Pavel
 
+-- 
 Best regards,
-Krzysztof
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
 
