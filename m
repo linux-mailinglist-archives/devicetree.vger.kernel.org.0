@@ -2,185 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F80365B2B3
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 14:35:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 301F965B2BF
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 14:38:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232889AbjABNfD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 08:35:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37340 "EHLO
+        id S232050AbjABNih (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 08:38:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232882AbjABNfC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 08:35:02 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 661E062EE
-        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 05:34:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1672666455;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=tCriltrcTbc5YIVSa0BHW32yRPYzJxluA5nPgL3tKiE=;
-        b=gkS5naWWrvo8M6QvXJxznRBAlmb45wqpa0X3Muu8oC3meO5PjzOiALYQKIchL3Jz05bmdb
-        8D/nI59g0MmxOEbyqydpZYX68y85ZwT+A7zawYzV8Qgn2W5d8jcBsGuRykpjtiP+l7WC6D
-        gcqxVUvjCgWSgDR01qIgx7HWbk3QMxs=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-75-il6gjX3EMri5Ovia3lJ57A-1; Mon, 02 Jan 2023 08:34:14 -0500
-X-MC-Unique: il6gjX3EMri5Ovia3lJ57A-1
-Received: by mail-wm1-f70.google.com with SMTP id n18-20020a05600c4f9200b003d993e08485so7776750wmq.2
-        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 05:34:14 -0800 (PST)
+        with ESMTP id S232816AbjABNig (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 08:38:36 -0500
+Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 621B3E8A
+        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 05:38:35 -0800 (PST)
+Received: by mail-qt1-x82c.google.com with SMTP id c7so22435513qtw.8
+        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 05:38:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date
+         :mime-version:in-reply-to:references:user-agent:from:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yUeJe0drBbTMgiYkIr+hpKI3FSwnBgCuZWCVk8bkpiQ=;
+        b=sJKeU3WCdOQHKogctAuHoH1Lb5awwjpVpHefGzuQH49JgYhK41rW3ae5mHbdmBGjsY
+         UnNOamQKAW85+d3DJvYxWEY0sQwr8sxKKtQaJB5/ZBhMt7NlGdpExaGUTvd1Ym8DFBJN
+         z/E2hVpZRbW12fzg0X2Kj7ZDsGIcLif6Q2AhzKLokR+qFZiuaAbfbrrFr+unYfzjUdTo
+         IBWE8DrMPJ7CwXxGloffvAvF0SeiBqq0lV8Vq6+n+EzQHdffJcGYNIxvZMkpsWb/VBo6
+         wuXMNTIGHn3SZ4HlhcRTVEyDdo/VUZ2atZFin0VDm7biJW7nnru9XUW+S1aJ2RCzJq8Z
+         kYbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:cc:to:subject:message-id:date
+         :mime-version:in-reply-to:references:user-agent:from
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tCriltrcTbc5YIVSa0BHW32yRPYzJxluA5nPgL3tKiE=;
-        b=gdX2sxjlC5YHvD+ow059at7V1eOVxPdSEg75jZWSMpazQjBDdy6qJDJzXisBCr2Ih4
-         o+YYJnfSw1NvOkX6UN9kYYLTpIXlV86Gd8OPK+ilTyxkLHWCL1a/6JLucX4yDnOEH5kA
-         woOq18dTajyBp4GSEpN6Vao7vh3pIyZ2MeOOMC0ic7zjGVwYudphyrqtkP/KMtgb983L
-         mNiG9cMPDlzcReq2VtMRH2pZMWvsUeFFNmfU33/V3bQZ4gW0CBw/4kxVonNwea3uGuJY
-         5mCWr6NvoxLJWRM9nBO33f9pLvMZD57ulo/iaQQCooqrr5jryqg0dUxTd6NYbm+i8a5x
-         ajAw==
-X-Gm-Message-State: AFqh2krYirvGglewmF54lHYWzCD1fFCLqAdZ8O5weJGQbZDu/ydJi8y+
-        HKbAQmMH6/CwXer8otfnOhzfVqMalg+DHWlzmaX4Lf9pq2uqPo+075tDU3EEAAmCwNPBPOlOI3N
-        eisjkrCOyoYrM+LY0riVDlg==
-X-Received: by 2002:a05:600c:3b93:b0:3d3:43ae:4d10 with SMTP id n19-20020a05600c3b9300b003d343ae4d10mr31041968wms.11.1672666453422;
-        Mon, 02 Jan 2023 05:34:13 -0800 (PST)
-X-Google-Smtp-Source: AMrXdXtJsQ0zRfWCnBj9Diguj19m7NsXFU8c60IxEYqu+ZWPJlj1r+wIED4OsIh+G7deGWpzLHHV5Q==
-X-Received: by 2002:a05:600c:3b93:b0:3d3:43ae:4d10 with SMTP id n19-20020a05600c3b9300b003d343ae4d10mr31041948wms.11.1672666453156;
-        Mon, 02 Jan 2023 05:34:13 -0800 (PST)
-Received: from [192.168.1.130] (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id n1-20020a05600c4f8100b003d96b8e9bcasm41802230wmq.32.2023.01.02.05.34.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Jan 2023 05:34:12 -0800 (PST)
-Message-ID: <6319a8b4-1152-40d8-29f1-015a8c5247f4@redhat.com>
-Date:   Mon, 2 Jan 2023 14:34:11 +0100
+        bh=yUeJe0drBbTMgiYkIr+hpKI3FSwnBgCuZWCVk8bkpiQ=;
+        b=jQDKnb9JRhArtNOthq1UWJ3J3J+hG+8wWNMWWvihq+ZrT+/YmT232lmIHjyiPk8BCt
+         3gc1bZMYSMv3XIk77so7LqKGBrY/zjsoNi3MUXkIjhTdU+NW9Htp4R67uSxRWCZUmxgH
+         +tcAgQxGXPjSSfMA3RFTV2K9xwBBWBNm9+O8mORAzTDp+1Gtu3N8m3dIgEFvzDYUev4n
+         H2dUkxFBn8ZM8ai5A9t4wEeBFGAyE27OXkwW6eYMzchfR4J3WpYGGstX9Cb6tIlVyP/E
+         M4RR8t6PNsbAFGKzmWuOtAlPCXvq8HuMP2VRfikdFmTZVtBemFvfe2oKlBLnMqujkAzr
+         8Wxg==
+X-Gm-Message-State: AFqh2kovAkU7ORs8+oReI5EtQMEPgm3xxyTbmxCSrlccr/lLn6eF3Hh/
+        ZebqZ2oOsXfvBlIj2x7QdHF/XEZ9furD1kuW2AGkuA==
+X-Google-Smtp-Source: AMrXdXsRzYNVZ3d4bkKeYiAZTwzM9YRTxsFtaA7lSB3wLl6IBFcwrL0JOddsqmMqIzrw5hKkoMpSWmO5PrVO7+oREAw=
+X-Received: by 2002:ac8:4d50:0:b0:3a8:a6e:1b4 with SMTP id x16-20020ac84d50000000b003a80a6e01b4mr1646554qtv.313.1672666714390;
+ Mon, 02 Jan 2023 05:38:34 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 2 Jan 2023 13:38:33 +0000
+From:   Guillaume Ranquet <granquet@baylibre.com>
+User-Agent: meli 0.7.2
+References: <20220919-v3-0-a803f2660127@baylibre.com> <20220919-v3-2-a803f2660127@baylibre.com>
+ <7da1e73a0cca6867a060d5b69d45e8d4dfc89748.camel@mediatek.com>
+In-Reply-To: <7da1e73a0cca6867a060d5b69d45e8d4dfc89748.camel@mediatek.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v4 4/4] arm64: dts: rk3399-pinephone-pro: Add internal
- display support
-Content-Language: en-US
-To:     =?UTF-8?Q?Ond=c5=99ej_Jirman?= <megi@xff.cz>,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?Q?Kamil_Trzci=c5=84ski?= <ayufan@ayufan.eu>,
-        Martijn Braam <martijn@brixit.nl>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Robert Mader <robert.mader@posteo.de>,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
-        Peter Robinson <pbrobinson@gmail.com>,
-        Onuralp Sezer <thunderbirdtr@fedoraproject.org>,
-        dri-devel@lists.freedesktop.org,
-        Maya Matuszczyk <maccraft123mc@gmail.com>,
-        Neal Gompa <ngompa13@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Caleb Connolly <kc@postmarketos.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org
-References: <20221230113155.3430142-1-javierm@redhat.com>
- <20221230113155.3430142-5-javierm@redhat.com>
- <20221230153745.tfs6n4zy4xfwugbw@core>
- <e21b5c12-0cc0-5ec0-b2c6-9dde633d5e10@redhat.com>
- <20230102105746.5abnjzwf365c6hy2@core>
-From:   Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <20230102105746.5abnjzwf365c6hy2@core>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Date:   Mon, 2 Jan 2023 13:38:33 +0000
+Message-ID: <CABnWg9tf8Sx8S0d8mGowZ80YmZLz6cX2iyxZyKYCGbH_RKMKyA@mail.gmail.com>
+Subject: Re: [PATCH v3 02/12] dt-bindings: display: mediatek: add MT8195 hdmi bindings
+To:     CK Hu <ck.hu@mediatek.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "kishon@ti.com" <kishon@ti.com>,
+        Chunfeng Yun <Chunfeng.Yun@mediatek.com>,
+        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+        Jitao Shi <jitao.shi@mediatek.com>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "airlied@gmail.com" <airlied@gmail.com>,
+        "rzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "koul@kernel.org" <vkoul@kernel.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "inux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        Mac Shen <Mac.Shen@mediatek.com>,
+        "evicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "rzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
+        Stuart Lee <Stuart.Lee@mediatek.com>,
+        "ri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "inux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Ondřej,
-
-On 1/2/23 11:57, Ondřej Jirman wrote:
-
-[...]
-
->>
->> You tell me, it is your patch :) I just cherry-picked this from your tree:
-> 
-> I have other patches to goodix driver that do power off the touch sensor chip
-> during sleep, so that it doesn't consume excessinve amounts of power when
-> the phone is suspended. Mainline doesn't. You have to adapt this to mainline,
-> because you're not upstreaming the required Goodix patches, for regulator-off-in-suspend
-> to not break things.
-> 
->> https://github.com/megous/linux/commit/11f8da60d6a5
->>
->> But if that is not correct, then I can drop the regulator-off-in-suspend.
->>
-
-Ah, I see. Missed that. Then I guess that's better to drop the regulator-off-in-suspend
-until the goodix driver patches are upstreamed.
-
->> [...]
->>
->>>> +
->>>> +	touchscreen@14 {
->>>> +		compatible = "goodix,gt917s";
->>>
->>> This is not the correct compatible. Pinephone Pro uses Goodix GT1158:
->>>
->>> Goodix-TS 3-0014: ID 1158, version: 0100
->>> Goodix-TS 3-0014: Direct firmware load for goodix_1158_cfg.bin failed with error -2
->>>
->>>
->>
->> Same thing. I wasn't aware of this since your patch was using this compatible
->> string. If "goodix,gt1158" is the correct compatible string, then I agree we
->> should have that instead even when the firmware is missing. Because the DT is
->> supposed to describe the hardware. The FW issue can be tackled as a follow-up.
->>
->> [...] 
-> 
-> Yes, compatible string is sort of irrelevant, because the driver does runtime
-> auto-detection based on chip ID. I didn't bother with superficial issues in the
-> original code from Martijn/Kamil. Now that you're mainlining the code, this
-> should be sorted out, though.
-> 
-> There's no FW issue, I was just using the log to show you the actual chip ID the
-> driver detects.
+On Mon, 26 Dec 2022 06:18, CK Hu (=E8=83=A1=E4=BF=8A=E5=85=89) <ck.hu@media=
+tek.com> wrote:
+>Hi, Guillaume:
 >
-
-Gotcha.
- 
-> (You should probably put my SoB after Kamil/Martijn, since I took the
-> maintenance/development of the driver after they wrote the base support
-> initially in secret. I'm not the original author of the code.)
+>On Fri, 2022-11-04 at 15:09 +0100, Guillaume Ranquet wrote:
+>> Add mt8195 SoC bindings for hdmi and hdmi-ddc
+>>
+>> On mt8195 the ddc i2c controller is part of the hdmi IP block and
+>> thus has no
+>> specific register range, power domain or interrupt, making it simpler
+>> than its the legacy "mediatek,hdmi-ddc" binding.
+>>
+>> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+>> ---
+>>
 >
+>[snip]
+>
+>> a/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-
+>> hdmi-ddc.yaml
+>> b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-
+>> hdmi-ddc.yaml
+>> new file mode 100644
+>> index 000000000000..2dc273689584
+>> --- /dev/null
+>> +++
+>> b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-
+>> hdmi-ddc.yaml
+>> @@ -0,0 +1,51 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id:
+>> https://urldefense.com/v3/__http://devicetree.org/schemas/display/mediat=
+ek/mediatek,mt8195-hdmi-ddc.yaml*__;Iw!!CTRNKA9wMg0ARbw!wwVQuq5lzW0lvUFUkVX=
+PWT8cIu96xdkn4tMams1E55qyxEZmgV1i0WfpOlq57w$
+>>
+>> +$schema:
+>> https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml=
+*__;Iw!!CTRNKA9wMg0ARbw!wwVQuq5lzW0lvUFUkVXPWT8cIu96xdkn4tMams1E55qyxEZmgV1=
+i0WdSGOSxzw$
+>>
+>> +
+>> +title: Mediatek HDMI DDC for mt8195
+>> +
+>> +maintainers:
+>> +  - CK Hu <ck.hu@mediatek.com>
+>> +  - Jitao shi <jitao.shi@mediatek.com>
+>> +
+>> +description: |
+>> +  The HDMI DDC i2c controller is used to interface with the HDMI DDC
+>> pins.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - mediatek,mt8195-hdmi-ddc
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: ddc
+>> +
+>> +  mediatek,hdmi:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description:
+>> +      A phandle to the mt8195 hdmi controller
+>> +
+>> +required:
+>> +  - compatible
+>> +  - clocks
+>> +  - clock-names
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>> +    hdmiddc0: i2c {
+>> +      compatible =3D "mediatek,mt8195-hdmi-ddc";
+>> +      mediatek,hdmi =3D <&hdmi0>;
+>> +      clocks =3D <&clk26m>;
+>> +      clock-names =3D "ddc";
+>> +    };
+>
+>I think we should not have a virtual device. This ddc is part of
+>mt8195-hdmi device, so just keep mt8195-hdmi, and let mt8195-hdmi
+>driver to probe the sub driver of ddc driver.
+>
+>Regards,
+>CK
 
-I wasn't aware of that. I just kept the author field as it's in your tree.
- 
-[...]
+Hi CK,
 
->> https://github.com/megous/linux/commit/f19ce7bb7d72
-> 
-> Yes, and test the driver more thoroughly:
-> 
-> - look at clk_summary to verify clock rate the kernel thinks it's using
-> - test refresh rate, somehow, to again verify the actual clock rate (kernel can
->   lie in debugfs)
-> - test power cycling the panel (eg. via system suspend/resume or other means)
-> 
+Thx for your input.
+Though I would strongly prefer to keep the ddc as a separate "virtual devic=
+e".
 
-Agreed that the more testing the better.
+It aligns better with the goal of reusing as much code as possible
+from the HDMI V1 IP,
+which is something you have been advocating since V1 of this patch
+quite some time ago
+and has shaped this patch.
 
--- 
-Best regards,
+To me we are in a state that is clean and avoids branching in the hdmi
+common code.
+Would you reconsider and allow the use of that virtual device?
 
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+Thx,
+Guillaume.
 
+>
+>> +
+>> +...
+>>
