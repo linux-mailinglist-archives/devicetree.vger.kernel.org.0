@@ -2,157 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20C8465AF15
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 10:54:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA33465AF42
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 11:05:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229715AbjABJyC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 04:54:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55104 "EHLO
+        id S231886AbjABKFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 05:05:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232161AbjABJx6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 04:53:58 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 841AB97
-        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 01:53:56 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id h16so25836065wrz.12
-        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 01:53:56 -0800 (PST)
+        with ESMTP id S229923AbjABKF3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 05:05:29 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A375EBE
+        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 02:05:28 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id j16so6782318edw.11
+        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 02:05:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=l+/g4OFevxQxj3ZDU3ipz6hKywBVT0qBoACJLcSqq4M=;
-        b=uPhtFfxGx1PHn79fSh6g5TqdHIc5I+mE0Euh7ayeA62uFN0W6iPkzaWlzJnjAOukBz
-         YfTAaMZrv/XYHR+FPBk6IC6fQGfKNloz0/DcMXvE0M8iym3aErj+VFJTJplo6xEQhhwj
-         X2VsICQEDqqMAnRfyKKDBEqK53hNPGmvuMyd6J3ywo5JXTln8+F5DrD82ISz2vPvUMhg
-         TZMnew8tvPBwYC180/DivQ/V5vLziCsxisWQqgayu94oVA/34OzPyq0aV5FwYarYoVq3
-         PJi0ddgIO7PJtNkl/0Bgp4nFHVI69CSHNESYzCGn1MRNFLPFHdhX5dSyuGFYN/ezPVH+
-         2ieQ==
+        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=e9DCTB5Dm2pkFs6CSTyKZLl1xWQvMdJFV8QOYePkMmc=;
+        b=b+OJbReIPVeZKxutNL/Ola0tNRzwQseF5QunIE0o10+Ll8f6gKLTnW4VYHRAJ65TEF
+         ueNs1zvDPZTHKuI2hmwIeQO0ZOSecFzObBRgZyf9++q6ZYAwUWJDyFaQNF8ssIrLWv+s
+         qnhHLzvXDSLRfuVRQtvevHtbi3GMOHaM3E7Mwb8cNxiCQOBei7JLb/aPGjzPqjucmRj3
+         F13uSiU2Sz0m/TO4ECvVeodw1n1ABxzgDKHjySTDLaCw/a5FDDpt/YqdyYGXTr5Lb3dH
+         Y7IHPhvQMQPArHvErxkLzjl5E2GUAEtzUWXkdr8584aB3HAOrZ0+SZbbFlCGF5B1O4dX
+         Y4rA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=l+/g4OFevxQxj3ZDU3ipz6hKywBVT0qBoACJLcSqq4M=;
-        b=iQnq/S1zp6NujfFCPDjXV2U/uv4TDio/k+PmmInWFJxBpwUjhzw9p00NY28ck5fXOa
-         v7Lsrom49VNPfCrozQvP5tnoRHgk7ct/hQfzC2WLQWUcbJnlBYvrhqaY9A3tCNwPgqGn
-         PFja7TegySvybL5NmRPrN/nKhMxtbkljUJ9EIMj8jJ4j91f9KXjxFQ4wl5SHtv64Izdc
-         3zeJ6mf1F5zSfUlOUj3EQw7cQ30mkZjAcb2cn4U0lBiJNUTgY3Mxup+3TpQOvcNGscir
-         EUQQAYeTOYcCR/yhMuaG+G1vioTYNmwwt7cprejDy/FzitkTsvccLwacZQEJUW1sbHYb
-         XYow==
-X-Gm-Message-State: AFqh2krK6NXFAQjuJe/EgIeYceXcbXI7OJnD/570FEBLr9i+i35bWxtV
-        ZQ2glPpD0sfrrqPK70SeegT9CQ==
-X-Google-Smtp-Source: AMrXdXtn8MnvQhXsoUddUydMeU25/PmnIRF88UjZXtcC/hZzFGziSqo12v8zKsIJJzFrTNvZ08M9YQ==
-X-Received: by 2002:adf:ee83:0:b0:270:213a:b53d with SMTP id b3-20020adfee83000000b00270213ab53dmr23568623wro.33.1672653234797;
-        Mon, 02 Jan 2023 01:53:54 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:4f32:f70:35be:acf9? ([2a01:e0a:982:cbb0:4f32:f70:35be:acf9])
-        by smtp.gmail.com with ESMTPSA id u13-20020a5d468d000000b00275970a85f4sm25889021wrq.74.2023.01.02.01.53.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Jan 2023 01:53:53 -0800 (PST)
-Message-ID: <5e5babae-224d-51cf-4eac-6272df87a8e7@linaro.org>
-Date:   Mon, 2 Jan 2023 10:53:52 +0100
+        bh=e9DCTB5Dm2pkFs6CSTyKZLl1xWQvMdJFV8QOYePkMmc=;
+        b=bw//AOx2YO33hIOz4eZkRAzy3CrOuTwjEI7piAfGY6kD0rN7Ed+JkDg50uVog4iRzQ
+         ju3uJO1cHOXg47E9lWBWG7U9TdDrlbBPLe5viUqW+a6MM42FICgAyKdKfqjQxcM4POI7
+         qEaerc2OC8gn07pp6ZEEsDR1tzdhujgkxoD0/6/earsVkQ1KWFtGWjYHV29Hy8r9hE2Z
+         nheIA209FkoWIwVLuBQUK6aKnDBw1uTPZuMiA1eNdwOHCfiNDG4nHAiTmYA9WYTRXvc6
+         tiK1RSHgQfc12L9dO4TyfbQ2/JLf6+rQanLcUP90VhWePC1b9TrRQhUHqPt/NBy2dKHf
+         jArg==
+X-Gm-Message-State: AFqh2krS9o2Pp6AgIEMrDNxYcNnR1VcJEWOTcLbhGDByf5nlBRoGNfVx
+        40xv65HF1L4jLY4tQ+6LMnz5mrraogQL+wkfLNjDsQ==
+X-Google-Smtp-Source: AMrXdXutBl5gu8eTZ2szcpSPfsr6smT0M6Rt7kVdaTvHuuYxPL3DpDNJ24bpZ7CrLDEWJdUaE38DDnrELD7nyO4oPxo=
+X-Received: by 2002:a05:6402:1f11:b0:479:aa95:bb9c with SMTP id
+ b17-20020a0564021f1100b00479aa95bb9cmr3358085edb.150.1672653926887; Mon, 02
+ Jan 2023 02:05:26 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v6 4/8] arm64: dts: Add DT node for the VIPNano-QI on the
- A311D
-Content-Language: en-US
-To:     Tomeu Vizoso <tomeu.vizoso@collabora.com>
-Cc:     italonicola@collabora.com, Rob Herring <robh+dt@kernel.org>,
+References: <20221111044207.1478350-1-apatel@ventanamicro.com> <CAOnJCULbRSSjYvQP_2bysj1jd0_ywNjQ+gH7eteU7uJWZZ2KiQ@mail.gmail.com>
+In-Reply-To: <CAOnJCULbRSSjYvQP_2bysj1jd0_ywNjQ+gH7eteU7uJWZZ2KiQ@mail.gmail.com>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Mon, 2 Jan 2023 15:35:15 +0530
+Message-ID: <CAAhSdy3SArqEEGeMNyVFk1MAAXSCXfav9_JRN236PWxKE3UR5Q@mail.gmail.com>
+Subject: Re: [PATCH 0/9] Linux RISC-V AIA Support
+To:     Atish Patra <atishp@atishpatra.org>
+Cc:     Anup Patel <apatel@ventanamicro.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Amlogic Meson SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson SoC support" 
-        <linux-amlogic@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20221202115223.39051-1-tomeu.vizoso@collabora.com>
- <20221202115223.39051-5-tomeu.vizoso@collabora.com>
-Organization: Linaro Developer Services
-In-Reply-To: <20221202115223.39051-5-tomeu.vizoso@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/12/2022 12:52, Tomeu Vizoso wrote:
-> This "NPU" is very similar to the Vivante GPUs and Etnaviv works well
-> with it with just a few small changes.
-> 
-> v2: Add reference to RESET_NNA (Neil)
-> v3: Fix indentation (Neil)
-> 
-> Signed-off-by: Tomeu Vizoso <tomeu.vizoso@collabora.com>
-> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi     | 11 +++++++++++
->   .../boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts |  4 ++++
->   2 files changed, 15 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> index 45947c1031c4..61c8461df614 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> @@ -11,6 +11,7 @@
->   #include <dt-bindings/interrupt-controller/arm-gic.h>
->   #include <dt-bindings/reset/amlogic,meson-g12a-reset.h>
->   #include <dt-bindings/thermal/thermal.h>
-> +#include <dt-bindings/power/meson-g12a-power.h>
->   
->   / {
->   	interrupt-parent = <&gic>;
-> @@ -2484,4 +2485,14 @@ xtal: xtal-clk {
->   		#clock-cells = <0>;
->   	};
->   
-> +	npu: npu@ff100000 {
-> +		compatible = "vivante,gc";
-> +		reg = <0x0 0xff100000 0x0 0x20000>;
-> +		interrupts = <0 147 4>;
-> +		clocks = <&clkc CLKID_NNA_CORE_CLK>,
-> +			 <&clkc CLKID_NNA_AXI_CLK>;
-> +		clock-names = "core", "bus";
-> +		resets = <&reset RESET_NNA>;
-> +		power-domains = <&pwrc PWRC_G12A_NNA_ID>;
+On Fri, Nov 11, 2022 at 2:37 PM Atish Patra <atishp@atishpatra.org> wrote:
+>
+> On Thu, Nov 10, 2022 at 8:42 PM Anup Patel <apatel@ventanamicro.com> wrote:
+> >
+> > The RISC-V AIA specification is now frozen as-per the RISC-V international
+> > process. The latest frozen specifcation can be found at:
+> > https://github.com/riscv/riscv-aia/releases/download/1.0-RC1/riscv-interrupts-1.0-RC1.pdf
+> >
+> > At a high-level, the AIA specification adds three things:
+> > 1) AIA CSRs
+> >    - Improved local interrupt support
+> > 2) Incoming Message Signaled Interrupt Controller (IMSIC)
+> >    - Per-HART MSI controller
+> >    - Support MSI virtualization
+> >    - Support IPI along with virtualization
+> > 3) Advanced Platform-Level Interrupt Controller (APLIC)
+> >    - Wired interrupt controller
+> >    - In MSI-mode, converts wired interrupt into MSIs (i.e. MSI generator)
+> >    - In Direct-mode, injects external interrupts directly into HARTs
+> >
+> > For an overview of the AIA specification, refer the recent AIA virtualization
+> > talk at KVM Forum 2022:
+> > https://static.sched.com/hosted_files/kvmforum2022/a1/AIA_Virtualization_in_KVM_RISCV_final.pdf
+> > https://www.youtube.com/watch?v=r071dL8Z0yo
+> >
+> > This series adds required Linux irqchip drivers for AIA and it depends on
+> > the recent "RISC-V IPI Improvements".
+> > (Refer, https://lore.kernel.org/lkml/20221101143400.690000-1-apatel@ventanamicro.com/t/)
+> >
+> > To test this series, use QEMU v7.1 (or higher) and OpenSBI v1.1 (or higher).
+> >
+> > These patches can also be found in the riscv_aia_v1 branch at:
+> > https://github.com/avpatel/linux.git
+> >
+> > Anup Patel (9):
+> >   RISC-V: Add AIA related CSR defines
+> >   RISC-V: Detect AIA CSRs from ISA string
+> >   irqchip/riscv-intc: Add support for RISC-V AIA
+> >   dt-bindings: Add RISC-V incoming MSI controller bindings
+> >   irqchip: Add RISC-V incoming MSI controller driver
+> >   dt-bindings: Add RISC-V advanced PLIC bindings
+> >   irqchip: Add RISC-V advanced PLIC driver
+> >   RISC-V: Select APLIC and IMSIC drivers for QEMU virt machine
+> >   MAINTAINERS: Add entry for RISC-V AIA drivers
+> >
+> >  .../interrupt-controller/riscv,aplic.yaml     |  136 ++
+> >  .../interrupt-controller/riscv,imsic.yaml     |  174 +++
+> >  MAINTAINERS                                   |   12 +
+> >  arch/riscv/Kconfig.socs                       |    2 +
+> >  arch/riscv/include/asm/csr.h                  |   92 ++
+> >  arch/riscv/include/asm/hwcap.h                |    8 +
+> >  arch/riscv/kernel/cpu.c                       |    2 +
+> >  arch/riscv/kernel/cpufeature.c                |    2 +
+> >  drivers/irqchip/Kconfig                       |   32 +-
+> >  drivers/irqchip/Makefile                      |    2 +
+> >  drivers/irqchip/irq-riscv-aplic.c             |  656 +++++++++
+> >  drivers/irqchip/irq-riscv-imsic.c             | 1207 +++++++++++++++++
+> >  drivers/irqchip/irq-riscv-intc.c              |   37 +-
+> >  include/linux/irqchip/riscv-aplic.h           |  117 ++
+> >  include/linux/irqchip/riscv-imsic.h           |   92 ++
+> >  15 files changed, 2564 insertions(+), 7 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml
+> >  create mode 100644 drivers/irqchip/irq-riscv-aplic.c
+> >  create mode 100644 drivers/irqchip/irq-riscv-imsic.c
+> >  create mode 100644 include/linux/irqchip/riscv-aplic.h
+> >  create mode 100644 include/linux/irqchip/riscv-imsic.h
+> >
+> > --
+> > 2.34.1
+> >
+>
+> I am seeing the following boot failure with your branch and upstream
+> qemu (tag: v7.2.0-rc0).
+> It seems IPIs are probably not getting delivered after a point. I saw
+> that IPIs are delivered in the same path earlier (via gdb).
+>
+> [    0.990152] NET: Registered PF_INET6 protocol family
+> [    1.004885] Segment Routing with IPv6
+> [    1.005385] In-situ OAM (IOAM) with IPv6
+> [    1.006371] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+> [    1.011609] NET: Registered PF_PACKET protocol family
+> [    1.014877] 9pnet: Installing 9P2000 support
+> [    1.015603] Key type dns_resolver registered
+> [    1.026396] debug_vm_pgtable: [debug_vm_pgtable         ]:
+> Validating architecture page table helpers
+> [    1.144097] EXT4-fs (vda2): recovery complete
+> [    1.146345] EXT4-fs (vda2): mounted filesystem with ordered data
+> mode. Quota mode: disabled.
+> [    1.147020] VFS: Mounted root (ext4 filesystem) on device 254:2.
+> [    1.152238] devtmpfs: mounted
+> [    1.183914] Freeing unused kernel image (initmem) memory: 2176K
+> [    1.185898] Run /sbin/init as init process
+> [   29.412287] rcu: INFO: rcu_sched self-detected stall on CPU
+> [   29.412992] rcu:     3-....: (5250 ticks this GP)
+> idle=fc3c/1/0x4000000000000002 softirq=78/78 fqs=2230
+> [   29.413427]  (t=5251 jiffies g=-1047 q=3 ncpus=8)
+> [   29.414199] CPU: 3 PID: 1 Comm: init Not tainted
+> 6.1.0-rc4-00024-g5b711f2d7b91 #198
+> [   29.414578] Hardware name: riscv-virtio,qemu (DT)
+> [   29.414896] epc : smp_call_function_many_cond+0x138/0x372
+> [   29.415157]  ra : smp_call_function_many_cond+0x154/0x372
+> [   29.415318] epc : ffffffff8008d2e6 ra : ffffffff8008d302 sp :
+> ff2000000004bb40
+> [   29.415512]  gp : ffffffff812e9eb0 tp : ff600000016d8000 t0 :
+> ff6000007ed88610
+> [   29.415686]  t1 : 00000000000000ff t2 : 0000000000000002 s0 :
+> ff2000000004bc00
+> [   29.415837]  s1 : ff6000007ed85448 a0 : 0000000000000007 a1 :
+> 00000000000000f7
+> [   29.416008]  a2 : 0000000000000000 a3 : 0000000000000000 a4 :
+> ff6000007edd1780
+> [   29.416188]  a5 : 0000000000000001 a6 : ffffffff812eb1c0 a7 :
+> ff600000016d8000
+> [   29.416613]  s2 : ffffffff81323c30 s3 : ffffffff812e9964 s4 :
+> 0000000000000000
+> [   29.416810]  s5 : 0000000000000000 s6 : ff6000007ed85440 s7 :
+> 0000000000000038
+> [   29.416997]  s8 : 0000000000000003 s9 : ffffffff81323c30 s10:
+> ff6000007ed85448
+> [   29.417159]  s11: 0000000000000008 t3 : 00ffffffad08a000 t4 :
+> ff60000001613e0c
+> [   29.417331]  t5 : 0000000000000000 t6 : 00ffffffad177fff
+> [   29.417482] status: 0000000200000120 badaddr: 0000000000000000
+> cause: 8000000000000005
+> [   29.417939] [<ffffffff8008d590>] on_each_cpu_cond_mask+0x20/0x32
+> [   29.418179] [<ffffffff80008d32>] flush_icache_all+0x38/0x40
+> [   29.418324] [<ffffffff80008eb2>] flush_icache_pte+0x4a/0x7a
+> [   29.418442] [<ffffffff80139e00>] do_set_pte+0x132/0x192
+> [   29.418594] [<ffffffff8010b42e>] filemap_map_pages+0x178/0x3a0
+> [   29.418738] [<ffffffff8013ad00>] __handle_mm_fault+0x992/0xbac
+> [   29.418876] [<ffffffff8013afde>] handle_mm_fault+0xc4/0x1d4
+> [   29.419010] [<ffffffff80008372>] do_page_fault+0x120/0x326
+> [   29.419145] [<ffffffff800033e6>] ret_from_exception+0x0/0xc
 
-A status = "disable" is missing here.
+This has been addressed in the RISC-V IPI improvement series.
 
-> +	};
->   };
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-> index 124a80901084..73f3d87dcefd 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-> @@ -15,6 +15,10 @@ / {
->   	compatible = "khadas,vim3", "amlogic,a311d", "amlogic,g12b";
->   };
->   
-> +&npu {
-> +	status = "okay";
+Regards,
+Anup
 
-Tomeu, I think until the user-space stack is clean this should be removed
-and left disabled.
-
-I can fix this while applying if you want,
-
-Neil
-
-> +};
-> +
->   /*
->    * The VIM3 on-board  MCU can mux the PCIe/USB3.0 shared differential
->    * lines using a FUSB340TMX USB 3.1 SuperSpeed Data Switch between
-
+>
+>
+>
+> --
+> Regards,
+> Atish
