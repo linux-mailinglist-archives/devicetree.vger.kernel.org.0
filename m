@@ -2,166 +2,320 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 012CB65B552
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 17:50:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14CD065B555
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 17:51:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236347AbjABQuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 11:50:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46322 "EHLO
+        id S236528AbjABQvK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 11:51:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236321AbjABQup (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 11:50:45 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D7C71F6
-        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 08:50:42 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id f34so42236615lfv.10
-        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 08:50:42 -0800 (PST)
+        with ESMTP id S236381AbjABQvG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 11:51:06 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49C7E240
+        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 08:51:01 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id fy8so3848257ejc.13
+        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 08:51:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+0Hsdkn9Ik2bsrBztjUnz8QbQ+4RQ0dV6PdSxg6F+H8=;
-        b=iM/zicdP4fDksBdQClbPeGnvZ2ZdUJzYaVLfEqaCgpyG0mgT8VCI0YUwrizq31W+zb
-         aBVvZRBGvjKps55MjEVa1+Vc5rxYutQh45lkayaIT4dvLaJUmFGJTnDaH3q+Tve/lLFq
-         hYegFz5B/O3/k+zdtWhWLzGC7UEdtZ9hc3KXyLY6T7OuAmTsTvF9KoZZ+Gk4y734Qa8A
-         LOYbnwzZMyoRi9QcHkoMSSBZoYq0CvvXW5EnDGJxlBoJ6hWgw06BMt2Cc1xbprGVk3C8
-         VuyMQNZdRQomcF39GFjv2fvTmi3rY85aaD9gZLkTbg4ZmSxblEBESoBA7P4h838WY87y
-         Gkqg==
+        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Fz5XKty1bGWzTgMdRfuqQ/JzAqvCNClq4tW8DRBWnFM=;
+        b=geBvjeXV1ZKZXEGQ679wIPmLmr4bJJC3ogIccCGJwmP37nQajWF4xabENZhe1D2qcl
+         BtzUgXfcQVGJ3dQwKj1BTT57gdnm8JWrDF/skiXTxllsaqPvhvgBR2Yw5j6D4tAVt4xu
+         M7tk5pZ10nHxpZmGprCNJRK4NZBwcC5FiaEjHYWKz0xP/8FpAhEEwO5k/lrMxebTR15z
+         CkJdSx7IMMe2fS/PloFI5UR4+3THa8slwkz80jcIDq3FIKrC1g2c4a9FSdioi01TjAyR
+         Mdm2thfnBiiZZE6LhMiy71+hluu/xL4XugkSjpxfXy6yxxmK0gZN2L4eiWE05BHQgcjf
+         0AhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+0Hsdkn9Ik2bsrBztjUnz8QbQ+4RQ0dV6PdSxg6F+H8=;
-        b=PFR1QRDs7Hs4HfB+Q3UqDP7BKq0UhiSoaJogn+AgpymtH/sDYTEuh6EMw5hT9x0X3o
-         vMEjCqoRZWK+l0SeZSo6/oO3Aj2M1x56KKZesWThrtZ6veMYcETvG/0IZUifKYRYOUEh
-         /uUAcrUbJdLaq1dJaIMYczkZkdZY2nglLIGENQvmgM1EmDxKCCVF+J/UdFNhEvzrWtNN
-         KWdPjbXnOlwK4pRyLQ1KXL5LxGLfmBlHwff8lhT7Mq4utJ9ZjOsPEwxusKtng9kTRJ8f
-         JUC9maspLfo0IyKa39WMxfhkwWgDmE3FsgusuvXUnugBA/6UYMFFizzMZO+L0PxggyRi
-         gYJA==
-X-Gm-Message-State: AFqh2kpOsM7C4hXIfLUPkD7OJtXYPzofQ8+vsCLyqD0Ghp2omg3LMaN9
-        gLKAGTBg4h6vvFC9kAo/Jk6NzQ==
-X-Google-Smtp-Source: AMrXdXsTRfgOlSc/J+mZZreOlJvJGk9L6RUEAWxCdOrSYW2yM6lIlnuzyn6CFI18QGR66ChJ383ewQ==
-X-Received: by 2002:a05:6512:32cb:b0:4c5:38ae:4b1e with SMTP id f11-20020a05651232cb00b004c538ae4b1emr15797405lfg.45.1672678240762;
-        Mon, 02 Jan 2023 08:50:40 -0800 (PST)
-Received: from localhost.localdomain (abxi45.neoplus.adsl.tpnet.pl. [83.9.2.45])
-        by smtp.gmail.com with ESMTPSA id o8-20020ac24348000000b004b49025f96dsm4510491lfl.187.2023.01.02.08.50.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Jan 2023 08:50:40 -0800 (PST)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org
-Cc:     marijn.suijten@somainline.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Fz5XKty1bGWzTgMdRfuqQ/JzAqvCNClq4tW8DRBWnFM=;
+        b=j7HSVnkk4S7efq2OiW5j/QD9yYVApW43OfUF0JH50EVYQhQkZ7c7mC9SXVBQJQPZcl
+         Z+K+e0onYG89a6h8Gro7NYg5kqXK9ywz+ZyfZR6EFLVcJc/fwsxtPU4MIhV8081K8PRW
+         lstHMiv1I7baAHgxOHgXkvFWR73Yg6dEUl8nlzE+FcyrwbvYgV3c2KKLfig9fhLa2QH3
+         Nx5VUlVgMNTAkO7I8RfySyoPIiCMf4vUUKTmKLfBBbsZbHsyl6/tfldjo/nDrAIBSu72
+         oghxqhTpMsL4PWi+QJB16XL5QZLIm+RlQjyDBB8triAmO8F14zDA1nc12PVGJTgJSRWK
+         UOPA==
+X-Gm-Message-State: AFqh2ko9xHP7NYheNhQHI1rJ84xK2F02t1MsfhFxVvvlHfoRppsxR5zd
+        P/PsM5f/FKKEM79PXiPeGav5bbGHJ15h4DMApzlZdg==
+X-Google-Smtp-Source: AMrXdXuvrIBtLF2vV2Ytg4fEMIMLSY8mHIn5GlyCPTYTEsGfYkCd2GvolLXDpImkaIk6wKFf7QU0Tpb+cgiVO1eoGHo=
+X-Received: by 2002:a17:906:e095:b0:7c0:a880:dc71 with SMTP id
+ gh21-20020a170906e09500b007c0a880dc71mr4239097ejb.705.1672678259591; Mon, 02
+ Jan 2023 08:50:59 -0800 (PST)
+MIME-Version: 1.0
+References: <20221111044207.1478350-1-apatel@ventanamicro.com>
+ <20221111044207.1478350-7-apatel@ventanamicro.com> <Y3EQ4JU7uGbIMGiW@spud>
+In-Reply-To: <Y3EQ4JU7uGbIMGiW@spud>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Mon, 2 Jan 2023 22:20:48 +0530
+Message-ID: <CAAhSdy2UAMmX+W5Cm3DuTJzZ0jJ3=CW4PhjctQNdfeS+4hqWqg@mail.gmail.com>
+Subject: Re: [PATCH 6/9] dt-bindings: Add RISC-V advanced PLIC bindings
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Anup Patel <apatel@ventanamicro.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Loic Poulain <loic.poulain@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH v2 2/2] soc: qcom: rmtfs: Optionally map RMTFS to NAV VM
-Date:   Mon,  2 Jan 2023 17:50:34 +0100
-Message-Id: <20230102165034.830620-2-konrad.dybcio@linaro.org>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230102165034.830620-1-konrad.dybcio@linaro.org>
-References: <20230102165034.830620-1-konrad.dybcio@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Atish Patra <atishp@atishpatra.org>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Loic Poulain <loic.poulain@linaro.org>
+On Sun, Nov 13, 2022 at 9:14 PM Conor Dooley <conor@kernel.org> wrote:
+>
+> Hey Anup,
+>
+> Ditto the $subject nit here.
 
-Some SoCs require that RMTFS is also mapped to the NAV VM. Trying to
-power on the modem without that results in the whole platform crashing
-and forces a hard reboot within about 2 seconds.
+Adding "interrupt-controller:" to subject makes it longer than 80 characters.
 
-Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
-[Konrad: reword, make conditional, add a define for NAV VMID]
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
-v1 -> v2:
-No changes
+>
+> On Fri, Nov 11, 2022 at 10:12:04AM +0530, Anup Patel wrote:
+> > We add DT bindings document for RISC-V advanced platform level interrupt
+> > controller (APLIC) defined by the RISC-V advanced interrupt architecture
+> > (AIA) specification.
+> >
+> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > ---
+> >  .../interrupt-controller/riscv,aplic.yaml     | 136 ++++++++++++++++++
+> >  1 file changed, 136 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml b/Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
+> > new file mode 100644
+> > index 000000000000..0aa48571f3bc
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
+> > @@ -0,0 +1,136 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/interrupt-controller/riscv,aplic.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: RISC-V Advancded Platform Level Interrupt Controller (APLIC)
+>
+> Typo: Advanced
 
- drivers/soc/qcom/rmtfs_mem.c | 22 +++++++++++++++-------
- include/linux/qcom_scm.h     |  1 +
- 2 files changed, 16 insertions(+), 7 deletions(-)
+Okay, I will update.
 
-diff --git a/drivers/soc/qcom/rmtfs_mem.c b/drivers/soc/qcom/rmtfs_mem.c
-index 0feaae357821..999f2c5b49b0 100644
---- a/drivers/soc/qcom/rmtfs_mem.c
-+++ b/drivers/soc/qcom/rmtfs_mem.c
-@@ -171,12 +171,13 @@ static void qcom_rmtfs_mem_release_device(struct device *dev)
- static int qcom_rmtfs_mem_probe(struct platform_device *pdev)
- {
- 	struct device_node *node = pdev->dev.of_node;
--	struct qcom_scm_vmperm perms[2];
-+	struct qcom_scm_vmperm perms[3];
- 	struct reserved_mem *rmem;
- 	struct qcom_rmtfs_mem *rmtfs_mem;
-+	bool assign_to_nav;
- 	u32 client_id;
- 	u32 vmid;
--	int ret;
-+	int ret, cnt = 0;
- 
- 	rmem = of_reserved_mem_lookup(node);
- 	if (!rmem) {
-@@ -191,6 +192,8 @@ static int qcom_rmtfs_mem_probe(struct platform_device *pdev)
- 
- 	}
- 
-+	assign_to_nav = of_property_read_bool(node, "qcom,assign-to-nav");
-+
- 	rmtfs_mem = kzalloc(sizeof(*rmtfs_mem), GFP_KERNEL);
- 	if (!rmtfs_mem)
- 		return -ENOMEM;
-@@ -236,14 +239,19 @@ static int qcom_rmtfs_mem_probe(struct platform_device *pdev)
- 			goto remove_cdev;
- 		}
- 
--		perms[0].vmid = QCOM_SCM_VMID_HLOS;
--		perms[0].perm = QCOM_SCM_PERM_RW;
--		perms[1].vmid = vmid;
--		perms[1].perm = QCOM_SCM_PERM_RW;
-+		perms[cnt].vmid = QCOM_SCM_VMID_HLOS;
-+		perms[cnt++].perm = QCOM_SCM_PERM_RW;
-+		perms[cnt].vmid = vmid;
-+		perms[cnt++].perm = QCOM_SCM_PERM_RW;
-+
-+		if (assign_to_nav) {
-+			perms[cnt].vmid = QCOM_SCM_VMID_NAV;
-+			perms[cnt++].perm = QCOM_SCM_PERM_RW;
-+		}
- 
- 		rmtfs_mem->perms = BIT(QCOM_SCM_VMID_HLOS);
- 		ret = qcom_scm_assign_mem(rmtfs_mem->addr, rmtfs_mem->size,
--					  &rmtfs_mem->perms, perms, 2);
-+					  &rmtfs_mem->perms, perms, cnt);
- 		if (ret < 0) {
- 			dev_err(&pdev->dev, "assign memory failed\n");
- 			goto remove_cdev;
-diff --git a/include/linux/qcom_scm.h b/include/linux/qcom_scm.h
-index f8335644a01a..150b72edb879 100644
---- a/include/linux/qcom_scm.h
-+++ b/include/linux/qcom_scm.h
-@@ -55,6 +55,7 @@ enum qcom_scm_ice_cipher {
- #define QCOM_SCM_VMID_MSS_MSA    0xF
- #define QCOM_SCM_VMID_WLAN       0x18
- #define QCOM_SCM_VMID_WLAN_CE    0x19
-+#define QCOM_SCM_VMID_NAV        0x2B
- #define QCOM_SCM_PERM_READ       0x4
- #define QCOM_SCM_PERM_WRITE      0x2
- #define QCOM_SCM_PERM_EXEC       0x1
--- 
-2.39.0
+>
+> > +
+> > +maintainers:
+> > +  - Anup Patel <anup@brainfault.org>
+> > +
+> > +description:
+> > +  The RISC-V advanced interrupt architecture (AIA) defines advanced platform
+>                                                              ^
+> Missing an article here?
 
+Okay, I will update.
+
+>
+> > +  level interrupt controller (APLIC) for handling wired interrupts in a
+> > +  RISC-V platform. The RISC-V AIA specification can be found at
+> > +  https://github.com/riscv/riscv-aia.
+> > +
+> > +  The RISC-V APLIC is implemented as hierarchical APLIC domains where all
+> > +  interrupt sources connect to the root domain which can further delegate
+> > +  interrupts to child domains. We have one device tree node for each APLIC
+>
+> While I am nitpicking, s/We have/There is/ ?
+
+Okay, I will update.
+
+>
+> > +  domain.
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/interrupt-controller.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - vendor,chip-aplic
+>
+> Same comment here about the validity of this placeholder.
+
+Okay, I will add "riscv,qemu-aplic" as QEMU specific compatible string.
+
+>
+> > +      - const: riscv,aplic
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupt-controller: true
+> > +
+> > +  "#interrupt-cells":
+> > +    const: 2
+> > +
+> > +  interrupts-extended:
+> > +    minItems: 1
+> > +    maxItems: 16384
+> > +    description:
+> > +      The presence of this property implies that given APLIC domain directly
+>                                                    ^
+> Missing indefinite article here (and in msi-parent)?
+>
+> > +      injects external interrupts to a set of RISC-V HARTS (or CPUs). Each
+> > +      node pointed to should be a riscv,cpu-intc node, which has a riscv node
+> > +      (i.e. RISC-V HART) as parent.
+> > +
+> > +  msi-parent:
+> > +    description:
+> > +      The presence of this property implies that given APLIC domain forwards
+> > +      wired interrupts as MSIs to a AIA incoming message signaled interrupt
+> > +      controller (IMSIC). This property should be considered only when the
+> > +      interrupts-extended property is absent.
+>
+> This mutual exclusion can be represented, can't it?
+> IIRC it is some sort of oneOf thing, somewhat like below:
+> oneOf:
+>   - required:
+>       - msi-parent
+>   - required:
+>       - interrupts-extended
+>
+> AFAIR from doing the i2c ocores binding, this will force the addition of
+> one, but not both, to a node.
+>
+> Or is this not actually mutually exclusive & the msi-parent property is
+> permitted but just left unused if interrupts-extended is present?
+
+If both are present then interrupts-extended is preferred.
+
+>
+> > +  riscv,num-sources:
+> > +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> > +    minimum: 1
+> > +    maximum: 1023
+> > +    description:
+> > +      Specifies how many wired interrupts are supported by this APLIC domain.
+> > +
+> > +  riscv,children:
+> > +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> > +    minItems: 1
+> > +    maxItems: 1024
+> > +    description:
+> > +      This property represents a list of child APLIC domains for the given
+> > +      APLIC domain. Each child APLIC domain is assigned child index in
+> > +      increasing order with the first child APLIC domain assigned child
+> > +      index 0. The APLIC domain child index is used by firmware to delegate
+> > +      interrupts from the given APLIC domain to a particular child APLIC
+> > +      domain.
+> > +
+> > +  riscv,delegate:
+> > +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> > +    minItems: 1
+> > +    maxItems: 1024
+> > +    description:
+> > +      This property represents a interrupt delegation list where each entry
+> > +      is a triple consisting of child APLIC domain phandle, first interrupt
+> > +      number, and last interrupt number. The firmware will configure interrupt
+> > +      delegation registers based on interrupt delegation list.
+>
+> What is the inter dependence of the children and delegate?
+> Is it valid to have a delegate property without children?
+> Can the firmware delegate interrupts without the delegation list, based
+> on the children property alone? Or is it effectively useless without a
+> children property?
+
+Both properties convey different information. The "riscv,childen" describes
+the association of child indexes with child APLIC domains whereas the
+"riscv,delegate" describes the interrupt delegation to few of the child
+APLIC domains.
+
+
+>
+> In your examples, the second has msi-parent but neither of these custom
+> properties. Do the children/delegate properties have a meaning in the
+> msi-parent case?
+
+The "riscv,childern" and "riscv,delegate" are only useful when we have
+hierarchy of multiple APLIC domains. The second example only has
+one APLIC domain hence these custom properties are absent.
+
+>
+> I think the binding should enforce whatever dependency exists there.
+> Thanks,
+> Conor.
+>
+> > +
+> > +additionalProperties: false
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupt-controller
+> > +  - "#interrupt-cells"
+> > +  - riscv,num-sources
+> > +
+> > +examples:
+> > +  - |
+> > +    // Example 1 (APIC domain directly injecting interrupt to HARTs):
+> > +
+> > +    aplic0: interrupt-controller@c000000 {
+> > +      compatible = "vendor,chip-aplic", "riscv,aplic";
+> > +      interrupts-extended = <&cpu1_intc 11>,
+> > +                            <&cpu2_intc 11>,
+> > +                            <&cpu3_intc 11>,
+> > +                            <&cpu4_intc 11>;
+> > +      reg = <0xc000000 0x4080>;
+> > +      interrupt-controller;
+> > +      #interrupt-cells = <2>;
+> > +      riscv,num-sources = <63>;
+> > +      riscv,children = <&aplic1>;
+> > +      riscv,delegate = <&aplic1 1 63>;
+> > +    };
+> > +
+> > +    aplic1: interrupt-controller@d000000 {
+> > +      compatible = "vendor,chip-aplic", "riscv,aplic";
+> > +      interrupts-extended = <&cpu1_intc 9>,
+> > +                            <&cpu2_intc 9>,
+> > +                            <&cpu3_intc 9>,
+> > +                            <&cpu4_intc 9>;
+> > +      reg = <0xd000000 0x4080>;
+> > +      interrupt-controller;
+> > +      #interrupt-cells = <2>;
+> > +      riscv,num-sources = <63>;
+> > +    };
+> > +
+> > +  - |
+> > +    // Example 2 (APIC domain forwarding interrupts as MSIs):
+> > +
+> > +    interrupt-controller@d000000 {
+> > +      compatible = "vendor,chip-aplic", "riscv,aplic";
+> > +      msi-parent = <&imsics>;
+> > +      reg = <0xd000000 0x4000>;
+> > +      interrupt-controller;
+> > +      #interrupt-cells = <2>;
+> > +      riscv,num-sources = <63>;
+> > +    };
+> > +...
+> > --
+> > 2.34.1
+> >
+> >
+> > _______________________________________________
+> > linux-riscv mailing list
+> > linux-riscv@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-riscv
+
+Regards,
+Anup
