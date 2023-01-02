@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B87865B3E2
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 16:10:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 287B665B3E7
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 16:12:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236173AbjABPKH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 10:10:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51984 "EHLO
+        id S235970AbjABPMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 10:12:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236249AbjABPKE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 10:10:04 -0500
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 196EC958F
-        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 07:10:03 -0800 (PST)
-Received: by mail-lj1-x229.google.com with SMTP id e13so26684708ljn.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 07:10:03 -0800 (PST)
+        with ESMTP id S236269AbjABPMk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 10:12:40 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0B51C05
+        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 07:12:38 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id s25so29286985lji.2
+        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 07:12:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=F51K2k1UqyDsMK9Y8htUZq3ZisZ/a1NgKWMO6hVgpG4=;
-        b=D0Pb3yiEiAm96gLXnuPr8iBw0kUz7Oxz429nZBJ660QLCv279EabwyTWwKKc9ZfvtK
-         TdwoAMn0oeW5jwSBhpyGV/6LqnQcgPhYVqYlgiHP6B3C+mK7ZJtx+Mm906zQ4JWo5Aes
-         ohvbIUMnqw+zLzRm5NSBVGgQ5b0w3yad42GYrtk8k/iDzaykxWUclTWvSanyj8tc36uD
-         /LA4lhBwp/r+KrKqx/SXpy9FxhUmEqpMi7PEgeFsFRFQCuYyMpG3wdkQqzsPSMBhVvJy
-         IweujxddqAaftDETIvl5p7br9iJT66w/dB1gYk6VyAICFy1OymW4xVSMD2CTXM9Ab151
-         DTZA==
+        bh=USo7+f3T6DM+ZVI1Q+GwfwQEAaSUYJI+HYovM9KD9X8=;
+        b=IxTwI1VBTqMyZCdsAhJiIEqmhedNzotq8y48+Toig6Nlo59NwtQvcktscc/3uTwAno
+         0UC+y8d8BRXwNE/flgO5mX5QHQP1KvxPcppqphf3AG5VKPrQx3RPH/R0qVd2ObzAHj3I
+         +SLky2QP6qRlWjjmwWMFL6TYgUiex8SwUoDd37S9CD7q2or6fL70c3hIciZtebAG0SJD
+         v2+2ygFtmQ2tL2WNTyN6IQ/7Pd4TB5QBe0LBy8zdwTslFwfDDl50UmXRFyL/GouXuSrV
+         aH7/300h8/QUQqW9QaeS3Vq57LFxVQqDJ0wR7gqiXP1KH1HRVW4tqKQvQYr17vagnQQc
+         PL3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=F51K2k1UqyDsMK9Y8htUZq3ZisZ/a1NgKWMO6hVgpG4=;
-        b=0LVIx+zS4Yod28OiLbYq6sqUYbpqhCee89jIGHFC80HAhPmAfpm4Z5vvspP0BSoB4Q
-         N2xed0ooo8cu94aYxj8Oaw1Q3cqgY/yR6WNKLnpUjv+UP+p4qT/5JkVR++aJvA6f1vwI
-         Sd6rHdsN+Vtar4THXI0VqxizukA81MDsAIazYHaL3ch7uyZ4ML47hfTmOFmYPl3pWQg/
-         AQIglAmhzj7+65c0sWn3Qqb9nz9howcCl0vPLK+7tZAG6Y/xoNWosx0cHONOYsGbSM6i
-         qyuo5rDJq+MTHe5HcPfEbsahAwOSGFK+u5ubBdjliztgS/pzJd3eZ8UzZobGfEbfzN4b
-         lMcQ==
-X-Gm-Message-State: AFqh2kpyNBbNCy1vMBJOKrybHBTg9r4fOYhsAOPMm3nmpQ8HaYDSIj0a
-        7raFTU346omGm9XgnmEfReLyCg==
-X-Google-Smtp-Source: AMrXdXusj4s5bqU1bs/9C17CH0pow47iKrbQsKBGBcYyBzOSj/b8dymnUIz/0LTx/VbKu6EQRcDhVg==
-X-Received: by 2002:a05:651c:c90:b0:27f:f740:8260 with SMTP id bz16-20020a05651c0c9000b0027ff7408260mr499772ljb.45.1672672201461;
-        Mon, 02 Jan 2023 07:10:01 -0800 (PST)
+        bh=USo7+f3T6DM+ZVI1Q+GwfwQEAaSUYJI+HYovM9KD9X8=;
+        b=7NLJmO76gFMH1JKpzFJmdpmPI5YDeWM3uHbOfLOntoJOUcZF79uZFeG9NOslYhWFv3
+         PjzzBc6vQqKFPLoa+TKuvlGF02jDmkKqgBeR5ZSguUv9ogNwHHOJVrxinLzIeAdf2oVQ
+         NFPxQSLF4WenxGn4h5J05k2TBiEE5h4kgLA9BYNpMGOsXzINNZQnK0YWum0wzoYACZKD
+         qSbon0z2VWm14WjCfjHyrDxuVbHtvnK4If8AVc81gDbOfY3Zik5Ze0q2vcmJao8WMBrM
+         Mavb1FYsS/FhR6ZDSioD+yI8dKfbZg3s7QvYOaTHyF/lqiocaM8TnUNOtdfU5AKJKu9H
+         6Gfg==
+X-Gm-Message-State: AFqh2kqwvM9DfzJFup1DUPLPxnmH6OpjeMrkmF7p+1jPns1DtgiMEAj5
+        dsgCy1H46ZBPU7yF92o5koeE0PK7hy/n2uMc
+X-Google-Smtp-Source: AMrXdXt+Qpu9ExRxv+oDn9n7W2hxpye50tkuldJ/5Sbg4docnm2onzmpd0cC/78DTUaEKVpRm1oOhA==
+X-Received: by 2002:a05:651c:1073:b0:27f:e3af:8aae with SMTP id y19-20020a05651c107300b0027fe3af8aaemr3077259ljm.16.1672672357332;
+        Mon, 02 Jan 2023 07:12:37 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id z2-20020a2eb522000000b0027fdee02c66sm904604ljm.95.2023.01.02.07.10.00
+        by smtp.gmail.com with ESMTPSA id w5-20020ac254a5000000b004b4bb6286d8sm4474057lfk.84.2023.01.02.07.12.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Jan 2023 07:10:00 -0800 (PST)
-Message-ID: <e57164f6-7dcf-5139-1b4f-6b63f9fd7786@linaro.org>
-Date:   Mon, 2 Jan 2023 16:09:59 +0100
+        Mon, 02 Jan 2023 07:12:36 -0800 (PST)
+Message-ID: <81e3994e-49d9-ea5b-b055-cbcc737a6e37@linaro.org>
+Date:   Mon, 2 Jan 2023 16:12:35 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 6/6] arm64: dts: qcom: sm8450-hdk: fix wcd938x codec node
+Subject: Re: [PATCH 1/6] arm64: dts: qcom: sc8280xp-x13s: disable soundcard
 Content-Language: en-US
 To:     Johan Hovold <johan@kernel.org>
 Cc:     Johan Hovold <johan+linaro@kernel.org>,
@@ -67,12 +67,11 @@ Cc:     Johan Hovold <johan+linaro@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230102105038.8074-1-johan+linaro@kernel.org>
- <20230102105038.8074-7-johan+linaro@kernel.org>
- <c2a32bd3-90cf-6d1b-1ca7-76071232c81b@linaro.org>
- <791c0e37-f825-c324-7a99-163b0566c758@linaro.org>
- <Y7Ly1wlft4Y6VfIG@hovoldconsulting.com>
+ <20230102105038.8074-2-johan+linaro@kernel.org>
+ <fc42801a-55d9-90b9-f7f0-48657ec7a373@linaro.org>
+ <Y7LzJ+RRzDNRf3jR@hovoldconsulting.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y7Ly1wlft4Y6VfIG@hovoldconsulting.com>
+In-Reply-To: <Y7LzJ+RRzDNRf3jR@hovoldconsulting.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,41 +84,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/01/2023 16:05, Johan Hovold wrote:
-> On Mon, Jan 02, 2023 at 01:24:34PM +0100, Krzysztof Kozlowski wrote:
->> On 02/01/2023 13:23, Krzysztof Kozlowski wrote:
->>> On 02/01/2023 11:50, Johan Hovold wrote:
->>>> The wcd938x codec is not a memory-mapped device and does not belong
->>>> under the soc node.
->>>>
->>>> Move the node to the root node to avoid DT validation failures.
->>>>
->>>> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
->>>> ---
->>>>  arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 52 ++++++++++++-------------
->>>>  1 file changed, 25 insertions(+), 27 deletions(-)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
->>>> index 4de3e1f1c39c..217b2c654745 100644
->>>> --- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
->>>> +++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
->>>> @@ -17,6 +17,31 @@ aliases {
->>>>  		serial0 = &uart7;
->>>>  	};
->>>>  
->>>> +	wcd938x: codec {
+On 02/01/2023 16:07, Johan Hovold wrote:
+> On Mon, Jan 02, 2023 at 01:25:38PM +0100, Krzysztof Kozlowski wrote:
+>> On 02/01/2023 11:50, Johan Hovold wrote:
+>>> Driver support for the X13s soundcard is not yet in place so disable it
+>>> for now to avoid probe failures such as:
 >>>
->>> Let's call it audio-codec and put it somewhere ordered alphabetically.
->>> This avoids useless reshuffles immediately. Moving things back and forth
->>> does not make sense.
+>>> [   11.077727] qcom-prm gprsvc:service:2:2: DSP returned error[100100f] 1
+>>> [   11.077926] rx_macro: probe of 3200000.rxmacro failed with error -22
+>>> [   21.221104] platform 3210000.soundwire-controller: deferred probe pending
+>>>
+>>> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+>>> ---
+>>>  .../boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts  | 12 ++++++++++--
+>>>  1 file changed, 10 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+>>> index 0201c6776746..97ff74d5095e 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+>>> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+>>> @@ -649,6 +649,8 @@ wcd938x: codec {
+>>>  		qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
+>>>  		qcom,rx-device = <&wcd_rx>;
+>>>  		qcom,tx-device = <&wcd_tx>;
+>>> +
+>>> +		status = "disabled";
+>>>  	};
+>>>  };
+>>>  
+>>> @@ -669,6 +671,8 @@ &sound {
+>>>  		"TX DMIC2", "MIC BIAS3",
+>>>  		"TX SWR_ADC1", "ADC2_OUTPUT";
+>>>  
+>>> +	status = "disabled";
+>>> +
+>>>  	wcd-playback-dai-link {
+>>>  		link-name = "WCD Playback";
+>>>  		cpu {
+>>> @@ -731,6 +735,8 @@ codec {
+>>>  };
+>>>  
+>>>  &swr0 {
+>>> +	status = "disabled";
+>>> +
+>>>  	left_spkr: wsa8830-left@0,1 {
+>>>  		compatible = "sdw10217020200";
+>>>  		reg = <0 1>;
+>>> @@ -757,7 +763,7 @@ right_spkr: wsa8830-right@0,2{
+>>>  };
+>>>  
+>>>  &swr1 {
+>>> -	status = "okay";
+>>> +	status = "disabled";
+>>>  
+>>>  	wcd_rx: wcd9380-rx@0,4 {
+>>>  		compatible = "sdw20217010d00";
+>>> @@ -767,7 +773,7 @@ wcd_rx: wcd9380-rx@0,4 {
+>>>  };
+>>>  
+>>>  &swr2 {
+>>> -	status = "okay";
+>>> +	status = "disabled";
 >>
->> Eh, on the other hand SM8250-MTP uses name codec so maybe the rename in
->> SC8280xp should be dropped.
+>> That's a double disable.
+>>
+>>>  
+>>>  	wcd_tx: wcd9380-tx@0,3 {
+>>>  		compatible = "sdw20217010d00";
+>>> @@ -781,6 +787,8 @@ &vamacro {
+>>>  	pinctrl-names = "default";
+>>>  	vdd-micb-supply = <&vreg_s10b>;
+>>>  	qcom,dmic-sample-rate = <600000>;
+>>> +
+>>> +	status = "disabled";
+>>
+>> That's a double disable.
 > 
-> Nah, let's go with audio-codec. Your MTP change hasn't been merged yet
-> so we can still drop or respin that one.
+> Yes, that's on purpose. We're temporarily disabling these nodes instead
+> of reverting the series which should not have been merged.
 
-It was, ~5 days ago, so please rebase.
+I don't get why disabling something twice is anyhow related to
+"temporarily disable". One disable is enough for temporary or permanent
+disables.
+
+> 
+> Once we have driver support, these properties will be updated again.
+
+Linux kernel is not the only consumer of DTS, thus having or not having
+the support in the kernel is not reason to disable pieces of it.
+Assuming the DTS is correct, of course, because maybe that's the problem?
 
 Best regards,
 Krzysztof
