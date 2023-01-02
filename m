@@ -2,275 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E95665ADE6
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 09:10:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05C0C65AE16
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 09:28:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230031AbjABIKl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 03:10:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40828 "EHLO
+        id S230324AbjABI2F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 03:28:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230286AbjABIKk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 03:10:40 -0500
-Received: from smtpout1.mo528.mail-out.ovh.net (smtpout1.mo528.mail-out.ovh.net [46.105.34.251])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 789331092;
-        Mon,  2 Jan 2023 00:10:38 -0800 (PST)
-Received: from pro2.mail.ovh.net (unknown [10.109.156.102])
-        by mo528.mail-out.ovh.net (Postfix) with ESMTPS id 32A62148D7E6C;
-        Mon,  2 Jan 2023 09:10:36 +0100 (CET)
-Received: from localhost.localdomain (88.161.25.233) by DAG1EX1.emp2.local
- (172.16.2.1) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.16; Mon, 2 Jan
- 2023 09:10:35 +0100
-From:   Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-To:     <lee.jones@linaro.org>, <pavel@ucw.cz>, <robh+dt@kernel.org>,
-        <sven.schwermer@disruptive-technologies.com>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <johan+linaro@kernel.org>, <marijn.suijten@somainline.org>,
-        <andy.shevchenko@gmail.com>, <jacek.anaszewski@gmail.com>,
-        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-Subject: [PATCH v7 6/6] leds: Add a multicolor LED driver to group monochromatic LEDs
-Date:   Mon, 2 Jan 2023 09:10:21 +0100
-Message-ID: <20230102081021.138648-7-jjhiblot@traphandler.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230102081021.138648-1-jjhiblot@traphandler.com>
-References: <20230102081021.138648-1-jjhiblot@traphandler.com>
+        with ESMTP id S230384AbjABI1l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 03:27:41 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 787A0E5A
+        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 00:27:39 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id 1so40689621lfz.4
+        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 00:27:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=L04AZWaiWesb6eBK3cp/zqwn40YV+OPlEgA7md0ob4U=;
+        b=F9fBHuM9sdn6dwEo0JrNQ8JASX2OM+8r/5ItrgBR23G+lJ6RmmCkYZhjxrNTl7V7cR
+         UX2K3scWpfkFYc4m+wwHszrPFDElfDpUBgFjSvfVk8H1p9m21SRgE6iBiDwqi7dH8lph
+         nhTLCjTxe3l6vhUciHjLYkDV7F57wqLcJh0JEsEpoW9BLRDobo6ZDrQw/ejv96ZpvaHG
+         ll+EggShdprOatpI3JJ79+8l0gPiU483TNrZpJPfQzKkff4MWHrXp0472VeAt+s8CtCP
+         fQcLbME1t221tjtp08kZQCgrmW8REFWIabmI39mjYS0Ene/4NqhZlCZiaHzUW04+bYXq
+         I7fQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=L04AZWaiWesb6eBK3cp/zqwn40YV+OPlEgA7md0ob4U=;
+        b=t3dFJSRLnfYkFWiXkzPX3zGRBTtqVFnicCxbR+4dAZ7D/yZ1lp7QHqnn2PwXMzzz5D
+         3LtZVbZWY4jk5gGabC8DZROJxC2nBrnISrHbQ1AKb8/E5x951IGM3cr5POtmrqOTZOGE
+         Da983orHlobvdx3sZSnqAQfeab22cI3nJft3eN6NEQdUzX8iLptOTH6aPR+3JcgWmQrn
+         jw6X4oqFpuE1iZVelVrdT0UMamDC4xqqOcL91clYoNPZubUTrHgaBrVKzUnyz4uPhM7u
+         ui/m1kNlsB0ujn/t7oIvmdenpBLdHm9cYcGvN/cA2DT84PHOO9/36oSS0FYH0PNLQUzB
+         c32Q==
+X-Gm-Message-State: AFqh2kqMsyXEixGYc01MuXYkcNCz6U14G+CymQG6Z3mZEsVMsXTQlvvA
+        Zxz4rxnlhQHwE0clOdjkaJmYBA==
+X-Google-Smtp-Source: AMrXdXsc6wd1cCK9qhTawzgWuFX069SRtNljbI7ok5uULLoEn6bdnw0/TAsWEbw0dogDTTGFMNPOxQ==
+X-Received: by 2002:ac2:464f:0:b0:4b5:7925:870d with SMTP id s15-20020ac2464f000000b004b57925870dmr12169856lfo.12.1672648057834;
+        Mon, 02 Jan 2023 00:27:37 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id h13-20020a05651211cd00b004a2511b8224sm4336808lfr.103.2023.01.02.00.27.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Jan 2023 00:27:37 -0800 (PST)
+Message-ID: <546b74c0-27b2-30f5-86b5-b6606eef474f@linaro.org>
+Date:   Mon, 2 Jan 2023 09:27:36 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [88.161.25.233]
-X-ClientProxiedBy: DAG3EX2.emp2.local (172.16.2.22) To DAG1EX1.emp2.local
- (172.16.2.1)
-X-Ovh-Tracer-Id: 10483254034904857051
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: 0
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvhedrjedugdduudejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucenucfjughrpefhvfevufffkffojghfggfgtghisehtkeertdertddtnecuhfhrohhmpeflvggrnhdqlfgrtghquhgvshcujfhisghlohhtuceojhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmqeenucggtffrrghtthgvrhhnpeduteevleevvefggfdvueffffejhfehheeuiedtgedtjeeghfehueduudegfeefueenucfkphepuddvjedrtddrtddruddpkeekrdduiedurddvhedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeduvdejrddtrddtrddupdhmrghilhhfrhhomhepoehjjhhhihgslhhothesthhrrghphhgrnhgulhgvrhdrtghomheqpdhnsggprhgtphhtthhopedupdhrtghpthhtoheplhgvvgdrjhhonhgvsheslhhinhgrrhhordhorhhgpdhprghvvghlsehutgifrdgtiidprhhosghhodgutheskhgvrhhnvghlrdhorhhgpdhsvhgvnhdrshgthhifvghrmhgvrhesughishhruhhpthhivhgvqdhtvggthhhnohhlohhgihgvshdrtghomhdpkhhriiihshiithhofhdrkhhoiihlohifshhkihdoughtsehlihhnrghrohdrohhrghdpjhhohhgrnhdolhhinhgrrhhosehkvghrnhgvlhdrohhrghdpmhgrrhhijhhnrdhsuhhijhhtvghnsehsohhmrg
- hinhhlihhnvgdrohhrghdprghnugihrdhshhgvvhgthhgvnhhkohesghhmrghilhdrtghomhdpjhgrtggvkhdrrghnrghsiigvfihskhhisehgmhgrihhlrdgtohhmpdhlihhnuhigqdhlvggushesvhhgvghrrdhkvghrnhgvlhdrohhrghdpuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhohedvkedpmhhouggvpehsmhhtphhouhht
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [RFC PATCH v2 2/3] dt-bindings: usb: generic-xhci: add Samsung
+ Exynos compatible
+To:     Jung Daehwan <dh10.jung@samsung.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>, sc.suh@samsung.com,
+        taehyun.cho@samsung.com, jh0801.jung@samsung.com,
+        eomji.oh@samsung.com
+References: <1672307866-25839-1-git-send-email-dh10.jung@samsung.com>
+ <CGME20221229100416epcas2p3614b693ab922aadbdc76c0387f768de9@epcas2p3.samsung.com>
+ <1672307866-25839-3-git-send-email-dh10.jung@samsung.com>
+ <d84f46f5-9975-cde2-0b56-b51990e27150@linaro.org>
+ <20230102053037.GA74470@ubuntu>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230102053037.GA74470@ubuntu>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-By allowing to group multiple monochrome LED into multicolor LEDs,
-all involved LEDs can be controlled in-sync. This enables using effects
-using triggers, etc.
+On 02/01/2023 06:30, Jung Daehwan wrote:
+> On Thu, Dec 29, 2022 at 11:19:09AM +0100, Krzysztof Kozlowski wrote:
+>> On 29/12/2022 10:57, Daehwan Jung wrote:
+>>> Add compatible for Samsung Exynos SOCs
+>>
+>> Missing full stop. Please explain here in details the hardware.
+>> Otherwise it looks it is not for any hardware and patch should be dropped.
+>>
+> 
+> I got it. This patch may be for new feature of generic xhci not for exynos.
+> I will add hardware description on next submission.
+> 
+>> Also, missing DTS. I am going to keep NAK-ing this till you provide the
+>> user.
+>>
+>> NAK.
+>>
+> 
+> I've added a example and checked bindings following below guides.
+> 
+> https://docs.kernel.org/devicetree/bindings/submitting-patches.html
+> https://docs.kernel.org/devicetree/bindings/writing-schema.html
+> 
+> I have no idea that I have to also submit DTS.
+> I will submit it on next submission.
 
-Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
----
- drivers/leds/rgb/Kconfig                 |  10 ++
- drivers/leds/rgb/Makefile                |   1 +
- drivers/leds/rgb/leds-group-multicolor.c | 166 +++++++++++++++++++++++
- 3 files changed, 177 insertions(+)
- create mode 100644 drivers/leds/rgb/leds-group-multicolor.c
+I have doubts that this accurate description of hardware, therefore I
+want the DTS user of these bindings which will show entire picture.
 
-diff --git a/drivers/leds/rgb/Kconfig b/drivers/leds/rgb/Kconfig
-index 204cf470beae..1a87f53faa8a 100644
---- a/drivers/leds/rgb/Kconfig
-+++ b/drivers/leds/rgb/Kconfig
-@@ -2,6 +2,16 @@
- 
- if LEDS_CLASS_MULTICOLOR
- 
-+config LEDS_GRP_MULTICOLOR
-+	tristate "Multi-color LED grouping support"
-+	depends on COMPILE_TEST || OF
-+	help
-+	  This option enables support for monochrome LEDs that are
-+	  grouped into multicolor LEDs.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called leds-grp-multicolor.
-+
- config LEDS_PWM_MULTICOLOR
- 	tristate "PWM driven multi-color LED Support"
- 	depends on PWM
-diff --git a/drivers/leds/rgb/Makefile b/drivers/leds/rgb/Makefile
-index 0675bc0f6e18..4de087ad79bc 100644
---- a/drivers/leds/rgb/Makefile
-+++ b/drivers/leds/rgb/Makefile
-@@ -1,4 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
- 
-+obj-$(CONFIG_LEDS_GRP_MULTICOLOR)	+= leds-group-multicolor.o
- obj-$(CONFIG_LEDS_PWM_MULTICOLOR)	+= leds-pwm-multicolor.o
- obj-$(CONFIG_LEDS_QCOM_LPG)		+= leds-qcom-lpg.o
-diff --git a/drivers/leds/rgb/leds-group-multicolor.c b/drivers/leds/rgb/leds-group-multicolor.c
-new file mode 100644
-index 000000000000..1c99bedf8979
---- /dev/null
-+++ b/drivers/leds/rgb/leds-group-multicolor.c
-@@ -0,0 +1,166 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * multi-color LED built with monochromatic LED devices
-+ *
-+ * Copyright 2022 Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-+ */
-+
-+#include <linux/err.h>
-+#include <linux/leds.h>
-+#include <linux/led-class-multicolor.h>
-+#include <linux/math.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+
-+struct led_mcg_priv {
-+	struct led_classdev_mc mc_cdev;
-+	struct led_classdev **monochromatics;
-+};
-+
-+static int led_mcg_set(struct led_classdev *cdev,
-+			  enum led_brightness brightness)
-+{
-+	struct led_classdev_mc *mc_cdev = lcdev_to_mccdev(cdev);
-+	struct led_mcg_priv *priv = container_of(mc_cdev, struct led_mcg_priv, mc_cdev);
-+	const unsigned int mc_max_brightness = mc_cdev->led_cdev.max_brightness;
-+	int i;
-+
-+	for (i = 0; i < mc_cdev->num_colors; i++) {
-+		struct led_classdev *mono = priv->monochromatics[i];
-+		const unsigned int mono_max = mono->max_brightness;
-+		unsigned int rel_intensity = mc_cdev->subled_info[i].intensity;
-+		int b;
-+
-+		/*
-+		 * Scale the brightness according to relative intensity of the
-+		 * color AND the max brightness of the monochromatic LED.
-+		 */
-+		b = DIV_ROUND_CLOSEST(brightness * rel_intensity * mono_max,
-+			mc_max_brightness * mc_max_brightness);
-+
-+		led_set_brightness(mono, b);
-+	}
-+
-+	return 0;
-+}
-+
-+static void restore_sysfs_access(void *data)
-+{
-+	struct led_classdev *led_cdev = data;
-+
-+	mutex_lock(&led_cdev->led_access);
-+	led_sysfs_enable(led_cdev);
-+	mutex_unlock(&led_cdev->led_access);
-+}
-+
-+static int led_mcg_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct led_init_data init_data = {};
-+	struct led_classdev *cdev;
-+	struct mc_subled *subled;
-+	struct led_mcg_priv *priv;
-+	unsigned int max_brightness;
-+	int i, count, ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	count = 0;
-+	max_brightness = 0;
-+	for (;;) {
-+		struct led_classdev *led_cdev;
-+
-+		led_cdev = devm_of_led_get_optional(dev, count);
-+		if (IS_ERR(led_cdev))
-+			return dev_err_probe(dev, PTR_ERR(led_cdev),
-+					     "Unable to get led #%d", count);
-+		/* Reached the end of the list ?*/
-+		if (!led_cdev)
-+			break;
-+
-+		priv->monochromatics = devm_krealloc_array(dev, priv->monochromatics,
-+					count + 1, sizeof(*priv->monochromatics),
-+					GFP_KERNEL);
-+		if (!priv->monochromatics)
-+			return -ENOMEM;
-+
-+		priv->monochromatics[count] = led_cdev;
-+
-+		max_brightness = max(max_brightness, led_cdev->max_brightness);
-+
-+		count++;
-+	}
-+
-+	subled = devm_kcalloc(dev, count, sizeof(*subled), GFP_KERNEL);
-+	if (!subled)
-+		return -ENOMEM;
-+	priv->mc_cdev.subled_info = subled;
-+
-+	for (i = 0; i < count; i++) {
-+		struct led_classdev *led_cdev = priv->monochromatics[i];
-+
-+		subled[i].color_index = led_cdev->color;
-+		/* configure the LED intensity to its maximum */
-+		subled[i].intensity = max_brightness;
-+	}
-+
-+	/* init the multicolor's LED class device */
-+	cdev = &priv->mc_cdev.led_cdev;
-+	cdev->flags = LED_CORE_SUSPENDRESUME;
-+	cdev->brightness_set_blocking = led_mcg_set;
-+	cdev->max_brightness = max_brightness;
-+	cdev->color = LED_COLOR_ID_MULTI;
-+	priv->mc_cdev.num_colors = count;
-+
-+	init_data.fwnode = dev_fwnode(dev);
-+	ret = devm_led_classdev_multicolor_register_ext(dev, &priv->mc_cdev,
-+							&init_data);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+			"failed to register multicolor led for %s.\n",
-+			cdev->name);
-+
-+	ret = led_mcg_set(cdev, cdev->brightness);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "failed to set led value for %s.",
-+				     cdev->name);
-+
-+	for (i = 0; i < count; i++) {
-+		struct led_classdev *led_cdev = priv->monochromatics[i];
-+
-+		/* Make the sysfs of the monochromatic LED read-only */
-+		mutex_lock(&led_cdev->led_access);
-+		led_sysfs_disable(led_cdev);
-+		mutex_unlock(&led_cdev->led_access);
-+
-+		/* Restore sysfs access when the multicolor LED is released */
-+		devm_add_action_or_reset(dev, restore_sysfs_access, led_cdev);
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id of_led_mcg_match[] = {
-+	{ .compatible = "leds-group-multicolor" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, of_led_mcg_match);
-+
-+static struct platform_driver led_mcg_driver = {
-+	.probe		= led_mcg_probe,
-+	.driver		= {
-+		.name	= "leds_group_multicolor",
-+		.of_match_table = of_led_mcg_match,
-+	}
-+};
-+module_platform_driver(led_mcg_driver);
-+
-+MODULE_AUTHOR("Jean-Jacques Hiblot <jjhiblot@traphandler.com>");
-+MODULE_DESCRIPTION("multi-color LED group driver");
-+MODULE_LICENSE("GPL");
-+MODULE_ALIAS("platform:leds-group-multicolor");
--- 
-2.25.1
+> 
+>>>
+>>> Signed-off-by: Daehwan Jung <dh10.jung@samsung.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/usb/generic-xhci.yaml | 2 ++
+>>>  1 file changed, 2 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/usb/generic-xhci.yaml b/Documentation/devicetree/bindings/usb/generic-xhci.yaml
+>>> index db841589fc33..f54aff477637 100644
+>>> --- a/Documentation/devicetree/bindings/usb/generic-xhci.yaml
+>>> +++ b/Documentation/devicetree/bindings/usb/generic-xhci.yaml
+>>> @@ -29,6 +29,8 @@ properties:
+>>>          enum:
+>>>            - brcm,xhci-brcm-v2
+>>>            - brcm,bcm7445-xhci
+>>> +      - description: Samsung Exynos SoCs with xHCI
+>>> +        const: samsung,exynos-xhci
+>>
+>> Missing fallback.
+> 
+> Modifying it like below is OK?
+> 
+> decription: Samsung Exynos SoCs with xHCI
+>         items:
+>             - const: samsung,exynos-xhci
+>             - const: generic-xhci
+
+To this comment yes, but in general this does not solve my concerns that
+it does not look like real hardware at all.
+
+
+Best regards,
+Krzysztof
 
