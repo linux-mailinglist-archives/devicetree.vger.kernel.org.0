@@ -2,176 +2,268 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 040F565B48B
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 17:00:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 81C5A65B4A7
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 17:07:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236443AbjABQA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 11:00:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49308 "EHLO
+        id S234352AbjABQHE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 11:07:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236475AbjABQAR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 11:00:17 -0500
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1931DA47F
-        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 08:00:13 -0800 (PST)
-Received: by mail-ej1-x62e.google.com with SMTP id qk9so67407758ejc.3
-        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 08:00:13 -0800 (PST)
+        with ESMTP id S236493AbjABQG1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 11:06:27 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D692234
+        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 08:06:24 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id bk16so13479918wrb.11
+        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 08:06:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=QdGO/Cj1/ubTCIoWpQ1S17UZ9pxZ4OvM4+Xa6YgQiKA=;
-        b=PzS1VDjsgwqEFFBxDnR4rAJhgt6ILaS1/BVhKMvhwbL/KbZqWLE/l+GqAzUq9z1MSB
-         ip+m7PvwO0uPL2HCaEFZkI56EU+PlILA7jM17YwIcS4b1GWyoFDn9xrELjYoh3z9Pz73
-         iprMd1cKooSGQ4XnShExYuUrtsix+0IZhz8i+Pd9tipprU3jJ1sZN41AjTsJB/7XYHEn
-         mAtldrkozc+3z4EWoRAO0h1OV9IQ4uoobHRgRE7VxMumBnCDw1rW66/P7rRltVZHCuak
-         y+RRK4+di0lVdxsuxFACUACFXwa0kskdwOGWjDva0Pqhlt3MJuQ8USFXBTTptK4+BTOX
-         3IUQ==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=yjXxn0Gm+72C4uouOQHc+bGyejQ/xXoLI7xGm1lh+LU=;
+        b=DBhyN0p+sU1au65Ro4tSm2WuyZt+j+NaZhAKpfNLICLjbM5H/QpGwLLOMeHbFxv29y
+         H2FlN7VBQzD1hnwe5cLzuwONwYvpbzHQqAdMp/KBaOPdguNJeXfk0TaTvVhTLTPa4/fq
+         MBVDWtDFs+WXwOI/D7b0Z6vx9YZk3z4OwzGK65RdYmDJ9mKCvmqhTvbWqWR6xH7oVfmN
+         FJqXLe5bKSGnGQY7QINUHY6fmvyNeiJi3V0yVoCQLstULLKPmi+VCgezoU96MP6JMuxZ
+         R6ES20SFZjBXVNEdmzVvST7eUycLV2N4JRTmKRW4kfrKckVDWMqkNJpal7R7+tXgTo5T
+         H7yg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=QdGO/Cj1/ubTCIoWpQ1S17UZ9pxZ4OvM4+Xa6YgQiKA=;
-        b=CIAtpQWngTzsuu7CRpPnYrk3uu2yR/7wuja7jZ5ynR8W6Kzf9bgnSeit0o6QXRMWLq
-         k3Zm12lQ/O7nyW6YJVFYIhMlmGn6kvOmLmuGN5tuHJn01gGSi9tuJOk5Kt0DU1gy9X5z
-         5SnutiowqCrj8mgsxE2SHpg2oOF+UYV0zP7/JZn4KhKtuc+RRRV3LQSZz8VTNGyU/zH2
-         SIp1muhqdjnJUsEuQJMQHBeC6qANdCcTfTNtHRA3DJmEkDhjXI/eWPTMWUQopYZCAAT0
-         rksZevik+lkl9IvO+ayIRGrOwebviJYliJVh/LjaUrqWJR3c5AMedz0+UnkGbBvzxPwS
-         ROnQ==
-X-Gm-Message-State: AFqh2kowXEoP4yQd+317R7b+dPlutxL3roIXVDRzdtt7jOiXM6a61LzJ
-        d4ImXFyGJrwfxxcxoMAxteiwgT1HkiTkaTmfUvgqew==
-X-Google-Smtp-Source: AMrXdXs/VZbo17ZwC4OQSrc7NldaTAtNJO2KsXVEHRQyJnMVyMmMgaXn+sI/CGaUaRj3me6hgBfuqsoiNCGsM2hwXFw=
-X-Received: by 2002:a17:906:3385:b0:7b2:7af0:c231 with SMTP id
- v5-20020a170906338500b007b27af0c231mr2689886eja.240.1672675211538; Mon, 02
- Jan 2023 08:00:11 -0800 (PST)
+        bh=yjXxn0Gm+72C4uouOQHc+bGyejQ/xXoLI7xGm1lh+LU=;
+        b=mfJJbY896sILbwfJ4KzdgRsh+48vPM62ozC78ygaZ8vMriCrZBRET3xw4vwH19wtUW
+         8LUO9jNrAHTIVx7iBoxofjhvoH5nRyk99vHbHAbeY5WF1yv10ZXrsIHNxHMRx5WVp1J8
+         NxCOXulDXmkuECa1kdUtsC8iNoAGLtMHDtmR1cRKmXXMAwbeL+SjJLgPvE5DhVAon0Rx
+         wd3F4e0Wx2jaPyDKjXKFqeX7ORpyhkAaNUYxNmHMKP93sqP74mDq7egqbn0iwehk7/Mz
+         5xbPZ0tU7vY+e+ANKXOHpvOU1Ue1VcEElmatpT6mCMajTFFoJ7lPkJavR9kK7Yti7Ygj
+         ISrw==
+X-Gm-Message-State: AFqh2kpOuu+ewamzTU6sMMz6PKlNCu3gjvzRxRWQAhyMHZM3s5HgDWRs
+        Zb0xzbREzV0ErN94YJqPwZGFow==
+X-Google-Smtp-Source: AMrXdXt3Pchs9Wngt3PAgATIOjyl4UrTNzJyUg65G9w7v3CDUOM+cQRnPVTI6yOPy8Rw40P8egVifQ==
+X-Received: by 2002:adf:fc4a:0:b0:27e:315e:d279 with SMTP id e10-20020adffc4a000000b0027e315ed279mr16343571wrs.32.1672675582751;
+        Mon, 02 Jan 2023 08:06:22 -0800 (PST)
+Received: from [127.0.1.1] (158.22.5.93.rev.sfr.net. [93.5.22.158])
+        by smtp.googlemail.com with ESMTPSA id t5-20020a5d49c5000000b0028cf987d944sm11868020wrs.33.2023.01.02.08.06.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Jan 2023 08:06:22 -0800 (PST)
+Subject: [PATCH v8 0/6] Add MediaTek MT6357 PMIC support
 MIME-Version: 1.0
-References: <20221111044207.1478350-1-apatel@ventanamicro.com>
- <20221111044207.1478350-5-apatel@ventanamicro.com> <9be58cb4-4ee8-a6e0-7a0a-f2f581e394d3@linaro.org>
- <CAK9=C2X55CG6tjjiTPrecnnZZiwTOS1BSH3UTPa-fLBm38WdLA@mail.gmail.com> <20221116191436.GA576695-robh@kernel.org>
-In-Reply-To: <20221116191436.GA576695-robh@kernel.org>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Mon, 2 Jan 2023 21:29:59 +0530
-Message-ID: <CAAhSdy02xHvwbv53rH+mdp1=0V-i5EgDjEUY0Tr=4nzg8fK3sQ@mail.gmail.com>
-Subject: Re: [PATCH 4/9] dt-bindings: Add RISC-V incoming MSI controller bindings
-To:     Rob Herring <robh@kernel.org>
-Cc:     Anup Patel <apatel@ventanamicro.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-b4-tracking: H4sIAOkAs2MC/33QwWrDMAwA0F8pPs/DkSPL2Wn/MXawYmcxpEmx00Ap+fdpO44sJyEJPSE9VU0lp6
+ reLk9V0pZrXmZJ/MtF9WOYv5LOUXIFBqAxBvV1dRZJ1/vttpRVI1rj2UOydlAyxKEmzSXM/Shj832a
+ pDjmui7l8btkAwkf/3obaKOHhjhAhGhC987hMWUu6bVfrupTtM2eC1YESoYj9bZBhgOhPRdaETACM/
+ rkjKcDAc8FFMFLK3aIMdp4ILhzwYnQDug7QsdpCAcCnQv0IxDJBQ04av9+ct/3bwTziJL+AQAA
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Date:   Mon, 02 Jan 2023 17:06:01 +0100
+Message-Id: <20221005-mt6357-support-v8-0-560caaafee53@baylibre.com>
+To:     Mark Brown <broonie@kernel.org>,
+        Tianping Fang <tianping.fang@mediatek.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Fabien Parent <fabien.parent@linaro.org>,
+        Lee Jones <lee@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Atish Patra <atishp@atishpatra.org>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Chen Zhong <chen.zhong@mediatek.com>,
+        Pavel Machek <pavel@ucw.cz>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Flora Fu <flora.fu@mediatek.com>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     Alexandre Mergnat <amergnat@baylibre.com>,
+        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-rtc@vger.kernel.org, linux-leds@vger.kernel.org,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        Fabien Parent <fparent@baylibre.com>,
+        linux-input@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+X-Mailer: b4 0.10.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6715; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=y+wz6c4W9HrqoN7G2jonBGgIm26tMVUUbm/Y5LjIEto=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBjswD8T/0NFNmSdPBmNpUaUOCEMfw/f8dvxPpEtDAY
+ 8btKQJeJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCY7MA/AAKCRArRkmdfjHURd15D/
+ 9nQyB3IXZ8ob1pZ4iFKmdX2Ni08WDhAN66H7D5b6P/dEaDy8MrzhS+PKlh4yC3ofgAzpEQOn5GP+ZJ
+ 6CanCOubi0s4dnuueTlzQLCjjGWg2UwEc1zfLsZ6e495w4Z2OS8UZOfjYZvzhU5lyvrjVByk9eQ65n
+ JXItaBpLqtTI9SVV053Ej2sNEoqTiHBKv63Ae0huQeGq9M+GamEtsYuy68ODlOjixJYyj3M9n4VtNy
+ STPvi61fWp9vLjRkliWxuaJ7bMjSHrLSZZQw8nuPA/U6igBlO2EmR8l0SKdAc8er+LMSFP8IIyrkHG
+ e19KCkiMpbFXBHPIozh7e8+glnpdLJX6KX83stIoi9/48Yl6HKmTVInOh7R8zxo0I/xoe/GeDnOaAJ
+ i2/BdY9RDAMR5PkllXuTeIleZB7M6+v5dC8yf3ABj9iPEowKtyqaEyK7lhCu607N++fzN1OEaPfLLC
+ iT8Xfp3Fp+IKDBzmLAgISeUYssrtgwmTBwNB12oSCfCEZ7bIqdylPsCadwlMIKa8dD1fEkaMFUZkrn
+ H7nuZeaWX4pfSpAfyn6jjUzODNz0fHbBBOMcqad/90B5i1JismpGzT5yoSa+H1IBOWxwZWUz6TyT8C
+ C87sbBxBKXuFhFxBITAjLbH28DCf1eAqZXLbdb/z/smgoSUErI50CDItGQDQ==
+X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
+ fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 17, 2022 at 12:44 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Mon, Nov 14, 2022 at 05:36:06PM +0530, Anup Patel wrote:
-> > On Mon, Nov 14, 2022 at 3:19 PM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> > >
-> > > On 11/11/2022 05:42, Anup Patel wrote:
-> > > > We add DT bindings document for RISC-V incoming MSI controller (IMSIC)
-> > > > defined by the RISC-V advanced interrupt architecture (AIA) specification.
-> > > >
-> > > > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> > > > ---
-> > > >  .../interrupt-controller/riscv,imsic.yaml     | 174 ++++++++++++++++++
-> > > >  1 file changed, 174 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml b/Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..05106eb1955e
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml
-> > > > @@ -0,0 +1,174 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/interrupt-controller/riscv,imsic.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: RISC-V Incoming MSI Controller (IMSIC)
-> > > > +
-> > > > +maintainers:
-> > > > +  - Anup Patel <anup@brainfault.org>
-> > > > +
-> > > > +description:
-> > > > +  The RISC-V advanced interrupt architecture (AIA) defines a per-CPU incoming
-> > > > +  MSI controller (IMSIC) for handling MSIs in a RISC-V platform. The RISC-V
-> > > > +  AIA specification can be found at https://github.com/riscv/riscv-aia.
-> > > > +
-> > > > +  The IMSIC is a per-CPU (or per-HART) device with separate interrupt file
-> > > > +  for each privilege level (machine or supervisor). The configuration of
-> > > > +  a IMSIC interrupt file is done using AIA CSRs and it also has a 4KB MMIO
-> > > > +  space to receive MSIs from devices. Each IMSIC interrupt file supports a
-> > > > +  fixed number of interrupt identities (to distinguish MSIs from devices)
-> > > > +  which is same for given privilege level across CPUs (or HARTs).
-> > > > +
-> > > > +  The arrangement of IMSIC interrupt files in MMIO space of a RISC-V platform
-> > > > +  follows a particular scheme defined by the RISC-V AIA specification. A IMSIC
-> > > > +  group is a set of IMSIC interrupt files co-located in MMIO space and we can
-> > > > +  have multiple IMSIC groups (i.e. clusters, sockets, chiplets, etc) in a
-> > > > +  RISC-V platform. The MSI target address of a IMSIC interrupt file at given
-> > > > +  privilege level (machine or supervisor) encodes group index, HART index,
-> > > > +  and guest index (shown below).
-> > > > +
-> > > > +  XLEN-1           >=24                                 12    0
-> > > > +  |                  |                                  |     |
-> > > > +  -------------------------------------------------------------
-> > > > +  |xxxxxx|Group Index|xxxxxxxxxxx|HART Index|Guest Index|  0  |
-> > > > +  -------------------------------------------------------------
-> > > > +
-> > > > +  The device tree of a RISC-V platform will have one IMSIC device tree node
-> > > > +  for each privilege level (machine or supervisor) which collectively describe
-> > > > +  IMSIC interrupt files at that privilege level across CPUs (or HARTs).
-> > > > +
-> > > > +allOf:
-> > > > +  - $ref: /schemas/interrupt-controller.yaml#
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    items:
-> > > > +      - enum:
-> > > > +          - vendor,chip-imsics
-> > >
-> > > There is no such vendor... As Conor pointed out, this does not look
-> > > correct. Compatibles must be real and specific.
-> >
-> > Previously, Rob had suggest to:
-> > 1) Mandate two compatible strings: one for implementation and
-> >     and second for specification
-> > 2) Since this is new specification with QEMU being the only
-> >     implementation, we add "vendor,chip-imsics" as dummy
-> >     implementation specific string for DT schema checkers
-> >     to pass the examples. Once we have an actual implementation,
-> >    we will replace this dummy string.
->
-> What will QEMU's DT use? That's an implementation we can and do run
-> validation on. Your choices are define a QEMU specific compatible string
-> or allow the fallback alone. I'm fine either way. With the latter,
-> someone has to review that the fallback is not used alone in .dts files
-> while doing the former allows the tools to check for you. It also
-> encourages making every new difference a property rather than implied by
-> compatible, but those should be caught in review.
->
-> If you go with the fallback only, just make it clear that it's for QEMU
-> or s/w models only.
+Hi,
+This patch series adds MFD, PMIC keys, and regulator support for MT6357.
+MT6357 is a MediaTek PMIC very similar to MT6358.
 
-Sure, I will add  "riscv,qemu-imsics" as QEMU specific compatible string.
+Currently, MTK bindings related to the PMICs are not converted yet (still .txt):
+
+soc/mediatek/pwrap.txt (all PMIC parent)
+      |
+      V
+mfd/mt6397.txt (support lot of mt63XX PMIC)
+      +---------------+----------------+---...
+      V               V                V
+regulator/...      rtc/...          codec/...
+
+1) Convert pwrap to yaml is ok.
+
+2) For the PMIC bindings, there are two option:
+- Convert mt6397.txt to mediatek,mt6397.yaml and continue to support multiple
+  PMIC with only one file. IMO, the file will be hard to read because
+  the supported features aren't the same for each PMIC.
+
+- Make a binding file for each PMIC ref:
+    - mfd/mediatek,mt6357.yaml
+    - mfd/mediatek,mt6358.yaml
+    - ...
+
+3) All PMIC daughter bindings (regulator, rtc, codec, led, ...) aren't fully
+converted yet. Refering to the two PMIC convertion options above:
+- To be clean, all daughter bindings should be converted. This is hard because
+  a good understanding of each device is requiered to write efficient bindings.
+- Only daughter bindings supported by the added PMIC should be converted, that
+  allows to do the task conversion step by step.
+
+In the V4 of this serie, I chose the second option.
 
 Regards,
-Anup
+Alex
+
+Changes in v8:
+- Remove the 2 applied patches (v6.2-rc1) from the serie.
+    - regulator: dt-bindings: Add binding schema for mt6357 regulators
+    - regulator: add mt6357 regulator
+- Rebase from v6.2-tmp/soc branch, got from kernel/git/matthias.bgg/linux.git
+- Link to v7: https://lore.kernel.org/r/20221005-mt6357-support-v7-0-477e60126749@baylibre.com
+
+Changes in v7:
+- Drop mt6397 RTC schema conversion.
+- Integrate mt6357 RTC schema directly in mediatek,mt6357.yaml.
+- Fix unit address in mediatek,pwrap.yaml.
+- Link to v6: https://lore.kernel.org/r/20221005-mt6357-support-v6-0-4f589756befa@baylibre.com
+
+Changes in v6:
+- Fix typo in documentations.
+- Remove mediatek,mt6397-rtc.yaml example.
+- Align pwrap convertion with the original .txt file.
+- Remove unecessary include in the mt6357-regulator driver.
+- Link to v5: https://lore.kernel.org/r/20221005-mt6357-support-v5-0-8210d955dd3d@baylibre.com
+
+Changes in v5:
+- Add missing maintainers
+- Improve RTC binding by adding rtc.yaml ref and start-year property
+- Split the txt->yaml conversion in one commit and the addition of the
+  new mt6357-rtc compatible in another commit.
+- Improve PWRAP binding:
+  - clocks and clock-name have been refactored.
+  - reset-names is now properly dependent to resets.
+  - additionalProperties change from true to false.
+  - change example for a most recent and popular SoC.
+  - "allOf" part has been simplified.
+- Pass binding tests with the updated tools. Here the command:
+  "make DT_CHECKER_FLAGS=-m dt_binding_check"
+- Link to v4: https://lore.kernel.org/r/20221005-mt6357-support-v4-0-5d2bb58e6087@baylibre.com
+
+Changes in v4:
+- "dt-bindings: mfd: mt6397: add binding for MT6357" has been applied
+  by Lee Jones
+- All fixed regulator are now refering to fixed-regulator.yaml
+- vfe28 and vcamio18 regulators have been added
+- pwrap binding has been converted and mt8365 support has been added
+- mt6357 PMIC binding has been created
+- mt6397 RTC binding has been converted and mt6357 support has been added
+- Link to v3: https://lore.kernel.org/r/20221005-mt6357-support-v3-0-7e0bd7c315b2@baylibre.com
+
+Changes in v3:
+- To be consistent with regulator/driver.h and helper.c, shift
+  variables have been removed and the mask values have been directly shifted.
+- Remove index tables and rework volt tables to use set/get helper functions.
+- Add comment to structure and function.
+- Fix Fabien Parent mail address.
+- Link to v2: https://lore.kernel.org/r/20221005-mt6357-support-v2-0-f17ba2d2d0a9@baylibre.com
+
+Changes in v2:
+- Rebase
+- Fix typo
+- Remove dependencies with https://lore.kernel.org/all/20220415153629.1817202-1-fparent@baylibre.com/
+  which is no longer relevant.
+
+Previous versions:
+v1 - https://lore.kernel.org/all/20220531124959.202787-1-fparent@baylibre.com/
+
+To: Lee Jones <lee@kernel.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Matthias Brugger <matthias.bgg@gmail.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Chen Zhong <chen.zhong@mediatek.com>
+To: Liam Girdwood <lgirdwood@gmail.com>
+To: Mark Brown <broonie@kernel.org>
+To: Fabien Parent <fabien.parent@linaro.org>
+To: Alessandro Zummo <a.zummo@towertech.it>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Sean Wang <sean.wang@mediatek.com>
+To: Pavel Machek <pavel@ucw.cz>
+To: Tianping Fang <tianping.fang@mediatek.com>
+To: Flora Fu <flora.fu@mediatek.com>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-mediatek@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-input@vger.kernel.org
+Cc: Fabien Parent <fparent@baylibre.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: linux-rtc@vger.kernel.org
+Cc: linux-leds@vger.kernel.org
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Mattijs Korpershoek <mkorpershoek@baylibre.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+
+---
+Alexandre Mergnat (4):
+      dt-bindings: soc: mediatek: convert pwrap documentation
+      dt-bindings: mfd: mediatek: Add bindings for MT6357 PMIC
+      arm64: dts: mt6358: change node names
+      arm64: dts: mt8173: change node name
+
+Fabien Parent (2):
+      dt-bindings: input: mtk-pmic-keys: add binding for MT6357 PMIC
+      Input: mtk-pmic-keys: add MT6357 support
+
+ .../bindings/input/mediatek,pmic-keys.yaml         |   1 +
+ .../devicetree/bindings/leds/leds-mt6323.txt       |   2 +-
+ .../devicetree/bindings/mfd/mediatek,mt6357.yaml   | 111 ++++++++++++++++
+ Documentation/devicetree/bindings/mfd/mt6397.txt   |   2 +-
+ .../bindings/soc/mediatek/mediatek,pwrap.yaml      | 147 +++++++++++++++++++++
+ .../devicetree/bindings/soc/mediatek/pwrap.txt     |  75 -----------
+ arch/arm64/boot/dts/mediatek/mt6358.dtsi           |   6 +-
+ arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi       |   2 +-
+ arch/arm64/boot/dts/mediatek/mt8173-evb.dts        |   2 +-
+ drivers/input/keyboard/mtk-pmic-keys.c             |  17 +++
+ 10 files changed, 283 insertions(+), 82 deletions(-)
+---
+base-commit: e32caddfc737a96f6593754c2a08be6b8c1e0cec
+change-id: 20221005-mt6357-support-55308b82e33f
+
+Best regards,
+-- 
+Alexandre Mergnat <amergnat@baylibre.com>
