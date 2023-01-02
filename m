@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF6C465B028
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 11:59:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78B9365B029
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 11:59:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232596AbjABK67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 05:58:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60186 "EHLO
+        id S232583AbjABK7B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 05:59:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232643AbjABK64 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 05:58:56 -0500
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3567EB98
-        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 02:58:55 -0800 (PST)
-Received: by mail-pj1-x1036.google.com with SMTP id v13-20020a17090a6b0d00b00219c3be9830so27906548pjj.4
-        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 02:58:55 -0800 (PST)
+        with ESMTP id S232617AbjABK7A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 05:59:00 -0500
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69E68E1C
+        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 02:58:59 -0800 (PST)
+Received: by mail-pg1-x532.google.com with SMTP id 36so18110290pgp.10
+        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 02:58:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=gTpGZwpAG4MJ3LdtNc4aCdH0bfJGBsl8uhNu6srluPM=;
-        b=HG6R4fJuhMXNyiFvcMA0dzQGu0TiZVLkJ3tm0M2x0HJrUbnRxoUZfjozyCcAHUkwvT
-         1hQ+LEaqzoRMECQeqYvWwlPzg/8TY+McwlMTyHE/XP3SBts+V+1wtt4YAM02WplM0+Oz
-         lqslykyTwOcTctXS1xEyPq2VPYCLuNsIGYchjCLEI2hs98QTb3bjqDu4wbXxodWr6JIc
-         cACZkqPdliGpYT3IdyvgzbQrVvATwVDc7SxJl5GZuCQL7QO2YAGj+Lk5VrIrXxEjzAzh
-         1dwObTekpzZKmw6suLbTJRoqFpr/jI4Cyxly3U9DzuHRsQ/5LniR5+7fxQnLuaO072XF
-         t2nA==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=h+NfyMbTjd80e1uWjdhdQS0ED524lbDIb/XPCdOdzno=;
+        b=eWuc491Ck7BlEf4iPGRjz+zCMTpY5mpcycfqiisKOa/K+clU5RnvnGHQPKH+SgGAmD
+         AG54mHT/VcMTMuJ/l1iTzsyzwS4/fGqDUUvFOba6gzsqtKCw8fFTrWvswD8LkAo6uLs+
+         2Ycw0ErO2uRbCSgxHSDy4kAmc8/1Wj+1hppDvEu4kKLbYZEbP2wBQ6b6IVpS8O4spKYN
+         KpCMzXLw0C42j42UMVAqpem72TpWfNjMwR5wWWqV0rjHTKFykEIoJYuZ5EffjWbwWxK1
+         RyebhLz2gjjk+VT/sxyDoViV3/CN3FIZ4wTsgJXbgUXshL5W1mz7VdbZH938RfzvgR5E
+         jfXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gTpGZwpAG4MJ3LdtNc4aCdH0bfJGBsl8uhNu6srluPM=;
-        b=POjDkg3U5RZAp2Gn978p37zLL/QGbdwWmiGUOn3x3pvYMNZ6ZMf0MCsDf/ZukbmLRn
-         Z5djMDMKfR37NNKz6+kxoVDDA6CIIPDsY/FZtytrvOVXx1h4dHnLfMK1aPEz5eznDhSq
-         ujww4lhsGykewNjYy5p8Xlu1+aq0pG9YuTjfIzVvXTtuy5N7fSLKA9x6d6fVE+qsZa0q
-         mw8yoc/NC9aq2c19pftZtGjUz7OMrS2j7KLlGSt8ElB1ItfCcsMH8Xzrsx+CZ2aRW2Cf
-         Hy3UdQMfiNHmCMwyxdVWVjjqFsojicN8pTmxlEtYQTB4u5qstAndl6C139GfSTTcfZe4
-         tgtg==
-X-Gm-Message-State: AFqh2kq83BmPRyu+QQq2yHELoYwNh9pb4ElTzmGZgO+OWf02wQL1QWs3
-        Oj8hDXamwN3iajY8GEaaU3ai
-X-Google-Smtp-Source: AMrXdXuRviKvRtMS3cRsqgYfR/ybMdpT6z1FM8RWscul6pd8eKsQG2X1od60pkzIuEtr0+LwLuhJaw==
-X-Received: by 2002:a05:6a20:2d1f:b0:ac:9d6b:c1f0 with SMTP id g31-20020a056a202d1f00b000ac9d6bc1f0mr54199601pzl.40.1672657134657;
-        Mon, 02 Jan 2023 02:58:54 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=h+NfyMbTjd80e1uWjdhdQS0ED524lbDIb/XPCdOdzno=;
+        b=umBM6knJigQXkbJF8jgJURKpHS+pPOT3p9wk7O5uAP7r4Yox+ReYXFJv9m3sYhz5dz
+         U4hJzwuvTXeIVTARQ2ZS+bvcnIdOgH9OLDQ8qOAFN3jfbczuklLz6R9WYSrdkevRR8XI
+         atdopbEb2cMXPNbYOq0lINJTYf0bBd/rSrhGU1iI5zvpZvi53MhyX+rpi/CmBQRn9U7j
+         qVaVTips55jzZQ1CGwqu4pr1oVlkMLAPMnlf0ZPVc970YYBbZ2/e5zNQ3JvsMvEdzUV3
+         kGqUSdxSofJ/XmNtLb0dGx+zF4xz60yxtKshArcox2ZkK6Nf1RjgQaxIqD7rLA0p5BkV
+         A8cQ==
+X-Gm-Message-State: AFqh2ko1ivPnInoX0et9YtwpNAAu1mIMYMswpbytonPx2T5VtnsGCkoB
+        ZZmDeGi7qll1ed3T3+awsSwW
+X-Google-Smtp-Source: AMrXdXuqDF/h7bvtBhJ6ygeONjyE2Lby/G5L2R2ioAA3C+xgjKKHJE7m+vAg7P+k+YYu8LqolYJVOg==
+X-Received: by 2002:a62:148f:0:b0:582:46a4:87f6 with SMTP id 137-20020a62148f000000b0058246a487f6mr6019088pfu.22.1672657138930;
+        Mon, 02 Jan 2023 02:58:58 -0800 (PST)
 Received: from localhost.localdomain ([220.158.158.187])
-        by smtp.gmail.com with ESMTPSA id k26-20020aa79d1a000000b0058130f1eca1sm12756773pfp.182.2023.01.02.02.58.50
+        by smtp.gmail.com with ESMTPSA id k26-20020aa79d1a000000b0058130f1eca1sm12756773pfp.182.2023.01.02.02.58.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Jan 2023 02:58:53 -0800 (PST)
+        Mon, 02 Jan 2023 02:58:58 -0800 (PST)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     andersson@kernel.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org
@@ -55,11 +56,14 @@ Cc:     bhelgaas@google.com, konrad.dybcio@linaro.org,
         linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         lpieralisi@kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v3 0/3] Qcom: Add GIC-ITS support to SM8450 PCIe controllers
-Date:   Mon,  2 Jan 2023 16:28:18 +0530
-Message-Id: <20230102105821.28243-1-manivannan.sadhasivam@linaro.org>
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3 1/3] dt-bindings: PCI: qcom: Update maintainers
+Date:   Mon,  2 Jan 2023 16:28:19 +0530
+Message-Id: <20230102105821.28243-2-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230102105821.28243-1-manivannan.sadhasivam@linaro.org>
+References: <20230102105821.28243-1-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -72,42 +76,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Stanimir has left mm-sol and already expressed his wish to not continue
+maintaining the PCIe RC driver. So his entry can be removed.
 
-This series adds GIC-ITS support to SM8450 PCIe controllers for signalling
-the MSIs received from endpoint devices to the CPU cores.
+Adding myself as the co-maintainer since I took over the PCIe RC driver
+maintainership from Stanimir.
 
-The GIC-ITS MSI implementation provides an advantage over internal MSI
-implementation using Locality-specific Peripheral Interrupts (LPI) that
-would allow MSIs to be targeted for each CPU core.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+---
+ Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-This series has been tested on SM8450 based dev board that works using an
-out-of-tree dts where the MSIs from endpoint devices are distributed across
-the CPU cores.
-
-Thanks,
-Mani
-
-Changes in v2:
-
-* Reworded the commit messages as per Lorenzo's comments
-* Rebased on top of v6.2-rc1
-
-Changes in v2:
-
-* Swapped the Device ID for PCIe0 as it causes same issue as PCIe1
-* Removed the definition of msi-map and msi-map-mask from binding
-* Added Ack from Krzysztof
-
-Manivannan Sadhasivam (3):
-  dt-bindings: PCI: qcom: Update maintainers
-  dt-bindings: PCI: qcom: Document msi-map and msi-map-mask properties
-  arm64: dts: qcom: sm8450: Use GIC-ITS for PCIe0 and PCIe1
-
- .../devicetree/bindings/pci/qcom,pcie.yaml    | 14 +++++++++----
- arch/arm64/boot/dts/qcom/sm8450.dtsi          | 20 +++++++++++++------
- 2 files changed, 24 insertions(+), 10 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+index a5859bb3dc28..a3639920fcbb 100644
+--- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
++++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+@@ -8,7 +8,7 @@ title: Qualcomm PCI express root complex
+ 
+ maintainers:
+   - Bjorn Andersson <bjorn.andersson@linaro.org>
+-  - Stanimir Varbanov <svarbanov@mm-sol.com>
++  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+ 
+ description: |
+   Qualcomm PCIe root complex controller is based on the Synopsys DesignWare
 -- 
 2.25.1
 
