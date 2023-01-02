@@ -2,212 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 301F965B2BF
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 14:38:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F80265B2E3
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 14:49:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232050AbjABNih (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 08:38:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39290 "EHLO
+        id S232934AbjABNtX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 08:49:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232816AbjABNig (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 08:38:36 -0500
-Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 621B3E8A
-        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 05:38:35 -0800 (PST)
-Received: by mail-qt1-x82c.google.com with SMTP id c7so22435513qtw.8
-        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 05:38:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date
-         :mime-version:in-reply-to:references:user-agent:from:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yUeJe0drBbTMgiYkIr+hpKI3FSwnBgCuZWCVk8bkpiQ=;
-        b=sJKeU3WCdOQHKogctAuHoH1Lb5awwjpVpHefGzuQH49JgYhK41rW3ae5mHbdmBGjsY
-         UnNOamQKAW85+d3DJvYxWEY0sQwr8sxKKtQaJB5/ZBhMt7NlGdpExaGUTvd1Ym8DFBJN
-         z/E2hVpZRbW12fzg0X2Kj7ZDsGIcLif6Q2AhzKLokR+qFZiuaAbfbrrFr+unYfzjUdTo
-         IBWE8DrMPJ7CwXxGloffvAvF0SeiBqq0lV8Vq6+n+EzQHdffJcGYNIxvZMkpsWb/VBo6
-         wuXMNTIGHn3SZ4HlhcRTVEyDdo/VUZ2atZFin0VDm7biJW7nnru9XUW+S1aJ2RCzJq8Z
-         kYbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date
-         :mime-version:in-reply-to:references:user-agent:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yUeJe0drBbTMgiYkIr+hpKI3FSwnBgCuZWCVk8bkpiQ=;
-        b=jQDKnb9JRhArtNOthq1UWJ3J3J+hG+8wWNMWWvihq+ZrT+/YmT232lmIHjyiPk8BCt
-         3gc1bZMYSMv3XIk77so7LqKGBrY/zjsoNi3MUXkIjhTdU+NW9Htp4R67uSxRWCZUmxgH
-         +tcAgQxGXPjSSfMA3RFTV2K9xwBBWBNm9+O8mORAzTDp+1Gtu3N8m3dIgEFvzDYUev4n
-         H2dUkxFBn8ZM8ai5A9t4wEeBFGAyE27OXkwW6eYMzchfR4J3WpYGGstX9Cb6tIlVyP/E
-         M4RR8t6PNsbAFGKzmWuOtAlPCXvq8HuMP2VRfikdFmTZVtBemFvfe2oKlBLnMqujkAzr
-         8Wxg==
-X-Gm-Message-State: AFqh2kovAkU7ORs8+oReI5EtQMEPgm3xxyTbmxCSrlccr/lLn6eF3Hh/
-        ZebqZ2oOsXfvBlIj2x7QdHF/XEZ9furD1kuW2AGkuA==
-X-Google-Smtp-Source: AMrXdXsRzYNVZ3d4bkKeYiAZTwzM9YRTxsFtaA7lSB3wLl6IBFcwrL0JOddsqmMqIzrw5hKkoMpSWmO5PrVO7+oREAw=
-X-Received: by 2002:ac8:4d50:0:b0:3a8:a6e:1b4 with SMTP id x16-20020ac84d50000000b003a80a6e01b4mr1646554qtv.313.1672666714390;
- Mon, 02 Jan 2023 05:38:34 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 2 Jan 2023 13:38:33 +0000
-From:   Guillaume Ranquet <granquet@baylibre.com>
-User-Agent: meli 0.7.2
-References: <20220919-v3-0-a803f2660127@baylibre.com> <20220919-v3-2-a803f2660127@baylibre.com>
- <7da1e73a0cca6867a060d5b69d45e8d4dfc89748.camel@mediatek.com>
-In-Reply-To: <7da1e73a0cca6867a060d5b69d45e8d4dfc89748.camel@mediatek.com>
+        with ESMTP id S236003AbjABNtQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 08:49:16 -0500
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 085C263EA;
+        Mon,  2 Jan 2023 05:49:14 -0800 (PST)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 302BG6K5009376;
+        Mon, 2 Jan 2023 14:48:49 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=i4qITYrrsXdKtQXb0+eS4RYOCxnL3PA/faqTfKXe9RA=;
+ b=kW70y43cyuRjiKZZBU2dtJ8K56gu6iypTypNqIFPdSOUdu9A8x8AeE8aFyVyN+M30Grx
+ Z9/Lci9x2Xw1FeYO6PR//DwcJGvruTrQYv+cREVZwfyExxZDFTSRuLHSyhuzg6dEBoGF
+ hPiMhts6wjvmSfTCTzMFCbA1cS5dLomkGsNlrXYUNjliblvWZOHt0pG3SGZwLYvqhmCh
+ 6b61BbfNGl/u/ws4BExpaGfUmDagZXMePo59eYm4thayo4/BtxRASwE96tO+VbM6/MiD
+ COlsWx/jc4Pys/LBUrs3rhZI+Z/kUYtY6zYLXid5geElaZaHwWb/G67ehBdoUnfNg+C/ cw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3mtcupg2qg-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 02 Jan 2023 14:48:49 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1F98E10002A;
+        Mon,  2 Jan 2023 14:48:47 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0A8772248DF;
+        Mon,  2 Jan 2023 14:48:47 +0100 (CET)
+Received: from [10.252.15.26] (10.252.15.26) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Mon, 2 Jan
+ 2023 14:48:46 +0100
+Message-ID: <0964106e-8335-fef3-b844-7c00abd1e6d8@foss.st.com>
+Date:   Mon, 2 Jan 2023 14:48:46 +0100
 MIME-Version: 1.0
-Date:   Mon, 2 Jan 2023 13:38:33 +0000
-Message-ID: <CABnWg9tf8Sx8S0d8mGowZ80YmZLz6cX2iyxZyKYCGbH_RKMKyA@mail.gmail.com>
-Subject: Re: [PATCH v3 02/12] dt-bindings: display: mediatek: add MT8195 hdmi bindings
-To:     CK Hu <ck.hu@mediatek.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "kishon@ti.com" <kishon@ti.com>,
-        Chunfeng Yun <Chunfeng.Yun@mediatek.com>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        Jitao Shi <jitao.shi@mediatek.com>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "airlied@gmail.com" <airlied@gmail.com>,
-        "rzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "koul@kernel.org" <vkoul@kernel.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "inux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        Mac Shen <Mac.Shen@mediatek.com>,
-        "evicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "rzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
-        Stuart Lee <Stuart.Lee@mediatek.com>,
-        "ri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "inux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v4 0/8] media: i2c: mlx7502x ToF camera support
+To:     Volodymyr Kharuk <vkh@melexis.com>, <linux-media@vger.kernel.org>
+CC:     Andrii Kyselov <ays@melexis.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        <devicetree@vger.kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>
+References: <cover.1669978791.git.vkh@melexis.com>
+ <Y7LbxRQ2mQnnRC6u@melexis.com>
+Content-Language: en-US
+From:   Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+In-Reply-To: <Y7LbxRQ2mQnnRC6u@melexis.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.252.15.26]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2023-01-02_08,2022-12-30_01,2022-06-22_01
+X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 26 Dec 2022 06:18, CK Hu (=E8=83=A1=E4=BF=8A=E5=85=89) <ck.hu@media=
-tek.com> wrote:
->Hi, Guillaume:
->
->On Fri, 2022-11-04 at 15:09 +0100, Guillaume Ranquet wrote:
->> Add mt8195 SoC bindings for hdmi and hdmi-ddc
->>
->> On mt8195 the ddc i2c controller is part of the hdmi IP block and
->> thus has no
->> specific register range, power domain or interrupt, making it simpler
->> than its the legacy "mediatek,hdmi-ddc" binding.
->>
->> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
->> ---
->>
->
->[snip]
->
->> a/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-
->> hdmi-ddc.yaml
->> b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-
->> hdmi-ddc.yaml
->> new file mode 100644
->> index 000000000000..2dc273689584
->> --- /dev/null
->> +++
->> b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-
->> hdmi-ddc.yaml
->> @@ -0,0 +1,51 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id:
->> https://urldefense.com/v3/__http://devicetree.org/schemas/display/mediat=
-ek/mediatek,mt8195-hdmi-ddc.yaml*__;Iw!!CTRNKA9wMg0ARbw!wwVQuq5lzW0lvUFUkVX=
-PWT8cIu96xdkn4tMams1E55qyxEZmgV1i0WfpOlq57w$
->>
->> +$schema:
->> https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml=
-*__;Iw!!CTRNKA9wMg0ARbw!wwVQuq5lzW0lvUFUkVXPWT8cIu96xdkn4tMams1E55qyxEZmgV1=
-i0WdSGOSxzw$
->>
->> +
->> +title: Mediatek HDMI DDC for mt8195
->> +
->> +maintainers:
->> +  - CK Hu <ck.hu@mediatek.com>
->> +  - Jitao shi <jitao.shi@mediatek.com>
->> +
->> +description: |
->> +  The HDMI DDC i2c controller is used to interface with the HDMI DDC
->> pins.
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - mediatek,mt8195-hdmi-ddc
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  clock-names:
->> +    items:
->> +      - const: ddc
->> +
->> +  mediatek,hdmi:
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +    description:
->> +      A phandle to the mt8195 hdmi controller
->> +
->> +required:
->> +  - compatible
->> +  - clocks
->> +  - clock-names
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +    hdmiddc0: i2c {
->> +      compatible =3D "mediatek,mt8195-hdmi-ddc";
->> +      mediatek,hdmi =3D <&hdmi0>;
->> +      clocks =3D <&clk26m>;
->> +      clock-names =3D "ddc";
->> +    };
->
->I think we should not have a virtual device. This ddc is part of
->mt8195-hdmi device, so just keep mt8195-hdmi, and let mt8195-hdmi
->driver to probe the sub driver of ddc driver.
->
->Regards,
->CK
+Hi Volodomyr,
 
-Hi CK,
+I'm not sure I'm relevant, but since we discussed a bit about controls
+in the first version feel free to add my tag for patch 1, 2, and 3:
 
-Thx for your input.
-Though I would strongly prefer to keep the ddc as a separate "virtual devic=
-e".
+Acked-By: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
 
-It aligns better with the goal of reusing as much code as possible
-from the HDMI V1 IP,
-which is something you have been advocating since V1 of this patch
-quite some time ago
-and has shaped this patch.
+Thank you for your work.
 
-To me we are in a state that is clean and avoids branching in the hdmi
-common code.
-Would you reconsider and allow the use of that virtual device?
-
-Thx,
-Guillaume.
-
->
->> +
->> +...
+On 1/2/23 14:27, Volodymyr Kharuk wrote:
+> Hi All,
+> 
+> This is a gentle reminder about the patch series for ToF camera.
+> 
+> Thanks.
+> 
+> On Fri, Dec 02, 2022 at 06:07:30PM +0200, Volodymyr Kharuk wrote:
+>> Hello,
 >>
+>> This series adds support for the Melexis 75026 and 75027 Time of Flight
+>> camera sensors, with DT bindings in patch 7/8 and a driver in patch 8/8.
+>> In patches 1/8, 2/8 and 3/8, I've add ToF controls as separate
+>> ToF control class.
+>>
+>> v4:
+>> - fix output mode
+>> - forbid array for menu and warn if validate_new return an error
+>> - add enums to custom control OUTPUT_MODE
+>> - update doc
+>> - minor fixes
+>>
+>> v3:
+>> - move FMOD, TINT, PHASE_SEQ to common V4L2 as ToF common controls
+>> - FMOD and TINT became dynamic arrays
+>> - remove PHASE_NUM, use dynamic_array for PHASE_SEQ,
+>>   ctrl->new_elems pass number of phases
+>> - remove leden-gpios, will be used gpio explicitly in library for now
+>> - remade probe: use probe_new, no power on during probe
+>> - remove autodetect and wildcard
+>> - make all supplies to be required
+>> - remove trigger ioctl, will add in separate patch series
+>> - remove temperature ioctl, will add in separate patch series
+>> - add documentation about custom ioctl
+>> - style: 80 cols
+>> - minor fixes device tree
+>>
+>> v2:
+>> - added external clock to the sensor
+>> - added all regulators required by the sensor
+>> - added posibility to choose sensor type in device tree
+>> - added prefixes to all custom types in device tree and driver as well
+>> - style fixes
+>>
+>> Volodymyr Kharuk (8):
+>>   media: uapi: ctrls: Add Time of Flight class controls
+>>   media: v4l: ctrls: Fill V4L2_CID_TOF_CLASS controls
+>>   media: Documentation: v4l: Add TOF class controls
+>>   media: v4l: ctrls-api: Allow array update in __v4l2_ctrl_modify_range
+>>   media: v4l: ctrls: Add user control base for mlx7502x
+>>   media: uapi: Add mlx7502x header file
+>>   media: dt-bindings: Add mlx7502x camera sensor
+>>   media: i2c: Add driver for mlx7502x ToF sensor
+>>
+>>  .../bindings/media/i2c/melexis,mlx7502x.yaml  |  126 ++
+>>  .../userspace-api/media/drivers/index.rst     |    1 +
+>>  .../userspace-api/media/drivers/mlx7502x.rst  |   28 +
+>>  .../userspace-api/media/v4l/common.rst        |    1 +
+>>  .../userspace-api/media/v4l/ext-ctrls-tof.rst |   56 +
+>>  MAINTAINERS                                   |   11 +
+>>  drivers/media/i2c/Kconfig                     |   13 +
+>>  drivers/media/i2c/Makefile                    |    1 +
+>>  drivers/media/i2c/mlx7502x.c                  | 1747 +++++++++++++++++
+>>  drivers/media/v4l2-core/v4l2-ctrls-api.c      |   25 +-
+>>  drivers/media/v4l2-core/v4l2-ctrls-defs.c     |   20 +
+>>  include/uapi/linux/mlx7502x.h                 |   28 +
+>>  include/uapi/linux/v4l2-controls.h            |   14 +
+>>  13 files changed, 2059 insertions(+), 12 deletions(-)
+>>  create mode 100644 Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
+>>  create mode 100644 Documentation/userspace-api/media/drivers/mlx7502x.rst
+>>  create mode 100644 Documentation/userspace-api/media/v4l/ext-ctrls-tof.rst
+>>  create mode 100644 drivers/media/i2c/mlx7502x.c
+>>  create mode 100644 include/uapi/linux/mlx7502x.h
+>>
+>>
+>> base-commit: a7bab6f8b73fe15a6181673149734a2756845dae
+>> -- 
+>> BR,
+>> Volodymyr Kharuk
+>>
+> 
+
+-- 
+Regards,
+
+Benjamin
