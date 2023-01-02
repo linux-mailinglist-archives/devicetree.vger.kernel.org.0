@@ -2,202 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F70765B33E
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 15:14:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D86165B364
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 15:36:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232629AbjABOOq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 09:14:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57004 "EHLO
+        id S231730AbjABOgV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 09:36:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230133AbjABOOp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 09:14:45 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62A426583;
-        Mon,  2 Jan 2023 06:14:44 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 0C4BC660036F;
-        Mon,  2 Jan 2023 14:14:42 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1672668883;
-        bh=KWofe4Ce3M/Z6MdezBB9cv+MoFevPlM9NxEfSRWWBKA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=B2tnzaFmBPW9eb1lm0Bvxs+jKedjx+VFazMTAfbf8W9bZwnH03CfodnQNZaIeySKp
-         bSSpu9DS8xqW7Dtx4QSGFYGah8/nt992fuyejDrc2jspfCr7g1O7ck78zDGtCOlUA4
-         Bgs6Kv+Sj5VMeqDYQailcnGXz97COiO1wsV4AxTeKizWPJrIEvUFUMVcOILQl2424E
-         lv9wndKuIeFf3OdNLYNk3d05x+lpDW0H2aSrH8wIHsmLKQYGU6s3sNZpn9I6ZLYXQn
-         WGPPttaVHML8D67T00cO/74PI7Wok64VMSJ8fYRdAfX+t90WnsTOHGHe0v6jV5lQ1d
-         LQPYD1YMKEpXg==
-Message-ID: <187044b3-b154-256a-c107-3dc9de57d60b@collabora.com>
-Date:   Mon, 2 Jan 2023 15:14:39 +0100
+        with ESMTP id S236184AbjABOf7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 09:35:59 -0500
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B1BC29A;
+        Mon,  2 Jan 2023 06:35:58 -0800 (PST)
+Received: by mail-oi1-x22b.google.com with SMTP id h185so2560554oif.5;
+        Mon, 02 Jan 2023 06:35:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oldXDimbyQpQ7zpEgLfAQ9A9jkVkeyPyVeSx90WR90g=;
+        b=AFap4DC2gK8aOZIgTD18L6fjbI1+0XDHkm9J6PTAyE4o7S59mu9inc4lkWxtnZKy1D
+         CNl9KAp2hyPvEbQxgiBRoNKLqxZhP+F6rwP/BIUrNtLnR2T3N7mRjMbeTSB6boUsyQBl
+         /pXdP0pM1yY97dR9YT+xRZa3nS7bWJsN4EN6f8QuTH4FCAFfquLALhf1NUi53/QKFzxs
+         2MtuIdZNsPKoCxMXt4OMbdPXjZSn/9F0McFdukOEvVZrQBcCQF6AUCu27IKdYPTE9KwQ
+         5N8RhfMPGykJ235lQVhg/zs633WCx80WjzYRPx/gEavvLUHuCNIRb932N47a84UP0Sq9
+         3oqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oldXDimbyQpQ7zpEgLfAQ9A9jkVkeyPyVeSx90WR90g=;
+        b=KEb0yV0RBv3FMRq0YrSEpWpCwiimOS2sMQ61Q9vdrCEPFb0JiQKNmfawBNXh9GCtjk
+         Lmln1frdRM9qXACP5XBPrZfkJrS5resd3c3FecgdyKRXuGk8NK29hsy8f4lm8tMjR1/N
+         GYURELZmIorHsxMzzJ1MmSusGtRySbIxPQ8PoZe+yzG+x6/uyqcxV+O7mUXI7Rx9cEcU
+         qrEf+qCTJORm+yKLi5hAffImgVwgaXnj0TjAiunI9mjZU02xLgBg2heBJvcllG5t9qhY
+         2KE+tA+FdnVFnDWDRuHsDZW0NMWoxS5pp9QSfxyKfaXqo+fR1/xA26RENMz396LyYZgW
+         PK8w==
+X-Gm-Message-State: AFqh2ko8N4TUrq6zWD2eXywvtUWWjnM+xmy7XismslCV94Pbv7z+Mycm
+        /d7RkmcJdwc3hxgDCn39UWqnYudiuQ8=
+X-Google-Smtp-Source: AMrXdXt8niPHIGc7xRuIs3/6sCnds5wMxcVVOZD0/L9VpRGvlsiVzdjOPRi0lH58mzrLIq8DNj5bqg==
+X-Received: by 2002:a05:6808:2c9:b0:35e:b231:1a27 with SMTP id a9-20020a05680802c900b0035eb2311a27mr16695489oid.33.1672670157909;
+        Mon, 02 Jan 2023 06:35:57 -0800 (PST)
+Received: from ?IPV6:2600:1700:2442:6db0:e082:9c8d:c88c:a11? ([2600:1700:2442:6db0:e082:9c8d:c88c:a11])
+        by smtp.gmail.com with ESMTPSA id r204-20020aca44d5000000b00354d9b9f6b4sm12015179oia.27.2023.01.02.06.35.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Jan 2023 06:35:57 -0800 (PST)
+Message-ID: <a7e15b62-8929-b76e-77d7-42d78aaa02e1@gmail.com>
+Date:   Mon, 2 Jan 2023 08:35:56 -0600
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v3 02/12] dt-bindings: display: mediatek: add MT8195 hdmi
- bindings
+ Thunderbird/102.4.2
+Subject: Re: [PATCH] of: overlay: fix warning being reported as error in
+ add_changeset_property
 Content-Language: en-US
-To:     Guillaume Ranquet <granquet@baylibre.com>,
-        CK Hu <ck.hu@mediatek.com>,
+To:     "Ankit 16. Kumar (Nokia)" <ankit.16.kumar@nokia.com>,
         "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "kishon@ti.com" <kishon@ti.com>,
-        Chunfeng Yun <Chunfeng.Yun@mediatek.com>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        Jitao Shi <jitao.shi@mediatek.com>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "airlied@gmail.com" <airlied@gmail.com>,
-        "rzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "koul@kernel.org" <vkoul@kernel.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "inux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        Mac Shen <Mac.Shen@mediatek.com>,
-        "evicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "rzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
-        Stuart Lee <Stuart.Lee@mediatek.com>,
-        "ri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "inux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>
-References: <20220919-v3-0-a803f2660127@baylibre.com>
- <20220919-v3-2-a803f2660127@baylibre.com>
- <7da1e73a0cca6867a060d5b69d45e8d4dfc89748.camel@mediatek.com>
- <CABnWg9tf8Sx8S0d8mGowZ80YmZLz6cX2iyxZyKYCGbH_RKMKyA@mail.gmail.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <CABnWg9tf8Sx8S0d8mGowZ80YmZLz6cX2iyxZyKYCGbH_RKMKyA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <1671195782-23078-1-git-send-email-ankit.16.kumar@nokia.com>
+ <VI1PR0701MB68298749C8133A7D69CFDBBFC9F09@VI1PR0701MB6829.eurprd07.prod.outlook.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+In-Reply-To: <VI1PR0701MB68298749C8133A7D69CFDBBFC9F09@VI1PR0701MB6829.eurprd07.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 02/01/23 14:38, Guillaume Ranquet ha scritto:
-> On Mon, 26 Dec 2022 06:18, CK Hu (胡俊光) <ck.hu@mediatek.com> wrote:
->> Hi, Guillaume:
->>
->> On Fri, 2022-11-04 at 15:09 +0100, Guillaume Ranquet wrote:
->>> Add mt8195 SoC bindings for hdmi and hdmi-ddc
->>>
->>> On mt8195 the ddc i2c controller is part of the hdmi IP block and
->>> thus has no
->>> specific register range, power domain or interrupt, making it simpler
->>> than its the legacy "mediatek,hdmi-ddc" binding.
->>>
->>> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
->>> ---
->>>
->>
->> [snip]
->>
->>> a/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-
->>> hdmi-ddc.yaml
->>> b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-
->>> hdmi-ddc.yaml
->>> new file mode 100644
->>> index 000000000000..2dc273689584
->>> --- /dev/null
->>> +++
->>> b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-
->>> hdmi-ddc.yaml
->>> @@ -0,0 +1,51 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id:
->>> https://urldefense.com/v3/__http://devicetree.org/schemas/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml*__;Iw!!CTRNKA9wMg0ARbw!wwVQuq5lzW0lvUFUkVXPWT8cIu96xdkn4tMams1E55qyxEZmgV1i0WfpOlq57w$
->>>
->>> +$schema:
->>> https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!wwVQuq5lzW0lvUFUkVXPWT8cIu96xdkn4tMams1E55qyxEZmgV1i0WdSGOSxzw$
->>>
->>> +
->>> +title: Mediatek HDMI DDC for mt8195
->>> +
->>> +maintainers:
->>> +  - CK Hu <ck.hu@mediatek.com>
->>> +  - Jitao shi <jitao.shi@mediatek.com>
->>> +
->>> +description: |
->>> +  The HDMI DDC i2c controller is used to interface with the HDMI DDC
->>> pins.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - mediatek,mt8195-hdmi-ddc
->>> +
->>> +  clocks:
->>> +    maxItems: 1
->>> +
->>> +  clock-names:
->>> +    items:
->>> +      - const: ddc
->>> +
->>> +  mediatek,hdmi:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>> +    description:
->>> +      A phandle to the mt8195 hdmi controller
->>> +
->>> +required:
->>> +  - compatible
->>> +  - clocks
->>> +  - clock-names
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>> +    #include <dt-bindings/interrupt-controller/irq.h>
->>> +    hdmiddc0: i2c {
->>> +      compatible = "mediatek,mt8195-hdmi-ddc";
->>> +      mediatek,hdmi = <&hdmi0>;
->>> +      clocks = <&clk26m>;
->>> +      clock-names = "ddc";
->>> +    };
->>
->> I think we should not have a virtual device. This ddc is part of
->> mt8195-hdmi device, so just keep mt8195-hdmi, and let mt8195-hdmi
->> driver to probe the sub driver of ddc driver.
->>
->> Regards,
->> CK
+On 12/30/22 02:40, Ankit 16. Kumar (Nokia) wrote:
 > 
-> Hi CK,
+> The print causes false reporting of the issue which actually is a warning
+
+How did you select the commit in this Fixes tag?
+
+> Fixes: 2fe0e8769df9 ("of: overlay: check prevents multiple fragments touching same property")
 > 
-> Thx for your input.
-> Though I would strongly prefer to keep the ddc as a separate "virtual device".
+> Signed-off-by: Ankit Kumar <ankit.16.kumar@nokia.com>
+> ---
+>  drivers/of/overlay.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> It aligns better with the goal of reusing as much code as possible
-> from the HDMI V1 IP,
-> which is something you have been advocating since V1 of this patch
-> quite some time ago
-> and has shaped this patch.
-> 
-> To me we are in a state that is clean and avoids branching in the hdmi
-> common code.
-> Would you reconsider and allow the use of that virtual device?
-> 
-> Thx,
-> Guillaume.
+> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c index ed4e6c144a68..0da39b8461e7 100644
+> --- a/drivers/of/overlay.c
+> +++ b/drivers/of/overlay.c
+> @@ -358,7 +358,7 @@ static int add_changeset_property(struct overlay_changeset *ovcs,
+>  	}
+>  
+>  	if (!of_node_check_flag(target->np, OF_OVERLAY))
+> -		pr_err("WARNING: memory leak will occur if overlay removed, property: %pOF/%s\n",
+> +		pr_warn("WARNING: memory leak will occur if overlay removed, 
+> +property: %pOF/%s\n",
+>  		       target->np, new_prop->name);
+>  
+>  	if (ret) {
+> --
+> 2.30.1
 > 
 
-You can as well keep the DDC as a separated driver, but register in the HDMI v1 and
-v2 driver at probe time.
+NACK.  This patch is incorrect.  The reported memory leak is a bug, not a warning.
 
-Doing that, you won't need any devicetree node specific to any virtual device :-)
+I'll write up some information about why the memory leak occurs, then reply to this
+email with the additional info.
 
-Cheers,
-Angelo
-
-
+-Frank
