@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C83F65B053
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 12:13:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D09765B055
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 12:13:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229997AbjABLNW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 06:13:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38658 "EHLO
+        id S232174AbjABLNo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 06:13:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230252AbjABLNT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 06:13:19 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 034F0DA8
-        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 03:13:17 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id bf43so41169266lfb.6
-        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 03:13:16 -0800 (PST)
+        with ESMTP id S231917AbjABLNn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 06:13:43 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7CA7AC
+        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 03:13:41 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id m6so30786605lfj.11
+        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 03:13:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=XrAuu6jhWQcJPRy3SyR8DJMB6n9oyPHi0cJUo5aTP1M=;
-        b=TDxK7d58A8UUv02W8aKwKPEUAyJ3zuNrur2SMEHuZv/XN6EQqTht78KO95AEPDz5RV
-         XxxEva42gcnEMTwkAPjn3oj7ehnaYPkSwT0MdR8nZWcvjKvVYOBebfR8w7UUh7/pLqU9
-         KcTPhLR0CUOUieC1SXUV/kaqIrYFqep23w19lUkOzpQl39pLKy+A3aLxFlnKWZwCpHOS
-         fFaMsX2H4/Itrmi/HxL36MATC5M+1/6w1heZrytpk5167EhpARmKctB98lb3o0zAcAxf
-         H4LxWB+BJPF14LWQaw+BwG2KZyhjda+u3A51HmIlS/cDAtw9TC9/fc4sp1b5OkERnKJB
-         fNNA==
+        bh=Jp/E2xpiQcIxTmzefLDj7yuF/B7XddyP9lDxrbw6PoM=;
+        b=DYJlyMTVI4rxn39VkT5M3nz3eaDXhl4w28+zHZK9w0mI2Si/iX0jXFizuUscUvl0vx
+         Gyj02tCO46fWHOx6dAFUQi578kRJxKagnUSMTHVoYXDri6kTL3eWenmk12k6dK6Hmi7S
+         2VnjaHosyjFSbaHQP2IpEEE9/3sTxoEYS0KIfWTn1Daa/1n/vjuQKg8iN+gmUX7Vk4OC
+         M+Zo3+9Bl+UPV2UYH8j2VG4VwNR8LpF/uxWj5WZr9HseF6faxwMoPU4VPVNPfUNd5pQM
+         5FFtb7NADSs7bT3B7vEoq0bqlcFbE/YX+seQ7nVPWq/iBvVWw/16hAwdT7HKP3BDzbPi
+         Bh1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XrAuu6jhWQcJPRy3SyR8DJMB6n9oyPHi0cJUo5aTP1M=;
-        b=mviKLf8Ut4tZwSCS97cK21bTZz589x1sVXBUPj1dSu3ac4WdW+7PsxmblZAMQkBNi7
-         sxG19BJGpg8UYyJLT0aAk77ABXSooVXlULqjSJFPpabye80Mw5qCZfXv5n1gDxFSCSLD
-         5tbVH9jS55TTv6GIyLCLAfGzw0pTWG2wd/M96826YqA65zlmCiGtZIqJRuwKU+s4ujuw
-         58yGvbM6ri8g1NGL8vg+SBT6E4oM7h6seE3HpmuiRvpGRdvaojHXLRdyfZ86Zc6dIHLh
-         1jCEh1OtWXpDmKGRgWWY0yhQJjaq0DljNUpND975zuV634Z5PJCSg30Uyv4aafKBugfH
-         dXtQ==
-X-Gm-Message-State: AFqh2kqg7CXm3do913jCcXeFr8HeclZJ2OLw1L5Atgh0ngvXgGHWfEy0
-        5j3vROZGyHYE5333HaYaX/rzuw==
-X-Google-Smtp-Source: AMrXdXu9A6IJpPIV473+gDxlcRy5OhdMTgcZTjcjH9z3hHhKbWNgCinBM66KDhd4qIObIxYnh6mgHA==
-X-Received: by 2002:a05:6512:1687:b0:4cb:bf8:cf0e with SMTP id bu7-20020a056512168700b004cb0bf8cf0emr7727872lfb.19.1672657995269;
-        Mon, 02 Jan 2023 03:13:15 -0800 (PST)
+        bh=Jp/E2xpiQcIxTmzefLDj7yuF/B7XddyP9lDxrbw6PoM=;
+        b=zYijUbFYupRUTANhZcBfmBTyr+JkUV2kma5eTx/8YxtJGZ7m6rKxs0rHBOadfF/hpI
+         bTW8GpF4nxmyh2NIdL4Dzo9II1x/+MRf3y5zyC+8xwSDExPaWMosTAkDPDR2X5wHkaLh
+         VMfXbpVaeDkvRreRT/1mO7vRVLqNvWm+Uz40djm7hxu1SsQUGC7pbHmlM9E8pUnjwvKU
+         425ktwCAyGr63yHloCLPsaB5iIIhn3jgak1U/tXV1UP+RhagV2MaKcpP1EycL5pAI5HG
+         WQbAluH7uRfMWzu4xDSlCAjz5tbN43Cb1ji4dh0AU5uLYqz9oTY2DQPcXs6JNJM/LeKo
+         g3GQ==
+X-Gm-Message-State: AFqh2kqlyk6tHZ2mctDKTGoVOnQSNUiZFmN9StLOM6Tk+gRFtquzp9a2
+        sbG8IakHtbNKSKbC13IUwKVVSg==
+X-Google-Smtp-Source: AMrXdXuJEjDK5aDk4+uxB27Xvh0Mngk3VKSbJaTWJC1SZSp2rv28LmzW2jsvRhfZP/hsxecqsLhJFw==
+X-Received: by 2002:a05:6512:3da2:b0:4b9:f5e5:8fb4 with SMTP id k34-20020a0565123da200b004b9f5e58fb4mr15978692lfv.3.1672658020368;
+        Mon, 02 Jan 2023 03:13:40 -0800 (PST)
 Received: from [192.168.1.101] (abxi45.neoplus.adsl.tpnet.pl. [83.9.2.45])
-        by smtp.gmail.com with ESMTPSA id z5-20020ac24f85000000b004b5480edf67sm4426477lfs.36.2023.01.02.03.13.14
+        by smtp.gmail.com with ESMTPSA id x4-20020a19f604000000b004cb0d2735c0sm2694260lfe.266.2023.01.02.03.13.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Jan 2023 03:13:14 -0800 (PST)
-Message-ID: <32f7fea6-e99c-9bf5-fa7c-044a45e9a68a@linaro.org>
-Date:   Mon, 2 Jan 2023 12:13:13 +0100
+        Mon, 02 Jan 2023 03:13:40 -0800 (PST)
+Message-ID: <cd172e6e-a8c0-0e2c-971f-590e155c4a76@linaro.org>
+Date:   Mon, 2 Jan 2023 12:13:38 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.0
-Subject: Re: [PATCH 2/6] arm64: dts: qcom: sc8280xp: disable sound nodes
+Subject: Re: [PATCH 3/6] arm64: dts: qcom: sc8280xp: clean up tx-macro node
 Content-Language: en-US
 To:     Johan Hovold <johan+linaro@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>
@@ -64,15 +64,14 @@ Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230102105038.8074-1-johan+linaro@kernel.org>
- <20230102105038.8074-3-johan+linaro@kernel.org>
+ <20230102105038.8074-4-johan+linaro@kernel.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230102105038.8074-3-johan+linaro@kernel.org>
+In-Reply-To: <20230102105038.8074-4-johan+linaro@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,89 +81,27 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 2.01.2023 11:50, Johan Hovold wrote:
-> The sound nodes in the SoC dtsi should be disabled by default.
+> Drop the bogus address and size-cells properties from the tx-macro node,
+> which do not have any child nodes.
 > 
 > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 > ---
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 2 --
+>  1 file changed, 2 deletions(-)
 > 
 > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> index ed1e2bee86ee..c1ce2d7b3675 100644
+> index c1ce2d7b3675..11e3d560c627 100644
 > --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
 > +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> @@ -1733,6 +1733,8 @@ rxmacro: rxmacro@3200000 {
+> @@ -1784,8 +1784,6 @@ txmacro: txmacro@3220000 {
+>  			clock-output-names = "mclk";
 >  
->  			pinctrl-names = "default";
->  			pinctrl-0 = <&rx_swr_default>;
-> +
-> +			status = "disabled";
->  		};
->  
->  		/* RX */
-> @@ -1760,6 +1762,8 @@ swr1: soundwire-controller@3210000 {
->  			#sound-dai-cells = <1>;
->  			#address-cells = <2>;
->  			#size-cells = <0>;
-> +
-> +			status = "disabled";
->  		};
->  
->  		txmacro: txmacro@3220000 {
-> @@ -1783,6 +1787,8 @@ txmacro: txmacro@3220000 {
->  			#address-cells = <2>;
->  			#size-cells = <2>;
->  			#sound-dai-cells = <1>;
-> +
-> +			status = "disabled";
->  		};
->  
->  		wsamacro: codec@3240000 {
-> @@ -1804,6 +1810,8 @@ wsamacro: codec@3240000 {
->  
->  			pinctrl-names = "default";
->  			pinctrl-0 = <&wsa_swr_default>;
-> +
-> +			status = "disabled";
->  		};
->  
->  		/* WSA */
-> @@ -1830,6 +1838,8 @@ swr0: soundwire-controller@3250000 {
->  			#sound-dai-cells = <1>;
->  			#address-cells = <2>;
->  			#size-cells = <0>;
-> +
-> +			status = "disabled";
->  		};
->  
->  		/* TX */
-> @@ -1858,6 +1868,8 @@ swr2: soundwire-controller@3330000 {
->  			qcom,ports-word-length =	/bits/ 8 <0xff 0x00 0xff 0xff>;
->  			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff>;
->  			qcom,ports-lane-control =	/bits/ 8 <0x00 0x01 0x00 0x00>;
-> +
-> +			status = "disabled";
->  		};
->  
->  		vamacro: codec@3370000 {
-> @@ -1874,6 +1886,8 @@ vamacro: codec@3370000 {
 >  			#clock-cells = <0>;
->  			clock-output-names = "fsgen";
+> -			#address-cells = <2>;
+> -			#size-cells = <2>;
 >  			#sound-dai-cells = <1>;
-> +
-> +			status = "disabled";
->  		};
 >  
->  		lpass_tlmm: pinctrl@33c0000 {
-> @@ -1888,6 +1902,8 @@ lpass_tlmm: pinctrl@33c0000 {
->  				 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
->  			clock-names = "core", "audio";
->  
-> +			status = "disabled";
-> +
->  			tx_swr_default: tx-swr-default-state {
->  				clk-pins {
->  					pins = "gpio0";
+>  			status = "disabled";
