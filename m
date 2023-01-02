@@ -2,113 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8C5865B2EC
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 14:54:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AC8665B2FB
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 14:58:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230150AbjABNyR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 08:54:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45962 "EHLO
+        id S232151AbjABN6M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 08:58:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229583AbjABNyQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 08:54:16 -0500
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 093C027C;
-        Mon,  2 Jan 2023 05:54:14 -0800 (PST)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 56B8F20005;
-        Mon,  2 Jan 2023 13:54:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1672667650;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=XI1jqSD80O19fS9j+6GijbwVoDQ0YZyBahVLr8QSp4A=;
-        b=XEP/DVAKSf5CmbUL+ECBUNjhk6W6ixRGlmWUIjLJKIAxMHXit+mqGsUUXNbpXf9ZxZVpXq
-        L0iDJ6F+F2yux1N3ok7LHtnVlztq/NTQ7KJk0O9xLmVgJBazVdLkc/9TCXs03q0e7z2PlP
-        C7Cghn6C+bndokE/9VH0fCchUTMXfOG/5oc/65P2+DdrTrRgvBDdUQr6P697SLlCHFxmzg
-        43PV9iSgyBEtsZrbn3sMi0KvTJBO0cRGqOD0SkpmA8EElxMkzilXrgFZo8O5aIfp14/HFw
-        Tx9WyvJ3vECiEwLwNL2UwTgVV/YM6OG/qXCCocbazR5TPmXig3/CvAq+SNXTcw==
-Date:   Mon, 2 Jan 2023 14:56:18 +0100
-From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-To:     Lizhi Hou <lizhi.hou@amd.com>
-Cc:     <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <robh@kernel.org>,
-        <frowand.list@gmail.com>, <helgaas@kernel.org>, <max.zhen@amd.com>,
-        <sonal.santan@amd.com>, <larry.liu@amd.com>, <brian.xu@amd.com>,
-        <stefano.stabellini@xilinx.com>, <trix@redhat.com>,
-        "Allan.Nielsen@microchip.com" <Allan.Nielsen@microchip.com>,
-        "Horatiu.Vultur@microchip.com" <Horatiu.Vultur@microchip.com>,
-        "Steen.Hegelund@microchip.com" <Steen.Hegelund@microchip.com>
-Subject: Re: [PATCH V5 2/3] PCI: Create device tree node for selected
- devices
-Message-ID: <20230102145618.4b5bace8@fixe.home>
-In-Reply-To: <1671125446-57584-3-git-send-email-lizhi.hou@amd.com>
-References: <1671125446-57584-1-git-send-email-lizhi.hou@amd.com>
-        <1671125446-57584-3-git-send-email-lizhi.hou@amd.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-pc-linux-gnu)
+        with ESMTP id S233028AbjABN6M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 08:58:12 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50ECBD6A;
+        Mon,  2 Jan 2023 05:58:11 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id E3EEAB80D3D;
+        Mon,  2 Jan 2023 13:58:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB838C433EF;
+        Mon,  2 Jan 2023 13:58:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1672667888;
+        bh=JIYbF5LXM59r0MW5XyyTv1fzDEtrT9phK9DtFS9rHPI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=CvbTqQFJYz3KyOeequ7tIHBiktauX4rr8jCsJcWnwXQC/V1oLCQIN80IqiY7SxxWc
+         Ru5+9joAKHoJkWslTr6NH//0Nv6LVCa68kicbWXA3fq6YSw0GsF4nxfqGvGx7bVLBw
+         IJ79K8yO2cUrtqta+v1/NNY1NvnpZvJX6JMrVSdGdUnWQZ0pudYPGpFa0poQ2t7rky
+         sgEBfYL2FXovBaNkVpvoklCWxEpAi9fRK2DSGpzxQPikudbsmmhUhyLzpzppBClR3i
+         pNZ2NIYcNFsR91ivAHyMwm1TQLdILEuNXkuz03eutp90N70j4pmrgpVjbtQavyhvWp
+         4Q//MzrmvFs8w==
+Date:   Mon, 2 Jan 2023 07:58:05 -0600
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Abel Vesa <abel.vesa@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v3 2/2] pinctrl: qcom: Add SM8550 pinctrl driver
+Message-ID: <20230102135805.vw6bv236soxj5lbs@builder.lan>
+References: <20221230194459.2370924-1-abel.vesa@linaro.org>
+ <20221230194459.2370924-3-abel.vesa@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221230194459.2370924-3-abel.vesa@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Thu, 15 Dec 2022 09:30:45 -0800,
-Lizhi Hou <lizhi.hou@amd.com> a =C3=A9crit :
+On Fri, Dec 30, 2022 at 09:44:59PM +0200, Abel Vesa wrote:
+> Add pinctrl driver for TLMM block found in SM8550 SoC.
+> 
+> Co-developed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-> +};
-> +
-> +static int of_pci_prop_device_type(struct pci_dev *pdev,
-> +				   struct of_changeset *ocs,
-> +				   struct device_node *np)
-> +{
-> +	return of_changeset_add_prop_string(ocs, np, "device_type", "pci");
-> +}
-> +
-> +static int of_pci_prop_address_cells(struct pci_dev *pdev,
-> +				     struct of_changeset *ocs,
-> +				     struct device_node *np)
-> +{
-> +	return of_changeset_add_prop_u32(ocs, np, "#address_cells",
-> +					 OF_PCI_ADDRESS_CELLS);
-> +}
-> +
-> +static int of_pci_prop_size_cells(struct pci_dev *pdev,
-> +				  struct of_changeset *ocs,
-> +				  struct device_node *np)
-> +{
-> +	return of_changeset_add_prop_u32(ocs, np, "#size_cells",
-> +					 OF_PCI_SIZE_CELLS);
-> +}
+Reviewed-by: Bjorn Andersson <andersson@kernel.org>
 
-Hi Lizhi,
-
-For all these functions, the "pdev" parameter is actually unused.
-
-[snip]
-
-> +
-> +static int of_pci_prop_compatible(struct pci_dev *pdev,
-> +				  struct of_changeset *ocs,
-> +				  struct device_node *np)
-> +{
-> +	const char *compat_strs[PROP_COMPAT_NUM] =3D { 0 };
-> +	int i, ret;
-> +
-> +	compat_strs[PROP_COMPAT_PCI_VVVV_DDDD] =3D
-> +		kasprintf(GFP_KERNEL, "pci%x,%x", pdev->vendor, pdev->device);
-
-Maybe it should be better to use "pci%04x,%04x" to keep the existing
-naming.
-
---=20
-Cl=C3=A9ment L=C3=A9ger,
-Embedded Linux and Kernel engineer at Bootlin
-https://bootlin.com
+Regards,
+Bjorn
