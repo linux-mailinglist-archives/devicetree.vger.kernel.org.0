@@ -2,123 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EFB665B179
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 12:49:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E04C165B1AC
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 12:59:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232107AbjABLtV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 06:49:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59256 "EHLO
+        id S232468AbjABL7W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 06:59:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232103AbjABLs4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 06:48:56 -0500
-Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEF32F18;
-        Mon,  2 Jan 2023 03:48:53 -0800 (PST)
-Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id 9C6CC1661;
-        Mon,  2 Jan 2023 12:48:48 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1672660128;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=bZB9xNSjKSHWfa/0Wrk0B5Q8Ldv30xzUAM4GGiavhek=;
-        b=GdDrEvrpX2g6ZBosVIBuPXzFEmP+DGE3t2MEYRL+D77UWkCO5gkLzzPnnZZUnqvQB0Wnvt
-        ITWhkTF5ZlgdLOv5EHKZyDW5hcg0Cyrhl/WsMi6k1yK95MEJpaGA8xvDqsnWyj66GkQ4pY
-        HmFBRrzJhQDtLKzaZYQWMkeA+poNYkOujYHSHb7gxBW4Y2UNguCY73/YIUAFC7ernct+hf
-        mOAQxtSlbkW4bQllAT+nlbuQCZSdESHaQoME4rxRCBB2bJbJbSPnGGK34kE8DIfPN/aHDm
-        6ScpVVlLKN74aGqXuLO05ji0nYEs6bMOiRFDg1PkDW9kvDTmmUqbC2zmJCQPSA==
+        with ESMTP id S232283AbjABL6p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 06:58:45 -0500
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B144795A8
+        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 03:58:01 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id f20so28877863lja.4
+        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 03:58:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IjKe+ouqFmney4gz4J6SHYPHIsLZMK7NaXVfT2avl1k=;
+        b=UXsH3GlGrxadmYWcGMJkzY/9TwX9cNQKSSHAmQtKXv56o+4NrGmfIMIUNMZJUDyFWS
+         AuBjJ1xfwD+PKs3tGYmkwKnPHTpD7c902I0UshUoiK0z9lzGusUqvgOw0PuOf62dkluF
+         2K11YJtN/z/N1nOlq5glMHUuBCgJhIVqP5FM6Ol89b0LmYOjiscxLtqRcw+4fk2a5P7e
+         JWHCgnojLPqM6eaPgQaFrH4RtCTiyfjCTNxOlpfFwIoaVUnYqX7WbH6wtzLExJ6suWZ3
+         JCXu4Rc5WT6UNid0U2wr//bz9RbuQHQEq+rh1xYPBAWhE+q9cB1srHdpa4DqcrY/N1GJ
+         h/Fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IjKe+ouqFmney4gz4J6SHYPHIsLZMK7NaXVfT2avl1k=;
+        b=xE1Pl4QfvnEa0H0BnsUniUOY8daHp7nGzN7zE047Vs/16X9QcHhry/Ed63eSAL6l0d
+         /aWWvHVHQb2Chdr+rn3AuotWL8hwK7dzDHYZZKS64IU+sF/KkUh2C3RkDS4VR1v3W8a/
+         Y13VPXi6+sd4hgjtSqui0FP9YrxPTsLJ3PTvjUkrfg1SEGJKldS2QEbTbq6u7ypp9v84
+         kDPUxlL42a9gkDIcx8maz23wYH2QqmOgeDBW8yH5Tzf3dWcYFHP1oEFsjpF4UcHPDrXz
+         uaPDl+wfM2dbaIARcxCdzPcLkHGN+b7N2kMtZkH2nYkd8Vp/l+uu4nNtrdCMn9M1Af9y
+         FPOg==
+X-Gm-Message-State: AFqh2krzi+o+zgMEGfFKaywyFAVMmWyO9L0IfDN22RG0qZv2xbbQ87LM
+        qecCgZ0Mkf+F8jVpBv13Fn6oUw==
+X-Google-Smtp-Source: AMrXdXv6Ac5KSv29i/95NOkXLC/RJjPMui48vUFWG5eX665sqXZIN1p8SE1eDw34nZ4cVRZb124ESg==
+X-Received: by 2002:a2e:1454:0:b0:27f:b68e:8e96 with SMTP id 20-20020a2e1454000000b0027fb68e8e96mr8408806lju.26.1672660680074;
+        Mon, 02 Jan 2023 03:58:00 -0800 (PST)
+Received: from [192.168.1.101] (abxi45.neoplus.adsl.tpnet.pl. [83.9.2.45])
+        by smtp.gmail.com with ESMTPSA id i11-20020a2ea36b000000b0027fdcc83e1fsm959520ljn.87.2023.01.02.03.57.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Jan 2023 03:57:59 -0800 (PST)
+Message-ID: <9f1d28d9-615d-417e-64d0-3ef2d71a9ea1@linaro.org>
+Date:   Mon, 2 Jan 2023 12:57:58 +0100
 MIME-Version: 1.0
-Date:   Mon, 02 Jan 2023 12:48:48 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Tudor Ambarus <tudor.ambarus@gmail.com>
-Cc:     Mark Brown <broonie@kernel.org>, tudor.ambarus@microchip.com,
-        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org,
-        nicolas.ferre@microchip.com, robh+dt@kernel.org
-Subject: Re: [PATCH 1/8] spi: dt-bindings: Introduce spi-cs-setup-ns property
-In-Reply-To: <28da9e33-57e8-7ac1-7e6c-13c297a945d6@gmail.com>
-References: <20221117105249.115649-2-tudor.ambarus@microchip.com>
- <20221118141458.954646-1-michael@walle.cc> <Y3elIdM3Xz1H4kKk@sirena.org.uk>
- <28da9e33-57e8-7ac1-7e6c-13c297a945d6@gmail.com>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <a2f58ad34ba74ff135852bc1e24da4d6@walle.cc>
-X-Sender: michael@walle.cc
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: sm8450: Use GIC-ITS for PCIe0
+ and PCIe1
+Content-Language: en-US
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     bhelgaas@google.com, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, lpieralisi@kernel.org
+References: <20230102105821.28243-1-manivannan.sadhasivam@linaro.org>
+ <20230102105821.28243-4-manivannan.sadhasivam@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230102105821.28243-4-manivannan.sadhasivam@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-Am 2023-01-02 10:37, schrieb Tudor Ambarus:
-> Hi,
+
+On 2.01.2023 11:58, Manivannan Sadhasivam wrote:
+> Both PCIe0 and PCIe1 controllers are capable of signalling the MSIs
+> received from endpoint devices to the CPU using GIC-ITS MSI controller.
+> Add support for it.
 > 
-> On 18.11.2022 17:30, Mark Brown wrote:
->> On Fri, Nov 18, 2022 at 03:14:58PM +0100, Michael Walle wrote:
->>> From: Tudor Ambarus <tudor.ambarus@microchip.com>
->> 
->>>> +  spi-cs-setup-ns:
->>>> +    description:
->>>> +      Delay in nanosecods to be introduced by the controller after 
->>>> CS is
->>>> +      asserted.
->> 
->>> Does this need a type as the spi-cs-setup-ns is apparently just 
->>> 16bit? At
->>> least the driver uses it that way.
->> 
->>> But IMHO this should just be a normal uint32 value to be consistent 
->>> with
->>> all the other properties. Also the max value with 16bit will be 
->>> 'just'
->>> 65us.
->> 
->> Making it 32 bit does seem safer.  I've applied the series
+> Currently, BDF (0:0.0) and BDF (1:0.0) are enabled and with the
+> msi-map-mask of 0xff00, all the 32 devices under these two busses can
+> share the same Device ID.
 > 
-> Thanks. There are few implications to consider before making this prop 
-> a
-> u32, and I'd like to check them with you.
+> The GIC-ITS MSI implementation provides an advantage over internal MSI
+> implementation using Locality-specific Peripheral Interrupts (LPI) that
+> would allow MSIs to be targeted for each CPU core.
 > 
-> struct spi_delay will have to be updated to have a u32 value, now it's 
-> a
-> u16. This means that we'll have to update spi_delay_to_ns() to either
-> return a s64 or to add a u64 *delay parameter to the function so that 
-> we
-> can still handle the conversions from usecs and the error codes in the
-> SPI_DELAY_UNIT_SCK case. Then all its callers have to be updated to
-> consider the u64 delay.
-
-I was talking about the device tree property. Even if the driver 
-continue
-to use just 16bit, the DT property could be 32bit IMHO.
-
-At the moment, the schema says its 32bit (if I'm not mistaken, because
-it doesn't have a type), but the driver will parse the property as
-16bit and your device tree also has this /bits/ thingy. So regardless
-if the driver is using 16bit or 32bit for the value, there seems to be
-a discrepancy between the schema and the devicetree (and driver).
-
-All other properties are just the regular 32bit values, thus I was
-suggesting to change the DT property to 32bit.
-
--michael
-
-> I don't know what to say, I'm in between. 65us delays are improbable,
-> but I'm fine to update this as well. Let me know your preference.
+> It should be noted that the MSIs for BDF (1:0.0) only works with Device
+> ID of 0x5980 and 0x5a00. Hence, the IDs are swapped.
 > 
-> Thanks,
-> ta
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+Tested-by: Konrad Dybcio <konrad.dybcio@linaro.org> # Xperia 1 IV (WCN6855)
+
+Konrad
+>  arch/arm64/boot/dts/qcom/sm8450.dtsi | 20 ++++++++++++++------
+>  1 file changed, 14 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> index 570475040d95..c4dd5838fac6 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -1733,9 +1733,13 @@ pcie0: pci@1c00000 {
+>  			ranges = <0x01000000 0x0 0x60200000 0 0x60200000 0x0 0x100000>,
+>  				 <0x02000000 0x0 0x60300000 0 0x60300000 0x0 0x3d00000>;
+>  
+> -			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
+> -			interrupt-names = "msi";
+> -			#interrupt-cells = <1>;
+> +			/*
+> +			 * MSIs for BDF (1:0.0) only works with Device ID 0x5980.
+> +			 * Hence, the IDs are swapped.
+> +			 */
+> +			msi-map = <0x0 &gic_its 0x5981 0x1>,
+> +				  <0x100 &gic_its 0x5980 0x1>;
+> +			msi-map-mask = <0xff00>;
+>  			interrupt-map-mask = <0 0 0 0x7>;
+>  			interrupt-map = <0 0 0 1 &intc 0 0 0 149 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
+>  					<0 0 0 2 &intc 0 0 0 150 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
+> @@ -1842,9 +1846,13 @@ pcie1: pci@1c08000 {
+>  			ranges = <0x01000000 0x0 0x40200000 0 0x40200000 0x0 0x100000>,
+>  				 <0x02000000 0x0 0x40300000 0 0x40300000 0x0 0x1fd00000>;
+>  
+> -			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>;
+> -			interrupt-names = "msi";
+> -			#interrupt-cells = <1>;
+> +			/*
+> +			 * MSIs for BDF (1:0.0) only works with Device ID 0x5a00.
+> +			 * Hence, the IDs are swapped.
+> +			 */
+> +			msi-map = <0x0 &gic_its 0x5a01 0x1>,
+> +				  <0x100 &gic_its 0x5a00 0x1>;
+> +			msi-map-mask = <0xff00>;
+>  			interrupt-map-mask = <0 0 0 0x7>;
+>  			interrupt-map = <0 0 0 1 &intc 0 0 0 434 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
+>  					<0 0 0 2 &intc 0 0 0 435 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
