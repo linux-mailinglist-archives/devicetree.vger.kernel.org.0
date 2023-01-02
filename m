@@ -2,117 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D62565B137
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 12:32:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C83F65B053
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 12:13:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232540AbjABLcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 06:32:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50118 "EHLO
+        id S229997AbjABLNW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 06:13:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235976AbjABLbj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 06:31:39 -0500
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADA3612C
-        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 03:31:38 -0800 (PST)
-Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
-        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20230102113135epoutp01e970858163fcefa0dbeb9345a56328c5~2epXdlEJq2964629646epoutp01f
-        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 11:31:35 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20230102113135epoutp01e970858163fcefa0dbeb9345a56328c5~2epXdlEJq2964629646epoutp01f
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1672659095;
-        bh=vT6IxLs7Z6EoLjlbQBcs1ppskfmHauknzyfEWkrF1nw=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=M1SgV+cBx9GPrEexhGaWS5FWb0K247unpvte5XvjbHdMcNtzOnN0o357TuF9XBRPL
-         M0QD8yDZ86kfhiLy6dOmnJ7lHqSbLjzmdHgKOJhR3+FMBgziJi4tu1Ies8vJnTOZSz
-         UMidXdhBPyKqSEebjjIfVQBE6bdE9T5UqIm+xRfs=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas5p2.samsung.com (KnoxPortal) with ESMTP id
-        20230102113135epcas5p2021ed52ccc2430684e166914186a4acf~2epW-Bh8m0099400994epcas5p2w;
-        Mon,  2 Jan 2023 11:31:35 +0000 (GMT)
-Received: from epsmges5p1new.samsung.com (unknown [182.195.38.179]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4Nltx14HmDz4x9Pt; Mon,  2 Jan
-        2023 11:31:33 +0000 (GMT)
-Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
-        epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        86.DF.02301.590C2B36; Mon,  2 Jan 2023 20:31:33 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-        20230102093538epcas5p2e311441e00f4ec7f53c2ef9f7cdf8b90~2dEIJO53B3083430834epcas5p2C;
-        Mon,  2 Jan 2023 09:35:38 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20230102093538epsmtrp14c3c50bfeb512ff9c21622eca586e9f8~2dEIIjpL-0685506855epsmtrp1f;
-        Mon,  2 Jan 2023 09:35:38 +0000 (GMT)
-X-AuditID: b6c32a49-201ff700000108fd-74-63b2c0950310
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        D2.B1.02211.A65A2B36; Mon,  2 Jan 2023 18:35:38 +0900 (KST)
-Received: from FDSFTE070 (unknown [107.116.189.86]) by epsmtip2.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20230102093537epsmtip2090604e18d0f3f19f79779de85f4c508~2dEG6kS7l0481504815epsmtip2O;
-        Mon,  2 Jan 2023 09:35:37 +0000 (GMT)
-From:   "Padmanabhan Rajanbabu" <p.rajanbabu@samsung.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <alim.akhtar@samsung.com>, <s.prashar@samsung.com>,
-        <pankaj.dubey@samsung.com>
-Cc:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-In-Reply-To: <af5a7b65-9917-58d2-315e-71e902826a54@linaro.org>
-Subject: RE: [PATCH] arm64: dts: fsd: fix PUD values as per FSD HW UM
-Date:   Mon, 2 Jan 2023 15:05:35 +0530
-Message-ID: <020601d91e8d$92954b60$b7bfe220$@samsung.com>
+        with ESMTP id S230252AbjABLNT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 06:13:19 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 034F0DA8
+        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 03:13:17 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id bf43so41169266lfb.6
+        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 03:13:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XrAuu6jhWQcJPRy3SyR8DJMB6n9oyPHi0cJUo5aTP1M=;
+        b=TDxK7d58A8UUv02W8aKwKPEUAyJ3zuNrur2SMEHuZv/XN6EQqTht78KO95AEPDz5RV
+         XxxEva42gcnEMTwkAPjn3oj7ehnaYPkSwT0MdR8nZWcvjKvVYOBebfR8w7UUh7/pLqU9
+         KcTPhLR0CUOUieC1SXUV/kaqIrYFqep23w19lUkOzpQl39pLKy+A3aLxFlnKWZwCpHOS
+         fFaMsX2H4/Itrmi/HxL36MATC5M+1/6w1heZrytpk5167EhpARmKctB98lb3o0zAcAxf
+         H4LxWB+BJPF14LWQaw+BwG2KZyhjda+u3A51HmIlS/cDAtw9TC9/fc4sp1b5OkERnKJB
+         fNNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XrAuu6jhWQcJPRy3SyR8DJMB6n9oyPHi0cJUo5aTP1M=;
+        b=mviKLf8Ut4tZwSCS97cK21bTZz589x1sVXBUPj1dSu3ac4WdW+7PsxmblZAMQkBNi7
+         sxG19BJGpg8UYyJLT0aAk77ABXSooVXlULqjSJFPpabye80Mw5qCZfXv5n1gDxFSCSLD
+         5tbVH9jS55TTv6GIyLCLAfGzw0pTWG2wd/M96826YqA65zlmCiGtZIqJRuwKU+s4ujuw
+         58yGvbM6ri8g1NGL8vg+SBT6E4oM7h6seE3HpmuiRvpGRdvaojHXLRdyfZ86Zc6dIHLh
+         1jCEh1OtWXpDmKGRgWWY0yhQJjaq0DljNUpND975zuV634Z5PJCSg30Uyv4aafKBugfH
+         dXtQ==
+X-Gm-Message-State: AFqh2kqg7CXm3do913jCcXeFr8HeclZJ2OLw1L5Atgh0ngvXgGHWfEy0
+        5j3vROZGyHYE5333HaYaX/rzuw==
+X-Google-Smtp-Source: AMrXdXu9A6IJpPIV473+gDxlcRy5OhdMTgcZTjcjH9z3hHhKbWNgCinBM66KDhd4qIObIxYnh6mgHA==
+X-Received: by 2002:a05:6512:1687:b0:4cb:bf8:cf0e with SMTP id bu7-20020a056512168700b004cb0bf8cf0emr7727872lfb.19.1672657995269;
+        Mon, 02 Jan 2023 03:13:15 -0800 (PST)
+Received: from [192.168.1.101] (abxi45.neoplus.adsl.tpnet.pl. [83.9.2.45])
+        by smtp.gmail.com with ESMTPSA id z5-20020ac24f85000000b004b5480edf67sm4426477lfs.36.2023.01.02.03.13.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Jan 2023 03:13:14 -0800 (PST)
+Message-ID: <32f7fea6-e99c-9bf5-fa7c-044a45e9a68a@linaro.org>
+Date:   Mon, 2 Jan 2023 12:13:13 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH 2/6] arm64: dts: qcom: sc8280xp: disable sound nodes
+Content-Language: en-US
+To:     Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230102105038.8074-1-johan+linaro@kernel.org>
+ <20230102105038.8074-3-johan+linaro@kernel.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230102105038.8074-3-johan+linaro@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQK5YmDUytel1KIanVI5IVzdrffbcwLW7lD+Auv+maysnD5vkA==
-Content-Language: en-in
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprFJsWRmVeSWpSXmKPExsWy7bCmlu7UA5uSDXb8UbB4MG8bm8X8I+dY
-        LfpePGS22Pt6K7vF5V1z2CwWbf3CbtG69wi7xbwdcxkdODw2repk87hzbQ+bR9+WVYwenzfJ
-        BbBEZdtkpCampBYppOYl56dk5qXbKnkHxzvHm5oZGOoaWlqYKynkJeam2iq5+AToumXmAJ2h
-        pFCWmFMKFApILC5W0rezKcovLUlVyMgvLrFVSi1IySkwKdArTswtLs1L18tLLbEyNDAwMgUq
-        TMjOmLL5G2vBAY6KjVN2MDYwdrB3MXJySAiYSLSe6mHrYuTiEBLYzShxbu4fJpCEkMAnRonf
-        qxQhEt8YJe6cPQPXsWXLbhaIxF6gjq9bmCGcF0AdO88wglSxCZhLLNq7FMwWETjLKPF+oWwX
-        IwcHs4CDxP17VSBhTgE7iVXX9oOVCAu4SrSfuwpmswioSByae4IVxOYVsJT41TuLCcIWlDg5
-        8wkLiM0sIC+x/e0cZoiDFCR+Pl3GCrHKSaLn8DNGiBpxiaM/e8BukxCYyCEx9/JjFogGF4mm
-        9l9QzcISr45vgfpMSuJlfxuUnS8x7WMzG4RdIdH2cQMThG0vceDKHBaIXzQl1u/ShwjLSkw9
-        tY4JYi+fRO/vJ1DlvBI75sHYqhLrl29ihLClJfZd38s4gVFpFpLXZiF5bRaSF2YhbFvAyLKK
-        UTK1oDg3PbXYtMAwL7UcHt/J+bmbGMGJVMtzB+PdBx/0DjEycTAeYpTgYFYS4b38eV2yEG9K
-        YmVValF+fFFpTmrxIUZTYHhPZJYSTc4HpvK8knhDE0sDEzMzMxNLYzNDJXHe1K3zk4UE0hNL
-        UrNTUwtSi2D6mDg4pRqY9OxMeyTmTl7dkG1h9uK0erRaR/W6l+wtZz9OXjLVyMjWMeDdOj7z
-        X9xPyx3bn6m+NrPgCyq+8sL70AuGLTHyluyP2PkL3n17JtIhfktDYuG/FocGBWvebylV8esX
-        3GY9dCDuZs2+L1IdHJGsHw3WHarY9/jtUyPrf5dPZ399GzX77ifdh4uYClu39fefltq4e1/K
-        xym7v3cFftTpkwq4V/Szb1H85q2SSY8Pdk0/LyZxP+SZ0bx6DbWjP9/kbe1cxHrqL//0C7zK
-        u35HJR5vLp3gH1/DYSObO3ch/wqP7wvfPBNmUPmalpjec+GbXk6cTsGW2uX+O9XOCJ7l/qFp
-        KLSMedviDLf/ftKzbq2qV2Ipzkg01GIuKk4EADKcZ3stBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmplkeLIzCtJLcpLzFFi42LZdlhJXjdr6aZkg2cHZSwezNvGZjH/yDlW
-        i74XD5kt9r7eym5xedccNotFW7+wW7TuPcJuMW/HXEYHDo9NqzrZPO5c28Pm0bdlFaPH501y
-        ASxRXDYpqTmZZalF+nYJXBlTNn9jLTjAUbFxyg7GBsYO9i5GTg4JAROJLVt2s3QxcnEICexm
-        lDi2aw0rREJaYnr/HjYIW1hi5b/n7BBFzxglXr08DdbNJmAusWjvUkaQhIjARUaJhe/vs4Ak
-        mAWcJCYu2QA19gCjREPXNrAEp4CdxKpr+xlBbGEBV4n2c1fBbBYBFYlDc0+AreYVsJT41TuL
-        CcIWlDg58wnUUG2J3oetjBC2vMT2t3OYIc5TkPj5dBlYrwjQ4p7Dz6BqxCWO/uxhnsAoPAvJ
-        qFlIRs1CMmoWkpYFjCyrGCVTC4pz03OLDQsM81LL9YoTc4tL89L1kvNzNzGCY0pLcwfj9lUf
-        9A4xMnEwHmKU4GBWEuG9/HldshBvSmJlVWpRfnxRaU5q8SFGaQ4WJXHeC10n44UE0hNLUrNT
-        UwtSi2CyTBycUg1MZxl+SxVNvle7IvJTreh33elcUdtcSjeXfZ6ywmDH/6znrZ0BZl6B9+f3
-        tx+5cuX7vJ3tRSYhmRE/0qdbRTBEJVyUfVd6It5NqXDH92bzuwcSuUS+75u496w+9+ejW3R/
-        z7j4Uk7poNOi+r9F/JX+/w0n//jKcUPy08U7phwmD+9ucGmVTnz4SkaycemrfSKv/93Nv84Q
-        G+b5JbGj0iPI8dKnjqxVM+o/lOyz3ad+znpmbbDGJr0r7u9vNAXpiiqdT5oc5WIya+tyl3c6
-        zVxzjLVWMaxTkFFordUTS8kTk/jCXJhQUSFz3KCPaUpli3rQ56+frvLPjmn60OL16qG0kXdX
-        7OS/nWfyu09u/6msxFKckWioxVxUnAgAer9/kRgDAAA=
-X-CMS-MailID: 20230102093538epcas5p2e311441e00f4ec7f53c2ef9f7cdf8b90
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20221129095529epcas5p31acfecd374b59cddd2e67d2efcdd86b4
-References: <CGME20221129095529epcas5p31acfecd374b59cddd2e67d2efcdd86b4@epcas5p3.samsung.com>
-        <20221129095516.89132-1-p.rajanbabu@samsung.com>
-        <af5a7b65-9917-58d2-315e-71e902826a54@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -121,34 +81,90 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski [mailto:krzysztof.kozlowski@linaro.org]
-> Sent: 26 December 2022 08:41 PM
-> To: Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>;
-> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
-> alim.akhtar@samsung.com; s.prashar@samsung.com;
-> pankaj.dubey@samsung.com
-> Cc: devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
-> Subject: Re: [PATCH] arm64: dts: fsd: fix PUD values as per FSD HW UM
+On 2.01.2023 11:50, Johan Hovold wrote:
+> The sound nodes in the SoC dtsi should be disabled by default.
 > 
-> On 29/11/2022 10:55, Padmanabhan Rajanbabu wrote:
-> > PUD values used for UFS, SPI and UART are not reflecting the default
-> > values recommended by FSD HW UM. Therefore, changing the same to
-> > comply with HW UM recommendation.
-> >
-> > Signed-off-by: Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
-> > ---
-> >  arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi | 14 +++++++-------
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 > 
-> This patch does not apply, please rebase on my for-next or linux-next (once
-> released).
-
-Okay, I've rebased on your for-next branch and posted the v2 patch.
-
-> 
-> Best regards,
-> Krzysztof
-
-Thanks,
-Padmanabhan R.
-
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> index ed1e2bee86ee..c1ce2d7b3675 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> @@ -1733,6 +1733,8 @@ rxmacro: rxmacro@3200000 {
+>  
+>  			pinctrl-names = "default";
+>  			pinctrl-0 = <&rx_swr_default>;
+> +
+> +			status = "disabled";
+>  		};
+>  
+>  		/* RX */
+> @@ -1760,6 +1762,8 @@ swr1: soundwire-controller@3210000 {
+>  			#sound-dai-cells = <1>;
+>  			#address-cells = <2>;
+>  			#size-cells = <0>;
+> +
+> +			status = "disabled";
+>  		};
+>  
+>  		txmacro: txmacro@3220000 {
+> @@ -1783,6 +1787,8 @@ txmacro: txmacro@3220000 {
+>  			#address-cells = <2>;
+>  			#size-cells = <2>;
+>  			#sound-dai-cells = <1>;
+> +
+> +			status = "disabled";
+>  		};
+>  
+>  		wsamacro: codec@3240000 {
+> @@ -1804,6 +1810,8 @@ wsamacro: codec@3240000 {
+>  
+>  			pinctrl-names = "default";
+>  			pinctrl-0 = <&wsa_swr_default>;
+> +
+> +			status = "disabled";
+>  		};
+>  
+>  		/* WSA */
+> @@ -1830,6 +1838,8 @@ swr0: soundwire-controller@3250000 {
+>  			#sound-dai-cells = <1>;
+>  			#address-cells = <2>;
+>  			#size-cells = <0>;
+> +
+> +			status = "disabled";
+>  		};
+>  
+>  		/* TX */
+> @@ -1858,6 +1868,8 @@ swr2: soundwire-controller@3330000 {
+>  			qcom,ports-word-length =	/bits/ 8 <0xff 0x00 0xff 0xff>;
+>  			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff>;
+>  			qcom,ports-lane-control =	/bits/ 8 <0x00 0x01 0x00 0x00>;
+> +
+> +			status = "disabled";
+>  		};
+>  
+>  		vamacro: codec@3370000 {
+> @@ -1874,6 +1886,8 @@ vamacro: codec@3370000 {
+>  			#clock-cells = <0>;
+>  			clock-output-names = "fsgen";
+>  			#sound-dai-cells = <1>;
+> +
+> +			status = "disabled";
+>  		};
+>  
+>  		lpass_tlmm: pinctrl@33c0000 {
+> @@ -1888,6 +1902,8 @@ lpass_tlmm: pinctrl@33c0000 {
+>  				 <&q6prmcc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
+>  			clock-names = "core", "audio";
+>  
+> +			status = "disabled";
+> +
+>  			tx_swr_default: tx-swr-default-state {
+>  				clk-pins {
+>  					pins = "gpio0";
