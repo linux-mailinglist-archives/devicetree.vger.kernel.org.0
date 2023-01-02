@@ -2,71 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1D9565AF03
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 10:48:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 20C8465AF15
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 10:54:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232579AbjABJr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 04:47:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46794 "EHLO
+        id S229715AbjABJyC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 04:54:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232130AbjABJrL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 04:47:11 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A29A0EB1
-        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 01:47:07 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id m6so30540215lfj.11
-        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 01:47:07 -0800 (PST)
+        with ESMTP id S232161AbjABJx6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 04:53:58 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 841AB97
+        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 01:53:56 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id h16so25836065wrz.12
+        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 01:53:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TFH5sK94uUGkYsnyydALAXbzDgDXUUC+E+qx1E7ySAM=;
-        b=SJe8rHz/YDTIXCHCDE7saOduaDb0NOvFy3Es2bU/6RG0SYmKkxwoXBEp3+lID3Ugd0
-         iugtcTjCMM0XpFW1oWHG/Ir4XsCMXeq27kfQ2zza8S9SgdlxqnLdxxtY4sqU3E8vUtXo
-         0qCeJAkcvX67Q2WkVIhPbVcGILApL5lhHWp0+K0Mcv+iqn3sVE21/TswKiqy8xb7Ed8y
-         YYGTw4O0PvyUvapDqhExfr9WBXZmYSqE2uOHyjabl/wkBykh3zRoefKVE74pcMMJKdKx
-         /cUWRL4vizEgjo9jm7vG2itaLzwnTJyd3o6jlReyTNoj4NWHhZoR7ijZywSuIZTR/bjf
-         vZiA==
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=l+/g4OFevxQxj3ZDU3ipz6hKywBVT0qBoACJLcSqq4M=;
+        b=uPhtFfxGx1PHn79fSh6g5TqdHIc5I+mE0Euh7ayeA62uFN0W6iPkzaWlzJnjAOukBz
+         YfTAaMZrv/XYHR+FPBk6IC6fQGfKNloz0/DcMXvE0M8iym3aErj+VFJTJplo6xEQhhwj
+         X2VsICQEDqqMAnRfyKKDBEqK53hNPGmvuMyd6J3ywo5JXTln8+F5DrD82ISz2vPvUMhg
+         TZMnew8tvPBwYC180/DivQ/V5vLziCsxisWQqgayu94oVA/34OzPyq0aV5FwYarYoVq3
+         PJi0ddgIO7PJtNkl/0Bgp4nFHVI69CSHNESYzCGn1MRNFLPFHdhX5dSyuGFYN/ezPVH+
+         2ieQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TFH5sK94uUGkYsnyydALAXbzDgDXUUC+E+qx1E7ySAM=;
-        b=rlcc45ijanwVBNJAhREmSuruswEBb6qZ3mUqf9dpAuTT4sBdX8LUIroC3OvshgyS+G
-         cGawo55HG6vgssFxwnlL5vfZqMF8/QKIAa0HEO+o0SjgmMkTuhU1JWzXK52aydF4caNr
-         zHdlbOA03kd2fPDwO/pKymsKcVvXTiDZml0jm2/d6bCAlOrNZLDXp/R45lGeiCnrLXic
-         0OtxdRI/uv4nrkGCse/9a9RDl4TGYCcmW2FkNhzaoKevrA8Zwb7kTcGKKX0VgUYx01w2
-         eVFjy9tIJWA1lLSuHHXHK3KkOiWpkE1ObcI2+nPKnTP/k8n+8NVeAsZbMNvAurdS4Qu4
-         Cpzw==
-X-Gm-Message-State: AFqh2krFrBmRRhi0jy7WoFbq4lX5xehqcDzMMxQ7dwhMYK8wDHkbSqeP
-        aEzDoZhAFVMgTcaUXDR5s3044A==
-X-Google-Smtp-Source: AMrXdXsJ1M2wiSOxFS23TOD7mPMvDEgFfoTHHxBYRO/noBgof+DZcXeFOgGbXoX9y/Jpt1YlWL0k0g==
-X-Received: by 2002:a19:ac41:0:b0:4cb:3471:ab94 with SMTP id r1-20020a19ac41000000b004cb3471ab94mr1212271lfc.31.1672652827246;
-        Mon, 02 Jan 2023 01:47:07 -0800 (PST)
-Received: from localhost.localdomain (abxi45.neoplus.adsl.tpnet.pl. [83.9.2.45])
-        by smtp.gmail.com with ESMTPSA id x11-20020a0565123f8b00b004b5adb59ed5sm4382143lfa.297.2023.01.02.01.47.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Jan 2023 01:47:06 -0800 (PST)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org
-Cc:     marijn.suijten@somainline.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 17/17] arm64: dts: qcom: sm6115: Pad addresses to 8 hex digits
-Date:   Mon,  2 Jan 2023 10:46:42 +0100
-Message-Id: <20230102094642.74254-18-konrad.dybcio@linaro.org>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230102094642.74254-1-konrad.dybcio@linaro.org>
-References: <20230102094642.74254-1-konrad.dybcio@linaro.org>
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=l+/g4OFevxQxj3ZDU3ipz6hKywBVT0qBoACJLcSqq4M=;
+        b=iQnq/S1zp6NujfFCPDjXV2U/uv4TDio/k+PmmInWFJxBpwUjhzw9p00NY28ck5fXOa
+         v7Lsrom49VNPfCrozQvP5tnoRHgk7ct/hQfzC2WLQWUcbJnlBYvrhqaY9A3tCNwPgqGn
+         PFja7TegySvybL5NmRPrN/nKhMxtbkljUJ9EIMj8jJ4j91f9KXjxFQ4wl5SHtv64Izdc
+         3zeJ6mf1F5zSfUlOUj3EQw7cQ30mkZjAcb2cn4U0lBiJNUTgY3Mxup+3TpQOvcNGscir
+         EUQQAYeTOYcCR/yhMuaG+G1vioTYNmwwt7cprejDy/FzitkTsvccLwacZQEJUW1sbHYb
+         XYow==
+X-Gm-Message-State: AFqh2krK6NXFAQjuJe/EgIeYceXcbXI7OJnD/570FEBLr9i+i35bWxtV
+        ZQ2glPpD0sfrrqPK70SeegT9CQ==
+X-Google-Smtp-Source: AMrXdXtn8MnvQhXsoUddUydMeU25/PmnIRF88UjZXtcC/hZzFGziSqo12v8zKsIJJzFrTNvZ08M9YQ==
+X-Received: by 2002:adf:ee83:0:b0:270:213a:b53d with SMTP id b3-20020adfee83000000b00270213ab53dmr23568623wro.33.1672653234797;
+        Mon, 02 Jan 2023 01:53:54 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:4f32:f70:35be:acf9? ([2a01:e0a:982:cbb0:4f32:f70:35be:acf9])
+        by smtp.gmail.com with ESMTPSA id u13-20020a5d468d000000b00275970a85f4sm25889021wrq.74.2023.01.02.01.53.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Jan 2023 01:53:53 -0800 (PST)
+Message-ID: <5e5babae-224d-51cf-4eac-6272df87a8e7@linaro.org>
+Date:   Mon, 2 Jan 2023 10:53:52 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v6 4/8] arm64: dts: Add DT node for the VIPNano-QI on the
+ A311D
+Content-Language: en-US
+To:     Tomeu Vizoso <tomeu.vizoso@collabora.com>
+Cc:     italonicola@collabora.com, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Amlogic Meson SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson SoC support" 
+        <linux-amlogic@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20221202115223.39051-1-tomeu.vizoso@collabora.com>
+ <20221202115223.39051-5-tomeu.vizoso@collabora.com>
+Organization: Linaro Developer Services
+In-Reply-To: <20221202115223.39051-5-tomeu.vizoso@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,33 +88,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some addresses were 7-hex-digits long, or less. Fix that.
+On 02/12/2022 12:52, Tomeu Vizoso wrote:
+> This "NPU" is very similar to the Vivante GPUs and Etnaviv works well
+> with it with just a few small changes.
+> 
+> v2: Add reference to RESET_NNA (Neil)
+> v3: Fix indentation (Neil)
+> 
+> Signed-off-by: Tomeu Vizoso <tomeu.vizoso@collabora.com>
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi     | 11 +++++++++++
+>   .../boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts |  4 ++++
+>   2 files changed, 15 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> index 45947c1031c4..61c8461df614 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> @@ -11,6 +11,7 @@
+>   #include <dt-bindings/interrupt-controller/arm-gic.h>
+>   #include <dt-bindings/reset/amlogic,meson-g12a-reset.h>
+>   #include <dt-bindings/thermal/thermal.h>
+> +#include <dt-bindings/power/meson-g12a-power.h>
+>   
+>   / {
+>   	interrupt-parent = <&gic>;
+> @@ -2484,4 +2485,14 @@ xtal: xtal-clk {
+>   		#clock-cells = <0>;
+>   	};
+>   
+> +	npu: npu@ff100000 {
+> +		compatible = "vivante,gc";
+> +		reg = <0x0 0xff100000 0x0 0x20000>;
+> +		interrupts = <0 147 4>;
+> +		clocks = <&clkc CLKID_NNA_CORE_CLK>,
+> +			 <&clkc CLKID_NNA_AXI_CLK>;
+> +		clock-names = "core", "bus";
+> +		resets = <&reset RESET_NNA>;
+> +		power-domains = <&pwrc PWRC_G12A_NNA_ID>;
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
-v1 -> v2:
-No changes
+A status = "disable" is missing here.
 
- arch/arm64/boot/dts/qcom/sm6115.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+> +	};
+>   };
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
+> index 124a80901084..73f3d87dcefd 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
+> @@ -15,6 +15,10 @@ / {
+>   	compatible = "khadas,vim3", "amlogic,a311d", "amlogic,g12b";
+>   };
+>   
+> +&npu {
+> +	status = "okay";
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-index b3ed6ec16205..76dab4c2e8ed 100644
---- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-@@ -831,9 +831,9 @@ ufs_mem_phy: phy@4807000 {
- 			status = "disabled";
- 
- 			ufs_mem_phy_lanes: phy@4807400 {
--				reg = <0 0x4807400 0 0x098>,
--				      <0 0x4807600 0 0x130>,
--				      <0 0x4807c00 0 0x16c>;
-+				reg = <0 0x04807400 0 0x098>,
-+				      <0 0x04807600 0 0x130>,
-+				      <0 0x04807c00 0 0x16c>;
- 				#phy-cells = <0>;
- 			};
- 		};
--- 
-2.39.0
+Tomeu, I think until the user-space stack is clean this should be removed
+and left disabled.
+
+I can fix this while applying if you want,
+
+Neil
+
+> +};
+> +
+>   /*
+>    * The VIM3 on-board  MCU can mux the PCIe/USB3.0 shared differential
+>    * lines using a FUSB340TMX USB 3.1 SuperSpeed Data Switch between
 
