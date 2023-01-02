@@ -2,82 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5742D65AF97
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 11:34:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CCACC65AFB0
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 11:39:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232036AbjABKeD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 05:34:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45156 "EHLO
+        id S229941AbjABKju (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 05:39:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbjABKeC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 05:34:02 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45F5E10A6
-        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 02:34:01 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id m3so11208628wmq.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 02:34:01 -0800 (PST)
+        with ESMTP id S229447AbjABKjt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 05:39:49 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28331111D
+        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 02:39:48 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id d17so6199900wrs.2
+        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 02:39:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=8mgGt+WDil8dXaAkpJ8qZ0avMhy4Myb58QPGVDym6jk=;
-        b=yNsiE5cnW7N2EYqUIgR6oylWXDpokhhUBC++Hyr5GSKhbbGYxxLF6AxDzhQlxgp8bB
-         iP9FHXzLpMBT4+H0U+GeaOZgaqPkosrF71zTJbgP0DTCTH9Iep+XVGkqJPQ1AOwrWdKi
-         gyUCqDrOD0r3EbPZfuAHfx4yVfSW0Ww1GfTy/GOP7wWX+VgUzWfWDepBAvPLMOsoNCmn
-         0CJyADgaPbJFbsBqtM5gEmmtlJ+ndqG80yihZN4wiwzcNdNQv/eJbAfTVlioeKWnBQ8g
-         u7Mk+2qHk6PzpoxLBm+ikqT+ux1UVPpr6X6D0Oxepk3AV8ORdC3Fqr22906Vtn31Ju5R
-         mL3g==
+        bh=TN3FpV1I7tFu/Kpha9CDnNvHD7KVpRjqtfkjCmVPUO0=;
+        b=CakuEVBcyWpVCHtq/gK0WL8H5kopdxqYu/fVo/dM+vHh1V8sZ+azV8nsGYLtljTXD/
+         Jan0bb1u2z6DBTbYgWOe3F3oWRQkEXTN7ztpNDX9uesOCbQwTs9b9Gy1XnACehMALSO9
+         epAapZem3wE9CprqWtC4EIdMuPaKyykdTAI9wvrGR8ecRb9OdNyNT5dW/mHVs/l8/LEX
+         vzsBl2x2BPr3Ifx3ZZcZZBGkUw1+odEJ4t+2weznXeuIh+RfNJcTOzij+gzqWzQ3DqQR
+         wh88hwAqkaRW9U7tYi3O+oxdt5Q5UAigMXZtSxG5GVpOOl3XSzR82YsrFvWlDDt7UISs
+         7Yvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=8mgGt+WDil8dXaAkpJ8qZ0avMhy4Myb58QPGVDym6jk=;
-        b=O1pHt+37JEY8jLBWQIeXo7xKHOUPAb8TuNlChwuozMGHNhc9BTUamrpKpNs2JbaN2q
-         bnzO/lhMGzabTS7E8iv/ZxsYw3Yv5yN+DqtveT7aHtlJ8PPUODqUJmBjnmhIILddATrZ
-         fpqJIkMyymkNtgFEs4y9YrNZbD8cWUj5LnfHTYjqBBZg9qm7iUAFYa6WdGdWKv6t2w5J
-         5zdtlA0u55++dJZ46VnaFpkIHKaKKUiWwmDw0leTYj3IbZbwObGKQQdQhbCEbaxBMybX
-         401XcGkAhy+CYojRobNkDeI96zEZNuys/uVR8i/Yx5BkeEh3ZT1NBoCuxRB/jzXN590m
-         lKrw==
-X-Gm-Message-State: AFqh2kp9f+jHyhBYoOtXEns/y+sCL1s//2xtKW5hhh6XEFfTVRNaWBbo
-        1Ljx4Wc8dianZqqP+UhXbvfS2A==
-X-Google-Smtp-Source: AMrXdXtR8Zpqr1OOrcZbsXvxGi2rMh686vRDHyobS4MDPmdqNXmhUxFGkbSoZEpsVKm7yR6UFphmcg==
-X-Received: by 2002:a05:600c:1e09:b0:3cf:b73f:bf8f with SMTP id ay9-20020a05600c1e0900b003cfb73fbf8fmr28237316wmb.7.1672655639818;
-        Mon, 02 Jan 2023 02:33:59 -0800 (PST)
+        bh=TN3FpV1I7tFu/Kpha9CDnNvHD7KVpRjqtfkjCmVPUO0=;
+        b=s0jpKzNK2/msmYSQyEUHpDMWKNtiV5/HVxaGvvFeimE1eyDimbPtTl43RoCE7CWjO0
+         eqi1AbUmhbhS0YQXQHR9WNV4X3FQVLxNSlYhFynLDWCrTfRhYWLAHcFfpA7Tz9fo1twz
+         cB+zqNoua9NexCbLpoPV5UxNMUNP4CGwJDOiVdu41RyXnc7EHP8Bqq8F+1UDa3QijZXM
+         NOFo9PT0kFySeqVbs9OTa6AOeQ4W7PH+5ekzsRQVFerHV992kPXDCeIanWxczm2HbA/A
+         ehOR8ATYtNbU3UKSXRQF5XC7J+1PpckGyGyfEiJkE0+o8902fmGovUoDqihoecRLb8uH
+         nPjQ==
+X-Gm-Message-State: AFqh2kpT0SU0SUaWcoc1yM4aKdekgcj/ggAeldxAfJ1IMeWauIM6pn4r
+        AJeY9dOJ1eO/hesEn7vbbU7r/A==
+X-Google-Smtp-Source: AMrXdXvJmLCCviOiLhVE2Fn/tGQ7qfOD6ZJjjx6/aj9+9AjFtmpkJtNmUE2jJpa+634KcFkd2p2Kuw==
+X-Received: by 2002:adf:f243:0:b0:26d:798f:ab8a with SMTP id b3-20020adff243000000b0026d798fab8amr22489628wrp.68.1672655986705;
+        Mon, 02 Jan 2023 02:39:46 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id z10-20020a05600c0a0a00b003d96efd09b7sm39558447wmp.19.2023.01.02.02.33.58
+        by smtp.gmail.com with ESMTPSA id r14-20020a5d4e4e000000b002549b649b62sm27810881wrt.50.2023.01.02.02.39.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Jan 2023 02:33:59 -0800 (PST)
+        Mon, 02 Jan 2023 02:39:46 -0800 (PST)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
 To:     Tomeu Vizoso <tomeu.vizoso@collabora.com>
-Cc:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Russell King <linux+etnaviv@armlinux.org.uk>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@gmail.com>,
-        "open list:DRM DRIVERS FOR VIVANTE GPU IP" 
-        <dri-devel@lists.freedesktop.org>,
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
         open list <linux-kernel@vger.kernel.org>,
-        italonicola@collabora.com, Lucas Stach <l.stach@pengutronix.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
         Jerome Brunet <jbrunet@baylibre.com>,
-        "open list:ARM/Amlogic Meson SoC support" 
-        <linux-amlogic@lists.infradead.org>,
-        "moderated list:DRM DRIVERS FOR VIVANTE GPU IP" 
-        <etnaviv@lists.freedesktop.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
+        "moderated list:DRM DRIVERS FOR VIVANTE GPU IP" 
+        <etnaviv@lists.freedesktop.org>,
+        Kevin Hilman <khilman@baylibre.com>,
         "moderated list:ARM/Amlogic Meson SoC support" 
         <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Christian Gmeiner <christian.gmeiner@gmail.com>
+        "open list:DRM DRIVERS FOR VIVANTE GPU IP" 
+        <dri-devel@lists.freedesktop.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "open list:ARM/Amlogic Meson SoC support" 
+        <linux-amlogic@lists.infradead.org>, italonicola@collabora.com,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        David Airlie <airlied@gmail.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        Russell King <linux+etnaviv@armlinux.org.uk>
 In-Reply-To: <20221202115223.39051-1-tomeu.vizoso@collabora.com>
 References: <20221202115223.39051-1-tomeu.vizoso@collabora.com>
 Subject: Re: (subset) [PATCH v6 0/8] Support for the NPU in Vim3
-Message-Id: <167265563884.375287.14738065029964626826.b4-ty@linaro.org>
-Date:   Mon, 02 Jan 2023 11:33:58 +0100
+Message-Id: <167265598564.387036.9948295692448105822.b4-ty@linaro.org>
+Date:   Mon, 02 Jan 2023 11:39:45 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -104,14 +104,16 @@ On Fri, 2 Dec 2022 12:52:12 +0100, Tomeu Vizoso wrote:
 > 
 > [...]
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.3/drivers)
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.3/arm64-dt)
 
-[3/8] soc: amlogic: meson-pwrc: Add NNA power domain for A311D
-      https://git.kernel.org/amlogic/c/9a217b7e895313a4d42f7a6c48b6237a595945f4
+[4/8] arm64: dts: Add DT node for the VIPNano-QI on the A311D
+      https://git.kernel.org/amlogic/c/18b542e544d3bd00e55d7135ee673b34dbfdb9b9
+[8/8] arm64: dts: Fix NPU power domain references in Amlogic G12-based SoCs
+      (no commit info)
 
 These changes has been applied on the intermediate git tree [1].
 
-The v6.3/drivers branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+The v6.3/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
 for inclusion in their intermediate git branches in order to be sent to Linus during
 the next merge window, or sooner if it's a set of fixes.
 
