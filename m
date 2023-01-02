@@ -2,80 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E62065AE1E
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 09:30:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75FBD65AE27
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 09:33:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231808AbjABIas (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 03:30:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49706 "EHLO
+        id S231720AbjABIc7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 03:32:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232006AbjABIap (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 03:30:45 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08B39EBA
-        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 00:30:44 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id g13so40688224lfv.7
-        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 00:30:43 -0800 (PST)
+        with ESMTP id S231812AbjABIc5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 03:32:57 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4AD510F7
+        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 00:32:55 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id e13so25906565ljn.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 00:32:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=rtiFQpyWhpU5ex37LxYmByZTtx64yGOprdYoXMKibYc=;
-        b=n1TVVWwSUQdO4/Y6dHg574l1nbWHzqX5oWXwr1OUGxHMY+d7mxwhRUC8cPImKYCT/y
-         8xanzMicEq/864fBVGMZUtX26ZhqVicRuWkuzOsG4vNA0u1E2kOKrv9CYewbdsihSO9L
-         DoqJA1EteBJzlyeZHC6PtaiwhNAy35R5D3QZby4GchWZi7HLxJJN/DgMoViPZyrjBR8y
-         H6fyq8TnY9FVz+F4EysOmrGkzAp9oyeaOr4+dj0aYBl1RhNUUx/aJwsVRMxBJtCszwk3
-         FaiLgEXTLpoww25G0rdycB2Gfg2AgqH+gS7XNDxZoRbyjAv/ngBuXwDuJ80dJNA8290L
-         2zDw==
+        bh=kdsQq8pIU/cSQEcxLiA3V0Gt5zMs8XjFr211bRc9iVA=;
+        b=TMsImaDZztQVAwwtDJZZIOpoTCsof0K3Vh9jxbqoA5LHjsmqWvKFRb6RuZUi0NWBs7
+         36Bs3yejMt3RVVS/CT/DBTCgrj3KlOXPgVndlRE1iLxo/xJxGjlyfCbctIGIbnlsCeve
+         UgGdWE1CrTs8h5rlV4uxAMYLmZEj6ebdXiazUko0QoaEZQB/N/rnNRimAqwh6D0CvLau
+         MzfCdv3NGlEg6bdvjUnQ3kmynuLbkAPLkCB71w4gMjq3xCexNFZoYz3BBBeCZNj/7fxA
+         inVti/Bg4hFLhMf0PuZojEXFfzzfuj5hgou1tsBtrupXHqisT//CL5NlG/gbI7wQqTt6
+         GbCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rtiFQpyWhpU5ex37LxYmByZTtx64yGOprdYoXMKibYc=;
-        b=1Anrd6dx/7btGuz6pnA2GtTha8x25bugKuPTY2mUV8qkr9zAApdi8z7wZngUNZyQih
-         in7e8XIHSqIi0IrSqf9N8XUsDupHw7jgxU5FLHwFtA76Cys2vk+AqUynaw6daDU8g7b5
-         zs2+58k1avk7LKH/8E4e+HAyyLELkzO82bSfZk4Htc821MzgIYYc1j2+cM5a/gkUSMnj
-         Uvv4qfKvD0N7oNpNblCDFmYWmPseKAdiZLDMBvStglBm0Q376zp8zk1Cq1wkpLLo4s6/
-         9yB5XpQLfa9vRm0Z7CkBnCK1Wd4/0HDZHEpes+b+JlGjNT3ZtJ8nEpOFkDCOksPgVUxD
-         NRsA==
-X-Gm-Message-State: AFqh2kp1lkJIUIGARoaTvwJZrVzWSPe3oB+usq/Uff9k6Hvq7Dx/NpTc
-        uCnP3XXNjFScN/onJ68iEl9Oig==
-X-Google-Smtp-Source: AMrXdXtHLYARNcvpffbs1r2sdcc97L2+H9iPXEjItpIwDj3p2J/1deLZLgAoR0gW2EMmnQmQT6waOQ==
-X-Received: by 2002:a05:6512:2316:b0:4b0:6023:6f6f with SMTP id o22-20020a056512231600b004b060236f6fmr13521416lfu.57.1672648242380;
-        Mon, 02 Jan 2023 00:30:42 -0800 (PST)
+        bh=kdsQq8pIU/cSQEcxLiA3V0Gt5zMs8XjFr211bRc9iVA=;
+        b=AT8kpZMNhagC+EhLFL5+VR8M+Bh6FUiFmO347Ex5gZo6PDiR8QC9Ox9jHIfYfeBxnT
+         C5QTEHttohJwPJcyyc/YG2+Ljtyb+EL95k6xoTn4y153uIQZdGtO7wD+9C3iBWIFoio7
+         1LiOMBu2hrjreYDUYL/GL6V61IuV4PMv8UucWoNrvENa16FdMyR5/u+caGDQWaKtJvJp
+         Fu3MOZq1vDBE01VS+b0Bn2T5z8ldRqKPDisKSaz6yAjk/TIy3RDAPpTDF7d8bFzYgCum
+         m5nQ/a6Tv6+vxVeiBeatZDdO8oHJ4lx0+/3/IdjQl2r+tbv8AIAhhN/xj7VyMDrVFcCD
+         4iTw==
+X-Gm-Message-State: AFqh2kqV46swxGuVNyGklNpvqTrkhJcaLPYLO/QA1l4rC74rasQflVHn
+        0FuFIdGVdlez7k8mDQT1TbwbBA==
+X-Google-Smtp-Source: AMrXdXvrQD47osxI5NxAqYygleVc6DQCZOXUa8TmKcXAf3A4+guTLZz9L1b3zXpVK5owHYYlkMxLYQ==
+X-Received: by 2002:a2e:8686:0:b0:27f:dc33:729e with SMTP id l6-20020a2e8686000000b0027fdc33729emr3521182lji.8.1672648374032;
+        Mon, 02 Jan 2023 00:32:54 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id d13-20020a056512368d00b0049478cc4eb9sm4363058lfs.230.2023.01.02.00.30.41
+        by smtp.gmail.com with ESMTPSA id r4-20020a2e8e24000000b0027feb520bf4sm313879ljk.138.2023.01.02.00.32.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Jan 2023 00:30:41 -0800 (PST)
-Message-ID: <6451aafa-7021-0769-d408-9dba40d58668@linaro.org>
-Date:   Mon, 2 Jan 2023 09:30:40 +0100
+        Mon, 02 Jan 2023 00:32:53 -0800 (PST)
+Message-ID: <54246dbc-b75f-605c-8103-84a5ff8305be@linaro.org>
+Date:   Mon, 2 Jan 2023 09:32:52 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [RFC PATCH v2 1/3] usb: support Samsung Exynos xHCI Controller
+Subject: Re: [PATCH v5 02/20] dt-bindings: thermal: tsens: support per-sensor
+ calibration cells
 Content-Language: en-US
-To:     Jung Daehwan <dh10.jung@samsung.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>, sc.suh@samsung.com,
-        taehyun.cho@samsung.com, jh0801.jung@samsung.com,
-        eomji.oh@samsung.com
-References: <1672307866-25839-1-git-send-email-dh10.jung@samsung.com>
- <CGME20221229100413epcas2p34c702faf8c96d207cf1659b1173f8858@epcas2p3.samsung.com>
- <1672307866-25839-2-git-send-email-dh10.jung@samsung.com>
- <bc531774-ed70-39b7-3534-5683dff20591@linaro.org>
- <20230102062448.GC74470@ubuntu>
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20221229030106.3303205-1-dmitry.baryshkov@linaro.org>
+ <20221229030106.3303205-3-dmitry.baryshkov@linaro.org>
+ <ef9d5f72-e39a-e32c-5d7d-4a6ee57101aa@linaro.org>
+ <CAA8EJppp967vZNaMBDmB7HaU_EaCJfvUxFFHikb9oXRohGSCBg@mail.gmail.com>
+ <74d22d8b-04b6-77ec-610e-d7f5844225a5@linaro.org>
+ <c879951f-9b66-d68a-77e2-228b5b13c683@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230102062448.GC74470@ubuntu>
+In-Reply-To: <c879951f-9b66-d68a-77e2-228b5b13c683@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,92 +92,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/01/2023 07:24, Jung Daehwan wrote:
-> On Thu, Dec 29, 2022 at 11:25:58AM +0100, Krzysztof Kozlowski wrote:
->> On 29/12/2022 10:57, Daehwan Jung wrote:
->>> Currently, dwc3 invokes just xhci platform driver without any data.
->>> We add xhci node as child of dwc3 node in order to get data from
->>> device tree. It populates "xhci" child by name during initialization
->>> of host. This patch only effects if dwc3 node has a child named "xhci"
->>> not to disturb original path.
+On 01/01/2023 20:18, Dmitry Baryshkov wrote:
+
+>>> Same applies to the msm8939 (no sensor #4).
 >>>
->>> We add "samsung,exynos-xhci" compatible in xhci platform driver
+>>> Note: if there was support for the prefixItems, I'd have probably
+>>> marked mode/base1/base2 to be the first items of the array.
 >>
->> Where? It is not documented.
+>> Then how about list of const items and patterns? Would be similar number
+>> of lines, just a bit more complicated pattern instead of simple string
+>> to enum.
 > 
-> I submitted the patch of dt bindings on same patchset.
-> Is there any missing documentation?
+> Ack, this sounds good. I'll send it in the v6.
+> 
+> BTW: do you know if there are any plans to add support for prefixItems?
 
-This is your first patch in the series and in this patch there is no
-such bindings. Re-order the patches to have proper order.
-
-> 
->>
->>> to support Exynos SOCs. 
->>
->> That's so not true. You do nothing to support Exynos SoC here. Please
->> stop pasting incorrect and misleading commit msgs.
-> 
-> I agree misleading commit msgs. I will modify it.
-> 
->>
->>> We introduce roothub wakeup, which uses roothub
->>> as system wakeup source. It needs xhci platform driver to override
->>> roothub ops.
->>
->> You did not explain why you introduced wakelocks...
->>
-> 
-> I'm sorry I didn't write description enough.
-> I add it below.
-> 
->>
->> (...)
->>
->>>  	if (shared_hcd) {
->>>  		usb_remove_hcd(shared_hcd);
->>>  		xhci->shared_hcd = NULL;
->>> diff --git a/drivers/usb/host/xhci.c b/drivers/usb/host/xhci.c
->>> index 79d7931c048a..693495054001 100644
->>> --- a/drivers/usb/host/xhci.c
->>> +++ b/drivers/usb/host/xhci.c
->>> @@ -5502,6 +5502,10 @@ void xhci_init_driver(struct hc_driver *drv,
->>>  			drv->check_bandwidth = over->check_bandwidth;
->>>  		if (over->reset_bandwidth)
->>>  			drv->reset_bandwidth = over->reset_bandwidth;
->>> +		if (over->bus_suspend)
->>> +			drv->bus_suspend = over->bus_suspend;
->>> +		if (over->bus_resume)
->>> +			drv->bus_resume = over->bus_resume;
->>>  	}
->>>  }
->>>  EXPORT_SYMBOL_GPL(xhci_init_driver);
->>> diff --git a/drivers/usb/host/xhci.h b/drivers/usb/host/xhci.h
->>> index c9f06c5e4e9d..cb9c54a6a22c 100644
->>> --- a/drivers/usb/host/xhci.h
->>> +++ b/drivers/usb/host/xhci.h
->>> @@ -1752,6 +1752,8 @@ struct xhci_hub {
->>>  struct xhci_hcd {
->>>  	struct usb_hcd *main_hcd;
->>>  	struct usb_hcd *shared_hcd;
->>> +	struct wakeup_source *main_wakelock;
->>> +	struct wakeup_source *shared_wakelock;
->>
->> Drop wakelocks. This is not related to USB and not needed here. Do you
->> see anywhere else in core kernel code usage of the wakelocks?
->>
->> You got this comment already, didn't you? So why you do not address it?
->>
-> 
-> I want to add a new feature in xhci platform driver. I want to make it
-> possible to enter system sleep while usb host connected like USB Mouse.
-> It gets system enter sleep only if there's no usb transaction at all.
-> Deciding if there's tranaction or not is in root hub because it's parent
-> of all child usb devices.
-
-
-I have USB mouse connected to my system and the system enters suspend,
-thus I don't think this patch solves this particular issue.
+Yes, I think Rob is planning to introduce it.
 
 Best regards,
 Krzysztof
