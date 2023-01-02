@@ -2,140 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4A7865B525
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 17:37:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BD5F65B545
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 17:45:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232197AbjABQhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 11:37:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41820 "EHLO
+        id S233439AbjABQpP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 11:45:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbjABQhp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 11:37:45 -0500
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 911BC138;
-        Mon,  2 Jan 2023 08:37:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1672677464; x=1704213464;
-  h=message-id:date:mime-version:to:cc:references:from:
-   subject:in-reply-to:content-transfer-encoding;
-  bh=kN/SHISxRWT2L0F6Vw5HZe3KAE4ojWJmQqCG+JrHEBY=;
-  b=bkWqbt/f39Iw7pW+XOg9nMrRmbBXx7XZ62MCajUm5kMOcV56gWMEU3eQ
-   Zia2FjVcaHHhFuha+7K80h9s06ArLjp0cCGssNZL0/L4G5Z7xLXtgbn9b
-   ACfHB5vfn6u1vp2qBFNEylhfyXhFEtqOotOp/FlXLOLyOzMyyNc17Rtv/
-   R5pAUb3ANPglM/HfkcEuUbcUw1oGnfpYQ5PvLsp+97aepUg2v6E3jqJQ4
-   qZf7mXBel/mpa/OFTgrVl0/TLsovW/Mi6k9R05x7S6WmKJjgKivry3O0R
-   ub749ADbGAUaTu/BHrk8mf3U4I5P5cpPVLE/7p5EnuxdRkvhIrAsl1SNg
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10578"; a="305019794"
-X-IronPort-AV: E=Sophos;i="5.96,294,1665471600"; 
-   d="scan'208";a="305019794"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jan 2023 08:37:43 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10578"; a="743245438"
-X-IronPort-AV: E=Sophos;i="5.96,294,1665471600"; 
-   d="scan'208";a="743245438"
-Received: from mattu-haswell.fi.intel.com (HELO [10.237.72.199]) ([10.237.72.199])
-  by FMSMGA003.fm.intel.com with ESMTP; 02 Jan 2023 08:37:38 -0800
-Message-ID: <5f54c5a3-caf0-2920-e90f-68124ed2e06c@linux.intel.com>
-Date:   Mon, 2 Jan 2023 18:38:56 +0200
+        with ESMTP id S230120AbjABQpO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 11:45:14 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C336B4A2
+        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 08:45:13 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id bq39so34471301lfb.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 08:45:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rVqQuVQCPOiYO1dU8dGWxyFL4WN4RC04R3gc0Olsf5Q=;
+        b=P37AMU2e+Xb20EtsUCr/YG3yMoDoL6xU5CftE4/nXdb+kSfu+dNyH7+H+pwZINke25
+         Sya+e3tZzVSnVoxyXzxY0I3tR1pzlL9cvSezjxVP/CYCDVR1LvUYMnOck76/5ztUMyND
+         MCBm/AQl/jnuik1dAwrQelNEifyZa9tw+V4BuPvzaVlCS5bpXGCvsH3TPpFTt22udjTC
+         WFSsAKdEvlRZRqyJk571FqLPCsqYXWu9cGsxoq7kL8WSTYtSw3CydAdkePQZgS8mdR+P
+         yqooeer/zWGVtm0qvOgpCk82EtGDGroVlWjuBurpp9Jh/NTTjSPwhZ4rr+uhAN9cewWT
+         B+RQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rVqQuVQCPOiYO1dU8dGWxyFL4WN4RC04R3gc0Olsf5Q=;
+        b=sFsBFOUWcvqi0eIzd+Sr+Rht09dPoJDqjMttopKhOJMe2xXx5HxBRKdPTzyLE9FEbw
+         oaVHa5abaK69StYq3sjKw7O00BaFlEj36Tc0rkz0OSQv0ugpN6sW6C0nTgwzcdvKGQ3I
+         nqTIuxHT029M7fOEaZPumxYrq1PEjOt5Yc+du0BwFesqNpjWR82gftz9xi6eagewj8aU
+         2teyGiBLF4AmhVNwowxoRqzrKVPDoFtN90WVHHASPQORI1Dtxt2GM2b+9wGo0sjcRKkv
+         xc2gHePW3JBypI60UcUxSBfueEIRwc0Hfy+a3P+7BUK540OH6Edb0rM+jE77SORW5lix
+         0B3Q==
+X-Gm-Message-State: AFqh2kqzRLH+ZAXRy+1bhPKnMOYCxqgdZlk9N3AyCmHVelRN5z+p8PlD
+        uFjV2Slxq79AsvwbbiFBALBQwQ==
+X-Google-Smtp-Source: AMrXdXtN/cSdgPJEu7Pd5yStGAsI0GmBJb6OX1v/KfqTg2vf6fL7Od4epvsjN3KjEy0KnvMEgw1LEA==
+X-Received: by 2002:a05:6512:3b22:b0:4a4:68b9:19e1 with SMTP id f34-20020a0565123b2200b004a468b919e1mr13152025lfv.9.1672677911726;
+        Mon, 02 Jan 2023 08:45:11 -0800 (PST)
+Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id h13-20020a05651211cd00b004a2511b8224sm4455876lfr.103.2023.01.02.08.45.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Jan 2023 08:45:11 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     robh+dt@kernel.org, alim.akhtar@samsung.com,
+        pankaj.dubey@samsung.com, krzysztof.kozlowski+dt@linaro.org,
+        s.prashar@samsung.com,
+        Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: dts: fsd: fix PUD values as per FSD HW UM
+Date:   Mon,  2 Jan 2023 17:45:09 +0100
+Message-Id: <167267790505.932878.15397748468342899542.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230102093247.59649-1-p.rajanbabu@samsung.com>
+References: <CGME20230102093302epcas5p2d48e893eb8af30e4d78b1377e022ff3a@epcas5p2.samsung.com> <20230102093247.59649-1-p.rajanbabu@samsung.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.4.2
-To:     Wesley Cheng <quic_wcheng@quicinc.com>,
-        srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
-        perex@perex.cz, broonie@kernel.org, lgirdwood@gmail.com,
-        andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        gregkh@linuxfoundation.org, Thinh.Nguyen@synopsys.com,
-        bgoswami@quicinc.com, tiwai@suse.com, robh+dt@kernel.org,
-        agross@kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, quic_jackp@quicinc.com,
-        quic_plai@quicinc.com
-References: <20221223233200.26089-1-quic_wcheng@quicinc.com>
- <20221223233200.26089-8-quic_wcheng@quicinc.com>
- <7dfe215b-4cc7-f95f-17c3-563c0120151a@linux.intel.com>
- <f7f80320-02bb-a573-dd95-b6d58c260624@quicinc.com>
-Content-Language: en-US
-From:   Mathias Nyman <mathias.nyman@linux.intel.com>
-Subject: Re: [RFC PATCH 07/14] usb: host: xhci: Add XHCI secondary interrupter
- support
-In-Reply-To: <f7f80320-02bb-a573-dd95-b6d58c260624@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29.12.2022 23.14, Wesley Cheng wrote:
-> Hi Mathias,
+On Mon, 2 Jan 2023 15:02:47 +0530, Padmanabhan Rajanbabu wrote:
+> PUD values used for UFS, SPI and UART are not reflecting
+> the default values recommended by FSD HW UM. Therefore,
+> changing the same to comply with HW UM recommendation.
 > 
-> On 12/28/2022 7:47 AM, Mathias Nyman wrote:
->> On 24.12.2022 1.31, Wesley Cheng wrote:
->>> Implement the XHCI operations for allocating and requesting for a secondary
->>> interrupter.  The secondary interrupter can allow for events for a
->>> particular endpoint to be routed to a separate event ring.  The event
->>> routing is defined when submitting a transfer descriptor to the USB HW.
->>> There is a specific field which denotes which interrupter ring to route the
->>> event to when the transfer is completed.
->>>
->>> An example use case, such as audio packet offloading can utilize a separate
->>> event ring, so that these events can be routed to a different processor
->>> within the system.  The processor would be able to independently submit
->>> transfers and handle its completions without intervention from the main
->>> processor.
->>>
->>
->> Adding support for more xHCI interrupters than just the primary one make sense for
->> both the offloading and virtualization cases.
->>
->> xHCI support for several interrupters was probably added to support virtualization,
->> to hand over usb devices to virtual machines and give them their own event ring and
->> MSI/MSI-X vector.
->>
->> In this offloading case you probably want to avoid xHC interrupts from this device
->> completely, making sure it doesn't wake up the main CPU unnecessarily.
->>
->> So is the idea here to let xhci driver set up the new interrupter, its event ring,
->> and the endpoint transfer rings. Then pass the address of the endpoint transfer rings
->> and the new event ring to the separate processor.
->>
->> This separate processor then both polls the event ring for new events, sets its dequeue
->> pointer, clears EHB bit, and queues new TRBs on the transfer ring.
->>
->> so xhci driver does not handle any events for the audio part, and no audio data URBs
->> are sent to usb core?
 > 
-> Your entire description is correct.  To clarify, the interfaces which are non-audio will still be handled by the main processor.  For example, a USB headset can have a HID interface as well for volume control.  The HID interface will still be handled by the main processor, and events routed to the main event ring.
-> 
->>
->> How about the control part?
->> Is the control endpoint for this device still handled normally by usb core/xhci?
->>
-> 
-> Control transfers are always handled on the main processor.  Only audio interface's endpoints.
 
-Good to know, that means interrupter should be chosen per endpoint, not per device.
+Applied, thanks!
 
-> 
->> For the xhci parts I think we should start start by adding generic support for several
->> interrupters, then add parts needed for offloading.
-> 
-> I can split up the patchsets to add interrupters first, then adding the offloading APIs in a separate patch.
+[1/1] arm64: dts: fsd: fix PUD values as per FSD HW UM
+      https://git.kernel.org/krzk/linux/c/32d0c06801172e258a66ffb5dfad7d5d2b9557a9
 
-
-I started looking at supporting secondary interrupters myself.
-Let me work on that part a bit first. We have a bit different end goals.
-I want to handle interrupts from a secondary interrupter, while this audio offload
-really just wants to mask some interrupts.
-
-Thanks
-Mathias
-
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
