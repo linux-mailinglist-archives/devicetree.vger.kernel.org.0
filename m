@@ -2,99 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9436865B06A
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 12:18:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E16A65B075
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jan 2023 12:23:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232634AbjABLSA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 06:18:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41538 "EHLO
+        id S232758AbjABLXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 06:23:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232568AbjABLRs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 06:17:48 -0500
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40E45267C
-        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 03:17:47 -0800 (PST)
-Received: by mail-pj1-x1035.google.com with SMTP id w4-20020a17090ac98400b002186f5d7a4cso32707271pjt.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 03:17:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ROx6J6/MF0Vp4uuk8r071QOwN0mXgiQW2VVHrd14dsk=;
-        b=ZMLs7CS4eFjpHc8g3YXXx/bXd+DaTbmyUjBjHdGzmMTCyvIqZBJLooMQ38KVah5waL
-         3wSBi3LwyjE/8C2MDipfGymi4GL7AsnfVZuyFafMvgsHfbJasIUyk8lLfJU+uG28tIgs
-         9tZ0MF07tb9r6qLrkoKUkvkG28srk+JwTqFYnVp+N6uns2EZKlDbWfTI2L77OCn0a8NB
-         AwzY/y81XFBBJkkffknCXrG+MzNUqdvPoXxT4motusnSsdjQP4Ngrcj1/zEInBEVej5K
-         u3AXze0ierD8DUCm/gWT2B7Uvo6K2rbpTBn1OF9dYhnsDhQkkoZfL7WYun8El3MQDEs4
-         k0EQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ROx6J6/MF0Vp4uuk8r071QOwN0mXgiQW2VVHrd14dsk=;
-        b=Y72xdCHI8zc18JdU8iQ8dMpmhKQo0NkdblD/RijEiAGrkaxegvbKtJeg50K8MiAyvg
-         F/eGfX8XGjjx0tp6xo2xR/2lD5xOv+4KTFXXGvYJtR80HmKy+HQcWG2cZzQOeAsSTbki
-         42GcruAx+4LV2ZfN3MYPN7yKo+O42NhKmxyoVzvO3rr6WZzESamAjLwU2mhd//fObe/0
-         2AwrVffiMUIsj3R+RC2XSj0N76M/O8qlbU0Xj3JNv7i0RVGH0DQ2EtRmZX5p7XwD90X4
-         lfCAghQvNqEjgo9lGQqjS7oloY7OzOLx769I7zgg58FhIuYe2W8sL6Rcr1AEegl7oCET
-         jprQ==
-X-Gm-Message-State: AFqh2koonrouVpdz18N/Ixk94EYf8TS/0FSgf6wSnQfcDMZg5AP3Qlrk
-        G1CF7jLQqRvY0oekaCrLvHfVjpjPulRAwpcPPmw=
-X-Google-Smtp-Source: AMrXdXtxXmmA5NtXqATRLFmHOW926cuRDmKsaJiziraxvjqmzArt9Aly5F/+loB+6ZKYCbv/qC9+7lYIHkobBFBe1Aw=
-X-Received: by 2002:a17:90a:6942:b0:226:228:3e44 with SMTP id
- j2-20020a17090a694200b0022602283e44mr1273099pjm.172.1672658266673; Mon, 02
- Jan 2023 03:17:46 -0800 (PST)
-MIME-Version: 1.0
-References: <20230102004425.887092-1-dmitry.baryshkov@linaro.org> <20230102004425.887092-4-dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230102004425.887092-4-dmitry.baryshkov@linaro.org>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 2 Jan 2023 08:17:35 -0300
-Message-ID: <CAOMZO5CGHM9uMxZMpwEqon-T7ycBHyo97uxOsTS-LetOwf07NQ@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] ARM: dts: imx: Add support for SK-iMX53 board
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S235640AbjABLWN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 06:22:13 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29699241;
+        Mon,  2 Jan 2023 03:22:07 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BB20560F37;
+        Mon,  2 Jan 2023 11:22:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 186FAC433D2;
+        Mon,  2 Jan 2023 11:22:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1672658526;
+        bh=NsliRdZaxPkfi38ZXX6vQ+MBs+Xqv26nZtoV92gg+YI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=h6lNPlsJcPnXiYXZyBDpTbzfbt1MJ7RWOMJdRYDLVJCY8pn+hy9gerBbWm8pKtOnc
+         n5/AZ1G5di1CiGIgf0TwJpT+1RHXDRkxe2wLSY/Y33KJl7yHZnGL3btp02LejGEGRy
+         Ywvh5jcuBlu90ERP3V511BOTvLpdWlTA+OQ7K4dzl9MDrEMYMEqxDC/apUuH35T7DQ
+         zCm9oabcpRz1B2m1YxsZx6rzTJ1mlp5rb3PjO3SPTRwTwe4Lsy+HTeMm56RnNp3/Jq
+         QQNirxRWUtCPrwdQUG6H4MeBsCdzMmZ8LhOrYTCwzD0Wh+Izh2i/VWObVWKB4VO3eR
+         hhsNdsBPCZMCg==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1pCIta-0005Cf-4f; Mon, 02 Jan 2023 12:22:22 +0100
+Date:   Mon, 2 Jan 2023 12:22:22 +0100
+From:   Johan Hovold <johan@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 5/6] arm64: dts: qcom: sm8250-mtp: fix wcd938x codec node
+Message-ID: <Y7K+bniJmFdVv62Y@hovoldconsulting.com>
+References: <20230102105038.8074-1-johan+linaro@kernel.org>
+ <20230102105038.8074-6-johan+linaro@kernel.org>
+ <77bd335a-1989-2d5f-d480-d388e141ec91@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <77bd335a-1989-2d5f-d480-d388e141ec91@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 1, 2023 at 9:44 PM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> Add support for the StartKit sk-imx53 board, a simple development board
-> with the iMX536A SoC.
->
-> Tested and works:
-> - UARTs
-> - SPI
-> - I2C
-> - GPU
-> - USB
-> - uSD
-> - NAND
-> - Ethernet
->
-> Not tested:
-> - Display
-> - VPU
-> - capture
->
-> Not yet working:
-> - Sound
->
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On Mon, Jan 02, 2023 at 12:15:50PM +0100, Konrad Dybcio wrote:
+> 
+> 
+> On 2.01.2023 11:50, Johan Hovold wrote:
+> > The wcd938x codec is not a memory-mapped device and does not belong
+> > under the soc node.
+> > 
+> > Move the node to the root node to avoid DT validation failures.
+> > 
+> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> > ---
+> Could you rename it to audio-codec and separate/sort the properties
+> like you did for x13s?
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+Possibly, but unlike for sc8280xp, I don't really care about these
+platforms and how their DT authors have chosen to order properties so I
+left out the clean up bits on purpose.
+
+Johan
