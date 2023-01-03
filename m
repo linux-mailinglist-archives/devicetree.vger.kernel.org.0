@@ -2,148 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F7B965BF00
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 12:30:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B903D65BF22
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 12:39:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237375AbjACL3x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 06:29:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57702 "EHLO
+        id S230139AbjACLij (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 06:38:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237440AbjACL3n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 06:29:43 -0500
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66634FD05;
-        Tue,  3 Jan 2023 03:29:36 -0800 (PST)
-X-UUID: d064a5fc442e4d75a6c68b3b83213b27-20230103
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=rA6xPRcCpI0277oPsTRr+M+DbjSu9YjPyZJZSbewd2s=;
-        b=p0fO7b4JTv80/yhS7HeUrCKBUdqJS3/pRPQC7lzU+0eJJo9KS1KfRgfoukq37hpjZ4pyo+ZJ4CmotgR6A13FOh2oFlLx4l76F6VNh0DEVDoIHFL3q8BzI/anKHhbzR6PIFRCHKhtmaZSJNH4rMKi3sMUAWF/jkD+v6S6R/1Wod4=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.16,REQID:37248c4e-a476-4879-af6d-17dd6a9f2691,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:09771b1,CLOUDID:819e1b8b-8530-4eff-9f77-222cf6e2895b,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0
-X-CID-BVR: 0,NGT
-X-UUID: d064a5fc442e4d75a6c68b3b83213b27-20230103
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <roger.lu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 781875080; Tue, 03 Jan 2023 19:29:28 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Tue, 3 Jan 2023 19:29:28 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Tue, 3 Jan 2023 19:29:28 +0800
-From:   Roger Lu <roger.lu@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Kevin Hilman <khilman@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>
-CC:     Fan Chen <fan.chen@mediatek.com>, Roger Lu <roger.lu@mediatek.com>,
-        Jia-wei Chang <jia-wei.chang@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v3 14/14] soc: mediatek: mtk-svs: keep svs alive even though debug cmd create fail
-Date:   Tue, 3 Jan 2023 19:29:25 +0800
-Message-ID: <20230103112925.16554-15-roger.lu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20230103112925.16554-1-roger.lu@mediatek.com>
-References: <20230103112925.16554-1-roger.lu@mediatek.com>
+        with ESMTP id S237438AbjACLif (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 06:38:35 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32E81261;
+        Tue,  3 Jan 2023 03:38:33 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8872C61284;
+        Tue,  3 Jan 2023 11:38:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BF6DC433D2;
+        Tue,  3 Jan 2023 11:38:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1672745911;
+        bh=R2Dzj/2kb3SslWczETl2IKtdwzAJ8TDrNr/cvB9c/bY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ViZbtT6fzJtT12QWCtJch3B/IdWvJMDV0JzyQ9EluMiaHGPwcvstBdXAFkS4dGICs
+         AJ+uATz2UcTNe/76z9x7RXq/O4up0kIMcfeV7i5mi08f8s58pW+oAt4iTHuxg16CEX
+         hseKN4p66dYkSATyVnUh7bO9uLmkgqPsXmDBo7HRp/egiPNIlHfqh/o6krJd4gr5GF
+         rveCcDgmbj3vUseF/cB24YarBegw6IY+RYuhaT2zcA9/8HpAy7JGWNKNG0YsG5s/Oz
+         qY2OVvWJhFNalLqq4cB+ezdPR0TjXz/07qA6u8xwWiJIMCwXMkoicHIR0iDAegd58I
+         I+KXfuYDC8OqA==
+Date:   Tue, 3 Jan 2023 11:38:25 +0000
+From:   Lee Jones <lee@kernel.org>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: mfd: qcom,spmi-pmic: document
+ pm8550, pm8550b, pm8550ve, pm8550vs, pmk8550, pm8010 & pmr735d
+Message-ID: <Y7QTsdL9xSQzIM2b@google.com>
+References: <20221114-narmstrong-sm8550-upstream-spmi-v2-0-b839bf2d558a@linaro.org>
+ <20221114-narmstrong-sm8550-upstream-spmi-v2-1-b839bf2d558a@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221114-narmstrong-sm8550-upstream-spmi-v2-1-b839bf2d558a@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some projects might not support DEBUG_FS but still needs svs to be
-supported. Therefore, keep svs alive even though debug cmd create fail.
+I changed the subject line for you.
 
-Signed-off-by: Roger Lu <roger.lu@mediatek.com>
----
- drivers/soc/mediatek/mtk-svs.c | 18 ++++++------------
- 1 file changed, 6 insertions(+), 12 deletions(-)
+On Fri, 18 Nov 2022, Neil Armstrong wrote:
 
-diff --git a/drivers/soc/mediatek/mtk-svs.c b/drivers/soc/mediatek/mtk-svs.c
-index 581bb8373b0c..02ecbdb7aa32 100644
---- a/drivers/soc/mediatek/mtk-svs.c
-+++ b/drivers/soc/mediatek/mtk-svs.c
-@@ -806,7 +806,7 @@ static int svs_status_debug_show(struct seq_file *m, void *v)
- 
- debug_fops_ro(status);
- 
--static int svs_create_debug_cmds(struct svs_platform *svsp)
-+static void svs_create_debug_cmds(struct svs_platform *svsp)
- {
- 	struct svs_bank *svsb;
- 	struct dentry *svs_dir, *svsb_dir, *file_entry;
-@@ -831,7 +831,7 @@ static int svs_create_debug_cmds(struct svs_platform *svsp)
- 	if (IS_ERR(svs_dir)) {
- 		dev_err(svsp->dev, "cannot create %s: %ld\n",
- 			d, PTR_ERR(svs_dir));
--		return PTR_ERR(svs_dir);
-+		return;
- 	}
- 
- 	for (i = 0; i < ARRAY_SIZE(svs_entries); i++) {
-@@ -841,7 +841,7 @@ static int svs_create_debug_cmds(struct svs_platform *svsp)
- 		if (IS_ERR(file_entry)) {
- 			dev_err(svsp->dev, "cannot create %s/%s: %ld\n",
- 				d, svs_entries[i].name, PTR_ERR(file_entry));
--			return PTR_ERR(file_entry);
-+			return;
- 		}
- 	}
- 
-@@ -855,7 +855,7 @@ static int svs_create_debug_cmds(struct svs_platform *svsp)
- 		if (IS_ERR(svsb_dir)) {
- 			dev_err(svsp->dev, "cannot create %s/%s: %ld\n",
- 				d, svsb->name, PTR_ERR(svsb_dir));
--			return PTR_ERR(svsb_dir);
-+			return;
- 		}
- 
- 		for (i = 0; i < ARRAY_SIZE(svsb_entries); i++) {
-@@ -866,12 +866,10 @@ static int svs_create_debug_cmds(struct svs_platform *svsp)
- 				dev_err(svsp->dev, "no %s/%s/%s?: %ld\n",
- 					d, svsb->name, svsb_entries[i].name,
- 					PTR_ERR(file_entry));
--				return PTR_ERR(file_entry);
-+				return;
- 			}
- 		}
- 	}
--
--	return 0;
- }
- 
- static u32 interpolate(u32 f0, u32 f1, u32 v0, u32 v1, u32 fx)
-@@ -2421,11 +2419,7 @@ static int svs_probe(struct platform_device *pdev)
- 		goto svs_probe_iounmap;
- 	}
- 
--	ret = svs_create_debug_cmds(svsp);
--	if (ret) {
--		dev_err(svsp->dev, "svs create debug cmds fail: %d\n", ret);
--		goto svs_probe_iounmap;
--	}
-+	svs_create_debug_cmds(svsp);
- 
- 	return 0;
- 
+> Document compatible for the pm8550, pm8550b, pm8550ve, pm8550vs, pmk8550.
+> pm8010 & pmr735d SPMI PMICs
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+
+Applied, thanks
+
 -- 
-2.18.0
-
+Lee Jones [李琼斯]
