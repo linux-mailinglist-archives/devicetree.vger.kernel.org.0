@@ -2,81 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF77665B920
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 02:56:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9CCC65B923
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 02:58:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236717AbjACB4p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 20:56:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56262 "EHLO
+        id S232893AbjACB6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 20:58:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236766AbjACB4Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 20:56:25 -0500
-Received: from mail-oa1-x31.google.com (mail-oa1-x31.google.com [IPv6:2001:4860:4864:20::31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BD5BCE3E;
-        Mon,  2 Jan 2023 17:56:07 -0800 (PST)
-Received: by mail-oa1-x31.google.com with SMTP id 586e51a60fabf-14455716674so35360381fac.7;
-        Mon, 02 Jan 2023 17:56:07 -0800 (PST)
+        with ESMTP id S236603AbjACB6y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 20:58:54 -0500
+Received: from mail-il1-x12d.google.com (mail-il1-x12d.google.com [IPv6:2607:f8b0:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCBB9127;
+        Mon,  2 Jan 2023 17:58:53 -0800 (PST)
+Received: by mail-il1-x12d.google.com with SMTP id a9so5093691ilk.6;
+        Mon, 02 Jan 2023 17:58:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=96ZA3U+4lODUN3hIoOOVli3grSMHv8whVkE4ZtfzuJM=;
-        b=KvXgqBoo9WmoGuCe5vzbMWxElgDcbFiloThShHoBMxljzX+4aV4siZiqAROHBM4128
-         2DHl0I4Fz/mmYz49C47k8fQJN3TgddLm5A83pEAOElNOxm72x4v7Ag7vZruc8/h7ODLl
-         +gAhtSug9qHjhpoRju+X/hrAAK88RT95HwR3rk97Ut92tAJff9VUb1iQ6Lkz/3RsHX99
-         Ri0t1eb/0d6/RV1UnBZqTrfZaglg9kHfOqOAM1of7MO4Ght4sRqKfOJwH6Y5I/MgBczG
-         Is1ggOpBcSHlFkKudF5qHDf6ap86WuZOe5JIAVe7f9iMrgmz0WKu8lsU5f5e32NkH/cw
-         SF3Q==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=q9ep0fuIijQ2WKk1HRvET07Y4q3Esjm/P8zfecbF5PA=;
+        b=mAh4DEdGGndMdRLdcoygx2jSWLH/w2Pfa0O5DPG6DRuhUdFE7Qx5QsViPMMNZFkSCB
+         5r2Wqh1Gh2clSie0Y2+42jqjStQvaOFzdJlFkXoqHIvMM2KNL8XWvBJWtojEtukNZx7h
+         ir81HCz+oovhNdQmsZGnvJXpFVLQOeK56RqmFkSQAWmoCBT41rv0iOn4CpJpA6hvx1Pf
+         Urr8i+gh44jUctYneDAzKiOhHw0jPOlcDmbweodKP0gNqsuJkRdGrp6VAvfpo27wk5CR
+         JAnyUgvXYnoKYrBjxJFib9O2lNFcnj5DR+fmj4xMZ2WdyZU/JkZjpZ2QuqYKbSguoK25
+         m8bQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=96ZA3U+4lODUN3hIoOOVli3grSMHv8whVkE4ZtfzuJM=;
-        b=PrWFSX6slnDndpoA4viQbpb5E28xMDVw7X1rynn7lXlMtt6o8S+XJSYzrbMS4Jq0/y
-         mQs94YZWGQlGGwe2lmEfPlqVic3pA20YTlYbU8jnmw9fV88sb0okeBwmjc1wvRQimujS
-         9v7RhV4B+0/zQZnPpdk3V+qOMgidFwMsT/bXZ1k1dsiXDnxtPmgCyNjNv6sh9ScsGhib
-         rXGAR7zGHl0vQAInIO0+8aCWwxIm33mGQvREqyIkE2DJycXJEzGmpoy2PHaDUIuY/x03
-         FREmge8/4poXgvOFrVqHf/Hp+xDRhKRKp9mKqh4+JcE2NEub912JlsfWDc1CEw7fv/xW
-         lTBg==
-X-Gm-Message-State: AFqh2kq8rf+Smct3AfngkOVAnlF+6Dh2Tx47fPYqLieYi/W7ewQ3x8lM
-        k7X08QSP0fmxxTcgY7G5Ng0=
-X-Google-Smtp-Source: AMrXdXtb4bHZ9umAo6HHJUafiGC78lfkM4bBWYxkhrmL8rbnxkgsx2BdYpvMkIIJoXpc34YlsCkINA==
-X-Received: by 2002:a05:6870:d8aa:b0:144:7eb3:c9b0 with SMTP id dv42-20020a056870d8aa00b001447eb3c9b0mr20918406oab.42.1672710962830;
-        Mon, 02 Jan 2023 17:56:02 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id c9-20020a056870b28900b0014474019e50sm13663486oao.24.2023.01.02.17.56.02
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=q9ep0fuIijQ2WKk1HRvET07Y4q3Esjm/P8zfecbF5PA=;
+        b=f7pXJ3gnFy6whYrR0xI5SmFK5cyRWILVqclVNoifGCqrz2J49Frxrh3duc0TYidgec
+         9CbNg03LFnCWPyAf36GvjLKlHfJ+GwShG9YvkPuwB1AqNy8hK5gnUHDhZtxO+cYyRL+5
+         jSOzT8pgj1DIZVF/6f8urwjvR/9JI2z+U7hqkyfxdX7q3gJoy+mJdaYtX/0oo1kMfJpI
+         y5v+payhTD/fy6gZNSBRBNSueXtRSb+Bae/HBBh7RnkkTSLXPBow7UU8BVXqWqAiEkIw
+         gvr/0zXnYl5Ma67rpsBfq3YeY4/auoKprcaQIHLClOj9J08aqYbT/5DBPDCINnMTH8jn
+         S2pg==
+X-Gm-Message-State: AFqh2kpLNURR32lOdGt9RDw2fIbU59gthoCbTt3XsZIb8tPgAuWd3CMf
+        F5QscP6W/g/mi06cc6As6XC275Jb9PbSew==
+X-Google-Smtp-Source: AMrXdXv9vjXTaC73he/AnyjuFYBLc3RX/8a7d69JrGC++iDeVXHPTk+0Jg1BkBC3syk2C8Rlf7YF3g==
+X-Received: by 2002:a05:6e02:1d0a:b0:303:67aa:e5f3 with SMTP id i10-20020a056e021d0a00b0030367aae5f3mr35360139ila.15.1672711133291;
+        Mon, 02 Jan 2023 17:58:53 -0800 (PST)
+Received: from localhost ([2607:fea8:a2df:3d00::d097])
+        by smtp.gmail.com with ESMTPSA id a18-20020a92d352000000b002eb3b43cd63sm9552995ilh.18.2023.01.02.17.58.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Jan 2023 17:56:02 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Mon, 2 Jan 2023 17:56:01 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Hal Feng <hal.feng@starfivetech.com>
-Cc:     linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Jean Delvare <jdelvare@suse.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
+        Mon, 02 Jan 2023 17:58:52 -0800 (PST)
+From:   Richard Acayan <mailingradian@gmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 0/4] Temperature sensor support for StarFive JH7110
- RISC-V SoC
-Message-ID: <20230103015601.GB313835@roeck-us.net>
-References: <20230103013145.9570-1-hal.feng@starfivetech.com>
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Odelu Kukatla <quic_okukatla@quicinc.com>,
+        Luca Weiss <luca@z3ntu.xyz>,
+        Richard Acayan <mailingradian@gmail.com>
+Subject: [PATCH v3 0/4] SDM670 Interconnects
+Date:   Mon,  2 Jan 2023 20:58:41 -0500
+Message-Id: <20230103015845.314551-1-mailingradian@gmail.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230103013145.9570-1-hal.feng@starfivetech.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,68 +76,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 03, 2023 at 09:31:41AM +0800, Hal Feng wrote:
-> This patch series adds temperature sensor support for StarFive JH7110 SoC.
-> The last two patches depend on series [1].
-> 
-> [1]: https://lore.kernel.org/all/20221220011247.35560-1-hal.feng@starfivetech.com/
-> 
-> Emil Renner Berthing (4):
->   dt-bindings: hwmon: Add starfive,jh71x0-temp
->   hwmon: (sfctemp) Add StarFive JH71x0 temperature sensor
->   riscv: dts: starfive: jh7110: Add temperature sensor node
->   riscv: dts: starfive: visionfive-2: Add thermal-zones
-> 
+Changes since v2:
+ - change qcom,sdm670.h to qcom,sdm670-rpmh.h (2/4)
+ - use SPDX v3 license identifiers (1/4, 2/4)
+ - accumulate ack tag (1/4)
+ - format changelog (0/4)
 
-The hardware monitoring driver is obviously either the same
-or derived from the previous series at
-https://patchwork.kernel.org/project/linux-hwmon/list/?series=&submitter=&state=*&q=starfive
+Changes since v1:
+ - change qcom,sdm670.h to qcom,sdm670-rpmh.h (1/4, 4/4)
 
-Why is this not submitted as v4 of the original series ?
-What has changed, and what is the rationale for (re-)submitting
-it as v1 ?
+This series adds interconnects and consumers to the Snapdragon 670.
 
-Guenter
+Richard Acayan (4):
+  dt-bindings: interconnect: add sdm670 interconnects
+  interconnect: qcom: add sdm670 interconnects
+  arm64: dts: qcom: sdm670: add interconnects
+  arm64: dts: qcom: sdm670: add opps for peripherals
 
->  .../bindings/hwmon/starfive,jh71x0-temp.yaml  |  75 ++++
->  Documentation/hwmon/index.rst                 |   1 +
->  Documentation/hwmon/sfctemp.rst               |  33 ++
->  MAINTAINERS                                   |   8 +
->  .../jh7110-starfive-visionfive-2.dtsi         |  28 ++
->  arch/riscv/boot/dts/starfive/jh7110.dtsi      |  13 +
->  drivers/hwmon/Kconfig                         |  10 +
->  drivers/hwmon/Makefile                        |   1 +
->  drivers/hwmon/sfctemp.c                       | 350 ++++++++++++++++++
->  9 files changed, 519 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/starfive,jh71x0-temp.yaml
->  create mode 100644 Documentation/hwmon/sfctemp.rst
->  create mode 100644 drivers/hwmon/sfctemp.c
-> 
-> 
-> base-commit: 830b3c68c1fb1e9176028d02ef86f3cf76aa2476
-> prerequisite-patch-id: 4dc515731ce237184553c1606ffb3afaeb51c3d8
-> prerequisite-patch-id: 09c98554df52d17ba5fd604125f8cdd62cbe80d1
-> prerequisite-patch-id: a798370d170dc2bcc79ed86f741c21c1e6d87c78
-> prerequisite-patch-id: bd9fd8b5cb2376dc7a5e08e1a1fbb969cf475926
-> prerequisite-patch-id: c57ebb83bc43ccd2a8366ff166eb499da1e1d2cf
-> prerequisite-patch-id: a1673a9e9f19d6fab5a51abb721e54e36636f067
-> prerequisite-patch-id: 94860423c7acc9025249d4bb36652a585bd0a797
-> prerequisite-patch-id: b5084253283929d9a6d0e66c350400c7c85d034d
-> prerequisite-patch-id: 6e369dbe9dca2785e4ea7d0b80e525e227a90a6e
-> prerequisite-patch-id: e08806183c152714c563f3a21c6d7b2f539c4d6e
-> prerequisite-patch-id: 79db8036abdc48fd36da227652ec62627a6b548b
-> prerequisite-patch-id: 06971b8e6bddc0e87e63bfdb0ce8bfb653bd73aa
-> prerequisite-patch-id: 16309a0e23811a2c55d2e56886de3e8eccc51554
-> prerequisite-patch-id: bf4f7ab0b6cfa90b6e49e66c7d75ed2eaaebbe78
-> prerequisite-patch-id: 38468d532e87867990055d3320679f18c5f52278
-> prerequisite-patch-id: 4710f2ac22dca0bdd9ff5d744d2c37cab3c74515
-> prerequisite-patch-id: 6bb9a780c62af3bcc2368dfd20303c7b1bc91e23
-> prerequisite-patch-id: 258ea5f9b8bf41b6981345dcc81795f25865d38f
-> prerequisite-patch-id: 8b6f2c9660c0ac0ee4e73e4c21aca8e6b75e81b9
-> prerequisite-patch-id: e3b986b9c60b2b93b7812ec174c9e1b4cfb14c97
-> prerequisite-patch-id: a2b3a9cff8a683422eb0ccf3a0850091401812d4
-> prerequisite-patch-id: e0ba7af0f8d3d41844da9fbcba14b548cbc18f55
-> prerequisite-patch-id: bc0176325c11a632c6abaa83e54e891cc92d1c74
-> -- 
-> 2.38.1
-> 
+ .../bindings/interconnect/qcom,rpmh.yaml      |   8 +
+ arch/arm64/boot/dts/qcom/sdm670.dtsi          | 165 +++++++
+ drivers/interconnect/qcom/Kconfig             |   9 +
+ drivers/interconnect/qcom/Makefile            |   2 +
+ drivers/interconnect/qcom/sdm670.c            | 440 ++++++++++++++++++
+ drivers/interconnect/qcom/sdm670.h            | 128 +++++
+ .../interconnect/qcom,sdm670-rpmh.h           | 136 ++++++
+ 7 files changed, 888 insertions(+)
+ create mode 100644 drivers/interconnect/qcom/sdm670.c
+ create mode 100644 drivers/interconnect/qcom/sdm670.h
+ create mode 100644 include/dt-bindings/interconnect/qcom,sdm670-rpmh.h
+
+-- 
+2.39.0
+
