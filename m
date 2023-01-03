@@ -2,128 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64AFF65C181
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 15:10:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A8DB65C18B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 15:11:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237792AbjACOIr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 09:08:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56330 "EHLO
+        id S230323AbjACOLU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 09:11:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237778AbjACOIh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 09:08:37 -0500
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F40D610F3;
-        Tue,  3 Jan 2023 06:08:35 -0800 (PST)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3039ZHAJ014931;
-        Tue, 3 Jan 2023 15:08:05 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=selector1;
- bh=ucssb65txyENbyaOBHFqS29fHGTTzI6kVf5XtyK6ClA=;
- b=j2gI5dyik7mgWgmhN4EwolScVdhAKmP+ZRKafSFm25hDYEI5jBt2FerTD5Hk1gAJ7IwJ
- 8rpNtq0SsST56ieqBU9Dps2phFY9QsdjpkNciUCD4nfiXHxQZPShJYLc8ZT6PYlMNlN/
- MXnS6eMa8wN4gU2zO4a6hcCbrXOqP4hBX1LnGtIFNL+JSSVUstYeNLlrev9yazsU7y4J
- udxdy0PNq6X+6SNace8n1PkXtU3CEW4jfnhCLIF64OHS7yQjVJSolvx/aERsNYVTSW9n
- 7w+8HM9+9V6+45NdYZe0J7FLCPNX5Wf2/iFWI4hxaa/GgsX0ae3F3/Tjib+5J+cDX6he Zg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3mtda658p3-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 03 Jan 2023 15:08:05 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1A81210002A;
-        Tue,  3 Jan 2023 15:08:05 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 12A97224401;
-        Tue,  3 Jan 2023 15:08:05 +0100 (CET)
-Received: from localhost (10.48.0.157) by SHFDAG1NODE3.st.com (10.75.129.71)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Tue, 3 Jan
- 2023 15:08:04 +0100
-From:   Patrick Delaunay <patrick.delaunay@foss.st.com>
-To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S237663AbjACOLO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 09:11:14 -0500
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA2BD2A5
+        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 06:11:13 -0800 (PST)
+Received: by mail-pj1-x1036.google.com with SMTP id v13-20020a17090a6b0d00b00219c3be9830so31180103pjj.4
+        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 06:11:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=M0/1+xwVSOl78TtVqWGcIupt5yvD4IwY5jPVM8+Y5Bk=;
+        b=b0mGnvztdBrz/eFLximm769v/H7VgZ64bULZnXcY5BP0X4aY19eZweFY+waU5/QooG
+         JmUWQQHr+hn3/TtqZOSyPS6mFTXwdf6PhGkfrXSmEA4TNhjgLBxIxHkRHV0c8hz0BKT2
+         /H7eyFQzYemg3dfTSZFFoTrrMKWhcR46MNtPiTGtwsh14OUxM6OBuS5os8Fn4+As5QrB
+         bOTFU0CT+KUHb/P7Xp6NBofRzWCWucg8dwS2wKmm6YIRzl01+r0nhoQwBdo5tvNrDs+w
+         8gDhkNyhJeCNh3fr0b6u8AEq3033XVJUMkih7YFwGh1xHLHyQ074kLOvyvtFy03HEalP
+         sLHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=M0/1+xwVSOl78TtVqWGcIupt5yvD4IwY5jPVM8+Y5Bk=;
+        b=xa1N8hNm5saUrYcUGntjua31+/ioz01PMenchK+OsfKqksaQpio/TYBtUUKRDYl5HA
+         GcBqLUwo/0rp1gfgtHGEEw7eSpzz/Ia6U6uRcZNyQYxNPxvtlNSJwytZDi38uUkDGXbq
+         BzrerCBaez2PM2VUTl+Zvg8a9RWpPPLZqd3zPOYPsS2twluosnHrG+9cAc4MpM8M72le
+         o6uePFXCiws/BIqK3bOL03pcO0Mibs0vs86p+GE2qNtgK285mln9732ECGYrVkomSyJg
+         7fWmna5rMtmtpKujZAFS/taUgKvAHgzDPc8TSRvGZfjiOKzXhaXuICeJ+jp/W63mvrdQ
+         CvAQ==
+X-Gm-Message-State: AFqh2kpW+1aPH0dxMH3WQeJkhAjEviYJdVayE3tJCdwPuomk2SVHly62
+        8+Z73bH9YQI259TFtqVpqXOXFw==
+X-Google-Smtp-Source: AMrXdXvZtg4dkclTJdJxMSBRmE+LwGZZpjGtJv3rOMeS6rPZv3VYVAEdULNyKHSxQUobkk4F+RecJA==
+X-Received: by 2002:a17:902:c382:b0:191:4378:ec06 with SMTP id g2-20020a170902c38200b001914378ec06mr51792779plg.61.1672755073254;
+        Tue, 03 Jan 2023 06:11:13 -0800 (PST)
+Received: from anup-ubuntu-vm.localdomain ([171.76.85.241])
+        by smtp.gmail.com with ESMTPSA id l3-20020a170902e2c300b00192bf7eaf28sm6146117plc.286.2023.01.03.06.11.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Jan 2023 06:11:12 -0800 (PST)
+From:   Anup Patel <apatel@ventanamicro.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-CC:     Lionel DEBIEVE <lionel.debieve@foss.st.com>,
-        Amelie DELAUNAY <amelie.delaunay@foss.st.com>,
-        Etienne CARRIERE <etienne.carriere@linaro.org>,
-        Fabrice GASNIER <fabrice.gasnier@foss.st.com>,
-        Patrick Delaunay <patrick.delaunay@foss.st.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-Subject: [PATCH v4 1/3] ARM: dts: stm32mp13: fix compatible for BSEC
-Date:   Tue, 3 Jan 2023 15:05:19 +0100
-Message-ID: <20230103150515.v4.1.I167a5efc1f8777cce14518c6fa38400ac684de3e@changeid>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230103140521.187678-1-patrick.delaunay@foss.st.com>
-References: <20230103140521.187678-1-patrick.delaunay@foss.st.com>
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Cc:     Andrew Jones <ajones@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Anup Patel <anup@brainfault.org>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Anup Patel <apatel@ventanamicro.com>
+Subject: [PATCH v6 0/3] Improve CLOCK_EVT_FEAT_C3STOP feature setting
+Date:   Tue,  3 Jan 2023 19:40:59 +0530
+Message-Id: <20230103141102.772228-1-apatel@ventanamicro.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.48.0.157]
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2023-01-03_04,2023-01-03_02,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use the correct compatible for stm32mp13 support.
+This series improves the RISC-V timer driver to set CLOCK_EVT_FEAT_C3STOP
+feature based on RISC-V platform capabilities.
 
-The BSEC driver for STM32MP15x is not compatible with STM32MP13x. For
-example the proprietary's smc STM32_SMC_BSEC is not supported in
-STM32MP13x OP-TEE, it is replaced by SM32MP BSEC Pseudo Trusted
-Application in OP-TEE to access to the secured IP BSEC on STM32MP13X SoC.
+These patches can also be found in riscv_timer_dt_imp_v6 branch at:
+https://github.com/avpatel/linux.git
 
-The correct compatible is already used in U-Boot and in upstream is in
-progress for OP-TEE device tree.
+Changes since v5:
+ - Rebased on Linux-6.2-rc2
 
-As the SoC STM32MP13X is not yet official and it is not available
-outside STMicroelectronics, it is the good time to break the DTS
-compatibility and to correct the error done in the introduction of
-STM32MP131.
+Changes since v4:
+ - Update commit text of PATCH1 based on Samuel's comments
+ - Renamed DT property "riscv,timer-can-wake-cpu" to
+   "riscv,timer-cannot-wake-cpu" in PATCH2 and PATCH3
+ - Updated description of DT property "riscv,timer-cannot-wake-cpu"
+   in PATCH2
 
-Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
----
-This patch is already sent separately in:
-https://lore.kernel.org/all/20221017134437.1.I167a5efc1f8777cce14518c6fa38400ac684de3e@changeid/
-https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=685815
+Changes since v3:
+ - Rebased on Linux-6.1-rc7
+ - Replaced PATCH1 with a patch to initialize broadcast timer
 
-I create a serie for more efficient review.
+Changes since v2:
+ - Include Conor's revert patch as the first patch and rebased other patches
+ - Update PATCH2 to document bindings for separate RISC-V timer DT node
+ - Update PATCH3 based on RISC-V timer DT node bindings
 
-Patrick.
+Changes since v1:
+ - Rebased on Linux-5.19-rc8
+ - Renamed "riscv,always-on" DT property to "riscv,timer-can-wake-cpu"
 
-(no changes since v1)
+Anup Patel (2):
+  dt-bindings: timer: Add bindings for the RISC-V timer device
+  clocksource: timer-riscv: Set CLOCK_EVT_FEAT_C3STOP based on DT
 
-Changes in v1:
-- update commit message to indicate DTS break reason.
+Conor Dooley (1):
+  RISC-V: time: initialize hrtimer based broadcast clock event device
 
- arch/arm/boot/dts/stm32mp131.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../bindings/timer/riscv,timer.yaml           | 52 +++++++++++++++++++
+ arch/riscv/kernel/time.c                      |  3 ++
+ drivers/clocksource/timer-riscv.c             | 10 ++++
+ 3 files changed, 65 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/timer/riscv,timer.yaml
 
-diff --git a/arch/arm/boot/dts/stm32mp131.dtsi b/arch/arm/boot/dts/stm32mp131.dtsi
-index accc3824f7e9..0b79380cc627 100644
---- a/arch/arm/boot/dts/stm32mp131.dtsi
-+++ b/arch/arm/boot/dts/stm32mp131.dtsi
-@@ -520,7 +520,7 @@ rtc: rtc@5c004000 {
- 		};
- 
- 		bsec: efuse@5c005000 {
--			compatible = "st,stm32mp15-bsec";
-+			compatible = "st,stm32mp13-bsec";
- 			reg = <0x5c005000 0x400>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
 -- 
-2.25.1
+2.34.1
 
