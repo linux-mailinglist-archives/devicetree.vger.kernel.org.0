@@ -2,94 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0533565BC57
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 09:39:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B402D65BC66
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 09:43:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236994AbjACIib (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 03:38:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54304 "EHLO
+        id S237073AbjACInQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 03:43:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233082AbjACIib (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 03:38:31 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6DC3DF59
-        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 00:38:29 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id j17so35222231lfr.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 00:38:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4CHw5FRtPDUOv1NrpkJyQctZ8ejkK9MC1Qo92iGbQHA=;
-        b=yWUERWb3HN5RS07LpLAzOJBjd4P9b6jvyMrjMHFK3nKwcgTP3rK53AfQOTMwIvhUlH
-         HRnTv0odk9zaw8ACrc+glhjQDOj0uoSDLhL5Qu021HGlkPyM8554WPC8nnqhKI1yDjps
-         gBPl3ja3J6Be7JPn1RgYe3VGFqd9FZpDmkCa49pJIyLuHqCFIZvaBfnrC7O8Hg5R0jhG
-         mQPlOyYoDPzHUEfYqK3jdJFWttdEXqzUvHX1ywpBmSkGqplYR7iPQSOvtOPRWE0JGemO
-         rsgRFq1TiUGhlkt8TQGQm1aUT1eXHPQsyu7HShhQ3qK6rkEKPkw8yR8v+c2Mutx01Szm
-         doJA==
+        with ESMTP id S236854AbjACInP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 03:43:15 -0500
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 240872C2;
+        Tue,  3 Jan 2023 00:43:14 -0800 (PST)
+Received: by mail-qt1-f182.google.com with SMTP id h21so24042590qta.12;
+        Tue, 03 Jan 2023 00:43:14 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4CHw5FRtPDUOv1NrpkJyQctZ8ejkK9MC1Qo92iGbQHA=;
-        b=DJogC00XzBq6QvSD4piLxxxFDUuWPk/UwoQ+pJYd0tgz1wBPfS0avMFl7qwjfitKPJ
-         g82UhH4K+X2hs68iQjlHLpjxQZpRna1dcuHal/4UjV13app/dRGTSz+dRf7q1iK6ldZg
-         WULWIvFBInoP9GzgrOO0H8HfY/sJnK02XMIOEX/mHFHC3K7UkoqbchLBGgcBapkCfv/P
-         RnzsNkYVmynKmgl6y1TQhe3CllxXMJEsVcJw0C5rZGjoVwRE+eZoWmQNgM8IizxhTEIO
-         MeF/ZuqTQ3Kc/eXYvvs4dXa7WFvXuExjMJp5AXnVQdS68LvWEM97VaqbMuKofwmKGRPx
-         RpmQ==
-X-Gm-Message-State: AFqh2kqLy13nFcOJcWWZG1eKy30WgVKb+5ObHTZ6+KEu9LHBxkO42Uma
-        gzobVVOSrgxTkcJcZ1UmJalw9Q==
-X-Google-Smtp-Source: AMrXdXt8qdijhfpphBEQyqtUvrn7jPvTr9kTEBH4cPMC3TMxiu2AnOqGKjlaZxNaozv/f12gc+22cg==
-X-Received: by 2002:a05:6512:2591:b0:4b5:7dd6:4df0 with SMTP id bf17-20020a056512259100b004b57dd64df0mr12477210lfb.32.1672735108149;
-        Tue, 03 Jan 2023 00:38:28 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id z9-20020a056512370900b004b55c1b5c66sm4727589lfr.157.2023.01.03.00.38.27
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jFTADltuEOcFi+js1tUqPDxEjy9GD4qbBgNy0+3Wats=;
+        b=bs6lKAVWh6fdi09IfJ645mEe4jM0Xf3fqTPtAxQ6CVb1JdwSUXnCdK+h4RdNG9G3Ah
+         SW82OYatCsXxih2lNwffunkEcKyfkxOL+eO1Rkfv8vObxvBjNAl7JY5x3eblKM/WURRi
+         Uz08BbGh9a9UYDfjbceaqj5VADrEbZml51kTqwvezJTPPm9kXOs+bFGEBRXfbtx/UKto
+         yzrgGMm3H6FwssBvIwX/GNmUkDgu65f6eTz4wJ95GYgpp2XyVIlYqXSd8KLg7aqk0I6j
+         Vigw02ZRbHwg/iIaNHLBZgHjjZvjJcTA+afarH1i7dzzHxnN469J/dHoeRTK7AVoDqgR
+         CuXQ==
+X-Gm-Message-State: AFqh2krZTgcau1NDPOYk7Ikulg8up9bXT9YSotnf5sHf88VEKYzY929/
+        yBZ756/44DJXA6BhE/9dbBguDZeHqe7sIQ==
+X-Google-Smtp-Source: AMrXdXt8R1T15eRZITV0dvUpNmG7jcHx5j58YgNlhu9Bhqgz0bShhO9BYwZOKNWRw+688j8NGygUFg==
+X-Received: by 2002:ac8:748f:0:b0:3a5:2704:d4bd with SMTP id v15-20020ac8748f000000b003a52704d4bdmr65211632qtq.16.1672735392802;
+        Tue, 03 Jan 2023 00:43:12 -0800 (PST)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
+        by smtp.gmail.com with ESMTPSA id m26-20020ac8445a000000b0039cb59f00fcsm18660598qtn.30.2023.01.03.00.43.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Jan 2023 00:38:27 -0800 (PST)
-Message-ID: <7dc37079-c577-8eca-2c6b-8715f0a715a9@linaro.org>
-Date:   Tue, 3 Jan 2023 09:38:26 +0100
+        Tue, 03 Jan 2023 00:43:12 -0800 (PST)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-482363a1232so272884277b3.3;
+        Tue, 03 Jan 2023 00:43:11 -0800 (PST)
+X-Received: by 2002:a81:7309:0:b0:475:f3f5:c6c with SMTP id
+ o9-20020a817309000000b00475f3f50c6cmr4442904ywc.358.1672735391658; Tue, 03
+ Jan 2023 00:43:11 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: reserved-memory: rmtfs: Document
- qcom,assign-to-nav
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     marijn.suijten@somainline.org, Rob Herring <robh+dt@kernel.org>,
+References: <20221221000242.340202-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221221000242.340202-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <170665b6-161a-6dd0-6ceb-199277c0ce2f@linaro.org>
+In-Reply-To: <170665b6-161a-6dd0-6ceb-199277c0ce2f@linaro.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 3 Jan 2023 09:43:00 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV0D8kh3xhKpWOUjTa9MzC3jEDJ5evKAJD6hV1w+pMBZw@mail.gmail.com>
+Message-ID: <CAMuHMdV0D8kh3xhKpWOUjTa9MzC3jEDJ5evKAJD6hV1w+pMBZw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/9] dt-bindings: interrupt-controller: irqc-rzg2l:
+ Drop RZG2L_NMI macro
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Prabhakar <prabhakar.csengg@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230102165034.830620-1-konrad.dybcio@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230102165034.830620-1-konrad.dybcio@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/01/2023 17:50, Konrad Dybcio wrote:
-> Some SoCs mandate that the RMTFS is also assigned to the NAV VM, while
-> others really don't want that. Since it has to be conditional, add a
-> bool property to toggle this behavior.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
-> v1 -> v2:
-> - Rewrite the newly added description
+On Thu, Dec 29, 2022 at 9:46 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> On 21/12/2022 01:02, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > NMI interrupt is not an external interrupt as compared to IRQ0-7 and
+> > TINT0-31 on RZ/G2L SoC, so there is no need for RZG2L_NMI macro.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> > v1 -> v2
+>
+>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+Given
+https://lore.kernel.org/all/CA+V-a8vb-PfzMWX=ndF8nsyYVbkfYBkAQZ-UoS9zpQPndL871Q@mail.gmail.com
+I think this patch is planned to be dropped, too?
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Gr{oetje,eeting}s,
 
-Best regards,
-Krzysztof
+                        Geert
 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
