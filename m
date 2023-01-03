@@ -2,114 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38DEF65BCA8
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 10:02:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8107365BCAD
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 10:02:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230109AbjACJCB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 04:02:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36058 "EHLO
+        id S236999AbjACJCz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 04:02:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237120AbjACJB7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 04:01:59 -0500
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF60C63F9;
-        Tue,  3 Jan 2023 01:01:58 -0800 (PST)
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-4a263c4ddbaso90149077b3.0;
-        Tue, 03 Jan 2023 01:01:58 -0800 (PST)
+        with ESMTP id S233152AbjACJCy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 04:02:54 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F11163EA
+        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 01:02:53 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id 1so44766476lfz.4
+        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 01:02:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Rma1OXXtPwZorAATSPbIGVsCt0s7nGTGyXy8BRV6/bU=;
+        b=OlLux7s2JLGz6488fEjnlO/wdyBRA8JLHewattA+W86HDetZuNSdSSyeYNWvNCL9At
+         UrqMqQA9O1BIyBnAYes7Ng0KTegwNeqM/pSfkXxM/QTltEQLBBne7P5OCeh7z4nLZsFJ
+         prkibeotV5EdIscZre8uQstBPFL6CsLCvOv4Z3KiTY8fKrNZ0M9nZxwahPfaNkf+tUwj
+         vnJtuPY0DxGvDY3FCMkj37lG1Dw+G6ksRnLNHr9KvAb+V0GPX4CH2QD64V2hBAlIMWOz
+         VGAp2X4dU3hGD0VlN2Lb2l+qpE1NThSOGUTs37dxlWrGBfCt++zXFQ3/T5JeKO7UAk63
+         /GYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Y5URYrqeQS8qtruXH5AsYpmalrkXEUl+UgZRcXAkcEE=;
-        b=vyAMAnt8gRki9CI1ARcv8zLOeGnyjbpXI9uoOlB4N5gpDdfi3HQMf3M8vtfC6ec9xp
-         JXU1D7VjR1qntVcS2z4RcAz7VrgBcKouca1smd6/7kpAUcX216nWF++ZT/AP9H43+nQf
-         Dsp3sqvfJHwuGF3oYghA2xEtGWm4+T0s+MGqXr6i/RTi0fVrQOqjH+Z3+UU7lxtifU3o
-         1HLvkSNYXcm5VYSX8dzNMA2ch5GtprEFZiGAoyeBsYlhWwDsjhXOOpulRDql+8cl8Qey
-         4TFOCbdqUYqFkVVW7OpysQ+aJWS6Sh6fi03vytku+gYCKQpcLlCcslic//62oNRuhpDr
-         ORMA==
-X-Gm-Message-State: AFqh2kqIvEQJ4zkhJ+vOPI2qzWQCYLk3/6dyAjVL+H5aQG5VmPpJ0PuT
-        Z8p6SwYxPFUzVkJQwwExQfhLEwjLX2OAxA==
-X-Google-Smtp-Source: AMrXdXsDK5p3WZY5e4n2SgPxle006DIZNmmRSNaUcdPVtdkBLwtZRzVCw8iqAildmM8relcnd4xj0w==
-X-Received: by 2002:a81:5706:0:b0:485:470f:c39c with SMTP id l6-20020a815706000000b00485470fc39cmr20383600ywb.37.1672736517562;
-        Tue, 03 Jan 2023 01:01:57 -0800 (PST)
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
-        by smtp.gmail.com with ESMTPSA id u16-20020a05620a0c5000b006e07228ed53sm21772827qki.18.2023.01.03.01.01.57
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Rma1OXXtPwZorAATSPbIGVsCt0s7nGTGyXy8BRV6/bU=;
+        b=YjWPllcqOh/cV3CbDXhFbqTv8UUTpHKGw+UGWd7WU4m1+LpNScb4q9apUAJVEPUnn/
+         dcNAov/NqaoGGelnGAlVJsqURlPmrVEUk0vmOEX9ZPFYhrWU7HTlgrQdmtIOb7XbsAmW
+         l3PbdXZ0XTpZnI0nePNJh67yNdGxt3tQ9OObfnyhhI+D0EmPJkiSyNKGPsZKMlR01RLG
+         68k/7ACeIEoIeTZr12rj1bXtlVVjIyyZ8c6zpfIvcZUJB+KIrMWgWDZR6p/7gIAZ8aFa
+         SiHU4HJTYGh3UTjS9qCfiyhMu8HwUioiyJl4i4NLg+WFXaDzmovhqv0/zoTdxXs+OFo3
+         qxLA==
+X-Gm-Message-State: AFqh2krd1LA5FdW5er2arcNxHwDQFKM8c6nGnDw735qmTu4NI1l0IDnF
+        USRuJM1QvxjFQMsIUERAPLHUNg==
+X-Google-Smtp-Source: AMrXdXuKSKb4fXDliXY3IUZECvd6jGgLhEO6HXKkRbrr0zxUThMGA6Ko67tu68FtPxF7Lu0U9qP6fg==
+X-Received: by 2002:ac2:43a4:0:b0:4cb:3a60:65cc with SMTP id t4-20020ac243a4000000b004cb3a6065ccmr1399538lfl.5.1672736571492;
+        Tue, 03 Jan 2023 01:02:51 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id w4-20020a05651234c400b0049d0a98f73csm4739133lfr.154.2023.01.03.01.02.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Jan 2023 01:01:57 -0800 (PST)
-Received: by mail-yb1-f175.google.com with SMTP id n78so32336127yba.12;
-        Tue, 03 Jan 2023 01:01:57 -0800 (PST)
-X-Received: by 2002:a25:ab49:0:b0:6de:6183:c5c3 with SMTP id
- u67-20020a25ab49000000b006de6183c5c3mr4872308ybi.89.1672736516822; Tue, 03
- Jan 2023 01:01:56 -0800 (PST)
+        Tue, 03 Jan 2023 01:02:50 -0800 (PST)
+Message-ID: <ba4ec52a-d6ee-b471-bfa5-521f876aef2d@linaro.org>
+Date:   Tue, 3 Jan 2023 10:02:49 +0100
 MIME-Version: 1.0
-References: <20221215213206.56666-1-biju.das.jz@bp.renesas.com> <CACRpkdZCEvpLAWvH7pCLH7KwbDMzz0EN+4HbxVGfFPi_C1b8+g@mail.gmail.com>
-In-Reply-To: <CACRpkdZCEvpLAWvH7pCLH7KwbDMzz0EN+4HbxVGfFPi_C1b8+g@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 3 Jan 2023 10:01:45 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdU1J46KSzqqCQc-1ZrgvfWh8J2aa6NzRTK_A_ZJs+zRVQ@mail.gmail.com>
-Message-ID: <CAMuHMdU1J46KSzqqCQc-1ZrgvfWh8J2aa6NzRTK_A_ZJs+zRVQ@mail.gmail.com>
-Subject: Re: [PATCH v5 0/9] Add RZ/G2L POEG support
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Drew Fustini <dfustini@baylibre.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2 1/7] dt-bindings: interconnect: Move interconnect child
+ node definition
+Content-Language: en-US
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, djakov@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        benl@squareup.com, shawn.guo@linaro.org, fabien.parent@linaro.org,
+        leo.yan@linaro.org, dmitry.baryshkov@linaro.org
+References: <20230103010904.3201835-1-bryan.odonoghue@linaro.org>
+ <20230103010904.3201835-2-bryan.odonoghue@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230103010904.3201835-2-bryan.odonoghue@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+On 03/01/2023 02:08, Bryan O'Donoghue wrote:
+> New properties should be defined before the allOf. Move the
+> patternProperties definition to before the additionalProperties: false in
+> this file.
 
-On Thu, Dec 29, 2022 at 2:17 AM Linus Walleij <linus.walleij@linaro.org> wrote:
-> On Thu, Dec 15, 2022 at 10:32 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > This patch series add support for controlling output disable function using sysfs.
->
-> What's wrong with using the debugfs approach Drew implemented in
-> commit 6199f6becc869d30ca9394ca0f7a484bf9d598eb
-> "pinctrl: pinmux: Add pinmux-select debugfs file"
-> ?
+Your commit description suggests it is just a move but it is not.
+Instead you make these properties available for all compatibles, which
+is not justified here.
 
-I think the main difference is that debugfs is meant for debugging
-and development features, while this feature is to be configured on
-production systems.  There's just no existing API for it.
+Either provide full explanation why making such change or make the move
+equivalent by disallowing the properties for other variants.
 
-> Something driver specific seems like a bit of a hack, does it not?
->
-> If this should go into sysfs we should probably create something
-> generic, such as a list of stuff to be exported as sysfs switches.
->
-> It generally also looks really dangerous, which is another reason
-> for keeping it in debugfs. It's the big hammer to hurt yourself with,
-> more or less.
+> 
+> Fixes: dfeef93fe3ee ("dt-bindings: interconnect: Convert snoc-mm to a sub-node of snoc")
 
-Yes, generic would be nice.  Anyone familiar with other hardware
-that could make use of this?
+There is no bug to fix, at least no bug described in commit msg. Style
+and convention issues are not bugs and not worth backporting. Drop the
+Fixes.
 
-Gr{oetje,eeting}s,
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+Best regards,
+Krzysztof
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
