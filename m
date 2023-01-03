@@ -2,148 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6E7165C04A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 13:52:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C0B7A65C06D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 14:06:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233308AbjACMw2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 07:52:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45132 "EHLO
+        id S237614AbjACNFt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 08:05:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237732AbjACMwX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 07:52:23 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FD3BCFC;
-        Tue,  3 Jan 2023 04:52:22 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 500D5B80E12;
-        Tue,  3 Jan 2023 12:52:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1488EC433D2;
-        Tue,  3 Jan 2023 12:52:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672750339;
-        bh=Wa6TU/u66JGcOO2l7KQC5SQzR8MRkoV+DozPJjJgvFc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZVWeXS8n9PHu8ZQP/yg3TdI1mkaBooz1jyzb/4734yf52pbUuAVqX5Rn3B08TxHWj
-         kevH5vWcWONZc/vmhRS/xaZWV6EdttNGfgZj5dtmb2cVscXVQ1bLWbrV1A5W+zwHFV
-         ksHh1iYvkF2stlaqHfcAg5kyC4zHvgwX+DW/GV73LFN8gjxhDwoWgrsoWuWJDlCKWM
-         WjruZfe3XbujcvJbZ6ZCorgUxUMxFdvsasxEt0RHXSLDDE7XXOrX1qFYvJzuMM972g
-         tWA6SVkz6FiIsRpTaJnTE7HY4CPlgBWfEventIbOxDzYpFuOLnSGqcQi4h4YmtAluJ
-         JQBzHFZ8CV27w==
-Date:   Tue, 3 Jan 2023 12:52:12 +0000
-From:   Lee Jones <lee@kernel.org>
-To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+        with ESMTP id S230052AbjACNFq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 08:05:46 -0500
+Received: from mail-ua1-x92f.google.com (mail-ua1-x92f.google.com [IPv6:2607:f8b0:4864:20::92f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4DCA10B47
+        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 05:05:41 -0800 (PST)
+Received: by mail-ua1-x92f.google.com with SMTP id e7so813658ual.4
+        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 05:05:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=qBoUROWjuf5ZUYCNjG/g+PT7H00JAGubfmWIHqWiFno=;
+        b=LG3dcwLKf5tAGbI5rt2aIWy2XkdGAxgvDX2u5W/cT0Rlwxk26JkI53ckg0EjFBfTKU
+         eAZhu4Pj1OMx0WJlfThaU2UnC0+rke06pkTwZcGduzSbZf3xH+hqKVVFUTiobql5eAWf
+         7OMyMi0B3paezljyGecRMQLwxYlUfRQtXlpX99OldXISEccoys1Twr9A6ukSf/WFPPOE
+         34oc6+7wrCSUZbFEheBkjjabWGNxkLp8f/o7dLjWpHbXi8O1eDHEmjjGiSJCUakYXrwZ
+         Wih1WTikjtgPpkPZWZtqPX75mAcnAV2bopj7xZ8cqgencYHUBQ0aIR15CKzagVD3c/Bt
+         md5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qBoUROWjuf5ZUYCNjG/g+PT7H00JAGubfmWIHqWiFno=;
+        b=tbVxhnfDcyIjr8PhZSxWcJt2VTyo2FAkEWQUDLZ1bUvziWc1IRG5jKv69FcBucQbJz
+         o5Bt6dJBN67rgeoWq1SfKKXXgwfoUBlIv0iFIjAhgvsM6Z+hVLNJYHQQKX3y0NeQ4N61
+         X/9naCB6ddA3rIrD6HsMhTWed2PE03mfyqnNv4mxwJl2OEPfUu9kdiN6C8e/NCnzAsrl
+         bQzBJHENNKO6QE0Vh5XyTQh6N3lSqlgenQ1oT9QV6La/dJ9Mpi8z4F6zcZTcFYJkla4D
+         RL7qupAzAs7VNAUaHLL6dlz7DMTbLS60ypfZC257qwpBLiOmnt7c2XbHT2LOTLozWcSt
+         LyYg==
+X-Gm-Message-State: AFqh2krZ/ZelpKPwaqxxCxDpbwL3beOuEhwW0NVHo5R7Jjz21vZgsC70
+        Y5fRf4U2wRk2NByLlYeE88cSub3QMUCLgoXJ1gEg3A==
+X-Google-Smtp-Source: AMrXdXsabU1gefvs88vYs+DmLmfV8mbDiegq1CGFp4srFkNfmOlOQsYh7UqXWCshayJ3xlbOoVtJxKRC/g/O0jtAdJ0=
+X-Received: by 2002:ab0:64ca:0:b0:478:b785:affb with SMTP id
+ j10-20020ab064ca000000b00478b785affbmr3920179uaq.52.1672751140736; Tue, 03
+ Jan 2023 05:05:40 -0800 (PST)
+MIME-Version: 1.0
+References: <20221111044207.1478350-1-apatel@ventanamicro.com>
+ <20221111044207.1478350-7-apatel@ventanamicro.com> <Y3EQ4JU7uGbIMGiW@spud>
+ <CAAhSdy2UAMmX+W5Cm3DuTJzZ0jJ3=CW4PhjctQNdfeS+4hqWqg@mail.gmail.com> <082eb006-75b8-dead-c014-9ba41a697e50@linaro.org>
+In-Reply-To: <082eb006-75b8-dead-c014-9ba41a697e50@linaro.org>
+From:   Anup Patel <apatel@ventanamicro.com>
+Date:   Tue, 3 Jan 2023 18:35:28 +0530
+Message-ID: <CAK9=C2XnYVtEPqPoLw=+n6Ys_jm8Ndx7fDScDAOM4iNMEj-H0g@mail.gmail.com>
+Subject: Re: [PATCH 6/9] dt-bindings: Add RISC-V advanced PLIC bindings
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Anup Patel <anup@brainfault.org>, Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jacopo Mondi <jacopo@jmondi.org>
-Subject: Re: [PATCH v2 2/4] mfd: Add RZ/V2M PWC core driver
-Message-ID: <Y7Qk/EgOI9mkJIjn@google.com>
-References: <20221221210917.458537-1-fabrizio.castro.jz@renesas.com>
- <20221221210917.458537-3-fabrizio.castro.jz@renesas.com>
- <CAMuHMdXDwEUzBpG+w_G6=CzKo=n92cdVw6v8JwOwf9o86HnOZQ@mail.gmail.com>
- <TYWPR01MB87758FB15ED12D396AE738DDC2F49@TYWPR01MB8775.jpnprd01.prod.outlook.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <TYWPR01MB87758FB15ED12D396AE738DDC2F49@TYWPR01MB8775.jpnprd01.prod.outlook.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Atish Patra <atishp@atishpatra.org>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 03 Jan 2023, Fabrizio Castro wrote:
+On Tue, Jan 3, 2023 at 2:29 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 02/01/2023 17:50, Anup Patel wrote:
+> > On Sun, Nov 13, 2022 at 9:14 PM Conor Dooley <conor@kernel.org> wrote:
+> >>
+> >> Hey Anup,
+> >>
+> >> Ditto the $subject nit here.
+> >
+> > Adding "interrupt-controller:" to subject makes it longer than 80 characters.
+>
+> Because you added redundant double "bindings". Subject line is precious,
+> so do not add useless words.
 
-> Hi Geert,
-> 
-> Thanks for your feedback!
-> 
-> > -----Original Message-----
-> > From: Geert Uytterhoeven <geert@linux-m68k.org>
-> > Sent: 03 January 2023 08:37
-> > To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> > Cc: Linus Walleij <linus.walleij@linaro.org>; Bartosz Golaszewski
-> > <brgl@bgdev.pl>; Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
-> > <krzysztof.kozlowski+dt@linaro.org>; Sebastian Reichel <sre@kernel.org>;
-> > Geert Uytterhoeven <geert+renesas@glider.be>; Lee Jones <lee@kernel.org>;
-> > linux-gpio@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> > kernel@vger.kernel.org; linux-pm@vger.kernel.org; Chris Paterson
-> > <Chris.Paterson2@renesas.com>; Biju Das <biju.das@bp.renesas.com>; linux-
-> > renesas-soc@vger.kernel.org; Laurent Pinchart
-> > <laurent.pinchart@ideasonboard.com>; Jacopo Mondi <jacopo@jmondi.org>
-> > Subject: Re: [PATCH v2 2/4] mfd: Add RZ/V2M PWC core driver
-> > 
-> > Hi Fabrizio,
-> > 
-> > On Wed, Dec 21, 2022 at 10:09 PM Fabrizio Castro
-> > <fabrizio.castro.jz@renesas.com> wrote:
-> > > The External Power Sequence Controller (PWC) IP (found in the
-> > > RZ/V2M SoC) is a controller for external power supplies (regulators
-> > > and power switches), and it supports the following features: it
-> > > generates a power on/off sequence for external power supplies,
-> > > it generates an on/off sequence for the LPDDR4 core power supply
-> > > (LPVDD), it comes with General-Purpose Outputs, and it processes
-> > > key input signals.
-> > 
-> > Thanks for your patch!
-> > 
-> > > The PWC is basically a Multi-Function Device (MFD), its software
-> > > support comes with a core driver, and specialized drivers for
-> > > its specific features.
-> > 
-> > I have to admit I'm not such a big fan of MFD.  In this driver,
-> > you are not even sharing resources in the MFD cells, just the mapped
-> > register base.  So I think you can easily save +100 LoC and reduce
-> > maintenance synchronization overhead across subsystems by just having
-> > a single non-MFD driver instead.
-> > 
-> > Did you pick MFD because the PWC poweroff feature depends on board
-> > wiring, and thus is optional?
-> 
-> I am not a big fan of MFD, either.
+Okay, I will update the patch subject based on your suggestion.
 
-Interesting.
-
-Could you both elaborate further please?
-
-> I picked MFD because we were not 100% sure of what the IP could do
-> when we started working on it.
-> I have received more information regarding the IP now (which I don't
-> have the liberty to discuss), I am still not 100% sure that's all
-> of it, but basically its support may require expansion later on.
-> 
-> I liked the solution based on syscon and simple-mfd for several reasons,
-> but having dropped syscon and simple-mfd due to issues with the dt-bindings
-> I have moved on with a core driver to instantiate the required SW support.
-> We could of course move to a unified driver if that makes more sense?
-> If we were to move to unified driver, under which directory would you
-> suggest we put it?
-
-If you do not have any resources to share, you can simply register each
-of the devices via Device Tree.  I do not see a valid reason to force a
-parent / child relationship for your use-case.
-
-Many people attempt to use MFD as a dumping ground / workaround for a
-bunch of reasons.  Some valid, others not so much.
-
--- 
-Lee Jones [李琼斯]
+Regards,
+Anup
