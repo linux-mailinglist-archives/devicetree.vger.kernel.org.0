@@ -2,176 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F97165BEE4
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 12:28:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89E8465BEFB
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 12:30:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236950AbjACL2R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 06:28:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57118 "EHLO
+        id S237425AbjACL35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 06:29:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232879AbjACL2Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 06:28:16 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24B35D10A
-        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 03:28:15 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id bt23so28593073lfb.5
-        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 03:28:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kE4qqRxLpxxCedBuUJYA+jounttnp3G/CGQUAy2owUc=;
-        b=Ill95URu0ok8mTKcTGS2lBtZw4eZqXOgHuXYKVuUbo61K1thYXNo+Ruh9Glym7puZ0
-         zX+XPzU9HkF5NtDV9G9rXGtsfzmAOJikoXWin/OvNxtIq8uqfGhYmtrAPSEAsiU7V1Y5
-         oLVnULMbddELmoYJH5P78lCIHYZt6Xd4d5rGEnQ+jRQhTspmocjmECdaqb2f976PdL2z
-         TzHa+su9MOIZrwYWj4CqUurmPyIyctOCVXkevmsCzEw1W+ZEN/+9kvMz0UXZ0GelNyM3
-         ylERXrH6lkJrnMQzYqxWIvb8GHGOvWjgDwWntvVljGUDLd3hptx9gakn71TA3mAo2Yrd
-         L9gA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kE4qqRxLpxxCedBuUJYA+jounttnp3G/CGQUAy2owUc=;
-        b=I/lC7PBT9j9ahDnPpOZdifZ01pTbVHpq68izDe5A1X6O8VGRdyNFNQuG0651Jo9P5s
-         bd3kozQ6XxBGF8lQcAWquBESB+jwsB/vY+3EzM3Yy1MHwmbFxxfJ1Q+PgmWGdvtkIbSd
-         /FpwkQz2jvekSvig0F3QRTmg5acybF0hwnjrBGkPthkl6OzkDJF4rJz0JyFDOOpZcZyy
-         3Q0yuYc/8gc5//xrckyogQ/jaRQLdQqtJCQoM6yp/INaaD3/vz4SmK7HUOk5k/eTMcUA
-         xQWpox/da23xVEi7zCPjylfu0riQwEQa6170+jd+7kYYAOoNvneTPPSqhZX6SrGpre4k
-         vOVA==
-X-Gm-Message-State: AFqh2kopUa/l5dMzPTlP7SgjHt60kIge+2PgZ39o36dQgy0Aym+jySbC
-        ynCgY1nmKCbM7R7AgN4S++UKYw==
-X-Google-Smtp-Source: AMrXdXvivJCiSvdg7M62GVqjA581ZqA/tb1WZnOzpgmcCBvtTZ9QkS3notudi/QiV+FIM4Pn1tKE8Q==
-X-Received: by 2002:a05:6512:3601:b0:4b7:13b:259d with SMTP id f1-20020a056512360100b004b7013b259dmr10839992lfs.48.1672745293524;
-        Tue, 03 Jan 2023 03:28:13 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id o10-20020ac24e8a000000b004b4fefacd89sm4798236lfr.139.2023.01.03.03.28.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Jan 2023 03:28:13 -0800 (PST)
-Message-ID: <30423568-df03-1d72-81fe-3a4b33214e5c@linaro.org>
-Date:   Tue, 3 Jan 2023 12:28:11 +0100
+        with ESMTP id S237446AbjACL3n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 06:29:43 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33C4DFD01;
+        Tue,  3 Jan 2023 03:29:35 -0800 (PST)
+X-UUID: 860d5573e83745bf84eb45d41f03f421-20230103
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=lmc3nBCTQwWzf0yQuGvl+YARoD+4DowvoSdMjMCGIrM=;
+        b=czBDGMzy0jt1Jr0Td0ER6cs6aMnGsyB0zNzbuN86ALEWgO2JHdziJEoaHsDQ4E7xiCT13uVemuz0b9ryFzrO/eUVPLtc285q1x9Pm94TDkXPeQzZ+X03xzugTxZYhQgVuyL9H8J0qGCb5gBno5nKjrLzvdZEGj6Jb0acEutNSdQ=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.16,REQID:e6e5d94e-0065-4c6a-95a1-339360872b0d,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:95
+X-CID-INFO: VERSION:1.1.16,REQID:e6e5d94e-0065-4c6a-95a1-339360872b0d,IP:0,URL
+        :0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTION
+        :quarantine,TS:95
+X-CID-META: VersionHash:09771b1,CLOUDID:55a48053-dd49-462e-a4be-2143a3ddc739,B
+        ulkID:230103192928J3CXCKI5,BulkQuantity:0,Recheck:0,SF:38|28|17|19|48,TC:n
+        il,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OS
+        I:0,OSA:0
+X-CID-BVR: 0
+X-UUID: 860d5573e83745bf84eb45d41f03f421-20230103
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <roger.lu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1185210505; Tue, 03 Jan 2023 19:29:27 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Tue, 3 Jan 2023 19:29:26 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Tue, 3 Jan 2023 19:29:26 +0800
+From:   Roger Lu <roger.lu@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Kevin Hilman <khilman@kernel.org>,
+        Nicolas Boichat <drinkcat@google.com>
+CC:     Fan Chen <fan.chen@mediatek.com>, Roger Lu <roger.lu@mediatek.com>,
+        Jia-wei Chang <jia-wei.chang@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v3 0/14] Enhance SVS's robustness
+Date:   Tue, 3 Jan 2023 19:29:11 +0800
+Message-ID: <20230103112925.16554-1-roger.lu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [RFC PATCH 3/4] dt-bindings: panel: Introduce dual-link LVDS
- panel
-Content-Language: en-US
-To:     Aradhya Bhatia <a-bhatia1@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Tomi Valkeinen <tomba@kernel.org>,
-        Jyri Sarha <jyri.sarha@iki.fi>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Guo Ren <guoren@kernel.org>
-Cc:     DRI Development List <dri-devel@lists.freedesktop.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>,
-        Linux RISC-V List <linux-riscv@lists.infradead.org>,
-        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
-        Linux Mediatek List <linux-mediatek@lists.infradead.org>,
-        Linux C-SKY Arch List <linux-csky@vger.kernel.org>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Jai Luthra <j-luthra@ti.com>,
-        Jayesh Choudhary <j-choudhary@ti.com>
-References: <20230103064615.5311-1-a-bhatia1@ti.com>
- <20230103064615.5311-4-a-bhatia1@ti.com>
- <85837957-f6d2-4722-7693-98c6cf932096@linaro.org>
- <32d66fb7-6c63-0985-222f-0bd3c36c165d@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <32d66fb7-6c63-0985-222f-0bd3c36c165d@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/01/2023 12:02, Aradhya Bhatia wrote:
-> But this is throwing an error. I am confused what else could be done.
-> Can you please suggest what might be a more accurate check here?
-> 
->>
->>> +              required:
->>> +                - dual-lvds-odd-pixels
->>> +        then:
->>> +          properties:
->>> +            port@1:
->>> +              properties:
->>> +                dual-lvds-even-pixels: true
->>> +                dual-lvds-odd-pixels: false
->>
->> Why do you need this? Your oneOf before already solves it.
-> 
-> I agree with your comment here. It makes sense to only have
-> 
-> 	dual-lvds-even-pixels: true
-> 
-> and have the oneOf condition take care of the other. But, I just tested
-> this and it was unable to pick-up this intentionally-added error.
-> 
-> I added 'dual-lvds-odd-pixels' property to both the nodes, and
-> dt_binding_check passes successfully (which it should have not.)
-> 
-> Instead, if I only keep this,
-> 
-> 	dual-lvds-odd-pixels: false
-> 
-> then the dt_binding_check detects the error as it should.
-> 
-> Regardless, I am curious why the first method doesn't work. Will try to
-> explore more on that.
+SVS driver got accepted upstream but still has room to be improved.
+Therefore, we add these patches to fix issues and coding style.
 
-The check for presence of properties is only against required:, but you
-added there properties. Like this:
+Change since v2:
+- change the goto label wording from "out_of_resume" to "svs_resume_reset_assert" patch [9/14]
+- Add patch [10/14] to reset svs hardware when svs_resume fail
 
-https://elixir.bootlin.com/linux/v5.17-rc2/source/Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml#L155
+Matthias Brugger (4):
+  soc: mediatek: mtk-svs: clean up platform probing
+  soc: mediatek: mtk-svs: improve readability of platform_probe
+  soc: mediatek: mtk-svs: move svs_platform_probe into probe
+  soc: mediatek: mtk-svs: delete superfluous platform data entries
 
+Ricardo Ribalda (1):
+  soc: mediatek: mtk-svs: enable the IRQ later
 
-Other way is to drop your both oneOf and entire allOf from ports and use:
+Roger Lu (8):
+  soc: mtk-svs: mt8183: refactor o_slope calculation
+  soc: mediatek: mtk-svs: use svs get efuse common function
+  soc: mediatek: mtk-svs: use svs clk control APIs
+  soc: mediatek: mtk-svs: reset svs when svs_resume() fail
+  soc: mediatek: mtk-svs: use common function to disable restore
+    voltages
+  soc: mediatek: mtk-svs: restore default voltages when svs_init02()
+    fail
+  soc: mediatek: mtk-svs: add thermal voltage compensation if needed
+  soc: mediatek: mtk-svs: keep svs alive even though debug cmd create
+    fail
 
-oneOf:
-  - properties:
-      ports:
-        $ref: /schemas/graph.yaml#/properties/ports
-        properties:
-          port@0:
-            required:
-              - dual-lvds-odd-pixels
-          port@1:
-            required:
-              - dual-lvds-even-pixels
-  - properties:
-      ports:
-        $ref: /schemas/graph.yaml#/properties/ports
-        properties:
-          port@1:
-            required:
-              - dual-lvds-odd-pixels
-          port@0:
-            required:
-              - dual-lvds-even-pixels
+Shang XiaoJing (1):
+  soc: mediatek: mtk-svs: Use pm_runtime_resume_and_get() in
+    svs_init01()
 
+ drivers/soc/mediatek/mtk-svs.c | 351 ++++++++++++++++-----------------
+ 1 file changed, 174 insertions(+), 177 deletions(-)
 
-Best regards,
-Krzysztof
 
