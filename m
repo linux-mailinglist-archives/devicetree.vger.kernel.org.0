@@ -2,137 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 671B465C826
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 21:39:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A46165C870
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 21:53:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233670AbjACUjV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 15:39:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57816 "EHLO
+        id S233881AbjACUxB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 15:53:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230388AbjACUjU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 15:39:20 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3859DD2F0;
-        Tue,  3 Jan 2023 12:39:19 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C629561509;
-        Tue,  3 Jan 2023 20:39:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDAA7C433D2;
-        Tue,  3 Jan 2023 20:39:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672778358;
-        bh=qHvw7TqJ6cPDkYRnlA1AfRE2VUgBjuTgxJT0EOvT+mA=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=n4W6E+l9mqKxp8pq4uTlXkUofQBU28moAscYkumViFYhakx33ESmTHMVOPRvyrmBh
-         bFmrQAWwmlM700lNqBUMJXONMjcEba2ULla6VQIlXTDUIjB7tV2eCf+bonCgr/vX/G
-         oEQoxReeywHawrC/fTYDrQmtZxVzykoywUzbUku9AZBjjSU/lYzTYg16IwFVSTqU3a
-         +fqJda6sYo4dTq9Jbvwmx+EOUkOWQRrhoS+DhDyTNxL2TIdsmKSEpbeIoaWjjPhp/3
-         0sIa8GYH31KH3rPDT3JMaGAyGg+1q9hCfTYlRfYpRv+z/yZbzh0BfegR1bU0peFss2
-         COTkABJRG/80Q==
-Date:   Tue, 3 Jan 2023 14:39:15 -0600
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232129AbjACUw6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 15:52:58 -0500
+Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB78EDFFC;
+        Tue,  3 Jan 2023 12:52:57 -0800 (PST)
+Received: by mail-il1-f171.google.com with SMTP id a9so6321030ilk.6;
+        Tue, 03 Jan 2023 12:52:57 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TcjxuWhsew0S4JMMZ0LVIr9mYr0ZItiOrBsIyKBjzxA=;
+        b=2NToks0C7J1Ro1UvG/6kt01FVvqSE9HR9qVAMAfaZb06yTAwrVLN65XEVXoYdk2sb/
+         FMDH86QOTkf1wdMlMR0dleIvp+iKloeh8GdzK1VfMzIR5mKBmjC5nnJFQD8eXF3nkv2c
+         dY7pzjpWv1OB2HULmgz9jZIO8vW435au8tXaxTXsClyEWgoz1g9qzlEG3Rvr13+3bRd2
+         sVlR2JmEJsANGr6A5u4z8LXD9rOrFNBNl2fwYhTpwN6SRkp5lS/7jyhfQVKayBh/JXLn
+         MlcxThMHg4KRVQgojY41+30qpXSL/0YXGHsHVLY34H6PJw+HYfF8wXBSBQUNQjTOidrU
+         gmMw==
+X-Gm-Message-State: AFqh2kqZ2tsPOgwVUCwTSoEgDRfiW27l+kCz1xXxrsewl87pch2FncLQ
+        Id3nHQnTweBl/NWr7CvSoQ==
+X-Google-Smtp-Source: AMrXdXs7CLCkBhA2bAs8+otIJJ87HLmOu2iBxk7dmL/ZdUhdNLgBmJbpCAkIQKJL5QLEGLa5kGxn6A==
+X-Received: by 2002:a05:6e02:549:b0:306:d1b4:f3c7 with SMTP id i9-20020a056e02054900b00306d1b4f3c7mr25689876ils.20.1672779176867;
+        Tue, 03 Jan 2023 12:52:56 -0800 (PST)
+Received: from robh_at_kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id c24-20020a023b18000000b00388b6508ec8sm9836486jaa.115.2023.01.03.12.52.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Jan 2023 12:52:56 -0800 (PST)
+Received: (nullmailer pid 3961459 invoked by uid 1000);
+        Tue, 03 Jan 2023 20:52:50 -0000
+Date:   Tue, 3 Jan 2023 14:52:50 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Yann Sionneau <ysionneau@kalray.eu>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Albert Ou <aou@eecs.berkeley.edu>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Arnaldo Carvalho de Melo <acme@kernel.org>,
+        Boqun Feng <boqun.feng@gmail.com>, bpf@vger.kernel.org,
+        Christian Brauner <brauner@kernel.org>,
+        devicetree@vger.kernel.org, Eric Biederman <ebiederm@xmission.com>,
+        Eric Paris <eparis@redhat.com>, Ingo Molnar <mingo@redhat.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        Jason Baron <jbaron@akamai.com>, Jiri Olsa <jolsa@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Josh Poimboeuf <jpoimboe@kernel.org>,
+        Kees Cook <keescook@chromium.org>,
+        Kieran Bingham <kbingham@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: PCI: qcom: add MSM8998 specific
- compatible
-Message-ID: <20230103203915.GA1020424@bhelgaas>
+        linux-arch@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-audit@redhat.com, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mm@kvack.org,
+        linux-perf-users@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-riscv@lists.infradead.org, Marc Zyngier <maz@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Namhyung Kim <namhyung@kernel.org>,
+        Nick Piggin <npiggin@gmail.com>,
+        Oleg Nesterov <oleg@redhat.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Moore <paul@paul-moore.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Waiman Long <longman@redhat.com>,
+        Will Deacon <will@kernel.org>, Alex Michon <amichon@kalray.eu>,
+        Ashley Lesdalons <alesdalons@kalray.eu>,
+        Benjamin Mugnier <mugnier.benjamin@gmail.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Guillaume Missonnier <gmissonnier@kalray.eu>,
+        Guillaume Thouvenin <gthouvenin@kalray.eu>,
+        Jean-Christophe Pince <jcpince@gmail.com>,
+        Jonathan Borne <jborne@kalray.eu>,
+        Jules Maselbas <jmaselbas@kalray.eu>,
+        Julian Vetter <jvetter@kalray.eu>,
+        Julien Hascoet <jhascoet@kalray.eu>,
+        Julien Villette <jvillette@kalray.eu>,
+        Louis Morhet <lmorhet@kalray.eu>,
+        Luc Michel <lmichel@kalray.eu>,
+        =?UTF-8?Q?Marc_Poulhi=C3=A8s?= <dkm@kataplop.net>,
+        Marius Gligor <mgligor@kalray.eu>,
+        Samuel Jones <sjones@kalray.eu>,
+        Thomas Costis <tcostis@kalray.eu>,
+        Vincent Chardon <vincent.chardon@elsys-design.com>
+Subject: Re: [RFC PATCH 00/25] Upstream kvx Linux port
+Message-ID: <20230103205250.GB3942221-robh@kernel.org>
+References: <20230103164359.24347-1-ysionneau@kalray.eu>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221115125310.184012-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230103164359.24347-1-ysionneau@kalray.eu>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 15, 2022 at 01:53:07PM +0100, Krzysztof Kozlowski wrote:
-> Add new compatible for MSM8998 (compatible with MSM8996) to allow
-> further customizing if needed and to accurately describe the hardware.
+On Tue, Jan 03, 2023 at 05:43:34PM +0100, Yann Sionneau wrote:
+> This patch series adds support for the kv3-1 CPU architecture of the kvx family
+> found in the Coolidge (aka MPPA3-80) SoC of Kalray.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Hi Krzysztof,
-
-Would you mind splitting this into two patches?
-
-  - Convert "compatible:" from enum: to oneOf:
-  - Add MSM8998
-
-Having them combined makes the history a little bit harder to follow.
-
-Bjorn
-
-> ---
->  .../devicetree/bindings/pci/qcom,pcie.yaml    | 42 ++++++++++---------
->  1 file changed, 23 insertions(+), 19 deletions(-)
+> This is an RFC, since kvx support is not yet upstreamed into gcc/binutils,
+> therefore this patch series cannot be merged into Linux for now.
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> index 54f07852d279..0411e2e67661 100644
-> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> @@ -16,25 +16,29 @@ description: |
->  
->  properties:
->    compatible:
-> -    enum:
-> -      - qcom,pcie-ipq8064
-> -      - qcom,pcie-ipq8064-v2
-> -      - qcom,pcie-apq8064
-> -      - qcom,pcie-apq8084
-> -      - qcom,pcie-msm8996
-> -      - qcom,pcie-ipq4019
-> -      - qcom,pcie-ipq8074
-> -      - qcom,pcie-qcs404
-> -      - qcom,pcie-sa8540p
-> -      - qcom,pcie-sc7280
-> -      - qcom,pcie-sc8180x
-> -      - qcom,pcie-sc8280xp
-> -      - qcom,pcie-sdm845
-> -      - qcom,pcie-sm8150
-> -      - qcom,pcie-sm8250
-> -      - qcom,pcie-sm8450-pcie0
-> -      - qcom,pcie-sm8450-pcie1
-> -      - qcom,pcie-ipq6018
-> +    oneOf:
-> +      - enum:
-> +          - qcom,pcie-ipq8064
-> +          - qcom,pcie-ipq8064-v2
-> +          - qcom,pcie-apq8064
-> +          - qcom,pcie-apq8084
-> +          - qcom,pcie-msm8996
-> +          - qcom,pcie-ipq4019
-> +          - qcom,pcie-ipq8074
-> +          - qcom,pcie-qcs404
-> +          - qcom,pcie-sa8540p
-> +          - qcom,pcie-sc7280
-> +          - qcom,pcie-sc8180x
-> +          - qcom,pcie-sc8280xp
-> +          - qcom,pcie-sdm845
-> +          - qcom,pcie-sm8150
-> +          - qcom,pcie-sm8250
-> +          - qcom,pcie-sm8450-pcie0
-> +          - qcom,pcie-sm8450-pcie1
-> +          - qcom,pcie-ipq6018
-> +      - items:
-> +          - const: qcom,pcie-msm8998
-> +          - const: qcom,pcie-msm8996
->  
->    reg:
->      minItems: 4
-> -- 
-> 2.34.1
+> The goal is to have preliminary reviews and to fix problems early.
 > 
+> The Kalray VLIW processor family (kvx) has the following features:
+> * 32/64 bits execution mode
+> * 6-issue VLIW architecture
+> * 64 x 64bits general purpose registers
+> * SIMD instructions
+> * little-endian
+> * deep learning co-processor
+> 
+> Kalray kv3-1 core which is the third of the kvx family is embedded in Kalray
+> Coolidge SoC currently used on K200 and K200-LP boards.
+> 
+> The Coolidge SoC contains 5 clusters each of which is made of:
+> * 4MiB of on-chip memory (SMEM)
+> * 1 dedicated safety/security core (kv3-1 core).
+> * 16 PEs (Processing Elements) (kv3-1 cores).
+> * 16 Co-processors (one per PE)
+> * 2 Crypto accelerators
+> 
+> The Coolidge SoC contains the following features:
+> * 5 Clusters
+> * 2 100G Ethernet controllers
+> * 8 PCIe GEN4 controllers (Root Complex and Endpoint capable)
+> * 2 USB 2.0 controllers
+> * 1 Octal SPI-NOR flash controller
+> * 1 eMMC controller
+> * 3 Quad SPI controllers
+> * 6 UART
+> * 5 I2C controllers (3 of which are SMBus capable)
+> * 4 CAN controllers
+> * 1 OTP memory
+> 
+> A kvx toolchain can be built using:
+> # install dependencies: texinfo bison flex libgmp-dev libmpc-dev libmpfr-dev
+> $ git clone https://github.com/kalray/build-scripts
+> $ cd build-scripts
+> $ source last.refs
+> $ ./build-kvx-xgcc.sh output
+> 
+> The kvx toolchain will be installed in the "output" directory.
+> 
+> A buildroot image (kernel+rootfs) and toolchain can be built using:
+> $ git clone -b coolidge-for-upstream https://github.com/kalray/buildroot
+> $ cd buildroot
+> $ make O=build_kvx kvx_defconfig
+> $ make O=build_kvx
+> 
+> The vmlinux image can be found in buildroot/build_kvx/images/vmlinux.
+> 
+> If you are just interested in building the Linux kernel with no rootfs you can
+> just do this with the kvx-elf- toolchain:
+> $ make ARCH=kvx O=build_kvx CROSS_COMPILE=kvx-elf- default_defconfig
+> $ make ARCH=kvx O=build_kvx CROSS_COMPILE=kvx-elf- -j$(($(nproc) + 1))
+> 
+> The vmlinux ELF can be run with qemu by doing:
+> # install dependencies: ninja pkg-config libglib-2.0-dev cmake libfdt-dev libpixman-1-dev zlib1g-dev
+> $ git clone https://github.com/kalray/qemu-builder
+> $ cd qemu-builder
+> $ git submodule update --init
+> $ make -j$(($(nproc) + 1))
+> $ ./qemu-system-kvx -m 1024 -nographic -kernel <path/to/vmlinux>
+> 
+> Yann Sionneau (25):
+>   Documentation: kvx: Add basic documentation
+>   kvx: Add ELF-related definitions
+>   kvx: Add build infrastructure
+>   kvx: Add CPU definition headers
+>   kvx: Add atomic/locking headers
+>   kvx: Add other common headers
+>   kvx: Add boot and setup routines
+>   kvx: Add exception/interrupt handling
+>   kvx: irqchip: Add support for irq controllers
+>   kvx: Add process management
+>   kvx: Add memory management
+>   kvx: Add system call support
+>   kvx: Add signal handling support
+>   kvx: Add ELF relocations and module support
+>   kvx: Add misc common routines
+>   kvx: Add some library functions
+>   kvx: Add multi-processor (SMP) support
+>   kvx: Add kvx default config file
+>   kvx: power: scall poweroff driver
+>   kvx: gdb: add kvx related gdb helpers
+>   kvx: Add support for ftrace
+>   kvx: Add support for jump labels
+>   kvx: Add debugging related support
+>   kvx: Add support for CPU Perf Monitors
+>   kvx: Add support for cpuinfo
+
+You should strip this series down to just what's needed to boot. You 
+don't need the last 7 patches at least.
+
+Rob
