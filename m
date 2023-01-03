@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DD3165BCE5
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 10:16:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 412D665BCEF
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 10:18:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236996AbjACJQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 04:16:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44916 "EHLO
+        id S237140AbjACJSA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 04:18:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233086AbjACJQ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 04:16:29 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03D4EBDC
-        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 01:16:27 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id bq39so37041345lfb.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 01:16:27 -0800 (PST)
+        with ESMTP id S237136AbjACJR6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 04:17:58 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73FDBE028
+        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 01:17:57 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id p36so44816692lfa.12
+        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 01:17:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=aHAhdeX4spokrw/Ouo2T+2RtceeUsZl6B2PQr9gjCPc=;
-        b=y1Z7soR2DoOs6lAl9pR6mZi/aQW8BsSrqXeTXjcM98wnC7M3Id5ixz7G0ogw05qZk9
-         2S+/nGDxkfFmEWbYqCyEuOgg4tFTjz6mIe1bjT7r5JnKlJSk5fu3HOyqxACg1sJkrngg
-         JxChNtsbL0kR2menJGdLfm5Nj5crZJUWHPRrkqsIfkj3//vCvbjs4tivEQVU7+i9w3vC
-         4UP8lHhrpjgI9Dz420mtrUWCaxoz4pbNzDJKddxMlzHNPhuhbP7nvZKpfTWzAtpdvzZX
-         pgLqeUYzud5Oy439xat9Xg0nua1FaF3ZZhC1ITNx1iJfj8jTYT+Y6AAx23ttC57M8jji
-         r3ig==
+        bh=B9Wv3FdFZUA8KrBGuSYP/aqmUGr0c3p246TWkk0lSEw=;
+        b=BScJBbEP3xsvpBGOF+42qKUXZnbwU6kdalonSqYyRk+bjVotSjVe43xZL7KKmoTB3k
+         vAIlOfSrGmuHfnUdBf2UanB0aF49xzBejuNPWS9zACsLduFVikc6ncjchZjbuICRsCfL
+         SqWJZRwlyvOw68mJkuK8Rskc+yp9cRwcou3mJ1PEXt77Wd0jWcyOt4YoB3fmd0PQMV8x
+         0dMQNjEDmnJV37yOIhbGIidz0I9S31ElOfQrbxsMMEcGRteaWsREEzXJu+FPv029LmSH
+         DcRJwUsOxJ3uFTvHRdle8slsonugd7SMT4Y4s47++ZKN4TKdz9VG378kR7W5UiAsNQAC
+         Mt9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aHAhdeX4spokrw/Ouo2T+2RtceeUsZl6B2PQr9gjCPc=;
-        b=uKKeij5zpaN17jgxMFsq0o1CYkKeoO+CmpJP6q0Q/c17AcLUBemkS+6F8PEnTutK3Q
-         yv5h0mThYka5JJa+wlAS/ntU52qX+ssLvCMyOxK6zIuJ8eKUx408eKHB41hc/pNxmUIb
-         obhYm98OSkK9Q20zidtgMxVpcca4tgLjM5SV0LPKw2Gk+uQU+pU1UP2n/FtPxAN3i4hz
-         TkhIi/k1M65toMGLKw89ncJbB9vddUcGoZ60npagjg9GBnu7axw0ZFC3kpDY/v5CcrTB
-         17xZLuC9R5TMtiCLgragskrtS2IQtwl+S4j04I/nwRvVD0EO0H5XufBGC4FRwmrJ0fMo
-         qGXA==
-X-Gm-Message-State: AFqh2krZR34TWdycpWG+PObT+v1GdNGwyex8bOzDvyYmw1jVWy9TcmFp
-        jmRcHzIHNY9Hvxedh+IeELfN1w==
-X-Google-Smtp-Source: AMrXdXsUoRFkLZAiOh/l36EE0FLuJFNa1s70BSvZH8+0tatBW3cqoocgGz0gIJvz1X93bkXgUjESvA==
-X-Received: by 2002:a05:6512:3a8f:b0:4a4:68b8:f4e1 with SMTP id q15-20020a0565123a8f00b004a468b8f4e1mr13515431lfu.39.1672737386349;
-        Tue, 03 Jan 2023 01:16:26 -0800 (PST)
+        bh=B9Wv3FdFZUA8KrBGuSYP/aqmUGr0c3p246TWkk0lSEw=;
+        b=Eb/WWGTLPFKv9L3Z3dpp84/ZGXdyioaI5jXpFzTz2ftyanRYzsd6t4QmIXh75aUYkR
+         VoZZOKKU8xs6z/WTiVQ7mgLLjY7GaMMgm7BIi7F6c40nrqOQXjqQYNCD72PjUKQPMXAS
+         feXT1tqzF60CBBUFkjrjc1djPkWlGcb/g32qX5dLYrWKu2sJnAHmeEqa8NjfJOHyK4t6
+         qQfLv13jBAvW0yuaquw/X3SLOf5y93fdLLBg7qKZBCzyYTrfQe+ppVZsqlh8c2yLQzdJ
+         Ef7saxpYQGm2COlCo4DC3dhWOdEVqyVt5YP/IYLT+DdqwCicT5Znyhc0afKHPd/Or1VW
+         mvpw==
+X-Gm-Message-State: AFqh2koXpOn5/ybZqAPKxJaQ3kj1A3FQVlxRWKcyIeMrRiVIzKlPVtuv
+        QaVWxD56wug7/nimseboy/mY3/iyaOozTBXo
+X-Google-Smtp-Source: AMrXdXuR7LoWumsRY5WP6eNKvUecQts2oGh+/OUbygbiKZyvAzR2uYKF7qlfpaZWszYPdncbwTdHDQ==
+X-Received: by 2002:a05:6512:2624:b0:4cb:42ad:e895 with SMTP id bt36-20020a056512262400b004cb42ade895mr129068lfb.32.1672737477043;
+        Tue, 03 Jan 2023 01:17:57 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id o20-20020ac25e34000000b004b4b69af17dsm4814253lfg.214.2023.01.03.01.16.24
+        by smtp.gmail.com with ESMTPSA id q16-20020a194310000000b004b5634f9b9dsm4804805lfa.115.2023.01.03.01.17.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Jan 2023 01:16:25 -0800 (PST)
-Message-ID: <d76a1798-72c8-7df7-4700-cc982cfd485e@linaro.org>
-Date:   Tue, 3 Jan 2023 10:16:24 +0100
+        Tue, 03 Jan 2023 01:17:56 -0800 (PST)
+Message-ID: <9d8b0fca-2806-e405-f643-8a57bd55ffb8@linaro.org>
+Date:   Tue, 3 Jan 2023 10:17:55 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v2 4/7] arm64: dts: qcom: Add msm8939 SoC
+Subject: Re: [PATCH v2 6/7] arm64: dts: qcom: Add Square apq8039-t2 board
 Content-Language: en-US
 To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
         andersson@kernel.org, konrad.dybcio@linaro.org, djakov@kernel.org,
@@ -66,19 +66,16 @@ Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
         Jun Nie <jun.nie@linaro.org>,
         James Willcox <jwillcox@squareup.com>,
         Joseph Gates <jgates@squareup.com>,
-        Max Chen <mchen@squareup.com>, Zac Crosby <zac@squareup.com>,
-        Vincent Knecht <vincent.knecht@mailoo.org>,
-        Stephan Gerhold <stephan@gerhold.net>
+        Max Chen <mchen@squareup.com>, Zac Crosby <zac@squareup.com>
 References: <20230103010904.3201835-1-bryan.odonoghue@linaro.org>
- <20230103010904.3201835-5-bryan.odonoghue@linaro.org>
+ <20230103010904.3201835-7-bryan.odonoghue@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230103010904.3201835-5-bryan.odonoghue@linaro.org>
+In-Reply-To: <20230103010904.3201835-7-bryan.odonoghue@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -86,67 +83,35 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 03/01/2023 02:09, Bryan O'Donoghue wrote:
-> Add msm8939 a derivative SoC of msm8916. This SoC contains a number of key
-> differences to msm8916.
-> 
-> - big.LITTLE Octa Core - quad 1.5GHz + quad 1.0GHz
-> - DRAM 1x800 LPDDR3
-> - Camera 4+4 lane CSI
-> - Venus @ 1080p60 HEVC
-> - DSI x 2
-> - Adreno A405
-> - WiFi wcn3660/wcn3680b 802.11ac
+> The apq8039-t2 is an apq8039 based board paired with a wcn3680b WiFi
+> chipset.
 > 
 > Co-developed-by: Shawn Guo <shawn.guo@linaro.org>
 > Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
 > Co-developed-by: Jun Nie <jun.nie@linaro.org>
 > Signed-off-by: Jun Nie <jun.nie@linaro.org>
 > Co-developed-by: Benjamin Li <benl@squareup.com>
-> Signed-off-by: Benjamin Li <benl@squareup.com>
-> Co-developed-by: James Willcox <jwillcox@squareup.com>
-> Signed-off-by: James Willcox <jwillcox@squareup.com>
-> Co-developed-by: Leo Yan <leo.yan@linaro.org>
-> Signed-off-by: Leo Yan <leo.yan@linaro.org>
-> Co-developed-by: Joseph Gates <jgates@squareup.com>
-> Signed-off-by: Joseph Gates <jgates@squareup.com>
-> Co-developed-by: Max Chen <mchen@squareup.com>
-> Signed-off-by: Max Chen <mchen@squareup.com>
-> Co-developed-by: Zac Crosby <zac@squareup.com>
-> Signed-off-by: Zac Crosby <zac@squareup.com>
-> Co-developed-by: Vincent Knecht <vincent.knecht@mailoo.org>
-> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
-> Co-developed-by: Stephan Gerhold <stephan@gerhold.net>
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/msm8939.dtsi | 2470 +++++++++++++++++++++++++
->  1 file changed, 2470 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/msm8939.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8939.dtsi b/arch/arm64/boot/dts/qcom/msm8939.dtsi
-> new file mode 100644
-> index 0000000000000..03714cdb8b69e
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/msm8939.dtsi
-> @@ -0,0 +1,2470 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2013-2015, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2020-2023, Linaro Limited
-> + */
-> +
-> +#include <dt-bindings/clock/qcom,gcc-msm8939.h>
-> +#include <dt-bindings/clock/qcom,rpmcc.h>
-> +#include <dt-bindings/interconnect/qcom,msm8939.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/power/qcom-rpmpd.h>
-> +#include <dt-bindings/reset/qcom,gcc-msm8939.h>
-> +#include <dt-bindings/thermal/thermal.h>
-> +
-> +/ {
-> +	qcom,msm-id = <239 0>, <239 0x30000>, <241 0x30000>, <263 0x30000>;
 
-This is also property of the board.
+(...)
+
+> +
+> +&blsp_i2c2 {
+> +	status = "okay";
+> +};
+> +
+> +&blsp_i2c3 {
+> +	status = "okay";
+
+Blank line.
+
+> +	tps6598x: tps6598x@38 {
+
+Node names should be generic.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +		compatible = "ti,tps6598x";
+> +		reg = <0x38>;
+> +
 
 Best regards,
 Krzysztof
