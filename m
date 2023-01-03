@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D7ACF65BEA5
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 12:09:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FBCB65BEB3
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 12:11:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237253AbjACLIr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 06:08:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49646 "EHLO
+        id S233266AbjACLLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 06:11:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237019AbjACLIq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 06:08:46 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 393B410BB
-        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 03:08:45 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id j17so35695294lfr.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 03:08:45 -0800 (PST)
+        with ESMTP id S236931AbjACLLF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 06:11:05 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 606EABC33
+        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 03:11:04 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id b3so45197943lfv.2
+        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 03:11:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=BS0JkwlA994b8gDT8ijmzGitBJGDV2ohc6oOypmPs6s=;
-        b=np87eWRWakZKR/jOiuZJH+DoznqVDr/X6lVSAYal5LvDyQVolQFJ8xIcUMFWAdprBK
-         k05urcpcoJL7W7xw8FQnYq0+bXyWtQw8Q7fqvQIWv9NvYq63zZ4zJPde0zMDaqOAUc1h
-         hjmBpq3BqhgungABi44MJu54bixVGToCVZ/A5TutCSJ83HIMvy/2dHKF0QHf9UTpNEGl
-         J/7K6nA3TLpJbx7N/sNGfQJlXbcJ2qphY4xl6cIvKO3Dss1qNGYqCx6kqckVWIQ/PB98
-         PwEn4b5rHo/vM0d7llFjmSwXmKIL4MnpwfZhUpPyRVhqQtprFKUi8VRPDCMMTPERwvqm
-         WUNA==
+        bh=9D5LFOOL7M248RT3YKkgzKFTBRXhYh2dkwaJ1IaRHxA=;
+        b=EnOEatK+DA5jF5hkgO1d9SjyfsSx+JiDXvYMOfqMv+LZMR6PCSVgIVzkVR58uboHuD
+         qeDlDmM7YhSAjXKD0MUkL+bsKd0nAjQoXKlLEliz8pFBAu894A9JJjYiW/y4VrnhYdlT
+         Rya9NYCDUqRobuLp/HaPfCwfndMc56IcsUPtfQXI0zmqc3/AD+cnQ1uBizkLuNQUFOEb
+         xnjtEH8onQteF23DbXjfYq48XFV+OUj5/QKDmNKebwbWMX3qAYAYjk9P8m2c5sSsPCoo
+         jsk98/REB0LQ3eeGj2WJhFRdl+vP5GHD//P2d+bCyvIZhsLlujymbK5JPJH7YOhoh7si
+         vz5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BS0JkwlA994b8gDT8ijmzGitBJGDV2ohc6oOypmPs6s=;
-        b=MO4oUNof9EwlVTJzamJ89hYT4rfeiSpZ8DTGM8v3GnlJeEgonsSPmqUEXzDOPBc0DW
-         PN2gFajvncitOmLWcPD6R7YNJiIrTXAVRbVBWmxoTS4Udcxadd+ujTNUykxoWVatrp8p
-         z7NCmQ37yrXa/XDSOXFKdl8TWEiDn+/T46m81xn2o4ftfKj8jDsiRkWSFBTQzPfnD7hL
-         JrH0+4J2njyTBV5yQ2fRh2kJKStf6ipxF6McQAvZP9oowF68Z8bbsMgCYbZkUO2d41Qb
-         Dip4NBUVEp93/msrbUfv+d9SIN2p+1T+mMkKHcOZSvafkvpZwDh09W1rtUtL6mKg7Zaj
-         mXfg==
-X-Gm-Message-State: AFqh2kpzqvK7NiTb/QuuT3mSfp/HKFTUnvRtQSQea16Y0vNtwFGWerDt
-        vFxJu31ds+mMo8c1HoFJ7j3MTw==
-X-Google-Smtp-Source: AMrXdXuonf6hj66exXU1xiu8uK2tdafKJa6v2G8LwY7oa7jLfWKhxOIjluFgkcYqpwExmL2xDOY7bA==
-X-Received: by 2002:a05:6512:24e:b0:4b5:82f1:7f3d with SMTP id b14-20020a056512024e00b004b582f17f3dmr20058836lfo.58.1672744123454;
-        Tue, 03 Jan 2023 03:08:43 -0800 (PST)
+        bh=9D5LFOOL7M248RT3YKkgzKFTBRXhYh2dkwaJ1IaRHxA=;
+        b=vOeuREff4WpK2Sea/uZ3u+gG9Ex4cjp4W3NB7HH9Hv1bLcRIlT0+EiO5gpvSXRzZc2
+         ShsQudacNub8/5lt/ZDFf59digsib6vwedhHKcldAoCI6FLY6RVkLzvH6It3SgY3nWhb
+         ld76bHh+d6xmCYW+NV4rcic0nFRZRYin0ns8H7spQHjcKmaocBKrJtQbfhRxugPXxeTo
+         OcUnwWqfKoF38gy85KGVJAsqllasiq3d8iFSZxFZPnyBqQGNd7IfVyq5Aa5fAxNOhpDb
+         3zfBmrhIkSE0APCeA6DS0NCkeYTPIq0yJrNPz4JP4W6ZqldKjGmak71lfvtkoi6A0gYZ
+         VxQQ==
+X-Gm-Message-State: AFqh2kqwXEBlwNwVKI57X5iRdydN9zIgf/UdnhaxcD1GioyJVe6lto0q
+        9y6GLq9m9F8NGYBMIMo6zWgk0A==
+X-Google-Smtp-Source: AMrXdXuAKQ0YTIV1hBpWs/3wrPMP3yAYJaFJ9eyf/qO07z2O81ePy+C/Oezlg0JBhGYsf5BvJNWYhA==
+X-Received: by 2002:ac2:5b41:0:b0:4a4:68b9:66dd with SMTP id i1-20020ac25b41000000b004a468b966ddmr12722492lfp.40.1672744262769;
+        Tue, 03 Jan 2023 03:11:02 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id k1-20020ac257c1000000b004b55ca53543sm4785669lfo.233.2023.01.03.03.08.41
+        by smtp.gmail.com with ESMTPSA id w16-20020a05651234d000b004b57a253deasm4792967lfr.162.2023.01.03.03.11.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Jan 2023 03:08:42 -0800 (PST)
-Message-ID: <0cb682bd-7f1b-009d-6f1a-1a5a46366fe8@linaro.org>
-Date:   Tue, 3 Jan 2023 12:08:41 +0100
+        Tue, 03 Jan 2023 03:11:02 -0800 (PST)
+Message-ID: <b3ec1abe-7fb4-0c12-33b6-9f4e8d03f8b2@linaro.org>
+Date:   Tue, 3 Jan 2023 12:11:00 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v2 2/5] ASoC: samsung: i2s: add support for FSD I2S
+Subject: Re: [PATCH v2 4/5] arm64: dts: fsd: Add codec node for Tesla FSD
 Content-Language: en-US
 To:     Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>,
         lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
@@ -65,15 +65,16 @@ To:     Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>,
 Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org
 References: <20230103045613.100309-1-p.rajanbabu@samsung.com>
- <CGME20230103045655epcas5p1af06a83208190c471e8cd891ef4760f3@epcas5p1.samsung.com>
- <20230103045613.100309-3-p.rajanbabu@samsung.com>
+ <CGME20230103045703epcas5p2344520777efa3c06321732e2784e6c6c@epcas5p2.samsung.com>
+ <20230103045613.100309-5-p.rajanbabu@samsung.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230103045613.100309-3-p.rajanbabu@samsung.com>
+In-Reply-To: <20230103045613.100309-5-p.rajanbabu@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -81,88 +82,43 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 03/01/2023 05:56, Padmanabhan Rajanbabu wrote:
-> Add support for enabling I2S controller on FSD platform.
-> 
-> FSD I2S controller is based on Exynos7 I2S controller, supporting
-> 2CH playback/capture in I2S mode and 7.1CH playback/capture in TDM
-> mode.
+> Add device tree node support for codec on Tesla FSD platform.
 > 
 > Signed-off-by: Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
 > ---
->  sound/soc/samsung/i2s-regs.h |  1 +
->  sound/soc/samsung/i2s.c      | 57 ++++++++++++++++++++++++++++++++++++
->  2 files changed, 58 insertions(+)
+>  arch/arm64/boot/dts/tesla/fsd-evb.dts | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
 > 
-> diff --git a/sound/soc/samsung/i2s-regs.h b/sound/soc/samsung/i2s-regs.h
-> index b4b5d6053503..4444c857d0c0 100644
-> --- a/sound/soc/samsung/i2s-regs.h
-> +++ b/sound/soc/samsung/i2s-regs.h
-> @@ -132,6 +132,7 @@
->  #define EXYNOS7_MOD_RCLK_192FS	7
+> diff --git a/arch/arm64/boot/dts/tesla/fsd-evb.dts b/arch/arm64/boot/dts/tesla/fsd-evb.dts
+> index cf5f2ce4d2a7..e2fd49774f15 100644
+> --- a/arch/arm64/boot/dts/tesla/fsd-evb.dts
+> +++ b/arch/arm64/boot/dts/tesla/fsd-evb.dts
+> @@ -10,6 +10,7 @@
 >  
->  #define PSR_PSREN		(1 << 15)
-> +#define PSR_PSVAL(x)		(((x - 1) << 8) & 0x3f00)
+>  /dts-v1/;
+>  #include "fsd.dtsi"
+> +#include <dt-bindings/gpio/gpio.h>
 >  
->  #define FIC_TX2COUNT(x)		(((x) >>  24) & 0xf)
->  #define FIC_TX1COUNT(x)		(((x) >>  16) & 0xf)
-> diff --git a/sound/soc/samsung/i2s.c b/sound/soc/samsung/i2s.c
-> index 9505200f3d11..dcb5c438cb2f 100644
-> --- a/sound/soc/samsung/i2s.c
-> +++ b/sound/soc/samsung/i2s.c
-> @@ -50,6 +50,10 @@ struct samsung_i2s_dai_data {
->  	u32 quirks;
->  	unsigned int pcm_rates;
->  	const struct samsung_i2s_variant_regs *i2s_variant_regs;
-> +	void (*fixup_early)(struct snd_pcm_substream *substream,
-> +					struct snd_soc_dai *dai);
-> +	void (*fixup_late)(struct snd_pcm_substream *substream,
-> +					struct snd_soc_dai *dai);
+>  / {
+>  	model = "Tesla Full Self-Driving (FSD) Evaluation board";
+> @@ -34,6 +35,18 @@
+>  	clock-frequency = <24000000>;
 >  };
 >  
->  struct i2s_dai {
-> @@ -111,6 +115,10 @@ struct samsung_i2s_priv {
->  	u32 suspend_i2spsr;
->  
->  	const struct samsung_i2s_variant_regs *variant_regs;
-> +	void (*fixup_early)(struct snd_pcm_substream *substream,
-> +						struct snd_soc_dai *dai);
-> +	void (*fixup_late)(struct snd_pcm_substream *substream,
-> +						struct snd_soc_dai *dai);
->  	u32 quirks;
->  
->  	/* The clock provider's data */
-> @@ -940,6 +948,10 @@ static int i2s_trigger(struct snd_pcm_substream *substream,
->  	case SNDRV_PCM_TRIGGER_RESUME:
->  	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
->  		pm_runtime_get_sync(dai->dev);
+> +&hsi2c_5 {
+> +	status = "okay";
 > +
-> +		if (priv->fixup_early)
-> +			priv->fixup_early(substream, dai);
-> +
->  		spin_lock_irqsave(&priv->lock, flags);
->  
->  		if (config_setup(i2s)) {
-> @@ -947,6 +959,13 @@ static int i2s_trigger(struct snd_pcm_substream *substream,
->  			return -EINVAL;
->  		}
->  
+> +	tlv320aic3x: codec@18 {
+> +		#sound-dai-cells = <0>;
+> +		compatible = "ti,tlv320aic3104";
+> +		reg = <0x18>;
 
-Except several warnings this patch generates, this is a bit surprising:
+First compatible, then reg, then the rest.
 
-> +		spin_unlock_irqrestore(&priv->lock, flags);
+> +		reset-gpios = <&gpg1 6 GPIO_ACTIVE_LOW>;
+> +		status = "okay";
 
-You have critical section which you now break into two. You cannot do
-this usually. How the synchronization is now kept?
-
-> +
-> +		if (priv->fixup_late)
-> +			priv->fixup_late(substream, dai);
-> +
-> +		spin_lock_irqsave(&priv->lock, flags);
-> +
->  		if (capture)
->  			i2s_rxctrl(i2s, 1);
->  		else
+It's by default. Why do you need it?
 
 Best regards,
 Krzysztof
