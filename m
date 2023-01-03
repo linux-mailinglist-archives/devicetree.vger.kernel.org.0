@@ -2,143 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B884465C5DB
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 19:14:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C78565C597
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 19:01:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238721AbjACSOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 13:14:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36966 "EHLO
+        id S238478AbjACSBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 13:01:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233595AbjACSN6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 13:13:58 -0500
-X-Greylist: delayed 965 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 03 Jan 2023 10:13:56 PST
-Received: from mailrelay6-1.pub.mailoutpod2-cph3.one.com (mailrelay6-1.pub.mailoutpod2-cph3.one.com [IPv6:2a02:2350:5:405::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5141E8C
-        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 10:13:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ravnborg.org; s=rsa2;
-        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
-         from:date:from;
-        bh=EwBUdzJnCB54BTqWse1nZK/N6bNLSBfDFML/k/6VIUE=;
-        b=lw4USXznYFEFEaWwMu2cHNwgZVRZD54ExKDonRw6lTgJ4Sqj6g0jklkjVnAloz1WgHGhkIulGxVeR
-         5EWh86q3u68/Pec8qPsv+VCtDIUcQxI78Br5HT1XOSuJ1RAnYQlniaqrzxyML1T0KkkF/uUo6grtyP
-         26ZWoHJXz5OI/JQkLaEyR2bOUJQZIjoykP0A2Fs3H6OHWZ9ipfP5+IMnhgHixs/QPK+xCFT8im5aXv
-         6AvJNVFQHT9SmIIrRLhKkCg3Kao+DuinggMN+uurr2J+rZmGpJ7ZZCX7xdWOc74Qo2VvSg8G2VUOnx
-         ZeW1qkLdkjagll8kpaxxkisKbO6wCpg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
-        d=ravnborg.org; s=ed2;
-        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
-         from:date:from;
-        bh=EwBUdzJnCB54BTqWse1nZK/N6bNLSBfDFML/k/6VIUE=;
-        b=2n7wzIrWTU2yMXsaFUcN1Ez8vycYmeYJXmTGtFyrzgGcWr6onAXIswMu7OHYOU6Hiy+Pzl+9BC9aY
-         4yMf6cmDw==
-X-HalOne-ID: 216ee96d-8b90-11ed-a170-cde5ad41a1dd
-Received: from ravnborg.org (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
-        by mailrelay6 (Halon) with ESMTPSA
-        id 216ee96d-8b90-11ed-a170-cde5ad41a1dd;
-        Tue, 03 Jan 2023 17:57:49 +0000 (UTC)
-Date:   Tue, 3 Jan 2023 18:57:48 +0100
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: display: panel: document the Visionox
- VTDR6130 AMOLED DSI Panel bindings
-Message-ID: <Y7RsnBkgnWbF3uMj@ravnborg.org>
-References: <20230103-topic-sm8550-upstream-vtdr6130-panel-v1-0-9b746b858378@linaro.org>
- <20230103-topic-sm8550-upstream-vtdr6130-panel-v1-1-9b746b858378@linaro.org>
+        with ESMTP id S238513AbjACSA5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 13:00:57 -0500
+Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2F41270;
+        Tue,  3 Jan 2023 10:00:56 -0800 (PST)
+Received: by mail-il1-f169.google.com with SMTP id bp26so3757088ilb.3;
+        Tue, 03 Jan 2023 10:00:56 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+wm/VAsCJtckCmZFwW1Ji09pFtmWQae4vzQe50HoWg4=;
+        b=GD2e6mffm45OB2oyL7ZGQGm/93Ivcs5E/RWdFedMvXO6u5dBXcvd2N1LtE0J2/90Mv
+         GlSDLDDcmkzYUxqa8T3ZTdc+MCgs+ryVRx1DaSH+DJada8/DvbGxoXjoWY9u4VI6rnp8
+         5VyW2Jg3e4MVS+PnbbvLWDGHXSkwrhe283IU7w36baUk6moXB/EKVd52c+LipKXtWehC
+         MqfnPQcMMc7J87bAGZwFYL5FOT20blUDAdYPZoe76K5L8OKL9HrGtTy4fXUDkfajtTMp
+         Qx/26YrfbrUaFyUFGwi0LUhiob0AZLsuhgFdKHizcI7ZiT3CiMw3NdAqNWcOiy9uT5B1
+         C6WA==
+X-Gm-Message-State: AFqh2kp54tTVTkEAFec4CPR3+Y/H9KB/hsKGe3u0pHn0j7H4bWt5RO2S
+        CjplyTS2ZvuyOb59sABggTVnIExCEw==
+X-Google-Smtp-Source: AMrXdXsBQWnE4m6NFOYZRRt+RQrVTDUs7E3tgSd494Hy/6KB47YogIhvaqdpkp8Sjgc46cbAw5DTRQ==
+X-Received: by 2002:a92:db47:0:b0:303:30a9:326a with SMTP id w7-20020a92db47000000b0030330a9326amr28638434ilq.7.1672768856073;
+        Tue, 03 Jan 2023 10:00:56 -0800 (PST)
+Received: from robh_at_kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id g14-20020a056e021a2e00b00304ae88ebebsm9803549ile.88.2023.01.03.10.00.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Jan 2023 10:00:55 -0800 (PST)
+Received: (nullmailer pid 3492168 invoked by uid 1000);
+        Tue, 03 Jan 2023 18:00:51 -0000
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 03 Jan 2023 12:00:31 -0600
+Subject: [PATCH 1/2] Revert "of: fdt: Honor CONFIG_CMDLINE* even without /chosen node"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230103-topic-sm8550-upstream-vtdr6130-panel-v1-1-9b746b858378@linaro.org>
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_NONE,
-        URIBL_BLACK autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20230103-dt-cmdline-fix-v1-1-7038e88b18b6@kernel.org>
+References: <20230103-dt-cmdline-fix-v1-0-7038e88b18b6@kernel.org>
+In-Reply-To: <20230103-dt-cmdline-fix-v1-0-7038e88b18b6@kernel.org>
+To:     Geoff Levand <geoff@infradead.org>,
+        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+X-Mailer: b4 0.12-dev
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Neil,
+This reverts commit a7d550f82b445cf218b47a2c1a9c56e97ecb8c7a.
 
-On Tue, Jan 03, 2023 at 03:22:27PM +0100, Neil Armstrong wrote:
-> Document the 1080x2400 Visionox VTDR6130 AMOLED DSI Panel bindings.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  .../bindings/display/panel/visionox,vtdr6130.yaml  | 53 ++++++++++++++++++++++
->  1 file changed, 53 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml b/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml
-> new file mode 100644
-> index 000000000000..49e2fd4b4e99
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/visionox,vtdr6130.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Visionox VTDR6130 AMOLED DSI Panel
-> +
-> +maintainers:
-> +  - Neil Armstrong <neil.armstrong@linaro.org>
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: visionox,vtdr6130
-> +
-> +  vddio-supply: true
-> +  vci-supply: true
-> +  vdd-supply: true
-These 3 looks wrong to me, as the above are not documented in panel-common.
-But maybe I miss something and this is OK?
+Some arches (PPC at least) don't call early_init_dt_scan_nodes(), so
+moving the cmdline processing there breaks them.
 
-	Sam
+Reported-by: Geoff Levand <geoff@infradead.org>
+Cc: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ drivers/of/fdt.c | 40 ++++++++++++++++++++--------------------
+ 1 file changed, 20 insertions(+), 20 deletions(-)
 
-> +  port: true
-> +  reset-gpios: true
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - vddio-supply
-> +  - vci-supply
-> +  - vdd-supply
-> +  - reset-gpios
-> +  - port
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    panel {
-> +        compatible = "visionox,vtdr6130";
-> +
-> +        vddio-supply = <&vreg_l12b_1p8>;
-> +        vci-supply = <&vreg_l13b_3p0>;
-> +        vdd-supply = <&vreg_l11b_1p2>;
-> +
-> +        reset-gpios = <&tlmm 133 GPIO_ACTIVE_LOW>;
-> +
-> +        port {
-> +            panel0_in: endpoint {
-> +                remote-endpoint = <&dsi0_out>;
-> +            };
-> +        };
-> +    };
-> +...
-> 
-> -- 
-> 2.34.1
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index b2272bccf85c..7b571a631639 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -1173,6 +1173,26 @@ int __init early_init_dt_scan_chosen(char *cmdline)
+ 	if (p != NULL && l > 0)
+ 		strscpy(cmdline, p, min(l, COMMAND_LINE_SIZE));
+ 
++	/*
++	 * CONFIG_CMDLINE is meant to be a default in case nothing else
++	 * managed to set the command line, unless CONFIG_CMDLINE_FORCE
++	 * is set in which case we override whatever was found earlier.
++	 */
++#ifdef CONFIG_CMDLINE
++#if defined(CONFIG_CMDLINE_EXTEND)
++	strlcat(cmdline, " ", COMMAND_LINE_SIZE);
++	strlcat(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
++#elif defined(CONFIG_CMDLINE_FORCE)
++	strscpy(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
++#else
++	/* No arguments from boot loader, use kernel's  cmdl*/
++	if (!((char *)cmdline)[0])
++		strscpy(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
++#endif
++#endif /* CONFIG_CMDLINE */
++
++	pr_debug("Command line is: %s\n", (char *)cmdline);
++
+ 	rng_seed = of_get_flat_dt_prop(node, "rng-seed", &l);
+ 	if (rng_seed && l > 0) {
+ 		add_bootloader_randomness(rng_seed, l);
+@@ -1277,26 +1297,6 @@ void __init early_init_dt_scan_nodes(void)
+ 	if (rc)
+ 		pr_warn("No chosen node found, continuing without\n");
+ 
+-	/*
+-	 * CONFIG_CMDLINE is meant to be a default in case nothing else
+-	 * managed to set the command line, unless CONFIG_CMDLINE_FORCE
+-	 * is set in which case we override whatever was found earlier.
+-	 */
+-#ifdef CONFIG_CMDLINE
+-#if defined(CONFIG_CMDLINE_EXTEND)
+-	strlcat(boot_command_line, " ", COMMAND_LINE_SIZE);
+-	strlcat(boot_command_line, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
+-#elif defined(CONFIG_CMDLINE_FORCE)
+-	strscpy(boot_command_line, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
+-#else
+-	/* No arguments from boot loader, use kernel's cmdl */
+-	if (!boot_command_line[0])
+-		strscpy(boot_command_line, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
+-#endif
+-#endif /* CONFIG_CMDLINE */
+-
+-	pr_debug("Command line is: %s\n", boot_command_line);
+-
+ 	/* Setup memory, calling early_init_dt_add_memory_arch */
+ 	early_init_dt_scan_memory();
+ 
+
+-- 
+2.39.0
