@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 21E3665B9FE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 05:21:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 01F5A65BA09
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 05:27:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232002AbjACEVl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 23:21:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33500 "EHLO
+        id S230080AbjACE1u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 23:27:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232848AbjACEVe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 23:21:34 -0500
+        with ESMTP id S230071AbjACE1t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 23:27:49 -0500
 Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7224DA2;
-        Mon,  2 Jan 2023 20:21:33 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3034LS1G099127;
-        Mon, 2 Jan 2023 22:21:28 -0600
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8C17C0B;
+        Mon,  2 Jan 2023 20:27:48 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3034RVdu100104;
+        Mon, 2 Jan 2023 22:27:31 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1672719688;
-        bh=9T1J7VzAQb/WLWfvMIK0Tn6jjrCvnME0N04koFWEwfk=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=D5zVxo2401dlMSPz6EeuTlQNaN60LyRIFnpYCYepnBENT2SbJfH0m4kay+2TgqJmu
-         9Oex1MLh4ubuvQjsJYx5TjDLhvZGCYrhC/R3uQPGg0ftSqnklY5o9SaWcTgXJhHxNB
-         38/7lKTW1O63R+dww8wtJTJM/f6jyvk4d78ZTG6o=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3034LSDv053108
+        s=ti-com-17Q1; t=1672720051;
+        bh=ZDfs4fxWpFe8GJfpLiZEG06zS21FzkdTxMeYnLmuvdM=;
+        h=From:To:CC:Subject:Date;
+        b=qMNyM0M29mZ/p4pHDA2ysPtYCARShwuGbERxZaiespN4j4iinHPQHexGQOZ1gSzKV
+         YeMslsBL2eldQDMMYl2y4KNE3r/DQpsX/Ev9oIutO7DcjyjjkbINkEWvsucDWX7Rjp
+         ClN49yXyYcTF66M1hvb5IKw2Z2QTJIQrLzuGObw4=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3034RVw6092673
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 2 Jan 2023 22:21:28 -0600
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+        Mon, 2 Jan 2023 22:27:31 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 2
- Jan 2023 22:21:27 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ Jan 2023 22:27:31 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 2 Jan 2023 22:21:27 -0600
+ Frontend Transport; Mon, 2 Jan 2023 22:27:31 -0600
 Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3034LDwv084970;
-        Mon, 2 Jan 2023 22:21:25 -0600
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3034RRC3101673;
+        Mon, 2 Jan 2023 22:27:28 -0600
 From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <bb@ti.com>
-Subject: [PATCH 4/4] arm64: dts: ti: k3-am62a7-sk: Enable USB1 node
-Date:   Tue, 3 Jan 2023 09:51:10 +0530
-Message-ID: <20230103042110.1092122-5-vigneshr@ti.com>
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: [PATCH] dt-bindings: irqchip: ti,sci-inta: Add optional power-domains property
+Date:   Tue, 3 Jan 2023 09:57:24 +0530
+Message-ID: <20230103042724.1100618-1-vigneshr@ti.com>
 X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230103042110.1092122-1-vigneshr@ti.com>
-References: <20230103042110.1092122-1-vigneshr@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -66,49 +66,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable USB1 host port on AM62A7 SK.
+On certain SoCs, Interrupt Aggregator may have a power-domain dependency
+to be on before accessing. Add DT binding for the same
 
-Co-developed-by: Bryan Brattlof <bb@ti.com>
-Signed-off-by: Bryan Brattlof <bb@ti.com>
 Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
 ---
- arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ .../devicetree/bindings/interrupt-controller/ti,sci-inta.yaml  | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-index bdc363fcbb4b..5c9012141ee2 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-@@ -160,6 +160,12 @@ AM62AX_IOPAD(0x244, PIN_OUTPUT, 7) /* (D18) MMC1_SDWP.GPIO1_49 */
- 		>;
- 	};
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/ti,sci-inta.yaml b/Documentation/devicetree/bindings/interrupt-controller/ti,sci-inta.yaml
+index 1151518859bd..6a49d74b992a 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/ti,sci-inta.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/ti,sci-inta.yaml
+@@ -85,6 +85,9 @@ properties:
+     description:
+       Array of phandles to DMA controllers where the unmapped events originate.
  
-+	main_usb1_pins_default: main-usb1-pins-default {
-+		pinctrl-single,pins = <
-+			AM62AX_IOPAD(0x0258, PIN_OUTPUT, 0) /* (F18) USB1_DRVVBUS */
-+		>;
-+	};
++  power-domains:
++    maxItems: 1
 +
- 	main_mdio1_pins_default: main-mdio1-pins-default {
- 		pinctrl-single,pins = <
- 			AM62AX_IOPAD(0x160, PIN_OUTPUT, 0) /* (V12) MDIO0_MDC */
-@@ -247,6 +253,16 @@ &main_uart0 {
- 	pinctrl-0 = <&main_uart0_pins_default>;
- };
- 
-+&usbss1 {
-+	status = "okay";
-+};
-+
-+&usb1 {
-+	dr_mode = "host";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_usb1_pins_default>;
-+};
-+
- &cpsw3g {
- 	status = "okay";
- 	pinctrl-names = "default";
+ required:
+   - compatible
+   - reg
 -- 
 2.39.0
 
