@@ -2,100 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7C8A65C5C4
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 19:09:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0658C65C5C6
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 19:09:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238669AbjACSJk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 13:09:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60714 "EHLO
+        id S238678AbjACSJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 13:09:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233919AbjACSJa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 13:09:30 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCCDBFCDA;
-        Tue,  3 Jan 2023 10:09:29 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 597B76148D;
-        Tue,  3 Jan 2023 18:09:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEB81C433D2;
-        Tue,  3 Jan 2023 18:09:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672769368;
-        bh=M+guTx9/MFdaM/g9JD7GIaQjt1whUIAEus/BUJ/qVW0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=aK/PvWiJ0IC/szabV2T3ucI2bbelhC5VEhUGImiCMvL4xSd7gEP89zAHFKL56PGvK
-         kgOiX+0uePgsZ8B3qX+GL2Fwpd2qvd2POGDAgoein1yukl4H5Lr4/2uIjTiJVfWKoK
-         Dmyr3gLhNUxH6/xObRVsiw3/xIt7ddUn0NDaep9ozLf+PUu1fPd3n4+M8SPBSDkeX1
-         KJa7JONexbyP+Q3JjghGzMcP3nTw1OLOWFgqFfU1C7/bvX/CFAf1j4uk+v8y93u5tB
-         RmbmkFbnJRNPJGYuSAnnrKSwajaRUJcZTmZ5wLGW877H987VgYXREW9XQC3vujh4OP
-         MaJC32NLQAc1w==
-Date:   Tue, 3 Jan 2023 18:09:22 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, s.nawrocki@samsung.com,
-        perex@perex.cz, tiwai@suse.com, pankaj.dubey@samsung.com,
-        alim.akhtar@samsung.com, rcsekar@samsung.com,
-        aswani.reddy@samsung.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] ASoC: samsung: i2s: add support for FSD I2S
-Message-ID: <Y7RvUlIuXQLUHEna@sirena.org.uk>
-References: <20230103045613.100309-1-p.rajanbabu@samsung.com>
- <CGME20230103045655epcas5p1af06a83208190c471e8cd891ef4760f3@epcas5p1.samsung.com>
- <20230103045613.100309-3-p.rajanbabu@samsung.com>
+        with ESMTP id S238677AbjACSJn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 13:09:43 -0500
+Received: from mail-ua1-x936.google.com (mail-ua1-x936.google.com [IPv6:2607:f8b0:4864:20::936])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A6DA65A9
+        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 10:09:42 -0800 (PST)
+Received: by mail-ua1-x936.google.com with SMTP id j1so7047951uan.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 10:09:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=BZbeEAC/j+vR+8J8FLV/5H0KKqTHI+JS1OBI154e+Ag=;
+        b=sJocDXSb3gIOMg3IRna3WzCT4WjYCpaOvdasA7H0B2is2Ehs6U8oajnO5/WNLCrzf0
+         75tPo4H2xE7ceLSlfgE4GCS9259rT29ZhxtbtWUOZbS03tPeZipm1odILk1bWdRmd9oj
+         oC/3ITzBN6nblv9AG3iYLYbRiTdpw3Hmeplc254AuaTgwLX3hIObzf+FuMJBsqgw4H8C
+         M3T2jX89d6vhyq4qz2jjRWUz8IAixtxd8ZR+OD7WVE0nVGqg8gTikHqcGYVWRIUQPWQ7
+         IvPqCPdX9cu8VByX8HUvKyiA1a1VlmF1OzrJdCWjdKrmV0Ln6522Zvzgqvlye/ZXpOuR
+         F7Vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BZbeEAC/j+vR+8J8FLV/5H0KKqTHI+JS1OBI154e+Ag=;
+        b=uZfLoTScyJNvmJQ44Uuxy3QvVdlg57l9UFsSSkkG4OsB/FdhtQmDUptvqF3NWLKfa9
+         y9hJB3cczKqLOwx40qo3mXYMSfsJavWP0ZQSUu6Si65qSiYD8sWu1jgglHRmisPv8IS9
+         O66wDrX9wzw8f+wwZWlE4q1SjoIarqQYGKHG0fy+W56TZRDip/YTGXxThCWFhkvVioOw
+         XLS49GzMRily17tX2+gQA8Tx+r31CgavQi732jElV9Aagb0Dw2fAukLTkyOdgsfZBuMv
+         3QtIN9bL7tp9PrepHGG2u0FD++67jU+T65BT3rzaDz2Om1pXyGIN1c/J17gS/BEIu/Q6
+         Vv3Q==
+X-Gm-Message-State: AFqh2kp4p/cnI0ybD1Beji/P275Ncx5TmcnNn3qs3N0yR4vhqqRZ9CHj
+        J08IBbr7AB7bwuyctTiz6GTRt55ZdTmJpI//fBFxCw==
+X-Google-Smtp-Source: AMrXdXv1IwSIF45BV50aFo3aiDUnz2CXQWISdVLvJ4HrK7INYOO04b/NqZXetmJIiayfk+5DVVQMC8EmvA595/TK4qI=
+X-Received: by 2002:ab0:35e1:0:b0:55a:a7aa:76f with SMTP id
+ w1-20020ab035e1000000b0055aa7aa076fmr1206774uau.15.1672769381556; Tue, 03 Jan
+ 2023 10:09:41 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="gcxAJ25eGCCq6ZtM"
-Content-Disposition: inline
-In-Reply-To: <20230103045613.100309-3-p.rajanbabu@samsung.com>
-X-Cookie: So many men
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221119212436.2028208-1-festevam@gmail.com> <20221231070436.GF6112@T480>
+In-Reply-To: <20221231070436.GF6112@T480>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Tue, 3 Jan 2023 10:09:29 -0800
+Message-ID: <CAJ+vNU3=54ZELLf1Oub3rHUCL3OkSM3B=vNOCHruUokUxd5+hg@mail.gmail.com>
+Subject: Re: [RFC] ARM: dts: imx6qdl-gw560x: Remove incorrect 'uart-has-rtscts'
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Dec 30, 2022 at 11:04 PM Shawn Guo <shawnguo@kernel.org> wrote:
+>
+> On Sat, Nov 19, 2022 at 06:24:36PM -0300, Fabio Estevam wrote:
+> > From: Fabio Estevam <festevam@denx.de>
+> >
+> > The following build warning is seen when running:
+> > make dtbs_check DT_SCHEMA_FILES=fsl-imx-uart.yaml
+> >
+> > arch/arm/boot/dts/imx6dl-gw560x.dtb: serial@2020000: rts-gpios: False schema does not allow [[20, 1, 0]]
+> >       From schema: Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
+> >
+> > The imx6qdl-gw560x board does not expose the UART RTS and CTS
+> > as native pins, so 'uart-has-rtscts' should not be used.
+> >
+> > Fix the problem by removing the 'uart-has-rtscts' property.
+> >
+> > Fixes: b8a559feffb2 ("ARM: dts: imx: add Gateworks Ventana GW5600 support")
+> > Signed-off-by: Fabio Estevam <festevam@denx.de>
+> > ---
+> > Hi,
+> >
+> > My understanding is that uart-has-rtscts indicates that the UART RTS
+> > and CTS pins are used natively and we cannot use uart-has-rtscts with
+> > rts-gpios.
+> >
+> > If this is correct, then I can also submit a patch fixing the arm64 Gateworks
+> > boards too.
+>
+> Tim,
+>
+> Any comments?
+>
+> Shawn
 
---gcxAJ25eGCCq6ZtM
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Shawn and Fabio,
 
-On Tue, Jan 03, 2023 at 10:26:10AM +0530, Padmanabhan Rajanbabu wrote:
+Yes Fabio's change makes sense. Sorry, I missed this as I wasn't on
+the 'to' list.
 
-> +void fsd_i2s_fixup_early(struct snd_pcm_substream *substream,
-> +		struct snd_soc_dai *dai)
-> +{
-> +	struct snd_soc_pcm_runtime *rtd = asoc_substream_to_rtd(substream);
-> +	struct i2s_dai *i2s = to_info(asoc_rtd_to_cpu(rtd, 0));
-> +	struct i2s_dai *other = get_other_dai(i2s);
-> +
-> +	if (!is_opened(other)) {
-> +		i2s_set_sysclk(dai, SAMSUNG_I2S_CDCLK, 192, SND_SOC_CLOCK_OUT);
-> +		i2s_set_sysclk(dai, SAMSUNG_I2S_OPCLK, 0, MOD_OPCLK_PCLK);
-> +	}
-> +}
+Fabio has sent a patch so I'll ack it there.
 
-This looks like we're just hard coding to 192kHz?
+Best Regards,
 
---gcxAJ25eGCCq6ZtM
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmO0b1EACgkQJNaLcl1U
-h9Dtpwf/QBcLyOstOlusyhiszKaJsdbQq5jWmUNMELBJe4e8mvmusHElUqb3+OoE
-jY2c7i7PWNP3Oi/MeieAOfGJeAB8W4MMyIqVor6A/rpdG4Rpi8oqrjDuO6T94nBJ
-staf9152tPNf3feG+I1WMH7K4wHkuSuByqwfES2Gd/AC5CLW5mAsJ7LdCA9isCwB
-60ZM6zs3NIOBTTOfTx6Hpr5WCKYLUOCVCBfQ5BfvncrS2Hygd+fgfFaEPCN5Q5vQ
-2NuVyFfIToDz6VYW4dJ2C/NKS4UG8633qDg2KZHA/u94L7FzPZLDlHExBIbQARX0
-nFuJFOwzX7ip//+J74ftTHpOUeFPqA==
-=GVZ8
------END PGP SIGNATURE-----
-
---gcxAJ25eGCCq6ZtM--
+Tim
