@@ -2,84 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FCB865BDA8
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 11:08:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 702DB65BDB6
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 11:12:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232898AbjACKIJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 05:08:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42036 "EHLO
+        id S233084AbjACKL4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 05:11:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233233AbjACKIH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 05:08:07 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4B39A134;
-        Tue,  3 Jan 2023 02:08:05 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 78B4D1516;
-        Tue,  3 Jan 2023 02:08:46 -0800 (PST)
-Received: from e120937-lin (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D97393F663;
-        Tue,  3 Jan 2023 02:08:03 -0800 (PST)
-Date:   Tue, 3 Jan 2023 10:08:01 +0000
-From:   Cristian Marussi <cristian.marussi@arm.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        sudeep.holla@arm.com, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 4/5] dt-bindings: firmware: arm,scmi: Add support for
- syspower protocol
-Message-ID: <Y7P+gYRZDn9TggkK@e120937-lin>
-References: <20221222183823.518856-1-cristian.marussi@arm.com>
- <20221222183823.518856-5-cristian.marussi@arm.com>
- <3d89e135-c8e4-ede4-950f-03900a660822@kernel.org>
- <Y6WE1zQAxYYn6Ahz@e120937-lin>
- <23436455-098f-6e21-2330-d91158a591ad@kernel.org>
+        with ESMTP id S237276AbjACKLo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 05:11:44 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF02BC1F;
+        Tue,  3 Jan 2023 02:11:43 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 0A6A16602CE1;
+        Tue,  3 Jan 2023 10:11:40 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1672740702;
+        bh=iDxcTBwfqu1inbI6ClQj+J/Gk+ZBgBuM6mX2e/vswOo=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=M44qVGQFfORgub+nkagT98LCBMLVcctjM4qK7ke/N4CsekYf+FgG+ZKGiUrq8StK/
+         8gXYgCiE8pDnJX4+MibzzWBugkzZsYXZTJz3csLYBW8WRm9hXf0I3DhdzaUmlZyJ7y
+         k0QG2jh+mz8ChL6NLSLa8cnbkf9jlrxdriulXsKICbzRFgRQoF7TcSnnxqaOJ/3MBw
+         jR6SToUTohDpDbYsUDrW1HcxVlU09SW3SbUovD6ZM3r3smTulmHKhjx+bqDzrz3/gX
+         4ujbn0MMJe4gY8y8Q9kPxJWSHyB/mE4Y39jdfdbSFlQbtD4gx//J4fyUqLIbyg6E6Y
+         vpaASmtsiWdVw==
+Message-ID: <761791af-971d-8e64-857c-4b3cbf9487da@collabora.com>
+Date:   Tue, 3 Jan 2023 11:11:38 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <23436455-098f-6e21-2330-d91158a591ad@kernel.org>
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v3 02/12] dt-bindings: display: mediatek: add MT8195 hdmi
+ bindings
+Content-Language: en-US
+To:     Guillaume Ranquet <granquet@baylibre.com>,
+        "oul@kernel.org" <vkoul@kernel.org>, CK Hu <ck.hu@mediatek.com>,
+        "obh+dt@kernel.org" <robh+dt@kernel.org>,
+        "kishon@ti.com" <kishon@ti.com>,
+        Chunfeng Yun <Chunfeng.Yun@mediatek.com>,
+        "hunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+        Jitao Shi <jitao.shi@mediatek.com>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        "atthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        ".zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "irlied@gmail.com" <airlied@gmail.com>,
+        "zysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "nux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        Mac Shen <Mac.Shen@mediatek.com>,
+        "vicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "zysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
+        Stuart Lee <Stuart.Lee@mediatek.com>,
+        "i-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "nux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "inux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>
+References: <20220919-v3-0-a803f2660127@baylibre.com>
+ <20220919-v3-2-a803f2660127@baylibre.com>
+ <7da1e73a0cca6867a060d5b69d45e8d4dfc89748.camel@mediatek.com>
+ <CABnWg9tf8Sx8S0d8mGowZ80YmZLz6cX2iyxZyKYCGbH_RKMKyA@mail.gmail.com>
+ <187044b3-b154-256a-c107-3dc9de57d60b@collabora.com>
+ <CABnWg9tRveoZb8e7zGkGqb0MMoJiTxfS1NeJDtfFqMYsf-zJcg@mail.gmail.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <CABnWg9tRveoZb8e7zGkGqb0MMoJiTxfS1NeJDtfFqMYsf-zJcg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 23, 2022 at 12:22:34PM +0100, Krzysztof Kozlowski wrote:
-> On 23/12/2022 11:37, Cristian Marussi wrote:
+Il 02/01/23 16:19, Guillaume Ranquet ha scritto:
+> On Mon, 02 Jan 2023 15:14, AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
+>> Il 02/01/23 14:38, Guillaume Ranquet ha scritto:
+>>> On Mon, 26 Dec 2022 06:18, CK Hu (胡俊光) <ck.hu@mediatek.com> wrote:
+>>>> Hi, Guillaume:
+>>>>
+>>>> On Fri, 2022-11-04 at 15:09 +0100, Guillaume Ranquet wrote:
+>>>>> Add mt8195 SoC bindings for hdmi and hdmi-ddc
+>>>>>
+>>>>> On mt8195 the ddc i2c controller is part of the hdmi IP block and
+>>>>> thus has no
+>>>>> specific register range, power domain or interrupt, making it simpler
+>>>>> than its the legacy "mediatek,hdmi-ddc" binding.
+>>>>>
+>>>>> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+>>>>> ---
+>>>>>
+>>>>
+>>>> [snip]
+>>>>
+>>>>> a/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-
+>>>>> hdmi-ddc.yaml
+>>>>> b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-
+>>>>> hdmi-ddc.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..2dc273689584
+>>>>> --- /dev/null
+>>>>> +++
+>>>>> b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-
+>>>>> hdmi-ddc.yaml
+>>>>> @@ -0,0 +1,51 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id:
+>>>>> https://urldefense.com/v3/__http://devicetree.org/schemas/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml*__;Iw!!CTRNKA9wMg0ARbw!wwVQuq5lzW0lvUFUkVXPWT8cIu96xdkn4tMams1E55qyxEZmgV1i0WfpOlq57w$
+>>>>>
+>>>>> +$schema:
+>>>>> https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!wwVQuq5lzW0lvUFUkVXPWT8cIu96xdkn4tMams1E55qyxEZmgV1i0WdSGOSxzw$
+>>>>>
+>>>>> +
+>>>>> +title: Mediatek HDMI DDC for mt8195
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - CK Hu <ck.hu@mediatek.com>
+>>>>> +  - Jitao shi <jitao.shi@mediatek.com>
+>>>>> +
+>>>>> +description: |
+>>>>> +  The HDMI DDC i2c controller is used to interface with the HDMI DDC
+>>>>> pins.
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    enum:
+>>>>> +      - mediatek,mt8195-hdmi-ddc
+>>>>> +
+>>>>> +  clocks:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  clock-names:
+>>>>> +    items:
+>>>>> +      - const: ddc
+>>>>> +
+>>>>> +  mediatek,hdmi:
+>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>>>> +    description:
+>>>>> +      A phandle to the mt8195 hdmi controller
+>>>>> +
+>>>>> +required:
+>>>>> +  - compatible
+>>>>> +  - clocks
+>>>>> +  - clock-names
+>>>>> +
+>>>>> +additionalProperties: false
+>>>>> +
+>>>>> +examples:
+>>>>> +  - |
+>>>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>>>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>>>>> +    hdmiddc0: i2c {
+>>>>> +      compatible = "mediatek,mt8195-hdmi-ddc";
+>>>>> +      mediatek,hdmi = <&hdmi0>;
+>>>>> +      clocks = <&clk26m>;
+>>>>> +      clock-names = "ddc";
+>>>>> +    };
+>>>>
+>>>> I think we should not have a virtual device. This ddc is part of
+>>>> mt8195-hdmi device, so just keep mt8195-hdmi, and let mt8195-hdmi
+>>>> driver to probe the sub driver of ddc driver.
+>>>>
+>>>> Regards,
+>>>> CK
+>>>
+>>> Hi CK,
+>>>
+>>> Thx for your input.
+>>> Though I would strongly prefer to keep the ddc as a separate "virtual device".
+>>>
+>>> It aligns better with the goal of reusing as much code as possible
+>>> from the HDMI V1 IP,
+>>> which is something you have been advocating since V1 of this patch
+>>> quite some time ago
+>>> and has shaped this patch.
+>>>
+>>> To me we are in a state that is clean and avoids branching in the hdmi
+>>> common code.
+>>> Would you reconsider and allow the use of that virtual device?
+>>>
+>>> Thx,
+>>> Guillaume.
+>>>
+>>
+>> You can as well keep the DDC as a separated driver, but register in the HDMI v1 and
+>> v2 driver at probe time.
+>>
+>> Doing that, you won't need any devicetree node specific to any virtual device :-)
+>>
+>> Cheers,
+>> Angelo
+>>
+>>
 > 
-> >>>  
-> >>> +  protocol@12:
-> >>> +    type: object
-> >>> +    properties:
-> >>> +      reg:
-> >>> +        const: 0x12
-> >>> +
-> >>
-> >> Why? It did not got lost, it's already covered by pattern. If you refer
-> >> to particular warning, please paste it in commit msg. Otherwise it looks
-> >> incorrect.
-> >>
-> > 
-> > Yes indeed, but as a matter of fact it seemed to me that we used to add an
-> > entry and an example for all the currently published standard SCMI protocols,
-> > even though already covered by the patternProp (which covers also any
-> > custom-vendor protocol in the wild) and not sporting any additional
-> > custom properties (see protocol@18), but maybe this is just a unneeded wrong
-> > habit adding only cruft to the bindings.
-> > 
-> > If you think it does not add any value I can happily drop this, or
-> > limiting the addition just to the example (and/or drop equally the unneeded
-> > protocol@18 node too in this case).
+> Sure, but does it make any sense for HDMI v1?
+> As the ddc in v1 is a real device which (in theory) can be reused by other IPs.
 > 
-> Duplicating the node (once in properties, second in patternProperties)
-> is not needed. I am also not sure what would be the point to add to the
-> example - example does not have to be complete DTS for all cases, but
-> illustrate the binding and allow is to test it.
+> I would see either v1 and v2 ddc exposed as a devicetree node (which
+> is what I favor).
+> Or v1 as a devicetree node and v2 probed directly from the hdmi code base.
 > 
 
-Thanks, I'll drop this patch.
+The last option looks sensible, since v1 has an external ddc, but on v2 it's
+integrated.
 
-Cristian
+v1 -> dt probe
+v2 -> driver probe
+
+> Thx,
+> Guillaume.
+
 
