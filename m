@@ -2,49 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7566265B99E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 04:15:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D791365B9BA
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 04:35:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233015AbjACDPM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 22:15:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44944 "EHLO
+        id S232636AbjACDfG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Jan 2023 22:35:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230071AbjACDPJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 22:15:09 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08341BE3C;
-        Mon,  2 Jan 2023 19:15:09 -0800 (PST)
+        with ESMTP id S230435AbjACDfF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 22:35:05 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3905C749;
+        Mon,  2 Jan 2023 19:35:03 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B516AB80E3D;
-        Tue,  3 Jan 2023 03:15:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D03E3C433D2;
-        Tue,  3 Jan 2023 03:15:05 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 3DBE9B80D75;
+        Tue,  3 Jan 2023 03:35:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22051C433EF;
+        Tue,  3 Jan 2023 03:35:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672715706;
-        bh=zCOS2TtWxPLxuwGn2m2jlEmrcT5+h7zVtcF5ZDoprfg=;
-        h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=jnx6Rdw2Ek9B2KWrGiOEHgN0xwSVsDNLP09BgbaP7kHaicDwwWqCB4uXj7hheN19D
-         vT7uN+H+YBCXp+pwggz3RaKSfB/LCWfaMpVxQa2NHSEgbGbG8atoDfzAPPfwHHRKlT
-         X2xpt8AR5dE43Mwri3pGWOSudp95Pv7tyAPuC+r5zhD49fii5bhdNi+88THlA2eFNd
-         IBBU+VIZuj0rTEo82UXpD77xLz8BULJbT67zxvzOyaF3th8dghLv+g4StlcTwvT+/W
-         8qY/jGRNMdUfjSS0KYFQvHYpBjH6nzu7afjakQRXp+zvWAE/ogFvoe5TFffRchbpmC
-         aoO8kt0BO512Q==
+        s=k20201202; t=1672716900;
+        bh=dCkckECAvLQtZaeZmpoNgVJKnT+aYXzBTqQgYjJLq80=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=S9eq+dx75O+t277fS2OQTxltcXQoA5NqAL7Q/02fwyulyXbhd97EmBz9ROiMF6NWd
+         +hlVuil9QGMpGmbem/7ir0Vk+zwS5B3Y8nhvInCHpm5C6Rn1wNLFxpvNvlo+8PQcxM
+         VejYjAMLtE/k6E9AKxeeGfSQRjFlR3YVuiwuq6xfIBn8Kps3z3qg7MuU+ixFqtN/E6
+         VTdyb56OyFo9eojisdUjD+/LzJhp4h9GAhz4lSyGnf81xoCxJ8uGW7fAW+z/7wIfj8
+         Kj7xdqrJ4qbOeQtOslCBvqsPeBoXJ6JD9Nhuvll8zcDuG63mK4nvL29rEyhlexLsZV
+         Bs1ThJ1j6f1PQ==
+Date:   Mon, 2 Jan 2023 21:34:58 -0600
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     devicetree@vger.kernel.org, konrad.dybcio@linaro.org,
-        krzysztof.kozlowski@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, agross@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v2 1/6] arm64: dts: qcom: sc8280xp: align PSCI domain names with DT schema
-Date:   Mon,  2 Jan 2023 21:15:02 -0600
-Message-Id: <167271569385.1479016.11808942826791367727.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20230102085452.10753-1-krzysztof.kozlowski@linaro.org>
-References: <20230102085452.10753-1-krzysztof.kozlowski@linaro.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        bhelgaas@google.com, konrad.dybcio@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        lpieralisi@kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3 1/3] dt-bindings: PCI: qcom: Update maintainers
+Message-ID: <20230103033458.kdtylqhnlkrk46oh@builder.lan>
+References: <20230102105821.28243-1-manivannan.sadhasivam@linaro.org>
+ <20230102105821.28243-2-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230102105821.28243-2-manivannan.sadhasivam@linaro.org>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -54,29 +57,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2 Jan 2023 09:54:47 +0100, Krzysztof Kozlowski wrote:
-> Bindings expect power domains to follow generic naming pattern:
+On Mon, Jan 02, 2023 at 04:28:19PM +0530, Manivannan Sadhasivam wrote:
+> Stanimir has left mm-sol and already expressed his wish to not continue
+> maintaining the PCIe RC driver. So his entry can be removed.
 > 
->   sc8280xp-crd.dtb: psci: 'cpu-cluster0', 'cpu0', 'cpu1', 'cpu2', 'cpu3', 'cpu4', 'cpu5', 'cpu6',
->     'cpu7' do not match any of the regexes: '^power-domain-', 'pinctrl-[0-9]+'
+> Adding myself as the co-maintainer since I took over the PCIe RC driver
+> maintainership from Stanimir.
 > 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+Acked-by: Bjorn Andersson <andersson@kernel.org>
+
+Regards,
+Bjorn
+
+> ---
+>  Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-
-Applied, thanks!
-
-[1/6] arm64: dts: qcom: sc8280xp: align PSCI domain names with DT schema
-      commit: ac392971357375bbbba905c6c12cd1ac6962da2d
-[2/6] arm64: dts: qcom: sm6375: align PSCI domain names with DT schema
-      commit: 0c8bfc7f3be4d99fc314676210c77838aa282cd6
-[3/6] arm64: dts: qcom: sm8150: align PSCI domain names with DT schema
-      commit: 5ca45690551a304c7bc8996962315f2e8b2909d8
-[4/6] arm64: dts: qcom: sm8250: align PSCI domain names with DT schema
-      commit: 56d590022b6c6baea11e3a9f6106fddafaba8a58
-[5/6] arm64: dts: qcom: sm8350: align PSCI domain names with DT schema
-      commit: a9371962c3b26ba4012dc05ab0fbb964eb142a66
-[6/6] arm64: dts: qcom: sm8450: align PSCI domain names with DT schema
-      commit: fce310a2d2321874423b11f6cab4ad3fce5ef639
-
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> index a5859bb3dc28..a3639920fcbb 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> @@ -8,7 +8,7 @@ title: Qualcomm PCI express root complex
+>  
+>  maintainers:
+>    - Bjorn Andersson <bjorn.andersson@linaro.org>
+> -  - Stanimir Varbanov <svarbanov@mm-sol.com>
+> +  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+>  
+>  description: |
+>    Qualcomm PCIe root complex controller is based on the Synopsys DesignWare
+> -- 
+> 2.25.1
+> 
