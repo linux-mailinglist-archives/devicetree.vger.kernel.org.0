@@ -2,132 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 519FB65C937
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 23:12:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26D6465C93E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 23:14:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230215AbjACWMA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 17:12:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41234 "EHLO
+        id S230166AbjACWOK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 17:14:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238603AbjACWL4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 17:11:56 -0500
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2106.outbound.protection.outlook.com [40.107.223.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A572F71;
-        Tue,  3 Jan 2023 14:11:54 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aJ5XzgAbuRmYrxHCJoi7XkW8nsgf0PsLD809RBj4y53w+Agr3YYzuwY90DzuascENOZNNVGQZe+dsBldhjQsDWbtMEY0MhQBv6utcZ4HsM78BM55/S7f9MJdcqmBfWZ5jitwSuy4P9SPqMF9asTvThUld1Ut62+c1AKNkvZxvLCO1xOrxnn0F2Q40+BPGNjhvLprr2ihKzsvE6oxU9Vz+8TmGsVlzPH0aTjZJDc12fVqiRfut84Vil5WTTuU1bgIBWRFQf7CKFhHiQ7wg/0iayPylw6JtfsipKfJ4/Um7kJHFjNWX5alH/1pCa560/F9IEATHSsuA2wUPGwzf8qToQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gTSlcn032+KW0jzmx4FyMrzieIYX7+52nOulPoeCQ6I=;
- b=XVwUKxIC7aP8yC7Kn7pTx/FgvICVYfOcO3+j6CRiCwfJxuVuYtgXTrcLmokNUFrmpdcKwuBOtEvaEuZ/5ixIXs+pT5N/Nlr0NnGNPGEkJtH5WsPA2RrYFUnS9f99BCAlBl/ERnb1Yj7WYdEA2nYF/MPRp+fN8dVvnDhLL6DLSX+/GNvETqjvtNNKdXjlO2wR73pUzWA1gpL5pqPwOH5CD+6HnmkfnFkG1Ffi9e4/nLBLiD2xnmGaySXhN6BZ4FlcRYAlJ32g13ybFM6hJLXJlDqPuDk71EGD35SyfUFhuh42Bob/nBaEslo3KS64ab8k0Ap3z3lbEhqFY9QSUrRFsg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=in-advantage.com; dmarc=pass action=none
- header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
+        with ESMTP id S234043AbjACWOI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 17:14:08 -0500
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AB5FF71;
+        Tue,  3 Jan 2023 14:14:08 -0800 (PST)
+Received: by mail-oi1-x22a.google.com with SMTP id r130so28258934oih.2;
+        Tue, 03 Jan 2023 14:14:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gTSlcn032+KW0jzmx4FyMrzieIYX7+52nOulPoeCQ6I=;
- b=O7gnppMBh+P9G1EmheAmu/NdpwZ/7aYaZXagTE4RflNSZLB5p8nqPqF50nvXpGEzx+4mkYoB8xXp07dtJd0TLRxn2EE15wvwmFz96n1dnpBtCOAgh12rAqoUKmcGqkRMI76x6GDbuZ6YVJkWtAifGcIRAubPXODp5tz8O9NP+68=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=in-advantage.com;
-Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
- (2603:10b6:301:35::37) by DS0PR10MB7222.namprd10.prod.outlook.com
- (2603:10b6:8:f2::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.19; Tue, 3 Jan
- 2023 22:11:51 +0000
-Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
- ([fe80::45b5:a860:9cea:a74c]) by MWHPR1001MB2351.namprd10.prod.outlook.com
- ([fe80::45b5:a860:9cea:a74c%4]) with mapi id 15.20.5944.019; Tue, 3 Jan 2023
- 22:11:50 +0000
-Date:   Tue, 3 Jan 2023 14:11:47 -0800
-From:   Colin Foster <colin.foster@in-advantage.com>
-To:     devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
-        "B. Niedermayr" <benedikt.niedermayr@siemens.com>
-Cc:     krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
-        rogerq@kernel.org, tony@atomide.com
-Subject: gpmc wait pin regression from 89aed3cd5cb9
-Message-ID: <Y7SoIxhkOiCS+BFj@colin-ia-desktop>
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=K1IksS8NxxXXZYII/OPwlDewaxwz5V+ENNWWsENNd3U=;
+        b=ejJpFhOUTCkKi7QY8QrTP7v0x6Gg8ffP257/zLnvfmXki/CzK0hKkK4Y+BoVV5493a
+         nHI5xUgKyIYKNDH5+YXeiZzU2J3xVmDc1KArcBMoqWrKplB5immB8R5HqjRS2aNubiIL
+         WHuwIQHuTiZouMVC3U0tvyTmhToR8tRvU6VPw+3j48PAcKAmxaI0ATSMRN/dAWv+jnvv
+         RsyHFSm6w8hzTxFMy33FjvnCtnRYEb1GBvKMyFqnpsBT2EwyeGOmbZ/m+OYXoxRUIDNT
+         3jxxOnmfUQkWZmDKklHCuLgtI31FkbWia8urHZ0IYl7xMEay9sZjKnEUPQ6fMCO2s58n
+         P28Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=K1IksS8NxxXXZYII/OPwlDewaxwz5V+ENNWWsENNd3U=;
+        b=BZPG+tDcBt4OTT6ZAUDjgYFDeSFxid0XXSXOMeqBJtNcjePHaicDvglCDAqlF3Zap4
+         9myaCl3W+9vDp9ckQxKrqmq/f4OhziUTJ24hCc051OCCJ+dxiscbqyT126fqaDU5heBw
+         c/h23ZWuj3dkhpX9X7vEQURUxWkHhYY8qQuCTM5lNCvIr7gQNc4UkkhlU/sDh6xY0VwH
+         7wtVIk+WsRckJJJcOoqsmw6a8HswPF+1opNR9pMLnRwNH8EvpcSFxu/Cl8Cy087sprvN
+         NVP4kOO/dkU6t0vyy7/eECB+r5y/4sa9AfWDhLQAjqXxt4/4AvH09REchbzqBwQk4Nsz
+         tYZw==
+X-Gm-Message-State: AFqh2kr0LWi/IWBO8ANaAbNuj4oJ8C8H1Q0g+hb5vyCAb40ZOSKEG0Lb
+        RJ5zTnqArNPSFKE5hmOoub0=
+X-Google-Smtp-Source: AMrXdXsj1u6ooXmWsaBlvs9AC+gDm/4awnmYnYB9Um0hPJ/NuIZvtGDq5unbn7E3nvgUDUAR/6uz1w==
+X-Received: by 2002:a05:6808:6d4:b0:363:a6c3:8dd3 with SMTP id m20-20020a05680806d400b00363a6c38dd3mr7133019oih.44.1672784047526;
+        Tue, 03 Jan 2023 14:14:07 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id n67-20020acabd46000000b0035b451d80afsm13468032oif.58.2023.01.03.14.14.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Jan 2023 14:14:07 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Tue, 3 Jan 2023 14:14:05 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Hal Feng <hal.feng@starfivetech.com>
+Cc:     linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        Jean Delvare <jdelvare@suse.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/4] dt-bindings: hwmon: Add starfive,jh71x0-temp
+Message-ID: <20230103221405.GA217696@roeck-us.net>
+References: <20230103013145.9570-1-hal.feng@starfivetech.com>
+ <20230103013145.9570-2-hal.feng@starfivetech.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-X-ClientProxiedBy: MW4PR04CA0156.namprd04.prod.outlook.com
- (2603:10b6:303:85::11) To MWHPR1001MB2351.namprd10.prod.outlook.com
- (2603:10b6:301:35::37)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWHPR1001MB2351:EE_|DS0PR10MB7222:EE_
-X-MS-Office365-Filtering-Correlation-Id: 64e75f80-31b9-43ab-efff-08daedd78386
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DV7J6ex2b7h4QM22V6cMZJePXwUuO72m2RrjZh2LzHwbQacKmrPPfuKW5v2ePE6z3wTyVfB5GZS8sZAEEzgikTpMJASKcP99gUJpb5ivg2l8f7o6Q0VGxVe3x/B3RkrzqjvhDExWd97jtwgi0MjLlwAuqVdRITkS4itQ37I+zWy7szqbkcE4lLINAxdPvPYVcj5EkhAwmwtkzq91qbZgSDm7FVXlg3n9SJeFzkJdt/HDJG4pIRyzNvaxjQpQOL3kAHF4Ja/AjzQAuj9raSXPapNfpZE18fpt+8UehO8RUOryjB4Amhb8lLtu2fuMg68q3CufdWApTtSI8xm57dpOr0qRK38YLXrh6tleNt+RlsyhdbDbUJMURuOkfv1//jj11oxl7E/kM2XxfDVoKL6xZGkyoA6pGiggZWHglpbjmOjZmN8xJQj06Cn26hnUx1Ae9ebz5RWkgwbCP6PdJzR9PGozi135ZsJoJTss0Jcd8GGlBe7pGpoGcjOQXKFwlMvwJ9qJVFxR9/vduHMdU2r5xxJSRzcLJPxzHjLXoKoFcK/fT/Ah9sDUvF8pLSwfjJqb9Eq/OhoSE0mYTQ5Re26LZKBerGzJ5jpQ6tfTNlx9+LY+SalbD+Ud7dx5YMsRKftz+y+ijWlLz6rGVsyrc3sUBrSkRVSp2j2gyZPCVAQpHrmNl+36NBfDv2QJItmfVu00il26dcGHL1mzz0u4elSB8ErSJB6Kmn302uC9VaCsFxkEmIqDl/FyRxTherRMRjbG
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2351.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(7916004)(396003)(346002)(136003)(366004)(39840400004)(376002)(451199015)(6512007)(186003)(9686003)(26005)(33716001)(6666004)(6506007)(86362001)(38100700002)(41300700001)(8676002)(4326008)(2906002)(5660300002)(4744005)(44832011)(8936002)(6486002)(966005)(316002)(66556008)(478600001)(66946007)(66476007)(6916009)(22166009)(98903001)(67856001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?6VV943ObWxJQWegUpYc5mh6prQoNqNLXN5YcTduXjnJZZp6eFrRjqmZX+gK4?=
- =?us-ascii?Q?8tq/VZmiEP00N5vFt6D6BLazqp71XGSi696rHh61tg5obbMyBHtD59HlFils?=
- =?us-ascii?Q?f0o/8l05HdEtuSzHWx8cQdJmDmAIFYOWeZM2b96lOmjxhowdpE6ts67L5KD/?=
- =?us-ascii?Q?07cwe8xisOO2Ap+S94u79oY6akxZ7vL1y0A7erZ9tDqvQCqufZ507G/hzIrO?=
- =?us-ascii?Q?DjCX40jxI96g5LdHH1Al+QCdwyZTZuQw/2ziyuxn4ZRx/0VwG6Y/0rx5xeMJ?=
- =?us-ascii?Q?j2eVdXUIEFAzkIA+acXBw3ktBn0ZqEKwQM+KrlFFQHdfD5EsLnvZxeRijnzJ?=
- =?us-ascii?Q?Bu0Kc9PIhzAeHcX+FBFSXLTImtfgAGglUrnbpALsGk+aTK5zmXTqVbz8qsTs?=
- =?us-ascii?Q?yQCaS6n4Dhh/QPGILbtzJkOBU9tS7VOAjiPQ0us3h/T/rSw/qLV8jmwgW3GR?=
- =?us-ascii?Q?tDW8BwSE+cV+h45YzwgAlNeLXlAbxygYCcQMgkdwjQ4cB3ZcolN/Y9h/4U1/?=
- =?us-ascii?Q?MbwJG0yshNU7VL0DMx4+XWvVgD300VCJkMHdFnCjsHDOT9FWqZOov6cDhBBc?=
- =?us-ascii?Q?ExqjFcJqofhCB+A/Ap3t2dQgtGuqzKjqcHtK0oK15qo0Ag5fPTZ6aUc+Utjm?=
- =?us-ascii?Q?AFZPpglW+5FcBmqweT0wsBVwnGIYFAX/sTglhHBdBAxBROHWF1RzGhO7RcKB?=
- =?us-ascii?Q?jehH68FIEAZlU7VZhjPybYtZL6H+GHLEr7NXlI4c+CCAcS5eo75Mho4jTOq2?=
- =?us-ascii?Q?sqLglyioL6LYCd9C0w3/VqstBTPLJht6VmzmyWnDXyDZKI1S3W5hS7VRuz85?=
- =?us-ascii?Q?99YRpssdtwHE8sqwPOibfxh4eFsj/OtA8KceUxhjUqxZlMW+aR+Ksfzl+MCU?=
- =?us-ascii?Q?l9Gh7PBOLjPMzjopB6EkTNUV4266H84OV4TglxWEiYan3BVe3acjiOs0dgW8?=
- =?us-ascii?Q?N48XPxN3jUA6GL8xBFaPWZ8/tjf8eRqQrX7eFA+JK4pw1SlIC8DCCQJsn7N5?=
- =?us-ascii?Q?s45hB51nB21Bt922PWPP2ifbgVPSpTqLtS7RGLsvtKQB3STE4BQ29ZUY5kTy?=
- =?us-ascii?Q?LclWPvH8p2ma6gUmzVTyUczm1D6eRHj12hxL3G6Kl2IcEebaB1hJFo/P93wr?=
- =?us-ascii?Q?uSghY0VsJeQfVO0yq5EW2MbMsKXwezvouLfR1J9JIb6FaLVAf8bw4jzbYZK8?=
- =?us-ascii?Q?Um+x9d9KKjIlshPjQhJTafNVBVi4SdD4hBCGXQEnkxqAp0TyY3gpkrtb5Nmo?=
- =?us-ascii?Q?9DAwtOZkNd4yBXGgS2YqhkBmR3Gt3ZJWttZpBfwS2skuAXEiEynYpAHN4HhO?=
- =?us-ascii?Q?xWpCor6ugoCmsFYpqxWgQ3loSSFqVX6XGiBOS+pIqvTZ9czYYCZs3iaCkKim?=
- =?us-ascii?Q?HDUlIm9cvbO4gvBQ7EHav+fCWWyMK3Z6Fi84bXHx+6jF+E31ebe7dT7yTAGa?=
- =?us-ascii?Q?EelplEt/9henojNKGTC6psYmDblnesVz/MnermEK5GxZWBm0UFa6wH6AhZzp?=
- =?us-ascii?Q?1Zvqb3BXavEBw4YjKaRuzFnl1QALSJo/DmVU51DVjNcT2cQtLZ1Rq2IMmlen?=
- =?us-ascii?Q?rgzAt6EwR7C9yrXwf/EQB2t0rFeVC9mjIdmqzFtskV26chg26oBGnBvFgfeb?=
- =?us-ascii?Q?IQ=3D=3D?=
-X-OriginatorOrg: in-advantage.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 64e75f80-31b9-43ab-efff-08daedd78386
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2351.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jan 2023 22:11:50.8475
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: sSVrM8RODQTu6UWFsrrVnansT1+KYjQ3Qba7tdbcVm3sOkl4o0/luUewe0/iuvB3hYNwK7i55av0psw00TfyxgfwaDjAk6J+aQXJStOgok8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR10MB7222
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230103013145.9570-2-hal.feng@starfivetech.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I'm working to get suport on a Phytec OMAP 4460 SOM that has an SMSC
-9221 attached to the GPMC bus.
+On Tue, Jan 03, 2023 at 09:31:42AM +0800, Hal Feng wrote:
+> From: Emil Renner Berthing <kernel@esmil.dk>
+> 
+> Add bindings for the temperature sensor on the StarFive JH7100 and
+> JH7110 SoCs.
+> 
+> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
 
-While my DT isn't mainline yet, I used existing OMAP device trees as my
-basis.
+The previous version of this bindings document (v3, 
+https://patchwork.kernel.org/project/linux-hwmon/patch/20210726171802.1052716-2-kernel@esmil.dk/
+had been reviewed by Rob Herring. Even though this version is named differently
+(starfive,jh71x0-temp.yaml instead of starfive,jh7100-temp.yaml), the old version
+should be referenced, and there should be a change log.
 
-After commit 89aed3cd5cb9 ("memory: omap-gpmc: wait pin additions") the
-SMSC stops working because existing device trees don't have a default
-"gpmc,wait-pin" defined.
+Guenter
 
-I fixed the issue for myself by adding this to my .dtsi, but I imagine
-any existing device trees that use the OMAP / SMSC combination will be
-similarly broken in 6.2-rc2.
-
-My latest DT submission shows the use of the omap-gpmc-smsc9221.dtsi
-without the addition of gpmc,wait-pin which worked in 6.1:
-https://lore.kernel.org/lkml/20221123233209.1854806-1-colin.foster@in-advantage.com/
-
-Thanks, and let me know if there's something you want me to test.
-
+> ---
+>  .../bindings/hwmon/starfive,jh71x0-temp.yaml  | 75 +++++++++++++++++++
+>  1 file changed, 75 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/starfive,jh71x0-temp.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/starfive,jh71x0-temp.yaml b/Documentation/devicetree/bindings/hwmon/starfive,jh71x0-temp.yaml
+> new file mode 100644
+> index 000000000000..2600881e2cdc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/starfive,jh71x0-temp.yaml
+> @@ -0,0 +1,75 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/starfive,jh71x0-temp.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: StarFive JH71x0 Temperature Sensor
+> +
+> +maintainers:
+> +  - Emil Renner Berthing <kernel@esmil.dk>
+> +
+> +description: |
+> +  StarFive Technology Co. JH71x0 embedded temperature sensor
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - starfive,jh7100-temp
+> +      - starfive,jh7110-temp
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 2
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    items:
+> +      - const: "sense"
+> +      - const: "bus"
+> +
+> +  '#thermal-sensor-cells':
+> +    const: 0
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    minItems: 2
+> +    maxItems: 2
+> +
+> +  reset-names:
+> +    items:
+> +      - const: "sense"
+> +      - const: "bus"
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +  - resets
+> +  - reset-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/starfive-jh7100.h>
+> +    #include <dt-bindings/reset/starfive-jh7100.h>
+> +
+> +    tmon@124a0000 {
+> +        compatible = "starfive,jh7100-temp";
+> +        reg = <0x124a0000 0x10000>;
+> +        clocks = <&clkgen JH7100_CLK_TEMP_SENSE>,
+> +                 <&clkgen JH7100_CLK_TEMP_APB>;
+> +        clock-names = "sense", "bus";
+> +        #thermal-sensor-cells = <0>;
+> +        interrupts = <122>;
+> +        resets = <&rstgen JH7100_RSTN_TEMP_SENSE>,
+> +                 <&rstgen JH7100_RSTN_TEMP_APB>;
+> +        reset-names = "sense", "bus";
+> +    };
