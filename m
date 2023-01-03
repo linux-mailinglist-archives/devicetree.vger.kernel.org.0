@@ -2,99 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFFDF65C54F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 18:47:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F184165C581
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 18:57:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231270AbjACRrK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 12:47:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45254 "EHLO
+        id S233189AbjACR5B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 12:57:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238548AbjACRrH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 12:47:07 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A37CBFF1;
-        Tue,  3 Jan 2023 09:47:06 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 55316B81061;
-        Tue,  3 Jan 2023 17:47:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E60C8C433D2;
-        Tue,  3 Jan 2023 17:46:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672768024;
-        bh=HpEuUON7T/Taa39AKkC9kQKGM4tGcAYDWm8d6gKhEww=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IefW0jsYXRbKMusfop78CLgIBsW6GonX9SslmNu4evz/hKWH3F3FzN/vFEGORhA9g
-         50RsL0ANTl9sKyYWjgMTRMA2m3CrDXymK8WS81gNbpIVIs2NkwQMxuHsXGdWJm+AQ0
-         +byzDL000f6Je3jALyR9tDx+ELhCH2sU7Q3/foFXNk0qr62xERZcXCZDPtARipKANo
-         jYoYw/8dvRHK24p44Be+rSAWGCvWjNZlXk3IbAPJkPg/OE9J1cy4HZRjUd+SDnu/7n
-         LQUHh/hjipjMCzy/zziy+HLGM3JsTwxkyN9TiLxQ5Uu/2oTSEBnlxgnjl2CVX49ahQ
-         HNOhwW+7kmoIg==
-Date:   Tue, 3 Jan 2023 17:46:56 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Wesley Cheng <quic_wcheng@quicinc.com>,
-        srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
-        perex@perex.cz, lgirdwood@gmail.com, andersson@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        Thinh.Nguyen@synopsys.com, bgoswami@quicinc.com, tiwai@suse.com,
-        robh+dt@kernel.org, agross@kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, quic_jackp@quicinc.com,
-        quic_plai@quicinc.com
-Subject: Re: [RFC PATCH 14/14] ASoC: dt-bindings: Update example for enabling
- USB offload on SM8250
-Message-ID: <Y7RqEM+GvBQbmBTb@sirena.org.uk>
-References: <20221223233200.26089-1-quic_wcheng@quicinc.com>
- <20221223233200.26089-15-quic_wcheng@quicinc.com>
- <f57d8d44-651e-b51d-dd72-bdf15801958f@linaro.org>
+        with ESMTP id S233441AbjACR4s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 12:56:48 -0500
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B296D1147B;
+        Tue,  3 Jan 2023 09:56:46 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id j16so12413924edw.11;
+        Tue, 03 Jan 2023 09:56:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=p7a1U2/c7WJv3NEBfJYAOixnmGcKLo0CuycVU47++aQ=;
+        b=aKwytJh4KX20LXxOryZJE0HuJG5HcaCeIxX3tFX5yZz0gEhN3vG/Ugzp3jfNHHAfFZ
+         zpCCt+btieU/rdBGPWbe3sejqYvYS8FTg2R49yHZy6jaIbMe+hPE/DtWRavxYZwoIN0T
+         QVzbnO8+eVVo9l/ID7dtlfG3fmFswrJrboaiZ3nNEzQHN+QM9WO5pCpA1f5g1joQhIXW
+         l72WenGT/6K3hPFCxw3kIKLiLCVK3azdhhESTO51lnjK++sWuiMrmBZf4WNy7jNIp7fY
+         YzJXiRkbxN0lvgynjSnG5SWR5+Uu2VYbKX6KvdPUI1pO/IiTONJIZdImNLn22/Eq/9AP
+         aWWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=p7a1U2/c7WJv3NEBfJYAOixnmGcKLo0CuycVU47++aQ=;
+        b=Zq76Uzozq1s77vV07YW7Y6sN1jgMdeNPclu8K9ZPyDaI6RN7Hu/W869l+xUXUZ5S1+
+         1e9wimXnwxgFkkhynGFpCQXTL9w2+AbYH1j0Yhon5+3mZXBxEJXWTpR9j2wLVGt2KWko
+         gfvRSJLidEROVAIT5tzbsso/vl7s9iFCoCEfkYmqqPsuScYu89MTE25rQEMTBu33jUpN
+         +uP3rfTPFDwzfPzVLAOW6Jn2PJikXfHXmqnt+Xjeu5NDohYaOt5LF0v/pdUGDdjrh656
+         58GUpM4lQvHfDh9BBI4ZoPf914I2UPUbg0vBJQBbqPWelgMWy2KBAbGSs0oCBTCwaCFs
+         m7FA==
+X-Gm-Message-State: AFqh2kqvB2H2atkTy4ZwZqpaji8apBvIngX31LcOdnAYdmYGuCnCi3Q9
+        24xneICgEnFaU8xOPHG+57Y=
+X-Google-Smtp-Source: AMrXdXtEtXWdICTqd1aomJDuH7ZCpdFY3T3zFdVGv7z0OI1uDhXO0zYB+HaMBkbXi0VNrPwD5wFXmA==
+X-Received: by 2002:a05:6402:390b:b0:465:f6a9:cb7b with SMTP id fe11-20020a056402390b00b00465f6a9cb7bmr39249116edb.12.1672768605161;
+        Tue, 03 Jan 2023 09:56:45 -0800 (PST)
+Received: from skbuf ([188.26.185.118])
+        by smtp.gmail.com with ESMTPSA id h14-20020aa7c94e000000b0046f77031d40sm13864230edt.10.2023.01.03.09.56.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Jan 2023 09:56:44 -0800 (PST)
+Date:   Tue, 3 Jan 2023 19:56:41 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Colin Foster <colin.foster@in-advantage.com>
+Cc:     linux-renesas-soc@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        John Crispin <john@phrozen.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Marek Vasut <marex@denx.de>,
+        Sean Wang <sean.wang@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        =?utf-8?B?bsOnIMOcTkFM?= <arinc.unal@arinc9.com>,
+        =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        UNGLinuxDriver@microchip.com,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Kurt Kanzenbach <kurt@linutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        George McCollister <george.mccollister@gmail.com>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v6 net-next 09/10] dt-bindings: net: add generic
+ ethernet-switch-port binding
+Message-ID: <20230103175641.nqvo2gk43s3nanwg@skbuf>
+References: <20230103051401.2265961-1-colin.foster@in-advantage.com>
+ <20230103051401.2265961-10-colin.foster@in-advantage.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="PO3S68PHtAbTyz04"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f57d8d44-651e-b51d-dd72-bdf15801958f@linaro.org>
-X-Cookie: So many men
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230103051401.2265961-10-colin.foster@in-advantage.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Jan 02, 2023 at 09:14:00PM -0800, Colin Foster wrote:
+> diff --git a/Documentation/devicetree/bindings/net/ethernet-switch-port.yaml b/Documentation/devicetree/bindings/net/ethernet-switch-port.yaml
+> new file mode 100644
+> index 000000000000..126bc0c12cb8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/ethernet-switch-port.yaml
+> @@ -0,0 +1,25 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/ethernet-switch-port.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Generic Ethernet Switch Port
+> +
+> +maintainers:
+> +  - Andrew Lunn <andrew@lunn.ch>
+> +  - Florian Fainelli <f.fainelli@gmail.com>
+> +  - Vladimir Oltean <olteanv@gmail.com>
+> +
+> +description:
+> +  Ethernet switch port Description
 
---PO3S68PHtAbTyz04
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Still doesn't look too great that the ethernet-switch-port description
+is this thing devoid of meaning. What is said about the dsa-port is what
+the description should be here, and the description of the dsa-port is
+that it's a generic Ethernet switch port plus DSA specific properties.
 
-On Mon, Dec 26, 2022 at 01:27:21PM +0100, Krzysztof Kozlowski wrote:
-> On 24/12/2022 00:32, Wesley Cheng wrote:
+> +
+> +$ref: ethernet-controller.yaml#
+> +
+> +properties:
+> +  reg:
+> +    description: Port number
+> +
+> +additionalProperties: true
 
-> > +            link-name = "USB Playback";
-> > +            cpu {
-> > +                sound-dai = <&q6afedai USB_RX>;
-
-> Hmm, that makes me wonder if you really tested the bindings before
-> sending? If yes, where is the USB_RX defined?
-
-It was added in patch 2, it's in include/dt-bindings.
-
---PO3S68PHtAbTyz04
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmO0ahAACgkQJNaLcl1U
-h9AKVQf/fc7Y7J2DCQMq65W+xhq5tWOw1Qchwes0+mWkJqejTVwv6w4CSEKMF2XY
-Lod25qJvGe5s/RZXqTFYlJFpL3XpOC/aKU2lMROweZC7uZ5uL33u0WgoIHNcS6eC
-mLWEupWXoX0BUYhs2IqmQaScXcAv6A5vyfss0TYYbDUv/0HDJS4hDAI3qE+OPvxH
-tcYr+MERsr1SC/UP5kK0mj/KjKziNL7kj3tfAr3cbm6nfNDRm7ZBwcVdUOOYYqmC
-lhSRvfVI1sodgqiIwd2SVp6cYTR+M4h7+OTP7gFq2gbq2ZJep6Cwh6OalJXvUFMF
-7F1mQP986vnD+xoyCWMU3Dv7uHg+4w==
-=aEau
------END PGP SIGNATURE-----
-
---PO3S68PHtAbTyz04--
+Also, I see your patches are deferred in patchwork, and while this isn't
+really for me to say, presumably it's because there was no announcement
+so far that net-next reopened.
