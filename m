@@ -2,295 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BB7665C2F7
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 16:27:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED6FE65C323
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 16:39:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233189AbjACP1J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 10:27:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49842 "EHLO
+        id S237758AbjACPiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 10:38:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230431AbjACP1G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 10:27:06 -0500
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9323B101D8
-        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 07:27:04 -0800 (PST)
-Received: by mail-pg1-x52f.google.com with SMTP id s67so11024227pgs.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 07:27:04 -0800 (PST)
+        with ESMTP id S230397AbjACPiS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 10:38:18 -0500
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3B9411C0E;
+        Tue,  3 Jan 2023 07:38:16 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id m18so74537009eji.5;
+        Tue, 03 Jan 2023 07:38:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BOiLxIiaLVKgIoutzy1o3p6jSpNbbrfgDaEgEJ9RDr4=;
-        b=cQrT8BR3JghHigZGGkR2joQr1CyUNaBfdsBuej1GbVScgbGRDPKXrHV/wmh3TDdcHf
-         nGOFHqN0jfvTmdTAcAe6KDVfiDhSGhZJcS78unREcjDggr8Umg5rYTvLSqGHRJ+Xz976
-         NXesrXK4hwPWOnHhKDdYUNlpximGEpbeO0jlpMcoXI0nIvEjO0O9EshcQg+SsBhbhuOL
-         xFDyyRAtuBZixFtZ7dWor1bR6GpOf6ok5LbymrJCj4SVnSBI5t96Nrl0NiU82bzGcAea
-         CjEwic2Px7AZFPanX3j2e+3Wy3YqZ7kEmbzSoinv2t93OGUG8sVN7E21fNXyazuGUVk4
-         d/9Q==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=qnD1cDOmNAJpkQ6T4dHEcYD9uVqliMR1LVDe+Z15bUE=;
+        b=Iv1X7xuxVaFSptHgLbIWWfPN9wFmWy5OetaEGRHUYf+22Qc0pMRgXhMJR52ZpXUwrh
+         XpifyNSEbtPqKt35Ofss4i2mxykqjemG0v3qLPLJP72K3ZtJzNb/94Qhz+fIlGHd3Jfq
+         1ABhT9xZLiu8AImzZgkeD3Om/BLz4VVs05Vd3Er/4CBFggQswMloVJj3ttYWgm3FmwNE
+         87X1puDaCguiScnZE4EhpNzr8EjnK6i6CI5ztjIdzFMSukLUP/DlPtncXIaQpbZsDVy/
+         sKDIa3oc3s6nJT3BT2U3hWCY6lnwrBk3Ryxvg+hQwYxwy6pW1FLMYDQ+q+9xSsX9c+Dh
+         27bA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BOiLxIiaLVKgIoutzy1o3p6jSpNbbrfgDaEgEJ9RDr4=;
-        b=j3Z8ylSFAhWluuFEOEG8iqeW9htikJq1gJp/fvYVTXexszy09EQbCtGAGsKBdfmVEj
-         lVtcoqxzQyPi5H4kssnujSD5PapTI3U3HpgbFcQO14dbO5GMqimcdF1ODMGwtOjSN01p
-         okUg7Cp6eMz+vNPS8/e4kp3U47Vm6DNnl2Q7p8Xxjaf+T6gfPqw89lc0qVl9hjWOsG8O
-         VM7tAJTuj0LzXYMXTeWrqfVweyWyPEVMsNoPK1ZxaTgL8ssjZM2/7GMahd5M4dMeU7B/
-         L7i0ZFQnOC71hZ+r6NzGrHjNXJdwTLKoXg2ujCYUXL2H1ndsl51V/XaG5ngFrbFbK+Q0
-         CN0Q==
-X-Gm-Message-State: AFqh2koB95QBJbCLEJITAhHwsN/tCy7bAxgRsk5um/YdFgHT29EC1FsZ
-        JNkD7M92Ek2G+5TIy31BPcQp8w==
-X-Google-Smtp-Source: AMrXdXuYjGzdCe9I6Hu9xHsxFNFUSVdsa5ENIKar72IkXeqrcmd2MQjFxc/eUoeGdMpLxVxP5nzTYg==
-X-Received: by 2002:a05:6a00:1ca4:b0:566:900d:51f2 with SMTP id y36-20020a056a001ca400b00566900d51f2mr45062905pfw.33.1672759624042;
-        Tue, 03 Jan 2023 07:27:04 -0800 (PST)
-Received: from ?IPV6:2405:201:d02f:d899:2028:7962:400:43b6? ([2405:201:d02f:d899:2028:7962:400:43b6])
-        by smtp.gmail.com with ESMTPSA id 127-20020a620485000000b00574b86040a4sm20582373pfe.3.2023.01.03.07.27.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Jan 2023 07:27:03 -0800 (PST)
-Message-ID: <dc604c81-b447-3bc0-18c3-13e03ba56c40@9elements.com>
-Date:   Tue, 3 Jan 2023 20:56:59 +0530
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qnD1cDOmNAJpkQ6T4dHEcYD9uVqliMR1LVDe+Z15bUE=;
+        b=pV+9ccFLytlpLulJqY7caybps/tHn6Jh2DPnMWfgBtbs6A2uZ6SXophT3NbzClI3Yk
+         hw1p9TA5wHmRvtGY9bfKFsMuQuibnk03lg48CF9lBv/A4rzHC/GjOVCD5GM4I5prztDL
+         NbDNAiSPtrjfILfeLce50Z7zKBl7hWRpa7euR6UGk3Q3DiJ4LaFifB8FozB/VTAN4emI
+         b1DmpBf+kmpLoB3Vc7Q1dAxdkd8YYrQAiSdib/UOos0ix2vf+DWSKfVLqDNl8rR5TScH
+         aVMS/ynZb+dHA7e6El1WOXGv+ZmA+AVfF1uJVnF9o7FXjyzzam332azXEwDZpfTBe6kR
+         8vKg==
+X-Gm-Message-State: AFqh2kqyhn4qcMznGupwIzPxUoMULkW6LWlUSHwXA62TycZUAdiYujmQ
+        u3BpKTtt9uN70L0V37Pz286o3rEwOFm3ChY+87M=
+X-Google-Smtp-Source: AMrXdXsqsRWBmQm2rrCrJ26cXBP2shbcsB3baAFq/41tPZjRzMUN2eJ0DUIMQZfQvqKpoxQGfEpCn9x5+tmyeD1QNcM=
+X-Received: by 2002:a17:906:a3cd:b0:7c1:9b74:d27a with SMTP id
+ ca13-20020a170906a3cd00b007c19b74d27amr5362235ejb.601.1672760295330; Tue, 03
+ Jan 2023 07:38:15 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH RESEND v6 1/5] hwmon: (pmbus/core): Add interrupt support
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-References: <20221214080715.2700442-1-Naresh.Solanki@9elements.com>
- <20221229144012.GA21213@roeck-us.net>
- <ecdf887d-d2c8-d9d4-ab19-3b30ee1d4607@9elements.com>
- <20230103122656.GB190111@roeck-us.net>
-Content-Language: en-US
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-In-Reply-To: <20230103122656.GB190111@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221228133243.3052132-1-dmitry.baryshkov@linaro.org> <20221228133243.3052132-6-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221228133243.3052132-6-dmitry.baryshkov@linaro.org>
+From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Date:   Tue, 3 Jan 2023 08:38:04 -0700
+Message-ID: <CAOCk7Noa1A4mBqg3OAxk3hnnUg-qjCeCE0tyhq3ktbFcETicqw@mail.gmail.com>
+Subject: Re: [PATCH 05/16] dt-bindings: clock: qcom,mmcc-msm8998: drop core_bi_pll_test_se
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Guenter
+On Wed, Dec 28, 2022 at 6:33 AM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> The test clock apparently it's not used by anyone upstream. Remove it.
 
-On 03-01-2023 05:56 pm, Guenter Roeck wrote:
-> On Tue, Jan 03, 2023 at 12:18:49PM +0530, Naresh Solanki wrote:
->> Hi Guenter,
->>
->> On 29-12-2022 08:10 pm, Guenter Roeck wrote:
->>> On Wed, Dec 14, 2022 at 09:07:11AM +0100, Naresh Solanki wrote:
->>>> From: Patrick Rudolph <patrick.rudolph@9elements.com>
->>>>
->>>> Implement PMBUS irq handler.
->>>>
->>>> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
->>>> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
->>>
->>> $ scripts/checkpatch.pl --strict index.html
->>> CHECK: Blank lines aren't necessary after an open brace '{'
->>> #131: FILE: drivers/hwmon/pmbus/pmbus_core.c:3088:
->>> +	for (i = 0; i < data->info->pages; i++) {
->>> +
->>>
->>> CHECK: Alignment should match open parenthesis
->>> #183: FILE: drivers/hwmon/pmbus/pmbus_core.c:3140:
->>> +	ret = devm_request_threaded_irq(dev, client->irq, NULL, pmbus_fault_handler,
->>> +			      0, "pmbus-irq", data);
->>>
->>> CHECK: Please use a blank line after function/struct/union/enum declarations
->>> #197: FILE: drivers/hwmon/pmbus/pmbus_core.c:3154:
->>>    }
->>> +static int pmbus_irq_setup(struct i2c_client *client, struct pmbus_data *data)
->>>
->>> total: 0 errors, 0 warnings, 3 checks, 109 lines checked
->>>
->>> NOTE: For some of the reported defects, checkpatch may be able to
->>>         mechanically convert to the typical style using --fix or --fix-inplace.
->>>
->>> index.html has style problems, please review.
->>>
->>> Please run checkpatch --strict on your patches.
->>> Also see Documentation/hwmon/submitting-patches.rst.
->> I will take care of these errors in the updated version.
->>>
->>>> ---
->>>>    drivers/hwmon/pmbus/pmbus.h      |  2 +-
->>>>    drivers/hwmon/pmbus/pmbus_core.c | 84 ++++++++++++++++++++++++++++++++
->>>>    2 files changed, 85 insertions(+), 1 deletion(-)
->>>>
->>>>
->>>> base-commit: 364ffd2537c44cb6914ff5669153f4a86fffad29
->>>>
->>>> diff --git a/drivers/hwmon/pmbus/pmbus.h b/drivers/hwmon/pmbus/pmbus.h
->>>> index 10fb17879f8e..6b2e6cf93b19 100644
->>>> --- a/drivers/hwmon/pmbus/pmbus.h
->>>> +++ b/drivers/hwmon/pmbus/pmbus.h
->>>> @@ -26,7 +26,7 @@ enum pmbus_regs {
->>>>    	PMBUS_CAPABILITY		= 0x19,
->>>>    	PMBUS_QUERY			= 0x1A,
->>>> -
->>>> +	PMBUS_SMBALERT_MASK		= 0x1B,
->>>>    	PMBUS_VOUT_MODE			= 0x20,
->>>>    	PMBUS_VOUT_COMMAND		= 0x21,
->>>>    	PMBUS_VOUT_TRIM			= 0x22,
->>>> diff --git a/drivers/hwmon/pmbus/pmbus_core.c b/drivers/hwmon/pmbus/pmbus_core.c
->>>> index 95e95783972a..244fd2597252 100644
->>>> --- a/drivers/hwmon/pmbus/pmbus_core.c
->>>> +++ b/drivers/hwmon/pmbus/pmbus_core.c
->>>> @@ -3072,11 +3072,89 @@ static int pmbus_regulator_register(struct pmbus_data *data)
->>>>    	return 0;
->>>>    }
->>>> +
->>>> +static int pmbus_write_smbalert_mask(struct i2c_client *client, u8 page, u8 reg, u8 val)
->>>> +{
->>>> +	return pmbus_write_word_data(client, page, PMBUS_SMBALERT_MASK, reg | (val << 8));
->>>> +}
->>>> +
->>>> +static irqreturn_t pmbus_fault_handler(int irq, void *pdata)
->>>> +{
->>>> +	struct pmbus_data *data = pdata;
->>>> +	struct i2c_client *client = to_i2c_client(data->dev);
->>>> +	int i, status;
->>>> +
->>>> +	for (i = 0; i < data->info->pages; i++) {
->>>> +
->>>> +		mutex_lock(&data->update_lock);
->>>> +		status = pmbus_read_status_word(client, i);
->>>> +		if (status < 0) {
->>>> +			mutex_unlock(&data->update_lock);
->>>> +			return status;
->>>> +		}
->>>> +
->>>> +		if (status & ~(PB_STATUS_OFF | PB_STATUS_BUSY | PB_STATUS_POWER_GOOD_N))
->>>> +			pmbus_clear_fault_page(client, i);
->>>> +
->>>> +		mutex_unlock(&data->update_lock);
->>>> +	}
->>>> +
->>>> +	return IRQ_HANDLED;
->>>> +}
->>>> +
->>>> +static int pmbus_irq_setup(struct i2c_client *client, struct pmbus_data *data)
->>>> +{
->>>> +	struct device *dev = &client->dev;
->>>> +	const struct pmbus_regulator_status_category *cat;
->>>> +	const struct pmbus_regulator_status_assoc *bit;
->>>> +	int i, j, err, ret, func;
->>>> +	u8 mask;
->>>> +
->>>> +	for (i = 0; i < data->info->pages; i++) {
->>>> +		func = data->info->func[i];
->>>> +
->>>> +		for (j = 0; j < ARRAY_SIZE(pmbus_regulator_flag_map); j++) {
->>>> +			cat = &pmbus_regulator_flag_map[j];
->>>> +			if (!(func & cat->func))
->>>> +				continue;
->>>> +			mask = 0;
->>>> +			for (bit = cat->bits; bit->pflag; bit++)
->>>> +				mask |= bit->pflag;
->>>> +
->>>> +			err = pmbus_write_smbalert_mask(client, i, cat->reg, ~mask);
->>>> +			if (err)
->>>> +				dev_err(dev, "Failed to set smbalert for reg 0x%02x\n",	cat->reg);
->>>
->>> This concerns me. It might mean that the chip does not support
->>> PMBUS_SMBALERT_MASK. If so, there would be lots of error messages.
->> After going through the PMBus specification, it appears that this should not
->> be an issue unless there is a violation of the specification.
-> 
-> PMBus chips have lots of issues which violate the specification.
-> Have a look at the various drivers and the workarounds implemented there.
-> You'll need to check if the command/register is supported before using it.
-> Also, if you want to keep the error message, make it dev_err_once().
-> 
-> Either case, an error is an error, not to be ignored. An error here
-> should result in an error abort.
-Yes, I agree that PMBus chips can have issues that violate the 
-specification, and that it is important to check whether a command or 
-register is supported before using it.
-I have noticed that many drivers use the PMBUS_HAVE_* flags to expose 
-the presence of specific registers, and I think it would be a good idea 
-to add a PMBUS_HAVE_SMBALERT flag as well, so that drivers for supported 
-chips can use it to determine whether they should set up an IRQ handler 
-or not. If PMBUS_HAVE_SMBALERT is set, then the IRQ handler should be 
-set up, otherwise it should be ignored.
-Will this approach be right?
-> 
->>>
->>>> +		}
->>>> +
->>>> +		pmbus_write_smbalert_mask(client, i, PMBUS_STATUS_CML, 0xff);
->>>> +		pmbus_write_smbalert_mask(client, i, PMBUS_STATUS_OTHER, 0xff);
->>>> +		pmbus_write_smbalert_mask(client, i, PMBUS_STATUS_MFR_SPECIFIC, 0xff);
->>>
->>> Why check the return value from pmbus_write_smbalert_mask above but not here ?
->> Thank you for pointing out the oversight. I will make sure to include an
->> error check at this point.
->>>
->>>> +		if (data->info->func[i] & PMBUS_HAVE_FAN12)
->>>> +			pmbus_write_smbalert_mask(client, i, PMBUS_STATUS_FAN_12, 0xff);
->>>> +		if (data->info->func[i] & PMBUS_HAVE_FAN34)
->>>> +			pmbus_write_smbalert_mask(client, i, PMBUS_STATUS_FAN_34, 0xff);
->>>> +	}
->>>> +
->>>> +	/* Register notifiers - can fail if IRQ is not given */
->>>
->>> The comment does not make sense. pmbus_irq_setup() is not called
->>> if the interrupt "is not given".
->> Yes. The comment here is not relevant and will be removed.
->>>
->>>> +	ret = devm_request_threaded_irq(dev, client->irq, NULL, pmbus_fault_handler,
->>>> +			      0, "pmbus-irq", data);
->>>> +	if (ret) {
->>>> +		dev_warn(dev, "IRQ disabled %d\n", ret);
->>>
->>> This is not a warning, it is an error.
->> Thank you for bringing this to my attention. I will make sure to update the
->> code to reflect that this is an error.
->>>
->>>> +		return ret;
->>>> +	}
->>>> +
->>>> +	return 0;
->>>> +}
->>>> +
->>>>    #else
->>>
->>> This is still in regulator code. I said several times that this is not
->>> acceptable.
->> Thank you for pointing out the mistake. I will make sure to correct this in
->> the next revision.
->>>
->>>>    static int pmbus_regulator_register(struct pmbus_data *data)
->>>>    {
->>>>    	return 0;
->>>>    }
->>>> +static int pmbus_irq_setup(struct i2c_client *client, struct pmbus_data *data)
->>>> +{
->>>> +	return 0;
->>>> +}
->>>>    #endif
->>>>    static struct dentry *pmbus_debugfs_dir;	/* pmbus debugfs directory */
->>>> @@ -3441,6 +3519,12 @@ int pmbus_do_probe(struct i2c_client *client, struct pmbus_driver_info *info)
->>>>    	if (ret)
->>>>    		return ret;
->>>> +	if (client->irq > 0) {
->>>> +		ret = pmbus_irq_setup(client, data);
->>>> +		if (ret)
->>>> +			return ret;
->>>> +	}
->>>> +
->>>>    	ret = pmbus_init_debugfs(client, data);
->>>>    	if (ret)
->>>>    		dev_warn(dev, "Failed to register debugfs\n");
->>
->> Thanks,
->> Naresh
+IMO, NACK,
+
+This is not a valid justification.
+
+The DT is supposed to describe the hardware, and should be complete in
+that regard.  This clock exists in the hardware, so it should be
+described.
+
+DT is supposed to be separate from Linux, that is it doesn't matter
+that Linux doesn't consume this clock.  Maybe FreeBSD does, or some
+other OS.  Linux doesn't own Device Tree any more than it owns BIOS or
+ACPI.
+
+Also, I'm listed as a maintainer for this binding, yet this series is
+not addressed to me.  Seems like you might need to review how you are
+composing your patches.
