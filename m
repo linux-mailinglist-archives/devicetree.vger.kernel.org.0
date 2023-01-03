@@ -2,163 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D83365C9C9
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 23:54:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CB2865CA58
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 00:35:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230222AbjACWy2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 17:54:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33772 "EHLO
+        id S238327AbjACXfa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 18:35:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229685AbjACWy0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 17:54:26 -0500
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2112.outbound.protection.outlook.com [40.107.93.112])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 178281208B;
-        Tue,  3 Jan 2023 14:54:25 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eMqHhF/bYn2b5iwjaHuBY+OMT3evbmsrTN/qIBNx2aVYDM0GyXUFcsiLO9LRmpefiDlMfc619dNC92amJ/NY800yy3gjElrD2sPzynq+WYaJRZ7pBO4Yv5Epb2/Ah3J6Q6YxB5RPeodE/U4VJVa6fCDuORv9xF0+YnwVcKTCsjFo7mawBpat2RfcxivBZmm6agXFBPLLlNWhVuwbGGGRJx3PQmQVH58wWJ2A4y29AhvJJMEk7zf9khVjaZM7e+E48kZw0sw58owd+Ls173YLFUUKqWbM5LWVVzVr1uJN6QgSsQZz8Yrqn946/la+6QCuZMU/hFBqQzgs3ly82+uGcg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Mz/XvbLesxshNUePRiwF2vnkFWQG3PyUHR7fQAjgjxg=;
- b=atD0APrxVVur4ln4WrHYmOUrR0YB4QHGJ2jJ+l8gBFWjv1cvGRbGtdTJ2MG/fAsNLYRHcENOtTscUbAe0t7V4WoIa8iL9Va17IG00wh/Io3fME2hceOZEXphRe9twegui4XUawipM8D+0BsQrX2tCBTMcXc1grWJQAdQwdnqcQgqHb2wiJYmvMpKx/4oV2Z9ev7TB6oiWyD0/QxOXPnVUV/gT79IvCjW7KN034cE2pjVNihlk0fAdHqdLDdXENKpfKVtBkxYQtPMrOAcCs544hZY6W2e9RPy2WuZdTYzg1mHYh+pr3BbF6OgulePdqj5IDPlWvassFrJcrK68DxTFQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=in-advantage.com; dmarc=pass action=none
- header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
+        with ESMTP id S237814AbjACXf0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 18:35:26 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1185D165A5
+        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 15:35:25 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id z26so47961389lfu.8
+        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 15:35:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Mz/XvbLesxshNUePRiwF2vnkFWQG3PyUHR7fQAjgjxg=;
- b=XEpnwIh1XM7E8aAouJ0hSaSC8UZ3Lpcp8j+kRhbW/p9ryhciNYtUXl+lfxW3t6UXo4o2S4q65h9f4bduPy2o/qdImf3iGh0C4h1TzSVU8xhKMIz5NKnFN2hs7nxhcakeiQx9bTLlIublM+0hKIdEdnsEi9m1TDnrBcOVz+vqIfA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=in-advantage.com;
-Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
- (2603:10b6:301:35::37) by BY5PR10MB4356.namprd10.prod.outlook.com
- (2603:10b6:a03:210::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.18; Tue, 3 Jan
- 2023 22:54:21 +0000
-Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
- ([fe80::45b5:a860:9cea:a74c]) by MWHPR1001MB2351.namprd10.prod.outlook.com
- ([fe80::45b5:a860:9cea:a74c%4]) with mapi id 15.20.5944.019; Tue, 3 Jan 2023
- 22:54:21 +0000
-Date:   Tue, 3 Jan 2023 14:54:04 -0800
-From:   Colin Foster <colin.foster@in-advantage.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Marek Vasut <marex@denx.de>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        John Crispin <john@phrozen.org>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        UNGLinuxDriver@microchip.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?utf-8?B?bsOnIMOcTkFM?= <arinc.unal@arinc9.com>,
-        netdev@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        linux-kernel@vger.kernel.org,
-        =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Jakub Kicinski <kuba@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        devicetree@vger.kernel.org,
-        George McCollister <george.mccollister@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Kurt Kanzenbach <kurt@linutronix.de>
-Subject: Re: [PATCH v6 net-next 01/10] dt-bindings: dsa: sync with maintainers
-Message-ID: <Y7SyDO5wS058dyZp@colin-ia-desktop>
-References: <20230103051401.2265961-1-colin.foster@in-advantage.com>
- <20230103051401.2265961-2-colin.foster@in-advantage.com>
- <167278470815.4157827.15557237476346780909.robh@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <167278470815.4157827.15557237476346780909.robh@kernel.org>
-X-ClientProxiedBy: MW4PR03CA0246.namprd03.prod.outlook.com
- (2603:10b6:303:b4::11) To MWHPR1001MB2351.namprd10.prod.outlook.com
- (2603:10b6:301:35::37)
+        d=linaro.org; s=google;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=INGl8EC4lutAaxK7oytOrepZPv62csf4zgf/Dha7g08=;
+        b=tUh9Qclbxwes1y19TozU8R6/M6yFHt0Tf/7Uk9vnG8eT3MKTfnZ5FPazeKrWpGZ/Zs
+         FDHCXMqufboxBhsvccZNg7j44bIL/+rNLP0e+70HxzbS67f4vUXHkOdA5Xu5FdYxlegb
+         o9SYgd7W1epIDogWkpbLTzQihLn16sHKSZAXrU9AjO4LQV47d63ABNKdaa+4pNhBMVhG
+         Rd9wRbiao8kN0AZQX6BTdOQxwrfmAhr00DTDe3ra1H410N6socCrzWGi30Sz09qMVa42
+         pJp1lr6X8SfBhq+IueeYNKSdxR/3/E5Z60dCUmMUcUZet97rlLEZYSY+kiS1oHAkmJky
+         zDLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=INGl8EC4lutAaxK7oytOrepZPv62csf4zgf/Dha7g08=;
+        b=QC6JDHiCXsNO33mdMr6X+iMnIthkSxV7WAus92zDJuntW2Rhl3tZNvahZJFMdGXxPx
+         K4z0xwFGEDOPBeOrC6OQxZ9XS8bu3AuSmEsVVWlEjtjXWDfJB9RA/tEU0+JGFKMuNObz
+         qqhxqDH8UZY2MzKCt4JPaKrCAjN9AWgqkMkpPJLC27nqp7jsBMc7RhjcSBIuXuClpQJI
+         KK1AYXAudTR1L2L9X6hTo/0Cv/d2yz955r1azNEa1HycfYRIZof33Sxj4ZDUZ7zyoNa9
+         jzyS5VZbmdSALwzmvUerieoVjn4BS628E7qmgattJ/ETA9enrqH6csa+QCQ55xRwcsZJ
+         oFjQ==
+X-Gm-Message-State: AFqh2kr0JMWwQx6fC1k+Uh+L3X838QjmjJ4/bEl0XI9CFheDO1HE9XSf
+        VK1gJXvEylG6qXl19jdWXfXQxw==
+X-Google-Smtp-Source: AMrXdXvAhYJCpYRkWDTIDmckimmTS2x6TV9+jF5DsOMDB10ivmTBIrIyYglIf0/N5/eHOWrkh4XH1g==
+X-Received: by 2002:a05:6512:3ca9:b0:4b5:61c5:8927 with SMTP id h41-20020a0565123ca900b004b561c58927mr14359517lfv.42.1672788923444;
+        Tue, 03 Jan 2023 15:35:23 -0800 (PST)
+Received: from Fecusia.local (c-05d8225c.014-348-6c756e10.bbcust.telenor.se. [92.34.216.5])
+        by smtp.gmail.com with ESMTPSA id b11-20020a056512070b00b004a45edc1de2sm4939801lfs.239.2023.01.03.15.35.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Jan 2023 15:35:22 -0800 (PST)
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 04 Jan 2023 00:35:17 +0100
+Subject: [PATCH 1/7] dt-bindings: usb: Correct and extend FOTG210 schema
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWHPR1001MB2351:EE_|BY5PR10MB4356:EE_
-X-MS-Office365-Filtering-Correlation-Id: 148d8f9b-91c0-4947-b30d-08daeddd7388
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: UOf78SkyLcDEpEeOB6aR3phFmGuzAFdQX1Afc0wqPlunJcxe9jZZdg9MuvC6kIEk447GXdy47OHf79tzO96qQ2Pk3j1R4JgvIcXAM0FIvA+iI0CRgk9EPZS/Dsc4T6RydVJi0f0V5U6go3XMc9Pw9nwmVWIMx6fLjRrpFC43w/0EIhTC6fyJFpQIMrndxfeBlZa/OT0X/6e99FH/Fip5l4rcAiiLwpiKBdpBEKTXQkC1xEMzvoMgjRXbOtcP2/T9WTB1uAuVWxqaWyRCE0xkZs+y9IuDZGwrypyzXvXT2cyFV0ug6BaQth86G+Gzza/95ug9cDFPeo4gKMSIrOvvAqvGOdfvicJTMEJxVaYKpx11MI66mgJDp6X2gnid3Ibf3zmDnD1RTSzomkoG2BhTxCnNEiQkXyUdYhtr5cO2X1lLDDz8t4jp0mg5ZHtGYzSMDv/nR2csuX5XFRWdwnECAUJvmr9RwgMtlyC9gNlD55ryD1+7vuyhEIpJfc7XKpv+3YVKi9XUXXlVXfJpef7XO31OJEmvO7DuCyFcrJUzXzzVVjs1SasjQh70kY/JH8tFVmVkooh041Llf1jG8lefA4O1DI93jjh6fb80zjSo7einhPvaKpeq9fJF/RCeiDWoetP+BdQEQoZWcHRnwirYPJo2rR+TGN1emCNjyBLo4Vm1ZQbvm29Bw4lMg0pb/zmc
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2351.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(7916004)(39830400003)(366004)(396003)(376002)(136003)(346002)(451199015)(6666004)(66946007)(2906002)(8676002)(4326008)(41300700001)(33716001)(66556008)(66476007)(6506007)(44832011)(316002)(86362001)(8936002)(6486002)(38100700002)(478600001)(186003)(9686003)(6512007)(6916009)(4744005)(5660300002)(26005)(54906003)(7416002)(7406005)(22166009);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?7xqNw/bPrvuK2uYkpmoGOfJrwGY1DAZrqTuTUmR+oWyYj1UdKKCrYXYn2O/x?=
- =?us-ascii?Q?IBfaFLaRn9PvHoj/fXUX+89ULt3zWorukrqpETBEX2TMikwgXqGo8QOl2ooU?=
- =?us-ascii?Q?gGGjF0+XwMI2f13WBsI2jPH17KYYWwfhrpba1FLBueJNOVJnifINVFBJ9rxF?=
- =?us-ascii?Q?PVZcw2CgxoER+XRi3zE0Ujjz+7Pe5xmYCtVgkimjQ7cYfyBGOp1MSBh7C2WX?=
- =?us-ascii?Q?TvCz/Y8OUqoGOHobJaFw6MbYOvLCZJ46uJI4Von7BqESW2yQmA0wSR+2qP2H?=
- =?us-ascii?Q?x8WwY52udxdl/95KG7Kgx6Vmlk240CJe+UL/5NUp1a7ovIglOoMgCojwhLEH?=
- =?us-ascii?Q?+tL5bLnNyB+I+UCs1MT9SGVTTn+3C5A/x/QNdjTF/IMY3ZopBC3InyqFUI9U?=
- =?us-ascii?Q?G60hx7KzGUrZGTET6FM7OGpI7IVcL1J/5p8uc1BepBwmZde0LYuCkQqW9EGg?=
- =?us-ascii?Q?BSvjAVCwjHLoVmbjVRylVPwZ1A9tFo3JWkRo9VzGyvdZ9mFEzIoi+ec9IVXx?=
- =?us-ascii?Q?HkY12gYBYa+4mya3nBvRJc1ukmIYho01FkbzxGMtYocseTWJ5SVMpJ6InPwb?=
- =?us-ascii?Q?I/xGcHerIJMkTX6yUSda+dIdxIjtjnfJm1gn8VZVYfJmIIa6VhIDPcNFtZfO?=
- =?us-ascii?Q?FdtTERQWAKe6vC6C/plJTJvVege5M/5MGPCkTFHLYip5RWE2LfI/ULE3p64w?=
- =?us-ascii?Q?wXnIdhQ6yR7D6M6WW8+cl2jbuZBZKXVH5bSQeSbhLl8c/8D/8rkk/Qhgjwsg?=
- =?us-ascii?Q?4umOWcAhB1dX37V9Npg8SXSqtjnVIhW3cyhMfYAh3Ucq+oN6jRyRG2qeDkFq?=
- =?us-ascii?Q?OwFbJjDrolJgPqgU21AB9labP/3iAFg9jj0vIhLp+nFWiWkpKKE53GLaOkl7?=
- =?us-ascii?Q?JfvvTOwBJHG/mYr107H06iOjeIfgux0gvdtLwx08Rltiaegx9tC6W/FhqQ1r?=
- =?us-ascii?Q?kGorov4liUREe6RwHXH5UH10RUz1TctPqAdMcy4mY4pZ/Q+ZBpzVdxslBpYK?=
- =?us-ascii?Q?zK9/KBGXiwyhUDAITa+Bdk4wI04TERRJIBGDAbSkAXVDAeLsI9qibRDwVqAB?=
- =?us-ascii?Q?zzqAHVFvMHcr3q5qy6GDYvmdapRPZPdf20wkNdLcTXpJHHTajTD1skAy/Ntx?=
- =?us-ascii?Q?sKuenxDwtoyUIi/nHqUpDyOMpGpmgzxTVpIBdBexvRZrrXXjF/TlgUy60eNK?=
- =?us-ascii?Q?kVuOwYyTRJjTPNpv31YVd56sjxPA/HTXA6CyLFXzOIDFo+bVQundg/s0FgJP?=
- =?us-ascii?Q?2z4IFAJwAxLKEMCpZKrFKCRMbVkWaD8q5JMqBDgTQfpslW3HuIVQN/la34Gk?=
- =?us-ascii?Q?/MnWI+FMfbNjjb6rv7Ik4piRv1MP77V4R/u6jKgUqiDek+eETgEiLWkKYtmy?=
- =?us-ascii?Q?A3+JfCURIxrwe3Ssp6AKzpZoRGv02xlwQTZ4NDo1CYdC8BXKjmBZvmqtBNMn?=
- =?us-ascii?Q?h4WkDNilvLbGsTykIxaalmQLmVXuOR5k1ZtY99RdSgvTCUBiQ0eU8wNlZgIp?=
- =?us-ascii?Q?6D09gB2lGwgrlqaeCt5Yu8kAh/jUOFZu0DKx0k5mKT8YyePtb2bSh+NKReiy?=
- =?us-ascii?Q?1y/71WmM6YHVyeeoSpuu1r7polC1JuVhzjE5jMmxFEHkv0U/fZBtb2q4WaJo?=
- =?us-ascii?Q?Og=3D=3D?=
-X-OriginatorOrg: in-advantage.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 148d8f9b-91c0-4947-b30d-08daeddd7388
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2351.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jan 2023 22:54:20.9959
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: E9fChPc4SDfJhXGyYqvmF8F6hACVxb1hnZMP8Oa2d4e/L3zT/Yrgb7otEQmxwwUptwe4+HkkjMWvVhqlVOiuRNUoDSrfNZm9QJSTM3gQyU8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR10MB4356
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20230103-gemini-fotg210-usb-v1-1-f2670cb4a492@linaro.org>
+References: <20230103-gemini-fotg210-usb-v1-0-f2670cb4a492@linaro.org>
+In-Reply-To: <20230103-gemini-fotg210-usb-v1-0-f2670cb4a492@linaro.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Fabian Vogt <fabian@ritter-vogt.de>,
+        Linus Walleij <linus.walleij@linaro.org>
+X-Mailer: b4 0.11.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 03, 2023 at 04:25:31PM -0600, Rob Herring wrote:
-> 
-> On Mon, 02 Jan 2023 21:13:52 -0800, Colin Foster wrote:
-> 
-> Please add Acked-by/Reviewed-by tags when posting new versions. However,
-> there's no need to repost patches *only* to add the tags. The upstream
-> maintainer will do that for acks received on the version they apply.
-> 
-> If a tag was not added on purpose, please state why and what changed.
+It turns out that this IP block exists in at least two
+incarnations: FOTG200 and FOTG210. The one in the Gemini
+is FOTG200, so add the variants and rectify the binding
+for Gemini.
 
-Genuine mistake - my apologies. I see that I missed both yours and
-Vladimir's on this patch. I'll be sure to add all of them should there
-be another round.
+This affects things such as the placement of certain
+registers.
 
-> 
-> Missing tags:
-> 
-> Acked-by: Rob Herring <robh@kernel.org>
-> 
-> 
+It remains to be seen how similar this block is to the
+third USB block from Faraday, FUSB220.
+
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ Documentation/devicetree/bindings/usb/faraday,fotg210.yaml | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/usb/faraday,fotg210.yaml b/Documentation/devicetree/bindings/usb/faraday,fotg210.yaml
+index 84b3b69256b1..12d4fc742f20 100644
+--- a/Documentation/devicetree/bindings/usb/faraday,fotg210.yaml
++++ b/Documentation/devicetree/bindings/usb/faraday,fotg210.yaml
+@@ -5,7 +5,7 @@
+ $id: http://devicetree.org/schemas/usb/faraday,fotg210.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Faraday Technology FOTG210 HS OTG USB 2.0 controller
++title: Faraday Technology FOTG200 series HS OTG USB 2.0 controller Bindings
+ 
+ maintainers:
+   - Linus Walleij <linus.walleij@linaro.org>
+@@ -17,10 +17,11 @@ allOf:
+ properties:
+   compatible:
+     oneOf:
++      - const: faraday,fotg200
+       - const: faraday,fotg210
+       - items:
+           - const: cortina,gemini-usb
+-          - const: faraday,fotg210
++          - const: faraday,fotg200
+ 
+   reg:
+     maxItems: 1
+@@ -66,7 +67,7 @@ examples:
+     #include <dt-bindings/clock/cortina,gemini-clock.h>
+     #include <dt-bindings/reset/cortina,gemini-reset.h>
+     usb0: usb@68000000 {
+-        compatible = "cortina,gemini-usb", "faraday,fotg210";
++        compatible = "cortina,gemini-usb", "faraday,fotg200";
+         reg = <0x68000000 0x1000>;
+         interrupts = <10 IRQ_TYPE_LEVEL_HIGH>;
+         resets = <&syscon GEMINI_RESET_USB0>;
+
+-- 
+2.38.1
