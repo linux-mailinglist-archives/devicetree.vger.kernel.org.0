@@ -2,129 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC26665C36C
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 16:59:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5983A65C37A
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 17:02:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233646AbjACP6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 10:58:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35164 "EHLO
+        id S238065AbjACQC4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 11:02:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238087AbjACP6u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 10:58:50 -0500
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 266B012080;
-        Tue,  3 Jan 2023 07:58:48 -0800 (PST)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 7BBE6E0004;
-        Tue,  3 Jan 2023 15:58:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1672761527;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=1PDiBU/GoIjoQMxtR9ofH4gDtLhcbGK+av0qJpmmRtU=;
-        b=gTYXjbLwQaFvz/pw/mVQUDUO3klTeU+FeYUnQeYPhNQuIZPFJoI6HJoWWmt6+U469Af/pF
-        37qKV++t0/4lnz6RieVmejbkBg4EZ+n/TP69VIUGFFvaktT91ueSF8QQEbo2u02Sb3Udhx
-        0AO9e6KUlzXudWYK9yjKSp7vWzzVN+O0R/eJAygzrwVt0V/yWWAt+vJwBAzMv0tQpxypNh
-        o3sbTwHcQUh5nfdRPpSE0csEjIlj+6xQkVmItq+GLf1DO8knrTJaY/Y+/axoaOhciZutaJ
-        nrk5LvLK3fWgKiIuWQR/zqORiwqwedREHoRhjFCix5R036aGBEkuns1egglDqg==
-Date:   Tue, 3 Jan 2023 16:58:42 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Michael Walle <michael@walle.cc>, Jonathan Corbet <corbet@lwn.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Dan Carpenter <error27@gmail.com>
-Subject: Re: [PATCH v5 00/21] nvmem: core: introduce NVMEM layouts
-Message-ID: <20230103165842.2f693bfa@xps-13>
-In-Reply-To: <cf00e248-1f2c-d4ce-868d-9f77b2c9b76f@linaro.org>
-References: <20221206200740.3567551-1-michael@walle.cc>
-        <20230103163902.218cb5c7@xps-13>
-        <cf00e248-1f2c-d4ce-868d-9f77b2c9b76f@linaro.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S238055AbjACQCw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 11:02:52 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A5C61261B
+        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 08:02:51 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id j17so36749411lfr.3
+        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 08:02:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cgigOp/BDnrhnzW3nlR0k0WEcItybZNjdktVTzoHZ7Y=;
+        b=hCPyFhjTGk42B94xe/jf0susiJ0LVpNhHCKPZTj1SHvwINGkiiZ+4FNEa0Fndu4GCx
+         NOetwcg4Izq20P+TQPHCm2BkuikGerqwSFDxOXVc0GlrOQK1oDqarf71qhtKQd0Asqct
+         mx8yPXC9MpgjphJ1+ipszpWOzqOYg9D+F+qGOUF5mRBet0ebhbdbMep88y/wDlN5bl5p
+         AibMpp9TsHXVx5hap0UPIdrubMCN8aPNbtErv4r4TY2MOpnw1MFzOLxwgloo2onilDP5
+         WRsIYkqsZQ3qR175a68OdIW6TKmx0D8IfUV9xqGrYqUVhhA9Gaa8kaWWPjPSil8JamL9
+         7lTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cgigOp/BDnrhnzW3nlR0k0WEcItybZNjdktVTzoHZ7Y=;
+        b=DR+vLWnX+5pnE1y9veZFNgdBrhrzLFJleaPn0ZVnK0ZP5gJ9Ljnaoy/ZFNUxUAB3cT
+         zmu75S40+IGV3Rf4nvDArmXPjuNJ54Ros27PDTW/u3fGxzTdXW1YkjBMfq45wZEfhorU
+         LnIoWYEpD5akvM4sD0iMChbe+U0Xd0ZzXU4KZzEQttSr1W+gd3KN4zjBGp0LlzhwWZgS
+         JIijmYyR/Lzq6wwPZyxCS22Hyg53vmAXR98QkBVWuVzSeRrdhwJCOOtEvnXPMwbXpJHb
+         OBch0/7UdBQPz+FyqD9M7XbToA0wM/csAB8UGPnp8Fs71k42DL530xskbo4blNXQRScZ
+         4Dzw==
+X-Gm-Message-State: AFqh2kqLOTT4Oz36cCyH6E11i7J7wg+rgLaBWCyWrtIeYa/883gK5vJm
+        J6a6PRgta+vSfhBsPW/XZhHaGQ==
+X-Google-Smtp-Source: AMrXdXt/Wmnjo9s+K2h+jBp08gvIIRAE5SbDp07zD48J8EnmzDnC2FUXDM03Qc5VR76CW0f5zIIPsQ==
+X-Received: by 2002:a05:6512:2804:b0:4c0:91d0:e7ad with SMTP id cf4-20020a056512280400b004c091d0e7admr16266370lfb.26.1672761769107;
+        Tue, 03 Jan 2023 08:02:49 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id p16-20020a2eb110000000b002800493d63asm12556ljl.6.2023.01.03.08.02.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Jan 2023 08:02:48 -0800 (PST)
+Message-ID: <459fd14d-e0e0-0878-cb37-479c8d02e487@linaro.org>
+Date:   Tue, 3 Jan 2023 17:02:47 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2 2/2] Documentation: add Marvell MHU driver bindings
+Content-Language: en-US
+To:     Wojciech Zmuda <wzmuda@marvell.com>, linux-kernel@vger.kernel.org
+Cc:     jassisinghbrar@gmail.com, robh+dt@kernel.org, sgoutham@marvell.com,
+        devicetree@vger.kernel.org,
+        Wojciech Bartczak <wbartczak@marvell.com>
+References: <20230103155612.6217-1-wzmuda@marvell.com>
+ <20230103155612.6217-3-wzmuda@marvell.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230103155612.6217-3-wzmuda@marvell.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Srinivas,
+On 03/01/2023 16:56, Wojciech Zmuda wrote:
+> From: Wojciech Bartczak <wbartczak@marvell.com>
+> 
+> Marvell Message Handling Unit is a mailbox controller present in
+> Marvell OcteonTx and OcteonTX2 SoC family.
 
-srinivas.kandagatla@linaro.org wrote on Tue, 3 Jan 2023 15:51:31 +0000:
+1. Use subject prefixes matching the subsystem (which you can get for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching).
 
-> Hi Miquel,
->=20
-> On 03/01/2023 15:39, Miquel Raynal wrote:
-> > Hi Srinivas,
-> >=20
-> > michael@walle.cc wrote on Tue,  6 Dec 2022 21:07:19 +0100:
-> >  =20
-> >> This is now the third attempt to fetch the MAC addresses from the VPD
-> >> for the Kontron sl28 boards. Previous discussions can be found here:
-> >> https://lore.kernel.org/lkml/20211228142549.1275412-1-michael@walle.cc/
-> >>
-> >>
-> >> NVMEM cells are typically added by board code or by the devicetree. But
-> >> as the cells get more complex, there is (valid) push back from the
-> >> devicetree maintainers to not put that handling in the devicetree.
-> >>
-> >> Therefore, introduce NVMEM layouts. They operate on the NVMEM device a=
-nd
-> >> can add cells during runtime. That way it is possible to add more comp=
-lex
-> >> cells than it is possible right now with the offset/length/bits
-> >> description in the device tree. For example, you can have post process=
-ing
-> >> for individual cells (think of endian swapping, or ethernet offset
-> >> handling).
-> >>
-> >> The imx-ocotp driver is the only user of the global post processing ho=
-ok,
-> >> convert it to nvmem layouts and drop the global post pocessing hook.
-> >>
-> >> For now, the layouts are selected by the device tree. But the idea is
-> >> that also board files or other drivers could set a layout. Although no
-> >> code for that exists yet.
-> >>
-> >> Thanks to Miquel, the device tree bindings are already approved and me=
-rged.
-> >>
-> >> NVMEM layouts as modules?
-> >> While possible in principle, it doesn't make any sense because the NVM=
-EM
-> >> core can't be compiled as a module. The layouts needs to be available =
-at
-> >> probe time. (That is also the reason why they get registered with
-> >> subsys_initcall().) So if the NVMEM core would be a module, the layouts
-> >> could be modules, too. =20
-> >=20
-> > I believe this series still applies even though -rc1 (and -rc2) are out
-> > now, may we know if you consider merging it anytime soon or if there
-> > are still discrepancies in the implementation you would like to
-> > discuss? Otherwise I would really like to see this laying in -next a
-> > few weeks before being sent out to Linus, just in case. =20
->=20
-> Thanks for the work!
->=20
-> Lets get some testing in -next.
->=20
->=20
-> Applied now,
+2. Subject: drop second, redundant "bindings".
 
-Excellent! Thanks a lot for the quick answer and thanks for applying,
-let's see how it behaves.
+3. Subject: drop "driver", unless your piece of hardware is called driver?
 
-Thanks,
-Miqu=C3=A8l
+
+> 
+> Signed-off-by: Wojciech Bartczak <wbartczak@marvell.com>
+> Signed-off-by: Wojciech Zmuda <wzmuda@marvell.com>
+> ---
+>  .../bindings/mailbox/marvell,mvl-mhu.yml      | 67 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 68 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/marvell,mvl-mhu.yml
+> 
+> diff --git a/Documentation/devicetree/bindings/mailbox/marvell,mvl-mhu.yml b/Documentation/devicetree/bindings/mailbox/marvell,mvl-mhu.yml
+> new file mode 100644
+> index 000000000000..e06a17eab0f9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mailbox/marvell,mvl-mhu.yml
+
+Filenames should be based on compatibles, e.g. be the same.
+
+> @@ -0,0 +1,67 @@
+> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mailbox/marvell,mvl-mhu.yml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Marvell Message Handling Unit driver
+
+Drop driver
+
+> +
+> +maintainers:
+> +  - Sujeet Baranwal <sbaranwal@marvell.com>
+> +  - Sunil Goutham <sgoutham@marvell.com>
+> +  - Wojciech Bartczak <wbartczak@marvell.com>
+> +
+> +description:
+> +  The Control-Processors Cluster (CPC) provides Arm-platform specification
+> +  entities for managing the system. On of the CPC processors is the System
+
+On->One?
+
+> +  Control Processor (SCP). The SCP is responsible, among others, for booting
+> +  the chip, clock and power initialization, controlling power consumption
+> +  through DVFS, monitoring temperature sensors and controlling AVS. The SCP,
+> +  as each XCP, contains mailboxes for software-to-software communications.
+> +  Mailbox writes cause an interrupt to the local XCP core or to the AP.
+> +  This driver exposes AP-SCP Message Handling Unit to the system, providing
+> +  the mailbox communication mechanism to the system, with the intention
+> +  of plugging into the SCMI framework. It is designed to work with Marvell
+> +  OcteonTX and OcteonTX2-based platforms.
+> +  Mailbox has no other usage than SCMI communication. In case of
+> +  configurations running without SCMI support it should be disabled.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: marvell,mbox
+
+This is too generic. Are you sure that all Marvel mailboxes - past,
+current and future - will be exactly same as this one. No differences
+for next 100 years? IOW, compatible has to be specific to hardware (SoC,
+device etc).
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#mbox-cells":
+> +    description: Index of the channel
+> +    const: 1
+
+No interrupts?
+
+> +
+> +required:
+> +  - "#mbox-cells"
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +		/ {
+
+Use 4 spaces for example indentation.
+
+> +			mailbox: mailbox@28,0 {
+> +				compatible = "marvell,mbox";
+> +				#mbox-cells = <1>;
+> +				reg = <0xE000 0 0 0 0>;/*  DEVFN = 0xE0 (1C:0) */
+
+1. reg is a second property, after compatible.
+2. unit address is wrong.
+3. lowercase hex.
+4. Two spaces after /* but missing space before.
+
+> +			};
+> +
+> +			/* ... */
+> +
+> +			firmware {
+> +				scmi {
+> +					compatible = "arm,scmi";
+> +					mboxes = <&mailbox 0>;
+
+Drop entire firmware example, unrelated.
+
+> +					mbox-names = "scp_ap";
+> +					/* ... */
+
+Best regards,
+Krzysztof
+
