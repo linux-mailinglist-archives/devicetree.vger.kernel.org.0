@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D32165C776
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 20:27:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD6C765C774
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 20:27:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238863AbjACT0U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 14:26:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59828 "EHLO
+        id S238701AbjACT0T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 14:26:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239039AbjACT0A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 14:26:00 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 839DF15F27
-        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 11:24:11 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id ay2-20020a05600c1e0200b003d22e3e796dso24358143wmb.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 11:24:11 -0800 (PST)
+        with ESMTP id S239059AbjACT0B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 14:26:01 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A146215F2E
+        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 11:24:12 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id i17-20020a05600c355100b003d99434b1cfso14126170wmq.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 11:24:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=AC7xaypPibvzJOcPS3LFlREzrhHc51KAqqlF1uf2uTY=;
-        b=d7ajR2Alr5X2wqmACbKstggnV32tdaqHcARBUg1uBx/Q+YRk9qvReJGa8dB3RDnTvc
-         4G3AcAQORXUyI5VO2xaqJtoQaYwOfVmz+b0kZHvMMfLivgWcMkIQBeemqCHLt5rHf4h+
-         OwGj/pMlL8f6sQPDjwbW8dpDj+4QYh5A33bn0yHudEuSuAW1CH41shXcr07Ua6R1Lp1T
-         XKO2L90Opf0bN5PNby8i3xPoOchmYo6YlsuVAN34aJ1u9qeH9323ttiq0OXmkGtZmRgi
-         Y1DV1z5B5P0041bMRSYIHFAeKLfPWQWNBQaNM7dGKQvu4jIS34kWz8q0w3B4UXImzq3g
-         tb/w==
+        bh=DaSJH6qwzBFLaleOV9/RDtj1DHcWd7lA30T3AWhdsIk=;
+        b=FQhvuOHBlauFAqrbw32tVa3t4AjkSwzq9fnMkCTbgzd5mMQmlMUVfydcVqTBuaETxv
+         69bIXwH03MOOwddsGlbKCkjZfIA+V5K7OXscxkDtnPyrHVWzXivnOsKBPcOqARe4JPF3
+         ysIH2rSIFhSStel3zLoMAo60KdOURs/D2IhL0g/uhkuttYRHOADPXlis0XD/AZc2Y6yn
+         liqxr3FY2Ht80Iodd9Re1TqI7z0q1tfECmfi2IaWxPZ698XorJU2UydFtUhEgjsxFGrd
+         Urc9sChOrTf3+b4UeTsj5Oz0s4n8m2afDDpmu4E2o66qr5Xoy0wAFh4TrTtBBZOJYagA
+         uGfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=AC7xaypPibvzJOcPS3LFlREzrhHc51KAqqlF1uf2uTY=;
-        b=3UFZ0puOQ4ZBMWWv9NO7UnVtaNhVFmWt0ETLMhIPDCYeqgBq8NczYXH/2YFRIlLOf2
-         nDQ43PbVGoRMkzlgOGa3O373no224fU5v6vwCHmJeJB1YR59dggOCUcb2CIg9Zx3dfuH
-         Tw7ua1G6ffoZb6j9oQy52N4OJ7uQ1FT5iaZwty7Viq4XOCUMhDEhLG3hfoHVPpIpw3xl
-         HEDHTa02ZCawLGz+9s2/GOpbgF5HNoabeOW5HgSUO8a7ggQmv58sSm0NSSkbPDXUfJ72
-         fGYmwhJM/M28nataaYDNF95knWPEwB4BwjUfjGVF4p7wY1InaJmgUSxjiJLEhuvlvZTa
-         /OTg==
-X-Gm-Message-State: AFqh2krA/9dgot/Dt4gCI4EwgQEy3CFDwzI/rsvo6wF6Cufg2dcTwoS3
-        SD2RwG+XcPlaLieTUqhG0BDwNw==
-X-Google-Smtp-Source: AMrXdXt7f1MuH6TCbsWh8bb+QHK2GsGaVmkzehB0jLTRKEoWCuIWrMXD/VQ2jAaDLdVcBxzuwRKaAQ==
-X-Received: by 2002:a7b:c449:0:b0:3d1:e1f4:21dc with SMTP id l9-20020a7bc449000000b003d1e1f421dcmr32261409wmi.14.1672773850108;
-        Tue, 03 Jan 2023 11:24:10 -0800 (PST)
+        bh=DaSJH6qwzBFLaleOV9/RDtj1DHcWd7lA30T3AWhdsIk=;
+        b=XnfcMPO978nEzxFa4cfg7LRQ++trANBiC8k0f3UPTWbtvL2suREVD+1NNECVAsvdad
+         2MYA/im2lCeOD88eClrDywqPbvl8WxDuhC/yVKIoOb2uXSJL/AJq5Bwbu+uFm6pJTc5Q
+         DIhYlD9JaEHfborug8hYTrMjVIwgiuCz7WXK9KIuqyk/YsQsZXl76eoDhP8ioAotGY5E
+         7pKL8ioRc28eOBGIG8xCOuuQlRK+NH2p7gDJhb9hnZT+ZM4xHnAlM0NwoLyY6aKx3QQX
+         V/7JzQgrNxZQX9yn+FT04/Qecu+os4/DHE35v3VRbWeWBWBzyH/Gglramj5TLjLPRL0c
+         ss7Q==
+X-Gm-Message-State: AFqh2krUfdkRgMMVL2ukKnjzYdvkbFKxpY6dJRDG9ThuBYoce/+fAv6N
+        NGUdGTnnjwdfPdj4LcfIu/l3Nw==
+X-Google-Smtp-Source: AMrXdXsHtJIvXP8sGI8IG18GWiNokmeyBijOoocrUpPlsePdq6TvsYyqkjVVcgCZQAll5jbdmVTcXQ==
+X-Received: by 2002:a05:600c:600a:b0:3d1:ed41:57c0 with SMTP id az10-20020a05600c600a00b003d1ed4157c0mr35322859wmb.30.1672773851282;
+        Tue, 03 Jan 2023 11:24:11 -0800 (PST)
 Received: from hackbox.lan ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id l42-20020a05600c1d2a00b003cfbbd54178sm70803660wms.2.2023.01.03.11.24.09
+        by smtp.gmail.com with ESMTPSA id l42-20020a05600c1d2a00b003cfbbd54178sm70803660wms.2.2023.01.03.11.24.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Jan 2023 11:24:09 -0800 (PST)
+        Tue, 03 Jan 2023 11:24:10 -0800 (PST)
 From:   Abel Vesa <abel.vesa@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -58,11 +58,10 @@ To:     Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Taniya Das <tdas@codeaurora.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v7 2/4] dt-bindings: clock: Add RPMHCC for SM8550
-Date:   Tue,  3 Jan 2023 21:21:56 +0200
-Message-Id: <20230103192158.1155197-3-abel.vesa@linaro.org>
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: [PATCH v7 3/4] clk: qcom: rpmh: Add support for SM8550 rpmh clocks
+Date:   Tue,  3 Jan 2023 21:21:57 +0200
+Message-Id: <20230103192158.1155197-4-abel.vesa@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230103192158.1155197-1-abel.vesa@linaro.org>
 References: <20230103192158.1155197-1-abel.vesa@linaro.org>
@@ -77,26 +76,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings and update documentation for clock rpmh driver on SM8550.
+Adds the RPMH clocks present in SM8550 SoC.
 
 Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- Documentation/devicetree/bindings/clock/qcom,rpmhcc.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/clk/qcom/clk-rpmh.c | 36 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 36 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,rpmhcc.yaml b/Documentation/devicetree/bindings/clock/qcom,rpmhcc.yaml
-index cf25ba0419e2..6d7d699aaff9 100644
---- a/Documentation/devicetree/bindings/clock/qcom,rpmhcc.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,rpmhcc.yaml
-@@ -31,6 +31,7 @@ properties:
-       - qcom,sm8250-rpmh-clk
-       - qcom,sm8350-rpmh-clk
-       - qcom,sm8450-rpmh-clk
-+      - qcom,sm8550-rpmh-clk
+diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
+index 586a810c682c..7db5a53d73f0 100644
+--- a/drivers/clk/qcom/clk-rpmh.c
++++ b/drivers/clk/qcom/clk-rpmh.c
+@@ -366,6 +366,16 @@ DEFINE_CLK_RPMH_VRM(rf_clk2, _d, "rfclkd2", 1);
+ DEFINE_CLK_RPMH_VRM(rf_clk3, _d, "rfclkd3", 1);
+ DEFINE_CLK_RPMH_VRM(rf_clk4, _d, "rfclkd4", 1);
  
-   clocks:
-     maxItems: 1
++DEFINE_CLK_RPMH_VRM(clk1, _a1, "clka1", 1);
++DEFINE_CLK_RPMH_VRM(clk2, _a1, "clka2", 1);
++DEFINE_CLK_RPMH_VRM(clk3, _a1, "clka3", 1);
++DEFINE_CLK_RPMH_VRM(clk4, _a1, "clka4", 1);
++DEFINE_CLK_RPMH_VRM(clk5, _a1, "clka5", 1);
++
++DEFINE_CLK_RPMH_VRM(clk6, _a2, "clka6", 2);
++DEFINE_CLK_RPMH_VRM(clk7, _a2, "clka7", 2);
++DEFINE_CLK_RPMH_VRM(clk8, _a2, "clka8", 2);
++
+ DEFINE_CLK_RPMH_VRM(div_clk1, _div2, "divclka1", 2);
+ 
+ DEFINE_CLK_RPMH_BCM(ce, "CE0");
+@@ -576,6 +586,31 @@ static const struct clk_rpmh_desc clk_rpmh_sm8450 = {
+ 	.num_clks = ARRAY_SIZE(sm8450_rpmh_clocks),
+ };
+ 
++static struct clk_hw *sm8550_rpmh_clocks[] = {
++	[RPMH_CXO_CLK]		= &clk_rpmh_bi_tcxo_div2.hw,
++	[RPMH_CXO_CLK_A]	= &clk_rpmh_bi_tcxo_div2_ao.hw,
++	[RPMH_LN_BB_CLK1]	= &clk_rpmh_clk6_a2.hw,
++	[RPMH_LN_BB_CLK1_A]	= &clk_rpmh_clk6_a2_ao.hw,
++	[RPMH_LN_BB_CLK2]	= &clk_rpmh_clk7_a2.hw,
++	[RPMH_LN_BB_CLK2_A]	= &clk_rpmh_clk7_a2_ao.hw,
++	[RPMH_LN_BB_CLK3]	= &clk_rpmh_clk8_a2.hw,
++	[RPMH_LN_BB_CLK3_A]	= &clk_rpmh_clk8_a2_ao.hw,
++	[RPMH_RF_CLK1]		= &clk_rpmh_clk1_a1.hw,
++	[RPMH_RF_CLK1_A]	= &clk_rpmh_clk1_a1_ao.hw,
++	[RPMH_RF_CLK2]		= &clk_rpmh_clk2_a1.hw,
++	[RPMH_RF_CLK2_A]	= &clk_rpmh_clk2_a1_ao.hw,
++	[RPMH_RF_CLK3]		= &clk_rpmh_clk3_a1.hw,
++	[RPMH_RF_CLK3_A]	= &clk_rpmh_clk3_a1_ao.hw,
++	[RPMH_RF_CLK4]		= &clk_rpmh_clk4_a1.hw,
++	[RPMH_RF_CLK4_A]	= &clk_rpmh_clk4_a1_ao.hw,
++	[RPMH_IPA_CLK]		= &clk_rpmh_ipa.hw,
++};
++
++static const struct clk_rpmh_desc clk_rpmh_sm8550 = {
++	.clks = sm8550_rpmh_clocks,
++	.num_clks = ARRAY_SIZE(sm8550_rpmh_clocks),
++};
++
+ static struct clk_hw *sc7280_rpmh_clocks[] = {
+ 	[RPMH_CXO_CLK]      = &clk_rpmh_bi_tcxo_div4.hw,
+ 	[RPMH_CXO_CLK_A]    = &clk_rpmh_bi_tcxo_div4_ao.hw,
+@@ -742,6 +777,7 @@ static const struct of_device_id clk_rpmh_match_table[] = {
+ 	{ .compatible = "qcom,sm8250-rpmh-clk", .data = &clk_rpmh_sm8250},
+ 	{ .compatible = "qcom,sm8350-rpmh-clk", .data = &clk_rpmh_sm8350},
+ 	{ .compatible = "qcom,sm8450-rpmh-clk", .data = &clk_rpmh_sm8450},
++	{ .compatible = "qcom,sm8550-rpmh-clk", .data = &clk_rpmh_sm8550},
+ 	{ .compatible = "qcom,sc7280-rpmh-clk", .data = &clk_rpmh_sc7280},
+ 	{ }
+ };
 -- 
 2.34.1
 
