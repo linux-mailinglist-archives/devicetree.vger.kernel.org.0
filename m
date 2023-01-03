@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DE8A65C1D0
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 15:23:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DA7265C1C4
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 15:23:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237930AbjACOXA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 09:23:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60832 "EHLO
+        id S237939AbjACOXB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 09:23:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238024AbjACOO5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 09:14:57 -0500
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B7991181F
-        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 06:14:55 -0800 (PST)
-Received: by mail-pg1-x536.google.com with SMTP id 141so1874568pgc.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 06:14:55 -0800 (PST)
+        with ESMTP id S238034AbjACOPA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 09:15:00 -0500
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E40A1146B
+        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 06:14:59 -0800 (PST)
+Received: by mail-pf1-x434.google.com with SMTP id k137so15842836pfd.8
+        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 06:14:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=ventanamicro.com; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=195vKHGR+QakKYu5xEQ6bJmupoltT/5fZUVnyxT/JS0=;
-        b=bJSAHr4quvhyCBCcMOee2hkHJrxJWiPH0TiFcKcUx6zEBGO4/nhdtcWPMD2IpjnROZ
-         PyQaBBpPodBYpT6wCf79SU6hylJMOcugKM2f+zbOPerQGKaDKbEszQ7D6MxnOtF3vGlA
-         1he26shoOo4EjTS4RLWUTnA1fBfHOW22CTeVq5KdkAae1LMSCcF3Scf8r/N8kcSM/wwv
-         NFi24qFJPgGSkxRZ8PSTIGReMJCph7ryWq6G2o0vTCZ2siHVbz5/bBErm31yrdTs9gJP
-         49RwUqzcP2HV0/LUgFlWGYuHoLLVdPZdQOvHxtp7W8BFojgkCuRZv/SEhCv+chU9keX9
-         uJ3Q==
+        bh=l9cahVv2TInUZQq8hRVXfSnhUh5CoJndbcse7r+efrI=;
+        b=JvQp+D22PddPJwvOIzWqpbiumCna0mY0Qs6kY5uGOPhttIQbAM07RfSktwA4YPQDfl
+         FRzZBAQa1PKaQ4UOFU8QKXnvXEq9fkmdQVQzIxvWxnMxmq+/PDipRUhO8QEZiF9wTfMU
+         P52esXVKy7v38CPrSEkE68VSvOw77TJgHkFqytND0WptHKP4kcU4dR7iKqTNVgp7n072
+         q5q4uG7oGjmRdcQQogprEohimTvr8TGccFiqF7wBLc6VQPwPG7u0F0S09v1MTCiW9TIC
+         yCy+hpq5AQGc+VyAeDFktNK0ysxTjMzLHXasMDKkUO6XMMAenXgOCUhII9mEC2Pz56ig
+         9D6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=195vKHGR+QakKYu5xEQ6bJmupoltT/5fZUVnyxT/JS0=;
-        b=y2+GIYwHbC9LR24mA0eoGC1pK7elpzZBGffbmuVTtkEU/VgSM6VfuO3rwz2Ln3ZSrg
-         uc58oi31f+8z2PofxTRu+AR5jiLWEjHV5vv8Mw1EjWwz2zzwxFrb71LYka5vJDxwEpBK
-         ZDvv1SXxk+9mUauvMV6dgDYXoIJM+xRT64HShWSV2NxPjlJqcYJUFGOtU1oEOS9E03XS
-         czKX8OHjKNusGHGSBHbWlGj7/pZ7JduE7Q8xSpt8XfS96gQtKkI6eCz0dQtxtlau5vFv
-         xE0P+O7mSHMA9AT6FRFTR39k5pnFIl3VvRSP2UyBXBWb2r6MGd9xg1U4Na3FWYdhYn4C
-         YcVw==
-X-Gm-Message-State: AFqh2koG1Tg+2ii7VtblDb0RWFbucK4VdxPZXI6ukkDzsN5q++1YO7Is
-        jhUOqUJZyi3l33DheXsoBLDetA==
-X-Google-Smtp-Source: AMrXdXuIbWO6Ed/ZM9fAR5Tl3UhF7v8lrhmEy+hu1Tl0m3zImIUpzgFLQe+RTWo7etI4V9mqPpMYaQ==
-X-Received: by 2002:a05:6a00:2164:b0:581:2f69:87ed with SMTP id r4-20020a056a00216400b005812f6987edmr27557486pff.34.1672755294609;
-        Tue, 03 Jan 2023 06:14:54 -0800 (PST)
+        bh=l9cahVv2TInUZQq8hRVXfSnhUh5CoJndbcse7r+efrI=;
+        b=kuLc47Ue40k5leiP8jaX6UJTiaGSPDfvvVNPWvFqJZXSh/12AYxbN8JNrqjlsfne8W
+         A/Oou5aH8T85fWNEIRUIMr98Yd3rfWYKwQxBoHC9Az+Hado3RwASCEXJruT/HCeYmPsz
+         9EEuDJpxW/sd2K2FyjUzd9OBPwlKybGUgitn0s/0831Qtht5LN0D13RhimLt/tQaJ+4d
+         j3pik2/dvJjhcr28g9jY5u9RhZj6Nr9Ie0aRdNEhFIMt8UUC4VrGyNnKwppwjWoWQYKM
+         WoTCaRo5qEcJiA5Dy8Sd9X9mD13IdiPrUKln2MgYY5Vq9s4R8hw2ZY8y9tW8xsudpAkI
+         xGuA==
+X-Gm-Message-State: AFqh2koD6og8F+5pdpc+o5zLhbSURdmISSbQb2sDstgnqTGkYp8LEciS
+        rMFB0lYtWNDIXP14/ccxDRNuCQ==
+X-Google-Smtp-Source: AMrXdXvCOxRJHxTUnBXhg91eXznx4qUxOjJDdB2DRp725FJ6It0JynsEemtk32n/ofi6kbO+KalXBg==
+X-Received: by 2002:a62:cf42:0:b0:581:a004:3f36 with SMTP id b63-20020a62cf42000000b00581a0043f36mr21220945pfg.25.1672755298798;
+        Tue, 03 Jan 2023 06:14:58 -0800 (PST)
 Received: from anup-ubuntu-vm.localdomain ([171.76.85.241])
-        by smtp.gmail.com with ESMTPSA id h1-20020a628301000000b0056be4dbd4besm5936035pfe.111.2023.01.03.06.14.50
+        by smtp.gmail.com with ESMTPSA id h1-20020a628301000000b0056be4dbd4besm5936035pfe.111.2023.01.03.06.14.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Jan 2023 06:14:54 -0800 (PST)
+        Tue, 03 Jan 2023 06:14:58 -0800 (PST)
 From:   Anup Patel <apatel@ventanamicro.com>
 To:     Palmer Dabbelt <palmer@dabbelt.com>,
         Paul Walmsley <paul.walmsley@sifive.com>,
@@ -61,9 +61,9 @@ Cc:     Atish Patra <atishp@atishpatra.org>,
         Anup Patel <anup@brainfault.org>,
         linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, Anup Patel <apatel@ventanamicro.com>
-Subject: [PATCH v2 8/9] RISC-V: Select APLIC and IMSIC drivers
-Date:   Tue,  3 Jan 2023 19:44:08 +0530
-Message-Id: <20230103141409.772298-9-apatel@ventanamicro.com>
+Subject: [PATCH v2 9/9] MAINTAINERS: Add entry for RISC-V AIA drivers
+Date:   Tue,  3 Jan 2023 19:44:09 +0530
+Message-Id: <20230103141409.772298-10-apatel@ventanamicro.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230103141409.772298-1-apatel@ventanamicro.com>
 References: <20230103141409.772298-1-apatel@ventanamicro.com>
@@ -78,28 +78,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The QEMU virt machine supports AIA emulation and we also have
-quite a few RISC-V platforms with AIA support under development
-so let us select APLIC and IMSIC drivers for all RISC-V platforms.
+Add myself as maintainer for RISC-V AIA drivers including the
+RISC-V INTC driver which supports both AIA and non-AIA platforms.
 
 Signed-off-by: Anup Patel <apatel@ventanamicro.com>
 ---
- arch/riscv/Kconfig | 2 ++
- 1 file changed, 2 insertions(+)
+ MAINTAINERS | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-index d153e1cd890b..616a27e43827 100644
---- a/arch/riscv/Kconfig
-+++ b/arch/riscv/Kconfig
-@@ -127,6 +127,8 @@ config RISCV
- 	select OF_IRQ
- 	select PCI_DOMAINS_GENERIC if PCI
- 	select PCI_MSI if PCI
-+	select RISCV_APLIC
-+	select RISCV_IMSIC
- 	select RISCV_INTC
- 	select RISCV_TIMER if RISCV_SBI
- 	select SIFIVE_PLIC
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 7f86d02cb427..c5b8eda0780e 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -17942,6 +17942,18 @@ F:	drivers/perf/riscv_pmu.c
+ F:	drivers/perf/riscv_pmu_legacy.c
+ F:	drivers/perf/riscv_pmu_sbi.c
+ 
++RISC-V AIA DRIVERS
++M:	Anup Patel <anup@brainfault.org>
++L:	linux-riscv@lists.infradead.org
++S:	Maintained
++F:	Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
++F:	Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml
++F:	drivers/irqchip/irq-riscv-aplic.c
++F:	drivers/irqchip/irq-riscv-imsic.c
++F:	drivers/irqchip/irq-riscv-intc.c
++F:	include/linux/irqchip/riscv-aplic.h
++F:	include/linux/irqchip/riscv-imsic.h
++
+ RISC-V ARCHITECTURE
+ M:	Paul Walmsley <paul.walmsley@sifive.com>
+ M:	Palmer Dabbelt <palmer@dabbelt.com>
 -- 
 2.34.1
 
