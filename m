@@ -2,140 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F184165C581
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 18:57:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B884465C5DB
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 19:14:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233189AbjACR5B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 12:57:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51130 "EHLO
+        id S238721AbjACSOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 13:14:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233441AbjACR4s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 12:56:48 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B296D1147B;
-        Tue,  3 Jan 2023 09:56:46 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id j16so12413924edw.11;
-        Tue, 03 Jan 2023 09:56:46 -0800 (PST)
+        with ESMTP id S233595AbjACSN6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 13:13:58 -0500
+X-Greylist: delayed 965 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 03 Jan 2023 10:13:56 PST
+Received: from mailrelay6-1.pub.mailoutpod2-cph3.one.com (mailrelay6-1.pub.mailoutpod2-cph3.one.com [IPv6:2a02:2350:5:405::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5141E8C
+        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 10:13:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=p7a1U2/c7WJv3NEBfJYAOixnmGcKLo0CuycVU47++aQ=;
-        b=aKwytJh4KX20LXxOryZJE0HuJG5HcaCeIxX3tFX5yZz0gEhN3vG/Ugzp3jfNHHAfFZ
-         zpCCt+btieU/rdBGPWbe3sejqYvYS8FTg2R49yHZy6jaIbMe+hPE/DtWRavxYZwoIN0T
-         QVzbnO8+eVVo9l/ID7dtlfG3fmFswrJrboaiZ3nNEzQHN+QM9WO5pCpA1f5g1joQhIXW
-         l72WenGT/6K3hPFCxw3kIKLiLCVK3azdhhESTO51lnjK++sWuiMrmBZf4WNy7jNIp7fY
-         YzJXiRkbxN0lvgynjSnG5SWR5+Uu2VYbKX6KvdPUI1pO/IiTONJIZdImNLn22/Eq/9AP
-         aWWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=p7a1U2/c7WJv3NEBfJYAOixnmGcKLo0CuycVU47++aQ=;
-        b=Zq76Uzozq1s77vV07YW7Y6sN1jgMdeNPclu8K9ZPyDaI6RN7Hu/W869l+xUXUZ5S1+
-         1e9wimXnwxgFkkhynGFpCQXTL9w2+AbYH1j0Yhon5+3mZXBxEJXWTpR9j2wLVGt2KWko
-         gfvRSJLidEROVAIT5tzbsso/vl7s9iFCoCEfkYmqqPsuScYu89MTE25rQEMTBu33jUpN
-         +uP3rfTPFDwzfPzVLAOW6Jn2PJikXfHXmqnt+Xjeu5NDohYaOt5LF0v/pdUGDdjrh656
-         58GUpM4lQvHfDh9BBI4ZoPf914I2UPUbg0vBJQBbqPWelgMWy2KBAbGSs0oCBTCwaCFs
-         m7FA==
-X-Gm-Message-State: AFqh2kqvB2H2atkTy4ZwZqpaji8apBvIngX31LcOdnAYdmYGuCnCi3Q9
-        24xneICgEnFaU8xOPHG+57Y=
-X-Google-Smtp-Source: AMrXdXtEtXWdICTqd1aomJDuH7ZCpdFY3T3zFdVGv7z0OI1uDhXO0zYB+HaMBkbXi0VNrPwD5wFXmA==
-X-Received: by 2002:a05:6402:390b:b0:465:f6a9:cb7b with SMTP id fe11-20020a056402390b00b00465f6a9cb7bmr39249116edb.12.1672768605161;
-        Tue, 03 Jan 2023 09:56:45 -0800 (PST)
-Received: from skbuf ([188.26.185.118])
-        by smtp.gmail.com with ESMTPSA id h14-20020aa7c94e000000b0046f77031d40sm13864230edt.10.2023.01.03.09.56.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Jan 2023 09:56:44 -0800 (PST)
-Date:   Tue, 3 Jan 2023 19:56:41 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Colin Foster <colin.foster@in-advantage.com>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        John Crispin <john@phrozen.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Marek Vasut <marex@denx.de>,
-        Sean Wang <sean.wang@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        =?utf-8?B?bsOnIMOcTkFM?= <arinc.unal@arinc9.com>,
-        =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        UNGLinuxDriver@microchip.com,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        d=ravnborg.org; s=rsa2;
+        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+         from:date:from;
+        bh=EwBUdzJnCB54BTqWse1nZK/N6bNLSBfDFML/k/6VIUE=;
+        b=lw4USXznYFEFEaWwMu2cHNwgZVRZD54ExKDonRw6lTgJ4Sqj6g0jklkjVnAloz1WgHGhkIulGxVeR
+         5EWh86q3u68/Pec8qPsv+VCtDIUcQxI78Br5HT1XOSuJ1RAnYQlniaqrzxyML1T0KkkF/uUo6grtyP
+         26ZWoHJXz5OI/JQkLaEyR2bOUJQZIjoykP0A2Fs3H6OHWZ9ipfP5+IMnhgHixs/QPK+xCFT8im5aXv
+         6AvJNVFQHT9SmIIrRLhKkCg3Kao+DuinggMN+uurr2J+rZmGpJ7ZZCX7xdWOc74Qo2VvSg8G2VUOnx
+         ZeW1qkLdkjagll8kpaxxkisKbO6wCpg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
+        d=ravnborg.org; s=ed2;
+        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+         from:date:from;
+        bh=EwBUdzJnCB54BTqWse1nZK/N6bNLSBfDFML/k/6VIUE=;
+        b=2n7wzIrWTU2yMXsaFUcN1Ez8vycYmeYJXmTGtFyrzgGcWr6onAXIswMu7OHYOU6Hiy+Pzl+9BC9aY
+         4yMf6cmDw==
+X-HalOne-ID: 216ee96d-8b90-11ed-a170-cde5ad41a1dd
+Received: from ravnborg.org (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
+        by mailrelay6 (Halon) with ESMTPSA
+        id 216ee96d-8b90-11ed-a170-cde5ad41a1dd;
+        Tue, 03 Jan 2023 17:57:49 +0000 (UTC)
+Date:   Tue, 3 Jan 2023 18:57:48 +0100
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        George McCollister <george.mccollister@gmail.com>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v6 net-next 09/10] dt-bindings: net: add generic
- ethernet-switch-port binding
-Message-ID: <20230103175641.nqvo2gk43s3nanwg@skbuf>
-References: <20230103051401.2265961-1-colin.foster@in-advantage.com>
- <20230103051401.2265961-10-colin.foster@in-advantage.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: display: panel: document the Visionox
+ VTDR6130 AMOLED DSI Panel bindings
+Message-ID: <Y7RsnBkgnWbF3uMj@ravnborg.org>
+References: <20230103-topic-sm8550-upstream-vtdr6130-panel-v1-0-9b746b858378@linaro.org>
+ <20230103-topic-sm8550-upstream-vtdr6130-panel-v1-1-9b746b858378@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230103051401.2265961-10-colin.foster@in-advantage.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230103-topic-sm8550-upstream-vtdr6130-panel-v1-1-9b746b858378@linaro.org>
+X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_NONE,
+        URIBL_BLACK autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 02, 2023 at 09:14:00PM -0800, Colin Foster wrote:
-> diff --git a/Documentation/devicetree/bindings/net/ethernet-switch-port.yaml b/Documentation/devicetree/bindings/net/ethernet-switch-port.yaml
+Hi Neil,
+
+On Tue, Jan 03, 2023 at 03:22:27PM +0100, Neil Armstrong wrote:
+> Document the 1080x2400 Visionox VTDR6130 AMOLED DSI Panel bindings.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  .../bindings/display/panel/visionox,vtdr6130.yaml  | 53 ++++++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml b/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml
 > new file mode 100644
-> index 000000000000..126bc0c12cb8
+> index 000000000000..49e2fd4b4e99
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/ethernet-switch-port.yaml
-> @@ -0,0 +1,25 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/net/ethernet-switch-port.yaml#
+> +$id: http://devicetree.org/schemas/display/panel/visionox,vtdr6130.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Generic Ethernet Switch Port
+> +title: Visionox VTDR6130 AMOLED DSI Panel
 > +
 > +maintainers:
-> +  - Andrew Lunn <andrew@lunn.ch>
-> +  - Florian Fainelli <f.fainelli@gmail.com>
-> +  - Vladimir Oltean <olteanv@gmail.com>
+> +  - Neil Armstrong <neil.armstrong@linaro.org>
 > +
-> +description:
-> +  Ethernet switch port Description
-
-Still doesn't look too great that the ethernet-switch-port description
-is this thing devoid of meaning. What is said about the dsa-port is what
-the description should be here, and the description of the dsa-port is
-that it's a generic Ethernet switch port plus DSA specific properties.
-
-> +
-> +$ref: ethernet-controller.yaml#
+> +allOf:
+> +  - $ref: panel-common.yaml#
 > +
 > +properties:
-> +  reg:
-> +    description: Port number
+> +  compatible:
+> +    const: visionox,vtdr6130
 > +
-> +additionalProperties: true
+> +  vddio-supply: true
+> +  vci-supply: true
+> +  vdd-supply: true
+These 3 looks wrong to me, as the above are not documented in panel-common.
+But maybe I miss something and this is OK?
 
-Also, I see your patches are deferred in patchwork, and while this isn't
-really for me to say, presumably it's because there was no announcement
-so far that net-next reopened.
+	Sam
+
+> +  port: true
+> +  reset-gpios: true
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - vddio-supply
+> +  - vci-supply
+> +  - vdd-supply
+> +  - reset-gpios
+> +  - port
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    panel {
+> +        compatible = "visionox,vtdr6130";
+> +
+> +        vddio-supply = <&vreg_l12b_1p8>;
+> +        vci-supply = <&vreg_l13b_3p0>;
+> +        vdd-supply = <&vreg_l11b_1p2>;
+> +
+> +        reset-gpios = <&tlmm 133 GPIO_ACTIVE_LOW>;
+> +
+> +        port {
+> +            panel0_in: endpoint {
+> +                remote-endpoint = <&dsi0_out>;
+> +            };
+> +        };
+> +    };
+> +...
+> 
+> -- 
+> 2.34.1
