@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27A2265CA53
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 00:35:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C00F065CA56
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 00:35:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237846AbjACXf0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 18:35:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46234 "EHLO
+        id S238242AbjACXf3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 18:35:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233437AbjACXfZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 18:35:25 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C25C616497
-        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 15:35:23 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id bf43so47969442lfb.6
-        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 15:35:23 -0800 (PST)
+        with ESMTP id S237880AbjACXf1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 18:35:27 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2660416497
+        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 15:35:26 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id y25so47976913lfa.9
+        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 15:35:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=P8v/Sj/X5KiOx/wkpfi7/cXq7ufsg9Eb2/gL5FeExVU=;
-        b=lZo5X85dn9IoD9hH6dzyKS5qQsUttihsDJCwSHm+iUxjf6OAN8lkuRZ78nwrs51zep
-         vy8MX3KNwgRz7mWHl5SVjeBIV6YOEwPX6zabIUJyEk7ImkRkgxqIxTZPI5TqpSdNmXRW
-         RegrmN2f8aOcs8RDF55NG5FANhvR8dThgOTUiAX5rOtjdMhGBTgCXtYj8UGRZASB1mgA
-         Wq7tpdiYyiUeDt4omgWuPBcrUvDQ9hxExY4fxCrY+Y0ICsrr1aLDCEiOf2tz6kEE2KD7
-         0bS/oznERD+4/6dhGP3GbAxUW2Idolx3cPN4l35FQXqmSap0lk3o5BS2PJorJQowRshP
-         JWjg==
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Fm8GAHA4wHOZ6aH5j10PuHm5s/aZ6TljNeVHuGhMRwk=;
+        b=QTSUiaPpbGJceQRcTqfXW+fhAp/0bRlZ9/jR1kVkMF+m6O0/Jhj2v/E3CtGWtHhJTc
+         fGUPGKXKsuxbDkIniisGJjvVwfpYAFdd1BMCkZyGe0WZPVJrV8vIvsSjZpmGrRfIDG4u
+         Bq1I9EzxVDuFg3E1KO2iZjZCukYVUzG9h47QzdrWK60Bp/HUy8pxWGC4wC1hZvR4dRaM
+         RMV8U/TRiXzw279/8nS29dYjLEBl8azTEBmpwtUWsZl+iYh+tjE8ZPKxST+ymIriz6Gb
+         9Ug0ED9JU3UPSPU8IbR7cJ7/mdS3pcAZ2cZturYPUU6RU90dWgUx53Z6NQrAIuvrpJRN
+         vF6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=P8v/Sj/X5KiOx/wkpfi7/cXq7ufsg9Eb2/gL5FeExVU=;
-        b=wqj5u0CVSCd/V67slwxPraEvJ6qDOUKfpHrTxZBhdQ7mSpxOsccXsOhByKXRIDpY73
-         UN3i4636tiejd61FuKSZ58awZJrkFlHGDQScxHU+SK0DJJROZ9iyUhBv1DdHMwL4fOSb
-         9xxLvC0QZalzFfuXInQt1ITW4dkahpqjAkv7qopTwha8v59rM5FKdtIR6P7CTI0Xc0o8
-         /vfPqZZ+m3fbsH9rBwlPPDPej9g/ChnOQGW+cvqxwPan8diCP59jgcwCZ4VcZxp52I48
-         lrZDkM80sgBHGHIeG/Xs9PITNPSICs5d5H9fTtiaPaxI2/Hzc5iQiGwr1eQSL4JRcTbt
-         ss6g==
-X-Gm-Message-State: AFqh2krYBMeLLjMHH+ukFZhIMIVMZRggmMqFa9Hb/v6JoYGWj2P2UhbS
-        If0CXvz0lAYs/75plJ1QUIUdMg==
-X-Google-Smtp-Source: AMrXdXvqf6dS9jJfAmR7RmNVGzv4JmseSjNjYQSyoMbvN/YObznPsnpR68X2Xvd1JLlQtp7SGedzQw==
-X-Received: by 2002:a05:6512:2344:b0:4cb:90d:41b1 with SMTP id p4-20020a056512234400b004cb090d41b1mr9099547lfu.56.1672788922157;
-        Tue, 03 Jan 2023 15:35:22 -0800 (PST)
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Fm8GAHA4wHOZ6aH5j10PuHm5s/aZ6TljNeVHuGhMRwk=;
+        b=ZhYQdM4/JZEgXTLoNQmczhzSe6hGY8gJ+FufnGB/e3s5GIsrQ9eZiP6OtLbLvMhUzI
+         pQBcXwR3Gy/yE7mhZlOhudNgtLLLXokITAuzzAXGAOkxP/5BW09zkK2OFNC38sIuK7Wa
+         nhppdADSZF82EH9bjbgtygAw/mNiqxzHtT6ZFHArmUFXN6ylq6jWREdE4MQmQkuGcmHA
+         3tl7v1plD2KjpS0oXjTwZoSN4pahvN3lwFmPoPZSCZ/IlkRZBF6t4YZWebuDsdpHTsuC
+         RiTXCwTMMloxjBYok5SgWwwtuorksmwVhod90iGhSATkHVfrrnc5507bLrJJ6+mxG2hj
+         JmnQ==
+X-Gm-Message-State: AFqh2kqmeUACgJgMNkpUsvGZvM0aBd2Ipro/DpdQwuAs0H1WLH16N92C
+        i8J+NO4qJZzFK7J/rnTTmnAH+GTEk2qJxA4v
+X-Google-Smtp-Source: AMrXdXvUEMqhAGEePbJwzuMHSc4UTdEcNlNqP3IyR3XvRSGdbrV9sdapS0Q41zVldzt3iZHk82Lqfw==
+X-Received: by 2002:a05:6512:220f:b0:4bf:982f:f63b with SMTP id h15-20020a056512220f00b004bf982ff63bmr15779860lfu.21.1672788924538;
+        Tue, 03 Jan 2023 15:35:24 -0800 (PST)
 Received: from Fecusia.local (c-05d8225c.014-348-6c756e10.bbcust.telenor.se. [92.34.216.5])
-        by smtp.gmail.com with ESMTPSA id b11-20020a056512070b00b004a45edc1de2sm4939801lfs.239.2023.01.03.15.35.20
+        by smtp.gmail.com with ESMTPSA id b11-20020a056512070b00b004a45edc1de2sm4939801lfs.239.2023.01.03.15.35.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Jan 2023 15:35:20 -0800 (PST)
+        Tue, 03 Jan 2023 15:35:23 -0800 (PST)
 From:   Linus Walleij <linus.walleij@linaro.org>
-Subject: [PATCH 0/7] usb: fotg210: Various improvements
-Date:   Wed, 04 Jan 2023 00:35:17 +0100
-Message-Id: <20230103-gemini-fotg210-usb-v1-0-f2670cb4a492@linaro.org>
+Date:   Wed, 04 Jan 2023 00:35:18 +0100
+Subject: [PATCH 2/7] usb: fotg210: List different variants
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIALW7tGMC/x2NQQqDMBAAvyJ77kISqan9SulhY9e4B2PZ1VIQ/
- 97Y4zAMs4OxChvcmx2UP2KylAr+0sAwUcmM8qoMwYXWeddi5lmK4LisOXiHmyXsrxS72N+i6whq
- mMgYk1IZpjOdyVbWU7yVR/n+b4/ncfwAMEvlbX0AAAA=
+Message-Id: <20230103-gemini-fotg210-usb-v1-2-f2670cb4a492@linaro.org>
+References: <20230103-gemini-fotg210-usb-v1-0-f2670cb4a492@linaro.org>
+In-Reply-To: <20230103-gemini-fotg210-usb-v1-0-f2670cb4a492@linaro.org>
 To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
@@ -74,60 +74,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is some gradual improvements to the FOTG210 dual-mode
-USB host/gadget driver.
+There are at least two variants of the FOTG: FOTG200 and
+FOTG210. Handle them in this driver and let's add
+more quirks as we go along.
 
-- Create stricter device tree bindings fixing some mistakes.
-  We have at least FOTG200 and FOTG210 out there. A third
-  variant named FUSB220 is probably related but has a separate
-  driver in the vendor code trees.
-
-- Start to break out common code for remapping of memory and
-  clock handling to begin with, move this to the core file.
-
-- Check that the block is in the right role before
-  proceeding, don't abort registration but print a warning
-  if it's not.
-
-- Assing some default speed and the OF node when the UDC
-  starts. This is based on the similar pattern in the DW
-  controllers.
-
-- Implement a proper VBUS session handler calling down to
-  the hardware VBUS control handler in the Gemini variant.
-  This makes everything work on my hardware.
-
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Rob Herring <robh+dt@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: linux-usb@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: Fabian Vogt <fabian@ritter-vogt.de>
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-
 ---
-Linus Walleij (7):
-      dt-bindings: usb: Correct and extend FOTG210 schema
-      usb: fotg210: List different variants
-      usb: fotg210: Acquire memory resource in core
-      usb: fotg210: Move clock handling to core
-      usb: fotg210: Check role register in core
-      usb: fotg210-udc: Assign of_node and speed on start
-      usb: fotg210-udc: Implement VBUS session
+ drivers/usb/fotg210/fotg210-core.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
- .../devicetree/bindings/usb/faraday,fotg210.yaml   |  7 +-
- drivers/usb/fotg210/fotg210-core.c                 | 81 +++++++++++++++++++---
- drivers/usb/fotg210/fotg210-hcd.c                  | 48 ++-----------
- drivers/usb/fotg210/fotg210-hcd.h                  |  1 +
- drivers/usb/fotg210/fotg210-udc.c                  | 68 ++++++++----------
- drivers/usb/fotg210/fotg210-udc.h                  |  2 +-
- drivers/usb/fotg210/fotg210.h                      | 27 ++++++--
- 7 files changed, 136 insertions(+), 98 deletions(-)
----
-base-commit: 1b929c02afd37871d5afb9d498426f83432e71c2
-change-id: 20230103-gemini-fotg210-usb-95a76798706a
+diff --git a/drivers/usb/fotg210/fotg210-core.c b/drivers/usb/fotg210/fotg210-core.c
+index 8a54edf921ac..cef12827e797 100644
+--- a/drivers/usb/fotg210/fotg210-core.c
++++ b/drivers/usb/fotg210/fotg210-core.c
+@@ -127,7 +127,9 @@ static int fotg210_remove(struct platform_device *pdev)
+ 
+ #ifdef CONFIG_OF
+ static const struct of_device_id fotg210_of_match[] = {
++	{ .compatible = "faraday,fotg200" },
+ 	{ .compatible = "faraday,fotg210" },
++	/* TODO: can we also handle FUSB220? */
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(of, fotg210_of_match);
 
-Best regards,
 -- 
-Linus Walleij <linus.walleij@linaro.org>
+2.38.1
