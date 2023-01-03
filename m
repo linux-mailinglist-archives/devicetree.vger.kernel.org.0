@@ -2,73 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DA7265C1C4
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 15:23:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1800765C1D2
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 15:23:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237939AbjACOXB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 09:23:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60594 "EHLO
+        id S237757AbjACOWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 09:22:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238034AbjACOPA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 09:15:00 -0500
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E40A1146B
-        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 06:14:59 -0800 (PST)
-Received: by mail-pf1-x434.google.com with SMTP id k137so15842836pfd.8
-        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 06:14:59 -0800 (PST)
+        with ESMTP id S237676AbjACOWd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 09:22:33 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6905125C3
+        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 06:22:32 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id bs20so27495970wrb.3
+        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 06:22:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l9cahVv2TInUZQq8hRVXfSnhUh5CoJndbcse7r+efrI=;
-        b=JvQp+D22PddPJwvOIzWqpbiumCna0mY0Qs6kY5uGOPhttIQbAM07RfSktwA4YPQDfl
-         FRzZBAQa1PKaQ4UOFU8QKXnvXEq9fkmdQVQzIxvWxnMxmq+/PDipRUhO8QEZiF9wTfMU
-         P52esXVKy7v38CPrSEkE68VSvOw77TJgHkFqytND0WptHKP4kcU4dR7iKqTNVgp7n072
-         q5q4uG7oGjmRdcQQogprEohimTvr8TGccFiqF7wBLc6VQPwPG7u0F0S09v1MTCiW9TIC
-         yCy+hpq5AQGc+VyAeDFktNK0ysxTjMzLHXasMDKkUO6XMMAenXgOCUhII9mEC2Pz56ig
-         9D6g==
+        d=linaro.org; s=google;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BrQTlFtoTu8he9ydQRdvctc8hmi7ieuddKkLwr03Ix0=;
+        b=xHYxZ0jDW2+TBmQ5IAf+o48+WdHcrpuYIJpkEKuoa8Hvb/BQHziGbWUph2B1hstbEU
+         uOyZAreWTU3SynAXgs/KUVW609XGxXbjE8SsFSYwTSxphKlGUqg45z2jv+ip4PNysIhJ
+         wLWNeS5qSAFdzN+2Z0T6EqzqQ9FX3YK4UKmLI76hIez8PmYQUq1WhrC8nv/0nqFQ/1LF
+         PCUBCuC4YGW5VHu3UoRcGpJG8YR3gqXl/ieW1R1rMvOIBWb3ugsRIo02L/g6ewizQvWq
+         wZ7p2jYJTssUMdyu0jckxKPj6/vtUUc3Wz+cmmQ/69Fy/D/7ZK2CNhweVpsmgFUl9bvD
+         NejA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=l9cahVv2TInUZQq8hRVXfSnhUh5CoJndbcse7r+efrI=;
-        b=kuLc47Ue40k5leiP8jaX6UJTiaGSPDfvvVNPWvFqJZXSh/12AYxbN8JNrqjlsfne8W
-         A/Oou5aH8T85fWNEIRUIMr98Yd3rfWYKwQxBoHC9Az+Hado3RwASCEXJruT/HCeYmPsz
-         9EEuDJpxW/sd2K2FyjUzd9OBPwlKybGUgitn0s/0831Qtht5LN0D13RhimLt/tQaJ+4d
-         j3pik2/dvJjhcr28g9jY5u9RhZj6Nr9Ie0aRdNEhFIMt8UUC4VrGyNnKwppwjWoWQYKM
-         WoTCaRo5qEcJiA5Dy8Sd9X9mD13IdiPrUKln2MgYY5Vq9s4R8hw2ZY8y9tW8xsudpAkI
-         xGuA==
-X-Gm-Message-State: AFqh2koD6og8F+5pdpc+o5zLhbSURdmISSbQb2sDstgnqTGkYp8LEciS
-        rMFB0lYtWNDIXP14/ccxDRNuCQ==
-X-Google-Smtp-Source: AMrXdXvCOxRJHxTUnBXhg91eXznx4qUxOjJDdB2DRp725FJ6It0JynsEemtk32n/ofi6kbO+KalXBg==
-X-Received: by 2002:a62:cf42:0:b0:581:a004:3f36 with SMTP id b63-20020a62cf42000000b00581a0043f36mr21220945pfg.25.1672755298798;
-        Tue, 03 Jan 2023 06:14:58 -0800 (PST)
-Received: from anup-ubuntu-vm.localdomain ([171.76.85.241])
-        by smtp.gmail.com with ESMTPSA id h1-20020a628301000000b0056be4dbd4besm5936035pfe.111.2023.01.03.06.14.54
+        bh=BrQTlFtoTu8he9ydQRdvctc8hmi7ieuddKkLwr03Ix0=;
+        b=sQLibahpXE2lxEOtBTxPd+FiS362tAkHlkVkA2/TMTAJoNYmQlpvmKdCM1ItC/GkdM
+         1E8xEvGEgQoxwml2oJ3TpJhc6SZXL1C8pfz/bIiATpe+Tj81d1BEPEAJz9P7mEiO4ov8
+         Si92lvkAWr737ubjTyDvEIb3reGo7wQOb9JsmIQNRwXA1D2+N0qq8u6aJ24eRH54vmmH
+         vPVm5DDvb9ubesEmgaWnDVpWhk9ZetaVQMYojnq/sVKcvUgD+0pGXCzy4i6hQ2ojsebn
+         fp+j81bE71O21BF7JlI0J4b14ozq9Rwks0/wbUhf6Q4eS8IyquLBmWufg61Yc1lsgN8q
+         oCRQ==
+X-Gm-Message-State: AFqh2krMWBUEqri4iwVp/AdA47yeT9U6eVE4cflG4WeuuDGC88DNqlyD
+        rJvSeJP5ixZ7fs4O4Sj0INYTTg==
+X-Google-Smtp-Source: AMrXdXtnzaQHGwPx//u/Ga79fT/ywgStvs4FSMtqKeiQ5XHpCdrPdwXKkzKkcqbwm/wMjYulEUQyaQ==
+X-Received: by 2002:adf:cc81:0:b0:275:ae5c:d448 with SMTP id p1-20020adfcc81000000b00275ae5cd448mr26043702wrj.13.1672755751009;
+        Tue, 03 Jan 2023 06:22:31 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id i6-20020a5d55c6000000b00283c7b5ee3bsm20182163wrw.101.2023.01.03.06.22.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Jan 2023 06:14:58 -0800 (PST)
-From:   Anup Patel <apatel@ventanamicro.com>
-To:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        Tue, 03 Jan 2023 06:22:30 -0800 (PST)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Date:   Tue, 03 Jan 2023 15:22:27 +0100
+Subject: [PATCH 1/2] dt-bindings: display: panel: document the Visionox
+ VTDR6130 AMOLED DSI Panel bindings
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20230103-topic-sm8550-upstream-vtdr6130-panel-v1-1-9b746b858378@linaro.org>
+References: <20230103-topic-sm8550-upstream-vtdr6130-panel-v1-0-9b746b858378@linaro.org>
+In-Reply-To: <20230103-topic-sm8550-upstream-vtdr6130-panel-v1-0-9b746b858378@linaro.org>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Atish Patra <atishp@atishpatra.org>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Anup Patel <anup@brainfault.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Anup Patel <apatel@ventanamicro.com>
-Subject: [PATCH v2 9/9] MAINTAINERS: Add entry for RISC-V AIA drivers
-Date:   Tue,  3 Jan 2023 19:44:09 +0530
-Message-Id: <20230103141409.772298-10-apatel@ventanamicro.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230103141409.772298-1-apatel@ventanamicro.com>
-References: <20230103141409.772298-1-apatel@ventanamicro.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.11.1
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -78,37 +78,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add myself as maintainer for RISC-V AIA drivers including the
-RISC-V INTC driver which supports both AIA and non-AIA platforms.
+Document the 1080x2400 Visionox VTDR6130 AMOLED DSI Panel bindings.
 
-Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- MAINTAINERS | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ .../bindings/display/panel/visionox,vtdr6130.yaml  | 53 ++++++++++++++++++++++
+ 1 file changed, 53 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 7f86d02cb427..c5b8eda0780e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17942,6 +17942,18 @@ F:	drivers/perf/riscv_pmu.c
- F:	drivers/perf/riscv_pmu_legacy.c
- F:	drivers/perf/riscv_pmu_sbi.c
- 
-+RISC-V AIA DRIVERS
-+M:	Anup Patel <anup@brainfault.org>
-+L:	linux-riscv@lists.infradead.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
-+F:	Documentation/devicetree/bindings/interrupt-controller/riscv,imsic.yaml
-+F:	drivers/irqchip/irq-riscv-aplic.c
-+F:	drivers/irqchip/irq-riscv-imsic.c
-+F:	drivers/irqchip/irq-riscv-intc.c
-+F:	include/linux/irqchip/riscv-aplic.h
-+F:	include/linux/irqchip/riscv-imsic.h
+diff --git a/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml b/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml
+new file mode 100644
+index 000000000000..49e2fd4b4e99
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml
+@@ -0,0 +1,53 @@
++# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/visionox,vtdr6130.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- RISC-V ARCHITECTURE
- M:	Paul Walmsley <paul.walmsley@sifive.com>
- M:	Palmer Dabbelt <palmer@dabbelt.com>
++title: Visionox VTDR6130 AMOLED DSI Panel
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    const: visionox,vtdr6130
++
++  vddio-supply: true
++  vci-supply: true
++  vdd-supply: true
++  port: true
++  reset-gpios: true
++
++additionalProperties: false
++
++required:
++  - compatible
++  - vddio-supply
++  - vci-supply
++  - vdd-supply
++  - reset-gpios
++  - port
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    panel {
++        compatible = "visionox,vtdr6130";
++
++        vddio-supply = <&vreg_l12b_1p8>;
++        vci-supply = <&vreg_l13b_3p0>;
++        vdd-supply = <&vreg_l11b_1p2>;
++
++        reset-gpios = <&tlmm 133 GPIO_ACTIVE_LOW>;
++
++        port {
++            panel0_in: endpoint {
++                remote-endpoint = <&dsi0_out>;
++            };
++        };
++    };
++...
+
 -- 
 2.34.1
-
