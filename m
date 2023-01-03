@@ -2,193 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DC9365BF62
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 12:52:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65C8365BF6D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 12:57:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230006AbjACLwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 06:52:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45704 "EHLO
+        id S231196AbjACL4p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 06:56:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237496AbjACLvx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 06:51:53 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E922D6589;
-        Tue,  3 Jan 2023 03:51:51 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        with ESMTP id S230006AbjACL4o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 06:56:44 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DF36267D;
+        Tue,  3 Jan 2023 03:56:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1672747003; x=1704283003;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=AXk/n6944cGASrExFxh77p8UKQ39anjrn1SxgztQ/Qs=;
+  b=kRIhQUW/4grEPhx4pXlc7+Gw2x0DsmEMsdCQq4GnE90OBTeaejXadjK2
+   x29zGPIs9pSPrvqWR9EKAhztLxczI+xFAcdeJND7h+H37TTPXsNLqo6d2
+   I76L/Ueyci5aDV79nVwf9OJ/5NSFmqY0o0CjnuYxtzzZoVTk+NwxT0OfM
+   COEl325C4iUvA0TluTOV/R6VYEvkaM3tkzUIlCLNphsZDGbbNUizbpOLK
+   QJpz5vH2ditBfuUKm1qkCfoYXr09lIK1ILsYeFLUNPjSDmsmt5Izu7TZf
+   AusJLdKOhKzd+PV1zDY1kZLOM2/xnCYXNSNa7tHIYvabI16rYeRbSKXH7
+   w==;
+X-IronPort-AV: E=Sophos;i="5.96,296,1665439200"; 
+   d="scan'208";a="28220512"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 03 Jan 2023 12:56:40 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Tue, 03 Jan 2023 12:56:41 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Tue, 03 Jan 2023 12:56:41 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1672747000; x=1704283000;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=AXk/n6944cGASrExFxh77p8UKQ39anjrn1SxgztQ/Qs=;
+  b=dgu4a0GYR11rSGZmEk6pNrF40hANkH6mEYDLtgYhhBSWez8qUdfenAQd
+   5rMGDH7quTcE4rkwQQECHpBWiTnUWhy9t17VLoSq7GvRccUgZuDCrwNq3
+   UelAp31KYnpDIJQwEf+tmOpoeJb8AWWyT+gH2MmF2Emi0aVsiYKn63kY5
+   A9xZHpwk3UGWL0PdBkF+MVesUTE6PUWXRfzoSHC6WsUSTlP+YZbzVh83h
+   P53G6dpRj/du0ZGsNZRAC/CU6JEp6HrNFSW80NYzmuikhxuDi5lkhPYYc
+   x6eeUZNxBRqI4gx38fOckqijmdbeqe7SVrsmF1KNzNaSlkBpg3wFm2zuV
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.96,296,1665439200"; 
+   d="scan'208";a="28220511"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 03 Jan 2023 12:56:40 +0100
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 659896602CE7;
-        Tue,  3 Jan 2023 11:51:48 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1672746709;
-        bh=6chUOuhMbPwhQBYMQBmnbgN9yec/HXnOChceMVGoqic=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=gG9UbXrrgSVeMwXELIxIuwXvRhEU35Fb89KnSK5SmwjjhQ9O3wB7j+BDd3lS8jkhk
-         IXgHZgJELX2+QlzUlyCHHifndDkJ/2C1gc/F9rNweTIPXZBgR/cStGIXLdTInfoLBt
-         fqAq68aomRHY5F6Agw7R+3syaZLI8BGtsv5gRrLWVFzk/aOzdA/QNPtdMRApVusFr8
-         wja6kGf3ePZt9CQfJkUIc1/xZxeB5SrDZ5kqIlna9JDTABicClm3FJzZX0XJIsahmP
-         JAvAje3oGDflWCSLKcHLAvKvlArcK3wtj7nt16E5ROG0/Em2+bgbSRcE6Rq7SdWvIW
-         i1+Njg4yfhRbQ==
-Message-ID: <09f1ca83-c7d5-a186-6fa6-09cdd7a0b9cc@collabora.com>
-Date:   Tue, 3 Jan 2023 12:51:45 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [RFC PATCH 3/4] dt-bindings: panel: Introduce dual-link LVDS
- panel
-Content-Language: en-US
-To:     Aradhya Bhatia <a-bhatia1@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id A8B8A280056;
+        Tue,  3 Jan 2023 12:56:40 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Tomi Valkeinen <tomba@kernel.org>,
-        Jyri Sarha <jyri.sarha@iki.fi>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Guo Ren <guoren@kernel.org>
-Cc:     DRI Development List <dri-devel@lists.freedesktop.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>,
-        Linux RISC-V List <linux-riscv@lists.infradead.org>,
-        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
-        Linux Mediatek List <linux-mediatek@lists.infradead.org>,
-        Linux C-SKY Arch List <linux-csky@vger.kernel.org>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Jai Luthra <j-luthra@ti.com>,
-        Jayesh Choudhary <j-choudhary@ti.com>
-References: <20230103064615.5311-1-a-bhatia1@ti.com>
- <20230103064615.5311-4-a-bhatia1@ti.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230103064615.5311-4-a-bhatia1@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Marek Vasut <marex@denx.de>, Mark Brown <broonie@kernel.org>
+Subject: Re: [RFC PATCH 1/3] dt-bindings: gpio: Add optional ramp-up delay property
+Date:   Tue, 03 Jan 2023 12:56:38 +0100
+Message-ID: <2798796.Y6S9NjorxK@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <Y6DtQ7PXPZ809P4C@pendragon.ideasonboard.com>
+References: <20221212103525.231298-1-alexander.stein@ew.tq-group.com> <CACRpkdZ2G=HUTBMpXJrXeSh3kYgQQc8p8zaJZPL71HWA9362ZA@mail.gmail.com> <Y6DtQ7PXPZ809P4C@pendragon.ideasonboard.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 03/01/23 07:46, Aradhya Bhatia ha scritto:
-> Dual-link LVDS interfaces have 2 links, with even pixels traveling on
-> one link, and odd pixels on the other. These panels are also generic in
-> nature, with no documented constraints, much like their single-link
-> counterparts, "panel-lvds".
-> 
-> Add a new compatible, "panel-dual-lvds", and a dt-binding document for
-> these panels.
-> 
-> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
-> ---
->   .../display/panel/panel-dual-lvds.yaml        | 157 ++++++++++++++++++
->   MAINTAINERS                                   |   1 +
->   2 files changed, 158 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml b/Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml
-> new file mode 100644
-> index 000000000000..88a7aa2410be
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-dual-lvds.yaml
-> @@ -0,0 +1,157 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/panel-dual-lvds.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Generic Dual-Link LVDS Display Panel
-> +
-> +maintainers:
-> +  - Aradhya Bhatia <a-bhatia1@ti.com>
-> +  - Thierry Reding <thierry.reding@gmail.com>
-> +
-> +description: |
-> +  A dual-LVDS interface is a dual-link connection with the even pixels
-> +  traveling on one link, and the odd pixels traveling on the other.
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +  - $ref: /schemas/display/lvds.yaml/#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - lincolntech,lcd185-101ct
-> +              - microtips,13-101hieb0hf0-s
-> +          - const: panel-dual-lvds
-> +      - const: panel-dual-lvds
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: The sink for first set of LVDS pixels.
-> +
-> +        properties:
-> +          dual-lvds-odd-pixels:
-> +            type: boolean
-> +
-> +          dual-lvds-even-pixels:
-> +            type: boolean
-> +
-> +        oneOf:
-> +          - required: [dual-lvds-odd-pixels]
+Hi Laurent,
 
-One question: why do we need a "panel-dual-lvds" compatible?
-A Dual-LVDS panel is a LVDS panel using two ports, hence still a panel-lvds.
+Am Dienstag, 20. Dezember 2022, 00:01:23 CET schrieb Laurent Pinchart:
+> On Thu, Dec 15, 2022 at 11:56:57AM +0100, Linus Walleij wrote:
+> > Hi Laurent,
+> >=20
+> > thanks for the detailed brief!
+> >=20
+> > On Tue, Dec 13, 2022 at 12:45 PM Laurent Pinchart
+> >=20
+> > <laurent.pinchart@ideasonboard.com> wrote:
+> > > The circuit we're looking at is
+> > >=20
+> > >   +----------+           +-----------+
+> > >  =20
+> > >   | SoC      |           |    VCC    |
+> > >   |=20
+> > >   |          |           |     _     |
+> > >   |          |           |    =20
+> > >   |          |           |    | | R  |
+> > >   |          |           |    |
+> > >   |          |           |    |_|    |
+> > >   |     =20
+> > >   |      [IOx|-----+-----|EN]--+     |
+> > >   |     =20
+> > >   |          |     |     | SN65DSI83 |
+> > >  =20
+> > >   +----------+    --- C  +-----------+
+> > >  =20
+> > >                   ---
+> > >                  =20
+> > >                    -
+> > >                  =20
+> > >                   GND
+> > >=20
+> > > The IOx pin is an open-drain output, the board has a 470nF capacitor =
+to
+> > > ground, and the SN65DSI83 has an internal pull-up off 200k=CE=A9. Thi=
+s gives
+> > > an RC time constant of 94ms, far from being negligible.
+> > >=20
+> > > The delay is caused by the combination of the open-drain nature of the
+> > > output (an intrinsic property of the GPIO controller), the pull-up
+> > > resistor (an intrinsic property of the SN65DSI83) and the capacitor on
+> > > the line (a property of the board). DT is notoriously bad at modelling
+> > > this kind of setup.
+> >=20
+> > Yeah :/
+> >=20
+> > It's not like we don't model discrete electronics, we do that a lot,
+> > but as you say, it is really hard to know where to draw the line
+> > in cases like this.
+> >=20
+> > > The alternative I proposed, adding a "GPIO delay" DT node to model th=
+is,
+> > > would also offer a centralized solution to the problem, but with
+> > > additional complexity both at probe time and runtime.
+> >=20
+> > I have a slight preference for this, as it will be very explicit in the
+> > device tree and we can just put all the code inside its own file and
+> > depend on GPIO_OF so other HW description systems do not
+> > need to include it.
+> >=20
+> > At the same time it feels a bit overengineered, so maybe just adding
+> > this delay as in the patch with some strings attached like comments
+> > and docs is yet the best. It feels like we need some more input to
+> > reach consensus.
+> >=20
+> > > The regulator delays model the intrinsic delays when enabling or
+> > > disabling a regulator, and they should stay. They address a different
+> > > problem.
+> >=20
+> > OK right. But someone not knowing exactly what they are doing
+> > will end up abusing the delay property on the delay line
+> > also for this delay. The risk of that is lesser with a separate
+> > delay box.
+>=20
+> That may be true, but I think we can also try to catch abuses in
+> reviews. I would be a bit sad if we made life more difficult (and less
+> efficient at runtime too) for legitimate users just because we are
+> worried about abuses.
 
-If you're doing this to clearly distinguish, for human readability purposes,
-single-link vs dual-link panels, I think that this would still be clear even
-if we use panel-lvds alone because dual-link panels, as you wrote in this
-binding, does *require* two ports, with "dual-lvds-{odd,even}-pixels" properties.
+What is a legitimate user for you? Given the example in v2 of this series i=
+t's=20
+clear that this feature is an opt-in, both for the DT node as well as for=20
+specifying a delay.
+Another benefit of using a dedicated driver: It also automatically handles=
+=20
+things like setting multiple GPIOs at once.
 
-So... the devicetree node would look like this:
+> Another thing I've been thinking about is that we may not always want to
+> wait for the GPIO delay. Some consumers may not care when the GPIO line
+> reaches the desired state as long as it eventually does, or maybe they
+> need to perform multiple operations (such as enabling/disabling
+> regulators and/or clocks) and only need a synchronization point for a
+> group of operations. All that would be pretty hard to handle, and maybe
+> it's a problem we'll look at only when needed (and hopefully never).
 
-panel {
-	compatible = "vendor,panel", "panel-lvds";
-	....
-	ports {
-		port@0 {
-			.....
-			-> dual-lvds-odd-pixels <-
-		}
+If you don't care about rising time, do not use gpio-delay for that GPIO, o=
+r=20
+just don't specify a ramp-up delay in the gpio-cells, aka setting to 0.
+The more complex synchronisation example you mentioned probably needs a=20
+similar dedicated driver for grouping those resources.
 
-		port@1 {
-			.....
-			-> dual-lvds-even-pixels <-
-		};
-	};
-};
+Best regards,
+Alexander
 
-> +          - required: [dual-lvds-even-pixels]
 
-...Though, if you expect dual-lvds panels to get other quirks in the future,
-that's a whole different story and you may actually need the panel-dual-lvds
-compatible.
-
-Regards,
-Angelo
