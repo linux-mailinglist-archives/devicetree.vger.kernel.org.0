@@ -2,171 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C99065C368
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 16:58:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7436C65C371
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 16:59:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238070AbjACP5P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 10:57:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33636 "EHLO
+        id S238086AbjACP6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 10:58:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230166AbjACP4n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 10:56:43 -0500
-Received: from mx0b-0016f401.pphosted.com (mx0a-0016f401.pphosted.com [67.231.148.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DDE4386;
-        Tue,  3 Jan 2023 07:56:43 -0800 (PST)
-Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
-        by mx0a-0016f401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 303FS4Bt022669;
-        Tue, 3 Jan 2023 07:56:39 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=pfpt0220;
- bh=50ZZaOLwnf4n3mzLa2/GkS0zShwrKJ9SXeUjrdRCPbM=;
- b=fPpPFvgqpSCF0ir1rCPdiMb+Fq6CzHQdAYTMT7eTB3gBsxvWlLhkWC8TKj3Tvg51LZct
- b43+KkaqFsW0X5EQB4IkolKOIGo7opwoJZOf6x5c6hhMjEV4gTojbSgtr+S5868CT3fz
- a79bXcoG1ru+w+qNaW4glXnUGJZC0TFHr3p1V1JtTWnKq4LFUKIw78reqcgsCpsu+SRB
- 3xUxoT85PXxCKTeKvoW92AUbTaGSGft/4DIh351mlDWe2rbg1XOE+zH5mdmlNw97HhOK
- gJOXHYOrUYbN5xDDAtP43xCHS1FbMaJv2T8IHeVSDrvf/FZQJ1puhUIgjwDrfXgKUoL+ IA== 
-Received: from dc5-exch01.marvell.com ([199.233.59.181])
-        by mx0a-0016f401.pphosted.com (PPS) with ESMTPS id 3mtkauwayx-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Tue, 03 Jan 2023 07:56:39 -0800
-Received: from DC5-EXCH01.marvell.com (10.69.176.38) by DC5-EXCH01.marvell.com
- (10.69.176.38) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 3 Jan
- 2023 07:56:38 -0800
-Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH01.marvell.com
- (10.69.176.38) with Microsoft SMTP Server id 15.0.1497.42 via Frontend
- Transport; Tue, 3 Jan 2023 07:56:38 -0800
-Received: from localhost.localdomain (unknown [10.110.150.170])
-        by maili.marvell.com (Postfix) with ESMTP id D2E1D3F7068;
-        Tue,  3 Jan 2023 07:56:37 -0800 (PST)
-From:   Wojciech Zmuda <wzmuda@marvell.com>
-To:     <linux-kernel@vger.kernel.org>
-CC:     <jassisinghbrar@gmail.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski@linaro.org>, <sgoutham@marvell.com>,
-        <devicetree@vger.kernel.org>,
-        Wojciech Bartczak <wbartczak@marvell.com>,
-        Wojciech Zmuda <wzmuda@marvell.com>
-Subject: [PATCH v2 2/2] Documentation: add Marvell MHU driver bindings
-Date:   Tue, 3 Jan 2023 07:56:12 -0800
-Message-ID: <20230103155612.6217-3-wzmuda@marvell.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230103155612.6217-1-wzmuda@marvell.com>
-References: <20230103155612.6217-1-wzmuda@marvell.com>
+        with ESMTP id S238215AbjACP6T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 10:58:19 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3980D1274A
+        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 07:58:18 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id bq39so38420424lfb.0
+        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 07:58:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=72mA5ojFgMLVEqAkQaCbUqv8L54FnJT6kWDdtZXnH8k=;
+        b=ZR6CuU0SVs+2fa7ImRzShQIqdD+s1t0zPg6gcMOo9oHiESgjcB/fqQwwvjLmsiAFSA
+         68WEpQLvxRlO+gvNY4TGr1Rs5BUkah8JeZg2NLNTYz9vWVEUA3rJvu0kbgJ2ffRNgi6+
+         rqd4bp/32Ruz3UYGXfhr70gI7+QRLHKnlATtgvZs0x+TxiXBzysWZNrbdHYsTydJA3aI
+         lJWPx3igM7XnBHuZlt//8E9xsZWZAbRcjYyLqCBTbdl5oo40SBxRV4i4JZIffKKvxBxX
+         4m1cQxPZ99KEjBINdOjdqXU5d5X/r2nq9qJvoiJCtsYSJNEtcShPVU5LjM0ggcW/DHZ4
+         AyuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=72mA5ojFgMLVEqAkQaCbUqv8L54FnJT6kWDdtZXnH8k=;
+        b=bplfi6TpAdVEIa2MvktawJn27VZfltmxeyb8oNFnXYScbbjJrNMpaTG2NuCXytZ86P
+         QMpwW+qOYaPUM0XAsU7YmAw8TNuwG4oEtj/bjAQJnUSlH0dvAV+PK+H7NaxERm4wYHfH
+         qeoepx0I8vhO3UuUDV/mBCKypHCvqKyUhvYM9RKHpAdCiQyXD1OCUMYNIMNdWpslS+pd
+         PwW8j4zzX0BGqcuF55DWJJ1scNUD6hRepArw7exVo0Ple8K52c4qEku0aET/CmvXxYex
+         6kxzE1sizivRw+CzkEbQ8CtzagVmOpkWe0ZuP1I2ppJeYwYGS1GuKmjZVDqsM1nIS0Co
+         m1SQ==
+X-Gm-Message-State: AFqh2ko9iMja/hUAJEVr0G9pekb+eosr1KsAZ6gz7Sl/c1dNGs52T+0E
+        8AgVc79F9SfQn79OlXkuDGQOWg==
+X-Google-Smtp-Source: AMrXdXsJRJFmNGcdrpCX4Ew7dswqjffLVmIQHsolgx3asO447k2As8kQ4rSPO3cW12SocgcHpv/l2A==
+X-Received: by 2002:a05:6512:1597:b0:4b6:f4bb:e53f with SMTP id bp23-20020a056512159700b004b6f4bbe53fmr13398291lfb.60.1672761496628;
+        Tue, 03 Jan 2023 07:58:16 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id s4-20020a056512202400b004b5979f9ba8sm4853215lfs.210.2023.01.03.07.58.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Jan 2023 07:58:16 -0800 (PST)
+Message-ID: <6e347f3f-1dd0-3c84-8156-d6d891b25b00@linaro.org>
+Date:   Tue, 3 Jan 2023 16:58:15 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Proofpoint-GUID: Q_h8Wywq1zqiT1iROStxzYQfhjHpmBsQ
-X-Proofpoint-ORIG-GUID: Q_h8Wywq1zqiT1iROStxzYQfhjHpmBsQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2023-01-03_05,2023-01-03_02,2022-06-22_01
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2 0/2] Add support for Marvell MHU on CN9x and CN10x SoC
+Content-Language: en-US
+To:     Wojciech Zmuda <wzmuda@marvell.com>, linux-kernel@vger.kernel.org
+Cc:     jassisinghbrar@gmail.com, robh+dt@kernel.org, sgoutham@marvell.com,
+        devicetree@vger.kernel.org
+References: <20230103155612.6217-1-wzmuda@marvell.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230103155612.6217-1-wzmuda@marvell.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Wojciech Bartczak <wbartczak@marvell.com>
+On 03/01/2023 16:56, Wojciech Zmuda wrote:
+> In order to support ARM SCMI for the Marvell CN9x, CN10x SoC, add a
+> generic platform MHU driver based loosely on arm_mhu.c and pcc.c.
+> 
+> v1->v2:
+> - Clean up
+> - Rebase on 6.1
+> - Remove PCI interrupts
 
-Marvell Message Handling Unit is a mailbox controller present in
-Marvell OcteonTx and OcteonTX2 SoC family.
+Where is the v1?
 
-Signed-off-by: Wojciech Bartczak <wbartczak@marvell.com>
-Signed-off-by: Wojciech Zmuda <wzmuda@marvell.com>
----
- .../bindings/mailbox/marvell,mvl-mhu.yml      | 67 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 68 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mailbox/marvell,mvl-mhu.yml
+https://lore.kernel.org/all/?q=%22mailbox%3A+mvl-mhu%3A+add+OcteonTX2+MHU+mailbox+driver%22
 
-diff --git a/Documentation/devicetree/bindings/mailbox/marvell,mvl-mhu.yml b/Documentation/devicetree/bindings/mailbox/marvell,mvl-mhu.yml
-new file mode 100644
-index 000000000000..e06a17eab0f9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mailbox/marvell,mvl-mhu.yml
-@@ -0,0 +1,67 @@
-+# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mailbox/marvell,mvl-mhu.yml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Marvell Message Handling Unit driver
-+
-+maintainers:
-+  - Sujeet Baranwal <sbaranwal@marvell.com>
-+  - Sunil Goutham <sgoutham@marvell.com>
-+  - Wojciech Bartczak <wbartczak@marvell.com>
-+
-+description:
-+  The Control-Processors Cluster (CPC) provides Arm-platform specification
-+  entities for managing the system. On of the CPC processors is the System
-+  Control Processor (SCP). The SCP is responsible, among others, for booting
-+  the chip, clock and power initialization, controlling power consumption
-+  through DVFS, monitoring temperature sensors and controlling AVS. The SCP,
-+  as each XCP, contains mailboxes for software-to-software communications.
-+  Mailbox writes cause an interrupt to the local XCP core or to the AP.
-+  This driver exposes AP-SCP Message Handling Unit to the system, providing
-+  the mailbox communication mechanism to the system, with the intention
-+  of plugging into the SCMI framework. It is designed to work with Marvell
-+  OcteonTX and OcteonTX2-based platforms.
-+  Mailbox has no other usage than SCMI communication. In case of
-+  configurations running without SCMI support it should be disabled.
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: marvell,mbox
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#mbox-cells":
-+    description: Index of the channel
-+    const: 1
-+
-+required:
-+  - "#mbox-cells"
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+		/ {
-+			mailbox: mailbox@28,0 {
-+				compatible = "marvell,mbox";
-+				#mbox-cells = <1>;
-+				reg = <0xE000 0 0 0 0>;/*  DEVFN = 0xE0 (1C:0) */
-+			};
-+
-+			/* ... */
-+
-+			firmware {
-+				scmi {
-+					compatible = "arm,scmi";
-+					mboxes = <&mailbox 0>;
-+					mbox-names = "scp_ap";
-+					/* ... */
-+				};
-+			};
-+		};
-+
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 650a198cce24..e53f001a15c3 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11328,6 +11328,7 @@ M:	Sunil Goutham <sgoutham@marvell.com>
- M:	Wojciech Bartczak <wbartczak@marvell.com>
- L:	linux-kernel@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/mailbox/marvell,mvl-mhu.yml
- F:	drivers/mailbox/mvl_mhu.c
- 
- MATROX FRAMEBUFFER DRIVER
--- 
-2.17.1
+Best regards,
+Krzysztof
 
