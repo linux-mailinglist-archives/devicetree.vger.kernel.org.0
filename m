@@ -2,58 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F277065C5AD
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 19:06:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2887B65C5C2
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 19:09:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238583AbjACSFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 13:05:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57114 "EHLO
+        id S238639AbjACSJk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 13:09:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238673AbjACSEt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 13:04:49 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D05E13D01;
-        Tue,  3 Jan 2023 10:04:43 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 23C83B8104D;
-        Tue,  3 Jan 2023 18:04:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC04CC433EF;
-        Tue,  3 Jan 2023 18:04:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672769080;
-        bh=ZR7IIxT/ZnYnuHfeakuNO7Lp/ohQpSt0ghu2SgfR1ds=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KE/NYrzv+S4HklSm3cK8xlkV9GQXl4GW/rAzLQbeoTYg5oBP2RlWUFH3tzDaVxyMF
-         mg8CmhnaAqcvdEYt1pe/KU5/hZXgLO31XLizgutcxPFA5Ljnm65leJEOQSM3FTHsPp
-         GZeEmoYZKAuBkqWGNCrMMCcEwCoeW8jVLMmsn/zriTN0+Zx8VMGDFPbO0WRiizN2+i
-         SB0emxaWIAP4q3QHr3N7UYfsae2zQVmuBy+q62EmfAqV039gZ2x1SaeHJ2LS0wbbbg
-         e360qUYRHURT8bTUPwHoivTbjcjZxyqQg7e0yY5xO4g5UBTMjSOvsOlGGj6XFekxCV
-         8H2Y/lVCwZAwQ==
-Date:   Tue, 3 Jan 2023 18:04:34 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, s.nawrocki@samsung.com,
-        perex@perex.cz, tiwai@suse.com, pankaj.dubey@samsung.com,
-        alim.akhtar@samsung.com, rcsekar@samsung.com,
-        aswani.reddy@samsung.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v2 1/5] ASoC: dt-bindings: Add FSD I2S controller bindings
-Message-ID: <Y7RuMmvNnAx+oyyl@sirena.org.uk>
-References: <20230103045613.100309-1-p.rajanbabu@samsung.com>
- <CGME20230103045651epcas5p417960d84f4aa934b0ae1a150ee5fee08@epcas5p4.samsung.com>
- <20230103045613.100309-2-p.rajanbabu@samsung.com>
+        with ESMTP id S233586AbjACSJX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 13:09:23 -0500
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB27311477;
+        Tue,  3 Jan 2023 10:09:14 -0800 (PST)
+Received: by mail-pl1-f181.google.com with SMTP id w3so1809607ply.3;
+        Tue, 03 Jan 2023 10:09:14 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ac3xtbao5DPMoj5S4yU2TyUQ2d/DM13Gadih/Ls/XWI=;
+        b=Du1Au1uJNDKPIKiKCZ8PAK9XJHE6ogAv/ZSObFtbh+x3PZlSrNLUwokLuUI4mdH7np
+         O1C0cGdSdZS3e1LLvxYKvYKCV/1/DDQ6F8H9yl3KG9/mvrV2sHf8Z2jETkmG2gGCUJd6
+         XNIxPx1K47kSEaUhqhbbn+WDHwI5C21AfhY4Jy6fQ97QKGkGX1wFrY1W2q5+p0MXNjWG
+         GSy+FPvIVIEgTS29b3fRgRYSFmujA11UJZ5hdfemDB/8YPK1M3Z+bpZVA1wwTZ7kg3WE
+         /IUK1fwr3CSc66O8YnuAMaoFuy4+h9B3uFpEOIFM/ZLTjsf4jm15PBSrxNysyGtouewF
+         7Wkw==
+X-Gm-Message-State: AFqh2kpKqbXo+p7Twz9K1mgLyVtKvVXmil0HZPGCUWiSKXJCcDNWPloq
+        cxwvaKgSGb2NI1K5TsnpCtI=
+X-Google-Smtp-Source: AMrXdXuvRVrhezbxvTauVXRucMNArg/EM5bY7vftUrFEUyc2jqjzQFawPwDxhmMrfk4H5XlLwX/qgA==
+X-Received: by 2002:a17:902:c144:b0:192:e3b6:7410 with SMTP id 4-20020a170902c14400b00192e3b67410mr1182712plj.28.1672769354265;
+        Tue, 03 Jan 2023 10:09:14 -0800 (PST)
+Received: from ?IPV6:2620:15c:211:201:7da8:fef9:8c31:bf89? ([2620:15c:211:201:7da8:fef9:8c31:bf89])
+        by smtp.gmail.com with ESMTPSA id q13-20020a170902edcd00b001928c204428sm2819292plk.142.2023.01.03.10.09.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Jan 2023 10:09:13 -0800 (PST)
+Message-ID: <d7323ee3-643a-8785-060b-c30eeac30f6a@acm.org>
+Date:   Tue, 3 Jan 2023 10:09:10 -0800
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="JqE9RGShcf/zQD+W"
-Content-Disposition: inline
-In-Reply-To: <20230103045613.100309-2-p.rajanbabu@samsung.com>
-X-Cookie: So many men
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v4 2/2] scsi: ufs-unisoc: Add support for Unisoc UFS host
+ controller
+Content-Language: en-US
+To:     Zhe Wang <zhe.wang1@unisoc.com>, martin.petersen@oracle.com,
+        jejb@linux.ibm.com, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, alim.akhtar@samsung.com, avri.altman@wdc.com
+Cc:     linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+        orsonzhai@gmail.com, yuelin.tang@unisoc.com,
+        zhenxiong.lai@unisoc.com, zhang.lyra@gmail.com,
+        zhewang116@gmail.com
+References: <20221209124121.20306-1-zhe.wang1@unisoc.com>
+ <20221209124121.20306-3-zhe.wang1@unisoc.com>
+From:   Bart Van Assche <bvanassche@acm.org>
+In-Reply-To: <20221209124121.20306-3-zhe.wang1@unisoc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,32 +68,8 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 12/9/22 04:41, Zhe Wang wrote:
+> Add driver code for Unisoc ufs host controller, along with ufs
+> initialization.
 
---JqE9RGShcf/zQD+W
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Tue, Jan 03, 2023 at 10:26:09AM +0530, Padmanabhan Rajanbabu wrote:
-
-> +
-> +      tesla,fsd-i2s: with all the available features of Exynos7 I2S,
-> +      supporting only stereo channel playback and capture.
-
-The driver claims that 7.1 is also supported.
-
---JqE9RGShcf/zQD+W
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmO0bjEACgkQJNaLcl1U
-h9CQlQf/fBI3mqSLK07/+r+4uheckUiQK5tcJh+cUiIlkwg8BznPvJ9zoZ0QYkEv
-r+4pS/ovtdqPcQbdGQrE4jdLiAaGp4LDTPESERoY2Y1/0KMErrPxxbEOML6PhjZ+
-7LFPnq8fh/HHh4IGHsYKLD2jwZtphXHLzEKcLlczp6YaubvXESw9G0XOMFSc589N
-+wSAxOqV9GX7kq9uQnzr4lS4/FwdqXG4kCW4QEHSg8aqjilG7Ogm7WwhIgGzDj9W
-OwptqgijpkK+sMF0DmitVPdYRAURrsLSP81LoEM3tgbPkeS5FyIljOtGcgynpuSI
-jOyQHgIlRYZ4A9F9+Wcd6tV2K8kjsg==
-=Li2U
------END PGP SIGNATURE-----
-
---JqE9RGShcf/zQD+W--
+Reviewed-by: Bart Van Assche <bvanassche@acm.org>
