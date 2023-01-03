@@ -2,59 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB7CB65BD1A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 10:24:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C3EA865BD22
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 10:27:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237192AbjACJYe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 04:24:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50648 "EHLO
+        id S236984AbjACJ1D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 04:27:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237062AbjACJYc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 04:24:32 -0500
-Received: from mail-oa1-x31.google.com (mail-oa1-x31.google.com [IPv6:2001:4860:4864:20::31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D967FE098
-        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 01:24:30 -0800 (PST)
-Received: by mail-oa1-x31.google.com with SMTP id 586e51a60fabf-14ffd3c5b15so24635998fac.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 01:24:30 -0800 (PST)
+        with ESMTP id S237232AbjACJ0z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 04:26:55 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AFCE5F7B
+        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 01:26:54 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id bt23so28203806lfb.5
+        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 01:26:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=mzcK4BlDrehna2Cf5WyLld2E+p/c7PCOy1ZvlyaJP1k=;
-        b=bR1gztSKPi5u6/qmjSq8JJxxv3wfyJmMLpirn/KjmYibxhjZo7U5fODxttptFG4MZ4
-         0IXObSQFL1xNHqEy9yAzbxhEb+FU5HZHEK34C6Ofn5xjvKJTxUVdiTMnzTXI5lLY6jmn
-         uqPKflfmFLiTiOLvpmlbSeXcHUMzp4BHwLzZ+gx+mL/n09kl/h3U90Lxgu9xZyERDy+X
-         pN+aGzLOCuL5GZJI2FeIyy8y1r7QTz61jIjmrPeSChzLCOCVEiunaEiVXRndm9YbAak0
-         tpw42Yi+0S4wXmyg/of7mbrSehHDNbYtLyhTXH05Yrk8uYo3xyuziGAMU9T+Hc9Ke44Z
-         F8MQ==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/w/HVtfVylFb92xZ3cLJHBmfw9Fvd9M+61nNyBqRlQw=;
+        b=RTLhoxkH+nPWqbV4+/wsP1hbkiXd+l89odwyVICOIKfv0tv3vI2z2vgSLpeWzbdf/4
+         7jmOlUMawjAT4OY3fnJMT1/gokohqPxF7zEav5Jw3V6G8/EP990p8jd8ZvQ+YHSZ5SNu
+         P8jEtL4VPSoLQsiAcAe1GWE9XzBjGqJuFCsyeUd7axrIgN0MQ+JGCea0Z/9wjFJOXdFq
+         tuw+RRIckHLwm6UCUUoP/YLPr+ZSdEFmbqPcx2X4vjjk5c24bUQmsGxqIOfoPsY/jE51
+         e0cDJjFz9L+WEY61i+G38N6ICgYtH+c6tQZ1RpyPDYgDRZu4GzhBL7AOC/6Hr5jRbh9o
+         RMQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mzcK4BlDrehna2Cf5WyLld2E+p/c7PCOy1ZvlyaJP1k=;
-        b=v/B6SZ4MZt3jczCn34K6xzKVAlBKEUfrW7xfy1hGEy/w9eDZbB4CwEQrsMIMUAL0tV
-         r5uH6gSrrt2k1QL4EE2sNTO1bCsYudq+gC+RJFxvhbSP3TNqLeRsPwV+vepl3NRqPL2P
-         ANEt0+qhcV9vCVBubSpvZdCM6BlngHGXjXipHBqPQNbHMoHsrV9wSX71o3gD2ovVfud1
-         KCd/6JoHLKIz3uGk9hroPCBjsci8DVM7NiKIdXiWLGeyTYliQHH6ydy8F6GDtUzHOnfy
-         AG8vZo4lPeDtTwyyLW+gF6YiOnWOjJawlIKIHpc9n6jYoKBtni2zQ6Ska+2a4UkBtHG0
-         KaPA==
-X-Gm-Message-State: AFqh2kpZ/q9PV1i6HoIIQEZ4zPm3O06lRbGHzkH61f0ZhytHVlFYasO+
-        tyEzgwzqRk5TNv6J+5B+s+rL0VhbpMkj0/A3N6VpzA==
-X-Google-Smtp-Source: AMrXdXu7+GEt205lhs8PRbBO9C5QHjATHLZxARTl42LbFtqkt0s4GGajjKBhO17x3s7QodHXVkcp8SHp01rNiJX+xZo=
-X-Received: by 2002:a05:6870:fb90:b0:150:22dd:1f54 with SMTP id
- kv16-20020a056870fb9000b0015022dd1f54mr1713164oab.155.1672737870170; Tue, 03
- Jan 2023 01:24:30 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/w/HVtfVylFb92xZ3cLJHBmfw9Fvd9M+61nNyBqRlQw=;
+        b=teUh4Tvdi1aTvvYpRYkifknn5cnPtUSfVnXcTQ2m1FxFKzzQfqJdkIxJTU8Bjyy+CI
+         GlGwBDkxnU7gdOyqDE/Ab0Mtpx5rZDdLEqo5vRp/aeUtCWwMasRSwfEO5OSd47Whgzcl
+         hg+zQnGB1yOyN1VAG6g6XxRzX5xg0zOwvusWybr+++A9UHg+ANKjxWYUmkYx/dv+P7Oq
+         VxGKunbE/bN8vUTVvoyed+uLqTfWrgevVsujE8UNpg2naiBdu7cGRkerK3zvSzkBfqbx
+         kF7CQbKyB0NgfpNqRLI8NOHJJUmh+dM94JfQq8ylD61inVyKNRzFT/He4MAKiwWeQXTu
+         2jKw==
+X-Gm-Message-State: AFqh2krajucM6tl4LeWygqUh+lqGIKXZvjHj08ZF6SPeUgKd+o8bM+hO
+        0lrcxPaGxdX4/Ama/lPe/nMEYg==
+X-Google-Smtp-Source: AMrXdXtxBjEkK70iD51Dp0X3k5oQpocNZh8ibg9YbJMfLNtcc4svtr8iSFKyEPRp4WwGOQw+jjzdVA==
+X-Received: by 2002:a05:6512:1116:b0:4a4:68b7:dee8 with SMTP id l22-20020a056512111600b004a468b7dee8mr15192136lfg.68.1672738012533;
+        Tue, 03 Jan 2023 01:26:52 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id o17-20020ac24351000000b0048a934168c0sm4768418lfl.35.2023.01.03.01.26.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Jan 2023 01:26:52 -0800 (PST)
+Message-ID: <207b6699-fe4f-8ab7-5ddb-4eb2e4183c88@linaro.org>
+Date:   Tue, 3 Jan 2023 10:26:50 +0100
 MIME-Version: 1.0
-References: <20221230153554.105856-1-robert.foss@linaro.org>
- <20221230153554.105856-9-robert.foss@linaro.org> <deb17787-1a5a-89a3-3ecf-7690b4149f5c@linaro.org>
- <CAG3jFysU84LRcqQOspub+9vtsP3syiksrGX6D7i3ff+X6+mbTA@mail.gmail.com> <b8a0d9c5-eb26-c41c-1190-2628977bc582@linaro.org>
-In-Reply-To: <b8a0d9c5-eb26-c41c-1190-2628977bc582@linaro.org>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Tue, 3 Jan 2023 10:24:19 +0100
-Message-ID: <CAG3jFyuUV79nyjnqNysDKQSyYb4HUSWu-BvxG6LAz1Uavmvkbg@mail.gmail.com>
-Subject: Re: [PATCH v4 08/11] arm64: dts: qcom: sm8350: Use 2 interconnect cells
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v4 08/11] arm64: dts: qcom: sm8350: Use 2 interconnect
+ cells
+Content-Language: en-US
+To:     Robert Foss <robert.foss@linaro.org>
 Cc:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
         dmitry.baryshkov@linaro.org, sean@poorly.run, airlied@gmail.com,
         daniel@ffwll.ch, robh+dt@kernel.org,
@@ -69,57 +72,46 @@ Cc:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
         freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, Jonathan Marek <jonathan@marek.ca>,
         vinod.koul@linaro.org, Konrad Dybcio <konrad.dybcio@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20221230153554.105856-1-robert.foss@linaro.org>
+ <20221230153554.105856-9-robert.foss@linaro.org>
+ <deb17787-1a5a-89a3-3ecf-7690b4149f5c@linaro.org>
+ <CAG3jFysU84LRcqQOspub+9vtsP3syiksrGX6D7i3ff+X6+mbTA@mail.gmail.com>
+ <b8a0d9c5-eb26-c41c-1190-2628977bc582@linaro.org>
+ <CAG3jFyuUV79nyjnqNysDKQSyYb4HUSWu-BvxG6LAz1Uavmvkbg@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAG3jFyuUV79nyjnqNysDKQSyYb4HUSWu-BvxG6LAz1Uavmvkbg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 3 Jan 2023 at 08:59, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 02/01/2023 18:10, Robert Foss wrote:
-> > On Fri, 30 Dec 2022 at 17:12, Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 30/12/2022 16:35, Robert Foss wrote:
-> >>> Use two interconnect cells in order to optionally
-> >>> support a path tag.
-> >>>
-> >>> Signed-off-by: Robert Foss <robert.foss@linaro.org>
-> >>> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> >>> ---
-> >>>  arch/arm64/boot/dts/qcom/sm8350.dtsi | 28 ++++++++++++++--------------
-> >>>  1 file changed, 14 insertions(+), 14 deletions(-)
-> >>>
-> >>
-> >> I think you need to rebase to include:
-> >> https://lore.kernel.org/all/167233461761.1099840.5517525898039031248.b4-ty@kernel.org/
-> >
-> > Ah, I see. Functionally I seemed to do fine without those commits.
-> >
-> >>
-> >> On which tree/revision did you base this?
-> >
-> > msm/drm-msm-display-for-6.2
->
-> Then it is not a proper base for DTS changes - you will miss quite some
-> commits. The DTS patches should be based on Bjorn's SoC tree or
-> linux-next (although the latter sometimes can lead to conflicts).
+On 03/01/2023 10:24, Robert Foss wrote:
+>>>> On which tree/revision did you base this?
+>>>
+>>> msm/drm-msm-display-for-6.2
+>>
+>> Then it is not a proper base for DTS changes - you will miss quite some
+>> commits. The DTS patches should be based on Bjorn's SoC tree or
+>> linux-next (although the latter sometimes can lead to conflicts).
+> 
+> Alright, then in that case this series needs to be split into 3 parts.
+> 
+> The dts fixes, remaining dts changes & the remainder of code.
 
-Alright, then in that case this series needs to be split into 3 parts.
+The split of any fixes (or unrelated cleanups) is good idea anyway.
+However code can go with DTS - just base on linux-next. If you do not
+want to base on linux-next then splitting code from DTS is indeed one
+more good way to send it.
 
-The dts fixes, remaining dts changes & the remainder of code.
+> 
+> Is this what you'd like to see?
 
-Is this what you'd like to see?
+Best regards,
+Krzysztof
 
->
->
-> Best regards,
-> Krzysztof
->
