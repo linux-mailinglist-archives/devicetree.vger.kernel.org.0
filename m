@@ -2,161 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8335265BFE7
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 13:32:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7699C65BFF0
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 13:35:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236969AbjACMcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 07:32:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34536 "EHLO
+        id S233319AbjACMfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 07:35:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230337AbjACMcH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 07:32:07 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC94FFD39;
-        Tue,  3 Jan 2023 04:32:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1672749126; x=1704285126;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=WfeauZQQ6shWtDpquveDvTrFGQ3JaGn25Hjtpe3ufdY=;
-  b=gglGkWYB85DE8/bKTCKN07UdEBAU0R6C2Grl2D2hzf6QD5ouNo5JPjHf
-   j3Toy1ybQeWOmRieUy1QKUSdCyZrmxEZ4ZGUQI0zZ2DQUCNsus7r4/43J
-   tFHy75GINOXMDjGHUajYRHPjRwTR4HJa4DoKoXeOojUsJm74N+0HtnEVf
-   rpveizImGdCfq9xST/RBy05xxjp56oOzg1KaFBwdQhy+6xHcrD+w0UQPg
-   zuPWKbbM8ehWyVWAqOmRVDVLACdiiZ9lqyiw81Wo+MDf8FONKrNkbeGFZ
-   Wbpj+ZrmDrdPONg21qP0nvXIUkmjSmS8BcCod/x4p7H5tfDL0cCfgoxQ1
-   w==;
-X-IronPort-AV: E=Sophos;i="5.96,296,1665439200"; 
-   d="scan'208";a="28221135"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 03 Jan 2023 13:31:59 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Tue, 03 Jan 2023 13:31:59 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Tue, 03 Jan 2023 13:31:59 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1672749119; x=1704285119;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=WfeauZQQ6shWtDpquveDvTrFGQ3JaGn25Hjtpe3ufdY=;
-  b=JnAMuLOLFKODOnp9GYUJJcuZ7Ec5+GYAy4aF3g2xhhlGp3sJoduNQjCs
-   lE5TspTiRtcwLmmmb+FHPIUW0fliAT9cJV88F/+1MiDHoJayvedCJMQvi
-   duascdZteIDFY4OfHBm0ufuy1dZDocs5lAwtaF5wcWXozG8z0VctqSFH4
-   1dPfVPCsNw9cZeHG29+51KstIXvqVvNhuUQjeRaHGyXgAxyqn3RhPPerh
-   9iEIgET740uWcb6UkVIPsnTnhQsel5rAb1OYZmZ0ItXiaAcJo1IlpgHUX
-   FUMQjO59uiKgl/RKh7PO0pjpb0zUixI4Bb+7Xy3UeVaWDhEEbvtx4g3l7
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.96,296,1665439200"; 
-   d="scan'208";a="28221134"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 03 Jan 2023 13:31:59 +0100
-Received: from steina-w.tq-net.de (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 6EC86280072;
-        Tue,  3 Jan 2023 13:31:59 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S230337AbjACMfB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 07:35:01 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 696D4FD38;
+        Tue,  3 Jan 2023 04:34:59 -0800 (PST)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 894A2108;
+        Tue,  3 Jan 2023 13:34:56 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1672749296;
+        bh=wepXydtjzK/muuQNNIk6gR37qVRHqiHnsbuxffbt3Fs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RDUyM+QIxqu/rRF500zbd/WlaWsvPAoPVdHrG86tqouRqt0rHKpCfXDcxi+OiAiu3
+         3+QHB5mfzshagcMV1OUzTKMR5z+EbE4l0MYP+Qe2f0grBFqP/IjPXxdqvly8qCuaha
+         zCXhmsYV5H2U0YLdVtsItSdPVTz4FH2AzBY49+Dw=
+Date:   Tue, 3 Jan 2023 14:34:52 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marek Vasut <marex@denx.de>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH 4/4] clk: rs9: Add support for 9FGV0441
-Date:   Tue,  3 Jan 2023 13:31:54 +0100
-Message-Id: <20230103123154.3424817-4-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230103123154.3424817-1-alexander.stein@ew.tq-group.com>
-References: <20230103123154.3424817-1-alexander.stein@ew.tq-group.com>
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Marek Vasut <marex@denx.de>, Mark Brown <broonie@kernel.org>
+Subject: Re: [RFC PATCH 1/3] dt-bindings: gpio: Add optional ramp-up delay
+ property
+Message-ID: <Y7Qg7DzyJkdFGsyz@pendragon.ideasonboard.com>
+References: <20221212103525.231298-1-alexander.stein@ew.tq-group.com>
+ <CACRpkdZ2G=HUTBMpXJrXeSh3kYgQQc8p8zaJZPL71HWA9362ZA@mail.gmail.com>
+ <Y6DtQ7PXPZ809P4C@pendragon.ideasonboard.com>
+ <2798796.Y6S9NjorxK@steina-w>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <2798796.Y6S9NjorxK@steina-w>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This model is similar to 9FGV0241, but the DIFx bits start at bit 0.
+On Tue, Jan 03, 2023 at 12:56:38PM +0100, Alexander Stein wrote:
+> Am Dienstag, 20. Dezember 2022, 00:01:23 CET schrieb Laurent Pinchart:
+> > On Thu, Dec 15, 2022 at 11:56:57AM +0100, Linus Walleij wrote:
+> > > On Tue, Dec 13, 2022 at 12:45 PM Laurent Pinchart wrote:
+> > > > The circuit we're looking at is
+> > > > 
+> > > >   +----------+           +-----------+
+> > > >   | SoC      |           |    VCC    |
+> > > >   |          |           |     _     |
+> > > >   |          |           |    | | R  |
+> > > >   |          |           |    |_|    |
+> > > >   |          |           |     |     |
+> > > >   |      [IOx|-----+-----|EN]--+     |
+> > > >   |          |     |     | SN65DSI83 |
+> > > >   +----------+    --- C  +-----------+
+> > > >                   ---
+> > > >                    -
+> > > >                   GND
+> > > > 
+> > > > The IOx pin is an open-drain output, the board has a 470nF capacitor to
+> > > > ground, and the SN65DSI83 has an internal pull-up off 200kΩ. This gives
+> > > > an RC time constant of 94ms, far from being negligible.
+> > > > 
+> > > > The delay is caused by the combination of the open-drain nature of the
+> > > > output (an intrinsic property of the GPIO controller), the pull-up
+> > > > resistor (an intrinsic property of the SN65DSI83) and the capacitor on
+> > > > the line (a property of the board). DT is notoriously bad at modelling
+> > > > this kind of setup.
+> > > 
+> > > Yeah :/
+> > > 
+> > > It's not like we don't model discrete electronics, we do that a lot,
+> > > but as you say, it is really hard to know where to draw the line
+> > > in cases like this.
+> > > 
+> > > > The alternative I proposed, adding a "GPIO delay" DT node to model this,
+> > > > would also offer a centralized solution to the problem, but with
+> > > > additional complexity both at probe time and runtime.
+> > > 
+> > > I have a slight preference for this, as it will be very explicit in the
+> > > device tree and we can just put all the code inside its own file and
+> > > depend on GPIO_OF so other HW description systems do not
+> > > need to include it.
+> > > 
+> > > At the same time it feels a bit overengineered, so maybe just adding
+> > > this delay as in the patch with some strings attached like comments
+> > > and docs is yet the best. It feels like we need some more input to
+> > > reach consensus.
+> > > 
+> > > > The regulator delays model the intrinsic delays when enabling or
+> > > > disabling a regulator, and they should stay. They address a different
+> > > > problem.
+> > > 
+> > > OK right. But someone not knowing exactly what they are doing
+> > > will end up abusing the delay property on the delay line
+> > > also for this delay. The risk of that is lesser with a separate
+> > > delay box.
+> > 
+> > That may be true, but I think we can also try to catch abuses in
+> > reviews. I would be a bit sad if we made life more difficult (and less
+> > efficient at runtime too) for legitimate users just because we are
+> > worried about abuses.
+> 
+> What is a legitimate user for you? Given the example in v2 of this series it's 
+> clear that this feature is an opt-in, both for the DT node as well as for 
+> specifying a delay.
+> Another benefit of using a dedicated driver: It also automatically handles 
+> things like setting multiple GPIOs at once.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- drivers/clk/clk-renesas-pcie.c | 18 +++++++++++++++++-
- 1 file changed, 17 insertions(+), 1 deletion(-)
+Your use case is totally legitimate I think. An illegitimate case would
+be someone modelling the internal enable delay of a regulator controlled
+by a GPIO as a GPIO delay instead of using the regulator enable delay DT
+property defined by the regulators bindings.
 
-diff --git a/drivers/clk/clk-renesas-pcie.c b/drivers/clk/clk-renesas-pcie.c
-index d19b8e759eea..6095eacd4f8a 100644
---- a/drivers/clk/clk-renesas-pcie.c
-+++ b/drivers/clk/clk-renesas-pcie.c
-@@ -6,6 +6,7 @@
-  *   - 9FGV/9DBV/9DMV/9FGL/9DML/9QXL/9SQ
-  * Currently supported:
-  *   - 9FGV0241
-+ *   - 9FGV0441
-  *
-  * Copyright (C) 2022 Marek Vasut <marex@denx.de>
-  */
-@@ -51,6 +52,7 @@
- /* Supported Renesas 9-series models. */
- enum rs9_model {
- 	RENESAS_9FGV0241,
-+	RENESAS_9FGV0441,
- };
- 
- /* Structure to describe features of a particular 9-series model */
-@@ -66,7 +68,7 @@ struct rs9_driver_data {
- 	struct regmap		*regmap;
- 	const struct rs9_chip_info *chip_info;
- 	struct clk		*pin_xin;
--	struct clk_hw		*clk_dif[2];
-+	struct clk_hw		*clk_dif[4];
- 	u8			pll_amplitude;
- 	u8			pll_ssc;
- 	u8			clk_dif_sr;
-@@ -162,6 +164,11 @@ static u8 rs9fgv0241_calc_dif(int idx)
- 	return BIT(idx) + 1;
- }
- 
-+static u8 rs9fgv0441_calc_dif(int idx)
-+{
-+	return BIT(idx);
-+}
-+
- static int rs9_get_output_config(struct rs9_driver_data *rs9, int idx)
- {
- 	u8 dif = rs9->chip_info->calc_dif(idx);
-@@ -378,14 +385,23 @@ static const struct rs9_chip_info renesas_9fgv0241_info = {
- 	.calc_dif	= rs9fgv0241_calc_dif,
- };
- 
-+static const struct rs9_chip_info renesas_9fgv0441_info = {
-+	.model		= RENESAS_9FGV0441,
-+	.num_clks	= 4,
-+	.did		= RS9_REG_DID_TYPE_FGV | 0x04,
-+	.calc_dif	= rs9fgv0441_calc_dif,
-+};
-+
- static const struct i2c_device_id rs9_id[] = {
- 	{ "9fgv0241", .driver_data = RENESAS_9FGV0241 },
-+	{ "9fgv0441", .driver_data = RENESAS_9FGV0441 },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, rs9_id);
- 
- static const struct of_device_id clk_rs9_of_match[] = {
- 	{ .compatible = "renesas,9fgv0241", .data = &renesas_9fgv0241_info },
-+	{ .compatible = "renesas,9fgv0441", .data = &renesas_9fgv0441_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, clk_rs9_of_match);
+> > Another thing I've been thinking about is that we may not always want to
+> > wait for the GPIO delay. Some consumers may not care when the GPIO line
+> > reaches the desired state as long as it eventually does, or maybe they
+> > need to perform multiple operations (such as enabling/disabling
+> > regulators and/or clocks) and only need a synchronization point for a
+> > group of operations. All that would be pretty hard to handle, and maybe
+> > it's a problem we'll look at only when needed (and hopefully never).
+> 
+> If you don't care about rising time, do not use gpio-delay for that GPIO, or 
+> just don't specify a ramp-up delay in the gpio-cells, aka setting to 0.
+> The more complex synchronisation example you mentioned probably needs a 
+> similar dedicated driver for grouping those resources.
+
+You're right that in cases where there is a single consumer, and the
+consumer is well known, and the fact that it doesn't care about rising
+time is an intrinsic property of that consumer, then DT should simply
+not specify any delay. For more complex cases, I'd say it's likely
+overkill to try and design a solution now without real use cases.
+
 -- 
-2.34.1
+Regards,
 
+Laurent Pinchart
