@@ -2,76 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4672465BA1B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 05:46:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7796C65BAAB
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 07:38:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232935AbjACEp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Jan 2023 23:45:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39920 "EHLO
+        id S230421AbjACGiI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 01:38:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231635AbjACEp4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Jan 2023 23:45:56 -0500
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 992305F6D
-        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 20:45:55 -0800 (PST)
-Received: by mail-pl1-x633.google.com with SMTP id d3so31431752plr.10
-        for <devicetree@vger.kernel.org>; Mon, 02 Jan 2023 20:45:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5r2SpeKo/dsm6TJm7k5ZEFJZ1B6qJV7pDaoh0+GMrDA=;
-        b=PIMtxS4MCr2yd/V98x1M0WVzhwxok8v0zFDS5ob3HM8+hLK8f1YQECXRa9GkngJQ19
-         mw526XmfUqCJiahu24KKtaReMK8svdyTnqNguRFFM3IqH9yToQyX90MR7clsc9t0gG89
-         hgS6jqF4kMadta8wcMwaqNyE40Xcl68I4ve4CW0l4KecOfUjqkDOlAMS7YWjMkk/hyc9
-         Wl9RfD9Ba7vfCfrYpADX4TTQcHYulXzMlGd/Je7xPIcDHV0STP1sNbFtBu6/dGBIjhGT
-         i4hv92Okma105aXB245HF8POGL9h8QfcxH2BNh4im2fSazQWtTwxGyNVRw7BhXQM087B
-         H/gQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5r2SpeKo/dsm6TJm7k5ZEFJZ1B6qJV7pDaoh0+GMrDA=;
-        b=ziokse9mJHPqyh8HTHTVhl/U8BFF6zgOyaTTzde5se0BwCn16xURZSNDv8HJIfncNA
-         NheE8YZMylbfBg2gIBQG071sVqon52tJnAYpDMT3r4YmkyIy7vs/T9fP5jmDaKZsFRsr
-         FiVI714G0pIE1vvuLrvp6+dobE2yanYf2KBrhuVOdp7BywaY7XcaAS1GluGCsD/ZQFbC
-         yZzdjvf+Fjj/uXjXfFWWjn7p9NLiNimCn0CGA1rpgVHY30QLxjFkZlnmYkfimrbPNsJs
-         zYv3e8de+BIOlEmq23cAJXf95wyRt2amt5U8lJ6YmjeXdxTZ68xHKsn/UzsCRVUOv6LB
-         xYgw==
-X-Gm-Message-State: AFqh2krHeW+U8FmxPE6AjtTKM91S1ggI1Pejuy5sT0ya0xmniEdXsTmb
-        WWbIK7Gt24birIWBa9w6xDe7Rg==
-X-Google-Smtp-Source: AMrXdXuXqoCFzqofEoGdlX/Jo/KW97I/INTMOP7PlP95lQMRtK8ZZV8x9HRIX/rd3Br9I+nSrXs4eQ==
-X-Received: by 2002:a05:6a20:8ee1:b0:ac:3f3f:9fbd with SMTP id m33-20020a056a208ee100b000ac3f3f9fbdmr43533668pzk.48.1672721155036;
-        Mon, 02 Jan 2023 20:45:55 -0800 (PST)
-Received: from ?IPV6:2401:4900:1c5e:e3b5:c341:16de:ce17:b857? ([2401:4900:1c5e:e3b5:c341:16de:ce17:b857])
-        by smtp.gmail.com with ESMTPSA id x7-20020aa78f07000000b00580f630a05csm15555599pfr.180.2023.01.02.20.45.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Jan 2023 20:45:54 -0800 (PST)
-Message-ID: <3db705bf-d63b-2804-53d3-4e538722369d@linaro.org>
-Date:   Tue, 3 Jan 2023 10:15:48 +0530
+        with ESMTP id S230327AbjACGiG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 01:38:06 -0500
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 457E21136
+        for <devicetree@vger.kernel.org>; Mon,  2 Jan 2023 22:38:03 -0800 (PST)
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20230103063758epoutp024ee568a897722a9b4d192a9b71ee7cdb~2uSSZpehw2301623016epoutp023
+        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 06:37:58 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20230103063758epoutp024ee568a897722a9b4d192a9b71ee7cdb~2uSSZpehw2301623016epoutp023
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1672727878;
+        bh=XZvYlXgpWFcytY0b+WO4ljcktt6LBn91faP7lLVRS0g=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=ETaGzmWo6V/HN+r9W7LDnqPC9fmq+jeWXBs3LLJjeqdY9Twa5yJbsZJKhk6HbuvWR
+         alJG1uJjESh1R85NcGTMPqnzDY6wXktTybbEzcYS1PTZYv3zyKoKYR05ydGwis85i2
+         GlhXrAamoYFSb4CrsICiwEXLYtvJOtNvbuiIc9aA=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+        epcas5p4.samsung.com (KnoxPortal) with ESMTP id
+        20230103063757epcas5p49588c838606addcd87eef2d793f0250c~2uSR4khOf2944229442epcas5p49;
+        Tue,  3 Jan 2023 06:37:57 +0000 (GMT)
+Received: from epsmges5p3new.samsung.com (unknown [182.195.38.177]) by
+        epsnrtp4.localdomain (Postfix) with ESMTP id 4NmNMm28zGz4x9Pq; Tue,  3 Jan
+        2023 06:37:56 +0000 (GMT)
+Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
+        epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        74.38.03362.44DC3B36; Tue,  3 Jan 2023 15:37:56 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+        20230103045506epcas5p4dae882d7ac7627f37f17572c3bf70760~2s4d3Y-XZ1872118721epcas5p4Q;
+        Tue,  3 Jan 2023 04:55:06 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20230103045506epsmtrp2984e59cd9032a225c69b4608b4597947~2s4d2f5FQ0604406044epsmtrp2r;
+        Tue,  3 Jan 2023 04:55:06 +0000 (GMT)
+X-AuditID: b6c32a4b-4e5fa70000010d22-ca-63b3cd441131
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        B7.D4.10542.925B3B36; Tue,  3 Jan 2023 13:55:05 +0900 (KST)
+Received: from FDSFTE070 (unknown [107.116.189.86]) by epsmtip1.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20230103045503epsmtip141b657b6f85830aeca46b749e4eea160~2s4boh1T71253712537epsmtip1A;
+        Tue,  3 Jan 2023 04:55:03 +0000 (GMT)
+From:   "Padmanabhan Rajanbabu" <p.rajanbabu@samsung.com>
+To:     "'Mark Brown'" <broonie@kernel.org>
+Cc:     <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <s.nawrocki@samsung.com>,
+        <perex@perex.cz>, <tiwai@suse.com>, <pankaj.dubey@samsung.com>,
+        <alim.akhtar@samsung.com>, <rcsekar@samsung.com>,
+        <aswani.reddy@samsung.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-samsung-soc@vger.kernel.org>
+In-Reply-To: <Y2vlqatX7dfPJ3Zi@sirena.org.uk>
+Subject: RE: [PATCH 2/6] ASoC: samsung: i2s: configure PSR from sound card
+Date:   Tue, 3 Jan 2023 10:25:02 +0530
+Message-ID: <025401d91f2f$8bf78a00$a3e69e00$@samsung.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-Subject: Re: [PATCH 2/2] usb: misc: eud: Add driver support for SM6115 /
- SM4250
-To:     kernel test robot <lkp@intel.com>, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev, quic_schowdhu@quicinc.com,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
-        bhupesh.linux@gmail.com, robh+dt@kernel.org
-References: <20221231130743.3285664-3-bhupesh.sharma@linaro.org>
- <202301010719.babWy02L-lkp@intel.com>
-Content-Language: en-US
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-In-Reply-To: <202301010719.babWy02L-lkp@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQKFI9qd/qMOsyXBjKz4d8Q6MS4QvwJEXTuNARMAzQMCgN8f5gMWNkuwArAClEQCgEQWDwHlvOpzrLPsmiA=
+Content-Language: en-in
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrCJsWRmVeSWpSXmKPExsWy7bCmuq7L2c3JBgv6+SwezNvGZnHl4iEm
+        i0Obt7JbTH34hM1i/pFzrBZ9Lx4yW3y70sFkcXnXHDaLGef3MVks2vqF3aJzVz+rxawLO1gt
+        WvceYbc4/Kad1WLD97WMDvweGz43sXnsnHWX3WPTqk42jzvX9rB57Hu7jM2jb8sqRo/1W66y
+        eHzeJBfAEZVtk5GamJJapJCal5yfkpmXbqvkHRzvHG9qZmCoa2hpYa6kkJeYm2qr5OIToOuW
+        mQN0vZJCWWJOKVAoILG4WEnfzqYov7QkVSEjv7jEVim1ICWnwKRArzgxt7g0L10vL7XEytDA
+        wMgUqDAhO+PXn/eMBceVKi5/PcvYwHhKsouRk0NCwETiw9bljF2MXBxCArsZJRq/n2eGcD4x
+        SnxfMJEFwvnMKNE/cyczTMuixUvYIBK7GCX+L3oEVfWCUWLnzmY2kCo2AXOJRXuXMoLYIgLq
+        Ekc3bWQFKWIW6GKW2HDkHQtIglNAV+LMqV1MILawgJfEmZ51YCtYBFQkTm/+ABbnFbCUuPl8
+        DjOELShxcuYTsF5mAXmJ7W/nQJ2kIPHz6TJWiGVJEm1Hn7JB1IhLHP3ZA/aQhMAbDonOR3dY
+        IBpcJJ7MvMMKYQtLvDq+hR3ClpL4/G4vG4SdLzHtYzOUXSHR9nEDE4RtL3HgyhygORxACzQl
+        1u/ShwjLSkw9tY4JYi+fRO/vJ1DlvBI75sHYqhLrl29ihLClJfZd38s4gVFpFpLXZiF5bRaS
+        F2YhbFvAyLKKUTK1oDg3PbXYtMA4L7UcHuXJ+bmbGMHJW8t7B+OjBx/0DjEycTAeYpTgYFYS
+        4Z30YlOyEG9KYmVValF+fFFpTmrxIUZTYHhPZJYSTc4H5o+8knhDE0sDEzMzMxNLYzNDJXHe
+        1K3zk4UE0hNLUrNTUwtSi2D6mDg4pRqYUtqnFJUomZQuerLCT2jb1WNMfnYl3V2MqWYZfnW7
+        r3+3dXxeWeCnu/OJilx9VMLe9rC2Nwq70s//uPf7nFjd5SArtsdnTWVuNcycu+qkSmS0g47+
+        XsaAv3O8P+dxKTZlvT7/6vWcPLXn5lFLe37KzJQ9eujw5msnVDUP1F7wLsk984hJ0WL/9PO2
+        yqwfLk9X0FPonBT0aK36aW0h6xtP5nxbn/CjdXvY3JZ1De8jrL/1lTPt2O1kfFdp7aauXlHm
+        LzucbBjOLWh8zvxwtoRzwTW5D+cjFu44c2/mrOraLtbSVX8Fcw4u2iBbtkjvXeet/ec/S9/6
+        m1/gK1GzlKOA7ctE3gnVDRpLQxadUzmmrMRSnJFoqMVcVJwIAE7otvJnBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrFIsWRmVeSWpSXmKPExsWy7bCSnK7m1s3JBj1LTSwezNvGZnHl4iEm
+        i0Obt7JbTH34hM1i/pFzrBZ9Lx4yW3y70sFkcXnXHDaLGef3MVks2vqF3aJzVz+rxawLO1gt
+        WvceYbc4/Kad1WLD97WMDvweGz43sXnsnHWX3WPTqk42jzvX9rB57Hu7jM2jb8sqRo/1W66y
+        eHzeJBfAEcVlk5Kak1mWWqRvl8CV8evPe8aC40oVl7+eZWxgPCXZxcjJISFgIrFo8RK2LkYu
+        DiGBHYwS31o2MEMkpCWm9+9hg7CFJVb+e84OUfSMUWLZis1gCTYBc4lFe5cygtgiAuoSRzdt
+        ZAUpYhaYwSxx6NYlVoiOBmaJ7d8XgHVwCuhKnDm1iwnEFhbwkjjTsw5sHYuAisTpzR/A4rwC
+        lhI3n89hhrAFJU7OfMLSxcgBNFVPom0j2DJmAXmJ7W/nQF2qIPHz6TJWiCOSJNqOPmWDqBGX
+        OPqzh3kCo/AsJJNmIUyahWTSLCQdCxhZVjFKphYU56bnFhsWGOWllusVJ+YWl+al6yXn525i
+        BEevltYOxj2rPugdYmTiYDzEKMHBrCTCO+nFpmQh3pTEyqrUovz4otKc1OJDjNIcLErivBe6
+        TsYLCaQnlqRmp6YWpBbBZJk4OKUamFT/7nz3xGNdldu9M4mujrNfnZGQOPA07comp8bbbT53
+        Hhy/7LnYU2nSsy5nk3l/ywsONi3ktghnYF9WfOdrkfgeUYmuyTN39Tns+3/u0MUn55csOO/Q
+        s/7Y/Oj4KSoBV2a1PM7WPbO9IcEu/DQfwyu+t60MOg2N8pX8zyTfv9i+PeQQe/i564udZufN
+        XxM46ZrmlVaR+fWra++2Hd5Q6iX6QMvP8p9v9GltnlgDfrXmF/PnuV7OF3m6pa/ybH9zQmyM
+        0vU8lZij4redJd12zdf5dyzvmz3HZqu+dRseMC1KfLPivVtM5u2b2crWi/WrpV4efDZBr7F3
+        kdWxPzM6zW6Zm5cwaOkIzg/i4lv7MUKJpTgj0VCLuag4EQDN3wZCTQMAAA==
+X-CMS-MailID: 20230103045506epcas5p4dae882d7ac7627f37f17572c3bf70760
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20221014104857epcas5p2a275a1d606ca066227228d13bcf5b120
+References: <20221014102151.108539-1-p.rajanbabu@samsung.com>
+        <CGME20221014104857epcas5p2a275a1d606ca066227228d13bcf5b120@epcas5p2.samsung.com>
+        <20221014102151.108539-3-p.rajanbabu@samsung.com>
+        <Y0lPz91gbovAub9D@sirena.org.uk>
+        <04a101d8e523$30804b80$9180e280$@samsung.com>
+        <Y1KIT4nk7C8SQ45x@sirena.org.uk>
+        <01ba01d8f332$44eb3810$cec1a830$@samsung.com>
+        <Y2vlqatX7dfPJ3Zi@sirena.org.uk>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -80,45 +131,110 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 1/1/23 5:29 AM, kernel test robot wrote:
-> Hi Bhupesh,
+> -----Original Message-----
+> From: Mark Brown [mailto:broonie@kernel.org]
+> Sent: 09 November 2022 11:09 PM
+> To: Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
+> Cc: lgirdwood@gmail.com; robh+dt@kernel.org;
+> krzysztof.kozlowski+dt@linaro.org; s.nawrocki@samsung.com;
+> perex@perex.cz; tiwai@suse.com; pankaj.dubey@samsung.com;
+> alim.akhtar@samsung.com; rcsekar@samsung.com;
+> aswani.reddy@samsung.com; alsa-devel@alsa-project.org;
+> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-samsung-
+> soc@vger.kernel.org
+> Subject: Re: [PATCH 2/6] ASoC: samsung: i2s: configure PSR from sound card
 > 
-> I love your patch! Yet something to improve:
+> On Tue, Nov 08, 2022 at 10:53:40AM +0530, Padmanabhan Rajanbabu wrote:
 > 
-> [auto build test ERROR on usb/usb-testing]
-> [also build test ERROR on usb/usb-next usb/usb-linus robh/for-next westeri-thunderbolt/next linus/master v6.2-rc1 next-20221226]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> > > > We can overcome this scenario to an extent if we can get a
+> > > > flexibility to Configure both PSR as well as RFS.
 > 
-> url:    https://github.com/intel-lab-lkp/linux/commits/Bhupesh-Sharma/dt-bindings-soc-qcom-eud-Add-SM6115-SM4250-binding/20221231-211214
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-testing
-> patch link:    https://lore.kernel.org/r/20221231130743.3285664-3-bhupesh.sharma%40linaro.org
-> patch subject: [PATCH 2/2] usb: misc: eud: Add driver support for SM6115 / SM4250
-> config: arc-randconfig-r043-20230101
-> compiler: arceb-elf-gcc (GCC) 12.1.0
-> reproduce (this is a W=1 build):
->          wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
->          chmod +x ~/bin/make.cross
->          # https://github.com/intel-lab-lkp/linux/commit/b5caddbdc606744113a894749b7457e5b2621678
->          git remote add linux-review https://github.com/intel-lab-lkp/linux
->          git fetch --no-tags linux-review Bhupesh-Sharma/dt-bindings-soc-qcom-eud-Add-SM6115-SM4250-binding/20221231-211214
->          git checkout b5caddbdc606744113a894749b7457e5b2621678
->          # save the config file
->          mkdir build_dir && cp config build_dir/.config
->          COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arc olddefconfig
->          COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arc SHELL=/bin/bash
+> > > Why does it make sense for the machine driver to worry about this
+> > > rather than having the I2S controller driver configure the clock tree?
 > 
-> If you fix the issue, kindly add following tag where applicable
-> | Reported-by: kernel test robot <lkp@intel.com>
+> > _____           |                  __
+> > |
+> > |         |	        |	             |   \
+> > |
+> > |CMU|	        |	             |     \
+> > |
+> > |FSD  |-  |---|-|--------->|       \        _________    _________
+> > |
+> > |___  |    |    | |op_clk0|         |      |               |     |
+> > |             |
+> > 	  |    | |	             |MUX|----|  PSR       |----|  RFS
+> > |--cdclk  |
+> > 	  |    | |              |         |      |_______|     |_______|
+> > |
+> > 	  |    | |--------->|        /
+> > |
+> > 	  |    |  op_clk1 |      /
+> > |
+> > 	  |    | 	             |_ /
+> > |
+> > 	  |    |___________________________________________|
+> > 	  |
+> > 	  |-----> To other FSD SoC Peripherals
 > 
-> All errors (new ones prefixed by >>, old ones prefixed by <<):
+> > In FSD I2S, the clock source is not an independent source but a common
+> > clock source being shared by many IPs in the same domain.
 > 
->>> ERROR: modpost: "qcom_scm_io_writel" [drivers/usb/misc/qcom_eud.ko] undefined!
+> > Changing the clock tree will impact other IPs in the domain as they
+> > are dependent on the same source for functionality.
+> 
+> I'm not sure I follow.  Perhaps your diagram is unclear but it looks like
+PSR and
+> RFS are both after a mux which appears to select which clock is going to
+be
+> used by the I2S controller?  The usage by other clocks appears to be
+> upstream of the mux and dividers.
+> 
+> > We can understand your point to bring the PSR changes under the I2S
+> > CPU DAI driver by adding a separate compatible and data for the FSD
+> > SoC. But If we take the example of existing sound cards such as
+> > sound/soc/samsung/tm2_wm5110.c, the op_clk is supplied via external
+> > audio pll to the controller and PLL configuration is taken care by the
+> > sound card. Since the configuration of PLL is more specific to the tm2
+> > platform, it makes use of the flexibility of changing the RFS and BFS
+> > using the sysclk and clkdiv hooks provided by exynos7-i2s CPU DAI
+> > along with PLL tuning for precise sampling frequency.
+> 
+> The big reason for the clocking control (and indeed having a custom
+machine
+> driver) with the WM5110 is that it has multiple clocks to control and a
+good
+> deal of flexibility with placing them in clock domains and so on which
+have
+> power and performance impacts.  It's frankly a bit unclear to me if the
+CPU
+> I2S controller even needs the bitclock configuring given that the clocks
+are
+> being driven by the CODEC there, but regardless it's not clear to me why
+the
+> I2S controller would need anything other than the input clock to the block
+> configuring?
+> 
+> > Similar to the above example, the choice of clock source under
+> > discussion is not a limitation of exynos7-i2s controller, but instead
+> > is a limitation on the FSD SoC.
+> > By using the proposed change, we can ensure that the exynos CPU DAI
+> > driver is giving additional hooks similar to existing hooks for BFS,
+> > RFS and CDCLK direction so that sound cards can use
+> > snd_soc_dai_set_sysclk and snd_soc_dai_set_clkdiv to customize the
+> > same.
+> 
+> I'm still not seeing anything that articulates why pushing the
+configuration of
+> the dividers within the block into the machine driver solves a problem
+here.
+> Again, what's the upside to configuring clocks that are purely within the
+> block?
 
-Thanks for reporting the issue. I think 'select QCOM_SCM' should be 
-added to 'config USB_QCOM_EUD' configuration option as well.
+Okay, I can understand the reason for de-linking these changes from the
+machine
+Driver. I'll post the v2 patches integrating the PSR changes into cpu dai
+driver.
 
-I will send a fixed v2 shortly.
+Thanks,
+Padmanabhan R.
 
-Regards.
