@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BAE465C6ED
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 20:07:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B30265C6F0
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 20:07:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238353AbjACTHO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 14:07:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43064 "EHLO
+        id S238522AbjACTHT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 14:07:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238522AbjACTHO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 14:07:14 -0500
-Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com [IPv6:2001:4860:4864:20::2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7915F13E0B
-        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 11:07:13 -0800 (PST)
-Received: by mail-oa1-x2c.google.com with SMTP id 586e51a60fabf-150b06cb1aeso8294642fac.11
-        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 11:07:13 -0800 (PST)
+        with ESMTP id S238730AbjACTHP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 14:07:15 -0500
+Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com [IPv6:2001:4860:4864:20::2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8297ADFC8
+        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 11:07:14 -0800 (PST)
+Received: by mail-oa1-x2e.google.com with SMTP id 586e51a60fabf-142b72a728fso37845618fac.9
+        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 11:07:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=e9FxC5u9raEA62gzOJDTTKSpPWLmB1RuNw13AoTsjYs=;
-        b=BaX2cjvuLHWA357xx30duyZwG+ju4OdXVQ3+B7csHL8Dx4Kb1lkU3hVgOUUMa9n88n
-         dBfTkp0mPgRJMqvKp3FcIns11EbjFafZFvrp9cmqVHUYGJBe/mkGQVb7W0gytdEm9G7M
-         LPrQP9mHDRvSJ6vciFkHHSUgssNV9I3C0pR9ygEiCCG7ODzHKLgZIq22JnpJNzfbUiiy
-         RZrgPoO6AUQ5JB8V+CfjVlHWKyC59X/YOXuTe4moyGld64EP5lORjXdHAzU2B5Iyd96S
-         uxwZC4S+aaJt93gwi0Bq8ZUqg1sioX62p0fDb4tlHKlzIuOZttY7UoJPdBomm56sV/KX
-         uFCw==
+        bh=5MuYdw/TKmmfACRBxYwGpprkKtsguH2MTUAVNosMrsw=;
+        b=kCw1vFAqU0vOuAxLd6aONFgPfYzmkCnXAWMT+lfy4TFXsBwNUTQJ1jYj1bIrUnyn2Y
+         1aY1fpLXO74CXwF+7MkLee3dpJHfFxg+x5EKCrVJ9iICb1jpdzf0QCPIQNLoBZTlMKSX
+         Tbc90nZFV2Uazha8Iw9dH2GDJ5oT3VOuOtO5+Vd8iXdCaDiFKt56NomcyuHtsZmX98Ts
+         DB5X3b3QepmSUOpL+co467we//ClPMgSpRWwEskeHpN1cSdaEHrgwYgiGeBvz69BLOR5
+         8/g0E5Sq5rU3WdgKf0hnBEu+9tTGuxryPOdzE89rn16ZYBYVcTsiafCdXOIkhD4dIGtt
+         OOvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=e9FxC5u9raEA62gzOJDTTKSpPWLmB1RuNw13AoTsjYs=;
-        b=V8UagXO3AYcLY0F767oLIPAlLaJg/apfnADNwIQKbFJxLTvYoxkekhtaN+3I0mzOPf
-         7a17Ntnlc1/mSvu4SViugjXdtXGYTwKyyAvbziIFjQAiwlAWFJEuMhsvvs6N2kiP/Sai
-         0PEiUDqTuyfhBS2r31E03FeHUxPfo3VDYYLKAmwDMlUW3kY7gj/c5DimZudA9ASQIppy
-         VWMS8RIAu5wr8HluBHHjTbOuQRwawMiIqdTp7TCYCds1Q1Nh65masfQzAVNEsUoXZtwX
-         Dn0uNqac1m9UUq/OeLgGwFYKX9a/I3ZVSQJW93hqLKibZT2M+1pzZ4zRI8eNNqKa+fWh
-         JBHw==
-X-Gm-Message-State: AFqh2krmEwUVKVY4Xw7f5Xa0TD16dgiQm07arsSm6afwoHx8gyveibp5
-        VV2DdtrWmrv699u824QCrf0=
-X-Google-Smtp-Source: AMrXdXvOHS4LTp18Y1bsii95tobv24huefOurEgedYORrVi88OlhQoRYHmz7podkKPmWnG7yFUIkHA==
-X-Received: by 2002:a05:6870:c989:b0:150:8834:f644 with SMTP id hi9-20020a056870c98900b001508834f644mr6744260oab.57.1672772832791;
-        Tue, 03 Jan 2023 11:07:12 -0800 (PST)
+        bh=5MuYdw/TKmmfACRBxYwGpprkKtsguH2MTUAVNosMrsw=;
+        b=ngL/oHpeaR7wTqEk4QeaXejAgUxKVKoWdiM0TQRxsQiWGLJAv4vVLK/JBo45aHOQCS
+         yvAXPO2CdYcA/LMSuBoU0FyWmQFFppcnHwI6BvwBPD0v7TQ6X8OXfMVPXZ9HNumrfOHg
+         YyQajqdIB31p/pp57oWAjbnOGIgKFChzN3pXx72/kIhcQtlChgj847upVwArwX7FGR6S
+         jNR4PbVJ4OxpHr9ya/tXh2mw7LsoffI++a1Tzx4wWgqEUQQpfbAlxhRqKNh5BzdIQqmu
+         lzl09HHaMUW0v6A5eGoz2OdsLz4osNBbbQ1BCfZTFah8LjZ89b1P6bC1da48VTA3z7qR
+         chTA==
+X-Gm-Message-State: AFqh2ko0MIzbPZl/619Gte3Bk+uuDRiJN77Ef6d89gujs4dccwTYXaoy
+        5kC49C3A8LI/cUzww9yhz1U=
+X-Google-Smtp-Source: AMrXdXvoonL3R80H8i+/5RbEGmxtPYYCMHqfwWOtt9cFbwYpUqfQV7IVBHwhJz7jTfGfEKFkdFfm9Q==
+X-Received: by 2002:a05:6870:889b:b0:143:e0d7:7427 with SMTP id m27-20020a056870889b00b00143e0d77427mr24294519oam.17.1672772833500;
+        Tue, 03 Jan 2023 11:07:13 -0800 (PST)
 Received: from localhost.localdomain ([76.244.6.13])
         by smtp.gmail.com with ESMTPSA id s24-20020a056870ea9800b0014c7958c55bsm14752207oap.42.2023.01.03.11.07.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Jan 2023 11:07:12 -0800 (PST)
+        Tue, 03 Jan 2023 11:07:13 -0800 (PST)
 From:   Chris Morgan <macroalpha82@gmail.com>
 To:     dri-devel@lists.freedesktop.org
 Cc:     devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
@@ -58,9 +58,9 @@ Cc:     devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
         daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org,
         thierry.reding@gmail.com, linus.walleij@linaro.org,
         Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH V7 1/4] drm: of: Add drm_of_get_dsi_bus helper function
-Date:   Tue,  3 Jan 2023 13:07:04 -0600
-Message-Id: <20230103190707.104595-2-macroalpha82@gmail.com>
+Subject: [PATCH V7 2/4] dt-bindings: display: panel: Add Samsung AMS495QA01
+Date:   Tue,  3 Jan 2023 13:07:05 -0600
+Message-Id: <20230103190707.104595-3-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230103190707.104595-1-macroalpha82@gmail.com>
 References: <20230103190707.104595-1-macroalpha82@gmail.com>
@@ -78,131 +78,79 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-Add helper function to find DSI host for devices where DSI panel is not
-a minor of a DSI bus (such as the Samsung AMS495QA01 panel or the
-official Raspberry Pi touchscreen display).
+Add documentation for Samsung AMS495QA01 panel (with Magnachip
+D53E6EA8966 controller IC).
 
 Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- drivers/gpu/drm/drm_of.c | 62 ++++++++++++++++++++++++++++++++++++++++
- include/drm/drm_of.h     | 11 +++++++
- 2 files changed, 73 insertions(+)
+ .../display/panel/samsung,ams495qa01.yaml     | 57 +++++++++++++++++++
+ 1 file changed, 57 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,ams495qa01.yaml
 
-diff --git a/drivers/gpu/drm/drm_of.c b/drivers/gpu/drm/drm_of.c
-index 7bbcb999bb75..7d89ac164069 100644
---- a/drivers/gpu/drm/drm_of.c
-+++ b/drivers/gpu/drm/drm_of.c
-@@ -10,6 +10,7 @@
- #include <drm/drm_crtc.h>
- #include <drm/drm_device.h>
- #include <drm/drm_encoder.h>
-+#include <drm/drm_mipi_dsi.h>
- #include <drm/drm_of.h>
- #include <drm/drm_panel.h>
- 
-@@ -493,3 +494,64 @@ int drm_of_get_data_lanes_count_ep(const struct device_node *port,
- 	return ret;
- }
- EXPORT_SYMBOL_GPL(drm_of_get_data_lanes_count_ep);
+diff --git a/Documentation/devicetree/bindings/display/panel/samsung,ams495qa01.yaml b/Documentation/devicetree/bindings/display/panel/samsung,ams495qa01.yaml
+new file mode 100644
+index 000000000000..58fa073ce258
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/samsung,ams495qa01.yaml
+@@ -0,0 +1,57 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/samsung,ams495qa01.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+/**
-+ * drm_of_get_dsi_bus - find the DSI bus for a given device
-+ * @dev: parent device of display (SPI, I2C)
-+ * @dsi_host: DSI host to be populated
-+ * @info: DSI device info to be updated with correct DSI node
-+ *
-+ * Given a panel device parented to a non-DSI device, follow the
-+ * devicetree to find the correct DSI host node and populate the
-+ * dsi_host with the correct host and info with the correct node.
-+ * Returns zero if successful, -EPROBE_DEFER if the DSI host is
-+ * found but not available, or -ENODEV otherwise.
-+ */
-+int drm_of_get_dsi_bus(struct device *dev,
-+			      struct mipi_dsi_host **dsi_host,
-+			      struct mipi_dsi_device_info *info)
-+{
-+	struct device_node *endpoint, *dsi_host_node;
++title: Samsung AMS495QA01 panel with Magnachip D53E6EA8966 controller
 +
-+	/*
-+	 * Get first endpoint child from device.
-+	 */
-+	endpoint = of_graph_get_next_endpoint(dev->of_node, NULL);
-+	if (!endpoint)
-+		return -ENODEV;
++maintainers:
++  - Chris Morgan <macromorgan@hotmail.com>
 +
-+	/*
-+	 * Follow the first endpoint to get the DSI host node.
-+	 */
-+	dsi_host_node = of_graph_get_remote_port_parent(endpoint);
-+	if (!dsi_host_node)
-+		goto error;
++allOf:
++  - $ref: panel-common.yaml#
 +
-+	/*
-+	 * Get the DSI host from the DSI host node. If we get an error
-+	 * or the return is null assume we're not ready to probe just
-+	 * yet. Release the DSI host node since we're done with it.
-+	 */
-+	*dsi_host = of_find_mipi_dsi_host_by_node(dsi_host_node);
-+	of_node_put(dsi_host_node);
-+	if (IS_ERR_OR_NULL(*dsi_host)) {
-+		of_node_put(endpoint);
-+		return -EPROBE_DEFER;
-+	}
++properties:
++  compatible:
++    const: samsung,ams495qa01
 +
-+	/*
-+	 * Set the node of the mipi_dsi_device_info to the correct node
-+	 * and then release the endpoint node since we're done with it.
-+	 */
-+	info->node = of_graph_get_remote_port(endpoint);
-+	if (IS_ERR_OR_NULL(info->node))
-+		goto error;
++  reg: true
++  reset-gpios:
++    description: reset gpio, must be GPIO_ACTIVE_LOW
++  elvdd-supply:
++    description: regulator that supplies voltage to the panel display
++  enable-gpios: true
++  port: true
++  vdd-supply:
++    description: regulator that supplies voltage to panel logic
 +
-+	of_node_put(endpoint);
-+	return 0;
++required:
++  - compatible
++  - reg
++  - reset-gpios
++  - vdd-supply
 +
-+error:
-+	of_node_put(endpoint);
-+	return -ENODEV;
-+}
-+EXPORT_SYMBOL_GPL(drm_of_get_dsi_bus);
-diff --git a/include/drm/drm_of.h b/include/drm/drm_of.h
-index 10ab58c40746..e27061b02315 100644
---- a/include/drm/drm_of.h
-+++ b/include/drm/drm_of.h
-@@ -15,6 +15,8 @@ struct drm_encoder;
- struct drm_panel;
- struct drm_bridge;
- struct device_node;
-+struct mipi_dsi_device_info;
-+struct mipi_dsi_host;
- 
- /**
-  * enum drm_lvds_dual_link_pixels - Pixel order of an LVDS dual-link connection
-@@ -56,6 +58,9 @@ int drm_of_get_data_lanes_count_ep(const struct device_node *port,
- 				   int port_reg, int reg,
- 				   const unsigned int min,
- 				   const unsigned int max);
-+int drm_of_get_dsi_bus(struct device *dev,
-+		       struct mipi_dsi_host **dsi_host,
-+		       struct mipi_dsi_device_info *info);
- #else
- static inline uint32_t drm_of_crtc_port_mask(struct drm_device *dev,
- 					  struct device_node *port)
-@@ -127,6 +132,12 @@ drm_of_get_data_lanes_count_ep(const struct device_node *port,
- {
- 	return -EINVAL;
- }
-+static int drm_of_get_dsi_bus(struct device *dev,
-+			      struct mipi_dsi_host **dsi_host,
-+			      struct mipi_dsi_device_info *info)
-+{
-+	return -EINVAL;
-+}
- #endif
- 
- /*
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        panel@0 {
++            compatible = "samsung,ams495qa01";
++            reg = <0>;
++            reset-gpios = <&gpio4 0 GPIO_ACTIVE_LOW>;
++            vdd-supply = <&vcc_3v3>;
++
++            port {
++                mipi_in_panel: endpoint {
++                  remote-endpoint = <&mipi_out_panel>;
++                };
++            };
++        };
++    };
++
++...
 -- 
 2.34.1
 
