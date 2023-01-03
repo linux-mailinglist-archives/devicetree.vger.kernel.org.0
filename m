@@ -2,87 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B3CC65BDBE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 11:13:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62A1165BDDD
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 11:21:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237181AbjACKNO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 05:13:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44628 "EHLO
+        id S233319AbjACKUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 05:20:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237071AbjACKNN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 05:13:13 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 884CCD61;
-        Tue,  3 Jan 2023 02:13:12 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6C8266602CE7;
-        Tue,  3 Jan 2023 10:13:09 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1672740791;
-        bh=QsMKSuCMNRc0w6rxRvC+kd/rsdom8NHqxy8WIlBiMuE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=L4Jis3R0LJyGQ30eI7uz2JKSd5PZC7MUOKWwSgFDMv+xoTLDjfW5UOBLH0P1OXnAx
-         lwALYvlFSYyACTiHPFHa/H9RWFK5NN7/IHsexwiiWcr1Z9YTH/B7juqYHqWgJNky/7
-         /Eh60l1wSYngqRNKWm9bxGZbasID9Urbj4fdJJgdQJEjGGHNdQtlqXue5wGDkD1xkL
-         As6LauFJWBkNRTH5zCJ8QNUp/vsbig602UnWxoBcIfshGMykdqv4lWSAUbbYs6nRsE
-         BYQI0lOYqe+eioO7pJ7IQtu9pPjN4fhHtPVjX4fhQYwAm43aW6U3msv4oKMcQkfNR3
-         gPS5dUxqQcycA==
-Message-ID: <166ce944-0702-2e38-d6ac-51dd479b8b8d@collabora.com>
-Date:   Tue, 3 Jan 2023 11:13:07 +0100
+        with ESMTP id S233293AbjACKUU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 05:20:20 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCC18F594;
+        Tue,  3 Jan 2023 02:20:18 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 303AJvNC065995;
+        Tue, 3 Jan 2023 04:19:57 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1672741197;
+        bh=0xN9TZmdjhOev0M52dFR/CYSWTBXVP70B4RkI64FGFs=;
+        h=From:To:CC:Subject:Date;
+        b=yz0w2TCt/j8jTwbXFCVAR4IKQtp/Tn9bTtIqJY6Pa5jMyhHrFkRIXLcIgwFedvJts
+         1AUeCaNCalu9tZT9j2PbTowjXO52yTZIFw8jCdIC+gPLRvp8k5GwObc4I3Ye2Usl+9
+         L9TSJB1GxjlHTvQT7HNZj3b3+1GBGfggsfALwtZU=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 303AJv9u028214
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 3 Jan 2023 04:19:57 -0600
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 3
+ Jan 2023 04:19:57 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 3 Jan 2023 04:19:57 -0600
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 303AJtQl032179;
+        Tue, 3 Jan 2023 04:19:56 -0600
+From:   Rahul T R <r-ravikumar@ti.com>
+To:     <dri-devel@lists.freedesktop.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <andrzej.hajda@intel.com>, <narmstrong@baylibre.com>,
+        <robert.foss@linaro.org>, <jonas@kwiboo.se>,
+        <jernej.skrabec@gmail.com>, <airlied@linux.ie>, <daniel@ffwll.ch>,
+        <p.zabel@pengutronix.de>, <tomi.valkeinen@ideasonboard.com>,
+        <laurent.pinchart@ideasonboard.com>,
+        <linux-kernel@vger.kernel.org>, <jpawar@cadence.com>,
+        <sjakhade@cadence.com>, <mparab@cadence.com>, <a-bhatia1@ti.com>,
+        <devicetree@vger.kernel.org>, <vigneshr@ti.com>,
+        <lee.jones@linaro.org>, Rahul T R <r-ravikumar@ti.com>
+Subject: [PATCH v11 0/5] Add support for CDNS DSI J721E wrapper
+Date:   Tue, 3 Jan 2023 15:49:46 +0530
+Message-ID: <20230103101951.10963-1-r-ravikumar@ti.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v8 5/6] arm64: dts: mt8173: change node name
-Content-Language: en-US
-To:     Alexandre Mergnat <amergnat@baylibre.com>,
-        Mark Brown <broonie@kernel.org>,
-        Tianping Fang <tianping.fang@mediatek.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Fabien Parent <fabien.parent@linaro.org>,
-        Lee Jones <lee@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen Zhong <chen.zhong@mediatek.com>,
-        Pavel Machek <pavel@ucw.cz>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Flora Fu <flora.fu@mediatek.com>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Cc:     Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-rtc@vger.kernel.org, linux-leds@vger.kernel.org,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        Fabien Parent <fparent@baylibre.com>,
-        linux-input@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221005-mt6357-support-v8-0-560caaafee53@baylibre.com>
- <20221005-mt6357-support-v8-5-560caaafee53@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221005-mt6357-support-v8-5-560caaafee53@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 02/01/23 17:06, Alexandre Mergnat ha scritto:
-> - Change the node name from "mt6397" to "pmic" to be consistent
-> with the generic names recommendation.
-> 
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+Following series of patches adds supports for CDNS DSI
+bridge on j721e.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+v11:
+ - Wrap commmit messages at 72 chars
+ - Fix the order in Kconfig and Makefile
+ - Clean up the includes, move macros and some headers to .c file
+ - Add missing forward declarations
+ - Add __ prefix to header gaurds
+ - Change dsi_platform_ops to cdns_dsi_platform_ops
+ - Add documentation to struct cdns_dsi_platform_ops
 
+v10:
+ - Rebased to v6.2-rc1
+ - Accumulated the Reviewed-by acks
+
+v9:
+ - Fixed below based on review comments in v8
+ - Added more info on wrapper in the commit message
+ - Fixed the description in Kconfig
+ - Fixed the formatting of of_match table
+ - exit -> deinit in platform ops
+ - Remove duplicate of struct declaration in cdns-dsi-j721e.h
+
+v8:
+ - Rebased to 6.1-rc1
+
+v7:
+ - Rebased to next-20220920
+ - Accumulated the Reviewed-by acks
+
+v6:
+ - Dropped generic definations for properties like reg, resets etc..
+ - Fixed the defination for port@0 and port@1
+ - removed the ti,sn65dsi86 node from the example, which is not related
+
+v5:
+ - Remove power-domain property in the conversion commit
+ - Add power-domain only for j721e compatible
+ - Fix white space error in one of the commit
+
+v4:
+ - split conversion txt to yaml
+ - seperate commit for addinig new compatible
+ - conditionally limit the items for reg property, based on the compatible
+
+v3:
+ - Convert cdns-dsi.txt binding to yaml
+ - Move the bridge under display/bridge/cadence
+ - Add new compatible to enable the wrapper module
+
+v2:
+ - Moved setting DPI0 to bridge_enable, since it
+   should be done after pm_runtime_get
+
+Rahul T R (5):
+  dt-bindings: display: bridge: Convert cdns,dsi.txt to yaml
+  dt-bindings: display: bridge: cdns,dsi: Add compatible for dsi on
+    j721e
+  drm/bridge: cdns-dsi: Move to drm/bridge/cadence
+  drm/bridge: cdns-dsi: Create a header file
+  drm/bridge: cdns-dsi: Add support for J721E wrapper
+
+ .../bindings/display/bridge/cdns,dsi.txt      | 112 -----------
+ .../bindings/display/bridge/cdns,dsi.yaml     | 180 ++++++++++++++++++
+ drivers/gpu/drm/bridge/Kconfig                |  11 --
+ drivers/gpu/drm/bridge/Makefile               |   1 -
+ drivers/gpu/drm/bridge/cadence/Kconfig        |  21 ++
+ drivers/gpu/drm/bridge/cadence/Makefile       |   3 +
+ .../{cdns-dsi.c => cadence/cdns-dsi-core.c}   |  83 ++++----
+ .../gpu/drm/bridge/cadence/cdns-dsi-core.h    |  84 ++++++++
+ .../gpu/drm/bridge/cadence/cdns-dsi-j721e.c   |  51 +++++
+ .../gpu/drm/bridge/cadence/cdns-dsi-j721e.h   |  16 ++
+ 10 files changed, 391 insertions(+), 171 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/bridge/cdns,dsi.txt
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/cdns,dsi.yaml
+ rename drivers/gpu/drm/bridge/{cdns-dsi.c => cadence/cdns-dsi-core.c} (97%)
+ create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-dsi-core.h
+ create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.c
+ create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.h
+
+-- 
+2.39.0
 
