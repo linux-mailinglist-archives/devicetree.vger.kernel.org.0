@@ -2,215 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A46165C870
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 21:53:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 55D6F65C889
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 22:02:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233881AbjACUxB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 15:53:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39198 "EHLO
+        id S233187AbjACVCd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 16:02:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232129AbjACUw6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 15:52:58 -0500
-Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB78EDFFC;
-        Tue,  3 Jan 2023 12:52:57 -0800 (PST)
-Received: by mail-il1-f171.google.com with SMTP id a9so6321030ilk.6;
-        Tue, 03 Jan 2023 12:52:57 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TcjxuWhsew0S4JMMZ0LVIr9mYr0ZItiOrBsIyKBjzxA=;
-        b=2NToks0C7J1Ro1UvG/6kt01FVvqSE9HR9qVAMAfaZb06yTAwrVLN65XEVXoYdk2sb/
-         FMDH86QOTkf1wdMlMR0dleIvp+iKloeh8GdzK1VfMzIR5mKBmjC5nnJFQD8eXF3nkv2c
-         dY7pzjpWv1OB2HULmgz9jZIO8vW435au8tXaxTXsClyEWgoz1g9qzlEG3Rvr13+3bRd2
-         sVlR2JmEJsANGr6A5u4z8LXD9rOrFNBNl2fwYhTpwN6SRkp5lS/7jyhfQVKayBh/JXLn
-         MlcxThMHg4KRVQgojY41+30qpXSL/0YXGHsHVLY34H6PJw+HYfF8wXBSBQUNQjTOidrU
-         gmMw==
-X-Gm-Message-State: AFqh2kqZ2tsPOgwVUCwTSoEgDRfiW27l+kCz1xXxrsewl87pch2FncLQ
-        Id3nHQnTweBl/NWr7CvSoQ==
-X-Google-Smtp-Source: AMrXdXs7CLCkBhA2bAs8+otIJJ87HLmOu2iBxk7dmL/ZdUhdNLgBmJbpCAkIQKJL5QLEGLa5kGxn6A==
-X-Received: by 2002:a05:6e02:549:b0:306:d1b4:f3c7 with SMTP id i9-20020a056e02054900b00306d1b4f3c7mr25689876ils.20.1672779176867;
-        Tue, 03 Jan 2023 12:52:56 -0800 (PST)
-Received: from robh_at_kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id c24-20020a023b18000000b00388b6508ec8sm9836486jaa.115.2023.01.03.12.52.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Jan 2023 12:52:56 -0800 (PST)
-Received: (nullmailer pid 3961459 invoked by uid 1000);
-        Tue, 03 Jan 2023 20:52:50 -0000
-Date:   Tue, 3 Jan 2023 14:52:50 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Yann Sionneau <ysionneau@kalray.eu>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Albert Ou <aou@eecs.berkeley.edu>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Arnaldo Carvalho de Melo <acme@kernel.org>,
-        Boqun Feng <boqun.feng@gmail.com>, bpf@vger.kernel.org,
-        Christian Brauner <brauner@kernel.org>,
-        devicetree@vger.kernel.org, Eric Biederman <ebiederm@xmission.com>,
-        Eric Paris <eparis@redhat.com>, Ingo Molnar <mingo@redhat.com>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        Jason Baron <jbaron@akamai.com>, Jiri Olsa <jolsa@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Josh Poimboeuf <jpoimboe@kernel.org>,
-        Kees Cook <keescook@chromium.org>,
-        Kieran Bingham <kbingham@kernel.org>,
+        with ESMTP id S230166AbjACVCc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 16:02:32 -0500
+Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0C0C1403E;
+        Tue,  3 Jan 2023 13:02:27 -0800 (PST)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.nyi.internal (Postfix) with ESMTP id 48E9A5C0095;
+        Tue,  3 Jan 2023 16:02:25 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Tue, 03 Jan 2023 16:02:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stwcx.xyz; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; t=1672779745; x=1672866145; bh=l3fhFm5wNV
+        naqbRR/9HpNGMBygavHOCjj/CdRd0rsOQ=; b=BoSM0PmPkhufXvVBq8cNerqD3b
+        79aIgWxnn9tTG3cKldcPlJ9OImJhzMNp1xwoPtBdx3harr+m9N/fQDec0v4H8Ltp
+        3n+Gv7bGP2feEmqbzkVPEHQu+B2pJoPe3h5zlPZBFN7INrhtcGctYbjMiIXzNs9d
+        W+eYUAXy56BFMjjARc8Y1SYJ38MfCo1ePccqdE47qZL5b6lFs48g1qn9CgYXkBt8
+        7HTMs3jLRlIoaAWZIH7yBf0gtls5tZYOC3g/rSBxVLTC/iQ62TnuD9dy9BJmIrtA
+        N27ogenRUWjsaMixi2E8N1TA9nKEqD8sqdjCkcfIY0D27SGwO81/EIgQAyAA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm2; t=1672779745; x=1672866145; bh=l3fhFm5wNVnaqbRR/9HpNGMBygav
+        HOCjj/CdRd0rsOQ=; b=VsQWifXL6kSDZDK7srAE0w1cVIIZ2vEkGMrSiQxvS8ef
+        IkeqpW6JPXW0YtEUMT4Z8nMrl6PFLSLaFj5ux5RI+680mUpFZm505DAmGnItGI6s
+        ExR3GMpGYlSnie1aX70UU8IXmdBQkAxliVlk5LQE4RBnQX47uNxBFYIfelBvPdes
+        COwwQtshEJAKgOpqOprAa4n0MIoetIKEk8+LYEj31mwPPAtfiiFQA7IRW5d4cP9+
+        JpG1+yM+8N/lnJgBWBwSO8otjrxZbr3fGs0YOZuMYA0xSYqcR731yWxB1PoMNgIY
+        /ta5H7D+xrxpviAT710uHr9zv2chOLH8TWv1taK2qw==
+X-ME-Sender: <xms:4Ze0Y9cssxilvmBx7brIVPs4bobhF1YuIev83RLRMmJpVWzS5ovmVw>
+    <xme:4Ze0Y7NdvY5yWRzyeLxWliPexq3lkJD3ozIrzTsuJo9uAYVCX3RP7qIdJtbORmFSF
+    56njbvkawNCKk8EBXc>
+X-ME-Received: <xmr:4Ze0Y2gPNHsWysOTdIQwkhR6ObvMvM0KbRn1lN0OhfxDDubekyUfbtIKZtf0KLESyHTYSO2RJsPTk-dde08qIWVqRL0LdgnEQWI>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrjeeggddugeegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    gfrhhlucfvnfffucdlvdefmdenucfjughrpeffhffvvefukfhfgggtuggjsehgtderredt
+    tddvnecuhfhrohhmpefrrghtrhhitghkucghihhllhhirghmshcuoehprghtrhhitghkse
+    hsthiftgigrdighiiiqeenucggtffrrghtthgvrhhnpeehfeejheeftdejiedvfeekffeh
+    ledukeduleelffekgfdtleduledvtdegtdehkeenucevlhhushhtvghrufhiiigvpedtne
+    curfgrrhgrmhepmhgrihhlfhhrohhmpehprghtrhhitghksehsthiftgigrdighiii
+X-ME-Proxy: <xmx:4Ze0Y29rxeMb9IQfFS9bvTE7uuTQnU2N6hf9wPFvYPuLdNJAqhXXvA>
+    <xmx:4Ze0Y5s8LOICB_2jrLlnwZpNmcCunIR3b2IoyUQrYovj1hw9tox8DA>
+    <xmx:4Ze0Y1GsE9VkJ83rLhP99Wbargk5qPPGe6MI3tVccxgpgFe11imZvA>
+    <xmx:4Ze0Y6-6VUD9ds0ZT_YNvjizHRn2-auXuzcQZWlgIoZsGeFlfEePxA>
+Feedback-ID: i68a1478a:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 3 Jan 2023 16:02:24 -0500 (EST)
+Date:   Tue, 3 Jan 2023 15:02:21 -0600
+From:   Patrick Williams <patrick@stwcx.xyz>
+To:     Potin Lai <potin.lai.pt@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arch@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-audit@redhat.com, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mm@kvack.org,
-        linux-perf-users@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-riscv@lists.infradead.org, Marc Zyngier <maz@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Namhyung Kim <namhyung@kernel.org>,
-        Nick Piggin <npiggin@gmail.com>,
-        Oleg Nesterov <oleg@redhat.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Moore <paul@paul-moore.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Waiman Long <longman@redhat.com>,
-        Will Deacon <will@kernel.org>, Alex Michon <amichon@kalray.eu>,
-        Ashley Lesdalons <alesdalons@kalray.eu>,
-        Benjamin Mugnier <mugnier.benjamin@gmail.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Guillaume Missonnier <gmissonnier@kalray.eu>,
-        Guillaume Thouvenin <gthouvenin@kalray.eu>,
-        Jean-Christophe Pince <jcpince@gmail.com>,
-        Jonathan Borne <jborne@kalray.eu>,
-        Jules Maselbas <jmaselbas@kalray.eu>,
-        Julian Vetter <jvetter@kalray.eu>,
-        Julien Hascoet <jhascoet@kalray.eu>,
-        Julien Villette <jvillette@kalray.eu>,
-        Louis Morhet <lmorhet@kalray.eu>,
-        Luc Michel <lmichel@kalray.eu>,
-        =?UTF-8?Q?Marc_Poulhi=C3=A8s?= <dkm@kataplop.net>,
-        Marius Gligor <mgligor@kalray.eu>,
-        Samuel Jones <sjones@kalray.eu>,
-        Thomas Costis <tcostis@kalray.eu>,
-        Vincent Chardon <vincent.chardon@elsys-design.com>
-Subject: Re: [RFC PATCH 00/25] Upstream kvx Linux port
-Message-ID: <20230103205250.GB3942221-robh@kernel.org>
-References: <20230103164359.24347-1-ysionneau@kalray.eu>
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] ARM: dts: aspeed: bletchley: enable wdtrst1
+Message-ID: <Y7SX3XQdRKcVFwSe@heinlein.taila677.ts.net>
+References: <20221226054535.2836110-1-potin.lai.pt@gmail.com>
+ <20221226054535.2836110-3-potin.lai.pt@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ITHc4yLppOjAfL7f"
 Content-Disposition: inline
-In-Reply-To: <20230103164359.24347-1-ysionneau@kalray.eu>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20221226054535.2836110-3-potin.lai.pt@gmail.com>
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
+        RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
+        SPF_PASS,T_PDS_OTHER_BAD_TLD autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 03, 2023 at 05:43:34PM +0100, Yann Sionneau wrote:
-> This patch series adds support for the kv3-1 CPU architecture of the kvx family
-> found in the Coolidge (aka MPPA3-80) SoC of Kalray.
-> 
-> This is an RFC, since kvx support is not yet upstreamed into gcc/binutils,
-> therefore this patch series cannot be merged into Linux for now.
-> 
-> The goal is to have preliminary reviews and to fix problems early.
-> 
-> The Kalray VLIW processor family (kvx) has the following features:
-> * 32/64 bits execution mode
-> * 6-issue VLIW architecture
-> * 64 x 64bits general purpose registers
-> * SIMD instructions
-> * little-endian
-> * deep learning co-processor
-> 
-> Kalray kv3-1 core which is the third of the kvx family is embedded in Kalray
-> Coolidge SoC currently used on K200 and K200-LP boards.
-> 
-> The Coolidge SoC contains 5 clusters each of which is made of:
-> * 4MiB of on-chip memory (SMEM)
-> * 1 dedicated safety/security core (kv3-1 core).
-> * 16 PEs (Processing Elements) (kv3-1 cores).
-> * 16 Co-processors (one per PE)
-> * 2 Crypto accelerators
-> 
-> The Coolidge SoC contains the following features:
-> * 5 Clusters
-> * 2 100G Ethernet controllers
-> * 8 PCIe GEN4 controllers (Root Complex and Endpoint capable)
-> * 2 USB 2.0 controllers
-> * 1 Octal SPI-NOR flash controller
-> * 1 eMMC controller
-> * 3 Quad SPI controllers
-> * 6 UART
-> * 5 I2C controllers (3 of which are SMBus capable)
-> * 4 CAN controllers
-> * 1 OTP memory
-> 
-> A kvx toolchain can be built using:
-> # install dependencies: texinfo bison flex libgmp-dev libmpc-dev libmpfr-dev
-> $ git clone https://github.com/kalray/build-scripts
-> $ cd build-scripts
-> $ source last.refs
-> $ ./build-kvx-xgcc.sh output
-> 
-> The kvx toolchain will be installed in the "output" directory.
-> 
-> A buildroot image (kernel+rootfs) and toolchain can be built using:
-> $ git clone -b coolidge-for-upstream https://github.com/kalray/buildroot
-> $ cd buildroot
-> $ make O=build_kvx kvx_defconfig
-> $ make O=build_kvx
-> 
-> The vmlinux image can be found in buildroot/build_kvx/images/vmlinux.
-> 
-> If you are just interested in building the Linux kernel with no rootfs you can
-> just do this with the kvx-elf- toolchain:
-> $ make ARCH=kvx O=build_kvx CROSS_COMPILE=kvx-elf- default_defconfig
-> $ make ARCH=kvx O=build_kvx CROSS_COMPILE=kvx-elf- -j$(($(nproc) + 1))
-> 
-> The vmlinux ELF can be run with qemu by doing:
-> # install dependencies: ninja pkg-config libglib-2.0-dev cmake libfdt-dev libpixman-1-dev zlib1g-dev
-> $ git clone https://github.com/kalray/qemu-builder
-> $ cd qemu-builder
-> $ git submodule update --init
-> $ make -j$(($(nproc) + 1))
-> $ ./qemu-system-kvx -m 1024 -nographic -kernel <path/to/vmlinux>
-> 
-> Yann Sionneau (25):
->   Documentation: kvx: Add basic documentation
->   kvx: Add ELF-related definitions
->   kvx: Add build infrastructure
->   kvx: Add CPU definition headers
->   kvx: Add atomic/locking headers
->   kvx: Add other common headers
->   kvx: Add boot and setup routines
->   kvx: Add exception/interrupt handling
->   kvx: irqchip: Add support for irq controllers
->   kvx: Add process management
->   kvx: Add memory management
->   kvx: Add system call support
->   kvx: Add signal handling support
->   kvx: Add ELF relocations and module support
->   kvx: Add misc common routines
->   kvx: Add some library functions
->   kvx: Add multi-processor (SMP) support
->   kvx: Add kvx default config file
->   kvx: power: scall poweroff driver
->   kvx: gdb: add kvx related gdb helpers
->   kvx: Add support for ftrace
->   kvx: Add support for jump labels
->   kvx: Add debugging related support
->   kvx: Add support for CPU Perf Monitors
->   kvx: Add support for cpuinfo
 
-You should strip this series down to just what's needed to boot. You 
-don't need the last 7 patches at least.
+--ITHc4yLppOjAfL7f
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Rob
+On Mon, Dec 26, 2022 at 01:45:35PM +0800, Potin Lai wrote:
+> Enable WDTRST1 external signal to send a reset pluse to peripherals while
+> BMC reset.
+
+nit: s/pluse/pulse
+
+>=20
+> Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
+> ---
+>  arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+>=20
+> diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts b/arch/a=
+rm/boot/dts/aspeed-bmc-facebook-bletchley.dts
+> index 791f83aaac50..050ed7e810fa 100644
+> --- a/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
+> +++ b/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
+> @@ -1064,3 +1064,14 @@ pinctrl_gpiov2_unbiased_default: gpiov2 {
+>  		bias-disable;
+>  	};
+>  };
+> +
+> +&wdt1 {
+> +	status =3D "okay";
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&pinctrl_wdtrst1_default>;
+> +	aspeed,reset-type =3D "soc";
+> +	aspeed,external-signal;
+> +	aspeed,ext-push-pull;
+> +	aspeed,ext-active-high;
+> +	aspeed,ext-pulse-duration =3D <256>;
+> +};
+> --=20
+> 2.31.1
+>=20
+
+--=20
+Patrick Williams
+
+--ITHc4yLppOjAfL7f
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEBGD9ii4LE9cNbqJBqwNHzC0AwRkFAmO0l9wACgkQqwNHzC0A
+wRkgiA//UrzR+v+5K+T7IFxmx79HdNHqHfgdU4GzaO9vwcKDdzXzEYcKVhXzuLxq
+g9GW4vTBXFMu2pKSnRYIV0wtc5/ErCYU35brT3+cAtxUj9r0ZdhzeE/9a53Zxux/
+1b24AmsKXdpDDGMVjZy3YX92phB3j554GMnRjEprlmdGRTVQ45/gbJfdsRXY8DC+
+nXCeMgFODQ7PCJI4Yf2XkCT4N8ofFzxRBdJ41of3RBpnsYiwMBfVynVXOPWtrqOO
+Ustf/xTTSFDKwkWdQnm5/cwsewCMdHHsft0qGJKIyBBYYJxk4p/MmFAi915HHqI6
+Jomvuc+g7djUAfBxOVh2PdfK7TGXbai/daee8eafavsBcI0YOuQnqYSWz4vwaEMC
+pd/urmf4UznlLsa5NZlrqjyJ+65JIOJKqx7xCJ33JPSiu32LBjXq1rFdGbSKykrr
+W/GmnY+vcA6o5g9A9x7DIxLlizQa2DTocfPWcus0cRbUnGe/0/lIutDenU+FfUGj
+jq7/BvF5DxfEOfcdoqv1WZfSHnAZD6Xc+pbUmQAEx1rvhdR0Gn7pYfcA3JEVgxMM
+6HMWtBZEV5MzKrzlky990o6wNZITEhBNJHK38Av82yloSb+5ntqtwdYdOuEQIirz
+XRVuun3b9pfA/cxbbexa8qq+Tkn06VBL/Jxeb4ip6NJZ7AOf8C4=
+=0zi4
+-----END PGP SIGNATURE-----
+
+--ITHc4yLppOjAfL7f--
