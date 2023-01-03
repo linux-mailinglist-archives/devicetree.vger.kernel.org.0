@@ -2,94 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81CE265BC99
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 09:59:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38DEF65BCA8
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 10:02:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230211AbjACI7p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 03:59:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33882 "EHLO
+        id S230109AbjACJCB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 04:02:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237021AbjACI72 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 03:59:28 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67AE5DFAB
-        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 00:59:27 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id y25so44767220lfa.9
-        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 00:59:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7j9AXGm8KcQMkHKGAeB3T4mg7jffdKzNUIAHdwbY7fo=;
-        b=s2iEumJhXjYNH1Gh9dH9AGQbcoOhUdiQ/qx/sCsOpX6Tn5WFUMTkIjN6QZ8HsOXzEG
-         RnZRJrh/UrOupc8Dh6aKfXzKAhOWHawBhASVSbrz0kltSIqEqOke9pTKrTivDw53atHo
-         cbdcG4oD0MFmSjyOQe/6QZWAq6Xs5vvtY2qomeEx//6HvoinUtvQOaZkbOy1foycWXDz
-         RPz6gVmkzvTNSYDfBmkyyMAav4C/V+pkFvdtZyBufeEDG/Tgnl23DuWKy8Zk0mx3t7yL
-         WqS5bSAOl843Pdun0YS/r7mh8ntlpvGwxvcE8Im51XjxNmoYzD2C/4BOOcripqVX9b/c
-         qVvg==
+        with ESMTP id S237120AbjACJB7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 04:01:59 -0500
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF60C63F9;
+        Tue,  3 Jan 2023 01:01:58 -0800 (PST)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-4a263c4ddbaso90149077b3.0;
+        Tue, 03 Jan 2023 01:01:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7j9AXGm8KcQMkHKGAeB3T4mg7jffdKzNUIAHdwbY7fo=;
-        b=KF6/NdEUtcW5pn+qaFkBFGpddMyRS5gIJrxNm35kE4clbODh+zL1FzBVfeJmQRRyLp
-         FDbqz1SQEJR39ZUe6GPkg8yQfy0wGdig1H7EalQBd1pSUTJgaqsD2NLP+WhSVSS8TOSM
-         qIbRkGDs87Aia/Xvpsids9TY4ITKmJu6X7i9TdSz2Z3wUpCOtaNHmarHQuOFsaVlxVVp
-         /G+t9ZmUyApT6k89j+10pjSGSkJ5sc5koQlK96S/yf+Rj1o/ViniSLc6YKXDkB9kLMp4
-         l5hOjAPWGEgaYH303kyfGDSHQ28BBlsl71gvOYHgcIFSuaQgYw6cgmQUWnpnjWAzmEk4
-         ctig==
-X-Gm-Message-State: AFqh2krKLUTeehpsAnaP8XrK8YsMxqso8679O4LH/PINS+NXd9/u6v8k
-        gfJNaOeKo/OEYcl2gbZ/3X5KCg==
-X-Google-Smtp-Source: AMrXdXsRGRWgnjFRawZddG8ibZK66iCvLETp/rUO27resO8ipbY1RSAjwATG7uT2bWefdkTAzhXgAg==
-X-Received: by 2002:ac2:5191:0:b0:4cb:20b3:e7f6 with SMTP id u17-20020ac25191000000b004cb20b3e7f6mr4742173lfi.19.1672736365838;
-        Tue, 03 Jan 2023 00:59:25 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id z8-20020a056512376800b004b52aea5ff8sm4737562lft.30.2023.01.03.00.59.24
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Y5URYrqeQS8qtruXH5AsYpmalrkXEUl+UgZRcXAkcEE=;
+        b=vyAMAnt8gRki9CI1ARcv8zLOeGnyjbpXI9uoOlB4N5gpDdfi3HQMf3M8vtfC6ec9xp
+         JXU1D7VjR1qntVcS2z4RcAz7VrgBcKouca1smd6/7kpAUcX216nWF++ZT/AP9H43+nQf
+         Dsp3sqvfJHwuGF3oYghA2xEtGWm4+T0s+MGqXr6i/RTi0fVrQOqjH+Z3+UU7lxtifU3o
+         1HLvkSNYXcm5VYSX8dzNMA2ch5GtprEFZiGAoyeBsYlhWwDsjhXOOpulRDql+8cl8Qey
+         4TFOCbdqUYqFkVVW7OpysQ+aJWS6Sh6fi03vytku+gYCKQpcLlCcslic//62oNRuhpDr
+         ORMA==
+X-Gm-Message-State: AFqh2kqIvEQJ4zkhJ+vOPI2qzWQCYLk3/6dyAjVL+H5aQG5VmPpJ0PuT
+        Z8p6SwYxPFUzVkJQwwExQfhLEwjLX2OAxA==
+X-Google-Smtp-Source: AMrXdXsDK5p3WZY5e4n2SgPxle006DIZNmmRSNaUcdPVtdkBLwtZRzVCw8iqAildmM8relcnd4xj0w==
+X-Received: by 2002:a81:5706:0:b0:485:470f:c39c with SMTP id l6-20020a815706000000b00485470fc39cmr20383600ywb.37.1672736517562;
+        Tue, 03 Jan 2023 01:01:57 -0800 (PST)
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
+        by smtp.gmail.com with ESMTPSA id u16-20020a05620a0c5000b006e07228ed53sm21772827qki.18.2023.01.03.01.01.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Jan 2023 00:59:25 -0800 (PST)
-Message-ID: <44e678db-14d9-6724-3d80-09c23e26d3ed@linaro.org>
-Date:   Tue, 3 Jan 2023 09:59:24 +0100
+        Tue, 03 Jan 2023 01:01:57 -0800 (PST)
+Received: by mail-yb1-f175.google.com with SMTP id n78so32336127yba.12;
+        Tue, 03 Jan 2023 01:01:57 -0800 (PST)
+X-Received: by 2002:a25:ab49:0:b0:6de:6183:c5c3 with SMTP id
+ u67-20020a25ab49000000b006de6183c5c3mr4872308ybi.89.1672736516822; Tue, 03
+ Jan 2023 01:01:56 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH] dt-bindings: irqchip: ti,sci-inta: Add optional
- power-domains property
-Content-Language: en-US
-To:     Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+References: <20221215213206.56666-1-biju.das.jz@bp.renesas.com> <CACRpkdZCEvpLAWvH7pCLH7KwbDMzz0EN+4HbxVGfFPi_C1b8+g@mail.gmail.com>
+In-Reply-To: <CACRpkdZCEvpLAWvH7pCLH7KwbDMzz0EN+4HbxVGfFPi_C1b8+g@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 3 Jan 2023 10:01:45 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdU1J46KSzqqCQc-1ZrgvfWh8J2aa6NzRTK_A_ZJs+zRVQ@mail.gmail.com>
+Message-ID: <CAMuHMdU1J46KSzqqCQc-1ZrgvfWh8J2aa6NzRTK_A_ZJs+zRVQ@mail.gmail.com>
+Subject: Re: [PATCH v5 0/9] Add RZ/G2L POEG support
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Drew Fustini <dfustini@baylibre.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230103042724.1100618-1-vigneshr@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230103042724.1100618-1-vigneshr@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/01/2023 05:27, Vignesh Raghavendra wrote:
-> On certain SoCs, Interrupt Aggregator may have a power-domain dependency
-> to be on before accessing. Add DT binding for the same
-> 
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-> ---
+Hi Linus,
 
+On Thu, Dec 29, 2022 at 2:17 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+> On Thu, Dec 15, 2022 at 10:32 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > This patch series add support for controlling output disable function using sysfs.
+>
+> What's wrong with using the debugfs approach Drew implemented in
+> commit 6199f6becc869d30ca9394ca0f7a484bf9d598eb
+> "pinctrl: pinmux: Add pinmux-select debugfs file"
+> ?
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I think the main difference is that debugfs is meant for debugging
+and development features, while this feature is to be configured on
+production systems.  There's just no existing API for it.
 
-Best regards,
-Krzysztof
+> Something driver specific seems like a bit of a hack, does it not?
+>
+> If this should go into sysfs we should probably create something
+> generic, such as a list of stuff to be exported as sysfs switches.
+>
+> It generally also looks really dangerous, which is another reason
+> for keeping it in debugfs. It's the big hammer to hurt yourself with,
+> more or less.
 
+Yes, generic would be nice.  Anyone familiar with other hardware
+that could make use of this?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
