@@ -2,509 +2,688 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01C5A65C7AB
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 20:46:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4267F65C7D5
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 21:04:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237765AbjACTqI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 14:46:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40540 "EHLO
+        id S233145AbjACUEr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 15:04:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231722AbjACTqG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 14:46:06 -0500
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2066.outbound.protection.outlook.com [40.107.244.66])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A63C4FCF;
-        Tue,  3 Jan 2023 11:46:02 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=a8sffLzfOV4kHh/h1AtFY2k34nc54HLsJyegXDN3RKdaAH6NR1rekzF2GrNqpwhVRkfzczfe2p0os2VSKh81ENop3EsBEE4VmUIG9PjdGNOozs/y22CmVDFszJ+c9sTQ+Nvp0jVNReRcwfcT03Obwd+IXaJR/ihWg0zGXcSsnHTYbY9BpUeXrvZwZhkdZF/ROYlJHCd/bINjD0SC1JFvCoVRguecDWZRpah8i4yZ2a6hkDmEhHZbEfwBlMcBQnI30nGVFqiBqibOl0sEmwdZAMFipoAQKfwyWlKKkmt7KN8BAL4FUNI9BCKd7XiHnkBNAg94cS+tdTsiZ+IBGqOJWA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4PfBB7wK5pZoJnSbE/qrv4P2QuU7z2msqFvpJyUNyos=;
- b=YEapBRC8cj0An61smX0UaXJJGExdcn8zevqk+tdxBx9PLECzqBThSdxNK5istAtXLr+mk7/M5lSqQVCo40/WQxw4/nHRfMrBArx/ZwSCSpQKh5ApjoOXHfTl4yFD5IWNpxm7hrQzFaqKNsY3hRXyBtL38JiE8A4R1/LT8kcV/3ltJCG1SXGYYYIhJf0nwUwHjnWD7wVJgi81thmTP1A8N6GfgCUfdOz54r/FcNyu30wnJieeiX9qQJ+j8vIq14ZLzeHwVRjs1EpSfFMQm8hZLsAFdWDoH8Ix+8ANzSuBbfN5o/4uNhUeTA9Esel/EZ4jbWW8SpJM3h/ybHWw9voWjA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=bootlin.com smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4PfBB7wK5pZoJnSbE/qrv4P2QuU7z2msqFvpJyUNyos=;
- b=cBAiXnkgI8RzEEuiMy4y1kko2I+3uAxsecq1LKAfBwT+YuzZ2jUTpA478Isjtnz+C9ovv9j1DfgWl9qKJgt2xVzxZOCjeskgHr3gAySwfiyn7ozI20+yN6NtinTGvx5YYM9zZX4vVyLiYcMS2MwRzRtT0UXQo7fN30SmpLBxlZI=
-Received: from DS7PR03CA0097.namprd03.prod.outlook.com (2603:10b6:5:3b7::12)
- by CY8PR12MB8195.namprd12.prod.outlook.com (2603:10b6:930:77::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.19; Tue, 3 Jan
- 2023 19:46:00 +0000
-Received: from DM6NAM11FT068.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:3b7:cafe::49) by DS7PR03CA0097.outlook.office365.com
- (2603:10b6:5:3b7::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5966.19 via Frontend
- Transport; Tue, 3 Jan 2023 19:46:00 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT068.mail.protection.outlook.com (10.13.173.67) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5966.17 via Frontend Transport; Tue, 3 Jan 2023 19:46:00 +0000
-Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 3 Jan
- 2023 13:45:59 -0600
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB08.amd.com
- (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 3 Jan
- 2023 11:45:59 -0800
-Received: from [172.19.74.144] (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
- Transport; Tue, 3 Jan 2023 13:45:58 -0600
-Message-ID: <b33c232b-851b-0f38-bbf0-7dfb35467ef2@amd.com>
-Date:   Tue, 3 Jan 2023 11:45:58 -0800
+        with ESMTP id S230488AbjACUEp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 15:04:45 -0500
+Received: from mailrelay2-1.pub.mailoutpod2-cph3.one.com (mailrelay2-1.pub.mailoutpod2-cph3.one.com [46.30.211.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 678341208A
+        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 12:04:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ravnborg.org; s=rsa2;
+        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+         from:date:from;
+        bh=w5Zo8g3TaYgtcTCgy3oZXz9/r6oEXx/FaThzGWxOlgQ=;
+        b=QF69kclAMJ1WiSsVmXgspI+wlsnU1t5wU03xvDraQsT68u08anwbPpNJIn/TflWrKk2F+ONiHpzGM
+         MX3JjayNIqj5eOUlBv66xgI3DBgKDmsNGcW6bwmy+pJ+v7niPJR0EvWAogkn5hcfU3hbddwbZOj4vx
+         jm00BoJwXtI+/24vTjoNHC34xV2mJtEMsiVBWA84nAxrCDsFwA6nb9fbaM5RqKMsd2tDjijaDIf8X5
+         R9noZ5HBCHQTQJ/cLbA7rNjRFT6qYvHH8+Mj/2+mpnaeQXmzSFiJ0bqX2P1fePrrhSbAGjXwZFh8HE
+         Yb7WEmng4fXdoz/1YH5V82TTcfmAz/g==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
+        d=ravnborg.org; s=ed2;
+        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+         from:date:from;
+        bh=w5Zo8g3TaYgtcTCgy3oZXz9/r6oEXx/FaThzGWxOlgQ=;
+        b=sbKGLxlBEXYMWohDM8FaIG2hTwP7YZamH7LZXuMzh/8Q6ed7kYQM7W2fjeo38rD5YlasF6hANxnXf
+         J6z4YNQAQ==
+X-HalOne-ID: b45856cc-8ba1-11ed-b3cd-93f0a866dfbb
+Received: from ravnborg.org (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
+        by mailrelay2 (Halon) with ESMTPSA
+        id b45856cc-8ba1-11ed-b3cd-93f0a866dfbb;
+        Tue, 03 Jan 2023 20:03:38 +0000 (UTC)
+Date:   Tue, 3 Jan 2023 21:03:36 +0100
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, maccraft123mc@gmail.com,
+        tzimmermann@suse.de, mripard@kernel.org,
+        maarten.lankhorst@linux.intel.com, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        daniel@ffwll.ch, airlied@gmail.com, thierry.reding@gmail.com,
+        linus.walleij@linaro.org, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH V7 3/4] drm/panel: Add Magnachip D53E6EA8966 Panel Driver
+Message-ID: <Y7SKGFKHY2SKnsdW@ravnborg.org>
+References: <20230103190707.104595-1-macroalpha82@gmail.com>
+ <20230103190707.104595-4-macroalpha82@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH V5 2/3] PCI: Create device tree node for selected devices
-Content-Language: en-US
-To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-CC:     <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <robh@kernel.org>,
-        <frowand.list@gmail.com>, <helgaas@kernel.org>, <max.zhen@amd.com>,
-        <sonal.santan@amd.com>, <larry.liu@amd.com>, <brian.xu@amd.com>,
-        <stefano.stabellini@xilinx.com>, <trix@redhat.com>,
-        "Allan.Nielsen@microchip.com" <Allan.Nielsen@microchip.com>,
-        "Horatiu.Vultur@microchip.com" <Horatiu.Vultur@microchip.com>,
-        "Steen.Hegelund@microchip.com" <Steen.Hegelund@microchip.com>
-References: <1671125446-57584-1-git-send-email-lizhi.hou@amd.com>
- <1671125446-57584-3-git-send-email-lizhi.hou@amd.com>
- <20230102181611.0e6023f2@fixe.home>
-From:   Lizhi Hou <lizhi.hou@amd.com>
-In-Reply-To: <20230102181611.0e6023f2@fixe.home>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT068:EE_|CY8PR12MB8195:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1cf82b4e-7c68-411c-7786-08daedc32400
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: jZ8yygJI9lSVxIYdt48DjZ9x4uY3CsB2kDpdnAtUynLgLVAMpeC2vEUjHePiNksyjBS3QvZoLfCDVwJlfZX18P79DrU9tzmx5afZu89ohsoa17HBlIq7W3Tshl8LfYb9lv3biHEF76B+DJ8WJMdRZ98XnJLgVln2eWjvpuBoayN56VBL6Xwif9LpNVQR/hzzFoOJIbfjmL1sGn9oQhdIYePpvvPAuMRAwX7fx4VDeALbHd5ZePVraYJknVClhtn9itVmCYcAallCYYBP5iBKqAJn9kp/hd3jrtWnYn16GXJoQSLpWq9izPiy0b3fEDtfZybNVlOxD3JCYHxavB+hgTGQG6viUtbvhTQMsFn5dFmLF8dYTC2/HFvXCcWdve8w2qmT10BGlSLD9YfcMUSf2LUgTDY9Pdn5/5wl7bt9qh9vxP4pO7GexZfEsffm020ISo1VAqWhfEFkEEBtrWPSjiyB2A/LNv4rZWmqlXthqFcL8VSMOMJboUNEOEf+gtvPzc8mYZ+7HkoVjmsLD2Zp4fLcdwVdtHcq5oajvg89cOZYzqBx5Kpu0Qeipe7au1zvQlPa7H55yx8u82AvSh55BMV4QsmNPQBZl/fM7h1707jAtmY7A30TnyRwgME5PRC9yN5VqTRzr0IauZ5vdsHPpY6vAhb99P4CDI4YR+CREFACvy5A8zogPBjVbUtBp9/O545z6VGVMW6O7lD5vlKqpsTxqFqxYFh5juEFE58kSVUoDleZ87yN3TNUNPXrXZD+/nydBhJw+kQN+0luH52tcUFHRo3lvRzbn4HJO8qfTpM=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(136003)(39860400002)(396003)(346002)(376002)(451199015)(36840700001)(40470700004)(46966006)(7416002)(5660300002)(41300700001)(316002)(4326008)(8936002)(70586007)(8676002)(54906003)(6916009)(2906002)(44832011)(70206006)(16576012)(478600001)(186003)(53546011)(26005)(31686004)(40480700001)(31696002)(86362001)(2616005)(66574015)(426003)(36860700001)(83380400001)(47076005)(336012)(36756003)(82740400003)(356005)(81166007)(82310400005)(30864003)(40460700003)(22166006)(36900700001)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jan 2023 19:46:00.3981
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1cf82b4e-7c68-411c-7786-08daedc32400
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT068.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB8195
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230103190707.104595-4-macroalpha82@gmail.com>
+X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_NONE,
+        URIBL_BLACK autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Chris.
 
-On 1/2/23 09:16, Clément Léger wrote:
-> Le Thu, 15 Dec 2022 09:30:45 -0800,
-> Lizhi Hou <lizhi.hou@amd.com> a écrit :
->
->> The PCI endpoint device such as Xilinx Alveo PCI card maps the register
->> spaces from multiple hardware peripherals to its PCI BAR. Normally,
->> the PCI core discovers devices and BARs using the PCI enumeration process.
->> There is no infrastructure to discover the hardware peripherals that are
->> present in a PCI device, and which can be accessed through the PCI BARs.
->>
->> For Alveo PCI card, the card firmware provides a flattened device tree to
->> describe the hardware peripherals on its BARs. The Alveo card driver can
->> load this flattened device tree and leverage device tree framework to
->> generate platform devices for the hardware peripherals eventually.
->>
->> Apparently, the device tree framework requires a device tree node for the
->> PCI device. Thus, it can generate the device tree nodes for hardware
->> peripherals underneath. Because PCI is self discoverable bus, there might
->> not be a device tree node created for PCI devices. This patch is to add
->> support to generate device tree node for PCI devices.
->>
->> Added a kernel option. When the option is turned on, the kernel will
->> generate device tree nodes for PCI bridges unconditionally.
->>
->> Initially, the basic properties are added for the dynamically generated
->> device tree nodes.
->>
->> Signed-off-by: Lizhi Hou <lizhi.hou@amd.com>
->> Signed-off-by: Sonal Santan <sonal.santan@amd.com>
->> Signed-off-by: Max Zhen <max.zhen@amd.com>
->> Reviewed-by: Brian Xu <brian.xu@amd.com>
->> ---
->>   drivers/pci/Kconfig         |  12 ++
->>   drivers/pci/Makefile        |   1 +
->>   drivers/pci/bus.c           |   2 +
->>   drivers/pci/msi/irqdomain.c |   6 +-
->>   drivers/pci/of.c            |  71 ++++++++++++
->>   drivers/pci/of_property.c   | 222 ++++++++++++++++++++++++++++++++++++
->>   drivers/pci/pci-driver.c    |   3 +-
->>   drivers/pci/pci.h           |  19 +++
->>   drivers/pci/remove.c        |   1 +
->>   9 files changed, 334 insertions(+), 3 deletions(-)
->>   create mode 100644 drivers/pci/of_property.c
->>
->> diff --git a/drivers/pci/Kconfig b/drivers/pci/Kconfig
->> index 55c028af4bd9..1b2347aa1e5b 100644
->> --- a/drivers/pci/Kconfig
->> +++ b/drivers/pci/Kconfig
->> @@ -198,6 +198,18 @@ config PCI_HYPERV
->>   	  The PCI device frontend driver allows the kernel to import arbitrary
->>   	  PCI devices from a PCI backend to support PCI driver domains.
->>   
->> +config PCI_DYNAMIC_OF_NODES
->> +	bool "Create Devicetree nodes for PCI devices"
->> +	depends on OF
->> +	select OF_DYNAMIC
->> +	help
->> +	  This option enables support for generating device tree nodes for some
->> +	  PCI devices. Thus, the driver of this kind can load and overlay
->> +	  flattened device tree for its downstream devices.
->> +
->> +	  Once this option is selected, the device tree nodes will be generated
->> +	  for all PCI bridges.
->> +
->>   choice
->>   	prompt "PCI Express hierarchy optimization setting"
->>   	default PCIE_BUS_DEFAULT
->> diff --git a/drivers/pci/Makefile b/drivers/pci/Makefile
->> index 2680e4c92f0a..cc8b4e01e29d 100644
->> --- a/drivers/pci/Makefile
->> +++ b/drivers/pci/Makefile
->> @@ -32,6 +32,7 @@ obj-$(CONFIG_PCI_P2PDMA)	+= p2pdma.o
->>   obj-$(CONFIG_XEN_PCIDEV_FRONTEND) += xen-pcifront.o
->>   obj-$(CONFIG_VGA_ARB)		+= vgaarb.o
->>   obj-$(CONFIG_PCI_DOE)		+= doe.o
->> +obj-$(CONFIG_PCI_DYNAMIC_OF_NODES) += of_property.o
->>   
->>   # Endpoint library must be initialized before its users
->>   obj-$(CONFIG_PCI_ENDPOINT)	+= endpoint/
->> diff --git a/drivers/pci/bus.c b/drivers/pci/bus.c
->> index 3cef835b375f..8507cc32b61d 100644
->> --- a/drivers/pci/bus.c
->> +++ b/drivers/pci/bus.c
->> @@ -316,6 +316,8 @@ void pci_bus_add_device(struct pci_dev *dev)
->>   	 */
->>   	pcibios_bus_add_device(dev);
->>   	pci_fixup_device(pci_fixup_final, dev);
->> +	if (pci_is_bridge(dev))
->> +		of_pci_make_dev_node(dev);
->>   	pci_create_sysfs_dev_files(dev);
->>   	pci_proc_attach_device(dev);
->>   	pci_bridge_d3_update(dev);
->> diff --git a/drivers/pci/msi/irqdomain.c b/drivers/pci/msi/irqdomain.c
->> index e9cf318e6670..eeaf44169bfd 100644
->> --- a/drivers/pci/msi/irqdomain.c
->> +++ b/drivers/pci/msi/irqdomain.c
->> @@ -230,8 +230,10 @@ u32 pci_msi_domain_get_msi_rid(struct irq_domain *domain, struct pci_dev *pdev)
->>   	pci_for_each_dma_alias(pdev, get_msi_id_cb, &rid);
->>   
->>   	of_node = irq_domain_get_of_node(domain);
->> -	rid = of_node ? of_msi_map_id(&pdev->dev, of_node, rid) :
->> -			iort_msi_map_id(&pdev->dev, rid);
->> +	if (of_node && !of_node_check_flag(of_node, OF_DYNAMIC))
->> +		rid = of_msi_map_id(&pdev->dev, of_node, rid);
->> +	else
->> +		rid = iort_msi_map_id(&pdev->dev, rid);
->>   
->>   	return rid;
->>   }
->> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
->> index 196834ed44fe..cb34a73ac8a3 100644
->> --- a/drivers/pci/of.c
->> +++ b/drivers/pci/of.c
->> @@ -469,6 +469,8 @@ static int of_irq_parse_pci(const struct pci_dev *pdev, struct of_phandle_args *
->>   		} else {
->>   			/* We found a P2P bridge, check if it has a node */
->>   			ppnode = pci_device_to_OF_node(ppdev);
->> +			if (ppnode && of_node_check_flag(ppnode, OF_DYNAMIC))
->> +				ppnode = NULL;
->>   		}
->>   
->>   		/*
->> @@ -599,6 +601,75 @@ int devm_of_pci_bridge_init(struct device *dev, struct pci_host_bridge *bridge)
->>   	return pci_parse_request_of_pci_ranges(dev, bridge);
->>   }
->>   
->> +#if IS_ENABLED(CONFIG_PCI_DYNAMIC_OF_NODES)
->> +
->> +void of_pci_remove_node(struct pci_dev *pdev)
->> +{
->> +	struct device_node *np;
->> +
->> +	np = pci_device_to_OF_node(pdev);
->> +	if (!np || !of_node_check_flag(np, OF_DYNAMIC))
->> +		return;
->> +	pdev->dev.of_node = NULL;
->> +
->> +	of_destroy_node(np);
->> +}
->> +
->> +void of_pci_make_dev_node(struct pci_dev *pdev)
->> +{
->> +	struct device_node *ppnode, *np = NULL;
->> +	const char *pci_type = "dev";
->> +	struct of_changeset *cset;
->> +	const char *name;
->> +	int ret;
->> +
->> +	/*
->> +	 * If there is already a device tree node linked to this device,
->> +	 * return immediately.
->> +	 */
->> +	if (pci_device_to_OF_node(pdev))
->> +		return;
->> +
->> +	/* Check if there is device tree node for parent device */
->> +	if (!pdev->bus->self)
->> +		ppnode = pdev->bus->dev.of_node;
->> +	else
->> +		ppnode = pdev->bus->self->dev.of_node;
->> +	if (!ppnode)
->> +		return;
->> +
->> +	if (pci_is_bridge(pdev))
->> +		pci_type = "pci";
->> +
->> +	name = kasprintf(GFP_KERNEL, "%s@%x,%x", pci_type,
->> +			 PCI_SLOT(pdev->devfn), PCI_FUNC(pdev->devfn));
->> +	if (!name)
->> +		goto failed;
->> +
->> +	np = of_create_node(ppnode, name, &cset);
->> +	if (!np)
->> +		goto failed;
->> +
->> +	ret = of_pci_add_properties(pdev, cset, np);
->> +	if (ret)
->> +		goto failed;
->> +
->> +	ret = of_changeset_apply(cset);
->> +	if (ret)
->> +		goto failed;
->> +
->> +	pdev->dev.of_node = np;
->> +	kfree(name);
->> +
->> +	return;
->> +
->> +failed:
->> +	if (np)
->> +		of_destroy_node(np);
->> +	kfree(name);
->> +}
->> +#endif
->> +
->>   #endif /* CONFIG_PCI */
->>   
->>   /**
->> diff --git a/drivers/pci/of_property.c b/drivers/pci/of_property.c
->> new file mode 100644
->> index 000000000000..05c8ca05a71b
->> --- /dev/null
->> +++ b/drivers/pci/of_property.c
->> @@ -0,0 +1,222 @@
->> +// SPDX-License-Identifier: GPL-2.0+
->> +/*
->> + * Copyright (C) 2022, Advanced Micro Devices, Inc.
->> + */
->> +
->> +#include <linux/pci.h>
->> +#include <linux/of.h>
->> +#include <linux/bitfield.h>
->> +#include <linux/bits.h>
->> +#include <asm/unaligned.h>
->> +#include "pci.h"
->> +
->> +#define OF_PCI_ADDRESS_CELLS		3
->> +#define OF_PCI_SIZE_CELLS		2
->> +
->> +struct of_pci_addr_pair {
->> +	u32		phys_addr[OF_PCI_ADDRESS_CELLS];
->> +	u32		size[OF_PCI_SIZE_CELLS];
->> +};
->> +
->> +struct of_pci_range {
->> +	u32		child_addr[OF_PCI_ADDRESS_CELLS];
->> +	u32		parent_addr[OF_PCI_ADDRESS_CELLS];
->> +	u32		size[OF_PCI_SIZE_CELLS];
->> +};
->> +
->> +#define OF_PCI_ADDR_SPACE_CONFIG	0x0
->> +#define OF_PCI_ADDR_SPACE_IO		0x1
->> +#define OF_PCI_ADDR_SPACE_MEM32		0x2
->> +#define OF_PCI_ADDR_SPACE_MEM64		0x3
->> +
->> +#define OF_PCI_ADDR_FIELD_NONRELOC	BIT(31)
->> +#define OF_PCI_ADDR_FIELD_SS		GENMASK(25, 24)
->> +#define OF_PCI_ADDR_FIELD_PREFETCH	BIT(30)
->> +#define OF_PCI_ADDR_FIELD_BUS		GENMASK(23, 16)
->> +#define OF_PCI_ADDR_FIELD_DEV		GENMASK(15, 11)
->> +#define OF_PCI_ADDR_FIELD_FUNC		GENMASK(10, 8)
->> +#define OF_PCI_ADDR_FIELD_REG		GENMASK(7, 0)
->> +
->> +#define OF_PCI_ADDR_HI			GENMASK_ULL(63, 32)
->> +#define OF_PCI_ADDR_LO			GENMASK_ULL(31, 0)
->> +#define OF_PCI_SIZE_HI			GENMASK_ULL(63, 32)
->> +#define OF_PCI_SIZE_LO			GENMASK_ULL(31, 0)
->> +
->> +enum of_pci_prop_compatible {
->> +	PROP_COMPAT_PCI_VVVV_DDDD,
->> +	PROP_COMPAT_PCICLASS_CCSSPP,
->> +	PROP_COMPAT_PCICLASS_CCSS,
->> +	PROP_COMPAT_NUM,
->> +};
->> +
->> +static int of_pci_prop_device_type(struct pci_dev *pdev,
->> +				   struct of_changeset *ocs,
->> +				   struct device_node *np)
->> +{
->> +	return of_changeset_add_prop_string(ocs, np, "device_type", "pci");
->> +}
->> +
->> +static int of_pci_prop_address_cells(struct pci_dev *pdev,
->> +				     struct of_changeset *ocs,
->> +				     struct device_node *np)
->> +{
->> +	return of_changeset_add_prop_u32(ocs, np, "#address_cells",
->> +					 OF_PCI_ADDRESS_CELLS);
->> +}
->> +
->> +static int of_pci_prop_size_cells(struct pci_dev *pdev,
->> +				  struct of_changeset *ocs,
->> +				  struct device_node *np)
->> +{
->> +	return of_changeset_add_prop_u32(ocs, np, "#size_cells",
->> +					 OF_PCI_SIZE_CELLS);
->> +}
->> +
->> +static void of_pci_set_address(u32 *prop, u64 addr, u32 flags)
->> +{
->> +	prop[0] = flags;
->> +	put_unaligned(addr, &prop[1]);
->> +}
-> Here, the put_unaligned() call will assume you want to store a 32bits
-> value since prop is pointing to a u32 array. This can't work.
->
-> Moreover, when storing a 64bits address in device-tree properties, they
-> are stored starting with their 32 MSB in the first cell and the
-> 32 LSB in the next cells.
->
-> This should probably be something like this:
->
-> static void of_pci_set_address(u32 *prop, u64 addr, u32 flags)
-> {
-> 	prop[0] = flags;
-> 	prop[1] = addr >> 32;
-> 	prop[2] = addr;
-> }
->
-> [snip]
+On Tue, Jan 03, 2023 at 01:07:06PM -0600, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
+> 
+> Support Magnachip D53E6EA8966 based panels such as the Samsung
+> AMS495QA01 panel as found on the Anbernic RG503. Note this driver
+> supports only the AMS495QA01 today which receives video signals via DSI,
+> however it receives commands via 3-wire SPI using DBI.
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Thanks for pointing this out. And I should add (__be64 *) as below.
+Sorry for being late with my feedback - I have not had any linux
+bandwidth lately.
 
-  put_unaligned(addr, (__be64 *)&prop[1]);
+See a few comments in the following.
+Mostly, I am concerned that backlight does not work in an optimal way.
 
->
->> +
->> +static int of_pci_prop_ranges(struct pci_dev *pdev, struct of_changeset *ocs,
->> +			      struct device_node *np)
->> +{
->> +	struct of_pci_range rp[PCI_BRIDGE_RESOURCE_NUM];
->> +	struct resource *res;
->> +	int i = 0, j, ret;
->> +	u64 val64;
->> +	u32 flags;
->> +
->> +	res = &pdev->resource[PCI_BRIDGE_RESOURCES];
->> +	for (j = 0; j < PCI_BRIDGE_RESOURCE_NUM; j++) {
->> +		if (!resource_size(&res[j]))
->> +			continue;
->> +
->> +		flags = OF_PCI_ADDR_FIELD_NONRELOC;
->> +		if (of_pci_get_addr_flags(&res[j], &flags))
->> +			continue;
->> +
->> +		val64 = res[j].start;
->> +		of_pci_set_address(rp[i].parent_addr, val64, flags);
->> +		of_pci_set_address(rp[i].child_addr, val64, flags);
->> +
->> +		val64 = resource_size(&res[j]);
->> +		put_unaligned(val64, rp[i].size);
-> Same problem here, the size is meant to be a 64 bits values but will
-> assume you want to store it using a 32bits pointer.
-Will change to: put_unaligned(val64, (__be64 *)rp[i].size);
->
->> +
->> +		i++;
->> +	}
->> +
->> +	ret = of_changeset_add_prop_u32_array(ocs, np, "ranges", (u32 *)rp,
->> +					      i * sizeof(*rp) / sizeof(u32));
->> +
->> +	return ret;
->> +}
->> +
->> +static int of_pci_prop_reg(struct pci_dev *pdev, struct of_changeset *ocs,
->> +			   struct device_node *np)
->> +{
->> +	struct of_pci_addr_pair *reg;
->> +	int i = 1, resno, ret = 0;
->> +	u32 reg_val, base_addr;
->> +	resource_size_t sz;
->> +
->> +	reg = kzalloc(sizeof(*reg) * (PCI_STD_NUM_BARS + 1), GFP_KERNEL);
->> +	if (!reg)
->> +		return -ENOMEM;
->> +
->> +	reg_val = FIELD_PREP(OF_PCI_ADDR_FIELD_SS, OF_PCI_ADDR_SPACE_CONFIG) |
->> +		FIELD_PREP(OF_PCI_ADDR_FIELD_BUS, pdev->bus->number) |
->> +		FIELD_PREP(OF_PCI_ADDR_FIELD_DEV, PCI_SLOT(pdev->devfn)) |
->> +		FIELD_PREP(OF_PCI_ADDR_FIELD_FUNC, PCI_FUNC(pdev->devfn));
->> +	of_pci_set_address(reg[0].phys_addr, 0, reg_val);
->> +
->> +	base_addr = PCI_BASE_ADDRESS_0;
->> +	for (resno = PCI_STD_RESOURCES; resno <= PCI_STD_RESOURCE_END;
->> +	     resno++, base_addr += 4) {
->> +		sz = pci_resource_len(pdev, resno);
->> +		if (!sz)
->> +			continue;
->> +
->> +		ret = of_pci_get_addr_flags(&pdev->resource[resno], &reg_val);
->> +		if (!ret)
->> +			continue;
->> +
->> +		reg_val &= ~OF_PCI_ADDR_FIELD_REG;
->> +		reg_val |= FIELD_PREP(OF_PCI_ADDR_FIELD_REG, base_addr);
->> +		of_pci_set_address(reg[i].phys_addr, 0, reg_val);
->> +		put_unaligned((u64)sz, reg[i].size);
-> And same here. Something like this should probably be used (untested):
+	Sam
 
-will change to: put_unaligned((u64)sz, (__be64 *)reg[i].size);
+> ---
+>  drivers/gpu/drm/panel/Kconfig                 |  11 +
+>  drivers/gpu/drm/panel/Makefile                |   1 +
+>  .../drm/panel/panel-magnachip-d53e6ea8966.c   | 514 ++++++++++++++++++
+>  3 files changed, 526 insertions(+)
+>  create mode 100644 drivers/gpu/drm/panel/panel-magnachip-d53e6ea8966.c
+> 
+> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+> index 737edcdf9eef..204b84a83604 100644
+> --- a/drivers/gpu/drm/panel/Kconfig
+> +++ b/drivers/gpu/drm/panel/Kconfig
+> @@ -298,6 +298,17 @@ config DRM_PANEL_LG_LG4573
+>  	  Say Y here if you want to enable support for LG4573 RGB panel.
+>  	  To compile this driver as a module, choose M here.
+>  
+> +config DRM_PANEL_MAGNACHIP_D53E6EA8966
+> +	tristate "Magnachip D53E6EA8966 DSI panel"
+> +	depends on OF && SPI
+> +	depends on DRM_MIPI_DSI
+> +	depends on BACKLIGHT_CLASS_DEVICE
+> +	select DRM_MIPI_DBI
+> +	help
+> +	  DRM panel driver for the Samsung AMS495QA01 panel controlled
+> +	  with the Magnachip D53E6EA8966 panel IC. This panel receives
+> +	  video data via DSI but commands via 9-bit SPI using DBI.
+> +
+>  config DRM_PANEL_NEC_NL8048HL11
+>  	tristate "NEC NL8048HL11 RGB panel"
+>  	depends on GPIOLIB && OF && SPI
+> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
+> index f8f9d9f6a307..20de312aa5e9 100644
+> --- a/drivers/gpu/drm/panel/Makefile
+> +++ b/drivers/gpu/drm/panel/Makefile
+> @@ -27,6 +27,7 @@ obj-$(CONFIG_DRM_PANEL_LEADTEK_LTK050H3146W) += panel-leadtek-ltk050h3146w.o
+>  obj-$(CONFIG_DRM_PANEL_LEADTEK_LTK500HD1829) += panel-leadtek-ltk500hd1829.o
+>  obj-$(CONFIG_DRM_PANEL_LG_LB035Q02) += panel-lg-lb035q02.o
+>  obj-$(CONFIG_DRM_PANEL_LG_LG4573) += panel-lg-lg4573.o
+> +obj-$(CONFIG_DRM_PANEL_MAGNACHIP_D53E6EA8966) += panel-magnachip-d53e6ea8966.o
+>  obj-$(CONFIG_DRM_PANEL_NEC_NL8048HL11) += panel-nec-nl8048hl11.o
+>  obj-$(CONFIG_DRM_PANEL_NEWVISION_NV3051D) += panel-newvision-nv3051d.o
+>  obj-$(CONFIG_DRM_PANEL_NEWVISION_NV3052C) += panel-newvision-nv3052c.o
+> diff --git a/drivers/gpu/drm/panel/panel-magnachip-d53e6ea8966.c b/drivers/gpu/drm/panel/panel-magnachip-d53e6ea8966.c
+> new file mode 100644
+> index 000000000000..ec90da8e2ae7
+> --- /dev/null
+> +++ b/drivers/gpu/drm/panel/panel-magnachip-d53e6ea8966.c
+> @@ -0,0 +1,514 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Magnachip d53e6ea8966 MIPI-DSI panel driver
+> + * Copyright (C) 2022 Chris Morgan
+2023
+
+> + */
+> +
+> +#include <drm/drm_mipi_dbi.h>
+> +#include <drm/drm_mipi_dsi.h>
+> +#include <drm/drm_modes.h>
+> +#include <drm/drm_of.h>
+> +#include <drm/drm_panel.h>
+> +
+> +#include <linux/backlight.h>
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/init.h>
+> +#include <linux/kernel.h>
+> +#include <linux/media-bus-format.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/spi/spi.h>
+> +
+> +#include <video/mipi_display.h>
+> +
+> +/* Forward declaration for use in backlight function */
+> +struct d53e6ea8966;
+> +
+> +/* Panel info, unique to each panel */
+> +struct d53e6ea8966_panel_info {
+> +	/** @display_modes: the supported display modes */
+> +	const struct drm_display_mode *display_modes;
+> +	/** @num_modes: the number of supported display modes */
+> +	unsigned int num_modes;
+> +	/** @width_mm: panel width in mm */
+> +	u16 width_mm;
+> +	/** @height_mm: panel height in mm */
+> +	u16 height_mm;
+> +	/** @bus_flags: drm bus flags for panel */
+> +	u32 bus_flags;
+> +	/** @panel_funcs: panel functions for panel */
+> +	const struct drm_panel_funcs *panel_funcs;
+I can see that the prepare function is panel specific, the rest looks
+like they are controller specific.
+I suggest to refactor out the panel specifics in the prepare function,
+and have this as the only function pointer.
+The other operations in drm_panel_funcs are all controller specific and
+there should be no need to set them depending on the panel.
 
 
-Thanks,
+> +	/** @backlight: panel backlight registration or NULL */
+> +	int (*backlight_register)(struct d53e6ea8966 *db);
+> +};
+> +
+> +struct d53e6ea8966 {
+> +	/** @dev: the container device */
+> +	struct device *dev;
+> +	/** @dbi: the DBI bus abstraction handle */
+> +	struct mipi_dbi dbi;
+> +	/** @panel: the DRM panel instance for this device */
+> +	struct drm_panel panel;
+> +	/** @reset: reset GPIO line */
+> +	struct gpio_desc *reset;
+> +	/** @enable: enable GPIO line */
+> +	struct gpio_desc *enable;
+> +	/** @reg_vdd: VDD supply regulator for panel logic */
+> +	struct regulator *reg_vdd;
+> +	/** @reg_elvdd: ELVDD supply regulator for panel display */
+> +	struct regulator *reg_elvdd;
+> +	/** @dsi_dev: DSI child device (panel) */
+> +	struct mipi_dsi_device *dsi_dev;
+> +	/** @bl_dev: pseudo-backlight device for oled panel */
+> +	struct backlight_device *bl_dev;
+> +	/** @panel_info: struct containing panel timing and info */
+> +	const struct d53e6ea8966_panel_info *panel_info;
+> +};
+> +
+> +#define NUM_GAMMA_LEVELS	16
+> +#define GAMMA_TABLE_COUNT	23
+> +#define MAX_BRIGHTNESS		(NUM_GAMMA_LEVELS - 1)
+> +
+> +#define MCS_ELVSS_ON			0xb1
+> +#define MCS_TEMP_SWIRE			0xb2
+> +#define MCS_PASSWORD_0			0xf0
+> +#define MCS_PASSWORD_1			0xf1
+> +#define MCS_ANALOG_PWR_CTL_0		0xf4
+> +#define MCS_ANALOG_PWR_CTL_1		0xf5
+> +#define MCS_GTCON_SET			0xf7
+> +#define MCS_GATELESS_SIGNAL_SET		0xf8
+> +#define MCS_SET_GAMMA			0xf9
+> +
+> +static inline struct d53e6ea8966 *to_d53e6ea8966(struct drm_panel *panel)
+> +{
+> +	return container_of(panel, struct d53e6ea8966, panel);
+> +}
+> +
+> +/* Table of gamma values provided in datasheet */
+> +static u8 ams495qa01_gamma[NUM_GAMMA_LEVELS][GAMMA_TABLE_COUNT] = {
+> +	{0x01, 0x79, 0x78, 0x8d, 0xd9, 0xdf, 0xd5, 0xcb, 0xcf, 0xc5,
+> +	 0xe5, 0xe0, 0xe4, 0xdc, 0xb8, 0xd4, 0xfa, 0xed, 0xe6, 0x2f,
+> +	 0x00, 0x2f},
+> +	{0x01, 0x7d, 0x7c, 0x92, 0xd7, 0xdd, 0xd2, 0xcb, 0xd0, 0xc6,
+> +	 0xe5, 0xe1, 0xe3, 0xda, 0xbd, 0xd3, 0xfa, 0xed, 0xe6, 0x2f,
+> +	 0x00, 0x2f},
+> +	{0x01, 0x7f, 0x7e, 0x95, 0xd7, 0xde, 0xd2, 0xcb, 0xcf, 0xc5,
+> +	 0xe5, 0xe3, 0xe3, 0xda, 0xbf, 0xd3, 0xfa, 0xed, 0xe6, 0x2f,
+> +	 0x00, 0x2f},
+> +	{0x01, 0x82, 0x81, 0x99, 0xd6, 0xdd, 0xd1, 0xca, 0xcf, 0xc3,
+> +	 0xe4, 0xe3, 0xe3, 0xda, 0xc2, 0xd3, 0xfa, 0xed, 0xe6, 0x2f,
+> +	 0x00, 0x2f},
+> +	{0x01, 0x84, 0x83, 0x9b, 0xd7, 0xde, 0xd2, 0xc8, 0xce, 0xc2,
+> +	 0xe4, 0xe3, 0xe2, 0xd9, 0xc3, 0xd3, 0xfa, 0xed, 0xe6, 0x2f,
+> +	 0x00, 0x2f},
+> +	{0x01, 0x87, 0x86, 0x9f, 0xd6, 0xdd, 0xd1, 0xc7, 0xce, 0xc1,
+> +	 0xe4, 0xe3, 0xe2, 0xd9, 0xc6, 0xd3, 0xfa, 0xed, 0xe6, 0x2f,
+> +	 0x00, 0x2f},
+> +	{0x01, 0x89, 0x89, 0xa2, 0xd5, 0xdb, 0xcf, 0xc8, 0xcf, 0xc2,
+> +	 0xe3, 0xe3, 0xe1, 0xd9, 0xc7, 0xd3, 0xfa, 0xed, 0xe6, 0x2f,
+> +	 0x00, 0x2f},
+> +	{0x01, 0x8b, 0x8b, 0xa5, 0xd5, 0xdb, 0xcf, 0xc7, 0xce, 0xc0,
+> +	 0xe3, 0xe3, 0xe1, 0xd8, 0xc7, 0xd3, 0xfa, 0xed, 0xe6, 0x2f,
+> +	 0x00, 0x2f},
+> +	{0x01, 0x8d, 0x8d, 0xa7, 0xd5, 0xdb, 0xcf, 0xc6, 0xce, 0xc0,
+> +	 0xe4, 0xe4, 0xe1, 0xd7, 0xc8, 0xd3, 0xfa, 0xed, 0xe6, 0x2f,
+> +	 0x00, 0x2f},
+> +	{0x01, 0x8f, 0x8f, 0xaa, 0xd4, 0xdb, 0xce, 0xc6, 0xcd, 0xbf,
+> +	 0xe3, 0xe3, 0xe1, 0xd7, 0xca, 0xd3, 0xfa, 0xed, 0xe6, 0x2f,
+> +	 0x00, 0x2f},
+> +	{0x01, 0x91, 0x91, 0xac, 0xd3, 0xda, 0xce, 0xc5, 0xcd, 0xbe,
+> +	 0xe3, 0xe3, 0xe0, 0xd7, 0xca, 0xd3, 0xfa, 0xed, 0xe6, 0x2f,
+> +	 0x00, 0x2f},
+> +	{0x01, 0x93, 0x93, 0xaf, 0xd3, 0xda, 0xcd, 0xc5, 0xcd, 0xbe,
+> +	 0xe2, 0xe3, 0xdf, 0xd6, 0xca, 0xd3, 0xfa, 0xed, 0xe6, 0x2f,
+> +	 0x00, 0x2f},
+> +	{0x01, 0x95, 0x95, 0xb1, 0xd2, 0xd9, 0xcc, 0xc4, 0xcd, 0xbe,
+> +	 0xe2, 0xe3, 0xdf, 0xd7, 0xcc, 0xd3, 0xfa, 0xed, 0xe6, 0x2f,
+> +	 0x00, 0x2f},
+> +	{0x01, 0x99, 0x99, 0xb6, 0xd1, 0xd9, 0xcc, 0xc3, 0xcb, 0xbc,
+> +	 0xe2, 0xe4, 0xdf, 0xd6, 0xcc, 0xd3, 0xfa, 0xed, 0xe6, 0x2f,
+> +	 0x00, 0x2f},
+> +	{0x01, 0x9c, 0x9c, 0xba, 0xd0, 0xd8, 0xcb, 0xc3, 0xcb, 0xbb,
+> +	 0xe2, 0xe4, 0xdf, 0xd6, 0xce, 0xd3, 0xfa, 0xed, 0xe6, 0x2f,
+> +	 0x00, 0x2f},
+> +	{0x01, 0x9f, 0x9f, 0xbe, 0xcf, 0xd7, 0xc9, 0xc2, 0xcb, 0xbb,
+> +	 0xe1, 0xe3, 0xde, 0xd6, 0xd0, 0xd3, 0xfa, 0xed, 0xe6, 0x2f,
+> +	 0x00, 0x2f},
+> +};
+> +
+> +/*
+> + * Table of elvss values provided in datasheet and corresponds to
+> + * gamma values.
+> + */
+> +static u8 ams495qa01_elvss[NUM_GAMMA_LEVELS] = {
+> +	0x15, 0x15, 0x15, 0x15, 0x15, 0x15, 0x15, 0x15, 0x15, 0x15,
+> +	0x15, 0x15, 0x14, 0x14, 0x13, 0x12,
+> +};
+> +
+> +static int ams495qa01_update_gamma(struct mipi_dbi *dbi, u32 brightness)
+> +{
+brightness is an int value in backlight.h - so try to use int for it
+everywhere.
 
-Lizhi
+> +	u32 tmp = brightness;
+> +
+> +	mipi_dbi_command_buf(dbi, MCS_SET_GAMMA, ams495qa01_gamma[tmp],
+> +			     ARRAY_SIZE(ams495qa01_gamma[tmp]));
+> +	mipi_dbi_command(dbi, MCS_SET_GAMMA, 0x00);
+> +
+> +	/* Undocumented command */
+> +	mipi_dbi_command(dbi, 0x26, 0x00);
+> +
+> +	mipi_dbi_command(dbi, MCS_TEMP_SWIRE, ams495qa01_elvss[tmp]);
+> +
+> +	return 0;
+> +}
+> +
+> +static int ams495qa01_prepare(struct drm_panel *panel)
+This looks like a panel specific function, so naming is OK.
+But consider to split it up in something that is controller and panel
+specific. We do not want too much duplicated if we add an extra panel.
 
->
-> static void of_pci_set_size(u32 *prop, u64 size)
-> {
-> 	prop[0] = size >> 32;
-> 	prop[1] = size;
-> }
+> +{
+> +	struct d53e6ea8966 *db = to_d53e6ea8966(panel);
+> +	struct mipi_dbi *dbi = &db->dbi;
+> +	int ret;
+> +
+> +	/* Power up */
+> +	ret = regulator_enable(db->reg_vdd);
+> +	if (ret) {
+> +		dev_err(db->dev, "failed to enable vdd regulator: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	if (db->reg_elvdd) {
+> +		ret = regulator_enable(db->reg_elvdd);
+> +		if (ret) {
+> +			dev_err(db->dev,
+> +				"failed to enable elvdd regulator: %d\n", ret);
+> +			regulator_disable(db->reg_vdd);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	/* Enable */
+> +	if (db->enable)
+> +		gpiod_set_value_cansleep(db->enable, 1);
+> +
+> +	msleep(50);
+> +
+> +	/* Reset */
+> +	gpiod_set_value_cansleep(db->reset, 1);
+> +	usleep_range(1000, 5000);
+> +	gpiod_set_value_cansleep(db->reset, 0);
+> +	msleep(20);
+> +
+> +	/* Panel Init Sequence */
+> +
+> +	mipi_dbi_command(dbi, MCS_PASSWORD_0, 0x5a, 0x5a);
+> +	mipi_dbi_command(dbi, MCS_PASSWORD_1, 0x5a, 0x5a);
+> +	/* Undocumented commands */
+> +	mipi_dbi_command(dbi, 0xb0, 0x02);
+> +	mipi_dbi_command(dbi, 0xf3, 0x3b);
+> +
+> +	mipi_dbi_command(dbi, MCS_ANALOG_PWR_CTL_0, 0x33, 0x42, 0x00, 0x08);
+> +	mipi_dbi_command(dbi, MCS_ANALOG_PWR_CTL_1, 0x00, 0x06, 0x26, 0x35, 0x03);
+> +
+> +	/* Undocumented commands */
+> +	mipi_dbi_command(dbi, 0xf6, 0x02);
+> +	mipi_dbi_command(dbi, 0xc6, 0x0b, 0x00, 0x00, 0x3c, 0x00, 0x22,
+> +			 0x00, 0x00, 0x00, 0x00);
+> +
+> +	mipi_dbi_command(dbi, MCS_GTCON_SET, 0x20);
+> +	mipi_dbi_command(dbi, MCS_TEMP_SWIRE, 0x06, 0x06, 0x06, 0x06);
+> +	mipi_dbi_command(dbi, MCS_ELVSS_ON, 0x07, 0x00, 0x10);
+> +	mipi_dbi_command(dbi, MCS_GATELESS_SIGNAL_SET, 0x7f, 0x7a,
+> +			 0x89, 0x67, 0x26, 0x38, 0x00, 0x00, 0x09,
+> +			 0x67, 0x70, 0x88, 0x7a, 0x76, 0x05, 0x09,
+> +			 0x23, 0x23, 0x23);
+> +
+> +	/* Undocumented commands */
+> +	mipi_dbi_command(dbi, 0xb5, 0xff, 0xef, 0x35, 0x42, 0x0d, 0xd7,
+> +			 0xff, 0x07, 0xff, 0xff, 0xfd, 0x00, 0x01,
+> +			 0xff, 0x05, 0x12, 0x0f, 0xff, 0xff, 0xff,
+> +			 0xff);
+> +	mipi_dbi_command(dbi, 0xb4, 0x15);
+> +	mipi_dbi_command(dbi, 0xb3, 0x00);
+> +
+> +	ams495qa01_update_gamma(dbi, MAX_BRIGHTNESS);
+> +
+> +	return 0;
+> +}
+> +
+> +static int ams495qa01_enable(struct drm_panel *panel)
+Controller specific, so adjust naming.
 
->
+> +{
+> +	struct d53e6ea8966 *db = to_d53e6ea8966(panel);
+> +	struct mipi_dbi *dbi = &db->dbi;
+> +
+> +	mipi_dbi_command(dbi, MIPI_DCS_EXIT_SLEEP_MODE);
+> +	msleep(200);
+> +	mipi_dbi_command(dbi, MIPI_DCS_SET_DISPLAY_ON);
+> +	usleep_range(10000, 15000);
+> +
+> +	return 0;
+> +}
+> +
+> +static int ams495qa01_disable(struct drm_panel *panel)
+Controller specific, so adjust naming.
+
+> +{
+> +	struct d53e6ea8966 *db = to_d53e6ea8966(panel);
+> +	struct mipi_dbi *dbi = &db->dbi;
+> +
+> +	mipi_dbi_command(dbi, MIPI_DCS_SET_DISPLAY_OFF);
+> +	msleep(20);
+> +	mipi_dbi_command(dbi, MIPI_DCS_ENTER_SLEEP_MODE);
+> +	msleep(100);
+> +
+> +	return 0;
+> +}
+> +
+> +static int ams495qa01_unprepare(struct drm_panel *panel)
+Controller specific, so adjust naming.
+
+> +{
+> +	struct d53e6ea8966 *db = to_d53e6ea8966(panel);
+> +
+> +	if (db->enable)
+> +		gpiod_set_value_cansleep(db->enable, 0);
+> +
+> +	gpiod_set_value_cansleep(db->reset, 1);
+> +
+> +	if (db->reg_elvdd)
+> +		regulator_disable(db->reg_elvdd);
+> +
+> +	regulator_disable(db->reg_vdd);
+> +	msleep(100);
+> +
+> +	return 0;
+> +}
+> +
+> +static int ams495qa01_get_modes(struct drm_panel *panel,
+> +				struct drm_connector *connector)
+Controller specific, so adjust naming.
+
+> +{
+> +	struct d53e6ea8966 *db = to_d53e6ea8966(panel);
+> +	const struct d53e6ea8966_panel_info *panel_info = db->panel_info;
+> +	struct drm_display_mode *mode;
+> +	static const u32 bus_format = MEDIA_BUS_FMT_RGB888_1X24;
+> +	unsigned int i;
+> +
+> +	for (i = 0; i < panel_info->num_modes; i++) {
+> +		mode = drm_mode_duplicate(connector->dev,
+> +					  &panel_info->display_modes[i]);
+> +		if (!mode)
+> +			return -ENOMEM;
+> +
+> +		drm_mode_set_name(mode);
+> +		drm_mode_probed_add(connector, mode);
+> +	}
+> +
+> +	connector->display_info.bpc = 8;
+> +	connector->display_info.width_mm = panel_info->width_mm;
+> +	connector->display_info.height_mm = panel_info->height_mm;
+> +	connector->display_info.bus_flags = panel_info->bus_flags;
+> +
+> +	drm_display_info_set_bus_formats(&connector->display_info,
+> +					 &bus_format, 1);
+> +
+> +	return 1;
+> +}
+> +
+> +static const struct drm_panel_funcs ams495qa01_panel_funcs = {
+> +	.disable = ams495qa01_disable,
+> +	.enable = ams495qa01_enable,
+> +	.get_modes = ams495qa01_get_modes,
+> +	.prepare = ams495qa01_prepare,
+> +	.unprepare = ams495qa01_unprepare,
+> +};
+This could be made more general, as most of the functions are
+controller specific.
+
+> +
+> +static int ams495qa01_set_brightness(struct backlight_device *bd)
+> +{
+> +	struct d53e6ea8966 *db = bl_get_data(bd);
+> +	struct mipi_dbi *dbi = &db->dbi;
+> +	int brightness = bd->props.brightness;
+Use backlight_get_brightness() here.
+And use int, as this is the return type of the function.
+> +
+> +	ams495qa01_update_gamma(dbi, brightness);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct backlight_ops ams495qa01_backlight_ops = {
+> +	.update_status	= ams495qa01_set_brightness,
+> +};
+> +
+> +static int ams495qa01_backlight_register(struct d53e6ea8966 *db)
+> +{
+> +	struct backlight_properties props = {
+> +		.type		= BACKLIGHT_RAW,
+> +		.brightness	= MAX_BRIGHTNESS,
+> +		.max_brightness = MAX_BRIGHTNESS,
+> +	};
+> +	struct device *dev = db->dev;
+> +	int ret = 0;
+> +
+> +	db->bl_dev = devm_backlight_device_register(dev, "panel", dev, db,
+> +						     &ams495qa01_backlight_ops,
+> +						     &props);
+> +	if (IS_ERR(db->bl_dev)) {
+> +		ret = PTR_ERR(db->bl_dev);
+> +		dev_err(dev, "error registering backlight device (%d)\n", ret);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static int d53e6ea8966_probe(struct spi_device *spi)
+> +{
+> +	struct device *dev = &spi->dev;
+> +	struct mipi_dsi_host *dsi_host;
+> +	struct d53e6ea8966 *db;
+> +	int ret;
+> +	struct mipi_dsi_device_info info = {
+> +		.type = "d53e6ea8966",
+> +		.channel = 0,
+> +		.node = NULL,
+> +	};
+> +
+> +	db = devm_kzalloc(dev, sizeof(*db), GFP_KERNEL);
+> +	if (!db)
+> +		return -ENOMEM;
+> +
+> +	spi_set_drvdata(spi, db);
+> +
+> +	db->dev = dev;
+> +
+> +	db->panel_info = of_device_get_match_data(dev);
+> +	if (!db->panel_info)
+> +		return -EINVAL;
+> +
+> +	db->reg_vdd = devm_regulator_get(dev, "vdd");
+> +	if (IS_ERR(db->reg_vdd))
+> +		return dev_err_probe(dev, PTR_ERR(db->reg_vdd),
+> +				     "Failed to get vdd supply\n");
+> +
+> +	db->reg_elvdd = devm_regulator_get_optional(dev, "elvdd");
+> +	if (IS_ERR(db->reg_elvdd))
+> +		db->reg_elvdd = NULL;
+> +
+> +	db->reset = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(db->reset)) {
+> +		ret = PTR_ERR(db->reset);
+> +		return dev_err_probe(dev, ret, "no RESET GPIO\n");
+> +	}
+> +
+> +	db->enable = devm_gpiod_get_optional(dev, "enable", GPIOD_OUT_LOW);
+> +	if (IS_ERR(db->enable)) {
+> +		ret = PTR_ERR(db->enable);
+> +		return dev_err_probe(dev, ret, "cannot get ENABLE GPIO\n");
+> +	}
+> +
+> +	ret = mipi_dbi_spi_init(spi, &db->dbi, NULL);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "MIPI DBI init failed\n");
+> +
+> +	ret = drm_of_get_dsi_bus(dev, &dsi_host, &info);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Error attaching DSI bus\n");
+> +
+> +	db->dsi_dev = devm_mipi_dsi_device_register_full(dev, dsi_host, &info);
+> +	if (IS_ERR(db->dsi_dev)) {
+> +		dev_err(dev, "failed to register dsi device: %ld\n",
+> +			PTR_ERR(db->dsi_dev));
+> +		ret = PTR_ERR(db->dsi_dev);
+> +	}
+> +
+> +	db->dsi_dev->lanes = 2;
+> +	db->dsi_dev->format = MIPI_DSI_FMT_RGB888;
+> +	db->dsi_dev->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
+> +			  MIPI_DSI_MODE_LPM | MIPI_DSI_MODE_NO_EOT_PACKET;
+> +
+> +	drm_panel_init(&db->panel, dev, db->panel_info->panel_funcs,
+> +		       DRM_MODE_CONNECTOR_DSI);
+> +
+> +	if (db->panel_info->backlight_register != NULL) {
+> +		ret = db->panel_info->backlight_register(db);
+> +		if (ret < 0)
+> +			return ret;
+> +	}
+Here I expected to see a
+	db->panel->backlight = db->bl_dev; - or something.
+	This is required to let the drm_panel code call
+	backlight_enable(), backlight_disable().
+
+
+> +
+> +	drm_panel_add(&db->panel);
+> +
+> +	ret = devm_mipi_dsi_attach(dev, db->dsi_dev);
+> +	if (ret < 0) {
+> +		dev_err(dev, "mipi_dsi_attach failed: %d\n", ret);
+> +		drm_panel_remove(&db->panel);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void d53e6ea8966_remove(struct spi_device *spi)
+> +{
+> +	struct d53e6ea8966 *db = spi_get_drvdata(spi);
+> +
+> +	drm_panel_remove(&db->panel);
+> +}
+> +
+> +static const struct drm_display_mode ams495qa01_modes[] = {
+> +	{ /* 60hz */
+> +		.clock = 33500,
+> +		.hdisplay = 960,
+> +		.hsync_start = 960 + 10,
+> +		.hsync_end = 960 + 10 + 2,
+> +		.htotal = 960 + 10 + 2 + 10,
+> +		.vdisplay = 544,
+> +		.vsync_start = 544 + 10,
+> +		.vsync_end = 544 + 10 + 2,
+> +		.vtotal = 544 + 10 + 2 + 10,
+> +		.flags = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
+> +		.type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
+> +		},
+> +	{ /* 50hz */
+> +		.clock = 27800,
+> +		.hdisplay = 960,
+> +		.hsync_start = 960 + 10,
+> +		.hsync_end = 960 + 10 + 2,
+> +		.htotal = 960 + 10 + 2 + 10,
+> +		.vdisplay = 544,
+> +		.vsync_start = 544 + 10,
+> +		.vsync_end = 544 + 10 + 2,
+> +		.vtotal = 544 + 10 + 2 + 10,
+> +		.flags = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
+> +		.type = DRM_MODE_TYPE_DRIVER,
+> +	},
+> +};
+> +
+> +static const struct d53e6ea8966_panel_info ams495qa01_info = {
+> +	.display_modes = ams495qa01_modes,
+> +	.num_modes = ARRAY_SIZE(ams495qa01_modes),
+> +	.width_mm = 117,
+> +	.height_mm = 74,
+> +	.bus_flags = DRM_BUS_FLAG_DE_LOW | DRM_BUS_FLAG_PIXDATA_DRIVE_NEGEDGE,
+> +	.panel_funcs = &ams495qa01_panel_funcs,
+> +	.backlight_register = ams495qa01_backlight_register,
+> +};
+> +
+> +static const struct of_device_id d53e6ea8966_match[] = {
+> +	{ .compatible = "samsung,ams495qa01", .data = &ams495qa01_info },
+> +	{},
+Here we often write { /* sentinel */ },
+
+> +};
+> +MODULE_DEVICE_TABLE(of, d53e6ea8966_match);
+> +
+> +static const struct spi_device_id d53e6ea8966_ids[] = {
+> +	{ "ams495qa01", 0 },
+> +	{},
+Here we often write { /* sentinel */ },
+> +};
+> +MODULE_DEVICE_TABLE(spi, d53e6ea8966_ids);
+> +
+> +static struct spi_driver d53e6ea8966_driver = {
+> +	.driver		= {
+> +		.name	= "d53e6ea8966-panel",
+> +		.of_match_table = d53e6ea8966_match,
+> +	},
+> +	.id_table	= d53e6ea8966_ids,
+> +	.probe		= d53e6ea8966_probe,
+> +	.remove		= d53e6ea8966_remove,
+> +};
+> +module_spi_driver(d53e6ea8966_driver);
+> +
+> +MODULE_AUTHOR("Chris Morgan <macromorgan@hotmail.com>");
+> +MODULE_DESCRIPTION("Magnachip d53e6ea8966 panel driver");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.34.1
