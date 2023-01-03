@@ -2,156 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D47F965C788
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 20:30:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3449F65C795
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 20:35:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233734AbjACT3v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 14:29:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34138 "EHLO
+        id S238790AbjACTfD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 14:35:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233170AbjACT3W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 14:29:22 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99F5A13EA4;
-        Tue,  3 Jan 2023 11:29:21 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4056E614FE;
-        Tue,  3 Jan 2023 19:29:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E50CC433D2;
-        Tue,  3 Jan 2023 19:29:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672774160;
-        bh=kS1/OyPfwcshfjZ/3SRHvug8fTiy5Wp9PW3ZNN6JzkY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=pVFMp+O7STYIzNC26PdnlOB+c8TEatF6kKtV74xmbxzfcUAgnz3l52ERbwcVEEQVR
-         iPX8VOIHAJfP67k3yMDCVkLMU9UNjOgHHj7PC1MU+n6bRjOpuQhFXrf79U7Qp8gelK
-         +fqGyFRzXPNx2V2R9+pswBxersPoCp4IgsbYCoRbMe6BfQABV/13+ccEJe0Na4cUiB
-         ZfCWj3fii45asfmzvj3hIK8Gs3nyJ2brfsLIpw3b/NzziiAtVm4kRzDAyx16/F4irb
-         SFf8Rcz+8RHR+vb2JEQq+CTjeLWBXg4a6aWIq6ufp9F3TsEFT4N1jNOmJ7tJ6KVG3y
-         j897npKffKRaQ==
-Received: by mail-vs1-f54.google.com with SMTP id x65so19280454vsb.13;
-        Tue, 03 Jan 2023 11:29:20 -0800 (PST)
-X-Gm-Message-State: AFqh2koi+O/gtHaRIRSPHgPVoZ2wmmA7vR0EZt0AiI3hgcakfFPgE5V7
-        BU3csidkBPtWYlvb9rjx/xxw+ONPuDPmCUX6kQ==
-X-Google-Smtp-Source: AMrXdXsQ2RTXm/Q35pqeUXeb1yWkLtg8oApHK2GmDp4d+XS1Y9R+sLOqoroDn7dwWaNBSf2fnc/56BSdJ4WHQRyGYuk=
-X-Received: by 2002:a67:edd4:0:b0:3b5:1fe4:f1c2 with SMTP id
- e20-20020a67edd4000000b003b51fe4f1c2mr5170483vsp.0.1672774159592; Tue, 03 Jan
- 2023 11:29:19 -0800 (PST)
+        with ESMTP id S238216AbjACTfC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 14:35:02 -0500
+X-Greylist: delayed 106847 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 03 Jan 2023 11:34:58 PST
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4087213E8B;
+        Tue,  3 Jan 2023 11:34:58 -0800 (PST)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPA id 4BEFA20005;
+        Tue,  3 Jan 2023 19:34:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1672774496;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=TCSzlhuVMs/XD30WGxXGCTSW3adFD4OjPzifYM+Gnuk=;
+        b=BJkpxvNHZVQOreNDNuUn0kbSKMcS46uKwxZIbDoZPxrNHNKKbC3gf32NuVS3kho92faSpe
+        ch/HyJSLQLH+Qd4k23tvbqk7+GlUqOk2BxhEOi89n4L1/Osc9pjXiIRTSchVs9nv3Lrrgo
+        F8ZnL9+rMs8c6+2kFEv4D1B6qjvZ8WDIy+Dbf38zZATW+7Q2kRqXIy0EIfo1zMHDi7OGoS
+        YI9cPDRB9BmB13gKnySOLtLsBrKWjtyFo3JquoTqgRAZEufeYViZZoMtff5VaIs7pVXftn
+        Bgesq0BH25efAyAVFI5bRoqB1L3VIYTKDcpYFcfm8rLf0uZOJwMJUvDdPWSpEg==
 MIME-Version: 1.0
-References: <20221207211327.2848665-1-robh@kernel.org>
-In-Reply-To: <20221207211327.2848665-1-robh@kernel.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 3 Jan 2023 13:29:08 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKmULjtP7UCMZDxJTL3p7C_WS9qMaL5tMg5Jv74Sb0QQw@mail.gmail.com>
-Message-ID: <CAL_JsqKmULjtP7UCMZDxJTL3p7C_WS9qMaL5tMg5Jv74Sb0QQw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Fix CPU nodes compatible string
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Date:   Tue, 03 Jan 2023 20:34:55 +0100
+From:   clement.leger@bootlin.com
+To:     Lizhi Hou <lizhi.hou@amd.com>
+Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh@kernel.org,
+        frowand.list@gmail.com, helgaas@kernel.org, max.zhen@amd.com,
+        sonal.santan@amd.com, larry.liu@amd.com, brian.xu@amd.com,
+        stefano.stabellini@xilinx.com, trix@redhat.com,
+        Allan.Nielsen@microchip.com, Horatiu.Vultur@microchip.com,
+        Steen.Hegelund@microchip.com
+Subject: Re: [PATCH V5 2/3] PCI: Create device tree node for selected devices
+In-Reply-To: <b50306fe-d710-4d11-d5e2-2b9c8293e44e@amd.com>
+References: <1671125446-57584-1-git-send-email-lizhi.hou@amd.com>
+ <1671125446-57584-3-git-send-email-lizhi.hou@amd.com>
+ <20230102145618.4b5bace8@fixe.home>
+ <b50306fe-d710-4d11-d5e2-2b9c8293e44e@amd.com>
+Message-ID: <b9078b9583e35dce6113c344abe0ca69@bootlin.com>
+X-Sender: clement.leger@bootlin.com
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 7, 2022 at 3:13 PM Rob Herring <robh@kernel.org> wrote:
->
-> 'arm,kryo' is not documented and is not an Arm Ltd thing either as that
-> is Qualcomm branding. The correct compatible is 'qcom,kryo'.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 16 ++++++++--------
->  1 file changed, 8 insertions(+), 8 deletions(-)
+Le 2023-01-03 19:44, Lizhi Hou a écrit :
+> On 1/2/23 05:56, Clément Léger wrote:
+>> Le Thu, 15 Dec 2022 09:30:45 -0800,
+>> Lizhi Hou <lizhi.hou@amd.com> a écrit :
+>> 
+>>> +};
+>>> +
+>>> +static int of_pci_prop_device_type(struct pci_dev *pdev,
+>>> +				   struct of_changeset *ocs,
+>>> +				   struct device_node *np)
+>>> +{
+>>> +	return of_changeset_add_prop_string(ocs, np, "device_type", "pci");
+>>> +}
+>>> +
+>>> +static int of_pci_prop_address_cells(struct pci_dev *pdev,
+>>> +				     struct of_changeset *ocs,
+>>> +				     struct device_node *np)
+>>> +{
+>>> +	return of_changeset_add_prop_u32(ocs, np, "#address_cells",
+>>> +					 OF_PCI_ADDRESS_CELLS);
+>>> +}
+>>> +
+>>> +static int of_pci_prop_size_cells(struct pci_dev *pdev,
+>>> +				  struct of_changeset *ocs,
+>>> +				  struct device_node *np)
+>>> +{
+>>> +	return of_changeset_add_prop_u32(ocs, np, "#size_cells",
+>>> +					 OF_PCI_SIZE_CELLS);
+>>> +}
+>> Hi Lizhi,
+>> 
+>> For all these functions, the "pdev" parameter is actually unused.
+>> 
+>> [snip]
+> Ok. I will remove unused pdev.
+>> 
+>>> +
+>>> +static int of_pci_prop_compatible(struct pci_dev *pdev,
+>>> +				  struct of_changeset *ocs,
+>>> +				  struct device_node *np)
+>>> +{
+>>> +	const char *compat_strs[PROP_COMPAT_NUM] = { 0 };
+>>> +	int i, ret;
+>>> +
+>>> +	compat_strs[PROP_COMPAT_PCI_VVVV_DDDD] =
+>>> +		kasprintf(GFP_KERNEL, "pci%x,%x", pdev->vendor, pdev->device);
+>> Maybe it should be better to use "pci%04x,%04x" to keep the existing
+>> naming.
+> 
+> Based on
+> https://www.devicetree.org/open-firmware/bindings/pci/pci2_1.pdf,
+> "pci%x,%x" should be used?
+> 
+> "name" Based on the PCI Class Code register, pick a name from Table 1.
+> If none apply, generate a name of the
+> form pciVVVV,DDDD as described below under "compatible".
+> 
+> VVVV, DDDD, SSSS, ssss and RR are lower-case ASCII hexadecimal numbers
+> without leading zeroes.
 
-Ping!
+You might be right then ! I just looked at the already existing 
+device-tree
+which adds leading zeroes. Someone like Rob or Frank might be able to 
+answer
+on that.
 
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 212580316d3e..f06cc7588acc 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -166,7 +166,7 @@ cpus {
->
->                 CPU0: cpu@0 {
->                         device_type = "cpu";
-> -                       compatible = "arm,kryo";
-> +                       compatible = "qcom,kryo";
->                         reg = <0x0 0x0>;
->                         enable-method = "psci";
->                         cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-> @@ -189,7 +189,7 @@ L3_0: l3-cache {
->
->                 CPU1: cpu@100 {
->                         device_type = "cpu";
-> -                       compatible = "arm,kryo";
-> +                       compatible = "qcom,kryo";
->                         reg = <0x0 0x100>;
->                         enable-method = "psci";
->                         cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-> @@ -209,7 +209,7 @@ L2_100: l2-cache {
->
->                 CPU2: cpu@200 {
->                         device_type = "cpu";
-> -                       compatible = "arm,kryo";
-> +                       compatible = "qcom,kryo";
->                         reg = <0x0 0x200>;
->                         enable-method = "psci";
->                         cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-> @@ -229,7 +229,7 @@ L2_200: l2-cache {
->
->                 CPU3: cpu@300 {
->                         device_type = "cpu";
-> -                       compatible = "arm,kryo";
-> +                       compatible = "qcom,kryo";
->                         reg = <0x0 0x300>;
->                         enable-method = "psci";
->                         cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-> @@ -249,7 +249,7 @@ L2_300: l2-cache {
->
->                 CPU4: cpu@400 {
->                         device_type = "cpu";
-> -                       compatible = "arm,kryo";
-> +                       compatible = "qcom,kryo";
->                         reg = <0x0 0x400>;
->                         enable-method = "psci";
->                         cpu-idle-states = <&BIG_CPU_SLEEP_0
-> @@ -269,7 +269,7 @@ L2_400: l2-cache {
->
->                 CPU5: cpu@500 {
->                         device_type = "cpu";
-> -                       compatible = "arm,kryo";
-> +                       compatible = "qcom,kryo";
->                         reg = <0x0 0x500>;
->                         enable-method = "psci";
->                         cpu-idle-states = <&BIG_CPU_SLEEP_0
-> @@ -289,7 +289,7 @@ L2_500: l2-cache {
->
->                 CPU6: cpu@600 {
->                         device_type = "cpu";
-> -                       compatible = "arm,kryo";
-> +                       compatible = "qcom,kryo";
->                         reg = <0x0 0x600>;
->                         enable-method = "psci";
->                         cpu-idle-states = <&BIG_CPU_SLEEP_0
-> @@ -309,7 +309,7 @@ L2_600: l2-cache {
->
->                 CPU7: cpu@700 {
->                         device_type = "cpu";
-> -                       compatible = "arm,kryo";
-> +                       compatible = "qcom,kryo";
->                         reg = <0x0 0x700>;
->                         enable-method = "psci";
->                         cpu-idle-states = <&BIG_CPU_SLEEP_0
-> --
-> 2.35.1
->
+Clément
+
+> 
+> 
+> Thanks,
+> 
+> Lizhi
+> 
+>> 
