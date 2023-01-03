@@ -2,78 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CDA765C2DE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 16:19:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BB7665C2F7
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 16:27:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237235AbjACPTl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 10:19:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46286 "EHLO
+        id S233189AbjACP1J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 10:27:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231279AbjACPTR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 10:19:17 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BCBB101DD
-        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 07:19:16 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id bk16so16591553wrb.11
-        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 07:19:16 -0800 (PST)
+        with ESMTP id S230431AbjACP1G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 10:27:06 -0500
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9323B101D8
+        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 07:27:04 -0800 (PST)
+Received: by mail-pg1-x52f.google.com with SMTP id s67so11024227pgs.3
+        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 07:27:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=frkw+2sa4K20aCLL926sF1F1E/GGEbWHarFjJ8N3yrI=;
-        b=F9hGOop3WwWcmh4w7qMuVk4F8YT0chwuvKoBsSInv8Kpbt8wdbaYeHzTLeKx+Y3lSB
-         oZvLVvT5uA8myRxu5H6FJbS4UEcb0ICNHnUXu7kKLenVLCG2MxcG6kwaBfDg308H2MBe
-         NO7rRgHrXtzks08yNxUnVH3+tOb4G+s2rKPSDeRstc4GCD2kFoWD4ZLuie3sX5XHEysC
-         yXQD+HEgMxWm85KMVwJGoStPV51V1Zg4IZ+YWOQI8Me7o6K6sH4jB3tj1uIMR1kLJBqH
-         akp4Hv5eSU1dvF1jm4WaTshLfI6/cDWJna82Etws14It9Uay50M74pBdVHuEMKXUtGCP
-         qbtA==
+        d=9elements.com; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BOiLxIiaLVKgIoutzy1o3p6jSpNbbrfgDaEgEJ9RDr4=;
+        b=cQrT8BR3JghHigZGGkR2joQr1CyUNaBfdsBuej1GbVScgbGRDPKXrHV/wmh3TDdcHf
+         nGOFHqN0jfvTmdTAcAe6KDVfiDhSGhZJcS78unREcjDggr8Umg5rYTvLSqGHRJ+Xz976
+         NXesrXK4hwPWOnHhKDdYUNlpximGEpbeO0jlpMcoXI0nIvEjO0O9EshcQg+SsBhbhuOL
+         xFDyyRAtuBZixFtZ7dWor1bR6GpOf6ok5LbymrJCj4SVnSBI5t96Nrl0NiU82bzGcAea
+         CjEwic2Px7AZFPanX3j2e+3Wy3YqZ7kEmbzSoinv2t93OGUG8sVN7E21fNXyazuGUVk4
+         d/9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=frkw+2sa4K20aCLL926sF1F1E/GGEbWHarFjJ8N3yrI=;
-        b=3js/PJKzem9MxHh6wVp8gKvC7+dxpVm0GHQLB47en/ypfX3uGssIOjuFnfhh+GOiC+
-         Q0YtdW5UAcGkamBifrXSBRGfmi3DPuNmMKq0BJC4XEh1UCJqfcxJgnAoNZfm4ObVEMw2
-         +gZ9b/YMdFk9NU18hEKhSyhqumjasJC12VP3Hlq9Pr6jBMszsaMNts6QzkUVOnY0UTyg
-         HFfcyhDWaCvPG+k91pCWVtV6kf1/HLkiZkqCka8SRqUj3xtLS6zna9WKjfBYUNd8opMx
-         rV27lNHfH0RlPsy7os3+o1I2axWeC9FBr8iGN/9tmV/okBS4fGrh9hPfT0zBOkuswi0T
-         cBPA==
-X-Gm-Message-State: AFqh2koM/wTx3Bxi474ZqVVHvMiGDxOlUjywdeET+LiLnAGjPhB49a+m
-        8gFLe+Bsri/zFsg700bgFYJ3zg==
-X-Google-Smtp-Source: AMrXdXvLZ3/BV8ElG0V+yLc45aUkVjMqqkEZPHqX3YIGP4eoBlETnnIEnu6xzhrdqqa9cfYDq9C64g==
-X-Received: by 2002:a5d:5c0e:0:b0:269:70f0:8142 with SMTP id cc14-20020a5d5c0e000000b0026970f08142mr29591186wrb.56.1672759154608;
-        Tue, 03 Jan 2023 07:19:14 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:581d:e915:a047:a9b4? ([2a01:e0a:982:cbb0:581d:e915:a047:a9b4])
-        by smtp.gmail.com with ESMTPSA id z13-20020adff74d000000b002366f9bd717sm36798222wrp.45.2023.01.03.07.19.13
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BOiLxIiaLVKgIoutzy1o3p6jSpNbbrfgDaEgEJ9RDr4=;
+        b=j3Z8ylSFAhWluuFEOEG8iqeW9htikJq1gJp/fvYVTXexszy09EQbCtGAGsKBdfmVEj
+         lVtcoqxzQyPi5H4kssnujSD5PapTI3U3HpgbFcQO14dbO5GMqimcdF1ODMGwtOjSN01p
+         okUg7Cp6eMz+vNPS8/e4kp3U47Vm6DNnl2Q7p8Xxjaf+T6gfPqw89lc0qVl9hjWOsG8O
+         VM7tAJTuj0LzXYMXTeWrqfVweyWyPEVMsNoPK1ZxaTgL8ssjZM2/7GMahd5M4dMeU7B/
+         L7i0ZFQnOC71hZ+r6NzGrHjNXJdwTLKoXg2ujCYUXL2H1ndsl51V/XaG5ngFrbFbK+Q0
+         CN0Q==
+X-Gm-Message-State: AFqh2koB95QBJbCLEJITAhHwsN/tCy7bAxgRsk5um/YdFgHT29EC1FsZ
+        JNkD7M92Ek2G+5TIy31BPcQp8w==
+X-Google-Smtp-Source: AMrXdXuYjGzdCe9I6Hu9xHsxFNFUSVdsa5ENIKar72IkXeqrcmd2MQjFxc/eUoeGdMpLxVxP5nzTYg==
+X-Received: by 2002:a05:6a00:1ca4:b0:566:900d:51f2 with SMTP id y36-20020a056a001ca400b00566900d51f2mr45062905pfw.33.1672759624042;
+        Tue, 03 Jan 2023 07:27:04 -0800 (PST)
+Received: from ?IPV6:2405:201:d02f:d899:2028:7962:400:43b6? ([2405:201:d02f:d899:2028:7962:400:43b6])
+        by smtp.gmail.com with ESMTPSA id 127-20020a620485000000b00574b86040a4sm20582373pfe.3.2023.01.03.07.27.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Jan 2023 07:19:13 -0800 (PST)
-Message-ID: <423a4c05-ccd8-4bcb-b686-c1eba79a6a3d@linaro.org>
-Date:   Tue, 3 Jan 2023 16:19:12 +0100
+        Tue, 03 Jan 2023 07:27:03 -0800 (PST)
+Message-ID: <dc604c81-b447-3bc0-18c3-13e03ba56c40@9elements.com>
+Date:   Tue, 3 Jan 2023 20:56:59 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 3/3] clk: qcom: add SM8550 DISPCC driver
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH RESEND v6 1/5] hwmon: (pmbus/core): Add interrupt support
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>
+References: <20221214080715.2700442-1-Naresh.Solanki@9elements.com>
+ <20221229144012.GA21213@roeck-us.net>
+ <ecdf887d-d2c8-d9d4-ab19-3b30ee1d4607@9elements.com>
+ <20230103122656.GB190111@roeck-us.net>
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230103-topic-sm8550-upstream-dispcc-v1-0-81bfcc26b2dc@linaro.org>
- <20230103-topic-sm8550-upstream-dispcc-v1-3-81bfcc26b2dc@linaro.org>
- <CAA8EJprLTLCskyTOLzfchNt1mrCUu47qMH43REOKbY0c3CxYTw@mail.gmail.com>
-Organization: Linaro Developer Services
-In-Reply-To: <CAA8EJprLTLCskyTOLzfchNt1mrCUu47qMH43REOKbY0c3CxYTw@mail.gmail.com>
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+In-Reply-To: <20230103122656.GB190111@roeck-us.net>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,280 +79,218 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/01/2023 15:24, Dmitry Baryshkov wrote:
-> On Tue, 3 Jan 2023 at 15:54, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+Hi Guenter
+
+On 03-01-2023 05:56 pm, Guenter Roeck wrote:
+> On Tue, Jan 03, 2023 at 12:18:49PM +0530, Naresh Solanki wrote:
+>> Hi Guenter,
 >>
->> Add support for the display clock controller found in SM8550
->> based devices.
+>> On 29-12-2022 08:10 pm, Guenter Roeck wrote:
+>>> On Wed, Dec 14, 2022 at 09:07:11AM +0100, Naresh Solanki wrote:
+>>>> From: Patrick Rudolph <patrick.rudolph@9elements.com>
+>>>>
+>>>> Implement PMBUS irq handler.
+>>>>
+>>>> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+>>>> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+>>>
+>>> $ scripts/checkpatch.pl --strict index.html
+>>> CHECK: Blank lines aren't necessary after an open brace '{'
+>>> #131: FILE: drivers/hwmon/pmbus/pmbus_core.c:3088:
+>>> +	for (i = 0; i < data->info->pages; i++) {
+>>> +
+>>>
+>>> CHECK: Alignment should match open parenthesis
+>>> #183: FILE: drivers/hwmon/pmbus/pmbus_core.c:3140:
+>>> +	ret = devm_request_threaded_irq(dev, client->irq, NULL, pmbus_fault_handler,
+>>> +			      0, "pmbus-irq", data);
+>>>
+>>> CHECK: Please use a blank line after function/struct/union/enum declarations
+>>> #197: FILE: drivers/hwmon/pmbus/pmbus_core.c:3154:
+>>>    }
+>>> +static int pmbus_irq_setup(struct i2c_client *client, struct pmbus_data *data)
+>>>
+>>> total: 0 errors, 0 warnings, 3 checks, 109 lines checked
+>>>
+>>> NOTE: For some of the reported defects, checkpatch may be able to
+>>>         mechanically convert to the typical style using --fix or --fix-inplace.
+>>>
+>>> index.html has style problems, please review.
+>>>
+>>> Please run checkpatch --strict on your patches.
+>>> Also see Documentation/hwmon/submitting-patches.rst.
+>> I will take care of these errors in the updated version.
+>>>
+>>>> ---
+>>>>    drivers/hwmon/pmbus/pmbus.h      |  2 +-
+>>>>    drivers/hwmon/pmbus/pmbus_core.c | 84 ++++++++++++++++++++++++++++++++
+>>>>    2 files changed, 85 insertions(+), 1 deletion(-)
+>>>>
+>>>>
+>>>> base-commit: 364ffd2537c44cb6914ff5669153f4a86fffad29
+>>>>
+>>>> diff --git a/drivers/hwmon/pmbus/pmbus.h b/drivers/hwmon/pmbus/pmbus.h
+>>>> index 10fb17879f8e..6b2e6cf93b19 100644
+>>>> --- a/drivers/hwmon/pmbus/pmbus.h
+>>>> +++ b/drivers/hwmon/pmbus/pmbus.h
+>>>> @@ -26,7 +26,7 @@ enum pmbus_regs {
+>>>>    	PMBUS_CAPABILITY		= 0x19,
+>>>>    	PMBUS_QUERY			= 0x1A,
+>>>> -
+>>>> +	PMBUS_SMBALERT_MASK		= 0x1B,
+>>>>    	PMBUS_VOUT_MODE			= 0x20,
+>>>>    	PMBUS_VOUT_COMMAND		= 0x21,
+>>>>    	PMBUS_VOUT_TRIM			= 0x22,
+>>>> diff --git a/drivers/hwmon/pmbus/pmbus_core.c b/drivers/hwmon/pmbus/pmbus_core.c
+>>>> index 95e95783972a..244fd2597252 100644
+>>>> --- a/drivers/hwmon/pmbus/pmbus_core.c
+>>>> +++ b/drivers/hwmon/pmbus/pmbus_core.c
+>>>> @@ -3072,11 +3072,89 @@ static int pmbus_regulator_register(struct pmbus_data *data)
+>>>>    	return 0;
+>>>>    }
+>>>> +
+>>>> +static int pmbus_write_smbalert_mask(struct i2c_client *client, u8 page, u8 reg, u8 val)
+>>>> +{
+>>>> +	return pmbus_write_word_data(client, page, PMBUS_SMBALERT_MASK, reg | (val << 8));
+>>>> +}
+>>>> +
+>>>> +static irqreturn_t pmbus_fault_handler(int irq, void *pdata)
+>>>> +{
+>>>> +	struct pmbus_data *data = pdata;
+>>>> +	struct i2c_client *client = to_i2c_client(data->dev);
+>>>> +	int i, status;
+>>>> +
+>>>> +	for (i = 0; i < data->info->pages; i++) {
+>>>> +
+>>>> +		mutex_lock(&data->update_lock);
+>>>> +		status = pmbus_read_status_word(client, i);
+>>>> +		if (status < 0) {
+>>>> +			mutex_unlock(&data->update_lock);
+>>>> +			return status;
+>>>> +		}
+>>>> +
+>>>> +		if (status & ~(PB_STATUS_OFF | PB_STATUS_BUSY | PB_STATUS_POWER_GOOD_N))
+>>>> +			pmbus_clear_fault_page(client, i);
+>>>> +
+>>>> +		mutex_unlock(&data->update_lock);
+>>>> +	}
+>>>> +
+>>>> +	return IRQ_HANDLED;
+>>>> +}
+>>>> +
+>>>> +static int pmbus_irq_setup(struct i2c_client *client, struct pmbus_data *data)
+>>>> +{
+>>>> +	struct device *dev = &client->dev;
+>>>> +	const struct pmbus_regulator_status_category *cat;
+>>>> +	const struct pmbus_regulator_status_assoc *bit;
+>>>> +	int i, j, err, ret, func;
+>>>> +	u8 mask;
+>>>> +
+>>>> +	for (i = 0; i < data->info->pages; i++) {
+>>>> +		func = data->info->func[i];
+>>>> +
+>>>> +		for (j = 0; j < ARRAY_SIZE(pmbus_regulator_flag_map); j++) {
+>>>> +			cat = &pmbus_regulator_flag_map[j];
+>>>> +			if (!(func & cat->func))
+>>>> +				continue;
+>>>> +			mask = 0;
+>>>> +			for (bit = cat->bits; bit->pflag; bit++)
+>>>> +				mask |= bit->pflag;
+>>>> +
+>>>> +			err = pmbus_write_smbalert_mask(client, i, cat->reg, ~mask);
+>>>> +			if (err)
+>>>> +				dev_err(dev, "Failed to set smbalert for reg 0x%02x\n",	cat->reg);
+>>>
+>>> This concerns me. It might mean that the chip does not support
+>>> PMBUS_SMBALERT_MASK. If so, there would be lots of error messages.
+>> After going through the PMBus specification, it appears that this should not
+>> be an issue unless there is a violation of the specification.
+> 
+> PMBus chips have lots of issues which violate the specification.
+> Have a look at the various drivers and the workarounds implemented there.
+> You'll need to check if the command/register is supported before using it.
+> Also, if you want to keep the error message, make it dev_err_once().
+> 
+> Either case, an error is an error, not to be ignored. An error here
+> should result in an error abort.
+Yes, I agree that PMBus chips can have issues that violate the 
+specification, and that it is important to check whether a command or 
+register is supported before using it.
+I have noticed that many drivers use the PMBUS_HAVE_* flags to expose 
+the presence of specific registers, and I think it would be a good idea 
+to add a PMBUS_HAVE_SMBALERT flag as well, so that drivers for supported 
+chips can use it to determine whether they should set up an IRQ handler 
+or not. If PMBUS_HAVE_SMBALERT is set, then the IRQ handler should be 
+set up, otherwise it should be ignored.
+Will this approach be right?
+> 
+>>>
+>>>> +		}
+>>>> +
+>>>> +		pmbus_write_smbalert_mask(client, i, PMBUS_STATUS_CML, 0xff);
+>>>> +		pmbus_write_smbalert_mask(client, i, PMBUS_STATUS_OTHER, 0xff);
+>>>> +		pmbus_write_smbalert_mask(client, i, PMBUS_STATUS_MFR_SPECIFIC, 0xff);
+>>>
+>>> Why check the return value from pmbus_write_smbalert_mask above but not here ?
+>> Thank you for pointing out the oversight. I will make sure to include an
+>> error check at this point.
+>>>
+>>>> +		if (data->info->func[i] & PMBUS_HAVE_FAN12)
+>>>> +			pmbus_write_smbalert_mask(client, i, PMBUS_STATUS_FAN_12, 0xff);
+>>>> +		if (data->info->func[i] & PMBUS_HAVE_FAN34)
+>>>> +			pmbus_write_smbalert_mask(client, i, PMBUS_STATUS_FAN_34, 0xff);
+>>>> +	}
+>>>> +
+>>>> +	/* Register notifiers - can fail if IRQ is not given */
+>>>
+>>> The comment does not make sense. pmbus_irq_setup() is not called
+>>> if the interrupt "is not given".
+>> Yes. The comment here is not relevant and will be removed.
+>>>
+>>>> +	ret = devm_request_threaded_irq(dev, client->irq, NULL, pmbus_fault_handler,
+>>>> +			      0, "pmbus-irq", data);
+>>>> +	if (ret) {
+>>>> +		dev_warn(dev, "IRQ disabled %d\n", ret);
+>>>
+>>> This is not a warning, it is an error.
+>> Thank you for bringing this to my attention. I will make sure to update the
+>> code to reflect that this is an error.
+>>>
+>>>> +		return ret;
+>>>> +	}
+>>>> +
+>>>> +	return 0;
+>>>> +}
+>>>> +
+>>>>    #else
+>>>
+>>> This is still in regulator code. I said several times that this is not
+>>> acceptable.
+>> Thank you for pointing out the mistake. I will make sure to correct this in
+>> the next revision.
+>>>
+>>>>    static int pmbus_regulator_register(struct pmbus_data *data)
+>>>>    {
+>>>>    	return 0;
+>>>>    }
+>>>> +static int pmbus_irq_setup(struct i2c_client *client, struct pmbus_data *data)
+>>>> +{
+>>>> +	return 0;
+>>>> +}
+>>>>    #endif
+>>>>    static struct dentry *pmbus_debugfs_dir;	/* pmbus debugfs directory */
+>>>> @@ -3441,6 +3519,12 @@ int pmbus_do_probe(struct i2c_client *client, struct pmbus_driver_info *info)
+>>>>    	if (ret)
+>>>>    		return ret;
+>>>> +	if (client->irq > 0) {
+>>>> +		ret = pmbus_irq_setup(client, data);
+>>>> +		if (ret)
+>>>> +			return ret;
+>>>> +	}
+>>>> +
+>>>>    	ret = pmbus_init_debugfs(client, data);
+>>>>    	if (ret)
+>>>>    		dev_warn(dev, "Failed to register debugfs\n");
 >>
->> This clock controller feeds the Multimedia Display SubSystem (MDSS).
->> This driver is based on the SM8450 support.
-> 
-> Looks good, few minor nits below:
-> 
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   drivers/clk/qcom/Kconfig         |    9 +
->>   drivers/clk/qcom/Makefile        |    1 +
->>   drivers/clk/qcom/dispcc-sm8550.c | 1814 ++++++++++++++++++++++++++++++++++++++
->>   3 files changed, 1824 insertions(+)
->>
-> 
-> [skipped]
-> 
->> +static struct clk_regmap_div disp_cc_mdss_byte0_div_clk_src = {
->> +       .reg = 0x8120,
->> +       .shift = 0,
->> +       .width = 4,
->> +       .clkr.hw.init = &(struct clk_init_data) {
->> +               .name = "disp_cc_mdss_byte0_div_clk_src",
->> +               .parent_data = &(const struct clk_parent_data) {
->> +                       .hw = &disp_cc_mdss_byte0_clk_src.clkr.hw,
->> +               },
-> 
-> We can use parent_hws in such cases (here and below).
-
-Sure, will switch to parent_hws for v2.
-
-> 
->> +               .num_parents = 1,
->> +               .ops = &clk_regmap_div_ops,
->> +       },
->> +};
->> +
->> +static struct clk_regmap_div disp_cc_mdss_byte1_div_clk_src = {
->> +       .reg = 0x813c,
->> +       .shift = 0,
->> +       .width = 4,
->> +       .clkr.hw.init = &(struct clk_init_data) {
->> +               .name = "disp_cc_mdss_byte1_div_clk_src",
->> +               .parent_data = &(const struct clk_parent_data) {
->> +                       .hw = &disp_cc_mdss_byte1_clk_src.clkr.hw,
->> +               },
->> +               .num_parents = 1,
->> +               .ops = &clk_regmap_div_ops,
->> +       },
->> +};
-> 
-> [skipped most of the clocks]
-> 
->> +static struct gdsc mdss_gdsc = {
->> +       .gdscr = 0x9000,
->> +       .pd = {
->> +               .name = "mdss_gdsc",
->> +       },
->> +       .pwrsts = PWRSTS_OFF_ON,
->> +       .flags = HW_CTRL | RETAIN_FF_ENABLE,
->> +};
->> +
->> +static struct gdsc mdss_int2_gdsc = {
->> +       .gdscr = 0xb000,
->> +       .pd = {
->> +               .name = "mdss_int2_gdsc",
->> +       },
->> +       .pwrsts = PWRSTS_OFF_ON,
->> +       .flags = HW_CTRL | RETAIN_FF_ENABLE,
->> +};
->> +
->> +static struct clk_regmap *disp_cc_sm8550_clocks[] = {
->> +       [DISP_CC_MDSS_ACCU_CLK] = &disp_cc_mdss_accu_clk.clkr,
->> +       [DISP_CC_MDSS_AHB1_CLK] = &disp_cc_mdss_ahb1_clk.clkr,
->> +       [DISP_CC_MDSS_AHB_CLK] = &disp_cc_mdss_ahb_clk.clkr,
->> +       [DISP_CC_MDSS_AHB_CLK_SRC] = &disp_cc_mdss_ahb_clk_src.clkr,
->> +       [DISP_CC_MDSS_BYTE0_CLK] = &disp_cc_mdss_byte0_clk.clkr,
->> +       [DISP_CC_MDSS_BYTE0_CLK_SRC] = &disp_cc_mdss_byte0_clk_src.clkr,
->> +       [DISP_CC_MDSS_BYTE0_DIV_CLK_SRC] = &disp_cc_mdss_byte0_div_clk_src.clkr,
->> +       [DISP_CC_MDSS_BYTE0_INTF_CLK] = &disp_cc_mdss_byte0_intf_clk.clkr,
->> +       [DISP_CC_MDSS_BYTE1_CLK] = &disp_cc_mdss_byte1_clk.clkr,
->> +       [DISP_CC_MDSS_BYTE1_CLK_SRC] = &disp_cc_mdss_byte1_clk_src.clkr,
->> +       [DISP_CC_MDSS_BYTE1_DIV_CLK_SRC] = &disp_cc_mdss_byte1_div_clk_src.clkr,
->> +       [DISP_CC_MDSS_BYTE1_INTF_CLK] = &disp_cc_mdss_byte1_intf_clk.clkr,
->> +       [DISP_CC_MDSS_DPTX0_AUX_CLK] = &disp_cc_mdss_dptx0_aux_clk.clkr,
->> +       [DISP_CC_MDSS_DPTX0_AUX_CLK_SRC] = &disp_cc_mdss_dptx0_aux_clk_src.clkr,
->> +       [DISP_CC_MDSS_DPTX0_CRYPTO_CLK] = &disp_cc_mdss_dptx0_crypto_clk.clkr,
->> +       [DISP_CC_MDSS_DPTX0_LINK_CLK] = &disp_cc_mdss_dptx0_link_clk.clkr,
->> +       [DISP_CC_MDSS_DPTX0_LINK_CLK_SRC] = &disp_cc_mdss_dptx0_link_clk_src.clkr,
->> +       [DISP_CC_MDSS_DPTX0_LINK_DIV_CLK_SRC] = &disp_cc_mdss_dptx0_link_div_clk_src.clkr,
->> +       [DISP_CC_MDSS_DPTX0_LINK_INTF_CLK] = &disp_cc_mdss_dptx0_link_intf_clk.clkr,
->> +       [DISP_CC_MDSS_DPTX0_PIXEL0_CLK] = &disp_cc_mdss_dptx0_pixel0_clk.clkr,
->> +       [DISP_CC_MDSS_DPTX0_PIXEL0_CLK_SRC] = &disp_cc_mdss_dptx0_pixel0_clk_src.clkr,
->> +       [DISP_CC_MDSS_DPTX0_PIXEL1_CLK] = &disp_cc_mdss_dptx0_pixel1_clk.clkr,
->> +       [DISP_CC_MDSS_DPTX0_PIXEL1_CLK_SRC] = &disp_cc_mdss_dptx0_pixel1_clk_src.clkr,
->> +       [DISP_CC_MDSS_DPTX0_USB_ROUTER_LINK_INTF_CLK] =
->> +               &disp_cc_mdss_dptx0_usb_router_link_intf_clk.clkr,
->> +       [DISP_CC_MDSS_DPTX1_AUX_CLK] = &disp_cc_mdss_dptx1_aux_clk.clkr,
->> +       [DISP_CC_MDSS_DPTX1_AUX_CLK_SRC] = &disp_cc_mdss_dptx1_aux_clk_src.clkr,
->> +       [DISP_CC_MDSS_DPTX1_CRYPTO_CLK] = &disp_cc_mdss_dptx1_crypto_clk.clkr,
->> +       [DISP_CC_MDSS_DPTX1_LINK_CLK] = &disp_cc_mdss_dptx1_link_clk.clkr,
->> +       [DISP_CC_MDSS_DPTX1_LINK_CLK_SRC] = &disp_cc_mdss_dptx1_link_clk_src.clkr,
->> +       [DISP_CC_MDSS_DPTX1_LINK_DIV_CLK_SRC] = &disp_cc_mdss_dptx1_link_div_clk_src.clkr,
->> +       [DISP_CC_MDSS_DPTX1_LINK_INTF_CLK] = &disp_cc_mdss_dptx1_link_intf_clk.clkr,
->> +       [DISP_CC_MDSS_DPTX1_PIXEL0_CLK] = &disp_cc_mdss_dptx1_pixel0_clk.clkr,
->> +       [DISP_CC_MDSS_DPTX1_PIXEL0_CLK_SRC] = &disp_cc_mdss_dptx1_pixel0_clk_src.clkr,
->> +       [DISP_CC_MDSS_DPTX1_PIXEL1_CLK] = &disp_cc_mdss_dptx1_pixel1_clk.clkr,
->> +       [DISP_CC_MDSS_DPTX1_PIXEL1_CLK_SRC] = &disp_cc_mdss_dptx1_pixel1_clk_src.clkr,
->> +       [DISP_CC_MDSS_DPTX1_USB_ROUTER_LINK_INTF_CLK] =
->> +               &disp_cc_mdss_dptx1_usb_router_link_intf_clk.clkr,
->> +       [DISP_CC_MDSS_DPTX2_AUX_CLK] = &disp_cc_mdss_dptx2_aux_clk.clkr,
->> +       [DISP_CC_MDSS_DPTX2_AUX_CLK_SRC] = &disp_cc_mdss_dptx2_aux_clk_src.clkr,
->> +       [DISP_CC_MDSS_DPTX2_CRYPTO_CLK] = &disp_cc_mdss_dptx2_crypto_clk.clkr,
->> +       [DISP_CC_MDSS_DPTX2_LINK_CLK] = &disp_cc_mdss_dptx2_link_clk.clkr,
->> +       [DISP_CC_MDSS_DPTX2_LINK_CLK_SRC] = &disp_cc_mdss_dptx2_link_clk_src.clkr,
->> +       [DISP_CC_MDSS_DPTX2_LINK_DIV_CLK_SRC] = &disp_cc_mdss_dptx2_link_div_clk_src.clkr,
->> +       [DISP_CC_MDSS_DPTX2_LINK_INTF_CLK] = &disp_cc_mdss_dptx2_link_intf_clk.clkr,
->> +       [DISP_CC_MDSS_DPTX2_PIXEL0_CLK] = &disp_cc_mdss_dptx2_pixel0_clk.clkr,
->> +       [DISP_CC_MDSS_DPTX2_PIXEL0_CLK_SRC] = &disp_cc_mdss_dptx2_pixel0_clk_src.clkr,
->> +       [DISP_CC_MDSS_DPTX2_PIXEL1_CLK] = &disp_cc_mdss_dptx2_pixel1_clk.clkr,
->> +       [DISP_CC_MDSS_DPTX2_PIXEL1_CLK_SRC] = &disp_cc_mdss_dptx2_pixel1_clk_src.clkr,
->> +       [DISP_CC_MDSS_DPTX3_AUX_CLK] = &disp_cc_mdss_dptx3_aux_clk.clkr,
->> +       [DISP_CC_MDSS_DPTX3_AUX_CLK_SRC] = &disp_cc_mdss_dptx3_aux_clk_src.clkr,
->> +       [DISP_CC_MDSS_DPTX3_CRYPTO_CLK] = &disp_cc_mdss_dptx3_crypto_clk.clkr,
->> +       [DISP_CC_MDSS_DPTX3_LINK_CLK] = &disp_cc_mdss_dptx3_link_clk.clkr,
->> +       [DISP_CC_MDSS_DPTX3_LINK_CLK_SRC] = &disp_cc_mdss_dptx3_link_clk_src.clkr,
->> +       [DISP_CC_MDSS_DPTX3_LINK_DIV_CLK_SRC] = &disp_cc_mdss_dptx3_link_div_clk_src.clkr,
->> +       [DISP_CC_MDSS_DPTX3_LINK_INTF_CLK] = &disp_cc_mdss_dptx3_link_intf_clk.clkr,
->> +       [DISP_CC_MDSS_DPTX3_PIXEL0_CLK] = &disp_cc_mdss_dptx3_pixel0_clk.clkr,
->> +       [DISP_CC_MDSS_DPTX3_PIXEL0_CLK_SRC] = &disp_cc_mdss_dptx3_pixel0_clk_src.clkr,
->> +       [DISP_CC_MDSS_ESC0_CLK] = &disp_cc_mdss_esc0_clk.clkr,
->> +       [DISP_CC_MDSS_ESC0_CLK_SRC] = &disp_cc_mdss_esc0_clk_src.clkr,
->> +       [DISP_CC_MDSS_ESC1_CLK] = &disp_cc_mdss_esc1_clk.clkr,
->> +       [DISP_CC_MDSS_ESC1_CLK_SRC] = &disp_cc_mdss_esc1_clk_src.clkr,
->> +       [DISP_CC_MDSS_MDP1_CLK] = &disp_cc_mdss_mdp1_clk.clkr,
->> +       [DISP_CC_MDSS_MDP_CLK] = &disp_cc_mdss_mdp_clk.clkr,
->> +       [DISP_CC_MDSS_MDP_CLK_SRC] = &disp_cc_mdss_mdp_clk_src.clkr,
->> +       [DISP_CC_MDSS_MDP_LUT1_CLK] = &disp_cc_mdss_mdp_lut1_clk.clkr,
->> +       [DISP_CC_MDSS_MDP_LUT_CLK] = &disp_cc_mdss_mdp_lut_clk.clkr,
->> +       [DISP_CC_MDSS_NON_GDSC_AHB_CLK] = &disp_cc_mdss_non_gdsc_ahb_clk.clkr,
->> +       [DISP_CC_MDSS_PCLK0_CLK] = &disp_cc_mdss_pclk0_clk.clkr,
->> +       [DISP_CC_MDSS_PCLK0_CLK_SRC] = &disp_cc_mdss_pclk0_clk_src.clkr,
->> +       [DISP_CC_MDSS_PCLK1_CLK] = &disp_cc_mdss_pclk1_clk.clkr,
->> +       [DISP_CC_MDSS_PCLK1_CLK_SRC] = &disp_cc_mdss_pclk1_clk_src.clkr,
->> +       [DISP_CC_MDSS_RSCC_AHB_CLK] = &disp_cc_mdss_rscc_ahb_clk.clkr,
->> +       [DISP_CC_MDSS_RSCC_VSYNC_CLK] = &disp_cc_mdss_rscc_vsync_clk.clkr,
->> +       [DISP_CC_MDSS_VSYNC1_CLK] = &disp_cc_mdss_vsync1_clk.clkr,
->> +       [DISP_CC_MDSS_VSYNC_CLK] = &disp_cc_mdss_vsync_clk.clkr,
->> +       [DISP_CC_MDSS_VSYNC_CLK_SRC] = &disp_cc_mdss_vsync_clk_src.clkr,
->> +       [DISP_CC_PLL0] = &disp_cc_pll0.clkr,
->> +       [DISP_CC_PLL1] = &disp_cc_pll1.clkr,
->> +       [DISP_CC_SLEEP_CLK] = &disp_cc_sleep_clk.clkr,
->> +       [DISP_CC_SLEEP_CLK_SRC] = &disp_cc_sleep_clk_src.clkr,
->> +       [DISP_CC_XO_CLK_SRC] = &disp_cc_xo_clk_src.clkr,
->> +};
->> +
->> +static const struct qcom_reset_map disp_cc_sm8550_resets[] = {
->> +       [DISP_CC_MDSS_CORE_BCR] = { 0x8000 },
->> +       [DISP_CC_MDSS_CORE_INT2_BCR] = { 0xa000 },
->> +       [DISP_CC_MDSS_RSCC_BCR] = { 0xc000 },
->> +};
->> +
->> +static struct gdsc *disp_cc_sm8550_gdscs[] = {
->> +       [MDSS_GDSC] = &mdss_gdsc,
->> +       [MDSS_INT2_GDSC] = &mdss_int2_gdsc,
->> +};
->> +
->> +static const struct regmap_config disp_cc_sm8550_regmap_config = {
->> +       .reg_bits = 32,
->> +       .reg_stride = 4,
->> +       .val_bits = 32,
->> +       .max_register = 0x11008,
->> +       .fast_io = true,
->> +};
->> +
->> +static struct qcom_cc_desc disp_cc_sm8550_desc = {
->> +       .config = &disp_cc_sm8550_regmap_config,
->> +       .clks = disp_cc_sm8550_clocks,
->> +       .num_clks = ARRAY_SIZE(disp_cc_sm8550_clocks),
->> +       .resets = disp_cc_sm8550_resets,
->> +       .num_resets = ARRAY_SIZE(disp_cc_sm8550_resets),
->> +       .gdscs = disp_cc_sm8550_gdscs,
->> +       .num_gdscs = ARRAY_SIZE(disp_cc_sm8550_gdscs),
->> +};
->> +
->> +static const struct of_device_id disp_cc_sm8550_match_table[] = {
->> +       { .compatible = "qcom,sm8550-dispcc" },
->> +       { }
->> +};
->> +MODULE_DEVICE_TABLE(of, disp_cc_sm8550_match_table);
->> +
->> +static void disp_cc_sm8550_pm_runtime_disable(void *data)
->> +{
->> +       pm_runtime_disable(data);
->> +}
->> +
->> +static int disp_cc_sm8550_probe(struct platform_device *pdev)
->> +{
->> +       struct regmap *regmap;
->> +       int ret;
->> +
->> +       pm_runtime_enable(&pdev->dev);
-> 
-> We can use devm_pm_runtime_enable() here.
-
-Ack
-
-Thanks,
-Neil
-
-> 
->> +
->> +       ret = devm_add_action_or_reset(&pdev->dev, disp_cc_sm8550_pm_runtime_disable, &pdev->dev);
->> +       if (ret)
->> +               return ret;
->> +
->> +       ret = pm_runtime_resume_and_get(&pdev->dev);
->> +       if (ret)
->> +               return ret;
->> +
->> +       regmap = qcom_cc_map(pdev, &disp_cc_sm8550_desc);
->> +       if (IS_ERR(regmap))
->> +               return PTR_ERR(regmap);
->> +
->> +       clk_lucid_evo_pll_configure(&disp_cc_pll0, regmap, &disp_cc_pll0_config);
->> +       clk_lucid_evo_pll_configure(&disp_cc_pll1, regmap, &disp_cc_pll1_config);
->> +
->> +       /* Enable clock gating for MDP clocks */
->> +       regmap_update_bits(regmap, DISP_CC_MISC_CMD, 0x10, 0x10);
->> +
->> +       /*
->> +        * Keep clocks always enabled:
->> +        *      disp_cc_xo_clk
->> +        */
->> +       regmap_update_bits(regmap, 0xe054, BIT(0), BIT(0));
->> +
->> +       ret = qcom_cc_really_probe(pdev, &disp_cc_sm8550_desc, regmap);
->> +
->> +       pm_runtime_put(&pdev->dev);
->> +
->> +       return ret;
->> +}
->> +
->> +static struct platform_driver disp_cc_sm8550_driver = {
->> +       .probe = disp_cc_sm8550_probe,
->> +       .driver = {
->> +               .name = "disp_cc-sm8550",
->> +               .of_match_table = disp_cc_sm8550_match_table,
->> +       },
->> +};
->> +
->> +static int __init disp_cc_sm8550_init(void)
->> +{
->> +       return platform_driver_register(&disp_cc_sm8550_driver);
->> +}
->> +subsys_initcall(disp_cc_sm8550_init);
->> +
->> +static void __exit disp_cc_sm8550_exit(void)
->> +{
->> +       platform_driver_unregister(&disp_cc_sm8550_driver);
->> +}
->> +module_exit(disp_cc_sm8550_exit);
->> +
->> +MODULE_DESCRIPTION("QTI DISPCC SM8550 Driver");
->> +MODULE_LICENSE("GPL");
->>
->> --
->> 2.34.1
-> 
-> 
-> 
-
+>> Thanks,
+>> Naresh
