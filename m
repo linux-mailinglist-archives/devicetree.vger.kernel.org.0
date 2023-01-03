@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 054B465C61A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 19:25:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FAF865C615
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 19:25:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238795AbjACSZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 13:25:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40408 "EHLO
+        id S238561AbjACSZF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 13:25:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238872AbjACSY7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 13:24:59 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71D0613EA6
-        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 10:22:53 -0800 (PST)
+        with ESMTP id S238709AbjACSY5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 13:24:57 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A48413EAA
+        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 10:22:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1672770172;
+        s=mimecast20190719; t=1672770175;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=ZKLP2VlAI1zSwLBLCdzn4XXvDmaNfVcksuoQpwTA03o=;
-        b=dAgdoULO32DGjDRGmC5/4PqNVJLVIVnk7UbH6hGRTK0Ywrxu5M9/5FAQzpugOjQK5VUHDb
-        DtfAkqcLcfxjfmW/kaRbn8gnOvDG809C7bc8unKp+TZZFszvlZbULy6HdVrR36l850jF5E
-        JagjBX8/X8QIlwh2YBJgrMl4ljqJluw=
+        bh=VrvafMRBgWyodzZaZkxKDRuE8imDPLA+JSUiHZ7a+KM=;
+        b=RzFPfyUG+mVXJu4h/JgQw4kGp1HWNhVUxFKWl5mPCeDRNJXv2TMyT8kuyk8Yy/J7s8V9lV
+        ZhHdc4ppGyH4iD/15YKGR7i3J8mILYGSZU5CvZAgLnG+n2ljB3Z70/f+tJ97/5FeZhibqq
+        t1UeBqK2MssnAtSQj6WUVxLHxOsdKwg=
 Received: from mail-vk1-f198.google.com (mail-vk1-f198.google.com
  [209.85.221.198]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-658-RlQIGGndP-ip0pXjqctfFw-1; Tue, 03 Jan 2023 13:22:51 -0500
-X-MC-Unique: RlQIGGndP-ip0pXjqctfFw-1
-Received: by mail-vk1-f198.google.com with SMTP id s202-20020a1fa9d3000000b003d5ddec0bccso726448vke.4
-        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 10:22:51 -0800 (PST)
+ us-mta-617-55UbTCUxOMirEG2tr3BakA-1; Tue, 03 Jan 2023 13:22:54 -0500
+X-MC-Unique: 55UbTCUxOMirEG2tr3BakA-1
+Received: by mail-vk1-f198.google.com with SMTP id w6-20020a1f9406000000b00388997b8d31so8199408vkd.3
+        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 10:22:53 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ZKLP2VlAI1zSwLBLCdzn4XXvDmaNfVcksuoQpwTA03o=;
-        b=r7eRVyLLiVa7uC7IoCgd6sOUug+nzY0e5IgCNh7t0pvgJC/T+MnQyOAiYrU60+VmgW
-         LdnBx9ns71ZYQEl8/K+L9AtmzijOBmPPYkDBMmaFl0qx/yv7t5QwRy7VIwBWo/VVNiCz
-         hGEpE+hFG2sZ4MU3FzPPbkR9lS+2Cw0U6mq3V9KsxGeNueEQl92QAqndoQFrarAOhvEW
-         e2bdtX8q/UwsBkgEM8L+eqbQuJkZfoVGmHAtQYzSwuIRm2B51yjelgXQzIQ4AF3Q/0AC
-         XWfltRU5C9SbwB4PbxG2Pl5aTRMAGLXduSDcaDD89QIFAO727e/b++qd9GZggn2QQPJ1
-         RYyQ==
-X-Gm-Message-State: AFqh2kpROLJj0N+Ldeg+5ED3sH1KW4tmfmL4BsV8JsfVic0qchMB3/pf
-        hDjnamTjZ+VxL52TAnWT9l2BVCLvSNvWojbK+ds+QJXAgybEKJeGTZmGeWOvVqXcTrD9NZG65yG
-        H5EDMRFpLx688p5e0IAoPoA==
-X-Received: by 2002:a1f:9f8e:0:b0:3bd:c428:c22b with SMTP id i136-20020a1f9f8e000000b003bdc428c22bmr25140895vke.4.1672770171039;
-        Tue, 03 Jan 2023 10:22:51 -0800 (PST)
-X-Google-Smtp-Source: AMrXdXs9+H7tl+HzgNXlhNw7BH4C7Nzq7y2pUXgXHVY+W2V1Y/8mMyVTk3FkLbhuojWbKyEp2rWQtQ==
-X-Received: by 2002:a1f:9f8e:0:b0:3bd:c428:c22b with SMTP id i136-20020a1f9f8e000000b003bdc428c22bmr25140884vke.4.1672770170726;
-        Tue, 03 Jan 2023 10:22:50 -0800 (PST)
+        bh=VrvafMRBgWyodzZaZkxKDRuE8imDPLA+JSUiHZ7a+KM=;
+        b=6VGtvbHb1nD3HbkDbh/xRuryvaaUjZBoPpMK8wYsLaaXJZqt3b885VvVzX37gCQPDX
+         OzJHJ9hHNTPi3xFgP8RlVn8kyl1GPj5R6CryoSyep3d2ueftSYlfPQRlJFtFUloBno6F
+         gG8IA+c/ULb8Afl4FveCRautmfExcstFZrXUPvGjRd8Vce4qXNttYwSmZuZoA2cPZiy5
+         2hgRUJ35TxaKC4M7EfJSM4+++tswau2jGkqcnCnkYDDLRVS4wXr54yjpW++tkmXrvxI8
+         xh0avuPG7uoQ5z0lKQfCJ4KsrLCiiMCGPlWhy/0q3gAbus6oacwa/ZvT1E3IoL40Zl/i
+         w8Iw==
+X-Gm-Message-State: AFqh2koOAy/NlZexdf/kCk1octK/hWkuGd3swkB/TB3ashplZdV0n+tC
+        7auOV+VXqXKLkAvcx/9Bt3UBNbID2E7TtckEgEih3HspHx4/GzxawT6jjnHupoqEggnB8KCd44D
+        longGCKFMSx/O2jm8ZvtmxA==
+X-Received: by 2002:a67:8c46:0:b0:3bc:7750:6bad with SMTP id o67-20020a678c46000000b003bc77506badmr17755085vsd.15.1672770173121;
+        Tue, 03 Jan 2023 10:22:53 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXtNM/G3yFW+bNtpP4EtYngzkLRy3PGY34tY2bZAQ8gggvIJOCV0l/hL9ysFB48LcqtLMlCCsg==
+X-Received: by 2002:a67:8c46:0:b0:3bc:7750:6bad with SMTP id o67-20020a678c46000000b003bc77506badmr17755071vsd.15.1672770172794;
+        Tue, 03 Jan 2023 10:22:52 -0800 (PST)
 Received: from x1.. (c-73-214-169-22.hsd1.pa.comcast.net. [73.214.169.22])
-        by smtp.gmail.com with ESMTPSA id t13-20020a05620a450d00b006fba0a389a4sm22819675qkp.88.2023.01.03.10.22.48
+        by smtp.gmail.com with ESMTPSA id t13-20020a05620a450d00b006fba0a389a4sm22819675qkp.88.2023.01.03.10.22.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Jan 2023 10:22:49 -0800 (PST)
+        Tue, 03 Jan 2023 10:22:51 -0800 (PST)
 From:   Brian Masney <bmasney@redhat.com>
 To:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org
 Cc:     quic_shazhuss@quicinc.com, robh+dt@kernel.org,
@@ -62,9 +62,9 @@ Cc:     quic_shazhuss@quicinc.com, robh+dt@kernel.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, ahalaney@redhat.com,
         echanude@redhat.co
-Subject: [PATCH v4 05/10] arm64: dts: qcom: sc8280xp: rename qup0_i2c4 to i2c4
-Date:   Tue,  3 Jan 2023 13:22:24 -0500
-Message-Id: <20230103182229.37169-6-bmasney@redhat.com>
+Subject: [PATCH v4 06/10] arm64: dts: qcom: sc8280xp: add missing i2c nodes
+Date:   Tue,  3 Jan 2023 13:22:25 -0500
+Message-Id: <20230103182229.37169-7-bmasney@redhat.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230103182229.37169-1-bmasney@redhat.com>
 References: <20230103182229.37169-1-bmasney@redhat.com>
@@ -81,221 +81,417 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In preparation for adding the missing SPI and I2C nodes to
-sc8280xp.dtsi, it was decided to rename all of the existing qupX_
-uart, spi, and i2c nodes to drop the qupX_ prefix. Let's go ahead
-and rename qup0_i2c4 to i2c4.
+Add the missing nodes for the i2c buses that's present on this SoC.
 
-Note that some nodes are moved in the file by this patch to preserve
-the expected sort order in the file. Additionally, the properties
-within the pinctrl state node are sorted to match the expected order
-that's typically done in other DTs.
+This work was derived from various patches that Qualcomm delivered
+to Red Hat in a downstream kernel.
 
 Signed-off-by: Brian Masney <bmasney@redhat.com>
-Link: https://lore.kernel.org/lkml/20221212182314.1902632-1-bmasney@redhat.com/
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
-Tested-by: Steev Klimaszewski <steev@kali.org>
 ---
-No changes in v4
+Changes in v4:
+- Move #address-cells and #size-cells properties below reg (Johan)
 
- arch/arm64/boot/dts/qcom/sc8280xp-crd.dts     | 57 +++++++++---------
- .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 58 +++++++++----------
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi        |  2 +-
- 3 files changed, 58 insertions(+), 59 deletions(-)
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 352 +++++++++++++++++++++++++
+ 1 file changed, 352 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-index 03e3814f2722..dfd8c42d8ca0 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-@@ -228,6 +228,27 @@ vreg_l9d: ldo9 {
- 	};
- };
- 
-+&i2c4 {
-+	clock-frequency = <400000>;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c4_default>;
-+
-+	status = "okay";
-+
-+	touchscreen@10 {
-+		compatible = "hid-over-i2c";
-+		reg = <0x10>;
-+
-+		hid-descr-addr = <0x1>;
-+		interrupts-extended = <&tlmm 175 IRQ_TYPE_LEVEL_LOW>;
-+		vdd-supply = <&vreg_misc_3p3>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ts0_default>;
-+	};
-+};
-+
- &i2c21 {
- 	clock-frequency = <400000>;
- 
-@@ -334,27 +355,6 @@ &qup0 {
- 	status = "okay";
- };
- 
--&qup0_i2c4 {
--	clock-frequency = <400000>;
--
--	pinctrl-names = "default";
--	pinctrl-0 = <&qup0_i2c4_default>;
--
--	status = "okay";
--
--	touchscreen@10 {
--		compatible = "hid-over-i2c";
--		reg = <0x10>;
--
--		hid-descr-addr = <0x1>;
--		interrupts-extended = <&tlmm 175 IRQ_TYPE_LEVEL_LOW>;
--		vdd-supply = <&vreg_misc_3p3>;
--
--		pinctrl-names = "default";
--		pinctrl-0 = <&ts0_default>;
--	};
--};
--
- &qup1 {
- 	status = "okay";
- };
-@@ -494,6 +494,13 @@ hastings_reg_en: hastings-reg-en-state {
- &tlmm {
- 	gpio-reserved-ranges = <74 6>, <83 4>, <125 2>, <128 2>, <154 7>;
- 
-+	i2c4_default: i2c4-default-state {
-+		pins = "gpio171", "gpio172";
-+		function = "qup4";
-+		drive-strength = <16>;
-+		bias-disable;
-+	};
-+
- 	i2c21_default: i2c21-default-state {
- 		pins = "gpio81", "gpio82";
- 		function = "qup21";
-@@ -597,14 +604,6 @@ wake-n-pins {
- 		};
- 	};
- 
--	qup0_i2c4_default: qup0-i2c4-default-state {
--		pins = "gpio171", "gpio172";
--		function = "qup4";
--
--		bias-disable;
--		drive-strength = <16>;
--	};
--
- 	tpad_default: tpad-default-state {
- 		int-n-pins {
- 			pins = "gpio182";
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-index ad66a87141be..2c360e52dae5 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-@@ -282,6 +282,28 @@ vreg_l9d: ldo9 {
- 	};
- };
- 
-+&i2c4 {
-+	clock-frequency = <400000>;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c4_default>;
-+
-+	status = "okay";
-+
-+	/* FIXME: verify */
-+	touchscreen@10 {
-+		compatible = "hid-over-i2c";
-+		reg = <0x10>;
-+
-+		hid-descr-addr = <0x1>;
-+		interrupts-extended = <&tlmm 175 IRQ_TYPE_LEVEL_LOW>;
-+		vdd-supply = <&vreg_misc_3p3>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ts0_default>;
-+	};
-+};
-+
- &i2c21 {
- 	clock-frequency = <400000>;
- 
-@@ -554,28 +576,6 @@ &qup0 {
- 	status = "okay";
- };
- 
--&qup0_i2c4 {
--	clock-frequency = <400000>;
--
--	pinctrl-names = "default";
--	pinctrl-0 = <&qup0_i2c4_default>;
--
--	status = "okay";
--
--	/* FIXME: verify */
--	touchscreen@10 {
--		compatible = "hid-over-i2c";
--		reg = <0x10>;
--
--		hid-descr-addr = <0x1>;
--		interrupts-extended = <&tlmm 175 IRQ_TYPE_LEVEL_LOW>;
--		vdd-supply = <&vreg_misc_3p3>;
--
--		pinctrl-names = "default";
--		pinctrl-0 = <&ts0_default>;
--	};
--};
--
- &qup1 {
- 	status = "okay";
- };
-@@ -698,6 +698,13 @@ hall_int_n_default: hall-int-n-state {
- 		bias-disable;
- 	};
- 
-+	i2c4_default: i2c4-default-state {
-+		pins = "gpio171", "gpio172";
-+		function = "qup4";
-+		drive-strength = <16>;
-+		bias-disable;
-+	};
-+
- 	i2c21_default: i2c21-default-state {
- 		pins = "gpio81", "gpio82";
- 		function = "qup21";
-@@ -801,13 +808,6 @@ wake-n-pins {
- 		};
- 	};
- 
--	qup0_i2c4_default: qup0-i2c4-default-state {
--		pins = "gpio171", "gpio172";
--		function = "qup4";
--		bias-disable;
--		drive-strength = <16>;
--	};
--
- 	tpad_default: tpad-default-state {
- 		int-n-pins {
- 			pins = "gpio182";
 diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index d4a7a4c3fdee..6f652ec9cfb1 100644
+index 6f652ec9cfb1..a0974b7ad9b1 100644
 --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -858,7 +858,7 @@ qup0: geniqup@9c0000 {
+@@ -813,6 +813,38 @@ qup2: geniqup@8c0000 {
  
  			status = "disabled";
  
--			qup0_i2c4: i2c@990000 {
-+			i2c4: i2c@990000 {
++			i2c16: i2c@880000 {
++				compatible = "qcom,geni-i2c";
++				reg = <0 0x00880000 0 0x4000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&gcc GCC_QUPV3_WRAP2_S0_CLK>;
++				clock-names = "se";
++				interrupts = <GIC_SPI 373 IRQ_TYPE_LEVEL_HIGH>;
++				power-domains = <&rpmhpd SC8280XP_CX>;
++				interconnects = <&clk_virt MASTER_QUP_CORE_2 0 &clk_virt SLAVE_QUP_CORE_2 0>,
++				                <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_2 0>,
++				                <&aggre1_noc MASTER_QUP_2 0 &mc_virt SLAVE_EBI1 0>;
++				interconnect-names = "qup-core", "qup-config", "qup-memory";
++				status = "disabled";
++			};
++
++			i2c17: i2c@884000 {
++				compatible = "qcom,geni-i2c";
++				reg = <0 0x00884000 0 0x4000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&gcc GCC_QUPV3_WRAP2_S1_CLK>;
++				clock-names = "se";
++				interrupts = <GIC_SPI 583 IRQ_TYPE_LEVEL_HIGH>;
++				power-domains = <&rpmhpd SC8280XP_CX>;
++				interconnects = <&clk_virt MASTER_QUP_CORE_2 0 &clk_virt SLAVE_QUP_CORE_2 0>,
++				                <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_2 0>,
++				                <&aggre1_noc MASTER_QUP_2 0 &mc_virt SLAVE_EBI1 0>;
++				interconnect-names = "qup-core", "qup-config", "qup-memory";
++				status = "disabled";
++			};
++
+ 			uart17: serial@884000 {
+ 				compatible = "qcom,geni-uart";
+ 				reg = <0 0x00884000 0 0x4000>;
+@@ -827,6 +859,54 @@ uart17: serial@884000 {
+ 				status = "disabled";
+ 			};
+ 
++			i2c18: i2c@888000 {
++				compatible = "qcom,geni-i2c";
++				reg = <0 0x00888000 0 0x4000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&gcc GCC_QUPV3_WRAP2_S2_CLK>;
++				clock-names = "se";
++				interrupts = <GIC_SPI 584 IRQ_TYPE_LEVEL_HIGH>;
++				power-domains = <&rpmhpd SC8280XP_CX>;
++				interconnects = <&clk_virt MASTER_QUP_CORE_2 0 &clk_virt SLAVE_QUP_CORE_2 0>,
++				                <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_2 0>,
++				                <&aggre1_noc MASTER_QUP_2 0 &mc_virt SLAVE_EBI1 0>;
++				interconnect-names = "qup-core", "qup-config", "qup-memory";
++				status = "disabled";
++			};
++
++			i2c19: i2c@88c000 {
++				compatible = "qcom,geni-i2c";
++				reg = <0 0x0088c000 0 0x4000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&gcc GCC_QUPV3_WRAP2_S3_CLK>;
++				clock-names = "se";
++				interrupts = <GIC_SPI 585 IRQ_TYPE_LEVEL_HIGH>;
++				power-domains = <&rpmhpd SC8280XP_CX>;
++				interconnects = <&clk_virt MASTER_QUP_CORE_2 0 &clk_virt SLAVE_QUP_CORE_2 0>,
++				                <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_2 0>,
++				                <&aggre1_noc MASTER_QUP_2 0 &mc_virt SLAVE_EBI1 0>;
++				interconnect-names = "qup-core", "qup-config", "qup-memory";
++				status = "disabled";
++			};
++
++			i2c20: i2c@890000 {
++				compatible = "qcom,geni-i2c";
++				reg = <0 0x00890000 0 0x4000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&gcc GCC_QUPV3_WRAP2_S4_CLK>;
++				clock-names = "se";
++				interrupts = <GIC_SPI 586 IRQ_TYPE_LEVEL_HIGH>;
++				power-domains = <&rpmhpd SC8280XP_CX>;
++				interconnects = <&clk_virt MASTER_QUP_CORE_2 0 &clk_virt SLAVE_QUP_CORE_2 0>,
++				                <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_2 0>,
++				                <&aggre1_noc MASTER_QUP_2 0 &mc_virt SLAVE_EBI1 0>;
++				interconnect-names = "qup-core", "qup-config", "qup-memory";
++				status = "disabled";
++			};
++
+ 			i2c21: i2c@894000 {
+ 				compatible = "qcom,geni-i2c";
+ 				reg = <0 0x00894000 0 0x4000>;
+@@ -842,6 +922,38 @@ i2c21: i2c@894000 {
+ 				interconnect-names = "qup-core", "qup-config", "qup-memory";
+ 				status = "disabled";
+ 			};
++
++			i2c22: i2c@898000 {
++				compatible = "qcom,geni-i2c";
++				reg = <0 0x00898000 0 0x4000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clock-names = "se";
++				clocks = <&gcc GCC_QUPV3_WRAP2_S6_CLK>;
++				interrupts = <GIC_SPI 833 IRQ_TYPE_LEVEL_HIGH>;
++				power-domains = <&rpmhpd SC8280XP_CX>;
++				interconnects = <&clk_virt MASTER_QUP_CORE_2 0 &clk_virt SLAVE_QUP_CORE_2 0>,
++						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_2 0>,
++						<&aggre1_noc MASTER_QUP_2 0 &mc_virt SLAVE_EBI1 0>;
++				interconnect-names = "qup-core", "qup-config", "qup-memory";
++				status = "disabled";
++			};
++
++			i2c23: i2c@89c000 {
++				compatible = "qcom,geni-i2c";
++				reg = <0 0x0089c000 0 0x4000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clock-names = "se";
++				clocks = <&gcc GCC_QUPV3_WRAP2_S7_CLK>;
++				interrupts = <GIC_SPI 834 IRQ_TYPE_LEVEL_HIGH>;
++				power-domains = <&rpmhpd SC8280XP_CX>;
++				interconnects = <&clk_virt MASTER_QUP_CORE_2 0 &clk_virt SLAVE_QUP_CORE_2 0>,
++						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_2 0>,
++						<&aggre1_noc MASTER_QUP_2 0 &mc_virt SLAVE_EBI1 0>;
++				interconnect-names = "qup-core", "qup-config", "qup-memory";
++				status = "disabled";
++			};
+ 		};
+ 
+ 		qup0: geniqup@9c0000 {
+@@ -858,6 +970,70 @@ qup0: geniqup@9c0000 {
+ 
+ 			status = "disabled";
+ 
++			i2c0: i2c@980000 {
++				compatible = "qcom,geni-i2c";
++				reg = <0 0x00980000 0 0x4000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clock-names = "se";
++				clocks = <&gcc GCC_QUPV3_WRAP0_S0_CLK>;
++				interrupts = <GIC_SPI 601 IRQ_TYPE_LEVEL_HIGH>;
++				power-domains = <&rpmhpd SC8280XP_CX>;
++				interconnects = <&clk_virt MASTER_QUP_CORE_0 0 &clk_virt SLAVE_QUP_CORE_0 0>,
++						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>,
++						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
++				interconnect-names = "qup-core", "qup-config", "qup-memory";
++				status = "disabled";
++			};
++
++			i2c1: i2c@984000 {
++				compatible = "qcom,geni-i2c";
++				reg = <0 0x00984000 0 0x4000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clock-names = "se";
++				clocks = <&gcc GCC_QUPV3_WRAP0_S1_CLK>;
++				interrupts = <GIC_SPI 602 IRQ_TYPE_LEVEL_HIGH>;
++				power-domains = <&rpmhpd SC8280XP_CX>;
++				interconnects = <&clk_virt MASTER_QUP_CORE_0 0 &clk_virt SLAVE_QUP_CORE_0 0>,
++						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>,
++						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
++				interconnect-names = "qup-core", "qup-config", "qup-memory";
++				status = "disabled";
++			};
++
++			i2c2: i2c@988000 {
++				compatible = "qcom,geni-i2c";
++				reg = <0 0x00988000 0 0x4000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clock-names = "se";
++				clocks = <&gcc GCC_QUPV3_WRAP0_S2_CLK>;
++				interrupts = <GIC_SPI 603 IRQ_TYPE_LEVEL_HIGH>;
++				power-domains = <&rpmhpd SC8280XP_CX>;
++				interconnects = <&clk_virt MASTER_QUP_CORE_0 0 &clk_virt SLAVE_QUP_CORE_0 0>,
++						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>,
++						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
++				interconnect-names = "qup-core", "qup-config", "qup-memory";
++				status = "disabled";
++			};
++
++			i2c3: i2c@98c000 {
++				compatible = "qcom,geni-i2c";
++				reg = <0 0x0098c000 0 0x4000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clock-names = "se";
++				clocks = <&gcc GCC_QUPV3_WRAP0_S3_CLK>;
++				interrupts = <GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>;
++				power-domains = <&rpmhpd SC8280XP_CX>;
++				interconnects = <&clk_virt MASTER_QUP_CORE_0 0 &clk_virt SLAVE_QUP_CORE_0 0>,
++						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>,
++						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
++				interconnect-names = "qup-core", "qup-config", "qup-memory";
++				status = "disabled";
++			};
++
+ 			i2c4: i2c@990000 {
  				compatible = "qcom,geni-i2c";
  				reg = <0 0x00990000 0 0x4000>;
- 				#address-cells = <1>;
+@@ -873,6 +1049,54 @@ i2c4: i2c@990000 {
+ 				interconnect-names = "qup-core", "qup-config", "qup-memory";
+ 				status = "disabled";
+ 			};
++
++			i2c5: i2c@994000 {
++				compatible = "qcom,geni-i2c";
++				reg = <0 0x00994000 0 0x4000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clock-names = "se";
++				clocks = <&gcc GCC_QUPV3_WRAP0_S5_CLK>;
++				interrupts = <GIC_SPI 606 IRQ_TYPE_LEVEL_HIGH>;
++				power-domains = <&rpmhpd SC8280XP_CX>;
++				interconnects = <&clk_virt MASTER_QUP_CORE_0 0 &clk_virt SLAVE_QUP_CORE_0 0>,
++						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>,
++						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
++				interconnect-names = "qup-core", "qup-config", "qup-memory";
++				status = "disabled";
++			};
++
++			i2c6: i2c@998000 {
++				compatible = "qcom,geni-i2c";
++				reg = <0 0x00998000 0 0x4000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clock-names = "se";
++				clocks = <&gcc GCC_QUPV3_WRAP0_S6_CLK>;
++				interrupts = <GIC_SPI 607 IRQ_TYPE_LEVEL_HIGH>;
++				power-domains = <&rpmhpd SC8280XP_CX>;
++				interconnects = <&clk_virt MASTER_QUP_CORE_0 0 &clk_virt SLAVE_QUP_CORE_0 0>,
++						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>,
++						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
++				interconnect-names = "qup-core", "qup-config", "qup-memory";
++				status = "disabled";
++			};
++
++			i2c7: i2c@99c000 {
++				compatible = "qcom,geni-i2c";
++				reg = <0 0x0099c000 0 0x4000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clock-names = "se";
++				clocks = <&gcc GCC_QUPV3_WRAP0_S7_CLK>;
++				interrupts = <GIC_SPI 608 IRQ_TYPE_LEVEL_HIGH>;
++				power-domains = <&rpmhpd SC8280XP_CX>;
++				interconnects = <&clk_virt MASTER_QUP_CORE_0 0 &clk_virt SLAVE_QUP_CORE_0 0>,
++						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>,
++						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
++				interconnect-names = "qup-core", "qup-config", "qup-memory";
++				status = "disabled";
++			};
+ 		};
+ 
+ 		qup1: geniqup@ac0000 {
+@@ -888,6 +1112,134 @@ qup1: geniqup@ac0000 {
+ 			ranges;
+ 
+ 			status = "disabled";
++
++			i2c8: i2c@a80000 {
++				compatible = "qcom,geni-i2c";
++				reg = <0 0x00a80000 0 0x4000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&gcc GCC_QUPV3_WRAP1_S0_CLK>;
++				clock-names = "se";
++				interrupts = <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
++				power-domains = <&rpmhpd SC8280XP_CX>;
++				interconnects = <&clk_virt MASTER_QUP_CORE_1 0 &clk_virt SLAVE_QUP_CORE_1 0>,
++				                <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>,
++				                <&aggre1_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
++				interconnect-names = "qup-core", "qup-config", "qup-memory";
++				status = "disabled";
++			};
++
++			i2c9: i2c@a84000 {
++				compatible = "qcom,geni-i2c";
++				reg = <0 0x00a84000 0 0x4000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&gcc GCC_QUPV3_WRAP1_S1_CLK>;
++				clock-names = "se";
++				interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>;
++				power-domains = <&rpmhpd SC8280XP_CX>;
++				interconnects = <&clk_virt MASTER_QUP_CORE_1 0 &clk_virt SLAVE_QUP_CORE_1 0>,
++				                <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>,
++				                <&aggre1_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
++				interconnect-names = "qup-core", "qup-config", "qup-memory";
++				status = "disabled";
++			};
++
++			i2c10: i2c@a88000 {
++				compatible = "qcom,geni-i2c";
++				reg = <0 0x00a88000 0 0x4000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&gcc GCC_QUPV3_WRAP1_S2_CLK>;
++				clock-names = "se";
++				interrupts = <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
++				power-domains = <&rpmhpd SC8280XP_CX>;
++				interconnects = <&clk_virt MASTER_QUP_CORE_1 0 &clk_virt SLAVE_QUP_CORE_1 0>,
++				                <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>,
++				                <&aggre1_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
++				interconnect-names = "qup-core", "qup-config", "qup-memory";
++				status = "disabled";
++			};
++
++			i2c11: i2c@a8c000 {
++				compatible = "qcom,geni-i2c";
++				reg = <0 0x00a8c000 0 0x4000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&gcc GCC_QUPV3_WRAP1_S3_CLK>;
++				clock-names = "se";
++				interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
++				power-domains = <&rpmhpd SC8280XP_CX>;
++				interconnects = <&clk_virt MASTER_QUP_CORE_1 0 &clk_virt SLAVE_QUP_CORE_1 0>,
++				                <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>,
++				                <&aggre1_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
++				interconnect-names = "qup-core", "qup-config", "qup-memory";
++				status = "disabled";
++			};
++
++			i2c12: i2c@a90000 {
++				compatible = "qcom,geni-i2c";
++				reg = <0 0x00a90000 0 0x4000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&gcc GCC_QUPV3_WRAP1_S4_CLK>;
++				clock-names = "se";
++				interrupts = <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>;
++				power-domains = <&rpmhpd SC8280XP_CX>;
++				interconnects = <&clk_virt MASTER_QUP_CORE_1 0 &clk_virt SLAVE_QUP_CORE_1 0>,
++				                <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>,
++				                <&aggre1_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
++				interconnect-names = "qup-core", "qup-config", "qup-memory";
++				status = "disabled";
++			};
++
++			i2c13: i2c@a94000 {
++				compatible = "qcom,geni-i2c";
++				reg = <0 0x00a94000 0 0x4000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&gcc GCC_QUPV3_WRAP1_S5_CLK>;
++				clock-names = "se";
++				interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>;
++				power-domains = <&rpmhpd SC8280XP_CX>;
++				interconnects = <&clk_virt MASTER_QUP_CORE_1 0 &clk_virt SLAVE_QUP_CORE_1 0>,
++				                <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>,
++				                <&aggre1_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
++				interconnect-names = "qup-core", "qup-config", "qup-memory";
++				status = "disabled";
++			};
++
++			i2c14: i2c@a98000 {
++				compatible = "qcom,geni-i2c";
++				reg = <0 0x00a98000 0 0x4000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&gcc GCC_QUPV3_WRAP1_S6_CLK>;
++				clock-names = "se";
++				interrupts = <GIC_SPI 835 IRQ_TYPE_LEVEL_HIGH>;
++				power-domains = <&rpmhpd SC8280XP_CX>;
++				interconnects = <&clk_virt MASTER_QUP_CORE_1 0 &clk_virt SLAVE_QUP_CORE_1 0>,
++				                <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>,
++				                <&aggre1_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
++				interconnect-names = "qup-core", "qup-config", "qup-memory";
++				status = "disabled";
++			};
++
++			i2c15: i2c@a9c000 {
++				compatible = "qcom,geni-i2c";
++				reg = <0 0x00a9c000 0 0x4000>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&gcc GCC_QUPV3_WRAP1_S7_CLK>;
++				clock-names = "se";
++				interrupts = <GIC_SPI 836 IRQ_TYPE_LEVEL_HIGH>;
++				power-domains = <&rpmhpd SC8280XP_CX>;
++				interconnects = <&clk_virt MASTER_QUP_CORE_1 0 &clk_virt SLAVE_QUP_CORE_1 0>,
++				                <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>,
++				                <&aggre1_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
++				interconnect-names = "qup-core", "qup-config", "qup-memory";
++				status = "disabled";
++			};
+ 		};
+ 
+ 		pcie4: pcie@1c00000 {
 -- 
 2.39.0
 
