@@ -2,97 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0B7A65C06D
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 14:06:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2923265C0BB
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 14:25:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237614AbjACNFt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 08:05:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50438 "EHLO
+        id S237161AbjACNZa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 08:25:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230052AbjACNFq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 08:05:46 -0500
-Received: from mail-ua1-x92f.google.com (mail-ua1-x92f.google.com [IPv6:2607:f8b0:4864:20::92f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4DCA10B47
-        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 05:05:41 -0800 (PST)
-Received: by mail-ua1-x92f.google.com with SMTP id e7so813658ual.4
-        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 05:05:41 -0800 (PST)
+        with ESMTP id S237372AbjACNZ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 08:25:26 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 072E41005A
+        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 05:25:24 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id p2so16205269ljn.7
+        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 05:25:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=qBoUROWjuf5ZUYCNjG/g+PT7H00JAGubfmWIHqWiFno=;
-        b=LG3dcwLKf5tAGbI5rt2aIWy2XkdGAxgvDX2u5W/cT0Rlwxk26JkI53ckg0EjFBfTKU
-         eAZhu4Pj1OMx0WJlfThaU2UnC0+rke06pkTwZcGduzSbZf3xH+hqKVVFUTiobql5eAWf
-         7OMyMi0B3paezljyGecRMQLwxYlUfRQtXlpX99OldXISEccoys1Twr9A6ukSf/WFPPOE
-         34oc6+7wrCSUZbFEheBkjjabWGNxkLp8f/o7dLjWpHbXi8O1eDHEmjjGiSJCUakYXrwZ
-         Wih1WTikjtgPpkPZWZtqPX75mAcnAV2bopj7xZ8cqgencYHUBQ0aIR15CKzagVD3c/Bt
-         md5Q==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OQtAS7dRffwstL0NIoU7HOUw97BRuM+uBfBVehzzmcY=;
+        b=L8/yqW4KRK5t/QShxNfFug+/I9Ee8+aEk1YCcHUfjNK50qsHMaljqs7lDv7D3v8MM+
+         jvG7IIktaX/GuPJMXe8APHdU1SeTNRfkAUtrDmge9ZpSXbZykouKBJmoWAbGk8iiErZA
+         se91VMUi+fd//cAy8i/gubXZYnmzm/pG8pCmSVq3kHOOW3vxXuObu5P3HOSG2bZkRP4U
+         YW70cpb5lZdVeWDbA4vep5+5Yu8H2kFi0H2MVw1G6makH5VRjLw5w2dj/FkhORfBLNsS
+         n4Jo0iLAh7Kq4IRjmy41dxowg4xUDisdEAKIvN9fyAgf5HI2ZAP7zojyHosxXk4shXLx
+         Lbag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qBoUROWjuf5ZUYCNjG/g+PT7H00JAGubfmWIHqWiFno=;
-        b=tbVxhnfDcyIjr8PhZSxWcJt2VTyo2FAkEWQUDLZ1bUvziWc1IRG5jKv69FcBucQbJz
-         o5Bt6dJBN67rgeoWq1SfKKXXgwfoUBlIv0iFIjAhgvsM6Z+hVLNJYHQQKX3y0NeQ4N61
-         X/9naCB6ddA3rIrD6HsMhTWed2PE03mfyqnNv4mxwJl2OEPfUu9kdiN6C8e/NCnzAsrl
-         bQzBJHENNKO6QE0Vh5XyTQh6N3lSqlgenQ1oT9QV6La/dJ9Mpi8z4F6zcZTcFYJkla4D
-         RL7qupAzAs7VNAUaHLL6dlz7DMTbLS60ypfZC257qwpBLiOmnt7c2XbHT2LOTLozWcSt
-         LyYg==
-X-Gm-Message-State: AFqh2krZ/ZelpKPwaqxxCxDpbwL3beOuEhwW0NVHo5R7Jjz21vZgsC70
-        Y5fRf4U2wRk2NByLlYeE88cSub3QMUCLgoXJ1gEg3A==
-X-Google-Smtp-Source: AMrXdXsabU1gefvs88vYs+DmLmfV8mbDiegq1CGFp4srFkNfmOlOQsYh7UqXWCshayJ3xlbOoVtJxKRC/g/O0jtAdJ0=
-X-Received: by 2002:ab0:64ca:0:b0:478:b785:affb with SMTP id
- j10-20020ab064ca000000b00478b785affbmr3920179uaq.52.1672751140736; Tue, 03
- Jan 2023 05:05:40 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OQtAS7dRffwstL0NIoU7HOUw97BRuM+uBfBVehzzmcY=;
+        b=iJIgvgHY0eUXEzchUnRHxYL1j2WBj0X43k98DJl8Oou2r7KQGhgBQ4rB0eGT7G+fH1
+         zGm3ewKsXtqTcdE+7GK4MY4TNqO490cQQo33u2fVmhsKjttoaWu+7teTnW4XdFIUTYtg
+         53lByiLaWSNJ4R/KMh8EEMpsPya4rYnd8AP/y+He/Y1VTK3cpVLgKTzhbiqhYS0ccfIy
+         vJpxhwhdGaeaS3FM0rcAGNC9bKE+/YCbFbii7fJ3xN1JWAPyGNzaRm5sjEwePDhVuVUp
+         a74ytdVJcT587aQvwCFNGv8FAGdJyPY2aWluJF6ksLr94L1VgYHVyYvmxaZ9iMikAy6D
+         aIJg==
+X-Gm-Message-State: AFqh2kq9mUme1M6oeivgLtctvhocS6quflXWGzfqKNlJkYLIoHUlz4ZO
+        Pa/X9mwSss/nBy6zQLhOLdc1Sg==
+X-Google-Smtp-Source: AMrXdXvXD+0fRDvbDETqqmRKV02pVToVMGeAb1YfTMy7x4T1bhDgESG879wR7yCj5oU6rbY1UKrQjw==
+X-Received: by 2002:a2e:80d9:0:b0:27f:e337:1ead with SMTP id r25-20020a2e80d9000000b0027fe3371eadmr3489840ljg.43.1672752323237;
+        Tue, 03 Jan 2023 05:25:23 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id s4-20020a05651c048400b0027fbc576464sm2628850ljc.137.2023.01.03.05.25.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Jan 2023 05:25:22 -0800 (PST)
+Message-ID: <0d106f4d-4683-4117-0812-e83f8e5974c2@linaro.org>
+Date:   Tue, 3 Jan 2023 14:25:19 +0100
 MIME-Version: 1.0
-References: <20221111044207.1478350-1-apatel@ventanamicro.com>
- <20221111044207.1478350-7-apatel@ventanamicro.com> <Y3EQ4JU7uGbIMGiW@spud>
- <CAAhSdy2UAMmX+W5Cm3DuTJzZ0jJ3=CW4PhjctQNdfeS+4hqWqg@mail.gmail.com> <082eb006-75b8-dead-c014-9ba41a697e50@linaro.org>
-In-Reply-To: <082eb006-75b8-dead-c014-9ba41a697e50@linaro.org>
-From:   Anup Patel <apatel@ventanamicro.com>
-Date:   Tue, 3 Jan 2023 18:35:28 +0530
-Message-ID: <CAK9=C2XnYVtEPqPoLw=+n6Ys_jm8Ndx7fDScDAOM4iNMEj-H0g@mail.gmail.com>
-Subject: Re: [PATCH 6/9] dt-bindings: Add RISC-V advanced PLIC bindings
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Anup Patel <anup@brainfault.org>, Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 2/4] dt-bindings: clk: rs9: Add bindings for 9FGV0441
+Content-Language: en-US
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Atish Patra <atishp@atishpatra.org>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Marek Vasut <marex@denx.de>
+Cc:     linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230103123154.3424817-1-alexander.stein@ew.tq-group.com>
+ <20230103123154.3424817-2-alexander.stein@ew.tq-group.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230103123154.3424817-2-alexander.stein@ew.tq-group.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 3, 2023 at 2:29 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 02/01/2023 17:50, Anup Patel wrote:
-> > On Sun, Nov 13, 2022 at 9:14 PM Conor Dooley <conor@kernel.org> wrote:
-> >>
-> >> Hey Anup,
-> >>
-> >> Ditto the $subject nit here.
-> >
-> > Adding "interrupt-controller:" to subject makes it longer than 80 characters.
->
-> Because you added redundant double "bindings". Subject line is precious,
-> so do not add useless words.
+On 03/01/2023 13:31, Alexander Stein wrote:
+> This is a 4-channel variant of 9FGV series.
 
-Okay, I will update the patch subject based on your suggestion.
+Subject: drop second, redundant "bindings for".
 
-Regards,
-Anup
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
