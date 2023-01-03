@@ -2,135 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63B1465C0F3
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 14:37:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E13265C108
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 14:43:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237375AbjACNha (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 08:37:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38878 "EHLO
+        id S233268AbjACNmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 08:42:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237563AbjACNh0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 08:37:26 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7754E10FF1
-        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 05:37:25 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id p36so45670394lfa.12
-        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 05:37:25 -0800 (PST)
+        with ESMTP id S233267AbjACNmD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 08:42:03 -0500
+Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 024791114E;
+        Tue,  3 Jan 2023 05:42:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tQFy18JQ1dRxEx4LtdGtGz88gqRR4qiBZ9yxigNf2Gw=;
-        b=wreb3D5Z7XfSHKUvn2NZ7gUZHu11ra6X1hvq0pXkx0cQGAm9CZKkzqxeUP2wztSTr9
-         pXQoqA47rUIUlqUgc1bGFUATHUeGzLZmxkSqL3bV9I9uTr2UM9bphU4OrYVCXGXpKYfm
-         pUWRD68PeWisVL0vFbHh7dL6256PeF2v18tc6WD6oAH6f8ofgIEtFD6GLmHpBjBArjKn
-         rqXw/ZEJ0c4SAqst8+00nM0C74qYipMsMS79MRH2hntI1IXRepASCu+BzS1RPsjg3E4k
-         7HI/CH3+4+ZSroVPJ99nRq/m8gamK8RIgBE+iBiOHW83z897rOC4zZIMsqiMTPx5gbzP
-         0Keg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tQFy18JQ1dRxEx4LtdGtGz88gqRR4qiBZ9yxigNf2Gw=;
-        b=pouGHuF17qt9LF9GeF+5JAIl0mtAHVHiPbK/IfgFrrkLDAAajJ8u+fXsYO/l3NSCke
-         RoQowYCEn/3S/WG488sjVKS+d5wm48bvaekLmOX4QGVWmhmE6Z8+vbpRWFaEgRPPgGQI
-         +ZOwPjw0KTCHpGU2uhq1uoIMbOLrRke854Jr1dUp2kBHTA9hg0Urx7KXAHcMlAB2Ke1f
-         T2ASrxWZVwiRigsI2fcrBTu7T2BBx8dCR9n+oLOIhZ2xIS1fH/53oodJR1mXMj2mdA5x
-         9rTye641BlNSq4kUvB/ybbSGnV9un12eGbXJEGunMbpNhFVOlRUYbnBTPcgeNGbSCNQM
-         WleA==
-X-Gm-Message-State: AFqh2krr99ZTWhN5NDlOej3QFrtFVnEVYYHGestjUxhI9Fvrvk0DvBgv
-        bS/0mzmCfJ1Czve7TPYL5wlq5w==
-X-Google-Smtp-Source: AMrXdXsw610dQgisZXJIbNB6BT7zt+chBkpj6GQb2p20IuzA6oAFN95l+z7Wpt1h9uIZlsY8ucgntA==
-X-Received: by 2002:ac2:50c1:0:b0:4b5:2eb9:8d3 with SMTP id h1-20020ac250c1000000b004b52eb908d3mr12310491lfm.19.1672753043874;
-        Tue, 03 Jan 2023 05:37:23 -0800 (PST)
-Received: from [192.168.1.101] (abxi45.neoplus.adsl.tpnet.pl. [83.9.2.45])
-        by smtp.gmail.com with ESMTPSA id y2-20020ac24202000000b004bd8534ebbcsm4793979lfh.37.2023.01.03.05.37.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Jan 2023 05:37:23 -0800 (PST)
-Message-ID: <534ecce6-54b3-7b7a-9c92-48e0b810edc0@linaro.org>
-Date:   Tue, 3 Jan 2023 14:37:22 +0100
+  d=axis.com; q=dns/txt; s=axis-central1; t=1672753322;
+  x=1704289322;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=UNQnZcPD5pQpA0xMHBwIkOibtF3daXspO7fcHHlLN0E=;
+  b=JlfdQFphkIqx2cJISdbKN8POOBcpCzd1IfO96TJtTRkFBKo7R3ymtprB
+   Kigo+a6D4Exz6tIuRXszB/XDd6yGmWwrflzH5GZQBs9l8soKXHERTclDi
+   MIgcsGfm3gcrg8+/ts9GD+IcvpRg870UmA6+WH6S2/jnVT92hXC7U6g6D
+   9YdNJ2F2Au24vM3v2Eqk7GQd8yp6V9kD6Oo8SlQRu3lqLrnWePAB123Kn
+   xEWYYIkBCCFC2uFsPctgQHW4YogfvOCZkCijXfQdwWuDgkXu5sDfaMezb
+   jf/StGc1DqgWnBomJWaZ/2xQGeGgndN2nRGI/M7EGioELR5TOE0xzkWSl
+   A==;
+From:   Jiri Valek - 2N <jiriv@axis.com>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Jiri Valek - 2N <jiriv@axis.com>, Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        "open list:INPUT (KEYBOARD, MOUSE, JOYSTICK, TOUCHSCREEN)..." 
+        <linux-input@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/2] Input: cap11xx add support for cap1203, cap1293 and cap1298
+Date:   Tue, 3 Jan 2023 14:41:02 +0100
+Message-ID: <20230103134105.736346-1-jiriv@axis.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 6/6] arm64: dts: qcom: sm8250: clean up wcd938x codec
- node
-Content-Language: en-US
-To:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230103103141.15807-1-johan+linaro@kernel.org>
- <20230103103141.15807-7-johan+linaro@kernel.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230103103141.15807-7-johan+linaro@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.0.5.60]
+X-ClientProxiedBy: se-mail01w.axis.com (10.20.40.7) To se-mail03w.axis.com
+ (10.20.40.9)
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+PATCH 1 - add compatible string for new models
+PATCH 2 - add support for new models into driver
 
+Jiri Valek - 2N (2):
+  dt-bindings: input: microchip,cap11xx: add cap1203, cap1293 and
+    cap1298
+  Input: cap11xx - add support for cap1203, cap1293 and cap1298
 
-On 3.01.2023 11:31, Johan Hovold wrote:
-> Clean up the wcd938x codec node somewhat by adding newline separators,
-> reordering properties and renaming it 'audio-codec'.
-> 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+ .../bindings/input/microchip,cap11xx.yaml     |  3 +++
+ drivers/input/keyboard/cap11xx.c              | 20 +++++++++++++++++--
+ 2 files changed, 21 insertions(+), 2 deletions(-)
 
-Konrad
->  arch/arm64/boot/dts/qcom/sm8250-mtp.dts | 16 ++++++++++------
->  1 file changed, 10 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-> index b741b7da1afc..0991b34a8e49 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-> @@ -23,18 +23,16 @@ aliases {
->  		serial0 = &uart12;
->  	};
->  
-> -	chosen {
-> -		stdout-path = "serial0:115200n8";
-> -	};
-> -
-> -	wcd938x: codec {
-> +	wcd938x: audio-codec {
->  		compatible = "qcom,wcd9380-codec";
-> -		#sound-dai-cells = <1>;
-> +
->  		reset-gpios = <&tlmm 32 GPIO_ACTIVE_LOW>;
-> +
->  		vdd-buck-supply = <&vreg_s4a_1p8>;
->  		vdd-rxtx-supply = <&vreg_s4a_1p8>;
->  		vdd-io-supply = <&vreg_s4a_1p8>;
->  		vdd-mic-bias-supply = <&vreg_bob>;
-> +
->  		qcom,micbias1-microvolt = <1800000>;
->  		qcom,micbias2-microvolt = <1800000>;
->  		qcom,micbias3-microvolt = <1800000>;
-> @@ -44,6 +42,12 @@ wcd938x: codec {
->  		qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
->  		qcom,rx-device = <&wcd_rx>;
->  		qcom,tx-device = <&wcd_tx>;
-> +
-> +		#sound-dai-cells = <1>;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
->  	};
->  
->  	thermal-zones {
+-- 
+2.25.1
+
