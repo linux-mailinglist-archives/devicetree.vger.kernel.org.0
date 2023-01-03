@@ -2,148 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3848465BEBF
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 12:14:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DC7365BECF
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 12:19:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237325AbjACLNV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 06:13:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51562 "EHLO
+        id S237397AbjACLTT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 06:19:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237219AbjACLNU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 06:13:20 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81733E0CD
-        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 03:13:19 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id n1so31465321ljg.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 03:13:19 -0800 (PST)
+        with ESMTP id S237368AbjACLTR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 06:19:17 -0500
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D452F037
+        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 03:19:16 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id kw15so72712853ejc.10
+        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 03:19:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/TWpQiqg2iNv0O2diyiU4mfauguHMd4IysTnhIm0+fM=;
-        b=P2s5tnD5MmHi+uSv4kHuF4d8IwY9IgQ+14JhDu+4u3ZxKe97MH/MG6IY8eE/t+dl7m
-         b9BWNzeVLkwLYxXe/GZoRxyz2QKbT+dgj3HZyL/HxyYllp1Se9uXmJp8Q7FRJDdPUr+m
-         45kWneEaoQoYg3BK5tWcHhHJSIFYnIKb0nB7llMmj/QNCTUzRe0pFMRqhZCoYKWl6YbS
-         65dMNkbEioNXPZ+66yQWA8HX5EU6hlozJvDfS/2MlQUjqAu8IMUmMq0IYbpzygECyMBy
-         e9+XT4fWylQly35GWrFj9PggXTGHEwgukIZgWnk+EEXvYYiFWix3h71ThCsrv6eVxmfn
-         SgZA==
+        bh=BQJyR5W3A4f1ySu0UGGHSzR6lOpSLkq+TzKRR4GKR3s=;
+        b=uiPQEnOeSUlbBNbrKOyzbrLx7Zl5d72kqG93ulTrg7ZDZHPRt3L2aE9Ks1kaQ54CcS
+         F6xoKoMzKDU362iYQwJ2zkA7JNzUywQQRqGJJYSsXKBIw4fKyVttGqrm58ZqONb7LDos
+         GyhEp1x6L8zoMYFqjvpPqxveF0qm6HcsNL5FGAhxpk0pQVlnZXRbKI1ZCNWRYYZdsE9I
+         6H8yFx8gO+IKKkFdtsGCqUYw3uzjhEvCLPylg5rwFjVmi01rbrMtok282mVbe0DBv6ld
+         fgupCUMFpEC9XSe5Uy3gmezyioXlafT+EpISk0rzNNaNSVtl3h6S6GLV8+qTJMK9b5Su
+         MfUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/TWpQiqg2iNv0O2diyiU4mfauguHMd4IysTnhIm0+fM=;
-        b=jNHVcNPqSYWORl+LHcKT9B6gk3TYwRAT8G3X2bBHCWraUEKLLYApf5t015M9jo2H7n
-         P6D+G4DPbhoa216C6omnUsmYwdzQb0zAtp5CltMxYxN0XrFReJVIgH9rSMLcAdRGvITn
-         ns2/RivV61iO9kRf+F4BxCqZSzXQG9VsS9Z+qkUhwro2If+qUOvMTDFEZFUNLF2H26pC
-         eH/7DXGEWqaWIlP7BBZl+E2mWs6PKhtPr560ENDViFJi1fZkExRxs8ApcmONOx1L7xJ2
-         vdz8SiP4tLTI7u+CJjXFaGy5yUTrGfRR2CDWImpT2iHKS4o1+x3w5ZZ5lYZMHc6IYzRr
-         lF6g==
-X-Gm-Message-State: AFqh2kqe1lmiOnd4Ss3gusrsLPPmh7MKvvLSS1yymIOIgs8/NM5B6SqI
-        jgCPMrxXGnbV/DJLewfsprSoLA==
-X-Google-Smtp-Source: AMrXdXsq4eIbXobzEJN/aR14hPh8zbDa75iWKce21g7fG2vNVHzWb4UfMEZpdHsU9qRvjyGv1U9L0A==
-X-Received: by 2002:a2e:a583:0:b0:27f:cf81:cbc with SMTP id m3-20020a2ea583000000b0027fcf810cbcmr6992503ljp.24.1672744397870;
-        Tue, 03 Jan 2023 03:13:17 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id k10-20020a05651c10aa00b0027fe262a75csm970094ljn.81.2023.01.03.03.13.16
+        bh=BQJyR5W3A4f1ySu0UGGHSzR6lOpSLkq+TzKRR4GKR3s=;
+        b=UqzCQHiH1D6luLbR6gKqgi10Rvx2Jhrhhz8oq4/NIk+41XTk0xBNSWpMwGxKHdj/R9
+         tgIe/YoIqeq+8bEckb7eQ1PWRSal8jXqV03rK4l/5PGAzf1Q9PKTL6jr6nK8OGepCXgG
+         0aWSyxYQsk8oSZrzCW8eD8+28y2VbVfLckBDgo01EkomEGRFO5ShSGdHS2mJ8atIGN+q
+         5J24EP/rLy6uciarw3h7INE5pKDcWrWmLkJeL7VzZXatqbvBd8+Ndgo97A7nR9iKd9gq
+         BeyaDiIc+B5gJ3lgnPcCjQFcqwxCuEwWgY8dQ9lW5FN92epwkeYtsHZDjRZuBMYB68O4
+         e+1w==
+X-Gm-Message-State: AFqh2kqEyCMZmyonGmHta2aNBeLG+UhnIxBimrWJkJ7Ig+9MHMAMxbEI
+        SkEcA9kj/KHdVA97qy34zNPItA==
+X-Google-Smtp-Source: AMrXdXuzwiaCZt1ZjEmk+p69Sd4xpuX0vBLO7a+8it9tst+k6JqXO4pEx2T5IkhLyynjradloprwRA==
+X-Received: by 2002:a17:907:d389:b0:7c1:5a37:825 with SMTP id vh9-20020a170907d38900b007c15a370825mr49560094ejc.34.1672744754929;
+        Tue, 03 Jan 2023 03:19:14 -0800 (PST)
+Received: from ?IPV6:2001:1c06:2302:5600:29fe:fa1a:5ca3:7f83? (2001-1c06-2302-5600-29fe-fa1a-5ca3-7f83.cable.dynamic.v6.ziggo.nl. [2001:1c06:2302:5600:29fe:fa1a:5ca3:7f83])
+        by smtp.gmail.com with ESMTPSA id bw1-20020a170906c1c100b007aef930360asm13997509ejb.59.2023.01.03.03.19.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Jan 2023 03:13:17 -0800 (PST)
-Message-ID: <2c6950c9-3489-c2d4-2ca8-cb723195f75b@linaro.org>
-Date:   Tue, 3 Jan 2023 12:13:16 +0100
+        Tue, 03 Jan 2023 03:19:14 -0800 (PST)
+Message-ID: <b146fcf8-e829-8df7-7153-b4a8913e4c9b@linaro.org>
+Date:   Tue, 3 Jan 2023 11:19:11 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 5/5] arm64: dts: fsd: Add sound card node for Tesla FSD
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 7/7] arm64: dts: qcom: Add msm8939 Sony Xperia M4 Aqua
 Content-Language: en-US
-To:     Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>,
-        lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, s.nawrocki@samsung.com,
-        perex@perex.cz, tiwai@suse.com, pankaj.dubey@samsung.com,
-        alim.akhtar@samsung.com, rcsekar@samsung.com,
-        aswani.reddy@samsung.com
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org
-References: <20230103045613.100309-1-p.rajanbabu@samsung.com>
- <CGME20230103045706epcas5p14f2f951d162899234c7f5f7a0998ab6b@epcas5p1.samsung.com>
- <20230103045613.100309-6-p.rajanbabu@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230103045613.100309-6-p.rajanbabu@samsung.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>, agross@kernel.org,
+        andersson@kernel.org, djakov@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        benl@squareup.com, shawn.guo@linaro.org, fabien.parent@linaro.org,
+        leo.yan@linaro.org, dmitry.baryshkov@linaro.org
+References: <20230103010904.3201835-1-bryan.odonoghue@linaro.org>
+ <20230103010904.3201835-8-bryan.odonoghue@linaro.org>
+ <f293e1c3-d192-fe98-c599-e9c40d01175d@linaro.org>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <f293e1c3-d192-fe98-c599-e9c40d01175d@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/01/2023 05:56, Padmanabhan Rajanbabu wrote:
-> Add device tree node support for sound card on Tesla FSD board
+On 03/01/2023 02:29, Konrad Dybcio wrote:
+> 12, 13?
 > 
-> Signed-off-by: Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
-> ---
->  arch/arm64/boot/dts/tesla/fsd-evb.dts | 37 +++++++++++++++++++++++++++
->  1 file changed, 37 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/tesla/fsd-evb.dts b/arch/arm64/boot/dts/tesla/fsd-evb.dts
-> index e2fd49774f15..ce726bddfb50 100644
-> --- a/arch/arm64/boot/dts/tesla/fsd-evb.dts
-> +++ b/arch/arm64/boot/dts/tesla/fsd-evb.dts
-> @@ -29,6 +29,43 @@
->  		device_type = "memory";
->  		reg = <0x0 0x80000000 0x2 0x00000000>;
->  	};
-> +
-> +	sound {
-> +		compatible = "simple-audio-card";
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		simple-audio-card,name = "FSD Audio Card";
-> +		simple-audio-card,widgets =
-> +			"Line", "Line Out",
+> Also, why does this node exist in the first place? Is it
+> going to be used for some non-standard touchpanel-off-flipping?
 
-I don't think you need to break the line after '='.
+For most of your comments here the answer is "because that's what the 
+incoming dts does" from Sony's downstream.
 
-> +			"Line", "Line In";
-> +		simple-audio-card,routing =
-> +			"Line Out", "LLOUT",
-> +			"Line Out", "RLOUT",
-> +			"MIC2L", "Line In",
-> +			"MIC2R", "Line In";
-> +
-> +		status = "okay";
+For V3 I will see if I can get some better insight on the gpio bias and 
+what this entry here is intended for.
 
-Why?
-
-> +
-> +		simple-audio-card,dai-link@0 {
-> +			reg = <0>;
-> +			format = "i2s";
-> +			bitclock-master = <&tlv320aic3x>;
-> +			frame-master = <&tlv320aic3x>;
-> +
-> +			cpu0 {
-
-Does not look like you tested the DTS against bindings. Please run `make
-dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
-for instructions).
-
-> +				sound-dai = <&i2s_0 0>;
-> +			};
-> +			cpu1 {
-> +				sound-dai = <&i2s_0 1>;
-> +			};
-> +			codec {
-> +				sound-dai = <&tlv320aic3x>;
-> +				system-clock-frequency = <33000000>;
-> +			};
-
-Best regards,
-Krzysztof
-
+---
+bod
