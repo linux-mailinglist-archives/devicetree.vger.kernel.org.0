@@ -2,100 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 033FD65BF8A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 13:00:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB77065BF95
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jan 2023 13:05:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237448AbjACL7e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 06:59:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49864 "EHLO
+        id S233293AbjACMDr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 07:03:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237435AbjACL7d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 06:59:33 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65B79FCFC;
-        Tue,  3 Jan 2023 03:59:32 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 74AE26602CE7;
-        Tue,  3 Jan 2023 11:59:29 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1672747170;
-        bh=/EzXblkT2s5G5iuzR271kOa2ZyEevP0o+iEY8c1rpe8=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=itL6o8LGmxDL9Oy7vbVGRMKQvWDJ0eI+dcG23HJmKFr930dykN71/l431hib7336n
-         F9ZNoqref0+FflC/XHm/pPg1VKAlCew/6hsqitS9Oc4BAL0QziH3I6mGLQOKAzElIB
-         Gt8dMCvT27ETO5yXQ2NnP2wJoggwk1OybcKEbgPeIA8/3GimIFdPJ/uBppptGgUxlC
-         ooFWgbPTNfccjTgudYnKlBcT+iQ2Nu8sNCddw3Gj6IRO+XYjzwExIa1QSLGNp5W3bH
-         9OT7eLFX58ti681qp2FvBR8ScYe0J4oKVkcb3AyWIfBFARzd5GUZUaMWVi6cDwINSc
-         oHIi+IAqiDq8Q==
-Message-ID: <d3688dc6-d869-b313-3849-b07043a3c064@collabora.com>
-Date:   Tue, 3 Jan 2023 12:59:26 +0100
+        with ESMTP id S237486AbjACMDk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 07:03:40 -0500
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AAC8E10
+        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 04:03:39 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id v23so21440569ljj.9
+        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 04:03:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9rT7p/vx+MXGNP4uFxVvfXIdM9LVnEjrbHlhST8QvhU=;
+        b=N0wtRI5Af5ePJfvRaOrcvvyHACrD4YZ6FvGAj8BuwC4id3dynTiTiI5xwV3j/S2mwu
+         ehTCrfe/PsNhzwTwcfiggOhAe9+bfgWBbTGWkPn63pYQPnHU0GivxYQYt3H22uJHhlp0
+         2JtxmsKpO+5egl8bF4oj7Oqg72MwxmYW4RqD7gpcILEopkmWHoHlUA9UlPrCklqqv7LW
+         jJgJTYstYpvBdZJVnDClMySH2f4HDhJThSqScDRC3zPcXrvS3BLRua1KWRhe5BDKxJRe
+         vt2uDUWgJwKvX1BFFnv308GDP8htr0vX4GDSR2DkBWe0WH10MhFuXCJR1sWttksPABqZ
+         3aKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9rT7p/vx+MXGNP4uFxVvfXIdM9LVnEjrbHlhST8QvhU=;
+        b=mDdCAFVd/k3ZJSp735/D6fL3VUtqoOMnmZobsd+swvL9RXRzp5+1rN2fl9EQ7RyfeE
+         OxWTmBimVbVtLtji2hYHgToO3I+eilLeMuV8g3925X2ox/Wqxx5gonRlnWMTEjYcQ1G1
+         +R/TIgYvTZZD1PHkNlfybETyxH6esRXsXCyZAPU0En/xh0rZYz0jDXFcR9m10fbw01tW
+         +xBfBhS06N45W7gecQdLQ8LJFSOCQcgopBiMT+hZKK4M6jHFfFa+Ai6VFLvS4P+EMNdz
+         2BTRsghNI9fBINXtdqcbn8BeZgrt9hnie/iHfbfKtroKrI7FXhRDr/x9PSNjndlIBU9l
+         yDvw==
+X-Gm-Message-State: AFqh2konIU7WdXqJuzngBnNn6BGOx0UfUcOk8D+mWnIxwOqvP0bDYthH
+        zsd12m7ixfCcI0aM9UNG6f6Ohw==
+X-Google-Smtp-Source: AMrXdXvpRXhCDQG9SS+pfrdZSp+RSL+QX1mijkuFUF7kNQnHYnUKDBWnrTvxl0eqe1twf/9gjkOngA==
+X-Received: by 2002:a2e:80d7:0:b0:27f:d11c:3c78 with SMTP id r23-20020a2e80d7000000b0027fd11c3c78mr5538873ljg.36.1672747417478;
+        Tue, 03 Jan 2023 04:03:37 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id p10-20020a2eb98a000000b0027fecbaf044sm575294ljp.84.2023.01.03.04.03.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Jan 2023 04:03:37 -0800 (PST)
+Message-ID: <abfddd5f-1491-0696-548d-2faec4568302@linaro.org>
+Date:   Tue, 3 Jan 2023 13:03:35 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v2 02/11] dt-bindings: nvmem: Fix qcom,qfprom compatibles
- enum ordering
+ Thunderbird/102.6.1
+Subject: Re: [PATCH V8 5/5] ASoC: dt-bindings: Add schema for "awinic,aw883xx"
 Content-Language: en-US
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        agross@kernel.org
-Cc:     andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jassisinghbrar@gmail.com,
-        jic23@kernel.org, lars@metafoo.de, keescook@chromium.org,
-        tony.luck@intel.com, gpiccoli@igalia.com, evgreen@chromium.org,
-        gregkh@linuxfoundation.org, a39.skl@gmail.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-hardening@vger.kernel.org, marijn.suijten@somainline.org,
-        kernel@collabora.com, luca@z3ntu.xyz
-References: <20221111120156.48040-1-angelogioacchino.delregno@collabora.com>
- <20221111120156.48040-3-angelogioacchino.delregno@collabora.com>
- <b611f647-c46f-3780-c6b4-3cfb4fe402e7@linaro.org>
- <1fac581e-ef02-4576-0dbf-67662a29f724@collabora.com>
- <c5ef569d-0f36-19ac-da53-3a5acdca4165@linaro.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <c5ef569d-0f36-19ac-da53-3a5acdca4165@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     wangweidong.a@awinic.com
+Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
+        cezary.rojewski@intel.com, ckeepax@opensource.cirrus.com,
+        devicetree@vger.kernel.org, duanyibo@awinic.com,
+        flatmax@flatmax.com, james.schulman@cirrus.com,
+        krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com,
+        linux-kernel@vger.kernel.org, liweilei@awinic.com, perex@perex.cz,
+        pierre-louis.bossart@linux.intel.com, povik+lin@cutebit.org,
+        rf@opensource.cirrus.com, robh+dt@kernel.org, shumingf@realtek.com,
+        srinivas.kandagatla@linaro.org, stephan@gerhold.net, steve@sk2.org,
+        tanureal@opensource.cirrus.com, tiwai@suse.com,
+        yijiangtao@awinic.com, zhaolei@awinic.com, zhuning0077@gmail.com
+References: <aa0de3c8-d783-f8cc-42a9-7988acd6ab87@linaro.org>
+ <20230103112703.382153-1-wangweidong.a@awinic.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230103112703.382153-1-wangweidong.a@awinic.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 03/01/23 12:58, Srinivas Kandagatla ha scritto:
+On 03/01/2023 12:27, wangweidong.a@awinic.com wrote:
+> Hi Krzysztof
 > 
+> On 30/12/2022 10:34, wangweidong.a@awinic.com wrote:
+>>> From: Weidong Wang <wangweidong.a@awinic.com>
+>>>
+>>> Add a DT schema for describing Awinic AW883xx audio amplifiers. They are
+>>> controlled using I2C.
+>>>
+>>> Signed-off-by: Weidong Wang <wangweidong.a@awinic.com>
+>>> ---
+>>>  .../bindings/sound/awinic,aw883xx.yaml        | 49 +++++++++++++++++++
+>>>  1 file changed, 49 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/sound/awinic,aw883xx.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/sound/awinic,aw883xx.yaml b/Documentation/devicetree/bindings/sound/awinic,aw883xx.yaml
+>>> new file mode 100644
+>>> index 000000000000..b677427ebcd1
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/sound/awinic,aw883xx.yaml
+>>> @@ -0,0 +1,49 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/sound/awinic,aw883xx.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Awinic AW883xx Smart Audio Amplifier
+>>> +
+>>> +maintainers:
+>>> +  - Stephan Weidong Wang <wangweidong.a@awinic.com>
+>>> +
+>>> +description:
+>>> +  The Awinic AW883XX is an I2S/TDM input, high efficiency
+>>> +  digital Smart K audio amplifier with an integrated 10.25V
+>>> +  smart boost convert.
+>>> +
+>>> +allOf:
+>>> +  - $ref: dai-common.yaml#
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: awinic,aw883xx
 > 
-> On 16/11/2022 08:50, AngeloGioacchino Del Regno wrote:
->> Il 15/11/22 17:42, Krzysztof Kozlowski ha scritto:
->>> On 11/11/2022 13:01, AngeloGioacchino Del Regno wrote:
->>>> Move qcom,msm8974-qfprom after qcom,msm8916-qfprom to respect
->>>> alphabetical ordering.
->>>>
->>>> Fixes: c8b336bb1aeb ("dt-bindings: nvmem: Add soc qfprom compatible strings")
->>>
->>> It's a style, code readability, but not a bug. I propose to drop the tag.
->>>
->>> With that:
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>
->>>
->>
->> Should I send a v3, or is it possible to drop the tag while applying it?
+>> Now the question what does "xx" stand for? I cannot find such product on
+>> awinic website:
+>> https://www.awinic.com/En/Index/queryAll/wd/aw883xx.html
 > 
-> Applied after dropping fixes tag..
-> 
+> xx represents our company's aw88394 and aw88395 chips,Aw88395 chips can be found on 
+> https://www.awinic.com/cn/detail/index/catid/229/id/48/title/AW88395CSR.html
+> The aw88394 chip will be available on the website in the near future.
 
-Thanks for that!
+OK, then it has to be changed. Wildcards are not allowed in compatibles,
+so please use a specific compatible (oneOf for a case specific
+compatible alone and for a case of two compatibles with fallback;
+assuming the fallback is applicable to others).
 
-Cheers,
-Angelo
 
+Best regards,
+Krzysztof
 
