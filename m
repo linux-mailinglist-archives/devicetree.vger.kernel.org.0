@@ -2,141 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2772F65E09B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 00:10:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B038665E0A9
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 00:10:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234332AbjADWzd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 17:55:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55440 "EHLO
+        id S229839AbjADXHa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 18:07:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231302AbjADWzc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 17:55:32 -0500
-Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A021447313
-        for <devicetree@vger.kernel.org>; Wed,  4 Jan 2023 14:55:30 -0800 (PST)
-Received: by mail-il1-x131.google.com with SMTP id bp26so5629526ilb.3
-        for <devicetree@vger.kernel.org>; Wed, 04 Jan 2023 14:55:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=UwnDpjFiSkciFHKVlrI1mG8DDOq+XOpoX/kfVjvrTro=;
-        b=Zcz3xPJ+1JFsN8TkUpizVFMI3/3KbankwidfAEogRsElmMaK7fKz7Gq5l82fJhhTWp
-         nB6LS4NAlqkpmgijPXGKXC6KL+ZwtpCktOKYqdB0CGGssEGxt+0Fth/Adsi9CUroO1iI
-         u3E7/ezg/9S8ZhQgSxWaHVYTuE0hLNoTHavbA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UwnDpjFiSkciFHKVlrI1mG8DDOq+XOpoX/kfVjvrTro=;
-        b=7/0avlVwOyhuSAPSix9AZWqhssV7qdwpIBCwqXbAIhKA9s4Y7P05R1AHhCQSpDSw3y
-         Ih58eDNnFWahjWyqMAeGBz9R//ohyvYfAPyahxEyNWmlantWDXJbRHAktIOBoDZBTd/H
-         tkhr+VGjdIonzkeUCLsS/SgNm6pZVKvQN/9jMQOOJ2MuKx4HP5lAmoD7dagj360skjIu
-         TM+5+dZPie2vyyJo81O2camK+j2MX9vE0xOgLS3RDde4MORwEZP+Pz5uW31Ac+adsLPP
-         bxnjfpclhWP/KRgkFzxPWLYKjUbecHjAkEDt1GYHkNztfI4Epvl4hNozEXl/4iytJ3WJ
-         udYA==
-X-Gm-Message-State: AFqh2kr2YS1LQ45qTrKM2JovLF85pZG2FQ/L9j8X7BItJi/RpflVga0E
-        SjWyMZK/WjqpFiC/1qs2nVkvGg==
-X-Google-Smtp-Source: AMrXdXu92yHSOjcz9PLrUap2yhJ+HjiU6C1sRlFdjYt9OrM5u4rTiXeZerbXc6KEKzKjKg1Rgn4rYw==
-X-Received: by 2002:a05:6e02:10d3:b0:30d:7cf4:5d5d with SMTP id s19-20020a056e0210d300b0030d7cf45d5dmr274387ilj.22.1672872898038;
-        Wed, 04 Jan 2023 14:54:58 -0800 (PST)
-Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
-        by smtp.gmail.com with UTF8SMTPSA id f1-20020a056e0212a100b0030c52450a58sm2658938ilr.64.2023.01.04.14.54.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Jan 2023 14:54:57 -0800 (PST)
-Date:   Wed, 4 Jan 2023 22:54:56 +0000
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     Icenowy Zheng <uwu@icenowy.me>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S229571AbjADXH3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 18:07:29 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C7151D0CF;
+        Wed,  4 Jan 2023 15:07:27 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 7AA7CB81916;
+        Wed,  4 Jan 2023 23:07:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E56EC433F0;
+        Wed,  4 Jan 2023 23:07:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1672873645;
+        bh=SuNnedOBTBfRkngA+uwJbPA6/dPQf71AItesDuB3NQY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=r2H5ihuSQ2Tix3j3i0Qx3h5A1G2BmO25RNvZCbR49C1JYPoGXkElPPjPqlhfo1ZcN
+         M9sTV4KprAeRmQXEY+ALI5Fz1wz3TJZmAm6HMxE8N1BTLYxxAZvtuHDp6mMOngkpad
+         8s3Ta5qEpOX0nF1+1XWTPNa+8XtOtQqFSZDNJp+0Y9gObhfTzsOcsFux4EJqz3D69o
+         VCHS2Padnjk0Bcka/gtsrwMclHgPmdte95W0JNb0cGK1P1F88kv+fvlYuuJMdczvL0
+         RQq1hEveF0mwiEDYTPFQWqH/TatDo8I6mc0nD/z9J0E4wiQpVrvLunKV02yWZhJ77q
+         V6KvQJZqSUo+Q==
+Date:   Wed, 4 Jan 2023 23:07:19 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Anup Patel <apatel@ventanamicro.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 01/11] dt-bindings: usb: Add device id for Genesys
- Logic hub controller
-Message-ID: <Y7YDwJX6aqa8vbQK@google.com>
-References: <20221228100321.15949-1-linux.amoon@gmail.com>
- <20221228100321.15949-2-linux.amoon@gmail.com>
- <ef20a7dfa027f1a5a24a515e347af10c06a4da85.camel@icenowy.me>
- <CANAwSgSJ1SQXUovgM6FHUozr46C_CogLaAD4gf4ANNHXoav6ag@mail.gmail.com>
+        Atish Patra <atishp@atishpatra.org>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/9] RISC-V: Add AIA related CSR defines
+Message-ID: <Y7YGp/7ufyRPhkwg@spud>
+References: <20230103141409.772298-1-apatel@ventanamicro.com>
+ <20230103141409.772298-2-apatel@ventanamicro.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="jxzId6Yfk8IaDWIM"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CANAwSgSJ1SQXUovgM6FHUozr46C_CogLaAD4gf4ANNHXoav6ag@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230103141409.772298-2-apatel@ventanamicro.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 28, 2022 at 03:59:17PM +0530, Anand Moon wrote:
-> Hi Icenowy,
-> 
-> Thanks for the review comments
-> 
-> On Wed, 28 Dec 2022 at 15:38, Icenowy Zheng <uwu@icenowy.me> wrote:
-> >
-> > 在 2022-12-28星期三的 10:03 +0000，Anand Moon写道：
-> > > Add usb hub device id for Genesys Logic, Inc. GL852G-OHG Hub USB 2.0
-> > > root hub and Genesys Logic, Inc. GL3523-QFN76 USB 3.1 root hub.
 
-nit: QFN 76 is one of the package options of the GL3523, I expect this
-binding to be applicable as well for other GL3523 variants, so I'd suggest
-to drop the suffix. Not sure what 'OHG' stands for, the Genesys website
-only lists a GL852G hub with different package types (none of them 'OHG'),
-so I'd say drop the suffix unless it is known that 'OHG' variant uses
-a different product id than other GL852G variants
+--jxzId6Yfk8IaDWIM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> > >
-> > > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/usb/genesys,gl850g.yaml | 2 ++
-> > >  1 file changed, 2 insertions(+)
-> > >
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > > b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > > index a9f831448cca..db009f3ef438 100644
-> > > --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > > +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > > @@ -16,6 +16,8 @@ properties:
-> > >    compatible:
-> > >      enum:
-> > >        - usb5e3,608
-> > > +      - genesys,usb5e3,610
-> > > +      - genesys,usb5e3,620
-> >
-> > I don't think genesys, is needed here because usb5e3 means USB VID
-> > 0x05e3, which is already linked to Genesys Logic.
-> >
-> 
-> Ok, I added this as genesys, is it part of the manufacturer or vendor name
-> which is most commonly used for adding vendor-specific compatible strings.
+Hey Anup!
 
-That doesn't follow the generic USB binding, please drop 'genesys,'.
+On Tue, Jan 03, 2023 at 07:44:01PM +0530, Anup Patel wrote:
+> The RISC-V AIA specification improves handling per-HART local interrupts
+> in a backward compatible manner. This patch adds defines for new RISC-V
+> AIA CSRs.
+>=20
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> ---
+>  arch/riscv/include/asm/csr.h | 92 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 92 insertions(+)
+>=20
+> diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
+> index 0e571f6483d9..4e1356bad7b2 100644
+> --- a/arch/riscv/include/asm/csr.h
+> +++ b/arch/riscv/include/asm/csr.h
+> @@ -73,7 +73,10 @@
+>  #define IRQ_S_EXT		9
+>  #define IRQ_VS_EXT		10
+>  #define IRQ_M_EXT		11
+> +#define IRQ_S_GEXT		12
+>  #define IRQ_PMU_OVF		13
+> +#define IRQ_LOCAL_MAX		(IRQ_PMU_OVF + 1)
+> +#define IRQ_LOCAL_MASK		((_AC(1, UL) << IRQ_LOCAL_MAX) - 1)
+> =20
+>  /* Exception causes */
+>  #define EXC_INST_MISALIGNED	0
+> @@ -156,6 +159,26 @@
+>  				 (_AC(1, UL) << IRQ_S_TIMER) | \
+>  				 (_AC(1, UL) << IRQ_S_EXT))
+> =20
+> +/* AIA CSR bits */
+> +#define TOPI_IID_SHIFT		16
+> +#define TOPI_IID_MASK		0xfff
+> +#define TOPI_IPRIO_MASK		0xff
+> +#define TOPI_IPRIO_BITS		8
+> +
+> +#define TOPEI_ID_SHIFT		16
+> +#define TOPEI_ID_MASK		0x7ff
+> +#define TOPEI_PRIO_MASK		0x7ff
+> +
+> +#define ISELECT_IPRIO0		0x30
+> +#define ISELECT_IPRIO15		0x3f
+> +#define ISELECT_MASK		0x1ff
+> +
+> +#define HVICTL_VTI		0x40000000
+> +#define HVICTL_IID		0x0fff0000
+> +#define HVICTL_IID_SHIFT	16
+> +#define HVICTL_IPRIOM		0x00000100
+> +#define HVICTL_IPRIO		0x000000ff
 
-> > In addition, the control logic of these two hubs are needed to be
-> > verified.
-> 
-> We were using gpio-hog to reset the USB hub, so now switch to USB onboard hub
-> 
-> >
-> > And what's the status of the companion hub of the USB3 hub? Is it
-> > really a USB3-only hub, or is its USB2 part just equal to another USB3
-> > hub?
-> >
-> usb5e3,610 is USB 2.0 port hub present on Odroid C1 and Odroid C2 board
-> 
-> usb5e3,620 is USB 3.1 port hub present on Odroid N2.
+Why not name these as masks, like you did for the other masks?
+Also, the mask/shift defines appear inconsistent. TOPI_IID_MASK is
+intended to be used post-shift AFAICT, but HVICTL_IID_SHIFT is intended
+to be used *pre*-shift.
+Some consistency in naming and function would be great.
 
-Like Icenowy I would expect the GL3523 to provide also a 2.0 hub.
 
-What is the output of 'lsusb' on the Odroid N2?
+> +/* Machine-Level High-Half CSRs (AIA) */
+> +#define CSR_MIDELEGH		0x313
+
+I feel like I could find Midelegh in an Irish dictionary lol
+Anyways, I went through the CSRs and they do all seem correct.
+
+Thanks,
+Conor.
+
+
+
+--jxzId6Yfk8IaDWIM
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY7YGpwAKCRB4tDGHoIJi
+0lRTAP4wNZdKZZX9vvp6BuQN+P/gjGLcQs5KY25lQJK75lJ+yQEAgXVYUM3O80Dq
+NEcF2/9not7ySdC5sv0F4cG1oEoruAg=
+=NNSd
+-----END PGP SIGNATURE-----
+
+--jxzId6Yfk8IaDWIM--
