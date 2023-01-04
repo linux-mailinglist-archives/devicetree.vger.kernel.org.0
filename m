@@ -2,384 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43A3565D11D
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 12:03:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1ADBF65D128
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 12:03:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239095AbjADLC7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 06:02:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38374 "EHLO
+        id S238994AbjADLCp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 06:02:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233970AbjADLCV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 06:02:21 -0500
-Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C23415FCF;
-        Wed,  4 Jan 2023 03:02:13 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sendonly@marcansoft.com)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id AB58841DF4;
-        Wed,  4 Jan 2023 11:02:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
-        t=1672830132; bh=1VT/bUTM636oNejRj1jPw5QcNLDJ7CkhjPTXz4L78gU=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=yRgDbNQ089cDz0JJP4zSHeD28X2IFKh0GUxnQ71tH/mPqKjX8IVN3l8PJnFnK3Fb8
-         lvmK3/fRYgzvEXRxHH2U0AJxNEF0qOpoRpJHcx4NaJzf/S77jHIM7KayDK6wWz1Cxn
-         5eOwiF+ipYSgkf0bPfncWRMEFHoE2mE/mHktRoxgj26c2DOrMqhtA4+igiiOhlo0Zw
-         ve498pssr7apc2N3RlPUhEL0uHitARpocXffq6mg8f67VGxieKK9A0FSDNZjZLvm8w
-         WT6vhG8kqPcGhVfxdR2KPCuHsVBaFTgpRwg3TetGBp3AFNt+cjOotquXEuFKNJnump
-         AMVzLT9BrGNhw==
-From:   Hector Martin <marcan@marcan.st>
-To:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>
-Cc:     Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Janne Grunau <j@jannau.net>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, iommu@lists.linux.dev,
-        asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Hector Martin <marcan@marcan.st>
-Subject: [PATCH 7/7] iommu: dart: Add t8110 DART support
-Date:   Wed,  4 Jan 2023 20:00:13 +0900
-Message-Id: <20230104110013.24738-8-marcan@marcan.st>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20230104110013.24738-1-marcan@marcan.st>
-References: <20230104110013.24738-1-marcan@marcan.st>
+        with ESMTP id S239043AbjADLCQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 06:02:16 -0500
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2099.outbound.protection.outlook.com [40.107.22.99])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5605313D66
+        for <devicetree@vger.kernel.org>; Wed,  4 Jan 2023 03:01:55 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WBmQDFV9n2RtJbyOZfItheZlWIWGUD/m3yUAYmvfTKJ7KoZLswtpyln0fMYFO+zRjPPIV5x7VyA4ePdXpfw1J/DqXtI5M2mFxz5dKsgIwcR1msO++39BS+C6tLP2DzhfgbKunDIfZmSR4jrJBvfqmGeeVJAbFQIkwiEcUOUtfCqSOQzY01e0TiiElJ4epcMqLHgTU2LaNgTAOc9BXM7f5EYFMnUPnOyGBW3BZHAz4Jlkv411KCQwmbPS/o5Qfgsp1wzGmRGsWEC+VvQmAbkmAtigSpGQQG6SCL+JBW7cMDC+QoaOKx30PrzNXr5zdGy1X5ARM8EAO6kLumlXYkTvIg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HZ32XRkBmM1aJ1PKN9f/sq+o/wUV+NIBjJKlaJ6gpP8=;
+ b=GvFdRhLqWBpruHs9CPkZeNyfRm+YUuKknrABe9AODz+vNfQtMw53ZcfIy9B8YPHfu9EVI25WqzedjZcHSJoOqtxMai1eIKo7EqWp/Dwo8rFxKrH1Xi2Ekcm1NeLxw3oHpO/GWGxGFQUOElV/Np6SIcOrHq9F0Wig/Pw4nGN/cp7Ryytr2RsX8sBhIy9xe+6m23SlnNTGqo0/DYgr08fE2C3w6OPJeWzNkjF7247Wj4SBlVQ6FyfFgDnL6cD7h6qLdlnCxjjG9dLYGwoeb0a9QiPIxmEygC2hOziJrxcH+iZimQXj7JLzLAhzGC1GGztbTrMwwzJHUndDbjI2JFOKdw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 193.8.40.94) smtp.rcpttodomain=pengutronix.de
+ smtp.mailfrom=leica-geosystems.com; dmarc=pass (p=reject sp=reject pct=100)
+ action=none header.from=leica-geosystems.com; dkim=none (message not signed);
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=leica-geosystems.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HZ32XRkBmM1aJ1PKN9f/sq+o/wUV+NIBjJKlaJ6gpP8=;
+ b=fU2rZdX9fsznoYB3tG1z0TH8j8rPb99dwF1K+gTP9WNOkErcPutCDMyIADJ341Pw/WB8GzZHVNxtrVxKcgqN0O/lQZmUYwjWkknxmtgYn1EdjYLOGkrLYTniyQYksPDA4hmDvaWTPt+EIDwWAfHVpWzfdWbK5N4m3VevF2PKHQM=
+Received: from AS9PR05CA0024.eurprd05.prod.outlook.com (2603:10a6:20b:488::23)
+ by AS4PR06MB8568.eurprd06.prod.outlook.com (2603:10a6:20b:4eb::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.19; Wed, 4 Jan
+ 2023 11:01:53 +0000
+Received: from AM0EUR02FT040.eop-EUR02.prod.protection.outlook.com
+ (2603:10a6:20b:488:cafe::df) by AS9PR05CA0024.outlook.office365.com
+ (2603:10a6:20b:488::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.14 via Frontend
+ Transport; Wed, 4 Jan 2023 11:01:53 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 193.8.40.94)
+ smtp.mailfrom=leica-geosystems.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=leica-geosystems.com;
+Received-SPF: Pass (protection.outlook.com: domain of leica-geosystems.com
+ designates 193.8.40.94 as permitted sender) receiver=protection.outlook.com;
+ client-ip=193.8.40.94; helo=aherlnxbspsrv01.lgs-net.com; pr=C
+Received: from aherlnxbspsrv01.lgs-net.com (193.8.40.94) by
+ AM0EUR02FT040.mail.protection.outlook.com (10.13.54.113) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5986.14 via Frontend Transport; Wed, 4 Jan 2023 11:01:52 +0000
+From:   Johannes Schneider <johannes.schneider@leica-geosystems.com>
+To:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, ob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Johannes Schneider <johannes.schneider@leica-geosystems.com>
+Subject: [PATCH 0/1][v2] pmic on imx8mm
+Date:   Wed,  4 Jan 2023 12:01:44 +0100
+Message-Id: <20230104110145.1432309-1-johannes.schneider@leica-geosystems.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM0EUR02FT040:EE_|AS4PR06MB8568:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: feaba5d0-1c50-4118-0233-08daee431640
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: yZ9425IWCheHygVoE6//inrhIaxlbHkhbKqWSjR/fnPUOKdKLmZtmF+LCKB1gslKUrOj9jbo+RkOYLCcXT2L5zYrWJ8KsbGTUhIrAMjBFGG/woWuVxQWB9j9cIx7+WYB368H8EUg9r0QENn7l5e52VRI1BMHJvziXWyrjY4qVndLgGl1phWF7jSXabMIu4ozUMxyW060S6+43iZhbzRuv03Jsu/H6tg6OplfseOXpdRuPhJG7uiBYc+AWWcqjyehaFfCs6vPpodQfhhoEp+xEv1z6RpEYbhBREKKHLUD+VmDQI5MBkTaDsdU0+sRW/78S79yrDlDv2irL05be6+7GnZvwV5mzztrPo5jBUYLK6aNxQnoHL06YxOGRilguwbAbNt9rzKu3cexdaRJMaqbPGMpmlJTIb5XN/OaH6ejIsE9zr9tqum5erG8l3ZPi0gTXvpoqUlM5wkKeNhzu995Vu+XnSL8ihlaZzr5BeeScmf8qc/J+35CuHV+qmiorpOCtnrQjMsg0l16iYqC6eWb9nTod1lPGX0g1YWvY0iKAuCm4Bn1loqkJL2gZerrISbzkWWqdHqFAQajZObrBuDCEgsfEQXj7bo5Xjar5SJb93U3ija/p+NA01lE/+d2AtB/EIXBirQ308eO0DTRqiPA14BMStNNPAxN4PhVY83pf0BTxOMaFAvmY+W2zKsV8Bnb627xeNxN02kEE/BIliBYGjuaykTybwCprEeagxmHREI=
+X-Forefront-Antispam-Report: CIP:193.8.40.94;CTRY:CH;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:aherlnxbspsrv01.lgs-net.com;PTR:ahersrvdom50.leica-geosystems.com;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(376002)(136003)(346002)(396003)(451199015)(46966006)(36840700001)(40470700004)(70206006)(8676002)(70586007)(956004)(81166007)(4326008)(1076003)(36756003)(2616005)(41300700001)(47076005)(336012)(40460700003)(36736006)(316002)(110136005)(2906002)(356005)(118246002)(9316004)(86362001)(36860700001)(4744005)(82310400005)(82740400003)(5660300002)(44832011)(40480700001)(6486002)(8936002)(6506007)(478600001)(186003)(6512007)(26005)(6666004)(107886003)(32563001);DIR:OUT;SFP:1102;
+X-OriginatorOrg: leica-geosystems.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jan 2023 11:01:52.8141
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: feaba5d0-1c50-4118-0233-08daee431640
+X-MS-Exchange-CrossTenant-Id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a;Ip=[193.8.40.94];Helo=[aherlnxbspsrv01.lgs-net.com]
+X-MS-Exchange-CrossTenant-AuthSource: AM0EUR02FT040.eop-EUR02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR06MB8568
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that we have the driver properly parameterized, we can add support
-for T8110 DARTs. These DARTs drop the multiple TTBRs (which only make
-sense with legacy 4K page platforms) and instead add support for new
-features and more stream IDs. The register layout is different, but the
-pagetable format is the same as T6000.
+current(?) imx8mm EVKs come with a different PMIC: used to be
+"rohm,bd71847", which is now replaced by "nxp,pca9450a" on the LPDDR4
+variant at least the register settings etc where "backported" from
+current u-boot sources for the EVK
 
-Signed-off-by: Hector Martin <marcan@marcan.st>
----
- drivers/iommu/apple-dart.c | 206 ++++++++++++++++++++++++++++++++++++-
- 1 file changed, 201 insertions(+), 5 deletions(-)
+Note: not sure if the changes should go in the ddr4-evk.dts or elsewhere;
+what about backwards compatibility? = users/holders of the EVKs with the bd71847 IC?
 
-diff --git a/drivers/iommu/apple-dart.c b/drivers/iommu/apple-dart.c
-index 396da83f2f9e..e9cbdb45448c 100644
---- a/drivers/iommu/apple-dart.c
-+++ b/drivers/iommu/apple-dart.c
-@@ -85,6 +85,62 @@
- #define DART_T8020_TTBR_ADDR_OFF 0
- #define DART_T8020_TTBR_SHIFT 12
- 
-+/* T8110 registers */
-+
-+#define DART_T8110_PARAMS3 0x08
-+#define DART_T8110_PARAMS3_PA_WIDTH GENMASK(29, 24)
-+#define DART_T8110_PARAMS3_VA_WIDTH GENMASK(21, 16)
-+#define DART_T8110_PARAMS3_VER_MAJ GENMASK(15, 8)
-+#define DART_T8110_PARAMS3_VER_MIN GENMASK(7, 0)
-+
-+#define DART_T8110_PARAMS4 0x0c
-+#define DART_T8110_PARAMS4_NUM_CLIENTS GENMASK(24, 16)
-+#define DART_T8110_PARAMS4_NUM_SIDS GENMASK(8, 0)
-+
-+#define DART_T8110_TLB_CMD              0x80
-+#define DART_T8110_TLB_CMD_BUSY         BIT(31)
-+#define DART_T8110_TLB_CMD_OP           GENMASK(10, 8)
-+#define DART_T8110_TLB_CMD_OP_FLUSH_ALL 0
-+#define DART_T8110_TLB_CMD_OP_FLUSH_SID 1
-+#define DART_T8110_TLB_CMD_STREAM       GENMASK(7, 0)
-+
-+#define DART_T8110_ERROR 0x100
-+#define DART_T8110_ERROR_STREAM GENMASK(27, 20)
-+#define DART_T8110_ERROR_CODE GENMASK(14, 0)
-+#define DART_T8110_ERROR_FLAG BIT(31)
-+
-+#define DART_T8110_ERROR_MASK 0x104
-+
-+#define DART_T8110_ERROR_READ_FAULT BIT(4)
-+#define DART_T8110_ERROR_WRITE_FAULT BIT(3)
-+#define DART_T8110_ERROR_NO_PTE BIT(3)
-+#define DART_T8110_ERROR_NO_PMD BIT(2)
-+#define DART_T8110_ERROR_NO_PGD BIT(1)
-+#define DART_T8110_ERROR_NO_TTBR BIT(0)
-+
-+#define DART_T8110_ERROR_ADDR_LO 0x170
-+#define DART_T8110_ERROR_ADDR_HI 0x174
-+
-+#define DART_T8110_PROTECT 0x200
-+#define DART_T8110_UNPROTECT 0x204
-+#define DART_T8110_PROTECT_LOCK 0x208
-+#define DART_T8110_PROTECT_TTBR_TCR BIT(0)
-+
-+#define DART_T8110_ENABLE_STREAMS  0xc00
-+#define DART_T8110_DISABLE_STREAMS 0xc20
-+
-+#define DART_T8110_TCR                  0x1000
-+#define DART_T8110_TCR_REMAP            GENMASK(11, 8)
-+#define DART_T8110_TCR_REMAP_EN         BIT(7)
-+#define DART_T8110_TCR_BYPASS_DAPF      BIT(2)
-+#define DART_T8110_TCR_BYPASS_DART      BIT(1)
-+#define DART_T8110_TCR_TRANSLATE_ENABLE BIT(0)
-+
-+#define DART_T8110_TTBR       0x1400
-+#define DART_T8110_TTBR_VALID BIT(0)
-+#define DART_T8110_TTBR_ADDR_OFF 2
-+#define DART_T8110_TTBR_SHIFT 14
-+
- #define DART_TCR(dart, sid) ((dart)->hw->tcr + ((sid) << 2))
- 
- #define DART_TTBR(dart, sid, idx) ((dart)->hw->ttbr + \
-@@ -93,7 +149,14 @@
- 
- struct apple_dart_stream_map;
- 
-+enum dart_type {
-+	DART_T8020,
-+	DART_T6000,
-+	DART_T8110,
-+};
-+
- struct apple_dart_hw {
-+	enum dart_type type;
- 	irqreturn_t (*irq_handler)(int irq, void *dev);
- 	int (*invalidate_tlb)(struct apple_dart_stream_map *stream_map);
- 
-@@ -150,6 +213,8 @@ struct apple_dart {
- 
- 	spinlock_t lock;
- 
-+	u32 ias;
-+	u32 oas;
- 	u32 pgsize;
- 	u32 num_streams;
- 	u32 supports_bypass : 1;
-@@ -331,6 +396,44 @@ apple_dart_t8020_hw_stream_command(struct apple_dart_stream_map *stream_map,
- 	return 0;
- }
- 
-+static int
-+apple_dart_t8110_hw_tlb_command(struct apple_dart_stream_map *stream_map,
-+				u32 command)
-+{
-+	struct apple_dart *dart = stream_map->dart;
-+	unsigned long flags;
-+	int ret = 0;
-+	int sid;
-+
-+	spin_lock_irqsave(&dart->lock, flags);
-+
-+	for_each_set_bit(sid, stream_map->sidmap, dart->num_streams) {
-+		u32 val = FIELD_PREP(DART_T8110_TLB_CMD_OP, command) |
-+			FIELD_PREP(DART_T8110_TLB_CMD_STREAM, sid);
-+		writel(val, dart->regs + DART_T8110_TLB_CMD);
-+
-+		ret = readl_poll_timeout_atomic(
-+			dart->regs + DART_T8110_TLB_CMD, val,
-+			!(val & DART_T8110_TLB_CMD_BUSY), 1,
-+			DART_STREAM_COMMAND_BUSY_TIMEOUT);
-+
-+		if (ret)
-+			break;
-+
-+	}
-+
-+	spin_unlock_irqrestore(&dart->lock, flags);
-+
-+	if (ret) {
-+		dev_err(stream_map->dart->dev,
-+			"busy bit did not clear after command %x for stream %d\n",
-+			command, sid);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
- static int
- apple_dart_t8020_hw_invalidate_tlb(struct apple_dart_stream_map *stream_map)
- {
-@@ -338,6 +441,13 @@ apple_dart_t8020_hw_invalidate_tlb(struct apple_dart_stream_map *stream_map)
- 		stream_map, DART_T8020_STREAM_COMMAND_INVALIDATE);
- }
- 
-+static int
-+apple_dart_t8110_hw_invalidate_tlb(struct apple_dart_stream_map *stream_map)
-+{
-+	return apple_dart_t8110_hw_tlb_command(
-+		stream_map, DART_T8110_TLB_CMD_OP_FLUSH_SID);
-+}
-+
- static int apple_dart_hw_reset(struct apple_dart *dart)
- {
- 	u32 config;
-@@ -364,6 +474,9 @@ static int apple_dart_hw_reset(struct apple_dart *dart)
- 	/* clear any pending errors before the interrupt is unmasked */
- 	writel(readl(dart->regs + dart->hw->error), dart->regs + dart->hw->error);
- 
-+	if (dart->hw->type == DART_T8110)
-+		writel(0,  dart->regs + DART_T8110_ERROR_MASK);
-+
- 	return dart->hw->invalidate_tlb(&stream_map);
- }
- 
-@@ -479,8 +592,8 @@ static int apple_dart_finalize_domain(struct iommu_domain *domain,
- 
- 	pgtbl_cfg = (struct io_pgtable_cfg){
- 		.pgsize_bitmap = dart->pgsize,
--		.ias = 32,
--		.oas = dart->hw->oas,
-+		.ias = dart->ias,
-+		.oas = dart->oas,
- 		.coherent_walk = 1,
- 		.iommu_dev = dart->dev,
- 	};
-@@ -494,7 +607,7 @@ static int apple_dart_finalize_domain(struct iommu_domain *domain,
- 
- 	domain->pgsize_bitmap = pgtbl_cfg.pgsize_bitmap;
- 	domain->geometry.aperture_start = 0;
--	domain->geometry.aperture_end = DMA_BIT_MASK(32);
-+	domain->geometry.aperture_end = DMA_BIT_MASK(dart->ias);
- 	domain->geometry.force_aperture = true;
- 
- 	dart_domain->finalized = true;
-@@ -881,10 +994,49 @@ static irqreturn_t apple_dart_t8020_irq(int irq, void *dev)
- 	return IRQ_HANDLED;
- }
- 
-+static irqreturn_t apple_dart_t8110_irq(int irq, void *dev)
-+{
-+	struct apple_dart *dart = dev;
-+	const char *fault_name = NULL;
-+	u32 error = readl(dart->regs + DART_T8110_ERROR);
-+	u32 error_code = FIELD_GET(DART_T8110_ERROR_CODE, error);
-+	u32 addr_lo = readl(dart->regs + DART_T8110_ERROR_ADDR_LO);
-+	u32 addr_hi = readl(dart->regs + DART_T8110_ERROR_ADDR_HI);
-+	u64 addr = addr_lo | (((u64)addr_hi) << 32);
-+	u8 stream_idx = FIELD_GET(DART_T8110_ERROR_STREAM, error);
-+
-+	if (!(error & DART_T8110_ERROR_FLAG))
-+		return IRQ_NONE;
-+
-+	/* there should only be a single bit set but let's use == to be sure */
-+	if (error_code == DART_T8110_ERROR_READ_FAULT)
-+		fault_name = "READ FAULT";
-+	else if (error_code == DART_T8110_ERROR_WRITE_FAULT)
-+		fault_name = "WRITE FAULT";
-+	else if (error_code == DART_T8110_ERROR_NO_PTE)
-+		fault_name = "NO PTE FOR IOVA";
-+	else if (error_code == DART_T8110_ERROR_NO_PMD)
-+		fault_name = "NO PMD FOR IOVA";
-+	else if (error_code == DART_T8110_ERROR_NO_PGD)
-+		fault_name = "NO PGD FOR IOVA";
-+	else if (error_code == DART_T8110_ERROR_NO_TTBR)
-+		fault_name = "NO TTBR FOR IOVA";
-+	else
-+		fault_name = "unknown";
-+
-+	dev_err_ratelimited(
-+		dart->dev,
-+		"translation fault: status:0x%x stream:%d code:0x%x (%s) at 0x%llx",
-+		error, stream_idx, error_code, fault_name, addr);
-+
-+	writel(error, dart->regs + DART_T8110_ERROR);
-+	return IRQ_HANDLED;
-+}
-+
- static int apple_dart_probe(struct platform_device *pdev)
- {
- 	int ret;
--	u32 dart_params[2];
-+	u32 dart_params[4];
- 	struct resource *res;
- 	struct apple_dart *dart;
- 	struct device *dev = &pdev->dev;
-@@ -924,7 +1076,22 @@ static int apple_dart_probe(struct platform_device *pdev)
- 	dart->pgsize = 1 << FIELD_GET(DART_PARAMS1_PAGE_SHIFT, dart_params[0]);
- 	dart->supports_bypass = dart_params[1] & DART_PARAMS2_BYPASS_SUPPORT;
- 
--	dart->num_streams = dart->hw->max_sid_count;
-+	switch (dart->hw->type) {
-+	case DART_T8020:
-+	case DART_T6000:
-+		dart->ias = 32;
-+		dart->oas = dart->hw->oas;
-+		dart->num_streams = dart->hw->max_sid_count;
-+		break;
-+
-+	case DART_T8110:
-+		dart_params[2] = readl(dart->regs + DART_T8110_PARAMS3);
-+		dart_params[3] = readl(dart->regs + DART_T8110_PARAMS4);
-+		dart->ias = FIELD_GET(DART_T8110_PARAMS3_VA_WIDTH, dart_params[2]);
-+		dart->oas = FIELD_GET(DART_T8110_PARAMS3_PA_WIDTH, dart_params[2]);
-+		dart->num_streams = FIELD_GET(DART_T8110_PARAMS4_NUM_SIDS, dart_params[3]);
-+		break;
-+	}
- 
- 	if (dart->num_streams > DART_MAX_STREAMS) {
- 		dev_err(&pdev->dev, "Too many streams (%d > %d)\n",
-@@ -987,6 +1154,7 @@ static int apple_dart_remove(struct platform_device *pdev)
- }
- 
- static const struct apple_dart_hw apple_dart_hw_t8103 = {
-+	.type = DART_T8020,
- 	.irq_handler = apple_dart_t8020_irq,
- 	.invalidate_tlb = apple_dart_t8020_hw_invalidate_tlb,
- 	.oas = 36,
-@@ -1011,6 +1179,7 @@ static const struct apple_dart_hw apple_dart_hw_t8103 = {
- 	.ttbr_count = 4,
- };
- static const struct apple_dart_hw apple_dart_hw_t6000 = {
-+	.type = DART_T6000,
- 	.irq_handler = apple_dart_t8020_irq,
- 	.invalidate_tlb = apple_dart_t8020_hw_invalidate_tlb,
- 	.oas = 42,
-@@ -1035,6 +1204,32 @@ static const struct apple_dart_hw apple_dart_hw_t6000 = {
- 	.ttbr_count = 4,
- };
- 
-+static const struct apple_dart_hw apple_dart_hw_t8110 = {
-+	.type = DART_T8110,
-+	.irq_handler = apple_dart_t8110_irq,
-+	.invalidate_tlb = apple_dart_t8110_hw_invalidate_tlb,
-+	.fmt = APPLE_DART2,
-+	.max_sid_count = 256,
-+
-+	.enable_streams = DART_T8110_ENABLE_STREAMS,
-+	.disable_streams = DART_T8110_DISABLE_STREAMS,
-+	.lock = DART_T8110_PROTECT,
-+	.lock_bit = DART_T8110_PROTECT_TTBR_TCR,
-+
-+	.error = DART_T8110_ERROR,
-+
-+	.tcr = DART_T8110_TCR,
-+	.tcr_enabled = DART_T8110_TCR_TRANSLATE_ENABLE,
-+	.tcr_disabled = 0,
-+	.tcr_bypass = DART_T8110_TCR_BYPASS_DAPF | DART_T8110_TCR_BYPASS_DART,
-+
-+	.ttbr = DART_T8110_TTBR,
-+	.ttbr_valid = DART_T8110_TTBR_VALID,
-+	.ttbr_addr_off = DART_T8110_TTBR_ADDR_OFF,
-+	.ttbr_shift = DART_T8110_TTBR_SHIFT,
-+	.ttbr_count = 1,
-+};
-+
- static __maybe_unused int apple_dart_suspend(struct device *dev)
- {
- 	struct apple_dart *dart = dev_get_drvdata(dev);
-@@ -1076,6 +1271,7 @@ DEFINE_SIMPLE_DEV_PM_OPS(apple_dart_pm_ops, apple_dart_suspend, apple_dart_resum
- 
- static const struct of_device_id apple_dart_of_match[] = {
- 	{ .compatible = "apple,t8103-dart", .data = &apple_dart_hw_t8103 },
-+	{ .compatible = "apple,t8110-dart", .data = &apple_dart_hw_t8110 },
- 	{ .compatible = "apple,t6000-dart", .data = &apple_dart_hw_t6000 },
- 	{},
- };
+changes with V2:
+	reshuffle common nodes into the imx8mm-evk.dtsi, and only keeping the pmic related parts separate
+
+Johannes Schneider (1):
+  arm64: dts: imx8mm: set PCA9450a as PMIC
+
+ .../boot/dts/freescale/imx8mm-ddr4-evk.dts    | 124 ++++++++++++++++++
+ 1 file changed, 124 insertions(+)
+
 -- 
-2.35.1
+2.25.1
 
