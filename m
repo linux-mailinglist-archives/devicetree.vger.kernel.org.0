@@ -2,107 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 010C465D269
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 13:21:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A57265D2EA
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 13:40:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239260AbjADMVD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 07:21:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47198 "EHLO
+        id S239229AbjADMkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 07:40:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239197AbjADMU0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 07:20:26 -0500
+        with ESMTP id S239234AbjADMkP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 07:40:15 -0500
 Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B74EA3B928;
-        Wed,  4 Jan 2023 04:19:11 -0800 (PST)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id 1AFD75C016C;
-        Wed,  4 Jan 2023 07:19:08 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Wed, 04 Jan 2023 07:19:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm2; t=1672834748; x=1672921148; bh=PKp//PUcPl
-        ATzvWVd6Xv2r7lr60JNRd0OJM9+iZsPUo=; b=TzdKUjktPVF29RGzt79d4JMhWU
-        RLeXQbUAmaZIfjooDAmWrX/xV3HlmYGb6w99qWzC1jsXWPlkbXJGbGjbmbispKAL
-        jkWOi+zyoK9Go03dJ7ZZXn6P9HaJxW/lL6ViMABml566QZe/I5WyVJgZHBDKLoDP
-        8BbWhji+6KtVJ+qX53VyK0kEB4I9GyovHPo+j8AXSa9/xw17g2QrVM5brKqJPNQH
-        0cISFbbFtyL6lw8BNnJMw74JAiHU6VHMl4WWyaJEdzFEpdmv12t25X+zucpvpY7m
-        b4gclV3TpHtk/niVI+jQHX9JHxwSuKqlh8/5Qx6LdKA/MqqHKM/BTfBxQD2A==
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ADCB17049
+        for <devicetree@vger.kernel.org>; Wed,  4 Jan 2023 04:40:14 -0800 (PST)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.nyi.internal (Postfix) with ESMTP id 84FCB5C01B4;
+        Wed,  4 Jan 2023 07:40:13 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Wed, 04 Jan 2023 07:40:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm3; t=1672836013; x=
+        1672922413; bh=gdQGu+69jkJCD5m36m0FsHULAMVy6bJCZt8Vjz//wA0=; b=b
+        o8GBFbKrBcDEzrgnYODD4e+7NvnX1GZYZUEwsOngnIVUbKqIgtr7AACOw1vQeZry
+        tz5dqLZCJg0lK5cBUZW4ufV2lR9kD2JtC1Jd1ZCYabVIJ2TYSUQquaDf8+DTNsZ4
+        OCaWn+oAET88j2A09/CBbK++mesngUyzoL3VQEwEshUYcwynjSeMYf2E8fic0mj+
+        138FSGfyeIyD0rnpZqruCc8ShWEvxD52VRuDps3ei5F6oAbbY9yFnC7oRkyVGmxt
+        SJbVJtaEhf2oTLK5sJNqQ1LZ+oKfIOqyUGaqqUT8eujPwmKIp6DAeS+k81RlfLCp
+        Cm3FqYO8QhYd5OtMtahuQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm2; t=1672834748; x=1672921148; bh=PKp//PUcPlATzvWVd6Xv2r7lr60J
-        NRd0OJM9+iZsPUo=; b=RxKXxfp863lPw897yGPAfp3FxiKDhweFKNrdC1umzkio
-        wiSZvG2aggiTGe97fVKZORNaDSKYfyQ+MBaVk++UGQlJ4Q1oTdewas0y//oz0Djb
-        pQ1YOofViasq/pIbiXh4YZU9Wtwl8mPaQf+LmbAFFUmwFXELY0vl00yXWi63Y0GQ
-        lCt4T6Pzn8ZXSC0aJ62d8kPMqvfstftfXQlSaDiNo1YHZm8Jewc7joE4heocmfni
-        WYAI3PXCwGtWfqnuqkQTdBV1sToW73kiUB4f7OkJaziJ78hlEMk9ERbEJ6Ze0Mlr
-        +9IMM3ou2tPMuU88lldIEShNe8/HTFdWZS8Ve978Tw==
-X-ME-Sender: <xms:um61Y508ghAtjmy6Hhz68qG1SmugkRepMcCLDP3X_bX2-VnJtF5cNQ>
-    <xme:um61YwH5mlh-FwnxnLhiLK2JSOb50HcqBcHLLaRD8_gemvQrF46wMa3HHqN5NCuqP
-    WsDVUIISyJRqP5USpM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrjeeigdeflecutefuodetggdotefrodftvf
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1672836013; x=
+        1672922413; bh=gdQGu+69jkJCD5m36m0FsHULAMVy6bJCZt8Vjz//wA0=; b=Y
+        oecdIStarLJpMj4nNaSjAXRYuMhkhS4soe26f0V6suGDoE769kIp1htRMrF7DQsh
+        +nkkEBQ2bHPN1vO6g8OmR/JfiR3tUevIN/mkbnw6+XnGAixMNygjfWwXfR+yLB8s
+        AUt0SMCJyS+8DwXviw/gqPt2GajcsA/5bfLthYs/wbXa1ihwD6x0vr+DMHVx1ZSX
+        jiRzxVJWhoPy7KrHSB0y6rPcFRV/e6A+J77z1j6tbyBy/XWA4e+nznz/KKC2Uc8J
+        yBBMgwE3z79ywE7nKyGkjPfoFifaNgWgGOCGbbmeTU2h6Gs/OnrWBq5Cq3UYyH80
+        X7fjKV3R17x4smlMDNO/g==
+X-ME-Sender: <xms:rXO1Y959pzKVudUeDUsD8CEA_TkwckhxEKzbDj_6R4fD_un-U3rk8g>
+    <xme:rXO1Y64nBOHa8HFAeyluzvzZomVH52uc375DU2Sjyh0hQ1fo1DUiT9-UMJ-n4WGIZ
+    uuDq-TQE5hxMhImcBE>
+X-ME-Received: <xmr:rXO1Y0eRM_o2-_78p4VmxsEbuRRLQuOxvBubiwWtROe7JDS6TporbB7ooyzFxxm0cbs0jswzrAqYOZ1Cpm0u-vXLPDelI8xB0ucnz2RUaqAbDg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrjeeigdegvdcutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
-    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
-    gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
-    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
-    hnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:um61Y55D_1dKvjVnaRGEa-pdQMDXFxz4zM0lSL6JvhVyEq_e0KGyYA>
-    <xmx:um61Y20q-2wOMSaool21cqweprgJJ-HfED1Q8Jrppb7O1m5zWTFjtQ>
-    <xmx:um61Y8HCzu1udqIAWkUeIdN82vnG8DNilXdC2rZoxy2pbULU6fRSGg>
-    <xmx:vG61Y9tqKQEJX0G3uqfBDZRWaRB69NNwS_vNl1AvROTT3EidLaCgvA>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 20FCCB60086; Wed,  4 Jan 2023 07:19:06 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-1185-g841157300a-fm-20221208.002-g84115730
-Mime-Version: 1.0
-Message-Id: <1b7d4caa-2c9c-4aef-81ac-47288d3a652c@app.fastmail.com>
-In-Reply-To: <Y7VpeK48nslxklkF@spud>
-References: <Y62nOqzyuUKqYDpq@spud>
- <20230103210400.3500626-10-conor@kernel.org>
- <b5712732-40a2-4e29-b29f-e0ab5516d518@app.fastmail.com>
- <Y7TBh+CJdZPJ6Xzl@spud>
- <ed198390-1bde-44ec-9f3f-b0e016b4b24c@app.fastmail.com>
- <CFB874A3-3E6F-4C5B-B47D-381EB1E07C02@kernel.org>
- <43aee000-5b89-4d94-98d2-b37b1a18a83e@app.fastmail.com>
- <Y7VpeK48nslxklkF@spud>
-Date:   Wed, 04 Jan 2023 13:18:45 +0100
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Conor Dooley" <conor@kernel.org>
-Cc:     "Palmer Dabbelt" <palmer@dabbelt.com>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        "Conor.Dooley" <conor.dooley@microchip.com>,
-        "Andrew Jones" <ajones@ventanamicro.com>,
-        "Albert Ou" <aou@eecs.berkeley.edu>,
-        "Anup Patel" <apatel@ventanamicro.com>,
-        "Atish Patra" <atishp@rivosinc.com>,
-        "Biju Das" <biju.das.jz@bp.renesas.com>,
-        devicetree@vger.kernel.org,
-        "Geert Uytterhoeven" <geert@linux-m68k.org>,
-        guoren <guoren@kernel.org>,
-        "Christoph Hellwig" <hch@infradead.org>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        "Jisheng Zhang" <jszhang@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        linux-riscv@lists.infradead.org,
-        "Magnus Damm" <magnus.damm@gmail.com>,
-        "Nathan Chancellor" <nathan@kernel.org>,
-        "Paul Walmsley" <paul.walmsley@sifive.com>,
-        "Philipp Tomsich" <philipp.tomsich@vrull.eu>,
-        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Samuel Holland" <samuel@sholland.org>, soc@kernel.org,
-        "Daire McNamara" <daire.mcnamara@microchip.com>
-Subject: Re: [RFC v5.1 9/9] [DON'T APPLY] cache: sifive-ccache: add cache flushing
- capability
-Content-Type: text/plain
+    fjughrpeffhffvvefukfhfgggtugfgjgesthhqredttddtvdenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpeetgfelgefggeekkefggfeludeiudffjeffgeevveekjedukedtudeuteef
+    teefgfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:rXO1Y2IR0qCK07R9DD9lSoqDdwf66H13wy2WyMKhIyj4jQz0Sey3zw>
+    <xmx:rXO1YxI3q3O8mzFjpgziO7Mb4Nw2mlsdW7Qap1TWO4uJ5R46Y0aDew>
+    <xmx:rXO1Y_w63_SqsGyP8rY3dJXI6WekQvOPFUdqmJjIATiTc-9sJmE4MA>
+    <xmx:rXO1YwVgjpkyv38jB4bhJINlMoJsijMn2sgtVAKx2n10NXePMHz4GA>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 4 Jan 2023 07:40:12 -0500 (EST)
+Date:   Wed, 4 Jan 2023 13:40:10 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, maccraft123mc@gmail.com,
+        tzimmermann@suse.de, maarten.lankhorst@linux.intel.com,
+        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, daniel@ffwll.ch, airlied@gmail.com,
+        sam@ravnborg.org, thierry.reding@gmail.com,
+        linus.walleij@linaro.org, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH V7 1/4] drm: of: Add drm_of_get_dsi_bus helper function
+Message-ID: <20230104124010.6rambtw7mzg7sycv@houat>
+References: <20230103190707.104595-1-macroalpha82@gmail.com>
+ <20230103190707.104595-2-macroalpha82@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230103190707.104595-2-macroalpha82@gmail.com>
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
         RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
@@ -113,51 +91,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 4, 2023, at 12:56, Conor Dooley wrote:
-> On Wed, Jan 04, 2023 at 11:19:44AM +0100, Arnd Bergmann wrote:
->> On Wed, Jan 4, 2023, at 10:23, Conor Dooley wrote:
->> I would try to replace both of these indirections and instead
->> handle it all from C code in arch_sync_dma_for_device() directly,
->> for the purpose of readability and maintainability.
->> static inline void dma_cache_clean(void *vaddr, size_t size)
->> {
->>         if (!cache_maint_ops.clean)
->>                zicbom_cache_clean(vaddr, size, riscv_cbom_block_size);
->
-> And I figure that this function is effectively a wrapper around ALT_CMO_OP()?
->
->>         else
->>                cache_maint_ops.clean(vaddr, size, riscv_cbom_block_size);
->
-> And this one gets registered by the driver using an interface like the
-> one I already proposed, just with the cache_maint_ops struct expanded?
+Hi,
 
-Yes, exactly.
+On Tue, Jan 03, 2023 at 01:07:04PM -0600, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
+>=20
+> Add helper function to find DSI host for devices where DSI panel is not
+> a minor of a DSI bus (such as the Samsung AMS495QA01 panel or the
+> official Raspberry Pi touchscreen display).
+>=20
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+>  drivers/gpu/drm/drm_of.c | 62 ++++++++++++++++++++++++++++++++++++++++
+>  include/drm/drm_of.h     | 11 +++++++
+>  2 files changed, 73 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/drm_of.c b/drivers/gpu/drm/drm_of.c
+> index 7bbcb999bb75..7d89ac164069 100644
+> --- a/drivers/gpu/drm/drm_of.c
+> +++ b/drivers/gpu/drm/drm_of.c
+> @@ -10,6 +10,7 @@
+>  #include <drm/drm_crtc.h>
+>  #include <drm/drm_device.h>
+>  #include <drm/drm_encoder.h>
+> +#include <drm/drm_mipi_dsi.h>
+>  #include <drm/drm_of.h>
+>  #include <drm/drm_panel.h>
+> =20
+> @@ -493,3 +494,64 @@ int drm_of_get_data_lanes_count_ep(const struct devi=
+ce_node *port,
+>  	return ret;
+>  }
+>  EXPORT_SYMBOL_GPL(drm_of_get_data_lanes_count_ep);
+> +
+> +/**
+> + * drm_of_get_dsi_bus - find the DSI bus for a given device
+> + * @dev: parent device of display (SPI, I2C)
+> + * @dsi_host: DSI host to be populated
+> + * @info: DSI device info to be updated with correct DSI node
 
-> Extrapolating, with these changes having an errata would not even be
-> needed in order to do cache maintenance.
-> Since the ALT_CMO_OP() version would only be used inside
-> zicbom_cache_clean(), assuming I understood correctly, a driver could
-> just register cache_maint_ops for a given platform without having to
-> muck around with errata.
+Why aren't we returning the dsi_host through an ERR_PTR? All the DRM
+accessors with get return the pointer directly, I'd rather stick to
+that.
 
-That is the idea, and ALT_CMO_OP() itself can just go away
-as by just putting the inline asm without the alternative into
-the zicbom_cache_clean() version, making the THEAD branch yet
-another cache_maint_ops instance.
+> + * Given a panel device parented to a non-DSI device, follow the
+> + * devicetree to find the correct DSI host node and populate the
+> + * dsi_host with the correct host and info with the correct node.
 
->> which then makes it very clear what the actual code path
->> is, while leaving the zicbom case free of indirect function
->> calls. You can still use a static_branch() to optimize the
->> conditional, but I would try to avoid any extra indirection
->> levels or errata checks.
->
-> The other thing that I like about this is we can then remove the various
-> calls to ALT_CMO_OP() that are scattered around arch/riscv now & replace
-> them with functions that have more understandable names.
+I think we could make that a bit clearer using something like:
 
-I only see them in arch/riscv/mm/dma-noncoherent.c and arch/riscv/mm/pmem.c,
-but yes, both of these should just call the new functions, whatever the
-calling conventions end up being.
+Gets parent DSI bus for a DSI device controlled through a bus other than
+MIPI-DCS (SPI, I2C, etc.) using the Device Tree.
 
-    Arnd
+> + * Returns zero if successful, -EPROBE_DEFER if the DSI host is
+> + * found but not available, or -ENODEV otherwise.
+> + */
+
+> +int drm_of_get_dsi_bus(struct device *dev,
+> +			      struct mipi_dsi_host **dsi_host,
+> +			      struct mipi_dsi_device_info *info)
+
+The arguments are not aligned.
+
+Maxime
