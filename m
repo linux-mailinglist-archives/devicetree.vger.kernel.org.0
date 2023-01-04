@@ -2,102 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0866265CE3B
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 09:26:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E282865CE5D
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 09:32:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233616AbjADI01 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 03:26:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58004 "EHLO
+        id S234117AbjADIc1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 03:32:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233847AbjADI0Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 03:26:24 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CD13186D3;
-        Wed,  4 Jan 2023 00:26:22 -0800 (PST)
-Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 13BF36C7;
-        Wed,  4 Jan 2023 09:26:19 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1672820780;
-        bh=SeeLZDyqRZZDEu55JzGB0YU4joDF6QeMuk29dAr59mY=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=KFKZS6jqJ8VB5rzBzep4KAI0hfl0kqoKzEpzuSgzzdgvEQQFAz99q9aRu/goNlut2
-         5Lv9cvo6EK2dOgsLbAR7IsfC5yaeOCRpPomCCzI/xNT0JN4wjHzXBgT0L+HuumJKdh
-         4hSGvuRASezPAG+iQKAT2kcA/7STulL0hdEJU9GM=
-Message-ID: <1369118d-3311-f12e-e5d7-a981969baaaa@ideasonboard.com>
-Date:   Wed, 4 Jan 2023 10:26:16 +0200
+        with ESMTP id S234002AbjADIcZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 03:32:25 -0500
+Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A69A186CF;
+        Wed,  4 Jan 2023 00:32:16 -0800 (PST)
+Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.3ffe.de (Postfix) with ESMTPSA id 9A467125C;
+        Wed,  4 Jan 2023 09:32:13 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
+        t=1672821133;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=+CX2NGoUNf89QdEBh+WKylLZ5iHDV6P+xXO7uYU7z6A=;
+        b=XaAGmCM3jt1/wQgfq4Z0ImuBrzqfwTYgEaukK/7+47wBQu6PuzODUHLNIK7JsRAwXVUEun
+        aNyEl8a9Z7E5HQxPlNeo2yMu2xBUD34iuqnD6+r38HXxuLeG/bMCjp466sKTlMpxDQ1js3
+        HMMM+BK4J5k6PJ+CZCsCppx61vsFpfyfr7j5dGSkDVhww0C3y8Uome4iW2W4Oss0TZMZpo
+        qOVkhCwLJrPjB5vNRbVGBy5FgrBiax+eHWmOmUa/82KYd3NeJon9PeQgqMewjO+Z7qxP/u
+        8Kq0HX8JZBiDjihmn12NUdppIv+9fVr2glSqWZW8HpLzayLI152BrhmkNUujLw==
+From:   Michael Walle <michael@walle.cc>
+To:     jszhang@kernel.org
+Cc:     aou@eecs.berkeley.edu, conor@kernel.org,
+        devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
+        ilpo.jarvinen@linux.intel.com, jirislaby@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-serial@vger.kernel.org,
+        palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
+        Michael Walle <michael@walle.cc>
+Subject: Re: [PATCH v2 6/9] riscv: dts: bouffalolab: add the bl808 SoC base device tree
+Date:   Wed,  4 Jan 2023 09:32:04 +0100
+Message-Id: <20230104083204.1865526-1-michael@walle.cc>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20221127132448.4034-7-jszhang@kernel.org>
+References: <20221127132448.4034-7-jszhang@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v5 4/8] dt-bindings: media: add bindings for TI DS90UB953
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>
-References: <20221208104006.316606-1-tomi.valkeinen@ideasonboard.com>
- <20221208104006.316606-5-tomi.valkeinen@ideasonboard.com>
- <20221209212744.GA3868990-robh@kernel.org>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <20221209212744.GA3868990-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam: Yes
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi,
 
-On 09/12/2022 23:27, Rob Herring wrote:
-> On Thu, Dec 08, 2022 at 12:40:02PM +0200, Tomi Valkeinen wrote:
->> Add DT bindings for TI DS90UB953 FPDLink-3 Serializer.
-> 
-> Seems like this and DS90UB913 binding could be combined. I couldn't spot
-> a difference.
+> +		uart0: serial@30002000 {
 
-They are indeed quite similar, but there are a few diffs, especially 
-after fixing Laurent's review comments.
+According to the reference manual of the bl808, this is uart3. Can we also
+use that name here?
 
-E.g, as the UB913 is a parallel video serializer and the UB953 is a 
-CSI-2 serializer, the input port on UB913 has 'pclk-sample' property but 
-UB953 has 'data-lanes' property. The descriptions differ also a bit for 
-the above mentioned difference.
+> +			compatible = "bouffalolab,bl808-uart";
+> +			reg = <0x30002000 0x1000>;
+> +			interrupts = <20 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&xtal>;
 
-The above points would still allow combining the bindings, though. But I 
-feel the UB913 is somewhat a different class of serializer device 
-compared to UB953 (and UB971 which the UB953's binding also supports), 
-so my gut feeling says it's better to keep them separate. But I don't 
-have much experience on maintaining such bindings, and, afaik, we could 
-always split the bindings later if needed.
+This is a shortcut and is likely to change in the future. The xtal
+isn't really connected to the uart block, but instead there is a
+clock mux and clock gate in between.
 
-So... Do you have a preference on either way? Or maybe we can come back 
-to this after I send the next version with the updates.
+> +			status = "disabled";
+> +		};
 
-> In the subjects, drop 'binding for'. The prefix says this is a binding.
-> Maybe add 'Serializer'.
-
-Ok.
-
-  Tomi
-
+Thanks,
+-michael
