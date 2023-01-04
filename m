@@ -2,226 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E662165DFBD
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 23:17:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CCFF165DFCF
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 23:20:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240519AbjADWRH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 17:17:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40606 "EHLO
+        id S239580AbjADWUn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 17:20:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240503AbjADWRG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 17:17:06 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5D741A069;
-        Wed,  4 Jan 2023 14:17:04 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2FAD86185F;
-        Wed,  4 Jan 2023 22:17:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE9CCC43392;
-        Wed,  4 Jan 2023 22:17:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672870623;
-        bh=nTOZE+n1x/HPxCpxyWWYLQviHIqmDTpR/4NccwtHT+U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IoJlp+b1uXIaXFHUxj+Ce2apRzAZDrapooHr9EBzBVf9qXgfCSTbbmlb8q/1UPgi1
-         DJLeY67pw21s2QLNCimRumKSVcikEtJBKJrIFgOCMF1IxWY4fUDa5R7nrkzr/DRTuL
-         yKUtHutzxz0QbWy19JidFkwfHfESoNqco1tRCcKdfHQ0GuvlkS8uslWj/OPvhsJEzn
-         1FwkjijYTga8XPpRorWH5Z69r+aQnoVdt6bb6CK0yCS5jXchwcKbcEIjLjOHx4Ub3b
-         9/ks/XYDKey4/5wBoO+8YeSIbcNZIz8xCYG9rI4RQ7eEaSnIUXbcrOUZ4MdBcNjc79
-         UecqYixuIVYaA==
-Date:   Wed, 4 Jan 2023 22:16:58 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Anup Patel <apatel@ventanamicro.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S235406AbjADWUn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 17:20:43 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58B9710577;
+        Wed,  4 Jan 2023 14:20:41 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id bq39so44705649lfb.0;
+        Wed, 04 Jan 2023 14:20:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=iVZymcIRh33LZ5vtPH5reGcm8Q0RulUJ4aIPnJyztV0=;
+        b=YnMtXnugmUMSD1S7sSkpcwRTbCTcOw/Ur5AM5BOtRLuJeJQ7PGrkcTf6mTgXaGWn5X
+         p4a98zYFG7kHGhub7In6zaFnLkziweu5Mnar7+UjvL6g3wLvkbIBNMGyF1oWBtTHJi82
+         f2bAke7DCdtQShLGxjOZPHFdZ7Dnpq6I9rQDkHv/rRgeNm9CqN9LJOXdfj4nOvCfJvaC
+         CfODNtoukkEQO7u5eXHfo6j8miHETogKDFmZhylZqL6LKiQ1Qpkolk4Z4EjmlCXcbTuv
+         SGlUGPlh54nmldz54hkxH5hcgEO5tHfD6t46O232aCVkgCJb4ItLA8ey7pYN5gXyBjon
+         lLmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iVZymcIRh33LZ5vtPH5reGcm8Q0RulUJ4aIPnJyztV0=;
+        b=U2iY5VAgRmTwD/5Smzd+S1u/oPU94INIY+pKyJoE84pqONuyZE2i+LL0N1vYULS7UR
+         R4E72ft8+VeDHfRfp004W238gi/eJLX3qr/Ja9XjkTNlfbGyKVolXuEaMVRLklJQmkx6
+         c0mJeuufH4ChR6QS7+ki1moilWgTBUDWK96e4lHlqemaC6RGv7HsEA/rOKnoypVjFsrL
+         7jPiTCT+utw54fVhBTQzPlVeQ0mcWDoVZ2K/xUomPv9trdczLjsowl39Va5/vUT1VGw7
+         IGgTWOXZK2MvE4Dlsbk+BBgZXvX1JnspO39AV+wLUhy3naMfddFo4QIvu3gFpzgj9vvA
+         KaXw==
+X-Gm-Message-State: AFqh2kqlfHFvyloS1So6Y91rIGsjAxXmPNanNFFW4+8j+nwHzqJhiR/v
+        ym32TA2gxZzTXxct2ug99Fc=
+X-Google-Smtp-Source: AMrXdXu+r973DUePL6Ju6O2TPYHdZB4lJSAmCS1j6Age35S+3vV/oOHe47FYBhl1p2HJUldMSLJC1Q==
+X-Received: by 2002:ac2:44d6:0:b0:4b5:4606:7ae3 with SMTP id d22-20020ac244d6000000b004b546067ae3mr11749964lfm.46.1672870839609;
+        Wed, 04 Jan 2023 14:20:39 -0800 (PST)
+Received: from mobilestation ([95.79.133.202])
+        by smtp.gmail.com with ESMTPSA id bu20-20020a056512169400b004cb02ed464esm4153357lfb.196.2023.01.04.14.20.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Jan 2023 14:20:38 -0800 (PST)
+Date:   Thu, 5 Jan 2023 01:20:36 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Sudip Mukherjee <sudip.mukherjee@sifive.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Atish Patra <atishp@atishpatra.org>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Anup Patel <anup@brainfault.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 6/9] dt-bindings: interrupt-controller: Add RISC-V
- advanced PLIC
-Message-ID: <Y7X62v5Zp6+thx5A@spud>
-References: <20230103141409.772298-1-apatel@ventanamicro.com>
- <20230103141409.772298-7-apatel@ventanamicro.com>
+        jude.onyenegecha@sifive.com, ben.dooks@sifive.com,
+        jeegar.lakhani@sifive.com, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 00/15] Add support for enhanced SPI for Designware SPI
+ controllers
+Message-ID: <20230104222036.h4ke6maxkdvuqtqc@mobilestation>
+References: <20221212180732.79167-1-sudip.mukherjee@sifive.com>
+ <20221218174523.cke7ubh6nycd247c@mobilestation>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="CM+OG7HiznyhPXQ1"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230103141409.772298-7-apatel@ventanamicro.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221218174523.cke7ubh6nycd247c@mobilestation>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Sudip
 
---CM+OG7HiznyhPXQ1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Sun, Dec 18, 2022 at 08:45:26PM +0300, Serge Semin wrote:
+> Hi Sudip
+> 
+> On Mon, Dec 12, 2022 at 06:07:17PM +0000, Sudip Mukherjee wrote:
+> > The is v2 of the patch series adding enhanced SPI support. Some Synopsys SSI
+> > controllers support enhanced SPI which includes Dual mode, Quad mode and
+> > Octal mode. DWC_ssi includes clock stretching feature in enhanced SPI modes
+> > which can be used to prevent FIFO underflow and overflow conditions while
+> > transmitting or receiving the data respectively.
+> > 
+> > This is almost a complete rework based on the review from Serge.
+> 
+> Thank you very much for the series. I'll have a look at it on the next
+> week.
 
-Hey Anup,
+Just so you know. I haven't forgot about the series. There are some
+problematic parts which I need to give more thinking than I originally
+expected. I'll submit my comments very soon. Sorry for the delay.
 
-On Tue, Jan 03, 2023 at 07:44:06PM +0530, Anup Patel wrote:
-> We add DT bindings document for RISC-V advanced platform level
-> interrupt controller (APLIC) defined by the RISC-V advanced
-> interrupt architecture (AIA) specification.
->=20
-> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> ---
->  .../interrupt-controller/riscv,aplic.yaml     | 159 ++++++++++++++++++
->  1 file changed, 159 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controlle=
-r/riscv,aplic.yaml
+Good news is that I've got the HW-manual for the DW SSI v1.01a
+IP-core. So I'll no longer need to ask of you about that device
+implementation specifics.
 
-> +  interrupts-extended:
-> +    minItems: 1
-> +    maxItems: 16384
-> +    description:
-> +      Given APLIC domain directly injects external interrupts to a set of
-> +      RISC-V HARTS (or CPUs). Each node pointed to should be a riscv,cpu=
--intc
-> +      node, which has a riscv node (i.e. RISC-V HART) as parent.
-> +
-> +  msi-parent:
-> +    description:
-> +      Given APLIC domain forwards wired interrupts as MSIs to a AIA inco=
-ming
-> +      message signaled interrupt controller (IMSIC). This property shoul=
-d be
-> +      considered only when the interrupts-extended property is absent.
+-Serge(y)
 
-Considered by what?
-On v1 you said:
-<quote>
-If both "interrupts-extended" and "msi-parent" are present then it means
-the APLIC domain supports both MSI mode and Direct mode in HW. In this
-case, the APLIC driver has to choose between MSI mode or Direct mode.
-<\quote>
-
-The description is still pretty ambiguous IMO. Perhaps incorporate
-some of that expanded comment into the property description?
-Say, "If both foo and bar are present, the APLIC domain has hardware
-support for both MSI and direct mode. Software may then chose either
-mode".
-Have I misunderstood your comment on v1? It read as if having both
-present indicated that both were possible & that "should be considered
-only..." was more of a suggestion and a comment about the Linux driver's
-behaviour.
-Apologies if I have misunderstood, but I suppose if I have then the
-binding's description could be improved!!
-
-> +  riscv,children:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    minItems: 1
-> +    maxItems: 1024
-> +    items:
-> +      maxItems: 1
-> +    description:
-> +      A list of child APLIC domains for the given APLIC domain. Each chi=
-ld
-> +      APLIC domain is assigned child index in increasing order with the
-
-btw, missing article before child (& a comma after order I think).
-
-> +      first child APLIC domain assigned child index 0. The APLIC domain
-> +      child index is used by firmware to delegate interrupts from the
-> +      given APLIC domain to a particular child APLIC domain.
-> +
-> +  riscv,delegate:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    minItems: 1
-> +    maxItems: 1024
-
-Is it valid to have a delegate property without children? If not, the
-binding should reflect that dependency IMO.
-
-> +    items:
-> +      items:
-> +        - description: child APLIC domain phandle
-> +        - description: first interrupt number (inclusive)
-> +        - description: last interrupt number (inclusive)
-> +    description:
-> +      A interrupt delegation list where each entry is a triple consisting
-> +      of child APLIC domain phandle, first interrupt number, and last
-> +      interrupt number. The firmware will configure interrupt delegation
-
-btw, drop the article before firmware here.
-Also, "firmware will" or "firmware must"? Semantics perhaps, but they
-are different!
-
-Kinda for my own curiosity here, but do you expect these properties to
-generally be dynamically filled in by the bootloader or read by the
-bootloader to set up the configuration?
-
-> +      registers based on interrupt delegation list.
-
-I'm sorry Anup, but this child versus delegate thing is still not clear
-to me binding wise. See below.
-
-> +    aplic0: interrupt-controller@c000000 {
-> +      compatible =3D "riscv,qemu-aplic", "riscv,aplic";
-> +      interrupts-extended =3D <&cpu1_intc 11>,
-> +                            <&cpu2_intc 11>,
-> +                            <&cpu3_intc 11>,
-> +                            <&cpu4_intc 11>;
-> +      reg =3D <0xc000000 0x4080>;
-> +      interrupt-controller;
-> +      #interrupt-cells =3D <2>;
-> +      riscv,num-sources =3D <63>;
-> +      riscv,children =3D <&aplic1>, <&aplic2>;
-> +      riscv,delegate =3D <&aplic1 1 63>;
-
-Is aplic2 here for demonstrative purposes only, since it has not been
-delegated any interrupts?
-I suppose it is hardware present on the SoC that is not being used by
-the current configuration?
-
-Thanks,
-Conor.
-
-> +    };
-> +
-> +    aplic1: interrupt-controller@d000000 {
-> +      compatible =3D "riscv,qemu-aplic", "riscv,aplic";
-> +      interrupts-extended =3D <&cpu1_intc 9>,
-> +                            <&cpu2_intc 9>;
-> +      reg =3D <0xd000000 0x4080>;
-> +      interrupt-controller;
-> +      #interrupt-cells =3D <2>;
-> +      riscv,num-sources =3D <63>;
-> +    };
-> +
-> +    aplic2: interrupt-controller@e000000 {
-> +      compatible =3D "riscv,qemu-aplic", "riscv,aplic";
-> +      interrupts-extended =3D <&cpu3_intc 9>,
-> +                            <&cpu4_intc 9>;
-> +      reg =3D <0xe000000 0x4080>;
-> +      interrupt-controller;
-> +      #interrupt-cells =3D <2>;
-> +      riscv,num-sources =3D <63>;
-> +    };
-
-
---CM+OG7HiznyhPXQ1
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY7X62gAKCRB4tDGHoIJi
-0jdPAQDE7jaXqDBSHkYz30DfCDF68e8vHV/nGNfwySX74TqkmAEA8kiQVjEAphNj
-VrxoMV535/dnuFew0/H+emA4BYc1swU=
-=Whsj
------END PGP SIGNATURE-----
-
---CM+OG7HiznyhPXQ1--
+> 
+> -Serge(y)
+> 
+> > 
+> > 
+> > -- 
+> > Regards
+> > Sudip
+> > 
+> > Sudip Mukherjee (15):
+> >   spi: dw: Introduce spi_frf and STD_SPI
+> >   spi: dw: update NDF while using enhanced spi mode
+> >   spi: dw: update SPI_CTRLR0 register
+> >   spi: dw: add check for support of enhanced spi
+> >   spi: dw: Introduce enhanced mem_op
+> >   spi: dw: Introduce dual/quad/octal spi
+> >   spi: dw: send cmd and addr to start the spi transfer
+> >   spi: dw: update irq setup to use multiple handler
+> >   spi: dw: use irq handler for enhanced spi
+> >   spi: dw: Calculate Receive FIFO Threshold Level
+> >   spi: dw: adjust size of mem_op
+> >   spi: dw: Add retry for enhanced spi mode
+> >   spi: dw: detect enhanced spi mode
+> >   spi: dt-bindings: snps,dw-ahb-ssi: Add generic dw-ahb-ssi version
+> >   spi: dw: initialize dwc-ssi controller
+> > 
+> >  .../bindings/spi/snps,dw-apb-ssi.yaml         |   1 +
+> >  drivers/spi/spi-dw-core.c                     | 347 +++++++++++++++++-
+> >  drivers/spi/spi-dw-mmio.c                     |   1 +
+> >  drivers/spi/spi-dw.h                          |  27 ++
+> >  4 files changed, 364 insertions(+), 12 deletions(-)
+> > 
+> > -- 
+> > 2.30.2
+> > 
