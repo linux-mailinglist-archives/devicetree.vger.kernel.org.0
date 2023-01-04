@@ -2,34 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BAABD65D119
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 12:02:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CAAC865D11B
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 12:02:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233387AbjADLCb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 06:02:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39438 "EHLO
+        id S234944AbjADLCj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 06:02:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234946AbjADLCN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 06:02:13 -0500
+        with ESMTP id S238925AbjADLCO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 06:02:14 -0500
 Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA90313D00;
-        Wed,  4 Jan 2023 03:01:47 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E341513DCB;
+        Wed,  4 Jan 2023 03:01:51 -0800 (PST)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
         (Authenticated sender: sendonly@marcansoft.com)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 89C5542037;
-        Wed,  4 Jan 2023 11:01:42 +0000 (UTC)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id CC94342118;
+        Wed,  4 Jan 2023 11:01:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
-        t=1672830106; bh=GdWdary42rt3mIkDwajxrH/Zj4xVB5+w3NY679JEZNE=;
+        t=1672830110; bh=kZ5l2St5RyPUjKSIYXwu/uDFjCyPWx8nT0BPyLp8JKg=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=TpTG2zka6CyNNKdpuL96OZZMwFf+8/kOeBsENWCen3o9tmx+DtysRWubM674vQwa/
-         cMoO7nYy4W2gVwTambsC7COw/wWtVfFbiusGfzZjoPCjOcaBkHx3a/nGRBBYYwQ78y
-         xB0xknw+S9LHv7Ey41ZPjgXdO4XdmPFm2Q5ZfWtkEy5djNkqi5PzHdazkbQBSX/X6X
-         P1xZhSZh2qlmkWMJxYjgN5lXH/3HUiHeIcjeErStGz48Wrr3U4pxf+YTzuhdsFiM6R
-         FHiUs1ffSdhk5dmU4+FythUAs/b0QovHHeFnyCXGCXNhTWYJU2hpWss3Gt9njs5GZ2
-         GFEv0xOdnnseg==
+        b=hLxQDz/W5Z13+zieD047u9edVn6Pueo/vSYgI7QbY4fEHbb1xBVZJd0bjrI3pfFCs
+         hV1Ka7kPUHkjDaeuUmaxBAvuTML/NiZaYMofgEO/1JoPCH/pb5VdQ74dyb7ZMgQuFl
+         s9g/ReIj0Ux/JndJKszGO+3GxCmPWdoMewLCUa61jABC1g9udjVrIkG/GpSRebZfdp
+         0BxVQumN358ME1s3kjVHu4mTxS2C7+80ITe6kCVe3HRnGta6rqiywtjDoqqL2vqg8x
+         1m96HTaPAw9z4x3PtNSOxyQhloSzNOClYFEY21h0TUhsZ6NJYKFYXbzv7jEi3V2sFg
+         sQKuGaD/9H62Q==
 From:   Hector Martin <marcan@marcan.st>
 To:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
         Robin Murphy <robin.murphy@arm.com>
@@ -40,9 +40,9 @@ Cc:     Sven Peter <sven@svenpeter.dev>,
         devicetree@vger.kernel.org, iommu@lists.linux.dev,
         asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org, Hector Martin <marcan@marcan.st>
-Subject: [PATCH 1/7] dt-bindings: iommu: dart: add t8110 compatible
-Date:   Wed,  4 Jan 2023 20:00:07 +0900
-Message-Id: <20230104110013.24738-2-marcan@marcan.st>
+Subject: [PATCH 2/7] iommu: dart: Add suspend/resume support
+Date:   Wed,  4 Jan 2023 20:00:08 +0900
+Message-Id: <20230104110013.24738-3-marcan@marcan.st>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20230104110013.24738-1-marcan@marcan.st>
 References: <20230104110013.24738-1-marcan@marcan.st>
@@ -57,27 +57,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-t600x SoCs use this DART style for the Thunderbolt ports, and t8112 SoCs
-use them everywhere. Add a compatible for it. No other binding changes
-necessary.
+We need to save/restore the TCR/TTBR registers, since they are lost
+on power gate.
 
+Reviewed-by: Sven Peter <sven@svenpeter.dev>
 Signed-off-by: Hector Martin <marcan@marcan.st>
 ---
- Documentation/devicetree/bindings/iommu/apple,dart.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/iommu/apple-dart.c | 43 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 43 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/iommu/apple,dart.yaml b/Documentation/devicetree/bindings/iommu/apple,dart.yaml
-index 06af2bacbe97..903edf85d72e 100644
---- a/Documentation/devicetree/bindings/iommu/apple,dart.yaml
-+++ b/Documentation/devicetree/bindings/iommu/apple,dart.yaml
-@@ -24,6 +24,7 @@ properties:
-   compatible:
-     enum:
-       - apple,t8103-dart
-+      - apple,t8110-dart
-       - apple,t6000-dart
+diff --git a/drivers/iommu/apple-dart.c b/drivers/iommu/apple-dart.c
+index 4f4a323be0d0..2458416122f8 100644
+--- a/drivers/iommu/apple-dart.c
++++ b/drivers/iommu/apple-dart.c
+@@ -121,6 +121,9 @@ struct apple_dart {
  
-   reg:
+ 	struct iommu_group *sid2group[DART_MAX_STREAMS];
+ 	struct iommu_device iommu;
++
++	u32 save_tcr[DART_MAX_STREAMS];
++	u32 save_ttbr[DART_MAX_STREAMS][DART_MAX_TTBR];
+ };
+ 
+ /*
+@@ -932,6 +935,45 @@ static const struct apple_dart_hw apple_dart_hw_t6000 = {
+ 	.fmt = APPLE_DART2,
+ };
+ 
++static __maybe_unused int apple_dart_suspend(struct device *dev)
++{
++	struct apple_dart *dart = dev_get_drvdata(dev);
++	unsigned int sid, idx;
++
++	for (sid = 0; sid < DART_MAX_STREAMS; sid++) {
++		dart->save_tcr[sid] = readl_relaxed(dart->regs + DART_TCR(sid));
++		for (idx = 0; idx < DART_MAX_TTBR; idx++)
++			dart->save_ttbr[sid][idx] =
++				readl(dart->regs + DART_TTBR(sid, idx));
++	}
++
++	return 0;
++}
++
++static __maybe_unused int apple_dart_resume(struct device *dev)
++{
++	struct apple_dart *dart = dev_get_drvdata(dev);
++	unsigned int sid, idx;
++	int ret;
++
++	ret = apple_dart_hw_reset(dart);
++	if (ret) {
++		dev_err(dev, "Failed to reset DART on resume\n");
++		return ret;
++	}
++
++	for (sid = 0; sid < DART_MAX_STREAMS; sid++) {
++		for (idx = 0; idx < DART_MAX_TTBR; idx++)
++			writel(dart->save_ttbr[sid][idx],
++			       dart->regs + DART_TTBR(sid, idx));
++		writel(dart->save_tcr[sid], dart->regs + DART_TCR(sid));
++	}
++
++	return 0;
++}
++
++DEFINE_SIMPLE_DEV_PM_OPS(apple_dart_pm_ops, apple_dart_suspend, apple_dart_resume);
++
+ static const struct of_device_id apple_dart_of_match[] = {
+ 	{ .compatible = "apple,t8103-dart", .data = &apple_dart_hw_t8103 },
+ 	{ .compatible = "apple,t6000-dart", .data = &apple_dart_hw_t6000 },
+@@ -944,6 +986,7 @@ static struct platform_driver apple_dart_driver = {
+ 		.name			= "apple-dart",
+ 		.of_match_table		= apple_dart_of_match,
+ 		.suppress_bind_attrs    = true,
++		.pm			= pm_sleep_ptr(&apple_dart_pm_ops),
+ 	},
+ 	.probe	= apple_dart_probe,
+ 	.remove	= apple_dart_remove,
 -- 
 2.35.1
 
