@@ -2,138 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCFF165DFCF
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 23:20:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBAAE65DFFD
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 23:30:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239580AbjADWUn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 17:20:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42582 "EHLO
+        id S240301AbjADWaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 17:30:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235406AbjADWUn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 17:20:43 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58B9710577;
-        Wed,  4 Jan 2023 14:20:41 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id bq39so44705649lfb.0;
-        Wed, 04 Jan 2023 14:20:41 -0800 (PST)
+        with ESMTP id S229464AbjADWaG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 17:30:06 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75A8F3FA29
+        for <devicetree@vger.kernel.org>; Wed,  4 Jan 2023 14:30:03 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id k26-20020a05600c1c9a00b003d972646a7dso24415506wms.5
+        for <devicetree@vger.kernel.org>; Wed, 04 Jan 2023 14:30:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=iVZymcIRh33LZ5vtPH5reGcm8Q0RulUJ4aIPnJyztV0=;
-        b=YnMtXnugmUMSD1S7sSkpcwRTbCTcOw/Ur5AM5BOtRLuJeJQ7PGrkcTf6mTgXaGWn5X
-         p4a98zYFG7kHGhub7In6zaFnLkziweu5Mnar7+UjvL6g3wLvkbIBNMGyF1oWBtTHJi82
-         f2bAke7DCdtQShLGxjOZPHFdZ7Dnpq6I9rQDkHv/rRgeNm9CqN9LJOXdfj4nOvCfJvaC
-         CfODNtoukkEQO7u5eXHfo6j8miHETogKDFmZhylZqL6LKiQ1Qpkolk4Z4EjmlCXcbTuv
-         SGlUGPlh54nmldz54hkxH5hcgEO5tHfD6t46O232aCVkgCJb4ItLA8ey7pYN5gXyBjon
-         lLmA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kiiu/Seb82UTPCSu/8Bs7i2e8eXl5Aa8bi8QlsNKuis=;
+        b=BIDg1fcFkWUBfF69/HvdlnWlqGKoISpfZDgqIHythOcg1wBn/HejNRvo49F3OQ09ww
+         dktSem0F4w4G1o1uskYQuQxUV0CxnamHTsmnnYlPAbwEt4QFp7GdZboo30Sou5DLT6xx
+         kYxXizmr7JR9ZHWjNQspCHLlChfJX+UbgPlXxQaIWYOXbO1fJwQ8q0NZYhOgexbQw+tF
+         r03C8hARvYz4QW1Zb95TMsSn/9UqX0OzuOZznvnmL7TtQw/Pq3ez8w9SjVorTsb7S+6v
+         /ZSbBJD4RHjbAqbxBPTxbMV+ofdWSfBuCc5mb2Fl3v4dwXJBYsaMXdFJaVcSR5uEFJ5p
+         FrdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iVZymcIRh33LZ5vtPH5reGcm8Q0RulUJ4aIPnJyztV0=;
-        b=U2iY5VAgRmTwD/5Smzd+S1u/oPU94INIY+pKyJoE84pqONuyZE2i+LL0N1vYULS7UR
-         R4E72ft8+VeDHfRfp004W238gi/eJLX3qr/Ja9XjkTNlfbGyKVolXuEaMVRLklJQmkx6
-         c0mJeuufH4ChR6QS7+ki1moilWgTBUDWK96e4lHlqemaC6RGv7HsEA/rOKnoypVjFsrL
-         7jPiTCT+utw54fVhBTQzPlVeQ0mcWDoVZ2K/xUomPv9trdczLjsowl39Va5/vUT1VGw7
-         IGgTWOXZK2MvE4Dlsbk+BBgZXvX1JnspO39AV+wLUhy3naMfddFo4QIvu3gFpzgj9vvA
-         KaXw==
-X-Gm-Message-State: AFqh2kqlfHFvyloS1So6Y91rIGsjAxXmPNanNFFW4+8j+nwHzqJhiR/v
-        ym32TA2gxZzTXxct2ug99Fc=
-X-Google-Smtp-Source: AMrXdXu+r973DUePL6Ju6O2TPYHdZB4lJSAmCS1j6Age35S+3vV/oOHe47FYBhl1p2HJUldMSLJC1Q==
-X-Received: by 2002:ac2:44d6:0:b0:4b5:4606:7ae3 with SMTP id d22-20020ac244d6000000b004b546067ae3mr11749964lfm.46.1672870839609;
-        Wed, 04 Jan 2023 14:20:39 -0800 (PST)
-Received: from mobilestation ([95.79.133.202])
-        by smtp.gmail.com with ESMTPSA id bu20-20020a056512169400b004cb02ed464esm4153357lfb.196.2023.01.04.14.20.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Jan 2023 14:20:38 -0800 (PST)
-Date:   Thu, 5 Jan 2023 01:20:36 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Sudip Mukherjee <sudip.mukherjee@sifive.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        jude.onyenegecha@sifive.com, ben.dooks@sifive.com,
-        jeegar.lakhani@sifive.com, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 00/15] Add support for enhanced SPI for Designware SPI
- controllers
-Message-ID: <20230104222036.h4ke6maxkdvuqtqc@mobilestation>
-References: <20221212180732.79167-1-sudip.mukherjee@sifive.com>
- <20221218174523.cke7ubh6nycd247c@mobilestation>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kiiu/Seb82UTPCSu/8Bs7i2e8eXl5Aa8bi8QlsNKuis=;
+        b=HCbGNs8kXzS2SKEqy/GrSWBTkau0faqO1OizIpofskox+fqzUeQEwyvtN1NidxizVI
+         RP1/LtaQxMlcLzhOQelKUxBlu6jayKo1uN7CoJc96Gnvr18HB26mZSS1abXl84MblbWl
+         e6ys11kZXpq2yw2mCEfOjW/4ZdKSpZqtw8SPAE566cpTzYlR6sCUHpT6+VGXWUVATCoy
+         Dv3sErlpcFC0zxK2cz3gG6x4c4ik4zxW+i9A00hUn6fy5sQ4tcXB0kqlxPoZXXqnESBy
+         mcXyDPvMTADHuP9vyhQY/5U4rJm3ePSxJhN37bYjUx7vySik+TtTq+EO/NsH1njZTmLr
+         U+tQ==
+X-Gm-Message-State: AFqh2krZrE1Oif//3K8gfqr3+U7BCz6W69YqYTulHGGmUvzhlYUa6kmG
+        UvrP9HIweoDc3AHDUxMJmdoAfw==
+X-Google-Smtp-Source: AMrXdXulBTZ0uWBN5rhjfCWeQ571oYcrzq/+b5U8l9PLgxXI4VkY4BZIi+I9BlsE1N8K8rldlrArEQ==
+X-Received: by 2002:a05:600c:5006:b0:3d2:3eda:dd1 with SMTP id n6-20020a05600c500600b003d23eda0dd1mr35240937wmr.17.1672871401974;
+        Wed, 04 Jan 2023 14:30:01 -0800 (PST)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id m7-20020a05600c3b0700b003cfd4cf0761sm267118wms.1.2023.01.04.14.30.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Jan 2023 14:30:01 -0800 (PST)
+Message-ID: <8fa6b106-5670-247c-08d2-2740b1b00979@linaro.org>
+Date:   Wed, 4 Jan 2023 23:30:00 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221218174523.cke7ubh6nycd247c@mobilestation>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v6 0/3] Improve CLOCK_EVT_FEAT_C3STOP feature setting
+Content-Language: en-US
+To:     Anup Patel <apatel@ventanamicro.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>
+Cc:     Andrew Jones <ajones@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Anup Patel <anup@brainfault.org>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230103141102.772228-1-apatel@ventanamicro.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20230103141102.772228-1-apatel@ventanamicro.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sudip
-
-On Sun, Dec 18, 2022 at 08:45:26PM +0300, Serge Semin wrote:
-> Hi Sudip
+On 03/01/2023 15:10, Anup Patel wrote:
+> This series improves the RISC-V timer driver to set CLOCK_EVT_FEAT_C3STOP
+> feature based on RISC-V platform capabilities.
 > 
-> On Mon, Dec 12, 2022 at 06:07:17PM +0000, Sudip Mukherjee wrote:
-> > The is v2 of the patch series adding enhanced SPI support. Some Synopsys SSI
-> > controllers support enhanced SPI which includes Dual mode, Quad mode and
-> > Octal mode. DWC_ssi includes clock stretching feature in enhanced SPI modes
-> > which can be used to prevent FIFO underflow and overflow conditions while
-> > transmitting or receiving the data respectively.
-> > 
-> > This is almost a complete rework based on the review from Serge.
+> These patches can also be found in riscv_timer_dt_imp_v6 branch at:
+> https://github.com/avpatel/linux.git
 > 
-> Thank you very much for the series. I'll have a look at it on the next
-> week.
+> Changes since v5:
+>   - Rebased on Linux-6.2-rc2
 
-Just so you know. I haven't forgot about the series. There are some
-problematic parts which I need to give more thinking than I originally
-expected. I'll submit my comments very soon. Sorry for the delay.
+Applied, thanks
 
-Good news is that I've got the HW-manual for the DW SSI v1.01a
-IP-core. So I'll no longer need to ask of you about that device
-implementation specifics.
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
--Serge(y)
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
-> 
-> -Serge(y)
-> 
-> > 
-> > 
-> > -- 
-> > Regards
-> > Sudip
-> > 
-> > Sudip Mukherjee (15):
-> >   spi: dw: Introduce spi_frf and STD_SPI
-> >   spi: dw: update NDF while using enhanced spi mode
-> >   spi: dw: update SPI_CTRLR0 register
-> >   spi: dw: add check for support of enhanced spi
-> >   spi: dw: Introduce enhanced mem_op
-> >   spi: dw: Introduce dual/quad/octal spi
-> >   spi: dw: send cmd and addr to start the spi transfer
-> >   spi: dw: update irq setup to use multiple handler
-> >   spi: dw: use irq handler for enhanced spi
-> >   spi: dw: Calculate Receive FIFO Threshold Level
-> >   spi: dw: adjust size of mem_op
-> >   spi: dw: Add retry for enhanced spi mode
-> >   spi: dw: detect enhanced spi mode
-> >   spi: dt-bindings: snps,dw-ahb-ssi: Add generic dw-ahb-ssi version
-> >   spi: dw: initialize dwc-ssi controller
-> > 
-> >  .../bindings/spi/snps,dw-apb-ssi.yaml         |   1 +
-> >  drivers/spi/spi-dw-core.c                     | 347 +++++++++++++++++-
-> >  drivers/spi/spi-dw-mmio.c                     |   1 +
-> >  drivers/spi/spi-dw.h                          |  27 ++
-> >  4 files changed, 364 insertions(+), 12 deletions(-)
-> > 
-> > -- 
-> > 2.30.2
-> > 
