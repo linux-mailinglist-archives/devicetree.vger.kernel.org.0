@@ -2,182 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E15365D077
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 11:13:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00B9B65D084
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 11:20:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230376AbjADKMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 05:12:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43236 "EHLO
+        id S234001AbjADKUU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 05:20:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234914AbjADKMj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 05:12:39 -0500
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B00A11E3C5
-        for <devicetree@vger.kernel.org>; Wed,  4 Jan 2023 02:12:37 -0800 (PST)
-Received: by mail-pl1-x62a.google.com with SMTP id 17so35480505pll.0
-        for <devicetree@vger.kernel.org>; Wed, 04 Jan 2023 02:12:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=nqnewyxXuFgx6aFOSnyu8Lg+p/BpJpnIHJgfiwboYTU=;
-        b=wqzXRakzCYXuOuBzq9wrJDs0yfvEG+8PL8896UM5cRPULN9jOxR6Em8hX7qRESQIer
-         r9MESwQQvBtc7sU6PKoU2H3D2gkFE0jYehKl57AFxBLLUy2zCY/97VSuLsb881O2rgKw
-         fhsR4WbhRTssPLdnghuvE/yV//BH9e/N5mDTH2Dz3SA5VMve5ShxWluFzldn4a9SJ8mj
-         xbkIguIyr2QI7D7sumV/pPGIW3L14JZOX8mZYquRYSUD3U3j2fhXXLbSNLRnJS96tSnL
-         nVKc4SctevAoSjLj0pNBPx2Dsnb35y40OggMoCFSaQklSoQk3xw4qyjZFPq133TY+7Wd
-         jPDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nqnewyxXuFgx6aFOSnyu8Lg+p/BpJpnIHJgfiwboYTU=;
-        b=ez7mWUxKxXWSM1VKdluLLEylSDLfFajUhiafRPos/Rao18dUkObfPqu3j+viPNrKQm
-         KJ3DChifBxSIZPBny7kPSJktyUb5r7UNQd5ig81fdTKVaLep6TLJcji0F7Q1HUuVeJ6P
-         TRIscw/UmxQDel7frB0AeUJf2ldwoUa7RlyzL+BPZkYomF3/T5x/ogq4vsH+xgOKvY2d
-         8dYFrSfcufsu4B1yA3LCCcdN0qwvNWcDERk6GSaGzRCo85b2EN4mmXQ7uQb+qjvtsOYN
-         Yyyy2C1nqR/KoxdUsT7tkhlq5QLAEtFEa/1622LGiEnMoQR7T1ZSp2pP7u98/lXEvahZ
-         HNmw==
-X-Gm-Message-State: AFqh2kqTImYxyF43m0BzJiOo0N3cO8SnvK3iaX1F+8ra4Ha0LKfXWLK4
-        Wbl+95Pu/JguYVyQZP40q8PrYA==
-X-Google-Smtp-Source: AMrXdXtFfijPdwvIfl2vtSGo5cWGIU+y1TAks0PR3m/liBZQ8D7Lke4KR2fQNwceCg4zNUFpcBq6yw==
-X-Received: by 2002:a17:902:f604:b0:192:55ab:88fe with SMTP id n4-20020a170902f60400b0019255ab88femr53042837plg.56.1672827157133;
-        Wed, 04 Jan 2023 02:12:37 -0800 (PST)
-Received: from localhost.localdomain ([2401:4900:1c5e:e3b5:c341:16de:ce17:b857])
-        by smtp.gmail.com with ESMTPSA id l6-20020a170903244600b001869f2120absm23737615pls.294.2023.01.04.02.12.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Jan 2023 02:12:36 -0800 (PST)
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     quic_schowdhu@quicinc.com, agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@linaro.org, linux-kernel@vger.kernel.org,
-        bhupesh.linux@gmail.com, bhupesh.sharma@linaro.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v3] arm64: dts: qcom: sm6115: Add EUD dt node and dwc3 connector
-Date:   Wed,  4 Jan 2023 15:42:28 +0530
-Message-Id: <20230104101228.3964304-1-bhupesh.sharma@linaro.org>
-X-Mailer: git-send-email 2.38.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        with ESMTP id S234327AbjADKUL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 05:20:11 -0500
+Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4D021CFEE;
+        Wed,  4 Jan 2023 02:20:09 -0800 (PST)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.nyi.internal (Postfix) with ESMTP id 91F435C01CF;
+        Wed,  4 Jan 2023 05:20:05 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Wed, 04 Jan 2023 05:20:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; t=1672827605; x=1672914005; bh=8iXmcHFFNZ
+        h9AmH4Kilxio1EfsB6nCxBvRuiZDX3K/M=; b=e2/nToEoyFuPKgFE+6AZ+dnZg8
+        UbR+0CntnFotz/eOIJHA96OR/Bm7laq07XDlEGGPVyb8f/H93Lp04/Z0XuE0vVzJ
+        WpYjX0Cdzpq2fQongsI6YwJTshAMuYWvGNBsGezajwqxP36bb6gD+GqnTRyxqASC
+        x2oFMtqMMlPYjRT/fzIWYToTUcQYCV/mtFlWguLjp+5dDBd4eKMQlfRGDA1jE93K
+        IRzxQ9mZ7GH/UwpTMR2EYD+QfruHG6uz+JXtXOUacIROjBc7Cym86PVfV2161+9F
+        diP+4IWw0yxVeix/VQysMYaqeXzAx723T7D37Lhr2hprYruNNCx2LMZVRn6w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm2; t=1672827605; x=1672914005; bh=8iXmcHFFNZh9AmH4Kilxio1EfsB6
+        nCxBvRuiZDX3K/M=; b=Xd7ZQBRnvHy6TSPL+UJsY+q6W7Hu1G8vJ3ZVFJ7JX2mx
+        0tKs30DbZrEa+XwJ536vwfKlfv6UmOF5xQE5Xn/N2wRoYYtq6bwFo6eC/abtW0Ls
+        IO0o3BNPAfZ4Ni47sLFh9ZZLd/K5OirVZyOmoZqUYNKc+YEQaeQeXalTKaLlmUXH
+        1p7eFRvBadX6+/VmGYyxBvZWCENubwR3pqVzqyD7HJo6VbHYKldne7eClVF3wZ2g
+        ZkjSIUtqVgw3CBWyrznltDUx/sgO4FlCaEzN1FRzwE1Ep7/Lh1q0/0oizqsnUFty
+        ubQlxwlYBJIHRXBlCDucPZhW8L/NMD6YCd5jw6rylw==
+X-ME-Sender: <xms:1FK1Y0A3R08OP0S5tKvWH-5G04spYycE5JdtRGZAnRqJYWz5ZvIO-A>
+    <xme:1FK1Y2gi7HM9WoUuu3y_DRCOXCmUlijK4jX5gUtXKtRoGXmTabq2ZxKbkqQ6O_xeu
+    -Pn8Mikvq3TpBnpNrw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrjeeigddugecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
+    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
+    gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
+    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
+    hnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:1FK1Y3lutGGwbQtpmWj6iPoyrDc9C-auLx1vY2Ilnq9-cslpiG4DtA>
+    <xmx:1FK1Y6wrg799sf4qLw5pjwtb5t0VTIk1l4Yg_BGzOXPsWQpCM9VvmA>
+    <xmx:1FK1Y5Tk6QqIIGUyDPksJGpf1-t2EvTjClxq6bzkYwMMgqk6HESXTA>
+    <xmx:1VK1Y5r3HRWC2cGdiaU7OSHUmhtd80iC1pihL_so3-3DYw6nwCLSgg>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 688E9B60086; Wed,  4 Jan 2023 05:20:04 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-1185-g841157300a-fm-20221208.002-g84115730
+Mime-Version: 1.0
+Message-Id: <43aee000-5b89-4d94-98d2-b37b1a18a83e@app.fastmail.com>
+In-Reply-To: <CFB874A3-3E6F-4C5B-B47D-381EB1E07C02@kernel.org>
+References: <Y62nOqzyuUKqYDpq@spud>
+ <20230103210400.3500626-10-conor@kernel.org>
+ <b5712732-40a2-4e29-b29f-e0ab5516d518@app.fastmail.com>
+ <Y7TBh+CJdZPJ6Xzl@spud>
+ <ed198390-1bde-44ec-9f3f-b0e016b4b24c@app.fastmail.com>
+ <CFB874A3-3E6F-4C5B-B47D-381EB1E07C02@kernel.org>
+Date:   Wed, 04 Jan 2023 11:19:44 +0100
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Conor Dooley" <conor@kernel.org>
+Cc:     "Palmer Dabbelt" <palmer@dabbelt.com>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        "Conor.Dooley" <conor.dooley@microchip.com>,
+        "Andrew Jones" <ajones@ventanamicro.com>,
+        "Albert Ou" <aou@eecs.berkeley.edu>,
+        "Anup Patel" <apatel@ventanamicro.com>,
+        "Atish Patra" <atishp@rivosinc.com>,
+        "Biju Das" <biju.das.jz@bp.renesas.com>,
+        devicetree@vger.kernel.org,
+        "Geert Uytterhoeven" <geert@linux-m68k.org>,
+        guoren <guoren@kernel.org>,
+        "Christoph Hellwig" <hch@infradead.org>,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        "Jisheng Zhang" <jszhang@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        linux-riscv@lists.infradead.org,
+        "Magnus Damm" <magnus.damm@gmail.com>,
+        "Nathan Chancellor" <nathan@kernel.org>,
+        "Paul Walmsley" <paul.walmsley@sifive.com>,
+        "Philipp Tomsich" <philipp.tomsich@vrull.eu>,
+        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Samuel Holland" <samuel@sholland.org>, soc@kernel.org,
+        "Daire McNamara" <daire.mcnamara@microchip.com>
+Subject: Re: [RFC v5.1 9/9] [DON'T APPLY] cache: sifive-ccache: add cache flushing
+ capability
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Embedded USB Debugger(EUD) device tree node for
-SM6115 / SM4250 SoC.
+On Wed, Jan 4, 2023, at 10:23, Conor Dooley wrote:
+>>Right, no need to touch the existing file as part of this series,
+>>it probably just gets in the way of defining a good interface here.
+>
+> Sure. Can leave it where it was & I'll sort it out later when it's 
+> errata etc get added.
+>
+> Btw, would you mind pointing out where you wanted to have that if/else 
+> you mentioned on IRC?
 
-The node contains EUD base register region, EUD mode manager
-register region and TCSR Check register region along with the
-interrupt entry.
+I meant replacing both of the runtime patching indirections in
+arch_sync_dma_for_device(). At the moment, this function calls
+ALT_CMO_OP(), which is patched to either call the ZICBOM or the
+THEAD variant, and if I read this right you add a third case
+there with another level of indirection using static_branch.
 
-Also add the typec connector node for EUD which is attached to
-EUD node via port. EUD is also attached to DWC3 node via port.
+I would try to replace both of these indirections and instead
+handle it all from C code in arch_sync_dma_for_device() directly,
+for the purpose of readability and maintainability.
 
-To enable the role switch, we need to set dr_mode = "otg" property
-for 'usb_dwc3' sub-node in the board dts file.
+static inline void dma_cache_clean(void *vaddr, size_t size)
+{
+        if (!cache_maint_ops.clean)
+               zicbom_cache_clean(vaddr, size, riscv_cbom_block_size);
+        else
+               cache_maint_ops.clean(vaddr, size, riscv_cbom_block_size);
+}
 
-Also the EUD device can be enabled on a board once linux is boot'ed
-by setting:
- $ echo 1 > /sys/bus/platform/drivers/qcom_eud/../enable
+void arch_sync_dma_for_device(phys_addr_t paddr, size_t size,
+                              enum dma_data_direction dir)
+{
+        void *vaddr = phys_to_virt(paddr);
 
-Cc: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
----
-- v2 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230104052047.3945983-1-bhupesh.sharma@linaro.org
-- In v3, fix the errors reported by '$ make dtbs_check' for the port sub node:
-  ports:
-    'oneOf' conditional failed, one must be fixed:
-        'port' is a required property
-        '#address-cells' is a required property
-        '#size-cells' is a required property
-- This patch is based on my earlier sm6115 usb related changes, which can
-  be seen here:
-  https://lore.kernel.org/linux-arm-msm/20221215094532.589291-1-bhupesh.sharma@linaro.org/
-- This patch is also dependent on my sm6115 eud dt-binding and driver changes
-  (v2) sent earlier, which can be seen here:
-  https://lore.kernel.org/linux-arm-msm/20230103150419.3923421-1-bhupesh.sharma@linaro.org/
+        switch (dir) {
+        case DMA_TO_DEVICE:
+        case DMA_FROM_DEVICE:
+                dma_cache_clean(vaddr, size);
+                break;
+        case DMA_BIDIRECTIONAL:
+                dma_cache_flush(vaddr, size);
+                break;
+        default:
+                break;
+        }
+}
 
- arch/arm64/boot/dts/qcom/sm6115.dtsi | 46 ++++++++++++++++++++++++++++
- 1 file changed, 46 insertions(+)
+which then makes it very clear what the actual code path
+is, while leaving the zicbom case free of indirect function
+calls. You can still use a static_branch() to optimize the
+conditional, but I would try to avoid any extra indirection
+levels or errata checks.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-index 030763187cc3f..a1a4f659587f3 100644
---- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-@@ -170,6 +170,18 @@ core3 {
- 		};
- 	};
- 
-+	eud_typec: connector {
-+		compatible = "usb-c-connector";
-+
-+		ports {
-+			port@0 {
-+				con_eud: endpoint {
-+					remote-endpoint = <&eud_con>;
-+				};
-+			};
-+		};
-+	};
-+
- 	firmware {
- 		scm: scm {
- 			compatible = "qcom,scm-sm6115", "qcom,scm";
-@@ -565,6 +577,33 @@ gcc: clock-controller@1400000 {
- 			#power-domain-cells = <1>;
- 		};
- 
-+		eud: eud@1610000 {
-+			compatible = "qcom,sm6115-eud", "qcom,eud";
-+			reg = <0x01610000 0x2000>,
-+			      <0x01612000 0x1000>,
-+			      <0x003e5018 0x4>;
-+			interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				port@0 {
-+					reg = <0>;
-+					eud_ep: endpoint {
-+						remote-endpoint = <&usb2_role_switch>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					eud_con: endpoint {
-+						remote-endpoint = <&con_eud>;
-+					};
-+				};
-+			};
-+		};
-+
- 		usb_hsphy: phy@1613000 {
- 			compatible = "qcom,sm6115-qusb2-phy";
- 			reg = <0x01613000 0x180>;
-@@ -1064,6 +1103,13 @@ usb_dwc3: usb@4e00000 {
- 				snps,has-lpm-erratum;
- 				snps,hird-threshold = /bits/ 8 <0x10>;
- 				snps,usb3_lpm_capable;
-+				usb-role-switch;
-+
-+				port {
-+					usb2_role_switch: endpoint {
-+						remote-endpoint = <&eud_ep>;
-+					};
-+				};
- 			};
- 		};
- 
--- 
-2.38.1
-
+     Arnd
