@@ -2,108 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2405065D550
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 15:15:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C55C265D54C
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 15:15:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235011AbjADOPw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 09:15:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40682 "EHLO
+        id S233721AbjADOPp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 09:15:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234818AbjADOPt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 09:15:49 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7C28E2A
-        for <devicetree@vger.kernel.org>; Wed,  4 Jan 2023 06:14:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1672841685;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=9cfdRosRnqWGgYsCh7xZca32Ewr/g2k4G8qYMhpZ2gk=;
-        b=MwrmXo2df1tut+1reM2LdotQ1ziVXldBvpNfjv9G64kA0lYa5/Ur1Zk8XiwTO8UNNu7HQQ
-        ln3HoxsuDDRnHHicEuPDByBeDzyKiuYgVLhxWWQps41rU58pybHKURZHr+irlUOiqvWz6b
-        zjL1EC5NJwF6hkFu6l+UV/7FEOpt6oI=
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
- [209.85.219.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-604-JHFvRay-NduUXgZtupNrDg-1; Wed, 04 Jan 2023 09:14:44 -0500
-X-MC-Unique: JHFvRay-NduUXgZtupNrDg-1
-Received: by mail-qv1-f69.google.com with SMTP id f11-20020a0cf7cb000000b005319ce47af9so9324272qvo.15
-        for <devicetree@vger.kernel.org>; Wed, 04 Jan 2023 06:14:44 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9cfdRosRnqWGgYsCh7xZca32Ewr/g2k4G8qYMhpZ2gk=;
-        b=CyeKEzCDGvi1cKTJcw5Yl1WUu2/YCXy6lAgP/LiAj6QV4+GnCecQsMhZYD7jm4Ozkp
-         EgoVmbd+AXbOi8qN199l7HkczzIR4pWvZm5WdM6IozChdfPMi6xYyQQnrbUqMMmh2eFH
-         H8QntVtuqKOs6VfmPhPgN2TPo3VbVunhC1DbaWwOf2zvYxUlY2cxXaTlb+yiXd7UkJ/R
-         zQ2YXU46aWazpHplL4IxUZpnwBW+ELo6JVq3RUSHO60CVHr7YqyGU0ugLWnXKKQACR1G
-         6hHmvY7Ll+15Szfh5IPzrnuO+3ByWk9CxzMG0HSN1c8+yJa6gUDJNZsmlGeZEcCcl0ju
-         4i+g==
-X-Gm-Message-State: AFqh2krNXJ6pGdEVCxW66QuSvwamjprTVb8CSP875Gn+PRpxWBkhBztm
-        Jspuj9IDkZ0Uz/TkEH5fqyOo6aB3myC5x0be/Yr7/zCdBiBHo2OJEplxsa1oaEI+rxPasLrUnHc
-        vo751Wn0EBgCPPKS4GsKijg==
-X-Received: by 2002:ac8:4247:0:b0:3a8:2e48:349f with SMTP id r7-20020ac84247000000b003a82e48349fmr68869478qtm.61.1672841683751;
-        Wed, 04 Jan 2023 06:14:43 -0800 (PST)
-X-Google-Smtp-Source: AMrXdXs+seHgT1LQmMai82icTAb5q4cuIvHG0Fp8IH23mh3AfCWFoUZldcrrRerBKNPKLa89DFwBqQ==
-X-Received: by 2002:ac8:4247:0:b0:3a8:2e48:349f with SMTP id r7-20020ac84247000000b003a82e48349fmr68869366qtm.61.1672841682031;
-        Wed, 04 Jan 2023 06:14:42 -0800 (PST)
-Received: from x1 (c-73-214-169-22.hsd1.pa.comcast.net. [73.214.169.22])
-        by smtp.gmail.com with ESMTPSA id i7-20020a05622a08c700b00343057845f7sm20431560qte.20.2023.01.04.06.14.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Jan 2023 06:14:41 -0800 (PST)
-Date:   Wed, 4 Jan 2023 09:14:39 -0500
-From:   Brian Masney <bmasney@redhat.com>
-To:     Steev Klimaszewski <steev@kali.org>
-Cc:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        quic_shazhuss@quicinc.com, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, johan+linaro@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ahalaney@redhat.com,
-        echanude@redhat.com, Javier Martinez Canillas <fmartine@redhat.com>
-Subject: Re: [PATCH v3 0/7] dts: qcom: sc8280xp: add i2c, spi, and rng nodes
-Message-ID: <Y7WJzx78EMIS5d7z@x1>
-References: <20221220192854.521647-1-bmasney@redhat.com>
- <4d434dd7-cd3c-ed53-c337-4cf1ba018aef@kali.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4d434dd7-cd3c-ed53-c337-4cf1ba018aef@kali.org>
-User-Agent: Mutt/2.2.7 (2022-08-07)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S235012AbjADOPj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 09:15:39 -0500
+Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1198112ADB;
+        Wed,  4 Jan 2023 06:15:37 -0800 (PST)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.nyi.internal (Postfix) with ESMTP id BA7705C01B4;
+        Wed,  4 Jan 2023 09:15:34 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Wed, 04 Jan 2023 09:15:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; t=1672841734; x=1672928134; bh=Fn1aQEXTry
+        mHnWymQOrd0h3tQi3NafhSd3arLPnzkI0=; b=Ks0nnbzchE3a9MdHfWdff6SGhT
+        NNuBTQkbbQRk856PiUGuPtTPXOO4EWiG2eLnky1Fe83iKhf5isWyYaj6dL95goYM
+        +cMT8kgsxV2X9wzhwbMjbpXYYnADB0Ol7YrgEl3+n/OK9EdNeoEDZuej8IMQYMHe
+        jaQGPPpDyFLtK4t5NieoJ5z90fkE+rUvIZRvI+uLNHX5DIZGgDrdtdrBloqulWvN
+        zXAVIAu1UmHxqJKJDtF3oUYSo5q6IXcgpxWdmWaEr3FUJfyviBNZAVsmCUyiF0Zd
+        CK5frI7p3SK9N9d0R9Td3ss6wAzSYMbPCbmDU4cETX+HKVPGR95SmJKPSuCA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm2; t=1672841734; x=1672928134; bh=Fn1aQEXTrymHnWymQOrd0h3tQi3N
+        afhSd3arLPnzkI0=; b=PfJJY7BdjE9XKomOO3FAguSwAJbsoxpOtteKA2AH9GCe
+        di2SCn+pfmmZUfFL1RmJI0QtizGbuFnUVPmYzAc5KzNv/V+inA0isBcm420qg8eq
+        z/SkxKiiNUe4LvBFGswlgp+tnPUxgzGw3x8+jU31+R18HOAGXgR5Ko/W9XLGX+eI
+        /+VELJWfmf1fq/oQgk7yV2h6pY0f+xPJa14KNzKpVSGm/Dhrw3QhF9k3ghX+zJsf
+        dGMIsAP9x8tIdYkChPUSDdufb2TjTSNzoRYzsW/vzqneWxok8gjC/lV9Zdn/RDID
+        ngy7cN9Vmb0CTKHnGPe66J0dSyIESH+0NAmRnCEI8A==
+X-ME-Sender: <xms:BYq1Y2YD9LaCyi7RpUrZlAjmlLUDlXKWz-coGihwz7dT58cbTP29-g>
+    <xme:BYq1Y5Yy8f7exDo1k5sgaomeRmh2af6NHR3eOOmryQJcO1uZNS3WYMi8PNhkcUUx2
+    Xfyfa9cn2Q7g09dXzE>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrjeeigdeivdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
+    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
+    gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
+    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
+    hnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:BYq1Yw-mze03m1sJLe9G-8FhVbq1AUQK0F1vB5yNhoSvwQi0PQKrCA>
+    <xmx:BYq1Y4qaeGBFCh7Qv7qiiZX0cTDdkDURjAaqDkUl7n2X2tL964mu9A>
+    <xmx:BYq1YxqNrc3pbSXTNVpRj35tKeq1zjwvLxV_ED0Cg-KGuEHIPuUF1w>
+    <xmx:Boq1Y3gt-izzaAnIaOt1oEBmJI_9SdY7uLaxxa_i3aDqxBWbFmyLMw>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 4ED8BB60086; Wed,  4 Jan 2023 09:15:33 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-1185-g841157300a-fm-20221208.002-g84115730
+Mime-Version: 1.0
+Message-Id: <62fa1fff-b055-410d-bbf9-e4017dc23e88@app.fastmail.com>
+In-Reply-To: <Y7V9Debcc9lqWBmT@spud>
+References: <Y62nOqzyuUKqYDpq@spud>
+ <20230103210400.3500626-10-conor@kernel.org>
+ <b5712732-40a2-4e29-b29f-e0ab5516d518@app.fastmail.com>
+ <Y7TBh+CJdZPJ6Xzl@spud>
+ <ed198390-1bde-44ec-9f3f-b0e016b4b24c@app.fastmail.com>
+ <CFB874A3-3E6F-4C5B-B47D-381EB1E07C02@kernel.org>
+ <43aee000-5b89-4d94-98d2-b37b1a18a83e@app.fastmail.com>
+ <Y7VpeK48nslxklkF@spud>
+ <1b7d4caa-2c9c-4aef-81ac-47288d3a652c@app.fastmail.com>
+ <Y7V9Debcc9lqWBmT@spud>
+Date:   Wed, 04 Jan 2023 15:15:12 +0100
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Conor Dooley" <conor@kernel.org>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>
+Cc:     Prabhakar <prabhakar.csengg@gmail.com>,
+        "Conor.Dooley" <conor.dooley@microchip.com>,
+        "Andrew Jones" <ajones@ventanamicro.com>,
+        "Albert Ou" <aou@eecs.berkeley.edu>,
+        "Anup Patel" <apatel@ventanamicro.com>,
+        "Atish Patra" <atishp@rivosinc.com>,
+        "Biju Das" <biju.das.jz@bp.renesas.com>,
+        devicetree@vger.kernel.org,
+        "Geert Uytterhoeven" <geert@linux-m68k.org>,
+        guoren <guoren@kernel.org>,
+        "Christoph Hellwig" <hch@infradead.org>,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        "Jisheng Zhang" <jszhang@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        linux-riscv@lists.infradead.org,
+        "Magnus Damm" <magnus.damm@gmail.com>,
+        "Nathan Chancellor" <nathan@kernel.org>,
+        "Paul Walmsley" <paul.walmsley@sifive.com>,
+        "Philipp Tomsich" <philipp.tomsich@vrull.eu>,
+        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Samuel Holland" <samuel@sholland.org>, soc@kernel.org,
+        "Daire McNamara" <daire.mcnamara@microchip.com>
+Subject: Re: [RFC v5.1 9/9] [DON'T APPLY] cache: sifive-ccache: add cache flushing
+ capability
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 21, 2022 at 01:41:52PM -0600, Steev Klimaszewski wrote:
-> One note, and this isn't due to your patches at all, but the touchscreen on
-> the Thinkpad X13s needs to be manually bound in order to work via echo
-> 1-0010 | sudo tee /sys/bus/i2c/drivers/i2c_hid_of/bind - this patch does not
-> affect that, though I had hoped maybe it would.
-> 
-> Tested on the Lenovo Thinkpad X13s
-> 
-> Tested-by: Steev Klimaszewski <steev@kali.org>
+On Wed, Jan 4, 2023, at 14:20, Conor Dooley wrote:
+> On Wed, Jan 04, 2023 at 01:18:45PM +0100, Arnd Bergmann wrote:
+>> On Wed, Jan 4, 2023, at 12:56, Conor Dooley wrote:
+>> > On Wed, Jan 04, 2023 at 11:19:44AM +0100, Arnd Bergmann wrote:
+> Perhaps more of a question for Palmer than you, but how about leaving
+> ALT_CMO_OP as-is in riscv/for-next at the moment, wrapping it in
+> zicbom_cache_foo() & leaving that extraction for a follow-on work?
+> There's another conversation going on about expanding the THEAD stuff,
+> so that could be done on top of Prabhakar's v6.
 
-Hi Steev,
+Right, makes sense to me.
 
-I believe that I remember reading at some point that the touchscreen
-issue on the x13s was related to some probe deferral issues. If so,
-try adding this patch series from Javier to see if that helps the
-situation:
-
-https://lore.kernel.org/lkml/20221116115348.517599-1-javierm@redhat.com/
-
-Javier separately encountered a probe deferral issue when enabling a
-Snapdragon-based Chromebook on Fedora that caused him to work on that
-patch series.
-
-Brian
-
+      Arnd
