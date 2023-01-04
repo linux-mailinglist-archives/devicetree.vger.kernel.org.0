@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE61565CF58
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 10:18:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A7F965CF5D
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 10:18:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238063AbjADJS2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 04:18:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40892 "EHLO
+        id S239068AbjADJSh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 04:18:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234008AbjADJSY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 04:18:24 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6E341C126
-        for <devicetree@vger.kernel.org>; Wed,  4 Jan 2023 01:18:23 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id z8-20020a05600c220800b003d33b0bda11so547479wml.0
-        for <devicetree@vger.kernel.org>; Wed, 04 Jan 2023 01:18:23 -0800 (PST)
+        with ESMTP id S234396AbjADJS0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 04:18:26 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80508193D9
+        for <devicetree@vger.kernel.org>; Wed,  4 Jan 2023 01:18:25 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id i17-20020a05600c355100b003d99434b1cfso15733524wmq.1
+        for <devicetree@vger.kernel.org>; Wed, 04 Jan 2023 01:18:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=fn5vH+KW5nEUuinnNq/HTPC59xGXcsOGx6a+Sxen6fw=;
-        b=srUASbNGcVfYiHEQXkkQWVUp5h3p9GhJZ3PqATn0zStqZIkjl01ERAnYbbPHoSK++A
-         SD1uUVJ2L0MtRQddKAUi32WuHE0COiSSIqsa5Dv/UofHSc5rtrBKWQNii6rRKMRmsBAO
-         SPcI2/V60qsLw8NRTH2LH1qqiXE+UubPLFYJwgt56Wt8MKmemGv47py6FCkLykKmgGS0
-         RMxLJX/q+Mpq5PYz7KlnK1PziLhGp6fx1Pj4gHy+hcUJZcqbFPonD4NnQrbniE2mq7RR
-         cCix2y1PV3HU5oYGOhG+4MtZjygUbSSdpwYTswXx3KFYjmyGKsOLbG43RpCzONc0bZdH
-         HiHw==
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bN8XVVZkj16v6WHZrteMUDPZ2TN7xZCFce+h63e15xc=;
+        b=QQ1J5URi+4jJf2t6zKBsd7fDgkNAbS9uPiGjuKNNU+89Z3zxQbn0gyZbFqmZB8Y8ZF
+         UuOMZOO5WMDOZsz/dMzCjnQco+7kE3698qzCy6B8D9pf3tv3V4BPldl0eT/XKNfpInWe
+         tZHbD4IUZqKbuPCd2ntrHqKm0wzKz7t4bxNy3cPBZDuS7hqs9Y2iq6al6YBXLslGdlgg
+         ZaHes+GqUZjWcwtTl1vP8Dg82s6wxWNEtDwBAMwVP2n5I+olevMub5uoKhmWeAdWePlC
+         GOgfWCUiieIAhMu3f4LSkfzfmAOyY6/QJQALPy3Vv6YmDaUfPYtXe92NxcrfDz/U+pqD
+         c/Pg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fn5vH+KW5nEUuinnNq/HTPC59xGXcsOGx6a+Sxen6fw=;
-        b=2/j8ecCZPjPABEcpz4a4X8nhrd/hBAoq6h7LID+9kWUQ47wnINDIcZCRj3nEDxjxVr
-         22TtW/xnnX2N4ASjeZV6VFAGXTfTiSbIQSFCSfQznCHU8EGniszw5OrV1dqql2pCXh6M
-         BU8A00kmRm6Znc/TsmbD5i6bqoQzpNdubKBQFS7DUqsmPVQ2esfoJML9GMtoDyS5bLZR
-         SAYMyfcwJjL0d2R5Vjlj6s54gMiQ8BJB7DxbFZdECRBRlSgdjIZiBRhVXgo9ijsDoffZ
-         xxG232kntErI/fDFveZhRPvE6KvWAnWLtt3pjt6XugoGMUIQNkXODfsS6ROj/GKAqX+1
-         uFPQ==
-X-Gm-Message-State: AFqh2krAfJk21hmKBq2Tsoffpuql2a2xHMz65x8Tr8TKiHSh642x7Rva
-        /jO+Tc9BH6aqbpeAWGP9CqBhkGSMZ7N1Wgh6
-X-Google-Smtp-Source: AMrXdXsPNN6g1WFooyrHyZAnJcaS+fc4Rn5GkgGFP+7x5/4Gp0ugZzFcgfKyWmgikV9puL8IqTZSQw==
-X-Received: by 2002:a05:600c:600a:b0:3d1:ed41:57c0 with SMTP id az10-20020a05600c600a00b003d1ed4157c0mr36597223wmb.30.1672823902446;
-        Wed, 04 Jan 2023 01:18:22 -0800 (PST)
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bN8XVVZkj16v6WHZrteMUDPZ2TN7xZCFce+h63e15xc=;
+        b=SYfbmqOSkic85KfJ8PM6O2FuBLBsg8s5txlQ3s53HbVMbAOkHjx4fX/hFd5ajRcORI
+         1C+t7k+OSkOQv+ejSxr7I6Oxt2kmy9+cjocs1TfJgX3TLuGdlrsaMBl6ScjC6KSbMPaj
+         n6yKzBGdcOA1AiDu8w02Lfr7VFO1h6jYGRFQYMpyOs39kimouwb4PGhHD4gU9qINGC/8
+         skPstb4ySvSJ8SnjeJqBVZMWO7j6I9g8oddiIBl/bOA9KxP5fkM79eHWKPwVG57au0K1
+         0oeB8zMjZsjUvnuvRJt0x1YHSv7Z4rwlDBGhGp5kA4wUWlAbTabEo2EsLpDyF+YHdERT
+         wiXg==
+X-Gm-Message-State: AFqh2krGFaKvk9V4cj8IMunPnYD/kYKXgm0/ZhVwQ4Dy7fUXKbXRs9Bm
+        GvY505MBZtaQ3z3zVQhISGE9XDyucYmy7KG+
+X-Google-Smtp-Source: AMrXdXsuEyxmpXRoNsPvLLlB5OMM+wH+Aa0KXq81KgY/JaPJpGP1VVJYSbKzph3Mfxx7cnOAYwBUpw==
+X-Received: by 2002:a05:600c:512a:b0:3cf:8957:a441 with SMTP id o42-20020a05600c512a00b003cf8957a441mr33779804wms.12.1672823904105;
+        Wed, 04 Jan 2023 01:18:24 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id k6-20020adff5c6000000b002a01e64f7a1sm3488656wrp.88.2023.01.04.01.18.21
+        by smtp.gmail.com with ESMTPSA id k6-20020adff5c6000000b002a01e64f7a1sm3488656wrp.88.2023.01.04.01.18.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Jan 2023 01:18:21 -0800 (PST)
+        Wed, 04 Jan 2023 01:18:23 -0800 (PST)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [PATCH 0/3] arm64: dts: qcom: sm8550-mtp: enable DSI panel
-Date:   Wed, 04 Jan 2023 10:18:20 +0100
-Message-Id: <20230104-topic-sm8550-upstream-dts-display-v1-0-aeab9751928f@linaro.org>
+Date:   Wed, 04 Jan 2023 10:18:21 +0100
+Subject: [PATCH 2/3] arm64: dts: qcom: sm8550-mtp: enable display hardware
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAFxEtWMC/x2NQQ7CIBAAv9JwdhNA0cavmB4WWO0mlBKWGk3Tv
- 0s8zhxmdiVUmUTdh11VerPwmjuY06DCjPlFwLGzstqetdEXaGvhALKMzmnYirRKuEBsApGlJPwC
- orXeXUdCc1O941EIfMUc5l7KW0pdlkpP/vzHj+k4fuysq62IAAAA
+Message-Id: <20230104-topic-sm8550-upstream-dts-display-v1-2-aeab9751928f@linaro.org>
+References: <20230104-topic-sm8550-upstream-dts-display-v1-0-aeab9751928f@linaro.org>
+In-Reply-To: <20230104-topic-sm8550-upstream-dts-display-v1-0-aeab9751928f@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
@@ -69,50 +69,54 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
 X-Mailer: b4 0.11.1
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree nodes for MDSS, DPU and DSI devices on Qualcomm SM8550
-platform. Enable these devices and add the DSI panel on the MTP device.
+Enable MDSS/DPU/DSI0 on SM8550-MTP device.
 
-Dependencies:
-- [1] SM8550 base DT
-- [2] MDSS/DPU/DSI bindings
-- [3] DISPCC bindings
-- [4] VTDR6130 Panel bindings
-
-[1] https://lore.kernel.org/all/20221230202230.2493494-1-abel.vesa@linaro.org/
-[2] https://lore.kernel.org/all/20230103-topic-sm8550-upstream-mdss-dsi-v1-0-9ccd7e652fcd@linaro.org/
-[3] https://lore.kernel.org/all/20230103-topic-sm8550-upstream-dispcc-v1-0-81bfcc26b2dc@linaro.org/
-[4] https://lore.kernel.org/all/20230103-topic-sm8550-upstream-vtdr6130-panel-v1-0-9b746b858378@linaro.org/
-
-To: Andy Gross <agross@kernel.org>
-To: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-To: Rob Herring <robh+dt@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-
 ---
-Neil Armstrong (3):
-      arm64: dts: qcom: sm8550: add display hardware devices
-      arm64: dts: qcom: sm8550-mtp: enable display hardware
-      arm64: dts: qcom: sm8550-mtp: add DSI panel
+ arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
- arch/arm64/boot/dts/qcom/sm8550-mtp.dts |  78 +++++++++
- arch/arm64/boot/dts/qcom/sm8550.dtsi    | 295 ++++++++++++++++++++++++++++++++
- 2 files changed, 373 insertions(+)
----
-base-commit: 3413711161cca59e1247d3c5ba0c6261d2b20dc6
-change-id: 20230104-topic-sm8550-upstream-dts-display-aa22b568ea17
+diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+index 8586e16d6079..5b7e301cc2a2 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
++++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+@@ -359,6 +359,28 @@ vreg_l3g_1p2: ldo3 {
+ 	};
+ };
+ 
++&dispcc {
++	status = "okay";
++};
++
++&mdss {
++	status = "okay";
++};
++
++&mdss_dsi0 {
++	vdda-supply = <&vreg_l3e_1p2>;
++	status = "okay";
++};
++
++&mdss_dsi0_phy {
++	vdds-supply = <&vreg_l1e_0p88>;
++	status = "okay";
++};
++
++&mdss_mdp {
++	status = "okay";
++};
++
+ &pm8550_gpios {
+ 	sdc2_card_det_n: sdc2-card-det-state {
+ 		pins = "gpio12";
 
-Best regards,
 -- 
-Neil Armstrong <neil.armstrong@linaro.org>
+2.34.1
