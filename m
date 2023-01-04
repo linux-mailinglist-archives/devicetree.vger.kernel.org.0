@@ -2,109 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBE0A65CFE8
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 10:49:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC6C565CFEF
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 10:52:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229663AbjADJtD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 04:49:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59560 "EHLO
+        id S233284AbjADJv2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 04:51:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229490AbjADJtC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 04:49:02 -0500
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D95B19C02;
-        Wed,  4 Jan 2023 01:49:01 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id jo4so81287055ejb.7;
-        Wed, 04 Jan 2023 01:49:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=1oNRW1cGJQQReSYi/ZQ8ERmnLQ2tK8+sfHV1Fnu4AsQ=;
-        b=pQBzfXE2nfgS9cuj64iVl9iLzAQXlmMuXHI1TE1lksdqJDfcdAH7PGmIeE0l7mPK3J
-         mEITQ0ZdwENwEySxSv1WUvmfNIviWmXfuE5bQxftyTpDx1JZ1pVyjc6M7yAYGQ1bqJi1
-         G8jG/YFon4PMkJJq38BPj2P4MzSWzbGmGsMdu76jUmpaJ3aLHaSb4oMr6YKCzjYNzIfh
-         og1csQJZrtl/Fi7KSd79bEkHtCV+iWImrnXiEfXZNS6dnV2TJm2WOlkjg7JPzutQtgJs
-         NAwJGRkZRnRWAneJGH1eMkcLP/KwVm+sMvkqInFdyFOqL1z1n2AYowPb9oZLJIhZMLhJ
-         j32A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1oNRW1cGJQQReSYi/ZQ8ERmnLQ2tK8+sfHV1Fnu4AsQ=;
-        b=VIc+tQCNEEIOoD9BzaSoEKzWZGFxJn7nRwxyzjv39+C2dB9JHa8n9F1vUffFiUEQX/
-         Rgt+7WZNW8pDPvQS5u04tqgyDDCEzaQl4qrsKgGJQ313wR7tkYdzTljmQShdP6haQTPv
-         FUlpemcy3cJRwRgf1SNRf+RWUgdJqf6IK3Y0oYCRPvNZEGVSYT8wK1U9qYpX8tSSE6TA
-         JbY54B8hL0TAuUniCfWrOU543diD0hAmyW6KgtN5ETcZkeBG9uCJNTwTgtURFZcd5Tos
-         HVAkhaAtEh3msfERbbM58BsUAE08QLVZNB+X//Oy9NKsMqb99mu4sx5EIehCXV4Sj+3w
-         qJEA==
-X-Gm-Message-State: AFqh2koKDSc/l8CsMFVCG7JrcmAGvaljcTqH5i6EFr1kk4TByEls66Fg
-        giC0ta7IbYZ0nCysowkNKjBunvGympE=
-X-Google-Smtp-Source: AMrXdXttG+EoWUW+sa5tampPMDoAEVDU+I1njWdndjI7/wp6ng0FQIB9yIewFK0dVqfGWldknbJuiQ==
-X-Received: by 2002:a17:907:d311:b0:7c4:e7b0:8491 with SMTP id vg17-20020a170907d31100b007c4e7b08491mr41897603ejc.61.1672825739951;
-        Wed, 04 Jan 2023 01:48:59 -0800 (PST)
-Received: from giga-mm.home ([2a02:1210:8629:800:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id 1-20020a170906310100b00738795e7d9bsm15146582ejx.2.2023.01.04.01.48.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Jan 2023 01:48:59 -0800 (PST)
-Message-ID: <52ed3964aacb4ae8fc7ff8416cbddb4110902196.camel@gmail.com>
-Subject: Re: [PATCH 0/2] of: Fix handling CONFIG_CMDLINE* even without
- /chosen node
-From:   Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To:     Rob Herring <robh@kernel.org>, Geoff Levand <geoff@infradead.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Date:   Wed, 04 Jan 2023 10:48:58 +0100
-In-Reply-To: <20230103-dt-cmdline-fix-v1-0-7038e88b18b6@kernel.org>
-References: <20230103-dt-cmdline-fix-v1-0-7038e88b18b6@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.2 
+        with ESMTP id S234274AbjADJvO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 04:51:14 -0500
+X-Greylist: delayed 322 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 04 Jan 2023 01:51:12 PST
+Received: from imap4.hz.codethink.co.uk (imap4.hz.codethink.co.uk [188.40.203.114])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30DF1140D6;
+        Wed,  4 Jan 2023 01:51:12 -0800 (PST)
+Received: from cpc152649-stkp13-2-0-cust121.10-2.cable.virginm.net ([86.15.83.122] helo=[192.168.0.17])
+        by imap4.hz.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
+        id 1pD0QG-00G85N-8X; Wed, 04 Jan 2023 09:51:00 +0000
+Message-ID: <49bd7b4a-b0e1-3213-8aed-9f39604f3935@codethink.co.uk>
+Date:   Wed, 4 Jan 2023 09:50:58 +0000
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [RFC v5.1 6/9] cache,soc: Move SiFive CCache driver & create
+ drivers/cache
+Content-Language: en-GB
+To:     Conor Dooley <conor@kernel.org>, arnd@arndb.de, palmer@dabbelt.com,
+        prabhakar.csengg@gmail.com
+Cc:     Conor Dooley <conor.dooley@microchip.com>, ajones@ventanamicro.com,
+        aou@eecs.berkeley.edu, apatel@ventanamicro.com,
+        atishp@rivosinc.com, biju.das.jz@bp.renesas.com,
+        devicetree@vger.kernel.org, geert@linux-m68k.org,
+        guoren@kernel.org, hch@infradead.org, heiko@sntech.de,
+        jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-riscv@lists.infradead.org, magnus.damm@gmail.com,
+        nathan@kernel.org, paul.walmsley@sifive.com,
+        philipp.tomsich@vrull.eu, prabhakar.mahadev-lad.rj@bp.renesas.com,
+        robh+dt@kernel.org, samuel@sholland.org, soc@kernel.org
+References: <Y62nOqzyuUKqYDpq@spud>
+ <20230103210400.3500626-7-conor@kernel.org>
+From:   Ben Dooks <ben.dooks@codethink.co.uk>
+Organization: Codethink Limited.
+In-Reply-To: <20230103210400.3500626-7-conor@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On 03/01/2023 21:03, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
+> The Zicbo* set of extensions for cache maintenance arrived too late &
+> several SoCs exist without them that require non-coherent DMA.
+> As things stand, the StarFive JH7100, Microchip PolarFire SoC & Renesas
+> RZ/Five all require cache maintenance and lack instructions for this
+> purpose.
+> Create a subsystem for cache drivers so that vendor specific behaviour
+> can be isolated from arch code, but keep the interfaces etc consistent.
+> Move the existing SiFive CCache driver to create drivers/cache.
+> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>   MAINTAINERS                                   | 15 ++++++++-------
+>   drivers/Kconfig                               |  2 ++
+>   drivers/Makefile                              |  2 ++
+>   drivers/{soc/sifive => cache}/Kconfig         |  8 +++++++-
+>   drivers/{soc/sifive => cache}/Makefile        |  0
+>   drivers/{soc/sifive => cache}/sifive_ccache.c |  2 +-
+>   drivers/edac/sifive_edac.c                    |  2 +-
+>   drivers/soc/Kconfig                           |  1 -
+>   drivers/soc/Makefile                          |  1 -
+>   include/{soc/sifive => cache}/sifive_ccache.h |  0
+>   10 files changed, 21 insertions(+), 12 deletions(-)
+>   rename drivers/{soc/sifive => cache}/Kconfig (56%)
+>   rename drivers/{soc/sifive => cache}/Makefile (100%)
+>   rename drivers/{soc/sifive => cache}/sifive_ccache.c (99%)
+>   rename include/{soc/sifive => cache}/sifive_ccache.h (100%)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index f61eb221415b..4437e96a657b 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -19054,13 +19054,6 @@ S:	Maintained
+>   F:	Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
+>   F:	drivers/dma/sf-pdma/
+>   
+> -SIFIVE SOC DRIVERS
+> -M:	Conor Dooley <conor@kernel.org>
+> -L:	linux-riscv@lists.infradead.org
+> -S:	Maintained
+> -T:	git https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/
+> -F:	drivers/soc/sifive/
+> -
+>   SILEAD TOUCHSCREEN DRIVER
+>   M:	Hans de Goede <hdegoede@redhat.com>
+>   L:	linux-input@vger.kernel.org
+> @@ -19873,6 +19866,14 @@ S:	Supported
+>   T:	git git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging.git
+>   F:	drivers/staging/
+>   
+> +STANDALONE CACHE CONTROLLER DRIVERS
+> +M:	Conor Dooley <conor@kernel.org>
+> +L:	linux-riscv@lists.infradead.org
+> +S:	Maintained
+> +T:	git https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/
+> +F:	drivers/cache
+> +F:	include/cache
+I thought the riscv list was subscribers only?
 
-thanks for looking into it!
+Maybe if we do the suggestion of other cache drivers here we should
+either use the main kernel one or find some arch non-specific list.
 
-On Tue, 2023-01-03 at 12:00 -0600, Rob Herring wrote:
-> Commit a7d550f82b445cf218b47a2c1a9c56e97ecb8c7a (of: fdt: Honor CONFIG_CM=
-DLINE*
-> even without /chosen node) moved the processing of the kernel built-in co=
-mmand
-> line (CONFIG_CMDLINE) from the early_init_dt_scan_chosen routine to the
-> early_init_dt_scan_nodes routine.
->=20
-> The current powerpc startup code does not call into early_init_dt_scan_no=
-des, so
-> processing of CONFIG_CMDLINE never happens, even if CONFIG_CMDLINE_FORCE=
-=3Dy.
-> The result is an empty kernel command line, and mounting of the root file=
- system
-> then fails with a kernel panic (not syncing: VFS: Unable to mount root fs=
-).
->=20
-> Let's revert the above commit and redo the missing /chosen node handling=
-=20
-> within early_init_dt_scan_chosen().
->=20
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> +
+>   STARFIRE/DURALAN NETWORK DRIVER
+>   M:	Ion Badulescu <ionut@badula.org>
+>   S:	Odd Fixes
+> diff --git a/drivers/Kconfig b/drivers/Kconfig
+> index 968bd0a6fd78..e592ba5276ae 100644
+> --- a/drivers/Kconfig
+> +++ b/drivers/Kconfig
+> @@ -241,4 +241,6 @@ source "drivers/peci/Kconfig"
+>   
+>   source "drivers/hte/Kconfig"
+>   
+> +source "drivers/cache/Kconfig"
+> +
+>   endmenu
+> diff --git a/drivers/Makefile b/drivers/Makefile
+> index bdf1c66141c9..6ff60cf21823 100644
+> --- a/drivers/Makefile
+> +++ b/drivers/Makefile
+> @@ -38,6 +38,8 @@ obj-y				+= clk/
+>   # really early.
+>   obj-$(CONFIG_DMADEVICES)	+= dma/
+>   
+> +obj-y				+= cache/
+> +
+>   # SOC specific infrastructure drivers.
+>   obj-y				+= soc/
+>   
+> diff --git a/drivers/soc/sifive/Kconfig b/drivers/cache/Kconfig
+> similarity index 56%
+> rename from drivers/soc/sifive/Kconfig
+> rename to drivers/cache/Kconfig
+> index ed4c571f8771..bc852f005c10 100644
+> --- a/drivers/soc/sifive/Kconfig
+> +++ b/drivers/cache/Kconfig
+> @@ -1,9 +1,15 @@
+>   # SPDX-License-Identifier: GPL-2.0
+>   
+> -if SOC_SIFIVE
+> +menuconfig CACHE_CONTROLLER
+> +	bool "Cache controller driver support"
+> +	default y if RISCV
+> +
+> +if CACHE_CONTROLLER
+>   
+>   config SIFIVE_CCACHE
+>   	bool "Sifive Composable Cache controller"
+> +	depends on RISCV
+> +	default y
+>   	help
+>   	  Support for the composable cache controller on SiFive platforms.
+>   
 
-The series looks good to me,
-Reviewed-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+Maybe we should find and move the ARM PL cache controllers and
+have them here too?
 
---=20
-Alexander Sverdlin.
+-- 
+Ben Dooks				http://www.codethink.co.uk/
+Senior Engineer				Codethink - Providing Genius
+
+https://www.codethink.co.uk/privacy.html
 
