@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F21B65CF65
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 10:20:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD2B265CF6C
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 10:20:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234847AbjADJT5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 04:19:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41904 "EHLO
+        id S234306AbjADJUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 04:20:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239122AbjADJTd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 04:19:33 -0500
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EFC11D0D9
-        for <devicetree@vger.kernel.org>; Wed,  4 Jan 2023 01:19:32 -0800 (PST)
-Received: by mail-pf1-x433.google.com with SMTP id w203so5762142pfc.12
-        for <devicetree@vger.kernel.org>; Wed, 04 Jan 2023 01:19:32 -0800 (PST)
+        with ESMTP id S239098AbjADJTj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 04:19:39 -0500
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B25051DDC6
+        for <devicetree@vger.kernel.org>; Wed,  4 Jan 2023 01:19:36 -0800 (PST)
+Received: by mail-pg1-x533.google.com with SMTP id 78so21809884pgb.8
+        for <devicetree@vger.kernel.org>; Wed, 04 Jan 2023 01:19:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=MXTJgLuQHLsc/r6DrziVqRruhwpWIqmRRijuUHnfBJo=;
-        b=a1aglTiqOJStHgb2X0/wvRHK57BRQUxFp7FFVmqtTXyPuQ9LhtrAJmDrmeqX+eBq4t
-         ZcLB+fGn0F7Hj1mv2TITb2SzEz8cQHQ846yBX6d7RrY5D22j2PdkiueZE6bQ58PYBnJp
-         9yZ16FmcGwP1fbnpf1HmUM3HABN7BNuHAQBTMfiWMaxv/DhlVdE4dkJPmKDO328RFRwM
-         hYyZmhL0Iqws23QH1NjeZXtuyTvh8wwAdTEd0HYpxtPhiNHTIwTVTap8aO+/bnQ5m8xl
-         dJwiYx0OqXvCR3KQVgr5xpyy6RtPmEpGxCaCzafVeQOKVzavE5vKYkXjtxTLktbDyJ32
-         DwlQ==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KIS8WxqeTpJ/Hb9V5wgA31o+L5mO3ZUQH0XmBEAll1Y=;
+        b=UqwdSRMIhvS3VGWkfLRpPU5LOvLcyybpZ2u3QNbwiBoFK1yai5T2OFfGZ4ikwefeuu
+         mvIPfUmt+Xtyiu8MwlxaYUhASFWfDCUBUmhGMY/KvznZE//fUogRdlW9WBV1Cb2n/1WL
+         3/CglqVin7v8VhMI8ZfrBIM8xJpE2K4Kq0mT/B1qhgU3pEnrpOQL3LloI1w8Zwf6Z4ua
+         k2+cZy6o2fp2InqUFtzK62zWpusQ0E3wiwOE29pJMnNyJmPKbJsNc3Ol0+tejkazb6qW
+         mK0RkSCZBRXi3UuRdPdQIhFnHxddNX7DmjjeEsmSn4e7ozqEbeI43Y3Ltq21I4Nybm6Q
+         IdiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MXTJgLuQHLsc/r6DrziVqRruhwpWIqmRRijuUHnfBJo=;
-        b=Bx3BdPp4/vl/oxu+6KjSyyweSAEU2nByPCkWzNt0ZmjeZARzyO35BJpNos9HeXHZex
-         WL1NCk0t5z3OxJU3F4lg58/mATuWxMUrV+SGrgEVdLPG3E+yZBsuibOrWVM6VC/E6/Dc
-         PZRORE2yMrIejwM5RzYXvKFLK8K1/HXZ7dN1U69t+MG2YfhfLM8ITwFp37X1Czcrd3uJ
-         Fkc7gO2LENXblrgFvyrVeECD94ycEs/gr47QsUNyjGovL7V1ZMUT5sNKV7ekGJVsf7Bd
-         lOWBpBt8M9vTdvQ2qV0X3JmoIkNoOvhqqlGDtxa1t5ElWTWBP4RzhdkHhn+gm+4FZWow
-         etdw==
-X-Gm-Message-State: AFqh2ko9o/nhc2Av7aHIiizAJ0QTS4NI6JP/ABcjE4ojVppkOHA34Uvj
-        d7TMU2gz4GrGonUeMF4r5Mutnw==
-X-Google-Smtp-Source: AMrXdXtyeky7DMsUhAK+gve9qba6t19SjGsYhc+TS/gVSficRnlxHg2naMljpQLa8SMaZ/52/hcVgw==
-X-Received: by 2002:a05:6a00:1747:b0:582:7d41:c8a4 with SMTP id j7-20020a056a00174700b005827d41c8a4mr13639805pfc.15.1672823971646;
-        Wed, 04 Jan 2023 01:19:31 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KIS8WxqeTpJ/Hb9V5wgA31o+L5mO3ZUQH0XmBEAll1Y=;
+        b=klqhltbdbPieRi7R7pP3kt7+be5Axsrizpo01RfzsiYbAo3ESM2wM6JmugQSn+d+Q2
+         CjcpApQAHgbdB50TkjhvlKEW/P677I5fJFCt2svrtxfv6jkN55HKAxSTXdf4zyn1x5za
+         Wb3oz+10vgy8/XI8hX1nhYlvnXZmdV6meAFJ/lJUFVdAjxpq6arZAiei5akt7jd1kjWX
+         YowA7mHJjJzEBcJnBCFRSgxv0TESB04sR3AbQMWzzfcUvuHz+XJsl09rE6vR/W2HDwZM
+         RLbTsVS+50/Fiwa4gaNWtlmLTqslmEXOH7XE5h3HY+TF761rX3tRPjZX/9PYOCOP/PZ/
+         nOGw==
+X-Gm-Message-State: AFqh2kpw+CglSZeSGd9t7jFI4arTqHQkeITV8ZeVzXF4UB1QiwreJ+FC
+        8NfwWrPU9ikzhvKgFVhtuLd8zg==
+X-Google-Smtp-Source: AMrXdXulMYNKm6hmQhZqyEVnE5o8T6dZlXuPVisWXa5DTaSXYoyLuRhXkAFbFJ4CUDFKDhEHrV2E5g==
+X-Received: by 2002:aa7:804c:0:b0:576:cd93:2b06 with SMTP id y12-20020aa7804c000000b00576cd932b06mr43685798pfm.6.1672823976038;
+        Wed, 04 Jan 2023 01:19:36 -0800 (PST)
 Received: from localhost.localdomain ([2401:4900:1c5e:e3b5:c341:16de:ce17:b857])
-        by smtp.gmail.com with ESMTPSA id b189-20020a621bc6000000b00580d877a50fsm19205877pfb.55.2023.01.04.01.19.27
+        by smtp.gmail.com with ESMTPSA id b189-20020a621bc6000000b00580d877a50fsm19205877pfb.55.2023.01.04.01.19.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Jan 2023 01:19:31 -0800 (PST)
+        Wed, 04 Jan 2023 01:19:35 -0800 (PST)
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
 Cc:     quic_schowdhu@quicinc.com, agross@kernel.org, andersson@kernel.org,
@@ -55,10 +56,12 @@ Cc:     quic_schowdhu@quicinc.com, agross@kernel.org, andersson@kernel.org,
         linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
         bhupesh.sharma@linaro.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org
-Subject: [PATCH 0/2] Fix EUD dt-binding doc & sc7280 EUD node syntax 
-Date:   Wed,  4 Jan 2023 14:49:20 +0530
-Message-Id: <20230104091922.3959602-1-bhupesh.sharma@linaro.org>
+Subject: [PATCH 1/2] arm64: dts: qcom: sc7280: Fix EUD dt node syntax
+Date:   Wed,  4 Jan 2023 14:49:21 +0530
+Message-Id: <20230104091922.3959602-2-bhupesh.sharma@linaro.org>
 X-Mailer: git-send-email 2.38.1
+In-Reply-To: <20230104091922.3959602-1-bhupesh.sharma@linaro.org>
+References: <20230104091922.3959602-1-bhupesh.sharma@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -71,18 +74,100 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patchset fixes the EUD dt-binding doc & sc7280 EUD node syntax.
+As noted by Konrad while reviewing [1], fix the EUD and DWC3
+node syntax in sc7280 dtsi file.
 
-Cc: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+While at it also fix the errors reported by '$ make dtbs_check'
+for the EUD node:
 
-Bhupesh Sharma (2):
-  arm64: dts: qcom: sc7280: Fix EUD dt node syntax
-  dt-bindings: soc: qcom: eud: Fix identation issues in the example
+ arch/arm64/boot/dts/qcom/sc7280-crd-r3.dtb: eud@88e0000: ports:
+    'oneOf' conditional failed, one must be fixed:
+	'port' is a required property
+	'#address-cells' is a required property
+	'#size-cells' is a required property
+  From schema: Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml
 
- .../bindings/soc/qcom/qcom,eud.yaml           |  8 +++--
- arch/arm64/boot/dts/qcom/sc7280.dtsi          | 32 ++++++++++++-------
- 2 files changed, 25 insertions(+), 15 deletions(-)
+[1]. https://lore.kernel.org/linux-arm-msm/20221231131945.3286639-1-bhupesh.sharma@linaro.org
 
+Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 32 +++++++++++++++++-----------
+ 1 file changed, 20 insertions(+), 12 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 0adf13399e649..f4c87059919e4 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -623,6 +623,18 @@ cpu7_opp_3014mhz: opp-3014400000 {
+ 		};
+ 	};
+ 
++	eud_typec: connector {
++		compatible = "usb-c-connector";
++
++		ports {
++			port@0 {
++				con_eud: endpoint {
++					remote-endpoint = <&eud_con>;
++				};
++			};
++		};
++	};
++
+ 	memory@80000000 {
+ 		device_type = "memory";
+ 		/* We expect the bootloader to fill in the size */
+@@ -3411,6 +3423,7 @@ usb_2_dwc3: usb@8c00000 {
+ 				phy-names = "usb2-phy";
+ 				maximum-speed = "high-speed";
+ 				usb-role-switch;
++
+ 				port {
+ 					usb2_role_switch: endpoint {
+ 						remote-endpoint = <&eud_ep>;
+@@ -3585,17 +3598,23 @@ system-cache-controller@9200000 {
+ 		};
+ 
+ 		eud: eud@88e0000 {
+-			compatible = "qcom,sc7280-eud","qcom,eud";
++			compatible = "qcom,sc7280-eud", "qcom,eud";
+ 			reg = <0 0x88e0000 0 0x2000>,
+ 			      <0 0x88e2000 0 0x1000>;
+ 			interrupts-extended = <&pdc 11 IRQ_TYPE_LEVEL_HIGH>;
++
+ 			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
+ 				port@0 {
++					reg = <0>;
+ 					eud_ep: endpoint {
+ 						remote-endpoint = <&usb2_role_switch>;
+ 					};
+ 				};
++
+ 				port@1 {
++					reg = <1>;
+ 					eud_con: endpoint {
+ 						remote-endpoint = <&con_eud>;
+ 					};
+@@ -3603,17 +3622,6 @@ eud_con: endpoint {
+ 			};
+ 		};
+ 
+-		eud_typec: connector {
+-			compatible = "usb-c-connector";
+-			ports {
+-				port@0 {
+-					con_eud: endpoint {
+-						remote-endpoint = <&eud_con>;
+-					};
+-				};
+-			};
+-		};
+-
+ 		nsp_noc: interconnect@a0c0000 {
+ 			reg = <0 0x0a0c0000 0 0x10000>;
+ 			compatible = "qcom,sc7280-nsp-noc";
 -- 
 2.38.1
 
