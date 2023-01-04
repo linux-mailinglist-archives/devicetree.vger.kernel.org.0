@@ -2,135 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51D1765D7FB
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 17:10:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0185765D9D2
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 17:30:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239757AbjADQKV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 11:10:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59730 "EHLO
+        id S239837AbjADQaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 11:30:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239880AbjADQJj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 11:09:39 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB82540850
-        for <devicetree@vger.kernel.org>; Wed,  4 Jan 2023 08:09:19 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id u28so44387918edd.10
-        for <devicetree@vger.kernel.org>; Wed, 04 Jan 2023 08:09:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=7Fdz8ydnkLz5wna1uPMyDPqPnfgZcb47kfpiU1wAhAo=;
-        b=GLxN5JXuiOtzMgmWrdYlcn0q2EhxBeBj1Rl8jzjd0XS6VAIeuEbKEWnWpKnCu4FZsi
-         /M4yqOkCuBcCOPjewV8qkVtP4lrZJXY37qkXPCp125xA85llOpBibFgovnnHpVgVfCkZ
-         UDkOFnE6O6SFEzF3Ov+SbSMj0cf6n2R3GNslY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7Fdz8ydnkLz5wna1uPMyDPqPnfgZcb47kfpiU1wAhAo=;
-        b=rELWjVr8jx9QrZAxy9Q5jhPytR22sNPSFBguFre69egaywKU3rEGWX3PXvfPOmfdnu
-         IcD2JrthLq4xNSU/KTZWAJJTeCux8HCLjk7MEDr6abq7IV+TBXuBPKacDjYjuTU54jMC
-         tKWoqeL3OKAvnuvu4XoZnrFWbb7fpVSw9fcENvUuNJ5UGaghvreLWE4EGzxdjvkwDB3y
-         6lIyPvCfH0/SKKTcbLkKaO2qU7zuxKqyISqi2TMyxi2scizve41UOjtOOSVPA/0jt/rS
-         efynwEa4e+JD6ZkknZpD/HiEPY+I9O7lqq3hb8qFNop5fhgKBEs6sBtqZgkBipp8svrz
-         d2mA==
-X-Gm-Message-State: AFqh2ko8mawwcLgvrUCqgEaGAMhF8MTwyWRNgtTXC4sz3Q/USCUBCeN2
-        BQZs/FJ0XstieIYilkRYeIZCVIH4BU6ZBuNr47cYiw==
-X-Google-Smtp-Source: AMrXdXsv1xg2M0bhVn1lwVtKy4iXv8iFGb+5mdRNNhgcOA/iAYMeYuCuQaM7J9fZy2xr9HWmpKkA9zSLNNe3G6JTUuY=
-X-Received: by 2002:aa7:d35a:0:b0:46c:4b56:8c06 with SMTP id
- m26-20020aa7d35a000000b0046c4b568c06mr4381025edr.230.1672848558235; Wed, 04
- Jan 2023 08:09:18 -0800 (PST)
+        with ESMTP id S239935AbjADQ3y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 11:29:54 -0500
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D158B33D48
+        for <devicetree@vger.kernel.org>; Wed,  4 Jan 2023 08:29:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+        q=dns/txt; i=@phytec.de; t=1672849790; x=1675441790;
+        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=k2LNwpyqgnwIIWGpWIUItJTEja1sIrjCi/q5WAARKac=;
+        b=sWevkYLAVb50w/ySo+rmRfErC1C/0LcVUDsiOZ6l1OwJN7HEOB23iFUS2LAu0KOY
+        wX9hzlzdEqYhk3dNMJxoW212yVljMQdBvVIa9mSqPOdsk5nLKhVZvxYgf5qkzAu5
+        VuuboeKfoZdLtP9w+Larh4dkmwCofmm9jWynOZKYzc8=;
+X-AuditID: ac14000a-923ff70000007ecb-1e-63b5a97e2df4
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+        (using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (Client did not present a certificate)
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 9A.EC.32459.E79A5B36; Wed,  4 Jan 2023 17:29:50 +0100 (CET)
+Received: from augenblix2.phytec.de (172.25.0.11) by Berlix.phytec.de
+ (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Wed, 4 Jan
+ 2023 17:29:50 +0100
+From:   Wadim Egorov <w.egorov@phytec.de>
+To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <upstream@lists.phytec.de>
+CC:     <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
+        <kristo@kernel.org>, <vigneshr@ti.com>, <nm@ti.com>
+Subject: [PATCH v4 1/2] dt-bindings: arm: ti: Add bindings for PHYTEC AM64x based hardware
+Date:   Wed, 4 Jan 2023 17:29:26 +0100
+Message-ID: <20230104162927.1215033-1-w.egorov@phytec.de>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20230101175740.1010258-1-dario.binacchi@amarulasolutions.com> <73979439-2e41-c4ea-02e0-d382f7ae1459@denx.de>
-In-Reply-To: <73979439-2e41-c4ea-02e0-d382f7ae1459@denx.de>
-From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Date:   Wed, 4 Jan 2023 17:09:07 +0100
-Message-ID: <CABGWkvpaCmV9Hwpbvd2KdZNqNZHeon4Cz2r+AucfpXTTHt52Cw@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 00/11] clk: imx8mn: setup clocks from the device tree
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-kernel@vger.kernel.org, angelo@amarulasolutions.com,
-        michael@amarulasolutions.com, tommaso.merciai@amarulasolutions.com,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        linux-amarula@amarulasolutions.com, anthony@amarulasolutions.com,
-        jagan@amarulasolutions.com, Abel Vesa <abelvesa@kernel.org>,
-        Adam Ford <aford173@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Li Jun <jun.li@nxp.com>, Lucas Stach <l.stach@pengutronix.de>,
-        Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [172.25.0.11]
+X-ClientProxiedBy: Florix.phytec.de (172.25.0.13) To Berlix.phytec.de
+ (172.25.0.12)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrJLMWRmVeSWpSXmKPExsWyRpKBR7du5dZkgxUXlSzmHznHarH882x2
+        i74XD5ktNj2+xmpxedccNos3P84yWbTuPcJu0f1O3eL/2Q/sDpwem1Z1snncubaHzWPzknqP
+        /u4WVo/jN7YzeXzeJBfAFsVlk5Kak1mWWqRvl8CVcXz5euaCbRwVc+c9ZmtgPMvWxcjJISFg
+        InFl32uWLkYuDiGBxUwS1/sPsEI4jxklnr38zghSxSagLnFnwzewhIhAG6PErDXXWEASzAIl
+        EmuO32MHsYUFoiSeLtkGZrMIqEhM3badGcTmFbCU2HJzMtQ6eYmZl76zQ8QFJU7OfAI1R16i
+        eetsZghbQuLgixdgthBQ/MWl5SwwvdPOvWaGsEMljmxazTSBUWAWklGzkIyahWTUAkbmVYxC
+        uZnJ2alFmdl6BRmVJanJeimpmxhBwS/CwLWDsW+OxyFGJg7GQ4wSHMxKIryTXmxKFuJNSays
+        Si3Kjy8qzUktPsQozcGiJM57v4cpUUggPbEkNTs1tSC1CCbLxMEp1cDof2HWvEl5PQt//Nzz
+        Zfcu9d01GmbP7Fn770ZG2/teXLSG0WyhQOyxq6YTtq2T9mY6oPar87ylocjnsD0XOItct+aK
+        6c7qc3m1Mdqy4LuCE+OKQl6+kgM9e12m/rsVUCWadv/eHs/mY9Mu7750TGUZR2tuj/j2Y0pB
+        87e8fuQv9XfStdypd69uUGIpzkg01GIuKk4EABdbY/RsAgAA
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+Add devicetree bindings for AM64x based phyCORE-AM64 SoM
+and phyBOARD-Electra RDK.
 
-On Tue, Jan 3, 2023 at 12:04 AM Marek Vasut <marex@denx.de> wrote:
->
-> On 1/1/23 18:57, Dario Binacchi wrote:
-> > The idea for this series was born back from Dublin (ELCE 2022) after
-> > having attended the talk entitled "Updating and Modernizing Clock
-> > Drivers" held by Chen-Yu Tsai and the availability of a board with
-> > imx8mn SOC.
-> >
-> > This series aims to setup all imx8mn's clocks from the device tree and
-> > remove the legacy setup code with hardwired parameters.
-> >
-> > I am well aware that the series lacks patches for the DT bindings. The
-> > effort up to this point has been important and so I thought I'd ask for
-> > feedback from the community before proceeding to implement them. If it
-> > is positive I will add the DT binding patches starting from version 2.
-> >
-> > The series has been tested on the BSH SystemMaster (SMM) S2 board:
-> > https://www.apertis.org/reference_hardware/imx8mn_bsh_smm_s2pro_setup
->
-> I might be wrong, but I vaguely recall AT91 (?) had this kind of massive
-> clock tree description in DT and they then switched to much simpler
-> clock description where the clock topology is encoded in the driver
-> instead (like what iMX does right now). It might be worth having a look
-> at that and the reasoning around that conversion.
+Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+v4: No changes
+v3: No changes
+v2:
+  - Add Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/arm/ti/k3.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-I took inspiration from Tero Kristo's work on the clock subsystem for
-TI platforms.
-I think he did a great job in both device tree definition and driver
-implementation.
-IMHO, this way the drivers are more flexible and the code can be more easily
-re-used on more platforms.
-
-Thanks and regards,
-Dario
-
+diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+index 203faab80142..c55e3fdb7b33 100644
+--- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
++++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+@@ -38,6 +38,12 @@ properties:
+               - ti,am642-sk
+           - const: ti,am642
+ 
++      - description: K3 AM642 SoC PHYTEC phyBOARD-Electra
++        items:
++          - const: phytec,am642-phyboard-electra-rdk
++          - const: phytec,am64-phycore-som
++          - const: ti,am642
++
+       - description: K3 AM654 SoC
+         items:
+           - enum:
 -- 
+2.34.1
 
-Dario Binacchi
-
-Senior Embedded Linux Developer
-
-dario.binacchi@amarulasolutions.com
-
-__________________________________
-
-
-Amarula Solutions SRL
-
-Via Le Canevare 30, 31100 Treviso, Veneto, IT
-
-T. +39 042 243 5310
-info@amarulasolutions.com
-
-www.amarulasolutions.com
