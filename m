@@ -2,202 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69EAF65CED9
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 09:56:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11B8F65CEE1
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 10:00:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233954AbjADI4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 03:56:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54782 "EHLO
+        id S234195AbjADI7g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 03:59:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233997AbjADI4S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 03:56:18 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14F1F27F
-        for <devicetree@vger.kernel.org>; Wed,  4 Jan 2023 00:56:16 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id h16so32199453wrz.12
-        for <devicetree@vger.kernel.org>; Wed, 04 Jan 2023 00:56:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=HyeD42ASTohnhG8PBq16ESn0fobcpb8ovKy3Ww5fcDg=;
-        b=o2ooXOQ6dPldjaJOtvM1YfYyy2GVA/bJIVJ7cdK+tbjn0eiVvb8FGKjpSg4Y2LdlqU
-         M9/n7DThVNQUD2EP6U3Foc7YI7aJ4mp4CggD49gRuu6VeE6FE7IUw6yfLZo57kUKVjcb
-         /mnEaODceB/RuzNmitFpSEM5wo4W+lYTlXEr+h11Dv79UVzXC4xnJwKWH1n7egewjqQb
-         Gc4IPnBqustj2EmukPNUR4/K8NxuksOV1YVxvBNgAaD1jQQhhGwpN7qy2JUMr3txrovn
-         q9SOgPjaW7Jux5nA18LFEDMp027XD2syF1bQV3zJnZXeQd4/3wpzzma96aFTb8biWsqB
-         aYZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HyeD42ASTohnhG8PBq16ESn0fobcpb8ovKy3Ww5fcDg=;
-        b=WrGeZN3l6veE2+1xOye4ieeQs1FqnzNJouW+Xo2Jlat46UDDuHa6zAJ1AmnImL1nGo
-         nTQokmfSDTIhui0mgB6qSQKrG4HXasQbYfVdlF/Hz/1LmZgd5YwjJcDNyIziNrlXsVUn
-         gEuMSZ/Mj6k6RrtFfiRZejq2hh0yY7ce8HC/g+2w9yKWIsU0DJP5osvhAbCSHGFRF1nj
-         f2UMbFuPR/NHQ3vBxsFiCA2hEsZWOrQkyKgxexqaY0Cx/G0FhWCYBCH4IoIkz+nYsOtP
-         rZzTxuZpnVlwY/QCWN/TVkvt8vNC7IjQ2Idi+3KHdYNq1xgiHifYrMu58MBA/9dlqbuZ
-         mwPg==
-X-Gm-Message-State: AFqh2kpvqRrNK26JDZqhuNraypdqu1MXXOIbEaQ/ijRGzOGhQHs8OSQ+
-        30meQ5WxHt2zOdbYyeOEyltSSltrfNAsppO8
-X-Google-Smtp-Source: AMrXdXtxA65BDM8b0iW+0Q1/36Od59YM1bViy4tJKnTuc7uQ1VQ2hVL6/lJdTbF377sRYZBmHqOzQQ==
-X-Received: by 2002:a05:6000:136b:b0:27f:85ce:bc9e with SMTP id q11-20020a056000136b00b0027f85cebc9emr23614208wrz.24.1672822574567;
-        Wed, 04 Jan 2023 00:56:14 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:102f:89e:4a9f:68c? ([2a01:e0a:982:cbb0:102f:89e:4a9f:68c])
-        by smtp.gmail.com with ESMTPSA id t18-20020a5d42d2000000b00288a3fd9248sm19162392wrr.91.2023.01.04.00.56.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Jan 2023 00:56:14 -0800 (PST)
-Message-ID: <260b70ae-0758-592b-9c4d-90938e8a5b00@linaro.org>
-Date:   Wed, 4 Jan 2023 09:56:13 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v1 03/11] arm64: dts: amlogic: Used onboard usb hub reset
- on odroid c2
-Content-Language: en-US
-To:     Anand Moon <linux.amoon@gmail.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234051AbjADI7S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 03:59:18 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CC35222;
+        Wed,  4 Jan 2023 00:59:13 -0800 (PST)
+X-UUID: d498b7d652c2461d9add940560a0d76f-20230104
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=VkE+9Be2IZo1wTEmkjQlAica3O0qe2SLkKytbv3x8GQ=;
+        b=Ae830jSL6ytkRP7GkDoR/7DK7kT51c1AsQ4kSARGMoIu0lBlWXDJHTXgVgykchLkqy11wBhmOsBsAr/8b/C1hzpIOEh4EIZA+bA2ZRKvSEvRt3XEZbd2VWOWsdk8sC7oEkrL+A4zirEojKV7kaZiTP3DQrtQajMOt6+oDY1q4PQ=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.16,REQID:e5abeeb3-4e17-45e1-8358-3deee29bb035,IP:0,U
+        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+        N:release,TS:90
+X-CID-INFO: VERSION:1.1.16,REQID:e5abeeb3-4e17-45e1-8358-3deee29bb035,IP:0,URL
+        :0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTIO
+        N:quarantine,TS:90
+X-CID-META: VersionHash:09771b1,CLOUDID:89189b53-dd49-462e-a4be-2143a3ddc739,B
+        ulkID:230104165906DAX5D3VZ,BulkQuantity:1,Recheck:0,SF:38|28|17|19|48,TC:n
+        il,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:40,QS:nil,BEC:nil,COL:0,OSI
+        :0,OSA:0
+X-CID-BVR: 0,NGT
+X-UUID: d498b7d652c2461d9add940560a0d76f-20230104
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <biao.huang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1887014069; Wed, 04 Jan 2023 16:59:03 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Wed, 4 Jan 2023 16:59:02 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Wed, 4 Jan 2023 16:59:00 +0800
+From:   Biao Huang <biao.huang@mediatek.com>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221228100321.15949-1-linux.amoon@gmail.com>
- <20221228100321.15949-4-linux.amoon@gmail.com>
- <CAFBinCCtJbF6UjG3czQjVy_Zy_B4DO8BkcayOqDirn0OXw3PtQ@mail.gmail.com>
- <CANAwSgTS+j_oRrckwmi60afX6-D=OP0oy05m3eQga_gEZJJ_mg@mail.gmail.com>
- <CANAwSgTc=uGyZ0H_-ZckYoKztMB--DRfx7apBtP9zAbAU1XTvA@mail.gmail.com>
-Organization: Linaro Developer Services
-In-Reply-To: <CANAwSgTc=uGyZ0H_-ZckYoKztMB--DRfx7apBtP9zAbAU1XTvA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        "Jakub Kicinski" <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        "Biao Huang" <biao.huang@mediatek.com>, <macpaul.lin@mediatek.com>,
+        <netdev@vger.kernel.org>
+Subject: [PATCH v7 0/2] arm64: dts: mt8195: Add Ethernet controller
+Date:   Wed, 4 Jan 2023 16:58:55 +0800
+Message-ID: <20230104085857.2410-1-biao.huang@mediatek.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,RDNS_NONE,
+        SPF_HELO_PASS,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/01/2023 09:13, Anand Moon wrote:
-> Hi Martin,
-> 
-> On Wed, 28 Dec 2022 at 20:14, Anand Moon <linux.amoon@gmail.com> wrote:
->>
->> Hi Martin,
->>
->> On Wed, 28 Dec 2022 at 18:21, Martin Blumenstingl
->> <martin.blumenstingl@googlemail.com> wrote:
->>>
->>> Hi Anand,
->>>
->> Thanks for your review comments.
->>
->>> thank you for working on this topic!
->>>
->>> On Wed, Dec 28, 2022 at 11:05 AM Anand Moon <linux.amoon@gmail.com> wrote:
->>> [...]
->>>> +       usb {
->>>> +               dr_mode = "host";
->>>> +               #address-cells = <1>;
->>>> +               #size-cells = <0>;
->>>> +
->>>> +               hub@1 {
->>>> +                       /* Genesys Logic GL852G-OHG usb hub */
->>>> +                       compatible = "genesys,usb5e3,610";
->>>> +                       reg = <1>;
->>>> +                       vdd-supply = <&usb_otg_pwr>;
->>>> +                       reset-gpio = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_LOW>;
->>>> +               };
->>>> +       };
->>> My understanding is that the hub@1 node should be part of the
->>> corresponding USB controller node, not a new node.
->>> In this case hub@1 should go into the existing &usb1 node. That way we
->>> describe the way the hardware is set up (meaning: hub@1 is connected
->>> to &usb1).
->>>
->>
->> Ok, I will move this code under &usb0 and &usb1 nodes.
->>
->> onboard_usb_hub module just assists in usb hub reset.
->> so these changes are meant to replace the gpio-hog.
->>
->> $ dmesg | grep onboard
->> [    5.405558] usbcore: registered new device driver onboard-usb-hub
->> [    6.383428] onboard-usb-hub 1-1: reset high-speed USB device number
->> 2 using dwc2
->>
->> Here is the boot log of the odroid c2 [0] https://pastebin.com/PFy5waPb
->>
-> 
-> Moving the usb hub into usb subnode usb0 or usb1 does not work
-> on Odroid n2 and c4, we have a combo phys of usb 2.0 and usb 3.0
-> so the onboard usb hub reset does not get initialized until both the PHY
-> and USB nodes are brought up by the drivers.
+Changes in v7:
+1. move mdio node to .dtsi, and remove the compatible
+property in ethernet-phy node as Andrew's comments.
+2. add netdev@ to cc list as Jakub's reminder.
 
-Fine, then add a comment before the usb node explaining that.
+Changes in v6:
+1. add reviewed-by as Angelo's comments
+2. remove fix_mac_speed in driver as Andrew's comments.
 
-Thanks,
-Neil
+Changes in v5:
+1. reorder the clocks as Angelo's comments
+2. add a driver patch to fix rgmii-id issue, then we can
+use a ususal way rgmii/rgmii-id as Andrew's comments.
 
-> 
-> # On Odroid n2 has a combo hub
-> alarm@odroid-n2:~$ lsusb -tv
-> /:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=xhci-hcd/1p, 5000M
->      ID 1d6b:0003 Linux Foundation 3.0 root hub
->      |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 5000M
->          ID 05e3:0620 Genesys Logic, Inc. GL3523 Hub
->          |__ Port 1: Dev 5, If 0, Class=Mass Storage, Driver=usb-storage, 5000M
->              ID 174c:5106 ASMedia Technology Inc. ASM1051 SATA 3Gb/s bridge
-> /:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=xhci-hcd/2p, 480M
->      ID 1d6b:0002 Linux Foundation 2.0 root hub
->      |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
->          ID 05e3:0610 Genesys Logic, Inc. Hub
->          |__ Port 2: Dev 4, If 0, Class=Vendor Specific Class,
-> Driver=ax88179_178a, 480M
->              ID 0b95:1790 ASIX Electronics Corp. AX88179 Gigabit Ethernet
-> 
-> # Odroid C4 also has a combo hub
-> 
-> alarm@odroid-c4:~$ lsusb -tv
-> /:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=xhci-hcd/1p, 5000M
->      ID 1d6b:0003 Linux Foundation 3.0 root hub
->      |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 5000M
->          ID 2109:0817 VIA Labs, Inc.
-> /:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=xhci-hcd/2p, 480M
->      ID 1d6b:0002 Linux Foundation 2.0 root hub
->      |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
->          ID 2109:2817 VIA Labs, Inc.
-> 
-> So I will continue to work with this usb hub node to do a proper reset
-> of the USB hub.
-> 
->>> In case hub@1 is not detected within &usb1 then you maym need something
->>> like [0] (not tested for your use-case).
->>> If that helps: feel free to include that patch in your series.
->>>
->>
->> Thanks, will check if this is needed in this case. As of now it just
->> reinitializes the hub.
->>
->>>
->>> Best regards,
->>> Martin
->>>
->>>
->>> [0] https://github.com/xdarklight/linux/commit/d8b96e5bc9c20ab2585194e0e59580c3b062c431
->>
->> Thanks
->> -Anand
-> 
-> Thanks
-> -Anand
+Changes in v4:
+1. remove {address,size}-cells = <0> to avoid warning as Angelo's feedback.
+2. Add reviewd-by as Angelo's comments.
+
+Changes in v3:
+1. move stmmac-axi-config, rx-queues-config, tx-queues-configs inside ethernet
+node as Angelo's comments.
+2. add {address,size}-cells = <0> in ethernet node as Angelo's comments.
+
+Changes in v2:
+1. modify pinctrl node used by ethernet to match rules in pinctrl-mt8195.yaml,
+which is pointed by Krzysztof.
+2. remove "mac-address" property in ethernet node as comments of Krzysztof.
+
+Changes in v1:
+add dts node for MT8195 Ethernet controller
+
+Biao Huang (2):
+  stmmac: dwmac-mediatek: remove the dwmac_fix_mac_speed
+  arm64: dts: mt8195: Add Ethernet controller
+
+ arch/arm64/boot/dts/mediatek/mt8195-demo.dts  | 77 ++++++++++++++++
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      | 92 +++++++++++++++++++
+ .../ethernet/stmicro/stmmac/dwmac-mediatek.c  | 26 ------
+ 3 files changed, 169 insertions(+), 26 deletions(-)
+
+-- 
+2.18.0
+
 
