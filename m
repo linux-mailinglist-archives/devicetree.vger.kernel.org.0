@@ -2,191 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5859F65D7DC
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 17:06:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD21765D7EC
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 17:08:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239444AbjADQGb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 11:06:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58058 "EHLO
+        id S239863AbjADQI5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 11:08:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235046AbjADQG3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 11:06:29 -0500
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFC561BE89
-        for <devicetree@vger.kernel.org>; Wed,  4 Jan 2023 08:06:27 -0800 (PST)
-Received: by mail-pj1-x102c.google.com with SMTP id j8-20020a17090a3e0800b00225fdd5007fso25136120pjc.2
-        for <devicetree@vger.kernel.org>; Wed, 04 Jan 2023 08:06:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=qoMsanQfdrnJNpK+VHphw12WDh7b/ImX3dHhODz+IvA=;
-        b=xTS8w7m0XrsQQYE15w0Gmn+j7j9adCpRTTi1yI86BOf1Ey2uLEUmfrH0yoZbFjVWm4
-         fBDOTqraLqcuSMaiYFb+uZTm6Mx/iXsvbHPX39ZfeQ6LH/TDkKKGYHhpa7h8zfXP/KQI
-         LW6AkV7EJFtzd4tcPol6Fi6Ccr/Wn8Y6lXp0hPjXaeNq06WyHnQqS+5Ffq+/cQ54+5BB
-         AABHT07Lj8MP0y84HSwyBxZbzwTPfDdbb2xBoftOlDMJUWlzz/El7TNjP01HnxhavgJK
-         hYavH+0i8lleDyhCGaSc6eZP8JaiUlPaFGr1ES6R7f55/zMgM37q94e2/rD7Po/ypTg4
-         LFJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qoMsanQfdrnJNpK+VHphw12WDh7b/ImX3dHhODz+IvA=;
-        b=WzYHDtndk5XoOQAhA3r0pJgaU3579GfdGpKpUXeQn9G/NwVRT/7lxHkIsQWe7+yyoR
-         cfty60L4XGh8q9VBf2/iu7VgXJms29pyHYcc8RWzfUtXtXSaV7bdT2EqA6TGlT3RZNmq
-         tAl9A7ub9cvZgnBdNp1cckrZeF/bgXC/o6hSFYCnVzMwPYECEd2VreoVWeVSWiMKerkU
-         d8TBpqewQ3+LpDmsF3x0EQXA0/3nAk9I+H4/OlCWNKiClH6uhU+fWdDdMmE31p0LEwT3
-         Gpb/ylYs8BP6od9Xu9b0N035cCFR4jULc9TvmPM+cndrn+EyrUaOHlS+k2gwqPxRP/IH
-         zMKQ==
-X-Gm-Message-State: AFqh2kqA32+VdpQcXIrf+vincDzoly4zdJhsavSZLZUZBM/PHH/6lQCW
-        Dz87BtY+SD/hM8/ZV7/t3kA0Cw00WmqqebQ8jyFsjg==
-X-Google-Smtp-Source: AMrXdXu0Zkm98NSEmToInkvbeoOiqHqFC2u77W6RRb8vCi1vUtqqdRNIozRRUc8NnGm/zSv0I6VrewLi0U1sjbVAX7E=
-X-Received: by 2002:a17:90a:c083:b0:226:6c53:fc27 with SMTP id
- o3-20020a17090ac08300b002266c53fc27mr877853pjs.202.1672848387129; Wed, 04 Jan
- 2023 08:06:27 -0800 (PST)
-MIME-Version: 1.0
-References: <20221227122227.460921-1-william.qiu@starfivetech.com>
- <20221227122227.460921-4-william.qiu@starfivetech.com> <CAPDyKFqziA+PB__v8nJzgkTuM9ZszW8X2U-akvRFv0_qwZ22OA@mail.gmail.com>
- <14433b44-8359-b9e8-446c-bb49e86bf48f@starfivetech.com>
-In-Reply-To: <14433b44-8359-b9e8-446c-bb49e86bf48f@starfivetech.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 4 Jan 2023 17:05:50 +0100
-Message-ID: <CAPDyKFrH=U-Sz1Kx2AJ+X_FXi9GcEdHXjO+aC=MXpGP_+xgOsQ@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] riscv: dts: starfive: Add mmc node
-To:     William Qiu <william.qiu@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mmc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S239758AbjADQIn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 11:08:43 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 053B93B91C;
+        Wed,  4 Jan 2023 08:08:33 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 939A4617A0;
+        Wed,  4 Jan 2023 16:08:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E70D5C433EF;
+        Wed,  4 Jan 2023 16:08:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1672848512;
+        bh=7kCvAn5U3yiaqbh6ae/GtIcNV+lKuLqxtoKLOT/FmbQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ks/4/BMJ5K+D+Y2wiZxGFRuRWLzFyIWo/idePmv2Ebg0eM/vdpW2K34A8TADQC5NJ
+         Hz+wuB2bihBwvRYcgRUQTcfbIF68oQvgpyDHU5aUVx3rAnfU2rVNgA3KifHKuNIpFM
+         EB3BwGBMBLyMSM880iZez/WNsy9TImLmCIeTSNg2EFIVYktfOon8/3MjUEv1zw8hY+
+         dwrBPLHZBmGAYLILbdm1hGaRNxzxifeRz4n0He4A/dxVzDLcbCPludY41FSfIR1oTZ
+         FBYdtYuIUkYiuwYhDx7fao6OjTYTVsX9hoTCY6vEdPTTb3isxo6Ju7HLKgBLx2s6HH
+         k0U9acuo5UAMA==
+Date:   Wed, 4 Jan 2023 16:08:24 +0000
+From:   Lee Jones <lee@kernel.org>
+To:     Mark Hasemeyer <markhas@chromium.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Raul Rangel <rrangel@chromium.org>,
+        Bhanu Prakash Maiya <bhanumaiya@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Rob Herring <robh+dt@kernel.org>,
+        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org
+Subject: Re: [PATCH v10 2/3] dt-bindings: mfd: Add compatible string for UART
+ support
+Message-ID: <Y7WkeCi7/x/t37JM@google.com>
+References: <20221207104005.v10.1.If7926fcbad397bc6990dd725690229bed403948c@changeid>
+ <20221207104005.v10.2.I9e018ecb8bdf341648cb64417085978ff0d22a46@changeid>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221207104005.v10.2.I9e018ecb8bdf341648cb64417085978ff0d22a46@changeid>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 4 Jan 2023 at 07:08, William Qiu <william.qiu@starfivetech.com> wrote:
->
->
->
-> On 2023/1/2 22:03, Ulf Hansson wrote:
-> > On Tue, 27 Dec 2022 at 13:22, William Qiu <william.qiu@starfivetech.com> wrote:
-> >>
-> >> This adds the mmc node for the StarFive JH7110 SoC.
-> >> Set sdioo node to emmc and set sdio1 node to sd.
-> >>
-> >> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-> >> ---
-> >>  .../jh7110-starfive-visionfive-v2.dts         | 25 ++++++++++++
-> >>  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 38 +++++++++++++++++++
-> >>  2 files changed, 63 insertions(+)
-> >>
-> >> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
-> >> index c8946cf3a268..d8244fd1f5a0 100644
-> >> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
-> >> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
-> >> @@ -47,6 +47,31 @@ &clk_rtc {
-> >>         clock-frequency = <32768>;
-> >>  };
-> >>
-> >> +&mmc0 {
-> >> +       max-frequency = <100000000>;
-> >> +       card-detect-delay = <300>;
-> >
-> > Nitpick:  This seems redundant for a non-removable card!?
-> >
->
-> Will drop
->
-> >> +       bus-width = <8>;
-> >> +       cap-mmc-highspeed;
-> >> +       mmc-ddr-1_8v;
-> >> +       mmc-hs200-1_8v;
-> >> +       non-removable;
-> >> +       cap-mmc-hw-reset;
-> >> +       post-power-on-delay-ms = <200>;
-> >> +       status = "okay";
-> >> +};
-> >> +
-> >> +&mmc1 {
-> >> +       max-frequency = <100000000>;
-> >> +       card-detect-delay = <300>;
-> >
-> > Nitpick: This looks redundant for polling based card detection
-> > (broken-cd is set a few lines below).
-> >
->
-> Will drop
->
-> >> +       bus-width = <4>;
-> >> +       no-sdio;
-> >> +       no-mmc;
-> >> +       broken-cd;
-> >> +       cap-sd-highspeed;
-> >> +       post-power-on-delay-ms = <200>;
-> >> +       status = "okay";
-> >> +};
-> >> +
-> >>  &gmac0_rmii_refin {
-> >>         clock-frequency = <50000000>;
-> >>  };
-> >> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> >> index c22e8f1d2640..08a780d2c0f4 100644
-> >> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> >> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> >> @@ -331,6 +331,11 @@ aoncrg: clock-controller@17000000 {
-> >>                         #reset-cells = <1>;
-> >>                 };
-> >>
-> >> +               syscon: syscon@13030000 {
-> >> +                       compatible = "starfive,syscon", "syscon";
-> >> +                       reg = <0x0 0x13030000 0x0 0x1000>;
-> >> +               };
-> >> +
-> >>                 gpio: gpio@13040000 {
-> >>                         compatible = "starfive,jh7110-sys-pinctrl";
-> >>                         reg = <0x0 0x13040000 0x0 0x10000>;
-> >> @@ -433,5 +438,38 @@ uart5: serial@12020000 {
-> >>                         reg-shift = <2>;
-> >>                         status = "disabled";
-> >>                 };
-> >> +
-> >> +               /* unremovable emmc as mmcblk0 */
-> >
-> > Don't confuse the mmc0 node name with mmcblk0. There is no guarantee
-> > that this is true, unless you also specify an alias.
-> >
->
-> Hi Ulf,
->
-> Thank you for taking time to review and provide helpful comments for this patch.
-> Actually we define mmc0 as eMMC, which is mmcblk0 in the kernel, and define mmc1 as SDIO,
-> which is mmcblk1 in the kernel, so it's not confuse.
->
+On Wed, 07 Dec 2022, Mark Hasemeyer wrote:
 
-My point is, mmc0 from DT node perspective doesn't necessarily need to
-map to mmc0, as that depends on the "probe" order of the devices. At
-least for the Linux kernel, mmc0 from DT point of view, could end up
-being mmc1.
+> From: Bhanu Prakash Maiya <bhanumaiya@chromium.org>
+> 
+> Add a compatible string to support the UART implementation of the cros
+> ec interface. The driver does not support the reg and interrupt
+> properties, so exempt them from being required for UART compatible nodes.
+> 
+> Signed-off-by: Bhanu Prakash Maiya <bhanumaiya@chromium.org>
+> Co-developed-by: Mark Hasemeyer <markhas@chromium.org>
+> Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+> 
+> Changes in v10:
+> - No change
+> 
+> Changes in v9:
+> - Rebase onto for-next
+> - Update node-name from uart0 to serial
+> - Remove reg and interrupt property requirement for UART compatible
+>   nodes.
+> - Update authorship
+> 
+> Changes in v8:
+> - Update commit message
+> 
+> Changes in v7:
+> - No change
+> 
+> Changes in v6:
+> - No change
+> 
+> Changes in v5:
+> - No change
+> 
+> Changes in v4:
+> - Changes in commit message.
+> 
+> Changes in v3:
+> - Rebased changes on google,cros-ec.yaml
+> 
+> Changes in v2:
+> - No change
+> 
+> ---
+>  .../bindings/mfd/google,cros-ec.yaml          | 20 +++++++++++++++++++
+>  1 file changed, 20 insertions(+)
 
-To avoid confusion, please drop the "mmcblk*" here. It's anyway a
-Linux specific thing. Don't get me wrong, feel free to keep the
-information about eMMC and SDIO for the corresponding mmc controller
-node.
+I changed the subject line and applied the patch, thanks.
 
-Moreover, if you can't use PARTID/UUID to find the rootfs device -
-then you may use an aliases node, to let mmc0 to be enumerated as
-mmc0, for example. See below.
-
-aliases {
-     mmc0 = &mmc0;
-}
-
-Kind regards
-Uffe
+-- 
+Lee Jones [李琼斯]
