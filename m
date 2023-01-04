@@ -2,138 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E66865D4DA
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 15:00:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 953B865D512
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 15:08:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239390AbjADOAo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 09:00:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55216 "EHLO
+        id S239484AbjADOIv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 09:08:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239375AbjADOAi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 09:00:38 -0500
-Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95D1F1AD9D;
-        Wed,  4 Jan 2023 06:00:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1672840838;
-  x=1704376838;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=3kQKpLUbS1RfUFcGB0PQY8ZweNB1fOUnLTFsFkiF8Qs=;
-  b=DdDr7ZYxGoQCnNYOA0bdFvg8w7ilzuZ7ttrH4T85CDgCr7ojv0iSTaSa
-   KXQajC/GFRUHvwLVT/ZZHEftlAgssdtOweoE+0xfS8VnVnYXNoyB1H8Cm
-   X5Rk40weT1omWubStKV7xchvWl4cjQi3v33iJId8RxvfvlPm0cO+xf+sF
-   heLrcH2gTsiN8MLNkJr+qMhtS4vjAL5T9pIZAhrzqGG/W6iqZuOVZZuC2
-   N32GTAQruLP2SvAuJUqWScbMaDMmGYeGlRnTOjf4iZUjE86C3nsIBpOF8
-   5x+oBl5TuqfNAwjXKFPDqe7UvSo/60GecV16etPjs40ahwPSIt8p088+S
-   Q==;
-From:   Jiri Valek - 2N <jiriv@axis.com>
-To:     <jiriv@axis.com>
-CC:     <devicetree@vger.kernel.org>, <dmitry.torokhov@gmail.com>,
-        <krzysztof.kozlowski+dt@linaro.org>, <linux-input@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
-        <u.kleine-koenig@pengutronix.de>
-Subject: [PATCH v2 2/2] Input: cap11xx - add support for cap1203, cap1293 and cap1298
-Date:   Wed, 4 Jan 2023 14:59:51 +0100
-Message-ID: <20230104135951.930783-3-jiriv@axis.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230104135951.930783-1-jiriv@axis.com>
-References: <20230103134105.736346-3-jiriv@axis.com>
- <20230104135951.930783-1-jiriv@axis.com>
+        with ESMTP id S239631AbjADOHI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 09:07:08 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9DD839FAB;
+        Wed,  4 Jan 2023 06:06:33 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7975061745;
+        Wed,  4 Jan 2023 14:06:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F1B7C433D2;
+        Wed,  4 Jan 2023 14:06:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1672841192;
+        bh=cwpGS7Bw9s81lrsx/RuMUVoc1/fcxSSEIg/xfnjs7pQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RIwVT+c3e8jOOPymXuffzPby3iBeTGQ/SO1BTx2mE01EpipA6fTRyJbPErPCGfHVe
+         MtG4Sva44btExBvO/wwlPJaXLTb9CYTtKpQi2AQMaqaUXGEgpMKj9Ocsxp+ofp0hyt
+         VNQJjruU+waUR6YOi1uupggH7+NfUQLVzEXfcDq0=
+Date:   Wed, 4 Jan 2023 15:03:42 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Martin =?utf-8?B?WmHFpW92acSN?= <m.zatovic1@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        mani@kernel.org, hemantk@codeaurora.org, quic_jhugo@quicinc.com,
+        andersson@kernel.org, Michael.Srba@seznam.cz, arnd@arndb.de,
+        dipenp@nvidia.com, bvanassche@acm.org, iwona.winiarska@intel.com,
+        ogabbay@kernel.org, tzimmermann@suse.de, fmdefrancesco@gmail.com,
+        jason.m.bills@linux.intel.com, jae.hyun.yoo@linux.intel.com,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Subject: Re: [PATCH 2/3] bus: add Wiegand bus driver
+Message-ID: <Y7WHPuhIurGHDqIE@kroah.com>
+References: <20230104133414.39305-1-m.zatovic1@gmail.com>
+ <20230104133414.39305-3-m.zatovic1@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.0.5.60]
-X-ClientProxiedBy: se-mail05w.axis.com (10.20.40.11) To se-mail03w.axis.com
- (10.20.40.9)
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230104133414.39305-3-m.zatovic1@gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add basic support for more CAP1xxx sensors.
-All models from CAP1xxx family are register-compatible.
-Some advanced features are not used and disabled by default.
+On Wed, Jan 04, 2023 at 02:34:13PM +0100, Martin Zaťovič wrote:
+> Add a bus driver for Wiegand protocol. The bus driver handles
+> Wiegand controller and Wiegand device managemement and driver
+> matching. The bus driver defines the structures for Wiegand
+> controllers and Wiegand devices. Wiegand controller structure
+> contains the format and payload_len fields to add support for
+> different format messages. This should be handled by the
+> controller driver.
+> 
+> Each Wiegand controller should be associated with one Wiegand
+> device, as Wiegand is typically a point-to-point bus.
+> 
+> Signed-off-by: Martin Zaťovič <m.zatovic1@gmail.com>
+> ---
+>  MAINTAINERS             |   2 +
+>  drivers/bus/Kconfig     |   5 +
+>  drivers/bus/Makefile    |   1 +
+>  drivers/bus/wiegand.c   | 768 ++++++++++++++++++++++++++++++++++++++++
+>  include/linux/wiegand.h | 228 ++++++++++++
+>  5 files changed, 1004 insertions(+)
+>  create mode 100644 drivers/bus/wiegand.c
+>  create mode 100644 include/linux/wiegand.h
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index db9624d93af0..b6e68e92f0e3 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -22432,6 +22432,8 @@ WIEGAND BUS DRIVER
+>  M:	Martin Zaťovič <m.zatovic1@gmail.com>
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/wiegand/wiegand-controller.yaml
+> +F:	drivers/bus/wiegand.c
+> +F:	include/linux/wiegand.h
+>  
+>  WILOCITY WIL6210 WIRELESS DRIVER
+>  L:	linux-wireless@vger.kernel.org
+> diff --git a/drivers/bus/Kconfig b/drivers/bus/Kconfig
+> index 7bfe998f3514..360e55abc311 100644
+> --- a/drivers/bus/Kconfig
+> +++ b/drivers/bus/Kconfig
+> @@ -241,6 +241,11 @@ config VEXPRESS_CONFIG
+>  	  Platform configuration infrastructure for the ARM Ltd.
+>  	  Versatile Express.
+>  
+> +config WIEGAND
+> +        tristate "Wiegand Bus driver"
+> +        help
+> +          Driver for low-level 2-wire serial protocol communication.
 
-Reported-by: kernel test robot <lkp@xxxxxxxxx>
-Signed-off-by: Jiri Valek - 2N <jiriv@axis.com>
----
-Changes in v2:
-  - Fixed if statement.
-  
- drivers/input/keyboard/cap11xx.c | 19 +++++++++++++++++--
- 1 file changed, 17 insertions(+), 2 deletions(-)
+We need more information here in the help text please.
 
-diff --git a/drivers/input/keyboard/cap11xx.c b/drivers/input/keyboard/cap11xx.c
-index 79afd0386e3f..eb469ef4075e 100644
---- a/drivers/input/keyboard/cap11xx.c
-+++ b/drivers/input/keyboard/cap11xx.c
-@@ -99,6 +99,9 @@ enum {
- 	CAP1126,
- 	CAP1188,
- 	CAP1206,
-+	CAP1203,
-+	CAP1293,
-+	CAP1298
- };
- 
- static const struct cap11xx_hw_model cap11xx_devices[] = {
-@@ -106,6 +109,9 @@ static const struct cap11xx_hw_model cap11xx_devices[] = {
- 	[CAP1126] = { .product_id = 0x53, .num_channels = 6, .num_leds = 2, .no_gain = false },
- 	[CAP1188] = { .product_id = 0x50, .num_channels = 8, .num_leds = 8, .no_gain = false },
- 	[CAP1206] = { .product_id = 0x67, .num_channels = 6, .num_leds = 0, .no_gain = true },
-+	[CAP1203] = { .product_id = 0x6d, .num_channels = 3, .num_leds = 0, .no_gain = true },
-+	[CAP1293] = { .product_id = 0x6f, .num_channels = 3, .num_leds = 0, .no_gain = false },
-+	[CAP1298] = { .product_id = 0x71, .num_channels = 8, .num_leds = 0, .no_gain = false },
- };
- 
- static const struct reg_default cap11xx_reg_defaults[] = {
-@@ -377,7 +383,8 @@ static int cap11xx_i2c_probe(struct i2c_client *i2c_client)
- 	if (error < 0)
- 		return error;
- 
--	dev_info(dev, "CAP11XX detected, revision 0x%02x\n", rev);
-+	dev_info(dev, "CAP11XX detected, model %s, revision 0x%02x\n",
-+			id->name, rev);
- 	node = dev->of_node;
- 
- 	if (!of_property_read_u32(node, "microchip,sensor-gain", &gain32)) {
-@@ -390,7 +397,9 @@ static int cap11xx_i2c_probe(struct i2c_client *i2c_client)
- 			dev_err(dev, "Invalid sensor-gain value %d\n", gain32);
- 	}
- 
--	if (id->driver_data != CAP1206) {
-+	if ((id->driver_data == CAP1106) ||
-+		(id->driver_data == CAP1126) ||
-+		(id->driver_data == CAP1188)) {
- 		if (of_property_read_bool(node, "microchip,irq-active-high")) {
- 			error = regmap_update_bits(priv->regmap,
- 						   CAP11XX_REG_CONFIG2,
-@@ -484,6 +493,9 @@ static const struct of_device_id cap11xx_dt_ids[] = {
- 	{ .compatible = "microchip,cap1126", },
- 	{ .compatible = "microchip,cap1188", },
- 	{ .compatible = "microchip,cap1206", },
-+	{ .compatible = "microchip,cap1203", },
-+	{ .compatible = "microchip,cap1293", },
-+	{ .compatible = "microchip,cap1298", },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, cap11xx_dt_ids);
-@@ -493,6 +505,9 @@ static const struct i2c_device_id cap11xx_i2c_ids[] = {
- 	{ "cap1126", CAP1126 },
- 	{ "cap1188", CAP1188 },
- 	{ "cap1206", CAP1206 },
-+	{ "cap1203", CAP1203 },
-+	{ "cap1293", CAP1293 },
-+	{ "cap1298", CAP1298 },
- 	{}
- };
- MODULE_DEVICE_TABLE(i2c, cap11xx_i2c_ids);
--- 
-2.25.1
+thanks,
 
+greg k-h
