@@ -2,182 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49F5D65D0AD
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 11:32:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 80F6365D0BE
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 11:36:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234419AbjADKch (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 05:32:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50504 "EHLO
+        id S234871AbjADKfx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 05:35:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234333AbjADKcf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 05:32:35 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3E0D95BE;
-        Wed,  4 Jan 2023 02:32:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1672828354; x=1704364354;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=ag5rlRoVANH4ZBzlzlE6lTj3OJTl7mId4PLIYfPay1Y=;
-  b=JHL8jl2d0L/js5BAvrK6AVv63adw9ogqozaK7fckAR8NySi3AGTYJ+r2
-   SiL1XDSoFuOlM2W3QS5BP5fPzTnfT5VQwEPkgNYiWD79t4YKCl+Y+G6YG
-   2m1HPnRT+4gMha6XuPWvh1AJJzpk5gpzhBB2oz2y53ejKDp2WyPLQtVYb
-   she/HzYN2BjqWmsO4mP2MsL+iCVNMMxf6hkjmnNRgh42wURuyr6ib8SOA
-   68OPS13FJF693cyWr5ddZ8wvMKfGMob9PoGKSy/GVDsdyn+ZnvlX4qoYv
-   dsOSEVBU+I8MHNP+vW2L1XGUUbN/N7j2prn/xw0jR6mug3Mfo9pwNSOJj
-   g==;
-X-IronPort-AV: E=Sophos;i="5.96,299,1665439200"; 
-   d="scan'208";a="28238335"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 04 Jan 2023 11:32:32 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Wed, 04 Jan 2023 11:32:32 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Wed, 04 Jan 2023 11:32:32 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1672828352; x=1704364352;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=ag5rlRoVANH4ZBzlzlE6lTj3OJTl7mId4PLIYfPay1Y=;
-  b=Ck/ykvIHWW8c94aweQ3nmzsuS24QL0M6C76YwhX1nAFN2ZgAMsCVFdeQ
-   Wj9jXrK6tYEtZyLypA+iW8sPOEFqFChTMakyok92xDmJltsgy2mf/HsC5
-   cyV2eOgvS6W675qH7JTWExE9MhMqLykhn3ua/OcOYwq03ViHdCkYdVVLq
-   XYNmonq3ZmbCXFJKlKJxSimhMQ5w8eQV6OkNSyQsonENvxeXXvxa0piUE
-   4UgMa0jB8u8FQgbPd8LwsW7c6gJDjzqU8bYQHNCqYunNvi3utICetbU8x
-   V8VFyf2g9Rmcvs6DZYZFDGfsnHyu3UmVJk/Jww3MGpgx2dAD/hWJ287aF
-   w==;
-X-IronPort-AV: E=Sophos;i="5.96,299,1665439200"; 
-   d="scan'208";a="28238334"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 04 Jan 2023 11:32:32 +0100
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id F054E280056;
-        Wed,  4 Jan 2023 11:32:31 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marek Vasut <marex@denx.de>
-Cc:     linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/4] clk: rs9: Support device specific dif bit calculation
-Date:   Wed, 04 Jan 2023 11:32:31 +0100
-Message-ID: <5905764.31tnzDBltd@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <8e9cc8fa-cddc-3c99-9810-f2355a1e1913@denx.de>
-References: <20230103123154.3424817-1-alexander.stein@ew.tq-group.com> <20230103123154.3424817-3-alexander.stein@ew.tq-group.com> <8e9cc8fa-cddc-3c99-9810-f2355a1e1913@denx.de>
+        with ESMTP id S234389AbjADKfL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 05:35:11 -0500
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C9811EC6D;
+        Wed,  4 Jan 2023 02:35:08 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 304AYcwZ128460;
+        Wed, 4 Jan 2023 04:34:38 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1672828478;
+        bh=hLRIkiH1Z7x3YRkVm/LSwqlO166/6YwCol26ByNXNjM=;
+        h=From:To:CC:Subject:Date;
+        b=j3YkaRKmJtYifTO6rY8FWqA5iDiOc1Djh3682tEb3+aaaK9x0JMS4Bz0EtfmdPUv3
+         XC/g94ZqCN4zfRRb0MNXE3hxTyvslWPBffqASGs3gh2Hi30S6No9T5JMyqErjplcAu
+         XsXMSEG9eVStHdO5rMaGwcfNPIxEUxRr5wv92gCM=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 304AYcXD121063
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 4 Jan 2023 04:34:38 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 4
+ Jan 2023 04:34:38 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 4 Jan 2023 04:34:38 -0600
+Received: from uda0492258.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 304AYWFW018054;
+        Wed, 4 Jan 2023 04:34:33 -0600
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+To:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linux@armlinux.org.uk>,
+        <vladimir.oltean@nxp.com>, <vigneshr@ti.com>, <nsekhar@ti.com>
+CC:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: [PATCH net-next v6 0/3] Add support for QSGMII mode for J721e CPSW9G to am65-cpsw driver
+Date:   Wed, 4 Jan 2023 16:04:29 +0530
+Message-ID: <20230104103432.1126403-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+Add compatible to am65-cpsw driver for J721e CPSW9G, which contains 8
+external ports and 1 internal host port.
 
-Am Dienstag, 3. Januar 2023, 15:31:21 CET schrieb Marek Vasut:
-> On 1/3/23 13:31, Alexander Stein wrote:
-> > The calculation DIFx is BIT(n) +1 is only true for 9FGV0241. With
-> > additional devices this is getting more complicated.
-> > Support a base bit for the DIF calculation, currently only devices
-> > with consecutive bits are supported, e.g. the 6-channel device needs
-> > additional logic.
-> > 
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > ---
-> > 
-> >   drivers/clk/clk-renesas-pcie.c | 29 ++++++++++++++++-------------
-> >   1 file changed, 16 insertions(+), 13 deletions(-)
-> > 
-> > diff --git a/drivers/clk/clk-renesas-pcie.c
-> > b/drivers/clk/clk-renesas-pcie.c index 0076ed8f11b0..d19b8e759eea 100644
-> > --- a/drivers/clk/clk-renesas-pcie.c
-> > +++ b/drivers/clk/clk-renesas-pcie.c
-> > @@ -18,7 +18,6 @@
-> > 
-> >   #include <linux/regmap.h>
-> >   
-> >   #define RS9_REG_OE				0x0
-> > 
-> > -#define RS9_REG_OE_DIF_OE(n)			BIT((n) + 1)
-> > 
-> >   #define RS9_REG_SS				0x1
-> >   #define RS9_REG_SS_AMP_0V6			0x0
-> >   #define RS9_REG_SS_AMP_0V7			0x1
-> > 
-> > @@ -31,9 +30,6 @@
-> > 
-> >   #define RS9_REG_SS_SSC_MASK			(3 << 3)
-> >   #define RS9_REG_SS_SSC_LOCK			BIT(5)
-> >   #define RS9_REG_SR				0x2
-> > 
-> > -#define RS9_REG_SR_2V0_DIF(n)			0
-> > -#define RS9_REG_SR_3V0_DIF(n)			BIT((n) + 1)
-> > -#define RS9_REG_SR_DIF_MASK(n)		BIT((n) + 1)
-> > 
-> >   #define RS9_REG_REF				0x3
-> >   #define RS9_REG_REF_OE				BIT(4)
-> >   #define RS9_REG_REF_OD				BIT(5)
-> > 
-> > @@ -62,6 +58,7 @@ struct rs9_chip_info {
-> > 
-> >   	const enum rs9_model	model;
-> >   	unsigned int		num_clks;
-> >   	u8			did;
-> > 
-> > +	u8			(*calc_dif)(int idx);
-> > 
-> >   };
-> >   
-> >   struct rs9_driver_data {
-> > 
-> > @@ -160,8 +157,14 @@ static const struct regmap_config rs9_regmap_config =
-> > {> 
-> >   	.reg_read = rs9_regmap_i2c_read,
-> >   
-> >   };
-> > 
-> > +static u8 rs9fgv0241_calc_dif(int idx)
-> > +{
-> > +	return BIT(idx) + 1;
-> 
-> Can't we just do
-> 
-> if (model == ...)
->   return BIT(idx) + 1
-> else if (model == ...)
->   return BIT(idx);
-> ...
+Add support to power on and power off the SERDES PHY which is used by the
+CPSW MAC.
 
-I was tempted going this way. But I opted for a callback due to the fact that 
-this driver might support 9FGV/9DBV/9DMV/9FGL/9DML/9QXL/9SQ as well(your 
-comment in the header).
-Even just considering 9FVG, 9FGV0641 has an even more complex DIF offset 
-calculation. 
-The mapping is
-* DIF OE0 - Bit 0
-* DIF OE1 - Bit 2
-* DIF OE2 - Bit 3
-* DIF OE3 - Bit 4
-* DIF OE4 - Bit 6
-* DIF OE5 - Bit 7
+=========
+Changelog
+=========
+v5 -> v6:
+1. Add member "serdes_phy" in struct "am65_cpsw_slave_data" to store the
+   SERDES PHY for each port, if present. This is done to cache the SERDES
+   PHY beforehand, without depending on devm_of_phy_get().
+2. Rebase series on net-next tree.
 
-So the calucation might not fit into one line, so the readability benefit is 
-gone.
+v4 -> v5:
+1. Update subject of all patches in the series to "PATCH net-next".
+2. Rebase series on net-next tree.
 
-Best regards,
-Alexander
+v3 -> v4:
+1. Fix subject of patch-1/3, updating it to:
+   "dt-bindings: net: ti: k3-am654-cpsw-nuss: Add J721e CPSW9G support"
+   and collect Reviewed-by tag.
+2. Rebase series on linux-next tree tagged: next-20221107.
 
+v2 -> v3:
+1. Run 'make DT_CHECKER_FLAGS=-m dt_binding_check' and fix errors and
+   warnings corresponding to the patch for:
+   Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+   with the latest dt-schema and yamllint.
+
+v1 -> v2:
+1. Drop all patches corresponding to SGMII mode. This is done since I do
+   not have a method to test SGMII in the standard mode which uses an
+   SGMII PHY. The previous series used SGMII in a fixed-link mode,
+   bypassing the SGMII PHY. I will post the SGMII patches in a future
+   series after testing them.
+2. Drop all patches corresponding to fixed-link in the am65-cpsw driver.
+   This is done since PHYLINK takes care of fixed-link automatically and
+   there is no need to deal with fixed-link in a custom fashion.
+3. Fix indentation errors in k3-am65-cpsw-nuss.yaml.
+4. Remove the stale code which tries to power on and power off the CPSW
+   MAC's phy, since the CPSW MAC's phy driver does not support it.
+5. Rename the function "am65_cpsw_init_phy()" to
+   "am65_cpsw_init_serdes_phy()", to indicate that the phy corresponds to
+   the SERDES.
+6. Invoke "am65_cpsw_disable_serdes_phy()" as a part of the cleanup that
+   is associated with the "am65_cpsw_nuss_remove()" function.
+
+v5:
+https://lore.kernel.org/r/20221109042203.375042-1-s-vadapalli@ti.com/
+v4:
+https://lore.kernel.org/r/20221108080606.124596-1-s-vadapalli@ti.com/
+v3:
+https://lore.kernel.org/r/20221026090957.180592-1-s-vadapalli@ti.com/
+v2:
+https://lore.kernel.org/r/20221018085810.151327-1-s-vadapalli@ti.com/
+v1:
+https://lore.kernel.org/r/20220914095053.189851-1-s-vadapalli@ti.com/
+
+Siddharth Vadapalli (3):
+  dt-bindings: net: ti: k3-am654-cpsw-nuss: Add J721e CPSW9G support
+  net: ethernet: ti: am65-cpsw: Enable QSGMII mode for J721e CPSW9G
+  net: ethernet: ti: am65-cpsw: Add support for SERDES configuration
+
+ .../bindings/net/ti,k3-am654-cpsw-nuss.yaml   | 33 +++++++-
+ drivers/net/ethernet/ti/am65-cpsw-nuss.c      | 76 +++++++++++++++++++
+ drivers/net/ethernet/ti/am65-cpsw-nuss.h      |  1 +
+ 3 files changed, 106 insertions(+), 4 deletions(-)
+
+-- 
+2.25.1
 
