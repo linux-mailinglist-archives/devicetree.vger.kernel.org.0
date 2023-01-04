@@ -2,139 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6586665D70A
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 16:17:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14D0365D744
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 16:32:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232026AbjADPRB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 10:17:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56510 "EHLO
+        id S229845AbjADPcW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 10:32:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239469AbjADPQb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 10:16:31 -0500
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (mail-bn1nam02on2118.outbound.protection.outlook.com [40.107.212.118])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2792411C3F;
-        Wed,  4 Jan 2023 07:16:28 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ePv/c5gFQCRX5EuqnJ/IlnC7/h6j9o+ZAtgAHMnvhJzPaw70Z6R9RbXq8f0Q42lnWI2pcS5SjZdHIfM9LK+ZYz5M5ADUbB5NoF2/I0OJS8/s943MTCBlPl2H6bBaQWqzSFGWkk2wf38Z7MgWUOSe5evfVdzDibm35QLRjP6CM+S9ByeSVSLLjK/vUmK2JVbTWk0soufNUdcLXRIuuRN3pnbYA01iSWHRbUnG/LqKiakP23dRaG6dHBAvxeDPALrgTrTbAEOe8JEtV4vfGfsCnSrB+f3dC3GKjDTGqRTToPvffNWyeMs2xPpb5YMhjE5qbfgXVJKt+MF49T6GyaNb3A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=n+IaTL20KqXT9CdgvhuiuizJz+6iVQB37z47atNM354=;
- b=T9T8T5j8r2qxuXQR7Rz41G938AaGWObgrjXH6zUDbyCKcd30ZpJTzm8Ecd1Audw/rjf6TxDqTrvMR0saD2OHBYJ078qlA/HJOoZB0YECuXRpDHoMnkLSJGCwSpglInS7VZb0yBpXI0doFvPP8tIW5BWhXKk2zEYn00CyLH1prz4Jy4Sz4LFVlEVLN/LubjLAKPetd7RxUHDeBLEwbT1NO26FCdDTZjlm4fxrEz48CrZTVlvjUCXo+nmihVOgmB2XKh4LrYNHJ0eFThLL3swzqQyT0cB1LlOQcfH4A7811BtHsJyFqlZ4jdd/WOKkT5ctKRAburgHV3mmjZXLhSfjjQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=in-advantage.com; dmarc=pass action=none
- header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=n+IaTL20KqXT9CdgvhuiuizJz+6iVQB37z47atNM354=;
- b=VBKj5DVlw81C2ktMtW/EwhDzDEJ09G/1IpwhR+HfHK3S2LzXlSJoyZNIsKuUk+8rDWYRP3GxQdlpFivgyglgXb2CMJBEWWBl198AShg4L0zDpvwOMvwj7vyWTGInWFH3D6Ger4kUI3Td1NGjrEL57IxDRR6rY+mbg7qKZ6eSmtw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=in-advantage.com;
-Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
- (2603:10b6:301:35::37) by MW5PR10MB5807.namprd10.prod.outlook.com
- (2603:10b6:303:19a::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.19; Wed, 4 Jan
- 2023 15:16:25 +0000
-Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
- ([fe80::45b5:a860:9cea:a74c]) by MWHPR1001MB2351.namprd10.prod.outlook.com
- ([fe80::45b5:a860:9cea:a74c%4]) with mapi id 15.20.5944.019; Wed, 4 Jan 2023
- 15:16:25 +0000
-Date:   Wed, 4 Jan 2023 07:16:17 -0800
-From:   Colin Foster <colin.foster@in-advantage.com>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        John Crispin <john@phrozen.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Marek Vasut <marex@denx.de>,
-        Sean Wang <sean.wang@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        =?utf-8?B?bsOnIMOcTkFM?= <arinc.unal@arinc9.com>,
-        =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        UNGLinuxDriver@microchip.com,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229499AbjADPcV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 10:32:21 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 363C61B9D6;
+        Wed,  4 Jan 2023 07:32:20 -0800 (PST)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2A0D4A16;
+        Wed,  4 Jan 2023 16:32:17 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1672846337;
+        bh=yKSmdm+JkNCC/zelXC0/m5mbL7/v+Rt6f44V0yse8gk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=kzDkr2em0T+eszSyTIq5zC4hfox4eOSQy9RfJzMq6Wa50fS3TGgEy8JYUxo55aoC4
+         F4WD/vrN01zPxGI9FuZyJotneId+z61mECD7QSAhQTJ7GjNYPtdcRPyTfPixBeUywW
+         rVjyaMPCkqWllZ53B1wDNQ0vRr4i64Ox9Ya8KAbo=
+Date:   Wed, 4 Jan 2023 17:32:13 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        George McCollister <george.mccollister@gmail.com>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v6 net-next 09/10] dt-bindings: net: add generic
- ethernet-switch-port binding
-Message-ID: <Y7WYQfFnUjy8ygyR@colin-ia-desktop>
-References: <20230103051401.2265961-1-colin.foster@in-advantage.com>
- <20230103051401.2265961-10-colin.foster@in-advantage.com>
- <20230103175641.nqvo2gk43s3nanwg@skbuf>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230103175641.nqvo2gk43s3nanwg@skbuf>
-X-ClientProxiedBy: BYAPR04CA0035.namprd04.prod.outlook.com
- (2603:10b6:a03:40::48) To MWHPR1001MB2351.namprd10.prod.outlook.com
- (2603:10b6:301:35::37)
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>
+Subject: Re: [PATCH v5 7/8] media: i2c: add DS90UB913 driver
+Message-ID: <Y7Wb/Z3627D3HQJb@pendragon.ideasonboard.com>
+References: <20221208104006.316606-1-tomi.valkeinen@ideasonboard.com>
+ <20221208104006.316606-8-tomi.valkeinen@ideasonboard.com>
+ <Y5YiazDtaxtLJyL0@pendragon.ideasonboard.com>
+ <4d349785-ca37-d930-db3c-2581bba9fde0@ideasonboard.com>
+ <7ddd576f-6e8a-7581-178c-2e8575227811@ideasonboard.com>
+ <Y6nSVlmlweUuUwJf@pendragon.ideasonboard.com>
+ <61729020-0977-521a-6137-3bd89f300652@ideasonboard.com>
+ <Y7WFaR5+NNSXLLow@pendragon.ideasonboard.com>
+ <dddcfe51-5dec-2826-61c3-12edaf04da4e@ideasonboard.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWHPR1001MB2351:EE_|MW5PR10MB5807:EE_
-X-MS-Office365-Filtering-Correlation-Id: 637fb156-52a4-4f95-2c18-08daee66a4d6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QJPhjUtovYuE9eENfTBUYbf16BCuzCB5qOgr41i6uZst9OVRJ2d3QAFo8z+83Rx1Fh1u3fKVqnTbJxxvssPFwe0YSC5gVNvkj5+lT3EQU+kFvxNkyPU8zzXCE6+H2WhGG2xazpK152Hpw2ZN+qy7M9FnW1KWIwqn8eDEV9kFJmO312SiuK0v3E4qNcRz5tCWQuT35r7JQ0ZdCWhxRQ3yvy5X7+5ub/1439p373NX9zU1qCfQWl+3O+TVwpY8f3FmEsTloqyaEOH3w2dAq0oyg4FtZUU5l6YmTY+tvp8FOkoD02og71r2h3rG8jbyshyBt1ncuxdkCUtLQDzR2B2xymlTFPMUh7dy8v7PJ/IDNCc0vkRqK7ndDzMy51IMdvpQaiAFNrhM1Smc/TcXDluIXGQSiqMDSE+i6u6uoVn3Kfe48blWn0FMDhsxTKxSeE5/RbUg5svn3ZCIB7owiAMXey/uOxm9/lBV3X4mgLISB/4FFFB4IlStcEKd1ux7F1OHiRtevDlK4yQLB5KJbxIsDHoLmW5um6FilEqpiXP8+NzYzd9WbR4RMY9VPbbrHVj9ndFDYYQNRk4auXu8davrgHO3kWg3ND6uTy5ZbouluuF/VyyGrutvjRX+59532fCQwMFXSbZti827zSTCIXuK35aIWEpyYR+YLk4Mbgrvo7VZGEcqifmPUeWuucmFyGo8EvGQia6+EUsMHo+0jP7Biw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2351.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(7916004)(39830400003)(376002)(396003)(346002)(366004)(136003)(451199015)(83380400001)(6512007)(9686003)(26005)(33716001)(6506007)(6666004)(86362001)(38100700002)(186003)(316002)(4326008)(478600001)(41300700001)(8676002)(2906002)(7406005)(7416002)(5660300002)(8936002)(44832011)(66556008)(966005)(6486002)(66476007)(66946007)(54906003)(6916009)(41533002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?mIYEmQTpFrn4tZeYiDrNVtG/F1n7BroSSzj4XWH35FXfhfMzzi78mKbXyY+r?=
- =?us-ascii?Q?ro4RnpIM3eP3mrX8bE7S56oK1ujPMeAR50q7lm6rsh8FN3owRGUe6/2TDdPs?=
- =?us-ascii?Q?Q3iw/8JBWxo5knTuL1VL2sGB6sJ3djbWj1V2a85b5mezshT3rwLtIQhBaU5C?=
- =?us-ascii?Q?sWt4GEyzHveoMQMQ2TlX39QB0Ka97JOR98edWFZou19rn+Ur1yyv2qJRBw04?=
- =?us-ascii?Q?k1h4M/7atkjU4BmgfxyGafN1Q0PPT2/jExpVrdhIRwewp8cmLw3IGVmZFDtO?=
- =?us-ascii?Q?qOGJyHhGbyiALBFY6kex4Z9h9eltepBKZ1BrnyHf8dwXXrlW7bwk32e92dy3?=
- =?us-ascii?Q?kdoxId385oBQ5Cjudwu9MA6ycI0D5XjGkH6zQ8WKmHkvNfBhgtfxy9uGqBHU?=
- =?us-ascii?Q?eYmg4RZmaKpJklQ6VACZVBljWJpUUqTSomFanTxKaRT1YCVS+0hASuoMj7uA?=
- =?us-ascii?Q?j8Dwsm9cokNXpHe505EWuJ3F6+ymYHitgd/gKY9XbYih8TyiYuBAbXlz0Xdk?=
- =?us-ascii?Q?zN1FoYYZaP7eGQTzfIgj6W/FbFgLK2j4leAm14miNwivcioL3alvHHxoVLTo?=
- =?us-ascii?Q?r35eEkXLmBu8Il0As1yBOi75/IhZJPffcucaGD+Xot3qgsZgBlApzNjBMRXa?=
- =?us-ascii?Q?aLSqYp++FouSUeVOXgE3xnyaSVoQZUdJNBanLGQl80uee86RaZ22cCjAY/Bd?=
- =?us-ascii?Q?21tH7gODzcINgpqZ1R35cL1y3RLv3NIUVgHk2sVjWng1noN440DlQgC1Crph?=
- =?us-ascii?Q?EgYdrjz5ea1RT034kbmjJ2l2Nj5IUQ0CmLGR5asfPULq+g8Dc0Ebh1bKalan?=
- =?us-ascii?Q?2WhnfMd/UKz4/jVJEHhcRusOCfnb2GmxYDMlPRpVmFtrM1Bs8qRDdRgNOqlf?=
- =?us-ascii?Q?MGalPynGNjsYnMI/Dvtx0zgRHnbUiC0HmgqiOE+arPDlR31q7e1ORUHfijQl?=
- =?us-ascii?Q?BDiwpcHvqQZeN4nTGqBs03GdU10pESKOehLIQOP1HhbC9uwjFBXd47DLxK24?=
- =?us-ascii?Q?HKvT41kQd36bmQbQCN60DDKCRDT3+T34NmY243Mo4YDFEWvF9d5FwwbAXYLO?=
- =?us-ascii?Q?mKsMaAxfiF79v26zyE8PddGkPZaTNn8rcy9xPJVjfjiQ4qEKyTP6AG9vi43b?=
- =?us-ascii?Q?gEprW099IXOwppPxiCptILMxcQ9wYhRk1D6UACr3Aq48oOA5V4ZGHLvTrU9v?=
- =?us-ascii?Q?D9fcep3/ZVTFTOn4fsFJtnAAmlJG6a2gUKII8kSrBIxIyPJUGqQrWTNUTh5K?=
- =?us-ascii?Q?r6DcLkpcX0n2YYI68/lN8x/5B0PhpJJowCd+OrxunJBtnnS3L2fNjnCeDGgV?=
- =?us-ascii?Q?C6lQZu50chlITIctkxQeTXVKQOJKKjYRISMYBN4lTbMZy4CuCHWAlnqI+7fY?=
- =?us-ascii?Q?d+Hd+OIoJrq3iLk0OaQ0qv06jQQ7yPQPkwzbDmse6GdqO1oe2ie6qtGbTWOT?=
- =?us-ascii?Q?D1FBpSFX4520H9LxulfOdDh/XFY8cFfGLyqStW9py2L2/VM3j921sqD5kQXQ?=
- =?us-ascii?Q?5S6yxXa4meqTsSimJ2IBfGkojTB23E3OmgDjoec4FXJw0GTIHkeC2qyhhRn3?=
- =?us-ascii?Q?oGS3DNtZrVdpi/Euxgl5MtFe9CmROTXYaHRAjOxoGYSzk6rGF+DfI9eXRs6+?=
- =?us-ascii?Q?3A=3D=3D?=
-X-OriginatorOrg: in-advantage.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 637fb156-52a4-4f95-2c18-08daee66a4d6
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2351.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jan 2023 15:16:25.0764
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Q+0S9hr+UL2LwAAhLg94tclt4bJG2GL6XdJJ4ekiyGVIfdSVkX1xLs+1o1yt6YugGECB6Q4lLYIpD922No+zPw6zqW2nlWoc1oew7edEoY4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR10MB5807
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <dddcfe51-5dec-2826-61c3-12edaf04da4e@ideasonboard.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -142,50 +70,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 03, 2023 at 07:56:41PM +0200, Vladimir Oltean wrote:
-> On Mon, Jan 02, 2023 at 09:14:00PM -0800, Colin Foster wrote:
-> > diff --git a/Documentation/devicetree/bindings/net/ethernet-switch-port.yaml b/Documentation/devicetree/bindings/net/ethernet-switch-port.yaml
-> > new file mode 100644
-> > index 000000000000..126bc0c12cb8
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/ethernet-switch-port.yaml
-> > @@ -0,0 +1,25 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/ethernet-switch-port.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Generic Ethernet Switch Port
-> > +
-> > +maintainers:
-> > +  - Andrew Lunn <andrew@lunn.ch>
-> > +  - Florian Fainelli <f.fainelli@gmail.com>
-> > +  - Vladimir Oltean <olteanv@gmail.com>
-> > +
-> > +description:
-> > +  Ethernet switch port Description
+On Wed, Jan 04, 2023 at 04:13:17PM +0200, Tomi Valkeinen wrote:
+> On 04/01/2023 15:55, Laurent Pinchart wrote:
+> > Hi Tomi,
+> > 
+> > On Mon, Dec 26, 2022 at 09:25:34PM +0200, Tomi Valkeinen wrote:
+> >> On 26/12/2022 18:56, Laurent Pinchart wrote:
+> >>> On Wed, Dec 14, 2022 at 08:36:47AM +0200, Tomi Valkeinen wrote:
+> >>>> On 14/12/2022 08:29, Tomi Valkeinen wrote:
+> >>>>
+> >>>>>> wondering if the struct device of the DS90UB913 could be passed instead
+> >>>>>> of the port, to avoid passing the port throught
+> >>>>>> ds90ub9xx_platform_data.
+> >>>>>
+> >>>>> Interesting thought. That would limit the number of remote i2c busses to
+> >>>>> one, though. Not a problem for FPD-Link, but I wonder if that's assuming
+> >>>>> too much for the future users. Then again, this is an in-kernel API so
+> >>>>> we could extend it later if needed. So I'll try this out and see if I
+> >>>>> hit any issues.
+> >>>>
+> >>>> Right, so the issue with this one would be that it would prevent a
+> >>>> single device uses. E.g. a single chip which acts as an ATR (similar to
+> >>>> i2c-mux chips), i.e. it contains both the main and the remote i2c busses.
+> >>>
+> >>> I don't think I understand this, sorry.
+> >>
+> >> What you are suggesting above means that we'd have a separate device for
+> >> each port of the ATR. Which is fine in our current case, as the i2c
+> >> master busses are behind separate remote devices.
+> >>
+> >> But if you consider a case similar to i2c-mux, where we have a single
+> >> chip with the slave bus and, say, 4 master busses. We would probably
+> >> have only a single device for that.
+> > 
+> > Hmmm... Yes you're right, it won't work in that case. Maybe we could
+> > have two functions, the existing i2c_atr_add_adapter(), and another one
+> > that wraps it ? It would be nice if we could get rid of the platform
+> > data for the UB913 and UB953 drivers.
 > 
-> Still doesn't look too great that the ethernet-switch-port description
-> is this thing devoid of meaning. What is said about the dsa-port is what
-> the description should be here, and the description of the dsa-port is
-> that it's a generic Ethernet switch port plus DSA specific properties.
+> I wouldn't mind that at all, but we already have the bc_rate there. And 
+> I have a feeling that we might need more if we implement more features.
 
-Apologies - you mentioned this earlier as well. I'm not sure how I
-missed it in v5 (and therefore v6)
+Indeed. I feel that platform data is a bit of a hack here, but maybe
+it's not that bad.
 
-> 
-> > +
-> > +$ref: ethernet-controller.yaml#
-> > +
-> > +properties:
-> > +  reg:
-> > +    description: Port number
-> > +
-> > +additionalProperties: true
-> 
-> Also, I see your patches are deferred in patchwork, and while this isn't
-> really for me to say, presumably it's because there was no announcement
-> so far that net-next reopened.
+> And we also have the atr pointer there. Or do you think that could be 
+> dropped also? In your mail above you only mention the port, but maybe 
+> the deser could register the serializer device and port to the ATR, and 
+> then the ser could just use its device pointer instead of atr & port.
 
-Based on above, it might be for the better.
+I was wondering if we could drop the atr pointer too, yes. I'm not sure
+how, and there's no urgency to fix this. My main concern is that new
+drivers should ideally not be forced to use platform data just for ATR
+support, if they don't use it already for something else.
+
+-- 
+Regards,
+
+Laurent Pinchart
