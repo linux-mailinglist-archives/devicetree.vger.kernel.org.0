@@ -2,96 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F03B65CC69
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 05:39:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E175F65CC87
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 06:21:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234312AbjADEiZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 23:38:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49026 "EHLO
+        id S229773AbjADFVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 00:21:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238581AbjADEiW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 23:38:22 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFD0413D27;
-        Tue,  3 Jan 2023 20:38:17 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id p1-20020a05600c1d8100b003d8c9b191e0so25602863wms.4;
-        Tue, 03 Jan 2023 20:38:17 -0800 (PST)
+        with ESMTP id S229658AbjADFU7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 00:20:59 -0500
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E211DEE2
+        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 21:20:58 -0800 (PST)
+Received: by mail-pf1-x42b.google.com with SMTP id c9so17189384pfj.5
+        for <devicetree@vger.kernel.org>; Tue, 03 Jan 2023 21:20:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=OXCiZDi2+Assy8TyLoUyrmIVdMgcXdRyVjJ9cIBOPR4=;
-        b=CR8cvdUBgKIaLWQvsuJVPGdFHjACjWpQnVgw+nvPiTsRyiM1M/5HoaOyHoH0Hpkwns
-         CvAT4wyShSBlbRKxGNUdhMUoVgSKwysCiikpjX+0bQ7Q2+jC5pPMzD2sYl2rYOMw4EIF
-         gqd6xW4I2yHtNpWi0Wnmt2lqcEtpMCfurRYjtI5oO17VdIULKiuM3Ipvyu0Y/qR6CQG3
-         2dG5i8MrBhlsUyTgSygo53O3wzMgTRFcgtHSGo07lCVkQsY+J6U4N3CMA3vZKeWGiSCV
-         37bTluAv4JvwEZ54F3iUnLZ5PSP934YXpPmFvI+65v4PALrwPml1zAPuTrDbHo72cUnj
-         cyhQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=x6YKskugShgNtlmuvZE9iNBLytliO5KXjfz6TB5SwOM=;
+        b=orh+A6fZc5yPKPtF2vxjko56PgjwmGz78OmAhhMOleFKvStI8nhIaX9ktwAWFkzWij
+         y8Jn1VJiqnLpNIfPteyBYWx2v7gBXgtmN+5pmoiGLb9lF/zRboQciSPr6swU572Nco/0
+         pQRh0uwf/drepMmVCzr3mU1K7chuFBWf18sW69Le10W8c/WejpguHSJ54v3PnUytqese
+         K0ODbmSPwTJnYuZCmgjVWA1hSQzLxVKtz2FQHEglRXirf2ljURiiMgoI9K1Yyq2Wvs2X
+         PHNb774lfXEU5DM87ZjatSLWP0ef9cwcmFTlImNj7EiGNAohO5BrkIyoVMpqIWF3eYoX
+         DL6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OXCiZDi2+Assy8TyLoUyrmIVdMgcXdRyVjJ9cIBOPR4=;
-        b=dLI6zdbTIYTTxtWpGCFam9Q8xD6/EIX+5bWls3xLBFsokiaxfRmcl1sbT4DoTWwJnH
-         tl/hNdPfXU0AzTuepDpsF91GMRHkguFuZTtLaIxlWLXIx/c7+EngH/sDIF+yVvts2WkP
-         3ZB89POuO8vEVf3nBxltw6jA6mot51n+Z1uNYjqSq9/11Q9xAbGNBqzpgQ7TQUnairLj
-         JK9x50SwHorWttj4bE+6uIJJihMLnsJHxriAxuR87rjVacFt8dM7jnVoUIljENmxMhqi
-         hklOFtM4TIKI/YOoJR5R+dN204VlMLcKwe8R4nCr0dJ9cmyv87yLXjfeB4cdL9BA0cQq
-         CY6A==
-X-Gm-Message-State: AFqh2krb2KcvS88GTywsU8uU6wZ1vCWvi/x7sMRmBUoYJ/XJHuuR46OU
-        xX0jpAoOgR4O7dRv+foler6CIOZsDPiGchE/
-X-Google-Smtp-Source: AMrXdXshAF02SVtvI0gbrJ8d/iQjU4KzkZy5rOnJ56mFSRDY4s7tKIcsIE3Br+8evxwRRsrRQCUDJQ==
-X-Received: by 2002:a05:600c:1f12:b0:3cf:a851:d2f2 with SMTP id bd18-20020a05600c1f1200b003cfa851d2f2mr32875474wmb.21.1672807096372;
-        Tue, 03 Jan 2023 20:38:16 -0800 (PST)
-Received: from tp440p.steeds.sam ([2602:fbf6:10:8::2])
-        by smtp.gmail.com with ESMTPSA id bg24-20020a05600c3c9800b003cfa3a12660sm506881wmb.1.2023.01.03.20.38.08
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=x6YKskugShgNtlmuvZE9iNBLytliO5KXjfz6TB5SwOM=;
+        b=dXR4n0i4ND3XhksXDQndii/R6e9SEIUw+sJOWSlKcSaLX654/Cc0VUzXl2WOWE14bh
+         9+YWTOYW/IwRNKEMMU2FtSPUsMqTU17dp8Ko6PgUB6iFsblVY7hM+W5wGAzB4jBMGf5U
+         E/cj6wrX2o3TdXn2lB7qHSC9KhCoUHntvpa1FYvLlsNBHKowf3WWz1y7gR1qNOObHZQ1
+         gjtNZlClzGcO/+3PkIgQ6ikV7Nz8yuaGvhNeiVGf+x2hvyRa8ak8dUdDYH/0Ni0OidL9
+         Zq4qqPwVJZN21i1dIX+uqS/lLhsNob+DgRFskKR6R3HgdZs6LSW1UVSMYhTpjbk0SuLn
+         RpyA==
+X-Gm-Message-State: AFqh2koJTOkPrUgDfyexO39qyBJSlEjbNnfiSG7tAIk8zvel6Qq3OwxU
+        xrhCcMnuQKTaYcMcah5Yi3Dedg==
+X-Google-Smtp-Source: AMrXdXtVIrNfQMys15m/cCb4UXCy5JUnkJu/o5G6OM37xIz9aWosUkZtmHzXD0RXJ4xva2o7k1z2cA==
+X-Received: by 2002:aa7:9559:0:b0:581:7b3a:198c with SMTP id w25-20020aa79559000000b005817b3a198cmr24641166pfq.13.1672809657263;
+        Tue, 03 Jan 2023 21:20:57 -0800 (PST)
+Received: from localhost.localdomain ([2401:4900:1c5e:e3b5:c341:16de:ce17:b857])
+        by smtp.gmail.com with ESMTPSA id a1-20020aa78e81000000b005811c4245c7sm16710342pfr.126.2023.01.03.21.20.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Jan 2023 20:38:16 -0800 (PST)
-Date:   Wed, 4 Jan 2023 06:38:03 +0200
-From:   Sicelo <absicsz@gmail.com>
-To:     Colin Foster <colin.foster@in-advantage.com>
-Cc:     devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
-        "B. Niedermayr" <benedikt.niedermayr@siemens.com>,
-        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
-        rogerq@kernel.org, tony@atomide.com
-Subject: Re: gpmc wait pin regression from 89aed3cd5cb9
-Message-ID: <Y7UCq+umIJScfQ16@tp440p.steeds.sam>
-References: <Y7SoIxhkOiCS+BFj@colin-ia-desktop>
+        Tue, 03 Jan 2023 21:20:56 -0800 (PST)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     quic_schowdhu@quicinc.com, agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@linaro.org, linux-kernel@vger.kernel.org,
+        bhupesh.linux@gmail.com, bhupesh.sharma@linaro.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: qcom: sm6115: Add EUD dt node and dwc3 connector
+Date:   Wed,  4 Jan 2023 10:50:47 +0530
+Message-Id: <20230104052047.3945983-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y7SoIxhkOiCS+BFj@colin-ia-desktop>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Colin
+Add the Embedded USB Debugger(EUD) device tree node for
+SM6115 / SM4250 SoC.
 
-On Tue, Jan 03, 2023 at 02:11:47PM -0800, Colin Foster wrote:
-> 
-> After commit 89aed3cd5cb9 ("memory: omap-gpmc: wait pin additions") the
-> SMSC stops working because existing device trees don't have a default
-> "gpmc,wait-pin" defined.
-> 
-> I fixed the issue for myself by adding this to my .dtsi, but I imagine
-> any existing device trees that use the OMAP / SMSC combination will be
-> similarly broken in 6.2-rc2.
-> 
-> My latest DT submission shows the use of the omap-gpmc-smsc9221.dtsi
-> without the addition of gpmc,wait-pin which worked in 6.1:
+The node contains EUD base register region, EUD mode manager
+register region and TCSR Check register region along with the
+interrupt entry.
 
-I also had the same issue in 6.2-rc2. However, I found the problem has
-already been fixed at:
+Also add the typec connector node for EUD which is attached to
+EUD node via port. EUD is also attached to DWC3 node via port.
 
-https://lore.kernel.org/linux-omap/20221209123147.591982-1-benedikt.niedermayr@siemens.com/
+To enable the role switch, we need to set dr_mode = "otg" property
+for 'usb_dwc3' sub-node in the board dts file.
 
-Hope this helps you
+Also the EUD device can be enabled on a board once linux is boot'ed
+by setting:
+ $ echo 1 > /sys/bus/platform/drivers/qcom_eud/../enable
 
-Sicelo
+Cc: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+---
+- v1 can be viewed here: https://lore.kernel.org/linux-arm-msm/20221231131945.3286639-1-bhupesh.sharma@linaro.org/
+- v2 addresses the review comments from Konrad.
+- This patch is based on my earlier sm6115 usb related changes, which can
+  be seen here:
+  https://lore.kernel.org/linux-arm-msm/20221215094532.589291-1-bhupesh.sharma@linaro.org/
+- This patch is also dependent on my sm6115 eud dt-binding and driver changes
+  (v2) sent earlier, which can be seen here:
+  https://lore.kernel.org/linux-arm-msm/20230103150419.3923421-1-bhupesh.sharma@linaro.org/
+
+ arch/arm64/boot/dts/qcom/sm6115.dtsi | 42 ++++++++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+index 030763187cc3f..8e83bab3ed0f6 100644
+--- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+@@ -170,6 +170,18 @@ core3 {
+ 		};
+ 	};
+ 
++	eud_typec: connector {
++		compatible = "usb-c-connector";
++
++		ports {
++			port@0 {
++				con_eud: endpoint {
++					remote-endpoint = <&eud_con>;
++				};
++			};
++		};
++	};
++
+ 	firmware {
+ 		scm: scm {
+ 			compatible = "qcom,scm-sm6115", "qcom,scm";
+@@ -565,6 +577,29 @@ gcc: clock-controller@1400000 {
+ 			#power-domain-cells = <1>;
+ 		};
+ 
++		eud: eud@1610000 {
++			compatible = "qcom,sm6115-eud", "qcom,eud";
++			reg = <0x01610000 0x2000>,
++			      <0x01612000 0x1000>,
++			      <0x003e5018 0x4>;
++			interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>;
++			status = "disabled";
++
++			ports {
++				port@0 {
++					eud_ep: endpoint {
++						remote-endpoint = <&usb2_role_switch>;
++					};
++				};
++
++				port@1 {
++					eud_con: endpoint {
++						remote-endpoint = <&con_eud>;
++					};
++				};
++			};
++		};
++
+ 		usb_hsphy: phy@1613000 {
+ 			compatible = "qcom,sm6115-qusb2-phy";
+ 			reg = <0x01613000 0x180>;
+@@ -1064,6 +1099,13 @@ usb_dwc3: usb@4e00000 {
+ 				snps,has-lpm-erratum;
+ 				snps,hird-threshold = /bits/ 8 <0x10>;
+ 				snps,usb3_lpm_capable;
++				usb-role-switch;
++
++				port {
++					usb2_role_switch: endpoint {
++						remote-endpoint = <&eud_ep>;
++					};
++				};
+ 			};
+ 		};
+ 
+-- 
+2.38.1
+
