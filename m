@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF7A265D427
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 14:32:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 704BD65D42E
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 14:32:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231220AbjADNcE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 08:32:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34734 "EHLO
+        id S229449AbjADNcF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 08:32:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239054AbjADNbW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 08:31:22 -0500
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 282BAE49
-        for <devicetree@vger.kernel.org>; Wed,  4 Jan 2023 05:29:21 -0800 (PST)
-Received: by mail-lj1-x236.google.com with SMTP id s22so35401111ljp.5
-        for <devicetree@vger.kernel.org>; Wed, 04 Jan 2023 05:29:21 -0800 (PST)
+        with ESMTP id S239253AbjADNb2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 08:31:28 -0500
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A9122AEB
+        for <devicetree@vger.kernel.org>; Wed,  4 Jan 2023 05:29:22 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id v23so25246640ljj.9
+        for <devicetree@vger.kernel.org>; Wed, 04 Jan 2023 05:29:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=BN1HuBOcO1xYyZSvoay0D2AQ+5agsRugOrVDoErpX48=;
-        b=uMe1/V2U49qWV8NEZPXnBhv604lrMCVmp6V05gDvgxyyTl20RkdTh00exLaCUIaY4Q
-         IvLpwr+q71gbuCtjpDyihO6jOPT2cJ24BsFGEmiMp6HLVS0CYA0JomJmC8qRaADhCwNT
-         fX+C6Zx7R9vdr5inLwnj1LgcLe1NP0KgnOBMUjsPCAeN14UIaJZFvvReWGnr3DyxAvVd
-         mmSPx+ridlbM0fgTSxazMOshc/VqIHt4c3eM+hXC4hx7lr5T5YKIx+WjsPsLNfhd1l5u
-         LLqVdkMj18OK9Ti0eu7HoQfNYK+UBqszfOR2Zi5iaa04EeLZkszuuxntIZyRg+fI9d3J
-         rcEA==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pBIconjpYg789mB0QT5q7S9l7fWGDmPA4DJamBY4g6A=;
+        b=U+hXx0tTejf3KpT91LTZpZ/IIbEvzvPrJyR88hzVodj3pks/L6funeMplJtlek8pB+
+         tQT2X7nuQ7DxXTlnuhIhkshekSq2b/8ASqJDQSVAe5Jx9ab5MSmUMtkEHUG+OXXBhLOo
+         S0bZAXfOfG+KojpBEkDhELmRofUQ2kDiXlCWsH6e5PCLH9X7PX2dzrarr3Bi0eLXBgvy
+         H/0gXL7LJNY0hZK9dZZnBw9pVn3GmwN286xLggAi+ercqmJiGSv681JAnjMT83d4PvVE
+         fxfmdx3/r+WBAHy2wofRExy0Bb+kfG+spc5Zapb10Oj2OxKJxsw5RD/18So/gchWWzFs
+         7BqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BN1HuBOcO1xYyZSvoay0D2AQ+5agsRugOrVDoErpX48=;
-        b=WEH9oiZ7BviG/mCO0HgpTd7ie7gS5eFta5/V1K9EcyFti44+ChCwp0w1pwoEI1W2F4
-         U7JP+dTTGuk8vqXNnTLgKc9BPBORnM9KSy06gDh9m9spl5bms0C+hHQO1hNd/eCcTjtg
-         IuxNmrBjamT8rBwHs7s0suiuEslamSSSpQ7MvCNfKzLQ0MQhqfJDselJryl25GpQQkME
-         E7CsvUa8DfyaFs+I5QT+2+pJFz8VDBYmHfwsasQl72TZdEAhaTq8S8R0c3wJ0lM/p+PZ
-         4/ZJcoe1snbI5zqVJviOor3plhzZJ/38rtImCWBCtKKDFALqX2vtsZ2cMKk3jkyJyUkr
-         bSFA==
-X-Gm-Message-State: AFqh2kqfN9hRkgrJPtw+5SnvaLsh3vJZtuolGi4ynIazSSsKF55Ll+S+
-        xf3Cb4ATIuUj2IwAJWGku3hiog==
-X-Google-Smtp-Source: AMrXdXsXU/nsbyBQ9CPaj3vZFjbU28wyzDRKxpG4BSqgr17viXzaeC0sFPTLEdg2UJcwsic716/a0w==
-X-Received: by 2002:a2e:a988:0:b0:27f:e6e6:9bdf with SMTP id x8-20020a2ea988000000b0027fe6e69bdfmr4940249ljq.36.1672838959487;
-        Wed, 04 Jan 2023 05:29:19 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pBIconjpYg789mB0QT5q7S9l7fWGDmPA4DJamBY4g6A=;
+        b=Oc/AZAXkf/v/LGrAL/Cg0rJcD/MYR9eE/reTclTEnz5oxEcOBA48EOHMujUOPnkllh
+         Oix8m3DHgHU1M02hj+c+BwjkZyoogscUB1yr05BrFPgTHeoW78NQWwFts/57aAw4Hi1o
+         R1LF5x0MVf1NdTKztoHEATU7sQwbyzzO+lCfqVwtM5AgdFjDIewLOTgst/OTEnvFGZUV
+         jxMqZ+SS6GfRJpBeQBsy3zgo4F7N2V620mecDioHwJYD5XSsdVd2ll4vhFXwb5V262Yn
+         qTw0WIwBhYKzM5AN9EYHItgRuBsl/Mcz8JVq4ACsHrIZUR+X7789fLK4OrNP1JAGR3SN
+         aQ3Q==
+X-Gm-Message-State: AFqh2kqoC0F2Gh8jvZeyxBxj3KlZowRVU753Y4wc3EYdvdTy/l7pxloe
+        p5nuHXZVMGjQIAX29RbEvs0KJRRvTMUxWWHL
+X-Google-Smtp-Source: AMrXdXuZZOFT7sp31iYHcW3oVp0oLXHUtW6nnUQzuidZUJrQMnqAHkafblzJteIm/SWRxQ8j7JLHiQ==
+X-Received: by 2002:a2e:bf2a:0:b0:27f:a95e:94b9 with SMTP id c42-20020a2ebf2a000000b0027fa95e94b9mr20835808ljr.18.1672838960991;
+        Wed, 04 Jan 2023 05:29:20 -0800 (PST)
 Received: from localhost.localdomain (abxi45.neoplus.adsl.tpnet.pl. [83.9.2.45])
-        by smtp.gmail.com with ESMTPSA id k23-20020a2e92d7000000b0027fd02c99d4sm1947071ljh.75.2023.01.04.05.29.17
+        by smtp.gmail.com with ESMTPSA id k23-20020a2e92d7000000b0027fd02c99d4sm1947071ljh.75.2023.01.04.05.29.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Jan 2023 05:29:18 -0800 (PST)
+        Wed, 04 Jan 2023 05:29:20 -0800 (PST)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
         agross@kernel.org, krzysztof.kozlowski@linaro.org
@@ -58,41 +59,52 @@ Cc:     marijn.suijten@somainline.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Sibi Sankar <quic_sibis@quicinc.com>, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/3] dt-bindings: interconnect: OSM L3: Add SM6350 OSM L3 compatible
-Date:   Wed,  4 Jan 2023 14:29:13 +0100
-Message-Id: <20230104132915.667946-1-konrad.dybcio@linaro.org>
+Subject: [PATCH 2/3] arm64: dts: qcom: sm6350: Add OSM L3 node
+Date:   Wed,  4 Jan 2023 14:29:14 +0100
+Message-Id: <20230104132915.667946-2-konrad.dybcio@linaro.org>
 X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230104132915.667946-1-konrad.dybcio@linaro.org>
+References: <20230104132915.667946-1-konrad.dybcio@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SM6350, similarly to SDM845, uses OSM hardware for L3 scaling.
-Document it.
+Enable the OSM block responsible for scaling the L3 cache.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/qcom/sm6350.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
-index 00afbbca9038..9d0a98d77ae9 100644
---- a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
-+++ b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
-@@ -22,6 +22,7 @@ properties:
-               - qcom,sc7180-osm-l3
-               - qcom,sc8180x-osm-l3
-               - qcom,sdm845-osm-l3
-+              - qcom,sm6350-osm-l3
-               - qcom,sm8150-osm-l3
-           - const: qcom,osm-l3
-       - items:
+diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+index e71ffc31d41e..893a1ffb5e3d 100644
+--- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+@@ -2040,6 +2040,16 @@ apps_bcm_voter: bcm-voter {
+ 			};
+ 		};
+ 
++		osm_l3: interconnect@18321000 {
++			compatible = "qcom,sm6350-osm-l3", "qcom,osm-l3";
++			reg = <0x0 0x18321000 0x0 0x1000>;
++
++			clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GPLL0>;
++			clock-names = "xo", "alternate";
++
++			#interconnect-cells = <1>;
++		};
++
+ 		cpufreq_hw: cpufreq@18323000 {
+ 			compatible = "qcom,cpufreq-hw";
+ 			reg = <0 0x18323000 0 0x1000>, <0 0x18325800 0 0x1000>;
 -- 
 2.39.0
 
