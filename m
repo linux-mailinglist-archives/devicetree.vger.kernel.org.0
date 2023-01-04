@@ -2,73 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECBFF65D4EA
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 15:05:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E092665D513
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 15:08:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233916AbjADOFF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 09:05:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58882 "EHLO
+        id S239489AbjADOIw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 09:08:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239371AbjADOFE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 09:05:04 -0500
-Received: from mail-vs1-xe2c.google.com (mail-vs1-xe2c.google.com [IPv6:2607:f8b0:4864:20::e2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B8C618B18
-        for <devicetree@vger.kernel.org>; Wed,  4 Jan 2023 06:05:02 -0800 (PST)
-Received: by mail-vs1-xe2c.google.com with SMTP id s127so20922639vsb.5
-        for <devicetree@vger.kernel.org>; Wed, 04 Jan 2023 06:05:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lbYqEYMuK4QQdOqZ2O5qfwO8lqdYM3p9ldHBfSASKhU=;
-        b=an3SkIec6n/usy8qQfvGM+/vshmxGPQdaG3L7Cb0q+0wEUv4qG7txU/8PMXwd9/p7P
-         iKenT/Kb4jYLH7i2XPhN3/Q5iZ0aVZ62ai/3bKPZhQrBDVAiSMHI+zXjZTNBYIjMmOrH
-         b8xq9/LS4wuTf4ZyNZXrIeOh1GfLzZrQqOALnYTsIqveInzXRXd0jGXm0lN7jk/be+8t
-         63xMhntFWce9EnN0aajrD3eRhhFiP1oE5g9vePdyLzMaiGP9icV4USSi9MI+dCc1DsPd
-         R7QZxppptA/HyZ9PDQSBThLGDhkv0kpn+Wk9zzTwzfF19Hi0cG/cJ7JXiW5dyLFIiwQc
-         YK8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lbYqEYMuK4QQdOqZ2O5qfwO8lqdYM3p9ldHBfSASKhU=;
-        b=LbKCaBdWtutIrWY/1Vsh0sVrkxokmUgxN/1S+zvE3tiCyvNw6vjgtc2BhqgPd0vbqE
-         GngO6nWIfbY+IRfLwuCtrIrHZfXlvwz9jilYp2L2fkXE+M8WMH8qs98FriLTHX/utrWv
-         1/kHA39zOj5xKDGC7MZ8m0UYRxuhBr66KmozRmDLBmNZ4m+jIOf9QxhuWRPTmXVhrAzd
-         v4IVhgBRpx3yjVUSrhuxy2wh8Ie4e/X2KJfz3eCia7cN3mOuEf9I5DvVEaQocNgDrBK2
-         4AAK9acpktH7BTvxg/i/luwkjx0M80z3Y/NjDnwTNfVgoBADuLN9X3smnUNbbqT8RfRV
-         DJqg==
-X-Gm-Message-State: AFqh2kp0wuo0+phk//sT2hJMtmJD+0pyyclNRDkeZW5/XWzZ5l5lOWa6
-        oREHMXVo+umxlEbKyQ6XPM6jVfGhwuag37tuHAceyg==
-X-Google-Smtp-Source: AMrXdXtM8lyaKq6Vjld3wibhq6Rsi6BKDrfwzZTLeVJU64asXWBb5lJt0ZvPvWi0bZs2234bpkxCZyga/AHBhU3l+RI=
-X-Received: by 2002:a05:6102:302d:b0:3ce:a2e1:b574 with SMTP id
- v13-20020a056102302d00b003cea2e1b574mr694108vsa.55.1672841101340; Wed, 04 Jan
- 2023 06:05:01 -0800 (PST)
+        with ESMTP id S239638AbjADOHI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 09:07:08 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1189739F87;
+        Wed,  4 Jan 2023 06:06:39 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 806EBCE17BF;
+        Wed,  4 Jan 2023 14:06:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F304C433D2;
+        Wed,  4 Jan 2023 14:06:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1672841195;
+        bh=uarrwmHwSPbPDsDQUPiYN+x+cFA9g4HEYn3pRnZPD+s=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=G0Zk036Ho8UtTWfkc2MSjzM1PFi6td2zURO+S+n0PxECOtyshYdYocKvgCNjUkio/
+         hHZ6sqzLD9MahWJCYojPMsnOwkgMmeAN37XVfWKtnuIQnGe6FyWUaRm2RxcnmVMhTk
+         8TVfeahXXBRTr8zcksDhNjTRDTpf/yBA4aBtUxqc=
+Date:   Wed, 4 Jan 2023 15:05:00 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Martin =?utf-8?B?WmHFpW92acSN?= <m.zatovic1@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        mani@kernel.org, hemantk@codeaurora.org, quic_jhugo@quicinc.com,
+        andersson@kernel.org, Michael.Srba@seznam.cz, arnd@arndb.de,
+        dipenp@nvidia.com, bvanassche@acm.org, iwona.winiarska@intel.com,
+        ogabbay@kernel.org, tzimmermann@suse.de, fmdefrancesco@gmail.com,
+        jason.m.bills@linux.intel.com, jae.hyun.yoo@linux.intel.com,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Subject: Re: [PATCH 2/3] bus: add Wiegand bus driver
+Message-ID: <Y7WHjD4psjgAAyPd@kroah.com>
+References: <20230104133414.39305-1-m.zatovic1@gmail.com>
+ <20230104133414.39305-3-m.zatovic1@gmail.com>
 MIME-Version: 1.0
-References: <20230103141102.772228-1-apatel@ventanamicro.com> <9a98300c-e845-60d6-bdf1-12010eae2075@linaro.org>
-In-Reply-To: <9a98300c-e845-60d6-bdf1-12010eae2075@linaro.org>
-From:   Anup Patel <apatel@ventanamicro.com>
-Date:   Wed, 4 Jan 2023 19:34:49 +0530
-Message-ID: <CAK9=C2WkiE7W3yU7NoUn_neS8yW1Hs1ErNA+FXsad164QgtndQ@mail.gmail.com>
-Subject: Re: [PATCH v6 0/3] Improve CLOCK_EVT_FEAT_C3STOP feature setting
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Anup Patel <anup@brainfault.org>, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230104133414.39305-3-m.zatovic1@gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,76 +56,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 4, 2023 at 6:32 PM Daniel Lezcano <daniel.lezcano@linaro.org> w=
-rote:
->
->
-> Hi Anup,
->
-> shall I pick the entire series or just the bindings and the driver change=
-s ?
+On Wed, Jan 04, 2023 at 02:34:13PM +0100, Martin Zaťovič wrote:
+> +struct boardinfo {
+> +	struct list_head list;
+> +	struct wiegand_board_info board_info;
+> +};
+> +
+> +static LIST_HEAD(board_list);
+> +static LIST_HEAD(wiegand_controller_list);
 
-Yes, that would be great. Palmer has already ACKed this series.
+Why are all of these needed at all?  Shouldn't the driver core handle
+the bus list logic for you?  Why do you need a separate static list as
+well?
 
-Thanks,
-Anup
+thanks,
 
->
->
-> On 03/01/2023 15:10, Anup Patel wrote:
-> > This series improves the RISC-V timer driver to set CLOCK_EVT_FEAT_C3ST=
-OP
-> > feature based on RISC-V platform capabilities.
-> >
-> > These patches can also be found in riscv_timer_dt_imp_v6 branch at:
-> > https://github.com/avpatel/linux.git
-> >
-> > Changes since v5:
-> >   - Rebased on Linux-6.2-rc2
-> >
-> > Changes since v4:
-> >   - Update commit text of PATCH1 based on Samuel's comments
-> >   - Renamed DT property "riscv,timer-can-wake-cpu" to
-> >     "riscv,timer-cannot-wake-cpu" in PATCH2 and PATCH3
-> >   - Updated description of DT property "riscv,timer-cannot-wake-cpu"
-> >     in PATCH2
-> >
-> > Changes since v3:
-> >   - Rebased on Linux-6.1-rc7
-> >   - Replaced PATCH1 with a patch to initialize broadcast timer
-> >
-> > Changes since v2:
-> >   - Include Conor's revert patch as the first patch and rebased other p=
-atches
-> >   - Update PATCH2 to document bindings for separate RISC-V timer DT nod=
-e
-> >   - Update PATCH3 based on RISC-V timer DT node bindings
-> >
-> > Changes since v1:
-> >   - Rebased on Linux-5.19-rc8
-> >   - Renamed "riscv,always-on" DT property to "riscv,timer-can-wake-cpu"
-> >
-> > Anup Patel (2):
-> >    dt-bindings: timer: Add bindings for the RISC-V timer device
-> >    clocksource: timer-riscv: Set CLOCK_EVT_FEAT_C3STOP based on DT
-> >
-> > Conor Dooley (1):
-> >    RISC-V: time: initialize hrtimer based broadcast clock event device
-> >
-> >   .../bindings/timer/riscv,timer.yaml           | 52 ++++++++++++++++++=
-+
-> >   arch/riscv/kernel/time.c                      |  3 ++
-> >   drivers/clocksource/timer-riscv.c             | 10 ++++
-> >   3 files changed, 65 insertions(+)
-> >   create mode 100644 Documentation/devicetree/bindings/timer/riscv,time=
-r.yaml
-> >
->
-> --
-> <http://www.linaro.org/> Linaro.org =E2=94=82 Open source software for AR=
-M SoCs
->
-> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-> <http://twitter.com/#!/linaroorg> Twitter |
-> <http://www.linaro.org/linaro-blog/> Blog
->
+greg k-h
