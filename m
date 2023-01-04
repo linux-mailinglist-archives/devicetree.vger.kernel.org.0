@@ -2,146 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA1E665CE28
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 09:18:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0866265CE3B
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 09:26:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233638AbjADISQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 03:18:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55270 "EHLO
+        id S233616AbjADI01 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 03:26:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233481AbjADISP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 03:18:15 -0500
-Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C8BF18E32;
-        Wed,  4 Jan 2023 00:18:14 -0800 (PST)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id BD04D5C01B5;
-        Wed,  4 Jan 2023 03:18:10 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Wed, 04 Jan 2023 03:18:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm2; t=1672820290; x=1672906690; bh=sMeTVClvIY
-        fuPYuMRUbp+49sG5zkB1a9qX5hlrXd14U=; b=m0KSjLZB/tFB/hVcAvmwjid+4L
-        O8mqu0I9xmhgNX0IIcj7txjwMjC/hKKIkV3Q/HU1fYJ8s6gdDw89oNhgxWy8CLcl
-        SpjLj4TQxJ2FZ0DlvLTGvJoqOlvJNSSg19+R6JvnrXBFMdInU/2CmVDADxYZ0cdf
-        u11bPDmdpqfjIzfhgKObw76PyUIhUKa/W4gpvLLV+NsQsXHezH+74CaPLSq8vyAW
-        aqn78wB9x9xkhUSm7Wp5B1ht2f4BDrE0Zd4ZSb7w79BXK6eSlCKnGOPMWzSsuwv6
-        6QdWgARa7NAFbweGzQtrBz44fyx5FUdSrF6TwLlIdc0IPOfrFEwVnawVwqew==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm2; t=1672820290; x=1672906690; bh=sMeTVClvIYfuPYuMRUbp+49sG5zk
-        B1a9qX5hlrXd14U=; b=ZAtrIOGplKB6sTP3Mya9p4i9BUddEnVf8m9cm7KbG54t
-        Zsq1MVA8Zer87zOsphfiWKA09PMo+iNd+JI4XVSjlkwxnLBrutV1R+hsYiJ0BUoA
-        jpQXpN25Eix3sBKECqkiSFjc3G5v/qENmZmG/tWG7MlONUGD7zG8EgZD1NLyKMej
-        bFVo7pQvbkuqOo3mczDwKwhOba7E9sX8KBtaO/N6RD+rdVa/qfdOZ/pWKJx4jgPC
-        54vvTQ6DrJpLisBfJHvrvERyJSuxbEyt70/9HLdcr1cdBNvuN03EnrU9riQG03dj
-        u/rii4hUEw6ceQEI2YIj7afbdcLCMfdlxIA7s6IDRA==
-X-ME-Sender: <xms:QTa1YwYdte0aQZViO8nBtAzwnjqsg0bssKUJQoC1PhDbJkbvfBiHYw>
-    <xme:QTa1Y7bbriuc-Uf1IUfkKGbA_kq8Y8CAhat0_wp6RrTcBDUYugyT8PCl2kYUN6G3G
-    cUW8Q4_-0zOb77sfaQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrjeehgdduvddtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:QTa1Y69oAQqvgmo_0WadEAZCbjCOfiL41cXDP85H5ELKiiQA3wHKqg>
-    <xmx:QTa1Y6o43g4sC1oC9dcf43ToR4Lj2JNsFIYEmWlYoCyIivQSL3a7OQ>
-    <xmx:QTa1Y7qgguAE5D-MNdTzzpxyqHwi3iITTJVTWnnU7QV1Z7yJeCfB9w>
-    <xmx:Qja1Y5hbKaL9mFyosQHTTu3WmQFUj6oWRoPlpduSWZnxdkqzJrHB2w>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 32F83B60086; Wed,  4 Jan 2023 03:18:09 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-1185-g841157300a-fm-20221208.002-g84115730
-Mime-Version: 1.0
-Message-Id: <ed198390-1bde-44ec-9f3f-b0e016b4b24c@app.fastmail.com>
-In-Reply-To: <Y7TBh+CJdZPJ6Xzl@spud>
-References: <Y62nOqzyuUKqYDpq@spud>
- <20230103210400.3500626-10-conor@kernel.org>
- <b5712732-40a2-4e29-b29f-e0ab5516d518@app.fastmail.com>
- <Y7TBh+CJdZPJ6Xzl@spud>
-Date:   Wed, 04 Jan 2023 09:17:41 +0100
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Conor Dooley" <conor@kernel.org>
-Cc:     "Palmer Dabbelt" <palmer@dabbelt.com>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        "Conor.Dooley" <conor.dooley@microchip.com>,
-        "Andrew Jones" <ajones@ventanamicro.com>,
-        "Albert Ou" <aou@eecs.berkeley.edu>,
-        "Anup Patel" <apatel@ventanamicro.com>,
-        "Atish Patra" <atishp@rivosinc.com>,
-        "Biju Das" <biju.das.jz@bp.renesas.com>,
-        devicetree@vger.kernel.org,
-        "Geert Uytterhoeven" <geert@linux-m68k.org>,
-        guoren <guoren@kernel.org>,
-        "Christoph Hellwig" <hch@infradead.org>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        "Jisheng Zhang" <jszhang@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        linux-riscv@lists.infradead.org,
-        "Magnus Damm" <magnus.damm@gmail.com>,
-        "Nathan Chancellor" <nathan@kernel.org>,
-        "Paul Walmsley" <paul.walmsley@sifive.com>,
-        "Philipp Tomsich" <philipp.tomsich@vrull.eu>,
-        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Samuel Holland" <samuel@sholland.org>, soc@kernel.org,
-        "Daire McNamara" <daire.mcnamara@microchip.com>
-Subject: Re: [RFC v5.1 9/9] [DON'T APPLY] cache: sifive-ccache: add cache flushing
- capability
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S233847AbjADI0Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 03:26:24 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CD13186D3;
+        Wed,  4 Jan 2023 00:26:22 -0800 (PST)
+Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 13BF36C7;
+        Wed,  4 Jan 2023 09:26:19 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1672820780;
+        bh=SeeLZDyqRZZDEu55JzGB0YU4joDF6QeMuk29dAr59mY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=KFKZS6jqJ8VB5rzBzep4KAI0hfl0kqoKzEpzuSgzzdgvEQQFAz99q9aRu/goNlut2
+         5Lv9cvo6EK2dOgsLbAR7IsfC5yaeOCRpPomCCzI/xNT0JN4wjHzXBgT0L+HuumJKdh
+         4hSGvuRASezPAG+iQKAT2kcA/7STulL0hdEJU9GM=
+Message-ID: <1369118d-3311-f12e-e5d7-a981969baaaa@ideasonboard.com>
+Date:   Wed, 4 Jan 2023 10:26:16 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v5 4/8] dt-bindings: media: add bindings for TI DS90UB953
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>
+References: <20221208104006.316606-1-tomi.valkeinen@ideasonboard.com>
+ <20221208104006.316606-5-tomi.valkeinen@ideasonboard.com>
+ <20221209212744.GA3868990-robh@kernel.org>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <20221209212744.GA3868990-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 4, 2023, at 01:00, Conor Dooley wrote:
-> On Tue, Jan 03, 2023 at 10:28:19PM +0100, Arnd Bergmann wrote:
->> On Tue, Jan 3, 2023, at 22:04, Conor Dooley wrote:
->> > From: Daire McNamara <daire.mcnamara@microchip.com>
->> >
->> > SiFive L2 cache controller can flush L2 cache. Expose this capability via
->> > driver.
->> >
->> > Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
->> > [Conor: rebase on top of move to cache subsystem]
->> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
->> > ---
->> > This commit needs more work, and a way to enable it from errata. I've
->> > not gone and done this as PolarFire SoC has archid etc all set to zero.
->> > So we need to go figure out a workaround for this, before adding in
->> > errata enabling code for this. I've included it here as a second user of
->> > the cache management stuff, since what's currently upstream for the
->> > ccache driver does not do any cache management.
->> > ---
->> >  drivers/cache/sifive_ccache.c | 45 +++++++++++++++++++++++++++++++++++
->> >  1 file changed, 45 insertions(+)
->> 
->> My feeling here is that the cacheflush code is unrelated to the
->> EDAC code and it should just be a separate file. From what I can
->> tell, all of the existing contents of this file can simply
->> get merged into drivers/edac/sifive_edac.c, with the newly
->> added code becoming a standalone driver.
->
-> Sure? I'd like to do that independently of whatever is done for the
-> ax45mp CMOs though, don't think it's worth holding up that platform's
-> support on me splitting this out.
+Hi Rob,
 
-Right, no need to touch the existing file as part of this series,
-it probably just gets in the way of defining a good interface here.
+On 09/12/2022 23:27, Rob Herring wrote:
+> On Thu, Dec 08, 2022 at 12:40:02PM +0200, Tomi Valkeinen wrote:
+>> Add DT bindings for TI DS90UB953 FPDLink-3 Serializer.
+> 
+> Seems like this and DS90UB913 binding could be combined. I couldn't spot
+> a difference.
 
-    Arnd
+They are indeed quite similar, but there are a few diffs, especially 
+after fixing Laurent's review comments.
+
+E.g, as the UB913 is a parallel video serializer and the UB953 is a 
+CSI-2 serializer, the input port on UB913 has 'pclk-sample' property but 
+UB953 has 'data-lanes' property. The descriptions differ also a bit for 
+the above mentioned difference.
+
+The above points would still allow combining the bindings, though. But I 
+feel the UB913 is somewhat a different class of serializer device 
+compared to UB953 (and UB971 which the UB953's binding also supports), 
+so my gut feeling says it's better to keep them separate. But I don't 
+have much experience on maintaining such bindings, and, afaik, we could 
+always split the bindings later if needed.
+
+So... Do you have a preference on either way? Or maybe we can come back 
+to this after I send the next version with the updates.
+
+> In the subjects, drop 'binding for'. The prefix says this is a binding.
+> Maybe add 'Serializer'.
+
+Ok.
+
+  Tomi
+
