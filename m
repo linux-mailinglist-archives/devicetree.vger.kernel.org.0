@@ -2,78 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA75765CB6E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 02:32:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F21865CB80
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 02:36:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238359AbjADBcB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 20:32:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35454 "EHLO
+        id S238678AbjADBgF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 20:36:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238710AbjADBb4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 20:31:56 -0500
-Received: from casper.infradead.org (casper.infradead.org [IPv6:2001:8b0:10b:1236::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26963117C;
-        Tue,  3 Jan 2023 17:31:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
-        :Reply-To:Content-ID:Content-Description;
-        bh=ijnis/WI5plp38mtmuFWM0btH8pvOuArfVZ6ZZO26+Y=; b=iATV2NXx5v9rrUgFhuJlontJxk
-        TDxCgt5yG3Z5kdaUMpTB0ZUdrvYp+iO3lFYGnUPMv4jMQB973CMuMjbTtxgClc4+AI+uwNHvGKnS1
-        uN+whSmcWn322VWte3Is8JbIOEr9g6DKbxvGqDu5T1jHsTzu1smaRFDwuaSJbQ6KSanGKVHzya0gM
-        Q2UM4KBUs1Ykvhs140BzPwpZuVJb70nsDpOZEA78EfU7ZGmZJrr1+YfE1OkzQvGCodMidrmxVnyyA
-        uZXmO3Sxph7KFhGSqHcmNcO5/Pa0st1IuoKCrQzUQvLLjSG4cgR/z9TvET8Tpa/6RiEaIl78uMJPA
-        pDSTyHMQ==;
-Received: from 108-90-42-56.lightspeed.sntcca.sbcglobal.net ([108.90.42.56] helo=[192.168.1.80])
-        by casper.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1pCsdF-00EZrR-4u; Wed, 04 Jan 2023 01:31:53 +0000
-Message-ID: <53dd3a2c-3f56-dcdc-bb75-5dc5adbe30bf@infradead.org>
-Date:   Tue, 3 Jan 2023 17:31:36 -0800
+        with ESMTP id S238758AbjADBfz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 20:35:55 -0500
+Received: from twspam01.aspeedtech.com (twspam01.aspeedtech.com [211.20.114.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8506F17428;
+        Tue,  3 Jan 2023 17:35:54 -0800 (PST)
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 3041OcIf076237;
+        Wed, 4 Jan 2023 09:24:38 +0800 (GMT-8)
+        (envelope-from neal_liu@aspeedtech.com)
+Received: from localhost.localdomain (192.168.10.10) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 4 Jan
+ 2023 09:34:41 +0800
+From:   Neal Liu <neal_liu@aspeedtech.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        "Andrew Jeffery" <andrew@aj.id.au>,
+        Neal Liu <neal_liu@aspeedtech.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Chia-Wei Wang <chiawei_wang@aspeedtech.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
+        <linux-crypto@vger.kernel.org>
+Subject: [PATCH v5 0/4] Add Aspeed ACRY driver for hardware acceleration
+Date:   Wed, 4 Jan 2023 09:34:32 +0800
+Message-ID: <20230104013436.203427-1-neal_liu@aspeedtech.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 0/2] of: Fix handling CONFIG_CMDLINE* even without /chosen
- node
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230103-dt-cmdline-fix-v1-0-7038e88b18b6@kernel.org>
-From:   Geoff Levand <geoff@infradead.org>
-In-Reply-To: <20230103-dt-cmdline-fix-v1-0-7038e88b18b6@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [192.168.10.10]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 3041OcIf076237
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Aspeed ACRY engine is designed to accelerate the throughput of
+ECDSA/RSA signature and verification.
 
-On 1/3/23 10:00, Rob Herring wrote:
-> 
-> Let's revert the above commit and redo the missing /chosen node handling 
-> within early_init_dt_scan_chosen().
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> Rob Herring (2):
->       Revert "of: fdt: Honor CONFIG_CMDLINE* even without /chosen node"
->       of: fdt: Honor CONFIG_CMDLINE* even without /chosen node, take 2
-> 
->  drivers/of/fdt.c | 54 ++++++++++++++++++++++++++++--------------------------
->  1 file changed, 28 insertions(+), 26 deletions(-)
+These patches aim to add Aspeed ACRY RSA driver support.
+This driver also pass the run-time self tests that take place at
+algorithm registration on both big-endian/little-endian system
+in AST2600 evaluation board .
 
-I applied these two patches to v6.2-rc2 and tested on PS3. I used a kernel
-config file that had a CONFIG_CMDLINE, and CONFIG_CMDLINE_FORCE=y set.
-Everything seemed to work OK.  
+Tested-by below configs:
+- CONFIG_CRYPTO_MANAGER_DISABLE_TESTS is not set
+- CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y
+- CONFIG_DMA_API_DEBUG=y
+- CONFIG_DMA_API_DEBUG_SG=y
+- CONFIG_CPU_BIG_ENDIAN=y
 
-Tested-by: Geoff Levand <geoff@infradead.org>
+Change since v4:
+- Remove GFP_DMA flag since it's unnecessary.
+
+Change since v3:
+- Revise aspeed,ast2600-ahbc.yaml dt-bindings description.
+
+Change since v2:
+- Fix format and uninitialized warning.
+- Revise binding description.
+
+Change since v1:
+- Fix dt-bindings description.
+- Refine the Makefile which has been addressed.
+
+Neal Liu (4):
+  crypto: aspeed: Add ACRY RSA driver
+  ARM: dts: aspeed: Add ACRY/AHBC device controller node
+  dt-bindings: crypto: add documentation for Aspeed ACRY
+  dt-bindings: bus: add documentation for Aspeed AHBC
+
+ .../bindings/bus/aspeed,ast2600-ahbc.yaml     |  37 +
+ .../bindings/crypto/aspeed,ast2600-acry.yaml  |  49 ++
+ MAINTAINERS                                   |   2 +-
+ arch/arm/boot/dts/aspeed-g6.dtsi              |  13 +
+ drivers/crypto/aspeed/Kconfig                 |  11 +
+ drivers/crypto/aspeed/Makefile                |   2 +
+ drivers/crypto/aspeed/aspeed-acry.c           | 828 ++++++++++++++++++
+ 7 files changed, 941 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/bus/aspeed,ast2600-ahbc.yaml
+ create mode 100644 Documentation/devicetree/bindings/crypto/aspeed,ast2600-acry.yaml
+ create mode 100644 drivers/crypto/aspeed/aspeed-acry.c
+
+-- 
+2.25.1
 
