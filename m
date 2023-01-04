@@ -2,127 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64A3B65D096
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 11:25:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E0F765D0A0
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 11:27:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234587AbjADKZa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 05:25:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47460 "EHLO
+        id S234054AbjADK1H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 05:27:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233785AbjADKZ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 05:25:29 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 698191A048
-        for <devicetree@vger.kernel.org>; Wed,  4 Jan 2023 02:25:28 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id y25so49781561lfa.9
-        for <devicetree@vger.kernel.org>; Wed, 04 Jan 2023 02:25:28 -0800 (PST)
+        with ESMTP id S233659AbjADK1F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 05:27:05 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73C4FFAD9;
+        Wed,  4 Jan 2023 02:27:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SkvlyIDBBLE3c6VFSzp/qwH9+7yXujGKr61f2e7e0Tg=;
-        b=oaT+YCsmoamerfi2Hp0NJNqo3mIXE1XpficzOTHmOVFkxqRGVXkKxWPKKm0A6/ReRd
-         072n1gard7TQhUoco6F0d27gznrJ+E6XX+tA8Frtpehy7KPDGdhcpqGtbipzdRDbBZK1
-         HAi1R7xChIG9UOUBiwPxrfq75mEtIagT72BqBWr+moCWlUaoDtoN4an4zPg6IcJiKJd8
-         koSjs63rMAi1ErR541M0Xxkv7MCSjLP3/IiEg8ISH5m6qEvmLSuDrGZgT7h6FxugkLWN
-         ZRLorkfdwhn28HQusEpjSy+loqnowehgxRIstMn34PVyHESEbUUDKLty9lfIrmSdiu6M
-         CdkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SkvlyIDBBLE3c6VFSzp/qwH9+7yXujGKr61f2e7e0Tg=;
-        b=n4R6LbsROTwlz9yPB2by0RXEIgUx/f1W0c3tl0E6MiVt7zWU2hCwQgKLHkk+mzKx68
-         PghuLomgHSFWucgSdPpB1bs0MhMygr3CStBL0IEYSf1aBIJs7o7DrMVHg72/ij0JQ61N
-         i8Q9SuvneCgfZ2QWSOIPZsgW+F2vgznNNixt4XOYEpJUSyQk8gsqjFaa/Oi4/tNJvb2f
-         GIqB6JXi1jMqK9fjXxN4iT8HTptr7Ii0sxUrJvUwYmGZXb2iEjpLVnV9mP3oI6kUkDR6
-         1Ckp12B8vmDobNdpHdv8hQIIYESNqzblJUsFtJzn0oj3NRHDJEEU4FWwnCBmPWmakvLl
-         DMYg==
-X-Gm-Message-State: AFqh2kqdJRjKjTdEImQwilQHW8ufO+7qvUTxrko02qiav6PahQHyTxD9
-        bSUb91F7dxJd1b4vjFzBtoKmkg==
-X-Google-Smtp-Source: AMrXdXtV1E8poWSfqn0UCsPxNz4xnxOVwSfAs3RPxewRSgdlDsQOJ+iU9JaZ67jvbRsSLRqals4G1w==
-X-Received: by 2002:a05:6512:e9f:b0:4cb:3b24:8390 with SMTP id bi31-20020a0565120e9f00b004cb3b248390mr2594744lfb.59.1672827926823;
-        Wed, 04 Jan 2023 02:25:26 -0800 (PST)
-Received: from [192.168.1.101] (abxi45.neoplus.adsl.tpnet.pl. [83.9.2.45])
-        by smtp.gmail.com with ESMTPSA id h13-20020a05651211cd00b004a2511b8224sm5031845lfr.103.2023.01.04.02.25.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Jan 2023 02:25:26 -0800 (PST)
-Message-ID: <26c5c81b-2f94-cb84-3c42-60e2d43489bc@linaro.org>
-Date:   Wed, 4 Jan 2023 11:25:25 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm8550-mtp: enable display hardware
-Content-Language: en-US
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1672828024; x=1704364024;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=vG8oAo7sN5yIKn7EExJUDy9QBn5sKrDpKcI3G4sxyqw=;
+  b=aQVT4OfwTzE9pvIfrzu7k0QLOcmbSP73fArrvfBAM0jYdGQrTK+y/sKs
+   hU1CXdY4iRkZONKcJosuCnUrFK7ByxLgmDxrmCMIZ7BvpMTPhnaI+GLdv
+   58y7USSz6pelfeuw8gJS0WS6oyLegq0M/kcLP9P57YZK5mow+/BirOYoU
+   SBD9zWnIoSkvX4V8Lw1Lrzb461F7KeTRL4SrWVwttNkNi9iDAdDxQoils
+   Pl1nBeFmS2oAI6E6oDCUxmis55Zfbg9n/ofw3BArEj1lkW0U1+XzOHQfD
+   5aoECs1+52sQseCB+CMFnL5QRLBZx9WkhslQtQfDQMsphSKEeakCFzkQC
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.96,299,1665439200"; 
+   d="scan'208";a="28238209"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 04 Jan 2023 11:27:01 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 04 Jan 2023 11:27:01 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 04 Jan 2023 11:27:01 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1672828021; x=1704364021;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=vG8oAo7sN5yIKn7EExJUDy9QBn5sKrDpKcI3G4sxyqw=;
+  b=alpjEprWIMDfB67MBA2pVXpBfkwuwCwnwZqnJUYtJglsq2qVYZCWF5ib
+   ypkvTzcPXToHqG5kO+jDEkDAWG09sx9TLNMROHF5I31tCNuwjJTDMuIv6
+   4JTxY0A5K+/LkKqQti2H2FYjKWyVSAVU6BjGk8go4ORJrJuoX/f/Dm8TR
+   uI2jj7mFKOKx0rf1l9ch+c/rDbmXJ4Ib1r5EK1g9jnZdTPeaIGxPaDdMh
+   He9i2BDeVrQ7nFIRszz89ivKQDJaTJ4vdU+NEfSWkRy++M7zLOZZrl4pB
+   82b0wbft89rWZg2hLI6FJB75q1SkDMmOsJqR0jKiHiK4XkXE8Zq2Hb6On
+   A==;
+X-IronPort-AV: E=Sophos;i="5.96,299,1665439200"; 
+   d="scan'208";a="28238208"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 04 Jan 2023 11:27:01 +0100
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 7C9CF280056;
+        Wed,  4 Jan 2023 11:27:01 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Marek Vasut <marex@denx.de>,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230104-topic-sm8550-upstream-dts-display-v1-0-aeab9751928f@linaro.org>
- <20230104-topic-sm8550-upstream-dts-display-v1-2-aeab9751928f@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230104-topic-sm8550-upstream-dts-display-v1-2-aeab9751928f@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/4] clk: rs9: Check for vendor/device ID
+Date:   Wed, 04 Jan 2023 11:26:59 +0100
+Message-ID: <47810610.MN2xkq1pzW@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <CAMuHMdWmypkjeowpsQ0-7z7Kfa5NjPeGYr0vujrfdVia5qjevw@mail.gmail.com>
+References: <20230103123154.3424817-1-alexander.stein@ew.tq-group.com> <2ba4e002-9f27-2e36-2bd2-8753c455b21f@denx.de> <CAMuHMdWmypkjeowpsQ0-7z7Kfa5NjPeGYr0vujrfdVia5qjevw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Geert,
+
+Am Dienstag, 3. Januar 2023, 17:08:36 CET schrieb Geert Uytterhoeven:
+> Hi Marek,
+> 
+> On Tue, Jan 3, 2023 at 4:45 PM Marek Vasut <marex@denx.de> wrote:
+> > On 1/3/23 13:31, Alexander Stein wrote:
+> > > This is in preparation to support additional devices which have
+> > > different
+> > > IDs as well as a slightly different register layout.
+> > > 
+> > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > > ---
+> > > 
+> > >   drivers/clk/clk-renesas-pcie.c | 24 ++++++++++++++++++++++++
+> > >   1 file changed, 24 insertions(+)
+> > > 
+> > > diff --git a/drivers/clk/clk-renesas-pcie.c
+> > > b/drivers/clk/clk-renesas-pcie.c index e6247141d0c0..0076ed8f11b0
+> > > 100644
+> > > --- a/drivers/clk/clk-renesas-pcie.c
+> > > +++ b/drivers/clk/clk-renesas-pcie.c
+> > > @@ -45,6 +45,13 @@
+> > > 
+> > >   #define RS9_REG_DID                         0x6
+> > >   #define RS9_REG_BCP                         0x7
+> > > 
+> > > +#define RS9_REG_VID_IDT                              0x01
+> > > +
+> > > +#define RS9_REG_DID_TYPE_FGV                 (0x0 <<
+> > > RS9_REG_DID_TYPE_SHIFT) +#define RS9_REG_DID_TYPE_DBV                
+> > > (0x1 << RS9_REG_DID_TYPE_SHIFT) +#define RS9_REG_DID_TYPE_DMV          
+> > >       (0x2 << RS9_REG_DID_TYPE_SHIFT)> 
+> > I'm not entirely sure whether this shouldn't be using the BIT() macro,
+> > what do you think ?
+> 
+> They're not one-bit values (which bit does RS9_REG_DID_TYPE_FGV set? ;-),
+> but values in a bitfield.
+> 
+> So using FIELD_PREP() and friends would make more sense to me.
+
+FIELD_PREP() seems pretty nice, but unless I miss something it can't be used 
+for initializing struct members. See renesas_9fgv0241_info.
+
+Best regards,
+Alexander
+
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 --
+> geert@linux-m68k.org
+> 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like
+> that. -- Linus Torvalds
 
 
-On 4.01.2023 10:18, Neil Armstrong wrote:
-> Enable MDSS/DPU/DSI0 on SM8550-MTP device.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Konrad
->  arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> index 8586e16d6079..5b7e301cc2a2 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> @@ -359,6 +359,28 @@ vreg_l3g_1p2: ldo3 {
->  	};
->  };
->  
-> +&dispcc {
-> +	status = "okay";
-> +};
-> +
-> +&mdss {
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dsi0 {
-> +	vdda-supply = <&vreg_l3e_1p2>;
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dsi0_phy {
-> +	vdds-supply = <&vreg_l1e_0p88>;
-> +	status = "okay";
-> +};
-> +
-> +&mdss_mdp {
-> +	status = "okay";
-> +};
-> +
->  &pm8550_gpios {
->  	sdc2_card_det_n: sdc2-card-det-state {
->  		pins = "gpio12";
-> 
+
