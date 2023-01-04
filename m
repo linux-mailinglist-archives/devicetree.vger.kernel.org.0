@@ -2,123 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93E2A65D4E9
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 15:05:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ECBFF65D4EA
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 15:05:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239223AbjADOFB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 09:05:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58776 "EHLO
+        id S233916AbjADOFF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 09:05:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239430AbjADOE5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 09:04:57 -0500
-Received: from smtp-out-08.comm2000.it (smtp-out-08.comm2000.it [212.97.32.78])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 789C71929D
-        for <devicetree@vger.kernel.org>; Wed,  4 Jan 2023 06:04:55 -0800 (PST)
-Received: from francesco-nb.toradex.int (31-10-206-125.static.upc.ch [31.10.206.125])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: francesco@dolcini.it)
-        by smtp-out-08.comm2000.it (Postfix) with ESMTPSA id CD750423666;
-        Wed,  4 Jan 2023 15:04:41 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailserver.it;
-        s=mailsrv; t=1672841082;
-        bh=fkw4KQkZxEXxi05Y7BnBvucOJZ3tO3pncymAHY/a7qo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=KIPeWVv+VUIRRpSGxzx+xXoCZoyACdz8qifrnsA4lmMUs+hXjn7mX9sIX9CCaXBHS
-         YnrFikS6o0cneTMRM1sMiLlgGAyZ4L05p5y/rMJGF7x5rwZe37K6GYNUhksdNxIvlR
-         e6UNDyI/frYhjVFefePXQEGsEfzZxDpKo/DRV37gcBgJaxajiWe9g9ORyvYKB7ysX7
-         Hp9O/Era1/kx3hBiroaAIQOrF+OyPdGbzMrGbF67524WMTQ81a4bz2Dbhtsd5Ny6ot
-         7nqnC/zC9BuLda91YRfU+Lr6oFyAt2FMH3s8YyAkjd/wBcqeUzKqNa90g0cjUIMpZ5
-         9tw2lHK93aEkg==
-From:   Francesco Dolcini <francesco@dolcini.it>
-To:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-Cc:     Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Benjamin Marty <info@benjaminmarty.ch>, kchsu0@nuvoton.com,
-        wtli@nuvoton.com, Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: [PATCH v2 3/3] ASoC: nau8822: add speaker Bridge Tied Output configuration
-Date:   Wed,  4 Jan 2023 15:04:12 +0100
-Message-Id: <20230104140412.35575-4-francesco@dolcini.it>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230104140412.35575-1-francesco@dolcini.it>
-References: <20230104140412.35575-1-francesco@dolcini.it>
+        with ESMTP id S239371AbjADOFE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 09:05:04 -0500
+Received: from mail-vs1-xe2c.google.com (mail-vs1-xe2c.google.com [IPv6:2607:f8b0:4864:20::e2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B8C618B18
+        for <devicetree@vger.kernel.org>; Wed,  4 Jan 2023 06:05:02 -0800 (PST)
+Received: by mail-vs1-xe2c.google.com with SMTP id s127so20922639vsb.5
+        for <devicetree@vger.kernel.org>; Wed, 04 Jan 2023 06:05:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lbYqEYMuK4QQdOqZ2O5qfwO8lqdYM3p9ldHBfSASKhU=;
+        b=an3SkIec6n/usy8qQfvGM+/vshmxGPQdaG3L7Cb0q+0wEUv4qG7txU/8PMXwd9/p7P
+         iKenT/Kb4jYLH7i2XPhN3/Q5iZ0aVZ62ai/3bKPZhQrBDVAiSMHI+zXjZTNBYIjMmOrH
+         b8xq9/LS4wuTf4ZyNZXrIeOh1GfLzZrQqOALnYTsIqveInzXRXd0jGXm0lN7jk/be+8t
+         63xMhntFWce9EnN0aajrD3eRhhFiP1oE5g9vePdyLzMaiGP9icV4USSi9MI+dCc1DsPd
+         R7QZxppptA/HyZ9PDQSBThLGDhkv0kpn+Wk9zzTwzfF19Hi0cG/cJ7JXiW5dyLFIiwQc
+         YK8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lbYqEYMuK4QQdOqZ2O5qfwO8lqdYM3p9ldHBfSASKhU=;
+        b=LbKCaBdWtutIrWY/1Vsh0sVrkxokmUgxN/1S+zvE3tiCyvNw6vjgtc2BhqgPd0vbqE
+         GngO6nWIfbY+IRfLwuCtrIrHZfXlvwz9jilYp2L2fkXE+M8WMH8qs98FriLTHX/utrWv
+         1/kHA39zOj5xKDGC7MZ8m0UYRxuhBr66KmozRmDLBmNZ4m+jIOf9QxhuWRPTmXVhrAzd
+         v4IVhgBRpx3yjVUSrhuxy2wh8Ie4e/X2KJfz3eCia7cN3mOuEf9I5DvVEaQocNgDrBK2
+         4AAK9acpktH7BTvxg/i/luwkjx0M80z3Y/NjDnwTNfVgoBADuLN9X3smnUNbbqT8RfRV
+         DJqg==
+X-Gm-Message-State: AFqh2kp0wuo0+phk//sT2hJMtmJD+0pyyclNRDkeZW5/XWzZ5l5lOWa6
+        oREHMXVo+umxlEbKyQ6XPM6jVfGhwuag37tuHAceyg==
+X-Google-Smtp-Source: AMrXdXtM8lyaKq6Vjld3wibhq6Rsi6BKDrfwzZTLeVJU64asXWBb5lJt0ZvPvWi0bZs2234bpkxCZyga/AHBhU3l+RI=
+X-Received: by 2002:a05:6102:302d:b0:3ce:a2e1:b574 with SMTP id
+ v13-20020a056102302d00b003cea2e1b574mr694108vsa.55.1672841101340; Wed, 04 Jan
+ 2023 06:05:01 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230103141102.772228-1-apatel@ventanamicro.com> <9a98300c-e845-60d6-bdf1-12010eae2075@linaro.org>
+In-Reply-To: <9a98300c-e845-60d6-bdf1-12010eae2075@linaro.org>
+From:   Anup Patel <apatel@ventanamicro.com>
+Date:   Wed, 4 Jan 2023 19:34:49 +0530
+Message-ID: <CAK9=C2WkiE7W3yU7NoUn_neS8yW1Hs1ErNA+FXsad164QgtndQ@mail.gmail.com>
+Subject: Re: [PATCH v6 0/3] Improve CLOCK_EVT_FEAT_C3STOP feature setting
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Anup Patel <anup@brainfault.org>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+On Wed, Jan 4, 2023 at 6:32 PM Daniel Lezcano <daniel.lezcano@linaro.org> w=
+rote:
+>
+>
+> Hi Anup,
+>
+> shall I pick the entire series or just the bindings and the driver change=
+s ?
 
-Allow configuring the two loudspeaker outputs as a
-single Bridge Tied Load output getting higher output power.
+Yes, that would be great. Palmer has already ACKed this series.
 
-Signed-off-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
-v2: no changes
----
- sound/soc/codecs/nau8822.c | 9 +++++++++
- sound/soc/codecs/nau8822.h | 9 +++++++++
- 2 files changed, 18 insertions(+)
+Thanks,
+Anup
 
-diff --git a/sound/soc/codecs/nau8822.c b/sound/soc/codecs/nau8822.c
-index 1aef281a9972..d5006d8de639 100644
---- a/sound/soc/codecs/nau8822.c
-+++ b/sound/soc/codecs/nau8822.c
-@@ -1056,6 +1056,7 @@ static const int update_reg[] = {
- static int nau8822_probe(struct snd_soc_component *component)
- {
- 	int i;
-+	struct device_node *of_node = component->dev->of_node;
- 
- 	/*
- 	 * Set the update bit in all registers, that have one. This way all
-@@ -1066,6 +1067,14 @@ static int nau8822_probe(struct snd_soc_component *component)
- 		snd_soc_component_update_bits(component,
- 			update_reg[i], 0x100, 0x100);
- 
-+	/* Check property to configure the two loudspeaker outputs as
-+	 * a single Bridge Tied Load output
-+	 */
-+	if (of_property_read_bool(of_node, "nuvoton,spk-btl"))
-+		snd_soc_component_update_bits(component,
-+					      NAU8822_REG_RIGHT_SPEAKER_CONTROL,
-+					      NAU8822_RSUBBYP, NAU8822_RSUBBYP);
+>
+>
+> On 03/01/2023 15:10, Anup Patel wrote:
+> > This series improves the RISC-V timer driver to set CLOCK_EVT_FEAT_C3ST=
+OP
+> > feature based on RISC-V platform capabilities.
+> >
+> > These patches can also be found in riscv_timer_dt_imp_v6 branch at:
+> > https://github.com/avpatel/linux.git
+> >
+> > Changes since v5:
+> >   - Rebased on Linux-6.2-rc2
+> >
+> > Changes since v4:
+> >   - Update commit text of PATCH1 based on Samuel's comments
+> >   - Renamed DT property "riscv,timer-can-wake-cpu" to
+> >     "riscv,timer-cannot-wake-cpu" in PATCH2 and PATCH3
+> >   - Updated description of DT property "riscv,timer-cannot-wake-cpu"
+> >     in PATCH2
+> >
+> > Changes since v3:
+> >   - Rebased on Linux-6.1-rc7
+> >   - Replaced PATCH1 with a patch to initialize broadcast timer
+> >
+> > Changes since v2:
+> >   - Include Conor's revert patch as the first patch and rebased other p=
+atches
+> >   - Update PATCH2 to document bindings for separate RISC-V timer DT nod=
+e
+> >   - Update PATCH3 based on RISC-V timer DT node bindings
+> >
+> > Changes since v1:
+> >   - Rebased on Linux-5.19-rc8
+> >   - Renamed "riscv,always-on" DT property to "riscv,timer-can-wake-cpu"
+> >
+> > Anup Patel (2):
+> >    dt-bindings: timer: Add bindings for the RISC-V timer device
+> >    clocksource: timer-riscv: Set CLOCK_EVT_FEAT_C3STOP based on DT
+> >
+> > Conor Dooley (1):
+> >    RISC-V: time: initialize hrtimer based broadcast clock event device
+> >
+> >   .../bindings/timer/riscv,timer.yaml           | 52 ++++++++++++++++++=
 +
- 	return 0;
- }
- 
-diff --git a/sound/soc/codecs/nau8822.h b/sound/soc/codecs/nau8822.h
-index 547ec057f853..646f6bb64bc5 100644
---- a/sound/soc/codecs/nau8822.h
-+++ b/sound/soc/codecs/nau8822.h
-@@ -187,6 +187,15 @@
- /* NAU8822_REG_PLL_K3 (0x27) */
- #define NAU8822_PLLK3_MASK			0x1FF
- 
-+/* NAU8822_REG_RIGHT_SPEAKER_CONTROL (0x2B) */
-+#define NAU8822_RMIXMUT				0x20
-+#define NAU8822_RSUBBYP				0x10
-+
-+#define NAU8822_RAUXRSUBG_SFT			1
-+#define NAU8822_RAUXRSUBG_MASK			0x0E
-+
-+#define NAU8822_RAUXSMUT			0x01
-+
- /* System Clock Source */
- enum {
- 	NAU8822_CLK_MCLK,
--- 
-2.25.1
-
+> >   arch/riscv/kernel/time.c                      |  3 ++
+> >   drivers/clocksource/timer-riscv.c             | 10 ++++
+> >   3 files changed, 65 insertions(+)
+> >   create mode 100644 Documentation/devicetree/bindings/timer/riscv,time=
+r.yaml
+> >
+>
+> --
+> <http://www.linaro.org/> Linaro.org =E2=94=82 Open source software for AR=
+M SoCs
+>
+> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+> <http://twitter.com/#!/linaroorg> Twitter |
+> <http://www.linaro.org/linaro-blog/> Blog
+>
