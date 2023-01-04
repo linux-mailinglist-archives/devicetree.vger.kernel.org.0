@@ -2,72 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1539D65CCD2
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 07:10:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AAE9665CCD4
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 07:11:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229607AbjADGKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 01:10:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38956 "EHLO
+        id S231126AbjADGL1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 01:11:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231591AbjADGKz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 01:10:55 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C77C5FD20;
-        Tue,  3 Jan 2023 22:10:53 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 3C1A9B810A3;
-        Wed,  4 Jan 2023 06:10:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BBA0C433EF;
-        Wed,  4 Jan 2023 06:10:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1672812650;
-        bh=Kbcq+uYhLv3BKlIhOzG7lEXrgxIBAdAfwWFOGqxXWm8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=b5S+O6YP0yDEIft+xKaW50DZCIo+jNahqTvXBdoYJ6g41XJ7cH7SU845rNE1EedGM
-         ZbNTrWPn2aRGXwsiJFB8URB290GK3nCtoC2jA3lJWehfGYHgqu2gQ/ZmQjgD/D1QUM
-         g7rCUwCj+EE08VHgq2+3FPk+b4ZSd18mgxyIJlo0=
-Date:   Wed, 4 Jan 2023 07:10:48 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
-Cc:     alexandre.torgue@foss.st.com, robh+dt@kernel.org,
-        Oleksii_Moisieiev@epam.com, linus.walleij@linaro.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        loic.pallardy@st.com, devicetree@vger.kernel.org,
-        mark.rutland@arm.com, arnd@arndb.de
-Subject: Re: [RFC PATCH v2 0/7] Introduce STM32 system bus
-Message-ID: <Y7UYaDL82NqFu7vK@kroah.com>
-References: <20221222100504.68247-1-gatien.chevallier@foss.st.com>
- <Y6SIOpsxNdezKCTc@kroah.com>
- <98aa92e9-9ac0-0fe4-a140-ac478e261f94@foss.st.com>
+        with ESMTP id S231418AbjADGK7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 01:10:59 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE0EE13CD4
+        for <devicetree@vger.kernel.org>; Tue,  3 Jan 2023 22:10:58 -0800 (PST)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1pCwzH-0006lD-V5; Wed, 04 Jan 2023 07:10:56 +0100
+Message-ID: <053cb4ce-1fc6-b533-19eb-ac85f1273d75@pengutronix.de>
+Date:   Wed, 4 Jan 2023 07:10:54 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <98aa92e9-9ac0-0fe4-a140-ac478e261f94@foss.st.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH 0/1] pmic on imx8mm
+Content-Language: en-US
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+To:     Johannes Schneider <johannes.schneider@leica-geosystems.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org
+References: <20230104052317.1083372-1-johannes.schneider@leica-geosystems.com>
+ <905e34eb-c9fd-f44f-4897-377a22a3b234@pengutronix.de>
+In-Reply-To: <905e34eb-c9fd-f44f-4897-377a22a3b234@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 03, 2023 at 10:45:15AM +0100, Gatien CHEVALLIER wrote:
-> Hello Greg,
+On 04.01.23 07:04, Ahmad Fatoum wrote:
+> Hi,
 > 
-> I've put the "RFC" tag on the the patch set as it is based on bindings that
-> are currently under review. It has been submitted with the idea to support
-> the bindings proposed by Oleksii. Apart from this and the comments made by
-> Krzysztof, there is indeed no more "work" planned on this change.
+> On 04.01.23 06:23, Johannes Schneider wrote:
+>> current(?) imx8mm EVKs come with a different PMIC: used to be "rohm,bd71847", which is now replaced by "nxp,pca9450a" on the LPDDR4 variant at least
 > 
-> Should the "RFC" tag be omitted for the next version?
+> So you have a LPDDR4 EVK.
+> 
+>> the register settings etc where "backported" from current u-boot sources for the EVK
+>>
+>> Note: not sure if the changes should go in the ddr4-evk.dts or elsewhere;
+> 
+> Why change the DDR4 EVK's device tree?
+> 
+>> what about backwards compatibility? = users/holders of the EVKs with the bd71847 IC?
+> 
+> It's a new device, so give it a new device tree and a new DT compatible.
 
-If you feel it is ready to be merged, yes, then please remove it,
-otherwise it's obviously not ready and will not be merged :)
+Also, you didn't include the maintainers in the recipient list. 
 
-thanks,
+> 
+> Thanks,
+> Ahmad
+> 
+>>
+>>
+>> Johannes Schneider (1):
+>>   arm64: dts: imx8mm: set PCA9450a as PMIC
+>>
+>>  .../boot/dts/freescale/imx8mm-ddr4-evk.dts    | 124 ++++++++++++++++++
+>>  1 file changed, 124 insertions(+)
+>>
+> 
 
-greg k-h
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+
