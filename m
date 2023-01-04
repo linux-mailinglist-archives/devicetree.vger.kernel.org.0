@@ -2,98 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE0D665D41E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 14:30:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF7A265D427
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 14:32:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239459AbjADNa2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 08:30:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34946 "EHLO
+        id S231220AbjADNcE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 08:32:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234797AbjADN3O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 08:29:14 -0500
-Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E8D41EC7F;
-        Wed,  4 Jan 2023 05:23:44 -0800 (PST)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.west.internal (Postfix) with ESMTP id 6B6C13200932;
-        Wed,  4 Jan 2023 08:23:43 -0500 (EST)
-Received: from imap47 ([10.202.2.97])
-  by compute5.internal (MEProxy); Wed, 04 Jan 2023 08:23:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=cc:cc:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm2; t=1672838623; x=1672925023; bh=8u
-        HX+nCZK7LlNc0MfNr5rFJQuuJKrtCol6cwSt/LyQw=; b=cG+BY2KzlyYWUbtne/
-        VXUGtPLSspz0B27UIpaDk9jYF254S345Sdvsfi263UFUlHIlCaKRDEivTg+/FLkg
-        t4wd66LUAxlhTovAwTGJm1QDbizfnRKaI+oFjLNLKiE5SCWoU+v686dRGbRd+yZl
-        S6zbt/oehRSfGQGWaVv32INHjPwpijbVBLTNhyGIGWw/ut6z5wV6LRnJLdGagZV5
-        9EZiHeAHZWz/2qg/bFcRYfy3PHHzAjyNHwG6vGykgc893SnIFeT2RFJBD8PlDN2u
-        K8IalOZYiwhS6FRD4A5s9tPieXrQl2IvwucDpIA4j3XLk8LshF+Ht0DFhBl++Jol
-        P/iA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm2; t=1672838623; x=1672925023; bh=8uHX+nCZK7LlNc0MfNr5rFJQuuJK
-        rtCol6cwSt/LyQw=; b=dLGRDPCOMP/TwUZtTg2q/HitiRGbr6G7kfFKuLqGi2+d
-        gEdaX2NYKbe0JgMIo1FbMu7GSPMBjQFjTkxvfYvyCtHUen9M/HgF30ApPX7t1Ag9
-        i/JBWIqjbs7184VxGwB9bxRrRs/YVEnW5NMkZXaspy91MnwdC26JND9a892M/ncc
-        YkBnjMAW7W/xxx5AIgwaserA6bYC48sUt2fdTyfh13Du/ITvNL1IAj4G+hoFOhKE
-        DuJDTtLJRIfa3ED3AZB3+fwkxqz0G6ms5lK2WIFt1aUWhwTfq+y4GOo37IgiqU/5
-        sWKW3Ir0K+DVj20bYRwIVkk3ghDOzTK5czUTGVlUwQ==
-X-ME-Sender: <xms:3n21Y5UWGN0mwBgX-i7HOivpb-iaIpp5N6yP6I_mDBb6aHe3fBGI5A>
-    <xme:3n21Y5mX3RbevceEexkBZj9GPNKiH-R4A26mgMiQbR0oPb5NKc68XAHhq1pSDc6Mc
-    IUUOFJ6ztYmh_Wsb_E>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrjeeigdehudcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdfuvhgv
-    nhcurfgvthgvrhdfuceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrg
-    htthgvrhhnpeelvefggeffheevtdeivefhkeehfeettdejteduveeiheevveeilefghfei
-    veeiueenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hsvhgvnhesshhvvghnphgvthgvrhdruggvvh
-X-ME-Proxy: <xmx:3n21Y1Za-TgRMDRwshwfCl6nxYcS-c3VGAsvKHRW7HM7Aa4M9rFMCw>
-    <xmx:3n21Y8UmgGkeFzmgohmsoXk-_W7CM2oJNYplGTjCr0ytHlnlrimXIw>
-    <xmx:3n21YzlERd6GbIl-NKH1HIJEyJ6Pt51VoSXq39CliJ1rW92irWa5Jw>
-    <xmx:3321Y8dWWdSVtbMqzLSN6wgSNTjLzo3mRkbVhbG3nmyXzx-62FehrA>
-Feedback-ID: i51094778:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 98036A6007C; Wed,  4 Jan 2023 08:23:42 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-1185-g841157300a-fm-20221208.002-g84115730
-Mime-Version: 1.0
-Message-Id: <a084b6d4-0167-4ae0-8397-f591809b628e@app.fastmail.com>
-In-Reply-To: <20230104110013.24738-6-marcan@marcan.st>
-References: <20230104110013.24738-1-marcan@marcan.st>
- <20230104110013.24738-6-marcan@marcan.st>
-Date:   Wed, 04 Jan 2023 14:23:22 +0100
-From:   "Sven Peter" <sven@svenpeter.dev>
-To:     "Hector Martin" <marcan@marcan.st>,
-        "Joerg Roedel" <joro@8bytes.org>, "Will Deacon" <will@kernel.org>,
-        "Robin Murphy" <robin.murphy@arm.com>
-Cc:     "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
-        "Janne Grunau" <j@jannau.net>, "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, iommu@lists.linux.dev,
-        asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 5/7] iommu: dart: Fix DART_PARAMS1/2 bit define names
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S239054AbjADNbW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 08:31:22 -0500
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 282BAE49
+        for <devicetree@vger.kernel.org>; Wed,  4 Jan 2023 05:29:21 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id s22so35401111ljp.5
+        for <devicetree@vger.kernel.org>; Wed, 04 Jan 2023 05:29:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BN1HuBOcO1xYyZSvoay0D2AQ+5agsRugOrVDoErpX48=;
+        b=uMe1/V2U49qWV8NEZPXnBhv604lrMCVmp6V05gDvgxyyTl20RkdTh00exLaCUIaY4Q
+         IvLpwr+q71gbuCtjpDyihO6jOPT2cJ24BsFGEmiMp6HLVS0CYA0JomJmC8qRaADhCwNT
+         fX+C6Zx7R9vdr5inLwnj1LgcLe1NP0KgnOBMUjsPCAeN14UIaJZFvvReWGnr3DyxAvVd
+         mmSPx+ridlbM0fgTSxazMOshc/VqIHt4c3eM+hXC4hx7lr5T5YKIx+WjsPsLNfhd1l5u
+         LLqVdkMj18OK9Ti0eu7HoQfNYK+UBqszfOR2Zi5iaa04EeLZkszuuxntIZyRg+fI9d3J
+         rcEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BN1HuBOcO1xYyZSvoay0D2AQ+5agsRugOrVDoErpX48=;
+        b=WEH9oiZ7BviG/mCO0HgpTd7ie7gS5eFta5/V1K9EcyFti44+ChCwp0w1pwoEI1W2F4
+         U7JP+dTTGuk8vqXNnTLgKc9BPBORnM9KSy06gDh9m9spl5bms0C+hHQO1hNd/eCcTjtg
+         IuxNmrBjamT8rBwHs7s0suiuEslamSSSpQ7MvCNfKzLQ0MQhqfJDselJryl25GpQQkME
+         E7CsvUa8DfyaFs+I5QT+2+pJFz8VDBYmHfwsasQl72TZdEAhaTq8S8R0c3wJ0lM/p+PZ
+         4/ZJcoe1snbI5zqVJviOor3plhzZJ/38rtImCWBCtKKDFALqX2vtsZ2cMKk3jkyJyUkr
+         bSFA==
+X-Gm-Message-State: AFqh2kqfN9hRkgrJPtw+5SnvaLsh3vJZtuolGi4ynIazSSsKF55Ll+S+
+        xf3Cb4ATIuUj2IwAJWGku3hiog==
+X-Google-Smtp-Source: AMrXdXsXU/nsbyBQ9CPaj3vZFjbU28wyzDRKxpG4BSqgr17viXzaeC0sFPTLEdg2UJcwsic716/a0w==
+X-Received: by 2002:a2e:a988:0:b0:27f:e6e6:9bdf with SMTP id x8-20020a2ea988000000b0027fe6e69bdfmr4940249ljq.36.1672838959487;
+        Wed, 04 Jan 2023 05:29:19 -0800 (PST)
+Received: from localhost.localdomain (abxi45.neoplus.adsl.tpnet.pl. [83.9.2.45])
+        by smtp.gmail.com with ESMTPSA id k23-20020a2e92d7000000b0027fd02c99d4sm1947071ljh.75.2023.01.04.05.29.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Jan 2023 05:29:18 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sibi Sankar <quic_sibis@quicinc.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/3] dt-bindings: interconnect: OSM L3: Add SM6350 OSM L3 compatible
+Date:   Wed,  4 Jan 2023 14:29:13 +0100
+Message-Id: <20230104132915.667946-1-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.39.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 4, 2023, at 12:00, Hector Martin wrote:
-> They didn't have the PARAMS reg index in them, but they should.
->
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> ---
+SM6350, similarly to SDM845, uses OSM hardware for L3 scaling.
+Document it.
 
-Reviewed-by: Sven Peter <sven@svenpeter.dev>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+index 00afbbca9038..9d0a98d77ae9 100644
+--- a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
++++ b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+@@ -22,6 +22,7 @@ properties:
+               - qcom,sc7180-osm-l3
+               - qcom,sc8180x-osm-l3
+               - qcom,sdm845-osm-l3
++              - qcom,sm6350-osm-l3
+               - qcom,sm8150-osm-l3
+           - const: qcom,osm-l3
+       - items:
+-- 
+2.39.0
+
