@@ -2,74 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 417B665CB60
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 02:25:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA75765CB6E
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jan 2023 02:32:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234196AbjADBZx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Jan 2023 20:25:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33772 "EHLO
+        id S238359AbjADBcB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Jan 2023 20:32:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234031AbjADBZw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 20:25:52 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3308A21C;
-        Tue,  3 Jan 2023 17:25:51 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D6BCFB810A3;
-        Wed,  4 Jan 2023 01:25:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CAECC433EF;
-        Wed,  4 Jan 2023 01:25:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672795548;
-        bh=NFaBi10GYulxFVGQsaX2ldxX5dG2rSQvP0AD9yCLI04=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=E5mFWAXXYdALmPzAysl/CTLtqag4jyCv/88McLMzpfGZhF6D3K1xaOZ8PlNaXGhIM
-         +IELxh/5Iv5N/xZktisSJuRBPE2sJVDNEyvHlPA+UTG5r7EjUEx0iWZsP+dxovZn45
-         RpFQC+IDMqhcuv9amzl+bHxj6gpWve3lhT5mGuoQ34rFytci+PUTDI15oREwRrc/ID
-         xATAIhowcohMTzAW2AABd62T/sZepN9VQEQcG1c3kZq1qnYeu5H+fSTH+VZDHEBbvQ
-         o6erIpZ9AFNqxUhhNmjoc10Hh1Hq1CMRuSB83HZj+oAlaRnY+KEFKeKxdXh854oeGH
-         Z7o1B1SbI86pQ==
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S238710AbjADBb4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Jan 2023 20:31:56 -0500
+Received: from casper.infradead.org (casper.infradead.org [IPv6:2001:8b0:10b:1236::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26963117C;
+        Tue,  3 Jan 2023 17:31:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
+        :Reply-To:Content-ID:Content-Description;
+        bh=ijnis/WI5plp38mtmuFWM0btH8pvOuArfVZ6ZZO26+Y=; b=iATV2NXx5v9rrUgFhuJlontJxk
+        TDxCgt5yG3Z5kdaUMpTB0ZUdrvYp+iO3lFYGnUPMv4jMQB973CMuMjbTtxgClc4+AI+uwNHvGKnS1
+        uN+whSmcWn322VWte3Is8JbIOEr9g6DKbxvGqDu5T1jHsTzu1smaRFDwuaSJbQ6KSanGKVHzya0gM
+        Q2UM4KBUs1Ykvhs140BzPwpZuVJb70nsDpOZEA78EfU7ZGmZJrr1+YfE1OkzQvGCodMidrmxVnyyA
+        uZXmO3Sxph7KFhGSqHcmNcO5/Pa0st1IuoKCrQzUQvLLjSG4cgR/z9TvET8Tpa/6RiEaIl78uMJPA
+        pDSTyHMQ==;
+Received: from 108-90-42-56.lightspeed.sntcca.sbcglobal.net ([108.90.42.56] helo=[192.168.1.80])
+        by casper.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1pCsdF-00EZrR-4u; Wed, 04 Jan 2023 01:31:53 +0000
+Message-ID: <53dd3a2c-3f56-dcdc-bb75-5dc5adbe30bf@infradead.org>
+Date:   Tue, 3 Jan 2023 17:31:36 -0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20221224154152.43272-1-krzysztof.kozlowski@linaro.org>
-References: <20221224154152.43272-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] dt-bindings: clock: qcom,videocc: correct clocks per variant
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 0/2] of: Fix handling CONFIG_CMDLINE* even without /chosen
+ node
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>,
+        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Date:   Tue, 03 Jan 2023 17:25:46 -0800
-User-Agent: alot/0.10
-Message-Id: <20230104012548.8CAECC433EF@smtp.kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230103-dt-cmdline-fix-v1-0-7038e88b18b6@kernel.org>
+From:   Geoff Levand <geoff@infradead.org>
+In-Reply-To: <20230103-dt-cmdline-fix-v1-0-7038e88b18b6@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Krzysztof Kozlowski (2022-12-24 07:41:52)
-> Different SoCs come with a bit different clock inputs:
->=20
->   sm8250-mtp.dtb: clock-controller@abf0000: clock-names:0: 'bi_tcxo' was =
-expected
->   sm8250-mtp.dtb: clock-controller@abf0000: clock-names: ['iface', 'bi_tc=
-xo', 'bi_tcxo_ao'] is too long
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
+Hi Rob,
 
-Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+On 1/3/23 10:00, Rob Herring wrote:
+> 
+> Let's revert the above commit and redo the missing /chosen node handling 
+> within early_init_dt_scan_chosen().
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> Rob Herring (2):
+>       Revert "of: fdt: Honor CONFIG_CMDLINE* even without /chosen node"
+>       of: fdt: Honor CONFIG_CMDLINE* even without /chosen node, take 2
+> 
+>  drivers/of/fdt.c | 54 ++++++++++++++++++++++++++++--------------------------
+>  1 file changed, 28 insertions(+), 26 deletions(-)
+
+I applied these two patches to v6.2-rc2 and tested on PS3. I used a kernel
+config file that had a CONFIG_CMDLINE, and CONFIG_CMDLINE_FORCE=y set.
+Everything seemed to work OK.  
+
+Tested-by: Geoff Levand <geoff@infradead.org>
+
