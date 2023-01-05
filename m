@@ -2,151 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80F4265EEE4
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 15:38:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9679965EEFC
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 15:42:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231979AbjAEOio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 09:38:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43012 "EHLO
+        id S232541AbjAEOmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 09:42:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230475AbjAEOin (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 09:38:43 -0500
-Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AF685933E;
-        Thu,  5 Jan 2023 06:38:42 -0800 (PST)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.west.internal (Postfix) with ESMTP id B05A13200921;
-        Thu,  5 Jan 2023 09:38:40 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Thu, 05 Jan 2023 09:38:42 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm3; t=1672929520; x=
-        1673015920; bh=0tRpqumuzD4A8ScE1T7chaSBsFg3IHBj12rmSPS7UQk=; b=d
-        4XVP0hfu/F6/aqVt3l7KnXcKsYzGCyPkegPh5cMb6DGQjil4x5jP/7hc8l4l/ZYr
-        dmW6ZFITa0tZjR4/RMJk2iVJQ/CwzSINlKcXCmiXdin90n2cK8pnCanUi0MD24Be
-        zcl0lb4i82jOmJ3e85hZigrGZoBe+t5jwX33lNdmBA+YnzNufMNu7XmeIbGhYU0f
-        c/XinqxdlpWh5ln3p+G+ikkrZ5px+5fkskZ4yXSc/sCI3CLR1ZIvENpADgRXltBn
-        hLzwEaWUGw/lpLASPwL6GWgdsG0X6zodJ+DX4iBGKyCE0Zc1JTid/+VkP+KA5Xrk
-        9JZVID+ykBC4TgsdGk9qw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1672929520; x=
-        1673015920; bh=0tRpqumuzD4A8ScE1T7chaSBsFg3IHBj12rmSPS7UQk=; b=Q
-        mQFZigQXsGb4r6btUJAczAkvrtBumokULURZYr9BGtsdKHGAhQuRmIsGKhhnbvC+
-        LjhBx/EnM5c1+Ov0HfGPAD2Mz8/6SPy0zV69+M7LDAr/n9H1dhINb5cQ5CrrL+4r
-        y1b+a8UCf/oFhnf832zSQcFvRKwGLXCjq9yi0vRlNA0IYVHfojbfw9DlqVO4b0SB
-        T6YI5eKHwcttLLGw6nIiT8JZ15cxtT4SgC32TXlFEU0lDlhb6BSWja79zAwMEqHe
-        gt9z8iWjSka1bTuLTQ8lk5aEQOd+ak+5EAaZBlEv3z6xka+1eGCOepNq+2ySMXLc
-        PIyaqHsm9Ss57ukPytCqw==
-X-ME-Sender: <xms:7-C2Y5pDpDdwzZ9i1c8ziDXeBnxnpPMJEv30DfLvp6tDjYJQIrNvQw>
-    <xme:7-C2Y7pAm2sM3PGdZZXvzn8WrKomMEc-zUSYuMvCvo4A9vc1OKr4HvfHTNfqNf4PC
-    1pUnki5hMqTbkAxEA>
-X-ME-Received: <xmr:7-C2Y2MDGjw_4EF4JjqLYeISZ9wH4Pz46PsKY12SANCHdYIiSDeZC45ei0IXcnNMzSoKN47vArjirjMi6kgFpv1Sw7iUUfh9KHGHC0GOleWUO0h1T2hrH8byEQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrjeekgdeikecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefkffggfgfuvfevfhfhjggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepkeejleelfeeitdfhtdfgkeeghedufeduueegffdvhfdukeelleef
-    tdetjeehuddtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
-    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:7-C2Y07PRTSiCseNNHcdHN-fhBrwQUshcyconVZGhlx2XWYqiFxH8Q>
-    <xmx:7-C2Y44cJfaJdZEI7LHg5qIGEmGoOBe5DWlejR7aihYkkRlkrfS9GA>
-    <xmx:7-C2Y8hYQx225tPwiImxWhzHqlmVmoFMQ15_h04c-vsnwMmjY9xH-w>
-    <xmx:8OC2Y1O802ea8_p3G5yF6B-Pb7YVl7CFQQl1QE3UHG0IC2NxFoQd_g>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 5 Jan 2023 09:38:37 -0500 (EST)
-Message-ID: <3b6ec431-70ac-cf68-6f46-9dc0affb1e68@sholland.org>
-Date:   Thu, 5 Jan 2023 08:38:36 -0600
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH 4/4] riscv: dts: allwinner: d1: Add video engine node
-Content-Language: en-US
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233426AbjAEOmE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 09:42:04 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D124B15F00
+        for <devicetree@vger.kernel.org>; Thu,  5 Jan 2023 06:42:02 -0800 (PST)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 0835E85248;
+        Thu,  5 Jan 2023 15:41:58 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1672929720;
+        bh=P+0Qo4nN3rJriPnghe4osYRl64VJHMO2uLo+zGykihY=;
+        h=From:To:Cc:Subject:Date:From;
+        b=xQKP2ZUzr1dKjnQVQBshOI+e3BJCLgZaoQCaRuJLOjiqP0CsNoY318VqU3z9guiNb
+         U0hYFpxTsyvyh/orYPWwo8QRFUAxzmNdW7e66VdPEoMhHga7yVXJdQbT9lw4SoUfPB
+         flPn9IWUyFMhv4zCW67dw4QxAJMevtENvAItv4s0p2y8ue3t9x/bYSXY0wbrnxxnR7
+         JxL4LT64cAMDfohdlE4HD9SdyQxqmA6cv3g2NQs2Ua6j0bP1g48Jv5b8R1pJtCIA5X
+         k4fyjNdvfotxDaVZ4rvDUhXcfdFMosBUofHA5+dS70q7ahceoe4RlMY0p+Qn1OI/sK
+         3jP+VjYsrH0Mg==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marex@denx.de>, Adam Ford <aford173@gmail.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Conor Dooley <conor@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-staging@lists.linux.dev,
-        linux-sunxi@lists.linux.dev
-References: <20221231164628.19688-1-samuel@sholland.org>
- <20221231164628.19688-5-samuel@sholland.org> <Y7aiZdjI8L5h1Ca3@aptenodytes>
-From:   Samuel Holland <samuel@sholland.org>
-In-Reply-To: <Y7aiZdjI8L5h1Ca3@aptenodytes>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Mark Brown <broonie@kernel.org>,
+        Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Paul Elder <paul.elder@ideasonboard.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Stefan Agner <stefan@agner.ch>,
+        Tim Harvey <tharvey@gateworks.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org
+Subject: [PATCH 1/2] ASoC: dt-bindings: fsl-sai: Simplify the VFxxx dmas binding
+Date:   Thu,  5 Jan 2023 15:41:44 +0100
+Message-Id: <20230105144145.165010-1-marex@denx.de>
+X-Mailer: git-send-email 2.39.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+Get rid of the vf610 sai special case, instead update the vfxxx.dtsi
+DT to use the same DMA channel ordering as all the other devices. The
+sai DMA channel ordering has not been aligned with other IP DMA channel
+ordering in the vfxxx.dtsi anyway.
 
-On 1/5/23 04:11, Paul Kocialkowski wrote:
-> On Sat 31 Dec 22, 10:46, Samuel Holland wrote:
->> D1 contains a video engine which is supported by the Cedrus driver.
-> 
-> Does it work "outside the box" without power domain management?
-> If not, it might be a bit confusing to add the node at this point.
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Adam Ford <aford173@gmail.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Joakim Zhang <qiangqing.zhang@nxp.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Cc: Marek Vasut <marex@denx.de>
+Cc: Mark Brown <broonie@kernel.org>
+Cc: Markus Niebel <Markus.Niebel@ew.tq-group.com>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: Paul Elder <paul.elder@ideasonboard.com>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Richard Cochran <richardcochran@gmail.com>
+Cc: Richard Zhu <hongxing.zhu@nxp.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc: Stefan Agner <stefan@agner.ch>
+Cc: Tim Harvey <tharvey@gateworks.com>
+Cc: alsa-devel@alsa-project.org
+Cc: devicetree@vger.kernel.org
+To: linux-arm-kernel@lists.infradead.org
+---
+ .../devicetree/bindings/sound/fsl,sai.yaml    | 38 ++++---------------
+ 1 file changed, 8 insertions(+), 30 deletions(-)
 
-Yes, it does. All of the power domains are enabled by default. However,
-if the PPU series is merged first, I will respin this to include the
-power-domains property from the beginning.
-
-Regards,
-Samuel
-
->> Signed-off-by: Samuel Holland <samuel@sholland.org>
->> ---
->>
->>  arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi | 11 +++++++++++
->>  1 file changed, 11 insertions(+)
->>
->> diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
->> index dff363a3c934..4bd374279155 100644
->> --- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
->> +++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
->> @@ -34,6 +34,17 @@ soc {
->>  		#address-cells = <1>;
->>  		#size-cells = <1>;
->>  
->> +		ve: video-codec@1c0e000 {
->> +			compatible = "allwinner,sun20i-d1-video-engine";
->> +			reg = <0x1c0e000 0x2000>;
->> +			interrupts = <SOC_PERIPHERAL_IRQ(66) IRQ_TYPE_LEVEL_HIGH>;
->> +			clocks = <&ccu CLK_BUS_VE>,
->> +				 <&ccu CLK_VE>,
->> +				 <&ccu CLK_MBUS_VE>;
->> +			clock-names = "ahb", "mod", "ram";
->> +			resets = <&ccu RST_BUS_VE>;
->> +		};
->> +
->>  		pio: pinctrl@2000000 {
->>  			compatible = "allwinner,sun20i-d1-pinctrl";
->>  			reg = <0x2000000 0x800>;
->> -- 
->> 2.37.4
->>
-> 
+diff --git a/Documentation/devicetree/bindings/sound/fsl,sai.yaml b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
+index 7e56337d8edc1..088c26b001cc0 100644
+--- a/Documentation/devicetree/bindings/sound/fsl,sai.yaml
++++ b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
+@@ -76,10 +76,14 @@ properties:
+         minItems: 4
+ 
+   dmas:
+-    maxItems: 2
++    items:
++      - description: DMA controller phandle and request line for RX
++      - description: DMA controller phandle and request line for TX
+ 
+   dma-names:
+-    maxItems: 2
++    items:
++      - const: rx
++      - const: tx
+ 
+   interrupts:
+     items:
+@@ -142,31 +146,6 @@ properties:
+ 
+ allOf:
+   - $ref: dai-common.yaml#
+-  - if:
+-      properties:
+-        compatible:
+-          contains:
+-            const: fsl,vf610-sai
+-    then:
+-      properties:
+-        dmas:
+-          items:
+-            - description: DMA controller phandle and request line for TX
+-            - description: DMA controller phandle and request line for RX
+-        dma-names:
+-          items:
+-            - const: tx
+-            - const: rx
+-    else:
+-      properties:
+-        dmas:
+-          items:
+-            - description: DMA controller phandle and request line for RX
+-            - description: DMA controller phandle and request line for TX
+-        dma-names:
+-          items:
+-            - const: rx
+-            - const: tx
+   - if:
+       required:
+         - fsl,sai-asynchronous
+@@ -199,9 +178,8 @@ examples:
+                  <&clks VF610_CLK_SAI2>,
+                  <&clks 0>, <&clks 0>;
+         clock-names = "bus", "mclk1", "mclk2", "mclk3";
+-        dma-names = "tx", "rx";
+-        dmas = <&edma0 0 21>,
+-               <&edma0 0 20>;
++        dma-names = "rx", "tx";
++        dmas = <&edma0 0 20>, <&edma0 0 21>;
+         big-endian;
+         lsb-first;
+     };
+-- 
+2.39.0
 
