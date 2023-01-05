@@ -2,75 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCCEC65F135
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 17:30:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7616A65F141
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 17:34:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232270AbjAEQar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 11:30:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33644 "EHLO
+        id S231889AbjAEQew (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 11:34:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234121AbjAEQaS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 11:30:18 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35C4558304;
-        Thu,  5 Jan 2023 08:30:14 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id co23so36693724wrb.4;
-        Thu, 05 Jan 2023 08:30:14 -0800 (PST)
+        with ESMTP id S231827AbjAEQew (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 11:34:52 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EDA418B1F;
+        Thu,  5 Jan 2023 08:34:49 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id h16so36629633wrz.12;
+        Thu, 05 Jan 2023 08:34:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=y3EejsfMRPYJ8twdYT45Z3uPua4+S1LNtd+Q+9tbauc=;
-        b=M17tidvmkWkYuFrf1Lwzlgp3oUKnmbk9v/FsptibpHce4ZAqpmIKX+7+UW6AAVTjks
-         wRgopWPda293hciGNXg+8XT/sDP3ZgOuBT/PW5758mCviTDFDzxNKspr6lwpDvotggrJ
-         9M5hg6/2Jgwf/JwvkipKBdIVdeT26Am3kAQSP4W1Q1fAyu8xOsyvWjC0OgLejsjghfI1
-         vHOJdXdJE2vAXeo5CK4lPNmHhtGNU/X+DS6RTLNSke5C/CebnaLmUaRuMAhsIe+rSI5S
-         pENvk5AB6SJAzxX7T8monl32sXTL+JYWbAVRIBc/DEFTpkqdCVmPl+sNV32PXh8DunrE
-         VusQ==
+        bh=0lAIo3spWClLaTdCHxySX0ouHrSXLWypZM77NTYweN4=;
+        b=eBDP8rvyt7dl//bCEO8LrldKofxFCS2KF4Gz8zBBX2kN4AQ2DAyM5YtayeT/dDYKMg
+         X0Qp+gHtvnsVqnvSh9SD/U926xqPOw3bgmfAF0B/I4fUm+eTNalEO6RSdX/2Vc1y6PmY
+         2woD/uit8a55nMlZlxXtbdL9+J9wxo8KzddOkDuHrFBwRc31dZCT3LTIxdf1f3kIoIIi
+         No3OceHFZJWaJc9wj9QuvxRrsQUItTOk3vS6FIMBWL+dBJ8nyNvfXhO+pvMa0m4w3LIF
+         7f2XQhQswdzkH7Z/6s7q4fOaDvzs0pjAz0n4OMOKCGJ3VtxZICs/9YUCTYxjePtFm/tb
+         RSUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=y3EejsfMRPYJ8twdYT45Z3uPua4+S1LNtd+Q+9tbauc=;
-        b=7I3MsvhSPevoKOYjWZL3nAifZbcp8z4/r3jgYE//egjiCYLClJsHgheJxH+o8hr0m5
-         mupL54jhDa0QWQWNAzJsO0F6chSonjHTfccE2ryD4N93zTubpXo4uv1nsYwo1G2C0sLo
-         mVe92ZGp6UM04mtMbUBye3zco2ZyihBmP99stLA9T1oOkiZLO8PyaWSq1jCz26VKo24+
-         MLxd89tK/wWULYuZEZBhznQ2dbAiYhD6P5BDzavR11rX7MdPM2av7aHExQ04olX8nOkJ
-         re68W+mSWwwL7ibrnJFDt7KQ8BdbWW9YoMv0OLc2GlyETHDxKers0rDWxxgNrdpFlysp
-         mOjw==
-X-Gm-Message-State: AFqh2koIEkAImkheK9ifEPGl7DIjzvy21vaAmLX80mlBFj8PFtwDT+nh
-        FDH3jcfx0faB4X1G9H2OX+w=
-X-Google-Smtp-Source: AMrXdXszLZ9BZFqJxfINjbGbG4pDRYZ8kDGOk2JHXjZcf5Xgus/zLO7jwULs6trog6IRkMTs0W2P3w==
-X-Received: by 2002:adf:f183:0:b0:255:96ed:950b with SMTP id h3-20020adff183000000b0025596ed950bmr30694484wro.60.1672936212723;
-        Thu, 05 Jan 2023 08:30:12 -0800 (PST)
+        bh=0lAIo3spWClLaTdCHxySX0ouHrSXLWypZM77NTYweN4=;
+        b=l4gt88WMWkxsbVVzrafmr8eyZ4PDTArme0EJcxdXiAqUOMapocdw5QHiLGDE5sitEW
+         7Z91jEqL372ixpdk/XqmSL0Tht1T2JVQCeOeKa7b1fs0GTcpUQE+XuYgl7ymgQr0HQLv
+         8BKkNPyXdGuB0+9h62IoxgkOoL0TNAd/IVpJ4tqssSwolWfSo69rRtGOKSfUj5KilkVT
+         2WGbNo8K9t4RQh/Z4qoshnyz/mSpOnDJCHDwHloI0hCdQwV0JfQZ218n2nq1rZt4Furj
+         jrunx7i7vk06ENiUkmsWGxh34Df4qfOjR2iN4B8GVuK0QoZqAkRooGxu/QFvck9zpc+4
+         S5NQ==
+X-Gm-Message-State: AFqh2koghBee4WgFDV+G3KF6MVhcS6o5+0NpfMP5R4A9nmbpNla2EtvM
+        JYousHJF0PzmamcHK6lXxAw=
+X-Google-Smtp-Source: AMrXdXu+KA2fB53cJsZQeu9XcWeoxFE9i61XhKCbJ/q9IJZHzllc3rqNHO8IHGwyEIhC6Mu/EMwedQ==
+X-Received: by 2002:a5d:6e8f:0:b0:276:473f:7120 with SMTP id k15-20020a5d6e8f000000b00276473f7120mr32573146wrz.26.1672936487924;
+        Thu, 05 Jan 2023 08:34:47 -0800 (PST)
 Received: from jernej-laptop.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
-        by smtp.gmail.com with ESMTPSA id w17-20020a5d5451000000b0023662d97130sm37280824wrv.20.2023.01.05.08.30.11
+        by smtp.gmail.com with ESMTPSA id s18-20020adfdb12000000b00241fde8fe04sm37319469wri.7.2023.01.05.08.34.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Jan 2023 08:30:12 -0800 (PST)
+        Thu, 05 Jan 2023 08:34:47 -0800 (PST)
 From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Corentin Labbe <clabbe.montjoie@gmail.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Chen-Yu Tsai <wens@csie.org>,
+To:     Chen-Yu Tsai <wens@csie.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Samuel Holland <samuel@sholland.org>
 Cc:     Samuel Holland <samuel@sholland.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v2 3/3] riscv: dts: allwinner: d1: Add crypto engine node
-Date:   Thu, 05 Jan 2023 17:30:10 +0100
-Message-ID: <10201998.nUPlyArG6x@jernej-laptop>
-In-Reply-To: <20221231220146.646-4-samuel@sholland.org>
-References: <20221231220146.646-1-samuel@sholland.org>
- <20221231220146.646-4-samuel@sholland.org>
+        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH 0/2] Allwinner power domain support
+Date:   Thu, 05 Jan 2023 17:34:46 +0100
+Message-ID: <1915282.PYKUYFuaPT@jernej-laptop>
+In-Reply-To: <20221231160402.16157-1-samuel@sholland.org>
+References: <20221231160402.16157-1-samuel@sholland.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
@@ -84,14 +76,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne sobota, 31. december 2022 ob 23:01:45 CET je Samuel Holland napisal(a):
-> D1 contains a crypto engine which is supported by the sun8i-ce driver.
+Dne sobota, 31. december 2022 ob 17:04:00 CET je Samuel Holland napisal(a):
+> This series adds support for the power controller found in D1 and other
+> recent Allwinner SoCs. There is no first-party documentation, but there
+> are a couple of vendor drivers for different hardware revisions[1][2],
+> and the register definitions were easy to verify empirically.
 > 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> I have tested this driver on D1 with the video engine. There is no DT
+> update patch here to avoid dependencies between series. The example in
+> the binding is what will go in the D1 DT.
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+So such driver is needed for H616 for GPU? Or is power domain handling 
+different there?
 
 Best regards,
 Jernej
+
+> 
+> [1]:
+> https://github.com/mangopi-sbc/tina-linux-5.4/blob/main/drivers/soc/sunxi/g
+> pu_domain.c [1]:
+> https://github.com/mangopi-sbc/tina-linux-5.4/blob/main/drivers/soc/sunxi/p
+> m_domains.c
+> 
+> 
+> Samuel Holland (2):
+>   dt-bindings: power: Add Allwinner D1 PPU
+>   soc: sunxi: Add Allwinner D1 PPU driver
+> 
+>  .../power/allwinner,sun20i-d1-ppu.yaml        |  54 +++++
+>  drivers/soc/sunxi/Kconfig                     |   9 +
+>  drivers/soc/sunxi/Makefile                    |   1 +
+>  drivers/soc/sunxi/sun20i-ppu.c                | 207 ++++++++++++++++++
+>  .../power/allwinner,sun20i-d1-ppu.h           |  10 +
+>  5 files changed, 281 insertions(+)
+>  create mode 100644
+> Documentation/devicetree/bindings/power/allwinner,sun20i-d1-ppu.yaml create
+> mode 100644 drivers/soc/sunxi/sun20i-ppu.c
+>  create mode 100644 include/dt-bindings/power/allwinner,sun20i-d1-ppu.h
+
+
 
 
