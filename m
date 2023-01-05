@@ -2,107 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF1F565EEAC
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 15:25:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 80F4265EEE4
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 15:38:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229530AbjAEOY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 09:24:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36000 "EHLO
+        id S231979AbjAEOio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 09:38:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233306AbjAEOYi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 09:24:38 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D34C94C706;
-        Thu,  5 Jan 2023 06:24:36 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 061C2CE1AEB;
-        Thu,  5 Jan 2023 14:24:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C8B7C433D2;
-        Thu,  5 Jan 2023 14:24:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672928673;
-        bh=+OBsYkn+1kFqvpmNNMYmPkwpjcHgZc/XdBy9tYzmGnM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lhFOKuJLdai+4RDkr+cnfk5WxhplfJmxdqAKAJcoZ207bnDR+73ybRA15RtqnDcQj
-         YsSgBSXJRRhvVyS4e5ZwCjPjop8hKEkpZ0+IIvV1geelsim+eeFJyIuWkQ+vioBVNs
-         zuXcXoJbX47aPQUOLA85zX+9P9ZkindaAGGDqi/ToFXAVTigyXOa09bQyylYNKzpZU
-         0xkMP9Vqu8Wcb0t6rUJpxWJAUmY2bEo1Y+DvDjcsbUPTaAZBQi8lo+DrkgqLMSVmON
-         4DNb7yuz/DP/wdA9cAaHLtS4oL/+yzFKPTxEGA3YZaxXJJ/m5copkNVf3i4Mqr3IYN
-         gangprpYofjfw==
-Date:   Thu, 5 Jan 2023 14:24:26 +0000
-From:   Lee Jones <lee@kernel.org>
-To:     Tzung-Bi Shih <tzungbi@kernel.org>
-Cc:     Mark Hasemeyer <markhas@chromium.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Raul Rangel <rrangel@chromium.org>,
-        Bhanu Prakash Maiya <bhanumaiya@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH v10 2/3] dt-bindings: mfd: Add compatible string for UART
- support
-Message-ID: <Y7bdmiZ9lqKZXCfq@google.com>
-References: <20221207104005.v10.1.If7926fcbad397bc6990dd725690229bed403948c@changeid>
- <20221207104005.v10.2.I9e018ecb8bdf341648cb64417085978ff0d22a46@changeid>
- <Y7WkeCi7/x/t37JM@google.com>
- <Y7YjmtwByTR+8tbZ@google.com>
+        with ESMTP id S230475AbjAEOin (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 09:38:43 -0500
+Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AF685933E;
+        Thu,  5 Jan 2023 06:38:42 -0800 (PST)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.west.internal (Postfix) with ESMTP id B05A13200921;
+        Thu,  5 Jan 2023 09:38:40 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Thu, 05 Jan 2023 09:38:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm3; t=1672929520; x=
+        1673015920; bh=0tRpqumuzD4A8ScE1T7chaSBsFg3IHBj12rmSPS7UQk=; b=d
+        4XVP0hfu/F6/aqVt3l7KnXcKsYzGCyPkegPh5cMb6DGQjil4x5jP/7hc8l4l/ZYr
+        dmW6ZFITa0tZjR4/RMJk2iVJQ/CwzSINlKcXCmiXdin90n2cK8pnCanUi0MD24Be
+        zcl0lb4i82jOmJ3e85hZigrGZoBe+t5jwX33lNdmBA+YnzNufMNu7XmeIbGhYU0f
+        c/XinqxdlpWh5ln3p+G+ikkrZ5px+5fkskZ4yXSc/sCI3CLR1ZIvENpADgRXltBn
+        hLzwEaWUGw/lpLASPwL6GWgdsG0X6zodJ+DX4iBGKyCE0Zc1JTid/+VkP+KA5Xrk
+        9JZVID+ykBC4TgsdGk9qw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1672929520; x=
+        1673015920; bh=0tRpqumuzD4A8ScE1T7chaSBsFg3IHBj12rmSPS7UQk=; b=Q
+        mQFZigQXsGb4r6btUJAczAkvrtBumokULURZYr9BGtsdKHGAhQuRmIsGKhhnbvC+
+        LjhBx/EnM5c1+Ov0HfGPAD2Mz8/6SPy0zV69+M7LDAr/n9H1dhINb5cQ5CrrL+4r
+        y1b+a8UCf/oFhnf832zSQcFvRKwGLXCjq9yi0vRlNA0IYVHfojbfw9DlqVO4b0SB
+        T6YI5eKHwcttLLGw6nIiT8JZ15cxtT4SgC32TXlFEU0lDlhb6BSWja79zAwMEqHe
+        gt9z8iWjSka1bTuLTQ8lk5aEQOd+ak+5EAaZBlEv3z6xka+1eGCOepNq+2ySMXLc
+        PIyaqHsm9Ss57ukPytCqw==
+X-ME-Sender: <xms:7-C2Y5pDpDdwzZ9i1c8ziDXeBnxnpPMJEv30DfLvp6tDjYJQIrNvQw>
+    <xme:7-C2Y7pAm2sM3PGdZZXvzn8WrKomMEc-zUSYuMvCvo4A9vc1OKr4HvfHTNfqNf4PC
+    1pUnki5hMqTbkAxEA>
+X-ME-Received: <xmr:7-C2Y2MDGjw_4EF4JjqLYeISZ9wH4Pz46PsKY12SANCHdYIiSDeZC45ei0IXcnNMzSoKN47vArjirjMi6kgFpv1Sw7iUUfh9KHGHC0GOleWUO0h1T2hrH8byEQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrjeekgdeikecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefkffggfgfuvfevfhfhjggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
+    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+    ftrfgrthhtvghrnhepkeejleelfeeitdfhtdfgkeeghedufeduueegffdvhfdukeelleef
+    tdetjeehuddtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
+    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:7-C2Y07PRTSiCseNNHcdHN-fhBrwQUshcyconVZGhlx2XWYqiFxH8Q>
+    <xmx:7-C2Y44cJfaJdZEI7LHg5qIGEmGoOBe5DWlejR7aihYkkRlkrfS9GA>
+    <xmx:7-C2Y8hYQx225tPwiImxWhzHqlmVmoFMQ15_h04c-vsnwMmjY9xH-w>
+    <xmx:8OC2Y1O802ea8_p3G5yF6B-Pb7YVl7CFQQl1QE3UHG0IC2NxFoQd_g>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 5 Jan 2023 09:38:37 -0500 (EST)
+Message-ID: <3b6ec431-70ac-cf68-6f46-9dc0affb1e68@sholland.org>
+Date:   Thu, 5 Jan 2023 08:38:36 -0600
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Y7YjmtwByTR+8tbZ@google.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH 4/4] riscv: dts: allwinner: d1: Add video engine node
+Content-Language: en-US
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Conor Dooley <conor@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-staging@lists.linux.dev,
+        linux-sunxi@lists.linux.dev
+References: <20221231164628.19688-1-samuel@sholland.org>
+ <20221231164628.19688-5-samuel@sholland.org> <Y7aiZdjI8L5h1Ca3@aptenodytes>
+From:   Samuel Holland <samuel@sholland.org>
+In-Reply-To: <Y7aiZdjI8L5h1Ca3@aptenodytes>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 05 Jan 2023, Tzung-Bi Shih wrote:
+Hi Paul,
 
-> On Wed, Jan 04, 2023 at 04:08:24PM +0000, Lee Jones wrote:
-> > On Wed, 07 Dec 2022, Mark Hasemeyer wrote:
-> > 
-> > > From: Bhanu Prakash Maiya <bhanumaiya@chromium.org>
-> > > 
-> > > Add a compatible string to support the UART implementation of the cros
-> > > ec interface. The driver does not support the reg and interrupt
-> > > properties, so exempt them from being required for UART compatible nodes.
-> > > 
-> > > Signed-off-by: Bhanu Prakash Maiya <bhanumaiya@chromium.org>
-> > > Co-developed-by: Mark Hasemeyer <markhas@chromium.org>
-> > > Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
-> > > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > ---
-> > > 
-> > > Changes in v10:
-> > > - No change
-> > > 
-> [...]
-> > 
-> > I changed the subject line and applied the patch, thanks.
+On 1/5/23 04:11, Paul Kocialkowski wrote:
+> On Sat 31 Dec 22, 10:46, Samuel Holland wrote:
+>> D1 contains a video engine which is supported by the Cedrus driver.
 > 
-> Pardon me.  I didn't know you would pick the patch so that I have queued it
-> into chrome-platform[1].  Would you like me to drop the commit?
+> Does it work "outside the box" without power domain management?
+> If not, it might be a bit confusing to add the node at this point.
 
-Yes, please do.
+Yes, it does. All of the power domains are enabled by default. However,
+if the PPU series is merged first, I will respin this to include the
+power-domains property from the beginning.
 
-You should gain permission from the maintainer before you apply patches.
+Regards,
+Samuel
 
-  % scripts/get_maintainer.pl -f Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-     Lee Jones <lee@kernel.org> (supporter:MULTIFUNCTION DEVICES (MFD))
-     Rob Herring <robh+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
-     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org> (maintainer:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
-     Matthias Brugger <matthias.bgg@gmail.com> (maintainer:ARM/Mediatek SoC support)
- 
- Why do I get the feeling we've had this conversation before?
+>> Signed-off-by: Samuel Holland <samuel@sholland.org>
+>> ---
+>>
+>>  arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi | 11 +++++++++++
+>>  1 file changed, 11 insertions(+)
+>>
+>> diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+>> index dff363a3c934..4bd374279155 100644
+>> --- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+>> +++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+>> @@ -34,6 +34,17 @@ soc {
+>>  		#address-cells = <1>;
+>>  		#size-cells = <1>;
+>>  
+>> +		ve: video-codec@1c0e000 {
+>> +			compatible = "allwinner,sun20i-d1-video-engine";
+>> +			reg = <0x1c0e000 0x2000>;
+>> +			interrupts = <SOC_PERIPHERAL_IRQ(66) IRQ_TYPE_LEVEL_HIGH>;
+>> +			clocks = <&ccu CLK_BUS_VE>,
+>> +				 <&ccu CLK_VE>,
+>> +				 <&ccu CLK_MBUS_VE>;
+>> +			clock-names = "ahb", "mod", "ram";
+>> +			resets = <&ccu RST_BUS_VE>;
+>> +		};
+>> +
+>>  		pio: pinctrl@2000000 {
+>>  			compatible = "allwinner,sun20i-d1-pinctrl";
+>>  			reg = <0x2000000 0x800>;
+>> -- 
+>> 2.37.4
+>>
+> 
 
--- 
-Lee Jones [李琼斯]
