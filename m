@@ -2,147 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12B6865F272
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 18:19:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 16DD765F283
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 18:22:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234822AbjAERTW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 12:19:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34448 "EHLO
+        id S234630AbjAERVm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 12:21:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234158AbjAERSR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 12:18:17 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD6F35C90D;
-        Thu,  5 Jan 2023 09:11:08 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id i9so53629905edj.4;
-        Thu, 05 Jan 2023 09:11:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MaNtjFyAXugDAWX/bR32Dva5wigb85ST8Ayk+tDoGms=;
-        b=Jc/IGmb5ZhCXE5QR+3vxXRLGLCxIDNy2+fy0f2wmt8y0c9AMwje0Uo+hYkNeWMSZMR
-         DxiFw3QRh2bqGnGySwQK2GRJHcvJ6kcg4eJzLbRmcpyP5WSiY71zRV8A8aRv9fUN1hZu
-         gdhDQKZSNSoa05nkLCVrvZLUoxG+0Gf/Y48w/QhMqbA09GTpYUUhki0MN/CRE6vNYTMR
-         /ykxnHm9vtwZqAzTTuFU1kAmAHysvdf97xqQdGDZXWBTYF4mz8BKIQVrX3dnc1G73RC/
-         zLdR2FQK3JxOZo74xaVXkzq91PzMowGeYVWhuSJqlrvTRYRnSctpYjxogelIlyCXbXpa
-         NaiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MaNtjFyAXugDAWX/bR32Dva5wigb85ST8Ayk+tDoGms=;
-        b=CThrm4Qg6CCq18ID+lqb0AFwnT55HWmOox+roUc0ipEsPtS7GtCOGBA7cpTrnfznTC
-         EHFGvhdBI5waPon+DJVWlESWJeu94sJWPfAiPUtuggvYWXogNidEEGKGIjKb1foqnQoR
-         BculdsgiJ8XMXa8cZvH3M5RkSJTge4qwi6Do7DemV2rydEj7XBgCSGQw2kpV/qKf0Nt4
-         ibXcnWqXdR0LNwO8dD6JVHpMsZtqxCnIN0mEIC7zsJoY79qvAyVDChmV2+O5M6A4xogW
-         Cc9Zw9X+sgvXqQ8w3LeINS2gUJJRhl05MaNYJ/dw4FbcGawNXuMKrExK4v6EeCC64ytZ
-         N1SQ==
-X-Gm-Message-State: AFqh2ko8hJISE/BlPW7u/+wF9dUKMVaSlnv9K4YqaGC4pXsMwKgzvDtK
-        lS2+kcuMa3iD9M2Jk+M26vc=
-X-Google-Smtp-Source: AMrXdXv5zDOsStIlsnwT9M02nEHELn4C8qBhZMwS49BaMy0TTTD9iNc3SDUbaUdl9yMz/XOGOycK+w==
-X-Received: by 2002:a05:6402:2072:b0:487:6d4a:444c with SMTP id bd18-20020a056402207200b004876d4a444cmr26202520edb.28.1672938667401;
-        Thu, 05 Jan 2023 09:11:07 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id cn9-20020a0564020ca900b0048fdf37c441sm1714829edb.3.2023.01.05.09.11.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Jan 2023 09:11:06 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        with ESMTP id S234108AbjAERVF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 12:21:05 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F052564DC;
+        Thu,  5 Jan 2023 09:14:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=LkvD/ZJvz+OVyFnCwIuvp2j0F8+usxn0PTicBH2Ift0=; b=HiifJLxSC8BAU/h5CUbMQdHFzO
+        9qxUh6HZFDfYSC5uzDZ/e6vFMNcinBc0vB9ASu7seFz7Ovu+nwsiE8A91FcELJ89uIrb1pqXK6xM8
+        AG8rfRGXji+3M0CQh8Gj6TncjjrFX6lNjQynW/iT+MB+jcHsp4AA987r3ZvOBKB5CqWM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pDToP-001Eyg-Et; Thu, 05 Jan 2023 18:13:53 +0100
+Date:   Thu, 5 Jan 2023 18:13:53 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Roger Quadros <rogerq@kernel.org>
+Cc:     Md Danish Anwar <danishanwar@ti.com>,
+        "Andrew F. Davis" <afd@ti.com>, Tero Kristo <t-kristo@ti.com>,
+        Suman Anna <s-anna@ti.com>, YueHaibing <yuehaibing@huawei.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        u-boot@lists.denx.de,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 3/3] nvmem: u-boot-env: post process "ethaddr" env variable
-Date:   Thu,  5 Jan 2023 18:10:38 +0100
-Message-Id: <20230105171038.13649-3-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230105171038.13649-1-zajec5@gmail.com>
-References: <20230105171038.13649-1-zajec5@gmail.com>
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>, nm@ti.com,
+        ssantosh@kernel.org, srk@ti.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: net: Add ICSSG Ethernet Driver
+ bindings
+Message-ID: <Y7cFUW6dFRaI+nPV@lunn.ch>
+References: <20221223110930.1337536-1-danishanwar@ti.com>
+ <20221223110930.1337536-2-danishanwar@ti.com>
+ <Y6W7FNzJEHYt6URg@lunn.ch>
+ <620ce8e6-2b40-1322-364a-0099a6e2af26@kernel.org>
+ <Y7Mjx8ZEVEcU2mK8@lunn.ch>
+ <b55dec4b-4fd5-71fa-4073-b5793cafdee7@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b55dec4b-4fd5-71fa-4073-b5793cafdee7@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+> >> On 23/12/2022 16:28, Andrew Lunn wrote:
+> >>>> +        ethernet-ports {
+> >>>> +            #address-cells = <1>;
+> >>>> +            #size-cells = <0>;
+> >>>> +            pruss2_emac0: port@0 {
+> >>>> +                reg = <0>;
+> >>>> +                phy-handle = <&pruss2_eth0_phy>;
+> >>>> +                phy-mode = "rgmii-rxid";
+> >>>
+> >>> That is unusual. Where are the TX delays coming from?
+> >>
+> >> >From the below property
+> >>
+> >> +                ti,syscon-rgmii-delay = <&scm_conf 0x4120>;
+> >>
+> >> The TX delay can be enabled/disabled from within the ICSSG block.
+> >>
+> >> If this property exists and PHY mode is neither PHY_INTERFACE_MODE_RGMII_ID
+> >> nor PHY_INTERFACE_MODE_RGMII_TXID then the internal delay is enabled.
+> >>
+> >> This logic is in prueth_config_rgmiidelay() function in the introduced driver.
+> > 
+> > What nearly every other MAC driver does is pass the phy-mode to the
+> > PHY and lets the PHY add the delays. I would recommend you do that,
+> > rather than be special and different.
+> 
+> 
+> If I remember right we couldn't disable MAC TX delay on some earlier silicon
+> so had to take this route. I don't remember why we couldn't disable it though.
+> 
+> In more recent Silicon Manuals I do see that MAC TX delay can be enabled/disabled.
+> If this really is the case then we should change to
+> 
+>  phy-mode = "rgmii-id";
+> 
+> And let PHY handle the TX+RX delays.
 
-U-Boot environment variables are stored in ASCII format so "ethaddr"
-requires parsing into binary to make it work with Ethernet interfaces.
+DT describes the board. PHY mode indicates what delays the board
+requires, because the board itself is not performing the delays by
+using extra long lines. So typically, phy-mode is rgmii-id, indicating
+delays need to be added somewhere in both directions.
 
-This includes support for indexes to support #nvmem-cell-cells = <1>.
+Who adds the delays is then between the MAC and the PHY. In most
+cases, the MAC does nothing, and passes phy-mode to the PHY and the
+PHY does it.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- drivers/nvmem/u-boot-env.c | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+But it is also possible for the MAC to do the delay. So if you cannot
+actually disable the TX delay in the MAC, that is O.K. But you need to
+modify phy-mode you pass to the PHY to indicate the MAC is doing the
+delay, otherwise the PHY will additionally do the delay. So your DT
+will contain rgmii-id, because that is what the board requires, but
+the MAC will pass rmgii-rxid to the PHY, since that is what the PHY
+needs to add.
 
-diff --git a/drivers/nvmem/u-boot-env.c b/drivers/nvmem/u-boot-env.c
-index 2a87dda45188..54283f8061b0 100644
---- a/drivers/nvmem/u-boot-env.c
-+++ b/drivers/nvmem/u-boot-env.c
-@@ -4,6 +4,8 @@
-  */
- 
- #include <linux/crc32.h>
-+#include <linux/etherdevice.h>
-+#include <linux/if_ether.h>
- #include <linux/mod_devicetable.h>
- #include <linux/module.h>
- #include <linux/mtd/mtd.h>
-@@ -70,6 +72,26 @@ static int u_boot_env_read(void *context, unsigned int offset, void *val,
- 	return 0;
- }
- 
-+static int u_boot_env_read_post_process_ethaddr(void *context, const char *id, int index,
-+						unsigned int offset, void *data, size_t *bytes)
-+{
-+	u8 mac[ETH_ALEN];
-+
-+	if (*bytes != 3 * ETH_ALEN - 1)
-+		return -EINVAL;
-+
-+	if (!mac_pton(data, mac))
-+		return -EINVAL;
-+
-+	if (index)
-+		eth_addr_add(mac, index);
-+
-+	ether_addr_copy(data, mac);
-+	*bytes = ETH_ALEN;
-+
-+	return 0;
-+}
-+
- static int u_boot_env_add_cells(struct u_boot_env *priv, uint8_t *buf,
- 				size_t data_offset, size_t data_len)
- {
-@@ -101,6 +123,8 @@ static int u_boot_env_add_cells(struct u_boot_env *priv, uint8_t *buf,
- 		priv->cells[idx].offset = data_offset + value - data;
- 		priv->cells[idx].bytes = strlen(value);
- 		priv->cells[idx].np = of_get_child_by_name(dev->of_node, priv->cells[idx].name);
-+		if (!strcmp(var, "ethaddr"))
-+			priv->cells[idx].read_post_process = u_boot_env_read_post_process_ethaddr;
- 	}
- 
- 	if (WARN_ON(idx != priv->ncells))
--- 
-2.34.1
-
+	Andrew
