@@ -2,267 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1ADEC65F50B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 21:13:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11ABA65F526
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 21:24:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235681AbjAEUNF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 15:13:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52178 "EHLO
+        id S235236AbjAEUYU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 15:24:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235660AbjAEUNE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 15:13:04 -0500
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2814B1A071;
-        Thu,  5 Jan 2023 12:13:03 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="5.96,303,1665414000"; 
-   d="scan'208";a="148288713"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 06 Jan 2023 05:13:02 +0900
-Received: from mulinux.example.org (unknown [10.226.92.64])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 4B8C2400515A;
-        Fri,  6 Jan 2023 05:12:57 +0900 (JST)
-From:   Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Lee Jones <lee@kernel.org>, linux-gpio@vger.kernel.org,
+        with ESMTP id S235684AbjAEUYD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 15:24:03 -0500
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D958F63397
+        for <devicetree@vger.kernel.org>; Thu,  5 Jan 2023 12:24:00 -0800 (PST)
+Received: by mail-pj1-x1029.google.com with SMTP id c8-20020a17090a4d0800b00225c3614161so3097830pjg.5
+        for <devicetree@vger.kernel.org>; Thu, 05 Jan 2023 12:24:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=BdPQnZPsNbU7v8vdnBDPJX4Ei7uk+/hU47MzzdZv4JY=;
+        b=ZJHtyhEbEExG2mK0lt1w8Q95zOYeqLbYfa2RGWpffEkSjaoUfhTWukEDeXUBn1RHCM
+         fpt/aRXL7SJietjXBvp3Qdpm7J8Xd3BeZdDX7EKMJEhuic0nFlOveIf+X7mLwyIi5ep2
+         B60IIcWgy33ab0hKe1nIEGIRLXP/Zqq7i0auZB0hKMF0wCXyYupOmr0GorHRDLETpQcR
+         HqnLX9VK100Ft4wEykjD/Pp8UrkpsaRHRSKc74MRDpr+YZQyvGJOlQt9zyrUyALJsT8P
+         1Ik0zpFAlUB6sV0TG3P5zFVUMPUKeMGHniNV98i4EHVRhgZ/dARSooUlS5xbCYRFzaIx
+         dkgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BdPQnZPsNbU7v8vdnBDPJX4Ei7uk+/hU47MzzdZv4JY=;
+        b=2fgyPo09yfe8zWAayDIUh/3geUhPVyvNYaAcOC6UgVxsJ8jybtPiFW5/hIlyiOzkq+
+         lGvAn355Mt+mvahdo/5mzg+whQw/3JtmBa30O73BAPJ+PsuozAhrllhMLmtdhFXpOyt3
+         ZtXsheMJISSdU8BeLCZ2efpc7UxggDPYF+gGxH2ZYHiGsO61uj51XxDhMnmU1YpLNxGu
+         0H98jXZO5h/2DG4dKKXugvippXKhzxWlb42wgLQcRRJoPN06IFI+VGYOVxgBoYddibBf
+         za1h2piBPJvFbDN6TAcAecH6MY79VTmChd+RgWzzoMTjg2aOi78dLexlzxDwNkCLyCDt
+         bGpg==
+X-Gm-Message-State: AFqh2krJufo4AQdM0NlrVFaMGYGaiE+W807v5bWhYSRhbCgm79hctE5q
+        pPEdhDBGwv3rmJaI/uvnYjO2Vw==
+X-Google-Smtp-Source: AMrXdXsSdNJpdEDK6HJVJgTdEB6KWYZUS7shO4sAk0iXvj/JheXjC6QWpmD7mmCU+NMPyL2hCoJzYg==
+X-Received: by 2002:a17:902:c102:b0:192:8e05:1505 with SMTP id 2-20020a170902c10200b001928e051505mr36182840pli.31.1672950240412;
+        Thu, 05 Jan 2023 12:24:00 -0800 (PST)
+Received: from p14s ([2604:3d09:148c:c800:1328:ca09:d4c2:fcbc])
+        by smtp.gmail.com with ESMTPSA id d12-20020a170903230c00b00187033cac81sm19030920plh.145.2023.01.05.12.23.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Jan 2023 12:23:59 -0800 (PST)
+Date:   Thu, 5 Jan 2023 13:23:56 -0700
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     MD Danish Anwar <danishanwar@ti.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Suman Anna <s-anna@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        "Andrew F . Davis" <afd@ti.com>, nm@ti.com, vigneshr@ti.com,
+        srk@ti.com, linux-remoteproc@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jacopo Mondi <jacopo@jmondi.org>
-Subject: [PATCH v4 2/2] soc: renesas: Add PWC support for RZ/V2M
-Date:   Thu,  5 Jan 2023 20:12:42 +0000
-Message-Id: <20230105201242.189195-3-fabrizio.castro.jz@renesas.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230105201242.189195-1-fabrizio.castro.jz@renesas.com>
-References: <20230105201242.189195-1-fabrizio.castro.jz@renesas.com>
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v13 2/6] remoteproc: pru: Add enum for PRU Core
+ Identifiers.
+Message-ID: <20230105202356.GA2281956@p14s>
+References: <20230105092149.686201-1-danishanwar@ti.com>
+ <20230105092149.686201-3-danishanwar@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230105092149.686201-3-danishanwar@ti.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Renesas RZ/V2M External Power Sequence Controller (PWC)
-IP is capable of:
-* external power supply on/off sequence generation
-* on/off signal generation for the LPDDR4 core power supply (LPVDD)
-* key input signals processing
-* general-purpose output pins
+On Thu, Jan 05, 2023 at 02:51:45PM +0530, MD Danish Anwar wrote:
+> Introducing enum pruss_pru_id for PRU Core Identifiers.
+> PRUSS_PRU0 indicates PRU Core 0.
+> PRUSS_PRU1 indicates PRU Core 1.
+> PRUSS_NUM_PRUS indicates the total number of PRU Cores.
+> 
+> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+> Reviewed-by: Roger Quadros <rogerq@kernel.org>
+> ---
+>  drivers/remoteproc/pru_rproc.c |  7 ++++---
+>  include/linux/pruss.h          | 31 +++++++++++++++++++++++++++++++
 
-Add the corresponding device driver.
+Please add this under include/linux/remoteproc/ to avoid adding an orphan file
+under include/linux/.
 
-Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
----
+Thanks,
+Mathieu
 
-v1: In the first version, I had 1 driver for GPIO handling, and 1 driver
-    for poweroff handling, both based on syscon to share the mapped
-    memory region.
-v2: One more driver added to act as MFD core driver. Dropped syscon, and
-    dropped the OF compatible string for the GPIO and poweroff drivers.
-v3: This new patch merges all the PWC code in 1 new driver.
-    It also takes into account the comments received from Bartosz and Geert.
-    Since this is a new driver, I have dropped all the Reviewed-by tags
-    received on the separated drivers.
-v4: No change.
-
- drivers/soc/renesas/Kconfig     |   4 +
- drivers/soc/renesas/Makefile    |   1 +
- drivers/soc/renesas/pwc-rzv2m.c | 141 ++++++++++++++++++++++++++++++++
- 3 files changed, 146 insertions(+)
- create mode 100644 drivers/soc/renesas/pwc-rzv2m.c
-
-diff --git a/drivers/soc/renesas/Kconfig b/drivers/soc/renesas/Kconfig
-index 660498252ec5..4e8b51ba2266 100644
---- a/drivers/soc/renesas/Kconfig
-+++ b/drivers/soc/renesas/Kconfig
-@@ -330,6 +330,7 @@ config ARCH_R9A09G011
- 	bool "ARM64 Platform support for RZ/V2M"
- 	select PM
- 	select PM_GENERIC_DOMAINS
-+	select PWC_RZV2M
- 	help
- 	  This enables support for the Renesas RZ/V2M SoC.
- 
-@@ -345,6 +346,9 @@ config ARCH_R9A07G043
- 
- endif # RISCV
- 
-+config PWC_RZV2M
-+	bool "Renesas RZ/V2M PWC support" if COMPILE_TEST
-+
- config RST_RCAR
- 	bool "Reset Controller support for R-Car" if COMPILE_TEST
- 
-diff --git a/drivers/soc/renesas/Makefile b/drivers/soc/renesas/Makefile
-index 535868c9c7e4..6e4e77b0afff 100644
---- a/drivers/soc/renesas/Makefile
-+++ b/drivers/soc/renesas/Makefile
-@@ -32,6 +32,7 @@ obj-$(CONFIG_ARCH_R9A06G032)	+= r9a06g032-smp.o
- endif
- 
- # Family
-+obj-$(CONFIG_PWC_RZV2M)		+= pwc-rzv2m.o
- obj-$(CONFIG_RST_RCAR)		+= rcar-rst.o
- obj-$(CONFIG_SYSC_RCAR)		+= rcar-sysc.o
- obj-$(CONFIG_SYSC_RCAR_GEN4)	+= rcar-gen4-sysc.o
-diff --git a/drivers/soc/renesas/pwc-rzv2m.c b/drivers/soc/renesas/pwc-rzv2m.c
-new file mode 100644
-index 000000000000..c83bdbdabb64
---- /dev/null
-+++ b/drivers/soc/renesas/pwc-rzv2m.c
-@@ -0,0 +1,141 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2023 Renesas Electronics Corporation
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/gpio/driver.h>
-+#include <linux/platform_device.h>
-+#include <linux/reboot.h>
-+
-+#define PWC_PWCRST			0x00
-+#define PWC_PWCCKEN			0x04
-+#define PWC_PWCCTL			0x50
-+#define PWC_GPIO			0x80
-+
-+#define PWC_PWCRST_RSTSOFTAX		0x1
-+#define PWC_PWCCKEN_ENGCKMAIN		0x1
-+#define PWC_PWCCTL_PWOFF		0x1
-+
-+struct rzv2m_pwc_priv {
-+	void __iomem *base;
-+	struct device *dev;
-+	struct gpio_chip gp;
-+	DECLARE_BITMAP(ch_en_bits, 2);
-+};
-+
-+static void rzv2m_pwc_gpio_set(struct gpio_chip *chip, unsigned int offset,
-+			       int value)
-+{
-+	struct rzv2m_pwc_priv *priv = gpiochip_get_data(chip);
-+	u32 reg;
-+
-+	/* BIT 16 enables write to BIT 0, and BIT 17 enables write to BIT 1 */
-+	reg = BIT(offset + 16);
-+	if (value)
-+		reg |= BIT(offset);
-+
-+	writel(reg, priv->base + PWC_GPIO);
-+
-+	assign_bit(offset, priv->ch_en_bits, value);
-+}
-+
-+static int rzv2m_pwc_gpio_get(struct gpio_chip *chip, unsigned int offset)
-+{
-+	struct rzv2m_pwc_priv *priv = gpiochip_get_data(chip);
-+
-+	return test_bit(offset, priv->ch_en_bits);
-+}
-+
-+static int rzv2m_pwc_gpio_direction_output(struct gpio_chip *gc,
-+					   unsigned int nr, int value)
-+{
-+	if (nr > 1)
-+		return -EINVAL;
-+
-+	rzv2m_pwc_gpio_set(gc, nr, value);
-+
-+	return 0;
-+}
-+
-+static const struct gpio_chip rzv2m_pwc_gc = {
-+	.label = "gpio_rzv2m_pwc",
-+	.owner = THIS_MODULE,
-+	.get = rzv2m_pwc_gpio_get,
-+	.set = rzv2m_pwc_gpio_set,
-+	.direction_output = rzv2m_pwc_gpio_direction_output,
-+	.can_sleep = false,
-+	.ngpio = 2,
-+	.base = -1,
-+};
-+
-+static int rzv2m_pwc_poweroff(struct sys_off_data *data)
-+{
-+	struct rzv2m_pwc_priv *priv = data->cb_data;
-+
-+	writel(PWC_PWCRST_RSTSOFTAX, priv->base + PWC_PWCRST);
-+	writel(PWC_PWCCKEN_ENGCKMAIN, priv->base + PWC_PWCCKEN);
-+	writel(PWC_PWCCTL_PWOFF, priv->base + PWC_PWCCTL);
-+
-+	mdelay(150);
-+
-+	dev_err(priv->dev, "Failed to power off the system");
-+
-+	return NOTIFY_DONE;
-+}
-+
-+static int rzv2m_pwc_probe(struct platform_device *pdev)
-+{
-+	struct rzv2m_pwc_priv *priv;
-+	int ret;
-+
-+	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(priv->base))
-+		return PTR_ERR(priv->base);
-+
-+	/*
-+	 * The register used by this driver cannot be read, therefore set the
-+	 * outputs to their default values and initialize priv->ch_en_bits
-+	 * accordingly. BIT 16 enables write to BIT 0, BIT 17 enables write to
-+	 * BIT 1, and the default value of both BIT 0 and BIT 1 is 0.
-+	 */
-+	writel(BIT(17) | BIT(16), priv->base + PWC_GPIO);
-+	bitmap_zero(priv->ch_en_bits, 2);
-+
-+	priv->gp = rzv2m_pwc_gc;
-+	priv->gp.parent = pdev->dev.parent;
-+	priv->gp.fwnode = dev_fwnode(&pdev->dev);
-+
-+	ret = devm_gpiochip_add_data(&pdev->dev, &priv->gp, priv);
-+	if (ret)
-+		return ret;
-+
-+	if (device_property_read_bool(&pdev->dev, "renesas,rzv2m-pwc-power"))
-+		ret = devm_register_power_off_handler(&pdev->dev,
-+						      rzv2m_pwc_poweroff, priv);
-+
-+	return ret;
-+}
-+
-+static const struct of_device_id rzv2m_pwc_of_match[] = {
-+	{ .compatible = "renesas,rzv2m-pwc" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, rzv2m_pwc_of_match);
-+
-+static struct platform_driver rzv2m_pwc_driver = {
-+	.probe = rzv2m_pwc_probe,
-+	.driver = {
-+		.name = "rzv2m_pwc",
-+		.of_match_table = of_match_ptr(rzv2m_pwc_of_match),
-+	},
-+};
-+module_platform_driver(rzv2m_pwc_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_AUTHOR("Fabrizio Castro <castro.fabrizio.jz@renesas.com>");
-+MODULE_DESCRIPTION("Renesas RZ/V2M PWC driver");
--- 
-2.34.1
-
+>  2 files changed, 35 insertions(+), 3 deletions(-)
+>  create mode 100644 include/linux/pruss.h
+> 
+> diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
+> index 128bf9912f2c..a1a208b31846 100644
+> --- a/drivers/remoteproc/pru_rproc.c
+> +++ b/drivers/remoteproc/pru_rproc.c
+> @@ -16,6 +16,7 @@
+>  #include <linux/module.h>
+>  #include <linux/of_device.h>
+>  #include <linux/of_irq.h>
+> +#include <linux/pruss.h>
+>  #include <linux/pruss_driver.h>
+>  #include <linux/remoteproc.h>
+>  
+> @@ -438,7 +439,7 @@ static void *pru_d_da_to_va(struct pru_rproc *pru, u32 da, size_t len)
+>  	dram0 = pruss->mem_regions[PRUSS_MEM_DRAM0];
+>  	dram1 = pruss->mem_regions[PRUSS_MEM_DRAM1];
+>  	/* PRU1 has its local RAM addresses reversed */
+> -	if (pru->id == 1)
+> +	if (pru->id == PRUSS_PRU1)
+>  		swap(dram0, dram1);
+>  	shrd_ram = pruss->mem_regions[PRUSS_MEM_SHRD_RAM2];
+>  
+> @@ -747,14 +748,14 @@ static int pru_rproc_set_id(struct pru_rproc *pru)
+>  	case RTU0_IRAM_ADDR_MASK:
+>  		fallthrough;
+>  	case PRU0_IRAM_ADDR_MASK:
+> -		pru->id = 0;
+> +		pru->id = PRUSS_PRU0;
+>  		break;
+>  	case TX_PRU1_IRAM_ADDR_MASK:
+>  		fallthrough;
+>  	case RTU1_IRAM_ADDR_MASK:
+>  		fallthrough;
+>  	case PRU1_IRAM_ADDR_MASK:
+> -		pru->id = 1;
+> +		pru->id = PRUSS_PRU1;
+>  		break;
+>  	default:
+>  		ret = -EINVAL;
+> diff --git a/include/linux/pruss.h b/include/linux/pruss.h
+> new file mode 100644
+> index 000000000000..e94a81e97a4c
+> --- /dev/null
+> +++ b/include/linux/pruss.h
+> @@ -0,0 +1,31 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/**
+> + * PRU-ICSS Subsystem user interfaces
+> + *
+> + * Copyright (C) 2015-2022 Texas Instruments Incorporated - http://www.ti.com
+> + *	Suman Anna <s-anna@ti.com>
+> + */
+> +
+> +#ifndef __LINUX_PRUSS_H
+> +#define __LINUX_PRUSS_H
+> +
+> +#include <linux/device.h>
+> +#include <linux/types.h>
+> +
+> +#define PRU_RPROC_DRVNAME "pru-rproc"
+> +
+> +/**
+> + * enum pruss_pru_id - PRU core identifiers
+> + * @PRUSS_PRU0: PRU Core 0.
+> + * @PRUSS_PRU1: PRU Core 1.
+> + * @PRUSS_NUM_PRUS: Total number of PRU Cores available.
+> + *
+> + */
+> +
+> +enum pruss_pru_id {
+> +	PRUSS_PRU0 = 0,
+> +	PRUSS_PRU1,
+> +	PRUSS_NUM_PRUS,
+> +};
+> +
+> +#endif /* __LINUX_PRUSS_H */
+> -- 
+> 2.25.1
+> 
