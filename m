@@ -2,62 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5EB365EB1E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 13:52:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6ABE765EC2B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 14:07:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233419AbjAEMwz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 07:52:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41830 "EHLO
+        id S234045AbjAENHI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 08:07:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232952AbjAEMwe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 07:52:34 -0500
-Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D22895BA3C;
-        Thu,  5 Jan 2023 04:51:55 -0800 (PST)
-Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id 8395C61;
-        Thu,  5 Jan 2023 13:51:53 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1672923113;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=5ox2AHpCozB9D2AA+DmLS+FQ8YK9yjntjf01mZPEqQQ=;
-        b=CbTHCYy/PpHg9tnJL40N0QyKfSBPMEuWodnDHIS2Q7bnFFNSiBHUO8kGYkCu4CqzxlvpMN
-        OD4EUMcJSjPq9EfPoSPo9i5yFs8YqU91BDNZV584H0em1c0Pwhx2G9e3YjETGgGeCtJ+xM
-        QQraL2B4cfCIigOQJMsKIgFWxhDzsvI9TrBAxlPDonU1Z2fHXehQ1J1ze2mHfg8DyYowJp
-        N/dYi3TdxeyV2uoBowyNYdNWPNJ7fOTD4IO8b1IjyE/H0GhaWegBc+q969OAQ5Nd9GBtdZ
-        L35+YPXFm/qu7vt8J20PtJANmzQOKqvDnkBeuQ/mIP96ETVkIs5j8n6m52NgsA==
+        with ESMTP id S234055AbjAENGv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 08:06:51 -0500
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A745544C76;
+        Thu,  5 Jan 2023 05:06:49 -0800 (PST)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 305A3jOn006259;
+        Thu, 5 Jan 2023 14:06:37 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=/6mkw2rHwAZCXr7ruUELgsQrAc5HjLhzO3gPgeBT10o=;
+ b=bdBQ4igboibobTG9aMcwCfYEIHsFGpFSVu7KMI4R4Kw9MQXCDk8xqzopNcMtZNI8RCiA
+ z86bmU36F1VeCi0DPmTkCX968Gqb/Csp82Y9c2mJSYlNgC5FgAyOdGNPeI+8BaNlXY5Z
+ V4uZwd93OKPbGWofAFQEVb6fjRWmCbEKU4wS/cqojb8AWTC4PuWcghKzvJ7wsLhFCldr
+ tvEQXSQfrsylTAp9QGrvgJ82Go1jC4Il5wT2sOIFx0mbhN5EQMQOG0k9hL6fuyMHewe+
+ 10HTihaRasd2qyn3F7/taAbbRI1BRgybvToopabLCD3Djf1ExUY9uq31jiYUZyK0jxms rw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3mtbcq94x8-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 05 Jan 2023 14:06:36 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id E432C10002A;
+        Thu,  5 Jan 2023 14:06:35 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id DD6E123BDE9;
+        Thu,  5 Jan 2023 14:06:35 +0100 (CET)
+Received: from localhost (10.201.20.178) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Thu, 5 Jan
+ 2023 14:06:35 +0100
+From:   Olivier Moysan <olivier.moysan@foss.st.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC:     Olivier Moysan <olivier.moysan@foss.st.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/3] ARM: dts: stm32: add timers support on stm32mp13
+Date:   Thu, 5 Jan 2023 14:06:08 +0100
+Message-ID: <20230105130612.330155-1-olivier.moysan@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Date:   Thu, 05 Jan 2023 13:51:53 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Dan Carpenter <error27@gmail.com>
-Subject: Re: [PATCH v5 00/21] nvmem: core: introduce NVMEM layouts
-In-Reply-To: <5906091.UjTJXf6HLC@steina-w>
-References: <20221206200740.3567551-1-michael@walle.cc>
- <20230105123534.38a70640@xps-13> <34cddc1aa4f8a55c752a9565d1726127@walle.cc>
- <5906091.UjTJXf6HLC@steina-w>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <13fca55324d55f9d4e30ca7fcc930e15@walle.cc>
-X-Sender: michael@walle.cc
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.201.20.178]
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2023-01-05_04,2023-01-04_02,2022-06-22_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,128 +72,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Add STM32 TIM and LPTIM support to STM32MP13 SoCs family.
+Add also support of timers available on DK board RPI expansion connector.
+These timers are configured in the DK board device tree, but let in
+disabled state by default.
 
-Am 2023-01-05 13:21, schrieb Alexander Stein:
-> Am Donnerstag, 5. Januar 2023, 13:11:37 CET schrieb Michael Walle:
->> thanks for debugging. I'm not yet sure what is going wrong, so
->> I have some more questions below.
->> 
->> >> This causes the following errors on existing boards (imx8mq-tqma8mq-
->> >> mba8mx.dtb):
->> >> root@tqma8-common:~# uname -r
->> >> 6.2.0-rc2-next-20230105
->> >>
->> >> > OF: /soc@0: could not get #nvmem-cell-cells for /soc@0/bus@30000000/
->> >>
->> >> efuse@30350000/soc-uid@4
->> >>
->> >> > OF: /soc@0/bus@30800000/ethernet@30be0000: could not get
->> >> > #nvmem-cell-cells
->> >>
->> >> for /soc@0/bus@30000000/efuse@30350000/mac-address@90
->> >>
->> >> These are caused because '#nvmem-cell-cells = <0>;' is not explicitly
->> >> set in
->> >> DT.
->> >>
->> >> > TI DP83867 30be0000.ethernet-1:0e: error -EINVAL: failed to get nvmem
->> >> > cell
->> >>
->> >> io_impedance_ctrl
->> >>
->> >> > TI DP83867: probe of 30be0000.ethernet-1:0e failed with error -22
->> >>
->> >> These are caused because of_nvmem_cell_get() now returns -EINVAL
->> >> instead of -
->> >> ENODEV if the requested nvmem cell is not available.
->> 
->> What do you mean with not available? Not yet available because of 
->> probe
->> order?
-> 
-> Ah, I was talking about there is no nvmem cell being used in my PHY 
-> node, e.g.
-> no 'nvmem-cells' nor 'nvmem-cell-names' (set to 'io_impedance_ctrl'). 
-> That's
-> why of_property_match_string returns -EINVAL.
+Olivier Moysan (3):
+  ARM: dts: stm32: add timers support on stm32mp131
+  ARM: dts: stm32: add timer pins muxing for stm32mp135f-dk
+  ARM: dts: stm32: add timers support on stm32mp135f-dk
 
-Ahh I see. You mean ENOENT instead of ENODEV, right?
+ arch/arm/boot/dts/stm32mp13-pinctrl.dtsi |  60 +++
+ arch/arm/boot/dts/stm32mp131.dtsi        | 557 +++++++++++++++++++++++
+ arch/arm/boot/dts/stm32mp135f-dk.dts     |  58 +++
+ 3 files changed, 675 insertions(+)
 
->> > Should we just assume #nvmem-cell-cells = <0> by default? I guess it's
->> > a safe assumption.
->> 
->> Actually, that's what patch 2/21 is for.
->> 
->> Alexander, did you verify that the EINVAL is returned by
->> of_parse_phandle_with_optional_args()?
-> 
-> Yep.
-> 
-> --8<--
-> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-> index 1b61c8bf0de4..f2a85a31d039 100644
-> --- a/drivers/nvmem/core.c
-> +++ b/drivers/nvmem/core.c
-> @@ -1339,9 +1339,11 @@ struct nvmem_cell *of_nvmem_cell_get(struct 
-> device_node
-> *np, const char *id)
->         if (id)
->                 index = of_property_match_string(np, 
-> "nvmem-cell-names", id);
-> 
-> +       pr_info("%s: index: %d\n", __func__, index);
->         ret = of_parse_phandle_with_optional_args(np, "nvmem-cells",
->                                                   "#nvmem-cell-cells",
->                                                   index, &cell_spec);
-> +       pr_info("%s: of_parse_phandle_with_optional_args: %d\n", 
-> __func__,
-> ret);
->         if (ret)
->                 return ERR_PTR(ret);
-> --8<--
-> 
-> Results in:
->> [    1.861896] of_nvmem_cell_get: index: -22
->> [    1.865934] of_nvmem_cell_get: of_parse_phandle_with_optional_args: 
->> -22
->> [    1.872595] TI DP83867 30be0000.ethernet-1:0e: error -EINVAL: 
->> failed to
-> get nvmem cell io_impedance_ctrl
->> [    2.402575] TI DP83867: probe of 30be0000.ethernet-1:0e failed with 
->> error
-> -22
-> 
-> So, the index is wrong in the first place, but this was no problem 
-> until now.
+-- 
+2.25.1
 
-Thanks, could you try the following patch:
-
-diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-index 1b61c8bf0de4..1085abfcd9b1 100644
---- a/drivers/nvmem/core.c
-+++ b/drivers/nvmem/core.c
-@@ -1336,8 +1336,11 @@ struct nvmem_cell *of_nvmem_cell_get(struct 
-device_node *np, const char *id)
-         int ret;
-
-         /* if cell name exists, find index to the name */
--       if (id)
-+       if (id) {
-                 index = of_property_match_string(np, "nvmem-cell-names", 
-id);
-+               if (index < 0)
-+                       return ERR_PTR(-ENOENT);
-+       }
-
-         ret = of_parse_phandle_with_optional_args(np, "nvmem-cells",
-                                                   "#nvmem-cell-cells",
-
-Before patch 6/21, the -EINVAL was passed as index to of_parse_phandle()
-which then returned NULL, which caused the nvmem core to return ENOENT.
-I have a vague memory, that I made sure, that
-of_parse_phandle_with_optional_args() will also propagate the
-wrong index to its return code. But now, it won't be converted
-to ENOENT.
-
--michael
