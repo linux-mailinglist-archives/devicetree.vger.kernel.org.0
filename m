@@ -2,339 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EBF565EF2C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 15:48:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEFB965EF35
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 15:49:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232923AbjAEOsL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 09:48:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47420 "EHLO
+        id S234102AbjAEOtR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 09:49:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234104AbjAEOrw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 09:47:52 -0500
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3ADD58F99
-        for <devicetree@vger.kernel.org>; Thu,  5 Jan 2023 06:47:45 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id f20so38875462lja.4
-        for <devicetree@vger.kernel.org>; Thu, 05 Jan 2023 06:47:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=PXulY+pWIwlGwQqIKlBOHZ+2vlznv2jfiN7s1zx/Vv8=;
-        b=HQk9PbSGfW6NRZTmQBW4QsK4nnu5t/UZpxfFQOqvWWxKmJxBM6+XctOFBKU4TgnOFq
-         Wesmv+90fbFYcH/tqSWrjCWxurX46hCa1OJ6cWMJDNl/lLZLkIa0qcXHbBATU29G/Y0s
-         ZmUyToWExl9oCSZFr/S1CLe9e3bI9JHLiuVwQ5rl4/mQlyB4W7QmJDuaAcLfpEJobDwG
-         qhqFsmdrIPB1pORTqjQ2fPpx9CpcDm2y8EZ6v5Nqm2h/OnXhzYX7CUHB8cUP9EXr/Jiz
-         8R26mFQhsV4O2pvT1JmJ6VC4Re+fQxEqUddXWbjevBAshiJ6c93qd2599PShf0yD1vaC
-         NsJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PXulY+pWIwlGwQqIKlBOHZ+2vlznv2jfiN7s1zx/Vv8=;
-        b=pCWG06wh5W0nCpkWJOx0E+pKnHhKVTXltfFVM7rlfF7j24NrAq/Um7ntRCd22skyu9
-         scX2Yp40PogXB4xpFe0os4ueOZX2zvG2nkxO+ygG7ent/zTIiXO3RKrPKjtfSpEabNpP
-         /O0LWsDiSe7H9WcCGG7nN03C/vqrgCVmvnjsh7mfn4O9PiWLBFNdgToXRlKS7q9qHxbD
-         3BSm/PpHYwsD9iU3vJbRagdIt/N6uI9G+Q8cRJ/a4qrzJz0U4Xjmh2JwS3d2q+D9kIOI
-         acDShtPeQe6Hym/iacQCND+7uVacjLZfQnKymmX04Jvu4JnPnFoKDQPZX06F+SgHxt4A
-         tpWg==
-X-Gm-Message-State: AFqh2kon1JjTc5kAtgc2dEKgYJQDo6N18qD4/mgwDBbQ/Sp86GEOaDq0
-        nCxzSSVV6LNa+RN5Y81EMXi6OA==
-X-Google-Smtp-Source: AMrXdXvKDfh3ytIEDjaGfHnzAT6/MTlbDY1OscWQxt7/6flisplLPoNtlNtZXOhEQZynB0rh28QKJQ==
-X-Received: by 2002:a2e:505b:0:b0:27f:baa4:e8 with SMTP id v27-20020a2e505b000000b0027fbaa400e8mr10412968ljd.28.1672930063881;
-        Thu, 05 Jan 2023 06:47:43 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id h20-20020a05651c125400b0027fb0ce035esm3688362ljh.67.2023.01.05.06.47.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Jan 2023 06:47:43 -0800 (PST)
-Message-ID: <ae9b9139-46fe-ecaa-1a23-5f0cde9d1256@linaro.org>
-Date:   Thu, 5 Jan 2023 16:47:41 +0200
+        with ESMTP id S234162AbjAEOtL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 09:49:11 -0500
+Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9DBA5AC63;
+        Thu,  5 Jan 2023 06:48:56 -0800 (PST)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.west.internal (Postfix) with ESMTP id 18BDD3200947;
+        Thu,  5 Jan 2023 09:48:55 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Thu, 05 Jan 2023 09:48:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm3; t=1672930134; x=
+        1673016534; bh=V6G1v0bX0D4UJNGGt2xLs1w58IJyGOC4jf7dccTEEPM=; b=1
+        gZckvrW14EF6QB1iyxkjWAB6iRnHIiVv2ITPJDMOAekUfAtApvHM4joaNEsNOTPz
+        dm3iPtBjbXT4UaiyshKQ7x2M9bSXx7PR5x0ao4mHvjuJvXLV5YQjcsIwmdizvyxR
+        J8FFXJG4EoWwR3gajt9fQTRjmkPZra4YljZh21KuppF6OBhIzlmdClElEtm2m1tx
+        4yiw4oOIoqELlaB5ahYbxjeB6uB7XzysI7VPsqns2BaboVLGIDyBCtsKBx+eSJBP
+        sKhMKbVzNp0QwShyyyDt4w0JKxiHp04InkVNB4jDvkhTLK5kHUacKKEkds2otrcd
+        xCilLN3Xtiv9UpUJnbqWA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1672930134; x=
+        1673016534; bh=V6G1v0bX0D4UJNGGt2xLs1w58IJyGOC4jf7dccTEEPM=; b=c
+        NOnBTbP9S0V2/aQUaA120sVik6fZ0yLzAfug1DGbwRkHr5kGzXq7wLs81ycuGu+S
+        pSddtWpa7rIvSaym3JpoG6hsxAbcr4Ga2cWr6hWkM/cN5F04En3rzIQNZ2q6elLe
+        n9Y611F4OYGB22rrilQ9mQqAVCR64GxgF96nRaeVqqcpT5fgmLCCSFt+me3GpPa6
+        7zqLyHEmY54YecWhB/MfI3973WARveHAUWZaHl5fAIhXltYID+l4BSGxLZEEDhMj
+        oatK+gHoGaubk1+APfp0w9EEaB3/N1ROSp3dUpZ9W7+NygTlSOmG9jxDgPGfQfFi
+        xYw3BS/RnUVy3dVxqwbWg==
+X-ME-Sender: <xms:VuO2Y_NkVNEO0nT_BMvVb77DrTxIi28CSm96zlAn9CwDF011NETtkw>
+    <xme:VuO2Y59pmwVnoaXykU-NV9RLgQIww6y6kd7P6f1lUnUxRakts76Xi-b1iQtGvzciu
+    kFbD_w2H8dTOa7D3A>
+X-ME-Received: <xmr:VuO2Y-QqBTy4JTZ1d_rCLqaM23Fa_KzSSvi1hfjSucarsOpGiD4ouNXPfi2g4BhqAfs_VqgYXARxGsUHj0ULvzvFrZFWA9c2sJyB96bHyUcpufT3-k61FFwqNQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrjeekgdejtdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefkffggfgfvvehfhffujggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
+    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+    ftrfgrthhtvghrnhepheffgfegtedttddutdfhfefhgefftdeklefgueeltdettdekgffg
+    ueehvdfhffdvnecuffhomhgrihhnpehlihhnuhigqdhsuhhngihirdhorhhgpdhgihhthh
+    husgdrtghomhdpkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivgeptdenucfr
+    rghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:VuO2YzuHz7nqtQ1CK9xQOK1ubF4Qr2BoMFzRtn8v2K3OS98dKrCkMg>
+    <xmx:VuO2Y3dag6Hskmc6IZJ5Xd_6lHgdqLmZsIYERnaxh3D4Qh_ZmgPMmw>
+    <xmx:VuO2Y_0Kz-AfUxMnu_kCWQjpj2xSV-bTlRpBvpAavLLn5Sv0cL8JeQ>
+    <xmx:VuO2YyDiQLu7j2MiOI9kd-2203LolwT-LoaxhNGV0RgrSj2KADdDXw>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 5 Jan 2023 09:48:53 -0500 (EST)
+Message-ID: <383edfed-c9fe-9214-5b61-dbe6f017e03a@sholland.org>
+Date:   Thu, 5 Jan 2023 08:48:52 -0600
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v2 13/17] driver core: Use device's fwnode to check if it
- is waiting for suppliers
-Content-Language: en-GB
-To:     Saravana Kannan <saravanak@google.com>,
-        Abel Vesa <abel.vesa@linaro.org>
-Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Content-Language: en-US
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        kernel-team@android.com, linux-acpi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-efi@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-References: <20201121020232.908850-1-saravanak@google.com>
- <20201121020232.908850-14-saravanak@google.com> <YrmXpcU1NTYW6T/n@linaro.org>
- <CAGETcx8dwNcZFFzhhv=kMhpuQnyaEekrycpAmGusD-s+qfvA9g@mail.gmail.com>
- <YrskVLshWeps+NXw@linaro.org>
- <CAGETcx8F0wP+RA0KpjOJeZfc=DVG-MbM_=SkRHD4UhD2ReL7Kw@mail.gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <CAGETcx8F0wP+RA0KpjOJeZfc=DVG-MbM_=SkRHD4UhD2ReL7Kw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Conor Dooley <conor@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-staging@lists.linux.dev,
+        linux-sunxi@lists.linux.dev
+References: <20221231164628.19688-1-samuel@sholland.org>
+ <20221231164628.19688-2-samuel@sholland.org> <Y7ap2dZdCHLNzzHb@aptenodytes>
+From:   Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH 1/4] media: dt-bindings: cedrus: Allow power domain
+ references
+In-Reply-To: <Y7ap2dZdCHLNzzHb@aptenodytes>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Paul,
 
-On 28/06/2022 21:09, Saravana Kannan wrote:
-> On Tue, Jun 28, 2022 at 8:55 AM Abel Vesa <abel.vesa@linaro.org> wrote:
->>
->> On 22-06-27 15:30:25, Saravana Kannan wrote:
->>> On Mon, Jun 27, 2022 at 4:42 AM Abel Vesa <abel.vesa@linaro.org> wrote:
->>>>
->>>> On 20-11-20 18:02:28, Saravana Kannan wrote:
->>>>> To check if a device is still waiting for its supplier devices to be
->>>>> added, we used to check if the devices is in a global
->>>>> waiting_for_suppliers list. Since the global list will be deleted in
->>>>> subsequent patches, this patch stops using this check.
->>>>>
->>>>> Instead, this patch uses a more device specific check. It checks if the
->>>>> device's fwnode has any fwnode links that haven't been converted to
->>>>> device links yet.
->>>>>
->>>>> Signed-off-by: Saravana Kannan <saravanak@google.com>
->>>>> ---
->>>>>   drivers/base/core.c | 18 ++++++++----------
->>>>>   1 file changed, 8 insertions(+), 10 deletions(-)
->>>>>
->>>>> diff --git a/drivers/base/core.c b/drivers/base/core.c
->>>>> index 395dece1c83a..1873cecb0cc4 100644
->>>>> --- a/drivers/base/core.c
->>>>> +++ b/drivers/base/core.c
->>>>> @@ -51,6 +51,7 @@ static DEFINE_MUTEX(wfs_lock);
->>>>>   static LIST_HEAD(deferred_sync);
->>>>>   static unsigned int defer_sync_state_count = 1;
->>>>>   static DEFINE_MUTEX(fwnode_link_lock);
->>>>> +static bool fw_devlink_is_permissive(void);
->>>>>
->>>>>   /**
->>>>>    * fwnode_link_add - Create a link between two fwnode_handles.
->>>>> @@ -995,13 +996,13 @@ int device_links_check_suppliers(struct device *dev)
->>>>>         * Device waiting for supplier to become available is not allowed to
->>>>>         * probe.
->>>>>         */
->>>>> -     mutex_lock(&wfs_lock);
->>>>> -     if (!list_empty(&dev->links.needs_suppliers) &&
->>>>> -         dev->links.need_for_probe) {
->>>>> -             mutex_unlock(&wfs_lock);
->>>>> +     mutex_lock(&fwnode_link_lock);
->>>>> +     if (dev->fwnode && !list_empty(&dev->fwnode->suppliers) &&
->>>>> +         !fw_devlink_is_permissive()) {
->>>>> +             mutex_unlock(&fwnode_link_lock);
->>>>
->>>> Hi Saravana,
->>>>
->>>> First of, sorry for going back to this.
->>>
->>> No worries at all. If there's an issue with fw_devlink, I want to have it fixed.
->>>
->>>> There is a scenario where this check will not work and probably should
->>>> work. It goes like this:
->>>>
->>>> A clock controller is not allowed to probe because it uses a clock from a child device of a
->>>> consumer, like so:
->>>>
->>>>          dispcc: clock-controller@af00000 {
->>>>                  clocks = <&dsi0_phy 0>;
->>>>          };
->>>>
->>>>          mdss: mdss@ae00000 {
->>>>                  clocks = <&dispcc DISP_CC_MDSS_MDP_CLK>;
->>>>
->>>>                  dsi0_phy: dsi-phy@ae94400 {
->>>>                          clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
->>>>                  };
->>>>          };
->>>>
->>>> This is a real scenario actually, but I stripped it down to the essentials.
->>>
->>> I'm well aware of this scenario and explicitly wrote code to address this :)
->>>
->>
->> Actually, the problem seems to be when you have two dsi phys.
->> Like so:
->>
->>           dispcc: clock-controller@af00000 {
->>                   clocks = <&dsi0_phy 0>;
->>                   clocks = <&dsi1_phy 0>;
->>           };
->>
->>           mdss: mdss@ae00000 {
->>                   clocks = <&dispcc DISP_CC_MDSS_MDP_CLK>;
->>
->>                   dsi0_phy: dsi-phy@ae94400 {
->>                           clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
->>                   };
->>
->>                   dsi1_phy: dsi-phy@ae64400 {
->>                           clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
->>                   };
->>           };
->>
->> And from what I've seen happening so far is that the device_is_dependent
->> check for the parent of the supplier (if it also a consumer) seems to return
->> false on second pass of the same link due to the DL_FLAG_SYNC_STATE_ONLY
->> being set this time around.
->>
->>> See this comment in fw_devlink_create_devlink()
->>>
->>>         /*
->>>           * If we can't find the supplier device from its fwnode, it might be
->>>           * due to a cyclic dependency between fwnodes. Some of these cycles can
->>>           * be broken by applying logic. Check for these types of cycles and
->>>           * break them so that devices in the cycle probe properly.
->>>           *
->>>           * If the supplier's parent is dependent on the consumer, then the
->>>           * consumer and supplier have a cyclic dependency. Since fw_devlink
->>>           * can't tell which of the inferred dependencies are incorrect, don't
->>>           * enforce probe ordering between any of the devices in this cyclic
->>>           * dependency. Do this by relaxing all the fw_devlink device links in
->>>           * this cycle and by treating the fwnode link between the consumer and
->>>           * the supplier as an invalid dependency.
->>>           */
->>>
->>
->> So when this thing you mentioned above is happening for the second dsi
->> phy (order doesn't matter), since the dsi phy itself cannot be found,
->> the device_is_dependent is run for the same link: dispcc -> mdss
->> (supplier -> consumer), but again, since it has the
->> DL_FLAG_SYNC_STATE_ONLY this time around, it will skip that specific
->> link.
+On 1/5/23 04:43, Paul Kocialkowski wrote:
+> On Sat 31 Dec 22, 10:46, Samuel Holland wrote:
+>> The Allwinner D1 SoC contains a separate power domain for its video
+>> engine, controlled via the "PPU" power controller. Allow the
+>> power-domains property so this can be represented in the devicetree.
 > 
-> Ugh... I knew there was this gap, but didn't expect it to be a real world issue.
-> 
-> There are different ways of addressing this and they all fall
-> somewhere within a spectrum of:
-> "stop enforcing very specific edges of the dependency graph when you
-> find a cycles"
-> To
-> "just don't enforce any dependency for devices in a cycle and let the
-> drivers figure out when to -EPROBE_DEFER".
-> 
-> And each of those are of varying complexity. Ideally I'd prefer to
-> relax specific edges, but I need to balance it out with the code
-> complexity. Let me soak this for a few weeks to decide on what option
-> to take.
+> I've been looking around for information regarding the PPU and couldn't find
+> anything about it. Do you have some reference where it is mentionned?
 
-I wanted to check if there is any progress on this topic? It appears 
-that few weeks turned into few months already and the issue is still 
-present. If not, can we please re-consider applying [1] while Saravana 
-is working on a better fix?
+There are some oblique references as far back as H6 in some user manuals
+(in the bus block diagram and interrupt list) and in the vendor clock
+drivers.
 
-[1] 
-https://lore.kernel.org/all/20211125183622.597177-1-dmitry.baryshkov@linaro.org/
+I gathered some information here:
+https://linux-sunxi.org/PPU
 
-> 
-> Thanks for the report.
-> 
-> -Saravana
-> 
->>
->>> Applying this comment to your example, dispcc is the "consumer",
->>> dsi0_phy is the "supplier" and mdss is the "supplier's parent".
->>>
->>> And because we can't guarantee the order of addition of these top
->>> level devices is why I also have this piece of recursive call inside
->>> __fw_devlink_link_to_suppliers():
->>>
->>>                  /*
->>>                   * If a device link was successfully created to a supplier, we
->>>                   * now need to try and link the supplier to all its suppliers.
->>>                   *
->>>                   * This is needed to detect and delete false dependencies in
->>>                   * fwnode links that haven't been converted to a device link
->>>                   * yet. See comments in fw_devlink_create_devlink() for more
->>>                   * details on the false dependency.
->>>                   *
->>>                   * Without deleting these false dependencies, some devices will
->>>                   * never probe because they'll keep waiting for their false
->>>                   * dependency fwnode links to be converted to device links.
->>>                   */
->>>                  sup_dev = get_dev_from_fwnode(sup);
->>>                  __fw_devlink_link_to_suppliers(sup_dev, sup_dev->fwnode);
->>>                  put_device(sup_dev);
->>>
->>> So when mdss gets added, we'll link it to dispcc and then check if
->>> dispcc has any suppliers it needs to link to. And that's when the
->>> logic will catch the cycle and fix it.
->>>
->>> Can you tell me why this wouldn't unblock the probing of dispcc? Are
->>> you actually hitting this on a device? If so, can you please check why
->>> this logic isn't sufficient to catch and undo the cycle?
->>>
->>
->> This is happening on Qualcomm SDM845 with Linus's tree.
->>
->>> Thanks,
->>> Saravana
->>>
->>>> So, the dsi0_phy will be "device_add'ed" (through of_platform_populate) by the mdss probe.
->>>> The mdss will probe defer waiting for the DISP_CC_MDSS_MDP_CLK, while
->>>> the dispcc will probe defer waiting for the dsi0_phy (supplier).
->>>>
->>>> Basically, this 'supplier availability check' does not work when a supplier might
->>>> be populated by a consumer of the device that is currently trying to probe.
->>>>
->>>>
->>>> Abel
->>>>
->>>>
->>>>>                return -EPROBE_DEFER;
->>>>>        }
->>>>> -     mutex_unlock(&wfs_lock);
->>>>> +     mutex_unlock(&fwnode_link_lock);
->>>>>
->>>>>        device_links_write_lock();
->>>>>
->>>>> @@ -1167,10 +1168,7 @@ static ssize_t waiting_for_supplier_show(struct device *dev,
->>>>>        bool val;
->>>>>
->>>>>        device_lock(dev);
->>>>> -     mutex_lock(&wfs_lock);
->>>>> -     val = !list_empty(&dev->links.needs_suppliers)
->>>>> -           && dev->links.need_for_probe;
->>>>> -     mutex_unlock(&wfs_lock);
->>>>> +     val = !list_empty(&dev->fwnode->suppliers);
->>>>>        device_unlock(dev);
->>>>>        return sysfs_emit(buf, "%u\n", val);
->>>>>   }
->>>>> @@ -2202,7 +2200,7 @@ static int device_add_attrs(struct device *dev)
->>>>>                        goto err_remove_dev_groups;
->>>>>        }
->>>>>
->>>>> -     if (fw_devlink_flags && !fw_devlink_is_permissive()) {
->>>>> +     if (fw_devlink_flags && !fw_devlink_is_permissive() && dev->fwnode) {
->>>>>                error = device_create_file(dev, &dev_attr_waiting_for_supplier);
->>>>>                if (error)
->>>>>                        goto err_remove_dev_online;
->>>>> --
->>>>> 2.29.2.454.gaff20da3a2-goog
->>>>>
->>>>>
->>>
+It is used by OpenSBI for CPU idle:
+https://github.com/riscv-software-src/opensbi/commit/9dc5ec5c.patch
 
--- 
-With best wishes
-Dmitry
+and I have a series adding PPU support to Linux for the Video Engine:
+https://lore.kernel.org/linux-sunxi/20221231160402.16157-1-samuel@sholland.org/
+
+> I do see a power domain driver (apparently for the GPU) on recent allwinner
+> kernel releases but that seems to be for arm64 chips only.
+
+Yes, there is an older GPU-specific power domain hardware, and the
+generic one found on D1/R528/T113 and newer. However, I found while
+writing the Linux driver that the two are more similar than the vendor
+drivers would imply. Most of the registers from the old hardware remain
+in the new hardware; they just are not used by the new vendor driver. So
+you can reference my Linux series for a full register list.
+
+Regards,
+Samuel
+
+>> Signed-off-by: Samuel Holland <samuel@sholland.org>
+>> ---
+>>
+>>  .../bindings/media/allwinner,sun4i-a10-video-engine.yaml       | 3 +++
+>>  1 file changed, 3 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml
+>> index 541325f900a1..d5be7f604e8c 100644
+>> --- a/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml
+>> +++ b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml
+>> @@ -63,6 +63,9 @@ properties:
+>>        CMA pool to use for buffers allocation instead of the default
+>>        CMA pool.
+>>  
+>> +  power-domains:
+>> +    maxItems: 1
+>> +
+>>  required:
+>>    - compatible
+>>    - reg
+>> -- 
+>> 2.37.4
+>>
+> 
 
