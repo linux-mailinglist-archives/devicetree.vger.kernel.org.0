@@ -2,198 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51D3165ECA7
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 14:16:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C28F265ECCC
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 14:19:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232041AbjAENQY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 08:16:24 -0500
+        id S231616AbjAENST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 08:18:19 -0500
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233792AbjAENQQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 08:16:16 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C58A5AC63
-        for <devicetree@vger.kernel.org>; Thu,  5 Jan 2023 05:16:14 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id cf42so54947360lfb.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Jan 2023 05:16:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JxxqW2U4VV6Fh7w9J7Z3fimLOgBH/JK80j7RpKFTc0s=;
-        b=PTD+Rt+3JSezzXjzDA6SPux9bO6VcdDD8B2UgufvaMXU3gdVRYcPaslvOzToI9taoV
-         WAzYP6ZU2BVVl6y0U6c/lxb7XMIp3KC9LOyYTzs7WFpTu2XSyJKULd04UAMcecEvZGPc
-         8WMunjDLIltqmrGC+q2GTZ8ZvlrrBfyd4aYv5D728gGh4DTTZ6InRTDX1N16v2LjkJFO
-         SYeTQp73rcmExGawY3JyaASMUhtjV6KmGmx8eO5wGfMRO7cX1KJ1gThqY76yARojMNa2
-         sZL918uFGQcoBmSeWxfluV9RNSLALNZ1iriTGu1mE5oCjv6gPw6qfidt4XlfeDrduZ/S
-         PaHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JxxqW2U4VV6Fh7w9J7Z3fimLOgBH/JK80j7RpKFTc0s=;
-        b=0bAo+Ld3oBy1HlDd4GrbgyfQEU01TKsXXw+tQiVvk2qeUmVfw8SCq/+8HECeN8mY+G
-         jwI2y+MWAR4LmaKTC1l1Q/s9VAPcyTSGgCAc/SenqHqKRRcnY05Y9t7hAG2Gd6KH3Oxb
-         3n0gTYkmLVjH1jxY0OIRWYx9RZ0wktNk01e4FyGGUcz0ZQvJsL1zvJQoBkARLxg7gQAt
-         0FVW65zAftUiB3Fyyv9D5YPQ33FBMmeP57QaugiU/zH26hxqStaLiqlxY/FEItEEGc9f
-         oo2JjoOwin0kJHSuwKRAGObQPrwj7KTWKWwwv05iN/bAyGJAvi7NEvbHMKcC1Qb+KzzY
-         IIUg==
-X-Gm-Message-State: AFqh2kpEXJAACk5Fs4y7QQDuEwRotplKW664waNxd9by1XlFEKH09yyy
-        KZsQUSsaTxysGH6ck1jCPPpKuQ==
-X-Google-Smtp-Source: AMrXdXvbg2vxFXLTao4kRQnA/Il84ArFmU6NTMdpRsur7+pI2j1P8LoLMHueA5P1bWzcYWx6nOx5tw==
-X-Received: by 2002:ac2:4c8e:0:b0:4b6:ee97:36d2 with SMTP id d14-20020ac24c8e000000b004b6ee9736d2mr14003242lfl.40.1672924572561;
-        Thu, 05 Jan 2023 05:16:12 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id o5-20020ac24e85000000b004c2e1d7d9a3sm5469102lfr.146.2023.01.05.05.16.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Jan 2023 05:16:12 -0800 (PST)
-Message-ID: <47cd5078-f994-e05a-624c-4e221dc74294@linaro.org>
-Date:   Thu, 5 Jan 2023 15:16:11 +0200
+        with ESMTP id S234385AbjAENRo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 08:17:44 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46A565AC64;
+        Thu,  5 Jan 2023 05:17:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+        In-Reply-To:References; bh=KMLqgdiGpsgveS+d9Haf3IhQ0Gi2pqpU6Hr1FOq0nFo=; b=0q
+        PZfQX1Abg7bndIQjbrZuL1JGANzX3z+0NgHP3Du+YyiFaKAG7jolPcN9YeONXB0iru+VdVTybuMLv
+        YFodXcwA9i0o7JRMXg/X0He/uNZtj25HqnkaO48Wi6mW00ye9xMwt+7h9lWnku5QE5sTg3Yr9abVi
+        CsZKfiGsK07zfxI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pDQ7W-001DMp-6K; Thu, 05 Jan 2023 14:17:22 +0100
+Date:   Thu, 5 Jan 2023 14:17:22 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Frank <Frank.Sae@motor-comm.com>
+Cc:     Peter Geis <pgwipeout@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        xiaogang.fan@motor-comm.com, fei.zhang@motor-comm.com,
+        hua.sun@motor-comm.com, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v1 1/3] dt-bindings: net: Add Motorcomm yt8xxx
+ ethernet phy Driver bindings
+Message-ID: <Y7bN4vJXMi66FF6v@lunn.ch>
+References: <20230105073024.8390-1-Frank.Sae@motor-comm.com>
+ <20230105073024.8390-2-Frank.Sae@motor-comm.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v9 08/15] drm/bridge: add psr support for panel bridge
- callbacks
-Content-Language: en-GB
-To:     Vinod Polimera <quic_vpolimer@quicinc.com>,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        quic_kalyant@quicinc.com, quic_sbillaka@quicinc.com,
-        quic_bjorande@quicinc.com, quic_abhinavk@quicinc.com,
-        quic_vproddut@quicinc.com, quic_khsieh@quicinc.com,
-        dianders@chromium.org, linux-kernel@vger.kernel.org,
-        quic_aravindh@quicinc.com, swboyd@chromium.org
-References: <1671012352-1825-1-git-send-email-quic_vpolimer@quicinc.com>
- <1671012352-1825-9-git-send-email-quic_vpolimer@quicinc.com>
- <Y7bMcLHr79uhfJv2@phenom.ffwll.local>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <Y7bMcLHr79uhfJv2@phenom.ffwll.local>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230105073024.8390-2-Frank.Sae@motor-comm.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/01/2023 15:11, Daniel Vetter wrote:
-> On Wed, Dec 14, 2022 at 03:35:45PM +0530, Vinod Polimera wrote:
->> This change will handle the psr entry exit cases in the panel
->> bridge atomic callback functions. For example, the panel power
->> should not turn off if the panel is entering psr.
->>
->> Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
->> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
-> 
-> I think this is all a nice integration of the sr helpers and bridge stuff
-> and makes sense to me. For the 2 bridge patches and the drm core atomic
-> patch:
-> 
-> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> +  motorcomm,rx-delay-basic:
+> +    description: |
+> +      Tristate, setup the basic RGMII RX Clock delay of PHY.
+> +      This basic delay is fixed at 2ns (1000Mbps) or 8ns (100Mbps、10Mbps).
+> +      This basic delay usually auto set by hardware according to the voltage
+> +      of RXD0 pin (low = 0, turn off;   high = 1, turn on).
+> +      If not exist, this delay is controlled by hardware.
+> +      0: turn off;   1: turn on.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1]
 
-Thank you! I was looking at the patchset and wondering if anybody from 
-drm core can actually review the core bits.
+Why is this needed? When the MAC driver connects to the PHY, it passes
+phy-mode. For RGMII, this is one of:
 
-Could you please send all r-b letters, so that we don't loose them when 
-applying the patches from patchwork?
+linux/phy.h:	PHY_INTERFACE_MODE_RGMII,
+linux/phy.h:	PHY_INTERFACE_MODE_RGMII_ID,
+linux/phy.h:	PHY_INTERFACE_MODE_RGMII_RXID,
+linux/phy.h:	PHY_INTERFACE_MODE_RGMII_TXID,
 
-> 
->> ---
->>   drivers/gpu/drm/bridge/panel.c | 48 ++++++++++++++++++++++++++++++++++++++++++
->>   1 file changed, 48 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/bridge/panel.c b/drivers/gpu/drm/bridge/panel.c
->> index 3558cbf..5e77e38 100644
->> --- a/drivers/gpu/drm/bridge/panel.c
->> +++ b/drivers/gpu/drm/bridge/panel.c
->> @@ -113,6 +113,18 @@ static void panel_bridge_atomic_pre_enable(struct drm_bridge *bridge,
->>   				struct drm_bridge_state *old_bridge_state)
->>   {
->>   	struct panel_bridge *panel_bridge = drm_bridge_to_panel_bridge(bridge);
->> +	struct drm_atomic_state *atomic_state = old_bridge_state->base.state;
->> +	struct drm_encoder *encoder = bridge->encoder;
->> +	struct drm_crtc *crtc;
->> +	struct drm_crtc_state *old_crtc_state;
->> +
->> +	crtc = drm_atomic_get_new_crtc_for_encoder(atomic_state, encoder);
->> +	if (!crtc)
->> +		return;
->> +
->> +	old_crtc_state = drm_atomic_get_old_crtc_state(atomic_state, crtc);
->> +	if (old_crtc_state && old_crtc_state->self_refresh_active)
->> +		return;
->>   
->>   	drm_panel_prepare(panel_bridge->panel);
->>   }
->> @@ -121,6 +133,18 @@ static void panel_bridge_atomic_enable(struct drm_bridge *bridge,
->>   				struct drm_bridge_state *old_bridge_state)
->>   {
->>   	struct panel_bridge *panel_bridge = drm_bridge_to_panel_bridge(bridge);
->> +	struct drm_atomic_state *atomic_state = old_bridge_state->base.state;
->> +	struct drm_encoder *encoder = bridge->encoder;
->> +	struct drm_crtc *crtc;
->> +	struct drm_crtc_state *old_crtc_state;
->> +
->> +	crtc = drm_atomic_get_new_crtc_for_encoder(atomic_state, encoder);
->> +	if (!crtc)
->> +		return;
->> +
->> +	old_crtc_state = drm_atomic_get_old_crtc_state(atomic_state, crtc);
->> +	if (old_crtc_state && old_crtc_state->self_refresh_active)
->> +		return;
->>   
->>   	drm_panel_enable(panel_bridge->panel);
->>   }
->> @@ -129,6 +153,18 @@ static void panel_bridge_atomic_disable(struct drm_bridge *bridge,
->>   				struct drm_bridge_state *old_bridge_state)
->>   {
->>   	struct panel_bridge *panel_bridge = drm_bridge_to_panel_bridge(bridge);
->> +	struct drm_atomic_state *atomic_state = old_bridge_state->base.state;
->> +	struct drm_encoder *encoder = bridge->encoder;
->> +	struct drm_crtc *crtc;
->> +	struct drm_crtc_state *new_crtc_state;
->> +
->> +	crtc = drm_atomic_get_old_crtc_for_encoder(atomic_state, encoder);
->> +	if (!crtc)
->> +		return;
->> +
->> +	new_crtc_state = drm_atomic_get_new_crtc_state(atomic_state, crtc);
->> +	if (new_crtc_state && new_crtc_state->self_refresh_active)
->> +		return;
->>   
->>   	drm_panel_disable(panel_bridge->panel);
->>   }
->> @@ -137,6 +173,18 @@ static void panel_bridge_atomic_post_disable(struct drm_bridge *bridge,
->>   				struct drm_bridge_state *old_bridge_state)
->>   {
->>   	struct panel_bridge *panel_bridge = drm_bridge_to_panel_bridge(bridge);
->> +	struct drm_atomic_state *atomic_state = old_bridge_state->base.state;
->> +	struct drm_encoder *encoder = bridge->encoder;
->> +	struct drm_crtc *crtc;
->> +	struct drm_crtc_state *new_crtc_state;
->> +
->> +	crtc = drm_atomic_get_old_crtc_for_encoder(atomic_state, encoder);
->> +	if (!crtc)
->> +		return;
->> +
->> +	new_crtc_state = drm_atomic_get_new_crtc_state(atomic_state, crtc);
->> +	if (new_crtc_state && new_crtc_state->self_refresh_active)
->> +		return;
->>   
->>   	drm_panel_unprepare(panel_bridge->panel);
->>   }
->> -- 
->> 2.7.4
->>
-> 
+This tells you if you need to add a delay for the RX clock line, the
+TX clock line, or both. That is all you need to know for basic RGMII
+delays.
 
--- 
-With best wishes
-Dmitry
+> +  motorcomm,rx-delay-additional-ps:
 
+ethernet-phy.yaml defines rx-internal-delay-ps. Please use that.
+
+> +    description: |
+> +      Setup the additional RGMII RX Clock delay of PHY defined in pico seconds.
+> +      RGMII RX Clock Delay = rx-delay-basic + rx-delay-additional-ps.
+> +    enum:
+> +      - 0
+> +      - 150
+> +      - 300
+> +      - 450
+> +      - 600
+> +      - 750
+> +      - 900
+> +      - 1050
+> +      - 1200
+> +      - 1350
+> +      - 1500
+> +      - 1650
+> +      - 1800
+> +      - 1950
+> +      - 2100
+> +      - 2250
+
+Is this property mandatory? If not, please document what value is used
+if it is not present.
+
+> +
+> +  motorcomm,tx-delay-ge-ps:
+
+tx-internal-delay-ps
+
+And please define the default.
+
+> +  motorcomm,tx-delay-fe-ps:
+
+So you can only set the TX delay? What is RX delay set to? Same as 1G?
+I would suggest you call this motorcomm,tx-internal-delay-fe-ps, so
+that it is similar to the standard tx-internal-delay-ps.
+
+> +    description: |
+> +      Setup PHY's RGMII TX Clock delay  defined in pico seconds when the speed
+> +      is 100Mbps or 10Mbps.
+> +    enum:
+> +      - 0
+> +      - 150
+> +      - 300
+> +      - 450
+> +      - 600
+> +      - 750
+> +      - 900
+> +      - 1050
+> +      - 1200
+> +      - 1350
+> +      - 1500
+> +      - 1650
+> +      - 1800
+> +      - 1950
+> +      - 2100
+> +      - 2250
+> +
+> +  motorcomm,keep-pll-enabled:
+> +    description: |
+> +      If set, keep the PLL enabled even if there is no link. Useful if you
+> +      want to use the clock output without an ethernet link.
+> +    type: boolean
+> +
+> +  motorcomm,auto-sleep-disabled:
+> +    description: |
+> +      If set, PHY will not enter sleep mode and close AFE after unplug cable
+> +      for a timer.
+> +    type: boolean
+
+These two i can see being useful. But everything afterwards seems like
+just copy/paste from vendor SDK for things which the hardware can do,
+but probably nobody ever uses. Do you have a board using any of the
+following properties?
+
+> +
+> +  motorcomm,tx-clk-adj-enabled:
+> +    description: |
+> +      Useful if you want to use tx-clk-xxxx-inverted to adj the delay of tx clk.
+> +    type: boolean
+> +
+> +  motorcomm,tx-clk-10-inverted:
+> +    description: |
+> +      Use original or inverted RGMII Transmit PHY Clock to drive the RGMII
+> +      Transmit PHY Clock delay train configuration when speed is 10Mbps.
+> +    type: boolean
+> +
+> +  motorcomm,tx-clk-100-inverted:
+> +    description: |
+> +      Use original or inverted RGMII Transmit PHY Clock to drive the RGMII
+> +      Transmit PHY Clock delay train configuration when speed is 100Mbps.
+> +    type: boolean
+> +
+> +  motorcomm,tx-clk-1000-inverted:
+> +    description: |
+> +      Use original or inverted RGMII Transmit PHY Clock to drive the RGMII
+> +      Transmit PHY Clock delay train configuration when speed is 1000Mbps.
+> +    type: boolean
+> +
+> +  motorcomm,sds-tx-amplitude:
+> +    description: |
+> +      Setup the tx driver amplitude control of SerDes. Higher amplitude is
+> +      helpful for long distance.
+> +      0: low;   1: middle;   2: high.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1, 2]
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    ethernet {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        ethernet-phy@5 {
+> +            reg = <5>;
+
+PHYs are on MDIO busses, so i would expect to see an MDIO bus here,
+not Ethernet.
+
+    Andrew
