@@ -2,121 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E67765F11D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 17:27:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E3E3165F128
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 17:30:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233378AbjAEQ14 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 11:27:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60524 "EHLO
+        id S231917AbjAEQ3m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 11:29:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234805AbjAEQ1m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 11:27:42 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 654BE4D72E;
-        Thu,  5 Jan 2023 08:27:41 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 1820DB81B3B;
-        Thu,  5 Jan 2023 16:27:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0A83C433EF;
-        Thu,  5 Jan 2023 16:27:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672936058;
-        bh=Ek1Zi7cSSUaujQ9fPl7Fa5zUDkWJ/zN02bn1RxO83Lk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cp9LzQbOx1EsKLklQIbtBxpLwrxR3IGAfjqE+8M3Wq7bFsxaS4ZSuvGaeZxg+8yjj
-         mYPvlNUTrkRMtw0dT1fwQYKd4OLFChAlbSYga16DmZyvc6A2joYDuQNgzfwNlJJf1d
-         kp0ZKhphgts3u4dm/2HwZgV67VaXb3rX7NJuuWkdg/dRqzG+QedMiLGJvRmRZgg7GK
-         7/FoXmRWnxMvbD8hfugbz0gp1tBa6QMHesZpPRIj2fWR6kSeEuLhJuWYoy+crVh0qH
-         AG0BW3QBClkMn4M9EFzS1Ehz5gJlmdqsx01o0AV1MqkEnIpeafSxWjk6nS69dpXqb1
-         3d4N/6lfeK6uw==
-Date:   Thu, 5 Jan 2023 16:27:32 +0000
-From:   Lee Jones <lee@kernel.org>
-To:     Tzung-Bi Shih <tzungbi@kernel.org>
-Cc:     Mark Hasemeyer <markhas@chromium.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Raul Rangel <rrangel@chromium.org>,
-        Bhanu Prakash Maiya <bhanumaiya@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
+        with ESMTP id S232319AbjAEQ3i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 11:29:38 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9849058304;
+        Thu,  5 Jan 2023 08:29:37 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id co23so36692027wrb.4;
+        Thu, 05 Jan 2023 08:29:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=j0EVCr8niOrDqjzMLygmK437Bl2kIDtpevcurJg/sh4=;
+        b=jDIVtUpClcQ+UxG9qVupCt0iQQGwHM+d6T7wEusmr+qK30mUCcYc9GUyuqoMxRGc6F
+         yLsE6pp9oKTyZKpGEPno5HWa/Jp/mb4Kc0geXzmf2qw2NY8NBd1Jgf0FriM5Za1PQKZV
+         1Hyyngu7+VstGQViUN36nBx25MrximOkklcdi8G+oTCIwZ5tMwFmvn7FmIPpIrrqe5ND
+         a0Hw5QjJ2BBPZUTn0xztv694WU6bZ6DQTF6gBJKr+sAaDlG3r3jof4uouVUvKsnD8OcK
+         nDlc91mOj0bGL3XTt6c2pFBHr8WyBJRHyB4jI5T2BeUBBlZDszPy4LltDjv3zPP19r3G
+         Qxdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=j0EVCr8niOrDqjzMLygmK437Bl2kIDtpevcurJg/sh4=;
+        b=5D3OY810mBCiyYJUihkl4+atzm1sVT+Kh3aRVSDfE7zF9yn2i/UkgjoW/9gMhgefzS
+         ObXXNouw8I0lnSk36931FmfF19RyMh6UxABLKhqei0g5XCphtMfTqZn5oH3QdgzI63Fv
+         6XRb9nkwGAQyi6vl2o1fo67N/AuPgCIx/tZHMhqAmxjMusVSMW9uEiHRpG3h3tNUlq0Q
+         d7T9vsu/sZ5FUKFZoE8wVx/tJrW1Dni7zNqoOpR1Y800cpOFd6uoFLVouU8gsnSwIfKV
+         Hy9urDoB+HWrpA8IxssWQpwIi6C/RVKw15J5RBXUllrMKip/nWhPYL21+d5RONbXhS/P
+         lxyA==
+X-Gm-Message-State: AFqh2koZWAAxNaKOzHhtBBLnPPfaZjMl6Ft0dFxyZduoxVXPvlMAzBeh
+        Y3rwu+NCY40SeqR0oan25K8=
+X-Google-Smtp-Source: AMrXdXtdx1ljPkWlugJYyqxedcQLP7LIr489mbO58wIq4UPlhosgyNRl41DeetoAC5tBRLPKPwtTzw==
+X-Received: by 2002:a5d:6844:0:b0:2a2:5a2:cc10 with SMTP id o4-20020a5d6844000000b002a205a2cc10mr5139614wrw.36.1672936176128;
+        Thu, 05 Jan 2023 08:29:36 -0800 (PST)
+Received: from jernej-laptop.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
+        by smtp.gmail.com with ESMTPSA id z1-20020adfdf81000000b00268aae5fb5bsm36862776wrl.3.2023.01.05.08.29.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Jan 2023 08:29:35 -0800 (PST)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Corentin Labbe <clabbe.montjoie@gmail.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Chen-Yu Tsai <wens@csie.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH v10 2/3] dt-bindings: mfd: Add compatible string for UART
- support
-Message-ID: <Y7b6dC6dDNO2bVjr@google.com>
-References: <20221207104005.v10.1.If7926fcbad397bc6990dd725690229bed403948c@changeid>
- <20221207104005.v10.2.I9e018ecb8bdf341648cb64417085978ff0d22a46@changeid>
- <Y7WkeCi7/x/t37JM@google.com>
- <Y7YjmtwByTR+8tbZ@google.com>
- <Y7bdmiZ9lqKZXCfq@google.com>
- <Y7buUdgLfnQqnG+x@google.com>
+        Samuel Holland <samuel@sholland.org>
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH v2 2/3] crypto: sun8i-ce - Add TRNG clock to the D1 variant
+Date:   Thu, 05 Jan 2023 17:29:34 +0100
+Message-ID: <3212177.44csPzL39Z@jernej-laptop>
+In-Reply-To: <20221231220146.646-3-samuel@sholland.org>
+References: <20221231220146.646-1-samuel@sholland.org>
+ <20221231220146.646-3-samuel@sholland.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Y7buUdgLfnQqnG+x@google.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 05 Jan 2023, Tzung-Bi Shih wrote:
-
-> On Thu, Jan 05, 2023 at 02:24:26PM +0000, Lee Jones wrote:
-> > On Thu, 05 Jan 2023, Tzung-Bi Shih wrote:
-> > 
-> > > On Wed, Jan 04, 2023 at 04:08:24PM +0000, Lee Jones wrote:
-> > > > On Wed, 07 Dec 2022, Mark Hasemeyer wrote:
-> > > > 
-> > > > > From: Bhanu Prakash Maiya <bhanumaiya@chromium.org>
-> > > > > 
-> > > > > Add a compatible string to support the UART implementation of the cros
-> > > > > ec interface. The driver does not support the reg and interrupt
-> > > > > properties, so exempt them from being required for UART compatible nodes.
-> > > > > 
-> > > > > Signed-off-by: Bhanu Prakash Maiya <bhanumaiya@chromium.org>
-> > > > > Co-developed-by: Mark Hasemeyer <markhas@chromium.org>
-> > > > > Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
-> > > > > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > > > ---
-> > > > > 
-> > > > > Changes in v10:
-> > > > > - No change
-> > > > > 
-> > > [...]
-> > > > 
-> > > > I changed the subject line and applied the patch, thanks.
-> > > 
-> > > Pardon me.  I didn't know you would pick the patch so that I have queued it
-> > > into chrome-platform[1].  Would you like me to drop the commit?
-> > 
-> > Yes, please do.
+Dne sobota, 31. december 2022 ob 23:01:44 CET je Samuel Holland napisal(a):
+> At least the D1 variant requires a separate clock for the TRNG.
+> Without this clock enabled, reading from /dev/hwrng reports:
 > 
-> Dropped in chrome-platform.
+>    sun8i-ce 3040000.crypto: DMA timeout for TRNG (tm=96) on flow 3
 > 
-> > You should gain permission from the maintainer before you apply patches.
-> > 
-> >   % scripts/get_maintainer.pl -f Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> >      Lee Jones <lee@kernel.org> (supporter:MULTIFUNCTION DEVICES (MFD))
-> >      Rob Herring <robh+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
-> >      Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org> (maintainer:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
-> >      Matthias Brugger <matthias.bgg@gmail.com> (maintainer:ARM/Mediatek SoC support)
+> Experimentation shows that the necessary clock is the SoC's internal
+> RC oscillator. This makes sense, as noise from the oscillator can be
+> used as a source of entropy.
 > 
-> I see.  I guess for the case, I should get both MFD and DT bindings
-> maintainers' Acks before applying the patch.
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 
-Yes.  The situation isn't overly clear and differs from subsystem to
-subsystem and maintainer to maintainer.  In the MFD case, Rob and
-Krzysztof conduct the first reviews.  99 times out of 100, if they're
-happy, I'm happy and I merge the changes via the MFD tree.  Same goes
-for Backlight and more recently, LEDs.
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
--- 
-Lee Jones [李琼斯]
+Best regards,
+Jernej
+
+
