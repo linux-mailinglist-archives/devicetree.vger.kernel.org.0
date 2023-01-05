@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74C7765E30D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 03:54:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FCB565E310
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 03:54:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229447AbjAECyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 21:54:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47908 "EHLO
+        id S229909AbjAECyK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 21:54:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229888AbjAECyJ (ORCPT
+        with ESMTP id S229891AbjAECyJ (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 21:54:09 -0500
-Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF40A479E4;
-        Wed,  4 Jan 2023 18:54:05 -0800 (PST)
-Received: by mail-il1-f182.google.com with SMTP id y2so20496318ily.5;
-        Wed, 04 Jan 2023 18:54:05 -0800 (PST)
+Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01667479D8;
+        Wed,  4 Jan 2023 18:54:07 -0800 (PST)
+Received: by mail-il1-f169.google.com with SMTP id y2so20496348ily.5;
+        Wed, 04 Jan 2023 18:54:07 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=2U2LP/PrGLivefuel6MGYPY+slv2LEFjdHU/ynY8sag=;
-        b=x/r80iEbPk81oyAAuwQDPqJjd1JmcpduXzo0i36+a34w1t7GkHyoGb3Fgd3nVBc8rH
-         ddZjWkQrIBkR6V/mC0khxUzQH4u4v4XGFuh0zNqCvtNNG7anWGyHv2L7hPCNU3TEMoao
-         ZOy+SNTzWrKOfGTWDg80iJQXOCSEhQ4s2nM9ci1qAFA74wYgQmQE0myYj+jjmlR/C4Va
-         FYztPpJcOk5wXS/7y+6h1jVj2Ms53HMvxR4lpV4o/Gqc1/k85j/RThZ1B8fD0RUzGXgF
-         5sW4tXXUZUODa8g0vYDxRLAiIvKkWhmMvvaMTHkVLQ4vMdpOssTYeWXxPVCCg91KfJGg
-         5rMQ==
-X-Gm-Message-State: AFqh2kokffQOkeCWZhsPCIGudJFbAcvHe95OadtUenLObS68sgxpOe4j
-        2BW5znvF8kL1AfUwMJRufg==
-X-Google-Smtp-Source: AMrXdXsgigb1TTZN/WfMLsd6h8c/dYfxRpHtFtcZdqWmx/2sFVLeEl9+EFVwNeDmfntVBmYEpMrZrw==
-X-Received: by 2002:a05:6e02:e41:b0:30c:1b36:73af with SMTP id l1-20020a056e020e4100b0030c1b3673afmr17356804ilk.25.1672887245110;
-        Wed, 04 Jan 2023 18:54:05 -0800 (PST)
+        bh=uo8aaDBNuPpwcjfTN7FaqbLzjNsP65OWj81qbxQ1v/o=;
+        b=so3RR4NyOqzn5iApjRcPe9Dls+reNHhZd9t0pyg0PMoX3kmnwHoGazqdo4SkhABs1+
+         0GvpjAkIUd/gRxPumaWYwFokQ1qqBE+RA1ZCzuvneZWJDSzqiCKY8AG0WnPM//5x8XRb
+         CEEThIHTjY4rRkzNjGrfvPdRZHKXeuRqi/gmfnQ3e1MFokjP3hq/CFHRWuJM9aFS4z8h
+         aNO98UoOP/muTUNePI8V3EbfJOuKFZy4MfDo01p+WyRq+Z9SNlPn0Q/Ku1Y3FHRWK9dN
+         VL+o8Q3G2m+l2nvxthPWEIlBMfkwh3e4658ySkaEzxAG7ulWPXJ5VXR10YQXCKqqehVN
+         MRsg==
+X-Gm-Message-State: AFqh2kqqCDE6RV+rVmH/4yp10VARC83pn040eam67tgRSQCwGJl8KejM
+        86XIQcDbr8dLY4X9Hg7+vMt8S71oxg==
+X-Google-Smtp-Source: AMrXdXuWTfGcvdFiJHOgFCjJ2+gnXLNbpoZtfUTMmR6Ilf/cPfiiGtZHbB2MaVOBB+YYivANAFJGdA==
+X-Received: by 2002:a05:6e02:1d19:b0:30c:2ff1:ae62 with SMTP id i25-20020a056e021d1900b0030c2ff1ae62mr16451529ila.4.1672887247183;
+        Wed, 04 Jan 2023 18:54:07 -0800 (PST)
 Received: from robh_at_kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id g11-20020a02a08b000000b0039c492ae300sm10902118jah.114.2023.01.04.18.54.04
+        by smtp.gmail.com with ESMTPSA id k25-20020a023359000000b0038a183cb719sm11512462jak.141.2023.01.04.18.54.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Jan 2023 18:54:04 -0800 (PST)
-Received: (nullmailer pid 3295149 invoked by uid 1000);
+        Wed, 04 Jan 2023 18:54:06 -0800 (PST)
+Received: (nullmailer pid 3295151 invoked by uid 1000);
         Thu, 05 Jan 2023 02:53:58 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     linux-usb@vger.kernel.org, bhupesh.linux@gmail.com,
-        agross@kernel.org, linux-arm-msm@vger.kernel.org,
-        quic_schowdhu@quicinc.com, linux-kernel@vger.kernel.org,
-        andersson@kernel.org, devicetree@vger.kernel.org,
-        konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-In-Reply-To: <20230104091922.3959602-3-bhupesh.sharma@linaro.org>
-References: <20230104091922.3959602-1-bhupesh.sharma@linaro.org>
- <20230104091922.3959602-3-bhupesh.sharma@linaro.org>
-Message-Id: <167288699633.3289770.7520350746366547570.robh@kernel.org>
-Subject: Re: [PATCH 2/2] dt-bindings: soc: qcom: eud: Fix identation issues in
- the example
+To:     Martin =?utf-8?b?WmHFpW92acSN?= <m.zatovic1@gmail.com>
+Cc:     bvanassche@acm.org, mani@kernel.org, linux-kernel@vger.kernel.org,
+        andersson@kernel.org, iwona.winiarska@intel.com,
+        tzimmermann@suse.de, robh+dt@kernel.org, Michael.Srba@seznam.cz,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        hemantk@codeaurora.org, quic_jhugo@quicinc.com, dipenp@nvidia.com,
+        fmdefrancesco@gmail.com, jason.m.bills@linux.intel.com,
+        jae.hyun.yoo@linux.intel.com, ogabbay@kernel.org, arnd@arndb.de,
+        gregkh@linuxfoundation.org
+In-Reply-To: <20230104133414.39305-2-m.zatovic1@gmail.com>
+References: <20230104133414.39305-1-m.zatovic1@gmail.com>
+ <20230104133414.39305-2-m.zatovic1@gmail.com>
+Message-Id: <167288699743.3289802.11416300260059460595.robh@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: add Wiegand controller dt-binding documentation
 Date:   Wed, 04 Jan 2023 20:53:58 -0600
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -68,19 +69,22 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed, 04 Jan 2023 14:49:22 +0530, Bhupesh Sharma wrote:
-> As noted by Konrad while reviewing [1], the example
-> node in the EUD yaml documentation has identation
-> issues.
+On Wed, 04 Jan 2023 14:34:12 +0100, Martin Zaťovič wrote:
+> A Weigand bus is defined by a Wiegand controller node. This node
+> can contain one or more device nodes for devices attached to
+> the controller(it is advised to only connect one device as Wiegand
+> is a point-to-point bus).
 > 
-> So fix them.
+> Wiegand controller needs to specify several attributes such as
+> the pulse length in order to function properly. These attributes
+> are documented here.
 > 
-> [1]. https://lore.kernel.org/linux-arm-msm/20221231131945.3286639-1-bhupesh.sharma@linaro.org
-> 
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> Signed-off-by: Martin Zaťovič <m.zatovic1@gmail.com>
 > ---
->  Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml | 8 +++++---
->  1 file changed, 5 insertions(+), 3 deletions(-)
+>  .../bindings/wiegand/wiegand-controller.yaml  | 83 +++++++++++++++++++
+>  MAINTAINERS                                   |  5 ++
+>  2 files changed, 88 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/wiegand/wiegand-controller.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -89,12 +93,15 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,eud.example.dtb: eud@88e0000: reg: [[0, 143523840], [0, 8192], [0, 143532032], [0, 4096]] is too long
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml
+Error: Documentation/devicetree/bindings/wiegand/wiegand-controller.example.dts:20.40-41 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:434: Documentation/devicetree/bindings/wiegand/wiegand-controller.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1508: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230104091922.3959602-3-bhupesh.sharma@linaro.org
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230104133414.39305-2-m.zatovic1@gmail.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
