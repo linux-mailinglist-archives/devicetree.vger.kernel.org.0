@@ -2,129 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD87465E82C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 10:48:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BAD0B65E854
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 10:55:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231361AbjAEJs3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 04:48:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49254 "EHLO
+        id S231725AbjAEJzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 04:55:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231429AbjAEJsM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 04:48:12 -0500
-Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A265254726;
-        Thu,  5 Jan 2023 01:48:11 -0800 (PST)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.west.internal (Postfix) with ESMTP id 1ED213200A49;
-        Thu,  5 Jan 2023 04:48:10 -0500 (EST)
-Received: from imap47 ([10.202.2.97])
-  by compute5.internal (MEProxy); Thu, 05 Jan 2023 04:48:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=cc:cc:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm2; t=1672912089; x=1672998489; bh=fx
-        RgFMFJkcfqXAuf9yZKddG/6gTkmyvw+JYOIZcIs6Y=; b=HUzOxVzi8SPiFZ+jm4
-        ZPDcF9rrI5dUTEUDRToWj4YCk/L3GWo5Kiel48b0qHBa4wHEXFRN05qIYhIQg4Sv
-        KkgQoU43LDTrvPsvRfY0bkMSaoVjHtQyEH+wuZcKtrAOvqWiY9FVM/SmpzEl7kqW
-        tlxMXZg2nuSZ2EPCV5oDWCYnQrzMCAuISfe+w4CvPDsr9jf1YOB4t7eSsuCB1/KT
-        vwFs0Z/rZUNLGvDYvn072/IottGCP941pTrVhqcksymhPB14Xyzwq4uhDd3xfzpL
-        HfKPvjC5cOHUtKgHC2dhvhiGFmdiW7M3wJLhBdvrz7dLPxMyMG9zkBADvmagsAPx
-        rTkA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm2; t=1672912089; x=1672998489; bh=fxRgFMFJkcfqXAuf9yZKddG/6gTk
-        myvw+JYOIZcIs6Y=; b=PuNY1tKr2WSwgtb7gL5tb1jgzhb2sarZFEBSzF5ZgcjV
-        lkVRDU4tD/ZYO3E/nBYiRqW0znTxcDTHd33xjclOZ2AiAEOPon411jk2o1xzEnOo
-        Nfx03L3zhS0Lwm/DY8kF26DjYWXgDSxafHacSOHcbT1LPSlMO1zvvq1f4zTbDeon
-        hJudUmDC030QeHk9OXnYvuwCWpQ9T5ntkiZJKPxZ6LpwvuQ5QKytea6boBr5/dra
-        PvltiSSz4iWIXKSxW2tootZOa7UGh/fMBLk/A9kozpf9/qm0w73z7hV3PMWAFNRQ
-        0BAJ1vwzR6LnohcTOAOQsfS7XMzdA9LxIQxW4BP/+g==
-X-ME-Sender: <xms:2Zy2Y2_M2zTPFrMVkpbYo0qFBp-nw2-iL4Si5hA3oe2utbATArjSWA>
-    <xme:2Zy2Y2vhi_ue9B7cd_G0XTeVCo9N0KpR-sY02ulJ5Rd3Rm-OB5JkcTZdAjROJP1Js
-    5d3W_jVzIFbJ_YBgmo>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrjeekgddtkecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdfuvhgv
-    nhcurfgvthgvrhdfuceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrg
-    htthgvrhhnpeelvefggeffheevtdeivefhkeehfeettdejteduveeiheevveeilefghfei
-    veeiueenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hsvhgvnhesshhvvghnphgvthgvrhdruggvvh
-X-ME-Proxy: <xmx:2Zy2Y8B0GVdM-I5_Pt17r-NbiZu3419bgodhUWNxLWUOxUtUk9qHkw>
-    <xmx:2Zy2Y-ehnlope9GIwkuPDbZ7yBMPpCL5qHCyADT0dgiQtMAXXvXs6Q>
-    <xmx:2Zy2Y7M9OOpJd9q9BlYaXT7O3I0nPNJ7XrZo-mhz1lTkDfXx5sX8GQ>
-    <xmx:2Zy2Y8GiRY4wnx9jtsWQI3Opwmtbt_xhN_FjhnMaV3GnpwEectSUZg>
-Feedback-ID: i51094778:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 41F2EA6007C; Thu,  5 Jan 2023 04:48:09 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-1185-g841157300a-fm-20221208.002-g84115730
-Mime-Version: 1.0
-Message-Id: <7ecde27b-05e9-4727-8441-e17916df237a@app.fastmail.com>
-In-Reply-To: <3af091e9-09b4-53a0-da2d-5b2640040b9d@marcan.st>
-References: <20230104110013.24738-1-marcan@marcan.st>
- <20230104110013.24738-4-marcan@marcan.st>
- <71bffbd4-f8b0-4201-b2eb-7a15847ac2c6@app.fastmail.com>
- <3af091e9-09b4-53a0-da2d-5b2640040b9d@marcan.st>
-Date:   Thu, 05 Jan 2023 10:47:39 +0100
-From:   "Sven Peter" <sven@svenpeter.dev>
-To:     "Hector Martin" <marcan@marcan.st>,
-        "Joerg Roedel" <joro@8bytes.org>, "Will Deacon" <will@kernel.org>,
-        "Robin Murphy" <robin.murphy@arm.com>
-Cc:     "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
-        "Janne Grunau" <j@jannau.net>, "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, iommu@lists.linux.dev,
-        asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/7] iommu: dart: Support >64 stream IDs
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S232226AbjAEJzP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 04:55:15 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AF6D58F95
+        for <devicetree@vger.kernel.org>; Thu,  5 Jan 2023 01:55:10 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id s9so3552013wru.13
+        for <devicetree@vger.kernel.org>; Thu, 05 Jan 2023 01:55:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Z9IkS9Z7TwR5Xl6aVN2tSVjy6aS3alSYLzk3bV1tO+k=;
+        b=eXyfz6gLw1HczVGBVIutjlzzj+KnUsqSAknuSdVl04CMKGu9DkoS0jvugaQyJCen9d
+         NEKxckZUGkn5bNpgAsqI5AIIk/BlrKP0Vw7gmg3lERu7tmrOfj3CW140FZZJ5Cyrw933
+         MQcadlGjyqAR0kBygjwwoNxLxGmIzVcsBE0ZPX3INchv67X0B8FzlcR/8aNWVlqPzSLL
+         Ekr5Qjr7PRgFMmpzHvAooskbu6weTw8PQST08ASUzQJjehfUu7Gl/2u9f7CAV39OYc5u
+         dMfWXTouv52tJpB+vGFbSRNz9TgpVJd0oqBC1vH6qKYqiV1FPszBJBIlkRkpjT/VhYLQ
+         6Iug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Z9IkS9Z7TwR5Xl6aVN2tSVjy6aS3alSYLzk3bV1tO+k=;
+        b=hBBjiJ8G0DjzS/2cdMxWhvoEbpvvo63/Ujc694PZDEFFdjrJGiZYxHs1isqoO3AgYw
+         FXfH5tynNn5+THMuJx9g4S9Y50f7vcd3tobj+FIueGWO6cByzcL8oaRYaYVK1s+HMCDT
+         VZaOP93aE4PFCAOQkYTPD8J7o6LsGcxXxTGnZsmiZxGKH2gkzOy1RSI/9zVc17R0LKcj
+         O8FNSW8FC9Sn9RwGo4jfG3jYW4JanyGdV6dfQ9KVU6PyTUK4GBC+ZL+ZBGRmDIZk/zkD
+         WWa7yqVsfj10OAlv/1OidaSJgXYEiSrhT0RvyfnJODxVqcrAqWP0AXrgtVBCb2dyN6DY
+         Kb9Q==
+X-Gm-Message-State: AFqh2koBZai/woI0JygD7aQV5GNLNBqBhufkt8CnNidAyxhcjx6xykow
+        3g5dXAym9WzcMdewAjmq4Ue7Kw==
+X-Google-Smtp-Source: AMrXdXv/u7eppdaONjDcReVjqUOgukp2sfRTn5EpcIGtoBCsW1cOUpkHGvtUR8EZprS92zX32nB8Eg==
+X-Received: by 2002:adf:fc01:0:b0:297:dd4a:9207 with SMTP id i1-20020adffc01000000b00297dd4a9207mr10640817wrr.10.1672912508710;
+        Thu, 05 Jan 2023 01:55:08 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:1e12:c16d:1898:607c? ([2a01:e0a:982:cbb0:1e12:c16d:1898:607c])
+        by smtp.gmail.com with ESMTPSA id fc14-20020a05600c524e00b003a3442f1229sm2062350wmb.29.2023.01.05.01.55.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Jan 2023 01:55:07 -0800 (PST)
+Message-ID: <877fc236-5f86-3853-0877-33df32689d8c@linaro.org>
+Date:   Thu, 5 Jan 2023 10:55:06 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 1/2] dt-bindings: display: panel: document the Visionox
+ VTDR6130 AMOLED DSI Panel bindings
+Content-Language: en-US
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230103-topic-sm8550-upstream-vtdr6130-panel-v1-0-9b746b858378@linaro.org>
+ <20230103-topic-sm8550-upstream-vtdr6130-panel-v1-1-9b746b858378@linaro.org>
+ <Y7RsnBkgnWbF3uMj@ravnborg.org>
+Organization: Linaro Developer Services
+In-Reply-To: <Y7RsnBkgnWbF3uMj@ravnborg.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 03/01/2023 18:57, Sam Ravnborg wrote:
+> Hi Neil,
+> 
+> On Tue, Jan 03, 2023 at 03:22:27PM +0100, Neil Armstrong wrote:
+>> Document the 1080x2400 Visionox VTDR6130 AMOLED DSI Panel bindings.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   .../bindings/display/panel/visionox,vtdr6130.yaml  | 53 ++++++++++++++++++++++
+>>   1 file changed, 53 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml b/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml
+>> new file mode 100644
+>> index 000000000000..49e2fd4b4e99
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml
+>> @@ -0,0 +1,53 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/display/panel/visionox,vtdr6130.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Visionox VTDR6130 AMOLED DSI Panel
+>> +
+>> +maintainers:
+>> +  - Neil Armstrong <neil.armstrong@linaro.org>
+>> +
+>> +allOf:
+>> +  - $ref: panel-common.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: visionox,vtdr6130
+>> +
+>> +  vddio-supply: true
+>> +  vci-supply: true
+>> +  vdd-supply: true
+> These 3 looks wrong to me, as the above are not documented in panel-common.
+> But maybe I miss something and this is OK?
 
-On Thu, Jan 5, 2023, at 05:43, Hector Martin wrote:
-> On 2023/01/04 22:37, Sven Peter wrote:
->>>  #include "dma-iommu.h"
->>>
->>> -#define DART_MAX_STREAMS 16
->>> +#define DART_MAX_STREAMS 256
->> 
->> Feels a bit wasteful to allocate 256-wide sid2group and save_{tcr,ttbr}
->> arrays even for the M1 where 16 are enough. But then again, that's still <100 KiB
->> for all DARTs combined and these machine have >8 GiB of RAM so it probably won't
->> make a difference
->
-> Yeah, I don't think this is worth the extra fumbling around with dynamic
-> allocation.
->
->>>  	/* enable all streams globally since TCR is used to control isolation */
->>> -	writel(DART_STREAM_ALL, dart->regs + DART_STREAMS_ENABLE);
->>> +	for (i = 0; i < BITS_TO_U32(dart->num_streams); i++)
->>> +		writel(U32_MAX, dart->regs + DART_STREAMS_ENABLE);
->> 
->> This seems weird: this code writes U32_MAX to the same register
->> again and again. 
->
-> Whoops, that was supposed to have a `+ 4 * i` in there. Fixed for v2.
+It should be OK, the XXXX-supply properties are standard properties
 
-Great! Feel free to also add
+Neil
 
-Reviewed-by: Sven Peter <sven@svenpeter.dev>
+> 
+> 	Sam
+> 
+>> +  port: true
+>> +  reset-gpios: true
+>> +
+>> +additionalProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +  - vddio-supply
+>> +  - vci-supply
+>> +  - vdd-supply
+>> +  - reset-gpios
+>> +  - port
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/gpio/gpio.h>
+>> +    panel {
+>> +        compatible = "visionox,vtdr6130";
+>> +
+>> +        vddio-supply = <&vreg_l12b_1p8>;
+>> +        vci-supply = <&vreg_l13b_3p0>;
+>> +        vdd-supply = <&vreg_l11b_1p2>;
+>> +
+>> +        reset-gpios = <&tlmm 133 GPIO_ACTIVE_LOW>;
+>> +
+>> +        port {
+>> +            panel0_in: endpoint {
+>> +                remote-endpoint = <&dsi0_out>;
+>> +            };
+>> +        };
+>> +    };
+>> +...
+>>
+>> -- 
+>> 2.34.1
 
-then.
-
-
-Best,
-
-Sven
