@@ -2,100 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEFB965EF35
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 15:49:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ADFEC65F068
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 16:48:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234102AbjAEOtR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 09:49:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48338 "EHLO
+        id S232614AbjAEPsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 10:48:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234162AbjAEOtL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 09:49:11 -0500
-Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9DBA5AC63;
-        Thu,  5 Jan 2023 06:48:56 -0800 (PST)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.west.internal (Postfix) with ESMTP id 18BDD3200947;
-        Thu,  5 Jan 2023 09:48:55 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Thu, 05 Jan 2023 09:48:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm3; t=1672930134; x=
-        1673016534; bh=V6G1v0bX0D4UJNGGt2xLs1w58IJyGOC4jf7dccTEEPM=; b=1
-        gZckvrW14EF6QB1iyxkjWAB6iRnHIiVv2ITPJDMOAekUfAtApvHM4joaNEsNOTPz
-        dm3iPtBjbXT4UaiyshKQ7x2M9bSXx7PR5x0ao4mHvjuJvXLV5YQjcsIwmdizvyxR
-        J8FFXJG4EoWwR3gajt9fQTRjmkPZra4YljZh21KuppF6OBhIzlmdClElEtm2m1tx
-        4yiw4oOIoqELlaB5ahYbxjeB6uB7XzysI7VPsqns2BaboVLGIDyBCtsKBx+eSJBP
-        sKhMKbVzNp0QwShyyyDt4w0JKxiHp04InkVNB4jDvkhTLK5kHUacKKEkds2otrcd
-        xCilLN3Xtiv9UpUJnbqWA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1672930134; x=
-        1673016534; bh=V6G1v0bX0D4UJNGGt2xLs1w58IJyGOC4jf7dccTEEPM=; b=c
-        NOnBTbP9S0V2/aQUaA120sVik6fZ0yLzAfug1DGbwRkHr5kGzXq7wLs81ycuGu+S
-        pSddtWpa7rIvSaym3JpoG6hsxAbcr4Ga2cWr6hWkM/cN5F04En3rzIQNZ2q6elLe
-        n9Y611F4OYGB22rrilQ9mQqAVCR64GxgF96nRaeVqqcpT5fgmLCCSFt+me3GpPa6
-        7zqLyHEmY54YecWhB/MfI3973WARveHAUWZaHl5fAIhXltYID+l4BSGxLZEEDhMj
-        oatK+gHoGaubk1+APfp0w9EEaB3/N1ROSp3dUpZ9W7+NygTlSOmG9jxDgPGfQfFi
-        xYw3BS/RnUVy3dVxqwbWg==
-X-ME-Sender: <xms:VuO2Y_NkVNEO0nT_BMvVb77DrTxIi28CSm96zlAn9CwDF011NETtkw>
-    <xme:VuO2Y59pmwVnoaXykU-NV9RLgQIww6y6kd7P6f1lUnUxRakts76Xi-b1iQtGvzciu
-    kFbD_w2H8dTOa7D3A>
-X-ME-Received: <xmr:VuO2Y-QqBTy4JTZ1d_rCLqaM23Fa_KzSSvi1hfjSucarsOpGiD4ouNXPfi2g4BhqAfs_VqgYXARxGsUHj0ULvzvFrZFWA9c2sJyB96bHyUcpufT3-k61FFwqNQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrjeekgdejtdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefkffggfgfvvehfhffujggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepheffgfegtedttddutdfhfefhgefftdeklefgueeltdettdekgffg
-    ueehvdfhffdvnecuffhomhgrihhnpehlihhnuhigqdhsuhhngihirdhorhhgpdhgihhthh
-    husgdrtghomhdpkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivgeptdenucfr
-    rghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:VuO2YzuHz7nqtQ1CK9xQOK1ubF4Qr2BoMFzRtn8v2K3OS98dKrCkMg>
-    <xmx:VuO2Y3dag6Hskmc6IZJ5Xd_6lHgdqLmZsIYERnaxh3D4Qh_ZmgPMmw>
-    <xmx:VuO2Y_0Kz-AfUxMnu_kCWQjpj2xSV-bTlRpBvpAavLLn5Sv0cL8JeQ>
-    <xmx:VuO2YyDiQLu7j2MiOI9kd-2203LolwT-LoaxhNGV0RgrSj2KADdDXw>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 5 Jan 2023 09:48:53 -0500 (EST)
-Message-ID: <383edfed-c9fe-9214-5b61-dbe6f017e03a@sholland.org>
-Date:   Thu, 5 Jan 2023 08:48:52 -0600
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Content-Language: en-US
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234735AbjAEPrp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 10:47:45 -0500
+Received: from egress-ip33a.ess.de.barracuda.com (egress-ip33a.ess.de.barracuda.com [18.185.115.192])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DF03559F0
+        for <devicetree@vger.kernel.org>; Thu,  5 Jan 2023 07:47:43 -0800 (PST)
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71]) by mx-outbound47-78.eu-central-1c.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Thu, 05 Jan 2023 15:47:39 +0000
+Received: by mail-qv1-f71.google.com with SMTP id nl19-20020a056214369300b00532164b6c30so285176qvb.15
+        for <devicetree@vger.kernel.org>; Thu, 05 Jan 2023 07:47:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mistralsolutions.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6X+691siEqN4skGdU5S4Z9b5pWmhX1OKjnMk5C8EJM0=;
+        b=hDTfuN6qZ65+fLCZ4eWB0SHzzBwNhzMAl3t+2xzMtndMWahkcduaJi5FbhttVAPWSh
+         ReUiYAFzsaKcQqFGS/VZ5X1dcsTugC2hQJqh10hh4ewr5xexCouMTOJYmnMtr3LS+kqo
+         DTpFa2pIs9xqTeDZHroyMy5tI+sD7VbwMX1s8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6X+691siEqN4skGdU5S4Z9b5pWmhX1OKjnMk5C8EJM0=;
+        b=ICrRp6rZWw1UtcDiKSB5NipIklJy9v1NBUx0isEp7XGfJ4KvRu7QfgC3760BXeudk2
+         XNRKn9XXt1NvjWnPFXDVn55iyCjKJHaS2tjYTghGB7EilGnxUXJKn4dntRnU3dWouh69
+         U9cukHmeyYQMdmSi/bhhuCuCzJ3yEekXjw53G/dEZRUuqbI/QBvgyqYFnG/ryj7b4Vvl
+         tC/f6Y8tpBuXbNAQ/uNCVaEWQS77XJAZOktPzzH26aiULqn43Lcl6CnAke30vIsSJUfk
+         Xi4bMN9xCsu/SMD3Y6Z+5sfz7ODwtmqfZbICkfcOaUZYOpZ8rSLBezu2iayadlfyRsUd
+         b50g==
+X-Gm-Message-State: AFqh2koBq7hAA8W4V8yv/LosW2hwmcFZrCAlU8hjelblBPvzRhv4wsBq
+        il/pmfcC2lM2zWNsiLzTvGwBsKpoSjnefujgT/Yyxq3EOOqHfFJfWuXFntFAkLq7gZ6qe8c1nOJ
+        opWivf6mfNfjIdzcV1CFO3GecXa7T/VgR6plfanLXlTH/gWUXGQtOWRETRw==
+X-Received: by 2002:a62:6442:0:b0:581:eca5:12a3 with SMTP id y63-20020a626442000000b00581eca512a3mr24782832pfb.10.1672931896883;
+        Thu, 05 Jan 2023 07:18:16 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXtQuO9oOSOQYeYDtuRA0FU9Q1Z3/PbElbvvXJgID4I8mFO/sXH2ApWEGstNoVoJMOJkotQL1Q==
+X-Received: by 2002:a62:6442:0:b0:581:eca5:12a3 with SMTP id y63-20020a626442000000b00581eca512a3mr24782802pfb.10.1672931896546;
+        Thu, 05 Jan 2023 07:18:16 -0800 (PST)
+Received: from LAP568U.mistral.in ([106.51.227.150])
+        by smtp.gmail.com with ESMTPSA id i6-20020aa796e6000000b0056bc30e618dsm12473040pfq.38.2023.01.05.07.18.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Jan 2023 07:18:15 -0800 (PST)
+From:   Sinthu Raja <sinthu.raja@mistralsolutions.com>
+X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Conor Dooley <conor@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-staging@lists.linux.dev,
-        linux-sunxi@lists.linux.dev
-References: <20221231164628.19688-1-samuel@sholland.org>
- <20221231164628.19688-2-samuel@sholland.org> <Y7ap2dZdCHLNzzHb@aptenodytes>
-From:   Samuel Holland <samuel@sholland.org>
-Subject: Re: [PATCH 1/4] media: dt-bindings: cedrus: Allow power domain
- references
-In-Reply-To: <Y7ap2dZdCHLNzzHb@aptenodytes>
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Sinthu Raja <sinthu.raja@ti.com>
+Subject: [PATCH V4 0/3] AM68 SK: Add initial support
+Date:   Thu,  5 Jan 2023 20:47:37 +0530
+Message-Id: <20230105151740.29436-1-sinthu.raja@ti.com>
+X-Mailer: git-send-email 2.36.1
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-BESS-ID: 1672933659-312110-5408-22890-1
+X-BESS-VER: 2019.1_20221214.2106
+X-BESS-Apparent-Source-IP: 209.85.219.71
+X-BESS-Outbound-Spam-Score: 0.40
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.245267 [from 
+        cloudscan12-98.eu-central-1a.ess.aws.cudaops.com]
+        Rule breakdown below
+         pts rule name              description
+        ---- ---------------------- --------------------------------
+        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
+        0.40 BSF_SC0_SA085b         META: Custom Rule SA085b 
+        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+X-BESS-Outbound-Spam-Status: SCORE=0.40 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_SC0_MISMATCH_TO, BSF_SC0_SA085b, BSF_BESS_OUTBOUND
+X-BESS-BRTS-Status: 1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -103,65 +88,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+From: Sinthu Raja <sinthu.raja@ti.com>
 
-On 1/5/23 04:43, Paul Kocialkowski wrote:
-> On Sat 31 Dec 22, 10:46, Samuel Holland wrote:
->> The Allwinner D1 SoC contains a separate power domain for its video
->> engine, controlled via the "PPU" power controller. Allow the
->> power-domains property so this can be represented in the devicetree.
-> 
-> I've been looking around for information regarding the PPU and couldn't find
-> anything about it. Do you have some reference where it is mentionned?
+Hi All,
+Respinning this series after rebasing to 6.2.rc1.
+This series of patches add support for AM68 Starter kit(SK). AM68 SK
+is a low cost, small form factor board designed for TI’s AM68 SoC.
 
-There are some oblique references as far back as H6 in some user manuals
-(in the bus block diagram and interrupt list) and in the vendor clock
-drivers.
+Refer below link to AM68 Technical Reference Manual for further details: 
+http://www.ti.com/lit/pdf/spruj28
 
-I gathered some information here:
-https://linux-sunxi.org/PPU
+Design files can be referrred from https://www.ti.com/lit/zip/SPRR463
 
-It is used by OpenSBI for CPU idle:
-https://github.com/riscv-software-src/opensbi/commit/9dc5ec5c.patch
+Changes in V4:
+=============
+Repost after rebasing to 6.2 rc1
 
-and I have a series adding PPU support to Linux for the Video Engine:
-https://lore.kernel.org/linux-sunxi/20221231160402.16157-1-samuel@sholland.org/
+Changes in  V3:
+==============
+Addressed all the review comments and the changes are captured in separate patches.
+ - Removed the unused nodes that are disabled by default.
+ - Updated the gpio regulator node: gpio-regulator-tlv to "regulator-tlv".
 
-> I do see a power domain driver (apparently for the GPU) on recent allwinner
-> kernel releases but that seems to be for arm64 chips only.
+V1: https://lore.kernel.org/linux-arm-kernel/20221018123849.23695-1-sinthu.raja@ti.com/t/#mbe43b02221733bb6eb06b203359e90ec08406afc
+V2: https://lore.kernel.org/lkml/20221107123852.8063-1-sinthu.raja@ti.com/
+V3: https://lore.kernel.org/linux-arm-kernel/20221115154832.19759-1-sinthu.raja@ti.com/
 
-Yes, there is an older GPU-specific power domain hardware, and the
-generic one found on D1/R528/T113 and newer. However, I found while
-writing the Linux driver that the two are more similar than the vendor
-drivers would imply. Most of the registers from the old hardware remain
-in the new hardware; they just are not used by the new vendor driver. So
-you can reference my Linux series for a full register list.
+Sinthu Raja (3):
+  dt-bindings: arm: ti: Add binding for AM68 SK
+  arm64: dts: ti: Add initial support for AM68 SK System on Module
+  arm64: dts: ti: k3-am68-sk: Add support for AM68 SK base board
 
-Regards,
-Samuel
+ .../devicetree/bindings/arm/ti/k3.yaml        |   1 +
+ arch/arm64/boot/dts/ti/Makefile               |   2 +
+ .../boot/dts/ti/k3-am68-sk-base-board.dts     | 335 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi    |  31 ++
+ 4 files changed, 369 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
 
->> Signed-off-by: Samuel Holland <samuel@sholland.org>
->> ---
->>
->>  .../bindings/media/allwinner,sun4i-a10-video-engine.yaml       | 3 +++
->>  1 file changed, 3 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml
->> index 541325f900a1..d5be7f604e8c 100644
->> --- a/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml
->> +++ b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml
->> @@ -63,6 +63,9 @@ properties:
->>        CMA pool to use for buffers allocation instead of the default
->>        CMA pool.
->>  
->> +  power-domains:
->> +    maxItems: 1
->> +
->>  required:
->>    - compatible
->>    - reg
->> -- 
->> 2.37.4
->>
-> 
+-- 
+2.36.1
 
