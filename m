@@ -2,136 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 483CA65E384
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 04:33:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2116365E4CC
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 05:44:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229793AbjAEDdn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 22:33:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38294 "EHLO
+        id S230267AbjAEEoX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 23:44:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229554AbjAEDdm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 22:33:42 -0500
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3C09485B6;
-        Wed,  4 Jan 2023 19:33:40 -0800 (PST)
-Received: by mail-pg1-x531.google.com with SMTP id v3so23693095pgh.4;
-        Wed, 04 Jan 2023 19:33:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=qcdL9XcVmlLqpF5U0DRc9acjWZw/D5BLsYnfwMge6Vs=;
-        b=BBSHFqtRnvaKbaDMJgczggZXp1f+zzPaKdX5Nt9zKoejNkMXEzAzZS9BbypkCdMTdN
-         EMkzrrBJoVYafpRIlea8oKDaVKj0Ezj1GCFDBVU3arZFqpfSLvdZnXH87HFIl77kTXO2
-         UTO+1eWiaM6cOP47r9ZKwl6scgfWsA52SvMCzYKCPCj5B8CqsYXSjRjS3sku7V+HncjO
-         FhihGidHRk967tqkfCWYXtxJe7UtCB0vA8cRUl6drD555jHyK5ubmRTlPa9Qz8Tc9yau
-         U+vv2v9BAMDgYiyEGiiaSAUBTeW/FszDQ0vs1nD32bAQViL7F+n63iEWxuE7ysWYv/kU
-         w36Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qcdL9XcVmlLqpF5U0DRc9acjWZw/D5BLsYnfwMge6Vs=;
-        b=lFIu/UEWnRFMMNK7LNfBnFz6zqgWXffXLwEUCL5auMmfA86GTTdXCooMqILbH08ONs
-         61cfBTLYHa0CbtFhA13VvHYa67RuwvZmLUEqlrCVfwOxq1TlEzd6siNHDiYfuKZAKbUT
-         lS254aAnkxFNl6D66UsQctmGmS1pBTpfuZXMz8qKWdrRsB4u9JuJk1fFrn+6PlBcOJO/
-         07uob11Hm+vHS2I2QvHNERHMUXcNPaJLVRzZBSjiGxkUxUuGfHuJuu1kVJegV0JOr1Ic
-         0hE6tK3Wq5PoFoprZiyZFCRzcbR07C0EX9AaPzcoFxFEl5IH0r3z0DCqRWUNgKmGGMqc
-         AcVg==
-X-Gm-Message-State: AFqh2kr1kz1mCYWIHT+vUL6elkGELR3h2Y1RFUK5WArCC6/B2Fv5La+6
-        z0r35ugJzteYU9+FfxWe7tQFDSfppBo=
-X-Google-Smtp-Source: AMrXdXt8F+kQx5VAGFLEqz7f8WOJ91KOddQgu7Ssqif0uOEHHxee+wSbloJQBwYXkv9biR+NB4hnvg==
-X-Received: by 2002:a05:6a00:4148:b0:582:a8f2:675 with SMTP id bv8-20020a056a00414800b00582a8f20675mr9827303pfb.20.1672889620010;
-        Wed, 04 Jan 2023 19:33:40 -0800 (PST)
-Received: from debian.me (subs02-180-214-232-82.three.co.id. [180.214.232.82])
-        by smtp.gmail.com with ESMTPSA id f17-20020aa79691000000b005825b8e0540sm7532549pfk.204.2023.01.04.19.33.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Jan 2023 19:33:39 -0800 (PST)
-Received: by debian.me (Postfix, from userid 1000)
-        id 5BDA2104732; Thu,  5 Jan 2023 10:33:35 +0700 (WIB)
-Date:   Thu, 5 Jan 2023 10:33:34 +0700
-From:   Bagas Sanjaya <bagasdotme@gmail.com>
-To:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Linux Documentation <linux-doc@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Devicetree <devicetree@vger.kernel.org>
-Cc:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
-        Alex Elder <elder@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        Vinod Koul <vkoul@kernel.org>
-Subject: Re: [PATCH 0/2] soc: qcom: dcc: Documentation improv
-Message-ID: <Y7ZFDuvSS0fDjX9Q@debian.me>
-References: <20221230135030.17002-1-bagasdotme@gmail.com>
+        with ESMTP id S229927AbjAEEoQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 23:44:16 -0500
+Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7189042617;
+        Wed,  4 Jan 2023 20:44:02 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id B287E3FB17;
+        Thu,  5 Jan 2023 04:43:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
+        t=1672893840; bh=DJFwNUoKB/UR71s75mzuMGeNsfe9rog8IsGcCazIn0s=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To;
+        b=Hg3L7LNtuu+NUhRLVJ1RsE1pg5d1trRhwcI9TNMjpYeAYGE09jrE4aM6ev/6H7hWF
+         tR/YtI8q0N77OvjKGREUfiR4MzeYWzLUfW8tNqpu+kEnM2bjkKDGDJ2FU/dt2fTDab
+         KDq5SvZDAP+NWKXSNQgtHecvp1/yZ7LBQSeaICQLCJzy+N2TS59lhuJIb135hF+4Sx
+         GOeKYptu8Rz+yciSmqqC3Jrhg/7Iv2Njqp+H2bgD+wOxSr3PF0tN0s+EzVaMBLs3KF
+         vqgoDQmyPwhDDPmXWgfkBbNV0hfCXc9yUcDhzCiGzmG4S7HVuM+tMbiPA6kgQ/ZtWZ
+         s2U+Vme/xBL4g==
+Message-ID: <3af091e9-09b4-53a0-da2d-5b2640040b9d@marcan.st>
+Date:   Thu, 5 Jan 2023 13:43:54 +0900
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="VhJvQuLYVzKp0V6O"
-Content-Disposition: inline
-In-Reply-To: <20221230135030.17002-1-bagasdotme@gmail.com>
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 3/7] iommu: dart: Support >64 stream IDs
+Content-Language: en-US
+To:     Sven Peter <sven@svenpeter.dev>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>
+Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Janne Grunau <j@jannau.net>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, iommu@lists.linux.dev,
+        asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20230104110013.24738-1-marcan@marcan.st>
+ <20230104110013.24738-4-marcan@marcan.st>
+ <71bffbd4-f8b0-4201-b2eb-7a15847ac2c6@app.fastmail.com>
+From:   Hector Martin <marcan@marcan.st>
+In-Reply-To: <71bffbd4-f8b0-4201-b2eb-7a15847ac2c6@app.fastmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2023/01/04 22:37, Sven Peter wrote:
+>>  #include "dma-iommu.h"
+>>
+>> -#define DART_MAX_STREAMS 16
+>> +#define DART_MAX_STREAMS 256
+> 
+> Feels a bit wasteful to allocate 256-wide sid2group and save_{tcr,ttbr}
+> arrays even for the M1 where 16 are enough. But then again, that's still <100 KiB
+> for all DARTs combined and these machine have >8 GiB of RAM so it probably won't
+> make a difference
 
---VhJvQuLYVzKp0V6O
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Yeah, I don't think this is worth the extra fumbling around with dynamic
+allocation.
 
-On Fri, Dec 30, 2022 at 08:50:29PM +0700, Bagas Sanjaya wrote:
-> The DCC (Data Capture and Compare) patchset was sent and partially
-> merged [1] without Cc'ing linux-doc list for documentation review.
-> kernel test robot [2] noted htmldocs warnings as a result, which is fixed
-> in [1/2]. Later, when inspecting the sysfs description, the wording
-> could have been improved ([2/2]). So here is the improv series.
->=20
-> [1]: https://lore.kernel.org/lkml/cover.1672148732.git.quic_schowdhu@quic=
-inc.com/
-> [2]: https://lore.kernel.org/linux-doc/202212300426.eMLsZsvA-lkp@intel.co=
-m/
->=20
-> Bagas Sanjaya (2):
->   soc: qcom: dcc: Fix examples list on
->     /sys/kernel/debug/dcc/.../[list-number]/config documentation
->   soc: qcom: dcc: rewrite description of dcc sysfs files
->=20
->  Documentation/ABI/testing/debugfs-driver-dcc | 163 +++++++++++--------
->  1 file changed, 96 insertions(+), 67 deletions(-)
->=20
->=20
-> base-commit: f02a537357a61e7892587c0f3455f8295cc9075c
+>>  	/* enable all streams globally since TCR is used to control isolation */
+>> -	writel(DART_STREAM_ALL, dart->regs + DART_STREAMS_ENABLE);
+>> +	for (i = 0; i < BITS_TO_U32(dart->num_streams); i++)
+>> +		writel(U32_MAX, dart->regs + DART_STREAMS_ENABLE);
+> 
+> This seems weird: this code writes U32_MAX to the same register
+> again and again. 
 
-Ping?
+Whoops, that was supposed to have a `+ 4 * i` in there. Fixed for v2.
 
-I think Stephen Rothwell still not happy today [1].
-
-[1]: https://lore.kernel.org/lkml/20230105141326.5e339f2b@canb.auug.org.au/
-
---=20
-An old man doll... just what I always wanted! - Clara
-
---VhJvQuLYVzKp0V6O
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEARYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCY7ZFBgAKCRD2uYlJVVFO
-o5itAQCRTmH7oRjKKEAKB8R6M2i6hiLB5E55KqtfFqlCqc8D+wD/WihWoxNi8LBK
-jw/a7Qi1mhbCrswfaJ1OOgkxxKK8dQE=
-=qa2K
------END PGP SIGNATURE-----
-
---VhJvQuLYVzKp0V6O--
+- Hector
