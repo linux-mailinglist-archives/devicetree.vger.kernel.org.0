@@ -2,99 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EA6665E12F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 00:59:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E6E965E16C
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 01:23:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235178AbjADX7S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Jan 2023 18:59:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48386 "EHLO
+        id S234381AbjAEAWr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Jan 2023 19:22:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235147AbjADX7R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 18:59:17 -0500
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82F2D43187;
-        Wed,  4 Jan 2023 15:59:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1672876756; x=1704412756;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=VUK+FoZ6RLONfaaQgaXBjEu8hvOPd1NckTmUOM0ZCK4=;
-  b=GA9SwVHGhZRxPF49jBy4upurVhnBeWxZzuaAnycg4xNy5/cYKNjvrdbh
-   JF+i3yF5vzTfnc6ZNPKd1sDmvdV02YmG9UXKJpY8SXyse90o5qaOnywmE
-   s8kU/32/FZGmAblTSL3spDRIHXqB5I2VSqM4au+wi0sna8tefTOFaICsB
-   3IE+61rwbf+gYhwz6meK8oFE2i+SFV6+fvxJj4ZbsVOtgrrESH0U9e8l7
-   UfgHcKGawSgtLShfFuFj6r3pv9tLvJqqU82FfuCAP6qDKJsc/B10n/TX9
-   VJRvZRR0qXfmvSOXF9JClF+a1as2Zq/+hDBzSQtX5z0Sf0TCNFTk7/X1y
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10580"; a="323306091"
-X-IronPort-AV: E=Sophos;i="5.96,301,1665471600"; 
-   d="scan'208";a="323306091"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jan 2023 15:58:52 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10580"; a="900745364"
-X-IronPort-AV: E=Sophos;i="5.96,301,1665471600"; 
-   d="scan'208";a="900745364"
-Received: from kvthalli-mobl1.amr.corp.intel.com (HELO [10.212.102.90]) ([10.212.102.90])
-  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jan 2023 15:58:50 -0800
-Message-ID: <07443b54-2973-7990-e749-66dd7fb4e499@linux.intel.com>
-Date:   Wed, 4 Jan 2023 17:51:19 -0600
+        with ESMTP id S235303AbjAEAWp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Jan 2023 19:22:45 -0500
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14D7E43A32
+        for <devicetree@vger.kernel.org>; Wed,  4 Jan 2023 16:22:44 -0800 (PST)
+Received: by mail-pl1-x631.google.com with SMTP id y1so2266323plb.2
+        for <devicetree@vger.kernel.org>; Wed, 04 Jan 2023 16:22:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=3c8RG9ethTAlzypVak+6wGrVNQqJ7cf9gqZQVweD01g=;
+        b=aNrnNQVzQ5PTmpvCFejqhQvblS1+kHYmgrqGQWdfeMHg0dZcTRtVXdpTbJ8yOwalk1
+         ftOuie+k0s++f7kBswj7xbDMopy5jeN03dXlnMpMYq6oveUPOr8kTe6/Fl1XodMqjDme
+         XzVmIY/g7DMfSWGFg7c7DcjUI4dNAcEa359lzRklSAGF0cnLGA8gRR6PNFlnjL62K0LB
+         /KOreZefwyiAH4jI9Stl6Oa8tqlPVG9pwMYYeztAKhjrqCBqxmtt+pgKYm8fX16SSiQM
+         vqYCVWgR6F9pYByawFQB3IUNLxHgGEyqTN91fi621FmCqLeiwvZo0tixHv5Skk+Vhy4T
+         Q+6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3c8RG9ethTAlzypVak+6wGrVNQqJ7cf9gqZQVweD01g=;
+        b=c9MQCkObIg9APV7YHyufYqEq4faEuiqzZoVbFJc6k/qrM/amlqING6mqONQ5UB/siL
+         46qV82Eo61VSZXXRtJfyVTan98w983UW67FhZlJBHfi90ElwixwAk1HXTzekdNrKFvVM
+         JWFGZfxUSj5YZlh8q1c3RF1stgn1di+IO6sbu3IX4N9jvv0WxAj45rBi8LnlfdbV0L0t
+         0CRHnXH9WHs80DTZM6HMessa8/X4HaQM/HeZcPerA/Cala/LkefZDPsCYvBR8dMHT7pp
+         fJPh6ukOlf6tZg5ROSQ5IWeGtKsE0OHp54eLnX2BlSII3KsigD/OrBIiF7X8F0Z6TFpE
+         fVJw==
+X-Gm-Message-State: AFqh2kqtGzGGSn+x6hhCFyQzUnufBmkPWggObCkPtDddJHwrsiPvM5TD
+        JXWRwYApyfr4ev41hjJWgbth1/qHP3QDAYwj
+X-Google-Smtp-Source: AMrXdXs0y5+HF3RRYVT+Wm6ldNHIW8HJptsLBJHGReFTQDlrLQMB5hqXUUPZkYOPOAWIykMs5fA8fA==
+X-Received: by 2002:a05:6a20:5487:b0:ad:b4a5:8d2f with SMTP id i7-20020a056a20548700b000adb4a58d2fmr77215137pzk.42.1672878163547;
+        Wed, 04 Jan 2023 16:22:43 -0800 (PST)
+Received: from p14s ([2604:3d09:148c:c800:1328:ca09:d4c2:fcbc])
+        by smtp.gmail.com with ESMTPSA id y4-20020a655b44000000b0047899d0d62csm20920486pgr.52.2023.01.04.16.22.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Jan 2023 16:22:43 -0800 (PST)
+Date:   Wed, 4 Jan 2023 17:22:40 -0700
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     MD Danish Anwar <danishanwar@ti.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Suman Anna <s-anna@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        "Andrew F . Davis" <afd@ti.com>, nm@ti.com, vigneshr@ti.com,
+        srk@ti.com, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v12 2/6] remoteproc: pru: Add enum for PRU Core
+ Identifiers.
+Message-ID: <20230105002240.GE2112402@p14s>
+References: <20221216053313.2974826-1-danishanwar@ti.com>
+ <20221216053313.2974826-3-danishanwar@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.4.2
-Subject: Re: [RFC PATCH 09/14] sound: usb: Introduce QC USB SND offloading
- support
-Content-Language: en-US
-To:     Wesley Cheng <quic_wcheng@quicinc.com>,
-        srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
-        perex@perex.cz, broonie@kernel.org, lgirdwood@gmail.com,
-        andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        gregkh@linuxfoundation.org, Thinh.Nguyen@synopsys.com,
-        bgoswami@quicinc.com, tiwai@suse.com, robh+dt@kernel.org,
-        agross@kernel.org
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_jackp@quicinc.com,
-        quic_plai@quicinc.com
-References: <20221223233200.26089-1-quic_wcheng@quicinc.com>
- <20221223233200.26089-10-quic_wcheng@quicinc.com>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-In-Reply-To: <20221223233200.26089-10-quic_wcheng@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221216053313.2974826-3-danishanwar@ti.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 12/23/22 17:31, Wesley Cheng wrote:
-> Several Qualcomm SoCs have a dedicated audio DSP, which has the ability to
-> support USB sound devices.  This vendor driver will implement the required
-> handshaking with the DSP, in order to pass along required resources that
-> will be utilized by the DSP's USB SW.  The communication channel used for
-> this handshaking will be using the QMI protocol.  Required resources
-> include:
-> - Allocated secondary event ring address
-> - EP transfer ring address
-> - Interrupter number
+On Fri, Dec 16, 2022 at 11:03:09AM +0530, MD Danish Anwar wrote:
+> Introducing enum pruss_pru_id for PRU Core Identifiers.
+> PRUSS_PRU0 indicates PRU Core 0.
+> PRUSS_PRU1 indicates PRU Core 1.
+> PRUSS_NUM_PRUS indicates the total number of PRU Cores.
 > 
-> The above information will allow for the audio DSP to execute USB transfers
-> over the USB bus.  It will also be able to support devices that have an
-> implicit feedback and sync endpoint as well.  Offloading these data
-> transfers will allow the main/applications processor to enter lower CPU
-> power modes, and sustain a longer duration in those modes.
+> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+> Reviewed-by: Roger Quadros <rogerq@kernel.org>
+> ---
+>  drivers/remoteproc/pru_rproc.c |  7 ++++---
+>  include/linux/pruss.h          | 32 ++++++++++++++++++++++++++++++++
+>  2 files changed, 36 insertions(+), 3 deletions(-)
+>  create mode 100644 include/linux/pruss.h
+> 
+> diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
+> index 128bf9912f2c..a1a208b31846 100644
+> --- a/drivers/remoteproc/pru_rproc.c
+> +++ b/drivers/remoteproc/pru_rproc.c
+> @@ -16,6 +16,7 @@
+>  #include <linux/module.h>
+>  #include <linux/of_device.h>
+>  #include <linux/of_irq.h>
+> +#include <linux/pruss.h>
+>  #include <linux/pruss_driver.h>
+>  #include <linux/remoteproc.h>
+>  
+> @@ -438,7 +439,7 @@ static void *pru_d_da_to_va(struct pru_rproc *pru, u32 da, size_t len)
+>  	dram0 = pruss->mem_regions[PRUSS_MEM_DRAM0];
+>  	dram1 = pruss->mem_regions[PRUSS_MEM_DRAM1];
+>  	/* PRU1 has its local RAM addresses reversed */
+> -	if (pru->id == 1)
+> +	if (pru->id == PRUSS_PRU1)
+>  		swap(dram0, dram1);
+>  	shrd_ram = pruss->mem_regions[PRUSS_MEM_SHRD_RAM2];
+>  
+> @@ -747,14 +748,14 @@ static int pru_rproc_set_id(struct pru_rproc *pru)
+>  	case RTU0_IRAM_ADDR_MASK:
+>  		fallthrough;
+>  	case PRU0_IRAM_ADDR_MASK:
+> -		pru->id = 0;
+> +		pru->id = PRUSS_PRU0;
+>  		break;
+>  	case TX_PRU1_IRAM_ADDR_MASK:
+>  		fallthrough;
+>  	case RTU1_IRAM_ADDR_MASK:
+>  		fallthrough;
+>  	case PRU1_IRAM_ADDR_MASK:
+> -		pru->id = 1;
+> +		pru->id = PRUSS_PRU1;
+>  		break;
+>  	default:
+>  		ret = -EINVAL;
+> diff --git a/include/linux/pruss.h b/include/linux/pruss.h
+> new file mode 100644
+> index 000000000000..fbe4fbb45807
+> --- /dev/null
+> +++ b/include/linux/pruss.h
+> @@ -0,0 +1,32 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/**
+> + * PRU-ICSS Subsystem user interfaces
+> + *
+> + * Copyright (C) 2015-2022 Texas Instruments Incorporated - http://www.ti.com
+> + *	Suman Anna <s-anna@ti.com>
+> + */
+> +
+> +#ifndef __LINUX_PRUSS_H
+> +#define __LINUX_PRUSS_H
+> +
+> +#include <linux/device.h>
+> +#include <linux/types.h>
+> +
+> +#define PRU_RPROC_DRVNAME "pru-rproc"
+> +
+> +/**
+> + * enum pruss_pru_id - PRU core identifiers
+> + * @PRUSS_PRU0: PRU Core 0.
+> + * @PRUSS_PRU1: PRU Core 1.
+> + * @PRUSS_NUM_PRUS: Total number of PRU Cores available.
+> + *
+> + */
+> +
+> +enum pruss_pru_id {
+> +	PRUSS_PRU0 = 0,
+> +	PRUSS_PRU1,
+> +	PRUSS_NUM_PRUS,
+> +};
+> +
+> +
+> +#endif /* __LINUX_PRUSS_H */
+> \ No newline at end of file
 
-Are you suggesting that the entire feedback loop be handled in the DSP?
-It's not clear what "Offloading these data transfers" refers to, the
-data part or the feedback path?
+I fixed the checkpatch warning associated with this patch but it has a cascading
+effect on the other patches.  Please address and send a new revision.  Aside
+from this I am good with this patchset.
 
-Comments are almost inexistent in this patch so it's hard to figure out
-what it really does.
+Thanks,
+Mathieu
 
+> -- 
+> 2.25.1
+> 
