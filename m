@@ -2,142 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E81265E752
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 10:07:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 21DA165E783
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 10:17:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231952AbjAEJGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 04:06:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55492 "EHLO
+        id S231989AbjAEJRe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 04:17:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232076AbjAEJGM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 04:06:12 -0500
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2045.outbound.protection.outlook.com [40.107.223.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 690BD50E5C;
-        Thu,  5 Jan 2023 01:05:43 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KkI/Iq3QBeHbBfRioXvcxibUnyA6iRtZK7CFUZaNKBANFDFwsUyBO0HPAxUDLKowXUcDzrjoA0DdEOo+Mqmsa3MBfpPlad5KGpykTKTUG9jL7hjFtydyG19kLDP6IJfnwnkYsH0qFdSNZAcfsKGGpEgLlEsig6ibHpl4bAACiCGJSZVuXk6lcIs+a9E9SC6erJdJD+mxMeiBVzWxbP9MpuSziAUiBngj3xcNi3FFLRkUEh7q2LnxENPdy6mv3uNlmyQCt6gG1xOnx8RNVHB0mfi2U5Mt3/I51qBHS4eGwz/w+y5iRdkgQytDLHJyL7KR60zWgSxL2d2qHUrnUoyW6g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WYX01oCXfFjmYXLCPr4po7FiWj3LZ2pBIW4IsyHemQo=;
- b=L5gac23yl0gneH4wcoUxvYe5N+bL35m6T+aI+QaNASlsYiSSXl97kt1EkIhj4uzCG43dz90KNpnIpmV1IQjAjAp/HoLdQozIhKdOs8cZ3MjEWW0pUpISb8nJszMScgCqHJvoYcm5s/r7J3Ca2hETDF0xoVkE5bpiXOcASHP1PlfWWZmdiK1xzEoe8nUj5u5AN7mw9jxrl8kFLgo3pNwq8DilNomILkVyt/Nax8IG/bZKoI7vsLfyXLXYRnoPs30LRDFdiVcG0nztOvElDPlP1G9Zx+7T/nxsjonWF3z7hZ0lgODqb6I6f+V/HQWgKREelA2EeFO29zXM3ufm4A49uA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WYX01oCXfFjmYXLCPr4po7FiWj3LZ2pBIW4IsyHemQo=;
- b=QagHeTFq4iqEZQUIQOJID6nWKXykqHwdY9eqqM56lSpVlKYLvEZrF5QT5w6xkJ6wDL+EB1nyDW21L8YS7pAAiBrwdG0dSmGVSsKAwQzwOEqHft6UEjLS/c77SpM7SgmZhHn9XDUlk+intrkD5z4KEo4677uzQvg4z5SH7iMwH6s=
-Received: from BN8PR15CA0054.namprd15.prod.outlook.com (2603:10b6:408:80::31)
- by DS0PR12MB8574.namprd12.prod.outlook.com (2603:10b6:8:166::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.19; Thu, 5 Jan
- 2023 09:05:40 +0000
-Received: from BL02EPF00010208.namprd05.prod.outlook.com
- (2603:10b6:408:80:cafe::22) by BN8PR15CA0054.outlook.office365.com
- (2603:10b6:408:80::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.15 via Frontend
- Transport; Thu, 5 Jan 2023 09:05:40 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL02EPF00010208.mail.protection.outlook.com (10.167.241.199) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5944.8 via Frontend Transport; Thu, 5 Jan 2023 09:05:40 +0000
-Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 5 Jan
- 2023 03:05:39 -0600
-From:   Michal Simek <michal.simek@amd.com>
-To:     <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-        <michal.simek@xilinx.com>, <git@xilinx.com>
-CC:     Harini Katakam <harini.katakam@amd.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v2] ARM: dts: zynq: Add xlnx prefix to GEM compatible string
-Date:   Thu, 5 Jan 2023 10:05:36 +0100
-Message-ID: <7768d5d68fe38dd8e9300e9c6e09c228e79b2862.1672909533.git.michal.simek@amd.com>
-X-Mailer: git-send-email 2.36.1
+        with ESMTP id S231403AbjAEJRb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 04:17:31 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51DCE544D2
+        for <devicetree@vger.kernel.org>; Thu,  5 Jan 2023 01:17:29 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id w1so23359554wrt.8
+        for <devicetree@vger.kernel.org>; Thu, 05 Jan 2023 01:17:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:content-language
+         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=pq3ejuzBjCDJdHLBnefjQA1cSMGJU3lpvGousig3Qm4=;
+        b=n7Mj3heVFeFgnm409WAdct2hWXOXoVgcy4BtrIqudbYirOWeWNImfDZxC/YvGM4nYC
+         0fjS9QSgDvmUTBANDuZ9HB/okAgRZghzDoSQIQGsLiBiLsORLCgObB1GBxTQOg4E1A5E
+         X96TogwMkwyYa4j6+GkRAJEfm/m1IdE0VBW5KRv7R6sjI0oh3ebJwFKZ3xcG0QPR7Aps
+         z33xiRqsive6Lg52cj+XzNqSdMmSio9TRGHSjvHkqymx5dRH3YCo1dwL9SN+ZxDT7Xwy
+         Njl7XPKhakIlG6QQXsFRR3+zbOBaEtcdVEafTpHxY5T7k5rpBsAbJUu6/xUMdOgD6FNF
+         ptvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:content-language
+         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pq3ejuzBjCDJdHLBnefjQA1cSMGJU3lpvGousig3Qm4=;
+        b=i1JFja+nbKT7QMbynvZBHW0Y+kfTm9Y33m39beIcx5I+T8ZHu6TLtF0DYpgV4A7EO6
+         u/oZYaDMn9GFXc7COJLOyZ01a0h5oPcblYc7XlGMBXtFsxIbpOyrbQYvUtj3zMpJIs1s
+         aYLs0zxN9gEWmPYAm5SaOe3hAZLaIwxbZ25sD3QJNiDdaR8kV2yLEcHuaAideI1BGwoH
+         j/zIjfEgtpPNZH9rbgqjVWQdwT0d3jCtfNlSCP1Y9GNcYdVtU6vAzcuo9JA6cJLzte6K
+         z7A0Wl2azqozPNmPhvKriTC/LLVHCOBfxhQ21M8nMKkE+WO4Wp3N9cqeHzPmmtTVumIu
+         XYhg==
+X-Gm-Message-State: AFqh2kpRAduBZ5aX6bYFfeI5ufAvkswzBPwRaF8M2tDgG8wHQOlqiQgW
+        fkwRxkt0iWGZYIOOYujOHhvbhA==
+X-Google-Smtp-Source: AMrXdXstMyW0DgS/z6kXcwU9LPSEpxdk+xtC0acQsk8RCCbVghUBwX0j9ppX/MquETlN1KbOsSGxBw==
+X-Received: by 2002:a05:6000:1f14:b0:242:5a34:fb7b with SMTP id bv20-20020a0560001f1400b002425a34fb7bmr31715300wrb.70.1672910247816;
+        Thu, 05 Jan 2023 01:17:27 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:1e12:c16d:1898:607c? ([2a01:e0a:982:cbb0:1e12:c16d:1898:607c])
+        by smtp.gmail.com with ESMTPSA id m11-20020a5d56cb000000b0028d66c43101sm18463067wrw.29.2023.01.05.01.17.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Jan 2023 01:17:27 -0800 (PST)
+Message-ID: <2d90fb92-45ac-7311-ef27-ce82c6b891a4@linaro.org>
+Date:   Thu, 5 Jan 2023 10:17:25 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 2/2] drm/panel: add visionox vtdr6130 DSI panel driver
+To:     Rayyan Ansari <rayyan@ansari.sh>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230103-topic-sm8550-upstream-vtdr6130-panel-v1-0-9b746b858378@linaro.org>
+ <20230103-topic-sm8550-upstream-vtdr6130-panel-v1-2-9b746b858378@linaro.org>
+ <8c8d0276-61a8-71d6-17b0-f6b384ab9d94@ansari.sh>
+Content-Language: en-US
+Organization: Linaro Developer Services
+In-Reply-To: <8c8d0276-61a8-71d6-17b0-f6b384ab9d94@ansari.sh>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF00010208:EE_|DS0PR12MB8574:EE_
-X-MS-Office365-Filtering-Correlation-Id: 045e951f-6584-4897-2c20-08daeefc04a5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: wkkXNEUtGpZo6fG7Prfqpis7eXr+NXO64Y2iiOgmskJeB3fnqP5KMxgnMMRmynjpUGoYSrgy0M3w85ZZaZe2UuWj7FtQoU8v7wuGitogR/WhgZCvO29jDV59equWzvjDkNnZkOFi00tpwSypaugK5/Zgc13J6M1MxMnvpen6x5lI4Qaz2PpUA0lAEVaa4O1fFWNVeLLWZLl0DsHi5ZU/R3kFvAE75321wrq9/N3RH99dsTTofwCrhT81HwqPtWmjdODCGf8fBQ0H+YoV9avtprxSvK8IdDUVDoBQ4NzDxwKikESmDrl3eBb0rFto1IEBArYEhAaFYgRV8aqCGxydGri0shc2AJkY31u2dY1tli9CpXhrB/aaie7ZoJ7tuXlNLOVuYFx0hDyfL+BBT8ANMSB7Fzb4oPpFcw6Y+06qJbQ1fPkO6jdEVGWNL0aHfxiIfo9Ju63unDViqIif7JGRGXcHEUg3HYfk5Ha4IRokrw/h7gspLXinlmOTl4sjE4mQf79hkbVJBfESO7KyJnnTtaXoLf/AqPv7VO5zEy3Fa2nSKzsOpSFTngZl+4x4PfxgLzygw6Yi6+48EwAJLqR8n6l3rkQIWMW+ayKtGof8RACYb/56IRIha6ms2mMeUOZrhZjUFdeGkQDVK/qvAWtFggar/Ae5QXCoXOLCHqGaggTCKOJuH3gpgSTjrBMouppmR+FiiOCG/SAI2yzQhNco3KzvrvG07Np1ofHYX72ynkXEICekxGUGTJGc9wu7f11b
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(396003)(39860400002)(346002)(376002)(136003)(451199015)(46966006)(36840700001)(40470700004)(4326008)(54906003)(8676002)(2906002)(8936002)(110136005)(70586007)(70206006)(5660300002)(316002)(478600001)(41300700001)(6666004)(44832011)(40460700003)(16526019)(26005)(186003)(82740400003)(81166007)(47076005)(426003)(2616005)(336012)(83380400001)(36756003)(82310400005)(356005)(40480700001)(36860700001)(86362001)(2101003)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jan 2023 09:05:40.2980
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 045e951f-6584-4897-2c20-08daeefc04a5
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF00010208.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8574
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Harini Katakam <harini.katakam@amd.com>
+Hi,
 
-cdns,zynq/zynqmp/versal-gem was recently deprecated in Linux in
-favour of xlnx prefix. Add this new compatible string and remove
-the existing cdns,zynq-gem compatible string.
+On 04/01/2023 19:25, Rayyan Ansari wrote:
+> Hello,
+> I am not a maintainer, but I thought I might give a few comments.
 
-Signed-off-by: Harini Katakam <harini.katakam@amd.com>
-Signed-off-by: Michal Simek <michal.simek@amd.com>
----
+Any comment is always welcome !
 
-Changes in v2:
-- Remove deprecated compatible string
-- Update commit message
+> 
+> On 03/01/2023 14:22, Neil Armstrong wrote:
+>> Add support for the 1080x2400 Visionox VTDR6130 AMOLED DSI panel
+>> found on the Qualcomm SM8550 MTP board.
+>>
+>> By default the the panel is configured to work with DSI compressed
+>> streams, but can work in uncompressed video mode since 1080x2400 in
+>> RGB888 fits in the 4 DSI lanes bandwidth.
+>>
+>> While display compression is preferred for performance and power
+>> reasons, let's start with the uncompressed video mode support and
+>> add the DSC support later on.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   drivers/gpu/drm/panel/Kconfig                   |   8 +
+>>   drivers/gpu/drm/panel/Makefile                  |   1 +
+>>   drivers/gpu/drm/panel/panel-visionox-vtdr6130.c | 366 ++++++++++++++++++++++++
+>>   3 files changed, 375 insertions(+)
+>>
 
- arch/arm/boot/dts/zynq-7000.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+<snip>
 
-diff --git a/arch/arm/boot/dts/zynq-7000.dtsi b/arch/arm/boot/dts/zynq-7000.dtsi
-index f221c60643e4..cd9931f6bcbd 100644
---- a/arch/arm/boot/dts/zynq-7000.dtsi
-+++ b/arch/arm/boot/dts/zynq-7000.dtsi
-@@ -243,7 +243,7 @@ qspi: spi@e000d000 {
- 		};
- 
- 		gem0: ethernet@e000b000 {
--			compatible = "cdns,zynq-gem", "cdns,gem";
-+			compatible = "xlnx,zynq-gem", "cdns,gem";
- 			reg = <0xe000b000 0x1000>;
- 			status = "disabled";
- 			interrupts = <0 22 4>;
-@@ -254,7 +254,7 @@ gem0: ethernet@e000b000 {
- 		};
- 
- 		gem1: ethernet@e000c000 {
--			compatible = "cdns,zynq-gem", "cdns,gem";
-+			compatible = "xlnx,zynq-gem", "cdns,gem";
- 			reg = <0xe000c000 0x1000>;
- 			status = "disabled";
- 			interrupts = <0 45 4>;
--- 
-2.36.1
+>> +
+>> +MODULE_AUTHOR("Neil Armstron <neil.armstrong@linaro.org>");
+> 
+> Missed a "g" here :-)
+> 
+>> +MODULE_DESCRIPTION("Panel driver for the visionox VTDR6130 AMOLED DSI panel");
+> 
+> I am not sure how the company capitalises the name, but to keep it consistent with the other mentions, I think it should be "Visionox".
+
+Thanks, I'll fix these.
+
+Neil
+
+> 
+>> +MODULE_LICENSE("GPL");
+>>
+> 
 
