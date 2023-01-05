@@ -2,106 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 563B865F287
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 18:22:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE8B565F2A2
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 18:28:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234837AbjAERVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 12:21:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38076 "EHLO
+        id S233993AbjAER2F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 12:28:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235388AbjAERVN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 12:21:13 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43DCE564FA
-        for <devicetree@vger.kernel.org>; Thu,  5 Jan 2023 09:15:03 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id az7so12390652wrb.5
-        for <devicetree@vger.kernel.org>; Thu, 05 Jan 2023 09:15:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=n67EXi2DxaUGQNZldfWmP0oWklEr+2h12NuoITaK4oU=;
-        b=cb1noHtTwXSIqdkVBnBjmTZevi5eDykk8T/dYtaP34aWWZL8bTKkTFuyeu/NNILXUL
-         Gbw+yQks87nGpVDsvAdwOkXCWIg7XBFQCXPNnmxrplfmDkXQ355dUic3QRI/myCZwsfG
-         aVwSS7zWfLGRE0NZPWUJ9loDsT06jbOIOvylwAyey1TtPHyZl9Po/8FSjcp54N5Gbzie
-         5UCz+KYr6/xpypjJAvlsPysK5E3cOt9+KSBNx/YM3B8lfwl8CmQaxgj7E/gP241O1CdT
-         85S5PjeAMkDCMu2Mo434zJL+SMxZEuEY3oNZ+mtCc85H+7BJncKNAVynEmAdP+pTdpnU
-         xqkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=n67EXi2DxaUGQNZldfWmP0oWklEr+2h12NuoITaK4oU=;
-        b=O8xLeYLZHULrBgi4GgO5y2Fsye3MBllPSG2JOGYueomCjAX/Y662x1gbfX/TerDv/k
-         xslN7oh5TrRSDziEr9EFr+f0jPEYC5f4keDLlaHfMb3x/spPwwnO8MC6GODV6jxdO5Em
-         Qe/QRGVLFNh5WZBZxtrk546NK+7HXbfmIkBmQzmTQK8LMmQnMDorUUdbgS3ggSarOi0J
-         ppLoQwTpAoT1cAT73D/3SA0hiShkgCN8DCjizI1PgG6PNt32Ok4aVUFnTN4yV7SsKWDO
-         fj73WeaKkkTug5ouvAuiyru4D8ilTX6bJvMUgik8DB40i3icUv6Lv0UhPvrELRACIObX
-         J4bw==
-X-Gm-Message-State: AFqh2kqtLQLeWDcwq4uEeuG2bPvw/4i9RbaHy7JBXKjmtd1UYq5CkUJR
-        toVeE34bSl/lxJSHD1Wjz0hk7w==
-X-Google-Smtp-Source: AMrXdXuouVOmirnUjwp/feXQB4gD8Wc+b4LA3daJwE59+sjXkRBitK3Z9i5WC/PcnRWTG+dQyEK1gA==
-X-Received: by 2002:a5d:5312:0:b0:297:bdaa:c8b8 with SMTP id e18-20020a5d5312000000b00297bdaac8b8mr10222823wrv.23.1672938901848;
-        Thu, 05 Jan 2023 09:15:01 -0800 (PST)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id q15-20020adff78f000000b00291f1a5ced6sm16243607wrp.53.2023.01.05.09.15.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Jan 2023 09:15:01 -0800 (PST)
-Message-ID: <81d01cab-02ce-00fd-f9fb-225f1547d3fb@linaro.org>
-Date:   Thu, 5 Jan 2023 17:14:59 +0000
+        with ESMTP id S235257AbjAER1k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 12:27:40 -0500
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B125A671A6;
+        Thu,  5 Jan 2023 09:23:33 -0800 (PST)
+Received: (Authenticated sender: jacopo@jmondi.org)
+        by mail.gandi.net (Postfix) with ESMTPSA id 2AE7C1C0008;
+        Thu,  5 Jan 2023 17:23:29 +0000 (UTC)
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Nicholas Roth <nicholas@rothemail.net>,
+        Robert Mader <robert.mader@collabora.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: media: Add schema for OmniVision OV8858
+Date:   Thu,  5 Jan 2023 18:23:19 +0100
+Message-Id: <20230105172320.133810-2-jacopo@jmondi.org>
+X-Mailer: git-send-email 2.38.1
+In-Reply-To: <20230105172320.133810-1-jacopo@jmondi.org>
+References: <20230105172320.133810-1-jacopo@jmondi.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 1/2][next] nvmem: layouts: Fix spelling mistake "platforn"
- -> "platform"
-Content-Language: en-US
-To:     Colin Ian King <colin.i.king@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Cc:     kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230105095828.2951-1-colin.i.king@gmail.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20230105095828.2951-1-colin.i.king@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 
+Add binding schema for the OmniVision OV8858 8 Megapixels camera sensor.
 
-On 05/01/2023 09:58, Colin Ian King wrote:
-> There is a spelling mistake in the literal string. Fix it.
-> 
-> Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
-> ---
+Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+---
+ .../bindings/media/i2c/ovti,ov8858.yaml       | 109 ++++++++++++++++++
+ 1 file changed, 109 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
 
-Applied thanks,
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
+new file mode 100644
+index 000000000000..f6d5cf69234c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
+@@ -0,0 +1,109 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/ovti,ov8858.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: OmniVision OV8858 Image Sensor
++
++maintainers:
++  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
++  - Nicholas Roth <nicholas@rothemail.net>
++
++description: |
++  The OmniVision OV8858 is a color CMOS 8 Megapixles (3264x2448) image sensor
++  controlled through an I2C-compatible SCCB bus. The sensor transmits images
++  on a MIPI CSI-2 output interface with up to 4 data lanes.
++
++properties:
++  compatible:
++    const: ovti,ov8858
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++    description: XVCLK external clock
++
++  clock-names:
++    const: xvclk
++
++  dvdd-supply:
++    description: Digital Domain Power Supply
++
++  avdd-supply:
++    description: Analog Domain Power Supply
++
++  dovdd-supply:
++    description: I/O Domain Power Supply
++
++  powerdown-gpios:
++    maxItems: 1
++    description: PWDNB powerdown GPIO (active low)
++
++  reset-gpios:
++    maxItems: 1
++    description: XSHUTDN reset GPIO (active low)
++
++  port:
++    description: MIPI CSI-2 transmitter port
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          data-lanes:
++            minItems: 1
++            maxItems: 4
++
++        required:
++          - data-lanes
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - assigned-clocks
++  - assigned-clock-rates
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/pinctrl/rockchip.h>
++    #include <dt-bindings/clock/rk3399-cru.h>
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c2 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        ov8858: camera@36 {
++            compatible = "ovti,ov8858";
++            reg = <0x36>;
++
++            clocks = <&cru SCLK_CIF_OUT>;
++            clock-names = "xvclk";
++            assigned-clocks = <&cru SCLK_CIF_OUT>;
++            assigned-clock-rates = <24000000>;
++
++            dovdd-supply = <&vcc1v8_dvp>;
++
++            reset-gpios = <&gpio1 RK_PA4 GPIO_ACTIVE_LOW>;
++            powerdown-gpios = <&gpio2 RK_PB4 GPIO_ACTIVE_LOW>;
++
++            port {
++                ucam_out: endpoint {
++                    remote-endpoint = <&mipi_in_ucam>;
++                    data-lanes = <1 2 3 4>;
++                };
++            };
++        };
++    };
++...
+--
+2.38.1
 
---srini
->   drivers/nvmem/layouts/onie-tlv.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/nvmem/layouts/onie-tlv.c b/drivers/nvmem/layouts/onie-tlv.c
-> index 074c7c700845..767f39fff717 100644
-> --- a/drivers/nvmem/layouts/onie-tlv.c
-> +++ b/drivers/nvmem/layouts/onie-tlv.c
-> @@ -48,7 +48,7 @@ static const char *onie_tlv_cell_name(u8 type)
->   	case 0x27:
->   		return "label-revision";
->   	case 0x28:
-> -		return "platforn-name";
-> +		return "platform-name";
->   	case 0x29:
->   		return "onie-version";
->   	case 0x2A:
