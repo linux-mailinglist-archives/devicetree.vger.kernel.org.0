@@ -2,109 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D0AB65EE2A
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 15:03:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73F2965EE2B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 15:03:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234339AbjAEOCu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 09:02:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48272 "EHLO
+        id S233921AbjAEODT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 09:03:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234509AbjAEOCH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 09:02:07 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF9A359300
-        for <devicetree@vger.kernel.org>; Thu,  5 Jan 2023 06:02:06 -0800 (PST)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        with ESMTP id S234662AbjAEOC3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 09:02:29 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48D754F105
+        for <devicetree@vger.kernel.org>; Thu,  5 Jan 2023 06:02:21 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
         (No client certificate requested)
         (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 81CC6855AE;
-        Thu,  5 Jan 2023 15:02:04 +0100 (CET)
+        by phobos.denx.de (Postfix) with ESMTPSA id 691EC855A5;
+        Thu,  5 Jan 2023 15:02:19 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1672927325;
-        bh=twfzxVBcc6S4Y0e7XAFNZSxsY5ovk+83entV7p5ljsw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=IFmrzK+vVOv7YNfVw6byWTPZouPi7Oa/yCc7O/uAp/QZCjtE1bQtMb1EL6VVmSfTz
-         2Af3cqgX8cmSYKj0LF7BOnkPDCRkNU/bRICz+TsDvcHc3F4EzpaVJ2NHkzG++ixMFG
-         mjotKnuTURKfVpmPjzxdFSNcaMEqFad3sMO2k0UA0m3ZA8tLS8vupFXpeFcdBOHZdq
-         TIhM/uNaVqP2NTDDV5ugSPpzk+v9rhMJmgrsMkDNgm0+0AJ0tX8cHIGY6kJpFRDsEl
-         gzvMv02DddsVBGtOD3jCDrohaYoU6OfTWO60Uu9Ttx0nnLo9zUCFuy2DyBoBF8L98D
-         SyBUkxP8VCW1w==
-From:   Marek Vasut <marex@denx.de>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marek Vasut <marex@denx.de>,
+        s=phobos-20191101; t=1672927340;
+        bh=V/IhrgaUa9uwFeYhTSoAN4pQhwIM2yux67Zq6ua6BzE=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=g9RFHLApEF+bZ+jfknDpI+2xBmVyf9GjWmcwZ6QKJRtaScZbbken1seaTq1K+2/xN
+         vaXAFT6x7itkzNKZ1+3BrM4sm8kPBqXrFFzpIE4qip3BeTH2YW5in9r0TlRS39FN3E
+         Qr0sPIU9Nbes3HiE+gA0mcmKzIEk3qHZDhhdijw0t9HtURG8ufaxShYgklr6NSDH8f
+         3WcRAWEmO5kkYD2ie64i5IKoDGjqDYWgExgeerzN1UDa014xze8ndthIeC0PnNEPmQ
+         lmlGzspQ4mDdR61Pmgtji0mnLDvXGw7k19b5HPdVp08k7VknYrwaRgqYd99BfPkYi1
+         kY63cjAs6E50w==
+Message-ID: <ec11e3d0-2e25-c26f-f424-c9f9c2603f59@denx.de>
+Date:   Thu, 5 Jan 2023 15:02:18 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v2 3/4] dt-bindings: arm: Split i.MX8M Plus DHCOM based
+ boards
+Content-Language: en-US
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
         Fabio Estevam <festevam@denx.de>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v3 4/4] dt-bindings: arm: Move i.MX8MM Cloos PHG Board to TQM entry
-Date:   Thu,  5 Jan 2023 15:01:35 +0100
-Message-Id: <20230105140135.150502-4-marex@denx.de>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230105140135.150502-1-marex@denx.de>
-References: <20230105140135.150502-1-marex@denx.de>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        NXP Linux Team <linux-imx@nxp.com>, kernel@dh-electronics.com
+References: <20221216210244.591865-1-marex@denx.de>
+ <20221216210244.591865-3-marex@denx.de> <20230101032840.GR6112@T480>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <20230101032840.GR6112@T480>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
 X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The i.MX8MM Cloos PHG Board is based on TQ-Systems GmbH i.MX8MM TQMa8MQML SOM,
-which results in compatible string in the form:
-"vendor,custom-board", "tqm,som", "fsl,soc"
-Move the binding entry so this triplet can be matched on.
+On 1/1/23 04:28, Shawn Guo wrote:
+> On Fri, Dec 16, 2022 at 10:02:43PM +0100, Marek Vasut wrote:
+>> The i.MX8M Plus DHCOM based boards have compatible string in the form:
+>> "vendor,custom-board", "dh,som", "fsl,soc"
+>> or
+>> "dh,carrier-board", "dh,som", "fsl,soc"
+>> Split the binding entry so this triplet can be matched on.
+>>
+>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Signed-off-by: Marek Vasut <marex@denx.de>
+> 
+> It doesn't apply to my imx/bindings branch.  Could you rebase and resend
+> the series?
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Fabio Estevam <festevam@denx.de>
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Fabio Estevam <festevam@denx.de>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Peng Fan <peng.fan@nxp.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: devicetree@vger.kernel.org
-To: linux-arm-kernel@lists.infradead.org
----
-V2: - Add AB from Krzysztof
-V3: - Rebase on shawn/imx/bindings
----
- Documentation/devicetree/bindings/arm/fsl.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 7808eceb99063..96efb9e8cdbb0 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -815,7 +815,6 @@ properties:
-           - enum:
-               - beacon,imx8mm-beacon-kit  # i.MX8MM Beacon Development Kit
-               - boundary,imx8mm-nitrogen8mm  # i.MX8MM Nitrogen Board
--              - cloos,imx8mm-phg          # i.MX8MM Cloos PHG Board
-               - dmo,imx8mm-data-modul-edm-sbc # i.MX8MM eDM SBC
-               - emtrion,emcon-mx8mm-avari # emCON-MX8MM SoM on Avari Base
-               - fsl,imx8mm-ddr4-evk       # i.MX8MM DDR4 EVK Board
-@@ -895,6 +894,7 @@ properties:
-           one compatible is needed.
-         items:
-           - enum:
-+              - cloos,imx8mm-phg           # i.MX8MM Cloos PHG Board
-               - tq,imx8mm-tqma8mqml-mba8mx # TQ-Systems GmbH i.MX8MM TQMa8MQML SOM on MBa8Mx
-           - const: tq,imx8mm-tqma8mqml     # TQ-Systems GmbH i.MX8MM TQMa8MQML SOM
-           - const: fsl,imx8mm
--- 
-2.39.0
-
+Done
