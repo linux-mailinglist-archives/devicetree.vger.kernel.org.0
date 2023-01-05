@@ -2,180 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA3DB65E7CC
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 10:29:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5405B65E826
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 10:46:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231444AbjAEJ3q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 04:29:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41274 "EHLO
+        id S231777AbjAEJp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 04:45:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231192AbjAEJ3p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 04:29:45 -0500
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 376E250E56;
-        Thu,  5 Jan 2023 01:29:40 -0800 (PST)
-X-UUID: 75271fb5dab549709ef9a96bd33fe431-20230105
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=JgDZ+/qu7lWLc7KIp03ishgJU7UORnRWQNe+hK0SlRU=;
-        b=QESefLiG+JiibGaGny3KYZdSlwwlFEpM2dLzj/RG+whCyjMRfuW5eAathtpiq22qUuc9ffJ63zKOJ70YkrzW93YKj4Cd4BpKVqDk3BtAkT1ItSIHo+q9ewNqVFsoY8JgXPt7pKyCgT+LduPkkV3hR0s40Ou9fXPwGlovW/ur9X4=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.17,REQID:f2a86c7b-0d4e-43ca-8fed-de12d06a8a61,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:543e81c,CLOUDID:f89be5f4-ff42-4fb0-b929-626456a83c14,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0
-X-CID-BVR: 0,NGT
-X-UUID: 75271fb5dab549709ef9a96bd33fe431-20230105
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <macpaul.lin@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 229489431; Thu, 05 Jan 2023 17:29:36 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 5 Jan 2023 17:29:35 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Thu, 5 Jan 2023 17:29:35 +0800
-From:   Macpaul Lin <macpaul.lin@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>
-CC:     Bear Wang <bear.wang@mediatek.com>,
-        Pablo Sun <pablo.sun@mediatek.com>,
-        Macpaul Lin <macpaul.lin@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>,
-        Miles Chen <miles.chen@mediatek.com>,
-        <linux-usb@vger.kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        Chen-Yu Tsai <wenst@chromium.org>
-Subject: [PATCH 3/3] arm64: dts: mediatek: enable USB device port for mt8195-demo board
-Date:   Thu, 5 Jan 2023 17:28:09 +0800
-Message-ID: <20230105092809.14214-3-macpaul.lin@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20230105092809.14214-1-macpaul.lin@mediatek.com>
-References: <20230105092809.14214-1-macpaul.lin@mediatek.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S231499AbjAEJp5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 04:45:57 -0500
+Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6C614C72E;
+        Thu,  5 Jan 2023 01:45:55 -0800 (PST)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.west.internal (Postfix) with ESMTP id C8CAA3200A01;
+        Thu,  5 Jan 2023 04:45:51 -0500 (EST)
+Received: from imap47 ([10.202.2.97])
+  by compute5.internal (MEProxy); Thu, 05 Jan 2023 04:45:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=cc:cc:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm2; t=1672911951; x=1672998351; bh=51
+        c0Ws4aE5zuhiM20BTPanynGNXeOuqkek9xxgYiHCQ=; b=UfFaFz9CVYAtKPPoaf
+        /dw9VFTAYq4Nc2ofPjWkN+xpYtuwA8K2b65XYmPfdpv1UGkdMx4yxhW6nui6BE2D
+        K4n2T/X9FWJO0G40gEMl7ysoA/86IUM8zByodQ2f58Z31CsARndka+mGpB98hk+u
+        rCRPAfPJ+YHoH9XzaGyb5W0tdJhrPmOIW/EMZ4EDpEhuOahvbkb02TXI6iIPBP3U
+        pDmiLboFvbSxMgdujGTCWRFLdENfHmkASdj4mln5XCgZO10sPEiuIp28P7UI3ALv
+        wljAyH7Q5zYMBcwsLRYu6VzELWxwNnSzvrLgkSOoiB3ZnxR96ghGw3MukpsCBbHU
+        /qEw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm2; t=1672911951; x=1672998351; bh=51c0Ws4aE5zuhiM20BTPanynGNXe
+        Ouqkek9xxgYiHCQ=; b=qjQ+7c0EUdq9qlKGbTx5H+g6AHVyXjVrw+/ksGuW8pe9
+        JWbzVxfSMu4YWQpDfwnB3iod0cYZ8iWPe/aTyjO3Yjp2Oro51T7U9SfO63ak1tui
+        fUYD6yLe0Rr29xKZZJoSS5ZHuZBEGTWTf0Lev7w0w99VVDT2yc9B1WDcBwnSiKWV
+        bxaqOWRPu2yEMv3qrBSDU2Ef8Np9GwvNle8sYSX0SGhqayFkCB6di5DshTINQm1Z
+        V6bpLPybCVEUtMa8+dOJAcIPnqwJXJ23ujDEKlbn26nHLJj5BbtCo/xz/YSsztOv
+        gAU/vDqZlHrKs2UGviwyM65UH82gindlI+tjHLjsig==
+X-ME-Sender: <xms:Tpy2Y7TIiFieamIoccbfuxR-0mRf8GIxks2VA9izr0Yq-bYdwD1DVg>
+    <xme:Tpy2Y8xIdfxrB0_Ao0rqVCVeDXX0F8qi1VKIFgOkM0BDYYjx8CHOXaNxQ1lkKAp6K
+    18LhqQI4hDkNEipAmA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrjeekgddtjecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdfuvhgv
+    nhcurfgvthgvrhdfuceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrg
+    htthgvrhhnpedvkeehfeffudehtefftddtgefhjeehgffggffhueegiefhheeihfdvvdel
+    hfdtveenucffohhmrghinhepghhithhhuhgsrdgtohhmpdgurghrthekuddutddrphihne
+    cuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshhvvghn
+    sehsvhgvnhhpvghtvghrrdguvghv
+X-ME-Proxy: <xmx:Tpy2Yw2fx9ilqALzM2-4-l-b50SvpEqBtmQl5GkHok0_sZ87RmTeEQ>
+    <xmx:Tpy2Y7DSw9AVejI2WelEQM0kmtJ79iz2_m8Tz5Td79nOpJIx_ZQPSw>
+    <xmx:Tpy2Y0iZLumdlnfvhgeZ_0S6-fWJN7mKJw0g2zjPBYvr4X9xIMtTbA>
+    <xmx:T5y2Y5YNDpdUA1QOwdi85QAxxDHch6A38DPRqXM7Yr6AsNaZC_UmcQ>
+Feedback-ID: i51094778:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 3E249A6007C; Thu,  5 Jan 2023 04:45:50 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-1185-g841157300a-fm-20221208.002-g84115730
+Mime-Version: 1.0
+Message-Id: <bfee5a64-bb7c-43ee-a2ca-7e13421508f4@app.fastmail.com>
+In-Reply-To: <fd66fa48-8810-5b8b-c330-8456bdb9de9e@marcan.st>
+References: <20230104110013.24738-1-marcan@marcan.st>
+ <20230104110013.24738-8-marcan@marcan.st>
+ <bebc741d-bcbe-4449-9379-be70fd65b0f0@app.fastmail.com>
+ <fd66fa48-8810-5b8b-c330-8456bdb9de9e@marcan.st>
+Date:   Thu, 05 Jan 2023 10:45:29 +0100
+From:   "Sven Peter" <sven@svenpeter.dev>
+To:     "Hector Martin" <marcan@marcan.st>,
+        "Joerg Roedel" <joro@8bytes.org>, "Will Deacon" <will@kernel.org>,
+        "Robin Murphy" <robin.murphy@arm.com>
+Cc:     "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
+        "Janne Grunau" <j@jannau.net>, "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, iommu@lists.linux.dev,
+        asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 7/7] iommu: dart: Add t8110 DART support
 Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-1. Enable USB device port (USB port0).
-2. Enable u2 speed for other USB HOST (USB port1/2/3).
-3. Configure mt6360 (TYPEC) related pinctrls.
+Hi,
 
-Note: Full dual-role switch capability requires TYPEC MUX driver and dts
-update will be send in separate patches.
+On Thu, Jan 5, 2023, at 06:19, Hector Martin wrote:
+> On 2023/01/04 22:50, Sven Peter wrote:
+>> Do you have any more details on this registers? For the 8103 DART
+>> we called it _CONFIG but I assume for the t8110 DART it can
+>> actually lock different parts of the HW instead of just a global lock?
+>
+> This is based on R's reverse engineering here:
+>
+> https://github.com/AsahiLinux/m1n1/blob/main/proxyclient/m1n1/hw/dart8110.py#L87
+>
+> I don't think they ever fully nailed down exactly what the lock bit
+> behavior is, though.
 
-Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/mt8195-demo.dts | 51 ++++++++++++++++++++
- 1 file changed, 51 insertions(+)
+Fair enough, I was mostly curious if it was actually _PROTECT and not just
+_CONFIG with different bit assignments. Sounds like it does mostly set up
+protections though.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
-index 07a864cb8b54..207bb5f4c58f 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
-@@ -12,6 +12,7 @@
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/pinctrl/mt8195-pinfunc.h>
- #include <dt-bindings/regulator/mediatek,mt6360-regulator.h>
-+#include <dt-bindings/usb/pd.h>
- 
- / {
- 	model = "MediaTek MT8195 demo board";
-@@ -380,6 +381,22 @@
- 		};
- 	};
- 
-+	mt6360_pins: mt6360-pins {
-+		pins {
-+			pinmux = <PINMUX_GPIO100__FUNC_GPIO100>,
-+				 <PINMUX_GPIO101__FUNC_GPIO101>;
-+			input-enable;
-+			bias-pull-up;
-+		};
-+	};
-+
-+	u3_p0_vbus: u3_p0vbusdefault {
-+		pins_cmd_dat {
-+			pinmux = <PINMUX_GPIO63__FUNC_VBUSVALID>;
-+			input-enable;
-+		};
-+	};
-+
- 	uart0_pins: uart0-pins {
- 		pins {
- 			pinmux = <PINMUX_GPIO98__FUNC_UTXD0>,
-@@ -393,6 +410,14 @@
- 				 <PINMUX_GPIO103__FUNC_URXD1>;
- 		};
- 	};
-+
-+	usb_otg_vbus: usb-otg-vbus-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "otg-vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		enable-active-high;
-+	};
- };
- 
- 
-@@ -412,6 +437,22 @@
- 	status = "okay";
- };
- 
-+&u3port0 {
-+	status = "okay";
-+};
-+
-+&u2port1 {
-+	status = "okay";
-+};
-+
-+&u2port2 {
-+	status = "okay";
-+};
-+
-+&u2port3 {
-+	status = "okay";
-+};
-+
- &u3phy0 {
- 	status = "okay";
- };
-@@ -428,6 +469,16 @@
- 	status = "okay";
- };
- 
-+&ssusb {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&u3_p0_vbus>;
-+	vusb33-supply = <&mt6359_vusb_ldo_reg>;
-+	dr_mode = "otg";
-+	mediatek,usb3-drd;
-+	usb-role-switch;
-+	status = "okay";
-+};
-+
- &xhci0 {
- 	vusb33-supply = <&mt6359_vusb_ldo_reg>;
- 	vbus-supply = <&otg_vbus_regulator>;
--- 
-2.18.0
 
+Sven
