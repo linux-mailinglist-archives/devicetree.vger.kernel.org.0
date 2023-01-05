@@ -2,222 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADB4965E884
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 11:01:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10DC165E891
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 11:03:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231712AbjAEKBE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 05:01:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56688 "EHLO
+        id S231768AbjAEKDr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 05:03:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232373AbjAEKAf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 05:00:35 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7503F58F90
-        for <devicetree@vger.kernel.org>; Thu,  5 Jan 2023 01:59:34 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id p1-20020a05600c1d8100b003d8c9b191e0so902143wms.4
-        for <devicetree@vger.kernel.org>; Thu, 05 Jan 2023 01:59:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=TzUHuJF+1GtjKbGnuP0VxWAofVGSsonV8HAjRWPNYtE=;
-        b=vuI5XC/ElzTz0lZgBI1+7M7TkLcYdoazvJmSS7s/KySvZKg8Xqo/F0UKxcKCsnqvKk
-         hQ+bN+pWIJt0ozmieFOEO+AqGHLbZq2AKjcUZ4DAKfuAiyvTEmgd/+QN+d+LUfy8xqOW
-         pdyUt70nhyPPiToCRx/FwjsjeciPCvGJadPS9KZH0i2omvLfRXZduVybqTmclWzoSBgV
-         9JcElXb9LClrjpqomBtinyS5eHmmE1D7ctf5rt0GNa1SKClf+jKx3YFUTSdClpTpb0Vu
-         c0klsP4V3JNpqIZ7UGy7wEd6zIABAZPZy1XGY788ZsVOA7Gg6cFuL8+uP9d5wKbGFvbj
-         l49Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TzUHuJF+1GtjKbGnuP0VxWAofVGSsonV8HAjRWPNYtE=;
-        b=vIGXaDpUtdZ6nLBqwupIWfLWiqP+M1iJj4bqUHNyEnczJ+KdNCbd3lAm6BSpcRyAdm
-         YC8EytnuIP4oxd5vytWq3Xxf8Cq0oOTl2Kx5dMTzI6J8skIBPppjaiwc1IC0WHSeNlGl
-         Jd8KJ8O0rZCAOG4notDfPuJVMCreoxFrhpDzlyjsr1izVKmtQFDwr/5LgUZf1TYrws7s
-         xus54FGi40+QrEHqW7Fad0o5CGZx3NJZixlg9UY1xJZwZ2DUFK2EyZJ0lccNd9ddXGae
-         /YhxjoXl3fyhG9oLAAoE6YPFwO3+zkWAMlFjxFtWUfi+dtdLKleJggcAaQ1UX1JsXegD
-         HE4w==
-X-Gm-Message-State: AFqh2kppay4LSWSLG22pVyCe4BTnfxTDgvfs2A9rxRJsDfJXCo/VRXkU
-        2Rcp8SA96EwSSaaz9+ogyuOjcA==
-X-Google-Smtp-Source: AMrXdXsQZ0DK0v9sW/V/Gfm1iQioAHO/VQix/Tw5Y8roIvVtwON8/NprodDB8Q5coTZo2iLhNB4AVw==
-X-Received: by 2002:a05:600c:1d89:b0:3d3:5cd6:781 with SMTP id p9-20020a05600c1d8900b003d35cd60781mr35095929wms.37.1672912771401;
-        Thu, 05 Jan 2023 01:59:31 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:1e12:c16d:1898:607c? ([2a01:e0a:982:cbb0:1e12:c16d:1898:607c])
-        by smtp.gmail.com with ESMTPSA id g41-20020a05600c4ca900b003cfd0bd8c0asm1652910wmp.30.2023.01.05.01.59.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Jan 2023 01:59:30 -0800 (PST)
-Message-ID: <342119d7-87fb-2880-2729-4c173ce60d4d@linaro.org>
-Date:   Thu, 5 Jan 2023 10:59:29 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-From:   neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 3/6] drm/msm/dpu: add support for SM8550
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S232771AbjAEKDE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 05:03:04 -0500
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FD3E1573B;
+        Thu,  5 Jan 2023 02:02:19 -0800 (PST)
+Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 2EF42E000E;
+        Thu,  5 Jan 2023 10:02:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1672912937;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=QZFL3qyTfHdN27paTVk6oqvr7A5Y7FRlExyKi8NGY5A=;
+        b=o4lTnWDk/szT4G1LfYqkSGS/fTFhsasemGRIT4uKl+cIl4ndNTOnOPODlQma6sxBn/SJdb
+        08+0rToEL+FASQlNczHSf/1WUG4hz1DtEu1/DU8vNgmtk0j5WnhFdrDWpsV8huqsTBk0yj
+        npDIoEJCvzLHraUFlV4XvQCDsYlPVStQSiRFFF+4M+DF9w6rdTjjVHFSR89IwCoKn6rf6F
+        t5MiJ5qpno8DJMczerKiyshDJ1lcuwEWPhxtGQREq5kdu5s0hShD3qicJ9CwhNAfRkZHP3
+        zE0pbq8+87tEUeKEmscQ5nfAPD1HNcLYZ88iZFFp5HT/egQnJgo8z/7T+viUYw==
+Date:   Thu, 5 Jan 2023 11:02:12 +0100
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230103-topic-sm8550-upstream-mdss-dsi-v1-0-9ccd7e652fcd@linaro.org>
- <20230103-topic-sm8550-upstream-mdss-dsi-v1-3-9ccd7e652fcd@linaro.org>
- <96ccae6f-3788-e030-480f-7aa2478ca560@linaro.org>
- <de3860ba-40f9-cdd5-097c-e015f6b19255@linaro.org>
- <CAA8EJpoi8QFpvR0qWpNpenZKzEZAQpwp3gNpGd3RwHovgC+Odw@mail.gmail.com>
-Organization: Linaro Developer Services
-In-Reply-To: <CAA8EJpoi8QFpvR0qWpNpenZKzEZAQpwp3gNpGd3RwHovgC+Odw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Conor Dooley <conor@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-staging@lists.linux.dev,
+        linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH 3/4] media: cedrus: Make SRAM section claiming optional
+Message-ID: <Y7agJBFqcvqyLNhK@aptenodytes>
+References: <20221231164628.19688-1-samuel@sholland.org>
+ <20221231164628.19688-4-samuel@sholland.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="8/6s3dcqSbgka7v/"
+Content-Disposition: inline
+In-Reply-To: <20221231164628.19688-4-samuel@sholland.org>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/01/2023 18:48, Dmitry Baryshkov wrote:
-> On Wed, 4 Jan 2023 at 12:08, Neil Armstrong <neil.armstrong@linaro.org> wrote:
->>
->> On 04/01/2023 10:45, Dmitry Baryshkov wrote:
->>> On 04/01/2023 11:08, Neil Armstrong wrote:
->>>> Add definitions for the display hardware used on Qualcomm SM8550
->>>> platform.
->>>>
->>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->>>> ---
->>>>    drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c | 197 +++++++++++++++++++++++++
->>>>    drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h |   1 +
->>>>    drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h    |   2 +
->>>>    drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c        |   1 +
->>>>    4 files changed, 201 insertions(+)
->>>>
->>>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
->>>> index b4ca123d8e69..adf5e25269dc 100644
->>>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
->>>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
->>
->> <snip>
->>
->>>> @@ -776,6 +821,45 @@ static const struct dpu_ctl_cfg sm8450_ctl[] = {
->>>>        },
->>>>    };
->>>> +static const struct dpu_ctl_cfg sm8550_ctl[] = {
->>>> +    {
->>>> +    .name = "ctl_0", .id = CTL_0,
->>>> +    .base = 0x15000, .len = 0x290,?
->>>> +    .features = BIT(DPU_CTL_ACTIVE_CFG) | BIT(DPU_CTL_SPLIT_DISPLAY) | BIT(DPU_CTL_FETCH_ACTIVE),
->>>
->>> CTL_SC7280_MASK | BIT(DPU_CTL_SPLIT_DISPLAY) ?
->>
->> Indeed DPU_CTL_VM_CFG is missing, will switch to that.
->>
->>>
->>>> +    .intr_start = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR2, 9),
->>>> +    },
->>>> +    {
->>>> +    .name = "ctl_1", .id = CTL_1,
->>>> +    .base = 0x16000, .len = 0x290,
->>>> +    .features = BIT(DPU_CTL_ACTIVE_CFG) | BIT(DPU_CTL_SPLIT_DISPLAY) | BIT(DPU_CTL_FETCH_ACTIVE),
->>>> +    .intr_start = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR2, 10),
->>>> +    },
->>>> +    {
->>>> +    .name = "ctl_2", .id = CTL_2,
->>>> +    .base = 0x17000, .len = 0x290,
->>>> +    .features = BIT(DPU_CTL_ACTIVE_CFG) | BIT(DPU_CTL_FETCH_ACTIVE),
->>>
->>> CTL_SC7280_MASK?
->>
->> Ack
->>
->>>
->>>> +    .intr_start = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR2, 11),
->>>> +    },
->>>> +    {
->>>> +    .name = "ctl_3", .id = CTL_3,
->>>> +    .base = 0x18000, .len = 0x290,
->>>> +    .features = BIT(DPU_CTL_ACTIVE_CFG) | BIT(DPU_CTL_FETCH_ACTIVE),
->>>> +    .intr_start = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR2, 12),
->>>> +    },
->>>> +    {
->>>> +    .name = "ctl_4", .id = CTL_4,
->>>> +    .base = 0x19000, .len = 0x290,
->>>> +    .features = BIT(DPU_CTL_ACTIVE_CFG) | BIT(DPU_CTL_FETCH_ACTIVE),
->>>> +    .intr_start = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR2, 13),
->>>> +    },
->>>> +    {
->>>> +    .name = "ctl_5", .id = CTL_5,
->>>> +    .base = 0x1a000, .len = 0x290,
->>>> +    .features = BIT(DPU_CTL_ACTIVE_CFG) | BIT(DPU_CTL_FETCH_ACTIVE),
->>>> +    .intr_start = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR2, 23),
->>>> +    },
->>>> +};
->>>> +
->>>>    static const struct dpu_ctl_cfg sc7280_ctl[] = {
->>>>        {
->>>>        .name = "ctl_0", .id = CTL_0,
->>
->> <snip>
->>
->>>> @@ -1268,6 +1386,16 @@ static const struct dpu_pingpong_sub_blks sc7280_pp_sblk = {
->>>>        .len = 0x20, .version = 0x20000},
->>>>    };
->>>> +#define PP_BLK_DIPHER(_name, _id, _base, _merge_3d, _sblk, _done, _rdptr) \
->>>> +    {\
->>>> +    .name = _name, .id = _id, \
->>>> +    .base = _base, .len = 0, \
->>>
->>> len = 0 looks incorrect. Any particular reason why can't we use plain PP_BLK here?
->>
->> The TE block has been moved to the DSI INTF blocks since SM8350 I think, or earlier.
-> 
-> I think, 8150. Marijn has been working on adding support for INTF-based TE.
-> 
->> This removes the DPU_PINGPONG_DITHER feature used downstream to enable the PP TE callbacks.
->> Since there's only the DIPHER sub-block remaining, this is why I set len to 0.
-> 
-> I went on with some research. Usually PP len is 0xd4. However it seems
-> since 8350 (since the change of DSC block) the PP size should be 0x0),
-> despite dowsnstream DTs having sde-pp-size=0xd4 for sm8350 and sm8450
-> (or 0x4 for neo, DPU 9.1.0).
 
-Perhaps neo has a single register at PP base address, on 8550 there's none.
+--8/6s3dcqSbgka7v/
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> So, it looks like you are correct here (and we should fix 8350/8450
-> patches instead).
+Hi Samuel,
 
-Yes it must be because with the new DSC block, the PP DCE_DATA_XX_SWAP/DSC_MODE registers were removed,
-so I expect they are still present in 8150 & 8250.
+On Sat 31 Dec 22, 10:46, Samuel Holland wrote:
+> The video engine in the D1 family of SoCs does not have a switchable
+> SRAM section. Allow the driver to probe even when the SRAM section
+> reference is missing.
+>=20
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 
-Neil
+Looks good, I've also just checked that calling sunxi_sram_release with no
+reference to the SRAM held is fine (maybe a word about it in the commit log
+would be nice, but probably not worth making a v2 just for that).
 
-> 
->>
->>>
->>>> +    .features = BIT(DPU_PINGPONG_DITHER), \
->>>> +    .merge_3d = _merge_3d, \
->>>> +    .sblk = &_sblk, \
->>>> +    .intr_done = _done, \
->>>> +    .intr_rdptr = _rdptr, \
->>>> +    }
->>>>    #define PP_BLK_TE(_name, _id, _base, _merge_3d, _sblk, _done, _rdptr) \
->>>>        {\
->>>>        .name = _name, .id = _id, \
->>
->> <snip>
->>
-> 
-> 
+Reviewed-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
 
+Cheers,
+
+Paul
+
+> ---
+>=20
+>  drivers/staging/media/sunxi/cedrus/cedrus_hw.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/staging/media/sunxi/cedrus/cedrus_hw.c b/drivers/sta=
+ging/media/sunxi/cedrus/cedrus_hw.c
+> index fa86a658fdc6..11e859617932 100644
+> --- a/drivers/staging/media/sunxi/cedrus/cedrus_hw.c
+> +++ b/drivers/staging/media/sunxi/cedrus/cedrus_hw.c
+> @@ -257,7 +257,7 @@ int cedrus_hw_probe(struct cedrus_dev *dev)
+>  	}
+> =20
+>  	ret =3D sunxi_sram_claim(dev->dev);
+> -	if (ret) {
+> +	if (ret && ret !=3D -ENOENT) {
+>  		dev_err(dev->dev, "Failed to claim SRAM\n");
+> =20
+>  		goto err_mem;
+> --=20
+> 2.37.4
+>=20
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--8/6s3dcqSbgka7v/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmO2oCQACgkQ3cLmz3+f
+v9GdzQf7BBo2ZY1agypl/4WFck7Oxw+wz2H294juvEYfBbZWII+esDVDHiBUiZaw
++iQVeT7ZGMum5E0Mvg+oaLduGhB271eZKHNY/YnEM3NHlwwUvy9TUJhR0iuKrX1H
+rLf4NGQrmXAfBVnrnlW2ROIC3kz9DcRwC/busmLyMk025CMM54AlmY0Y8XaiMThq
+ic6BTgL9b8a17lwg5G66A9OMNB8ee4WCfssFQ7kriVmFH644tTgtrFS8azGBCsI1
+cxA7JGvZJWuJEm9L8PDMDvOm3IAC0djIgJ9gqkbJdCaJqW9H5c6iJBoFOJID6g2l
+1SmqmlYcNehm79PXDFiAc9Xpq+Brfw==
+=2Hd+
+-----END PGP SIGNATURE-----
+
+--8/6s3dcqSbgka7v/--
