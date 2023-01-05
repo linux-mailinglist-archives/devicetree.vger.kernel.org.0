@@ -2,155 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEC1465EA2E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 12:49:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBE5D65EA5C
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 13:05:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231853AbjAELtP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 06:49:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41184 "EHLO
+        id S232589AbjAEMFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 07:05:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231797AbjAELtO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 06:49:14 -0500
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C40F3056F;
-        Thu,  5 Jan 2023 03:49:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1672919353; x=1704455353;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=AlB44ILVDfhAz3wCQTSWYJqtu5wh8dBHyGkGiHnpByQ=;
-  b=RP0UgnQCzzqCpOhWahFuswZWxCOufWra3xyvlKM2L6ieBSLL2e4USUIv
-   M0q7qx3Zz0HU9jfbS+5ks4g+Q8HidkrUpPEI/gkTT/4Vqdl7/1bRIxtuT
-   3/J+R0PfLSV2AFlu9/b5Jx2QLu90uM1k1iit793vyg3ted+2/JRMJcHp3
-   sQyYMeADDY9bir5t5xQNZQDMqLCFl3Nj5CB1pRTkhk7GnutXaevS2avtB
-   z/2Tj1AVWqz+PfhJDEVFYhXjfDTxB12CVtRUlmAQ4VnD8kBrOIquwovjZ
-   KvSUBXVboQvSTaScx9MZ7urhLq2oxWktWUe6LEUh8/CSy40FGB6aZvBSV
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10580"; a="408435394"
-X-IronPort-AV: E=Sophos;i="5.96,302,1665471600"; 
-   d="scan'208";a="408435394"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jan 2023 03:49:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10580"; a="797901229"
-X-IronPort-AV: E=Sophos;i="5.96,302,1665471600"; 
-   d="scan'208";a="797901229"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga001.fm.intel.com with SMTP; 05 Jan 2023 03:49:09 -0800
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Thu, 05 Jan 2023 13:49:08 +0200
-Date:   Thu, 5 Jan 2023 13:49:08 +0200
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Jun Nie <jun.nie@linaro.org>
-Cc:     gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        sven@svenpeter.dev, shawn.guo@linaro.org,
-        bryan.odonoghue@linaro.org
-Subject: Re: [PATCH 2/2] usb: typec: tipd: Support wakeup
-Message-ID: <Y7a5NFMAxhuD4qEr@kuha.fi.intel.com>
-References: <20230105075058.924680-1-jun.nie@linaro.org>
- <20230105075058.924680-2-jun.nie@linaro.org>
-MIME-Version: 1.0
+        with ESMTP id S232601AbjAEMFF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 07:05:05 -0500
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2075.outbound.protection.outlook.com [40.107.8.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0070358F8A;
+        Thu,  5 Jan 2023 04:04:53 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XWw97sbndWxiYwfQdSwFUCBDcbemVcoPsRTtJGyXb4FSjMVirl/InW2gpUQI+H0yk1I/aYAB6Gywg7YPZJrCRO/+LglwTpPBOjRFABLf27adlrA1AzWnt7nU+su4/bwPvM6vxfTMHh3Wkr/zKkAPr+MAJjTv/gUmZshfh+SAQpDcBivaCRuMKBxVTRSsnLbP+aWEVmyqYGZwhBgwTCc9/HjA1lUhoAVeI/oApN+LNOxcSShJ1KA+DvEBVHZciIFhqiUtLEczy3kANOCPmzkRVBbNWmKmC30Us0+1N8T7ZIpk3vqQ452HwMwzpp1LLxOxEjJDbJLNZUAh3igbPboQyg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WvBa6Io8rgPNKID85auOCQZKaxSpTX12gRaWHUy8Xdg=;
+ b=Hkf60p7HRoSoSsIBBogo5r3Fyc6ZZaT/XCRdB3E10dmQ17Ectrils8D5X+mEr2sUparrC5U+O3VQ8B7YI09vscStuDr3yUwgwZ/5TlLtR1g2Y/c3RhDNFwxliNkPolAqhxAeHBR9PWF6w3vnrqoUIAYI/qRspMFtbqP3nnyhStOGnokJf4dacCaqee9C0MlCgPv319y9Tex5krhnBLfeABMQQdy3umzUC6pBkfZWWXjhwuHAwH8NKjhh9zTwGov4Xld9qctG/8A3lU+9KErUyvb1hU61beEzl0Yhag77xM96nEMksRogl4VKhfNoMWLAIbydqHqJdiaE6VT9NJ/GBg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WvBa6Io8rgPNKID85auOCQZKaxSpTX12gRaWHUy8Xdg=;
+ b=Z1gfYJBHfJ+bxT3o9/DURDGzsLnl2EwEKK+Eh6MX8zwauRlx99TJAiObaSOdWiVs96u/+V3p8lgDc0V49MvmVmI6h7MPA8CWZxA5EEcJQJqmkRbZ97oRcIJuRv9jGfMERNY2uJlrLqomS7wgpnlaRk8TruNf35qKDeHCgirxCS8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
+ by AM7PR04MB7032.eurprd04.prod.outlook.com (2603:10a6:20b:112::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.19; Thu, 5 Jan
+ 2023 12:04:51 +0000
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::7c13:ef9:b52f:47d8]) by VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::7c13:ef9:b52f:47d8%6]) with mapi id 15.20.5944.019; Thu, 5 Jan 2023
+ 12:04:51 +0000
+Date:   Thu, 5 Jan 2023 14:04:47 +0200
+From:   Vladimir Oltean <vladimir.oltean@nxp.com>
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     devicetree@vger.kernel.org, iommu@lists.linux.dev,
+        Laurentiu Tudor <laurentiu.tudor@nxp.com>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, Michael Walle <michael@walle.cc>
+Subject: Re: [RFC PATCH] arm64: dts: ls1028a: mark ARM SMMU as DMA coherent
+Message-ID: <20230105120447.vnr24pusr3ihdhwk@skbuf>
+References: <20221208151514.3840720-1-vladimir.oltean@nxp.com>
+ <2a188b8a-ab16-d5d4-ed5f-f8eec236e4ca@arm.com>
+ <20221214165356.6tbzmfyoifqt4cwk@skbuf>
+ <3f3112e4-65ff-105d-8cd7-60495ec9054a@arm.com>
+ <20221219121618.z3dcyob542cnmdnk@skbuf>
+ <67ae3a53-3db9-c1bc-2b67-08df14bc15cc@arm.com>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230105075058.924680-2-jun.nie@linaro.org>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <67ae3a53-3db9-c1bc-2b67-08df14bc15cc@arm.com>
+X-ClientProxiedBy: FR3P281CA0165.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:a2::10) To VI1PR04MB5136.eurprd04.prod.outlook.com
+ (2603:10a6:803:55::19)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VI1PR04MB5136:EE_|AM7PR04MB7032:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1faea793-9620-4cfe-b105-08daef150c92
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: BYII4Ji4+He0vJh9tzEphMMQKCuGGzgaaNmcqUb1GqvUIEWQRY0s7VEsGRHLHbyFuurYCDDJwpWcvz5xboTiBTb+TLHcUOFZ3ZUhhn6eO4AdT2bmy7+DUWlVdG86NoMPUTJDjZ8O+qcl1aYlCdzbkXxBPDLW9X2t2MAdVxdB+VdLZEmCh3qZqcMytZHak4nmM5CGVCSYuEekHM1Ez/dc+Z4cReu9I9+Qofge76n1zWkjO6gTlXmPIL1+JLGrNWTihMU6+a6fqh0TBuAkdUlYDuRfvEUIO02zTxZQVJOQOEG4DzY/MvdUbAlABpnamyNmhPvkSwEcHI1wVvomZ/QlA9Y/mTXR1soqW3Lzgi1Q4WbHnkpRU891xDFGSuMgOQkUXgbW58frQnLt2cnsAse8Hkwj/O15/XL9wm3TCay7uFTopSmp7XO9TefyDtJTrvjK/0S26R8oG/Y04GhrE+S3L4di3H2hGBqnNW8c6iX38mIG9MDSscCiwhPXZ8/2yfcEVBC7zFpXBk3u6CEjkD2ovPMiZZU1wVKURAQnZ9H1XVwEJUmyaezIjK30BDWgNwX5h7cQop1XPSbeK8O7FsjrokwS68FoSodhAdz6fqSpRDZ0NptzRH2iE6s+7CfgIb0DLv4pgLlWC7cvECXnnfHHIA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(7916004)(4636009)(39860400002)(366004)(346002)(136003)(376002)(396003)(451199015)(1076003)(6512007)(26005)(9686003)(33716001)(6506007)(6666004)(86362001)(38100700002)(186003)(316002)(4326008)(478600001)(41300700001)(8676002)(7416002)(2906002)(5660300002)(8936002)(44832011)(6486002)(66476007)(66556008)(66946007)(54906003)(6916009);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?6OVnJO3zIu13zZUc4WQSb9zW4C7NrecTDqjUfVC10hAYqsR6sf2Jz+OdcBxp?=
+ =?us-ascii?Q?fNFkBD4XkusJNeGumph5yglATz2+5jPXOuA7BWoJLdQpRslS9//ixnHQPsiq?=
+ =?us-ascii?Q?z4NHEPZ1wWcaA4CWwpnK5iS9uhKKLBE1QfRbxe02TQIthTu07GCMWxZVMiZz?=
+ =?us-ascii?Q?vSb385ApGQrGoY6I6rmJjznmY4TZBMbFyviYrYLy40Aafxk4HJYcADk/YIjl?=
+ =?us-ascii?Q?D+bn5kjqlzZJRmOzVJxmeHCwnh6w4+kqMO1cSdY48kYs+CPc7gUz+TgA7fVx?=
+ =?us-ascii?Q?IJAPxYYRtcHwX9ENkpPuvHG6KGXnldLDxao2fcp7Db50tkrnG8YEymxQVi3j?=
+ =?us-ascii?Q?TyYDsRzPLVaPQ1ErB1weP9IF+qk2Ii2cQGI/GmN3r/QODBIX89NeylJuN4bC?=
+ =?us-ascii?Q?nVz+XqFEkyDD823REFxnlfkucF43LMFcc3rb6ZrKst+feIjHaPnwn9f4mKdQ?=
+ =?us-ascii?Q?w7fM7zptVDJoxVgFA06wsEDOr9yYh8KnMj/DoF5j5l0cZvc0PPy6kEsS/nKe?=
+ =?us-ascii?Q?VbMNWiDEwm0/yTEZgwwynSz1Cx2outD2MOQSao48oXd4LTmADHwjQTy633s5?=
+ =?us-ascii?Q?PkyWRDtGwW3AvkZaHVtNTrAEmqFtE2BLI4repMStAKevjk9tMe9KrrmY/Xq2?=
+ =?us-ascii?Q?jcdK03jReeBA76R+VeHuUl57UIZFhcQeXdkqDWHPn+82CytXma8KquwCJKwh?=
+ =?us-ascii?Q?yNg3/g7Gt9/TYiiP93MWr9QhsGLZu8kZWAJqBch4N/ZHYE2xVzzT37R4cNZr?=
+ =?us-ascii?Q?djTDN1ILo7B3jPuhg50XuTF0Wr/Udp5QQOZw+UlOdDG+zcs36dmmEbDP4N/E?=
+ =?us-ascii?Q?6hszuzV1ja8Xd3GITsvpLY9upPRrvTKf22y+nDu2aftdys9H9x+xVjCVLQoQ?=
+ =?us-ascii?Q?nhdBg95TwT04bsYQBY9D1Usc2Ubaehi4tMr3gX8eGaGbU1qpjTswN/3tyIVd?=
+ =?us-ascii?Q?Ekndibo9io5Nnf8pMHpB/KnMQcmndrLea6CFO7k9gVXsBA9OWuu/gKl3C8Et?=
+ =?us-ascii?Q?tr2eSWH1EMrD5uUymhVxhB2IkX29abeqrAiPo68Ok/rj1/5rT+b0QC1GpzXY?=
+ =?us-ascii?Q?pfs6zU/rJXWG9qV0m2gYibsmf+N+ctkDR9JC8zIB5g61e7yEKuTsyZSPgf6S?=
+ =?us-ascii?Q?1R7Ga0zHUyktEm7qfIyuo7UHkFcmuxwvHTVJVd2n53nzR8QsNtlwylmGohjg?=
+ =?us-ascii?Q?cUIN5iM2ba4ouWUD7Y5loPexuEigziRqvp1Rm8NGCUb5X/PWMZUnWTaeoNko?=
+ =?us-ascii?Q?ThJyWOJbyW7WgHLdPRSWWKOF6PnjcuiLrhxDXeNZIGGgTues+8sDxfo1QVxP?=
+ =?us-ascii?Q?Ouxj6v8Xam7+jyP5RRKv5VsoLsxOHyvlv2WTYzAbeHeZR8dJRUARBYOaA7kC?=
+ =?us-ascii?Q?f+DK3uhGqgXcXq8C7+mhyj2tSqEFp2PWdThmgY6HtOoORIuIcnSmwnK9YXCL?=
+ =?us-ascii?Q?GaR6XIOOLJ9cEezdcLvHgY/pgin9xI4lqsEOK6Fk3uQiqOt4PyK7ebLyAs2/?=
+ =?us-ascii?Q?OsgI7jCygKPduAYYuIuB/AhMQ+wQZhQLnIh0v9cSWOraYeHNLaxpUc5gZTpq?=
+ =?us-ascii?Q?JAbc8qfWXKQIy/UMw7TB/pwVetjQv942gHp2uYzyDDEcnHuxNnlWk1s8/4QB?=
+ =?us-ascii?Q?Rw=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1faea793-9620-4cfe-b105-08daef150c92
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jan 2023 12:04:51.2825
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: YNxOQYK7qfNg5HGfSsBg8U62w4FywOFMzFXFPJzPGK9op5TokdKMK9Ynpp3LvdnJPPmjahoUVPPakz676ehGVQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB7032
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 05, 2023 at 03:50:58PM +0800, Jun Nie wrote:
-> Enable wakeup when pluging or unpluging USB cable. It is up to other
-> components to hold system in active mode, such as display, so that
-> user can receive the notification.
+On Tue, Jan 03, 2023 at 06:12:29PM +0000, Robin Murphy wrote:
+> > I have a side question, why is the dev_name() of your SMMU set to
+> > "arm-smmu.0.auto" (determined by PLATFORM_DEVID_AUTO if I'm not mistaken)?
 > 
-> Signed-off-by: Jun Nie <jun.nie@linaro.org>
-
-Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-
-> ---
->  drivers/usb/typec/tipd/core.c | 38 +++++++++++++++++++++++++++++++++++
->  1 file changed, 38 insertions(+)
+> This is an ACPI-based machine, where platform device discovery and creation
+> is... different :)
 > 
-> diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
-> index 46a4d8b128f0..485b90c13078 100644
-> --- a/drivers/usb/typec/tipd/core.c
-> +++ b/drivers/usb/typec/tipd/core.c
-> @@ -95,6 +95,7 @@ struct tps6598x {
->  	struct power_supply_desc psy_desc;
->  	enum power_supply_usb_type usb_type;
->  
-> +	int wakeup;
->  	u16 pwr_status;
->  };
->  
-> @@ -846,6 +847,12 @@ static int tps6598x_probe(struct i2c_client *client)
->  	i2c_set_clientdata(client, tps);
->  	fwnode_handle_put(fwnode);
->  
-> +	tps->wakeup = device_property_read_bool(tps->dev, "wakeup-source");
-> +	if (tps->wakeup) {
-> +		device_init_wakeup(&client->dev, true);
-> +		enable_irq_wake(client->irq);
-> +	}
-> +
->  	return 0;
->  
->  err_disconnect:
-> @@ -870,6 +877,36 @@ static void tps6598x_remove(struct i2c_client *client)
->  	usb_role_switch_put(tps->role_sw);
->  }
->  
-> +static int __maybe_unused tps6598x_suspend(struct device *dev)
-> +{
-> +	struct i2c_client *client = to_i2c_client(dev);
-> +	struct tps6598x *tps = i2c_get_clientdata(client);
-> +
-> +	if (tps->wakeup) {
-> +		disable_irq(client->irq);
-> +		enable_irq_wake(client->irq);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int __maybe_unused tps6598x_resume(struct device *dev)
-> +{
-> +	struct i2c_client *client = to_i2c_client(dev);
-> +	struct tps6598x *tps = i2c_get_clientdata(client);
-> +
-> +	if (tps->wakeup) {
-> +		disable_irq_wake(client->irq);
-> +		enable_irq(client->irq);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct dev_pm_ops tps6598x_pm_ops = {
-> +	SET_SYSTEM_SLEEP_PM_OPS(tps6598x_suspend, tps6598x_resume)
-> +};
-> +
->  static const struct of_device_id tps6598x_of_match[] = {
->  	{ .compatible = "ti,tps6598x", },
->  	{ .compatible = "apple,cd321x", },
-> @@ -886,6 +923,7 @@ MODULE_DEVICE_TABLE(i2c, tps6598x_id);
->  static struct i2c_driver tps6598x_i2c_driver = {
->  	.driver = {
->  		.name = "tps6598x",
-> +		.pm = &tps6598x_pm_ops,
->  		.of_match_table = tps6598x_of_match,
->  	},
->  	.probe_new = tps6598x_probe,
-> -- 
-> 2.34.1
+> SMMUs are among those managed by drivers/acpi/arm64/iort.c
+> 
+> > I'm asking because I would like to study the mechanism through which
+> > your SMMU platform device get probed, to make sure that it's not
+> > possible, during shutdown, for both platform_driver :: shutdown()
+> > and platform_driver :: remove() methods to get called by the driver core.
+> > This is generally not disallowed, and even possible if the entity who
+> > registers these platform devices has its ->shutdown() method pointing
+> > at ->remove().
+> 
+> Yikes, I'd very much hope that that's not a thing!
 
-thanks,
-
--- 
-heikki
+Ah, ok. Appears to be fine. Looking at drivers/acpi/arm64/iort.c,
+it seems that no one is removing those platform devices.
