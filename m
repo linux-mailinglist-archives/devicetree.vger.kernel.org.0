@@ -2,72 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E394C65E98A
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 12:09:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DEFD65E9EA
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 12:30:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232319AbjAELJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 06:09:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50816 "EHLO
+        id S233175AbjAELa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 06:30:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229839AbjAELJa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 06:09:30 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8165BCE35;
-        Thu,  5 Jan 2023 03:09:26 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        with ESMTP id S233231AbjAELaV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 06:30:21 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58FF812A80;
+        Thu,  5 Jan 2023 03:30:20 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7A6786602D2B;
-        Thu,  5 Jan 2023 11:09:24 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1672916965;
-        bh=LAsrZfSnQres51ppPQcdXpGQ3gS3K+MVgY/44ivN1Y4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=iAV0ZfBHi/SK8ThsE63VKckB2W2TMiARXN3hqNYC9GBS8vXSmHwFk8BwBeesxguF6
-         zP/Ks+vamEcKO+tHiXLJVubRerU8+1LbLcnfN/HqDygHAouz4KePH66XvtHGBuyf6i
-         IY/3y8k+ju4FBAU8qnWsg3RVY6QzQxVhI7tGbpJbP7yu92Ww2H5MudA8QLjk2C4weG
-         nGYh12cV+HI9m/5+NtKCiXqU4RuHEqf5JqaxDOQT44PWAVz67QPpd2y+LZkWEAAqbv
-         +9vsS2c8QEHPto8fJzPBjfbA+GxTSq6iRRxO4VnzBYp3Yy4GuFiDRv7k238VBSpJi2
-         j5IjErh5uIDkQ==
-Message-ID: <77e958fd-5ced-bd5a-70cb-af4fe94717d5@collabora.com>
-Date:   Thu, 5 Jan 2023 12:09:21 +0100
+        by ams.source.kernel.org (Postfix) with ESMTPS id ADC8AB81AB1;
+        Thu,  5 Jan 2023 11:30:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 5C753C433F0;
+        Thu,  5 Jan 2023 11:30:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1672918217;
+        bh=b1cMDTIygvvXUMrshTqkW1iYTGx7cseBKBFJN+D6sAY=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=Ce+gtpUBlw9twyhd2rK/zhUXyThZIUlSwFrqk1yPj9acoJDfrM1fOEf4/HZTdx928
+         nnyNJ+cJCatamDUDz4DQflAFEgLyMHp3Yk1zy79QL0Ckq83IeCIfVDMBTyQ2nedJuA
+         z3yxRIn05duTxEjehR9xJSzIpRGzXBXz3/S5FButN8N6H5o96xKkIJl5MNWXQCYJ1K
+         yqbVj0XqEkpLLX4WYJO3LM8mHTUm8mQQxdxrwDddV7aj01EnqYy5W49BQrcrMENFtS
+         hbViUJm7W5759+S8guBhk4KdCwORdkDD+dKBucHnWs+CXJ8C+sUMsXSyek4pcg/+4m
+         OaEU+biccJnNA==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 3C6A6E5724E;
+        Thu,  5 Jan 2023 11:30:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v5 09/13] ASoC: mediatek: mt8188: add control for timing
- select
-Content-Language: en-US
-To:     Trevor Wu <trevor.wu@mediatek.com>, broonie@kernel.org,
-        lgirdwood@gmail.com, tiwai@suse.com, perex@perex.cz,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, p.zabel@pengutronix.de
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230105081606.6582-1-trevor.wu@mediatek.com>
- <20230105081606.6582-10-trevor.wu@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230105081606.6582-10-trevor.wu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v6 0/3] Add support for QSGMII mode for J721e CPSW9G
+ to am65-cpsw driver
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <167291821724.17194.2169796185615843957.git-patchwork-notify@kernel.org>
+Date:   Thu, 05 Jan 2023 11:30:17 +0000
+References: <20230104103432.1126403-1-s-vadapalli@ti.com>
+In-Reply-To: <20230104103432.1126403-1-s-vadapalli@ti.com>
+To:     Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        linux@armlinux.org.uk, vladimir.oltean@nxp.com, vigneshr@ti.com,
+        nsekhar@ti.com, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        srk@ti.com
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 05/01/23 09:16, Trevor Wu ha scritto:
-> Add mixer control for irq and memif timing selection.
-> 
-> Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
+Hello:
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+This series was applied to netdev/net-next.git (master)
+by Paolo Abeni <pabeni@redhat.com>:
+
+On Wed, 4 Jan 2023 16:04:29 +0530 you wrote:
+> Add compatible to am65-cpsw driver for J721e CPSW9G, which contains 8
+> external ports and 1 internal host port.
+> 
+> Add support to power on and power off the SERDES PHY which is used by the
+> CPSW MAC.
+> 
+> =========
+> Changelog
+> =========
+> v5 -> v6:
+> 1. Add member "serdes_phy" in struct "am65_cpsw_slave_data" to store the
+>    SERDES PHY for each port, if present. This is done to cache the SERDES
+>    PHY beforehand, without depending on devm_of_phy_get().
+> 2. Rebase series on net-next tree.
+> 
+> [...]
+
+Here is the summary with links:
+  - [net-next,v6,1/3] dt-bindings: net: ti: k3-am654-cpsw-nuss: Add J721e CPSW9G support
+    https://git.kernel.org/netdev/net-next/c/c85b53e32c8e
+  - [net-next,v6,2/3] net: ethernet: ti: am65-cpsw: Enable QSGMII mode for J721e CPSW9G
+    https://git.kernel.org/netdev/net-next/c/944131fa65d7
+  - [net-next,v6,3/3] net: ethernet: ti: am65-cpsw: Add support for SERDES configuration
+    https://git.kernel.org/netdev/net-next/c/dab2b265dd23
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
