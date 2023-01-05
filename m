@@ -2,87 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 862CC65F10B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 17:23:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E67765F11D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 17:27:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233548AbjAEQX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 11:23:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58410 "EHLO
+        id S233378AbjAEQ14 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 11:27:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234692AbjAEQX1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 11:23:27 -0500
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3078B4E42F;
-        Thu,  5 Jan 2023 08:23:26 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id u9so91377582ejo.0;
-        Thu, 05 Jan 2023 08:23:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FgX3Uq5RN2gSxMD0FpAihmi52pqkCtembnImF2lZd1A=;
-        b=XFAeuZZdm8oGXFYrt5K0AoexBXXG2KNww0ztHS62JWbcYMzvrdcqh9P7MNMkmwpSXe
-         e1Yc2oL9WFlKdi5wtL9ykg8RMH4kmfoGMXKu72j8Q+qHM0eegIIGDkHIzP0v7sYrxG8o
-         vjvO6GTte4j/hbWJTqoPwNEF3ozWP7RGVmRiyFDTIDwljpOuzFINcD0Z8vZNWP73NA+P
-         RGdO5qPeChj1sEMPKsFHBksQxZQ1mq/Mdw9rQNN2gFOr2BYhp7u0QgScLQSYxqeenecd
-         96IzbF8onkkIRmBIOyrNkY9caesvf+7yD6U/OLyjkoNEo160doio/yrlxo6aGDkH55K3
-         bp0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FgX3Uq5RN2gSxMD0FpAihmi52pqkCtembnImF2lZd1A=;
-        b=FE549qb+j7HAACJvR+6sbwD5loEAq0kbPZw8qUwwkTTolcseuSXhHDvHIRWv5/X9sA
-         oGE4lxsG5ojgXaOuzBPq+HsWRjVd1uSbyKLRpmUvlaW3hsXBMmufDgO3xxhrhGfaOGOZ
-         SHuXcEPd0bG9x6GBUEAzGd5cHmejJqwyB+w+NpPnUPv9G2yFuBJ05CUOOoHoyqAPVqmN
-         +F5BeLu2OqiKoxv7nLZz8k33wUmadSB1oVwQSFKOWFxeq4/ZHFnIe+ejMOeT0FA6HQmC
-         zk5hBUPPSMIT4suqdzQYRuBaoUmcsusfDwIXHzx0bZDmpexz8prtE82QV0GVHd3H1ekc
-         K1EQ==
-X-Gm-Message-State: AFqh2kpnDtdkw5h8b/ZP3ZQLCg3odJHLKUYPAfbzJ9kWx6LBgjtNsJTX
-        W5z493OyGgDlhfNBrHPuZqpV0vZkafTRHxAP
-X-Google-Smtp-Source: AMrXdXs6L27C/xjKuud7Vz8JTA95Nlc31IiajcsXqJwmfmirq1LtYT1Mbix+2eKxiqVBCANKMzF8mA==
-X-Received: by 2002:a17:906:1c59:b0:7bb:af66:f38c with SMTP id l25-20020a1709061c5900b007bbaf66f38cmr45192698ejg.10.1672935804845;
-        Thu, 05 Jan 2023 08:23:24 -0800 (PST)
-Received: from jernej-laptop.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
-        by smtp.gmail.com with ESMTPSA id u17-20020a1709061db100b0084c70c27407sm11121630ejh.84.2023.01.05.08.23.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Jan 2023 08:23:23 -0800 (PST)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>
-Cc:     Samuel Holland <samuel@sholland.org>,
+        with ESMTP id S234805AbjAEQ1m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 11:27:42 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 654BE4D72E;
+        Thu,  5 Jan 2023 08:27:41 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 1820DB81B3B;
+        Thu,  5 Jan 2023 16:27:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0A83C433EF;
+        Thu,  5 Jan 2023 16:27:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1672936058;
+        bh=Ek1Zi7cSSUaujQ9fPl7Fa5zUDkWJ/zN02bn1RxO83Lk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cp9LzQbOx1EsKLklQIbtBxpLwrxR3IGAfjqE+8M3Wq7bFsxaS4ZSuvGaeZxg+8yjj
+         mYPvlNUTrkRMtw0dT1fwQYKd4OLFChAlbSYga16DmZyvc6A2joYDuQNgzfwNlJJf1d
+         kp0ZKhphgts3u4dm/2HwZgV67VaXb3rX7NJuuWkdg/dRqzG+QedMiLGJvRmRZgg7GK
+         7/FoXmRWnxMvbD8hfugbz0gp1tBa6QMHesZpPRIj2fWR6kSeEuLhJuWYoy+crVh0qH
+         AG0BW3QBClkMn4M9EFzS1Ehz5gJlmdqsx01o0AV1MqkEnIpeafSxWjk6nS69dpXqb1
+         3d4N/6lfeK6uw==
+Date:   Thu, 5 Jan 2023 16:27:32 +0000
+From:   Lee Jones <lee@kernel.org>
+To:     Tzung-Bi Shih <tzungbi@kernel.org>
+Cc:     Mark Hasemeyer <markhas@chromium.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Raul Rangel <rrangel@chromium.org>,
+        Bhanu Prakash Maiya <bhanumaiya@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v2 1/2] ARM: dts: sunxi: Fix GPIO LED node names
-Date:   Thu, 05 Jan 2023 17:23:22 +0100
-Message-ID: <2126880.irdbgypaU6@jernej-laptop>
-In-Reply-To: <20221231225854.16320-1-samuel@sholland.org>
-References: <20221231225854.16320-1-samuel@sholland.org>
+        Rob Herring <robh+dt@kernel.org>,
+        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org
+Subject: Re: [PATCH v10 2/3] dt-bindings: mfd: Add compatible string for UART
+ support
+Message-ID: <Y7b6dC6dDNO2bVjr@google.com>
+References: <20221207104005.v10.1.If7926fcbad397bc6990dd725690229bed403948c@changeid>
+ <20221207104005.v10.2.I9e018ecb8bdf341648cb64417085978ff0d22a46@changeid>
+ <Y7WkeCi7/x/t37JM@google.com>
+ <Y7YjmtwByTR+8tbZ@google.com>
+ <Y7bdmiZ9lqKZXCfq@google.com>
+ <Y7buUdgLfnQqnG+x@google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Y7buUdgLfnQqnG+x@google.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne sobota, 31. december 2022 ob 23:58:53 CET je Samuel Holland napisal(a):
-> These board devicetrees fail to validate because the gpio-leds schema
-> requires its child nodes to have "led" in the node name.
+On Thu, 05 Jan 2023, Tzung-Bi Shih wrote:
+
+> On Thu, Jan 05, 2023 at 02:24:26PM +0000, Lee Jones wrote:
+> > On Thu, 05 Jan 2023, Tzung-Bi Shih wrote:
+> > 
+> > > On Wed, Jan 04, 2023 at 04:08:24PM +0000, Lee Jones wrote:
+> > > > On Wed, 07 Dec 2022, Mark Hasemeyer wrote:
+> > > > 
+> > > > > From: Bhanu Prakash Maiya <bhanumaiya@chromium.org>
+> > > > > 
+> > > > > Add a compatible string to support the UART implementation of the cros
+> > > > > ec interface. The driver does not support the reg and interrupt
+> > > > > properties, so exempt them from being required for UART compatible nodes.
+> > > > > 
+> > > > > Signed-off-by: Bhanu Prakash Maiya <bhanumaiya@chromium.org>
+> > > > > Co-developed-by: Mark Hasemeyer <markhas@chromium.org>
+> > > > > Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
+> > > > > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > > > > ---
+> > > > > 
+> > > > > Changes in v10:
+> > > > > - No change
+> > > > > 
+> > > [...]
+> > > > 
+> > > > I changed the subject line and applied the patch, thanks.
+> > > 
+> > > Pardon me.  I didn't know you would pick the patch so that I have queued it
+> > > into chrome-platform[1].  Would you like me to drop the commit?
+> > 
+> > Yes, please do.
 > 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> Dropped in chrome-platform.
+> 
+> > You should gain permission from the maintainer before you apply patches.
+> > 
+> >   % scripts/get_maintainer.pl -f Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> >      Lee Jones <lee@kernel.org> (supporter:MULTIFUNCTION DEVICES (MFD))
+> >      Rob Herring <robh+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
+> >      Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org> (maintainer:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
+> >      Matthias Brugger <matthias.bgg@gmail.com> (maintainer:ARM/Mediatek SoC support)
+> 
+> I see.  I guess for the case, I should get both MFD and DT bindings
+> maintainers' Acks before applying the patch.
 
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Yes.  The situation isn't overly clear and differs from subsystem to
+subsystem and maintainer to maintainer.  In the MFD case, Rob and
+Krzysztof conduct the first reviews.  99 times out of 100, if they're
+happy, I'm happy and I merge the changes via the MFD tree.  Same goes
+for Backlight and more recently, LEDs.
 
-Best regards,
-Jernej
-
-
+-- 
+Lee Jones [李琼斯]
