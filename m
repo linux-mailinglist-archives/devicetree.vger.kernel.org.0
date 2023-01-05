@@ -2,139 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5998665E861
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 10:57:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7427365E875
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 10:58:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230471AbjAEJ5v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 04:57:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54684 "EHLO
+        id S232361AbjAEJ6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 04:58:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231883AbjAEJ5q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 04:57:46 -0500
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F25C4FD69;
-        Thu,  5 Jan 2023 01:57:45 -0800 (PST)
-Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 28043240006;
-        Thu,  5 Jan 2023 09:57:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1672912664;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=Fvlr13b/Y1zYrl0g6v6iiZSrz3z4wdfH46B86FopFgY=;
-        b=bGFNyQgMOLa121tXbFw3UGtXKhyimGOJTGqPtIn0Zpza2B9v6CVZOisJhs8fU8PtN97H1T
-        EIONvHQRx0RhFpaZDcb6AM0N8vJASsRY56gCTPuit6GdyRUOhHsVRg02icK01TiDovfS/U
-        osrUkvFffeNLYng5Qw68nej0PExTc1rTeK90WbUQkq79joH0Riu90L/iFHx/aSrDmYEgsx
-        cDfkQOLik+dGzV0DsgrrWRmV//5X94+WvFJ1TFXG+PNAA2v3i0FnxtkCBxnPFs9pyt/+ty
-        faZl0Dsnd7Xxq6ZvnuRmzMAhbFkjclPT5BT27vM1rjKWYwGIcY6wpELw9ejRHw==
-Date:   Thu, 5 Jan 2023 10:57:27 +0100
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S232403AbjAEJ6d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 04:58:33 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C0105689E;
+        Thu,  5 Jan 2023 01:58:31 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id r2so753269wrv.7;
+        Thu, 05 Jan 2023 01:58:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ldFg3aZw07BJ9cU7ZJDK8xVVuOKTTlOr8J5in8ahzW8=;
+        b=QQZ44LwQ8wGfemMyYwwMHDkuzk6deiBa+FkJXibRyPY8B1jfi5SPgKbPuf/tZ1OH0G
+         Zb5J9wZVqm3Gufy/2kYm173CvA+vsNlzLyAVPuQUUpjWm6LYB08M+Z2z822lLz/KFIlt
+         NFD/fR+1BpBYcETJ6+nZyRaoN4uvDpthNaZs4KDChWloDCCKZcQvBXKHkod+D4xp+TVU
+         1DMzS0dRl42jKy6O3Y5VwVCHbw6ssYYRhwxe/5ZBHfRqSLK7i+gzHwjlNv9xTvc7f5L+
+         +vlUBGgaEcGzhjIKZEGPVe0MgcN/eO3DO341N8xWQxwVwE5zL/gnXR+f3CcIy2OB3+li
+         BPlQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ldFg3aZw07BJ9cU7ZJDK8xVVuOKTTlOr8J5in8ahzW8=;
+        b=LPBe1G1dvfchRsht/2yiPGVvtKrQKgK7+YlBY5oY0kdKCQclcrQ35Vgg8IuIkJ5/tz
+         X/iw8YjryxZxU3ZGZlFHRWJNIvNoBhNiJz4Va2+nR25a/lGLYGs+K2f2rgr0FsXN2Li3
+         5i2rNHWwo88V7DQgIZrbMxgsZiq9KDIpxdV4eFhxh0XSWQmh3Rr6YqAuFyI6vmnjwRV8
+         OPlCCsRly/3g5jrY4nxQUdC+a7uYPbbnqdk3o2fQ+pepW2PevTBMnpZfhD4JxlGNcE6W
+         CgRpL/X2+lGhp0dIMDPBXq3y3ZLyZwr24RX8UsDW4rlzBhP1PsAV0IzoYuZYmNzal44V
+         J4aA==
+X-Gm-Message-State: AFqh2krNBwOlBDZiN8AfHZxA2k3BV0VwHsLIV5I6Gmd5f2QUfxL5FKnW
+        LyP6WS8qzUWO3BB64h3ndNU=
+X-Google-Smtp-Source: AMrXdXsACOTeoOaKfAPi4wKydIQXBPrKWoHqRfg1yWr07UKBdPbkQ75uFPnLyu52Cj1Wwk02xr2XNg==
+X-Received: by 2002:a5d:55c7:0:b0:242:19ba:c325 with SMTP id i7-20020a5d55c7000000b0024219bac325mr29691829wrw.30.1672912710036;
+        Thu, 05 Jan 2023 01:58:30 -0800 (PST)
+Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net. [80.193.200.194])
+        by smtp.gmail.com with ESMTPSA id q3-20020a5d6583000000b002b57bae7174sm498446wru.5.2023.01.05.01.58.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Jan 2023 01:58:29 -0800 (PST)
+From:   Colin Ian King <colin.i.king@gmail.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Conor Dooley <conor@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-staging@lists.linux.dev,
-        linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 2/4] media: dt-bindings: cedrus: Make allwinner,sram
- optional
-Message-ID: <Y7afB98vPc56bDhm@aptenodytes>
-References: <20221231164628.19688-1-samuel@sholland.org>
- <20221231164628.19688-3-samuel@sholland.org>
+        devicetree@vger.kernel.org
+Cc:     kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2][next] nvmem: layouts: Fix spelling mistake "platforn" -> "platform"
+Date:   Thu,  5 Jan 2023 09:58:27 +0000
+Message-Id: <20230105095828.2951-1-colin.i.king@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="jljho90DVYkk8si4"
-Content-Disposition: inline
-In-Reply-To: <20221231164628.19688-3-samuel@sholland.org>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+There is a spelling mistake in the literal string. Fix it.
 
---jljho90DVYkk8si4
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+---
+ drivers/nvmem/layouts/onie-tlv.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Hi Samuel,
+diff --git a/drivers/nvmem/layouts/onie-tlv.c b/drivers/nvmem/layouts/onie-tlv.c
+index 074c7c700845..767f39fff717 100644
+--- a/drivers/nvmem/layouts/onie-tlv.c
++++ b/drivers/nvmem/layouts/onie-tlv.c
+@@ -48,7 +48,7 @@ static const char *onie_tlv_cell_name(u8 type)
+ 	case 0x27:
+ 		return "label-revision";
+ 	case 0x28:
+-		return "platforn-name";
++		return "platform-name";
+ 	case 0x29:
+ 		return "onie-version";
+ 	case 0x2A:
+-- 
+2.30.2
 
-On Sat 31 Dec 22, 10:46, Samuel Holland wrote:
-> Allwinner SoCs can remap some bits of peripheral SRAM to a contiguous
-> range of addresses for use by early boot software. Usually the video
-> engine's SRAM is used for this purpose, so its mapping must be switched
-> back before the hardware can be used.
->=20
-> However, the D1 and related SoCs use the DSP SRAM for this purpose. As a
-> result, the video engine SRAM is not switchable, and there is no need
-> for an allwinner,sram reference in the devicetree.
->=20
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-
-Reviewed-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-
-Cheers,
-
-Paul
-
-> ---
->=20
->  .../bindings/media/allwinner,sun4i-a10-video-engine.yaml         | 1 -
->  1 file changed, 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-=
-video-engine.yaml b/Documentation/devicetree/bindings/media/allwinner,sun4i=
--a10-video-engine.yaml
-> index d5be7f604e8c..74363b242fff 100644
-> --- a/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-e=
-ngine.yaml
-> +++ b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-e=
-ngine.yaml
-> @@ -73,7 +73,6 @@ required:
->    - clocks
->    - clock-names
->    - resets
-> -  - allwinner,sram
-> =20
->  additionalProperties: false
-> =20
-> --=20
-> 2.37.4
->=20
-
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
-
---jljho90DVYkk8si4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmO2nwcACgkQ3cLmz3+f
-v9Ggugf9HSS2KhNLgkevts5teZksFM4RMyoOoDlpVlPoHJ9dDgeTfdMcoN7vPA9r
-YRKtDEyWUVX96YV/RmzVDWGazmbd46/khL5p8HhGHUjphTNVKm6/Ou5V91xBzgmN
-lDL7m8hE2LE/LPIa6EOiIAdOwmI0UVcvp2ltKhZibVKZ3gDtovUQmEftYuQmNAF6
-Z+iMSZEu2b0N+p1llPTxPwjHjruZknkYhRy3GEZcQEFTPUMIb5u39WjqA8TY1C7o
-54aAxAgd0v/T/iELJYHlal4LodbLczu4/OJdHIj1bludFs/cZQwHV+51prwnTlCD
-dHwTRJ6b3eLdlvq+km+n8zehF1FLTw==
-=4H5j
------END PGP SIGNATURE-----
-
---jljho90DVYkk8si4--
