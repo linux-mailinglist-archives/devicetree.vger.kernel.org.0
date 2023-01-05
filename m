@@ -2,177 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF1DC65EA9B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 13:21:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0370E65EB01
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 13:51:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232854AbjAEMVq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 07:21:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55754 "EHLO
+        id S231851AbjAEMvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 07:51:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233358AbjAEMVo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 07:21:44 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1874615FCA;
-        Thu,  5 Jan 2023 04:21:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1672921302; x=1704457302;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=JhCHkc0mEVa9z8SFt3Ty3XUNkrJ0qgLzmtmqvAN8sTU=;
-  b=CaLuYjmtFOZ8KFRzoNySrtRWJPccZ06bWuQAD3AGn1HfBo3X8wZ1cCMu
-   O/CgL0jdC7tEem1FKNYiDSK9o1whRq+zIrS24CPg/+pMPVMk6exul4hO3
-   cZnQ/nFZyCeriQVOHzD1puGfcAKRGWY9nbjIGgl++Z1M7Ay4zwnqF4reA
-   nCoPeQSYUgvBHpkjIcELOIKAZejyx2kSBMWt66ybxAh38zh9gCDTDzQ6d
-   1t1WIBacf6lJPLf5GEmMk/zZxrDoKrWFq0Qy1UbXK4DIugnbfEJWzVczP
-   nQOJ8p3ZH69Ned3vGsfJNvruhRKUm27+h9UHbhuAIT6WNetZouWiptjD9
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.96,302,1665439200"; 
-   d="scan'208";a="28259529"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 05 Jan 2023 13:21:39 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Thu, 05 Jan 2023 13:21:40 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Thu, 05 Jan 2023 13:21:40 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1672921300; x=1704457300;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=JhCHkc0mEVa9z8SFt3Ty3XUNkrJ0qgLzmtmqvAN8sTU=;
-  b=hdYAxr+HRLnwe4xxTOqIWS8TdguZInssVHxeqiUY3FtsTMAJSo3dT7S+
-   RanoKeL+pOIEGc1ViTcfajLzy9+Y4lPnNVk1mZeitekb9k4VYslhHzxm8
-   ywhnCebYM6v4uxoCKj75wb8szm+8dAK9dcw1l/SdyvtNt4UYz8z7+PysL
-   NqH9gPjj80JjFVS945EiGjFbJs2cA/4bzzaIFjFDUobolRn7JJ2pkUIY2
-   FfrhYaxZlqbo2k1eru9WX3n3b4SMY6K4mA/lae0Bk33vS28TbCaxARBR7
-   MOHB3nnqEBoZcNEFs6othQtzo7Xgc2/Bjv9k4Xt0yqdrYrfNXLCL1PRZF
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.96,302,1665439200"; 
-   d="scan'208";a="28259528"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 05 Jan 2023 13:21:39 +0100
-Received: from steina-w.localnet (unknown [10.123.53.21])
+        with ESMTP id S232920AbjAEMvY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 07:51:24 -0500
+X-Greylist: delayed 1043 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 05 Jan 2023 04:51:22 PST
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91BE74BD68;
+        Thu,  5 Jan 2023 04:51:22 -0800 (PST)
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id A856C280056;
-        Thu,  5 Jan 2023 13:21:39 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Michael Walle <michael@walle.cc>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Dan Carpenter <error27@gmail.com>
-Subject: Re: [PATCH v5 00/21] nvmem: core: introduce NVMEM layouts
-Date:   Thu, 05 Jan 2023 13:21:37 +0100
-Message-ID: <5906091.UjTJXf6HLC@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <34cddc1aa4f8a55c752a9565d1726127@walle.cc>
-References: <20221206200740.3567551-1-michael@walle.cc> <20230105123534.38a70640@xps-13> <34cddc1aa4f8a55c752a9565d1726127@walle.cc>
+        by box.trvn.ru (Postfix) with ESMTPSA id B7F4F405D5;
+        Thu,  5 Jan 2023 17:33:54 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+        t=1672922035; bh=JY3J18vceNqkSljuhdCvK7VZGF4GKA73SWNTTOQTB8M=;
+        h=From:To:Cc:Subject:Date:From;
+        b=SZ+qLlPOV4Wt3/zRoqX2hI0ItaBm6Rwhu3jThWYFfnvPgHf2RgfsnJ0ucvkI0K6dC
+         Tx4SeA0cQ/nqSsPMOhX90ZZR7U4uo6wBMCJnHZOSL/CxsasCN5ZQp0M9BO9lPED85w
+         dC24BDvF5P3thm2lCj1iI2TaFDF00Lny5vU797zHPNby1zTZSD+Twlpt8qzcVNTaCf
+         Pvi9R2mkgoHDhk0VEjy2Hf8rjIO9VnS0pITrOYSxNqAJAhNTurZTJO59VNssKywiXl
+         shQD9pApGw7jPF3LTruM9EiKakElPJPLjM9EaTzhZ3jx8BXIfU9zlWkXcf0QrGwQyc
+         bFprF6YDmY2xg==
+From:   Nikita Travkin <nikita@trvn.ru>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Siddharth Manthan <siddharth.manthan@gmail.com>,
+        Jasper Korten <jja2000@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Nikita Travkin <nikita@trvn.ru>
+Subject: [PATCH 0/8] Add support for Samsung Galaxy tab A (2015) tablets
+Date:   Thu,  5 Jan 2023 17:32:32 +0500
+Message-Id: <20230105123240.1089375-1-nikita@trvn.ru>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_ANY_PILL_PRICE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
+This series introduces basic support for two Galaxy Tab A
+tablets: 8 and 10 inch variants. They share most of the
+hardware and are mainly dffernet by the display.
 
-Am Donnerstag, 5. Januar 2023, 13:11:37 CET schrieb Michael Walle:
-> Hi Alexander,
-> 
-> thanks for debugging. I'm not yet sure what is going wrong, so
-> I have some more questions below.
-> 
-> >> This causes the following errors on existing boards (imx8mq-tqma8mq-
-> >> mba8mx.dtb):
-> >> root@tqma8-common:~# uname -r
-> >> 6.2.0-rc2-next-20230105
-> >> 
-> >> > OF: /soc@0: could not get #nvmem-cell-cells for /soc@0/bus@30000000/
-> >> 
-> >> efuse@30350000/soc-uid@4
-> >> 
-> >> > OF: /soc@0/bus@30800000/ethernet@30be0000: could not get
-> >> > #nvmem-cell-cells
-> >> 
-> >> for /soc@0/bus@30000000/efuse@30350000/mac-address@90
-> >> 
-> >> These are caused because '#nvmem-cell-cells = <0>;' is not explicitly
-> >> set in
-> >> DT.
-> >> 
-> >> > TI DP83867 30be0000.ethernet-1:0e: error -EINVAL: failed to get nvmem
-> >> > cell
-> >> 
-> >> io_impedance_ctrl
-> >> 
-> >> > TI DP83867: probe of 30be0000.ethernet-1:0e failed with error -22
-> >> 
-> >> These are caused because of_nvmem_cell_get() now returns -EINVAL
-> >> instead of -
-> >> ENODEV if the requested nvmem cell is not available.
-> 
-> What do you mean with not available? Not yet available because of probe
-> order?
+With this series both tablets gain support for things like
+- SDHCI (internal and external storage)
+- USB Device Mode
+- UART
+- Regulators
+- WCNSS (WiFi/BT)
+- GPIO keys
+- Fuel gauge
+- Touchscreen
+- Accelerometer
 
-Ah, I was talking about there is no nvmem cell being used in my PHY node, e.g. 
-no 'nvmem-cells' nor 'nvmem-cell-names' (set to 'io_impedance_ctrl'). That's 
-why of_property_match_string returns -EINVAL.
-
-> > Should we just assume #nvmem-cell-cells = <0> by default? I guess it's
-> > a safe assumption.
-> 
-> Actually, that's what patch 2/21 is for.
-> 
-> Alexander, did you verify that the EINVAL is returned by
-> of_parse_phandle_with_optional_args()?
-
-Yep.
-
---8<--
-diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-index 1b61c8bf0de4..f2a85a31d039 100644
---- a/drivers/nvmem/core.c
-+++ b/drivers/nvmem/core.c
-@@ -1339,9 +1339,11 @@ struct nvmem_cell *of_nvmem_cell_get(struct device_node 
-*np, const char *id)
-        if (id)
-                index = of_property_match_string(np, "nvmem-cell-names", id);
- 
-+       pr_info("%s: index: %d\n", __func__, index);
-        ret = of_parse_phandle_with_optional_args(np, "nvmem-cells",
-                                                  "#nvmem-cell-cells",
-                                                  index, &cell_spec);
-+       pr_info("%s: of_parse_phandle_with_optional_args: %d\n", __func__, 
-ret);
-        if (ret)
-                return ERR_PTR(ret);
---8<--
-
-Results in:
-> [    1.861896] of_nvmem_cell_get: index: -22
-> [    1.865934] of_nvmem_cell_get: of_parse_phandle_with_optional_args: -22
-> [    1.872595] TI DP83867 30be0000.ethernet-1:0e: error -EINVAL: failed to 
-get nvmem cell io_impedance_ctrl
-> [    2.402575] TI DP83867: probe of 30be0000.ethernet-1:0e failed with error 
--22
-
-So, the index is wrong in the first place, but this was no problem until now.
-
-Best regards,
-Alexander
+In fact, with some additional patches like display and
+modem support, that are not included as part of this
+series, these tablets can actually reach one's expectations
+of what a "normal" tablet should be able to do.
 
 
+Jasper Korten (2):
+  arm64: dts: qcom: Add device tree for Samsung Galaxy Tab A (2015)
+  arm64: dts: qcom: msm8916-samsung-gt510: Add touchscreen
+
+Nikita Travkin (3):
+  dt-bindings: qcom: Document samsung,gt58 and gt510
+  arm64: dts: qcom: msm8916-samsung-gt510: Add Vibrator
+  arm64: dts: qcom: msm8916-samsung-gt5-common: Add fuelgauge
+
+Siddharth Manthan (3):
+  arm64: dts: qcom: msm8916-samsung-gt58: Add Vibrator
+  arm64: dts: qcom: msm8916-samsung-gt58: Add touchscreen
+  arm64: dts: qcom: msm8916-samsung-gt5-common: add sensors
+
+ .../devicetree/bindings/arm/qcom.yaml         |   2 +
+ arch/arm64/boot/dts/qcom/Makefile             |   2 +
+ .../dts/qcom/msm8916-samsung-gt5-common.dtsi  | 300 ++++++++++++++++++
+ .../boot/dts/qcom/msm8916-samsung-gt510.dts   | 116 +++++++
+ .../boot/dts/qcom/msm8916-samsung-gt58.dts    |  78 +++++
+ 5 files changed, 498 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-gt5-common.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-gt510.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-gt58.dts
+
+-- 
+2.38.1
 
