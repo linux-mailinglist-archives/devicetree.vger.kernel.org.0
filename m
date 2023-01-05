@@ -2,88 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F070A65F355
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 19:03:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28E2365F372
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 19:09:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235420AbjAESD5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 13:03:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35622 "EHLO
+        id S234263AbjAESJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 13:09:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235445AbjAESDv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 13:03:51 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7003564E8;
-        Thu,  5 Jan 2023 10:03:49 -0800 (PST)
-Received: from jupiter.universe (dyndsl-085-016-198-020.ewe-ip-backbone.de [85.16.198.20])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        with ESMTP id S235021AbjAESIs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 13:08:48 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D7B6DEE5;
+        Thu,  5 Jan 2023 10:08:47 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id DED7D6602D40;
-        Thu,  5 Jan 2023 18:03:47 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1672941828;
-        bh=HWf3Bker04XVluyDrFFMhig5t6mPNRA+lOaEFDDHk4w=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Ur5e9FV2G7idP0ty3L6Gvm8Y+hc7aSKg0k8WtLgAHVLf7Ud2H5CjtIwMNotFqzwe7
-         x3WspQknNnwh130/YVkhUJLe58lZXPpScOCbKt02orJQKcYl231SaYkSV6/piJge8l
-         YJnG2DvCARhkrcuU5Mf3gQsEzotxYgxgZGFFOUNCId5z38bbQfEoJq4KEqyTZhyKD1
-         4ofZnwln3ZHqGhHmyAikwuPeFzwgPOwifGSh7BNnPxyhu8y0lLLCtn9T7MuC/8jIci
-         4AHZHWctLUgnrNszG+xXodUOd8eXxivN/rnJeuv++mHK2HSYPum2eeQrahJhfg2Ykm
-         I2MMCEkz7vY6g==
-Received: by jupiter.universe (Postfix, from userid 1000)
-        id AF9EE48011E; Thu,  5 Jan 2023 19:03:42 +0100 (CET)
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Heiko Stuebner <heiko@sntech.de>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        by ams.source.kernel.org (Postfix) with ESMTPS id 2BFAAB81BA9;
+        Thu,  5 Jan 2023 18:08:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C36CDC433F0;
+        Thu,  5 Jan 2023 18:08:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1672942124;
+        bh=KWeJ/Y2HrNP/kW3nju3KAeYwi+UU7Gs5Hkp4ECFzZi0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=g0AdBRx9jXzrCaAhxObcdUbsQHtaKw2a3A2VwKHUxmfpz7sQ5G3rQ9KCTRkWp4qwq
+         Wg83Nnz1/VbmHug1lQQcSUoP+p6u2CDqJ9Yo0cJ/vSxamyd5Trcx7i8NoW8G/6Hth8
+         b89FaYU59CgLFOJ0rA7dw4769QVr+7jMpcTI8sshDsGG0o1Y1txHqZKMk0GzuIzU7q
+         jq/wENHz0KZSVz4i4kzhcUSK/xSgSkfXT3lPwJIOKDZReEE50y6m1Fxt8wQ//vAcD/
+         I+5blsJraxyny9nVCMSw1t7Wax87KkdgWTL72IzFs4ke2D4+v15thbrt0XXQz2Qd1z
+         RVdtoibXSSZhg==
+Date:   Fri, 6 Jan 2023 02:08:40 +0800
+From:   Tzung-Bi Shih <tzungbi@kernel.org>
+To:     Lee Jones <lee@kernel.org>
+Cc:     Mark Hasemeyer <markhas@chromium.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Raul Rangel <rrangel@chromium.org>,
+        Bhanu Prakash Maiya <bhanumaiya@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        kernel@collabora.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCHv3 7/7] dt-bindings: rockchip-thermal: Support the RK3588 SoC compatible
-Date:   Thu,  5 Jan 2023 19:03:40 +0100
-Message-Id: <20230105180340.29140-8-sebastian.reichel@collabora.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230105180340.29140-1-sebastian.reichel@collabora.com>
-References: <20230105180340.29140-1-sebastian.reichel@collabora.com>
+        Rob Herring <robh+dt@kernel.org>,
+        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org
+Subject: Re: [PATCH v10 2/3] dt-bindings: mfd: Add compatible string for UART
+ support
+Message-ID: <Y7cSKFIakdGKKokE@google.com>
+References: <20221207104005.v10.1.If7926fcbad397bc6990dd725690229bed403948c@changeid>
+ <20221207104005.v10.2.I9e018ecb8bdf341648cb64417085978ff0d22a46@changeid>
+ <Y7WkeCi7/x/t37JM@google.com>
+ <Y7YjmtwByTR+8tbZ@google.com>
+ <Y7bdmiZ9lqKZXCfq@google.com>
+ <Y7buUdgLfnQqnG+x@google.com>
+ <Y7b6dC6dDNO2bVjr@google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y7b6dC6dDNO2bVjr@google.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a new compatible for the thermal sensor device on RK3588 SoCs.
+On Thu, Jan 05, 2023 at 04:27:32PM +0000, Lee Jones wrote:
+> > > You should gain permission from the maintainer before you apply patches.
+> > > 
+> > >   % scripts/get_maintainer.pl -f Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> > >      Lee Jones <lee@kernel.org> (supporter:MULTIFUNCTION DEVICES (MFD))
+> > >      Rob Herring <robh+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
+> > >      Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org> (maintainer:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
+> > >      Matthias Brugger <matthias.bgg@gmail.com> (maintainer:ARM/Mediatek SoC support)
+> > 
+> > I see.  I guess for the case, I should get both MFD and DT bindings
+> > maintainers' Acks before applying the patch.
+> 
+> Yes.  The situation isn't overly clear and differs from subsystem to
+> subsystem and maintainer to maintainer.  In the MFD case, Rob and
+> Krzysztof conduct the first reviews.  99 times out of 100, if they're
+> happy, I'm happy and I merge the changes via the MFD tree.  Same goes
+> for Backlight and more recently, LEDs.
 
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml b/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
-index f6c1be226aaa..55f8ec0bec01 100644
---- a/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
-+++ b/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
-@@ -19,6 +19,7 @@ properties:
-       - rockchip,rk3368-tsadc
-       - rockchip,rk3399-tsadc
-       - rockchip,rk3568-tsadc
-+      - rockchip,rk3588-tsadc
-       - rockchip,rv1108-tsadc
- 
-   reg:
--- 
-2.39.0
-
+I see.  Apologize for that and I will pay more attention next time when
+handling cross-subsystem patches.
