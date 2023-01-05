@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A084565F288
+	by mail.lfdr.de (Postfix) with ESMTP id 563B865F287
 	for <lists+devicetree@lfdr.de>; Thu,  5 Jan 2023 18:22:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234874AbjAERVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 12:21:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39196 "EHLO
+        id S234837AbjAERVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 12:21:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235371AbjAERVM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 12:21:12 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 029F04D489
-        for <devicetree@vger.kernel.org>; Thu,  5 Jan 2023 09:14:57 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id p1-20020a05600c1d8100b003d8c9b191e0so1840802wms.4
-        for <devicetree@vger.kernel.org>; Thu, 05 Jan 2023 09:14:56 -0800 (PST)
+        with ESMTP id S235388AbjAERVN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 12:21:13 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43DCE564FA
+        for <devicetree@vger.kernel.org>; Thu,  5 Jan 2023 09:15:03 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id az7so12390652wrb.5
+        for <devicetree@vger.kernel.org>; Thu, 05 Jan 2023 09:15:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zHsW1hXT84VrcOTSjq1ht1csJ1l/OOaXvFqtaZIGzAQ=;
-        b=NNQfWw649POtb1ixyaEqO1E7yEFrDzZy1vAhwOlebXXxjlpNTucHO/2UsilwihczzW
-         ly/b5+6IANCKPWbwOKP7ktXZMV0ugBiumORIsn0mOfPEZXH8VZx81o3uBCdD3CpFeMOr
-         NrKokdXhMdH/7IcQod4pO719JnpblwHCthLHcb8AxN/2s+0NBTEP7NEEgIPwpdBXMKxD
-         wUDAdsAzrY7O/xaVCjo2NFttdQHYkZSpMn8VT8j6ZUAbbO8023cbR2EXeigT971GIXVp
-         7mHZFHskaLeJPf0HD4JugUpXU7b2f22RLJEM1TRNhfnK7fx+gXLE/waTZunGs5VGB2vE
-         iYzA==
+        bh=n67EXi2DxaUGQNZldfWmP0oWklEr+2h12NuoITaK4oU=;
+        b=cb1noHtTwXSIqdkVBnBjmTZevi5eDykk8T/dYtaP34aWWZL8bTKkTFuyeu/NNILXUL
+         Gbw+yQks87nGpVDsvAdwOkXCWIg7XBFQCXPNnmxrplfmDkXQ355dUic3QRI/myCZwsfG
+         aVwSS7zWfLGRE0NZPWUJ9loDsT06jbOIOvylwAyey1TtPHyZl9Po/8FSjcp54N5Gbzie
+         5UCz+KYr6/xpypjJAvlsPysK5E3cOt9+KSBNx/YM3B8lfwl8CmQaxgj7E/gP241O1CdT
+         85S5PjeAMkDCMu2Mo434zJL+SMxZEuEY3oNZ+mtCc85H+7BJncKNAVynEmAdP+pTdpnU
+         xqkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zHsW1hXT84VrcOTSjq1ht1csJ1l/OOaXvFqtaZIGzAQ=;
-        b=sQUt8qg0DYW/WJeinwJbxQ1xBFv4MhDoM0H1T4n4WFlz9G2E/TXvRHjYJwbBbvL/Ll
-         4WFHnev1fsZYkwRAz1IYM7JTUkhtlKZcWrDB+QKnrxsnxwdFbuxqe3Fvi/yNylj+GShm
-         OqZyOTLjP77TvFTfPxFH51Re7y2vHJ/SBWi4UsLmjS5gUw9t0PGDivpbAgUyGc1UZy8u
-         BCpwxMFLvI+idap1e1lAW7E1G0lF1f60nA4iBks3QMDFI5jrTcEVrso2a4V20Xq28os2
-         TLrFn7ixQZMp/YvfqLAbaF76y6301xk0tX+13TRIa2KlA6OZF7THLduoWLUkxUri7nZ1
-         BGFg==
-X-Gm-Message-State: AFqh2koF2/wjszC0s2IHJGdqaCcWDOLFqQSkY5zDvtg1fxwxkMTQOjHV
-        yDSJKx5/BTv7DiwMTb46dwzPRz4w647mqHy1CtE=
-X-Google-Smtp-Source: AMrXdXvhvz/gUtoFPFfu54pFNu7YrSye4jdqTILHV1uc/Rj2V1Yjv53+E3kX2T+WzMDEGStmKZF19w==
-X-Received: by 2002:a05:600c:8a9:b0:3cf:6e85:eda7 with SMTP id l41-20020a05600c08a900b003cf6e85eda7mr37582146wmp.14.1672938895576;
-        Thu, 05 Jan 2023 09:14:55 -0800 (PST)
+        bh=n67EXi2DxaUGQNZldfWmP0oWklEr+2h12NuoITaK4oU=;
+        b=O8xLeYLZHULrBgi4GgO5y2Fsye3MBllPSG2JOGYueomCjAX/Y662x1gbfX/TerDv/k
+         xslN7oh5TrRSDziEr9EFr+f0jPEYC5f4keDLlaHfMb3x/spPwwnO8MC6GODV6jxdO5Em
+         Qe/QRGVLFNh5WZBZxtrk546NK+7HXbfmIkBmQzmTQK8LMmQnMDorUUdbgS3ggSarOi0J
+         ppLoQwTpAoT1cAT73D/3SA0hiShkgCN8DCjizI1PgG6PNt32Ok4aVUFnTN4yV7SsKWDO
+         fj73WeaKkkTug5ouvAuiyru4D8ilTX6bJvMUgik8DB40i3icUv6Lv0UhPvrELRACIObX
+         J4bw==
+X-Gm-Message-State: AFqh2kqtLQLeWDcwq4uEeuG2bPvw/4i9RbaHy7JBXKjmtd1UYq5CkUJR
+        toVeE34bSl/lxJSHD1Wjz0hk7w==
+X-Google-Smtp-Source: AMrXdXuouVOmirnUjwp/feXQB4gD8Wc+b4LA3daJwE59+sjXkRBitK3Z9i5WC/PcnRWTG+dQyEK1gA==
+X-Received: by 2002:a5d:5312:0:b0:297:bdaa:c8b8 with SMTP id e18-20020a5d5312000000b00297bdaac8b8mr10222823wrv.23.1672938901848;
+        Thu, 05 Jan 2023 09:15:01 -0800 (PST)
 Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id o5-20020a05600c510500b003b4ff30e566sm7833558wms.3.2023.01.05.09.14.54
+        by smtp.googlemail.com with ESMTPSA id q15-20020adff78f000000b00291f1a5ced6sm16243607wrp.53.2023.01.05.09.15.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Jan 2023 09:14:54 -0800 (PST)
-Message-ID: <0ec43e5e-1364-7354-abc5-cff106ea5cdc@linaro.org>
-Date:   Thu, 5 Jan 2023 17:14:53 +0000
+        Thu, 05 Jan 2023 09:15:01 -0800 (PST)
+Message-ID: <81d01cab-02ce-00fd-f9fb-225f1547d3fb@linaro.org>
+Date:   Thu, 5 Jan 2023 17:14:59 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 2/2][next] dt-bindings: nvmem: Fix spelling mistake
- "platforn" -> "platform"
+Subject: Re: [PATCH 1/2][next] nvmem: layouts: Fix spelling mistake "platforn"
+ -> "platform"
 Content-Language: en-US
 To:     Colin Ian King <colin.i.king@gmail.com>,
         Miquel Raynal <miquel.raynal@bootlin.com>,
@@ -64,9 +64,8 @@ To:     Colin Ian King <colin.i.king@gmail.com>,
         devicetree@vger.kernel.org
 Cc:     kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20230105095828.2951-1-colin.i.king@gmail.com>
- <20230105095828.2951-2-colin.i.king@gmail.com>
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20230105095828.2951-2-colin.i.king@gmail.com>
+In-Reply-To: <20230105095828.2951-1-colin.i.king@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,30 +81,27 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 05/01/2023 09:58, Colin Ian King wrote:
-> There is a spelling mistake in platforn-name. Fix it.
+> There is a spelling mistake in the literal string. Fix it.
 > 
 > Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
 > ---
 
-
 Applied thanks,
 
 --srini
-
-
->   .../devicetree/bindings/nvmem/layouts/onie,tlv-layout.yaml      | 2 +-
+>   drivers/nvmem/layouts/onie-tlv.c | 2 +-
 >   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.yaml b/Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.yaml
-> index 5a0e7671aa3f..714a6538cc7c 100644
-> --- a/Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.yaml
-> +++ b/Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.yaml
-> @@ -61,7 +61,7 @@ properties:
->       type: object
->       additionalProperties: false
->   
-> -  platforn-name:
-> +  platform-name:
->       type: object
->       additionalProperties: false
->   
+> diff --git a/drivers/nvmem/layouts/onie-tlv.c b/drivers/nvmem/layouts/onie-tlv.c
+> index 074c7c700845..767f39fff717 100644
+> --- a/drivers/nvmem/layouts/onie-tlv.c
+> +++ b/drivers/nvmem/layouts/onie-tlv.c
+> @@ -48,7 +48,7 @@ static const char *onie_tlv_cell_name(u8 type)
+>   	case 0x27:
+>   		return "label-revision";
+>   	case 0x28:
+> -		return "platforn-name";
+> +		return "platform-name";
+>   	case 0x29:
+>   		return "onie-version";
+>   	case 0x2A:
