@@ -2,81 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82F3366055D
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 18:12:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 98CF466057C
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 18:18:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232086AbjAFRMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 12:12:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49312 "EHLO
+        id S230013AbjAFRRi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 12:17:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229498AbjAFRMp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 12:12:45 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C5E0F4A;
-        Fri,  6 Jan 2023 09:12:40 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 30535B81E23;
-        Fri,  6 Jan 2023 17:12:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFC70C433F0;
-        Fri,  6 Jan 2023 17:12:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673025157;
-        bh=V5Cjg+awY8Te/ixBSRyQpxLPmfpep+g4G3a1tJRNLok=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=VNfP4/F0dfJRk7reIaprVMzvcoccOdze4nX70LAupzjjKetpCPGRWb2G3qOaCToEa
-         woHRS2Hz28fWSc0VZbsztUVLVW2Wb0As9rrVUyHQKCC35JP2v/CTf2X/xmRaIjqCuZ
-         QM62NmR2wOsFufxVaVpPh9KIcqEL0RBBZbiB/1JMgdYx17+a9J33VWMVsP3plBaQDB
-         BirwwXpX3NQvfQ1ZsXJV3CH35QiGtp995QAmNO0cWdwiHmFfMpoUt+T+d0k/Y1+m9W
-         lkQiwiStYCED1iaOixsCiQhGxYPI5aomvLbqjDO3NePEDsJhkuvgZJM3xHV6tNBXIp
-         1ExdOB4shDn7A==
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     robh+dt@kernel.org, sboyd@kernel.org, mturquette@baylibre.com,
-        krzysztof.kozlowski+dt@linaro.org, abel.vesa@linaro.org,
-        konrad.dybcio@linaro.org, agross@kernel.org,
-        dmitry.baryshkov@linaro.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v8 0/4] clk: qcom: Add support for SM8550
-Date:   Fri,  6 Jan 2023 11:12:36 -0600
-Message-Id: <167302514590.1787824.9356171697272297388.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20230104093450.3150578-1-abel.vesa@linaro.org>
-References: <20230104093450.3150578-1-abel.vesa@linaro.org>
+        with ESMTP id S235682AbjAFRRL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 12:17:11 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6D4747D1CE;
+        Fri,  6 Jan 2023 09:17:09 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1068D2F4;
+        Fri,  6 Jan 2023 09:17:51 -0800 (PST)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2FCFF3F71A;
+        Fri,  6 Jan 2023 09:17:07 -0800 (PST)
+Date:   Fri, 6 Jan 2023 17:17:04 +0000
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Samuel Holland <samuel@sholland.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Icenowy Zheng <uwu@icenowy.me>,
+        =?UTF-8?B?QW5kcsOhcyBTemVtesO2?= <szemzo.andras@gmail.com>,
+        Fabien Poussin <fabien.poussin@gmail.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/4] ARM: dts: sunxi: Add MangoPi MQ-R board support
+Message-ID: <20230106171704.12e81a81@donnerap.cambridge.arm.com>
+In-Reply-To: <20230106010155.26868-1-andre.przywara@arm.com>
+References: <20230106010155.26868-1-andre.przywara@arm.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 4 Jan 2023 11:34:46 +0200, Abel Vesa wrote:
-> This patchset adds more clocks support for the Qualcomm SM8550 SoC,
-> It adds the TCSR clock controller driver and the rpmh clocks.
+On Fri,  6 Jan 2023 01:01:51 +0000
+Andre Przywara <andre.przywara@arm.com> wrote:
+
+> The MangoPi MQ-R is a small SBC with the Allwinner T113-s3 SoC. That is
+> a very close relative to the Allwinner D1/D1s SoCs, but with Arm
+> Cortex-A7 cores, and 128 MB of SIP co-packaged DDR3 DRAM.
 > 
-> Changes since v7:
->  * Replaced RPMH_CXO_PAD_CLK with RPMH_CXO_CLK in the TCSR CC binding
->    schema example
+> This series introduces the missing T113-s .dtsi, which builds on top of
+> the D1/D1s .dtsi, but adds the ARM specific peripherals, like the CPU
+> cores, the arch timer, the GIC and the PMU.
+> This requires to add a symlink to the RISC-V DT directory in patch 1/4,
+> to be able to easily reference the base .dtsi from other architecture
+> directories.
+
+First, forgot to mention that this builds on top of Samuel's D1/D1s DT
+series:
+https://lore.kernel.org/linux-arm-kernel/20221231233851.24923-1-samuel@sholland.org/
+To actually boot, this also relies on the R528/T113s clock series:
+https://lore.kernel.org/linux-arm-kernel/20221231231429.18357-1-samuel@sholland.org/
+
+> After I had written most of the board .dts, I realised that the
+> MangoPi MQ is almost the same, minus the RISC-V/ARM difference. I am a
+> bit unsure if we should share more of the board .dts, though, as this
+> would go cross architectures. I am open to any comments here.
+
+So after getting some sleep and having a look at the MangoPi website
+again, I realised that there is of course a D1s edition of the MQ-R as
+well. So shall we split this up like this:
+- a sunxi-mangopi-mq.dtsi, which contains all the board specific nodes
+- a sun20i-d1-mangopi-mq.dts, which includes that and sun20i-d1s.dtsi
+- a sun20i-d1-mangopi-mq-r.dts, which maybe includes
+  sun20i-d1-mangopi-mq.dts, and just overwrites the model name?
+- a sun8i-t113s-mangopi-mq-r.dts, which includes sunxi-mangopi-mq.dtsi
+  and sun8i-t113s.dtsi
+
+Let me know if this useful or more confusing.
+
+Cheers,
+Andre
+
+
+> Andre Przywara (4):
+>   dts: add riscv include prefix link
+>   ARM: dts: sunxi: add Allwinner T113-s SoC .dtsi
+>   dt-bindings: arm: sunxi: document MangoPi MQ-R board name
+>   ARM: dts: sunxi: add MangoPi MQ-R board
 > 
-> [...]
+>  .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+>  arch/arm/boot/dts/Makefile                    |   1 +
+>  .../arm/boot/dts/sun8i-t113s-mangopi-mq-r.dts | 160 ++++++++++++++++++
+>  arch/arm/boot/dts/sun8i-t113s.dtsi            |  59 +++++++
+>  scripts/dtc/include-prefixes/riscv            |   1 +
+>  5 files changed, 226 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/sun8i-t113s-mangopi-mq-r.dts
+>  create mode 100644 arch/arm/boot/dts/sun8i-t113s.dtsi
+>  create mode 120000 scripts/dtc/include-prefixes/riscv
+> 
 
-Applied, thanks!
-
-[1/4] dt-bindings: clock: Add SM8550 TCSR CC clocks
-      commit: d8aa375bd70681b76c6bd5fe93bab6011e16a0fb
-[2/4] dt-bindings: clock: Add RPMHCC for SM8550
-      commit: ffcdd6907e9a1fdccd9350147d0f59cafb87e768
-[3/4] clk: qcom: rpmh: Add support for SM8550 rpmh clocks
-      commit: 478a573be730dd704ab6acee43f40d91fe8c808a
-[4/4] clk: qcom: Add TCSR clock driver for SM8550
-      commit: e9a7b78b20889d2325bef4a1eb39c1088858ab81
-
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
