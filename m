@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EDA1660502
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 17:44:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6951D66050F
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 17:48:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235815AbjAFQox (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 11:44:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60798 "EHLO
+        id S235946AbjAFQsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 11:48:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235910AbjAFQn5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 11:43:57 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 471B878A69
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 08:43:50 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id g25-20020a7bc4d9000000b003d97c8d4941so3938272wmk.4
-        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 08:43:50 -0800 (PST)
+        with ESMTP id S235898AbjAFQsF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 11:48:05 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEF6484BE1
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 08:45:36 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id bs20so1794329wrb.3
+        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 08:45:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
         bh=D3oJpCSGnnDJtoKqiOy/io+oXZbWMd8CgdZY3qs2G2Q=;
-        b=eyI2I3kagE68Lvc5JNJ6I/EKVCgf6WiwLXx7wCLKBjHSuqq71xJmirhfUIxf08Rsi6
-         Xrwn1DqBXFksrRYmlNDpOamWBf6Y1iFznBgG4JkNlKgC+qhmZmtgqqVc0Ij/5S4rHPic
-         YInXYp+a/wSNPVy9Xw+hoeXPHWGNdY4Dom4B0dQZcSUTMtU3UcMEcSD5eWqAarwSYkWQ
-         ihbNV+P540smuwlLjlhQGeT6ORkOHu1PLhB+fUalJlj3yecZD+HhRADDlXK1iuxlEJ2C
-         pATvPqvrmykQjd+Wy1lmS82yH6h8B7jB9N+GNx4PJ5krZR/PrvNO/Ilm7a2tZnKV7AZW
-         +8DA==
+        b=UHWt0Km56J2JnjdyVXkbV8H2zFDMRABozsD+/PxSIf69I83GfPnUrLfMbjeaUzn8vZ
+         +zIVn18GbZy3rzc6xOZwT7GdzhrtkKXtVAd/PZqr5inSgoOB2/Zqb+0dn76yH5UKdUFS
+         p3blat2x46IA5MD0L2IoYIrmhSUBmIYd/rIVIJDn16g0P1JK7H2kOYyX0S7+YRbkICpc
+         cYYB78tfufmn+ROyktFKlhIFFx23eUNJn3GHfPZ7voW5kVPOyppY/rrt25CaRCrubbL+
+         DUSAk9yJUwTI/tbI4VYaIVlLQQnk0jIGMdZ8Atr58Wc/TjRkuwpinIwbdEo+Xu0IqP7Y
+         li1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
         bh=D3oJpCSGnnDJtoKqiOy/io+oXZbWMd8CgdZY3qs2G2Q=;
-        b=Um2hPfQRt1RVabAAu2aY3tdBwINCbqkjI2o4NRvrsm6G1WTdHsfBQfv+Qi2f5WZLoD
-         via/6ofW8sGOm2sTIjIrzCg8pMxmzbXzjS4d99/Azb4xfTETSo5Zq/uU3c4hPu4Q7+Rr
-         APKnNmu3t9aTj9l25BMyr9FjXd4pdOAszXs61p+8kr6KkVwQkwFX9Kn13+gp7bC691Bz
-         FEtZ5MQRkRhfsj8a8AbsRl8LUER1jQX7+Zc2A8X30oQc2GKtfaOaLEVMrdZoYgmMV78J
-         EMT0583+APyYG9wUCZH9+Ylj5IA/44BKrhyR9ax1HCa8Wli8v4UjUhQgyA+RjSCtUZvq
-         NN/A==
-X-Gm-Message-State: AFqh2ko3y6mhoy/C5D3tzKnEpcr7N6SchtfUIw4C9/5QFcOGO6TdjCD3
-        4hBMy0PnfwBPTywtT4UycnwH3A==
-X-Google-Smtp-Source: AMrXdXvNKFj5uTJoUEF00h6bsaaRcDD6Ay5cuWevUuztp6tLx9fveZPhfXisq8Qj4fCZ7d868Vnyjw==
-X-Received: by 2002:a05:600c:4e04:b0:3d2:381f:2db5 with SMTP id b4-20020a05600c4e0400b003d2381f2db5mr38887232wmq.22.1673023428711;
-        Fri, 06 Jan 2023 08:43:48 -0800 (PST)
+        b=zcmM7Ir3w3sYH3abELOKqIWDeEbLsmpXmhtuxb1wx5ABdS89jtjlLnt+JBXLpX6jGd
+         zsogfsbmRGaoiaxtHSc5aAbl6WU2GQ+q2dae3DMFbz7fqt1iFwE+js7vBpFmBxH/znwe
+         87LFe8d4q6FHUGpYfNa0WBiI7yXnhR5RcDFzjtOmV2641FR5GotDa+Xd3nQKbdY+17Eg
+         ULXp7SAs1fOD/UIty2h8ZCNDJ2Jekj/obkGPAXD279YR+uv3/Pj6vj33jWfAjqw+M+Qo
+         Yl8I8ZUlo7SdGC6nLOuUevxvuIa0B6Fthj0oYHrnGxKaJNOfkWMohdwbBuC7eEGUMpgE
+         QODg==
+X-Gm-Message-State: AFqh2koXavw0IzSMwFwlB3DNUl2JINFtL0/PjJpVZFPPqfrbQ5Xok3d0
+        O4iWwdYUug9keTuMDU2RQGge0g==
+X-Google-Smtp-Source: AMrXdXsupooZ2m7x/LlwSDiAAmoOXy0FQsRZd6LIfrgcfBUzghk7ki1VBFwsA9x4tgGcarRo8PcF2Q==
+X-Received: by 2002:adf:a15b:0:b0:256:ffcc:49b7 with SMTP id r27-20020adfa15b000000b00256ffcc49b7mr45132785wrr.62.1673023516197;
+        Fri, 06 Jan 2023 08:45:16 -0800 (PST)
 Received: from vingu-book.. ([2a01:e0a:f:6020:98f9:4145:643f:e1da])
-        by smtp.gmail.com with ESMTPSA id bj7-20020a0560001e0700b002b6667d3adfsm1618511wrb.80.2023.01.06.08.43.47
+        by smtp.gmail.com with ESMTPSA id cl10-20020a5d5f0a000000b002423620d356sm1629623wrb.35.2023.01.06.08.45.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Jan 2023 08:43:48 -0800 (PST)
+        Fri, 06 Jan 2023 08:45:15 -0800 (PST)
 From:   Vincent Guittot <vincent.guittot@linaro.org>
 To:     dmitry.baryshkov@linaro.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, konrad.dybcio@linaro.org,
+        bjorande@qti.qualcomm.com, konrad.dybcio@linaro.org,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
 Cc:     danny@kdrag0n.dev, Vincent Guittot <vincent.guittot@linaro.org>
 Subject: [PATCH] arm64: dts: qcom: sdm845: correct dynamic power coefficients
-Date:   Fri,  6 Jan 2023 17:43:44 +0100
-Message-Id: <20230106164344.1845098-1-vincent.guittot@linaro.org>
+Date:   Fri,  6 Jan 2023 17:45:13 +0100
+Message-Id: <20230106164513.1845197-1-vincent.guittot@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
