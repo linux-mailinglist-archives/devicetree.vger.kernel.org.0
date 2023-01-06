@@ -2,805 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29006660330
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 16:29:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7879F660336
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 16:30:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235621AbjAFP33 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 10:29:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43360 "EHLO
+        id S235315AbjAFPaO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 10:30:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235411AbjAFP3J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 10:29:09 -0500
-Received: from mxout4.routing.net (mxout4.routing.net [IPv6:2a03:2900:1:a::9])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7444E8B77E;
-        Fri,  6 Jan 2023 07:29:04 -0800 (PST)
-Received: from mxbulk.masterlogin.de (unknown [192.168.10.85])
-        by mxout4.routing.net (Postfix) with ESMTP id C54B91008D9;
-        Fri,  6 Jan 2023 15:29:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-        s=20200217; t=1673018942;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=DfLtE1TdUI5LkOjLCpOwgKvMkd7PVhG+uullUZZAQWw=;
-        b=pT4vxOodEWpSp0pkr18yrAAmawM1d9pZdrvkuebUxmgG6MDpiW8Tkp55+RcbplGa839YKi
-        7EUlYPzWlg4W1WmFBd2+OJqxpZjR+vPODQqO26wPThZkiNqXLJDdRgVvmMkmAIrHdZaPeK
-        fVflU18wm0D3cEDZfIBk3RVT9lED34Y=
-Received: from frank-G5.. (fttx-pool-217.61.159.6.bambit.de [217.61.159.6])
-        by mxbulk.masterlogin.de (Postfix) with ESMTPSA id 583AE1226D4;
-        Fri,  6 Jan 2023 15:29:02 +0000 (UTC)
-From:   Frank Wunderlich <linux@fw-web.de>
-To:     linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+        with ESMTP id S235608AbjAFP31 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 10:29:27 -0500
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2045.outbound.protection.outlook.com [40.107.94.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F5648B75F;
+        Fri,  6 Jan 2023 07:29:26 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PgNGnpk4uPZ24/R2Td0MHNVaTh7BlSKKFYMovLkAiHWvZ5kBn1mgSmY30Q+bcsfrenOu+d+6dfZajaezOns+7syv6uj71PFev3pRPbDMSe82BqkjY3NIFLVFF0jTmUklBSq/rr96zEGLADn3uywmRP6k8/xK2LeD2pphU2/7CcgMtcFIn94/932qHu1KHX5QV6HC+EDxuA46iahNNHogT5gDmk4MCN3QE02nxFCNaNh7teL4Q1SLxeRDdzeuWleItk8ybxD4l/rZgxMhio68P5EaK8QFSy7qmg8L1yHVfx3hrpPQCcBggT8ro4wnEI8ODKuwsshNTcZ+xYISWUrQyA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dMYtY1cuzppD7VqdwRkN7g3WrQ9+D8AQz61725nrkkA=;
+ b=mLeWcehz88b7iywUqqJOzY8Fg0kF7gn8vG1JAc0ViOPBKnvx9K45v/PpmNAVImkAGsTeToRfAynvnaFdCHVrDchmnjpV2Pp1iwXq/LNkJV0UmICnHYjZ8we/Zi8qgDJs0904WYrYS9glpF6VlwzD8fguBKcZbHiYsQ6jqDksJU3GNTweNctdilevCDrvd9iwmt711AJ+5H88Kv+LvrUkL9fKuHxK4LAD//G7HxQ3pGcu+rHJgXYrYOKTNBkDXm+mgP8TZC+UOgyQYjWzb9fNap5W9KQ8mbZ2lbyEMoqDAwcQCLbGb25yQRC/EFvFjinLvvT1IhUDwUVcH1+kjlEr9A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=linuxfoundation.org
+ smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
+ header.from=nvidia.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dMYtY1cuzppD7VqdwRkN7g3WrQ9+D8AQz61725nrkkA=;
+ b=MkNlaODXF3myt/ab+Ot+6Ry6WPNfq0YlwK4HtDpDCkDaaml6EPbPuGsSqGu5vQ3om1dw2mQ4q1CJWATurOUqZy7P++A0ErPgkvlHHiKX/kX/zILSQHTd/bwRf0wIiVH4sRPc+cF5kt+LuOuN2ay6Kl94VB1o5VN8+IXhZhMor1YdYkLFMvcQxztH7oI2r23rDVYvXm99+DPeoXHzIEbEjI+j0l3Rpvlz5lXQbQctL5Noyb6ozEmWSThufU9yFFrzsazRYgopXGOkLNdN8vcchEKfCkwOmhMXkqffuY7hvdsLQsVOxYXLQ3cogq1XI5RRjyfZ7jeu1hBaoIzzLoy3yQ==
+Received: from BN1PR10CA0009.namprd10.prod.outlook.com (2603:10b6:408:e0::14)
+ by PH0PR12MB7080.namprd12.prod.outlook.com (2603:10b6:510:21d::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.19; Fri, 6 Jan
+ 2023 15:29:24 +0000
+Received: from BN8NAM11FT086.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:e0:cafe::28) by BN1PR10CA0009.outlook.office365.com
+ (2603:10b6:408:e0::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.15 via Frontend
+ Transport; Fri, 6 Jan 2023 15:29:24 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ BN8NAM11FT086.mail.protection.outlook.com (10.13.176.220) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5944.17 via Frontend Transport; Fri, 6 Jan 2023 15:29:24 +0000
+Received: from rnnvmail203.nvidia.com (10.129.68.9) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 6 Jan 2023
+ 07:29:11 -0800
+Received: from rnnvmail203.nvidia.com (10.129.68.9) by rnnvmail203.nvidia.com
+ (10.129.68.9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 6 Jan 2023
+ 07:29:11 -0800
+Received: from moonraker.nvidia.com (10.127.8.13) by mail.nvidia.com
+ (10.129.68.9) with Microsoft SMTP Server id 15.2.986.36 via Frontend
+ Transport; Fri, 6 Jan 2023 07:29:09 -0800
+From:   Jon Hunter <jonathanh@nvidia.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v9 5/5] arm64: dts: mt7986: add Bananapi R3
-Date:   Fri,  6 Jan 2023 16:28:45 +0100
-Message-Id: <20230106152845.88717-6-linux@fw-web.de>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230106152845.88717-1-linux@fw-web.de>
-References: <20230106152845.88717-1-linux@fw-web.de>
+        Thierry Reding <thierry.reding@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>
+CC:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <waynec@nvidia.com>, Jon Hunter <jonathanh@nvidia.com>
+Subject: [PATCH V5 0/6] Enable USB host on Jetson AGX Orin
+Date:   Fri, 6 Jan 2023 15:28:52 +0000
+Message-ID: <20230106152858.49574-1-jonathanh@nvidia.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+X-NVConfidentiality: public
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT086:EE_|PH0PR12MB7080:EE_
+X-MS-Office365-Filtering-Correlation-Id: ad3e50bd-4f9d-4acb-ae82-08daeffaca6f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: U/WcOdFxZpXMhY5Lpwwgv1S3PjGHVRPOV79lI15iwhOd5KQOZB02O+zOEnDBLeCCQZetd4iNRygFEe/ltRMuaXQDIOYTdSXZXz7fiZTlTtu7KZbHrMU0iCf0mqt2ZOH96xWOzSETEs7watdHmEnUGmQzMAFRfw0+L2hUsv1+Mgr6EwFEn+5em3400r3d6m5JwUKYCXZyB/5MpnuLIAwmhE7knGPkeWMXp8oRfFmQdVJak3Q4gO98grC7D44+R/N169p/cowFm1Is9Lwwi1kEMARUz6FO0G1SbdO6c2y7ffQXC4QU3THmN6A7yEQHbgJAn1EQ+Xk6WTPnV+KPnZlkisBuryvw2Yd3jwthFCL7iZOzf3Y3SGA7cFACC7/HBPHjqlASa0Vigho8GVfaNRAoPdAwmAqcEFLCBmM/m2GXO9eXsCsYcrnVPI12sFIo4shXJyfBiUFwSiQzahvGk8Z5wceHQKsEPeVSk8i3G5ScmCOaaKScptv2I+tvJ3Z6LdjnuBFs7RN2cq1cEJLQmbLqwHPuHoorlEdLjgs4lCMWYJDRUA/4M851NtITVzlq78M+TuwP7PVqFzI2ixV7w0xQlkwmZ0ujMssw/GWNRw/aCjoMFakEUuq6mLsIk6YJiu6M/3i1goZX/wrpc6IAgZbjOINgXbmaXNAqthKrY7sj3fh1fs7QdO2S16dYtK/nPpc2eOL7rxIXcTmv14E0tXxLd11igL9xHPnFDUcutBaXfo6e+HCn6bnM4kOBwFwmHtQhnKj+BE3MowaYEZpj434MgzKOm2NZPJwtPhElWh5Ho2o=
+X-Forefront-Antispam-Report: CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230022)(4636009)(396003)(376002)(39860400002)(136003)(346002)(451199015)(46966006)(40470700004)(36840700001)(36860700001)(110136005)(6666004)(478600001)(82740400003)(966005)(40480700001)(40460700003)(5660300002)(2616005)(1076003)(36756003)(8936002)(41300700001)(70586007)(70206006)(47076005)(4326008)(8676002)(356005)(426003)(336012)(7636003)(83380400001)(107886003)(7696005)(82310400005)(316002)(26005)(54906003)(2906002)(186003)(86362001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2023 15:29:24.1494
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ad3e50bd-4f9d-4acb-ae82-08daeffaca6f
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT086.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7080
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frank Wunderlich <frank-w@public-files.de>
+Enable support for USB host on the Tegra234 Jetson AGX Orin platform.
+This series is based upon the previous series [0] to enable USB host and
+device for this platform, however, for now we have dropped USB device
+support and support for the type-c connector while we resolve review
+comments for these changes.
 
-Add support for Bananapi R3 SBC.
+[0] https://lore.kernel.org/linux-tegra/20221114124053.1873316-1-waynec@nvidia.com/
 
-- SD/eMMC support (switching first 4 bits of data-bus with sw6/D)
-- SPI-NAND/NOR support (switched CS by sw5/C)
-- all rj45 ports and both SFP working (eth1/lan4)
-- all USB-Ports + SIM-Slot tested
-- i2c and all uarts tested
-- wifi tested (with eeprom calibration data)
+Jon Hunter (1):
+  dt-bindings: phy: tegra-xusb: Add support for Tegra234
 
-The device can boot from all 4 storage options. Both, SPI and MMC, can
-be switched using hardware switches on the board, see
-https://wiki.banana-pi.org/Banana_Pi_BPI-R3#Jumper_setting
+Sing-Han Chen (2):
+  phy: tegra: xusb: Add Tegra234 support
+  usb: host: xhci-tegra: Add Tegra234 XHCI support
 
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
-changes:
-v9:
-- drop model string override in sd-dtso
+Wayne Chang (3):
+  dt-bindings: usb: Add NVIDIA Tegra234 XUSB host controller binding
+  arm64: tegra: Enable XUSB host function on Jetson AGX Orin
+  phy: tegra: xusb: Disable trk clk when not in use
 
-v8:
-- drop model string override in emmc-dtso
-- drop cs-gpios from spi-nodes
-- add interrupt-settings for mt7531 switch
+ .../phy/nvidia,tegra194-xusb-padctl.yaml      |   4 +-
+ .../bindings/usb/nvidia,tegra234-xusb.yaml    | 158 +++++++++++
+ .../boot/dts/nvidia/tegra234-p3701-0000.dtsi  |  48 ++++
+ .../nvidia/tegra234-p3737-0000+p3701-0000.dts |  93 ++++++
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi      | 145 ++++++++++
+ drivers/phy/tegra/Makefile                    |   1 +
+ drivers/phy/tegra/xusb-tegra186.c             |  64 ++++-
+ drivers/phy/tegra/xusb.c                      |   6 +
+ drivers/phy/tegra/xusb.h                      |  23 ++
+ drivers/usb/host/xhci-tegra.c                 | 267 +++++++++++++++---
+ 10 files changed, 767 insertions(+), 42 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/nvidia,tegra234-xusb.yaml
 
-v7:
-- squashed overlay-patch and converted sd/emmc dts to overlay too
-- moved mmc-regulators to base dts
-- changed common dtsi to (base dts) and overlay extension to dtso
-
-v6:
-- drop usb 5v regulator from bpi-r3
-  based on chunfengs response it is only needed if regulator is
-  switched (like for otg), usb works without it.
-
-v4:
-- add PCIe nodes
-- fix sfp-properties of sfp-1 (need to be plural)
-  thx to Denis Odintsov for this
-
-v3:
-- rename factory-key to reset-key
-- add dcin regulator and add it as input for 3v3 (with renaming)
-- remove memory-node
-- dropped wifi eeprom (calibration) data
-- move mmc0 pinctrl to common dtsi and drop sdcard comment
-- change mmc pull-up/down to have generic bias-pull*
-
-v2:
-- remove pcie to be added later (discussion about clocks)
-- some fixes based on suggestions on ML
-  - add key suffix like it's done in mt7622-bpi-r64 devicetree
-  - add dash in sfp node names
-  - use reg as unit for switch-node
-  - drop "-3-4" suffix from i2c-pins node name
-  - fix order in Makefile
----
- arch/arm64/boot/dts/mediatek/Makefile         |   5 +
- .../mt7986a-bananapi-bpi-r3-emmc.dtso         |  29 ++
- .../mt7986a-bananapi-bpi-r3-nand.dtso         |  55 +++
- .../mediatek/mt7986a-bananapi-bpi-r3-nor.dtso |  68 +++
- .../mediatek/mt7986a-bananapi-bpi-r3-sd.dtso  |  23 +
- .../dts/mediatek/mt7986a-bananapi-bpi-r3.dts  | 450 ++++++++++++++++++
- 6 files changed, 630 insertions(+)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dtso
- create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso
- create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dtso
- create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dtso
- create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index 813e735c5b96..d5cd7b3e09cf 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -8,6 +8,11 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-evb.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-x20-dev.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-rfb1.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-bananapi-bpi-r64.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-emmc.dtbo
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-nand.dtbo
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-nor.dtbo
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-sd.dtbo
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-rfb.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986b-rfb.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8167-pumpkin.dtb
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dtso b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dtso
-new file mode 100644
-index 000000000000..779dc6782bb1
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dtso
-@@ -0,0 +1,29 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2021 MediaTek Inc.
-+ * Author: Sam.Shih <sam.shih@mediatek.com>
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+/ {
-+	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
-+
-+	fragment@0 {
-+		target-path = "/soc/mmc@11230000";
-+		__overlay__ {
-+			bus-width = <8>;
-+			max-frequency = <200000000>;
-+			cap-mmc-highspeed;
-+			mmc-hs200-1_8v;
-+			mmc-hs400-1_8v;
-+			hs400-ds-delay = <0x14014>;
-+			non-removable;
-+			no-sd;
-+			no-sdio;
-+			status = "okay";
-+		};
-+	};
-+};
-+
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso
-new file mode 100644
-index 000000000000..15ee8c568f3c
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso
-@@ -0,0 +1,55 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-+/*
-+ * Authors: Daniel Golle <daniel@makrotopia.org>
-+ *          Frank Wunderlich <frank-w@public-files.de>
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+/ {
-+	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
-+
-+	fragment@0 {
-+		target-path = "/soc/spi@1100a000";
-+		__overlay__ {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			spi_nand: spi_nand@0 {
-+				compatible = "spi-nand";
-+				reg = <0>;
-+				spi-max-frequency = <10000000>;
-+				spi-tx-buswidth = <4>;
-+				spi-rx-buswidth = <4>;
-+
-+				partitions {
-+					compatible = "fixed-partitions";
-+					#address-cells = <1>;
-+					#size-cells = <1>;
-+
-+					partition@0 {
-+						label = "bl2";
-+						reg = <0x0 0x80000>;
-+						read-only;
-+					};
-+
-+					partition@80000 {
-+						label = "reserved";
-+						reg = <0x80000 0x300000>;
-+					};
-+
-+					partition@380000 {
-+						label = "fip";
-+						reg = <0x380000 0x200000>;
-+						read-only;
-+					};
-+
-+					partition@580000 {
-+						label = "ubi";
-+						reg = <0x580000 0x7a80000>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dtso b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dtso
-new file mode 100644
-index 000000000000..84aa229e80f3
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dtso
-@@ -0,0 +1,68 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-+/*
-+ * Authors: Daniel Golle <daniel@makrotopia.org>
-+ *          Frank Wunderlich <frank-w@public-files.de>
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+/ {
-+	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
-+
-+	fragment@0 {
-+		target-path = "/soc/spi@1100a000";
-+		__overlay__ {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			flash@0 {
-+				compatible = "jedec,spi-nor";
-+				reg = <0>;
-+				spi-max-frequency = <10000000>;
-+
-+				partitions {
-+					compatible = "fixed-partitions";
-+					#address-cells = <1>;
-+					#size-cells = <1>;
-+
-+					partition@0 {
-+						label = "bl2";
-+						reg = <0x0 0x20000>;
-+						read-only;
-+					};
-+
-+					partition@20000 {
-+						label = "reserved";
-+						reg = <0x20000 0x20000>;
-+					};
-+
-+					partition@40000 {
-+						label = "u-boot-env";
-+						reg = <0x40000 0x40000>;
-+					};
-+
-+					partition@80000 {
-+						label = "reserved2";
-+						reg = <0x80000 0x80000>;
-+					};
-+
-+					partition@100000 {
-+						label = "fip";
-+						reg = <0x100000 0x80000>;
-+						read-only;
-+					};
-+
-+					partition@180000 {
-+						label = "recovery";
-+						reg = <0x180000 0xa80000>;
-+					};
-+
-+					partition@c00000 {
-+						label = "fit";
-+						reg = <0xc00000 0x1400000>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dtso b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dtso
-new file mode 100644
-index 000000000000..f623bce075ce
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dtso
-@@ -0,0 +1,23 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2021 MediaTek Inc.
-+ * Author: Sam.Shih <sam.shih@mediatek.com>
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+/ {
-+	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
-+
-+	fragment@0 {
-+		target-path = "/soc/mmc@11230000";
-+		__overlay__ {
-+			bus-width = <4>;
-+			max-frequency = <52000000>;
-+			cap-sd-highspeed;
-+			status = "okay";
-+		};
-+	};
-+};
-+
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-new file mode 100644
-index 000000000000..33bd6febc160
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-@@ -0,0 +1,450 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2021 MediaTek Inc.
-+ * Authors: Sam.Shih <sam.shih@mediatek.com>
-+ *          Frank Wunderlich <frank-w@public-files.de>
-+ *          Daniel Golle <daniel@makrotopia.org>
-+ */
-+
-+/dts-v1/;
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pinctrl/mt65xx.h>
-+
-+#include "mt7986a.dtsi"
-+
-+/ {
-+	model = "Bananapi BPI-R3";
-+	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
-+
-+	aliases {
-+		serial0 = &uart0;
-+		ethernet0 = &gmac0;
-+		ethernet1 = &gmac1;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	dcin: regulator-12vd {
-+		compatible = "regulator-fixed";
-+		regulator-name = "12vd";
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		reset-key {
-+			label = "reset";
-+			linux,code = <KEY_RESTART>;
-+			gpios = <&pio 9 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		wps-key {
-+			label = "wps";
-+			linux,code = <KEY_WPS_BUTTON>;
-+			gpios = <&pio 10 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	/* i2c of the left SFP cage (wan) */
-+	i2c_sfp1: i2c-gpio-0 {
-+		compatible = "i2c-gpio";
-+		sda-gpios = <&pio 16 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+		scl-gpios = <&pio 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+		i2c-gpio,delay-us = <2>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+
-+	/* i2c of the right SFP cage (lan) */
-+	i2c_sfp2: i2c-gpio-1 {
-+		compatible = "i2c-gpio";
-+		sda-gpios = <&pio 18 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+		scl-gpios = <&pio 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+		i2c-gpio,delay-us = <2>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		green_led: led-0 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_POWER;
-+			gpios = <&pio 69 GPIO_ACTIVE_HIGH>;
-+			default-state = "on";
-+		};
-+
-+		blue_led: led-1 {
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&pio 86 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+	};
-+
-+	reg_1p8v: regulator-1p8v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "1.8vd";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+		vin-supply = <&dcin>;
-+	};
-+
-+	reg_3p3v: regulator-3p3v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3.3vd";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+		vin-supply = <&dcin>;
-+	};
-+
-+	/* left SFP cage (wan) */
-+	sfp1: sfp-1 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp1>;
-+		los-gpios = <&pio 46 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&pio 49 GPIO_ACTIVE_LOW>;
-+		tx-disable-gpios = <&pio 20 GPIO_ACTIVE_HIGH>;
-+		tx-fault-gpios = <&pio 7 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	/* right SFP cage (lan) */
-+	sfp2: sfp-2 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp2>;
-+		los-gpios = <&pio 31 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&pio 47 GPIO_ACTIVE_LOW>;
-+		tx-disable-gpios = <&pio 15 GPIO_ACTIVE_HIGH>;
-+		tx-fault-gpios = <&pio 48 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+&crypto {
-+	status = "okay";
-+};
-+
-+&eth {
-+	status = "okay";
-+
-+	gmac0: mac@0 {
-+		compatible = "mediatek,eth-mac";
-+		reg = <0>;
-+		phy-mode = "2500base-x";
-+
-+		fixed-link {
-+			speed = <2500>;
-+			full-duplex;
-+			pause;
-+		};
-+	};
-+
-+	gmac1: mac@1 {
-+		compatible = "mediatek,eth-mac";
-+		reg = <1>;
-+		phy-mode = "2500base-x";
-+		sfp = <&sfp1>;
-+		managed = "in-band-status";
-+	};
-+
-+	mdio: mdio-bus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+};
-+
-+&mdio {
-+	switch: switch@31 {
-+		compatible = "mediatek,mt7531";
-+		reg = <31>;
-+		interrupt-controller;
-+		#interrupt-cells = <1>;
-+		interrupt-parent = <&pio>;
-+		interrupts = <66 IRQ_TYPE_LEVEL_HIGH>;
-+		reset-gpios = <&pio 5 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+&mmc0 {
-+	pinctrl-names = "default", "state_uhs";
-+	pinctrl-0 = <&mmc0_pins_default>;
-+	pinctrl-1 = <&mmc0_pins_uhs>;
-+	vmmc-supply = <&reg_3p3v>;
-+	vqmmc-supply = <&reg_1p8v>;
-+};
-+
-+&i2c0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c_pins>;
-+	status = "okay";
-+};
-+
-+&pcie {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie_pins>;
-+	status = "okay";
-+};
-+
-+&pcie_phy {
-+	status = "okay";
-+};
-+
-+&pio {
-+	i2c_pins: i2c-pins {
-+		mux {
-+			function = "i2c";
-+			groups = "i2c";
-+		};
-+	};
-+
-+	mmc0_pins_default: mmc0-pins {
-+		mux {
-+			function = "emmc";
-+			groups = "emmc_51";
-+		};
-+		conf-cmd-dat {
-+			pins = "EMMC_DATA_0", "EMMC_DATA_1", "EMMC_DATA_2",
-+			       "EMMC_DATA_3", "EMMC_DATA_4", "EMMC_DATA_5",
-+			       "EMMC_DATA_6", "EMMC_DATA_7", "EMMC_CMD";
-+			input-enable;
-+			drive-strength = <4>;
-+			bias-pull-up = <MTK_PUPD_SET_R1R0_01>; /* pull-up 10K */
-+		};
-+		conf-clk {
-+			pins = "EMMC_CK";
-+			drive-strength = <6>;
-+			bias-pull-down = <MTK_PUPD_SET_R1R0_10>; /* pull-down 50K */
-+		};
-+		conf-ds {
-+			pins = "EMMC_DSL";
-+			bias-pull-down = <MTK_PUPD_SET_R1R0_10>; /* pull-down 50K */
-+		};
-+		conf-rst {
-+			pins = "EMMC_RSTB";
-+			drive-strength = <4>;
-+			bias-pull-up = <MTK_PUPD_SET_R1R0_01>; /* pull-up 10K */
-+		};
-+	};
-+
-+	mmc0_pins_uhs: mmc0-uhs-pins {
-+		mux {
-+			function = "emmc";
-+			groups = "emmc_51";
-+		};
-+		conf-cmd-dat {
-+			pins = "EMMC_DATA_0", "EMMC_DATA_1", "EMMC_DATA_2",
-+			       "EMMC_DATA_3", "EMMC_DATA_4", "EMMC_DATA_5",
-+			       "EMMC_DATA_6", "EMMC_DATA_7", "EMMC_CMD";
-+			input-enable;
-+			drive-strength = <4>;
-+			bias-pull-up = <MTK_PUPD_SET_R1R0_01>; /* pull-up 10K */
-+		};
-+		conf-clk {
-+			pins = "EMMC_CK";
-+			drive-strength = <6>;
-+			bias-pull-down = <MTK_PUPD_SET_R1R0_10>; /* pull-down 50K */
-+		};
-+		conf-ds {
-+			pins = "EMMC_DSL";
-+			bias-pull-down = <MTK_PUPD_SET_R1R0_10>; /* pull-down 50K */
-+		};
-+		conf-rst {
-+			pins = "EMMC_RSTB";
-+			drive-strength = <4>;
-+			bias-pull-up = <MTK_PUPD_SET_R1R0_01>; /* pull-up 10K */
-+		};
-+	};
-+
-+	pcie_pins: pcie-pins {
-+		mux {
-+			function = "pcie";
-+			groups = "pcie_clk", "pcie_pereset";
-+		};
-+	};
-+
-+	spi_flash_pins: spi-flash-pins {
-+		mux {
-+			function = "spi";
-+			groups = "spi0", "spi0_wp_hold";
-+		};
-+	};
-+
-+	spic_pins: spic-pins {
-+		mux {
-+			function = "spi";
-+			groups = "spi1_0";
-+		};
-+	};
-+
-+	uart1_pins: uart1-pins {
-+		mux {
-+			function = "uart";
-+			groups = "uart1_rx_tx";
-+		};
-+	};
-+
-+	uart2_pins: uart2-pins {
-+		mux {
-+			function = "uart";
-+			groups = "uart2_0_rx_tx";
-+		};
-+	};
-+
-+	wf_2g_5g_pins: wf-2g-5g-pins {
-+		mux {
-+			function = "wifi";
-+			groups = "wf_2g", "wf_5g";
-+		};
-+		conf {
-+			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
-+			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
-+			       "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
-+			       "WF0_TOP_CLK", "WF0_TOP_DATA", "WF1_HB1",
-+			       "WF1_HB2", "WF1_HB3", "WF1_HB4", "WF1_HB0",
-+			       "WF1_HB5", "WF1_HB6", "WF1_HB7", "WF1_HB8",
-+			       "WF1_TOP_CLK", "WF1_TOP_DATA";
-+			drive-strength = <4>;
-+		};
-+	};
-+
-+	wf_dbdc_pins: wf-dbdc-pins {
-+		mux {
-+			function = "wifi";
-+			groups = "wf_dbdc";
-+		};
-+		conf {
-+			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
-+			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
-+			       "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
-+			       "WF0_TOP_CLK", "WF0_TOP_DATA", "WF1_HB1",
-+			       "WF1_HB2", "WF1_HB3", "WF1_HB4", "WF1_HB0",
-+			       "WF1_HB5", "WF1_HB6", "WF1_HB7", "WF1_HB8",
-+			       "WF1_TOP_CLK", "WF1_TOP_DATA";
-+			drive-strength = <4>;
-+		};
-+	};
-+
-+	wf_led_pins: wf-led-pins {
-+		mux {
-+			function = "led";
-+			groups = "wifi_led";
-+		};
-+	};
-+};
-+
-+&spi0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&spi_flash_pins>;
-+	status = "okay";
-+};
-+
-+&spi1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&spic_pins>;
-+	status = "okay";
-+};
-+
-+&ssusb {
-+	status = "okay";
-+};
-+
-+&switch {
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			label = "wan";
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+			label = "lan0";
-+		};
-+
-+		port@2 {
-+			reg = <2>;
-+			label = "lan1";
-+		};
-+
-+		port@3 {
-+			reg = <3>;
-+			label = "lan2";
-+		};
-+
-+		port@4 {
-+			reg = <4>;
-+			label = "lan3";
-+		};
-+
-+		port5: port@5 {
-+			reg = <5>;
-+			label = "lan4";
-+			phy-mode = "2500base-x";
-+			sfp = <&sfp2>;
-+			managed = "in-band-status";
-+		};
-+
-+		port@6 {
-+			reg = <6>;
-+			label = "cpu";
-+			ethernet = <&gmac0>;
-+			phy-mode = "2500base-x";
-+
-+			fixed-link {
-+				speed = <2500>;
-+				full-duplex;
-+				pause;
-+			};
-+		};
-+	};
-+};
-+
-+&trng {
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart1_pins>;
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart2_pins>;
-+	status = "okay";
-+};
-+
-+&usb_phy {
-+	status = "okay";
-+};
-+
-+&watchdog {
-+	status = "okay";
-+};
-+
-+&wifi {
-+	status = "okay";
-+	pinctrl-names = "default", "dbdc";
-+	pinctrl-0 = <&wf_2g_5g_pins>, <&wf_led_pins>;
-+	pinctrl-1 = <&wf_dbdc_pins>, <&wf_led_pins>;
-+};
-+
 -- 
-2.34.1
+2.25.1
 
