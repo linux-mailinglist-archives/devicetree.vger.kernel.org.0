@@ -2,112 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3DEC660684
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 19:43:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0500D6606A7
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 19:52:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235088AbjAFSnM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 13:43:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35718 "EHLO
+        id S234975AbjAFSwh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 13:52:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231493AbjAFSnL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 13:43:11 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B45258833;
-        Fri,  6 Jan 2023 10:43:10 -0800 (PST)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0B9C44AE;
-        Fri,  6 Jan 2023 19:43:08 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1673030589;
-        bh=ANMwKdLTFB/DW0H3uaMBofhSKclONfYV8wOa/W2GIL0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hgUkIMwQyo7zmfMEdPSHPAnWNRSGhCo1IQdzNKLhLjvzgIXKYG0FaO15NppNJg94E
-         7gkFGTYSq/NKO9vme03kcshb8FDjhD58WGRDhdHYaccd59pwK7SLvLq1OzWreuMIKf
-         Jt4M/qmNaIPR6TE6jXdkPUuH/V473NVYvjjz+vkE=
-Date:   Fri, 6 Jan 2023 20:43:03 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Michael Tretter <m.tretter@pengutronix.de>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S231690AbjAFSwf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 13:52:35 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC72E7DE2C
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 10:52:31 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id bq39so3287516lfb.0
+        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 10:52:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TD7cExgBKxjhrMDw5hZV0k9KiTeSdkou8rySHfWyF+4=;
+        b=jNOsGP6tpzSAOt1sC85kT/F7skelP98XhZN2T768iMd0t2lMBi4VNsao79siuyhhHZ
+         FKHGUgotnCVgQTtcUnQsB4eb9V0nv0brkmW61Ca9c7f7oIksD9OjQUPyFYo1eZjxYgcl
+         vLpOGUCcQpkmW8r8A43R0goV87BhQKYb/hmSZvxcT8zeiVvtSRWsfWYPz0MEcVVj5Mxg
+         UhhuBQrFWUsmKB38Yyl63Q1zOezcmmDolCH5624D3q8ls+yCsryoQ9K1C/shIC01+iHp
+         rBeuwNz2uz0R+3CVGvQ0l/RfiwaBQLSVHgKs193KL9vUsLXiH75dF8mFwU5TcKBG5obH
+         ZXpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TD7cExgBKxjhrMDw5hZV0k9KiTeSdkou8rySHfWyF+4=;
+        b=wnLjEfR7TIxn8xfcZ2nCX70GLM/A4KAyVfMrEDHO0KATohM/ZDorz886Zl4TwqDRJo
+         12rPADKitPWNpOl9nLmx2QP/Jkc3AavMZeJHsqs/yURHWEH7BM5zKkqRlVylzwRqfiMa
+         aJltMlIFcUvFp7zPbJLsArMexgTAEecLDVqP+eXg8xpwaV1F9U2FJfRieVhQWc7lugWA
+         ReHC2clcxmMH9RBBW+khFcgcAa0TSCgUGsbwJ1bC3EP3Cq+J+6sQKBL0+JYcf53Ar0Fh
+         HNgZEHbcvA+01tCX+H7UfkT/iilRw+ojHd8hwBBc6uWvNDgbnh6LveniBjDMPl2ET2eS
+         30og==
+X-Gm-Message-State: AFqh2krjI5IELR7rTEsOGNIbyudW30+LDqK3U+ihT++x79pDCYwV17Ay
+        qKqsnEICzTdU07gf/guM2UrROw==
+X-Google-Smtp-Source: AMrXdXsHdtVlTT5cNfv6PVUfaatqKf11Ub9RrtNJsFNtgnwwrwaJf8in8wgifxiAgC8amQ6bGvR2Iw==
+X-Received: by 2002:a05:6512:1395:b0:4b5:b10b:6830 with SMTP id p21-20020a056512139500b004b5b10b6830mr16725097lfa.54.1673031150064;
+        Fri, 06 Jan 2023 10:52:30 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id b10-20020ac2410a000000b004cafd013f54sm237620lfi.118.2023.01.06.10.52.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Jan 2023 10:52:29 -0800 (PST)
+Message-ID: <1b2e1431-1fe9-d70e-b45e-71824fe16547@linaro.org>
+Date:   Fri, 6 Jan 2023 20:52:28 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH 3/9] interconnect: qcom: sc7180: drop IP0 remnants
+Content-Language: en-GB
+To:     Alex Elder <elder@linaro.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>, kernel@pengutronix.de,
-        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 8/8] ARM: dts: imx7d: add node for PXP
-Message-ID: <Y7hrt1hyEgJDOWCq@pendragon.ideasonboard.com>
-References: <20230105134729.59542-1-m.tretter@pengutronix.de>
- <20230105134729.59542-9-m.tretter@pengutronix.de>
- <Y7gV2bGXqPMLr4Vv@pendragon.ideasonboard.com>
- <20230106143621.GF24101@pengutronix.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230106143621.GF24101@pengutronix.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     Georgi Djakov <djakov@kernel.org>,
+        Odelu Kukatla <okukatla@codeaurora.org>,
+        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230106073313.1720029-1-dmitry.baryshkov@linaro.org>
+ <20230106073313.1720029-4-dmitry.baryshkov@linaro.org>
+ <eeb9631c-4494-fc76-5ad4-5fdbdaa8786a@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <eeb9631c-4494-fc76-5ad4-5fdbdaa8786a@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 06, 2023 at 03:36:21PM +0100, Michael Tretter wrote:
-> On Fri, 06 Jan 2023 14:36:41 +0200, Laurent Pinchart wrote:
-> > Hi Michael,
-> > 
-> > Thank you for the patch.
-> > 
-> > On Thu, Jan 05, 2023 at 02:47:29PM +0100, Michael Tretter wrote:
-> > > The i.MX7d contains a Pixel Pipeline in version 3.0. Add the device tree
-> > > node to make it available.
-> > > 
-> > > Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
-> > > ---
-> > >  arch/arm/boot/dts/imx7d.dtsi | 9 +++++++++
-> > >  1 file changed, 9 insertions(+)
-> > > 
-> > > diff --git a/arch/arm/boot/dts/imx7d.dtsi b/arch/arm/boot/dts/imx7d.dtsi
-> > > index 7ceb7c09f7ad..728cc9413a7c 100644
-> > > --- a/arch/arm/boot/dts/imx7d.dtsi
-> > > +++ b/arch/arm/boot/dts/imx7d.dtsi
-> > > @@ -165,6 +165,15 @@ pcie_phy: pcie-phy@306d0000 {
-> > >  		  reg = <0x306d0000 0x10000>;
-> > >  		  status = "disabled";
-> > >  	};
-> > > +
-> > > +	pxp: pxp@30700000 {
-> > > +		compatible = "fsl,imx7d-pxp";
-> > 
-> > Hmmm... The i.MX7S also has a PXP that seems compatible. I thus wonder
-> > if we shouldn't move this node to imx7s.dtsi.
+On 06/01/2023 15:44, Alex Elder wrote:
+> On 1/6/23 1:33 AM, Dmitry Baryshkov wrote:
+>> Drop two defines leftover from the commit 2f3724930eb4 ("interconnect:
+>> qcom: sc7180: Drop IP0 interconnects"), which dropped handling of the
+>> IP0 resource in favour of handling it in the clk-rpmh driver.
+>>
+>> Fixes: 2f3724930eb4 ("interconnect: qcom: sc7180: Drop IP0 
+>> interconnects")
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > 
-> The i.MX7S has a PXP at the same address, but the architecture in the
-> reference manual (Figure 13-71. PXP Architecture, p. 3797) looks slightly
-> different wrt. the location of the multiplexers. The reference manual is also
-> conspicuously lacking documentation of the DATA_PATH_CTRL0 register.
+> On this patch and the rest like it in this series, I suggest
+> adding a comment that indicates why there's a gap in the simple
+> numeric sequence. 
+
+Ok, sounds fair.
+
+> Feel free to ignore this if you don't think
+> this is a good idea.  I'll give examples below, although I
+> don't fully understand why there's a master and slave on the
+> interconnect, but just a single clock for RPMH clock...
+
+Well, interconnects is a about paths between nodes. So even if we have 
+to cast a vote on a single resource, there should be two nodes.
+
 > 
-> I wouldn't risk adding the node to the imx7s.dtsi and would rather keep the
-> option to add a different compatible for the i.MX7S to be able to handle the
-> difference.
-
-OK, fine with me.
-
-> > > +		reg = <0x30700000 0x10000>;
-> > > +		interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-> > > +			<GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
-> > 
-> > Nitpicking, alignment ?
-> > 
-> > > +		clocks = <&clks IMX7D_PXP_CLK>;
-> > > +		clock-names = "axi";
-> > > +	};
-> > >  };
-> > >  
-> > >  &aips3 {
+>                      -Alex
+> 
+>> ---
+>>   drivers/interconnect/qcom/sc7180.h | 2 --
+>>   1 file changed, 2 deletions(-)
+>>
+>> diff --git a/drivers/interconnect/qcom/sc7180.h 
+>> b/drivers/interconnect/qcom/sc7180.h
+>> index c6212a10c2f6..b691d97d56cf 100644
+>> --- a/drivers/interconnect/qcom/sc7180.h
+>> +++ b/drivers/interconnect/qcom/sc7180.h
+>> @@ -11,7 +11,6 @@
+>>   #define SC7180_MASTER_APPSS_PROC            0
+>>   #define SC7180_MASTER_SYS_TCU                1
+>>   #define SC7180_MASTER_NPU_SYS                2
+>> -#define SC7180_MASTER_IPA_CORE                3
+>      /* MASTER_IPA_CORE (4) is represented as an RPMH clock */
+>>   #define SC7180_MASTER_LLCC                4
+>>   #define SC7180_MASTER_A1NOC_CFG                5
+>>   #define SC7180_MASTER_A2NOC_CFG                6
+>> @@ -58,7 +57,6 @@
+>>   #define SC7180_MASTER_USB3                47
+>>   #define SC7180_MASTER_EMMC                48
+>>   #define SC7180_SLAVE_EBI1                49
+>> -#define SC7180_SLAVE_IPA_CORE                50
+>      /* SLAVE_IPA_CORE (50) is represented as an RPMH clock */
+>>   #define SC7180_SLAVE_A1NOC_CFG                51
+>>   #define SC7180_SLAVE_A2NOC_CFG                52
+>>   #define SC7180_SLAVE_AHB2PHY_SOUTH            53
+> 
 
 -- 
-Regards,
+With best wishes
+Dmitry
 
-Laurent Pinchart
