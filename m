@@ -2,157 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5458E65FFE2
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 12:59:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF50D65FFE6
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 13:02:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229564AbjAFL7Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 06:59:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45418 "EHLO
+        id S229478AbjAFMCb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 07:02:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232320AbjAFL7X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 06:59:23 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 384A9728A5;
-        Fri,  6 Jan 2023 03:59:20 -0800 (PST)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 698D04AE;
-        Fri,  6 Jan 2023 12:59:17 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1673006357;
-        bh=shoG7w+x8M1GwR2Lnup58s8nVA/zibc7HrmK9Bg1M6Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=S5UkQ179hLtb7c28hhlzGA4VZiFHh4/pFJU3aNVHHYwmCsIwEQDTIu8xFpEJbgOu9
-         HcjdDv3I68ZHWKthn0v+DVGkZN3nWYuhoV75yRqJQDnVTF8dBbUDOY0/At9BssEz4Q
-         BeL6BmSTMYDLMN6rEzqW40jdwvnR4K+GzVfJ78Yk=
-Date:   Fri, 6 Jan 2023 13:59:11 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Michael Tretter <m.tretter@pengutronix.de>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>, kernel@pengutronix.de,
-        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 3/8] media: imx-pxp: extract helper function to setup
- data path
-Message-ID: <Y7gNDwAa11TxPEhR@pendragon.ideasonboard.com>
-References: <20230105134729.59542-1-m.tretter@pengutronix.de>
- <20230105134729.59542-4-m.tretter@pengutronix.de>
+        with ESMTP id S229472AbjAFMC3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 07:02:29 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F84E3225A;
+        Fri,  6 Jan 2023 04:02:28 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 306C2DMs066080;
+        Fri, 6 Jan 2023 06:02:13 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1673006533;
+        bh=7q3SGj3F/tCY6enixxVoRGsdpeMIFq0XYzuubYHLrZc=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=WuflFvl7pISP2M/5kUhHCHV1iWYQrh+flKoRhpRZUx18WDwLYmUq7o/wO8hmJSPLy
+         zYAqWFz9/QVp45aya+6N4QCYwMqXlBqCMOp0gnuqiHS23Kwte/4SxWyd48jNxy6tv3
+         2+0GNlUj+WUDmb/ouazjHpKQduaWDqOxQSadb9FE=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 306C2Dfa114784
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 6 Jan 2023 06:02:13 -0600
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 6
+ Jan 2023 06:02:13 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Fri, 6 Jan 2023 06:02:13 -0600
+Received: from [10.24.69.114] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 306C28Ip013534;
+        Fri, 6 Jan 2023 06:02:09 -0600
+Message-ID: <4c93d5b2-ce15-afac-ccb8-384a366b0eae@ti.com>
+Date:   Fri, 6 Jan 2023 17:32:08 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230105134729.59542-4-m.tretter@pengutronix.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [EXTERNAL] Re: [PATCH v13 2/6] remoteproc: pru: Add enum for PRU
+ Core Identifiers.
+Content-Language: en-US
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
+        MD Danish Anwar <danishanwar@ti.com>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Suman Anna <s-anna@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        "Andrew F . Davis" <afd@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <srk@ti.com>, <linux-remoteproc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230105092149.686201-1-danishanwar@ti.com>
+ <20230105092149.686201-3-danishanwar@ti.com> <20230105202356.GA2281956@p14s>
+From:   Md Danish Anwar <a0501179@ti.com>
+In-Reply-To: <20230105202356.GA2281956@p14s>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
+Hi Mathieu,
 
-Thank you for the patch.
-
-On Thu, Jan 05, 2023 at 02:47:24PM +0100, Michael Tretter wrote:
-> The driver must configure the data path through the Pixel Pipeline.
+On 06/01/23 01:53, Mathieu Poirier wrote:
+> On Thu, Jan 05, 2023 at 02:51:45PM +0530, MD Danish Anwar wrote:
+>> Introducing enum pruss_pru_id for PRU Core Identifiers.
+>> PRUSS_PRU0 indicates PRU Core 0.
+>> PRUSS_PRU1 indicates PRU Core 1.
+>> PRUSS_NUM_PRUS indicates the total number of PRU Cores.
+>>
+>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>> Reviewed-by: Roger Quadros <rogerq@kernel.org>
+>> ---
+>>  drivers/remoteproc/pru_rproc.c |  7 ++++---
+>>  include/linux/pruss.h          | 31 +++++++++++++++++++++++++++++++
 > 
-> Currently, the driver is using a fixed setup, but once there are
-> different pipeline configurations, it is helpful to have a dedicated
-> function for determining the register value for the data path.
+> Please add this under include/linux/remoteproc/ to avoid adding an orphan file
+> under include/linux/.
 > 
-> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> ---
->  drivers/media/platform/nxp/imx-pxp.c | 62 +++++++++++++++++++---------
->  1 file changed, 42 insertions(+), 20 deletions(-)
+> Thanks,
+> Mathieu
 > 
-> diff --git a/drivers/media/platform/nxp/imx-pxp.c b/drivers/media/platform/nxp/imx-pxp.c
-> index 05abe40558b0..a957fee88829 100644
-> --- a/drivers/media/platform/nxp/imx-pxp.c
-> +++ b/drivers/media/platform/nxp/imx-pxp.c
-> @@ -726,6 +726,47 @@ static void pxp_setup_csc(struct pxp_ctx *ctx)
->  	}
->  }
->  
-> +static u32 pxp_data_path_ctrl0(struct pxp_ctx *ctx)
-> +{
-> +	u32 ctrl0;
-> +
-> +	ctrl0 = 0;
-> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX15_SEL(0);
-> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX14_SEL(1);
-> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX13_SEL(0);
-> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX12_SEL(0);
-> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX11_SEL(0);
-> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX10_SEL(0);
-> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX9_SEL(1);
-> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX8_SEL(0);
-> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX7_SEL(0);
-> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX6_SEL(0);
-> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX5_SEL(0);
-> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX4_SEL(0);
-> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX3_SEL(0);
-> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX2_SEL(0);
-> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX1_SEL(0);
-> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX0_SEL(0);
-> +
-> +	return ctrl0;
-> +}
-> +
-> +static void pxp_set_data_path(struct pxp_ctx *ctx)
-> +{
-> +	struct pxp_dev *dev = ctx->dev;
-> +	u32 ctrl0;
-> +	u32 ctrl1;
-> +
-> +	ctrl0 = pxp_data_path_ctrl0(ctx);
-> +
-> +	ctrl1 = 0;
-> +	ctrl1 |= BF_PXP_DATA_PATH_CTRL1_MUX17_SEL(1);
-> +	ctrl1 |= BF_PXP_DATA_PATH_CTRL1_MUX16_SEL(1);
-> +
-> +	writel(ctrl0, dev->mmio + HW_PXP_DATA_PATH_CTRL0);
-> +	writel(ctrl1, dev->mmio + HW_PXP_DATA_PATH_CTRL1);
-> +}
-> +
->  static int pxp_start(struct pxp_ctx *ctx, struct vb2_v4l2_buffer *in_vb,
->  		     struct vb2_v4l2_buffer *out_vb)
->  {
-> @@ -912,26 +953,7 @@ static int pxp_start(struct pxp_ctx *ctx, struct vb2_v4l2_buffer *in_vb,
->  	/* bypass LUT */
->  	writel(BM_PXP_LUT_CTRL_BYPASS, dev->mmio + HW_PXP_LUT_CTRL);
->  
-> -	writel(BF_PXP_DATA_PATH_CTRL0_MUX15_SEL(0)|
-> -	       BF_PXP_DATA_PATH_CTRL0_MUX14_SEL(1)|
-> -	       BF_PXP_DATA_PATH_CTRL0_MUX13_SEL(0)|
-> -	       BF_PXP_DATA_PATH_CTRL0_MUX12_SEL(0)|
-> -	       BF_PXP_DATA_PATH_CTRL0_MUX11_SEL(0)|
-> -	       BF_PXP_DATA_PATH_CTRL0_MUX10_SEL(0)|
-> -	       BF_PXP_DATA_PATH_CTRL0_MUX9_SEL(1)|
-> -	       BF_PXP_DATA_PATH_CTRL0_MUX8_SEL(0)|
-> -	       BF_PXP_DATA_PATH_CTRL0_MUX7_SEL(0)|
-> -	       BF_PXP_DATA_PATH_CTRL0_MUX6_SEL(0)|
-> -	       BF_PXP_DATA_PATH_CTRL0_MUX5_SEL(0)|
-> -	       BF_PXP_DATA_PATH_CTRL0_MUX4_SEL(0)|
-> -	       BF_PXP_DATA_PATH_CTRL0_MUX3_SEL(0)|
-> -	       BF_PXP_DATA_PATH_CTRL0_MUX2_SEL(0)|
-> -	       BF_PXP_DATA_PATH_CTRL0_MUX1_SEL(0)|
-> -	       BF_PXP_DATA_PATH_CTRL0_MUX0_SEL(0),
-> -	       dev->mmio + HW_PXP_DATA_PATH_CTRL0);
-> -	writel(BF_PXP_DATA_PATH_CTRL1_MUX17_SEL(1) |
-> -	       BF_PXP_DATA_PATH_CTRL1_MUX16_SEL(1),
-> -	       dev->mmio + HW_PXP_DATA_PATH_CTRL1);
-> +	pxp_set_data_path(ctx);
->  
->  	writel(0xffff, dev->mmio + HW_PXP_IRQ_MASK);
->  
 
--- 
-Regards,
+Sure, I will remove this header file from here and add it under
+include/linux/remoteproc/ .
 
-Laurent Pinchart
+Thanks,
+Danish.
+
+>>  2 files changed, 35 insertions(+), 3 deletions(-)
+>>  create mode 100644 include/linux/pruss.h
+>>
+>> diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
+>> index 128bf9912f2c..a1a208b31846 100644
+>> --- a/drivers/remoteproc/pru_rproc.c
+>> +++ b/drivers/remoteproc/pru_rproc.c
+>> @@ -16,6 +16,7 @@
+>>  #include <linux/module.h>
+>>  #include <linux/of_device.h>
+>>  #include <linux/of_irq.h>
+>> +#include <linux/pruss.h>
+>>  #include <linux/pruss_driver.h>
+>>  #include <linux/remoteproc.h>
+>>  
+>> @@ -438,7 +439,7 @@ static void *pru_d_da_to_va(struct pru_rproc *pru, u32 da, size_t len)
+>>  	dram0 = pruss->mem_regions[PRUSS_MEM_DRAM0];
+>>  	dram1 = pruss->mem_regions[PRUSS_MEM_DRAM1];
+>>  	/* PRU1 has its local RAM addresses reversed */
+>> -	if (pru->id == 1)
+>> +	if (pru->id == PRUSS_PRU1)
+>>  		swap(dram0, dram1);
+>>  	shrd_ram = pruss->mem_regions[PRUSS_MEM_SHRD_RAM2];
+>>  
+>> @@ -747,14 +748,14 @@ static int pru_rproc_set_id(struct pru_rproc *pru)
+>>  	case RTU0_IRAM_ADDR_MASK:
+>>  		fallthrough;
+>>  	case PRU0_IRAM_ADDR_MASK:
+>> -		pru->id = 0;
+>> +		pru->id = PRUSS_PRU0;
+>>  		break;
+>>  	case TX_PRU1_IRAM_ADDR_MASK:
+>>  		fallthrough;
+>>  	case RTU1_IRAM_ADDR_MASK:
+>>  		fallthrough;
+>>  	case PRU1_IRAM_ADDR_MASK:
+>> -		pru->id = 1;
+>> +		pru->id = PRUSS_PRU1;
+>>  		break;
+>>  	default:
+>>  		ret = -EINVAL;
+>> diff --git a/include/linux/pruss.h b/include/linux/pruss.h
+>> new file mode 100644
+>> index 000000000000..e94a81e97a4c
+>> --- /dev/null
+>> +++ b/include/linux/pruss.h
+>> @@ -0,0 +1,31 @@
+>> +/* SPDX-License-Identifier: GPL-2.0-only */
+>> +/**
+>> + * PRU-ICSS Subsystem user interfaces
+>> + *
+>> + * Copyright (C) 2015-2022 Texas Instruments Incorporated - http://www.ti.com
+>> + *	Suman Anna <s-anna@ti.com>
+>> + */
+>> +
+>> +#ifndef __LINUX_PRUSS_H
+>> +#define __LINUX_PRUSS_H
+>> +
+>> +#include <linux/device.h>
+>> +#include <linux/types.h>
+>> +
+>> +#define PRU_RPROC_DRVNAME "pru-rproc"
+>> +
+>> +/**
+>> + * enum pruss_pru_id - PRU core identifiers
+>> + * @PRUSS_PRU0: PRU Core 0.
+>> + * @PRUSS_PRU1: PRU Core 1.
+>> + * @PRUSS_NUM_PRUS: Total number of PRU Cores available.
+>> + *
+>> + */
+>> +
+>> +enum pruss_pru_id {
+>> +	PRUSS_PRU0 = 0,
+>> +	PRUSS_PRU1,
+>> +	PRUSS_NUM_PRUS,
+>> +};
+>> +
+>> +#endif /* __LINUX_PRUSS_H */
+>> -- 
+>> 2.25.1
+>>
