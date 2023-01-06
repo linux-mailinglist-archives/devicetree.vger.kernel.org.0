@@ -2,85 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBF6F66048F
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 17:42:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EDA1660502
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 17:44:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235812AbjAFQml (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 11:42:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57158 "EHLO
+        id S235815AbjAFQox (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 11:44:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236026AbjAFQmN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 11:42:13 -0500
-Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 212777CBEE;
-        Fri,  6 Jan 2023 08:41:20 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 27C4D426F3;
-        Fri,  6 Jan 2023 16:40:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
-        t=1673023256; bh=gXgieJ9sHytuKgJOAD+se1IXoDv6b4RgyKmGjkVDxlg=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To;
-        b=pl5bPON7tKn3exZITOT4qR8AxmLqINqBe1EkSfPfTGJJ4pMwe95KLLviTxrwqLQwB
-         gB2OZCPWfbSTQe1RTYksbZw1P3rif1MD6OpxracZDpEAx7BZIXrHRCB81DG5EHfZy2
-         lRU8twI8hP0fnB7iVC1/8UFC26t0x3V2ExshBDsPmwEpyfU5YIVUwlCsHtLUh51bBt
-         E6IVUFQLb3mIk76yVZBPdCd8Homo90egFg/3zLW44enN2xZ4KpInASlBjQS7dArvEQ
-         RFMZwgH3qEQOmOtJurTRDdnruH+rymWSscLNP6ZhTKPUz1yDkrbQfWWvn+tH+AiveM
-         DLUFRPoqXdk1Q==
-Message-ID: <6a9371e6-6516-5966-f92c-10bb228c8db3@marcan.st>
-Date:   Sat, 7 Jan 2023 01:40:49 +0900
+        with ESMTP id S235910AbjAFQn5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 11:43:57 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 471B878A69
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 08:43:50 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id g25-20020a7bc4d9000000b003d97c8d4941so3938272wmk.4
+        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 08:43:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=D3oJpCSGnnDJtoKqiOy/io+oXZbWMd8CgdZY3qs2G2Q=;
+        b=eyI2I3kagE68Lvc5JNJ6I/EKVCgf6WiwLXx7wCLKBjHSuqq71xJmirhfUIxf08Rsi6
+         Xrwn1DqBXFksrRYmlNDpOamWBf6Y1iFznBgG4JkNlKgC+qhmZmtgqqVc0Ij/5S4rHPic
+         YInXYp+a/wSNPVy9Xw+hoeXPHWGNdY4Dom4B0dQZcSUTMtU3UcMEcSD5eWqAarwSYkWQ
+         ihbNV+P540smuwlLjlhQGeT6ORkOHu1PLhB+fUalJlj3yecZD+HhRADDlXK1iuxlEJ2C
+         pATvPqvrmykQjd+Wy1lmS82yH6h8B7jB9N+GNx4PJ5krZR/PrvNO/Ilm7a2tZnKV7AZW
+         +8DA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=D3oJpCSGnnDJtoKqiOy/io+oXZbWMd8CgdZY3qs2G2Q=;
+        b=Um2hPfQRt1RVabAAu2aY3tdBwINCbqkjI2o4NRvrsm6G1WTdHsfBQfv+Qi2f5WZLoD
+         via/6ofW8sGOm2sTIjIrzCg8pMxmzbXzjS4d99/Azb4xfTETSo5Zq/uU3c4hPu4Q7+Rr
+         APKnNmu3t9aTj9l25BMyr9FjXd4pdOAszXs61p+8kr6KkVwQkwFX9Kn13+gp7bC691Bz
+         FEtZ5MQRkRhfsj8a8AbsRl8LUER1jQX7+Zc2A8X30oQc2GKtfaOaLEVMrdZoYgmMV78J
+         EMT0583+APyYG9wUCZH9+Ylj5IA/44BKrhyR9ax1HCa8Wli8v4UjUhQgyA+RjSCtUZvq
+         NN/A==
+X-Gm-Message-State: AFqh2ko3y6mhoy/C5D3tzKnEpcr7N6SchtfUIw4C9/5QFcOGO6TdjCD3
+        4hBMy0PnfwBPTywtT4UycnwH3A==
+X-Google-Smtp-Source: AMrXdXvNKFj5uTJoUEF00h6bsaaRcDD6Ay5cuWevUuztp6tLx9fveZPhfXisq8Qj4fCZ7d868Vnyjw==
+X-Received: by 2002:a05:600c:4e04:b0:3d2:381f:2db5 with SMTP id b4-20020a05600c4e0400b003d2381f2db5mr38887232wmq.22.1673023428711;
+        Fri, 06 Jan 2023 08:43:48 -0800 (PST)
+Received: from vingu-book.. ([2a01:e0a:f:6020:98f9:4145:643f:e1da])
+        by smtp.gmail.com with ESMTPSA id bj7-20020a0560001e0700b002b6667d3adfsm1618511wrb.80.2023.01.06.08.43.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Jan 2023 08:43:48 -0800 (PST)
+From:   Vincent Guittot <vincent.guittot@linaro.org>
+To:     dmitry.baryshkov@linaro.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     danny@kdrag0n.dev, Vincent Guittot <vincent.guittot@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: sdm845: correct dynamic power coefficients
+Date:   Fri,  6 Jan 2023 17:43:44 +0100
+Message-Id: <20230106164344.1845098-1-vincent.guittot@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 3/5] spi: Use a 32-bit DT property for
- spi-cs-setup-delay-ns
-Content-Language: en-US
-To:     Mark Brown <broonie@kernel.org>, Janne Grunau <j@jannau.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Tudor Ambarus <tudor.ambarus@microchip.com>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        asahi@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20230104093631.15611-4-marcan@marcan.st>
- <Y7hLrxQO9GbgpW1h@sirena.org.uk>
-From:   Hector Martin <marcan@marcan.st>
-In-Reply-To: <Y7hLrxQO9GbgpW1h@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/01/2023 01.26, Mark Brown wrote:
-> On Wed, Jan 04, 2023 at 06:36:29PM +0900, Janne Grunau wrote:
-> 
->> 65us is not a reasonable maximum for this property, as some devices
->> might need a much longer setup time (e.g. those driven by firmware on
->> the other end). Plus, device tree property values are in 32-bit cells
->> and smaller widths should not be used without good reason.
-> 
-> This breaks allmodconfig builds (I tested x86 but this should happen
-> for anything with -Werror):
-> 
-> /build/stage/linux/drivers/spi/spi.c: In function ‘of_spi_parse_dt’:
-> /build/stage/linux/drivers/spi/spi.c:2243:13: error: unused variable ‘cs_setup’ [-Werror=unused-variable]
->  2243 |         u16 cs_setup;
->       |             ^~~~~~~~
-> cc1: all warnings being treated as errors
+While stressing EAS on my dragonboard RB3, I have noticed that LITTLE cores
+where never selected as the most energy efficient CPU whatever the
+utilization level of waking task.
 
-Yeah, the kernel test robot caught this one too. Sorry for missing it
-(it got buried in warning noise in a rather large rebuild on my side).
-That line should've been removed in #3 :(
+energy model framework uses its cost field to estimate the energy with
+the formula:
 
-I see two patches got applied already. Do you want me to just respin #3-#5?
+  nrg = cost of the selected OPP * utilization / CPU's max capacity
 
-- Hector
+which ends up selecting the CPU with lowest cost / max capacity ration
+as long as the utilization fits in the OPP's capacity.
+
+If we compare the cost of a little OPP with similar capacity of a big OPP
+like :
+       OPP(kHz)   OPP capacity    cost     max capacity   cost/max capacity
+LITTLE 1766400    407             351114   407            863
+big    1056000    408             520267   1024           508
+
+This can be interpreted as the LITTLE core consumes 70% more than big core
+for the same compute capacity.
+
+According to [1], LITTLE consumes 10% less than big core for Coremark
+benchmark at those OPPs. If we consider that everything else stays
+unchanged, the dynamic-power-coefficient of LITTLE core should be
+only 53% of the current value: 290 * 53% = 154
+
+Set the dynamic-power-coefficient of CPU0-3 to 154 to fix the energy model.
+
+[1] https://github.com/kdrag0n/freqbench/tree/master/results/sdm845/main
+
+Fixes: 0e0a8e35d725 ("arm64: dts: qcom: sdm845: correct dynamic power coefficients")
+Signed-off-by: Vincent Guittot <vincent.guittot@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sdm845.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index 65032b94b46d..869bdb9bce6e 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -198,7 +198,7 @@ CPU0: cpu@0 {
+ 			reg = <0x0 0x0>;
+ 			enable-method = "psci";
+ 			capacity-dmips-mhz = <611>;
+-			dynamic-power-coefficient = <290>;
++			dynamic-power-coefficient = <154>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
+@@ -222,7 +222,7 @@ CPU1: cpu@100 {
+ 			reg = <0x0 0x100>;
+ 			enable-method = "psci";
+ 			capacity-dmips-mhz = <611>;
+-			dynamic-power-coefficient = <290>;
++			dynamic-power-coefficient = <154>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
+@@ -243,7 +243,7 @@ CPU2: cpu@200 {
+ 			reg = <0x0 0x200>;
+ 			enable-method = "psci";
+ 			capacity-dmips-mhz = <611>;
+-			dynamic-power-coefficient = <290>;
++			dynamic-power-coefficient = <154>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
+@@ -264,7 +264,7 @@ CPU3: cpu@300 {
+ 			reg = <0x0 0x300>;
+ 			enable-method = "psci";
+ 			capacity-dmips-mhz = <611>;
+-			dynamic-power-coefficient = <290>;
++			dynamic-power-coefficient = <154>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
+-- 
+2.34.1
+
