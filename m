@@ -2,112 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75B3C66004B
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 13:33:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62F5966004C
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 13:33:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229623AbjAFMcz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 07:32:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59774 "EHLO
+        id S230082AbjAFMd2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 07:33:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232453AbjAFMcy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 07:32:54 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E1786699E
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 04:32:52 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id bn26so1170652wrb.0
-        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 04:32:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=da10G3UmxKY1sOpQGZA/k2Utzz3wOV8wVJe9TJzAXVY=;
-        b=RpCTodbz9uuZKViQh3ZnI5T/0FO8utQhtXyfKfpWeHcB0eSOvCDMdwYXsFQUSAPP65
-         8FQKvzag/Eedi/4+I2gIOiO17cCdSNnSp+yU8lutEkFMzWxU6C9FUd0N2mr4ak06zcER
-         72IhBIZkP6ahebWgPVgk5I35d/BzujhU8p+RLUaQcttGT41ClH3krumgRglgBktSEAOI
-         5+nNm64l5VaoZFcLP2j1MTM3ke4lsH95T1Ej+gJtgbsUyj4uSTAmvCKR7av/SgOPo9K/
-         ubLbRMdq40TqKWNSmGFJWAWA4PIbq+I9P4tnw9Q+QZb5TuxRQJ77y8CWyXDHwFDlpf6Z
-         hqSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=da10G3UmxKY1sOpQGZA/k2Utzz3wOV8wVJe9TJzAXVY=;
-        b=7D6NhAEUywuMDk9KDLYMWgr3S5Sn4jY3QvVFiu8Qgs5HSEYnoVCOzkFlVkflvF/qta
-         yEi/6HJLzP+hBfhQedTmeXvEJdS30pKBArL+/bakugYr09Z3yCfxgQIdR6OY9P/fjUFc
-         EnB9TnazKQKYe9tZDHGI9F71F3QYnhxyMLD13HfqPQMSJzKdD80F7HVj3pnOzo3Mc8Sd
-         ylQHGDgIQAYW2e0GuZMEgp35dEne2FwmUm3n+bd3VSGIslUHHz6vJjyaQ3B5ZoNPSMEb
-         Ufl2pObEC1RRME/TSMkOfmCzuOw09Ee4H4Kc9IzmEjRuvEoQJMxJGxwfSmwAVEGuE/E4
-         JQ0g==
-X-Gm-Message-State: AFqh2krcAXvpZ2HfWhenHJIcf8TcZNEAqM3wnIcnhie5YaK9syFG3S0T
-        k6xCWOc+nYJperSWRWSucmLmUQ==
-X-Google-Smtp-Source: AMrXdXu7aCpLhDm4tVtPRj9/+0rOw4/1fINTlypLBXTTrVwLtIA8dvcsUoa/l7qsob4sQ4Q8sog+Mg==
-X-Received: by 2002:a5d:6508:0:b0:2b7:88d3:d224 with SMTP id x8-20020a5d6508000000b002b788d3d224mr2424755wru.55.1673008371049;
-        Fri, 06 Jan 2023 04:32:51 -0800 (PST)
-Received: from [192.168.1.102] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id bx9-20020a5d5b09000000b0023662245d3csm1065232wrb.95.2023.01.06.04.32.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Jan 2023 04:32:50 -0800 (PST)
-Message-ID: <b866e6e1-da10-9152-8bda-966015998877@linaro.org>
-Date:   Fri, 6 Jan 2023 13:32:48 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: msm8226: Add General Purpose
- clocks
-Content-Language: en-US
-To:     =?UTF-8?Q?Matti_Lehtim=c3=a4ki?= <matti.lehtimaki@gmail.com>,
-        linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S232478AbjAFMdG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 07:33:06 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C80A2BCF;
+        Fri,  6 Jan 2023 04:33:05 -0800 (PST)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 83D714AE;
+        Fri,  6 Jan 2023 13:33:03 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1673008384;
+        bh=7CrFzLgUwfpJfO3oXkxlIOOxeT9YjWt1gpsJO7MXn4g=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hR/QchcvSCOLcxfSa7kwkzkU96NE55yqrG2+3z7MkB7tkOcfUNNQx2LfM/byKGGDN
+         Ac/zMxCKJ2ZIWziETvlawbYgjq/X28G3GSmHTQR8tAsxQ8H4zbPkETsmWw6sgWr+/X
+         ebGhX0S7+ljj9GOz6KON49pWz7f3SWy5+Vb9bONk=
+Date:   Fri, 6 Jan 2023 14:32:58 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Michael Tretter <m.tretter@pengutronix.de>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230106114403.275865-1-matti.lehtimaki@gmail.com>
- <20230106114403.275865-2-matti.lehtimaki@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230106114403.275865-2-matti.lehtimaki@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Fabio Estevam <festevam@gmail.com>, kernel@pengutronix.de,
+        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 7/8] media: imx-pxp: add support for i.MX7D
+Message-ID: <Y7gU+jEGOqHJQpQ5@pendragon.ideasonboard.com>
+References: <20230105134729.59542-1-m.tretter@pengutronix.de>
+ <20230105134729.59542-8-m.tretter@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230105134729.59542-8-m.tretter@pengutronix.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/01/2023 12:44, Matti Lehtimäki wrote:
-> Document the general purpose clock functions that are found on MSM8226.
+Hi Michael,
+
+Thank you for the patch.
+
+On Thu, Jan 05, 2023 at 02:47:28PM +0100, Michael Tretter wrote:
+> The i.MX7D needs a different data path configuration than the i.MX6ULL.
+> Configure the data path as close as possible to the data path on the
+> i.MX6ULL.
 > 
-> Signed-off-by: Matti Lehtimäki <matti.lehtimaki@gmail.com>
+> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
 > ---
->  .../devicetree/bindings/pinctrl/qcom,msm8226-pinctrl.yaml     | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  drivers/media/platform/nxp/imx-pxp.c | 36 ++++++++++++++++++++++++++++
+>  1 file changed, 36 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,msm8226-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,msm8226-pinctrl.yaml
-> index 3b79f5be860b..6e3808065845 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/qcom,msm8226-pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,msm8226-pinctrl.yaml
-> @@ -66,8 +66,8 @@ $defs:
->          enum: [ gpio, cci_i2c0, blsp_uim1, blsp_uim2, blsp_uim3, blsp_uim5,
->                  blsp_i2c1, blsp_i2c2, blsp_i2c3, blsp_i2c4, blsp_i2c5, blsp_spi1,
->                  blsp_spi2, blsp_spi3, blsp_spi5, blsp_uart1, blsp_uart2,
-> -                blsp_uart3, blsp_uart4, blsp_uart5, cam_mclk0, cam_mclk1, sdc3,
-> -                wlan ]
-> +                blsp_uart3, blsp_uart4, blsp_uart5, cam_mclk0, cam_mclk1,
-> +                gp0_clk, gp1_clk, sdc3, wlan ]
+> diff --git a/drivers/media/platform/nxp/imx-pxp.c b/drivers/media/platform/nxp/imx-pxp.c
+> index 4e182f80a36b..04cc8df2a498 100644
+> --- a/drivers/media/platform/nxp/imx-pxp.c
+> +++ b/drivers/media/platform/nxp/imx-pxp.c
+> @@ -763,6 +763,37 @@ static u32 pxp_imx6ull_data_path_ctrl0(struct pxp_ctx *ctx)
+>  	return ctrl0;
+>  }
+>  
+> +static u32 pxp_imx7d_data_path_ctrl0(struct pxp_ctx *ctx)
+> +{
+> +	u32 ctrl0;
+> +
+> +	ctrl0 = 0;
+> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX15_SEL(3);
+> +	/* Select Rotation 0 */
+> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX14_SEL(0);
+> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX13_SEL(3);
+> +	/* Select MUX11 for Rotation 0 */
+> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX12_SEL(1);
+> +	/* Bypass LUT */
+> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX11_SEL(1);
+> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX10_SEL(3);
+> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX9_SEL(3);
+> +	/* Select CSC 2 */
+> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX8_SEL(0);
+> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX7_SEL(3);
+> +	/* Select Composite Alpha Blending/Color Key 0 for CSC 2 */
+> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX6_SEL(1);
+> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX5_SEL(3);
+> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX4_SEL(3);
+> +	/* Bypass Rotation 1 */
+> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX3_SEL(0);
+> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX2_SEL(3);
+> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX1_SEL(3);
+> +	ctrl0 |= BF_PXP_DATA_PATH_CTRL0_MUX0_SEL(3);
+> +
+> +	return ctrl0;
+> +}
+> +
+>  static u32 pxp_data_path_ctrl0(struct pxp_ctx *ctx)
+>  {
+>  	struct pxp_dev *dev = ctx->dev;
+> @@ -1834,8 +1865,13 @@ static const struct pxp_pdata pxp_imx6ull_pdata = {
+>  	.data_path_ctrl0 = pxp_imx6ull_data_path_ctrl0,
+>  };
+>  
+> +static const struct pxp_pdata pxp_imx7d_pdata = {
+> +	.data_path_ctrl0 = pxp_imx7d_data_path_ctrl0,
+> +};
+> +
+>  static const struct of_device_id pxp_dt_ids[] = {
+>  	{ .compatible = "fsl,imx6ull-pxp", .data = &pxp_imx6ull_pdata },
+> +	{ .compatible = "fsl,imx7d-pxp", .data = &pxp_imx7d_pdata },
+>  	{ },
+>  };
+>  MODULE_DEVICE_TABLE(of, pxp_dt_ids);
 
-Driver does not support them (and there is no driver change, unless you
-cc-ed people selectively...).
+-- 
+Regards,
 
-Best regards,
-Krzysztof
-
+Laurent Pinchart
