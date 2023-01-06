@@ -2,168 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3DF565FD75
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 10:19:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5210A65FD7B
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 10:19:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231810AbjAFJTW convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 6 Jan 2023 04:19:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43244 "EHLO
+        id S232676AbjAFJTq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 04:19:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232680AbjAFJTN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 04:19:13 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 201F763188
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 01:19:13 -0800 (PST)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1pDisH-0007GO-F3; Fri, 06 Jan 2023 10:18:53 +0100
-Message-ID: <5c2f0bba0a3a9d846cdfbcf7529759327d895810.camel@pengutronix.de>
-Subject: Re: [PATCH 2/2] ARM: dts: vfxxx: Swap SAI DMA order
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Marek Vasut <marex@denx.de>, linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Adam Ford <aford173@gmail.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Paul Elder <paul.elder@ideasonboard.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Stefan Agner <stefan@agner.ch>,
-        Tim Harvey <tharvey@gateworks.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-Date:   Fri, 06 Jan 2023 10:18:49 +0100
-In-Reply-To: <20230105144145.165010-2-marex@denx.de>
-References: <20230105144145.165010-1-marex@denx.de>
-         <20230105144145.165010-2-marex@denx.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.46.2 (3.46.2-1.fc37) 
+        with ESMTP id S231602AbjAFJTh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 04:19:37 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D4216B5E3
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 01:19:36 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id s9so702940wru.13
+        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 01:19:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HBvK4FbyjugL/NTQ0CwTNBhtYz4NAjQXr3/z7/3gv1c=;
+        b=KguTVW0zMu+a4TkWdjQOCghkO44wZY1ikqaFifFYt8+opXcFZ4er5Lq2rLzH48cBXj
+         t5MPgc1pg8frJ6Ui6gFJRFhuWPKHw5KohU6ob9GJlxA1IQ0D/0dnafiHdXQ41rmMcWWk
+         w6vizNfQU6mFIuZECInhojR7wTiX5deDZprk/1dhvMt/cssaYuw+hr2uVWUNF7ay21SN
+         ecdYkyok+gMX5BKtK6P5jO9J5R/01RvWDgvSNIVeH8hYxYYkhAnMiAiD0Mxx2lJXzBXV
+         1XfJIn6qcvhPvBZNBHNuZS6Wpc0etRcDInZR/+Nh+rXW+DrKT4XElHKoaLCmfq32Ns2g
+         jurw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HBvK4FbyjugL/NTQ0CwTNBhtYz4NAjQXr3/z7/3gv1c=;
+        b=xz2coC1bm8CjB1sw6EE3WLLbGD9XQ8Hzf28ArkRap3aO6fNeb4piJ4CpO4TQIj9DMd
+         dsjlPnW+AI5pMvLkX9h/9DEgTc5kUHdC6pBIRjUt4/OTbK0L+GY5hY65asDplJBuadWr
+         crejXZYXfR5zt6Ulfexhl+0psehhU+z9iS0TojExDwQjd3s0hw1kS5PJ6bM25uLCAETU
+         BETuvEyVRQV4lF9yODgLpmXyib0FkOm9fi/c1Nxtq9et1zV+RD7fq9CJG72MeImOadkp
+         pXiTaiNLlTi6p9qWxmjRr+rne1Pek2xHfrm9mtc2gfk/Y6bY78EUQr1xTc8Mss5yZWSA
+         XCug==
+X-Gm-Message-State: AFqh2kqNDMNcl77oHRcvOtactXhlIwU5jEzYB5PBqnxyvplry1yi2JkU
+        Y7hOv4YEWpBZ44+fMmO9Bsep9A==
+X-Google-Smtp-Source: AMrXdXuSNM2Lq+V95/prLY3ph2EizEdVN1Dv4ZsinbWWmgY8IDYy7I0WuxBpxqKrxbkW8QjsPK1aYA==
+X-Received: by 2002:a5d:6808:0:b0:272:3a86:29c1 with SMTP id w8-20020a5d6808000000b002723a8629c1mr31438869wru.16.1672996774576;
+        Fri, 06 Jan 2023 01:19:34 -0800 (PST)
+Received: from [192.168.1.102] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id m13-20020adfe94d000000b002714b3d2348sm612611wrn.25.2023.01.06.01.19.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Jan 2023 01:19:33 -0800 (PST)
+Message-ID: <f2566d6f-3cb5-9985-ebfa-87ea56d56718@linaro.org>
+Date:   Fri, 6 Jan 2023 10:19:31 +0100
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 1/2] dt-bindings: usb: tps6598x: Add wakeup property
+Content-Language: en-US
+To:     Jun Nie <jun.nie@linaro.org>, heikki.krogerus@linux.intel.com,
+        gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
+Cc:     sven@svenpeter.dev, shawn.guo@linaro.org,
+        bryan.odonoghue@linaro.org
+References: <20230105075058.924680-1-jun.nie@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230105075058.924680-1-jun.nie@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Donnerstag, dem 05.01.2023 um 15:41 +0100 schrieb Marek Vasut:
-> Swap the SAI dmas and dma-names to match the order documented in
-> Documentation/devicetree/bindings/sound/fsl,sai.yaml
-> No functional change.
+On 05/01/2023 08:50, Jun Nie wrote:
+> Add wakeup property description. People can enable it with adding
+> the property.
 > 
-While I'm not opposing this patch, I find this class of changes a bit
-odd. The *-names properties are there so the properties they are naming
-can be in any order in the DT without impacting the lookup. Enforcing a
-fixed order for named properties just feels odd.
-
-Not sure if the schema validation could take this into account or if
-there is any policy in place already by the DT maintainer that we still
-want to enforce the same order in the DTs as in the bindings.
-
-Regards,
-Lucas
-
-> Signed-off-by: Marek Vasut <marex@denx.de>
+> Signed-off-by: Jun Nie <jun.nie@linaro.org>
 > ---
-> Cc: Adam Ford <aford173@gmail.com>
-> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Joakim Zhang <qiangqing.zhang@nxp.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Liam Girdwood <lgirdwood@gmail.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Marek Vasut <marex@denx.de>
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: Markus Niebel <Markus.Niebel@ew.tq-group.com>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Paul Elder <paul.elder@ideasonboard.com>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Richard Cochran <richardcochran@gmail.com>
-> Cc: Richard Zhu <hongxing.zhu@nxp.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Shengjiu Wang <shengjiu.wang@nxp.com>
-> Cc: Stefan Agner <stefan@agner.ch>
-> Cc: Tim Harvey <tharvey@gateworks.com>
-> Cc: alsa-devel@alsa-project.org
-> Cc: devicetree@vger.kernel.org
-> To: linux-arm-kernel@lists.infradead.org
-> ---
->  arch/arm/boot/dts/vfxxx.dtsi | 20 ++++++++------------
->  1 file changed, 8 insertions(+), 12 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/vfxxx.dtsi b/arch/arm/boot/dts/vfxxx.dtsi
-> index d53f9c9db8bfd..ff4479994b600 100644
-> --- a/arch/arm/boot/dts/vfxxx.dtsi
-> +++ b/arch/arm/boot/dts/vfxxx.dtsi
-> @@ -191,9 +191,8 @@ sai0: sai@4002f000 {
->  					<&clks VF610_CLK_SAI0_DIV>,
->  					<&clks 0>, <&clks 0>;
->  				clock-names = "bus", "mclk1", "mclk2", "mclk3";
-> -				dma-names = "tx", "rx";
-> -				dmas = <&edma0 0 17>,
-> -					<&edma0 0 16>;
-> +				dma-names = "rx", "tx";
-> +				dmas = <&edma0 0 16>, <&edma0 0 17>;
->  				status = "disabled";
->  			};
->  
-> @@ -205,9 +204,8 @@ sai1: sai@40030000 {
->  					<&clks VF610_CLK_SAI1_DIV>,
->  					<&clks 0>, <&clks 0>;
->  				clock-names = "bus", "mclk1", "mclk2", "mclk3";
-> -				dma-names = "tx", "rx";
-> -				dmas = <&edma0 0 19>,
-> -					<&edma0 0 18>;
-> +				dma-names = "rx", "tx";
-> +				dmas = <&edma0 0 18>, <&edma0 0 19>;
->  				status = "disabled";
->  			};
->  
-> @@ -219,9 +217,8 @@ sai2: sai@40031000 {
->  					<&clks VF610_CLK_SAI2_DIV>,
->  					<&clks 0>, <&clks 0>;
->  				clock-names = "bus", "mclk1", "mclk2", "mclk3";
-> -				dma-names = "tx", "rx";
-> -				dmas = <&edma0 0 21>,
-> -					<&edma0 0 20>;
-> +				dma-names = "rx", "tx";
-> +				dmas = <&edma0 0 20>, <&edma0 0 21>;
->  				status = "disabled";
->  			};
->  
-> @@ -233,9 +230,8 @@ sai3: sai@40032000 {
->  					<&clks VF610_CLK_SAI3_DIV>,
->  					<&clks 0>, <&clks 0>;
->  				clock-names = "bus", "mclk1", "mclk2", "mclk3";
-> -				dma-names = "tx", "rx";
-> -				dmas = <&edma0 1 9>,
-> -					<&edma0 1 8>;
-> +				dma-names = "rx", "tx";
-> +				dmas = <&edma0 1 8>, <&edma0 1 9>;
->  				status = "disabled";
->  			};
->  
+>  Documentation/devicetree/bindings/usb/ti,tps6598x.yaml | 3 +++
+
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
