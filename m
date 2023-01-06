@@ -2,147 +2,256 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0500D6606A7
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 19:52:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A71756606AD
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 19:56:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234975AbjAFSwh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 13:52:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40818 "EHLO
+        id S229604AbjAFS4J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 13:56:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231690AbjAFSwf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 13:52:35 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC72E7DE2C
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 10:52:31 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id bq39so3287516lfb.0
-        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 10:52:31 -0800 (PST)
+        with ESMTP id S229586AbjAFS4I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 13:56:08 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D84377D0B;
+        Fri,  6 Jan 2023 10:56:07 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id i17-20020a05600c355100b003d99434b1cfso1726431wmq.1;
+        Fri, 06 Jan 2023 10:56:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TD7cExgBKxjhrMDw5hZV0k9KiTeSdkou8rySHfWyF+4=;
-        b=jNOsGP6tpzSAOt1sC85kT/F7skelP98XhZN2T768iMd0t2lMBi4VNsao79siuyhhHZ
-         FKHGUgotnCVgQTtcUnQsB4eb9V0nv0brkmW61Ca9c7f7oIksD9OjQUPyFYo1eZjxYgcl
-         vLpOGUCcQpkmW8r8A43R0goV87BhQKYb/hmSZvxcT8zeiVvtSRWsfWYPz0MEcVVj5Mxg
-         UhhuBQrFWUsmKB38Yyl63Q1zOezcmmDolCH5624D3q8ls+yCsryoQ9K1C/shIC01+iHp
-         rBeuwNz2uz0R+3CVGvQ0l/RfiwaBQLSVHgKs193KL9vUsLXiH75dF8mFwU5TcKBG5obH
-         ZXpw==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3sUwYegRtAIb+OCTW5mqCGhd7voccHEpdVjTByrjOi8=;
+        b=mvN0mjmHwx/VFu46rg+zvq7VV2GQiEAzy4dIgGeV0yIXxsZrUwYalmgLGt3hYA9c+K
+         mICCY5cg/L9CRr1mMdCiPpsWIVAN13S6u2Cl/VL7fYIgCRxdq6HaBqXEqQd/j3Rk43ku
+         MdnZE/bTw0vfeRKDrDz+1AXCRaHow8HjAjICsrs/UMyI4AM2mK4/KpSVybyepQtbfbVB
+         n0fytKUNYyLxQhud+p3RURKhXkI3bzdSbteZPjnpodGBjtLpZP7H/kR8kh1fUaK4JYon
+         GzHHSm7kHUqUKkpAL+G6reEebXt7y1p84rTANDi1WpYk2V+B1sXpXhFY9UuZxlm0Cv+b
+         Hylg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TD7cExgBKxjhrMDw5hZV0k9KiTeSdkou8rySHfWyF+4=;
-        b=wnLjEfR7TIxn8xfcZ2nCX70GLM/A4KAyVfMrEDHO0KATohM/ZDorz886Zl4TwqDRJo
-         12rPADKitPWNpOl9nLmx2QP/Jkc3AavMZeJHsqs/yURHWEH7BM5zKkqRlVylzwRqfiMa
-         aJltMlIFcUvFp7zPbJLsArMexgTAEecLDVqP+eXg8xpwaV1F9U2FJfRieVhQWc7lugWA
-         ReHC2clcxmMH9RBBW+khFcgcAa0TSCgUGsbwJ1bC3EP3Cq+J+6sQKBL0+JYcf53Ar0Fh
-         HNgZEHbcvA+01tCX+H7UfkT/iilRw+ojHd8hwBBc6uWvNDgbnh6LveniBjDMPl2ET2eS
-         30og==
-X-Gm-Message-State: AFqh2krjI5IELR7rTEsOGNIbyudW30+LDqK3U+ihT++x79pDCYwV17Ay
-        qKqsnEICzTdU07gf/guM2UrROw==
-X-Google-Smtp-Source: AMrXdXsHdtVlTT5cNfv6PVUfaatqKf11Ub9RrtNJsFNtgnwwrwaJf8in8wgifxiAgC8amQ6bGvR2Iw==
-X-Received: by 2002:a05:6512:1395:b0:4b5:b10b:6830 with SMTP id p21-20020a056512139500b004b5b10b6830mr16725097lfa.54.1673031150064;
-        Fri, 06 Jan 2023 10:52:30 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id b10-20020ac2410a000000b004cafd013f54sm237620lfi.118.2023.01.06.10.52.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Jan 2023 10:52:29 -0800 (PST)
-Message-ID: <1b2e1431-1fe9-d70e-b45e-71824fe16547@linaro.org>
-Date:   Fri, 6 Jan 2023 20:52:28 +0200
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3sUwYegRtAIb+OCTW5mqCGhd7voccHEpdVjTByrjOi8=;
+        b=Wle7gDgUTCvyzMDMQmVahw+HyHkUvHUgQJlVHA7eVmh7R5bN5ERdtjnL27vHDFxT7n
+         zRTfwKQoeCEHBo2sJuo5Z1GSh7ua6cX+BAnhVwzxIQNNy1+OtXfSqNUfL8RiNFCyXWKA
+         Yv/I6vO22EEQB/t+ulcwIa2TlAKVN5uvOl+iRVMLuj1a4kZQ7BBR96T++kww3Vb9ekOE
+         /CPIFQZEYN1J8OBRxpGC4faUaUAxDyaW332Ot0WQoa7/Aox5tPmtbCuaUq/x2jts+cR7
+         xkUExpooQMT/a+t/rD+MfcDfTTj6sLsE2q0TkI+jL1PeT5ejlawnFecTMREipr7uUbCd
+         bMnw==
+X-Gm-Message-State: AFqh2krpBGau9GKWZ2JTxfLyp13v99giUJqv8CfXmxcNCcJszvV+p3Oj
+        ETDfKBSONX1lymxbkN0x6+A=
+X-Google-Smtp-Source: AMrXdXuzXHmK258HUVix6YG0pfb9Dmn1BifmbLfB1D03lJT7QadJIixWYT9Yd+fUM8OQlMJid4SkkQ==
+X-Received: by 2002:a05:600c:3d0e:b0:3d1:ee97:980 with SMTP id bh14-20020a05600c3d0e00b003d1ee970980mr49682190wmb.7.1673031365518;
+        Fri, 06 Jan 2023 10:56:05 -0800 (PST)
+Received: from prasmi.home ([2a00:23c8:2501:c701:79e8:5b4e:615a:91cd])
+        by smtp.gmail.com with ESMTPSA id d8-20020a05600c34c800b003c5571c27a1sm3162773wmq.32.2023.01.06.10.56.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Jan 2023 10:56:04 -0800 (PST)
+From:   Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Arnd Bergmann <arnd@arndb.de>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Heiko Stuebner <heiko@sntech.de>, Guo Ren <guoren@kernel.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org (open list:RISC-V ARCHITECTURE)
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v6 0/6] RISC-V non-coherent function pointer based cache management operations + non-coherent DMA support for AX45MP
+Date:   Fri,  6 Jan 2023 18:55:20 +0000
+Message-Id: <20230106185526.260163-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH 3/9] interconnect: qcom: sc7180: drop IP0 remnants
-Content-Language: en-GB
-To:     Alex Elder <elder@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     Georgi Djakov <djakov@kernel.org>,
-        Odelu Kukatla <okukatla@codeaurora.org>,
-        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230106073313.1720029-1-dmitry.baryshkov@linaro.org>
- <20230106073313.1720029-4-dmitry.baryshkov@linaro.org>
- <eeb9631c-4494-fc76-5ad4-5fdbdaa8786a@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <eeb9631c-4494-fc76-5ad4-5fdbdaa8786a@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/01/2023 15:44, Alex Elder wrote:
-> On 1/6/23 1:33 AM, Dmitry Baryshkov wrote:
->> Drop two defines leftover from the commit 2f3724930eb4 ("interconnect:
->> qcom: sc7180: Drop IP0 interconnects"), which dropped handling of the
->> IP0 resource in favour of handling it in the clk-rpmh driver.
->>
->> Fixes: 2f3724930eb4 ("interconnect: qcom: sc7180: Drop IP0 
->> interconnects")
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> 
-> On this patch and the rest like it in this series, I suggest
-> adding a comment that indicates why there's a gap in the simple
-> numeric sequence. 
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Ok, sounds fair.
+Hi All,
 
-> Feel free to ignore this if you don't think
-> this is a good idea.  I'll give examples below, although I
-> don't fully understand why there's a master and slave on the
-> interconnect, but just a single clock for RPMH clock...
+RISC-V non-coherent function pointer based cache management operations
+=======================================================================
+As based on the previous discussion [0]. [1], It was suggested upon the below:
+* Move out cache drivers from drivers/soc/folder
+* Implement function pointers for CMO instead of ALTERNATIVE_x() macro
+* Add cache drivers to drivers/cache folder
 
-Well, interconnects is a about paths between nodes. So even if we have 
-to cast a vote on a single resource, there should be two nodes.
+[0] https://lore.kernel.org/all/43aee000-5b89-4d94-98d2-b37b1a18a83e@app.fastmail.com/
+[1] https://lore.kernel.org/linux-riscv/Y62nOqzyuUKqYDpq@spud/#R
 
-> 
->                      -Alex
-> 
->> ---
->>   drivers/interconnect/qcom/sc7180.h | 2 --
->>   1 file changed, 2 deletions(-)
->>
->> diff --git a/drivers/interconnect/qcom/sc7180.h 
->> b/drivers/interconnect/qcom/sc7180.h
->> index c6212a10c2f6..b691d97d56cf 100644
->> --- a/drivers/interconnect/qcom/sc7180.h
->> +++ b/drivers/interconnect/qcom/sc7180.h
->> @@ -11,7 +11,6 @@
->>   #define SC7180_MASTER_APPSS_PROC            0
->>   #define SC7180_MASTER_SYS_TCU                1
->>   #define SC7180_MASTER_NPU_SYS                2
->> -#define SC7180_MASTER_IPA_CORE                3
->      /* MASTER_IPA_CORE (4) is represented as an RPMH clock */
->>   #define SC7180_MASTER_LLCC                4
->>   #define SC7180_MASTER_A1NOC_CFG                5
->>   #define SC7180_MASTER_A2NOC_CFG                6
->> @@ -58,7 +57,6 @@
->>   #define SC7180_MASTER_USB3                47
->>   #define SC7180_MASTER_EMMC                48
->>   #define SC7180_SLAVE_EBI1                49
->> -#define SC7180_SLAVE_IPA_CORE                50
->      /* SLAVE_IPA_CORE (50) is represented as an RPMH clock */
->>   #define SC7180_SLAVE_A1NOC_CFG                51
->>   #define SC7180_SLAVE_A2NOC_CFG                52
->>   #define SC7180_SLAVE_AHB2PHY_SOUTH            53
-> 
+This v6 version of the patch series add support to use function pointers for CMO
+and switches the current CMO implementations for zicbom and T-HEAD to use function
+pointers.
+
+Note, with the above approach we might see some performance degradation due to additional
+checks.
+
+----------x---------------------x--------------------x---------------x--------------
+
+
+non-coherent DMA support for AX45MP
+====================================
+
+On the Andes AX45MP core, cache coherency is a specification option so it
+may not be supported. In this case DMA will fail. To get around with this
+issue this patch series does the below:
+
+1] Andes alternative ports is implemented as errata which checks if the IOCP
+is missing and only then applies to CMO errata. One vendor specific SBI EXT
+(RZFIVE_SBI_EXT_IOCP_SW_WORKAROUND) is implemented as part of errata. If we could
+access the DTB in errata I can get rid of this EXT ID from OpenSBI. Is there any
+approach we can access the DTB in patch callback?
+
+Below are the configs which Andes port provides (and are selected by RZ/Five):
+      - ERRATA_ANDES
+      - ERRATA_ANDES_CMO
+
+2] Andes AX45MP core has a Programmable Physical Memory Attributes (PMA)
+block that allows dynamic adjustment of memory attributes in the runtime.
+It contains a configurable amount of PMA entries implemented as CSR
+registers to control the attributes of memory locations in interest.
+OpenSBI configures the PMA regions as required and creates a reserve memory
+node and propagates it to the higher boot stack.
+
+An RFC patch for OpenSBI is posted here:
+https://patchwork.ozlabs.org/project/opensbi/patch/20221212094421.14556-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+    reserved-memory {
+        #address-cells = <2>;
+        #size-cells = <2>;
+        ranges;
+
+        pma_resv0@58000000 {
+            compatible = "shared-dma-pool";
+            reg = <0x0 0x58000000 0x0 0x08000000>;
+            no-map;
+            linux,dma-default;
+        };
+    };
+
+The above shared DMA pool gets appended to Linux DTB so the DMA memory
+requests go through this region.
+
+3] We provide callbacks to synchronize specific content between memory and
+cache.
+
+        - arch_sync_dma_for_device()
+        - arch_sync_dma_for_cpu()
+
+4] RZ/Five SoC selects the below configs
+        - AX45MP_L2_CACHE
+        - DMA_GLOBAL_POOL
+        - ERRATA_ANDES
+        - ERRATA_ANDES_CMO
+
+OpenSBI implementation patches can be found here:
+1] https://patchwork.ozlabs.org/project/opensbi/cover/20221210103011.7814-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+2]https://patchwork.ozlabs.org/project/opensbi/patch/20221212094421.14556-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+----------x---------------------x--------------------x---------------x--------------
+
+Note,
+- This series requires testing on Cores with zicbom and T-Head SoCs
+- Ive used GCC 12.2.0 for compilation (tested with allmodconfig)
+- Tested all the IP blocks on RZ/Five which use DMA
+
+v5.1 -> v6
+* Dropped use of ALTERNATIVE_x() macro
+* Now switched to used function pointers for CMO
+* Moved driver to drivers/cache folder
+
+v5 -> v5.1
+* https://patchwork.kernel.org/project/linux-riscv/list/?series=708610&state=%2A&archive=both
+
+v4 -> v5
+* Rebased ALTERNATIVE_3() macro on top of Andrew's patches
+* Rebased the changes on top of Heiko's alternative call patches
+* Dropped configuring the PMA from Linux
+* Dropped configuring the L2 cache from Linux and dropped the binding for same
+* Now using runtime patching mechanism instead of compile time config
+
+RFC v3 -> v4
+* Implemented ALTERNATIVE_3() macro 
+* Now using runtime patching mechanism instead of compile time config
+* Added Andes CMO as and errata
+* Fixed comments pointed by Geert
+
+RFC v2-> RFC v3
+* Fixed review comments pointed by Conor
+* Move DT binding into cache folder
+* Fixed DT binding check issue
+* Added andestech,ax45mp-cache.h header file
+* Now passing the flags for the PMA setup as part of andestech,pma-regions
+  property.
+* Added andestech,inst/data-prefetch and andestech,tag/data-ram-ctl
+  properties to configure the L2 cache.
+* Registered the cache driver as platform driver
+
+RFC v1-> RFC v2
+* Moved out the code from arc/riscv to drivers/soc/renesas
+* Now handling the PMA setup as part of the L2 cache
+* Now making use of dma-noncoherent.c instead SoC specific implementation.
+* Dropped arch_dma_alloc() and arch_dma_free()
+* Switched to RISCV_DMA_NONCOHERENT
+* Included DT binding doc
+
+RFC v2: https://patchwork.kernel.org/project/linux-renesas-soc/cover/20221003223222.448551-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+RFC v1: https://patchwork.kernel.org/project/linux-renesas-soc/cover/20220906102154.32526-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (6):
+  riscv: mm: dma-noncoherent: Switch using function pointers for cache
+    management
+  riscv: asm: vendorid_list: Add Andes Technology to the vendors list
+  riscv: errata: Add Andes alternative ports
+  dt-bindings: cache: r9a07g043f-l2-cache: Add DT binding documentation
+    for L2 cache controller
+  cache: Add L2 cache management for Andes AX45MP RISC-V core
+  soc: renesas: Kconfig: Select the required configs for RZ/Five SoC
+
+ .../cache/andestech,ax45mp-cache.yaml         |  81 +++++
+ arch/riscv/Kconfig.erratas                    |  22 ++
+ arch/riscv/errata/Makefile                    |   1 +
+ arch/riscv/errata/andes/Makefile              |   1 +
+ arch/riscv/errata/andes/errata.c              |  71 +++++
+ arch/riscv/errata/thead/errata.c              |  71 +++++
+ arch/riscv/include/asm/alternative.h          |   3 +
+ arch/riscv/include/asm/dma-noncoherent.h      |  83 ++++++
+ arch/riscv/include/asm/errata_list.h          |  53 ----
+ arch/riscv/include/asm/vendorid_list.h        |   1 +
+ arch/riscv/kernel/alternative.c               |   5 +
+ arch/riscv/kernel/cpufeature.c                |   2 +
+ arch/riscv/mm/dma-noncoherent.c               |  94 +++++-
+ arch/riscv/mm/pmem.c                          |  18 +-
+ drivers/Kconfig                               |   2 +
+ drivers/Makefile                              |   1 +
+ drivers/cache/Kconfig                         |  10 +
+ drivers/cache/Makefile                        |   3 +
+ drivers/cache/ax45mp_cache.c                  | 279 ++++++++++++++++++
+ drivers/soc/renesas/Kconfig                   |   4 +
+ 20 files changed, 744 insertions(+), 61 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/cache/andestech,ax45mp-cache.yaml
+ create mode 100644 arch/riscv/errata/andes/Makefile
+ create mode 100644 arch/riscv/errata/andes/errata.c
+ create mode 100644 arch/riscv/include/asm/dma-noncoherent.h
+ create mode 100644 drivers/cache/Kconfig
+ create mode 100644 drivers/cache/Makefile
+ create mode 100644 drivers/cache/ax45mp_cache.c
 
 -- 
-With best wishes
-Dmitry
+2.25.1
 
