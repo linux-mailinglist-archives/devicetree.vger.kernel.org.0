@@ -2,171 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48A7C65FDED
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 10:27:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 77E5465FE09
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 10:36:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234381AbjAFJ0g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 04:26:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44910 "EHLO
+        id S232967AbjAFJeU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 04:34:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232776AbjAFJZ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 04:25:58 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 818816DB9F
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 01:22:16 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id g10so657412wmo.1
-        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 01:22:16 -0800 (PST)
+        with ESMTP id S233429AbjAFJeB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 04:34:01 -0500
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C9EC81117
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 01:26:08 -0800 (PST)
+Received: by mail-wm1-f44.google.com with SMTP id g10so661174wmo.1
+        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 01:26:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=mIBwhXreyLm6L8pvnZwtbHNyGe5mj7GJLNgz4Wh6wQo=;
-        b=rUSG4pEdZZLrEOMBnA8mTNPsn7JjkeFfcu9LagQ3wJ78obWtdOCbs/o/WuvChx67fD
-         sQ4d/0Zy6qJ2bURTTu8YevguKYQF5FP2zjCxS8F0R2yFHERndGlPVLsrlesE/C4ZRF/2
-         9zRpxtpep8sAJoSY5GLI0SDsZZVfNFH5TVsOmcON+O818kZGUzhJAKtLIl8cyb7V+aLl
-         aE4VvJ7F/nbN0sr98J6iCdePjgv/lO1Z0lAipJeP0e3aeA9XgM2bY2Wdugybk53+1vSt
-         9MvqNLM8Mgt117lsXOwrN/loBt0vm4XdjnIRIaTtxevLdzkdxR2kFtoXi6eNlyyQZe9F
-         SPqw==
+        bh=SK0dKOCEBiaYKVTOvhAS22+z7lpa7ZgsHoskRIRAsZc=;
+        b=YTbpxPT1ydolX/yLiyHmyWQXFkrm76SJhztxoGBZX3lIpxBbCW/ue7DCp6AtCG9DnI
+         yDu9AD5+xqLyvsC9TSBoQKdQ9H73q+SPg6W/D1yGKk9StZfYlZ356SvmshsHoSVv9T/G
+         jcQCIcvTHcsT8gJzeQef+d+nGR2q7gASrn1Fnln5Ejp3+lsENDxg3CSPvXp3/HOeXJR2
+         2c0EEDx94X+WkfyNLGtsqwJWAOy/1HgVcQ7bE31mSDXNobClaQBXBsi+xaQSZBqTl170
+         5pFD3NtwDVWjJgbyBkqox87NKkY2JxhMgxnyplkoH304Bcyq9Q9YImAqgJslqXIV434U
+         Cb7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mIBwhXreyLm6L8pvnZwtbHNyGe5mj7GJLNgz4Wh6wQo=;
-        b=zfeEZzQiFwO0ZF4U7hpFfFv+802KCsUPjCKru5UyzKZd0a98UJldVTalW5bgofohJ7
-         45KwcD+QRjNTyCENrztN3P3MZdSPMa18u36DlWMZ0tjx24PSphSEdVlC5fIBCr6PFs4N
-         PXOxb+EE4vknv0nRA+TV+UWp0FiCBI8jEG0af0kiyWAR6odF1slBSAZhwKNk32dlTIvy
-         edSf3StABmR/paT7nLlM9D3fv18m6n6G7BtjRH8aepx9gwkUGuexyrdYDYbABBtbfm9g
-         XBEdoR09X9LLDZ3k07ZJudg56KMAkNosKb3cr1+779CB7bphvkb3rj9p5jxfD6R1Tpy2
-         KY1w==
-X-Gm-Message-State: AFqh2kplq8FNdeRcVKbV446BqxRsM8qgnXTttZWCL4Kcz/HuOQNpGYsC
-        OqaiqPtmXyWtnENoIacEbrG9YQ==
-X-Google-Smtp-Source: AMrXdXt1czt6+jNPwMhku9nPQSZYF/LqrQNaJuRT/gQVAVTaHXddn9UrPgdw+EhBKkv5Muaf+tmGYQ==
-X-Received: by 2002:a7b:cb89:0:b0:3d2:2101:1f54 with SMTP id m9-20020a7bcb89000000b003d221011f54mr38609714wmi.4.1672996911573;
-        Fri, 06 Jan 2023 01:21:51 -0800 (PST)
+        bh=SK0dKOCEBiaYKVTOvhAS22+z7lpa7ZgsHoskRIRAsZc=;
+        b=1DEnbgQcp130qQr4rxupCkZCdmtMwOr5qRmoZEx7FbApOCC33BGmMHrqyr42mGnRnj
+         4r9zJjlwORzrB9YiiQ6x3HwXCVVSzDh6f1hAX2EYjkegTcY/4RYyh5n7foq7xW9aV1Vr
+         Ziy5U3linzFhvUCspIctCjjk3rOM2Ns49uDV7A7OchHnLkwzJZJwLpiU0o8NncsCM3Id
+         cLp/ljfvoycELgU8DTZTygnNJ1xvKYJxlVRd3iJOhzoJ338NrKfCp2i0gzZqCPHby34p
+         ENaPpb353NA+QUpn4JBsNst32YwxnfYuQiVR7qMhcxBibycCoObWtnLxQoq9e9rm/IHU
+         Yjag==
+X-Gm-Message-State: AFqh2kpSI9gxcTDFeC+c5v3KtjCac80+nbLtsJe56j0sYh4WyNjM3V7O
+        u7ooWz7jFhhQjlSk4Fbguc3abw==
+X-Google-Smtp-Source: AMrXdXvUXP1CXYiwjVxyNq2t/+oSyvDqLJuGkimxPKQaOx1jLGDORGChSn+kZ/MZBKQgytJdm7fmrA==
+X-Received: by 2002:a05:600c:798:b0:3d3:5737:3b0f with SMTP id z24-20020a05600c079800b003d357373b0fmr47698542wmo.36.1672997049322;
+        Fri, 06 Jan 2023 01:24:09 -0800 (PST)
 Received: from [192.168.1.102] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id az20-20020a05600c601400b003d96bdddd3dsm1047604wmb.15.2023.01.06.01.21.49
+        by smtp.gmail.com with ESMTPSA id k4-20020a05600c1c8400b003d22528decesm6453805wms.43.2023.01.06.01.24.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Jan 2023 01:21:51 -0800 (PST)
-Message-ID: <93915db1-9089-9c58-62f3-6a424c57bfa5@linaro.org>
-Date:   Fri, 6 Jan 2023 10:21:48 +0100
+        Fri, 06 Jan 2023 01:24:08 -0800 (PST)
+Message-ID: <b74b4438-9496-f636-995b-4acdba5766f1@linaro.org>
+Date:   Fri, 6 Jan 2023 10:24:05 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 4/4] ARM: dts: sunxi: add MangoPi MQ-R board
+Subject: Re: [PATCH 2/2] ARM: dts: vfxxx: Swap SAI DMA order
 Content-Language: en-US
-To:     Andre Przywara <andre.przywara@arm.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Icenowy Zheng <uwu@icenowy.me>,
-        =?UTF-8?B?QW5kcsOhcyBTemVtesO2?= <szemzo.andras@gmail.com>,
-        Fabien Poussin <fabien.poussin@gmail.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>, soc@kernel.org
-References: <20230106010155.26868-1-andre.przywara@arm.com>
- <20230106010155.26868-5-andre.przywara@arm.com>
+To:     Lucas Stach <l.stach@pengutronix.de>, Marek Vasut <marex@denx.de>,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Adam Ford <aford173@gmail.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Paul Elder <paul.elder@ideasonboard.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Stefan Agner <stefan@agner.ch>,
+        Tim Harvey <tharvey@gateworks.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org
+References: <20230105144145.165010-1-marex@denx.de>
+ <20230105144145.165010-2-marex@denx.de>
+ <5c2f0bba0a3a9d846cdfbcf7529759327d895810.camel@pengutronix.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230106010155.26868-5-andre.przywara@arm.com>
+In-Reply-To: <5c2f0bba0a3a9d846cdfbcf7529759327d895810.camel@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/01/2023 02:01, Andre Przywara wrote:
-> The MangoPi MQ-R is a small SBC with the Allwinner T113-s3 SoC.
-> The SoC features two Arm Cortex-A7 cores and 128 MB of co-packaged DDR3
-> DRAM. The board adds mostly connectors and the required regulators, plus
-> a Realtek RTL8189FTV WiFi chip.
-> Power comes in via a USB-C connector wired as a peripheral, and there is
-> a second USB-C connector usable as a host port.
-> 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> ---
->  arch/arm/boot/dts/Makefile                    |   1 +
->  .../arm/boot/dts/sun8i-t113s-mangopi-mq-r.dts | 160 ++++++++++++++++++
->  2 files changed, 161 insertions(+)
->  create mode 100644 arch/arm/boot/dts/sun8i-t113s-mangopi-mq-r.dts
-> 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index d08a3c450ce72..39fd893682924 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -1390,6 +1390,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
->  	sun8i-s3-elimo-initium.dtb \
->  	sun8i-s3-lichee-zero-plus.dtb \
->  	sun8i-s3-pinecube.dtb \
-> +	sun8i-t113s-mangopi-mq-r.dtb \
->  	sun8i-t3-cqa3t-bv3.dtb \
->  	sun8i-v3-sl631-imx179.dtb \
->  	sun8i-v3s-licheepi-zero.dtb \
-> diff --git a/arch/arm/boot/dts/sun8i-t113s-mangopi-mq-r.dts b/arch/arm/boot/dts/sun8i-t113s-mangopi-mq-r.dts
-> new file mode 100644
-> index 0000000000000..ed4d5217d7b0d
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/sun8i-t113s-mangopi-mq-r.dts
-> @@ -0,0 +1,160 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-> +// Copyright (C) 2022 Arm Ltd.
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/leds/common.h>
-> +
-> +/dts-v1/;
-> +
-> +#include "sun8i-t113s.dtsi"
-> +
-> +/ {
-> +	model = "MangoPi MQ-R";
-> +	compatible = "widora,mangopi-mq-r", "allwinner,sun8i-t113s";
-> +
-> +	aliases {
-> +		ethernet0 = &rtl8189ftv;
-> +		serial3 = &uart3;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial3:115200n8";
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		led-0 {
-> +			color = <LED_COLOR_ID_BLUE>;
-> +			function = LED_FUNCTION_STATUS;
-> +			gpios = <&pio 3 22 GPIO_ACTIVE_LOW>; /* PD22 */
-> +		};
-> +	};
-> +
-> +	/* board wide 5V supply directly from the USB-C socket */
-> +	reg_vcc5v: vcc5v {
+On 06/01/2023 10:18, Lucas Stach wrote:
+> Am Donnerstag, dem 05.01.2023 um 15:41 +0100 schrieb Marek Vasut:
+>> Swap the SAI dmas and dma-names to match the order documented in
+>> Documentation/devicetree/bindings/sound/fsl,sai.yaml
+>> No functional change.
+>>
+> While I'm not opposing this patch, I find this class of changes a bit
+> odd. The *-names properties are there so the properties they are naming
+> can be in any order in the DT without impacting the lookup. Enforcing a
+> fixed order for named properties just feels odd.
 
-Generic node names, so matching style of other - with regulator prefix.
+DT requires fixed order regardless of '-names' property. '-names' are
+not there to fulfill "can be in any order", but merely a helper.
 
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc-5v";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	/* SY8008 DC/DC regulator on the board */
-> +	reg_3v3: regulator-3v3 {
+> 
+> Not sure if the schema validation could take this into account or if
+> there is any policy in place already by the DT maintainer that we still
+> want to enforce the same order in the DTs as in the bindings.
+
+The order in DTS must obviously match bindings, however here both are
+changed, so what is exactly your concern?
 
 
 Best regards,
