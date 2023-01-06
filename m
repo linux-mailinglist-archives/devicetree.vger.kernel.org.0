@@ -2,234 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0EC9660080
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 13:48:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A5EE660081
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 13:49:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229701AbjAFMsb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 07:48:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38718 "EHLO
+        id S230523AbjAFMtV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 07:49:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231858AbjAFMsZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 07:48:25 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26540714BA
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 04:48:24 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id bi26-20020a05600c3d9a00b003d3404a89faso3653420wmb.1
-        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 04:48:24 -0800 (PST)
+        with ESMTP id S233524AbjAFMtT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 07:49:19 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1134D714BA
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 04:49:14 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id b24-20020a05600c4a9800b003d21efdd61dso990808wmp.3
+        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 04:49:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8zVNUT3bgdnMkFHoj/GybUreH+dejeypvrE/0mlGO44=;
-        b=RLC4VF3LVFfa0bOsrwXfVnS6UTPE8TaIBoiP8TlbOSfaW4I0JqJ2Io23P0TSAHqCCu
-         DHE1TXTIS5AzTr2RGltgLFG+Aco9X3ZY1L7QnO+HaZeIwZ5VfcAE2mFlrCt3Sg9NHp5d
-         1QG1PW20BpMEqgjWeMknBPLUsuFxI7dKRWOpQ245bGXK5aV1qSD5MtscROyyT94iwqgs
-         TSsDipA04LOSx70GU34PifTCQxjWI3Do4TSTWu9mbleO5PmcBmbtAfGJsYNmY02VUHMK
-         tCSzEXzicW1n4FLhB0rilYbyjDAGnHn5lkWHxEo4HfLZmF6zgnIUZT+ymH5w6i9wpFgw
-         aHcQ==
+        bh=DO3ss9Dxqnrg5MvW6N1eul9RwSLXHqf4f+h75Y9LOxE=;
+        b=wF24k/X5dbbv9O8LRTSjhRregtsxFsfuL6+g+J/ZBO5lrWh0SYF/GQUzeaUlgN+ogf
+         UDOtV+kW8RbyxskON0mUFfpze+JtBbEP2Rm/t1s+yudy5c/WDH44j5rg59PcPdrwOP0Z
+         RETX184gJTlEv23iLzkSbkST1Qbksu5ENvtFNsCVYZvjjKNmq4wNBGHtIfXkL1jkpxz/
+         x2IZEcF/KCKlTEbuNyyAzvKqPzZvFY69S2Tx0eAhY/KsAl6sKG27nmQddUTCnARrndsY
+         f5viLt9YNkC+79IOpGC0b4e8f90Ex+Rp2ZO1qqmFiIXGnVhNndJyGQJcQiBMgXyd0VYe
+         fq8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8zVNUT3bgdnMkFHoj/GybUreH+dejeypvrE/0mlGO44=;
-        b=RFCZ0IDal44Pu0sXPefWKFyN7tnprXpeAKK33QHc6aj9woGU/XKh0GyVbvCvpXj3bC
-         O18baSxLgrk6km74BFneRvRH1X6ESI/x3moCfbL52zDhJkS1vjesMRBP08Ppt5l+Ifcx
-         BXLpFurqIo4cjEIkZ/Kkjmb6rmg3b5uM2fVCUDulj8O3W7yQVTmFqlQ9dg9hVHG+7Hsh
-         ZLfgQGA5kisl2DPPgEYkP4MLwv0xpJO3e8UyWeDkgl7xfEddiGaf65dWgtmJhhjl7YrE
-         PwcA0LGd/it7TvShL5a1IA+MIN2cwNU3RGzw63zxCImaYWlTjJq/2DaFcvuZEs7kJmlm
-         T0wQ==
-X-Gm-Message-State: AFqh2kpmqxTg8X+cHuzupDT0/kWC0cXXJ4XBpAAaiAHln27A8vLGurHr
-        EjNhk7T0f8g705hTXr3J8umnyw==
-X-Google-Smtp-Source: AMrXdXvTAo5ItVnUoTZAbTRPzwj3gQr3rM9LmIfwukZgRbRtovmTeFlA8otEKXpd826Eati8fuXXjQ==
-X-Received: by 2002:a05:600c:3d91:b0:3d9:103d:9078 with SMTP id bi17-20020a05600c3d9100b003d9103d9078mr38149211wmb.22.1673009302667;
-        Fri, 06 Jan 2023 04:48:22 -0800 (PST)
+        bh=DO3ss9Dxqnrg5MvW6N1eul9RwSLXHqf4f+h75Y9LOxE=;
+        b=UMV6GuxFVQdJ7J+I5OYe3reVSqas5PJU5KGHU2Ypk0MhVy/zTqTzMw7s/4ZyQL+jzX
+         IaxEpkOTqdJRoB62bm84ESt7nnNf/SfZabFWbi2yvKkQDPVjpYjCalCRFk8DmIKkZO6q
+         ZkN58Ua/1pTmdLi+d8c/NHnwC8g8qJzCGhWmMdex+nPs2T6UJYMb85OH2jQIxMhn5K1w
+         VoM+dAOQyN1/jx6RQ4fTlwt+20ktafC3Uc/G5OXbYIIHr4mKd8zvlnpkqI/r7aEw5iRz
+         0NWg1SQNCN6f6h8rcILlSbotSgBC0DjEBmJfiWMpLTYIbOkeNQePkWmZ2SujSK7nUUPK
+         INjA==
+X-Gm-Message-State: AFqh2kpbCtEH20ENJaaZ7c3RrC1kn5p3hQ4pUBLb7n1+JCD0fd+AGWVp
+        qPkLcNp3ut9jk+34SLk4BEHncg==
+X-Google-Smtp-Source: AMrXdXvMLnrgddQhDBKssheqmPV5+Li9wci3CYhgJqif8fxltIi1QAatQ5huVkgmTKnGbfsCCT+Acg==
+X-Received: by 2002:a05:600c:4b1d:b0:3d3:3deb:d916 with SMTP id i29-20020a05600c4b1d00b003d33debd916mr39779693wmp.4.1673009352686;
+        Fri, 06 Jan 2023 04:49:12 -0800 (PST)
 Received: from [192.168.1.102] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id h10-20020a05600c2caa00b003cfd58409desm6235286wmc.13.2023.01.06.04.48.20
+        by smtp.gmail.com with ESMTPSA id s7-20020a1cf207000000b003d98438a43asm1542292wmc.34.2023.01.06.04.49.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Jan 2023 04:48:21 -0800 (PST)
-Message-ID: <5ad7a6bc-0ffd-9d2d-ed80-62c3530cf2fa@linaro.org>
-Date:   Fri, 6 Jan 2023 13:48:19 +0100
+        Fri, 06 Jan 2023 04:49:11 -0800 (PST)
+Message-ID: <977b5cce-2501-4d7a-fe24-437df88aee8f@linaro.org>
+Date:   Fri, 6 Jan 2023 13:49:10 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v7 7/9] dt/bindings: drm/bridge: it6505: Add mode-switch
- support
+Subject: Re: [PATCH V4 1/3] dt-bindings: arm: ti: Add binding for AM68 SK
 Content-Language: en-US
-To:     Pin-yen Lin <treapking@chromium.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Sinthu Raja <sinthu.raja@mistralsolutions.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>
-Cc:     =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
-        <nfraprado@collabora.com>, Xin Ji <xji@analogixsemi.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        linux-kernel@vger.kernel.org, Allen Chen <allen.chen@ite.com.tw>,
-        linux-acpi@vger.kernel.org, Lyude Paul <lyude@redhat.com>,
-        dri-devel@lists.freedesktop.org, chrome-platform@lists.linux.dev,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
-        Stephen Boyd <swboyd@chromium.org>
-References: <20230105132457.4125372-1-treapking@chromium.org>
- <20230105132457.4125372-8-treapking@chromium.org>
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Sinthu Raja <sinthu.raja@ti.com>
+References: <20230105151740.29436-1-sinthu.raja@ti.com>
+ <20230105151740.29436-2-sinthu.raja@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230105132457.4125372-8-treapking@chromium.org>
+In-Reply-To: <20230105151740.29436-2-sinthu.raja@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/01/2023 14:24, Pin-yen Lin wrote:
-> ITE IT6505 can be used in systems to switch the DP traffic between
-> two downstreams, which can be USB Type-C DisplayPort alternate mode
-> lane or regular DisplayPort output ports.
-
-Use subject prefixes matching the subsystem (which you can get for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching).
-
+On 05/01/2023 16:17, Sinthu Raja wrote:
+> From: Sinthu Raja <sinthu.raja@ti.com>
 > 
-> Update the binding to accommodate this usage by introducing a
-> data-lanes and a mode-switch property on endpoints.
+> AM68 Starter Kit is a low cost, small form factor board designed for
+> TI's AM68 SoC which is optimized to provide best in class performance
+> for industrial applications and add binding for the same.
 > 
-> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
-> 
-> ---
-> 
-> Changes in v7:
-> - Fixed issues reported by dt_binding_check.
-> - Updated the schema and the example dts for data-lanes.
-> - Changed to generic naming for the example dts node.
-> 
-> Changes in v6:
-> - Remove switches node and use endpoints and data-lanes property to
->   describe the connections.
-> 
->  .../bindings/display/bridge/ite,it6505.yaml   | 95 ++++++++++++++++---
->  1 file changed, 84 insertions(+), 11 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> index b16a9d9127dd..1ee7cd0d2035 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> @@ -77,20 +77,45 @@ properties:
->          unevaluatedProperties: false
->          description: Video port for DP output
->  
-> -        properties:
-> -          endpoint:
-> +        patternProperties:
-> +          "^endpoint@[01]$":
->              $ref: /schemas/graph.yaml#/$defs/endpoint-base
->              unevaluatedProperties: false
->  
->              properties:
-> +              reg:
-> +                maxItems: 1
-> +
-> +              remote-endpoint: true
-> +
->                data-lanes:
-> -                minItems: 1
-> -                uniqueItems: true
-> -                items:
-> -                  - enum: [ 0, 1 ]
-> -                  - const: 1
-> -                  - const: 2
-> -                  - const: 3
-> +                oneOf:
-> +                  - minItems: 1
+> Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
 
-Drop minItems.
-
-> +                    maxItems: 1
-
-Actually drop this as well and just use items with one item (enum).
-
-> +                    items:
-> +                      enum: [0, 1, 2, 3]
-> +
-> +                  - items:
-> +                      - const: 0
-> +                      - const: 1
-> +
-> +                  - items:
-> +                      - const: 2
-> +                      - const: 3
-> +
-> +                  - items:
-> +                      - const: 0
-> +                      - const: 1
-> +                      - const: 2
-> +                      - const: 3
-> +
-> +              mode-switch:
-> +                type: boolean
-> +                description: Register this node as a Type-C mode switch or not.
-> +
-> +            required:
-> +              - reg
-> +              - remote-endpoint
->  
->      required:
->        - port@0
-> @@ -102,7 +127,6 @@ required:
->    - pwr18-supply
->    - interrupts
->    - reset-gpios
-> -  - extcon
->    - ports
->  
->  additionalProperties: false
-> @@ -139,8 +163,11 @@ examples:
->                  };
->  
->                  port@1 {
-> +                    #address-cells = <1>;
-> +                    #size-cells = <0>;
->                      reg = <1>;
-> -                    it6505_out: endpoint {
-> +                    it6505_out: endpoint@0 {
-> +                        reg = <0>;
->                          remote-endpoint = <&dp_in>;
->                          data-lanes = <0 1>;
->                      };
-> @@ -148,3 +175,49 @@ examples:
->              };
->          };
->      };
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    i2c3 {
-
-Just i2c
+What happened here?
 
 Best regards,
 Krzysztof
