@@ -2,74 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 679B26600AC
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 13:56:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A0596600AF
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 13:57:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229935AbjAFM4B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 07:56:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43394 "EHLO
+        id S229476AbjAFM5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 07:57:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234327AbjAFMzk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 07:55:40 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 624ED7A921
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 04:54:41 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id fm16-20020a05600c0c1000b003d96fb976efso3456001wmb.3
-        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 04:54:41 -0800 (PST)
+        with ESMTP id S234387AbjAFM4p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 07:56:45 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A71186C287
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 04:56:08 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id h16so1173609wrz.12
+        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 04:56:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=oAcEY5QDOfkdRSnyMYTlvLW8Pg0hIuO9y1yVmApVX1w=;
-        b=xAc1OdRgkSK0ibNTwmMxA2vRKezTYCAkbSa1Kdhdm0wiV35B/X5tMCfo1pddCcp5oN
-         XOY+BLDPn9BHWVsMLXSP5/krZUEtfLfpZhoCVncsjvaziXnC34KYbE9fdr+2FY023FTO
-         l93s8vY6VCX42Cxc7D4kBPvBxkE6bc/QsJFMcqijKQn0iZI8afVjzgqEugKhFllGGpeQ
-         25YatiF1j8W6gs4+2J3Cghw2FG9sDAWUFdEuRo0W8C+qW5mO2dmR+xubTYFTqGyK/Gc1
-         TmcbLMsqNGsm5Uakm7WtpLE7xj/IEpPXdbrqzXdrK7rYwvFK+8vjlIXNkNO8k4usXEG1
-         APTA==
+        bh=71hsueaCtDriWXLU0P+tcfQEdhmXBsvOLwBjhBD5MkE=;
+        b=oeeYySaGlzQDEeYSaWZ0tli1QpWe2ABrviCD3ReNiAV8+h9c31KzRU1yk0YK3Z61vd
+         yDqhVC/IqUmwyCQjA40+zv9o9kUwc2yleEvrhR//l8v6RvU4TtcliDmuXKcoHhODeHVl
+         AeUovhw1LgEwiU0V3PzaGY4ckMIyU0pj1sP9DtCobbv5qbAnSuJDiT6a1aNn3ntNxegl
+         /NVsiVVJUMw6wrB1P+/W33xaMxKJ7B6drSqBp53gFPAXtIyI4jZ71cZQE1OQMVbWNr4E
+         +M/GN5TCFdzQLLR4l0qh/1AJgNPdu7GwpMN62yk67ZA5A88IHBuAow0a85JM80BlAfbZ
+         +brQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oAcEY5QDOfkdRSnyMYTlvLW8Pg0hIuO9y1yVmApVX1w=;
-        b=tE9c/oMWIKQc6Gh3aSvaM/bu8FGl+gSTbkYCnIdsyhKMqCY0M76CkmNqA86Xof0MS8
-         8UXro4MJ1mK7UfnXKzSCB6CCnPhc2A0AjXSrDy5ezUO31rhA86kKaRACbct9XLY/g3lc
-         lAUZaWhn4kNiB73IFHhDdIYYrPk+HVcr5dtgSHnUVqQ1yjId3x+MaovjJT21xIyHGsAt
-         /xl6aZx0u5seYCKKgMH5ZzKiukUO8BGZ/P+X9dReNECXCTFE3JC9zYLiKweizWtE9HRY
-         m+VU3jwVKX9V/ozLGD5dilEpcwKd0MOWZTzUASxnUNAaf6B4OcY+Kz38qU7c2Uu9GSkY
-         ue8w==
-X-Gm-Message-State: AFqh2krGkYZzfKTKVHSyrFCcKRpbIZx/MGolgVV58XFYNIJBsv8AY2pa
-        jyfUOOACe7oMMcOM1XbGR+Xztg==
-X-Google-Smtp-Source: AMrXdXvY41dETmYzEjIuz328GjPEwBw9xuksu6v0MUxjxupPBzuhjweqXLUquS+fs1oYcya4bPnS+w==
-X-Received: by 2002:a05:600c:a51:b0:3cf:6f4d:c259 with SMTP id c17-20020a05600c0a5100b003cf6f4dc259mr38182202wmq.39.1673009664393;
-        Fri, 06 Jan 2023 04:54:24 -0800 (PST)
+        bh=71hsueaCtDriWXLU0P+tcfQEdhmXBsvOLwBjhBD5MkE=;
+        b=XSdmLl5Ze5QGXVLiNB1Gk7Pm+nGQ/hHg0W9wI4FftgzdanO4xk57mDgSiBkqJ7fMrZ
+         cTao3qXj+UX50WoJwD2FOWDfAxWlrPXjyfLkRLKVlitA4Pavkw1xcwNWRQjKPHHkbK3/
+         sbRnrw5AwT7Wxw8X6vofQxvVTiRxqAT3ORd8GHyZQFuHB7WeUNhWW36WXt25bf3O0LWx
+         uN1lP4uC6DfUGoD9KkjlwkxxMoIH2pczyet7Af/O4/SB1Axl7L4x73fLlOfRJQO22jtd
+         gmSCWoo7VVTmZ+jm1AtA1y7d9Lbra7JfapZAP1Unu9RURRBvEwUIa9diU5nzgex2MZ9m
+         E9Vg==
+X-Gm-Message-State: AFqh2kqMYz/Bd3yRG/ddlzZTrf2UvyP9UdWTJJ+JiIXHeQ9FE5BfAAB2
+        Spq4wTvXsBuTTO1D2zjP6KwW7A==
+X-Google-Smtp-Source: AMrXdXslT7j+y1PheS8q/LGsk/fnqEhqbDslcbnFk4CGjJm9BxRAeCPpXvm0+8DOCa6EoLRPKNIgzA==
+X-Received: by 2002:adf:e8c1:0:b0:242:782c:f397 with SMTP id k1-20020adfe8c1000000b00242782cf397mr34527161wrn.25.1673009766841;
+        Fri, 06 Jan 2023 04:56:06 -0800 (PST)
 Received: from [192.168.1.102] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id r7-20020a05600c458700b003d974076f13sm1853882wmo.3.2023.01.06.04.54.23
+        by smtp.gmail.com with ESMTPSA id t14-20020adfe44e000000b0028663fc8f4csm1110160wrm.30.2023.01.06.04.56.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Jan 2023 04:54:24 -0800 (PST)
-Message-ID: <29d2fc29-4075-33ab-e750-2891e837215a@linaro.org>
-Date:   Fri, 6 Jan 2023 13:54:22 +0100
+        Fri, 06 Jan 2023 04:56:06 -0800 (PST)
+Message-ID: <74ecff7a-bc75-0514-6aa2-b1401b8d43b8@linaro.org>
+Date:   Fri, 6 Jan 2023 13:56:03 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 1/7] dt-bindings: iommu: dart: add t8110 compatible
+Subject: Re: [PATCH 1/3] arm64: dts: mediatek: Introduce MT8195 LAPTOP and
+ IOT's USB configurations
 Content-Language: en-US
-To:     Hector Martin <marcan@marcan.st>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>
-Cc:     Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Janne Grunau <j@jannau.net>, Rob Herring <robh+dt@kernel.org>,
+To:     Macpaul Lin <macpaul.lin@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, iommu@lists.linux.dev,
-        asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20230104110013.24738-1-marcan@marcan.st>
- <20230104110013.24738-2-marcan@marcan.st>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Bear Wang <bear.wang@mediatek.com>,
+        Pablo Sun <pablo.sun@mediatek.com>,
+        Macpaul Lin <macpaul@gmail.com>,
+        Miles Chen <miles.chen@mediatek.com>,
+        linux-usb@vger.kernel.org,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        Rex-BC Chen <rex-bc.chen@mediatek.com>,
+        Chen-Yu Tsai <wenst@chromium.org>
+References: <20230105092809.14214-1-macpaul.lin@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230104110013.24738-2-marcan@marcan.st>
+In-Reply-To: <20230105092809.14214-1-macpaul.lin@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,15 +86,180 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/01/2023 12:00, Hector Martin wrote:
-> t600x SoCs use this DART style for the Thunderbolt ports, and t8112 SoCs
-> use them everywhere. Add a compatible for it. No other binding changes
-> necessary.
+On 05/01/2023 10:28, Macpaul Lin wrote:
+> Introduce the split MT8195 laptop and iot USB configurations.
+> The hardware specifications for LAPTOP devices is different from IOT
+> devices. The major differences include some hardware constrains for
+> dual-role switch for USB controllers in different configurations,
+> especially for power management and other control flows as well.
 > 
-> Signed-off-by: Hector Martin <marcan@marcan.st>
+> Here are some hardware specifiction differences listed:
+>   1. LAPTOP (Cherry Tomato boards) don't support USB gadget (device mode).
+>   2. IOT devices must support multiple gadget devices and host mode.
+>   3. Dual-role switch is not fully supported. Only USB PORT0 support
+>      dual-role switch.
+>   4. Power management is designed in primary and secondary dominator.
+>      For a dual-role port, the device controller is the primary controller
+>      for power management; while the host controller is the secondary.
+>      LAPTOP devices should remove device nodes for avoiding abnormal
+>      behavior.
+> 
+> This modifcation is to add USB configurations "mt8195-laptop-usb.dtsi"
+> for LAPTOP devices, and add "mt8195-iot-usb.dtsi" for IOT devices.
+> 
+> To remove common USB configurations for mt8195.dtsi and switch includes
+> dtsi these new files for the boards will come in next patch.
+> 
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> ---
+>  .../boot/dts/mediatek/mt8195-iot-usb.dtsi     | 122 ++++++++++++++++++
+>  .../boot/dts/mediatek/mt8195-laptop-usb.dtsi  | 102 +++++++++++++++
+>  2 files changed, 224 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8195-iot-usb.dtsi
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8195-laptop-usb.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-iot-usb.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-iot-usb.dtsi
+> new file mode 100644
+> index 000000000000..f9bd79542044
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195-iot-usb.dtsi
+> @@ -0,0 +1,122 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (C) 2022 MediaTek Inc.
+> + */
+> +
+> +#include "mt8195.dtsi"
+> +
+> +/ {
+> +	soc {
+> +		ssusb: ssusb@11200000 {
 
+Node name: usb
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +			compatible ="mediatek,mt8183-mtu3", "mediatek,mtu3";
+> +			reg = <0 0x11201000 0 0x2dff>,
+> +			      <0 0x11203e00 0 0x0100>;
+> +			reg-names = "mac", "ippc";
+> +			interrupts = <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			phys = <&u2port0 PHY_TYPE_USB2>,
+> +			       <&u3port0 PHY_TYPE_USB3>;
+> +			clocks = <&infracfg_ao CLK_INFRA_AO_SSUSB>,
+> +				 <&topckgen CLK_TOP_SSUSB_REF>,
+> +				 <&infracfg_ao CLK_INFRA_AO_SSUSB_XHCI>;
+> +			clock-names = "sys_ck", "ref_ck", "mcu_ck";
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +			status = "disabled";
+> +
+> +			xhci0: xhci@11200000 {
+> +				compatible = "mediatek,mt8195-xhci",
+> +					     "mediatek,mtk-xhci";
+> +				reg = <0 0x11200000 0 0x1000>;
+> +				reg-names = "mac";
+> +				interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH 0>;
+> +				assigned-clocks = <&topckgen CLK_TOP_USB_TOP>,
+> +						  <&topckgen CLK_TOP_SSUSB_XHCI>;
+> +				assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
+> +							 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
+> +				clocks = <&infracfg_ao CLK_INFRA_AO_SSUSB>,
+> +					 <&infracfg_ao CLK_INFRA_AO_SSUSB_XHCI>,
+> +					 <&topckgen CLK_TOP_SSUSB_REF>,
+> +					 <&apmixedsys CLK_APMIXED_USB1PLL>;
+> +				clock-names = "sys_ck", "xhci_ck", "ref_ck", "mcu_ck";
+> +				status = "disabled";
+> +			};
+> +		};
+> +
+> +		xhci1: xhci1@11290000 {
+
+Node names should be generic, so just "xhci"
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +			compatible = "mediatek,mt8195-xhci",
+> +				     "mediatek,mtk-xhci";
+> +			reg = <0 0x11290000 0 0x1000>,
+> +			      <0 0x11293e00 0 0x0100>;
+> +			reg-names = "mac", "ippc";
+> +			interrupts = <GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			phys = <&u2port1 PHY_TYPE_USB2>,
+> +			       <&u3port1 PHY_TYPE_USB3>;
+> +			assigned-clocks = <&topckgen CLK_TOP_USB_TOP_1P>,
+> +					  <&topckgen CLK_TOP_SSUSB_XHCI_1P>;
+> +			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
+> +						 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
+> +			clocks = <&pericfg_ao CLK_PERI_AO_SSUSB_1P_BUS>,
+> +				 <&pericfg_ao CLK_PERI_AO_SSUSB_1P_XHCI>,
+> +				 <&topckgen CLK_TOP_SSUSB_P1_REF>,
+> +				 <&apmixedsys CLK_APMIXED_USB1PLL>;
+> +			clock-names = "sys_ck", "xhci_ck", "ref_ck", "mcu_ck";
+> +			status = "disabled";
+> +		};
+> +
+> +		ssusb1: usb1@112a1000 {
+
+usb
+
+> +			compatible = "mediatek,mt8183-mtu3", "mediatek,mtu3";
+> +			reg = <0 0x112a1000 0 0x2dff>,
+> +				  <0 0x112a3e00 0 0x0100>;
+> +			reg-names = "mac", "ippc";
+> +			interrupts = <GIC_SPI 532 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			phys = <&u2port2 PHY_TYPE_USB2>;
+> +			assigned-clocks = <&topckgen CLK_TOP_USB_TOP_2P>;
+> +			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
+> +			clocks = <&pericfg_ao CLK_PERI_AO_SSUSB_2P_BUS>,
+> +				 <&topckgen CLK_TOP_SSUSB_P2_REF>,
+> +				 <&pericfg_ao CLK_PERI_AO_SSUSB_2P_XHCI>;
+> +			clock-names = "sys_ck", "ref_ck", "mcu_ck";
+> +			mediatek,syscon-wakeup = <&pericfg 0x400 4>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +			status = "disabled";
+> +
+> +			xhci2: xhci2@112a0000 {
+
+xhci
+
+> +				compatible = "mediatek,mt8195-xhci","mediatek,mtk-xhci";
+> +				reg = <0 0x112a0000 0 0x1000>;
+> +				reg-names = "mac";
+> +				interrupts-extended = <&gic GIC_SPI 533 IRQ_TYPE_LEVEL_HIGH 0>,
+> +					      <&pio 220 IRQ_TYPE_EDGE_FALLING>;
+> +				assigned-clocks = <&topckgen CLK_TOP_SSUSB_XHCI_2P>;
+> +				assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
+> +				clocks = <&pericfg_ao CLK_PERI_AO_SSUSB_2P_XHCI>;
+> +				clock-names = "sys_ck";
+> +				status = "disabled";
+> +			};
+> +		};
+> +
+> +		xhci3: xhci3@112b0000 {
+
+xhci
+> +			compatible = "mediatek,mt8195-xhci",
+> +				     "mediatek,mtk-xhci";
+> +			reg = <0 0x112b0000 0 0x1000>,
+> +			      <0 0x112b3e00 0 0x0100>;
+> +			reg-names = "mac", "ippc";
+> +			interrupts = <GIC_SPI 536 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			phys = <&u2port3 PHY_TYPE_USB2>;
+> +			assigned-clocks = <&topckgen CLK_TOP_USB_TOP_3P>,
+> +					  <&topckgen CLK_TOP_SSUSB_XHCI_3P>;
+> +			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
+> +						 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
+> +			clocks = <&pericfg_ao CLK_PERI_AO_SSUSB_3P_BUS>,
+> +				 <&pericfg_ao CLK_PERI_AO_SSUSB_3P_XHCI>,
+> +				 <&topckgen CLK_TOP_SSUSB_P3_REF>;
+> +			clock-names = "sys_ck", "xhci_ck", "ref_ck";
+> +			mediatek,syscon-wakeup = <&pericfg 0x400 106>;
+> +			wakeup-source;
+> +			usb2-lpm-disable;
+> +			status = "disabled";
+> +		};
+
 
 Best regards,
 Krzysztof
