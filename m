@@ -2,162 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B75865FEB9
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 11:24:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4090F65FEF8
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 11:30:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233709AbjAFKYL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 05:24:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60558 "EHLO
+        id S232626AbjAFKaP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 05:30:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233600AbjAFKYA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 05:24:00 -0500
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.84])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA6BB6C296
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 02:23:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1673000634;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=09It2ljYBaazxm0zebfnB7EPOA3jETp7tGfj4blzItc=;
-    b=ZCjW09kC0YESVNMCPBYGp9ExZdb6ehQGPiYDp9DDj5m2E7nRabU0zWKA/6SkEXiJkg
-    Y/NyZBo10zL5v4J/uVlsabP3DY0Egx7DDox805cfa+dT4JOu/C0phZr28q6KL4thVxh5
-    O1TiZzTT5L7KNRf1Bf+jLGagxwqW+LQ2ZOwoX9f6ezmXTcGp9Y3YwDZdKi51Zk07Pfxu
-    OcmB7pvv6gF4+U8CtSgf0wItszEJZmciS9tWBaaaBMqvi5Wm4ow/Yi7bYlZAl2ZtSqi5
-    +yTu9QhSE5iCUTsan2dwbH5B30M/MvWMQUtngJTUbJuMQg1o9eFmB/rQ5gwnDlTTrdNL
-    d9YQ==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXTbAOHjRHIRvweFeMkcg="
-X-RZG-CLASS-ID: mo02
-Received: from droid..
-    by smtp.strato.de (RZmta 48.2.1 DYNA|AUTH)
-    with ESMTPSA id Yce349z06ANsqz8
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Fri, 6 Jan 2023 11:23:54 +0100 (CET)
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233456AbjAFK35 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 05:29:57 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 654FD736C7;
+        Fri,  6 Jan 2023 02:28:09 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EFDEB11FB;
+        Fri,  6 Jan 2023 02:28:50 -0800 (PST)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2DCF83F23F;
+        Fri,  6 Jan 2023 02:28:07 -0800 (PST)
+Date:   Fri, 6 Jan 2023 10:28:03 +0000
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Denis Ciocca <denis.ciocca@st.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH 3/3] iio: magnetometer: st_magn: Add LSM303C
-Date:   Fri,  6 Jan 2023 11:22:39 +0100
-Message-Id: <20230106102239.9647-4-stephan@gerhold.net>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230106102239.9647-1-stephan@gerhold.net>
-References: <20230106102239.9647-1-stephan@gerhold.net>
+        Icenowy Zheng <uwu@icenowy.me>,
+        =?UTF-8?B?QW5kcsOhcyBTemVtesO2?= <szemzo.andras@gmail.com>,
+        Fabien Poussin <fabien.poussin@gmail.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/4] dt-bindings: arm: sunxi: document MangoPi MQ-R
+ board name
+Message-ID: <20230106102803.3e905d1c@donnerap.cambridge.arm.com>
+In-Reply-To: <4d6aec55-c53e-0aba-1168-8a9a80a3b598@linaro.org>
+References: <20230106010155.26868-1-andre.przywara@arm.com>
+        <20230106010155.26868-4-andre.przywara@arm.com>
+        <4d6aec55-c53e-0aba-1168-8a9a80a3b598@linaro.org>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The magnetometer part of ST LSM303C is similar (perhaps even identical)
-to the already supported standalone LIS3MDL magnetometer, so just
-add the new st,lsm303c-magn compatible for the existing definitions.
+On Fri, 6 Jan 2023 10:21:04 +0100
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
----
- drivers/iio/magnetometer/Kconfig        | 2 +-
- drivers/iio/magnetometer/st_magn.h      | 1 +
- drivers/iio/magnetometer/st_magn_core.c | 1 +
- drivers/iio/magnetometer/st_magn_i2c.c  | 5 +++++
- drivers/iio/magnetometer/st_magn_spi.c  | 5 +++++
- 5 files changed, 13 insertions(+), 1 deletion(-)
+> On 06/01/2023 02:01, Andre Przywara wrote:
+> > The MangoPi MQ-R board is a close relative to its Allwinner D1/D1s
+> > siblings, but features two Arm Cortex-A7 cores instead of a RISC-V core.
+> > 
+> > Add the board/SoC compatible string pair to the list of known boards.
+> > 
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > ---
+> >  Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+> > index 3ad1cd50e3fe0..ce445c5ed81c8 100644
+> > --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+> > @@ -843,6 +843,11 @@ properties:
+> >            - const: wexler,tab7200
+> >            - const: allwinner,sun7i-a20
+> >  
+> > +      - description: MangoPi MQ-R board
+> > +        items:
+> > +          - const: widora,mangopi-mq-r  
+> 
+> Not documented vendor prefix.
 
-diff --git a/drivers/iio/magnetometer/Kconfig b/drivers/iio/magnetometer/Kconfig
-index 467819335588..38532d840f2a 100644
---- a/drivers/iio/magnetometer/Kconfig
-+++ b/drivers/iio/magnetometer/Kconfig
-@@ -119,7 +119,7 @@ config IIO_ST_MAGN_3AXIS
- 	select IIO_TRIGGERED_BUFFER if (IIO_BUFFER)
- 	help
- 	  Say yes here to build support for STMicroelectronics magnetometers:
--	  LSM303DLHC, LSM303DLM, LIS3MDL.
-+	  LSM303C, LSM303DLHC, LSM303DLM, LIS3MDL.
- 
- 	  Also need to enable at least one of I2C and SPI interface drivers
- 	  below.
-diff --git a/drivers/iio/magnetometer/st_magn.h b/drivers/iio/magnetometer/st_magn.h
-index 785b7f7b8b06..89945984d966 100644
---- a/drivers/iio/magnetometer/st_magn.h
-+++ b/drivers/iio/magnetometer/st_magn.h
-@@ -22,6 +22,7 @@
- #define LIS2MDL_MAGN_DEV_NAME		"lis2mdl"
- #define LSM9DS1_MAGN_DEV_NAME		"lsm9ds1_magn"
- #define IIS2MDC_MAGN_DEV_NAME		"iis2mdc"
-+#define LSM303C_MAGN_DEV_NAME		"lsm303c_magn"
- 
- #ifdef CONFIG_IIO_BUFFER
- int st_magn_allocate_ring(struct iio_dev *indio_dev);
-diff --git a/drivers/iio/magnetometer/st_magn_core.c b/drivers/iio/magnetometer/st_magn_core.c
-index e2fd233b3626..8faa7409d9e1 100644
---- a/drivers/iio/magnetometer/st_magn_core.c
-+++ b/drivers/iio/magnetometer/st_magn_core.c
-@@ -305,6 +305,7 @@ static const struct st_sensor_settings st_magn_sensors_settings[] = {
- 		.sensors_supported = {
- 			[0] = LIS3MDL_MAGN_DEV_NAME,
- 			[1] = LSM9DS1_MAGN_DEV_NAME,
-+			[2] = LSM303C_MAGN_DEV_NAME,
- 		},
- 		.ch = (struct iio_chan_spec *)st_magn_2_16bit_channels,
- 		.odr = {
-diff --git a/drivers/iio/magnetometer/st_magn_i2c.c b/drivers/iio/magnetometer/st_magn_i2c.c
-index b4098d3b3813..cc0e0e94b129 100644
---- a/drivers/iio/magnetometer/st_magn_i2c.c
-+++ b/drivers/iio/magnetometer/st_magn_i2c.c
-@@ -50,6 +50,10 @@ static const struct of_device_id st_magn_of_match[] = {
- 		.compatible = "st,iis2mdc",
- 		.data = IIS2MDC_MAGN_DEV_NAME,
- 	},
-+	{
-+		.compatible = "st,lsm303c-magn",
-+		.data = LSM303C_MAGN_DEV_NAME,
-+	},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, st_magn_of_match);
-@@ -97,6 +101,7 @@ static const struct i2c_device_id st_magn_id_table[] = {
- 	{ LIS2MDL_MAGN_DEV_NAME },
- 	{ LSM9DS1_MAGN_DEV_NAME },
- 	{ IIS2MDC_MAGN_DEV_NAME },
-+	{ LSM303C_MAGN_DEV_NAME },
- 	{},
- };
- MODULE_DEVICE_TABLE(i2c, st_magn_id_table);
-diff --git a/drivers/iio/magnetometer/st_magn_spi.c b/drivers/iio/magnetometer/st_magn_spi.c
-index 6ddc4318564a..f203e1f87eec 100644
---- a/drivers/iio/magnetometer/st_magn_spi.c
-+++ b/drivers/iio/magnetometer/st_magn_spi.c
-@@ -45,6 +45,10 @@ static const struct of_device_id st_magn_of_match[] = {
- 		.compatible = "st,iis2mdc",
- 		.data = IIS2MDC_MAGN_DEV_NAME,
- 	},
-+	{
-+		.compatible = "st,lsm303c-magn",
-+		.data = LSM303C_MAGN_DEV_NAME,
-+	},
- 	{}
- };
- MODULE_DEVICE_TABLE(of, st_magn_of_match);
-@@ -89,6 +93,7 @@ static const struct spi_device_id st_magn_id_table[] = {
- 	{ LIS2MDL_MAGN_DEV_NAME },
- 	{ LSM9DS1_MAGN_DEV_NAME },
- 	{ IIS2MDC_MAGN_DEV_NAME },
-+	{ LSM303C_MAGN_DEV_NAME },
- 	{},
- };
- MODULE_DEVICE_TABLE(spi, st_magn_id_table);
--- 
-2.39.0
+Yes, after sending I realised that I forgot to mention that this
+series relies on Samuel's D1/D1s DT series[1], which adds the basic .dtsi
+this builds on, but also adds this vendor string[2].
+Functionality-wise this also relies on the R528/T113-s clock series[3].
 
+Cheers,
+Andre
+
+[1]
+https://lore.kernel.org/linux-arm-kernel/20221231233851.24923-1-samuel@sholland.org/
+[2]
+https://lore.kernel.org/linux-arm-kernel/20221231233851.24923-3-samuel@sholland.org/
+[3]
+https://lore.kernel.org/linux-arm-kernel/20221231231429.18357-1-samuel@sholland.org/
