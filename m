@@ -2,31 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 733CD66021F
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 15:29:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBA7266022F
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 15:31:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235266AbjAFO3N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 09:29:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34188 "EHLO
+        id S233287AbjAFObY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 09:31:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235047AbjAFO2v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 09:28:51 -0500
-X-Greylist: delayed 22727 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 06 Jan 2023 06:28:50 PST
-Received: from mail-4319.protonmail.ch (mail-4319.protonmail.ch [185.70.43.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 468F97F470;
-        Fri,  6 Jan 2023 06:28:49 -0800 (PST)
-Date:   Fri, 06 Jan 2023 14:28:38 +0000
+        with ESMTP id S232719AbjAFOa7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 09:30:59 -0500
+Received: from mail-4324.protonmail.ch (mail-4324.protonmail.ch [185.70.43.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27F4341663
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 06:30:54 -0800 (PST)
+Date:   Fri, 06 Jan 2023 14:30:49 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1673015327; x=1673274527;
-        bh=EjS6ZMNfxyg1IpQb2RzuuQ6AIAq0IAmasRoXbMY2njg=;
-        h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
-         Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
-        b=GFAopug4XsB9KeDTz+zVqIieXaocn4ehFITyEhf5uK2gg6a89b28Y1TsjN8/9s47l
-         TlT2uzx/7UiDQI4dhEXS6Lldtdno1keJ8u7GW4cZzthtQZA+VM3+jyvNyNrjoIb56J
-         RBvrK0RUeNKMUslOJWbTjAEPzgZzlIUCOBvA/xjvffPPyAd+X5XuK7gmKNXQmPLKPS
-         Fp0+ZvBuR+5BjN0AH6UsIUm8yvZyS+5YdClADJ2/ZAWepVD++2F01Zp0LEbhm12y6J
-         q7XuORbTKfnFjVRMQALgU+xAeXeI2uejofw6zIVGPgVlXWeP0JH1rUkmK6Px3Rgdk1
-         K+z6hN8dOMpiA==
+        s=protonmail3; t=1673015453; x=1673274653;
+        bh=P1pUlDEf54XnvQPNPHucDSEiGkzXeOdNr6dL3gGyvxg=;
+        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+         Message-ID:BIMI-Selector;
+        b=nm+sWHkC9GpyBy8eAYyMuKCg4KDF17VMg3GD1rj5IhvwpWyD83U0IDbZOVRljpp63
+         alepKSj18hdGaiZMPBM2MY7b6Bu4/av1Vzy8nP65MrfSaXjf0RswYcGq6Q35HOndd/
+         bCgvTj/LOiQV+gJg9dMYaVSzIu8/bMwWdrAkjjryPE63tF6C3mSoFqIEGBo4eYuDen
+         FqqYbFDsluwfy4dGWYcJyV3IK/P2GH0Sgni6JyNFYg00iHohGHvWUsRZW3uix6WTd/
+         AftqDyc46HBR0fHyFTFaMECZ5uI2kq9MhD7dRrL+WmgpcIz1La1CWDgit4N6yd5qnn
+         bD+b+TSAOr7TA==
 To:     devicetree@vger.kernel.org
 From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
 Cc:     Andy Gross <agross@kernel.org>,
@@ -40,9 +40,12 @@ Cc:     Andy Gross <agross@kernel.org>,
         Josef W Menad <JosefWMenad@protonmail.ch>,
         Markuss Broks <markuss.broks@gmail.com>,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: [PATCH v6 0/5] arm64: dts: qcom: msm8916-samsung-j5: Use common device tree
-Message-ID: <20230106142748.546975-1-linmengbo0689@protonmail.com>
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v6 1/5] dt-bindings: qcom: Document bindings for msm8916-samsung-j5x
+Message-ID: <20230106142956.547081-1-linmengbo0689@protonmail.com>
+In-Reply-To: <20230106142748.546975-1-linmengbo0689@protonmail.com>
+References: <20230106142748.546975-1-linmengbo0689@protonmail.com>
 Feedback-ID: 40467236:user:proton
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
@@ -50,39 +53,35 @@ Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
         FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-v6: Rebase on linux-next and reword. Add MUIC. Drop WIP J3 device tree
-v5: Fix address typo tz-apps@85a00000 in msm8916-samsung-j3.dts
-v4: Try "git format-patch -B -C -M -D" to fix errors.
-v3: Drop msm8916-samsung-j5.dts temporarily before moving it.
-Minor rewords.
-v2: Reword and resend. Split common dtsi patch.
-Add missing suffix state in pinctrl.
+Document the new samsung-j5x device tree bindings used in its device tree.
 
-The smartphones below are using the MSM8916 SoC,
-which are released in 2015-2016:
+Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Samsung Galaxy J5 2015 (SM-J500*)
-Samsung Galaxy J5 2016 (SM-J510*)
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentatio=
+n/devicetree/bindings/arm/qcom.yaml
+index 27063a045bd0..23a38bd9c7cf 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -204,6 +204,7 @@ properties:
+               - samsung,e7
+               - samsung,grandmax
+               - samsung,j5
++              - samsung,j5x
+               - samsung,serranove
+               - wingtech,wt88047
+           - const: qcom,msm8916
+--=20
+2.30.2
 
-Add a common device tree for with initial support for:
-
-- GPIO keys
-- GPIO Hall sensor
-- SDHCI (internal and external storage)
-- USB Device Mode
-- UART (on USB connector via the SM5703 MUIC)
-- WCNSS (WiFi/BT)
-- Regulators
-
-The two devices (all other variants of J5 released in 2015 and J5X
-released in 2016) are very similar, with some differences in display and
-GPIO pins. The common parts are shared in msm8916-samsung-j5-common.dtsi
-to reduce duplication.
 
