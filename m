@@ -2,166 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86D36660047
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 13:31:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F41F660044
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 13:31:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229697AbjAFMbT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S230075AbjAFMbT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 6 Jan 2023 07:31:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59146 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231858AbjAFMbB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 07:31:01 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CC123D5D3;
-        Fri,  6 Jan 2023 04:30:59 -0800 (PST)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 530C64AE;
-        Fri,  6 Jan 2023 13:30:57 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1673008257;
-        bh=+YtF8mprGIFPaAWu0u6IBFSg5EXh3kE+K3R+8cVQZ18=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=vaf3U6U7t2iwZ6s/HoJaQUX+iM+7weUE9imeuQ7EGpV8jO+/NPoEW7639X9PYoytK
-         Ky+delfHTbfrWUzVK9BOzb+WfEUNKSvdnZUk1eV73csM3YhIKOh+bqm8PGgVZpkgqq
-         d/jVPZQpc8WMd/66i+MvwTulFDNmOE3V9VteVBOo=
-Date:   Fri, 6 Jan 2023 14:30:52 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Michael Tretter <m.tretter@pengutronix.de>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>, kernel@pengutronix.de,
-        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 6/8] media: imx-pxp: make data_path_ctrl0 platform
- dependent
-Message-ID: <Y7gUfByMdqL3WFJI@pendragon.ideasonboard.com>
-References: <20230105134729.59542-1-m.tretter@pengutronix.de>
- <20230105134729.59542-7-m.tretter@pengutronix.de>
+        with ESMTP id S232580AbjAFMbK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 07:31:10 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6384B1A209
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 04:31:04 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id r2so1134682wrv.7
+        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 04:31:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wnHmo4gFW6DvtXlbr5SoB1hjQ5uDPFdjubw1Z5KtC2M=;
+        b=SyOuejFSxAddEx+shYlQwcTE8G04Ie0QLwOcfTtk1fcSYKU57DghPuiddX16YGhce9
+         Jf6rRZx65PFSuprnTaAP7wFSVsNjF2xgV/GPVW0om+uC/iFnTdtl71azqr/+L/FwGGfZ
+         6lUcRJMtsyltsxpjCRoquGxTbXxpBdyebnizObey88eGiOhUU9bA2s9zhgE0QABSoe02
+         XgrmrXQc4lWTQr4nj3YDqIOjYfmB3Hl/aIde/y2vlmEmy7wUPUhGQ2UPAdD4Taobk120
+         hh+G39kDb9nYUgBX09M0kkJ1cbcV+HLFGge/242G8XwfsqQ5/HVnfhrExDt5F16026Xm
+         EH/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wnHmo4gFW6DvtXlbr5SoB1hjQ5uDPFdjubw1Z5KtC2M=;
+        b=rBXu+7p27aZF+dNWIGnISMKFjEsw86+gkMpkUHv3xa7SmRos+JLnVdmfrZK3mgF2V+
+         uoY6zIO+Vog1FQrmg5j94vMJIjZO/PqC3YsGYtX7i2W2OXSYoe9p9/HxmWHVevmTSt2f
+         e4IMgF12my5F40o1jN2+/NNma0tjEj8xX8f5ziHvw2wAIsAlyJVGzLR9FqUpEPGgIpkp
+         FhL2fxajtivNT8kErpEAovMB7HG6BkTedx6lwAobjSsn2/SXFUX4yso8rsKTQj9JroJB
+         RcdoU4EDJUHRAE8njISzqraDcZncKK+V7CW9twIU8oxm/ks73d0FS4m2mvF24IAGI0Jp
+         htfQ==
+X-Gm-Message-State: AFqh2kr6ZT93mNBfHZFZqke7cIVMM42QLtm2Pkf+fF9VWaS+qlVQRsHd
+        5h+FeXWVP8QkxyoMZRPuCYPTPw==
+X-Google-Smtp-Source: AMrXdXt3yJJLsVYpxsoJeK59Bp5g4p+Gb5ffEsOTVk+TtXtTzeNSQgMnqWwvEuJxK7jQW4jwJ5cC3A==
+X-Received: by 2002:a05:6000:810:b0:29f:9832:ff96 with SMTP id bt16-20020a056000081000b0029f9832ff96mr9277769wrb.2.1673008262985;
+        Fri, 06 Jan 2023 04:31:02 -0800 (PST)
+Received: from [192.168.1.102] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id q11-20020adf9dcb000000b00268aae5fb5bsm1115915wre.3.2023.01.06.04.30.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Jan 2023 04:31:02 -0800 (PST)
+Message-ID: <ba51e54c-8758-cbcb-bfdd-e8f2efbf905c@linaro.org>
+Date:   Fri, 6 Jan 2023 13:30:57 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230105134729.59542-7-m.tretter@pengutronix.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 1/2] dt-bindings: watchdog: mtk-wdt: Add reset-by-toprgu
+ support
+Content-Language: en-US
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-watchdog@vger.kernel.org
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20230106115326.15374-1-allen-kh.cheng@mediatek.com>
+ <20230106115326.15374-2-allen-kh.cheng@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230106115326.15374-2-allen-kh.cheng@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
-
-Thank you for the patch.
-
-On Thu, Jan 05, 2023 at 02:47:27PM +0100, Michael Tretter wrote:
-> Unfortunately, the PXP_HW_VERSION register reports the PXP on the i.MX7D
-> and on the i.MX6ULL as version 3.0, although the PXP versions on these
-> SoCs have significant differences.
+On 06/01/2023 12:53, Allen-KH Cheng wrote:
+> In some applications, the mtk-wdt requires the toprgu (TOP Reset
+> Generation Unit) to reset counter after wdt resets. Add optional
+> mediatek,reset-by-toprgu property to enable it.
 > 
-> Use the compatible to configure the ctrl0 register as required dependent
-> on the platform.
-> 
-> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
 > ---
->  drivers/media/platform/nxp/imx-pxp.c | 27 +++++++++++++++++++++++++--
->  1 file changed, 25 insertions(+), 2 deletions(-)
+>  .../devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml        | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/drivers/media/platform/nxp/imx-pxp.c b/drivers/media/platform/nxp/imx-pxp.c
-> index 1d649b9cadad..4e182f80a36b 100644
-> --- a/drivers/media/platform/nxp/imx-pxp.c
-> +++ b/drivers/media/platform/nxp/imx-pxp.c
-> @@ -19,6 +19,7 @@
->  #include <linux/iopoll.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> +#include <linux/of_device.h>
->  #include <linux/sched.h>
->  #include <linux/slab.h>
+> diff --git a/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml b/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+> index b3605608410c..bf06dcd0c12c 100644
+> --- a/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+> @@ -52,6 +52,10 @@ properties:
+>      description: Disable sending output reset signal
+>      type: boolean
 >  
-> @@ -191,6 +192,11 @@ static struct pxp_fmt *find_format(struct v4l2_format *f)
->  	return &formats[k];
->  }
->  
-> +struct pxp_ctx;
+> +  mediatek,reset-by-toprgu:
+> +    description: Reset counter by toprgu
 
-Please add a blank line here.
+Do not copy the property name in description but actually describe it.
 
-> +struct pxp_pdata {
-> +	u32 (*data_path_ctrl0)(struct pxp_ctx *ctx);
-> +};
-> +
->  struct pxp_dev {
->  	struct v4l2_device	v4l2_dev;
->  	struct video_device	vfd;
-> @@ -199,6 +205,7 @@ struct pxp_dev {
->  	void __iomem		*mmio;
->  
->  	u32			hw_version;
-> +	const struct pxp_pdata	*pdata;
->  
->  	atomic_t		num_inst;
->  	struct mutex		dev_mutex;
-> @@ -726,7 +733,7 @@ static void pxp_setup_csc(struct pxp_ctx *ctx)
->  	}
->  }
->  
-> -static u32 pxp_data_path_ctrl0(struct pxp_ctx *ctx)
-> +static u32 pxp_imx6ull_data_path_ctrl0(struct pxp_ctx *ctx)
->  {
->  	u32 ctrl0;
->  
-> @@ -756,6 +763,16 @@ static u32 pxp_data_path_ctrl0(struct pxp_ctx *ctx)
->  	return ctrl0;
->  }
->  
-> +static u32 pxp_data_path_ctrl0(struct pxp_ctx *ctx)
-> +{
-> +	struct pxp_dev *dev = ctx->dev;
-> +
-> +	if (dev->pdata && dev->pdata->data_path_ctrl0)
-> +		return dev->pdata->data_path_ctrl0(ctx);
-> +
-> +	return pxp_imx6ull_data_path_ctrl0(ctx);
+Also "toprgu" is a bit cryptic.
 
-Do you need this fallback, given that all compatible strings give you
-valid pdata ? I'd rather be explicit.
+Best regards,
+Krzysztof
 
-This function then becomes so small that I would inline it in the
-caller.
-
-> +}
-> +
->  static void pxp_set_data_path(struct pxp_ctx *ctx)
->  {
->  	struct pxp_dev *dev = ctx->dev;
-> @@ -1711,6 +1728,8 @@ static int pxp_probe(struct platform_device *pdev)
->  	if (!dev)
->  		return -ENOMEM;
->  
-> +	dev->pdata = of_device_get_match_data(&pdev->dev);
-> +
->  	dev->clk = devm_clk_get(&pdev->dev, "axi");
->  	if (IS_ERR(dev->clk)) {
->  		ret = PTR_ERR(dev->clk);
-> @@ -1811,8 +1830,12 @@ static int pxp_remove(struct platform_device *pdev)
->  	return 0;
->  }
->  
-> +static const struct pxp_pdata pxp_imx6ull_pdata = {
-> +	.data_path_ctrl0 = pxp_imx6ull_data_path_ctrl0,
-> +};
-> +
->  static const struct of_device_id pxp_dt_ids[] = {
-> -	{ .compatible = "fsl,imx6ull-pxp", .data = NULL },
-> +	{ .compatible = "fsl,imx6ull-pxp", .data = &pxp_imx6ull_pdata },
->  	{ },
->  };
->  MODULE_DEVICE_TABLE(of, pxp_dt_ids);
-
--- 
-Regards,
-
-Laurent Pinchart
