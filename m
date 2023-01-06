@@ -2,241 +2,349 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4870265FB9B
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 07:50:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90E3165FBB6
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 08:10:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231725AbjAFGu4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 01:50:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41328 "EHLO
+        id S232117AbjAFHKT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 02:10:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231561AbjAFGuz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 01:50:55 -0500
-Received: from out29-198.mail.aliyun.com (out29-198.mail.aliyun.com [115.124.29.198])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCBCD657B;
-        Thu,  5 Jan 2023 22:50:52 -0800 (PST)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07442372|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.371436-0.000974272-0.62759;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047207;MF=frank.sae@motor-comm.com;NM=1;PH=DS;RN=16;RT=16;SR=0;TI=SMTPD_---.QlmbPk7_1672987848;
-Received: from 10.0.2.15(mailfrom:Frank.Sae@motor-comm.com fp:SMTPD_---.QlmbPk7_1672987848)
-          by smtp.aliyun-inc.com;
-          Fri, 06 Jan 2023 14:50:49 +0800
-Message-ID: <e762c7ac-63e7-a86e-3e3f-5c8a450b25b0@motor-comm.com>
-Date:   Fri, 6 Jan 2023 14:51:27 +0800
+        with ESMTP id S232169AbjAFHKG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 02:10:06 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 642F472D03;
+        Thu,  5 Jan 2023 23:09:52 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id d4so493833wrw.6;
+        Thu, 05 Jan 2023 23:09:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=jmWi9bZDXN3pglHijKPhWD+j3tS8sqOh1DGtRprnSX8=;
+        b=Sr5vX4x4lGH7sGoHrVj3IrDQ907YCnNl0L2+e8bjCFUYPo7Wpby7tYb7KTOtVPvyNt
+         AF895hQj3pDWd4saXgyIYTww2EBvHyZ4q4HUP20FnCpkht7iGbqVsQvOUfydH6BYkF+9
+         gY+vMNH8upGbO6fQFK/1cpnuhy2ymvaHU+v8uhpqjcPZtYieU/ZMaBSe2CBBx+fkMDpj
+         0M2VdeEIP/Szjx7naNgt/1P5GkV/+dia+BMmpiJA1JEG8n6JyT+GMCNSeycPntqp9zqO
+         lKkTcWXiEmMr3Q7ZV+nEP9TORWAQFMamxJbhRjaue9FsFJ51Qpxx9SjI5wY+CT1cG2rm
+         YS4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jmWi9bZDXN3pglHijKPhWD+j3tS8sqOh1DGtRprnSX8=;
+        b=4feX/L5pDxts0AeeF/+UCPTr37SA47EukgHNCn58dvIjC8FPPA5DBjIjA061NKCfTy
+         a2/n8ohywLR8zgz7WXV/yJ7i1uje5YxBVnmRz3jD3CchlA+iTeJScsSw1sTW6cbeXS7P
+         PyulRwmXnvLwc8vNZEcjpifWEEu86tcFXN+Aqxf9yeivggHXDQDcmp7jQNjsn+aiahKW
+         RD7+dRy5BT2Ti3UlfYLj+Ljv1nMgMv//35QoippA/EsV8NcYLl/rYLBePqCIpOiz12TG
+         7pIw9E/KAYZo9xm9A67FUd2vpq83fbT5MZl7V3cTlszepp01UUod2hlBjJsawWDBBlxR
+         WFxQ==
+X-Gm-Message-State: AFqh2kq8PoeVbIksOCOENrheqh8hO/bqlyADhsPlVQiSCIm/+rrZv6aU
+        6MlblO9VKPxQAiCmkDMwn3k=
+X-Google-Smtp-Source: AMrXdXtCoigAjPtfKm6LQOETmhjvNWiGuXj6cDl6NwJ3sWrWJaA2zC6kdCGaITgCi6z8/QO/J8QVBA==
+X-Received: by 2002:a5d:4884:0:b0:242:3812:f948 with SMTP id g4-20020a5d4884000000b002423812f948mr34184657wrq.24.1672988990387;
+        Thu, 05 Jan 2023 23:09:50 -0800 (PST)
+Received: from localhost ([102.36.222.112])
+        by smtp.gmail.com with ESMTPSA id z8-20020a5d6548000000b0028df2d57204sm351528wrv.81.2023.01.05.23.09.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Jan 2023 23:09:49 -0800 (PST)
+Date:   Fri, 6 Jan 2023 10:09:45 +0300
+From:   Dan Carpenter <error27@gmail.com>
+To:     oe-kbuild@lists.linux.dev, wangweidong.a@awinic.com,
+        lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, perex@perex.cz, tiwai@suse.com,
+        ckeepax@opensource.cirrus.com, rf@opensource.cirrus.com,
+        povik+lin@cutebit.org, pierre-louis.bossart@linux.intel.com,
+        james.schulman@cirrus.com, flatmax@flatmax.com,
+        cezary.rojewski@intel.com, srinivas.kandagatla@linaro.org,
+        tanureal@opensource.cirrus.com, steve@sk2.org, stephan@gerhold.net,
+        zhuning0077@gmail.com, shumingf@realtek.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     lkp@intel.com, oe-kbuild-all@lists.linux.dev, zhaolei@awinic.com,
+        liweilei@awinic.com, yijiangtao@awinic.com, duanyibo@awinic.com
+Subject: Re: [PATCH V8 4/5] ASoC: codecs: Aw883xx chip register file, data
+ type file and Kconfig Makefile
+Message-ID: <202301060009.FsE8n8nW-lkp@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-From:   Frank <Frank.Sae@motor-comm.com>
-Subject: Re: [PATCH net-next v1 1/3] dt-bindings: net: Add Motorcomm yt8xxx
- ethernet phy Driver bindings
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Peter Geis <pgwipeout@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        xiaogang.fan@motor-comm.com, fei.zhang@motor-comm.com,
-        hua.sun@motor-comm.com, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230105073024.8390-1-Frank.Sae@motor-comm.com>
- <20230105073024.8390-2-Frank.Sae@motor-comm.com> <Y7bN4vJXMi66FF6v@lunn.ch>
-Content-Language: en-US
-In-Reply-To: <Y7bN4vJXMi66FF6v@lunn.ch>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221230093454.190579-5-wangweidong.a@awinic.com>
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
+Hi,
 
-On 2023/1/5 21:17, Andrew Lunn wrote:
->> +  motorcomm,rx-delay-basic:
->> +    description: |
->> +      Tristate, setup the basic RGMII RX Clock delay of PHY.
->> +      This basic delay is fixed at 2ns (1000Mbps) or 8ns (100Mbps、10Mbps).
->> +      This basic delay usually auto set by hardware according to the voltage
->> +      of RXD0 pin (low = 0, turn off;   high = 1, turn on).
->> +      If not exist, this delay is controlled by hardware.
->> +      0: turn off;   1: turn on.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    enum: [0, 1]
-> 
-> Why is this needed? When the MAC driver connects to the PHY, it passes
-> phy-mode. For RGMII, this is one of:
+url:    https://github.com/intel-lab-lkp/linux/commits/wangweidong-a-awinic-com/ASoC-codecs-Add-i2c-and-codec-registration-for-aw883xx-and-their-associated-operation-functions/20221230-173723
+base:   bff687b3dad6e0e56b27f4d3ed8a9695f35c7b1a
+patch link:    https://lore.kernel.org/r/20221230093454.190579-5-wangweidong.a%40awinic.com
+patch subject: [PATCH V8 4/5] ASoC: codecs: Aw883xx chip register file, data type file and Kconfig Makefile
+config: loongarch-randconfig-m031-20230103
+compiler: loongarch64-linux-gcc (GCC) 12.1.0
 
-> linux/phy.h:	PHY_INTERFACE_MODE_RGMII,
-> linux/phy.h:	PHY_INTERFACE_MODE_RGMII_ID,
-> linux/phy.h:	PHY_INTERFACE_MODE_RGMII_RXID,
-> linux/phy.h:	PHY_INTERFACE_MODE_RGMII_TXID,
-> 
-> This tells you if you need to add a delay for the RX clock line, the
-> TX clock line, or both. That is all you need to know for basic RGMII
-> delays.
-> 
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <error27@gmail.com>
 
-This basic delay can be controlled by hardware or the phy-mode which
-passes from MAC driver.
-Default value depends on power on strapping, according to the voltage
-of RXD0 pin (low = 0, turn off;   high = 1, turn on).
+New smatch warnings:
+sound/soc/codecs/aw883xx/aw883xx_device.c:1163 aw_dev_dsp_update_container() warn: inconsistent returns '&aw_dev->dsp_lock'.
+sound/soc/codecs/aw883xx/aw883xx_device.c:1303 aw_dev_check_sram() warn: inconsistent returns '&aw_dev->dsp_lock'.
 
-Add this for the case that This basic delay is controlled by hardware,
-and software don't change this.
+Old smatch warnings:
+sound/soc/codecs/aw883xx/aw883xx_device.c:1078 aw_dev_update_reg_container() error: uninitialized symbol 'ret'.
+sound/soc/codecs/aw883xx/aw883xx_device.c:1271 aw_dev_check_sram() warn: missing unwind goto?
 
->> +  motorcomm,rx-delay-additional-ps:
-> 
-> ethernet-phy.yaml defines rx-internal-delay-ps. Please use that.
-> 
+vim +1163 sound/soc/codecs/aw883xx/aw883xx_device.c
 
-I will fix.
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1120  static int aw_dev_dsp_update_container(struct aw_device *aw_dev,
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1121  			unsigned char *data, unsigned int len, unsigned short base)
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1122  {
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1123  #ifdef AW_DSP_I2C_WRITES
 
->> +    description: |
->> +      Setup the additional RGMII RX Clock delay of PHY defined in pico seconds.
->> +      RGMII RX Clock Delay = rx-delay-basic + rx-delay-additional-ps.
->> +    enum:
->> +      - 0
->> +      - 150
->> +      - 300
->> +      - 450
->> +      - 600
->> +      - 750
->> +      - 900
->> +      - 1050
->> +      - 1200
->> +      - 1350
->> +      - 1500
->> +      - 1650
->> +      - 1800
->> +      - 1950
->> +      - 2100
->> +      - 2250
-> 
-> Is this property mandatory? If not, please document what value is used
-> if it is not present.
-> 
+These ifdefs are not ideal.
 
-I will fix.
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1124  	u32 tmp_len;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1125  #else
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1126  	u16 reg_val;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1127  #endif
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1128  	int i, ret;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1129  
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1130  	mutex_lock(&aw_dev->dsp_lock);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1131  #ifdef AW_DSP_I2C_WRITES
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1132  	ret = regmap_write(aw_dev->regmap, AW_PID_2049_DSPMADD_REG, base);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1133  	if (ret)
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1134  		return ret;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1135  
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1136  	for (i = 0; i < len; i += AW_MAX_RAM_WRITE_BYTE_SIZE) {
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1137  		if ((len - i) < AW_MAX_RAM_WRITE_BYTE_SIZE)
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1138  			tmp_len = len - i;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1139  		else
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1140  			tmp_len = AW_MAX_RAM_WRITE_BYTE_SIZE;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1141  
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1142  		ret = regmap_raw_write(aw_dev->regmap, AW_PID_2049_DSPMDAT_REG,
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1143  					&data[i], tmp_len);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1144  		if (ret)
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1145  			return ret;
 
->> +
->> +  motorcomm,tx-delay-ge-ps:
-> 
-> tx-internal-delay-ps
-> 
-> And please define the default.
-> 
->> +  motorcomm,tx-delay-fe-ps:
-> 
-> So you can only set the TX delay? What is RX delay set to? Same as 1G?
-> I would suggest you call this motorcomm,tx-internal-delay-fe-ps, so
-> that it is similar to the standard tx-internal-delay-ps.
-> 
+Needs unlock before returning.
 
-TX delay has two type: tx-delay-ge-ps for 1G and tx-delay-fe-ps for 100M.
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1146  	}
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1147  
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1148  #else
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1149  	/* i2c write */
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1150  	ret = regmap_write(aw_dev->regmap, AW_PID_2049_DSPMADD_REG, base);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1151  	if (ret)
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1152  		return ret;
 
-RX delay set for 1G and 100M, but it has two type, rx-delay-basic and
-rx-delay-additional-ps, RX delay = rx-delay-basic + rx-delay-additional-ps.
+Here too
 
-I will rename to  tx-internal-delay-fe-ps and  tx-internal-delay-ge-ps.
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1153  	for (i = 0; i < len; i += 2) {
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1154  		reg_val = (data[i] << 8) + data[i + 1];
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1155  		ret = regmap_write(aw_dev->regmap, AW_PID_2049_DSPMDAT_REG,
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1156  					reg_val);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1157  		if (ret)
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1158  			return ret;
 
->> +    description: |
->> +      Setup PHY's RGMII TX Clock delay  defined in pico seconds when the speed
->> +      is 100Mbps or 10Mbps.
->> +    enum:
->> +      - 0
->> +      - 150
->> +      - 300
->> +      - 450
->> +      - 600
->> +      - 750
->> +      - 900
->> +      - 1050
->> +      - 1200
->> +      - 1350
->> +      - 1500
->> +      - 1650
->> +      - 1800
->> +      - 1950
->> +      - 2100
->> +      - 2250
->> +
->> +  motorcomm,keep-pll-enabled:
->> +    description: |
->> +      If set, keep the PLL enabled even if there is no link. Useful if you
->> +      want to use the clock output without an ethernet link.
->> +    type: boolean
->> +
->> +  motorcomm,auto-sleep-disabled:
->> +    description: |
->> +      If set, PHY will not enter sleep mode and close AFE after unplug cable
->> +      for a timer.
->> +    type: boolean
-> 
-> These two i can see being useful. But everything afterwards seems like
-> just copy/paste from vendor SDK for things which the hardware can do,
-> but probably nobody ever uses. Do you have a board using any of the
-> following properties?
-> 
+Here.
 
-tx-clk-adj-enabled, tx-clk-10-inverted, tx-clk-100-inverted and
-tx-clk-1000-inverted is used and tested by  Yanhong
-Wang<yanhong.wang@starfivetech.com>. They used yt8531 on
-jh7110-starfive-visionfive-v2. This will provide an additional way to
-adjust the tx clk delay on yt8531.
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1159  	}
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1160  #endif
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1161  	mutex_unlock(&aw_dev->dsp_lock);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1162  
+acf2ebfd20ae60 Weidong Wang 2022-12-30 @1163  	return 0;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1164  }
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1165  
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1166  static int aw_dev_dsp_update_fw(struct aw_device *aw_dev,
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1167  			unsigned char *data, unsigned int len)
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1168  {
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1169  
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1170  	dev_dbg(aw_dev->dev, "dsp firmware len:%d", len);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1171  
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1172  	if (len && (data != NULL)) {
 
-sds-tx-amplitude can be tested on my yt8531s board.
+Flip this around.
 
->> +
->> +  motorcomm,tx-clk-adj-enabled:
->> +    description: |
->> +      Useful if you want to use tx-clk-xxxx-inverted to adj the delay of tx clk.
->> +    type: boolean
->> +
->> +  motorcomm,tx-clk-10-inverted:
->> +    description: |
->> +      Use original or inverted RGMII Transmit PHY Clock to drive the RGMII
->> +      Transmit PHY Clock delay train configuration when speed is 10Mbps.
->> +    type: boolean
->> +
->> +  motorcomm,tx-clk-100-inverted:
->> +    description: |
->> +      Use original or inverted RGMII Transmit PHY Clock to drive the RGMII
->> +      Transmit PHY Clock delay train configuration when speed is 100Mbps.
->> +    type: boolean
->> +
->> +  motorcomm,tx-clk-1000-inverted:
->> +    description: |
->> +      Use original or inverted RGMII Transmit PHY Clock to drive the RGMII
->> +      Transmit PHY Clock delay train configuration when speed is 1000Mbps.
->> +    type: boolean
->> +
->> +  motorcomm,sds-tx-amplitude:
->> +    description: |
->> +      Setup the tx driver amplitude control of SerDes. Higher amplitude is
->> +      helpful for long distance.
->> +      0: low;   1: middle;   2: high.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    enum: [0, 1, 2]
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    ethernet {
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +        ethernet-phy@5 {
->> +            reg = <5>;
-> 
-> PHYs are on MDIO busses, so i would expect to see an MDIO bus here,
-> not Ethernet.
-> 
+	if (!len || !data)
+		return -EINVAL;
 
-I will fix.
+Always do error handling, not success handling.
 
->     Andrew
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1173  		aw_dev_dsp_update_container(aw_dev,
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1174  			data, len, AW_PID_2049_DSP_FW_ADDR);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1175  		aw_dev->dsp_fw_len = len;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1176  	} else {
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1177  		dev_err(aw_dev->dev, "dsp firmware data is null or len is 0");
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1178  		return -EINVAL;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1179  	}
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1180  
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1181  	return 0;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1182  }
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1183  
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1184  static int aw_dev_copy_to_crc_dsp_cfg(struct aw_device *aw_dev,
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1185  			unsigned char *data, unsigned int size)
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1186  {
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1187  	struct aw_sec_data_desc *crc_dsp_cfg = &aw_dev->crc_dsp_cfg;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1188  
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1189  	if (!crc_dsp_cfg->data) {
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1190  		crc_dsp_cfg->data = devm_kzalloc(aw_dev->dev, size, GFP_KERNEL);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1191  		if (!crc_dsp_cfg->data)
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1192  			return -ENOMEM;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1193  		crc_dsp_cfg->len = size;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1194  	} else if (crc_dsp_cfg->len < size) {
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1195  		devm_kfree(aw_dev->dev, crc_dsp_cfg->data);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1196  		crc_dsp_cfg->data = devm_kzalloc(aw_dev->dev, size, GFP_KERNEL);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1197  		if (!crc_dsp_cfg->data) {
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1198  			dev_err(aw_dev->dev, "error allocating memory");
+
+I am surprised this error message does not generate a checkpatch
+warning.  kmalloc() has its own better warnings.  Delete this one.
+
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1199  			return -ENOMEM;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1200  		}
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1201  		crc_dsp_cfg->len = size;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1202  	}
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1203  	memcpy(crc_dsp_cfg->data, data, size);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1204  	swab16_array((u16 *)crc_dsp_cfg->data, size >> 1);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1205  
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1206  	return 0;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1207  }
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1208  
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1209  static int aw_dev_dsp_update_cfg(struct aw_device *aw_dev,
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1210  			unsigned char *data, unsigned int len)
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1211  {
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1212  	int ret;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1213  
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1214  	dev_dbg(aw_dev->dev, "dsp config len:%d", len);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1215  
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1216  	if (len && (data != NULL)) {
+
+Flip this around.
+
+	if (!len || !data)
+		return -EINVAL;
+
+	aw_dev_dsp_update_container(aw_dev, data, len,
+				    AW_PID_2049_DSP_CFG_ADDR);
+
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1217  		aw_dev_dsp_update_container(aw_dev,
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1218  			data, len, AW_PID_2049_DSP_CFG_ADDR);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1219  		aw_dev->dsp_cfg_len = len;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1220  
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1221  		ret = aw_dev_copy_to_crc_dsp_cfg(aw_dev, data, len);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1222  		if (ret)
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1223  			return ret;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1224  
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1225  		ret = aw_dev_set_vcalb(aw_dev);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1226  		if (ret)
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1227  			return ret;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1228  		ret = aw_dev_get_ra(&aw_dev->cali_desc);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1229  		if (ret)
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1230  			return ret;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1231  		ret = aw_dev_get_cali_f0_delay(aw_dev);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1232  		if (ret)
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1233  			return ret;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1234  
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1235  		ret = aw_dev_get_vmax(aw_dev, &aw_dev->vmax_desc.init_vmax);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1236  		if (ret) {
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1237  			dev_err(aw_dev->dev, "get vmax failed");
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1238  			return ret;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1239  		}
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1240  		dev_dbg(aw_dev->dev, "get init vmax:0x%x",
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1241  						aw_dev->vmax_desc.init_vmax);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1242  		aw_dev->dsp_crc_st = AW_DSP_CRC_NA;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1243  	} else {
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1244  		dev_err(aw_dev->dev, "dsp config data is null or len is 0");
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1245  		return -EINVAL;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1246  	}
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1247  
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1248  	return 0;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1249  }
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1250  
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1251  static int aw_dev_check_sram(struct aw_device *aw_dev)
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1252  {
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1253  	unsigned int reg_val;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1254  	int ret;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1255  
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1256  	mutex_lock(&aw_dev->dsp_lock);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1257  	/* check the odd bits of reg 0x40 */
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1258  	ret = regmap_write(aw_dev->regmap, AW_PID_2049_DSPMADD_REG, AW_DSP_ODD_NUM_BIT_TEST);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1259  	if (ret)
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1260  		return ret;
+
+goto error;
+
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1261  	ret = regmap_read(aw_dev->regmap, AW_PID_2049_DSPMADD_REG, &reg_val);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1262  	if (reg_val != AW_DSP_ODD_NUM_BIT_TEST || ret) {
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1263  		dev_err(aw_dev->dev, "check reg 0x40 odd bit failed, read[0x%x] != write[0x%x]",
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1264  				reg_val, AW_DSP_ODD_NUM_BIT_TEST);
+
+This does not set the error code correctly.  Technically, it reg_val is
+unintialized if ret is negative so it's an uninitialized variable bug
+as well.  Write it like so:
+
+	ret = regmap_read(aw_dev->regmap, AW_PID_2049_DSPMADD_REG, &reg_val);
+	if (ret)
+		goto error;
+	if (reg_val != AW_DSP_ODD_NUM_BIT_TEST) {
+		ret = -EINVAL;
+		goto error;
+	}
+
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1265  		goto error;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1266  	}
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1267  
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1268  	/* check the even bits of reg 0x40 */
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1269  	ret = regmap_write(aw_dev->regmap, AW_PID_2049_DSPMADD_REG, AW_DSP_EVEN_NUM_BIT_TEST);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1270  	if (ret)
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1271  		return ret;
+
+goto error;
+
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1272  	ret = regmap_read(aw_dev->regmap, AW_PID_2049_DSPMADD_REG, &reg_val);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1273  	if (reg_val != AW_DSP_EVEN_NUM_BIT_TEST || ret) {
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1274  		dev_err(aw_dev->dev, "check reg 0x40 even bit failed, read[0x%x] != write[0x%x]",
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1275  				reg_val, AW_DSP_EVEN_NUM_BIT_TEST);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1276  		goto error;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1277  	}
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1278  
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1279  	/* check dsp_fw_base_addr */
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1280  	aw_dev_dsp_write_16bit(aw_dev, AW_PID_2049_DSP_FW_ADDR,	AW_DSP_EVEN_NUM_BIT_TEST);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1281  	aw_dev_dsp_read_16bit(aw_dev, AW_PID_2049_DSP_FW_ADDR, &reg_val);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1282  	if (reg_val != AW_DSP_EVEN_NUM_BIT_TEST) {
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1283  		dev_err(aw_dev->dev, "check dsp fw addr failed, read[0x%x] != write[0x%x]",
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1284  						reg_val, AW_DSP_EVEN_NUM_BIT_TEST);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1285  		goto error;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1286  	}
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1287  
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1288  	/* check dsp_cfg_base_addr */
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1289  	aw_dev_dsp_write_16bit(aw_dev, AW_PID_2049_DSP_CFG_ADDR, AW_DSP_ODD_NUM_BIT_TEST);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1290  
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1291  	aw_dev_dsp_read_16bit(aw_dev, AW_PID_2049_DSP_CFG_ADDR, &reg_val);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1292  	if (reg_val != AW_DSP_ODD_NUM_BIT_TEST) {
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1293  		dev_err(aw_dev->dev, "check dsp cfg failed, read[0x%x] != write[0x%x]",
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1294  						reg_val, AW_DSP_ODD_NUM_BIT_TEST);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1295  		goto error;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1296  	}
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1297  
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1298  	mutex_unlock(&aw_dev->dsp_lock);
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1299  	return 0;
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1300  
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1301  error:
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1302  	mutex_unlock(&aw_dev->dsp_lock);
+acf2ebfd20ae60 Weidong Wang 2022-12-30 @1303  	return -EPERM;
+
+Oh.  Huh.  Change this to "return ret;"
+
+acf2ebfd20ae60 Weidong Wang 2022-12-30  1304  }
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
+
