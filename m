@@ -2,113 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B660865FE10
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 10:36:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A57365FE2E
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 10:42:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232311AbjAFJg2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 04:36:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33286 "EHLO
+        id S233116AbjAFJjz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 04:39:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234039AbjAFJgI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 04:36:08 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACA558D38D
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 01:28:04 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id b24-20020a05600c4a9800b003d21efdd61dso666188wmp.3
-        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 01:28:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=o62n9NBbSVSiAKonaXoYdKNKA7O0bg5G8XsGNr/A9Rc=;
-        b=tPYq5WRY85k9btPiVrnv2nF1F4k9la5HZRecSieuIdTpbp6MkznWVU0sa19MfcwdmA
-         qiWzMK2gE9soQ168GTB9AImH6iuqp5EM8+buKfArAOnp5X+K3cSfwYKjjFldwmiNjCtU
-         FY0HwG1ViN5QIbyYnemJAiMcxKQp016Ox3Ds2Wu5/6SJ2SrhAxG7dAcdcaIAAAFy1VQl
-         nEiDvP8QjQXeAx6DqwQhX76q9Vky0IfxdrSQOaCYz/41GtDRqAuK80qw/1Yz30427Lvl
-         JScaFZHXdbHlSHq6q5wHPkYBYwdRA62l+hhHPRvFvTCEw74zhDPPoq/+JQhW0pELUV6X
-         S+sA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=o62n9NBbSVSiAKonaXoYdKNKA7O0bg5G8XsGNr/A9Rc=;
-        b=BnhloSF8Ut1M+rjp7uUV7yBJJJcX7EhxVK5FG27JiVXGqQ0LlYLrGKzyYlS2l4fa3e
-         kaUxfcRdookn/yvrz5tNo/kPcA2FATyheUSRzJKNMk90NNLeX9C7qbVf+jtX1YJ7oHV8
-         eas9jSQiZ1C7sZlGC95daCB4wb2pUBPq/ROb6EJEDsrLWPU+TP+yuKVVp7vtY89yFBJ/
-         9MY2h+4VvayP7+oQwjmDlWksDLoXpRdrpAHltadvkL+Rr4G1vLjZOpOgNtnnDm0lZ6o6
-         X0ClfyS7ciEPN5AztqxN94t0vIRTUcYAiX5UpMavXSJkrNxtMFiDS5+UTSWGM51an615
-         zghg==
-X-Gm-Message-State: AFqh2koYu44a2hgeU/EvSIsKb3en2wuu1kpNoZDwN3ZvQ20JJZUAl+42
-        ko7sE5e2r0MgI4dJ3S6YKj6oIg==
-X-Google-Smtp-Source: AMrXdXs0JBJ4niKpF4pQfza4ErydKUpKj3bcSZLk7ks5fAlEoOogGLVXZLw1+9PUmKUf3HGg0CMNZA==
-X-Received: by 2002:a05:600c:34cf:b0:3d0:7415:c5a9 with SMTP id d15-20020a05600c34cf00b003d07415c5a9mr40190823wmq.21.1672997282446;
-        Fri, 06 Jan 2023 01:28:02 -0800 (PST)
-Received: from [192.168.1.102] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id u8-20020a05600c19c800b003d9780466b0sm1125082wmq.31.2023.01.06.01.28.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Jan 2023 01:28:02 -0800 (PST)
-Message-ID: <9bbd5343-30bc-1146-3296-2c3a43b9a91b@linaro.org>
-Date:   Fri, 6 Jan 2023 10:28:00 +0100
+        with ESMTP id S231858AbjAFJj3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 04:39:29 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0939B45677;
+        Fri,  6 Jan 2023 01:31:25 -0800 (PST)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D20AF4AE;
+        Fri,  6 Jan 2023 10:31:22 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1672997483;
+        bh=eW6rNAgrifU2DzhpvGHPC3nUtWhamr7BoiOuA6FOSCE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ZFl1mgDgQ8pHrE9GH22/oiZkYb3/qnURlpqCOHCKiuu2Sq0r127f18aViEu+h38Oj
+         3mk5kkOf9yzxdOJQD45iqjoLnbhdcykvv5ok7HUGL2gYVuP7Us1VfJSIYIkwjBuVOW
+         Osty2MM9tFaUqM23ZEifJfq5WwJWyNnN7R7d7Ap8=
+Date:   Fri, 6 Jan 2023 11:31:17 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     Nicholas Roth <nicholas@rothemail.net>,
+        Robert Mader <robert.mader@collabora.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: media: Add schema for OmniVision OV8858
+Message-ID: <Y7fqZZkulQ2RstEu@pendragon.ideasonboard.com>
+References: <20230105172320.133810-1-jacopo@jmondi.org>
+ <20230105172320.133810-2-jacopo@jmondi.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 1/7] dt-bindings: usb: Correct and extend FOTG210 schema
-Content-Language: en-US
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Fabian Vogt <fabian@ritter-vogt.de>
-References: <20230103-gemini-fotg210-usb-v1-0-f2670cb4a492@linaro.org>
- <20230103-gemini-fotg210-usb-v1-1-f2670cb4a492@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230103-gemini-fotg210-usb-v1-1-f2670cb4a492@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230105172320.133810-2-jacopo@jmondi.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/01/2023 00:35, Linus Walleij wrote:
-> It turns out that this IP block exists in at least two
-> incarnations: FOTG200 and FOTG210. The one in the Gemini
-> is FOTG200, so add the variants and rectify the binding
-> for Gemini.
+Hi Jacopo,
+
+Thank you for the patch.
+
+One comment in addition to Krzysztof's.
+
+On Thu, Jan 05, 2023 at 06:23:19PM +0100, Jacopo Mondi wrote:
+> From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 > 
-> This affects things such as the placement of certain
-> registers.
+> Add binding schema for the OmniVision OV8858 8 Megapixels camera sensor.
 > 
-> It remains to be seen how similar this block is to the
-> third USB block from Faraday, FUSB220.
-> 
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 > ---
->  Documentation/devicetree/bindings/usb/faraday,fotg210.yaml | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
+>  .../bindings/media/i2c/ovti,ov8858.yaml       | 109 ++++++++++++++++++
+>  1 file changed, 109 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/faraday,fotg210.yaml b/Documentation/devicetree/bindings/usb/faraday,fotg210.yaml
-> index 84b3b69256b1..12d4fc742f20 100644
-> --- a/Documentation/devicetree/bindings/usb/faraday,fotg210.yaml
-> +++ b/Documentation/devicetree/bindings/usb/faraday,fotg210.yaml
-> @@ -5,7 +5,7 @@
->  $id: http://devicetree.org/schemas/usb/faraday,fotg210.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
-> -title: Faraday Technology FOTG210 HS OTG USB 2.0 controller
-> +title: Faraday Technology FOTG200 series HS OTG USB 2.0 controller Bindings
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
+> new file mode 100644
+> index 000000000000..f6d5cf69234c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
+> @@ -0,0 +1,109 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov8858.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: OmniVision OV8858 Image Sensor
+> +
+> +maintainers:
+> +  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> +  - Nicholas Roth <nicholas@rothemail.net>
+> +
+> +description: |
+> +  The OmniVision OV8858 is a color CMOS 8 Megapixles (3264x2448) image sensor
 
-That's not correct change, probably due to rebasing. Change the name
-only, do not add "Bindings".
+s/pixles/pixels/
 
+Conditionally-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-Best regards,
-Krzysztof
+with this and the issues pointed by Krzysztof first.
 
+> +  controlled through an I2C-compatible SCCB bus. The sensor transmits images
+> +  on a MIPI CSI-2 output interface with up to 4 data lanes.
+> +
+> +properties:
+> +  compatible:
+> +    const: ovti,ov8858
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +    description: XVCLK external clock
+> +
+> +  clock-names:
+> +    const: xvclk
+> +
+> +  dvdd-supply:
+> +    description: Digital Domain Power Supply
+> +
+> +  avdd-supply:
+> +    description: Analog Domain Power Supply
+> +
+> +  dovdd-supply:
+> +    description: I/O Domain Power Supply
+> +
+> +  powerdown-gpios:
+> +    maxItems: 1
+> +    description: PWDNB powerdown GPIO (active low)
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description: XSHUTDN reset GPIO (active low)
+> +
+> +  port:
+> +    description: MIPI CSI-2 transmitter port
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          data-lanes:
+> +            minItems: 1
+> +            maxItems: 4
+> +
+> +        required:
+> +          - data-lanes
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - assigned-clocks
+> +  - assigned-clock-rates
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/pinctrl/rockchip.h>
+> +    #include <dt-bindings/clock/rk3399-cru.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c2 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        ov8858: camera@36 {
+> +            compatible = "ovti,ov8858";
+> +            reg = <0x36>;
+> +
+> +            clocks = <&cru SCLK_CIF_OUT>;
+> +            clock-names = "xvclk";
+> +            assigned-clocks = <&cru SCLK_CIF_OUT>;
+> +            assigned-clock-rates = <24000000>;
+> +
+> +            dovdd-supply = <&vcc1v8_dvp>;
+> +
+> +            reset-gpios = <&gpio1 RK_PA4 GPIO_ACTIVE_LOW>;
+> +            powerdown-gpios = <&gpio2 RK_PB4 GPIO_ACTIVE_LOW>;
+> +
+> +            port {
+> +                ucam_out: endpoint {
+> +                    remote-endpoint = <&mipi_in_ucam>;
+> +                    data-lanes = <1 2 3 4>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +...
+
+-- 
+Regards,
+
+Laurent Pinchart
