@@ -2,79 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4B6F65FF53
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 12:08:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF64365FF56
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 12:09:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229701AbjAFLHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 06:07:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53230 "EHLO
+        id S230047AbjAFLJS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 06:09:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232676AbjAFLHj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 06:07:39 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE6C84166C
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 03:07:37 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id m26-20020a05600c3b1a00b003d9811fcaafso824756wms.5
-        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 03:07:37 -0800 (PST)
+        with ESMTP id S231666AbjAFLJQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 06:09:16 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A94069B05
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 03:09:15 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id bs20so973392wrb.3
+        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 03:09:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZY/0HK5vhWq1atET0Bpv4+WgmiEnLmZw9upWsDYoJe0=;
-        b=PRH4h0KL0RGYsGtinEt5uGvc6yYjP2pMeE+oPGF9McFxEnYc0ZDgmzvz/k23/MOAPo
-         WFcj8l0PV1k2XjUUOpSwHakFQzJXJJFMBY1uW6lKbNd5KXQPqgeIcfobd8o3mMC8BZXZ
-         K2FW2/KL16WtuL4lGcSLo0I2OZBw6Aph3e9h3W/TEBC4bVOD0j0wJlus0S1MO5xuSTVd
-         XQVx7NEmkytMub8399S5u5/aMsUVjxNxa3sYsdKnFlD5r4yjZVe/SQaA/aHK015HWNlv
-         H+xRU/NrzNoNdeg/xKKq51dAcnb9/MsvgK+fO6Misr9OxcWwQ2/VPntOKPDt78bR1Esr
-         Yg3A==
+        bh=ZRjAQD38pxiEXgn8SrcGAtQM6DHABHmwwbQFSb0l8uc=;
+        b=RkF7ZVQtch6xw67PWA3+/LfX+gMZYZqImylKOVrowoCZttEVOOn2I5sA3tglW1GYmP
+         Ql+xzroChCkzI5DvA5bAhUQDLbjyVVVeJBsFij+xt2RAdVaU/JOtZnkGyoHqfMtqpaok
+         Xsv0zOerP0ypotJ8i3KicX3BslWi0RcO5fLlqZMnvzZYeTryrcI32e7DV5ymKLFUmRnX
+         phZ9apfhp3wF63TgwAkyKqgEiggmr3Iiw6azu+VTxOSqofRIjekvcVRBjX+FoWZQ9vkP
+         cj3TKPs4h1pHTUOAQpnGj5ISms4F3N3MpTpAHYHV2HHOPt5TkqDMN6n4buMaC1rqwKuL
+         vFCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZY/0HK5vhWq1atET0Bpv4+WgmiEnLmZw9upWsDYoJe0=;
-        b=zgWKPMAFNyJ1BD6x7Daj3urA76jh0Vg/SyWp+X99kkFjEBMTfYXAPAfW1LW1NsXz7t
-         8Y9fQXrNNCtCVAy0PiOQFE8lfTWadLvvVI/UMi0EbbTKWsS0TeBvhljBPg/cYqjURbjt
-         zjWfqJ9qed3/efNV0/IMNVzmOEGhMg5+wekaQg+ollv5Imm6UqQZ+28MeVmPFfDj59b5
-         GVlWNDRKg0Ni1KZIzCN3pxV7hCmxb8Mi66OQeVfz7R2/t48iabSL11fjRKhMBF2kIuor
-         LPy1/29eQRb9A89XyCJp7NRhBMf45jrs2uKeTenFLxk0FLqmgfSdz4yVFX9xCvFq+Qij
-         fA7A==
-X-Gm-Message-State: AFqh2kqhlp3AXUFxr/CwUYuiBwssa1e3CgAijWSbqKucdV/ooU7FQcyB
-        erD94rJ5JTuZme36SK9A1SIUbw==
-X-Google-Smtp-Source: AMrXdXuhrDzIoOs4ugbIUgNEN4hS46pqg+RXmxWlx7qeJfIhwodH1pzfIbnE0OeoKrRikOwmN57Xtw==
-X-Received: by 2002:a05:600c:1d03:b0:3d3:4aa6:4fe6 with SMTP id l3-20020a05600c1d0300b003d34aa64fe6mr37858456wms.3.1673003256258;
-        Fri, 06 Jan 2023 03:07:36 -0800 (PST)
+        bh=ZRjAQD38pxiEXgn8SrcGAtQM6DHABHmwwbQFSb0l8uc=;
+        b=CPilaYKhDJrkI8+9ZXYC9lmnwQYAQtTsr+Gc1eb9Qqqn5mK77Hz2spZB2ATaquoZzZ
+         S+GM9iyf/5KEiyLBFq5M/GsrOsd5F46th3wL/UQ7llxmHopOvMuxFiZu+++oT4HDDs2W
+         gOmtP4tOs4HiJyYE832KbsKXTu1vryRfmJ8rZ34WF8A7yoiA3U25qx6eFPoy7I+W62ZH
+         lgqAeMx+XxtmgA7Ml5RxMA91kjoBWuVrfm+14JKDTIuTY+N0cX8wr91iJJS2Jz7LTnIs
+         2helSwDVm4JIA9iaAx/pHauu2Yrmz6NBDR026+8YvY97wEBklUfK3wveu7zKsoFAVmaI
+         QIYQ==
+X-Gm-Message-State: AFqh2krFHQFaXJtJO/CTUQFOpLkeLsTFO5hyV1w9GLlzNednrD8QnrF0
+        Qeqa0uyLUysTgH9T2e0lEOOf1g==
+X-Google-Smtp-Source: AMrXdXv76kJX9rJjgsKE6uWsRKKxpQABEBmxqCWDIbIGUsnUMkvXBkxQ9Pr7SXvbIoECfDhN3N+fTQ==
+X-Received: by 2002:a5d:51c9:0:b0:29c:73e2:68f1 with SMTP id n9-20020a5d51c9000000b0029c73e268f1mr9749308wrv.54.1673003353650;
+        Fri, 06 Jan 2023 03:09:13 -0800 (PST)
 Received: from [192.168.1.102] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id p9-20020a05600c358900b003cffd3c3d6csm1502418wmq.12.2023.01.06.03.07.34
+        by smtp.gmail.com with ESMTPSA id n5-20020adfe785000000b00281eab50380sm937823wrm.117.2023.01.06.03.09.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Jan 2023 03:07:35 -0800 (PST)
-Message-ID: <8d1c49e0-1aa2-b08d-b68a-64d9beed54e3@linaro.org>
-Date:   Fri, 6 Jan 2023 12:07:32 +0100
+        Fri, 06 Jan 2023 03:09:13 -0800 (PST)
+Message-ID: <8ba0f169-e820-6e4d-957a-ee6b65a41bf2@linaro.org>
+Date:   Fri, 6 Jan 2023 12:09:10 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 3/4] dt-bindings: arm: sunxi: document MangoPi MQ-R board
- name
-To:     Andre Przywara <andre.przywara@arm.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Icenowy Zheng <uwu@icenowy.me>,
-        =?UTF-8?B?QW5kcsOhcyBTemVtesO2?= <szemzo.andras@gmail.com>,
-        Fabien Poussin <fabien.poussin@gmail.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20230106010155.26868-1-andre.przywara@arm.com>
- <20230106010155.26868-4-andre.przywara@arm.com>
+Subject: Re: [PATCH 8/9] dt-bindings: interconnect: qcom: Remove sc7180/sdx55
+ ipa compatibles
 Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     Georgi Djakov <djakov@kernel.org>,
+        Odelu Kukatla <okukatla@codeaurora.org>,
+        Alex Elder <elder@linaro.org>, Johan Hovold <johan@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230106073313.1720029-1-dmitry.baryshkov@linaro.org>
+ <20230106073313.1720029-9-dmitry.baryshkov@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230106010155.26868-4-andre.przywara@arm.com>
+In-Reply-To: <20230106073313.1720029-9-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,15 +86,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/01/2023 02:01, Andre Przywara wrote:
-> The MangoPi MQ-R board is a close relative to its Allwinner D1/D1s
-> siblings, but features two Arm Cortex-A7 cores instead of a RISC-V core.
+On 06/01/2023 08:33, Dmitry Baryshkov wrote:
+> These interconnects are modeled as clks, not interconnects, therefore
+> remove the compatibles from the binding as they're unused.
 > 
-> Add the board/SoC compatible string pair to the list of known boards.
-> 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
+>  Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml | 3 ---
+>  1 file changed, 3 deletions(-)
 
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
