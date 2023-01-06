@@ -2,74 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCBA566004F
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 13:34:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FAEF660052
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 13:35:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229472AbjAFMeh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 07:34:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60426 "EHLO
+        id S232477AbjAFMfJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 07:35:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230244AbjAFMeg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 07:34:36 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C97C768786
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 04:34:34 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id o15so954904wmr.4
-        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 04:34:34 -0800 (PST)
+        with ESMTP id S229586AbjAFMfI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 07:35:08 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2180E68786
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 04:35:07 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id co23so1152023wrb.4
+        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 04:35:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=jF2NwuEVtIyabCQ9D0ubzMuiiBr02z+cf6tpqI8SRzM=;
-        b=A2+Li5+4hel0eFx5woAPyWwYJF4ww9ArkhmfMH3UxnS5hyLs4eUTDKDUXe1vgU8UtL
-         jsUxYyXVcGYZAKVG7E9jhYaW4roTXmjiU43+rMdJ0wVrNZIwJs635D40fYnlHfNmCz45
-         nn3BYqveIpNE2ke/IB7vhO7PxMU2PsAwfS3UdjMCP2YDfB/fabXCJUTwM3ZbfpY4bBad
-         dFOetn5+1ZG0rOCnAwS7B1Y1f1s6K0g5fUtNnzqnCF8yoytOdfkoo7pDt+BFaMaBMVzI
-         x7VKePZzAFN5PNiqZv6qn6wXJttnla8vtNOYYZRNwxz+YP3kzhFEDeiIb7redmOqEGrU
-         FjBA==
+        bh=FHJJcmxoQF6RmTS7KWkeAydRQ3hH8J9+bPjwO9oOfwg=;
+        b=LB6/Kj6LBjCWiINiSHkE4K1udV2q1085XdI2d7bQqOz3baZb+Vk/P8IOOhfjDlXdm5
+         8QMM2X/fDDeG7CFJGUIDVPtIXnavSCh30zKyeJ2p0g/tW//f4G1zqSLwP9dAN6MvJtKe
+         OTWvMykFDOcYj+RWrINucrVWceVsdgMcy/wNKh7+z3YSjOFodK/bpjqhKk5gZCSD+jSJ
+         4U1X9ci4ye4XqPAJIJH+HOR9EKppiplvcxKoP3UU4CWY3mAmZdSgTBr+VNNwy/uakEJX
+         mGG9zZQ7jLJWxUL6+ls1kBTR69wCuhwMXFvvPktmO2oluXAbebh3S7OgmQ7ZpdOW8ZsR
+         w/oQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jF2NwuEVtIyabCQ9D0ubzMuiiBr02z+cf6tpqI8SRzM=;
-        b=VvUErLJYzzEFh9COak5gzgqqRBtiW1J2lO73uYvJZ/KA94wRP4RGWnKRT616A2Gaa4
-         5qb9XRHFuFC9XM7nIlQ9OkUDC19hwFkGVkJhkgKa9ZCzR+CFwqaxT3P7wnTf7pebTDt5
-         CH3tsjWg8tS+stGJsk61UfY2ETupxry8v2d9J2f8iCfhBx/Totj7TJr+XgHkyJ6mV9I5
-         DOs+OWuHsBDmP89VuOQABfxT6VChOZe7qlLynV3OndJuN1R0EWDN9eVeFWLvY7/QMvey
-         9vJ4ZiC/ag0SKEiKImm/XqHE5aGwnJsHObJPvqWsUSEth4K1A2KdXdFW4KtbVJAN01OJ
-         M5Yw==
-X-Gm-Message-State: AFqh2kpikiYUVAabv2Com62jEO3EcilNsRkxzLyZRd9rRc7ODky5V+Ky
-        DNqkB8zF5lgq935WzUVQ+/6p2w==
-X-Google-Smtp-Source: AMrXdXu0bu9AYTf2EdowC6SvotNmFG70r9dWstp+n15xfZItLWoQ+YrxZKVawh4v8BhYADbbfeyMPQ==
-X-Received: by 2002:a05:600c:44d4:b0:3cf:7925:7a3 with SMTP id f20-20020a05600c44d400b003cf792507a3mr38805480wmo.24.1673008473337;
-        Fri, 06 Jan 2023 04:34:33 -0800 (PST)
+        bh=FHJJcmxoQF6RmTS7KWkeAydRQ3hH8J9+bPjwO9oOfwg=;
+        b=apTimwcqi8i4S0qj9a9LOrzHU5Ki1kHyJ9S6mtX7ClHs/niYuTHnm9XdnW2bkdBMLN
+         1z0nYpOcrCxj6H6PDET9M4sjAnivZ5Dn9XYlosnKu5u/hydDECrKT1grB2yl+3mhUP55
+         97HnrXyyIq6lBudagaCEOunETgu8HGMbCVWV43CiMfRjA3eg5M8hiWIMsY6/aEmbJcex
+         f1EninGUZw4C56uj1MVuVmtC1Jw+Wm4PQ+WYOPckItFvo4yn0lwVKl7y3CjuC0YDPttU
+         ANOUEehEPDmTb8PgvCNkiyNPIMrjXieM4vRMxv7dABZNyRPmGHxIE60H463y8ui7JVeN
+         l+NA==
+X-Gm-Message-State: AFqh2krsXES95sBeWKfvkpwWETGqkXLqTpZ9IlRoUwWqxxuE3KbFfuun
+        61Z/daLJrxgDjB+XtO/lcXtpww==
+X-Google-Smtp-Source: AMrXdXtq7EH+BbYvHh9s5O5NWIhpRY4i2EWNgdfO058HgwYDQMqoMoiaCYmZffGJxaURD+tY5GeA4A==
+X-Received: by 2002:a5d:560a:0:b0:27b:45ba:3b47 with SMTP id l10-20020a5d560a000000b0027b45ba3b47mr26535909wrv.57.1673008505734;
+        Fri, 06 Jan 2023 04:35:05 -0800 (PST)
 Received: from [192.168.1.102] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id l11-20020a05600c1d0b00b003d01b84e9b2sm1728409wms.27.2023.01.06.04.34.31
+        by smtp.gmail.com with ESMTPSA id j14-20020adfea4e000000b0027f4a7efc54sm1102338wrn.15.2023.01.06.04.35.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Jan 2023 04:34:32 -0800 (PST)
-Message-ID: <1c53c929-52cc-facd-b068-2de286a57b72@linaro.org>
-Date:   Fri, 6 Jan 2023 13:34:31 +0100
+        Fri, 06 Jan 2023 04:35:05 -0800 (PST)
+Message-ID: <41525097-7703-c6fc-c265-00dc588dde87@linaro.org>
+Date:   Fri, 6 Jan 2023 13:35:04 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 1/8] media: dt-bindings: media: fsl-pxp: convert to yaml
+Subject: Re: [PATCH 1/3] dt-bindings: iio: st-sensors: Add LSM303C
+ accelerometer+magnetometer
 Content-Language: en-US
-To:     Michael Tretter <m.tretter@pengutronix.de>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+To:     Stephan Gerhold <stephan@gerhold.net>,
+        Jonathan Cameron <jic23@kernel.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-arm-kernel@lists.infradead.org
-References: <20230105134729.59542-1-m.tretter@pengutronix.de>
- <20230105134729.59542-2-m.tretter@pengutronix.de>
+        Denis Ciocca <denis.ciocca@st.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20230106102239.9647-1-stephan@gerhold.net>
+ <20230106102239.9647-2-stephan@gerhold.net>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230105134729.59542-2-m.tretter@pengutronix.de>
+In-Reply-To: <20230106102239.9647-2-stephan@gerhold.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,92 +81,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/01/2023 14:47, Michael Tretter wrote:
-> Convert the bindings of the Freescale Pixel Pipeline to YAML.
+On 06/01/2023 11:22, Stephan Gerhold wrote:
+> The ST LSM303C [1] is a accelerometer and magnetometer combo sensor
+> compatible with the existing ST sensor bindings. Accelerometer and
+> magnetometer are exposed through separate I2C/SPI devices, so document
+> separate compatibles with -accel and -magn suffix.
 > 
-> The conversion drops the previously listed compatibles for several SoCs.
-> It is unclear, if the PXP on these SoCs is compatible to any of the PXPs
-> on the existing SoCs and would allow to reuse the already defined
-> compatibles. The missing compatibles should be brought back when the
-> support for the PXP on these SoCs is added.
-> 
+> [1]: https://www.st.com/resource/en/datasheet/lsm303c.pdf
 
-Subject: only one "media" prefix.
 
-> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
-> ---
->  .../bindings/media/fsl,imx6ull-pxp.yaml       | 62 +++++++++++++++++++
->  .../devicetree/bindings/media/fsl-pxp.txt     | 26 --------
->  2 files changed, 62 insertions(+), 26 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/media/fsl,imx6ull-pxp.yaml
->  delete mode 100644 Documentation/devicetree/bindings/media/fsl-pxp.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/media/fsl,imx6ull-pxp.yaml b/Documentation/devicetree/bindings/media/fsl,imx6ull-pxp.yaml
-> new file mode 100644
-> index 000000000000..e5f227b84759
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/fsl,imx6ull-pxp.yaml
-> @@ -0,0 +1,62 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/media/fsl,imx6ull-pxp.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-
-Drop qyotes from both.
-
-> +
-> +title: Freescale Pixel Pipeline
-> +
-> +maintainers:
-> +  - Philipp Zabel <p.zabel@pengutronix.de>
-> +  - Michael Tretter <m.tretter@pengutronix.de>
-> +
-> +description:
-> +  The Pixel Pipeline (PXP) is a memory-to-memory graphics processing engine
-> +  that supports scaling, colorspace conversion, alpha blending, rotation, and
-> +  pixel conversion via lookup table. Different versions are present on various
-> +  i.MX SoCs from i.MX23 to i.MX7.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,imx6ul-pxp
-> +      - fsl,imx6ull-pxp
-> +      - fsl,imx7d-pxp
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: axi
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-
-Add allOf:if:then restricting interrupts per variant.
-
-> +
-> +additionalProperties: False
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx6ul-clock.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
