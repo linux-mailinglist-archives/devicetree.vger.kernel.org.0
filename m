@@ -2,63 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FF7C660478
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 17:39:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BBF6F66048F
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 17:42:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232530AbjAFQjD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 11:39:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54856 "EHLO
+        id S235812AbjAFQml (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 11:42:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235681AbjAFQig (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 11:38:36 -0500
-Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [IPv6:2001:4b98:dc4:8::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B52D78A4F;
-        Fri,  6 Jan 2023 08:38:35 -0800 (PST)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPA id 8BD5310000C;
-        Fri,  6 Jan 2023 16:38:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1673023113;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=pwu/1JwYIXUNItAZ+OMdvXbkTVLSSu6E75e+vsZix3c=;
-        b=m6gcKoS++2sGnEQhfl2wOjkojZN7Z3KXQNimmEB8JszUjKLH8JIjD0GfX134lqMZNgb3Ec
-        71yxYlyQAzLfan4RdJYnQvZ9WQ/F+HOHb5p1oadIe7NU/WTCmdDAyG3uop1tfdwMAMKuNr
-        ysPJsfcgyZ7Hd+UvRvETUk2VwhUU/GHGDZqYZaL+Jo/AoRFBbw4TBz66+qm1q5bx7r1NTd
-        N6Ly1MfFTNMayJCqRmPOwQk1mgv5vQ+4+lM1pzbczIrdcAcf3m4mW9HaeoXBHT0ODCOXlV
-        dJ8qtW4opcp7gWc6GFt/YtAnzuglrph+pl23KUecdcJYPVC9D8dFeXgEMKSBeQ==
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Herve Codina <herve.codina@bootlin.com>,
-        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Qiang Zhao <qiang.zhao@nxp.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>
-Cc:     linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: [PATCH v2 10/10] MAINTAINERS: add the Freescale QMC audio entry
-Date:   Fri,  6 Jan 2023 17:37:46 +0100
-Message-Id: <20230106163746.439717-11-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20230106163746.439717-1-herve.codina@bootlin.com>
-References: <20230106163746.439717-1-herve.codina@bootlin.com>
+        with ESMTP id S236026AbjAFQmN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 11:42:13 -0500
+Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 212777CBEE;
+        Fri,  6 Jan 2023 08:41:20 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 27C4D426F3;
+        Fri,  6 Jan 2023 16:40:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
+        t=1673023256; bh=gXgieJ9sHytuKgJOAD+se1IXoDv6b4RgyKmGjkVDxlg=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To;
+        b=pl5bPON7tKn3exZITOT4qR8AxmLqINqBe1EkSfPfTGJJ4pMwe95KLLviTxrwqLQwB
+         gB2OZCPWfbSTQe1RTYksbZw1P3rif1MD6OpxracZDpEAx7BZIXrHRCB81DG5EHfZy2
+         lRU8twI8hP0fnB7iVC1/8UFC26t0x3V2ExshBDsPmwEpyfU5YIVUwlCsHtLUh51bBt
+         E6IVUFQLb3mIk76yVZBPdCd8Homo90egFg/3zLW44enN2xZ4KpInASlBjQS7dArvEQ
+         RFMZwgH3qEQOmOtJurTRDdnruH+rymWSscLNP6ZhTKPUz1yDkrbQfWWvn+tH+AiveM
+         DLUFRPoqXdk1Q==
+Message-ID: <6a9371e6-6516-5966-f92c-10bb228c8db3@marcan.st>
+Date:   Sat, 7 Jan 2023 01:40:49 +0900
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 3/5] spi: Use a 32-bit DT property for
+ spi-cs-setup-delay-ns
+Content-Language: en-US
+To:     Mark Brown <broonie@kernel.org>, Janne Grunau <j@jannau.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Tudor Ambarus <tudor.ambarus@microchip.com>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        asahi@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20230104093631.15611-4-marcan@marcan.st>
+ <Y7hLrxQO9GbgpW1h@sirena.org.uk>
+From:   Hector Martin <marcan@marcan.st>
+In-Reply-To: <Y7hLrxQO9GbgpW1h@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,33 +60,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-After contributing the component, add myself as the maintainer
-for the Freescale QMC audio ASoC component.
+On 07/01/2023 01.26, Mark Brown wrote:
+> On Wed, Jan 04, 2023 at 06:36:29PM +0900, Janne Grunau wrote:
+> 
+>> 65us is not a reasonable maximum for this property, as some devices
+>> might need a much longer setup time (e.g. those driven by firmware on
+>> the other end). Plus, device tree property values are in 32-bit cells
+>> and smaller widths should not be used without good reason.
+> 
+> This breaks allmodconfig builds (I tested x86 but this should happen
+> for anything with -Werror):
+> 
+> /build/stage/linux/drivers/spi/spi.c: In function ‘of_spi_parse_dt’:
+> /build/stage/linux/drivers/spi/spi.c:2243:13: error: unused variable ‘cs_setup’ [-Werror=unused-variable]
+>  2243 |         u16 cs_setup;
+>       |             ^~~~~~~~
+> cc1: all warnings being treated as errors
 
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Yeah, the kernel test robot caught this one too. Sorry for missing it
+(it got buried in warning noise in a rather large rebuild on my side).
+That line should've been removed in #3 :(
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 480f90db699d..a15997c2cc05 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8440,6 +8440,14 @@ F:	sound/soc/fsl/fsl*
- F:	sound/soc/fsl/imx*
- F:	sound/soc/fsl/mpc8610_hpcd.c
- 
-+FREESCALE SOC SOUND QMC DRIVER
-+M:	Herve Codina <herve.codina@bootlin.com>
-+L:	alsa-devel@alsa-project.org (moderated for non-subscribers)
-+L:	linuxppc-dev@lists.ozlabs.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/sound/fsl,qmc-audio.yaml
-+F:	sound/soc/fsl/fsl_qmc_audio.c
-+
- FREESCALE USB PERIPHERAL DRIVERS
- M:	Li Yang <leoyang.li@nxp.com>
- L:	linux-usb@vger.kernel.org
--- 
-2.38.1
+I see two patches got applied already. Do you want me to just respin #3-#5?
 
+- Hector
