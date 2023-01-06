@@ -2,186 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1777C66023D
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 15:33:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F86C660242
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 15:33:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233605AbjAFOca (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 09:32:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37868 "EHLO
+        id S230511AbjAFOdB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 09:33:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235231AbjAFOcK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 09:32:10 -0500
-Received: from mail-40130.protonmail.ch (mail-40130.protonmail.ch [185.70.40.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6601F7F46F;
-        Fri,  6 Jan 2023 06:32:05 -0800 (PST)
-Date:   Fri, 06 Jan 2023 14:31:49 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1673015523; x=1673274723;
-        bh=ocUQAxaviL0qvTTTeOczw/hurbzdqCtMbAPWkB864dI=;
-        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-         Message-ID:BIMI-Selector;
-        b=kkgN17pr031wlpop0EiBxWQhDhpsetS1Q2dRztdmaT/SwioQXIglGBv8UkLZlT7MI
-         kESv6LvlUBVVhZp4cuWkSeK0eHfkEyNX7L8v0trZo5+/3S68Mg2569NMPR9fTBx1cG
-         5iW4RKkugVZ7qQVnGEKkO+7hPHpBoC2ttGSjo7pSYeCOQmDu0ek9DuLYvmt6E5/BqI
-         cxBnqsFjQP6KI0hvw/isqmresyqID9Q0LbNlWLs+7Q7vn7EGV0cYn9FXye3yrivRck
-         ezUmr6euM4z71ugLqN16+NLv0G2R/dDr2NOyecy8igLpeCI9r+fbagJDMt8FEe0K7u
-         3BmArqp3Rkb7g==
-To:     devicetree@vger.kernel.org
-From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S235292AbjAFOcq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 09:32:46 -0500
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 717698110B;
+        Fri,  6 Jan 2023 06:32:37 -0800 (PST)
+Received: by mail-pf1-x42f.google.com with SMTP id y5so1178241pfe.2;
+        Fri, 06 Jan 2023 06:32:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=st9MR927WV2EbzuKefqey2/C+I5iBh6i8vt5jvXyVCs=;
+        b=a6L2tgg3QGCq+XMQ7WcOUm/d6W6nF11Eh/w4QbvVjauxnQByRat6CDtIsj5gU6GZCp
+         NLQ4uTzcEbN5aApCBAT9ti6ZYUoy49weQ6OhA840cxPWM9NbzHwD56XDkwAQzrY2H1Be
+         UjHvk8s1w+gVFmhEv23sk5OYDUhkqYz8mD29yBh5voOKUtrf+GbeFPg2QT++SqfCHqdJ
+         E6Kc830M+PBQGA8ZcSq1JImL5bmseOm3HREDyAvtK4VDelSyGu+rOadzkgkg7Zd6zhz1
+         BZfI7cC/ygum12ltjVdiu0393WnQujPa3GEA1gMUqova9ET+brOG8bHh6RrA7dX0vlzA
+         5Abg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=st9MR927WV2EbzuKefqey2/C+I5iBh6i8vt5jvXyVCs=;
+        b=xxeeeYpeozxvE6/gF4nCF3Z7/VD+OjFYQa6Y7UwVibtjSLa6kQfw6n5SDBtXsX+0yj
+         6YbC7ISecQ9BSW7yn2BV768wrXnbqy6PzE0TpzWR4NXs3WC1V/06Bdc+8+JOg8JzZWdB
+         J43jKpkozlI5M3r3i2MUXYRHOdt3f8nxMLqIeXguClGdg9leIVbOz6s8vFpkhuqJec0k
+         woDq9E3otM3Y3e2P15LseFcnYt9ju242qBr97nmupAKaBIF2g9TwFAeGdn3uWf97voLY
+         oYJuqUNfXONXAVPmVduKnrmhKVgeiGJe3+aCkvIJCgshbz4YzHU9JU3jDiVktc+draxW
+         mMmQ==
+X-Gm-Message-State: AFqh2kp7LPPfJVaqOAdcKRGSZ0QN9txdmhnueqNoZsFOuTAh5y3dQkw1
+        ibymE+uMG6u6eu62axwT16XwnIVNaDwsYJVBujE=
+X-Google-Smtp-Source: AMrXdXuan1xOPXQg5PyrO4df+rhGuUN5GxD7tqhAlzUQzezXNbYz0PWxCa1jDnm4LAxO7m9X1+c6Y0tBrqGXxSjwZaE=
+X-Received: by 2002:a65:674e:0:b0:48d:a8d8:6f73 with SMTP id
+ c14-20020a65674e000000b0048da8d86f73mr2518561pgu.396.1673015556953; Fri, 06
+ Jan 2023 06:32:36 -0800 (PST)
+MIME-Version: 1.0
+References: <20230104141245.8407-1-aford173@gmail.com> <20230104141245.8407-2-aford173@gmail.com>
+ <CAMuHMdXQfAJUVsYeN37T_KvXUoEaSqYJ+UWtUehLv-9R9goVzA@mail.gmail.com>
+In-Reply-To: <CAMuHMdXQfAJUVsYeN37T_KvXUoEaSqYJ+UWtUehLv-9R9goVzA@mail.gmail.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Fri, 6 Jan 2023 08:32:25 -0600
+Message-ID: <CAHCN7xJQZgLgDH_beWZfvzksEgm87rotfq7T2SMhgzjojJesKg@mail.gmail.com>
+Subject: Re: [PATCH 2/4] Revert "arm64: dts: renesas: Add compatible
+ properties to AR8031 Ethernet PHYs"
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     linux-renesas-soc@vger.kernel.org, aford@beaconembedded.com,
+        Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Nikita Travkin <nikita@trvn.ru>,
-        Julian Ribbeck <julian.ribbeck@gmx.de>,
-        Josef W Menad <JosefWMenad@protonmail.ch>,
-        Markuss Broks <markuss.broks@gmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: [PATCH v6 5/5] arm64: dts: qcom: msm8916-samsung-j5-common: Add MUIC support
-Message-ID: <20230106143051.547302-1-linmengbo0689@protonmail.com>
-In-Reply-To: <20230106142748.546975-1-linmengbo0689@protonmail.com>
-References: <20230106142748.546975-1-linmengbo0689@protonmail.com>
-Feedback-ID: 40467236:user:proton
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        netdev <netdev@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Markuss Broks <markuss.broks@gmail.com>
+On Fri, Jan 6, 2023 at 8:28 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Adam,
+>
+> CC Ethernet phy
+>
+> On Wed, Jan 4, 2023 at 3:12 PM Adam Ford <aford173@gmail.com> wrote:
+> > This reverts commit 18a2427146bf8a3da8fc7825051d6aadb9c2d8fb.
+> >
+> > Due to the part shortage, the AR8031 PHY was replaced with a
+> > Micrel KSZ9131.  Hard-coding the ID of the PHY makes this new
+> > PHY non-operational.  Since previous hardware had shipped,
+> > it's not as simple as just replacing the ID number as it would
+> > break the older hardware.  Since the generic mode can correctly
+> > identify both versions of hardware, it seems safer to revert
+> > this patch.
+> >
+> > Signed-off-by: Adam Ford <aford173@gmail.com>
+>
+> Thanks for your patch!
+>
+> > --- a/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
+> > +++ b/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
+> > @@ -59,8 +59,6 @@ &avb {
+> >         status = "okay";
+> >
+> >         phy0: ethernet-phy@0 {
+> > -               compatible = "ethernet-phy-id004d.d074",
+> > -                            "ethernet-phy-ieee802.3-c22";
+> >                 reg = <0>;
+> >                 interrupt-parent = <&gpio2>;
+> >                 interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
+>
+> The next line:
+>
+>                 reset-gpios = <&gpio2 10 GPIO_ACTIVE_LOW>;
+>
+> Unfortunately, removing the compatible value will cause regressions
+> for kexec/kdump and for Ethernet driver unbind, as the PHY reset will
+> be asserted before starting the new kernel, or on driver unbind.
+> Due to a deficiency in the Ethernet PHY subsystem, the PHY will be
+> probed while the reset is still asserted, and thus fail probing[1].
 
-The MUIC installed is a part of SM5703 MFD, and it seems to work
-the same as the SM5502 MUIC unit.
+FWIW, the bootloader brings the device out of reset.  Would it be
+sufficient to keep  "ethernet-phy-ieee802.3-c22" and drop the
+hard-coded ID?
 
-Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
-[Apply for msm8916-samsung-j5x]
-Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
----
- .../dts/qcom/msm8916-samsung-j5-common.dtsi   | 50 ++++++++++++++++---
- .../boot/dts/qcom/msm8916-samsung-j5x.dts     |  8 +++
- 2 files changed, 50 insertions(+), 8 deletions(-)
+thanks,
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi b/arch=
-/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi
-index 5755b360c6ed..f3b81b6f0a2f 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi
-@@ -3,6 +3,7 @@
- #include "msm8916-pm8916.dtsi"
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-=20
- / {
- =09aliases {
-@@ -58,6 +59,29 @@ button-home {
- =09=09=09linux,code =3D <KEY_HOMEPAGE>;
- =09=09};
- =09};
-+
-+=09i2c_muic: i2c-muic {
-+=09=09compatible =3D "i2c-gpio";
-+=09=09sda-gpios =3D <&msmgpio 105 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
-+=09=09scl-gpios =3D <&msmgpio 106 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
-+
-+=09=09pinctrl-names =3D "default";
-+=09=09pinctrl-0 =3D <&muic_i2c_default>;
-+
-+=09=09#address-cells =3D <1>;
-+=09=09#size-cells =3D <0>;
-+
-+=09=09muic: extcon@25 {
-+=09=09=09compatible =3D "siliconmitus,sm5703-muic";
-+=09=09=09reg =3D <0x25>;
-+
-+=09=09=09interrupt-parent =3D <&msmgpio>;
-+=09=09=09interrupts =3D <12 IRQ_TYPE_EDGE_FALLING>;
-+
-+=09=09=09pinctrl-names =3D "default";
-+=09=09=09pinctrl-0 =3D <&muic_int_default>;
-+=09=09};
-+=09};
- };
-=20
- &blsp1_uart2 {
-@@ -69,11 +93,6 @@ &pm8916_resin {
- =09linux,code =3D <KEY_VOLUMEDOWN>;
- };
-=20
--/* FIXME: Replace with SM5703 MUIC when driver is available */
--&pm8916_usbin {
--=09status =3D "okay";
--};
--
- &pronto {
- =09status =3D "okay";
- };
-@@ -97,13 +116,12 @@ &sdhc_2 {
- };
-=20
- &usb {
-+=09extcon =3D <&muic>, <&muic>;
- =09status =3D "okay";
--=09dr_mode =3D "peripheral";
--=09extcon =3D <&pm8916_usbin>;
- };
-=20
- &usb_hs_phy {
--=09extcon =3D <&pm8916_usbin>;
-+=09extcon =3D <&muic>;
- };
-=20
- &smd_rpm_regulators {
-@@ -225,4 +243,20 @@ gpio_keys_default: gpio-keys-default-state {
- =09=09drive-strength =3D <2>;
- =09=09bias-pull-up;
- =09};
-+
-+=09muic_i2c_default: muic-i2c-default-state {
-+=09=09pins =3D "gpio105", "gpio106";
-+=09=09function =3D "gpio";
-+
-+=09=09drive-strength =3D <2>;
-+=09=09bias-disable;
-+=09};
-+
-+=09muic_int_default: muic-int-default-state {
-+=09=09pins =3D "gpio12";
-+=09=09function =3D "gpio";
-+
-+=09=09drive-strength =3D <2>;
-+=09=09bias-disable;
-+=09};
- };
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-j5x.dts b/arch/arm64/=
-boot/dts/qcom/msm8916-samsung-j5x.dts
-index 7656ac4508cf..7e1326cc13c5 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-j5x.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-j5x.dts
-@@ -9,3 +9,11 @@ / {
- =09compatible =3D "samsung,j5x", "qcom,msm8916";
- =09chassis-type =3D "handset";
- };
-+
-+&muic {
-+=09interrupts =3D <121 IRQ_TYPE_EDGE_FALLING>;
-+};
-+
-+&muic_int_default {
-+=09pins =3D "gpio121";
-+};
---=20
-2.30.2
-
-
+adam
+>
+> Is there a (new) proper way to handle this?
+> Perhaps the issue has been fixed in the PHY subsystem meanwhile?
+>
+> Thanks!
+>
+> [1] https://lore.kernel.org/all/cover.1631174218.git.geert+renesas@glider.be
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
