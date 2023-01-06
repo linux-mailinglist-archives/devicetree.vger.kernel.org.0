@@ -2,71 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94BDD660A7C
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 00:57:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D147F660A49
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 00:29:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236354AbjAFX5k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 18:57:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56664 "EHLO
+        id S234399AbjAFX3e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 18:29:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236232AbjAFX5g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 18:57:36 -0500
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA0EA7CDFF;
-        Fri,  6 Jan 2023 15:57:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1673049454; x=1704585454;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=3d1DO0cDsSSFGxEy7xYujqdO/RXqj/Yc3KB9N5fpqDU=;
-  b=OmDQz8Ojbhii214FsWYPvwR8Wgq2GiiwUv6z8FnA1Z9BpUbf/VdumxbU
-   2gqlreDE8fN1+svoiclvs7ovo8AMSDbC3Ab89JEj1uckulFtdLKBgdEtv
-   H53pr0GoncpJTkB/DB7Bqpo1YnYJIFFU8veqFQG2c0q54PPQJp2fkQXWg
-   6IdMfYCJcK89SXhd0qg4c2EtHWMnnSQELc10SvkscCl2TOQZlGjb7ct0N
-   gjZUUeOU85wJKksaTEL3FghiO65ylbxYEpc8jFX3NS314G/e5c5neUKcc
-   p/imfVDFkWWIsyCCfTwdkSGykL9FoFopKOLAV/5SrzAnom6ZjNj+WlIzI
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10582"; a="387047041"
-X-IronPort-AV: E=Sophos;i="5.96,306,1665471600"; 
-   d="scan'208";a="387047041"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Jan 2023 15:57:34 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10582"; a="984817951"
-X-IronPort-AV: E=Sophos;i="5.96,306,1665471600"; 
-   d="scan'208";a="984817951"
-Received: from apbaezbo-mobl2.amr.corp.intel.com (HELO [10.212.60.153]) ([10.212.60.153])
-  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Jan 2023 15:57:32 -0800
-Message-ID: <654077f4-2ae2-3457-b777-9eb3b816c6ba@linux.intel.com>
-Date:   Fri, 6 Jan 2023 10:16:09 -0600
+        with ESMTP id S235888AbjAFX3b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 18:29:31 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99B568CD0A;
+        Fri,  6 Jan 2023 15:29:28 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3BF6B61F9E;
+        Fri,  6 Jan 2023 23:29:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BDE8C433F1;
+        Fri,  6 Jan 2023 23:29:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673047767;
+        bh=lwfSS0TgVuKSvxQOB/bNeAFUOiWtAHKnU5ZnPUUTNEE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ULdwoj/gG2DPRAGGJsQ3OqOTh9Enpy6KWAhHuyXwQ9Fdu2fEwDf74kkhjpuMqXqgu
+         /PkdkXEW2V6/f+KQivQFkow/YQEfq7O7bzv+pPzQHvg5dmjmn1/V9Yh8zrobOlRCpF
+         thu9X2dG5ul/lcEvLObRvWedWq7GI64cgp47X8dmeoAHJFNQb98Zi84N/vy/WRe9RW
+         MK9887gUerXGBByoJX4Oo1X0A3+a/KG7GQhc2WF0iMAVW0TNYCWIh7RJTCYU3BLgvg
+         3YsV5ejs5uWIu6nNw80w3D9FwG+gKOghpvK9vLBiZeIKht6yUxFv1MGUitLSpLUorz
+         s/t41KtAuuv2A==
+Date:   Fri, 6 Jan 2023 23:29:21 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Prabhakar <prabhakar.csengg@gmail.com>,
+        "Conor.Dooley" <conor.dooley@microchip.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+        guoren <guoren@kernel.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        "open list:RISC-V ARCHITECTURE" <linux-riscv@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Tsukasa OI <research_trasio@irq.a4lg.com>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Mayuresh Chitale <mchitale@ventanamicro.com>
+Subject: Re: [RFC PATCH v6 1/6] riscv: mm: dma-noncoherent: Switch using
+ function pointers for cache management
+Message-ID: <Y7iu0RC9jgWh7hfJ@spud>
+References: <20230106185526.260163-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20230106185526.260163-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <6f7d06ef-d74d-4dfc-9b77-6ae83e0d7816@app.fastmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.4.2
-Subject: Re: [RFC PATCH 03/14] ASoC: qcom: Add USB backend ASoC driver for Q6
-Content-Language: en-US
-To:     Wesley Cheng <quic_wcheng@quicinc.com>,
-        srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
-        perex@perex.cz, broonie@kernel.org, lgirdwood@gmail.com,
-        andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        gregkh@linuxfoundation.org, Thinh.Nguyen@synopsys.com,
-        bgoswami@quicinc.com, tiwai@suse.com, robh+dt@kernel.org,
-        agross@kernel.org
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_jackp@quicinc.com,
-        quic_plai@quicinc.com
-References: <20221223233200.26089-1-quic_wcheng@quicinc.com>
- <20221223233200.26089-4-quic_wcheng@quicinc.com>
- <e29060b1-df65-c0d1-5777-023879a5863e@linux.intel.com>
- <0f903c49-a989-14a6-bac1-c4cae21839eb@quicinc.com>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-In-Reply-To: <0f903c49-a989-14a6-bac1-c4cae21839eb@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DATE_IN_PAST_06_12,
-        DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="OpZnInV74VOFB1Cb"
+Content-Disposition: inline
+In-Reply-To: <6f7d06ef-d74d-4dfc-9b77-6ae83e0d7816@app.fastmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -74,47 +76,54 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--OpZnInV74VOFB1Cb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 1/5/23 19:05, Wesley Cheng wrote:
-> Hi Pierre,
-> 
-> On 1/4/2023 3:41 PM, Pierre-Louis Bossart wrote:
->>
->>> +int q6usb_alsa_connection_cb(struct snd_soc_usb *usb, int card_idx,
->>> +            int connected)
->>> +{
->>> +    struct snd_soc_dapm_context *dapm;
->>> +    struct q6usb_port_data *data;
->>> +
->>> +    if (!usb->component)
->>> +        return 0;
->>> +
->>> +    dapm = snd_soc_component_get_dapm(usb->component);
->>> +    data = dev_get_drvdata(usb->component->dev);
->>> +
->>> +    if (connected) {
->>> +        snd_soc_dapm_enable_pin(dapm, "USB_RX_BE");
->>> +        /* We only track the latest USB headset plugged in */
->>
->> that answers to my earlier question on how to deal with multiple
->> devices, but is this a desirable policy? This could lead to a lot of
->> confusion. If there are restrictions to a single device, then it might
->> be more interesting for userspace or the user to indicate which USB
->> device gets to use USB offload and all others use legacy.
->>
-> 
-> Yeah, as mentioned its still pretty open ended.  I think from the
-> feedback received from Mark/Takashi, this was a viable option for now.
-> Would you happen to have any insight/input on how the userspace can pass
-> down that selection to the ASoC framework?  Maybe some kind of PCM IOCTL
-> call?
+On Fri, Jan 06, 2023 at 11:31:33PM +0100, Arnd Bergmann wrote:
+> On Fri, Jan 6, 2023, at 19:55, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > +struct riscv_cache_ops zicbom_cmo_ops =3D {
+> > +	.clean_range =3D &zicbom_cmo_clean_range,
+> > +	.inv_range =3D &zicbom_cmo_inval_range,
+> > +	.flush_range =3D &zicbom_cmo_flush_range,
+> > +};
+> > +#else
+> > +struct riscv_cache_ops zicbom_cmo_ops =3D {
+> > +	.clean_range =3D NULL,
+> > +	.inv_range =3D NULL,
+> > +	.flush_range =3D NULL,
+> > +	.riscv_dma_noncoherent_cmo_ops =3D NULL,
+> > +};
+> > +#endif
+> > +EXPORT_SYMBOL(zicbom_cmo_ops);
+>=20
+> Same here: If the ZICBOM ISA is disabled, nothing should
+> reference zicbom_cmo_ops.
 
-I don't have a turn-key solution either :-)
-We'd need userspace to make one device as 'preferred' or 'optimized' and
-give it a priority somehow. It can't be a PCM IOCTL, it has to be at the
-device level.
+> Also, since ZICBOM is a standard
+> extension, I think it makes sense to always have it enabled,
+> at least whenever noncoherent DMA is supported, that way
+> it can be the default that gets used in the absence of any
+> nonstandard cache controller.
 
-It's really a second-level optimization that can be parked for now, the
-bulk of the work is really the interaction between USB audio and ASoC
-stacks, we should probably focus on that BIG topic with a design that
-can be shared across implementations.
+While I think of it, this is not possible as Zicbom requires toolchain
+support whereas the alternative methods for non-coherent DMA do not.
+
+Thanks,
+Conor.
+
+
+--OpZnInV74VOFB1Cb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY7iu0AAKCRB4tDGHoIJi
+0lKnAPwP9GjTSF/p2NWFDVeTSbVY5BU7VIVCG30YMppNdquBvQEAtC4SemaEoAHM
+I5qlKNDdbS2X3qEHRE9DcLDTqdRtMA0=
+=ztwi
+-----END PGP SIGNATURE-----
+
+--OpZnInV74VOFB1Cb--
