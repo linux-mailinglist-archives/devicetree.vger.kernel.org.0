@@ -2,30 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33F4D65FC69
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 09:08:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 03B7865FC6F
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 09:09:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229554AbjAFIIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 03:08:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37284 "EHLO
+        id S229672AbjAFIJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 03:09:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231665AbjAFIIn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 03:08:43 -0500
-Received: from mail-4318.protonmail.ch (mail-4318.protonmail.ch [185.70.43.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BACF034D6C;
-        Fri,  6 Jan 2023 00:08:42 -0800 (PST)
-Date:   Fri, 06 Jan 2023 08:08:29 +0000
+        with ESMTP id S229633AbjAFIJq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 03:09:46 -0500
+Received: from mail-0201.mail-europe.com (mail-0201.mail-europe.com [51.77.79.158])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AF8078E99;
+        Fri,  6 Jan 2023 00:09:43 -0800 (PST)
+Date:   Fri, 06 Jan 2023 08:09:30 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1672992520; x=1673251720;
-        bh=6Z4CZfzg9jsvKcLkDAU0UNbrWpC5ZjmGFpDg3aGRu7w=;
-        h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
-         Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
-        b=ypc6FOzOLAYhby59E1bymMZUV96BiwNhgxBjGg/+KsZAuqMwZqtvqqeA2ZpkxDsWp
-         pnK3vHFbe/XWJSz4nyEf0Kun3Rj+6I9XIICh5rZCQtjx4xJcxEziwN83KrWhDIHixo
-         WJbrfRRbxmmy8l1XdiRafguO6fAv4PzQLeP7lvVhiAHoK8rDoJUGKk4Qz9q7QyllVJ
-         tPYkg2zQzfbZPTV/RKWhzHbDxunqHFk+0TjpI759SsjnNNFz0QORWe35NVpmRJX3EZ
-         ZsAdcQqDVk8DdXBQBBuk8qNirF0q2Hp670eXRVx/JmNH/yRW8KfQffXgv1b1zVb/AU
-         v3Yuvz5ubJdRg==
+        s=protonmail3; t=1672992578; x=1673251778;
+        bh=z02n7iWBNY344G8/xdaURdOpX/YJ6b0Mn2BC+M4sbts=;
+        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+         Message-ID:BIMI-Selector;
+        b=cZQq3kz1IQqwb5iP3FgzdFLTkMg9G4ZGf/12UyrYfTUXfIVIhBwpaHZ8kWuHp2A3H
+         U88HHtTsQqG+kWK9nRKqneBbgtaX73gvlndugZiugYjPfmd7IorqpaOlXef39B5zIS
+         HINM5dwzpJJreuo6nx1tbUDHDaX7ZzxsNIOO+gFk9oYvaZvNgWGjwC7Q65ZmVRBjgF
+         wTil+b6nkyMMFxxN4vGyfL3cCP1VVBhDvT9Nytq9pXnBLf581pH4U920WLUxEqbU4R
+         Npr5LErTN0bt3riT5VOMujDallzYQBnI5lt51DUcBNhyMs8+v+KCeD35/EH/+0f6Q2
+         jEOGAETaMbW0A==
 To:     linux-kernel@vger.kernel.org
 From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
 Cc:     Andy Gross <agross@kernel.org>,
@@ -41,16 +42,19 @@ Cc:     Andy Gross <agross@kernel.org>,
         Stephan Gerhold <stephan@gerhold.net>,
         Nikita Travkin <nikita@trvn.ru>, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: [PATCH v5 0/5] arm64: dts: qcom: msm8916-gplus-fl8005a: Add initial device tree
-Message-ID: <20230106080644.255940-1-linmengbo0689@protonmail.com>
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v5 1/5] dt-bindings: vendor-prefixes: Add GPLUS
+Message-ID: <20230106080844.255994-1-linmengbo0689@protonmail.com>
+In-Reply-To: <20230106080644.255940-1-linmengbo0689@protonmail.com>
+References: <20230106080644.255940-1-linmengbo0689@protonmail.com>
 Feedback-ID: 40467236:user:proton
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,24 +62,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-v5: Reword the flash LEDs patch.
-v4: Fix missing Makefile entry in v3.
-v3: Sort properties in l11 and nodes in touchscreen pinctrl.
-v2: Set property status =3D "okay"; as the last property.
-Reword the bindings patch.
+Add vendor prefix for GPLUS.
+https://www.gplus.com.tw
 
-GPLUS FL8005A is a tablet using the MSM8916 SoC released in 2015.
+Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Add a device tree for with initial support for:
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Docum=
+entation/devicetree/bindings/vendor-prefixes.yaml
+index 49f6034d7b65..5ff38589eb79 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -514,6 +514,8 @@ patternProperties:
+     description: Shenzhen Huiding Technology Co., Ltd.
+   "^google,.*":
+     description: Google, Inc.
++  "^gplus,.*":
++    description: GPLUS
+   "^grinn,.*":
+     description: Grinn
+   "^grmn,.*":
+--=20
+2.30.2
 
-- GPIO keys
-- GPIO LEDs
-- pm8916-vibrator
-- SDHCI (internal and external storage)
-- USB Device Mode
-- UART
-- WCNSS (WiFi/BT)
-- Regulators
-- Focaltech FT5402 touchscreen
-- Qualcomm GPIO flash LEDs
 
