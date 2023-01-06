@@ -2,148 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E7C7660665
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 19:33:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 20C06660667
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 19:34:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235303AbjAFSdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 13:33:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60276 "EHLO
+        id S235021AbjAFSej (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 13:34:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235021AbjAFSdn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 13:33:43 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E19D67CDDA
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 10:33:39 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id cf42so3180526lfb.1
-        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 10:33:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CrCVYWNpL5Wnb1p4Qbo4TV8of4XvTw24DGvAqDgmAt4=;
-        b=wHsGjhqFYaNvFCFES3o26xH6GOcgIKRtcs3sIhmjCgHTmSkMpEx6lu0TmuoHtSL6+K
-         9iaYlmN2jIMGJUuxSpE9RmtLjtmIK0ntzEXFCZtDIebFrZpICH6VbSUzODBM0d1TMesl
-         3whfqrfHEUvvKYxcQNCXWMBW0g0rmnsA1hAAjRSlAFi6Z8vFqh+lGWsoHYhfP5jnUd/1
-         0BxqVkp5ebTO4T9t+PZfJdds6X3TijLosRhdQDrqkzGTbfe3iRJ3Pe6/WPXzk2NmwvnF
-         KOG5ogOzUyOEoSLtuoVLqPPoJ9qPbP3fiHolvaaj/p7acd/ms8bgE2U6F82tj0UkUSB8
-         4eDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CrCVYWNpL5Wnb1p4Qbo4TV8of4XvTw24DGvAqDgmAt4=;
-        b=2O+O+7ZvQJFm9l3Genpv9lYse2IJS2p3bstGgs83m3FRmK7heW5L+M+cREaU7wvfxL
-         Ouy9/wSnAJh6BOtq0E9qp681+LJX3scSl1p3GpA+iNMjZUky8PQLW7rz4o4wichqd8SP
-         I1u90DumimcHO4z2WpNXn1lwJ5mbvxxCxL/JJTWRHOGYBoZhQvpsD9uzvaitsfQqOD8X
-         4N6Rqgnum38pqNjjVtXlF9GGzoIY40M8xv47WU0Dx7H3yHnAJaQaM5a7UP7Tq4HO0kxG
-         7a6dy92pa8iVqgco/q8tZvkbCcy8lC59ewxr7ikm+nayIe4YWKlDFSUmDol/AHGSkeYw
-         wYjw==
-X-Gm-Message-State: AFqh2ko3RpeWzG+VOru5ZRuRjGUiihR2Egi/7IuWxPM5u3M8n/ZV4vwC
-        94mjjQkvjsREyiL5jLc6+FrLYA==
-X-Google-Smtp-Source: AMrXdXtYYOvcWvdLnE52R/PdG2gcdhQoTn0D+na2q7BvwZQLX3ks5xdQQ91OSsx3RsVSfct/7fNLNA==
-X-Received: by 2002:a05:6512:1104:b0:4af:5088:959c with SMTP id l4-20020a056512110400b004af5088959cmr17307664lfg.2.1673030018285;
-        Fri, 06 Jan 2023 10:33:38 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id n14-20020ac2490e000000b004b55cebdbd7sm234780lfi.120.2023.01.06.10.33.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Jan 2023 10:33:37 -0800 (PST)
-Message-ID: <d87ca8de-f763-48a4-d7f5-54bfc5192f97@linaro.org>
-Date:   Fri, 6 Jan 2023 20:33:36 +0200
+        with ESMTP id S234746AbjAFSeh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 13:34:37 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08A757681E;
+        Fri,  6 Jan 2023 10:34:36 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id AD1C8B81D2C;
+        Fri,  6 Jan 2023 18:34:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9DDDC433EF;
+        Fri,  6 Jan 2023 18:34:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673030074;
+        bh=xUK6wFT5FrlRcYni9bL/QHrma1cq3ZCJnoLrZkFOSEw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=HOlC/44C5Wfsj9Ch/Lfipm3DaGgzoLjVjlOXApkWBpHFtdNdzO5eJ7TG/SI5pyOa+
+         lZhvZVXZ6gBiuMGZ4hMMJJ1pqUp1wl7PBeeKahDiFkCuHObn7TZSc9Qts1MAfbKdsl
+         mzjPJ0LwRNaZIYhZgnPlKfkGaC0OyJWzQGbd00eMrwET6Dx8uKvVX5pFh7T+5j/4YX
+         67CP+QIymgJkVLlTUbLHHhQqyEmMQPSVgH4EBcMeEgD/IgH7PbiEHjEnLk0FfI0nxU
+         HnVbf3LPMOPZhPgb0OGbqKR4iJAg9FDMuIoJprZRwABSCIkMudJ+6adPBgpO5Rx/7/
+         1uvmZRJ0SJtgg==
+Date:   Fri, 6 Jan 2023 18:34:29 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Palmer Dabbelt <palmer@dabbelt.com>
+Cc:     linux-riscv@lists.infradead.org,
+        Conor Dooley <conor.dooley@microchip.com>, jrtc27@jrtc27.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, heiko@sntech.de, ajones@ventanamicro.com,
+        guoren@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/2] riscv,isa fixups
+Message-ID: <Y7hptVmrXBFvJhpU@spud>
+References: <20221205174459.60195-1-conor@kernel.org>
+ <mhng-e3f1a8a9-2d89-4331-bb8a-b798af0cb277@palmer-ri-x1c9>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH 1/9] clk: qcom: rpmh: define IPA clocks where required
-Content-Language: en-GB
-To:     Alex Elder <elder@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     Georgi Djakov <djakov@kernel.org>,
-        Odelu Kukatla <okukatla@codeaurora.org>,
-        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230106073313.1720029-1-dmitry.baryshkov@linaro.org>
- <20230106073313.1720029-2-dmitry.baryshkov@linaro.org>
- <927673c9-ce50-d03a-83f5-45d5416838d1@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <927673c9-ce50-d03a-83f5-45d5416838d1@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="HpGX6SdyBnCEs+UY"
+Content-Disposition: inline
+In-Reply-To: <mhng-e3f1a8a9-2d89-4331-bb8a-b798af0cb277@palmer-ri-x1c9>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/01/2023 15:39, Alex Elder wrote:
-> On 1/6/23 1:33 AM, Dmitry Baryshkov wrote:
->> Follow the example of sc7180 and sdx55 and implement IP0 resource as
->> clocks rather than interconnects.
->>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> 
-> So this is simply adding these clocks?  Were they not
-> defined/implemented as interconnects before?  (It
-> isn't clear from your message above, and I just want
-> to be sure there's no duplication.)
 
-Well, that's the point of the patchset: to turn them from ICC to clock. 
-I can change the order of the patches in the patchset, if you think it 
-will make it more obvious.
+--HpGX6SdyBnCEs+UY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 
->                      -Alex
-> 
->> ---
->>   drivers/clk/qcom/clk-rpmh.c | 4 ++++
->>   1 file changed, 4 insertions(+)
->>
->> diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
->> index 586a810c682c..5f914cf36b10 100644
->> --- a/drivers/clk/qcom/clk-rpmh.c
->> +++ b/drivers/clk/qcom/clk-rpmh.c
->> @@ -445,6 +445,7 @@ static struct clk_hw *sm8150_rpmh_clocks[] = {
->>       [RPMH_RF_CLK2_A]    = &clk_rpmh_rf_clk2_a_ao.hw,
->>       [RPMH_RF_CLK3]        = &clk_rpmh_rf_clk3_a.hw,
->>       [RPMH_RF_CLK3_A]    = &clk_rpmh_rf_clk3_a_ao.hw,
->> +    [RPMH_IPA_CLK]        = &clk_rpmh_ipa.hw,
->>   };
->>   static const struct clk_rpmh_desc clk_rpmh_sm8150 = {
->> @@ -484,6 +485,7 @@ static struct clk_hw *sc8180x_rpmh_clocks[] = {
->>       [RPMH_RF_CLK2_A]    = &clk_rpmh_rf_clk2_d_ao.hw,
->>       [RPMH_RF_CLK3]        = &clk_rpmh_rf_clk3_d.hw,
->>       [RPMH_RF_CLK3_A]    = &clk_rpmh_rf_clk3_d_ao.hw,
->> +    [RPMH_IPA_CLK]        = &clk_rpmh_ipa.hw,
->>   };
->>   static const struct clk_rpmh_desc clk_rpmh_sc8180x = {
->> @@ -504,6 +506,7 @@ static struct clk_hw *sm8250_rpmh_clocks[] = {
->>       [RPMH_RF_CLK1_A]    = &clk_rpmh_rf_clk1_a_ao.hw,
->>       [RPMH_RF_CLK3]        = &clk_rpmh_rf_clk3_a.hw,
->>       [RPMH_RF_CLK3_A]    = &clk_rpmh_rf_clk3_a_ao.hw,
->> +    [RPMH_IPA_CLK]        = &clk_rpmh_ipa.hw,
->>   };
->>   static const struct clk_rpmh_desc clk_rpmh_sm8250 = {
->> @@ -546,6 +549,7 @@ static struct clk_hw *sc8280xp_rpmh_clocks[] = {
->>       [RPMH_IPA_CLK]          = &clk_rpmh_ipa.hw,
->>       [RPMH_PKA_CLK]          = &clk_rpmh_pka.hw,
->>       [RPMH_HWKM_CLK]         = &clk_rpmh_hwkm.hw,
->> +    [RPMH_IPA_CLK]        = &clk_rpmh_ipa.hw,
->>   };
->>   static const struct clk_rpmh_desc clk_rpmh_sc8280xp = {
-> 
+On Fri, Jan 06, 2023 at 10:27:48AM -0800, Palmer Dabbelt wrote:
+> On Mon, 05 Dec 2022 09:44:58 PST (-0800), Conor Dooley wrote:
+> > From: Conor Dooley <conor.dooley@microchip.com>
+> >=20
+> > I noticed ~today~ while looking at the isa manual that I had not
+> > accounted for another couple of edge cases with my regex. As before, I
+> > think attempting to validate the canonical order for multiletter stuff
+> > makes no sense - but we should totally try to avoid false-positives for
+> > combinations that are known to be valid.
+> >=20
+> > All I've changed for v2 was collecting tags & adding in the missing
+> > commit reference that Heiko pointed out.
+> >=20
+> > v3 fixes an issue Jess spotted - it's *any* multi-letter extension that
+> > can come immediately after the single-letter ones, not just ones
+> > starting with Z.
+> >=20
+> > @Palmer, either you can take this once the DT folks have ACKed it if you
+> > like, or I will take onto some v6.2-rcN fixes branch. I don't think that
+> > there is any urgency :)
+>=20
+> Sorry I missed these.
+>=20
+> Reviewed-by: Palmer Dabbelt <palmer@rivosinc.com>
+> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+>=20
+> We can just do a shared tag if you have stuff that depends on them?  That=
+'ll
+> let me keep fixes clean, as I'm running the DT stuff too now.  Though may=
+be
+> it doesn't matter so much because I'm not really taking any DT stuff.
 
--- 
-With best wishes
-Dmitry
+Nah, shared tag is not needed.
+Noone's got a DT with multiletter stuff that needs to be merged yet.
+Feel free to take on on fixes or for-next.
 
+Thanks,
+Conor.
+
+
+--HpGX6SdyBnCEs+UY
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY7hptQAKCRB4tDGHoIJi
+0lFIAP4lpEDhJ5iqVhHMmhiuWGm87Fbm0XcS70lDrNpJaRzFRAD/apKxgkNHopV+
+VQm2J89Mck/lUSzvelR/XOc0N1B5sg0=
+=ewER
+-----END PGP SIGNATURE-----
+
+--HpGX6SdyBnCEs+UY--
