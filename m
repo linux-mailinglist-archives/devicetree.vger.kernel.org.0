@@ -2,62 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 193F665FA11
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 04:20:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4642265FA09
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 04:18:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230465AbjAFDUA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 22:20:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37192 "EHLO
+        id S231548AbjAFDS0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 22:18:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231569AbjAFDS0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 22:18:26 -0500
-Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE284625C9;
-        Thu,  5 Jan 2023 19:18:25 -0800 (PST)
-Received: by mail-il1-f173.google.com with SMTP id m15so528898ilj.8;
-        Thu, 05 Jan 2023 19:18:25 -0800 (PST)
+        with ESMTP id S230234AbjAFDSZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 22:18:25 -0500
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E6B3625C9;
+        Thu,  5 Jan 2023 19:18:24 -0800 (PST)
+Received: by mail-io1-f49.google.com with SMTP id y4so281227iof.0;
+        Thu, 05 Jan 2023 19:18:24 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=ZZOnIW/A3jIdiVWRwgHX4rB5TbYZO3GMET4Ygn0mlBw=;
-        b=pDazbjBTIiRbfOw+XALkcIdy5PjBP0zhCSTBHID8zvdF17ETJrxNuz2FBJVgA4EnKt
-         EOByc9JET1CPfju4YcC4GMcY3+2Uq1UZl9c0F9+4SsSindpLQZpW8MMD1dYZaY/zhCs5
-         +Gs+I+PKpUa4XWXg6K2QWkpyNtt9rAvWwwrKFgpVEaFIF7oBTlNmmSnVRvapBvNryInE
-         T6A7R6uS/X9Exyyi1bph3URQns3IcAbqxg285hynkNjg88HCfR73Bdq9C1mJiKchaN/B
-         nBn+WA0NLYaLJbodugU47DEcOo9Nn3eWQqvuB0i3UhhOHBDN05t4QaLGrX0hFVqnZtrI
-         vDfQ==
-X-Gm-Message-State: AFqh2kosJTIdbHIr7kBayN0b9JfeZcftJcXB+k9niGqpKj5/zXWrVAHj
-        oKJdNsB+PaCQfhSUKrp9ZQ==
-X-Google-Smtp-Source: AMrXdXvW6c+lNsmShN3+QIbZc3yt5Q0Zr8M8EgW6NPwCGdUJw6F0CI7ZtvGYgqV4lTdGJfR+t1FmFg==
-X-Received: by 2002:a05:6e02:1054:b0:30d:7b25:8d04 with SMTP id p20-20020a056e02105400b0030d7b258d04mr3749152ilj.8.1672975105143;
-        Thu, 05 Jan 2023 19:18:25 -0800 (PST)
+        bh=wYKFaUU4WUwK+xZfWsHkCMpC56jh+w0/QlmTFIkRs60=;
+        b=s7oS24dW0b1UNQpxrDcX20ruB28XwB0I+C93fIwzM0RgWNdWuCXvsaA8cSvGKkdPvJ
+         nj9aPTEMMx+Lr2eGpCdZM0kkd8S+OnbHv39ProvDXUo+Q0w9GD7UhohOoECfUjjbatef
+         UPSX/a0mLAoZs1uxizWZzosJox1uP9cfH8p1fsp87nk/bTP/4Cv8ehwy6IQnO0FEH4Sc
+         mZBUuwmalsU3Exf1Zw2ow8/FFWJ2VQHq3zeSUGmFAwzvZD42FUwVFN3mrXi2xGM9RDDw
+         5YzcyvO16v9PrHyO5cANpP5TGDux6Twx4uGF/rFxCPNsBxFyOqIlMTkNhfUrojy5PR//
+         RFjQ==
+X-Gm-Message-State: AFqh2kpkvE/Y9afKHzrfRlSgV+9kiV5ZaUqxtMOdLk0XUyrmqtGfROqC
+        GmOUEtT/XGbfumIWYZ6bWw==
+X-Google-Smtp-Source: AMrXdXsDBq+c58aF7nVFnVtwsw1bd0pMqZ3FjaWxnzSYHCQSOa7QxBXE9B8Uo7bbzH4pwSuY1aeihw==
+X-Received: by 2002:a6b:dc10:0:b0:6eb:abee:634e with SMTP id s16-20020a6bdc10000000b006ebabee634emr35457157ioc.7.1672975103094;
+        Thu, 05 Jan 2023 19:18:23 -0800 (PST)
 Received: from robh_at_kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id c2-20020a023f42000000b0039decb5b452sm1322jaf.65.2023.01.05.19.18.23
+        by smtp.gmail.com with ESMTPSA id n35-20020a056602342300b006bb5af55ddfsm13874837ioz.19.2023.01.05.19.18.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Jan 2023 19:18:24 -0800 (PST)
-Received: (nullmailer pid 2198649 invoked by uid 1000);
+        Thu, 05 Jan 2023 19:18:22 -0800 (PST)
+Received: (nullmailer pid 2198646 invoked by uid 1000);
         Fri, 06 Jan 2023 03:18:21 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Michael Tretter <m.tretter@pengutronix.de>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Philipp Zabel <p.zabel@pengutronix.de>, kernel@pengutronix.de,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-media@vger.kernel.org, linux-imx@nxp.com,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        devicetree@vger.kernel.org
-In-Reply-To: <20230105134729.59542-2-m.tretter@pengutronix.de>
-References: <20230105134729.59542-1-m.tretter@pengutronix.de>
- <20230105134729.59542-2-m.tretter@pengutronix.de>
-Message-Id: <167297493349.2193688.13768937269097834481.robh@kernel.org>
-Subject: Re: [PATCH 1/8] media: dt-bindings: media: fsl-pxp: convert to yaml
+To:     Faiz Abbas <faiz.abbas@arm.com>
+Cc:     linux-kernel@vger.kernel.org, broonie@kernel.org,
+        kuninori.morimoto.gx@renesas.com, robh+dt@kernel.org,
+        Deepak.Pandey@arm.com, alsa-devel@alsa-project.org,
+        Anurag.Koul@arm.com, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, lgirdwood@gmail.com
+In-Reply-To: <20230105160346.29018-1-faiz.abbas@arm.com>
+References: <20230105160346.29018-1-faiz.abbas@arm.com>
+Message-Id: <167297490078.2192494.10604791859897237948.robh@kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: simple-card: Document simple-audio-card,plat
 Date:   Thu, 05 Jan 2023 21:18:21 -0600
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -70,77 +65,62 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu, 05 Jan 2023 14:47:22 +0100, Michael Tretter wrote:
-> Convert the bindings of the Freescale Pixel Pipeline to YAML.
+On Thu, 05 Jan 2023 21:33:46 +0530, Faiz Abbas wrote:
+> The simple card driver has support for adding cpu, codec and platform
+> nodes with the simple-audio-card prefix. Add documentation for the plat
+> binding.
 > 
-> The conversion drops the previously listed compatibles for several SoCs.
-> It is unclear, if the PXP on these SoCs is compatible to any of the PXPs
-> on the existing SoCs and would allow to reuse the already defined
-> compatibles. The missing compatibles should be brought back when the
-> support for the PXP on these SoCs is added.
-> 
-> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+> Signed-off-by: Faiz Abbas <faiz.abbas@arm.com>
 > ---
->  .../bindings/media/fsl,imx6ull-pxp.yaml       | 62 +++++++++++++++++++
->  .../devicetree/bindings/media/fsl-pxp.txt     | 26 --------
->  2 files changed, 62 insertions(+), 26 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/media/fsl,imx6ull-pxp.yaml
->  delete mode 100644 Documentation/devicetree/bindings/media/fsl-pxp.txt
+>  .../bindings/sound/simple-card.yaml           | 23 +++++++++++++++++++
+>  1 file changed, 23 insertions(+)
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/sound/simple-card.yaml:293:2: [error] syntax error: expected <block end>, but found '<block sequence start>' (syntax)
 
-Full log is available here: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230105134729.59542-2-m.tretter@pengutronix.de
+dtschema/dtc warnings/errors:
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/sound/simple-card.example.dts'
+Documentation/devicetree/bindings/sound/simple-card.yaml:293:2: expected <block end>, but found '<block sequence start>'
+make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/sound/simple-card.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+Traceback (most recent call last):
+  File "/usr/bin/yamllint", line 33, in <module>
+    sys.exit(load_entry_point('yamllint==1.26.3', 'console_scripts', 'yamllint')())
+  File "/usr/lib/python3/dist-packages/yamllint/cli.py", line 210, in run
+    prob_level = show_problems(problems, file, args_format=args.format,
+  File "/usr/lib/python3/dist-packages/yamllint/cli.py", line 106, in show_problems
+    for problem in problems:
+  File "/usr/lib/python3/dist-packages/yamllint/linter.py", line 203, in _run
+    for problem in get_cosmetic_problems(buffer, conf, filepath):
+  File "/usr/lib/python3/dist-packages/yamllint/linter.py", line 140, in get_cosmetic_problems
+    for problem in rule.check(rule_conf,
+  File "/usr/lib/python3/dist-packages/yamllint/rules/indentation.py", line 580, in check
+    for problem in _check(conf, token, prev, next, nextnext, context):
+  File "/usr/lib/python3/dist-packages/yamllint/rules/indentation.py", line 346, in _check
+    'wrong indentation: expected %d but found %d' %
+TypeError: %d format: a real number is required, not NoneType
+./Documentation/devicetree/bindings/sound/simple-card.yaml:293:2: expected <block end>, but found '<block sequence start>'
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/simple-card.yaml: ignoring, error parsing file
+make: *** [Makefile:1508: dt_binding_check] Error 2
 
+doc reference errors (make refcheckdocs):
 
-pxp@20f0000: compatible:0: 'fsl,imx6sll-pxp' is not one of ['fsl,imx6ul-pxp', 'fsl,imx6ull-pxp', 'fsl,imx7d-pxp']
-	arch/arm/boot/dts/imx6sll-evk.dtb
-	arch/arm/boot/dts/imx6sll-kobo-clarahd.dtb
-	arch/arm/boot/dts/imx6sll-kobo-librah2o.dtb
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230105160346.29018-1-faiz.abbas@arm.com
 
-pxp@20f0000: compatible: ['fsl,imx6sll-pxp', 'fsl,imx6ull-pxp'] is too long
-	arch/arm/boot/dts/imx6sll-evk.dtb
-	arch/arm/boot/dts/imx6sll-kobo-clarahd.dtb
-	arch/arm/boot/dts/imx6sll-kobo-librah2o.dtb
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-pxp@2218000: compatible:0: 'fsl,imx6sx-pxp' is not one of ['fsl,imx6ul-pxp', 'fsl,imx6ull-pxp', 'fsl,imx7d-pxp']
-	arch/arm/boot/dts/imx6sx-nitrogen6sx.dtb
-	arch/arm/boot/dts/imx6sx-sabreauto.dtb
-	arch/arm/boot/dts/imx6sx-sdb.dtb
-	arch/arm/boot/dts/imx6sx-sdb-mqs.dtb
-	arch/arm/boot/dts/imx6sx-sdb-reva.dtb
-	arch/arm/boot/dts/imx6sx-sdb-sai.dtb
-	arch/arm/boot/dts/imx6sx-softing-vining-2000.dtb
-	arch/arm/boot/dts/imx6sx-udoo-neo-basic.dtb
-	arch/arm/boot/dts/imx6sx-udoo-neo-extended.dtb
-	arch/arm/boot/dts/imx6sx-udoo-neo-full.dtb
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-pxp@2218000: compatible: ['fsl,imx6sx-pxp', 'fsl,imx6ull-pxp'] is too long
-	arch/arm/boot/dts/imx6sx-nitrogen6sx.dtb
-	arch/arm/boot/dts/imx6sx-sabreauto.dtb
-	arch/arm/boot/dts/imx6sx-sdb.dtb
-	arch/arm/boot/dts/imx6sx-sdb-mqs.dtb
-	arch/arm/boot/dts/imx6sx-sdb-reva.dtb
-	arch/arm/boot/dts/imx6sx-sdb-sai.dtb
-	arch/arm/boot/dts/imx6sx-softing-vining-2000.dtb
-	arch/arm/boot/dts/imx6sx-udoo-neo-basic.dtb
-	arch/arm/boot/dts/imx6sx-udoo-neo-extended.dtb
-	arch/arm/boot/dts/imx6sx-udoo-neo-full.dtb
+pip3 install dtschema --upgrade
 
-pxp@2218000: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/imx6sx-nitrogen6sx.dtb
-	arch/arm/boot/dts/imx6sx-sabreauto.dtb
-	arch/arm/boot/dts/imx6sx-sdb.dtb
-	arch/arm/boot/dts/imx6sx-sdb-mqs.dtb
-	arch/arm/boot/dts/imx6sx-sdb-reva.dtb
-	arch/arm/boot/dts/imx6sx-sdb-sai.dtb
-	arch/arm/boot/dts/imx6sx-softing-vining-2000.dtb
-	arch/arm/boot/dts/imx6sx-udoo-neo-basic.dtb
-	arch/arm/boot/dts/imx6sx-udoo-neo-extended.dtb
-	arch/arm/boot/dts/imx6sx-udoo-neo-full.dtb
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
