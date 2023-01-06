@@ -2,247 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62D4865F886
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 02:04:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1EB265F88E
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 02:06:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236453AbjAFBEZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 20:04:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58258 "EHLO
+        id S232516AbjAFBGb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 20:06:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236564AbjAFBEJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 20:04:09 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4DCE471FE1;
-        Thu,  5 Jan 2023 17:04:00 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D397611FB;
-        Thu,  5 Jan 2023 17:04:41 -0800 (PST)
-Received: from slackpad.fritz.box (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3EF243F23F;
-        Thu,  5 Jan 2023 17:03:57 -0800 (PST)
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Samuel Holland <samuel@sholland.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Icenowy Zheng <uwu@icenowy.me>,
-        =?UTF-8?q?Andr=C3=A1s=20Szemz=C3=B6?= <szemzo.andras@gmail.com>,
-        Fabien Poussin <fabien.poussin@gmail.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>, soc@kernel.org
-Subject: [PATCH 4/4] ARM: dts: sunxi: add MangoPi MQ-R board
-Date:   Fri,  6 Jan 2023 01:01:55 +0000
-Message-Id: <20230106010155.26868-5-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.35.5
-In-Reply-To: <20230106010155.26868-1-andre.przywara@arm.com>
-References: <20230106010155.26868-1-andre.przywara@arm.com>
+        with ESMTP id S236544AbjAFBGM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 20:06:12 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADEA36D51B;
+        Thu,  5 Jan 2023 17:06:11 -0800 (PST)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30609axQ028245;
+        Fri, 6 Jan 2023 01:05:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=kYVSJNudMGf4WCtGaw5oM38FQkHNvOOyFU+4JjDqiPY=;
+ b=UFxCby15Y3IPMuaE99FpQHRUnwjgrM/kgruNJOgRaiNtAxAvnOgZ/aaiDxo/zPriGkz8
+ dVO2xfvRob8VFUdvmjc0RrRuQ3o4L0pyHkrKI0tFQSsrlnJ+609PzYrQJJLkZ9OIPebA
+ DXrLn8JE1CvAfLxf6V7T2R9Fiqvc6BX4g6CmAHNBB8O5rsGpCVWVGTfFDqULWGi85ZXp
+ hE4wRdlyJO/VY/nwx9KHoZSMapkHM5xE3VxdQqOnze6gqKnTJ2B8uk37iPO+A4iXCqLc
+ fQNk0IY5GeC8PPPluhdZNW15P+PnSFVeUauaXdpK4p3iQMbXncl8bPxCs/2GwjIfff7X NA== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3mwwfs9gh4-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 06 Jan 2023 01:05:46 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30615iL2023979
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 6 Jan 2023 01:05:44 GMT
+Received: from [10.110.47.113] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 5 Jan 2023
+ 17:05:44 -0800
+Message-ID: <178892ad-091e-1d95-d9d9-7270f19ef4ef@quicinc.com>
+Date:   Thu, 5 Jan 2023 17:05:43 -0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [RFC PATCH 00/14] Introduce QC USB SND audio offloading support
+Content-Language: en-US
+To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
+        <andersson@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <gregkh@linuxfoundation.org>, <Thinh.Nguyen@synopsys.com>,
+        <bgoswami@quicinc.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
+        <agross@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_jackp@quicinc.com>,
+        <quic_plai@quicinc.com>
+References: <20221223233200.26089-1-quic_wcheng@quicinc.com>
+ <0991fdf5-a29d-6ef7-71ec-9b4d858ed1eb@linux.intel.com>
+From:   Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <0991fdf5-a29d-6ef7-71ec-9b4d858ed1eb@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: mgJq0Ikhc-ZvYuN4zvBOJncOm2AaJxDX
+X-Proofpoint-ORIG-GUID: mgJq0Ikhc-ZvYuN4zvBOJncOm2AaJxDX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2023-01-05_14,2023-01-05_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
+ phishscore=0 impostorscore=0 clxscore=1011 priorityscore=1501
+ mlxlogscore=999 mlxscore=0 adultscore=0 bulkscore=0 malwarescore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301060006
+X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The MangoPi MQ-R is a small SBC with the Allwinner T113-s3 SoC.
-The SoC features two Arm Cortex-A7 cores and 128 MB of co-packaged DDR3
-DRAM. The board adds mostly connectors and the required regulators, plus
-a Realtek RTL8189FTV WiFi chip.
-Power comes in via a USB-C connector wired as a peripheral, and there is
-a second USB-C connector usable as a host port.
+Hi Pierre,
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- arch/arm/boot/dts/Makefile                    |   1 +
- .../arm/boot/dts/sun8i-t113s-mangopi-mq-r.dts | 160 ++++++++++++++++++
- 2 files changed, 161 insertions(+)
- create mode 100644 arch/arm/boot/dts/sun8i-t113s-mangopi-mq-r.dts
+On 1/4/2023 3:19 PM, Pierre-Louis Bossart wrote:
+> 
+> 
+> On 12/23/22 17:31, Wesley Cheng wrote:
+>> Several Qualcomm based chipsets can support USB audio offloading to a
+>> dedicated audio DSP, which can take over issuing transfers to the USB
+>> host controller.  The intention is to reduce the load on the main
+>> processors in the SoC, and allow them to be placed into lower power modes.
+> 
+> It would be nice to clarify what you want to offload
+> a) audio data transfers for isoc ports
+> b) control for e.g. volume settings (those go to endpoint 0 IIRC)
+> c) Both?
+> 
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index d08a3c450ce72..39fd893682924 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1390,6 +1390,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
- 	sun8i-s3-elimo-initium.dtb \
- 	sun8i-s3-lichee-zero-plus.dtb \
- 	sun8i-s3-pinecube.dtb \
-+	sun8i-t113s-mangopi-mq-r.dtb \
- 	sun8i-t3-cqa3t-bv3.dtb \
- 	sun8i-v3-sl631-imx179.dtb \
- 	sun8i-v3s-licheepi-zero.dtb \
-diff --git a/arch/arm/boot/dts/sun8i-t113s-mangopi-mq-r.dts b/arch/arm/boot/dts/sun8i-t113s-mangopi-mq-r.dts
-new file mode 100644
-index 0000000000000..ed4d5217d7b0d
---- /dev/null
-+++ b/arch/arm/boot/dts/sun8i-t113s-mangopi-mq-r.dts
-@@ -0,0 +1,160 @@
-+// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+// Copyright (C) 2022 Arm Ltd.
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+
-+/dts-v1/;
-+
-+#include "sun8i-t113s.dtsi"
-+
-+/ {
-+	model = "MangoPi MQ-R";
-+	compatible = "widora,mangopi-mq-r", "allwinner,sun8i-t113s";
-+
-+	aliases {
-+		ethernet0 = &rtl8189ftv;
-+		serial3 = &uart3;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial3:115200n8";
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&pio 3 22 GPIO_ACTIVE_LOW>; /* PD22 */
-+		};
-+	};
-+
-+	/* board wide 5V supply directly from the USB-C socket */
-+	reg_vcc5v: vcc5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-5v";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
-+	/* SY8008 DC/DC regulator on the board */
-+	reg_3v3: regulator-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&reg_vcc5v>;
-+	};
-+
-+	/* SY8008 DC/DC regulator on the board, also supplying VDD-SYS */
-+	reg_vcc_core: regulator-core {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-core";
-+		regulator-min-microvolt = <880000>;
-+		regulator-max-microvolt = <880000>;
-+		vin-supply = <&reg_vcc5v>;
-+	};
-+
-+	/* XC6206 LDO on the board */
-+	reg_avdd2v8: regulator-avdd {
-+		compatible = "regulator-fixed";
-+		regulator-name = "avdd2v8";
-+		regulator-min-microvolt = <2800000>;
-+		regulator-max-microvolt = <2800000>;
-+		vin-supply = <&reg_3v3>;
-+	};
-+
-+	wifi_pwrseq: wifi-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&pio 6 12 GPIO_ACTIVE_LOW>; /* PG12 */
-+	};
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&reg_vcc_core>;
-+};
-+
-+&cpu1 {
-+	cpu-supply = <&reg_vcc_core>;
-+};
-+
-+&dcxo {
-+	clock-frequency = <24000000>;
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&mmc0 {
-+	pinctrl-0 = <&mmc0_pins>;
-+	pinctrl-names = "default";
-+	vmmc-supply = <&reg_3v3>;
-+	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;
-+	disable-wp;
-+	bus-width = <4>;
-+	status = "okay";
-+};
-+
-+&mmc1 {
-+	pinctrl-0 = <&mmc1_pins>;
-+	pinctrl-names = "default";
-+	vmmc-supply = <&reg_3v3>;
-+	non-removable;
-+	bus-width = <4>;
-+	mmc-pwrseq = <&wifi_pwrseq>;
-+	status = "okay";
-+
-+	rtl8189ftv: wifi@1 {
-+		reg = <1>;
-+		interrupt-parent = <&pio>;
-+		interrupts = <6 10 IRQ_TYPE_LEVEL_LOW>; /* PG10 = WL_WAKE_AP */
-+		interrupt-names = "host-wake";
-+	};
-+};
-+
-+&ohci1 {
-+	status = "okay";
-+};
-+
-+&pio {
-+	vcc-pb-supply = <&reg_3v3>;
-+	vcc-pd-supply = <&reg_3v3>;
-+	vcc-pe-supply = <&reg_avdd2v8>;
-+	vcc-pf-supply = <&reg_3v3>;
-+	vcc-pg-supply = <&reg_3v3>;
-+};
-+
-+&reg_ldoa {
-+	regulator-always-on;
-+	regulator-name = "vcc-1v8";
-+	regulator-min-microvolt = <1800000>;
-+	regulator-max-microvolt = <1800000>;
-+	ldo-in-supply = <&reg_3v3>;
-+};
-+
-+&reg_ldob {
-+	regulator-name = "vcc-dram";
-+	regulator-always-on;
-+	ldo-in-supply = <&reg_3v3>;
-+};
-+
-+&uart3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart3_pb_pins>;
-+	status = "okay";
-+};
-+
-+/* The USB-C socket has its CC pins pulled to GND, so is hardwired as a UFP. */
-+&usb_otg {
-+	dr_mode = "peripheral";
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	usb1_vbus-supply = <&reg_vcc5v>;
-+	status = "okay";
-+};
--- 
-2.35.5
+Thanks for sharing your experience, and inputs!
 
+It would be the audio related endpoints only, so ISOC and potentially 
+feedback ep.
+
+> This has a lot of implications on the design. ASoC/DPCM is mainly
+> intended for audio data transfers, control is a separate problem with
+> configurations handled with register settings or bus-specific commands.
+> 
+
+Control would still be handled by the main processor.
+
+>> There are several parts to this design:
+>>    1. Adding ASoC binding layer
+>>    2. Create a USB backend for Q6DSP
+>>    3. Introduce XHCI interrupter support
+>>    4. Create vendor ops for the USB SND driver
+>>
+>> Adding ASoC binding layer:
+>> soc-usb: Intention is to treat a USB port similar to a headphone jack.
+>> The port is always present on the device, but cable/pin status can be
+>> enabled/disabled.  Expose mechanisms for USB backend ASoC drivers to
+>> communicate with USB SND.
+>>
+>> Create a USB backend for Q6DSP:
+>> q6usb: Basic backend driver that will be responsible for maintaining the
+>> resources needed to initiate a playback stream using the Q6DSP.  Will
+>> be the entity that checks to make sure the connected USB audio device
+>> supports the requested PCM format.  If it does not, the PCM open call will
+>> fail, and userpsace ALSA can take action accordingly.
+>>
+>> Introduce XHCI interrupter support:
+>> XHCI HCD supports multiple interrupters, which allows for events to be routed
+>> to different event rings.  This is determined by "Interrupter Target" field
+>> specified in Section "6.4.1.1 Normal TRB" of the XHCI specification.
+>>
+>> Events in the offloading case will be routed to an event ring that is assigned
+>> to the audio DSP.
+>>
+>> Create vendor ops for the USB SND driver:
+>> qc_audio_offload: This particular driver has several components associated
+>> with it:
+>> - QMI stream request handler
+>> - XHCI interrupter and resource management
+>> - audio DSP memory management
+>>
+>> When the audio DSP wants to enable a playback stream, the request is first
+>> received by the ASoC platform sound card.  Depending on the selected route,
+>> ASoC will bring up the individual DAIs in the path.  The Q6USB backend DAI
+>> will send an AFE port start command (with enabling the USB playback path), and
+>> the audio DSP will handle the request accordingly.
+>>
+>> Part of the AFE USB port start handling will have an exchange of control
+>> messages using the QMI protocol.  The qc_audio_offload driver will populate the
+>> buffer information:
+>> - Event ring base address
+>> - EP transfer ring base address
+>>
+>> and pass it along to the audio DSP.  All endpoint management will now be handed
+>> over to the DSP, and the main processor is not involved in transfers.
+>>
+>> Overall, implementing this feature will still expose separate sound card and PCM
+>> devices for both the platorm card and USB audio device:
+>>   0 [SM8250MTPWCD938]: sm8250 - SM8250-MTP-WCD9380-WSA8810-VA-D
+>>                        SM8250-MTP-WCD9380-WSA8810-VA-DMIC
+>>   1 [Audio          ]: USB-Audio - USB Audio
+>>                        Generic USB Audio at usb-xhci-hcd.1.auto-1.4, high speed
+>>
+>> This is to ensure that userspace ALSA entities can decide which route to take
+>> when executing the audio playback.  In the above, if card#1 is selected, then
+>> USB audio data will take the legacy path over the USB PCM drivers, etc...
+> 
+> You would still need some sort of mutual exclusion to make sure the isoc
+> endpoints are not used concurrently by the two cards. Relying on
+> userspace intelligence to enforce that exclusion is not safe IMHO.
+> 
+
+Sure, I think we can make the USB card as being used if the offloading 
+path is currently being enabled.  Kernel could return an error to 
+userspace when this situation happens.
+
+> Intel looked at this sort of offload support a while ago and our
+> directions were very different - for a variety of reasons USB offload is
+> enabled on Windows platforms but remains a TODO for Linux. Rather than
+> having two cards, you could have a single card and addition subdevices
+> that expose the paths through the DSP. The benefits were that there was
+> a single set of controls that userspace needed to know about, and volume
+> settings were the same no matter which path you used (legacy or
+> DSP-optimized paths). That's consistent with the directions to use 'Deep
+> Buffer' PCM paths for local playback, it's the same idea of reducing
+> power consumption with optimized routing.
+> 
+
+Volume control would still be done through the legacy path as mentioned 
+above.  For example, if a USB headset w/ a HID interface exposed (for 
+volume control) was connected, those HID events would be routed to 
+userspace to adjust volume accordingly on the main processor. (although 
+you're right about having separate controls still present - one for the 
+ASoC card and another for USB card)
+
+> Another point is that there may be cases where the DSP paths are not
+> available if the DSP memory and MCPS budget is exceeded. In those cases,
+> the DSP parts needs the ability to notify userspace that the legacy path
+> should be used.
+
+If we ran into this scenario, the audio DSP AFE port start command would 
+fail, and this would be propagated to the userspace entity.  It could 
+then potentially re-route to the legacy/non-offload path.
+
+> 
+> Another case to handle is that some USB devices can handle way more data
+> than DSPs can chew, for example Pro audio boxes that can deal with 8ch
+> 192kHz will typically use the legacy paths. Some also handle specific
+> formats such as DSD over PCM. So it's quite likely that PCM devices for
+> card0 and card1 above do NOT expose support for the same formats, or put
+> differently that only a subset of the USB device capabilities are
+> handled through the DSP.
+
+Same as the above.  We have programmed the USB backend to support the 
+profiles that the audio DSP can handle.  I assume if there was any other 
+request, the userspace entity would fail the PCM open for that requested 
+profile.
+
+> 
+> And last, power optimizations with DSPs typically come from additional
+> latency helping put the SoC in low-power modes. That's not necessarily
+> ideal for all usages, e.g. for music recording and mixing I am not
+> convinced the DSP path would help at all.
+> 
+
+That's true.  At the same time, this feature is more for power related 
+benefits, not specifically for performance. (although we haven't seen 
+any performance related issues w/ this approach on the audio profiles 
+the DSP supports)  I think if its an audio profile that supports a high 
+sample rate and large number of channels, then the DSP wouldn't be able 
+to support it anyway, and userspace could still use the legacy path. 
+This would allow for those high-performance audio devices to not be 
+affected.
+
+Thanks
+Wesley Cheng
