@@ -2,69 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5210A65FD7B
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 10:19:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9694F65FDC3
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 10:23:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232676AbjAFJTq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 04:19:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43376 "EHLO
+        id S234196AbjAFJXA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 04:23:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231602AbjAFJTh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 04:19:37 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D4216B5E3
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 01:19:36 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id s9so702940wru.13
-        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 01:19:35 -0800 (PST)
+        with ESMTP id S233882AbjAFJVY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 04:21:24 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C5E983183
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 01:21:08 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id az7so727735wrb.5
+        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 01:21:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HBvK4FbyjugL/NTQ0CwTNBhtYz4NAjQXr3/z7/3gv1c=;
-        b=KguTVW0zMu+a4TkWdjQOCghkO44wZY1ikqaFifFYt8+opXcFZ4er5Lq2rLzH48cBXj
-         t5MPgc1pg8frJ6Ui6gFJRFhuWPKHw5KohU6ob9GJlxA1IQ0D/0dnafiHdXQ41rmMcWWk
-         w6vizNfQU6mFIuZECInhojR7wTiX5deDZprk/1dhvMt/cssaYuw+hr2uVWUNF7ay21SN
-         ecdYkyok+gMX5BKtK6P5jO9J5R/01RvWDgvSNIVeH8hYxYYkhAnMiAiD0Mxx2lJXzBXV
-         1XfJIn6qcvhPvBZNBHNuZS6Wpc0etRcDInZR/+Nh+rXW+DrKT4XElHKoaLCmfq32Ns2g
-         jurw==
+        bh=uAfhATkIYXFpgazLFZ+AK9Lq1o03ZdKMm34LM7SHmEU=;
+        b=f1UmUxyILCnWGJP6qQZ7GcSBmaoU7z3kYlpph2vCbELXC7Xz7KHHFFxp+kUamJ+2t9
+         dm3GhM0EF/kBYDcV4aolDZWukCmIZLXLm0S/7lOnmYDmfWx2bXT8IAoB5M2ySYkW81R6
+         OwqTPM8Mmz+pvtNjtE08dy7FSYk83CiICoZ3T0XbLHiHP2uCmXSJx8dpH5opGReUsrBT
+         +ZdwGnyizkf+X3ghhIckgWqo99alISOiAjxja7b54BzRqLLQC08qLJ3JV75Owq/K5Cnu
+         KEx8+jwyEyu1XmrqlWoxhgk6SsExL+WZ+xYT05K+Yj5/p26r54DSCHzJFSvFUdQ92zBQ
+         dzEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HBvK4FbyjugL/NTQ0CwTNBhtYz4NAjQXr3/z7/3gv1c=;
-        b=xz2coC1bm8CjB1sw6EE3WLLbGD9XQ8Hzf28ArkRap3aO6fNeb4piJ4CpO4TQIj9DMd
-         dsjlPnW+AI5pMvLkX9h/9DEgTc5kUHdC6pBIRjUt4/OTbK0L+GY5hY65asDplJBuadWr
-         crejXZYXfR5zt6Ulfexhl+0psehhU+z9iS0TojExDwQjd3s0hw1kS5PJ6bM25uLCAETU
-         BETuvEyVRQV4lF9yODgLpmXyib0FkOm9fi/c1Nxtq9et1zV+RD7fq9CJG72MeImOadkp
-         pXiTaiNLlTi6p9qWxmjRr+rne1Pek2xHfrm9mtc2gfk/Y6bY78EUQr1xTc8Mss5yZWSA
-         XCug==
-X-Gm-Message-State: AFqh2kqNDMNcl77oHRcvOtactXhlIwU5jEzYB5PBqnxyvplry1yi2JkU
-        Y7hOv4YEWpBZ44+fMmO9Bsep9A==
-X-Google-Smtp-Source: AMrXdXuSNM2Lq+V95/prLY3ph2EizEdVN1Dv4ZsinbWWmgY8IDYy7I0WuxBpxqKrxbkW8QjsPK1aYA==
-X-Received: by 2002:a5d:6808:0:b0:272:3a86:29c1 with SMTP id w8-20020a5d6808000000b002723a8629c1mr31438869wru.16.1672996774576;
-        Fri, 06 Jan 2023 01:19:34 -0800 (PST)
+        bh=uAfhATkIYXFpgazLFZ+AK9Lq1o03ZdKMm34LM7SHmEU=;
+        b=w6cm6ofFQgS4s1nfyd8+63Qd4amRqzrwQZ1nE+L2h6R+ZpNLyqrjf9BBSEL2dK1zZh
+         gX5WENUB6ed8Ea5WvK3bYBgKnj5hOZv9FtPH2fq/elj/n0X5ZU3gswjL2WyfLkNezMYv
+         cihaC29Qu6891AbQCdBeZIu5C56uscOxzuzAEbuBDF0KjEvhEeKcduh9WoCBrNWd5YyQ
+         DzGmtC/J48JYDz22ZVfnNdGKe/xyenuXhXXWU5A6SsKz1tauKpHf0d/KzvoWJOHAD8xV
+         4jfeBxTMP9QgjlJLDe5NA4yAT5Dey3yf/BcxjWkzWcELeTrosiLhgF7Un0wj12Get7Of
+         vMag==
+X-Gm-Message-State: AFqh2koAla9IRXRGHQmFpSz5MYXVrdBWzz+fPwlQEfxccCKOMhOGIP3M
+        UG6hRR8AWs+UsCyao6nBW2ADPg==
+X-Google-Smtp-Source: AMrXdXu9fepmPpgEfQ6cshSmsZ+6857dtpUM6/8+Vafn1HbdY34/Rzfs18skEvxTNG6/20H2UhzJ3Q==
+X-Received: by 2002:adf:dec7:0:b0:242:115d:bee4 with SMTP id i7-20020adfdec7000000b00242115dbee4mr32938927wrn.16.1672996867159;
+        Fri, 06 Jan 2023 01:21:07 -0800 (PST)
 Received: from [192.168.1.102] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id m13-20020adfe94d000000b002714b3d2348sm612611wrn.25.2023.01.06.01.19.32
+        by smtp.gmail.com with ESMTPSA id z8-20020a5d6548000000b0028df2d57204sm689153wrv.81.2023.01.06.01.21.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Jan 2023 01:19:33 -0800 (PST)
-Message-ID: <f2566d6f-3cb5-9985-ebfa-87ea56d56718@linaro.org>
-Date:   Fri, 6 Jan 2023 10:19:31 +0100
+        Fri, 06 Jan 2023 01:21:06 -0800 (PST)
+Message-ID: <4d6aec55-c53e-0aba-1168-8a9a80a3b598@linaro.org>
+Date:   Fri, 6 Jan 2023 10:21:04 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 1/2] dt-bindings: usb: tps6598x: Add wakeup property
+Subject: Re: [PATCH 3/4] dt-bindings: arm: sunxi: document MangoPi MQ-R board
+ name
 Content-Language: en-US
-To:     Jun Nie <jun.nie@linaro.org>, heikki.krogerus@linux.intel.com,
-        gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
-Cc:     sven@svenpeter.dev, shawn.guo@linaro.org,
-        bryan.odonoghue@linaro.org
-References: <20230105075058.924680-1-jun.nie@linaro.org>
+To:     Andre Przywara <andre.przywara@arm.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Icenowy Zheng <uwu@icenowy.me>,
+        =?UTF-8?B?QW5kcsOhcyBTemVtesO2?= <szemzo.andras@gmail.com>,
+        Fabien Poussin <fabien.poussin@gmail.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20230106010155.26868-1-andre.przywara@arm.com>
+ <20230106010155.26868-4-andre.przywara@arm.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230105075058.924680-1-jun.nie@linaro.org>
+In-Reply-To: <20230106010155.26868-4-andre.przywara@arm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,16 +87,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/01/2023 08:50, Jun Nie wrote:
-> Add wakeup property description. People can enable it with adding
-> the property.
+On 06/01/2023 02:01, Andre Przywara wrote:
+> The MangoPi MQ-R board is a close relative to its Allwinner D1/D1s
+> siblings, but features two Arm Cortex-A7 cores instead of a RISC-V core.
 > 
-> Signed-off-by: Jun Nie <jun.nie@linaro.org>
+> Add the board/SoC compatible string pair to the list of known boards.
+> 
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 > ---
->  Documentation/devicetree/bindings/usb/ti,tps6598x.yaml | 3 +++
+>  Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+> index 3ad1cd50e3fe0..ce445c5ed81c8 100644
+> --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
+> +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+> @@ -843,6 +843,11 @@ properties:
+>            - const: wexler,tab7200
+>            - const: allwinner,sun7i-a20
+>  
+> +      - description: MangoPi MQ-R board
+> +        items:
+> +          - const: widora,mangopi-mq-r
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Not documented vendor prefix.
 
 Best regards,
 Krzysztof
