@@ -2,128 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1670660543
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 18:05:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D0F9660556
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 18:09:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234746AbjAFRFT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 12:05:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43712 "EHLO
+        id S230442AbjAFRJ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 12:09:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235373AbjAFRFB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 12:05:01 -0500
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AE807CBCD;
-        Fri,  6 Jan 2023 09:04:59 -0800 (PST)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 306F4nYt017057;
-        Fri, 6 Jan 2023 18:04:41 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=selector1;
- bh=ucssb65txyENbyaOBHFqS29fHGTTzI6kVf5XtyK6ClA=;
- b=vdBYA5J1mOGI1HMgv0n1ehQILrl0VSbGx3t64h2WsARXUFIZkh0UanzyyXLZe+06BLcl
- xlxOGbAMjLo0/b1OwbULIlG3XhhoJCSztpT/iUusYnJ/rZfbMW+KYSOU4O0aweJVOMhs
- 7if6z8rjpxELopuPGH3ZRnORZJXTkTULyFfEDW4hoK4hnyzTglvhqAnpPhYKaHWhHtoK
- +D+X+s/2pijrJqVz1ybDCIU6ZtMNVWlxrHlEeohIWYBmfYpLA6ZXY8RDRZCTXmQpzmUU
- 2Uuxm0EZ3t9EpHF1sw2Pgu4NvYJ3Vf2RbWBI7Np8RByMn5LQ/JrwJEvw5pbxmK6F8G3N Ow== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3mx41mpc6d-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 06 Jan 2023 18:04:41 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 825DF10002A;
-        Fri,  6 Jan 2023 18:04:40 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7C2BC219D9E;
-        Fri,  6 Jan 2023 18:04:40 +0100 (CET)
-Received: from localhost (10.48.0.157) by SHFDAG1NODE3.st.com (10.75.129.71)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Fri, 6 Jan
- 2023 18:04:39 +0100
-From:   Patrick Delaunay <patrick.delaunay@foss.st.com>
-To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-CC:     Etienne CARRIERE <etienne.carriere@linaro.org>,
-        Fabrice GASNIER <fabrice.gasnier@foss.st.com>,
-        Amelie DELAUNAY <amelie.delaunay@foss.st.com>,
-        Lionel DEBIEVE <lionel.debieve@foss.st.com>,
-        Patrick Delaunay <patrick.delaunay@foss.st.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-Subject: [PATCH v5 1/3] ARM: dts: stm32mp13: fix compatible for BSEC
-Date:   Fri, 6 Jan 2023 18:04:28 +0100
-Message-ID: <20230106180414.v5.1.I167a5efc1f8777cce14518c6fa38400ac684de3e@changeid>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230106170430.1214186-1-patrick.delaunay@foss.st.com>
-References: <20230106170430.1214186-1-patrick.delaunay@foss.st.com>
+        with ESMTP id S229686AbjAFRJ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 12:09:56 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 746D19FFA
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 09:09:54 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id d17so1865048wrs.2
+        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 09:09:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=LSsjSZLw2nnMiY4uzIYBeHgb7SrIecIpavNAgqHfew4=;
+        b=gI+GkFENMZ1YF4920k6ktVFlhiSghkF8wasO8OI39wGNMuhF10+5nC9KSEq9YCtsk8
+         pnXEKaD1vYI868EzTmj9lF6ZZIPlP71fSozVJH4v+CM60J2YTCG5nwxNtXOugvZk25ic
+         2SgxHHn/nG2E2VRa00sEYKMPIqrhWI1OduxEMe6N3fTzIl1a5C1frS+SOcndNjmRb6qG
+         kqiRhEAvIv3zAuuevWyLbf3gxdbMKrTBwA+bzhCTyGnaVwm3utYD0z00sbK8zUudq7vF
+         O6NIQyUZ1tJ8ZA1i9qsaRtaMk5I8ZHPryXno8bfi+m4DqIKyUFuLsqEMRyUXktzE8rZE
+         A1cQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LSsjSZLw2nnMiY4uzIYBeHgb7SrIecIpavNAgqHfew4=;
+        b=1Xd2F4haN+Xm/b81DWWRla3LWfx9yXLlCqY1eD167QnTvrEpBLDKyCdbxKbi0C8mXv
+         2C200d4neyGFKw0WP++FO4lg3dHL+QFfPug6/1KNAR4kwIdMuMiLFpMJRZ2wt7wMSRYc
+         MdkqCsYukLtrwA4z5nn0Nz/LDYOBt6ExXTqPYN2Of9FwsPfELUGRTnX8El94kRZv88d/
+         QgcM7+aV3zMuNhmU6hkGieH0/CuGlEzDVAsQUxV3/7v1ObrqM0srpYeOJ0QjMewPEwgU
+         fZJO2E5uMKfl2X721IkK1pqznNq2xDemm65ImjKN4JMOGlE65ch7FE9Id0ctIX+MPDlV
+         iE3Q==
+X-Gm-Message-State: AFqh2krvH1EwSeX2I0QI7fjqOoUJqXKqCnLVE1lsq+i70FTWx79rqCEb
+        3e9gb6VPohBY6yJNcj8hGyHf9Q==
+X-Google-Smtp-Source: AMrXdXvP048hXDp25O/bVkFsD7hfVgHLup2HHrx0e83cjxssZRjxMAk2z+wtJBwXQZaVb4ItdMtHkw==
+X-Received: by 2002:a5d:56c1:0:b0:288:d139:3690 with SMTP id m1-20020a5d56c1000000b00288d1393690mr21420018wrw.67.1673024993035;
+        Fri, 06 Jan 2023 09:09:53 -0800 (PST)
+Received: from blmsp ([2001:4091:a245:805c:8713:84e4:2a9e:cbe8])
+        by smtp.gmail.com with ESMTPSA id t17-20020a05600001d100b00241d21d4652sm1733540wrx.21.2023.01.06.09.09.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Jan 2023 09:09:52 -0800 (PST)
+Date:   Fri, 6 Jan 2023 18:09:51 +0100
+From:   Markus Schneider-Pargmann <msp@baylibre.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, matthias.bgg@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        wenst@chromium.org, johnson.wang@mediatek.com,
+        miles.chen@mediatek.com, fparent@baylibre.com,
+        chun-jie.chen@mediatek.com, sam.shih@mediatek.com,
+        y.oudjana@protonmail.com, nfraprado@collabora.com,
+        rex-bc.chen@mediatek.com, ryder.lee@kernel.org,
+        daniel@makrotopia.org, jose.exposito89@gmail.com,
+        yangyingliang@huawei.com, pablo.sun@mediatek.com,
+        weiyi.lu@mediatek.com, ikjn@chromium.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@collabora.com
+Subject: Re: [PATCH v2 05/23] clk: mediatek: clk-mtk: Propagate struct device
+ for composites
+Message-ID: <20230106170951.rn7w2lwwdckruuie@blmsp>
+References: <20221223094259.87373-1-angelogioacchino.delregno@collabora.com>
+ <20221223094259.87373-6-angelogioacchino.delregno@collabora.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.48.0.157]
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2023-01-06_11,2023-01-06_01,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20221223094259.87373-6-angelogioacchino.delregno@collabora.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use the correct compatible for stm32mp13 support.
+Hi,
 
-The BSEC driver for STM32MP15x is not compatible with STM32MP13x. For
-example the proprietary's smc STM32_SMC_BSEC is not supported in
-STM32MP13x OP-TEE, it is replaced by SM32MP BSEC Pseudo Trusted
-Application in OP-TEE to access to the secured IP BSEC on STM32MP13X SoC.
+On Fri, Dec 23, 2022 at 10:42:41AM +0100, AngeloGioacchino Del Regno wrote:
+> Like done for cpumux clocks, propagate struct device for composite
+> clocks registered through clk-mtk helpers to be able to get runtime
+> pm support for MTK clocks.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  drivers/clk/mediatek/clk-mt2701.c          | 4 ++--
+>  drivers/clk/mediatek/clk-mt2712.c          | 4 ++--
+>  drivers/clk/mediatek/clk-mt6779.c          | 4 ++--
+>  drivers/clk/mediatek/clk-mt6795-pericfg.c  | 2 +-
+>  drivers/clk/mediatek/clk-mt6795-topckgen.c | 2 +-
+>  drivers/clk/mediatek/clk-mt6797.c          | 2 +-
+>  drivers/clk/mediatek/clk-mt7622.c          | 5 +++--
+>  drivers/clk/mediatek/clk-mt7629.c          | 4 ++--
+>  drivers/clk/mediatek/clk-mt8135.c          | 4 ++--
+>  drivers/clk/mediatek/clk-mt8167.c          | 4 ++--
+>  drivers/clk/mediatek/clk-mt8173.c          | 4 ++--
+>  drivers/clk/mediatek/clk-mt8183.c          | 6 +++---
+>  drivers/clk/mediatek/clk-mt8186-mcu.c      | 2 +-
+>  drivers/clk/mediatek/clk-mt8186-topckgen.c | 4 ++--
+>  drivers/clk/mediatek/clk-mt8192.c          | 4 ++--
+>  drivers/clk/mediatek/clk-mt8195-topckgen.c | 2 +-
+>  drivers/clk/mediatek/clk-mt8365.c          | 5 +++--
+>  drivers/clk/mediatek/clk-mt8516.c          | 4 ++--
+>  drivers/clk/mediatek/clk-mtk.c             | 9 +++++----
+>  drivers/clk/mediatek/clk-mtk.h             | 3 ++-
+>  20 files changed, 41 insertions(+), 37 deletions(-)
+> 
+> diff --git a/drivers/clk/mediatek/clk-mt2701.c b/drivers/clk/mediatek/clk-mt2701.c
+> index dcae25778817..bd62acb5d697 100644
+> --- a/drivers/clk/mediatek/clk-mt2701.c
+> +++ b/drivers/clk/mediatek/clk-mt2701.c
+> @@ -684,7 +684,7 @@ static int mtk_topckgen_init(struct platform_device *pdev)
+>  								clk_data);
+>  
+>  	mtk_clk_register_composites(top_muxes, ARRAY_SIZE(top_muxes),
+> -				base, &mt2701_clk_lock, clk_data);
+> +				base, &mt2701_clk_lock, clk_data, &pdev->dev);
 
-The correct compatible is already used in U-Boot and in upstream is in
-progress for OP-TEE device tree.
+The patch looks good in general, just a few nitpicks like this where you
+could adjust the indentation to the open parenthesis.
+'checkpatch.pl --strict' will show you all the locations where it is not
+correct here and in other patches.
 
-As the SoC STM32MP13X is not yet official and it is not available
-outside STMicroelectronics, it is the good time to break the DTS
-compatibility and to correct the error done in the introduction of
-STM32MP131.
-
-Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
----
-This patch is already sent separately in:
-https://lore.kernel.org/all/20221017134437.1.I167a5efc1f8777cce14518c6fa38400ac684de3e@changeid/
-https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=685815
-
-I create a serie for more efficient review.
-
-Patrick.
-
-(no changes since v1)
-
-Changes in v1:
-- update commit message to indicate DTS break reason.
-
- arch/arm/boot/dts/stm32mp131.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/stm32mp131.dtsi b/arch/arm/boot/dts/stm32mp131.dtsi
-index accc3824f7e9..0b79380cc627 100644
---- a/arch/arm/boot/dts/stm32mp131.dtsi
-+++ b/arch/arm/boot/dts/stm32mp131.dtsi
-@@ -520,7 +520,7 @@ rtc: rtc@5c004000 {
- 		};
- 
- 		bsec: efuse@5c005000 {
--			compatible = "st,stm32mp15-bsec";
-+			compatible = "st,stm32mp13-bsec";
- 			reg = <0x5c005000 0x400>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
--- 
-2.25.1
-
+Best,
+Markus
