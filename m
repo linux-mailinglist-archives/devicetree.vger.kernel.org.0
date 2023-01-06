@@ -2,122 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E86F660525
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 17:57:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9951F660530
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 18:00:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230294AbjAFQ5H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 11:57:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40308 "EHLO
+        id S230082AbjAFRAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 12:00:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233967AbjAFQ5G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 11:57:06 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 174DB7A393;
-        Fri,  6 Jan 2023 08:57:02 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id BE595B81E0E;
-        Fri,  6 Jan 2023 16:57:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88044C433EF;
-        Fri,  6 Jan 2023 16:56:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673024219;
-        bh=r1TugKFhTopftyqZXhFj4NZAEhxezwqJpeyrAMjzPxg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GJTrnxSh2OInsOKJ9LVjqBdAjVht1rikq72Gij3sNIBDjQwbYItW5K3d8spq4FgVM
-         jMHZNvGPNqeqa+HfRZZHh5swxxpv/ThZz9zzDJCOBuxfa21Nveqz+5og7i8HeyvZR9
-         E3fGOhWO5/dy6lO2gcgDoLkKVOb6h9lm92TXipsIzhzl5xnOA+rdxcqTPCkK2QQg3U
-         7w1aCzKdizipVXbQ9IqeXYV/WdfOqu7tmjXCWwjMAVGVjrW9jiIbBhbmgmSeuDZRIo
-         KVNG0uBd/J0paJt+bbUEYGMVv3vIi5M6nP7nsCMeR+tqpfPOUjznOCVDK6GfokNDEG
-         Vq3/El3gO9REA==
-Date:   Fri, 6 Jan 2023 10:56:56 -0600
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Abel Vesa <abel.vesa@linaro.org>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mike Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: Re: [PATCH v8 3/4] clk: qcom: rpmh: Add support for SM8550 rpmh
- clocks
-Message-ID: <20230106165656.zseftsxay4c74v6e@builder.lan>
-References: <20230104093450.3150578-1-abel.vesa@linaro.org>
- <20230104093450.3150578-4-abel.vesa@linaro.org>
- <07a849a9-03dc-f3af-1d3f-2369cb71451e@linaro.org>
- <Y7V00JiPAYfqF4wH@linaro.org>
+        with ESMTP id S229686AbjAFRAi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 12:00:38 -0500
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85B1578A7A;
+        Fri,  6 Jan 2023 09:00:37 -0800 (PST)
+Received: by mail-lj1-x229.google.com with SMTP id q2so2045460ljp.6;
+        Fri, 06 Jan 2023 09:00:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=POLRBla4fWO4DDMyrna7D/MzpTf8F2YLX+r/78ZrUW8=;
+        b=a1G1K9KNr9j1bT/MzbZJizjMJHw/9D7ZJJXDzWaUYa0pvsXwbmAABskVdggHKPaV9S
+         Mw4HS+E17YTEjN3ffdnsUMXyqMGeb4QLEZ1cedvdy4lgc1XERZ485uEM8eoOVzR+CmJS
+         yoQMx/xP8kXNGqkZcPN5yMe2y0w30mg1zSLPcWvecMgynRFT6L/OBmACKsPBzc3fPlvl
+         qH6lwkqyroj0SQsp8pTWTzJI8mRAPIBRmAgwwhReYp+JmtlBjFCdLBUcGoFkRguJJwwS
+         Vrf0SZZPULirnDA40TVz/3+tMiLHMWFz/E7vVZD4OijIL4MiGvLcswvID5S8086vHhi9
+         pCWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=POLRBla4fWO4DDMyrna7D/MzpTf8F2YLX+r/78ZrUW8=;
+        b=J9AtWPOPK4//lzymXoguaxG78+0+TGNY+9+dRwfDmk2psY34P6cYjkYw+bCRP3PKrE
+         7QrEBFPHmLFRSSnmPMDhVLn00iZ1w6DcV3M+N+VHULkOKkyFn3FHqMVgTL+zWN5HqzmP
+         Yv36A+sOc+T5Pk3cVH3dcD8AhndOAv7hJEP96Kkg18f/dOX1Qk0rUajbbFkQOBz1Z8Li
+         CerWUPCtLjsQejIZJxet2yXDDAduGNFg2dqduNyZpGsQ4F6VbTkg6TDY7zPHGCK0rkMK
+         T3PDKpYrbttAsb/hDd4olhpRzqcvPMyo3mVLPIUQFXoLOyo4MeBY5neDCq7oAl/bgO7l
+         OGrQ==
+X-Gm-Message-State: AFqh2kofCHMNvJ9JSyhW+Cp4/8CWkYxMP5OBwdq1u/8dT+zsR7RQBHZS
+        isUc+qQlZsk6RUHqf/7SFh4w1wl9SEHVbf+tY6aXGkfjCRA6LfW8
+X-Google-Smtp-Source: AMrXdXvJse1KDy0QTt2SO3flLiTDVx3NApWbGOr/2H5WEL2Wg9RerY4810wmbeXLv6A0Dx69VS4w5OLUyIvebmds9kk=
+X-Received: by 2002:a2e:9d0a:0:b0:27f:d80a:f361 with SMTP id
+ t10-20020a2e9d0a000000b0027fd80af361mr2366332lji.433.1673024435790; Fri, 06
+ Jan 2023 09:00:35 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y7V00JiPAYfqF4wH@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230106131905.81854-1-iivanov@suse.de>
+In-Reply-To: <20230106131905.81854-1-iivanov@suse.de>
+From:   Peter Robinson <pbrobinson@gmail.com>
+Date:   Fri, 6 Jan 2023 17:00:24 +0000
+Message-ID: <CALeDE9M_AOs_hMdjBtFCYGXXMQzZ-uXK=x8=19GruC+UQN1ESg@mail.gmail.com>
+Subject: Re: [PATCH v2] brcmfmac: Prefer DT board type over DMI board type
+To:     "Ivan T. Ivanov" <iivanov@suse.de>
+Cc:     aspriel@gmail.com, marcan@marcan.st, franky.lin@broadcom.com,
+        hante.meuleman@broadcom.com, rmk+kernel@armlinux.org.uk,
+        stefan.wahren@i2se.com, jforbes@fedoraproject.org,
+        kvalo@kernel.org, davem@davemloft.net, devicetree@vger.kernel.org,
+        edumazet@google.com, krzysztof.kozlowski+dt@linaro.org,
+        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 04, 2023 at 02:45:04PM +0200, Abel Vesa wrote:
-> On 23-01-04 12:46:55, Dmitry Baryshkov wrote:
-> > On 04/01/2023 11:34, Abel Vesa wrote:
-> > > Adds the RPMH clocks present in SM8550 SoC.
-> > > 
-> > > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > > Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> > > ---
-> > >   drivers/clk/qcom/clk-rpmh.c | 36 ++++++++++++++++++++++++++++++++++++
-> > >   1 file changed, 36 insertions(+)
-> > 
-> > I think the plan was to have the _PAD clock as a child node of the rpmcc. Is
-> > it still the planned implementation?
-> 
-> Yes. Here is how the dts rpmhcc node will look like:
-> 
->          rpmhcc: clock-controller {
->                  compatible = "qcom,sm8550-rpmh-clk";
->                  #clock-cells = <1>;
->                  clock-names = "xo";
->                  clocks = <&xo_board>;
-> 
->                  bi_tcxo_div2: bi-tcxo-div2-clk {
+On Fri, Jan 6, 2023 at 1:19 PM Ivan T. Ivanov <iivanov@suse.de> wrote:
+>
+> The introduction of support for Apple board types inadvertently changed
+> the precedence order, causing hybrid SMBIOS+DT platforms to look up the
+> firmware using the DMI information instead of the device tree compatible
+> to generate the board type. Revert back to the old behavior,
+> as affected platforms use firmwares named after the DT compatible.
+>
+> Fixes: 7682de8b3351 ("wifi: brcmfmac: of: Fetch Apple properties")
+>
+> [1] https://bugzilla.opensuse.org/show_bug.cgi?id=1206697#c13
+>
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Ivan T. Ivanov <iivanov@suse.de>
+> Reviewed-by: Hector Martin <marcan@marcan.st>
+Tested-by: Peter Robinson <pbrobinson@gmail.com>
 
-Considering that the remainder of the clock exposed (except ipa clock)
-by the rpmhcc provider represent clock signals coming out of the pmic;
-and that this divider is not located in the aoss (rsc), I don't think
-these nodes should live here.
+Tested on a RPi3B+, a RPi4B and a Rockchips device with 6.2rc2 and it
+fixed the issue I had seen on Fedora.
 
-/clocks seems perfectly fine to me.
+Thanks
 
-Regards,
-Bjorn
-
->                          #clock-cells = <0>;
->                          compatible = "fixed-factor-clock";
->                          clocks = <&rpmhcc RPMH_CXO_CLK>;
->                          clock-mult = <1>;
->                          clock-div = <2>;
->                  };
-> 
->                  bi_tcxo_ao_div2: bi-tcxo-div2-ao-clk {
->                          #clock-cells = <0>;
->                          compatible = "fixed-factor-clock";
->                          clocks = <&rpmhcc RPMH_CXO_CLK_A>;
->                          clock-mult = <1>;
->                          clock-div = <2>;
->                  };
->          };
-> 
-> The clock nodes will be probed on of_clk_init.
-> 
-> > 
-> > -- 
-> > With best wishes
-> > Dmitry
-> > 
+> ---
+> Changes since v1
+> Rewrite commit message according feedback.
+> https://lore.kernel.org/all/20230106072746.29516-1-iivanov@suse.de/
+>
+>  drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
+> index a83699de01ec..fdd0c9abc1a1 100644
+> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
+> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
+> @@ -79,7 +79,8 @@ void brcmf_of_probe(struct device *dev, enum brcmf_bus_type bus_type,
+>         /* Apple ARM64 platforms have their own idea of board type, passed in
+>          * via the device tree. They also have an antenna SKU parameter
+>          */
+> -       if (!of_property_read_string(np, "brcm,board-type", &prop))
+> +       err = of_property_read_string(np, "brcm,board-type", &prop);
+> +       if (!err)
+>                 settings->board_type = prop;
+>
+>         if (!of_property_read_string(np, "apple,antenna-sku", &prop))
+> @@ -87,7 +88,7 @@ void brcmf_of_probe(struct device *dev, enum brcmf_bus_type bus_type,
+>
+>         /* Set board-type to the first string of the machine compatible prop */
+>         root = of_find_node_by_path("/");
+> -       if (root && !settings->board_type) {
+> +       if (root && err) {
+>                 char *board_type;
+>                 const char *tmp;
+>
+> --
+> 2.35.3
+>
