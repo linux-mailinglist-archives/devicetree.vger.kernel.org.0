@@ -2,98 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2EC365FD59
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 10:15:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B389365FD5E
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 10:16:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231912AbjAFJO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 04:14:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40170 "EHLO
+        id S232090AbjAFJPc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 04:15:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232090AbjAFJOu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 04:14:50 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 620826699A;
-        Fri,  6 Jan 2023 01:14:49 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DCF9461D62;
-        Fri,  6 Jan 2023 09:14:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A680C433EF;
-        Fri,  6 Jan 2023 09:14:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1672996488;
-        bh=6a7N+091Z6NCe1Be8JsUKIhRH9rci8z3cmchqgVEigE=;
+        with ESMTP id S232509AbjAFJPO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 04:15:14 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDB9D63B9;
+        Fri,  6 Jan 2023 01:15:12 -0800 (PST)
+Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 261424AE;
+        Fri,  6 Jan 2023 10:15:10 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1672996510;
+        bh=PUb/2+vNbKva7BxdRPQh/qMdMplUQ5TGiRRnHYtoc4E=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BUMsHkZz1lYN9STpZyZGWwVU7YfTytLh7rWqDfzATZoW9apHfKBM8f70LdNTVyyxj
-         k2znIHRXHZulaNnn+EMSvkumr1yJ3viIAiS/9WMbGuYt5qJiPhaRyM0fadzL0+zLWw
-         8IeRBPRVh7YV8uqEiPG2rcnsEuKmk9XO/4z16EpHFPV0wBEKiiGBEYYeypznp4ZIuv
-         6zF7m/ZTjHqof0FxdsKFPfvG9YtMaoQ84M1Nld5yoydI1NqM5X7IddNotsmlAMxCIk
-         SjnCmmhv3Iuy4YZU+W+BBnDsv44Mg+XyIZYwy27ctrlGrBMQbyXK4XqYmKLZHCfkCh
-         6LndsOj5WzRPg==
-Date:   Fri, 6 Jan 2023 09:14:41 +0000
-From:   Lee Jones <lee@kernel.org>
-To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org,
+        b=ju1bhcO39w1qM36Do+jYXtomzKp9s5b8tBKJ6hfP05SlXRHO8f/CLI/I+eMS4S8HR
+         8SAS7hQl36hWuciAoRYBadAqnHNqY877B/2Qq/RqU8qlmoMuowBeJrA85cmuAq8mQY
+         4+qDoxYUicNRJ4lgLW8MDLOiRMKZNuVyTPtv54EU=
+Date:   Fri, 6 Jan 2023 10:15:08 +0100
+From:   Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Nicholas Roth <nicholas@rothemail.net>,
+        Robert Mader <robert.mader@collabora.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jacopo Mondi <jacopo@jmondi.org>, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v4 1/2] dt-bindings: mfd: Add RZ/V2M PWC
-Message-ID: <Y7fmgWzR5Pyu3O1A@google.com>
-References: <20230105201242.189195-1-fabrizio.castro.jz@renesas.com>
- <20230105201242.189195-2-fabrizio.castro.jz@renesas.com>
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: media: Add schema for OmniVision OV8858
+Message-ID: <20230106091508.asjayi5ic2dz6vrg@uno.localdomain>
+References: <20230105172320.133810-1-jacopo@jmondi.org>
+ <20230105172320.133810-2-jacopo@jmondi.org>
+ <4a3f0fc7-4723-919a-ed8c-59e364d55c6f@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230105201242.189195-2-fabrizio.castro.jz@renesas.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <4a3f0fc7-4723-919a-ed8c-59e364d55c6f@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 05 Jan 2023, Fabrizio Castro wrote:
+Hi Krzysztof
+   thanks for the review
 
-> The Renesas RZ/V2M External Power Sequence Controller (PWC)
-> IP is a multi-function device, and it's capable of:
-> * external power supply on/off sequence generation
-> * on/off signal generation for the LPDDR4 core power supply (LPVDD)
-> * key input signals processing
-> * general-purpose output pins
+On Fri, Jan 06, 2023 at 09:34:22AM +0100, Krzysztof Kozlowski wrote:
+> On 05/01/2023 18:23, Jacopo Mondi wrote:
+> > From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> >
+>
+> Subject: drop redundant "schema for".
+>
 
-The subject line now needs changing.
+ack
 
-This patch doesn't have anything to do with MFD.
+> > Add binding schema for the OmniVision OV8858 8 Megapixels camera sensor.
+> >
+>
+> Thank you for your patch. There is something to discuss/improve.
+>
+> > +properties:
+> > +  compatible:
+> > +    const: ovti,ov8858
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +    description: XVCLK external clock
+> > +
+> > +  clock-names:
+> > +    const: xvclk
+> > +
+> > +  dvdd-supply:
+> > +    description: Digital Domain Power Supply
+> > +
+> > +  avdd-supply:
+> > +    description: Analog Domain Power Supply
+> > +
+> > +  dovdd-supply:
+> > +    description: I/O Domain Power Supply
+> > +
+> > +  powerdown-gpios:
+> > +    maxItems: 1
+>
+> No need for maxItems here - it is coming from gpio-consumer-common.
+>
 
-> Add the corresponding dt-bindings.
-> 
-> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
-> 
-> v1->v2: I have dropped syscon, simple-mfd, regmap, offset, and the child nodes.
-> v2->v3: No change.
-> v3->v4: Moved file under Documentation/devicetree/bindings/soc/renesas,
->         and changed $id accordingly. Rob, I have kept your Reviewed-by
->         tag assuming you are still happy, please do jump in if you think
->         that's not appropriate anymore.
-> 
->  .../soc/renesas/renesas,rzv2m-pwc.yaml        | 56 +++++++++++++++++++
->  1 file changed, 56 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/renesas/renesas,rzv2m-pwc.yaml
+ack
 
--- 
-Lee Jones [李琼斯]
+> > +    description: PWDNB powerdown GPIO (active low)
+> > +
+> > +  reset-gpios:
+> > +    maxItems: 1
+> > +    description: XSHUTDN reset GPIO (active low)
+> > +
+> > +  port:
+> > +    description: MIPI CSI-2 transmitter port
+> > +    $ref: /schemas/graph.yaml#/$defs/port-base
+> > +    additionalProperties: false
+> > +
+> > +    properties:
+> > +      endpoint:
+> > +        $ref: /schemas/media/video-interfaces.yaml#
+> > +        unevaluatedProperties: false
+> > +
+> > +        properties:
+> > +          data-lanes:
+> > +            minItems: 1
+> > +            maxItems: 4
+> > +
+> > +        required:
+> > +          - data-lanes
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - assigned-clocks
+> > +  - assigned-clock-rates
+>
+> These should not be required.
+>
+
+makes sense
+
+> > +  - port
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/pinctrl/rockchip.h>
+>
+> Drop, not needed.
+>
+
+I need it for the definition of RK_PA4 and RK_PB4.
+
+The example fails to compile if I remove it
+
+> > +    #include <dt-bindings/clock/rk3399-cru.h>
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +    i2c2 {
+>
+> i2c
+>
+
+Ack
+
+Will resend soon
+
+Thanks
+   j
+
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        ov8858: camera@36 {
+> > +            compatible = "ovti,ov8858";
+> > +            reg = <0x36>;
+> > +
+> > +            clocks = <&cru SCLK_CIF_OUT>;
+> > +            clock-names = "xvclk";
+> > +            assigned-clocks = <&cru SCLK_CIF_OUT>;
+> > +            assigned-clock-rates = <24000000>;
+> > +
+> > +            dovdd-supply = <&vcc1v8_dvp>;
+> > +
+> > +            reset-gpios = <&gpio1 RK_PA4 GPIO_ACTIVE_LOW>;
+> > +            powerdown-gpios = <&gpio2 RK_PB4 GPIO_ACTIVE_LOW>;
+> > +
+> > +            port {
+> > +                ucam_out: endpoint {
+> > +                    remote-endpoint = <&mipi_in_ucam>;
+> > +                    data-lanes = <1 2 3 4>;
+> > +                };
+> > +            };
+> > +        };
+> > +    };
+> > +...
+> > --
+> > 2.38.1
+> >
+>
+> Best regards,
+> Krzysztof
+>
