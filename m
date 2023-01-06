@@ -2,76 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A8A065FD51
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 10:13:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2EC365FD59
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 10:15:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232366AbjAFJNp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 04:13:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39342 "EHLO
+        id S231912AbjAFJO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 04:14:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231436AbjAFJNi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 04:13:38 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D218763B9
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 01:13:36 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id k26-20020a05600c1c9a00b003d972646a7dso3085083wms.5
-        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 01:13:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5OdyRKFST2UkrnFQxoJYi7XQRvXEY/YmDNSwtGSyDTY=;
-        b=jaIjZJ8WvQZJ6gpN09cWaQq02Y8TPrEBfFCbgTx+QgJd26vyPxTXMIQI9ATnUSVuk/
-         H9vMIIsnijhTum/ltk1BGF0VZRxmn59ZH9GOHC2xllg4Y9zS9U8Lg//VyB/0/zX6Z6hX
-         nGojXyiQ5buKmL9ZSANJJt1vi5ttb9hCAtklYLYZeiPjvLGi1ZC4nwtnKT1z3PoCGnnu
-         JCUKcxBt9uH4P9kbRgQgVInn9XrhxMKMTpdCuvJF8HW5PHlOpo2Zo1999OZbsr//ZXMh
-         TNY4K6MnQqCyRHTkZMfxf8FlIaiLKbKQYHF9N3kD3pzJ6H5Rp9yzzszbPJOQDb54tS1L
-         AE3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5OdyRKFST2UkrnFQxoJYi7XQRvXEY/YmDNSwtGSyDTY=;
-        b=iFxW16Ld6xs3yU0sVCnGMPctl1EFu9nrSobWtKKQjd6hgPa0dJ3irFBDPWFGZtNm99
-         nXc1jPqTTNU3P1EztlTQLlIa2gRcSEjXv52Jw893UZUgUq1CI9exqiDnb5bevfUu71VK
-         9uzhIvcxhwsdF697rO2Pah4LNkz3u+GYFanKFjCVGUzQXaSFao5nsc09g37UtiorphZX
-         ZgiaTRipnKx5pc6CN5g+Aj7eiGokLTtTjo9VgmaEhY+M9fhymFqGbDZH2t5jAtzXPBjg
-         CroX6cG6u6F8Mm7QGNjKKyWcAj1lUZFgPAqHNgyQmE92tjlwbwLQHY+kZv2e7JQUL6st
-         fhNg==
-X-Gm-Message-State: AFqh2kpC6iFAKb5tV8WWr0/tp6YF6CzyTaWnVpt/1zHUWhZ/vOo+KaB4
-        lv9eM7i/RV8kGvRNaZITcuBYO9CNE3UqqlBD
-X-Google-Smtp-Source: AMrXdXtIAHzHGFPUTck4jeORiekJikKX1pv3b1Tw1WmT0umvTTwZXhYfJh6tmIJQmZmvLp3lbqrciw==
-X-Received: by 2002:a1c:7c0f:0:b0:3d5:816e:2fb2 with SMTP id x15-20020a1c7c0f000000b003d5816e2fb2mr41639542wmc.14.1672996415396;
-        Fri, 06 Jan 2023 01:13:35 -0800 (PST)
-Received: from [192.168.1.102] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id j1-20020a05600c1c0100b003cfaae07f68sm6093133wms.17.2023.01.06.01.13.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Jan 2023 01:13:34 -0800 (PST)
-Message-ID: <fa0327b1-2180-1421-b448-a45ab0be9750@linaro.org>
-Date:   Fri, 6 Jan 2023 10:13:32 +0100
+        with ESMTP id S232090AbjAFJOu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 04:14:50 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 620826699A;
+        Fri,  6 Jan 2023 01:14:49 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DCF9461D62;
+        Fri,  6 Jan 2023 09:14:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A680C433EF;
+        Fri,  6 Jan 2023 09:14:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1672996488;
+        bh=6a7N+091Z6NCe1Be8JsUKIhRH9rci8z3cmchqgVEigE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BUMsHkZz1lYN9STpZyZGWwVU7YfTytLh7rWqDfzATZoW9apHfKBM8f70LdNTVyyxj
+         k2znIHRXHZulaNnn+EMSvkumr1yJ3viIAiS/9WMbGuYt5qJiPhaRyM0fadzL0+zLWw
+         8IeRBPRVh7YV8uqEiPG2rcnsEuKmk9XO/4z16EpHFPV0wBEKiiGBEYYeypznp4ZIuv
+         6zF7m/ZTjHqof0FxdsKFPfvG9YtMaoQ84M1Nld5yoydI1NqM5X7IddNotsmlAMxCIk
+         SjnCmmhv3Iuy4YZU+W+BBnDsv44Mg+XyIZYwy27ctrlGrBMQbyXK4XqYmKLZHCfkCh
+         6LndsOj5WzRPg==
+Date:   Fri, 6 Jan 2023 09:14:41 +0000
+From:   Lee Jones <lee@kernel.org>
+To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jacopo Mondi <jacopo@jmondi.org>, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v4 1/2] dt-bindings: mfd: Add RZ/V2M PWC
+Message-ID: <Y7fmgWzR5Pyu3O1A@google.com>
+References: <20230105201242.189195-1-fabrizio.castro.jz@renesas.com>
+ <20230105201242.189195-2-fabrizio.castro.jz@renesas.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: soc: qcom: eud: Add SM6115 / SM4250
- binding
-Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     quic_schowdhu@quicinc.com, agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@linaro.org, gregkh@linuxfoundation.org,
-        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-References: <20230103150419.3923421-1-bhupesh.sharma@linaro.org>
- <20230103150419.3923421-2-bhupesh.sharma@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230103150419.3923421-2-bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230105201242.189195-2-fabrizio.castro.jz@renesas.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,57 +65,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/01/2023 16:04, Bhupesh Sharma wrote:
-> Add dt-bindings for EUD found on Qualcomm SM6115 / SM4250 SoC.
-> 
-> On this SoC (and derivatives) the enable bit inside 'tcsr_check_reg'
-> needs to be set first to 'enable' the eud module.
-> 
+On Thu, 05 Jan 2023, Fabrizio Castro wrote:
 
-Subject: drop second, redundant "binding".
+> The Renesas RZ/V2M External Power Sequence Controller (PWC)
+> IP is a multi-function device, and it's capable of:
+> * external power supply on/off sequence generation
+> * on/off signal generation for the LPDDR4 core power supply (LPVDD)
+> * key input signals processing
+> * general-purpose output pins
 
+The subject line now needs changing.
 
-> So, update the dt-bindings to accommodate the third register
-> property required by the driver on these SoCs.
+This patch doesn't have anything to do with MFD.
+
+> Add the corresponding dt-bindings.
 > 
-> Cc: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > ---
->  .../devicetree/bindings/soc/qcom/qcom,eud.yaml         | 10 ++++++++++
->  1 file changed, 10 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml
-> index c98aab209bc5d..1dffe14868735 100644
-> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml
-> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml
-> @@ -18,12 +18,22 @@ properties:
->      items:
->        - enum:
->            - qcom,sc7280-eud
-> +          - qcom,sm6115-eud
->        - const: qcom,eud
->  
->    reg:
-> +    minItems: 2
->      items:
->        - description: EUD Base Register Region
->        - description: EUD Mode Manager Register
-> +      - description: TCSR Check Register
+> v1->v2: I have dropped syscon, simple-mfd, regmap, offset, and the child nodes.
+> v2->v3: No change.
+> v3->v4: Moved file under Documentation/devicetree/bindings/soc/renesas,
+>         and changed $id accordingly. Rob, I have kept your Reviewed-by
+>         tag assuming you are still happy, please do jump in if you think
+>         that's not appropriate anymore.
+> 
+>  .../soc/renesas/renesas,rzv2m-pwc.yaml        | 56 +++++++++++++++++++
+>  1 file changed, 56 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/renesas/renesas,rzv2m-pwc.yaml
 
-Is this valid also for sc7280? From commit description looks like not,
-so you should have allOf:if:then constraining the items per variant.
-
-> +
-> +  reg-names:
-> +    minItems: 2
-> +    items:
-> +      - const: eud-base
-> +      - const: eud-mode-mgr
-> +      - const: tcsr-check-base
->  
->    interrupts:
->      description: EUD interrupt
-
-Best regards,
-Krzysztof
-
+-- 
+Lee Jones [李琼斯]
