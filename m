@@ -2,96 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FAEF660052
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 13:35:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A130E660053
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 13:36:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232477AbjAFMfJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 07:35:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60522 "EHLO
+        id S229586AbjAFMgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 07:36:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229586AbjAFMfI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 07:35:08 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2180E68786
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 04:35:07 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id co23so1152023wrb.4
-        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 04:35:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FHJJcmxoQF6RmTS7KWkeAydRQ3hH8J9+bPjwO9oOfwg=;
-        b=LB6/Kj6LBjCWiINiSHkE4K1udV2q1085XdI2d7bQqOz3baZb+Vk/P8IOOhfjDlXdm5
-         8QMM2X/fDDeG7CFJGUIDVPtIXnavSCh30zKyeJ2p0g/tW//f4G1zqSLwP9dAN6MvJtKe
-         OTWvMykFDOcYj+RWrINucrVWceVsdgMcy/wNKh7+z3YSjOFodK/bpjqhKk5gZCSD+jSJ
-         4U1X9ci4ye4XqPAJIJH+HOR9EKppiplvcxKoP3UU4CWY3mAmZdSgTBr+VNNwy/uakEJX
-         mGG9zZQ7jLJWxUL6+ls1kBTR69wCuhwMXFvvPktmO2oluXAbebh3S7OgmQ7ZpdOW8ZsR
-         w/oQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FHJJcmxoQF6RmTS7KWkeAydRQ3hH8J9+bPjwO9oOfwg=;
-        b=apTimwcqi8i4S0qj9a9LOrzHU5Ki1kHyJ9S6mtX7ClHs/niYuTHnm9XdnW2bkdBMLN
-         1z0nYpOcrCxj6H6PDET9M4sjAnivZ5Dn9XYlosnKu5u/hydDECrKT1grB2yl+3mhUP55
-         97HnrXyyIq6lBudagaCEOunETgu8HGMbCVWV43CiMfRjA3eg5M8hiWIMsY6/aEmbJcex
-         f1EninGUZw4C56uj1MVuVmtC1Jw+Wm4PQ+WYOPckItFvo4yn0lwVKl7y3CjuC0YDPttU
-         ANOUEehEPDmTb8PgvCNkiyNPIMrjXieM4vRMxv7dABZNyRPmGHxIE60H463y8ui7JVeN
-         l+NA==
-X-Gm-Message-State: AFqh2krsXES95sBeWKfvkpwWETGqkXLqTpZ9IlRoUwWqxxuE3KbFfuun
-        61Z/daLJrxgDjB+XtO/lcXtpww==
-X-Google-Smtp-Source: AMrXdXtq7EH+BbYvHh9s5O5NWIhpRY4i2EWNgdfO058HgwYDQMqoMoiaCYmZffGJxaURD+tY5GeA4A==
-X-Received: by 2002:a5d:560a:0:b0:27b:45ba:3b47 with SMTP id l10-20020a5d560a000000b0027b45ba3b47mr26535909wrv.57.1673008505734;
-        Fri, 06 Jan 2023 04:35:05 -0800 (PST)
-Received: from [192.168.1.102] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id j14-20020adfea4e000000b0027f4a7efc54sm1102338wrn.15.2023.01.06.04.35.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Jan 2023 04:35:05 -0800 (PST)
-Message-ID: <41525097-7703-c6fc-c265-00dc588dde87@linaro.org>
-Date:   Fri, 6 Jan 2023 13:35:04 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 1/3] dt-bindings: iio: st-sensors: Add LSM303C
- accelerometer+magnetometer
-Content-Language: en-US
-To:     Stephan Gerhold <stephan@gerhold.net>,
-        Jonathan Cameron <jic23@kernel.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S229491AbjAFMgu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 07:36:50 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07704687A5;
+        Fri,  6 Jan 2023 04:36:50 -0800 (PST)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D4B124AE;
+        Fri,  6 Jan 2023 13:36:47 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1673008608;
+        bh=QAFwGDwfRo7x8ep0IH8RPLsB7hptSNTNYuYA5OV+Xsk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=YPKrM5jfAMy2k9CpeiyjY54mAh3RVyZ3NOVKUwCoSIiDbFexFTuqRngOFrsmjipjz
+         fkOFEEwFR3T9nyI7Hxd8N0wEbYy0geNSmeqikJXGb+4/8eaTySegUBkPmf8wnEI7Sv
+         TXnoZoyPTglnfUtO9L3uKqK2o0NnmyIMEA+bJfn0=
+Date:   Fri, 6 Jan 2023 14:36:41 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Michael Tretter <m.tretter@pengutronix.de>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Denis Ciocca <denis.ciocca@st.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20230106102239.9647-1-stephan@gerhold.net>
- <20230106102239.9647-2-stephan@gerhold.net>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230106102239.9647-2-stephan@gerhold.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Fabio Estevam <festevam@gmail.com>, kernel@pengutronix.de,
+        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 8/8] ARM: dts: imx7d: add node for PXP
+Message-ID: <Y7gV2bGXqPMLr4Vv@pendragon.ideasonboard.com>
+References: <20230105134729.59542-1-m.tretter@pengutronix.de>
+ <20230105134729.59542-9-m.tretter@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230105134729.59542-9-m.tretter@pengutronix.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/01/2023 11:22, Stephan Gerhold wrote:
-> The ST LSM303C [1] is a accelerometer and magnetometer combo sensor
-> compatible with the existing ST sensor bindings. Accelerometer and
-> magnetometer are exposed through separate I2C/SPI devices, so document
-> separate compatibles with -accel and -magn suffix.
+Hi Michael,
+
+Thank you for the patch.
+
+On Thu, Jan 05, 2023 at 02:47:29PM +0100, Michael Tretter wrote:
+> The i.MX7d contains a Pixel Pipeline in version 3.0. Add the device tree
+> node to make it available.
 > 
-> [1]: https://www.st.com/resource/en/datasheet/lsm303c.pdf
+> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+> ---
+>  arch/arm/boot/dts/imx7d.dtsi | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/imx7d.dtsi b/arch/arm/boot/dts/imx7d.dtsi
+> index 7ceb7c09f7ad..728cc9413a7c 100644
+> --- a/arch/arm/boot/dts/imx7d.dtsi
+> +++ b/arch/arm/boot/dts/imx7d.dtsi
+> @@ -165,6 +165,15 @@ pcie_phy: pcie-phy@306d0000 {
+>  		  reg = <0x306d0000 0x10000>;
+>  		  status = "disabled";
+>  	};
+> +
+> +	pxp: pxp@30700000 {
+> +		compatible = "fsl,imx7d-pxp";
 
+Hmmm... The i.MX7S also has a PXP that seems compatible. I thus wonder
+if we shouldn't move this node to imx7s.dtsi.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +		reg = <0x30700000 0x10000>;
+> +		interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> +			<GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
 
-Best regards,
-Krzysztof
+Nitpicking, alignment ?
 
+> +		clocks = <&clks IMX7D_PXP_CLK>;
+> +		clock-names = "axi";
+> +	};
+>  };
+>  
+>  &aips3 {
+
+-- 
+Regards,
+
+Laurent Pinchart
