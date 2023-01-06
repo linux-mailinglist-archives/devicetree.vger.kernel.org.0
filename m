@@ -2,112 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5282F660170
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 14:41:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B731366017E
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 14:44:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229908AbjAFNlS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 08:41:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40794 "EHLO
+        id S234793AbjAFNo3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 08:44:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229601AbjAFNlR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 08:41:17 -0500
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F7A01A23F;
-        Fri,  6 Jan 2023 05:41:15 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 306Df3aV072524;
-        Fri, 6 Jan 2023 07:41:03 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1673012463;
-        bh=yUQwEqcwqk+32G/q93mIfkOhtZG/6onD8sVRMmDJx8o=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=PAO0zwERzCy89f4yF2CeIH0EMNF0PXwgHnub2WO0hQ27bXVlW5adKWJvmdukFOagM
-         77VN5IIUCCtt/qJYJWaD2HxTXuHY9d+a1j/IYItuQ45BRaLWKbcOPv3hn6Sf2HalgK
-         vtWDgRPZsI3KTiXUgc94Hsa19kMZKhzE2N3fAkEs=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 306Df3Rq016161
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 6 Jan 2023 07:41:03 -0600
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 6
- Jan 2023 07:41:02 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Fri, 6 Jan 2023 07:41:03 -0600
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 306Df30p064765;
-        Fri, 6 Jan 2023 07:41:03 -0600
-Date:   Fri, 6 Jan 2023 07:41:03 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Sinthu Raja M <sinthu.raja@mistralsolutions.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Sinthu Raja <sinthu.raja@ti.com>
-Subject: Re: [PATCH V4 1/3] dt-bindings: arm: ti: Add binding for AM68 SK
-Message-ID: <20230106134102.twg6qzyeh5ivhe46@recopy>
-References: <20230105151740.29436-1-sinthu.raja@ti.com>
- <20230105151740.29436-2-sinthu.raja@ti.com>
- <977b5cce-2501-4d7a-fe24-437df88aee8f@linaro.org>
- <CAEd-yTR=zdg_pt=MzkzceGTY2SkV=16dyhXCtd4EU-KGzP_mAQ@mail.gmail.com>
- <ebb0a452-9ae6-780a-a6ca-d34d0ebbc520@linaro.org>
- <CAEd-yTRzxUGNM6u0SMnVNjM=xrsX9g1JUEYvaUhqa--KcgYfeQ@mail.gmail.com>
+        with ESMTP id S234457AbjAFNo2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 08:44:28 -0500
+Received: from mail-il1-x135.google.com (mail-il1-x135.google.com [IPv6:2607:f8b0:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36DC676827
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 05:44:27 -0800 (PST)
+Received: by mail-il1-x135.google.com with SMTP id a9so382251ilp.6
+        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 05:44:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5gc3unIBWzJHAWIDN45C88zkp/6OCUho9lqZyPufjzk=;
+        b=gqYp7FhOkbantyFSIKTRHkGWc0d0+YLNm4WQlCvHvPZDGvuXg+1swbIIVjZaHeogZ1
+         V8TWhPG/GkRph3px+LMtoRmB5DbnUEArZTj8mlX5W6prqOd6k8c4fV24syoVCrRvf2ge
+         lqeGD8ZaQ80HlLlVapJ1MqQvpNgEiwvMIvx4Xy7hWYd6DLG/GROhxCd+YhKfQwsT+lp/
+         w8okgdM8s9Rwzaxn1+GZwdoeR0ZKRa2bO0jLZl55nN2fCg2LltkDRjT3aK6JeSACVBq7
+         xkD3GaGVJGAbvuAKlBzjqzUpVMH4IwfVZfb5/dVB8ZPjEm8KZ1X5zvtv9k2Uelm64Wbw
+         bE6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5gc3unIBWzJHAWIDN45C88zkp/6OCUho9lqZyPufjzk=;
+        b=coSo55k3qALcEJvgh8wIahPh3Lng+YpcAybTZmIs2wv+/A8PRa0B9i4acky+rbxd4I
+         MOYUqQOUSuHdUaJisY66ZE0V2FFLQvTmSSO32ddCBEt0EB2Zmstrfo5GEaHfmFjMd7K5
+         2r1EMgnap8MzJJZAU+AmnwhSZcB2ct3tHFmyg4V4AGTRjDVgMNEQ6Ob1qDPOoPLFUrON
+         obVKpD3CDW/DXHlTgaeQ1wxW30KoYaHbSd/RQCFASd/snW6Qb5OcxPvEJJPirTjbCiu3
+         qNqcs0MGkAXnCmOY1yJzVuTSHQ+yNZcusGcmEBrANXBxrwCGlWdMHapQg93yhVcTN9H/
+         ZnCA==
+X-Gm-Message-State: AFqh2kqV4YtmRZTPIy1dRdW33k5hlbPr2GDbutFxDLcXpt2A5mf6KM49
+        i6N/m6xuygZCL44xZadI5hzBSPUhJV+sqow3
+X-Google-Smtp-Source: AMrXdXsJ/zxj5qwdIbKfEFHYe96AKTYGUsuOsd1Cz4QnBRQAuQmGXpf2MHrdk2w+L87J7n5m550WGA==
+X-Received: by 2002:a92:364f:0:b0:30d:6ea8:4f27 with SMTP id d15-20020a92364f000000b0030d6ea84f27mr6483784ilf.15.1673012666498;
+        Fri, 06 Jan 2023 05:44:26 -0800 (PST)
+Received: from [172.22.22.4] ([98.61.227.136])
+        by smtp.googlemail.com with ESMTPSA id h15-20020a056638062f00b0038aaccd3bf3sm337639jar.39.2023.01.06.05.44.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Jan 2023 05:44:26 -0800 (PST)
+Message-ID: <eeb9631c-4494-fc76-5ad4-5fdbdaa8786a@linaro.org>
+Date:   Fri, 6 Jan 2023 07:44:24 -0600
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CAEd-yTRzxUGNM6u0SMnVNjM=xrsX9g1JUEYvaUhqa--KcgYfeQ@mail.gmail.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 3/9] interconnect: qcom: sc7180: drop IP0 remnants
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     Georgi Djakov <djakov@kernel.org>,
+        Odelu Kukatla <okukatla@codeaurora.org>,
+        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230106073313.1720029-1-dmitry.baryshkov@linaro.org>
+ <20230106073313.1720029-4-dmitry.baryshkov@linaro.org>
+From:   Alex Elder <elder@linaro.org>
+In-Reply-To: <20230106073313.1720029-4-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18:47-20230106, Sinthu Raja M wrote:
-> On Fri, Jan 6, 2023 at 6:28 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
-> >
-> > On 06/01/2023 13:53, Sinthu Raja M wrote:
-> > > On Fri, Jan 6, 2023 at 6:19 PM Krzysztof Kozlowski
-> > > <krzysztof.kozlowski@linaro.org> wrote:
-> > >>
-> > >> On 05/01/2023 16:17, Sinthu Raja wrote:
-> > >>> From: Sinthu Raja <sinthu.raja@ti.com>
-> > >>>
-> > >>> AM68 Starter Kit is a low cost, small form factor board designed for
-> > >>> TI's AM68 SoC which is optimized to provide best in class performance
-> > >>> for industrial applications and add binding for the same.
-> > >>>
-> > >>> Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
-> > >>
-> > >> What happened here?,
-> > > Krzysztof
-> > > Missed the merge window, so rebased to 6.2rc1 and reposted again.
-> >
-> > And what was here in v3?
-> Krzysztof,
-> Are you asking about this tag?
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 1/6/23 1:33 AM, Dmitry Baryshkov wrote:
+> Drop two defines leftover from the commit 2f3724930eb4 ("interconnect:
+> qcom: sc7180: Drop IP0 interconnects"), which dropped handling of the
+> IP0 resource in favour of handling it in the clk-rpmh driver.
+> 
+> Fixes: 2f3724930eb4 ("interconnect: qcom: sc7180: Drop IP0 interconnects")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-When you are re-posting OR updating the series, it is the patch sender's
-responsibility to pick up the acks. If you are explicitly not picking up
-reviews and acks, you should state in the diffstat why.
+On this patch and the rest like it in this series, I suggest
+adding a comment that indicates why there's a gap in the simple
+numeric sequence.  Feel free to ignore this if you don't think
+this is a good idea.  I'll give examples below, although I
+don't fully understand why there's a master and slave on the
+interconnect, but just a single clock for RPMH clock...
 
-Also see the b4 tricks[1]
+					-Alex
 
-[1] https://www.youtube.com/watch?v=-Vld9aoFPwU
+> ---
+>   drivers/interconnect/qcom/sc7180.h | 2 --
+>   1 file changed, 2 deletions(-)
+> 
+> diff --git a/drivers/interconnect/qcom/sc7180.h b/drivers/interconnect/qcom/sc7180.h
+> index c6212a10c2f6..b691d97d56cf 100644
+> --- a/drivers/interconnect/qcom/sc7180.h
+> +++ b/drivers/interconnect/qcom/sc7180.h
+> @@ -11,7 +11,6 @@
+>   #define SC7180_MASTER_APPSS_PROC			0
+>   #define SC7180_MASTER_SYS_TCU				1
+>   #define SC7180_MASTER_NPU_SYS				2
+> -#define SC7180_MASTER_IPA_CORE				3
+	/* MASTER_IPA_CORE (4) is represented as an RPMH clock */
+>   #define SC7180_MASTER_LLCC				4
+>   #define SC7180_MASTER_A1NOC_CFG				5
+>   #define SC7180_MASTER_A2NOC_CFG				6
+> @@ -58,7 +57,6 @@
+>   #define SC7180_MASTER_USB3				47
+>   #define SC7180_MASTER_EMMC				48
+>   #define SC7180_SLAVE_EBI1				49
+> -#define SC7180_SLAVE_IPA_CORE				50
+	/* SLAVE_IPA_CORE (50) is represented as an RPMH clock */
+>   #define SC7180_SLAVE_A1NOC_CFG				51
+>   #define SC7180_SLAVE_A2NOC_CFG				52
+>   #define SC7180_SLAVE_AHB2PHY_SOUTH			53
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
