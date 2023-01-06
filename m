@@ -2,107 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C19FA65FE0D
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 10:36:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B660865FE10
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 10:36:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229903AbjAFJg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 04:36:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33420 "EHLO
+        id S232311AbjAFJg2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 04:36:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234303AbjAFJfp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 04:35:45 -0500
-Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEF8477D10;
-        Fri,  6 Jan 2023 01:27:44 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id C6FB542165;
-        Fri,  6 Jan 2023 09:27:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
-        t=1672997262; bh=pqxtamDoWidS7O09w7HZAMcUH3w/MyHbr77vLOidp7c=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To;
-        b=ndaDkCSoEI92lNXnG1YNs5b8oVjNVGvjl+Mr2Hc7C3fMM3GOx5s7fW5/CtiHV1fil
-         ND4cScruX7TWwbiOv2Smrp8JLArJIXQpVzeJ7kJxnfFrtRc/vOOo9oC3WlUf2k9E4r
-         BGD+KqMAamhVW8Uvd83rFubB9Fh1TbdHbKWNWo51FfKe+h13dmto1CIm+xxBvjSg5m
-         +WgVXXCcM41YfUHD91Ws7QU6UvPFKUGqBMj2F4yIKhhf5VcFd9owLqNnI2VnnjxXnJ
-         BKX0V1NAfmV6RuukcT4eU33YfSoquItPhRp9lz8vzafh6EniMgC5Ofwgn2C9NiM07y
-         dvaqcnDYBw8aQ==
-Message-ID: <fc6d3c3b-1352-4f75-cbef-d29bd74c0e40@marcan.st>
-Date:   Fri, 6 Jan 2023 18:27:35 +0900
+        with ESMTP id S234039AbjAFJgI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 04:36:08 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACA558D38D
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 01:28:04 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id b24-20020a05600c4a9800b003d21efdd61dso666188wmp.3
+        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 01:28:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=o62n9NBbSVSiAKonaXoYdKNKA7O0bg5G8XsGNr/A9Rc=;
+        b=tPYq5WRY85k9btPiVrnv2nF1F4k9la5HZRecSieuIdTpbp6MkznWVU0sa19MfcwdmA
+         qiWzMK2gE9soQ168GTB9AImH6iuqp5EM8+buKfArAOnp5X+K3cSfwYKjjFldwmiNjCtU
+         FY0HwG1ViN5QIbyYnemJAiMcxKQp016Ox3Ds2Wu5/6SJ2SrhAxG7dAcdcaIAAAFy1VQl
+         nEiDvP8QjQXeAx6DqwQhX76q9Vky0IfxdrSQOaCYz/41GtDRqAuK80qw/1Yz30427Lvl
+         JScaFZHXdbHlSHq6q5wHPkYBYwdRA62l+hhHPRvFvTCEw74zhDPPoq/+JQhW0pELUV6X
+         S+sA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=o62n9NBbSVSiAKonaXoYdKNKA7O0bg5G8XsGNr/A9Rc=;
+        b=BnhloSF8Ut1M+rjp7uUV7yBJJJcX7EhxVK5FG27JiVXGqQ0LlYLrGKzyYlS2l4fa3e
+         kaUxfcRdookn/yvrz5tNo/kPcA2FATyheUSRzJKNMk90NNLeX9C7qbVf+jtX1YJ7oHV8
+         eas9jSQiZ1C7sZlGC95daCB4wb2pUBPq/ROb6EJEDsrLWPU+TP+yuKVVp7vtY89yFBJ/
+         9MY2h+4VvayP7+oQwjmDlWksDLoXpRdrpAHltadvkL+Rr4G1vLjZOpOgNtnnDm0lZ6o6
+         X0ClfyS7ciEPN5AztqxN94t0vIRTUcYAiX5UpMavXSJkrNxtMFiDS5+UTSWGM51an615
+         zghg==
+X-Gm-Message-State: AFqh2koYu44a2hgeU/EvSIsKb3en2wuu1kpNoZDwN3ZvQ20JJZUAl+42
+        ko7sE5e2r0MgI4dJ3S6YKj6oIg==
+X-Google-Smtp-Source: AMrXdXs0JBJ4niKpF4pQfza4ErydKUpKj3bcSZLk7ks5fAlEoOogGLVXZLw1+9PUmKUf3HGg0CMNZA==
+X-Received: by 2002:a05:600c:34cf:b0:3d0:7415:c5a9 with SMTP id d15-20020a05600c34cf00b003d07415c5a9mr40190823wmq.21.1672997282446;
+        Fri, 06 Jan 2023 01:28:02 -0800 (PST)
+Received: from [192.168.1.102] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id u8-20020a05600c19c800b003d9780466b0sm1125082wmq.31.2023.01.06.01.28.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Jan 2023 01:28:02 -0800 (PST)
+Message-ID: <9bbd5343-30bc-1146-3296-2c3a43b9a91b@linaro.org>
+Date:   Fri, 6 Jan 2023 10:28:00 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH] brcmfmac: of: Use board compatible string for board type
+Subject: Re: [PATCH 1/7] dt-bindings: usb: Correct and extend FOTG210 schema
 Content-Language: en-US
-To:     "Ivan T. Ivanov" <iivanov@suse.de>, aspriel@gmail.com
-Cc:     franky.lin@broadcom.com, hante.meuleman@broadcom.com,
-        rmk+kernel@armlinux.org.uk, kvalo@kernel.org, davem@davemloft.net,
-        devicetree@vger.kernel.org, edumazet@google.com,
-        krzysztof.kozlowski+dt@linaro.org, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        brcm80211-dev-list.pdl@broadcom.com,
-        SHA-cyfmac-dev-list@infineon.com
-References: <20230106072746.29516-1-iivanov@suse.de>
-From:   Hector Martin <marcan@marcan.st>
-In-Reply-To: <20230106072746.29516-1-iivanov@suse.de>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Fabian Vogt <fabian@ritter-vogt.de>
+References: <20230103-gemini-fotg210-usb-v1-0-f2670cb4a492@linaro.org>
+ <20230103-gemini-fotg210-usb-v1-1-f2670cb4a492@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230103-gemini-fotg210-usb-v1-1-f2670cb4a492@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023/01/06 16:27, Ivan T. Ivanov wrote:
-> When "brcm,board-type" is not explicitly set in devicetree
-> fallback to board compatible string for board type.
+On 04/01/2023 00:35, Linus Walleij wrote:
+> It turns out that this IP block exists in at least two
+> incarnations: FOTG200 and FOTG210. The one in the Gemini
+> is FOTG200, so add the variants and rectify the binding
+> for Gemini.
 > 
-> Some of the existing devices rely on the most compatible device
-> string to find best firmware files, including Raspberry PI's[1].
+> This affects things such as the placement of certain
+> registers.
 > 
-> Fixes: 7682de8b3351 ("wifi: brcmfmac: of: Fetch Apple properties")
+> It remains to be seen how similar this block is to the
+> third USB block from Faraday, FUSB220.
 > 
-> [1] https://bugzilla.opensuse.org/show_bug.cgi?id=1206697#c13
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/usb/faraday,fotg210.yaml | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
 > 
-> Signed-off-by: Ivan T. Ivanov <iivanov@suse.de>
+> diff --git a/Documentation/devicetree/bindings/usb/faraday,fotg210.yaml b/Documentation/devicetree/bindings/usb/faraday,fotg210.yaml
+> index 84b3b69256b1..12d4fc742f20 100644
+> --- a/Documentation/devicetree/bindings/usb/faraday,fotg210.yaml
+> +++ b/Documentation/devicetree/bindings/usb/faraday,fotg210.yaml
+> @@ -5,7 +5,7 @@
+>  $id: http://devicetree.org/schemas/usb/faraday,fotg210.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: Faraday Technology FOTG210 HS OTG USB 2.0 controller
+> +title: Faraday Technology FOTG200 series HS OTG USB 2.0 controller Bindings
 
-The existing code already falls back to the compatible string, *as long
-as there is no board_type set already*.
+That's not correct change, probably due to rebasing. Change the name
+only, do not add "Bindings".
 
-As far as I can tell, the only way the board_type can get another value
-first is if it comes from DMI. This behavior was inadvertently changed
-by commit 7682de8b3351 (since I was not expecting platforms to have
-*both* DT and DMI information).
 
-I'm guessing the Raspberry Pi is one such platform, and
-`/sys/devices/virtual/dmi` exists? Hybrid UEFI+ACPI+DT platform I take it?
+Best regards,
+Krzysztof
 
-If so, your commit description should probably be something like:
-
-===
-brcmfmac: Prefer DT board type over DMI board type
-
-The introduction of support for Apple board types inadvertently changed
-the precedence order, causing hybrid ACPI+DT platforms to look up the
-firmware using the DMI information instead of the device tree compatible
-to generate the board type. Revert back to the old behavior,
-as affected platforms use firmwares named after the DT compatible.
-
-Fixes: 7682de8b3351 ("wifi: brcmfmac: of: Fetch Apple properties")
-===
-
-An also add a Cc: stable@vger.kernel.org to make sure this gets backported.
-
-With the fixed description,
-
-Reviewed-by: Hector Martin <marcan@marcan.st>
-
-- Hector
