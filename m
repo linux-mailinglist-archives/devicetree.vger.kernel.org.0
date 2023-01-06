@@ -2,142 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B992B6601C0
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 15:03:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2EF66601C8
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 15:08:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234829AbjAFODq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 09:03:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50850 "EHLO
+        id S232226AbjAFOID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 09:08:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229968AbjAFODn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 09:03:43 -0500
-Received: from egress-ip4b.ess.de.barracuda.com (egress-ip4b.ess.de.barracuda.com [18.185.115.208])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A131B7CC
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 06:03:42 -0800 (PST)
-Received: from mail-lj1-f197.google.com (mail-lj1-f197.google.com [209.85.208.197]) by mx-outbound18-167.eu-central-1b.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Fri, 06 Jan 2023 14:03:40 +0000
-Received: by mail-lj1-f197.google.com with SMTP id l11-20020a2e99cb000000b0027fbbafe46fso429562ljj.11
-        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 06:03:40 -0800 (PST)
+        with ESMTP id S229968AbjAFOIC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 09:08:02 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D9DB6E0D6
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 06:08:01 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id o15so1114315wmr.4
+        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 06:08:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistralsolutions.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=nlPsnIKkTLLU/5/VeY5zhomJN7U6Vw6q3Celpp1TfQc=;
-        b=IoIZXfoj+B1KCYUbJd/lliIvSaBMPEL8dHNiLOkriA7ugn3v/sSiptRcR1OjX5yoxs
-         jMDtTaElivSpdnLyTLLLQaqqezUjUerEKiSpvkGzXaGR+vE2bS3bD1Bl8ealorzrTfL5
-         7kZnL1DrxbXckOVfWITmc3wOcn+3ahRGhqvzE=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/B8JG1BigC8p4YFF5MJGebkSPugb2nMU0x88FUmUoe4=;
+        b=DgsgPsIQjhh4mV8YXc/ADv8b1UTm/jZ1uPvXe+ZM1DyFVlCJ9enlBequydb9qgWuo/
+         RX8CZF0uUxLj0t8mma2gpI6k8KiK3i0J7/k3l62bUauhMNZoYNHGgPze/o67AUr+cgs4
+         /KnjUl27LZ929mqESKqLtYXqcGDITyYDVqqfIwFF8X4tFkNX4zJrA+3GBoE8947+XyeS
+         bZb940nAGQPXaYQc4kaEsN4HMJXEjPjQU0ZNRKfiLQuELkwYkj7GXjwaSJXKMTZkOJpP
+         j3BXPDUx49695KuArk9kqGNEFF0/okvp5xWmFjIIxYqyyiRCbG0kVZhw0gx9RBQnJvfQ
+         RmfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nlPsnIKkTLLU/5/VeY5zhomJN7U6Vw6q3Celpp1TfQc=;
-        b=4dIs2OtOTKinnxyh9hmCemFLgOr4pvJP4IxsHR+T622RLKn+h3gXZaVggqcTXzJnBl
-         aL43awmwH2pJkpMSItOB19QwRcmdNdQ9qLdvgKfKXtK48Q0v0XjT5RNJRqzOaeJQacxE
-         N8tCPlnrrNxl0/Oh0kc0UkskogRgzj+ym0KUQ4WZ/icUN8rVwsuDPmjkpYDonWzDpCfi
-         DzvmySsPDZJXRwRdv7QBlMHEFRRZ45fB6WBAekVsfdvFcgm752+zjdcXQI4go7VLYVga
-         G5Ztyb+VtU91McbU8XIL/5jMcd6n4WwWSuD5IhqmKammmgNssAur//8q0701eCa32ash
-         UK7Q==
-X-Gm-Message-State: AFqh2kpxaldKuSK8tR+OtSbcgSeV89na7Fs7MUpRLOET1iboJhaWYX3Z
-        y8T4Qdp1qrJWNfK7AbSWjYqChTr3l1vEGs+LNtkH17ODEP+tIJCfVN6YV/xeAqf4Ahf+flPYyH2
-        X7AfuoAKBe2+ulnwjnfi57u39kscvHow+QoX60qC0RSVtWpD3NmNnu23ndehfyNloDuf7/iI6cQ
-        ==
-X-Received: by 2002:a2e:a37b:0:b0:27f:c04f:aa1d with SMTP id i27-20020a2ea37b000000b0027fc04faa1dmr3333460ljn.40.1673013819379;
-        Fri, 06 Jan 2023 06:03:39 -0800 (PST)
-X-Google-Smtp-Source: AMrXdXsZBHMAV+0xhkI48NiJp3toSY9OBwcF0jAmQgpmX8UjapPVIjNWiHsmKyfgJJJncErnsA0vcw+RmiLYvmI+vWs=
-X-Received: by 2002:a2e:a37b:0:b0:27f:c04f:aa1d with SMTP id
- i27-20020a2ea37b000000b0027fc04faa1dmr3333449ljn.40.1673013818378; Fri, 06
- Jan 2023 06:03:38 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/B8JG1BigC8p4YFF5MJGebkSPugb2nMU0x88FUmUoe4=;
+        b=iKpnJMQaD02LnNlVnqrUTx3tJdhiWU1TIlANd4EsQreNMQRMoNdE3O9C4Y/Bjf50zY
+         DAU5pSs/fkmIilUHWKuXF1A62tqDqDpBg3Ga/QRzy+y/YfVGOGqqmGIdNoAzj94D7ENB
+         fLABV61PcfRObdpt2vM1qqDymnVtZx+VwST9KV8mS5tesK0Y+VNnxOTgGIvS1Xi20RRH
+         +fgJpJtoJ4N+0QP8TtFOklHHztFo2z559iYoFdqkbnDYSf6/i1crTrW923qyTf+nIeNy
+         OlK8qP9ZHv4AuUAX4OV0FujSKFLS4nirXvjF1KrEzwuYrg0UzdefRxmUeZnc3G2b0jir
+         mrUw==
+X-Gm-Message-State: AFqh2koBsYNrcbpFqYf1pLFFT0eMoKIQ/tZFJqaydEqfsR20VMBx9UFw
+        Z0uYFjCZfa6CRnuJeXNHOf97oA==
+X-Google-Smtp-Source: AMrXdXvnK/BBUFBK5K+JKNO6+yp0kxHGWKWB1PQQpqva4ePUTCsOgDKPqAWRiWTDUxzHzZAiR1MWyw==
+X-Received: by 2002:a05:600c:4d25:b0:3d2:27ba:dde0 with SMTP id u37-20020a05600c4d2500b003d227badde0mr40227048wmp.33.1673014079551;
+        Fri, 06 Jan 2023 06:07:59 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id o19-20020a05600c339300b003cff309807esm5766287wmp.23.2023.01.06.06.07.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Jan 2023 06:07:58 -0800 (PST)
+Message-ID: <422275a4-b082-2951-71f2-04f33e036438@linaro.org>
+Date:   Fri, 6 Jan 2023 15:07:56 +0100
 MIME-Version: 1.0
-References: <20230105151740.29436-1-sinthu.raja@ti.com> <20230105151740.29436-2-sinthu.raja@ti.com>
- <977b5cce-2501-4d7a-fe24-437df88aee8f@linaro.org> <CAEd-yTR=zdg_pt=MzkzceGTY2SkV=16dyhXCtd4EU-KGzP_mAQ@mail.gmail.com>
- <ebb0a452-9ae6-780a-a6ca-d34d0ebbc520@linaro.org> <CAEd-yTRzxUGNM6u0SMnVNjM=xrsX9g1JUEYvaUhqa--KcgYfeQ@mail.gmail.com>
- <20230106134102.twg6qzyeh5ivhe46@recopy>
-In-Reply-To: <20230106134102.twg6qzyeh5ivhe46@recopy>
-From:   Sinthu Raja M <sinthu.raja@mistralsolutions.com>
-Date:   Fri, 6 Jan 2023 19:33:26 +0530
-Message-ID: <CAEd-yTTSC6oFMAA+kH-GwMejPY0S0q8=L43_Sw62nyLrQiAT8Q@mail.gmail.com>
-Subject: Re: [PATCH V4 1/3] dt-bindings: arm: ti: Add binding for AM68 SK
-To:     Nishanth Menon <nm@ti.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Sinthu Raja <sinthu.raja@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-X-BESS-ID: 1673013820-304775-5386-66581-1
-X-BESS-VER: 2019.1_20221214.2106
-X-BESS-Apparent-Source-IP: 209.85.208.197
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.245288 [from 
-        cloudscan14-212.eu-central-1a.ess.aws.cudaops.com]
-        Rule breakdown below
-         pts rule name              description
-        ---- ---------------------- --------------------------------
-        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND, BSF_SC0_MISMATCH_TO
-X-BESS-BRTS-Status: 1
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH] riscv: dts: fu740: fix size of pcie 32bit memory
+To:     Ben Dooks <ben.dooks@codethink.co.uk>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Cc:     robh+dt@kernel.org, palmer@dabbelt.com,
+        krzysztof.kozlowski+dt@linaro.org, zong.li@sifive.com,
+        linux-kernel@lists.codethink.co.uk,
+        sudip.mukherjee@codethink.co.uk,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Greentime Hu <greentime.hu@sifive.com>
+References: <20230106134456.265891-1-ben.dooks@codethink.co.uk>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230106134456.265891-1-ben.dooks@codethink.co.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 6, 2023 at 7:11 PM Nishanth Menon <nm@ti.com> wrote:
->
-> On 18:47-20230106, Sinthu Raja M wrote:
-> > On Fri, Jan 6, 2023 at 6:28 PM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> > >
-> > > On 06/01/2023 13:53, Sinthu Raja M wrote:
-> > > > On Fri, Jan 6, 2023 at 6:19 PM Krzysztof Kozlowski
-> > > > <krzysztof.kozlowski@linaro.org> wrote:
-> > > >>
-> > > >> On 05/01/2023 16:17, Sinthu Raja wrote:
-> > > >>> From: Sinthu Raja <sinthu.raja@ti.com>
-> > > >>>
-> > > >>> AM68 Starter Kit is a low cost, small form factor board designed for
-> > > >>> TI's AM68 SoC which is optimized to provide best in class performance
-> > > >>> for industrial applications and add binding for the same.
-> > > >>>
-> > > >>> Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
-> > > >>
-> > > >> What happened here?,
-> > > > Krzysztof
-> > > > Missed the merge window, so rebased to 6.2rc1 and reposted again.
-> > >
-> > > And what was here in v3?
-> > Krzysztof,
-> > Are you asking about this tag?
-> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
-> When you are re-posting OR updating the series, it is the patch sender's
-> responsibility to pick up the acks. If you are explicitly not picking up
-> reviews and acks, you should state in the diffstat why.
->
-> Also see the b4 tricks[1]
->
-> [1] https://www.youtube.com/watch?v=-Vld9aoFPwU
-Nishanth,
-Thanks for the information.
+On 06/01/2023 14:44, Ben Dooks wrote:
+> The 32-bit memory resource is needed for non-prefetchable memory
+> allocations on the PCIe bus, however with some cards (such as the
+> SM768) the system fails to allocate memory from this.
+> 
+> Checking the allocation against the datasheet, it looks like there
+> has been a mis-calcualation of the resource for the first memory
+> region (0x0060090000..0x0070ffffff) which in the data-sheet for
+> the fu740 (v1p2) is from 0x0060000000..0x007fffffff. Changing
+> this to allocate from 0x0060090000..0x007fffffff fixes the probing
+> issues.
+> 
+> Fixes: ae80d514808557018e44190 ("riscv: dts: Add PCIe support for the SiFive FU740-C000 SoC
+> ")
 
-Krzysztof,
-Sorry for the errors caused by my oversight. Kindly excuse me. Would
-you want me to resend the V3 series with the correct subject?
->
-> --
-> Regards,
-> Nishanth Menon
-> Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Don't wrap lines.
 
+> 
 
+Drop empty line between tags.
 
--- 
-With Regards
-Sinthu Raja
+> Cc: Paul Walmsley <paul.walmsley@sifive.com>
+> Cc: Greentime Hu <greentime.hu@sifive.com>
+> Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
+> ---
+
+Best regards,
+Krzysztof
+
