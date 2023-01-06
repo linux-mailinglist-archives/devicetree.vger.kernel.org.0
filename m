@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8999660385
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 16:40:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23ADA660380
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 16:39:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235233AbjAFPj7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 10:39:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51656 "EHLO
+        id S235496AbjAFPj5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 10:39:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234975AbjAFPjz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 10:39:55 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36A167A909
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 07:39:53 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id m18so4252464eji.5
-        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 07:39:53 -0800 (PST)
+        with ESMTP id S233560AbjAFPjx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 10:39:53 -0500
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A64F877D2A
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 07:39:51 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id kw15so4210998ejc.10
+        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 07:39:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=fairphone.com; s=fair;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dKfo3csM5YVpm75Odrr7cMYcdrBI/spn1my7oe7Ikhk=;
-        b=aMXO1CFuuhMbogRgkJFX88/S6oG0J6Cns9rS3tuzXNwyooe8y7VtdhnsH0f1Xklf3Q
-         6OvRQAiIsU8YLdFhL9r1ysjJVS627Kllc78PLNS/xfETEFGXbSy4jJ+48Ss6yCGxoKn7
-         ANFtYuUJNsy5l6K12I+uDtvu9lvo33ULFb4beAX37Ap+kOcz0COxJTmAyWOAu56Pe6HP
-         zX/3ypvDw57k2r/j8RM8SYMw7DiWVRvFmYXVEFudA5gd0XGLrBDIkGWEAwXBip8jNoXh
-         2WxTR/JG45mnxRyiHECJynbk/giIWy9thxecbWjAfwcSryc7kuLLCbD7ntboY3EFsIw2
-         UdeA==
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NpkG2iR0UwWdydoahMJc9hyZ5gZYg9PaDSDM09B2by8=;
+        b=hAXkKOvRnZeyOHvhWhrsKr+W9+QkGEcmw7NHYO0rLBGVHP/4Tm+JVMd8eBRKLMaAJT
+         KJpveSZmD19bTLd8kM5JGxm5gG1WwIqD2jMEggSDyAPkJDdtIFbnQSwIzZNyNoKvg+HZ
+         ceef176g3aG4BL1TFlLNh80cpEVuY6bWtUEP8ZXjY1XSxE7Rm0pnd9PhqYEBE0KhSyqy
+         DBwlnNsId2bH5uromjldB2xxI+Mf6fjcGINxNjQWztfudoFk1fOMhVn0zErpdM6pl4ba
+         xKW1rGgppefIhvZfqp/c5oOC+CPvWFQsd8fAfGNqrwXK8T5XY1taEQlKmo64sG75aajQ
+         VmyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dKfo3csM5YVpm75Odrr7cMYcdrBI/spn1my7oe7Ikhk=;
-        b=m3I+FJs1OEXC+aaxNlLGrDfzwJxCtJp/HfimzKkWZmmwHMtbE+qbs5IGRzwdLuIjUn
-         vzfzjKS0Bz3ZcisCISGpQFhblwoxvA/j2O0BZyIhh9KwFy1FGQFaVgi6pSJWNscVDB4y
-         zJ9R3S7UGg73ZYHQAXmbwwTjozeZjnprx4Pd0RqNVNiRdAfGyRqo4lrXGiGqHRFQa0VY
-         gXhW8d0IN0Q/W7DLvvJVXSlQkhVy+zBhSoIr3Y5iaGZ55djZOo1Ig957fsYPXnR+7eDp
-         gh80sV1pMQ5DWuO4sWTyDiFtBxo2SFBbAD4FvVg5Tt07irXYUSa1Xck1gMKwBF3B6cQ3
-         E9tw==
-X-Gm-Message-State: AFqh2krlXX6iJcdH4S84Upc9SJUZJeFHODC1zqIzBu44mFFRvGsK5npK
-        uDp57yLHcJrkHyLgt44+AdXAbA==
-X-Google-Smtp-Source: AMrXdXsOyRUDY8eTet0D35T1l5K8RorTnSSAlMJKMff96LiunHit972nEL9f6APpfimuB2JpRWEMOg==
-X-Received: by 2002:a17:907:c386:b0:7c1:31b:2181 with SMTP id tm6-20020a170907c38600b007c1031b2181mr50124974ejc.19.1673019591602;
-        Fri, 06 Jan 2023 07:39:51 -0800 (PST)
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NpkG2iR0UwWdydoahMJc9hyZ5gZYg9PaDSDM09B2by8=;
+        b=p9LFeDBO5yr3w7lFcC8nyS4ohHfZ0XHqHtVAhgawnzU4SFeIWJ8WUET6DTrWmfOdPm
+         PskxrtUt2HynukIfP1BMbnzpH218k/y0E7puZ+hPF/BKJo0C07ztV6uBu51Zr7J7zf0g
+         nHjerPD/rZ39/yFrOSxAOxjpjlKCTCDoaetVylWcRv4GliGZZVN3t2ZL108KkeoXN18N
+         30x9YW7l4rVMiTgMD+rvNd/kpVWhqSZZPpT2SBleHpovMH4tz+Og2RDy8DQp0oPfRTom
+         +H/LV7u18bEvRpsRIjgmm3T/dffoBQebLrMHq1GXgzpcFpwbuWjc9cuTuZDNyUq57lhu
+         vFFQ==
+X-Gm-Message-State: AFqh2kpVeKSEFxPa5tKw4IrBWs+Dbqb7VOfDyEDooHmQANM5qKgcahn6
+        bzSbj8y+SC/o1ohQO6kPzFkW1A==
+X-Google-Smtp-Source: AMrXdXtCz2VxsduHFn7Iu/9+O5xy6oPKtf5ciiIpoxGaBNjyjW6LzJn4v6l+97kvsAcLckwVhP9ZCg==
+X-Received: by 2002:a17:907:a08d:b0:7c0:dac7:36d8 with SMTP id hu13-20020a170907a08d00b007c0dac736d8mr49899341ejc.10.1673019590109;
+        Fri, 06 Jan 2023 07:39:50 -0800 (PST)
 Received: from [10.0.0.3] (217-149-174-217.nat.highway.telekom.at. [217.149.174.217])
-        by smtp.gmail.com with ESMTPSA id gx8-20020a170906f1c800b007aed2057eacsm496235ejb.221.2023.01.06.07.39.50
+        by smtp.gmail.com with ESMTPSA id gx8-20020a170906f1c800b007aed2057eacsm496235ejb.221.2023.01.06.07.39.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Jan 2023 07:39:51 -0800 (PST)
+        Fri, 06 Jan 2023 07:39:49 -0800 (PST)
 From:   Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH 0/2] Support ADC5_BAT_ID_100K_PU and use on PM7250b
 Date:   Fri, 06 Jan 2023 16:39:41 +0100
-Subject: [PATCH 1/2] iio: adc: qcom-spmi-adc5: define ADC5_BAT_ID_100K_PU channel
+Message-Id: <20230106-pm7250b-bat_id-v1-0-82ca8f2db741@fairphone.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230106-pm7250b-bat_id-v1-1-82ca8f2db741@fairphone.com>
-References: <20230106-pm7250b-bat_id-v1-0-82ca8f2db741@fairphone.com>
-In-Reply-To: <20230106-pm7250b-bat_id-v1-0-82ca8f2db741@fairphone.com>
+X-B4-Tracking: v=1; b=H4sIAL1AuGMC/x2NWwqDMBAAryL77cImxRR6FRHJY60LGiXRUhDv3
+ qWfMzDMBZWLcIVXc0Hhj1TZsoJpG4izz29GScpgyT7IkMN9fdqOAgZ/jJLQUEfRTi6RcaBR8JUx
+ FJ/jrFk+l0XlXniS7//SD/f9A0KVect1AAAA
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
@@ -81,27 +81,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Define the ADC channel used for battery identification purposes so it
-can be used in drivers.
+Add the bat_id channel to vadc driver and add channel to pm7250b dts.
 
+To: Andy Gross <agross@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+To: Jonathan Cameron <jic23@kernel.org>
+To: Lars-Peter Clausen <lars@metafoo.de>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht
+Cc: phone-devel@vger.kernel.org
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-iio@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: devicetree@vger.kernel.org
 Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+
 ---
- drivers/iio/adc/qcom-spmi-adc5.c | 2 ++
- 1 file changed, 2 insertions(+)
+Luca Weiss (2):
+      iio: adc: qcom-spmi-adc5: define ADC5_BAT_ID_100K_PU channel
+      arm64: dts: qcom: pm7250b: Add BAT_ID vadc channel
 
-diff --git a/drivers/iio/adc/qcom-spmi-adc5.c b/drivers/iio/adc/qcom-spmi-adc5.c
-index 821fee60a765..8c33da9de257 100644
---- a/drivers/iio/adc/qcom-spmi-adc5.c
-+++ b/drivers/iio/adc/qcom-spmi-adc5.c
-@@ -543,6 +543,8 @@ static const struct adc5_channels adc5_chans_pmic[ADC5_MAX_CHANNEL] = {
- 					SCALE_HW_CALIB_DEFAULT)
- 	[ADC5_XO_THERM_100K_PU]	= ADC5_CHAN_TEMP("xo_therm", 0,
- 					SCALE_HW_CALIB_XOTHERM)
-+	[ADC5_BAT_ID_100K_PU]	= ADC5_CHAN_TEMP("bat_id", 0,
-+					SCALE_HW_CALIB_DEFAULT)
- 	[ADC5_AMUX_THM1_100K_PU] = ADC5_CHAN_TEMP("amux_thm1_100k_pu", 0,
- 					SCALE_HW_CALIB_THERM_100K_PULLUP)
- 	[ADC5_AMUX_THM2_100K_PU] = ADC5_CHAN_TEMP("amux_thm2_100k_pu", 0,
+ arch/arm64/boot/dts/qcom/pm7250b.dtsi | 8 ++++++++
+ drivers/iio/adc/qcom-spmi-adc5.c      | 2 ++
+ 2 files changed, 10 insertions(+)
+---
+base-commit: 88603b6dc419445847923fcb7fe5080067a30f98
+change-id: 20230106-pm7250b-bat_id-1050c2f6d016
 
+Best regards,
 -- 
-2.39.0
+Luca Weiss <luca.weiss@fairphone.com>
