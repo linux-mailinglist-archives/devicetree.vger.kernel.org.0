@@ -2,109 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C885765FCFE
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 09:44:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A8A065FD51
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 10:13:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229491AbjAFIoL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 03:44:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54942 "EHLO
+        id S232366AbjAFJNp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 04:13:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229478AbjAFIoK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 03:44:10 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 930464166B;
-        Fri,  6 Jan 2023 00:44:09 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 73D6924E292;
-        Fri,  6 Jan 2023 16:44:07 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 6 Jan
- 2023 16:44:07 +0800
-Received: from [192.168.120.55] (171.223.208.138) by EXMBX168.cuchost.com
- (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 6 Jan
- 2023 16:44:06 +0800
-Message-ID: <d1c4fb2f-3a88-ef02-f929-77c0e15a6a17@starfivetech.com>
-Date:   Fri, 6 Jan 2023 16:44:05 +0800
+        with ESMTP id S231436AbjAFJNi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 04:13:38 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D218763B9
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 01:13:36 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id k26-20020a05600c1c9a00b003d972646a7dso3085083wms.5
+        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 01:13:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5OdyRKFST2UkrnFQxoJYi7XQRvXEY/YmDNSwtGSyDTY=;
+        b=jaIjZJ8WvQZJ6gpN09cWaQq02Y8TPrEBfFCbgTx+QgJd26vyPxTXMIQI9ATnUSVuk/
+         H9vMIIsnijhTum/ltk1BGF0VZRxmn59ZH9GOHC2xllg4Y9zS9U8Lg//VyB/0/zX6Z6hX
+         nGojXyiQ5buKmL9ZSANJJt1vi5ttb9hCAtklYLYZeiPjvLGi1ZC4nwtnKT1z3PoCGnnu
+         JCUKcxBt9uH4P9kbRgQgVInn9XrhxMKMTpdCuvJF8HW5PHlOpo2Zo1999OZbsr//ZXMh
+         TNY4K6MnQqCyRHTkZMfxf8FlIaiLKbKQYHF9N3kD3pzJ6H5Rp9yzzszbPJOQDb54tS1L
+         AE3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5OdyRKFST2UkrnFQxoJYi7XQRvXEY/YmDNSwtGSyDTY=;
+        b=iFxW16Ld6xs3yU0sVCnGMPctl1EFu9nrSobWtKKQjd6hgPa0dJ3irFBDPWFGZtNm99
+         nXc1jPqTTNU3P1EztlTQLlIa2gRcSEjXv52Jw893UZUgUq1CI9exqiDnb5bevfUu71VK
+         9uzhIvcxhwsdF697rO2Pah4LNkz3u+GYFanKFjCVGUzQXaSFao5nsc09g37UtiorphZX
+         ZgiaTRipnKx5pc6CN5g+Aj7eiGokLTtTjo9VgmaEhY+M9fhymFqGbDZH2t5jAtzXPBjg
+         CroX6cG6u6F8Mm7QGNjKKyWcAj1lUZFgPAqHNgyQmE92tjlwbwLQHY+kZv2e7JQUL6st
+         fhNg==
+X-Gm-Message-State: AFqh2kpC6iFAKb5tV8WWr0/tp6YF6CzyTaWnVpt/1zHUWhZ/vOo+KaB4
+        lv9eM7i/RV8kGvRNaZITcuBYO9CNE3UqqlBD
+X-Google-Smtp-Source: AMrXdXtIAHzHGFPUTck4jeORiekJikKX1pv3b1Tw1WmT0umvTTwZXhYfJh6tmIJQmZmvLp3lbqrciw==
+X-Received: by 2002:a1c:7c0f:0:b0:3d5:816e:2fb2 with SMTP id x15-20020a1c7c0f000000b003d5816e2fb2mr41639542wmc.14.1672996415396;
+        Fri, 06 Jan 2023 01:13:35 -0800 (PST)
+Received: from [192.168.1.102] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id j1-20020a05600c1c0100b003cfaae07f68sm6093133wms.17.2023.01.06.01.13.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Jan 2023 01:13:34 -0800 (PST)
+Message-ID: <fa0327b1-2180-1421-b448-a45ab0be9750@linaro.org>
+Date:   Fri, 6 Jan 2023 10:13:32 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v2 0/3] StarFive's SDIO/eMMC driver support
+Subject: Re: [PATCH v2 1/2] dt-bindings: soc: qcom: eud: Add SM6115 / SM4250
+ binding
 Content-Language: en-US
-To:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-mmc@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221227122227.460921-1-william.qiu@starfivetech.com>
-From:   William Qiu <william.qiu@starfivetech.com>
-In-Reply-To: <20221227122227.460921-1-william.qiu@starfivetech.com>
-Content-Type: text/plain; charset="UTF-8"
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     quic_schowdhu@quicinc.com, agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@linaro.org, gregkh@linuxfoundation.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+References: <20230103150419.3923421-1-bhupesh.sharma@linaro.org>
+ <20230103150419.3923421-2-bhupesh.sharma@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230103150419.3923421-2-bhupesh.sharma@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX168.cuchost.com
- (172.16.6.78)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2022/12/27 20:22, William Qiu wrote:
-> Hi,
+On 03/01/2023 16:04, Bhupesh Sharma wrote:
+> Add dt-bindings for EUD found on Qualcomm SM6115 / SM4250 SoC.
 > 
-> This patchset adds initial rudimentary support for the StarFive
-> designware mobile storage host controller driver. And this driver will
-> be used in StarFive's VisionFive 2 board. The main purpose of adding
-> this driver is to accommodate the ultra-high speed mode of eMMC.
-> 
-> The last patch should be applied after the patchset [1]:
-> [1] https://lore.kernel.org/all/20221118011714.70877-1-hal.feng@starfivetech.com/
-> 
-> Changes since v1:
-> - Renamed the dt-binding 'starfive,jh7110-sdio.yaml' to 'starfive,jh7110-mmc.yaml'.
-> - Changed the type of 'starfive,syscon' and modify its description.
-> - Deleted unused head files like '#include <linux/gpio.h>'.
-> - Added comment for the 'rise_point' and 'fall_point'.
-> - Changed the API 'num_caps' to 'common_caps'.
-> - Changed the node name 'sys_syscon' to 'syscon'.
-> - Changed the node name 'sdio' to 'mmc'.
-> 
-> The patch series is based on v6.1-rc5.
-> 
-> William Qiu (3):
->   dt-bindings: mmc: Add bindings for StarFive
->   mmc: starfive: Add sdio/emmc driver support
->   riscv: dts: starfive: Add mmc node
-> 
->  .../bindings/mmc/starfive,jh7110-mmc.yaml     |  72 +++++++
->  MAINTAINERS                                   |   6 +
->  .../jh7110-starfive-visionfive-v2.dts         |  25 +++
->  arch/riscv/boot/dts/starfive/jh7110.dtsi      |  38 ++++
->  drivers/mmc/host/Kconfig                      |  10 +
->  drivers/mmc/host/Makefile                     |   1 +
->  drivers/mmc/host/dw_mmc-starfive.c            | 185 ++++++++++++++++++
->  7 files changed, 337 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mmc/starfive,jh7110-mmc.yaml
->  create mode 100644 drivers/mmc/host/dw_mmc-starfive.c
-> 
-> --
-> 2.34.1
+> On this SoC (and derivatives) the enable bit inside 'tcsr_check_reg'
+> needs to be set first to 'enable' the eud module.
 > 
 
-Hi Rob/Jaehoon,
+Subject: drop second, redundant "binding".
 
-Could you please help to review and provide comments on this patch series?
-Thank you in advance.
+
+> So, update the dt-bindings to accommodate the third register
+> property required by the driver on these SoCs.
+> 
+> Cc: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> ---
+>  .../devicetree/bindings/soc/qcom/qcom,eud.yaml         | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml
+> index c98aab209bc5d..1dffe14868735 100644
+> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml
+> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml
+> @@ -18,12 +18,22 @@ properties:
+>      items:
+>        - enum:
+>            - qcom,sc7280-eud
+> +          - qcom,sm6115-eud
+>        - const: qcom,eud
+>  
+>    reg:
+> +    minItems: 2
+>      items:
+>        - description: EUD Base Register Region
+>        - description: EUD Mode Manager Register
+> +      - description: TCSR Check Register
+
+Is this valid also for sc7280? From commit description looks like not,
+so you should have allOf:if:then constraining the items per variant.
+
+> +
+> +  reg-names:
+> +    minItems: 2
+> +    items:
+> +      - const: eud-base
+> +      - const: eud-mode-mgr
+> +      - const: tcsr-check-base
+>  
+>    interrupts:
+>      description: EUD interrupt
 
 Best regards,
-William Qiu
+Krzysztof
+
