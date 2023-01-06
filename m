@@ -2,112 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EE6966038F
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 16:40:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD26C66038D
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 16:40:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235677AbjAFPkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 10:40:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51660 "EHLO
+        id S233358AbjAFPkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 10:40:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235017AbjAFPjz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 10:39:55 -0500
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9E3E7BDEF
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 07:39:53 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id ud5so4279779ejc.4
-        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 07:39:53 -0800 (PST)
+        with ESMTP id S235567AbjAFPj6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 10:39:58 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD4BC7A906
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 07:39:57 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id w1so1597231wrt.8
+        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 07:39:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IrFALWtjvyHrEODn7/AmsHwOIckZb4wGAaCGF9DBAVM=;
-        b=Jmun4CjNGliRP410OzyR1BUUiSsCJ5Bm43gNMHYkxiwSL9xVDWlb5av85NU3qMEPti
-         w5p3ya5HuRHHodDPbKvNMLeJOvWHcuAKDkQ5r4BnjNISCMSEX7OFnr+CZb3Kd0/iGwdI
-         5+EEGGMjZ//u2TybrowJ8g5RlcHu5IxTg+Qe0VYOUl4ZJIcTQKpAuTordn4c0ioA3GaZ
-         zy0HJkBPMO07WRa++itg1FVeDszYzXQ+6dQPOAqDjsYcUp72DcyDkmK8fiI1yvxy3DVH
-         tz4FbtcaVS5lM8n0afLrNDLR/qgfNIfGCVUUK61tb9tIE8ZfINNPc3M16jF9Mgg1KLLE
-         oTHw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gdITn0BNEFwYE+yxhugbd2XPXZtNiB3TXaZnxOed4cM=;
+        b=XAZHSD3rziy8mh+f+LxkAIsDMq75Ed2nYqzR5a8pLK8MdmDxNycMZo2uBSd+w3+tOZ
+         jDO2BOkVUczCNMKIs8Jqe6CMdteBNLpuTtkRSKyXc+kebufsq046ykhjwHJCksQIjFNH
+         Dex1OSUe0jwFTGJh6WWwiE5RB9x3eMXmpOJUlSwh4ck8oxUQx4pllvSF0y/mqIv24HrC
+         XMW/+SEMAZh6KMeHjXh0xjr7LmBDg6IeOjEGSasnFcVJgi5PaBzmru0epLLF5nQuT18w
+         id/+1uIfG4YIb6JEqiiWrsImoWSdY1tJWj7jDB/u2D/7dQP84kjFns7NYmFiyZSsmpHY
+         6htw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IrFALWtjvyHrEODn7/AmsHwOIckZb4wGAaCGF9DBAVM=;
-        b=LVWVfhq0tOUaVD4+L55CkXluG7JIADGlDhJ2cx/z7KAlEvyyTqWO0yidvB/rlze3Xj
-         qNcPsREi6I8/TBrOKdo4JqP1eqFCa/3HNt9Rp+5OJ7KRAWhcvwfMvhQmxfWZx4aFVXKS
-         bUgAoU3QsE7JtUhfSpgsPJ775jevfPm13RXEUW/jTVMM6cIZPNEve7KmBske0hhlew6r
-         siMuF81dzSi8ha67fI/RvqP9zhbOPgK1Ve/f4wNJKX+jI95pRnCbUKoB8fRRUaffoBe7
-         MynxnApZs3e/GSn1Wvhp3IgplE+yZgI7PMNHuStxvdJugWa/l0FIIqv/0FgezazwFfS4
-         oT5Q==
-X-Gm-Message-State: AFqh2kp/Bw2V0OVUeGueXAa8r6R+yjAobAMxX63WPBVPt9hDyftpR7cj
-        SgErAlGXAj0bxcT97356voVhxA==
-X-Google-Smtp-Source: AMrXdXu7mftrNvtn7RupRJFbxPZJo8dYVuvhmeBH27k1Q4dQpg1FR8BIZbUZvzI2v9kBDXiCohL1Bg==
-X-Received: by 2002:a17:907:c081:b0:84d:207d:c00e with SMTP id st1-20020a170907c08100b0084d207dc00emr2369537ejc.46.1673019592525;
-        Fri, 06 Jan 2023 07:39:52 -0800 (PST)
-Received: from [10.0.0.3] (217-149-174-217.nat.highway.telekom.at. [217.149.174.217])
-        by smtp.gmail.com with ESMTPSA id gx8-20020a170906f1c800b007aed2057eacsm496235ejb.221.2023.01.06.07.39.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Jan 2023 07:39:52 -0800 (PST)
-From:   Luca Weiss <luca.weiss@fairphone.com>
-Date:   Fri, 06 Jan 2023 16:39:42 +0100
-Subject: [PATCH 2/2] arm64: dts: qcom: pm7250b: Add BAT_ID vadc channel
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gdITn0BNEFwYE+yxhugbd2XPXZtNiB3TXaZnxOed4cM=;
+        b=qSvIdtYl3M2DssJ0riFPcGRtsdTaNZ0ybBBhXogkEI2UkjDM41exTlRhuiYLqzkD+M
+         JRyWADWaXaWfm5uNLxtpFIk2eHfIkupOn8ikbW890yFg7Z4+oUCwOkFbkDV/tp/+8yRi
+         AtNd8kXbcWfuACMFwlsbjEl6dFLnkMVR5HAgCavvz5RnYwi7kgq4pAEI7BlnUBA5bzo/
+         9kIaxbzppPKIQ8jsLnFVRvLy7+24AjgFJ/fQ3Hrc+b9yXCnz7FVjxcRTKUdyTLDzpmWy
+         hwXybAyr85tfGFHVRK9w06Q8vr30RWGQuzNYA2L1WCt2Rdg7tGF4nmgAMFNV1ImzaR1z
+         hlnw==
+X-Gm-Message-State: AFqh2kqos+Sd/oo2ZYb1aaxhcbSaeSy9kav9MckWpyiUxafSTsxP499u
+        yxlro36seG9Y71IX5AkOSxaqag==
+X-Google-Smtp-Source: AMrXdXs/RYhlbOq3F2sJdykuBYlTqYFsB43Tc1Tc0FcoMHlw98bKEbw4cUWU/Q2XI1SyQwLrccM29w==
+X-Received: by 2002:a5d:4ad0:0:b0:27f:43c6:9ab0 with SMTP id y16-20020a5d4ad0000000b0027f43c69ab0mr23839427wrs.20.1673019596308;
+        Fri, 06 Jan 2023 07:39:56 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id f11-20020a05600c4e8b00b003d04e4ed873sm7466724wmq.22.2023.01.06.07.39.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Jan 2023 07:39:55 -0800 (PST)
+Message-ID: <ccbb47e4-d780-0b1d-814e-27e86b6c369c@linaro.org>
+Date:   Fri, 6 Jan 2023 16:39:52 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230106-pm7250b-bat_id-v1-2-82ca8f2db741@fairphone.com>
-References: <20230106-pm7250b-bat_id-v1-0-82ca8f2db741@fairphone.com>
-In-Reply-To: <20230106-pm7250b-bat_id-v1-0-82ca8f2db741@fairphone.com>
-To:     Andy Gross <agross@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v6 03/11] dt-bindings: display/msm: add sm8350 and sm8450
+ DSI PHYs
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Luca Weiss <luca.weiss@fairphone.com>
-X-Mailer: b4 0.11.2
-X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
-        version=3.4.6
-X-Spam-Level: *
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20221207012231.112059-1-dmitry.baryshkov@linaro.org>
+ <20221207012231.112059-4-dmitry.baryshkov@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221207012231.112059-4-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a node describing the ADC5_BAT_ID_100K_PU channel with the
-properties taken from downstream kernel.
+On 07/12/2022 02:22, Dmitry Baryshkov wrote:
+> SM8350 and SM8450 platforms use the same driver and same bindings as the
+> existing 7nm DSI PHYs. Add corresponding compatibility strings.
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
+> index c851770bbdf2..bffd161fedfd 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
+> @@ -15,6 +15,8 @@ allOf:
+>  properties:
+>    compatible:
+>      enum:
+> +      - qcom,dsi-phy-5nm-8350
+> +      - qcom,dsi-phy-5nm-8450
 
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
- arch/arm64/boot/dts/qcom/pm7250b.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+If this patch was not merged (so far nothing in next), can we make it
+proper SoC compatible?
 
-diff --git a/arch/arm64/boot/dts/qcom/pm7250b.dtsi b/arch/arm64/boot/dts/qcom/pm7250b.dtsi
-index 61f7a6345150..d709d955a2f5 100644
---- a/arch/arm64/boot/dts/qcom/pm7250b.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm7250b.dtsi
-@@ -110,6 +110,14 @@ adc-chan@1e {
- 				label = "chg_mid";
- 			};
- 
-+			adc-chan@4b {
-+				reg = <ADC5_BAT_ID_100K_PU>;
-+				qcom,hw-settle-time = <200>;
-+				qcom,pre-scaling = <1 1>;
-+				qcom,ratiometric;
-+				label = "bat_id";
-+			};
-+
- 			adc-chan@83 {
- 				reg = <ADC5_VPH_PWR>;
- 				qcom,pre-scaling = <1 3>;
+qcom,sm8450-dsi-phy-5nm
 
--- 
-2.39.0
+The SC7280 already uses such pattern.
+
+>        - qcom,dsi-phy-7nm
+>        - qcom,dsi-phy-7nm-8150
+>        - qcom,sc7280-dsi-phy-7nm
+
+Best regards,
+Krzysztof
+
