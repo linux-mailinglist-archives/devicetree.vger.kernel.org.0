@@ -2,71 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63B5165F8AA
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 02:09:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3FC765F8B5
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 02:12:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236644AbjAFBJZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 20:09:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34762 "EHLO
+        id S236551AbjAFBMD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 20:12:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236599AbjAFBJX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 20:09:23 -0500
-Received: from mail-il1-x129.google.com (mail-il1-x129.google.com [IPv6:2607:f8b0:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 835D172D12
-        for <devicetree@vger.kernel.org>; Thu,  5 Jan 2023 17:09:18 -0800 (PST)
-Received: by mail-il1-x129.google.com with SMTP id c20so427683ilj.10
-        for <devicetree@vger.kernel.org>; Thu, 05 Jan 2023 17:09:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=a25YKiMypj1O1dkTeTf+41PYk2LkMRy8jApaMHcF3hQ=;
-        b=GfxYAaRQLGPOFoa26ErjjUE1UpmyQRlEngmnyE784ps7wQu+AricDPJa32a22yCALt
-         MhTCHBUleQASsrn09sMtfYq+H7L60n1dUwQJXnti6/CBbWRriMiw0gwrC/O9nGYfNf80
-         VtBY32mpB98Hg5zawDJAzkbyNAKgHVFOwTbtc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=a25YKiMypj1O1dkTeTf+41PYk2LkMRy8jApaMHcF3hQ=;
-        b=TRcLtGdfyGascu+UPT8L9ppGrlbW9428n3cIn1bMcPjJoe9xTtmnOjMj72EXOSLQFq
-         tNrnb6nDvm1hP20r+n9O6UnSDZuYnEuCiuH2wF8cZQrWwK2EcOW/lsIxKcDhWWr5HTdr
-         BcjwsLcElrrqKwT9vTD3zjQk30kpMZhJYdG5OP6mWpBX5W8yuWGSl6JkAcHeiKfMNY3b
-         X6AaNA6sPV7VWLuCgziS8tWfgg1SlUURXmOnO2VFMYt3ge59K02GHxXI7KbX0Pwufe1g
-         UU45PrxcI5LtVQKINZzMRQ8E0YchcJ1eMNGSdt1/N0yO8XD8jx50HEHorp4aBC63LEnE
-         VXcQ==
-X-Gm-Message-State: AFqh2kq2o7FZ7Uu4rEXlMpZH2OQQPQxGdTKFD7lHUKEgmo0BK5AsLChW
-        RMp+JO6/L5tOipb1tDXp+Ic+/Q==
-X-Google-Smtp-Source: AMrXdXsIxoPdIf7iemjPcehOoQbWhnzgHIYcO03uSrBdXX69Tjy1MRwwWy0vr8DbtCAKgqVNGwRwdw==
-X-Received: by 2002:a92:b10:0:b0:302:364f:68f4 with SMTP id b16-20020a920b10000000b00302364f68f4mr36470087ilf.17.1672967357902;
-        Thu, 05 Jan 2023 17:09:17 -0800 (PST)
-Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
-        by smtp.gmail.com with UTF8SMTPSA id i2-20020a023b42000000b0039e0a7bf3a2sm5385077jaf.179.2023.01.05.17.09.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Jan 2023 17:09:17 -0800 (PST)
-Date:   Fri, 6 Jan 2023 01:09:17 +0000
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     linux-remoteproc@vger.kernel.org, agross@kernel.org,
-        andersson@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, quic_plai@quicinc.com, bgoswami@quicinc.com,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        quic_rohkumar@quicinc.com, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski@linaro.org, mathieu.poirier@linaro.org,
-        corbet@lwn.net
-Subject: Re: [PATCH] dt-bindings: remoteproc: qcom: Add reg-names and
- power-domain-names
-Message-ID: <Y7d0vcAwNDsZouWF@google.com>
-References: <1672924363-22938-1-git-send-email-quic_srivasam@quicinc.com>
+        with ESMTP id S232331AbjAFBMB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 20:12:01 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D57ED71FC2;
+        Thu,  5 Jan 2023 17:11:59 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 4B76424DBC0;
+        Fri,  6 Jan 2023 09:11:57 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 6 Jan
+ 2023 09:11:57 +0800
+Received: from [192.168.2.237] (183.27.98.121) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 6 Jan
+ 2023 09:11:55 +0800
+Message-ID: <2286c916-c54c-bdda-b1d9-b704813b6fec@starfivetech.com>
+Date:   Fri, 6 Jan 2023 09:11:53 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1672924363-22938-1-git-send-email-quic_srivasam@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v1 0/4] Temperature sensor support for StarFive JH7110
+ RISC-V SoC
+To:     Guenter Roeck <linux@roeck-us.net>
+CC:     <linux-hwmon@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <linux-kernel@vger.kernel.org>
+References: <20230103013145.9570-1-hal.feng@starfivetech.com>
+ <20230103015601.GB313835@roeck-us.net>
+Content-Language: en-US
+From:   Hal Feng <hal.feng@starfivetech.com>
+In-Reply-To: <20230103015601.GB313835@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [183.27.98.121]
+X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,52 +64,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 05, 2023 at 06:42:43PM +0530, Srinivasa Rao Mandadapu wrote:
-
-> Subject: dt-bindings: remoteproc: qcom: Add reg-names and power-domain-name
-
-For all qcom remoteprocs?
-
-Please make it clear in the subject that this is for sc7280-adsp-pil.
-
-> Add reg-names and power-domain-names for remoteproc ADSP pheripheral
-> loader. This is to make compatible with remoteproc ADSP PIL driver.
-> Also change power domain from LCX to CX.
+On Mon, 2 Jan 2023 17:56:01 -0800, Guenter Roeck wrote:
+> On Tue, Jan 03, 2023 at 09:31:41AM +0800, Hal Feng wrote:
+> > This patch series adds temperature sensor support for StarFive JH7110 SoC.
+> > The last two patches depend on series [1].
+> > 
+> > [1]: https://lore.kernel.org/all/20221220011247.35560-1-hal.feng@starfivetech.com/
+> > 
+> > Emil Renner Berthing (4):
+> >   dt-bindings: hwmon: Add starfive,jh71x0-temp
+> >   hwmon: (sfctemp) Add StarFive JH71x0 temperature sensor
+> >   riscv: dts: starfive: jh7110: Add temperature sensor node
+> >   riscv: dts: starfive: visionfive-2: Add thermal-zones
+> > 
 > 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> ---
->  .../devicetree/bindings/remoteproc/qcom,sc7280-adsp-pil.yaml  | 11 ++++++++++-
->  1 file changed, 10 insertions(+), 1 deletion(-)
+> The hardware monitoring driver is obviously either the same
+> or derived from the previous series at
+> https://patchwork.kernel.org/project/linux-hwmon/list/?series=&submitter=&state=*&q=starfive
 > 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-adsp-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-adsp-pil.yaml
-> index 94ca7a0..b5bee2c 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-adsp-pil.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-adsp-pil.yaml
-> @@ -23,6 +23,11 @@ properties:
->        - description: qdsp6ss register
->        - description: efuse q6ss register
->  
-> +  reg-names:
-> +    items:
-> +      - const: qdsp6ss_base
-> +      - const: lpass_efuse
-> +
->    iommus:
->      items:
->        - description: Phandle to apps_smmu node with sid mask
-> @@ -57,7 +62,11 @@ properties:
->  
->    power-domains:
->      items:
-> -      - description: LCX power domain
-> +      - description: CX power domain
-> +
-> +  power-domain-names:
-> +    items:
-> +      - const: cx
->  
->    resets:
->      items:
-> -- 
-> 2.7.4
-> 
+> Why is this not submitted as v4 of the original series ?
+> What has changed, and what is the rationale for (re-)submitting
+> it as v1 ?
+
+Sorry for the late reply. I feel sorry to say that I didn't know
+the submitting history of this patch series and Emil forgot to
+tell me maybe. After comparing with the previous series, I find
+the changes between this one and the previous one can be concluded
+as below.
+
+Change log:
+- Added support for StarFive JH7110 SoC besides JH7100.
+- Added clock and reset support in dt-bindings and driver.
+- Added two patches for adding nodes in JH7110 and VisionFive 2 dts
+  which were being reviewed.
+
+Thank you for your kindly reminding. I will resend this patch
+series as version 4 and add the change log.
+
+Best regards,
+Hal
