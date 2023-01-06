@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04BE8660085
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 13:50:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E05C660088
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 13:50:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230245AbjAFMuR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 07:50:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39594 "EHLO
+        id S232967AbjAFMul (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 07:50:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231666AbjAFMuQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 07:50:16 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02D92718A6
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 04:50:15 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id i17-20020a05600c355100b003d99434b1cfso1003985wmq.1
-        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 04:50:14 -0800 (PST)
+        with ESMTP id S230514AbjAFMuk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 07:50:40 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75BB3718A6
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 04:50:39 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id g10so992890wmo.1
+        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 04:50:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=tUIS6SmkysnB3UXQjFumo6hNyNDdSpsyP8yE4FP7S3c=;
-        b=MDQeyJ3SboTHYR0T2xJeuCrx0MPDfaPZLFtJR3xeiLajG6gfgoNAY8lLj5Es3+HCPd
-         o28yrWtGd+/kYk2k0lRnmZkgV1+AOsTwTKi/ZOcks1Oc3nNSjdvYpXDn+7mSsdFGrq1G
-         /xWB6zxiLE/6GBSqjkWl+/WmztMWCcLVTOYi5+1++RVZ6bvkxxOf60RbpVMEZy5hJBVF
-         eBGLyooten9bxs1atVKDeZPCdgi8OqvP0yhOJ2K++RzXw7slW5vZOhtkT/cx3eHgZHif
-         cR+fz+Gj0XhDF9HB+tmnFef5Vq07r7nbi+QI9jEpxQCt/SPesT+7SB06nmoVdADiEyUD
-         zGYA==
+        bh=rePk4otgmJsoUZx3wQir/mu8uKDtUT/unn9iCMuDGXc=;
+        b=MqIJJ92YjJFSQvhXLtVY8CkFHRQ13ALDrV/xKqsiSFrxW3Xqh3zr9vjSFz9dtQlu0O
+         vargvSI325gDktqjgCCUqTQvoNQFTolCA9ixi1w+O9pzujBdaK4FZu2+X/wapQAiqc1J
+         vDegVa3jmE3oWMQVaKLQgSYCBLj1KKpxUU65gCkG/C7oKimli2qjdn4vQMpiu2Q5yE5m
+         RDifRiDL6Z+QRTUevhcXVn4vowqHiXGiI/Z8H+16FyUX0cpAYITZpffjxz214WSF0P0Y
+         YzfnelvTityLktxfnTcKBSHFVV0ZJe3WGxJcDFpx1SYlgV/AXu4aSVTw5O7+0pdvqZJi
+         co6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tUIS6SmkysnB3UXQjFumo6hNyNDdSpsyP8yE4FP7S3c=;
-        b=tt3UwSpQEM0xsbdoPd0fGbkFqZY7KXuCB8oBjO5cXzXdk4cTtbJ4vhSX5H6+pttJAK
-         A5o2+J7V1ao6TJpKWRQ0JEz3wvzdd3fgE+jnBWQkLDAw9lOStuWWdmNsKwK81bViJkMX
-         n3FSQO5g3BHasxz/PzEgVXrx4PC0zWF5J5QvEhosPfbnafzDDmbZYL0CCJv4kAu7beZC
-         /0PrSxkrsjBzIXY07V+YqUxiRGLPN+Jgq5zhroOhxZNsX1w2JXVsMa6WL6WBYrp5c+XJ
-         SlqpO0q7zgBxyTgyI3A9zOCYlx4DbxWlSujFvaQwAb5EHd2gyEI4ckuKwGG9dLDHKbzc
-         yABA==
-X-Gm-Message-State: AFqh2koJDefS73D6DsFNKwLZ0H/QXXBBOo40oo+s+2Or2rZy5RWCAxSy
-        xPcuxKO2SOq5cdyWKeJVQ5OlIw==
-X-Google-Smtp-Source: AMrXdXtqZk9mS3V5EE91ZCbC1GgkN8SNyLeAxaHiDHejYWYXE8w9b0h0uK3rG2IAumFpD4/pIexVbA==
-X-Received: by 2002:a7b:c447:0:b0:3c6:e63d:adaf with SMTP id l7-20020a7bc447000000b003c6e63dadafmr40049807wmi.31.1673009413606;
-        Fri, 06 Jan 2023 04:50:13 -0800 (PST)
+        bh=rePk4otgmJsoUZx3wQir/mu8uKDtUT/unn9iCMuDGXc=;
+        b=oMmRpZ8SkILonlWhcfb71wDjzZrsV4bHVg6xMkxqwUEO9DElWHDU1rXpxpsYwym9OA
+         kB1aF+wmqjhXucjeuG66XhN1/vzjBNcuno/2iG6IAJY//ouuEXboYIabH2nrBjEwasdS
+         /soU1Yol86tg4wmNay47BuIWOS1LwETXduy3Bc5ibNiKf1o9BJsaUTFsEUqW4Q+XaX4L
+         wLDBdO8etfRXfHqQYc0j+uWSnnjBDIfZCp2cdJj25VJ6v8gS2SFelRPnhZH86t5RNCio
+         KDPmPvaG2lbTTSVRUpSBmdGzOE+2AszAVrjed5mNWR1G1DFg7qPorlsX/5ZUJX5NlzlE
+         TeCQ==
+X-Gm-Message-State: AFqh2koqyHbJ9+C29SDOImfM6H9OevdlVMb28LHrsJR3iswSOGvYpN1R
+        WUedp8GAkDCzSl8mf60MlfdW2w==
+X-Google-Smtp-Source: AMrXdXtyoYVLJQIjlfYxEMk1BpTcEtQndRolLJIQH+LL6HNl3W2EK7y2mrtxK6fpyK1Iu3cAyTteFA==
+X-Received: by 2002:a05:600c:3495:b0:3c6:e62e:2e74 with SMTP id a21-20020a05600c349500b003c6e62e2e74mr39719299wmq.15.1673009438067;
+        Fri, 06 Jan 2023 04:50:38 -0800 (PST)
 Received: from [192.168.1.102] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id u13-20020a05600c19cd00b003c6f1732f65sm6779760wmq.38.2023.01.06.04.50.12
+        by smtp.gmail.com with ESMTPSA id u16-20020a05600c00d000b003cf4eac8e80sm1880432wmm.23.2023.01.06.04.50.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Jan 2023 04:50:12 -0800 (PST)
-Message-ID: <65eaad51-c64c-b3b6-850a-9e988d29fe80@linaro.org>
-Date:   Fri, 6 Jan 2023 13:50:11 +0100
+        Fri, 06 Jan 2023 04:50:37 -0800 (PST)
+Message-ID: <ed1b6934-a836-65ef-86a4-18706345ec29@linaro.org>
+Date:   Fri, 6 Jan 2023 13:50:35 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v2 01/12] dt-bindings: clock: qcom,gcc-apq8084: define
- clocks/clock-names
+Subject: Re: [PATCH v2 03/12] dt-bindings: clock: qcom,mmcc: define
+ clocks/clock-names for APQ8084
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -69,15 +69,14 @@ To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org
 References: <20230105134133.1550618-1-dmitry.baryshkov@linaro.org>
- <20230105134133.1550618-2-dmitry.baryshkov@linaro.org>
+ <20230105134133.1550618-4-dmitry.baryshkov@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230105134133.1550618-2-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230105134133.1550618-4-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -85,62 +84,11 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 05/01/2023 14:41, Dmitry Baryshkov wrote:
-> Define clock/clock-names properties of the GCC device node to be used
+> Define clock/clock-names properties of the MMCC device node to be used
 > on APQ8084 platform.
-> 
-> Note: the driver uses a single pcie_pipe clock, however most probably
-> there are two pipe clocks, one from each of PCIe QMP PHYs.
 > 
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  .../bindings/clock/qcom,gcc-apq8084.yaml      | 48 +++++++++++++++++++
->  1 file changed, 48 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml
-> index 8ade176c24f4..732b6770b46e 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml
-> @@ -25,6 +25,30 @@ properties:
->    compatible:
->      const: qcom,gcc-apq8084
->  
-> +  clocks:
-> +    items:
-> +      - description: XO source
-> +      - description: Sleep clock source
-> +      - description: UFS RX symbol 0 clock
-> +      - description: UFS RX symbol 1 clock
-> +      - description: UFS TX symbol 0 clock
-> +      - description: UFS TX symbol 1 clock
-> +      - description: SATA ASIC0 clock
-> +      - description: SATA RX clock
-> +      - description: PCIe PIPE clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: xo
-> +      - const: sleep_clk
-> +      - const: ufs_rx_symbol_0_clk_src
-> +      - const: ufs_rx_symbol_1_clk_src
-> +      - const: ufs_tx_symbol_0_clk_src
-> +      - const: ufs_tx_symbol_1_clk_src
-> +      - const: sata_asic0_clk
-> +      - const: sata_rx_clk
-> +      - const: pcie_pipe
-> +
->  required:
->    - compatible
->  
-> @@ -32,11 +56,35 @@ unevaluatedProperties: false
->  
->  examples:
->    - |
-> +    /* UFS PHY on APQ8084 is not supported (yet), so these bindings just serve an example */
-> +    #define UFS_PHY_RX_SYMBOL_0 0
-> +    #define UFS_PHY_RX_SYMBOL_1 1
-> +    #define UFS_PHY_TX_SYMBOL_0 2
-
-Use numbers in example instead.
 
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
