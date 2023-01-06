@@ -2,161 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DDDE65FCA9
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 09:23:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C83D065FCB1
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 09:26:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231838AbjAFIXy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 03:23:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44408 "EHLO
+        id S231855AbjAFI0J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 03:26:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231666AbjAFIXx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 03:23:53 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81E44676D1
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 00:23:52 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1pDi0e-0008GD-J2; Fri, 06 Jan 2023 09:23:28 +0100
-Received: from mtr by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1pDi0d-0007W9-JA; Fri, 06 Jan 2023 09:23:27 +0100
-Date:   Fri, 6 Jan 2023 09:23:27 +0100
-From:   Michael Tretter <m.tretter@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Philipp Zabel <p.zabel@pengutronix.de>, kernel@pengutronix.de,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-media@vger.kernel.org, linux-imx@nxp.com,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/8] media: dt-bindings: media: fsl-pxp: convert to yaml
-Message-ID: <20230106082327.GB24101@pengutronix.de>
-Mail-Followup-To: Michael Tretter <m.tretter@pengutronix.de>,
-        Rob Herring <robh@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Philipp Zabel <p.zabel@pengutronix.de>, kernel@pengutronix.de,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-media@vger.kernel.org, linux-imx@nxp.com,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        devicetree@vger.kernel.org
-References: <20230105134729.59542-1-m.tretter@pengutronix.de>
- <20230105134729.59542-2-m.tretter@pengutronix.de>
- <167297493349.2193688.13768937269097834481.robh@kernel.org>
+        with ESMTP id S229597AbjAFI0J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 03:26:09 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D4271C0
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 00:26:05 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id g25-20020a7bc4d9000000b003d97c8d4941so3021095wmk.4
+        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 00:26:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=L0n/DIgDTfYifomNRqJzUTabMZYhQa7BFKwTKwm66yQ=;
+        b=qiRLqYUBA2u2o8wp63XaQ1VC8fn2Tiftp14ohCTvWdoi2JqSvKwHcGcTRvloLjI6tB
+         Cye4uonPkFK0xu5bB0aRg+d0beK5vTG7ubVHCQTQeRPDkGjz7LhzULFpZPbGyiAEz+/I
+         TZhbECeetpmSogDFh+t93fTk/vRYiFdT2+C1bYxpddDFMWzBhbMHINnNdWGUnIr8nEy/
+         BkX3x22vJHs2iANB4Hcz2zb8Rc40LStrfhrDBfRL6oOmdvdL4lM8TIDtidspddMnnhL9
+         3oM+d+ploOFa6/yD5zaAkwjpNOZwqHzQpflnASbpucCWsI5b7mQdUF84ioHBUQYWYuK2
+         V/xQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=L0n/DIgDTfYifomNRqJzUTabMZYhQa7BFKwTKwm66yQ=;
+        b=wrcaQz6hcYqRBFO2DjVyHnyCHG89JH47pYuTHys7Nbf74+UVsmf3ae8qL0xZP7F+nH
+         eDcBPV6B8t0t0qsNtI+woxDznuFRJbu5Z5KlMtxfRWWMvy+y9SFgqKUpotVypUmI4d/W
+         uVlUkn9oV3W5hkY8Qd9HGy9Zjl+9vr859hpXJdEZNE/oDsjppm6FtZfUJ6Pi0xwED0MI
+         q6Ms7AAuQaaIAL6zBAiwgg3sdI0V6QjCGlSpxoggXzV+WrYJrrctYsdQVg5ociC43FnC
+         eJuN5HvL/KF1/+M0atmk7FICwEZukAFifOv3OuuyV5iz4vz8HEIw5tcMR2uWXgZjjDQY
+         W1oQ==
+X-Gm-Message-State: AFqh2kpWbhHI0vTEK9Srq1phPwArWx4Bpts87n41UxrFC9AmZLzAc0Ed
+        2DOFydrg5MH2ijgQKAlAaoOdPA==
+X-Google-Smtp-Source: AMrXdXuX4rDk5SLD2+Tq3xdf8miNpN3ODoaCpth4Y3JrZB56qa6ivt8EASjBYJGcf1JMrsCqcPcdwQ==
+X-Received: by 2002:a05:600c:3ba7:b0:3d3:4dac:aa69 with SMTP id n39-20020a05600c3ba700b003d34dacaa69mr38293045wms.36.1672993563943;
+        Fri, 06 Jan 2023 00:26:03 -0800 (PST)
+Received: from [192.168.1.102] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id z14-20020a05600c220e00b003d99fad7511sm821735wml.22.2023.01.06.00.26.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Jan 2023 00:26:03 -0800 (PST)
+Message-ID: <b74baadf-37a4-c9a2-c821-3c3e0143fa4a@linaro.org>
+Date:   Fri, 6 Jan 2023 09:26:01 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <167297493349.2193688.13768937269097834481.robh@kernel.org>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mtr@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH net-next v1 1/3] dt-bindings: net: Add Motorcomm yt8xxx
+ ethernet phy Driver bindings
+Content-Language: en-US
+To:     Frank <Frank.Sae@motor-comm.com>, Peter Geis <pgwipeout@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     xiaogang.fan@motor-comm.com, fei.zhang@motor-comm.com,
+        hua.sun@motor-comm.com, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230105073024.8390-1-Frank.Sae@motor-comm.com>
+ <20230105073024.8390-2-Frank.Sae@motor-comm.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230105073024.8390-2-Frank.Sae@motor-comm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 05 Jan 2023 21:18:21 -0600, Rob Herring wrote:
-> On Thu, 05 Jan 2023 14:47:22 +0100, Michael Tretter wrote:
-> > Convert the bindings of the Freescale Pixel Pipeline to YAML.
-> > 
-> > The conversion drops the previously listed compatibles for several SoCs.
-> > It is unclear, if the PXP on these SoCs is compatible to any of the PXPs
-> > on the existing SoCs and would allow to reuse the already defined
-> > compatibles. The missing compatibles should be brought back when the
-> > support for the PXP on these SoCs is added.
-> > 
-> > Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
-> > ---
-> >  .../bindings/media/fsl,imx6ull-pxp.yaml       | 62 +++++++++++++++++++
-> >  .../devicetree/bindings/media/fsl-pxp.txt     | 26 --------
-> >  2 files changed, 62 insertions(+), 26 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/media/fsl,imx6ull-pxp.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/media/fsl-pxp.txt
-> > 
+On 05/01/2023 08:30, Frank wrote:
+> Add a YAML binding document for the Motorcom yt8xxx Ethernet phy driver.
 > 
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
 
-I am surprised that these warnings didn't show up when I ran 'make
-dtbs_check'. I will check if there is something wrong with my setup.
+Subject: drop second, redundant "Driver bindings".
 
-> 
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
-> 
-> Full log is available here: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230105134729.59542-2-m.tretter@pengutronix.de
-> 
-> 
-> pxp@20f0000: compatible:0: 'fsl,imx6sll-pxp' is not one of ['fsl,imx6ul-pxp', 'fsl,imx6ull-pxp', 'fsl,imx7d-pxp']
-> 	arch/arm/boot/dts/imx6sll-evk.dtb
-> 	arch/arm/boot/dts/imx6sll-kobo-clarahd.dtb
-> 	arch/arm/boot/dts/imx6sll-kobo-librah2o.dtb
-> 
-> pxp@20f0000: compatible: ['fsl,imx6sll-pxp', 'fsl,imx6ull-pxp'] is too long
-> 	arch/arm/boot/dts/imx6sll-evk.dtb
-> 	arch/arm/boot/dts/imx6sll-kobo-clarahd.dtb
-> 	arch/arm/boot/dts/imx6sll-kobo-librah2o.dtb
+> Signed-off-by: Frank <Frank.Sae@motor-comm.com>
 
-This is an error in the schema. I dropped the fsl,imx6sll-pxp and
-fsl,imx6sx-pxp compatibles, because I thought that they aren't used.
+Use full first and last name. Your email suggests something more than
+only "Frank".
 
-I will send a v2 to fix the schema.
+> ---
+>  .../bindings/net/motorcomm,yt8xxx.yaml        | 180 ++++++++++++++++++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  MAINTAINERS                                   |   1 +
+>  3 files changed, 183 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml b/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
+> new file mode 100644
+> index 000000000000..337a562d864c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
+> @@ -0,0 +1,180 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/motorcomm,yt8xxx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MotorComm yt8xxx Ethernet PHY
+> +
+> +maintainers:
+> +  - frank <frank.sae@motor-comm.com>
+> +
+> +description: |
+> +  Bindings for MotorComm yt8xxx PHYs.
 
-Michael
+Instead describe the hardware. No need to state the obvious that these
+are bindings.
 
-> 
-> pxp@2218000: compatible:0: 'fsl,imx6sx-pxp' is not one of ['fsl,imx6ul-pxp', 'fsl,imx6ull-pxp', 'fsl,imx7d-pxp']
-> 	arch/arm/boot/dts/imx6sx-nitrogen6sx.dtb
-> 	arch/arm/boot/dts/imx6sx-sabreauto.dtb
-> 	arch/arm/boot/dts/imx6sx-sdb.dtb
-> 	arch/arm/boot/dts/imx6sx-sdb-mqs.dtb
-> 	arch/arm/boot/dts/imx6sx-sdb-reva.dtb
-> 	arch/arm/boot/dts/imx6sx-sdb-sai.dtb
-> 	arch/arm/boot/dts/imx6sx-softing-vining-2000.dtb
-> 	arch/arm/boot/dts/imx6sx-udoo-neo-basic.dtb
-> 	arch/arm/boot/dts/imx6sx-udoo-neo-extended.dtb
-> 	arch/arm/boot/dts/imx6sx-udoo-neo-full.dtb
-> 
-> pxp@2218000: compatible: ['fsl,imx6sx-pxp', 'fsl,imx6ull-pxp'] is too long
-> 	arch/arm/boot/dts/imx6sx-nitrogen6sx.dtb
-> 	arch/arm/boot/dts/imx6sx-sabreauto.dtb
-> 	arch/arm/boot/dts/imx6sx-sdb.dtb
-> 	arch/arm/boot/dts/imx6sx-sdb-mqs.dtb
-> 	arch/arm/boot/dts/imx6sx-sdb-reva.dtb
-> 	arch/arm/boot/dts/imx6sx-sdb-sai.dtb
-> 	arch/arm/boot/dts/imx6sx-softing-vining-2000.dtb
-> 	arch/arm/boot/dts/imx6sx-udoo-neo-basic.dtb
-> 	arch/arm/boot/dts/imx6sx-udoo-neo-extended.dtb
-> 	arch/arm/boot/dts/imx6sx-udoo-neo-full.dtb
-> 
-> pxp@2218000: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	arch/arm/boot/dts/imx6sx-nitrogen6sx.dtb
-> 	arch/arm/boot/dts/imx6sx-sabreauto.dtb
-> 	arch/arm/boot/dts/imx6sx-sdb.dtb
-> 	arch/arm/boot/dts/imx6sx-sdb-mqs.dtb
-> 	arch/arm/boot/dts/imx6sx-sdb-reva.dtb
-> 	arch/arm/boot/dts/imx6sx-sdb-sai.dtb
-> 	arch/arm/boot/dts/imx6sx-softing-vining-2000.dtb
-> 	arch/arm/boot/dts/imx6sx-udoo-neo-basic.dtb
-> 	arch/arm/boot/dts/imx6sx-udoo-neo-extended.dtb
-> 	arch/arm/boot/dts/imx6sx-udoo-neo-full.dtb
-> 
-> 
+> +  yt8511 will be supported later.
+
+Bindings should be complete. Your driver support is not relevant here.
+
+> +
+> +allOf:
+> +  - $ref: ethernet-phy.yaml#
+> +
+> +properties:
+> +  motorcomm,clk-out-frequency:
+
+Use property suffixes matching the type.
+
+> +    description: clock output in Hertz on clock output pin.
+
+Drop "Hertz". It should be obvious from the suffix.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+
+Drop.
+
+Anyway, does it fit standard clock-frequency property?
+
+> +    enum: [0, 25000000, 125000000]
+> +    default: 0
+> +
+> +  motorcomm,rx-delay-basic:
+> +    description: |
+> +      Tristate, setup the basic RGMII RX Clock delay of PHY.
+> +      This basic delay is fixed at 2ns (1000Mbps) or 8ns (100Mbps、10Mbps).
+> +      This basic delay usually auto set by hardware according to the voltage
+> +      of RXD0 pin (low = 0, turn off;   high = 1, turn on).
+> +      If not exist, this delay is controlled by hardware.
+
+I don't understand that at all. What "not exist"? There is no verb and
+no subject.
+
+The type and description are really unclear.
+
+> +      0: turn off;   1: turn on.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1]
+
+So this is bool?
+
+> +
+> +  motorcomm,rx-delay-additional-ps:
+> +    description: |
+> +      Setup the additional RGMII RX Clock delay of PHY defined in pico seconds.
+> +      RGMII RX Clock Delay = rx-delay-basic + rx-delay-additional-ps.
+> +    enum:
+
+Best regards,
+Krzysztof
+
