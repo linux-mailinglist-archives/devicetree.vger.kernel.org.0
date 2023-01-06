@@ -2,161 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D096466000D
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 13:11:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4BDB660011
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 13:13:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233742AbjAFMLs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 07:11:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49026 "EHLO
+        id S229999AbjAFMNo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 07:13:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233101AbjAFMLS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 07:11:18 -0500
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D14B5736D9;
-        Fri,  6 Jan 2023 04:11:15 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 306CB3ua099628;
-        Fri, 6 Jan 2023 06:11:03 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1673007063;
-        bh=uTiut5o/7iFdu8/u+NPuwcc+4LBeafBX8Rz7JMBS3zI=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=YqaHGNANO0nf47w2o9bZFTYV56O/kDwGMct/9U1Bvh+U4T+QNEURqvREY6+rcHZnk
-         OP8YziWpcx0FQi1Zk09iW98Rl5kZoJo0Vu/IAbKDzY6kUUizf2cun98aoutk9Ub9Iz
-         j9gHhiO4Nyh/ga4sJ+aLGtpY1hIgB/8mpS36SPng=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 306CB39P119074
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 6 Jan 2023 06:11:03 -0600
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 6
- Jan 2023 06:11:03 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Fri, 6 Jan 2023 06:11:03 -0600
-Received: from fllv0122.itg.ti.com (fllv0122.itg.ti.com [10.247.120.72])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 306CB3Lu020441;
-        Fri, 6 Jan 2023 06:11:03 -0600
-Received: from localhost (a0501179-pc.dhcp.ti.com [10.24.69.114])
-        by fllv0122.itg.ti.com (8.14.7/8.14.7) with ESMTP id 306CB2Z2028627;
-        Fri, 6 Jan 2023 06:11:02 -0600
-From:   MD Danish Anwar <danishanwar@ti.com>
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Suman Anna <s-anna@ti.com>, Roger Quadros <rogerq@kernel.org>,
-        "Andrew F . Davis" <afd@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <srk@ti.com>, <linux-remoteproc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        MD Danish Anwar <danishanwar@ti.com>
-Subject: [PATCH v14 6/6] remoteproc: pru: Configure firmware based on client setup
-Date:   Fri, 6 Jan 2023 17:40:46 +0530
-Message-ID: <20230106121046.886863-7-danishanwar@ti.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230106121046.886863-1-danishanwar@ti.com>
-References: <20230106121046.886863-1-danishanwar@ti.com>
+        with ESMTP id S229676AbjAFMNn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 07:13:43 -0500
+Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2F553E853;
+        Fri,  6 Jan 2023 04:13:41 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id D1820425C6;
+        Fri,  6 Jan 2023 12:13:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
+        t=1673007219; bh=ffTqLBgC6Oc9QYx+/49/fsiTf1EZpYb2tADAI8jUA30=;
+        h=Date:Subject:From:To:Cc:References:In-Reply-To;
+        b=y7oeNNeEEuPSzkjmIRnkQmDbxuTq+bp1qa/Tizo6eqU28HCmuqvLeECXWRu1DGBNt
+         /tmo2EKfezQpmGnCOmgOuzrh/uhsUs6t3rTZULUiHDcs4gJMZ8KCRg5amJhRDkStQ/
+         s17ZeRXhOD/AzADNBEGr3CbJ0mzMmnCFgDmRdrSQhkaZoQmnQSUZd1CXH6WKAYzZ4x
+         1nyrqICv8AhGSLhLM5P8LTf2sB08SQJdNIT4XOmOIt1o3eIJIgl8x7SF3E0IGYDE+n
+         2cCzVJ3LdSpCAUzkhTMTT33nc1fnoU6wCqwCxo41JEE0o1uyjHd8Mk62KDZ+lTjYkF
+         HlTccZjfrjPog==
+Message-ID: <2711b084-5937-7e0f-26d8-67510da3939c@marcan.st>
+Date:   Fri, 6 Jan 2023 21:13:32 +0900
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH] brcmfmac: of: Use board compatible string for board type
+Content-Language: en-US
+From:   Hector Martin <marcan@marcan.st>
+To:     "Ivan T. Ivanov" <iivanov@suse.de>, aspriel@gmail.com
+Cc:     franky.lin@broadcom.com, hante.meuleman@broadcom.com,
+        rmk+kernel@armlinux.org.uk, kvalo@kernel.org, davem@davemloft.net,
+        devicetree@vger.kernel.org, edumazet@google.com,
+        krzysztof.kozlowski+dt@linaro.org, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com
+References: <20230106072746.29516-1-iivanov@suse.de>
+ <fc6d3c3b-1352-4f75-cbef-d29bd74c0e40@marcan.st>
+In-Reply-To: <fc6d3c3b-1352-4f75-cbef-d29bd74c0e40@marcan.st>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Tero Kristo <t-kristo@ti.com>
+On 2023/01/06 18:27, Hector Martin wrote:
+> On 2023/01/06 16:27, Ivan T. Ivanov wrote:
+>> When "brcm,board-type" is not explicitly set in devicetree
+>> fallback to board compatible string for board type.
+>>
+>> Some of the existing devices rely on the most compatible device
+>> string to find best firmware files, including Raspberry PI's[1].
+>>
+>> Fixes: 7682de8b3351 ("wifi: brcmfmac: of: Fetch Apple properties")
+>>
+>> [1] https://bugzilla.opensuse.org/show_bug.cgi?id=1206697#c13
+>>
+>> Signed-off-by: Ivan T. Ivanov <iivanov@suse.de>
+> 
+> The existing code already falls back to the compatible string, *as long
+> as there is no board_type set already*.
+> 
+> As far as I can tell, the only way the board_type can get another value
+> first is if it comes from DMI. This behavior was inadvertently changed
+> by commit 7682de8b3351 (since I was not expecting platforms to have
+> *both* DT and DMI information).
+> 
+> I'm guessing the Raspberry Pi is one such platform, and
+> `/sys/devices/virtual/dmi` exists? Hybrid UEFI+ACPI+DT platform I take it?
+> 
+> If so, your commit description should probably be something like:
+> 
+> ===
+> brcmfmac: Prefer DT board type over DMI board type
+> 
+> The introduction of support for Apple board types inadvertently changed
+> the precedence order, causing hybrid ACPI+DT platforms to look up the
+> firmware using the DMI information instead of the device tree compatible
+> to generate the board type. Revert back to the old behavior,
+> as affected platforms use firmwares named after the DT compatible.
+> 
+> Fixes: 7682de8b3351 ("wifi: brcmfmac: of: Fetch Apple properties")
+> ===
+> 
+> An also add a Cc: stable@vger.kernel.org to make sure this gets backported.
+> 
+> With the fixed description,
+> 
+> Reviewed-by: Hector Martin <marcan@marcan.st>
+> 
+> - Hector
 
-Client device node property firmware-name is now used to configure
-firmware for the PRU instances. The default firmware is also
-restored once releasing the PRU resource.
+Looking into this a bit more from what was mentioned in the linked bug,
+the DMI data comes from the SMBIOS table. We don't have that on Apple
+platforms even though we also boot via U-Boot+EFI, but I'm guessing you
+build U-Boot with CONFIG_GENERATE_SMBIOS_TABLE and provide that stuff in
+the DT? So s/ACPI/SMBIOS/ would be more accurate in the commit message.
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
-Signed-off-by: Tero Kristo <t-kristo@ti.com>
-Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
-Reviewed-by: Roger Quadros <rogerq@kernel.org>
----
- drivers/remoteproc/pru_rproc.c | 34 ++++++++++++++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
-
-diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
-index f6ea445d2fa2..b76db7fa693d 100644
---- a/drivers/remoteproc/pru_rproc.c
-+++ b/drivers/remoteproc/pru_rproc.c
-@@ -172,6 +172,23 @@ void pru_control_set_reg(struct pru_rproc *pru, unsigned int reg,
- 	spin_unlock_irqrestore(&pru->rmw_lock, flags);
- }
- 
-+/**
-+ * pru_rproc_set_firmware() - set firmware for a PRU core
-+ * @rproc: the rproc instance of the PRU
-+ * @fw_name: the new firmware name, or NULL if default is desired
-+ *
-+ * Return: 0 on success, or errno in error case.
-+ */
-+static int pru_rproc_set_firmware(struct rproc *rproc, const char *fw_name)
-+{
-+	struct pru_rproc *pru = rproc->priv;
-+
-+	if (!fw_name)
-+		fw_name = pru->fw_name;
-+
-+	return rproc_set_firmware(rproc, fw_name);
-+}
-+
- static struct rproc *__pru_rproc_get(struct device_node *np, int index)
- {
- 	struct rproc *rproc;
-@@ -224,6 +241,7 @@ struct rproc *pru_rproc_get(struct device_node *np, int index,
- 	struct rproc *rproc;
- 	struct pru_rproc *pru;
- 	struct device *dev;
-+	const char *fw_name;
- 	int ret;
- 
- 	rproc = __pru_rproc_get(np, index);
-@@ -249,11 +267,25 @@ struct rproc *pru_rproc_get(struct device_node *np, int index,
- 	if (pru_id)
- 		*pru_id = pru->id;
- 
-+	ret = of_property_read_string_index(np, "firmware-name", index,
-+					    &fw_name);
-+	if (!ret) {
-+		ret = pru_rproc_set_firmware(rproc, fw_name);
-+		if (ret) {
-+			dev_err(dev, "failed to set firmware: %d\n", ret);
-+			goto err;
-+		}
-+	}
-+
- 	return rproc;
- 
- err_no_rproc_handle:
- 	rproc_put(rproc);
- 	return ERR_PTR(ret);
-+
-+err:
-+	pru_rproc_put(rproc);
-+	return ERR_PTR(ret);
- }
- EXPORT_SYMBOL_GPL(pru_rproc_get);
- 
-@@ -273,6 +305,8 @@ void pru_rproc_put(struct rproc *rproc)
- 
- 	pru = rproc->priv;
- 
-+	pru_rproc_set_firmware(rproc, NULL);
-+
- 	mutex_lock(&pru->lock);
- 
- 	if (!pru->client_np) {
--- 
-2.25.1
-
+- Hector
