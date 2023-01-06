@@ -2,131 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B731366017E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 14:44:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC89366020A
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 15:24:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234793AbjAFNo3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 08:44:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42112 "EHLO
+        id S230442AbjAFOYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 09:24:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234457AbjAFNo2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 08:44:28 -0500
-Received: from mail-il1-x135.google.com (mail-il1-x135.google.com [IPv6:2607:f8b0:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36DC676827
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 05:44:27 -0800 (PST)
-Received: by mail-il1-x135.google.com with SMTP id a9so382251ilp.6
-        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 05:44:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5gc3unIBWzJHAWIDN45C88zkp/6OCUho9lqZyPufjzk=;
-        b=gqYp7FhOkbantyFSIKTRHkGWc0d0+YLNm4WQlCvHvPZDGvuXg+1swbIIVjZaHeogZ1
-         V8TWhPG/GkRph3px+LMtoRmB5DbnUEArZTj8mlX5W6prqOd6k8c4fV24syoVCrRvf2ge
-         lqeGD8ZaQ80HlLlVapJ1MqQvpNgEiwvMIvx4Xy7hWYd6DLG/GROhxCd+YhKfQwsT+lp/
-         w8okgdM8s9Rwzaxn1+GZwdoeR0ZKRa2bO0jLZl55nN2fCg2LltkDRjT3aK6JeSACVBq7
-         xkD3GaGVJGAbvuAKlBzjqzUpVMH4IwfVZfb5/dVB8ZPjEm8KZ1X5zvtv9k2Uelm64Wbw
-         bE6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5gc3unIBWzJHAWIDN45C88zkp/6OCUho9lqZyPufjzk=;
-        b=coSo55k3qALcEJvgh8wIahPh3Lng+YpcAybTZmIs2wv+/A8PRa0B9i4acky+rbxd4I
-         MOYUqQOUSuHdUaJisY66ZE0V2FFLQvTmSSO32ddCBEt0EB2Zmstrfo5GEaHfmFjMd7K5
-         2r1EMgnap8MzJJZAU+AmnwhSZcB2ct3tHFmyg4V4AGTRjDVgMNEQ6Ob1qDPOoPLFUrON
-         obVKpD3CDW/DXHlTgaeQ1wxW30KoYaHbSd/RQCFASd/snW6Qb5OcxPvEJJPirTjbCiu3
-         qNqcs0MGkAXnCmOY1yJzVuTSHQ+yNZcusGcmEBrANXBxrwCGlWdMHapQg93yhVcTN9H/
-         ZnCA==
-X-Gm-Message-State: AFqh2kqV4YtmRZTPIy1dRdW33k5hlbPr2GDbutFxDLcXpt2A5mf6KM49
-        i6N/m6xuygZCL44xZadI5hzBSPUhJV+sqow3
-X-Google-Smtp-Source: AMrXdXsJ/zxj5qwdIbKfEFHYe96AKTYGUsuOsd1Cz4QnBRQAuQmGXpf2MHrdk2w+L87J7n5m550WGA==
-X-Received: by 2002:a92:364f:0:b0:30d:6ea8:4f27 with SMTP id d15-20020a92364f000000b0030d6ea84f27mr6483784ilf.15.1673012666498;
-        Fri, 06 Jan 2023 05:44:26 -0800 (PST)
-Received: from [172.22.22.4] ([98.61.227.136])
-        by smtp.googlemail.com with ESMTPSA id h15-20020a056638062f00b0038aaccd3bf3sm337639jar.39.2023.01.06.05.44.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Jan 2023 05:44:26 -0800 (PST)
-Message-ID: <eeb9631c-4494-fc76-5ad4-5fdbdaa8786a@linaro.org>
-Date:   Fri, 6 Jan 2023 07:44:24 -0600
+        with ESMTP id S229601AbjAFOYa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 09:24:30 -0500
+X-Greylist: delayed 2365 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 06 Jan 2023 06:24:29 PST
+Received: from imap4.hz.codethink.co.uk (imap4.hz.codethink.co.uk [188.40.203.114])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C06427BDCA
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 06:24:29 -0800 (PST)
+Received: from [167.98.27.226] (helo=rainbowdash)
+        by imap4.hz.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
+        id 1pDn1n-000vm9-TQ; Fri, 06 Jan 2023 13:45:00 +0000
+Received: from ben by rainbowdash with local (Exim 4.96)
+        (envelope-from <ben@rainbowdash>)
+        id 1pDn1o-0017Am-1Q;
+        Fri, 06 Jan 2023 13:45:00 +0000
+From:   Ben Dooks <ben.dooks@codethink.co.uk>
+To:     devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+Cc:     robh+dt@kernel.org, palmer@dabbelt.com,
+        krzysztof.kozlowski+dt@linaro.org, zong.li@sifive.com,
+        linux-kernel@lists.codethink.co.uk,
+        sudip.mukherjee@codethink.co.uk,
+        Ben Dooks <ben.dooks@codethink.co.uk>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Greentime Hu <greentime.hu@sifive.com>
+Subject: [PATCH] riscv: dts: fu740: fix size of pcie 32bit memory
+Date:   Fri,  6 Jan 2023 13:44:56 +0000
+Message-Id: <20230106134456.265891-1-ben.dooks@codethink.co.uk>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 3/9] interconnect: qcom: sc7180: drop IP0 remnants
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     Georgi Djakov <djakov@kernel.org>,
-        Odelu Kukatla <okukatla@codeaurora.org>,
-        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230106073313.1720029-1-dmitry.baryshkov@linaro.org>
- <20230106073313.1720029-4-dmitry.baryshkov@linaro.org>
-From:   Alex Elder <elder@linaro.org>
-In-Reply-To: <20230106073313.1720029-4-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/6/23 1:33 AM, Dmitry Baryshkov wrote:
-> Drop two defines leftover from the commit 2f3724930eb4 ("interconnect:
-> qcom: sc7180: Drop IP0 interconnects"), which dropped handling of the
-> IP0 resource in favour of handling it in the clk-rpmh driver.
-> 
-> Fixes: 2f3724930eb4 ("interconnect: qcom: sc7180: Drop IP0 interconnects")
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+The 32-bit memory resource is needed for non-prefetchable memory
+allocations on the PCIe bus, however with some cards (such as the
+SM768) the system fails to allocate memory from this.
 
-On this patch and the rest like it in this series, I suggest
-adding a comment that indicates why there's a gap in the simple
-numeric sequence.  Feel free to ignore this if you don't think
-this is a good idea.  I'll give examples below, although I
-don't fully understand why there's a master and slave on the
-interconnect, but just a single clock for RPMH clock...
+Checking the allocation against the datasheet, it looks like there
+has been a mis-calcualation of the resource for the first memory
+region (0x0060090000..0x0070ffffff) which in the data-sheet for
+the fu740 (v1p2) is from 0x0060000000..0x007fffffff. Changing
+this to allocate from 0x0060090000..0x007fffffff fixes the probing
+issues.
 
-					-Alex
+Fixes: ae80d514808557018e44190 ("riscv: dts: Add PCIe support for the SiFive FU740-C000 SoC
+")
 
-> ---
->   drivers/interconnect/qcom/sc7180.h | 2 --
->   1 file changed, 2 deletions(-)
-> 
-> diff --git a/drivers/interconnect/qcom/sc7180.h b/drivers/interconnect/qcom/sc7180.h
-> index c6212a10c2f6..b691d97d56cf 100644
-> --- a/drivers/interconnect/qcom/sc7180.h
-> +++ b/drivers/interconnect/qcom/sc7180.h
-> @@ -11,7 +11,6 @@
->   #define SC7180_MASTER_APPSS_PROC			0
->   #define SC7180_MASTER_SYS_TCU				1
->   #define SC7180_MASTER_NPU_SYS				2
-> -#define SC7180_MASTER_IPA_CORE				3
-	/* MASTER_IPA_CORE (4) is represented as an RPMH clock */
->   #define SC7180_MASTER_LLCC				4
->   #define SC7180_MASTER_A1NOC_CFG				5
->   #define SC7180_MASTER_A2NOC_CFG				6
-> @@ -58,7 +57,6 @@
->   #define SC7180_MASTER_USB3				47
->   #define SC7180_MASTER_EMMC				48
->   #define SC7180_SLAVE_EBI1				49
-> -#define SC7180_SLAVE_IPA_CORE				50
-	/* SLAVE_IPA_CORE (50) is represented as an RPMH clock */
->   #define SC7180_SLAVE_A1NOC_CFG				51
->   #define SC7180_SLAVE_A2NOC_CFG				52
->   #define SC7180_SLAVE_AHB2PHY_SOUTH			53
+Cc: Paul Walmsley <paul.walmsley@sifive.com>
+Cc: Greentime Hu <greentime.hu@sifive.com>
+Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
+---
+Note, this is probably a stable candiate as it looks like it has
+been this way since it was commited.
+---
+ arch/riscv/boot/dts/sifive/fu740-c000.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
+index 43bed6c0a84f..5235fd1c9cb6 100644
+--- a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
++++ b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
+@@ -328,7 +328,7 @@ pcie@e00000000 {
+ 			bus-range = <0x0 0xff>;
+ 			ranges = <0x81000000  0x0 0x60080000  0x0 0x60080000 0x0 0x10000>,      /* I/O */
+ 				 <0x82000000  0x0 0x60090000  0x0 0x60090000 0x0 0xff70000>,    /* mem */
+-				 <0x82000000  0x0 0x70000000  0x0 0x70000000 0x0 0x1000000>,    /* mem */
++				 <0x82000000  0x0 0x70000000  0x0 0x70000000 0x0 0x10000000>,    /* mem */
+ 				 <0xc3000000 0x20 0x00000000 0x20 0x00000000 0x20 0x00000000>;  /* mem prefetchable */
+ 			num-lanes = <0x8>;
+ 			interrupts = <56>, <57>, <58>, <59>, <60>, <61>, <62>, <63>, <64>;
+-- 
+2.39.0
 
