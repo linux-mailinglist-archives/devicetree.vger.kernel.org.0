@@ -2,112 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0148660096
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 13:53:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CFE72660098
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 13:53:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229703AbjAFMxh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 07:53:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41330 "EHLO
+        id S232042AbjAFMxi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 07:53:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233869AbjAFMxa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 07:53:30 -0500
-Received: from egress-ip33a.ess.de.barracuda.com (egress-ip33a.ess.de.barracuda.com [18.185.115.192])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46FE1755C0
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 04:53:27 -0800 (PST)
-Received: from mail-lj1-f199.google.com (mail-lj1-f199.google.com [209.85.208.199]) by mx-outbound9-213.eu-central-1a.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Fri, 06 Jan 2023 12:53:25 +0000
-Received: by mail-lj1-f199.google.com with SMTP id b11-20020a05651c0b0b00b0028248aa29a5so189913ljr.19
-        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 04:53:25 -0800 (PST)
+        with ESMTP id S234012AbjAFMxc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 07:53:32 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5A7875D07
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 04:53:30 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id bs20so1193677wrb.3
+        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 04:53:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistralsolutions.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=9D7DGzJQZ+0e/BP6gr0QBg/0weFGurVvmybVclcA84I=;
-        b=Bzy3Shsu74uzLf1ZdMLQxbYEHiKyrFlrN3YkNmQMlYrhtvt8IRG+ndNcwqgNoclx/2
-         28mNgJVa4RaEV25v1W6vt82pgOqn6YhC3jgWuhB0P+HuPo3jLPJFMiTKXMY+704ahWZa
-         ErQ8RRQEXtaKGvyX3FKoyC9N4t4S6pNOQCu7M=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zcJg6BDA8nzuhkvqqR+ghB+11JZg54hPFOLhhkXj+aU=;
+        b=QevOxHQwIMvnsAfGP3CJ4r1T9bgcLZcIWzRbnGJk5fZ6unLTlRCkMjPY7ZHsmTjJAU
+         8TBdxscc7cl2GHmQwH+kGdV3EXZI1pkIGSzHSqyq6BiTrFikAzT5DGP37mVtrG5Ae9Z0
+         Hgj9B7OjFj3/zNZLhyGLrRGnUT3SryU1QEt5IRdpj3GohS62VdcTTVJgiBpFF1YeiLXZ
+         qWU60uQlEAYogZOar5yB8Q4n6m1AKjieEsOIUBsLaE+EMUIUJrZP375MgdjfY55pyLME
+         PBf1ynbX7yZL+QbI7hA8bmOsCnlFUrKGQ2MvbG7vpHTs1a1sWxf5THmDat0a8PEbvkeq
+         KHlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9D7DGzJQZ+0e/BP6gr0QBg/0weFGurVvmybVclcA84I=;
-        b=LHLodGECMJV/vKxQF9fAlkvS6v/0XRqAO5CwHD23Oge+a0VKf7cVFYw+FR+yT+fJgb
-         ywXcpZ10gpWhfR2ikbEMkYGbNTZAYAm3ZkYHy7dESvHzK2BCanaatGKdM9HVnl/ZRRT8
-         fb5Nzs6WPzAj507ivMl+TWmbFDBTvFtIG4Ibet2c8fnuV9nW/e7c4HDZGc15DWQzvJMO
-         v0n5PI3RdOlcJzGBM7BE9pT6UFwAHM56Jz9tTHEQ5+wMk6C4TJrbN/tfYXg4wWXW6XFH
-         CBxlu0ivA8WDNfvngZnTnUBZmnJIf71pSAu0DpeMJeNJ9GMz+eJX6rXU8pKUYBGd1P6F
-         kyYA==
-X-Gm-Message-State: AFqh2kovaeKLLLgug8IYpLd1lu/9knL/2AbTLfEEc3YkZdcHUYfe9PoK
-        KLeF+14a+qke5kbPmU5G/671HRllKCNVXXAc+uxTgl8b40NPIaAGjJiQv3Vb9z+fw9IIpE9apRb
-        Tx0aBgNKOccl3MOnbHUtpbO+Hl9YUUOBF3lJzhc6racoOBvvNtW7DtKaLuPWnOn3QkRpBAjpOgg
-        ==
-X-Received: by 2002:ac2:58cc:0:b0:4a2:4d89:aa58 with SMTP id u12-20020ac258cc000000b004a24d89aa58mr4079226lfo.646.1673009604862;
-        Fri, 06 Jan 2023 04:53:24 -0800 (PST)
-X-Google-Smtp-Source: AMrXdXs0rvoHCjLtwhGzK4XEw9VyRpqBK13CxRNprtcuOn5/sU0IoGu6JAMhjzzViR3TUvZDZbSlmBmjcxrJkgjtrBs=
-X-Received: by 2002:ac2:58cc:0:b0:4a2:4d89:aa58 with SMTP id
- u12-20020ac258cc000000b004a24d89aa58mr4079219lfo.646.1673009604615; Fri, 06
- Jan 2023 04:53:24 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zcJg6BDA8nzuhkvqqR+ghB+11JZg54hPFOLhhkXj+aU=;
+        b=ghPcGRUOvZAmWRqJqx44srG37VUBKz6u7UwJyx/YKWfrr9R/aYa97JTIuebifDrway
+         jfuKJu9VGjmyXP2boAMXqj9uiZtKMTSlawBKHrgx56ch1EIZpM3s2Onvml63KTfnFKij
+         DfLDSfke1u4DM7XTtIGrurGwWXk6rRWd/n2Hv8foJCuksi5/E080VK9HUw0pYlYVkyN8
+         Hw87E2LI1h/ejYNCLMm13jzW0Hq6WnaN0mSRt9LBSRpSS2wd8RGQHAqLr4Dx+ClorW8b
+         z0Iw2v/7rVrWQwTl5icl8hHVqbMNh7NGHHeqeyWamMqb/L+VvjNEuqu+1shFY83u80Ke
+         b0IA==
+X-Gm-Message-State: AFqh2kolfTDKIGyCXqZ1/2kcnHzpZsF2UEf6vXDquy/BRyAO7yQGEqbe
+        v/+kM5DnPFlAtKwQDl+2GNnRfw==
+X-Google-Smtp-Source: AMrXdXvgBLNB5W4D1FlJ5z4o5cLiyPP6xqIEofHKlEDngWvT+cZcKlpy1EaW2soVnTj6J+5sZX2GzA==
+X-Received: by 2002:a5d:6e82:0:b0:2a1:602d:fd5 with SMTP id k2-20020a5d6e82000000b002a1602d0fd5mr7389047wrz.46.1673009609243;
+        Fri, 06 Jan 2023 04:53:29 -0800 (PST)
+Received: from [192.168.1.102] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id z9-20020a5d44c9000000b0023c8026841csm1099900wrr.23.2023.01.06.04.53.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Jan 2023 04:53:28 -0800 (PST)
+Message-ID: <ee653e82-0b7f-f672-7a13-d80134239263@linaro.org>
+Date:   Fri, 6 Jan 2023 13:53:26 +0100
 MIME-Version: 1.0
-References: <20230105151740.29436-1-sinthu.raja@ti.com> <20230105151740.29436-2-sinthu.raja@ti.com>
- <977b5cce-2501-4d7a-fe24-437df88aee8f@linaro.org>
-In-Reply-To: <977b5cce-2501-4d7a-fe24-437df88aee8f@linaro.org>
-From:   Sinthu Raja M <sinthu.raja@mistralsolutions.com>
-Date:   Fri, 6 Jan 2023 18:23:13 +0530
-Message-ID: <CAEd-yTR=zdg_pt=MzkzceGTY2SkV=16dyhXCtd4EU-KGzP_mAQ@mail.gmail.com>
-Subject: Re: [PATCH V4 1/3] dt-bindings: arm: ti: Add binding for AM68 SK
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v1 4/4] arm64: dts: imx93: Add CPU thermal zone
+Content-Language: en-US
+To:     "Alice Guo (OSS)" <alice.guo@oss.nxp.com>, rafael@kernel.org,
+        daniel.lezcano@linaro.org, amitk@kernel.org, rui.zhang@intel.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com
+Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Sinthu Raja <sinthu.raja@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-X-BESS-ID: 1673009605-302517-5392-56522-1
-X-BESS-VER: 2019.1_20221214.2106
-X-BESS-Apparent-Source-IP: 209.85.208.199
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.245286 [from 
-        cloudscan22-5.eu-central-1b.ess.aws.cudaops.com]
-        Rule breakdown below
-         pts rule name              description
-        ---- ---------------------- --------------------------------
-        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
-        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_SC0_MISMATCH_TO, BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        linux-imx@nxp.com
+References: <20230105101748.6714-1-alice.guo@oss.nxp.com>
+ <20230105101748.6714-5-alice.guo@oss.nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230105101748.6714-5-alice.guo@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 6, 2023 at 6:19 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 05/01/2023 16:17, Sinthu Raja wrote:
-> > From: Sinthu Raja <sinthu.raja@ti.com>
-> >
-> > AM68 Starter Kit is a low cost, small form factor board designed for
-> > TI's AM68 SoC which is optimized to provide best in class performance
-> > for industrial applications and add binding for the same.
-> >
-> > Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
->
-> What happened here?,
+On 05/01/2023 11:17, Alice Guo (OSS) wrote:
+> From: Alice Guo <alice.guo@nxp.com>
+> 
+> Add CPU thermal zone and attach it to the TMU which monitors the CPU
+> temperature.
+> 
+> Signed-off-by: Alice Guo <alice.guo@nxp.com>
+> Reviewed-by: Jacky Bai <ping.bai@nxp.com>
+> Reviewed-by: Ye Li <ye.li@nxp.com>
+> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx93.dtsi | 48 ++++++++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> index 6808321ed809..60306f3c5e7f 100644
+> --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> @@ -8,6 +8,7 @@
+>  #include <dt-bindings/input/input.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/power/fsl,imx93-power.h>
+> +#include <dt-bindings/thermal/thermal.h>
+>  
+>  #include "imx93-pinfunc.h"
+>  
+> @@ -116,6 +117,38 @@
+>  		interrupt-parent = <&gic>;
+>  	};
+>  
+> +	thermal-zones {
+> +		cpu-thermal {
+> +			polling-delay-passive = <250>;
+> +			polling-delay = <2000>;
+> +
+> +			thermal-sensors = <&tmu 0>;
+> +
+> +			trips {
+> +				cpu_alert: cpu-alert {
+> +					temperature = <80000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +
+> +				cpu_crit: cpu-crit {
+> +					temperature = <90000>;
+> +					hysteresis = <2000>;
+> +					type = "critical";
+> +				};
+> +		};
+
+Wrong indentation.
+
+Best regards,
 Krzysztof
-Missed the merge window, so rebased to 6.2rc1 and reposted again.
->
-> Best regards,
-> Krzysztof
->
 
-
-
---
-With Regards
-Sinthu Raja
