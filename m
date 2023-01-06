@@ -2,131 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 787D2660658
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 19:27:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35E7D66065A
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 19:29:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235256AbjAFS1v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 13:27:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58360 "EHLO
+        id S230450AbjAFS3K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 13:29:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229698AbjAFS1u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 13:27:50 -0500
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 818AA62E3
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 10:27:49 -0800 (PST)
-Received: by mail-pl1-x629.google.com with SMTP id b2so2479585pld.7
-        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 10:27:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RmLntltvaFSn7Veu63eW90yAOw0MaICZcm5KPVBm5q0=;
-        b=Nr4kJ40YcqDfsKaUZ0YQwjQt+oUhlKaj7wrZU+FbgBRK+rHM2gR59ezPl+jDTnrd7N
-         d14inXDd/GtOfntsdQGOFiETBXi0NtPbEN6PhQTZ/SmB6/akAjPMNB1kOEsZ3LKCYSeL
-         3utYn4aCVg/eFs1xvGv0ei2SmqWSiJT2FgeAHtk7pyatwvO8Uzsc6/bmZdmfsz3ShXs6
-         EkU/W8NTtoIkcC8FUxKEa1/PLoiWbDgO4oyYF1HDbrls2e0y5e4yMwqNUrvyYhkb5Kxl
-         yLGqRZoNFHHjvCNDfgZdA+9IfG7/8u7Rw0Ecy6jIeMkOo7aYK24Yyi6xB7MMgXsIl4RU
-         A2Cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RmLntltvaFSn7Veu63eW90yAOw0MaICZcm5KPVBm5q0=;
-        b=6opFpGx1SctaPhZo9WVX1isf6VclHHSbJhTV2TTuXE9pocLErzBl+bASs1QLajI0tX
-         LIp5cGQgJl99Mkn0dw/PIz0UD3wvBIGd+KJBFz4vemJz6px9C3oPt7htX6j8BFZt4W+I
-         CQb+bnu7QsCuuJmkXR9jQHIKMHAOFgC2/Ca4gA9oj871emaZ/9uUNxNu26Ey2rNh9rc9
-         V1L7RTKrgH3IOIUmddR3id47+5uJ0f1Nzag8P0iubUh24XElPs8mfPDr+c4Xpw+Mk04V
-         CqK41i3Etjf9nnY9188TYuhjzg03tp/r+d5by2hN4eaIQUQXVs3iGMhBgVD082gutxNW
-         BcwQ==
-X-Gm-Message-State: AFqh2krdwkWnD95+rXGrh69YIR/tmzhRbM328osSTpt6yfNAIXSDloiB
-        9hWPVLqYrdOWORYBjj33lOAEpw==
-X-Google-Smtp-Source: AMrXdXs27suwfr9jMMc5hET4poLfufr4skSeto59CNAGRWkccUXezkYj6qZh3nG8wWM9skVoBh9qvg==
-X-Received: by 2002:a17:903:251:b0:192:9369:b2fe with SMTP id j17-20020a170903025100b001929369b2femr35212915plh.38.1673029668806;
-        Fri, 06 Jan 2023 10:27:48 -0800 (PST)
-Received: from localhost ([135.180.226.51])
-        by smtp.gmail.com with ESMTPSA id c1-20020a170902d48100b00189c9f7fac1sm1291845plg.62.2023.01.06.10.27.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Jan 2023 10:27:48 -0800 (PST)
-Date:   Fri, 06 Jan 2023 10:27:48 -0800 (PST)
-X-Google-Original-Date: Fri, 06 Jan 2023 10:27:46 PST (-0800)
-Subject:     Re: [PATCH v3 0/2] riscv,isa fixups
-In-Reply-To: <20221205174459.60195-1-conor@kernel.org>
-CC:     linux-riscv@lists.infradead.org,
-        Conor Dooley <conor.dooley@microchip.com>, jrtc27@jrtc27.com,
-        Conor Dooley <conor@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        aou@eecs.berkeley.edu, heiko@sntech.de, ajones@ventanamicro.com,
-        guoren@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     Conor Dooley <conor@kernel.org>
-Message-ID: <mhng-e3f1a8a9-2d89-4331-bb8a-b798af0cb277@palmer-ri-x1c9>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S231367AbjAFS2x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 13:28:53 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E82C478A7A;
+        Fri,  6 Jan 2023 10:28:52 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8C01C61F0C;
+        Fri,  6 Jan 2023 18:28:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EDBAC433EF;
+        Fri,  6 Jan 2023 18:28:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673029731;
+        bh=COqjyLV5j1ajbEXuw53ehn2Q19dbjKx1dD0iJ62Rvfo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=N25BixGqr149dZlfhgg2awzromGm4Zh9tOgRIUe5RRss9bw2fe3CkEPXFIQd47vae
+         QCTq0xef7XUfe2kqNCd8spJ8OYv0QJgsDiCcIJ8LNC8MpxOD0Yr+PbHDy0+cefLmEg
+         AThLVE+/ztWNY2IDJCTYy4l+aimYMp2i5WkGXidxZUr8VQZr1WCuL833iDNKuNUJU3
+         hHckzgc8jBtiqlO8o/by89KrmBCz2Xl8Gs4HfxMX5DH+J0nwPwkXoXJwbLNSDfLleV
+         bvcabo108JPrOWagnIJbrANYZeDhutNIXzrRK5VwjfJZgn2IMSVZQerv+vFhP2LRTG
+         GunFh7UZTMHZA==
+Date:   Fri, 6 Jan 2023 12:28:49 -0600
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Vincent Guittot <vincent.guittot@linaro.org>
+Cc:     dmitry.baryshkov@linaro.org, agross@kernel.org,
+        konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, danny@kdrag0n.dev
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845: correct dynamic power
+ coefficients
+Message-ID: <20230106182849.kr47mdgokd4qa6zw@builder.lan>
+References: <20230106164618.1845281-1-vincent.guittot@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230106164618.1845281-1-vincent.guittot@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 05 Dec 2022 09:44:58 PST (-0800), Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
->
-> I noticed ~today~ while looking at the isa manual that I had not
-> accounted for another couple of edge cases with my regex. As before, I
-> think attempting to validate the canonical order for multiletter stuff
-> makes no sense - but we should totally try to avoid false-positives for
-> combinations that are known to be valid.
->
-> All I've changed for v2 was collecting tags & adding in the missing
-> commit reference that Heiko pointed out.
->
-> v3 fixes an issue Jess spotted - it's *any* multi-letter extension that
-> can come immediately after the single-letter ones, not just ones
-> starting with Z.
->
-> @Palmer, either you can take this once the DT folks have ACKed it if you
-> like, or I will take onto some v6.2-rcN fixes branch. I don't think that
-> there is any urgency :)
+On Fri, Jan 06, 2023 at 05:46:18PM +0100, Vincent Guittot wrote:
 
-Sorry I missed these.  
+Seems like using get_maintainer.pl would have saved you some trouble ;)
 
-Reviewed-by: Palmer Dabbelt <palmer@rivosinc.com>
-Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+> While stressing EAS on my dragonboard RB3, I have noticed that LITTLE cores
+> where never selected as the most energy efficient CPU whatever the
+> utilization level of waking task.
+> 
+> energy model framework uses its cost field to estimate the energy with
+> the formula:
+> 
+>   nrg = cost of the selected OPP * utilization / CPU's max capacity
+> 
+> which ends up selecting the CPU with lowest cost / max capacity ration
+> as long as the utilization fits in the OPP's capacity.
+> 
+> If we compare the cost of a little OPP with similar capacity of a big OPP
+> like :
+>        OPP(kHz)   OPP capacity    cost     max capacity   cost/max capacity
+> LITTLE 1766400    407             351114   407            863
+> big    1056000    408             520267   1024           508
+> 
+> This can be interpreted as the LITTLE core consumes 70% more than big core
+> for the same compute capacity.
+> 
+> According to [1], LITTLE consumes 10% less than big core for Coremark
+> benchmark at those OPPs. If we consider that everything else stays
+> unchanged, the dynamic-power-coefficient of LITTLE core should be
+> only 53% of the current value: 290 * 53% = 154
+> 
+> Set the dynamic-power-coefficient of CPU0-3 to 154 to fix the energy model.
+> 
 
-We can just do a shared tag if you have stuff that depends on them?  
-That'll let me keep fixes clean, as I'm running the DT stuff too now.  
-Though maybe it doesn't matter so much because I'm not really taking any 
-DT stuff.
+This is sounds reasonable.
 
-> Thanks,
-> Conor.
->
-> CC: Jessica Clarke <jrtc27@jrtc27.com>
-> CC: Conor Dooley <conor@kernel.org>
-> CC: Rob Herring <robh+dt@kernel.org>
-> CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> CC: Paul Walmsley <paul.walmsley@sifive.com>
-> CC: Palmer Dabbelt <palmer@dabbelt.com>
-> CC: Albert Ou <aou@eecs.berkeley.edu>
-> CC: Heiko Stuebner <heiko@sntech.de>
-> CC: Andrew Jones <ajones@ventanamicro.com>
-> CC: Guo Ren <guoren@kernel.org>
-> CC: linux-riscv@lists.infradead.org
-> CC: devicetree@vger.kernel.org
-> CC: linux-kernel@vger.kernel.org
->
-> Conor Dooley (2):
->   dt-bindings: riscv: fix underscore requirement for multi-letter
->     extensions
->   dt-bindings: riscv: fix single letter canonical order
->
->  Documentation/devicetree/bindings/riscv/cpus.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+But if the math was wrong for SDM845, I would assume that sm8150 and
+sm8250 are wrong as well, as that's what 0e0a8e35d725 is based on. And
+should I assume that patches for other platforms are off by 53% as well?
+
+Can you help me understand how to arrive at this number? (Without
+considering everything else stays unchanged, if needed).
+
+Regards,
+Bjorn
+
+> [1] https://github.com/kdrag0n/freqbench/tree/master/results/sdm845/main
+> 
+> Fixes: 0e0a8e35d725 ("arm64: dts: qcom: sdm845: correct dynamic power coefficients")
+> Signed-off-by: Vincent Guittot <vincent.guittot@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> index 65032b94b46d..869bdb9bce6e 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -198,7 +198,7 @@ CPU0: cpu@0 {
+>  			reg = <0x0 0x0>;
+>  			enable-method = "psci";
+>  			capacity-dmips-mhz = <611>;
+> -			dynamic-power-coefficient = <290>;
+> +			dynamic-power-coefficient = <154>;
+>  			qcom,freq-domain = <&cpufreq_hw 0>;
+>  			operating-points-v2 = <&cpu0_opp_table>;
+>  			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
+> @@ -222,7 +222,7 @@ CPU1: cpu@100 {
+>  			reg = <0x0 0x100>;
+>  			enable-method = "psci";
+>  			capacity-dmips-mhz = <611>;
+> -			dynamic-power-coefficient = <290>;
+> +			dynamic-power-coefficient = <154>;
+>  			qcom,freq-domain = <&cpufreq_hw 0>;
+>  			operating-points-v2 = <&cpu0_opp_table>;
+>  			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
+> @@ -243,7 +243,7 @@ CPU2: cpu@200 {
+>  			reg = <0x0 0x200>;
+>  			enable-method = "psci";
+>  			capacity-dmips-mhz = <611>;
+> -			dynamic-power-coefficient = <290>;
+> +			dynamic-power-coefficient = <154>;
+>  			qcom,freq-domain = <&cpufreq_hw 0>;
+>  			operating-points-v2 = <&cpu0_opp_table>;
+>  			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
+> @@ -264,7 +264,7 @@ CPU3: cpu@300 {
+>  			reg = <0x0 0x300>;
+>  			enable-method = "psci";
+>  			capacity-dmips-mhz = <611>;
+> -			dynamic-power-coefficient = <290>;
+> +			dynamic-power-coefficient = <154>;
+>  			qcom,freq-domain = <&cpufreq_hw 0>;
+>  			operating-points-v2 = <&cpu0_opp_table>;
+>  			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
+> -- 
+> 2.34.1
+> 
