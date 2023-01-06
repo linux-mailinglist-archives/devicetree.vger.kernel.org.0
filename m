@@ -2,98 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B99B7660608
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 18:56:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 787D2660658
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 19:27:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229452AbjAFR4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 12:56:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45572 "EHLO
+        id S235256AbjAFS1v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 13:27:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234196AbjAFR4D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 12:56:03 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53CBD7D9E7;
-        Fri,  6 Jan 2023 09:56:02 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DF41361F0B;
-        Fri,  6 Jan 2023 17:56:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A179BC433EF;
-        Fri,  6 Jan 2023 17:56:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673027761;
-        bh=ot+tAafudNV7hoY7I2KoYwEZhq9iuC+POIAR3srNPPM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VO1gdWoxPVKG1w4XeWigCGI++6zlHzV8PLbl9wH7VSr3blZwMmz8b/uKTAWyWrAij
-         K4WFX3d5vgVnYL5H+2Q79lQiDGIAQq3K4yL0V5lWSem6GPyewV7gX8ZrMrbtWgyXHh
-         sH5cdkvPtiz1mzY4mXWNVNC+Hc3ip1JYHL+3P1OiapEDfsa6j6Xdr718JUDLWNJmiG
-         10H9sk/mROjM1vKLcN3y6xcx7ht+VmiXYhzvOFZ6T8onVM0UGvS/camNu3ep80RZgN
-         qaRBbez0PQRRIHRBcg84qFawDcnagdgOTnxRX4YdXzeHtLrXpWuPEnNdMZLQKsLfxq
-         UvwgT1iyh81KQ==
-Date:   Fri, 6 Jan 2023 11:55:58 -0600
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        krzysztof.kozlowski@linaro.org, marijn.suijten@somainline.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: reserved-memory: rmtfs: Document
- qcom,assign-to-nav
-Message-ID: <20230106175558.7sfutxaishdlwhoe@builder.lan>
-References: <20230102165034.830620-1-konrad.dybcio@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230102165034.830620-1-konrad.dybcio@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229698AbjAFS1u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 13:27:50 -0500
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 818AA62E3
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 10:27:49 -0800 (PST)
+Received: by mail-pl1-x629.google.com with SMTP id b2so2479585pld.7
+        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 10:27:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RmLntltvaFSn7Veu63eW90yAOw0MaICZcm5KPVBm5q0=;
+        b=Nr4kJ40YcqDfsKaUZ0YQwjQt+oUhlKaj7wrZU+FbgBRK+rHM2gR59ezPl+jDTnrd7N
+         d14inXDd/GtOfntsdQGOFiETBXi0NtPbEN6PhQTZ/SmB6/akAjPMNB1kOEsZ3LKCYSeL
+         3utYn4aCVg/eFs1xvGv0ei2SmqWSiJT2FgeAHtk7pyatwvO8Uzsc6/bmZdmfsz3ShXs6
+         EkU/W8NTtoIkcC8FUxKEa1/PLoiWbDgO4oyYF1HDbrls2e0y5e4yMwqNUrvyYhkb5Kxl
+         yLGqRZoNFHHjvCNDfgZdA+9IfG7/8u7Rw0Ecy6jIeMkOo7aYK24Yyi6xB7MMgXsIl4RU
+         A2Cw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RmLntltvaFSn7Veu63eW90yAOw0MaICZcm5KPVBm5q0=;
+        b=6opFpGx1SctaPhZo9WVX1isf6VclHHSbJhTV2TTuXE9pocLErzBl+bASs1QLajI0tX
+         LIp5cGQgJl99Mkn0dw/PIz0UD3wvBIGd+KJBFz4vemJz6px9C3oPt7htX6j8BFZt4W+I
+         CQb+bnu7QsCuuJmkXR9jQHIKMHAOFgC2/Ca4gA9oj871emaZ/9uUNxNu26Ey2rNh9rc9
+         V1L7RTKrgH3IOIUmddR3id47+5uJ0f1Nzag8P0iubUh24XElPs8mfPDr+c4Xpw+Mk04V
+         CqK41i3Etjf9nnY9188TYuhjzg03tp/r+d5by2hN4eaIQUQXVs3iGMhBgVD082gutxNW
+         BcwQ==
+X-Gm-Message-State: AFqh2krdwkWnD95+rXGrh69YIR/tmzhRbM328osSTpt6yfNAIXSDloiB
+        9hWPVLqYrdOWORYBjj33lOAEpw==
+X-Google-Smtp-Source: AMrXdXs27suwfr9jMMc5hET4poLfufr4skSeto59CNAGRWkccUXezkYj6qZh3nG8wWM9skVoBh9qvg==
+X-Received: by 2002:a17:903:251:b0:192:9369:b2fe with SMTP id j17-20020a170903025100b001929369b2femr35212915plh.38.1673029668806;
+        Fri, 06 Jan 2023 10:27:48 -0800 (PST)
+Received: from localhost ([135.180.226.51])
+        by smtp.gmail.com with ESMTPSA id c1-20020a170902d48100b00189c9f7fac1sm1291845plg.62.2023.01.06.10.27.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Jan 2023 10:27:48 -0800 (PST)
+Date:   Fri, 06 Jan 2023 10:27:48 -0800 (PST)
+X-Google-Original-Date: Fri, 06 Jan 2023 10:27:46 PST (-0800)
+Subject:     Re: [PATCH v3 0/2] riscv,isa fixups
+In-Reply-To: <20221205174459.60195-1-conor@kernel.org>
+CC:     linux-riscv@lists.infradead.org,
+        Conor Dooley <conor.dooley@microchip.com>, jrtc27@jrtc27.com,
+        Conor Dooley <conor@kernel.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, heiko@sntech.de, ajones@ventanamicro.com,
+        guoren@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     Conor Dooley <conor@kernel.org>
+Message-ID: <mhng-e3f1a8a9-2d89-4331-bb8a-b798af0cb277@palmer-ri-x1c9>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 02, 2023 at 05:50:33PM +0100, Konrad Dybcio wrote:
-> Some SoCs mandate that the RMTFS is also assigned to the NAV VM, while
-> others really don't want that. Since it has to be conditional, add a
-> bool property to toggle this behavior.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
-> v1 -> v2:
-> - Rewrite the newly added description
-> 
->  .../devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml b/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml
-> index 2998f1c8f0db..4026788a4e40 100644
-> --- a/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml
-> +++ b/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml
-> @@ -31,6 +31,12 @@ properties:
->      description: >
->        vmid of the remote processor, to set up memory protection
->  
-> +  qcom,assign-to-nav:
-> +    type: boolean
-> +    description:
-> +      Whether to also assign the region to a third (NAV) VM, as opposed to
-> +      the usual 2.
+On Mon, 05 Dec 2022 09:44:58 PST (-0800), Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+>
+> I noticed ~today~ while looking at the isa manual that I had not
+> accounted for another couple of edge cases with my regex. As before, I
+> think attempting to validate the canonical order for multiletter stuff
+> makes no sense - but we should totally try to avoid false-positives for
+> combinations that are known to be valid.
+>
+> All I've changed for v2 was collecting tags & adding in the missing
+> commit reference that Heiko pointed out.
+>
+> v3 fixes an issue Jess spotted - it's *any* multi-letter extension that
+> can come immediately after the single-letter ones, not just ones
+> starting with Z.
+>
+> @Palmer, either you can take this once the DT folks have ACKed it if you
+> like, or I will take onto some v6.2-rcN fixes branch. I don't think that
+> there is any urgency :)
 
-For better or worse, the binding currently takes the vmid of the first
-instance in qcom,vmid. Would it not be cleaner to turn qcom,vmid into an
-array and pass the nav vmid as a second element in that array?
+Sorry I missed these.  
 
-Regards,
-Bjorn
+Reviewed-by: Palmer Dabbelt <palmer@rivosinc.com>
+Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
 
-> +
->  required:
->    - qcom,client-id
->  
-> -- 
-> 2.39.0
-> 
+We can just do a shared tag if you have stuff that depends on them?  
+That'll let me keep fixes clean, as I'm running the DT stuff too now.  
+Though maybe it doesn't matter so much because I'm not really taking any 
+DT stuff.
+
+> Thanks,
+> Conor.
+>
+> CC: Jessica Clarke <jrtc27@jrtc27.com>
+> CC: Conor Dooley <conor@kernel.org>
+> CC: Rob Herring <robh+dt@kernel.org>
+> CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> CC: Paul Walmsley <paul.walmsley@sifive.com>
+> CC: Palmer Dabbelt <palmer@dabbelt.com>
+> CC: Albert Ou <aou@eecs.berkeley.edu>
+> CC: Heiko Stuebner <heiko@sntech.de>
+> CC: Andrew Jones <ajones@ventanamicro.com>
+> CC: Guo Ren <guoren@kernel.org>
+> CC: linux-riscv@lists.infradead.org
+> CC: devicetree@vger.kernel.org
+> CC: linux-kernel@vger.kernel.org
+>
+> Conor Dooley (2):
+>   dt-bindings: riscv: fix underscore requirement for multi-letter
+>     extensions
+>   dt-bindings: riscv: fix single letter canonical order
+>
+>  Documentation/devicetree/bindings/riscv/cpus.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
