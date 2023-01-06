@@ -2,72 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6F0B660874
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 21:50:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA6A26608A9
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 22:15:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231277AbjAFUuj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 15:50:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46306 "EHLO
+        id S229870AbjAFVPB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 16:15:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229782AbjAFUui (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 15:50:38 -0500
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 763E96B5F9;
-        Fri,  6 Jan 2023 12:50:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1673038237; x=1704574237;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=SSLr4RHf58wqfEI96obfVkLWfe5DwsXj720IBwW3wDE=;
-  b=Ptjw33cajnajUr1PjfbaXJzWKN/hmBE4cCu9oioyeGJPKs0JL0/fbpA1
-   8EcfWCDxUehDdYrN+W1Rn6j741qeNj1/xa7vQ0+eLgRlkQ693A3LF4rmY
-   E3Na2IQ/wNenwaJGpOz+qusvMDrfLbm5J9/czVzsRHrKwMxWBTXxM7Swv
-   c=;
-Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 06 Jan 2023 12:50:37 -0800
-X-QCInternal: smtphost
-Received: from unknown (HELO nasanex01a.na.qualcomm.com) ([10.52.223.231])
-  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Jan 2023 12:50:36 -0800
-Received: from [10.110.114.155] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 6 Jan 2023
- 12:50:31 -0800
-Message-ID: <c082205c-3e66-dc63-a6bb-7520c2ca54ae@quicinc.com>
-Date:   Fri, 6 Jan 2023 12:50:30 -0800
+        with ESMTP id S230497AbjAFVPB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 16:15:01 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17F9B81D56;
+        Fri,  6 Jan 2023 13:15:00 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id AE487B81E44;
+        Fri,  6 Jan 2023 21:14:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50CA7C433D2;
+        Fri,  6 Jan 2023 21:14:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673039697;
+        bh=7GNxN3gsKz7ckSvjJ4+A1vUxvCZwJtjbQuQzb2hGY60=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MMtyeXWabLDMPgMF4+nOH1wV6HSKg/fA7FzabkE8Oe06a4xjktRuyD1Ra74LIiuYZ
+         13mSR7oewG0MtNjvuXZarHNbBkH9n4JlmbB43YA1Pu/EB6iEKSZfk39JsDevzOaLNu
+         ofI8qty68KhWGF3g5cvXP5fwxMeFCCOkQaHmduL+K73eagHXSYmTEI6MigVViiF4mH
+         L35QIi+JDp2m/qvJ6NYiPMyi3i8u95svnXDw9sRZveFtRVf/x9xVN4g/XLFHUu3aoF
+         AusAKQh7nH7FK8zSGnLbIi47wx7EA/J0bjnqCRqbgpvj2lrwPFr9AmAi3yPBdkl7Jp
+         9IZ1OEItjRWcQ==
+Date:   Fri, 6 Jan 2023 21:14:51 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     William Zhang <william.zhang@broadcom.com>
+Cc:     Linux SPI List <linux-spi@vger.kernel.org>,
+        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
+        anand.gore@broadcom.com, tomer.yacoby@broadcom.com,
+        dan.beygelman@broadcom.com, joel.peshkin@broadcom.com,
+        f.fainelli@gmail.com, jonas.gorski@gmail.com,
+        kursad.oney@broadcom.com, dregan@mail.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 03/16] dt-bindings: spi: Add spi peripheral specific
+ property
+Message-ID: <Y7iPS48viBg0QRok@sirena.org.uk>
+References: <20230106200809.330769-1-william.zhang@broadcom.com>
+ <20230106200809.330769-4-william.zhang@broadcom.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v16 0/8] Coresight: Add support for TPDM and TPDA
-Content-Language: en-US
-To:     Mao Jinlong <quic_jinlmao@quicinc.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>
-References: <20230106092119.20449-1-quic_jinlmao@quicinc.com>
-From:   Trilok Soni <quic_tsoni@quicinc.com>
-In-Reply-To: <20230106092119.20449-1-quic_jinlmao@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="BxXeJB9XJtZjxHDf"
+Content-Disposition: inline
+In-Reply-To: <20230106200809.330769-4-william.zhang@broadcom.com>
+X-Cookie: Do not fold, spindle or mutilate.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,12 +63,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/6/2023 1:21 AM, Mao Jinlong wrote:
-> This patch series depends on patch series:
-> "[v6,00/14] coresight: Add new API to allocate trace source ID values"
-> https://patchwork.kernel.org/project/linux-arm-kernel/cover/20221123195010.6859-1-mike.leach@linaro.org/
 
-Do we know now when these patches will get revived and accepted to 
-unblock us?
+--BxXeJB9XJtZjxHDf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
----Trilok Soni
+On Fri, Jan 06, 2023 at 12:07:55PM -0800, William Zhang wrote:
+
+> brcm,no-clk-gate is a Broadcom Broadband HS SPI controller specific
+> property for certain SPI device such as Broadcom ISI voice daughtercard
+> to work properly. It disables the clock gating feature when the chip
+> select is deasserted for any device that wants to keep the clock
+> running.
+
+Why would this property be Broadcom specific?  Other devices could in
+theory implement this.
+
+> +properties:
+> +  brcm,no-clk-gate:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      Some SPI device such as Broadcom ISI based voice daughtercard requires SPI
+> +      clock running even when chip select is deasserted. By default the
+> +      controller turns off or gate the clock when cs is not active to save
+> +      power. This flag tells the controller driver to keep the clock running
+> +      when chip select is not active.
+
+This seems problematic with any host controlled chip select support...
+
+--BxXeJB9XJtZjxHDf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmO4j0oACgkQJNaLcl1U
+h9BIWgf/dihY/phVPCas+x/J3zN4PzuHT1GA+ZnnnM4zDpB7C5rGVTrCRnw0sCv/
+1UAmf6yaPRwRTlfd2OYlVpVzEGhRRgrMkYlJoU/bpzOVIOI00lHE+kJJpDonUWtq
+hDQHSwPHxuNBeEa2EP6MFco6q/InCrji4nvDE4VLsH1IMjA6gqpplGDPFzRVAKAX
+8dbRqhsk452doujt6sRXYhEkBcOJ+SSddDNMC3tgHeXNPFYjaXaqyPWAIgA7h9qU
+IMNCL1wIs/sGb8OTCJa4Yuw4hTbrZceKG1hi73ZQaS++6zw6Y/X1pXKhyxIihc9K
+IrlWTZZAn+ZRRQ1BNTz0GL7rqaZ+1g==
+=eY8r
+-----END PGP SIGNATURE-----
+
+--BxXeJB9XJtZjxHDf--
