@@ -2,192 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D36F660187
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 14:47:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 03D9266019D
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 14:56:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234433AbjAFNrj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 08:47:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43310 "EHLO
+        id S229676AbjAFN4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 08:56:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234196AbjAFNri (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 08:47:38 -0500
-Received: from mail-il1-x136.google.com (mail-il1-x136.google.com [IPv6:2607:f8b0:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECDD960844
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 05:47:36 -0800 (PST)
-Received: by mail-il1-x136.google.com with SMTP id a9so385703ilp.6
-        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 05:47:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=U7myXiQbz2iQLcApwn64cL+RwgcoCUWn5+KFX7+AlAI=;
-        b=pHa06kLigOoSKmp9h+1WzbNb1QmqZ2giITkuUj8OHl5yrZ8E+HPCmVFf7UtrvzXmsV
-         blQW6WqggiMQhQy0+JLcp43u92img6QCs5zNcOm8EW/ogIourqB4+44Vb3w+dadEsBi2
-         VFBrIqlY+LYkyy3r2uCIg3N3J4dLmLwfdoDCPBdgKPjpJvXiEYJnxAfo97UyhtGXvpOE
-         Yqx9QLEtN74zffdijgYOigHJtlgva6Bqv+XJR6eb2OBl+OyNLOj1xhcx7ppgYk4rFGH1
-         wXaDhqxi6cB8bawtZ9I6yEdTOr6+xfSqjSjGzM1Vo6TFj1Mm/9odu0UItqogZXrB81Dl
-         NyBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=U7myXiQbz2iQLcApwn64cL+RwgcoCUWn5+KFX7+AlAI=;
-        b=H7eczilNhBIxK0eQNL4lfXE9Wwvmj2dDYcd8OfFn3rwPIeLHmMkWiZ56RnjPVO8K/1
-         TvD8ydh2nFbnhyNjks/LAvmKQpZXyRD6PEeY3t+P09hIUoH/N73UcB1nqaBki/z1phal
-         Mxg4gn3d/dg+Pby/Dg0HTeBFJs/rnTN1aPX0EWgyxmaoBl+vZT4aFfFG0SFA4uqfHghQ
-         GHzKTjEHDvYqxtizKX4AjD0RLDB/sSFmmHJ9zt2a4EFsh6lLTC410bCaN0KttIXH3Uvv
-         KmGxy3GROgS5iPg3GmjeC1XDZldWMMQ3A8yWQIrUhCq2l8CoXddjWG9h1hk2srl5yYjW
-         0mPQ==
-X-Gm-Message-State: AFqh2koNlQ/GEFzwNuI0opHGAsxXp1xtROdYAypt49v6WzkHnPFGxFzQ
-        NKLGoQbsoC3ayUPrrF8p5i/ZQQ==
-X-Google-Smtp-Source: AMrXdXvam1vI26bEzJTwkFVpNtWvKbbyoDyu5wlg+BElKDeX66VTOu7kIoPChw9Xxw3fJqeje1WYjw==
-X-Received: by 2002:a92:dc8d:0:b0:30c:4c54:87f4 with SMTP id c13-20020a92dc8d000000b0030c4c5487f4mr11786124iln.3.1673012856286;
-        Fri, 06 Jan 2023 05:47:36 -0800 (PST)
-Received: from [172.22.22.4] ([98.61.227.136])
-        by smtp.googlemail.com with ESMTPSA id f4-20020a056e0204c400b0030d6f952221sm375488ils.75.2023.01.06.05.47.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Jan 2023 05:47:35 -0800 (PST)
-Message-ID: <8ab4a081-3295-7786-24d8-1ed7999ce588@linaro.org>
-Date:   Fri, 6 Jan 2023 07:47:34 -0600
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 4/9] interconnect: qcom: sm8150: Drop IP0 interconnects
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+        with ESMTP id S230294AbjAFNz7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 08:55:59 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D116687B1;
+        Fri,  6 Jan 2023 05:55:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=vRe6UFQkbe43pVVwnShYMb3rFh8R0WSwAihI2zUUTrs=; b=AqhYRzo2jKPl5b1J+Wvk545wX7
+        gphCsR8eivL7VCRo7FBIXzYCTewA86LPyCUY4NUQ8EHvbogTrjy4Kco8PkaCQvBoE08cmN9tF/aRn
+        B0zlcNubhWWpedfwdout3768rEREWgfBgcEemfw2UGNgX1/4efOMnUFjCMQZOy3PB/ls=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pDnC9-001KzV-SK; Fri, 06 Jan 2023 14:55:41 +0100
+Date:   Fri, 6 Jan 2023 14:55:41 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Frank <Frank.Sae@motor-comm.com>
+Cc:     Peter Geis <pgwipeout@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     Georgi Djakov <djakov@kernel.org>,
-        Odelu Kukatla <okukatla@codeaurora.org>,
-        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230106073313.1720029-1-dmitry.baryshkov@linaro.org>
- <20230106073313.1720029-5-dmitry.baryshkov@linaro.org>
-From:   Alex Elder <elder@linaro.org>
-In-Reply-To: <20230106073313.1720029-5-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        xiaogang.fan@motor-comm.com, fei.zhang@motor-comm.com,
+        hua.sun@motor-comm.com, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v1 1/3] dt-bindings: net: Add Motorcomm yt8xxx
+ ethernet phy Driver bindings
+Message-ID: <Y7goXXiRBE6XHuCc@lunn.ch>
+References: <20230105073024.8390-1-Frank.Sae@motor-comm.com>
+ <20230105073024.8390-2-Frank.Sae@motor-comm.com>
+ <Y7bN4vJXMi66FF6v@lunn.ch>
+ <e762c7ac-63e7-a86e-3e3f-5c8a450b25b0@motor-comm.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e762c7ac-63e7-a86e-3e3f-5c8a450b25b0@motor-comm.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/6/23 1:33 AM, Dmitry Baryshkov wrote:
-> Similar to the sdx55 and sc7180, let's drop the IP0 interconnects here
-> because the IP0 resource is also used in the clk-rpmh.
+> > Why is this needed? When the MAC driver connects to the PHY, it passes
+> > phy-mode. For RGMII, this is one of:
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
-For the interconnects that are already (also) represented by
-RPMH clocks, I believe the interconnects are never used.  So
-I *think* it would be better to remove these first, possibly
-even as a bug fix (?).
-
-Similarly, for the three others you're converting to be
-represented as clocks, I don't think they're used (yet?),
-so you could remove those before redefining as clocks too.
-
-Please explain to me if I'm misunderstanding.
-
-					-Alex
-
-> ---
->   drivers/interconnect/qcom/sm8150.c | 21 ---------------------
->   drivers/interconnect/qcom/sm8150.h |  2 --
->   2 files changed, 23 deletions(-)
+> > linux/phy.h:	PHY_INTERFACE_MODE_RGMII,
+> > linux/phy.h:	PHY_INTERFACE_MODE_RGMII_ID,
+> > linux/phy.h:	PHY_INTERFACE_MODE_RGMII_RXID,
+> > linux/phy.h:	PHY_INTERFACE_MODE_RGMII_TXID,
+> > 
+> > This tells you if you need to add a delay for the RX clock line, the
+> > TX clock line, or both. That is all you need to know for basic RGMII
+> > delays.
+> > 
 > 
-> diff --git a/drivers/interconnect/qcom/sm8150.c b/drivers/interconnect/qcom/sm8150.c
-> index 1d04a4bfea80..c5ab29322164 100644
-> --- a/drivers/interconnect/qcom/sm8150.c
-> +++ b/drivers/interconnect/qcom/sm8150.c
-> @@ -56,7 +56,6 @@ DEFINE_QNODE(qnm_pcie, SM8150_MASTER_GEM_NOC_PCIE_SNOC, 1, 16, SM8150_SLAVE_LLCC
->   DEFINE_QNODE(qnm_snoc_gc, SM8150_MASTER_SNOC_GC_MEM_NOC, 1, 8, SM8150_SLAVE_LLCC);
->   DEFINE_QNODE(qnm_snoc_sf, SM8150_MASTER_SNOC_SF_MEM_NOC, 1, 16, SM8150_SLAVE_LLCC);
->   DEFINE_QNODE(qxm_ecc, SM8150_MASTER_ECC, 2, 32, SM8150_SLAVE_LLCC);
-> -DEFINE_QNODE(ipa_core_master, SM8150_MASTER_IPA_CORE, 1, 8, SM8150_SLAVE_IPA_CORE);
->   DEFINE_QNODE(llcc_mc, SM8150_MASTER_LLCC, 4, 4, SM8150_SLAVE_EBI_CH0);
->   DEFINE_QNODE(qhm_mnoc_cfg, SM8150_MASTER_CNOC_MNOC_CFG, 1, 4, SM8150_SLAVE_SERVICE_MNOC);
->   DEFINE_QNODE(qxm_camnoc_hf0, SM8150_MASTER_CAMNOC_HF0, 1, 32, SM8150_SLAVE_MNOC_HF_MEM_NOC);
-> @@ -139,7 +138,6 @@ DEFINE_QNODE(qns_ecc, SM8150_SLAVE_ECC, 1, 32);
->   DEFINE_QNODE(qns_gem_noc_snoc, SM8150_SLAVE_GEM_NOC_SNOC, 1, 8, SM8150_MASTER_GEM_NOC_SNOC);
->   DEFINE_QNODE(qns_llcc, SM8150_SLAVE_LLCC, 4, 16, SM8150_MASTER_LLCC);
->   DEFINE_QNODE(srvc_gemnoc, SM8150_SLAVE_SERVICE_GEM_NOC, 1, 4);
-> -DEFINE_QNODE(ipa_core_slave, SM8150_SLAVE_IPA_CORE, 1, 8);
->   DEFINE_QNODE(ebi, SM8150_SLAVE_EBI_CH0, 4, 4);
->   DEFINE_QNODE(qns2_mem_noc, SM8150_SLAVE_MNOC_SF_MEM_NOC, 1, 32, SM8150_MASTER_MNOC_SF_MEM_NOC);
->   DEFINE_QNODE(qns_mem_noc_hf, SM8150_SLAVE_MNOC_HF_MEM_NOC, 2, 32, SM8150_MASTER_MNOC_HF_MEM_NOC);
-> @@ -172,7 +170,6 @@ DEFINE_QBCM(bcm_co0, "CO0", false, &qns_cdsp_mem_noc);
->   DEFINE_QBCM(bcm_ce0, "CE0", false, &qxm_crypto);
->   DEFINE_QBCM(bcm_sn1, "SN1", false, &qxs_imem);
->   DEFINE_QBCM(bcm_co1, "CO1", false, &qnm_npu);
-> -DEFINE_QBCM(bcm_ip0, "IP0", false, &ipa_core_slave);
->   DEFINE_QBCM(bcm_cn0, "CN0", true, &qhm_spdm, &qnm_snoc, &qhs_a1_noc_cfg, &qhs_a2_noc_cfg, &qhs_ahb2phy_south, &qhs_aop, &qhs_aoss, &qhs_camera_cfg, &qhs_clk_ctl, &qhs_compute_dsp, &qhs_cpr_cx, &qhs_cpr_mmcx, &qhs_cpr_mx, &qhs_crypto0_cfg, &qhs_ddrss_cfg, &qhs_display_cfg, &qhs_emac_cfg, &qhs_glm, &qhs_gpuss_cfg, &qhs_imem_cfg, &qhs_ipa, &qhs_mnoc_cfg, &qhs_npu_cfg, &qhs_pcie0_cfg, &qhs_pcie1_cfg, &qhs_phy_refgen_north, &qhs_pimem_cfg, &qhs_prng, &qhs_qdss_cfg, &qhs_qspi, &qhs_qupv3_east, &qhs_qupv3_north, &qhs_qupv3_south, &qhs_sdc2, &qhs_sdc4, &qhs_snoc_cfg, &qhs_spdm, &qhs_spss_cfg, &qhs_ssc_cfg, &qhs_tcsr, &qhs_tlmm_east, &qhs_tlmm_north, &qhs_tlmm_south, &qhs_tlmm_west, &qhs_tsif, &qhs_ufs_card_cfg, &qhs_ufs_mem_cfg, &qhs_usb3_0, &qhs_usb3_1, &qhs_venus_cfg, &qhs_vsense_ctrl_cfg, &qns_cnoc_a2noc, &srvc_cnoc);
->   DEFINE_QBCM(bcm_qup0, "QUP0", false, &qhm_qup0, &qhm_qup1, &qhm_qup2);
->   DEFINE_QBCM(bcm_sn2, "SN2", false, &qns_gemnoc_gc);
-> @@ -398,22 +395,6 @@ static const struct qcom_icc_desc sm8150_gem_noc = {
->   	.num_bcms = ARRAY_SIZE(gem_noc_bcms),
->   };
->   
-> -static struct qcom_icc_bcm * const ipa_virt_bcms[] = {
-> -	&bcm_ip0,
-> -};
-> -
-> -static struct qcom_icc_node * const ipa_virt_nodes[] = {
-> -	[MASTER_IPA_CORE] = &ipa_core_master,
-> -	[SLAVE_IPA_CORE] = &ipa_core_slave,
-> -};
-> -
-> -static const struct qcom_icc_desc sm8150_ipa_virt = {
-> -	.nodes = ipa_virt_nodes,
-> -	.num_nodes = ARRAY_SIZE(ipa_virt_nodes),
-> -	.bcms = ipa_virt_bcms,
-> -	.num_bcms = ARRAY_SIZE(ipa_virt_bcms),
-> -};
-> -
->   static struct qcom_icc_bcm * const mc_virt_bcms[] = {
->   	&bcm_acv,
->   	&bcm_mc0,
-> @@ -517,8 +498,6 @@ static const struct of_device_id qnoc_of_match[] = {
->   	  .data = &sm8150_dc_noc},
->   	{ .compatible = "qcom,sm8150-gem-noc",
->   	  .data = &sm8150_gem_noc},
-> -	{ .compatible = "qcom,sm8150-ipa-virt",
-> -	  .data = &sm8150_ipa_virt},
->   	{ .compatible = "qcom,sm8150-mc-virt",
->   	  .data = &sm8150_mc_virt},
->   	{ .compatible = "qcom,sm8150-mmss-noc",
-> diff --git a/drivers/interconnect/qcom/sm8150.h b/drivers/interconnect/qcom/sm8150.h
-> index 97996f64d799..1120b1a9fddc 100644
-> --- a/drivers/interconnect/qcom/sm8150.h
-> +++ b/drivers/interconnect/qcom/sm8150.h
-> @@ -35,7 +35,6 @@
->   #define SM8150_MASTER_GPU_TCU			24
->   #define SM8150_MASTER_GRAPHICS_3D		25
->   #define SM8150_MASTER_IPA			26
-> -#define SM8150_MASTER_IPA_CORE			27
->   #define SM8150_MASTER_LLCC			28
->   #define SM8150_MASTER_MDP_PORT0			29
->   #define SM8150_MASTER_MDP_PORT1			30
-> @@ -94,7 +93,6 @@
->   #define SM8150_SLAVE_GRAPHICS_3D_CFG		83
->   #define SM8150_SLAVE_IMEM_CFG			84
->   #define SM8150_SLAVE_IPA_CFG			85
-> -#define SM8150_SLAVE_IPA_CORE			86
->   #define SM8150_SLAVE_LLCC			87
->   #define SM8150_SLAVE_LLCC_CFG			88
->   #define SM8150_SLAVE_MNOC_HF_MEM_NOC		89
+> This basic delay can be controlled by hardware or the phy-mode which
+> passes from MAC driver.
+> Default value depends on power on strapping, according to the voltage
+> of RXD0 pin (low = 0, turn off;   high = 1, turn on).
+> 
+> Add this for the case that This basic delay is controlled by hardware,
+> and software don't change this.
 
+You should always do what phy-mode contains. Always. We have had
+problems in the past where a PHY driver ignored the phy-mode, and left
+the PHY however it was strapped. Which worked. But developers put the
+wrong phy-mode value in DT. Then somebody had a board which actually
+required that the DT value really did work, because the strapping was
+wrong. So the driver was fixed to respect the PHY mode, made that
+board work, and broke all the other boards which had the wrong
+phy-mode in DT.
+
+If the user want the driver to leave the mode alone, use the
+strapping, they should use PHY_INTERFACE_MODE_NA. It is not well
+documented, but it is used in a few places. However, i don't recommend
+it.
+
+> >> +  motorcomm,tx-delay-fe-ps:
+> > 
+> > So you can only set the TX delay? What is RX delay set to? Same as 1G?
+> > I would suggest you call this motorcomm,tx-internal-delay-fe-ps, so
+> > that it is similar to the standard tx-internal-delay-ps.
+> > 
+> 
+> TX delay has two type: tx-delay-ge-ps for 1G and tx-delay-fe-ps for 100M.
+> 
+> RX delay set for 1G and 100M, but it has two type, rx-delay-basic and
+> rx-delay-additional-ps, RX delay = rx-delay-basic + rx-delay-additional-ps.
+> 
+> I will rename to  tx-internal-delay-fe-ps and  tx-internal-delay-ge-ps.
+
+So you can set the TX delay for 1G and Fast, but RX delay has a single
+setting for both 1G and Fast? Have you seen boards what actually need
+different TX delays like this?
+
+Just because the hardware supports something does not mean Linux needs
+to support it. Unless there is a real need for it. So i would suggest
+your drop this DT property, and set the Fast delay to the same as the
+1G delay. If any board actually requires this in the future, the
+property can be added then.
+
+> 
+> > These two i can see being useful. But everything afterwards seems like
+> > just copy/paste from vendor SDK for things which the hardware can do,
+> > but probably nobody ever uses. Do you have a board using any of the
+> > following properties?
+> > 
+> 
+> tx-clk-adj-enabled, tx-clk-10-inverted, tx-clk-100-inverted and
+> tx-clk-1000-inverted is used and tested by  Yanhong
+> Wang<yanhong.wang@starfivetech.com>. They used yt8531 on
+> jh7110-starfive-visionfive-v2. This will provide an additional way to
+> adjust the tx clk delay on yt8531.
+
+O.K. So they are used with a real board. Can we reduce this down to
+tx-clk-inverted? Have you ever seen a board which only needs the
+invert for one speed and not the others? To me, that would be a very
+odd design.
+
+> sds-tx-amplitude can be tested on my yt8531s board.
+
+Does the board break with the default value? Just because you can test
+it on your RDK does not mean anybody will ever use it.
+
+   Andrew
