@@ -2,112 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37C85660162
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 14:37:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 19D6766016B
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 14:39:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229547AbjAFNh2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 08:37:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39184 "EHLO
+        id S232599AbjAFNjb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 08:39:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229623AbjAFNh1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 08:37:27 -0500
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D479117423;
-        Fri,  6 Jan 2023 05:37:25 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 306DbBTs115684;
-        Fri, 6 Jan 2023 07:37:11 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1673012231;
-        bh=QQGGLoVOBM8/BDlohql/PrBr98uBgc9H86tEXmUeok8=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=lcilBsYyE+7tpD1i+qdJffk52rBEcn+mgTgbjjUkHtd+aiEQ7sJLaLSBZVHFkh1NO
-         bOyMRQiDlCUftoQ2Nn9Xx1FrEmFUEcCO8JjcnUK3zmcB3J3PJ4AHbXg/ZD4FksP72r
-         r7CQwfcoNhPs/0RuXIMpiuYlSjlBzkhLX03QizAw=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 306DbB0f099932
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 6 Jan 2023 07:37:11 -0600
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 6
- Jan 2023 07:37:11 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Fri, 6 Jan 2023 07:37:11 -0600
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 306DbBBc109751;
-        Fri, 6 Jan 2023 07:37:11 -0600
-Date:   Fri, 6 Jan 2023 07:37:11 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Sinthu Raja M <sinthu.raja@mistralsolutions.com>
-CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Sinthu Raja <sinthu.raja@ti.com>
-Subject: Re: [PATCH V4 1/3] dt-bindings: arm: ti: Add binding for AM68 SK
-Message-ID: <20230106133711.bup7ctzxsdhlesno@crabmeat>
-References: <20230105151740.29436-1-sinthu.raja@ti.com>
- <20230105151740.29436-2-sinthu.raja@ti.com>
- <977b5cce-2501-4d7a-fe24-437df88aee8f@linaro.org>
- <CAEd-yTR=zdg_pt=MzkzceGTY2SkV=16dyhXCtd4EU-KGzP_mAQ@mail.gmail.com>
- <ebb0a452-9ae6-780a-a6ca-d34d0ebbc520@linaro.org>
+        with ESMTP id S231511AbjAFNja (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 08:39:30 -0500
+Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1164A6B5E5
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 05:39:29 -0800 (PST)
+Received: by mail-io1-xd30.google.com with SMTP id e129so725722iof.3
+        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 05:39:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ceg3VkOhpcJNdMZIgPdIbnXe0RLV55L3LTXGXOf9SIQ=;
+        b=pyySRwGk2hxTT2bnXRV85gzXyrvH9lG610OVdZ0sBfIFhFye/qMiQA2wmS7gN92XS8
+         doICUjM80sG45wlJ5XJsr+Oo7/WxnSFD5LuNj20Zzm0Jduh3nYrdYxHHgqrJiKAr9h8F
+         ITV3WoZ0QZMQTo5p790GYm/uWQKrC7ILcj4X0g0q4EpzaGQNXYeRI85fodXlFcq0XGAp
+         u15pX3g7vbbPl8jHwsAa9/GWx4bATYBLXCi8RRe7rQ9ocMb6Saf9kJRzjfslKTUUPL+A
+         4xQHTzrCkvLGQQe0mMX91P4v9Yh5SwjqeRu9zAF2R9WX3u5qN5IIAfK4MMdw5B2LGUf/
+         8+OQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ceg3VkOhpcJNdMZIgPdIbnXe0RLV55L3LTXGXOf9SIQ=;
+        b=XXFr6zqRzLFdwXsu/tmVYoOe1Cqvx2n46SrzNj0f24ZRaQ2b1aALdaM+2Q0ikUDaXn
+         2jZoxTxOewlWsIipN028xLE5GheSvwukld9E5q3OTc0HWBGRMqwuqUhWTzJ5Mpzp+HsH
+         70XlZGo+cCcSCd27JJQfF4XNU/hARr/wnwSGZkbmFG58hyWUeglmv1u6I0LMOrfsGRS5
+         UCwlOJGBEAeQDhY3DeWhZ3BapWXR1ZB9YQfRlTz7npHyJj0pyvI+dP45kk3msGpnyj8F
+         kGJPDAjEKmttgPi8DxKiEIscc9OTnxg5FxlTUhIU77BQiY1/yFz3p4Usf/h/j2oOxVgo
+         lxXQ==
+X-Gm-Message-State: AFqh2kpADnfhHLOpG79LRTpu3wUhZAYhf7Q3mCRAf+ncm7FG+NRqBvlI
+        40sxuvKHcYJtZIaihAwjrXrrZg==
+X-Google-Smtp-Source: AMrXdXsg+VHVt3KwLloLHaCCwaqFJNO0SSyRpzNvBxputGf6uvCknauXhpUJfR028Ff2Q7UeJJX7DA==
+X-Received: by 2002:a05:6602:370a:b0:6ed:a708:7ed6 with SMTP id bh10-20020a056602370a00b006eda7087ed6mr37039786iob.9.1673012368365;
+        Fri, 06 Jan 2023 05:39:28 -0800 (PST)
+Received: from [172.22.22.4] ([98.61.227.136])
+        by smtp.googlemail.com with ESMTPSA id o23-20020a02a1d7000000b0038437cba721sm346630jah.7.2023.01.06.05.39.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Jan 2023 05:39:27 -0800 (PST)
+Message-ID: <927673c9-ce50-d03a-83f5-45d5416838d1@linaro.org>
+Date:   Fri, 6 Jan 2023 07:39:26 -0600
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ebb0a452-9ae6-780a-a6ca-d34d0ebbc520@linaro.org>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 1/9] clk: qcom: rpmh: define IPA clocks where required
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     Georgi Djakov <djakov@kernel.org>,
+        Odelu Kukatla <okukatla@codeaurora.org>,
+        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230106073313.1720029-1-dmitry.baryshkov@linaro.org>
+ <20230106073313.1720029-2-dmitry.baryshkov@linaro.org>
+From:   Alex Elder <elder@linaro.org>
+In-Reply-To: <20230106073313.1720029-2-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13:58-20230106, Krzysztof Kozlowski wrote:
-> On 06/01/2023 13:53, Sinthu Raja M wrote:
-> > On Fri, Jan 6, 2023 at 6:19 PM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 05/01/2023 16:17, Sinthu Raja wrote:
-> >>> From: Sinthu Raja <sinthu.raja@ti.com>
-> >>>
-> >>> AM68 Starter Kit is a low cost, small form factor board designed for
-> >>> TI's AM68 SoC which is optimized to provide best in class performance
-> >>> for industrial applications and add binding for the same.
-> >>>
-> >>> Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
-> >>
-> >> What happened here?,
-> > Krzysztof
-> > Missed the merge window, so rebased to 6.2rc1 and reposted again.
+On 1/6/23 1:33 AM, Dmitry Baryshkov wrote:
+> Follow the example of sc7180 and sdx55 and implement IP0 resource as
+> clocks rather than interconnects.
 > 
-> And what was here in v3?
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Sinthu,  If I am not mistaken (Krzysztof can correct me), what is meant here
-are two things:
+So this is simply adding these clocks?  Were they not
+defined/implemented as interconnects before?  (It
+isn't clear from your message above, and I just want
+to be sure there's no duplication.)
 
-a) if no modification to the patch was made and just a repost is being done,
-   just indicate that in $subject. Examples: [1]
+					-Alex
 
-b) Ensure that there is a changelog. I understand that the
-  cover letter[2] has indicated this, but keep in mind that reviewers use
-  filters, and cover-letter does'nt fall into their filter. I usually
-  capture the change information per patch as well. If you are a b4 fan,
-  see Konstantin's tips with B4 in [3][4]
+> ---
+>   drivers/clk/qcom/clk-rpmh.c | 4 ++++
+>   1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
+> index 586a810c682c..5f914cf36b10 100644
+> --- a/drivers/clk/qcom/clk-rpmh.c
+> +++ b/drivers/clk/qcom/clk-rpmh.c
+> @@ -445,6 +445,7 @@ static struct clk_hw *sm8150_rpmh_clocks[] = {
+>   	[RPMH_RF_CLK2_A]	= &clk_rpmh_rf_clk2_a_ao.hw,
+>   	[RPMH_RF_CLK3]		= &clk_rpmh_rf_clk3_a.hw,
+>   	[RPMH_RF_CLK3_A]	= &clk_rpmh_rf_clk3_a_ao.hw,
+> +	[RPMH_IPA_CLK]		= &clk_rpmh_ipa.hw,
+>   };
+>   
+>   static const struct clk_rpmh_desc clk_rpmh_sm8150 = {
+> @@ -484,6 +485,7 @@ static struct clk_hw *sc8180x_rpmh_clocks[] = {
+>   	[RPMH_RF_CLK2_A]	= &clk_rpmh_rf_clk2_d_ao.hw,
+>   	[RPMH_RF_CLK3]		= &clk_rpmh_rf_clk3_d.hw,
+>   	[RPMH_RF_CLK3_A]	= &clk_rpmh_rf_clk3_d_ao.hw,
+> +	[RPMH_IPA_CLK]		= &clk_rpmh_ipa.hw,
+>   };
+>   
+>   static const struct clk_rpmh_desc clk_rpmh_sc8180x = {
+> @@ -504,6 +506,7 @@ static struct clk_hw *sm8250_rpmh_clocks[] = {
+>   	[RPMH_RF_CLK1_A]	= &clk_rpmh_rf_clk1_a_ao.hw,
+>   	[RPMH_RF_CLK3]		= &clk_rpmh_rf_clk3_a.hw,
+>   	[RPMH_RF_CLK3_A]	= &clk_rpmh_rf_clk3_a_ao.hw,
+> +	[RPMH_IPA_CLK]		= &clk_rpmh_ipa.hw,
+>   };
+>   
+>   static const struct clk_rpmh_desc clk_rpmh_sm8250 = {
+> @@ -546,6 +549,7 @@ static struct clk_hw *sc8280xp_rpmh_clocks[] = {
+>   	[RPMH_IPA_CLK]          = &clk_rpmh_ipa.hw,
+>   	[RPMH_PKA_CLK]          = &clk_rpmh_pka.hw,
+>   	[RPMH_HWKM_CLK]         = &clk_rpmh_hwkm.hw,
+> +	[RPMH_IPA_CLK]		= &clk_rpmh_ipa.hw,
+>   };
+>   
+>   static const struct clk_rpmh_desc clk_rpmh_sc8280xp = {
 
-[1] https://lore.kernel.org/linux-arm-kernel/?q=RESEND
-[2] https://lore.kernel.org/all/20230105151740.29436-1-sinthu.raja@ti.com/
-[3] https://people.kernel.org/monsieuricon/sending-a-kernel-patch-with-b4-part-1
-[4] https://www.youtube.com/watch?v=-Vld9aoFPwU
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
