@@ -2,169 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88060660861
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 21:39:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6F0B660874
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 21:50:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235052AbjAFUjY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 15:39:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43260 "EHLO
+        id S231277AbjAFUuj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 15:50:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229498AbjAFUjY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 15:39:24 -0500
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA6621740C;
-        Fri,  6 Jan 2023 12:39:22 -0800 (PST)
-Received: (Authenticated sender: jacopo@jmondi.org)
-        by mail.gandi.net (Postfix) with ESMTPSA id 1C180C0002;
-        Fri,  6 Jan 2023 20:39:18 +0000 (UTC)
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Nicholas Roth <nicholas@rothemail.net>,
-        Robert Mader <robert.mader@collabora.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     Jacopo Mondi <jacopo@jmondi.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        linux-media@vger.kernel.org,
-        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v2 1/2] dt-bindings: media: Add OmniVision OV8858
-Date:   Fri,  6 Jan 2023 21:39:08 +0100
-Message-Id: <20230106203909.184073-2-jacopo@jmondi.org>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20230106203909.184073-1-jacopo@jmondi.org>
-References: <20230106203909.184073-1-jacopo@jmondi.org>
+        with ESMTP id S229782AbjAFUui (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 15:50:38 -0500
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 763E96B5F9;
+        Fri,  6 Jan 2023 12:50:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1673038237; x=1704574237;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=SSLr4RHf58wqfEI96obfVkLWfe5DwsXj720IBwW3wDE=;
+  b=Ptjw33cajnajUr1PjfbaXJzWKN/hmBE4cCu9oioyeGJPKs0JL0/fbpA1
+   8EcfWCDxUehDdYrN+W1Rn6j741qeNj1/xa7vQ0+eLgRlkQ693A3LF4rmY
+   E3Na2IQ/wNenwaJGpOz+qusvMDrfLbm5J9/czVzsRHrKwMxWBTXxM7Swv
+   c=;
+Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 06 Jan 2023 12:50:37 -0800
+X-QCInternal: smtphost
+Received: from unknown (HELO nasanex01a.na.qualcomm.com) ([10.52.223.231])
+  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Jan 2023 12:50:36 -0800
+Received: from [10.110.114.155] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 6 Jan 2023
+ 12:50:31 -0800
+Message-ID: <c082205c-3e66-dc63-a6bb-7520c2ca54ae@quicinc.com>
+Date:   Fri, 6 Jan 2023 12:50:30 -0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v16 0/8] Coresight: Add support for TPDM and TPDA
+Content-Language: en-US
+To:     Mao Jinlong <quic_jinlmao@quicinc.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Leo Yan <leo.yan@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Tao Zhang <quic_taozha@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>
+References: <20230106092119.20449-1-quic_jinlmao@quicinc.com>
+From:   Trilok Soni <quic_tsoni@quicinc.com>
+In-Reply-To: <20230106092119.20449-1-quic_jinlmao@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+On 1/6/2023 1:21 AM, Mao Jinlong wrote:
+> This patch series depends on patch series:
+> "[v6,00/14] coresight: Add new API to allocate trace source ID values"
+> https://patchwork.kernel.org/project/linux-arm-kernel/cover/20221123195010.6859-1-mike.leach@linaro.org/
 
-Add binding schema for the OmniVision OV8858 8 Megapixels camera sensor.
+Do we know now when these patches will get revived and accepted to 
+unblock us?
 
-Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
- .../bindings/media/i2c/ovti,ov8858.yaml       | 105 ++++++++++++++++++
- 1 file changed, 105 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
-
-diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
-new file mode 100644
-index 000000000000..002461a974f8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
-@@ -0,0 +1,105 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/ovti,ov8858.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: OmniVision OV8858 Image Sensor
-+
-+maintainers:
-+  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-+  - Nicholas Roth <nicholas@rothemail.net>
-+
-+description: |
-+  The OmniVision OV8858 is a color CMOS 8 Megapixels (3264x2448) image sensor
-+  controlled through an I2C-compatible SCCB bus. The sensor transmits images
-+  on a MIPI CSI-2 output interface with up to 4 data lanes.
-+
-+properties:
-+  compatible:
-+    const: ovti,ov8858
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+    description: XVCLK external clock
-+
-+  clock-names:
-+    const: xvclk
-+
-+  dvdd-supply:
-+    description: Digital Domain Power Supply
-+
-+  avdd-supply:
-+    description: Analog Domain Power Supply
-+
-+  dovdd-supply:
-+    description: I/O Domain Power Supply
-+
-+  powerdown-gpios:
-+    description: PWDNB powerdown GPIO (active low)
-+
-+  reset-gpios:
-+    description: XSHUTDN reset GPIO (active low)
-+
-+  port:
-+    description: MIPI CSI-2 transmitter port
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    additionalProperties: false
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        unevaluatedProperties: false
-+
-+        properties:
-+          data-lanes:
-+            minItems: 1
-+            maxItems: 4
-+
-+        required:
-+          - data-lanes
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/pinctrl/rockchip.h>
-+    #include <dt-bindings/clock/rk3399-cru.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        ov8858: camera@36 {
-+            compatible = "ovti,ov8858";
-+            reg = <0x36>;
-+
-+            clocks = <&cru SCLK_CIF_OUT>;
-+            clock-names = "xvclk";
-+            assigned-clocks = <&cru SCLK_CIF_OUT>;
-+            assigned-clock-rates = <24000000>;
-+
-+            dovdd-supply = <&vcc1v8_dvp>;
-+
-+            reset-gpios = <&gpio1 RK_PA4 GPIO_ACTIVE_LOW>;
-+            powerdown-gpios = <&gpio2 RK_PB4 GPIO_ACTIVE_LOW>;
-+
-+            port {
-+                ucam_out: endpoint {
-+                    remote-endpoint = <&mipi_in_ucam>;
-+                    data-lanes = <1 2 3 4>;
-+                };
-+            };
-+        };
-+    };
-+...
---
-2.38.1
-
+---Trilok Soni
