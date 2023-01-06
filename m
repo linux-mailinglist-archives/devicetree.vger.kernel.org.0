@@ -2,78 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1A0866083A
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 21:24:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 88060660861
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 21:39:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231277AbjAFUYc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 15:24:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34666 "EHLO
+        id S235052AbjAFUjY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 15:39:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229686AbjAFUY0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 15:24:26 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96FF62638;
-        Fri,  6 Jan 2023 12:24:25 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 56452B81E93;
-        Fri,  6 Jan 2023 20:24:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EB8DC433F0;
-        Fri,  6 Jan 2023 20:24:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673036663;
-        bh=62nxf5aNBYDvGdXhyDdjTj6yHB6Fp13Om6wUB5lwOZw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=lY1mco5A1QWWjL2vwwUkyFzMKZ1pRLhUDUDaPQeOiFxOOkjAjKdu9QQuhxOphRVJP
-         YU2aSyEQW35dWt4hOBa1vlFhEp9nmJ+FzSruVQteZXMjObaEKDyNVj31mMz+RYxXEE
-         08bVAp9dgNAmAkuySkJslUXwkWp9k0De8ESdQVQyX/fvwwxBXcjtDnp4Ny4aFQIXOt
-         Of3FfwOBBQDNfmbBE/1xti47Ym/wAGx4UrA49CP1UUc2I9zTLqiKez2Yhn66kr2kQi
-         2Jttz58DDl+J2N3O5wJ2Ayk4EKs//paFKROKfRFUdzTkga6FnO3B3raVIYrSx9f/yn
-         QME2akopsw29A==
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     stephan@gerhold.net, Andy Gross <agross@kernel.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, konrad.dybcio@linaro.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, jiasheng@iscas.ac.cn,
-        robh+dt@kernel.org, bgoswami@quicinc.com,
-        krzysztof.kozlowski+dt@linaro.org, Mark Brown <broonie@kernel.org>,
-        srinivas.kandagatla@linaro.org
-Subject: Re: [PATCH 0/2] Fix APR audio regression on 6.2-rc1
-Date:   Fri,  6 Jan 2023 14:24:18 -0600
-Message-Id: <167303665353.1802272.239146565837187502.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20221229151648.19839-1-stephan@gerhold.net>
-References: <20221229151648.19839-1-stephan@gerhold.net>
+        with ESMTP id S229498AbjAFUjY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 15:39:24 -0500
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA6621740C;
+        Fri,  6 Jan 2023 12:39:22 -0800 (PST)
+Received: (Authenticated sender: jacopo@jmondi.org)
+        by mail.gandi.net (Postfix) with ESMTPSA id 1C180C0002;
+        Fri,  6 Jan 2023 20:39:18 +0000 (UTC)
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Nicholas Roth <nicholas@rothemail.net>,
+        Robert Mader <robert.mader@collabora.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     Jacopo Mondi <jacopo@jmondi.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        linux-media@vger.kernel.org,
+        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: media: Add OmniVision OV8858
+Date:   Fri,  6 Jan 2023 21:39:08 +0100
+Message-Id: <20230106203909.184073-2-jacopo@jmondi.org>
+X-Mailer: git-send-email 2.38.1
+In-Reply-To: <20230106203909.184073-1-jacopo@jmondi.org>
+References: <20230106203909.184073-1-jacopo@jmondi.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 29 Dec 2022 16:16:46 +0100, Stephan Gerhold wrote:
-> These two patches fix regressions in the Qualcomm APR driver that
-> prevent audio from working on MSM8916 (and likely MSM8996). In previous
-> kernel releases the "qcom,protection-domain" property was optional, in
-> 6.2-rc1 it is now required. It should remain optional because the
-> protection domain functionality is only supported starting with MSM8998
-> and is not present on older SoCs [1].
-> 
-> [...]
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 
-Applied, thanks!
+Add binding schema for the OmniVision OV8858 8 Megapixels camera sensor.
 
-[1/2] dt-bindings: soc: qcom: apr: Make qcom,protection-domain optional again
-      commit: 26658868354963afbff672ad6f7a85c44c311975
-[2/2] soc: qcom: apr: Make qcom,protection-domain optional again
-      commit: 599d41fb8ea8bd2a99ca9525dd69405020e43dda
+Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+---
+ .../bindings/media/i2c/ovti,ov8858.yaml       | 105 ++++++++++++++++++
+ 1 file changed, 105 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
 
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
+new file mode 100644
+index 000000000000..002461a974f8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
+@@ -0,0 +1,105 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/ovti,ov8858.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: OmniVision OV8858 Image Sensor
++
++maintainers:
++  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
++  - Nicholas Roth <nicholas@rothemail.net>
++
++description: |
++  The OmniVision OV8858 is a color CMOS 8 Megapixels (3264x2448) image sensor
++  controlled through an I2C-compatible SCCB bus. The sensor transmits images
++  on a MIPI CSI-2 output interface with up to 4 data lanes.
++
++properties:
++  compatible:
++    const: ovti,ov8858
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++    description: XVCLK external clock
++
++  clock-names:
++    const: xvclk
++
++  dvdd-supply:
++    description: Digital Domain Power Supply
++
++  avdd-supply:
++    description: Analog Domain Power Supply
++
++  dovdd-supply:
++    description: I/O Domain Power Supply
++
++  powerdown-gpios:
++    description: PWDNB powerdown GPIO (active low)
++
++  reset-gpios:
++    description: XSHUTDN reset GPIO (active low)
++
++  port:
++    description: MIPI CSI-2 transmitter port
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          data-lanes:
++            minItems: 1
++            maxItems: 4
++
++        required:
++          - data-lanes
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/pinctrl/rockchip.h>
++    #include <dt-bindings/clock/rk3399-cru.h>
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        ov8858: camera@36 {
++            compatible = "ovti,ov8858";
++            reg = <0x36>;
++
++            clocks = <&cru SCLK_CIF_OUT>;
++            clock-names = "xvclk";
++            assigned-clocks = <&cru SCLK_CIF_OUT>;
++            assigned-clock-rates = <24000000>;
++
++            dovdd-supply = <&vcc1v8_dvp>;
++
++            reset-gpios = <&gpio1 RK_PA4 GPIO_ACTIVE_LOW>;
++            powerdown-gpios = <&gpio2 RK_PB4 GPIO_ACTIVE_LOW>;
++
++            port {
++                ucam_out: endpoint {
++                    remote-endpoint = <&mipi_in_ucam>;
++                    data-lanes = <1 2 3 4>;
++                };
++            };
++        };
++    };
++...
+--
+2.38.1
+
