@@ -2,376 +2,354 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E407165FAE6
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 06:23:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6CA465FB00
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 06:50:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229920AbjAFFXx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 00:23:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37646 "EHLO
+        id S229628AbjAFFuJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 00:50:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229490AbjAFFXw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 00:23:52 -0500
-Received: from out29-50.mail.aliyun.com (out29-50.mail.aliyun.com [115.124.29.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AF5C6ADB4;
-        Thu,  5 Jan 2023 21:23:48 -0800 (PST)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07436317|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0216452-0.214104-0.764251;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047198;MF=frank.sae@motor-comm.com;NM=1;PH=DS;RN=17;RT=17;SR=0;TI=SMTPD_---.QlhozBy_1672982622;
-Received: from 10.0.2.15(mailfrom:Frank.Sae@motor-comm.com fp:SMTPD_---.QlhozBy_1672982622)
-          by smtp.aliyun-inc.com;
-          Fri, 06 Jan 2023 13:23:43 +0800
-Message-ID: <3203cf98-b9e4-db71-f7b3-3e1f23a29a49@motor-comm.com>
-Date:   Fri, 6 Jan 2023 13:24:21 +0800
+        with ESMTP id S229672AbjAFFuH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 00:50:07 -0500
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2043.outbound.protection.outlook.com [40.107.6.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EF654BD79;
+        Thu,  5 Jan 2023 21:50:05 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SIzrCJVEVloxajrMScWFHPpLZq4i9RbiWR8gsYgIqZUqyb2RDZo07y3EQT//Z6538RXbuqSBmpLA27VZjh/1ZuDFB8oOJzFvlQrLiWnJJu3Sw1O+wzLFsutI8u88+SncBzcAO9WCq+dlAcLglXxBKhWZUYR8EKmWeiSk4rxXtQz/pOio1d1mwNesPf+1Q9cwVGe5J7/G+nFQ8ASVprlWmjYfvv1ZDzFTArD7VPijsgeG8t12w5xJ5rSEu7Gt6EwAEjlubCNgOJYT6/KdhBgjbSe1dTt4yQVbEef/5rXZ6Fl/D2Obei2LkVmEMRWuyE+uwghI0H1R6S03GNw3B4F8eA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=eBYIa0/juraQy2CEi5Yl+cuMwazRG4/NRsr7O9TdRVE=;
+ b=fdls3QLlnV/W+KlT8XJY1jIgWZ0j1LQLpIBx0fP3tg4xFtKy7vYQMef7WZlU0EFjAkNDGbxexcp+5m2OTW6lRQ+AMWEXmQwo7DI5yej4tPSW6PiDG6OwDoReDScAM2urRNv27zxZey+usz//YOrrBdUEUJUr9/ixtauAVkN40/dLKnaRnP89n0NaxfjOiIx1n21D1xmb5VopnBJBPvY7jx0bUTAuffkkwrPih4kmgq3QpQ1LeOdG6lLf2aPFztLyamwP3IGz3mX7yeQoW4ppqjq6T0FDWfu5PBq/Odg2reNsS3QPfetKXA3+pmURfVplqrJiX1l1+uzfs1/wJ5aiGA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eBYIa0/juraQy2CEi5Yl+cuMwazRG4/NRsr7O9TdRVE=;
+ b=cg2lOLVkg5gdV8/Hk/jOHMsVjywdOv4g1Y0EH7MM1kGU+V7uTqacEjKoTyr5frXv/t8P+c97/BhJ7GC52jG01jYi9B0xFilIaeJ0HSXxvhqVw5nPmOsn0f1Jrr51nAN0KzmsWQr6WDR2GGJhAAPpYhRGsh4RUdhBU2jy5VFPqI0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by PAXPR04MB8239.eurprd04.prod.outlook.com (2603:10a6:102:1c2::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.19; Fri, 6 Jan
+ 2023 05:50:02 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::5098:b45:626e:a5c1]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::5098:b45:626e:a5c1%7]) with mapi id 15.20.5944.019; Fri, 6 Jan 2023
+ 05:50:01 +0000
+From:   Liu Ying <victor.liu@nxp.com>
+To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, guido.gunther@puri.sm,
+        marcel.ziswiler@toradex.com, laurentiu.palcu@oss.nxp.com,
+        robh@kernel.org
+Subject: [PATCH v14 0/6] drm/imx: Introduce i.MX8qm/qxp DPU DRM
+Date:   Fri,  6 Jan 2023 13:50:50 +0800
+Message-Id: <20230106055056.2883302-1-victor.liu@nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SGXP274CA0001.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b8::13)
+ To AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-From:   Frank <Frank.Sae@motor-comm.com>
-Subject: Re: [PATCH net-next v1 2/3] net: phy: Add dts support for Motorcomm
- yt8521/yt8531s gigabit ethernet phy
-To:     Arun.Ramadoss@microchip.com, andrew@lunn.ch, robh+dt@kernel.org,
-        pgwipeout@gmail.com, linux@armlinux.org.uk, kuba@kernel.org,
-        edumazet@google.com, pabeni@redhat.com,
-        krzysztof.kozlowski+dt@linaro.org, davem@davemloft.net,
-        hkallweit1@gmail.com
-Cc:     xiaogang.fan@motor-comm.com, fei.zhang@motor-comm.com,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        hua.sun@motor-comm.com, devicetree@vger.kernel.org
-References: <20230105073024.8390-1-Frank.Sae@motor-comm.com>
- <20230105073024.8390-3-Frank.Sae@motor-comm.com>
- <810493a3ae0845061a99b31974d7b689f5bf6f65.camel@microchip.com>
-Content-Language: en-US
-In-Reply-To: <810493a3ae0845061a99b31974d7b689f5bf6f65.camel@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|PAXPR04MB8239:EE_
+X-MS-Office365-Filtering-Correlation-Id: 190b70fa-272f-40b8-74cc-08daefa9da33
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Xv2MN7ClelnGugkVl5+mBIs+4RwTkwCgoL8FMYFSd5BwanMbidDD16cuevy+5BonUrxJldy17nLwWrCuWqR1HK/ThrkXAE+Vh4UTBa92ftVXMXf3L4prbU7KbXFBu5XPJ4wBySuAIuz3UDdY13OIBQVqROKIP5Cba9SeEgabrAlp9GZ6kgC5xLcjQ36lNtdvk+kWv3fnF4y2EcB0+G+YxW3uYqqAbk5rUIACdv+5fmXOaBdvtKPptPXAQtbNWIKCw0VtRUfKDva7/AzTHCgSz7DrbDfg0EfV8N1KReat9TACz9+pr+KFXlSo7BwKqUMaYCG3wO+wBxCvI82jnqWJFfSFEIxyyCk+4Y9XuwmLLiEOvaXu0QZKHezKu2izZNiDkFpEcEb8b3jF/kBqGHTBs52B6GsqIf+C0qyEmyW0Yzlnt9SFtNRa2IytXBm64Wj3oNWgp/dGSe47gSfNi5wMHSS5O3maf6vIkm5l40UzvkgWILE7+a66jj9eQIkFEwxKnJZ31wTbDVc09vAkmhe6JdHRLEK8oXuAt8k0kkXj5MBVllp2b0YBpMETalxrcO6ZJ9tgTWBe+MZneY52kQ/8nxKQeaJBlmZX8GTJ7Si/oexAGfvd173Th6dYmGTdy3wUOhUohw9FasKLd5C+idspMyU91saXMTA3KO7LxNiczND/TBS18jmkVwfNsu2tjvSJQtcd5Q7qaBOfqBktZnS7uyYhGGayN/3TuLuBsapPsP0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(366004)(396003)(376002)(136003)(39860400002)(451199015)(1076003)(83380400001)(186003)(26005)(2616005)(6506007)(86362001)(36756003)(38350700002)(38100700002)(6666004)(6512007)(8676002)(4326008)(66899015)(7416002)(41300700001)(2906002)(5660300002)(8936002)(30864003)(478600001)(52116002)(966005)(66476007)(6486002)(66946007)(316002)(66556008);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?WbprLmRQYyuVRsrl2gDHQnFENantz1FUfNTBV42reeQGa7c3iAoqeP8uU8Pt?=
+ =?us-ascii?Q?spYGxK5nJENlqVQQ4S7ZFI2ni+6ZihvcCp3DnbfF7pLCPHlLR69y78OpJKZW?=
+ =?us-ascii?Q?OrtUX0+2vnRaiLsrHdpA4J34UbXVR4TQUdGw42RiKAhYw+WuFYZFJrlYgPRJ?=
+ =?us-ascii?Q?KUPzGqvj1fPpH0pgsVY70PcGaOquEPNMvp6IW9un9vBDRliF9v97bjsJh3Nq?=
+ =?us-ascii?Q?02NMlFyU+PQwOoZMiMmI2sm2qLwFLSdMPf/QAMH8qzk/Fsy5QdHXairkjAfz?=
+ =?us-ascii?Q?Kr5QfyVcWCwK+l6DbM/PJ+fJtzWnuMTpr54oZcWQPPG/egp1lwCjU9O2VLAz?=
+ =?us-ascii?Q?VoQUISFvhrkHozlAmVcgJsbA9TbSqxHaAIFqNlBfQSz35JM9PR3DX8RSu9sL?=
+ =?us-ascii?Q?TLJwGyEM6zW0yblWeNwAVURYLenKTDGiHIlgc6rgCbBXwwFOuTD4H1rNYzcL?=
+ =?us-ascii?Q?tr1Lgo7Al6ResXbZlMCvv9Upn+8e6hj6cCubMEwfZgmvaVTYqTTVAtTSzi2H?=
+ =?us-ascii?Q?Q3r9qXPd3GLb046KtJs8XtHR79rvxG+DmTHZ4Qibf3gPrSOfJGJY69FrIf7p?=
+ =?us-ascii?Q?ZpC/qIAgSYV2KEDwawmdsa40tDXAcYOsvQbfW9fX2DTDWTWPGBnnp/C1lW/v?=
+ =?us-ascii?Q?AnBxjWfGNXD6WGxyO7dmFwd8MSqXqeBmAw7Oc85ucxI8sjycmebk4aLbhGNc?=
+ =?us-ascii?Q?cecj7H1xuUEIEOaWjJmddNP68id65Q7FIlbnVIfhvVpPZ7gbY3+iuHFwNxf0?=
+ =?us-ascii?Q?jcnfKd8apRsHgyQSQgDIwn2vrpzGIt3V3iHNbjpzpQ+//dNX+umt2MaxhvyC?=
+ =?us-ascii?Q?gei5/a2Kltz0ChCF4geHT5k5+upKGFc8LYTAA5NHYGsSaVFA+hsZCo160fDP?=
+ =?us-ascii?Q?vAdAp1215SYLcJFSqySegySIKyC7IAlntvWM4LSwYU2s/l7kMv3cKoMlo+ym?=
+ =?us-ascii?Q?sHzuxgJmDwgU6cDTDx5RTgie64hXGXyN57KZxQDWsHHcpTOXK0llBbOW0y8W?=
+ =?us-ascii?Q?XB19Ox7Z/3fD6XRRhZaxYltHb6DGn74Rl4Ht6YB8gbcboLopbMgVP/ib6xtA?=
+ =?us-ascii?Q?x6UwndbiCB2qjD+ayLi/9+h1N3zroohJF7EXq+1/S6N0sn9RUWzdjupBrVsD?=
+ =?us-ascii?Q?RxewAphC/Z7K5dxiK12opzeEFQau6U7UNrz/Jo3J8aqf1FcoK6JpvBpeRCee?=
+ =?us-ascii?Q?SKOWmVHmXo4eNUmhTwuI2u9K0UsKx97dlqSJzU9D1OHW7ob4jQ0eaYEj+Do5?=
+ =?us-ascii?Q?Uh+AldmUDsKywmBA8EWiqvPmSJnKWV+o1Ts83uCHgwkSSyHO6wpCmbUVYZv/?=
+ =?us-ascii?Q?Ep0DwGWa5PUGEGLytzPCYFL4Bh9+RlT+ihD2HKELO8eg86x6eBmnckya1kf0?=
+ =?us-ascii?Q?SntI3DdWB00QumxY+ADejN+Z0JJ0vQbJwM0bxKpmxnamh+ENnHnYtbyD62a/?=
+ =?us-ascii?Q?mnf2Cc9tiDzmZBHnSdzsxVSq0aNN57Ue08HMPpoAKFB7xFNoAm9m7isfiqx2?=
+ =?us-ascii?Q?ddlOdnlMjP59qk8/Gy+xyl+P++NDYLbYx0EV+RkQlYvFZ6Dstx0XKvgvTMqX?=
+ =?us-ascii?Q?mLH2juNHCh5nsqXuicYsIfGYVwHQFlOi82AB8ul/?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 190b70fa-272f-40b8-74cc-08daefa9da33
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2023 05:50:01.8319
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: lSMCQyz1Rx/LPHyFDtibQMAk3DMuaeeBos95solPilcvmTdYyb/tjShqzVpL6ix0K0oM7MBlRKryUBf6x4i8Vg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8239
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
 
-Hi Arun Ramadoss,
+This is the v14 series to introduce i.MX8qm/qxp Display Processing Unit(DPU)
+DRM support.
 
-On 2023/1/5 17:01, Arun.Ramadoss@microchip.com wrote:
-> Hi Frank,
->
-> On Thu, 2023-01-05 at 15:30 +0800, Frank wrote:
->> Add dts support for yt8521 and yt8531s. This patch has
->> been tested on AM335x platform which has one YT8531S interface
->> card and passed all test cases.
->
-> As per the commit message and description, it mentions adding dts
-> support. But this patch does lot of things. Add elaborate description
-> or split the patch logically.
->
+DPU is comprised of a blit engine for 2D graphics, a display controller
+and a command sequencer.  Outside of DPU, optional prefetch engines can
+fetch data from memory prior to some DPU fetchunits of blit engine and
+display controller.  The pre-fetchers support linear formats and Vivante
+GPU tile formats.
 
-I will fix.
+Reference manual can be found at:
+https://www.nxp.com/webapp/Download?colCode=IMX8DQXPRM
 
->>
->> Signed-off-by: Frank <Frank.Sae@motor-comm.com>
->> ---
->>  drivers/net/phy/motorcomm.c | 517 ++++++++++++++++++++++++++++++--
->> ----
->>  1 file changed, 434 insertions(+), 83 deletions(-)
->>
->> diff --git a/drivers/net/phy/motorcomm.c
->> b/drivers/net/phy/motorcomm.c
->> index 685190db72de..7ebcca374a67 100644
->> --- a/drivers/net/phy/motorcomm.c
->> +++ b/drivers/net/phy/motorcomm.c
->> @@ -10,10 +10,11 @@
->>  #include <linux/kernel.h>
->>  #include <linux/module.h>
->>  #include <linux/phy.h>
->> +#include <linux/of.h>
->>
->>  #define PHY_ID_YT8511		0x0000010a
->> -#define PHY_ID_YT8521		0x0000011A
->> -#define PHY_ID_YT8531S		0x4F51E91A
->> +#define PHY_ID_YT8521		0x0000011a
->> +#define PHY_ID_YT8531S		0x4f51e91a
->>
->>  /* YT8521/YT8531S Register Overview
->>   *	UTP Register space	|	FIBER Register space
->> @@ -144,6 +145,16 @@
->>  #define YT8521_ESC1R_SLEEP_SW			BIT(15)
->>  #define YT8521_ESC1R_PLLON_SLP			BIT(14)
->>
->> +/* Phy Serdes analog cfg2 Register */
->> +#define YTPHY_SERDES_ANALOG_CFG2_REG		0xA1
->> +#define YTPHY_SAC2R_TX_AMPLITUDE_MASK		((0x7 << 13) |
->> (0x7 << 1))
->> +#define YT8521_SAC2R_TX_AMPLITUDE_LOW		((0x7 << 13) |
->> (0x0 << 1))
->> +#define YT8521_SAC2R_TX_AMPLITUDE_MIDDLE	((0x5 << 13) | (0x5 <<
->> 1))
->> +#define YT8521_SAC2R_TX_AMPLITUDE_HIGH		((0x3 << 13) |
->> (0x6 << 1))
->> +#define YT8531S_SAC2R_TX_AMPLITUDE_LOW		((0x0 << 13) |
->> (0x0 << 1))
->> +#define YT8531S_SAC2R_TX_AMPLITUDE_MIDDLE	((0x0 << 13) | (0x1 <<
->> 1))
->> +#define YT8531S_SAC2R_TX_AMPLITUDE_HIGH		((0x0 << 13) |
->> (0x2 << 1))
->> +
->>  /* Phy fiber Link timer cfg2 Register */
->>  #define YT8521_LINK_TIMER_CFG2_REG		0xA5
->>  #define YT8521_LTCR_EN_AUTOSEN			BIT(15)
->> @@ -161,6 +172,7 @@
->>
->>  #define YT8521_CHIP_CONFIG_REG			0xA001
->>  #define YT8521_CCR_SW_RST			BIT(15)
->> +#define YT8521_CCR_RXC_DLY_EN			BIT(8)
->>
->>  #define YT8521_CCR_MODE_SEL_MASK		(BIT(2) | BIT(1) |
->> BIT(0))
->>  #define YT8521_CCR_MODE_UTP_TO_RGMII		0
->> @@ -178,22 +190,27 @@
->>  #define YT8521_MODE_POLL			0x3
->>
->>  #define YT8521_RGMII_CONFIG1_REG		0xA003
->> -
->> +#define YT8521_RC1R_TX_CLK_SEL_MASK		BIT(14)
->> +#define YT8521_RC1R_TX_CLK_SEL_ORIGINAL		(0x0 << 14)
->> +#define YT8521_RC1R_TX_CLK_SEL_INVERTED		(0x1 << 14)
->>  /* TX Gig-E Delay is bits 3:0, default 0x1
->>   * TX Fast-E Delay is bits 7:4, default 0xf
->>   * RX Delay is bits 13:10, default 0x0
->>   * Delay = 150ps * N
->>   * On = 2250ps, off = 0ps
->>   */
->> -#define YT8521_RC1R_RX_DELAY_MASK		(0xF << 10)
->> -#define YT8521_RC1R_RX_DELAY_EN			(0xF << 10)
->> -#define YT8521_RC1R_RX_DELAY_DIS		(0x0 << 10)
->> -#define YT8521_RC1R_FE_TX_DELAY_MASK		(0xF << 4)
->> -#define YT8521_RC1R_FE_TX_DELAY_EN		(0xF << 4)
->> -#define YT8521_RC1R_FE_TX_DELAY_DIS		(0x0 << 4)
->> -#define YT8521_RC1R_GE_TX_DELAY_MASK		(0xF << 0)
->> -#define YT8521_RC1R_GE_TX_DELAY_EN		(0xF << 0)
->> -#define YT8521_RC1R_GE_TX_DELAY_DIS		(0x0 << 0)
->> +#define YT8521_RC1R_GE_TX_DELAY_BIT		(0)
->> +#define YT8521_RC1R_FE_TX_DELAY_BIT		(4)
->> +#define YT8521_RC1R_RX_DELAY_BIT		(10)
->> +#define YT8521_RC1R_RX_DELAY_MASK		(0xF <<
->> YT8521_RC1R_RX_DELAY_BIT)
->> +#define YT8521_RC1R_RX_DELAY_EN			(0xF <<
->> YT8521_RC1R_RX_DELAY_BIT)
->> +#define YT8521_RC1R_RX_DELAY_DIS		(0x0 <<
->> YT8521_RC1R_RX_DELAY_BIT)
->> +#define YT8521_RC1R_FE_TX_DELAY_MASK		(0xF <<
->> YT8521_RC1R_FE_TX_DELAY_BIT)
->> +#define YT8521_RC1R_FE_TX_DELAY_EN		(0xF <<
->> YT8521_RC1R_FE_TX_DELAY_BIT)
->> +#define YT8521_RC1R_FE_TX_DELAY_DIS		(0x0 <<
->> YT8521_RC1R_FE_TX_DELAY_BIT)
->> +#define YT8521_RC1R_GE_TX_DELAY_MASK		(0xF <<
->> YT8521_RC1R_GE_TX_DELAY_BIT)
->> +#define YT8521_RC1R_GE_TX_DELAY_EN		(0xF <<
->> YT8521_RC1R_GE_TX_DELAY_BIT)
->> +#define YT8521_RC1R_GE_TX_DELAY_DIS		(0x0 <<
->> YT8521_RC1R_GE_TX_DELAY_BIT)
->>
->
-> This can be splitted as preparatory patch like using BIT macro instead
-> of magic number.
->
 
-I will fix.
+This patch set adds kernel modesetting support for the display controller part.
+It supports two CRTCs per display controller, several planes, prefetch
+engines and some properties of CRTC and plane.  Currently, the registers of
+the controller is accessed without command sequencer involved, instead just by
+using CPU.  DRM connectors would be created from the DPU KMS driver.
 
->>
->>  #define YTPHY_MISC_CONFIG_REG			0xA006
->>  #define YTPHY_MCR_FIBER_SPEED_MASK		BIT(0)
->> @@ -222,11 +239,33 @@
->>   */
->>  #define YTPHY_WCR_TYPE_PULSE			BIT(0)
->>
->> -#define YT8531S_SYNCE_CFG_REG			0xA012
->> -#define YT8531S_SCR_SYNCE_ENABLE		BIT(6)
->> +#define YTPHY_SYNCE_CFG_REG			0xA012
->> +#define YT8521_SCR_CLK_SRC_MASK			(BIT(2) |
->> BIT(1))
->
-> For the mask, you can consider using GENMASK macro
->
 
-I will fix.
+Patch 1 ~ 3 add dt-bindings for DPU and prefetch engines.
+Patch 4 is a minor improvement of a macro to suppress warning as the KMS driver
+uses it.
+Patch 5 introduces the DPU DRM support.
+Patch 6 updates MAINTAINERS.
 
->> +#define YT8521_SCR_CLK_SRC_PLL_125M		(0x0 << 1)
->> +#define YT8521_SCR_CLK_SRC_REF_25M		(0x3 << 1)
->> +#define YT8521_SCR_SYNCE_ENABLE			BIT(5)
->> +#define YT8521_SCR_CLK_FRE_SEL_MASK		BIT(3)
->> +#define YT8521_SCR_CLK_FRE_SEL_125M		(0x1 << 3)
->> +#define YT8521_SCR_CLK_FRE_SEL_25M		(0x0 << 3)
->> +#define YT8531_SCR_CLK_SRC_MASK			(BIT(3) |
->> BIT(2) | BIT(1))
->> +#define YT8531_SCR_CLK_SRC_PLL_125M		(0x0 << 1)
->> +#define YT8531_SCR_CLK_SRC_REF_25M		(0x4 << 1)
->> +#define YT8531_SCR_SYNCE_ENABLE			BIT(6)
->> +#define YT8531_SCR_CLK_FRE_SEL_MASK		BIT(4)
->> +#define YT8531_SCR_CLK_FRE_SEL_125M		(0x1 << 4)
->> +#define YT8531_SCR_CLK_FRE_SEL_25M		(0x0 << 4)
->>
->>
->> +
->> +static int ytphy_clk_out_config(struct phy_device *phydev)
->> +{
->> +	struct yt8521_priv *priv = phydev->priv;
->> +	u16 set = 0;
->> +	u16 mask;
->> +
->> +	switch (phydev->drv->phy_id) {
->> +	case PHY_ID_YT8511:
->> +		/* YT8511 will be supported later */
->> +		return -EOPNOTSUPP;
->> +	case PHY_ID_YT8521:
->> +		mask = YT8521_SCR_SYNCE_ENABLE;
->> +		if (priv->clock_ouput) {
->> +			mask |= YT8521_SCR_CLK_SRC_MASK;
->> +			mask |= YT8521_SCR_CLK_FRE_SEL_MASK;
->
-> You can consider assigning mask in single statement.
+Welcome comments, thanks.
 
-I will fix.
+v13->v14:
+* Rebase the patch series to the latest drm-misc-next branch(v6.1-rc6 based).
+* Include drm_fbdev_generic.h in dpu_drv.c due to the rebase.
+* Fix dpu drm driver suspend/resume by properly get drm device through
+  dev_get_drvdata().
+* Use pm_ptr() macro for dpu core driver PM operations.
+* Use pm_sleep_ptr() macro for dpu drm driver PM operations.
+* Use DEFINE_SIMPLE_DEV_PM_OPS() macro to define dpu drm driver PM operations,
+  instead of SIMPLE_DEV_PM_OPS().
+* Update year of Copyright.
+* Add SoC series name 'i.MX8'/'IMX8'/'imx8' to dpu driver module decription,
+  Kconfig name, dpu driver names and dpu driver object name.
 
->
->> +			set |= YT8521_SCR_SYNCE_ENABLE;
->> +			if (priv->clock_freq_125M) {
->> +				set |= YT8521_SCR_CLK_FRE_SEL_125M;
->> +				set |= YT8521_SCR_CLK_SRC_PLL_125M;
->
-> Similarly here.
+v12->v13:
+* Drop 'drm->irq_enabled = true;' from patch 5/6 to fix a potential build
+  break reported by 'kernel test robot <lkp@intel.com>'.  drm->irq_enabled
+  should not be used by imx-dpu drm as it is only used by legacy drivers
+  with userspace modesetting.
 
-I will fix.
+v11->v12:
+* Rebase the series upon v6.1-rc1.
+* Minor update on Kconfigs, struct names and macro names for patch 5/6
+  due to the rebase.
 
->
->> +			} else {
->> +				set |= YT8521_SCR_CLK_FRE_SEL_25M;
->> +				set |= YT8521_SCR_CLK_SRC_REF_25M;
->> +			}
->> +		}
->> +		break;
->> +	case PHY_ID_YT8531:
->> +	case PHY_ID_YT8531S:
->> +		mask = YT8531_SCR_SYNCE_ENABLE;
->> +		if (priv->clock_ouput) {
->> +			mask |= YT8531_SCR_CLK_SRC_MASK;
->> +			mask |= YT8531_SCR_CLK_FRE_SEL_MASK;
->> +			set |= YT8531_SCR_SYNCE_ENABLE;
->> +			if (priv->clock_freq_125M) {
->> +				set |= YT8531_SCR_CLK_FRE_SEL_125M;
->> +				set |= YT8531_SCR_CLK_SRC_PLL_125M;
->> +			} else {
->> +				set |= YT8531_SCR_CLK_FRE_SEL_25M;
->> +				set |= YT8531_SCR_CLK_SRC_REF_25M;
->> +			}
->> +		}
->> +		break;
->> +	default:
->> +		phydev_err(phydev, "invalid phy id\n");
->> +		return -EINVAL;
->> +	}
->> +
->> +	return ytphy_modify_ext(phydev, YTPHY_SYNCE_CFG_REG, mask,
->> set);
->> +}
->> +
->> ++static int ytphy_rgmii_clk_delay_config(struct phy_device *phydev)
->> +{
->> +	struct yt8521_priv *priv = phydev->priv;
->> +	u16 mask = 0;
->> +	u16 val = 0;
->> +	int ret;
->> +
->> +	/* rx delay basic controlled by dts.*/
->> +	if (priv->rx_delay_basic != YTPHY_DTS_INVAL_VAL) {
->> +		if (priv->rx_delay_basic)
->> +			val = YT8521_CCR_RXC_DLY_EN;
->> +		ret = ytphy_modify_ext(phydev, YT8521_CHIP_CONFIG_REG,
->> +				       YT8521_CCR_RXC_DLY_EN, val);
->> +		if (ret < 0)
->> +			return ret;
->> +	}
->> +
->> +	val = 0;
->> +	/* If rx_delay_additional and tx_delay_* are all not be seted
->> in dts,
->> +	 * then used the fixed *_DELAY_DIS or *_DELAY_EN. Otherwise,
->> use the
->> +	 * value set by rx_delay_additional, tx_delay_ge and
->> tx_delay_fe.
->> +	 */
->> +	if ((priv->rx_delay_additional & priv->tx_delay_ge & priv-
->>> tx_delay_fe)
->> +	   == YTPHY_DTS_INVAL_VAL) {
->> +		switch (phydev->interface) {
->> +		case PHY_INTERFACE_MODE_RGMII:
->> +			val |= YT8521_RC1R_GE_TX_DELAY_DIS;
->> +			val |= YT8521_RC1R_FE_TX_DELAY_DIS;
->> +			val |= YT8521_RC1R_RX_DELAY_DIS;
->
-> Single statement would be suffice.
+v10->v11:
+* Rebase the series upon v6.0-rc1.
+* Include drm_blend.h and drm_framebuffer.h in dpu-kms.c and dpu-plane.c
+  to fix build errors due to the rebase.
+* Fix a checkpatch warning for dpu-crtc.c.
+* Properly use dev_err_probe() to return it's return value directly where
+  possible.
 
-I will fix.
+v9->v10:
+* Rebase the series upon v5.18-rc1.
+* Make 'checkpatch.pl --strict' happier for patch 5/6.
+* Add Rob's R-b tag on patch 3/6.
+* Add Laurentiu's R-b tag on patch 5/6.
+* Add Laurentiu's A-b tag on patch 6/6.
 
->
->> +			break;
->> +		case PHY_INTERFACE_MODE_RGMII_RXID:
->> +			val |= YT8521_RC1R_GE_TX_DELAY_DIS;
->> +			val |= YT8521_RC1R_FE_TX_DELAY_DIS;
->> +			val |= YT8521_RC1R_RX_DELAY_EN;
->> +			break;
->> +		case PHY_INTERFACE_MODE_RGMII_TXID:
->> +			val |= YT8521_RC1R_GE_TX_DELAY_EN;
->> +			val |= YT8521_RC1R_FE_TX_DELAY_EN;
->> +			val |= YT8521_RC1R_RX_DELAY_DIS;
->> +			break;
->> +		case PHY_INTERFACE_MODE_RGMII_ID:
->> +			val |= YT8521_RC1R_GE_TX_DELAY_EN;
->> +			val |= YT8521_RC1R_FE_TX_DELAY_EN;
->> +			val |= YT8521_RC1R_RX_DELAY_EN;
->> +			break;
->> +		default: /* do not support other modes */
->> +			return -EOPNOTSUPP;
->> +		}
->> +		mask = YT8521_RC1R_RX_DELAY_MASK |
->> YT8521_RC1R_FE_TX_DELAY_MASK
->> +		       | YT8521_RC1R_GE_TX_DELAY_MASK;
->> +	}
->> +
->>
->>  /**
->>   * ytphy_utp_read_lpa() - read LPA then setup lp_advertising for utp
->>   * @phydev: a pointer to a &struct phy_device
->> @@ -1125,6 +1486,34 @@ static int yt8521_resume(struct phy_device
->> *phydev)
->>  	return yt8521_modify_utp_fiber_bmcr(phydev, BMCR_PDOWN, 0);
->>  }
->>
->>
->> @@ -1778,7 +2129,7 @@ static struct phy_driver motorcomm_phy_drvs[] =
->> {
->>  		PHY_ID_MATCH_EXACT(PHY_ID_YT8531S),
->>  		.name		= "YT8531S Gigabit Ethernet",
->>  		.get_features	= yt8521_get_features,
->> -		.probe		= yt8531s_probe,
->> +		.probe		= yt8521_probe,
->>  		.read_page	= yt8521_read_page,
->>  		.write_page	= yt8521_write_page,
->>  		.get_wol	= ytphy_get_wol,
->> @@ -1804,7 +2155,7 @@ static const struct mdio_device_id
->> __maybe_unused motorcomm_tbl[] = {
->>  	{ PHY_ID_MATCH_EXACT(PHY_ID_YT8511) },
->>  	{ PHY_ID_MATCH_EXACT(PHY_ID_YT8521) },
->>  	{ PHY_ID_MATCH_EXACT(PHY_ID_YT8531S) },
->> -	{ /* sentinal */ }
->> +	{ /* sentinel */ }
->
-> It should go as separate patch.
+v8->v9:
+* Use drm_atomic_get_new_plane_state() in dpu_plane_atomic_update() for
+  patch 5/6. (Laurentiu)
+* Drop getting DPU DT alias ID for patch 5/6, as it is unused.
+* Reference 'interrupts-extended' schema instead of 'interrupts' for patch 3/6
+  to require an additional DPR interrupt(r_rtram_stall) because the reference
+  manual does mention it, though the driver doesn't get/use it for now.
+  Reference 'interrupt-names' schema to define the two DPR interrupt names -
+  'dpr_wrap' and 'r_rtram_stall'.  Accordingly, patch 5/6 gets the 'dpr_wrap'
+  interrupt by name.
+* Drop Rob's R-b tag on patch 3/6, as review is needed.
 
-I will fix.
+v7->v8:
+* Rebase this series up onto the latest drm-misc-next branch, due to DRM plane
+  helper functions API change(atomic_check and atomic_update) from DRM atomic
+  core.  So, dpu_plane_atomic_check() and dpu_plane_atomic_update() are updated
+  accordingly in patch 5/6.  Also, rename plane->state variables and relevant
+  DPU plane state variables in those two functions to reflect they are new
+  states, like the patch 'drm: Rename plane->state variables in atomic update
+  and disable' recently landed in drm-misc-next.
+* Replace drm_gem_fb_prepare_fb() with drm_gem_plane_helper_prepare_fb() in
+  patch 5/6, due to DRM core API change.
+* Improve DPR burst length for GPU standard tile and 32bpp GPU super tile in
+  patch 5/6 to align with the latest version of internal HW documention.
 
->>  };
->>
->>  MODULE_DEVICE_TABLE(mdio, motorcomm_tbl);
+v6->v7:
+* Fix return value of dpu_get_irqs() if platform_get_irq() fails. (Laurentiu)
+* Use the function array dpu_irq_handler[] to store individual DPU irq handlers.
+  (Laurentiu)
+* Call get/put() hooks directly to get/put DPU fetchunits for DPU plane groups.
+  (Laurentiu)
+* Shorten the names of individual DPU irq handlers by using DPU unit abbrev
+  names to make writing dpu_irq_handler[] easier.
+* Add Rob's R-b tag back on DPU dt-binding patch as change in v6 was reviewed.
+
+v5->v6:
+* Use graph schema in the DPU dt-binding.
+* Do not use macros where possible in the DPU DRM driver. (Laurentiu)
+* Break dpu_plane_atomic_check() into some smaller functions. (Laurentiu)
+* Address some minor comments from Laurentiu on the DPU DRM driver.
+* Add dpu_crtc_err() helper marco in the DPU DRM driver to tell dmesg
+  which CRTC generates error.
+* Drop calling dev_set_drvdata() from dpu_drm_bind/unbind() in the DPU DRM
+  driver as it is done in dpu_drm_probe().
+* Some trivial tweaks.
+
+v4->v5:
+* Rebase up onto the latest drm-misc-next branch and remove the hook to
+  drm_atomic_helper_legacy_gamma_set() from patch 5/6, because it was dropped
+  by the newly landed commit 'drm: automatic legacy gamma support'.
+* Remove a redundant blank line from dpu_plane_atomic_update() in patch 5/6.
+
+v3->v4:
+* Improve compatible properties in DPU and prefetch engines' dt bindings
+  by using enum instead of oneOf+const.
+* Add Rob's R-b tags on dt binding patches(patch 1/6, 2/6 and 3/6).
+* Add Daniel's A-b tag on patch 4/6.
+
+v2->v3:
+* Fix DPU DRM driver build warnings which are
+  Reported-by: kernel test robot <lkp@intel.com>.
+* Drop DPU DRM driver build dependency on IMX_SCU, as dummy SCU functions have
+  been added in header files by the patch 'firmware: imx: add dummy functions'
+  which has landed in linux-next/master branch.
+* Add a missing blank line in include/drm/drm_atomic.h.
+
+v1->v2:
+* Test this patch set also with i.MX8qm LVDS displays.
+* Drop the device tree patches because we'll use new dt binding way to
+  support i.MX8qm/qxp clocks.  This depends on a not-yet-landed patch set
+  to do basic conversions for the platforms.
+* Fix dt binding yamllint warnings.
+* Require bypass0 and bypass1 clocks for both i.MX8qxp and i.MX8qm in DPU's
+  dt binding documentation.
+* Use new dt binding way to add clocks in the dt binding examples.
+* Address several comments from Laurentiu on the DPU DRM patch.
+
+
+Liu Ying (6):
+  dt-bindings: display: imx: Add i.MX8qxp/qm DPU binding
+  dt-bindings: display: imx: Add i.MX8qxp/qm PRG binding
+  dt-bindings: display: imx: Add i.MX8qxp/qm DPR channel binding
+  drm/atomic: Avoid unused-but-set-variable warning on
+    for_each_old_plane_in_state
+  drm/imx: Introduce i.MX8qm/qxp DPU DRM
+  MAINTAINERS: add maintainer for i.MX8qxp DPU DRM driver
+
+ .../display/imx/fsl,imx8qxp-dprc.yaml         |  100 ++
+ .../bindings/display/imx/fsl,imx8qxp-dpu.yaml |  387 ++++++
+ .../bindings/display/imx/fsl,imx8qxp-prg.yaml |   60 +
+ MAINTAINERS                                   |    9 +
+ drivers/gpu/drm/imx/Kconfig                   |    1 +
+ drivers/gpu/drm/imx/Makefile                  |    1 +
+ drivers/gpu/drm/imx/dpu/Kconfig               |    9 +
+ drivers/gpu/drm/imx/dpu/Makefile              |   10 +
+ drivers/gpu/drm/imx/dpu/dpu-constframe.c      |  171 +++
+ drivers/gpu/drm/imx/dpu/dpu-core.c            | 1044 +++++++++++++++++
+ drivers/gpu/drm/imx/dpu/dpu-crtc.c            |  969 +++++++++++++++
+ drivers/gpu/drm/imx/dpu/dpu-crtc.h            |   72 ++
+ drivers/gpu/drm/imx/dpu/dpu-disengcfg.c       |  117 ++
+ drivers/gpu/drm/imx/dpu/dpu-dprc.c            |  715 +++++++++++
+ drivers/gpu/drm/imx/dpu/dpu-dprc.h            |   40 +
+ drivers/gpu/drm/imx/dpu/dpu-drv.c             |  294 +++++
+ drivers/gpu/drm/imx/dpu/dpu-drv.h             |   28 +
+ drivers/gpu/drm/imx/dpu/dpu-extdst.c          |  299 +++++
+ drivers/gpu/drm/imx/dpu/dpu-fetchdecode.c     |  292 +++++
+ drivers/gpu/drm/imx/dpu/dpu-fetcheco.c        |  224 ++++
+ drivers/gpu/drm/imx/dpu/dpu-fetchlayer.c      |  152 +++
+ drivers/gpu/drm/imx/dpu/dpu-fetchunit.c       |  610 ++++++++++
+ drivers/gpu/drm/imx/dpu/dpu-fetchunit.h       |  195 +++
+ drivers/gpu/drm/imx/dpu/dpu-fetchwarp.c       |  248 ++++
+ drivers/gpu/drm/imx/dpu/dpu-framegen.c        |  395 +++++++
+ drivers/gpu/drm/imx/dpu/dpu-gammacor.c        |  223 ++++
+ drivers/gpu/drm/imx/dpu/dpu-hscaler.c         |  275 +++++
+ drivers/gpu/drm/imx/dpu/dpu-kms.c             |  542 +++++++++
+ drivers/gpu/drm/imx/dpu/dpu-kms.h             |   23 +
+ drivers/gpu/drm/imx/dpu/dpu-layerblend.c      |  348 ++++++
+ drivers/gpu/drm/imx/dpu/dpu-plane.c           |  804 +++++++++++++
+ drivers/gpu/drm/imx/dpu/dpu-plane.h           |   59 +
+ drivers/gpu/drm/imx/dpu/dpu-prg.c             |  433 +++++++
+ drivers/gpu/drm/imx/dpu/dpu-prg.h             |   45 +
+ drivers/gpu/drm/imx/dpu/dpu-prv.h             |  231 ++++
+ drivers/gpu/drm/imx/dpu/dpu-tcon.c            |  250 ++++
+ drivers/gpu/drm/imx/dpu/dpu-vscaler.c         |  308 +++++
+ drivers/gpu/drm/imx/dpu/dpu.h                 |  385 ++++++
+ include/drm/drm_atomic.h                      |    5 +-
+ 39 files changed, 10372 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dprc.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-prg.yaml
+ create mode 100644 drivers/gpu/drm/imx/dpu/Kconfig
+ create mode 100644 drivers/gpu/drm/imx/dpu/Makefile
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-constframe.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-core.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-crtc.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-crtc.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-disengcfg.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-dprc.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-dprc.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-drv.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-drv.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-extdst.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchdecode.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetcheco.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchlayer.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchunit.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchunit.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchwarp.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-framegen.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-gammacor.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-hscaler.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-kms.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-kms.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-layerblend.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-plane.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-plane.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prg.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prg.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prv.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-tcon.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-vscaler.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu.h
+
+-- 
+2.37.1
+
