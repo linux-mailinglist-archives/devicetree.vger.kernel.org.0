@@ -2,107 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5925F65FF59
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 12:09:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B50FF65FF65
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 12:15:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232533AbjAFLJ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 06:09:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53728 "EHLO
+        id S229555AbjAFLPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 06:15:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232760AbjAFLJY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 06:09:24 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 745D46E0D2
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 03:09:23 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id m7so954309wrn.10
-        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 03:09:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NG9dI4XhzCl+b3Gp7Tvxu9PI8w7dD/LzEOXVng8l0Ao=;
-        b=U/WmJaCsUbxjTydbg4Af/tWcwcxtNTesw7pTDU/XaAczQRZdVmUq7fi8tH6CSi0+Kc
-         ipDuMqJHRQ15Y8+zdFdoEOe8jt5y9S5mLwF6qm5IVlN71q20h5/SzARpYpiBspBhPB9M
-         vV04LPulrZs2jXAeenTOwxxWrLBsgMLoK3Ggmkx+HeLIH3unLDGW4gwWRRVwcOgKKj+O
-         VtnRdFp14fsvwujeznv1mhdJnp1RVS9WebDWeooHtUJqkTpzs/S8l4KO0Rvn4AICerMb
-         2UiBM2IBzJUQQC2XNyhSEjrzG09d4V0JvxfV0cGYQ3+1jk5rTq3YZV3oplBfnkSh7FGG
-         uscg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NG9dI4XhzCl+b3Gp7Tvxu9PI8w7dD/LzEOXVng8l0Ao=;
-        b=JtOL4kKwp5oDmCpkSNVptMxEZNCBrdw1jipU/w7BLJxZgV2NL0yxZ0sPe+efTmnxB0
-         syhMdO8nHkpJDTCdNPcqE8bj4wcNL4RFEMSR+vHw7IgfL/UpligsQwWoywLJIsb+ecTy
-         7KYxUalj7zaLq8bcuuL1rqfB+nzYEAGFpDgtzW7nNfByqLsDxQF5N6+IzUOw7t3n/VEL
-         dBryuBplPuwwxLSrY9fie7a3QKuIaKRmc1yoNyoxYKGT6NVUXsEYeBEclKwkxsVeJuzJ
-         SJOGj6Mb8i4zO7kS8pFzxzQcW1Jyff7beZcQabHSxrEWyoeIT6zyhGBzgbkv6I6THOP9
-         ndzA==
-X-Gm-Message-State: AFqh2koCmf9TYwIKQ5ef4cyEHLdOPnoifBNYjhIPH0KqQnSK6uVs0ahj
-        J9aiM31xrIzLZyrldjFvmel04WsGFWJYEOzE
-X-Google-Smtp-Source: AMrXdXuecYwI1nTafgjoLujoRH+Hy7/rmJKdE2TfsSYxWshCtXsL95CSTshxkTNACZ0m+fYffqlT6Q==
-X-Received: by 2002:a5d:69cd:0:b0:242:6b2f:4988 with SMTP id s13-20020a5d69cd000000b002426b2f4988mr34423991wrw.46.1673003363081;
-        Fri, 06 Jan 2023 03:09:23 -0800 (PST)
-Received: from [192.168.1.102] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id b1-20020adf9b01000000b0028e55b44a99sm857396wrc.17.2023.01.06.03.09.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Jan 2023 03:09:22 -0800 (PST)
-Message-ID: <4f2df0c4-d251-befe-800e-82e43e07721b@linaro.org>
-Date:   Fri, 6 Jan 2023 12:09:20 +0100
+        with ESMTP id S229472AbjAFLPY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 06:15:24 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E1006EC95;
+        Fri,  6 Jan 2023 03:15:23 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 1248CB81CDE;
+        Fri,  6 Jan 2023 11:15:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1EB8C433D2;
+        Fri,  6 Jan 2023 11:15:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673003720;
+        bh=AY+EUNxLVUahOuHk2agSSXRRnUVJYLimnavTHNTsJKo=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=umc1j0Gz4jTDpUKZHCfkiq2xV3+7ElDvGTdxk6s3o9EAXFkWJTnzP1elSSzA5uUs6
+         j377WuTFRWf7a7zE1yVlOLpfqMVGJnta26ErNs4FjOmx7Ai+56CUjCvohJ83jHYX98
+         Zpnf9tYghb9SJZvpjDt7Ykmgke0OPIJjX6M9kidWzuKv6CidNWiU0GhzgFUXqnHZIB
+         G9CjUnS1lOiMHm0RUJiav/cMIby7ZrFcvu2Y9yD506q0/LJCITGNuEl1Ji1qex88oD
+         OC0hqtJx3Mn/aGMC1Yj6sDtaN/E3rHiDfwyq1aCdKk//UtjB4uhCl0cYbmDRHl9s1B
+         wuiRe59zIQbUQ==
+Message-ID: <be0dd0b2-4857-c110-4d35-076de0b14d72@kernel.org>
+Date:   Fri, 6 Jan 2023 13:15:12 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 9/9] dt-bindings: interconnect: qcom: drop IPA_CORE
- related defines
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 1/2] dt-bindings: net: Add ICSSG Ethernet Driver
+ bindings
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Md Danish Anwar <danishanwar@ti.com>,
+        "Andrew F. Davis" <afd@ti.com>, Tero Kristo <t-kristo@ti.com>,
+        Suman Anna <s-anna@ti.com>, YueHaibing <yuehaibing@huawei.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     Georgi Djakov <djakov@kernel.org>,
-        Odelu Kukatla <okukatla@codeaurora.org>,
-        Alex Elder <elder@linaro.org>, Johan Hovold <johan@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230106073313.1720029-1-dmitry.baryshkov@linaro.org>
- <20230106073313.1720029-10-dmitry.baryshkov@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230106073313.1720029-10-dmitry.baryshkov@linaro.org>
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>, nm@ti.com,
+        ssantosh@kernel.org, srk@ti.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20221223110930.1337536-1-danishanwar@ti.com>
+ <20221223110930.1337536-2-danishanwar@ti.com> <Y6W7FNzJEHYt6URg@lunn.ch>
+ <620ce8e6-2b40-1322-364a-0099a6e2af26@kernel.org> <Y7Mjx8ZEVEcU2mK8@lunn.ch>
+ <b55dec4b-4fd5-71fa-4073-b5793cafdee7@kernel.org> <Y7cFUW6dFRaI+nPV@lunn.ch>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <Y7cFUW6dFRaI+nPV@lunn.ch>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-10.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/01/2023 08:33, Dmitry Baryshkov wrote:
-> These interconnects are modeled as clks, not interconnects, therefore
-> remove corresponding defines from the binding as they're unused.
+On 05/01/2023 19:13, Andrew Lunn wrote:
+>>>> On 23/12/2022 16:28, Andrew Lunn wrote:
+>>>>>> +        ethernet-ports {
+>>>>>> +            #address-cells = <1>;
+>>>>>> +            #size-cells = <0>;
+>>>>>> +            pruss2_emac0: port@0 {
+>>>>>> +                reg = <0>;
+>>>>>> +                phy-handle = <&pruss2_eth0_phy>;
+>>>>>> +                phy-mode = "rgmii-rxid";
+>>>>>
+>>>>> That is unusual. Where are the TX delays coming from?
+>>>>
+>>>> >From the below property
+>>>>
+>>>> +                ti,syscon-rgmii-delay = <&scm_conf 0x4120>;
+>>>>
+>>>> The TX delay can be enabled/disabled from within the ICSSG block.
+>>>>
+>>>> If this property exists and PHY mode is neither PHY_INTERFACE_MODE_RGMII_ID
+>>>> nor PHY_INTERFACE_MODE_RGMII_TXID then the internal delay is enabled.
+>>>>
+>>>> This logic is in prueth_config_rgmiidelay() function in the introduced driver.
+>>>
+>>> What nearly every other MAC driver does is pass the phy-mode to the
+>>> PHY and lets the PHY add the delays. I would recommend you do that,
+>>> rather than be special and different.
+>>
+>>
+>> If I remember right we couldn't disable MAC TX delay on some earlier silicon
+>> so had to take this route. I don't remember why we couldn't disable it though.
+>>
+>> In more recent Silicon Manuals I do see that MAC TX delay can be enabled/disabled.
+>> If this really is the case then we should change to
+>>
+>>  phy-mode = "rgmii-id";
+>>
+>> And let PHY handle the TX+RX delays.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  include/dt-bindings/interconnect/qcom,sc7180.h   | 3 ---
->  include/dt-bindings/interconnect/qcom,sc8180x.h  | 3 ---
->  include/dt-bindings/interconnect/qcom,sc8280xp.h | 2 --
->  include/dt-bindings/interconnect/qcom,sdx55.h    | 2 --
->  include/dt-bindings/interconnect/qcom,sm8150.h   | 3 ---
->  include/dt-bindings/interconnect/qcom,sm8250.h   | 3 ---
->  6 files changed, 16 deletions(-)
+> DT describes the board. PHY mode indicates what delays the board
+> requires, because the board itself is not performing the delays by
+> using extra long lines. So typically, phy-mode is rgmii-id, indicating
+> delays need to be added somewhere in both directions.
+> 
+> Who adds the delays is then between the MAC and the PHY. In most
+> cases, the MAC does nothing, and passes phy-mode to the PHY and the
+> PHY does it.
+> 
+> But it is also possible for the MAC to do the delay. So if you cannot
+> actually disable the TX delay in the MAC, that is O.K. But you need to
+> modify phy-mode you pass to the PHY to indicate the MAC is doing the
+> delay, otherwise the PHY will additionally do the delay. So your DT
+> will contain rgmii-id, because that is what the board requires, but
+> the MAC will pass rmgii-rxid to the PHY, since that is what the PHY
+> needs to add.
 
+Thanks for the explanation. :)
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+cheers,
+-roger
