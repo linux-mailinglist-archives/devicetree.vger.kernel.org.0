@@ -2,195 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93E256603DF
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 17:05:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06F5A660427
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 17:21:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232926AbjAFQFI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 11:05:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34628 "EHLO
+        id S232775AbjAFQVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 11:21:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232719AbjAFQFH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 11:05:07 -0500
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2057.outbound.protection.outlook.com [40.107.244.57])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2180687A9;
-        Fri,  6 Jan 2023 08:05:03 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hwYeUOc3OMWgpF1N0FrtziSCnX7Rb/Gi+CwS3YtcSk95bLt+DYZ1nKP7VyEqJ8xszRG6RqMgtf7ZMXP1Q7rrM//Q/VnHEC4t/CW0MSuHxChWhjbvg2fsGaorZuJTNtKn7llDyBeipph+d6Owm7nBTfjX7txzS0TrrWI5PfvOUbJzpmpZWSqGf5Mt/jZdPTEBIWbhbGf1ZjzxO0VFK9Ahi0eVN7qxkXVwwxz4hYDo+KxQ8IEgX0fdbfHB4b8Ndo6/uIXM8Y70/YqrCPvbH+1NoVypNpmL2JiXJvRr+Dp1wx0Uo+rsvhnV1gWPi/tG4Yhi1og5S5JTSnQKY1nIYHqF6Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QRFiQKQaS1syMoahod0vUJI5szjILoGlxgjmCYjUE5Q=;
- b=RVO1E4NCGIaLLog/cq5ldqb+yjQ4mLQhrFv+UqFjjpVibTQp47tkkP6A+AFnSDofYqnk6X7qYpQo6X+7lp8OHVE3s8cLnGT4ng+AC8XheV8HOvxtLRqiBdChkk7CQ13hTE3KCvr3mJhriYdrhmajC1RpviYRabmvviuY2RORmaf2AANOPpCtGpE7UzzxwUz1kTfaJh46jADKEELbNPEyTVw8l/ybTVXmwnxbFAKNqeuN5JmXuVjNqnV64Wh8YAl6E6DU5PPCOd/MeKRvF2+jsM2bDiGffPvvMCw9fd82vCicqQJRK6JqfGjhWO8lm/HjVsX55Dzk1Og9qKg5grE3Zg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QRFiQKQaS1syMoahod0vUJI5szjILoGlxgjmCYjUE5Q=;
- b=elABxzTWF8IgGO/vw7LIJ62/W3rxMLgYDU8+BednSNS7gUEB+8VORHT2iVsrYkmSz1PPflSDbhKE9uXb9cK518/u8lW8s6j9fIl6N23qfpVNvULo6JnE1tCzg7PsVJ9eGVw/VbekiQLgacEelwxkJ85IadpWZmXejtlfNZaotAuE9oa6pDqOWZEYXXqidf817AXCx1teuP+mF23jtvcZuw1ec/i/t5geF1N9ylXHwO/KN9ZGmbZYG8VuvQkSZXBuhIne5zSZgcMUFPPB12D5JIZHr4ynqjzF+mM/2GdEPAmqgp1gQ8KEUWxiwOdtqNraNC//CcQbbvPcEq4WZfbrMw==
-Received: from MN2PR01CA0046.prod.exchangelabs.com (2603:10b6:208:23f::15) by
- DS0PR12MB7536.namprd12.prod.outlook.com (2603:10b6:8:11c::21) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5944.19; Fri, 6 Jan 2023 16:05:02 +0000
-Received: from BL02EPF00010209.namprd05.prod.outlook.com
- (2603:10b6:208:23f:cafe::af) by MN2PR01CA0046.outlook.office365.com
- (2603:10b6:208:23f::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.15 via Frontend
- Transport; Fri, 6 Jan 2023 16:05:02 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- BL02EPF00010209.mail.protection.outlook.com (10.167.241.198) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5986.15 via Frontend Transport; Fri, 6 Jan 2023 16:05:01 +0000
-Received: from rnnvmail204.nvidia.com (10.129.68.6) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 6 Jan 2023
- 08:04:04 -0800
-Received: from rnnvmail205.nvidia.com (10.129.68.10) by rnnvmail204.nvidia.com
- (10.129.68.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 6 Jan 2023
- 08:04:04 -0800
-Received: from moonraker.nvidia.com (10.127.8.13) by mail.nvidia.com
- (10.129.68.10) with Microsoft SMTP Server id 15.2.986.36 via Frontend
- Transport; Fri, 6 Jan 2023 08:04:03 -0800
-From:   Jon Hunter <jonathanh@nvidia.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-CC:     <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        Jon Hunter <jonathanh@nvidia.com>
-Subject: [PATCH 2/2] arm64: tegra: Populate Jetson AGX Orin EEPROMs
-Date:   Fri, 6 Jan 2023 16:03:58 +0000
-Message-ID: <20230106160358.64303-2-jonathanh@nvidia.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230106160358.64303-1-jonathanh@nvidia.com>
-References: <20230106160358.64303-1-jonathanh@nvidia.com>
+        with ESMTP id S229498AbjAFQVb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 11:21:31 -0500
+Received: from mail-vs1-xe2f.google.com (mail-vs1-xe2f.google.com [IPv6:2607:f8b0:4864:20::e2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1719A7622E;
+        Fri,  6 Jan 2023 08:21:30 -0800 (PST)
+Received: by mail-vs1-xe2f.google.com with SMTP id i188so1915229vsi.8;
+        Fri, 06 Jan 2023 08:21:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rvoHA51dBPJxu29rUy3n+YN/knXWowFgBFUnc3YEs8M=;
+        b=FAdRo3A0VAjazJq3nJhVSdkEXJObUUJGwMBwSzNqrSjqbhU8oaGvT+XzotRusmYoCu
+         lxq00qMhKYRWByczvVg+rZibNLuwWv6u2mQJ1uMTZJP/xubGnYFnIT9SY17kHiWgLHMq
+         NpXBcenbxYH81QzOYBhAtBtJuyJumxErMx08cRO7+Tm/vgOKxHeRHHxMOS9r5fSGlIZ3
+         NRRfBiKWlJl8M2dVH3N1UBTHpHIrudhivsO/STC/Sl8lNIuZ7C4+U0bNLAnUYbreBOcB
+         aAfrBU6xTVqs7XKj3+xlP8qXe8XfCzuqQiEUEd2gSczmAdDcqSA7I5qDjU8b0W+VwkPD
+         8IUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rvoHA51dBPJxu29rUy3n+YN/knXWowFgBFUnc3YEs8M=;
+        b=Cc6A1r5tHdJU1X27sGJKj7OjGnT3bCnTWkCXh+BTa99nOKawzHDvfqq/YbIJOvgE5x
+         rfKuLol6tWKRHKdp4kerwoPAFxk8YxlmaZL/NbmSIAPEf02Jt/cnby1NLIAB6TUNWPfV
+         E0neNul2mtwroGE9hXj6NbjC5toPnTngiPryecKmkJEcoYIJHXicZvYFX7AYEcZ7i3b4
+         ihpkDajKD/R6XjjopKGyANFH96CxYLd/OeB3IMgSRNZtpDXLy1yxu1kDiiRgaP1Irfe6
+         iYeKisblOHt5TBCRfT9NrV8GnCc/iI0ssOEnB727ZbN38LW6wJ6Rffh3MqGncdvG49oc
+         GeLA==
+X-Gm-Message-State: AFqh2koIv5BosIjuD/xP1uJNBpiZXzU8P2UB16q9oDjFboUh/56FI8AX
+        uTFcX0uMYH2742F2+H5bnwY=
+X-Google-Smtp-Source: AMrXdXtUBqYBEIxrsJKqTu09+T3ZT0gu9pPa3HUapKJ2qs+dCmOBEnr0MCnQ3Ef60Bfemm9khGBqhg==
+X-Received: by 2002:a05:6102:1626:b0:3ce:c261:e8e with SMTP id cu38-20020a056102162600b003cec2610e8emr4716733vsb.17.1673022089152;
+        Fri, 06 Jan 2023 08:21:29 -0800 (PST)
+Received: from [192.168.178.136] (f215227.upc-f.chello.nl. [80.56.215.227])
+        by smtp.gmail.com with ESMTPSA id w22-20020a05620a425600b006cbc00db595sm747029qko.23.2023.01.06.08.21.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Jan 2023 08:21:28 -0800 (PST)
+Message-ID: <0b277149-867b-8acf-30d8-2cd68ba24c99@gmail.com>
+Date:   Fri, 6 Jan 2023 17:21:24 +0100
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF00010209:EE_|DS0PR12MB7536:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8c800fe0-a67f-4792-2368-08daefffc4a0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 6LxnNRfyl1G18W3+T5YRZYB1wMpEKmPThvgXVM+wnw8ZkIhxZiPnYCMlLEgZNysEKB3AdCrQCkmN4CEFXS3P4FlFhuieoHvWWwYTYTCrSwgrOr3CLq5GMMMWUJ9C5sgCmzPLPPIDaELRYBmI9lCrg8FxDoAY6j0Ga6tYZ3exCmy8OubHRcTpQNVa7riNzbqwBm1lSPDeNmD+9NlNRfyO1hJ17LyFYfIk41yCMalBNAouwbc0mbSypEGnj7NXYUleyGI6pYb9KD+Nthlru5XyMOeDwFuAN4tKZCtsVUGHMyFkSgdDVPlZ0SY//XLfTyAJ/I7Z2K8sKPDdZS0i66b/MmUYplXJzQZw5NzR2uznqY2OU2KqVLw0GyCQAHMZRLJXl3VdkYfc2LkGOpsHlaOQM/xagRt41Mvlvme6OqYpYpXtM5dj6vM3lgtahbzj2Gv7ffgP991fkZIHL0Y1XNZp72UAwBdQV6R8q6lmAp0t5a3NeHWr9lqQ5F9ipl6zPp41hv3nW3izMH0v/HSpU4Q15iX8T0PRcSfhrovttCfbgvL3YuOgqKlW6aTaiulaA6YtHMXZvv1T+IAV5DxYQqx8vKBqxRK/wDBMBCzxfKvbFgVJ5X7e8IUqWpuob+yhPdWmEhja9KcD8v20zL5Ks2MnwtIM0WXqjn/rwksUwtkEp9wiTJuOOQOcUKe/6axXlKX4zRvkm1UUOaQ8sNkqJ7WHbg==
-X-Forefront-Antispam-Report: CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230022)(4636009)(346002)(376002)(39860400002)(396003)(136003)(451199015)(36840700001)(40470700004)(46966006)(82740400003)(36860700001)(36756003)(2616005)(40460700003)(40480700001)(2906002)(8676002)(316002)(70586007)(110136005)(82310400005)(356005)(54906003)(86362001)(7636003)(426003)(41300700001)(1076003)(47076005)(5660300002)(4326008)(70206006)(336012)(7696005)(186003)(478600001)(8936002)(26005)(107886003)(6666004);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2023 16:05:01.8843
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8c800fe0-a67f-4792-2368-08daefffc4a0
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF00010209.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7536
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2] brcmfmac: Prefer DT board type over DMI board type
+Content-Language: en-US
+To:     "Ivan T. Ivanov" <iivanov@suse.de>, marcan@marcan.st
+Cc:     franky.lin@broadcom.com, hante.meuleman@broadcom.com,
+        rmk+kernel@armlinux.org.uk, stefan.wahren@i2se.com,
+        pbrobinson@gmail.com, jforbes@fedoraproject.org, kvalo@kernel.org,
+        davem@davemloft.net, devicetree@vger.kernel.org,
+        edumazet@google.com, krzysztof.kozlowski+dt@linaro.org,
+        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com, stable@vger.kernel.org
+References: <20230106131905.81854-1-iivanov@suse.de>
+From:   Arend Van Spriel <aspriel@gmail.com>
+In-Reply-To: <20230106131905.81854-1-iivanov@suse.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Populate the module and system EEPROMs on the Jetson AGX Orin platform.
+On 1/6/2023 2:19 PM, Ivan T. Ivanov wrote:
+> The introduction of support for Apple board types inadvertently changed
+> the precedence order, causing hybrid SMBIOS+DT platforms to look up the
+> firmware using the DMI information instead of the device tree compatible
+> to generate the board type. Revert back to the old behavior,
+> as affected platforms use firmwares named after the DT compatible.
+> 
+> Fixes: 7682de8b3351 ("wifi: brcmfmac: of: Fetch Apple properties")
+> 
+> [1] https://bugzilla.opensuse.org/show_bug.cgi?id=1206697#c13
+> 
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Ivan T. Ivanov <iivanov@suse.de>
 
-Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
----
- .../boot/dts/nvidia/tegra234-p3701-0000.dtsi  | 24 +++++++++++++++++++
- .../boot/dts/nvidia/tegra234-p3737-0000.dtsi  | 24 +++++++++++++++++++
- 2 files changed, 48 insertions(+)
+Looks good to me. I do have a question about the devicetree node for 
+brcmfmac. The driver does a compatible check against 
+"brcm,bcm4329-fmac". I actually expect all devicetree specifications to 
+use this. That said I noticed the check for it in brcmf_of_probe() 
+should be moved so it is the first check done.
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi
-index 61b7ce40f898..e78905e23b8f 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi
-@@ -6,6 +6,14 @@ / {
- 	model = "NVIDIA Jetson AGX Orin";
- 	compatible = "nvidia,p3701-0000", "nvidia,tegra234";
- 
-+	vdd_1v8_hs: regulator-vdd-1v8-hs {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDD_1V8_HS";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+	};
-+
- 	vdd_1v8_ls: regulator-vdd-1v8-ls {
- 		compatible = "regulator-fixed";
- 		regulator-name = "VDD_1V8_LS";
-@@ -42,6 +50,22 @@ vdd_12v_pcie: regulator-vdd-12v-pcie {
- 	};
- 
- 	bus@0 {
-+		i2c@3160000 {
-+			status = "okay";
-+
-+			eeprom@50 {
-+				compatible = "atmel,24c02";
-+				reg = <0x50>;
-+
-+				label = "module";
-+				vcc-supply = <&vdd_1v8_hs>;
-+				address-width = <8>;
-+				pagesize = <8>;
-+				size = <256>;
-+				read-only;
-+			};
-+		};
-+
- 		spi@3270000 {
- 			status = "okay";
- 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi
-index e76894574d32..dc6667191bd2 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi
-@@ -3,7 +3,31 @@
- / {
- 	compatible = "nvidia,p3737-0000";
- 
-+	vdd_1v8_sys: regulator-vdd-1v8-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDD_1V8_SYS";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+	};
-+
- 	bus@0 {
-+		i2c@3160000 {
-+			status = "okay";
-+
-+			eeprom@56 {
-+				compatible = "atmel,24c02";
-+				reg = <0x56>;
-+
-+				label = "system";
-+				vcc-supply = <&vdd_1v8_sys>;
-+				address-width = <8>;
-+				pagesize = <8>;
-+				size = <256>;
-+				read-only;
-+			};
-+		};
-+
- 		pwm@3280000 {
- 			status = "okay";
- 		};
--- 
-2.25.1
-
+Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+> Reviewed-by: Hector Martin <marcan@marcan.st>
+> ---
+> Changes since v1
+> Rewrite commit message according feedback.
+> https://lore.kernel.org/all/20230106072746.29516-1-iivanov@suse.de/
+> 
+>   drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c | 5 +++--
+>   1 file changed, 3 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
+> index a83699de01ec..fdd0c9abc1a1 100644
+> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
+> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
+> @@ -79,7 +79,8 @@ void brcmf_of_probe(struct device *dev, enum brcmf_bus_type bus_type,
+>   	/* Apple ARM64 platforms have their own idea of board type, passed in
+>   	 * via the device tree. They also have an antenna SKU parameter
+>   	 */
+> -	if (!of_property_read_string(np, "brcm,board-type", &prop))
+> +	err = of_property_read_string(np, "brcm,board-type", &prop);
+> +	if (!err)
+>   		settings->board_type = prop;
+>   
+>   	if (!of_property_read_string(np, "apple,antenna-sku", &prop))
+> @@ -87,7 +88,7 @@ void brcmf_of_probe(struct device *dev, enum brcmf_bus_type bus_type,
+>   
+>   	/* Set board-type to the first string of the machine compatible prop */
+>   	root = of_find_node_by_path("/");
+> -	if (root && !settings->board_type) {
+> +	if (root && err) {
+>   		char *board_type;
+>   		const char *tmp;
+>   
