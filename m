@@ -2,149 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BED6660511
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 17:49:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 392DD660512
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 17:49:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231458AbjAFQtJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 11:49:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35180 "EHLO
+        id S229510AbjAFQtw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 11:49:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236438AbjAFQso (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 11:48:44 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DE4D7CDE5
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 08:46:39 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id m7so1777017wrn.10
-        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 08:46:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=D3oJpCSGnnDJtoKqiOy/io+oXZbWMd8CgdZY3qs2G2Q=;
-        b=qpMR9X5BgMZLO6LuXpbgh+LKWdi9seLm9UpJqzwZeSc7hagiD2LM4sAjrOeLX4Gzii
-         yPuO4bFe/zKGO7VA0NZcGEttyiiTk0p+svKkmywDvXbfxCqxfRxBL7t5mfGI36+2UPec
-         EVZzLQ2KGgEW8GcUNwj4BUVm70dFiyApVGDxtu4QgmMl/yO9uGbRP70fgEFnKBboNjp+
-         IYRfjvQ/NcSHQzF6mn3+vA8tgN2EqZgb53XfUnSkLYQ8SWGhdRAZ58eGLdTBfvx9mjbb
-         BDVnR6Y7FjpsD1TJBlDPE2c6gtgdH9yWpaBMAkCwdEwev/vqrlaY6IiBqr1pIckHSRvK
-         iXqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=D3oJpCSGnnDJtoKqiOy/io+oXZbWMd8CgdZY3qs2G2Q=;
-        b=gloU96Zx3yxKJSNwsmVuC2oHRhSBlLdIWhXY2ZL8eI/91Km9Mci9Zg61Q8DaQER9PI
-         C0nHJvQvQUP6m8VNqVbZ5cu9DfrhaOT9jpmakrkgX6GFeg0QklCJQNLSUJFvCOn+/pxr
-         z8O55tDhP++nO3PCtMlmfYSTUFOIfNpsFJzvntEXkxKHY8B0LYhqYEPE8K2A2Griiwpj
-         pFcUqIGcg6lhO4tF2ZclMhnFeQXEQl3OJZ0QJSOmEX21dh1/OiwWp5IQJxnWJN/xwTY1
-         udOK//e0oZSIeaivqmoKXi6D25KMKfScHVRO7UM7rN/47VqBZVq6jo5m7Zh9Al1SXSGM
-         aAZA==
-X-Gm-Message-State: AFqh2kp1/t1O2EEP4UCuXX8zIyPB8YbmJQRVMKSkCzCFCo4Oibvn0h6p
-        PDRO4u0A5xgiGthX6LsTr9QZtg==
-X-Google-Smtp-Source: AMrXdXsPpwdAEKZ/QTxH1EEGLQ3xybMXm99F+tFdxmq0b/1bdwFk1HQR5MWl5UrczpOvIrg1MmqVuQ==
-X-Received: by 2002:a5d:4884:0:b0:242:3812:f948 with SMTP id g4-20020a5d4884000000b002423812f948mr35405492wrq.24.1673023581350;
-        Fri, 06 Jan 2023 08:46:21 -0800 (PST)
-Received: from vingu-book.. ([2a01:e0a:f:6020:98f9:4145:643f:e1da])
-        by smtp.gmail.com with ESMTPSA id z18-20020a5d44d2000000b002368f6b56desm1916999wrr.18.2023.01.06.08.46.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Jan 2023 08:46:20 -0800 (PST)
-From:   Vincent Guittot <vincent.guittot@linaro.org>
-To:     dmitry.baryshkov@linaro.org, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     danny@kdrag0n.dev, Vincent Guittot <vincent.guittot@linaro.org>
-Subject: [PATCH] arm64: dts: qcom: sdm845: correct dynamic power coefficients
-Date:   Fri,  6 Jan 2023 17:46:18 +0100
-Message-Id: <20230106164618.1845281-1-vincent.guittot@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S231860AbjAFQtd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 11:49:33 -0500
+Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DF967A3BA;
+        Fri,  6 Jan 2023 08:48:29 -0800 (PST)
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+        by mx0b-0016f401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 306GlDbE031052;
+        Fri, 6 Jan 2023 08:48:15 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=pfpt0220; bh=iFGa7sCejpLjxBrJt2qUGf4PBail2P7nsKTUm1JWp34=;
+ b=fn4GDrET5PqE+4Y/hdYUZjURYrE0SpSl52bTiU7/uuUGOiRDaU2WvxfHFM1RcIIfdNLR
+ r5a4wfa0T5FWbt2aENuVjbA9I31CNYeR5URHKyO7uNAOqUu9Gy5mJ6rdaiLHOrp5w8dD
+ O8hL2yhAWLOvSRCSU90C9p0apY97G6opzKwjIldziFL9Yv6jsCEkl3jyBWzQM78SW6Qd
+ EVzBXdkb95/vT7xTU/7kdbXpF98MhAamPzMbTcLO7N1r2/6RifrGlQcLinZdxUwRFYno
+ 9CkYT1O54cv4CO1tLeQt2AKxPCRxApjCuIDasB10ObHuKpM2lXf8IEn+vxkXcGzazxb3 Fw== 
+Received: from dc5-exch01.marvell.com ([199.233.59.181])
+        by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 3mxemv9wgk-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Fri, 06 Jan 2023 08:48:15 -0800
+Received: from DC5-EXCH02.marvell.com (10.69.176.39) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 6 Jan
+ 2023 08:48:13 -0800
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH02.marvell.com
+ (10.69.176.39) with Microsoft SMTP Server id 15.0.1497.42 via Frontend
+ Transport; Fri, 6 Jan 2023 08:48:13 -0800
+Received: from Dell2s-9 (unknown [10.110.150.250])
+        by maili.marvell.com (Postfix) with ESMTP id EB3033F7072;
+        Fri,  6 Jan 2023 08:48:12 -0800 (PST)
+Date:   Fri, 6 Jan 2023 08:48:12 -0800
+From:   Piyush Malgujar <pmalgujar@marvell.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     <linux-mmc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <adrian.hunter@intel.com>, <ulf.hansson@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <yamada.masahiro@socionext.com>, <devicetree@vger.kernel.org>,
+        <jannadurai@marvell.com>, <cchavva@marvell.com>
+Subject: Re: [PATCH 3/5] dt-bindings: mmc: sdhci-cadence: SD6 support
+Message-ID: <20230106164812.GA14720@Dell2s-9>
+References: <20221219142418.27949-1-pmalgujar@marvell.com>
+ <20221219142418.27949-4-pmalgujar@marvell.com>
+ <5fc29d3c-e3da-3dc4-bce5-2158b81daa43@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <5fc29d3c-e3da-3dc4-bce5-2158b81daa43@linaro.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Proofpoint-GUID: HTm2pA0fiwcfzVWCF3EuzxN6iv6MJ-dV
+X-Proofpoint-ORIG-GUID: HTm2pA0fiwcfzVWCF3EuzxN6iv6MJ-dV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2023-01-06_10,2023-01-06_01,2022-06-22_01
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-While stressing EAS on my dragonboard RB3, I have noticed that LITTLE cores
-where never selected as the most energy efficient CPU whatever the
-utilization level of waking task.
+Hi Krzysztof,
 
-energy model framework uses its cost field to estimate the energy with
-the formula:
+Thank you the review comments.
 
-  nrg = cost of the selected OPP * utilization / CPU's max capacity
+On Mon, Dec 19, 2022 at 04:40:35PM +0100, Krzysztof Kozlowski wrote:
+> On 19/12/2022 15:24, Piyush Malgujar wrote:
+> > From: Jayanthi Annadurai <jannadurai@marvell.com>
+> > 
+> 
+> Subject: use final prefix matching the file, so "cdns,sdhci:"
+> 
+> > Add support for SD6 controller support
+> 
+> Full stop.
+> 
+> > 
+> > Signed-off-by: Jayanthi Annadurai <jannadurai@marvell.com>
+> > Signed-off-by: Piyush Malgujar <pmalgujar@marvell.com>
+> > ---
+> >  .../devicetree/bindings/mmc/cdns,sdhci.yaml   | 33 +++++++++++++++++--
+> >  1 file changed, 31 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> > index 8b1a0fdcb5e3e2e8b87d8d7678e37f3dad447fc1..2043e78ccd5f708a01e87fd96ec410418fcd539f 100644
+> > --- a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> > +++ b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> > @@ -4,7 +4,7 @@
+> >  $id: http://devicetree.org/schemas/mmc/cdns,sdhci.yaml#
+> >  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> >  
+> > -title: Cadence SD/SDIO/eMMC Host Controller (SD4HC)
+> > +title: Cadence SD/SDIO/eMMC Host Controller (SD4HC, SD6HC)
+> >  
+> >  maintainers:
+> >    - Masahiro Yamada <yamada.masahiro@socionext.com>
+> > @@ -19,6 +19,7 @@ properties:
+> >            - microchip,mpfs-sd4hc
+> >            - socionext,uniphier-sd4hc
+> >        - const: cdns,sd4hc
+> > +      - const: cdns,sd6hc
+> 
+> Does not look like you tested the DTS against bindings. Please run `make
+> dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
+> for instructions).
+> 
+> ... because it does not really make sense. Why do you require SD6HC as
+> fallback? I think you meant enum.
+> 
 
-which ends up selecting the CPU with lowest cost / max capacity ration
-as long as the utilization fits in the OPP's capacity.
+Yes, that's correct. I will change it to enum.
 
-If we compare the cost of a little OPP with similar capacity of a big OPP
-like :
-       OPP(kHz)   OPP capacity    cost     max capacity   cost/max capacity
-LITTLE 1766400    407             351114   407            863
-big    1056000    408             520267   1024           508
+> >  
+> >    reg:
+> >      maxItems: 1
+> > @@ -111,6 +112,34 @@ properties:
+> >      minimum: 0
+> >      maximum: 0x7f
+> >  
+> > +  cdns,iocell_input_delay:
+> 
+> No underscores. Use proper units in name suffix:
+> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
+> 
+> 
+> > +    description: Delay in ps across the input IO cells
+> > +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> 
+> Ditto... and so on - all of the fields.
+> 
+> > +
+> > +  cdns,iocell_output_delay:
+> > +    description: Delay in ps across the output IO cells
+> > +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> > +
+> > +  cdns,delay_element:
+> > +    description: Delay element in ps used for calculating phy timings
+> > +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> > +
+> > +  cdns,read_dqs_cmd_delay:
+> > +    description: Command delay used in HS200 tuning
+> > +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> > +
+> > +  cdns,tune_val_start:
+> > +    description: Staring value of data delay used in HS200 tuning
+> > +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> > +
+> > +  cdns,tune_val_step:
+> > +    description: Incremental value of data delay used in HS200 tuning
+> > +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> > +
+> > +  cdns,max_tune_iter:
+> > +    description: Maximum number of iterations to complete the HS200 tuning process
+> > +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> 
+> Why these three are properties of DT?
+> 
 
-This can be interpreted as the LITTLE core consumes 70% more than big core
-for the same compute capacity.
+These tuning parameters are added here so to make them custom configurable for different
+boards.
 
-According to [1], LITTLE consumes 10% less than big core for Coremark
-benchmark at those OPPs. If we consider that everything else stays
-unchanged, the dynamic-power-coefficient of LITTLE core should be
-only 53% of the current value: 290 * 53% = 154
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
+> > @@ -122,7 +151,7 @@ unevaluatedProperties: false
+> >  examples:
+> >    - |
+> >      emmc: mmc@5a000000 {
+> > -        compatible = "socionext,uniphier-sd4hc", "cdns,sd4hc";
+> > +        compatible = "socionext,uniphier-sd4hc", "cdns,sd4hc", "cdns,sd6hc";
+> 
+> This is confusing. I don't understand it. It requires much more
+> explanation in your commit msg.
+> 
+> >          reg = <0x5a000000 0x400>;
+> >          interrupts = <0 78 4>;
+> >          clocks = <&clk 4>;
+> 
+> Best regards,
+> Krzysztof
+> 
 
-Set the dynamic-power-coefficient of CPU0-3 to 154 to fix the energy model.
+Rest of the comments will be taken care in V2.
 
-[1] https://github.com/kdrag0n/freqbench/tree/master/results/sdm845/main
-
-Fixes: 0e0a8e35d725 ("arm64: dts: qcom: sdm845: correct dynamic power coefficients")
-Signed-off-by: Vincent Guittot <vincent.guittot@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 65032b94b46d..869bdb9bce6e 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -198,7 +198,7 @@ CPU0: cpu@0 {
- 			reg = <0x0 0x0>;
- 			enable-method = "psci";
- 			capacity-dmips-mhz = <611>;
--			dynamic-power-coefficient = <290>;
-+			dynamic-power-coefficient = <154>;
- 			qcom,freq-domain = <&cpufreq_hw 0>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
-@@ -222,7 +222,7 @@ CPU1: cpu@100 {
- 			reg = <0x0 0x100>;
- 			enable-method = "psci";
- 			capacity-dmips-mhz = <611>;
--			dynamic-power-coefficient = <290>;
-+			dynamic-power-coefficient = <154>;
- 			qcom,freq-domain = <&cpufreq_hw 0>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
-@@ -243,7 +243,7 @@ CPU2: cpu@200 {
- 			reg = <0x0 0x200>;
- 			enable-method = "psci";
- 			capacity-dmips-mhz = <611>;
--			dynamic-power-coefficient = <290>;
-+			dynamic-power-coefficient = <154>;
- 			qcom,freq-domain = <&cpufreq_hw 0>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
-@@ -264,7 +264,7 @@ CPU3: cpu@300 {
- 			reg = <0x0 0x300>;
- 			enable-method = "psci";
- 			capacity-dmips-mhz = <611>;
--			dynamic-power-coefficient = <290>;
-+			dynamic-power-coefficient = <154>;
- 			qcom,freq-domain = <&cpufreq_hw 0>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
--- 
-2.34.1
-
+Thanks,
+Piyush
