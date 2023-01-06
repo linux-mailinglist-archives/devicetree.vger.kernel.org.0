@@ -2,71 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFE72660098
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 13:53:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 134E16600AB
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 13:56:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232042AbjAFMxi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 07:53:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41374 "EHLO
+        id S234727AbjAFM4A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 07:56:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234012AbjAFMxc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 07:53:32 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5A7875D07
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 04:53:30 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id bs20so1193677wrb.3
-        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 04:53:30 -0800 (PST)
+        with ESMTP id S234061AbjAFMzb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 07:55:31 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFCE87A919
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 04:54:35 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id s9so1168197wru.13
+        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 04:54:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zcJg6BDA8nzuhkvqqR+ghB+11JZg54hPFOLhhkXj+aU=;
-        b=QevOxHQwIMvnsAfGP3CJ4r1T9bgcLZcIWzRbnGJk5fZ6unLTlRCkMjPY7ZHsmTjJAU
-         8TBdxscc7cl2GHmQwH+kGdV3EXZI1pkIGSzHSqyq6BiTrFikAzT5DGP37mVtrG5Ae9Z0
-         Hgj9B7OjFj3/zNZLhyGLrRGnUT3SryU1QEt5IRdpj3GohS62VdcTTVJgiBpFF1YeiLXZ
-         qWU60uQlEAYogZOar5yB8Q4n6m1AKjieEsOIUBsLaE+EMUIUJrZP375MgdjfY55pyLME
-         PBf1ynbX7yZL+QbI7hA8bmOsCnlFUrKGQ2MvbG7vpHTs1a1sWxf5THmDat0a8PEbvkeq
-         KHlw==
+        bh=0VQTtg9FSwvM20hhEBQ4latfuLMcaI0mRbc2gb+Wsmo=;
+        b=zGZsa8cLWEhtzBevZZussjAm4VHCN2pntlxPMLfsR3UVJPOee021IF6+6gUefIjOI8
+         IFDwpsrLlHuGtmcITRyyTTqXLa9L+CI2xskRTX2kKfbFQlHgHAg0z1bWHRHk8gbeV7HR
+         pV6KrpISoASdQsrrBvwFlS8J5bVPDnIoK6xtWc+0iO4L7X6CJombsXW+Dua/axoA4MJk
+         fxSpo2VD2OTARoCzMKQQ6sISZPjXleM4MS+8+9pqBGBSB/iP1Y9ZUVDjkBdpCGyQebhY
+         pll49HcO5hsd7sLhqj3fWKgx7OOn2bpwls0u8wpIE4rMvGIj1ubCnRZuNGu8PGmjt1dc
+         2J4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zcJg6BDA8nzuhkvqqR+ghB+11JZg54hPFOLhhkXj+aU=;
-        b=ghPcGRUOvZAmWRqJqx44srG37VUBKz6u7UwJyx/YKWfrr9R/aYa97JTIuebifDrway
-         jfuKJu9VGjmyXP2boAMXqj9uiZtKMTSlawBKHrgx56ch1EIZpM3s2Onvml63KTfnFKij
-         DfLDSfke1u4DM7XTtIGrurGwWXk6rRWd/n2Hv8foJCuksi5/E080VK9HUw0pYlYVkyN8
-         Hw87E2LI1h/ejYNCLMm13jzW0Hq6WnaN0mSRt9LBSRpSS2wd8RGQHAqLr4Dx+ClorW8b
-         z0Iw2v/7rVrWQwTl5icl8hHVqbMNh7NGHHeqeyWamMqb/L+VvjNEuqu+1shFY83u80Ke
-         b0IA==
-X-Gm-Message-State: AFqh2kolfTDKIGyCXqZ1/2kcnHzpZsF2UEf6vXDquy/BRyAO7yQGEqbe
-        v/+kM5DnPFlAtKwQDl+2GNnRfw==
-X-Google-Smtp-Source: AMrXdXvgBLNB5W4D1FlJ5z4o5cLiyPP6xqIEofHKlEDngWvT+cZcKlpy1EaW2soVnTj6J+5sZX2GzA==
-X-Received: by 2002:a5d:6e82:0:b0:2a1:602d:fd5 with SMTP id k2-20020a5d6e82000000b002a1602d0fd5mr7389047wrz.46.1673009609243;
-        Fri, 06 Jan 2023 04:53:29 -0800 (PST)
+        bh=0VQTtg9FSwvM20hhEBQ4latfuLMcaI0mRbc2gb+Wsmo=;
+        b=j3UAZvfJu1ORjerQGhW4P2aP3VS4mK3UvHXe4o7fU7ZS1RB1VVedwYxw4Eh9dnLbTg
+         +2FrR/jeEKiZEJKDGMthwJw2o5jtF6A+JeyQGgjwLDhDVLVBXNm9Hqun+quFn5fx6gla
+         +vpFz1gzY5gW4TaGSxqySOMpPvBo+S5p9KLhjAD53Ks93PT/QcW8Wq2uKLSkVNOMt+ZP
+         AAbKeiZ2rpFzMwQERCqKI0LEmnISnQGzP5zBa3bUBwwlWElxQqAnPYyyJjELRidrTeO9
+         h4Gbe2NWlWS8lrcSd21BGi0GStyG/ocg4K8FxE0tNmqyU7pyJbd0PYUgm4fb8+nF6Z5s
+         nE/g==
+X-Gm-Message-State: AFqh2kqL091vbpziXBGiBeTG18XK9c4PL1WaOPMtKL7v1GnMwVaEMlOG
+        HT2LJg29oKeD5N0qbOF66E5Z9A==
+X-Google-Smtp-Source: AMrXdXsdMCQTT70zgRFV/Vn26wT2YcgpPEAUPM7w5hQReZi/R7gT2YVbZF36R1ACF5NF6yt+Ntl4wg==
+X-Received: by 2002:a5d:525a:0:b0:287:6400:1f9c with SMTP id k26-20020a5d525a000000b0028764001f9cmr21089842wrc.42.1673009652170;
+        Fri, 06 Jan 2023 04:54:12 -0800 (PST)
 Received: from [192.168.1.102] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id z9-20020a5d44c9000000b0023c8026841csm1099900wrr.23.2023.01.06.04.53.27
+        by smtp.gmail.com with ESMTPSA id m8-20020a5d6a08000000b002a1ae285bfasm1078634wru.77.2023.01.06.04.54.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Jan 2023 04:53:28 -0800 (PST)
-Message-ID: <ee653e82-0b7f-f672-7a13-d80134239263@linaro.org>
-Date:   Fri, 6 Jan 2023 13:53:26 +0100
+        Fri, 06 Jan 2023 04:54:11 -0800 (PST)
+Message-ID: <18bde666-db4b-95b9-7ce1-a012ed33bf04@linaro.org>
+Date:   Fri, 6 Jan 2023 13:54:10 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v1 4/4] arm64: dts: imx93: Add CPU thermal zone
+Subject: Re: [PATCH 1/2] dt-bindings: display: panel: document the Visionox
+ VTDR6130 AMOLED DSI Panel bindings
 Content-Language: en-US
-To:     "Alice Guo (OSS)" <alice.guo@oss.nxp.com>, rafael@kernel.org,
-        daniel.lezcano@linaro.org, amitk@kernel.org, rui.zhang@intel.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com
-Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-imx@nxp.com
-References: <20230105101748.6714-1-alice.guo@oss.nxp.com>
- <20230105101748.6714-5-alice.guo@oss.nxp.com>
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230103-topic-sm8550-upstream-vtdr6130-panel-v1-0-9b746b858378@linaro.org>
+ <20230103-topic-sm8550-upstream-vtdr6130-panel-v1-1-9b746b858378@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230105101748.6714-5-alice.guo@oss.nxp.com>
+In-Reply-To: <20230103-topic-sm8550-upstream-vtdr6130-panel-v1-1-9b746b858378@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,58 +82,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/01/2023 11:17, Alice Guo (OSS) wrote:
-> From: Alice Guo <alice.guo@nxp.com>
+On 03/01/2023 15:22, Neil Armstrong wrote:
+> Document the 1080x2400 Visionox VTDR6130 AMOLED DSI Panel bindings.
 > 
-> Add CPU thermal zone and attach it to the TMU which monitors the CPU
-> temperature.
-> 
-> Signed-off-by: Alice Guo <alice.guo@nxp.com>
-> Reviewed-by: Jacky Bai <ping.bai@nxp.com>
-> Reviewed-by: Ye Li <ye.li@nxp.com>
-> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
->  arch/arm64/boot/dts/freescale/imx93.dtsi | 48 ++++++++++++++++++++++++
->  1 file changed, 48 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
-> index 6808321ed809..60306f3c5e7f 100644
-> --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-> @@ -8,6 +8,7 @@
->  #include <dt-bindings/input/input.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/power/fsl,imx93-power.h>
-> +#include <dt-bindings/thermal/thermal.h>
->  
->  #include "imx93-pinfunc.h"
->  
-> @@ -116,6 +117,38 @@
->  		interrupt-parent = <&gic>;
->  	};
->  
-> +	thermal-zones {
-> +		cpu-thermal {
-> +			polling-delay-passive = <250>;
-> +			polling-delay = <2000>;
-> +
-> +			thermal-sensors = <&tmu 0>;
-> +
-> +			trips {
-> +				cpu_alert: cpu-alert {
-> +					temperature = <80000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
-> +
-> +				cpu_crit: cpu-crit {
-> +					temperature = <90000>;
-> +					hysteresis = <2000>;
-> +					type = "critical";
-> +				};
-> +		};
+>  .../bindings/display/panel/visionox,vtdr6130.yaml  | 53 ++++++++++++++++++++++
+>  1 file changed, 53 insertions(+)
 
-Wrong indentation.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
