@@ -2,93 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C45ED65FBD3
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 08:19:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7402B65FBE0
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 08:22:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232244AbjAFHTC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 02:19:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48886 "EHLO
+        id S229591AbjAFHW0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 02:22:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231912AbjAFHS7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 02:18:59 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4E697816C
-        for <devicetree@vger.kernel.org>; Thu,  5 Jan 2023 23:18:27 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id g25-20020a7bc4d9000000b003d97c8d4941so2940095wmk.4
-        for <devicetree@vger.kernel.org>; Thu, 05 Jan 2023 23:18:27 -0800 (PST)
+        with ESMTP id S229490AbjAFHWZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 02:22:25 -0500
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51F9D6D534
+        for <devicetree@vger.kernel.org>; Thu,  5 Jan 2023 23:22:24 -0800 (PST)
+Received: by mail-ej1-x62c.google.com with SMTP id u19so1721481ejm.8
+        for <devicetree@vger.kernel.org>; Thu, 05 Jan 2023 23:22:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uymr+EslUp8EqejpciiRzBBlWnLjLu5bMnDY1fDFA+U=;
-        b=oTZbkZtovB3HLWOtVT3OCUsmvFBZbSiMmXc1p3LXMmYPYUDD3DOUqg6SsHztTs3Dnw
-         L+z5mCjSPmKHPeGyrHGORgGZ4ajAp09OuF+xAMU9+x8nkq8VDtI6bdTZt5cezaObkkiz
-         uX7i8BVP6dzv241BgUyHvPvgA7lLI4KOOwr6ggTypkE078Zty8EdGyJtQGg+m8QFqoWi
-         AD6t3pC2o/dkGZh7xdb6ws4Be7Yz+EGWKl8vi4OPA3CiuyMlZYfB8XOrPtxO3z3NAVc1
-         BpoYI9DIGtv3i59Wvh/Ti71sDluSMca344CYxtrPERmsvmsjAKmClT3gxwI05ANNpX9v
-         dqDA==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:to:subject:message-id:date:from:sender
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=RGBJdUhLvGpLg0IkWbTVUsItZJ0ILG7BPRGCq35WdVY=;
+        b=J0HARupsTl+7WBfPEKj09g3EnOeAeWlPp/GwrFGx6WllPHlbzW50SKUTpdCE+LecSZ
+         bmS/PVfSndtWq/BoFFlDDbDNtaF+myeZ50NIMcfDBMGfKVOVofO8PzzsRCuZYhe3Il+o
+         SAnJ0lfimi3VafXMIrQxSJ7fsV6GWrFN+Q0WR9Jiw5rdNsoDx7Y3BQ3qMkPgcc8VFaAo
+         Jv3vTKeh8X341+gUitiJzrx8wDv6yQNiSRsgWZTstrHU7wKzsGBIUlZvQ1dp7yiCYgJG
+         itYBpurJ6ZTKMH2WNSI5k0eQ3vXu6Q8E20bFsgz2BvlGSQyseXPP/GAld1B8vDzxC46Q
+         iH2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uymr+EslUp8EqejpciiRzBBlWnLjLu5bMnDY1fDFA+U=;
-        b=XvB5Rg2qH4LJPV5WfYFt0ne52zqoUt6aXmasc953Ou7oRQNhiC/3wujXT0lxrkoohu
-         NzAxTlogSpzg4d/QgNxNtkyMzSmh19/XeWo4ABBcF68DDobjCzLdo/lVp+ZEHKm7iVz6
-         42xMerAKYPRc8PlAYNRXeLN4e6gzYrXjQjek6/T9lPFC8Dx5iHbB7ulWXH4UPkOZhBBr
-         rNdgdTBSaEN1AWCXIqk+2mTGaLfGXOOoxrYWPdzQnB0MokGnbtFSpH04ilJRgI/hUHYc
-         YCk2aZXyR9qLmF8rZjOORlminClutbynrsn/PlQde2Fj2UQBEFtJhfGLa/ulpO4Sa2cG
-         Z/HA==
-X-Gm-Message-State: AFqh2krnY6PTtyks5Fl40xUxZM78yTBaHfSd3yVr6z8NyER2CS0G1Sg+
-        58Ws80wlCGm35Gz7tVAuHTECeA==
-X-Google-Smtp-Source: AMrXdXvy6MS/jUIHUdH1LF0M/X52le8844L/0iRR3YoWgYCboXI+dMKiHPtNijyqDhgVUlPVQw9J5Q==
-X-Received: by 2002:a05:600c:4fcf:b0:3cf:68f8:790b with SMTP id o15-20020a05600c4fcf00b003cf68f8790bmr39456245wmq.11.1672989506148;
-        Thu, 05 Jan 2023 23:18:26 -0800 (PST)
-Received: from [192.168.1.102] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id z25-20020a1c4c19000000b003d1e1f421bfsm5048093wmf.10.2023.01.05.23.18.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Jan 2023 23:18:25 -0800 (PST)
-Message-ID: <25364b98-0b32-8283-7630-bcf0f6c22b4e@linaro.org>
-Date:   Fri, 6 Jan 2023 08:18:24 +0100
+        h=content-transfer-encoding:to:subject:message-id:date:from:sender
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RGBJdUhLvGpLg0IkWbTVUsItZJ0ILG7BPRGCq35WdVY=;
+        b=tUZEXWw22V3sAqzQJ7/u2b2XEMov4t9Gor47leaOFKvj4MUEC4ljXSOm7t2Y9omSlk
+         Uj1s+WRzXN6M7R+ywys3Fui9gUtsM+YY5NBOI1v/KOO8JT+fG1mjI6ilZkkk+/+/5Uvp
+         9ZE4h0mKY7rdtPr5vYYgUOL5PcdavistJwmKD4y5M8zDB0cpe8g8/drm3xTEmZ4+l6gg
+         gVs7E2Y5/gvJflRHxvsIk6bY4GZXIf6p0SrUF4ONkTMD3X7QyytrGueLM/9aXcElk2aD
+         WBPCghtRMitoSckbHwHlS3yAdyfj+2r3QXVEH1ke8/KsiHian8X7QamPkli0cRXAfCJR
+         OHZw==
+X-Gm-Message-State: AFqh2kqW9UqyojSZiDlq2vqs9sTM8OXnlEJFrIbl0XUznJU6P0rqs+MT
+        8jBOe+8hSKhDq9I5Ibwg5oUyFF/dzHmLx+f83Jo=
+X-Google-Smtp-Source: AMrXdXvgscXDc2MnTQQb0kJNZPsyfzKPpxZt+EMorHgjWiJhaE9pTQRfNZPJ8/4q3VUfB7cte1dM4yc+EoiH7505QL4=
+X-Received: by 2002:a17:906:eb87:b0:7c1:2760:9e67 with SMTP id
+ mh7-20020a170906eb8700b007c127609e67mr3879137ejb.682.1672989742556; Thu, 05
+ Jan 2023 23:22:22 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 1/3] dt-bindings: interconnect: OSM L3: Add SM6350 OSM
- L3 compatible
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     marijn.suijten@somainline.org, Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sibi Sankar <quic_sibis@quicinc.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230104171643.1004054-1-konrad.dybcio@linaro.org>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230104171643.1004054-1-konrad.dybcio@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Sender: abdirahmanmahad94@gmail.com
+Received: by 2002:a05:640c:3925:b0:19e:799b:cd44 with HTTP; Thu, 5 Jan 2023
+ 23:22:21 -0800 (PST)
+From:   TOM HUDDLESTON <tomhuddleston1jr@gmail.com>
+Date:   Fri, 6 Jan 2023 10:22:21 +0300
+X-Google-Sender-Auth: _0hqt4ipS--FcE2ho8jgIuh1da8
+Message-ID: <CANYKypwsAj2TK47u+za3aVLoO8MW=q-ik8+br9iA3RoT2rU=YA@mail.gmail.com>
+Subject: Ich habe Ihnen bis zu 3 E-Mails gesendet
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=2.1 required=5.0 tests=BAYES_80,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Level: **
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/01/2023 18:16, Konrad Dybcio wrote:
-> SM6350, similarly to SDM845, uses OSM hardware for L3 scaling.
-> Document it.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+--=20
+Ich habe Ihnen 3 E-Mails bez=C3=BCglich Ihrer Spende gesendet, aber keine
+Antwort. Bitte melden Sie sich mit Ihrem vollst=C3=A4ndigen Namen und Ihrer
+WhatsApp-Nummer bei mir, um dieses Geld an Sie weiterzuleiten.
 
+Ignorieren Sie diese Nachricht nicht, wenn Sie sie in Ihrem Spam oder
+Posteingang finden
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+Gr=C3=BC=C3=9Fe
+Tom Huddleston
