@@ -2,192 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1698E65FF9C
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 12:35:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1493665FFB2
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 12:44:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233438AbjAFLf3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 06:35:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35756 "EHLO
+        id S231831AbjAFLoR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 06:44:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232487AbjAFLf1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 06:35:27 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EAAB7148F;
-        Fri,  6 Jan 2023 03:35:26 -0800 (PST)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2F8AE4AE;
-        Fri,  6 Jan 2023 12:35:24 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1673004924;
-        bh=Npo5IIBmCbegYNeQclrVJonEiEvw8/xFIfsywaa8voM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cXrSxbvkjGp55Om5z/KEB6yPlpAebTo78gwxq8At1GlKZpx2CEhOElxR99kktCNEa
-         U5HIEbLxZEYvX4F6xyOwgEegYfyogNrhHls+v4AVWrDBWGY/J7b+oZL4ngZrWIc5Mi
-         TQ/9bqTODBUNLFOuwg9fWuNXCdJts+vNqpxah7FQ=
-Date:   Fri, 6 Jan 2023 13:35:19 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Michael Tretter <m.tretter@pengutronix.de>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>, kernel@pengutronix.de,
-        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/8] media: dt-bindings: media: fsl-pxp: convert to yaml
-Message-ID: <Y7gHd0HoG70ntuHM@pendragon.ideasonboard.com>
-References: <20230105134729.59542-1-m.tretter@pengutronix.de>
- <20230105134729.59542-2-m.tretter@pengutronix.de>
+        with ESMTP id S231404AbjAFLoQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 06:44:16 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D6936A0D6;
+        Fri,  6 Jan 2023 03:44:15 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id j17so1630749lfr.3;
+        Fri, 06 Jan 2023 03:44:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=knZj9C7RStQgqCaOUasP2ACocGzxIXf8GlmB4evRoos=;
+        b=iHX3gpe8Ci/lB+b400zFYdvkd8bZkA6Ei5NFo3ss+9QhGY7vtDCRymB4Tw8e3LDZhd
+         e88Ee14A7xpPRp2Yi2GadnGm0JJPcDmV6B3hn0tElDeqxl1QN17f8+3r1HmQYpkEiwOt
+         Y1uaWSdO6vsA5DYzSCMF91vXro89D7VFnxhgSolkChaESga4FJq29NhnUo7Y929yfZx3
+         rUXnnj1s3wEheEs2CBza+n9j2G7jr16M8vz7ajYyJybCfPxD2G7qxWrdYgYSZ8Nk8g11
+         0PPctCkosqN2ZRfWaacrZ+JBe8LQu+2LQP31Wf9WnC0D0xBU7Iopys+9X7NLRHngWUD5
+         ngdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=knZj9C7RStQgqCaOUasP2ACocGzxIXf8GlmB4evRoos=;
+        b=cCG3YF4z5KYsv/gQvO4zPSlCG1VJt19m0nmri5VByRt67NRiybZAUZ/lXjRbhunT0d
+         7WNwRkmUJ6FQ1NDR4jVXCpWnLWZ0AV/7jJHZX9n/3E0z7M/j3SMR/z6KwJFZSw7FZlSZ
+         E3dfajUgfRGy7kvuInAv1BRbKG3M4dzb/XYB0qaNtq7G22nAlLESKjG7Al+MJrLAlNcn
+         emeFFYOAo078sMcHF5alQsxN/YJblaVMjE8ZgORlO01zB1Vt2ye1/vg0q8FDSmLrGp22
+         +T2ff7pLAwX5KqwL+fy2ymeaWUu7Nj4T8oJjpap6UqVjTPRprTRcb3ferX4H90w552jg
+         1Wtw==
+X-Gm-Message-State: AFqh2kq+DhCShPN5Zj2IjC9ws1ho9f5DG6vcW3lEnKLrJU8WnYbWYUtz
+        bsVtZ+ED8PSsFlkBClACaJU8hHcUZKHu6Q==
+X-Google-Smtp-Source: AMrXdXsiRFTd46XSvutc+xReqJnCPDwFIzWm7CRiZpGxWouQyEMQHlddcDKxVUR93HKAah3O7krI3A==
+X-Received: by 2002:a05:6512:39d6:b0:4cc:586b:183b with SMTP id k22-20020a05651239d600b004cc586b183bmr2256518lfu.60.1673005453533;
+        Fri, 06 Jan 2023 03:44:13 -0800 (PST)
+Received: from i-vetokaappi.home.lan (dsl-hkibng42-56733b-36.dhcp.inet.fi. [86.115.59.36])
+        by smtp.gmail.com with ESMTPSA id u3-20020ac258c3000000b004b5872a7003sm129747lfo.98.2023.01.06.03.44.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Jan 2023 03:44:13 -0800 (PST)
+From:   =?UTF-8?q?Matti=20Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        =?UTF-8?q?Matti=20Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] General Purpose clocks and matisse-wifi backlight
+Date:   Fri,  6 Jan 2023 13:44:00 +0200
+Message-Id: <20230106114403.275865-1-matti.lehtimaki@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230105134729.59542-2-m.tretter@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
+This series adds support for general purpose clocks found on MSM8226
+and enables ti,lp8556 backlight on matisse-wifi which uses general
+purpose clocks with clk-pwm.
 
-Thank you for the patch.
+Luca Weiss (1):
+  pinctrl: qcom: msm8226: Add General Purpose clocks
 
-On Thu, Jan 05, 2023 at 02:47:22PM +0100, Michael Tretter wrote:
-> Convert the bindings of the Freescale Pixel Pipeline to YAML.
-> 
-> The conversion drops the previously listed compatibles for several SoCs.
-> It is unclear, if the PXP on these SoCs is compatible to any of the PXPs
-> on the existing SoCs and would allow to reuse the already defined
-> compatibles. The missing compatibles should be brought back when the
-> support for the PXP on these SoCs is added.
-> 
-> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
-> ---
->  .../bindings/media/fsl,imx6ull-pxp.yaml       | 62 +++++++++++++++++++
->  .../devicetree/bindings/media/fsl-pxp.txt     | 26 --------
->  2 files changed, 62 insertions(+), 26 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/media/fsl,imx6ull-pxp.yaml
->  delete mode 100644 Documentation/devicetree/bindings/media/fsl-pxp.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/media/fsl,imx6ull-pxp.yaml b/Documentation/devicetree/bindings/media/fsl,imx6ull-pxp.yaml
-> new file mode 100644
-> index 000000000000..e5f227b84759
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/fsl,imx6ull-pxp.yaml
-> @@ -0,0 +1,62 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/media/fsl,imx6ull-pxp.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Freescale Pixel Pipeline
-> +
-> +maintainers:
-> +  - Philipp Zabel <p.zabel@pengutronix.de>
-> +  - Michael Tretter <m.tretter@pengutronix.de>
-> +
-> +description:
-> +  The Pixel Pipeline (PXP) is a memory-to-memory graphics processing engine
-> +  that supports scaling, colorspace conversion, alpha blending, rotation, and
-> +  pixel conversion via lookup table. Different versions are present on various
-> +  i.MX SoCs from i.MX23 to i.MX7.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,imx6ul-pxp
-> +      - fsl,imx6ull-pxp
-> +      - fsl,imx7d-pxp
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 2
+Matti Lehtimäki (2):
+  dt-bindings: pinctrl: msm8226: Add General Purpose clocks
+  ARM: dts: qcom: apq8026-samsung-matisse-wifi: Add display backlight
 
-Can you make the number of items conditional on the compatible string ?
-
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: axi
-
-I think this could be simplified to
-
-  clock-names:
-    const: axi
-
-Up to you.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: False
-
-s/False/false/
-
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx6ul-clock.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    pxp: pxp@21cc000 {
-> +        compatible = "fsl,imx6ull-pxp";
-> +        reg = <0x021cc000 0x4000>;
-> +        interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
-> +        clock-names = "axi";
-> +        clocks = <&clks IMX6UL_CLK_PXP>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/media/fsl-pxp.txt b/Documentation/devicetree/bindings/media/fsl-pxp.txt
-> deleted file mode 100644
-> index f8090e06530d..000000000000
-> --- a/Documentation/devicetree/bindings/media/fsl-pxp.txt
-> +++ /dev/null
-> @@ -1,26 +0,0 @@
-> -Freescale Pixel Pipeline
-> -========================
-> -
-> -The Pixel Pipeline (PXP) is a memory-to-memory graphics processing engine
-> -that supports scaling, colorspace conversion, alpha blending, rotation, and
-> -pixel conversion via lookup table. Different versions are present on various
-> -i.MX SoCs from i.MX23 to i.MX7.
-> -
-> -Required properties:
-> -- compatible: should be "fsl,<soc>-pxp", where SoC can be one of imx23, imx28,
-> -  imx6dl, imx6sl, imx6sll, imx6ul, imx6sx, imx6ull, or imx7d.
-> -- reg: the register base and size for the device registers
-> -- interrupts: the PXP interrupt, two interrupts for imx6ull and imx7d.
-> -- clock-names: should be "axi"
-> -- clocks: the PXP AXI clock
-> -
-> -Example:
-> -
-> -pxp@21cc000 {
-> -	compatible = "fsl,imx6ull-pxp";
-> -	reg = <0x021cc000 0x4000>;
-> -	interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-> -		     <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
-> -	clock-names = "axi";
-> -	clocks = <&clks IMX6UL_CLK_PXP>;
-> -};
+ .../pinctrl/qcom,msm8226-pinctrl.yaml         |  4 +-
+ .../dts/qcom-apq8026-samsung-matisse-wifi.dts | 59 +++++++++++++++++++
+ drivers/pinctrl/qcom/pinctrl-msm8226.c        | 11 +++-
+ 3 files changed, 70 insertions(+), 4 deletions(-)
 
 -- 
-Regards,
+2.34.1
 
-Laurent Pinchart
