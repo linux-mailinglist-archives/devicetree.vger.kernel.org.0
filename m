@@ -2,133 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CEEF65F945
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 02:45:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A67865F9C5
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 04:00:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229905AbjAFBpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Jan 2023 20:45:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60952 "EHLO
+        id S231356AbjAFDAR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Jan 2023 22:00:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbjAFBpP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 20:45:15 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9630132278
-        for <devicetree@vger.kernel.org>; Thu,  5 Jan 2023 17:45:14 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id u12so192667ljj.11
-        for <devicetree@vger.kernel.org>; Thu, 05 Jan 2023 17:45:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eo6Au0G3Kir1k6soEftFaIGSQxJPJXA0HZtGP6fqjD8=;
-        b=H0x6yGqQNDn/cOKPJVisflhd5HwSljldTw6Ha11o1L+UA7v3mfbW2A3BqZetBa1X63
-         xKKbXEbSItcDgN0oPSe5Sfszd9e1svWpCTs+YZgVHhgXnQSYWGbgUcC9T1db5wvJ8LHy
-         pZwRU8wmD9T8ivyH3a0jbjLBVXROWmdRCk4Yr84e2QWFov3AoP94ycluN6tNEEafIydS
-         V1tinkM7GQtJpvWDVQYeCFfV+17QCMYlRjX/ojFrMM6LkPnuco29MvoNib3wMttuD5MM
-         /vdMzYHgU1zU1qaeOtMtvoudCLozfZ9IqYeZofSTc/g5DQR73NQoNb0cvGyazJTm9Ym8
-         VnOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eo6Au0G3Kir1k6soEftFaIGSQxJPJXA0HZtGP6fqjD8=;
-        b=cPY922rWBaKOSfYfN7/46X8jc//QTyMKyhLtkkAnZK19TOSTM2wk2K+5mfvgxKAZJw
-         lSv8iTD/s+WpywVSn5FfBhdThMMvVjHT4Yte2M3I4gXuDfb430xk0nUL9tsqn7n/JxyN
-         2Ci8k88Qfx/5EeWFJC/M4zAApp45t7KzzHvK3z4/15l79OJ3otacIp3eSPX7BrU5w+UZ
-         k5yTnQ/hteXYxN+9rFLyNXK1TLvYCgUl0Ynw/qUUlDT4/FSjK9/IePqfm3KRr3n3phzZ
-         DRAQNJfIJqplUEvpBudio9dhDnI15EkeJdeM0Ihn3n9Wc44l11+IP/oIaUM3OMVnQ8vF
-         iPxg==
-X-Gm-Message-State: AFqh2krkYAdL3NdXgpoeeEggOLZNtfuP7P4dv3EvUYyicBX4Sh2z3Ssr
-        6dbaLwf9uz+7lbpOB3kd8AYHVZ0TpSUArMK2OA9uVQ==
-X-Google-Smtp-Source: AMrXdXuicmNVxBgzkhQL2j1AFOlDVjKAnFnaOTtDcQi+ULtJIGHNG+o18ue68tQqol6nYpK3WVFmySVC9Izhxar61BU=
-X-Received: by 2002:a2e:9c88:0:b0:27f:c33f:e732 with SMTP id
- x8-20020a2e9c88000000b0027fc33fe732mr1481495lji.91.1672969512862; Thu, 05 Jan
- 2023 17:45:12 -0800 (PST)
+        with ESMTP id S229994AbjAFDAM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Jan 2023 22:00:12 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E9B4671AD;
+        Thu,  5 Jan 2023 19:00:10 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id DC94F24DDB2;
+        Fri,  6 Jan 2023 11:00:03 +0800 (CST)
+Received: from EXMBX173.cuchost.com (172.16.6.93) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 6 Jan
+ 2023 11:00:03 +0800
+Received: from wyh-VirtualBox.starfivetech.com (171.223.208.138) by
+ EXMBX173.cuchost.com (172.16.6.93) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.42; Fri, 6 Jan 2023 11:00:02 +0800
+From:   Yanhong Wang <yanhong.wang@starfivetech.com>
+To:     <linux-riscv@lists.infradead.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Yanhong Wang <yanhong.wang@starfivetech.com>
+Subject: [PATCH v3 0/7] Add Ethernet driver for StarFive JH7110 SoC
+Date:   Fri, 6 Jan 2023 10:59:54 +0800
+Message-ID: <20230106030001.1952-1-yanhong.wang@starfivetech.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20230105075058.924680-1-jun.nie@linaro.org> <20230105075058.924680-2-jun.nie@linaro.org>
- <d0191001-d31e-1e65-0594-12dbb789392e@linaro.org>
-In-Reply-To: <d0191001-d31e-1e65-0594-12dbb789392e@linaro.org>
-From:   Jun Nie <jun.nie@linaro.org>
-Date:   Fri, 6 Jan 2023 09:45:39 +0800
-Message-ID: <CABymUCMnBmGDjZtu2eHoRRBrsBT22JXfmYJWOXb3urUhgho+mQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] usb: typec: tipd: Support wakeup
-To:     "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
-Cc:     heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, sven@svenpeter.dev,
-        shawn.guo@linaro.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX173.cuchost.com
+ (172.16.6.93)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bryan O'Donoghue <bryan.odonoghue@linaro.org> =E4=BA=8E2023=E5=B9=B41=E6=9C=
-=885=E6=97=A5=E5=91=A8=E5=9B=9B 19:05=E5=86=99=E9=81=93=EF=BC=9A
->
-> On 05/01/2023 07:50, Jun Nie wrote:
-> > Enable wakeup when pluging or unpluging USB cable. It is up to other
-> > components to hold system in active mode, such as display, so that
-> > user can receive the notification.
-> >
-> > Signed-off-by: Jun Nie <jun.nie@linaro.org>
-> > ---
-> >   drivers/usb/typec/tipd/core.c | 38 ++++++++++++++++++++++++++++++++++=
-+
-> >   1 file changed, 38 insertions(+)
-> >
-> > diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/cor=
-e.c
-> > index 46a4d8b128f0..485b90c13078 100644
-> > --- a/drivers/usb/typec/tipd/core.c
-> > +++ b/drivers/usb/typec/tipd/core.c
-> > @@ -95,6 +95,7 @@ struct tps6598x {
-> >       struct power_supply_desc psy_desc;
-> >       enum power_supply_usb_type usb_type;
-> >
-> > +     int wakeup;
-> >       u16 pwr_status;
-> >   };
-> >
-> > @@ -846,6 +847,12 @@ static int tps6598x_probe(struct i2c_client *clien=
-t)
-> >       i2c_set_clientdata(client, tps);
-> >       fwnode_handle_put(fwnode);
-> >
-> > +     tps->wakeup =3D device_property_read_bool(tps->dev, "wakeup-sourc=
-e");
-> > +     if (tps->wakeup) {
-> > +             device_init_wakeup(&client->dev, true);
-> > +             enable_irq_wake(client->irq);
-> > +     }
->
-> Does the ordering of device_init_wakeup() and enable_irq_wake() matter ?
->
-> The sequence in drivers/usb/typec/tcpm/tcpci_maxim.c is
-> enable_irq_wake() and then device_init_wakeup() ?
+This series adds ethernet support for the StarFive JH7110 RISC-V SoC. The series
+includes MAC driver. The MAC version is dwmac-5.20 (from Synopsys DesignWare).
+For more information and support, you can visit RVspace wiki[1].
+	
+This patchset should be applied after the patchset [2], [3], [4].
+[1] https://wiki.rvspace.org/
+[2] https://lore.kernel.org/all/20221118010627.70576-1-hal.feng@starfivetech.com/
+[3] https://lore.kernel.org/all/20221118011108.70715-1-hal.feng@starfivetech.com/
+[4] https://lore.kernel.org/all/20221118011714.70877-1-hal.feng@starfivetech.com/
 
-With reading related code, I believe it is better to put device_init_wakeup=
-()
-before enable_irq_wake() logically. Though it shall not matter in real worl=
-d.
+Changes in v3:
+- Renamed the dt-bindings 'starfive,jh71x0-dwmac.yaml' to 'starfive,jh7110-dwmac.yaml'.
+- Reworded the commit messages.
+- Reworded the example context in the dt-binding 'starfive,jh7110-dwmac.yaml'.
+- Removed "starfive,jh7100-dwmac" compatible string and special initialization of jh7100.
+- Removed the parts of YT8531,so dropped patch 5 and 6.
+- Reworded the maxitems number of resets property in 'snps,dwmac.yaml'.
 
-device_init_wakeup() register the wakeup source and setup sysfs etc, which
-is puerly software side infrastructure. enable_irq_wake() setup interrupt
-configuration, including software and hardware sides. I assume there is no
-suspend/resume process involves wakeup event before probe function finish
-in real world. If there is, device_init_wakeup() should come before before
-enable_irq_wake() strictly.
+Previous versions:
+v1 - https://patchwork.kernel.org/project/linux-riscv/cover/20221201090242.2381-1-yanhong.wang@starfivetech.com/
+v2 - https://patchwork.kernel.org/project/linux-riscv/cover/20221216070632.11444-1-yanhong.wang@starfivetech.com/
 
-- Jun
+Emil Renner Berthing (2):
+  dt-bindings: net: snps,dwmac: Add dwmac-5.20 version
+  net: stmmac: platform: Add snps,dwmac-5.20 IP compatible string
 
->
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Yanhong Wang (5):
+  dt-bindings: net: snps,dwmac: Update the maxitems number of resets and
+    reset-names
+  dt-bindings: net: Add support StarFive dwmac
+  net: stmmac: Add glue layer for StarFive JH7110 SoCs
+  riscv: dts: starfive: jh7110: Add ethernet device node
+  riscv: dts: starfive: visionfive-v2: Enable gmac device tree node
+
+ .../devicetree/bindings/net/snps,dwmac.yaml   |  41 ++++--
+ .../bindings/net/starfive,jh7110-dwmac.yaml   | 113 ++++++++++++++++
+ MAINTAINERS                                   |   6 +
+ .../jh7110-starfive-visionfive-v2.dts         |  10 ++
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  93 +++++++++++++
+ drivers/net/ethernet/stmicro/stmmac/Kconfig   |  12 ++
+ drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+ .../stmicro/stmmac/dwmac-starfive-plat.c      | 123 ++++++++++++++++++
+ .../ethernet/stmicro/stmmac/stmmac_platform.c |   3 +-
+ 9 files changed, 393 insertions(+), 9 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+ create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-starfive-plat.c
+
+
+base-commit: 094226ad94f471a9f19e8f8e7140a09c2625abaa
+prerequisite-patch-id: 8ebfffa09b478904bf7c516f76e2d824ddb60140
+prerequisite-patch-id: e8dd8258a4c4062eee2cf07c4607d52baea71f3a
+prerequisite-patch-id: d050d884d7b091ff30508a70f5ce5164bb3b72e5
+prerequisite-patch-id: 0e41f8cfd4861fcbf6f2e6a2559ce28f0450299e
+prerequisite-patch-id: 6e1652501859b85f101ff3b15ced585d43c71c1b
+prerequisite-patch-id: 587628a67adad5c655e5f998bf6c4a368ec07d3c
+prerequisite-patch-id: 596490c0e397df6c0249c1306fbb1d5bf00b5b83
+prerequisite-patch-id: dc873317826b50364344b25ac5cd74e811403f3d
+prerequisite-patch-id: a50150f41d8e874553023187e22eb24dffae8d16
+prerequisite-patch-id: 735e62255c75801bdc4c0b4107850bce821ff7f5
+prerequisite-patch-id: 9d2e83a2dd43e193f534283fab73e90b4f435043
+prerequisite-patch-id: 7a43e0849a9afa3c6f83547fd16d9271b07619e5
+prerequisite-patch-id: e7aa6fb05314bad6d94c465f3f59969871bf3d2e
+prerequisite-patch-id: 6276b2a23818c65ff2ad3d65b562615690cffee9
+prerequisite-patch-id: d834ece14ffb525b8c3e661e78736692f33fca9b
+prerequisite-patch-id: 4c17a3ce4dae9b788795d915bf775630f5c43c53
+prerequisite-patch-id: dabb913fd478e97593e45c23fee4be9fd807f851
+prerequisite-patch-id: ba61df106fbe2ada21e8f22c3d2cfaf7809c84b6
+prerequisite-patch-id: 287572fb64f83f5d931034f7c75674907584a087
+prerequisite-patch-id: 536114f0732646095ef5302a165672b3290d4c75
+prerequisite-patch-id: 258ea5f9b8bf41b6981345dcc81795f25865d38f
+prerequisite-patch-id: 8b6f2c9660c0ac0ee4e73e4c21aca8e6b75e81b9
+prerequisite-patch-id: e09e995700a814a763aa304ad3881a7222acf556
+prerequisite-patch-id: 841cd71b556b480d6a5a5e332eeca70d6a76ec3f
+prerequisite-patch-id: d074c7ffa2917a9f754d5801e3f67bc980f9de4c
+prerequisite-patch-id: 5f59bc7cbbf1230e5ff4761fa7c1116d4e6e5d71
+prerequisite-patch-id: d5da3475c6a3588e11a1678feb565bdd459b548e
+-- 
+2.17.1
+
