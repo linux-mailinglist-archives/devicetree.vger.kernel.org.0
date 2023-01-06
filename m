@@ -2,77 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1582660395
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 16:42:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64FDB66039A
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 16:43:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230442AbjAFPmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 10:42:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53416 "EHLO
+        id S230142AbjAFPmj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 10:42:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230142AbjAFPmF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 10:42:05 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A871E745A5
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 07:42:03 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id h16so1591560wrz.12
-        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 07:42:03 -0800 (PST)
+        with ESMTP id S234552AbjAFPmS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 10:42:18 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5D1F745A5
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 07:42:17 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id bt23so2459143lfb.5
+        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 07:42:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Mua+I7i7capVR8PnOjxe25hKYpxTPGJab57EbFL/wtk=;
-        b=nuU1GJg5j8lcEuJkVBVka/IRJWkF24X6QfVZW1pgliLAMTwX1bT0UJz26KULCmVVAQ
-         YpDPc+90JKHY0E1X5KzKPSgk7YpwMLS0nyIN9VtbzeaJLLHhDIHRNf58jBrqDcWFge4A
-         EENDykKYAyt22wzTATSu5lA5SNQr7KdUmfvLPgF4XJtqu3lllhCQDV0fn83bjoi8+fBX
-         Xd5dZUxuUzP0HiCNOm1/k/spLWO09mT5MPFMD/kseybmqKaxOHf0SCpKMK8mXi3IJUYB
-         6gN9rfbMVLUt20E2MFYsgAwQBk+vQx3QKZ1sQ4J0gBVZnPG/jx9h1wH2NbBK8pl8+8jM
-         gfaw==
+        bh=S8DsZ4xDi7WGGGxSEqK1CF2GfXaRjgknBXXbDJzfuIc=;
+        b=ItGYGwkXvY1/pRaKVx9JjcCPiEdo3rOFFI5QTSZ6uwD392GsRfAZPt7KVNfViDE5sE
+         5ecejYwh58e+71+mMOzy/i0GF5b4LKxkflRM4KmoUp7GO3gESVJOSQCSBx7DVR+PDo+a
+         w/tufrmMOvygcvBLD8rJEyNnebstsCOkGq58Z2WKPNiiE55efO3SXwnLTApy6WiyLbLU
+         JoEsCKHan+YYWRQ0hdohVHLWlP+GEiKFVAJzUPNNJJtD6zWs56i4YxmJK74vX1u2r+u+
+         u1HG0GT2ggvxHApkpiPippaW1/88xjjfj/syaMnnsQOnWvZArAVTjxW7eGEvkrxiyWYO
+         kzaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Mua+I7i7capVR8PnOjxe25hKYpxTPGJab57EbFL/wtk=;
-        b=kSDLMeFNVl9zbFrw2ugAuDZugOhJwto249r5RSGxqG+SYyxelLWbxNOxw0/AiAEcuK
-         uww9vbxiI/WVkWReFko5SuwfAzH74WpP/vMzl6JtIVHmcDACxQKbCH0xh2ffPo9JaHuo
-         jtfbsilNxIAf4PhPFceT7B6CDj+eF/0WlVfqF5NooPnJxNiLPCpbPwCouWQn05b1iqRP
-         sfxoow5jtHJeXKkKym5uLIO1WLseUQhrRp/X/avXRrtwOuybRlUzdvq0tQKp4kPztg8y
-         kNTISNZAQUyvT/LY5Ip/TIbbVvo2QxT3k0Pr0QVTE35zye4fHsmxgyoEn2BuZWGCQloo
-         yVdw==
-X-Gm-Message-State: AFqh2koq4YFlDeIA0hqbfcwvIPwSCg0BVXP6GtdOxPILC1RPUtxVoOAH
-        bYyZOwVU7FvJG6sdBrDnQWLxXA==
-X-Google-Smtp-Source: AMrXdXthHSBcdfCq/c1/NtHLooTO6GDoaKX0aolAquOz2BrXGfeRChcgS3iWnJZZScDBw4WDusRAzA==
-X-Received: by 2002:adf:fa0f:0:b0:28f:b480:f4 with SMTP id m15-20020adffa0f000000b0028fb48000f4mr18079341wrr.12.1673019722207;
-        Fri, 06 Jan 2023 07:42:02 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id z9-20020a5d44c9000000b0023c8026841csm1449300wrr.23.2023.01.06.07.42.00
+        bh=S8DsZ4xDi7WGGGxSEqK1CF2GfXaRjgknBXXbDJzfuIc=;
+        b=CngAuKNtALfQ6NicPDJaaRANiKCyrbsXdWWhKLH1C6d+HEh78dpuxv/H0RGumafhS6
+         Q9sAmK4MLML6A54fbHSTu/zDifqpaN2TtNQGt1n1PtNHrbYZ4v9tROlPl5CKOEWug4bk
+         bWCF16tGUEJyHCIpqe4VAvwaXMKBBOhx9vhPNjzkC4bhgbjD9evFRtKvefr0uPPNJi5j
+         LIFg2z6CAlkKZKrCsY3GTspO6a98wqTonvjHkRcFKaAVgNp51uQVXkR1iiUv4fq8Vlc+
+         tozBDyp4b2KTZQY3ISmpagzWiL8AM89eGTafVlaai2vr3KkNwOdYOWe8uiUNj3FJw4JB
+         hGVw==
+X-Gm-Message-State: AFqh2krdfoGxEZ59ZS4GjW+CG0e9SHKhuZ2UdBIn1RlSC0qXLUN/vOge
+        3O0UCcTAXayWSzGYVCdNBBjsIkQow5OLs6Qm
+X-Google-Smtp-Source: AMrXdXt8ZYswXAWp2K4iWM76QSXCXc1N6nCQi4oAWyZRzrTPjidUFRKcUo2QORTmpEDbAASVsaojgQ==
+X-Received: by 2002:a05:6512:c14:b0:4b5:abe3:c63d with SMTP id z20-20020a0565120c1400b004b5abe3c63dmr19055796lfu.42.1673019736162;
+        Fri, 06 Jan 2023 07:42:16 -0800 (PST)
+Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id v14-20020a05651203ae00b004b4b5da5f80sm187271lfp.219.2023.01.06.07.42.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Jan 2023 07:42:01 -0800 (PST)
-Message-ID: <f8c8076e-2ac3-f67b-7641-d0c324784cb5@linaro.org>
-Date:   Fri, 6 Jan 2023 16:41:59 +0100
+        Fri, 06 Jan 2023 07:42:15 -0800 (PST)
+Message-ID: <c0051467-e8c3-1897-fcf5-b9140a7039bd@linaro.org>
+Date:   Fri, 6 Jan 2023 17:42:14 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 1/6] dt-bindings: display/msm: document the SM8550 DSI PHY
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v6 03/11] dt-bindings: display/msm: add sm8350 and sm8450
+ DSI PHYs
+Content-Language: en-GB
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
         Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Marek <jonathan@marek.ca>
-Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230103-topic-sm8550-upstream-mdss-dsi-v1-0-9ccd7e652fcd@linaro.org>
- <20230103-topic-sm8550-upstream-mdss-dsi-v1-1-9ccd7e652fcd@linaro.org>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230103-topic-sm8550-upstream-mdss-dsi-v1-1-9ccd7e652fcd@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20221207012231.112059-1-dmitry.baryshkov@linaro.org>
+ <20221207012231.112059-4-dmitry.baryshkov@linaro.org>
+ <ccbb47e4-d780-0b1d-814e-27e86b6c369c@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <ccbb47e4-d780-0b1d-814e-27e86b6c369c@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -84,35 +87,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/01/2023 10:08, Neil Armstrong wrote:
-> Document the SM8550 DSI PHY which is very close from the 7nm
-> and 5nm DSI PHYs found in earlier platforms.
+On 06/01/2023 17:39, Krzysztof Kozlowski wrote:
+> On 07/12/2022 02:22, Dmitry Baryshkov wrote:
+>> SM8350 and SM8450 platforms use the same driver and same bindings as the
+>> existing 7nm DSI PHYs. Add corresponding compatibility strings.
+>>
+>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml | 2 ++
+>>   1 file changed, 2 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
+>> index c851770bbdf2..bffd161fedfd 100644
+>> --- a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
+>> +++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
+>> @@ -15,6 +15,8 @@ allOf:
+>>   properties:
+>>     compatible:
+>>       enum:
+>> +      - qcom,dsi-phy-5nm-8350
+>> +      - qcom,dsi-phy-5nm-8450
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> If this patch was not merged (so far nothing in next), can we make it
+> proper SoC compatible?
+
+Ack. Bjorn has merged the dtsi bits, but I'll send a fixup.
+
 > 
-> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
-> index bffd161fedfd..f72727f81076 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
-> @@ -15,6 +15,7 @@ allOf:
->  properties:
->    compatible:
->      enum:
-> +      - qcom,dsi-phy-4nm-8550
->        - qcom,dsi-phy-5nm-8350
->        - qcom,dsi-phy-5nm-8450
-
-Poor patterns once allowed like to keep growing... I commented here:
-https://lore.kernel.org/all/ccbb47e4-d780-0b1d-814e-27e86b6c369c@linaro.org/
-
-so let's wait for response about other compatibles.
-
->        - qcom,dsi-phy-7nm
+> qcom,sm8450-dsi-phy-5nm
+> 
+> The SC7280 already uses such pattern.
+> 
+>>         - qcom,dsi-phy-7nm
+>>         - qcom,dsi-phy-7nm-8150
+>>         - qcom,sc7280-dsi-phy-7nm
+> 
+> Best regards,
+> Krzysztof
 > 
 
-Best regards,
-Krzysztof
+-- 
+With best wishes
+Dmitry
 
