@@ -2,112 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B32FE65FC97
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 09:20:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2017D65FC9C
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jan 2023 09:23:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231404AbjAFIU2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 03:20:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43232 "EHLO
+        id S229516AbjAFIXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 03:23:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232241AbjAFIUZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 03:20:25 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC4A619C1D;
-        Fri,  6 Jan 2023 00:20:23 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id z16so620528wrw.1;
-        Fri, 06 Jan 2023 00:20:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=d7uAPc5lV4BAkd0Lt50ZSuuOGeFfN66YKgz3Zf+2KBM=;
-        b=VHwkfcrVl2FfVTrKkxC0HzjPtyZ9CGNZpbIlOZe6SsFxMv2z/OFxd4MKNvDnKOzFfu
-         ZJ3oDzzoxycdiEGI12BPRrXF4sQFxCCH58MkY8isbgq+azciqbC3m+PsS7ooUHxQWXlZ
-         nMIKuTmjWZ13hH4a/c5AVYp3+zZjTxXpNxuM02i8LSGhj1LAxwlzCaY4cpHaJISi2fS9
-         8z6g/HuFW6ZqqJ6fBIa/IbK/WHWC0l/P8/mK09kXE5AF9P5wHPopv9LoJjKcd+/xUcwB
-         vMP/zcpAN2vRlZgxangN7ND+fsmHpfC9yo37R5sX9Y3BLPZ116fwdzMqBKBZtV+8t08i
-         SkHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d7uAPc5lV4BAkd0Lt50ZSuuOGeFfN66YKgz3Zf+2KBM=;
-        b=Y0krsvtDENaupdyuQOkS8nMMhz9N021QOES8lTiWRoR2wp6eqtWswQFZfXzB2QQ27y
-         Bm6pGOU8BUKb+W+t/7NleKZhM78qq76oVnI6p2acpXepW6ZuUNGBZ512uI5cI/rRFBSX
-         xz1yrxolAGwW8rSWjFjyUX+6AqjjQmy45y6Fcnuiad6XQZrKSx9dn28s7k3GCHoaif7g
-         Pm3NTHNJrLZVgdkXxOHg8FqPN4BjzdAvYpHKemqMvI/DdMm8LYGW1/jvFrT2zxWGEZp9
-         mgU8xIbEqEatki/6RKruoJ5iRWQ3g5R+sa8D+D2rmuQt2F7b6sHv4VL/OQlvy0S51f3x
-         fP1Q==
-X-Gm-Message-State: AFqh2koAsEjtpQ1sr36QqV9HvRtwe1e1T8mRkY+PMonV3pAkP4A2JYU+
-        7Dn4Vr5Vnq1PgtaCqT/YwCY=
-X-Google-Smtp-Source: AMrXdXsSaZlnxU9wTK9Z3PLBDtebM5hY+mqg71s24qvIEUMA2DyDyulvecJ+TT82vQmAzLouQez4aw==
-X-Received: by 2002:a5d:67c3:0:b0:2a4:bd16:2931 with SMTP id n3-20020a5d67c3000000b002a4bd162931mr6152301wrw.62.1672993222223;
-        Fri, 06 Jan 2023 00:20:22 -0800 (PST)
-Received: from Red ([2a01:cb1d:3d5:a100:4a02:2aff:fe07:1efc])
-        by smtp.googlemail.com with ESMTPSA id s10-20020adfea8a000000b002421ed1d8c8sm434978wrm.103.2023.01.06.00.20.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Jan 2023 00:20:21 -0800 (PST)
-Date:   Fri, 6 Jan 2023 09:20:20 +0100
-From:   Corentin Labbe <clabbe.montjoie@gmail.com>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v2 1/3] dt-bindings: crypto: sun8i-ce: Add compatible for
- D1
-Message-ID: <Y7fZxAl8WwVztDj/@Red>
-References: <20221231220146.646-1-samuel@sholland.org>
- <20221231220146.646-2-samuel@sholland.org>
+        with ESMTP id S229490AbjAFIXF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 03:23:05 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA0F5631B5;
+        Fri,  6 Jan 2023 00:23:02 -0800 (PST)
+Received: from [IPV6:2a01:e0a:120:3210:52f4:db34:c2f0:4d75] (unknown [IPv6:2a01:e0a:120:3210:52f4:db34:c2f0:4d75])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: benjamin.gaignard)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 53B2C6602D05;
+        Fri,  6 Jan 2023 08:23:00 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1672993380;
+        bh=vAbwKXZOJip0G6a4yIO6tOXf4HycylFNKhbnhzsdbMU=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=IqnxTc2BEOyZ4I2QqXLh4/Akk+wekLf1cAMGp4vddn07ZruuijwS2NSLqexLDthYK
+         VAVNaKiHicprDrfg2VfeCHQax8xGG5WL2shv+yNvL1eip/CUboUCaSuK1PhzT7nDZJ
+         pbzUymBpOav9wt6abcp4cxP3hCYxwh+DAjFdcKRpkxllj+6HGbKA4e1G+rMpjxjoGS
+         qheoXTb6MnL+sc2ru6TSt3fuZUe1udLAyhNBTDGLY5yZYjOIgxGMzUC7x/yjMi6btT
+         wHPMXscaKVaT4DaHsL6suQwY2rXza8maognUAGxWEmC8/00uAbaPwuHl5tFdThma7/
+         vORfq//kHvUnA==
+Message-ID: <502dd378-db76-fbe0-c922-c0b3761e5eb8@collabora.com>
+Date:   Fri, 6 Jan 2023 09:22:57 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 10/13] media: verisilicon: Add Rockchip AV1 decoder
+To:     Dan Carpenter <error27@gmail.com>, oe-kbuild@lists.linux.dev,
+        ezequiel@vanguardiasur.com.ar, p.zabel@pengutronix.de,
+        mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
+        daniel.almeida@collabora.com, nicolas.dufresne@collabora.co.uk
+Cc:     lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+References: <202301060326.FJvy51O1-lkp@intel.com>
+Content-Language: en-US
+From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
+In-Reply-To: <202301060326.FJvy51O1-lkp@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221231220146.646-2-samuel@sholland.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Sat, Dec 31, 2022 at 04:01:43PM -0600, Samuel Holland a �crit :
-> D1 has a crypto engine similar to the one in other Allwinner SoCs.
-> Like H6, it has a separate MBUS clock gate.
-> 
-> It also requires the internal RC oscillator to be enabled for the TRNG
-> to return data, presumably because noise from the oscillator is used as
-> an entropy source. This is likely the case for earlier variants as well,
-> but it really only matters for H616 and newer SoCs, as H6 provides no
-> way to disable the internal oscillator.
-> 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> ---
-> I noticed that the vendor driver has code to explicitly enable IOSC when
-> using the TRNG on A83T (search SS_TRNG_OSC_ADDR), but that is covered by
-> a different binding/driver in mainline.
-> 
-> Changes in v2:
->  - Add TRNG clock
-> 
->  .../bindings/crypto/allwinner,sun8i-ce.yaml   | 33 ++++++++++++++-----
->  1 file changed, 25 insertions(+), 8 deletions(-)
-> 
 
-Acked-by: Corentin Labbe <clabbe.montjoie@gmail.com>
+Le 06/01/2023 à 08:33, Dan Carpenter a écrit :
+> Hi Benjamin,
+>
+> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+>
+> url:    https://github.com/intel-lab-lkp/linux/commits/Benjamin-Gaignard/dt-bindings-media-rockchip-vpu-Add-rk3588-vpu-compatible/20230104-010906
+> base:   git://linuxtv.org/media_tree.git master
+> patch link:    https://lore.kernel.org/r/20230103170058.810597-11-benjamin.gaignard%40collabora.com
+> patch subject: [PATCH v2 10/13] media: verisilicon: Add Rockchip AV1 decoder
+> config: ia64-randconfig-m041-20230101
+> compiler: ia64-linux-gcc (GCC) 12.1.0
+>
+> If you fix the issue, kindly add following tag where applicable
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Reported-by: Dan Carpenter <error27@gmail.com>
+>
+> smatch warnings:
+> drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c:121 rockchip_vpu981_get_frame_index() error: buffer overflow 'frame->reference_frame_ts' 8 <= 8
+> drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c:167 rockchip_vpu981_av1_dec_frame_ref() error: buffer overflow 'frame->global_motion.type' 8 <= 9
+> drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c:1947 rockchip_vpu981_av1_dec_run() warn: missing error code 'ret'
+>
+> vim +121 drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
+>
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  109
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  110  static int rockchip_vpu981_get_frame_index(struct hantro_ctx *ctx, int ref)
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  111  {
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  112  	struct hantro_av1_dec_hw_ctx *av1_dec = &ctx->av1_dec;
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  113  	struct hantro_av1_dec_ctrls *ctrls = &av1_dec->ctrls;
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  114  	const struct v4l2_ctrl_av1_frame *frame = ctrls->frame;
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  115  	u64 timestamp;
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  116  	int i, idx = frame->ref_frame_idx[ref];
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  117
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  118  	if (idx >= AV1_MAX_FRAME_BUF_COUNT || idx < 0)
+>                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>
+> Should this be V4L2_AV1_TOTAL_REFS_PER_FRAME?
 
-Thanks
+Yes it should be.
+I will fix that and the other warnings in v3.
+
+Thanks,
+Benjamin
+
+>
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  119  		return AV1_INVALID_IDX;
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  120
+> 9223ba771533395 Benjamin Gaignard 2023-01-03 @121  	timestamp = frame->reference_frame_ts[idx];
+>                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>
+>
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  122  	for (i = 0; i < AV1_MAX_FRAME_BUF_COUNT; i++) {
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  123  		if (!av1_dec->frame_refs[i].used)
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  124  			continue;
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  125  		if (av1_dec->frame_refs[i].timestamp == timestamp)
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  126  			return i;
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  127  	}
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  128
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  129  	return AV1_INVALID_IDX;
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  130  }
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  131
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  132  static int rockchip_vpu981_get_order_hint(struct hantro_ctx *ctx, int ref)
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  133  {
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  134  	struct hantro_av1_dec_hw_ctx *av1_dec = &ctx->av1_dec;
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  135  	int idx = rockchip_vpu981_get_frame_index(ctx, ref);
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  136
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  137  	if (idx != AV1_INVALID_IDX)
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  138  		return av1_dec->frame_refs[idx].order_hint;
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  139
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  140  	return 0;
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  141  }
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  142
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  143  static int rockchip_vpu981_av1_dec_frame_ref(struct hantro_ctx *ctx,
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  144  					     u64 timestamp)
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  145  {
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  146  	struct hantro_av1_dec_hw_ctx *av1_dec = &ctx->av1_dec;
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  147  	struct hantro_av1_dec_ctrls *ctrls = &av1_dec->ctrls;
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  148  	const struct v4l2_ctrl_av1_frame *frame = ctrls->frame;
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  149  	int i;
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  150
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  151  	for (i = 0; i < AV1_MAX_FRAME_BUF_COUNT; i++) {
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  152  		if (!av1_dec->frame_refs[i].used) {
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  153  			int j;
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  154
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  155  			av1_dec->frame_refs[i].width =
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  156  			    frame->frame_width_minus_1 + 1;
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  157  			av1_dec->frame_refs[i].height =
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  158  			    frame->frame_height_minus_1 + 1;
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  159  			av1_dec->frame_refs[i].mi_cols =
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  160  			    DIV_ROUND_UP(frame->frame_width_minus_1 + 1, 8);
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  161  			av1_dec->frame_refs[i].mi_rows =
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  162  			    DIV_ROUND_UP(frame->frame_height_minus_1 + 1, 8);
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  163  			av1_dec->frame_refs[i].timestamp = timestamp;
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  164  			av1_dec->frame_refs[i].frame_type = frame->frame_type;
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  165  			av1_dec->frame_refs[i].order_hint = frame->order_hint;
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  166  			av1_dec->frame_refs[i].gm_mode =
+> 9223ba771533395 Benjamin Gaignard 2023-01-03 @167  				frame->global_motion.type[V4L2_AV1_REF_LAST_FRAME + i];
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  168  			if (!av1_dec->frame_refs[i].vb2_ref)
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  169  				av1_dec->frame_refs[i].vb2_ref = hantro_get_dst_buf(ctx);
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  170
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  171  			for (j = 0; j < V4L2_AV1_TOTAL_REFS_PER_FRAME; j++)
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  172  				av1_dec->frame_refs[i].order_hints[j] = frame->order_hints[j];
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  173
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  174  			av1_dec->frame_refs[i].used = true;
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  175  			av1_dec->current_frame_index = i;
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  176  			return i;
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  177  		}
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  178  	}
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  179
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  180  	return AV1_INVALID_IDX;
+> 9223ba771533395 Benjamin Gaignard 2023-01-03  181  }
+>
