@@ -2,76 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B22D660C28
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 04:27:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7AF0660CAA
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 07:25:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229521AbjAGD1j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 22:27:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36904 "EHLO
+        id S229780AbjAGGZi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Jan 2023 01:25:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229751AbjAGD1i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 22:27:38 -0500
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5041C8B53F
-        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 19:27:37 -0800 (PST)
-Received: by mail-pl1-x630.google.com with SMTP id c6so3712228pls.4
-        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 19:27:37 -0800 (PST)
+        with ESMTP id S229863AbjAGGZh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 01:25:37 -0500
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1B72669BA;
+        Fri,  6 Jan 2023 22:25:35 -0800 (PST)
+Received: by mail-pl1-x629.google.com with SMTP id jn22so3922893plb.13;
+        Fri, 06 Jan 2023 22:25:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
-         :cc:to:subject:from:to:cc:subject:date:message-id:reply-to;
-        bh=m3LuWDVbFp8erXkWPNDfSi3CwlNfNnBUFrp8bnNnzi4=;
-        b=B7bEEYJ67fuzUqgD9wEonKSjDosUaC0zUvwTpHk1pjMQtNzdyaj2hW4i5Gt/8NDon+
-         hwlw2nlexVIwq8zzCQfxudV+r/Sqk4i6Lwylb5n2bzXwe6dXqsWwpaA32dUzFNOwE3hH
-         shTAfbd6tCfhCFuPyXE5DITod7u0HqetcxOSI=
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9I9FUCKmX9nkV6+/A438eiwX+2D9JXqs+q6SgJ5Jvbc=;
+        b=De9Ip9VyUNuClk2I63TYF05h/4/yfXtwNnurA/6JW7cjk3EAhGh6iOojjwoAxWOhRF
+         gz8GVjCcOWCVlf3bUVZMjyb5//7Dd5ree1p6+c+8hHc/SglQ3Frv//AfGHItgOgQohsE
+         BBtZXEs7qhB/F9w8dcU5Qt4zXhSH1FhiGFq31gtzYsXvCM97O/ZwSrza58seb2dM2SQG
+         k6tvHMFMLdh7bnCEeIgoSIuHvvRpXT+wFQG36nY+asWkAr55IzSAFQNRbDb9nyBn2PNk
+         khk0lRZALmwAEfRVuYpwtbdItXqfHh36/22hKoXsI4cfmW4I/VEqJG+RjKNOTiouyfcV
+         gByA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
-         :cc:to:subject:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=m3LuWDVbFp8erXkWPNDfSi3CwlNfNnBUFrp8bnNnzi4=;
-        b=HIDF8zkZPF1Ka6nMZRHuDyRo19mkb4xBebU6n0UWp/z1C4q6ADHjXqiTDUE+fTlCZ+
-         18wXu8moNS7pSFJqgflMjy/M3m6sLh/I2ZX2uc9zojc/WoLpH2cCb7s0UFeuz72mhsTb
-         hDwXZ6/hl4IA7npsaIQ4hNI0DXZn+3f17BPrh4YQqTRfRSRX38uS+LTPbq/qQet46GFr
-         9LtB091HkjOTvQCafO0kmXo7FB9EPU9AktRJtBNr0iToipUuVR0333LHQjJ1rFTd+rw2
-         XlOgHGJGnruUHv74DV+omUEYGzqtG1AMv9IO+BSR/AvC+T6SNh2RpSfU7TNLflP3xtup
-         sr0Q==
-X-Gm-Message-State: AFqh2krrKJvNL6Mg2E1JI/GOuELJPh6GYQks1R3oZG2yVNe+RiSbrrLT
-        l+ESx9wpPgX/5K1+g2uzEa3nRA==
-X-Google-Smtp-Source: AMrXdXuMz/toCYDKKdI5MtIQJXNm+5g1RMBs6R8uEWATXi6Z4DruBn6icDBxwIojuxvEfVSW6Icuxw==
-X-Received: by 2002:a05:6a20:4904:b0:9d:efbf:8156 with SMTP id ft4-20020a056a20490400b0009defbf8156mr76255830pzb.31.1673062056738;
-        Fri, 06 Jan 2023 19:27:36 -0800 (PST)
-Received: from bcacpedev-irv-3.lvn.broadcom.net ([192.19.161.250])
-        by smtp.gmail.com with ESMTPSA id d7-20020a631d47000000b004a849d3d9c2sm1492646pgm.22.2023.01.06.19.27.34
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 06 Jan 2023 19:27:35 -0800 (PST)
-Subject: Re: [PATCH 03/16] dt-bindings: spi: Add spi peripheral specific
- property
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Linux SPI List <linux-spi@vger.kernel.org>,
-        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
-        anand.gore@broadcom.com, tomer.yacoby@broadcom.com,
-        dan.beygelman@broadcom.com, joel.peshkin@broadcom.com,
-        f.fainelli@gmail.com, jonas.gorski@gmail.com,
-        kursad.oney@broadcom.com, dregan@mail.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230106200809.330769-1-william.zhang@broadcom.com>
- <20230106200809.330769-4-william.zhang@broadcom.com>
- <Y7iPS48viBg0QRok@sirena.org.uk>
-From:   William Zhang <william.zhang@broadcom.com>
-Message-ID: <3ff9a7fa-25dd-701c-078e-03e47bd3c08b@broadcom.com>
-Date:   Fri, 6 Jan 2023 19:27:34 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
- Thunderbird/52.4.0
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9I9FUCKmX9nkV6+/A438eiwX+2D9JXqs+q6SgJ5Jvbc=;
+        b=XbvIVGN6Bx8srYEk7sRuulIxwpNsyj8bkMTAKKCiqPRBuE9d2olWlnuXgBEoxX7XxK
+         yxm/R6rRkmu7YHLMHLbCxpsacMbUHDz5uP19hL65hBqKwe1i/9ltUedTtUhTHFfbwbIB
+         LUk+X7mArIhbdmxxNvhAaOaNg9qIBeKbcL6FnvNWnGkJW3815/4qkjC1UJhaDFzlUmrq
+         f546k1wpaW9sDCMkHY28WSSkeCmo83ptituB5wiV20Yv9uPIe6yReSQ6VYepCsoClg8R
+         ngMUb/qdfPmI94LtnDFr7Q6jRJxUy8TBxI6wMWSSU4ti1gl8n7x2In83vNQKJ7BeFJdD
+         RMqw==
+X-Gm-Message-State: AFqh2krBERqDXXhzn2UDMce/abXAM8FIm+LV/Ner9SYhv4S2ZM3k+uDq
+        ROS/qF8m8YARQSyXVpp2HsWbKgT0qkeGQGm3tcA=
+X-Google-Smtp-Source: AMrXdXspUyEJNzpdUTFCijDY3pi/wJONoLW92mY7TzpekHwUhEWdrd7tU5fpp+o47GlhNRpENXgnGMzcNAhSJWbz+dE=
+X-Received: by 2002:a17:90b:1112:b0:223:dd6f:13b2 with SMTP id
+ gi18-20020a17090b111200b00223dd6f13b2mr4153961pjb.56.1673072735034; Fri, 06
+ Jan 2023 22:25:35 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <Y7iPS48viBg0QRok@sirena.org.uk>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="0000000000009970d805f1a41d80"
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+References: <20230103164359.24347-1-ysionneau@kalray.eu>
+In-Reply-To: <20230103164359.24347-1-ysionneau@kalray.eu>
+From:   Jeff Xie <xiehuan09@gmail.com>
+Date:   Sat, 7 Jan 2023 14:25:23 +0800
+Message-ID: <CAEr6+ECRh_9App18zmcS6FUR81YYhR=n4kGdeZAtQBsdMB55_A@mail.gmail.com>
+Subject: Re: [RFC PATCH 00/25] Upstream kvx Linux port
+To:     Yann Sionneau <ysionneau@kalray.eu>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Albert Ou <aou@eecs.berkeley.edu>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Arnaldo Carvalho de Melo <acme@kernel.org>,
+        Boqun Feng <boqun.feng@gmail.com>, bpf@vger.kernel.org,
+        Christian Brauner <brauner@kernel.org>,
+        devicetree@vger.kernel.org, Eric Biederman <ebiederm@xmission.com>,
+        Eric Paris <eparis@redhat.com>, Ingo Molnar <mingo@redhat.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        Jason Baron <jbaron@akamai.com>, Jiri Olsa <jolsa@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Josh Poimboeuf <jpoimboe@kernel.org>,
+        Kees Cook <keescook@chromium.org>,
+        Kieran Bingham <kbingham@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arch@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-audit@redhat.com, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mm@kvack.org,
+        linux-perf-users@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-riscv@lists.infradead.org, Marc Zyngier <maz@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Namhyung Kim <namhyung@kernel.org>,
+        Nick Piggin <npiggin@gmail.com>,
+        Oleg Nesterov <oleg@redhat.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Moore <paul@paul-moore.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Waiman Long <longman@redhat.com>,
+        Will Deacon <will@kernel.org>, Alex Michon <amichon@kalray.eu>,
+        Ashley Lesdalons <alesdalons@kalray.eu>,
+        Benjamin Mugnier <mugnier.benjamin@gmail.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Guillaume Missonnier <gmissonnier@kalray.eu>,
+        Guillaume Thouvenin <gthouvenin@kalray.eu>,
+        Jean-Christophe Pince <jcpince@gmail.com>,
+        Jonathan Borne <jborne@kalray.eu>,
+        Jules Maselbas <jmaselbas@kalray.eu>,
+        Julian Vetter <jvetter@kalray.eu>,
+        Julien Hascoet <jhascoet@kalray.eu>,
+        Julien Villette <jvillette@kalray.eu>,
+        Louis Morhet <lmorhet@kalray.eu>,
+        Luc Michel <lmichel@kalray.eu>,
+        =?UTF-8?Q?Marc_Poulhi=C3=A8s?= <dkm@kataplop.net>,
+        Marius Gligor <mgligor@kalray.eu>,
+        Samuel Jones <sjones@kalray.eu>,
+        Thomas Costis <tcostis@kalray.eu>,
+        Vincent Chardon <vincent.chardon@elsys-design.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,124 +121,530 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---0000000000009970d805f1a41d80
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Hi,
 
-Hi Mark,
+On Wed, Jan 4, 2023 at 1:01 AM Yann Sionneau <ysionneau@kalray.eu> wrote:
+>
+> This patch series adds support for the kv3-1 CPU architecture of the kvx =
+family
+> found in the Coolidge (aka MPPA3-80) SoC of Kalray.
+>
+> This is an RFC, since kvx support is not yet upstreamed into gcc/binutils=
+,
+> therefore this patch series cannot be merged into Linux for now.
+>
+> The goal is to have preliminary reviews and to fix problems early.
+>
+> The Kalray VLIW processor family (kvx) has the following features:
+> * 32/64 bits execution mode
+> * 6-issue VLIW architecture
+> * 64 x 64bits general purpose registers
+> * SIMD instructions
+> * little-endian
+> * deep learning co-processor
+>
+> Kalray kv3-1 core which is the third of the kvx family is embedded in Kal=
+ray
+> Coolidge SoC currently used on K200 and K200-LP boards.
+>
+> The Coolidge SoC contains 5 clusters each of which is made of:
+> * 4MiB of on-chip memory (SMEM)
+> * 1 dedicated safety/security core (kv3-1 core).
+> * 16 PEs (Processing Elements) (kv3-1 cores).
+> * 16 Co-processors (one per PE)
+> * 2 Crypto accelerators
+>
+> The Coolidge SoC contains the following features:
+> * 5 Clusters
+> * 2 100G Ethernet controllers
+> * 8 PCIe GEN4 controllers (Root Complex and Endpoint capable)
+> * 2 USB 2.0 controllers
+> * 1 Octal SPI-NOR flash controller
+> * 1 eMMC controller
+> * 3 Quad SPI controllers
+> * 6 UART
+> * 5 I2C controllers (3 of which are SMBus capable)
+> * 4 CAN controllers
+> * 1 OTP memory
+>
+> A kvx toolchain can be built using:
+> # install dependencies: texinfo bison flex libgmp-dev libmpc-dev libmpfr-=
+dev
+> $ git clone https://github.com/kalray/build-scripts
+> $ cd build-scripts
+> $ source last.refs
+> $ ./build-kvx-xgcc.sh output
 
-On 01/06/2023 01:14 PM, Mark Brown wrote:
-> On Fri, Jan 06, 2023 at 12:07:55PM -0800, William Zhang wrote:
-> 
->> brcm,no-clk-gate is a Broadcom Broadband HS SPI controller specific
->> property for certain SPI device such as Broadcom ISI voice daughtercard
->> to work properly. It disables the clock gating feature when the chip
->> select is deasserted for any device that wants to keep the clock
->> running.
-> 
-> Why would this property be Broadcom specific?  Other devices could in
-> theory implement this.
-> 
-It does not need to be Broadcom specific if other SoC's SPI bus 
-controller support such function. I am not aware of such case but 
-certainly I am no expert on other chips. I can put it in the generic 
-spi-peripheral-props.yaml if that is what you suggest.
+I would like to build the kvx-xgcc to compile and test the linux
+kernel, but it reported a compile error.
+I wonder what version of gcc you are using.
 
->> +properties:
->> +  brcm,no-clk-gate:
->> +    $ref: /schemas/types.yaml#/definitions/flag
->> +    description:
->> +      Some SPI device such as Broadcom ISI based voice daughtercard requires SPI
->> +      clock running even when chip select is deasserted. By default the
->> +      controller turns off or gate the clock when cs is not active to save
->> +      power. This flag tells the controller driver to keep the clock running
->> +      when chip select is not active.
-> 
-> This seems problematic with any host controlled chip select support...
-> 
-Yes those ISI chip based voice cards do need such strange requirement 
-and will not work with other controller.  That is one of the reason I 
-put this as Broadcom specific option.
+My build environment:
+VERSION=3D"20.04.2 LTS (Focal Fossa)"
+gcc version 9.3.0 (Ubuntu 9.3.0-17ubuntu1~20.04)
 
---0000000000009970d805f1a41d80
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
 
-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
-YDZuuBJwnyCzevMoPtVYPharioL5H3BRnQi8YoTXH7/uRo33dewYFm474yFjwwnt82TFtveVZkVq
-6h4WIQ4wTcwFfET8zMkELnGzS5SHCl8sPD+lNxxJ1JDZYwIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
-BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
-YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
-BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
-MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
-YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
-Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
-HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
-BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUq65GzwZxydFHjjYEU/9h
-xHhPWlwwDQYJKoZIhvcNAQELBQADggEBAA2hGG3JPAdGPH0ZdohGUCIVjKz+U+EFuIDbS6A/5jqX
-VhYAxZlzj7tSjUIM7G7IhyfqPC46GKJ/4x+Amz1Z6YxNGy71L68kYD6hIbBcA5AM42QBUufly6Oa
-/ppSz3WoflVyFFQ5YXniZ+eU+2/cdnYZg4aVUnFjimOF5o3NfMLzOkhQNxbaDjFUfUYD8hKmU6v4
-0vUBj8KZ9Gi1LIagLKUREn8jku0lcLsRbnJ5Ey5ScajC/FESPyYWasOW8j8/1EoJksmhbYGKNS6C
-urb/KlmDGfVrIRYDbL0ckhGQIP5c6L+kSQZ2sHnQK0e0WgIaZYxaPYeY5u0GLCOze+3vyRMxggJt
-MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
-VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwxuh2XG3FXRL1W
-JOEwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIL3w0eWjk4HHJ9klGn3e86kzvJRQ
-hbbPq9FBv3Bm/UyAMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIz
-MDEwNzAzMjczN1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
-CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
-AwQCATANBgkqhkiG9w0BAQEFAASCAQAtZVaghz0Z6ZZX2e37beo/T6XwYsbXdAZ/NjoOQf+ZhJbj
-W4GflEKoaM9iGD8S9sQ8BT8SA6/hGMCn6+Z2TO7LasrvsF6FVu67rcC4bGGsgoyN3y4GALzbXHcn
-Usz9xqC1yZOs79fp93Ef3DiBkZzPOrwRiGq9M3m+LoCjSbeIVXgM3fFcpUi5PN9fH5DV+jW5t7uf
-NcwXlxwB6ws76dmTptFW2v5yQHonDcEVAgKqKEImfx49QrwBR3bKeaI979mPVD1T99qDfN5fVEL1
-XsPK5+WUUfXTyg7QWZvyAw/rUh6ja+g6yx6B1DSV2TBby4SBI2ZYIekbx37XdBukwlmb
---0000000000009970d805f1a41d80--
+Compile error:
+$ ./build-kvx-xgcc.sh output
+
+../../binutils/libiberty/fibheap.c: In function =E2=80=98fibheap_replace_ke=
+y_data=E2=80=99:
+../../binutils/libiberty/fibheap.c:38:24: error: =E2=80=98LONG_MIN=E2=80=99=
+ undeclared
+(first use in this function)
+   38 | #define FIBHEAPKEY_MIN LONG_MIN
+      |                        ^~~~~~~~
+../../binutils/libiberty/fibheap.c:220:30: note: in expansion of macro
+=E2=80=98FIBHEAPKEY_MIN=E2=80=99
+  220 |   if (okey =3D=3D key && okey !=3D FIBHEAPKEY_MIN)
+      |                              ^~~~~~~~~~~~~~
+../../binutils/libiberty/fibheap.c:36:1: note: =E2=80=98LONG_MIN=E2=80=99 i=
+s defined
+in header =E2=80=98<limits.h>=E2=80=99; did you forget to =E2=80=98#include=
+ <limits.h>=E2=80=99?
+   35 | #include "fibheap.h"
+  +++ |+#include <limits.h>
+   36 |
+../../binutils/libiberty/fibheap.c:38:24: note: each undeclared
+identifier is reported only once for each function it appears in
+   38 | #define FIBHEAPKEY_MIN LONG_MIN
+      |                        ^~~~~~~~
+../../binutils/libiberty/fibheap.c:220:30: note: in expansion of macro
+=E2=80=98FIBHEAPKEY_MIN=E2=80=99
+  220 |   if (okey =3D=3D key && okey !=3D FIBHEAPKEY_MIN)
+      |                              ^~~~~~~~~~~~~~
+../../binutils/libiberty/fibheap.c: In function =E2=80=98fibheap_delete_nod=
+e=E2=80=99:
+../../binutils/libiberty/fibheap.c:38:24: error: =E2=80=98LONG_MIN=E2=80=99=
+ undeclared
+(first use in this function)
+   38 | #define FIBHEAPKEY_MIN LONG_MIN
+      |                        ^~~~~~~~
+../../binutils/libiberty/fibheap.c:261:36: note: in expansion of macro
+=E2=80=98FIBHEAPKEY_MIN=E2=80=99
+  261 |   fibheap_replace_key (heap, node, FIBHEAPKEY_MIN);
+      |                                    ^~~~~~~~~~~~~~
+../../binutils/libiberty/fibheap.c:38:24: note: =E2=80=98LONG_MIN=E2=80=99 =
+is defined
+in header =E2=80=98<limits.h>=E2=80=99; did you forget to =E2=80=98#include=
+ <limits.h>=E2=80=99?
+   38 | #define FIBHEAPKEY_MIN LONG_MIN
+      |                        ^~~~~~~~
+../../binutils/libiberty/fibheap.c:261:36: note: in expansion of macro
+=E2=80=98FIBHEAPKEY_MIN=E2=80=99
+  261 |   fibheap_replace_key (heap, node, FIBHEAPKEY_MIN);
+      |                                    ^~~~~~~~~~~~~~
+
+
+> The kvx toolchain will be installed in the "output" directory.
+>
+> A buildroot image (kernel+rootfs) and toolchain can be built using:
+> $ git clone -b coolidge-for-upstream https://github.com/kalray/buildroot
+> $ cd buildroot
+> $ make O=3Dbuild_kvx kvx_defconfig
+> $ make O=3Dbuild_kvx
+>
+> The vmlinux image can be found in buildroot/build_kvx/images/vmlinux.
+>
+> If you are just interested in building the Linux kernel with no rootfs yo=
+u can
+> just do this with the kvx-elf- toolchain:
+> $ make ARCH=3Dkvx O=3Dbuild_kvx CROSS_COMPILE=3Dkvx-elf- default_defconfi=
+g
+> $ make ARCH=3Dkvx O=3Dbuild_kvx CROSS_COMPILE=3Dkvx-elf- -j$(($(nproc) + =
+1))
+>
+> The vmlinux ELF can be run with qemu by doing:
+> # install dependencies: ninja pkg-config libglib-2.0-dev cmake libfdt-dev=
+ libpixman-1-dev zlib1g-dev
+> $ git clone https://github.com/kalray/qemu-builder
+> $ cd qemu-builder
+> $ git submodule update --init
+> $ make -j$(($(nproc) + 1))
+> $ ./qemu-system-kvx -m 1024 -nographic -kernel <path/to/vmlinux>
+>
+> Yann Sionneau (25):
+>   Documentation: kvx: Add basic documentation
+>   kvx: Add ELF-related definitions
+>   kvx: Add build infrastructure
+>   kvx: Add CPU definition headers
+>   kvx: Add atomic/locking headers
+>   kvx: Add other common headers
+>   kvx: Add boot and setup routines
+>   kvx: Add exception/interrupt handling
+>   kvx: irqchip: Add support for irq controllers
+>   kvx: Add process management
+>   kvx: Add memory management
+>   kvx: Add system call support
+>   kvx: Add signal handling support
+>   kvx: Add ELF relocations and module support
+>   kvx: Add misc common routines
+>   kvx: Add some library functions
+>   kvx: Add multi-processor (SMP) support
+>   kvx: Add kvx default config file
+>   kvx: power: scall poweroff driver
+>   kvx: gdb: add kvx related gdb helpers
+>   kvx: Add support for ftrace
+>   kvx: Add support for jump labels
+>   kvx: Add debugging related support
+>   kvx: Add support for CPU Perf Monitors
+>   kvx: Add support for cpuinfo
+>
+>  .../kalray,kvx-core-intc.txt                  |   22 +
+>  .../devicetree/bindings/perf/kalray-pm.txt    |   21 +
+>  Documentation/kvx/kvx-exceptions.txt          |  246 +
+>  Documentation/kvx/kvx-iommu.txt               |  183 +
+>  Documentation/kvx/kvx-mmu.txt                 |  272 +
+>  Documentation/kvx/kvx-smp.txt                 |   36 +
+>  Documentation/kvx/kvx.txt                     |  268 +
+>  arch/kvx/Kconfig                              |  249 +
+>  arch/kvx/Kconfig.debug                        |   70 +
+>  arch/kvx/Makefile                             |   52 +
+>  arch/kvx/configs/default_defconfig            |  130 +
+>  arch/kvx/include/asm/Kbuild                   |   20 +
+>  arch/kvx/include/asm/asm-prototypes.h         |   14 +
+>  arch/kvx/include/asm/atomic.h                 |  104 +
+>  arch/kvx/include/asm/barrier.h                |   15 +
+>  arch/kvx/include/asm/bitops.h                 |  207 +
+>  arch/kvx/include/asm/bitrev.h                 |   32 +
+>  arch/kvx/include/asm/break_hook.h             |   69 +
+>  arch/kvx/include/asm/bug.h                    |   67 +
+>  arch/kvx/include/asm/cache.h                  |   46 +
+>  arch/kvx/include/asm/cacheflush.h             |  181 +
+>  arch/kvx/include/asm/clocksource.h            |   17 +
+>  arch/kvx/include/asm/cmpxchg.h                |  185 +
+>  arch/kvx/include/asm/current.h                |   22 +
+>  arch/kvx/include/asm/dame.h                   |   31 +
+>  arch/kvx/include/asm/debug.h                  |   35 +
+>  arch/kvx/include/asm/elf.h                    |  155 +
+>  arch/kvx/include/asm/fixmap.h                 |   47 +
+>  arch/kvx/include/asm/ftrace.h                 |   41 +
+>  arch/kvx/include/asm/futex.h                  |  141 +
+>  arch/kvx/include/asm/hardirq.h                |   14 +
+>  arch/kvx/include/asm/hugetlb.h                |   36 +
+>  arch/kvx/include/asm/hw_breakpoint.h          |   72 +
+>  arch/kvx/include/asm/hw_irq.h                 |   14 +
+>  arch/kvx/include/asm/insns.h                  |   16 +
+>  arch/kvx/include/asm/insns_defs.h             |  197 +
+>  arch/kvx/include/asm/io.h                     |   34 +
+>  arch/kvx/include/asm/ipi.h                    |   16 +
+>  arch/kvx/include/asm/irqflags.h               |   58 +
+>  arch/kvx/include/asm/jump_label.h             |   59 +
+>  arch/kvx/include/asm/l2_cache.h               |   75 +
+>  arch/kvx/include/asm/l2_cache_defs.h          |   64 +
+>  arch/kvx/include/asm/linkage.h                |   13 +
+>  arch/kvx/include/asm/mem_map.h                |   44 +
+>  arch/kvx/include/asm/mmu.h                    |  296 +
+>  arch/kvx/include/asm/mmu_context.h            |  156 +
+>  arch/kvx/include/asm/mmu_stats.h              |   38 +
+>  arch/kvx/include/asm/page.h                   |  187 +
+>  arch/kvx/include/asm/page_size.h              |   29 +
+>  arch/kvx/include/asm/pci.h                    |   36 +
+>  arch/kvx/include/asm/perf_event.h             |   90 +
+>  arch/kvx/include/asm/pgalloc.h                |  101 +
+>  arch/kvx/include/asm/pgtable-bits.h           |  102 +
+>  arch/kvx/include/asm/pgtable.h                |  451 ++
+>  arch/kvx/include/asm/privilege.h              |  211 +
+>  arch/kvx/include/asm/processor.h              |  176 +
+>  arch/kvx/include/asm/ptrace.h                 |  217 +
+>  arch/kvx/include/asm/pwr_ctrl.h               |   45 +
+>  arch/kvx/include/asm/rm_fw.h                  |   16 +
+>  arch/kvx/include/asm/sections.h               |   18 +
+>  arch/kvx/include/asm/setup.h                  |   29 +
+>  arch/kvx/include/asm/sfr.h                    |  107 +
+>  arch/kvx/include/asm/sfr_defs.h               | 5028 +++++++++++++++++
+>  arch/kvx/include/asm/smp.h                    |   42 +
+>  arch/kvx/include/asm/sparsemem.h              |   15 +
+>  arch/kvx/include/asm/spinlock.h               |   16 +
+>  arch/kvx/include/asm/spinlock_types.h         |   17 +
+>  arch/kvx/include/asm/stackprotector.h         |   47 +
+>  arch/kvx/include/asm/stacktrace.h             |   44 +
+>  arch/kvx/include/asm/string.h                 |   20 +
+>  arch/kvx/include/asm/swab.h                   |   48 +
+>  arch/kvx/include/asm/switch_to.h              |   21 +
+>  arch/kvx/include/asm/symbols.h                |   16 +
+>  arch/kvx/include/asm/sys_arch.h               |   51 +
+>  arch/kvx/include/asm/syscall.h                |   73 +
+>  arch/kvx/include/asm/syscalls.h               |   21 +
+>  arch/kvx/include/asm/thread_info.h            |   78 +
+>  arch/kvx/include/asm/timex.h                  |   20 +
+>  arch/kvx/include/asm/tlb.h                    |   24 +
+>  arch/kvx/include/asm/tlb_defs.h               |  131 +
+>  arch/kvx/include/asm/tlbflush.h               |   58 +
+>  arch/kvx/include/asm/traps.h                  |   76 +
+>  arch/kvx/include/asm/types.h                  |   12 +
+>  arch/kvx/include/asm/uaccess.h                |  324 ++
+>  arch/kvx/include/asm/unistd.h                 |   11 +
+>  arch/kvx/include/asm/vermagic.h               |   12 +
+>  arch/kvx/include/asm/vmalloc.h                |   10 +
+>  arch/kvx/include/uapi/asm/Kbuild              |    1 +
+>  arch/kvx/include/uapi/asm/bitsperlong.h       |   14 +
+>  arch/kvx/include/uapi/asm/byteorder.h         |   12 +
+>  arch/kvx/include/uapi/asm/cachectl.h          |   25 +
+>  arch/kvx/include/uapi/asm/ptrace.h            |  114 +
+>  arch/kvx/include/uapi/asm/sigcontext.h        |   16 +
+>  arch/kvx/include/uapi/asm/unistd.h            |   16 +
+>  arch/kvx/kernel/Makefile                      |   27 +
+>  arch/kvx/kernel/asm-offsets.c                 |  157 +
+>  arch/kvx/kernel/break_hook.c                  |   77 +
+>  arch/kvx/kernel/common.c                      |   11 +
+>  arch/kvx/kernel/cpuinfo.c                     |   96 +
+>  arch/kvx/kernel/dame_handler.c                |  113 +
+>  arch/kvx/kernel/debug.c                       |   64 +
+>  arch/kvx/kernel/entry.S                       | 1759 ++++++
+>  arch/kvx/kernel/ftrace.c                      |  339 ++
+>  arch/kvx/kernel/head.S                        |  612 ++
+>  arch/kvx/kernel/hw_breakpoint.c               |  556 ++
+>  arch/kvx/kernel/insns.c                       |  146 +
+>  arch/kvx/kernel/io.c                          |   96 +
+>  arch/kvx/kernel/irq.c                         |   78 +
+>  arch/kvx/kernel/jump_label.c                  |   34 +
+>  arch/kvx/kernel/kvx_ksyms.c                   |   29 +
+>  arch/kvx/kernel/l2_cache.c                    |  448 ++
+>  arch/kvx/kernel/mcount.S                      |  340 ++
+>  arch/kvx/kernel/module.c                      |  148 +
+>  arch/kvx/kernel/perf_event.c                  |  609 ++
+>  arch/kvx/kernel/process.c                     |  212 +
+>  arch/kvx/kernel/prom.c                        |   24 +
+>  arch/kvx/kernel/ptrace.c                      |  461 ++
+>  arch/kvx/kernel/reset.c                       |   37 +
+>  arch/kvx/kernel/return_address.c              |   55 +
+>  arch/kvx/kernel/setup.c                       |  178 +
+>  arch/kvx/kernel/signal.c                      |  266 +
+>  arch/kvx/kernel/smp.c                         |  110 +
+>  arch/kvx/kernel/smpboot.c                     |  127 +
+>  arch/kvx/kernel/stacktrace.c                  |  173 +
+>  arch/kvx/kernel/sys_kvx.c                     |   58 +
+>  arch/kvx/kernel/syscall_table.c               |   19 +
+>  arch/kvx/kernel/time.c                        |  242 +
+>  arch/kvx/kernel/traps.c                       |  243 +
+>  arch/kvx/kernel/vdso.c                        |   87 +
+>  arch/kvx/kernel/vmlinux.lds.S                 |  173 +
+>  arch/kvx/lib/Makefile                         |    6 +
+>  arch/kvx/lib/clear_page.S                     |   40 +
+>  arch/kvx/lib/copy_page.S                      |   90 +
+>  arch/kvx/lib/delay.c                          |   39 +
+>  arch/kvx/lib/memcpy.c                         |   70 +
+>  arch/kvx/lib/memset.S                         |  351 ++
+>  arch/kvx/lib/strlen.S                         |  122 +
+>  arch/kvx/lib/usercopy.S                       |   90 +
+>  arch/kvx/mm/Makefile                          |   10 +
+>  arch/kvx/mm/cacheflush.c                      |  154 +
+>  arch/kvx/mm/dma-mapping.c                     |   95 +
+>  arch/kvx/mm/extable.c                         |   24 +
+>  arch/kvx/mm/fault.c                           |  264 +
+>  arch/kvx/mm/hugetlbpage.c                     |  317 ++
+>  arch/kvx/mm/init.c                            |  527 ++
+>  arch/kvx/mm/kernel_rwx.c                      |  228 +
+>  arch/kvx/mm/mmap.c                            |   31 +
+>  arch/kvx/mm/mmu.c                             |  204 +
+>  arch/kvx/mm/mmu_stats.c                       |   94 +
+>  arch/kvx/mm/tlb.c                             |  433 ++
+>  arch/kvx/platform/Makefile                    |    7 +
+>  arch/kvx/platform/ipi.c                       |  110 +
+>  arch/kvx/platform/pwr_ctrl.c                  |   93 +
+>  drivers/irqchip/Kconfig                       |   27 +
+>  drivers/irqchip/Makefile                      |    4 +
+>  drivers/irqchip/irq-kvx-apic-gic.c            |  349 ++
+>  drivers/irqchip/irq-kvx-apic-mailbox.c        |  465 ++
+>  drivers/irqchip/irq-kvx-core-intc.c           |   82 +
+>  drivers/irqchip/irq-kvx-itgen.c               |  224 +
+>  drivers/power/reset/kvx-scall-poweroff.c      |   53 +
+>  include/linux/cpuhotplug.h                    |    2 +
+>  include/linux/irqchip/irq-kvx-apic-gic.h      |   21 +
+>  include/linux/irqchip/irq-kvx-apic-mailbox.h  |   29 +
+>  include/linux/irqchip/irq-kvx-itgen.h         |   24 +
+>  include/uapi/linux/audit.h                    |    1 +
+>  include/uapi/linux/elf-em.h                   |    1 +
+>  include/uapi/linux/elf.h                      |    1 +
+>  scripts/gdb/arch/Makefile                     |   11 +
+>  scripts/gdb/arch/__init__.py                  |    1 +
+>  scripts/gdb/arch/kvx/Makefile                 |   25 +
+>  scripts/gdb/arch/kvx/__init__.py              |    1 +
+>  scripts/gdb/arch/kvx/constants.py.in          |   74 +
+>  scripts/gdb/arch/kvx/mmu.py                   |  199 +
+>  scripts/gdb/arch/kvx/page_table_walk.py       |  207 +
+>  tools/include/uapi/asm/bitsperlong.h          |    2 +
+>  175 files changed, 25814 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controlle=
+r/kalray,kvx-core-intc.txt
+>  create mode 100644 Documentation/devicetree/bindings/perf/kalray-pm.txt
+>  create mode 100644 Documentation/kvx/kvx-exceptions.txt
+>  create mode 100644 Documentation/kvx/kvx-iommu.txt
+>  create mode 100644 Documentation/kvx/kvx-mmu.txt
+>  create mode 100644 Documentation/kvx/kvx-smp.txt
+>  create mode 100644 Documentation/kvx/kvx.txt
+>  create mode 100644 arch/kvx/Kconfig
+>  create mode 100644 arch/kvx/Kconfig.debug
+>  create mode 100644 arch/kvx/Makefile
+>  create mode 100644 arch/kvx/configs/default_defconfig
+>  create mode 100644 arch/kvx/include/asm/Kbuild
+>  create mode 100644 arch/kvx/include/asm/asm-prototypes.h
+>  create mode 100644 arch/kvx/include/asm/atomic.h
+>  create mode 100644 arch/kvx/include/asm/barrier.h
+>  create mode 100644 arch/kvx/include/asm/bitops.h
+>  create mode 100644 arch/kvx/include/asm/bitrev.h
+>  create mode 100644 arch/kvx/include/asm/break_hook.h
+>  create mode 100644 arch/kvx/include/asm/bug.h
+>  create mode 100644 arch/kvx/include/asm/cache.h
+>  create mode 100644 arch/kvx/include/asm/cacheflush.h
+>  create mode 100644 arch/kvx/include/asm/clocksource.h
+>  create mode 100644 arch/kvx/include/asm/cmpxchg.h
+>  create mode 100644 arch/kvx/include/asm/current.h
+>  create mode 100644 arch/kvx/include/asm/dame.h
+>  create mode 100644 arch/kvx/include/asm/debug.h
+>  create mode 100644 arch/kvx/include/asm/elf.h
+>  create mode 100644 arch/kvx/include/asm/fixmap.h
+>  create mode 100644 arch/kvx/include/asm/ftrace.h
+>  create mode 100644 arch/kvx/include/asm/futex.h
+>  create mode 100644 arch/kvx/include/asm/hardirq.h
+>  create mode 100644 arch/kvx/include/asm/hugetlb.h
+>  create mode 100644 arch/kvx/include/asm/hw_breakpoint.h
+>  create mode 100644 arch/kvx/include/asm/hw_irq.h
+>  create mode 100644 arch/kvx/include/asm/insns.h
+>  create mode 100644 arch/kvx/include/asm/insns_defs.h
+>  create mode 100644 arch/kvx/include/asm/io.h
+>  create mode 100644 arch/kvx/include/asm/ipi.h
+>  create mode 100644 arch/kvx/include/asm/irqflags.h
+>  create mode 100644 arch/kvx/include/asm/jump_label.h
+>  create mode 100644 arch/kvx/include/asm/l2_cache.h
+>  create mode 100644 arch/kvx/include/asm/l2_cache_defs.h
+>  create mode 100644 arch/kvx/include/asm/linkage.h
+>  create mode 100644 arch/kvx/include/asm/mem_map.h
+>  create mode 100644 arch/kvx/include/asm/mmu.h
+>  create mode 100644 arch/kvx/include/asm/mmu_context.h
+>  create mode 100644 arch/kvx/include/asm/mmu_stats.h
+>  create mode 100644 arch/kvx/include/asm/page.h
+>  create mode 100644 arch/kvx/include/asm/page_size.h
+>  create mode 100644 arch/kvx/include/asm/pci.h
+>  create mode 100644 arch/kvx/include/asm/perf_event.h
+>  create mode 100644 arch/kvx/include/asm/pgalloc.h
+>  create mode 100644 arch/kvx/include/asm/pgtable-bits.h
+>  create mode 100644 arch/kvx/include/asm/pgtable.h
+>  create mode 100644 arch/kvx/include/asm/privilege.h
+>  create mode 100644 arch/kvx/include/asm/processor.h
+>  create mode 100644 arch/kvx/include/asm/ptrace.h
+>  create mode 100644 arch/kvx/include/asm/pwr_ctrl.h
+>  create mode 100644 arch/kvx/include/asm/rm_fw.h
+>  create mode 100644 arch/kvx/include/asm/sections.h
+>  create mode 100644 arch/kvx/include/asm/setup.h
+>  create mode 100644 arch/kvx/include/asm/sfr.h
+>  create mode 100644 arch/kvx/include/asm/sfr_defs.h
+>  create mode 100644 arch/kvx/include/asm/smp.h
+>  create mode 100644 arch/kvx/include/asm/sparsemem.h
+>  create mode 100644 arch/kvx/include/asm/spinlock.h
+>  create mode 100644 arch/kvx/include/asm/spinlock_types.h
+>  create mode 100644 arch/kvx/include/asm/stackprotector.h
+>  create mode 100644 arch/kvx/include/asm/stacktrace.h
+>  create mode 100644 arch/kvx/include/asm/string.h
+>  create mode 100644 arch/kvx/include/asm/swab.h
+>  create mode 100644 arch/kvx/include/asm/switch_to.h
+>  create mode 100644 arch/kvx/include/asm/symbols.h
+>  create mode 100644 arch/kvx/include/asm/sys_arch.h
+>  create mode 100644 arch/kvx/include/asm/syscall.h
+>  create mode 100644 arch/kvx/include/asm/syscalls.h
+>  create mode 100644 arch/kvx/include/asm/thread_info.h
+>  create mode 100644 arch/kvx/include/asm/timex.h
+>  create mode 100644 arch/kvx/include/asm/tlb.h
+>  create mode 100644 arch/kvx/include/asm/tlb_defs.h
+>  create mode 100644 arch/kvx/include/asm/tlbflush.h
+>  create mode 100644 arch/kvx/include/asm/traps.h
+>  create mode 100644 arch/kvx/include/asm/types.h
+>  create mode 100644 arch/kvx/include/asm/uaccess.h
+>  create mode 100644 arch/kvx/include/asm/unistd.h
+>  create mode 100644 arch/kvx/include/asm/vermagic.h
+>  create mode 100644 arch/kvx/include/asm/vmalloc.h
+>  create mode 100644 arch/kvx/include/uapi/asm/Kbuild
+>  create mode 100644 arch/kvx/include/uapi/asm/bitsperlong.h
+>  create mode 100644 arch/kvx/include/uapi/asm/byteorder.h
+>  create mode 100644 arch/kvx/include/uapi/asm/cachectl.h
+>  create mode 100644 arch/kvx/include/uapi/asm/ptrace.h
+>  create mode 100644 arch/kvx/include/uapi/asm/sigcontext.h
+>  create mode 100644 arch/kvx/include/uapi/asm/unistd.h
+>  create mode 100644 arch/kvx/kernel/Makefile
+>  create mode 100644 arch/kvx/kernel/asm-offsets.c
+>  create mode 100644 arch/kvx/kernel/break_hook.c
+>  create mode 100644 arch/kvx/kernel/common.c
+>  create mode 100644 arch/kvx/kernel/cpuinfo.c
+>  create mode 100644 arch/kvx/kernel/dame_handler.c
+>  create mode 100644 arch/kvx/kernel/debug.c
+>  create mode 100644 arch/kvx/kernel/entry.S
+>  create mode 100644 arch/kvx/kernel/ftrace.c
+>  create mode 100644 arch/kvx/kernel/head.S
+>  create mode 100644 arch/kvx/kernel/hw_breakpoint.c
+>  create mode 100644 arch/kvx/kernel/insns.c
+>  create mode 100644 arch/kvx/kernel/io.c
+>  create mode 100644 arch/kvx/kernel/irq.c
+>  create mode 100644 arch/kvx/kernel/jump_label.c
+>  create mode 100644 arch/kvx/kernel/kvx_ksyms.c
+>  create mode 100644 arch/kvx/kernel/l2_cache.c
+>  create mode 100644 arch/kvx/kernel/mcount.S
+>  create mode 100644 arch/kvx/kernel/module.c
+>  create mode 100644 arch/kvx/kernel/perf_event.c
+>  create mode 100644 arch/kvx/kernel/process.c
+>  create mode 100644 arch/kvx/kernel/prom.c
+>  create mode 100644 arch/kvx/kernel/ptrace.c
+>  create mode 100644 arch/kvx/kernel/reset.c
+>  create mode 100644 arch/kvx/kernel/return_address.c
+>  create mode 100644 arch/kvx/kernel/setup.c
+>  create mode 100644 arch/kvx/kernel/signal.c
+>  create mode 100644 arch/kvx/kernel/smp.c
+>  create mode 100644 arch/kvx/kernel/smpboot.c
+>  create mode 100644 arch/kvx/kernel/stacktrace.c
+>  create mode 100644 arch/kvx/kernel/sys_kvx.c
+>  create mode 100644 arch/kvx/kernel/syscall_table.c
+>  create mode 100644 arch/kvx/kernel/time.c
+>  create mode 100644 arch/kvx/kernel/traps.c
+>  create mode 100644 arch/kvx/kernel/vdso.c
+>  create mode 100644 arch/kvx/kernel/vmlinux.lds.S
+>  create mode 100644 arch/kvx/lib/Makefile
+>  create mode 100644 arch/kvx/lib/clear_page.S
+>  create mode 100644 arch/kvx/lib/copy_page.S
+>  create mode 100644 arch/kvx/lib/delay.c
+>  create mode 100644 arch/kvx/lib/memcpy.c
+>  create mode 100644 arch/kvx/lib/memset.S
+>  create mode 100644 arch/kvx/lib/strlen.S
+>  create mode 100644 arch/kvx/lib/usercopy.S
+>  create mode 100644 arch/kvx/mm/Makefile
+>  create mode 100644 arch/kvx/mm/cacheflush.c
+>  create mode 100644 arch/kvx/mm/dma-mapping.c
+>  create mode 100644 arch/kvx/mm/extable.c
+>  create mode 100644 arch/kvx/mm/fault.c
+>  create mode 100644 arch/kvx/mm/hugetlbpage.c
+>  create mode 100644 arch/kvx/mm/init.c
+>  create mode 100644 arch/kvx/mm/kernel_rwx.c
+>  create mode 100644 arch/kvx/mm/mmap.c
+>  create mode 100644 arch/kvx/mm/mmu.c
+>  create mode 100644 arch/kvx/mm/mmu_stats.c
+>  create mode 100644 arch/kvx/mm/tlb.c
+>  create mode 100644 arch/kvx/platform/Makefile
+>  create mode 100644 arch/kvx/platform/ipi.c
+>  create mode 100644 arch/kvx/platform/pwr_ctrl.c
+>  create mode 100644 drivers/irqchip/irq-kvx-apic-gic.c
+>  create mode 100644 drivers/irqchip/irq-kvx-apic-mailbox.c
+>  create mode 100644 drivers/irqchip/irq-kvx-core-intc.c
+>  create mode 100644 drivers/irqchip/irq-kvx-itgen.c
+>  create mode 100644 drivers/power/reset/kvx-scall-poweroff.c
+>  create mode 100644 include/linux/irqchip/irq-kvx-apic-gic.h
+>  create mode 100644 include/linux/irqchip/irq-kvx-apic-mailbox.h
+>  create mode 100644 include/linux/irqchip/irq-kvx-itgen.h
+>  create mode 100644 scripts/gdb/arch/Makefile
+>  create mode 100644 scripts/gdb/arch/__init__.py
+>  create mode 100644 scripts/gdb/arch/kvx/Makefile
+>  create mode 100644 scripts/gdb/arch/kvx/__init__.py
+>  create mode 100644 scripts/gdb/arch/kvx/constants.py.in
+>  create mode 100644 scripts/gdb/arch/kvx/mmu.py
+>  create mode 100644 scripts/gdb/arch/kvx/page_table_walk.py
+>
+> --
+> 2.37.2
+>
+>
+>
+>
+>
+
+
+--=20
+Thanks,
+JeffXie
