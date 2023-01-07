@@ -2,127 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E1A8660ED6
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 13:36:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 356B7660EE6
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 13:51:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231877AbjAGMgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Jan 2023 07:36:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45668 "EHLO
+        id S230113AbjAGMv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Jan 2023 07:51:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229656AbjAGMgv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 07:36:51 -0500
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF27643E7D;
-        Sat,  7 Jan 2023 04:36:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:MIME-Version:
-        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=16gPkfBcfkiE+p2Zk6g+QioQZiel/I6Miq/bmFFefOw=; b=ECqNVr13InrEpa2fi3VR85Fe2v
-        J31Un9c86fobQVMptE8oDgx1TRuSB9UCfiMu29ibNuq0lTB2jSYJmjHCQRsPqm+nMNSgnyhy52mjU
-        JZnwEdQ6sBMPKDzTrOfxpTz+E84SIp88ozrntuqNY/vAj3H7glmCMZqJ7XvfVgCdrM7GF7XUATvCS
-        DAtxqVj0VDQO7gUQ5taPvaakuR3HZdexxGzHr9yLir8/3XzlXjWf2GdaoqK+ElKY9A9rZcfNW+kYN
-        tne6Go02jzLe/H20iup0d50diei9KvnrtncD4+7s+2eDpVrD1Txm/H667bg3iUAgE0nmSvC0NTGN7
-        YUdXHPYA==;
-Received: from p200300ccff2fec001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff2f:ec00:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1pE8R3-0004zM-Go; Sat, 07 Jan 2023 13:36:29 +0100
-Received: from andi by aktux with local (Exim 4.94.2)
-        (envelope-from <andreas@kemnade.info>)
-        id 1pE8R2-0089qP-Qk; Sat, 07 Jan 2023 13:36:28 +0100
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Andreas Kemnade <andreas@kemnade.info>
-Subject: [PATCH] ARM: dts: imx: e70k02: Add touchscreen
-Date:   Sat,  7 Jan 2023 13:36:21 +0100
-Message-Id: <20230107123621.1944420-1-andreas@kemnade.info>
-X-Mailer: git-send-email 2.30.2
+        with ESMTP id S229972AbjAGMv2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 07:51:28 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31D1876EC3
+        for <devicetree@vger.kernel.org>; Sat,  7 Jan 2023 04:51:27 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id p1-20020a05600c1d8100b003d8c9b191e0so2842008wms.4
+        for <devicetree@vger.kernel.org>; Sat, 07 Jan 2023 04:51:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6kmoQ/u+G9G8zOvmN8BbgXLEcMlL+8PUMUot4O7oTYU=;
+        b=dknDOhZiOZx6N8mxrLxmzfEGaVB/HnbxjqdFLw5Hh5lat8whsxNiUpbrXJZ/QpNuZB
+         qxj8EEWJevM9ZkMVPw+waMFv57StmKbYPk4Y56hgENFawyjqMFfRepcGBA4wa2kHiZ/h
+         nAXHcCudu/yMVDIzK3pSaZsHrswTHjIGjy+CWstzt05koUq9ojtEFJMtspNz0AN0H6xs
+         864Z5C/7YNZDXaUED4BNaxlPiHWVbh2MC2qxeCwk67RDvpqSJQPQrthlwkbV6LbQtt6H
+         1v4mRqOJS/SiOdb8OAQDaehKloUKa4AKZtgNc+52YOo60MV+ykMlbEoyFkWxF3BPe4T2
+         uDCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6kmoQ/u+G9G8zOvmN8BbgXLEcMlL+8PUMUot4O7oTYU=;
+        b=2y5zyXaZsJsGexzia1rIlyWaBjo0TfpqkcAIrPRGSQmd9Z0RwOS/8HR6TZ6lnTehyl
+         k61me5Dj/0/muCnW8Aub4q6Vo6dsXjn5s0hlKeKPoXvzo8AtKnLvwZYnJq+UcwY24GcT
+         9fIZv6BfeHcbdqY5giMsbVH4eoANWPBiAiqr6tHpfoDat9ZwZhAQZ7etPtupVZ7W0xV3
+         JiwI3QMVtqgmgwCSjwdsiGn5zb5nmZ/5LmoI5FD8L69RM1T21eQzL70WqJOqnH8okknM
+         9uvs5SWK4409ZBqq1yyCWJh83ayxwHZq8nDgMbh9q4bpLjbA5gYFbYDwMiLRVrny1EUb
+         ztpQ==
+X-Gm-Message-State: AFqh2kr0kZCZiYvy5yzFccnizaaybx2PAurMZLkbvF41X3k/0oBrpxQD
+        +u46QPprI9xE55D+h6fesbAqkw==
+X-Google-Smtp-Source: AMrXdXtsspADlUPwT3zNqefHd0aEud7EVXUZY6ZyOJcd15kj/Gbaw0+SfMbh9vvJtXz+AvbtR6APXQ==
+X-Received: by 2002:a7b:cb8a:0:b0:3d2:7e0:3d51 with SMTP id m10-20020a7bcb8a000000b003d207e03d51mr44260530wmi.17.1673095885793;
+        Sat, 07 Jan 2023 04:51:25 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id h8-20020a05600c350800b003d990372dd5sm10691037wmq.20.2023.01.07.04.51.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 07 Jan 2023 04:51:25 -0800 (PST)
+Message-ID: <2b2abd3f-469b-91ff-12ed-c8422c50ba6f@linaro.org>
+Date:   Sat, 7 Jan 2023 13:51:23 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Score: -1.0 (-)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 1/2] dt-bindings: arm: rockchip: Add EmbedFire LubanCat 2
+To:     Andy Yan <andyshrk@163.com>, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+Cc:     lasstp5011@gmail.com
+References: <20230107115159.2125308-1-andyshrk@163.com>
+ <20230107115221.2125368-1-andyshrk@163.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230107115221.2125368-1-andyshrk@163.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the touchscreen now, since the driver is available.
+On 07/01/2023 12:52, Andy Yan wrote:
+> Add EmbedFire LubanCat 2>
+> Signed-off-by: Andy Yan <andyshrk@163.com>
+> 
+> ---
+> 
+>  Documentation/devicetree/bindings/arm/rockchip.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> index 058ed707f3cd..870c32f8574b 100644
+> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> @@ -100,6 +100,12 @@ properties:
+>            - const: embedfire,lubancat-1
+>            - const: rockchip,rk3566
+>  
+> +      - description: EmbedFire LubanCat 2
+> +        items:
+> +          - const: embedfire,lubancat-2
+> +          - const: rockchip,rk3568
+> +
+> +
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- arch/arm/boot/dts/e70k02.dtsi               | 11 ++++++++++-
- arch/arm/boot/dts/imx6sl-tolino-vision5.dts |  7 +++++++
- arch/arm/boot/dts/imx6sll-kobo-librah2o.dts |  7 +++++++
- 3 files changed, 24 insertions(+), 1 deletion(-)
+Only one blank line.
+With above:
 
-diff --git a/arch/arm/boot/dts/e70k02.dtsi b/arch/arm/boot/dts/e70k02.dtsi
-index 27ef9a62b23c..ace3eb8a97b8 100644
---- a/arch/arm/boot/dts/e70k02.dtsi
-+++ b/arch/arm/boot/dts/e70k02.dtsi
-@@ -122,7 +122,16 @@ &i2c2 {
- 	clock-frequency = <100000>;
- 	status = "okay";
- 
--	/* TODO: CYTTSP5 touch controller at 0x24 */
-+	touchscreen@24 {
-+		compatible = "cypress,tt21000";
-+		reg = <0x24>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_cyttsp5_gpio>;
-+		interrupt-parent = <&gpio4>;
-+		interrupts = <24 IRQ_TYPE_EDGE_FALLING>;
-+		reset-gpios = <&gpio4 18 GPIO_ACTIVE_LOW>;
-+		vdd-supply = <&ldo5_reg>;
-+	};
- 
- 	/* TODO: SY7636 PMIC for E Ink at 0x62 */
- 
-diff --git a/arch/arm/boot/dts/imx6sl-tolino-vision5.dts b/arch/arm/boot/dts/imx6sl-tolino-vision5.dts
-index ff6118df3946..6bc342035e2b 100644
---- a/arch/arm/boot/dts/imx6sl-tolino-vision5.dts
-+++ b/arch/arm/boot/dts/imx6sl-tolino-vision5.dts
-@@ -52,6 +52,13 @@ &iomuxc {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_hog>;
- 
-+	pinctrl_cyttsp5_gpio: cyttsp5-gpiogrp {
-+		fsl,pins = <
-+			MX6SL_PAD_FEC_TXD0__GPIO4_IO24          0x17059 /* TP_INT */
-+			MX6SL_PAD_FEC_RXD1__GPIO4_IO18          0x10059 /* TP_RST */
-+		>;
-+	};
-+
- 	pinctrl_gpio_keys: gpio-keysgrp {
- 		fsl,pins = <
- 			MX6SL_PAD_FEC_CRS_DV__GPIO4_IO25	0x17059	/* PWR_SW */
-diff --git a/arch/arm/boot/dts/imx6sll-kobo-librah2o.dts b/arch/arm/boot/dts/imx6sll-kobo-librah2o.dts
-index a8b0e88064d9..7e4f38dd11e2 100644
---- a/arch/arm/boot/dts/imx6sll-kobo-librah2o.dts
-+++ b/arch/arm/boot/dts/imx6sll-kobo-librah2o.dts
-@@ -62,6 +62,13 @@ &iomuxc {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_hog>;
- 
-+	pinctrl_cyttsp5_gpio: cyttsp5-gpiogrp {
-+		fsl,pins = <
-+			MX6SLL_PAD_GPIO4_IO24__GPIO4_IO24	0x17059 /* TP_INT */
-+			MX6SLL_PAD_GPIO4_IO18__GPIO4_IO18	0x10059 /* TP_RST */
-+		>;
-+	};
-+
- 	pinctrl_gpio_keys: gpio-keysgrp {
- 		fsl,pins = <
- 			MX6SLL_PAD_GPIO4_IO25__GPIO4_IO25	0x17059	/* PWR_SW */
--- 
-2.30.2
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+>        - description: Engicam PX30.Core C.TOUCH 2.0
+>          items:
+>            - const: engicam,px30-core-ctouch2
+
+Best regards,
+Krzysztof
 
