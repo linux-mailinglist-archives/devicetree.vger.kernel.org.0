@@ -2,59 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 525C9660A65
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 00:49:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA549660A90
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 01:08:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231575AbjAFXtI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 18:49:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53518 "EHLO
+        id S229521AbjAGAIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 19:08:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236232AbjAFXtG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 18:49:06 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FF713C0C9;
-        Fri,  6 Jan 2023 15:49:06 -0800 (PST)
+        with ESMTP id S235746AbjAGAIY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 19:08:24 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 777243DBF8;
+        Fri,  6 Jan 2023 16:08:23 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C5C4761D03;
-        Fri,  6 Jan 2023 23:49:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EE83C433D2;
-        Fri,  6 Jan 2023 23:49:02 +0000 (UTC)
+        by sin.source.kernel.org (Postfix) with ESMTPS id CFFBCCE1EBE;
+        Sat,  7 Jan 2023 00:08:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0B4FC433EF;
+        Sat,  7 Jan 2023 00:08:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673048945;
-        bh=Kzq2tlfGPQr0fgmnls2K0N6TO37vkS9PveZIdQUSA5w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hvBZEnjTKvt1+MQ/2U0lSDzK9fveRIQcTWkCZdUNJ/bEaOJp9jYeyBqIGkBDhuBaQ
-         lT0/Z4D/eycBC24N7aLjvfTkpWGClQ4hbxSf326i/rPJF3Eym920csAswsMipvzMre
-         dLBVbvA+ZO8fKKUGNoNqdYuopDTWBLkjdyk5vOBIHS3u/f42APyq69UxcGdZJB00OS
-         PGRh1vljtO6oZofqky7mydSqbyzuZOFxNOmzGXo1hFg4juMLRXYsgCivC4bw1JW86H
-         VzsEHdr2aJt1spcmTsCu08V4eGZgFDPHwYIWhwYxOZMl2ioQk936m0KFkTz7nKKydb
-         qpyC9BOmbfS4w==
-Date:   Fri, 6 Jan 2023 23:49:00 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Heiko Stuebner <heiko@sntech.de>, Guo Ren <guoren@kernel.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "open list:ARM/RISC-V/RENESAS ARCHITECTURE" 
-        <linux-renesas-soc@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v6 6/6] soc: renesas: Kconfig: Select the required
- configs for RZ/Five SoC
-Message-ID: <Y7izbPKsN+wn5h+H@spud>
-References: <20230106185526.260163-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20230106185526.260163-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        s=k20201202; t=1673050100;
+        bh=8u3Qc0RIaieWL44MYlHmNd9QLF5reVDmKXzh37Fj2lA=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=lfix8YVR0kz4M/xfyWPZ0tinN9THWryewjoNtPtR4541XmbwbHGdctPOsJySb61v0
+         RXA/9R/G+Pw5R+G0d6o23UAl2H5n7yny64omZv2evtP+wTwfX1CHdxEyjx9hFQc3uP
+         YE6kdCWDsVPCIsPNTRXlBFgV6GGikvgMC3k9jY39/op/5h54kym3v/h1QHEIl1b/X+
+         mZY4nZWHUwiLw3qm2nClCpLBB8PusprQ4GfRtCAHzar0gnwjYIkRcTSRjBHGibkAta
+         eJEJjRFyYLPYtN+emoj0jOV0P14wuzBidAPpEYWJVKheDoPj59gqqUUt7lbQvm1m3h
+         9NL7068Z8gK/g==
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        bagasdotme@gmail.com
+Cc:     robh+dt@kernel.org, quic_rjendra@quicinc.com,
+        quic_sibis@quicinc.com, krzysztof.kozlowski+dt@linaro.org,
+        elder@linaro.org, quic_saipraka@quicinc.com, agross@kernel.org,
+        konrad.dybcio@somainline.org, quic_schowdhu@quicinc.com,
+        vkoul@kernel.org
+Subject: Re: [PATCH 0/2] soc: qcom: dcc: Documentation improv
+Date:   Fri,  6 Jan 2023 18:08:17 -0600
+Message-Id: <167305009215.1816299.16435625611756424987.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20221230135030.17002-1-bagasdotme@gmail.com>
+References: <20221230135030.17002-1-bagasdotme@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="v1LPmyRPbeBSxE7s"
-Content-Disposition: inline
-In-Reply-To: <20230106185526.260163-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -64,24 +59,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 30 Dec 2022 20:50:29 +0700, Bagas Sanjaya wrote:
+> The DCC (Data Capture and Compare) patchset was sent and partially
+> merged [1] without Cc'ing linux-doc list for documentation review.
+> kernel test robot [2] noted htmldocs warnings as a result, which is fixed
+> in [1/2]. Later, when inspecting the sysfs description, the wording
+> could have been improved ([2/2]). So here is the improv series.
+> 
+> [1]: https://lore.kernel.org/lkml/cover.1672148732.git.quic_schowdhu@quicinc.com/
+> [2]: https://lore.kernel.org/linux-doc/202212300426.eMLsZsvA-lkp@intel.com/
+> 
+> [...]
 
---v1LPmyRPbeBSxE7s
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Applied, thanks!
 
-FWIW:
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+[1/2] soc: qcom: dcc: Fix examples list on /sys/kernel/debug/dcc/.../[list-number]/config documentation
+      commit: dc2f5a499de420001813562ddbc9d51ece295978
+[2/2] soc: qcom: dcc: rewrite description of dcc sysfs files
+      commit: 13763fb955a0043bd9b6fb1e237f4fd8fe8b3c75
 
-
---v1LPmyRPbeBSxE7s
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY7izbAAKCRB4tDGHoIJi
-0klAAP97oktxsaN4kInuxSaUJvtvvXt/XZX7Qmi6ZoSD7PODwgEAsiM+60J9pPE0
-OrQO3VB6rJXbxSaCq1Q5Doo9Iky/0AU=
-=2Hi1
------END PGP SIGNATURE-----
-
---v1LPmyRPbeBSxE7s--
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
