@@ -2,73 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A082660F0A
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 14:23:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F50D660F0D
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 14:25:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230114AbjAGNXP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Jan 2023 08:23:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54368 "EHLO
+        id S231723AbjAGNZL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Jan 2023 08:25:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229640AbjAGNXO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 08:23:14 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D7235790D
-        for <devicetree@vger.kernel.org>; Sat,  7 Jan 2023 05:23:13 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id z5so2573505wrt.6
-        for <devicetree@vger.kernel.org>; Sat, 07 Jan 2023 05:23:13 -0800 (PST)
+        with ESMTP id S230240AbjAGNZJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 08:25:09 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89ED858310
+        for <devicetree@vger.kernel.org>; Sat,  7 Jan 2023 05:25:08 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id bn26so3660701wrb.0
+        for <devicetree@vger.kernel.org>; Sat, 07 Jan 2023 05:25:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=K4D1FN6eoWh6/baEX5q5IhUe1DAOLv2u6UT+9a6+KXo=;
-        b=HgVvj6Lvf1kT1S13QgbEY1hX2YQIt4Tg9f9o4ln/tSbFzVvqrgAL5tc5bGWpL/MQ0S
-         rEUEVMJm1tuGubqk6C4J3rM45jhvhgA4OwhmTSmryJPzK0S1v966jXX12NVUfCA0OguR
-         l9EhZElZa2ofhVzsxP/tokGHCBF76PuLWmVENy2nBmp465JyPZsxZ7kF9OmKiCqfxM5s
-         utv7fWq6azCoC2Uy5BnP89PM18Cq4HF/E3EUa5Z7f/IcVnx4AF4uJ1T1E/1jFbnI0JOf
-         uVwdfaylqR+BRIylcqDHxFA9+IK8qOZe8fir4opy9T9JbMMmrqF+DF2IfDCKd+ldYFJ4
-         A74Q==
+        bh=VUIOJzfR4gjCubzJSweWARYQ7jO/K6ZEKw9R7MAtXPo=;
+        b=onkbVc1rbEvGZygqbjpv2XpS5zkxuHUDgg44EIw1OuUNmXjWAcTAmvpHRZRll8WJQp
+         G0jg7xCmF+cTL38qYRcUHPoQt1bhC3SfRvp85mk1zCw+RPZiXbb77M6v3a2Wjm+Phe3r
+         /Gh9/tAp8hnGMaWMywn1kZVl7sBXbyon3U1ThTX2GoNqSE6KepUQCmsOXy6wMkjckXQq
+         EqSJ/fiwiuypfW17kSxD8ZW9Hpu+YfFbuRkpe1Qjlz0p3/7RjoqrfvLJmfjxsAg0X0Aj
+         v93NJ9nbfYV6WP2nBzBOsuw5SEegbQS4LZwJxBc2RITKHZLMMXc9Cqn7vhMyT5iX8Kbp
+         hPqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=K4D1FN6eoWh6/baEX5q5IhUe1DAOLv2u6UT+9a6+KXo=;
-        b=ka5C+0d5FdRSqNM/w0ShDKR8jOj4kSK1OT/w+qM8R66+CFSQem6+dD4KAVdDOO0u05
-         X4ss/Vp+IejS8Hn3h7L1KBIZiE163qNA9n6jQKGR/Cif+XSI2A7rlktilWBHev3KcXZ9
-         gHZC0D3hyw2BmQ3+7NBv7K16dAsIUtHJ3m9ec6bwZ0ZYjD6YQjR0t0cSY4oe/YjnW+wW
-         6qFgyiiRZzjO9IvA8pLmVmlCV3gPxRsaDOlP8/19HdfSzsIiwy/38PrfSd07JtoTwVUN
-         aM2aEXiGgRTkbLBy2uwHvgdtHGQkgJsPHEErZGf6YudgM9RMPhkLVXHG1cPWTshYwLXw
-         r1gA==
-X-Gm-Message-State: AFqh2koQH22pFpINHBbbNb04AmmhccZgYr7U3InqgcJ1qhkJNf9D7EJM
-        ywHJv89pDqbNdrcM+QSRYaiCMQ==
-X-Google-Smtp-Source: AMrXdXt8rJ+gmrzzwuVyvcafa8P6rsX9w8GvR+yJ3ia+IO6yFnBWk/w5pE1qGkuFyw8Ftqd6qRyj7w==
-X-Received: by 2002:a05:6000:1566:b0:242:2b3c:c7e with SMTP id 6-20020a056000156600b002422b3c0c7emr53021473wrz.17.1673097791738;
-        Sat, 07 Jan 2023 05:23:11 -0800 (PST)
+        bh=VUIOJzfR4gjCubzJSweWARYQ7jO/K6ZEKw9R7MAtXPo=;
+        b=KFgY79lPlu8oegY80Ebmk5cs06ID6qS+oQf0Ma2ZrjGlaYQ87Qqt2aG2WoJ82rbTQw
+         2oGRjXHdfBLuzDzyz8JUKD8mWe0gx3UWYaN0SErF7LBEMleCQnkjitpd5S+A3hn1DlrR
+         0cCjl3xT3buO9HoU5A14kEiW02zbCU9vMGjwMdITaQ+Iut9xi9iA4hF/sK482fcG+EXQ
+         Tqs+MIitus2w94c9D/CGqAmPV1aHdL+QE7jrQJcGj/7RO66mU8f5a+zt+5gbVZ6jgmo0
+         x5S7u+BsmjEh08NVAHjhxGH3MJNjmWAiSLqcfCmrx9klNe2hZiVzLj9xDdoEHy7KT7E6
+         O3WQ==
+X-Gm-Message-State: AFqh2kqpzND5PgXzw1ROiWLjvQ46HD0rlF9ffbeEUNXEj2pQXdbe8Ayh
+        QU2dBeRWpTS+GZbUGNJBgNuqp5ipL+LtNRNl
+X-Google-Smtp-Source: AMrXdXsd4OlFrcapKoOIiiaSo59QJSOXueVuWMfL/ztMFbpKKDNEQLKruccFGDwsD/RBiTen9q8fqA==
+X-Received: by 2002:adf:ef49:0:b0:28b:a241:9870 with SMTP id c9-20020adfef49000000b0028ba2419870mr19927855wrp.47.1673097907042;
+        Sat, 07 Jan 2023 05:25:07 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id s1-20020a5d4ec1000000b002882600e8a0sm3973599wrv.12.2023.01.07.05.23.09
+        by smtp.gmail.com with ESMTPSA id s2-20020adff802000000b00241bd7a7165sm3818637wrp.82.2023.01.07.05.25.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 Jan 2023 05:23:10 -0800 (PST)
-Message-ID: <967cc7b7-f0bb-de37-52b9-7bfab05eadd7@linaro.org>
-Date:   Sat, 7 Jan 2023 14:23:08 +0100
+        Sat, 07 Jan 2023 05:25:06 -0800 (PST)
+Message-ID: <f9d4c883-4b76-c95e-c6dc-a659b4410bf2@linaro.org>
+Date:   Sat, 7 Jan 2023 14:25:02 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH] dt-bindings: mmc: fsl-imx-esdhc: allow more compatible
- combinations
+Subject: Re: [PATCH 3/5] dt-bindings: mmc: sdhci-cadence: SD6 support
 Content-Language: en-US
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20230105213856.1828360-1-andreas@kemnade.info>
- <d7c407dc-0a6c-97d5-a06f-b432a923d74d@linaro.org>
- <20230106203358.14878660@aktux>
+To:     Piyush Malgujar <pmalgujar@marvell.com>
+Cc:     linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        adrian.hunter@intel.com, ulf.hansson@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        yamada.masahiro@socionext.com, devicetree@vger.kernel.org,
+        jannadurai@marvell.com, cchavva@marvell.com
+References: <20221219142418.27949-1-pmalgujar@marvell.com>
+ <20221219142418.27949-4-pmalgujar@marvell.com>
+ <5fc29d3c-e3da-3dc4-bce5-2158b81daa43@linaro.org>
+ <20230106164812.GA14720@Dell2s-9>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230106203358.14878660@aktux>
+In-Reply-To: <20230106164812.GA14720@Dell2s-9>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,74 +79,111 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/01/2023 20:33, Andreas Kemnade wrote:
-> On Fri, 6 Jan 2023 09:41:01 +0100
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+On 06/01/2023 17:48, Piyush Malgujar wrote:
+> Hi Krzysztof,
 > 
->> On 05/01/2023 22:38, Andreas Kemnade wrote:
->>> Currently make dtbs_check shows lots of errors because imx*.dtsi does
->>> not use single compatibles but combinations of them.
->>> Allow all the combinations used there.
+> Thank you the review comments.
+> 
+> On Mon, Dec 19, 2022 at 04:40:35PM +0100, Krzysztof Kozlowski wrote:
+>> On 19/12/2022 15:24, Piyush Malgujar wrote:
+>>> From: Jayanthi Annadurai <jannadurai@marvell.com>
 >>>
->>> Patches fixing the dtsi files according to binding documentation were
->>> submitted multiple times and are commonly rejected, so relax the rules.
->>> Example:
->>> https://lore.kernel.org/linux-devicetree/72e1194e10ccb4f87aed96265114f0963e805092.camel@pengutronix.de/
+>>
+>> Subject: use final prefix matching the file, so "cdns,sdhci:"
+>>
+>>> Add support for SD6 controller support
+>>
+>> Full stop.
+>>
 >>>
->>> Reason: compatibility of new dtbs with old kernels or bootloaders.
->>>
->>> This will significantly reduce noise on make dtbs_check.
->>>
->>> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+>>> Signed-off-by: Jayanthi Annadurai <jannadurai@marvell.com>
+>>> Signed-off-by: Piyush Malgujar <pmalgujar@marvell.com>
 >>> ---
->>>  .../bindings/mmc/fsl-imx-esdhc.yaml           | 24 +++++++++++++++++++
->>>  1 file changed, 24 insertions(+)
+>>>  .../devicetree/bindings/mmc/cdns,sdhci.yaml   | 33 +++++++++++++++++--
+>>>  1 file changed, 31 insertions(+), 2 deletions(-)
 >>>
->>> diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
->>> index dc6256f04b42..118ebb75f136 100644
->>> --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
->>> +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
->>> @@ -37,6 +37,30 @@ properties:
->>>            - fsl,imx8mm-usdhc
->>>            - fsl,imxrt1050-usdhc
->>>            - nxp,s32g2-usdhc  
+>>> diff --git a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+>>> index 8b1a0fdcb5e3e2e8b87d8d7678e37f3dad447fc1..2043e78ccd5f708a01e87fd96ec410418fcd539f 100644
+>>> --- a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+>>> +++ b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+>>> @@ -4,7 +4,7 @@
+>>>  $id: http://devicetree.org/schemas/mmc/cdns,sdhci.yaml#
+>>>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>  
+>>> -title: Cadence SD/SDIO/eMMC Host Controller (SD4HC)
+>>> +title: Cadence SD/SDIO/eMMC Host Controller (SD4HC, SD6HC)
+>>>  
+>>>  maintainers:
+>>>    - Masahiro Yamada <yamada.masahiro@socionext.com>
+>>> @@ -19,6 +19,7 @@ properties:
+>>>            - microchip,mpfs-sd4hc
+>>>            - socionext,uniphier-sd4hc
+>>>        - const: cdns,sd4hc
+>>> +      - const: cdns,sd6hc
 >>
->> You must drop the items from enum above. Binding saying:
->> compatible="A"
->> or:
->> compatible="A", "B"
+>> Does not look like you tested the DTS against bindings. Please run `make
+>> dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
+>> for instructions).
 >>
->> is not correct. Either A is or is not compatible with B.
+>> ... because it does not really make sense. Why do you require SD6HC as
+>> fallback? I think you meant enum.
 >>
-> hmm, here we have A = B + some additional features
-> or
-> A = B + some additional features and additional quirks required.
-
-So why do you allow A alone?
-
 > 
-> For the latter we have e.g.
-> A=
-> static const struct esdhc_soc_data usdhc_imx6sx_data = {
->         .flags = ESDHC_FLAG_USDHC | ESDHC_FLAG_STD_TUNING
->                         | ESDHC_FLAG_HAVE_CAP1 | ESDHC_FLAG_HS200
->                         | ESDHC_FLAG_STATE_LOST_IN_LPMODE
->                         | ESDHC_FLAG_BROKEN_AUTO_CMD23,
-> };
-> B=
-> static const struct esdhc_soc_data usdhc_imx6sl_data = {
->         .flags = ESDHC_FLAG_USDHC | ESDHC_FLAG_STD_TUNING
->                         | ESDHC_FLAG_HAVE_CAP1 | ESDHC_FLAG_ERR004536
->                         | ESDHC_FLAG_HS200
->                         | ESDHC_FLAG_BROKEN_AUTO_CMD23,
-> };
+> Yes, that's correct. I will change it to enum.
 > 
-> so there is the difference in ESDHC_FLAG_STATE_LOST_IN_LPMODE.
-> That might make no difference in some usage scenario (e.g. some bootloader
-> not doing any LPMODE), but I wonder why
-> we need to *enforce* specifying such half-compatible things.
+>>>  
+>>>    reg:
+>>>      maxItems: 1
+>>> @@ -111,6 +112,34 @@ properties:
+>>>      minimum: 0
+>>>      maximum: 0x7f
+>>>  
+>>> +  cdns,iocell_input_delay:
+>>
+>> No underscores. Use proper units in name suffix:
+>> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
+>>
+>>
+>>> +    description: Delay in ps across the input IO cells
+>>> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+>>
+>> Ditto... and so on - all of the fields.
+>>
+>>> +
+>>> +  cdns,iocell_output_delay:
+>>> +    description: Delay in ps across the output IO cells
+>>> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+>>> +
+>>> +  cdns,delay_element:
+>>> +    description: Delay element in ps used for calculating phy timings
+>>> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+>>> +
+>>> +  cdns,read_dqs_cmd_delay:
+>>> +    description: Command delay used in HS200 tuning
+>>> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+>>> +
+>>> +  cdns,tune_val_start:
+>>> +    description: Staring value of data delay used in HS200 tuning
+>>> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+>>> +
+>>> +  cdns,tune_val_step:
+>>> +    description: Incremental value of data delay used in HS200 tuning
+>>> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+>>> +
+>>> +  cdns,max_tune_iter:
+>>> +    description: Maximum number of iterations to complete the HS200 tuning process
+>>> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+>>
+>> Why these three are properties of DT?
+>>
+> 
+> These tuning parameters are added here so to make them custom configurable for different
+> boards.
 
-I asked to remove half-compatible. Not to enforce.
+I understand why do you wanted to add them, but I am asking why these
+are suitable for DT? DT  describes hardware, so what is here specific to
+hardware which requires DT property?
+
 
 Best regards,
 Krzysztof
