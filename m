@@ -2,73 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DDF9660EFD
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 14:10:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A082660F0A
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 14:23:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229754AbjAGNKB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Jan 2023 08:10:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52520 "EHLO
+        id S230114AbjAGNXP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Jan 2023 08:23:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229695AbjAGNKA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 08:10:00 -0500
+        with ESMTP id S229640AbjAGNXO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 08:23:14 -0500
 Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CE795790D
-        for <devicetree@vger.kernel.org>; Sat,  7 Jan 2023 05:09:59 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id r2so3602907wrv.7
-        for <devicetree@vger.kernel.org>; Sat, 07 Jan 2023 05:09:58 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D7235790D
+        for <devicetree@vger.kernel.org>; Sat,  7 Jan 2023 05:23:13 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id z5so2573505wrt.6
+        for <devicetree@vger.kernel.org>; Sat, 07 Jan 2023 05:23:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=VLlY74lBKRGRzarxnE97qD14pxUge6wP6SsI1ElnUUs=;
-        b=jLpXA08K0gO/8AJAtcPQAKQSjWN8NrVGRvAPfvVx+pF5z0/AEXiTb1XvQXZbAzm3SA
-         1kagRlJuzuBqoDnvnw51zisv6YuyanMlJYuwtNHDkcG5Gl127IYspVkMEBRfDRLlQbS+
-         Q3w9GGTlPNFlsCzQ8w3fa7PDsWHcLS4VfescaxudTQP/8lnn3bFJE7Ije5KiqnsHyyYq
-         RE+9ge2VjzKSEu7+8Ak6ZVuDLMFW4N7q2JurKZCVXEPh0dK4tI6admJ2W7PCuHu9Nt8Z
-         8mjoMFHYz05qXOqoxzmITeVaRldha9MF1dxQDbdswPqlUXLthbOYtgM3H5ExE/nbTM65
-         UaGg==
+        bh=K4D1FN6eoWh6/baEX5q5IhUe1DAOLv2u6UT+9a6+KXo=;
+        b=HgVvj6Lvf1kT1S13QgbEY1hX2YQIt4Tg9f9o4ln/tSbFzVvqrgAL5tc5bGWpL/MQ0S
+         rEUEVMJm1tuGubqk6C4J3rM45jhvhgA4OwhmTSmryJPzK0S1v966jXX12NVUfCA0OguR
+         l9EhZElZa2ofhVzsxP/tokGHCBF76PuLWmVENy2nBmp465JyPZsxZ7kF9OmKiCqfxM5s
+         utv7fWq6azCoC2Uy5BnP89PM18Cq4HF/E3EUa5Z7f/IcVnx4AF4uJ1T1E/1jFbnI0JOf
+         uVwdfaylqR+BRIylcqDHxFA9+IK8qOZe8fir4opy9T9JbMMmrqF+DF2IfDCKd+ldYFJ4
+         A74Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VLlY74lBKRGRzarxnE97qD14pxUge6wP6SsI1ElnUUs=;
-        b=021Tn1zBqphocP08Pg+475OPIwbo9GdG/rET83oisM8HEdlD+o++Gi0EcnfP/MvIwW
-         u+C+rTZ0nvc0e4q5tPrVoydL/m6QttcU/xVM06auvNOQ6mKdik4QeV9fhxStm8Y4QPgw
-         wNEm0zUeHiZnNWloeWWG6rNT8iMEQjx8rjU/aq19oU3esTCLCEmbpn1MY3PL0o+VaNsH
-         ZeMGfZ0g3hIG3MH3o7eDzrs8KzynveQZrNB8MwknwTgpd2UdI6rv68ASaCx6ALFyMBeN
-         t6KrWs6snZn6m6iDm+DzD/eyybSW7GDxe8LE82Xs8SQuk7K30YeqE6Qv6Kr9MKhlOczR
-         SNsA==
-X-Gm-Message-State: AFqh2koc6Z3x6Tb6cXYUumIAqFHUSswuG1kj9RJxPEZZD63VZH833rvt
-        UTDYzovXs08CsADaYjLE+6wX6w==
-X-Google-Smtp-Source: AMrXdXt92og9PyhiOxFHB6hAF5Bth+1E1nejyHX/tEYK9CUEX386gaoJHGcGTB7g1GUKKNOqEPpgBQ==
-X-Received: by 2002:a5d:58e6:0:b0:26f:aaff:e98c with SMTP id f6-20020a5d58e6000000b0026faaffe98cmr31680723wrd.27.1673096997552;
-        Sat, 07 Jan 2023 05:09:57 -0800 (PST)
+        bh=K4D1FN6eoWh6/baEX5q5IhUe1DAOLv2u6UT+9a6+KXo=;
+        b=ka5C+0d5FdRSqNM/w0ShDKR8jOj4kSK1OT/w+qM8R66+CFSQem6+dD4KAVdDOO0u05
+         X4ss/Vp+IejS8Hn3h7L1KBIZiE163qNA9n6jQKGR/Cif+XSI2A7rlktilWBHev3KcXZ9
+         gHZC0D3hyw2BmQ3+7NBv7K16dAsIUtHJ3m9ec6bwZ0ZYjD6YQjR0t0cSY4oe/YjnW+wW
+         6qFgyiiRZzjO9IvA8pLmVmlCV3gPxRsaDOlP8/19HdfSzsIiwy/38PrfSd07JtoTwVUN
+         aM2aEXiGgRTkbLBy2uwHvgdtHGQkgJsPHEErZGf6YudgM9RMPhkLVXHG1cPWTshYwLXw
+         r1gA==
+X-Gm-Message-State: AFqh2koQH22pFpINHBbbNb04AmmhccZgYr7U3InqgcJ1qhkJNf9D7EJM
+        ywHJv89pDqbNdrcM+QSRYaiCMQ==
+X-Google-Smtp-Source: AMrXdXt8rJ+gmrzzwuVyvcafa8P6rsX9w8GvR+yJ3ia+IO6yFnBWk/w5pE1qGkuFyw8Ftqd6qRyj7w==
+X-Received: by 2002:a05:6000:1566:b0:242:2b3c:c7e with SMTP id 6-20020a056000156600b002422b3c0c7emr53021473wrz.17.1673097791738;
+        Sat, 07 Jan 2023 05:23:11 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id z16-20020a5d4d10000000b00242209dd1ffsm3797535wrt.41.2023.01.07.05.09.55
+        by smtp.gmail.com with ESMTPSA id s1-20020a5d4ec1000000b002882600e8a0sm3973599wrv.12.2023.01.07.05.23.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 Jan 2023 05:09:56 -0800 (PST)
-Message-ID: <4f1e55bc-9f0b-6411-2957-e68a049f1d6b@linaro.org>
-Date:   Sat, 7 Jan 2023 14:09:54 +0100
+        Sat, 07 Jan 2023 05:23:10 -0800 (PST)
+Message-ID: <967cc7b7-f0bb-de37-52b9-7bfab05eadd7@linaro.org>
+Date:   Sat, 7 Jan 2023 14:23:08 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: media: Add OmniVision OV8858
+Subject: Re: [PATCH] dt-bindings: mmc: fsl-imx-esdhc: allow more compatible
+ combinations
 Content-Language: en-US
-To:     Jacopo Mondi <jacopo@jmondi.org>,
-        Nicholas Roth <nicholas@rothemail.net>,
-        Robert Mader <robert.mader@collabora.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        linux-media@vger.kernel.org,
-        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-        devicetree@vger.kernel.org
-References: <20230106203909.184073-1-jacopo@jmondi.org>
- <20230106203909.184073-2-jacopo@jmondi.org>
+To:     Andreas Kemnade <andreas@kemnade.info>
+Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20230105213856.1828360-1-andreas@kemnade.info>
+ <d7c407dc-0a6c-97d5-a06f-b432a923d74d@linaro.org>
+ <20230106203358.14878660@aktux>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230106203909.184073-2-jacopo@jmondi.org>
+In-Reply-To: <20230106203358.14878660@aktux>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,72 +80,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/01/2023 21:39, Jacopo Mondi wrote:
-> From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+On 06/01/2023 20:33, Andreas Kemnade wrote:
+> On Fri, 6 Jan 2023 09:41:01 +0100
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 > 
-> Add binding schema for the OmniVision OV8858 8 Megapixels camera sensor.
-> 
-> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
->  .../bindings/media/i2c/ovti,ov8858.yaml       | 105 ++++++++++++++++++
->  1 file changed, 105 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
-> new file mode 100644
-> index 000000000000..002461a974f8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
-> @@ -0,0 +1,105 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov8858.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: OmniVision OV8858 Image Sensor
-> +
-> +maintainers:
-> +  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> +  - Nicholas Roth <nicholas@rothemail.net>
-> +
-> +description: |
-> +  The OmniVision OV8858 is a color CMOS 8 Megapixels (3264x2448) image sensor
-> +  controlled through an I2C-compatible SCCB bus. The sensor transmits images
-> +  on a MIPI CSI-2 output interface with up to 4 data lanes.
-> +
-> +properties:
-> +  compatible:
-> +    const: ovti,ov8858
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +    description: XVCLK external clock
-> +
-> +  clock-names:
-> +    const: xvclk
-> +
-> +  dvdd-supply:
-> +    description: Digital Domain Power Supply
-> +
-> +  avdd-supply:
-> +    description: Analog Domain Power Supply
-> +
-> +  dovdd-supply:
-> +    description: I/O Domain Power Supply
-> +
-> +  powerdown-gpios:
-> +    description: PWDNB powerdown GPIO (active low)
-> +
-> +  reset-gpios:
-> +    description: XSHUTDN reset GPIO (active low)
+>> On 05/01/2023 22:38, Andreas Kemnade wrote:
+>>> Currently make dtbs_check shows lots of errors because imx*.dtsi does
+>>> not use single compatibles but combinations of them.
+>>> Allow all the combinations used there.
+>>>
+>>> Patches fixing the dtsi files according to binding documentation were
+>>> submitted multiple times and are commonly rejected, so relax the rules.
+>>> Example:
+>>> https://lore.kernel.org/linux-devicetree/72e1194e10ccb4f87aed96265114f0963e805092.camel@pengutronix.de/
+>>>
+>>> Reason: compatibility of new dtbs with old kernels or bootloaders.
+>>>
+>>> This will significantly reduce noise on make dtbs_check.
+>>>
+>>> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+>>> ---
+>>>  .../bindings/mmc/fsl-imx-esdhc.yaml           | 24 +++++++++++++++++++
+>>>  1 file changed, 24 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+>>> index dc6256f04b42..118ebb75f136 100644
+>>> --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+>>> +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+>>> @@ -37,6 +37,30 @@ properties:
+>>>            - fsl,imx8mm-usdhc
+>>>            - fsl,imxrt1050-usdhc
+>>>            - nxp,s32g2-usdhc  
+>>
+>> You must drop the items from enum above. Binding saying:
+>> compatible="A"
+>> or:
+>> compatible="A", "B"
+>>
+>> is not correct. Either A is or is not compatible with B.
+>>
+> hmm, here we have A = B + some additional features
+> or
+> A = B + some additional features and additional quirks required.
 
-Here you need maxItems. I did not propose to remove it here.
+So why do you allow A alone?
 
+> 
+> For the latter we have e.g.
+> A=
+> static const struct esdhc_soc_data usdhc_imx6sx_data = {
+>         .flags = ESDHC_FLAG_USDHC | ESDHC_FLAG_STD_TUNING
+>                         | ESDHC_FLAG_HAVE_CAP1 | ESDHC_FLAG_HS200
+>                         | ESDHC_FLAG_STATE_LOST_IN_LPMODE
+>                         | ESDHC_FLAG_BROKEN_AUTO_CMD23,
+> };
+> B=
+> static const struct esdhc_soc_data usdhc_imx6sl_data = {
+>         .flags = ESDHC_FLAG_USDHC | ESDHC_FLAG_STD_TUNING
+>                         | ESDHC_FLAG_HAVE_CAP1 | ESDHC_FLAG_ERR004536
+>                         | ESDHC_FLAG_HS200
+>                         | ESDHC_FLAG_BROKEN_AUTO_CMD23,
+> };
+> 
+> so there is the difference in ESDHC_FLAG_STATE_LOST_IN_LPMODE.
+> That might make no difference in some usage scenario (e.g. some bootloader
+> not doing any LPMODE), but I wonder why
+> we need to *enforce* specifying such half-compatible things.
+
+I asked to remove half-compatible. Not to enforce.
 
 Best regards,
 Krzysztof
