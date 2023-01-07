@@ -2,115 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36A1D660F4C
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 15:05:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C58C7660F54
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 15:09:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230350AbjAGOFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Jan 2023 09:05:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41410 "EHLO
+        id S230102AbjAGOIb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Jan 2023 09:08:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229608AbjAGOFI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 09:05:08 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBBCB6E415
-        for <devicetree@vger.kernel.org>; Sat,  7 Jan 2023 06:05:06 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id m7so3690383wrn.10
-        for <devicetree@vger.kernel.org>; Sat, 07 Jan 2023 06:05:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cOJ9jBAr8EM/qZhGcPKg/28tNVL1EhgfIU/MStrLkiA=;
-        b=zOKFtZTrZcPCFOYIns7I8L63CLCFHBOM38x3xZULXs6Xi253rPRUOFLtUi/WfA3yFE
-         cXPQnSrEK4SKnIhoKyR3Yh7LbF+d8Zq6IoRIWhvABerGxyMQx5d4GLj+sbCXjikQIeS1
-         0T53ZXBhUSVmMCgMGs2Q5cftMtAkm9D6XnUsywL4tMnNg9Gw4KTbCRTRUjCe25q6mlXW
-         nk5M6dz7GQ3UpU9rpmEfm644LJH1K5Wu0Sd2QDZqKZLtZjWSTBfELCDCbfhE6w+F2b/i
-         wWuaWibDF9i+xSqJsS6nRhdc8z74r2lRCdhUyJD78zMCb7zSi34hacSDI+HRxvl3qP3x
-         YmuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cOJ9jBAr8EM/qZhGcPKg/28tNVL1EhgfIU/MStrLkiA=;
-        b=ETDEe8x7R2VlU7uGeHHl2Yr9PJ8ayHbRDQl8dO+e8dmimIh4A5UP1D71ziRUHGt3WT
-         sI3m2dpXFC5uk40j8HQyKD9yQhJuoaaMb/H0AP+u+OKM1KutCi0ktaVWQluYzRiO1wzk
-         FsDONX02gCixv1xGPmttw1KSf2lCSwgLVzALcZsQeqDbIqOFew3H+PPq8HQSohRkKgc7
-         7dIQNHeBZJ7lT9KbCxQ/uyRxfLztG0qEgGGe5xoIxEMOhPKXmNjNutIM1pAqs2Qda1hB
-         khoa57k/MusNbtgu13A2LZtzLGSC9bKCYoYig4/IY8FZ3NUodjYW4UyHHRyiGIBmV9MH
-         XxDQ==
-X-Gm-Message-State: AFqh2krg2U2vjT5vAX0XX8V+xskApWal6E7Hy6yid+SGOlm30Ga84vck
-        rqaFfIWvk+LRbXKu89pjpdfV/A==
-X-Google-Smtp-Source: AMrXdXsX1CocpfHnrpgfFQseDjTvezF1FvpnDpBU0nSsT6ASpWYxMn5As7IOsikN961m0WRp4/ZCgA==
-X-Received: by 2002:adf:e34e:0:b0:242:ac3:87f4 with SMTP id n14-20020adfe34e000000b002420ac387f4mr39038652wrj.50.1673100305445;
-        Sat, 07 Jan 2023 06:05:05 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id g1-20020a056000118100b002755e301eeasm3877973wrx.100.2023.01.07.06.05.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 Jan 2023 06:05:04 -0800 (PST)
-Message-ID: <61f05268-6b7a-0884-c885-1b737d3ec5b9@linaro.org>
-Date:   Sat, 7 Jan 2023 15:05:02 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 2/3] dt-bindings: remoteproc: qcom,sm8150-pas: Add
- SM6375 CDSP
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     marijn.suijten@somainline.org,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        with ESMTP id S235853AbjAGOHx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 09:07:53 -0500
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75EF9B855;
+        Sat,  7 Jan 2023 06:07:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=YPpgZ7HqOt8u7N3zWjALtv8NDc76JuCmC+vYUpKHQ18=; b=8UOaHi1DtaTeFntHuAl7bzeS2i
+        fD4HKloN8EUD64UqpiB8PMHfBccs4GlIrud7G7i5xFE9HMUHmku6W1MGws9Eg5Ykzsn5OwlhKxi4t
+        pjKGPw2DRdLR6nX7u2+dNQiGLGbJCuDFD1PAwe1S02oR9PjlsAwMpuyLUbK+j+CVLTIdLPBCQI1zh
+        MlZjFXHen8AIoNR/DjnjVzfqyIDw3OAHmUMBS7D76dkeYlQu7RrwhU4jPDOOw89qfyFOI9HhlBw50
+        CgK/XdeP1O8xZGEw7RPi7mKSqFDGBTqf2bpx9uVpdPTEcFrqCy6cxjbBn+9qz58orvtEKxhDLRCbX
+        eBPGpzxA==;
+Received: from p200300ccff2fec001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff2f:ec00:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1pE9rJ-000596-Ix; Sat, 07 Jan 2023 15:07:41 +0100
+Date:   Sat, 7 Jan 2023 15:07:40 +0100
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-References: <20230107120623.1903056-1-konrad.dybcio@linaro.org>
- <20230107120623.1903056-2-konrad.dybcio@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230107120623.1903056-2-konrad.dybcio@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH] dt-bindings: mmc: fsl-imx-esdhc: allow more compatible
+ combinations
+Message-ID: <20230107150740.0ba34aa1@aktux>
+In-Reply-To: <123d1a56-8134-dc75-8b2a-b3836e727d4a@linaro.org>
+References: <20230105213856.1828360-1-andreas@kemnade.info>
+        <d7c407dc-0a6c-97d5-a06f-b432a923d74d@linaro.org>
+        <20230106203358.14878660@aktux>
+        <967cc7b7-f0bb-de37-52b9-7bfab05eadd7@linaro.org>
+        <20230107144336.2ecff4f9@aktux>
+        <123d1a56-8134-dc75-8b2a-b3836e727d4a@linaro.org>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Score: -1.0 (-)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/01/2023 13:06, Konrad Dybcio wrote:
-> Add entries for SM6375 CDSP, as it's essentially identical to the one
-> on SM8150.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
-> v1 -> v2:
-> - Rebase on top of recent changes, move to 8150 pas yaml
-> 
->  .../devicetree/bindings/remoteproc/qcom,sm8150-pas.yaml        | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm8150-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm8150-pas.yaml
-> index b934252cf02b..082ae70a3fcb 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,sm8150-pas.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm8150-pas.yaml
-> @@ -16,6 +16,7 @@ description:
->  properties:
->    compatible:
->      enum:
-> +      - qcom,sm6375-cdsp-pas
->        - qcom,sm8150-adsp-pas
->        - qcom,sm8150-cdsp-pas
->        - qcom,sm8150-mpss-pas
+On Sat, 7 Jan 2023 15:00:56 +0100
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-I don't think it is maintainable to keep sm6375 once here and once in
-sm6350 file. If it does not fit one family, then probably it deserves
-its own file.
+[...]
+> >> I asked to remove half-compatible. Not to enforce.
+> >>  
+so you are saying that allowing
+compatible = "A", "B" 
+is not ok, if B is not fully compatible. I agree with that
+one.
 
-Best regards,
-Krzysztof
+> > well B is half-compatible, I (and others) have sent patches to remove,
+> > but they were rejected. I consider these patches the way to go.  
+> 
+> No, they are not correct.
+> 
+Maybe there is some misunderstanding
+"these patches" = e.g. 
+https://lore.kernel.org/linux-devicetree/72e1194e10ccb4f87aed96265114f0963e805092.camel@pengutronix.de/
 
+Regards,
+Andreas
