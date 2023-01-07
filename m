@@ -2,113 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE6E8660FE6
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 16:18:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 22EDF660FE8
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 16:18:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229997AbjAGPSJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Jan 2023 10:18:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38130 "EHLO
+        id S231755AbjAGPSe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Jan 2023 10:18:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229785AbjAGPSH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 10:18:07 -0500
-Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B046F1704D;
-        Sat,  7 Jan 2023 07:18:06 -0800 (PST)
-Received: by mail-il1-f174.google.com with SMTP id o13so2444619ilc.7;
-        Sat, 07 Jan 2023 07:18:06 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=qt3iT4aovtQ+3YTo4FRMDvWABE+Y3B6IyX+wff/2RkE=;
-        b=WrD6CCPDNIlMIDRA0IrqQPA2AOd2+AfTYWivllPN60WOcIYq71l/0SfGS29qBgo7Xn
-         xgEnCVwr4Za227Li0IEicjzD1Q0y+xxZGtIuK3OzrRw0P1NhaKU5lOJvjFSD/J5qBVc+
-         3zQkCLjaR18z6y7cGvo/hJLR6YyOgBjLMcRGwTqptKlXMAcrMi0fuy82EpZLxGuC7N+Y
-         RS6S3Ld/aOItzgTWqZcYecGgvON/Yduv8FYqlivsDxztKoAwzH8DrbihJdfmW/K0sA1p
-         ys1hb+P+bh+hoDlGAsCJ4HOYbOf32hrRgpzqJfIHB+oqdlIC9xlKhYENg19FpQxWvtcn
-         MiFQ==
-X-Gm-Message-State: AFqh2krE7iPBCrV8cUXuJzYi/ktClin3K3FUB84iLj0wFROx/hoVlvAC
-        2rrLYIN1diBEGw0mP2UZLw==
-X-Google-Smtp-Source: AMrXdXuBk+V3WJWqTsqMVyXlcUc2Ry4MJDOK+iidIpfuB8S7Y2PTqJuABcPa7DNShcvdFVZA2Yp0gw==
-X-Received: by 2002:a92:da4f:0:b0:30c:42d9:22a5 with SMTP id p15-20020a92da4f000000b0030c42d922a5mr17020681ilq.13.1673104685792;
-        Sat, 07 Jan 2023 07:18:05 -0800 (PST)
-Received: from robh_at_kernel.org ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id f94-20020a0284e7000000b00389d02a032dsm747863jai.172.2023.01.07.07.18.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Jan 2023 07:18:05 -0800 (PST)
-Received: (nullmailer pid 1799735 invoked by uid 1000);
-        Sat, 07 Jan 2023 15:18:03 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S232413AbjAGPSb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 10:18:31 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46F5018E11;
+        Sat,  7 Jan 2023 07:18:30 -0800 (PST)
+Received: from ideasonboard.com (mob-5-90-140-117.net.vodafone.it [5.90.140.117])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A39EE4AE;
+        Sat,  7 Jan 2023 16:18:28 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1673104708;
+        bh=xPkrDKS9MasNTbhbaDaeSR63/UT2eJ5bZ6VEGEdb74I=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=N7EYY4cfBZL2vptes9/VzIunlh4FeCUpXU3F+50PR5tNZKYd1lqgyaMfa7zND9p2G
+         sffHi+MYj93FSXx3KtK3yqz25XgOxU8BvLovnTKcwaFxHOfyPrqQkUTRpZveKQhz9U
+         xn0T4TYLKx/UOFCxBdqEqr9hI77y7aKF91l1QGXk=
+Date:   Sat, 7 Jan 2023 16:18:25 +0100
+From:   Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Nicholas Roth <nicholas@rothemail.net>,
+        Robert Mader <robert.mader@collabora.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        linux-media@vger.kernel.org,
+        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: media: Add OmniVision OV8858
+Message-ID: <20230107151825.6quaenebql3bnjv5@uno.localdomain>
+References: <20230106203909.184073-1-jacopo@jmondi.org>
+ <20230106203909.184073-2-jacopo@jmondi.org>
+ <4f1e55bc-9f0b-6411-2957-e68a049f1d6b@linaro.org>
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     William Zhang <william.zhang@broadcom.com>
-Cc:     anand.gore@broadcom.com, joel.peshkin@broadcom.com,
-        dan.beygelman@broadcom.com,
-        Linux SPI List <linux-spi@vger.kernel.org>, dregan@mail.com,
-        tomer.yacoby@broadcom.com, f.fainelli@gmail.com,
-        kursad.oney@broadcom.com, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, jonas.gorski@gmail.com,
-        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <20230106200809.330769-2-william.zhang@broadcom.com>
-References: <20230106200809.330769-1-william.zhang@broadcom.com>
- <20230106200809.330769-2-william.zhang@broadcom.com>
-Message-Id: <167310423078.1757548.4915356991338777285.robh@kernel.org>
-Subject: Re: [PATCH 01/16] dt-bindings: spi: Convert bcm63xx-hsspi bindings to
- json-schema
-Date:   Sat, 07 Jan 2023 09:18:03 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <4f1e55bc-9f0b-6411-2957-e68a049f1d6b@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof
 
-On Fri, 06 Jan 2023 12:07:53 -0800, William Zhang wrote:
-> This is the preparation for updates on the bcm63xx hsspi driver. Convert
-> the text based bindings to json-schema per new dts requirement.
-> 
-> Signed-off-by: William Zhang <william.zhang@broadcom.com>
-> ---
-> 
->  .../bindings/spi/brcm,bcm63xx-hsspi.yaml      | 52 +++++++++++++++++++
->  .../bindings/spi/spi-bcm63xx-hsspi.txt        | 33 ------------
->  2 files changed, 52 insertions(+), 33 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml
->  delete mode 100644 Documentation/devicetree/bindings/spi/spi-bcm63xx-hsspi.txt
-> 
+On Sat, Jan 07, 2023 at 02:09:54PM +0100, Krzysztof Kozlowski wrote:
+> On 06/01/2023 21:39, Jacopo Mondi wrote:
+> > From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> >
+> > Add binding schema for the OmniVision OV8858 8 Megapixels camera sensor.
+> >
+> > Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > ---
+> >  .../bindings/media/i2c/ovti,ov8858.yaml       | 105 ++++++++++++++++++
+> >  1 file changed, 105 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
+> > new file mode 100644
+> > index 000000000000..002461a974f8
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
+> > @@ -0,0 +1,105 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/i2c/ovti,ov8858.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: OmniVision OV8858 Image Sensor
+> > +
+> > +maintainers:
+> > +  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> > +  - Nicholas Roth <nicholas@rothemail.net>
+> > +
+> > +description: |
+> > +  The OmniVision OV8858 is a color CMOS 8 Megapixels (3264x2448) image sensor
+> > +  controlled through an I2C-compatible SCCB bus. The sensor transmits images
+> > +  on a MIPI CSI-2 output interface with up to 4 data lanes.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: ovti,ov8858
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +    description: XVCLK external clock
+> > +
+> > +  clock-names:
+> > +    const: xvclk
+> > +
+> > +  dvdd-supply:
+> > +    description: Digital Domain Power Supply
+> > +
+> > +  avdd-supply:
+> > +    description: Analog Domain Power Supply
+> > +
+> > +  dovdd-supply:
+> > +    description: I/O Domain Power Supply
+> > +
+> > +  powerdown-gpios:
+> > +    description: PWDNB powerdown GPIO (active low)
+> > +
+> > +  reset-gpios:
+> > +    description: XSHUTDN reset GPIO (active low)
+>
+> Here you need maxItems. I did not propose to remove it here.
+>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+I'm wondering why you can have multiple resets but not multiple
+powerdowns.
 
-yamllint warnings/errors:
+Anyway, how is one supposed to know when maxItems is required or not,
+where should I look ?
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.example.dtb: spi@10001000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'num-cs' were unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml
+Thanks
+   j
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230106200809.330769-2-william.zhang@broadcom.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+>
+> Best regards,
+> Krzysztof
+>
