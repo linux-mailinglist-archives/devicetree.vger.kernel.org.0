@@ -2,80 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2597660DB6
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 11:21:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BC37660DBE
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 11:23:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230118AbjAGKVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Jan 2023 05:21:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34134 "EHLO
+        id S231521AbjAGKW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Jan 2023 05:22:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229645AbjAGKVQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 05:21:16 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0748B36328
-        for <devicetree@vger.kernel.org>; Sat,  7 Jan 2023 02:21:15 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id bp15so5465020lfb.13
-        for <devicetree@vger.kernel.org>; Sat, 07 Jan 2023 02:21:14 -0800 (PST)
+        with ESMTP id S232257AbjAGKWm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 05:22:42 -0500
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4D3C19C24
+        for <devicetree@vger.kernel.org>; Sat,  7 Jan 2023 02:22:41 -0800 (PST)
+Received: by mail-pj1-x1031.google.com with SMTP id o8-20020a17090a9f8800b00223de0364beso7750450pjp.4
+        for <devicetree@vger.kernel.org>; Sat, 07 Jan 2023 02:22:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9PznVjfd3B/ZmrH40OQITBZTOBnAxAksocBkNKDAfKY=;
-        b=IzYijjztQ/k7BxPIpYTpfFtRhIcYe4oVXWjVXwgRfqcJM3Q/DOajytwc5ZK9sK9WVK
-         GS1jhCONErzWS7uvcr5bCcUihxra7OyJo7iSh+edOM3JSO2FQYRTI9h3hrqTjqeBrk+W
-         m9PNQPZ8rXEhNT5+GwHLLeuTrDeD6rC2yzGlHxxXyjdlZ4+YSqc7DeFp5vygscj5qfJN
-         ot00PWvjtxENUGlv8rHnGOT+A/9sj/UFU925pb3F3tVDf335/hAKkYsY1fgNSUcQouxX
-         AoYABrR/IUNLpm4e9SV32tW3tP/OVnjTa4x34HQa7pzj5Aav36lKDIA5NV3TpWD6VgBR
-         gLRg==
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=M5R04EwX4eIZOZILHF8zQrZe1x1GS9dIPxgkF6+Qqr0=;
+        b=akf9h+6HPph8LYoUpBWnZE9ueCAAVE7fkGGFnOW7f5vGFH7ccqvIb67QKgIwFG3F4H
+         EiX0jKlN3C+vDWVOHTROt6baus0ESTgsqcxJ90Jw1vlrcNBJxPbtnVZwY2HZCysHMJX6
+         KE+dlRVIOe8DDOBhRoX7Hr/sOP0lHvlasEcaU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9PznVjfd3B/ZmrH40OQITBZTOBnAxAksocBkNKDAfKY=;
-        b=Ne7F7ZX1th4T5YduMRmjPRaLzgBgyFfPpfI8KS5CpXim2DbnYZf/0IfYNsmm0WiOVF
-         5THPCQzVz6pz7Jjd1xaR9AxgkkJZA41PgbPbnfqRiITAPgr1BvoeyDbZVuXChJ0t6i/i
-         XLMPF51bfzeWkx3hR2ZJtXJmcjLF9SjioysbF/JkcJS6xKu3gwgXuRxIGakVDrBe0GBL
-         CfncdknHvMbCSkiD/8Va5za44Z5j3a7lkJDvLbAegoJUIK1bdd/hdNwJUO/iGQ3WpLOy
-         ua+EjbGzcUjwpuGBg1HigxFoSw2FqUJLoQIhJ1WSyzwk+QD+0bPIp2T0vTAB07MDkt8J
-         07Jg==
-X-Gm-Message-State: AFqh2koTGtA65EvtjLmASRGIuOBSp/1ArHCX774k/KNsR0mFS8DMdPni
-        wWdldxK+VNPiJeuB+cu97F+a7pYG1G6t/YJM
-X-Google-Smtp-Source: AMrXdXtcpppwmWOHrHPYd5u2zJ9iw7R1EIkpliKjIk+7iCO/JsVL5HPXHmyUygkJIdAziw+gimNd3w==
-X-Received: by 2002:a05:6512:3901:b0:4a4:68b7:f892 with SMTP id a1-20020a056512390100b004a468b7f892mr19676009lfu.54.1673086873397;
-        Sat, 07 Jan 2023 02:21:13 -0800 (PST)
-Received: from [192.168.1.101] (abxi45.neoplus.adsl.tpnet.pl. [83.9.2.45])
-        by smtp.gmail.com with ESMTPSA id c18-20020a196552000000b004b567e1f8e5sm528300lfj.125.2023.01.07.02.21.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 Jan 2023 02:21:13 -0800 (PST)
-Message-ID: <dab1227b-2ffb-5a8e-9c7b-f2a31d100b16@linaro.org>
-Date:   Sat, 7 Jan 2023 11:21:11 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: pm7250b: Add BAT_ID vadc channel
-Content-Language: en-US
-To:     Luca Weiss <luca.weiss@fairphone.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=M5R04EwX4eIZOZILHF8zQrZe1x1GS9dIPxgkF6+Qqr0=;
+        b=FcpYzhWhHRpiS93xShm7qsY77wNwTS1QOWDOHWrHLZOn5H3p5AsB0FFZ3QdYQrr3cJ
+         0GajabAFdvfKyQgSNZNX9p9x/iF0g08RdyYrmwEvZ2gg02ipdnin/7oHA+/aMZxX78+J
+         Pq2irXR5USFNnvvfPvtSs84LdPhLvu1PlnIhNopV3S97uX5/dkh2ZVMlPX0Y2e6Z9atz
+         7TCV/W28wYYu61pJeD7a1VFUXA9hYWWxsOb2GDxxmQXn6xZy36Vt/3Ohgkr2Vjq7jv0O
+         agSG8A0bg9T6pA6xXqWCKlXMIqXJSZU/I1dDGaZfDYZ2tL/F50ucZ20thyh0rJtexQzP
+         yWbg==
+X-Gm-Message-State: AFqh2kp3B0j1vbE8ZKSN99EQH0hJWdGeYwW0p+C2II6LbzwAUBrXHvfr
+        OHOMVqmk3Drq2m9UI+3YTeyUPQ==
+X-Google-Smtp-Source: AMrXdXsCanC85OIBD7HFU0hQjEKbk7kiLL3g+5Cn5NOlUfjTVfcWHqQr/B+TqYO21un27l3PbdCEtg==
+X-Received: by 2002:a17:902:b495:b0:18c:cde:fddb with SMTP id y21-20020a170902b49500b0018c0cdefddbmr55110444plr.65.1673086960970;
+        Sat, 07 Jan 2023 02:22:40 -0800 (PST)
+Received: from treapking.tpe.corp.google.com ([2401:fa00:1:10:180d:95e8:f4:84fb])
+        by smtp.gmail.com with ESMTPSA id b1-20020a170903228100b001892af9472esm2366362plh.261.2023.01.07.02.22.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 07 Jan 2023 02:22:40 -0800 (PST)
+From:   Pin-yen Lin <treapking@chromium.org>
+To:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230106-pm7250b-bat_id-v1-0-82ca8f2db741@fairphone.com>
- <20230106-pm7250b-bat_id-v1-2-82ca8f2db741@fairphone.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230106-pm7250b-bat_id-v1-2-82ca8f2db741@fairphone.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>
+Cc:     Thomas Zimmermann <tzimmermann@suse.de>,
+        dri-devel@lists.freedesktop.org, Lyude Paul <lyude@redhat.com>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        linux-kernel@vger.kernel.org, Xin Ji <xji@analogixsemi.com>,
+        Pin-yen Lin <treapking@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Allen Chen <allen.chen@ite.com.tw>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        chrome-platform@lists.linux.dev,
+        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
+        <nfraprado@collabora.com>, devicetree@vger.kernel.org,
+        Marek Vasut <marex@denx.de>, linux-acpi@vger.kernel.org,
+        Stephen Boyd <swboyd@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Imre Deak <imre.deak@intel.com>,
+        Jani Nikula <jani.nikula@intel.com>,
+        Jim Cromie <jim.cromie@gmail.com>,
+        Kees Cook <keescook@chromium.org>,
+        =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= 
+        <ville.syrjala@linux.intel.com>
+Subject: [PATCH v8 0/9] Register Type-C mode-switch in DP bridge endpoints
+Date:   Sat,  7 Jan 2023 18:22:22 +0800
+Message-Id: <20230107102231.23682-1-treapking@chromium.org>
+X-Mailer: git-send-email 2.39.0.314.g84b9a713c41-goog
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -83,36 +103,77 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+This series introduces bindings for anx7625/it6505 to register Type-C
+mode-switch in their output endpoints, and use data-lanes property to
+describe the pin connections.
 
-On 6.01.2023 16:39, Luca Weiss wrote:
-> Add a node describing the ADC5_BAT_ID_100K_PU channel with the
-> properties taken from downstream kernel.
-> 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+The first two patch modifies fwnode_graph_devcon_matches and
+cros_typec_init_ports to enable the registration of the switches.
 
-Konrad
->  arch/arm64/boot/dts/qcom/pm7250b.dtsi | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/pm7250b.dtsi b/arch/arm64/boot/dts/qcom/pm7250b.dtsi
-> index 61f7a6345150..d709d955a2f5 100644
-> --- a/arch/arm64/boot/dts/qcom/pm7250b.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pm7250b.dtsi
-> @@ -110,6 +110,14 @@ adc-chan@1e {
->  				label = "chg_mid";
->  			};
->  
-> +			adc-chan@4b {
-> +				reg = <ADC5_BAT_ID_100K_PU>;
-> +				qcom,hw-settle-time = <200>;
-> +				qcom,pre-scaling = <1 1>;
-> +				qcom,ratiometric;
-> +				label = "bat_id";
-> +			};
-> +
->  			adc-chan@83 {
->  				reg = <ADC5_VPH_PWR>;
->  				qcom,pre-scaling = <1 3>;
-> 
+Patch 4~6 introduce the bindings for anx7625 and the corresponding driver
+modifications.
+
+Patch 7~9 add similar bindings and driver changes for it6505.
+
+v7: https://lore.kernel.org/all/20230105132457.4125372-1-treapking@chromium.org/
+v6: https://lore.kernel.org/all/20221124102056.393220-1-treapking@chromium.org/
+v5: https://lore.kernel.org/linux-usb/20220622173605.1168416-1-pmalani@chromium.org/
+
+Changes in v8:
+- Fixed the build issue when CONFIG_TYPEC=m
+- Fixed some style issues
+- Fixed the subject prefixes for the bindings patches
+- Fixed the bindings for data-lanes properties
+
+Changes in v7:
+- Fix the long comment lines
+- Extracted the common codes to a helper function
+- Fixed style issues in anx7625 driver
+- Removed DT property validation in anx7625 driver.
+- Fixed style issues in it6505 driver
+- Removed the redundant sleep in it6505 driver
+- Removed DT property validation in it6505 driver
+- Rebased to drm-misc-next
+- Fixed indentations in bindings patches
+- Added a new patch to fix indentations in Kconfig
+
+Changes in v6:
+- Changed it6505_typec_mux_set callback function to accommodate with
+  the latest drm-misc patches
+- Changed the driver implementation to accommodate with the new binding
+- Dropped typec-switch binding and use endpoints and data-lanes properties
+  to describe the pin connections
+- Added new patches (patch 1,2,4) to fix probing issues
+- Changed the bindings of it6505/anx7625 and modified the drivers
+  accordingly
+- Merged it6505/anx7625 driver changes into a single patch
+
+Pin-yen Lin (7):
+  drm/display: Add Type-C switch helpers
+  dt-bindings: display: bridge: anx7625: Add mode-switch support
+  drm/bridge: anx7625: Check for Type-C during panel registration
+  drm/bridge: anx7625: Register Type C mode switches
+  dt/bindings: display: bridge: it6505: Add mode-switch support
+  drm/bridge: it6505: Fix Kconfig indentation
+  drm/bridge: it6505: Register Type C mode switches
+
+Prashant Malani (2):
+  device property: Add remote endpoint to devcon matcher
+  platform/chrome: cros_ec_typec: Purge blocking switch devlinks
+
+ .../display/bridge/analogix,anx7625.yaml      |  99 ++++++++++++-
+ .../bindings/display/bridge/ite,it6505.yaml   |  93 ++++++++++--
+ drivers/base/property.c                       |  15 ++
+ drivers/gpu/drm/bridge/Kconfig                |  21 +--
+ drivers/gpu/drm/bridge/analogix/Kconfig       |   1 +
+ drivers/gpu/drm/bridge/analogix/anx7625.c     | 101 +++++++++++++-
+ drivers/gpu/drm/bridge/analogix/anx7625.h     |  13 ++
+ drivers/gpu/drm/bridge/ite-it6505.c           | 119 +++++++++++++++-
+ drivers/gpu/drm/display/drm_dp_helper.c       | 132 ++++++++++++++++++
+ drivers/platform/chrome/cros_ec_typec.c       |  10 ++
+ include/drm/display/drm_dp_helper.h           |  16 +++
+ 11 files changed, 591 insertions(+), 29 deletions(-)
+
+-- 
+2.39.0.314.g84b9a713c41-goog
+
