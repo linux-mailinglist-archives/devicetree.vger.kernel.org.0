@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB661660E80
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 13:06:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED9ED660E85
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 13:06:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231915AbjAGMGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Jan 2023 07:06:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39392 "EHLO
+        id S230288AbjAGMGn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Jan 2023 07:06:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232440AbjAGMGg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 07:06:36 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB6705C1F6
-        for <devicetree@vger.kernel.org>; Sat,  7 Jan 2023 04:06:33 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id bp15so5684033lfb.13
-        for <devicetree@vger.kernel.org>; Sat, 07 Jan 2023 04:06:33 -0800 (PST)
+        with ESMTP id S232481AbjAGMGk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 07:06:40 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32CA15C914
+        for <devicetree@vger.kernel.org>; Sat,  7 Jan 2023 04:06:35 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id j17so5726225lfr.3
+        for <devicetree@vger.kernel.org>; Sat, 07 Jan 2023 04:06:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=JSXHQVsWHUKcPua78jzq0240G90YXX9B3puQSrtRzlQ=;
-        b=aLdS8WIwVzUnKD3OOVothsU8cRSe6i6WTTXfxdghfKAToc/EgJYF1t8itxIyi+FAJm
-         +6G7fO4NXfpM2AelD6ehE03hjEzxiHU9fglq4FoaMd4VqIThfPQLP00eWEwF32GWd0Zq
-         maDhd1rtLt766qfv9KOVdxZDyuVIZcaRr6DBEaR/25YCHKvhJHA9Gd8iZkMe/4AjWAxi
-         6hvL7Wlr0jQxShhlymwDGqtVMEIJTOX9VnWhfp69RDIZq5c37kQG8Xm8EsfCr0MM3dJx
-         qwh7OLEk5syf9nhI/wpmcPUKOlfXcGhKLl87yxGpa6WCcZ0xrCofqy+V80fPfJc5sDeN
-         Jxhw==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hOiHupmcGyEf5UGEte8W6FCxWinJIDVJiVA55jrOYzc=;
+        b=GIlO3UN55vL3h7JbdJvH33jKpscEKWu6I5VytHsyJHn7XTOuXw+XIaszHE25w2myzU
+         4vgAfKMJ5UYtzlccwzKOwJ64J5s+tKse/9JtEXVvggowUDd6kmXl9Lxxs2bpMj2W6xTF
+         SpWj4yPYkB3/72h05lp87WvlrhDazS/pNCeDBBnqAbs+En4xmMeSrJEwqPQNxmjPc1Ci
+         pW+T1l3+BhPJeRFU1Q2t0THYG5NwsDviKcfy+xkv3r9NctZ9TLwyOVi2OzZzIcpV/E/I
+         zKxRRFK/m/zX3uJW3WHa/rJJEj9WO9RUmP+FtpZY/72lNx/mAvadC/C76Sk+sfhKb2lJ
+         UL9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JSXHQVsWHUKcPua78jzq0240G90YXX9B3puQSrtRzlQ=;
-        b=hBk0iWxU4iIYSYBTrJBuFr6Dc2tN/aq0OgWp3B3ZRqa/Jqlm83bv9wudgprIj5+8rM
-         7etPMFgaYOX3txW68QL8bY+cmNFikP+Rm7FibnbghOzn9CfexbEPalLAEwA9a0vRpYdf
-         ZAnU1jlE94ZkfwJ3p0rLUiVfO9GvPIwk+g9ko8tu4GGLld8bhHWmPSr1UE1+kMyvkHV3
-         nqydo250u9rC7V+0qAiAeyhCB/f237B8DxtAEXwOHaC5d+WhzwlRVb80DeqxcitaCgri
-         WFP5kDXbZ+93R3TfExvkbn3rnifIpncP46pW4UDv1Pmz5lioh8dM7eESjCS2cuVWu72Z
-         gfhw==
-X-Gm-Message-State: AFqh2kpTnoWdxAS6bZRW07Ee1D4yO4SRRUnNHk6bD70iHalYl/9X8fdm
-        e0RFng345hUCX9m+HstrTwd7UA==
-X-Google-Smtp-Source: AMrXdXv+MwwoUNTU1/fdQD7I+AkcMbJbgndrHq5o4DAdMA5y3spl/MTsijx6tZHTYgMpXquYKW7q2Q==
-X-Received: by 2002:a05:6512:3b2a:b0:4b5:5efb:7d26 with SMTP id f42-20020a0565123b2a00b004b55efb7d26mr20499266lfv.37.1673093192087;
-        Sat, 07 Jan 2023 04:06:32 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=hOiHupmcGyEf5UGEte8W6FCxWinJIDVJiVA55jrOYzc=;
+        b=UbQDWtTBo3mXKMZmiMx4s8ZzkWO+oIIFZCqS8XGufoPJDQfBn16NEB9pkaM+WHGJ8h
+         xpw6Rp8KUOhlp0JH0Ip0lq7L1gDYKASekH5qK2dqCE64rZerO2vfS/wyrM3L5aDkTako
+         Kz9/XGzRxrOELJNT5XBOharMHdsfIQsVsSIs4NYHH8GTbEcHeFPg8kBUHeT10D2nHCdl
+         GUxc5hp3ghHrUVNzHX2OyEKZQeoieUihdgKa1/JJ425Fdbl13RxuTilSfgXNhF/fqUEu
+         8WIiMcCW79RmVwmezrphgkk5pd1UxF31CaHU3h1pMTcqFoFIqzl90+X/YBj02C22U75N
+         bQZA==
+X-Gm-Message-State: AFqh2kqihR9nXdg/5WFDnlz/wpPyw+zTgGyBFqSzMsWs1fhDsE1/dL+9
+        wPDT10H3IJ4h8PYiF5hbIkmxJQ==
+X-Google-Smtp-Source: AMrXdXszbs3bt64CyDgYipBy5p8y1VLbYTo03RqArCREdFRnc69lP5EZzaewo1+P06yBp+PT+8+uCg==
+X-Received: by 2002:a05:6512:3c9e:b0:4b6:a6e4:ab7a with SMTP id h30-20020a0565123c9e00b004b6a6e4ab7amr19349343lfv.8.1673093193582;
+        Sat, 07 Jan 2023 04:06:33 -0800 (PST)
 Received: from localhost.localdomain (abxi45.neoplus.adsl.tpnet.pl. [83.9.2.45])
-        by smtp.gmail.com with ESMTPSA id m2-20020a056512114200b004caf992bba9sm551424lfg.268.2023.01.07.04.06.30
+        by smtp.gmail.com with ESMTPSA id m2-20020a056512114200b004caf992bba9sm551424lfg.268.2023.01.07.04.06.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Jan 2023 04:06:31 -0800 (PST)
+        Sat, 07 Jan 2023 04:06:33 -0800 (PST)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
         agross@kernel.org, krzysztof.kozlowski@linaro.org
@@ -59,60 +60,63 @@ Cc:     marijn.suijten@somainline.org,
         Manivannan Sadhasivam <mani@kernel.org>,
         linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/3] dt-bindings: remoteproc: qcom,sm6350-pas: Add SM6375 ADSP
-Date:   Sat,  7 Jan 2023 13:06:21 +0100
-Message-Id: <20230107120623.1903056-1-konrad.dybcio@linaro.org>
+Subject: [PATCH v2 2/3] dt-bindings: remoteproc: qcom,sm8150-pas: Add SM6375 CDSP
+Date:   Sat,  7 Jan 2023 13:06:22 +0100
+Message-Id: <20230107120623.1903056-2-konrad.dybcio@linaro.org>
 X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230107120623.1903056-1-konrad.dybcio@linaro.org>
+References: <20230107120623.1903056-1-konrad.dybcio@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add entries for SM6375 ADSP, as it's essentially identical to the one
-on SM6350.
+Add entries for SM6375 CDSP, as it's essentially identical to the one
+on SM8150.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
 v1 -> v2:
-- Rebase on top of recent changes, move to 6350 pas yaml
+- Rebase on top of recent changes, move to 8150 pas yaml
 
- .../devicetree/bindings/remoteproc/qcom,sm6350-pas.yaml        | 3 +++
+ .../devicetree/bindings/remoteproc/qcom,sm8150-pas.yaml        | 3 +++
  1 file changed, 3 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm6350-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm6350-pas.yaml
-index 911529400142..a225f54de424 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,sm6350-pas.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm6350-pas.yaml
-@@ -19,6 +19,7 @@ properties:
-       - qcom,sm6350-adsp-pas
-       - qcom,sm6350-cdsp-pas
-       - qcom,sm6350-mpss-pas
-+      - qcom,sm6375-adsp-pas
- 
-   reg:
-     maxItems: 1
-@@ -49,6 +50,7 @@ allOf:
-           enum:
-             - qcom,sm6350-adsp-pas
-             - qcom,sm6350-cdsp-pas
-+            - qcom,sm6375-adsp-pas
-     then:
+diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm8150-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm8150-pas.yaml
+index b934252cf02b..082ae70a3fcb 100644
+--- a/Documentation/devicetree/bindings/remoteproc/qcom,sm8150-pas.yaml
++++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm8150-pas.yaml
+@@ -16,6 +16,7 @@ description:
+ properties:
+   compatible:
+     enum:
++      - qcom,sm6375-cdsp-pas
+       - qcom,sm8150-adsp-pas
+       - qcom,sm8150-cdsp-pas
+       - qcom,sm8150-mpss-pas
+@@ -51,6 +52,7 @@ allOf:
        properties:
-         interrupts:
-@@ -67,6 +69,7 @@ allOf:
          compatible:
            enum:
-             - qcom,sm6350-adsp-pas
-+            - qcom,sm6375-adsp-pas
-     then:
++            - qcom,sm6375-cdsp-pas
+             - qcom,sm8150-adsp-pas
+             - qcom,sm8150-cdsp-pas
+             - qcom,sm8150-slpi-pas
+@@ -74,6 +76,7 @@ allOf:
        properties:
-         power-domains:
+         compatible:
+           enum:
++            - qcom,sm6375-cdsp-pas
+             - qcom,sm8150-adsp-pas
+             - qcom,sm8150-cdsp-pas
+             - qcom,sm8250-cdsp-pas
 -- 
 2.39.0
 
