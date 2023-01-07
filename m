@@ -2,202 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71B21660B15
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 01:52:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B22D660C28
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 04:27:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231638AbjAGAwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Jan 2023 19:52:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53376 "EHLO
+        id S229521AbjAGD1j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Jan 2023 22:27:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229751AbjAGAwO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 19:52:14 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A4A138A;
-        Fri,  6 Jan 2023 16:52:13 -0800 (PST)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3070pNWI021772;
-        Sat, 7 Jan 2023 00:51:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=PcCTzQLOna79iKhl3SfZY+DvvqfN7lJVlW4D5wl0maY=;
- b=JeM6/+1ngbSi50nsDLzRU7/lFCShKAeAJ30E2Z41AyUxovn3aavxcTTN6TVOVmKBXy0s
- hP3bAg1/8GAiI11aaV+ozFWmu6uE7ATFyk/NHNj/WmvsufRue0ltIy9MXNP2h3hqg/3/
- LC3xDWIZ5JKDV+DgsQEMWD2qDlJHIoJdK9QeuJS4hz1Vdmp1Lu4f79UYB3fvhpJ2kx/e
- kcf4kW7LufgvupBuOm4a4HbpIs8sS1XX+85RtU4oOLg2pRE3fYNaurZJsMKzRGBkmDR9
- jleMMNRoIhCAn5Byjmpib5e06fveVWo36P/V01XhN4qE6nR71SzAUi5y2q6lo3n8oYuk Jg== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3mx9jfjn0h-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sat, 07 Jan 2023 00:51:23 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3070pMNF023141
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sat, 7 Jan 2023 00:51:22 GMT
-Received: from [10.110.74.54] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 6 Jan 2023
- 16:51:21 -0800
-Message-ID: <ed3d16a2-0320-596f-4091-ceef2d11fca9@quicinc.com>
-Date:   Fri, 6 Jan 2023 16:51:21 -0800
+        with ESMTP id S229751AbjAGD1i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Jan 2023 22:27:38 -0500
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5041C8B53F
+        for <devicetree@vger.kernel.org>; Fri,  6 Jan 2023 19:27:37 -0800 (PST)
+Received: by mail-pl1-x630.google.com with SMTP id c6so3712228pls.4
+        for <devicetree@vger.kernel.org>; Fri, 06 Jan 2023 19:27:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google;
+        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
+         :cc:to:subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=m3LuWDVbFp8erXkWPNDfSi3CwlNfNnBUFrp8bnNnzi4=;
+        b=B7bEEYJ67fuzUqgD9wEonKSjDosUaC0zUvwTpHk1pjMQtNzdyaj2hW4i5Gt/8NDon+
+         hwlw2nlexVIwq8zzCQfxudV+r/Sqk4i6Lwylb5n2bzXwe6dXqsWwpaA32dUzFNOwE3hH
+         shTAfbd6tCfhCFuPyXE5DITod7u0HqetcxOSI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
+         :cc:to:subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=m3LuWDVbFp8erXkWPNDfSi3CwlNfNnBUFrp8bnNnzi4=;
+        b=HIDF8zkZPF1Ka6nMZRHuDyRo19mkb4xBebU6n0UWp/z1C4q6ADHjXqiTDUE+fTlCZ+
+         18wXu8moNS7pSFJqgflMjy/M3m6sLh/I2ZX2uc9zojc/WoLpH2cCb7s0UFeuz72mhsTb
+         hDwXZ6/hl4IA7npsaIQ4hNI0DXZn+3f17BPrh4YQqTRfRSRX38uS+LTPbq/qQet46GFr
+         9LtB091HkjOTvQCafO0kmXo7FB9EPU9AktRJtBNr0iToipUuVR0333LHQjJ1rFTd+rw2
+         XlOgHGJGnruUHv74DV+omUEYGzqtG1AMv9IO+BSR/AvC+T6SNh2RpSfU7TNLflP3xtup
+         sr0Q==
+X-Gm-Message-State: AFqh2krrKJvNL6Mg2E1JI/GOuELJPh6GYQks1R3oZG2yVNe+RiSbrrLT
+        l+ESx9wpPgX/5K1+g2uzEa3nRA==
+X-Google-Smtp-Source: AMrXdXuMz/toCYDKKdI5MtIQJXNm+5g1RMBs6R8uEWATXi6Z4DruBn6icDBxwIojuxvEfVSW6Icuxw==
+X-Received: by 2002:a05:6a20:4904:b0:9d:efbf:8156 with SMTP id ft4-20020a056a20490400b0009defbf8156mr76255830pzb.31.1673062056738;
+        Fri, 06 Jan 2023 19:27:36 -0800 (PST)
+Received: from bcacpedev-irv-3.lvn.broadcom.net ([192.19.161.250])
+        by smtp.gmail.com with ESMTPSA id d7-20020a631d47000000b004a849d3d9c2sm1492646pgm.22.2023.01.06.19.27.34
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 06 Jan 2023 19:27:35 -0800 (PST)
+Subject: Re: [PATCH 03/16] dt-bindings: spi: Add spi peripheral specific
+ property
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Linux SPI List <linux-spi@vger.kernel.org>,
+        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
+        anand.gore@broadcom.com, tomer.yacoby@broadcom.com,
+        dan.beygelman@broadcom.com, joel.peshkin@broadcom.com,
+        f.fainelli@gmail.com, jonas.gorski@gmail.com,
+        kursad.oney@broadcom.com, dregan@mail.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230106200809.330769-1-william.zhang@broadcom.com>
+ <20230106200809.330769-4-william.zhang@broadcom.com>
+ <Y7iPS48viBg0QRok@sirena.org.uk>
+From:   William Zhang <william.zhang@broadcom.com>
+Message-ID: <3ff9a7fa-25dd-701c-078e-03e47bd3c08b@broadcom.com>
+Date:   Fri, 6 Jan 2023 19:27:34 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.4.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [RFC PATCH 02/14] ASoC: qcom: qdsp6: Introduce USB AFE port to
- q6dsp
-Content-Language: en-US
-To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
-        <andersson@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <gregkh@linuxfoundation.org>, <Thinh.Nguyen@synopsys.com>,
-        <bgoswami@quicinc.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
-        <agross@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_jackp@quicinc.com>,
-        <quic_plai@quicinc.com>
-References: <20221223233200.26089-1-quic_wcheng@quicinc.com>
- <20221223233200.26089-3-quic_wcheng@quicinc.com>
- <5babccd6-9796-7613-cf82-cc859f338448@linux.intel.com>
- <6e13521a-84bf-f8a6-e8cc-5b90ff4bd675@quicinc.com>
- <65820e0e-be8b-c574-98d0-a2e60ee4be76@linux.intel.com>
-From:   Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <65820e0e-be8b-c574-98d0-a2e60ee4be76@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 2qDcc9MT_mr9ckvvQHeLaPh9VIMfXPaR
-X-Proofpoint-ORIG-GUID: 2qDcc9MT_mr9ckvvQHeLaPh9VIMfXPaR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2023-01-06_14,2023-01-06_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
- bulkscore=0 phishscore=0 spamscore=0 adultscore=0 suspectscore=0
- mlxlogscore=999 lowpriorityscore=0 impostorscore=0 priorityscore=1501
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301070005
-X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <Y7iPS48viBg0QRok@sirena.org.uk>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="0000000000009970d805f1a41d80"
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pierre,
+--0000000000009970d805f1a41d80
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-On 1/6/2023 8:09 AM, Pierre-Louis Bossart wrote:
-> 
->>>> The QC ADSP is able to support USB playback and capture, so that the
->>>> main application processor can be placed into lower CPU power modes.
->>>> This
->>>> adds the required AFE port configurations and port start command to
->>>> start
->>>> an audio session.
->>>
->>> It would be good to clarify what sort of endpoints can be supported. I
->>> presume the SOF-synchronous case is handled, but how would you deal with
->>> async endpoints with feedback (be it explicit or implicit)?
->>>
->>
->> Sure, both types of feedback endpoints are expected to be supported by
->> the audio DSP, as well as sync eps.  We have the logic there to modify
->> the audio sample size accordingly.
-> 
-> did you mean modify samples per USB frame (or uframe), so as to change
-> the pace at which data is transferred? If yes it'd be the same for Intel.
-> 
+Hi Mark,
 
-Yes, sorry for not being clear.  Your understanding is correct.
-
->>>>      static const struct snd_soc_dapm_route q6afe_dapm_routes[] = {
->>>> +    {"USB Playback", NULL, "USB_RX"},
->>>
->>> ... but here RX means playback?
->>>
->>> I am not sure I get the convention on directions and what is actually
->>> supported?
->>>
->>
->> The notation is based on the direction of which the audio data is
->> sourced or pushed on to the DSP.  So in playback, the DSP is receiving
->> audio data to send, and capture, it is transmitting audio data received.
->> (although we do not support capture yet)
+On 01/06/2023 01:14 PM, Mark Brown wrote:
+> On Fri, Jan 06, 2023 at 12:07:55PM -0800, William Zhang wrote:
 > 
-> ok, it'd be good to add a comment on this convention. Usually RX/TX is
-> bus-centric.
+>> brcm,no-clk-gate is a Broadcom Broadband HS SPI controller specific
+>> property for certain SPI device such as Broadcom ISI voice daughtercard
+>> to work properly. It disables the clock gating feature when the chip
+>> select is deasserted for any device that wants to keep the clock
+>> running.
 > 
-
-Sure, will do.
-
->>
->>>> +struct afe_param_id_usb_cfg {
->>>> +/* Minor version used for tracking USB audio device configuration.
->>>> + * Supported values: AFE_API_MINOR_VERSION_USB_AUDIO_CONFIG
->>>> + */
->>>> +    u32                  cfg_minor_version;
->>>> +/* Sampling rate of the port.
->>>> + * Supported values:
->>>> + * - AFE_PORT_SAMPLE_RATE_8K
->>>> + * - AFE_PORT_SAMPLE_RATE_11025
->>>> + * - AFE_PORT_SAMPLE_RATE_12K
->>>> + * - AFE_PORT_SAMPLE_RATE_16K
->>>> + * - AFE_PORT_SAMPLE_RATE_22050
->>>> + * - AFE_PORT_SAMPLE_RATE_24K
->>>> + * - AFE_PORT_SAMPLE_RATE_32K
->>>> + * - AFE_PORT_SAMPLE_RATE_44P1K
->>>> + * - AFE_PORT_SAMPLE_RATE_48K
->>>> + * - AFE_PORT_SAMPLE_RATE_96K
->>>> + * - AFE_PORT_SAMPLE_RATE_192K
->>>> + */
->>>> +    u32                  sample_rate;
->>>> +/* Bit width of the sample.
->>>> + * Supported values: 16, 24
->>>> + */
->>>> +    u16                  bit_width;
->>>> +/* Number of channels.
->>>> + * Supported values: 1 and 2
->>>
->>> that aligns with my feedback on the cover letter, if you connect a
->>> device that can support from than 2 channels should the DSP even expose
->>> this DSP-optimized path?
->>>
->>
->> My assumption is that I programmed the DAIs w/ PCM formats supported by
->> the DSP, so I think the ASoC core should not allow userspace to choose
->> that path if the hw params don't fit/match.
+> Why would this property be Broadcom specific?  Other devices could in
+> theory implement this.
 > 
-> Right, but the point I was trying to make is that if the device can do
-> more, why create this DSP path at all?
+It does not need to be Broadcom specific if other SoC's SPI bus 
+controller support such function. I am not aware of such case but 
+certainly I am no expert on other chips. I can put it in the generic 
+spi-peripheral-props.yaml if that is what you suggest.
+
+>> +properties:
+>> +  brcm,no-clk-gate:
+>> +    $ref: /schemas/types.yaml#/definitions/flag
+>> +    description:
+>> +      Some SPI device such as Broadcom ISI based voice daughtercard requires SPI
+>> +      clock running even when chip select is deasserted. By default the
+>> +      controller turns off or gate the clock when cs is not active to save
+>> +      power. This flag tells the controller driver to keep the clock running
+>> +      when chip select is not active.
 > 
-
-Yeah, I think this brings me back to needing to understand a bit more of 
-how the userspace chooses which PCM device to use.  At least for our 
-current use cases, userspace would always route through the offload 
-path, regardless of if the device can do more.  It will just select a 
-lower audio profile if so.
-
->>
->>> Oh and I forgot, what happens if there are multiple audio devices
->>> connected, can the DSP deal with all of them? If not, how is this
->>> handled?
->>>
->>
->> This is one topic that we were pretty open ended on.  At least on our
->> implementation, only one audio device can be supported at a time.  We
->> choose the latest device that was plugged in or discovered by the USB
->> SND class driver.
+> This seems problematic with any host controlled chip select support...
 > 
-> Similar case for Intel. I have to revisit this, I don't recall the details.
-> 
+Yes those ISI chip based voice cards do need such strange requirement 
+and will not work with other controller.  That is one of the reason I 
+put this as Broadcom specific option.
 
-Got it.
+--0000000000009970d805f1a41d80
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
-Thanks
-Wesley Cheng
+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
+YDZuuBJwnyCzevMoPtVYPharioL5H3BRnQi8YoTXH7/uRo33dewYFm474yFjwwnt82TFtveVZkVq
+6h4WIQ4wTcwFfET8zMkELnGzS5SHCl8sPD+lNxxJ1JDZYwIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
+BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
+YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
+BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
+MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
+YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
+Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
+HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
+BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUq65GzwZxydFHjjYEU/9h
+xHhPWlwwDQYJKoZIhvcNAQELBQADggEBAA2hGG3JPAdGPH0ZdohGUCIVjKz+U+EFuIDbS6A/5jqX
+VhYAxZlzj7tSjUIM7G7IhyfqPC46GKJ/4x+Amz1Z6YxNGy71L68kYD6hIbBcA5AM42QBUufly6Oa
+/ppSz3WoflVyFFQ5YXniZ+eU+2/cdnYZg4aVUnFjimOF5o3NfMLzOkhQNxbaDjFUfUYD8hKmU6v4
+0vUBj8KZ9Gi1LIagLKUREn8jku0lcLsRbnJ5Ey5ScajC/FESPyYWasOW8j8/1EoJksmhbYGKNS6C
+urb/KlmDGfVrIRYDbL0ckhGQIP5c6L+kSQZ2sHnQK0e0WgIaZYxaPYeY5u0GLCOze+3vyRMxggJt
+MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
+VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwxuh2XG3FXRL1W
+JOEwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIL3w0eWjk4HHJ9klGn3e86kzvJRQ
+hbbPq9FBv3Bm/UyAMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIz
+MDEwNzAzMjczN1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
+AwQCATANBgkqhkiG9w0BAQEFAASCAQAtZVaghz0Z6ZZX2e37beo/T6XwYsbXdAZ/NjoOQf+ZhJbj
+W4GflEKoaM9iGD8S9sQ8BT8SA6/hGMCn6+Z2TO7LasrvsF6FVu67rcC4bGGsgoyN3y4GALzbXHcn
+Usz9xqC1yZOs79fp93Ef3DiBkZzPOrwRiGq9M3m+LoCjSbeIVXgM3fFcpUi5PN9fH5DV+jW5t7uf
+NcwXlxwB6ws76dmTptFW2v5yQHonDcEVAgKqKEImfx49QrwBR3bKeaI979mPVD1T99qDfN5fVEL1
+XsPK5+WUUfXTyg7QWZvyAw/rUh6ja+g6yx6B1DSV2TBby4SBI2ZYIekbx37XdBukwlmb
+--0000000000009970d805f1a41d80--
