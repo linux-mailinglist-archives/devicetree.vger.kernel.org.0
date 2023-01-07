@@ -2,162 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19206660FF3
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 16:30:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3364E660FF5
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 16:32:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230037AbjAGPa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Jan 2023 10:30:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41510 "EHLO
+        id S231785AbjAGPcJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Jan 2023 10:32:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229867AbjAGPa4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 10:30:56 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A1335FA1
-        for <devicetree@vger.kernel.org>; Sat,  7 Jan 2023 07:30:55 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id z5so2789599wrt.6
-        for <devicetree@vger.kernel.org>; Sat, 07 Jan 2023 07:30:55 -0800 (PST)
+        with ESMTP id S229488AbjAGPcI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 10:32:08 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E5A042616
+        for <devicetree@vger.kernel.org>; Sat,  7 Jan 2023 07:32:07 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id g10so3016804wmo.1
+        for <devicetree@vger.kernel.org>; Sat, 07 Jan 2023 07:32:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=eMUPJpQBcGtzH4kWcu2nVFwuHCUArPb2603OVSvS0g8=;
-        b=qKbLTjgV6/mKknV2sXZHOMV8M/62lt/pDWlLidtOn6zSE7y+zoiMhhrZ6B1nXTPxzz
-         n+Zh2YXc7bSzWIbQ7MqL4I857KU/gj675hBuO9FOeF46K/4qno/7sCB3uMRr50OU3RrJ
-         CcmGCdmoDWCN3pRBgTNozgITPnCAKKTg39b2Z8tSxa8g4SvYipbjbLyHMfah8LjvF4oS
-         Z6xSnh589lfXDOqNYAXre33GE0HAOMj6IJtSLliZbAcgE+GYoV43TlkZqFQ2cwKAJZn9
-         BuMx2ULge3aKdnVRh+CGUnXrDpZq6d6Wgy0qwED/Ru3o6F/Jp6tnx89kBG1yzPaKzSxN
-         qscw==
+        bh=YHckjjOEvZSFADImnJ7KXWMu9c8067aGfxjgXUsE4X0=;
+        b=XARL9Xw432069q9ug7AmT2ii/721KOOex76uOSQ5Ej91v8uVly0JvVpRHv+l42opvX
+         oxLRgOTF6IfaMlvAE5ugFkDsciEL0LMmSkrPTiUueafFX43KPTtMnTAp/s2HnFvT9SRr
+         YtF3U/D4hHQ1n7ZdGqeqtC+HD5MSlAiHIfTpTnro953jmyya2xBKkWxQFy/tuERmB7zR
+         FpV8aHqVfYlMs5BIrWBX106lF+CSTZ29ieBT76WFbz/Z+bCuuNjToc2ihC8tkxpWcu09
+         Zphue/rbHyxsRWyyqafC6IOIEVUE9G4HUjfjnl6FhiFjalXpgeM0BRjb5VoG9MtcY9HP
+         vYWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eMUPJpQBcGtzH4kWcu2nVFwuHCUArPb2603OVSvS0g8=;
-        b=pU9ZhskICIZJSBnxbyiO6yhlzlsN9I+ZQrj/qeiHUqNbCm6AtMkWFbj9o1Y9UnO277
-         JTxnpwty3D3JQxQg5xh8E3wZqhACkoTdxrpu3NFZjhdwejh8x4HSJQrEl5JI4bu9Q1i/
-         BdJkekBqohbmnfRCDmp05n7LMplnQ7g3SR4GyV7avUWJJdhSC8gTFDNGFizUrK1u+MXD
-         jrHZv3J5pG/12fkyNj/hU3++19Q1u31mSgtHWRziRuLM+KtJUcdgzLYMNEaSjeuo2fuw
-         3uPSsPxP6M1tqgbqNBhvKvrSANOenv75uOW+Z2znUL7jPIiF2hAwDpHhrDwslR9dsDpc
-         Cbeg==
-X-Gm-Message-State: AFqh2ko8YBQ9woaP7KEURFr7MwhdAtMUuNbRMLfIZ++lyZzp5tHC2tFD
-        Em4mehYr1d4ezZtuC5TWdiWLrxX/HkimznvD
-X-Google-Smtp-Source: AMrXdXthestGfcTU9GVlBsBvpk8m7/LoYEiCN9PL+ya2anRQ+O1ant7rRR7S1YwBe5drlwtCxpQRjA==
-X-Received: by 2002:a5d:5e91:0:b0:2b8:fe58:d368 with SMTP id ck17-20020a5d5e91000000b002b8fe58d368mr5562051wrb.29.1673105453736;
-        Sat, 07 Jan 2023 07:30:53 -0800 (PST)
+        bh=YHckjjOEvZSFADImnJ7KXWMu9c8067aGfxjgXUsE4X0=;
+        b=LJC/FLHNEI/96IJtOO3qo+jtGpM3Ed+NSAl2wwbXIIVsEwXKlgMB4IDQ4Om8gMlI7N
+         6YZPA+b79e2beueVSsLeGZfX+bBZkHKsloQmLt/CnroYNLXUkxw37ozJaA4g0CzdxEJ3
+         jZMgm/m/m27JAPAj0zzo9DrKkoLlzVtx2uWKdRu0DffC7STnqKgpvIKpLnURJUQKGc1t
+         H8L15OnpJ03ISq//rlZ5l9+9ebDcwCDi5OiOtwdbU+oh0Gizzoj0Zug4f3bg5OCU8liS
+         Qice3crcNkztOITULwL1KNTchg+VsysOTWyFcUAf2t2r7H8TvHl1UX2oI63RzE5fkxZB
+         +o0w==
+X-Gm-Message-State: AFqh2kqiAP74mGCDBVT4Xq+nIvSNcwiPoBTLKq4UtC6FmEbELMKhhkoX
+        1WKpB1+7ft8Im7DTVCtEN84ZDw==
+X-Google-Smtp-Source: AMrXdXvDiGSfEvCPjtCCxt7V6mSTslc3oth6qqA2ZR6xvpY8QqB8opH2ImO7Gq7PgtVhcK4ymxr99g==
+X-Received: by 2002:a05:600c:1c27:b0:3cf:a83c:184a with SMTP id j39-20020a05600c1c2700b003cfa83c184amr43073046wms.24.1673105525806;
+        Sat, 07 Jan 2023 07:32:05 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id l4-20020a05600012c400b002bbb2d43f65sm1380839wrx.14.2023.01.07.07.30.52
+        by smtp.gmail.com with ESMTPSA id p1-20020a05600c204100b003d99a39b846sm6230720wmg.5.2023.01.07.07.32.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 Jan 2023 07:30:53 -0800 (PST)
-Message-ID: <326c8fc5-a6b4-1005-40e7-6dcf0e0b4b7b@linaro.org>
-Date:   Sat, 7 Jan 2023 16:30:51 +0100
+        Sat, 07 Jan 2023 07:32:05 -0800 (PST)
+Message-ID: <0581eeed-f7d1-caf2-0dba-be14a01d7c05@linaro.org>
+Date:   Sat, 7 Jan 2023 16:32:03 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: media: Add OmniVision OV8858
+Subject: Re: [PATCH 01/16] dt-bindings: spi: Convert bcm63xx-hsspi bindings to
+ json-schema
 Content-Language: en-US
-To:     Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Cc:     Nicholas Roth <nicholas@rothemail.net>,
-        Robert Mader <robert.mader@collabora.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230106203909.184073-1-jacopo@jmondi.org>
- <20230106203909.184073-2-jacopo@jmondi.org>
- <4f1e55bc-9f0b-6411-2957-e68a049f1d6b@linaro.org>
- <20230107151825.6quaenebql3bnjv5@uno.localdomain>
+To:     William Zhang <william.zhang@broadcom.com>,
+        Linux SPI List <linux-spi@vger.kernel.org>,
+        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>
+Cc:     anand.gore@broadcom.com, tomer.yacoby@broadcom.com,
+        dan.beygelman@broadcom.com, joel.peshkin@broadcom.com,
+        f.fainelli@gmail.com, jonas.gorski@gmail.com,
+        kursad.oney@broadcom.com, dregan@mail.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230106200809.330769-1-william.zhang@broadcom.com>
+ <20230106200809.330769-2-william.zhang@broadcom.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230107151825.6quaenebql3bnjv5@uno.localdomain>
+In-Reply-To: <20230106200809.330769-2-william.zhang@broadcom.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/01/2023 16:18, Jacopo Mondi wrote:
-> Hi Krzysztof
+On 06/01/2023 21:07, William Zhang wrote:
+> This is the preparation for updates on the bcm63xx hsspi driver. Convert
+> the text based bindings to json-schema per new dts requirement.
 > 
-> On Sat, Jan 07, 2023 at 02:09:54PM +0100, Krzysztof Kozlowski wrote:
->> On 06/01/2023 21:39, Jacopo Mondi wrote:
->>> From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
->>>
->>> Add binding schema for the OmniVision OV8858 8 Megapixels camera sensor.
->>>
->>> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
->>> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->>> ---
->>>  .../bindings/media/i2c/ovti,ov8858.yaml       | 105 ++++++++++++++++++
->>>  1 file changed, 105 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
->>> new file mode 100644
->>> index 000000000000..002461a974f8
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov8858.yaml
->>> @@ -0,0 +1,105 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov8858.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: OmniVision OV8858 Image Sensor
->>> +
->>> +maintainers:
->>> +  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
->>> +  - Nicholas Roth <nicholas@rothemail.net>
->>> +
->>> +description: |
->>> +  The OmniVision OV8858 is a color CMOS 8 Megapixels (3264x2448) image sensor
->>> +  controlled through an I2C-compatible SCCB bus. The sensor transmits images
->>> +  on a MIPI CSI-2 output interface with up to 4 data lanes.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: ovti,ov8858
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  clocks:
->>> +    maxItems: 1
->>> +    description: XVCLK external clock
->>> +
->>> +  clock-names:
->>> +    const: xvclk
->>> +
->>> +  dvdd-supply:
->>> +    description: Digital Domain Power Supply
->>> +
->>> +  avdd-supply:
->>> +    description: Analog Domain Power Supply
->>> +
->>> +  dovdd-supply:
->>> +    description: I/O Domain Power Supply
->>> +
->>> +  powerdown-gpios:
->>> +    description: PWDNB powerdown GPIO (active low)
->>> +
->>> +  reset-gpios:
->>> +    description: XSHUTDN reset GPIO (active low)
->>
->> Here you need maxItems. I did not propose to remove it here.
->>
+> Signed-off-by: William Zhang <william.zhang@broadcom.com>
+> ---
 > 
-> I'm wondering why you can have multiple resets but not multiple
-> powerdowns.
+>  .../bindings/spi/brcm,bcm63xx-hsspi.yaml      | 52 +++++++++++++++++++
+>  .../bindings/spi/spi-bcm63xx-hsspi.txt        | 33 ------------
+>  2 files changed, 52 insertions(+), 33 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/spi/spi-bcm63xx-hsspi.txt
 > 
-> Anyway, how is one supposed to know when maxItems is required or not,
-> where should I look ?
+> diff --git a/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml b/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml
+> new file mode 100644
+> index 000000000000..45f1417b1213
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml
+> @@ -0,0 +1,52 @@
+> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/spi/brcm,bcm63xx-hsspi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Broadcom BCM6328 High Speed SPI controller
+> +
+> +maintainers:
+> +  - Jonas Gorski <jonas.gorski@gmail.com>
+> +
 
-gpio-consumer-common.yaml
+Missing reference to spi-controller.
+
+> +properties:
+> +  compatible:
+> +    const: brcm,bcm6328-hsspi
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: spi master reference clock
+> +      - description: spi master pll clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: hsspi
+> +      - const: pll
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +
+> +unevaluatedProperties: false
+
+This is for cases when you have reference to other schema.
+
 
 Best regards,
 Krzysztof
