@@ -2,117 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16927660F2C
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 14:33:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3CDF660F3D
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 14:43:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232277AbjAGNdv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Jan 2023 08:33:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58096 "EHLO
+        id S231708AbjAGNnu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Jan 2023 08:43:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232491AbjAGNda (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 08:33:30 -0500
-Received: from mail-4318.protonmail.ch (mail-4318.protonmail.ch [185.70.43.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58B6E5DE5B;
-        Sat,  7 Jan 2023 05:33:29 -0800 (PST)
-Date:   Sat, 07 Jan 2023 13:33:20 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1673098407; x=1673357607;
-        bh=pZqBx8JCAkeYcPAdWXRIi74S0JqcHdu0E5A9iWrKaZ0=;
-        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-         Message-ID:BIMI-Selector;
-        b=iwAYvSsjrQSZuFbs2zt+tiSusDB2d8hfwq8/9fFHEO4sCXF6sxCQ4P/CTlahI7uJm
-         nngNB0rN4GrRIA+hGFE0z2nl4vnG5KXqbv7w8tXYMfuL1gOC3TXs4tYNqL+vFtXZrV
-         of1Fvxqvy5u3AdTv4SIytFGDcMMNiWIuiJMFETEeza9UDgayz8c6P9XGaomq3nvKP1
-         j373SK7vwHMMPMJE+mrk+lpQeQddmflWo00lH21z7yY27X875cYEpt5Y1AfZnxqygo
-         oM5YckNNNlqHVOLjKW1YYBEgb9y0rEe3IgkB/IXNCX5mt7tWWJXNDxQoRYqa/QtFp8
-         By28DbQIB8JyA==
-To:     linux-kernel@vger.kernel.org
-From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Stanislav Jakubek <stano.jakubek@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Jagan Teki <jagan@edgeble.ai>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Nikita Travkin <nikita@trvn.ru>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: [PATCH v6 5/5] arm64: dts: qcom: msm8916-gplus-fl8005a: Add flash LED
-Message-ID: <20230107133235.139947-1-linmengbo0689@protonmail.com>
-In-Reply-To: <20230107132932.139669-1-linmengbo0689@protonmail.com>
-References: <20230107132932.139669-1-linmengbo0689@protonmail.com>
-Feedback-ID: 40467236:user:proton
+        with ESMTP id S232215AbjAGNnt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 08:43:49 -0500
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50E6B5D401;
+        Sat,  7 Jan 2023 05:43:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=rhaXr6GbOx+3CahNm/sgr9dXyzOz+6l2HYeP10Q0JCo=; b=0HD//aWyUXHWC/PtcsWpiO+njm
+        ORFj8Y4ymtQ8wwbCW1e0Ko/p+SJ7o6Xtp9VaI45hRENihlYiqcm6UyyqGmnukU44be1hgvNui4qLT
+        r8M3KnDCiiun4kGudz3IT8DrotWYMgSTze2YnGYRQTS99KlJy07Z4FD9mHDBYbaf1jiNVmrNMvpiv
+        jEJD+i35qnjuwD75LOvDCPjdSNjRMQZqirPo7g57Gz5ii6e6cp21WgPWVVqRCJ+fADWKXerC0XDhx
+        1FPU2hGhROuiXTIaBPDuIPjFbIW9YsuzKwAAfznwTwTOTODg4jgOYpbkx6Cr8DZ6PtDTwbf8+wRDV
+        +cznRC1Q==;
+Received: from p200300ccff2fec001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff2f:ec00:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1pE9U1-00056m-DU; Sat, 07 Jan 2023 14:43:37 +0100
+Date:   Sat, 7 Jan 2023 14:43:36 +0100
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mmc: fsl-imx-esdhc: allow more compatible
+ combinations
+Message-ID: <20230107144336.2ecff4f9@aktux>
+In-Reply-To: <967cc7b7-f0bb-de37-52b9-7bfab05eadd7@linaro.org>
+References: <20230105213856.1828360-1-andreas@kemnade.info>
+        <d7c407dc-0a6c-97d5-a06f-b432a923d74d@linaro.org>
+        <20230106203358.14878660@aktux>
+        <967cc7b7-f0bb-de37-52b9-7bfab05eadd7@linaro.org>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Score: -1.0 (-)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-FL8005A uses Qualcomm GPIO flash LEDs which is compatible with
-SGM3140 Flash LED driver. Add it to the device tree.
+On Sat, 7 Jan 2023 14:23:08 +0100
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- .../boot/dts/qcom/msm8916-gplus-fl8005a.dts   | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
+> On 06/01/2023 20:33, Andreas Kemnade wrote:
+> > On Fri, 6 Jan 2023 09:41:01 +0100
+> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> >   
+> >> On 05/01/2023 22:38, Andreas Kemnade wrote:  
+> >>> Currently make dtbs_check shows lots of errors because imx*.dtsi does
+> >>> not use single compatibles but combinations of them.
+> >>> Allow all the combinations used there.
+> >>>
+> >>> Patches fixing the dtsi files according to binding documentation were
+> >>> submitted multiple times and are commonly rejected, so relax the rules.
+> >>> Example:
+> >>> https://lore.kernel.org/linux-devicetree/72e1194e10ccb4f87aed96265114f0963e805092.camel@pengutronix.de/
+> >>>
+> >>> Reason: compatibility of new dtbs with old kernels or bootloaders.
+> >>>
+> >>> This will significantly reduce noise on make dtbs_check.
+> >>>
+> >>> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> >>> ---
+> >>>  .../bindings/mmc/fsl-imx-esdhc.yaml           | 24 +++++++++++++++++++
+> >>>  1 file changed, 24 insertions(+)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> >>> index dc6256f04b42..118ebb75f136 100644
+> >>> --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> >>> +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> >>> @@ -37,6 +37,30 @@ properties:
+> >>>            - fsl,imx8mm-usdhc
+> >>>            - fsl,imxrt1050-usdhc
+> >>>            - nxp,s32g2-usdhc    
+> >>
+> >> You must drop the items from enum above. Binding saying:
+> >> compatible="A"
+> >> or:
+> >> compatible="A", "B"
+> >>
+> >> is not correct. Either A is or is not compatible with B.
+> >>  
+> > hmm, here we have A = B + some additional features
+> > or
+> > A = B + some additional features and additional quirks required.  
+> 
+> So why do you allow A alone?
+> 
+because A is full-compatible, and B is half-compatible, because
+the additional required quirks are not applied.
+> > 
+> > For the latter we have e.g.
+> > A=
+> > static const struct esdhc_soc_data usdhc_imx6sx_data = {
+> >         .flags = ESDHC_FLAG_USDHC | ESDHC_FLAG_STD_TUNING
+> >                         | ESDHC_FLAG_HAVE_CAP1 | ESDHC_FLAG_HS200
+> >                         | ESDHC_FLAG_STATE_LOST_IN_LPMODE
+> >                         | ESDHC_FLAG_BROKEN_AUTO_CMD23,
+> > };
+> > B=
+> > static const struct esdhc_soc_data usdhc_imx6sl_data = {
+> >         .flags = ESDHC_FLAG_USDHC | ESDHC_FLAG_STD_TUNING
+> >                         | ESDHC_FLAG_HAVE_CAP1 | ESDHC_FLAG_ERR004536
+> >                         | ESDHC_FLAG_HS200
+> >                         | ESDHC_FLAG_BROKEN_AUTO_CMD23,
+> > };
+> > 
+> > so there is the difference in ESDHC_FLAG_STATE_LOST_IN_LPMODE.
+> > That might make no difference in some usage scenario (e.g. some bootloader
+> > not doing any LPMODE), but I wonder why
+> > we need to *enforce* specifying such half-compatible things.  
+> 
+> I asked to remove half-compatible. Not to enforce.
+> 
+well B is half-compatible, I (and others) have sent patches to remove,
+but they were rejected. I consider these patches the way to go.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-gplus-fl8005a.dts b/arch/arm6=
-4/boot/dts/qcom/msm8916-gplus-fl8005a.dts
-index b44c30a72784..a0e520edde02 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-gplus-fl8005a.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-gplus-fl8005a.dts
-@@ -21,6 +21,22 @@ chosen {
- =09=09stdout-path =3D "serial0";
- =09};
-=20
-+=09flash-led-controller {
-+=09=09/* Actually qcom,leds-gpio-flash */
-+=09=09compatible =3D "sgmicro,sgm3140";
-+=09=09enable-gpios =3D <&msmgpio 31 GPIO_ACTIVE_HIGH>;
-+=09=09flash-gpios =3D <&msmgpio 32 GPIO_ACTIVE_HIGH>;
-+
-+=09=09pinctrl-0 =3D <&camera_flash_default>;
-+=09=09pinctrl-names =3D "default";
-+
-+=09=09flash_led: led {
-+=09=09=09function =3D LED_FUNCTION_FLASH;
-+=09=09=09color =3D <LED_COLOR_ID_WHITE>;
-+=09=09=09flash-max-timeout-us =3D <250000>;
-+=09=09};
-+=09};
-+
- =09gpio-keys {
- =09=09compatible =3D "gpio-keys";
-=20
-@@ -237,6 +253,13 @@ l18 {
- };
-=20
- &msmgpio {
-+=09camera_flash_default: camera-flash-default-state {
-+=09=09pins =3D "gpio31", "gpio32";
-+=09=09function =3D "gpio";
-+=09=09drive-strength =3D <2>;
-+=09=09bias-disable;
-+=09};
-+
- =09gpio_keys_default: gpio-keys-default-state {
- =09=09pins =3D "gpio107";
- =09=09function =3D "gpio";
---=20
-2.30.2
-
+Regards,
+Andreas
 
