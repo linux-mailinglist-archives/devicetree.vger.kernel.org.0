@@ -2,141 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60BC9660FCD
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 16:07:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE6E8660FE6
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 16:18:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231800AbjAGPHl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Jan 2023 10:07:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34734 "EHLO
+        id S229997AbjAGPSJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Jan 2023 10:18:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230092AbjAGPHk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 10:07:40 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B6D267BCF
-        for <devicetree@vger.kernel.org>; Sat,  7 Jan 2023 07:07:39 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id ay12-20020a05600c1e0c00b003d9ea12bafcso137525wmb.3
-        for <devicetree@vger.kernel.org>; Sat, 07 Jan 2023 07:07:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+5NdmOy1Ai82n93j2R+2KO8HXukW+/GStni2h9f4Guo=;
-        b=J2grbRRYLvRvHQMNex7quauPQpxtJI12KZZofBJvtRSuVlLdQJ/OeU30i6jI10nCc6
-         U2Hvlg6vgdFkr3qrJvQXio75A+5k/rxuaHC9VFUE6QUIk4YAxjdss1rDu1HJNbyp9CZo
-         1J9QeRwewJg64YAZxER6eiozsN4budlK1N1b+whwLwhNaFNBRO9HdxHLe3gYitFmyjlv
-         6UbNZqD9FuYnjCisYHdG3X7n40fA8diSShoUA1Q1M5sqglvOxK8fRh0SBJs6qIPZXuhU
-         ZIGP152Xk7jk/LhHPqRYzbJ7SrUIhLSFWDO4nQ+XcwxjDViC5YLRohZMy+6uaLyfBRVg
-         +onA==
+        with ESMTP id S229785AbjAGPSH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 10:18:07 -0500
+Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B046F1704D;
+        Sat,  7 Jan 2023 07:18:06 -0800 (PST)
+Received: by mail-il1-f174.google.com with SMTP id o13so2444619ilc.7;
+        Sat, 07 Jan 2023 07:18:06 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+5NdmOy1Ai82n93j2R+2KO8HXukW+/GStni2h9f4Guo=;
-        b=7lW27yero/77bFN6wrWAGqZixFjylE1vvQJ64RDhu6+5H59RGoAiF/FlVWY5dG1/5B
-         t3pVUtOclektQIZv0qLrjuMOap3z+0qQ2RJLYmgZupmOHuYmkAD5X6vwGVAz7elVwGv3
-         9zvd+VTuww5OF4r8VRlXvJuo+y39HvDqUyQ2KlQ+ni/zMP5s+CcVWKmj22ZJ0z7iYkj6
-         EkbI0pafQ0X97Xtd0fOdJceXH6ATW1/E7GofPKq7zSeXNyFvwJbeSeVRuYHL5NB/sWKe
-         y1C7FZ03T/ztdnI9nGtnDm21wvH43/LB+HOzHlkcGYxhzcapLfuKLPlqYamAfQxCoN5b
-         aD7w==
-X-Gm-Message-State: AFqh2kpd8/EFZmWIYNJI8UoFCwV/e59apJoUbL729HeWN6+OMaWXely5
-        IvGZd3kCWq4ZHa7J+kG7vwUhCA==
-X-Google-Smtp-Source: AMrXdXtQ+AVqw4FmyKIXZ2qw5rRUUMYF+o2woAsQxnVzG1eBHl9KZ2kRFMIfKUD/kbeeXOvMWwv7iw==
-X-Received: by 2002:a05:600c:1c21:b0:3cf:9844:7b11 with SMTP id j33-20020a05600c1c2100b003cf98447b11mr50993432wms.23.1673104058040;
-        Sat, 07 Jan 2023 07:07:38 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id g14-20020a05600c310e00b003cf5ec79bf9sm6034449wmo.40.2023.01.07.07.07.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 Jan 2023 07:07:37 -0800 (PST)
-Message-ID: <e1b1450b-9421-3732-2d74-50c47b5afb0e@linaro.org>
-Date:   Sat, 7 Jan 2023 16:07:35 +0100
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=qt3iT4aovtQ+3YTo4FRMDvWABE+Y3B6IyX+wff/2RkE=;
+        b=WrD6CCPDNIlMIDRA0IrqQPA2AOd2+AfTYWivllPN60WOcIYq71l/0SfGS29qBgo7Xn
+         xgEnCVwr4Za227Li0IEicjzD1Q0y+xxZGtIuK3OzrRw0P1NhaKU5lOJvjFSD/J5qBVc+
+         3zQkCLjaR18z6y7cGvo/hJLR6YyOgBjLMcRGwTqptKlXMAcrMi0fuy82EpZLxGuC7N+Y
+         RS6S3Ld/aOItzgTWqZcYecGgvON/Yduv8FYqlivsDxztKoAwzH8DrbihJdfmW/K0sA1p
+         ys1hb+P+bh+hoDlGAsCJ4HOYbOf32hrRgpzqJfIHB+oqdlIC9xlKhYENg19FpQxWvtcn
+         MiFQ==
+X-Gm-Message-State: AFqh2krE7iPBCrV8cUXuJzYi/ktClin3K3FUB84iLj0wFROx/hoVlvAC
+        2rrLYIN1diBEGw0mP2UZLw==
+X-Google-Smtp-Source: AMrXdXuBk+V3WJWqTsqMVyXlcUc2Ry4MJDOK+iidIpfuB8S7Y2PTqJuABcPa7DNShcvdFVZA2Yp0gw==
+X-Received: by 2002:a92:da4f:0:b0:30c:42d9:22a5 with SMTP id p15-20020a92da4f000000b0030c42d922a5mr17020681ilq.13.1673104685792;
+        Sat, 07 Jan 2023 07:18:05 -0800 (PST)
+Received: from robh_at_kernel.org ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id f94-20020a0284e7000000b00389d02a032dsm747863jai.172.2023.01.07.07.18.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 07 Jan 2023 07:18:05 -0800 (PST)
+Received: (nullmailer pid 1799735 invoked by uid 1000);
+        Sat, 07 Jan 2023 15:18:03 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH] dt-bindings: mmc: fsl-imx-esdhc: allow more compatible
- combinations
-Content-Language: en-US
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20230105213856.1828360-1-andreas@kemnade.info>
- <d7c407dc-0a6c-97d5-a06f-b432a923d74d@linaro.org>
- <20230106203358.14878660@aktux>
- <967cc7b7-f0bb-de37-52b9-7bfab05eadd7@linaro.org>
- <20230107144336.2ecff4f9@aktux>
- <123d1a56-8134-dc75-8b2a-b3836e727d4a@linaro.org>
- <20230107150740.0ba34aa1@aktux>
- <0ab84fb8-6173-54e0-abad-a0e0e4ba82e7@linaro.org>
- <20230107160105.66df4136@aktux>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230107160105.66df4136@aktux>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     William Zhang <william.zhang@broadcom.com>
+Cc:     anand.gore@broadcom.com, joel.peshkin@broadcom.com,
+        dan.beygelman@broadcom.com,
+        Linux SPI List <linux-spi@vger.kernel.org>, dregan@mail.com,
+        tomer.yacoby@broadcom.com, f.fainelli@gmail.com,
+        kursad.oney@broadcom.com, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, jonas.gorski@gmail.com,
+        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20230106200809.330769-2-william.zhang@broadcom.com>
+References: <20230106200809.330769-1-william.zhang@broadcom.com>
+ <20230106200809.330769-2-william.zhang@broadcom.com>
+Message-Id: <167310423078.1757548.4915356991338777285.robh@kernel.org>
+Subject: Re: [PATCH 01/16] dt-bindings: spi: Convert bcm63xx-hsspi bindings to
+ json-schema
+Date:   Sat, 07 Jan 2023 09:18:03 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/01/2023 16:01, Andreas Kemnade wrote:
-> On Sat, 7 Jan 2023 15:09:24 +0100
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> 
->> On 07/01/2023 15:07, Andreas Kemnade wrote:
->>> On Sat, 7 Jan 2023 15:00:56 +0100
->>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->>>
->>> [...]  
->>>>>> I asked to remove half-compatible. Not to enforce.
->>>>>>    
->>> so you are saying that allowing
->>> compatible = "A", "B" 
->>> is not ok, if B is not fully compatible. I agree with that
->>> one.  
->>
->> I did not say that. It's not related to this problem.
->>
-> You said "I asked to remove half-compatible" that means to me
-> remove "B" if not fully compatible with A which sounds sane to me.
-> 
->> Again - you cannot have device which is and is not compatible with
->> something else. It's not a Schroedinger's cat to be in two states,
->> unless you explicitly document the cases (there are exception). If this
->> is such exception, it requires it's own documentation.
->>
-> so conclusion:
-> If having A and B half-compatible with A:
-> 
-> compatible = "A" only: is allowed to specifiy it the binding (status quo),
->   but not allowed to make the actual dtsi match the binding documentation
->   https://lore.kernel.org/linux-devicetree/72e1194e10ccb4f87aed96265114f0963e805092.camel@pengutronix.de/
->   and
->   https://lore.kernel.org/linux-devicetree/20210924091439.2561931-5-andreas@kemnade.info/
-> 
-> compatible = "A", "B" in the binding definition: is not allowed ("I asked to remove
->    half-compatible" (= removing B))
 
-No, half compatible is the A in such case.
-
+On Fri, 06 Jan 2023 12:07:53 -0800, William Zhang wrote:
+> This is the preparation for updates on the bcm63xx hsspi driver. Convert
+> the text based bindings to json-schema per new dts requirement.
 > 
-> having mismatch between binding definition and devicetree causes dtbs_check errors
->    -> also not nice.
+> Signed-off-by: William Zhang <william.zhang@broadcom.com>
+> ---
 > 
-> I rather drop this patch and learn to live with dtbs_check errors
-> for this one since I have no idea how to proceed. All roads are blocked.
-> This all causes too much churn.
+>  .../bindings/spi/brcm,bcm63xx-hsspi.yaml      | 52 +++++++++++++++++++
+>  .../bindings/spi/spi-bcm63xx-hsspi.txt        | 33 ------------
+>  2 files changed, 52 insertions(+), 33 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/spi/spi-bcm63xx-hsspi.txt
+> 
 
-And why you cannot implement what I asked for?
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Best regards,
-Krzysztof
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.example.dtb: spi@10001000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'num-cs' were unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230106200809.330769-2-william.zhang@broadcom.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
