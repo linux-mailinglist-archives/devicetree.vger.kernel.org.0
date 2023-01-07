@@ -2,75 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 247AA660DF4
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 11:37:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 07515660DFE
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 11:41:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236714AbjAGKho (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Jan 2023 05:37:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42960 "EHLO
+        id S232571AbjAGKlr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Jan 2023 05:41:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236741AbjAGKhT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 05:37:19 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98EA05592
-        for <devicetree@vger.kernel.org>; Sat,  7 Jan 2023 02:37:17 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id cf42so5545718lfb.1
-        for <devicetree@vger.kernel.org>; Sat, 07 Jan 2023 02:37:17 -0800 (PST)
+        with ESMTP id S236941AbjAGKlT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 05:41:19 -0500
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE30A2AD7
+        for <devicetree@vger.kernel.org>; Sat,  7 Jan 2023 02:41:15 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id k9so1038419ljk.7
+        for <devicetree@vger.kernel.org>; Sat, 07 Jan 2023 02:41:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=k6Ains2IyyIGAKSJrkJg0fmJTUKO0DhSMOSlG6bdPAc=;
-        b=MO+XsRHQ0Q/PY3V+RQGxibDU6e9FpEL9kvYqlqU4qUdiPPm5Edvv29ARrUoAMZoNH+
-         z01ckEQ9xmjVQiCYqi8UdWu/w77BaieGUrvEyHrLs3ohyHjIenPBm8FrwbicaMSRRERv
-         BN97CxfsR/WVyjbyl4ZF04OHM09OqBiqhwQN5pQSwWxkRtaCYdjOtKlM+ZEjxmqrtiaK
-         nE3n+nySB6h8Qmg7P4nrBlncmtUK8ziwlDXV7+4hY+ERtvuxYOHpOMIP1hixNRxQpRm5
-         rCJ8tYR7tSk273NDb9f7hzHY7bHl+Z9SKVrBqCUPIEI6lloPlHGr/2iTESQTtP95Ozjr
-         1FHA==
+        bh=oltHV3xaiJRNkm48kKrVJwnasCXR4K2YIGWYLIQBEnA=;
+        b=aY+xIzsS1z4eaPzLTWWkq42A4ESmq5QZ4lilbu9FHLX4Db17YC1AdVkH7Qa5xkDsYA
+         qiHk0pmjNnUb7ZDAivl8NV01/5Hqhogk12v3VVPH1pMhNIWf3VJR1cvxUWuCKDgU4xPm
+         3PCNHQbx97hQgheBV51io2bsUIFYCkmXBEFVroWpr862jyGsaTQDH0eeuNW+b7snnncb
+         MXW5s9VuJxtauJFRm3yUKWAsACAEXvzEhTZUIuV0KZNuE2hOfPxvM0Ma90CBbf39XqOL
+         Mme9bGZa8JnfVpofroX17Ui7gvcs1QgGRFX/N7FotqAgu1WFH2auVvgJykxHJX3LNWSG
+         +rqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=k6Ains2IyyIGAKSJrkJg0fmJTUKO0DhSMOSlG6bdPAc=;
-        b=WAFBf9TbHh1PdOkYNuBztYjarv5J8rp7vLa6DgsKg5YxSV0if7eaeJUMtd9ei7hC8V
-         mGhWBeLqzoTa7QTo3tBjxco27XkR8tqV+otrbveN6S5AiK0IBcGSiL2sQiEghAfKwfZM
-         HBZvSuqFc9XcwYm49FtlkQzNs2OZJUQMf5bUX7HesHJvPk+u39IZHj2bd2NXXpnArkxU
-         zD8FBdUbfTjOl4O5c6TiD21bkFoGtl0a1IC96E+U85E0HGCG7WVs9GbRjERjkgASH7OP
-         9zZJPdJpaIMQIrzE3IQ18dObMifYXxtvv4pQzTatcS6zJO3VgRHY/KoOHPhWYlu94My6
-         vS+g==
-X-Gm-Message-State: AFqh2kpWL8l+zRPYV+F2d/MpIl+dNXnnXAFGRmesb05ayivXufYfWgu6
-        ea/GLdm4RZG9fmuoAhb4in8UXw==
-X-Google-Smtp-Source: AMrXdXtjiiV34Qha1tBZrc4MK+8pBUHjP7gSZB3hDUkq0XWqnLidCz6vz5i0VML7dS+jEXLajszIug==
-X-Received: by 2002:a05:6512:15a3:b0:4b1:3970:43da with SMTP id bp35-20020a05651215a300b004b1397043damr27015288lfb.51.1673087835981;
-        Sat, 07 Jan 2023 02:37:15 -0800 (PST)
+        bh=oltHV3xaiJRNkm48kKrVJwnasCXR4K2YIGWYLIQBEnA=;
+        b=kV0l3vqZe2ThU+flDxH8sNeZSJadbLQHkSAJ75qQakQ8PsOlOzIYTBy+T1/4hMA6kS
+         eD9P3KGxbq64jGKOa52NLfmseoQVYSsQOW4kIwZx4wHRXsjULMc3ybd7gORqVnySnY8/
+         gd4ZF3Z/54lJ/750stlJqc+BC4VofB47m4bFoduReIxTUdOmk6iwc6npUDzN6c+AG82d
+         bJCzQj2IcmF1aIVUF/SxDoAOj4HLLiTp/nRj+mlwH6KXHCSyYCT+m621e/N5lXFSrD+d
+         TYxFt1KRU0Txk/8MmjCtDeoupmmI9VLVoBA7tCITm9vmU1+GRY9BpLB0f0KDyBLwXdRf
+         I8dg==
+X-Gm-Message-State: AFqh2kotk10PKLDwjwCIcyiN5kI4GLjmp566I5S9qfdThfe9ZvrECjiT
+        9QtvEvct0abIoqxM5IGUmVe6Pw==
+X-Google-Smtp-Source: AMrXdXuIJtyCeFPVcjcmFGVFCKHFj5XnXuUAP16P3oV5cofSg5PqOOMfZQQgoR8ak47QFMbenbWpcw==
+X-Received: by 2002:a2e:3210:0:b0:282:1326:78b6 with SMTP id y16-20020a2e3210000000b00282132678b6mr1357738ljy.31.1673088074183;
+        Sat, 07 Jan 2023 02:41:14 -0800 (PST)
 Received: from [192.168.1.101] (abxi45.neoplus.adsl.tpnet.pl. [83.9.2.45])
-        by smtp.gmail.com with ESMTPSA id p36-20020a05651213a400b00492b494c4e8sm525919lfa.298.2023.01.07.02.37.14
+        by smtp.gmail.com with ESMTPSA id a1-20020a2eb541000000b002770fb5722fsm316778ljn.123.2023.01.07.02.41.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 Jan 2023 02:37:15 -0800 (PST)
-Message-ID: <05f56641-04c2-63f2-3c17-b2acf3f1d601@linaro.org>
-Date:   Sat, 7 Jan 2023 11:37:14 +0100
+        Sat, 07 Jan 2023 02:41:13 -0800 (PST)
+Message-ID: <e82c70e1-5541-82c3-9c22-37ce1a43ee8c@linaro.org>
+Date:   Sat, 7 Jan 2023 11:41:12 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: Add device tree for Samsung
- Galaxy Tab A 8.0 (2015)
+Subject: Re: [PATCH 3/3] ARM: dts: qcom: apq8026-samsung-matisse-wifi: Add
+ display backlight
 Content-Language: en-US
-To:     Nikita Travkin <nikita@trvn.ru>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     =?UTF-8?Q?Matti_Lehtim=c3=a4ki?= <matti.lehtimaki@gmail.com>,
+        linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Siddharth Manthan <siddharth.manthan@gmail.com>,
-        Jasper Korten <jja2000@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20230106122532.3310265-1-nikita@trvn.ru>
- <20230106122532.3310265-4-nikita@trvn.ru>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230106114403.275865-1-matti.lehtimaki@gmail.com>
+ <20230106114403.275865-4-matti.lehtimaki@gmail.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230106122532.3310265-4-nikita@trvn.ru>
+In-Reply-To: <20230106114403.275865-4-matti.lehtimaki@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -83,123 +83,106 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 6.01.2023 13:25, Nikita Travkin wrote:
-> From: Siddharth Manthan <siddharth.manthan@gmail.com>
+On 6.01.2023 12:44, Matti Lehtimäki wrote:
+> Uses ti,lp8556 backlight with clk-pwm.
 > 
-> Galaxy Tab A 8.0 is a tablet, very similar to Tab A 9.7 with major
-> differences being the display and touchscreen.
-> 
-> Add it's devicetree reusing a common dtsi from gt510.
-> 
-> Signed-off-by: Siddharth Manthan <siddharth.manthan@gmail.com>
-> [Squashed multiple commits]
-> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+> Signed-off-by: Matti Lehtimäki <matti.lehtimaki@gmail.com>
 > ---
->  arch/arm64/boot/dts/qcom/Makefile             |  1 +
->  .../boot/dts/qcom/msm8916-samsung-gt58.dts    | 78 +++++++++++++++++++
->  2 files changed, 79 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-gt58.dts
+>  .../dts/qcom-apq8026-samsung-matisse-wifi.dts | 59 +++++++++++++++++++
+>  1 file changed, 59 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 70e3b109aeff..062561db33f1 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -20,6 +20,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-e5.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-e7.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-grandmax.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-gt510.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-gt58.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-j5.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-serranove.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-gt58.dts b/arch/arm64/boot/dts/qcom/msm8916-samsung-gt58.dts
-> new file mode 100644
-> index 000000000000..fcf516888739
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-gt58.dts
-> @@ -0,0 +1,78 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +
-> +/dts-v1/;
-> +
-> +#include "msm8916-samsung-gt5-common.dtsi"
-> +
-> +/ {
-> +	model = "Samsung Galaxy Tab A 8.0 (2015)";
-> +	compatible = "samsung,gt58", "qcom,msm8916";
-> +	chassis-type = "tablet";
-> +
-> +	reg_vdd_tsp: regulator-vdd-tsp {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vdd_tsp";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +
-> +		gpio = <&msmgpio 73 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		pinctrl-0 = <&reg_tsp_en_default>;
-> +		pinctrl-names = "default";
-> +	};
-> +
-> +	vibrator {
-> +		compatible = "gpio-vibrator";
-> +		enable-gpios = <&msmgpio 76 GPIO_ACTIVE_HIGH>;
-> +
-> +		pinctrl-0 = <&vibrator_en_default>;
-> +		pinctrl-names = "default";
-> +	};
-> +};
-> +
-> +&blsp_i2c5 {
-> +	status = "okay";
-> +
-> +	touchscreen@20 {
-> +		compatible = "zinitix,bt532";
-> +		reg = <0x20>;
-> +		interrupt-parent = <&msmgpio>;
-> +		interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
-> +
-> +		touchscreen-size-x = <768>;
-> +		touchscreen-size-y = <1024>;
-> +
-> +		vcca-supply = <&reg_vdd_tsp>;
-> +		vdd-supply = <&pm8916_l6>;
-> +
-> +		pinctrl-0 = <&tsp_int_default>;
-> +		pinctrl-names = "default";
-> +	};
-> +};
-> +
-> +&msmgpio {
-> +	reg_tsp_en_default: reg-tsp-en-default-state {
-> +		pins = "gpio73";
-> +		function = "gpio";
-> +
-Stray newlines, please remove.
+> diff --git a/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts b/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts
+> index 15b9590ba07b..848cfda64e5a 100644
+> --- a/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts
+> +++ b/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts
+> @@ -23,6 +23,14 @@ aliases {
+>  		display0 = &framebuffer0;
+>  	};
+>  
+> +	backlight_pwm: pwm {
+This should be sorted alphabetically.
 
-With that:
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> +		compatible = "clk-pwm";
+> +		#pwm-cells = <2>;
+> +		clocks = <&mmcc CAMSS_GP0_CLK>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&backlight_pwm_default_state>;
+> +	};
+> +
+>  	chosen {
+>  		#address-cells = <1>;
+>  		#size-cells = <1>;
+> @@ -80,6 +88,45 @@ key-volume-up {
+>  		};
+>  	};
+>  
+> +	i2c-backlight {
+> +		compatible = "i2c-gpio";
+> +		sda-gpios = <&tlmm 20 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
+> +		scl-gpios = <&tlmm 21 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&backlight_i2c_default_state>;
+Please reorder these two properties.
+
+> +
+> +		i2c-gpio,delay-us = <4>;
+> +
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		backlight@2c {
+> +			compatible = "ti,lp8556";
+> +			reg = <0x2c>;
+> +
+> +			dev-ctrl = /bits/ 8 <0x80>;
+> +			init-brt = /bits/ 8 <0x3f>;
+> +			pwm-period = <100000>;
+> +
+> +			pwms = <&backlight_pwm 0 100000>;
+> +			pwm-names = "lp8556";
+> +
+> +			rom-a0h {
+> +				rom-addr = /bits/ 8 <0xa0>;
+> +				rom-val = /bits/ 8 <0x44>;
+> +			};
+Please add a newline between each subnode.
+
+Otherwise I think this looks good..
 
 Konrad
-> +		drive-strength = <2>;
-> +		bias-disable;
+
+> +			rom-a1h {
+> +				rom-addr = /bits/ 8 <0xa1>;
+> +				rom-val = /bits/ 8 <0x6c>;
+> +			};
+> +			rom-a5h {
+> +				rom-addr = /bits/ 8 <0xa5>;
+> +				rom-val = /bits/ 8 <0x24>;
+> +			};
+> +		};
 > +	};
 > +
-> +	tsp_int_default: tsp-int-default-state {
-> +		pins = "gpio13";
+>  	reg_tsp_1p8v: regulator-tsp-1p8v {
+>  		compatible = "regulator-fixed";
+>  		regulator-name = "tsp_1p8v";
+> @@ -418,6 +465,18 @@ accel_int_default_state: accel-int-default-state {
+>  		bias-disable;
+>  	};
+>  
+> +	backlight_i2c_default_state: backlight-i2c-default-state {
+> +		pins = "gpio20", "gpio21";
 > +		function = "gpio";
-> +
 > +		drive-strength = <2>;
 > +		bias-disable;
 > +	};
 > +
-> +	vibrator_en_default: vibrator-en-default-state {
-> +		pins = "gpio76";
-> +		function = "gpio";
-> +
-> +		drive-strength = <2>;
-> +		bias-disable;
+> +	backlight_pwm_default_state: backlight-pwm-default-state {
+> +		pins = "gpio33";
+> +		function = "gp0_clk";
 > +	};
-> +};
+> +
+>  	muic_int_default_state: muic-int-default-state {
+>  		pins = "gpio67";
+>  		function = "gpio";
