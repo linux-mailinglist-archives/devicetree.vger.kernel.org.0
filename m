@@ -2,97 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A670660F65
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 15:17:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1274660F6E
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 15:19:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229621AbjAGORf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Jan 2023 09:17:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47492 "EHLO
+        id S231785AbjAGOTq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Jan 2023 09:19:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231987AbjAGORe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 09:17:34 -0500
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64E7B4D483;
-        Sat,  7 Jan 2023 06:17:32 -0800 (PST)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id C534E1C0003;
-        Sat,  7 Jan 2023 14:17:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1673101050;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=3vSlD9vjCmzG/8rJElMrfdFbS1XrvDaONmQUsaXCWKY=;
-        b=Kf2+8JwqCfDZofc4LQX/Nss0zvoyIjOfD4HtDOPTgIkrMThTREIpUk7EN8Xp1JApjr7Gf6
-        yg30je3wDF8CzQkbv0xu3KTrN7GMvtgt3LZKzLCEW/QbJvq/BJ5ZD+y8fF1PiVsNWczFgv
-        XWNKbjySPTftTVh/fs9k/h1HYKZbMSR9o39T5dbgky4rw2Zg1Trkhu7RkTfhmQ6x8zvYmG
-        Rcpx9Mo0F1gTrFO3CKN1JoKocyu/bzOR25dAwj55Wv/SSP5YbmBmAJIgP5NtzyieHR7ool
-        r/CgQLx3iyNPAP1+fH2m9+VxzXaJnzXo7+7BEvS4nrrZj+/RQmW2YWqYoJ+y8w==
-Date:   Sat, 7 Jan 2023 15:17:22 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Andrew Morton <akpm@linux-foundation.org>
-Cc:     Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Tudor Ambarus <tudor.ambarus@linaro.org>, <arnd@arndb.de>,
-        <richard@nod.at>, <krzysztof.kozlowski+dt@linaro.org>,
-        <herbert@gondor.apana.org.au>, <robh+dt@kernel.org>,
-        <claudiu.beznea@microchip.com>, <broonie@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-spi@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
-        <pratyush@kernel.org>, <michael@walle.cc>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2] MAINTAINERS: Update email of Tudor Ambarus
-Message-ID: <20230107151722.743401bf@xps-13>
-In-Reply-To: <20230106164751.7ddaf5c54e0a764344806848@linux-foundation.org>
-References: <20221226144043.367706-1-tudor.ambarus@linaro.org>
-        <feb09bac-0ea4-9154-362b-6d81cba352a8@linaro.org>
-        <678ad800-7a3b-e2bf-6428-f06d696d8edb@linaro.org>
-        <20230106165506.0a34fa78@xps-13>
-        <f653b23f-cf25-61ec-60d4-91dd7823edd2@microchip.com>
-        <20230106164751.7ddaf5c54e0a764344806848@linux-foundation.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S232065AbjAGOT0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 09:19:26 -0500
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B55554ECAD;
+        Sat,  7 Jan 2023 06:19:24 -0800 (PST)
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by box.trvn.ru (Postfix) with ESMTPSA id 410FF4139C;
+        Sat,  7 Jan 2023 19:19:18 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+        t=1673101158; bh=kb1xKWXTqtrVL/HLrsPEo6UqzygHz3DIBWdjQoIGsTs=;
+        h=From:To:Cc:Subject:Date:From;
+        b=WlM9mW5NgotGAm2YMMXhA3VxpZ1QhoKiJ6Sqc+C5St/DJUBJ/Ef24zobshXiwbbZi
+         Ji+HfsE2D8OYAsY3MvTJRJi7z0ZEG1U4E4AZEdRtzX0CmJ6U317NOnvCiPnFVwr0TF
+         ULxFpQe8cEinpEvRx743cAz7mVvNiKHbvEmV4XGnnlhCbkxX5fNlA/euYBOQ2RTmzZ
+         dzIiQRJTxj0wNBryx0sBbrf4eVsE+T1yRMgKdERNLqWGmowIASQSoCMa8iCoXtM7Wi
+         Z/vpqe//7cF1eO3af3uOEntekYpmDjjCkOAxlYdSq4FD336HnLCNN6MPz6O2sv22Kt
+         9tiJ4OP4D91AQ==
+From:   Nikita Travkin <nikita@trvn.ru>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Siddharth Manthan <siddharth.manthan@gmail.com>,
+        Jasper Korten <jja2000@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Nikita Travkin <nikita@trvn.ru>
+Subject: [PATCH v3 0/3] Add support for Samsung Galaxy tab A (2015) tablets
+Date:   Sat,  7 Jan 2023 19:19:08 +0500
+Message-Id: <20230107141911.47229-1-nikita@trvn.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_ANY_PILL_PRICE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nicolas & Andrew,
+This series introduces basic support for two Galaxy Tab A
+tablets: 8 and 10 inch variants. They share most of the
+hardware and are mainly dffernet by the display.
 
-akpm@linux-foundation.org wrote on Fri, 6 Jan 2023 16:47:51 -0800:
+With this series both tablets gain support for things like
+- SDHCI (internal and external storage)
+- USB Device Mode
+- UART
+- Regulators
+- WCNSS (WiFi/BT)
+- GPIO keys
+- Fuel gauge
+- Touchscreen
+- Accelerometer
 
-> On Fri, 6 Jan 2023 16:59:52 +0100 Nicolas Ferre <nicolas.ferre@microchip.=
-com> wrote:
->=20
-> > > Are MAINTAINERS changes accepted through fixes PR? I see a number of
-> > > experienced people in Cc:, I would like to hear from you folks, becau=
-se
-> > > I never had to do that before. If yes, then I'll do it right away,
-> > > otherwise I'll apply to mtd/next. I'm all ears :) =20
-> >=20
-> > I remember a conversation that stated that MAINTAINERS changes must lan=
-d=20
-> > in Linus' tree the quickest, because it'll just avoid confusion and=20
-> > bouncing emails. =20
->=20
-> Yes, I always merge MAINTAINERS fixes asap.
->=20
-> Probably these fixes should be backported into -stable kernels also -
-> we don't want incorrect email addresses in *any* kernel.  But I don't
-> do that.
+In fact, with some additional patches like display and
+modem support, that are not included as part of this
+series, these tablets can actually reach one's expectations
+of what a "normal" tablet should be able to do.
 
-Thanks a lot for your feedback, I'll take care of it.
+Changes in v2:
+- Squashed the commits.
 
-Cheers,
-Miqu=C3=A8l
+Changes in v3:
+- Address Konrad's review comments.
+
+Jasper Korten (1):
+  arm64: dts: qcom: Add device tree for Samsung Galaxy Tab A 9.7 (2015)
+
+Nikita Travkin (1):
+  dt-bindings: qcom: Document samsung,gt58 and gt510
+
+Siddharth Manthan (1):
+  arm64: dts: qcom: Add device tree for Samsung Galaxy Tab A 8.0 (2015)
+
+ .../devicetree/bindings/arm/qcom.yaml         |   2 +
+ arch/arm64/boot/dts/qcom/Makefile             |   2 +
+ .../dts/qcom/msm8916-samsung-gt5-common.dtsi  | 296 ++++++++++++++++++
+ .../boot/dts/qcom/msm8916-samsung-gt510.dts   | 113 +++++++
+ .../boot/dts/qcom/msm8916-samsung-gt58.dts    |  75 +++++
+ 5 files changed, 488 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-gt5-common.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-gt510.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-gt58.dts
+
+-- 
+2.38.1
+
