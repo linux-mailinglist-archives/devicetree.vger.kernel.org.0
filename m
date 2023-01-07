@@ -2,76 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14187660E71
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 12:51:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DEA7660E72
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 12:53:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229656AbjAGLvs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Jan 2023 06:51:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35908 "EHLO
+        id S229972AbjAGLxL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Jan 2023 06:53:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231890AbjAGLvq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 06:51:46 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A5886309
-        for <devicetree@vger.kernel.org>; Sat,  7 Jan 2023 03:51:45 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id bp15so5652475lfb.13
-        for <devicetree@vger.kernel.org>; Sat, 07 Jan 2023 03:51:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Crg29xL/y5cmt2utx8zQ3lcRFpJguNienRGyR+IvkUY=;
-        b=TUQ9UF+qwD9TmBA4z0S6uWaXn4mEoS9z60HTsQ2BriDgNO6Dgt3hBZQ3cjkqNmmJOF
-         kw8huUAW/6+PGLGfQ3SE4SaY5vjqedMTH6UJ+Uipl+BCFnhUmoyghnQ847I2Hm1o01Y2
-         oydrc89nJDn1HjJ/obHn586t58mX5HA6xyjZVhM7pX7l+Y9OcbEVAPeqivsf1M0I1y/7
-         ZLHYCb6DjMzLZOAqO0nM0D3LEWFb1zJsB/2LPU9HgUrORWqGz2WCNgtHhWzhRtA1lOPc
-         Fk2IeMlqJ4o+vdEax6p89L0yeUvPfZuJnwyePsqTtQF1VMxeCWIReCgAZGji3nShN+3H
-         BjQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Crg29xL/y5cmt2utx8zQ3lcRFpJguNienRGyR+IvkUY=;
-        b=nc2wsSFwnYw42vdm4aL8hUch49coD2deMqzE2oLYN+iY+Ey5VON3rYWAg12L6/JpXt
-         zfud+s9cPhGATKCIH4JF9huQ+owirvaeYy2r7t14pcBq2KNiynvdu+EVdiqnGKAd/8Q/
-         9XpWcuafaHkcSO8l5vqWOyqAsWbUAxngBKCnHrVG9gQ21QgYMezoM2gdWyJblGQubHZh
-         q7Ghta/yYJTQ9afzbCky7f/FeVrz2KOrz53fuGOoIv4qmArQ2tRLwEmU+yfH67NV5jYk
-         UFbowFE0ssk+hT8rqW1BNSowWWs/iHUu+pe9glYignvrYmRjUmcVoOPgbpZRvVknIIpy
-         lvlQ==
-X-Gm-Message-State: AFqh2krxXdgX8m4Fp+02odA2gTLK30O4M5V9tBcED9kjIVZKDggqBBv6
-        7LrTfHP73nG26B/sVfNmaah5iQ==
-X-Google-Smtp-Source: AMrXdXs0ofEP133W5pTmXh1oUhyW52i4BNpR4RGSm96XJP7uIrMaiDIHOd22lh9KVeDULgQgBi8Mpg==
-X-Received: by 2002:a05:6512:108f:b0:4a4:68b8:c2e4 with SMTP id j15-20020a056512108f00b004a468b8c2e4mr18880003lfg.59.1673092303989;
-        Sat, 07 Jan 2023 03:51:43 -0800 (PST)
-Received: from [192.168.1.101] (abxi45.neoplus.adsl.tpnet.pl. [83.9.2.45])
-        by smtp.gmail.com with ESMTPSA id t17-20020a056512209100b004a4754c5db5sm551861lfr.244.2023.01.07.03.51.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 Jan 2023 03:51:43 -0800 (PST)
-Message-ID: <9be88ada-e373-7c08-8291-ba9afc4ba3bd@linaro.org>
-Date:   Sat, 7 Jan 2023 12:51:42 +0100
+        with ESMTP id S229704AbjAGLxL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 06:53:11 -0500
+Received: from m12.mail.163.com (m12.mail.163.com [220.181.12.216])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 544D662D5;
+        Sat,  7 Jan 2023 03:53:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+        s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=La+U8
+        67INzBu0h4o8wQUOvS3yylJf8wtl9YAUS0U0sc=; b=lOmiThg5NppnhcdFqX6US
+        no75XPmmnxoUYQgOZsk3IQYAsK5JkLScnIChG0iB/Jz30YTWn//nsJfG8WOkmxO/
+        MIYeiifFVusYSE4ny4zl7wJiAy01h5Eu6oJc6PIUj5GmYXl+UXscj6b+PbPm3T8O
+        vt9c80w6+21TrJjfBAGXx0=
+Received: from ProDesk.. (unknown [58.22.7.114])
+        by zwqz-smtp-mta-g2-4 (Coremail) with SMTP id _____wD3_9PgXLljMbheAA--.47451S2;
+        Sat, 07 Jan 2023 19:52:04 +0800 (CST)
+From:   Andy Yan <andyshrk@163.com>
+To:     heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Cc:     lasstp5011@gmail.com, Andy Yan <andyshrk@163.com>
+Subject: [PATCH 0/2] Add support for EmbedFire LubanCat 2.
+Date:   Sat,  7 Jan 2023 19:51:59 +0800
+Message-Id: <20230107115159.2125308-1-andyshrk@163.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: msm8916: Add DMA for all I2C
- controllers
-Content-Language: en-US
-To:     Stephan Gerhold <stephan@gerhold.net>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20230107110958.5762-1-stephan@gerhold.net>
- <20230107110958.5762-3-stephan@gerhold.net>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230107110958.5762-3-stephan@gerhold.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: _____wD3_9PgXLljMbheAA--.47451S2
+X-Coremail-Antispam: 1Uf129KBjvdXoW7Wr1kGr15uF1kWFy8Zw18Krg_yoWxZFXEya
+        s7uFy0gF48JFn0qasxK34xGrZrK39xK345Ka45AF1DCFnrXr4UJFWrJ34SkFW8AFW2yr1f
+        Ja4aqF18uFn09jkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+        9fnUUvcSsGvfC2KfnxnUUI43ZEXa7xRJKsj7UUUUU==
+X-Originating-IP: [58.22.7.114]
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiMwXvXlXmDdX4bwAAs7
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_SORBS_WEB,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -79,79 +52,23 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+Lubancat series are rk3566/8 based SBC from EmbedFire.
+So these Lubancat 2 patch should apply on top of Wenhao's
+series for LBC1 [0].
 
-On 7.01.2023 12:09, Stephan Gerhold wrote:
-> i2c-qup allows using DMA to speed up larger transfers. In msm8916.dtsi
-> the DMA channels are already assigned to the SPI controllers but
-> missing for I2C. Add them there as well.
-> 
-> This also fixes confusing errors in dmesg for each I2C controller:
->   i2c_qup 78b6000.i2c: tx channel not available
-> 
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> ---
+[0] https://patchwork.kernel.org/project/linux-rockchip/patch/Y6Ud9MhRjCVAYMCj@VM-66-53-centos/
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Konrad
->  arch/arm64/boot/dts/qcom/msm8916.dtsi | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> index 98da982548a1..daece6b9e932 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> @@ -1559,6 +1559,8 @@ blsp_i2c1: i2c@78b5000 {
->  			clocks = <&gcc GCC_BLSP1_QUP1_I2C_APPS_CLK>,
->  				 <&gcc GCC_BLSP1_AHB_CLK>;
->  			clock-names = "core", "iface";
-> +			dmas = <&blsp_dma 4>, <&blsp_dma 5>;
-> +			dma-names = "tx", "rx";
->  			pinctrl-names = "default", "sleep";
->  			pinctrl-0 = <&i2c1_default>;
->  			pinctrl-1 = <&i2c1_sleep>;
-> @@ -1591,6 +1593,8 @@ blsp_i2c2: i2c@78b6000 {
->  			clocks = <&gcc GCC_BLSP1_QUP2_I2C_APPS_CLK>,
->  				 <&gcc GCC_BLSP1_AHB_CLK>;
->  			clock-names = "core", "iface";
-> +			dmas = <&blsp_dma 6>, <&blsp_dma 7>;
-> +			dma-names = "tx", "rx";
->  			pinctrl-names = "default", "sleep";
->  			pinctrl-0 = <&i2c2_default>;
->  			pinctrl-1 = <&i2c2_sleep>;
-> @@ -1623,6 +1627,8 @@ blsp_i2c3: i2c@78b7000 {
->  			clocks = <&gcc GCC_BLSP1_QUP3_I2C_APPS_CLK>,
->  				 <&gcc GCC_BLSP1_AHB_CLK>;
->  			clock-names = "core", "iface";
-> +			dmas = <&blsp_dma 8>, <&blsp_dma 9>;
-> +			dma-names = "tx", "rx";
->  			pinctrl-names = "default", "sleep";
->  			pinctrl-0 = <&i2c3_default>;
->  			pinctrl-1 = <&i2c3_sleep>;
-> @@ -1655,6 +1661,8 @@ blsp_i2c4: i2c@78b8000 {
->  			clocks = <&gcc GCC_BLSP1_QUP4_I2C_APPS_CLK>,
->  				 <&gcc GCC_BLSP1_AHB_CLK>;
->  			clock-names = "core", "iface";
-> +			dmas = <&blsp_dma 10>, <&blsp_dma 11>;
-> +			dma-names = "tx", "rx";
->  			pinctrl-names = "default", "sleep";
->  			pinctrl-0 = <&i2c4_default>;
->  			pinctrl-1 = <&i2c4_sleep>;
-> @@ -1687,6 +1695,8 @@ blsp_i2c5: i2c@78b9000 {
->  			clocks = <&gcc GCC_BLSP1_QUP5_I2C_APPS_CLK>,
->  				 <&gcc GCC_BLSP1_AHB_CLK>;
->  			clock-names = "core", "iface";
-> +			dmas = <&blsp_dma 12>, <&blsp_dma 13>;
-> +			dma-names = "tx", "rx";
->  			pinctrl-names = "default", "sleep";
->  			pinctrl-0 = <&i2c5_default>;
->  			pinctrl-1 = <&i2c5_sleep>;
-> @@ -1719,6 +1729,8 @@ blsp_i2c6: i2c@78ba000 {
->  			clocks = <&gcc GCC_BLSP1_QUP6_I2C_APPS_CLK>,
->  				 <&gcc GCC_BLSP1_AHB_CLK>;
->  			clock-names = "core", "iface";
-> +			dmas = <&blsp_dma 14>, <&blsp_dma 15>;
-> +			dma-names = "tx", "rx";
->  			pinctrl-names = "default", "sleep";
->  			pinctrl-0 = <&i2c6_default>;
->  			pinctrl-1 = <&i2c6_sleep>;
+Andy Yan (2):
+  dt-bindings: arm: rockchip: Add EmbedFire LubanCat 2
+  arm64: dts: rockchip: Add dts for EmbedFire rk3568 lubancat 2
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   6 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3568-lubancat-2.dts   | 734 ++++++++++++++++++
+ 3 files changed, 741 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-lubancat-2.dts
+
+-- 
+2.34.1
+
