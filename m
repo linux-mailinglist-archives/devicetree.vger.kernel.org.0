@@ -2,83 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46DF0661001
-	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 16:38:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 353F2661013
+	for <lists+devicetree@lfdr.de>; Sat,  7 Jan 2023 16:47:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232207AbjAGPij (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Jan 2023 10:38:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42960 "EHLO
+        id S229904AbjAGPrr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Jan 2023 10:47:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229621AbjAGPii (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 10:38:38 -0500
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7183743D84;
-        Sat,  7 Jan 2023 07:38:36 -0800 (PST)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 29A1AFF808;
-        Sat,  7 Jan 2023 15:38:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1673105914;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=1R0tFrnRkxpaya7FaSMEH1Vxs62o5AiwN5XKT3zuHOw=;
-        b=jYj6k5t0jgbDvGd8bBN/g2gAALOqzhmVIfHgCR4EGMSQQH+igzEXI72CvXV9rj2isD+3lB
-        7plO+djicHvAMNALglZLvO7OdDiFcMYoltr+V4Y3269dV8SsStrd1wokepVu2GXaq3iAJz
-        umt3+MRVjk4D5EmVCSNOYOp+jctimyb/o3O7W2xKRa2x6Thygx78mr7O4JW8R4czS7rt3G
-        kAAVLU2wD7P2aEWQhWLeqZVxYjbhEkhvTqEdV+rOQq2+Zb5Hp7NP3STRWbwPV7ZQNhv/47
-        xIs6Q+hqKVv5tG5T1B7j83eMuKuC2U11mLBh7sv2T5hgMVfoKc8A/4dWDFlX/A==
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Tudor Ambarus <tudor.ambarus@linaro.org>, arnd@arndb.de,
-        richard@nod.at, miquel.raynal@bootlin.com
-Cc:     krzysztof.kozlowski+dt@linaro.org, herbert@gondor.apana.org.au,
-        robh+dt@kernel.org, akpm@linux-foundation.org,
-        nicolas.ferre@microchip.com, claudiu.beznea@microchip.com,
-        broonie@kernel.org, linux-kernel@vger.kernel.org,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
-        linux-mtd@lists.infradead.org, pratyush@kernel.org,
-        michael@walle.cc, Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2] MAINTAINERS: Update email of Tudor Ambarus
-Date:   Sat,  7 Jan 2023 16:38:29 +0100
-Message-Id: <20230107153829.895550-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221226144043.367706-1-tudor.ambarus@linaro.org>
-References: 
+        with ESMTP id S229997AbjAGPrq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Jan 2023 10:47:46 -0500
+Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 838754566D;
+        Sat,  7 Jan 2023 07:47:45 -0800 (PST)
+Received: by mail-io1-f45.google.com with SMTP id b192so2183463iof.8;
+        Sat, 07 Jan 2023 07:47:45 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YS/wt6L6+sKVeJ33pXNLZG1jeiP8l4ukfmvRNEs3c0g=;
+        b=bNjCf2ZH2LjtawahBGyCv44Yh/i0cOBTB52Sacy3ziVaBnVOBop8D0rhtwCtBQgRVS
+         pBJjJnuPI9slPiNuMtoiZM5+dvnIx3p/zZ5Z1HhwK+pwcbSx69ErGi8rgcQeTSprhGKN
+         kYzSMRhlAlidH1b+CEzPa6cTHY1D6HyuTDpJ9QPriulz/uBM3hybhqppNNG2j2UMh79f
+         XbuKzWQLuORkA+Kqwwl+WTQc3Wju5UJ1Ei9fLnKBKSIq8nn+aaLp7I5jecdeCG0/syyd
+         mOC4QIs2JeaaNX8FvvysYkjyf1IEh1rnOIfXOeAJ8NzsJ5j4TkqAkqBZ0MZ4Bn0Kp55f
+         K9Pg==
+X-Gm-Message-State: AFqh2krLcDqY/V1/XJNaXmvasGbT9zORd6q9RvQSjk90ewWWcNNHa/4V
+        E4gl8Z2MhOPzulMW5KbfXQ==
+X-Google-Smtp-Source: AMrXdXuhZDB+ld/4pVGjtoYQIVUQThELwYVKcc1CaM+BK9yhG/rlva7N5QnOxwaAV1afyBZCebZgeg==
+X-Received: by 2002:a5d:8c8d:0:b0:6df:e3ad:1e1c with SMTP id g13-20020a5d8c8d000000b006dfe3ad1e1cmr35524381ion.12.1673106464762;
+        Sat, 07 Jan 2023 07:47:44 -0800 (PST)
+Received: from robh_at_kernel.org ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id q20-20020a0566022f1400b006ff6e8b3b8csm1409220iow.41.2023.01.07.07.47.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 07 Jan 2023 07:47:44 -0800 (PST)
+Received: (nullmailer pid 1839148 invoked by uid 1000);
+        Sat, 07 Jan 2023 15:47:42 -0000
+Date:   Sat, 7 Jan 2023 09:47:42 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [GIT PULL] Devicetree fixes for v6.2, take 1
+Message-ID: <20230107154742.GA1832142-robh@kernel.org>
 MIME-Version: 1.0
-X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'c0f7ae27539fbac267384a7bfc58296ea7550d52'
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-12-26 at 14:40:43 UTC, Tudor Ambarus wrote:
-> From: Tudor Ambarus <tudor.ambarus@microchip.com>
-> 
-> My professional email will change and the microchip one will bounce after
-> mid-november of 2022.
-> 
-> Update the MAINTAINERS file, the YAML bindings, MODULE_AUTHOR entries and
-> author mentions, and add an entry in the .mailmap file.
-> 
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-> Acked-by: Pratyush Yadav <pratyush@kernel.org>
-> Acked-by: Mark Brown <broonie@kernel.org>
-> Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-> Acked-by: Herbert Xu <herbert@gondor.apana.org.au>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Linus,
 
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/fixes, thanks.
+Please pull a couple of DT fixes for 6.2.
 
-Miquel
+Rob
+
+
+The following changes since commit 1b929c02afd37871d5afb9d498426f83432e71c2:
+
+  Linux 6.2-rc1 (2022-12-25 13:41:39 -0800)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.2-1
+
+for you to fetch changes up to 064e32dc5b03114d0767893fecdaf7b5dfd8c286:
+
+  of: fdt: Honor CONFIG_CMDLINE* even without /chosen node, take 2 (2023-01-04 21:31:59 -0600)
+
+----------------------------------------------------------------
+Devicetree fixes for v6.2:
+
+- Fix DT memory scanning for some MIPS boards when memory is not
+  specified in DT
+
+- Redo CONFIG_CMDLINE* handling for missing /chosen node. The first
+  attempt broke PS3 (and possibly other PPC platforms).
+
+- Fix constraints in QCom Soundwire schema
+
+----------------------------------------------------------------
+Andreas Rammhold (1):
+      of/fdt: run soc memory setup when early_init_dt_scan_memory fails
+
+Krzysztof Kozlowski (1):
+      dt-bindings: soundwire: qcom,soundwire: correct sizes related to number of ports
+
+Rob Herring (2):
+      Revert "of: fdt: Honor CONFIG_CMDLINE* even without /chosen node"
+      of: fdt: Honor CONFIG_CMDLINE* even without /chosen node, take 2
+
+ .../bindings/soundwire/qcom,soundwire.yaml         | 10 ++--
+ arch/mips/ralink/of.c                              |  2 +-
+ drivers/of/fdt.c                                   | 60 ++++++++++++----------
+ 3 files changed, 38 insertions(+), 34 deletions(-)
