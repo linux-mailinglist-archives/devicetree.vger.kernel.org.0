@@ -2,56 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFA47661508
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 13:27:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DBF066152D
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 13:48:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232900AbjAHM1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 07:27:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56670 "EHLO
+        id S229520AbjAHMsq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 07:48:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229716AbjAHM1l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 07:27:41 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2ED85FF6;
-        Sun,  8 Jan 2023 04:27:40 -0800 (PST)
+        with ESMTP id S229482AbjAHMsp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 07:48:45 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBB0D92;
+        Sun,  8 Jan 2023 04:48:44 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 6CCFDB803F1;
-        Sun,  8 Jan 2023 12:27:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE89CC433D2;
-        Sun,  8 Jan 2023 12:27:35 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 6DFE9B80975;
+        Sun,  8 Jan 2023 12:48:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F4FFC433EF;
+        Sun,  8 Jan 2023 12:48:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673180858;
-        bh=SysmkJ2JIR01nOEshO/fIKEwvXowTeVYSoVagST5Cpg=;
+        s=k20201202; t=1673182122;
+        bh=Uhlc99022Ls0RTWOv48mkmJNl6QEEfWEdVTIJlk76sI=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=B0OmM6FuLJMP+S/U9VXdgGJwlah8jcdY+zNTEKHLZZ3bD6krzhav+Y3/kI2vHtFa6
-         qVvE7K+r9Uj/GyL1/QcxXUAj+7QkY9/gQ4Hlvo/+vEG6QZM9BxiRy5MwzcZE0q8PDF
-         I6GMStTpDkCbfgLZxfjpY/6whUoxtyit9d/KdcxuoZRPj4WUN/QFFS4Kv9E33OYAdZ
-         iggZdHjxPBGvD4yQipewfC7QH41fft4i1HwN4M6h7iZw92bqzM0sUz11ts7QY3aqLF
-         PeyqLyGjs9aDslKSBcI45ghzlN3tliOsi4pzP4i7HNI5eWU/pBDwGxN1Nk/A0pW1zX
-         f39ZNtbjKcrUw==
-Date:   Sun, 8 Jan 2023 12:41:05 +0000
+        b=DIAG724NZZLEidXWg1jC1XYmyNiNI61x6bP7gcuowLviyKULbyXPN36yNlsBaP5O3
+         bWn0cOmZM/X3JvYYfsJPJLlj2AtuPoQQRKEbiiLKYzf7QymlvKxr3cTdtNk1pcDph9
+         GdYtHznCWH9t3WYIh32j9UmVkW0saMAFzP2nJbpAY39fQx03vc22XJPD0hK5ty1/Jw
+         tMYRWuzGB7kMkP8QIbofCm52XN5ec3wM9q4QFdR7ZwARuIuEj48X7j9ct+GlCEQtSe
+         uV5tot3cCauwKHhjxRw6aiCeOG610+dBLYaXfls+ayYlfT0zj1eJXamVh3bA8Nee47
+         5P8FM2AacXgfQ==
+Date:   Sun, 8 Jan 2023 13:02:08 +0000
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Angel Iglesias <ang.iglesiasg@gmail.com>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Stephan Gerhold <stephan@gerhold.net>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-        Andreas Klinger <ak@it-klinger.de>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/5] iio: pressure: bmp280: Add enumeration to handle
- chip variants
-Message-ID: <20230108124105.1cdc5627@jic23-huawei>
-In-Reply-To: <e13c4e3962923994c853b115a5606633387991db.camel@gmail.com>
-References: <cover.1672062380.git.ang.iglesiasg@gmail.com>
-        <f0368a3f460707417110dffdb0166824da20af15.1672062380.git.ang.iglesiasg@gmail.com>
-        <Y6tlpP2SgsgoVBrK@smile.fi.intel.com>
-        <e13c4e3962923994c853b115a5606633387991db.camel@gmail.com>
+        Denis Ciocca <denis.ciocca@st.com>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 0/3] iio: st-sensors: Add LSM303C
+ accelerometer+magnetometer
+Message-ID: <20230108130137.302a79d6@jic23-huawei>
+In-Reply-To: <CACRpkdbiQFumJek5WUh=dcxXDvOV=Dhd+WqCrzzyWJY+i-xKuQ@mail.gmail.com>
+References: <20230106102239.9647-1-stephan@gerhold.net>
+        <CACRpkdbiQFumJek5WUh=dcxXDvOV=Dhd+WqCrzzyWJY+i-xKuQ@mail.gmail.com>
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -65,41 +59,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 01 Jan 2023 12:04:40 +0100
-Angel Iglesias <ang.iglesiasg@gmail.com> wrote:
+On Sun, 8 Jan 2023 00:56:22 +0100
+Linus Walleij <linus.walleij@linaro.org> wrote:
 
-> On Tue, 2022-12-27 at 23:37 +0200, Andy Shevchenko wrote:
-> > On Mon, Dec 26, 2022 at 03:29:20PM +0100, Angel Iglesias wrote:  
-> > > Adds enumeration to improve handling the different supported sensors
-> > > on driver initialization. This avoid collisions if different variants
-> > > share the same device idetifier on ID register.  
-> > 
-> > As per v1, use pointers in the ID tables.
-> >   
+> On Fri, Jan 6, 2023 at 11:24 AM Stephan Gerhold <stephan@gerhold.net> wrote:
 > 
-> Taking your suggestion and Jonathan's remarks into account seems to me like the
-> best approach here is using chip_info pointer for each driver as the pointer set
-> on the id tables.
+> > Add support for the ST LSM303C [1] accelerometer and magnetometer combo
+> > sensor in st_accel and st_magn. LSM303C seems to be more or less
+> > a combination of LIS2HH12 as accelerometer and LIS3MDL as magnetometer
+> > so this series just adds two new compatibles for the two sensors that
+> > are already supported.
+> >
+> > [1]: https://www.st.com/resource/en/datasheet/lsm303c.pdf
+> >
+> > Stephan Gerhold (3):
+> >   dt-bindings: iio: st-sensors: Add LSM303C accelerometer+magnetometer
+> >   iio: accel: st_accel: Add LSM303C
+> >   iio: magnetometer: st_magn: Add LSM303C  
+> 
+> This patch set:
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Yes.
+Series applied to the togreg branch of iio.git and pushed out as testing 
+for 0-day to take a poke at it.
 
-> As in the i2c and spi drivers, the enum is used to fetch the
-> correct regmap configuration, and later in the shared probe, the chip_info. The
-> logical follow-up would be adding the regmap configuration to the chip_info,
-> right?
-
-Makes sense.
-
-> Or is there a better solution I'm not seeing right now?
-
-If I'm understanding what you have above, then this is exactly what we would
-want to do here.
+Note, still time for others to review as I'll probably not push this out as
+a non rebasing tree until next weekendish.
 
 Thanks,
 
 Jonathan
 
 > 
-> Thanks for your time,
-> Angel
+> Yours,
+> Linus Walleij
 
