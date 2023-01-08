@@ -2,146 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68D83661673
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 17:16:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4E07661681
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 17:26:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232950AbjAHQQr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 11:16:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58746 "EHLO
+        id S233213AbjAHQ0C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 11:26:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229487AbjAHQQq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 11:16:46 -0500
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03579C746;
-        Sun,  8 Jan 2023 08:16:46 -0800 (PST)
-Received: by mail-pj1-x1036.google.com with SMTP id z9-20020a17090a468900b00226b6e7aeeaso6849558pjf.1;
-        Sun, 08 Jan 2023 08:16:45 -0800 (PST)
+        with ESMTP id S230363AbjAHQ0B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 11:26:01 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58F3D1E1
+        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 08:26:00 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id tz12so14546788ejc.9
+        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 08:26:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=szYh6U0O4rdLlceJ5Mu6MCo8pZSXN9nW69RUcTj6eOg=;
-        b=eQ17HwrDwgeacRtKTqwxN1n2e/wUA7mAJCFKxVKjpEzf10u0tAzClpbcfAs9DPOXVW
-         8RfySBmBTKsqPit8vpMWlMlCLC1yFya1dNLgkcPZN20e22QXpczWQrQw4CNGyfvD6V0c
-         ERPpzOfkO/pUnOO+26Dy1IoJei2J3Fa6Aw16tMsACasSKJ/UE7llGMuFTNaTwWuS+1Pm
-         6GenGBab5wBH7OwrAi8wbY/BHeV9Ylqk8r9Oj8aBX1Vev0mHuvdi+HENA1ZUuiD2qJTk
-         KkiLhPnC099HK30wJBWZsuYdtoYfrDC7+Rbb8yRO2oWLb0yFkBvUk6mtH7Y8Kk7sjtrz
-         azFg==
+        d=amarulasolutions.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xDO3sMF/hJIpyc2siGnZVm8MMtmhdSexdGimiQU1euY=;
+        b=Qm58Zj7WW2E3qtJgZDyHFEqwstOpRlB6rMJe+Kocrl1AjSjY3coZXwPtmBsRTFwyik
+         MlMi/2eN0/InRO0uqOzxkLtSUdogbFHmXPswZOGKVYZBc8Mho0oPVEPJ6M+WcY+T7t5Q
+         lKR8azD25l7MsABWFyVipMJHuhSuwG4zLtQmY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=szYh6U0O4rdLlceJ5Mu6MCo8pZSXN9nW69RUcTj6eOg=;
-        b=yaiLMTGdO4yJKujYuiJKnBIjl3qz+JHqYwPTx++lqkRKWduJkyduNBBfHQz4ksRJD0
-         x5etSaBKKjNn9IeSOkfN3T/Wf6+cN9EAzZbWPw4MXDuVPH8cDplq0lKTMAJRBP5dGIJK
-         C68QDUtZJNevd4YwR0/AqFxHNY1qphDeFCG+NzmfAvRkrY/4jgvxVpC8vpxEr1npQU2q
-         YyuN7EIM+I0ak6UZWobNLqKtm+URx8rvizYnuwmCFOiKhvpMcXoR4u5uPucqlvWw2/Fl
-         Kx3hZGAM3KuThd/dp+JpdUVzd1JeJSJnodyf/Wgc/U3flTQk9RI5xxjN6DkU03hiavIF
-         OtkQ==
-X-Gm-Message-State: AFqh2kppPyPdGm563wk26rPq3GrAe2qfMq3dhvkBcuiaO3K4fOoxnnlI
-        DVKLpwFQ6ITqMmrFil3KyNlfS3STrJ5RjlCN1pKEjE7V
-X-Google-Smtp-Source: AMrXdXulkLpHFTttJIn7bRE+8oIM0Vjee34mqKwknjgOSnTSYKVB3NwmesfeeSB8CT9N0TBf+bLSdrB79V1cQr8VEu0=
-X-Received: by 2002:a17:903:2694:b0:192:9f8a:2e38 with SMTP id
- jf20-20020a170903269400b001929f8a2e38mr2697598plb.84.1673194604915; Sun, 08
- Jan 2023 08:16:44 -0800 (PST)
-MIME-Version: 1.0
-References: <20230104141245.8407-1-aford173@gmail.com>
-In-Reply-To: <20230104141245.8407-1-aford173@gmail.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Sun, 8 Jan 2023 10:16:33 -0600
-Message-ID: <CAHCN7xJ3eyZZm6or0N9WsGV8vsnyOBDWEoVAFyb1iamNe_AF2A@mail.gmail.com>
-Subject: Re: [PATCH 1/4] arm64: dts: beacon-renesom: Fix gpio expander reference
-To:     linux-renesas-soc@vger.kernel.org
-Cc:     aford@beaconembedded.com,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        bh=xDO3sMF/hJIpyc2siGnZVm8MMtmhdSexdGimiQU1euY=;
+        b=5to5ILjn9AWdV182WnlYnDInPTowzsk2ffeEBlBaDXRrDkutJt9OAaD9B0KAewaKOD
+         9QDCkyD5XNBTCd4Qs2z/REMIWa6+LBE4pP3dN+Gt/q0Zq8AqYOJKcsGmt6MpQv8rGy0V
+         YLwCW9p8/5G5UqrHexxSEz5wnaAtdGt/DT6IymVCdquZlrYKXHxCSkkYPN4eFOTmWkX0
+         o3+KfQW1TdIVv1e2KE5rLbox+81ojyhsecutg38fwL3tPhJlqg4+UVDjVzuPtkioLc9S
+         JrePDNIXGZ4KNTrTntkhCUYQVPgdrzSK0tdGyh4v8r4u+Yixsi2FITsivlrxKNdBvOJX
+         9ayA==
+X-Gm-Message-State: AFqh2krhAdn/boClWWHtrXZXxaZlBjhzWgZLJppBCtDDhGRU0u4ZyIf9
+        15QkNE0vJHGfmSrwzSN1fubCMw==
+X-Google-Smtp-Source: AMrXdXsJsg8m07S3YqzJzCfXbR+Ag2QWqrlrLKZnp+M6SEs6flWnpeyklRXjLkOI5I96quyOeO4/Vg==
+X-Received: by 2002:a17:906:9f07:b0:7ec:27d7:1838 with SMTP id fy7-20020a1709069f0700b007ec27d71838mr66763832ejc.22.1673195158895;
+        Sun, 08 Jan 2023 08:25:58 -0800 (PST)
+Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-80-180-23-57.pool80180.interbusiness.it. [80.180.23.57])
+        by smtp.gmail.com with ESMTPSA id n3-20020aa7c443000000b00486074b4ce4sm2659614edr.68.2023.01.08.08.25.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 08 Jan 2023 08:25:58 -0800 (PST)
+From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+        Amarula patchwork <linux-amarula@amarulasolutions.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>, michael@amarulasolutions.com,
+        Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        Christophe Roullier <christophe.roullier@foss.st.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Mark Brown <broonie@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-can@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org
+Subject: [RESEND RFC PATCH v5 0/5] can: bxcan: add support for ST bxCAN controller
+Date:   Sun,  8 Jan 2023 17:25:49 +0100
+Message-Id: <20230108162554.8375-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 4, 2023 at 8:12 AM Adam Ford <aford173@gmail.com> wrote:
->
-> The board used to originally introduce the Beacon Embedded
-> RZ/G2[M/N/H] boards had a GPIO expander with address 20, but
-> this was change when the final board went to production.
->
-> The production boards changed both the part itself and
-> the address.  With the incorrect address, the LCD cannot
-> come up.  If the LCD fails, the rcar-du driver fails to come up,
-> and that also breaks HDMI.
->
-> Pre-release board were not shipped to the general public, so it
-> should be safe to push this as a fix.  Anyone with a production
-> board would have video fail due to this GPIO expander change.
->
-Geert,
+The series adds support for the basic extended CAN controller (bxCAN)
+found in many low- to middle-end STM32 SoCs.
 
-Is this patch OK as-is? This is more critical to me than the other
-patches in the series.
+The driver design (one core module and one driver module) was inspired
+by other ST drivers (e. g. drivers/iio/adc/stm32-adc.c,
+drivers/iio/adc/stm32-adc-core.c) where device instances share resources.
+The shared resources functions are implemented in the core module, the
+device driver in a separate module.
 
-adam
+The driver has been tested on the stm32f469i-discovery board with a
+kernel version 5.19.0-rc2 in loopback + silent mode:
 
-> Fixes: a1d8a344f1ca ("arm64: dts: renesas: Introduce r8a774a1-beacon-rzg2m-kit")
-> Signed-off-by: Adam Ford <aford173@gmail.com>
->
-> diff --git a/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi b/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-> index 8166e3c1ff4e..8b6fe235a8f0 100644
-> --- a/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-> @@ -437,20 +437,6 @@ wm8962_endpoint: endpoint {
->                 };
->         };
->
-> -       /* 0 - lcd_reset */
-> -       /* 1 - lcd_pwr */
-> -       /* 2 - lcd_select */
-> -       /* 3 - backlight-enable */
-> -       /* 4 - Touch_shdwn */
-> -       /* 5 - LCD_H_pol */
-> -       /* 6 - lcd_V_pol */
-> -       gpio_exp1: gpio@20 {
-> -               compatible = "onnn,pca9654";
-> -               reg = <0x20>;
-> -               gpio-controller;
-> -               #gpio-cells = <2>;
-> -       };
-> -
->         touchscreen@26 {
->                 compatible = "ilitek,ili2117";
->                 reg = <0x26>;
-> @@ -482,6 +468,21 @@ hd3ss3220_out_ep: endpoint {
->                         };
->                 };
->         };
-> +
-> +       gpio_exp1: gpio@70 {
-> +               compatible = "onnn,pca9654";
-> +               reg = <0x70>;
-> +               gpio-controller;
-> +               #gpio-cells = <2>;
-> +               gpio-line-names =
-> +                       "lcd_reset",
-> +                       "lcd_pwr",
-> +                       "lcd_select",
-> +                       "backlight-enable",
-> +                       "Touch_shdwn",
-> +                       "LCD_H_pol",
-> +                       "lcd_V_pol";
-> +       };
->  };
->
->  &lvds0 {
-> --
-> 2.34.1
->
+ip link set can0 type can bitrate 125000 loopback on listen-only on
+ip link set up can0
+candump can0 -L &
+cansend can0 300#AC.AB.AD.AE.75.49.AD.D1
+
+For uboot and kernel compilation, as well as for rootfs creation I used
+buildroot:
+
+make stm32f469_disco_sd_defconfig
+make
+
+but I had to patch can-utils and busybox as can-utils and iproute are
+not compiled for MMU-less microcotrollers. In the case of can-utils,
+replacing the calls to fork() with vfork(), I was able to compile the
+package with working candump and cansend applications, while in the
+case of iproute, I ran into more than one problem and finally I decided
+to extend busybox's ip link command for CAN-type devices. I'm still
+wondering if it was really necessary, but this way I was able to test
+the driver.
+
+Changes in v5:
+- Add Rob Herring's Acked-by tag.
+- Add Rob Herring's Reviewed-by tag.
+- Put static in front of bxcan_enable_filters() definition.
+
+Changes in v4:
+- Remove "st,stm32f4-bxcan-core" compatible. In this way the can nodes
+ (compatible "st,stm32f4-bxcan") are no longer children of a parent
+  node with compatible "st,stm32f4-bxcan-core".
+- Add the "st,gcan" property (global can memory) to can nodes which
+  references a "syscon" node containing the shared clock and memory
+  addresses.
+- Replace the node can@40006400 (compatible "st,stm32f4-bxcan-core")
+  with the gcan@40006600 node ("sysnode" compatible). The gcan node
+  contains clocks and memory addresses shared by the two can nodes
+  of which it's no longer the parent.
+- Add to can nodes the "st,gcan" property (global can memory) which
+  references the gcan@40006600 node ("sysnode compatibble).
+- Add "dt-bindings: arm: stm32: add compatible for syscon gcan node" patch.
+- Drop the core driver. Thus bxcan-drv.c has been renamed to bxcan.c and
+  moved to the drivers/net/can folder. The drivers/net/can/bxcan directory
+  has therefore been removed.
+- Use the regmap_*() functions to access the shared memory registers.
+- Use spinlock to protect bxcan_rmw().
+- Use 1 space, instead of tabs, in the macros definition.
+- Drop clock ref-counting.
+- Drop unused code.
+- Drop the _SHIFT macros and use FIELD_GET()/FIELD_PREP() directly.
+- Add BXCAN_ prefix to lec error codes.
+- Add the macro BXCAN_RX_MB_NUM.
+- Enable time triggered mode and use can_rx_offload().
+- Use readx_poll_timeout() in function with timeouts.
+- Loop from tail to head in bxcan_tx_isr().
+- Check bits of tsr register instead of pkts variable in bxcan_tx_isr().
+- Don't return from bxcan_handle_state_change() if skb/cf are NULL.
+- Enable/disable the generation of the bus error interrupt depending
+  on can.ctrlmode & CAN_CTRLMODE_BERR_REPORTING.
+- Don't return from bxcan_handle_bus_err() if skb is NULL.
+- Drop statistics updating from bxcan_handle_bus_err().
+- Add an empty line in front of 'return IRQ_HANDLED;'
+- Rename bxcan_start() to bxcan_chip_start().
+- Rename bxcan_stop() to bxcan_chip_stop().
+- Disable all IRQs in bxcan_chip_stop().
+- Rename bxcan_close() to bxcan_ndo_stop().
+- Use writel instead of bxcan_rmw() to update the dlc register.
+
+Changes in v3:
+- Remove 'Dario Binacchi <dariobin@libero.it>' SOB.
+- Add description to the parent of the two child nodes.
+- Move "patterProperties:" after "properties: in top level before "required".
+- Add "clocks" to the "required:" list of the child nodes.
+- Remove 'Dario Binacchi <dariobin@libero.it>' SOB.
+- Add "clocks" to can@0 node.
+- Remove 'Dario Binacchi <dariobin@libero.it>' SOB.
+- Remove a blank line.
+- Remove 'Dario Binacchi <dariobin@libero.it>' SOB.
+- Fix the documentation file path in the MAINTAINERS entry.
+- Do not increment the "stats->rx_bytes" if the frame is remote.
+- Remove pr_debug() call from bxcan_rmw().
+
+Changes in v2:
+- Change the file name into 'st,stm32-bxcan-core.yaml'.
+- Rename compatibles:
+  - st,stm32-bxcan-core -> st,stm32f4-bxcan-core
+  - st,stm32-bxcan -> st,stm32f4-bxcan
+- Rename master property to st,can-master.
+- Remove the status property from the example.
+- Put the node child properties as required.
+- Remove a blank line.
+- Fix sparse errors.
+- Create a MAINTAINERS entry.
+- Remove the print of the registers address.
+- Remove the volatile keyword from bxcan_rmw().
+- Use tx ring algorithm to manage tx mailboxes.
+- Use can_{get|put}_echo_skb().
+- Update DT properties.
+
+Dario Binacchi (5):
+  dt-bindings: arm: stm32: add compatible for syscon gcan node
+  dt-bindings: net: can: add STM32 bxcan DT bindings
+  ARM: dts: stm32: add CAN support on stm32f429
+  ARM: dts: stm32: add pin map for CAN controller on stm32f4
+  can: bxcan: add support for ST bxCAN controller
+
+ .../bindings/arm/stm32/st,stm32-syscon.yaml   |    2 +
+ .../bindings/net/can/st,stm32-bxcan.yaml      |   83 ++
+ MAINTAINERS                                   |    7 +
+ arch/arm/boot/dts/stm32f4-pinctrl.dtsi        |   30 +
+ arch/arm/boot/dts/stm32f429.dtsi              |   29 +
+ drivers/net/can/Kconfig                       |   12 +
+ drivers/net/can/Makefile                      |    1 +
+ drivers/net/can/bxcan.c                       | 1110 +++++++++++++++++
+ 8 files changed, 1274 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/can/st,stm32-bxcan.yaml
+ create mode 100644 drivers/net/can/bxcan.c
+
+-- 
+2.32.0
+
