@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 854FD661685
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 17:26:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 321A7661687
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 17:26:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233340AbjAHQ0F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 11:26:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60346 "EHLO
+        id S233444AbjAHQ0G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 11:26:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233244AbjAHQ0D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 11:26:03 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED9C81E1
-        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 08:26:01 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id x10so6308598edd.10
-        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 08:26:01 -0800 (PST)
+        with ESMTP id S233311AbjAHQ0E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 11:26:04 -0500
+Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68C2F5F4B
+        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 08:26:03 -0800 (PST)
+Received: by mail-ed1-x542.google.com with SMTP id i15so9227356edf.2
+        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 08:26:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=pWlIQBe6KHU2MRGPH98wyw9zelNx3otUU9JeorE0clc=;
-        b=fpoXzbnR5B8C60yFJ+Pt+wZEW8FPbU0I9RmwjuH+RZH73dwiLdPHfBPhkcTnwGj5PN
-         ps+jMpQ09i9nIMa3jozLRTN33I56ula1MShJdY8K+2ioq+MS0ziQuEjt05gHPVNKivsi
-         T0c22foSNhWSf+M22wmxFhASUJH/Ux+EDP1K4=
+        bh=D8/Md0NYJHUSKcz4MJWTxhKaskWW/ctRpyjjxqRRhnc=;
+        b=KZUi81UE7xYmzIHGfoEd+UN6IMAb9alIo+8JuTlJqRAManBoFzaJWQNhDG1wTsczz8
+         M3TYyhCIy4tTBraIwZPIIHpLba/IzWnYlBnClJKiZQDp62dcsIbGYFx9T8j2xrXOJr3t
+         KH5USQgKslaBFd6DfxvlUkXx5WjJoTMXe0Jew=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=pWlIQBe6KHU2MRGPH98wyw9zelNx3otUU9JeorE0clc=;
-        b=4Dsf4ykP5gnEqNO5e32OmgSxxHwTAD42z035LD3WFAmcMow1qNAsWQtnX629dLld1m
-         6Vi4s3sXUtbanNVpHwLK1xivOsv+XRW/Bfqz75CFLg9ozeSJ84kjiFdqxaA6wgLj577C
-         RtvDzyFzJNnsjFOgy2WhpDqj7+tIb4k9VahQve9iTrBzRuAma+h+H9+TiuAiIWF5P7QS
-         FS0rE4vB4Uf4BgDbXC6LlOwoLZHw1RFfYiCHtl2TxhnAsLtLHLwx9Vbon3ZmdqhLZwkx
-         7lF3EJBw0hb2cgXUEUWC+0buVDRA2RYFU4am33x7+o0ww8PNgixoS/GDEFFsz7jbHx5e
-         2hRg==
-X-Gm-Message-State: AFqh2koxjw+cCIIlG+KZ57mmowpukzZbcRXabA/ra3rHX3QBcnC7Ao9b
-        KamcBOMyNUETo78batPt88SMVg==
-X-Google-Smtp-Source: AMrXdXuHd94B7Bd8lJcWkeEJjjpomBCQONEVdcmyeFpXNtA3MYEpHllzKPYu4VdgP66YRnlJK/h22A==
-X-Received: by 2002:a05:6402:25c6:b0:478:5688:7c9f with SMTP id x6-20020a05640225c600b0047856887c9fmr64197086edb.29.1673195160525;
-        Sun, 08 Jan 2023 08:26:00 -0800 (PST)
+        bh=D8/Md0NYJHUSKcz4MJWTxhKaskWW/ctRpyjjxqRRhnc=;
+        b=snMrM3fyZDRdRrmHj2EQOugYd0M4BPCDaopNik3xQbXswYVl669mHg22jzPb0QrsAx
+         +3ftgdjE6QoBGYrjpTBwSjz3kVArJ4HG7RafWLmeGavf4EZbRlBRwo2wbNcbtQ+29R+p
+         GZQXzaSrADnlXTa59K756HoiLkcBPLeiCZa+Ydw+08ui6SR4wdx0AZu8gFIfOMPqvXes
+         StmgMH8F2UajXv8zkK5sAK+dkn8Y4NFdN2dtBhjme0X0hd5WHlsqUhQOSrC/e+OGCi3k
+         dVhYdV3jeoOg8e8l4FJVUeP+6iE1OGhk4q5oZe5FYy8bsiFyFadvSzijDJ6duidiW4MG
+         afyw==
+X-Gm-Message-State: AFqh2ko+932sKdE5Ddik8ySApzDqnLyMUSXVtN6idJ6LufLxNNmgWg9h
+        c9zNcNYX32DvaYDoV8tMzfl+jA==
+X-Google-Smtp-Source: AMrXdXtfl+IHY/BqQz5jF8NRDduwkkFhDpZVXnsBT6Igcp4Yth9sgN3RtdqeK9HdRehKHU2oawaYoA==
+X-Received: by 2002:aa7:d61a:0:b0:499:376e:6b2d with SMTP id c26-20020aa7d61a000000b00499376e6b2dmr3505449edr.0.1673195162009;
+        Sun, 08 Jan 2023 08:26:02 -0800 (PST)
 Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-80-180-23-57.pool80180.interbusiness.it. [80.180.23.57])
-        by smtp.gmail.com with ESMTPSA id n3-20020aa7c443000000b00486074b4ce4sm2659614edr.68.2023.01.08.08.25.59
+        by smtp.gmail.com with ESMTPSA id n3-20020aa7c443000000b00486074b4ce4sm2659614edr.68.2023.01.08.08.26.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Jan 2023 08:26:00 -0800 (PST)
+        Sun, 08 Jan 2023 08:26:01 -0800 (PST)
 From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
 To:     linux-kernel@vger.kernel.org
 Cc:     Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
@@ -55,19 +55,20 @@ Cc:     Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh@kernel.org>, michael@amarulasolutions.com,
         Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        Christophe Roullier <christophe.roullier@foss.st.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
         Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: [RESEND RFC PATCH v5 1/5] dt-bindings: arm: stm32: add compatible for syscon gcan node
-Date:   Sun,  8 Jan 2023 17:25:50 +0100
-Message-Id: <20230108162554.8375-2-dario.binacchi@amarulasolutions.com>
+        linux-can@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org
+Subject: [RESEND RFC PATCH v5 2/5] dt-bindings: net: can: add STM32 bxcan DT bindings
+Date:   Sun,  8 Jan 2023 17:25:51 +0100
+Message-Id: <20230108162554.8375-3-dario.binacchi@amarulasolutions.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20230108162554.8375-1-dario.binacchi@amarulasolutions.com>
 References: <20230108162554.8375-1-dario.binacchi@amarulasolutions.com>
@@ -82,43 +83,133 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since commit ad440432d1f9 ("dt-bindings: mfd: Ensure 'syscon' has a
-more specific compatible")
-It is required to provide at least 2 compatibles string for syscon node.
-This patch documents the new compatible for stm32f4 SoC to support
-global/shared CAN registers access for bxCAN controllers.
+Add documentation of device tree bindings for the STM32 basic extended
+CAN (bxcan) controller.
 
 Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 ---
 
 Changes in v5:
-- Add Rob Herring's Acked-by tag.
+- Add Rob Herring's Reviewed-by tag.
 
- .../devicetree/bindings/arm/stm32/st,stm32-syscon.yaml          | 2 ++
- 1 file changed, 2 insertions(+)
+Changes in v4:
+- Remove "st,stm32f4-bxcan-core" compatible. In this way the can nodes
+ (compatible "st,stm32f4-bxcan") are no longer children of a parent
+  node with compatible "st,stm32f4-bxcan-core".
+- Add the "st,gcan" property (global can memory) to can nodes which
+  references a "syscon" node containing the shared clock and memory
+  addresses.
 
-diff --git a/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml b/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
-index b2b156cc160a..ad8e51aa01b0 100644
---- a/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
-+++ b/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
-@@ -20,6 +20,7 @@ properties:
-               - st,stm32-syscfg
-               - st,stm32-power-config
-               - st,stm32-tamp
-+              - st,stm32f4-gcan
-           - const: syscon
-       - items:
-           - const: st,stm32-tamp
-@@ -42,6 +43,7 @@ if:
-       contains:
-         enum:
-           - st,stm32mp157-syscfg
-+          - st,stm32f4-gcan
- then:
-   required:
-     - clocks
+Changes in v3:
+- Remove 'Dario Binacchi <dariobin@libero.it>' SOB.
+- Add description to the parent of the two child nodes.
+- Move "patterProperties:" after "properties: in top level before "required".
+- Add "clocks" to the "required:" list of the child nodes.
+
+Changes in v2:
+- Change the file name into 'st,stm32-bxcan-core.yaml'.
+- Rename compatibles:
+  - st,stm32-bxcan-core -> st,stm32f4-bxcan-core
+  - st,stm32-bxcan -> st,stm32f4-bxcan
+- Rename master property to st,can-master.
+- Remove the status property from the example.
+- Put the node child properties as required.
+
+ .../bindings/net/can/st,stm32-bxcan.yaml      | 83 +++++++++++++++++++
+ 1 file changed, 83 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/can/st,stm32-bxcan.yaml
+
+diff --git a/Documentation/devicetree/bindings/net/can/st,stm32-bxcan.yaml b/Documentation/devicetree/bindings/net/can/st,stm32-bxcan.yaml
+new file mode 100644
+index 000000000000..c9194345d202
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/can/st,stm32-bxcan.yaml
+@@ -0,0 +1,83 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/can/st,stm32-bxcan.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: STMicroelectronics bxCAN controller
++
++description: STMicroelectronics BxCAN controller for CAN bus
++
++maintainers:
++  - Dario Binacchi <dario.binacchi@amarulasolutions.com>
++
++allOf:
++  - $ref: can-controller.yaml#
++
++properties:
++  compatible:
++    enum:
++      - st,stm32f4-bxcan
++
++  st,can-master:
++    description:
++      Master and slave mode of the bxCAN peripheral is only relevant
++      if the chip has two CAN peripherals. In that case they share
++      some of the required logic.
++    type: boolean
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    items:
++      - description: transmit interrupt
++      - description: FIFO 0 receive interrupt
++      - description: FIFO 1 receive interrupt
++      - description: status change error interrupt
++
++  interrupt-names:
++    items:
++      - const: tx
++      - const: rx0
++      - const: rx1
++      - const: sce
++
++  resets:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  st,gcan:
++    $ref: "/schemas/types.yaml#/definitions/phandle-array"
++    description:
++      The phandle to the gcan node which allows to access the 512-bytes
++      SRAM memory shared by the two bxCAN cells (CAN1 master and CAN2
++      slave) in dual CAN peripheral configuration.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - resets
++  - clocks
++  - st,gcan
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/stm32fx-clock.h>
++    #include <dt-bindings/mfd/stm32f4-rcc.h>
++
++    can1: can@40006400 {
++        compatible = "st,stm32f4-bxcan";
++        reg = <0x40006400 0x200>;
++        interrupts = <19>, <20>, <21>, <22>;
++        interrupt-names = "tx", "rx0", "rx1", "sce";
++        resets = <&rcc STM32F4_APB1_RESET(CAN1)>;
++        clocks = <&rcc 0 STM32F4_APB1_CLOCK(CAN1)>;
++        st,can-master;
++        st,gcan = <&gcan>;
++    };
 -- 
 2.32.0
 
