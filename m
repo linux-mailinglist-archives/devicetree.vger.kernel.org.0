@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95CFC661606
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 16:10:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEBF666160F
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 16:14:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233196AbjAHPKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 10:10:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43742 "EHLO
+        id S233070AbjAHPOx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 10:14:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229482AbjAHPKp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 10:10:45 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 222FACE0A
-        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 07:10:44 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id ay12-20020a05600c1e0c00b003d9ea12bafcso1773295wmb.3
-        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 07:10:44 -0800 (PST)
+        with ESMTP id S231345AbjAHPOw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 10:14:52 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3853DD136
+        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 07:14:51 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so2355258wma.1
+        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 07:14:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Bg8R7GNb5drrHJYQqW2GJwB+W4AiceVnD28th+/uo4I=;
-        b=kPbR0cqHsrH02VTzykoBoOZCWg/Qo7jWwHGb24NzLeE+k8v/8cUUVookffg+H9koUS
-         hA++KI8we94rOez+6Q+dFA2OcORLMzaK+hWMBrKCl1K4GaJJpdAvy4pWykjyBvEFwHgr
-         9UM8sib62v69Fw5gHxwiJQi6qrjDoboGq7IjVFHg3aDbo7xqEvqDs2UwtkAzoZDDZ5l4
-         J+ZtYMCGr8yfRRTvgAm1BqVnUaoaFUjUBwjsbx4OkrqpryARZ3P06OyI1nVxGy5uNYJU
-         s/q3IwN5ojBVgO6103bZr3LVK7Rfe1sweFRYVYzvn/jk0H/+TIX6k+UslLFX+xKUpGvy
-         ORFw==
+        bh=Kum/h3WoydN+pm7yzyrAbYktEmQZxXZIgzMlKqIfzRs=;
+        b=B17dgkv12M5xpcm41prkaN1pTZSj1sIvPdyYkNeyGu+fVlfcN/UNBd5Vfr+PCgtrrR
+         uUyGKa5hIjxm6nWEFQflNI8Z/T0BePImhtKOOfq0ha7YhJVOacTw7oCFowQx3vvsBCC8
+         Jo09Ga6boCwekrTRdjCBRLlPPmVUa0epePP9gvYMzROlxMU+gUA4d+xJGRzCVE4ndqDL
+         dSpwiyEnbx9uwnCHMIiOBrJI1YuNqedHnVuzroaYBVPuvGhAMh26mXwwgcC1yaxghFqu
+         B4V9ZbTaoq2T1ov47NvIJB9QQDKVH8rJCoBQwxFxCjOqBsdav6y1Bnr7APW0nkjfg99T
+         vIQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Bg8R7GNb5drrHJYQqW2GJwB+W4AiceVnD28th+/uo4I=;
-        b=plNu675oFJCtXSSVa3DPUhplwJdB1GkyMxzJf/ixWCREGYIjyUQ1AdOLu3zOULLQ84
-         B30SjhCexQHrZYr8QYwodPfD7xlipRpE2rSHIcp6va3FnIBJSmwVOKE67Pqd8ltAhOJ2
-         fHTLLCnKk7FpLLqyfpuADSWyapp5X3kv1Iz6aT2sdka1qdHUwuj0EfOg4ivZoMSqz/Nb
-         +JpO6O+72QJDzDBEV7fTauMpvRHsJrOih1Mv00ZeIklg1EpYFIRagpi4zMeLQ60WuKFb
-         oeKE0X3wh/U90d7iYcFO2Y1FYTC3dQqg35xGqN9lb3oA82Yx5vOtFbFRMz4Ab9pU6ST7
-         kKKA==
-X-Gm-Message-State: AFqh2kryj+ns1lctYXVAKqZU0VFr0dhJdvOf1TuGHEYSJ3mDVfn9nX4b
-        0Vh/IOO910RXTU0BDIlDh5ufqA==
-X-Google-Smtp-Source: AMrXdXvR04b9qmXw5LXVzZsXI3/3ZWLWhpukdXTXq+q6vSHTfrly72adgYlRcwhjYZblERHSvEyXbQ==
-X-Received: by 2002:a1c:770b:0:b0:3cf:a18d:399c with SMTP id t11-20020a1c770b000000b003cfa18d399cmr46344225wmi.1.1673190642554;
-        Sun, 08 Jan 2023 07:10:42 -0800 (PST)
+        bh=Kum/h3WoydN+pm7yzyrAbYktEmQZxXZIgzMlKqIfzRs=;
+        b=ug9RoRpLXy6hDihzpyoyiYF48haoYgGiZtpHkwkTMpBE3AM47EmUQ9H21KSju2SL20
+         6P9EYfXWkhqzjtvTrkQWCnZbnmTbk9tboRUWES1fK8U13u9QnF/CO+1K1WLCEfoQNzw2
+         Fe1i8P6++xhGMY3SPQ07wmGoJ8JxkTzzNB75VxvSw4J9H3W0mdMsnh1Tlnm/2NNvC8oC
+         4b+Dj4GKqItL5KHCFmfDxxa/M+/eEc2kan/zVpxS+4/wOZbhp2lSkwH6bPL2LJYSCgNM
+         IBwlfNc8PnZyC3q/QFT0ZTtbyw0xnkL9itgtbIgEfqvGyq/3YM/Bb3QORKdyipyNtRCi
+         9EWw==
+X-Gm-Message-State: AFqh2kp2XEJpyc0gyw4eogBXyuXltpBnfN8cRcpLiN+8JrmndyFQKU0N
+        IEc9gyFyksUhNCfGE+Ki7I5KKQ==
+X-Google-Smtp-Source: AMrXdXsEQW0bDV9OZcom7tmbUrlLwDsgiDLU21uXmHqGTahcowbhAAYwsT+7Wijlz/86kxWzzUwtZg==
+X-Received: by 2002:a05:600c:22c4:b0:3cf:8ed7:712d with SMTP id 4-20020a05600c22c400b003cf8ed7712dmr48239469wmg.14.1673190889730;
+        Sun, 08 Jan 2023 07:14:49 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id x7-20020a05600c188700b003c701c12a17sm12412741wmp.12.2023.01.08.07.10.39
+        by smtp.gmail.com with ESMTPSA id i5-20020a5d55c5000000b002a6f329203esm6356517wrw.61.2023.01.08.07.14.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 08 Jan 2023 07:10:41 -0800 (PST)
-Message-ID: <427e0775-c576-e293-f590-b9840b936884@linaro.org>
-Date:   Sun, 8 Jan 2023 16:10:38 +0100
+        Sun, 08 Jan 2023 07:14:49 -0800 (PST)
+Message-ID: <76077f5f-fbda-800b-b8d8-6a3f6600f4d1@linaro.org>
+Date:   Sun, 8 Jan 2023 16:14:47 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v2 01/10] dt-bindings: soc: fsl: cpm_qe: Add TSA
+Subject: Re: [PATCH v2 05/10] dt-bindings: soc: fsl: cpm_qe: Add QMC
  controller
 Content-Language: en-US
 To:     Herve Codina <herve.codina@bootlin.com>,
@@ -77,9 +77,9 @@ Cc:     linuxppc-dev@lists.ozlabs.org,
         linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
         Thomas Petazzoni <thomas.petazzoni@bootlin.com>
 References: <20230106163746.439717-1-herve.codina@bootlin.com>
- <20230106163746.439717-2-herve.codina@bootlin.com>
+ <20230106163746.439717-6-herve.codina@bootlin.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230106163746.439717-2-herve.codina@bootlin.com>
+In-Reply-To: <20230106163746.439717-6-herve.codina@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -92,58 +92,84 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 06/01/2023 17:37, Herve Codina wrote:
-> Add support for the time slot assigner (TSA)
-> available in some PowerQUICC SoC such as MPC885
-> or MPC866.
+> Add support for the QMC (QUICC Multichannel Controller)
+> available in some PowerQUICC SoC such as MPC885 or MPC866.
 > 
 > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 > ---
->  .../bindings/soc/fsl/cpm_qe/fsl,tsa.yaml      | 262 ++++++++++++++++++
->  include/dt-bindings/soc/fsl-tsa.h             |  15 +
->  2 files changed, 277 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,tsa.yaml
->  create mode 100644 include/dt-bindings/soc/fsl-tsa.h
+>  .../bindings/soc/fsl/cpm_qe/fsl,qmc.yaml      | 167 ++++++++++++++++++
+>  1 file changed, 167 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qmc.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,tsa.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,tsa.yaml
+> diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qmc.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qmc.yaml
 > new file mode 100644
-> index 000000000000..7542c0fd8435
+> index 000000000000..caf71f3a3f3f
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,tsa.yaml
-> @@ -0,0 +1,262 @@
+> +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qmc.yaml
+> @@ -0,0 +1,167 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/soc/fsl/cpm_qe/fsl,tsa.yaml#
+> +$id: http://devicetree.org/schemas/soc/fsl/cpm_qe/fsl,qmc.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: PowerQUICC CPM Time-slot assigner (TSA) controller
+> +title: PowerQUICC CPM QUICC Multichannel Controller (QMC)
 > +
 > +maintainers:
 > +  - Herve Codina <herve.codina@bootlin.com>
 > +
 > +description: |
-> +  The TSA is the time-slot assigner that can be found on some
-> +  PowerQUICC SoC.
-> +  Its purpose is to route some TDM time-slots to other internal
-> +  serial controllers.
+> +  The QMC (QUICC Multichannel Controller) emulates up to 64 channels within
+> +  one serial controller using the same TDM physical interface routed from
+> +  TSA.
 > +
 > +properties:
 > +  compatible:
 > +    items:
 > +      - enum:
-> +          - fsl,mpc885-tsa
-> +          - fsl,mpc866-tsa
-> +      - const: fsl,cpm1-tsa
+> +          - fsl,mpc885-scc-qmc
+> +          - fsl,mpc866-scc-qmc
+> +      - const: fsl,cpm1-scc-qmc
 > +
 > +  reg:
 > +    items:
-> +      - description: SI (Serial Interface) register base
-> +      - description: SI RAM base
+> +      - description: SCC (Serial communication controller) register base
+> +      - description: SCC parameter ram base
+> +      - description: Dual port ram base
 > +
 > +  reg-names:
 > +    items:
-> +      - const: si_regs
-> +      - const: si_ram
+> +      - const: scc_regs
+> +      - const: scc_pram
+> +      - const: dpram
+> +
+> +  interrupts:
+> +    description: SCC interrupt line in the CPM interrupt controller
+
+Missing constraints.
+
+> +
+> +  fsl,cpm-command:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Cf. soc/fsl/cpm_qe/cpm.txt
+
+Missing description.
+
+> +
+> +  tsa:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: phandle to the TSA
+
+Missing vendor prefix. Does not look like a generic property.
+
+> +
+> +  tsa-cell-id:
+> +    enum: [1, 2, 3]
+> +    description: |
+> +      TSA cell ID (dt-bindings/soc/fsl-tsa.h defines these values)
+> +       - 1: SCC2
+> +       - 2: SCC3
+> +       - 3: SCC4
 > +
 > +  '#address-cells':
 > +    const: 1
@@ -151,217 +177,68 @@ On 06/01/2023 17:37, Herve Codina wrote:
 > +  '#size-cells':
 > +    const: 0
 > +
+> +  '#chan-cells':
+> +    const: 1
+> +
 > +patternProperties:
-> +  "^tdm@[0-1]$":
-
-Use consistent quotes - either ' or "
-
+> +  "^channel@([0-9]|[1-5][0-9]|6[0-3])$":
 > +    description:
-> +      The TDM managed by this controller
+> +      A channel managed by this controller
 > +    type: object
 > +
 > +    properties:
 > +      reg:
 > +        minimum: 0
-> +        maximum: 1
+> +        maximum: 63
 > +        description:
-> +          The TDM number for this TDM, 0 for TDMa and 1 for TDMb
-> +
-> +      fsl,common-rxtx-pins:
-> +        $ref: /schemas/types.yaml#/definitions/flag
-> +        description:
-> +          Use common pins for both transmit and receive
-
-What are the "common" pins? Without this property device is using
-uncommon pins? This does not make sense...
-
-> +
-> +      clocks: true
-> +      clock-names: true
-
-Both need constraints.
-
+> +          The channel number
 > +
 > +      fsl,mode:
 > +        $ref: /schemas/types.yaml#/definitions/string
-> +        enum: [normal, echo, internal-loopback, control-loopback]
-> +        default: normal
-> +        description: |
-> +          Operational mode:
-> +            - normal:
-> +                Normal operation
-> +            - echo:
-> +                Automatic echo. Rx data is resent on Tx
-> +            - internal-loopback:
-> +                The TDM transmitter is connected to the receiver.
-> +                Data appears on Tx pin.
-> +            - control-loopback:
-> +                The TDM transmitter is connected to the receiver.
-> +                The Tx pin is disconnected.
-> +
-> +      fsl,rx-frame-sync-delay:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        enum: [0, 1, 2, 3]
-> +        default: 0
-> +        description: |
-> +          Receive frame sync delay.
+> +        enum: [transparent, hdlc]
+> +        default: transparent
+> +        description: Operational mode
 
-Delay in what units?
+And what do they mean?
 
-> +          Indicates the delay between the Rx sync and the first bit of the
-> +          Rx frame. 0 for no bit delay. 1, 2 or 3 for 1, 2 or 3 bits delay.
 > +
-> +      fsl,tx-frame-sync-delay:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        enum: [0, 1, 2, 3]
-> +        default: 0
-> +        description: |
-> +          Transmit frame sync delay.
-> +          Indicates the delay between the Tx sync and the first bit of the
-> +          Tx frame. 0 for no bit delay. 1, 2 or 3 for 1, 2 or 3 bits delay.
-> +
-> +      fsl,clock-falling-edge:
-> +        $ref: /schemas/types.yaml#/definitions/flag
-> +        description: |
-> +          Data is sent on falling edge of the clock (and received on the
-> +          rising edge).
-> +          If 'clock-falling-edge' is not present, data is sent on the
-> +          rising edge (and received on the falling edge).
-> +
-> +      fsl,fsync-rising-edge:
+> +      fsl,reverse-data:
 > +        $ref: /schemas/types.yaml#/definitions/flag
 > +        description:
-> +          Frame sync pulses are sampled with the rising edge of the channel
-> +          clock. If 'fsync-rising-edge' is not present, pulses are sample
-> +          with e falling edge.
+> +          The bit order as seen on the channels is reversed,
+> +          transmitting/receiving the MSB of each octet first.
+> +          This flag is used only in 'transparent' mode.
 > +
-> +      fsl,double-speed-clock:
-> +        $ref: /schemas/types.yaml#/definitions/flag
+> +      tx-ts-mask:
+
+Missing vendor prefix.
+
+> +        $ref: /schemas/types.yaml#/definitions/uint64
 > +        description:
-> +          The channel clock is twice the data rate.
+> +          Channel assigned Tx time-slots within the Tx time-slots routed
+> +          by the TSA to this cell.
 > +
-> +      fsl,grant-mode:
-> +        $ref: /schemas/types.yaml#/definitions/flag
+> +      rx-ts-mask:
+> +        $ref: /schemas/types.yaml#/definitions/uint64
 > +        description:
-> +          Grant mode enabled.
-
-This we know from property name. You need to describe what it is and
-what it does.
-
-> +
-> +      tx_ts_routes:
-
-No underscores, missing vendor prefix.
-
-> +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> +        description: |
-> +          A list of tupple that indicates the Tx time-slots routes.
-> +            tx_ts_routes =
-> +               < 2 0 0>, /* The first 2 time slots are not used */
-> +               < 3 1 0>, /* The next 3 ones are route to SCC2 */
-> +               < 4 0 0>, /* The next 4 ones are not used */
-> +               < 2 2 0>; /* The nest 2 ones are route to SCC3 */
-> +        items:
-> +          items:
-> +            - description:
-> +                The number of time-slots
-> +              minimum: 1
-> +              maximum: 64
-> +            - description: |
-> +                The source serial interface (dt-bindings/soc/fsl-tsa.h
-> +                defines these values)
-> +                 - 0: No destination
-> +                 - 1: SCC2
-> +                 - 2: SCC3
-> +                 - 3: SCC4
-> +                 - 4: SMC1
-> +                 - 5: SMC2
-> +              enum: [0, 1, 2, 3, 4, 5]
-> +            - description:
-> +                The route flags (reserved)
-
-Why part of binding is reserved?
-
-> +              const: 0
-> +        minItems: 1
-> +        maxItems: 64
-> +
-> +      rx_ts_routes:
-> +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> +        description: |
-> +          A list of tupple that indicates the Rx time-slots routes.
-> +            tx_ts_routes =
-> +               < 2 0 0>, /* The first 2 time slots are not used */
-> +               < 3 1 0>, /* The next 3 ones are route from SCC2 */
-> +               < 4 0 0>, /* The next 4 ones are not used */
-> +               < 2 2 0>; /* The nest 2 ones are route from SCC3 */
-> +        items:
-> +          items:
-> +            - description:
-> +                The number of time-slots
-> +              minimum: 1
-> +              maximum: 64
-> +            - description: |
-> +                The destination serial interface (dt-bindings/soc/fsl-tsa.h
-> +                defines these values)
-> +                 - 0: No destination
-> +                 - 1: SCC2
-> +                 - 2: SCC3
-> +                 - 3: SCC4
-> +                 - 4: SMC1
-> +                 - 5: SMC2
-> +              enum: [0, 1, 2, 3, 4, 5]
-> +            - description:
-> +                The route flags (reserved)
-> +              const: 0
-> +        minItems: 1
-> +        maxItems: 64
-> +
-> +    allOf:
-> +      - if:
-> +          properties:
-> +            fsl,common-rxtx-pins:
-> +              type: 'null'
-
-What is this exactly? If check for property present, it's wrong. Should
-be test if it is in required.
-
-> +        then:
-> +          properties:
-> +            clocks:
-> +              items:
-> +                - description: External clock connected to L1RSYNC pin
-> +                - description: External clock connected to L1RCLK pin
-> +                - description: External clock connected to L1TSYNC pin
-> +                - description: External clock connected to L1TCLK pin
-> +            clock-names:
-> +              items:
-> +                - const: l1rsync
-> +                - const: l1rclk
-> +                - const: l1tsync
-> +                - const: l1tclk
-> +        else:
-> +          properties:
-> +            clocks:
-> +              items:
-> +                - description: External clock connected to L1RSYNC pin
-> +                - description: External clock connected to L1RCLK pin
-> +            clock-names:
-> +              items:
-> +                - const: l1rsync
-> +                - const: l1rclk
+> +          Channel assigned Rx time-slots within the Rx time-slots routed
+> +          by the TSA to this cell.
 > +
 > +    required:
 > +      - reg
-> +      - clocks
-> +      - clock-names
+> +      - tx-ts-mask
+> +      - rx-ts-mask
 > +
 > +required:
 > +  - compatible
 > +  - reg
 > +  - reg-names
+> +  - interrupts
+> +  - tsa
+> +  - tsa-cell-id
 > +  - '#address-cells'
 > +  - '#size-cells'
+> +  - '#chan-cells'
 > +
 > +additionalProperties: false
 > +
@@ -369,70 +246,38 @@ be test if it is in required.
 > +  - |
 > +    #include <dt-bindings/soc/fsl-tsa.h>
 > +
-> +    tsa@ae0 {
-> +        compatible = "fsl,mpc885-tsa", "fsl,cpm1-tsa";
-> +        reg = <0xae0 0x10>,
-> +              <0xc00 0x200>;
-> +        reg-names = "si_regs", "si_ram";
+> +    scc_qmc@a60 {
+
+No underscores in node names.
+
+Node names should be generic.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +        compatible = "fsl,mpc885-scc-qmc", "fsl,cpm1-scc-qmc";
+> +        reg = <0xa60 0x20>,
+> +              <0x3f00 0xc0>,
+> +              <0x2000 0x1000>;
+> +        reg-names = "scc_regs", "scc_pram", "dpram";
+> +        interrupts = <27>;
+> +        interrupt-parent = <&CPM_PIC>;
+> +        fsl,cpm-command = <0xc0>;
 > +
 > +        #address-cells = <1>;
 > +        #size-cells = <0>;
+> +        #chan-cells = <1>;
 > +
-> +        tdm@0 {
-> +            /* TDMa */
-> +            reg = <0>;
+> +        tsa = <&tsa>;
+> +        tsa-cell-id = <FSL_CPM_TSA_SCC4>;
 > +
-> +            clocks = <&clk_l1rsynca>, <&clk_l1rclka>;
-> +            clock-names = "l1rsync", "l1rclk";
-> +
-> +            fsl,common-rxtx-pins;
-> +            fsl,fsync-rising-edge;
-> +
-> +            tx_ts_routes = < 2 0 0>,                 /* TS 0..1 */
-> +                           < 24 FSL_CPM_TSA_SCC4 0>, /* TS 2..25 */
-> +                           < 1 0 0>,                 /* TS 26 */
-> +                           < 5 FSL_CPM_TSA_SCC3 0>;  /* TS 27..31 */
-> +
-> +            rx_ts_routes = < 2 0 0>,                 /* TS 0..1 */
-> +                           < 24 FSL_CPM_TSA_SCC4 0>, /* 2..25 */
-> +                           < 1 0 0>,                 /* TS 26 */
-> +                           < 5 FSL_CPM_TSA_SCC3 0>;  /* TS 27..31 */
-> +        };
-> +    };
-> diff --git a/include/dt-bindings/soc/fsl-tsa.h b/include/dt-bindings/soc/fsl-tsa.h
-> new file mode 100644
-> index 000000000000..9d09468694a2
-> --- /dev/null
-> +++ b/include/dt-bindings/soc/fsl-tsa.h
+> +        channel@16 {
+> +            /* Ch16 : First 4 even TS from all routed from TSA */
+> +            reg = <16>;
+> +            fsl,mode = "transparent";
+> +            fsl,reverse-data;
+> +            tx-ts-mask = <0x00000000 0x000000AA>;
+> +            rx-ts-mask = <0x00000000 0x000000AA>;
 
-Filename should match binding filename.
-
-> @@ -0,0 +1,15 @@
-> +/* SPDX-License-Identifier: GPL-2.0-or-later OR MIT */
-
-A bit weird license... cannot be the same as binding?
-
-> +
-> +#ifndef __DT_BINDINGS_SOC_FSL_TSA_H
-> +#define __DT_BINDINGS_SOC_FSL_TSA_H
-> +
-> +#define FSL_CPM_TSA_NU		0	/* Pseuso Cell Id for not used item */
-
-Why defining unused IDs in binding header? These are IDs, not some
-hardware/register values.
-
-> +#define FSL_CPM_TSA_SCC2	1
-> +#define FSL_CPM_TSA_SCC3	2
-> +#define FSL_CPM_TSA_SCC4	3
-> +#define FSL_CPM_TSA_SMC1	4
-> +#define FSL_CPM_TSA_SMC2	5
-> +
-> +#define FSL_CPM_TSA_NBCELL	6
-
-Drop.
-
-> +
-> +#endif
+Keep case consistent. lower-case hex.
 
 Best regards,
 Krzysztof
