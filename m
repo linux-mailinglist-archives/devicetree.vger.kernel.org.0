@@ -2,102 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FAFC661445
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 10:25:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7ADB6614A6
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 12:08:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232623AbjAHJZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 04:25:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49670 "EHLO
+        id S230400AbjAHLIT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 06:08:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229520AbjAHJZJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 04:25:09 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFFF4101CB;
-        Sun,  8 Jan 2023 01:25:06 -0800 (PST)
-Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 88EB36CF;
-        Sun,  8 Jan 2023 10:25:02 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1673169903;
-        bh=sJs7Ppbi3G3hierAzEkA9g+MrKJHmMhM9EkUX5dPlbo=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=COiQYSvTDJ4eI66dEg8pn830E3GipuNZ9pv5wWRYbwyFD6o59MmCRcAeT/a51d951
-         ZeEzxCPdLVEmnto3g3C+0boWZ1uFQrlrjlq7Ij3km5HZOCRklTBEe+ii0ARPAhI5+x
-         mnFpgElC0+Uab2/r/m3spRX/L+X316krgOCFRyAc=
-Message-ID: <90bc0464-fa49-bd57-5460-d7d2a4bb6b65@ideasonboard.com>
-Date:   Sun, 8 Jan 2023 11:24:59 +0200
+        with ESMTP id S229716AbjAHLIS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 06:08:18 -0500
+Received: from m12.mail.163.com (m12.mail.163.com [220.181.12.216])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E8009AE66;
+        Sun,  8 Jan 2023 03:08:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+        s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=8YW1+
+        iZwSJpbGONI9vwYy0SnVshkwM7RWh3KdQZfkio=; b=kTNCafXuFdLmh9JC4nXV5
+        e8cLrW9TsQ/qWNoLljhR0ynu/D6l1pnV2d2B03sSavGVOjTzOX8MWUe6hp4CjdMr
+        tTXTQikjAJ/2VrnaE9aZMRRMNjDYzuJFHRMnqrbKY0DIjEEjCuI6xYSXDq52uPPQ
+        BAUXohwagjkYbdo8tAq438=
+Received: from ProDesk.. (unknown [58.22.7.114])
+        by zwqz-smtp-mta-g4-0 (Coremail) with SMTP id _____wA3dw_do7pj+UhYAA--.53284S2;
+        Sun, 08 Jan 2023 19:07:14 +0800 (CST)
+From:   Andy Yan <andyshrk@163.com>
+To:     heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Cc:     lasstp5011@gmail.com, Andy Yan <andyshrk@163.com>
+Subject: [PATCH v2 0/2] Add support for EmbedFire LubanCat 2.
+Date:   Sun,  8 Jan 2023 19:07:08 +0800
+Message-Id: <20230108110708.2214718-1-andyshrk@163.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v6 1/8] i2c: core: let adapters be notified of client
- attach/detach
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>,
-        Luca Ceresoli <luca@lucaceresoli.net>
-References: <20230105140307.272052-1-tomi.valkeinen@ideasonboard.com>
- <20230105140307.272052-2-tomi.valkeinen@ideasonboard.com>
- <Y7o0zn9WdsLr15r9@pendragon.ideasonboard.com>
-Content-Language: en-US
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <Y7o0zn9WdsLr15r9@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: _____wA3dw_do7pj+UhYAA--.53284S2
+X-Coremail-Antispam: 1Uf129KBjvdXoW7Wr1kGr15uF1kWFy8uFyrtFb_yoW3ZFcEya
+        s7uFyrKF48JFsYqas8Ka4xGrZak39xK345Ka4rAF1UA3ZrZr4UJFWrJ34fZ3W8AFWIkr13
+        Jry7XF48u3Z09jkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+        9fnUUvcSsGvfC2KfnxnUUI43ZEXa7xRX18m7UUUUU==
+X-Originating-IP: [58.22.7.114]
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiFgnwXl44WfBViQAAsi
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_SORBS_WEB,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/01/2023 05:13, Laurent Pinchart wrote:
-> Hi Tomi,
-> 
-> Thank you for the patch.
-> 
-> On Thu, Jan 05, 2023 at 04:03:00PM +0200, Tomi Valkeinen wrote:
->> From: Luca Ceresoli <luca@lucaceresoli.net>
->>
->> An adapter might need to know when a new device is about to be
->> added. This will soon bee needed to implement an "I2C address
->> translator" (ATR for short), a device that propagates I2C transactions
->> with a different slave address (an "alias" address). An ATR driver
->> needs to know when a slave is being added to find a suitable alias and
->> program the device translation map.
->>
->> Add an attach/detach callback pair to allow adapter drivers to be
->> notified of clients being added and removed.
-> 
-> I've asked in the review of v6 if we could instead use the
-> BUS_NOTIFY_ADD_DEVICE and BUS_NOTIFY_DEL_DEVICE bus notifiers. There's
-> been a follow up discussion with Andy, but no reply from you AFAICS.
-> Have you given this a try ? It's not a mandatory requirement, but if it
-> can't be done (or shouldn't be done), I'd like to know why.
 
-Sorry, I meant to mention this in the cover letter, but forgot:
+Lubancat series are rk3566/8 based SBC from EmbedFire.
+So these Lubancat 2 patch should apply on top of Wenhao's
+series for LBC1 [0].
 
-I haven't looked at the bus notifiers yet, but will have a look. I 
-wanted to send a new revision due to the large amount of changes already 
-done.
+[0] https://patchwork.kernel.org/project/linux-rockchip/patch/Y6Ud9MhRjCVAYMCj@VM-66-53-centos/
 
-  Tomi
+Changes in v2:
+- keep only one blank line
+- Fix underscores in node pmic-int
+- Keep rockcip,pins of pmic-int in one line
+
+Andy Yan (2):
+  dt-bindings: arm: rockchip: Add EmbedFire LubanCat 2
+  arm64: dts: rockchip: Add dts for EmbedFire rk3568 LubanCat 2
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3568-lubancat-2.dts   | 733 ++++++++++++++++++
+ 3 files changed, 739 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-lubancat-2.dts
+
+-- 
+2.34.1
 
