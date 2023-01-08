@@ -2,266 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BCF566155A
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 14:08:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DAF406615BF
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 15:13:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231269AbjAHNIO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 08:08:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38406 "EHLO
+        id S233192AbjAHONP convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sun, 8 Jan 2023 09:13:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230363AbjAHNIN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 08:08:13 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51538E0B8;
-        Sun,  8 Jan 2023 05:08:12 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 0BD9FB80064;
-        Sun,  8 Jan 2023 13:08:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC599C433D2;
-        Sun,  8 Jan 2023 13:08:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1673183289;
-        bh=DJq8QxcSOWrcMi28Y4XbKU2EzQc7bbSIjXDuNYvJUPQ=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=jZv/RLcnR5wnf5batn5N3jdPKg6f3DljFQaGf6Y+0d+BTm+e2vpP+MDxZcgnhZJ06
-         kwqQbqTlPgNV0iaunrcafLqry+o33RQWRIGAs4NyIlsZQr6CgEhVjOZA7pAJrfRR21
-         JreXi4a6XVSr1kDC3wb8VGp1OgHqqXxHQP3jVJXaJ9LUQajJ99TSOMP/j+C7/123k2
-         wWcrP0bE+pSN4JYY04nOxPzyMa+KiSjt3PbVd14gEzYWdhAoRCwX2hi5x0g8E14b3f
-         2NvIgzhxjdxBnfKr136S0GHeWY7Ngn68huP6p7SpnEY/I/zihkIkqazTERk1T4f0kb
-         IZkYshhS4v78A==
-Date:   Sun, 8 Jan 2023 13:21:37 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     haibo.chen@nxp.com
-Cc:     lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 1/3] iio: adc: add imx93 adc support
-Message-ID: <20230108132137.1f965aa3@jic23-huawei>
-In-Reply-To: <20230103114359.2663262-2-haibo.chen@nxp.com>
-References: <20230103114359.2663262-1-haibo.chen@nxp.com>
-        <20230103114359.2663262-2-haibo.chen@nxp.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.36; x86_64-pc-linux-gnu)
+        with ESMTP id S230478AbjAHONO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 09:13:14 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D475DFBA;
+        Sun,  8 Jan 2023 06:13:09 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id E0DCB24DC94;
+        Sun,  8 Jan 2023 22:13:05 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sun, 8 Jan
+ 2023 22:13:05 +0800
+Received: from EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4]) by
+ EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4%16]) with mapi id
+ 15.00.1497.044; Sun, 8 Jan 2023 22:13:05 +0800
+From:   JiaJie Ho <jiajie.ho@starfivetech.com>
+To:     Herbert Xu <herbert@gondor.apana.org.au>
+CC:     Olivia Mackall <olivia@selenic.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
+Subject: RE: [PATCH v2 2/3] hwrng: starfive - Add TRNG driver for StarFive SoC
+Thread-Topic: [PATCH v2 2/3] hwrng: starfive - Add TRNG driver for StarFive
+ SoC
+Thread-Index: AQHZGoveBWEVWeSp5UqGtlmGFQKs8K6QmY4AgAQHL+A=
+Date:   Sun, 8 Jan 2023 14:13:05 +0000
+Message-ID: <75798088d1cd41dd94dafe67179761d9@EXMBX168.cuchost.com>
+References: <20221228071103.91797-1-jiajie.ho@starfivetech.com>
+ <20221228071103.91797-3-jiajie.ho@starfivetech.com>
+ <Y7fePDme5E3yhPhQ@gondor.apana.org.au>
+In-Reply-To: <Y7fePDme5E3yhPhQ@gondor.apana.org.au>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.16.6.8]
+x-yovoleruleagent: yovoleflag
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8BIT
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue,  3 Jan 2023 19:43:56 +0800
-haibo.chen@nxp.com wrote:
 
-> From: Haibo Chen <haibo.chen@nxp.com>
+
+> -----Original Message-----
+> From: Herbert Xu <herbert@gondor.apana.org.au>
+> Sent: 6 January, 2023 4:39 PM
+> To: JiaJie Ho <jiajie.ho@starfivetech.com>
+> Cc: Olivia Mackall <olivia@selenic.com>; Rob Herring <robh+dt@kernel.org>;
+> Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Emil Renner
+> Berthing <kernel@esmil.dk>; Conor Dooley <conor.dooley@microchip.com>;
+> linux-crypto@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org; linux-riscv@lists.infradead.org
+> Subject: Re: [PATCH v2 2/3] hwrng: starfive - Add TRNG driver for StarFive
+> SoC
 > 
-> The ADC in i.mx93 is a total new ADC IP, add a driver to support
-> this ADC.
+> On Wed, Dec 28, 2022 at 03:11:02PM +0800, Jia Jie Ho wrote:
+> >
+> > +static int starfive_trng_cmd(struct starfive_trng *trng, u32 cmd) {
+> > +	int ret;
+> > +
+> > +	ret = starfive_trng_wait_idle(trng);
+> > +	if (ret)
+> > +		return -ETIMEDOUT;
+> > +
+> > +	switch (cmd) {
+> > +	case STARFIVE_CTRL_EXEC_NOP:
+> > +		writel(cmd, trng->base + STARFIVE_CTRL);
+> > +		break;
+> > +	case STARFIVE_CTRL_GENE_RANDNUM:
+> > +		reinit_completion(&trng->random_done);
+> > +		writel(cmd, trng->base + STARFIVE_CTRL);
+> > +		ret = wait_for_completion_timeout(&trng->random_done,
+> 3000);
 > 
-> Currently, only support one shot normal conversion triggered by
-> software. For other mode, will add in future.
+> Please don't use a constant jiffies value, because it may vary in length.
+> Instead use a constant millisecond value and convert it to jiffies.
 > 
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
-Hi Haibo,
 
-I'm still not sure about the power handling in remove. One other
-minor comment inline that would be good to clean up for v6.
+I'll fix this in next version.
 
-Thanks,
+> > +static irqreturn_t starfive_trng_irq(int irq, void *priv) {
+> > +	u32 status;
+> > +	struct starfive_trng *trng = (struct starfive_trng *)priv;
+> > +
+> > +	status = readl(trng->base + STARFIVE_ISTAT);
+> > +	if (status & STARFIVE_ISTAT_RAND_RDY) {
+> > +		writel(STARFIVE_ISTAT_RAND_RDY, trng->base +
+> STARFIVE_ISTAT);
+> > +		complete(&trng->random_done);
+> > +	}
+> > +
+> > +	if (status & STARFIVE_ISTAT_SEED_DONE) {
+> > +		writel(STARFIVE_ISTAT_SEED_DONE, trng->base +
+> STARFIVE_ISTAT);
+> > +		complete(&trng->reseed_done);
+> > +	}
+> > +
+> > +	if (status & STARFIVE_ISTAT_LFSR_LOCKUP) {
+> > +		writel(STARFIVE_ISTAT_LFSR_LOCKUP, trng->base +
+> STARFIVE_ISTAT);
+> > +		starfive_trng_cmd(trng,
+> STARFIVE_CTRL_EXEC_RANDRESEED);
+> 
+> You should not sleep in an IRQ handler.
+> 
 
-Jonathan
+Will fix this too.
 
-> new file mode 100644
-> index 000000000000..0c98de438919
-> --- /dev/null
-> +++ b/drivers/iio/adc/imx93_adc.c
+> > +static int starfive_trng_read(struct hwrng *rng, void *buf, size_t
+> > +max, bool wait)
+> 
+> You should respect the wait argument and not do polling/sleeping if it is false.
 
-...
+I'll add this in the next version.
 
-> +
-> +static int imx93_adc_calibration(struct imx93_adc *adc)
-> +{
-> +	u32 mcr, msr;
-> +	int ret;
-> +
-> +	/* make sure ADC in power down mode */
-> +	imx93_adc_power_down(adc);
-> +
-> +	/* config SAR controller operating clock */
-> +	mcr = readl(adc->regs + IMX93_ADC_MCR);
-> +	mcr &= ~FIELD_PREP(IMX93_ADC_MCR_ADCLKSE_MASK, 1);
-> +	writel(mcr, adc->regs + IMX93_ADC_MCR);
-> +
-> +	imx93_adc_power_up(adc);
+Thanks for reviewing this patch.
 
-I think this function should be side effect free on error to aid easy reviewing
-/ code modularity. Thus if anything after this point fails, the device
-should be deliberately powered down again to remove that side effect.
-
-> +
-> +	/*
-> +	 * TODO: we use the default TSAMP/NRSMPL/AVGEN in MCR,
-> +	 * can add the setting of these bit if need in future.
-> +	 */
-> +
-> +	/* run calibration */
-> +	mcr = readl(adc->regs + IMX93_ADC_MCR);
-> +	mcr |= FIELD_PREP(IMX93_ADC_MCR_CALSTART_MASK, 1);
-> +	writel(mcr, adc->regs + IMX93_ADC_MCR);
-> +
-> +	/* wait calibration to be finished */
-> +	ret = readl_poll_timeout(adc->regs + IMX93_ADC_MSR, msr,
-> +		!(msr & IMX93_ADC_MSR_CALBUSY_MASK), 1000, 2000000);
-> +	if (ret == -ETIMEDOUT) {
-> +		dev_warn(adc->dev, "ADC do not finish calibration in 1 min!\n");
-> +		return ret;
-> +	}
-> +
-> +	/* check whether calbration is success or not */
-> +	msr = readl(adc->regs + IMX93_ADC_MSR);
-> +	if (msr & IMX93_ADC_MSR_CALFAIL_MASK) {
-> +		dev_warn(adc->dev, "ADC calibration failed!\n");
-> +		return -EAGAIN;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-
-...
-
-> +static int imx93_adc_probe(struct platform_device *pdev)
-> +{
-> +	struct imx93_adc *adc;
-> +	struct iio_dev *indio_dev;
-> +	struct device *dev = &pdev->dev;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*adc));
-> +	if (!indio_dev)
-> +		return dev_err_probe(dev, -ENOMEM,
-> +				     "Failed allocating iio device\n");
-> +
-> +	adc = iio_priv(indio_dev);
-> +	adc->dev = dev;
-> +
-> +	mutex_init(&adc->lock);
-> +	adc->regs = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(adc->regs))
-> +		return dev_err_probe(dev, PTR_ERR(adc->regs),
-> +				     "Failed geting ioremap resource\n");
-> +
-> +	/* The third irq is for ADC conversion usage */
-> +	adc->irq = platform_get_irq(pdev, 2);
-> +	if (adc->irq < 0)
-> +		return adc->irq;
-> +
-> +	adc->ipg_clk = devm_clk_get(dev, "ipg");
-> +	if (IS_ERR(adc->ipg_clk))
-> +		return dev_err_probe(dev, PTR_ERR(adc->ipg_clk),
-> +				     "Failed getting clock.\n");
-> +
-> +	adc->vref = devm_regulator_get(dev, "vref");
-> +	if (IS_ERR(adc->vref))
-> +		return dev_err_probe(dev, PTR_ERR(adc->vref),
-> +				     "Failed getting reference voltage.\n");
-> +
-> +	ret = regulator_enable(adc->vref);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "Failed to enable reference voltage.\n");
-> +
-> +	platform_set_drvdata(pdev, indio_dev);
-> +
-> +	init_completion(&adc->completion);
-> +
-> +	indio_dev->name = "imx93-adc";
-> +	indio_dev->info = &imx93_adc_iio_info;
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +	indio_dev->channels = imx93_adc_iio_channels;
-> +	indio_dev->num_channels = ARRAY_SIZE(imx93_adc_iio_channels);
-> +
-> +	ret = clk_prepare_enable(adc->ipg_clk);
-> +	if (ret) {
-> +		dev_err_probe(dev, ret,
-> +			      "Failed to enable ipg clock.\n");
-> +		goto error_regulator_disable;
-> +	}
-> +
-> +	ret = request_irq(adc->irq, imx93_adc_isr, 0, IMX93_ADC_DRIVER_NAME, adc);
-> +	if (ret < 0) {
-> +		dev_err_probe(dev, ret,
-> +			      "Failed requesting irq, irq = %d\n", adc->irq);
-> +		goto error_ipg_clk_disable;
-> +	}
-> +
-> +	ret = imx93_adc_calibration(adc);
-> +	if (ret < 0)
-
-As above, I'd expect the device to be powered down if this function fails
-and hence need an additional error label.
-
-> +		goto error_free_adc_irq;
-> +
-> +	imx93_adc_config_ad_clk(adc);
-> +
-> +	ret = iio_device_register(indio_dev);
-> +	if (ret) {
-> +		dev_err_probe(dev, ret,
-> +			      "Failed to register this iio device.\n");
-> +		goto error_free_adc_irq;
-> +	}
-> +
-> +	pm_runtime_set_active(dev);
-> +	pm_runtime_set_autosuspend_delay(dev, 50);
-> +	pm_runtime_use_autosuspend(dev);
-> +	pm_runtime_enable(dev);
-> +
-> +	return 0;
-> +
-> +error_free_adc_irq:
-> +	imx93_adc_power_down(adc);
-> +	free_irq(adc->irq, adc);
-> +error_ipg_clk_disable:
-> +	clk_disable_unprepare(adc->ipg_clk);
-> +error_regulator_disable:
-> +	regulator_disable(adc->vref);
-> +
-> +	return ret;
-> +}
-> +
-> +static int imx93_adc_remove(struct platform_device *pdev)
-> +{
-> +	struct iio_dev *indio_dev = platform_get_drvdata(pdev);
-> +	struct imx93_adc *adc = iio_priv(indio_dev);
-> +	struct device *dev = adc->dev;
-
-As per reply to cover letter I don't understand logic by which we
-are definitely runtime resumed at this stage.
-
-> +
-> +	pm_runtime_disable(dev);
-> +	pm_runtime_dont_use_autosuspend(dev);
-> +	pm_runtime_put_noidle(dev);
-
-This is not balanced with a pm_runtime_get* so I think we underflow
-(which is protected against in runtime pm ref counting but not a nice
-thing to do deliberately).
-
-> +	iio_device_unregister(indio_dev);
-> +	imx93_adc_power_down(adc);
-> +	free_irq(adc->irq, adc);
-> +	clk_disable_unprepare(adc->ipg_clk);
-> +	regulator_disable(adc->vref);
-> +
-> +	return 0;
-> +}
-> +
-
+Best regards,
+Jia Jie
