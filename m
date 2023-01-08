@@ -2,116 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38C6E66194E
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 21:27:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0534166195C
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 21:33:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234193AbjAHU1M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 15:27:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41226 "EHLO
+        id S233745AbjAHUdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 15:33:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234021AbjAHU1F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 15:27:05 -0500
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDF05389D;
-        Sun,  8 Jan 2023 12:27:01 -0800 (PST)
-Received: by mail-ej1-x634.google.com with SMTP id qk9so15466270ejc.3;
-        Sun, 08 Jan 2023 12:27:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YpchQ6Q+Z3Z1pgSznAxblNSZYuByy6PgjDzbmrqx+mQ=;
-        b=e9vfO3BmWBBw7y1qoCule4JRgmvrVZNE9fjsR+dr1x3OdV4E+jJeqapDqN+yt2FbxG
-         KfVUHsPOIeAKUZOaOCMyiStOp7RD38x0D9jLQ6O5FG7bFjOCMU0KuN3rgZewWkit2MMr
-         ORruanm+3Hiz6tQAqXootjDQBxtSELMknxrXOz0hoYJjIHaNRbFTa0jWLzpikQHuvuAF
-         uCZyehF/UuZjkzNujPLbRgZVdaoLbvrZPhpN/CW2iNsbT7S1pofJdOtUjEj3kieRhwWa
-         hFJSrG+y1ZAN9ZOKyR707MfZZsvZRCE22EizMLydNOVAEOy1H5MY1RolgFkEgJ4fzfuq
-         eZnw==
+        with ESMTP id S233243AbjAHUdp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 15:33:45 -0500
+Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A29538BF;
+        Sun,  8 Jan 2023 12:33:45 -0800 (PST)
+Received: by mail-io1-f44.google.com with SMTP id g20so3654100iob.2;
+        Sun, 08 Jan 2023 12:33:45 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YpchQ6Q+Z3Z1pgSznAxblNSZYuByy6PgjDzbmrqx+mQ=;
-        b=Xpoz5YSFBHly8McXKypYT5z3G037NaJABEEZ6XwsnvEbdcAqzSejjaQq8+LG5cp7US
-         qft/x8pwBg4pgZ1gAIo3scQ7Y4QQqr/rxDjLaL+tXwCNUrs/nKJbFaFRXEciFcymQE0w
-         l8nArhHuADN/0X/oGntAQ/thLEJXTkVL98njg2Qj3RRNSGWDeG1+sX2ZIyGme4eooa38
-         DykCPQxolyOGmCvLUMslJiMqPCbqOHzH0VzrZFs8KENr7SbF+T0/s5vMeAPav1DMmH9o
-         n0hwzXYimlVAKSlRW/sBVs4OIHlMs7hBR5SQ/TScBLgwrz4y1hYsIGIDQTCWKnL6/7H/
-         Mdsw==
-X-Gm-Message-State: AFqh2krgRGHJLjFs3iC+iWtG7wZLGapr6jdHXHas6ccV3ro4AQG5Ho2z
-        4BURKHz3Nty40bArg0g7Zfo=
-X-Google-Smtp-Source: AMrXdXtl7IHUDJ0msL+MgltU/IR+/JRLPFVTDTzqeGEqmjDXlTYLrMT0f854x3Tg0VYTX3HNA4NO3w==
-X-Received: by 2002:a17:906:9399:b0:7ac:2db9:6f4d with SMTP id l25-20020a170906939900b007ac2db96f4dmr58590679ejx.8.1673209620212;
-        Sun, 08 Jan 2023 12:27:00 -0800 (PST)
-Received: from jernej-laptop.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
-        by smtp.gmail.com with ESMTPSA id lb25-20020a170907785900b007c00323cc23sm2879814ejc.27.2023.01.08.12.26.59
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=M7vLsrRzX2QRbu+wn8E6Xsxz4vl8fBTbDiQhccvHsVU=;
+        b=3lQztFCB2EAsJ6MTUqR8J/Jm1XMedWRDkZby7IbpaLREz26YuT7NPQHVY0+Z1gItpE
+         Ndj/+D+0bduOmAyoM3gkPiAqsZgzrjLpVtlL6DT+QbMt3yu7twmE/Y/GrjoE9IdPdvgQ
+         HlX4L6GwcOO2n1PfQFEkwUHS7GoFZngkUO7hY1e/eKPx0NFUlWVqGqfwX5lbfrGK+Ill
+         eah5eludBJ3abx2Xh3HZcXRzIy07nX/1musD9cx6xV0AZWF7lBw3EIlVR7RXYq5SaRY9
+         JWeu9qhdsDke30FTqRiB7AwtBxlD0rZ2XO7UoR9gQ6QlDmN52knaBahuqBa9APKnFUEu
+         4fJw==
+X-Gm-Message-State: AFqh2koAQzqHxMQw3RI5IhGWZWC2VlFo67ZaWhUCLSMQi/6hnu1u9nV5
+        n1pnm+yZeMfjfGoTvjRGaw==
+X-Google-Smtp-Source: AMrXdXs7Iric8iirKgTG0nbuAmrIi9VB1Tyzw1JzK/MY5Ma+Anp5Qyj810iw8MIcX7p73GiTRpDaAw==
+X-Received: by 2002:a5e:c708:0:b0:6bc:d715:362d with SMTP id f8-20020a5ec708000000b006bcd715362dmr42361952iop.2.1673210023991;
+        Sun, 08 Jan 2023 12:33:43 -0800 (PST)
+Received: from robh_at_kernel.org ([2605:ef80:8069:516a:f2b0:691e:4315:7c0f])
+        by smtp.gmail.com with ESMTPSA id k64-20020a6bba43000000b006e0577610e2sm2575711iof.45.2023.01.08.12.33.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Jan 2023 12:26:59 -0800 (PST)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Kishon Vijay Abraham I <kishon@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Samuel Holland <samuel@sholland.org>
-Cc:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v2 0/8] phy: allwinner: phy-sun6i-mipi-dphy: Add the A100 DPHY
-Date:   Sun, 08 Jan 2023 21:26:58 +0100
-Message-ID: <3245174.aeNJFYEL58@jernej-laptop>
-In-Reply-To: <20221114022113.31694-1-samuel@sholland.org>
-References: <20221114022113.31694-1-samuel@sholland.org>
+        Sun, 08 Jan 2023 12:33:43 -0800 (PST)
+Received: (nullmailer pid 239807 invoked by uid 1000);
+        Sun, 08 Jan 2023 20:33:40 -0000
+Date:   Sun, 8 Jan 2023 14:33:40 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        bhelgaas@google.com, konrad.dybcio@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        lpieralisi@kernel.org
+Subject: Re: [PATCH v3 2/3] dt-bindings: PCI: qcom: Document msi-map and
+ msi-map-mask properties
+Message-ID: <20230108203340.GA229573-robh@kernel.org>
+References: <20230102105821.28243-1-manivannan.sadhasivam@linaro.org>
+ <20230102105821.28243-3-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230102105821.28243-3-manivannan.sadhasivam@linaro.org>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne ponedeljek, 14. november 2022 ob 03:21:05 CET je Samuel Holland 
-napisal(a):
-> This series adds support for the updated DPHY found in a couple of
-> recent Allwinner SoCs. The first three patches fix an omission in the
-> existing binding. The remaining patches add the new hardware variant.
+On Mon, Jan 02, 2023 at 04:28:20PM +0530, Manivannan Sadhasivam wrote:
+> The Qcom PCIe controller is capable of using either internal MSI controller
+> or the external GIC-ITS for signaling MSIs sent by endpoint devices.
+> Currently, the binding only documents the internal MSI implementation.
 > 
-> Changes in v2:
->  - Add the interrupts property to the binding example
->  - Drop the inappropriate Fixes tags
->  - Rename "supports_rx" to "rx_supported"
->  - Add a blank line for readability
+> Let's document the GIC-ITS imeplementation by making use of msi-map and
+> msi-map-mask properties. Only one of the implementation should be used
+> at a time.
 > 
-> Samuel Holland (8):
->   dt-bindings: sun6i-a31-mipi-dphy: Add the interrupts property
->   ARM: dts: sun8i: a33: Add DPHY interrupt
->   arm64: dts: allwinner: a64: Add DPHY interrupt
->   dt-bindings: sun6i-a31-mipi-dphy: Add the A100 DPHY variant
->   phy: allwinner: phy-sun6i-mipi-dphy: Make RX support optional
->   phy: allwinner: phy-sun6i-mipi-dphy: Set the enable bit last
->   phy: allwinner: phy-sun6i-mipi-dphy: Add a variant power-on hook
->   phy: allwinner: phy-sun6i-mipi-dphy: Add the A100 DPHY variant
-
-Applied 2 and 3, thanks!
-
-Best regards,
-Jernej
-
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 12 +++++++++---
+>  1 file changed, 9 insertions(+), 3 deletions(-)
 > 
->  .../phy/allwinner,sun6i-a31-mipi-dphy.yaml    |  11 +
->  arch/arm/boot/dts/sun8i-a33.dtsi              |   1 +
->  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi |   1 +
->  drivers/phy/allwinner/phy-sun6i-mipi-dphy.c   | 236 +++++++++++++++---
->  4 files changed, 218 insertions(+), 31 deletions(-)
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> index a3639920fcbb..01208450e05c 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> @@ -114,14 +114,20 @@ required:
+>    - compatible
+>    - reg
+>    - reg-names
+> -  - interrupts
+> -  - interrupt-names
+> -  - "#interrupt-cells"
+>    - interrupt-map-mask
+>    - interrupt-map
+>    - clocks
+>    - clock-names
+>  
+> +oneOf:
 
+anyOf
 
+The OS should have the option of both being present and pick which MSI 
+path it wants to use. 
 
-
+Rob
