@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36F8B6618E7
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 20:54:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6310C6618EB
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 20:55:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235082AbjAHTyz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 14:54:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53786 "EHLO
+        id S235384AbjAHTzJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 14:55:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236186AbjAHTyc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 14:54:32 -0500
+        with ESMTP id S234113AbjAHTyl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 14:54:41 -0500
 Received: from amity.mint.lgbt (vmi888983.contaboserver.net [149.102.157.145])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E44C3FCEB
-        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 11:54:26 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13430E014
+        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 11:54:34 -0800 (PST)
 Received: from amity.mint.lgbt (mx.mint.lgbt [127.0.0.1])
-        by amity.mint.lgbt (Postfix) with ESMTP id 4NqnpT3wCSz1S56h
-        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 14:54:25 -0500 (EST)
+        by amity.mint.lgbt (Postfix) with ESMTP id 4Nqnpd4MlBz1S5FN
+        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 14:54:33 -0500 (EST)
 Authentication-Results: amity.mint.lgbt (amavisd-new);
         dkim=pass (2048-bit key) reason="pass (just generated, assumed good)"
         header.d=mint.lgbt
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mint.lgbt; h=
         content-transfer-encoding:mime-version:references:in-reply-to
-        :x-mailer:message-id:date:subject:to:from; s=dkim; t=1673207664;
-         x=1674071665; bh=7SGUnv8/9GXAMnrXipF1Gnrfa8E+qEW51nU9dPwZc7E=; b=
-        KThLbfPL7OcYHh4FI9RhPOEIdKMKugav6qqXhHB9PR8eW1LkO7enm0zFsMNnytF5
-        Gw/HkjfQ3TMtNWIwuR824OWyU44ZcDDF91ogqW2GSD424A7bfrhumR7nhEl5xh7z
-        VthSZRuh6EIr//l/BDgzAbGcB1vgMmxoWecf1VmugIY4k7ogsQwxC4n1o96ynKqg
-        cabTCXZs3IVngTuVyTbd0JJOWyBwFWpiW6gjKlVuZfCKPbFm4uiTooqb8wjmG+ub
-        vj59aSD7iQsK02SOmuyiIun06fVmuN05MfsqyIg1Rh9YUHdzSUzCgKpynTGJIEpS
-        BZNTp2L1uE+WsfWuJClemw==
+        :x-mailer:message-id:date:subject:to:from; s=dkim; t=1673207672;
+         x=1674071673; bh=c9nSCJYScyOro/xinJ2YenD7cEvhmRGGKbJnrYkvv/s=; b=
+        xkQsK5F5DmaGeIUjvM/OZh6q9sCdARK3hmHJJC96SXHTX7h8o4HesOLmbK5CkCJH
+        nkbfwXgSYGeysNqWsQt1jYqqxtAA9R2bNxGF9mF1w2D/37LQHbCIoAANtKW6Bgw7
+        e2q/6VMAinVQgO51HMPPDISbab0PIJsh3mham52r1m8P9g4PxbjuowFzj8z2YFZs
+        8f27CusqyIAX1ul9YgdP61cSrfzqrAF5eAPyO2UPUDW99W8TbmQ0m/eciMbVjve9
+        /9w1rkcL+/Ht0kFEYzXPqBGqV987Ie/i1purFmOem0erHZbaOcyOhW09xRl9+H34
+        Yog26mgS5wFHHRqiveSxqg==
 X-Virus-Scanned: amavisd-new at amity.mint.lgbt
 Received: from amity.mint.lgbt ([127.0.0.1])
         by amity.mint.lgbt (amity.mint.lgbt [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id 0Qu9IWLcJFi5 for <devicetree@vger.kernel.org>;
-        Sun,  8 Jan 2023 14:54:24 -0500 (EST)
+        with ESMTP id zvFYZ-dIkDfb for <devicetree@vger.kernel.org>;
+        Sun,  8 Jan 2023 14:54:32 -0500 (EST)
 Received: from dorothy.. (unknown [186.105.5.197])
-        by amity.mint.lgbt (Postfix) with ESMTPSA id 4NqnpK3xc8z1S59n;
-        Sun,  8 Jan 2023 14:54:17 -0500 (EST)
+        by amity.mint.lgbt (Postfix) with ESMTPSA id 4NqnpT2ghtz1S56d;
+        Sun,  8 Jan 2023 14:54:25 -0500 (EST)
 From:   Lux Aliaga <they@mint.lgbt>
 To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -49,10 +49,11 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht,
         linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
         linux-scsi@vger.kernel.org, linux-hardening@vger.kernel.org,
         phone-devel@vger.kernel.org, martin.botka@somainline.org,
-        marijn.suijten@somainline.org, Lux Aliaga <they@mint.lgbt>
-Subject: [PATCH v6 4/6] arm64: dts: qcom: sm6125: Add UFS nodes
-Date:   Sun,  8 Jan 2023 16:53:34 -0300
-Message-Id: <20230108195336.388349-5-they@mint.lgbt>
+        marijn.suijten@somainline.org, Lux Aliaga <they@mint.lgbt>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v6 5/6] dt-bindings: arm: qcom: Document xiaomi,laurel-sprout board
+Date:   Sun,  8 Jan 2023 16:53:35 -0300
+Message-Id: <20230108195336.388349-6-they@mint.lgbt>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230108195336.388349-1-they@mint.lgbt>
 References: <20230108195336.388349-1-they@mint.lgbt>
@@ -67,84 +68,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adds a UFS host controller node and its corresponding PHY to
-the sm6125 platform.
+Document the Xiaomi Mi A3 (xiaomi-laurel-sprout) smartphone which is
+based on the Snapdragon 665 SoC.
 
 Signed-off-by: Lux Aliaga <they@mint.lgbt>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm6125.dtsi | 57 ++++++++++++++++++++++++++++
- 1 file changed, 57 insertions(+)
+ Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi b/arch/arm64/boot/dts/q=
-com/sm6125.dtsi
-index df5453fcf2b9..cec7071d5279 100644
---- a/arch/arm64/boot/dts/qcom/sm6125.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6125.dtsi
-@@ -511,6 +511,63 @@ sdhc_2: mmc@4784000 {
- 			status =3D "disabled";
- 		};
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentat=
+ion/devicetree/bindings/arm/qcom.yaml
+index 27063a045bd0..4923dafb5d7a 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -793,6 +793,7 @@ properties:
+       - items:
+           - enum:
+               - sony,pdx201
++              - xiaomi,laurel-sprout
+           - const: qcom,sm6125
 =20
-+		ufs_mem_hc: ufs@4804000 {
-+			compatible =3D "qcom,sm6125-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
-+			reg =3D <0x04804000 0x3000>, <0x04810000 0x8000>;
-+			interrupts =3D <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
-+			phys =3D <&ufs_mem_phy>;
-+			phy-names =3D "ufsphy";
-+			lanes-per-direction =3D <1>;
-+			#reset-cells =3D <1>;
-+			resets =3D <&gcc GCC_UFS_PHY_BCR>;
-+			reset-names =3D "rst";
-+			iommus =3D <&apps_smmu 0x200 0x0>;
-+
-+			clock-names =3D "core_clk",
-+				      "bus_aggr_clk",
-+				      "iface_clk",
-+				      "core_clk_unipro",
-+				      "ref_clk",
-+				      "tx_lane0_sync_clk",
-+				      "rx_lane0_sync_clk",
-+				      "ice_core_clk";
-+			clocks =3D <&gcc GCC_UFS_PHY_AXI_CLK>,
-+				 <&gcc GCC_SYS_NOC_UFS_PHY_AXI_CLK>,
-+				 <&gcc GCC_UFS_PHY_AHB_CLK>,
-+				 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
-+				 <&rpmcc RPM_SMD_XO_CLK_SRC>,
-+				 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
-+				 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
-+				 <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
-+			freq-table-hz =3D <50000000 240000000>,
-+					<0 0>,
-+					<0 0>,
-+					<37500000 150000000>,
-+					<0 0>,
-+					<0 0>,
-+					<0 0>,
-+					<75000000 300000000>;
-+
-+			status =3D "disabled";
-+		};
-+
-+		ufs_mem_phy: phy@4807000 {
-+			compatible =3D "qcom,sm6125-qmp-ufs-phy";
-+			reg =3D <0x04807000 0x1c4>;
-+
-+			clock-names =3D "ref", "ref_aux";
-+			clocks =3D <&gcc GCC_UFS_MEM_CLKREF_CLK>, <&gcc GCC_UFS_PHY_PHY_AUX_C=
-LK>;
-+
-+			power-domains =3D <&gcc UFS_PHY_GDSC>;
-+
-+			resets =3D <&ufs_mem_hc 0>;
-+			reset-names =3D "ufsphy";
-+
-+			#phy-cells =3D <0>;
-+
-+			status =3D "disabled";
-+		};
-+
- 		gpi_dma0: dma-controller@4a00000 {
- 			compatible =3D "qcom,sm6125-gpi-dma", "qcom,sdm845-gpi-dma";
- 			reg =3D <0x04a00000 0x60000>;
+       - items:
 --=20
 2.39.0
 
