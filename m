@@ -2,143 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAF406615BF
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 15:13:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD8A16615F2
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 15:55:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233192AbjAHONP convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sun, 8 Jan 2023 09:13:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57964 "EHLO
+        id S230254AbjAHOzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 09:55:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230478AbjAHONO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 09:13:14 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D475DFBA;
-        Sun,  8 Jan 2023 06:13:09 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id E0DCB24DC94;
-        Sun,  8 Jan 2023 22:13:05 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sun, 8 Jan
- 2023 22:13:05 +0800
-Received: from EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4]) by
- EXMBX168.cuchost.com ([fe80::3c2d:dee5:4938:3fc4%16]) with mapi id
- 15.00.1497.044; Sun, 8 Jan 2023 22:13:05 +0800
-From:   JiaJie Ho <jiajie.ho@starfivetech.com>
-To:     Herbert Xu <herbert@gondor.apana.org.au>
-CC:     Olivia Mackall <olivia@selenic.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
-Subject: RE: [PATCH v2 2/3] hwrng: starfive - Add TRNG driver for StarFive SoC
-Thread-Topic: [PATCH v2 2/3] hwrng: starfive - Add TRNG driver for StarFive
- SoC
-Thread-Index: AQHZGoveBWEVWeSp5UqGtlmGFQKs8K6QmY4AgAQHL+A=
-Date:   Sun, 8 Jan 2023 14:13:05 +0000
-Message-ID: <75798088d1cd41dd94dafe67179761d9@EXMBX168.cuchost.com>
-References: <20221228071103.91797-1-jiajie.ho@starfivetech.com>
- <20221228071103.91797-3-jiajie.ho@starfivetech.com>
- <Y7fePDme5E3yhPhQ@gondor.apana.org.au>
-In-Reply-To: <Y7fePDme5E3yhPhQ@gondor.apana.org.au>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [172.16.6.8]
-x-yovoleruleagent: yovoleflag
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8BIT
+        with ESMTP id S230363AbjAHOzt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 09:55:49 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CE2CF5A6
+        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 06:45:48 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id ay40so4492302wmb.2
+        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 06:45:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5Mpmz+UXTscBPJqkv/dsExuqIz2qYdum1EIzJT1D6w8=;
+        b=JgXnBo7vPrw+9v3Sq2TJ04hPA5lgdh+yWMSKE8gs+pK37WAqW3MhLRbdIKE0M+QehT
+         QRQ5bbjgszn5W8nHbUBYwVm5y3m/sHmE9dv2ZBZdtKtNS1m5GIxr0R+H5BlOAAVbzTic
+         exdrXCwZfWeZ+bXiEN0C2e9F2j3lC1xZMmd/rl7bpJ0LmfpD1OaLNRod8m82f9pGRUEU
+         Ua1kCrarKi/dGGDxrgTy5NDH7FNu4IeQsgwR/PPBdGD0PX19i8ao28Bv7nAacXvRRyrZ
+         aDezgpThskETJ0eptiAisTJdWVyf/opqdKuPVn9077odA4L7yvQG4WOYrxVTsUupt9J1
+         vEIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5Mpmz+UXTscBPJqkv/dsExuqIz2qYdum1EIzJT1D6w8=;
+        b=t1SMsCXHC3pSQagWTmh5rh4GZfWAX7spz45mHkB1PeGO5G1uxhlLD7xxI9UBPHs65G
+         /AaCf/0bm7motlbb5rBBsggE1QL24b5uGniMBGwYakXkA6evQrtTG8X2QdGA+mI3HjM3
+         Dh9GYLprfKJmhl9HVt3igJX0cPnNmoWkU2fEck0TayQtCeNrYvj0NNu4S0CobwfIk+OV
+         +ElpshY6ZwQyUiAaywQ/PEszelQlhuNj2O7/2WuO1cjJdFzLDs/Dh02XlY1maF+ldBYX
+         TTePjznqYXxl9CRLNw9Oo5Y2yeZtq7dUMQDNR45IyWfFPPCB610ERcOuhAoFuYQGsVcm
+         XqgQ==
+X-Gm-Message-State: AFqh2kppwu3kAupDQgUf+qw/cToyQ+hRvFyDN16o8eDtJkNUK0yIBYjW
+        m7bYc9iCViMqW8Mh65Afl0FOyw==
+X-Google-Smtp-Source: AMrXdXsl5eYxlz8wqdth9/xC2bBbckKnezMmPEGbx8Vo8cCpKEWLDq4D2k7aN0yE4ZJA6Pw+irCKAQ==
+X-Received: by 2002:a05:600c:4f54:b0:3d9:f04c:f58f with SMTP id m20-20020a05600c4f5400b003d9f04cf58fmr63157wmq.40.1673189146870;
+        Sun, 08 Jan 2023 06:45:46 -0800 (PST)
+Received: from [192.168.1.109] ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id y7-20020a7bcd87000000b003d997e5e679sm9449765wmj.14.2023.01.08.06.45.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 08 Jan 2023 06:45:46 -0800 (PST)
+Message-ID: <70474070-404b-2fbe-2575-4810f6fbda91@linaro.org>
+Date:   Sun, 8 Jan 2023 15:45:44 +0100
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH] dt-bindings: mmc: fsl-imx-esdhc: allow more compatible
+ combinations
+Content-Language: en-US
+To:     Andreas Kemnade <andreas@kemnade.info>
+Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20230105213856.1828360-1-andreas@kemnade.info>
+ <d7c407dc-0a6c-97d5-a06f-b432a923d74d@linaro.org>
+ <20230106203358.14878660@aktux>
+ <967cc7b7-f0bb-de37-52b9-7bfab05eadd7@linaro.org>
+ <20230107144336.2ecff4f9@aktux>
+ <123d1a56-8134-dc75-8b2a-b3836e727d4a@linaro.org>
+ <20230107150740.0ba34aa1@aktux>
+ <0ab84fb8-6173-54e0-abad-a0e0e4ba82e7@linaro.org>
+ <20230107160105.66df4136@aktux>
+ <e1b1450b-9421-3732-2d74-50c47b5afb0e@linaro.org>
+ <20230107165457.30f4dddf@aktux>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230107165457.30f4dddf@aktux>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-> -----Original Message-----
-> From: Herbert Xu <herbert@gondor.apana.org.au>
-> Sent: 6 January, 2023 4:39 PM
-> To: JiaJie Ho <jiajie.ho@starfivetech.com>
-> Cc: Olivia Mackall <olivia@selenic.com>; Rob Herring <robh+dt@kernel.org>;
-> Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Emil Renner
-> Berthing <kernel@esmil.dk>; Conor Dooley <conor.dooley@microchip.com>;
-> linux-crypto@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> kernel@vger.kernel.org; linux-riscv@lists.infradead.org
-> Subject: Re: [PATCH v2 2/3] hwrng: starfive - Add TRNG driver for StarFive
-> SoC
+On 07/01/2023 16:54, Andreas Kemnade wrote:
+> On Sat, 7 Jan 2023 16:07:35 +0100
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 > 
-> On Wed, Dec 28, 2022 at 03:11:02PM +0800, Jia Jie Ho wrote:
-> >
-> > +static int starfive_trng_cmd(struct starfive_trng *trng, u32 cmd) {
-> > +	int ret;
-> > +
-> > +	ret = starfive_trng_wait_idle(trng);
-> > +	if (ret)
-> > +		return -ETIMEDOUT;
-> > +
-> > +	switch (cmd) {
-> > +	case STARFIVE_CTRL_EXEC_NOP:
-> > +		writel(cmd, trng->base + STARFIVE_CTRL);
-> > +		break;
-> > +	case STARFIVE_CTRL_GENE_RANDNUM:
-> > +		reinit_completion(&trng->random_done);
-> > +		writel(cmd, trng->base + STARFIVE_CTRL);
-> > +		ret = wait_for_completion_timeout(&trng->random_done,
-> 3000);
+>> On 07/01/2023 16:01, Andreas Kemnade wrote:
+>>> On Sat, 7 Jan 2023 15:09:24 +0100
+>>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>>>   
+>>>> On 07/01/2023 15:07, Andreas Kemnade wrote:  
+>>>>> On Sat, 7 Jan 2023 15:00:56 +0100
+>>>>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>>>>>
+>>>>> [...]    
+>>>>>>>> I asked to remove half-compatible. Not to enforce.
+>>>>>>>>      
+>>>>> so you are saying that allowing
+>>>>> compatible = "A", "B" 
+>>>>> is not ok, if B is not fully compatible. I agree with that
+>>>>> one.    
+>>>>
+>>>> I did not say that. It's not related to this problem.
+>>>>  
+>>> You said "I asked to remove half-compatible" that means to me
+>>> remove "B" if not fully compatible with A which sounds sane to me.
+>>>   
+>>>> Again - you cannot have device which is and is not compatible with
+>>>> something else. It's not a Schroedinger's cat to be in two states,
+>>>> unless you explicitly document the cases (there are exception). If this
+>>>> is such exception, it requires it's own documentation.
+>>>>  
+>>> so conclusion:
+>>> If having A and B half-compatible with A:
+>>>
+>>> compatible = "A" only: is allowed to specifiy it the binding (status quo),
+>>>   but not allowed to make the actual dtsi match the binding documentation
+>>>   https://lore.kernel.org/linux-devicetree/72e1194e10ccb4f87aed96265114f0963e805092.camel@pengutronix.de/
+>>>   and
+>>>   https://lore.kernel.org/linux-devicetree/20210924091439.2561931-5-andreas@kemnade.info/
+>>>
+>>> compatible = "A", "B" in the binding definition: is not allowed ("I asked to remove
+>>>    half-compatible" (= removing B))  
+>>
+>> No, half compatible is the A in such case.
+>>
+> I think that there is some misunderstanding in here. I try once again.
 > 
-> Please don't use a constant jiffies value, because it may vary in length.
-> Instead use a constant millisecond value and convert it to jiffies.
+> Define compatible with "X" here:
+> To me it means:
 > 
-
-I'll fix this in next version.
-
-> > +static irqreturn_t starfive_trng_irq(int irq, void *priv) {
-> > +	u32 status;
-> > +	struct starfive_trng *trng = (struct starfive_trng *)priv;
-> > +
-> > +	status = readl(trng->base + STARFIVE_ISTAT);
-> > +	if (status & STARFIVE_ISTAT_RAND_RDY) {
-> > +		writel(STARFIVE_ISTAT_RAND_RDY, trng->base +
-> STARFIVE_ISTAT);
-> > +		complete(&trng->random_done);
-> > +	}
-> > +
-> > +	if (status & STARFIVE_ISTAT_SEED_DONE) {
-> > +		writel(STARFIVE_ISTAT_SEED_DONE, trng->base +
-> STARFIVE_ISTAT);
-> > +		complete(&trng->reseed_done);
-> > +	}
-> > +
-> > +	if (status & STARFIVE_ISTAT_LFSR_LOCKUP) {
-> > +		writel(STARFIVE_ISTAT_LFSR_LOCKUP, trng->base +
-> STARFIVE_ISTAT);
-> > +		starfive_trng_cmd(trng,
-> STARFIVE_CTRL_EXEC_RANDRESEED);
+> device fully works with flags defined in:
 > 
-> You should not sleep in an IRQ handler.
+> static const struct esdhc_soc_data usdhc_X_data = { ... };
 > 
-
-Will fix this too.
-
-> > +static int starfive_trng_read(struct hwrng *rng, void *buf, size_t
-> > +max, bool wait)
+> with usdhc_X_data referenced in
+>         { .compatible = "X", .data = &usdhc_X_data, },
 > 
-> You should respect the wait argument and not do polling/sleeping if it is false.
+> 
+> So if there is only "A" matching with above definition of compatibility
+>   compatible = "A" would sound sane to me.
+> 
+> And scrutinizing the flags more and not just wanting to achieve error-free
+> dtbs_check, I think is this in most cases where there is only "A". 
+> 
+> If there is "A" and "B" which match that compatibility definition, you
+> say that only compatible = "A", "B" is allowed, but not compatible = "A".
+> In that case I would have no problem with that.
+> 
+> But if there is only "A" but no "B" matching the above definition, I would expect
+> that only compatible = "A" is allowed but *not* compatible = "A", "B".
 
-I'll add this in the next version.
+Sorry, I don't follow. I also do not understand what "matching" means in
+these terms (binding driver? of_match?) and also I do not know what is
+the "above definition".
 
-Thanks for reviewing this patch.
+Devicetree spec defines the compatibility - so this is the definition.
+There will be differences when applying it to different cases.
 
 Best regards,
-Jia Jie
+Krzysztof
+
