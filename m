@@ -2,63 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B449D6619FE
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 22:31:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 304F8661A04
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 22:32:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234052AbjAHVbk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 16:31:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40116 "EHLO
+        id S236325AbjAHVcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 16:32:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234073AbjAHVbg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 16:31:36 -0500
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AA7B2652;
-        Sun,  8 Jan 2023 13:31:35 -0800 (PST)
-Received: by mail-qv1-f53.google.com with SMTP id t17so4983771qvw.6;
-        Sun, 08 Jan 2023 13:31:34 -0800 (PST)
+        with ESMTP id S236197AbjAHVcD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 16:32:03 -0500
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6153B11155;
+        Sun,  8 Jan 2023 13:31:50 -0800 (PST)
+Received: by mail-qt1-f176.google.com with SMTP id bp44so6655737qtb.0;
+        Sun, 08 Jan 2023 13:31:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=js0w/jb+lh+/4h7Fj3cofK1pNZXgAj1iZs13t0WEx7U=;
-        b=O3/QB1oY2VD+0rDeVJtDR9ibPffXORKtQ6tvd+OxNbMUu0HxxZekTO8L3bGIBVc9pZ
-         PG0m2HW8BOsDAlQKksNKxVera2SPts8E5ScttGtnEtLg7xKbtzK7FBPb5EaVf7Ilw7L3
-         X/mNS3VOKtBc/a5gqe63WLMiRnIvcZ50yq0fSH/ysKPypODxq/hNIWQDfOI6N0q1j8kX
-         mwJFXhAvNehUbT2NMeld31oSUiWY1ZZR3URejApjLvZokuUwnuBr6k0CpkE7Qz7YK3LY
-         l7bv4CnM9KLrTp0ECE93oR3ZbZ1o5xSDE3cBOGPjFLEfK1w3NzaVEJVr8yxlmUyny1HK
-         4hJg==
-X-Gm-Message-State: AFqh2kr3oz8GZUT3VaTaWB1MdJg2fNqGc68Z74n6KtzeZJxZRuENOosI
-        qhjtt7r5QfBB+eRaDhgwww==
-X-Google-Smtp-Source: AMrXdXuBm+J+Rynuin0d2pDwJb7zmpV8C55xdiobHV2KiVZ4+Tky8PsFOPSUUj6AjwE8vmlqoBWtGw==
-X-Received: by 2002:a0c:80e4:0:b0:531:91cd:59de with SMTP id 91-20020a0c80e4000000b0053191cd59demr59201574qvb.26.1673213494064;
-        Sun, 08 Jan 2023 13:31:34 -0800 (PST)
+        bh=HCQ1OtoS4z3jfBA4wAje4rn3v9IX8GGdLLkOWAh306E=;
+        b=MGv4mTovFp4q7cyI4rYRZCXuFIO9DuS/2J+Vl7yaPPMhYs4E7Kum3MUZeh2QVnqx1H
+         janKY7uvk+M35/dClwq6SPrlI8nZBD9tsh04SSJlFQTnpo06Tzixdm6BlvmtaQzedaEY
+         Xg8X7Njvh9TgrUYht0Zxplk6vK31eqn7tLlmMT6DyBD4cHUQPFcCY7GSnG3AI5IpRHLX
+         wFURp94eLjBLhtXKjpWibNXYwzJGWDbg9H3WtCAdhAhb4OI/a5AtDPR5G0fQDluopTrS
+         kpwgQtNFcAhqt3YFtaa3E/nI4lmDDmJ+gOa+JefNQPhVXUwN4Yoo7JOj5PXUPyxQBa+v
+         PVjA==
+X-Gm-Message-State: AFqh2krBaIEjuYUv4qt67xRtJaNd96cmWQduPEEHxGdZ8fMIwfh8mNti
+        Pr0KAKc/zA8xqBjwiTGU9A==
+X-Google-Smtp-Source: AMrXdXu80XQEDWfzEYl7aNf0W1MBvZLerS5pwVX1UnY/YlkH1BLU9E/9E+gzpCk1i1eKxGsNd5Fxwg==
+X-Received: by 2002:a05:622a:4a10:b0:3a7:fc39:6cd with SMTP id fv16-20020a05622a4a1000b003a7fc3906cdmr95343719qtb.10.1673213509486;
+        Sun, 08 Jan 2023 13:31:49 -0800 (PST)
 Received: from robh_at_kernel.org ([2605:ef80:80a5:9b51:39ae:24d1:33f3:811e])
-        by smtp.gmail.com with ESMTPSA id l23-20020a37f917000000b006fc2b672950sm4256353qkj.37.2023.01.08.13.31.31
+        by smtp.gmail.com with ESMTPSA id m19-20020ac84453000000b003a6847d6386sm3650333qtn.68.2023.01.08.13.31.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Jan 2023 13:31:33 -0800 (PST)
-Received: (nullmailer pid 306308 invoked by uid 1000);
-        Sun, 08 Jan 2023 21:31:19 -0000
-Date:   Sun, 8 Jan 2023 15:31:19 -0600
+        Sun, 08 Jan 2023 13:31:49 -0800 (PST)
+Received: (nullmailer pid 306876 invoked by uid 1000);
+        Sun, 08 Jan 2023 21:31:45 -0000
+Date:   Sun, 8 Jan 2023 15:31:45 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        linux-kernel@vger.kernel.org,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        devicetree@vger.kernel.org, Janne Grunau <j@jannau.net>,
-        asahi@lists.linux.dev,
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        devicetree@vger.kernel.org,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 4/5] spi: dt-bindings: Add hold/inactive CS delay
- peripheral properties
-Message-ID: <167321346258.305589.13314015291667781400.robh@kernel.org>
-References: <20230104093631.15611-1-marcan@marcan.st>
- <20230104093631.15611-5-marcan@marcan.st>
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: Re: [PATCH] dt-bindings: rtc: qcom-pm8xxx: allow 'wakeup-source'
+ property
+Message-ID: <167321350537.306824.10296594475975416202.robh@kernel.org>
+References: <20230104095612.6756-1-johan+linaro@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230104093631.15611-5-marcan@marcan.st>
+In-Reply-To: <20230104095612.6756-1-johan+linaro@kernel.org>
 X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -70,17 +71,24 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed, 04 Jan 2023 18:36:30 +0900, Hector Martin wrote:
-> From: Janne Grunau <j@jannau.net>
+On Wed, 04 Jan 2023 10:56:12 +0100, Johan Hovold wrote:
+> The RTC can be used as a wakeup source on at least some platforms so
+> allow it to be described as such.
 > 
-> These two properties complete the bindings for the Linux spi_device cs
-> model, which includes cs_setup, cs_hold and cs_inactive delay values.
-> 
-> Signed-off-by: Janne Grunau <j@jannau.net>
-> Signed-off-by: Hector Martin <marcan@marcan.st>
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 > ---
->  .../devicetree/bindings/spi/spi-peripheral-props.yaml  | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+> 
+> Since commit 30d70ec8f7fd ("arm64: dts: qcom: sa8295p-adp: Add RTC
+> node") this triggers a warning on DT validation so it would be nice to
+> get this into 6.2:
+> 
+>   arch/arm64/boot/dts/qcom/sa8295p-adp.dtb: rtc@6000: 'wakeup-source' does not match any of the regexes: 'pinctrl-[0-9]+'
+> 
+> Johan
+> 
+> 
+>  Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
