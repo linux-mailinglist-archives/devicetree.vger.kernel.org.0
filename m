@@ -2,118 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55932661A6B
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 23:21:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D9C3661A91
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 23:47:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234115AbjAHWVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 17:21:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56854 "EHLO
+        id S231272AbjAHWrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 17:47:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233795AbjAHWU7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 17:20:59 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA6B965D5
-        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 14:20:57 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id m6so10285655lfj.11
-        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 14:20:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Au8PIm+4NyW4j2miivRKm9HzANsXUXWrooOUvpFJEq4=;
-        b=xJvnO7XVZiOab0uE/yZrxgm/ub+DAz+6aEXXpyyjV3sWzc0k/1Rs2rnflDNrecuCTg
-         LbVMManTt4KsRW2z/AIK9H0z9cdYybQtuOSow6c4VO5910cbqfxrB524jdXsgpAyKF/V
-         u37sYgYOcIrEQVaTegJ4kETigFG7RNNRHrvwl94F6iakojGqnrXTiqKzPxHF78uHdVbo
-         2Kdq+m8g+Q+zBAYcfBJWk+ZIWPos2icJEV8xES5tDrx4hn36cCyzSbB+2vXGIAq0gB2Y
-         ZzfoW8gPlQbFTKx5bz42Hmi/qJ4s24HcH9LQGWHqI3FWtWbK5KRkmDgBI7GGjXfBDLfK
-         jpSw==
+        with ESMTP id S233810AbjAHWqy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 17:46:54 -0500
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F1F4205;
+        Sun,  8 Jan 2023 14:46:52 -0800 (PST)
+Received: by mail-qt1-f181.google.com with SMTP id z12so6602400qtv.5;
+        Sun, 08 Jan 2023 14:46:52 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Au8PIm+4NyW4j2miivRKm9HzANsXUXWrooOUvpFJEq4=;
-        b=COt8L+TgDxbjZr2QYR7vHBPSQ6AulkzO5dXftV7VQJdDphC/SQ6X8xMT1nOSqv90HY
-         4OLruYnu8UoVffsDhwnLNkStkKDEkPxh4tO1AwXwvKi+q3Nfy06Lfx1m0WIuJGPjRhxO
-         YIpvNw0M6aQRCWrdXeXKHrEFkRfuU1FnBVPdgU23dxycUK1tw5QEFXSeDZK7clArgXwm
-         GO5vJvCn6gP4kpp5hIcw/AG90GLM2VDLRVnHTBoMuAXvAsV0P3dHVpL7FqRuuseblWoz
-         WQv8fKT9VfrkC3PE9RjkapHCDLqf0iJ0dySJ4iobE/Ox6RNJe2UNbsoc4kwRu5d3j1BN
-         rQag==
-X-Gm-Message-State: AFqh2kp+L5W3BcBq/qSWunzv5e/YdzxSN5vaIWx6Tx7sFXmGZ28nO6X8
-        xQElA9ctzUYBbx9cVdJ11n4V6w==
-X-Google-Smtp-Source: AMrXdXulolSMJEdgGfRuthfwuZXbZcAZCXKUjQ0WbO2OcS3CQBLdYTBRgcdg8N7kimzp8ztv5EiScg==
-X-Received: by 2002:a19:6b1a:0:b0:4cb:262c:5422 with SMTP id d26-20020a196b1a000000b004cb262c5422mr8339607lfa.20.1673216456288;
-        Sun, 08 Jan 2023 14:20:56 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id dt17-20020a0565122a9100b004cb061887b5sm1257258lfb.126.2023.01.08.14.20.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 08 Jan 2023 14:20:55 -0800 (PST)
-Message-ID: <a86973c7-db5e-ab2c-4b6b-d9c82f76a070@linaro.org>
-Date:   Mon, 9 Jan 2023 00:20:55 +0200
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PP099oZSf8SCM6luMmBu6jrUsbmzqcukwkA4VfOihLg=;
+        b=XdiKP1xIVldgwMzdpDgN1Lp+tIo7XlqYmX62ngYZysPNxspvOKNsDhAx4wshwF+FdF
+         pId8dbXw/05YYsrlwSGThXT3OxYS0ZVLc+QYsdYilpkSE0dFWhxXuQKmpEq80ChPpZPS
+         tqq4N1VAav3njoyKIwrLcWZszYKI3O1a29rVCKJn6Inqz2PZXam4TSObT8UIo6LqL8PS
+         /q6g7CdvvAkjuhxx1x1FP3xSIvBgRqNxcvmY2NfI0m68kG7+K6+cAv3JvmLFgCHh/Jir
+         Lf3bpBjO+HSn90hkWbePvv0h7t1/5fCDgXdZPYdSx//ENYcq2XsyAUKag5XwAbKdGC0K
+         7T7w==
+X-Gm-Message-State: AFqh2kopXLwH3sqhh3a8SUogOSJwstur0LUAg8/F9crUjePBhfWPnQH8
+        ooWioqOslW7IThTZk6BGlA==
+X-Google-Smtp-Source: AMrXdXvOfSkmlZ/ErkCntaZZxlfL3eN5OxSJXJFuKtN4wzYd5eFEzMqw13AzB8uiX/kSI3tdFJ461w==
+X-Received: by 2002:ac8:6b8b:0:b0:3a7:e91e:60fd with SMTP id z11-20020ac86b8b000000b003a7e91e60fdmr85552106qts.62.1673218011726;
+        Sun, 08 Jan 2023 14:46:51 -0800 (PST)
+Received: from robh_at_kernel.org ([2605:ef80:80a5:9b51:39ae:24d1:33f3:811e])
+        by smtp.gmail.com with ESMTPSA id t11-20020a05620a034b00b006fa31bf2f3dsm4322656qkm.47.2023.01.08.14.46.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 08 Jan 2023 14:46:51 -0800 (PST)
+Received: (nullmailer pid 382105 invoked by uid 1000);
+        Sun, 08 Jan 2023 22:46:33 -0000
+Date:   Sun, 8 Jan 2023 16:46:33 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Andreas Kemnade <andreas@kemnade.info>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        ulf.hansson@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mmc: fsl-imx-esdhc: allow more compatible
+ combinations
+Message-ID: <20230108224633.GA353691-robh@kernel.org>
+References: <d7c407dc-0a6c-97d5-a06f-b432a923d74d@linaro.org>
+ <20230106203358.14878660@aktux>
+ <967cc7b7-f0bb-de37-52b9-7bfab05eadd7@linaro.org>
+ <20230107144336.2ecff4f9@aktux>
+ <123d1a56-8134-dc75-8b2a-b3836e727d4a@linaro.org>
+ <20230107150740.0ba34aa1@aktux>
+ <0ab84fb8-6173-54e0-abad-a0e0e4ba82e7@linaro.org>
+ <20230107160105.66df4136@aktux>
+ <e1b1450b-9421-3732-2d74-50c47b5afb0e@linaro.org>
+ <20230107165457.30f4dddf@aktux>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH 3/4] dt-bindings: arm: qcom,ids: Add a bunch of older SoCs
-Content-Language: en-GB
-To:     Rob Herring <robh@kernel.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20230104115348.25046-1-stephan@gerhold.net>
- <20230104115348.25046-4-stephan@gerhold.net>
- <20230108214052.GA313089-robh@kernel.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230108214052.GA313089-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230107165457.30f4dddf@aktux>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/01/2023 23:40, Rob Herring wrote:
-> On Wed, Jan 04, 2023 at 12:53:47PM +0100, Stephan Gerhold wrote:
->> Sync the SoC IDs in qcom,ids.h with relevant entries from Qualcomm's LK
->> bootloader [1] that is used for almost all older Qualcomm SoCs.
->>
->> Several of these are already supported, e.g.:
->>    - MSM8960 -> APQ8060, MSM8260, ...
->>    - MSM8976 -> APQ8076
->>    - MSM8956 -> APQ8056
->> Others are currently being worked on, e.g.:
->>    - MSM8909(W) -> APQ8009(W), MSM8905, MSM8209, ...
->>    - MSM8939 -> MSM8239, ...
->>
->> And even all remaining ones added are close enough to what is already
->> supported so that future support is realistic (if someone steps up to
->> do the work).
->>
->> Add all of them at once to avoid having to add them one by one in the
->> future. This will also benefit other projects making use of the same
->> dt-bindings, e.g. bootloaders where adding support for all these SoCs
->> is a bit easier than on Linux.
+On Sat, Jan 07, 2023 at 04:54:57PM +0100, Andreas Kemnade wrote:
+> On Sat, 7 Jan 2023 16:07:35 +0100
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 > 
-> The promise was in accepting the properties upstream is we'd only be
-> adding these for bootloaders with dtbs that we can't otherwise update or
-> change. Do all of those meet this criteria? Seems unlikely.
+> > On 07/01/2023 16:01, Andreas Kemnade wrote:
+> > > On Sat, 7 Jan 2023 15:09:24 +0100
+> > > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> > >   
+> > >> On 07/01/2023 15:07, Andreas Kemnade wrote:  
+> > >>> On Sat, 7 Jan 2023 15:00:56 +0100
+> > >>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> > >>>
+> > >>> [...]    
+> > >>>>>> I asked to remove half-compatible. Not to enforce.
+> > >>>>>>      
+> > >>> so you are saying that allowing
+> > >>> compatible = "A", "B" 
+> > >>> is not ok, if B is not fully compatible. I agree with that
+> > >>> one.    
+> > >>
+> > >> I did not say that. It's not related to this problem.
+> > >>  
+> > > You said "I asked to remove half-compatible" that means to me
+> > > remove "B" if not fully compatible with A which sounds sane to me.
+> > >   
+> > >> Again - you cannot have device which is and is not compatible with
+> > >> something else. It's not a Schroedinger's cat to be in two states,
+> > >> unless you explicitly document the cases (there are exception). If this
+> > >> is such exception, it requires it's own documentation.
+> > >>  
+> > > so conclusion:
+> > > If having A and B half-compatible with A:
+> > > 
+> > > compatible = "A" only: is allowed to specifiy it the binding (status quo),
+> > >   but not allowed to make the actual dtsi match the binding documentation
+> > >   https://lore.kernel.org/linux-devicetree/72e1194e10ccb4f87aed96265114f0963e805092.camel@pengutronix.de/
+> > >   and
+> > >   https://lore.kernel.org/linux-devicetree/20210924091439.2561931-5-andreas@kemnade.info/
+> > > 
+> > > compatible = "A", "B" in the binding definition: is not allowed ("I asked to remove
+> > >    half-compatible" (= removing B))  
+> > 
+> > No, half compatible is the A in such case.
+> > 
+> I think that there is some misunderstanding in here. I try once again.
+> 
+> Define compatible with "X" here:
+> To me it means:
+> 
+> device fully works with flags defined in:
+> 
+> static const struct esdhc_soc_data usdhc_X_data = { ... };
+> 
+> with usdhc_X_data referenced in
+>         { .compatible = "X", .data = &usdhc_X_data, },
+> 
+> 
+> So if there is only "A" matching with above definition of compatibility
+>   compatible = "A" would sound sane to me.
+> 
+> And scrutinizing the flags more and not just wanting to achieve error-free
+> dtbs_check, I think is this in most cases where there is only "A". 
+> 
+> If there is "A" and "B" which match that compatibility definition, you
+> say that only compatible = "A", "B" is allowed, but not compatible = "A".
+> In that case I would have no problem with that.
+> 
+> But if there is only "A" but no "B" matching the above definition, I would expect
+> that only compatible = "A" is allowed but *not* compatible = "A", "B".
 
+A is either compatible with B or it isn't. You can look at that from 
+the h/w perspective and client/OS perspective. From the h/w side, is the 
+h/w interface the same or only has additions which can be ignored? On 
+the client side, the question is whether a client that only understands 
+B could use A's h/w without change. Looking at the match data is a 
+good indicator of that for Linux. It's also possible the answer is 
+different for different clients, but we only need 1 client that could 
+benefit from compatibility.
 
-Most of Qualcomm platforms come with the signed bootloader, so it is 
-impossible to change it without vendor keys. This might sound bad for 
-you, but I fear that this list would include most of the platforms until 
-Qualcomm agrees to rework kernel-bootloader-dtb interaction.
-
--- 
-With best wishes
-Dmitry
-
+Rob
