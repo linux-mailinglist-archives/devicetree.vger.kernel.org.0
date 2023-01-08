@@ -2,227 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20AF1661725
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 17:58:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BFDD661744
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 18:16:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233053AbjAHQ6Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 11:58:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44372 "EHLO
+        id S233612AbjAHRQJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 12:16:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229520AbjAHQ6W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 11:58:22 -0500
-Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 836FD617B;
-        Sun,  8 Jan 2023 08:58:20 -0800 (PST)
-Received: from zn.tnic (p5de8e9fe.dip0.t-ipconnect.de [93.232.233.254])
+        with ESMTP id S233104AbjAHRQI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 12:16:08 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D578FA470;
+        Sun,  8 Jan 2023 09:16:03 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 26C021EC066E;
-        Sun,  8 Jan 2023 17:58:18 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1673197098;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=oIhXj0iTmkK7wWzCIhRqyUlDkxjgGwwWXJlLxDVunmA=;
-        b=EFE8ohASKHc7e8kYi2uAEqyxzgah1Di6SVFK3taVjjkWWKYUkQ5tFoXteDHlNhwVuFh2tD
-        Gc65KQCLUcGQ0qxqasQ1dq57c/1jt4FrjmfuXTJtjPUDPqCeuwRGZE2mdZwZtJwjTgeG3k
-        /xFcOSfVfYx9kbrC0TbD1jUQGv44IXU=
-Date:   Sun, 8 Jan 2023 17:58:11 +0100
-From:   Borislav Petkov <bp@alien8.de>
-To:     Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 64DC360CF6;
+        Sun,  8 Jan 2023 17:16:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B7F4C433EF;
+        Sun,  8 Jan 2023 17:15:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1673198162;
+        bh=fzAgiRFGHR3+GZQIA6FSB7Y5pqtCmssmPkzfvI9PDik=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ugSoSfG8YK4MiPNvmgHKQd2u6R4hYWSQLpNXxOlfys/IgPDiESDl9ClGuf7f5HnwX
+         oKT6HIzSPf2QaYW7AWi6o2YyMSU+Tn+0cndHgC+c2ZUvp569FJkmm8ZJ4v1WVLnN/g
+         vJc1njobRAXmHxjvEd0uMJqGhBLEx4srmrk0neSSo45BUDzYBNj478/Ct66UhElPee
+         zDSpsuuwxgDujKFt51c8olpbMG2jhMuq0ziBhA9E0/wm45RZkYlb8XvEguUQlaOP/2
+         5ZympTpJVqbXSk26pGg0H9KR6fjluZ0CDyYJH6cQsY3bJYgDF+AO06iy4c2KdnS5mn
+         z4l7KJR12SL+w==
+Date:   Sun, 8 Jan 2023 17:15:56 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        James Morse <james.morse@arm.com>,
-        Robert Richter <rric@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-edac@vger.kernel.org, saikrishna12468@gmail.com, git@amd.com,
-        Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
-        kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH v7 2/2] EDAC/zynqmp: Add EDAC support for Xilinx ZynqMP
- OCM
-Message-ID: <Y7r2I5Ij3x8/rMjS@zn.tnic>
-References: <20230104084512.1855243-1-sai.krishna.potthuri@amd.com>
- <20230104084512.1855243-3-sai.krishna.potthuri@amd.com>
+        Icenowy Zheng <uwu@icenowy.me>,
+        =?iso-8859-1?Q?Andr=E1s_Szemz=F6?= <szemzo.andras@gmail.com>,
+        Fabien Poussin <fabien.poussin@gmail.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>
+Subject: Re: [PATCH 1/4] dts: add riscv include prefix link
+Message-ID: <Y7r6TLTm1r+IlrYj@spud>
+References: <20230106010155.26868-1-andre.przywara@arm.com>
+ <20230106010155.26868-2-andre.przywara@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="0sHedhGUJCjd0u9E"
 Content-Disposition: inline
-In-Reply-To: <20230104084512.1855243-3-sai.krishna.potthuri@amd.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230106010155.26868-2-andre.przywara@arm.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 04, 2023 at 02:15:12PM +0530, Sai Krishna Potthuri wrote:
-> Add EDAC support for Xilinx ZynqMP OCM Controller, so this driver
-> reports CE and UE errors upon interrupt generation, and also creates UE/CE
-> debugfs entries for error injection.
-> On Xilinx ZynqMP platform, both OCM Controller driver(zynqmp_edac) and
-> DDR Memory Controller driver(synopsys_edac) co-exist which means both
-> can be loaded at a time. This scenario is tested on Xilinx ZynqMP
-> platform.
-> 
-> Fix following issue reported by the robot.
-> "MAINTAINERS references a file that doesn't exist:
-> Documentation/devicetree/bindings/edac/xlnx,zynqmp-ocmc.yaml"
-> 
-> Co-developed-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-> Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-> Reported-by: kernel test robot <lkp@intel.com>
+
+--0sHedhGUJCjd0u9E
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Jan 06, 2023 at 01:01:52AM +0000, Andre Przywara wrote:
+> The Allwinner D1/D1s SoCs (with a RISC-V core) use an (almost?) identical
+> die as their R528/T113-s siblings with ARM Cortex-A7 cores.
+>=20
+> To allow sharing the basic SoC .dtsi files across those two
+> architectures as well, introduce a symlink to the RISC-V DT directory.
+
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks,
+Conor.
+
+>=20
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 > ---
->  MAINTAINERS                |   7 +
->  drivers/edac/Kconfig       |   9 +
->  drivers/edac/Makefile      |   1 +
->  drivers/edac/zynqmp_edac.c | 465 +++++++++++++++++++++++++++++++++++++
->  4 files changed, 482 insertions(+)
->  create mode 100644 drivers/edac/zynqmp_edac.c
+>  scripts/dtc/include-prefixes/riscv | 1 +
+>  1 file changed, 1 insertion(+)
+>  create mode 120000 scripts/dtc/include-prefixes/riscv
+>=20
+> diff --git a/scripts/dtc/include-prefixes/riscv b/scripts/dtc/include-pre=
+fixes/riscv
+> new file mode 120000
+> index 0000000000000..2025094189380
+> --- /dev/null
+> +++ b/scripts/dtc/include-prefixes/riscv
+> @@ -0,0 +1 @@
+> +../../../arch/riscv/boot/dts
+> \ No newline at end of file
+> --=20
+> 2.35.5
+>=20
+>=20
 
-Some touchups ontop, see below.
+--0sHedhGUJCjd0u9E
+Content-Type: application/pgp-signature; name="signature.asc"
 
-I had to revert back to the #ifdeffery because IS_ENABLED doesn't prevent the
-compiler from looking inside the conditional...
+-----BEGIN PGP SIGNATURE-----
 
-Anyway, inter-diff below. Holler if something's still amiss.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY7r6TAAKCRB4tDGHoIJi
+0svYAQDfXmAfIvPLwZWb79WQkRX17ndbEOGiAWczgPvcsZVEYQD9Gh9E4PYzuC6e
+4QRB0vH6i/fo3SyEvyVctlyGY+JOpwE=
+=5fRf
+-----END PGP SIGNATURE-----
 
-Thx.
-
----
-
- diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
--index 58ab63642e72..7944e40c67da 100644
-+index 4cfdefbd744d..68f576700911 100644
- --- a/drivers/edac/Kconfig
- +++ b/drivers/edac/Kconfig
--@@ -539,4 +539,13 @@ config EDAC_DMC520
-+@@ -542,4 +542,12 @@ config EDAC_DMC520
-  	  Support for error detection and correction on the
-  	  SoCs with ARM DMC-520 DRAM controller.
-  
--+config EDAC_ZYNQMP_OCM
-++config EDAC_ZYNQMP
- +	tristate "Xilinx ZynqMP OCM Controller"
- +	depends on ARCH_ZYNQMP || COMPILE_TEST
- +	help
- +	  This driver supports error detection and correction for the
--+	  Xilinx ZynqMP OCM (On Chip Memory) controller.
--+	  This driver can also be built as a module. If so, the module
--+	  will be called zynqmp_ocm_edac.
-++	  Xilinx ZynqMP OCM (On Chip Memory) controller. It can also be
-++	  built as a module. In that case it will be called zynqmp_edac.
- +
-  endif # EDAC
- diff --git a/drivers/edac/Makefile b/drivers/edac/Makefile
--index 2d1641a27a28..47cbda06d7b0 100644
-+index 2d1641a27a28..9b025c5b3061 100644
- --- a/drivers/edac/Makefile
- +++ b/drivers/edac/Makefile
- @@ -84,3 +84,4 @@ obj-$(CONFIG_EDAC_QCOM)			+= qcom_edac.o
-  obj-$(CONFIG_EDAC_ASPEED)		+= aspeed_edac.o
-  obj-$(CONFIG_EDAC_BLUEFIELD)		+= bluefield_edac.o
-  obj-$(CONFIG_EDAC_DMC520)		+= dmc520_edac.o
--+obj-$(CONFIG_EDAC_ZYNQMP_OCM)		+= zynqmp_edac.o
-++obj-$(CONFIG_EDAC_ZYNQMP)		+= zynqmp_edac.o
- diff --git a/drivers/edac/zynqmp_edac.c b/drivers/edac/zynqmp_edac.c
- new file mode 100644
--index 000000000000..69069028457b
-+index 000000000000..b11f1157d4bb
- --- /dev/null
- +++ b/drivers/edac/zynqmp_edac.c
--@@ -0,0 +1,465 @@
-+@@ -0,0 +1,469 @@
- +// SPDX-License-Identifier: GPL-2.0
- +/*
- + * Xilinx ZynqMP OCM ECC Driver
-@@ -220,12 +224,14 @@ index 000000000000..69069028457b
- +		p->ceinfo.fault_hi = readl(base + CE_FFD1_OFST);
- +		p->ceinfo.addr = (OCM_BASEVAL | readl(base + CE_FFA_OFST));
- +		writel(ECC_CTRL_CLR_CE_ERR, base + OCM_ISR_OFST);
--+	} else {
-++	} else if (mask & OCM_UEINTR_MASK) {
- +		p->ue_cnt++;
- +		p->ueinfo.fault_lo = readl(base + UE_FFD0_OFST);
- +		p->ueinfo.fault_hi = readl(base + UE_FFD1_OFST);
- +		p->ueinfo.addr = (OCM_BASEVAL | readl(base + UE_FFA_OFST));
- +		writel(ECC_CTRL_CLR_UE_ERR, base + OCM_ISR_OFST);
-++	} else {
-++		WARN_ON_ONCE(1);
- +	}
- +}
- +
-@@ -234,7 +240,7 @@ index 000000000000..69069028457b
- + * @dci:	Pointer to the EDAC device instance
- + * @p:		Pointer to the OCM ECC status structure
- + *
--+ * Handles the ECC correctable and uncorrectable error.
-++ * Handles correctable and uncorrectable errors.
- + */
- +static void handle_error(struct edac_device_ctl_info *dci, struct ecc_status *p)
- +{
-@@ -275,7 +281,7 @@ index 000000000000..69069028457b
- +
- +	regval = readl(priv->baseaddr + OCM_ISR_OFST);
- +	if (!(regval & (OCM_CEINTR_MASK | OCM_UEINTR_MASK))) {
--+		WARN_ONCE(1, "Unhandled IRQ%d.", irq);
-++		WARN_ONCE(1, "Unhandled IRQ%d, ISR: 0x%x", irq, regval);
- +		return IRQ_NONE;
- +	}
- +
-@@ -403,16 +409,16 @@ index 000000000000..69069028457b
- +	if (ret)
- +		return ret;
- +
--+	ue_bitpos = BIT(priv->ue_bitpos[0]) | BIT(priv->ue_bitpos[1]);
-++	if (priv->ue_bitpos[0] > UE_MAX_BITPOS_UPPER ||
-++	    priv->ue_bitpos[1] > UE_MAX_BITPOS_UPPER)
-++		return -EINVAL;
- +
- +	if (priv->ue_bitpos[0] == priv->ue_bitpos[1]) {
- +		edac_printk(KERN_ERR, EDAC_DEVICE, "Bit positions should not be equal\n");
- +		return -EINVAL;
- +	}
- +
--+	if (priv->ue_bitpos[0] > UE_MAX_BITPOS_UPPER ||
--+	    priv->ue_bitpos[1] > UE_MAX_BITPOS_UPPER)
--+		return -EINVAL;
-++	ue_bitpos = BIT(priv->ue_bitpos[0]) | BIT(priv->ue_bitpos[1]);
- +
- +	writel((u32)ue_bitpos, priv->baseaddr + OCM_FID0_OFST);
- +	writel((u32)(ue_bitpos >> 32), priv->baseaddr + OCM_FID1_OFST);
-@@ -492,8 +498,9 @@ index 000000000000..69069028457b
- +	/* Enable UE, CE interrupts */
- +	writel((OCM_CEINTR_MASK | OCM_UEINTR_MASK), priv->baseaddr + OCM_IEN_OFST);
- +
--+	if (IS_ENABLED(CONFIG_EDAC_DEBUG))
--+		setup_debugfs(dci);
-++#ifdef CONFIG_EDAC_DEBUG
-++	setup_debugfs(dci);
-++#endif
- +
- +	ret = edac_device_add_device(dci);
- +	if (ret)
-@@ -515,8 +522,9 @@ index 000000000000..69069028457b
- +	/* Disable UE, CE interrupts */
- +	writel((OCM_CEINTR_MASK | OCM_UEINTR_MASK), priv->baseaddr + OCM_IDS_OFST);
- +
--+	if (IS_ENABLED(CONFIG_EDAC_DEBUG))
--+		debugfs_remove_recursive(priv->debugfs_dir);
-++#ifdef CONFIG_EDAC_DEBUG
-++	debugfs_remove_recursive(priv->debugfs_dir);
-++#endif
- +
- +	edac_device_del_device(&pdev->dev);
- +	edac_device_free_ctl_info(dci);
-
--- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
+--0sHedhGUJCjd0u9E--
