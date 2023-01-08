@@ -2,198 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0693661617
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 16:16:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B0341661623
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 16:21:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232837AbjAHPQt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 10:16:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45880 "EHLO
+        id S232837AbjAHPVa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 10:21:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233104AbjAHPQa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 10:16:30 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68E803884
-        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 07:16:28 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id z5so4745459wrt.6
-        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 07:16:28 -0800 (PST)
+        with ESMTP id S232956AbjAHPV3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 10:21:29 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A640DF80
+        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 07:21:28 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id t5so1394004wrq.1
+        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 07:21:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=BXw9KAygztT5jDGimnXGtcc/RXt5y1LZ6kVLW6bynMM=;
-        b=tpTCz4ws4jY+X1l3CQZUYaPGZa/EpzKs+yq2hYz6I47CqYW66cl+bAfI4BbsrWfmGs
-         wtQgtBjyGmpB2lgMW0B1jgg3XLN9/ToR1pRqizZcEcj14V864ktX4fOpZODMiqs4QVlE
-         89UDXaMWkCdVIeWxrbTMXsbvD5Hi55UcJXWyAUya0Ad5cGzzO9UkgL3JPCRYHinRUwoJ
-         MuLaN18LU1Pm+aAZQDXbiTxX4s7eb9ALHtsSAS30swbfEvafY2NlTrmy/rpV5N+6dMDq
-         pRGu/DUepZ8mhJShTxyIljbBeZfAscuPDkR3GYSyzWUEZdDqbobrRMhAg6jYvjyFBa/M
-         98kQ==
+        bh=gD/H0/iEsnGJ/IZn2dFZYdThaenFE0vshIzFDdHdaKg=;
+        b=q0coa+9GRNgVSBf00UH6xf+oZE4ZyfF7KkWWsWcGnmCdGixZYSEu9JMgxIdEcBIQjS
+         2uZ81QB4I6xkJr1d5sV0nHHjgsPdU7y0my3xDLBzVRoOFK8gI5IQ6prX/IccOOkaiSrE
+         B9YyAtpC53Y2XSKXbDM0VGMOs9MGh2a8wQqYBhgyGgPwebBdBYdiC1l6IV4284ypam06
+         xeMGmxml3NGNL11keIea3VD6K7KFW3WQqa4equc/A1X3KSEUd6aZD+nwMTAkguVnaN5m
+         UwgvsC3AE5cJeeOF5bubuIl3W+SjcrNvEXBsta5spmf5JXRoWj5NYwBuu+PT8HT/N50Q
+         1lCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BXw9KAygztT5jDGimnXGtcc/RXt5y1LZ6kVLW6bynMM=;
-        b=ishtxdb6YBbMQGYlU5qcJ7Yblmx+N8kLN/rTG6sSQ1pLZd/ljVyURFrbmB98T8rdjI
-         2sqGjwscDgJ9JyU0DCSVW377Q13fnJWEU84LDl+Ubk/89exeEK60Fp+TBnxBvAO2JVu+
-         I0NynHhTHIBG3H8LhcfOmdESDXpkCrck4O0OmnuBCoyfaNS/SQCVmTwV0i9nqH2/6fSU
-         +v60Csnieig3jxk0fNQX7WDC6ur1FV7zesa+tPBg+gzvppilmslAeeDr1kyunOuIrsn9
-         cHmn7/4INdUM3rF4oYwn4B1d70CRhUs4HswtPjZ2H/zyNqNHPbNM85bP/UjcWHweHfaP
-         blhg==
-X-Gm-Message-State: AFqh2krqf8LfweXOzen+3gp5cxz1JARWyUgOb9V9kVCXWKE1oQOV63nS
-        Q69xsxDN3t+OooqHQ4jdndMhdA==
-X-Google-Smtp-Source: AMrXdXviZdBmClnb6Toply9D3tNh+sz2JLSNoU9T04Iga71AMgdwS3TaY1guKipjbFqDnRnrIwrRUA==
-X-Received: by 2002:a5d:5e81:0:b0:244:e704:df2c with SMTP id ck1-20020a5d5e81000000b00244e704df2cmr44150318wrb.57.1673190986931;
-        Sun, 08 Jan 2023 07:16:26 -0800 (PST)
+        bh=gD/H0/iEsnGJ/IZn2dFZYdThaenFE0vshIzFDdHdaKg=;
+        b=qwIAMujAdrmirlN8BXeDK30Fj/TxlBL0UdTqsDCVafRakGnz/WRDU6MPY71/UUgiyq
+         dPFXHQ5gn9D1Eq2h8nj810n0VUDYMC3BXnbLlUOFh8dqOQY/Ct11pkzDB2b7dOnBw91A
+         SYQ6JaeTmj3z4uOi5XXvBq2xhtPbSFnm8YCN2H2gRddVQkKUH71MHT/vFDxixLGvg/r4
+         kBlMbICURsIrfUOMJzI7SuwV/cPuFlHWScwj4SMiOMiEOH9C9Kxuy1zY3y4M7FM71JaH
+         LodBCPfdRBHVqOm0By0KgOgY2Lj09AGLuoE0hhQx82vS5xJ03e9l/eg+hFpurn6QvKC0
+         t9Dg==
+X-Gm-Message-State: AFqh2krQ0q2IIPxfvmvqMCKpGEe5iZU3bLUy2VfDEPLNW5erJjWeUv9G
+        8zYch/lKT2p4PhtkB6Nqls6Htg==
+X-Google-Smtp-Source: AMrXdXuuJcCP0BIPka5BWNC9RlBqsIkzDIiYgM0Fwcnq+I/V1qoz5nWOjl/XmoBKbtjt118Z0rvSlA==
+X-Received: by 2002:adf:eb09:0:b0:2aa:1121:1b79 with SMTP id s9-20020adfeb09000000b002aa11211b79mr9773794wrn.25.1673191286648;
+        Sun, 08 Jan 2023 07:21:26 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id w4-20020a5d4b44000000b002366dd0e030sm6261986wrs.68.2023.01.08.07.16.25
+        by smtp.gmail.com with ESMTPSA id w10-20020a5d608a000000b0027cfd9463d7sm6266273wrt.110.2023.01.08.07.21.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 08 Jan 2023 07:16:26 -0800 (PST)
-Message-ID: <c393e532-d466-366b-a390-65de47c58b6a@linaro.org>
-Date:   Sun, 8 Jan 2023 16:16:24 +0100
+        Sun, 08 Jan 2023 07:21:26 -0800 (PST)
+Message-ID: <b1485d8a-71ea-7b75-74ab-77eef595ae10@linaro.org>
+Date:   Sun, 8 Jan 2023 16:21:24 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH v2 08/10] dt-bindings: sound: Add support for QMC audio
+Subject: Re: [PATCH V5 1/6] dt-bindings: usb: Add NVIDIA Tegra234 XUSB host
+ controller binding
 Content-Language: en-US
-To:     Herve Codina <herve.codina@bootlin.com>,
-        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+To:     Jon Hunter <jonathanh@nvidia.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Qiang Zhao <qiang.zhao@nxp.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>
-Cc:     linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20230106163746.439717-1-herve.codina@bootlin.com>
- <20230106163746.439717-9-herve.codina@bootlin.com>
+        Thierry Reding <thierry.reding@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-phy@lists.infradead.org,
+        waynec@nvidia.com, Thierry Reding <treding@nvidia.com>
+References: <20230106152858.49574-1-jonathanh@nvidia.com>
+ <20230106152858.49574-2-jonathanh@nvidia.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230106163746.439717-9-herve.codina@bootlin.com>
+In-Reply-To: <20230106152858.49574-2-jonathanh@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/01/2023 17:37, Herve Codina wrote:
-> The QMC (QUICC mutichannel controller) is a controller
-> present in some PowerQUICC SoC such as MPC885.
-> The QMC audio is an ASoC component that uses the QMC
-> controller to transfer the audio data.
+On 06/01/2023 16:28, Jon Hunter wrote:
+> From: Wayne Chang <waynec@nvidia.com>
 > 
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> Add device-tree binding documentation for the XUSB host controller present
+> on Tegra234 SoC. This controller supports the USB 3.1 specification.
+> 
+> Signed-off-by: Wayne Chang <waynec@nvidia.com>
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
 > ---
->  .../bindings/sound/fsl,qmc-audio.yaml         | 110 ++++++++++++++++++
->  1 file changed, 110 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/fsl,qmc-audio.yaml
+> V4 -> V5: No changes
+> V3 -> V4: minor update to the power-domain description
+> V2 -> V3: nothing has changed
+> V1 -> V2: address the issue on phy-names property
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/fsl,qmc-audio.yaml b/Documentation/devicetree/bindings/sound/fsl,qmc-audio.yaml
+>  .../bindings/usb/nvidia,tegra234-xusb.yaml    | 158 ++++++++++++++++++
+>  1 file changed, 158 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/nvidia,tegra234-xusb.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/nvidia,tegra234-xusb.yaml b/Documentation/devicetree/bindings/usb/nvidia,tegra234-xusb.yaml
 > new file mode 100644
-> index 000000000000..b3774be36c19
+> index 000000000000..190a23c72963
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/fsl,qmc-audio.yaml
-> @@ -0,0 +1,110 @@
+> +++ b/Documentation/devicetree/bindings/usb/nvidia,tegra234-xusb.yaml
+> @@ -0,0 +1,158 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/sound/fsl,qmc-audio.yaml#
+> +$id: http://devicetree.org/schemas/usb/nvidia,tegra234-xusb.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: QMC audio
+> +title: NVIDIA Tegra234 xHCI controller
 > +
 > +maintainers:
-> +  - Herve Codina <herve.codina@bootlin.com>
+> +  - Thierry Reding <thierry.reding@gmail.com>
+> +  - Jon Hunter <jonathanh@nvidia.com>
 > +
-> +description: |
-> +  The QMC audio is an ASoC component which uses QMC (QUICC Multichannel
-> +  Controller) channels to transfer the audio data.
-> +  It provides as many DAI as the number of QMC channel used.
+> +description: The Tegra xHCI controller supports both USB2 and USB3 interfaces
+
+Line ends after "description:"
+
+> +  exposed by the Tegra XUSB pad controller.
 > +
 > +properties:
 > +  compatible:
+> +    const: nvidia,tegra234-xusb
+> +
+> +  reg:
 > +    items:
+> +      - description: base and length of the xHCI host registers
 
-Drop items.
+Just "xHCI host registers". Same in other places.
 
-> +      - const: fsl,qmc-audio
+> +      - description: base and length of the XUSB FPCI registers
+> +      - description: base and length of the XUSB bar2 registers
 > +
-> +  '#address-cells':
-> +    const: 1
-> +  '#size-cells':
-> +    const: 0
-> +  '#sound-dai-cells':
-> +    const: 1
+> +  reg-names:
+> +    items:
+> +      - const: hcd
+> +      - const: fpci
+> +      - const: bar2
 > +
-> +patternProperties:
-> +  "^dai@([0-9]|[1-5][0-9]|6[0-3])$":
-> +    description:
-> +      A DAI managed by this controller
-> +    type: object
+> +  interrupts:
+> +    items:
+> +      - description: xHCI host interrupt
+> +      - description: mailbox interrupt
 > +
-> +    properties:
-> +      reg:
-> +        minimum: 0
-> +        maximum: 63
-> +        description:
-> +          The DAI number
+> +  clocks:
+> +    items:
+> +      - description: XUSB host clock
+> +      - description: XUSB Falcon source clock
+> +      - description: XUSB SuperSpeed clock
+> +      - description: XUSB SuperSpeed source clock
+> +      - description: XUSB HighSpeed clock source
+> +      - description: XUSB FullSpeed clock source
+> +      - description: USB PLL
+> +      - description: reference clock
+> +      - description: I/O PLL
 > +
-> +      qmc-chan:
+> +  clock-names:
+> +    items:
+> +      - const: xusb_host
+> +      - const: xusb_falcon_src
+> +      - const: xusb_ss
+> +      - const: xusb_ss_src
+> +      - const: xusb_hs_src
+> +      - const: xusb_fs_src
+> +      - const: pll_u_480m
+> +      - const: clk_m
+> +      - const: pll_e
+> +
+> +  interconnects:
+> +    items:
+> +      - description: read client
+> +      - description: write client
+> +
+> +  interconnect-names:
+> +    items:
+> +      - const: dma-mem # read
+> +      - const: write
+> +
+> +  iommus:
+> +    maxItems: 1
+> +
+> +  nvidia,xusb-padctl:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: phandle to the XUSB pad controller that is used to configure
+> +      the USB pads used by the XHCI controller
+> +
+> +  phys:
+> +    minItems: 1
+> +    maxItems: 8
+> +
+> +  phy-names:
+> +    minItems: 1
+> +    maxItems: 8
+> +    items:
+> +      enum:
+> +        - usb2-0
+> +        - usb2-1
+> +        - usb2-2
+> +        - usb2-3
+> +        - usb3-0
+> +        - usb3-1
+> +        - usb3-2
+> +        - usb3-3
 
-Missing vendor prefix.
+Why do you have so many optional phys? In what case you would put there
+usb2-0 and usb3-3 together? Or even 8 phys at the same time? IOW, what
+are the differences between them and why one controller would be
+connected once to usb3-2 and once to usb3-3 phy? And once to both?
 
-> +        $ref: /schemas/types.yaml#/definitions/phandle-array
-
-Why this is not a phandle?
-
-> +        description: phandle to the QMC channel> +        maxItems: 1
 > +
-> +    required:
-> +      - reg
-> +      - qmc-chan
+> +  power-domains:
+> +    items:
+> +      - description: XUSBC power domain (for Host and USB 2.0)
+> +      - description: XUSBA power domain (for SuperSpeed)
 > +
-> +required:
-> +  - compatible
-> +  - '#address-cells'
-> +  - '#size-cells'
-> +  - '#sound-dai-cells'
+> +  power-domain-names:
+> +    items:
+> +      - const: xusb_host
+> +      - const: xusb_ss
 > +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    qmc_audio: qmc_audio {
+> +  dma-coherent:
 
-Same problem as in previous patch.
+Just: true
 
-> +        compatible = "fsl,qmc-audio";
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        #sound-dai-cells = <1>;
-> +        dai@16 {
-> +            reg = <16>;
-> +            qmc-chan = <&scc_qmc 16>;
-> +        };
-> +        dai@17 {
-> +            reg = <17>;
-> +            qmc-chan = <&scc_qmc 17>;
-> +        };
-> +    };
+> +    type: boolean
+
+Drop
+
+> +
+> +allOf:
+> +  - $ref: usb-xhci.yaml
+> +
+> +unevaluatedProperties: false
+> +
 
 Best regards,
 Krzysztof
