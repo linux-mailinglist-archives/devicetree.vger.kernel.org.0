@@ -2,170 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD8A16615F2
-	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 15:55:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35FE26615E5
+	for <lists+devicetree@lfdr.de>; Sun,  8 Jan 2023 15:51:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230254AbjAHOzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Jan 2023 09:55:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40392 "EHLO
+        id S232837AbjAHOvs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Jan 2023 09:51:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230363AbjAHOzt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 09:55:49 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CE2CF5A6
-        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 06:45:48 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id ay40so4492302wmb.2
-        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 06:45:48 -0800 (PST)
+        with ESMTP id S232699AbjAHOvs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Jan 2023 09:51:48 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3623710E1
+        for <devicetree@vger.kernel.org>; Sun,  8 Jan 2023 06:51:47 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id c4-20020a1c3504000000b003d9e2f72093so2328504wma.1
+        for <devicetree@vger.kernel.org>; Sun, 08 Jan 2023 06:51:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=5Mpmz+UXTscBPJqkv/dsExuqIz2qYdum1EIzJT1D6w8=;
-        b=JgXnBo7vPrw+9v3Sq2TJ04hPA5lgdh+yWMSKE8gs+pK37WAqW3MhLRbdIKE0M+QehT
-         QRQ5bbjgszn5W8nHbUBYwVm5y3m/sHmE9dv2ZBZdtKtNS1m5GIxr0R+H5BlOAAVbzTic
-         exdrXCwZfWeZ+bXiEN0C2e9F2j3lC1xZMmd/rl7bpJ0LmfpD1OaLNRod8m82f9pGRUEU
-         Ua1kCrarKi/dGGDxrgTy5NDH7FNu4IeQsgwR/PPBdGD0PX19i8ao28Bv7nAacXvRRyrZ
-         aDezgpThskETJ0eptiAisTJdWVyf/opqdKuPVn9077odA4L7yvQG4WOYrxVTsUupt9J1
-         vEIw==
+        bh=IkIBDVTRvMke9qsSJ1CLH9k2Xrh9aWdh554iPOcNh7Y=;
+        b=q2nrBow8scyz8Yj5rHu1QVjHBsvtu/iHoBmgLE6yFdBxeoqA/Mcn0jfdEaN2m/CJRy
+         DTmdV8UR7SunZNqm6/mDtwSxCFGup57Uco2jO7kXiJYT8tKhvOoLhEzyAurfo1gtiaal
+         yQKSbNPwQFDseSDFq8UI75g4hcDGsVQdzUXJZwtgIHrDiWAQSBXEUuv70UIcxPc6LfeT
+         FmIIAYOaNXgr6LViFMzVNxiIJbcclPSaYuE8whf+m1N3awCtpLDWhL8PalaeSO1T9lFa
+         vW9ezrQJUh/ZORIeJoRnEX/82VPJ4Aouy++Wm7GekfKPkcU7R06WWcP3pp5L5i9RX0rk
+         /KwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5Mpmz+UXTscBPJqkv/dsExuqIz2qYdum1EIzJT1D6w8=;
-        b=t1SMsCXHC3pSQagWTmh5rh4GZfWAX7spz45mHkB1PeGO5G1uxhlLD7xxI9UBPHs65G
-         /AaCf/0bm7motlbb5rBBsggE1QL24b5uGniMBGwYakXkA6evQrtTG8X2QdGA+mI3HjM3
-         Dh9GYLprfKJmhl9HVt3igJX0cPnNmoWkU2fEck0TayQtCeNrYvj0NNu4S0CobwfIk+OV
-         +ElpshY6ZwQyUiAaywQ/PEszelQlhuNj2O7/2WuO1cjJdFzLDs/Dh02XlY1maF+ldBYX
-         TTePjznqYXxl9CRLNw9Oo5Y2yeZtq7dUMQDNR45IyWfFPPCB610ERcOuhAoFuYQGsVcm
-         XqgQ==
-X-Gm-Message-State: AFqh2kppwu3kAupDQgUf+qw/cToyQ+hRvFyDN16o8eDtJkNUK0yIBYjW
-        m7bYc9iCViMqW8Mh65Afl0FOyw==
-X-Google-Smtp-Source: AMrXdXsl5eYxlz8wqdth9/xC2bBbckKnezMmPEGbx8Vo8cCpKEWLDq4D2k7aN0yE4ZJA6Pw+irCKAQ==
-X-Received: by 2002:a05:600c:4f54:b0:3d9:f04c:f58f with SMTP id m20-20020a05600c4f5400b003d9f04cf58fmr63157wmq.40.1673189146870;
-        Sun, 08 Jan 2023 06:45:46 -0800 (PST)
+        bh=IkIBDVTRvMke9qsSJ1CLH9k2Xrh9aWdh554iPOcNh7Y=;
+        b=Wb+yn2f0kTtcm8XusJ4Qf4LSdj9ecj6A++ad/D4JDVDyEwUc/jZQeMi0NPxducTmjs
+         pOQ1ap4zCc0ASZL5QipAsIQDDGTJDwgu1oS4nZcTwJZp3/w1cqNzYG4YJjrWwU4w2aSA
+         TNTtIbhoTlmRr+f/FGwNwTKbr9WYVWMdhxSEgJFAWxgqP9LKMGh+Z/K25VZzMm/8O0tw
+         7u7B3QfS8q1+aP4tiOx1QCcnFI4EcBAquq+J6u9f3cNRxY4mXA5MveQ77XESVbWEvdqD
+         trhOUmpTF9KOrlGQLV/FGRCXzM7wJjoqBdZ0U6uWl6bTkJQY8Q7rDt25927G8f9Iul++
+         bOQQ==
+X-Gm-Message-State: AFqh2kqmy4s8ZYvy6fGz9Fm0m8Uo8f3YdqKwEep+r2WF55fwBOiPQHrG
+        smVbozANuZgk1x9fjMorjZPi/A==
+X-Google-Smtp-Source: AMrXdXvxmDvbSvmzG54h4nrZxiwKyDsvND2S0V1/kw7DThoAH36DvrrhXBLjF6J3ypixiEV838eogQ==
+X-Received: by 2002:a05:600c:4995:b0:3d3:4f43:fbc2 with SMTP id h21-20020a05600c499500b003d34f43fbc2mr44392373wmp.41.1673189505732;
+        Sun, 08 Jan 2023 06:51:45 -0800 (PST)
 Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id y7-20020a7bcd87000000b003d997e5e679sm9449765wmj.14.2023.01.08.06.45.44
+        by smtp.gmail.com with ESMTPSA id bp28-20020a5d5a9c000000b00273cd321a1bsm6306116wrb.107.2023.01.08.06.51.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 08 Jan 2023 06:45:46 -0800 (PST)
-Message-ID: <70474070-404b-2fbe-2575-4810f6fbda91@linaro.org>
-Date:   Sun, 8 Jan 2023 15:45:44 +0100
+        Sun, 08 Jan 2023 06:51:45 -0800 (PST)
+Message-ID: <b529a53b-d00c-063d-a58d-e64b0300605d@linaro.org>
+Date:   Sun, 8 Jan 2023 15:51:42 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH] dt-bindings: mmc: fsl-imx-esdhc: allow more compatible
- combinations
+Subject: Re: [PATCH 02/16] dt-bindings: spi: Add bcmbca-hsspi controller
+ support
 Content-Language: en-US
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+To:     William Zhang <william.zhang@broadcom.com>,
+        Linux SPI List <linux-spi@vger.kernel.org>,
+        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>
+Cc:     anand.gore@broadcom.com, tomer.yacoby@broadcom.com,
+        dan.beygelman@broadcom.com, joel.peshkin@broadcom.com,
+        f.fainelli@gmail.com, jonas.gorski@gmail.com,
+        kursad.oney@broadcom.com, dregan@mail.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230105213856.1828360-1-andreas@kemnade.info>
- <d7c407dc-0a6c-97d5-a06f-b432a923d74d@linaro.org>
- <20230106203358.14878660@aktux>
- <967cc7b7-f0bb-de37-52b9-7bfab05eadd7@linaro.org>
- <20230107144336.2ecff4f9@aktux>
- <123d1a56-8134-dc75-8b2a-b3836e727d4a@linaro.org>
- <20230107150740.0ba34aa1@aktux>
- <0ab84fb8-6173-54e0-abad-a0e0e4ba82e7@linaro.org>
- <20230107160105.66df4136@aktux>
- <e1b1450b-9421-3732-2d74-50c47b5afb0e@linaro.org>
- <20230107165457.30f4dddf@aktux>
+References: <20230106200809.330769-1-william.zhang@broadcom.com>
+ <20230106200809.330769-3-william.zhang@broadcom.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230107165457.30f4dddf@aktux>
+In-Reply-To: <20230106200809.330769-3-william.zhang@broadcom.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/01/2023 16:54, Andreas Kemnade wrote:
-> On Sat, 7 Jan 2023 16:07:35 +0100
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+On 06/01/2023 21:07, William Zhang wrote:
+> The new Broadcom Broadband BCMBCA SoCs includes a updated HSSPI
+> controller. Add a new compatible string and required fields for the new
+> driver.  Also add myself and Kursad as the maintainers.
 > 
->> On 07/01/2023 16:01, Andreas Kemnade wrote:
->>> On Sat, 7 Jan 2023 15:09:24 +0100
->>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->>>   
->>>> On 07/01/2023 15:07, Andreas Kemnade wrote:  
->>>>> On Sat, 7 Jan 2023 15:00:56 +0100
->>>>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->>>>>
->>>>> [...]    
->>>>>>>> I asked to remove half-compatible. Not to enforce.
->>>>>>>>      
->>>>> so you are saying that allowing
->>>>> compatible = "A", "B" 
->>>>> is not ok, if B is not fully compatible. I agree with that
->>>>> one.    
->>>>
->>>> I did not say that. It's not related to this problem.
->>>>  
->>> You said "I asked to remove half-compatible" that means to me
->>> remove "B" if not fully compatible with A which sounds sane to me.
->>>   
->>>> Again - you cannot have device which is and is not compatible with
->>>> something else. It's not a Schroedinger's cat to be in two states,
->>>> unless you explicitly document the cases (there are exception). If this
->>>> is such exception, it requires it's own documentation.
->>>>  
->>> so conclusion:
->>> If having A and B half-compatible with A:
->>>
->>> compatible = "A" only: is allowed to specifiy it the binding (status quo),
->>>   but not allowed to make the actual dtsi match the binding documentation
->>>   https://lore.kernel.org/linux-devicetree/72e1194e10ccb4f87aed96265114f0963e805092.camel@pengutronix.de/
->>>   and
->>>   https://lore.kernel.org/linux-devicetree/20210924091439.2561931-5-andreas@kemnade.info/
->>>
->>> compatible = "A", "B" in the binding definition: is not allowed ("I asked to remove
->>>    half-compatible" (= removing B))  
->>
->> No, half compatible is the A in such case.
->>
-> I think that there is some misunderstanding in here. I try once again.
+> Signed-off-by: William Zhang <william.zhang@broadcom.com>
+> ---
 > 
-> Define compatible with "X" here:
-> To me it means:
+>  .../bindings/spi/brcm,bcm63xx-hsspi.yaml      | 84 +++++++++++++++++--
+>  1 file changed, 78 insertions(+), 6 deletions(-)
 > 
-> device fully works with flags defined in:
-> 
-> static const struct esdhc_soc_data usdhc_X_data = { ... };
-> 
-> with usdhc_X_data referenced in
->         { .compatible = "X", .data = &usdhc_X_data, },
-> 
-> 
-> So if there is only "A" matching with above definition of compatibility
->   compatible = "A" would sound sane to me.
-> 
-> And scrutinizing the flags more and not just wanting to achieve error-free
-> dtbs_check, I think is this in most cases where there is only "A". 
-> 
-> If there is "A" and "B" which match that compatibility definition, you
-> say that only compatible = "A", "B" is allowed, but not compatible = "A".
-> In that case I would have no problem with that.
-> 
-> But if there is only "A" but no "B" matching the above definition, I would expect
-> that only compatible = "A" is allowed but *not* compatible = "A", "B".
+> diff --git a/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml b/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml
+> index 45f1417b1213..56e69d4a1faf 100644
+> --- a/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/brcm,bcm63xx-hsspi.yaml
+> @@ -4,22 +4,51 @@
+>  $id: http://devicetree.org/schemas/spi/brcm,bcm63xx-hsspi.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: Broadcom BCM6328 High Speed SPI controller
+> +title: Broadcom Broadband SoC High Speed SPI controller
+>  
+>  maintainers:
+> +
 
-Sorry, I don't follow. I also do not understand what "matching" means in
-these terms (binding driver? of_match?) and also I do not know what is
-the "above definition".
+Drop blank line.
 
-Devicetree spec defines the compatibility - so this is the definition.
-There will be differences when applying it to different cases.
+> +  - William Zhang <william.zhang@broadcom.com>
+> +  - Kursad Oney <kursad.oney@broadcom.com>
+>    - Jonas Gorski <jonas.gorski@gmail.com>
 
+>  
+> +description: |
+> +  Broadcom Broadband SoC supports High Speed SPI master controller since the
+> +  early MIPS based chips such as BCM6328 and BCM63268.  This controller was
+> +  carried over to recent ARM based chips, such as BCM63138, BCM4908 and BCM6858.
+> +
+> +  It has a limitation that can not keep the chip select line active between
+> +  the SPI transfers within the same SPI message. This can terminate the
+> +  transaction to some SPI devices prematurely. The issue can be worked around by
+> +  either the controller's prepend mode or using the dummy chip select
+> +  workaround. This controller uses the compatible string brcm,bcm6328-hsspi.
+> +
+> +  The newer SoCs such as BCM6756, BCM4912 and BCM6855 include an updated SPI
+> +  controller that add the capability to allow the driver to control chip select
+> +  explicitly. This solves the issue in the old controller. This new controller
+> +  uses the compatible string brcm,bcmbca-hsspi.
+> +
+>  properties:
+>    compatible:
+> -    const: brcm,bcm6328-hsspi
+> +    enum:
+> +      - brcm,bcm6328-hsspi
+> +      - brcm,bcmbca-hsspi
+
+bca seems quite unspecific. Your description above mentions several
+model numbers and "bca" is not listed as model. Compatibles cannot be
+generic.
+
+>  
+>    reg:
+> -    maxItems: 1
+> +    items:
+> +      - description: main registers
+> +      - description: miscellaneous control registers
+> +    minItems: 1
+> +
+> +  reg-names:
+> +    items:
+> +      - const: hsspi
+> +      - const: spim-ctrl
+
+This does not match reg
+
+>  
+>    clocks:
+>      items:
+> -      - description: spi master reference clock
+> -      - description: spi master pll clock
+> +      - description: SPI master reference clock
+> +      - description: SPI master pll clock
+
+Really? You just added it in previous patch, didn't you?
+
+>  
+>    clock-names:
+>      items:
+> @@ -29,12 +58,43 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>  
+> +  brcm,use-cs-workaround:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: |
+> +      Enable dummy chip select workaround for SPI transfers that can not be
+> +      supported by the default controller's prepend mode, i.e. delay or cs
+> +      change needed between SPI transfers.
+
+You need to describe what is the workaround.
+
+> +
+>  required:
+>    - compatible
+>    - reg
+>    - clocks
+>    - clock-names
+> -  - interrupts
+> +
+> +allOf:
+> +  - $ref: "spi-controller.yaml#"
+
+No quotes. How this is related to this patch?
+
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - brcm,bcm6328-hsspi
+> +    then:
+> +      properties:
+> +        reg:
+> +          minItems: 1
+
+Drop.
+
+reg-names now do not match.
+
+> +          maxItems: 1
+> +    else:
+> +      properties:
+> +        reg:
+> +          minItems: 2
+> +          maxItems: 2
+> +        reg-names:
+> +          minItems: 2
+> +          maxItems: 2
+> +        brcm,use-cs-workaround: false
+> +      required:
+> +        - reg-names
 Best regards,
 Krzysztof
 
